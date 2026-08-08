@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
+import { isLightThemeMode } from '../constants/theme';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager, Animated } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -38,14 +39,18 @@ import { perfScreenMount } from './perf-monitor';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { emitAppEvent, onAppEvent } from './events';
 import { isLessonFinishedOnce } from './mastery';
-import { getVerifiedPremiumStatus } from './premium_guard';
-import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import {
+  isLegacyLessonGrandfatheredOpen,
+  lessonPaywallContext,
+  requiresPremiumForLesson,
+} from './monetization_policy';
+import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
-import CompassDepthSurface from '../components/CompassDepthSurface';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
@@ -92,6 +97,20 @@ type LessonMenuCache = {
 
 const lessonMenuCacheById: Record<string, LessonMenuCache> = {};
 const LESSON_MENU_PREP_HINT_SEEN_KEY = 'lesson_menu_prep_hint_seen_v1';
+
+// зачем: владелец жаловался на «прыжки» при входе в урок — подсказка про Словарь/Теорию
+// прилетала в поток после async getItem и сдвигала плитки под собой. Флаг «уже видел»
+// кэшируется в модуле: после первого чтения он доступен СИНХРОННО, поэтому на первом
+// кадре подсказка либо уже есть, либо её нет вовсе — геометрия не меняется.
+let prepHintSeenCache: boolean | null = null;
+
+function peekPrepHintSeen(): boolean | null {
+  return prepHintSeenCache;
+}
+
+function rememberPrepHintSeen(seen: boolean): void {
+  prepHintSeenCache = seen;
+}
 
 function lessonMenuCacheKey(lessonId: number, studyTarget?: RuntimeStudyTarget): string {
   return `${storageStudyTarget(studyTarget)}:${lessonId}`;
@@ -265,9 +284,10 @@ export default function LessonMenu() {
   const { theme:t, f, themeMode } = useTheme();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const isLightTheme = false;
+  // зачем: стаб isLightTheme=false оставлял sagePorcelain средне-насыщенные
+  // CEFR-тона (~2:1 на фарфоре); светлая ветка теперь живая, тона — тёмные sage.
+  const isLightTheme = isLightThemeMode(themeMode);
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = false;
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
@@ -352,7 +372,6 @@ export default function LessonMenu() {
   const [theoryProgressPct, setTheoryProgressPct] = useState(cachedMenu?.theoryProgressPct ?? 0);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
-  const [uiReady, setUiReady] = useState(Boolean(cachedMenu));
   const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
   // Состояние блокировки урока
@@ -377,13 +396,17 @@ export default function LessonMenu() {
       params: {
         context: lessonPaywallContext(lessonId),
         lessons_done: String(Math.max(0, lessonId - 1)),
+        ...lessonPurchaseContinuationParams(lessonId),
       },
     } as any);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, router]);
 
   // Служебный флаг первого завершения: после него основной CTA подписывается как replay.
   const [finishedOnce, setFinishedOnce] = useState(false);
-  const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(false);
+  // Первый кадр = финальная геометрия: если флаг уже прочитан в этой сессии, берём его
+  // синхронно. Первый вход за сессию (кэш пуст) — считаем, что подсказку показываем:
+  // так она не «влетает» позже, а сразу стоит на своём месте.
+  const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(() => peekPrepHintSeen() !== true);
 
   const showReplayCta = finishedOnce && !isLessonLocked;
   const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
@@ -412,12 +435,16 @@ export default function LessonMenu() {
       setLessonPrepHintVisible(false);
       return;
     }
+    // Кэш уже прогрет — состояние выставлено синхронно в useState, второй раз не читаем.
+    if (peekPrepHintSeen() !== null) return;
     let cancelled = false;
     AsyncStorage.getItem(LESSON_MENU_PREP_HINT_SEEN_KEY)
       .then((seen) => {
+        rememberPrepHintSeen(seen === '1');
         if (!cancelled) setLessonPrepHintVisible(seen !== '1');
       })
       .catch(() => {
+        rememberPrepHintSeen(false);
         if (!cancelled) setLessonPrepHintVisible(true);
       });
     return () => { cancelled = true; };
@@ -426,6 +453,9 @@ export default function LessonMenu() {
   useEffect(() => {
     if (!lessonPrepHintVisible || !canShowLessonPrepHint || isLessonLocked || !lockStateLoaded) return;
     const timer = setTimeout(() => {
+      // Кэш обновляем сразу вместе с диском: следующий вход в урок решит судьбу
+      // подсказки синхронно, на первом кадре, без сдвига плиток.
+      rememberPrepHintSeen(true);
       void AsyncStorage.setItem(LESSON_MENU_PREP_HINT_SEEN_KEY, '1').catch(() => {});
     }, 1200);
     return () => clearTimeout(timer);
@@ -452,8 +482,16 @@ export default function LessonMenu() {
     };
     (async () => {
       try {
-        const noLimits = await AsyncStorage.getItem('tester_no_limits');
-        if (noLimits === 'true') {
+        const noLimits = await isTesterNoLimitsActive();
+        if (noLimits) {
+          setIsLessonLocked(false);
+          setLockReason('progress');
+          setLockInfoQuiet(null);
+          return;
+        }
+
+        const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
+        if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) {
           setIsLessonLocked(false);
           setLockReason('progress');
           setLockInfoQuiet(null);
@@ -462,7 +500,7 @@ export default function LessonMenu() {
 
         const premiumNow = await getVerifiedPremiumStatus();
 
-        if (!premiumNow && requiresPremiumForLesson(lessonId)) {
+        if (!premiumNow && requiresPremiumForLesson(lessonId, legacyFreeLessonCap)) {
           setIsLessonLocked(true);
           setLockReason('premium');
           setLockInfoQuiet(await getLessonLockInfo(lessonId, studyTarget));
@@ -594,31 +632,43 @@ export default function LessonMenu() {
       .catch(() => setTheoryProgressPct(0));
   }, [lessonId, studyTarget]);
 
+  // зачем: гидратация из прогретого кэша раньше ждала runAfterInteractions — цифры и
+  // кольца догоняли вёрстку уже после анимации перехода. Кэш лежит в памяти, читается
+  // синхронно, поэтому применяем его сразу при монтировании: первый кадр уже финальный.
   useEffect(() => {
+    // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
+    // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
+    const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
+    if (warm) {
+      setScore(warm.score);
+      setProgress(warm.progress);
+      setProgressArr(warm.progressArr);
+      setWordsLearned(warm.wordsLearned);
+      setIrregularLearned(warm.irregularLearned);
+      setPrepositionAnswered(warm.prepositionAnswered);
+      setPrepositionTotal(warm.prepositionTotal);
+      setTheoryProgressPct(warm.theoryProgressPct);
+      setPassCount(warm.passCount);
+      setDataLoaded(true);
+    } else {
+      setDataLoaded(false);
+    }
+  }, [lessonId, studyTarget]);
+
+  // Запись «последний открытый урок» на первый кадр не влияет — откладываем её за
+  // анимацию перехода, чтобы не занимать поток в момент открытия экрана.
+  // зачем: запоминаем ТОЛЬКО доступный урок. Раньше заглянув в заблокированный
+  // урок (напр. №2 из списка), пользователь записывал его как «последний
+  // открытый», и кнопка «Урок» на Главной потом каждый раз приводила на экран
+  // «Урок заблокирован» — выглядело как поломка приложения. Ждём результат
+  // проверки блокировки (lockStateLoaded), чтобы не записать урок до неё.
+  useEffect(() => {
+    if (!lockStateLoaded || isLessonLocked) return;
     const task = InteractionManager.runAfterInteractions(() => {
-      setUiReady(true);
       void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
-      loadLockState();
-      // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
-      // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
-      const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
-      if (warm) {
-        setScore(warm.score);
-        setProgress(warm.progress);
-        setProgressArr(warm.progressArr);
-        setWordsLearned(warm.wordsLearned);
-        setIrregularLearned(warm.irregularLearned);
-        setPrepositionAnswered(warm.prepositionAnswered);
-        setPrepositionTotal(warm.prepositionTotal);
-        setTheoryProgressPct(warm.theoryProgressPct);
-        setPassCount(warm.passCount);
-        setDataLoaded(true);
-      } else {
-        setDataLoaded(false);
-      }
     });
     return () => task.cancel();
-  }, [lessonId, loadLockState, studyTarget]);
+  }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked]);
 
   const openLessonFromMenu = useCallback(() => {
     if (frenchLessonSourceGated) {
@@ -1128,7 +1178,7 @@ export default function LessonMenu() {
           <PremiumCard level={1} onPress={()=>{
             hapticTap();
             // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-            safeRouterBack(router, '/(tabs)/lessons' as any);
+            safeRouterBack(router, '/(tabs)/home' as any);
           }}
             style={{width:38,height:38,borderRadius:19}}
             innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
@@ -1153,23 +1203,22 @@ export default function LessonMenu() {
         {/* Заглушка */}
         <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingHorizontal:32}}>
           <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-            width:90,height:90,borderRadius:isCompassTheme ? 16 : 45,
-            backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderWidth:1,borderColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            width:90,height:90,borderRadius:45,
+            backgroundColor:t.bgCard,
+            borderWidth: 0,borderColor:isGoldTheme ? GOLD_RICH.hairline : t.border,
             justifyContent:'center',alignItems:'center',
             marginBottom:24,
             shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6,
             overflow:'hidden',
-            ...(isGoldTheme ? goldShadow(2) : isCompassTheme ? compassShadow(2) : {}),
+            ...(isGoldTheme ? goldShadow(2) : {}),
           }}>
             {isGoldTheme && <GoldBevel radius={45} intensity="normal" />}
-            {isCompassTheme && <CompassDepthSurface radius={16} selected />}
-            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textMuted}/>
+            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted}/>
           </LinearGradient>
           <Text style={{color:t.heroTextPrimary,fontSize:f.h2,fontWeight:'700',textAlign:'center',marginBottom:12}}>
             {lockedTitle}
@@ -1186,6 +1235,7 @@ export default function LessonMenu() {
                   params: {
                     context: lessonPaywallContext(lessonId),
                     lessons_done: String(Math.max(0, lessonId - 1)),
+                    ...lessonPurchaseContinuationParams(lessonId),
                   },
                 } as any);
               } else if (lockReason === 'level' && prevLevel) {
@@ -1220,10 +1270,10 @@ export default function LessonMenu() {
     );
   }
 
-  if (!uiReady && !cachedMenu) {
-    return <View style={{ flex: 1 }} />;
-  }
-
+  // зачем: тут стоял `return <View style={{flex:1}}/>` до окончания анимации перехода —
+  // push доигрывал на пустом прозрачном экране, а вёрстка влетала уже после (главный
+  // источник «прыжков» при входе в урок). Разметка не зависит от uiReady: имя урока,
+  // плитки и хедер известны синхронно, поэтому рисуем финальный кадр сразу.
   return (
     <ScreenGradient>
     <LessonArtBackdrop variant="menu" />
@@ -1235,7 +1285,7 @@ export default function LessonMenu() {
         <PremiumCard testID="lesson-menu-back" level={1} onPress={()=>{
           hapticTap();
           // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-          safeRouterBack(router, '/(tabs)/lessons' as any);
+          safeRouterBack(router, '/(tabs)/home' as any);
         }}
           style={{width:38,height:38,borderRadius:19}}
           innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
@@ -1253,10 +1303,10 @@ export default function LessonMenu() {
   tr: 'DERS',
   pl: 'LEKCJA',
 })} {lessonId}{'  '}<Text style={{fontSize: f.label,fontWeight:'700',color:
-            lessonId<=8  ? (isLightTheme?'#86EFAC':'#4CAF72') :
-            lessonId<=18 ? (isLightTheme?'#93C5FD':'#40B4E8') :
-            lessonId<=28 ? (isLightTheme?'#FDE047':'#D4A017') :
-                           (isLightTheme?'#FCA5A5':'#DC6428')
+            lessonId<=8  ? (isLightTheme?'#2F6F4F':'#4CAF72') :
+            lessonId<=18 ? (isLightTheme?'#2E5366':'#40B4E8') :
+            lessonId<=28 ? (isLightTheme?'#8B6320':'#D4A017') :
+                           (isLightTheme?'#A8464D':'#DC6428')
           }}>{lessonCefrLabel}</Text>
         </Text>
         <EnergyBar size={30} />
@@ -1269,7 +1319,7 @@ export default function LessonMenu() {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}
@@ -1346,42 +1396,38 @@ export default function LessonMenu() {
               />
             ) : item.pct !== undefined ? (
               <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
-                backgroundColor:isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
-                borderWidth:StyleSheet.hairlineWidth,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                width:44,height:44,borderRadius:22,
+                backgroundColor:t.bgSurface,
+                borderWidth:0,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity="quiet" />}
-                {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               </LinearGradient>
             ) : (
               <LinearGradient
                 colors={isGoldTheme
                   ? (item.disabled || item.unavailable ? GOLD_GRADIENTS.mutedPanel : GOLD_GRADIENTS.raisedTile)
-                  : isCompassTheme
-                    ? ((item.disabled || item.unavailable) ? COMPASS_GRADIENTS.recessedPanel : COMPASS_GRADIENTS.raisedTile)
                   : [((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface)]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
-                backgroundColor: isCompassTheme ? ((item.disabled || item.unavailable) ? COMPASS_RICH.charcoal : COMPASS_RICH.charcoalRaised) : (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
+                width:44,height:44,borderRadius:22,
+                backgroundColor: (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
                 borderTopWidth:0, borderLeftWidth:0,
                 borderRightWidth:0, borderBottomWidth:0,
-                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.edgeLight : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
-                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : isCompassTheme ? COMPASS_RICH.edgeShade : t.border,
+                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : t.borderHighlight,
+                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : t.border,
                 justifyContent:'center', alignItems:'center',
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity={(item.disabled || item.unavailable) ? 'quiet' : 'normal'} />}
-                {isCompassTheme && <CompassDepthSurface radius={9} quiet={item.disabled || item.unavailable} />}
-                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textSecond}/>
+                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : t.textSecond}/>
               </LinearGradient>
             )}
             <View style={{flex:1}}>
@@ -1393,17 +1439,20 @@ export default function LessonMenu() {
         ))}
       </View>
 
-      {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked && lockStateLoaded ? (
+      {/* зачем: раньше здесь стоял ещё и lockStateLoaded — подсказка появлялась только
+          после async-проверки замка и сдвигала всё под собой. isLessonLocked уже гарантирует,
+          что на закрытом уроке этот блок вообще не рендерится (см. ранние return выше). */}
+      {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked ? (
         <View testID="lesson-menu-prep-hint" style={{ paddingHorizontal: 16, marginTop: 12 }}>
           <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              borderRadius: isCompassTheme ? 10 : 18,
+              borderRadius: 18,
               borderWidth: 0,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
               paddingHorizontal: 16,
               paddingVertical: 14,
               flexDirection: 'row',
@@ -1413,23 +1462,22 @@ export default function LessonMenu() {
             }}
           >
             {isGoldTheme && <GoldBevel radius={18} intensity="quiet" />}
-            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
             <View
               style={{
                 width: 34,
                 height: 34,
-                borderRadius: isCompassTheme ? 8 : 17,
+                borderRadius: 17,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
+                backgroundColor: isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
                 borderWidth: 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
               }}
             >
               <Ionicons
                 name="information-circle-outline"
                 size={20}
-                color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.accent}
+                color={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               />
             </View>
             <Text style={{ flex: 1, color: t.heroTextMuted, fontSize: f.sub, lineHeight: 20 }}>
@@ -1448,42 +1496,38 @@ export default function LessonMenu() {
           <View style={{flex:1, justifyContent:'flex-end'}}>
             <Pressable onPress={(e) => e.stopPropagation()}>
               <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : isCompassTheme ? COMPASS_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderTopLeftRadius:isCompassTheme ? 14 : 24, borderTopRightRadius:isCompassTheme ? 14 : 24,
+                backgroundColor:t.bgCard,
+                borderTopLeftRadius:24, borderTopRightRadius:24,
                 padding:28, paddingBottom:40,
-                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
                 alignItems:'center',
                 overflow:'hidden',
-                ...(isCompassTheme ? compassShadow(3) : {}),
               }}>
                 {isGoldTheme && <GoldBevel radius={24} intensity="strong" />}
-                {isCompassTheme && <CompassDepthSurface radius={14} selected />}
                 <LinearGradient
-                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={{
                     width: 64,
                     height: 64,
-                    borderRadius: isCompassTheme ? 12 : 32,
+                    borderRadius: 32,
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 16,
                     borderWidth: 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
                     overflow: 'hidden',
-                    ...(isCompassTheme ? compassShadow(1) : {}),
                   }}
                 >
                   {isGoldTheme && <GoldBevel radius={32} intensity="normal" />}
-                  {isCompassTheme && <CompassDepthSurface radius={12} />}
-                  <Ionicons name="lock-closed" size={30} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textMuted} />
+                  <Ionicons name="lock-closed" size={30} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted} />
                 </LinearGradient>
                 <Text style={{color:t.textPrimary, fontSize:f.h2, fontWeight:'700', textAlign:'center', marginBottom:12}}>
                   {triLang(lang, {
@@ -1502,12 +1546,11 @@ export default function LessonMenu() {
                 </Text>
                 <TapScale scaleTo={0.96}
                   style={{
-                    backgroundColor:isCompassTheme ? COMPASS_RICH.champagne : t.accent,
-                    borderRadius:isCompassTheme ? 9 : 14, padding:16, width:'100%', alignItems:'center',
+                    backgroundColor:t.accent,
+                    borderRadius:14, padding:16, width:'100%', alignItems:'center',
                     overflow:'hidden',
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
-                    ...(isCompassTheme ? compassShadow(1) : {}),
+                    borderColor: 'transparent',
                   }}
                   onPress={() => {
                     hapticTap();
@@ -1520,8 +1563,7 @@ export default function LessonMenu() {
                       <GoldBevel radius={14} intensity="strong" />
                     </>
                   )}
-                  {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-                  <Text style={{color:isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize:f.body, fontWeight:'700'}}>
+                  <Text style={{color:t.correctText, fontSize:f.body, fontWeight:'700'}}>
                     {triLang(lang, {
   ru: 'Понимаю',
   uk: 'Розумію',
@@ -1618,7 +1660,7 @@ export default function LessonMenu() {
   id: 'Tutup',
   tr: 'Kapat',
   pl: 'Zamknij',
-}), onPress: () => {} }]}
+}), onPress: () => setSoonOpen(null) }]}
         onRequestClose={() => setSoonOpen(null)}
       />
       </ContentWrap>

@@ -1,8 +1,8 @@
 /**
  * Level-Up Gift System — подарок при повышении уровня.
  *
- * F2P — расширенный пул: осколки, энергия до полуночи, арена, бесплатный буст клуба, пари-скидка, …
- * Premium — отдельный пул: крупные осколки + редко проба набора 48ч + с низким шансом
+ * F2P — расширенный пул: мгновенный XP, энергия до полуночи, буст лиги, пари-скидка, …
+ * Premium — отдельный пул: крупный мгновенный XP + редко проба набора 48ч + с низким шансом
  *   постоянное открытие одного из пяти фирменных наборов (Negotiator, Dark Logic, Wild West,
  *   Royal Tea, Peaky Blinders), без повторов того же набора из этой дорожки.
  *
@@ -16,7 +16,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
-import { addArenaPlaysBonusForToday } from './arena_daily_limit';
+import {
+  CUSTOM_AVATAR_GIFT_OWNED_KEY,
+  CUSTOM_AVATAR_GIFT_REPLAY_KEY,
+} from '../constants/customization_storage_keys';
 import { addEnergy } from './energy_system';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
@@ -26,10 +29,21 @@ import {
   OFFICIAL_ROYAL_TEA_EN_ID,
   OFFICIAL_WILD_WEST_EN_ID,
 } from './flashcards/bundles/packIds';
-import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
+import { addOwnedPackId, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
+import {
+  callFlashcardPackGiftRedeem,
+  callLevelGiftActivatePackGift,
+  callLevelGiftReserve,
+} from './community_packs/functionsClient';
+import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
-import { addShardsRaw, getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
+import {
+  addShardsRaw,
+  getShardsBalance,
+  replaceShardsBalanceLocal,
+  replaceShardsBalanceLocalWhileAccountTransitionLocked,
+} from './shards_system';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import {
@@ -47,6 +61,12 @@ import {
   USER_AVATAR_AURA_KEY,
 } from '../constants/avatar_auras';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { withStorageLock } from './storage_mutex';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -66,6 +86,12 @@ export interface GiftDef {
   weight:  number;
   /** Choice reward: UI asks the user to pick one of these concrete rewards. */
   choices?: GiftDef[];
+  /** Server-owned roll receipt. Persisted with pending inventory for replay. */
+  levelGiftReservation?: {
+    reservationId: string;
+    lane: 'f2p' | 'premium';
+    allowedPackId?: string;
+  };
 }
 
 type PlannedGiftCopy = Record<PlannedInterfaceLang, string>;
@@ -104,8 +130,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Uma dica extra nas lições de hoje', vi: 'Một gợi ý thêm trong các bài học hôm nay', id: 'Satu petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde ekstra bir ipucu', pl: 'Dodatkowa podpowiedź w dzisiejszych lekcjach' },
   },
   shards_3: {
-    title: { 'pt-BR': '+3 fragmentos', vi: '+3 mảnh', id: '+3 shard', tr: '+3 parça', pl: '+3 odłamki' },
-    desc: { 'pt-BR': 'Três fragmentos de conhecimento', vi: 'Ba mảnh tri thức', id: 'Tiga shard pengetahuan', tr: 'Üç bilgi parçası', pl: 'Trzy odłamki wiedzy' },
+    title: { 'pt-BR': '+150 XP', vi: '+150 XP', id: '+150 XP', tr: '+150 XP', pl: '+150 XP' },
+    desc: { 'pt-BR': '+150 XP instantâneos', vi: '+150 XP ngay lập tức', id: '+150 XP instan', tr: 'Anında +150 XP', pl: 'Natychmiastowe +150 XP' },
   },
   xp_bank_150: {
     title: { 'pt-BR': 'Bônus ×2 para 150 XP', vi: 'Thưởng ×2 cho 150 XP', id: 'Bonus ×2 untuk 150 XP', tr: '150 XP için ×2 bonus', pl: 'Bonus ×2 na 150 XP' },
@@ -136,8 +162,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Três dicas extras nas lições de hoje', vi: 'Ba gợi ý thêm trong các bài học hôm nay', id: 'Tiga petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde üç ekstra ipucu', pl: 'Trzy dodatkowe podpowiedzi w dzisiejszych lekcjach' },
   },
   shards_6: {
-    title: { 'pt-BR': '+6 fragmentos', vi: '+6 mảnh', id: '+6 shard', tr: '+6 parça', pl: '+6 odłamków' },
-    desc: { 'pt-BR': 'Seis fragmentos: recompensa rara', vi: 'Sáu mảnh: phần thưởng hiếm', id: 'Enam shard: hadiah langka', tr: 'Altı parça: nadir ödül', pl: 'Sześć odłamków: rzadka nagroda' },
+    title: { 'pt-BR': '+350 XP', vi: '+350 XP', id: '+350 XP', tr: '+350 XP', pl: '+350 XP' },
+    desc: { 'pt-BR': '+350 XP instantâneos: recompensa rara', vi: '+350 XP ngay lập tức: phần thưởng hiếm', id: '+350 XP instan: hadiah langka', tr: 'Anında +350 XP: nadir ödül', pl: 'Natychmiastowe +350 XP: rzadka nagroda' },
   },
   xp_bank_300: {
     title: { 'pt-BR': 'Bônus ×2 para 300 XP', vi: 'Thưởng ×2 cho 300 XP', id: 'Bonus ×2 untuk 300 XP', tr: '300 XP için ×2 bonus', pl: 'Bonus ×2 na 300 XP' },
@@ -156,8 +182,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Uma aura aleatória será desbloqueada grátis ao redor do avatar', vi: 'Một hào quang ngẫu nhiên sẽ mở khóa miễn phí quanh avatar', id: 'Aura acak terbuka gratis di sekitar avatar', tr: 'Avatarın etrafında rastgele bir aura ücretsiz açılır', pl: 'Losowa aura zostanie odblokowana za darmo wokół awatara' },
   },
   club_boost_free: {
-    title: { 'pt-BR': 'Boost de clube grátis', vi: 'Tăng lực câu lạc bộ miễn phí', id: 'Boost klub gratis', tr: 'Ücretsiz kulüp boostu', pl: 'Darmowy boost klubu' },
-    desc: { 'pt-BR': 'A próxima ativação de boost no clube não custa fragmentos', vi: 'Lần kích hoạt tăng lực tiếp theo trong câu lạc bộ không tốn mảnh', id: 'Aktivasi boost klub berikutnya tidak membutuhkan shard', tr: 'Kulüpteki sonraki boost etkinleştirmesi parça harcamaz', pl: 'Następna aktywacja boostu w klubie nie kosztuje odłamków' },
+    title: { 'pt-BR': 'Boost de liga grátis', vi: 'Tăng lực giải đấu miễn phí', id: 'Boost liga gratis', tr: 'Ücretsiz lig boostu', pl: 'Darmowy boost ligi' },
+    desc: { 'pt-BR': 'A próxima ativação do boost da liga não custa pérolas', vi: 'Lần kích hoạt tăng lực giải đấu tiếp theo không tốn xu', id: 'Aktivasi boost liga berikutnya tidak membutuhkan koin', tr: 'Bir sonraki lig boostu etkinleştirmesi jeton harcamaz', pl: 'Następna aktywacja boostu ligi nie kosztuje monet' },
   },
   xp_2x_48h: {
     title: { 'pt-BR': '+100% XP por 48 horas', vi: '+100% XP trong 48 giờ', id: '+100% XP selama 48 jam', tr: '48 saat +%100 XP', pl: '+100% XP przez 48 godz.' },
@@ -176,8 +202,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'A próxima aposta custa 25% menos (uma vez; usado ao apostar)', vi: 'Lần cược tiếp theo rẻ hơn 25% (một lần; dùng khi đặt cược)', id: 'Taruhan berikutnya 25% lebih murah (sekali; dipakai saat bertaruh)', tr: 'Sonraki bahis %25 daha ucuz (tek seferlik; bahis yapınca kullanılır)', pl: 'Następny zakład kosztuje 25% mniej (jednorazowo, używa się przy zakładzie)' },
   },
   shards_10: {
-    title: { 'pt-BR': '+10 fragmentos', vi: '+10 mảnh', id: '+10 shard', tr: '+10 parça', pl: '+10 odłamków' },
-    desc: { 'pt-BR': 'Dez fragmentos', vi: 'Mười mảnh', id: 'Sepuluh shard', tr: 'On parça', pl: 'Dziesięć odłamków' },
+    title: { 'pt-BR': '+700 XP', vi: '+700 XP', id: '+700 XP', tr: '+700 XP', pl: '+700 XP' },
+    desc: { 'pt-BR': '+700 XP instantâneos', vi: '+700 XP ngay lập tức', id: '+700 XP instan', tr: 'Anında +700 XP', pl: 'Natychmiastowe +700 XP' },
   },
   xp_bank_600: {
     title: { 'pt-BR': 'Bônus ×2 para 600 XP', vi: 'Thưởng ×2 cho 600 XP', id: 'Bonus ×2 untuk 600 XP', tr: '600 XP için ×2 bonus', pl: 'Bonus ×2 na 600 XP' },
@@ -192,16 +218,16 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Abra e escolha uma de três recompensas', vi: 'Mở và chọn một trong ba phần thưởng', id: 'Buka dan pilih satu dari tiga hadiah', tr: 'Aç ve üç ödülden birini seç', pl: 'Otwórz i wybierz jedną z trzech nagród' },
   },
   prem_shards_10: {
-    title: { 'pt-BR': '+10 fragmentos (Plus)', vi: '+10 mảnh (Plus)', id: '+10 shard (Plus)', tr: '+10 parça (Plus)', pl: '+10 odłamków (Plus)' },
-    desc: { 'pt-BR': 'Recompensa generosa para Plus', vi: 'Phần thưởng hào phóng cho Plus', id: 'Hadiah besar untuk Plus', tr: 'Plus için cömert ödül', pl: 'Hojna nagroda dla Plus' },
+    title: { 'pt-BR': '+400 XP (Plus)', vi: '+400 XP (Plus)', id: '+400 XP (Plus)', tr: '+400 XP (Plus)', pl: '+400 XP (Plus)' },
+    desc: { 'pt-BR': '+400 XP instantâneos', vi: '+400 XP ngay lập tức', id: '+400 XP instan', tr: 'Anında +400 XP', pl: 'Natychmiastowe +400 XP' },
   },
   prem_shards_15: {
-    title: { 'pt-BR': '+15 fragmentos (Plus)', vi: '+15 mảnh (Plus)', id: '+15 shard (Plus)', tr: '+15 parça (Plus)', pl: '+15 odłamków (Plus)' },
-    desc: { 'pt-BR': 'Recompensa generosa', vi: 'Phần thưởng hào phóng', id: 'Hadiah besar', tr: 'Cömert ödül', pl: 'Hojna nagroda' },
+    title: { 'pt-BR': '+800 XP (Plus)', vi: '+800 XP (Plus)', id: '+800 XP (Plus)', tr: '+800 XP (Plus)', pl: '+800 XP (Plus)' },
+    desc: { 'pt-BR': '+800 XP instantâneos', vi: '+800 XP ngay lập tức', id: '+800 XP instan', tr: 'Anında +800 XP', pl: 'Natychmiastowe +800 XP' },
   },
   prem_shards_20: {
-    title: { 'pt-BR': '+20 fragmentos (Plus)', vi: '+20 mảnh (Plus)', id: '+20 shard (Plus)', tr: '+20 parça (Plus)', pl: '+20 odłamków (Plus)' },
-    desc: { 'pt-BR': 'Muitos fragmentos por subir de nível', vi: 'Nhiều mảnh khi lên cấp', id: 'Banyak shard karena naik level', tr: 'Seviye atladığın için bol parça', pl: 'Dużo odłamków za poziom' },
+    title: { 'pt-BR': '+1200 XP (Plus)', vi: '+1200 XP (Plus)', id: '+1200 XP (Plus)', tr: '+1200 XP (Plus)', pl: '+1200 XP (Plus)' },
+    desc: { 'pt-BR': '+1200 XP instantâneos por subir de nível', vi: '+1200 XP ngay lập tức khi lên cấp', id: '+1200 XP instan karena naik level', tr: 'Seviye atladığın için anında +1200 XP', pl: 'Natychmiastowe +1200 XP za poziom' },
   },
   premium_xp_bank_1000: {
     title: { 'pt-BR': 'Bônus ×2 para 1000 XP (Plus)', vi: 'Thưởng ×2 cho 1000 XP (Plus)', id: 'Bonus ×2 untuk 1000 XP (Plus)', tr: '1000 XP için ×2 bonus (Plus)', pl: 'Bonus ×2 na 1000 XP (Plus)' },
@@ -404,9 +430,12 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'Pista extra en las lecciones de hoy',
   },
   {
-    id: 'shards_3', rarity: 'common', icon: '💎', weight: 7,
-    titleRU: '+3 осколка', titleUK: '+3 осколки', titleES: '+3 fragmentos',
-    descRU: 'Три осколка знаний', descUK: 'Три осколки знань', descES: 'Tres fragmentos de conocimiento',
+    // зачем (2026-08-02, владелец): жемчужные подарки платили 0 (§7 экономики) и обманывали
+    // игрока. Те же id переделаны в честный мгновенный XP — id сохранены, потому что за них
+    // держатся серверный каталог роллов (functions/src/community_packs.ts) и старые инвентари.
+    id: 'shards_3', rarity: 'common', icon: '✨', weight: 7,
+    titleRU: '+150 XP', titleUK: '+150 XP', titleES: '+150 XP',
+    descRU: 'Мгновенные 150 опыта', descUK: 'Миттєвих 150 досвіду', descES: 'Al instante +150 XP',
   },
   {
     id: 'xp_bank_150', rarity: 'common', icon: '⚡', weight: 6,
@@ -456,10 +485,10 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'Tres pistas extra en las lecciones de hoy',
   },
   {
-    id: 'shards_6', rarity: 'rare', icon: '💎', weight: 6,
-    titleRU: '+6 осколков', titleUK: '+6 осколків', titleES: '+6 fragmentos',
-    descRU: 'Шесть осколков — редкая награда', descUK: 'Шість осколків — рідкісна нагорода',
-    descES: 'Seis fragmentos — premio poco habitual',
+    id: 'shards_6', rarity: 'rare', icon: '✨', weight: 6,
+    titleRU: '+350 XP', titleUK: '+350 XP', titleES: '+350 XP',
+    descRU: 'Мгновенные 350 опыта — редкая награда', descUK: 'Миттєвих 350 досвіду — рідкісна нагорода',
+    descES: 'Al instante +350 XP: premio poco habitual',
   },
   {
     id: 'xp_bank_300', rarity: 'rare', icon: '⚡', weight: 6,
@@ -491,10 +520,10 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'club_boost_free', rarity: 'rare', icon: '👥', weight: 6,
-    titleRU: 'Буст клуба бесплатно', titleUK: 'Буст клубу безкоштовно', titleES: 'Impulso de liga gratis',
-    descRU: 'Следующая активация буста в клубе без осколков',
-    descUK: 'Наступна активація буста в клубі без осколків',
-    descES: 'La próxima activación del impulso en la liga no cuesta fragmentos',
+    titleRU: 'Буст лиги бесплатно', titleUK: 'Буст ліги безкоштовно', titleES: 'Impulso de liga gratis',
+    descRU: 'Следующая активация буста лиги без жемчужин',
+    descUK: 'Наступна активація буста ліги без жемчужин',
+    descES: 'La próxima activación del impulso en la liga no cuesta perlas',
   },
   {
     id: 'xp_2x_48h', rarity: 'epic', icon: '🚀', weight: 3,
@@ -521,9 +550,9 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'La siguiente apuesta cuesta un 25 % menos (una sola vez; se usa al apostar)',
   },
   {
-    id: 'shards_10', rarity: 'epic', icon: '💎', weight: 2,
-    titleRU: '+10 осколков', titleUK: '+10 осколків', titleES: '+10 fragmentos',
-    descRU: 'Десять осколков', descUK: 'Десять осколків', descES: 'Diez fragmentos',
+    id: 'shards_10', rarity: 'epic', icon: '✨', weight: 2,
+    titleRU: '+700 XP', titleUK: '+700 XP', titleES: '+700 XP',
+    descRU: 'Мгновенные 700 опыта', descUK: 'Миттєвих 700 досвіду', descES: 'Al instante +700 XP',
   },
   {
     id: 'xp_bank_600', rarity: 'epic', icon: '⚡', weight: 2,
@@ -571,25 +600,25 @@ const GIFT_F2P: GiftDef[] = [
   },
 ];
 
-/** Тільки осколки + рідкісна проба набору — без дод. енергії для преміум (безкоштовна денна арена в нього і так є). */
+/** Крупный мгновенный XP + редкая проба набора — без доп. энергии для премиум (бесплатная дневная арена у него и так есть). */
 const GIFT_PREMIUM: GiftDef[] = [
   {
-    id: 'prem_shards_10', rarity: 'common', icon: '💎', weight: 5,
-    titleRU: '+10 осколков (плюс)', titleUK: '+10 осколків (плюс)', titleES: '+10 fragmentos (Plus)',
-    descRU: 'Щедрая награда для плюс',
-    descUK: 'Щедра нагорода для плюс',
-    descES: 'Recompensa generosa para usuarios Plus',
+    id: 'prem_shards_10', rarity: 'common', icon: '✨', weight: 5,
+    titleRU: '+400 XP (плюс)', titleUK: '+400 XP (плюс)', titleES: '+400 XP (Plus)',
+    descRU: 'Мгновенные 400 опыта',
+    descUK: 'Миттєвих 400 досвіду',
+    descES: 'Al instante +400 XP',
   },
   {
-    id: 'prem_shards_15', rarity: 'rare', icon: '💎', weight: 4,
-    titleRU: '+15 осколков (плюс)', titleUK: '+15 осколків (плюс)', titleES: '+15 fragmentos (Plus)',
-    descRU: 'Щедрая награда', descUK: 'Щедра нагорода', descES: 'Recompensa generosa',
+    id: 'prem_shards_15', rarity: 'rare', icon: '✨', weight: 4,
+    titleRU: '+800 XP (плюс)', titleUK: '+800 XP (плюс)', titleES: '+800 XP (Plus)',
+    descRU: 'Мгновенные 800 опыта', descUK: 'Миттєвих 800 досвіду', descES: 'Al instante +800 XP',
   },
   {
-    id: 'prem_shards_20', rarity: 'epic', icon: '💎', weight: 4,
-    titleRU: '+20 осколков (плюс)', titleUK: '+20 осколків (плюс)', titleES: '+20 fragmentos (Plus)',
-    descRU: 'Много осколков за уровень', descUK: 'Багато осколків за рівень',
-    descES: 'Muchos fragmentos por subir de nivel',
+    id: 'prem_shards_20', rarity: 'epic', icon: '✨', weight: 4,
+    titleRU: '+1200 XP (плюс)', titleUK: '+1200 XP (плюс)', titleES: '+1200 XP (Plus)',
+    descRU: 'Мгновенные 1200 опыта за уровень', descUK: 'Миттєвих 1200 досвіду за рівень',
+    descES: 'Al instante +1200 XP por subir de nivel',
   },
   {
     id: 'premium_xp_bank_1000', rarity: 'epic', icon: '⚡', weight: 2,
@@ -729,7 +758,6 @@ async function pushPremiumPackUnlockGiftReceivedPackId(packId: string): Promise<
 }
 
 const ROUND_LEVELS = new Set([10, 20, 30, 40, 50]);
-const GIFT_HISTORY_KEY = 'level_gift_last_ids_v1';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const PREMIUM_BLOCKED_F2P_IDS = new Set<GiftId>([
   'arena_extra_5',
@@ -753,6 +781,8 @@ export function isFlashcardPackLevelGiftId(gid: string | undefined | null): bool
 function flashcardPackLevelGiftsAllowed(studyTarget?: RuntimeStudyTarget): boolean {
   return flashcardsOfficialPacksAvailableForTarget(studyTarget);
 }
+
+const isTrialPackLevelGiftId = (id: GiftId): boolean => id === 'pack_voucher_48h' || id === 'prem_pack_48h';
 
 const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
   const isRound = ROUND_LEVELS.has(level);
@@ -781,22 +811,6 @@ const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
   return effective[effective.length - 1];
 };
 
-async function getRecentGiftIds(): Promise<string[]> {
-  try {
-    const raw = await AsyncStorage.getItem(GIFT_HISTORY_KEY);
-    if (!raw) return [];
-    const a = JSON.parse(raw);
-    return Array.isArray(a) ? a.filter((x: unknown) => typeof x === 'string') : [];
-  } catch { return []; }
-}
-
-async function pushGiftHistory(id: string): Promise<void> {
-  const cur = await getRecentGiftIds();
-  cur.push(id);
-  const next = cur.slice(-3);
-  await AsyncStorage.setItem(GIFT_HISTORY_KEY, JSON.stringify(next));
-}
-
 /**
  * Синхронный ролл (без премиум-ветки и без анти-повторов) — тесты / миграции.
  */
@@ -804,17 +818,37 @@ export function rollGift(level: number): GiftDef {
   return weightedPick(GIFT_F2P, level);
 }
 
-const getF2pPool = (premiumSafe: boolean, studyTarget?: RuntimeStudyTarget): GiftDef[] => {
-  const premiumFiltered = premiumSafe ? GIFT_F2P.filter(g => !PREMIUM_BLOCKED_F2P_IDS.has(g.id)) : GIFT_F2P;
-  return flashcardPackLevelGiftsAllowed(studyTarget)
-    ? premiumFiltered
-    : premiumFiltered.filter(g => !isFlashcardPackLevelGiftId(g.id));
-};
-
 const cloneGiftDef = (gift: GiftDef): GiftDef => ({
   ...gift,
   choices: gift.choices?.map(choice => ({ ...choice })),
+  levelGiftReservation: gift.levelGiftReservation ? { ...gift.levelGiftReservation } : undefined,
 });
+
+async function reserveServerLevelGift(
+  level: number,
+  lane: 'f2p' | 'premium',
+  studyTarget?: RuntimeStudyTarget,
+): Promise<GiftDef> {
+  const stableId = await getCanonicalUserId();
+  if (!stableId) throw new Error('level_gift_identity_unavailable');
+  const receipt = await callLevelGiftReserve({
+    stableId,
+    level,
+    lane,
+    studyTarget: storageStudyTarget(studyTarget),
+  });
+  const definition = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS]
+    .find((gift) => gift.id === receipt.giftId);
+  if (!definition) throw new Error('level_gift_catalog_mismatch');
+  return {
+    ...cloneGiftDef(definition),
+    levelGiftReservation: {
+      reservationId: receipt.reservationId,
+      lane,
+      ...(receipt.allowedPackId ? { allowedPackId: receipt.allowedPackId } : {}),
+    },
+  };
+}
 
 function sourceGatedFallbackGiftId(id: GiftId): GiftId {
   return id === 'pack_voucher_48h' ? 'shards_10' : 'prem_shards_20';
@@ -828,11 +862,13 @@ function sourceGatedFallbackGiftDef(gift: GiftDef): GiftDef {
 
 export function sanitizeLevelGiftForStudyTarget(gift: GiftDef, studyTarget?: RuntimeStudyTarget): GiftDef {
   if (flashcardPackLevelGiftsAllowed(studyTarget)) return cloneGiftDef(gift);
-  if (isFlashcardPackLevelGiftId(gift.id)) return sourceGatedFallbackGiftDef(gift);
+  if (isFlashcardPackLevelGiftId(gift.id) && !isTrialPackLevelGiftId(gift.id)) return sourceGatedFallbackGiftDef(gift);
   const cloned = cloneGiftDef(gift);
   if (cloned.choices?.length) {
     cloned.choices = cloned.choices.map(choice =>
-      isFlashcardPackLevelGiftId(choice.id) ? sourceGatedFallbackGiftDef(choice) : sanitizeLevelGiftForStudyTarget(choice, studyTarget),
+      isFlashcardPackLevelGiftId(choice.id) && !isTrialPackLevelGiftId(choice.id)
+        ? sourceGatedFallbackGiftDef(choice)
+        : sanitizeLevelGiftForStudyTarget(choice, studyTarget),
     );
   }
   return cloned;
@@ -870,55 +906,25 @@ export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: bool
 
 /** F2P-пул: анти-triple-hint_1 на круглых уровнях; premiumSafe исключает бесполезные для премиум награды. */
 export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
-  const studyTarget = opts?.studyTarget;
-  const milestone = getMilestoneLevelGift(level, { premiumSafe: !!opts?.premiumSafe, studyTarget });
-  if (milestone) {
-    await pushGiftHistory(milestone.id);
-    return milestone;
+  const milestone = getMilestoneLevelGift(level, opts);
+  if (milestone && !isFlashcardPackLevelGiftId(milestone.id)) return milestone;
+  try {
+    return await reserveServerLevelGift(level, 'f2p', opts?.studyTarget);
+  } catch (error) {
+    if (milestone && isFlashcardPackLevelGiftId(milestone.id)) throw error;
+    const safePool = GIFT_F2P.filter((gift) => !isFlashcardPackLevelGiftId(gift.id));
+    return sanitizeLevelGiftForStudyTarget(weightedPick(safePool, level), opts?.studyTarget);
   }
-  const isRound = ROUND_LEVELS.has(level);
-  const pool = getF2pPool(!!opts?.premiumSafe, studyTarget);
-  let attempts = 0;
-  let g: GiftDef;
-  do {
-    g = weightedPick(pool, level);
-    attempts++;
-    const hist = await getRecentGiftIds();
-    const bad = isRound && g.id === 'hint_1' && hist[hist.length - 1] === 'hint_1' && hist[hist.length - 2] === 'hint_1';
-    if (!bad) break;
-  } while (attempts < 12);
-  await pushGiftHistory(g.id);
-  return sanitizeLevelGiftForStudyTarget(g, studyTarget);
 }
 
 /** Второй сундук — GIFT_PREMIUM + с шансом `PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE` навсегда один из пяти наборов (без повтора). */
 export async function rollPremiumLevelGiftForUser(level: number, opts?: { studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
-  const studyTarget = opts?.studyTarget;
-  const packGiftsAllowed = flashcardPackLevelGiftsAllowed(studyTarget);
-  const owned = packGiftsAllowed ? await loadOwnedPackIds(studyTarget) : [];
-  const granted = packGiftsAllowed ? await loadPremiumPackUnlockGiftReceivedIds() : new Set<string>();
-
-  const eligiblePackGifts = packGiftsAllowed ? PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS.filter((g) => {
-    const packId = PREMIUM_LEVEL_GIFT_ID_TO_PACK[g.id];
-    if (!packId) return false;
-    if (owned.includes(packId)) return false;
-    if (granted.has(packId)) return false;
-    return true;
-  }) : [];
-
-  const tryPack = eligiblePackGifts.length > 0 && Math.random() < PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE;
-  if (tryPack) {
-    const g = eligiblePackGifts[Math.floor(Math.random() * eligiblePackGifts.length)]!;
-    await pushGiftHistory(g.id);
-    return cloneGiftDef(g);
+  try {
+    return await reserveServerLevelGift(level, 'premium', opts?.studyTarget);
+  } catch {
+    const safePool = GIFT_PREMIUM.filter((gift) => !isFlashcardPackLevelGiftId(gift.id));
+    return sanitizeLevelGiftForStudyTarget(weightedPick(safePool, level), opts?.studyTarget);
   }
-
-  const premiumPool = packGiftsAllowed
-    ? GIFT_PREMIUM
-    : GIFT_PREMIUM.filter(g => !isFlashcardPackLevelGiftId(g.id));
-  const g = weightedPick(premiumPool, level);
-  await pushGiftHistory(g.id);
-  return sanitizeLevelGiftForStudyTarget(g, studyTarget);
 }
 
 /**
@@ -940,7 +946,7 @@ const GIFT_MULT_KEY = 'gift_xp_multiplier';
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
-export const COSMETIC_GIFT_OWNED_AVATAR_KEY = 'custom_avatar_gift_owned_v1';
+export const COSMETIC_GIFT_OWNED_AVATAR_KEY = CUSTOM_AVATAR_GIFT_OWNED_KEY;
 const GIFT_XP_BANK_CAP = 1500;
 
 export interface BonusEnergyState { amount: number; expiresAt: number }
@@ -1070,8 +1076,19 @@ const setTimedGiftMultiplier = async (multiplier: number, durationMs: number): P
 
 const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
 
-const grantLevelGiftShards = async (amount: number): Promise<void> => {
-  const safe = Math.max(0, Math.floor(amount));
+/**
+ * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7):
+ * подарки за уровень больше НЕ выдают монеты — выдача обнулена.
+ * Решение владельца 2026-08-02: жемчужные подарки в пулах заменены на мгновенный XP
+ * (см. grantInstantGiftXp в applyGiftUnlocked), поэтому активных вызовов у функции нет.
+ * Сохранена как задокументированный §7-рубильник на случай возврата монетных подарков
+ * и ради контракта owner_direction_runtime_contract (формат reason у локального фолбэка).
+ */
+export const grantLevelGiftShards = async (
+  amount: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const safe = Math.max(0, Math.floor(amount)) * 0; // §7: выплата жемчужин отключена
   if (safe <= 0) return;
   const before = await getShardsBalance();
   await addShardsRaw(safe, 'level_gift', { skipServerAwait: true });
@@ -1079,7 +1096,12 @@ const grantLevelGiftShards = async (amount: number): Promise<void> => {
   // Some isolated Jest mocks keep addShardsRaw storage on a separate mock object.
   // In production this branch is a no-op because addShardsRaw already persisted.
   if (after < before + safe) {
-    await replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' });
+    const options = { op: 'earn' as const, reason: 'level_gift_fallback' };
+    if (accountToken) {
+      await replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options);
+    } else {
+      await replaceShardsBalanceLocal(before + safe, options);
+    }
   }
 };
 
@@ -1091,11 +1113,63 @@ export type GiftCosmeticUnlock = {
   labelRu: string;
   labelUk: string;
   labelEs: string;
+  /** True when an idempotent gift retry returned the already-granted avatar. */
+  replayed?: boolean;
 };
 
-export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock | null> => {
+const CUSTOM_AVATAR_GIFT_REPLAY_LIMIT = 64;
+
+type CustomAvatarGiftIdempotencyOptions = Readonly<{
+  idempotencyKey: string;
+  /** Optional additive counter object persisted in the same multiSet as ownership. */
+  counterStorageKey?: string;
+}>;
+
+const parseCustomAvatarGiftReplays = (raw: string | null): Record<string, GiftCosmeticUnlock> => {
   try {
-    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : {};
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return Object.fromEntries(Object.entries(parsed).filter(([key, value]) => (
+      key.trim().length > 0
+      && value !== null
+      && typeof value === 'object'
+      && (value as Partial<GiftCosmeticUnlock>).kind === 'avatar'
+      && typeof (value as Partial<GiftCosmeticUnlock>).id === 'string'
+    ))) as Record<string, GiftCosmeticUnlock>;
+  } catch {
+    return {};
+  }
+};
+
+export const unlockRandomCustomAvatarGift = async (
+  accountToken?: AccountGenerationToken,
+  idempotency?: CustomAvatarGiftIdempotencyOptions,
+): Promise<GiftCosmeticUnlock | null> => {
+  const normalizedIdempotencyKey = idempotency?.idempotencyKey.trim() || null;
+  const scopedIdempotencyKey = normalizedIdempotencyKey
+    ? `${accountToken?.stableId?.trim() || ''}:${normalizedIdempotencyKey}`
+    : null;
+  const apply = async (): Promise<GiftCosmeticUnlock | null> => {
+    if (normalizedIdempotencyKey && !accountToken?.stableId) {
+      throw new Error('custom_avatar_gift_missing_account');
+    }
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    const readKeys = [
+      CUSTOM_AVATAR_OWNED_KEY,
+      CUSTOM_AVATAR_GIFT_REPLAY_KEY,
+      ...(idempotency?.counterStorageKey ? [idempotency.counterStorageKey] : []),
+    ];
+    const rows = await AsyncStorage.multiGet(readKeys);
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    const raw = rows[0]?.[1] ?? null;
+    const replayMap = parseCustomAvatarGiftReplays(rows[1]?.[1] ?? null);
+    if (scopedIdempotencyKey && replayMap[scopedIdempotencyKey]) {
+      return { ...replayMap[scopedIdempotencyKey], replayed: true };
+    }
     const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
     const candidates = CUSTOM_AVATAR_GIFT_POOL.filter(a => !owned[a.id]);
     if (candidates.length === 0) return null;
@@ -1108,11 +1182,7 @@ export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock
     const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
     const logoColor: CustomAvatarLogoColor = Math.random() < 0.5 ? 'black' : 'white';
     const next = { ...owned, [avatar.id]: encodeOwnedStyle(gradient.id, logoColor) };
-    await AsyncStorage.multiSet([
-      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(next)],
-      [COSMETIC_GIFT_OWNED_AVATAR_KEY, avatar.id],
-    ]);
-    return {
+    const result: GiftCosmeticUnlock = {
       kind: 'avatar',
       id: avatar.id,
       gradientId: gradient.id,
@@ -1120,10 +1190,50 @@ export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock
       labelRu: customAvatarGiftLabelForLang(avatar, gradient, 'ru'),
       labelUk: customAvatarGiftLabelForLang(avatar, gradient, 'uk'),
       labelEs: customAvatarGiftLabelForLang(avatar, gradient, 'es'),
+      replayed: false,
     };
-  } catch {
-    return null;
+    const pairs: [string, string][] = [
+      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(next)],
+      [COSMETIC_GIFT_OWNED_AVATAR_KEY, avatar.id],
+    ];
+    if (scopedIdempotencyKey) {
+      const boundedEntries = Object.entries(replayMap).slice(-(CUSTOM_AVATAR_GIFT_REPLAY_LIMIT - 1));
+      pairs.push([CUSTOM_AVATAR_GIFT_REPLAY_KEY, JSON.stringify({
+        ...Object.fromEntries(boundedEntries),
+        [scopedIdempotencyKey]: result,
+      })]);
+    }
+    if (idempotency?.counterStorageKey) {
+      let counterState: Record<string, unknown> = {};
+      const counterRaw = rows[2]?.[1] ?? null;
+      try {
+        const parsed: unknown = counterRaw ? JSON.parse(counterRaw) : {};
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          counterState = parsed as Record<string, unknown>;
+        }
+      } catch {
+        counterState = {};
+      }
+      const currentCount = Math.max(0, Math.floor(Number(counterState.customAvatarGrants) || 0));
+      pairs.push([idempotency.counterStorageKey, JSON.stringify({
+        ...counterState,
+        customAvatarGrants: currentCount + 1,
+      })]);
+    }
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    await AsyncStorage.multiSet(pairs);
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    return result;
+  };
+
+  if (normalizedIdempotencyKey) {
+    return withAccountTransitionLock(() => withStorageLock(apply));
   }
+  try { return await apply(); } catch { return null; }
 };
 
 export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock | null> => {
@@ -1208,13 +1318,39 @@ const applyEnergyBonusN = async (
 const safeLevelGiftEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
-export const applyGift = async (
+async function activateReservedLevelPackGift(gift: GiftDef, studyTarget?: RuntimeStudyTarget): Promise<{
+  stableId: string;
+  voucherId: string;
+  expiresAt: number;
+  allowedPackId?: string;
+} | null> {
+  const reservationId = gift.levelGiftReservation?.reservationId;
+  if (!reservationId) return null;
+  const stableId = await getCanonicalUserId();
+  if (!stableId) return null;
+  const grant = await callLevelGiftActivatePackGift({ stableId, reservationId });
+  if (!grant.voucherId || !Number.isFinite(grant.expiresAt) || grant.expiresAt <= Date.now()) return null;
+  return {
+    stableId,
+    voucherId: grant.voucherId,
+    expiresAt: grant.expiresAt,
+    ...(grant.allowedPackId ? { allowedPackId: grant.allowedPackId } : {}),
+  };
+}
+
+export interface ApplyGiftOptions {
+  isPremium?: boolean;
+  studyTarget?: RuntimeStudyTarget;
+  accountToken?: AccountGenerationToken;
+}
+
+const applyGiftUnlocked = async (
   gift: GiftDef,
   userName: string,
   currentEnergy: number,
   maxEnergy: number,
   setEnergy: (n: number) => void,
-  opts?: { isPremium?: boolean; studyTarget?: RuntimeStudyTarget },
+  opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult> => {
   try {
     const isPremium = opts?.isPremium ?? await getVerifiedPremiumStatus();
@@ -1224,9 +1360,19 @@ export const applyGift = async (
     if (isPremium && PREMIUM_BLOCKED_F2P_IDS.has(id)) {
       id = 'prem_shards_10';
     }
-    if (!flashcardPackLevelGiftsAllowed(opts?.studyTarget) && isFlashcardPackLevelGiftId(id)) {
+    if (!flashcardPackLevelGiftsAllowed(opts?.studyTarget) && isFlashcardPackLevelGiftId(id) && !isTrialPackLevelGiftId(id)) {
       id = sourceGatedFallbackGiftId(id);
     }
+
+    // зачем (2026-08-02, владелец): «подарок обещает награду, а платит 0» — обман игрока.
+    // Все мгновенные XP-подарки (включая бывшие жемчужные) идут одним каналом с дневной
+    // идемпотентностью — как это всегда делали xp_50/100/250.
+    const grantInstantGiftXp = async (amount: number): Promise<void> => {
+      await registerXP(amount, 'achievement_reward', userName, 'ru', undefined, {
+        eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
+        payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
+      });
+    };
 
     switch (id) {
       case 'energy_full': {
@@ -1237,22 +1383,13 @@ export const applyGift = async (
         break;
       }
       case 'xp_50':
-        await registerXP(50, 'achievement_reward', userName, 'ru', undefined, {
-          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
-        });
+        await grantInstantGiftXp(50);
         break;
       case 'xp_100':
-        await registerXP(100, 'achievement_reward', userName, 'ru', undefined, {
-          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
-        });
+        await grantInstantGiftXp(100);
         break;
       case 'xp_250':
-        await registerXP(250, 'achievement_reward', userName, 'ru', undefined, {
-          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
-        });
+        await grantInstantGiftXp(250);
         break;
       case 'hint_1':
       case 'hint_3': {
@@ -1306,11 +1443,12 @@ export const applyGift = async (
       }
       case 'cosmetic_avatar_common':
       case 'premium_cosmetic_avatar': {
-        const cosmeticUnlocked = await unlockRandomCustomAvatarGift();
+        const cosmeticUnlocked = await unlockRandomCustomAvatarGift(opts?.accountToken);
         if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
         const fallbackAura = await unlockRandomAvatarAuraGift();
         if (fallbackAura) return { success: true, cosmeticUnlocked: fallbackAura };
-        await grantLevelGiftShards(6);
+        // Вся косметика уже открыта — честная XP-компенсация вместо прежнего нулевого жемчуга.
+        await grantInstantGiftXp(350);
         return { success: true };
       }
       case 'cosmetic_avatar_aura':
@@ -1318,20 +1456,24 @@ export const applyGift = async (
         const cosmeticUnlocked = await unlockRandomAvatarAuraGift();
         return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
       }
+      // зачем (2026-08-02, владелец): бывшие жемчужные подарки — теперь честный мгновенный XP
+      // (карточки в пулах переименованы; выплата жемчуга была занулена §7 и обманывала игрока).
       case 'shards_3': {
-        await grantLevelGiftShards(3);
+        await grantInstantGiftXp(150);
         break;
       }
       case 'shards_6': {
-        await grantLevelGiftShards(6);
+        await grantInstantGiftXp(350);
         break;
       }
       case 'shards_10': {
-        await grantLevelGiftShards(10);
+        await grantInstantGiftXp(700);
         break;
       }
       case 'arena_extra_5': {
-        await addArenaPlaysBonusForToday(5);
+        // Режим арены удалён; старые инвентари догоняем честной XP-компенсацией
+        // вместо прежнего нулевого начисления жемчуга.
+        await grantInstantGiftXp(150);
         break;
       }
       case 'club_boost_free': {
@@ -1343,25 +1485,37 @@ export const applyGift = async (
         break;
       }
       case 'prem_shards_10': {
-        await addShardsRaw(10, 'level_premium_gift', { skipServerAwait: true });
+        await grantInstantGiftXp(400);
         break;
       }
       case 'prem_shards_15': {
-        await addShardsRaw(15, 'level_premium_gift', { skipServerAwait: true });
+        await grantInstantGiftXp(800);
         break;
       }
       case 'prem_shards_20': {
-        await addShardsRaw(20, 'level_premium_gift', { skipServerAwait: true });
+        await grantInstantGiftXp(1200);
         break;
       }
       case 'prem_pack_48h': {
-        const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
+        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        if (!grant) return { success: false };
+        const trial = await setRandomPackGiftTrial48h(
+          opts?.studyTarget,
+          grant.voucherId,
+          grant.expiresAt,
+        );
         if (!trial) return { success: false };
         scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
       }
       case 'pack_voucher_48h': {
-        const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
+        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        if (!grant) return { success: false };
+        const trial = await setRandomPackGiftTrial48h(
+          opts?.studyTarget,
+          grant.voucherId,
+          grant.expiresAt,
+        );
         if (!trial) return { success: false };
         scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
@@ -1373,6 +1527,16 @@ export const applyGift = async (
       case 'prem_level_unlock_peaky_blinders': {
         const packIdGift = PREMIUM_LEVEL_GIFT_ID_TO_PACK[id];
         if (!packIdGift) break;
+        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        if (!grant || grant.allowedPackId !== packIdGift) return { success: false };
+        const redemption = await callFlashcardPackGiftRedeem({
+          buyerStableId: grant.stableId,
+          packId: packIdGift,
+          packType: 'official',
+          studyTarget: storageStudyTarget(opts?.studyTarget),
+          voucherId: grant.voucherId,
+        });
+        if (!redemption.gifted && !redemption.alreadyOwned) return { success: false };
         await addOwnedPackId(packIdGift, opts?.studyTarget);
         await pushPremiumPackUnlockGiftReceivedPackId(packIdGift);
         scheduleMarketplaceCachePrime(opts?.studyTarget);
@@ -1385,27 +1549,37 @@ export const applyGift = async (
   } catch { return { success: false }; }
 };
 
+export const applyGift = async (
+  gift: GiftDef,
+  userName: string,
+  currentEnergy: number,
+  maxEnergy: number,
+  setEnergy: (n: number) => void,
+  opts?: ApplyGiftOptions,
+): Promise<ApplyGiftResult> => {
+  const accountToken = opts?.accountToken;
+  if (!accountToken) {
+    return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+  }
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+    return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+  });
+};
+
 export function isEnergyBonusGiftId(gid: string | undefined): boolean {
   if (!gid) return false;
   return gid === 'energy_plus1' || gid === 'energy_plus2' || gid === 'energy_plus3';
 }
 
 /**
- * Сколько осколков выдаёт подарок (0 = не осколочный).
- * Единый источник правды для UI: чтобы не рисовать 💎-эмодзи там, где должна быть
- * кучка осколков из `assets/images/shards/*.webp`.
+ * Сколько осколков выдаёт подарок. Всегда 0: жемчужные подарки переделаны в мгновенный XP
+ * (решение владельца 2026-08-02 — «подарок обещает жемчуг, а платит 0» было обманом).
+ * Функция сохранена, чтобы не менять UI-ветки (инвентарь рисует жемчужный арт только при >0).
  */
 export function giftShardAmount(gid: string | undefined): number {
-  if (!gid) return 0;
-  switch (gid) {
-    case 'shards_3': return 3;
-    case 'shards_6': return 6;
-    case 'shards_10': return 10;
-    case 'prem_shards_10': return 10;
-    case 'prem_shards_15': return 15;
-    case 'prem_shards_20': return 20;
-    default: return 0;
-  }
+  void gid;
+  return 0;
 }
 
 export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS];

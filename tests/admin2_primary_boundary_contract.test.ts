@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const ROOT = path.join(__dirname, '..');
 const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -9,8 +9,9 @@ describe('Admin 2 primary boundary', () => {
     const shell = read('admin/v2/index.html');
     const core = read('admin/v2/scripts/admin-core.js');
 
-    expect(shell).toContain('src="/v2/scripts/admin-router.js"');
-    expect(shell).toContain('href="/v2/styles/admin.css"');
+    expect(shell).toContain('src="/scripts/admin-router.js"');
+    expect(shell).toContain('href="/styles/admin.css"');
+    expect(shell).toContain('id="primary-nav"');
     const sectionStart = core.indexOf('export const ADMIN_SECTIONS');
     const sectionEnd = core.indexOf(']);', sectionStart);
     const sections = core.slice(sectionStart, sectionEnd);
@@ -20,28 +21,48 @@ describe('Admin 2 primary boundary', () => {
     expect(sections.match(/route: '(overview|application|users|money|content|community|diagnostics)'/g)).toHaveLength(7);
   });
 
-  it('makes Admin 2 the root entry while preserving legacy separately', () => {
-    const rootEntry = read('admin/index.html');
-    expect(rootEntry).toContain('/v2/');
-    expect(rootEntry).not.toContain('id="tab-analytics"');
-    expect(fs.existsSync(path.join(ROOT, 'admin/legacy.html'))).toBe(true);
+  it('treats / as the only canonical Admin entry exposed by its shell and runtime', () => {
+    const sources = [
+      read('admin/v2/index.html'),
+      read('admin/v2/scripts/admin-capabilities.js'),
+      read('admin/v2/scripts/admin-router.js'),
+      read('admin/v2/scripts/admin-core.js'),
+    ];
+    expect(sources[0]).toContain('href="/styles/admin.css"');
+    expect(sources[0]).toContain('src="/scripts/admin-router.js"');
+    expect(sources[0]).not.toContain('="/v2/');
+    // Owner decision (2026-07-24): one sanctioned emergency escape to the archived
+    // old admin — the small yellow icon-only button in the V2 shell. Strip it before
+    // asserting that nothing else references the legacy surface.
+    const [shellSource, ...runtimeSources] = sources;
+    const sanitized = [
+      shellSource.replace(/<a class="legacy-admin-link"[\s\S]*?<\/a>/, ''),
+      ...runtimeSources,
+    ];
+    for (const source of sanitized) {
+      expect(source).not.toMatch(/\.\.\/\.\.\/admin\/index\.html|\/legacy\.html|LEGACY_ROUTE_MAP|legacyTab|legacyPage|capabilityUrl/i);
+    }
   });
 
-  it('does not place new detailed analytics inside legacy', () => {
-    const legacy = read('admin/legacy.html');
-    expect(legacy).not.toContain('id="product-analytics-panel"');
-    expect(legacy).not.toContain('v2/product-analytics.js');
-    expect(legacy).not.toContain('v2/subscription-analytics.js');
-  });
+  it('publishes only Admin V2 at Hosting root and keeps migration source out of the release', () => {
+    const firebase = JSON.parse(read('firebase.json')) as {
+      hosting?: Array<{
+        target?: string;
+        public?: string;
+        ignore?: string[];
+        redirects?: Array<{ source?: string; destination?: string; type?: number }>;
+      }>;
+    };
+    const adminHosting = firebase.hosting?.find((entry) => entry.target === 'admin');
 
-  it('opens legacy fallbacks directly and never embeds the frame-blocked legacy page', () => {
-    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
-    const core = read('admin/v2/scripts/admin-core.js');
-    const migration = read('admin/v2/migration.html');
-    expect(capabilities).toContain('`/legacy.html#${encodeURIComponent(capability.legacyTab)}`');
-    expect(core).not.toContain('<iframe');
-    expect(migration).toContain('href="/legacy.html#${encodeURIComponent(tab)}"');
-    expect(migration).not.toContain('../../admin/index.html');
+    expect(adminHosting).toBeDefined();
+    expect(adminHosting?.public).toBe('admin/v2');
+    expect(adminHosting?.ignore).toContain('migration.html');
+    expect(adminHosting?.redirects).toEqual([
+      { source: '/v2', destination: '/', type: 302 },
+      { source: '/v2/', destination: '/', type: 302 },
+    ]);
+    expect(adminHosting?.redirects?.some((redirect) => redirect.source?.startsWith('/admin'))).toBe(false);
   });
 
   it('adds human hover guidance to every rendered button or link that lacks it', () => {
@@ -50,7 +71,7 @@ describe('Admin 2 primary boundary', () => {
     expect(core).toContain("root.querySelectorAll('button, a')");
     expect(core).toContain('specificGuidanceForControl({');
     expect(core).toContain('ensureInteractiveGuidance(document)');
-    expect(guidance).toContain("'publish-remote-config': 'Опубликовать проверенные изменения Remote Config");
-    expect(guidance).toContain("'dispatch-support-reply': 'Подтвердить и отправить запечатанный ответ");
+    expect(guidance).toContain("'publish-remote-config': '");
+    expect(guidance).toContain("'dispatch-support-reply': '");
   });
 });

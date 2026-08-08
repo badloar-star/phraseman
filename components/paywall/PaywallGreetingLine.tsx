@@ -11,7 +11,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
@@ -123,7 +123,7 @@ const S = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 10,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 15,
     paddingVertical: 13,
     marginTop: 14,

@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-nati
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -29,6 +29,7 @@ import { openPersonalPlanTask } from './personal_plan_navigation';
 import { buildPersonalPlanDayPassport } from './personal_plan_quality';
 import { getPersonalPlanTaskVisual } from './personal_plan_task_visuals';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const minuteChoices: PlanMinutesChoice[] = [5, 10, 15, 20];
 
 export default function PersonalPlanDevScreen() {
@@ -113,7 +114,7 @@ export default function PersonalPlanDevScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           <View style={styles.planTabs}>
             {PERSONAL_PLAN_CATALOG.map((plan) => {
               const active = plan.id === selectedPlan.id;
@@ -554,7 +555,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 8,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.28,
     shadowRadius: 10,
@@ -567,7 +568,7 @@ const styles = StyleSheet.create({
     padding: 13,
     marginBottom: 12,
     overflow: 'hidden',
-    elevation: 8,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.22,
     shadowRadius: 18,
@@ -607,7 +608,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    elevation: 10,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.34,
     shadowRadius: 14,
@@ -643,7 +644,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    elevation: 9,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 7 },
     shadowOpacity: 0.32,
     shadowRadius: 13,

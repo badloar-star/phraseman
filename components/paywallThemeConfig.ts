@@ -13,7 +13,6 @@
 // Compass и Gold используют свои rich-палитры из констант.
 // ════════════════════════════════════════════════════════════════════════════
 import type { ThemeMode } from '../constants/theme';
-import { COMPASS_RICH } from '../constants/compassTheme';
 import { GOLD_RICH } from '../constants/goldTheme';
 
 export interface ThemePaywallConfig {
@@ -28,6 +27,10 @@ export interface ThemePaywallConfig {
   selectedCardBg: string;
   /** Фон невыбранной карточки */
   unselectedCardBg: string;
+  /** Borderless semantic panel tone for paywall blocks. */
+  panelBg: string;
+  /** Stronger borderless tone for selected/high-priority paywall blocks. */
+  panelBgStrong: string;
   /** Тень выбранной карточки (shadowColor) */
   selectedCardShadow: string;
 
@@ -73,6 +76,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#58CC89',
     selectedCardBg: 'rgba(88,204,137,0.13)',
     unselectedCardBg: 'rgba(21,32,25,0.86)',
+    panelBg: 'rgba(17,31,23,0.74)',
+    panelBgStrong: 'rgba(30,56,40,0.88)',
     selectedCardShadow: '#47C870',
 
     savingsBadgeBg: '#FFC800',
@@ -109,6 +114,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: GOLD_RICH.metalGold,
     selectedCardBg: GOLD_RICH.washStrong,
     unselectedCardBg: 'rgba(10,10,10,0.88)',
+    panelBg: 'rgba(18,15,9,0.78)',
+    panelBgStrong: 'rgba(41,32,15,0.88)',
     selectedCardShadow: GOLD_RICH.metalGold,
 
     savingsBadgeBg: GOLD_RICH.metalGold,
@@ -140,35 +147,37 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
 
   // ── CORAL (dark rose / finance) ───────────────────────────────────────────
   coral: {
-    heroAccent: '#FF6464',
+    heroAccent: '#FF7F50',
 
-    selectedCardBorder: '#FF6464',
-    selectedCardBg: 'rgba(255,100,100,0.12)',
+    selectedCardBorder: '#FF7F50',
+    selectedCardBg: 'rgba(255,127,80,0.12)',
     unselectedCardBg: 'rgba(33,24,27,0.88)',
-    selectedCardShadow: '#FF6464',
+    panelBg: 'rgba(38,24,29,0.78)',
+    panelBgStrong: 'rgba(62,32,38,0.88)',
+    selectedCardShadow: '#FF7F50',
 
     savingsBadgeBg: '#FFD060',
     savingsBadgeText: '#1A1208',
 
-    popularBadgeBg: '#FF6464',
+    popularBadgeBg: '#FF7F50',
     popularBadgeText: '#FFFFFF',
 
-    ctaBg: '#FF6464',
+    ctaBg: '#FF7F50',
     ctaText: '#FFFFFF',
-    ctaShadow: '#FF6464',
+    ctaShadow: '#FF7F50',
 
-    pillBg: 'rgba(255,100,100,0.12)',
-    pillText: '#FF6464',
-    pillBorder: 'rgba(255,100,100,0.28)',
+    pillBg: 'rgba(255,127,80,0.12)',
+    pillText: '#FF7F50',
+    pillBorder: 'rgba(255,127,80,0.28)',
 
     urgencyBg: 'rgba(255,208,96,0.10)',
     urgencyTimerText: '#FFD060',
     urgencyLabelText: '#B9A6AE',
     urgencyStrikethroughColor: '#75656C',
-    urgencyCurrentPriceText: '#FF6464',
+    urgencyCurrentPriceText: '#FF7F50',
 
-    expandBtnText: '#FF6464',
-    expandBtnBorder: 'rgba(255,100,100,0.28)',
+    expandBtnText: '#FF7F50',
+    expandBtnBorder: 'rgba(255,127,80,0.28)',
 
     socialProofText: '#B9A6AE',
     socialProofStarColor: '#FFD060',
@@ -183,6 +192,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#6EA8FF',
     selectedCardBg: 'rgba(110,168,255,0.12)',
     unselectedCardBg: 'rgba(35,36,40,0.88)',
+    panelBg: 'rgba(34,36,41,0.78)',
+    panelBgStrong: 'rgba(44,49,58,0.88)',
     selectedCardShadow: '#6EA8FF',
 
     savingsBadgeBg: '#E9B949',
@@ -219,6 +230,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#0095F6',
     selectedCardBg: 'rgba(0,149,246,0.12)',
     unselectedCardBg: 'rgba(26,26,26,0.88)',
+    panelBg: 'rgba(24,24,24,0.82)',
+    panelBgStrong: 'rgba(24,39,56,0.88)',
     selectedCardShadow: '#000000',
 
     savingsBadgeBg: '#0095F6',
@@ -255,6 +268,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#0095F6',
     selectedCardBg: 'rgba(0,149,246,0.10)',
     unselectedCardBg: 'rgba(255,255,255,0.92)',
+    panelBg: 'rgba(18,27,35,0.78)',
+    panelBgStrong: 'rgba(24,43,58,0.86)',
     selectedCardShadow: 'rgba(0,0,0,0)',
 
     savingsBadgeBg: '#0095F6',
@@ -291,6 +306,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: 'rgba(143,160,255,0.46)',
     selectedCardBg: 'rgba(143,160,255,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(17,20,42,0.78)',
+    panelBgStrong: 'rgba(30,35,72,0.86)',
     selectedCardShadow: '#39448F',
 
     savingsBadgeBg: '#8FA0FF',
@@ -320,35 +337,37 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#FFD27A',
   },
   ember: {
-    heroAccent: '#FFD9A8',
+    heroAccent: '#FFE9B8',
 
-    selectedCardBorder: 'rgba(255,162,69,0.46)',
-    selectedCardBg: 'rgba(255,162,69,0.1)',
+    selectedCardBorder: 'rgba(255,204,85,0.46)',
+    selectedCardBg: 'rgba(255,204,85,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
-    selectedCardShadow: '#9A4E0E',
+    panelBg: 'rgba(36,22,14,0.78)',
+    panelBgStrong: 'rgba(59,32,16,0.86)',
+    selectedCardShadow: '#9A6E0E',
 
-    savingsBadgeBg: '#FFA245',
-    savingsBadgeText: '#2A1502',
+    savingsBadgeBg: '#FFCC55',
+    savingsBadgeText: '#2A1A02',
 
-    popularBadgeBg: '#FFD9A8',
-    popularBadgeText: '#2A1502',
+    popularBadgeBg: '#FFE9B8',
+    popularBadgeText: '#2A1A02',
 
-    ctaBg: '#FFA245',
-    ctaText: '#2A1502',
+    ctaBg: '#FFCC55',
+    ctaText: '#2A1A02',
     ctaShadow: 'transparent',
 
-    pillBg: 'rgba(255,162,69,0.1)',
-    pillText: '#FFA245',
-    pillBorder: 'rgba(255,162,69,0.18)',
+    pillBg: 'rgba(255,204,85,0.1)',
+    pillText: '#FFCC55',
+    pillBorder: 'rgba(255,204,85,0.18)',
 
-    urgencyBg: 'rgba(255,162,69,0.08)',
-    urgencyTimerText: '#FFD9A8',
+    urgencyBg: 'rgba(255,204,85,0.08)',
+    urgencyTimerText: '#FFE9B8',
     urgencyLabelText: '#C9B4A4',
     urgencyStrikethroughColor: '#8A7464',
-    urgencyCurrentPriceText: '#FFA245',
+    urgencyCurrentPriceText: '#FFCC55',
 
-    expandBtnText: '#FFA245',
-    expandBtnBorder: 'rgba(255,162,69,0.22)',
+    expandBtnText: '#FFCC55',
+    expandBtnBorder: 'rgba(255,204,85,0.22)',
 
     socialProofText: '#C9B4A4',
     socialProofStarColor: '#FFCB5C',
@@ -359,6 +378,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: 'rgba(61,232,166,0.46)',
     selectedCardBg: 'rgba(61,232,166,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(13,34,28,0.78)',
+    panelBgStrong: 'rgba(19,58,45,0.86)',
     selectedCardShadow: '#0E7A57',
 
     savingsBadgeBg: '#3DE8A6',
@@ -388,38 +409,147 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#F2D27A',
   },
   volt: {
-    heroAccent: '#EFFF9E',
+    heroAccent: '#E8FF96',
 
-    selectedCardBorder: 'rgba(214,255,61,0.46)',
-    selectedCardBg: 'rgba(214,255,61,0.1)',
+    selectedCardBorder: 'rgba(198,255,52,0.46)',
+    selectedCardBg: 'rgba(198,255,52,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(31,37,11,0.78)',
+    panelBgStrong: 'rgba(49,61,14,0.86)',
     selectedCardShadow: '#5F7A0A',
 
-    savingsBadgeBg: '#D6FF3D',
+    savingsBadgeBg: '#C6FF34',
     savingsBadgeText: '#1A2002',
 
-    popularBadgeBg: '#EFFF9E',
+    popularBadgeBg: '#E8FF96',
     popularBadgeText: '#1A2002',
 
-    ctaBg: '#D6FF3D',
+    ctaBg: '#C6FF34',
     ctaText: '#1A2002',
     ctaShadow: 'transparent',
 
-    pillBg: 'rgba(214,255,61,0.1)',
-    pillText: '#D6FF3D',
-    pillBorder: 'rgba(214,255,61,0.18)',
+    pillBg: 'rgba(198,255,52,0.1)',
+    pillText: '#C6FF34',
+    pillBorder: 'rgba(198,255,52,0.18)',
 
-    urgencyBg: 'rgba(214,255,61,0.08)',
-    urgencyTimerText: '#EFFF9E',
+    urgencyBg: 'rgba(198,255,52,0.08)',
+    urgencyTimerText: '#E8FF96',
     urgencyLabelText: '#BFC6A3',
     urgencyStrikethroughColor: '#7E8563',
-    urgencyCurrentPriceText: '#D6FF3D',
+    urgencyCurrentPriceText: '#C6FF34',
 
-    expandBtnText: '#D6FF3D',
-    expandBtnBorder: 'rgba(214,255,61,0.22)',
+    expandBtnText: '#C6FF34',
+    expandBtnBorder: 'rgba(198,255,52,0.22)',
 
     socialProofText: '#BFC6A3',
     socialProofStarColor: '#FFE85C',
+  },
+  // ── CANDY BLUE (тёмная синева / леденцовый голубой) ───────────────────────
+  candyBlue: {
+    heroAccent: '#D9EDF5',
+
+    selectedCardBorder: 'rgba(178,213,229,0.46)',
+    selectedCardBg: 'rgba(178,213,229,0.10)',
+    unselectedCardBg: 'rgba(28,50,59,0.88)',
+    panelBg: 'rgba(22,40,47,0.78)',
+    panelBgStrong: 'rgba(28,50,59,0.88)',
+    selectedCardShadow: '#3A5A68',
+
+    savingsBadgeBg: '#FFC53D',
+    savingsBadgeText: '#1A1408',
+
+    popularBadgeBg: '#B2D5E5',
+    popularBadgeText: '#07110A',
+
+    ctaBg: '#B2D5E5',
+    ctaText: '#07110A',
+    ctaShadow: '#3A5A68',
+
+    pillBg: 'rgba(178,213,229,0.12)',
+    pillText: '#B2D5E5',
+    pillBorder: 'rgba(178,213,229,0.28)',
+
+    urgencyBg: 'rgba(255,197,61,0.10)',
+    urgencyTimerText: '#FFC53D',
+    urgencyLabelText: '#9DB9C4',
+    urgencyStrikethroughColor: '#4E6A76',
+    urgencyCurrentPriceText: '#B2D5E5',
+
+    expandBtnText: '#B2D5E5',
+    expandBtnBorder: 'rgba(178,213,229,0.28)',
+
+    socialProofText: '#9DB9C4',
+    socialProofStarColor: '#FFC53D',
+  },
+  // ── INDIGO (сумрачный индиго / лавандовый акцент) ─────────────────────────
+  indigo: {
+    heroAccent: '#E4E1FF',
+
+    selectedCardBorder: 'rgba(200,195,255,0.46)',
+    selectedCardBg: 'rgba(200,195,255,0.10)',
+    unselectedCardBg: 'rgba(42,41,82,0.88)',
+    panelBg: 'rgba(34,33,64,0.78)',
+    panelBgStrong: 'rgba(42,41,82,0.88)',
+    selectedCardShadow: '#3D3A72',
+
+    savingsBadgeBg: '#FFC53D',
+    savingsBadgeText: '#1A1408',
+
+    popularBadgeBg: '#C8C3FF',
+    popularBadgeText: '#17162B',
+
+    ctaBg: '#C8C3FF',
+    ctaText: '#17162B',
+    ctaShadow: '#3D3A72',
+
+    pillBg: 'rgba(200,195,255,0.12)',
+    pillText: '#C8C3FF',
+    pillBorder: 'rgba(200,195,255,0.28)',
+
+    urgencyBg: 'rgba(255,197,61,0.10)',
+    urgencyTimerText: '#FFC53D',
+    urgencyLabelText: '#B7B3D9',
+    urgencyStrikethroughColor: '#605C8A',
+    urgencyCurrentPriceText: '#C8C3FF',
+
+    expandBtnText: '#C8C3FF',
+    expandBtnBorder: 'rgba(200,195,255,0.28)',
+
+    socialProofText: '#B7B3D9',
+    socialProofStarColor: '#FFC53D',
+  },
+  sagePorcelain: {
+    heroAccent: '#315F50',
+    selectedCardBorder: '#315F50',
+    selectedCardBg: '#D9E9E1',
+    unselectedCardBg: '#FCFDF9',
+    // зачем: panelBg был #F0F1EC — цвет страницы, карточки пейвола сливались с
+    // фоном (аудит владельца 2026-08-02). Фарфоровая карточка #FCFDF9 — язык
+    // контейнеров sage во всём приложении (bgCard, тосты, reward-модалки).
+    panelBg: '#FCFDF9',
+    panelBgStrong: '#E1E5DC',
+    selectedCardShadow: 'rgba(49,95,80,0)',
+    savingsBadgeBg: '#8B6320',
+    savingsBadgeText: '#FFFFFF',
+    popularBadgeBg: '#D9E9E1',
+    popularBadgeText: '#17201D',
+    ctaBg: '#315F50',
+    ctaText: '#FFFFFF',
+    ctaShadow: 'rgba(49,95,80,0)',
+    pillBg: '#E1E5DC',
+    pillText: '#3C5A50',
+    pillBorder: '#BDC8BD',
+    urgencyBg: 'rgba(139,99,32,0.12)',
+    urgencyTimerText: '#8B6320',
+    urgencyLabelText: '#52605A',
+    // зачем: #D1D9D1 на фарфоровой карточке ~1.1:1 — зачёркнутая якорная цена
+    // была невидима; ghost-тон читается (≥4:1), но остаётся тише текущей цены.
+    urgencyStrikethroughColor: '#61706A',
+    urgencyCurrentPriceText: '#315F50',
+    expandBtnText: '#315F50',
+    expandBtnBorder: '#BDC8BD',
+    socialProofText: '#52605A',
+    socialProofStarColor: '#8B6320',
   },
 };
 

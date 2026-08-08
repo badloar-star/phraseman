@@ -2,10 +2,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
-import { replaceShardsBalanceLocal } from '../shards_system';
+import {
+  getShardsBalance,
+  refreshShardsBalanceFromCloudAuthoritative,
+  replaceShardsBalanceLocal,
+} from '../shards_system';
+import {
+  emitShardPurchaseSyncPendingToast,
+  reconcileShardsBeforePurchase,
+} from '../shards_purchase_reconcile';
 import { packTitleForInterface, type FlashcardMarketPack } from '../flashcards/marketplace';
 import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
-import { callCommunityPurchasePack, isCommunityPacksCloudEnabled } from './functionsClient';
+import {
+  callCommunityPurchasePack,
+  callFlashcardPackGiftRedeem,
+  isCommunityPacksCloudEnabled,
+} from './functionsClient';
 import { addCommunityOwnedPackId, loadCommunityOwnedPackIds } from './communityOwnedStorage';
 import {
   trackCardPackAcquiredAchievement,
@@ -13,12 +25,14 @@ import {
 } from '../flashcards/packAchievementTracking';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { storageStudyTarget } from '../target_storage_keys';
+import { bindPackGiftVoucherSelection, consumePackGiftTrial, getPackGiftTrial } from '../flashcards/pack_trial_gift';
+import { COMMUNITY_PACK_PRICE_SHARDS } from './schema';
 
 /**
  * Cloud Functions (onCall) require Firebase Auth. `cloud_sync.ensureAnonUser` only starts
  * signInAnonymously() without await — purchse could run unauthenticated and fail.
  */
-async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> {
+export async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> {
   if (!isCommunityPacksCloudEnabled()) return false;
   try {
     if (auth().currentUser) return true;
@@ -27,6 +41,36 @@ async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+function communityPurchaseErrorText(e: unknown): string {
+  if (e == null) return '';
+  if (typeof e === 'string') return e;
+  if (typeof e === 'object') {
+    const o = e as {
+      message?: string;
+      nativeErrorMessage?: string;
+      code?: string;
+      details?: unknown;
+      userInfo?: { message?: string };
+    };
+    const details = typeof o.details === 'string'
+      ? o.details
+      : o.details && typeof o.details === 'object'
+        ? JSON.stringify(o.details)
+        : '';
+    return [o.message, o.nativeErrorMessage, o.userInfo?.message, o.code, details]
+      .filter((value): value is string => typeof value === 'string' && value.trim().length > 0)
+      .join(' ');
+  }
+  return String(e);
+}
+
+function isInsufficientCommunityPurchaseError(e: unknown): boolean {
+  const lower = communityPurchaseErrorText(e).toLowerCase();
+  return lower.includes('insufficient')
+    || lower.includes('недостаточ')
+    || lower.includes('недостатн');
 }
 
 function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToastTri>[1] {
@@ -49,26 +93,26 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   const lower = raw.toLowerCase();
   if (lower.includes('unauthenticated') || lower.includes('auth required')) {
     return {
-      ru: 'Нужен вход в облако. Перезайдите в раздел и попробуйте снова.',
-      uk: 'Потрібен вхід в хмару. Зайдіть у розділ знову й спробуйте ще раз.',
-      es: 'Hace falta la sesión en la nube. Vuelve al apartado e inténtalo de nuevo.',
-      'pt-BR': 'É preciso entrar na nuvem. Reabra a seção e tente novamente.',
-      vi: 'Cần đăng nhập vào đám mây. Mở lại mục này rồi thử lại.',
-      id: 'Perlu masuk ke cloud. Buka kembali bagian ini lalu coba lagi.',
-      tr: 'Bulut oturumu gerekiyor. Bölümü yeniden açıp tekrar dene.',
-      pl: 'Wymagane jest logowanie do chmury. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
+      ru: 'Не удалось подтвердить аккаунт. Перезайдите в раздел и попробуйте снова.',
+      uk: 'Не вдалося підтвердити акаунт. Зайдіть у розділ знову й спробуйте ще раз.',
+      es: 'No se pudo confirmar la cuenta. Vuelve al apartado e inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível confirmar a conta. Reabra a seção e tente novamente.',
+      vi: 'Không thể xác nhận tài khoản. Mở lại mục này rồi thử lại.',
+      id: 'Tidak dapat mengonfirmasi akun. Buka kembali bagian ini lalu coba lagi.',
+      tr: 'Hesap doğrulanamadı. Bölümü yeniden açıp tekrar dene.',
+      pl: 'Nie udało się potwierdzić konta. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
     };
   }
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
-      ru: 'Недостаточно осколков на балансе. Проверь баланс после синхронизации.',
-      uk: 'Недостатньо уламків на балансі. Перевірте баланс після синхронізації.',
-      es: 'Saldo de fragmentos insuficiente. Sincroniza con el servidor y comprueba.',
-      'pt-BR': 'Saldo de fragmentos insuficiente. Sincronize com o servidor e confira.',
-      vi: 'Không đủ mảnh trong số dư. Đồng bộ với máy chủ rồi kiểm tra.',
-      id: 'Saldo pecahan tidak cukup. Sinkronkan dengan server lalu periksa.',
-      tr: 'Parça bakiyesi yetersiz. Sunucuyla eşitleyip kontrol et.',
-      pl: 'Za mało odłamków na saldzie. Zsynchronizuj z serwerem i sprawdź.',
+      ru: 'Недостаточно жемчужин на балансе. Проверь баланс и попробуй снова.',
+      uk: 'Недостатньо перлин на балансі. Перевір баланс і спробуй ще раз.',
+      es: 'Saldo de perlas insuficiente. Comprueba el saldo e inténtalo de nuevo.',
+      'pt-BR': 'Saldo de pérolas insuficiente. Confira o saldo e tente novamente.',
+      vi: 'Không đủ xu trong số dư. Kiểm tra số dư rồi thử lại.',
+      id: 'Saldo koin tidak cukup. Periksa saldo lalu coba lagi.',
+      tr: 'Jeton bakiyesi yetersiz. Bakiyeni kontrol edip tekrar dene.',
+      pl: 'Za mało monet na saldzie. Zsynchronizuj z serwerem i sprawdź.',
     };
   }
   if (lower.includes('own pack') || lower.includes('свой') || lower.includes('власн')) {
@@ -136,16 +180,22 @@ export async function purchaseCommunityPackWithShards(
 
   if (!(await ensureFirebaseUserSignedInForCallable())) {
     emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Облачный вход не подключился. Повтори попытку.',
-      uk: 'Не вдалося підключити хмарний вхід. Спробуйте ще раз.',
-      es: 'No se pudo conectar con la cuenta en la nube. Inténtalo de nuevo.',
-      'pt-BR': 'Não foi possível conectar o login na nuvem. Tente novamente.',
-      vi: 'Không thể kết nối đăng nhập đám mây. Hãy thử lại.',
-      id: 'Tidak dapat menghubungkan login cloud. Coba lagi.',
-      tr: 'Bulut girişi bağlanamadı. Tekrar dene.',
-      pl: 'Nie udało się połączyć logowania w chmurze. Spróbuj ponownie.',
+      ru: 'Не удалось подтвердить аккаунт. Повтори попытку.',
+      uk: 'Не вдалося підтвердити акаунт. Спробуйте ще раз.',
+      es: 'No se pudo confirmar la cuenta. Inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível confirmar a conta. Tente novamente.',
+      vi: 'Không thể xác nhận tài khoản. Hãy thử lại.',
+      id: 'Tidak dapat mengonfirmasi akun. Coba lagi.',
+      tr: 'Hesap doğrulanamadı. Tekrar dene.',
+      pl: 'Nie udało się potwierdzić konta. Spróbuj ponownie.',
     }));
     return 'spend_failed';
+  }
+
+  const reconciliation = await reconcileShardsBeforePurchase();
+  if (reconciliation.status !== 'ready') {
+    emitShardPurchaseSyncPendingToast();
+    return 'wallet_sync_pending';
   }
 
   try {
@@ -171,7 +221,7 @@ export async function purchaseCommunityPackWithShards(
     }
     await addCommunityOwnedPackId(pack.id, studyTarget);
     void trackCardPackAcquiredAchievement(studyTarget);
-    void trackExternalShardSpendAchievement(pack.priceShards);
+    void trackExternalShardSpendAchievement(COMMUNITY_PACK_PRICE_SHARDS);
     const titleEs =
       pack.titleEs.trim()
       || pack.titleUk.trim()
@@ -194,8 +244,94 @@ export async function purchaseCommunityPackWithShards(
     }));
     return 'ok';
   } catch (e: unknown) {
+    if (isInsufficientCommunityPurchaseError(e)) {
+      // После server insufficient не используем обычный restore: он способен
+      // протолкнуть свежую локальную метку вверх. Forced server read только
+      // зеркалирует авторитетный кошелёк на устройство.
+      const authoritativeBalance = await refreshShardsBalanceFromCloudAuthoritative();
+      const freshBalance = authoritativeBalance
+        ?? await getShardsBalance().catch(() => reconciliation.balance);
+      emitAppEvent('shards_balance_updated', { balance: freshBalance });
+      return 'insufficient';
+    }
     emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(e)));
     return 'spend_failed';
+  }
+}
+
+export type CommunityPackGiftRedeemResult = 'ok' | 'already_owned' | 'redeem_failed';
+
+/**
+ * Навсегда добавляет community-набор по активному бонусу «Колода в подарок».
+ * Доступ создаёт сервер: он сам проверяет окно недельного бонуса и одноразовость.
+ * Локальный ваучер сгорает только после подтверждённого entitlement и сохранения id.
+ */
+export async function redeemCommunityPackGiftVoucher(
+  pack: FlashcardMarketPack,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<CommunityPackGiftRedeemResult> {
+  if (!isCommunityPacksCloudEnabled()) return 'redeem_failed';
+
+  const trial = await getPackGiftTrial(studyTarget, {
+    packId: pack.id, packType: 'community', studyTarget: storageStudyTarget(studyTarget),
+  });
+  if (!trial) return 'redeem_failed';
+  if (trial.claimBinding && (
+    trial.claimBinding.packId !== pack.id
+    || trial.claimBinding.packType !== 'community'
+    || trial.claimBinding.studyTarget !== storageStudyTarget(studyTarget)
+  )) return 'redeem_failed';
+
+  const buyerStableId = await getCanonicalUserId();
+  if (!buyerStableId || !(await ensureFirebaseUserSignedInForCallable())) {
+    emitAppEvent('action_toast', actionToastTri('error', {
+      ru: 'Не удалось подтвердить аккаунт для подарка. Попробуй ещё раз.',
+      uk: 'Не вдалося підтвердити акаунт для подарунка. Спробуй ще раз.',
+      es: 'No se pudo confirmar la cuenta para el regalo. Inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível confirmar a conta para o presente. Tente novamente.',
+      vi: 'Không thể xác nhận tài khoản cho quà tặng. Hãy thử lại.',
+      id: 'Akun untuk hadiah tidak dapat dikonfirmasi. Coba lagi.',
+      tr: 'Hediye için hesap doğrulanamadı. Tekrar dene.',
+      pl: 'Nie udało się potwierdzić konta dla prezentu. Spróbuj ponownie.',
+    }));
+    return 'redeem_failed';
+  }
+
+  try {
+    const result = await callFlashcardPackGiftRedeem({
+      buyerStableId,
+      packId: pack.id,
+      packType: 'community',
+      studyTarget: storageStudyTarget(studyTarget),
+      voucherId: trial.voucherId,
+      voucherOccurrenceId: trial.occurrenceId,
+    });
+    if (result.alreadyOwned) return 'already_owned';
+    if (!result.gifted) return 'redeem_failed';
+
+    // Серверный entitlement уже создан. Если локальная запись упадёт, ваучер
+    // останется и идемпотентный повтор завершит сохранение на устройстве.
+    await bindPackGiftVoucherSelection(trial.localVoucherId, {
+      packId: pack.id, packType: 'community', studyTarget: storageStudyTarget(studyTarget), confirmedAt: Date.now(),
+    });
+    await addCommunityOwnedPackId(pack.id, studyTarget);
+    await consumePackGiftTrial(trial.localVoucherId);
+    void trackCardPackAcquiredAchievement(studyTarget);
+    const titleEs = pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;
+    emitAppEvent('action_toast', actionToastTri('success', {
+      ru: `Набор «${pack.titleRu}» навсегда добавлен в «Карточки».`,
+      uk: `Набір «${pack.titleUk}» назавжди додано в «Картки».`,
+      es: `El pack «${titleEs}» se añadió para siempre a Tarjetas.`,
+      'pt-BR': `O pacote “${pack.titlePtBr || titleEs}” foi adicionado para sempre aos Cartões.`,
+      vi: `Bộ thẻ “${pack.titleVi || titleEs}” đã được thêm vĩnh viễn vào Thẻ.`,
+      id: `Paket “${pack.titleId || titleEs}” ditambahkan permanen ke Kartu.`,
+      tr: `“${pack.titleTr || titleEs}” paketi Kartlara kalıcı olarak eklendi.`,
+      pl: `Zestaw „${pack.titlePl || titleEs}” dodano na stałe do Kart.`,
+    }));
+    return 'ok';
+  } catch (error) {
+    emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(error)));
+    return 'redeem_failed';
   }
 }
 

@@ -20,6 +20,7 @@
 
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { withoutResidents } from './league_residents';
 
 const CLUBS_MAX_ID = 11;
 const LEAGUE_RESULT_ZONE_RATIO = 0.15;
@@ -91,25 +92,32 @@ type MemberResult = {
   points: number;
 };
 
-function computeGroupResults(
+export function computeGroupResults(
   members: Record<string, { points?: unknown; uid?: unknown }>,
   leagueId: number,
   xpPromotion: XpPromotionConfig,
 ): Record<string, MemberResult> {
-  const entries = Object.entries(members)
+  // зачем (владелец 2026-08-04): жители дозаполняют комнату визуально, но в
+  // НАГРАДАХ их быть не должно — ни итогов недели, ни повышения/понижения.
+  // Отсекаем их до подсчёта, иначе они бы ещё и раздували total, сдвигая зоны
+  // топ-15%/низ-15% для живых игроков (живой мог бы вылететь из-за соседства
+  // с ботами). Ранг живого считается только среди живых.
+  const liveMembers = withoutResidents(members as Record<string, Record<string, unknown>>);
+  const entries = Object.entries(liveMembers)
     .filter(([, m]) => (m as Record<string, unknown>)?.identityHidden !== true)
     .map(([uid, m]) => ({
       uid,
       points: Math.max(0, Math.trunc(Number((m as Record<string, unknown>).points ?? 0)) || 0),
     }))
-    .sort((a, b) => b.points - a.points);
+    .sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
 
   const total = entries.length;
   const zoneSize = getLeagueResultZoneSize(total);
   const results: Record<string, MemberResult> = {};
 
-  entries.forEach((e, idx) => {
-    const rank = idx + 1;
+  entries.forEach((e) => {
+    const rank = 1 + entries.filter((candidate) => candidate.points > e.points).length;
+    const bottomRank = 1 + entries.filter((candidate) => candidate.points < e.points).length;
     // XP-режим (зеркало app/league_engine.ts:710-717): повышение по набранным
     // очкам, БЕЗ понижения — чтобы сервер совпал с клиентским бейджем «Переход».
     // Иначе — обычный rank-режим (топ-15% ↑, низ-15% ↓).
@@ -118,7 +126,7 @@ function computeGroupResults(
       : total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
     const demoted = xpPromotion.enabled
       ? false
-      : total >= 2 && rank >= total - zoneSize + 1 && leagueId > 0 && !promoted;
+      : total >= 2 && bottomRank <= zoneSize && leagueId > 0 && !promoted;
     results[e.uid] = {
       rank,
       total,

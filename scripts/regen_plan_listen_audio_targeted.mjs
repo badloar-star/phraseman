@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * regen_plan_listen_audio_targeted.mjs â€” regenerate ONLY the plan-phrase mp3s whose
  * text drifted (detected by check_plan_audio_freshness.mjs), instead of all 2730.
@@ -19,6 +19,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+
+import { writePlanRuntimeAudioCompact } from './write_plan_runtime_audio_compact.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DRY = process.argv.includes('--dry');
@@ -123,6 +125,7 @@ async function main() {
     console.log(`  regenerated ${s.uri} (${bytes} bytes)`);
   }
   updateRegistryTargetText(stale, newDuration);
+  writePlanRuntimeAudioCompact();
   console.log('Registry targetText/durationMs updated. Re-run check_plan_audio_freshness.mjs to confirm 0 stale.');
 }
 

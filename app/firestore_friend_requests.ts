@@ -1,6 +1,7 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink, ensureStableAuthLinkForStableId } from './cloud_sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAuthUserId } from './user_id_policy';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -109,6 +110,84 @@ async function ensureFriendsStableAuthLink(
     logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), { action, ...tags });
   }
   return ok;
+}
+
+export const FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS = 15_000;
+export const FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS = 60_000;
+
+let friendRequestViewerAuthLinkInFlight: {
+  scopeKey: string;
+  promise: Promise<boolean>;
+} | null = null;
+let friendRequestViewerAuthLinkSuccess: {
+  scopeKey: string;
+  expiresAt: number;
+} | null = null;
+
+function friendRequestViewerAuthScopeKey(stableId: string): string {
+  return `${stableId}:${String(getAuthUserId() ?? '').trim()}`;
+}
+
+function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> {
+  const scopeKey = friendRequestViewerAuthScopeKey(stableId);
+  const now = Date.now();
+  if (
+    friendRequestViewerAuthLinkSuccess?.scopeKey === scopeKey
+    && friendRequestViewerAuthLinkSuccess.expiresAt > now
+  ) {
+    return Promise.resolve(true);
+  }
+  // The cache holds one account/auth pair only. Entering another identity or
+  // reaching the TTL immediately evicts the old success instead of leaking it.
+  friendRequestViewerAuthLinkSuccess = null;
+
+  if (friendRequestViewerAuthLinkInFlight?.scopeKey === scopeKey) {
+    return friendRequestViewerAuthLinkInFlight.promise;
+  }
+
+  let sharedPromise!: Promise<boolean>;
+  const bounded = new Promise<boolean>((resolve) => {
+    let settled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const finish = (ok: boolean) => {
+      if (settled) return;
+      settled = true;
+      if (timer) clearTimeout(timer);
+      resolve(ok);
+    };
+
+    timer = setTimeout(() => finish(false), FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS);
+    void Promise.resolve()
+      .then(() => ensureStableAuthLinkForStableId(stableId))
+      .then(ok => finish(ok === true), () => finish(false));
+  });
+
+  sharedPromise = bounded
+    .then(ok => {
+      if (ok && friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
+        friendRequestViewerAuthLinkSuccess = {
+          // Cache the identity pair that actually started this link. If Firebase
+          // Auth changes while the callable is in flight, its late success must
+          // not authorize listeners for the new auth UID.
+          scopeKey,
+          expiresAt: Date.now() + FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS,
+        };
+      } else if (!ok) {
+        logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), {
+          action: 'ensure_friend_auth_link',
+          myUid: stableId,
+        });
+      }
+      return ok;
+    })
+    .finally(() => {
+      if (friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
+        friendRequestViewerAuthLinkInFlight = null;
+      }
+    });
+
+  friendRequestViewerAuthLinkInFlight = { scopeKey, promise: sharedPromise };
+  return sharedPromise;
 }
 
 // ── sendFriendRequest ──────────────────────────────────────────────────────
@@ -277,8 +356,18 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   // Достижения: считаем текущих друзей после принятия заявки
   try {
     const { checkAchievements } = await import('./achievements');
-    const friendsSnap = await db.collection('users').doc(myUid).collection('friends').get();
-    const totalFriends = friendsSnap.size;
+    // зачем: нужно ТОЛЬКО количество друзей, а не сами документы. Полное чтение
+    // подколлекции тарифицируется как N чтений (50 друзей = 50 чтений на каждое
+    // принятие заявки); count() — это одно агрегатное чтение независимо от размера.
+    // Фолбэк на .get() оставлен на случай, если count() недоступен в рантайме.
+    const friendsRef = db.collection('users').doc(myUid).collection('friends');
+    let totalFriends: number;
+    try {
+      const countSnap = await friendsRef.count().get();
+      totalFriends = Number(countSnap.data()?.count ?? 0) || 0;
+    } catch {
+      totalFriends = (await friendsRef.get()).size;
+    }
     void checkAchievements({ type: 'friend_added', totalFriends });
   } catch {}
 }
@@ -380,10 +469,19 @@ export async function deleteFriend(friendUid: string): Promise<void> {
  * разрешило читать входящие заявки (auth.uid часто ≠ stableId).
  * Вызывать перед подпиской на friend_requests и при фокусе вкладки «Друзья».
  */
-export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
-  const myUid = await ensureAnonUser();
-  if (!myUid) return;
-  await ensureFriendsStableAuthLink('ensure_friend_auth_link', { myUid });
+// true means Firestore security can accept the live listeners. On false the
+// screen must retain its SWR cache and skip listeners instead of provoking permission-denied.
+export async function ensureFriendRequestViewerAuthLink(stableId?: string): Promise<boolean> {
+  let myUid = String(stableId ?? '').trim();
+  if (!myUid) {
+    try {
+      myUid = String(await ensureAnonUser() ?? '').trim();
+    } catch {
+      return false;
+    }
+  }
+  if (!myUid) return false;
+  return prepareFriendRequestViewerAuthLink(myUid);
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────
@@ -408,7 +506,7 @@ export function subscribeToFriends(
   let unsubscribe: (() => void) | null = null;
 
   ensureAnonUser()
-    .then(myUid => {
+    .then(async myUid => {
       if (cancelled) return;
       if (!myUid) {
         // Auth ещё не готов (холодный старт/сеть) — это НЕ «друзей нет». fromCache:true,
@@ -416,6 +514,8 @@ export function subscribeToFriends(
         callback([], { fromCache: true });
         return;
       }
+      const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
+      if (cancelled || !authLinkReady) return;
       const db = getFirestore();
       if (!db) {
         callback([], { fromCache: true });
@@ -471,12 +571,14 @@ export function subscribeToIncomingRequests(
   let unsubscribe: (() => void) | null = null;
 
   ensureAnonUser()
-    .then(myUid => {
+    .then(async myUid => {
       if (cancelled) return;
       if (!myUid) {
         callback([]);
         return;
       }
+      const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
+      if (cancelled || !authLinkReady) return;
       const db = getFirestore();
       if (!db) {
         callback([]);
@@ -532,9 +634,25 @@ export function subscribeToIncomingRequests(
  * - Односторонние friends-документы (должны были удалиться при deleteFriend)
  * Вызывается один раз при открытии вкладки. Fire-and-forget.
  */
+// зачем: чистка — редкая ремонтная операция, а вкладка «Друзья» зовёт её при КАЖДОМ
+// появлении: полный скан friend_requests + friends + до 20 reverse-чтений = до ~22
+// Firestore reads на каждое переключение таба (аудит 2026-07-25). Троттлим: не чаще
+// раза в 6 часов, метка в AsyncStorage переживает перезапуски. Экономия чтений.
+const FRIEND_CLEANUP_LAST_RUN_KEY = 'friends_cleanup_last_run_v1';
+const FRIEND_CLEANUP_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
+let friendCleanupInFlight = false;
+
 export async function cleanupStaleFriendData(): Promise<void> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  if (friendCleanupInFlight) return;
+  friendCleanupInFlight = true;
   try {
+    const lastRaw = await AsyncStorage.getItem(FRIEND_CLEANUP_LAST_RUN_KEY).catch(() => null);
+    const sinceLast = Date.now() - Number(lastRaw ?? 0);
+    // Отрицательное sinceLast = часы переведены назад → метка из «будущего», не верим ей.
+    if (Number(lastRaw) > 0 && sinceLast >= 0 && sinceLast < FRIEND_CLEANUP_MIN_INTERVAL_MS) return;
+    // Метку ставим ДО работы: даже неудачная попытка не должна повторяться каждый вход в таб.
+    await AsyncStorage.setItem(FRIEND_CLEANUP_LAST_RUN_KEY, String(Date.now())).catch(() => {});
     const myUid = await ensureAnonUser();
     if (!myUid) return;
     const db = getFirestore();
@@ -580,6 +698,8 @@ export async function cleanupStaleFriendData(): Promise<void> {
     }
   } catch {
     /* ignore — cleanup is best-effort */
+  } finally {
+    friendCleanupInFlight = false;
   }
 }
 

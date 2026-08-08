@@ -413,7 +413,37 @@ async function sendShortNicknamePrompt(token: string, chatId: number | string): 
   });
 }
 
+function formatSubscriptionExpirationDateRu(expirationSeconds: number): string {
+  const iso = new Date(expirationSeconds * 1000).toISOString();
+  return `${iso.slice(8, 10)}.${iso.slice(5, 7)}.${iso.slice(0, 4)} ${iso.slice(11, 16)} UTC`;
+}
+
+async function findActiveMonthlySubscriptionExpiration(
+  telegramUserId: number | string,
+  nowSeconds = Math.floor(Date.now() / 1000),
+): Promise<number | null> {
+  const snap = await db.collection('telegram_premium_orders')
+    .where('telegramUserId', '==', telegramUserId)
+    .where('plan', '==', 'monthly')
+    .get();
+  const activeExpirations = snap.docs
+    .map((doc) => doc.data())
+    .filter((order) => order.isRecurring === true)
+    .map((order) => Number(order.subscriptionExpirationDate))
+    .filter((expiration) => Number.isSafeInteger(expiration) && expiration > nowSeconds);
+  return activeExpirations.length > 0 ? Math.max(...activeExpirations) : null;
+}
+
 async function sendMonthlyInvoiceLink(token: string, chatId: number | string, input: InvoicePayload): Promise<void> {
+  const activeExpiration = await findActiveMonthlySubscriptionExpiration(input.userId);
+  if (activeExpiration !== null) {
+    await sendMessage(token, chatId, [
+      'У вас уже есть активная месячная подписка Phraseman Premium.',
+      `Она действует до ${formatSubscriptionExpirationDateRu(activeExpiration)}.`,
+      'Новый счёт не создан, чтобы избежать второй параллельной подписки.',
+    ].join('\n'));
+    return;
+  }
   const link = await createInvoiceLink(token, input);
   await sendMessage(token, chatId, `Месяц: подписка с автопродлением каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`, {
     reply_markup: {

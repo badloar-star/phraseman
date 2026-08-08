@@ -3,15 +3,11 @@ import {
   clearDailyTasksAdminOverride,
   getTodayKey,
   getDailyTaskAdminPacks,
+  getDailyTaskAdminPreviewTasks,
   getTodayTasksSafe,
   loadTodayProgress,
   seedDailyTasksAdminPack,
-  dailyTaskAvailableForStudyTarget,
 } from '../app/daily_tasks';
-import {
-  dailyTasksAdminOverrideKey,
-  dailyTasksProgressKey,
-} from '../app/target_storage_keys';
 
 describe('daily tasks admin QA seeding', () => {
   beforeEach(() => {
@@ -22,10 +18,11 @@ describe('daily tasks admin QA seeding', () => {
   it('builds packs that cover all daily tasks without duplicates', () => {
     const packs = getDailyTaskAdminPacks(3);
     const ids = packs.flatMap((p) => p.taskIds);
+    const activeIds = getDailyTaskAdminPreviewTasks().map((task) => task.id);
 
     expect(packs.length).toBeGreaterThan(1);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids.length).toBeGreaterThanOrEqual(80);
+    expect(ids).toEqual(activeIds);
   });
 
   it('overrides today tasks and seeds completed progress for reward QA', async () => {
@@ -50,30 +47,4 @@ describe('daily tasks admin QA seeding', () => {
     expect(visibleTasks.map((t) => t.id)).not.toEqual(pack.taskIds);
   });
 
-  it('keeps French admin QA seed isolated and source-gated', async () => {
-    const packs = getDailyTaskAdminPacks(3);
-    const pack = packs.find((candidate) =>
-      candidate.types.some((type) => !dailyTaskAvailableForStudyTarget(type, 'fr')),
-    ) ?? packs[0]!;
-
-    const seeded = await seedDailyTasksAdminPack(pack.taskIds, 'ready', 'fr');
-    const visibleFrenchTasks = await getTodayTasksSafe('fr');
-    const progress = await loadTodayProgress(visibleFrenchTasks, 'fr');
-    const overrideKey = dailyTasksAdminOverrideKey('fr');
-    const progressKey = dailyTasksProgressKey(getTodayKey(), 'fr');
-
-    expect(seeded.length).toBeGreaterThan(0);
-    expect(seeded.length).toBeLessThanOrEqual(pack.taskIds.length);
-    expect(seeded.every((task) => dailyTaskAvailableForStudyTarget(task, 'fr'))).toBe(true);
-    expect(visibleFrenchTasks.map((task) => task.id)).toEqual(seeded.map((task) => task.id));
-    expect(progress.every((row) => row.completed && !row.claimed)).toBe(true);
-    expect(AsyncStorage.setItem).toHaveBeenCalledWith(overrideKey, expect.any(String));
-    expect(AsyncStorage.setItem).toHaveBeenCalledWith(progressKey, expect.any(String));
-    expect(AsyncStorage.setItem).not.toHaveBeenCalledWith('daily_tasks_admin_override_v1', expect.any(String));
-    expect(AsyncStorage.setItem).not.toHaveBeenCalledWith(`daily_tasks_${getTodayKey()}`, expect.any(String));
-
-    await clearDailyTasksAdminOverride('fr');
-    expect(AsyncStorage.removeItem).toHaveBeenCalledWith(overrideKey);
-    expect(await getTodayTasksSafe('fr')).not.toEqual(visibleFrenchTasks);
-  });
 });

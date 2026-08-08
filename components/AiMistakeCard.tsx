@@ -1,13 +1,16 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import SkeletonBlock from './SkeletonShimmer';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
-import BilingualMistakeText from './BilingualMistakeText';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
-import { aiErrorToast, aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
+import { aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
+import LearningSemanticBlock from './LearningSemanticBlock';
+import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
+import AiBadge from './AiBadge';
+import { FlowText } from './text-integrity/FlowText';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -20,6 +23,12 @@ type AiMistakeCardProps = {
   onExplain: () => void;
   onOpenSimple?: () => void;
   /**
+   * Подпись под скелетоном на время ожидания (см. app/ai_wait_copy.ts). Меняется
+   * по мере ожидания, чтобы затянувшийся ответ не читался как зависание.
+   * Не передана — скелетон показывается молча, как раньше.
+   */
+  waitLine?: string;
+  /**
    * Правильный (целевой) ответ и неправильный ответ юзера. Нужны кнопке «Непонятно объяснили»,
    * чтобы жалоба попала в ТУ ЖЕ кэш-запись разбора (mistake_explanations per-(target,userAnswer,lang)).
    * Если не переданы — кнопка репорта не показывается (старые вызовы остаются как были).
@@ -27,41 +36,6 @@ type AiMistakeCardProps = {
   targetAnswer?: string;
   userAnswer?: string;
 };
-
-function buildLocalMistakeFallback(lang: Lang, targetAnswer?: string, userAnswer?: string): string {
-  const intro = triLang(lang, {
-    ru: 'Сравни ответы:',
-    uk: 'Порівняй відповіді:',
-    es: 'Compara las respuestas:',
-    'pt-BR': 'Compare as respostas:',
-    vi: 'So sánh các câu trả lời:',
-    id: 'Bandingkan jawabannya:',
-    tr: 'Yanıtları karşılaştır:',
-    pl: 'Porównaj odpowiedzi:',
-  });
-  const yourAnswerLabel = triLang(lang, {
-    ru: 'Твой ответ',
-    uk: 'Твоя відповідь',
-    es: 'Tu respuesta',
-    'pt-BR': 'Sua resposta',
-    vi: 'Câu trả lời của bạn',
-    id: 'Jawabanmu',
-    tr: 'Yanıtın',
-    pl: 'Twoja odpowiedź',
-  });
-  const correctAnswerLabel = triLang(lang, {
-    ru: 'Правильно',
-    uk: 'Правильно',
-    es: 'Correcto',
-    'pt-BR': 'Correto',
-    vi: 'Đáp án đúng',
-    id: 'Jawaban benar',
-    tr: 'Doğru cevap',
-    pl: 'Poprawnie',
-  });
-
-  return `${intro}\n${yourAnswerLabel}: ${userAnswer?.trim() || '-'}\n${correctAnswerLabel}: ${targetAnswer?.trim() || '-'}`;
-}
 
 export default function AiMistakeCard({
   lang,
@@ -71,6 +45,7 @@ export default function AiMistakeCard({
   onOpenSimple,
   targetAnswer,
   userAnswer,
+  waitLine,
 }: AiMistakeCardProps) {
   const { theme: t, f } = useTheme();
   const isBusy = state === 'loading';
@@ -82,13 +57,6 @@ export default function AiMistakeCard({
     () => (state === 'limit' ? aiPersonalLimitToast(lang) : null),
     [state, lang],
   );
-  const errorCopy = React.useMemo(
-    () => (state === 'error' ? aiErrorToast(lang) : null),
-    [state, lang],
-  );
-
-  if (state === 'hidden') return null;
-
   const title = triLang(lang, {
     ru: 'Разбор промаха',
     uk: 'Розбір промаху',
@@ -100,30 +68,22 @@ export default function AiMistakeCard({
     pl: 'Analiza błędu',
   });
 
-  const subtitle = triLang(lang, {
-    ru: 'Где сбилось и как правильно',
-    uk: 'Де збилося і як правильно',
-    es: 'Qué falló y cómo decirlo bien',
-    'pt-BR': 'O que errou e como dizer certo',
-    vi: 'Sai ở đâu và nói sao cho đúng',
-    id: 'Bagian yang salah dan cara benar',
-    tr: 'Nerede hata var ve doğrusu',
-    pl: 'Co poszło źle i jak poprawnie',
-  });
-
   const isReadyExplanation = state === 'ready' && Boolean(explanation);
 
   const body = (() => {
     if (state === 'ready' && explanation) return explanation;
     if (state === 'limit') return '';
     if (state === 'error') {
-      // Готовый текст от хука (напр. глобальный бюджет ИИ иссяк) имеет приоритет;
-      // иначе — забавная плашка обычной ошибки.
-      if (explanation) return explanation;
-      if (targetAnswer?.trim() || userAnswer?.trim()) {
-        return buildLocalMistakeFallback(lang, targetAnswer, userAnswer);
-      }
-      if (errorCopy) return `${errorCopy.title}\n${errorCopy.message}`;
+      return triLang(lang, {
+        ru: 'Не удалось загрузить разбор. Это не готовое объяснение — попробуй ещё раз.',
+        uk: 'Не вдалося завантажити розбір. Це не готове пояснення — спробуй ще раз.',
+        es: 'No se pudo cargar el análisis. Esto no es una explicación completa; inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível carregar a análise. Isto não é uma explicação pronta; tente novamente.',
+        vi: 'Không thể tải phần phân tích. Đây chưa phải lời giải thích hoàn chỉnh — hãy thử lại.',
+        id: 'Analisis tidak dapat dimuat. Ini bukan penjelasan lengkap — coba lagi.',
+        tr: 'Analiz yüklenemedi. Bu tamamlanmış bir açıklama değil — tekrar dene.',
+        pl: 'Nie udało się wczytać analizy. To nie jest gotowe wyjaśnienie — spróbuj ponownie.',
+      });
     }
     return triLang(lang, {
       ru: 'Разбираю именно твой ответ: где сбилось и как сказать правильно.',
@@ -136,20 +96,27 @@ export default function AiMistakeCard({
       pl: 'Analizuję dokładnie Twoją odpowiedź: co poszło źle i jak poprawnie.',
     });
   })();
+  const readyBlocks = React.useMemo(
+    () => buildMistakeExplanationBlocks({ lang, explanation: body, userAnswer, targetAnswer }),
+    [lang, body, userAnswer, targetAnswer],
+  );
+
+  if (state === 'hidden') return null;
 
   return (
     <View
       testID="ai-mistake-card"
-      style={[styles.card, { backgroundColor: t.bgCard, borderColor: state === 'ready' ? t.correct : t.border }]}
+      style={styles.card}
     >
       <View style={styles.header}>
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
           <Ionicons name="bulb-outline" size={20} color={t.accent} />
         </View>
-        <View style={styles.headerText}>
+        <View style={[styles.headerText, styles.headerTextRow]}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
             {title}
           </Text>
+          <AiBadge />
         </View>
       </View>
 
@@ -158,16 +125,29 @@ export default function AiMistakeCard({
           <SkeletonBlock width="94%" height={13} borderRadius={6} />
           <SkeletonBlock width="80%" height={13} borderRadius={6} />
           <SkeletonBlock width="88%" height={13} borderRadius={6} />
+          {/* зачем: холодный старт ИИ-функции (minInstances: 0 — владелец не платит
+              за тёплый инстанс) изредка растягивает ожидание до нескольких секунд.
+              Молчащий скелетон столько времени читается как зависание, поэтому под
+              ним идёт живая подпись. Высота строки зарезервирована всегда, даже
+              когда подписи нет: иначе её появление сдвигало бы карточку. */}
+          <View style={styles.waitLineRow}>
+            {waitLine ? (
+              <FlowText
+                testID="ai-mistake-wait-line"
+                provenance="authored"
+                style={{ color: t.textSecond, fontSize: f.label }}
+              >
+                {waitLine}
+              </FlowText>
+            ) : null}
+          </View>
         </View>
-      ) : isReadyExplanation ? (
-        // Английский (ключевой язык) — акцентным цветом, перевод — обычным, чтобы
-        // языки не сливались в один цвет.
-        <BilingualMistakeText
-          text={body}
-          englishColor={t.accent}
-          nativeColor={t.textSecond}
-          style={{ fontSize: f.body, lineHeight: 20 }}
-        />
+      ) : isReadyExplanation && readyBlocks.length ? (
+        <View style={styles.semanticBlocks}>
+          {readyBlocks.map((block, idx) => (
+            <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
+          ))}
+        </View>
       ) : state === 'limit' && limitCopy ? (
         <AiLimitUpsellCard
           lang={lang}
@@ -245,10 +225,9 @@ export default function AiMistakeCard({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 8,
-    borderWidth: 1,
+    alignSelf: 'stretch',
     gap: 10,
-    padding: 12,
+    width: '100%',
   },
   header: {
     alignItems: 'center',
@@ -258,6 +237,11 @@ const styles = StyleSheet.create({
   headerText: {
     flex: 1,
     minWidth: 0,
+  },
+  headerTextRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   icon: {
     alignItems: 'center',
@@ -270,6 +254,17 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     paddingVertical: 4,
     gap: 8,
+  },
+  // Место под ждущую подпись держим всегда — стабильная геометрия первого кадра
+  // (AGENTS.md → Layout stability): текст появляется, карточка не дёргается.
+  waitLineRow: {
+    justifyContent: 'center',
+    minHeight: 18,
+  },
+  semanticBlocks: {
+    alignSelf: 'stretch',
+    gap: 8,
+    width: '100%',
   },
   reportRow: {
     alignItems: 'flex-start',

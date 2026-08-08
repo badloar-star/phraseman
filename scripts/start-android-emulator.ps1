@@ -8,7 +8,9 @@
 param(
   [string]$Avd = "Pixel_8",
   [ValidateSet("swiftshader_indirect", "host", "angle_indirect")]
-  [string]$GpuMode = "host"
+  [string]$GpuMode = "host",
+  [int]$Port = 8081,
+  [switch]$NoReverse
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,3 +44,54 @@ $argsList = @(
 
 Write-Host "Starting: $Avd, GPU=$GpuMode"
 Start-Process -FilePath $emuExe -ArgumentList $argsList -WindowStyle Normal
+
+# зачем: без adb reverse эмулятор не видит Metro и приложение вечно висит на
+# "Bundling NN%". Этот dev-билд имеет 127.0.0.1:8081 зашитый в Gradle
+# (plugins/withAndroidDevServer127.js), поэтому localhost внутри эмулятора
+# обязан быть проброшен на хост. Раньше скрипт только поднимал AVD, и reverse
+# приходилось ставить вручную — забыл поставить = приложение уходит на
+# 10.0.2.2 и обрывается на середине бандла (Connection reset).
+if ($NoReverse) {
+  Write-Host "Skipping adb reverse (-NoReverse)."
+  return
+}
+if (-not (Test-Path $adb)) {
+  Write-Host "adb.exe not found; set adb reverse tcp:$Port manually once the AVD boots."
+  return
+}
+
+Write-Host "Waiting for emulator to finish booting (up to 180s)..."
+$booted = $false
+$serial = ""
+$deadline = (Get-Date).AddSeconds(180)
+while ((Get-Date) -lt $deadline) {
+  foreach ($ln in @(& $adb devices 2>$null | ForEach-Object { "$_" })) {
+    if ($ln -match '^(emulator-\d+)\s+device\s*$') {
+      $candidate = $Matches[1]
+      $bootFlag = ""
+      try {
+        $bootFlag = ((& $adb -s $candidate shell getprop sys.boot_completed 2>$null) | Select-Object -First 1).Trim()
+      } catch { }
+      if ($bootFlag -eq "1") {
+        $serial = $candidate
+        $booted = $true
+        break
+      }
+    }
+  }
+  if ($booted) { break }
+  Start-Sleep -Seconds 3
+}
+
+if (-not $booted) {
+  Write-Host "Emulator did not report boot completion in time."
+  Write-Host "Once it boots run: adb reverse tcp:$Port tcp:$Port"
+  return
+}
+
+& $adb -s $serial reverse "tcp:$Port" "tcp:$Port" | Out-Null
+if ($LASTEXITCODE -eq 0) {
+  Write-Host "adb reverse tcp:$Port -> tcp:$Port OK ($serial)"
+} else {
+  Write-Host "adb reverse failed for $serial; run it manually: adb -s $serial reverse tcp:$Port tcp:$Port"
+}

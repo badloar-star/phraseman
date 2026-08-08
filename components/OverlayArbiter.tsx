@@ -59,11 +59,19 @@ const NATIVE_MODAL_HANDOFF_GAP_MS = 360;
 
 type Ctx = {
   active: OverlayKey | null;
+  occupied: boolean;
   setWants: (key: OverlayKey, wants: boolean) => void;
   disabled?: boolean;
 };
 
 const OverlayArbiterContext = createContext<Ctx | null>(null);
+
+export function deriveOverlayOccupied(
+  active: OverlayKey | null,
+  handoffGap: boolean,
+): boolean {
+  return active !== null || handoffGap;
+}
 
 export function OverlayArbiterProvider({ children }: { children: React.ReactNode }) {
   const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
@@ -156,7 +164,8 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
     return () => clearTimeout(t);
   }, [active, wantsMap]);
 
-  const value = useMemo<Ctx>(() => ({ active, setWants }), [active, setWants]);
+  const occupied = deriveOverlayOccupied(active, handoffGapRef.current);
+  const value = useMemo<Ctx>(() => ({ active, occupied, setWants }), [active, occupied, setWants]);
 
   return (
     <OverlayArbiterContext.Provider value={value}>
@@ -172,7 +181,7 @@ function useOverlayArbiter(): Ctx {
       // eslint-disable-next-line no-console
       console.warn('[OverlayArbiter] Provider не смонтирован — fail-soft, всегда пускаю');
     }
-    return { active: null, setWants: () => {}, disabled: true };
+    return { active: null, occupied: false, setWants: () => {}, disabled: true };
   }
   return ctx;
 }
@@ -198,6 +207,11 @@ export function useOverlayVisible(key: OverlayKey, ownState: boolean): boolean {
 
   if (disabled) return ownState;
   return ownState && active === key;
+}
+
+/** Read-only signal for inline UI that must stay hidden while any overlay owns the slot. */
+export function useOverlayOccupied(): boolean {
+  return useOverlayArbiter().occupied;
 }
 
 /* expo-router route shim: не превращаем utility в роут при автодискавери */

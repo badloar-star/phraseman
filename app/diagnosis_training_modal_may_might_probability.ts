@@ -103,7 +103,7 @@ function retryFor(correct: string, contrast: TriText, finalHint: TriText): [TriT
     contrast,
     tri(
       'Потом проверь английский кусок. Нормально: may rain, might come, may know, might not work.',
-      'Потім перевір англійський шматок. Нормально: may rain, might come, may know, might not work.',
+      'Потім перевір англійський зворот. Нормально: may rain, might come, may know, might not work.',
       'Luego revisa el bloque: may rain, might come, may know, might not work.',
     ),
     tri(
@@ -149,7 +149,7 @@ function modalStep(input: {
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери кусок для вероятности: may, might, may not или might not. Не путай с can и will.',
-      'Обери шматок для ймовірності: may, might, may not або might not. Не плутай із can і will.',
+      'Обери зворот для ймовірності: may, might, may not або might not. Не плутай із can і will.',
       'Elige el bloque de probabilidad: may, might, may not o might not.',
     ),
     sentence: input.sentence,
@@ -473,8 +473,8 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       correctAnswer: 'may',
       correctFeedback: tri('Да. May rain показывает вероятность: возможно, будет дождь.', 'Так. May rain показує ймовірність: можливо, буде дощ.', 'Yes. May rain shows probability.'),
       wrong: {
-        can: tri('can rain звучит скорее как "дождь вообще может идти". Для прогноза "возможно" нужен кусок may rain.', 'can rain звучить радше як "дощ узагалі може йти". Для прогнозу "можливо" потрібен шматок may rain.', 'Use may rain.'),
-        is: tri('is rain не собирается. Для вероятности нужен кусок may rain.', 'is rain не збирається. Для ймовірності потрібен шматок may rain.', 'Use may rain.'),
+        can: tri('can rain звучит скорее как "дождь вообще может идти". Для прогноза "возможно" нужен кусок may rain.', 'can rain звучить радше як "дощ узагалі може йти". Для прогнозу "можливо" потрібен зворот may rain.', 'Use may rain.'),
+        is: tri('is rain не собирается. Для вероятности нужен кусок may rain.', 'is rain не збирається. Для ймовірності потрібен зворот may rain.', 'Use may rain.'),
         does: tri('does rain здесь не подходит. Для "возможно" нужен may rain.', 'does rain тут не підходить. Для "можливо" потрібно may rain.', 'Use may rain.'),
       },
       contrast: tri('В прогнозе с "возможно" часто нужен may.', 'У прогнозі з "можливо" часто потрібен may.', 'Maybe it will = may.'),
@@ -530,7 +530,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       correctAnswer: 'might',
       correctFeedback: tri('Да. Might come звучит осторожно: возможно, придет.', 'Так. Might come звучить обережно: можливо, прийде.', 'Yes. Might come shows cautious probability.'),
       wrong: {
-        does: tri('does come не показывает "возможно". Нужен кусок might come.', 'does come не показує "можливо". Потрібен шматок might come.', 'Use might come.'),
+        does: tri('does come не показывает "возможно". Нужен кусок might come.', 'does come не показує "можливо". Потрібен зворот might come.', 'Use might come.'),
         is: tri('is come не собирается. Нормально: might come.', 'is come не збирається. Нормально: might come.', 'Use might come.'),
         has: tri('has come значит "уже пришел". Здесь будущее возможно: might come.', 'has come означає "уже прийшов". Тут майбутнє можливе: might come.', 'Use might come.'),
       },
@@ -686,7 +686,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
         'She might to come.': tri('После might не нужен to. Нормально: She might come.', 'Після might не потрібен to. Нормально: She might come.', 'Use She might come.'),
         'She may comes.': tri('После may не добавляй -s. Нормально: She may come.', 'Після may не додавай -s. Нормально: She may come.', 'Use She may come.'),
       },
-      contrast: tri('Maybe - отдельное слово. Might - модальный кусок.', 'Maybe - окреме слово. Might - модальний шматок.', 'Maybe is separate; might is modal.'),
+      contrast: tri('Maybe - отдельное слово. Might - модальный кусок.', 'Maybe - окреме слово. Might - модальний зворот.', 'Maybe is separate; might is modal.'),
       finalHint: tri('She might come.', 'She might come.', 'She might come.'),
       focusWords: ['might come'],
     }),
@@ -732,7 +732,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       wrong: {
         "It may to help / It doesn't might work": tri("После may не нужен to. Might не требует doesn't.", "Після may не потрібен to. Might не потребує doesn't.", 'No to; no does with might.'),
         "It may helps / It might doesn't work": tri("После may не добавляй -s. После might не нужен doesn't.", "Після may не додавай -s. Після might не потрібен doesn't.", 'No -s; no does with might.'),
-        'It maybe help / It not might work': tri('Maybe так не встраивается в этот кусок, а not ставится после might.', 'Maybe так не вбудовується в цей шматок, а not ставиться після might.', 'Use may help / might not work.'),
+        'It maybe help / It not might work': tri('Maybe так не встраивается в этот кусок, а not ставится после might.', 'Maybe так не вбудовується в цей зворот, а not ставиться після might.', 'Use may help / might not work.'),
       },
       contrast: tri('Положительная вероятность и отрицательная вероятность.', 'Позитивна ймовірність і негативна ймовірність.', 'Positive and negative probability.'),
       finalHint: tri('It may help / It might not work.', 'It may help / It might not work.', 'It may help / It might not work.'),

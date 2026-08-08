@@ -18,8 +18,10 @@ const mockEnsureStableAuthLinkForStableIdDetailed = jest.fn(async (stableUid: st
   source: 'callable',
 }));
 const mockReplaceShardsBalanceLocal = jest.fn(async () => undefined);
-const mockBumpLifetimeShardsSpent = jest.fn();
-const mockCheckAchievements = jest.fn();
+const mockReplaceShardsBalanceForAccountGeneration = jest.fn(async () => 'applied');
+const mockBumpLifetimeShardsSpent = jest.fn(async () => undefined);
+const mockCheckAchievements = jest.fn(async () => []);
+const mockInitFirebaseAppCheckIfAvailable = jest.fn(async () => undefined);
 
 jest.mock('@react-native-firebase/app', () => ({
   getApp: jest.fn(() => ({})),
@@ -45,11 +47,12 @@ jest.mock('../app/user_id_policy', () => ({
 }));
 
 jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined),
+  initFirebaseAppCheckIfAvailable: mockInitFirebaseAppCheckIfAvailable,
 }));
 
 jest.mock('../app/shards_system', () => ({
   replaceShardsBalanceLocal: mockReplaceShardsBalanceLocal,
+  replaceShardsBalanceForAccountGeneration: mockReplaceShardsBalanceForAccountGeneration,
 }));
 
 jest.mock('../app/lifetime_profile_stats', () => ({
@@ -60,8 +63,16 @@ jest.mock('../app/achievements', () => ({
   checkAchievements: mockCheckAchievements,
 }));
 
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
+
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('stable-from-auth');
+  mockEnsureAnonUser.mockResolvedValue('stable-from-auth');
   mockEnsureStableAuthLinkForStableIdDetailed.mockImplementation(async (stableUid: string) => ({
     ok: true,
     requestedStableId: stableUid,
@@ -69,6 +80,55 @@ beforeEach(() => {
     authUid: 'auth-from-test',
     source: 'callable',
   }));
+});
+
+test('friend gift revalidates account ownership after ensureAnonUser before auth-link or App Check side effects', async () => {
+  let release!: (value: string) => void;
+  mockEnsureAnonUser.mockReturnValueOnce(new Promise<string>((resolve) => { release = resolve; }));
+  const { sendFriendGiftWithShards } = require('../app/friend_gifts');
+
+  const request = sendFriendGiftWithShards({
+    friendStableId: 'friend-123',
+    giftId: 'arena_extra_5',
+  });
+  for (let i = 0; i < 12 && mockEnsureAnonUser.mock.calls.length === 0; i += 1) await Promise.resolve();
+  beginAccountGeneration('account-b');
+  release('stable-from-auth');
+
+  await expect(request).rejects.toThrow('friend_gift_identity_changed');
+  expect(mockEnsureStableAuthLinkForStableIdDetailed).not.toHaveBeenCalled();
+  expect(mockInitFirebaseAppCheckIfAvailable).not.toHaveBeenCalled();
+});
+
+test('friend gift revalidates account ownership after auth-link before App Check side effects', async () => {
+  let release!: (value: {
+    ok: true;
+    requestedStableId: string;
+    stableUid: string;
+    authUid: string;
+    source: 'callable';
+  }) => void;
+  mockEnsureStableAuthLinkForStableIdDetailed.mockReturnValueOnce(new Promise((resolve) => { release = resolve; }));
+  const { sendFriendGiftWithShards } = require('../app/friend_gifts');
+
+  const request = sendFriendGiftWithShards({
+    friendStableId: 'friend-123',
+    giftId: 'arena_extra_5',
+  });
+  for (let i = 0; i < 12 && mockEnsureStableAuthLinkForStableIdDetailed.mock.calls.length === 0; i += 1) {
+    await Promise.resolve();
+  }
+  beginAccountGeneration('account-b');
+  release({
+    ok: true,
+    requestedStableId: 'stable-from-auth',
+    stableUid: 'stable-from-auth',
+    authUid: 'auth-from-test',
+    source: 'callable',
+  });
+
+  await expect(request).rejects.toThrow('friend_gift_identity_changed');
+  expect(mockInitFirebaseAppCheckIfAvailable).not.toHaveBeenCalled();
 });
 
 test('sendFriendGiftWithShards prepares auth before calling the gift function', async () => {
@@ -81,9 +141,7 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
   });
 
   expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);
-  expect(mockEnsureStableAuthLinkForStableIdDetailed).toHaveBeenCalledWith('stable-from-auth', {
-    lastSignInAt: expect.any(Number),
-  });
+  expect(mockEnsureStableAuthLinkForStableIdDetailed).toHaveBeenCalledWith('stable-from-auth');
   expect(mockCallableInvoker).toHaveBeenCalledWith({
     senderStableId: 'stable-from-auth',
     friendStableId: 'friend-123',
@@ -94,11 +152,17 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
   expect(mockEnsureAnonUser.mock.invocationCallOrder[0]).toBeLessThan(
     mockCallableInvoker.mock.invocationCallOrder[0],
   );
-  expect(mockReplaceShardsBalanceLocal).toHaveBeenCalledWith(95, {
-    updatedAtMs: 3_000,
-    op: 'spend',
-    reason: 'friend_gift',
-  });
+  expect(mockReplaceShardsBalanceForAccountGeneration).toHaveBeenCalledWith(
+    95,
+    expect.objectContaining({ stableId: 'stable-from-auth', phase: 'active' }),
+    'stable-from-auth',
+    {
+      updatedAtMs: 3_000,
+      op: 'spend',
+      reason: 'friend_gift',
+    },
+  );
+  expect(mockReplaceShardsBalanceLocal).not.toHaveBeenCalled();
 });
 
 test('sendFriendGiftWithShards does not call the gift function when auth link is unavailable', async () => {

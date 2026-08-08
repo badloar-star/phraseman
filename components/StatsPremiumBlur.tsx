@@ -1,11 +1,12 @@
 import React, { memo, ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
+import { isLightThemeMode } from '../constants/theme';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -175,7 +176,10 @@ function StatsPremiumBlur({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
 
-  const isLight = false;
+  // зачем: флаг был захардкожен false, и тернарники isLight ниже были мёртвым кодом —
+  // sagePorcelain получала тёмный вариант бейджа/заголовка. Включаем реальный признак
+  // единственной светлой темы через центральный классификатор.
+  const isLight = isLightThemeMode(themeMode);
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
   const ctaLabel = triLang(lang, {
@@ -207,10 +211,15 @@ function StatsPremiumBlur({
         accessibilityLabel={ctaLabel}
       >
         <View style={[styles.lockBadge, { backgroundColor: isLight ? 'rgba(255,255,255,0.92)' : 'rgba(20,16,8,0.85)' }]}>
-          <Ionicons name="lock-closed" size={28} color={monoIcon(themeMode, '#FFD700')} />
+          {/* зачем: на белом бейдже светлой темы яркое #FFD700 выцветает (~1.2:1);
+              t.gold sagePorcelain — тёмная бронза #8B6320 (~4.7:1), замок остаётся премиумным */}
+          <Ionicons name="lock-closed" size={28} color={isLight ? t.gold : monoIcon(themeMode, '#FFD700')} />
         </View>
         <View style={styles.titleCtaBlock}>
-          <Text style={[styles.title, { color: isLight ? t.textPrimary : '#FFD700', fontSize: f.bodyLg }]}>
+          {/* зачем: подложка вуали форсированно тёмная (скримы плейсхолдера не зависят от темы),
+              тёмный t.textPrimary светлой темы на ней невидим (~1.4:1) — берём фарфоровый белый
+              в тон bgCard sagePorcelain (~11:1) вместо золота, кричащего на спокойной теме */}
+          <Text style={[styles.title, { color: isLight ? '#FCFDF9' : '#FFD700', fontSize: f.bodyLg }]}>
             {title}
           </Text>
           <View style={styles.ctaWrap}>
@@ -286,7 +295,7 @@ const styles = StyleSheet.create({
   veilVignette: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,215,0,0.10)',
     backgroundColor: 'rgba(0,0,0,0.00)',
   },
@@ -307,7 +316,7 @@ const styles = StyleSheet.create({
     width: 72,
     borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.10)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,215,0,0.16)',
   },
   placeholderBody: {
@@ -375,7 +384,7 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: '#FFD700',
   },
   title: {

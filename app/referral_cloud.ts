@@ -38,13 +38,26 @@ export async function callReferralApply(params: {
 }
 
 /** Статус приглашения для бейджей в /friends (зеркало серверного AttributionStatus). */
-export type ReferralInviteStatus = 'pending' | 'qualified' | 'rewarded' | 'skipped_referrer_cap';
+export type ReferralInviteStatus = 'pending' | 'qualified' | 'rewarded' | 'expired' | 'skipped_referrer_cap';
 
 export type ReferralInvite = {
   refereeStableId: string;
   status: ReferralInviteStatus;
   refereeName?: string;
   createdAtMs: number;
+  deadlineAtMs: number;
+  qualifiedAtMs?: number;
+};
+
+export type ReferralDrainState = {
+  softEnabled: boolean;
+  emergencyStop: boolean;
+  serverNowMs: number;
+  activePendingCount: number;
+  claimableQualifiedCount: number;
+  availableCreditCount: number;
+  latestPendingDeadlineMs: number;
+  earliestCreditExpiryMs: number;
 };
 
 export type ListMyInvitesResult = {
@@ -52,6 +65,7 @@ export type ListMyInvitesResult = {
   invites: ReferralInvite[];
   qualifiedCount: number;
   claimableVipDays: number;
+  drain: ReferralDrainState;
 };
 
 /** Список приглашений текущего пользователя (для бейджей и кнопки «Открыть»). */
@@ -80,7 +94,7 @@ export type ClaimVipRewardResult = {
   cappedToday?: boolean;
 };
 
-/** Обналичивание накопленных дней доступа: +7 дней за каждого qualified-друга (стакается). */
+/** Исторический callable получения накопленных дней доступа; новый UI использует прокруты рулетки. */
 export async function callReferralClaimVipReward(referrerStableId: string): Promise<ClaimVipRewardResult> {
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ referrerStableId: string }, ClaimVipRewardResult>('referralClaimVipReward');

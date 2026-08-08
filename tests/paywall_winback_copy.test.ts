@@ -40,7 +40,7 @@ describe('paywall win-back copy', () => {
   });
 
   it('also applies win-back to several other feature contexts', () => {
-    for (const ctx of ['arena', 'quiz_limit', 'flashcard_limit', 'streak']) {
+    for (const ctx of ['trainer_limit', 'flashcard_limit', 'streak']) {
       const base = getPaywallCopy(ctx);
       const out = applyWinBackCopy(base, ctx, true);
       expect(out.titleRu).toBe('Верни полный доступ Plus');

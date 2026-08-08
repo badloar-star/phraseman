@@ -1,4 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 import {
   writePlanRecoveryActions,
@@ -48,40 +54,81 @@ export function personalPlanRecoveryAppliedActionsStorageKey(): string {
   return PLAN_RECOVERY_APPLIED_ACTIONS_STORAGE_KEY;
 }
 
-export async function listAppliedPlanRecoveryActionIds(planInstanceId: string): Promise<string[]> {
+function assertCurrentAccountGeneration(generation: AccountGenerationToken): void {
+  if (!isCurrentAccountGeneration(generation)) {
+    throw new Error('stale_account_generation');
+  }
+}
+
+async function listAppliedPlanRecoveryActionIdsForGeneration(
+  planInstanceId: string,
+  generation: AccountGenerationToken,
+): Promise<string[]> {
   const instanceId = cleanPlanInstanceId(planInstanceId);
   if (!instanceId) return [];
-  const registry = await readRegistry();
-  return registry[instanceId] ?? [];
+  return withAccountTransitionLock(async () => {
+    assertCurrentAccountGeneration(generation);
+    const registry = await readRegistry();
+    assertCurrentAccountGeneration(generation);
+    return registry[instanceId] ?? [];
+  });
+}
+
+export async function listAppliedPlanRecoveryActionIds(planInstanceId: string): Promise<string[]> {
+  const generation = captureAccountGeneration();
+  return listAppliedPlanRecoveryActionIdsForGeneration(planInstanceId, generation);
+}
+
+async function addAppliedPlanRecoveryActionIdsForGeneration(
+  planInstanceId: string,
+  actionIds: string[],
+  generation: AccountGenerationToken,
+): Promise<string[]> {
+  const instanceId = cleanPlanInstanceId(planInstanceId);
+  if (!instanceId) return [];
+
+  return withAccountTransitionLock(async () => {
+    assertCurrentAccountGeneration(generation);
+    const registry = await readRegistry();
+    assertCurrentAccountGeneration(generation);
+    const nextIds = [
+      ...(registry[instanceId] ?? []),
+      ...actionIds.map((id) => id.trim()).filter(Boolean),
+    ];
+    const uniqueIds = [...new Set(nextIds)];
+    await writeRegistry({
+      ...registry,
+      [instanceId]: uniqueIds,
+    });
+    return uniqueIds;
+  });
 }
 
 export async function addAppliedPlanRecoveryActionIds(
   planInstanceId: string,
   actionIds: string[],
 ): Promise<string[]> {
-  const instanceId = cleanPlanInstanceId(planInstanceId);
-  if (!instanceId) return [];
-
-  const registry = await readRegistry();
-  const nextIds = [
-    ...(registry[instanceId] ?? []),
-    ...actionIds.map((id) => id.trim()).filter(Boolean),
-  ];
-  registry[instanceId] = [...new Set(nextIds)];
-  await writeRegistry(registry);
-  return registry[instanceId];
+  const generation = captureAccountGeneration();
+  return addAppliedPlanRecoveryActionIdsForGeneration(planInstanceId, actionIds, generation);
 }
 
 export async function clearAppliedPlanRecoveryActionIds(planInstanceId: string): Promise<void> {
+  const generation = captureAccountGeneration();
   const instanceId = cleanPlanInstanceId(planInstanceId);
-  const registry = await readRegistry();
-  if (!instanceId) {
-    await writeRegistry({});
-    return;
-  }
+  await withAccountTransitionLock(async () => {
+    assertCurrentAccountGeneration(generation);
+    const registry = await readRegistry();
+    assertCurrentAccountGeneration(generation);
+    if (!instanceId) {
+      await writeRegistry({});
+      return;
+    }
 
-  delete registry[instanceId];
-  await writeRegistry(registry);
+    const remaining = Object.fromEntries(
+      Object.entries(registry).filter(([key]) => key !== instanceId),
+    );
+    await writeRegistry(remaining);
+  });
 }
 
 export type RegisteredPlanRecoveryWriteOptions = Omit<PlanRecoveryWriteOptions, 'appliedActionIds' | 'currentPlanInstanceId'>;
@@ -91,8 +138,9 @@ export async function writePlanRecoveryActionsWithRegistry(
   actions: PlanRecoveryAction[],
   options: RegisteredPlanRecoveryWriteOptions = {},
 ): Promise<PlanRecoveryWriteResult[]> {
+  const generation = captureAccountGeneration();
   const instanceId = cleanPlanInstanceId(planInstanceId);
-  const appliedActionIds = await listAppliedPlanRecoveryActionIds(instanceId);
+  const appliedActionIds = await listAppliedPlanRecoveryActionIdsForGeneration(instanceId, generation);
   const results = await writePlanRecoveryActions(actions, {
     ...options,
     currentPlanInstanceId: instanceId,
@@ -104,7 +152,7 @@ export async function writePlanRecoveryActionsWithRegistry(
       .filter((result) => result.status === 'applied')
       .map((result) => result.actionId);
     if (appliedIds.length > 0) {
-      await addAppliedPlanRecoveryActionIds(instanceId, appliedIds);
+      await addAppliedPlanRecoveryActionIdsForGeneration(instanceId, appliedIds, generation);
     }
   }
 

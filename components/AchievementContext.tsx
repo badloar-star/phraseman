@@ -11,6 +11,48 @@ import { emitAppEvent } from '../app/events';
 // движение даже без участия рендерера.
 const TOAST_MAX_LIFETIME_MS = 12_000;
 
+// H-TOASTBURST: сколько достижений подряд ещё празднуем поштучно. Владелец на новом
+// аккаунте открыл разом больше десятка достижений, и каждое занимало слот на ~3.8с —
+// получалась минутная лента тостов поверх модалок уровня. Начиная с этого порога
+// схлопываем всю пачку в ОДИН сводный тост «Открыто N достижений».
+const TOAST_SUMMARY_THRESHOLD = 3;
+
+/** id синтетического тоста-сводки. Рендерер узнаёт его и ведёт на экран достижений. */
+export const ACHIEVEMENT_SUMMARY_TOAST_ID = '__achievement_summary__';
+
+/** Достижения, свёрнутые в сводку: рендерер показывает по ним счётчик и переход к списку. */
+export interface AchievementSummaryToast extends Achievement {
+  summaryCount: number;
+  /**
+   * id всех свёрнутых достижений. Нужны рендереру для markAchievementsNotified:
+   * сводка гасит тосты сразу за всю пачку, иначе следующий flushPending поднял бы
+   * те же достижения снова и лента вернулась бы.
+   */
+  summaryIds: string[];
+}
+
+export const isAchievementSummaryToast = (
+  a: Achievement | null,
+): a is AchievementSummaryToast =>
+  !!a && a.id === ACHIEVEMENT_SUMMARY_TOAST_ID;
+
+/**
+ * Свернуть пачку достижений в один тост. Названия конкретных достижений сюда НЕ
+ * подставляем: в сводке важно число и переход к списку, а не обрезанный многоточием
+ * перечень. Локализация — в рендерере (там уже есть lang и triLang).
+ */
+const buildSummaryToast = (items: Achievement[]): AchievementSummaryToast => ({
+  id: ACHIEVEMENT_SUMMARY_TOAST_ID,
+  icon: '🏆',
+  category: 'special',
+  nameRu: '', nameUk: '', descRu: '', descUk: '',
+  // XP уже начислен каждым достижением в отдельности (achievements.ts) —
+  // у сводки собственной награды нет, иначе она бы удвоила выплату.
+  xp: 0,
+  summaryCount: items.length,
+  summaryIds: items.flatMap((a) => (isAchievementSummaryToast(a) ? a.summaryIds : [a.id])),
+});
+
 interface AchievementContextValue {
   /** Показать тост с ачивкой (может быть очередь) */
   showAchievement: (achievement: Achievement) => void;
@@ -70,7 +112,28 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
       setCurrentToast(achievement);
     } else {
       queuedIdsRef.current.add(achievement.id);
-      setQueue(prev => [...prev, achievement]);
+      setQueue(prev => {
+        // Сводка уже стоит в очереди — новое достижение вливается в её счётчик,
+        // а не встаёт рядом. Иначе каскад снова растил бы ленту тостов за сводкой.
+        const existingSummary = prev.find(isAchievementSummaryToast);
+        if (existingSummary) {
+          queuedIdsRef.current = new Set([ACHIEVEMENT_SUMMARY_TOAST_ID]);
+          return [{
+            ...existingSummary,
+            summaryCount: existingSummary.summaryCount + 1,
+            summaryIds: [...existingSummary.summaryIds, achievement.id],
+          }];
+        }
+        const next = [...prev, achievement];
+        // H-TOASTBURST: очередь разрослась — дальше показывать поштучно нельзя,
+        // это та самая минутная лента. Схлопываем ВСЮ очередь в одну сводку.
+        // Текущий тост (уже на экране) не трогаем: он досматривается как обычно.
+        if (next.length >= TOAST_SUMMARY_THRESHOLD) {
+          queuedIdsRef.current = new Set([ACHIEVEMENT_SUMMARY_TOAST_ID]);
+          return [buildSummaryToast(next)];
+        }
+        return next;
+      });
     }
   }, []);
 

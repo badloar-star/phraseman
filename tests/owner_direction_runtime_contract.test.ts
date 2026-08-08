@@ -24,7 +24,13 @@ function listSourceFiles(relativeDirs: string[]): string[] {
       out.push(relativePath);
     }
   };
-  relativeDirs.forEach((dir) => visit(path.join(ROOT, dir)));
+  relativeDirs.forEach((dir) => {
+    const absoluteDir = path.join(ROOT, dir);
+    // зачем: клинап-хук может удалить пустую на диске директорию (contexts/ пуста в git,
+    // 2026-08) — её отсутствие не должно ронять контракт; вернётся с файлами — снова сканируем.
+    if (!fs.existsSync(absoluteDir)) return;
+    visit(absoluteDir);
+  });
   return out.sort();
 }
 
@@ -32,7 +38,8 @@ describe('owner runtime direction contract', () => {
   it('keeps startup fast: first UI is not blocked by cloud/network warmups', () => {
     const source = read('app/_layout.tsx');
 
-    expect(source).toContain('const safetyTimer = setTimeout(() => setReady(true), 1200)');
+    // safetyTimer объявляется через let в области эффекта и взводится внутри bootstrap.
+    expect(source).toContain('safetyTimer = setTimeout(() => setReady(true), 1200)');
     expect(source).toContain('const appCheckWarmup = Promise.race');
     expect(source).toContain('new Promise<void>((resolve) => setTimeout(resolve, 1200))');
     expect(source).toContain('const startupLocalHydration = Promise.all');
@@ -40,7 +47,11 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('InteractionManager.runAfterInteractions');
     expect(source).toContain('runHeavyInitRef.current?.()');
 
-    expect(source.indexOf('await restoreFromCloud();')).toBeLessThan(
+    // Boot-гидратация (restore через bootCoordinator) строго предшествует boot-syncToCloud:
+    // sync пушится только внутри hydrate.then и только при shouldSync.
+    expect(source).toContain('const hydrate = cloudHydratePromise ?? bootCoordinator.run();');
+    expect(source).toContain('if (bootRestoreOutcome.shouldSync) {');
+    expect(source.indexOf('const hydrate = cloudHydratePromise ?? bootCoordinator.run();')).toBeLessThan(
       source.indexOf('await syncToCloud().catch'),
     );
   });
@@ -99,13 +110,13 @@ describe('owner runtime direction contract', () => {
 
   it('keeps immediate forceNow cloud sync call sites owner-reviewed', () => {
     const allowlist: Record<string, number> = {
-      'app/arena_battle_pass_store.ts': 1,
+      // Two account-boundary syncs are deliberate: pre-swap preservation and
+      // post-link recovery after RevenueCat/auth restoration.
       'app/auth_provider.ts': 2,
       'app/avatar_select.tsx': 1,
       'app/lesson1.tsx': 2,
       'app/lesson_complete.tsx': 1,
       'app/premium_revenuecat_state.ts': 1,
-      'app/profile_card_upgrade.tsx': 1,
       // Покупка уровня карточки прямо из модала профиля (превью-на-месте, 2026-07-05):
       // смена вида публичная — бейдж в списках должен обновиться немедленно.
       'components/PlayerProfileModal.tsx': 1,
@@ -129,59 +140,76 @@ describe('owner runtime direction contract', () => {
 
   it('keeps non-critical avatar cosmetic sync deferred and profile-card purchase sync immediate', () => {
     const avatarSource = read('app/avatar_select.tsx');
-    const profileCardSource = read('app/profile_card_upgrade.tsx');
+    const customizationService = read('app/customization_service.ts');
+    const profileCardSource = read('components/PlayerProfileModal.tsx');
 
     expect(avatarSource).toContain('const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
     expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
-    expect(avatarSource).toContain("await persistAvatar(nextAvatar, nextOwned, cost > 0 ? 'immediate' : 'deferred')");
-    expect(avatarSource).toContain("syncAvatarDisplayToCloud('deferred')");
-    expect(avatarSource).toContain("syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred')");
+    expect(avatarSource).toContain("if (mode === 'immediate') void syncToCloud({ forceNow: true })");
+    expect(avatarSource).toContain('syncCloud: syncAvatarDisplayToCloud');
+    // Явное действие пользователя (применить/купить) — немедленный sync.
+    expect(avatarSource).toContain("cloudSyncMode: 'immediate'");
+    // Режим по умолчанию и сброс к уровневому аватару остаются отложенными (deferred).
+    expect(customizationService).toContain("await deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
+    expect(customizationService).toContain("cloudSyncMode: 'deferred'");
 
     expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
     expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\(\);/g) ?? []).length).toBe(2);
-    expect(profileCardSource).not.toContain("syncProfileCardDisplayToCloud('deferred')");
+    expect((profileCardSource.match(/syncToCloud\(\{ forceNow: true \}\)/g) ?? []).length).toBe(1);
+    expect(profileCardSource).not.toContain('syncToCloud({ deferMs:');
   });
 
   it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
     const allowlist: Record<string, number> = {
-      'app/(tabs)/quizzes.tsx': 1,
-      'app/arena_game.tsx': 1,
-      // One idle-hint tick remains; elapsed search UI uses the shared visible wall clock.
-      'app/arena_lobby.tsx': 1,
-      'app/arena_results.tsx': 1,
+      // зачем 2026-07-27 (владелец: «переключая экраны всё лагает и греется»):
+      // турнирный движок и арена приехали 27.07 МИМО этого ревью — реестр не
+      // обновляли, поэтому восемь новых тиков не заметил никто. Каждый разобран
+      // и либо загарден, либо признан осознанным исключением.
+      // Один тик хаба под гвардом видимости таба (runtimeOwnerId), пересчёт
+      // состояния окна; на невидимом табе спит.
+      'app/(tabs)/tournaments.tsx': 1,
       'app/club_screen.tsx': 1,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
+      // Minute-level voucher expiry refresh, gated by focus and active AppState.
+      'app/flashcards/FlashcardsCategoryHub.tsx': 1,
+      // Таймер вопроса арены: живёт только в активной игре, останавливается на
+      // последней секунде и чистится при unmount.
+      'app/flashcards_arena.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
-      'app/services/arena_db.ts': 2,
-      'app/services/arena_feature_flags.ts': 1,
-      'app/services/arena_hill.ts': 1,
       'app/shards_shop.tsx': 1,
-      // Dev-only bounded QA scroll locator; production boost countdowns use visible wall time.
-      'app/streak_stats.tsx': 1,
+      // Секундный отсчёт до серверного дедлайна фазы — под гвардом active,
+      // который хаб питает видимостью таба (см. useTournamentRoom).
+      'app/tournament_client.ts': 1,
+      // Тик лобби под `everyoneArrived || !runtimeActive` — спит на неактивном
+      // экране и когда все уже собрались.
+      'app/tournament_lobby.tsx': 1,
+      // Конечный count-up «долетающих» жемчужин (~700мс), сам себя гасит.
+      'app/tournament_results.tsx': 1,
+      // ОСОЗНАННОЕ ИСКЛЮЧЕНИЕ: боевой таймер ответа. Гвард по видимости здесь
+      // ЗАПРЕЩЁН — пауза подарила бы игроку лишнее время на ответ, это дыра в
+      // честности турнира. Экран живёт под freezeOnBlur:true и размонтируется
+      // при выходе; таймер сам останавливается на нуле.
+      'app/tournament_round.tsx': 1,
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
+      // Интервал стартует ТОЛЬКО на переднем плане (AppState-гвард, 2026-07-27).
       'app/visible_wall_clock.ts': 3,
-      'components/ActiveBoostBar.tsx': 1,
-      'components/ArenaDuelEmojiReact.tsx': 1,
       // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
       'components/DialogVictoryCelebration.tsx': 1,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
-      'components/feedback/ResultsSequence.tsx': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
-      'components/LeagueChatPanel.tsx': 1,
+      // Отсчёт жизни кода восстановления — уже под `screenFocused &&
+      // recoveryAppActive`, вне модалки не тикает.
+      'components/RegistrationPromptModal.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
-      'components/paywall/PaywallPriceUrgency.tsx': 1,
-      'contexts/MatchmakingContext.tsx': 2,
-      'hooks/use-arena-mock.ts': 2,
-      'hooks/use-arena-room-run.ts': 2,
-      'hooks/use-arena-session.ts': 3,
-      'hooks/use-matchmaking.ts': 1,
+      // Общий секундный отсчёт турнира: считает от целевого момента, поэтому
+      // гвард видимости не ломает точность (при возврате догоняет сразу).
+      'components/tournament/TournamentCountdown.tsx': 1,
     };
     const found: Record<string, number> = {};
 
@@ -258,26 +286,21 @@ describe('owner runtime direction contract', () => {
 
   it('keeps Firestore onSnapshot call sites owner-reviewed so live listeners stay intentional', () => {
     const allowlist: Record<string, number> = {
+      // Arena listeners удалены вместе с фичей; монитор удаления аккаунта —
+      // новый intentional live-listener.
       'app/app_messages.ts': 3,
-      'app/arena_friend_room_guest.ts': 1,
-      'app/arena_lobby.tsx': 1,
-      'app/arena_results.tsx': 1,
-      'app/daily_phrase_system.ts': 1,
       'app/firestore_friend_requests.ts': 2,
-      'app/firestore_help_board.ts': 3,
-      'app/firestore_league_chat.ts': 1,
-      'app/firestore_leagues.ts': 2,
       'app/league_group_boosts.ts': 2,
+      'app/remote_account_deletion_monitor.ts': 1,
       'app/remote_config_client.ts': 1,
-      'app/services/arena_club_wars.ts': 2,
-      'app/services/arena_db.ts': 5,
-      'app/services/arena_invites.ts': 2,
-      'app/services/arena_pulse.ts': 1,
-      'app/services/arena_rooms_live.ts': 4,
-      'app/services/league_chest_rewards.ts': 3,
-      'app/user_notifications.ts': 1,
+      // зачем 2026-07-27 (владелец: «приложение греет телефон»): две живые
+      // подписки турнира (комната + реакции) приехали 27.07 мимо этого ревью.
+      // Комната переписывается сервером каждые 5–12 секунд и будит JS-поток на
+      // каждую запись, поэтому обе гейтятся: комната — параметром active (хаб
+      // питает его видимостью таба), реакции — только на push-экранах лобби и
+      // раунда под freezeOnBlur:true, которые размонтируются при выходе.
+      'app/tournament_client.ts': 2,
       'components/PremiumContext.tsx': 1,
-      'hooks/use-arena-rank.ts': 1,
     };
     const found: Record<string, number> = {};
 
@@ -291,36 +314,6 @@ describe('owner runtime direction contract', () => {
     }
 
     expect(found).toEqual(allowlist);
-  });
-
-  it('keeps private arena room question timer on visible-second cadence with exact timeout', () => {
-    const source = read('hooks/use-arena-room-run.ts');
-
-    expect(source).toContain('const QUESTION_UI_TICK_MS = 1000');
-    expect(source).toContain('const questionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)');
-    expect(source).toContain('const lastShownSecRef = useRef<number | null>(null)');
-    expect(source).toContain('lastShownSecRef.current = null');
-    expect(source).toContain('const updateVisibleTimeLeft = () => {');
-    expect(source).toContain('const displaySec = Math.ceil(left / 1000) || 0');
-    expect(source).toContain('if (lastShownSecRef.current !== displaySec)');
-    expect(source).toContain('lastShownSecRef.current = displaySec');
-    expect(source).toContain('setTimeLeft(left)');
-    expect(source).toContain('const finishNoAnswer = () => {');
-    expect(source).toContain('lastShownSecRef.current = 0');
-    expect(source).toContain('setTimeLeft(0)');
-    expect(source).toContain('intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
-    expect(source).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50)');
-    expect(source).not.toContain('}, 250);');
-  });
-
-  it('keeps boost countdown timer idle when there are no active boosts', () => {
-    const source = read('components/ActiveBoostBar.tsx');
-
-    expect(source).toContain('if (boosts.length === 0)');
-    expect(source).toContain('Object.keys(prev).length === 0 ? prev : {}');
-    expect(source).toContain('if (activeBoosts.length === 0) return;');
-    expect(source).toContain('const interval = setInterval(() => {');
-    expect(source).toContain('return () => clearInterval(interval);');
   });
 
   it('keeps energy recovery polling idle when full, unlimited, or backgrounded', () => {
@@ -346,7 +339,7 @@ describe('owner runtime direction contract', () => {
     const modal = read('components/NoEnergyModal.tsx');
     expect(context).toContain('energyCountdownClock.subscribe(setNow)');
     expect(context).not.toContain('const id = setInterval(() => setNow(Date.now()), 1000)');
-    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused })');
+    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused && ownerActive })');
     expect(lightning).toContain('useEnergyCountdown({ visible: screenFocused })');
     expect(modal).toContain('useEnergyCountdown({ visible: modalVisible })');
   });
@@ -371,37 +364,6 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('const HEARTBEAT_MS = 60_000');
   });
 
-  it('keeps arena emoji cooldown timer from recreating sub-second intervals', () => {
-    const source = read('components/ArenaDuelEmojiReact.tsx');
-
-    expect(source).toContain('const remainingMs = cooldownUntil - Date.now()');
-    expect(source).toContain('const intervalId = setInterval(update, 1000)');
-    expect(source).toContain('const doneId = setTimeout(update, remainingMs + 50)');
-    expect(source).toContain('clearInterval(intervalId)');
-    expect(source).toContain('clearTimeout(doneId)');
-    expect(source).toContain('}, [cooldownUntil]);');
-    expect(source).not.toContain('}, [cooldownUntil, tick]);');
-    expect(source).not.toContain('setInterval(() => setTick((n) => n + 1), 320)');
-  });
-
-  it('keeps league chat undo-hide countdown at visible-second cadence', () => {
-    const source = read('components/LeagueChatPanel.tsx');
-
-    expect(source).toContain('const id = setInterval(() => setHideTimerNow(Date.now()), 1000)');
-    expect(source).toContain('return () => clearInterval(id);');
-    expect(source).not.toContain('setInterval(() => setHideTimerNow(Date.now()), 250)');
-  });
-
-  it('keeps arena acceptance and rematch countdowns at visible-second cadence', () => {
-    const game = read('app/arena_game.tsx');
-    const results = read('app/arena_results.tsx');
-
-    expect(game).toContain('const id = setInterval(() => setAcceptTimeTick((n) => n + 1), 1000)');
-    expect(game).not.toContain('setInterval(() => setAcceptTimeTick((n) => n + 1), 500)');
-    expect(results).toContain('const id = setInterval(tick, 1000)');
-    expect(results).not.toContain('const id = setInterval(tick, 500)');
-  });
-
   it('keeps Home Theo typewriter on a frame-friendly cadence', () => {
     const source = read('components/HomeTheoAdvisorCard.tsx');
 
@@ -413,39 +375,14 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('Math.max(10, Math.min(TYPE_MS');
   });
 
-  it('keeps paywall urgency countdown from reading storage every second', () => {
+  it('keeps paywall urgency countdown static, without per-second ticking or storage polling', () => {
     const source = read('components/paywall/PaywallPriceUrgency.tsx');
 
-    expect(source).toContain('const endsAt = Date.now() + Math.max(0, urgency.remainingMs)');
-    expect(source).toContain('const updateFromClock = () => {');
-    expect(source).toContain('setTimer(formatCountdown(remainingMs))');
-    expect(source).toContain('void getUrgencyState().then((s) => {');
-    expect(source).not.toContain('setInterval(async () =>');
-  });
-
-  it('keeps matchmaking elapsed timers on a once-per-second cadence', () => {
-    const context = read('contexts/MatchmakingContext.tsx');
-    const legacyHook = read('hooks/use-matchmaking.ts');
-
-    expect(context).toContain('const ELAPSE_TICK_MS     = 1000');
-    expect(context).not.toContain('const ELAPSE_TICK_MS     = 200');
-    expect(legacyHook).toContain('const MATCHMAKING_ELAPSE_TICK_MS = 1000');
-    expect(legacyHook).toContain('}, MATCHMAKING_ELAPSE_TICK_MS);');
-    expect(legacyHook).not.toContain('}, 100);');
-  });
-
-  it('keeps arena question timers on visible-second cadence with exact timeout callbacks', () => {
-    const realArena = read('hooks/use-arena-session.ts');
-    const mockArena = read('hooks/use-arena-mock.ts');
-
-    expect(realArena).toContain('const QUESTION_UI_TICK_MS = 1000');
-    expect(mockArena).toContain('const QUESTION_UI_TICK_MS = 1000');
-    expect(realArena).toContain('questionTimerRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
-    expect(mockArena).toContain('intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
-    expect(realArena).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, timeoutDelayMs + 50)');
-    expect(mockArena).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50)');
-    expect(realArena).not.toContain('}, 100);');
-    expect(mockArena).not.toContain('}, 100);');
+    // Статичная дата конца окна старой цены: вычисляется один раз из remainingMs,
+    // без живого тикающего таймера и без перечитывания storage каждую секунду.
+    expect(source).toContain('const raiseDate = formatRaiseDate(new Date(Date.now() + Math.max(0, urgency.remainingMs)), lang)');
+    expect(source).not.toContain('setInterval(');
+    expect(source).not.toContain('getUrgencyState().then');
   });
 
   it('keeps streak stats boost countdowns on one shared visible wall clock', () => {
@@ -465,7 +402,10 @@ describe('owner runtime direction contract', () => {
     const server = read('functions/src/progress_events.ts');
 
     expect(client).toContain("const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1'");
-    expect(client).toContain('JSON.stringify(queue)');
+    expect(client).toContain('const PROGRESS_EVENT_DEAD_LETTER_MAX = 100');
+    expect(client).toContain('progressOwnerKey(PROGRESS_EVENT_QUEUE_KEY, stableId)');
+    expect(client).toContain('await enqueue(event);');
+    expect(client).not.toContain('JSON.stringify(queue.slice(0, 100))');
     expect(client).toContain('let flushInFlight: Promise<number> | null = null');
     expect(client).toContain('if (flushInFlight) return flushInFlight');
     expect(client).toContain('await enqueue(event).catch(() => {})');
@@ -475,9 +415,9 @@ describe('owner runtime direction contract', () => {
 
     expect(xpManager).toContain('let _xpLock: Promise<unknown> = Promise.resolve()');
     expect(xpManager).toContain('submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel)');
-    expect(xpManager).toContain('return submitProgressEvent(request, { migrationSnapshot: snapshot });');
     expect(xpManager).toContain('await reserveLocalProgressEvent(progressEventRequest?.eventId)');
     expect(xpManager).toContain('markCloudSyncPending();');
+    expect(xpManager).not.toContain('syncToCloud(');
     expect(xpManager).toContain("await storageSetString('user_total_xp', String(newTotal))");
     expect(xpManager).toContain('Math.max(0, currentTotal + finalDelta)');
     expect(xpManager).toContain("emitAppEvent('xp_changed')");
@@ -557,7 +497,7 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('appCheckWarmupInFlight = null;');
     expect(source).toContain('await warmClientReportAppCheck();');
     expect(source).toContain('const fn = getSubmitClientReportCallable();');
-    expect(source).toContain("withCallableTimeout(fn({ kind, payload }), 'submitClientReport')");
+    expect(source).toContain("const res = await withCallableTimeout(fn({ kind, payload }), 'submitClientReport');");
     expect(source).not.toContain("const fn = callable<{ kind: ClientReportKind; payload: Record<string, unknown> }, SubmitClientReportResult>(");
   });
 
@@ -653,6 +593,7 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('await warmIdeasAppCheck();');
     expect(source).toContain('const fn = getSubmitUserIdeaCallable();');
     expect(source).toContain('const res = await withCallableTimeout(');
+    expect(source).toContain('fn({');
     expect(source).toContain('title: input.title');
     expect(source).toContain('description: input.description');
     expect(source).toContain('benefit: input.benefit');
@@ -666,10 +607,12 @@ describe('owner runtime direction contract', () => {
       'app/app_health.ts': 1,
       'app/firebase.ts': 1,
       'app/firestore_friend_requests.ts': 1,
-      'app/firestore_help_board.ts': 1,
-      'app/friends_screen.tsx': 1,
       'app/shards_shop.tsx': 3,
       'app/streak_wager.ts': 1,
+      // Два шага онбординга пишут веху в Firestore. Событие разовое на
+      // пользователя (не на кадр и не на тап), поэтому по стоимости безопасно;
+      // фиксируем счётчик, чтобы третья запись не появилась молча.
+      'components/CleanOnboarding.tsx': 2,
     };
     const found: Record<string, number> = {};
 
@@ -740,20 +683,22 @@ describe('owner runtime direction contract', () => {
 
     const friendQuests = read('app/friend_quests.ts');
     expect(friendQuests).toContain('async function mirrorCallerXpWithoutRollback(');
+    expect(friendQuests).toContain('callerXp: number,');
     expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
-    expect(
-      friendQuests.includes("AsyncStorage.setItem('user_total_xp', String(Math.max(localXp, serverXp)))")
-      || (
-        friendQuests.includes('const nextXp = Math.max(localXp, serverXp)')
-        && friendQuests.includes("AsyncStorage.setItem('user_total_xp', String(nextXp))")
-      ),
-    ).toBe(true);
+    expect(friendQuests).toContain('const nextXp = Math.max(localXp, serverXp)');
+    expect(friendQuests).toContain("AsyncStorage.setItem('user_total_xp', String(nextXp))");
+    expect(friendQuests).toContain('await withAccountTransitionLock(async () => {');
     expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
 
     expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
     expect(progressServer).toContain('if (incomingScore > currentScore && typeof snapshot[key] ===');
-    expect(progressServer).toContain('getMigrationQuarantinedSensitiveKeys(snapshot)');
-    expect(read('app/xp_manager.ts')).toContain('Level-formula repair is a server/admin migration');
+    expect(progressServer).toContain('function isSafeMigratableStructuralKey(key: string): boolean');
+    expect(progressServer).toContain('export function getMigrationQuarantinedSensitiveKeys(snapshot: ProgressMap): string[]');
+    expect(progressServer).toContain('.filter((key) => isServerOwnedProgressKey(key) && !isSafeMigratableStructuralKey(key))');
+    const xpManager = read('app/xp_manager.ts');
+    expect(xpManager).toContain("const currentXP = await storageGetNumber('user_total_xp', 0)");
+    expect(xpManager).toContain("['user_total_xp', String(currentXP)]");
+    expect(xpManager).not.toContain('const newXP =');
   });
 
   it('keeps server shard balance mirrors timestamp-guarded instead of blind client replaces', () => {
@@ -771,7 +716,7 @@ describe('owner runtime direction contract', () => {
     expect(shardsSystem).toContain('if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;');
     expect(shardsSystem).toContain('await persistLocalBalance(n, meta)');
     expect(shardsSystem).toContain('const mirrorServerShardBalanceLocal = async (');
-    expect(shardsSystem).toContain('await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);');
+    expect(shardsSystem).toContain('const mirrorOutcome = await mirrorServerShardBalanceLocal(');
     expect(shardsSystem).not.toContain('await persistLocalBalance(cloudApplied.balance, meta)');
     expect(shardsSystem).not.toContain('setShardsBalanceMemory(cloudApplied.balance)');
 
@@ -811,8 +756,6 @@ describe('owner runtime direction contract', () => {
     const leagueGroupsServer = read('functions/src/league_groups.ts');
     const activityLikeServer = read('functions/src/friend_activity_likes.ts');
     const leagueBoostsClient = read('app/league_group_boosts.ts');
-    const arenaBotServer = read('functions/src/arena_bot_match.ts');
-    const arenaBotClient = read('app/arena_bot_profile_write.ts');
     const weeklyReviewServer = read('functions/src/weekly_review.ts');
     const statsInsightsServer = read('functions/src/stats_insights.ts');
 
@@ -859,18 +802,11 @@ describe('owner runtime direction contract', () => {
     expect(activityLikeServer).toContain("throw new HttpsError('resource-exhausted', 'Daily activity like limit reached');");
     expect(leagueBoostsClient).toContain('const next = res.idempotentReplay');
 
-    expect(arenaBotServer).toContain("const historyRef = profileRef.collection('match_history').doc(sessionId);");
-    expect(arenaBotServer).toContain('if (historySnap.exists) {');
-    expect(arenaBotServer).toContain('return replayBotMatchResult(historySnap.data() ?? {}, data);');
-    expect(arenaBotServer).toContain('idempotentReplay: true');
-    expect(arenaBotServer).toContain('sessionId,');
-    expect(arenaBotClient).toContain('idempotentReplay?: boolean;');
-
-    expect(weeklyReviewServer).toContain('lastBriefingHash: briefingHash');
-    expect(weeklyReviewServer).toContain('lastReview: review');
-    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);');
+    expect(weeklyReviewServer).toContain('lastBriefingHash: params.briefingHash');
+    expect(weeklyReviewServer).toContain('lastReview: params.review');
+    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(stableUid, briefingHash, briefing.lang);');
     expect(weeklyReviewServer).toContain('idempotentReplay: true');
-    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);')).toBeLessThan(
+    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(stableUid, briefingHash, briefing.lang);')).toBeLessThan(
       weeklyReviewServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
     );
 
@@ -881,7 +817,7 @@ describe('owner runtime direction contract', () => {
     expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);')).toBeLessThan(
       statsInsightsServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
     );
-    expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
+    expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);')).toBeLessThan(
       statsInsightsServer.indexOf('await enforceGlobalBudget(jobCfg.globalDailyCap);'),
     );
   });
@@ -890,7 +826,6 @@ describe('owner runtime direction contract', () => {
     const explainBudget = read('functions/src/explain/explain_budget.ts');
     const explainPhrase = read('functions/src/explain_phrase.ts');
     const explainChoice = read('functions/src/explain_choice.ts');
-    const explainQuiz = read('functions/src/explain_quiz.ts');
     const statsInsights = read('functions/src/stats_insights.ts');
 
     expect(explainBudget).toContain('export async function reserveExplainBudget');
@@ -899,7 +834,7 @@ describe('owner runtime direction contract', () => {
     expect(explainBudget).toContain('async function refundGlobalBudget');
     expect(explainBudget).toContain('if (reservation.userReserved && !reservation.globalReserved)');
 
-    for (const source of [explainPhrase, explainChoice, explainQuiz]) {
+    for (const source of [explainPhrase, explainChoice]) {
       expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
       expect(source).toContain('budgetReservation = await reserveExplainBudget(');
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
@@ -919,7 +854,6 @@ describe('owner runtime direction contract', () => {
     const leagueChest = read('functions/src/league_chest.ts');
     const collectibles = read('functions/src/collectibles.ts');
     const profileCard = read('functions/src/profile_card_upgrade.ts');
-    const seasonRewards = read('functions/src/arena_season_rewards.ts');
     const promoCodes = read('functions/src/promo_codes.ts');
     const revenueCat = read('functions/src/revenuecat_shards.ts');
 
@@ -940,9 +874,6 @@ describe('owner runtime direction contract', () => {
     expect(profileCard).toContain('if (expectedLevel !== null && currentLevel > expectedLevel) {');
     expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };');
 
-    expect(seasonRewards).toContain('const claimRef = db.collection(\'arena_season_claims\').doc(`${seasonId}_${uid}`);');
-    expect(seasonRewards).toContain('if (claim.claimed) return { alreadyClaimed: true, rewards: [] };');
-
     expect(promoCodes).toContain('const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);');
     expect(promoCodes).toContain('alreadyRedeemed: redemptionSnap.exists');
 
@@ -955,7 +886,6 @@ describe('owner runtime direction contract', () => {
     const layout = read('app/_layout.tsx');
     const clubScreen = read('app/club_screen.tsx');
     const leagueClient = read('app/services/league_chest_rewards.ts');
-    const arenaLimit = read('app/arena_daily_limit.ts');
     const packTrial = read('app/flashcards/pack_trial_gift.ts');
 
     expect(clubScreen).toContain('const CLUB_REMOTE_REFRESH_MS = 45_000;');
@@ -963,12 +893,10 @@ describe('owner runtime direction contract', () => {
     expect(layout).toContain('while (leagueBonusAvailableReservedThisSession.size > LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS)');
     expect(leagueClient).toContain('LOCAL_REWARD_EFFECT_KEY_PREFIX');
     expect(leagueClient).toContain('_xp_boost');
-    expect(leagueClient).toContain('addArenaPlaysBonusForClaimDayOnce');
     expect(leagueClient).toContain('setPackGiftTrial48hOnce');
     expect(leagueClient).not.toContain("return { claimed: true };\n  }\n  await AsyncStorage.setItem(pendingClaimKey, '1')");
     expect(clubScreen).toContain('hasLeagueChestClaimOrPending');
     expect(clubScreen).toContain('leagueChestReplayModalKeyRef');
-    expect(arenaLimit).toContain('export async function addArenaPlaysBonusForClaimDayOnce');
     expect(packTrial).toContain('expiresAtOverride');
   });
 
@@ -988,23 +916,22 @@ describe('owner runtime direction contract', () => {
   it('keeps account merge shard writes stamped so stale local wallets cannot overwrite them', () => {
     const source = read('functions/src/auth_merge.ts');
 
-    expect(source).toContain('const mergedShards = mergeShards(winnerData.shards, loserData.shards);');
-    expect(source).toContain('update.shards = mergedShards;');
-    expect(source).toContain('update.shards_updated_at_ms = now;');
-    expect(source).toContain("update.shards_updated_op = 'replace';");
-    expect(source).toContain("update.shards_updated_reason = 'account_merge';");
+    // зачем: рефакторинг 3eba05191 переименовал winnerData/update → winner.data/
+    // winnerUpdate и перенёс чтения внутрь транзакции; сама защита (merge = max +
+    // штампы свежести кошелька) не менялась — контракт перепривязан к живым именам.
+    expect(source).toContain('const mergedShards = mergeShards(winner.data.shards, loser.data.shards);');
+    expect(source).toContain('winnerUpdate.shards = mergedShards;');
+    expect(source).toContain('winnerUpdate.shards_updated_at_ms = now;');
+    expect(source).toContain("winnerUpdate.shards_updated_op = 'replace';");
+    expect(source).toContain("winnerUpdate.shards_updated_reason = 'account_merge';");
   });
 
   it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {
     const source = read('app/level_gift_system.ts');
 
-    expect(
-      source.includes("replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' })")
-      || (
-        source.includes("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }")
-        && source.includes('replaceShardsBalanceLocal(before + safe, options)')
-      ),
-    ).toBe(true);
+    expect(source).toContain("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }");
+    expect(source).toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options)');
+    expect(source).toContain('replaceShardsBalanceLocal(before + safe, options)');
     expect(source).not.toContain("AsyncStorage.setItem('shards_balance'");
     expect(source).not.toContain('AsyncStorage.setItem("shards_balance"');
   });
@@ -1019,34 +946,27 @@ describe('owner runtime direction contract', () => {
 
   it('keeps friend gift sends optimistic without exposing auth-link internals', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
-    const legacyFriends = read('app/friends_screen.tsx');
 
-    for (const source of [friendsTab, legacyFriends]) {
-      expect(source).toContain('sendFriendGiftWithShards');
-      expect(source).toContain('setGiftBusyId(giftId)');
-      expect(source).toContain("reason: 'friend_gift_optimistic'");
-      expect(source).toContain("reason: 'friend_gift_rollback'");
-      expect(source).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
-      expect(source).toContain('setGiftBalance(guardedBalance)');
-      expect(source).not.toContain('setGiftBalance(res.senderBalanceAfter)');
-      expect(source).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
-      expect(source).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
-    }
+    expect(friendsTab).toContain('sendFriendGiftWithShards');
+    expect(friendsTab).toContain('setGiftBusyId(giftId)');
+    expect(friendsTab).toContain("reason: 'friend_gift_optimistic'");
+    expect(friendsTab).toContain("reason: 'friend_gift_rollback'");
+    expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
+    expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
+    expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');
+    expect(friendsTab).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
+    expect(friendsTab).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
 
     expect(friendsTab).toContain('setSentGiftReceipt({');
     expect(friendsTab).toContain('balanceAfter: guardedBalance');
-    expect(legacyFriends).toContain('setGiftTarget(null);');
   });
 
   it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {
-    const profileUpgrade = read('app/profile_card_upgrade.tsx');
+    const profileUpgrade = read('components/PlayerProfileModal.tsx');
     const dailyTasks = read('app/daily_tasks_screen.tsx');
 
-    expect(profileUpgrade).toContain('upgradeProfileCardLevel()');
-    expect(profileUpgrade).toContain('testID="profile-card-upgrade-submit"');
-    // 2026-07-05: лестница из 5 уровней — CTA дополнительно заперта на уже купленных
-    // и ещё не доступных уровнях, но busy-гейт (visibly pending) остаётся первым.
-    expect(profileUpgrade).toContain('disabled={busy || isOwned || isLockedAhead || !isNextPurchasable}');
+    expect(profileUpgrade).toContain('const result = await upgradeProfileCardLevel();');
+    expect(profileUpgrade).toContain('disabled={upgradeBusy}');
     expect(profileUpgrade).toContain('<ActivityIndicator size="small" color="#1A1205" />');
 
     expect(dailyTasks).toContain('rerollDailyTask(target.id, studyTarget)');

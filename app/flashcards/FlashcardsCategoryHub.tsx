@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -41,8 +41,10 @@ import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { packTileImageForPack } from './packMarketplaceIcons';
-import { hasActivePackGiftVoucher } from './pack_trial_gift';
+import { hasActiveCommunityPackGiftVoucher, hasActivePackGiftVoucher } from './pack_trial_gift';
+import { syncFlashcardPackGiftState } from './pack_gift_sync';
 import DuoPressable from '../../components/DuoPressable';
+import FlashcardsHubHeader from '../../components/flashcards/FlashcardsHubHeader';
 import GlassSurface, { glassFill } from '../../components/GlassSurface';
 import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -74,6 +76,8 @@ type Props = {
   hubAuthorStableId?: string | null;
   onTrainingPress: () => void;
   onAudioPress: () => void;
+  /** Третий режим отработки — арена-квиз (макет C4). */
+  onArenaPress: () => void;
   hasFlashcardsPlus?: boolean;
   /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
@@ -88,6 +92,123 @@ const STAGGER_CAP = 14;
 const ENTRANCE_DURATION = 400;
 const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
 const FLASHCARD_HUB_REPEATING_MOTION_ENABLED = false;
+
+type FlashcardsModeAction = 'saved' | 'custom' | 'training' | 'audio' | 'arena' | 'collection';
+
+/**
+ * The action art is deliberately theme-specific instead of tinting one shared icon.
+ * Keep every entry as a static require: Metro must see the complete slot inventory at
+ * bundle time and per-theme art cannot safely be resolved with a dynamic path.
+ */
+// зачем: экспорт нужен предзагрузчику (app/section_asset_preload.ts) — плитки хаба
+// «догружались» в момент открытия раздела и толкали верстку, поэтому греем их
+// на старте, пока пользователь ещё на главной.
+export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsModeAction, ImageSourcePropType>> = {
+  midnight: {
+    saved: require('../../assets/images/flashcards/mode_icons/midnight/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/midnight/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/midnight/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/midnight/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/midnight/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/midnight/collection.webp'),
+  },
+  ember: {
+    saved: require('../../assets/images/flashcards/mode_icons/ember/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/ember/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/ember/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/ember/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/ember/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
+  },
+  aurora: {
+    saved: require('../../assets/images/flashcards/mode_icons/aurora/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/aurora/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/aurora/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/aurora/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/aurora/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/aurora/collection.webp'),
+  },
+  volt: {
+    saved: require('../../assets/images/flashcards/mode_icons/volt/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/volt/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/volt/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/volt/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/volt/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/volt/collection.webp'),
+  },
+  minimalDark: {
+    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
+  },
+  candyBlue: {
+    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
+  },
+  indigo: {
+    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
+  },
+  dark: {
+    saved: require('../../assets/images/flashcards/mode_icons/dark/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/dark/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/dark/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/dark/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/dark/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/dark/collection.webp'),
+  },
+  coral: {
+    saved: require('../../assets/images/flashcards/mode_icons/coral/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/coral/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/coral/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/coral/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/coral/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/coral/collection.webp'),
+  },
+  gold: {
+    saved: require('../../assets/images/flashcards/mode_icons/gold/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/gold/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/gold/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/gold/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/gold/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/gold/collection.webp'),
+  },
+  business: {
+    saved: require('../../assets/images/flashcards/mode_icons/business/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/business/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/business/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/business/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/business/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/business/collection.webp'),
+  },
+  businessLight: {
+    saved: require('../../assets/images/flashcards/mode_icons/businessLight/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/businessLight/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
+  },
+  sagePorcelain: {
+    saved: require('../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/sagePorcelain/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp'),
+  },
+};
 
 const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {
   saved: { ptBR: 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' },
@@ -271,8 +392,6 @@ function UnownedMarketPackCard({
           height: tileW,
           borderRadius: TILE_RADIUS,
           overflow: 'hidden',
-          borderTopWidth: 1,
-          borderTopColor: glassFill(t.accent, 0.14),
         },
         cardShadow,
       ]}
@@ -305,7 +424,7 @@ function UnownedMarketPackCard({
             height: 28,
             borderRadius: 14,
             backgroundColor: t.bgCard,
-            borderWidth: 1,
+            borderWidth: 0,
             borderColor: t.border,
             alignItems: 'center',
             justifyContent: 'center',
@@ -328,7 +447,6 @@ function UnownedMarketPackCard({
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
-            paddingBottom: 10,
             paddingHorizontal: 2,
           }}
         >
@@ -365,7 +483,7 @@ function UnownedMarketPackCard({
             end={{ x: 1, y: 1 }}
             style={{
               borderRadius: 12,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: 'rgba(255,255,255,0.22)',
               paddingVertical: 5,
               paddingHorizontal: 8,
@@ -406,6 +524,7 @@ export default function FlashcardsCategoryHub({
   hubAuthorStableId = null,
   onTrainingPress,
   onAudioPress,
+  onArenaPress,
   hasFlashcardsPlus = false,
   themeMode,
 }: Props) {
@@ -421,6 +540,7 @@ export default function FlashcardsCategoryHub({
   // Подарок-ваучер на бесплатный официальный набор (48 ч). Без этого флага пейвол
   // никогда не откроется в режиме 'voucher' и подарок нельзя забрать с этого экрана.
   const [hasPackVoucher, setHasPackVoucher] = useState(false);
+  const [hasCommunityPackVoucher, setHasCommunityPackVoucher] = useState(false);
 
   const refreshHiddenCommunityPacks = useCallback(async (optimisticPackId?: string | null) => {
     if (optimisticPackId) {
@@ -435,34 +555,57 @@ export default function FlashcardsCategoryHub({
     setHiddenCommunityPackIds(new Set(ids));
   }, [studyTarget]);
 
+  const refreshVoucherState = useCallback(async (isCurrent: () => boolean = () => true) => {
+    const [voucher, communityVoucher] = await Promise.all([
+      hasActivePackGiftVoucher(studyTarget),
+      hasActiveCommunityPackGiftVoucher(studyTarget),
+    ]);
+    if (!isCurrent()) return;
+    setHasPackVoucher(voucher);
+    setHasCommunityPackVoucher(communityVoucher);
+  }, [studyTarget]);
+
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
+      let timer: ReturnType<typeof setInterval> | null = null;
+      const isCurrent = () => !cancelled;
+      const stopTimer = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+      const startTimer = () => {
+        stopTimer();
+        if (AppState.currentState !== 'active') return;
+        timer = setInterval(() => { void refreshVoucherState(isCurrent); }, 60_000);
+      };
       void (async () => {
         const ok = await hasMeaningfulCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setHasUnfinishedPackDraft(ok);
       })();
-      void (async () => {
-        const voucher = await hasActivePackGiftVoucher(studyTarget);
-        if (!cancelled) setHasPackVoucher(voucher);
-      })();
+      void refreshVoucherState(isCurrent);
+      void syncFlashcardPackGiftState().then(() => refreshVoucherState(isCurrent));
+      startTimer();
+      const appSub = AppState.addEventListener('change', (state) => {
+        if (state === 'active') {
+          void refreshVoucherState(isCurrent);
+          startTimer();
+        } else stopTimer();
+      });
       void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
+        stopTimer();
+        appSub.remove();
       };
-    }, [lang, refreshHiddenCommunityPacks, studyTarget]),
+    }, [lang, refreshHiddenCommunityPacks, refreshVoucherState, studyTarget]),
   );
 
   // Ваучер выдаётся/сгорает вне фокуса этого экрана (подарок за уровень, redeem
   // в пейволе) — держим флаг в актуальном состоянии по событиям, а не только на фокус.
   useEffect(() => {
     let cancelled = false;
-    const refreshVoucher = () => {
-      void (async () => {
-        const voucher = await hasActivePackGiftVoucher(studyTarget);
-        if (!cancelled) setHasPackVoucher(voucher);
-      })();
-    };
+    const refreshVoucher = () => { void refreshVoucherState(() => !cancelled); };
     const subSet = onAppEvent('pack_trial_gift_set', refreshVoucher);
     const subConsumed = onAppEvent('pack_trial_gift_consumed', refreshVoucher);
     return () => {
@@ -470,11 +613,12 @@ export default function FlashcardsCategoryHub({
       subSet.remove();
       subConsumed.remove();
     };
-  }, [studyTarget]);
+  }, [refreshVoucherState]);
 
   const { openPaywall, CardPackPaywallModalEl } = useCardPackShardPaywall({
     balance: shardBalance,
     hasVoucher: hasPackVoucher,
+    hasCommunityVoucher: hasCommunityPackVoucher,
     studyTarget,
     lang,
     router,
@@ -491,8 +635,13 @@ export default function FlashcardsCategoryHub({
 
   /** Категорії хабу — компактні Ionicons. */
   const iconSize = Math.min(32, Math.floor(tileW * 0.38));
-  /** Платні набори: PNG/лінія — більший центр, щоб читалось як на скріні. */
-  const packTileIconSize = Math.max(72, Math.floor(tileW * 0.86));
+  /** The action art fills its own touch area — it is not boxed inside a second square card. */
+  const modeIconSize = Math.min(104, Math.max(76, Math.floor(tileW * 0.9)));
+  /**
+   * У веерных PNG есть прозрачная безопасная зона, поэтому номинальный размер
+   * должен быть больше плитки: видимая иллюстрация заполняет её, но не режется.
+   */
+  const packTileIconSize = Math.max(96, Math.floor(tileW * 1.16));
   const labelSize = Math.max(9, Math.min(11, Math.floor(tileW * 0.11)));
 
   const hubCategories = useMemo(() => categoriesForFlashcardsHub(), []);
@@ -506,6 +655,16 @@ export default function FlashcardsCategoryHub({
   const tabOffBg = t.bgSurface;
   const tabOffText = t.textSecond;
   const tabOffBorder = t.border;
+  const giftEligibleLabel = triLang(lang, {
+    ru: 'Можно навсегда забрать в подарок',
+    uk: 'Можна назавжди забрати в подарунок',
+    es: 'Se puede añadir para siempre como regalo',
+    'pt-BR': 'Pode ser adicionado para sempre como presente',
+    vi: 'Có thể thêm vĩnh viễn bằng quà tặng',
+    id: 'Bisa ditambahkan permanen sebagai hadiah',
+    tr: 'Hediye olarak kalıcı biçimde eklenebilir',
+    pl: 'Można dodać na stałe jako prezent',
+  });
 
   /**
    * Куплений UGC, авторський набір, або UGC id у спільному `ownedPackIds` (легасі/гілка без isCommunityUgc).
@@ -564,26 +723,13 @@ export default function FlashcardsCategoryHub({
     if (isCollectiblesEnabled()) void getCollectiblesOwnedMap();
   }, []);
 
-  const openOwnedPack = async (pack: FlashcardMarketPack) => {
+  // зачем: тап по своему набору должен открывать карточки сразу. Раньше UGC-ветка
+  // ждала ответ Firestore перед router.push — экран «залипал» на тапе. Теперь
+  // staging уходит в фон, а коллекция показывает первый кадр из кэша.
+  const openOwnedPack = (pack: FlashcardMarketPack) => {
     setUgcReportHintPackId(null);
     if (pack.isCommunityUgc) {
-      const ok = await stageCommunityPackCardsForNavigation(pack.id, studyTarget);
-      if (!ok) {
-        emitAppEvent(
-          'action_toast',
-          actionToastTri('error', {
-            ru: 'Карточки набора не загрузились.',
-            uk: 'Не вдалося завантажити картки набору.',
-            es: 'No se pudieron cargar las tarjetas del pack.',
-            'pt-BR': 'Não foi possível carregar os cartões do pack.',
-            vi: 'Không thể tải thẻ của pack.',
-            id: 'Gagal memuat kartu dari pack.',
-            tr: 'Paket kartları yüklenemedi.',
-            pl: 'Nie udało się załadować kart pakietu.',
-          }),
-        );
-        return;
-      }
+      stageCommunityPackCardsForNavigation(pack.id, studyTarget);
     } else {
       const staged = stageOwnedPackCardsForNavigation(pack.id, studyTarget);
       if (!staged) {
@@ -613,6 +759,26 @@ export default function FlashcardsCategoryHub({
       openPaywall(pack);
     },
     [buyingPackId, openPaywall],
+  );
+
+  /**
+   * Тап по обложке на полке: купленный пак открываем, чужой — ведём в пейвол.
+   * Тот же путь, что у плиток ниже, — чтобы полка и сетка вели себя одинаково.
+   */
+  const openPackById = useCallback(
+    (id: string) => {
+      const pack = [...marketPacks, ...communityPacks].find((p) => p.id === id);
+      if (!pack) return;
+      if (ownedPackIds.includes(pack.id) || isPackInMineOwned(pack)) {
+        openOwnedPack(pack);
+      } else {
+        onLockedPackPress(pack);
+      }
+    },
+    // openOwnedPack — обычная функция, не мемо: в зависимости не берём, иначе
+    // колбэк пересоздавался бы на каждый рендер хаба.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [marketPacks, communityPacks, ownedPackIds, isPackInMineOwned, onLockedPackPress],
   );
 
   let tileAnimIndex = 0;
@@ -681,6 +847,7 @@ export default function FlashcardsCategoryHub({
   ) =>
     packList.map((pack) => {
       const owned = ownedFn(pack);
+      const giftEligible = (pack.isCommunityUgc ? hasCommunityPackVoucher : hasPackVoucher) && !owned;
       const showUgcReportShortcut = ugcCommunityCatalog && !!pack.isCommunityUgc && !owned;
       const displayTitle = packTitleForInterface(pack, lang);
       const hubCode = packHubCodeName(pack);
@@ -704,11 +871,11 @@ export default function FlashcardsCategoryHub({
         >
           <HubTileShell
             testID={`flashcards-hub-pack-${pack.id}`}
-            a11y={pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}
+            a11y={`${pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}${giftEligible ? `. ${giftEligibleLabel}` : ''}`}
             width={tileW}
             reduceMotion={reduceMotion}
             disabled={!owned && !!buyingPackId}
-            onPress={() => (owned ? void openOwnedPack(pack) : onLockedPackPress(pack))}
+            onPress={() => (owned ? openOwnedPack(pack) : onLockedPackPress(pack))}
             onLongPress={
               showUgcReportShortcut
                 ? () => {
@@ -752,6 +919,28 @@ export default function FlashcardsCategoryHub({
                   reduceMotion={reduceMotion}
                 />
               )}
+              {giftEligible ? (
+                <View
+                  pointerEvents="none"
+                  accessible={false}
+                  style={{
+                    position: 'absolute',
+                    top: 8,
+                    right: 8,
+                    minWidth: 32,
+                    height: 32,
+                    paddingHorizontal: 7,
+                    borderRadius: 16,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: t.gold,
+                    zIndex: 6,
+                    ...shadowForTile(t, 'shop'),
+                  }}
+                >
+                  <Ionicons name="gift-outline" size={18} color={t.bgPrimary} />
+                </View>
+              ) : null}
             </View>
           </HubTileShell>
           {showUgcReportShortcut && ugcReportHintPackId === pack.id ? (
@@ -867,7 +1056,7 @@ export default function FlashcardsCategoryHub({
         >
           <HubTileShell
             testID={`flashcards-hub-tile-${cat.id}`}
-            a11y={`qa-flashcards-hub-tile-${cat.id}`}
+            a11y={label}
             width={tileW}
             reduceMotion={reduceMotion}
             onPress={() =>
@@ -877,19 +1066,9 @@ export default function FlashcardsCategoryHub({
               } as any)
             }
           >
-            <GlassSurface
-              radius={TILE_RADIUS}
-              highlight
-              style={{
-                width: tileW,
-                height: tileW,
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              }}
-            >
-              <Ionicons name={cat.icon as any} size={iconSize} color={t.textPrimary} />
-            </GlassSurface>
+            <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+              <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode][cat.id as 'saved' | 'custom']} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
+            </View>
           </HubTileShell>
           <Text style={labelStyle(true)} numberOfLines={2}>
             {label}
@@ -919,25 +1098,15 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-training"
-          a11y="qa-flashcards-hub-tile-training"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={onTrainingPress}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="play-circle-outline" size={iconSize} color={t.textPrimary} />
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].training} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </GlassSurface>
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -967,27 +1136,62 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-audio"
-          a11y="qa-flashcards-hub-tile-audio"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={onAudioPress}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="headset-outline" size={iconSize} color={t.textPrimary} />
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].audio} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </GlassSurface>
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
+          {label}
+        </Text>
+      </Reanimated.View>
+    );
+  };
+
+  /**
+   * зачем: третий режим отработки из макета (C4 «Арена»). Раньше в разделе было
+   * два режима, и оба — самооценка: в свайпе можно честно жать «знаю» и не
+   * выучить ничего, в аудио проверки нет вовсе. Арена даёт объективный
+   * результат — 4 варианта, таймер, счёт и список слов, которые не даются.
+   */
+  const renderArenaTile = () => {
+    const i = tileAnimIndex++;
+    const label = triLang(lang, {
+      ru: 'Арена',
+      uk: 'Арена',
+      es: 'Arena',
+      'pt-BR': 'Arena',
+      vi: 'Đấu trường',
+      id: 'Arena',
+      tr: 'Arena',
+      pl: 'Arena',
+    });
+
+    return (
+      <Reanimated.View
+        key="arena"
+        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
+        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
+      >
+        <HubTileShell
+          testID="flashcards-hub-tile-arena"
+          a11y={label}
+          width={tileW}
+          reduceMotion={reduceMotion}
+          onPress={onArenaPress}
+        >
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].arena} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
+            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
+          </View>
+        </HubTileShell>
+        {/* зачем: text-integrity — без усечения, как у соседних плиток хаба. */}
+        <Text style={labelStyle(true)}>
           {label}
         </Text>
       </Reanimated.View>
@@ -1015,24 +1219,14 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-collection"
-          a11y="qa-flashcards-hub-tile-collection"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={() => router.push('/collectibles_screen' as any)}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="albums-outline" size={iconSize} color={t.textPrimary} />
-          </GlassSurface>
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].collection} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -1058,6 +1252,29 @@ export default function FlashcardsCategoryHub({
 
   return (
     <View style={{ paddingHorizontal: H_PAD }}>
+      {/* зачем: макет A1 `.hub-top` — заголовок раздела + баланс монет. Раньше
+          баланса на экране не было вообще: юзер узнавал, что жемчужин не хватает,
+          только упёршись в пейвол. Теперь решение принимается до тапа. */}
+      <FlashcardsHubHeader
+        title={triLang(lang, {
+          ru: 'Карточки',
+          uk: 'Картки',
+          es: 'Tarjetas',
+          'pt-BR': 'Cartões',
+          vi: 'Thẻ',
+          id: 'Kartu',
+          tr: 'Kartlar',
+          pl: 'Karty',
+        })}
+        balance={shardBalance}
+        t={t}
+        themeMode={themeMode}
+      />
+
+      {/* зачем: полки «Продолжи / Наборы / Темы» из макета A1 УБРАНЫ решением
+          владельца — они дублировали вкладки «Мои / Витрина / Сообщество» и
+          сетку плиток под ними, экран становился длинным и повторяющимся.
+          Оставлена привычная структура: шапка с балансом → вкладки → плитки. */}
       {hubSegmentTabs}
 
       {cloudCommunityEnabled ? (
@@ -1074,6 +1291,7 @@ export default function FlashcardsCategoryHub({
             {renderHubCategoryTiles()}
             {renderTrainingTile()}
             {renderAudioTile()}
+            {renderArenaTile()}
             {isCollectiblesEnabled() && renderCollectionTile()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>

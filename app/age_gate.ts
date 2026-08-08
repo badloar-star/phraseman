@@ -5,7 +5,9 @@
  *  - Оператор ирландский → цифровой возраст согласия 16 (один из строгих в ЕС).
  *  - Новых пользователей младше 16 не пускаем (мягкая блокировка в онбординге).
  *  - Age bracket is stored as consent metadata. After onboarding it must not disable app features.
- *  - Год рождения (не полная дата) — минимизация данных.
+ *  - Спрашиваем ТОЛЬКО факт «есть ли 16» (self-attestation) — ни года, ни даты
+ *    рождения. Это минимум данных, достаточный для GDPR ст. 8 (минимизация,
+ *    ст. 5(1)(c)). Ключ года остался только чтобы вычищать legacy-значение.
  *
  * Снапшот в памяти + гидрация из AsyncStorage (как notif/consent), чтобы фичи-гейты
  * читались синхронно. Облачная запись (Firestore) делается отдельно из cloud-слоя.
@@ -15,47 +17,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /** Минимальный возраст полного доступа (ирландский цифровой возраст согласия). */
 export const MIN_FULL_ACCESS_AGE = 16;
-/** Нижняя граница «безопасного режима» для уже существующих подростков. */
-export const MIN_TEEN_SAFE_AGE = 13;
 
+/**
+ * Возрастная метка согласия.
+ *
+ * зачем: онбординг задаёт ровно один бинарный вопрос — «есть ли тебе 16». Значит и
+ * состояний ровно два: подтвердил (adult) или ещё не спрашивали (unknown). Брекеты
+ * under13/teen_safe существовали под ввод года рождения, которого в приложении нет;
+ * они никогда не выставлялись и держались как мёртвый код.
+ */
 export type AgeBracket =
-  | 'under13'    // stored consent metadata
-  | 'teen_safe'  // 13–15 — stored consent metadata
-  | 'adult'      // 16+ — confirmed in onboarding
+  | 'adult'      // 16+ — подтверждено в онбординге
   | 'unknown';   // ещё не спрашивали
 
 const BIRTH_YEAR_KEY = 'user_birth_year_v1';
 const AGE_BRACKET_KEY = 'user_age_bracket_v1';
 
-let birthYearMemory: number | null = null;
 let bracketMemory: AgeBracket = 'unknown';
 let hydrated = false;
 
-/** Текущий год — для расчёта возраста. Вынесено в функцию для тестируемости. */
-function currentYear(): number {
-  return new Date().getFullYear();
-}
-
-/** Возраст (приблизительный, по году рождения) → возрастная группа. */
-export function bracketForBirthYear(birthYear: number, atYear: number = currentYear()): AgeBracket {
-  if (!Number.isFinite(birthYear) || birthYear <= 0) return 'unknown';
-  const age = atYear - birthYear;
-  if (age < MIN_TEEN_SAFE_AGE) return 'under13';
-  if (age < MIN_FULL_ACCESS_AGE) return 'teen_safe';
-  return 'adult';
-}
-
-/** Разумные границы валидного года рождения для ввода. */
-export function isPlausibleBirthYear(birthYear: number, atYear: number = currentYear()): boolean {
-  return Number.isInteger(birthYear) && birthYear >= atYear - 120 && birthYear <= atYear;
-}
-
 export function getAgeBracketSnapshot(): AgeBracket {
   return bracketMemory;
-}
-
-export function getBirthYearSnapshot(): number | null {
-  return birthYearMemory;
 }
 
 /** Compatibility helper: app features are not age-blocked after onboarding. */
@@ -79,16 +61,11 @@ export function isAgeGateHydrated(): boolean {
 
 export async function hydrateAgeGateFromStorage(): Promise<void> {
   try {
-    const [yRaw, bRaw] = await Promise.all([
-      AsyncStorage.getItem(BIRTH_YEAR_KEY),
-      AsyncStorage.getItem(AGE_BRACKET_KEY),
-    ]);
-    const y = yRaw ? parseInt(yRaw, 10) : NaN;
-    birthYearMemory = Number.isFinite(y) ? y : null;
-    bracketMemory =
-      bRaw === 'under13' || bRaw === 'teen_safe' || bRaw === 'adult' ? bRaw : 'unknown';
+    const bRaw = await AsyncStorage.getItem(AGE_BRACKET_KEY);
+    // зачем: legacy-брекеты (under13/teen_safe) писались только синтетикой из старых
+    // сборок и всё равно ничего не блокировали — читаем их как 'unknown', не тащим тип.
+    bracketMemory = bRaw === 'adult' ? 'adult' : 'unknown';
   } catch {
-    birthYearMemory = null;
     bracketMemory = 'unknown';
   } finally {
     hydrated = true;
@@ -96,31 +73,36 @@ export async function hydrateAgeGateFromStorage(): Promise<void> {
 }
 
 /**
- * Восстановить возрастную группу БЕЗ года рождения (реинсталл/новое устройство:
- * облачный user_consents может содержать только bracket). Год не трогаем.
+ * Восстановить возрастную метку (реинсталл/новое устройство: облачный user_consents
+ * хранит только bracket).
  */
 export async function restoreAgeBracket(bracket: AgeBracket): Promise<void> {
-  if (bracket !== 'under13' && bracket !== 'teen_safe' && bracket !== 'adult') return;
-  bracketMemory = bracket;
+  if (bracket !== 'adult') return;
+  bracketMemory = 'adult';
   try {
-    await AsyncStorage.setItem(AGE_BRACKET_KEY, bracket);
+    await AsyncStorage.setItem(AGE_BRACKET_KEY, 'adult');
   } catch {
     /* no-op: в памяти уже обновлено */
   }
 }
 
-/** Сохранить год рождения + рассчитанную группу (локально). Облако пишется отдельно. */
-export async function setBirthYear(birthYear: number): Promise<AgeBracket> {
-  const bracket = bracketForBirthYear(birthYear);
-  birthYearMemory = birthYear;
-  bracketMemory = bracket;
+/**
+ * Зафиксировать подтверждение «мне есть 16» из онбординга.
+ *
+ * зачем: единственный возрастной вопрос в приложении — бинарный (self-attestation),
+ * года рождения мы не спрашиваем. Раньше онбординг синтезировал фиктивный год
+ * (текущий − 16) только чтобы получить bracket='adult'; такой год — лишние
+ * персональные данные без цели (GDPR ст. 5(1)(c)) и вдобавок вводил в заблуждение
+ * админку, где он выглядел как настоящий. Пишем сразу bracket, без года.
+ */
+export async function confirmAdultAgeAttestation(): Promise<AgeBracket> {
+  bracketMemory = 'adult';
   try {
-    await AsyncStorage.multiSet([
-      [BIRTH_YEAR_KEY, String(birthYear)],
-      [AGE_BRACKET_KEY, bracket],
-    ]);
+    await AsyncStorage.setItem(AGE_BRACKET_KEY, 'adult');
+    // Подчищаем год, оставшийся от прошлых версий (там лежит синтетика).
+    await AsyncStorage.removeItem(BIRTH_YEAR_KEY);
   } catch {
     /* no-op: в памяти уже обновлено */
   }
-  return bracket;
+  return 'adult';
 }

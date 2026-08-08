@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -11,8 +11,6 @@ import { monoIcon } from '../constants/monoIcon';
 import { openStoreReviewPage } from '../app/store_review';
 import { hasUserRated, markReviewPrompted, markReviewRated } from '../app/review_utils';
 import { recordVipSurveyReviewClickFromApp } from '../app/vip_survey';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type Props = {
   visible: boolean;
@@ -24,7 +22,6 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
   const { theme: t, f, isDark, themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const isCompassTheme = false;
 
   // Это окно показывается в обход общего гейта canShowReview (особый момент — оплата VIP),
   // но согласуется с ним по общему состоянию: уже оценившему не докучаем, а сам показ
@@ -63,23 +60,20 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
       <View style={styles.root}>
         <Pressable style={StyleSheet.absoluteFill} onPress={close} />
-        <View testID="vip-survey-review-prompt" style={[styles.card, isCompassTheme && compassShadow(3), { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, borderRadius: isCompassTheme ? 14 : 22, overflow: 'hidden' }]}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+        <View testID="vip-survey-review-prompt" style={[styles.card, { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: t.bgCard, borderColor: t.border, borderRadius: 22, overflow: 'hidden' }]}>
           <TouchableOpacity
             testID="vip-survey-review-close"
             activeOpacity={0.76}
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             onPress={close}
-            style={[styles.closeButton, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isDark ? '#17202A' : '#EEF2F7', borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border, borderRadius: isCompassTheme ? 8 : 17, overflow: 'hidden' }]}
+            style={[styles.closeButton, { backgroundColor: isDark ? '#17202A' : '#EEF2F7', borderColor: t.border, borderRadius: 17, overflow: 'hidden' }]}
           >
-            {isCompassTheme && <CompassDepthSurface radius={8} quiet />}
             <Ionicons name="close" size={20} color={t.textPrimary} />
           </TouchableOpacity>
 
-          <View style={[styles.iconWrap, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : 'rgba(34,197,94,0.14)', borderRadius: isCompassTheme ? 10 : 29, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }]}>
-            {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-            <Ionicons name="star" size={28} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#22C55E')} />
+          <View style={[styles.iconWrap, { backgroundColor: 'rgba(34,197,94,0.14)', borderRadius: 29, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}>
+            <Ionicons name="star" size={28} color={monoIcon(themeMode, '#22C55E')} />
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h2) }]}>
             {triLang(lang, {
@@ -95,8 +89,8 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
           </Text>
           <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: 'Хотите поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
-              uk: 'Хочете поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
+              ru: 'Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
+              uk: 'Хочеш поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
               es: '¿Quieres compartir tu impresión de Phraseman? Una reseña honesta ayuda a otras personas a saber qué esperar de la app.',
               'pt-BR': 'Quer compartilhar sua impressão do Phraseman? Uma avaliação honesta ajuda outras pessoas a saber o que esperar do app.',
               vi: 'Bạn muốn chia sẻ cảm nhận về Phraseman? Một đánh giá chân thật giúp người khác biết nên mong đợi gì từ ứng dụng.',
@@ -110,12 +104,25 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
             activeOpacity={0.88}
             accessibilityRole="button"
             onPress={openReview}
-            style={[styles.primaryButton, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#16A34A', borderRadius: isCompassTheme ? 9 : 16, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }]}
+            style={[styles.primaryButton, { backgroundColor: '#16A34A', borderRadius: 16, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-            <Ionicons name="create-outline" size={19} color={isCompassTheme ? COMPASS_RICH.textDark : '#FFFFFF'} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : '#FFFFFF' }]}>
+            <Ionicons name="create-outline" size={19} color={t.correctText} />
+            <Text style={[styles.primaryText, { fontSize: f.body, color: t.correctText }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
+            </Text>
+          </TouchableOpacity>
+          {/* Единый стандарт: текстовая «Позже» под primary (раньше отказ был
+              только через крестик/фон). */}
+          <TouchableOpacity
+            testID="vip-survey-review-later"
+            activeOpacity={0.7}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
+            onPress={close}
+            style={styles.laterButton}
+          >
+            <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+              {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -138,7 +145,7 @@ const styles = StyleSheet.create({
     maxWidth: 520,
     alignSelf: 'center',
     borderRadius: 22,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 22,
     paddingTop: 24,
     alignItems: 'center',
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -189,5 +196,13 @@ const styles = StyleSheet.create({
   primaryText: {
     color: '#FFFFFF',
     fontWeight: '900',
+  },
+  laterButton: {
+    alignSelf: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 4,
+    minHeight: 40,
+    justifyContent: 'center',
   },
 });

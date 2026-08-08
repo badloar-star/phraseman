@@ -3,7 +3,20 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import { flashcardsPackTrialGiftKey, lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
-import { loadStoredFriendGiftInventory, type StoredFriendGiftInventoryItem } from './friend_gift_inventory';
+import {
+  friendGiftExpiresAtMs,
+  loadStoredFriendGiftInventory,
+  type StoredFriendGiftInventoryItem,
+} from './friend_gift_inventory';
+import {
+  GIFT_TTL_MS,
+  loadGiftFirstSeenMap,
+  localMidnightAfterDaysMs,
+  nextLocalMidnightMs,
+  persistGiftFirstSeenMap,
+  type GiftFirstSeenKind,
+  type GiftFirstSeenMap,
+} from './gift_expiry';
 
 export interface ActiveLevelGiftInventoryItem {
   key: string;
@@ -12,15 +25,21 @@ export interface ActiveLevelGiftInventoryItem {
   desc: string;
   accent: string;
   /**
-   * Короткая подпись «что это / где применить». Для пассивных бонусов — «работает
-   * автоматически», для ваучеров — куда идти, чтобы потратить.
+   * зачем 2026-08-04 (владелец: «убери подписи со всех подарков вообще»):
+   * поле hint («Работает автоматически», «Опыт удвоится сам…») удалено —
+   * карточка теперь = название + одна строка сути. Куда идти за ручным
+   * бонусом, показывает стрелка справа (actionRoute).
    */
-  hint?: string;
   /**
    * Маршрут перехода по тапу (только для бонусов, которые нужно применить вручную:
-   * ваучер набора → витрина карточек, буст клуба → лига). Пассивные бонусы route не имеют.
+   * ваучер набора → витрина карточек, буст лиги → лига). Пассивные бонусы route не имеют.
    */
   actionRoute?: string;
+  /**
+   * Мс сгорания подарка: у бонусов со своим сроком — их срок, у остальных —
+   * 72ч (см. gift_expiry.ts). UI показывает индивидуальный тикающий таймер.
+   */
+  expiresAtMs?: number;
 }
 
 interface GiftXpBankStorage {
@@ -60,6 +79,23 @@ const ARENA_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const CLUB_GIFT_BOOST_KEY = 'club_gift_free_boost_v1';
+/**
+ * Ключи СЕЗОННЫХ наград.
+ *
+ * зачем 2026-08-03 (владелец: «подарки я применил, а они в разделе активные не
+ * появились»): сезонные подарки пишут не в канал level-gift, а в собственные
+ * ключи (см. season_reward_apply.ts, league_personal_boosts.ts,
+ * boon_effects_energy.ts). Раздел их не читал, поэтому применённый буст лиги,
+ * золотой урок и второе дыхание были невидимы.
+ *
+ * Значения продублированы строками намеренно: импорт из league_personal_boosts
+ * и boon_effects_energy втянул бы в этот модуль движок лиг и бонусов дня со
+ * всеми их зависимостями, а нужны только имена ключей. Расхождение поймает
+ * тест, который сверяет эти строки с местами записи.
+ */
+const LEAGUE_PERSONAL_BOOST_KEY = 'league_personal_boost_v1';
+const SEASON_GOLDEN_LESSON_KEY = 'season_golden_lesson_v1';
+const BOON_ENERGY_OVERRIDE_KEY = 'boon_energy_override_v1';
 
 const todayIso = (nowMs: number): string => new Date(nowMs).toISOString().slice(0, 10);
 
@@ -133,18 +169,6 @@ const friendGiftLabel = (gift: StoredFriendGiftInventoryItem, lang: Lang): strin
   return gift.giftLabelRu || gift.giftLabel || gift.giftId;
 };
 
-/** Подпись для пассивных бонусов: применяются сами, без действий пользователя. */
-const hintAutoWorks = (lang: Lang): string => triLang(lang, {
-  ru: 'Работает автоматически',
-  uk: 'Працює автоматично',
-  es: 'Funciona automáticamente',
-  'pt-BR': 'Funciona automaticamente',
-  vi: 'Tự động áp dụng',
-  id: 'Berjalan otomatis',
-  tr: 'Otomatik çalışır',
-  pl: 'Działa automatycznie',
-});
-
 export const loadActiveLevelGiftInventory = async (
   lang: Lang,
   nowMs: number = Date.now(),
@@ -161,6 +185,7 @@ export const loadActiveLevelGiftInventory = async (
     wagerDiscountRaw,
     clubGiftBoost,
     friendGifts,
+    firstSeenLoaded,
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
@@ -171,15 +196,53 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(CHAIN_SHIELD_KEY),
     AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
-    loadStoredFriendGiftInventory(),
+    loadStoredFriendGiftInventory(nowMs),
+    loadGiftFirstSeenMap(),
   ]);
+
+  // зачем (2026-08-02, владелец): у банка XP, пари-скидки и буста лиги нет
+  // собственного срока — им отсчитывается 72ч от первого показа здесь; по
+  // истечении бонус сгорает по-настоящему (ключ удаляется), не только из списка.
+  const firstSeen: GiftFirstSeenMap = { ...firstSeenLoaded };
+  let firstSeenChanged = false;
+  const burnKeys: string[] = [];
+  const resolveFirstSeenLifetime = (
+    kind: GiftFirstSeenKind,
+    present: boolean,
+    storageKey: string,
+  ): { expiresAtMs: number; expired: boolean } | null => {
+    if (!present) {
+      if (firstSeen[kind] != null) {
+        // Бонус потрачен/исчез — штамп снимаем, чтобы новая выдача стартовала заново.
+        delete firstSeen[kind];
+        firstSeenChanged = true;
+      }
+      return null;
+    }
+    let seenAt = firstSeen[kind];
+    if (!seenAt) {
+      seenAt = nowMs;
+      firstSeen[kind] = nowMs;
+      firstSeenChanged = true;
+    }
+    const expiresAtMs = seenAt + GIFT_TTL_MS;
+    const expired = nowMs >= expiresAtMs;
+    if (expired) {
+      burnKeys.push(storageKey);
+      delete firstSeen[kind];
+      firstSeenChanged = true;
+    }
+    return { expiresAtMs, expired };
+  };
 
   const active: ActiveLevelGiftInventoryItem[] = [];
   const xpBank = parseJson<GiftXpBankStorage>(xpBankRaw);
   const xpRemaining = parsePositiveInt(xpBank?.remaining);
-  if (xpRemaining > 0) {
+  const xpBankLifetime = resolveFirstSeenLifetime('xp_bank', xpRemaining > 0, GIFT_XP_BANK_KEY);
+  if (xpRemaining > 0 && xpBankLifetime && !xpBankLifetime.expired) {
     active.push({
       key: 'xp_bank',
+      expiresAtMs: xpBankLifetime.expiresAtMs,
       iconGiftId: xpBankRewardIconForTotal(parsePositiveInt(xpBank?.grantedTotal) || xpRemaining),
       title: triLang(lang, { ru: 'Бонус ×2', uk: 'Бонус ×2', es: 'Bono ×2',
     'pt-BR': 'Bônus ×2',
@@ -199,16 +262,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `jeszcze na ${xpRemaining} XP`,
   }),
       accent: '#FACC15',
-      hint: triLang(lang, {
-        ru: 'Опыт удвоится сам во время обучения',
-        uk: 'Досвід подвоїться сам під час навчання',
-        es: 'El XP se duplica solo mientras estudias',
-        'pt-BR': 'O XP dobra sozinho enquanto você estuda',
-        vi: 'XP tự động nhân đôi khi bạn học',
-        id: 'XP otomatis berlipat saat belajar',
-        tr: 'Öğrenirken XP kendiliğinden ikiye katlanır',
-        pl: 'XP podwaja się sam podczas nauki',
-      }),
     });
   }
 
@@ -218,6 +271,7 @@ export const loadActiveLevelGiftInventory = async (
   if (multiplierMs > 0 && multiplier > 1) {
     active.push({
       key: 'gift_focus',
+      expiresAtMs: Number(giftMultiplier?.expiresAt || 0),
       iconGiftId: focusRewardIconForMultiplier(multiplier),
       title: triLang(lang, { ru: 'Фокус', uk: 'Фокус', es: 'Foco',
     'pt-BR': 'Foco',
@@ -228,7 +282,6 @@ export const loadActiveLevelGiftInventory = async (
   }),
       desc: `×${multiplier.toFixed(multiplier % 1 === 0 ? 0 : 2)} · ${formatMsLeft(multiplierMs, lang)}`,
       accent: '#60A5FA',
-      hint: hintAutoWorks(lang),
     });
   }
 
@@ -237,6 +290,7 @@ export const loadActiveLevelGiftInventory = async (
   if (bonusEnergyAmount > 0 && Number(bonusEnergy?.expiresAt || 0) > nowMs) {
     active.push({
       key: 'bonus_energy',
+      expiresAtMs: Number(bonusEnergy?.expiresAt || 0),
       iconGiftId: energyRewardIconForAmount(bonusEnergyAmount),
       title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', es: 'Energía',
     'pt-BR': 'Energia',
@@ -256,16 +310,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `+${bonusEnergyAmount} do północy`,
   }),
       accent: '#34D399',
-      hint: triLang(lang, {
-        ru: 'Дополнительная энергия уже добавлена',
-        uk: 'Додаткова енергія вже додана',
-        es: 'La energía extra ya está añadida',
-        'pt-BR': 'A energia extra já foi adicionada',
-        vi: 'Năng lượng thêm đã được cộng',
-        id: 'Energi tambahan sudah ditambahkan',
-        tr: 'Ek enerji zaten eklendi',
-        pl: 'Dodatkowa energia jest już dodana',
-      }),
     });
   }
 
@@ -273,6 +317,7 @@ export const loadActiveLevelGiftInventory = async (
   if (flashcardsOfficialPacksAvailableForTarget(studyTarget) && packTrial?.packId && Number(packTrial.expiresAt || 0) > nowMs) {
     active.push({
       key: 'pack_trial',
+      expiresAtMs: Number(packTrial.expiresAt || 0),
       iconGiftId: 'pack_voucher_48h',
       title: triLang(lang, { ru: 'Ваучер набора', uk: 'Ваучер набору', es: 'Vale de pack',
     'pt-BR': 'Vale de pacote',
@@ -283,16 +328,6 @@ export const loadActiveLevelGiftInventory = async (
   }),
       desc: formatPackHoursLeft(Number(packTrial.expiresAt), nowMs, lang),
       accent: '#A78BFA',
-      hint: triLang(lang, {
-        ru: 'Заберите набор бесплатно: Карточки → Витрина',
-        uk: 'Заберіть набір безкоштовно: Картки → Вітрина',
-        es: 'Consigue un pack gratis: Tarjetas → Vitrina',
-        'pt-BR': 'Pegue um pacote grátis: Cartões → Vitrine',
-        vi: 'Nhận gói miễn phí: Thẻ → Gian hàng',
-        id: 'Ambil paket gratis: Kartu → Etalase',
-        tr: 'Bir paketi ücretsiz al: Kartlar → Vitrin',
-        pl: 'Odbierz pakiet za darmo: Karty → Witryna',
-      }),
       actionRoute: '/flashcards',
     });
   }
@@ -302,6 +337,7 @@ export const loadActiveLevelGiftInventory = async (
   if (arenaExtra > 0) {
     active.push({
       key: 'arena_extra',
+      expiresAtMs: nextLocalMidnightMs(nowMs),
       iconGiftId: 'arena_extra_5',
       title: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena',
     'pt-BR': 'Arena',
@@ -321,16 +357,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `+${arenaExtra} pojedynków dziś`,
   }),
       accent: '#FB923C',
-      hint: triLang(lang, {
-        ru: 'Лишние матчи уже доступны в Арене',
-        uk: 'Додаткові матчі вже доступні в Арені',
-        es: 'Los duelos extra ya están en la Arena',
-        'pt-BR': 'Os duelos extras já estão na Arena',
-        vi: 'Trận thêm đã có sẵn trong Đấu trường',
-        id: 'Duel ekstra sudah tersedia di Arena',
-        tr: 'Ekstra düellolar Arena’da hazır',
-        pl: 'Dodatkowe mecze są już w Arenie',
-      }),
     });
   }
 
@@ -338,6 +364,7 @@ export const loadActiveLevelGiftInventory = async (
   if (hintsToday > 0) {
     active.push({
       key: 'hints',
+      expiresAtMs: nextLocalMidnightMs(nowMs),
       iconGiftId: hintsToday >= 3 ? 'hint_3' : 'hint_1',
       title: triLang(lang, { ru: 'Подсказки', uk: 'Підказки', es: 'Pistas',
     'pt-BR': 'Dicas',
@@ -357,16 +384,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `${hintsToday} na dziś`,
   }),
       accent: '#FDE047',
-      hint: triLang(lang, {
-        ru: 'Подсказки доступны прямо в уроке',
-        uk: 'Підказки доступні прямо в уроці',
-        es: 'Las pistas están disponibles en la lección',
-        'pt-BR': 'As dicas estão disponíveis na lição',
-        vi: 'Gợi ý có sẵn ngay trong bài học',
-        id: 'Petunjuk tersedia langsung di pelajaran',
-        tr: 'İpuçları derste kullanılabilir',
-        pl: 'Podpowiedzi są dostępne w lekcji',
-      }),
     });
   }
 
@@ -385,6 +402,8 @@ export const loadActiveLevelGiftInventory = async (
   if (remainingShieldDays > 0) {
     active.push({
       key: 'chain_shield',
+      // Щит кончается в полночь последнего покрытого дня (локальные сутки).
+      expiresAtMs: localMidnightAfterDaysMs(nowMs, remainingShieldDays),
       iconGiftId: remainingShieldDays >= 3 ? 'chain_shield_3' : 'chain_shield_1',
       title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha',
     'pt-BR': 'Proteção de sequência',
@@ -404,23 +423,15 @@ export const loadActiveLevelGiftInventory = async (
     pl: `${remainingShieldDays} dni`,
   }),
       accent: '#38BDF8',
-      hint: triLang(lang, {
-        ru: 'Пропуск дня не прервёт цепочку',
-        uk: 'Пропуск дня не перерве ланцюжок',
-        es: 'Saltarte un día no rompe tu racha',
-        'pt-BR': 'Pular um dia não quebra sua sequência',
-        vi: 'Bỏ lỡ một ngày không làm đứt chuỗi',
-        id: 'Melewatkan satu hari tidak memutus rentetan',
-        tr: 'Bir günü kaçırmak seriyi bozmaz',
-        pl: 'Pominięcie dnia nie przerwie serii',
-      }),
     });
   }
 
   const wagerDiscount = Math.max(0, Number(wagerDiscountRaw) || 0);
-  if (wagerDiscount > 0) {
+  const wagerLifetime = resolveFirstSeenLifetime('wager_discount', wagerDiscount > 0, WAGER_DISCOUNT_KEY);
+  if (wagerDiscount > 0 && wagerLifetime && !wagerLifetime.expired) {
     active.push({
       key: 'wager_discount',
+      expiresAtMs: wagerLifetime.expiresAtMs,
       iconGiftId: 'wager_discount_25',
       title: triLang(lang, { ru: 'Скидка на пари', uk: 'Знижка на парі', es: 'Descuento apuesta',
     'pt-BR': 'Desconto na aposta',
@@ -431,30 +442,25 @@ export const loadActiveLevelGiftInventory = async (
   }),
       desc: `-${Math.round(wagerDiscount * 100)}%`,
       accent: '#F472B6',
-      hint: triLang(lang, {
-        ru: 'Скидка применится при следующем пари',
-        uk: 'Знижка застосується при наступному парі',
-        es: 'El descuento se aplica en tu próxima apuesta',
-        'pt-BR': 'O desconto vale na sua próxima aposta',
-        vi: 'Giảm giá áp dụng cho lần cược tới',
-        id: 'Diskon berlaku pada taruhan berikutnya',
-        tr: 'İndirim bir sonraki bahiste geçerli',
-        pl: 'Zniżka zadziała przy następnym zakładzie',
-      }),
     });
   }
 
-  if (clubGiftBoost === '1') {
+  const clubBoostLifetime = resolveFirstSeenLifetime('club_boost', clubGiftBoost === '1', CLUB_GIFT_BOOST_KEY);
+  if (clubGiftBoost === '1' && clubBoostLifetime && !clubBoostLifetime.expired) {
     active.push({
       key: 'club_boost',
+      expiresAtMs: clubBoostLifetime.expiresAtMs,
       iconGiftId: 'club_boost_free',
-      title: triLang(lang, { ru: 'Буст клуба', uk: 'Буст клубу', es: 'Impulso de liga',
-    'pt-BR': 'Boost do clube',
-    vi: 'Tăng lực câu lạc bộ',
-    id: 'Boost klub',
-    tr: 'Kulüp boostu',
-    pl: 'Boost klubu',
-  }),
+      title: triLang(lang, {
+        ru: 'Буст лиги',
+        uk: 'Буст ліги',
+        es: 'Impulso de liga',
+        'pt-BR': 'Boost da liga',
+        vi: 'Tăng lực giải đấu',
+        id: 'Boost liga',
+        tr: 'Lig boostu',
+        pl: 'Boost ligi',
+      }),
       desc: triLang(lang, {
         ru: '1 бесплатная активация',
         uk: '1 безкоштовна активація',
@@ -466,16 +472,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: '1 darmowa aktywacja',
   }),
       accent: '#2DD4BF',
-      hint: triLang(lang, {
-        ru: 'Включите бесплатно: Лига → Совместный буст',
-        uk: 'Увімкніть безкоштовно: Ліга → Спільний буст',
-        es: 'Actívalo gratis: Liga → Boost conjunto',
-        'pt-BR': 'Ative grátis: Liga → Boost conjunto',
-        vi: 'Bật miễn phí: Giải đấu → Boost chung',
-        id: 'Aktifkan gratis: Liga → Boost bersama',
-        tr: 'Ücretsiz aç: Lig → Ortak boost',
-        pl: 'Włącz za darmo: Liga → Wspólny boost',
-      }),
       actionRoute: '/club_screen',
     });
   }
@@ -493,6 +489,7 @@ export const loadActiveLevelGiftInventory = async (
     });
     active.push({
       key: `friend_gift_${gift.id}`,
+      expiresAtMs: friendGiftExpiresAtMs(gift),
       iconGiftId: friendGiftIconForGiftId(gift.giftId),
       title: triLang(lang, {
         ru: `Подарок от ${fromName}`,
@@ -506,9 +503,116 @@ export const loadActiveLevelGiftInventory = async (
       }),
       desc: friendGiftLabel(gift, lang),
       accent: '#EAB308',
-      hint: hintAutoWorks(lang),
     });
   }
+
+  /**
+   * СЕЗОННЫЕ награды.
+   *
+   * зачем 2026-08-03 (владелец: «подарки я применил, а они в разделе активные
+   * не появились»): раздел читал фиксированный список ключей канала level-gift,
+   * а сезонные награды пишут в СВОИ ключи. Совпадали только двое — банк опыта и
+   * тотем клуба, и то случайно: они переиспользуют канал уровневых подарков.
+   * Буст лиги, золотой урок и второе дыхание были невидимы полностью — игрок
+   * применял подарок, эффект работал, но подтверждения этому не было нигде.
+   *
+   * Читаем те же ключи, куда пишет season_reward_apply.ts, — источник правды
+   * один, дублирования состояния нет.
+   */
+  const [leagueBoostRaw, goldenLessonRaw, turboRegenRaw] = await Promise.all([
+    AsyncStorage.getItem(LEAGUE_PERSONAL_BOOST_KEY),
+    AsyncStorage.getItem(SEASON_GOLDEN_LESSON_KEY),
+    AsyncStorage.getItem(BOON_ENERGY_OVERRIDE_KEY),
+  ]);
+
+  // Буст лиги: у него СВОЙ срок (до конца дня либо длительность буста), поэтому
+  // 72-часовой TTL к нему не применяем — показываем настоящий expiresAt.
+  const leagueBoost = parseJson<{ id?: string; multiplier?: number; expiresAt?: number }>(leagueBoostRaw);
+  const leagueBoostExpiresAt = Math.max(0, Math.floor(Number(leagueBoost?.expiresAt) || 0));
+  if (leagueBoostExpiresAt > nowMs) {
+    const multiplier = Math.max(1, Number(leagueBoost?.multiplier) || 2);
+    active.push({
+      key: 'league_personal_boost',
+      expiresAtMs: leagueBoostExpiresAt,
+      iconGiftId: focusRewardIconForMultiplier(multiplier),
+      title: triLang(lang, {
+        ru: `Буст лиги ×${multiplier}`, uk: `Буст ліги ×${multiplier}`, es: `Impulso de liga ×${multiplier}`,
+        'pt-BR': `Impulso de liga ×${multiplier}`, vi: `Tăng tốc giải ×${multiplier}`,
+        id: `Dorongan liga ×${multiplier}`, tr: `Lig desteği ×${multiplier}`, pl: `Boost ligi ×${multiplier}`,
+      }),
+      desc: triLang(lang, {
+        ru: 'очки лиги идут вдвойне', uk: 'очки ліги йдуть удвічі', es: 'los puntos de liga se duplican',
+        'pt-BR': 'os pontos da liga dobram', vi: 'điểm giải đấu nhân đôi', id: 'poin liga berlipat ganda',
+        tr: 'lig puanları iki katı', pl: 'punkty ligi podwójnie',
+      }),
+      accent: '#38BDF8',
+    });
+  }
+
+  // Золотой урок: заряд без своего срока — 72ч от первого показа, как у банка XP.
+  const goldenCharges = Math.max(0, Math.floor(
+    Number((parseJson<{ remaining?: number }>(goldenLessonRaw))?.remaining) || 0,
+  ));
+  const goldenLifetime = resolveFirstSeenLifetime('golden_lesson', goldenCharges > 0, SEASON_GOLDEN_LESSON_KEY);
+  if (goldenCharges > 0 && goldenLifetime && !goldenLifetime.expired) {
+    active.push({
+      key: 'season_golden_lesson',
+      expiresAtMs: goldenLifetime.expiresAtMs,
+      // Множитель ×3 — та же иконка усиленного опыта, что у бонуса ×2.
+      iconGiftId: focusRewardIconForMultiplier(3),
+      title: triLang(lang, {
+        ru: 'Золотой урок', uk: 'Золотий урок', es: 'Lección dorada', 'pt-BR': 'Lição dourada',
+        vi: 'Bài học vàng', id: 'Pelajaran emas', tr: 'Altın ders', pl: 'Złota lekcja',
+      }),
+      desc: goldenCharges > 1
+        ? triLang(lang, {
+            ru: `${goldenCharges} урока с ×3 опыта`, uk: `${goldenCharges} уроки з ×3 досвіду`,
+            es: `${goldenCharges} lecciones con ×3 XP`, 'pt-BR': `${goldenCharges} lições com ×3 XP`,
+            vi: `${goldenCharges} bài học ×3 XP`, id: `${goldenCharges} pelajaran ×3 XP`,
+            tr: `${goldenCharges} ders ×3 XP`, pl: `${goldenCharges} lekcje z ×3 XP`,
+          })
+        : triLang(lang, {
+            ru: 'следующий урок даст ×3 опыта', uk: 'наступний урок дасть ×3 досвіду',
+            es: 'la próxima lección dará ×3 XP', 'pt-BR': 'a próxima lição dará ×3 XP',
+            vi: 'bài học tới nhận ×3 XP', id: 'pelajaran berikutnya ×3 XP',
+            tr: 'sonraki ders ×3 XP verir', pl: 'następna lekcja da ×3 XP',
+          }),
+      accent: '#F59E0B',
+    });
+  }
+
+  // Второе дыхание: ускоренное восстановление энергии со своим сроком.
+  const turboRegen = parseJson<{ expiresAt?: number; intervalMs?: number }>(turboRegenRaw);
+  const turboExpiresAt = Math.max(0, Math.floor(Number(turboRegen?.expiresAt) || 0));
+  if (turboExpiresAt > nowMs) {
+    active.push({
+      key: 'turbo_regen',
+      expiresAtMs: turboExpiresAt,
+      iconGiftId: energyRewardIconForAmount(1),
+      title: triLang(lang, {
+        ru: 'Второе дыхание', uk: 'Друге дихання', es: 'Segundo aliento', 'pt-BR': 'Segundo fôlego',
+        vi: 'Hồi phục nhanh', id: 'Napas kedua', tr: 'İkinci nefes', pl: 'Drugi oddech',
+      }),
+      desc: triLang(lang, {
+        ru: 'энергия восстанавливается быстрее', uk: 'енергія відновлюється швидше',
+        es: 'la energía se recupera más rápido', 'pt-BR': 'a energia recarrega mais rápido',
+        vi: 'năng lượng hồi nhanh hơn', id: 'energi pulih lebih cepat',
+        tr: 'enerji daha hızlı doluyor', pl: 'energia regeneruje się szybciej',
+      }),
+      accent: '#22D3EE',
+    });
+  }
+
+  // Сгорание по-настоящему: просроченные бонусы удаляются из хранилища, чтобы
+  // xp_manager/пари/лига не продолжали применять то, чего в разделе уже нет.
+  for (const storageKey of burnKeys) {
+    try {
+      await AsyncStorage.removeItem(storageKey);
+    } catch {
+      // Повторная чистка при следующей загрузке раздела.
+    }
+  }
+  if (firstSeenChanged) await persistGiftFirstSeenMap(firstSeen);
 
   return active;
 };

@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
-  ActivityIndicator,
   BackHandler,
   Easing,
   InteractionManager,
@@ -13,7 +13,6 @@ import {
   Modal,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -22,17 +21,20 @@ import {
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
+import LessonLoadingSkeleton from '../components/LessonLoadingSkeleton';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
-import { pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
+import { deliverDailyTaskProgressEvent, getTodayKey, pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress, updateTaskProgress } from './daily_tasks';
+import { daysSinceLastActive } from './boons/comeback';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
@@ -47,16 +49,21 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
+import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { isSpeakingEnabled } from './remote_flags';
+import { isTesterNoLimitsActive } from './premium_guard';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
+import { soundDirector } from '../modules/audio/sound_director';
 import ComboRing from '../components/feedback/ComboRing';
-import LightningOverlay, { type LightningOverlayHandle } from '../components/feedback/LightningOverlay';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
@@ -72,12 +79,23 @@ import { recordPhraseMistake } from './trainer_store';
 import { checkCoachToastNeededWithAnalytics, coachToastDecisionToRouteParams } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
+import {
+  createLessonAnalyticsAttempt,
+  lessonAttemptElapsedMs,
+  markLessonAttemptStarted,
+  markLessonAttemptTerminal,
+} from './lesson_analytics_attempt';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
-import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+
+// Enabled by default with the same emergency build-time rollback as the shared
+// navigation helper. Native dismissTo releases the abandoned lesson stack.
+const NATIVE_LESSON_DISMISS_ENABLED =
+  typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
 import { isFlexiblePlanNameAnswer, shouldSkipPlanGrammarAnalytics } from './personal_plan_mistake_context';
 import { getPersonalPlanPhraseLesson, personalizePlanPhraseLesson } from './personal_plan_phrase_lessons';
@@ -110,18 +128,23 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
 import AiMistakeCard from '../components/AiMistakeCard';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
+import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { safeRouterBack } from './navigation_back';
+import { emitAppEvent } from './events';
+import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
+import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const GRAMMAR_HINTS = [
   {
     key: 'grammar_hint_articles',
@@ -451,7 +474,7 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
           shadowColor: '#000',
           shadowOpacity: 0.25,
           shadowRadius: 20,
-          elevation: 12,
+          ...noAndroidOutline,
         }}>
           <Text style={{ fontSize: 48, marginBottom: 12 }}>🏆</Text>
           <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary, textAlign: 'center', marginBottom: 10 }}>
@@ -679,8 +702,14 @@ const LessonContent = React.memo(function LessonContent({
   // release if the on-device recognizer misbehaves in production.
   // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
   const speakingIsPremium = useFeatureAccess('speaking');
+  const { playHintReveal } = useHintRevealCue();
   const speakingFeatureEnabled = isSpeakingEnabled();
+  const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
+  const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
   const [speakingOpen, setSpeakingOpen] = useState(false);
+  const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
+  const [speakingResult, setSpeakingResult] = useState<SpeakingAttemptResult | null>(null);
+  const speakingOpenedForPhraseRef = useRef<string | null>(null);
 
   // [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз урока (read-only).
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -696,7 +725,7 @@ const LessonContent = React.memo(function LessonContent({
   const reviewGoPrev = useCallback(() => setReviewIndex(i => Math.max(0, i - 1)), []);
   const reviewGoNext = useCallback(() => setReviewIndex(i => Math.min(reviewCount - 1, i + 1)), [reviewCount]);
   const reviewCurrent = reviewOpen ? (reviewPhrases[reviewIndex] ?? null) : null;
-  const openSpeaking = useCallback(() => {
+  const startSpeakingHold = useCallback(() => {
     hapticTap();
     if (!speakingIsPremium) {
       router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
@@ -706,15 +735,44 @@ const LessonContent = React.memo(function LessonContent({
     // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
     // вперёд, пока панель открыта. Переход дальше — только по явному действию юзера.
     onSpeakingActiveChange?.(true);
+    speakingOpenedForPhraseRef.current = speakingPhraseKey;
+    setSpeakingResult(null);
     setSpeakingOpen(true);
-  }, [speakingIsPremium, router, onSpeakingActiveChange]);
+    setSpeakingHoldActive(true);
+  }, [speakingIsPremium, router, onSpeakingActiveChange, speakingPhraseKey]);
+
+  const endSpeakingHold = useCallback(() => setSpeakingHoldActive(false), []);
 
   const closeSpeaking = useCallback(() => {
+    speakingOpenedForPhraseRef.current = null;
+    setSpeakingHoldActive(false);
     setSpeakingOpen(false);
     // Не перезапускаем авто-переход автоматически — юзер сам жмёт «Далее», когда
     // готов (кнопка lesson1-next доступна в состоянии result).
     onSpeakingActiveChange?.(false);
   }, [onSpeakingActiveChange]);
+
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult) => {
+    setSpeakingResult(result);
+    closeSpeaking();
+  }, [closeSpeaking]);
+
+  useEffect(() => {
+    const openedForPhrase = speakingOpenedForPhraseRef.current;
+    if (openedForPhrase == null || openedForPhrase === speakingPhraseKey) return;
+    speakingOpenedForPhraseRef.current = null;
+    setSpeakingHoldActive(false);
+    setSpeakingOpen(false);
+    onSpeakingActiveChange?.(false);
+  }, [speakingPhraseKey, onSpeakingActiveChange]);
+
+  // Проверяется прямо во время рендера: новая фраза не успевает получить ни одного
+  // кадра с результатом предыдущей попытки, даже до запуска эффекта выше.
+  const speakingVisible = speakingOpen && speakingOpenedForPhraseRef.current === speakingPhraseKey;
+
+  useEffect(() => {
+    setSpeakingResult(null);
+  }, [speakingPhraseKey]);
 
   // [50/50] Затемняет неправильные плитки до ответа. Тратит тот же дневной кредит, что и «Объясни».
   const [fiftyFiftyActive, setFiftyFiftyActive] = useState(false);
@@ -758,23 +816,23 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // Вспышка плитки при тапе слова: { word, correct } — зелёная если верно, красная если нет.
+  // Вспышка плитки при тапе слова привязана к конкретной опции и шагу фразы.
   // Чёткий визуальный отклик «выбрано/верно/неверно» (раньше плитка никак не реагировала).
-  const [flashWord, setFlashWord] = useState<{ word: string; correct: boolean } | null>(null);
+  const [flashWord, setFlashWord] = useState<{ optionKey: string; correct: boolean } | null>(null);
   const flashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const triggerWordFlash = useCallback((word: string, correct: boolean) => {
+  const triggerWordFlash = useCallback((optionKey: string, correct: boolean) => {
     if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
-    setFlashWord({ word, correct });
+    setFlashWord({ optionKey, correct });
     flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
   }, []);
   useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
-  // Тап «в полёте»: пока ждём отложенный handleWordPress (170мс на показ вспышки),
-  // игнорируем повторные тапы — при синхронном варианте банк пересобирался сразу
-  // и второй тап по старым плиткам был физически невозможен.
+  // Пока ждём отложенный handleWordPress (170 мс на показ вспышки),
+  // блокируем и логику, и нативный press-отклик всего банка. Иначе быстрый второй тап
+  // визуально нажимает другую плитку, хотя её onPress затем отбрасывается защитой через ref.
+  const [wordDispatchPending, setWordDispatchPending] = useState(false);
   const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
-  const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   // Mirror of phraseEnterKey, read inside async callbacks to drop stale AI-explain responses
   // that resolve after the user has already moved to another phrase.
   const phraseEnterKeyRef = useRef(phraseEnterKey);
@@ -794,6 +852,7 @@ const LessonContent = React.memo(function LessonContent({
       ? contrExpanded[0]
       : null;
     return shuffled.map((word, i) => {
+      const optionKey = `${phraseEnterKey}:${phraseWordIdx}:${i}:${word}`;
       const strippedRaw = stripMarkers(word);
       const stripped = strippedRaw.toLowerCase();
       // ВАЖНО: подлинно правильное слово (currentCorrectWord) считаем верным в ЛЮБОМ
@@ -819,6 +878,7 @@ const LessonContent = React.memo(function LessonContent({
         return strippedRaw === 'I' ? 'I' : strippedRaw.toLowerCase();
       })();
       return {
+        optionKey,
         word,
         index: i,
         isCorrectOption,
@@ -826,7 +886,7 @@ const LessonContent = React.memo(function LessonContent({
         displayText,
       };
     });
-  }, [shuffled, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
+  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -925,10 +985,15 @@ const LessonContent = React.memo(function LessonContent({
   const acceptedUserAnswerLine = settings.hardMode
     ? reportUserAnswer.replace(/\s+/g, ' ').trim()
     : cleanPhraseForDisplay(selectedAnswer).replace(/\s+/g, ' ').trim();
+  const canonicalResultLine = phrase ? phraseAnswerDisplayLine(phrase, studyTarget, lang) : '';
   const resultCorrectLine = phrase
     ? (status === 'result' && !wasWrong && acceptedUserAnswerLine.length > 0
-      ? acceptedUserAnswerLine
-      : phraseAnswerDisplayLine(phrase, studyTarget, lang))
+      ? answerDisplayLineWithCanonicalPunctuation(acceptedUserAnswerLine, canonicalResultLine)
+      : canonicalResultLine)
+    : '';
+  const spokenTargetLine = cleanPhraseForDisplay(gradeTarget);
+  const speakingPrimaryLine = speakingResult
+    ? (speakingResult.passed ? spokenTargetLine : maskSpokenPhraseKeepInitial(spokenTargetLine))
     : '';
   const interactiveAnswerText = settings.hardMode
     ? typedText
@@ -971,19 +1036,24 @@ const LessonContent = React.memo(function LessonContent({
   const eli5State = mistakeExplain.eli5.state;
   const eli5Text = mistakeExplain.eli5.text;
 
+  // зачем: раньше тут был голый <View flex:1/> без фона (белая/чёрная вспышка
+  // между экраном списка уроков и загруженным уроком) — теперь тот же скелетон,
+  // что и ниже для !phrase, чтобы первый кадр совпадал по фону/геометрии с
+  // финальным контентом (Performance Bible: instant first frame).
   if (!introGateReady) {
-    return <View style={{ flex: 1 }} />;
+    return (
+      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
+    );
   }
 
   // Main lesson UI
+  // зачем: полноэкранный ActivityIndicator дёргал геометрию (спиннер по центру
+  // вместо шапки+карточки+плиток) — заменён на скелетон с зарезервированной
+  // геометрией загруженного урока (шапка, задание, ответная строка, плитки,
+  // прогресс-бар), см. эталон app/review.tsx ~1297-1345.
   if (!phrase) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={t.accent} />
-        <Text style={{ color: t.textMuted, marginTop: 12, fontSize: f.body }}>
-          {triLang(lang, { ru: 'Загрузка…', uk: 'Завантаження…', es: 'Cargando…', 'pt-BR': 'Carregando…', vi: 'Đang tải…', id: 'Memuat…', tr: 'Yükleniyor…', pl: 'Ładowanie…' })}
-        </Text>
-      </View>
+      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
     );
   }
 
@@ -1016,8 +1086,6 @@ const LessonContent = React.memo(function LessonContent({
             borderRadius: 20,
             paddingHorizontal: linkedSliceCompact ? 8 : (isSmallScreen ? 8 : 12),
             paddingVertical: linkedSliceCompact ? 5 : 7,
-            borderWidth: 0,
-            borderColor: t.border,
           }}
         >
           <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
@@ -1091,7 +1159,7 @@ const LessonContent = React.memo(function LessonContent({
           paddingBottom: linkedSliceCompact ? 4 + bottomInset : (status === 'result' ? 100 + bottomInset : 8 + bottomInset),
           flexGrow: linkedSliceCompact ? 0 : undefined,
         }}
-        decelerationRate="normal"
+        decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!linkedSliceCompact}
         showsVerticalScrollIndicator={false}
@@ -1129,8 +1197,36 @@ const LessonContent = React.memo(function LessonContent({
             return lessonPhraseMeaningForLang(phrase, lang, studyTarget);
           })()}</Text>
 
-          <View style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
-            {settings.hardMode ? (
+          <View testID="lesson1-answer-divider" style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+            {(status === 'result' || speakingResult) ? (
+              <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
+                  <Text
+                    style={{
+                      color: status === 'result' || speakingResult?.passed ? t.correct : t.wrong,
+                      fontSize: status === 'result' ? resultAnswerFont : interactiveAnswerFont,
+                      textAlign: 'center',
+                      flexShrink: 1,
+                    }}
+                  >
+                    {status === 'result' ? resultCorrectLine : speakingPrimaryLine}
+                  </Text>
+                  {status === 'result' && (
+                    <View testID="lesson1-primary-save" style={{ marginLeft: 6 }}>
+                      <AddToFlashcard
+                        en={resultCorrectLine}
+                        ru={phrase.russian}
+                        uk={phrase.ukrainian || phrase.russian}
+                        es={spanishSurfacesEnabled(lang, studyTarget) ? phrase.spanish : undefined}
+                        sourceLocales={phrase.sourceLocales}
+                        source="lesson"
+                        sourceId={String(lessonId)}
+                      />
+                    </View>
+                  )}
+                </View>
+              </View>
+            ) : settings.hardMode ? (
               /* Keep TextInput always mounted in hardMode — prevents keyboard slide animation between questions */
               <TextInput
                 testID="lesson1-typed-input"
@@ -1170,10 +1266,20 @@ const LessonContent = React.memo(function LessonContent({
                       return first + (rest ? ' ' + rest : '');
                     })()
                   : ''
-                }{status !== 'result' && <Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>}
+                }<Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>
               </Text>
             )}
           </View>
+
+          {speakingResult && (
+            <View testID="lesson1-speaking-score-below-divider" style={{ minHeight: 24, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center' }}>
+              <SpeakingInlineResultStars
+                testID="lesson1-speaking-score"
+                result={speakingResult}
+                theme={buildSpeakingPanelTheme(t)}
+              />
+            </View>
+          )}
 
           </Pressable>
           </Animated.View>
@@ -1183,6 +1289,16 @@ const LessonContent = React.memo(function LessonContent({
               width: '100%',
               transform: [{
                 translateY: fadeAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }),
+              }, {
+                translateX: fadeAnim.interpolate({
+                  inputRange: [0, 0.25, 0.5, 0.75, 1],
+                  outputRange: wasWrong ? [0, -3, 3, -2, 0] : [0, 0, 0, 0, 0],
+                }),
+              }, {
+                scale: fadeAnim.interpolate({
+                  inputRange: [0, 0.25, 0.5, 0.75, 1],
+                  outputRange: wasWrong ? [1, 1, 1, 1, 1] : [0.98, 1, 1, 1, 1],
+                }),
               }],
             }}>
               {wasWrong && (
@@ -1212,23 +1328,6 @@ const LessonContent = React.memo(function LessonContent({
                   </View>
                 </View>
               )}
-              <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Text
-                  style={{ color: t.correct, fontSize: resultAnswerFont, flex: 1, textAlign: 'left' }}
-                  numberOfLines={linkedSliceCompact ? 2 : undefined}
-                >
-                  {resultCorrectLine}
-                </Text>
-                <AddToFlashcard
-                  en={resultCorrectLine}
-                  ru={phrase.russian}
-                  uk={phrase.ukrainian || phrase.russian}
-                  es={spanishSurfacesEnabled(lang, studyTarget) ? phrase.spanish : undefined}
-                  sourceLocales={phrase.sourceLocales}
-                  source="lesson" sourceId={String(lessonId)}
-                />
-              </View>
-
               {status === 'result' && wasWrong && (
                 <View style={{ marginTop: linkedSliceCompact ? 6 : 10 }}>
                   <AiMistakeCard
@@ -1236,6 +1335,7 @@ const LessonContent = React.memo(function LessonContent({
                     state={aiMistakeState}
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
+                    waitLine={mistakeExplain.aiMistakeWaitLine}
                     onExplain={explainCurrentMistake}
                     onOpenSimple={openEli5Modal}
                     targetAnswer={aiMistakeTargetLine}
@@ -1284,6 +1384,26 @@ const LessonContent = React.memo(function LessonContent({
 
             </Animated.View>
           )}
+
+          {speakingFeatureEnabled && !!gradeTarget && (
+            <SpeakingInlineSlot variant="lesson" style={{ marginTop: linkedSliceCompact ? 14 : 18 }}>
+              {speakingVisible && (
+                <SpeakingPanel
+                  targetText={cleanPhraseForDisplay(gradeTarget)}
+                  lang={lang}
+                  theme={buildSpeakingPanelTheme(t)}
+                  presentation="inline"
+                  holdActive={speakingHoldActive}
+                  onScore={handleSpeakingScore}
+                  onPass={({ score }) => {
+                    void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
+                    onSpeakingFillAnswer(cleanPhraseForDisplay(gradeTarget));
+                  }}
+                  onClose={closeSpeaking}
+                />
+              )}
+            </SpeakingInlineSlot>
+          )}
         </BouncyScrollView>
 
 {/* ПОДСКАЗКА О ГРАММАТИКЕ — появляется один раз при первом появлении конструкции */}
@@ -1325,10 +1445,10 @@ const LessonContent = React.memo(function LessonContent({
             style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {wordOptionItems.map(({ word, index: i, isCorrectOption, shouldShowHint, displayText }) => {
+              {wordOptionItems.map(({ optionKey, word, index: i, isCorrectOption, shouldShowHint, displayText }) => {
                 return (
                   <Animated.View
-                    key={`${phrase?.id ?? 'phrase'}-${phraseWordIdx}-${word}-${i}`}
+                    key={optionKey}
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
@@ -1337,7 +1457,7 @@ const LessonContent = React.memo(function LessonContent({
                     {(() => {
                       // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
                       // фирменный цвет на любой тап). Объём — через DuoPressable (3D-кромка).
-                      const isFlashing = flashWord?.word === word;
+                      const isFlashing = flashWord?.optionKey === optionKey;
                       return (
                     <DuoPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
@@ -1345,6 +1465,7 @@ const LessonContent = React.memo(function LessonContent({
                       edgeColor={isFlashing ? t.accent : (false ? t.border : 'rgba(0,0,0,0.30)')}
                       pressedExternally={isFlashing}
                       withHaptic={false}
+                      disabled={wordDispatchPending}
                       style={{
                         width: '100%',
                         backgroundColor: isFlashing ? t.accent : t.bgCard,
@@ -1367,10 +1488,12 @@ const LessonContent = React.memo(function LessonContent({
                           // размонтируется; задержка 170мс < окна вспышки 260мс держит
                           // акцент+объём (pressedExternally) видимыми на нажатой плитке.
                           if (wordDispatchTimerRef.current) return;
-                          triggerWordFlash(word, isCorrectOption);
+                          setWordDispatchPending(true);
+                          triggerWordFlash(optionKey, isCorrectOption);
                           wordDispatchTimerRef.current = setTimeout(() => {
                             wordDispatchTimerRef.current = null;
                             handleWordPress(word);
+                            setWordDispatchPending(false);
                           }, 170);
                         }
                         // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука
@@ -1378,7 +1501,13 @@ const LessonContent = React.memo(function LessonContent({
                         void hapticTap();
                       }}
                     >
-                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={1}>{displayText}</Text>
+                      {/* зачем: 3 юзера писали, что длинные слова в плитках обрезаны
+                          («understands», «documents») и приходится угадывать. Плитка — 48%
+                          ширины, при штатном «среднем» шрифте влезает ~10 знаков, а в данных
+                          уроков есть слова до 15-16 знаков. Шрифт НЕ ужимаем (правило
+                          владельца) — разрешаем вторую строку: фиксированной высоты у плитки
+                          нет (DuoPressable: только minHeight), поэтому обрезки не будет. */}
+                      <FlowText testID="lesson-word-tile" provenance="authored" style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }}>{displayText}</FlowText>
                     </DuoPressable>
                       );
                     })()}
@@ -1456,6 +1585,10 @@ const LessonContent = React.memo(function LessonContent({
                     // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
                     const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
                     if (!hasCorrectTile) return;
+                    // зачем: звук подсказки — ПОСЛЕ страховки выше. Если 50/50 не
+                    // применилось (рассинхрон плиток) и кредит не потрачен, звучать
+                    // нечему: пользователь подсказку так и не получил.
+                    playHintReveal();
                     const totalTiles = wordOptionItems.length;
                     const keepCount = Math.max(2, Math.ceil(totalTiles / 2));
                     const dimCount = Math.min(wrongIdx.length, Math.max(0, totalTiles - keepCount));
@@ -1515,7 +1648,8 @@ const LessonContent = React.memo(function LessonContent({
                 pl: 'Powiedz frazę na głos',
               })}
               style={{ flex: 1, alignItems: 'center' }}
-              onPress={openSpeaking}
+              onPressIn={startSpeakingHold}
+              onPressOut={endSpeakingHold}
             >
               <View style={{ position: 'relative' }}>
                 <Ionicons name="mic-outline" size={26} color={sx.second} />
@@ -1720,23 +1854,6 @@ const LessonContent = React.memo(function LessonContent({
           </TapScale>
         )}
 
-        {/* [SPEAKING] Premium speaking panel overlay. Говорение — необязательная
-            надстройка над уже отвеченной фразой урока, поэтому отдельный XP не
-            начисляем (нет двойного счёта, на пейволе XP не обещан); успешную
-            попытку только фиксируем в аналитике фич. */}
-        {speakingOpen && speakingFeatureEnabled && !!gradeTarget && (
-          <SpeakingPanel
-            targetText={cleanPhraseForDisplay(gradeTarget)}
-            lang={lang}
-            theme={buildSpeakingPanelTheme(t)}
-            onPass={({ score }) => {
-              void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
-            }}
-            onFillAnswer={onSpeakingFillAnswer}
-            onClose={closeSpeaking}
-          />
-        )}
-
         {/* [EXPLAIN] Общая шторка «Объясни проще» из футера. Объясняет английскую фразу/грамматику, НЕ русский смысл. */}
         {phrase && (
           <ExplainSheet
@@ -1762,8 +1879,6 @@ const LessonContent = React.memo(function LessonContent({
                 backgroundColor: t.bgCard,
                 borderTopLeftRadius: 22,
                 borderTopRightRadius: 22,
-                borderWidth: 0,
-                borderColor: t.border,
                 paddingHorizontal: 14,
                 paddingTop: 16,
                 paddingBottom: 28,
@@ -1849,6 +1964,13 @@ const LessonContent = React.memo(function LessonContent({
           onRetry={mistakeExplain.eli5.onRetry}
         />
 
+        <AiExplainConsentModal
+          visible={mistakeExplain.consentGate.visible}
+          lang={lang}
+          onAccept={mistakeExplain.consentGate.onAccept}
+          onDecline={mistakeExplain.consentGate.onDecline}
+        />
+
     </KeyboardAvoidingView>
 
     </>
@@ -1870,6 +1992,7 @@ export default function LessonScreen() {
   const compact = windowH < 780;
   const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
   const { theme: t , f, themeMode } = useTheme();
+  const reduceMotion = useReduceMotion();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const studyTargetRef = useRef(studyTarget);
@@ -2058,9 +2181,9 @@ export default function LessonScreen() {
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
-  // [FeedbackKit] Императивный ref молнии серии (5/10). Оверлей смонтирован поверх
-  // корневого контейнера экрана; сам гасится при blur (Perf Bible).
-  const lightningRef = useRef<LightningOverlayHandle>(null);
+  // зачем: звук комбо должен играть только на ПЕРЕСЕЧЕНИЕ порога (3/5/10),
+  // не на каждый верный ответ внутри уровня — сравниваем с предыдущим уровнем.
+  const comboLevelRef = useRef(0);
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
@@ -2091,7 +2214,8 @@ export default function LessonScreen() {
     () => isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)
   );
   // Ref для хранения колбека после закрытия модалки (навигация на lesson_complete)
-  const cycleEndCallbackRef = useRef<(() => void) | null>(null);
+  const cycleEndCallbackRef = useRef<(() => void | Promise<void>) | null>(null);
+  const cycleEndContinueInFlightRef = useRef(false);
 
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const toastAnim   = useRef(new Animated.Value(0)).current;
@@ -2119,8 +2243,32 @@ export default function LessonScreen() {
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
+  // зачем: checkAnswer асинхронна и до первого await не поднимала никакого флага, а UI
+  // блокировался только через status === 'playing' — setStatus('result') отрабатывает уже
+  // ПОСЛЕ await, поэтому два быстрых тапа (или тап + тап по фону) успевали пройти оба и
+  // засчитать один ответ дважды: двойной XP, сбитый счётчик серии. Синхронный ref-флаг
+  // закрывает окно так же, как locked.current в lesson_words.tsx и settlingRef в
+  // flashcards_swipe.tsx. Снимается сразу после setStatus('result') — дальше барьером
+  // работает сам статус, поэтому флаг не залипает на путях, минующих goNext.
+  const answerInFlightRef  = useRef(false);
   const lessonExitInFlightRef = useRef(false);
+  const lessonAnalyticsKey = `${lessonId}:${lessonStorageId}:${studyTarget}`;
+  const lessonAnalyticsKeyRef = useRef(lessonAnalyticsKey);
+  const lessonAnalyticsAttemptRef = useRef<ReturnType<typeof createLessonAnalyticsAttempt> | null>(null);
+  if (!lessonAnalyticsAttemptRef.current || lessonAnalyticsKeyRef.current !== lessonAnalyticsKey) {
+    lessonAnalyticsKeyRef.current = lessonAnalyticsKey;
+    lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
+  }
   const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
+  // last_active_date на СТАРТЕ урока: первое начисление XP перезапишет её сегодняшней
+  // датой, и «возвращение после перерыва» перестанет быть видно (comeback_lesson).
+  const comebackLastActiveRef = useRef<string | null | undefined>(undefined);
+
+  useEffect(() => {
+    AsyncStorage.getItem('last_active_date')
+      .then((value) => { comebackLastActiveRef.current = value; })
+      .catch(() => { comebackLastActiveRef.current = null; });
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -2306,16 +2454,23 @@ export default function LessonScreen() {
   }, [stopAudio]);
 
   useEffect(() => {
-    if (status !== 'result' || !phrase || !settings.voiceOut) return;
+    if (lessonRuntimeActive) return;
+    if (autoTimer.current) { clearTimeout(autoTimer.current); autoTimer.current = null; }
+    if (replayAudioTimerRef.current) { clearTimeout(replayAudioTimerRef.current); replayAudioTimerRef.current = null; }
+    stopAudio();
+  }, [lessonRuntimeActive, stopAudio]);
+
+  useEffect(() => {
+    if (!lessonRuntimeActive || status !== 'result' || !phrase || !settings.voiceOut) return;
     const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
     const key = `${String(phrase.id ?? cellIndex)}:${line}`;
     if (!line || spokenResultKeyRef.current === key) return;
     spokenResultKeyRef.current = key;
     speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
-  }, [cellIndex, lang, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
+  }, [cellIndex, lang, lessonRuntimeActive, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
 
   const replayResultPhraseAudio = useCallback(() => {
-    if (status !== 'result' || !phrase) return;
+    if (!lessonRuntimeActive || status !== 'result' || !phrase) return;
     const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
     if (!line) return;
     stopAudio();
@@ -2324,7 +2479,7 @@ export default function LessonScreen() {
       replayAudioTimerRef.current = null;
       speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
     }, Platform.OS === 'android' ? 90 : 30);
-  }, [lang, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
+  }, [lang, lessonRuntimeActive, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
   // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
   // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
@@ -2437,7 +2592,7 @@ export default function LessonScreen() {
     setShowNoEnergyModal(true);
   }, [setShouldShake, setShowNoEnergyModal]);
   /**
-   * Выход с урока. Не используем replace('/lesson_menu'): при canGoBack() === false
+   * Выход с урока. Не используем replace('/lessons_list'): при canGoBack() === false
    * replace подменяет только верхний экран, и под ним снова оказывается тот же lesson_menu —
    * визуально «то же окно» и лишний шаг в стеке.
    * НЕ используем router.dismiss(1): это нативный imperative dismiss, который на
@@ -2450,10 +2605,20 @@ export default function LessonScreen() {
     if (from === 'lesson_menu') {
       const popToMenu = () => {
         if (router.canGoBack()) {
-          safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+          safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
           return;
         }
-        router.dismissTo({ pathname: '/lesson_menu', params: { id: String(lessonId) } });
+        if (NATIVE_LESSON_DISMISS_ENABLED) {
+          router.dismissTo({ pathname: '/lessons_list', params: { id: String(lessonId) } });
+          return;
+        }
+        void trackActivity('navigation:native_lesson_dismiss_skipped', {
+          feature: 'navigation',
+          screen: 'lesson1',
+          result: 'info',
+          tags: { lessonId, from },
+        });
+        safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
       };
       void import('./lesson_menu')
         .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
@@ -2480,10 +2645,13 @@ export default function LessonScreen() {
   const handleLessonHeaderBack = useCallback(() => {
     if (lessonExitInFlightRef.current) return;
     if (!beginLessonExit()) return;
-    logLessonAbandoned(lessonId, cellIndex, 50);
+    const attempt = lessonAnalyticsAttemptRef.current!;
+    if (markLessonAttemptTerminal(attempt, 'abandon')) {
+      logLessonAbandoned(lessonId, cellIndex, effectiveTotal, attempt.id, lessonAttemptElapsedMs(attempt));
+    }
     trackLessonAbandoned().catch(() => {});
     navigateUpFromLessonScreen();
-  }, [beginLessonExit, lessonId, cellIndex, navigateUpFromLessonScreen]);
+  }, [beginLessonExit, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
   const handleIntroDone = useCallback(async () => {
     if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
@@ -2506,7 +2674,7 @@ export default function LessonScreen() {
 
   // Android: системный «Назад» = тот же выход, что и кнопка (без дублей в стеке).
   useEffect(() => {
-    if (Platform.OS !== 'android') return;
+    if (!lessonRuntimeActive || Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (showNoEnergyModal) {
         resetNoEnergyModal();
@@ -2516,7 +2684,7 @@ export default function LessonScreen() {
       return true;
     });
     return () => sub.remove();
-  }, [showNoEnergyModal, handleLessonHeaderBack, resetNoEnergyModal]);
+  }, [lessonRuntimeActive, showNoEnergyModal, handleLessonHeaderBack, resetNoEnergyModal]);
 
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
@@ -2542,7 +2710,10 @@ export default function LessonScreen() {
       setLessonHydrated(false);
     }
     try {
-      logLessonStart(lessonId);
+      const attempt = lessonAnalyticsAttemptRef.current!;
+      if (markLessonAttemptStarted(attempt)) {
+        logLessonStart(lessonId, effectiveTotal, attempt.id);
+      }
       trackLessonStart().catch(() => {});
       if (!hasPlayableLessonRows) {
         phraseOrderRef.current = [];
@@ -2580,8 +2751,8 @@ export default function LessonScreen() {
       }
 
       // Проверяем тестерские функции
-      const noLimits = await AsyncStorage.getItem('tester_no_limits');
-      setTesterNoLimits(noLimits === 'true');
+      const noLimits = await isTesterNoLimitsActive();
+      setTesterNoLimits(noLimits);
       // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
@@ -2644,10 +2815,13 @@ export default function LessonScreen() {
         }
         errorQueueRef.current = restoredErrQueue;
         questionsSinceErrorRef.current = restoredSince;
-        if (restoredOverride !== null) {
-          const stCell = restoredProgress[restoredOverride];
-          const inQ = restoredErrQueue.includes(restoredOverride);
-          if (!inQ && stCell !== 'wrong') restoredOverride = null;
+        // зачем: второй рубеж против «залипшего повтора» (репорт «не можу закінчити раунд»).
+        // Раньше условие пропускало пару override=N + пустая очередь, если ячейка помечена
+        // 'wrong': после ПРОВАЛЕННОГО повтора ячейка остаётся красной навсегда, а из очереди
+        // уже удалена — и экран открывался на фразе N после каждого remount. Единственный
+        // честный признак незавершённого повтора — ячейка всё ещё в очереди.
+        if (restoredOverride !== null && !restoredErrQueue.includes(restoredOverride)) {
+          restoredOverride = null;
         }
         restoredOverrideForUi = restoredOverride;
         setOverridePhraseCell(restoredOverride);
@@ -2784,12 +2958,20 @@ export default function LessonScreen() {
 
   const checkAnswer = useCallback(async (answer: string) => {
     if (!phrase) return;
+    // зачем: guard СИНХРОННЫЙ и стоит до первого await — иначе два быстрых тапа успевают
+    // войти оба (setStatus('result') отрабатывает только после await, и кнопка, завязанная
+    // на status === 'playing', ещё не успела перерисоваться). Тот же приём, что
+    // locked.current в lesson_words.tsx. Снимается в goNext при возврате в 'playing'.
+    if (answerInFlightRef.current) return;
     // Блокируем ответ если энергия закончилась
     if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0 && bonusEnergyRef.current <= 0) {
       void trackFeatureBlocked('lesson', 'answer', 'no_energy', { lessonId, cellIndex }, 'lesson1');
       showEnergyEmptyFeedbackRef.current();
       return;
     }
+    // Флаг поднимаем ПОСЛЕ проверки энергии: отказ по энергии — не принятый ответ,
+    // пользователь должен иметь возможность повторить попытку после пополнения.
+    answerInFlightRef.current = true;
     const st = studyTargetRef.current;
     const expected = phraseCanonicalAnswer(phrase, st);
     const answerAlts = phraseAnswerAlternatives(phrase, st);
@@ -2821,7 +3003,7 @@ export default function LessonScreen() {
         serializeLessonTeachingNoteSeenIds([...seenTeachingNoteIds, nextTeachingNote.id]),
       ).catch(() => {});
     }
-    logLessonAnswer(lessonId, isRight);
+    logLessonAnswer(lessonId, isRight, cellIndex, effectiveTotal, lessonAnalyticsAttemptRef.current!.id);
     void trackActivity('lesson:answer_result', {
       feature: 'lesson',
       screen: 'lesson1',
@@ -2880,7 +3062,6 @@ export default function LessonScreen() {
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
     // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
     // ниже читает correctStreakRef.current как и раньше.
-    const streakBeforeAnswer = correctStreakRef.current;
     // Определяем реальную ячейку прогресса: при replay ошибки обновляем ячейку из очереди, не текущую
     const progressCell = overridePhraseCell ?? cellIndex;
     if (isRight) {
@@ -2979,6 +3160,11 @@ export default function LessonScreen() {
       correctStreakRef.current += 1;
       todayAnswersRef.current += 1;
       setComboCount(correctStreakRef.current);
+      const newComboLevel = comboLevelFor(correctStreakRef.current);
+      if (newComboLevel > comboLevelRef.current) {
+        soundDirector.request('pm.learn.combo_up', { scope: 'lesson-combo' });
+      }
+      comboLevelRef.current = newComboLevel;
       const lessonUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
         { type: 'correct_streak' },
         { type: 'lesson_no_mistakes' },
@@ -3047,6 +3233,7 @@ export default function LessonScreen() {
       }
     } else {
       correctStreakRef.current = 0;
+      comboLevelRef.current = 0;
       setComboCount(0);
       todayAnswersRef.current += 1;
       if (!isReplayRef.current) {
@@ -3089,27 +3276,33 @@ export default function LessonScreen() {
         return next;
       });
     }
-    persistErrorReplayToStorage();
+    // зачем: репорт «не можу закінчити раунд» — экран возвращал юзера на одну и ту же
+    // фразу после каждого remount (модалка энергии, сворачивание). Причина: вызов без
+    // аргумента брал overridePhraseCellRef, который синхронизируется с состоянием через
+    // useEffect (строка ~2280), т.е. ЗДЕСЬ, внутри синхронного checkAnswer, он ещё хранит
+    // «мы на повторе ячейки N». В сторадж уходило override=N при уже пустой очереди, а
+    // сторож восстановления (inQ/'wrong') такую пару не чистит — ячейка после провала
+    // replay остаётся 'wrong'. Ответ на replay ЗАВЕРШАЕТ повтор, поэтому override здесь
+    // всегда null; какой будет следующая позиция — решает goNext и пишет сам.
+    persistErrorReplayToStorage(null);
 
     // [FeedbackKit] Ощущения исхода (звук+вибра). Экономика/серия уже посчитаны
     // выше — здесь только «мягкость». fk сам уважает тумблеры звука/вибры.
     if (isRight) {
       // correctStreakRef уже инкрементирован в блоке XP выше.
-      fk.correct();
-      fk.combo(correctStreakRef.current, { surface: 'lesson' });
-      // Молния через экран на порогах 5 (одиночная) и 10 (двойной удар).
-      if (correctStreakRef.current === 5) lightningRef.current?.strike(false);
-      else if (correctStreakRef.current === 10) lightningRef.current?.strike(true);
-    } else if (streakBeforeAnswer >= 3) {
-      // Обрыв заметной серии — «шипение остывания».
-      fk.comboBreak(streakBeforeAnswer);
+      fk.verdict({ correct: true });
     } else {
-      // Обычная ошибка — мягкий низкий «туп» + error haptic.
-      fk.wrong();
+      fk.verdict({ correct: false });
     }
 
     // Сразу показываем результат — НЕ ждать AsyncStorage (await раньше давал 1–3 с задержки UI).
     setStatus('result');
+    // зачем: с этого момента барьером служит сам статус ('result' блокирует и кнопку, и
+    // handleBgTap, и выбор слова), поэтому ref-флаг свою работу сделал и снимается здесь, а
+    // не в goNext. Так он не залипнет ни на одном из путей, где goNext не вызывается:
+    // завершение урока (уход на lesson_complete), ранний выход по isCompletingRef, а также
+    // при исключении в коде ниже — иначе экран навсегда перестал бы принимать ответы.
+    answerInFlightRef.current = false;
 
     // ==================== NEW: Handle to-be hint and encouragement screens ====================
     if (isRight) {
@@ -3120,8 +3313,12 @@ export default function LessonScreen() {
 
     }
     fadeAnim.stopAnimation(() => {
+      if (reduceMotion) {
+        fadeAnim.setValue(1);
+        return;
+      }
       fadeAnim.setValue(0);
-      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: false }).start();
+      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
     });
 
     const nextCell = (cellIndex + 1) % effectiveTotal;
@@ -3171,8 +3368,8 @@ export default function LessonScreen() {
         let finalScore = parseFloat((correct / effectiveTotal * 5).toFixed(1));
 
         // Если включен режим "Без ограничений", даём 5 баллов автоматически
-        const noLimits = await AsyncStorage.getItem('tester_no_limits');
-        if (noLimits === 'true') {
+        const noLimits = await isTesterNoLimitsActive();
+        if (noLimits) {
           finalScore = 5;
         }
 
@@ -3189,7 +3386,10 @@ export default function LessonScreen() {
             .catch(() => {});
         }
 
-        logLessonComplete(lessonId);
+        const analyticsAttempt = lessonAnalyticsAttemptRef.current!;
+        if (markLessonAttemptTerminal(analyticsAttempt, 'complete')) {
+          logLessonComplete(lessonId, analyticsAttempt.id, lessonAttemptElapsedMs(analyticsAttempt));
+        }
         void trackFeatureSuccess('lesson', 'complete', {
           lessonId,
           finalScore,
@@ -3197,10 +3397,64 @@ export default function LessonScreen() {
           correct,
           effectiveTotal,
         }, 'lesson1');
-        updateMultipleTaskProgress(
-          [{ type: 'lesson_complete', increment: 1 }],
-          { studyTarget: studyTargetRef.current },
-        ).catch(() => {});
+        const lessonFinishUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
+          { type: 'lesson_complete', increment: 1 },
+        ];
+        // weekend_marathon: уроки в выходной (локальный день недели) считаются отдельно.
+        const finishWeekday = new Date().getDay();
+        if (finishWeekday === 0 || finishWeekday === 6) {
+          lessonFinishUpdates.push({ type: 'weekend_marathon', increment: 1 });
+        }
+        // perfect_big_lesson: длинный урок (20+ фраз) без единой ошибки за проход.
+        if (effectiveTotal >= 20 && lessonWrongMistakesRef.current.length === 0) {
+          lessonFinishUpdates.push({ type: 'perfect_big_lesson', increment: 1 });
+        }
+        // comeback_lesson: урок в день возвращения после 3+ дней перерыва
+        // (last_active_date прочитана на старте урока — см. comebackLastActiveRef).
+        const finishTodayKey = getTodayKey();
+        if (daysSinceLastActive(comebackLastActiveRef.current, finishTodayKey) >= 3) {
+          lessonFinishUpdates.push({ type: 'comeback_lesson', increment: 1 });
+        }
+        // revision_lesson: предыдущее прохождение этого урока было 7+ дней назад.
+        // Бутстрэп: уроки без метки времени (пройдены до её появления) с pass_count>0
+        // считаем «старыми» — иначе задание было бы мёртвым первые 7 дней после релиза.
+        const finishedAtKey = lessonLastCompletedAtKey(lessonId, studyTargetRef.current);
+        let revisionEligible = false;
+        try {
+          const [prevFinishedAt, prevPassCountRaw] = await Promise.all([
+            AsyncStorage.getItem(finishedAtKey),
+            AsyncStorage.getItem(lessonPassCountKey(lessonId, studyTargetRef.current)),
+          ]);
+          revisionEligible = prevFinishedAt
+            ? daysSinceLastActive(prevFinishedAt, finishTodayKey) >= 7
+            : (parseInt(prevPassCountRaw ?? '0', 10) || 0) > 0;
+        } catch {
+          revisionEligible = false;
+        }
+        if (revisionEligible) {
+          lessonFinishUpdates.push({ type: 'revision_lesson', increment: 1 });
+        }
+        void AsyncStorage.setItem(finishedAtKey, finishTodayKey).catch(() => {});
+        const finishDailyTaskEventId = [
+  'lesson-finish',
+  finishTodayKey,
+  safeProgressEventPart(studyTargetRef.current),
+  safeProgressEventPart(lessonId),
+  safeProgressEventPart(nextAttemptId),
+].join(':');
+const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
+  finishDailyTaskEventId,
+  lessonFinishUpdates,
+  { studyTarget: studyTargetRef.current },
+);
+let lessonFinishDeliveryPromise = startLessonFinishDelivery();
+void lessonFinishDeliveryPromise.catch((deliveryError) => {
+  void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
+    lessonId,
+    finishDailyTaskEventId,
+  }, 'lesson1');
+});
+        void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
         try {
@@ -3223,10 +3477,39 @@ export default function LessonScreen() {
           });
         };
 
-        const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-        cycleEndCallbackRef.current = navigate;
-        setCycleEndHasErrors(hasErrors);
-        setShowCycleEndModal(true);
+        const finalizeLessonCompletion = async () => {
+  try {
+    try {
+      await lessonFinishDeliveryPromise;
+    } catch {
+      // The first attempt starts while the learner reads the completion modal.
+      // A failed Continue performs one explicit retry with the same event id.
+      lessonFinishDeliveryPromise = startLessonFinishDelivery();
+      await lessonFinishDeliveryPromise;
+    }
+  } catch (deliveryError) {
+    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
+      lessonId,
+      finishDailyTaskEventId,
+    }, 'lesson1');
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
+      messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
+      messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
+    });
+    return;
+  }
+  setShowCycleEndModal(false);
+  cycleEndCallbackRef.current = null;
+  navigate();
+};
+
+const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
+cycleEndContinueInFlightRef.current = false;
+cycleEndCallbackRef.current = finalizeLessonCompletion;
+setCycleEndHasErrors(hasErrors);
+setShowCycleEndModal(true);
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
@@ -3241,14 +3524,14 @@ export default function LessonScreen() {
     // Панель «Скажи вслух» открыта → не заряжаем авто-переход (юзер хочет остаться
     // на фразе: переслушать эталон/запись, перезаписать). И даже если таймер
     // как-то был заряжен, колбэк ещё раз проверит флаг перед прыжком.
-    if (settings.autoAdvance && isRight && !speakingSuspendRef.current) {
+    if (settings.autoAdvance && lessonRuntimeActive && isRight && !speakingSuspendRef.current) {
       autoTimer.current = setTimeout(() => {
         autoTimer.current = null;
-        if (speakingSuspendRef.current) return;
+        if (!lessonRuntimeActive || speakingSuspendRef.current) return;
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
@@ -3267,6 +3550,10 @@ export default function LessonScreen() {
     setCellIndex(nextCell);
 
     stopAudio();
+    // Страховка: флаг уже снят в checkAnswer после setStatus('result'), но goNext вызывается
+    // и по авто-переходу, и вручную — снимаем повторно, чтобы новая фраза гарантированно
+    // принимала ответ даже если сюда пришли по пути, минующему показ результата.
+    answerInFlightRef.current = false;
     setStatus('playing');
     setLessonTeachingNote(null);
     setSelectedWords([]);
@@ -3500,6 +3787,39 @@ export default function LessonScreen() {
   const score = useMemo(() => Number((correctCount / effectiveTotal * 5).toFixed(1)), [correctCount, effectiveTotal]);
   const planLessonRemaining = isPlanLessonTask ? Math.max(0, planRequiredPhrases - planLessonAnswered) : 0;
 
+  // зачем: владелец — «зашёл в урок, а плашка "Продолжить урок" на Главной ещё старая,
+  // пока не перезайду в приложение». Раньше last-opened писался только в AsyncStorage —
+  // это переживает перезапуск, но НЕ обновляет уже смонтированный home.tsx (он лежит на
+  // соседнем табе и просто не знает, что что-то изменилось, пока сам не перечитает данные).
+  // Патчим снапшот в памяти (на случай что home.tsx перемонтируется) И эмитим событие
+  // (на случай что home.tsx уже жив на табе) — так плашка меняется в кадре входа в урок,
+  // а не на следующем полном заходе в приложение. correctCount/50 (не /effectiveTotal) —
+  // та же формула, что home.tsx использует при собственном loadData(), чтобы цифра не
+  // «прыгнула» при следующем полном перечитывании.
+  const lastOpenedSyncedRef = useRef(false);
+  useEffect(() => {
+    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    lastOpenedSyncedRef.current = false;
+  }, [lessonId, isPlanPhraseLessonTask]);
+  useEffect(() => {
+    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    if (lastOpenedSyncedRef.current) return;
+    lastOpenedSyncedRef.current = true;
+    const homeScore = (correctCount / 50 * 5).toFixed(1);
+    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(() => {});
+    patchHomeScreenHydration({
+      lastLessonId: lessonId,
+      lastLessonProgress: correctCount,
+      lastLessonScore: homeScore,
+    }, studyTarget);
+    emitAppEvent('last_opened_lesson_changed', {
+      lessonId,
+      progress: correctCount,
+      score: homeScore,
+      studyTarget,
+    });
+  }, [lessonId, studyTarget, isPlanPhraseLessonTask, correctCount]);
+
   // ── Medal tier change toast ──────────────────────────────────────────────────
   const prevMedalTierRef = useRef<MedalTier>('none');
   const medalToastInitializedRef = useRef(false);
@@ -3581,27 +3901,20 @@ export default function LessonScreen() {
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
   const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
 
+  // зачем: тот же полноэкранный ActivityIndicator дёргал геометрию при загрузке
+  // французского урока с сервера — переиспользуем один скелетон-компонент вместо
+  // третьего отдельного спиннерного состояния (было 3 разных состояния подряд).
   if (frenchLessonRemotePending) {
     return (
       <TouchableWithoutFeedback onPress={undefined}>
-        <ScreenGradient>
-          <LessonArtBackdrop variant="practice" />
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-            <ActivityIndicator size="large" color={t.accent} />
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 18 }}>
-              {triLang(lang, {
-                ru: 'Загружаю французский урок',
-                uk: 'Завантажую французький урок',
-                es: 'Cargando la lección de francés',
-                'pt-BR': 'Carregando a aula de francês',
-                vi: 'Đang tải bài học tiếng Pháp',
-                id: 'Memuat pelajaran bahasa Prancis',
-                tr: 'Fransızca dersi yükleniyor',
-                pl: 'Ładowanie lekcji francuskiego',
-              })}
-            </Text>
-          </SafeAreaView>
-        </ScreenGradient>
+        {/* зачем: этот гейт живёт в LessonScreen — переменные linkedSliceCompact/
+            lessonHorizontalPadding из внутреннего компонента тут не видны,
+            выводим ту же геометрию из локального isLinkedLessonSliceTask. */}
+        <LessonLoadingSkeleton
+          theme={t}
+          compact={isLinkedLessonSliceTask}
+          horizontalPadding={isLinkedLessonSliceTask ? 14 : 20}
+        />
       </TouchableWithoutFeedback>
     );
   }
@@ -3672,7 +3985,7 @@ export default function LessonScreen() {
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/(tabs)/lessons' as any)}
+              onPress={() => router.replace('/lessons_list' as any)}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >
@@ -3785,11 +4098,6 @@ export default function LessonScreen() {
                   />
         </SafeAreaView>
 
-        {/* [FeedbackKit] Молния серии поверх всего экрана (absolute fill,
-            pointerEvents none внутри). Рисует только при strike() на 5/10;
-            edge-glow по уровню серии; сама гаснет при blur (Perf Bible). */}
-        <LightningOverlay ref={lightningRef} level={comboLevelFor(comboCount)} />
-
         {/* ── Medal tier toast (premium) ── */}
         {medalToast && (
           <MedalToast
@@ -3809,7 +4117,7 @@ export default function LessonScreen() {
       <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.68)', paddingHorizontal: 18, paddingVertical: 28 }}>
         <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={() => setPlanLessonDoneVisible(false)} />
         <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center' }}>
-          <View style={{ borderRadius: 30, borderWidth: 0, borderColor: t.border, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, elevation: 12 }}>
+          <View style={{ borderRadius: 30, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, ...noAndroidOutline,}}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, lineHeight: f.h2 + 5, fontWeight: '900' }}>
               {isLinkedLessonSliceTask
                 ? triLang(lang, { ru: 'Часть урока готова', uk: 'Частина уроку готова', es: 'Parte de la lección lista', 'pt-BR': 'Parte da lição pronta', vi: 'Phần bài học đã xong', id: 'Bagian pelajaran selesai', tr: 'Dersin bölümü hazır', pl: 'Część lekcji gotowa' })
@@ -3829,7 +4137,7 @@ export default function LessonScreen() {
                   router.push('/personal_plan' as any);
                 }}
                 scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, elevation: 8 }}
+                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}
               >
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Tới kế hoạch', id: 'Ke rencana', tr: 'Plana', pl: 'Do planu' })}</Text>
               </TapScale>
@@ -3838,7 +4146,7 @@ export default function LessonScreen() {
                 accessibilityLabel={triLang(lang, { ru: 'Продолжить урок', uk: 'Продовжити урок', es: 'Continuar la lección', 'pt-BR': 'Continuar a lição', vi: 'Tiếp tục bài học', id: 'Lanjut pelajaran', tr: 'Derse devam et', pl: 'Kontynuuj lekcję' })}
                 onPress={() => setPlanLessonDoneVisible(false)}
                 scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, borderWidth: 0, borderColor: t.border, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 6 }}
+                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline,}}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam et', pl: 'Kontynuuj' })}</Text>
               </TapScale>
@@ -3862,10 +4170,13 @@ export default function LessonScreen() {
       t={t}
       f={f}
       onClose={() => {
-        setShowCycleEndModal(false);
-        cycleEndCallbackRef.current?.();
-        cycleEndCallbackRef.current = null;
-      }}
+  const callback = cycleEndCallbackRef.current;
+  if (!callback || cycleEndContinueInFlightRef.current) return;
+  cycleEndContinueInFlightRef.current = true;
+  void Promise.resolve(callback()).finally(() => {
+    cycleEndContinueInFlightRef.current = false;
+  });
+}}
     />
     </>
   );

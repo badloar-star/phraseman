@@ -41,6 +41,7 @@ describe('Gustav mixed cloud payload target stats isolation', () => {
   it('keeps French stats_daily_breakdown_v1 metrics under the target bucket', async () => {
     await bumpStatsDaily('phrases_learned', 1, 'fr');
     await bumpStatsDaily('quizzes_completed', 2, 'fr');
+    await bumpStatsDaily('lessons_completed', 1, 'fr');
 
     await expect(AsyncStorage.getItem('stats_daily_breakdown_v1')).resolves.toBeNull();
     const french = JSON.parse(await AsyncStorage.getItem(statsDailyBreakdownKey('fr')) ?? '{}');
@@ -48,6 +49,7 @@ describe('Gustav mixed cloud payload target stats isolation', () => {
     expect(rows).toHaveLength(1);
     expect(rows[0].phrases_learned).toBe(1);
     expect(rows[0].quizzes_completed).toBe(2);
+    expect(rows[0].lessons_completed).toBe(1);
   });
 
   it('restores French stats_daily_breakdown_v1 only into the scoped French row', async () => {

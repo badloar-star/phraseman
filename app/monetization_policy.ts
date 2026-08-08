@@ -8,7 +8,7 @@ import { isFeaturePremiumGated } from './feature_gates';
 /** Default free-lesson limit. Runtime checks use the remote-tunable value via
  *  getFreeLessonLimit(); this constant is the build-time fallback for static
  *  callers and is kept in sync with remote_flags' default. */
-export const FREE_LESSON_LIMIT = 8;
+export const FREE_LESSON_LIMIT = 3;
 export const BRONZE_UNLOCK_SCORE = 2.5;
 
 export type LessonAccessState =
@@ -31,8 +31,33 @@ export function isFreeLesson(lessonId: number): boolean {
   return lessonId <= getFreeLessonLimit();
 }
 
-export function requiresPremiumForLesson(lessonId: number): boolean {
+function normalizedLegacyFreeLessonCap(legacyFreeLessonCap?: number): number {
+  if (!Number.isFinite(legacyFreeLessonCap)) return 0;
+  return Math.min(8, Math.max(FREE_LESSON_LIMIT, Math.trunc(legacyFreeLessonCap ?? 0)));
+}
+
+export function hasLegacyFreeLessonAccess(
+  lessonId: number,
+  legacyFreeLessonCap?: number,
+): boolean {
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
+  return lessonId <= normalizedLegacyFreeLessonCap(legacyFreeLessonCap);
+}
+
+export function isLegacyLessonGrandfatheredOpen(
+  lessonId: number,
+  legacyFreeLessonCap?: number,
+): boolean {
+  return normalizedLegacyFreeLessonCap(legacyFreeLessonCap) > FREE_LESSON_LIMIT &&
+    hasLegacyFreeLessonAccess(lessonId, legacyFreeLessonCap);
+}
+
+export function requiresPremiumForLesson(
+  lessonId: number,
+  legacyFreeLessonCap?: number,
+): boolean {
+  if (!Number.isFinite(lessonId) || lessonId < 1) return false;
+  if (hasLegacyFreeLessonAccess(lessonId, legacyFreeLessonCap)) return false;
   return !isFreeLesson(lessonId);
 }
 
@@ -41,6 +66,7 @@ export function buildSequentialFreeLessonUnlocks(params: {
   persistedUnlocked?: readonly number[];
   lessonCount?: number;
   freeLessonLimit?: number;
+  legacyFreeLessonCap?: number;
 }): boolean[] {
   const lessonCount = params.lessonCount ?? 32;
   const freeLessonLimit = Math.min(params.freeLessonLimit ?? getFreeLessonLimit(), lessonCount);
@@ -65,13 +91,21 @@ export function buildSequentialFreeLessonUnlocks(params: {
     if (wholeFeatureFree || freeExtra.has(id)) unlocked[i] = true;
   }
 
+  const legacyCap = normalizedLegacyFreeLessonCap(params.legacyFreeLessonCap);
+  if (legacyCap > FREE_LESSON_LIMIT) {
+    for (let i = 0; i < Math.min(legacyCap, lessonCount); i++) unlocked[i] = true;
+  }
+
   return unlocked;
 }
 
 export type CoursePaywallContext = 'course_after_lesson3';
 
-export function lessonPaywallContext(lessonId: number): CoursePaywallContext | null {
-  if (isFreeLesson(lessonId)) return null;
+export function lessonPaywallContext(
+  lessonId: number,
+  legacyFreeLessonCap?: number,
+): CoursePaywallContext | null {
+  if (!requiresPremiumForLesson(lessonId, legacyFreeLessonCap)) return null;
   return 'course_after_lesson3';
 }
 
@@ -81,10 +115,19 @@ export function resolveLessonAccess(params: {
   isPremium: boolean;
   devMode?: boolean;
   noLimits?: boolean;
+  legacyFreeLessonCap?: number;
 }): LessonAccessState {
-  const { lessonId, unlocked, isPremium, devMode = false, noLimits = false } = params;
+  const {
+    lessonId,
+    unlocked,
+    isPremium,
+    devMode = false,
+    noLimits = false,
+    legacyFreeLessonCap,
+  } = params;
   if (devMode || noLimits) return 'available';
-  if (requiresPremiumForLesson(lessonId) && !isPremium) return 'premium_required';
+  if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return 'available';
+  if (requiresPremiumForLesson(lessonId, legacyFreeLessonCap) && !isPremium) return 'premium_required';
   return unlocked ? 'available' : 'progress_required';
 }
 

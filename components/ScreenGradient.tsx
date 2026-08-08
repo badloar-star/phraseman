@@ -30,11 +30,14 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   minimalDark: 1,
   business: 1,
   businessLight: 1,
+  sagePorcelain: 1,
   // «Чёрное кино»: альфы зашиты в стопы CinemaBloom, слой не глушим.
   midnight: 1,
   ember: 1,
   aurora: 1,
   volt: 1,
+  candyBlue: 1,
+  indigo: 1,
 };
 
 type OrbSpec = { x: number; y: number; r: number; color: string; opacity: number };
@@ -44,7 +47,7 @@ type ScreenBgLayer = {
   backgroundColor: string;
   accent: string;
   isGold: boolean;
-  bloomMode: ThemeMode;
+  bloomMode: ThemeMode | null;
   gradColors: string[];
   orbs: OrbSpec[];
 };
@@ -59,10 +62,13 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   business: { bloomA: '#000000', bloomB: '#000000' },
   // «Бизнес светлый»: тёплый бумажный блум без цвета.
   businessLight: { bloomA: '#FFFFFF', bloomB: '#FFFFFF' },
+  sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#DCE1D8' },
   midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
   volt: { bloomA: CINEMA.volt.bloomA, bloomB: CINEMA.volt.bloomB },
+  candyBlue: { bloomA: '#B2D5E5', bloomB: '#3A5A68' },
+  indigo: { bloomA: '#C8C3FF', bloomB: '#273468' },
 };
 
 const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
@@ -96,11 +102,26 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   business: [],
   // «Бизнес светлый»: чистая бумажная подложка без орбов.
   businessLight: [],
+  sagePorcelain: [],
   // «Чёрное кино»: вместо орбов — слой CinemaBloom (двухцветный блум снизу + звёзды).
   midnight: [],
   ember: [],
   aurora: [],
   volt: [],
+  // Legacy candyBlue compatibility gradient.
+  candyBlue: [
+    { x: W * 0.82, y: 84,       r: 205, color: '#7FA0AD', opacity: 0.14 },
+    { x: W * 0.08, y: H * 0.46, r: 160, color: '#3A5A68', opacity: 0.13 },
+    { x: W * 0.58, y: H * 0.80, r: 140, color: '#1C323B', opacity: 0.12 },
+    { x: W * 0.28, y: H * 0.20, r:  80, color: '#B2D5E5', opacity: 0.07 },
+  ],
+  // «Индиго»: мягкие лавандовые орбы на сумрачном индиго.
+  indigo: [
+    { x: W * 0.82, y: 84,       r: 205, color: '#9A95C2', opacity: 0.14 },
+    { x: W * 0.08, y: H * 0.46, r: 160, color: '#3D3A72', opacity: 0.13 },
+    { x: W * 0.58, y: H * 0.80, r: 140, color: '#273468', opacity: 0.12 },
+    { x: W * 0.28, y: H * 0.20, r:  80, color: '#C8C3FF', opacity: 0.07 },
+  ],
 };
 
 const LEGACY_UNSUPPORTED_ORBS: Record<'ocean' | 'sakura', OrbSpec[]> = {
@@ -701,7 +722,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
-  const bloomMode = themeMode;
+  const bloomMode = themeMode === 'sagePorcelain' ? null : themeMode;
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = useMemo(
     () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],

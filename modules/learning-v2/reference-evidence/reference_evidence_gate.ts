@@ -7,7 +7,6 @@ export const SELECTED_REFERENCE_MODE_IDS = [
   'guided-phrase-pronunciation',
   'prompted-translation-by-voice',
   'contextual-dialogue-mission',
-  'speaking-club-mission',
 ] as const;
 
 export type ReferenceEvidenceModeId = (typeof SELECTED_REFERENCE_MODE_IDS)[number];

@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import {
@@ -32,7 +32,9 @@ import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { soundDirector } from '../modules/audio/sound_director';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const { width: W, height: H } = Dimensions.get('window');
 const CARD_W = Math.min(W - 24, 420);
 
@@ -246,6 +248,12 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
     if (isPromo) hapticSuccess();
     else if (isDemo) hapticWarning();
     else hapticSoftImpact();
+    if (isPromo || isDemo) {
+      soundDirector.request(isPromo ? 'pm.league.promoted' : 'pm.league.demoted', {
+        scope: 'league-result',
+        dedupeKey: `${result.prevLeagueId}:${result.newLeagueId}`,
+      });
+    }
 
     Animated.sequence([
       // 1. Карточка появляется
@@ -745,7 +753,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 {/* ── RANK + RESULT ZONE ─────────────────────────── */}
                 <ScrollView
                   style={{ flex: 1 }}
-                  decelerationRate="normal"
+                  decelerationRate="fast"
                   contentContainerStyle={{ paddingBottom: 4 }}
                   showsVerticalScrollIndicator={false}
                   nestedScrollEnabled
@@ -1062,7 +1070,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       shadowOffset: { width: 0, height: 6 },
                       shadowOpacity: 0.45,
                       shadowRadius: 10,
-                      elevation: 8,
+                      ...noAndroidOutline,
                     }}>
                       <LinearGradient
                         colors={ctaGradient}
@@ -1186,10 +1194,12 @@ const PodiumColumn = memo(function PodiumColumn({
       </View>
 
       {/* Имя */}
+      {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт layout
+          stability) — имя уже обрезано до 10 символов выше (name = member?.name?.slice(0, 10)),
+          так что при f.caption и maxWidth 104 оно и без сжатия помещается в одну строку;
+          numberOfLines=1 подстрахует. guard-ok */}
       <Text
         numberOfLines={1}
-        adjustsFontSizeToFit
-        minimumFontScale={0.8}
         style={memberNameStatusStyle(
           {
             color: member?.isMe ? cfg.primary : t.textPrimary,

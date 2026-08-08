@@ -8,6 +8,7 @@ describe('Admin v2 unified user profile', () => {
   test('uses protected server callables and never reads private profile collections directly', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const firebase = read('admin/v2/scripts/admin-firebase.js');
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     const index = read('functions/src/index.ts');
 
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminSearchUsers')");
@@ -19,7 +20,9 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain("if (!can('users.read'))");
     expect(core).toContain("state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] }");
     expect(core).toContain('Поиск не выполнен');
-    expect(core).toContain('admin/index.html?openUser=');
+    expect(core).toContain('const profileUrl = `?openUser=${encodeURIComponent(profile.canonicalUid)}#users`;');
+    expect(core).not.toContain('admin/index.html?openUser=');
+    expect(capabilities).toMatch(/\{\s*id: 'users',[^}]*nativeRoute: 'users'/);
     expect(index).toContain("export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';");
     for (const collectionName of ['users', 'auth_links', 'user_reports', 'error_reports', 'revenuecat_premium_events']) {
       expect(firebase).not.toContain(`collection(db, '${collectionName}')`);
@@ -51,16 +54,34 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain('data-tooltip="Открыть защищённое управление аккаунтом"');
     expect(core).toContain('data-tooltip="Найти пользователя без загрузки всей базы"');
     const profileRenderer = core.slice(core.indexOf('function renderProfile()'), core.indexOf('function renderUsers()'));
-    expect(profileRenderer).not.toContain('button primary');
+    expect(profileRenderer).toContain('renderAdminAccessControls(profile.canonicalUid, summary)');
+    expect(profileRenderer).not.toContain('data-action="grant-user-plus"');
+    expect(profileRenderer).not.toContain('data-action="ban-user"');
     expect(server).toContain("invitedBy: sources.invitedBy");
     expect(server).toContain("sourceResult('referral_attribution_owner'");
   });
 
-  test('keeps dangerous mutations in the legacy fallback until each has a guarded command protocol', () => {
+  test('uses the guarded V2 preview, confirm, server transaction and audit protocol for access changes', () => {
     const core = read('admin/v2/scripts/admin-core.js');
-    expect(core).toContain('Изменяющие действия пока открываются в действующем модуле');
+    expect(core).toContain('preview-admin-premium');
+    expect(core).toContain('preview-admin-vip');
+    expect(core).toContain('preview-admin-ban');
+    expect(core).toContain('publish-admin-access');
+    expect(core).toContain('preview → подтверждение → серверную транзакцию и аудит');
+    expect(core).toContain('await actions.grantAccess(preview)');
+    expect(core).toContain('await actions.setUserBan(preview)');
+    expect(core).toContain('if (!globalThis.confirm(');
     expect(core).not.toContain('data-action="delete-user"');
     expect(core).not.toContain('data-action="merge-user"');
     expect(core).not.toContain('data-action="grant-user-plus"');
+  });
+
+  test('shows the app nickname together with the canonical UUID in user-facing identity surfaces', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    expect(core).toContain('Ник:');
+    expect(core).toContain('UUID:');
+    expect(core).toContain('userIdentityLabel(');
+    expect(core).toContain('users.primaryName');
+    expect(core).toContain('users.reportedName');
   });
 });

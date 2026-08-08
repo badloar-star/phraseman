@@ -266,7 +266,7 @@ function makeStep(input: {
     translation: fillPlanned(input.translation, plannedTranslation),
     explanationBlock: tri(
       'Сначала спроси: мы описываем человека или вещь? Тогда часто нужен короткий вид слова: good, quick, careful, strange. Или мы описываем действие? Тогда часто нужен how-кусок: well, quickly, carefully, strangely.',
-      'Спочатку спитай: ми описуємо людину або річ? Тоді часто потрібен короткий вид слова: good, quick, careful, strange. Або ми описуємо дію? Тоді часто потрібен how-шматок: well, quickly, carefully, strangely.',
+      'Спочатку спитай: ми описуємо людину або річ? Тоді часто потрібен короткий вид слова: good, quick, careful, strange. Або ми описуємо дію? Тоді часто потрібен how-зворот: well, quickly, carefully, strangely.',
       'First ask: are we describing a person/thing/state, or the action? Person/thing/state: good, quick, careful. Action: well, quickly, carefully.',
       {
         'pt-BR': 'Primeiro pergunte: descrevemos pessoa/coisa/estado ou a ação? Pessoa/coisa/estado: good, quick, careful. Ação: well, quickly, carefully.',
@@ -301,7 +301,7 @@ function makeStep(input: {
           fillPlanned(input.wrong[option] ??
             tri(
               `Почти, но здесь нужен другой кусок. Нормально звучит: ${input.correctAnswer}.`,
-              `Майже, але тут потрібен інший шматок. Нормально звучить: ${input.correctAnswer}.`,
+              `Майже, але тут потрібен інший зворот. Нормально звучить: ${input.correctAnswer}.`,
               `Almost. Use: ${input.correctAnswer}.`,
             ), plannedFeedback),
         ]),
@@ -384,7 +384,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
   ),
   diagnosisText: tri(
     'Проблема обычно не в значении. Ты понимаешь “хороший” и “хорошо”, “осторожный” и “осторожно”. Ломается выбор куска: good teacher, но teaches well; careful driver, но drives carefully.',
-    'Проблема зазвичай не у значенні. Ти розумієш “хороший” і “добре”, “обережний” і “обережно”. Ламається вибір шматка: good teacher, але teaches well; careful driver, але drives carefully.',
+    'Проблема зазвичай не у значенні. Ти розумієш “хороший” і “добре”, “обережний” і “обережно”. Ламається вибір звороту: good teacher, але teaches well; careful driver, але drives carefully.',
     'The meaning is usually clear. The chunk choice breaks: good teacher, but teaches well; careful driver, but drives carefully.',
     {
       'pt-BR': 'O sentido geralmente está claro. A escolha do bloco quebra: good teacher, mas teaches well; careful driver, mas drives carefully.',
@@ -429,7 +429,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
     ],
     uk: [
       'Перед teacher, answer, driver зазвичай стоїть звичайний вид: good teacher, quick answer, careful driver.',
-      'Після дії часто потрібен how-шматок: teaches well, answers quickly, drives carefully.',
+      'Після дії часто потрібен how-зворот: teaches well, answers quickly, drives carefully.',
       'Good не перетворюється на goodly. Для дії майже завжди потрібно well.',
       'Після is, seems, sounds, feels часто описується стан: He is careful, It sounds strange.',
       'Look може описувати стан: You look tired. Але looked at me описує дію: looked at me strangely.',
@@ -638,7 +638,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Перед teacher нужно good: good teacher.', 'Так. Перед teacher потрібно good: good teacher.', 'Yes. Good teacher.'),
       wrong: {
         well: tri('Well подходит к действию: teaches well. Перед teacher нужно good.', 'Well підходить до дії: teaches well. Перед teacher потрібно good.', 'Use good before teacher.'),
-        goodly: tri('Goodly здесь не нужно. Нормальный кусок: good teacher.', 'Goodly тут не потрібно. Нормальний шматок: good teacher.', 'Use good teacher.'),
+        goodly: tri('Goodly здесь не нужно. Нормальный кусок: good teacher.', 'Goodly тут не потрібно. Нормальний зворот: good teacher.', 'Use good teacher.'),
         better: tri('Better значит “лучше”. Здесь просто качество: good teacher.', 'Better означає “краще”. Тут просто якість: good teacher.', 'Use good teacher.'),
       },
       clue: tri('Teacher — это человек. Описываем человека: good.', 'Teacher — це людина. Описуємо людину: good.', 'Teacher is a person: good.'),
@@ -829,7 +829,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       wrong: {
         strange: tri('Strange подходит к It sounds strange. Но looked at me — действие, нужно strangely.', 'Strange підходить до It sounds strange. Але looked at me — дія, потрібно strangely.', 'Use strangely here.'),
         stranger: tri('Stranger здесь меняет смысл. Нужно сказать, как он посмотрел: strangely.', 'Stranger тут змінює зміст. Потрібно сказати, як він подивився: strangely.', 'Use strangely.'),
-        strangeness: tri('Strangeness — не способ смотреть. Нужен кусок looked strangely.', 'Strangeness — не спосіб дивитися. Потрібен шматок looked strangely.', 'Use strangely.'),
+        strangeness: tri('Strangeness — не способ смотреть. Нужен кусок looked strangely.', 'Strangeness — не спосіб дивитися. Потрібен зворот looked strangely.', 'Use strangely.'),
       },
       clue: tri('Looked at me — что он сделал. Как сделал? Strangely.', 'Looked at me — що він зробив. Як зробив? Strangely.', 'How did he look at me? Strangely.'),
       finalHint: tri('Фраза целиком: He looked at me strangely.', 'Фраза повністю: He looked at me strangely.', 'Full sentence: He looked at me strangely.'),
@@ -846,7 +846,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       correctAnswer: 'good teacher / teaches well',
       correctFeedback: tri('Да. Good рядом с teacher, well рядом с teaches.', 'Так. Good поруч із teacher, well поруч із teaches.', 'Yes. Good teacher / teaches well.'),
       wrong: {
-        'well teacher / teaches good': tri('Оба куска перепутаны. Нужно: good teacher / teaches well.', 'Обидва шматки переплутані. Потрібно: good teacher / teaches well.', 'Use good teacher / teaches well.'),
+        'well teacher / teaches good': tri('Оба куска перепутаны. Нужно: good teacher / teaches well.', 'Обидва звороти переплутані. Потрібно: good teacher / teaches well.', 'Use good teacher / teaches well.'),
         'good teacher / teaches good': tri('Good teacher верно, но teaches good звучит плохо. Действие teaches требует well.', 'Good teacher правильно, але teaches good звучить погано. Дія teaches потребує well.', 'Use teaches well.'),
         'well teacher / teaches well': tri('Teaches well верно, но well teacher неверно. Перед teacher нужно good.', 'Teaches well правильно, але well teacher неправильно. Перед teacher потрібно good.', 'Use good teacher.'),
       },
@@ -865,7 +865,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       correctAnswer: 'careful driver / drives carefully',
       correctFeedback: tri('Да. Careful рядом с driver, carefully рядом с drives.', 'Так. Careful поруч із driver, carefully поруч із drives.', 'Yes. Careful driver / drives carefully.'),
       wrong: {
-        'carefully driver / drives careful': tri('Оба куска перепутаны. Нужно: careful driver / drives carefully.', 'Обидва шматки переплутані. Потрібно: careful driver / drives carefully.', 'Use careful driver / drives carefully.'),
+        'carefully driver / drives careful': tri('Оба куска перепутаны. Нужно: careful driver / drives carefully.', 'Обидва звороти переплутані. Потрібно: careful driver / drives carefully.', 'Use careful driver / drives carefully.'),
         'careful driver / drives careful': tri('Careful driver верно, но drives careful неверно. Действие drives требует carefully.', 'Careful driver правильно, але drives careful неправильно. Дія drives потребує carefully.', 'Use drives carefully.'),
         'carefully driver / drives carefully': tri('Drives carefully верно, но carefully driver неверно. Перед driver нужно careful.', 'Drives carefully правильно, але carefully driver неправильно. Перед driver потрібно careful.', 'Use careful driver.'),
       },
@@ -884,7 +884,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       correctAnswer: 'sounds strange / looked strangely',
       correctFeedback: tri('Да. Sounds strange, но looked strangely.', 'Так. Sounds strange, але looked strangely.', 'Yes. Sounds strange / looked strangely.'),
       wrong: {
-        'sounds strangely / looked strange': tri('Оба куска перепутаны. Sounds берет strange, looked at me берет strangely.', 'Обидва шматки переплутані. Sounds бере strange, looked at me бере strangely.', 'Use sounds strange / looked strangely.'),
+        'sounds strangely / looked strange': tri('Оба куска перепутаны. Sounds берет strange, looked at me берет strangely.', 'Обидва звороти переплутані. Sounds бере strange, looked at me бере strangely.', 'Use sounds strange / looked strangely.'),
         'sounds strange / looked strange': tri('Sounds strange верно, но looked strange не показывает, как он посмотрел. Нужно looked strangely.', 'Sounds strange правильно, але looked strange не показує, як він подивився. Потрібно looked strangely.', 'Use looked strangely.'),
         'sounds strangely / looked strangely': tri('Looked strangely верно, но sounds strangely здесь лишнее. Нормально: sounds strange.', 'Looked strangely правильно, але sounds strangely тут зайве. Нормально: sounds strange.', 'Use sounds strange.'),
       },

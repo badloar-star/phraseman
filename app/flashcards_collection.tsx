@@ -1,11 +1,12 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import Reanimated, { FadeInDown } from 'react-native-reanimated';
+// зачем: Reanimated/FadeInDown остались без потребителей после снятия входного
+// stagger'а со списка карточек — экран обязан открываться статично.
 import { useFeatureAccess } from '../components/PremiumContext';
 import { useAudio } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -26,8 +27,12 @@ import {
     type ViewToken,
 } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import CollectionLimitHeader from '../components/flashcards/CollectionLimitHeader';
+import { loadFlashcardStatuses, type FlashcardStatusMap } from './flashcards/cardStatus';
+import StatusFilterChips from '../components/flashcards/StatusFilterChips';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -37,6 +42,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { isLightThemeMode } from '../constants/theme';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
 import { Flashcard, loadFlashcards, removeFlashcard, saveFlashcards } from '../hooks/use-flashcards';
@@ -100,6 +106,7 @@ import {
 import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
 import { safeRouterBack } from './navigation_back';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
 const flashcardFlipEasing = Easing.out(Easing.cubic);
@@ -290,10 +297,42 @@ export default function FlashcardsScreen() {
   const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
-  const isLightTheme = false;
+  // зачем: был мёртвый стаб `= false` — светлые ветки ниже (тема пака, альфа
+  // градиента карточки) никогда не срабатывали, и в «Нефрите» карточка идиомы
+  // оставалась тёмной с нечитаемым текстом. Флаг считаем от реальной темы.
+  const isLightTheme = isLightThemeMode(themeMode);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const flashcardsTarget = flashcardsCacheTarget(studyTarget);
+
+  // зачем (макет B1 `.cdot`): статусы изучения для цветных точек в списке.
+  // FIREBASE: читаем только локальный AsyncStorage (тот же ключ, что пишет
+  // свайп-тренировка) — ноль запросов к Firestore. Обновляем на фокусе, чтобы
+  // после тренировки точки были свежими, но не чаще: список не должен
+  // перечитывать хранилище на каждый ре-рендер.
+  const [cardStatuses, setCardStatuses] = useState<FlashcardStatusMap>({});
+
+  // Подписи чипов фильтра по статусу (макет B1 `.fchips`).
+  const statusChipLabels = useMemo(
+    () => ({
+      all: triLang(lang, { ru: 'Все', uk: 'Усі', es: 'Todas', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }),
+      new: triLang(lang, { ru: 'Новые', uk: 'Нові', es: 'Nuevas', 'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
+      learning: triLang(lang, { ru: 'Учу', uk: 'Вчу', es: 'Aprendiendo', 'pt-BR': 'Aprendendo', vi: 'Đang học', id: 'Belajar', tr: 'Öğreniyorum', pl: 'Uczę się' }),
+      review: triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repasar', 'pt-BR': 'Revisar', vi: 'Ôn lại', id: 'Ulangi', tr: 'Tekrar', pl: 'Powtórz' }),
+      mastered: triLang(lang, { ru: 'Освоены', uk: 'Засвоєні', es: 'Dominadas', 'pt-BR': 'Dominados', vi: 'Đã thuộc', id: 'Dikuasai', tr: 'Pekişti', pl: 'Opanowane' }),
+      weak: triLang(lang, { ru: 'Слабые', uk: 'Слабкі', es: 'Difíciles', 'pt-BR': 'Difíceis', vi: 'Còn yếu', id: 'Lemah', tr: 'Zayıf', pl: 'Słabe' }),
+    }),
+    [lang],
+  );
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      void loadFlashcardStatuses(flashcardsTarget).then((map) => {
+        if (!cancelled) setCardStatuses(map);
+      });
+      return () => { cancelled = true; };
+    }, [flashcardsTarget]),
+  );
   const savedCardsCache = _savedCardsCacheByTarget[flashcardsTarget] ?? null;
   const customCardsCache = _customCardsCacheByTarget[flashcardsTarget] ?? null;
   const strLang: Lang = lang;
@@ -526,9 +565,13 @@ export default function FlashcardsScreen() {
     return getCardsForCategory(activeCat, savedCards, customCards, systemCardsForTarget);
   }, [activeCat, savedCards, customCards, collectionCustomCards, systemCardsForTarget]);
   const filteredCards = useMemo(
-    () => applyCardFilter(cards, activeFilter),
-    [cards, activeFilter],
+    () => applyCardFilter(cards, activeFilter, cardStatuses),
+    [cards, activeFilter, cardStatuses],
   );
+
+  // зачем: чипы считаем по ПОЛНОМУ набору, а не по отфильтрованному — иначе
+  // после выбора «Слабые» остальные чипы исчезли бы и вернуться было бы некуда.
+  const cardIds = useMemo(() => cards.map((c) => c.id), [cards]);
 
   const viewabilityConfig = useMemo(() => ({ itemVisiblePercentThreshold: 45 }), []);
   const onViewableItemsChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -741,9 +784,14 @@ export default function FlashcardsScreen() {
     // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
     const mappedSavedQuick = saved.map(savedToCard);
     const cacheKeyEarly = marketOwnedIdsCacheKey([...ownedIdsEarly, ...communityOwnedEarly].sort());
+    /**
+     * зачем: раньше UGC-наборы исключались из кэша (`communityOwnedEarly.length === 0`),
+     * потому что хаб гарантированно подкладывал карточки через `await` перед переходом.
+     * Теперь переход мгновенный и staging догоняет фоном, поэтому первый кадр UGC берём
+     * из кэша — ключ `cacheKeyEarly` уже включает community-id, так что подмены наборов нет.
+     */
     const cacheHit =
-      communityOwnedEarly.length === 0 &&
-      builtMarketCache &&
+      !!builtMarketCache &&
       builtMarketCache.ownedKey === cacheKeyEarly &&
       builtMarketCache.cards.length > 0;
     if (cacheHit) {
@@ -996,14 +1044,14 @@ export default function FlashcardsScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('info', {
-          ru: 'Набор ещё не куплен. Его можно открыть за осколки в магазине (вкладка с наборами карточек).',
-          uk: 'Набір ще не куплено. Його можна відкрити за уламки в магазині (вкладка з наборами карток).',
-          es: 'Aún no has comprado este pack. Puedes obtenerlo por fragmentos en la tienda (pestaña de packs de Tarjetas).',
-          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por fragmentos na loja (aba de packs de Cartões).',
-          vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng mảnh trong cửa hàng (tab pack Thẻ).',
-          id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan shard di toko (tab pack Kartu).',
-          tr: 'Bu paket henüz satın alınmadı. Mağazada parçalarla açabilirsin (Kart paketleri sekmesi).',
-          pl: 'Ten pakiet nie został jeszcze kupiony. Możesz otworzyć go za odłamki w sklepie (zakładka pakietów Kart).',
+          ru: 'Набор ещё не куплен. Его можно открыть за жемчужины в магазине (вкладка с наборами карточек).',
+          uk: 'Набір ще не куплено. Його можна відкрити за перлини в магазині (вкладка з наборами карток).',
+          es: 'Aún no has comprado este pack. Puedes obtenerlo por perlas en la tienda (pestaña de packs de Tarjetas).',
+          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por pérolas na loja (aba de packs de Cartões).',
+          vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng xu trong cửa hàng (tab pack Thẻ).',
+          id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan koin di toko (tab pack Kartu).',
+          tr: 'Bu paket henüz satın alınmadı. Mağazada jetonlarla açabilirsin (Kart paketleri sekmesi).',
+          pl: 'Ten pakiet nie został jeszcze kupiony. Możesz otworzyć go za monety w sklepie (zakładka pakietów Kart).',
         }),
       );
       router.replace('/flashcards' as any);
@@ -1156,19 +1204,11 @@ export default function FlashcardsScreen() {
       });
       setIsFlipped(false);
       flipAnim.setValue(0);
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('success', {
-          ru: 'Карточка удалена.',
-          uk: 'Картку видалено.',
-          es: 'Tarjeta eliminada.',
-          'pt-BR': 'Cartão removido.',
-          vi: 'Đã xóa thẻ.',
-          id: 'Kartu dihapus.',
-          tr: 'Kart silindi.',
-          pl: 'Karta usunięta.',
-        }),
-      );
+      // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): тост «Карточка удалена» убран —
+      // он дублировал плашку отмены, которая говорит то же самое И даёт
+      // кнопку «Отменить». Два уведомления об одном действии одновременно
+      // выглядели как сбой. Ошибку удаления по-прежнему показываем тостом:
+      // там плашки отмены не будет.
     } catch {
       emitAppEvent(
         'action_toast',
@@ -1187,6 +1227,54 @@ export default function FlashcardsScreen() {
   }, [cards, customCards, flipAnim, studyTarget]);
 
   // ── Delete with animation ──────────────────────────────────────────────────
+  /**
+   * зачем (макет B1 `.snackx` «Карточка удалена · ↩ Отменить»): удаление было
+   * НЕОБРАТИМЫМ — промахнулся долгим нажатием и карточка исчезла навсегда,
+   * вместе с её прогрессом. Держим последнюю удалённую в памяти и даём вернуть
+   * её одним тапом. 5 секунд: меньше — не успеть заметить, больше — плашка
+   * начинает мешать.
+   */
+  const [undoCard, setUndoCard] = useState<{ card: CardItem; idx: number } | null>(null);
+  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearUndo = useCallback(() => {
+    if (undoTimerRef.current) { clearTimeout(undoTimerRef.current); undoTimerRef.current = null; }
+    setUndoCard(null);
+  }, []);
+
+  const restoreDeletedCard = useCallback(async () => {
+    const pending = undoCard;
+    if (!pending) return;
+    clearUndo();
+    try {
+      if (pending.card.categoryId === 'saved') {
+        // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): saveFlashcards ЗАМЕНЯЕТ весь
+        // список, а не добавляет одну карточку. Раньше сюда передавался массив
+        // из одной карточки — нажатие «Отменить» СТИРАЛО ВСЕ остальные
+        // сохранённые карточки юзера. Читаем актуальный список с диска (там
+        // же withWriteLock, гонки с параллельным удалением исключены) и
+        // возвращаем карточку в него.
+        const current = await loadFlashcards(studyTarget);
+        if (!current.some((c) => c.id === pending.card.id)) {
+          await saveFlashcards([pending.card as unknown as Flashcard, ...current], studyTarget);
+        }
+        setSavedCards((prev) => (prev.some((c) => c.id === pending.card.id) ? prev : [pending.card, ...prev]));
+      } else if (pending.card.categoryId === 'custom') {
+        const restored = [pending.card, ...customCards.filter((c) => c.id !== pending.card.id)];
+        await writeCustomCards(restored, studyTarget);
+        setCustomCards(restored);
+      }
+    } catch {
+      // Восстановление не удалось — не роняем экран; карточка просто
+      // останется удалённой, как и было до тапа «Отменить».
+    }
+  }, [clearUndo, customCards, studyTarget, undoCard]);
+
+  // Гасим таймер при уходе с экрана, чтобы не дёргать setState после размонтирования.
+  useEffect(() => () => {
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+  }, []);
+
   const handleDeleteCard = useCallback(async (item: CardItem, itemIdx: number) => {
     const anim = getDeleteAnim(item.id);
     anim.opacity.setValue(1);
@@ -1204,6 +1292,10 @@ export default function FlashcardsScreen() {
     ]).start(async () => {
       await deleteCardById(item.id, itemIdx);
       setDeletingId(null);
+      // Запоминаем удалённую карточку и запускаем окно отмены.
+      if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+      setUndoCard({ card: item, idx: itemIdx });
+      undoTimerRef.current = setTimeout(() => setUndoCard(null), 5000);
     });
   }, [deleteCardById, getDeleteAnim]);
 
@@ -1499,7 +1591,13 @@ export default function FlashcardsScreen() {
   }
 
   // ── Empty state ────────────────────────────────────────────────────────────
-  if (!loading && filteredCards.length === 0) return (
+  // зачем: раньше условие смотрело только на filteredCards — и когда фильтр
+  // (в т.ч. новый по статусу) ничего не находил, юзеру показывали онбординг
+  // «Создай первую карточку», хотя карточки у него ЕСТЬ. Теперь настоящий
+  // онбординг — только когда набор пуст целиком; пустой результат фильтра
+  // остаётся в обычном экране со списком, где видны чипы и можно вернуться
+  // к «Все».
+  if (!loading && cards.length === 0) return (
     <ScreenGradient artBackdrop="flashcards">
     <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
@@ -1664,6 +1762,121 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
+        {/* зачем (аудит §2.2, макет B1 `.col-cnt`/`.col-bar`): лимит бесплатных
+            карточек был НЕВИДИМ до упора — юзер спокойно сохранял и внезапно
+            получал стену пейвола на 21-й. Теперь остаток виден заранее, и цвет
+            полосы предупреждает на подходе (жёлтый с 15/20, красный на упоре).
+            Только на вкладке своих карточек — лимит касается именно их. */}
+        {activeCat === 'custom' && (
+          <CollectionLimitHeader saved={savedCards.length} isPremium={isPremium} t={t} />
+        )}
+
+        {/* Плашка отмены удаления (макет B1 `.snackx`). Плавает над списком,
+            чтобы не сдвигать контент — иначе список прыгал бы на каждое
+            удаление. Тап-зона кнопки 44px (§4.6), обводок нет (§0.D). */}
+        {undoCard && (
+          <View
+            pointerEvents="box-none"
+            style={{
+              position: 'absolute',
+              left: 16,
+              right: 16,
+              bottom: Math.max(bottomInset, 12) + 16,
+              zIndex: 50,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 12,
+              paddingLeft: 16,
+              paddingRight: 8,
+              paddingVertical: 8,
+              borderRadius: 16,
+              backgroundColor: t.bgSurface2 ?? t.bgSurface,
+              shadowColor: '#000',
+              shadowOpacity: 0.32,
+              shadowRadius: 14,
+              shadowOffset: { width: 0, height: 6 },
+              ...noAndroidOutline,
+            }}
+          >
+            {/* зачем: text-integrity — текст тоста переносится, снекбар растёт;
+                заодно count сайта в файле возвращается к базлайну (x1). */}
+            <FlowText testID="flashcards-delete-toast-text" provenance="authored" style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
+              {triLang(lang, {
+                ru: 'Карточка удалена',
+                uk: 'Картку видалено',
+                es: 'Tarjeta eliminada',
+                'pt-BR': 'Cartão excluído',
+                vi: 'Đã xoá thẻ',
+                id: 'Kartu dihapus',
+                tr: 'Kart silindi',
+                pl: 'Fiszka usunięta',
+              })}
+            </FlowText>
+            <TouchableOpacity
+              onPress={restoreDeletedCard}
+              activeOpacity={0.8}
+              style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 12 }}
+            >
+              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
+                ↩ {triLang(lang, {
+                  ru: 'Отменить',
+                  uk: 'Скасувати',
+                  es: 'Deshacer',
+                  'pt-BR': 'Desfazer',
+                  vi: 'Hoàn tác',
+                  id: 'Urungkan',
+                  tr: 'Geri al',
+                  pl: 'Cofnij',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* зачем (макет B1 `.fchips`): отобрать проблемные карточки было
+            невозможно — список шёл одной кучей. Именно слабые надо тренировать
+            первыми, теперь до них один тап. Чип показывается только если такие
+            карточки есть: пустой фильтр — обман, а не выбор. */}
+        <StatusFilterChips
+          activeFilter={activeFilter}
+          onChange={setActiveFilter}
+          cardIds={cardIds}
+          statuses={cardStatuses}
+          labels={statusChipLabels}
+          t={t}
+        />
+
+        {/* зачем: фильтр может не найти ничего (напр. «Слабые», когда все
+            карточки освоены). Раньше это уводило в онбординг «создай первую
+            карточку» — теперь честно говорим, что в этом фильтре пусто, и
+            даём вернуться к «Все» одним тапом, не теряя контекст. */}
+        {!loading && cards.length > 0 && filteredCards.length === 0 && (
+          <View style={{ alignItems: 'center', paddingHorizontal: 32, paddingVertical: 28, gap: 12 }}>
+            <Ionicons name="funnel-outline" size={40} color={t.textGhost} />
+            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'В этом фильтре пока пусто',
+                uk: 'У цьому фільтрі поки порожньо',
+                es: 'Este filtro está vacío',
+                'pt-BR': 'Este filtro está vazio',
+                vi: 'Bộ lọc này chưa có thẻ',
+                id: 'Filter ini masih kosong',
+                tr: 'Bu filtrede henüz kart yok',
+                pl: 'Ten filtr jest pusty',
+              })}
+            </Text>
+            <TouchableOpacity
+              onPress={() => setActiveFilter('all')}
+              activeOpacity={0.8}
+              style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 22, borderRadius: 999, backgroundColor: `${t.accent}26` }}
+            >
+              <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
+                {statusChipLabels.all}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
         {/* Slide wrapper — clips and drives category-switch slide transition */}
         <View
           style={{ flex: 1, overflow: 'hidden' }}
@@ -1691,7 +1904,9 @@ export default function FlashcardsScreen() {
           </TouchableOpacity>
         )}
 
-        {filteredCards.length > 0 && (
+        {/* зачем: в «Создать мои карточки» (custom) прячем «Тренировать»/«Слушать» —
+            эти режимы уже доступны в других разделах, здесь экран только про создание */}
+        {filteredCards.length > 0 && activeCat !== 'custom' && (
           <View style={{ flexDirection: 'row', gap: 10, marginHorizontal: 16, marginTop: 10, marginBottom: 4 }}>
           <TouchableOpacity
             onPress={openSwipeGame}
@@ -1768,8 +1983,6 @@ export default function FlashcardsScreen() {
               paddingVertical: 10,
               paddingHorizontal: 12,
               borderRadius: 15,
-              borderTopWidth: 1,
-              borderTopColor: glassFill(t.accent, 0.14),
               backgroundColor: glassFill(t.bgSurface, 0.46),
               flexDirection: 'row',
               alignItems: 'center',
@@ -1940,6 +2153,7 @@ export default function FlashcardsScreen() {
               <FlashcardListItem
                 item={item}
                 itemIdx={itemIdx}
+                status={cardStatuses[item.id]}
                 lang={cardContentLang}
                 activeCat={activeCat}
                 isPremium={isPremium}
@@ -1989,19 +2203,15 @@ export default function FlashcardsScreen() {
                 setListItemRowRef={setListItemRowRef}
                 packCardTheme={packCardTheme}
                 isRowInFocus={itemIdx === index}
-                chevronHintDelayMs={
-                  packPremiumVisual
-                    ? 500 + Math.min(itemIdx, 24) * 36
-                    : 0
-                }
+                // зачем: задержка была привязана к убранному FadeInDown-stagger'у и
+                // растягивала «шевеление» подсказок по списку. Открытие статично — 0.
+                chevronHintDelayMs={0}
               />
             );
-            if (!packPremiumVisual) return cardEl;
-            return (
-              <Reanimated.View entering={FadeInDown.duration(420).delay(Math.min(itemIdx, 24) * 36)}>
-                {cardEl}
-              </Reanimated.View>
-            );
+            // зачем: раньше премиум-карточки оборачивались в FadeInDown со stagger'ом
+            // до 24*36мс — список «наползал» снизу при каждом входе в раздел. Владелец
+            // просил открывать статично, поэтому обёртка убрана: карточка сразу на месте.
+            return cardEl;
           }}
           ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
           contentContainerStyle={{ paddingHorizontal: 16, paddingTop: listPadTop, paddingBottom: listPadBottom }}

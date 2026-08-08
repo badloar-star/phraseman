@@ -17,9 +17,9 @@ describe('App Check initialization cost guard', () => {
       newReactNativeFirebaseAppCheckProvider: () => ({ configure }),
     };
     jest.doMock('../app/config', () => ({
+      APP_CHECK_REAL_ATTESTATION_ENABLED: true,
       CLOUD_SYNC_ENABLED: true,
       IS_EXPO_GO: false,
-      IS_STORE_RELEASE: true,
     }));
     jest.doMock('@react-native-firebase/app-check', () => ({
       __esModule: true,

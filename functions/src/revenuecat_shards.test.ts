@@ -4,6 +4,8 @@ import { __revenueCatWebhookTestHooks } from './revenuecat_shards';
 
 const {
   candidateUserIds,
+  premiumAuthoritativeUserIds,
+  resolvePremiumOwnerRef,
   isRevenueCatAnonymousId,
   looksLikePremiumSubscription,
   premiumPlanFromEvent,
@@ -12,6 +14,7 @@ const {
   transferTargetIds,
   transferSourceIds,
   revenueCatLifecycleReasonFields,
+  handlePremiumSubscriptionEvent,
 } = __revenueCatWebhookTestHooks;
 
 describe('RevenueCat webhook premium matching', () => {
@@ -46,16 +49,21 @@ describe('RevenueCat webhook premium matching', () => {
       '...normalizeRevenueCatFinancials(event)',
       'billingCadence: classifyRevenueCatBillingCadence(event)',
     ]) expect(source).toContain(field);
-    expect(source).toContain('const progressPatch: Record<string, string>');
+    expect(source).toContain('progress: aggregate.progressPatch');
     expect(source).not.toContain('progressPatch.grossUsdMicros');
     expect(source).not.toContain('progressPatch.estimatedProceedsUsdMicros');
   });
   it('accepts explicit premium entitlement events', () => {
     expect(looksLikePremiumSubscription({
       type: 'INITIAL_PURCHASE',
-      product_id: 'store_sku_123',
+      product_id: 'phraseman_premium_monthly',
       entitlement_ids: ['premium'],
     })).toBe(true);
+    expect(looksLikePremiumSubscription({
+      type: 'INITIAL_PURCHASE',
+      product_id: 'store_sku_123',
+      entitlement_ids: ['premium'],
+    })).toBe(false);
   });
 
   it('accepts premium-like subscription product ids and infers plan', () => {
@@ -66,6 +74,64 @@ describe('RevenueCat webhook premium matching', () => {
     expect(premiumPlanFromEvent(yearly)).toBe('yearly');
     expect(looksLikePremiumSubscription(monthly)).toBe(true);
     expect(premiumPlanFromEvent(monthly)).toBe('monthly');
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_premium_yearly_4999', entitlement_ids: ['premium'],
+    })).toBe(true);
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_premium_yearly_1234567', entitlement_ids: ['premium'],
+    })).toBe(false);
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_premium_yearly_fake', entitlement_ids: ['premium'],
+    })).toBe(false);
+  });
+
+  it('accepts Google Play base-plan product ids and preserves plan inference', () => {
+    const monthly = {
+      product_id: 'phraseman_premium_monthly_399:monthly-base',
+      entitlement_ids: ['premium'],
+    };
+    const yearly = {
+      product_id: 'phraseman_premium_yearly_2399:yearly-base',
+      entitlement_ids: ['premium'],
+    };
+
+    expect(looksLikePremiumSubscription(monthly)).toBe(true);
+    expect(premiumPlanFromEvent(monthly)).toBe('monthly');
+    expect(looksLikePremiumSubscription(yearly)).toBe(true);
+    expect(premiumPlanFromEvent(yearly)).toBe('yearly');
+  });
+
+  it('rejects lookalike product families, unsafe base-plan suffixes, and non-premium entitlements', () => {
+    for (const productId of [
+      'phraseman_premium_weekly_399:monthly-base',
+      'not_phraseman_premium_monthly_399:monthly-base',
+      'phraseman_premium_monthly_fake:monthly-base',
+      'phraseman_premium_monthly_399:',
+      'phraseman_premium_monthly_399:-monthly-base',
+      'phraseman_premium_monthly_399:monthly_base',
+      'phraseman_premium_monthly_399:monthly/base',
+      'phraseman_premium_monthly_399:monthly-base:extra',
+    ]) {
+      expect(looksLikePremiumSubscription({
+        product_id: productId,
+        entitlement_ids: ['premium'],
+      })).toBe(false);
+    }
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_premium_monthly_399:monthly-base',
+      entitlement_ids: ['premium-plus'],
+    })).toBe(false);
+  });
+
+  it('preserves legacy premium product ids and their plan inference', () => {
+    for (const [productId, expectedPlan] of [
+      ['phraseman_premium_monthly', 'monthly'],
+      ['phraseman_premium_yearly_2399', 'yearly'],
+      ['phraseman_premium_lifetime_v1', 'lifetime'],
+    ] as const) {
+      expect(looksLikePremiumSubscription({ product_id: productId })).toBe(true);
+      expect(premiumPlanFromEvent({ product_id: productId })).toBe(expectedPlan);
+    }
   });
 
   it('detects lifetime product and infers plan=lifetime', () => {
@@ -85,12 +151,19 @@ describe('RevenueCat webhook premium matching', () => {
     })).toBe(false);
   });
 
-  it('accepts premium-like offering ids when product id is opaque', () => {
+  it('rejects unrelated subscription-like SKUs and offering labels without exact premium authority', () => {
+    for (const productId of ['subtitle_pack', 'sub_bundle', 'subscription_tips']) {
+      expect(looksLikePremiumSubscription({
+        type: 'INITIAL_PURCHASE',
+        product_id: productId,
+        presented_offering_id: 'premium',
+      })).toBe(false);
+    }
     expect(looksLikePremiumSubscription({
       type: 'INITIAL_PURCHASE',
-      product_id: 'sku_001',
-      presented_offering_id: 'premium',
-    })).toBe(true);
+      product_id: 'opaque_store_sku',
+      entitlement_ids: ['premium'],
+    })).toBe(false);
   });
 
   it('recognizes RevenueCat anonymous ids while preserving them as a fallback target', () => {
@@ -119,24 +192,101 @@ describe('RevenueCat webhook premium matching', () => {
     expect(prioritizeUserCandidates(candidates)).toEqual([stable, anonymousA, anonymousB]);
   });
 
-  it('uses Phraseman stable id attributes before RevenueCat anonymous ids', () => {
+  it('keeps subscriber attributes as evidence only and never lets them select a victim account', () => {
     const anonymous = '$RCAnonymousID:cccccccccccccccccccccccccccccccc';
-    const stable = 'stable-user-123';
+    const victim = 'victim-stable-user';
+    const legitimate = 'legitimate-stable-user';
 
-    const candidates = candidateUserIds({
-      app_user_id: anonymous,
+    const event = {
+      app_user_id: legitimate,
       original_app_user_id: anonymous,
-      aliases: [anonymous],
+      aliases: [legitimate, anonymous],
       subscriber_attributes: {
         phraseman_uid: {
-          value: stable,
+          value: victim,
           updated_at_ms: 1710000000000,
         },
       },
-    });
+    };
 
-    expect(candidates).toEqual([stable, anonymous]);
-    expect(prioritizeUserCandidates(candidates)).toEqual([stable, anonymous]);
+    expect(candidateUserIds(event)).toContain(victim);
+    expect(premiumAuthoritativeUserIds(event)).toEqual([legitimate]);
+    expect(premiumAuthoritativeUserIds({ ...event, app_user_id: anonymous })).toEqual([legitimate]);
+    expect(premiumAuthoritativeUserIds({
+      app_user_id: anonymous,
+      original_app_user_id: '$RCAnonymousID:dddddddddddddddddddddddddddddddd',
+      aliases: [anonymous],
+      subscriber_attributes: { phraseman_uid: { value: victim } },
+    })).toEqual([]);
+  });
+
+  it.each([
+    ['hidden alias', ['old-a', 'canonical-b'], {
+      users: {
+        'old-a': { identityHidden: true, canonicalStableId: 'canonical-b' },
+        'canonical-b': { identityHidden: false },
+      },
+      auth_links: {},
+      account_identity_owner_map: {},
+    }],
+    ['provider link', ['provider-a'], {
+      users: { 'canonical-b': { identityHidden: false } },
+      auth_links: { 'provider-a': { stable_id: 'canonical-b' } },
+      account_identity_owner_map: {},
+    }],
+  ])('resolves one non-hidden canonical premium owner through %s', async (_label, candidates, documents) => {
+    const db: any = {
+      collection: (collection: 'users' | 'auth_links' | 'account_identity_owner_map') => ({
+        doc: (id: string) => ({ collection, id }),
+      }),
+    };
+    const tx: any = {
+      get: async (ref: { collection: 'users' | 'auth_links' | 'account_identity_owner_map'; id: string }) => {
+        const data = (documents as any)[ref.collection][ref.id];
+        return { exists: data !== undefined, data: () => data, ref };
+      },
+    };
+    await expect(resolvePremiumOwnerRef(tx, db, candidates)).resolves.toMatchObject({
+      status: 'resolved', uid: 'canonical-b',
+    });
+  });
+
+  it('resolves a removed loser through the durable identity owner map', async () => {
+    const documents: Record<string, Record<string, any>> = {
+      users: { winner: { identityHidden: false } },
+      auth_links: {},
+      account_identity_owner_map: { loser: { canonicalStableId: 'winner' } },
+    };
+    const db: any = {
+      collection: (collection: string) => ({ doc: (id: string) => ({ collection, id }) }),
+    };
+    const tx: any = {
+      get: async (ref: { collection: string; id: string }) => {
+        const data = documents[ref.collection]?.[ref.id];
+        return { exists: data !== undefined, data: () => data, ref };
+      },
+    };
+
+    await expect(resolvePremiumOwnerRef(tx, db, ['loser'])).resolves.toMatchObject({
+      status: 'resolved', uid: 'winner',
+    });
+  });
+
+  it('quarantines conflicting existing canonical premium roots', async () => {
+    const db: any = {
+      collection: (collection: 'users' | 'auth_links' | 'account_identity_owner_map') => ({ doc: (id: string) => ({ collection, id }) }),
+    };
+    const tx: any = {
+      get: async (ref: { collection: 'users' | 'auth_links' | 'account_identity_owner_map'; id: string }) => {
+        const data = ref.collection === 'users' && ['root-a', 'root-b'].includes(ref.id)
+          ? { identityHidden: false }
+          : undefined;
+        return { exists: data !== undefined, data: () => data, ref };
+      },
+    };
+    await expect(resolvePremiumOwnerRef(tx, db, ['root-a', 'root-b'])).resolves.toEqual({
+      status: 'ambiguous', reason: 'conflicting_canonical_owners', ownerUids: ['root-a', 'root-b'],
+    });
   });
 
   it('does not drop paid Premium events just because only an anonymous RevenueCat id is present', () => {
@@ -144,6 +294,102 @@ describe('RevenueCat webhook premium matching', () => {
 
     expect(source).not.toContain('anonymous_only_unmatched');
     expect(source).not.toContain('allowAnonymousOnly: false');
+  });
+});
+
+describe('RevenueCat premium lineage transaction contract', () => {
+  const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+
+  it('uses canonical lineage reduction and never invents durable premium identity or time', () => {
+    const premiumHandler = source.slice(
+      source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
+      source.indexOf('async function handleShardPurchaseEvent'),
+    );
+    expect(premiumHandler).toMatch(/normalizePremiumLineageEvent\(event/);
+    expect(premiumHandler).toContain('applyPremiumLineageEvent');
+    expect(premiumHandler).toContain('aggregatePremiumLineages');
+    expect(premiumHandler).not.toContain('event_timestamp_ms || Date.now()');
+    expect(source).not.toContain('handlePremiumSubscriptionEventLegacy');
+  });
+
+  it('checks receipt and deletion denial before lineage/projection writes and never creates a missing user', () => {
+    const premiumHandler = source.slice(
+      source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
+      source.indexOf('async function handleShardPurchaseEvent'),
+    );
+    expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_TOMBSTONES)');
+    expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_AUTH_MARKERS)');
+    expect(premiumHandler).toContain("db.collection('revenuecat_premium_denials')");
+    expect(premiumHandler.indexOf('processedSnap')).toBeLessThan(premiumHandler.indexOf('tx.set(lineageRef'));
+    expect(premiumHandler.indexOf('deletionSnap')).toBeLessThan(premiumHandler.indexOf('tx.set(lineageRef'));
+    expect(premiumHandler).toContain("reason: 'missing_user_candidate'");
+    expect(source).toContain('if (!snap.exists) return null;');
+    expect(premiumHandler).toContain('boundPremiumOwnerCandidates(premiumAuthoritativeUserIds(event))');
+    expect(premiumHandler).not.toContain('.slice(0, 16)');
+  });
+
+  it('keeps the webhook handler as a thin status/body-compatible wrapper', () => {
+    const handler = source.slice(
+      source.indexOf('async function handlePremiumSubscriptionEvent('),
+      source.indexOf('async function handleShardPurchaseEvent'),
+    );
+    expect(handler).toContain('applyVerifiedPremiumSubscriptionEvent(');
+    expect(handler).toContain('res.status(outcome.statusCode).json(outcome.body)');
+    expect(handler).toContain("res.status(500).send('Internal error')");
+    expect(handler).not.toContain("tx.set(userRef");
+  });
+
+  it('denies an auth-uid-only pending deletion marker before any user or lineage write', async () => {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const writes: Array<{ collection: string; id: string; data: any }> = [];
+    const ref = (collection: string, id: string) => ({
+      collection,
+      id,
+      get: async () => ({
+        exists: collection === 'account_deletion_auth_markers' && id === 'auth-only',
+        data: () => collection === 'account_deletion_auth_markers' ? { status: 'pending' } : undefined,
+      }),
+    });
+    const db: any = {
+      collection: (collection: string) => ({ doc: (id: string) => ref(collection, id) }),
+      runTransaction: async (work: (tx: any) => Promise<unknown>) => work({
+        get: (documentRef: any) => documentRef.get(),
+        set: (documentRef: any, data: any) => writes.push({ collection: documentRef.collection, id: documentRef.id, data }),
+      }),
+    };
+    const realFieldValue = admin.firestore.FieldValue;
+    const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    const res: any = { statusCode: 0, body: null };
+    res.status = (code: number) => { res.statusCode = code; return res; };
+    res.json = (body: any) => { res.body = body; return res; };
+    res.send = (body: any) => { res.body = body; return res; };
+    try {
+      await handlePremiumSubscriptionEvent({
+        id: 'evt-delete', type: 'RENEWAL', app_id: 'app.phraseman', environment: 'PRODUCTION',
+        store: 'APP_STORE', original_transaction_id: 'orig-delete', transaction_id: 'tx-delete',
+        product_id: 'phraseman_premium_yearly', event_timestamp_ms: 2_000_000,
+        expiration_at_ms: 9_000_000, app_user_id: 'auth-only', entitlement_ids: ['premium'],
+      } as any, 'RENEWAL', 'phraseman_premium_yearly', res);
+      expect(res.body).toMatchObject({ updated: false, reason: 'account_deletion_pending_or_tombstoned' });
+      expect(writes).toHaveLength(1);
+      expect(writes[0]).toMatchObject({ collection: 'revenuecat_premium_denials' });
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+});
+
+describe('RevenueCat shard refund durable identity', () => {
+  it('rejects missing immutable event identity/time instead of using a Date.now idempotency key', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+    const refund = source.slice(source.indexOf('async function handleShardRefundEvent'), source.indexOf('export function transferTargetIds'));
+    expect(refund).toContain('const eventId = cleanId(event.id);');
+    expect(refund).toContain('const refundEventTimeMs = eventMs(event.event_timestamp_ms);');
+    expect(refund).toContain('if (!originalTxId || !eventId || refundEventTimeMs === null)');
+    expect(refund).not.toContain('Date.now()}`');
   });
 });
 
@@ -163,24 +409,54 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
     const store: Record<string, Record<string, any>> = {
       users: { ...initialUsers },
       revenuecat_premium_events: {},
+      revenuecat_premium_denials: {},
+      revenuecat_premium_lineages: {},
+      account_deletion_tombstones: {},
+      account_deletion_auth_markers: {},
+      account_deletion_permanent_denials: {},
+      auth_links: {},
     };
-    const snap = (id: string, data: any) => ({ id, exists: !!data, data: () => data });
+    const snap = (coll: string, id: string, data: any) => ({ id, ref: docApi(coll, id), exists: !!data, data: () => data });
     const docApi = (coll: string, id: string) => ({
+      collection: coll,
       id,
-      get: async () => snap(id, store[coll]?.[id]),
+      path: `${coll}/${id}`,
+      get: async () => snap(coll, id, store[coll]?.[id]),
       set: async (data: any) => {
         store[coll] = store[coll] ?? {};
         const prev = store[coll][id] ?? {};
         const mergedProgress = data.progress ? { ...(prev.progress ?? {}), ...data.progress } : prev.progress;
         store[coll][id] = { ...prev, ...data, ...(mergedProgress ? { progress: mergedProgress } : {}) };
       },
+      update: async (data: any) => {
+        if (store[coll]?.[id] === undefined) throw new Error('not-found');
+        const prev = store[coll][id];
+        const mergedProgress = data.progress ? { ...(prev.progress ?? {}), ...data.progress } : prev.progress;
+        store[coll][id] = { ...prev, ...data, ...(mergedProgress ? { progress: mergedProgress } : {}) };
+      },
+    });
+    const queryApi = (coll: string, field: string, op: string, value: unknown, max = Infinity): any => ({
+      limit: (nextMax: number) => queryApi(coll, field, op, value, nextMax),
+      get: async () => ({
+        docs: Object.entries(store[coll] ?? {})
+          .filter(([, data]) => op === 'in'
+            ? Array.isArray(value) && value.includes(data[field])
+            : data[field] === value)
+          .slice(0, max)
+          .map(([id, data]) => snap(coll, id, data)),
+      }),
     });
     const db: any = {
-      collection: (coll: string) => ({ doc: (id: string) => docApi(coll, id) }),
+      collection: (coll: string) => ({
+        doc: (id: string) => docApi(coll, id),
+        where: (field: string, op: string, value: unknown) => queryApi(coll, field, op, value),
+      }),
       runTransaction: async (fn: (tx: any) => Promise<unknown>) => {
         const tx = {
           get: async (ref: any) => ref.get(),
           set: async (ref: any, data: any) => ref.set(data),
+          update: async (ref: any, data: any) => ref.update(data),
+          delete: async (ref: any) => { delete store[ref.collection][ref.id]; },
         };
         return fn(tx);
       },
@@ -211,6 +487,7 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
       const event = {
         id: 'evt_transfer_1',
         type: 'TRANSFER',
+        event_timestamp_ms: 2_000_000,
         transferred_from: ['$RCAnonymousID:aaa'],
         transferred_to: ['stable-real'],
       } as any;
@@ -237,7 +514,7 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
     fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
     (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
     try {
-      const event = { id: 'evt_dup', type: 'TRANSFER', transferred_from: ['$RCAnonymousID:bbb'], transferred_to: ['stable-2'] } as any;
+      const event = { id: 'evt_dup', type: 'TRANSFER', event_timestamp_ms: 2_000_001, transferred_from: ['$RCAnonymousID:bbb'], transferred_to: ['stable-2'] } as any;
       const res = makeRes();
       await __revenueCatWebhookTestHooks.handleTransferEvent(event, 'TRANSFER', res);
       expect(res.body).toMatchObject({ ok: true, moved: false, reason: 'duplicate' });

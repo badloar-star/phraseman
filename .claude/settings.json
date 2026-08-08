@@ -1,6 +1,18 @@
 {
   "hooks": {
-    "PreToolUse": [],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/admin_app_check_lock_hook.mjs",
+            "timeout": 15,
+            "statusMessage": "Checking admin App Check lock..."
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
@@ -10,6 +22,12 @@
             "command": "node scripts/hooks/plan_content_audio_freshness_hook.mjs",
             "timeout": 120,
             "statusMessage": "Checking plan audio freshness..."
+          },
+          {
+            "type": "command",
+            "command": "node scripts/hooks/layout_stability_hook.mjs",
+            "timeout": 30,
+            "statusMessage": "Checking layout stability contract..."
           }
         ]
       }

@@ -2,13 +2,12 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Animated, Easing, type FlatList } from 'react-native';
 import { Image } from 'expo-image';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { useRouter, useFocusEffect } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -18,17 +17,24 @@ import UnifiedPlayerModal, { PlayerInfo as UnifiedPlayerInfo } from '../componen
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
-import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import AvatarView from '../components/AvatarView';
+
+// Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
+// свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
+const LEGEND_CARD_NAME_GOLD = {
+  color: '#F5C842',
+  textShadowColor: 'rgba(245,200,66,0.45)',
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 6,
+} as const;
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { glassFill } from '../components/GlassSurface';
 import {
   LEAGUES,
-  clubDescPlanned,
   clubNamePlanned,
   GroupMember, LeagueState, LeagueResult,
   checkLeagueOnAppOpen,
@@ -49,9 +55,8 @@ import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId 
 import { getTitleString } from '../constants/titles';
 
 import { getMyWeekPoints } from './hall_of_fame_utils';
-import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { getXPProgress, getLevelFromXP, screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import { getXPProgress, getLevelFromXP, isLightThemeMode, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { monoIcon } from '../constants/monoIcon';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
@@ -61,7 +66,6 @@ import {
 } from './rank_change';
 import RankChangeBanner from '../components/RankChangeBanner';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
-import { subscribeMyArenaClubWarEvent } from './services/arena_club_wars';
 import {
   LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
   LEAGUE_CROWN_NICK_COLOR,
@@ -76,17 +80,14 @@ import {
   type LeagueChestRewardDrop,
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
-import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants } from './league_open_cache_policy';
-import LeagueChatPanel from '../components/LeagueChatPanel';
-import { formatLeagueChatUnreadBadge } from './league_chat_unread';
-import { useLeagueChatUnread } from './use_league_chat_unread';
+import { visibleWallClock } from './visible_wall_clock';
+import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants, shouldShowLeagueSoloParticipant, withMyLivePoints } from './league_open_cache_policy';
+import { LeagueHubSkeleton } from '../components/league/LeagueHubSkeleton';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { oskolokImageForPackShards } from './oskolok';
-import { tabSwipeLock } from './tabSwipeLock';
-import { getLeagueSwipePreviewState, swipeLeaguePreview } from './league_swipe_preview';
 import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
 import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 import {
@@ -102,6 +103,21 @@ import {
   type LeagueGroupBoostState,
 } from './league_group_boosts';
 import { hasClubGiftFreeBoostFromLevel } from './club_boosts';
+import {
+  buildLeagueBonusMissionModel,
+} from './league_club_hub_model';
+import { leaguePublicName } from './league_public_name';
+import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
+import { LeagueArenaScene } from '../components/league/LeagueArenaScene';
+import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
+import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
+import { LeagueHotHoursChip } from '../components/league/LeagueHotHoursChip';
+import { isLeagueHotHoursActive, leagueWeekEndsAtUtcMs, LEAGUE_HOT_HOURS_WINDOW_MS } from './league_hot_hours';
+import { participantsLabel } from '../components/league/leagueStatusShared';
+import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
+import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
+import { getTodayKey, updateTaskProgress } from './daily_tasks';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
@@ -112,12 +128,6 @@ const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
 const CLUB_REMOTE_REFRESH_MS = 45_000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
-const CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD = 54;
-const CLUB_LEAGUE_PREVIEW_CARD_RADIUS = 20;
-const CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO = 768 / 363;
-const CLUB_LEAGUE_PREVIEW_CARD_MAX_WIDTH = 640;
-const CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE = 104;
-const CLUB_LEAGUE_PREVIEW_ICON_SIZE = 96;
 
 /** Локальный календарный день — для «первый заход в лигу за день». */
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
@@ -134,7 +144,6 @@ function buildLeagueChestPreviewRewards(isCrownWinner: boolean): LeagueChestRewa
   return isCrownWinner
     ? [
       ...base,
-      { id: 'preview_league_arena_plays', kind: 'arena_plays', rarity: 'common', amount: 5 },
       { id: 'preview_league_bonus_shards', kind: 'shards', rarity: 'rare', amount: 18 },
     ]
     : base;
@@ -203,6 +212,30 @@ function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
   });
 }
 
+
+function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; urgent: boolean; hot: boolean } {
+  const left = Math.max(0, msLeft);
+  const days = Math.floor(left / 86_400_000);
+  const hours = Math.floor((left % 86_400_000) / 3_600_000);
+  const mins = Math.floor((left % 3_600_000) / 60_000);
+  const units = triLang(lang, {
+    ru: { d: 'д', h: 'ч', m: 'мин' },
+    uk: { d: 'д', h: 'г', m: 'хв' },
+    es: { d: 'd', h: 'h', m: 'min' },
+    'pt-BR': { d: 'd', h: 'h', m: 'min' },
+    vi: { d: 'n', h: 'g', m: 'ph' },
+    id: { d: 'h', h: 'j', m: 'mnt' },
+    tr: { d: 'g', h: 's', m: 'dk' },
+    pl: { d: 'd', h: 'g', m: 'min' },
+  });
+  const text = days >= 1
+    ? `${days} ${units.d} ${hours} ${units.h}`
+    : hours >= 1
+      ? `${hours} ${units.h} ${mins} ${units.m}`
+      : `${Math.max(1, mins)} ${units.m}`;
+  return { text, urgent: days < 1, hot: left > 0 && left <= LEAGUE_HOT_HOURS_WINDOW_MS };
+}
+
 // ── League icon renderer ──────────────────────────────────────────────────────
 const LEAGUE_ICON_SOURCE_SIZE = 384;
 const LEAGUE_ICON_RENDER_SAFE_SCALE = 0.94;
@@ -266,48 +299,6 @@ function LeagueIconImageWithFallback({
           contentFit="contain"
           onLoad={() => setFailed(false)}
           onError={() => setFailed(true)}
-        />
-      ) : null}
-    </View>
-  );
-}
-
-function LeagueBonusGiftImageWithFallback({
-  source,
-  color,
-  size,
-  opacity,
-  style,
-}: {
-  source?: any;
-  color: string;
-  size: number;
-  opacity: number;
-  style?: any;
-}) {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setLoaded(false);
-  }, [source]);
-
-  return (
-    <View pointerEvents="none" style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
-      {!loaded || !source ? (
-        <Ionicons
-          name="gift"
-          size={Math.max(18, Math.round(size * 0.48))}
-          color={color}
-          style={{ position: 'absolute', opacity: Math.max(0.26, opacity) }}
-        />
-      ) : null}
-      {source ? (
-        <Image
-          source={source}
-          contentFit="contain"
-          style={{ width: '100%', height: '100%', opacity }}
-          onLoad={() => setLoaded(true)}
-          onError={() => setLoaded(false)}
         />
       ) : null}
     </View>
@@ -388,12 +379,17 @@ function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string
   });
 }
 
+function leagueMemberKeyExtractor(member: GroupMember, index: number): string {
+  return member.uid ?? member.botId ?? `${member.name}-${index}`;
+}
+
 export default function ClubScreen() {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
-  // openChat=1 — открыть сразу чат лиги (кнопка чата в шапке главного экрана).
-  const { openChat: openChatParam } = useLocalSearchParams<{ openChat?: string }>();
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   const { theme: t, f, themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -411,52 +407,22 @@ export default function ClubScreen() {
   const initialLeagueState = initialLeagueStateRef.current;
 
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
-  const [previewLeagueId, setPreviewLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
-  const [chatProfilePlayer, setChatProfile] = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
   const [myAuraId, setMyAuraId]           = useState('');
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
-  // Вход «сразу в чат» из шапки home (openChat=1): модалку чата нужно показать
-  // УЖЕ НА ПЕРВОМ кадре, иначе экран лиги под ней успевает мелькнуть. Поэтому
-  // начальное состояние читаем синхронно из параметра, а не через useEffect.
-  const openedDirectlyToChat = String(openChatParam ?? '') === '1';
-  const [chatModalVisible, setChatModalVisible] = useState(openedDirectlyToChat);
-  const openChatHandledRef = useRef(openedDirectlyToChat);
-  // true — чат открыт «в обход» прямо с главной. Тогда закрытие чата ведёт НАЗАД
-  // на главную, а не показывает экран лиги под модалкой.
-  const directChatFromHomeRef = useRef(openedDirectlyToChat);
-  useEffect(() => {
-    if (openChatHandledRef.current) return;
-    if (String(openChatParam ?? '') === '1') {
-      openChatHandledRef.current = true;
-      directChatFromHomeRef.current = true;
-      setChatModalVisible(true);
-    }
-  }, [openChatParam]);
-  // Единая точка закрытия чата: прямой вход с главной → возврат на главную;
-  // обычный вход (с экрана лиги) → просто скрыть модалку.
-  const closeChatModal = useCallback(() => {
-    setChatProfile(null);
-    setChatModalVisible(false);
-    if (directChatFromHomeRef.current) {
-      directChatFromHomeRef.current = false;
-      safeRouterBack(router, '/(tabs)/home' as any);
-    }
-  }, [router]);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
+  const deferredLeagueResultRef = useRef<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
-  const contentScrollRef = useRef<ScrollView | null>(null);
+  const contentScrollRef = useRef<FlatList<GroupMember> | null>(null);
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
-  const CLUB_LEADERBOARD_AVATAR_SIZE = 56;
-  const ROW_HEIGHT_CLUB = 84;
+  const ROW_HEIGHT_CLUB = 72;
   const myRowAnim = useRef(new Animated.Value(0)).current;
-  const chatMetaRefreshAtRef = useRef(0);
 
   /** Подсказка про зону повышения: только первый раз за календарный день при открытии вкладки лиги. */
   const [leaguePromoHintVisible, setLeaguePromoHintVisible] = useState(false);
@@ -464,12 +430,14 @@ export default function ClubScreen() {
   const [arenaClubStableUid, setArenaClubStableUid] = useState('');
   const [leagueGroupMeta, setLeagueGroupMeta] = useState<{ weekId: string; groupId: string; leagueId: number } | null>(null);
   const [leagueChestClaimed, setLeagueChestClaimed] = useState(false);
+  const [chestTeaserVisible, setChestTeaserVisible] = useState(false);
   const [leagueChestClaiming, setLeagueChestClaiming] = useState(false);
   const [leagueBonusAdminPreview, setLeagueBonusAdminPreview] = useState<LeagueBonusAdminPreview | null>(null);
   const [activeGroupBoost, setActiveGroupBoost] = useState<LeagueGroupBoostState | null>(null);
   const [groupBoostTimeLeft, setGroupBoostTimeLeft] = useState('');
+  const [weekCountdown, setWeekCountdown] = useState(() => formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(Date.now()) - Date.now()));
   const [groupBoostConfirmVisible, setGroupBoostConfirmVisible] = useState(false);
-  // Подарок уровня «Буст клуба бесплатно»: следующая активация не списывает осколки.
+  // Подарок уровня «Буст лиги бесплатно»: следующая активация не списывает осколки.
   const [freeBoostGiftReady, setFreeBoostGiftReady] = useState(false);
 
   useEffect(() => {
@@ -505,24 +473,10 @@ export default function ClubScreen() {
     });
     return () => sub.remove();
   }, []);
-  const leagueChatUnreadCount = useLeagueChatUnread({
-    initialRoom: leagueGroupMeta,
-    myUid: arenaClubStableUid,
-    active: chatModalVisible,
-  });
-
+  // Arena is optional while its feature set is being retired. The league screen
+  // keeps its local data and rewards available without the live arena listener.
   useEffect(() => {
-    let cancelled = false;
-    let unsub: (() => void) | null = null;
-    void ensureAnonUser().then((stableUid) => {
-      if (cancelled || !stableUid) return;
-      setArenaClubStableUid(stableUid);
-      unsub = subscribeMyArenaClubWarEvent(stableUid, setArenaClubEvent);
-    });
-    return () => {
-      cancelled = true;
-      unsub?.();
-    };
+    setArenaClubEvent(null);
   }, []);
 
   useEffect(() => {
@@ -615,7 +569,10 @@ export default function ClubScreen() {
     };
   }, [leagueBonusAdminPreview, leagueGroupMeta?.groupId, leagueGroupMeta?.weekId]);
 
-  const LEAGUE_LOAD_TIMEOUT_MS = 22_000;
+  // зачем: было 22 с — столько экран мог ждать сеть, показывая пустоту. Теперь под
+  // ожиданием есть кэш/скелетон, поэтому сдаёмся быстро: запрос продолжает жить в
+  // фоне и допишет данные, когда придёт (см. ветку winner === 'timeout' ниже).
+  const LEAGUE_LOAD_TIMEOUT_MS = 6_000;
 
   useEffect(() => {
     if (!rankDelta) {
@@ -638,6 +595,11 @@ export default function ClubScreen() {
   const loadData = useCallback(async (opts?: { forceRemote?: boolean }) => {
     const maybeShowPending = async (result: LeagueResult | null) => {
       if (!result) return;
+      if (!runtimeActiveRef.current) {
+        deferredLeagueResultRef.current = result;
+        return;
+      }
+      deferredLeagueResultRef.current = null;
       void checkAchievements({
         type: 'league_result',
         myRank: result.myRank,
@@ -677,6 +639,12 @@ export default function ClubScreen() {
       // [...safeGroup] / .sort упадут TypeError и глобальный ErrorBoundary уронит всё приложение.
       const safeGroup = Array.isArray(state.group) ? state.group : [];
       setGroup(safeGroup);
+      // зачем: скелетон снимается ЛЮБЫМИ реальными данными, а не только кэшем.
+      // Раньше setLocalLeagueHydrated(true) стоял в одной ветке — кэшевой. При
+      // первом входе без кэша данные приходили из сети сюда, флаг оставался false,
+      // и владелец видел БЕСКОНЕЧНЫЙ скелетон вместо подиума. Ставим флаг в общей
+      // точке применения состояния — её проходят и кэш, и сеть, и таймаут-ветка.
+      setLocalLeagueHydrated(true);
       // Если пришёл свежий результат недели (после смены ISO-недели) — показываем модалку
       // прямо здесь. Раньше модалка жила только на home.tsx, поэтому захождение в Лиги
       // в понедельник не давало анимацию.
@@ -700,7 +668,11 @@ export default function ClubScreen() {
 
     try {
       // ── Фаза 1: мгновенно читаем локальный кеш ──────────────────────────────
-      const [name, avatar, frame, aura, phrasm, xp, canonicalUid, cachedLeague, cachedPending] = await Promise.all([
+      // зачем: раньше myWeekPoints и метка последнего рефреша читались ПОСЛЕ этого
+      // блока, каждый своим await — экран ждал их по очереди. Они ни от чего здесь
+      // не зависят, поэтому едут в той же пачке: на два round-trip меньше до первого
+      // кадра, без единого лишнего чтения Firestore.
+      const [name, avatar, frame, aura, phrasm, xp, canonicalUid, cachedLeague, cachedPending, myPoints, lastRemoteAtRaw] = await Promise.all([
         AsyncStorage.getItem('user_name'),
         AsyncStorage.getItem('user_avatar'),
         AsyncStorage.getItem('user_frame'),
@@ -710,6 +682,8 @@ export default function ClubScreen() {
         getCanonicalUserId(),
         loadLeagueState(),
         loadPendingResult(),
+        getMyWeekPoints().catch(() => 0),
+        AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY),
       ]);
       if (!isMountedRef.current) return;
       // Если на этом устройстве уже был сохранён pending (например, home.tsx посчитал
@@ -732,30 +706,41 @@ export default function ClubScreen() {
         if (isMountedRef.current && meta) setLeagueGroupMeta(meta);
       }).catch(() => {});
 
-      // Показываем кешированные данные лиги сразу, без ожидания сети
+      // Показываем кешированные данные лиги сразу, без ожидания сети.
+      // зачем: свои очки лежат локально и стоят 0 чтений Firestore — подставляем их
+      // в кэш при каждом входе. Так СВОИ цифры всегда актуальны, а чужие обновляются
+      // раз в 6 часов (требование владельца: не платить за чужие цифры чаще).
       if (cachedLeague) {
-        applyLeagueOpen(cachedLeague, null, false);
-        setLocalLeagueHydrated(true);
-      } else {
-        // Do not manufacture a zero-score league while the authoritative
-        // weekly state is still loading. A fake zero is indistinguishable from
-        // a real reset and was the source of several user-visible reports.
-        setLocalLeagueHydrated(false);
+        applyLeagueOpen(
+          { ...cachedLeague, group: withMyLivePoints(cachedLeague.group, myPoints, canonicalUid, n) },
+          null,
+          false,
+        );
       }
+      // зачем: ветки else здесь БОЛЬШЕ НЕТ намеренно. Раньше отсутствие кэша звало
+      // setLocalLeagueHydrated(false) — и при повторном входе (loadData на фокусе)
+      // это гасило уже показанный подиум обратно в скелетон. Флаг теперь только
+      // поднимается (в applyLeagueOpen) и никогда не опускается за время жизни
+      // экрана: показанные данные не могут «разгидратироваться».
+      // Фальшивый нулевой счёт по-прежнему не выдумываем — при отсутствии кэша
+      // просто ждём первых реальных данных.
 
       // ── Фаза 2: сетевой апдейт не чаще 6 часов (или по force) ───────────────
       // ВАЖНО: 6h-троттл должен бить только Firestore-refetch группы, а не проверку
       // смены ISO-недели. Иначе после полуночи понедельника (новая неделя) пользователь
       // может зайти в Лиги и не увидеть LeagueResultModal, если последний refresh был <6h.
-      const lastRemoteAtRaw = await AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY);
       const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
       const withinRefreshTtl = (Date.now() - lastRemoteAt < CLUB_REMOTE_REFRESH_MS);
       const weekChanged = !!cachedLeague && cachedLeague.weekId !== getWeekId();
       const shouldRefreshRemote = !!opts?.forceRemote || !withinRefreshTtl || weekChanged;
       if (!shouldRefreshRemote) return;
-      invalidateLeagueGroupCache();
-      const wp = await getMyWeekPoints();
-      if (!isMountedRef.current) return;
+      // зачем: раньше invalidateLeagueGroupCache() звался ВСЕГДА и убивал 60-секундный
+      // кэш группы, который только что наполнил префетч с главного экрана — та же
+      // группа тянулась из Firestore заново при каждом входе. Теперь сбрасываем кэш
+      // только при явном принудительном обновлении; обычный вход довольствуется
+      // 6-часовым троттлом (экономия чтений).
+      if (opts?.forceRemote) invalidateLeagueGroupCache();
+      const wp = myPoints;
 
       const leagueWork = checkLeagueOnAppOpen(n, wp);
       const timeoutRace = new Promise<'timeout'>((resolve) => {
@@ -787,6 +772,28 @@ export default function ClubScreen() {
   }, [lang]);
 
   useEffect(() => {
+    if (!runtimeActive) return;
+    const result = deferredLeagueResultRef.current;
+    if (!result) return;
+    deferredLeagueResultRef.current = null;
+    void checkAchievements({
+      type: 'league_result',
+      myRank: result.myRank,
+      totalInGroup: result.totalInGroup,
+      promoted: result.promoted,
+      newLeagueId: result.newLeagueId,
+    });
+    if (dismissedLeagueResultThisSessionRef.current) {
+      void clearPendingResult();
+      return;
+    }
+    if (!tryAcquireLeagueResultModal(getLeagueResultSignature(result))) return;
+    void markLeagueResultShown(result).then(() => {
+      if (runtimeActiveRef.current && isMountedRef.current) setPendingLeagueResult(result);
+    });
+  }, [runtimeActive]);
+
+  useEffect(() => {
     isMountedRef.current = true;
     loadData();
     return () => {
@@ -798,12 +805,18 @@ export default function ClubScreen() {
     activeGroupBoostRef.current = activeGroupBoost;
   }, [activeGroupBoost]);
 
-  useEffect(() => subscribeToActiveLeagueGroupBoost((boost) => {
-    if (!isMountedRef.current) return;
-    if (!boost && activeGroupBoostRef.current && activeGroupBoostRef.current.expiresAt > Date.now()) return;
-    setActiveGroupBoost(boost);
-    setGroupBoostLikeTotal(boost?.likeCount ?? 0);
-  }), []);
+  // зачем: аудит нагрева 2026-07-25 — подписки буста жили в голом useEffect и
+  // продолжали слушать Firestore, пока экран смонтирован (даже не в фокусе/в фоне).
+  // Остальные realtime-эффекты этого файла уже на useFocusEffect — выравниваем.
+  useEffect(() => {
+    if (!runtimeActive) return;
+    return subscribeToActiveLeagueGroupBoost((boost) => {
+      if (!isMountedRef.current) return;
+      if (!boost && activeGroupBoostRef.current && activeGroupBoostRef.current.expiresAt > Date.now()) return;
+      setActiveGroupBoost(boost);
+      setGroupBoostLikeTotal(boost?.likeCount ?? 0);
+    });
+  }, [runtimeActive]);
 
   useEffect(() => {
     let cancelled = false;
@@ -819,82 +832,43 @@ export default function ClubScreen() {
     };
   }, [activeGroupBoost?.buyerUid, activeGroupBoost?.likeEventId]);
 
+  // зачем: аудит нагрева 2026-07-25 — секундный тик буста работал и вне фокуса
+  // экрана (setState каждую секунду в фоне, пока активен буст). Гардим фокусом,
+  // как соседний недельный countdown ниже.
   useEffect(() => {
-    if (!activeGroupBoost) {
-      setGroupBoostTimeLeft('');
-      return;
-    }
-    const update = () => {
-      const live = activeGroupBoost.expiresAt > Date.now();
-      if (!live) {
-        setActiveGroupBoost(null);
+      if (!runtimeActive) return;
+      if (!activeGroupBoost) {
         setGroupBoostTimeLeft('');
         return;
       }
-      setGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(activeGroupBoost.expiresAt));
-    };
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, [activeGroupBoost?.expiresAt]);
-
-  useEffect(() => {
-    if (!chatModalVisible) return;
-    const now = Date.now();
-    if (now - chatMetaRefreshAtRef.current < 15_000) return;
-    chatMetaRefreshAtRef.current = now;
-    void resolveMyLeagueGroupMeta()
-      .then((meta) => {
-        if (isMountedRef.current && meta) {
-          setLeagueGroupMeta((cur) => (
-            cur && cur.weekId === meta.weekId && cur.groupId === meta.groupId && cur.leagueId === meta.leagueId
-              ? cur
-              : meta
-          ));
+      const update = () => {
+        const live = activeGroupBoost.expiresAt > Date.now();
+        if (!live) {
+          setActiveGroupBoost(null);
+          setGroupBoostTimeLeft('');
           return;
         }
-        if (isMountedRef.current) setLeagueGroupMeta(null);
-        void loadData({ forceRemote: true });
-      })
-      .catch(() => {
-        void loadData({ forceRemote: true });
-      });
-  }, [chatModalVisible, leagueGroupMeta, loadData]);
+        setGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(activeGroupBoost.expiresAt));
+      };
+      update();
+      const id = setInterval(update, 1000);
+      return () => clearInterval(id);
+  }, [activeGroupBoost?.expiresAt, runtimeActive]);
+
+  // Таймер недели: общий visible wall clock (1 Гц), текст меняется максимум раз в минуту,
+  // подписка живёт только пока экран в фокусе — новых setInterval не создаём.
+  useEffect(() => {
+      if (!runtimeActive) return;
+      const update = (now: number) => {
+        const next = formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(now) - now);
+        setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent && prev.hot === next.hot ? prev : next));
+      };
+      update(Date.now());
+      const unsubscribe = visibleWallClock.subscribe(update);
+      return () => unsubscribe();
+  }, [lang, runtimeActive]);
 
   const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
-  const leaguePreviewState = getLeagueSwipePreviewState(myLeagueId, previewLeagueId);
-  const previewLeague = LEAGUES[leaguePreviewState.previewLeagueId] ?? myLeague;
-  const previewLeagueCardImage = (previewLeague as any).cardImageUri;
-
-  useEffect(() => {
-    setPreviewLeagueId(myLeagueId);
-  }, [myLeagueId]);
-
-  const animateLeaguePreviewSwipe = useCallback((direction: number) => {
-    setPreviewLeagueId((current) => swipeLeaguePreview(current, direction, LEAGUES.length));
-    void hapticTap();
-  }, []);
-
-  const leaguePreviewPanResponder = useMemo(() => PanResponder.create({
-    onMoveShouldSetPanResponder: (_, gestureState) => (
-      Math.abs(gestureState.dx) > 18 &&
-      Math.abs(gestureState.dx) > Math.abs(gestureState.dy) * 1.25
-    ),
-    onPanResponderGrant: () => {
-      tabSwipeLock.blocked = true;
-    },
-    onPanResponderRelease: (_, gestureState) => {
-      tabSwipeLock.blocked = false;
-      const shouldSwipe = Math.abs(gestureState.dx) > CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD || Math.abs(gestureState.vx) > 0.45;
-      if (shouldSwipe) {
-        animateLeaguePreviewSwipe(gestureState.dx < 0 ? 1 : -1);
-        return;
-      }
-    },
-    onPanResponderTerminate: () => {
-      tabSwipeLock.blocked = false;
-    },
-  }), [animateLeaguePreviewSwipe]);
 
   // useMemo: иначе массив пересоздаётся и пересортировывается на КАЖДЫЙ ре-рендер экрана
   // (смена profile/фокус/обновления), и следом заново прогоняется весь .map по ~30 строкам лиги.
@@ -902,10 +876,25 @@ export default function ClubScreen() {
     () => (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points),
     [group],
   );
+  const publicSortedGroup = useMemo(
+    () => sortedGroup.map((member) => ({
+      ...member,
+      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
+    })),
+    [sortedGroup],
+  );
+  const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);
   const currentUserStreak = sortedGroup.find((p) => p.isMe)?.streak ?? null;
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
+  });
+  // Список содержит всех участников, включая тройку из подиума. Индекс строки
+  // поэтому всегда совпадает с индексом участника в общем рейтинге.
+  const showSoloParticipant = shouldShowLeagueSoloParticipant({
+    localLeagueHydrated,
+    participantCount: sortedGroup.length,
+    visibleListCount: publicListGroup.length,
   });
   const leagueXpPromotionMode = leagueXpPromotionRemote.enabled;
   const leagueXpPromotionThreshold = leagueXpPromotionRemote.threshold;
@@ -923,7 +912,6 @@ export default function ClubScreen() {
   const arenaChestBonus = Math.max(0, Math.floor(Number(arenaClubEvent?.totalPoints) || 0));
   const leagueChestGoal = getLeagueChestGoal(myLeagueId);
   const leagueChestProgress = leagueRaceVisible ? Math.min(leagueChestGoal, leagueBonusAdminActive ? leagueChestGoal : leagueRoomXp + arenaChestBonus) : 0;
-  const leagueChestPct = leagueChestGoal > 0 ? Math.min(100, Math.round((leagueChestProgress / leagueChestGoal) * 100)) : 0;
   const myLeagueRoomXp = Math.max(0, Math.floor(Number(sortedGroup.find((p) => p.isMe)?.points) || 0));
   const myLeagueChestContribution = myLeagueRoomXp + myArenaClubPoints;
   const leagueChestReady = leagueRaceVisible && (leagueBonusAdminActive || leagueChestProgress >= leagueChestGoal);
@@ -932,14 +920,14 @@ export default function ClubScreen() {
       ? arenaClubStableUid || sortedGroup.find((p) => p.isMe)?.uid
       : sortedGroup[0]?.uid
     : undefined;
-  const leagueCrownWinnerName = leagueRaceVisible && leagueChestReady
+  const rawLeagueCrownWinnerName = leagueRaceVisible && leagueChestReady
     ? leagueBonusAdminActive && leagueBonusAdminPreview?.crownWinner
       ? userName || sortedGroup.find((p) => p.isMe)?.name
       : sortedGroup[0]?.name
     : undefined;
-  const crownRaceTop = leagueRaceVisible ? sortedGroup.slice(0, 3) : [];
-  const leagueChestVisualAccent = leagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
-  const leagueChestVisualFill = leagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
+  const leagueCrownWinnerName = rawLeagueCrownWinnerName
+    ? leaguePublicName(rawLeagueCrownWinnerName, leagueCrownWinnerUid ?? rawLeagueCrownWinnerName)
+    : undefined;
 
   const claimLeagueChestReward = useCallback(async () => {
     if (!leagueRaceVisible || !leagueChestReady || leagueChestClaimed || leagueChestClaiming) return;
@@ -1001,37 +989,37 @@ export default function ClubScreen() {
           ru: hasGold
             ? `Бонус лиги открыт: ${rewardCount} подарков, среди них Gold`
             : hasGoldDuplicate
-              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал осколками`
+              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал жемчугом`
               : `Бонус лиги открыт: выпало ${rewardCount} подарков`,
           uk: hasGold
             ? `Бонус ліги відкрито: ${rewardCount} подарунків, серед них Gold`
             : hasGoldDuplicate
-              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став уламками`
+              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став перлинами`
               : `Бонус ліги відкрито: випало ${rewardCount} подарунків`,
           es: hasGold
             ? `Bono de liga abierto: ${rewardCount} regalos, incluido Gold`
             : hasGoldDuplicate
-              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en fragmentos`
+              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en perlas`
               : `Bono de liga abierto: cayeron ${rewardCount} regalos`,
           'pt-BR': hasGold
             ? `Bônus da liga aberto: ${rewardCount} presentes, incluindo Gold`
             : hasGoldDuplicate
-              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou fragmentos`
+              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou pérolas`
               : `Bônus da liga aberto: caíram ${rewardCount} presentes`,
           vi: hasGold
             ? `Đã mở thưởng giải đấu: ${rewardCount} quà, có Gold`
             : hasGoldDuplicate
-              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, Gold trùng đã đổi thành mảnh`
+              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, Gold trùng đã đổi thành xu`
               : `Đã mở thưởng giải đấu: nhận ${rewardCount} quà`,
           id: hasGold
             ? `Bonus liga dibuka: ${rewardCount} hadiah, termasuk Gold`
             : hasGoldDuplicate
-              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi pecahan`
+              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi mutiara`
               : `Bonus liga dibuka: mendapat ${rewardCount} hadiah`,
           tr: hasGold
             ? `Lig bonusu açıldı: ${rewardCount} hediye, içinde Gold var`
             : hasGoldDuplicate
-              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold parçalara dönüştü`
+              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold inciye dönüştü`
               : `Lig bonusu açıldı: ${rewardCount} hediye düştü`,
           pl: hasGold
             ? `Bonus ligi otwarty: ${rewardCount} prezentów, w tym Gold`
@@ -1148,7 +1136,7 @@ export default function ClubScreen() {
       startedAt: now,
       expiresAt: now + LEAGUE_GROUP_BOOST_DURATION_MS,
       buyerUid,
-      buyerName: (userName || me?.name || 'Player').trim() || 'Player',
+      buyerName: leaguePublicName(userName || me?.name, arenaClubStableUid || me?.uid || me?.botId || userName),
       buyerAvatar: myAvatarEmoji || me?.avatar || null,
       buyerFrame: myFrameId || me?.frame || null,
       buyerAura: myAuraId || me?.aura || null,
@@ -1170,7 +1158,7 @@ export default function ClubScreen() {
     // активация бесплатна, баланс не трогаем.
     const giftVoucher = await hasClubGiftFreeBoostFromLevel().catch(() => false);
     if (!giftVoucher && previousBalance !== null && previousBalance < LEAGUE_GROUP_BOOST_COST_SHARDS) {
-      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
+      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, 'error');
       return;
     }
     const optimisticBoost = makeOptimisticGroupBoost();
@@ -1206,7 +1194,7 @@ export default function ClubScreen() {
       if (res.reason === 'active') {
         showLeagueToast('Буст уже активен. Новый можно купить после таймера.', 'info');
       } else if (res.reason === 'not_enough_shards') {
-        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
+        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, 'error');
       } else if (res.reason === 'no_current_group') {
         showLeagueToast('Сначала обнови лигу недели и попробуй снова.', 'info');
       } else {
@@ -1233,7 +1221,7 @@ export default function ClubScreen() {
     void cacheLeagueGroupBoost(optimisticBoost);
     setGroupBoostLikeBusy(true);
     try {
-      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, userName);
+      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, leaguePublicName(userName, arenaClubStableUid || userName));
       setGroupBoostLikeTotal(total);
       const confirmedBoost = { ...activeGroupBoost, likeCount: total };
       setActiveGroupBoost(confirmedBoost);
@@ -1248,6 +1236,234 @@ export default function ClubScreen() {
       if (isMountedRef.current) setGroupBoostLikeBusy(false);
     }
   }, [activeGroupBoost, arenaClubStableUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
+
+  // зачем: владелец не смог разобрать экран Лиги в светлой теме — вся сцена
+  // была рассчитана на тёмный фон. На светлой теме меняем три вещи:
+  // 1) поверхности разводим по тону (карточка светлее фона, вложенный блок
+  //    темнее её) — иначе #E1E5DC на #F0F1EC сливается в одно пятно;
+  // 2) статусные цвета берём тёмные: жёлтый #FFD43B на белом даёт ~1.4:1,
+  //    зелёный #34C759 — ~2.2:1, оба ниже порога читаемости;
+  // 3) отдаём компонентам флаг isLight + тон «кости», чтобы подиум, лучи
+  //    прожекторов и скелет не рисовались белым по белому.
+  const hubIsLight = isLightThemeMode(themeMode);
+  const hubPalette = useMemo<LeagueHubPalette>(() => ({
+    surface: hubIsLight ? t.bgCard : glassFill(t.bgSurface, 0.78),
+    elevated: hubIsLight ? t.bgSurface : glassFill(t.bgCard, 0.72),
+    text: t.textPrimary,
+    muted: t.textMuted,
+    accent: t.accent,
+    accentText: t.correctText,
+    outline: t.border,
+    positive: monoIcon(themeMode, hubIsLight ? '#1F7A44' : '#34C759'),
+    negative: monoIcon(themeMode, hubIsLight ? '#B03A44' : '#FF5B6C'),
+    warning: monoIcon(themeMode, hubIsLight ? '#8A6410' : '#FFD43B'),
+    isLight: hubIsLight,
+    bone: hubIsLight ? 'rgba(23,32,29,0.09)' : 'rgba(255,255,255,0.07)',
+    boneShine: hubIsLight ? 'rgba(23,32,29,0.04)' : 'rgba(255,255,255,0.16)',
+  }), [hubIsLight, t, themeMode]);
+  // зачем: чипы шапки «+10% XP» и «6д 11ч» брали цвет жёстко (#47C870/#FFD43B)
+  // мимо палитры хаба и на светлой теме были нечитаемы: жёлтый на белом даёт
+  // ~1.4:1, зелёный ~2.2:1, а заливка в 12–14% превращала их в бледные пятна.
+  // Текст и иконка теперь идут из hubPalette (там уже есть тёмные варианты),
+  // а подложка на светлой теме плотнее — чтобы чип читался как плашка.
+  const hubChipFill = useMemo(() => (hubIsLight
+    ? { bonus: 'rgba(31,122,68,0.14)', countdown: 'rgba(138,100,16,0.14)', urgent: 'rgba(176,58,68,0.14)' }
+    : { bonus: 'rgba(71,200,112,0.14)', countdown: 'rgba(255,212,59,0.12)', urgent: 'rgba(255,91,108,0.14)' }
+  ), [hubIsLight]);
+  const hubBonusMissionModel = useMemo(() => buildLeagueBonusMissionModel({
+    progress: leagueChestProgress,
+    goal: leagueChestGoal,
+    myContribution: myLeagueChestContribution,
+    chestReady: leagueChestReady,
+    chestClaimed: leagueChestClaimed,
+    contributors: publicSortedGroup,
+    boost: activeGroupBoost ? {
+      ...activeGroupBoost,
+      buyerName: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
+    } : null,
+  }), [activeGroupBoost, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueChestContribution, publicSortedGroup]);
+  // Моё место остаётся источником для сцены, ленты гонки и наград.
+  const myLeagueRank = useMemo(() => {
+    const idx = sortedGroup.findIndex((m) => m.isMe);
+    return idx >= 0 ? idx + 1 : 0;
+  }, [sortedGroup]);
+  const leagueBonusPct = useMemo(() => Math.max(0, Number(String(myLeague.tagRU).match(/([+-]?\d+)%/)?.[1] ?? '0') || 0), [myLeague.tagRU]);
+  // Тизер «что в сундуке»: лидеру недели показываем расширенный набор силуэтов.
+  const chestTeaserRarities = useMemo(() => buildLeagueChestPreviewRewards(myLeagueRank === 1).map((r) => r.rarity), [myLeagueRank]);
+
+  const raceFeedItems = useMemo<LeagueRaceFeedItem[]>(() => {
+    const items: LeagueRaceFeedItem[] = [];
+    const fmtXp = (v: number) => Math.max(0, Math.floor(Number(v) || 0)).toLocaleString();
+    if (weekCountdown.hot) {
+      items.push({ key: 'hot', emoji: '🔥', trend: 'up', text: triLang(lang, {
+        ru: 'Горячие 2 часа: зона вылета получает ×2 XP',
+        uk: 'Спекотні 2 години: зона вильоту отримує ×2 XP',
+        es: '2 horas calientes: la zona de descenso gana ×2 XP',
+        'pt-BR': '2 horas quentes: a zona de queda ganha ×2 XP',
+        vi: '2 giờ nóng: vùng xuống hạng nhận ×2 XP',
+        id: '2 jam panas: zona degradasi dapat ×2 XP',
+        tr: 'Sıcak 2 saat: düşme bölgesi ×2 XP kazanır',
+        pl: 'Gorące 2 godziny: strefa spadku zgarnia ×2 XP',
+      }) });
+    }
+    if (myLeagueRank > 1) {
+      const ahead = sortedGroup[myLeagueRank - 2];
+      if (ahead) {
+        const name = leaguePublicName(ahead.name, ahead.uid ?? ahead.botId ?? ahead.name);
+        const gapXp = fmtXp((Number(ahead.points) || 0) - (Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
+        items.push({ key: 'ahead', emoji: '🏃', trend: 'up', text: triLang(lang, {
+          ru: `${name} впереди на ${gapXp} XP`, uk: `${name} попереду на ${gapXp} XP`, es: `${name} te lleva ${gapXp} XP`, 'pt-BR': `${name} está ${gapXp} XP à frente`,
+          vi: `${name} dẫn trước ${gapXp} XP`, id: `${name} di depan ${gapXp} XP`, tr: `${name} ${gapXp} XP önde`, pl: `${name} z przodu o ${gapXp} XP`,
+        }) });
+      }
+    }
+    if (myLeagueRank > 0 && myLeagueRank < sortedGroup.length) {
+      const behind = sortedGroup[myLeagueRank];
+      if (behind) {
+        const name = leaguePublicName(behind.name, behind.uid ?? behind.botId ?? behind.name);
+        const gapXp = fmtXp((Number(sortedGroup[myLeagueRank - 1]?.points) || 0) - (Number(behind.points) || 0));
+        items.push({ key: 'behind', emoji: '👀', trend: 'down', text: triLang(lang, {
+          ru: `${name} дышит в спину — до вас ${gapXp} XP`, uk: `${name} за спиною — до вас ${gapXp} XP`, es: `${name} te pisa los talones: a ${gapXp} XP`, 'pt-BR': `${name} colando: a ${gapXp} XP de você`,
+          vi: `${name} bám sát: cách bạn ${gapXp} XP`, id: `${name} membuntuti: ${gapXp} XP di belakangmu`, tr: `${name} ensende: ${gapXp} XP geride`, pl: `${name} depcze po piętach: ${gapXp} XP za tobą`,
+        }) });
+      }
+    }
+    if (activeGroupBoost) {
+      const buyer = leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid);
+      items.push({ key: 'boost', emoji: '⚡', trend: 'heart', text: triLang(lang, {
+        ru: `${buyer} включил буст ×2 · ♥ ${groupBoostLikeTotal}`, uk: `${buyer} увімкнув буст ×2 · ♥ ${groupBoostLikeTotal}`, es: `${buyer} activó el boost ×2 · ♥ ${groupBoostLikeTotal}`, 'pt-BR': `${buyer} ativou o boost ×2 · ♥ ${groupBoostLikeTotal}`,
+        vi: `${buyer} đã bật tăng tốc ×2 · ♥ ${groupBoostLikeTotal}`, id: `${buyer} mengaktifkan boost ×2 · ♥ ${groupBoostLikeTotal}`, tr: `${buyer} ×2 desteği açtı · ♥ ${groupBoostLikeTotal}`, pl: `${buyer} włączył boost ×2 · ♥ ${groupBoostLikeTotal}`,
+      }) });
+    }
+    return items.slice(0, 3);
+  }, [sortedGroup, myLeagueRank, activeGroupBoost, groupBoostLikeTotal, lang, weekCountdown.hot]);
+
+  const hasLeagueCrownForMember = useCallback((member: Pick<GroupMember, 'uid'>): boolean => {
+    if (!member.uid) return false;
+    return member.uid === leagueCrownWinnerUid
+      || Math.max(0, Math.floor(Number(leagueCrownsByUid[member.uid]?.crownCount) || 0)) > 0
+      || Number(leagueCrownsByUid[member.uid]?.expiresAt) > Date.now();
+  }, [leagueCrownWinnerUid, leagueCrownsByUid]);
+
+  const openLeagueMemberProfile = useCallback((member: GroupMember) => {
+    const crownCount = member.uid
+      ? Math.max(0, Math.floor(Number(leagueCrownsByUid[member.uid]?.crownCount) || 0))
+      : 0;
+    const hasCrown = hasLeagueCrownForMember(member);
+    setProfile({
+      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
+      points: member.isMe ? playerXP : (member.totalXp ?? member.points),
+      totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
+      isMe: member.isMe,
+      leagueId: member.leagueId ?? myLeague.id,
+      uid: member.uid,
+      isPremium: member.isPremium ?? false,
+      isVip: member.isVip ?? false,
+      isLifetime: member.isLifetime ?? false,
+      avatar: member.avatar,
+      frame: member.frame,
+      aura: member.isMe ? myAuraId : member.aura,
+      streak: member.streak ?? null,
+      weekXp: member.points,
+      leagueCrownExpiresAt: hasCrown
+        ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) || 0)
+        : undefined,
+      leagueCrownCount: hasCrown ? Math.max(1, crownCount) : undefined,
+      profileCardLevel: member.profileCardLevel,
+      profileCardTheme: member.profileCardTheme,
+      profileCardMotion: member.profileCardMotion,
+      profileCardPublicFocus: member.profileCardPublicFocus,
+    });
+  }, [hasLeagueCrownForMember, leagueCrownsByUid, myAuraId, myLeague.id, playerXP]);
+
+  const openActiveBoostBuyerProfile = useCallback(() => {
+    if (!activeGroupBoost) return;
+    setProfile({
+      name: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
+      points: activeGroupBoost.buyerTotalXp ?? 0,
+      totalXp: activeGroupBoost.buyerTotalXp ?? undefined,
+      isMe: activeGroupBoost.buyerUid === arenaClubStableUid,
+      leagueId: activeGroupBoost.leagueId || myLeague.id,
+      uid: activeGroupBoost.buyerUid,
+      avatar: activeGroupBoost.buyerAvatar ?? undefined,
+      frame: activeGroupBoost.buyerFrame ?? undefined,
+      aura: activeGroupBoost.buyerAura ?? undefined,
+      profileCardLevel: activeGroupBoost.buyerProfileCardLevel,
+      profileCardTheme: activeGroupBoost.buyerProfileCardTheme,
+      profileCardMotion: activeGroupBoost.buyerProfileCardMotion,
+      profileCardPublicFocus: activeGroupBoost.buyerProfileCardPublicFocus,
+    });
+  }, [activeGroupBoost, arenaClubStableUid, myLeague.id]);
+
+  const renderLeagueMemberAvatar = useCallback((member: GroupMember, size: number) => {
+    const rowXp = member.isMe ? playerXP : (member.totalXp ?? 0);
+    const avatar = member.isMe
+      ? myAvatarEmoji
+      : (member.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(rowXp))));
+    const aura = getEffectiveAvatarAuraId(member.isMe ? myAuraId : member.aura, member.isPremium, member.isVip);
+    const usesPremiumAura = aura === PREMIUM_AVATAR_AURA_ID;
+    return (
+      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={size} maskColor={hubPalette.surface} animateShimmer={false}>
+        <AvatarView avatar={avatar} totalXP={rowXp} size={size} auraId={usesPremiumAura ? undefined : aura} animateAura={false} />
+      </PremiumAvatarHalo>
+    );
+  }, [hubPalette.surface, myAuraId, myAvatarEmoji, playerXP]);
+
+  const renderLeagueMemberName = useCallback((p: GroupMember) => {
+    const crownCount = p.uid
+      ? Math.max(0, Math.floor(Number(leagueCrownsByUid[p.uid]?.crownCount) || 0))
+      : 0;
+    const displayName = leaguePublicName(p.name, p.uid ?? p.botId ?? p.name);
+    const name = hasLeagueCrownForMember(p)
+      ? <LeagueCrownName text={displayName} fontSize={f.body} count={Math.max(1, crownCount)} />
+      : p.isPremium || p.isVip
+        ? <PremiumGoldUserName text={displayName} fontSize={f.body} />
+        : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600', ...((p.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }}>{displayName}</Text>;
+    return (
+      <View style={{ minWidth: 0, maxWidth: '100%', overflow: 'hidden' }}>
+        <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>{name}</View>
+        <ProfileCardBadge level={p.profileCardLevel} theme={p.profileCardTheme} style={{ marginTop: 3, maxWidth: '100%' }} />
+      </View>
+    );
+  }, [f.body, hasLeagueCrownForMember, leagueCrownsByUid, t.textPrimary, t.textSecond]);
+
+  const scrollToLeagueRank = useCallback(() => {
+    const idx = myLeagueRank - 1;
+    if (idx <= 0) {
+      contentScrollRef.current?.scrollToOffset({ offset: 0, animated: true });
+      return;
+    }
+    contentScrollRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.5 });
+  }, [myLeagueRank]);
+
+  const renderLeagueMember = useCallback(({ item, index }: { item: GroupMember; index: number }) => {
+    const absIndex = index;
+    const hasXpPromotion = leagueXpPromotionMode
+      && myLeagueId < LEAGUES.length - 1
+      && Math.max(0, Math.floor(Number(item.points) || 0)) >= leagueXpPromotionThreshold;
+    const zone: LeagueLeaderboardZone = hasXpPromotion || (promotionCutoff > 0 && absIndex < promotionCutoff)
+      ? 'promotion'
+      : absIndex >= relegationStartIndex
+        ? 'relegation'
+        : 'safe';
+    const row = (
+      <LeagueLeaderboardRow
+        member={item}
+        index={absIndex}
+        lang={lang}
+        palette={hubPalette}
+        zone={zone}
+        renderAvatar={renderLeagueMemberAvatar}
+        renderName={renderLeagueMemberName}
+        hasCrown={hasLeagueCrownForMember(item)}
+        xpPromotionBadgeTestID={hasXpPromotion ? `league-xp-promotion-badge-${item.uid ?? item.botId ?? index}` : undefined}
+        onOpenProfile={openLeagueMemberProfile}
+      />
+    );
+    return item.isMe ? (
+      <Animated.View style={{ transform: [{ translateY: myRowAnim }], zIndex: 5, elevation: 5 }}>{row}</Animated.View>
+    ) : row;
+  }, [hasLeagueCrownForMember, hubPalette, lang, leagueXpPromotionMode, leagueXpPromotionThreshold, myLeagueId, myRowAnim, openLeagueMemberProfile, promotionCutoff, relegationStartIndex, renderLeagueMemberAvatar, renderLeagueMemberName]);
 
   return (
     <ScreenGradient>
@@ -1278,25 +1494,34 @@ export default function ClubScreen() {
         >
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TapScale>
-        <Text style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}>
-          {triLang(lang, {
-            ru: 'Лига недели',
-            uk: 'Ліга тижня',
-            es: 'Liga de la semana',
-            'pt-BR': "Liga da semana",
-            vi: "Giải đấu tuần này",
-            id: "Liga minggu ini",
-            tr: "Haftanın ligi",
-            pl: "Liga tygodnia",
-          })}
-        </Text>
+        <View style={{ flex: 1 }} />
+        {leagueBonusPct > 0 ? (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: hubChipFill.bonus, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
+            <Ionicons name="flash" size={12} color={hubPalette.positive} />
+            <Text style={{ color: hubPalette.positive, fontSize: f.caption, fontWeight: '900' }}>+{leagueBonusPct}% XP</Text>
+          </View>
+        ) : null}
+        {weekCountdown.hot ? (
+          <LeagueHotHoursChip text={weekCountdown.text} palette={hubPalette} />
+        ) : (
+        <View testID="league-week-countdown" style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: weekCountdown.urgent ? hubChipFill.urgent : hubChipFill.countdown, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
+          <Ionicons name="hourglass-outline" size={12} color={weekCountdown.urgent ? hubPalette.negative : hubPalette.warning} />
+          <Text style={{ color: weekCountdown.urgent ? hubPalette.negative : hubPalette.warning, fontSize: f.caption, fontWeight: '900' }}>{weekCountdown.text}</Text>
+        </View>
+        )}
       </View>
 
       <BouncyWrap>
-      <Reanimated.ScrollView
+      <Reanimated.FlatList<GroupMember>
         ref={contentScrollRef as any}
+        data={publicListGroup}
+        keyExtractor={leagueMemberKeyExtractor}
+        renderItem={renderLeagueMember}
+        initialNumToRender={12}
+        maxToRenderPerBatch={10}
+        windowSize={7}
         scrollEnabled
-        decelerationRate="normal"
+        decelerationRate="fast"
         bounces
         alwaysBounceVertical
         overScrollMode="always"
@@ -1305,22 +1530,12 @@ export default function ClubScreen() {
         contentContainerStyle={{
           paddingHorizontal: 16,
           paddingTop: 16,
-          paddingBottom: 16,
-          gap: 12,
+          paddingBottom: 120,
         }}
         onScroll={onAnimatedScroll}
+        onScrollToIndexFailed={() => contentScrollRef.current?.scrollToEnd({ animated: true })}
         scrollEventThrottle={16}
-      >
-
-        {rankDelta && (
-          <RankChangeBanner
-            delta={rankDelta.delta}
-            passedName={rankDelta.passedName}
-            lostToName={rankDelta.lostToName}
-            lang={lang}
-            onClose={() => setRankDelta(null)}
-          />
-        )}
+        ListHeaderComponent={(<>
 
         {leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && (
           <View
@@ -1329,870 +1544,139 @@ export default function ClubScreen() {
               borderRadius: 14,
               paddingHorizontal: 14,
               paddingVertical: 11,
-              backgroundColor: 'rgba(52, 199, 89, 0.12)',
-              borderWidth: 0,
-              borderColor: 'rgba(52, 199, 89, 0.34)',
+              backgroundColor: hubChipFill.bonus,
               flexDirection: 'row',
               alignItems: 'center',
               gap: 9,
             }}
           >
-            <Ionicons name="trending-up" size={18} color={monoIcon(themeMode, '#34C759')} />
+            <Ionicons name="trending-up" size={18} color={hubPalette.positive} />
             <Text style={{ color: t.textPrimary, fontSize: f.caption, lineHeight: Math.max(16, f.caption + 4), fontWeight: '800', flex: 1 }}>
               {leagueXpPromotionBannerText(lang, leagueXpPromotionThreshold)}
             </Text>
           </View>
         )}
 
-        <View
-          {...leaguePreviewPanResponder.panHandlers}
-        >
-        <View
-          style={{
-            width:'100%',
-            maxWidth:CLUB_LEAGUE_PREVIEW_CARD_MAX_WIDTH,
-            aspectRatio:CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO,
-            alignSelf:'center',
-            borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS,
-            borderWidth:0,
-            borderColor:leagueBonusPalette.border,
-            overflow:'hidden',
-            backgroundColor:leagueBonusPalette.modal.card[1],
-          }}
-        >
-          <LinearGradient
-            pointerEvents="none"
-            colors={[leagueBonusPalette.modal.card[0], leagueBonusPalette.modal.card[1], leagueBonusPalette.modal.card[2]]}
-            locations={leagueBonusPalette.modal.cardLocations}
-            start={{ x:0, y:0 }}
-            end={{ x:1, y:1 }}
-            style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
+        {/* зачем: пока нет ни кэша, ни ответа сети — рисуем заглушки той же
+            геометрии вместо пустоты (владелец видел ~10 с пустого экрана и
+            принял это за поломку). Приход данных не двигает вёрстку. */}
+        {localLeagueHydrated ? (
+          <LeagueArenaScene
+            lang={lang}
+            palette={hubPalette}
+            leagueName={leagueNameForLang(myLeague, lang)}
+            participantLabel={participantsLabel(lang, publicSortedGroup.length)}
+            leagueIcon={<LeagueIcon league={myLeague} size={84} active alignContent={false} themeMode={themeMode} />}
+            topMembers={publicSortedGroup.slice(0, 3)}
+            renderAvatar={renderLeagueMemberAvatar}
+            hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
+            onOpenProfile={openLeagueMemberProfile}
+            chestReady={leagueChestReady}
           />
-          {previewLeagueCardImage ? (
-            <>
-              <Image
-                pointerEvents="none"
-                source={previewLeagueCardImage}
-                contentFit="cover"
-                transition={180}
-                style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
-              />
-              <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS, backgroundColor:themeMode === 'gold' ? 'rgba(36,23,6,0.22)' : 'rgba(0,0,0,0.18)' }]} />
-              <LinearGradient
-                pointerEvents="none"
-                colors={['rgba(0,0,0,0.02)', 'rgba(0,0,0,0.42)']}
-                locations={[0.42, 1]}
-                start={{ x:0.5, y:0 }}
-                end={{ x:0.5, y:1 }}
-                style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
-              />
-            </>
-          ) : (
-            <>
-              <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
-              <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
-            </>
-          )}
-          <View
-            testID="league-current-icon"
-            accessibilityLabel={leagueNameForLang(previewLeague, lang)}
-            style={[StyleSheet.absoluteFillObject, { alignItems:'center', justifyContent:'center', gap:6, paddingHorizontal:14, paddingVertical:10 }]}
-          >
-            <View style={{ width:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, height:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, alignItems:'center', justifyContent:'center' }}>
-              <LeagueIcon league={previewLeague} size={CLUB_LEAGUE_PREVIEW_ICON_SIZE} active alignContent={false} themeMode={themeMode} />
-            </View>
-            <Text
-              style={{ color:previewLeagueCardImage ? '#FFFFFF' : t.textPrimary, fontSize:Math.min(f.h2, 22), lineHeight:Math.max(24, Math.min(f.h2, 22) + 3), fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:50, textShadowColor:previewLeagueCardImage ? 'rgba(0,0,0,0.46)' : 'transparent', textShadowRadius:previewLeagueCardImage ? 9 : 0, textShadowOffset:{ width:0, height:previewLeagueCardImage ? 2 : 0 } }}
-              numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
-            >
-              {leagueNameForLang(previewLeague, lang)}
-            </Text>
-            {!!leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK) && (
-              <View style={{ maxWidth:'86%', paddingHorizontal:10, paddingVertical:4, borderRadius:999, backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.54)' : leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.24)' : leagueBonusPalette.modal.metaBorder }}>
-                <Text style={{ color:previewLeagueCardImage ? '#F8FAFC' : leagueBonusPalette.modal.eyebrow, fontSize:f.caption, fontWeight:'900' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
-                  {leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK)}
-                </Text>
-              </View>
-            )}
-          </View>
-          {leaguePreviewState.isPreviewingMyLeague && (
-          <TouchableOpacity
-            testID="league-chat-icon"
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Чат лиги',
-              uk: 'Чат ліги',
-              es: 'Chat de liga',
-              'pt-BR': 'Chat da liga',
-              vi: 'Chat liga',
-              id: 'Chat liga',
-              tr: 'Lig sohbeti',
-              pl: 'Czat ligi',
-            })}
-            activeOpacity={0.86}
-            onPress={() => {
-              setChatModalVisible(true);
-              void hapticTap();
-            }}
-            style={{ position:'absolute', top:12, right:12, width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.50)' : leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.22)' : leagueBonusPalette.modal.metaBorder }}
-          >
-            <Ionicons name="chatbubbles-outline" size={22} color={leagueBonusPalette.accent} />
-            {leagueChatUnreadCount > 0 && (
-              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:0, borderColor:previewLeagueCardImage ? '#0B0F14' : t.bgCard }}>
-                <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
-                  {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
-                </Text>
-              </View>
-            )}
-          </TouchableOpacity>
-          )}
-        </View>
-        <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', gap:5, marginTop:8, minHeight:10 }}>
-          {LEAGUES.map((league) => (
-            <View
-              key={league.id}
-              style={{
-                width: league.id === previewLeague.id ? 18 : 5,
-                height: 5,
-                borderRadius: 999,
-                backgroundColor: league.id === previewLeague.id ? leagueBonusPalette.accent : 'rgba(255,255,255,0.22)',
-                opacity: league.id === myLeague.id ? 1 : 0.72,
-              }}
-            />
-          ))}
-        </View>
-        </View>
-
-        {leaguePreviewState.shouldShowLiveContent && (
-        <View>
-        {leagueRaceVisible && (
-        <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:18, borderWidth:0.5, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden', shadowColor:leagueChestVisualAccent, shadowOpacity:0.12, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:4 }}>
-          <LeagueBonusGiftImageWithFallback
-            source={leagueBonusGiftImage}
-            color={leagueChestVisualAccent}
-            size={136}
-            opacity={leagueChestReady ? 0.20 : 0.12}
-            style={{ position:'absolute', right:-24, top:-22, transform:[{ rotate:'-8deg' }] }}
-          />
-          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12, minHeight:58 }}>
-            <View style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}>
-              <View style={{ width:58, height:58, borderRadius:29, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center', shadowColor:leagueChestVisualAccent, shadowOpacity:leagueChestReady ? 0.42 : 0.24, shadowRadius:14, shadowOffset:{ width:0, height:6 }, elevation:7 }}>
-                <LeagueBonusGiftImageWithFallback source={leagueBonusGiftImage} color={leagueChestVisualAccent} size={68} opacity={leagueChestReady ? 1 : 0.94} />
-              </View>
-              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900', flex:1 }} numberOfLines={1}>
-                {triLang(lang, {
-                  ru: 'Бонус лиги',
-                  uk: 'Бонус ліги',
-                  es: 'Bono de liga',
-                  'pt-BR': "Bônus da liga",
-                  vi: "Thưởng giải đấu",
-                  id: "Bonus liga",
-                  tr: "Lig bonusu",
-                  pl: "Bonus ligi",
-                })}
-              </Text>
-            </View>
-            <View style={{ minWidth:44, minHeight:32, borderRadius:999, paddingHorizontal:10, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:leagueBonusPalette.modal.metaBorder }}>
-            <Text style={{ color: leagueChestVisualAccent, fontSize:f.body, fontWeight:'900' }}>
-              {leagueChestPct}%
-            </Text>
-            </View>
-          </View>
-          <View style={{ height:12, borderRadius:7, overflow:'hidden', backgroundColor:leagueBonusPalette.track, borderWidth:0.5, borderColor:leagueBonusPalette.trackBorder }}>
-            <LinearGradient colors={leagueChestVisualFill} start={{ x:0, y:0 }} end={{ x:1, y:0 }} style={{ height:'100%', width:`${leagueChestPct}%` as any, borderRadius:7 }} />
-          </View>
-          <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-            <Text style={{ color:leagueBonusPalette.textMuted, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
-              {leagueChestProgress.toLocaleString()} / {leagueChestGoal.toLocaleString()} XP
-            </Text>
-          </View>
-          <LinearGradient
-            testID="league-group-boost-card"
-            colors={activeGroupBoost ? ['rgba(255,91,108,0.24)', 'rgba(255,212,59,0.12)'] : ['rgba(255,255,255,0.055)', 'rgba(255,255,255,0.025)']}
-            start={{ x:0, y:0 }}
-            end={{ x:1, y:1 }}
-            style={{ borderRadius:14, borderWidth:0.5, borderColor:activeGroupBoost ? 'rgba(255,212,59,0.34)' : leagueBonusPalette.innerBorder, padding:10, gap:10 }}
-          >
-            <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-              <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
-                <Ionicons name={activeGroupBoost ? 'flash' : 'flash-outline'} size={19} color={monoIcon(themeMode, activeGroupBoost ? '#FFD43B' : leagueBonusPalette.accent)} />
-              </View>
-              <View style={{ flex:1, minWidth:0 }}>
-                <Text style={{ color:t.textPrimary, fontSize:f.caption, lineHeight:Math.max(15, f.caption + 3), fontWeight:'900' }} numberOfLines={2}>
-                  {activeGroupBoost
-                    ? triLang(lang, {
-                      ru: 'Общий буст лиги ×2',
-                      uk: 'Спільний буст ліги ×2',
-                      es: 'Impulso de liga común ×2',
-                      'pt-BR': 'Impulso coletivo da liga ×2',
-                      vi: 'Tăng lực chung của giải đấu ×2',
-                      id: 'Boost liga bersama ×2',
-                      tr: 'Ortak lig desteği ×2',
-                      pl: 'Wspólny boost ligi ×2',
-                    })
-                    : triLang(lang, {
-                      ru: '×2 XP для всей лиги',
-                      uk: '×2 XP для всієї ліги',
-                      es: '×2 XP para toda la liga',
-                      'pt-BR': '×2 XP para toda a liga',
-                      vi: '×2 XP cho cả giải đấu',
-                      id: '×2 XP untuk seluruh liga',
-                      tr: 'Tüm lig için ×2 XP',
-                      pl: '×2 XP dla całej ligi',
-                    })}
-                </Text>
-                <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), lineHeight:Math.max(13, f.caption + 1), fontWeight:'700', marginTop:2 }} numberOfLines={2}>
-                  {activeGroupBoost
-                    ? triLang(lang, {
-                      ru: `Осталось ${groupBoostTimeLeft || '...'}`,
-                      uk: `Залишилось ${groupBoostTimeLeft || '...'}`,
-                      es: `Quedan ${groupBoostTimeLeft || '...'}`,
-                      'pt-BR': `Restam ${groupBoostTimeLeft || '...'}`,
-                      vi: `Còn ${groupBoostTimeLeft || '...'}`,
-                      id: `Tersisa ${groupBoostTimeLeft || '...'}`,
-                      tr: `${groupBoostTimeLeft || '...'} kaldı`,
-                      pl: `Zostało ${groupBoostTimeLeft || '...'}`,
-                    })
-                    : triLang(lang, {
-                      ru: '3 часа для всех участников',
-                      uk: '3 години для всіх учасників',
-                      es: '3 horas para todos los participantes',
-                      'pt-BR': '3 horas para todos os participantes',
-                      vi: '3 giờ cho tất cả người tham gia',
-                      id: '3 jam untuk semua peserta',
-                      tr: 'Tüm katılımcılar için 3 saat',
-                      pl: '3 godziny dla wszystkich uczestników',
-                    })}
-                </Text>
-              </View>
-            </View>
-            <TouchableOpacity
-              testID="league-group-boost-buy"
-              activeOpacity={activeGroupBoost ? 1 : 0.86}
-              disabled={!!activeGroupBoost || groupBoostBuying}
-              onPress={() => { handleBuyGroupBoost(); }}
-              style={{
-                minHeight: 46,
-                width: '100%',
-                borderRadius: 13,
-                paddingHorizontal: 12,
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                gap: 7,
-                backgroundColor: activeGroupBoost ? 'rgba(255,255,255,0.08)' : t.accent,
-                borderWidth: 0,
-                borderColor: activeGroupBoost ? 'rgba(255,255,255,0.16)' : t.accent,
-                opacity: groupBoostBuying ? 0.7 : 1,
-              }}
-            >
-              <Text numberOfLines={1} style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                {activeGroupBoost
-                  ? triLang(lang, {
-                    ru: 'Активен',
-                    uk: 'Активний',
-                    es: 'Activo',
-                    'pt-BR': 'Ativo',
-                    vi: 'Đang bật',
-                    id: 'Aktif',
-                    tr: 'Aktif',
-                    pl: 'Aktywny',
-                  })
-                  : (groupBoostBuying
-                    ? triLang(lang, {
-                      ru: 'Включаем...',
-                      uk: 'Вмикаємо...',
-                      es: 'Activando...',
-                      'pt-BR': 'Ativando...',
-                      vi: 'Đang bật...',
-                      id: 'Mengaktifkan...',
-                      tr: 'Açılıyor...',
-                      pl: 'Włączamy...',
-                    })
-                    : triLang(lang, {
-                      ru: 'Открыть',
-                      uk: 'Відкрити',
-                      es: 'Desbloquear',
-                      'pt-BR': 'Abrir',
-                      vi: 'Mở',
-                      id: 'Buka',
-                      tr: 'Aç',
-                      pl: 'Odblokuj',
-                    }))}
-              </Text>
-              {!activeGroupBoost && (
-                freeBoostGiftReady ? (
-                  <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                    {triLang(lang, {
-                      ru: '🎁 бесплатно',
-                      uk: '🎁 безкоштовно',
-                      es: '🎁 gratis',
-                      'pt-BR': '🎁 grátis',
-                      vi: '🎁 miễn phí',
-                      id: '🎁 gratis',
-                      tr: '🎁 ücretsiz',
-                      pl: '🎁 za darmo',
-                    })}
-                  </Text>
-                ) : (
-                  <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
-                    <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                      {LEAGUE_GROUP_BOOST_COST_SHARDS}
-                    </Text>
-                    <Image
-                      source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
-                      style={{ width:16, height:16 }}
-                      contentFit="contain"
-                    />
-                  </View>
-                )
-              )}
-            </TouchableOpacity>
-            {!!activeGroupBoost && (
-              <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-                <TouchableOpacity
-                  testID="league-group-boost-buyer"
-                  activeOpacity={0.76}
-                  onPress={() => setProfile({
-                    name: activeGroupBoost.buyerName,
-                    points: activeGroupBoost.buyerTotalXp ?? 0,
-                    totalXp: activeGroupBoost.buyerTotalXp ?? undefined,
-                    isMe: activeGroupBoost.buyerUid === arenaClubStableUid,
-                    leagueId: activeGroupBoost.leagueId || myLeague.id,
-                    uid: activeGroupBoost.buyerUid,
-                    avatar: activeGroupBoost.buyerAvatar ?? undefined,
-                    frame: activeGroupBoost.buyerFrame ?? undefined,
-                    aura: activeGroupBoost.buyerAura ?? undefined,
-                    profileCardLevel: activeGroupBoost.buyerProfileCardLevel,
-                    profileCardTheme: activeGroupBoost.buyerProfileCardTheme,
-                    profileCardMotion: activeGroupBoost.buyerProfileCardMotion,
-                    profileCardPublicFocus: activeGroupBoost.buyerProfileCardPublicFocus,
-                  })}
-                  style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}
-                >
-                  <AvatarView
-                    avatar={activeGroupBoost.buyerAvatar || String(getBestAvatarForLevel(getLevelFromXP(activeGroupBoost.buyerTotalXp ?? 0)))}
-                    totalXP={activeGroupBoost.buyerTotalXp ?? 0}
-                    size={34}
-                    auraId={activeGroupBoost.buyerAura ?? undefined}
-                  />
-                  <View style={{ flex:1, minWidth:0 }}>
-                    <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900' }} numberOfLines={1}>
-                      {activeGroupBoost.buyerName}
-                    </Text>
-                    <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), fontWeight:'700' }} numberOfLines={1}>
-                      {triLang(lang, {
-                        ru: 'Купил буст для лиги',
-                        uk: 'Купив буст для ліги',
-                        es: 'Compró un impulso para la liga',
-                        'pt-BR': 'Comprou um impulso para a liga',
-                        vi: 'Đã mua tăng lực cho giải đấu',
-                        id: 'Membeli boost untuk liga',
-                        tr: 'Lig için destek satın aldı',
-                        pl: 'Kupił boost dla ligi',
-                      })}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  testID="league-group-boost-like"
-                  activeOpacity={0.82}
-                  disabled={groupBoostLikeBusy || groupBoostLikedToday || activeGroupBoost.buyerUid === arenaClubStableUid}
-                  onPress={() => { void handleLikeGroupBoostBuyer(); }}
-                  style={{
-                    minHeight: 40,
-                    borderRadius: 12,
-                    paddingHorizontal: 10,
-                    flexDirection:'row',
-                    alignItems:'center',
-                    gap:6,
-                    backgroundColor: groupBoostLikedToday ? 'rgba(255,45,85,0.11)' : 'rgba(255,45,85,0.18)',
-                    borderWidth: 0,
-                    borderColor: groupBoostLikedToday ? 'rgba(255,45,85,0.20)' : 'rgba(255,45,85,0.38)',
-                    opacity: activeGroupBoost.buyerUid === arenaClubStableUid ? 0.55 : 1,
-                  }}
-                >
-                  <Ionicons name={groupBoostLikedToday ? 'heart' : 'heart-outline'} size={17} color={monoIcon(themeMode, '#FF5B7C')} />
-                  <Text style={{ color:monoIcon(themeMode, '#FF8FA3'), fontSize:f.caption, fontWeight:'900' }}>
-                    {Math.max(groupBoostLikeTotal, activeGroupBoost.likeCount)}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </LinearGradient>
-          {!!leagueCrownWinnerName && (
-            <View style={{ flexDirection:'row', alignItems:'center', gap:6, paddingTop:2 }}>
-              <Ionicons name="trophy-outline" size={15} color={leagueCrownAccent} />
-              <Text style={{ color:t.textSecond, fontSize:Math.max(10, f.caption - 1), fontWeight:'800', flex:1 }} numberOfLines={1}>
-                {triLang(lang, {
-                  ru: `Корона: ${leagueCrownWinnerName}`,
-                  uk: `Корона: ${leagueCrownWinnerName}`,
-                  es: `Corona: ${leagueCrownWinnerName}`,
-                  'pt-BR': `Coroa: ${leagueCrownWinnerName}`,
-                  vi: `Vương miện: ${leagueCrownWinnerName}`,
-                  id: `Mahkota: ${leagueCrownWinnerName}`,
-                  tr: `Taç: ${leagueCrownWinnerName}`,
-                  pl: `Korona: ${leagueCrownWinnerName}`,
-                })}
-              </Text>
-            </View>
-          )}
-          {!leagueChestReady && crownRaceTop.length > 0 && (
-            <View style={{ backgroundColor:leagueBonusPalette.innerBg, borderRadius:12, borderWidth:0.5, borderColor:leagueBonusPalette.innerBorder, padding:10, gap:8 }}>
-              <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:10 }}>
-                <View style={{ flexDirection:'row', alignItems:'center', gap:6, flex:1, minWidth:0 }}>
-                  <Ionicons name="trophy-outline" size={16} color={leagueCrownAccent} />
-                  <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
-                    {triLang(lang, {
-                      ru: 'Гонка за корону',
-                      uk: 'Перегони за корону',
-                      es: 'Carrera por la corona',
-                      'pt-BR': "Corrida pela coroa",
-                      vi: "Cuộc đua giành vương miện",
-                      id: "Perebutan mahkota",
-                      tr: "Taç yarışı",
-                      pl: "Wyścig po koronę",
-                    })}
-                  </Text>
-                </View>
-              </View>
-              <View style={{ gap:6 }}>
-                {crownRaceTop.map((p, idx) => {
-                  const points = Math.max(0, Math.floor(Number(p.points) || 0));
-                  return (
-                    <View key={p.uid || `${p.name}-${idx}`} style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
-                      <Text style={{ width:18, color:idx === 0 ? leagueCrownAccent : t.textMuted, fontSize:f.caption, fontWeight:'900' }}>
-                        {idx + 1}
-                      </Text>
-                      <Text style={{ color:p.isMe ? t.accent : t.textSecond, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
-                        {p.name}
-                      </Text>
-                      <Text style={{ color:t.textMuted, fontSize:f.caption, fontWeight:'800' }}>
-                        {points}
-                      </Text>
-                    </View>
-                  );
-                })}
-              </View>
-            </View>
-          )}
-          {leagueChestReady && (
-            <TouchableOpacity
-              activeOpacity={leagueChestClaimed ? 1 : 0.86}
-              disabled={leagueChestClaimed || leagueChestClaiming}
-              onPress={() => { void claimLeagueChestReward(); }}
-              style={{
-                borderRadius: 13,
-                minHeight: 48,
-                paddingHorizontal: 14,
-                paddingVertical: 12,
-                backgroundColor: leagueChestClaimed ? t.bgSurface : t.accent,
-                borderWidth: 0,
-                borderColor: leagueChestClaimed ? t.border : t.accent,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
-                opacity: leagueChestClaiming ? 0.72 : 1,
-              }}
-            >
-              <Ionicons
-                name={leagueChestClaimed ? 'checkmark-circle' : (leagueCrownWinnerUid === arenaClubStableUid ? 'trophy' : 'gift')}
-                size={19}
-                color={leagueChestClaimed ? t.textMuted : t.correctText}
-              />
-              <Text style={{ color: leagueChestClaimed ? t.textMuted : t.correctText, fontSize: f.body, fontWeight: '900' }}>
-                {leagueChestClaimed
-                  ? triLang(lang, {
-                    ru: 'Бонус получен',
-                    uk: 'Бонус отримано',
-                    es: 'Bono recibido',
-                    'pt-BR': "Bônus recebido",
-                    vi: "Đã nhận thưởng",
-                    id: "Bonus diterima",
-                    tr: "Bonus alındı",
-                    pl: "Bonus odebrany",
-                  })
-                  : leagueChestClaiming
-                    ? triLang(lang, {
-                      ru: 'Открываем...',
-                      uk: 'Відкриваємо...',
-                      es: 'Abriendo...',
-                      'pt-BR': "Abrindo...",
-                      vi: "Đang mở...",
-                      id: "Membuka...",
-                      tr: "Açılıyor...",
-                      pl: "Otwieranie...",
-                    })
-                    : leagueCrownWinnerUid === arenaClubStableUid
-                      ? triLang(lang, {
-                        ru: 'Забрать корону',
-                        uk: 'Забрати корону',
-                        es: 'Recoger la corona',
-                        'pt-BR': "Pegar coroa",
-                        vi: "Nhận vương miện",
-                        id: "Ambil mahkota",
-                        tr: "Tacı al",
-                        pl: "Odbierz koron?",
-                      })
-                      : triLang(lang, {
-                        ru: 'Забрать бонус лиги',
-                        uk: 'Забрати бонус ліги',
-                        es: 'Recoger bono de liga',
-                        'pt-BR': "Pegar bônus da liga",
-                        vi: "Nhận thưởng giải đấu",
-                        id: "Ambil bonus liga",
-                        tr: "Lig bonusunu al",
-                        pl: "Odbierz bonus ligi",
-                      })}
-              </Text>
-            </TouchableOpacity>
-          )}
-        </LinearGradient>
+        ) : (
+          <LeagueHubSkeleton palette={hubPalette} />
         )}
 
-        <View style={{ backgroundColor:glassFill(t.bgSurface, 0.46), borderRadius:16, overflow:'hidden', marginTop:8 }}>
-          {showEmptyParticipants ? (
-            <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
+        {rankDelta && (
+          <RankChangeBanner
+            delta={rankDelta.delta}
+            passedName={rankDelta.passedName ? leaguePublicName(rankDelta.passedName, rankDelta.passedName) : undefined}
+            lostToName={rankDelta.lostToName ? leaguePublicName(rankDelta.lostToName, rankDelta.lostToName) : undefined}
+            lang={lang}
+            onClose={() => setRankDelta(null)}
+          />
+        )}
+
+        <View style={{ gap: 10 }}>
+          {leagueRaceVisible && (
+            <LeagueBonusMission
+              model={hubBonusMissionModel}
+              lang={lang}
+              palette={hubPalette}
+              giftImage={leagueBonusGiftImage}
+              renderContributorAvatar={renderLeagueMemberAvatar}
+              onClaim={() => { void claimLeagueChestReward(); }}
+              onBoost={handleBuyGroupBoost}
+              onOpenBoostBuyer={openActiveBoostBuyerProfile}
+              onLikeBoost={() => { void handleLikeGroupBoostBuyer(); }}
+              boostLiked={groupBoostLikedToday || activeGroupBoost?.buyerUid === arenaClubStableUid}
+              boostLikeBusy={groupBoostLikeBusy}
+              boostTimeLeft={groupBoostTimeLeft}
+              onOpenRank={scrollToLeagueRank}
+              onChestPress={() => setChestTeaserVisible(true)}
+            />
+          )}
+          {leagueRaceVisible && (
+            <LeagueRaceFeed lang={lang} palette={hubPalette} items={raceFeedItems} />
+          )}
+          {/* зачем: пока показан скелетон, у него уже есть свои строки-заглушки —
+              заголовок над ними дал бы вторую «пустую» секцию. */}
+          <View style={{ marginTop: 6, marginBottom: 2, gap: 3, display: localLeagueHydrated ? 'flex' : 'none' }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
               {triLang(lang, {
-                uk: 'Ще немає учасників',
-                ru: 'Пока нет участников',
-                es: 'Aún no hay participantes',
-                'pt-BR': "Ainda não há participantes",
-                vi: "Chưa có người tham gia",
-                id: "Belum ada peserta",
-                tr: "Henüz katılımcı yok",
-                pl: "Nie ma jeszcze uczestników",
+                ru: 'Полный рейтинг', uk: 'Повний рейтинг', es: 'Clasificación completa', 'pt-BR': 'Classificação completa',
+                vi: 'Bảng xếp hạng đầy đủ', id: 'Peringkat lengkap', tr: 'Tam sıralama', pl: 'Pełny ranking',
               })}
             </Text>
-          ) : sortedGroup.length > 0 ? (
-            sortedGroup.map((p, i) => {
-              const hasXpPromotion = leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && Math.max(0, Math.floor(Number(p.points) || 0)) >= leagueXpPromotionThreshold;
-              const isPromotionZone = hasXpPromotion || (promotionCutoff > 0 && i < promotionCutoff);
-              const isRelegationZone = i >= relegationStartIndex;
-              const rowXp = p.isMe ? playerXP : (p.totalXp ?? 0);
-              const rowAvatar = p.isMe
-                ? myAvatarEmoji
-                : (p.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(rowXp))));
-              const rowBg = isPromotionZone
-                ? 'rgba(52, 199, 89, 0.09)'
-                : isRelegationZone
-                  ? 'rgba(255, 59, 48, 0.09)'
-                  : 'transparent';
-              const isMyRow = !!p.isMe;
-              const rowFinalBg = isMyRow ? t.accentBg : rowBg;
-              const rowMask = rowFinalBg === 'transparent' ? t.bgCard : rowFinalBg;
-              const rowEffectiveAura = getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium, p.isVip);
-              const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
-              const leagueCrownCount = Math.max(0, Math.floor(Number(leagueCrownsByUid[p.uid ?? '']?.crownCount) || 0));
-              const hasLeagueCrown = !!p.uid && (
-                p.uid === leagueCrownWinnerUid ||
-                leagueCrownCount > 0 ||
-                Number(leagueCrownsByUid[p.uid]?.expiresAt) > Date.now()
-              );
-              const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
-              const rowInner = (
-              <TouchableOpacity
-                testID={`league-row-${p.uid || i}`}
-                accessibilityLabel={`qa-league-row-${p.uid || i}`}
-                activeOpacity={0.7}
-                onPress={() => setProfile({
-                  name: p.name,
-                  points: p.isMe ? playerXP : (p.totalXp ?? p.points),
-                  totalXp: p.isMe ? playerXP : (p.totalXp ?? undefined),
-                  isMe: p.isMe,
-                  leagueId: p.leagueId ?? myLeague.id,
-                  uid: p.uid,
-                  isPremium: p.isPremium ?? false,
-                  isVip: p.isVip ?? false,
-                  isLifetime: p.isLifetime ?? false,
-                  avatar: p.avatar,
-                  frame: p.frame,
-                  aura: p.isMe ? myAuraId : p.aura,
-                  streak: p.streak ?? null,
-                  weekXp: p.points,
-                  leagueCrownExpiresAt: hasLeagueCrown
-                    ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[p.uid ?? '']?.expiresAt) || 0)
-                    : undefined,
-                  leagueCrownCount: displayLeagueCrownCount || undefined,
-                  profileCardLevel: p.profileCardLevel,
-                  profileCardTheme: p.profileCardTheme,
-                  profileCardMotion: p.profileCardMotion,
-                  profileCardPublicFocus: p.profileCardPublicFocus,
+            {showEmptyParticipants ? (
+              <Text style={{ color: t.textGhost, fontSize: f.sub, paddingVertical: 16, textAlign: 'center' }}>
+                {triLang(lang, {
+                  uk: 'Ще немає учасників', ru: 'Пока нет участников', es: 'Aún no hay participantes', 'pt-BR': 'Ainda não há participantes',
+                  vi: 'Chưa có người tham gia', id: 'Belum ada peserta', tr: 'Henüz katılımcı yok', pl: 'Nie ma jeszcze uczestników',
                 })}
-                style={{
-                  flexDirection:'row', alignItems:'center',
-                  paddingHorizontal:16, paddingVertical:11,
-                  minHeight: ROW_HEIGHT_CLUB,
-                  borderBottomWidth: i < sortedGroup.length - 1 ? 0.5 : 0,
-                  borderBottomColor: t.border,
-                  backgroundColor: rowFinalBg,
-                }}
-              >
-                <Text style={{ width:24, fontSize: 14, color: isMyRow ? t.accent : t.textPrimary, fontWeight: isMyRow ? '900' : '400' }}>{i + 1}</Text>
-                <View style={{
-                  marginLeft: 2,
-                  marginRight: 10,
-                  borderRadius: 999,
-                  padding: hasLeagueCrown ? 2 : 0,
-                  borderWidth: hasLeagueCrown ? 1.5 : 0,
-                  borderColor: hasLeagueCrown ? leagueCrownAccent : 'transparent',
-                  shadowColor: hasLeagueCrown ? leagueCrownAccent : 'transparent',
-                  shadowOpacity: hasLeagueCrown ? 0.35 : 0,
-                  shadowRadius: hasLeagueCrown ? 8 : 0,
-                  shadowOffset: { width: 0, height: 0 },
-                }}>
-                  <View
-                    style={{
-                      width: CLUB_LEADERBOARD_AVATAR_SIZE,
-                      height: CLUB_LEADERBOARD_AVATAR_SIZE,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <PremiumAvatarHalo
-                      enabled={rowUsesPremiumAura}
-                      avatarSize={CLUB_LEADERBOARD_AVATAR_SIZE}
-                      maskColor={rowMask}
-                      animateShimmer={false}
-                    >
-                      <AvatarView
-                        avatar={rowAvatar}
-                        totalXP={rowXp}
-                        size={CLUB_LEADERBOARD_AVATAR_SIZE}
-                        auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
-                        animateAura={false}
-                      />
-                    </PremiumAvatarHalo>
-                  </View>
-                </View>
-                <View style={{ flex:1, minWidth: 0, paddingRight: 8 }}>
-                  <View style={{ minWidth: 0, maxWidth: '100%', overflow: 'hidden' }}>
-                    <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
-                      {hasLeagueCrown ? (
-                        <LeagueCrownName text={p.name} fontSize={f.body} count={displayLeagueCrownCount} />
-                      ) : !!p.isVip ? (
-                        <VipGreenUserName text={p.name} fontSize={f.body} />
-                      ) : !!p.isPremium ? (
-                        <PremiumGoldUserName text={p.name} fontSize={f.body} />
-                      ) : (
-                        <Text numberOfLines={1} style={{ fontSize: f.body, color: isMyRow ? t.textPrimary : t.textSecond, fontWeight: isMyRow ? '800' : '400' }}>
-                          {p.name}
-                        </Text>
-                      )}
-                    </View>
-                  </View>
-                  <ProfileCardBadge level={p.profileCardLevel} theme={p.profileCardTheme} style={{ marginTop: 3, maxWidth: '100%' }} />
-                </View>
-                {isMyRow && (
-                  <View style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0, borderColor: t.accent + '55' }}>
-                    <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
-                      {triLang(lang, {
-                        ru: 'Вы',
-                        uk: 'Ви',
-                        es: 'Tú',
-                        'pt-BR': "Você",
-                        vi: "Bạn",
-                        id: "Kamu",
-                        tr: "Sen",
-                        pl: "Ty",
-                      })}
-                    </Text>
-                  </View>
-                )}
-                {hasXpPromotion && (
-                  <View
-                    testID={`league-xp-promotion-badge-${p.uid || i}`}
-                    style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(52, 199, 89, 0.16)', borderWidth: 0, borderColor: 'rgba(52, 199, 89, 0.45)' }}
-                  >
-                    <Text style={{ color: monoIcon(themeMode, '#34C759'), fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }} numberOfLines={1}>
-                      {triLang(lang, {
-                        ru: 'Переход',
-                        uk: 'Перехід',
-                        es: 'Sube',
-                        'pt-BR': 'Sobe',
-                        vi: 'Lên hạng',
-                        id: 'Naik',
-                        tr: 'Yükselir',
-                        pl: 'Awans',
-                      })}
-                    </Text>
-                  </View>
-                )}
-                <View style={{ flexDirection:'row', alignItems:'center', gap:5, flexShrink: 0 }}>
-                  <Ionicons name="star" size={11} color={i < 3 ? t.gold : t.textMuted} />
-                  <Text style={{ color: i < 3 ? t.gold : t.textMuted, fontSize: f.body, fontWeight:'600' }}>
-                    {p.points}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              );
-              return (
-              <View
-                key={p.uid || `${p.name}-${i}`}
-              >
-                {p.isMe ? (
-                  <Animated.View
-                    style={{
-                      transform: [{ translateY: myRowAnim }],
-                      zIndex: 5,
-                      elevation: 5,
-                    }}
-                  >
-                    {rowInner}
-                  </Animated.View>
-                ) : (
-                  rowInner
-                )}
+              </Text>
+            ) : null}
+            {/* зачем: в лиге игрок ОДИН — раньше здесь была немая пустота, читалась
+                как баг. Объясняем ситуацию и превращаем её в комплимент. Тон
+                разделяем фоном/скруглением, без обводки (запрет владельца). */}
+            {showSoloParticipant ? (
+              <View style={{
+                marginTop: 8,
+                paddingVertical: 18,
+                paddingHorizontal: 18,
+                borderRadius: 20,
+                backgroundColor: t.bgSurface,
+                gap: 6,
+              }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Упс, ты здесь один',
+                    uk: 'Упс, ти тут сам',
+                    es: 'Vaya, estás solo aquí',
+                    'pt-BR': 'Opa, você está sozinho aqui',
+                    vi: 'Ối, chỉ có mình bạn ở đây',
+                    id: 'Ups, kamu sendirian di sini',
+                    tr: 'Hoppa, burada tek kişisin',
+                    pl: 'Ups, jesteś tu sam',
+                  })}
+                </Text>
+                <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: f.sub * 1.45, textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Так быть не должно. Похоже, ты слишком долго держался в лидерах прошлых лиг и обогнал всех, кто мог бы сюда попасть. Что ж, тогда ты крутой.',
+                    uk: 'Так бути не повинно. Схоже, ти надто довго тримався в лідерах попередніх ліг і випередив усіх, хто міг би сюди потрапити. Що ж, тоді ти крутий.',
+                    es: 'Esto no debería pasar. Parece que llevas demasiado tiempo liderando tus ligas anteriores y has dejado atrás a todos los que podrían estar aquí. Bueno, entonces eres genial.',
+                    'pt-BR': 'Isso não deveria acontecer. Parece que você liderou suas ligas anteriores por tempo demais e deixou para trás todos que poderiam estar aqui. Bom, então você é demais.',
+                    vi: 'Điều này lẽ ra không nên xảy ra. Có vẻ bạn đã dẫn đầu các giải trước quá lâu và vượt qua tất cả những ai có thể ở đây. Vậy thì bạn thật tuyệt.',
+                    id: 'Ini seharusnya tidak terjadi. Sepertinya kamu terlalu lama memimpin liga sebelumnya dan meninggalkan semua orang yang bisa ada di sini. Kalau begitu, kamu hebat.',
+                    tr: 'Böyle olmamalıydı. Görünüşe göre önceki liglerinde çok uzun süre lider kaldın ve buraya gelebilecek herkesi geride bıraktın. O hâlde sen harikasın.',
+                    pl: 'Tak nie powinno być. Wygląda na to, że zbyt długo byłeś liderem poprzednich lig i wyprzedziłeś wszystkich, którzy mogliby tu trafić. Cóż, w takim razie jesteś świetny.',
+                  })}
+                </Text>
               </View>
-            );
-            })
-          ) : null}
+            ) : null}
+          </View>
         </View>
-        </View>
-        )}
-
-      </Reanimated.ScrollView>
+        </>)}
+      />
       </BouncyWrap>
       </Reanimated.View>
 
       </ContentWrap>
 
-      <Modal
-        visible={chatModalVisible}
-        // Прямой вход с главной (openChat=1): без анимации, чтобы экран лиги под
-        // слайдом не мелькал. Обычный вход с экрана лиги — привычный slide-up.
-        animationType={openedDirectlyToChat ? 'none' : 'slide'}
-        presentationStyle="fullScreen"
-        onRequestClose={closeChatModal}
-      >
-        <View
-          testID="league-chat-fullscreen"
-          style={{ flex:1, backgroundColor:t.bgCard }}
-        >
-          <View style={{ flex:1, backgroundColor:t.bgCard }}>
-            <View style={{ minHeight:64, paddingTop:insets.top + 8, paddingBottom:8, paddingHorizontal:12, flexDirection:'row', alignItems:'center', gap:10, borderBottomWidth:0.5, borderBottomColor:t.border, backgroundColor:t.bgCard }}>
-              <TapScale
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Назад',
-                  uk: 'Назад',
-                  es: 'Volver',
-                  'pt-BR': 'Voltar',
-                  vi: 'Quay lại',
-                  id: 'Kembali',
-                  tr: 'Geri',
-                  pl: 'Wstecz',
-                })}
-                hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
-                onPress={closeChatModal}
-                testID="league-chat-close"
-                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0, borderColor:t.border }}
-              >
-                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-              </TapScale>
-              <View style={{ flexDirection:'row', alignItems:'center', gap:10, flex:1, minWidth:0 }}>
-                <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}>
-                  <Ionicons name="chatbubbles-outline" size={21} color={leagueBonusPalette.accent} />
-                </View>
-                <View style={{ flex:1, minWidth:0 }}>
-                  <Text style={{ color:t.textPrimary, fontSize:f.body, lineHeight:Math.round(f.body * 1.2), fontWeight:'900' }} numberOfLines={1}>
-                {triLang(lang, {
-                  ru: 'Чат лиги',
-                  uk: 'Чат ліги',
-                  es: 'Chat de liga',
-                  'pt-BR': 'Chat da liga',
-                  vi: 'Chat liga',
-                  id: 'Chat liga',
-                  tr: 'Lig sohbeti',
-                  pl: 'Czat ligi',
-                })}
-                  </Text>
-                  <Text style={{ color:t.textMuted, fontSize:f.caption, lineHeight:Math.round(f.caption * 1.25), fontWeight:'800' }} numberOfLines={1}>
-                    {leagueNameForLang(myLeague, lang)}
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={{ flex:1, minHeight:0, backgroundColor:t.bgCard }}>
-              <LeagueChatPanel
-                initialRoom={leagueGroupMeta}
-                myUid={arenaClubStableUid}
-                myAvatar={myAvatarEmoji}
-                myAuraId={myAuraId}
-                myTotalXP={playerXP}
-                onToast={showLeagueToast}
-                onAuthorPress={(author) => {
-                  // Карточку открываем по данным из списка лиги (богаче: XP, рамка,
-                  // корона, premium/vip). Если автора нет в текущем списке — по тому,
-                  // что есть в самом сообщении чата.
-                  const member = group.find((p) => p.uid && p.uid === author.uid);
-                  if (member) {
-                    const hasCrown =
-                      Math.max(0, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0)) > 0 &&
-                      Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) > Date.now();
-                    const crownCount = Math.max(1, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0));
-                    setChatProfile({
-                      name: member.name,
-                      points: member.isMe ? playerXP : (member.totalXp ?? member.points),
-                      totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
-                      isMe: member.isMe,
-                      leagueId: member.leagueId ?? myLeague.id,
-                      uid: member.uid,
-                      isPremium: member.isPremium ?? false,
-                      isVip: member.isVip ?? false,
-                      isLifetime: member.isLifetime ?? false,
-                      avatar: member.avatar ?? author.avatar,
-                      frame: member.frame,
-                      aura: member.isMe ? myAuraId : (member.aura ?? author.aura),
-                      streak: member.streak ?? null,
-                      weekXp: member.points,
-                      leagueCrownExpiresAt: hasCrown
-                        ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) || 0)
-                        : undefined,
-                      leagueCrownCount: hasCrown ? crownCount : undefined,
-                      profileCardLevel: member.profileCardLevel,
-                      profileCardTheme: member.profileCardTheme,
-                      profileCardMotion: member.profileCardMotion,
-                      profileCardPublicFocus: member.profileCardPublicFocus,
-                    });
-                    return;
-                  }
-                  setChatProfile({
-                    name: author.name,
-                    points: 0,
-                    isMe: !!arenaClubStableUid && author.uid === arenaClubStableUid,
-                    leagueId: myLeague.id,
-                    uid: author.uid,
-                    avatar: author.avatar,
-                    aura: author.aura,
-                  });
-                }}
-              />
-            </View>
-          </View>
-        </View>
-        <UnifiedPlayerModal
-          player={chatProfilePlayer}
-          myInfo={{
-            name: userName,
-            avatar: myAvatarEmoji,
-            frame: myFrameId,
-            aura: myAuraId,
-            totalXP: playerXP,
-            leagueId: myLeagueId,
-            streak: currentUserStreak,
-          }}
-          onClose={() => setChatProfile(null)}
-        />
-      </Modal>
-
       <UnifiedPlayerModal
         player={profilePlayer}
         myInfo={{
-          name: userName,
+          name: leaguePublicName(userName, arenaClubStableUid || userName),
           avatar: myAvatarEmoji,
           frame: myFrameId,
           aura: myAuraId,
@@ -2320,8 +1804,19 @@ export default function ClubScreen() {
         onConfirm={() => { void performBuyGroupBoost(); }}
       />
 
+      <LeagueChestTeaserModal
+        visible={chestTeaserVisible}
+        lang={lang}
+        palette={hubPalette}
+        remainingXp={hubBonusMissionModel.remainingXp}
+        canClaim={hubBonusMissionModel.canClaim}
+        rarities={chestTeaserRarities}
+        onClaim={() => { setChestTeaserVisible(false); void claimLeagueChestReward(); }}
+        onClose={() => setChestTeaserVisible(false)}
+      />
+
       <LeagueChestOpenModal
-        visible={leagueRaceVisible && leagueChestOpenModal !== null}
+        visible={runtimeActive && leagueRaceVisible && leagueChestOpenModal !== null}
         crownName={leagueChestOpenModal?.crownName}
         isCrownWinner={leagueChestOpenModal?.isCrownWinner}
         rewards={leagueChestOpenModal?.rewards}
@@ -2330,7 +1825,7 @@ export default function ClubScreen() {
 
       {pendingLeagueResult && (
         <LeagueResultModal
-          visible={true}
+          visible={runtimeActive}
           result={pendingLeagueResult}
           onClose={() => {
             // СИНХРОННО ставим оба гарда до любого await — иначе параллельный focus-loadData

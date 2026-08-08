@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Пул заданий турниров</title>
+  <style>
+    /* зачем отдельная страница (владелец 2026-07-27): «клик по папке должен
+       открывать отдельную страницу с фул пулом и удобным управлением всего».
+       Внутри админки список тонул под панелями генерации, а фильтр «На
+       проверке» показывал пусто при полном пуле. */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(ellipse at top, #0d1220 0%, #05070d 60%, #000 100%) fixed;
+      color: #e5e7eb;
+      min-height: 100vh;
+      padding: 18px 20px 60px;
+    }
+    a { color: inherit; }
+    header {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    h1 { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+    .sub { font-size: 13px; color: #9ca3af; }
+    .card {
+      background: #12121a; border-radius: 14px; padding: 16px 18px;
+      margin-bottom: 16px; max-width: 1400px;
+    }
+    .card h2 { font-size: 15px; font-weight: 800; color: #fafafa; margin-bottom: 10px; }
+    .hint { font-size: 12px; color: #9ca3af; line-height: 1.55; margin-bottom: 12px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    select, input[type=text] {
+      background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 8px;
+      color: #cbd5e1; padding: 7px 12px; font-size: 13px; font-family: inherit;
+    }
+    button {
+      border: none; border-radius: 8px; cursor: pointer; font-family: inherit;
+      font-weight: 700; font-size: 13px; padding: 8px 16px; color: #fff;
+    }
+    .btn-ghost { background: #1a2a3a; border: 1px solid #2a4a6a; color: #93c5fd; }
+    .btn-go { background: #7c3aed; border: 1px solid #8b5cf6; }
+    .btn-ok { background: #16a34a; border: 1px solid #22c55e; }
+    .btn-danger { background: #2a1518; border: 1px solid #7f1d1d; color: #fca5a5; }
+
+    /* Папки-вкладки: клик переключает пул без перезагрузки страницы. */
+    .folders { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .folder {
+      background: #171722; border-radius: 10px; padding: 9px 14px; cursor: pointer;
+      font-size: 13.5px; font-weight: 700; color: #cbd5e1;
+      display: flex; align-items: center; gap: 8px;
+      transition: background 140ms, transform 120ms;
+    }
+    .folder:hover { background: #1e1e2c; }
+    .folder:active { transform: scale(0.97); }
+    .folder.on { background: #2a1f4a; color: #c4b5fd; }
+    .folder b { color: #a78bfa; font-variant-numeric: tabular-nums; }
+
+    /* Связанные ползунки распределения. */
+    .mix-round { margin-bottom: 18px; }
+    .mix-round h3 {
+      font-size: 13px; font-weight: 800; color: #c4b5fd;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .mix-sum { font-size: 12px; font-weight: 700; color: #4ade80; }
+    .mix-sum.bad { color: #f87171; }
+    .slider-row {
+      display: grid; grid-template-columns: 160px 1fr 52px 60px;
+      align-items: center; gap: 12px; padding: 5px 0;
+    }
+    .slider-row .name { font-size: 13px; color: #cbd5e1; }
+    .slider-row .pct {
+      font-size: 13px; font-weight: 800; color: #fafafa; text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .slider-row .have { font-size: 11.5px; color: #6b7280; text-align: right; }
+    .slider-row .have.low { color: #fbbf24; }
+    input[type=range] {
+      -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px;
+      background: #2a2a3a; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #a78bfa; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Список заданий. */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      text-align: left; font-size: 11.5px; text-transform: uppercase;
+      letter-spacing: 0.8px; color: #6b7280; padding: 8px 10px; font-weight: 700;
+    }
+    td { padding: 10px; border-top: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .badge {
+      display: inline-block; border-radius: 6px; padding: 2px 8px;
+      font-size: 11.5px; font-weight: 700;
+    }
+    .badge.live { background: rgba(74,222,128,0.14); color: #4ade80; }
+    .badge.draft { background: rgba(251,191,36,0.14); color: #fbbf24; }
+    .opt { font-size: 12.5px; padding: 2px 0; color: #9ca3af; }
+    .opt.ok { color: #4ade80; }
+    audio { height: 30px; width: 190px; }
+    .empty { text-align: center; color: #6b7280; padding: 40px 0; font-size: 14px; }
+    .muted { color: #6b7280; font-size: 12px; }
+
+    /* Узкий экран: название типа над ползунком, иначе 160px съедают всю ширину
+       и ползунок становится нетягаемым. */
+    @media (max-width: 720px) {
+      body { padding: 14px 12px 40px; }
+      .slider-row {
+        grid-template-columns: 1fr 46px 54px;
+        grid-template-areas: "name name have" "slider pct pct";
+        gap: 8px 10px;
+      }
+      .slider-row .name { grid-area: name; }
+      .slider-row input[type=range] { grid-area: slider; }
+      .slider-row .pct { grid-area: pct; }
+      .slider-row .have { grid-area: have; }
+      table { font-size: 12.5px; }
+      /* Таблица шире экрана — прокручиваем её саму, а не всю страницу. */
+      #list { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Пул заданий турниров</h1>
+      <div class="sub" id="head-sub">загружаем…</div>
+    </div>
+    <span style="flex:1"></span>
+    <button class="btn-go" id="sign-in" style="display:none" onclick="signIn()">Войти через Google</button>
+    <button class="btn-ghost" onclick="location.reload()">Обновить</button>
+  </header>
+
+  <!-- Распределение типов по раундам: связанные ползунки. -->
+  <div class="card">
+    <h2>Распределение типов по раундам</h2>
+    <p class="hint">
+      Ползунки связаны: тянешь один — остальные подстраиваются, сумма всегда ровно 100%.
+      Справа от каждого показано, сколько таких заданий реально есть в пуле — если поставить
+      большой процент типу, которого мало, раунд доберётся другими.
+    </p>
+    <div id="mix-box"></div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn-ok" onclick="saveMix()">Сохранить распределение</button>
+      <button class="btn-ghost" onclick="resetMix()">Сбросить к равным долям</button>
+      <span id="mix-status" class="muted"></span>
+    </div>
+  </div>
+
+  <!-- Пул: папки + список. -->
+  <div class="card">
+    <h2>Задания</h2>
+    <div class="folders" id="folders"></div>
+    <div class="row" style="margin-bottom:12px">
+      <select id="f-status" onchange="loadTasks()">
+        <option value="">Все</option>
+        <option value="published" selected>В игре</option>
+        <option value="draft">На проверке</option>
+      </select>
+      <select id="f-difficulty" onchange="loadTasks()">
+        <option value="0">Любая сложность</option>
+        <option value="1">Лёгкие</option>
+        <option value="2">Средние</option>
+        <option value="3">Сложные</option>
+      </select>
+      <button class="btn-ghost" onclick="loadTasks()">Показать</button>
+      <span style="flex:1"></span>
+      <button class="btn-ok" onclick="bulkFolder('publish')">Опубликовать папку</button>
+      <button class="btn-danger" onclick="bulkFolder('delete')">Удалить папку</button>
+      <span id="list-status" class="muted"></span>
+    </div>
+    <div id="list"><div class="empty">Загружаем…</div></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, getRedirectResult, onAuthStateChanged, signInWithPopup, signInWithRedirect } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
+
+    /**
+     * Конфиг отдаёт сам хостинг — тот же способ, что в основной админке.
+     * зачем не хардкод: ключ не лежит в репозитории, и при смене проекта
+     * страница не ломается. Обёртка над запросом одна на всю страницу.
+     */
+    async function resolveFirebaseConfig() {
+      const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
+      if (injected && typeof injected === 'object') return injected;
+      const response = await fetch('/__/firebase/init.json', { cache: 'no-store', credentials: 'same-origin' });
+      if (!response.ok) throw new Error('firebase_hosting_config_unavailable');
+      const config = await response.json();
+      if (!config || typeof config !== 'object' || !config.projectId) {
+        throw new Error('firebase_hosting_config_invalid');
+      }
+      return config;
+    }
+
+    const app = initializeApp(await resolveFirebaseConfig());
+    const auth = getAuth(app);
+    const fns = getFunctions(app, 'us-central1');
+    const call = (name) => httpsCallable(fns, name);
+
+    const MODE_NAMES = {
+      guess_phrase: 'Живая ситуация',
+      fill_gap: 'Пропущенное слово',
+      find_oddity: 'Так не говорят',
+      translate_build: 'Собери фразу',
+      listen_choose: 'Выбор на слух',
+      sound_contrast: 'Пары звуков',
+      listen_build: 'Диктант',
+      speed_match: 'Пары на скорость',
+    };
+    const MODE_ICONS = {
+      guess_phrase: '💬', fill_gap: '␣', find_oddity: '🔍', translate_build: '🧩',
+      listen_choose: '🎧', sound_contrast: '🔊', listen_build: '✍️', speed_match: '⚡',
+    };
+    const DIFF_NAMES = { 1: 'Лёгкое', 2: 'Среднее', 3: 'Сложное' };
+    const MIX_TOTAL = 100;
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+    ));
+
+    let MODES = [];
+    let byMode = {};
+    let mix = {};
+    let folder = new URLSearchParams(location.search).get('mode') || '';
+
+    // ── Связанные ползунки ─────────────────────────────────────────────────
+    /**
+     * Двигаем один режим — остальные подстраиваются ПРОПОРЦИОНАЛЬНО своим
+     * весам, сумма остаётся 100. Пропорционально, а не поровну: иначе режим
+     * с долей 1% ушёл бы в минус первым, и «почти всё на один тип» стало бы
+     * невозможным. Та же формула, что на сервере (tournament_mode_mix.ts).
+     */
+    function adjust(current, changedMode, nextValue) {
+      const target = Math.max(0, Math.min(MIX_TOTAL, Math.round(nextValue)));
+      const others = MODES.filter((mode) => mode !== changedMode);
+      if (!others.length) return { [changedMode]: MIX_TOTAL };
+
+      const rest = MIX_TOTAL - target;
+      const othersSum = others.reduce((sum, mode) => sum + Math.max(0, current[mode] || 0), 0);
+      const next = { [changedMode]: target };
+
+      if (othersSum === 0) {
+        const share = Math.floor(rest / others.length);
+        others.forEach((mode) => { next[mode] = share; });
+        let left = rest - share * others.length;
+        for (let i = 0; left > 0; i += 1, left -= 1) next[others[i % others.length]] += 1;
+        return next;
+      }
+
+      let assigned = 0;
+      others.forEach((mode) => {
+        const value = Math.floor(((current[mode] || 0) * rest) / othersSum);
+        next[mode] = value;
+        assigned += value;
+      });
+      let left = rest - assigned;
+      const byWeight = [...others].sort((a, b) => (current[b] || 0) - (current[a] || 0));
+      for (let i = 0; left > 0; i += 1, left -= 1) next[byWeight[i % byWeight.length]] += 1;
+      return next;
+    }
+
+    function renderMix() {
+      const box = $('mix-box');
+      box.innerHTML = [1, 2, 3, 4].map((roundNo) => {
+        const roundMix = mix[roundNo] || {};
+        const sum = MODES.reduce((total, mode) => total + (roundMix[mode] || 0), 0);
+        const rows = MODES.map((mode) => {
+          const value = roundMix[mode] || 0;
+          const have = byMode[mode] || 0;
+          // Мало заданий при большой доле — предупреждаем сразу.
+          const low = value >= 20 && have < 6;
+          return `<div class="slider-row">
+            <div class="name">${MODE_ICONS[mode] || ''} ${esc(MODE_NAMES[mode] || mode)}</div>
+            <input type="range" min="0" max="100" value="${value}"
+              oninput="onSlide(${roundNo}, '${mode}', this.value)" />
+            <div class="pct">${value}%</div>
+            <div class="have ${low ? 'low' : ''}">${have} шт</div>
+          </div>`;
+        }).join('');
+        return `<div class="mix-round">
+          <h3>Раунд ${roundNo}
+            <span class="mix-sum ${sum === MIX_TOTAL ? '' : 'bad'}">сумма ${sum}%</span>
+          </h3>${rows}</div>`;
+      }).join('');
+    }
+
+    window.onSlide = function onSlide(roundNo, mode, rawValue) {
+      mix[roundNo] = adjust(mix[roundNo] || {}, mode, Number(rawValue));
+      renderMix();
+    };
+
+    window.saveMix = async function saveMix() {
+      $('mix-status').textContent = 'Сохраняем…';
+      try {
+        await call('adminSetTournamentModeMix')({ rounds: mix });
+        $('mix-status').textContent = 'Сохранено — новые турниры соберутся по этим долям.';
+      } catch (error) {
+        $('mix-status').textContent = `Ошибка: ${error?.message || error}`;
+      }
+    };
+
+    window.resetMix = async function resetMix() {
+      if (!confirm('Сбросить распределение к равным долям?')) return;
+      $('mix-status').textContent = 'Сбрасываем…';
+      try {
+        const res = await call('adminSetTournamentModeMix')({ reset: true });
+        mix = res?.data?.rounds || {};
+        renderMix();
+        $('mix-status').textContent = 'Сброшено — типы будут выпадать поровну.';
+      } catch (error) {
+        $('mix-status').textContent = `Ошибка: ${error?.message || error}`;
+      }
+    };
+
+    // ── Папки и список ─────────────────────────────────────────────────────
+    function renderFolders() {
+      $('folders').innerHTML = [{ mode: '', name: 'Все задания', icon: '📋' }]
+        .concat(MODES.map((mode) => ({ mode, name: MODE_NAMES[mode] || mode, icon: MODE_ICONS[mode] || '•' })))
+        .map((entry) => {
+          const count = entry.mode ? (byMode[entry.mode] || 0) : Object.values(byMode).reduce((a, b) => a + b, 0);
+          return `<div class="folder ${entry.mode === folder ? 'on' : ''}" onclick="openFolder('${entry.mode}')">
+            <span>${entry.icon}</span><span>${esc(entry.name)}</span><b>${count}</b>
+          </div>`;
+        }).join('');
+    }
+
+    window.openFolder = function openFolder(mode) {
+      folder = mode;
+      // Адрес меняется без перезагрузки: ссылку на папку можно скинуть себе.
+      const url = new URL(location.href);
+      if (mode) url.searchParams.set('mode', mode); else url.searchParams.delete('mode');
+      history.replaceState(null, '', url);
+      renderFolders();
+      loadTasks();
+    };
+
+    function taskBody(task) {
+      const payload = task.payload || {};
+      const options = Array.isArray(payload.options) ? payload.options : [];
+      const audio = String(payload.audioUri || '');
+      const parts = [];
+
+      if (audio) {
+        parts.push(`<audio controls preload="none" src="${esc(audio)}"></audio>`);
+      } else if (['listen_choose', 'sound_contrast', 'listen_build'].includes(task.mode)) {
+        parts.push('<div class="muted">озвучка появится при публикации</div>');
+      }
+
+      if (task.mode === 'speed_match') {
+        const items = Array.isArray(payload.items) ? payload.items : [];
+        parts.push(items.map((item) => {
+          const opts = Array.isArray(item.options) ? item.options : [];
+          return `<div class="opt"><b style="color:#e5e7eb">${esc(item.prompt)}</b> → <span class="ok">${esc(opts[item.correctIndex] ?? '')}</span></div>`;
+        }).join(''));
+        return parts.join('');
+      }
+
+      if (payload.phrase) {
+        parts.push(`<div style="font-weight:700;color:#fafafa;margin:4px 0">${esc(payload.phrase)}</div>`);
+      }
+      if (options.length) {
+        parts.push(options.map((option, index) => {
+          const ok = index === payload.correctIndex;
+          // В «так не говорят» верный ответ — ОШИБОЧНАЯ фраза: помечаем иначе.
+          const mark = ok ? (task.mode === 'find_oddity' ? '✗' : '✓') : '&nbsp;&nbsp;';
+          return `<div class="opt ${ok ? 'ok' : ''}">${mark} ${esc(option)}</div>`;
+        }).join(''));
+      }
+      if (Array.isArray(payload.correctTokens) && payload.correctTokens.length) {
+        const bank = Array.isArray(payload.wordBank) ? payload.wordBank : [];
+        parts.push(`<div class="opt">Чипы: ${bank.map((word) => {
+          const decoy = !payload.correctTokens.includes(word);
+          return `<span style="background:${decoy ? 'rgba(251,191,36,0.14)' : '#1a1a24'};color:${decoy ? '#fbbf24' : '#e5e7eb'};border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${esc(word)}</span>`;
+        }).join('')}</div>`);
+        parts.push(`<div class="opt ok">Ответ: ${esc(payload.correctTokens.join(' '))}</div>`);
+      }
+      return parts.join('');
+    }
+
+    window.loadTasks = async function loadTasks() {
+      $('list-status').textContent = 'Загружаем…';
+      $('list').innerHTML = '<div class="empty">Загружаем…</div>';
+      try {
+        const res = await call('adminListTournamentTasks')({
+          mode: folder,
+          status: $('f-status').value,
+          difficulty: Number($('f-difficulty').value || 0),
+          limit: 60,
+        });
+        const items = res?.data?.items || [];
+        $('list-status').textContent = `Показано: ${items.length}`;
+        if (!items.length) {
+          $('list').innerHTML = '<div class="empty">В этой папке с такими фильтрами пусто.</div>';
+          return;
+        }
+        $('list').innerHTML = `<table>
+          <thead><tr>
+            <th style="width:150px">Тип</th><th style="width:90px">Сложность</th>
+            <th style="width:90px">Статус</th><th>Задание</th>
+          </tr></thead>
+          <tbody>${items.map((task) => `<tr>
+            <td>${MODE_ICONS[task.mode] || ''} ${esc(MODE_NAMES[task.mode] || task.mode)}</td>
+            <td>${esc(DIFF_NAMES[task.difficulty] || task.difficulty)}</td>
+            <td><span class="badge ${task.verified ? 'live' : 'draft'}">${task.verified ? 'в игре' : 'на проверке'}</span></td>
+            <td>${taskBody(task)}</td>
+          </tr>`).join('')}</tbody></table>`;
+      } catch (error) {
+        $('list-status').textContent = '';
+        $('list').innerHTML = `<div class="empty" style="color:#f87171">Ошибка: ${esc(error?.message || error)}</div>`;
+      }
+    };
+
+    window.bulkFolder = async function bulkFolder(action) {
+      if (!folder) { alert('Выберите папку — массовое действие работает по одному типу.'); return; }
+      const name = MODE_NAMES[folder] || folder;
+      const what = action === 'publish' ? 'Опубликовать' : 'УДАЛИТЬ';
+      if (!confirm(`${what} все задания папки «${name}»?`)) return;
+      $('list-status').textContent = 'Выполняем…';
+      try {
+        let guard = 0;
+        let hasMore = true;
+        // Сервер отдаёт пачками — идём, пока не скажет «всё».
+        while (hasMore && guard < 20) {
+          const res = await call('adminBulkTournamentFolder')({
+            mode: folder, action, status: action === 'publish' ? 'draft' : '',
+          });
+          hasMore = res?.data?.hasMore === true;
+          guard += 1;
+        }
+        await refreshCounts();
+        loadTasks();
+      } catch (error) {
+        $('list-status').textContent = `Ошибка: ${error?.message || error}`;
+      }
+    };
+
+    async function refreshCounts() {
+      const res = await call('adminGetTournamentModeMix')({});
+      const data = res?.data || {};
+      MODES = data.modes || [];
+      byMode = data.byMode || {};
+      mix = data.rounds || {};
+      const total = Object.values(byMode).reduce((a, b) => a + b, 0);
+      $('head-sub').textContent = `${total} заданий в игре · ${MODES.length} типов`
+        + (data.configured ? ' · распределение настроено' : ' · доли равные');
+      renderFolders();
+      renderMix();
+    }
+
+    /**
+     * зачем кнопка вместо авто-попапа: браузер блокирует всплывающее окно,
+     * открытое без клика — страница молча зависала на «загружаем…».
+     * Попап пробуем первым (быстрее), при блокировке уходим в редирект.
+     */
+    window.signIn = async function signIn() {
+      const provider = new GoogleAuthProvider();
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (error) {
+        const code = String(error?.code || '');
+        if (code.includes('popup')) {
+          await signInWithRedirect(auth, provider);
+          return;
+        }
+        $('head-sub').textContent = `Не удалось войти: ${error?.message || error}`;
+      }
+    };
+
+    // Возврат после редиректа: без этого сессия не подхватится.
+    getRedirectResult(auth).catch(() => {});
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        $('sign-in').style.display = '';
+        $('head-sub').textContent = 'Нужен вход администратора';
+        $('mix-box').innerHTML = '<div class="empty">Войдите, чтобы настроить распределение.</div>';
+        $('list').innerHTML = '<div class="empty">Войдите, чтобы увидеть пул.</div>';
+        return;
+      }
+      $('sign-in').style.display = 'none';
+      try {
+        await refreshCounts();
+        await loadTasks();
+      } catch (error) {
+        $('head-sub').textContent = `Ошибка доступа: ${error?.message || error}`;
+        $('list').innerHTML = `<div class="empty" style="color:#f87171">${esc(error?.message || error)}</div>`;
+      }
+    });
+  </script>
+</body>
+</html>

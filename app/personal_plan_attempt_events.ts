@@ -1,4 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 import {
   sanitizePlanAttemptPayload,
@@ -60,16 +65,21 @@ export function personalPlanAttemptEventsStorageKey(): string {
 }
 
 export async function appendPersonalPlanAttemptEvent(event: PlanAttemptEvent): Promise<PlanAttemptEvent> {
+  const generation = captureAccountGeneration();
   const normalized = normalizeStoredAttemptEvent(event);
   const issues = validatePlanAttemptEventContract(normalized);
   if (issues.length > 0) {
     throw new Error(`Invalid personal plan attempt event: ${issues.join(', ')}`);
   }
 
-  const events = await readStoredAttemptEvents();
-  const withoutDuplicate = events.filter((stored) => stored.id !== normalized.id);
-  await writeStoredAttemptEvents([...withoutDuplicate, normalized]);
-  return normalized;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(generation)) throw new Error('stale_account_generation');
+    const events = await readStoredAttemptEvents();
+    if (!isCurrentAccountGeneration(generation)) throw new Error('stale_account_generation');
+    const withoutDuplicate = events.filter((stored) => stored.id !== normalized.id);
+    await writeStoredAttemptEvents([...withoutDuplicate, normalized]);
+    return normalized;
+  });
 }
 
 export async function listPersonalPlanAttemptEvents(planInstanceId: string): Promise<PlanAttemptEvent[]> {
@@ -80,11 +90,16 @@ export async function listPersonalPlanAttemptEvents(planInstanceId: string): Pro
 }
 
 export async function clearPersonalPlanAttemptEvents(planInstanceId: string): Promise<void> {
+  const generation = captureAccountGeneration();
   const instanceId = planInstanceId.trim();
-  const events = await readStoredAttemptEvents();
-  if (!instanceId) {
-    await writeStoredAttemptEvents([]);
-    return;
-  }
-  await writeStoredAttemptEvents(events.filter((event) => event.planInstanceId !== instanceId));
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(generation)) throw new Error('stale_account_generation');
+    const events = await readStoredAttemptEvents();
+    if (!isCurrentAccountGeneration(generation)) throw new Error('stale_account_generation');
+    if (!instanceId) {
+      await writeStoredAttemptEvents([]);
+      return;
+    }
+    await writeStoredAttemptEvents(events.filter((event) => event.planInstanceId !== instanceId));
+  });
 }

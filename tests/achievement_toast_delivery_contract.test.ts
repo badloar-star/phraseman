@@ -23,7 +23,30 @@ describe('achievement toast delivery contract', () => {
     const displayBlock = toastSource.slice(displayStart, displayEnd);
 
     expect(displayStart).toBeGreaterThanOrEqual(0);
-    expect(displayBlock).toContain('markAchievementsNotified([currentToast.id])');
+    // Инвариант: notified проставляется ИМЕННО здесь — в рендерере, после выдачи слота
+    // арбитром, а не заранее в _layout (иначе достижение «показано» без показа).
+    expect(displayBlock).toContain('markAchievementsNotified(');
+    // Одиночный тост гасит своё достижение, сводка — всю свёрнутую пачку (summaryIds),
+    // иначе следующий flushPending поднял бы те же достижения снова.
+    expect(displayBlock).toContain('currentToast.id');
+    expect(displayBlock).toContain('currentToast.summaryIds');
+  });
+
+  it('collapses a burst of achievements into a single summary toast', () => {
+    const contextSource = fs.readFileSync(path.join(ROOT, 'components', 'AchievementContext.tsx'), 'utf8');
+
+    // Порог сворачивания существует и больше единицы: 1-2 достижения ещё празднуются
+    // поштучно, лавина (новый аккаунт, каскад XP→уровень→достижения) — одной сводкой.
+    const threshold = /TOAST_SUMMARY_THRESHOLD\s*=\s*(\d+)/.exec(contextSource);
+    expect(threshold).not.toBeNull();
+    expect(Number(threshold![1])).toBeGreaterThan(1);
+
+    // Сводка несёт id всей пачки — без них рендерер не смог бы погасить её целиком.
+    expect(contextSource).toContain('summaryIds');
+    // Уже стоящая в очереди сводка ПОГЛОЩАЕТ следующие достижения, а не встаёт рядом.
+    expect(contextSource).toContain('existingSummary');
+    // У сводки нет собственной награды: XP уже начислен каждым достижением отдельно.
+    expect(/xp:\s*0/.test(contextSource)).toBe(true);
   });
 
   it('retries pending achievement delivery if a toast expires before getting an overlay slot', () => {

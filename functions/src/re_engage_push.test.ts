@@ -4,6 +4,8 @@
  * валидацию токена, локализацию текста и разбивку на чанки.
  * I/O (Firestore scan + Expo fetch) здесь не тестируется — только чистые функции.
  */
+import fs from 'fs';
+import path from 'path';
 import {
   classifyReEngageUser,
   selectReEngageCandidates,
@@ -69,7 +71,14 @@ describe('parseReEngageUser', () => {
       streakCount: 7,
       lastReEngagePushAt: NOW - 10 * DAY,
       userName: 'Ana',
+      pushPrefs: null,
     });
+  });
+  it('парсит pushPrefs (булевы), мусор внутри игнорирует', () => {
+    const parsed = parseReEngageUser('uZ', {
+      pushPrefs: { streak: false, offers: 'да' },
+    });
+    expect(parsed.pushPrefs).toEqual({ streak: false, offers: undefined });
   });
   it('терпит отсутствие полей', () => {
     const parsed = parseReEngageUser('uY', undefined);
@@ -136,6 +145,22 @@ describe('classifyReEngageUser', () => {
     expect(classifyReEngageUser(user({ lastActiveAt: null }), NOW)).toBeNull();
   });
 
+  it('pushPrefs.streak === false: стрик-риск НЕ шлём (юзер выключил категорию)', () => {
+    const u = user({
+      streakCount: STREAK_AT_RISK_MIN,
+      lastActiveAt: NOW - 22 * HOUR,
+      pushPrefs: { streak: false },
+    });
+    expect(classifyReEngageUser(u, NOW)).toBeNull();
+  });
+  it('pushPrefs.streak === false НЕ трогает inactive_return (другая категория)', () => {
+    const u = user({ lastActiveAt: NOW - 5 * DAY, pushPrefs: { streak: false } });
+    expect(classifyReEngageUser(u, NOW)).toBe('inactive_return');
+  });
+  it('pushPrefs отсутствует (старый клиент) — стрик-риск шлём как раньше', () => {
+    const u = user({ streakCount: STREAK_AT_RISK_MIN, lastActiveAt: NOW - 22 * HOUR, pushPrefs: null });
+    expect(classifyReEngageUser(u, NOW)).toBe('streak_at_risk');
+  });
   it('приоритет: стрик-риск важнее (серия 10, 23ч без захода)', () => {
     const u = user({ streakCount: 10, lastActiveAt: NOW - 23 * HOUR });
     expect(classifyReEngageUser(u, NOW)).toBe('streak_at_risk');
@@ -210,5 +235,43 @@ describe('chunkMessages', () => {
   });
   it('пустой массив — нет чанков', () => {
     expect(chunkMessages([], 100)).toEqual([]);
+  });
+});
+
+describe('проекция полей в скане users', () => {
+  // зачем: скан users читает документы через .select(), чтобы не тянуть их целиком —
+  // доки users самые «толстые» в базе. Но проекция и parseReEngageUser должны знать об
+  // одних и тех же полях: добавят поле в парсер и забудут в .select() — оно молча придёт
+  // пустым, кандидат отсеется, и пуш просто перестанет уходить. Молча. Этот храповик
+  // ловит рассинхрон на CI, а не в проде.
+  const source = fs.readFileSync(path.join(__dirname, 're_engage_push.ts'), 'utf8');
+  const projection = source.slice(source.indexOf('.select('), source.indexOf('if (lastDoc)'));
+
+  it.each([
+    'expoPushToken',
+    'pushTokenLang',
+    'pushTokenTimezone',
+    'last_active_at',
+    'lastReEngagePushAt',
+    'progress.streak_count',
+    'progress.user_name',
+    'pushPrefs',
+  ])('проекция включает поле %s, которое читает parseReEngageUser', (field) => {
+    expect(projection).toContain(`'${field}'`);
+  });
+
+  it('парсер не читает полей сверх спроецированных', () => {
+    const parser = source.slice(
+      source.indexOf('export function parseReEngageUser'),
+      source.indexOf('/** Возвращает локальный час'),
+    );
+    // Все обращения вида data?.X и progress.X внутри парсера.
+    const read = new Set<string>();
+    for (const m of parser.matchAll(/data\?\.([a-zA-Z_0-9]+)/g)) read.add(m[1]);
+    for (const m of parser.matchAll(/progress\.([a-zA-Z_0-9]+)/g)) read.add(`progress.${m[1]}`);
+    read.delete('progress'); // сам объект progress, а не поле внутри него
+    for (const field of read) {
+      expect(projection).toContain(`'${field}'`);
+    }
   });
 });

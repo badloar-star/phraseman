@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +18,7 @@ import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { soundDirector } from '../modules/audio/sound_director';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
@@ -25,6 +26,7 @@ import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
@@ -43,6 +45,8 @@ import ClozeGapText from '../components/ClozeGapText';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
+import { peekDiagnosticReadiness, rememberDiagnosticExamLessonsDone, rememberDiagnosticExamReadinessPercent } from './diagnostic_test_state';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
 import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey, storageStudyTarget } from './target_storage_keys';
@@ -769,7 +773,7 @@ const ACTIVE_DIAGNOSTIC_POOL = STRICT_DIAGNOSTIC_POOL;
 
 // Result thresholds (based on 20 questions)
 const LEVEL_RESULTS = [
-  {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi:'Mức khởi đầu (tham khảo)', id:'Level awal (orientatif)', tr:'Başlangıç seviyesi (tahmini)', pl:'Poziom początkowy (orientacyjnie)',
+  {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi: 'Mức khởi đầu (tham khảo)', id: 'Level awal (orientatif)', tr: 'Başlangıç seviyesi (tahmini)', pl: 'Poziom początkowy (orientacyjnie)',
     msgRU:'База ещё формируется — это нормально. Двигайся по урокам: словарь, грамматика и теория дадут опору.',
     msgUK:'База ще формується — це нормально. Рухайся за уроками: словник, граматика й теорія дадуть опору.',
     msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.',
@@ -778,7 +782,7 @@ const LEVEL_RESULTS = [
     msgID:'Dasarnya masih terbentuk — itu wajar. Ikuti pelajaran: kosakata, tata bahasa, dan teori akan memberi pijakan.',
     msgTR:'Temel hâlâ oluşuyor — bu normal. Dersleri takip et: kelime, dil bilgisi ve teori sana dayanak sağlar.',
     msgPL:'Podstawy dopiero się układają — to normalne. Idź przez lekcje: słownictwo, gramatyka i teoria dadzą oparcie.'},
-  {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi:'Mức cơ bản (tham khảo)', id:'Level dasar (orientatif)', tr:'Temel seviye (tahmini)', pl:'Poziom podstawowy (orientacyjnie)',
+  {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi: 'Mức cơ bản (tham khảo)', id: 'Level dasar (orientatif)', tr: 'Temel seviye (tahmini)', pl: 'Poziom podstawowy (orientacyjnie)',
     msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.',
     msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
     msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.',
@@ -787,7 +791,7 @@ const LEVEL_RESULTS = [
     msgID:'Kamu sudah mengenali pola: perkuat kosakata dan tata bahasa di pelajaran; kecepatan akan datang lewat kebiasaan.',
     msgTR:'Kalıpları tanıyorsun: derslerde kelime ve dil bilgisini güçlendir; hız düzenli pratikle gelir.',
     msgPL:'Rozpoznajesz już schematy: wzmacniaj słownictwo i gramatykę w lekcjach; tempo przyjdzie z praktyką.'},
-  {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi:'Trung cấp (tham khảo)', id:'Menengah (orientatif)', tr:'Orta seviye (tahmini)', pl:'Średnio zaawansowany (orientacyjnie)',
+  {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi: 'Trung cấp (tham khảo)', id: 'Menengah (orientatif)', tr: 'Orta seviye (tahmini)', pl: 'Średnio zaawansowany (orientacyjnie)',
     msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».',
     msgUK:'Впевненіше тримаєш матеріал курсу. Познач прогалини в темах і повертайся до «Теорії» та «Словника».',
     msgES:'Manejas mejor el contenido del curso. Marca lagunas y repasa «Teoría» y «Vocabulario» donde haga falta.',
@@ -796,7 +800,7 @@ const LEVEL_RESULTS = [
     msgID:'Kamu makin mantap dengan materi kursus. Tandai celah dan ulangi “Teori” serta “Kosakata” saat perlu.',
     msgTR:'Kurs içeriğini daha sağlam tutuyorsun. Eksik konuları işaretle ve gerektiğinde “Teori” ile “Kelime” bölümlerine dön.',
     msgPL:'Coraz pewniej trzymasz materiał kursu. Zaznacz luki i wracaj do sekcji „Teoria” oraz „Słownictwo”.'},
-  {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi:'Trung cấp cao (tham khảo)', id:'Menengah atas (orientatif)', tr:'Üst orta seviye (tahmini)', pl:'Wyższy średni (orientacyjnie)',
+  {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi: 'Trung cấp cao (tham khảo)', id: 'Menengah atas (orientatif)', tr: 'Üst orta seviye (tahmini)', pl: 'Wyższy średni (orientacyjnie)',
     msgRU:'Сильный результат в формате теста — не про «талант», а про накопленную практику. Закрепляй слабые темы.',
     msgUK:'Сильний результат у форматі тесту — це про практику, не про «здібності». Закріплюй слабкі теми.',
     msgES:'Muy buen resultado en este formato: refleja práctica acumulada, no «capacidad». Refuerza temas flojos.',
@@ -805,7 +809,7 @@ const LEVEL_RESULTS = [
     msgID:'Hasil yang kuat untuk format tes ini: ini soal latihan yang terkumpul, bukan “bakat”. Perkuat topik yang masih lemah.',
     msgTR:'Bu test formatında güçlü sonuç: bu “yetenek” değil, birikmiş pratik. Zayıf konuları pekiştir.',
     msgPL:'Mocny wynik w tym formacie: to efekt zebranej praktyki, nie „talentu”. Utrwal słabsze tematy.'},
-  {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi:'Nâng cao (tham khảo)', id:'Mahir (orientatif)', tr:'İleri seviye (tahmini)', pl:'Zaawansowany (orientacyjnie)',
+  {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi: 'Nâng cao (tham khảo)', id: 'Mahir (orientatif)', tr: 'İleri seviye (tahmini)', pl: 'Zaawansowany (orientacyjnie)',
     msgRU:'Высокий балл по заданиям приложения — продолжай полировать детали через уроки и повторение.',
     msgUK:'Високий бал за завдання застосунку — продовжуй шліфувати деталі через уроки й повторення.',
     msgES:'Puntuación alta en el formato de la app: sigue puliendo matices con lecciones y repaso.',
@@ -814,7 +818,7 @@ const LEVEL_RESULTS = [
     msgID:'Skor tinggi dalam format aplikasi: terus poles detail lewat pelajaran dan pengulangan.',
     msgTR:'Uygulama formatında yüksek puan: dersler ve tekrarlarla ayrıntıları parlatmaya devam et.',
     msgPL:'Wysoki wynik w formacie aplikacji: dalej dopracowuj szczegóły przez lekcje i powtórki.'},
-  {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi:'Tối đa trong bài kiểm tra này', id:'Maksimum di tes ini', tr:'Bu testte maksimum', pl:'Maksimum w tym teście',
+  {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi: 'Tối đa trong bài kiểm tra này', id: 'Maksimum di tes ini', tr: 'Bu testte maksimum', pl: 'Maksimum w tym teście',
     msgRU:'Все задания верны — отличный ориентир. Закрепи результат регулярными повторениями уроков.',
     msgUK:'Усі завдання вірні — чудовий орієнтир. Закріпи результат регулярним повторенням уроків.',
     msgES:'Pleno en este formato: mantén el nivel con repaso habitual en las lecciones.',
@@ -978,9 +982,18 @@ export default function DiagnosticTest() {
   const [hapticsOn,   setHapticsOn]= useState(true);
   const [autoAdvance, setAutoAdvance]= useState(false);
   const { playCorrect } = useCorrectSound();
-  const [examLessonsDone, setExamLessonsDone] = useState(0);
+  const { playTimerTick, playTimerExpired } = useTimerTickCue();
+  // зачем: убрать «прыжок с нулей» — на первом кадре до AsyncStorage-подгрузки
+  // examLessonsDone/examReadiness.percent брали дефолт 0 и рендерили «0/32
+  // уроков»/«0%», а через мгновение число прыгало на реальное. Сессионный
+  // peek-кеш (diagnostic_test_state.ts) даёт последнее известное значение
+  // синхронно; null — только на самом первом открытии экрана в этом процессе,
+  // и тогда вместо цифры рисуем скелетон той же геометрии (см. рендер ниже).
+  const diagnosticReadinessPeek = peekDiagnosticReadiness(studyTarget);
+  const [examLessonsDone, setExamLessonsDone] = useState<number | null>(() => diagnosticReadinessPeek?.examLessonsDone ?? null);
+  const [examReadinessPercent, setExamReadinessPercent] = useState<number | null>(() => diagnosticReadinessPeek?.examReadinessPercent ?? null);
   const [examReadiness, setExamReadiness] = useState<ExamReadinessSnapshot>({
-    percent: 0,
+    percent: diagnosticReadinessPeek?.examReadinessPercent ?? 0,
     currentLesson: 1,
     phrasesLearnedTotal: 0,
     wrongInActiveScope: 0,
@@ -1048,6 +1061,9 @@ export default function DiagnosticTest() {
     }
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     setPhase('quiz');
+    // зачем: собранный «вдох» на старте первого вопроса теста — часто первое
+    // впечатление новичка от приложения, сейчас звука не было вообще.
+    soundDirector.request('pm.exam.begin', { scope: 'diagnostic', dedupeKey: diagnosticAttemptIdRef.current });
     locked.current = false;
   };
 
@@ -1078,6 +1094,9 @@ export default function DiagnosticTest() {
     setTypeSubmitted(false);
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     setPhase('quiz');
+    // зачем: собранный «вдох» на старте первого вопроса теста — часто первое
+    // впечатление новичка от приложения, сейчас звука не было вообще.
+    soundDirector.request('pm.exam.begin', { scope: 'diagnostic', dedupeKey: diagnosticAttemptIdRef.current });
     locked.current = false;
   };
 
@@ -1152,12 +1171,15 @@ export default function DiagnosticTest() {
       } catch { /* skip corrupt */ }
     }
     setExamLessonsDone(done);
+    rememberDiagnosticExamLessonsDone(done, studyTarget); // зачем: обновить peek-кеш для следующего первого кадра
   }, [studyTarget]);
 
   const loadExamReadiness = useCallback(async () => {
     try {
       const snap = await loadExamReadinessSnapshot(studyTarget);
       setExamReadiness(snap);
+      setExamReadinessPercent(snap.percent);
+      rememberDiagnosticExamReadinessPercent(snap.percent, studyTarget); // зачем: обновить peek-кеш для следующего первого кадра
     } catch {
       /* keep previous */
     }
@@ -1216,6 +1238,16 @@ export default function DiagnosticTest() {
       handleTimeUpRef.current();
     }
   }, [diagnosticNow, diagnosticRuntimeActive, phase]);
+
+  // зачем: последние 5 секунд слышно — тот же порог, что в турнирном раунде,
+  // чтобы «время заканчивается» звучало одинаково во всех заданиях с таймером.
+  // Вопрос уже отвеченный не торопим: там таймер не идёт.
+  useEffect(() => {
+    if (!diagnosticRuntimeActive || phase !== 'quiz') return;
+    if (locked.current || timeUpFired.current) return;
+    if (timeLeft > 5 || timeLeft <= 0) return;
+    playTimerTick();
+  }, [diagnosticRuntimeActive, phase, timeLeft, playTimerTick]);
 
   const advance = (newScore: number) => {
     clearAutoAdvanceTimer();
@@ -1276,6 +1308,10 @@ export default function DiagnosticTest() {
     const qq = questions[idx];
     if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     if (hapticsOn) void hapticError();
+    // зачем: тактильный отклик на истечение уже был, звука не было — вопрос
+    // засчитывался неверным беззвучно. Ставим рядом с хаптикой, чтобы оба
+    // канала обратной связи жили в одной точке.
+    playTimerExpired();
     advance(score);
   };
 
@@ -1380,7 +1416,7 @@ export default function DiagnosticTest() {
       <FrenchDiagnosticUnavailable
         lang={lang}
         onBack={() => safeRouterBack(router)}
-        onLessons={() => router.replace('/(tabs)/lessons' as any)}
+        onLessons={() => router.replace('/lessons_list' as any)}
         sx={sx}
         t={t}
         f={f}
@@ -1392,7 +1428,33 @@ export default function DiagnosticTest() {
   const qOpts = diagnosticQuestionOptions(lang, q);
   const result = getResult(score, questions, answersRef.current);
 
-  if ((phase === 'quiz' || isFrenchDiagnostic) && (questionsLoading || !q || questions.length === 0)) {
+  // зачем: questionsLoading===true (французские вопросы ещё грузятся с сервера) —
+  // это НЕ ошибка, а нормальное временное состояние. Раньше оба случая (ещё
+  // грузится / реально не загрузилось) рисовали один и тот же экран с текстом
+  // «Вопросы не загрузились» и кнопкой «Назад» — пользователь на каждой обычной
+  // загрузке на миг видел ложное сообщение об ошибке. Теперь пока идёт загрузка —
+  // зарезервированный скелетон карточек вопроса (та же геометрия, что и quiz-экран
+  // ниже), а текст об ошибке — только когда загрузка реально завершилась пусто.
+  if ((phase === 'quiz' || isFrenchDiagnostic) && questionsLoading) {
+    return (
+      <ScreenGradient artBackdrop="diagnosticTest">
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={{ padding: 24 }}>
+              <SkeletonBlock width="70%" height={f.h2} borderRadius={6} />
+              <SkeletonBlock width="100%" height={90} borderRadius={16} style={{ marginTop: 24 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 20 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  if ((phase === 'quiz' || isFrenchDiagnostic) && (!q || questions.length === 0)) {
     return (
       <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
@@ -1432,9 +1494,9 @@ export default function DiagnosticTest() {
           {s.diagnostic.start}
         </Text>
       </View>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24 }}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24 }}>
         {prevResult && (
-          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 16, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), marginBottom: 20, width: '100%' }}>
+          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 16, marginBottom: 20, width: '100%' }}>
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
               {s.diagnostic.prevResult}
             </Text>
@@ -1455,8 +1517,6 @@ export default function DiagnosticTest() {
             backgroundColor: glassFill(t.bgSurface, 0.46),
             borderRadius: 16,
             padding: 16,
-            borderTopWidth: 1,
-            borderTopColor: glassFill(t.accent, 0.14),
             marginBottom: 20,
             width: '100%',
           }}
@@ -1464,10 +1524,15 @@ export default function DiagnosticTest() {
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
             {s.diagnostic.examReadinessTitle}
           </Text>
-          <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 12, gap: 6 }}>
-            <Text style={{ color: t.accent, fontSize: f.numLg + 10, fontWeight: '800' }}>{examReadiness.percent}</Text>
-            <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700' }}>%</Text>
-          </View>
+          {/* зачем: examReadinessPercent===null только на первом кадре до подгрузки — скелетон той же геометрии вместо ложного «0%» */}
+          {examReadinessPercent === null ? (
+            <SkeletonBlock width={64} height={f.numLg + 10} borderRadius={8} style={{ marginTop: 12 }} />
+          ) : (
+            <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 12, gap: 6 }}>
+              <Text style={{ color: t.accent, fontSize: f.numLg + 10, fontWeight: '800' }}>{examReadiness.percent}</Text>
+              <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700' }}>%</Text>
+            </View>
+          )}
           <View
             style={{
               width: '100%',
@@ -1480,7 +1545,7 @@ export default function DiagnosticTest() {
           >
             <View
               style={{
-                width: `${examReadiness.percent}%` as `${number}%`,
+                width: `${examReadinessPercent ?? 0}%` as `${number}%`,
                 height: '100%',
                 backgroundColor: t.correct,
                 borderRadius: 4,
@@ -1495,8 +1560,6 @@ export default function DiagnosticTest() {
             borderRadius: 16,
             paddingVertical: 14,
             paddingHorizontal: 16,
-            borderTopWidth: 1,
-            borderTopColor: glassFill(t.accent, 0.14),
             marginTop: 0,
             flexDirection: 'row',
             alignItems: 'center',
@@ -1508,13 +1571,18 @@ export default function DiagnosticTest() {
           <Image source={examMenuImage(themeMode)} style={{ width: 56, height: 56, flexShrink: 0 }} contentFit="contain" cachePolicy="memory-disk" />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{s.home.examBtn}</Text>
-            <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
-              {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
-            </Text>
+            {/* зачем: examLessonsDone===null только на первом кадре до подгрузки — скелетон вместо ложного «0/32» */}
+            {examLessonsDone === null ? (
+              <SkeletonBlock width={90} height={f.label} borderRadius={4} style={{ marginTop: 6 }} />
+            ) : (
+              <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
+                {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
+              </Text>
+            )}
             <View style={{ width: '100%', height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, marginTop: 8, overflow: 'hidden' }}>
               <View
                 style={{
-                  width: `${Math.round((examLessonsDone / 32) * 100)}%` as `${number}%`,
+                  width: `${Math.round(((examLessonsDone ?? 0) / 32) * 100)}%` as `${number}%`,
                   height: '100%',
                   backgroundColor: t.correct,
                   borderRadius: 2,
@@ -1557,8 +1625,6 @@ export default function DiagnosticTest() {
             backgroundColor: glassFill(t.bgSurface, 0.46),
             borderRadius: 16,
             padding: 16,
-            borderTopWidth: 1,
-            borderTopColor: glassFill(t.accent, 0.14),
             marginTop: 20,
             width: '100%',
           }}
@@ -1591,7 +1657,7 @@ export default function DiagnosticTest() {
     <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
         <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
           <Ionicons name="school-outline" size={44} color={t.textSecond} />
         </View>
@@ -1605,7 +1671,7 @@ export default function DiagnosticTest() {
         <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center', marginTop: 16, lineHeight: 24, marginBottom: 28 }}>
           {diagnosticResultMessage(lang, result)}
         </Text>
-        <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 20, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), width: '100%', alignItems: 'center', marginBottom: 16 }}>
+        <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 20, width: '100%', alignItems: 'center', marginBottom: 16 }}>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 6 }}>
             {s.diagnostic.correct}
           </Text>
@@ -1684,7 +1750,7 @@ export default function DiagnosticTest() {
 
         <BouncyScrollView
           style={{ flex: 1 }}
-          decelerationRate="normal"
+          decelerationRate="fast"
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 20,

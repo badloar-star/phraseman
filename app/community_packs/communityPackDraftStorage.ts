@@ -91,7 +91,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
     const rowsIn = Array.isArray(o.rows) ? o.rows.filter(isRow) : [];
     const rows = rowsIn.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({
       ...r,
-      id: typeof r.id === 'string' && r.id ? r.id : `c${i + 1}`,
+      id: typeof r.id === 'string' && r.id ? r.id: `c${i + 1}`,
     }));
     return {
       v: 1,

@@ -1,11 +1,15 @@
 // ════════════════════════════════════════════════════════════════════════════
-// paywall_variant.ts — выбор нового пейвола v3: A («Компакт») / B («Стори») /
-// C («Атриум»). Старый v1 больше не является вариантом показа.
+// paywall_variant.ts — выбор пейвола эксперимента: A («Компакт») / B («Стори») /
+// C («Атриум») / D («Плитки») / E («Один план») / F («Честный триал») /
+// G («Приманка»). Старый v1 больше не является вариантом показа.
 //
 // КОНФИГ: Firestore doc `remote_config/paywall_ab` — НАМЕРЕННО отдельный от
 // `remote_config/app`: вкладка Remote Config в админке сохраняет свой док через
 // setDoc(merge:false) и затёрла бы чужие ключи. Отдельный док = изоляция.
-//   { a_pct, b_pct, c_pct, salt, rating_x10, ratings_count, updatedAt, updatedBy }
+//   { a_pct..g_pct, a_enabled..g_enabled, salt, rating_x10, ratings_count,
+//     updatedAt, updatedBy }
+// Старые доки без d_pct..g_pct / *_enabled: новые доли = 0, все флаги = true
+// (поведение ровно как у сплита A/B/C). Выключенный вариант участвует с нулём.
 //
 // НАЗНАЧЕНИЕ ВАРИАНТА: детерминированный djb2-хэш `${stableId}:paywall_ab:${salt}`
 // → доли A/B/C. Один юзер всегда видит один вариант
@@ -26,16 +30,45 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, peekStableId } from './stable_id';
+import {
+  normalizeExperimentPassport,
+  type ExperimentAssignmentQuality,
+  type ExperimentPassport,
+} from './analytics_experiments';
 
-export type PaywallAbVariant = 'A' | 'B' | 'C';
+export type PaywallAbVariant = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
 
 export interface PaywallAbConfig {
   aPct: number;
   bPct: number;
   cPct: number;
+  dPct: number;
+  ePct: number;
+  fPct: number;
+  gPct: number;
+  aEnabled: boolean;
+  bEnabled: boolean;
+  cEnabled: boolean;
+  dEnabled: boolean;
+  eEnabled: boolean;
+  fEnabled: boolean;
+  gEnabled: boolean;
   salt: string;
   ratingX10: number;
   ratingsCount: number;
+  experimentPassport?: ExperimentPassport | null;
+  measurementStatus?: 'legacy_unmeasured' | 'governed';
+}
+
+const VARIANT_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g'] as const;
+type VariantLetter = (typeof VARIANT_LETTERS)[number];
+const pctKey = (l: VariantLetter) => `${l}Pct` as const;
+const enabledKey = (l: VariantLetter) => `${l}Enabled` as const;
+const variantId = (l: VariantLetter): PaywallAbVariant => l.toUpperCase() as PaywallAbVariant;
+
+/** Эффективная доля варианта: выключенный вариант участвует с нулём. */
+function effectivePct(cfg: PaywallAbConfig, l: VariantLetter): number {
+  return cfg[enabledKey(l)] ? cfg[pctKey(l)] : 0;
 }
 
 const CONFIG_DOC_COLLECTION = 'remote_config';
@@ -49,39 +82,85 @@ const DEFAULT_CONFIG: PaywallAbConfig = {
   aPct: 33,
   bPct: 33,
   cPct: 34,
+  dPct: 0,
+  ePct: 0,
+  fPct: 0,
+  gPct: 0,
+  aEnabled: true,
+  bEnabled: true,
+  cEnabled: true,
+  dEnabled: true,
+  eEnabled: true,
+  fEnabled: true,
+  gEnabled: true,
   salt: 'v3',
   ratingX10: 0,
   ratingsCount: 0,
+  experimentPassport: null,
+  measurementStatus: 'legacy_unmeasured',
 };
 
 let _config: PaywallAbConfig = { ...DEFAULT_CONFIG };
 let _loadedOnce = false;
 let _refreshInFlight: Promise<void> | null = null;
+let _lastAssignment: { experimentId: string; variant: PaywallAbVariant; quality: ExperimentAssignmentQuality } | null = null;
 
 function clampPct(raw: unknown): number {
   const n = typeof raw === 'number' && Number.isFinite(raw) ? raw : 0;
   return Math.max(0, Math.min(100, Math.round(n)));
 }
 
+/** Флаг включённости: старые доки без `*_enabled` трактуем как включённые. */
+function parseEnabled(raw: unknown): boolean {
+  return raw === undefined || raw === null ? true : raw === true;
+}
+
 function sanitizeConfig(raw: unknown): PaywallAbConfig {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const passport = normalizeExperimentPassport(r.experiment_passport ?? r.experimentPassport);
   const cfg: PaywallAbConfig = {
     aPct: clampPct(r.a_pct),
     bPct: clampPct(r.b_pct),
     cPct: clampPct(r.c_pct),
+    dPct: clampPct(r.d_pct),
+    ePct: clampPct(r.e_pct),
+    fPct: clampPct(r.f_pct),
+    gPct: clampPct(r.g_pct),
+    aEnabled: parseEnabled(r.a_enabled),
+    bEnabled: parseEnabled(r.b_enabled),
+    cEnabled: parseEnabled(r.c_enabled),
+    dEnabled: parseEnabled(r.d_enabled),
+    eEnabled: parseEnabled(r.e_enabled),
+    fEnabled: parseEnabled(r.f_enabled),
+    gEnabled: parseEnabled(r.g_enabled),
     salt: typeof r.salt === 'string' && r.salt.length > 0 && r.salt.length <= 40 ? r.salt : DEFAULT_CONFIG.salt,
     ratingX10: clampPct(r.rating_x10) > 50 ? 50 : clampPct(r.rating_x10),
     ratingsCount:
       typeof r.ratings_count === 'number' && Number.isFinite(r.ratings_count) && r.ratings_count >= 0
         ? Math.floor(r.ratings_count)
         : 0,
+    experimentPassport: passport,
+    measurementStatus: passport ? 'governed' : 'legacy_unmeasured',
   };
-  // Если админ ввёл суммарно >100 — пропорционально ужимаем.
-  const sum = cfg.aPct + cfg.bPct + cfg.cPct;
+  // Если админ ввёл суммарно >100 по ЭФФЕКТИВНЫМ долям (выключенные = 0) —
+  // пропорционально ужимаем включённые; выключенные доли не трогаем.
+  const sum = VARIANT_LETTERS.reduce((acc, l) => acc + effectivePct(cfg, l), 0);
   if (sum > 100) {
-    cfg.aPct = Math.floor((cfg.aPct * 100) / sum);
-    cfg.bPct = Math.floor((cfg.bPct * 100) / sum);
-    cfg.cPct = Math.floor((cfg.cPct * 100) / sum);
+    for (const l of VARIANT_LETTERS) {
+      if (cfg[enabledKey(l)]) cfg[pctKey(l)] = Math.floor((cfg[pctKey(l)] * 100) / sum);
+    }
+  }
+  if (cfg.experimentPassport) {
+    const allocation = cfg.experimentPassport.allocation;
+    // Паспорт управляет сплитом только если его allocation в точности совпадает
+    // с эффективными долями конфига (отсутствующие в allocation варианты = 0).
+    const allocationMatches = VARIANT_LETTERS.every(
+      (l) => effectivePct(cfg, l) === (allocation[variantId(l)] ?? 0),
+    );
+    if (!allocationMatches || cfg.experimentPassport.assignmentSalt !== cfg.salt) {
+      cfg.experimentPassport = null;
+      cfg.measurementStatus = 'legacy_unmeasured';
+    }
   }
   return cfg;
 }
@@ -153,7 +232,11 @@ async function refreshPaywallAbConfigFromNetwork(): Promise<void> {
         _config = sanitizeConfig(snap.data());
         void AsyncStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({
           a_pct: _config.aPct, b_pct: _config.bPct, c_pct: _config.cPct,
+          d_pct: _config.dPct, e_pct: _config.ePct, f_pct: _config.fPct, g_pct: _config.gPct,
+          a_enabled: _config.aEnabled, b_enabled: _config.bEnabled, c_enabled: _config.cEnabled,
+          d_enabled: _config.dEnabled, e_enabled: _config.eEnabled, f_enabled: _config.fEnabled, g_enabled: _config.gEnabled,
           salt: _config.salt, rating_x10: _config.ratingX10, ratings_count: _config.ratingsCount,
+          experiment_passport: _config.experimentPassport,
         })).catch(() => {});
       }
     } catch {
@@ -202,11 +285,14 @@ export function hashToUnit(input: string): number {
 
 /** Чистая функция выбора по точке [0,1) — отдельно ради тестируемости. */
 export function pickVariantFromUnit(unit: number, cfg: PaywallAbConfig): PaywallAbVariant {
-  const total = cfg.aPct + cfg.bPct + cfg.cPct;
+  const total = VARIANT_LETTERS.reduce((acc, l) => acc + effectivePct(cfg, l), 0);
   if (total <= 0) return 'C';
   const point = unit * total;
-  if (point < cfg.aPct) return 'A';
-  if (point < cfg.aPct + cfg.bPct) return 'B';
+  let acc = 0;
+  for (const l of VARIANT_LETTERS) {
+    acc += effectivePct(cfg, l);
+    if (point < acc) return variantId(l);
+  }
   return 'C';
 }
 
@@ -219,8 +305,11 @@ export async function resolvePaywallAbVariant(): Promise<{ variant: PaywallAbVar
   refreshPaywallAbConfigInBackground();
   // Подчищаем ключ старого Math.random-эксперимента, чтобы не путал при отладке.
   void AsyncStorage.removeItem(LEGACY_VARIANT_KEY).catch(() => {});
-  const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
-  return { variant: pickVariantFromUnit(unit, cfg), stableId };
+  const experimentId = cfg.experimentPassport?.experimentId;
+  const unit = hashToUnit(experimentId ? `${stableId}:${experimentId}:${cfg.salt}` : `${stableId}:paywall_ab:${cfg.salt}`);
+  const variant = pickVariantFromUnit(unit, cfg);
+  if (experimentId) _lastAssignment = { experimentId, variant, quality: 'frozen' };
+  return { variant, stableId };
 }
 
 /**
@@ -233,8 +322,30 @@ export function resolvePaywallAbVariantSync(): { variant: PaywallAbVariant; stab
   const cfg = _config;
   refreshPaywallAbConfigInBackground();
   const stableId = peekStableId() ?? 'pending';
-  const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
-  return { variant: pickVariantFromUnit(unit, cfg), stableId };
+  const experimentId = cfg.experimentPassport?.experimentId;
+  const unit = hashToUnit(experimentId ? `${stableId}:${experimentId}:${cfg.salt}` : `${stableId}:paywall_ab:${cfg.salt}`);
+  const variant = pickVariantFromUnit(unit, cfg);
+  if (experimentId) {
+    _lastAssignment = {
+      experimentId,
+      variant,
+      // Warehouse field: assignment_quality. Pending fallback is never causal.
+      quality: stableId === 'pending' ? 'pending_fallback' : 'frozen',
+    };
+  }
+  return { variant, stableId };
+}
+
+export function getPaywallExperimentMeasurementContext(variant: PaywallAbVariant): {
+  passport: ExperimentPassport;
+  assignmentQuality: ExperimentAssignmentQuality;
+} | null {
+  const passport = _config.experimentPassport;
+  if (!passport || passport.status !== 'running' || !_lastAssignment
+    || _lastAssignment.experimentId !== passport.experimentId || _lastAssignment.variant !== variant) return null;
+  const now = Date.now();
+  if (now < Date.parse(passport.startUtc) || now >= Date.parse(passport.endUtc)) return null;
+  return { passport, assignmentQuality: _lastAssignment.quality };
 }
 
 /** Рейтинг для соцстроки: null = не показывать (нет подтверждённого числа). */
@@ -253,6 +364,7 @@ export function __setPaywallAbConfigForTest(raw: unknown): PaywallAbConfig {
 export function __resetPaywallAbForTest(): void {
   _config = { ...DEFAULT_CONFIG };
   _loadedOnce = false;
+  _lastAssignment = null;
 }
 
 /* expo-router route shim. */

@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, Easing, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import RankChangeBanner from './RankChangeBanner';
 import AvatarView from './AvatarView';

@@ -5,7 +5,7 @@
 // Всё локально и мгновенно: ни одного сетевого вызова, ни одного спиннера на экран.
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';

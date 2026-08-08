@@ -27,6 +27,12 @@ interface Props {
     correct: string;
     wrong: string;
     bgCard: string;
+    /** Тональные чип-фоны и текст на заливке — считает родитель по теме
+     *  (светлая тема = тёмные альфы; см. drillTheme в TheoryLessonView). */
+    chipBg: string;
+    chipBgStrong: string;
+    chipBgFaint: string;
+    onAccentText: string;
   };
   /** Вызов при первом успехе (для прогресса теории; БЕЗ XP). */
   onSolved?: () => void;
@@ -184,7 +190,7 @@ export default function WordBankBuilder({
       <Text style={[styles.hint, { color: theme.textMuted }]}>Подсказка</Text>
       <Text style={[styles.prompt, { color: theme.textPrimary }]}>{prompt}</Text>
 
-      <View style={[styles.slots, { backgroundColor: 'rgba(255,255,255,0.04)' }]}>
+      <View style={[styles.slots, { backgroundColor: theme.chipBgFaint }]}>
         {slots.map((slot, i) => {
           if (!slot) {
             return (
@@ -206,7 +212,7 @@ export default function WordBankBuilder({
               style={[
                 styles.slotFilled,
                 {
-                  backgroundColor: isOk ? theme.correct : 'rgba(255,255,255,0.10)',
+                  backgroundColor: isOk ? theme.correct : theme.chipBgStrong,
                   borderColor: isWrong ? theme.wrong : 'transparent',
                   borderWidth: isWrong ? 2 : 0,
                 },
@@ -215,7 +221,7 @@ export default function WordBankBuilder({
               <Text
                 style={[
                   styles.slotFilledText,
-                  { color: isOk ? '#0F1115' : theme.textPrimary },
+                  { color: isOk ? theme.onAccentText : theme.textPrimary },
                 ]}
               >
                 {slot.word}
@@ -239,7 +245,7 @@ export default function WordBankBuilder({
               style={[
                 styles.word,
                 {
-                  backgroundColor: 'rgba(255,255,255,0.06)',
+                  backgroundColor: theme.chipBg,
                   opacity: used ? 0.25 : 1,
                   borderColor: glow ? theme.correct : 'transparent',
                   borderWidth: 0,
@@ -261,14 +267,14 @@ export default function WordBankBuilder({
         style={[
           styles.check,
           {
-            backgroundColor: allFilled && status !== 'solved' ? accent : 'rgba(255,255,255,0.04)',
+            backgroundColor: allFilled && status !== 'solved' ? accent : theme.chipBgFaint,
           },
         ]}
       >
         <Text
           style={[
             styles.checkText,
-            { color: allFilled && status !== 'solved' ? '#0F1115' : theme.textMuted },
+            { color: allFilled && status !== 'solved' ? theme.onAccentText : theme.textMuted },
           ]}
         >
           {status === 'solved' ? 'Готово' : 'Проверить'}

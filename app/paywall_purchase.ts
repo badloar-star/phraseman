@@ -12,16 +12,19 @@
 //  - реальное планирование напоминания
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Alert, InteractionManager } from 'react-native';
+import { Alert, AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
+import * as Crypto from 'expo-crypto';
 import Purchases, { PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { isLifetimeButtonEnabled, isPaywallTimersEnabled } from './remote_flags';
 import {
+  customerInfoConfirmsProductAccess,
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
+  revenueCatCustomerInfoHasPremiumAccess,
   revenueCatPremiumMetadata,
 } from './premium_revenuecat_state';
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
@@ -47,18 +50,50 @@ import {
   DEV_PREVIEW_URGENCY,
 } from './paywall_dev_preview';
 import { trackEvent } from './analytics';
+import { createPaywallAnalyticsImpression, paywallImpressionParams, type PaywallAnalyticsImpression } from './paywall_analytics_impression';
+import { trackProductOperationFailure } from './product_operation_analytics';
+import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
-import { emitAppEvent } from './events';
+import { emitAppEvent, onAppEvent } from './events';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
 import { invalidatePremiumCache } from './premium_guard';
+import { resumeLessonAfterPremium } from './paywall_lesson_continuation';
 import {
   activatePendingPersonalPlanAfterPremium,
   PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
 } from './personal_plan_activation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+} from './account_generation';
+import {
+  commitRevenueCatResultForGeneration,
+  runRevenueCatOperationForGeneration,
+} from './revenuecat_account_identity';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
+
+/** Exit-intent оффер триала: готовая копия + колбэки под <ThemedConfirmModal>.
+ *  Хук — .ts и JSX не рендерит, поэтому отдаёт состояние, а рисует его экран. */
+export type ExitTrialOfferState = {
+  title: string;
+  message: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+};
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
+
+/**
+ * Источники пейвола, где разовая покупка «Phraseman Pro» (lifetime) НЕ показывается.
+ * Онбординг: новичок на первом экране выбирает из двух планов (месяц/год) —
+ * третий вариант с ценой ×20 от годовой перегружает решение и роняет конверсию.
+ * Во всех остальных точках входа (после урока, энергия, профиль, win-back) Pro
+ * остаётся: там пользователь уже вовлечён и разовая покупка уместна.
+ */
+const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding_plan']);
 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
@@ -94,11 +129,56 @@ function showPurchasePendingAlert(lang: Lang): void {
   );
 }
 
+function showDevPurchasePreviewAlert(lang: Lang): void {
+  Alert.alert(
+    triLang(lang, {
+      ru: 'Предпросмотр покупки',
+      uk: 'Попередній перегляд покупки',
+      es: 'Vista previa de compra',
+      'pt-BR': 'Prévia da compra',
+      vi: 'Xem trước giao dịch mua',
+      id: 'Pratinjau pembelian',
+      tr: 'Satın alma önizlemesi',
+      pl: 'Podgląd zakupu',
+    }),
+    triLang(lang, {
+      ru: 'Покупка не запускалась: в обычной dev-сборке магазин отключён. Проверь реальную покупку в сборке с подключённым магазином или включи доступ через явный QA-инструмент.',
+      uk: 'Покупка не запускалася: у звичайній dev-збірці магазин вимкнений. Перевір реальну покупку у збірці з підключеним магазином або ввімкни доступ через окремий QA-інструмент.',
+      es: 'La compra no se inició: la tienda está desactivada en la compilación de desarrollo normal. Prueba una compra real en una compilación conectada a la tienda o activa el acceso con una herramienta de QA explícita.',
+      'pt-BR': 'A compra não foi iniciada: a loja fica desativada na compilação de desenvolvimento comum. Teste uma compra real em uma compilação conectada à loja ou ative o acesso com uma ferramenta explícita de QA.',
+      vi: 'Giao dịch mua chưa được bắt đầu: cửa hàng bị tắt trong bản dev thông thường. Hãy thử giao dịch thật trong bản có kết nối cửa hàng hoặc bật quyền truy cập bằng công cụ QA riêng.',
+      id: 'Pembelian tidak dimulai: toko dinonaktifkan pada build dev biasa. Uji pembelian nyata pada build yang terhubung ke toko atau aktifkan akses melalui alat QA khusus.',
+      tr: 'Satın alma başlatılmadı: normal geliştirme derlemesinde mağaza kapalıdır. Gerçek satın almayı mağazaya bağlı bir derlemede test et veya erişimi açık bir QA aracıyla etkinleştir.',
+      pl: 'Zakup nie został rozpoczęty: sklep jest wyłączony w zwykłej wersji deweloperskiej. Sprawdź prawdziwy zakup w kompilacji połączonej ze sklepem albo włącz dostęp za pomocą jawnego narzędzia QA.',
+    }),
+  );
+}
+
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
   // (?![a-zа-яёіїєґ]) вместо \b: ASCII-\b не срабатывает после кириллицы
   // (мес/місяць/месяц), из-за чего RU/UK-суффиксы «/мес» не срезались.
   return raw.replace(/\s*\/\s*(mo|month|мес|місяць|месяц)(?![a-zа-яёіїєґ]).*/i, '').trim();
+}
+
+export type PurchaseErrorCategory =
+  | 'network_error'
+  | 'payment_error'
+  | 'store_error'
+  | 'configuration_error'
+  | 'sdk_other'
+  | 'unknown';
+
+/** Privacy-safe analytics category. Raw SDK messages may contain user or payment details. */
+export function purchaseErrorCategory(error: unknown): PurchaseErrorCategory {
+  if (!error || typeof error !== 'object') return 'unknown';
+  const code = String((error as { code?: unknown }).code ?? '').trim().toLowerCase();
+  if (!code) return 'unknown';
+  if (code.includes('network')) return 'network_error';
+  if (code.includes('payment') || code.includes('purchase_not_allowed')) return 'payment_error';
+  if (code.includes('store') || code.includes('product') || code.includes('package')) return 'store_error';
+  if (code.includes('config') || code.includes('api_key')) return 'configuration_error';
+  return 'sdk_other';
 }
 
 function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
@@ -111,6 +191,7 @@ export interface PaywallPurchaseArgs {
   context: string;
   source: string;
   lang: Lang;
+  impression?: PaywallAnalyticsImpression;
   /**
    * DEV/QA: форс «триал-режима» из тест-меню (_force_trial_ui=1). В Metro стора
    * нет (DEV_IAP_BYPASS) → trialDays обычно null, и триал-зависимое (trust-бейдж
@@ -118,19 +199,27 @@ export interface PaywallPurchaseArgs {
    * включает превью-триал ТОЛЬКО в dev-бандле. В сторе игнорируется.
    */
   forceTrialUI?: boolean;
+  /** Allowlisted legacy lesson id to reopen after confirmed access. */
+  resumeLessonId?: number | null;
 }
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression }: PaywallPurchaseArgs) {
   const router = useRouter();
-  const { reload: reloadEnergy } = useEnergy();
+  const { refillToMax } = useEnergy();
+  const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
   const [packages, setPackages] = useState<PremiumPackages>({});
+  const packagesRef = useRef<PremiumPackages>({});
+  const offeringsLoadInFlightRef = useRef(false);
   const [loading, setLoading] = useState(false);
   // Сбой загрузки офферингов (сеть/стор). Влияет на видимость всех кнопок,
   // включая Phraseman Pro — поэтому даём ретрай, а не молча скрываем.
   const [offeringsFailed, setOfferingsFailed] = useState(false);
+  const inventoryResolutionEmittedRef = useRef({ emitted: false });
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
+  const operationRef = useRef<'purchase' | 'restore' | null>(null);
+  const [lifetimeEnabled, setLifetimeEnabled] = useState(() => isLifetimeButtonEnabled());
   const [urgency, setUrgency] = useState<UrgencyState>({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
 
   // Окно «старой цены» (77ч): активируем при первом показе пейвола и читаем
@@ -156,41 +245,94 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     return () => { dead = true; };
   }, []);
 
+  useEffect(() => {
+    const subscription = onAppEvent('remote_config_changed', () => {
+      const next = isLifetimeButtonEnabled();
+      setLifetimeEnabled(current => current === next ? current : next);
+    });
+    return () => subscription.remove();
+  }, []);
+
   // Загрузка офферингов с одним авто-ретраем при сбое: транзиентный сбой сети
   // не должен прятать кнопки бессрочно (в т.ч. Phraseman Pro). `dead` гасит гонку.
-  const loadOfferings = useCallback(async (deadRef: { dead: boolean }): Promise<void> => {
+  const loadOfferings = useCallback(async (
+    deadRef: { dead: boolean },
+    emitInitialResolution = false,
+  ): Promise<void> => {
     if (DEV_IAP_BYPASS) return;
+    if (offeringsLoadInFlightRef.current) return;
+    offeringsLoadInFlightRef.current = true;
     setLoading(true);
     setOfferingsFailed(false);
-    const attempt = async (): Promise<boolean> => {
+    const attempt = async (): Promise<{ ok: boolean; resolvedPackages: PremiumPackages }> => {
       try {
         await initRevenueCat();
         const o = await Purchases.getOfferings();
-        if (!deadRef.dead) setPackages(resolvePremiumPackages(o.current?.availablePackages ?? []));
-        return true;
+        const resolvedPackages = resolvePremiumPackages(o.current?.availablePackages ?? []);
+        if (!deadRef.dead) {
+          packagesRef.current = resolvedPackages;
+          setPackages(resolvedPackages);
+        }
+        return { ok: true, resolvedPackages };
       } catch {
-        return false;
+        return { ok: false, resolvedPackages: {} };
       }
     };
     try {
-      let ok = await attempt();
-      if (!ok && !deadRef.dead) {
+      let loadAttempts = 1;
+      let result = await attempt();
+      if (!result.ok && !deadRef.dead) {
         await new Promise((r) => setTimeout(r, 1500));
-        if (!deadRef.dead) ok = await attempt();
+        if (!deadRef.dead) {
+          loadAttempts = 2;
+          result = await attempt();
+        }
       }
-      if (!deadRef.dead && !ok) setOfferingsFailed(true);
+      if (!deadRef.dead && !result.ok) {
+        setOfferingsFailed(true);
+        trackProductOperationFailure('paywall', 'offerings_load', 'store_unavailable', true);
+      }
+      if (!deadRef.dead && emitInitialResolution && claimInitialInventoryResolution(inventoryResolutionEmittedRef.current)) {
+        const inventory = classifyPaywallInventory({
+          monthly: !!result.resolvedPackages.monthly,
+          yearly: !!result.resolvedPackages.yearly,
+          lifetime: !!result.resolvedPackages.lifetime,
+        }, {
+          loadSucceeded: result.ok,
+          lifetimeExpected: isLifetimeButtonEnabled(),
+          loadAttempts,
+        });
+        void trackEvent('paywall_inventory_resolved', {
+          context,
+          source,
+          paywall: variant,
+          ...inventory,
+          ...paywallImpressionParams(impression),
+        });
+      }
     } finally {
+      offeringsLoadInFlightRef.current = false;
       if (!deadRef.dead) setLoading(false);
     }
-  }, []);
+  }, [context, impression, source, variant]);
 
   useEffect(() => {
     if (DEV_IAP_BYPASS) return;
     const deadRef = { dead: false };
-    const task = InteractionManager.runAfterInteractions(() => {
-      void loadOfferings(deadRef);
+    const refreshIfPackagesMissing = () => {
+      if (!packagesRef.current.monthly || !packagesRef.current.yearly) {
+        void loadOfferings(deadRef, true);
+      }
+    };
+
+    refreshIfPackagesMissing();
+    const subscription = AppState.addEventListener('change', (nextState) => {
+      if (nextState === 'active') refreshIfPackagesMissing();
     });
-    return () => { deadRef.dead = true; task.cancel(); };
+    return () => {
+      deadRef.dead = true;
+      subscription.remove();
+    };
   }, [loadOfferings]);
 
   // Ручной ретрай для UI (кнопка «Повторить» при offeringsFailed).
@@ -211,7 +353,17 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime
   // реально пришёл из RevenueCat (продукт заведён). В dev-сборке пакета нет —
   // показываем превью кнопки, чтобы вёрстка была видна и в Metro.
-  const lifetimeAvailable = isLifetimeButtonEnabled() && (!!packages.lifetime || DEV_IAP_BYPASS);
+  // зачем: владелец попросил убрать разовую покупку Pro с пейвола ОНБОРДИНГА —
+  // новичку на первом экране нужен выбор из двух (месяц/год), третий вариант
+  // с ценой ×20 перегружает решение. Вне онбординга (после урока, энергия,
+  // профиль) Pro остаётся — там пользователь уже вовлечён.
+  const lifetimeAvailable = lifetimeEnabled
+    && !LIFETIME_HIDDEN_SOURCES.has(source)
+    && (!!packages.lifetime || DEV_IAP_BYPASS);
+
+  useEffect(() => {
+    if (!lifetimeAvailable && selected === 'lifetime') setSelected('yearly');
+  }, [lifetimeAvailable, selected]);
 
   const savingsPct = useMemo(() => computeSavingsPct({
     yearlyPerMonth: (packages.yearly?.product as { pricePerMonth?: number } | undefined)?.pricePerMonth ?? null,
@@ -226,7 +378,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   ), [packages, yearlyPrice]);
 
   const lifetimePkg = packages.lifetime ?? (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PACKAGE : undefined);
-  const selectedPkg = selected === 'lifetime' ? lifetimePkg : selected === 'yearly' ? packages.yearly : packages.monthly;
+  const selectedPkg = selected === 'lifetime'
+    ? (lifetimeAvailable ? lifetimePkg : undefined)
+    : selected === 'yearly' ? packages.yearly : packages.monthly;
   const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
   // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
@@ -241,18 +395,24 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const futurePrice = useMemo(() => (selectedPrice ? getDoubledPrice(selectedPrice) : null), [selectedPrice]);
 
   const selectPlan = useCallback((plan: PaywallPlan) => {
+    if (plan === 'lifetime' && !lifetimeAvailable) return;
     hapticTap();
     setSelected(plan);
-    void trackEvent('paywall_plan_select', { context, source, plan, paywall: variant });
-  }, [context, source, variant]);
+    void trackEvent('paywall_plan_select', { context, source, plan, paywall: variant, ...paywallImpressionParams(impression) });
+  }, [context, impression, lifetimeAvailable, source, variant]);
 
   // ── покупка ────────────────────────────────────────────────────────────────
-  const finishPersonalPlanActivationFlow = useCallback(async () => {
+  const finishPersonalPlanActivationFlow = useCallback(async (
+    isCurrent: () => boolean = () => true,
+  ): Promise<boolean> => {
+    if (!isCurrent()) return false;
     await activatePendingPersonalPlanAfterPremium();
+    if (!isCurrent()) return false;
     invalidatePremiumCache();
     await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
+    if (!isCurrent()) return false;
     emitAppEvent('premium_activated');
-    void reloadEnergy().catch(() => {});
+    if (!(await refillToMax(isCurrent))) return false;
 
     try {
       const pendingNickname = await AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
@@ -266,7 +426,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // непрозрачный оверлей. Намеренно НЕ навигируем на «Главную» — иначе кадр с
         // home + монтаж тяжёлого экрана (см. handleClose ниже).
         emitAppEvent('personal_plan_onboarding_nickname_ready');
-        return;
+        return true;
       }
     } catch {
       // Fall through to the deterministic thank-you route.
@@ -276,11 +436,19 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // back from the auth prompt host or the plan never returns to paywall.
     markNextNavigationAsReplace();
     router.replace('/personal_plan_thank_you' as any);
-  }, [reloadEnergy, router]);
+    return true;
+  }, [refillToMax, router]);
 
   const handlePurchase = useCallback(async () => {
+    if (operationRef.current) return;
+    // зачем: скрытый вариант нельзя купить ни при каких гонках — проверяем и
+    // глобальный флаг, и гейт по источнику (в онбординге Pro скрыт).
+    if (selected === 'lifetime' && (!isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {
+      setSelected('yearly');
+      return;
+    }
     hapticTap();
-    void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant });
+    void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
     if (source === 'afterwin_levelup' || context === 'level_up') {
       void trackEvent('afterwin_upsell_cta', { source: 'level_up', plan: selected, paywall: variant });
       void import('./firebase').then(({ logAfterWinUpsellCta }) =>
@@ -289,20 +457,19 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     }
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
     if (DEV_IAP_BYPASS) {
-      if (context === 'personal_plan') {
-        await finishPersonalPlanActivationFlow();
-        return;
-      }
-      dismissPaywallModal(router);
+      showDevPurchasePreviewAlert(lang);
       return;
     }
     const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
     if (!pkg || purchasing || restoring) return;
+    operationRef.current = 'purchase';
+    const operationAccount = captureAccountGeneration();
+    const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
     setPurchasing(true);
-    void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant });
+    void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
     try {
-      await initRevenueCat();
-      if (!(await syncRevenueCatIdentity())) {
+      await initRevenueCat(isOperationAccountCurrent);
+      if (!(await syncRevenueCatIdentity(isOperationAccountCurrent))) {
         Alert.alert(
           triLang(lang, {
             ru: 'Ошибка подключения',
@@ -325,39 +492,56 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
           }),
         );
-        void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync' });
+        void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync', ...paywallImpressionParams(impression) });
         return;
       }
       const pkgTrial = getTrialInfo(pkg);
-      const { customerInfo } = await Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений
+      const purchaseResult = await runRevenueCatOperationForGeneration(
+        operationAccount,
+        () => Purchases.purchasePackage(pkg), // RAW пакет — цена стора без изменений
+      );
+      if (purchaseResult.status !== 'ok') return;
+      const { customerInfo } = purchaseResult.value;
       // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
       // deferred-исход / аномалия sandbox без этой проверки давали локальный
       // «премиум», которого нет на сервере, — доступ потом «отваливался».
-      const hasActiveEntitlement = Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0;
-      const hasActiveSubscription = (customerInfo?.activeSubscriptions ?? []).length > 0;
-      if (!hasActiveEntitlement && !hasActiveSubscription) {
+      if (!customerInfoConfirmsProductAccess(customerInfo, pkg.product.identifier)) {
         // error-тег вместо отдельного имени события: тип AnalyticsEvent живёт в
         // analytics.ts, который сейчас правит другая сессия — не трогаем.
         void trackEvent('purchase_failed', {
           context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           error: 'no_active_entitlement_after_purchase',
+          ...paywallImpressionParams(impression),
         });
         showPurchasePendingAlert(lang);
         return;
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
-      await persistStorePremiumLocally(confirmedPlan, metadata);
-      if (context !== 'personal_plan') {
-        // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
-        await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
-        emitAppEvent('premium_activated');
-        void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
-      }
-      void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant });
-      logPaywallFunnel('purchase_completed', { variant, context, plan: selected });
+      const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent) => {
+        if (!isCommitCurrent()) return false;
+        const persisted = await persistStorePremiumLocally(
+          confirmedPlan,
+          metadata,
+          isCommitCurrent,
+          false,
+          true,
+        );
+        if (!persisted || !isCommitCurrent()) return false;
+        if (context !== 'personal_plan') {
+          if (!(await refillToMax(isCommitCurrent))) return false;
+          // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
+          await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
+          if (!isCommitCurrent()) return false;
+          emitAppEvent('premium_activated');
+        }
+        return isCommitCurrent();
+      });
+      if (applied.status !== 'ok' || !applied.value) return;
+      void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
+      logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
       if (pkgTrial.hasTrial) {
-        void trackEvent('trial_started', { context, plan: selected, product_id: pkg.product.identifier, paywall: variant });
+        void trackEvent('trial_started', { context, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
         logPaywallFunnel('trial_started', { variant, context, plan: selected });
         // Момент Blinkist: триал только что начался — просим разрешение и реально
         // ставим напоминание за день до списания. Обещание таймлайна = правда.
@@ -399,14 +583,21 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         })();
       }
       if (context === 'personal_plan') {
-        await finishPersonalPlanActivationFlow();
+        if (!isOperationAccountCurrent()) return;
+        const activated = await commitRevenueCatResultForGeneration(
+          operationAccount,
+          (isCommitCurrent) => finishPersonalPlanActivationFlow(isCommitCurrent),
+        );
+        if (activated.status !== 'ok' || !activated.value) return;
         return;
       }
-      dismissPaywallModal(router);
+      if (!isOperationAccountCurrent()) return;
+      if (resumeLessonAfterPremium(router, resumeLessonId)) return;
+      dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
     } catch (err: unknown) {
       const errCode = String((err as { code?: unknown })?.code ?? '');
       if ((err as { userCancelled?: boolean })?.userCancelled) {
-        void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant });
+        void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
         logPaywallFunnel('purchase_cancelled', { variant, context, plan: selected });
       } else if (errCode === PURCHASES_ERROR_CODE.PAYMENT_PENDING_ERROR) {
         // Ask to Buy / 3-D Secure: оплата ушла на подтверждение. Раньше эта
@@ -415,12 +606,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         void trackEvent('purchase_failed', {
           context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           error: 'payment_pending',
+          ...paywallImpressionParams(impression),
         });
         showPurchasePendingAlert(lang);
       } else {
         void trackEvent('purchase_failed', {
           context, plan: selected, paywall: variant,
-          error: String((err as { message?: string })?.message ?? '').slice(0, 100),
+          error: purchaseErrorCategory(err),
+          ...paywallImpressionParams(impression),
         });
         logPaywallFunnel('purchase_failed', { variant, context, plan: selected });
         Alert.alert(
@@ -447,18 +640,23 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         );
       }
     } finally {
+      operationRef.current = null;
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishPersonalPlanActivationFlow, impression, resumeLessonId]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
+    if (operationRef.current) return;
     hapticTap();
     if (DEV_IAP_BYPASS || restoring || purchasing) return;
+    operationRef.current = 'restore';
+    const operationAccount = captureAccountGeneration();
+    const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
     setRestoring(true);
     try {
-      await initRevenueCat();
-      if (!(await syncRevenueCatIdentity())) {
+      await initRevenueCat(isOperationAccountCurrent);
+      if (!(await syncRevenueCatIdentity(isOperationAccountCurrent))) {
         Alert.alert(
           triLang(lang, {
             ru: 'Ошибка подключения',
@@ -483,12 +681,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         );
         return;
       }
-      const info = await Purchases.restorePurchases();
+      const restoreResult = await runRevenueCatOperationForGeneration(
+        operationAccount,
+        () => Purchases.restorePurchases(),
+      );
+      if (restoreResult.status !== 'ok') return;
+      const info = restoreResult.value;
       const activeSubscriptions = info.activeSubscriptions ?? [];
-      const hasActiveEntitlement = Object.keys(info.entitlements.active).length > 0;
-      // Entitlements — авторитетный источник; activeSubscriptions используем только
-      // как запасной (RC иногда задерживает entitlement при первом restore).
-      if (hasActiveEntitlement || activeSubscriptions.length > 0) {
+      if (revenueCatCustomerInfoHasPremiumAccess(info)) {
         const metadata = revenueCatPremiumMetadata(info);
         // Дефолт-эвристика на случай пустого productId: lifetime (non-consumable) живёт
         // в entitlements.active с productIdentifier, поэтому обычно productId заполнен и
@@ -499,21 +699,41 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           : activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly'
           : 'monthly';
         const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
-        await persistStorePremiumLocally(plan, metadata);
-        if (context !== 'personal_plan') {
-          // То же празднование, что при покупке: без него после переустановки
-          // юзер не понимал, что доступ вернулся, и порой оформлял заново.
-          await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
-          emitAppEvent('premium_activated');
-          void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
-        }
+        const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent) => {
+          if (!isCommitCurrent()) return false;
+          const persisted = await persistStorePremiumLocally(
+            plan,
+            metadata,
+            isCommitCurrent,
+            false,
+            true,
+          );
+          if (!persisted || !isCommitCurrent()) return false;
+          if (context !== 'personal_plan') {
+            if (!(await refillToMax(isCommitCurrent))) return false;
+            // То же празднование, что при покупке: без него после переустановки
+            // юзер не понимал, что доступ вернулся, и порой оформлял заново.
+            await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
+            if (!isCommitCurrent()) return false;
+            emitAppEvent('premium_activated');
+          }
+          return isCommitCurrent();
+        });
+        if (applied.status !== 'ok' || !applied.value) return;
         void trackEvent('subscription_restored', { context, paywall: variant });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (context === 'personal_plan') {
-          await finishPersonalPlanActivationFlow();
+          if (!isOperationAccountCurrent()) return;
+          const activated = await commitRevenueCatResultForGeneration(
+            operationAccount,
+            (isCommitCurrent) => finishPersonalPlanActivationFlow(isCommitCurrent),
+          );
+          if (activated.status !== 'ok' || !activated.value) return;
           return;
         }
-        dismissPaywallModal(router);
+        if (!isOperationAccountCurrent()) return;
+        if (resumeLessonAfterPremium(router, resumeLessonId)) return;
+        dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
       } else {
         Alert.alert(
           triLang(lang, {
@@ -562,14 +782,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         }),
       );
     } finally {
+      operationRef.current = null;
       setRestoring(false);
     }
-  }, [router, restoring, purchasing, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
+  }, [router, restoring, purchasing, context, variant, lang, refillToMax, finishPersonalPlanActivationFlow, resumeLessonId]);
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
   const doClose = useCallback((reason: 'close' | 'continue_free') => {
-    void trackEvent('paywall_close', { context, source, paywall: variant, reason });
+    void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...paywallImpressionParams(impression) });
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
     // Онбординг: закрытие пейвола (без покупки) НЕ выкидывает на home, а возвращает
@@ -596,14 +817,20 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       })();
       return;
     }
-    dismissPaywallModal(router);
-  }, [router, context, source, variant, selected, lang]);
+    dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
+  }, [router, context, source, variant, selected, lang, impression]);
 
   // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в
   // сторе реально есть бесплатный триал, мягко спрашиваем «может, всё-таки 3 дня
   // бесплатно?» — без давления, с честным «платить не нужно, отмени за день».
   // Показываем ОДИН раз на устройство (кулдаун-ключ), и только если триал есть в
   // сторе — иначе это была бы пустая всплывашка. Не в онбординге.
+  // зачем: владелец увидел на экране СИСТЕМНЫЙ Alert вместо нашей модалки —
+  // нативный диалог игнорирует тему приложения (белый лист с зелёными
+  // капс-кнопками на Android). Оффер теперь живёт в состоянии, а рисует его
+  // <ThemedConfirmModal> в экране пейвола — тот же компонент, что во всех
+  // остальных подтверждениях приложения.
+  const [exitOffer, setExitOffer] = useState<ExitTrialOfferState | null>(null);
   const exitOfferShownRef = useRef(false);
   const handleClose = useCallback((reason: 'close' | 'continue_free') => {
     hapticTap();
@@ -636,10 +863,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           if (seen === '1' && !devForceTrial) { doClose(reason); return; }
           if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(() => {});
         } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
-        void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant });
+        void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
         const days = trialDays ?? 3;
-        Alert.alert(
-          triLang(lang, {
+        setExitOffer({
+          title: triLang(lang, {
             ru: `Точно уходишь? ${days} дня доступа — бесплатно`,
             uk: `Точно йдеш? ${days} дні доступу — безкоштовно`,
             es: `¿Seguro que te vas? ${days} días de acceso gratis`,
@@ -649,7 +876,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             tr: `Gerçekten çıkıyor musun? ${days} gün ücretsiz erişim`,
             pl: `Na pewno wychodzisz? ${days} dni dostępu za darmo`,
           }),
-          triLang(lang, {
+          message: triLang(lang, {
             ru: 'Платить сейчас не нужно — просто отмени подписку за день до конца пробного периода, и не спишется ничего.',
             uk: 'Платити зараз не треба — просто скасуй підписку за день до кінця пробного періоду, і нічого не спишеться.',
             es: 'No pagas ahora: solo cancela la suscripción un día antes de que acabe la prueba y no se cobrará nada.',
@@ -659,42 +886,37 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             tr: 'Şimdi ödeme yok — deneme bitmeden bir gün önce aboneliği iptal et, hiçbir ücret alınmaz.',
             pl: 'Teraz nie płacisz — wystarczy anulować subskrypcję dzień przed końcem okresu próbnego i nic nie pobierzemy.',
           }),
-          [
-            {
-              text: triLang(lang, {
-                ru: `Попробовать ${days} дня бесплатно`,
-                uk: `Спробувати ${days} дні безкоштовно`,
-                es: `Probar ${days} días gratis`,
-                'pt-BR': `Testar ${days} dias grátis`,
-                vi: `Dùng thử ${days} ngày miễn phí`,
-                id: `Coba ${days} hari gratis`,
-                tr: `${days} gün ücretsiz dene`,
-                pl: `Wypróbuj ${days} dni za darmo`,
-              }),
-              onPress: () => {
-                void trackEvent('paywall_exit_offer_accepted', { context, source, paywall: variant });
-                void handlePurchase();
-              },
-            },
-            {
-              text: triLang(lang, {
-                ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
-                vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
-              }),
-              style: 'cancel',
-              onPress: () => {
-                void trackEvent('paywall_exit_offer_declined', { context, source, paywall: variant });
-                doClose(reason);
-              },
-            },
-          ],
-          { cancelable: false },
-        );
+          confirmLabel: triLang(lang, {
+            ru: `Попробовать ${days} дня бесплатно`,
+            uk: `Спробувати ${days} дні безкоштовно`,
+            es: `Probar ${days} días gratis`,
+            'pt-BR': `Testar ${days} dias grátis`,
+            vi: `Dùng thử ${days} ngày miễn phí`,
+            id: `Coba ${days} hari gratis`,
+            tr: `${days} gün ücretsiz dene`,
+            pl: `Wypróbuj ${days} dni za darmo`,
+          }),
+          cancelLabel: triLang(lang, {
+            ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
+            vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
+          }),
+          onConfirm: () => {
+            // Оффер убираем СРАЗУ (оптимистично), чтобы тап не ждал стора.
+            setExitOffer(null);
+            void trackEvent('paywall_exit_offer_accepted', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
+            void handlePurchase();
+          },
+          onCancel: () => {
+            setExitOffer(null);
+            void trackEvent('paywall_exit_offer_declined', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
+            doClose(reason);
+          },
+        });
       })();
       return;
     }
     doClose(reason);
-  }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial]);
+  }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial, impression]);
 
   return {
     selected, selectPlan,
@@ -706,6 +928,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     trial, trialDays, ctaDisabled,
     urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
+    exitOffer,
   };
 }
 

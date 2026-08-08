@@ -8,6 +8,7 @@ const REGION = 'us-central1';
 const MAX_SEARCH_RESULTS = 20;
 const MAX_SEARCH_CANDIDATES = 40;
 const SOURCE_LIMIT = 25;
+const COMMUNITY_PACK_FIXED_PRICE_SHARDS = 10;
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -33,6 +34,16 @@ function finiteNumber(value: unknown, fallback = 0): number {
 
 function text(value: unknown, max = 500): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
+}
+
+export function canonicalizeCommunityPurchaseRows(rows: readonly Row[]): Row[] {
+  return rows.map((row) => {
+    const acquisitionSource = row.acquisitionSource === 'weekly_boon_gift'
+      ? 'weekly_boon_gift'
+      : 'paid_community_sale';
+    const price = acquisitionSource === 'weekly_boon_gift' ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
+    return { ...row, acquisitionSource, priceShards: price, price };
+  });
 }
 
 function errorText(error: unknown): string {
@@ -99,7 +110,7 @@ export function buildLearningSnapshot(progress: Row): LearningSnapshot {
 }
 
 function roleFromToken(token: Row): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
+  return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
 }
 
 function requireUserReader(request: { auth?: { token?: Row } }): void {
@@ -344,6 +355,27 @@ export const adminSearchUsers = onCall(
 
 interface AdapterResult { rows: Row[]; error?: unknown; degradedReason?: string; }
 
+async function readRecentUserSubcollection(
+  db: FirebaseFirestore.Firestore,
+  uid: string,
+  collectionName: string,
+  timeField = 'ts',
+  limit = SOURCE_LIMIT,
+): Promise<AdapterResult> {
+  const collection = db.collection('users').doc(uid).collection(collectionName);
+  try {
+    const snapshot = await collection.orderBy(timeField, 'desc').limit(limit).get();
+    return { rows: snapshot.docs.map(withId) };
+  } catch (orderedError) {
+    try {
+      const snapshot = await collection.limit(limit).get();
+      return { rows: snapshot.docs.map(withId).sort((left, right) => millis(right[timeField]) - millis(left[timeField])), degradedReason: `ordered query unavailable: ${orderedError instanceof Error ? orderedError.message : String(orderedError)}` };
+    } catch (error) {
+      return { rows: [], error };
+    }
+  }
+}
+
 async function readRecentByField(
   db: FirebaseFirestore.Firestore,
   collectionName: string,
@@ -421,7 +453,7 @@ export const adminGetUserProfile = onCall(
     const canonicalUser = users.get(identity.canonicalUid) ?? requestedUser;
     const uid = identity.canonicalUid;
 
-    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, chatMessages, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
+    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
       db.collection('leaderboard').doc(uid).get().catch(() => null),
       db.collection('arena_profiles').doc(uid).get().catch(() => null),
       db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
@@ -431,9 +463,9 @@ export const adminGetUserProfile = onCall(
       readRecentByField(db, 'user_reports', 'reporterUid', uid),
       readRecentByField(db, 'revenuecat_premium_events', 'uid', uid, 'eventTimestampMs'),
       readRecentByField(db, 'revenuecat_shard_transactions', 'uid', uid),
-      readRecentByField(db, 'league_chat_messages', 'authorUid', uid),
+      readRecentUserSubcollection(db, uid, 'shard_rewards'),
       readRecentByField(db, 'community_pack_purchases', 'buyerStableId', uid),
-      readRecentByField(db, 'community_pack_purchases', 'sellerStableId', uid),
+      readRecentByField(db, 'community_pack_purchases', 'authorStableId', uid),
       readRecentByField(db, 'referral_attributions', 'referrerStableId', uid),
       db.collection('referral_attributions').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
     ]);
@@ -458,9 +490,19 @@ export const adminGetUserProfile = onCall(
       reportsBy: adapterSource('user_reports_by', reportsBy, ['id', 'reportedUid', 'reportedName', 'reason', 'category', 'status', 'createdAt'], ['reportedName', 'reason', 'category', 'status']),
       premiumEvents: adapterSource('revenuecat_premium_events', premiumEvents, ['id', 'eventType', 'type', 'productId', 'periodType', 'price', 'currency', 'createdAt', 'eventTimestampMs'], ['eventType', 'type', 'productId', 'periodType', 'currency']),
       shardTransactions: adapterSource('revenuecat_shard_transactions', shardTransactions, ['id', 'type', 'amount', 'productId', 'createdAt'], ['type', 'productId']),
-      chatMessages: adapterSource('league_chat_messages', chatMessages, ['id', 'groupId', 'text', 'messageText', 'status', 'createdAt'], ['groupId', 'text', 'messageText', 'status']),
-      ugcBuys: adapterSource('community_pack_purchases_buyer', ugcBuys, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
-      ugcSells: adapterSource('community_pack_purchases_seller', ugcSells, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
+      adminRewardHistory: adapterSource('users_shard_rewards', adminRewardHistory, ['id', 'ts', 'reason', 'amount', 'rewardType', 'label', 'adminEmail', 'comment'], ['reason', 'rewardType', 'label', 'comment']),
+      ugcBuys: adapterSource(
+        'community_pack_purchases_buyer',
+        { ...ugcBuys, rows: canonicalizeCommunityPurchaseRows(ugcBuys.rows) },
+        ['id', 'packId', 'packTitle', 'status', 'acquisitionSource', 'priceShards', 'price', 'createdAt'],
+        ['packId', 'packTitle', 'status', 'acquisitionSource'],
+      ),
+      ugcSells: adapterSource(
+        'community_pack_purchases_seller',
+        { ...ugcSells, rows: canonicalizeCommunityPurchaseRows(ugcSells.rows) },
+        ['id', 'packId', 'packTitle', 'status', 'acquisitionSource', 'priceShards', 'price', 'createdAt'],
+        ['packId', 'packTitle', 'status', 'acquisitionSource'],
+      ),
       referrals: adapterSource('referral_attributions', referralsBy, ['id', 'status', 'createdAt', 'qualifiedAt', 'rewardedAt'], ['status']),
       invitedBy: invitedByRead.error || !invitedByRead.snap
         ? sourceResult('referral_attribution_owner', [], { limit: 1, error: invitedByRead.error || new Error('source unavailable') })
@@ -479,8 +521,8 @@ export const adminGetUserProfile = onCall(
         identity: { summary, banned: banSnap?.exists === true, ban: banSnap?.exists ? projectRows([withId(banSnap)], ['id', 'reason', 'bannedAt', 'bannedBy'])[0] : null },
         learning,
         competition: { leaderboard: sources.leaderboard, arena: sources.arena, percentileStats: sources.percentileStats },
-        money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, referrals: sources.referrals, invitedBy: sources.invitedBy },
-        community: { chatMessages: sources.chatMessages, ugcBuys: sources.ugcBuys, ugcSells: sources.ugcSells },
+        money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, adminRewardHistory: sources.adminRewardHistory, referrals: sources.referrals, invitedBy: sources.invitedBy },
+        community: { ugcBuys: sources.ugcBuys, ugcSells: sources.ugcSells },
         moderation: { errorReports: sources.errorReports, reportsAgainst: sources.reportsAgainst, reportsBy: sources.reportsBy },
         diagnostics: { sourceStates: sources },
       },

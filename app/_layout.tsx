@@ -4,11 +4,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
-import { setAudioModeAsync } from 'expo-audio';
-import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
+import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
+import { setManagedAudioMode } from './audio_session_coordinator';
+import { soundDirector } from '../modules/audio/sound_director';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
@@ -23,12 +24,28 @@ import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
-import LoyaltyGiftModal from '../components/LoyaltyGiftModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
-import { loadUnclaimedGifts } from './level_gift_inventory';
+import { loadUnclaimedDualGifts, loadUnclaimedGifts, type PremPair } from './level_gift_inventory';
+import {
+  acknowledgePendingLevelUpShown,
+  repairPendingLevelUpRewards,
+  retryPendingLevelUpRewards,
+} from './level_up_reward_reconciler';
+import {
+  captureAccountGeneration,
+  subscribeAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import {
+  canAcknowledgeLevelUpForAccount,
+  isLevelUpAccountTokenCurrent,
+} from './level_up_account_guard';
+import { isCurrentAccountGeneration } from './account_generation';
+import { getStableId } from './stable_id';
 import type { GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
@@ -38,53 +55,68 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
+import PersonalAdminMessageModal from '../components/PersonalAdminMessageModal';
 import MaintenanceGate from '../components/MaintenanceGate';
 import ForceUpdateGate from '../components/ForceUpdateGate';
 import OfflineBanner from '../components/OfflineBanner';
 import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
+import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { getLevelFromXP, getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
+import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
+import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { resumePendingOnboardingFunnel } from './onboarding_funnel';
+import { resumePendingAgeConsent } from './age_consent_cloud';
 import { checkAchievements, getPendingNotifications } from './achievements';
-import { ensureAnonUser, ensureStableAuthLink, restoreFromCloudDetailed, syncToCloud } from './cloud_sync';
+import {
+  ensureAnonUser,
+  ensureStableAuthLink,
+  restoreFromCloudDetailed,
+  restoreFromCloudWithRecoveryDetails,
+  syncToCloud,
+  type CloudRestoreFailureReason,
+} from './cloud_sync';
+import { processPendingAuthLink } from './pending_auth_link';
+import { runAuthRecoveryBootGate } from './auth_recovery_boot_gate';
+import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import {
-  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
+  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, getNotifPrefsSnapshot, hydrateNotifSettingsFromStorage, hydrateNotifPrefsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, saveNotifPrefs, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
+import { hydrateAiExplainConsentFromStorage } from './ai_explain_consent';
+import { hydrateAiDialogConsentFromStorage } from './ai_dialog_consent';
 import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
-import { prefetchArenaRatingCache } from './arena_rating_cache';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
+import { isTournamentInterruptionProtectedPath } from './tournament_interruption_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { registerXP, migrateXPFormulaV2 } from './xp_manager';
 import { flushPendingProgressEvents } from './progress_events_client';
-import { flushPendingBotArenaMatch } from './arena_bot_profile_write';
+import { createDisposableAdoption } from './disposable_adoption';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
-import { MatchmakingProvider } from '../contexts/MatchmakingContext';
-import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
 import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
 import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
-import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
-import GlobalCompassSocialHost from '../components/GlobalCompassSocialHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
+import OnboardingWelcomeHost from '../components/OnboardingWelcomeHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
 import ComebackBoonHost from '../components/ComebackBoonHost';
 import PerfectWeekHost from '../components/PerfectWeekHost';
@@ -92,9 +124,19 @@ import BoonActivatedHost from '../components/BoonActivatedHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
+import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
+import {
+  consumeRemoteAccountDeletionNotice,
+  handleAccountDeletedOnAnotherDevice,
+  isLocalAccountDeletionInProgress,
+  peekLinkedAuthFromCurrentUser,
+  resumePendingAccountDeleteLocalExit,
+} from './auth_provider';
+import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
+import { prefetchAchievementArtInBackground } from './achievement_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
@@ -103,13 +145,21 @@ import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
+
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
 import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
+import { primeSurveyDailyTaskCacheFromStorage } from './survey_daily_task_cache';
+import { primeDailyTasksScreenSnapshotFromStorage } from './daily_tasks_screen_persist';
+import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
+import { hydrateStatsCacheFromStorage } from './statsCache';
+import { primeTrainerPracticeSnapshotFromStorage } from './trainer_practice_persist';
+import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
+import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
@@ -137,11 +187,18 @@ import {
 } from './services/league_chest_rewards';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
-import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
+import { scheduleCoalescedForegroundTask } from './app_resume_policy';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE, SETTINGS_TESTERS_ROUTE_NAME } from '../constants/devRoutes';
+import { APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
+import {
+  acknowledgePersonalAdminMessageModal,
+  pickNextLoginPersonalMessage,
+  refreshAppMessagesSnapshotOnce,
+  type AppMessageWithState,
+} from './app_messages';
 import {
   getIntroFullAccessState,
   markIntroFullAccessEndedSeen,
@@ -149,16 +206,65 @@ import {
   shouldShowIntroFullAccessWelcome,
   startIntroFullAccessAfterOnboarding,
 } from './intro_full_access';
-import {
-  getLoyaltyGiftState,
-  isLoyaltyGiftClaimed,
-  isLoyaltyGiftOfferSeen,
-  markLoyaltyGiftEndedSeen,
-  markLoyaltyGiftOfferSeen,
-  startLoyaltyGift,
-} from './loyalty_gift';
 import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
+
+// AUTH_RECOVERY_BOOT_RETRY_POLICY_START
+export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
+
+type AuthRecoveryBootRetrySchedulerOptions = Readonly<{
+  isInFlight: () => boolean;
+  run: () => void;
+  setTimer: (callback: () => void, delayMs: number) => ReturnType<typeof setTimeout>;
+  clearTimer: (timer: ReturnType<typeof setTimeout>) => void;
+}>;
+
+export function createAuthRecoveryBootRetryScheduler(
+  options: AuthRecoveryBootRetrySchedulerOptions,
+) {
+  let nextAttempt = 0;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let disposed = false;
+
+  const arm = (delayMs: number): void => {
+    timer = options.setTimer(() => {
+      timer = null;
+      if (disposed) return;
+      if (options.isInFlight()) {
+        // Preserve this already-budgeted retry while the previous call unwinds.
+        arm(250);
+        return;
+      }
+      options.run();
+    }, delayMs);
+  };
+
+  return {
+    schedule(): boolean {
+      if (disposed) return false;
+      if (timer) return true;
+      const delayMs = AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS[nextAttempt];
+      if (delayMs === undefined) return false;
+      nextAttempt += 1;
+      arm(delayMs);
+      return true;
+    },
+    triggerActive(): void {
+      if (disposed || options.isInFlight()) return;
+      if (timer) {
+        options.clearTimer(timer);
+        timer = null;
+      }
+      options.run();
+    },
+    cancel(): void {
+      disposed = true;
+      if (timer) options.clearTimer(timer);
+      timer = null;
+    },
+  };
+}
+// AUTH_RECOVERY_BOOT_RETRY_POLICY_END
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -238,9 +344,13 @@ const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
 const leagueBonusAvailableReservedThisSession = new Set<string>();
-const LOYALTY_UPDATE_MODAL_ENABLED = true;
 const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
 const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
+// зачем: аудит нагрева 2026-07-25 — flushQueue/intro/winback дёргались на КАЖДЫЙ
+// разворот приложения без троттла (AsyncStorage + premium-проверки). Событийные и
+// стартовые пути остаются мгновенными, троттлится ТОЛЬКО foreground-страховка.
+const FOREGROUND_FLUSH_MIN_MS = 15_000;
+const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
@@ -339,7 +449,7 @@ function buildNavigationPathSignature(
 
 const SPLASH_GLYPH_SIZE = 176;
 const SPLASH_WORDMARK_WIDTH = 232;
-const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.png («Phraseman»)
+const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.webp («Phraseman»)
 const SPLASH_WORDMARK_HEIGHT = Math.round(SPLASH_WORDMARK_WIDTH * SPLASH_WORDMARK_RATIO);
 const SPLASH_SHINE_WIDTH = Math.round(SPLASH_WORDMARK_WIDTH * 0.45);
 
@@ -418,7 +528,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
     <View pointerEvents="none" style={styles.startupSplashAnimatedRoot}>
       <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphScale }] }}>
         <Image
-          source={require('../assets/images/splash-glyph.png')}
+          source={require('../assets/images/splash-glyph.webp')}
           contentFit="contain"
           style={{ width: SPLASH_GLYPH_SIZE, height: SPLASH_GLYPH_SIZE }}
         />
@@ -434,7 +544,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
         }}
       >
         <Image
-          source={require('../assets/images/splash-wordmark.png')}
+          source={require('../assets/images/splash-wordmark.webp')}
           contentFit="contain"
           style={{ width: '100%', height: '100%' }}
         />
@@ -443,7 +553,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
           style={StyleSheet.absoluteFill}
           maskElement={
             <Image
-              source={require('../assets/images/splash-wordmark.png')}
+              source={require('../assets/images/splash-wordmark.webp')}
               contentFit="contain"
               style={{ width: '100%', height: '100%' }}
             />
@@ -671,7 +781,10 @@ function GlobalLevelUpHandler() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
-  const globalParams = useGlobalSearchParams();
+  const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const isGoldTheme = themeMode === 'gold';
 
   const [showLevelUp, setShowLevelUp] = useState(false);
@@ -687,18 +800,21 @@ function GlobalLevelUpHandler() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
   const [userName, setUserName] = useState('');
-  // Подарок за уровень уже сохранён в инвентарь в момент level-up (xp_manager →
-  // ensureUnclaimedGiftForLevel). Забираем его сюда, чтобы модал ПОКАЗАЛ ровно
-  // тот же подарок, что лежит в разделе «Подарки» (без повторного ролла).
+  // Reconciler сохраняет подарок до постановки уровня в очередь. Здесь держим
+  // точный single/dual entitlement, чтобы модал не выполнял повторный розыгрыш.
   const [giftPreRolled, setGiftPreRolled] = useState<GiftDef | undefined>(undefined);
+  const [giftPreRolledPair, setGiftPreRolledPair] = useState<PremPair | undefined>(undefined);
 
   const levelUpOpacity    = useRef(new Animated.Value(0)).current;
   const levelUpTranslateY = useRef(new Animated.Value(40)).current;
   const levelUpGlow       = useRef(new Animated.Value(0)).current;
   const queueRef    = useRef<number[]>([]);
+  const singleGiftsRef = useRef<Record<number, GiftDef>>({});
+  const dualGiftsRef = useRef<Record<number, PremPair>>({});
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
   const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const giftOpenInteractionRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
   // Страховка слота: если переход level-up → подарок «завис» (подарок не открылся/не
   // закрылся штатно — напр. Android-back в обход onGiftClose или сбой в цепочке выше),
   // levelUpTransitioning остался бы true НАВСЕГДА → слот арбитра занят, и всё ниже по
@@ -706,17 +822,65 @@ function GlobalLevelUpHandler() {
   // не force-evictable, сторож его не выселяет). Этот таймер принудительно завершает
   // зависший переход. Окно = заведомо больше штатного перехода (await-ы + 180-260мс).
   const levelUpTransitionGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const previewLevelUpParamRef = useRef<string | null>(null);
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
   const flushQueueBusyRef = useRef(false);
   const flushQueueRetryRef = useRef(false);
+  const queuedAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const modalAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const modalLevelRef = useRef(0);
+
+  const resetLevelUpChainForAccountChange = useCallback(() => {
+    if (giftOpenTimerRef.current) {
+      clearTimeout(giftOpenTimerRef.current);
+      giftOpenTimerRef.current = null;
+    }
+    giftOpenInteractionRef.current?.cancel();
+    giftOpenInteractionRef.current = null;
+    if (levelUpTransitionGuardRef.current) {
+      clearTimeout(levelUpTransitionGuardRef.current);
+      levelUpTransitionGuardRef.current = null;
+    }
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    levelUpOpacity.stopAnimation();
+    levelUpTranslateY.stopAnimation();
+    levelUpGlow.stopAnimation();
+    queueRef.current = [];
+    singleGiftsRef.current = {};
+    dualGiftsRef.current = {};
+    queuedAccountTokenRef.current = null;
+    modalAccountTokenRef.current = null;
+    modalLevelRef.current = 0;
+    isShowingRef.current = false;
+    dismissingLevelUpRef.current = false;
+    setShowLevelUp(false);
+    setShowGiftModal(false);
+    setLevelUpTransitioning(false);
+    setLevelGiftDualMode(false);
+    setGiftPreRolled(undefined);
+    setGiftPreRolledPair(undefined);
+    setCurrentLevel(0);
+    setCurrentAccountLevel(0);
+    setUserName('');
+  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
 
   const showNext = useCallback(() => {
+    const accountToken = queuedAccountTokenRef.current;
+    if (!isLevelUpAccountTokenCurrent(accountToken)) {
+      resetLevelUpChainForAccountChange();
+      return;
+    }
     if (queueRef.current.length === 0) { isShowingRef.current = false; return; }
     dismissingLevelUpRef.current = false;
     setLevelUpTransitioning(false);
     const lvl = queueRef.current[0];
+    const savedPair = dualGiftsRef.current[lvl];
+    const savedGift = singleGiftsRef.current[lvl];
+    setGiftPreRolledPair(savedPair ?? undefined);
+    setGiftPreRolled(savedPair ? undefined : savedGift ?? undefined);
+    setLevelGiftDualMode(!!savedPair);
+    modalAccountTokenRef.current = accountToken;
+    modalLevelRef.current = lvl;
     setCurrentLevel(lvl);
     setShowLevelUp(true);
     levelUpOpacity.setValue(0);
@@ -727,26 +891,7 @@ function GlobalLevelUpHandler() {
       Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
       Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
     ]).start();
-  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
-
-  const removeShownLevelFromPersistentQueue = useCallback((level: number) => {
-    if (!Number.isFinite(level) || level <= 0) return;
-    void (async () => {
-      try {
-        const raw = await AsyncStorage.getItem('pending_level_up_queue');
-        if (!raw) return;
-        let arr: number[] = [];
-        try { arr = JSON.parse(raw); } catch { arr = []; }
-        if (!Array.isArray(arr) || arr.length === 0) return;
-        const next = arr.filter((item) => item !== level);
-        if (next.length === arr.length) return;
-        if (next.length === 0) await AsyncStorage.removeItem('pending_level_up_queue');
-        else await AsyncStorage.setItem('pending_level_up_queue', JSON.stringify(next));
-      } catch {
-        /* keep the pending level; showing it twice is safer than losing it */
-      }
-    })();
-  }, []);
+  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY, resetLevelUpChainForAccountChange]);
 
   const flushQueue = useCallback(async () => {
     if (flushQueueBusyRef.current) {
@@ -754,27 +899,48 @@ function GlobalLevelUpHandler() {
       return;
     }
     flushQueueBusyRef.current = true;
+    const flushToken = captureAccountGeneration();
     try {
-      const raw = await AsyncStorage.getItem('pending_level_up_queue');
-      if (!raw) return;
-      let arr: number[] = [];
-      try { arr = JSON.parse(raw); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
-      if (arr.length === 0) return;
-      const [[, name], [, xpRaw]] = await AsyncStorage.multiGet(['user_name', 'user_total_xp']);
-      if (name) setUserName(name);
-      const accountLevel = getLevelFromXP(parseInt(xpRaw || '0', 10) || 0);
-      setCurrentAccountLevel(accountLevel);
-      const have = new Set(queueRef.current);
-      for (const lvl of arr) {
-        if (!have.has(lvl)) {
-          have.add(lvl);
-          queueRef.current.push(lvl);
+      await withAccountTransitionLock(async () => {
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        await retryPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget });
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        await repairPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget });
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        const raw = await AsyncStorage.getItem('pending_level_up_queue');
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        let arr: number[] = [];
+        try { arr = raw ? JSON.parse(raw) : []; } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
+        if (!Array.isArray(arr)) arr = [];
+        const [singleMap, dualMap, [[, name], [, xpRaw]]] = await Promise.all([
+          loadUnclaimedGifts(),
+          loadUnclaimedDualGifts(),
+          AsyncStorage.multiGet(['user_name', 'user_total_xp']),
+        ]);
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+
+        const durableLevels = arr
+          .filter((level) => Number.isInteger(level) && level > 0)
+          .filter((lvl) => {
+            const savedPair = dualMap[lvl];
+            const savedGift = singleMap[lvl];
+            return (!!savedPair || !!savedGift) && !(savedPair && savedGift);
+          });
+        const activeLevel = isShowingRef.current ? queueRef.current[0] : undefined;
+        queueRef.current = activeLevel
+          ? [activeLevel, ...durableLevels.filter((level) => level !== activeLevel)]
+          : durableLevels;
+        queuedAccountTokenRef.current = flushToken;
+        singleGiftsRef.current = singleMap;
+        dualGiftsRef.current = dualMap;
+        if (name) setUserName(name);
+        setCurrentAccountLevel(getLevelFromXP(parseInt(xpRaw || '0', 10) || 0));
+
+        if (!isShowingRef.current && queueRef.current.length > 0) {
+          isShowingRef.current = true;
+          queueMicrotask(showNext);
         }
-      }
-      if (!isShowingRef.current) {
-        isShowingRef.current = true;
-        queueMicrotask(showNext);
-      }
+      });
     } catch (e) {
       if (__DEV__) console.warn('[_layout]', e);
     } finally {
@@ -784,7 +950,15 @@ function GlobalLevelUpHandler() {
         queueMicrotask(() => { void flushQueue(); });
       }
     }
-  }, [showNext]);
+  }, [hasPremiumAccess, showNext, studyTarget]);
+
+  useEffect(() => {
+    const sub = subscribeAccountGeneration((token) => {
+      resetLevelUpChainForAccountChange();
+      if (token.phase === 'active') queueMicrotask(() => { void flushQueue(); });
+    });
+    return () => sub.remove();
+  }, [flushQueue, resetLevelUpChainForAccountChange]);
 
   useEffect(() => {
     // Проверяем очередь при старте (с задержкой, чтобы onboarding не перекрывал)
@@ -794,20 +968,30 @@ function GlobalLevelUpHandler() {
       clearTimeout(t);
       sub.remove();
       if (giftOpenTimerRef.current) clearTimeout(giftOpenTimerRef.current);
+      giftOpenInteractionRef.current?.cancel();
     };
   }, [flushQueue]);
 
+  const lastForegroundFlushAtRef = useRef(0);
   useEffect(() => {
-    if (!__DEV__) return;
-    const raw = globalParams.levelUpPreview;
-    const rawValue = Array.isArray(raw) ? raw[0] : raw;
-    if (!rawValue || previewLevelUpParamRef.current === rawValue) return;
-    const level = Math.max(1, Math.min(60, Number.parseInt(rawValue, 10) || 5));
-    previewLevelUpParamRef.current = rawValue;
-    AsyncStorage.setItem('pending_level_up_queue', JSON.stringify([level]))
-      .then(flushQueue)
-      .catch(() => {});
-  }, [flushQueue, globalParams.levelUpPreview]);
+    let scheduledFlush: { cancel: () => void } | null = null;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      // зачем: foreground-путь — лишь страховка на пропущенное level_up_pending;
+      // событие само зовёт flushQueue мгновенно. Троттл гасит частые сворачивания.
+      const now = Date.now();
+      if (now - lastForegroundFlushAtRef.current < FOREGROUND_FLUSH_MIN_MS) return;
+      lastForegroundFlushAtRef.current = now;
+      scheduledFlush?.cancel();
+      scheduledFlush = scheduleCoalescedForegroundTask('root_level_up_queue_flush', async () => {
+        await flushQueue();
+      });
+    });
+    return () => {
+      sub.remove();
+      scheduledFlush?.cancel();
+    };
+  }, [flushQueue]);
 
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
@@ -828,34 +1012,62 @@ function GlobalLevelUpHandler() {
   // needs the app to write the new day). Foregrounding is the natural moment to
   // guarantee the widget shows today's phrase — the exact one the app shows.
   useEffect(() => {
+    let scheduledWidgetRefresh: { cancel: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
-        void syncWidgetData({ studyTarget, lang, themeMode });
+        scheduledWidgetRefresh?.cancel();
+        scheduledWidgetRefresh = scheduleCoalescedForegroundTask('root_widget_snapshot_refresh', async () => {
+          await syncWidgetData({ studyTarget, lang, themeMode });
+        });
       }
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledWidgetRefresh?.cancel();
+    };
   }, [studyTarget, lang, themeMode]);
 
+  // зачем: владелец: «открываю раздел — он чуть подпрыгивает, будто ассеты грузятся».
+  // Иконки разделов и плитки хаба карточек не входили в image_preload, поэтому
+  // декодировались уже во время показа экрана. Греем их для АКТИВНОЙ темы строго после
+  // первого кадра (главная уже видна), и повторно при смене темы — к моменту тапа по
+  // разделу картинки лежат в кэше и первый кадр раздела сразу финальный.
+  useEffect(() => {
+    const task = InteractionManager.runAfterInteractions(() => {
+      void import('./section_asset_preload')
+        .then((m) => m.preloadSectionAssets(themeMode))
+        .catch(() => {});
+    });
+    return () => task.cancel();
+  }, [themeMode]);
+
   const dismissLevelUp = () => {
+    const accountToken = modalAccountTokenRef.current;
+    if (!accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
     if (dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
     // Держим слот арбитра на весь переход level-up → подарок (см. levelUpTransitioning).
     setLevelUpTransitioning(true);
-    Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
+    Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(({ finished }) => {
+      if (!finished || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
         setShowLevelUp(false);
-        setLevelGiftDualMode(!!hasPremiumAccess);
-        InteractionManager.runAfterInteractions(() => {
+        giftOpenInteractionRef.current = InteractionManager.runAfterInteractions(() => {
+          giftOpenInteractionRef.current = null;
+          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
           // Android can keep the closing Modal's native window alive for a beat.
           // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
           giftOpenTimerRef.current = setTimeout(() => {
             giftOpenTimerRef.current = null;
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             setShowGiftModal(true);
           }, Platform.OS === 'android' ? 260 : 180);
         });
         void (async () => {
+          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
           try {
             const name = (await AsyncStorage.getItem('user_name')) || userName;
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
             await registerXP(100, 'level_up_bonus', name, l, undefined, {
               eventId: [
@@ -866,74 +1078,73 @@ function GlobalLevelUpHandler() {
               payload: {
                 level: currentLevel,
               },
+              accountToken,
             });
-            await tryGrantPremiumMonthlyWagerFromLevelUp();
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+            await withAccountTransitionLock(async () => {
+              if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+              await tryGrantPremiumMonthlyWagerFromLevelUp();
+            });
           } catch {
             /* background level-up extras must never delay the gift */
           }
-        })();
+        });
       });
     });
   };
 
   const onGiftClose = (_claimed: boolean) => {
+    const accountToken = modalAccountTokenRef.current;
+    if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
     setShowGiftModal(false);
     dismissingLevelUpRef.current = false;
     // Переход завершён — отпускаем слот арбитра.
     setLevelUpTransitioning(false);
     queueRef.current = queueRef.current.slice(1);
+    modalAccountTokenRef.current = null;
+    modalLevelRef.current = 0;
     if (queueRef.current.length > 0) {
       queueMicrotask(showNext);
     } else {
       isShowingRef.current = false;
       // План #3: after-win апсейл после ПОЛНОГО завершения празднования level-up.
       // Гард не даёт спамить (кулдаун + не дублировать сегодняшний пейвол).
-      void (async () => {
+      void withAccountTransitionLock(async () => {
+        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
         try {
+          // This standard level-up paywall is a one-time free-user moment:
+          // exactly after reaching level 5, never before or after.
+          if (currentLevel !== 5 || hasPremiumAccess) return;
           const prem = await getVerifiedPremiumStatus().catch(() => false);
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           // Не показываем поверх модалки конца интро — она важнее (главный момент конверсии).
           const introState = await getIntroFullAccessState().catch(() => null);
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           if (introState?.expiredUnseen === true) return;
           const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
             import('./after_win_upsell_gate'),
             import('./analytics'),
           ]);
           if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           // Сначала навигация: если push упадёт — гейт не «сгорит» впустую.
           globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
           await markAfterWinUpsellShown(Date.now());
           await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
           void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
         } catch { /* no-op */ }
-      })();
+      });
     }
   };
-
-  // При открытии модала подарка — берём УЖЕ сохранённый в инвентарь подарок
-  // этого уровня (его положил xp_manager в момент level-up). Модал покажет ровно
-  // его (preRolledGift), без повторного ролла → показанное = лежащее в «Подарках».
-  useEffect(() => {
-    if (!showGiftModal || currentLevel <= 0) {
-      setGiftPreRolled(undefined);
-      return;
-    }
-    let cancelled = false;
-    void (async () => {
-      try {
-        const map = await loadUnclaimedGifts();
-        const saved = map[currentLevel];
-        if (!cancelled) setGiftPreRolled(saved ?? undefined);
-      } catch {
-        if (!cancelled) setGiftPreRolled(undefined);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [showGiftModal, currentLevel]);
 
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
   const titleColor  = getTitleColor(currentLevel, isDark);
-  const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal || levelUpTransitioning);
+  const levelUpOverlayVisible = useOverlayVisible(
+    'levelUp',
+    !tournamentInterruptionProtected && (showLevelUp || showGiftModal || levelUpTransitioning),
+  );
   const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
   const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
   const levelUpAccent = rewardModalAccentColor(themeMode, t);
@@ -955,10 +1166,15 @@ function GlobalLevelUpHandler() {
       return pool[currentLevel % pool.length];
     })();
 
-  useEffect(() => {
-    if (!showLevelUp || !levelUpOverlayVisible) return;
-    removeShownLevelFromPersistentQueue(currentLevel);
-  }, [currentLevel, levelUpOverlayVisible, removeShownLevelFromPersistentQueue, showLevelUp]);
+  const acknowledgeNativeLevelUpShown = useCallback(() => {
+    const accountToken = modalAccountTokenRef.current;
+    const shownLevel = modalLevelRef.current;
+    void withAccountTransitionLock(async () => {
+      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+      if (!Number.isInteger(shownLevel) || shownLevel <= 0) return;
+      await acknowledgePendingLevelUpShown(shownLevel);
+    });
+  }, []);
 
   // СТОРОЖ перехода level-up → подарок (анти-залипание слота арбитра).
   // Опасное состояние: levelUpTransitioning=true, но НИ одна модалка не видна
@@ -1001,6 +1217,13 @@ function GlobalLevelUpHandler() {
         visible={levelUpOverlayVisible && showLevelUp}
         animationType="none"
         statusBarTranslucent
+        onShow={() => {
+          acknowledgeNativeLevelUpShown();
+          soundDirector.request('pm.reward.level_up', {
+            scope: 'level-up-modal',
+            dedupeKey: String(currentLevel),
+          });
+        }}
         onRequestClose={() => {}}
       >
         <View style={{ flex: 1, backgroundColor: levelUpScreenDim, justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
@@ -1118,7 +1341,7 @@ function GlobalLevelUpHandler() {
                 </Text>
               </View>
 
-              {[10, 20, 30, 40, 50].includes(currentLevel) && (
+              {currentLevel === 50 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : '#1A3A2A', borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', borderWidth: 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : '#34D399' }}>
                   <Ionicons name="flash" size={15} color={USE_ELITE_LEVEL_UP_MODAL ? '#F6C85F' : '#34D399'} />
                   <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.textSecond : '#34D399', fontWeight: '800', fontSize: f.body, textAlign: 'center', flexShrink: 1 }}>
@@ -1172,6 +1395,7 @@ function GlobalLevelUpHandler() {
           lang={lang}
           onClose={onGiftClose}
           deliveryMode="inventory"
+          preRolledPair={giftPreRolledPair}
           studyTarget={studyTarget}
         />
       ) : (
@@ -1212,11 +1436,6 @@ function AppContent() {
   const [onboardingPaywallActive, setOnboardingPaywallActive] = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
-  // Подарок лояльности:
-  //   'offer'    = free-юзер: текст обновления + блок подарка + кнопка «Получить 3 дня».
-  //   'announce' = премиум/VIP: ТОЛЬКО текст обновления, без подарка и кнопки получения.
-  //   'ended'-модал «3 дня позади» переиспользуется из intro (ведёт на пейвол).
-  const [loyaltyGiftModal, setLoyaltyGiftModal] = useState<'offer' | 'announce' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
@@ -1268,18 +1487,78 @@ function AppContent() {
 
   const [releaseNotesOffer, setReleaseNotesOffer] = useState(false);
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
+  const [personalAdminMessage, setPersonalAdminMessage] = useState<AppMessageWithState | null>(null);
+  const [accountGeneration, setAccountGeneration] = useState(() => captureAccountGeneration());
+  const [appIsActive, setAppIsActive] = useState(AppState.currentState === 'active');
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
+  const [startupAuthRecoveryVisible, setStartupAuthRecoveryVisible] = useState(false);
+  const startupAuthRecoveryOfferedRef = useRef(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const [dailyPlanModalDue, setDailyPlanModalDue] = useState(false);
   const { setLang, lang } = useLang();
+  const remoteDeletionNoticeShownRef = useRef(false);
   const { studyTarget } = useStudyTarget();
   const { isPremium, isVip } = usePremium();
   const { showAchievement } = useAchievement();
   const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
+  const coldExamBestPctRestoreOptions = useMemo(() => ({
+    canPublishExamBestPctOverlay: () => {
+      const currentPath = pathnameRef.current;
+      const safeHomePath = currentPath === '/' || currentPath === '/home' || currentPath === '/(tabs)/home';
+      return AppState.currentState === 'active'
+        && safeHomePath
+        && isExamBestPctColdRestoreTabSafe();
+    },
+  }), []);
   const globalSearchParams = useGlobalSearchParams();
+
+  const showRemoteAccountDeletionNotice = useCallback(async () => {
+    const pending = await consumeRemoteAccountDeletionNotice();
+    if (!pending || remoteDeletionNoticeShownRef.current) return;
+    remoteDeletionNoticeShownRef.current = true;
+    await enqueueThemedBlockingInfoAlert(
+      triLang(lang, {
+        ru: 'Аккаунт удалён',
+        uk: 'Акаунт видалено',
+        es: 'Cuenta eliminada',
+        'pt-BR': 'Conta excluída',
+        vi: 'Tài khoản đã bị xóa',
+        id: 'Akun telah dihapus',
+        tr: 'Hesap silindi',
+        pl: 'Konto usunięte',
+      }),
+      triLang(lang, {
+        ru: 'Этот аккаунт был удалён на другом устройстве. Локальные данные на этом телефоне очищены, вход завершён.',
+        uk: 'Цей акаунт було видалено на іншому пристрої. Локальні дані на цьому телефоні очищено, сеанс завершено.',
+        es: 'Esta cuenta se eliminó en otro dispositivo. Se borraron los datos locales de este teléfono y se cerró la sesión.',
+        'pt-BR': 'Esta conta foi excluída em outro dispositivo. Os dados locais deste telefone foram apagados e a sessão foi encerrada.',
+        vi: 'Tài khoản này đã bị xóa trên một thiết bị khác. Dữ liệu cục bộ trên điện thoại này đã được xóa và phiên đăng nhập đã kết thúc.',
+        id: 'Akun ini dihapus di perangkat lain. Data lokal di ponsel ini telah dibersihkan dan sesi telah diakhiri.',
+        tr: 'Bu hesap başka bir cihazda silindi. Bu telefondaki yerel veriler temizlendi ve oturum kapatıldı.',
+        pl: 'To konto usunięto na innym urządzeniu. Dane lokalne na tym telefonie zostały wyczyszczone, a sesja zakończona.',
+      }),
+      'OK',
+    );
+  }, [lang]);
+
+  useEffect(() => {
+    void showRemoteAccountDeletionNotice();
+  }, [showRemoteAccountDeletionNotice]);
+
+  useEffect(() => startRemoteAccountDeletionMonitor(async () => {
+    if (isLocalAccountDeletionInProgress()) return false;
+    const result = await handleAccountDeletedOnAnotherDevice();
+    if (!result.ok) return false;
+    emitAppEvent('account_deleted');
+    await showRemoteAccountDeletionNotice();
+    return true;
+  }), [showRemoteAccountDeletionNotice]);
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
@@ -1292,13 +1571,47 @@ function AppContent() {
     setRootNavigationReady(true);
   }, []);
 
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((token) => {
+      setAccountGeneration(token);
+      setPersonalAdminMessage(null);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (nextState) => setAppIsActive(nextState === 'active'));
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const token = accountGeneration;
+    let cancelled = false;
+    void refreshAppMessagesSnapshotOnce({ force: true, minIntervalMs: 0 })
+      .then((snapshot) => {
+        if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
+
+  const closePersonalAdminMessage = useCallback(async (messageId: string) => {
+    const ownerUid = accountGeneration.stableId;
+    setPersonalAdminMessage((current) => current?.id === messageId ? null : current);
+    if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
+    await acknowledgePersonalAdminMessageModal(messageId, ownerUid).catch(() => {});
+  }, [accountGeneration]);
+
   // Глобальная аудио-сессия на старте: озвучка должна играть ДАЖЕ при включённом
   // беззвучном режиме (mute-switch) на iPhone и независимо от того, какой путь
   // (OpenAI-клип или системный TTS) зазвучит первым. Раньше playsInSilentMode
   // выставлялся лениво и только в клип-пути, а expo-speech на iOS работает в
   // отдельной сессии — поэтому при беззвучном режиме звука не было совсем.
   useEffect(() => {
-    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+    void setManagedAudioMode(UI_SFX_AUDIO_MODE)
       .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
   }, []);
 
@@ -1464,12 +1777,12 @@ function AppContent() {
     if (globalBroadcastModal) return;
     globalBroadcastCheckInFlightRef.current = true;
     try {
-      const payload = await fetchPendingGlobalBroadcastModal();
+      const payload = await fetchPendingGlobalBroadcastModal(studyTarget);
       if (payload) setGlobalBroadcastModal(payload);
     } finally {
       globalBroadcastCheckInFlightRef.current = false;
     }
-  }, [globalBroadcastModal]);
+  }, [globalBroadcastModal, studyTarget]);
 
   useEffect(() => {
     const t = setTimeout(() => { void checkGlobalBroadcastFn(); }, 1400);
@@ -1537,10 +1850,19 @@ function AppContent() {
   useEffect(() => {
     if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
+    let scheduledLeagueBonusCheck: { cancel: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') runLeagueBonusAvailabilityCheck('foreground');
+      if (state === 'active') {
+        scheduledLeagueBonusCheck?.cancel();
+        scheduledLeagueBonusCheck = scheduleCoalescedForegroundTask('root_league_bonus_availability', () => {
+          runLeagueBonusAvailabilityCheck('foreground');
+        });
+      }
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledLeagueBonusCheck?.cancel();
+    };
   }, [isBanned, ready, runLeagueBonusAvailabilityCheck, showOnboarding]);
 
   useEffect(() => {
@@ -1724,23 +2046,34 @@ function AppContent() {
   }, []); // deps пусты — читаем showAchievement через ref, не через closure
 
   useEffect(() => {
-    let subRemove: (() => void) | undefined;
+    const lifetime = createDisposableAdoption();
     void import('./referral_bootstrap')
       .then((m) => {
-        void Linking.getInitialURL().then((u) => m.captureReferralFromUrl(u)).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
-        subRemove = m.subscribeReferralUrl((u) => {
+        if (lifetime.isDisposed()) return;
+        void Linking.getInitialURL().then((u) => {
+          if (!lifetime.isDisposed()) return m.captureReferralFromUrl(u);
+          return undefined;
+        }).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
+        const subscription = m.subscribeReferralUrl((u) => {
+          if (lifetime.isDisposed()) return;
           void m.captureReferralFromUrl(u);
-        }).remove;
+        });
+        lifetime.adopt(() => subscription.remove());
       })
       .catch(() => {});
-    return () => {
-      subRemove?.();
-    };
+    return () => { lifetime.dispose(); };
   }, []);
 
   useEffect(() => {
-    // Startup must reveal the first screen quickly; optional warmups continue below.
-    const safetyTimer = setTimeout(() => setReady(true), 1200);
+    // The normal reveal timer is armed only after crash-recovery proves that no
+    // deleted account identity/data can reappear beneath the startup shell.
+    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
+    let accountDeleteRecoveryRetryTimer: ReturnType<typeof setTimeout> | null = null;
+    let authRecoveryBootAppStateSub: { remove: () => void } | null = null;
+    let authRecoveryBootAbort: AbortController | null = null;
+    let authRecoveryBootstrapInFlight = false;
+    let recoveryBootAllowsCloud = false;
+    let heavyInitRequestedWhileBlocked = false;
 
     // Remote Config: ссылку на отписку держим в scope эффекта.
     // effectDisposed нужен, т.к. import() резолвится асинхронно — к этому моменту
@@ -1751,7 +2084,24 @@ function AppContent() {
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
     let cloudHydratePromise: Promise<BootCloudRestoreOutcome> | null = null;
+    let bootRestoreFailureReason: CloudRestoreFailureReason | null = null;
     let contentDeliveryMigrationPromise: Promise<void> | null = null;
+    const restoreCloudForBoot = async () => {
+      await ensureAnonUser();
+      void resumePendingOnboardingFunnel().catch(() => {});
+      void resumePendingAgeConsent().catch(() => {});
+      const result = await restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions);
+      bootRestoreFailureReason = result.failureReason;
+      // Тихий deferred link: дожимаем отложенную привязку в фоне. Успех →
+      // журнал снят и тут же молча подтягиваем облако в этой же сессии.
+      // Никакого UI: юзер не должен знать, что что-то догонялось.
+      void processPendingAuthLink()
+        .then((pendingResult) => (
+          pendingResult === 'completed' ? restoreFromCloudDetailed().catch(() => 'failed' as const) : undefined
+        ))
+        .catch(() => {});
+      return result.status;
+    };
     const runContentDeliveryMigration = (after?: Promise<unknown> | null): Promise<void> => {
       if (!contentDeliveryMigrationPromise) {
         contentDeliveryMigrationPromise = (async () => {
@@ -1762,7 +2112,12 @@ function AppContent() {
       return contentDeliveryMigrationPromise;
     };
 
-    const runHeavyInit = () => {
+    // зачем: внутри тела появились `await` (AsyncStorage.multiSet и Promise.race
+    // гидратации), но функция оставалась синхронной — Metro падал на
+    // «Unexpected reserved word 'await'», и приложение не собиралось вообще.
+    // Все три вызова — fire-and-forget (результат никто не ждёт), поэтому
+    // возврат промиса безопасен; на местах вызова он явно гасится через void.
+    const runHeavyInit = async () => {
       // Remote Config: apply cached/live admin-tuned flags ASAP, then keep live.
       void import('./remote_config_client')
         .then((m) => {
@@ -1817,9 +2172,9 @@ function AppContent() {
         void initFirebaseAppCheckIfAvailable().catch(() => {});
       }
 
-      AsyncStorage.multiSet([
+      await AsyncStorage.multiSet([
         ['device_platform', Platform.OS],
-        ['app_version', Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown'],
+        ['app_version', getInstalledAppVersion(Constants)],
       ]).catch(() => {});
 
       // Дожидаемся (или дублируем при отсутствии) гидратации из облака,
@@ -1832,10 +2187,7 @@ function AppContent() {
       // Отслеживаем успех restore; boot-sync пускаем только если restore удался ЛИБО
       // локально реально есть прогресс (как в login-ветках auth_provider).
       const bootCoordinator = createBootCloudRestoreCoordinator({
-        restore: async () => {
-          await ensureAnonUser();
-          return restoreFromCloudDetailed();
-        },
+        restore: restoreCloudForBoot,
         hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
         onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
       });
@@ -1859,10 +2211,16 @@ function AppContent() {
         // Дотягиваем pending shard-grants после оплаты: вебхук RC мог задержаться
         // дольше окна waitForServerShardGrant в магазине. См. shards_pending_grants.ts.
         void (async () => {
-          const { resumePendingShardGrants } = await import('./shards_pending_grants');
-          await resumePendingShardGrants().catch(() => {});
+          const {
+            resumePendingShardGrants,
+            resumePendingShardRecoveryNeeded,
+            retryPendingShardGrantDeleteCleanup,
+          } = await import('./shards_pending_grants');
+          const resumeAccount = captureAccountGeneration();
+          await retryPendingShardGrantDeleteCleanup(resumeAccount).catch(() => {});
+          await resumePendingShardRecoveryNeeded(resumeAccount).catch(() => {});
+          await resumePendingShardGrants(resumeAccount).catch(() => {});
         })();
-        prefetchArenaRatingCache();
         // .catch: единственный незащищённый await в цепочке — его сбой молча
         // обрывал весь остаток пост-загрузки (стрик, pending-события, syncToCloud).
         const freshShards = await AsyncStorage.getItem('shards_balance').catch(() => null);
@@ -1878,12 +2236,6 @@ function AppContent() {
         await updateStreakOnActivity().catch(() => {});
         await runSessionChecks(studyTarget).catch(() => {});
         await flushPendingProgressEvents().catch(() => {});
-        // ARENA-005: добиваем зависшую запись результата бот-матча даже если игрок больше не
-        // открывал экран результатов арены — иначе показанные «+50 XP / повышение ранга» молча
-        // теряются при провале фоновой записи.
-        getCanonicalUserId()
-          .then((uid) => flushPendingBotArenaMatch(uid))
-          .catch(() => {});
         // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного
         // прогресса — иначе пустые дефолты затрут реальный облачный аккаунт (переустановка).
         if (bootRestoreOutcome.shouldSync) {
@@ -1893,19 +2245,31 @@ function AppContent() {
             console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
           }
           // Переустановка + упавший restore: юзер видит нулевой прогресс без
-          // единого объяснения («всё пропало!»). Говорим, что прогресс цел и
-          // подтянется при сети — тихий провал превращаем в понятный сигнал.
-          emitAppEvent('action_toast', {
-            type: 'info',
-            messageRu: 'Не удалось загрузить прогресс. Проверь интернет — он подтянется автоматически.',
-            messageUk: 'Не вдалося завантажити прогрес. Перевір інтернет — він підтягнеться автоматично.',
-            messageEs: 'No pudimos cargar tu progreso. Revisa tu conexión: se cargará automáticamente.',
-            messagePtBr: 'Não foi possível carregar seu progresso. Verifique a internet — ele será carregado automaticamente.',
-            messageVi: 'Không tải được tiến độ. Kiểm tra internet — nó sẽ tự tải lại.',
-            messageId: 'Tidak bisa memuat progres. Periksa internet — akan dimuat otomatis.',
-            messageTr: 'İlerleme yüklenemedi. İnterneti kontrol et — otomatik yüklenecek.',
-            messagePl: 'Nie udało się wczytać postępu. Sprawdź internet — wczyta się automatycznie.',
+          // единого объяснения («всё пропало!»). Ошибку безопасной идентификации
+          // не называем отсутствием интернета; локальные данные не трогаем.
+          const recoveryPresentation = decideStartupCloudRecoveryPresentation({
+            failureReason: bootRestoreFailureReason,
+            hasLinkedProvider: peekLinkedAuthFromCurrentUser() !== null,
+            hasLocalAccountData: bootRestoreOutcome.hasLocalAccountData,
           });
+          if (recoveryPresentation === 'provider_reauth_modal') {
+            if (!startupAuthRecoveryOfferedRef.current) {
+              startupAuthRecoveryOfferedRef.current = true;
+              setStartupAuthRecoveryVisible(true);
+            }
+          } else if (recoveryPresentation === 'cloud_unavailable_toast') {
+            emitAppEvent('action_toast', {
+              type: 'info',
+              messageRu: 'Облако сейчас недоступно. Откройте приложение позже, чтобы повторить восстановление.',
+              messageUk: 'Хмара зараз недоступна. Відкрийте застосунок пізніше, щоб повторити відновлення.',
+              messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
+              messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
+              messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',
+              messageId: 'Cloud sedang tidak tersedia. Buka aplikasi lagi nanti untuk mencoba pemulihan kembali.',
+              messageTr: 'Bulut şu anda kullanılamıyor. Geri yüklemeyi yeniden denemek için uygulamayı daha sonra açın.',
+              messagePl: 'Chmura jest teraz niedostępna. Otwórz aplikację później, aby ponowić przywracanie.',
+            });
+          }
         }
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
@@ -1953,6 +2317,13 @@ function AppContent() {
           preloadDeferredNonPrimaryImages().catch(() => {});
         }, 2500);
       });
+      // зачем: арт достижений живёт в Storage (−5.5 МБ из бандла) — прогреваем
+      // дисковый кэш заранее, чтобы к моменту награды картинка уже была на
+      // устройстве и пользователь никогда не увидел заглушку. Один раз на
+      // устройство, малыми пачками, строго после первого кадра.
+      InteractionManager.runAfterInteractions(() => {
+        prefetchAchievementArtInBackground();
+      });
       InteractionManager.runAfterInteractions(() => {
         void import('./flashcards_swipe').catch(() => {});
         import('./flashcards_collection')
@@ -1963,7 +2334,50 @@ function AppContent() {
       prefetchEasUpdateAfterStartup().catch(() => {});
     };
 
+    const requestHeavyInit = () => {
+      if (!recoveryBootAllowsCloud) {
+        heavyInitRequestedWhileBlocked = true;
+        return;
+      }
+      void runHeavyInit();
+    };
+
     const bootstrap = async () => {
+      if (authRecoveryBootstrapInFlight) return;
+      authRecoveryBootstrapInFlight = true;
+      try {
+      const pendingDeleteRecovered = await resumePendingAccountDeleteLocalExit();
+      if (effectDisposed) return;
+      if (!pendingDeleteRecovered) {
+        accountDeleteRecoveryRetryTimer = setTimeout(() => {
+          accountDeleteRecoveryRetryTimer = null;
+          void bootstrap();
+        }, 1_500);
+        return;
+      }
+      authRecoveryBootAbort = new AbortController();
+      const recoveryAbort = authRecoveryBootAbort;
+      const recoveryGate = await runAuthRecoveryBootGate({
+        signal: authRecoveryBootAbort.signal,
+      });
+      if (authRecoveryBootAbort === recoveryAbort) authRecoveryBootAbort = null;
+      if (effectDisposed) return;
+      if (recoveryGate.result !== 'proceed') {
+        setReady(true);
+        if (
+          recoveryGate.result === 'blocked_transient'
+          && scheduleAuthRecoveryBootRetry()
+        ) return;
+        clearAuthRecoveryBootRetry();
+        if (!startupAuthRecoveryOfferedRef.current) {
+          startupAuthRecoveryOfferedRef.current = true;
+          setStartupAuthRecoveryVisible(true);
+        }
+        return;
+      }
+      clearAuthRecoveryBootRetry();
+      recoveryBootAllowsCloud = true;
+      safetyTimer = setTimeout(() => setReady(true), 1200);
       onboardingPathRef.current = false;
       deferLessonPrimeRef.current = false;
       const forceOnboardingForQA =
@@ -1980,8 +2394,7 @@ function AppContent() {
         const bootCoordinator = createBootCloudRestoreCoordinator({
           restore: async () => {
             await appCheckWarmup;
-            await ensureAnonUser();
-            return restoreFromCloudDetailed();
+            return restoreCloudForBoot();
           },
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -1989,16 +2402,53 @@ function AppContent() {
         cloudHydratePromise = bootCoordinator.run();
         void runContentDeliveryMigration(cloudHydratePromise);
       }
+      if (heavyInitRequestedWhileBlocked) {
+        heavyInitRequestedWhileBlocked = false;
+        void runHeavyInit();
+      }
 
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
       const startupLocalHydration = Promise.all([
         primeAppSnapshotFromStorage(studyTarget).catch(() => {}),
+        primeSurveyDailyTaskCacheFromStorage().catch(() => {}),
+        // зачем: «Вызовы дня» открывались со скелетонами при ПЕРВОМ входе после
+        // холодного старта (кэш экрана жил только в памяти процесса). Поднимаем
+        // снапшот прошлой сессии здесь — задолго до тапа по разделу, поэтому даже
+        // первое открытие рисует карточки сразу, без загрузки.
+        primeDailyTasksScreenSnapshotFromStorage().catch(() => {}),
+        // зачем: та же беда была у «Моей практики» — её кэш жил в памяти всего 2 минуты,
+        // поэтому раздел открывался с нулями и после холодного старта, и просто через
+        // 3 минуты. Поднимаем дисковый снапшот здесь, до входа в раздел.
+        primeTrainerPracticeSnapshotFromStorage().catch(() => {}),
+        // зачем: общий снапшот остальных экранов (стрик, рефералы, топ помощников,
+        // аналитика, план, разбор, подписка, видео, сезон). Владелец потребовал, чтобы
+        // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
+        // сразу — в той же параллельной пачке, поэтому запуск не удлиняется.
+        primeScreenSnapshotsFromStorage().catch(() => {}),
+        // зачем: кэш статистики УЖЕ лежал на диске, но поднимался только внутри
+        // streak_stats.loadAll() — то есть после первого кадра, поэтому экран стрика
+        // успевал показать скелетон на весь экран. Поднимаем здесь: к моменту тапа
+        // данные в памяти, statsReady=true с первого кадра. Лишних чтений нет —
+        // экран всё равно звал эту же функцию, просто позже.
+        hydrateStatsCacheFromStorage().catch(() => {}),
+        primeRemoteConfigCacheFromStorage().catch(() => {}),
         hydrateUserSettingsFromStorage().catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
         hydrateNotifSettingsFromStorage().catch(() => {}),
+        // зачем: раздел «Уведомления» — гейты категорий (isNotifCategoryEnabled)
+        // сами лениво гидрируют при первом вызове, но их вызывают ~10 разных
+        // schedule*-функций россыпью. Греем один раз здесь вместе с остальным
+        // bootstrap-бюджетом — экономит N параллельных AsyncStorage.getItem
+        // на первом запуске приложения (тот же паттерн, что у notifSettings строкой выше).
+        hydrateNotifPrefsFromStorage().catch(() => {}),
         // Согласие на аналитику — гидрируем ДО первого события, чтобы гейт
         // (firebase.ts logEvent / posthog capture) работал с первого кадра.
         hydrateAnalyticsConsentFromStorage().catch(() => {}),
+        // Согласие на AI-разбор ошибок — гидрируем ДО первого урока, чтобы
+        // use_mistake_explain.ts не мигал с idle → gate на первом кадре.
+        hydrateAiExplainConsentFromStorage().catch(() => {}),
+        // Согласие на AI-диалоги — гидрируем ДО первого входа в диалог.
+        hydrateAiDialogConsentFromStorage().catch(() => {}),
         // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
         hydrateAgeGateFromStorage().catch(() => {}),
       ]);
@@ -2008,7 +2458,8 @@ function AppContent() {
       ]).catch(() => {});
       void startupLocalHydration.catch(() => {});
       // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
-      void getShardsBalance()
+      void getStableId()
+        .then(() => getShardsBalance())
         .then(balance => getShardAchievementEligibleBalance(balance))
         .then(balance => checkAchievements({ type: 'shards', balance }).catch(() => {}))
         .catch(() => {});
@@ -2039,20 +2490,6 @@ function AppContent() {
                 clearTimeout(t);
                 if (!error && details?.installReferrer) {
                   const ir = String(details.installReferrer);
-                  const duelMatch = ir.match(/^duel_([A-Za-z0-9]+)$/);
-                  if (duelMatch) {
-                    const roomId = duelMatch[1];
-                    AsyncStorage.getItem('user_name')
-                      .then((name) => {
-                        if (name?.trim()) return AsyncStorage.setItem('onboarding_done', '1');
-                        return undefined;
-                      })
-                      .then(() => {
-                        setPendingRoute(`/arena_join?roomId=${roomId}`);
-                      })
-                      .finally(() => resolve(true));
-                    return;
-                  }
                   const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
                   if (refM?.[1]) {
                     void import('./referral_bootstrap')
@@ -2088,7 +2525,7 @@ function AppContent() {
       void iconFontsReady.catch(() => {});
       void preloadPrimaryTabImages().catch(() => {});
 
-      clearTimeout(safetyTimer);
+      if (safetyTimer) clearTimeout(safetyTimer);
       setReady(true);
       setTimeout(flushPending, 280);
       if (shouldPrimeLessonsAfterReveal) {
@@ -2098,9 +2535,35 @@ function AppContent() {
             .catch(() => {});
         });
       }
+      } finally {
+        authRecoveryBootstrapInFlight = false;
+      }
     };
 
-    runHeavyInitRef.current = runHeavyInit;
+    const authRecoveryBootRetryScheduler = createAuthRecoveryBootRetryScheduler({
+      isInFlight: () => authRecoveryBootstrapInFlight,
+      run: () => { void bootstrap(); },
+      setTimer: (callback, delayMs) => setTimeout(callback, delayMs),
+      clearTimer: timer => clearTimeout(timer),
+    });
+
+    const clearAuthRecoveryBootRetry = () => {
+      authRecoveryBootRetryScheduler.cancel();
+      authRecoveryBootAppStateSub?.remove();
+      authRecoveryBootAppStateSub = null;
+    };
+
+    const scheduleAuthRecoveryBootRetry = (): boolean => {
+      if (!authRecoveryBootRetryScheduler.schedule()) return false;
+      if (!authRecoveryBootAppStateSub) {
+        authRecoveryBootAppStateSub = AppState.addEventListener('change', (state) => {
+          if (state === 'active') authRecoveryBootRetryScheduler.triggerActive();
+        });
+      }
+      return true;
+    };
+
+    runHeavyInitRef.current = requestHeavyInit;
     bootstrap();
 
     // Event-driven flush: слушаем событие от achievements.ts вместо polling каждые 4с.
@@ -2132,14 +2595,18 @@ function AppContent() {
     });
     return () => {
       effectDisposed = true;
-      clearTimeout(safetyTimer);
+      authRecoveryBootAbort?.abort();
+      authRecoveryBootAbort = null;
+      clearAuthRecoveryBootRetry();
+      if (safetyTimer) clearTimeout(safetyTimer);
+      if (accountDeleteRecoveryRetryTimer) clearTimeout(accountDeleteRecoveryRetryTimer);
       runHeavyInitRef.current = null;
       sub.remove();
       subShards.remove();
       subDelete.remove();
       remoteConfigUnsub?.();
     };
-  }, [flushPending]);
+  }, [coldExamBestPctRestoreOptions, flushPending]);
 
   useEffect(() => {
     const sub = onAppEvent('notif_permission_nudge', async ({ missedDays }) => {
@@ -2206,6 +2673,7 @@ function AppContent() {
 
   const checkIntroFullAccessEndedModal = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
     const state = await getIntroFullAccessState().catch(() => null);
     if (!state?.expiredUnseen) return;
     if (await hasVerifiedRealPremiumOrVip()) {
@@ -2213,6 +2681,7 @@ function AppContent() {
       return;
     }
     if (state?.expiredUnseen) {
+      if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
       setIntroFullAccessModal('ended');
       // Воронка: показана модалка «72 часа закончились» — главный момент конверсии.
       void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(() => {});
@@ -2220,15 +2689,18 @@ function AppContent() {
     }
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
 
+  const lastForegroundIntroCheckAtRef = useRef(0);
   useEffect(() => {
     void checkIntroFullAccessEndedModal();
     const introSub = onAppEvent('intro_full_access_changed', () => {
       void checkIntroFullAccessEndedModal();
     });
     const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        void checkIntroFullAccessEndedModal();
-      }
+      if (state !== 'active') return;
+      const now = Date.now();
+      if (now - lastForegroundIntroCheckAtRef.current < FOREGROUND_MODAL_CHECK_MIN_MS) return;
+      lastForegroundIntroCheckAtRef.current = now;
+      void checkIntroFullAccessEndedModal();
     });
     return () => {
       introSub.remove();
@@ -2236,124 +2708,12 @@ function AppContent() {
     };
   }, [checkIntroFullAccessEndedModal]);
 
-  // ── Подарок лояльности (72ч полного доступа существующим free-юзерам) ──
-  // Нажата «Получить 3 дня премиум»: стартуем подарок, эмитим событие пересчёта
-  // доступа, ставим pending VIP-celebration (WOW-анимация проиграется на главной),
-  // закрываем модал-предложение.
-  const claimLoyaltyGift = useCallback(async () => {
-    await markLoyaltyGiftOfferSeen().catch(() => {});
-    const started = await startLoyaltyGift(Date.now(), lang).catch(() => false);
-    setLoyaltyGiftModal(null);
-    if (started) {
-      emitAppEvent('loyalty_gift_changed');
-      // WOW-анимация ВИП (aurora + benefit reel) на главной — пользователь увидит её сразу после получения.
-      void import('./vip_celebration_state')
-        .then(({ markVipCelebrationPending }) => markVipCelebrationPending(`loyalty_${Date.now()}`))
-        .catch(() => {});
-    }
-  }, [lang]);
-
-  // «Может позже»: помечаем предложение показанным (больше не покажем), доступ не выдаём.
-  const dismissLoyaltyGiftOffer = useCallback(async () => {
-    await markLoyaltyGiftOfferSeen().catch(() => {});
-    setLoyaltyGiftModal(null);
-  }, []);
-
-  // Премиум/VIP закрыл анонс обновления (там нет подарка) — просто помечаем показанным.
-  const closeLoyaltyAnnounce = useCallback(async () => {
-    await markLoyaltyGiftOfferSeen().catch(() => {});
-    setLoyaltyGiftModal(null);
-  }, []);
-
-  // Тап по блоку «год доступа за идею» — закрываем модал (как показанный) и ведём в Идеи.
-  const openLoyaltyIdeas = useCallback(async () => {
-    await markLoyaltyGiftOfferSeen().catch(() => {});
-    setLoyaltyGiftModal(null);
-    router.push('/ideas_submit' as any);
-  }, [router]);
-
-  // Финальный модал после истечения подарка лояльности — переиспользуем intro-модал
-  // 'ended' (та же логика: ведёт на пейвол / «продолжить бесплатно»). Закрытие обрабатывает
-  // closeLoyaltyEndedModal, который помечает loyalty_gift_ended_seen.
-  const closeLoyaltyEndedModal = useCallback(async (action: 'primary' | 'secondary') => {
-    await markLoyaltyGiftEndedSeen().catch(() => {});
-    setIntroFullAccessModal(null);
-    if (action === 'primary') {
-      void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_cta', {})).catch(() => {});
-      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
-      // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
-      markNextNavigationAsReplace();
-      router.replace({
-        pathname: '/premium_modal',
-        params: { context: 'intro_ended', streak: String(streakCount) },
-      } as any);
-    } else {
-      void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_dismiss', {})).catch(() => {});
-    }
-  }, [router]);
-
-  // Маршрутизатор закрытия модала 'ended': источник определяет, чей это финал —
-  // intro новичка или подарок лояльности (loyaltyEndedActiveRef).
-  const loyaltyEndedActiveRef = useRef(false);
-
-  const checkLoyaltyGiftFlow = useCallback(async () => {
-    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
-    // Премиум/VIP: подарок не выдаём, но текст обновления показываем — один раз,
-    // без блока подарка и без кнопки получения (variant 'announce').
-    if (await hasVerifiedRealPremiumOrVip()) {
-      const st = await getLoyaltyGiftState().catch(() => null);
-      if (st?.expiredUnseen) await markLoyaltyGiftEndedSeen().catch(() => {});
-      const onboardingDone = (await AsyncStorage.getItem('onboarding_done').catch(() => null)) === '1';
-      const announceSeen = await isLoyaltyGiftOfferSeen().catch(() => false);
-      if (LOYALTY_UPDATE_MODAL_ENABLED && onboardingDone && !announceSeen && introFullAccessModal === null && loyaltyGiftModal === null) {
-        setLoyaltyGiftModal('announce');
-      }
-      return;
-    }
-
-    // 1) Финал: подарок истёк, но финальный модал ещё не показан.
-    const state = await getLoyaltyGiftState().catch(() => null);
-    if (state?.expiredUnseen) {
-      loyaltyEndedActiveRef.current = true;
-      setIntroFullAccessModal('ended');
-      void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_shown', {})).catch(() => {});
-      return;
-    }
-
-    // 2) Предложение: только существующим (прошёл онбординг до обновления),
-    //    кто ещё не получал подарок и кому предложение ещё не показывали.
-    if (state?.active) return; // подарок уже идёт — предложение не нужно
-    const onboardingDone = (await AsyncStorage.getItem('onboarding_done').catch(() => null)) === '1';
-    if (!onboardingDone) return; // новый юзер — подарок не для него
-    if (await isLoyaltyGiftClaimed().catch(() => false)) return; // уже получал
-    if (await isLoyaltyGiftOfferSeen().catch(() => false)) return; // уже показывали
-    // Не показываем поверх модала конца intro новичка.
-    if (introFullAccessModal !== null) return;
-    const introState = await getIntroFullAccessState().catch(() => null);
-    if (introState?.active) return; // у новичка ещё идёт его подарок — не дублируем
-    if (!LOYALTY_UPDATE_MODAL_ENABLED) return;
-    setLoyaltyGiftModal('offer');
-  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, introFullAccessModal, loyaltyGiftModal, isBanned, ready]);
-
-  useEffect(() => {
-    void checkLoyaltyGiftFlow();
-    const loyaltySub = onAppEvent('loyalty_gift_changed', () => {
-      void checkLoyaltyGiftFlow();
-    });
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void checkLoyaltyGiftFlow();
-    });
-    return () => {
-      loyaltySub.remove();
-      appSub.remove();
-    };
-  }, [checkLoyaltyGiftFlow]);
-
   // План #7: winback-оффер вернувшимся после 7+ дней неактивности.
   // ВАЖНО: сначала ОЦЕНИВАЕМ по сохранённой активности, ПОТОМ записываем свежую —
   // иначе разрыв всегда ~0. Не показываем одновременно с intro_ended (не два пейвола разом).
   const checkWinbackOffer = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
     try {
       const { shouldShowWinback, markWinbackShown, recordLastActive } = await import('./winback_offer');
       const isPremium = await hasVerifiedRealPremiumOrVip();
@@ -2364,6 +2724,7 @@ function AppContent() {
 
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
       if (show) {
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
         globalRouter.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'winback' } } as any);
         await markWinbackShown(nowMs);
@@ -2375,10 +2736,15 @@ function AppContent() {
     } catch { /* no-op */ }
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
 
+  const lastForegroundWinbackCheckAtRef = useRef(0);
   useEffect(() => {
     void checkWinbackOffer();
     const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void checkWinbackOffer();
+      if (state !== 'active') return;
+      const now = Date.now();
+      if (now - lastForegroundWinbackCheckAtRef.current < FOREGROUND_MODAL_CHECK_MIN_MS) return;
+      lastForegroundWinbackCheckAtRef.current = now;
+      void checkWinbackOffer();
     });
     return () => { appSub.remove(); };
   }, [checkWinbackOffer]);
@@ -2405,6 +2771,15 @@ function AppContent() {
     setFirstContentReady(true);
     router.replace('/(tabs)/home' as any);
     setTimeout(() => router.replace('/(tabs)/home' as any), 120);
+    // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не
+    // используем onboarding_done как гард, т.к. handleOnboardingPersonalPlanPaywall
+    // (ниже) удаляет его и прогоняет ветку плана повторно в той же установке.
+    void (async () => {
+      const alreadyWelcomed = await AsyncStorage.getItem('pm_app_welcome_played_v1').catch(() => null);
+      if (alreadyWelcomed === '1') return;
+      await AsyncStorage.setItem('pm_app_welcome_played_v1', '1').catch(() => {});
+      soundDirector.request('pm.app.welcome', { scope: 'onboarding-welcome' });
+    })();
     // Снимаем оверлей онбординга ПОСЛЕ того, как replace на /home закоммитится. Иначе,
     // если под оверлеем активен маршрут пейвола (план-ветка: handleOnboardingPersonalPlanPaywall
     // делает router.replace('/paywall_*')), при мгновенном setShow(false) пейвол мелькает один
@@ -2425,7 +2800,9 @@ function AppContent() {
     })();
     const showIntroGift = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
     if (showIntroGift) {
-      setTimeout(() => setIntroFullAccessModal('welcome'), 320);
+      // зачем: было 320ms — pm.app.welcome (2.3s, играет выше) не успевал
+      // отзвучать до открытия модалки, получалось два «приветствия» подряд.
+      setTimeout(() => setIntroFullAccessModal('welcome'), 1800);
     }
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
@@ -2466,7 +2843,7 @@ function AppContent() {
     try {
       const { resolvePaywallAbVariantSync } = await import('./paywall_variant');
       const { variant } = resolvePaywallAbVariantSync();
-      const route = variant === 'A' ? '/paywall_a' : variant === 'B' ? '/paywall_b' : '/paywall_c';
+      const route = ({ A: '/paywall_a', B: '/paywall_b', C: '/paywall_c', D: '/paywall_d', E: '/paywall_e', F: '/paywall_f', G: '/paywall_g' } as const)[variant];
       // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
       markNextNavigationAsReplace();
       router.replace({
@@ -2582,19 +2959,26 @@ function AppContent() {
 
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
-  // Приоритет: update > releaseNotes > broadcast > notifNudge > introFullAccess >
-  // loyaltyGift > dailyPlan > levelUp.
+  // Приоритет: update > authRecovery > releaseNotes > broadcast > notifNudge > introFullAccess >
+  // dailyPlan > levelUp.
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
-  // introFullAccess / loyaltyGift — нативные <Modal statusBarTranslucent>: их обязательно
-  // гейтить через арбитр, иначе на холодном старте они могут наложиться на другую такую же
+  // introFullAccess — нативный <Modal statusBarTranslucent>: его обязательно
+  // гейтить через арбитр, иначе на холодном старте он может наложиться на другую такую же
   // модалку (update/broadcast/levelUp/dailyPlan) → мерцание/зависание System UI (ANR) на Android.
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
+  const personalAdminMessageVisible = useOverlayVisible('personalAdminMessage', !!personalAdminMessage);
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
-  const introFullAccessModalVisible = useOverlayVisible('introFullAccess', introFullAccessModal !== null);
-  const loyaltyGiftModalVisible = useOverlayVisible('loyaltyGift', loyaltyGiftModal !== null);
+  const startupAuthRecoveryModalVisible = useOverlayVisible('authRecovery', startupAuthRecoveryVisible);
+  // A queued offer may have won the overlay slot immediately before the user
+  // entered a tournament. Active tournament screens are an uninterrupted flow:
+  // do not let that stale request cover the lobby or a live question.
+  const introFullAccessModalVisible = useOverlayVisible(
+    'introFullAccess',
+    !tournamentInterruptionProtected && introFullAccessModal !== null,
+  );
   // ⚠️ Модалка «задания дня при первом входе» ОТКЛЮЧЕНА (DailyTasksFirstVisitModal в проде
   // всегда возвращает null — её заменил брифинг Компаса). Поэтому ключ 'dailyPlan' НЕ ДОЛЖЕН
   // просить единственный слот арбитра: dailyPlanModalDue становился true раз в сутки, арбитр
@@ -2618,13 +3002,22 @@ function AppContent() {
 
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
-  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
+  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned
+    && !tournamentInterruptionProtected;
   const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
-  // как JS дорендерил новый экран. На iOS маскируем зазор коротким fade; Android остаётся
-  // на 'none' (история крашей Fabric на transitions) — там зазор закрывает константный
-  // фон стека (contentStyle ниже всегда = tTheme.bgPrimary, а не почти-чёрный сплэш-цвет).
-  const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && Platform.OS === 'ios' && !ENABLE_SCREEN_TRANSITIONS;
+  // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
+  // чёрный) — на тёмных экранах это читается как вспышка темноты.
+  //
+  // зачем: владелец жаловался, что при входе в урок «мелькает пустой/тёмный экран». На
+  // Android fade был выключен гейтом Platform.OS === 'ios' из-за истории крашей Fabric,
+  // но краши были на CARD-PUSH slide (ENABLE_SCREEN_TRANSITIONS), а не на любых анимациях:
+  // slide_from_bottom годами едет на ОБЕИХ платформах у пейволов
+  // (components/paywall/paywallShared.tsx) и шторок разделов (app/section_sheet_navigation.ts).
+  // fade — самый безобидный класс (кроссфейд, без пересчёта геометрии), поэтому включаем
+  // его и на Android: зазор маскируется, «мелькание» уходит.
+  // Kill-switch прежний: EXPO_PUBLIC_SCREEN_FADE=0.
+  const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;
   const defaultScreenAnimationOptions = ENABLE_SCREEN_TRANSITIONS
     ? ({ animation: 'slide_from_right', animationDuration: 220 } as const)
     : screenFadeEnabled
@@ -2670,6 +3063,8 @@ function AppContent() {
       <Stack.Screen name="index" options={{ animation: 'none' }} />
       <Stack.Screen name="(tabs)" options={{ animation: 'none' }} />
       <Stack.Screen name="lesson1" />
+      {/* зачем: список всех уроков — push-экран вместо убранного таба «Уроки» (2026-08-02). */}
+      <Stack.Screen name="lessons_list" />
       <Stack.Screen name="lesson_menu" />
       <Stack.Screen name="lesson_words" />
       <Stack.Screen name="lesson_irregular_verbs" />
@@ -2680,14 +3075,23 @@ function AppContent() {
       <Stack.Screen name="lesson_help" />
       <Stack.Screen name="lesson_theory_v2" options={{ presentation: 'card', headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="preposition_drill" />
-      <Stack.Screen name="settings_edu" />
-      <Stack.Screen name="settings_notifications" />
-      <Stack.Screen name="settings_themes" />
-      <Stack.Screen name="settings_language" />
+      {/* «Шторки разделов» (стандарт владельца, ориентир — Bevel): разделы
+          настроек/инфо-экраны выезжают снизу как модальная страница и так же
+          закрываются. Опции — app/section_sheet_navigation.ts (под флагом
+          SECTION_SHEET_TRANSITIONS из config.ts), шапка внутри экранов —
+          components/SectionSheetHeader.tsx. */}
+      <Stack.Screen name="settings_edu" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_notifications" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_themes" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_testers" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
-      <Stack.Screen name="top_helpers" />
+      <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
@@ -2703,18 +3107,22 @@ function AppContent() {
       <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
           Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
-      <Stack.Screen name="premium_modal" options={{ presentation: 'transparentModal', animation: 'none', animationDuration: 0, contentStyle: { backgroundColor: '#111827' } }} />
-      {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). По умолчанию
+      <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />
+      {/* Эксперимент пейволов: варианты A/B/C + D/E/F/G (диспетчер — premium_modal). По умолчанию
           выезжают снизу как модал. НА ОНБОРДИНГЕ (onboardingPaywallActive) — открываются как
           обычный экран онбординга (card, без анимации/выезда снизу); presentation задаётся
           на статическом <Stack.Screen>, т.к. mount-presentation нативный стек читает при push. */}
       <Stack.Screen name="paywall_a" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_b" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_c" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', ...bottomModalAnimationOptions, gestureEnabled: true }} />
-      <Stack.Screen name="referral_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
-      <Stack.Screen name="referrals" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
-      <Stack.Screen name="promo_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="paywall_d" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      <Stack.Screen name="paywall_e" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      <Stack.Screen name="paywall_f" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      <Stack.Screen name="paywall_g" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      <Stack.Screen name="manage_subscription" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="account_details" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="referrals" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="promo_code_entry" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_audio" />
@@ -2723,34 +3131,29 @@ function AppContent() {
       <Stack.Screen name="community_pack_create" />
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="shards_shop" />
+      <Stack.Screen name="coin_exchange" />
       <Stack.Screen name="level_gifts_inventory" />
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
-      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
-        <Stack.Screen key={name} name={name} />
-      ))}
-      <Stack.Screen name="privacy_screen" />
-      <Stack.Screen name="terms_screen" />
+      {/* зачем: settings_testers объявлен выше как «шторка раздела» и живёт в
+          проде, а не только под дев-тулзами. Повторная регистрация тем же именем
+          здесь роняла приложение («Screen names must be unique»), поэтому имя
+          исключаем из дев-карты — единственный источник правды выше. */}
+      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES
+        .filter((name) => name !== SETTINGS_TESTERS_ROUTE_NAME)
+        .map((name) => (
+          <Stack.Screen key={name} name={name} />
+        ))}
+      <Stack.Screen name="privacy_screen" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_video_player" />
-      {/* Realtime-исключения из freezeOnBlur: живой матч/комната/лобби-поиск должны
-          продолжать реагировать (onSnapshot соперника, matchmaking), даже когда поверх
-          запушен другой экран. Экзамен ниже — та же причина (60-мин таймер). */}
-      <Stack.Screen name="arena_game" options={{ animation: 'none', freezeOnBlur: false }} />
-      <Stack.Screen name="arena_lobby" options={{ animation: 'none', freezeOnBlur: false }} />
-      <Stack.Screen name="arena_results" />
-      <Stack.Screen name="arena_join" options={{ freezeOnBlur: false }} />
-      <Stack.Screen name="arena_room" options={{ freezeOnBlur: false }} />
-      <Stack.Screen name="arena_rating" />
-      <Stack.Screen name="arena_leaderboard" />
-      <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="trainer_phrases_session" />
-      <Stack.Screen name="trainer_arena_session" />
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
     </Stack>
@@ -2788,6 +3191,13 @@ function AppContent() {
       </Animated.View>
     )}
 
+    <RegistrationPromptModal
+      visible={appOverlaysEnabled && startupAuthRecoveryModalVisible}
+      context="startup_recovery"
+      onClose={() => setStartupAuthRecoveryVisible(false)}
+      onSignedIn={() => setStartupAuthRecoveryVisible(false)}
+    />
+
     <NotificationPermissionModal
       visible={appOverlaysEnabled && notifNudgeModalVisible}
       lang={lang}
@@ -2820,6 +3230,14 @@ function AppContent() {
         const ok = perm.granted;
         setNotifNudgeVisible(false);
         if (!ok) return;
+        // зачем: юзер мог заранее выключить общий мастер в разделе «Уведомления».
+        // Без этой синхронизации scheduleNotifications ниже тихо блокируется гейтом
+        // isNotifMasterEnabled(), а юзер видит «разрешение дал» и думает, что включил.
+        // Этот модал — явное намерение «включить напоминания», поэтому чиним обе стороны.
+        const prefsSnap = getNotifPrefsSnapshot();
+        if (!prefsSnap.master) {
+          await saveNotifPrefs({ ...prefsSnap, master: true });
+        }
         const snap = getNotifSettingsSnapshot();
         const hasPerDay = Object.values(snap.schedule).some(d => d.enabled);
         if (hasPerDay) {
@@ -2861,6 +3279,12 @@ function AppContent() {
       onClose={() => setGlobalBroadcastModal(null)}
     />
 
+    <PersonalAdminMessageModal
+      visible={appOverlaysEnabled && personalAdminMessageVisible}
+      message={personalAdminMessage}
+      onAcknowledge={closePersonalAdminMessage}
+    />
+
     <LeagueBonusAvailableModal
       visible={appOverlaysEnabled && leagueBonusAvailableModalVisible}
       availability={leagueBonusAvailable}
@@ -2873,38 +3297,14 @@ function AppContent() {
 
     {/* Bottomsheet первого урока после онбординга */}
     <IntroFullAccessModal
-      visible={appOverlaysEnabled && introFullAccessModalVisible}
+      visible={appOverlaysEnabled && !tournamentInterruptionProtected && introFullAccessModalVisible}
       variant={introFullAccessModal ?? 'welcome'}
       onPrimaryPress={() => {
-        // Один и тот же модал 'ended' обслуживает и intro новичка, и подарок лояльности —
-        // маршрутизируем по флагу, выставленному в checkLoyaltyGiftFlow.
-        if (introFullAccessModal === 'ended' && loyaltyEndedActiveRef.current) {
-          loyaltyEndedActiveRef.current = false;
-          void closeLoyaltyEndedModal('primary');
-        } else {
-          void closeIntroFullAccessModal('primary');
-        }
+        void closeIntroFullAccessModal('primary');
       }}
       onSecondaryPress={() => {
-        if (introFullAccessModal === 'ended' && loyaltyEndedActiveRef.current) {
-          loyaltyEndedActiveRef.current = false;
-          void closeLoyaltyEndedModal('secondary');
-        } else {
-          void closeIntroFullAccessModal('secondary');
-        }
+        void closeIntroFullAccessModal('secondary');
       }}
-    />
-
-    <LoyaltyGiftModal
-      visible={appOverlaysEnabled && loyaltyGiftModalVisible}
-      variant={loyaltyGiftModal === 'announce' ? 'announce' : 'gift'}
-      onPrimaryPress={() => {
-        // free → выдаём подарок; премиум/VIP → просто закрываем анонс.
-        if (loyaltyGiftModal === 'announce') { void closeLoyaltyAnnounce(); }
-        else { void claimLoyaltyGift(); }
-      }}
-      onSecondaryPress={() => { void dismissLoyaltyGiftOffer(); }}
-      onIdeasPress={() => { void openLoyaltyIdeas(); }}
     />
 
     <DailyTasksFirstVisitModal
@@ -2995,8 +3395,12 @@ const styles = StyleSheet.create({
 
 export default function RootLayout() {
   // Fonts are embedded through the expo-font config plugin in native builds.
-  // Keep this as an Expo Go/dev fallback, but do not block the first app frame on it.
-  useFonts(APP_FONT_ASSETS);
+  // Expo Go still needs runtime assets. Literal __DEV__ lets production Metro
+  // remove typography_dev_fonts and avoids embedding the same TTF files twice.
+  const devFontAssets = typeof __DEV__ !== 'undefined' && __DEV__
+    ? (require('./typography_dev_fonts') as typeof import('./typography_dev_fonts')).DEV_FONT_ASSETS
+    : {};
+  useFonts(devFontAssets);
 
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
@@ -3008,14 +3412,16 @@ export default function RootLayout() {
           <PremiumProvider>
             <EnergyProvider>
               <AchievementProvider>
-                <MatchmakingProvider>
-                  <OverlayArbiterProvider>
+                <OverlayArbiterProvider>
                     <AppContent />
+                    {/* зачем: приветствие после онбординга — над ГЛАВНОЙ, а не
+                        поверх последнего экрана анкеты (владелец, 2026-07-27).
+                        Ключ onboardingWelcome стоит первым в приоритете арбитра,
+                        поэтому новичок видит его раньше наград и обновлений. */}
+                    <OnboardingWelcomeHost />
                     <AchievementToast />
                     <DailyTaskRewardToast />
                     <ActionToast />
-                    <ArenaFriendInviteHost />
-                    <MatchFoundToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
@@ -3025,12 +3431,10 @@ export default function RootLayout() {
                     <PerfectWeekHost />
                     <BoonActivatedHost />
                     <GlobalFriendGiftHost />
-                    <GlobalCompassSocialHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />
-                  </OverlayArbiterProvider>
-                </MatchmakingProvider>
+                </OverlayArbiterProvider>
               </AchievementProvider>
             </EnergyProvider>
           </PremiumProvider>

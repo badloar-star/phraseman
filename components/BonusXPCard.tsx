@@ -11,6 +11,7 @@ import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { hapticMediumImpact } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
 import { GOLD_RICH } from '../constants/goldTheme';
 
 export interface BonusXPCardProps {
@@ -28,6 +29,10 @@ function BonusXPCard({
 }: BonusXPCardProps) {
   const { theme: t, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
+  // зачем: карточка была фикс-тёмной #1a1a2e, а тексты — токенами темы: на
+  // sagePorcelain тёмный текст ложился на тёмную плашку. Светлая тема получает
+  // фарфоровую карту и тёмные tier-цвета из утверждённой палитры.
+  const isLight = isLightThemeMode(themeMode);
   const slideAnim = useRef(new Animated.Value(0)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
@@ -94,6 +99,11 @@ function BonusXPCard({
       if (bonusXP <= 20) return GOLD_RICH.metalGold;
       return GOLD_RICH.champagne;
     }
+    if (isLight) {
+      if (bonusXP <= 10) return '#2F6F4F';
+      if (bonusXP <= 20) return '#8B6320';
+      return '#315F50';
+    }
     if (bonusXP <= 10) return '#4ADE80'; // Зелёный (мало)
     if (bonusXP <= 20) return '#FB923C'; // Оранжевый (среднее)
     return '#A78BFA'; // Фиолетовый (большое)
@@ -130,10 +140,9 @@ function BonusXPCard({
         style={[
           styles.card,
           {
-            borderColor: getTierColor(),
             backgroundColor: isGoldTheme
               ? GOLD_RICH.blackPiano
-              : '#1a1a2e',
+              : isLight ? t.bgCard : '#1a1a2e',
           },
         ]}
       >

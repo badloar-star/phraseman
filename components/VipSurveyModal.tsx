@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -51,6 +51,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   const [answers, setAnswers] = useState<VipSurveyAnswers>({});
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [confirmExit, setConfirmExit] = useState(false);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [commentFocused, setCommentFocused] = useState(false);
   const keyboardVisible = keyboardHeight > 0;
@@ -86,6 +87,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
     setAnswers({});
     setBusy(false);
     setError('');
+    setConfirmExit(false);
     setKeyboardHeight(0);
     setCommentFocused(false);
     suppressNextPrimaryPressRef.current = false;
@@ -127,7 +129,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
     next: triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' }),
     optional: triLang(lang, { ru: 'Необязательно', uk: 'Необовʼязково', es: 'Opcional', 'pt-BR': 'Opcional', vi: 'Không bắt buộc', id: 'Opsional', tr: 'İsteğe bağlı', pl: 'Opcjonalnie' }),
     commentPlaceholder: triLang(lang, { ru: 'Можно добавить комментарий', uk: 'Можна додати коментар', es: 'Puedes añadir un comentario', 'pt-BR': 'Você pode adicionar um comentário', vi: 'Bạn có thể thêm nhận xét', id: 'Kamu bisa menambahkan komentar', tr: 'Bir yorum ekleyebilirsin', pl: 'Możesz dodać komentarz' }),
-    textPlaceholder: triLang(lang, { ru: 'Напишите ответ', uk: 'Напишіть відповідь', es: 'Escribe tu respuesta', 'pt-BR': 'Escreva sua resposta', vi: 'Viết câu trả lời của bạn', id: 'Tulis jawabanmu', tr: 'Cevabını yaz', pl: 'Napisz odpowiedź' }),
+    textPlaceholder: triLang(lang, { ru: 'Напиши ответ', uk: 'Напишіть відповідь', es: 'Escribe tu respuesta', 'pt-BR': 'Escreva sua resposta', vi: 'Viết câu trả lời của bạn', id: 'Tulis jawabanmu', tr: 'Cevabını yaz', pl: 'Napisz odpowiedź' }),
     introTitle: triLang(lang, { ru: 'Что такое Plus?', uk: 'Що таке Plus?', es: '¿Qué es Plus?', 'pt-BR': 'O que é Plus?', vi: 'Plus là gì?', id: 'Apa itu Plus?', tr: 'Plus nedir?', pl: 'Czym jest Plus?' }),
     introBody: triLang(lang, {
       ru: 'Plus — это полный доступ ко всем функциям. После опроса ты получишь зелёную ауру и зелёный ник.',
@@ -152,7 +154,13 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
     }),
     finish: triLang(lang, { ru: 'Завершить опрос', uk: 'Завершити опитування', es: 'Finalizar encuesta', 'pt-BR': 'Concluir pesquisa', vi: 'Hoàn tất khảo sát', id: 'Selesaikan survei', tr: 'Anketi bitir', pl: 'Zakończ ankietę' }),
     saving: triLang(lang, { ru: 'Активируем...', uk: 'Активуємо...', es: 'Activando...', 'pt-BR': 'Ativando...', vi: 'Đang kích hoạt...', id: 'Mengaktifkan...', tr: 'Etkinleştiriliyor...', pl: 'Aktywujemy...' }),
+    exitTitle: triLang(lang, { ru: 'Ответы пропадут. Выйти?', uk: 'Відповіді зникнуть. Вийти?', es: 'Las respuestas se perderán. ¿Salir?', 'pt-BR': 'As respostas serão perdidas. Sair?', vi: 'Câu trả lời sẽ mất. Thoát?', id: 'Jawaban akan hilang. Keluar?', tr: 'Cevaplar silinecek. Çıkılsın mı?', pl: 'Odpowiedzi znikną. Wyjść?' }),
+    exitLeave: triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' }),
+    exitStay: triLang(lang, { ru: 'Остаться', uk: 'Залишитися', es: 'Quedarme', 'pt-BR': 'Ficar', vi: 'Ở lại', id: 'Tetap di sini', tr: 'Kal', pl: 'Zostań' }),
     error: triLang(lang, { ru: 'Не удалось завершить опрос. Проверь интернет и попробуй ещё раз.', uk: 'Не вдалося завершити опитування. Перевірте інтернет і спробуйте ще раз.', es: 'No se pudo finalizar la encuesta. Revisa tu conexión e inténtalo de nuevo.', 'pt-BR': 'Não foi possível concluir a pesquisa. Verifique sua conexão e tente novamente.', vi: 'Không thể hoàn tất khảo sát. Kiểm tra kết nối và thử lại.', id: 'Tidak bisa menyelesaikan survei. Periksa koneksimu dan coba lagi.', tr: 'Anket tamamlanamadı. Bağlantını kontrol edip tekrar dene.', pl: 'Nie udało się zakończyć ankiety. Sprawdź połączenie i spróbuj ponownie.' }),
+    errorAuth: triLang(lang, { ru: 'Сервер не смог подтвердить аккаунт — сервис временно недоступен. Ответы никуда не пропали, попробуй ещё раз позже.', uk: 'Сервер не зміг підтвердити акаунт — сервіс тимчасово недоступний. Відповіді не зникли, спробуй ще раз пізніше.', es: 'El servidor no pudo confirmar tu cuenta: servicio no disponible temporalmente. Tus respuestas se conservan; inténtalo más tarde.', 'pt-BR': 'O servidor não pôde confirmar sua conta — serviço temporariamente indisponível. Suas respostas estão salvas; tente mais tarde.', vi: 'Máy chủ không xác nhận được tài khoản — dịch vụ tạm thời không khả dụng. Câu trả lời vẫn còn, hãy thử lại sau.', id: 'Server tidak bisa mengonfirmasi akun — layanan sementara tidak tersedia. Jawabanmu tidak hilang, coba lagi nanti.', tr: 'Sunucu hesabı doğrulayamadı — servis geçici olarak kullanılamıyor. Cevapların kaybolmadı, daha sonra tekrar dene.', pl: 'Serwer nie mógł potwierdzić konta — usługa chwilowo niedostępna. Odpowiedzi nie przepadły, spróbuj ponownie później.' }),
+    errorNotEligible: triLang(lang, { ru: 'Опрос доступен, пока подписка не активна. Если Plus или Premium уже действует — награда начисляется один раз.', uk: 'Опитування доступне, поки підписка не активна. Якщо Plus або Premium вже діє — нагорода нараховується один раз.', es: 'La encuesta está disponible solo sin suscripción activa. Si Plus o Premium ya está activo, la recompensa se concede una sola vez.', 'pt-BR': 'A pesquisa está disponível apenas sem assinatura ativa. Se Plus ou Premium já estiver ativo, a recompensa é concedida uma única vez.', vi: 'Khảo sát chỉ khả dụng khi chưa có gói đang hoạt động. Nếu Plus hoặc Premium đã kích hoạt, phần thưởng chỉ được trao một lần.', id: 'Survei hanya tersedia saat tidak ada langganan aktif. Jika Plus atau Premium sudah aktif, hadiah diberikan satu kali saja.', tr: 'Anket yalnızca etkin abonelik yokken geçerlidir. Plus veya Premium zaten aktifse ödül yalnızca bir kez verilir.', pl: 'Ankieta jest dostępna tylko bez aktywnej subskrypcji. Jeśli Plus lub Premium już działa, nagroda przysługuje tylko raz.' }),
+    errorGeneric: triLang(lang, { ru: 'Не удалось отправить ответы — сервис временно недоступен. Ответы сохранились на устройстве, попробуй ещё раз позже.', uk: 'Не вдалося надіслати відповіді — сервіс тимчасово недоступний. Відповіді збереглися на пристрої, спробуй ще раз пізніше.', es: 'No se pudieron enviar las respuestas: servicio no disponible temporalmente. Se guardaron en el dispositivo; inténtalo más tarde.', 'pt-BR': 'Não foi possível enviar as respostas — serviço temporariamente indisponível. Elas foram salvas no dispositivo; tente mais tarde.', vi: 'Không gửi được câu trả lời — dịch vụ tạm thời không khả dụng. Câu trả lời đã được lưu trên thiết bị, hãy thử lại sau.', id: 'Jawaban tidak terkirim — layanan sementara tidak tersedia. Jawaban tersimpan di perangkat, coba lagi nanti.', tr: 'Cevaplar gönderilemedi — servis geçici olarak kullanılamıyor. Cevaplar cihazda saklandı, daha sonra tekrar dene.', pl: 'Nie udało się wysłać odpowiedzi — usługa chwilowo niedostępna. Odpowiedzi zapisano na urządzeniu, spróbuj ponownie później.' }),
   }), [lang]);
 
   const isCompleteStep = step >= VIP_SURVEY_QUESTIONS.length;
@@ -162,6 +170,17 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
       ? !!answers[question.id]?.comment?.trim()
       : !!answers[question.id]?.optionId
     : isVipSurveyComplete(answers);
+  // Хотя бы один осмысленный ответ (выбранная опция или непустой комментарий).
+  const hasAnyAnswer = useMemo(
+    () =>
+      VIP_SURVEY_QUESTIONS.some((row) => {
+        const answer = answers[row.id];
+        if (!answer) return false;
+        if (row.textOnly) return !!answer.comment?.trim();
+        return !!answer.optionId || !!answer.comment?.trim();
+      }),
+    [answers],
+  );
   const chrome = isDark
     ? { panel: '#131A24', card: '#1D2633', border: 'rgba(148,163,184,0.24)', text: '#F8FAFC', muted: '#B7C0CC', soft: '#8A97A8' }
     : { panel: '#F8FAFC', card: '#FFFFFF', border: 'rgba(71,85,105,0.18)', text: '#1E293B', muted: '#64748B', soft: '#94A3B8' };
@@ -186,6 +205,16 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
     }));
   };
 
+  // Честная классификация ошибок отправки: «проверь интернет» показываем
+  // только при реальных сетевых сбоях; отказ сервера/авторизации — как есть.
+  const classifySubmitError = (detail: string): string => {
+    const d = detail.toLowerCase();
+    if (d.includes('free_tier_required') || d.includes('failed-precondition')) return copy.errorNotEligible;
+    if (d.includes('unauthenticated') || d.includes('auth')) return copy.errorAuth;
+    if (d.includes('unavailable') || d.includes('deadline') || d.includes('network') || d.includes('fetch') || d.includes('timeout')) return copy.error;
+    return copy.errorGeneric;
+  };
+
   const finish = async () => {
     if (busy || !isVipSurveyComplete(answers)) return;
     setBusy(true);
@@ -199,7 +228,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
       if (typeof __DEV__ !== 'undefined' && __DEV__) {
         console.warn('[VipSurveyModal] submit failed', detail, e);
       }
-      setError(copy.error);
+      setError(classifySubmitError(detail));
     } finally {
       setBusy(false);
     }
@@ -215,6 +244,27 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
     if (step <= 0) return;
     hapticTap();
     setStep((value) => Math.max(0, value - 1));
+  };
+
+  /**
+   * Закрытие (крестик / системная «назад»): во время отправки — игнор;
+   * с хотя бы одним ответом — подтверждение «Ответы пропадут. Выйти?»;
+   * без ответов — закрываем сразу.
+   */
+  const handleRequestClose = () => {
+    if (busy) return;
+    if (confirmExit) {
+      hapticTap();
+      setConfirmExit(false);
+      return;
+    }
+    if (hasAnyAnswer) {
+      Keyboard.dismiss();
+      hapticTap();
+      setConfirmExit(true);
+      return;
+    }
+    onClose();
   };
 
   const handlePrimaryPress = () => {
@@ -267,7 +317,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   );
 
   return (
-    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
+    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={handleRequestClose}>
       <KeyboardAvoidingView
         behavior={undefined}
         keyboardVerticalOffset={0}
@@ -293,6 +343,42 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
             { borderColor: chrome.border },
           ]}
         >
+          {confirmExit ? (
+            <View style={styles.confirmExitWrap}>
+              <View style={styles.surveyIcon}>
+                <Ionicons name="alert-circle" size={22} color={accent.main} />
+              </View>
+              <Text style={[styles.title, { color: chrome.text, fontSize: Math.min(Math.max(22, f.h2), 28) }]}>
+                {copy.exitTitle}
+              </Text>
+              <Pressable
+                testID="vip-survey-exit-confirm"
+                accessibilityRole="button"
+                onPress={() => {
+                  hapticTap();
+                  setConfirmExit(false);
+                  onClose();
+                }}
+                style={[styles.primaryButton, { marginTop: 0, backgroundColor: accent.strong }]}
+              >
+                <Text style={styles.primaryButtonText}>{copy.exitLeave}</Text>
+              </Pressable>
+              <Pressable
+                testID="vip-survey-exit-stay"
+                accessibilityRole="button"
+                onPress={() => {
+                  hapticTap();
+                  setConfirmExit(false);
+                }}
+                style={styles.confirmExitStay}
+              >
+                <Text style={{ color: chrome.muted, fontSize: 15, fontWeight: '600', textAlign: 'center' }}>
+                  {copy.exitStay}
+                </Text>
+              </Pressable>
+            </View>
+          ) : (
+            <>
           <View style={styles.header}>
             <TouchableOpacity
               disabled={step <= 0 || busy}
@@ -325,7 +411,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
               activeOpacity={0.75}
               accessibilityRole="button"
               accessibilityLabel={copy.close}
-              onPress={onClose}
+              onPress={handleRequestClose}
               style={[styles.roundButton, { backgroundColor: chrome.card, borderColor: chrome.border }]}
             >
               <Ionicons name="close" size={20} color={chrome.text} />
@@ -334,6 +420,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
 
           <ScrollView
             ref={scrollRef}
+            decelerationRate="fast"
             style={styles.scroll}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="always"
@@ -420,6 +507,8 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
           </ScrollView>
 
           {inputControlVisible ? null : renderPrimaryButton(false)}
+            </>
+          )}
         </LinearGradient>
       </KeyboardAvoidingView>
     </Modal>
@@ -441,7 +530,7 @@ const styles = StyleSheet.create({
     maxHeight: '92%',
     alignSelf: 'center',
     borderRadius: 22,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 16,
     overflow: 'hidden',
   },
@@ -461,7 +550,7 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 19,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -493,7 +582,7 @@ const styles = StyleSheet.create({
   },
   introCard: {
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 12,
     marginBottom: 12,
   },
@@ -527,7 +616,7 @@ const styles = StyleSheet.create({
   optionButton: {
     minHeight: 52,
     borderRadius: 15,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 13,
     paddingVertical: 12,
     flexDirection: 'row',
@@ -544,7 +633,7 @@ const styles = StyleSheet.create({
   commentBox: {
     minHeight: 110,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     marginTop: 14,
     padding: 12,
   },
@@ -590,5 +679,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '900',
     textAlign: 'center',
+  },
+  confirmExitWrap: {
+    paddingTop: 24,
+    paddingBottom: 8,
+  },
+  confirmExitStay: {
+    alignSelf: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 4,
+    minHeight: 40,
+    justifyContent: 'center',
   },
 });

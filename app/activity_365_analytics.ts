@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
+import { statsDailyBreakdownKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export const ACTIVITY_365_GOAL_KEY = 'activity_365_goal_v1';
 export const STATS_DAILY_BREAKDOWN_KEY = 'stats_daily_breakdown_v1';
@@ -8,7 +9,7 @@ export const FOREGROUND_DAILY_MS_KEY = 'phraseman_foreground_daily_ms_v1';
 const WINDOW_DAYS = 365;
 const MIN_ACTIVE_MS = 60_000;
 
-export type Activity365Filter = 'all' | 'lessons' | 'quizzes' | 'review' | 'arena';
+export type Activity365Filter = 'all' | 'lessons' | 'review';
 export type Activity365Level = 0 | 1 | 2 | 3 | 4;
 
 export type Activity365Day = {
@@ -20,9 +21,7 @@ export type Activity365Day = {
   future: boolean;
   metrics: {
     lessons: number;
-    quizzes: number;
     review: number;
-    arena: number;
     wordsLearned: number;
     phrasesLearned: number;
     flashcardsSaved: number;
@@ -88,12 +87,10 @@ export type Activity365Analytics = {
 };
 
 type DailyBreakdownRow = Partial<{
+  lessons_completed: number;
   words_learned: number;
   flashcards_saved: number;
   phrases_learned: number;
-  quizzes_completed: number;
-  arena_wins: number;
-  arena_losses: number;
   daily_tasks_claimed: number;
   plan_tasks_completed: number;
 }>;
@@ -186,12 +183,9 @@ function metricsForRow(row: DailyBreakdownRow | undefined): Activity365Day['metr
   const flashcardsSaved = n(row?.flashcards_saved);
   const dailyTasksClaimed = n(row?.daily_tasks_claimed);
   const planTasksCompleted = n(row?.plan_tasks_completed);
-  const arena = n(row?.arena_wins) + n(row?.arena_losses);
   return {
-    lessons: wordsLearned + phrasesLearned,
-    quizzes: n(row?.quizzes_completed),
+    lessons: n(row?.lessons_completed),
     review: flashcardsSaved + dailyTasksClaimed,
-    arena,
     wordsLearned,
     phrasesLearned,
     flashcardsSaved,
@@ -425,15 +419,39 @@ export function activity365ObservedMonthKeys(days: Activity365Day[]): string[] {
 
 const EMPTY_ACTIVITY_365_METRICS: Activity365Day['metrics'] = {
   lessons: 0,
-  quizzes: 0,
   review: 0,
-  arena: 0,
   wordsLearned: 0,
   phrasesLearned: 0,
   flashcardsSaved: 0,
   dailyTasksClaimed: 0,
   planTasksCompleted: 0,
 };
+
+export interface ActivityWindowSummary {
+  activeDays: number;
+  xp: number;
+  minutes: number;
+  lessons: number;
+  reviews: number;
+}
+
+export function summarizeActivityWindow(
+  days: readonly Activity365Day[],
+  windowDays: 7 | 30,
+  nowMs = Date.now(),
+): ActivityWindowSummary {
+  const todayKey = new Date(nowMs).toISOString().slice(0, 10);
+  const startKey = new Date(nowMs - (windowDays - 1) * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return days.reduce<ActivityWindowSummary>((summary, day) => {
+    if (day.future || day.date < startKey || day.date > todayKey) return summary;
+    summary.activeDays += day.active ? 1 : 0;
+    summary.xp += Math.max(0, Math.floor(day.xp));
+    summary.minutes += Math.max(0, Math.floor(day.minutes));
+    summary.lessons += Math.max(0, Math.floor(day.metrics.lessons));
+    summary.reviews += Math.max(0, Math.floor(day.metrics.review));
+    return summary;
+  }, { activeDays: 0, xp: 0, minutes: 0, lessons: 0, reviews: 0 });
+}
 
 export function emptyActivity365Day(date: string, future = false): Activity365Day {
   return {
@@ -551,26 +569,52 @@ export function computeActivity365Analytics(params: {
 }
 
 const ANALYTICS_CACHE_TTL_MS = 60_000; // 1 min — avoids recompute on every tab focus
-let _analyticsCache: { result: Activity365Analytics; expiresAt: number } | null = null;
-let _analyticsInFlight: Promise<Activity365Analytics> | null = null;
+const ANALYTICS_CACHE_MAX_TARGETS = 4;
+const _analyticsCache = new Map<string, { result: Activity365Analytics; expiresAt: number }>();
+const _analyticsInFlight = new Map<string, Promise<Activity365Analytics>>();
 
-export function invalidateActivity365Cache(): void {
-  _analyticsCache = null;
+export type Activity365AnalyticsSnapshot = {
+  analytics: Activity365Analytics;
+  stale: boolean;
+};
+
+/**
+ * Synchronous last-known data for an instant first frame.
+ * Expired entries intentionally remain readable here while quiet revalidation runs.
+ */
+export function peekActivity365Analytics(
+  studyTarget?: RuntimeStudyTarget,
+  now = Date.now(),
+): Activity365AnalyticsSnapshot | null {
+  const cached = _analyticsCache.get(storageStudyTarget(studyTarget));
+  if (!cached) return null;
+  return {
+    analytics: cached.result,
+    stale: now >= cached.expiresAt,
+  };
 }
 
-export async function loadActivity365Analytics(): Promise<Activity365Analytics> {
-  const now = Date.now();
-  if (_analyticsCache && now < _analyticsCache.expiresAt) {
-    return _analyticsCache.result;
-  }
-  if (_analyticsInFlight) return _analyticsInFlight;
+export function invalidateActivity365Cache(): void {
+  _analyticsCache.clear();
+}
 
-  _analyticsInFlight = (async () => {
+export async function loadActivity365Analytics(studyTarget?: RuntimeStudyTarget): Promise<Activity365Analytics> {
+  const now = Date.now();
+  const target = storageStudyTarget(studyTarget);
+  const cached = _analyticsCache.get(target);
+  if (cached && now < cached.expiresAt) {
+    return cached.result;
+  }
+  if (cached) _analyticsCache.delete(target);
+  const pending = _analyticsInFlight.get(target);
+  if (pending) return pending;
+
+  const request = (async () => {
     try {
       const [statsRaw, fgDaily, breakdownRaw, goalRaw] = await Promise.all([
         AsyncStorage.getItem('daily_stats'),
         getForegroundDailyMsMap(),
-        AsyncStorage.getItem(STATS_DAILY_BREAKDOWN_KEY),
+        AsyncStorage.getItem(statsDailyBreakdownKey(target)),
         AsyncStorage.getItem(ACTIVITY_365_GOAL_KEY),
       ]);
       const goalChosen = [100, 180, 365].includes(Number(goalRaw));
@@ -582,14 +626,21 @@ export async function loadActivity365Analytics(): Promise<Activity365Analytics> 
         goal,
         goalChosen,
       });
-      _analyticsCache = { result, expiresAt: Date.now() + ANALYTICS_CACHE_TTL_MS };
+      _analyticsCache.delete(target);
+      _analyticsCache.set(target, { result, expiresAt: Date.now() + ANALYTICS_CACHE_TTL_MS });
+      while (_analyticsCache.size > ANALYTICS_CACHE_MAX_TARGETS) {
+        const oldest = _analyticsCache.keys().next().value;
+        if (!oldest) break;
+        _analyticsCache.delete(oldest);
+      }
       return result;
     } finally {
-      _analyticsInFlight = null;
+      _analyticsInFlight.delete(target);
     }
   })();
 
-  return _analyticsInFlight;
+  _analyticsInFlight.set(target, request);
+  return request;
 }
 
 function rand(min: number, max: number): number {
@@ -619,10 +670,7 @@ export async function devSeedActivity365Scenario(
     breakdown[date] = {
       words_learned: rand(0, 18),
       phrases_learned: rand(0, 24),
-      quizzes_completed: rand(0, 4),
       flashcards_saved: rand(0, 8),
-      arena_wins: rand(0, 2),
-      arena_losses: rand(0, 2),
       daily_tasks_claimed: rand(0, 3),
     };
   }

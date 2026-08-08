@@ -1,0 +1,1169 @@
+{
+  "schemaVersion": 1,
+  "language": "de",
+  "level": "C1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Defining institutional accountability",
+      "scenarioRu": "Определение институциональной подотчётности",
+      "prompt": "Choose the term for the obligation to explain decisions and answer for their consequences.",
+      "instructionRu": "Выберите термин для обязанности объяснять решения и отвечать за их последствия.",
+      "stimulus": "Die Leitung muss ihre Entscheidungen begründen, die verwendeten Kriterien offenlegen und gegenüber dem Kontrollgremium für die Folgen einstehen. Diese Pflicht heißt ______.",
+      "answer": "Rechenschaftspflicht",
+      "distractors": [
+        {
+          "text": "Transparenz",
+          "reasonRu": "Transparenz обеспечивает доступность информации, но не обязательно включает обязанность отвечать за последствия."
+        },
+        {
+          "text": "Aufsicht",
+          "reasonRu": "Aufsicht обозначает контроль со стороны другого органа, а не обязанность самой руководящей стороны давать отчёт."
+        },
+        {
+          "text": "Regelkonformität",
+          "reasonRu": "Regelkonformität означает соответствие нормам, но не охватывает объяснение решений и ответственность за результат."
+        }
+      ],
+      "explanation": "Rechenschaftspflicht combines the duty to explain decisions with answerability for outcomes.",
+      "explanationRu": "Rechenschaftspflicht объединяет обязанность объяснять решения и отвечать за их результаты.",
+      "targetConstruct": "institutional vocabulary: accountability versus transparency, oversight, and compliance",
+      "targetConstructRu": "институциональная лексика: подотчётность в отличие от прозрачности, надзора и соответствия",
+      "canDoRu": "Может точно назвать ключевой принцип институциональной ответственности."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Recovering a qualified thesis about public dashboards",
+      "scenarioRu": "Восстановление квалифицированного тезиса о публичных панелях",
+      "prompt": "Choose the statement that captures the author’s complete position.",
+      "instructionRu": "Выберите утверждение, полностью передающее позицию автора.",
+      "stimulus": "Öffentliche Kennzahlen können Vertrauen stärken, weil Entscheidungen nachvollziehbarer werden. Ein Dashboard allein garantiert jedoch weder korrekte Daten noch eine faire Auswahl der Messgrößen. Es sollte daher veröffentlicht werden, aber zusammen mit Definitionen, Unsicherheiten und einem unabhängigen Prüfverfahren.",
+      "answer": "Dashboard nur mit Definitionen, Unsicherheit und unabhängiger Datenprüfung.",
+      "distractors": [
+        {
+          "text": "Jedes Dashboard schafft automatisch Vertrauen, unabhängig von Datenqualität und Auswahl.",
+          "reasonRu": "Автор прямо отрицает автоматическую гарантию корректности и справедливого выбора показателей."
+        },
+        {
+          "text": "Kennzahlen sollten grundsätzlich geheim bleiben, weil Öffentlichkeit nie Nutzen bringt.",
+          "reasonRu": "Текст признаёт возможное укрепление доверия и рекомендует публикацию при условиях."
+        },
+        {
+          "text": "Nur die grafische Gestaltung muss erklärt werden; Definitionen und Prüfung sind unnötig.",
+          "reasonRu": "Рекомендация прямо требует определения, неопределённости и независимой проверки."
+        }
+      ],
+      "explanation": "The author supports publication but conditions its value on methodological transparency and independent verification.",
+      "explanationRu": "Автор поддерживает публикацию, но ставит её ценность в зависимость от методологической прозрачности и независимой проверки.",
+      "targetConstruct": "qualified thesis across benefit, limitation, and safeguarded recommendation",
+      "targetConstructRu": "квалифицированный тезис через пользу, ограничение и рекомендацию с гарантиями",
+      "canDoRu": "Может восстановить позицию автора из пользы, оговорки и условий рекомендации."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Reframing a polarised staffing claim",
+      "scenarioRu": "Переформулирование поляризованного утверждения о персонале",
+      "prompt": "Choose the response that preserves the disagreement but turns it into a testable cooperative question.",
+      "instructionRu": "Выберите ответ, который сохраняет разногласие, но превращает его в проверяемый совместный вопрос.",
+      "stimulus": "In einer Sitzung sagt jemand: «Wer gegen die sofortige Personalaufstockung ist, dem ist die Servicequalität egal.» Andere bezweifeln, dass zusätzliche Stellen ohne Prozessänderung das Problem lösen.",
+      "answer": "Servicequalität gemeinsam; Stellen und Prozesse nach Wartezeit und Auslastung prüfen.",
+      "distractors": [
+        {
+          "text": "Stimmt: Jede Person mit einer anderen Lösung interessiert sich nicht für Qualität.",
+          "reasonRu": "Ответ принимает необоснованное приписывание мотивов и стирает содержательный спор о механизме решения."
+        },
+        {
+          "text": "Personal und Prozesse haben beide keinerlei Bedeutung, deshalb brauchen wir keine Daten.",
+          "reasonRu": "Реплика искусственно устраняет обе конкурирующие гипотезы вместо их проверки."
+        },
+        {
+          "text": "Wir vermeiden das Thema, damit niemand seine Position erklären muss.",
+          "reasonRu": "Уход от темы не сохраняет разногласие как решаемый вопрос и не создаёт данных."
+        }
+      ],
+      "explanation": "The response rejects motive attribution, identifies the real causal disagreement, and proposes shared measurable criteria.",
+      "explanationRu": "Ответ отвергает приписывание мотивов, выделяет реальное причинное расхождение и предлагает общие измеримые критерии.",
+      "targetConstruct": "polarisation repair through shared value, exact disagreement, and testable question",
+      "targetConstructRu": "устранение поляризации через общую ценность, точное разногласие и проверяемый вопрос",
+      "canDoRu": "Может перевести поляризованный спор в совместную проверку без замалчивания различий."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Describing counterfactual certainty",
+      "scenarioRu": "Описание нереалистичной уверенности",
+      "prompt": "Choose the Konjunktiv II form after als ob.",
+      "instructionRu": "Выберите форму Konjunktiv II после als ob.",
+      "stimulus": "Er spricht über die unsicheren Ergebnisse, als ob er bereits alle Antworten ______.",
+      "answer": "wüsste",
+      "distractors": [
+        {
+          "text": "weiß",
+          "reasonRu": "Indicativ weiß представляет знание как факт, тогда как als ob задаёт контрфактическое сравнение."
+        },
+        {
+          "text": "wusste",
+          "reasonRu": "Präteritum wusste переносит знание в прошлое и не маркирует нереальность текущего сравнения."
+        },
+        {
+          "text": "wissen wird",
+          "reasonRu": "Futur выражает ожидаемое будущее знание, а не притворное нынешнее состояние."
+        }
+      ],
+      "explanation": "Als ob introduces an unreal comparison, so wissen appears as Konjunktiv II wüsste.",
+      "explanationRu": "Als ob вводит нереальное сравнение, поэтому wissen принимает форму Konjunktiv II wüsste.",
+      "targetConstruct": "counterfactual present comparison with als ob and Konjunktiv II",
+      "targetConstructRu": "контрфактическое сравнение настоящего с als ob и Konjunktiv II",
+      "canDoRu": "Может грамматически выразить кажущееся, но не принимаемое за реальность состояние."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Selecting evidence for a causal tutoring claim",
+      "scenarioRu": "Выбор данных для причинного вывода об обучении",
+      "prompt": "Choose the evidence that most strongly supports a causal effect of the tutoring programme.",
+      "instructionRu": "Выберите данные, наиболее сильно поддерживающие причинный эффект программы занятий.",
+      "stimulus": "Eine Schule möchte wissen, ob ein neues Tutorium die Prüfungsergebnisse verbessert. Mehrere Beobachtungen liegen vor.",
+      "answer": "Zufällige Zuteilung vergleichbarer Lernender; Tutoriumsgruppe verbessert sich stärker.",
+      "distractors": [
+        {
+          "text": "Besonders motivierte Lernende meldeten sich freiwillig an und erzielten höhere Ergebnisse als der Durchschnitt.",
+          "reasonRu": "Самоотбор по мотивации создаёт конкурирующее объяснение различий."
+        },
+        {
+          "text": "Nach Einführung des Tutoriums stiegen die Ergebnisse, gleichzeitig wurden Prüfung und Lehrbuch geändert.",
+          "reasonRu": "Одновременные изменения не позволяют выделить эффект занятий."
+        },
+        {
+          "text": "Viele Teilnehmende sagten, sie hätten das Tutorium angenehm gefunden.",
+          "reasonRu": "Положительное впечатление не измеряет причинное изменение экзаменационных результатов."
+        }
+      ],
+      "explanation": "Random assignment of comparable learners best controls selection and makes the differential improvement causally informative.",
+      "explanationRu": "Случайное распределение сопоставимых учащихся лучше всего контролирует самоотбор и делает разницу улучшений причинно информативной.",
+      "targetConstruct": "causal evidence appraisal through random assignment and controlled comparison",
+      "targetConstructRu": "оценка причинных данных через случайное распределение и контролируемое сравнение",
+      "canDoRu": "Может выбрать дизайн, действительно поддерживающий причинный вывод."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Declining a request to backdate an approval",
+      "scenarioRu": "Отказ задним числом датировать согласование",
+      "prompt": "Choose the refusal that documents the principled constraint and offers a safe alternative.",
+      "instructionRu": "Выберите отказ, который фиксирует принципиальное ограничение и предлагает безопасную альтернативу.",
+      "stimulus": "Eine Führungskraft bittet Sie, eine heute erteilte Freigabe auf das Datum der vergangenen Woche zurückzudatieren. Die Dokumentationsregel verlangt das tatsächliche Freigabedatum; eine ergänzende Erklärung zur Verzögerung ist erlaubt.",
+      "answer": "Nicht rückdatieren: heutiges Datum plus sachliche Erklärung der Verzögerung.",
+      "distractors": [
+        {
+          "text": "Natürlich ändere ich das Datum; bei einer Bitte der Leitung gilt die Regel nicht.",
+          "reasonRu": "Статус просителя не отменяет явно установленную обязанность достоверной документации."
+        },
+        {
+          "text": "Ich verweigere jede Dokumentation und lösche auch die heutige Freigabe.",
+          "reasonRu": "Отказ от ложной даты не требует уничтожать законную текущую запись; разрешена безопасная альтернатива."
+        },
+        {
+          "text": "Ich trage irgendein Datum ein und erkläre niemandem die Verzögerung.",
+          "reasonRu": "Произвольная дата нарушает тот же принцип, а разрешённая пояснительная запись не используется."
+        }
+      ],
+      "explanation": "The response protects truthful records, states the rule without personal accusation, and uses the allowed explanatory note.",
+      "explanationRu": "Ответ защищает достоверность записи, называет правило без личного обвинения и использует разрешённое пояснение.",
+      "targetConstruct": "principled upward refusal with documented constraint and compliant alternative",
+      "targetConstructRu": "принципиальный отказ вышестоящему с зафиксированным ограничением и допустимой альтернативой",
+      "canDoRu": "Может отказать в недостоверной документации и сохранить рабочее сотрудничество."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Naming a partial acknowledgment in an argument",
+      "scenarioRu": "Название частичного признания в аргументе",
+      "prompt": "Choose the argument term for acknowledging part of the opposing case before maintaining the main conclusion.",
+      "instructionRu": "Выберите термин аргументации для признания части позиции оппонента перед сохранением основного вывода.",
+      "stimulus": "Die Autorin erkennt an, dass die Reform anfangs höhere Kosten verursacht, argumentiert aber, dass der langfristige Nutzen überwiegt. Die Anerkennung der Anfangskosten ist eine ______.",
+      "answer": "Einräumung",
+      "distractors": [
+        {
+          "text": "Schlussfolgerung",
+          "reasonRu": "Schlussfolgerung — итоговый вывод о долгосрочной пользе, а не признание встречного пункта."
+        },
+        {
+          "text": "Widerlegung",
+          "reasonRu": "Widerlegung опровергает позицию, тогда как автор признаёт справедливость части возражения."
+        },
+        {
+          "text": "Prämisse",
+          "reasonRu": "Prämisse служит исходным основанием вывода, а здесь выполняется уступительная функция по отношению к оппоненту."
+        }
+      ],
+      "explanation": "An Einräumung concedes a valid opposing point while leaving the writer’s main position intact.",
+      "explanationRu": "Einräumung признаёт справедливый встречный пункт, не отменяя основную позицию автора.",
+      "targetConstruct": "argument vocabulary: concession versus conclusion, refutation, and premise",
+      "targetConstructRu": "лексика аргументации: уступка в отличие от вывода, опровержения и предпосылки",
+      "canDoRu": "Может точно назвать уступительный ход в сложном аргументе."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Tracking nominal reference across an audit paragraph",
+      "scenarioRu": "Отслеживание именной отсылки в абзаце об аудите",
+      "prompt": "Choose what dieser Schritt refers to.",
+      "instructionRu": "Выберите, к чему относится dieser Schritt.",
+      "stimulus": "Die Prüfung stellte fest, dass zwei Kennzahlen falsch berechnet worden waren. Der Ausschuss verlangte daraufhin eine öffentliche Korrektur und eine Neuberechnung der Vorjahreswerte. Die Behörde veröffentlichte beides innerhalb einer Woche. Dieser Schritt stellte die Vergleichbarkeit wieder her, beseitigte aber nicht die ursprüngliche Verzögerung.",
+      "answer": "veröffentlichte Korrektur sowie Neuberechnung der Vorjahreswerte",
+      "distractors": [
+        {
+          "text": "die ursprüngliche falsche Berechnung der beiden Kennzahlen",
+          "reasonRu": "Ошибочная калькуляция нарушила сопоставимость, а не восстановила её."
+        },
+        {
+          "text": "die Forderung des Ausschusses ohne anschließende Veröffentlichung",
+          "reasonRu": "Восстановление связано с исполнением требования — публикацией обоих исправлений, а не с самой просьбой."
+        },
+        {
+          "text": "die nicht beseitigte ursprüngliche Verzögerung",
+          "reasonRu": "Задержка явно противопоставлена шагу и названа проблемой, которую он не устранил."
+        }
+      ],
+      "explanation": "Dieser Schritt summarises the immediately preceding completed publication of both corrective outputs.",
+      "explanationRu": "Dieser Schritt обобщает непосредственно предшествующую публикацию обоих исправительных результатов.",
+      "targetConstruct": "nominal reference resolution across finding, demand, implementation, and residual limitation",
+      "targetConstructRu": "разрешение именной отсылки через вывод, требование, исполнение и остаточное ограничение",
+      "canDoRu": "Может отслеживать абстрактную отсылку в плотном профессиональном абзаце."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Maintaining temporal reference in nested indirect speech",
+      "scenarioRu": "Сохранение временной отсылки во вложенной косвенной речи",
+      "prompt": "Choose the indirect-speech forms for the prior assurance, later announcement, and earlier decision.",
+      "instructionRu": "Выберите формы косвенной речи для предшествующего заверения, последующего объявления и более раннего решения.",
+      "stimulus": "Die Referentin berichtete, der Minister ______ ihr versichert, der Ausschuss ______ am nächsten Tag bekannt geben, was er bereits zuvor ______.",
+      "answer": "habe / werde / beschlossen habe",
+      "distractors": [
+        {
+          "text": "hat / wird / beschloss",
+          "reasonRu": "Indicativ не маркирует формальную дистанцию косвенной речи, а beschloss нарушает вложенную временную перспективу."
+        },
+        {
+          "text": "hätte / würde / beschlossen hätte",
+          "reasonRu": "Konjunktiv II создаёт дополнительную нереальность или дистанцию, хотя однозначные формы Konjunktiv I доступны."
+        },
+        {
+          "text": "sei / wurde / beschließen werde",
+          "reasonRu": "Вспомогательные глаголы не соответствуют Perfekt versichern, последующему объявлению и уже принятому решению."
+        }
+      ],
+      "explanation": "Habe versichert reports the prior assurance, werde bekannt geben the later announcement, and beschlossen habe the already completed embedded decision.",
+      "explanationRu": "Habe versichert передаёт предшествующее заверение, werde bekannt geben — последующее объявление, а beschlossen habe — уже принятое вложенное решение.",
+      "targetConstruct": "nested indirect speech across prior, posterior, and already completed reference",
+      "targetConstructRu": "вложенная косвенная речь с предшествующей, последующей и уже завершённой отсылкой",
+      "canDoRu": "Может точно сохранять несколько временных уровней в формальной косвенной речи."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Synthesising central and local service models",
+      "scenarioRu": "Синтез централизованной и локальной моделей обслуживания",
+      "prompt": "Choose the summary that represents both positions fairly and proposes a neutral decision rule.",
+      "instructionRu": "Выберите итог, справедливо представляющий обе позиции и предлагающий нейтральное правило решения.",
+      "stimulus": "Team A will Anfragen zentral bearbeiten, um Standards und Auslastung zu vereinheitlichen. Team B will lokale Zuständigkeit behalten, weil Ortskenntnis und schnelle Ausnahmen wichtig sind.",
+      "answer": "A: Standards, B: Ortskenntnis. Zeit, Fehler, Ausnahmen und Zufriedenheit vergleichen.",
+      "distractors": [
+        {
+          "text": "A will nur Kontrolle, B lehnt Standards grundsätzlich ab.",
+          "reasonRu": "Ответ карикатурно приписывает мотивы и стирает заявленные преимущества обеих сторон."
+        },
+        {
+          "text": "Wir wählen sofort A, weil Einheitlichkeit immer wichtiger ist als jede lokale Information.",
+          "reasonRu": "Реплика заранее объявляет один критерий абсолютным и не сравнивает обещанные результаты."
+        },
+        {
+          "text": "Beide Modelle sind völlig identisch, deshalb sind Kriterien und Entscheidung unnötig.",
+          "reasonRu": "Позиции различаются механизмом и преимуществами, что требует общей проверки."
+        }
+      ],
+      "explanation": "The response states each legitimate priority, creates shared outcome measures, and leaves the architecture open to evidence.",
+      "explanationRu": "Ответ называет законный приоритет каждой стороны, создаёт общие показатели результата и оставляет архитектуру открытой для данных.",
+      "targetConstruct": "impartial synthesis followed by shared criteria and evidence-based decision rule",
+      "targetConstructRu": "беспристрастный синтез с общими критериями и доказательным правилом решения",
+      "canDoRu": "Может нейтрально свести противоположные позиции и предложить общее правило выбора."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Interpreting restrained viability language",
+      "scenarioRu": "Интерпретация сдержанной формулировки о жизнеспособности",
+      "prompt": "Choose the evaluation conveyed by the phrase nicht ohne Weiteres tragfähig in context.",
+      "instructionRu": "Выберите оценку, переданную фразой nicht ohne Weiteres tragfähig в контексте.",
+      "stimulus": "Der Plan enthält keine belastbare Finanzierung, lässt zentrale Zuständigkeiten offen und setzt drei ungeprüfte Annahmen voraus. In dieser Form ist er nicht ohne Weiteres tragfähig.",
+      "answer": "Wesentliche Lücken verhindern eine Umsetzung in dieser Form.",
+      "distractors": [
+        {
+          "text": "Der Plan ist vollständig geprüft und kann ohne jede Änderung sofort umgesetzt werden.",
+          "reasonRu": "Формула и перечисленные пробелы выражают противоположную оценку."
+        },
+        {
+          "text": "Der Autor kritisiert nur die äußere Gestaltung, nicht Finanzierung oder Zuständigkeit.",
+          "reasonRu": "Основания оценки прямо относятся к финансированию, ролям и допущениям."
+        },
+        {
+          "text": "Die Formulierung enthält keinerlei Bewertung der Umsetzbarkeit.",
+          "reasonRu": "Tragfähig прямо оценивает жизнеспособность, а отрицательно-сдержанная форма усиливается контекстом."
+        }
+      ],
+      "explanation": "The phrase is a restrained but substantial warning that the plan lacks prerequisites for straightforward implementation.",
+      "explanationRu": "Фраза является сдержанным, но существенным предупреждением об отсутствии условий для прямой реализации плана.",
+      "targetConstruct": "semantic force of restrained viability language under explicit defects",
+      "targetConstructRu": "смысловая сила сдержанной оценки жизнеспособности при явных дефектах",
+      "canDoRu": "Может точно интерпретировать сдержанную отрицательную оценку в профессиональном тексте."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "scenario": "Amending an existing statute",
+      "scenarioRu": "Изменение действующего нормативного акта",
+      "prompt": "Choose the policy verb for revising parts of a rule while keeping the rule in force.",
+      "instructionRu": "Выберите глагол политики для изменения частей нормы без прекращения её действия.",
+      "stimulus": "Das Gesetz bleibt in Kraft, aber mehrere Paragraphen werden an neue Anforderungen angepasst. Der Gesetzgeber will es ______.",
+      "answer": "novellieren",
+      "distractors": [
+        {
+          "text": "aufheben",
+          "reasonRu": "Aufheben означало бы отменить закон целиком, что прямо исключено сохранением его действия."
+        },
+        {
+          "text": "aussetzen",
+          "reasonRu": "Aussetzen временно приостанавливает действие, а здесь меняется содержание отдельных параграфов."
+        },
+        {
+          "text": "vollziehen",
+          "reasonRu": "Vollziehen означает применять или исполнять действующую норму, а не менять её текст."
+        }
+      ],
+      "explanation": "Novellieren means revising an existing law through amendments while it remains in force.",
+      "explanationRu": "Novellieren означает обновить действующий закон поправками без полной отмены.",
+      "targetConstruct": "policy verbs: amend versus repeal, suspend, and enforce",
+      "targetConstructRu": "глаголы политики: вносить поправки в отличие от отменять, приостанавливать и исполнять",
+      "canDoRu": "Может точно назвать тип изменения действующей нормы."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Interrupting a harmful generalisation",
+      "scenarioRu": "Остановка вредного обобщения",
+      "prompt": "Choose the intervention that stops the generalisation, separates evidence from identity, and restores a workable question.",
+      "instructionRu": "Выберите вмешательство, которое останавливает обобщение, отделяет данные от идентичности и возвращает рабочий вопрос.",
+      "stimulus": "Nach zwei Fehlern einzelner neuer Mitarbeitender sagt jemand: «Neue Leute sind eben unzuverlässig.» Das Team muss die tatsächlichen Ursachen der Fehler klären.",
+      "answer": "Zwei Fehler belegt; Ursachen prüfen, nicht auf alle Neuen verallgemeinern.",
+      "distractors": [
+        {
+          "text": "Stimmt, zwei Fälle beweisen die Unzuverlässigkeit jeder neu eingestellten Person.",
+          "reasonRu": "Ответ превращает малое число случаев в необоснованное утверждение об идентичности всей группы."
+        },
+        {
+          "text": "Wir dürfen über die Fehler überhaupt nicht sprechen, weil jede Analyse verletzend ist.",
+          "reasonRu": "Отказ от обобщения не требует скрывать конкретные ошибки и их процессные причины."
+        },
+        {
+          "text": "Nennen wir stattdessen eine andere Gruppe unzuverlässig.",
+          "reasonRu": "Реплика сохраняет ту же вредную структуру, лишь меняя объект."
+        }
+      ],
+      "explanation": "The intervention sets a boundary against group attribution and redirects analysis to documented cases and remediable process factors.",
+      "explanationRu": "Вмешательство останавливает групповую атрибуцию и переводит анализ к документированным случаям и исправимым процессным факторам.",
+      "targetConstruct": "harmful-generalisation interruption through boundary, evidence scope, and process inquiry",
+      "targetConstructRu": "остановка вредного обобщения через границу, область данных и процессный вопрос",
+      "canDoRu": "Может остановить вредное групповое обобщение и сохранить содержательный разбор проблемы."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Maintaining an outcome regardless of who decides",
+      "scenarioRu": "Сохранение результата независимо от того, кто решает",
+      "prompt": "Choose the concessive forms in the wer auch immer construction.",
+      "instructionRu": "Выберите формы уступительной конструкции wer auch immer.",
+      "stimulus": "Wer die endgültige Entscheidung auch immer ______, das Ergebnis ______ transparent begründet werden.",
+      "answer": "trifft / muss",
+      "distractors": [
+        {
+          "text": "treffen / müsste",
+          "reasonRu": "Wer требует личной формы третьего лица trifft, а условное müsste неоправданно ослабляет заявленную обязанность."
+        },
+        {
+          "text": "trifft / wäre",
+          "reasonRu": "Sein не образует требуемую обязанность с Partizip begründet; нужен модальный muss."
+        },
+        {
+          "text": "getroffen hat / könnte",
+          "reasonRu": "Перфект и возможность меняют общий будущий смысл и ослабляют результат, сохраняемый независимо от субъекта."
+        }
+      ],
+      "explanation": "Wer… auch immer takes finite trifft, while the main clause asserts the invariant obligation with muss.",
+      "explanationRu": "Wer… auch immer требует личной формы trifft, а главное предложение сохраняет неизменную обязанность с muss.",
+      "targetConstruct": "concessive indefinite-relative construction with invariant asserted outcome",
+      "targetConstructRu": "уступительная неопределённо-относительная конструкция с неизменным утверждаемым результатом",
+      "canDoRu": "Может выразить, что правило действует независимо от неопределённого участника."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Attributing quoted and hypothetical positions",
+      "scenarioRu": "Атрибуция цитируемых и гипотетических позиций",
+      "prompt": "Choose the interpretation that correctly assigns each voice.",
+      "instructionRu": "Выберите интерпретацию, правильно распределяющую каждый голос.",
+      "stimulus": "Der Hersteller behauptet, das System sei «nahezu fehlerfrei». Die Aufsicht verweist dagegen auf ungeklärte Ausnahmen. Selbst wenn die Fehlerquote niedrig wäre, schreibt der Autor, müsste ihre Verteilung geprüft werden, bevor man von Fairness spricht.",
+      "answer": "Hersteller: nahezu fehlerfrei; Aufsicht: Ausnahmen offen; Autor: niedrige Quote hypothetisch, Verteilung zu prüfen.",
+      "distractors": [
+        {
+          "text": "Der Autor bestätigt die Fehlerfreiheit als endgültig bewiesenen Fakt.",
+          "reasonRu": "Selbst wenn и wäre маркируют гипотезу, а не подтверждение."
+        },
+        {
+          "text": "Die Aufsicht erklärt alle Ausnahmen für vollständig gelöst.",
+          "reasonRu": "Она, наоборот, указывает на ungeklärte Ausnahmen."
+        },
+        {
+          "text": "Hersteller, Aufsicht und Autor vertreten ohne jede Differenz dieselbe Position.",
+          "reasonRu": "Текст противопоставляет рекламное утверждение, надзорную оговорку и авторский условный критерий."
+        }
+      ],
+      "explanation": "Attribution verbs, quotation, dagegen, and the counterfactual frame distinguish all three epistemic positions.",
+      "explanationRu": "Глаголы атрибуции, цитата, dagegen и контрфактическая рамка разделяют три эпистемические позиции.",
+      "targetConstruct": "voice and epistemic attribution across claim, regulatory reservation, and author hypothesis",
+      "targetConstructRu": "атрибуция голоса и уверенности для утверждения, надзорной оговорки и авторской гипотезы",
+      "canDoRu": "Может точно отделить авторскую позицию от цитируемого утверждения и чужой оговорки."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Reporting a material forecast error",
+      "scenarioRu": "Сообщение о существенной ошибке прогноза",
+      "prompt": "Choose the message that is direct, proportionate, accountable, and action-oriented.",
+      "instructionRu": "Выберите сообщение, которое прямо, соразмерно, ответственно и ориентировано на действие.",
+      "stimulus": "Eine bestätigte Modellkorrektur senkt die erwarteten Einnahmen für das nächste Quartal um 15 Prozent. Sie haben die erste Warnung zu spät eskaliert. Investitionsoptionen müssen neu bewertet werden.",
+      "answer": "Prognose 15 % niedriger; ich habe zu spät eskaliert. Morgen folgen Szenarien für eine neue Investitionsentscheidung.",
+      "distractors": [
+        {
+          "text": "Die Zahlen haben sich ein wenig verändert, aber Entscheidungen bleiben sicher unberührt.",
+          "reasonRu": "Формулировка преуменьшает подтверждённые 15 % и прямо указанное влияние на инвестиции."
+        },
+        {
+          "text": "Das Modell ist allein schuld; meine verspätete Eskalation und die nächsten Schritte sind für die Investitionsentscheidung nicht relevant.",
+          "reasonRu": "Ответ избегает собственной процессной ответственности и не подготавливает решение."
+        },
+        {
+          "text": "Wir stoppen sofort jede Investition dauerhaft, ohne die aktualisierten Szenarien zu prüfen.",
+          "reasonRu": "Реплика выбирает крайнее необратимое действие до анализа вариантов."
+        }
+      ],
+      "explanation": "The response states magnitude and consequence, owns the process failure, commits to decision-ready evidence, and names the next governance step.",
+      "explanationRu": "Ответ называет величину и последствие, признаёт процессный сбой, обещает данные для решения и обозначает следующий управленческий шаг.",
+      "targetConstruct": "consequential bad-news delivery with magnitude, impact, ownership, evidence plan, and decision point",
+      "targetConstructRu": "сообщение существенной плохой новости с величиной, влиянием, ответственностью, планом данных и точкой решения",
+      "canDoRu": "Может сообщить существенную негативную информацию и организовать последующее решение."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Evaluating a narrow study sample",
+      "scenarioRu": "Оценка узкой выборки исследования",
+      "prompt": "Choose the methodological limitation described.",
+      "instructionRu": "Выберите описанное методологическое ограничение.",
+      "stimulus": "Die Messung erfasst das Zielmerkmal korrekt und liefert bei Wiederholung stabile Werte. Untersucht wurden jedoch ausschließlich freiwillige Teilnehmende aus einer einzigen Großstadt, obwohl die Aussage für das ganze Land gelten soll.",
+      "answer": "Messung valide und zuverlässig, Stichprobe aber nicht landesweit repräsentativ.",
+      "distractors": [
+        {
+          "text": "Die Messung ist automatisch unzuverlässig, weil sie bei Wiederholung stabile Werte liefert.",
+          "reasonRu": "Стабильные повторения поддерживают надёжность, а не опровергают её."
+        },
+        {
+          "text": "Die Stichprobe ist vollständig repräsentativ, weil alle Personen freiwillig teilgenommen haben.",
+          "reasonRu": "Добровольцы одного города не обеспечивают соответствие населению всей страны."
+        },
+        {
+          "text": "Repräsentativität betrifft nur die Rechtschreibung des Fragebogens.",
+          "reasonRu": "Репрезентативность относится к способности выборки отражать целевую популяцию."
+        }
+      ],
+      "explanation": "Measurement quality may be strong while voluntary single-city sampling limits population representativeness.",
+      "explanationRu": "Качество измерения может быть высоким, но добровольная выборка одного города ограничивает репрезентативность для населения страны.",
+      "targetConstruct": "distinguishing measurement validity and reliability from sample representativeness",
+      "targetConstructRu": "отличие валидности и надёжности измерения от репрезентативности выборки",
+      "canDoRu": "Может точно локализовать методологическое ограничение исследования."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Detecting overgeneralisation beyond a study population",
+      "scenarioRu": "Распознавание чрезмерного обобщения за пределы выборки",
+      "prompt": "Choose the conclusion supported without exceeding population or time span.",
+      "instructionRu": "Выберите вывод, не выходящий за пределы изученной популяции и периода.",
+      "stimulus": "Eine Studie beobachtete zwölf Wochen lang 180 freiwillige Büroangestellte in zwei Unternehmen. In dieser Gruppe war eine flexible Startzeit mit weniger Verspätungen verbunden.",
+      "answer": "Zusammenhang nur für Gruppe und Zeitraum; Übertragung muss geprüft werden.",
+      "distractors": [
+        {
+          "text": "Flexible Startzeiten verhindern bei allen Menschen in jedem Beruf dauerhaft jede Verspätung.",
+          "reasonRu": "Вывод необоснованно расширяет популяцию, период и силу связи до абсолютной причинности."
+        },
+        {
+          "text": "Die Studie enthält keinerlei Information über die beobachteten Büroangestellten.",
+          "reasonRu": "Для изученной группы явно сообщён наблюдаемый Zusammenhang."
+        },
+        {
+          "text": "Weil nur zwei Unternehmen untersucht wurden, ist das Ergebnis innerhalb dieser Gruppe logisch unmöglich.",
+          "reasonRu": "Ограниченная выборка сужает обобщение, но не отменяет наблюдение внутри неё."
+        }
+      ],
+      "explanation": "The key preserves the observed association while limiting inference to the sampled workers, organisations, and twelve-week period.",
+      "explanationRu": "Ключ сохраняет наблюдаемую связь, но ограничивает вывод изученными сотрудниками, организациями и двенадцатью неделями.",
+      "targetConstruct": "scope control across sampled population, setting, duration, and association strength",
+      "targetConstructRu": "контроль области вывода по выборке, среде, длительности и силе связи",
+      "canDoRu": "Может отличить обоснованный вывод от чрезмерного обобщения исследования."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Foregrounding the cost issue",
+      "scenarioRu": "Выдвижение вопроса расходов в фокус",
+      "prompt": "Choose the focus construction that foregrounds costs without changing the underlying claim.",
+      "instructionRu": "Выберите фокусную конструкцию, выдвигающую расходы без изменения основного утверждения.",
+      "stimulus": "Ausgangsaussage: Die Kosten müssen noch genauer geprüft werden.",
+      "answer": "Was die Kosten betrifft, so müssen sie noch genauer geprüft werden.",
+      "distractors": [
+        {
+          "text": "Was die Kosten betrifft, so sind sie bereits vollständig bestätigt.",
+          "reasonRu": "Форма фокуса возможна, но содержание меняет необходимость проверки на утверждение полной подтверждённости."
+        },
+        {
+          "text": "Die Kosten prüfen noch genauer müssen sie was betrifft.",
+          "reasonRu": "Набор слов не образует нормативную фокусную или основную конструкцию."
+        },
+        {
+          "text": "Nicht die Kosten, sondern alle anderen Fragen sind ungeprüft.",
+          "reasonRu": "Реплика меняет область утверждения и исключает расходы вместо их фокусирования."
+        }
+      ],
+      "explanation": "Was X betrifft, so… topicalises X while preserving the proposition that further review is required.",
+      "explanationRu": "Was X betrifft, so… тематизирует X, сохраняя утверждение о необходимости дальнейшей проверки.",
+      "targetConstruct": "topic-focus construction was X betrifft, so without truth-conditional change",
+      "targetConstructRu": "тематически-фокусная конструкция was X betrifft, so без изменения условий истинности",
+      "canDoRu": "Может перераспределить информационный фокус сложного утверждения."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Opening a false either-or choice",
+      "scenarioRu": "Раскрытие ложного выбора из двух вариантов",
+      "prompt": "Choose the response that identifies a viable third option and its trade-offs.",
+      "instructionRu": "Выберите ответ, который называет выполнимый третий вариант и его компромиссы.",
+      "stimulus": "In der Diskussion heißt es: «Entweder wir veröffentlichen morgen alle noch ungeprüften Zahlen oder wir informieren die Öffentlichkeit überhaupt nicht.»",
+      "answer": "Morgen geprüfte Zahlen, offene Bereiche markieren und Ergänzung terminieren.",
+      "distractors": [
+        {
+          "text": "Wir müssen eine der beiden Extreme wählen; Zwischenlösungen sind logisch unmöglich.",
+          "reasonRu": "Условие не исключает частичную проверенную публикацию с явной маркировкой границ."
+        },
+        {
+          "text": "Veröffentlichen wir alle ungeprüften Zahlen ohne Kennzeichnung, denn Geschwindigkeit ist der einzige Wert.",
+          "reasonRu": "Ответ выбирает одну крайность и игнорирует риск представить гипотезы как факты."
+        },
+        {
+          "text": "Sagen wir nie etwas, auch nachdem alle Zahlen geprüft sind.",
+          "reasonRu": "Реплика усиливает вторую крайность до бессрочной закрытости."
+        }
+      ],
+      "explanation": "The third option separates verified from pending information and explicitly states the trade-off between completeness and reliability.",
+      "explanationRu": "Третий вариант отделяет проверенную информацию от ожидающей проверки и явно называет компромисс полноты и надёжности.",
+      "targetConstruct": "false-dilemma repair through viable third option, safeguards, and explicit trade-off",
+      "targetConstructRu": "исправление ложной дилеммы через выполнимый третий вариант, гарантии и явный компромисс",
+      "canDoRu": "Может выйти из ложного выбора, предложив реалистичный вариант с честными издержками."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reconstructing a corrected chronology",
+      "scenarioRu": "Восстановление хронологии после уточнения",
+      "prompt": "Choose the only chronology consistent with all corrections in the note.",
+      "instructionRu": "Выберите единственную хронологию, согласующуюся со всеми уточнениями в записке.",
+      "stimulus": "Die erste Prüfung begann nicht, wie im Protokoll vermerkt, am Montag, sondern bereits am Freitag. Der vorläufige Befund wurde am Dienstag verschickt. Erst nachdem die Fachabteilung ihn am Mittwoch ergänzt hatte, legte die Leitung am Donnerstag ihre Entscheidung fest.",
+      "answer": "Prüfungsbeginn am Freitag – vorläufiger Befund am Dienstag – Ergänzung am Mittwoch – Entscheidung am Donnerstag",
+      "distractors": [
+        {
+          "text": "Prüfungsbeginn am Montag – Entscheidung am Dienstag – Ergänzung am Mittwoch – Befund am Donnerstag",
+          "reasonRu": "Вариант сохраняет исправленную в тексте ошибочную дату и переставляет решение перед дополнением."
+        },
+        {
+          "text": "Vorläufiger Befund am Freitag – Prüfungsbeginn am Dienstag – Entscheidung am Mittwoch – Ergänzung am Donnerstag",
+          "reasonRu": "Проверка началась в пятницу, а предварительный вывод был отправлен только во вторник."
+        },
+        {
+          "text": "Prüfungsbeginn am Freitag – Ergänzung am Dienstag – vorläufiger Befund am Mittwoch – Entscheidung am Donnerstag",
+          "reasonRu": "Дополнение последовало после отправки предварительного вывода, а не до него."
+        }
+      ],
+      "explanation": "The correction moves the start to Friday; the later sequence remains Tuesday, Wednesday, Thursday.",
+      "explanationRu": "Уточнение переносит начало на пятницу; дальнейшая последовательность остаётся: вторник, среда, четверг.",
+      "targetConstruct": "chronology reconstruction across correction, anteriority, and subsequent events",
+      "targetConstructRu": "восстановление хронологии с учётом исправления, предшествования и последующих событий",
+      "canDoRu": "Может точно восстановить порядок событий после явного исправления исходной версии."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Distinguishing formal administrative actions",
+      "scenarioRu": "Различение официальных административных действий",
+      "prompt": "Choose the verb that precisely describes a temporary suspension without final cancellation.",
+      "instructionRu": "Выберите глагол, точно обозначающий временную приостановку без окончательной отмены.",
+      "stimulus": "Die Behörde will die Genehmigung bis zum Abschluss der Sicherheitsprüfung vorübergehend außer Kraft setzen, sie aber nicht endgültig zurücknehmen.",
+      "answer": "Die Behörde will die Genehmigung aussetzen.",
+      "distractors": [
+        {
+          "text": "Die Behörde will die Genehmigung widerrufen.",
+          "reasonRu": "Widerrufen обозначает отзыв разрешения, а не временную паузу с предполагаемым возобновлением."
+        },
+        {
+          "text": "Die Behörde will die Genehmigung erteilen.",
+          "reasonRu": "Erteilen означает выдать разрешение и описывает противоположное действие."
+        },
+        {
+          "text": "Die Behörde will die Genehmigung verlängern.",
+          "reasonRu": "Verlängern меняет срок действия, но не приостанавливает его."
+        }
+      ],
+      "explanation": "Eine Genehmigung aussetzen means suspending its effect temporarily; widerrufen normally removes it.",
+      "explanationRu": "Eine Genehmigung aussetzen означает временно приостановить её действие; widerrufen обычно означает отозвать её.",
+      "targetConstruct": "precision among aussetzen, widerrufen, erteilen, and verlängern",
+      "targetConstructRu": "точное различение aussetzen, widerrufen, erteilen и verlängern",
+      "canDoRu": "Может точно выбирать глаголы для разных административных действий."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Negotiating accountability after shared failure",
+      "scenarioRu": "Распределение ответственности после общего сбоя",
+      "prompt": "Choose the response that acknowledges shared causes while assigning concrete individual responsibilities.",
+      "instructionRu": "Выберите ответ, который признаёт общие причины и одновременно закрепляет конкретную личную ответственность.",
+      "stimulus": "Nach einer verspäteten Veröffentlichung sagt die Projektleitung: «Wir haben alle Fehler gemacht; deshalb sollte jetzt auch niemand einzeln verantwortlich sein.»",
+      "answer": "Die Ursachen können gemeinsam sein; trotzdem benennt jede beteiligte Person ihre Prüfschritte, und wir klären die Zuständigkeiten bis morgen.",
+      "distractors": [
+        {
+          "text": "Da mehrere beteiligt waren, lässt sich überhaupt keine Verantwortung mehr zuordnen.",
+          "reasonRu": "Общая причина не отменяет конкретных обязанностей отдельных участников."
+        },
+        {
+          "text": "Allein Lara ist schuld; die unklare Schnittstelle spielt keine Rolle.",
+          "reasonRu": "Ответ сводит системный и совместный сбой к одному человеку без доказательств."
+        },
+        {
+          "text": "Wir sollten nur über bessere Zusammenarbeit sprechen und keine Aufgaben oder Fristen nennen.",
+          "reasonRu": "Реплика сохраняет расплывчатую коллективность и не создаёт проверяемой ответственности."
+        }
+      ],
+      "explanation": "The response allows for shared causes while requiring individual review steps and a deadline for assigning responsibilities.",
+      "explanationRu": "Ответ допускает общие причины, но требует назвать индивидуальные шаги проверки и установить срок распределения ответственности.",
+      "targetConstruct": "shared-cause acknowledgement with non-diffused individual accountability",
+      "targetConstructRu": "признание общих причин без размывания личной ответственности",
+      "canDoRu": "Может обсуждать общий провал без поиска козла отпущения и без размывания обязанностей."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Marking an earlier action under subject coreference",
+      "scenarioRu": "Обозначение предшествующего действия при общем субъекте",
+      "prompt": "Choose the sentence that correctly uses a perfect infinitive with zu.",
+      "instructionRu": "Выберите предложение, где правильно употреблён перфектный инфинитив с zu.",
+      "stimulus": "Die Sprecherin bedauert. Sie hat die Risiken vorher nicht deutlicher benannt.",
+      "answer": "Die Sprecherin bedauert, die Risiken vorher nicht deutlicher benannt zu haben.",
+      "distractors": [
+        {
+          "text": "Die Sprecherin bedauert, die Risiken vorher nicht deutlicher zu benennen gehabt.",
+          "reasonRu": "Перфектный инфинитив образуется как Partizip II + zu + haben, а не с этой перестановкой."
+        },
+        {
+          "text": "Die Sprecherin bedauert, dass die Risiken vorher nicht deutlicher benannt zu haben.",
+          "reasonRu": "После dass требуется личная глагольная форма; инфинитивная конструкция здесь синтаксически не завершена."
+        },
+        {
+          "text": "Die Sprecherin bedauert, die Risiken vorher nicht deutlicher benannt haben zu.",
+          "reasonRu": "Частица zu должна стоять перед инфинитивом haben в конце конструкции."
+        }
+      ],
+      "explanation": "With the same understood subject, anteriority is expressed by Partizip II + zu haben: benannt zu haben.",
+      "explanationRu": "При подразумеваемом общем субъекте предшествование выражается моделью Partizip II + zu haben: benannt zu haben.",
+      "targetConstruct": "perfect infinitive with zu under controlled subject coreference",
+      "targetConstructRu": "перфектный инфинитив с zu при контроле общего субъекта",
+      "canDoRu": "Может компактно выразить сожаление о собственном предшествующем действии."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Inferring audience and institutional risk",
+      "scenarioRu": "Определение адресата и институционального риска",
+      "prompt": "Choose the best inference about the memo's intended audience and the risk shaping its cautious wording.",
+      "instructionRu": "Выберите лучший вывод об адресате записки и риске, определяющем её осторожную формулировку.",
+      "stimulus": "Vermerk: Die vorliegenden Hinweise rechtfertigen aus unserer Sicht noch keine öffentliche Festlegung. Vor einer Weitergabe sollte geklärt werden, ob die neue Berechnung auch unter den bislang nicht geprüften Annahmen Bestand hat. Bis dahin empfehlen wir, weder Entwarnung zu geben noch einen Verstoß zu behaupten.",
+      "answer": "Der Vermerk richtet sich wahrscheinlich an Entscheidungsträger vor einer externen Kommunikation; er soll eine institutionell bindende Aussage auf unsicherer Grundlage verhindern.",
+      "distractors": [
+        {
+          "text": "Der Vermerk richtet sich an Anfänger und erklärt ihnen nur, wie man eine Berechnung ausführt.",
+          "reasonRu": "Текст не обучает вычислению, а регулирует решение о внешней коммуникации при неопределённости."
+        },
+        {
+          "text": "Der Vermerk ist bereits eine öffentliche Entwarnung, weil kein Verstoß bewiesen wurde.",
+          "reasonRu": "Автор прямо рекомендует не объявлять ни отсутствие проблемы, ни наличие нарушения."
+        },
+        {
+          "text": "Der Vermerk soll Forschende davon überzeugen, ungeprüfte Annahmen grundsätzlich zu ignorieren.",
+          "reasonRu": "Напротив, непроверенные предпосылки названы причиной отложить окончательную позицию."
+        }
+      ],
+      "explanation": "References to Weitergabe and öffentliche Festlegung point to pre-publication decision-making and reputational or legal commitment risk.",
+      "explanationRu": "Упоминания передачи и публичной позиции указывают на принятие решения перед публикацией и риск репутационно либо юридически обязывающего заявления.",
+      "targetConstruct": "audience and institutional-risk inference from cautious metadiscourse",
+      "targetConstructRu": "вывод об адресате и институциональном риске по осторожному метадискурсу",
+      "canDoRu": "Может понимать, кому и зачем адресован осторожно сформулированный служебный текст."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Correcting a senior speaker without needless confrontation",
+      "scenarioRu": "Корректировка ошибки старшего коллеги без лишней конфронтации",
+      "prompt": "Choose the correction that combines evidence, face-saving, and relevance to the pending decision.",
+      "instructionRu": "Выберите корректировку, сочетающую доказательство, сохранение лица и значимость для текущего решения.",
+      "stimulus": "Die Direktorin sagt in der Sitzung: «Alle drei Standorte haben die Prüfung bestanden.» Ihnen liegt jedoch der bestätigte Bericht vor: Standort Nord muss noch nachprüfen.",
+      "answer": "Zwei Standorte bestätigt; Nord offen. Nord ausnehmen oder Entscheidung vertagen.",
+      "distractors": [
+        {
+          "text": "Das ist falsch. Sie haben den Bericht offenbar nicht gelesen.",
+          "reasonRu": "Факт исправлен, но формулировка унижает собеседницу и не связывает уточнение с решением."
+        },
+        {
+          "text": "Sie haben sicher recht; die Abweichung im Bericht erwähne ich lieber nicht.",
+          "reasonRu": "Ответ скрывает существенное подтверждённое расхождение и ухудшает решение."
+        },
+        {
+          "text": "Im Bericht steht etwas anderes, aber das hat mit unserer Freigabe nichts zu tun.",
+          "reasonRu": "Расхождение прямо влияет на возможность общей выдачи разрешения."
+        }
+      ],
+      "explanation": "The correction cites the current report, avoids personal blame, and states the two decision consequences.",
+      "explanationRu": "Корректировка ссылается на актуальный отчёт, избегает личного обвинения и называет два последствия для решения.",
+      "targetConstruct": "evidence-based upward correction with face-saving and decision relevance",
+      "targetConstructRu": "доказательная корректировка старшего коллеги с сохранением лица и привязкой к решению",
+      "canDoRu": "Может тактично исправить значимую фактическую ошибку руководителя."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Classifying the nature of change",
+      "scenarioRu": "Точное описание характера изменения",
+      "prompt": "Choose the description that precisely matches the change in the data.",
+      "instructionRu": "Выберите описание, точно соответствующее изменению в данных.",
+      "stimulus": "Der Anteil sank innerhalb einer Woche von 61 auf 28 Prozent. Nach Behebung eines einmaligen Messfehlers kehrte er in der Folgewoche auf 60 Prozent zurück.",
+      "answer": "Es handelte sich um einen abrupten, aber vorübergehenden Einbruch.",
+      "distractors": [
+        {
+          "text": "Es handelte sich um einen allmählichen und strukturellen Rückgang.",
+          "reasonRu": "Падение произошло за неделю и почти полностью обратилось после устранения разовой ошибки."
+        },
+        {
+          "text": "Es handelte sich um eine marginale, dauerhafte Verbesserung.",
+          "reasonRu": "Изменение было крупным падением, а не небольшим устойчивым улучшением."
+        },
+        {
+          "text": "Es handelte sich um eine stetige, unumkehrbare Zunahme.",
+          "reasonRu": "Направление, темп и обратимость описаны противоположно данным."
+        }
+      ],
+      "explanation": "The large one-week fall is abrupt; the return after correcting a one-off error makes it temporary rather than structural.",
+      "explanationRu": "Крупное падение за одну неделю является резким; возврат после устранения разовой ошибки делает его временным, а не структурным.",
+      "targetConstruct": "precision among abrupt, gradual, temporary, structural, marginal, and reversible change",
+      "targetConstructRu": "точное различение резкого, постепенного, временного, структурного, незначительного и обратимого изменения",
+      "canDoRu": "Может точно описывать масштаб, темп, устойчивость и направление изменения."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Detecting evaluative framing with unchanged facts",
+      "scenarioRu": "Распознавание оценочного фрейминга при неизменных фактах",
+      "prompt": "Choose the statement that best explains how the two headlines frame the same result.",
+      "instructionRu": "Выберите утверждение, лучше всего объясняющее, как два заголовка по-разному подают один результат.",
+      "stimulus": "Beide Meldungen beziehen sich auf denselben Wert: 74 Prozent Zustimmung. Überschrift A: «Klare Mehrheit unterstützt den Vorschlag.» Überschrift B: «Mehr als jeder Vierte verweigert dem Vorschlag die Zustimmung.»",
+      "answer": "A betont 74 % Zustimmung, B 26 % Ablehnung; gleiche Zahlen, aber ein anderer Fokus.",
+      "distractors": [
+        {
+          "text": "A berichtet 74 Prozent, B dagegen einen anderen Messwert von über 50 Prozent.",
+          "reasonRu": "Оба заголовка математически описывают один и тот же показатель 74% поддержки и 26% неподдержки."
+        },
+        {
+          "text": "Nur B enthält eine Bewertung, weil das Wort Mehrheit immer vollständig neutral ist.",
+          "reasonRu": "Выбор большинства как фокуса тоже направляет оценку результата."
+        },
+        {
+          "text": "Die Überschriften widersprechen einander: Zustimmung und fehlende Zustimmung können nicht zugleich gemessen werden.",
+          "reasonRu": "Доли дополняют друг друга и не создают логического противоречия."
+        }
+      ],
+      "explanation": "The factual denominator and result are unchanged; the headlines select opposing parts of the same distribution as foreground.",
+      "explanationRu": "Фактический знаменатель и результат не меняются; заголовки выдвигают на первый план разные части одного распределения.",
+      "targetConstruct": "rhetorical framing through selective foregrounding without factual alteration",
+      "targetConstructRu": "риторический фрейминг через выборочный фокус без изменения фактов",
+      "canDoRu": "Может отделять фактическое содержание сообщения от его оценочной рамки."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Reporting an unconfirmed past event",
+      "scenarioRu": "Сообщение о неподтверждённом событии в прошлом",
+      "prompt": "Choose the sentence that reports the allegation without presenting it as confirmed fact.",
+      "instructionRu": "Выберите предложение, передающее сообщение без представления его как подтверждённого факта.",
+      "stimulus": "Nach Angaben mehrerer Medien ist die angebliche Übergabe nicht unabhängig bestätigt.",
+      "answer": "Der Minister soll die Unterlagen bereits am Montag übergeben haben.",
+      "distractors": [
+        {
+          "text": "Der Minister muss die Unterlagen bereits am Montag übergeben haben.",
+          "reasonRu": "Muss ... übergeben haben выражает сильный вывод говорящего, а не нейтральную передачу чужого неподтверждённого сообщения."
+        },
+        {
+          "text": "Der Minister wird die Unterlagen bereits am Montag übergeben.",
+          "reasonRu": "Форма указывает на будущее или предположение, но не на сообщаемое прошлое событие."
+        },
+        {
+          "text": "Der Minister soll die Unterlagen bereits am Montag übergeben.",
+          "reasonRu": "Без перфектного инфинитива форма не маркирует завершённое событие, предшествующее моменту речи."
+        }
+      ],
+      "explanation": "Subjective sollen plus perfect infinitive reports a past claim attributed to others while withholding confirmation.",
+      "explanationRu": "Субъективное sollen с перфектным инфинитивом передаёт чужое утверждение о прошлом, не подтверждая его от лица говорящего.",
+      "targetConstruct": "subjective sollen with perfect infinitive for unconfirmed past report",
+      "targetConstructRu": "субъективное sollen с перфектным инфинитивом для неподтверждённого сообщения о прошлом",
+      "canDoRu": "Может грамматически отделить пересказ сообщения о прошлом от подтверждённого факта."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Turning a vague commitment into an accountable plan",
+      "scenarioRu": "Преобразование расплывчатого обещания в проверяемый план",
+      "prompt": "Choose the follow-up that establishes owner, deliverable, deadline, and confirmation.",
+      "instructionRu": "Выберите уточнение, которое закрепляет исполнителя, результат, срок и подтверждение.",
+      "stimulus": "Am Ende der Sitzung sagt jemand: «Wir kümmern uns demnächst um die offenen Rückfragen.»",
+      "answer": "Jana: drei Fragen bis Donnerstag 16 Uhr; Abschluss bestätigen.",
+      "distractors": [
+        {
+          "text": "Gut, dann wird sich vermutlich irgendwann jemand darum kümmern.",
+          "reasonRu": "Не определены ни исполнитель, ни результат, ни срок, ни способ подтверждения."
+        },
+        {
+          "text": "Jana sollte die Sache bald erledigen, falls sie Zeit findet.",
+          "reasonRu": "Назван человек, но результат и срок остаются неопределёнными, а обязательство условно."
+        },
+        {
+          "text": "Beantworten wir die Rückfragen bis Donnerstag.",
+          "reasonRu": "Есть действие и срок, но нет владельца, места результата и подтверждения завершения."
+        }
+      ],
+      "explanation": "The follow-up makes the commitment observable by naming who does what, by when, and how completion is confirmed.",
+      "explanationRu": "Уточнение делает обязательство проверяемым: кто, что и к какому сроку делает, а также как подтверждает завершение.",
+      "targetConstruct": "accountable commitment with owner, deliverable, deadline, and confirmation",
+      "targetConstructRu": "проверяемое обязательство с исполнителем, результатом, сроком и подтверждением",
+      "canDoRu": "Может превращать неопределённые договорённости в конкретные проверяемые обязательства."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Locating a precise disagreement between experts",
+      "scenarioRu": "Определение точного расхождения между экспертами",
+      "prompt": "Choose the statement that accurately separates shared evidence from the experts' disagreement.",
+      "instructionRu": "Выберите утверждение, точно отделяющее общие данные от расхождения экспертов.",
+      "stimulus": "Beide Gutachterinnen akzeptieren, dass die Ausfallquote nach Einführung des neuen Verfahrens von acht auf fünf Prozent sank. Weber führt den Rückgang überwiegend auf das Verfahren zurück. Aydin hält den Effekt für möglich, betont aber, dass gleichzeitig erfahrenere Teams eingesetzt wurden und der eigenständige Beitrag des Verfahrens deshalb offenbleibt.",
+      "answer": "Rückgang unstrittig; strittig ist der eigenständige Beitrag des Verfahrens.",
+      "distractors": [
+        {
+          "text": "Die Gutachterinnen bestreiten beide, dass die Ausfallquote gesunken ist.",
+          "reasonRu": "Обе экспертки принимают снижение с восьми до пяти процентов как наблюдаемый факт."
+        },
+        {
+          "text": "Weber und Aydin sind sich einig, dass allein die erfahreneren Teams den Rückgang verursacht haben.",
+          "reasonRu": "Weber в основном приписывает эффект процедуре, а Aydin лишь указывает на смешивающий фактор."
+        },
+        {
+          "text": "Strittig ist ausschließlich, ob fünf Prozent größer oder kleiner als acht Prozent sind.",
+          "reasonRu": "Спор касается причинной атрибуции, а не математического направления изменения."
+        }
+      ],
+      "explanation": "Both accept the descriptive result; they differ over causal attribution under a concurrent staffing change.",
+      "explanationRu": "Обе принимают описательный результат, но расходятся в причинной атрибуции при одновременном изменении состава команд.",
+      "targetConstruct": "comparison of expert accounts by shared evidence and exact causal disagreement",
+      "targetConstructRu": "сопоставление экспертных позиций по общим данным и точному причинному расхождению",
+      "canDoRu": "Может точно локализовать расхождение в сложной экспертной дискуссии."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Selecting formal evidence and policy collocations",
+      "scenarioRu": "Выбор нормативных сочетаний для данных и политики",
+      "prompt": "Choose the sentence with three standard formal collocations.",
+      "instructionRu": "Выберите предложение с тремя нормативными официальными словосочетаниями.",
+      "stimulus": "Gesucht sind die üblichen Verbindungen für Risiko, Nachweis und eine bestehende Regelung.",
+      "answer": "Risiko abwägen, belastbaren Nachweis erbringen, Richtlinie überprüfen.",
+      "distractors": [
+        {
+          "text": "Wir müssen das Risiko machen, einen Nachweis bauen und die Richtlinie anschauen lassen.",
+          "reasonRu": "Существительные понятны, но глагольные сочетания не соответствуют точному официальному регистру."
+        },
+        {
+          "text": "Wir müssen das Risiko erzählen, einen Nachweis gewinnen und die Richtlinie hören.",
+          "reasonRu": "Все три сочетания семантически ненормативны в данном контексте."
+        },
+        {
+          "text": "Wir müssen das Risiko unterschreiben, einen Nachweis bewegen und die Richtlinie beantworten.",
+          "reasonRu": "Выбранные глаголы не сочетаются с соответствующими существительными в требуемых значениях."
+        }
+      ],
+      "explanation": "Risiko abwägen, Nachweis erbringen, and Richtlinie überprüfen are established formal collocations.",
+      "explanationRu": "Risiko abwägen, Nachweis erbringen и Richtlinie überprüfen — устойчивые сочетания официального регистра.",
+      "targetConstruct": "formal collocational precision for risk, evidence, and policy review",
+      "targetConstructRu": "точность официальных словосочетаний для оценки риска, доказательства и пересмотра политики",
+      "canDoRu": "Может уверенно выбирать нормативные сочетания официального регистра."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "De-escalating a complaint built on a false premise",
+      "scenarioRu": "Снижение напряжения в жалобе с ложной предпосылкой",
+      "prompt": "Choose the reply that recognises the reported harm without accepting the inaccurate premise.",
+      "instructionRu": "Выберите ответ, признающий описанный вред, но не принимающий неверную предпосылку.",
+      "stimulus": "Eine Kundin schreibt: «Sie haben meine Beschwerde absichtlich gelöscht, damit niemand den Fehler sieht.» Das Protokoll zeigt: Die Beschwerde blieb gespeichert, wurde aber wegen einer falschen Zuordnung zwei Tage lang nicht angezeigt.",
+      "answer": "Die zweitägige Unsichtbarkeit war nicht akzeptabel. Der Eintrag blieb gespeichert, war aber falsch zugeordnet; wir korrigieren das heute.",
+      "distractors": [
+        {
+          "text": "Sie irren sich: Nichts wurde gelöscht, also ist überhaupt kein Schaden entstanden.",
+          "reasonRu": "Ответ исправляет предпосылку, но обесценивает реальный двухдневный сбой и его последствия."
+        },
+        {
+          "text": "Ja, wir haben Ihre Beschwerde absichtlich gelöscht; dafür entschuldigen wir uns.",
+          "reasonRu": "Реплика принимает ложное обвинение, противоречащее журналу событий."
+        },
+        {
+          "text": "Technische Fehler passieren eben. Wir diskutieren nicht über Ihre Vermutungen.",
+          "reasonRu": "Ответ оборонительный, не признаёт вред и не предлагает исправления."
+        }
+      ],
+      "explanation": "The reply validates the experience, corrects intent and mechanism with evidence, and names repair and prevention.",
+      "explanationRu": "Ответ признаёт пережитый ущерб, доказательно уточняет намерение и механизм, а затем называет исправление и профилактику.",
+      "targetConstruct": "complaint de-escalation without conceding a false premise or dismissing real harm",
+      "targetConstructRu": "снижение напряжения без принятия ложной предпосылки и без обесценивания реального вреда",
+      "canDoRu": "Может уважительно исправить ложное обвинение, сохранив признание реальной проблемы."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Conceding a point while preserving the main claim",
+      "scenarioRu": "Уступка аргумента при сохранении основной позиции",
+      "prompt": "Choose the grammatically complete concessive construction.",
+      "instructionRu": "Выберите грамматически завершённую уступительную конструкцию.",
+      "stimulus": "Der Einwand ist nachvollziehbar. Er ändert jedoch nichts am fehlenden Nachweis.",
+      "answer": "So nachvollziehbar der Einwand auch sein mag, er ändert nichts am fehlenden Nachweis.",
+      "distractors": [
+        {
+          "text": "So nachvollziehbar der Einwand auch mag sein, ändert er nichts am fehlenden Nachweis.",
+          "reasonRu": "В придаточной уступительной конструкции личная форма mag занимает конечную позицию."
+        },
+        {
+          "text": "So der Einwand nachvollziehbar auch sein mag, aber er ändert nichts am fehlenden Nachweis.",
+          "reasonRu": "Порядок фокусного прилагательного нарушен, а aber избыточно дублирует уступительную связь."
+        },
+        {
+          "text": "Der Einwand so nachvollziehbar auch sein, mag nichts am fehlenden Nachweis ändern.",
+          "reasonRu": "Вариант не образует нормативную модель so + прилагательное + субъект + auch + sein mag."
+        }
+      ],
+      "explanation": "The concessive pattern places so plus adjective first and the finite modal mag at the end of its clause.",
+      "explanationRu": "В уступительной модели so с прилагательным стоит в начале, а личный модальный глагол mag — в конце своей части.",
+      "targetConstruct": "concessive so plus adjective plus auch plus sein mag with correct clause structure",
+      "targetConstructRu": "уступительная модель so + прилагательное + auch + sein mag с правильной структурой",
+      "canDoRu": "Может грамматически точно признать силу аргумента, не отказываясь от основного вывода."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Recovering an unstated bridge premise",
+      "scenarioRu": "Восстановление неявной связующей предпосылки",
+      "prompt": "Choose the premise required for the conclusion to follow from the stated reasons.",
+      "instructionRu": "Выберите предпосылку, необходимую для вывода из приведённых оснований.",
+      "stimulus": "Argument: Das neue Verfahren verkürzt die Bearbeitungszeit, ohne die Fehlerquote zu erhöhen. Deshalb sollten wir es auch in Abteilung B einführen. Bekannt ist außerdem, dass Abteilung B dieselben Falltypen bearbeitet; nicht erwähnt wird jedoch, ob dort besondere technische Grenzen bestehen.",
+      "answer": "Keine entscheidenden Unterschiede in B, die den Vorteil aufheben.",
+      "distractors": [
+        {
+          "text": "Jede kürzere Bearbeitungszeit führt unabhängig von der Fehlerquote automatisch zu höheren Personalkosten.",
+          "reasonRu": "Это новое утверждение не связывает успешный опыт с применимостью в отделе B."
+        },
+        {
+          "text": "Abteilung B bearbeitet grundsätzlich völlig andere Falltypen als die bereits untersuchte Abteilung.",
+          "reasonRu": "Вариант прямо противоречит предоставленной информации об одинаковых типах дел."
+        },
+        {
+          "text": "Ein Verfahren darf nur eingeführt werden, wenn es die Bearbeitungszeit überhaupt nicht verändert.",
+          "reasonRu": "Предпосылка противоречит основанию аргумента, где сокращение времени представлено преимуществом."
+        }
+      ],
+      "explanation": "Transfer of the result requires sufficient comparability beyond case type, especially absence of constraints that defeat the benefit.",
+      "explanationRu": "Перенос результата требует достаточной сопоставимости не только типов дел, но и отсутствия ограничений, отменяющих преимущество.",
+      "targetConstruct": "necessary bridge premise in an analogical implementation argument",
+      "targetConstructRu": "необходимая связующая предпосылка в аргументе о переносе практики по аналогии",
+      "canDoRu": "Может находить скрытое условие, без которого многошаговый вывод не следует."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Escalating an issue for executive decision",
+      "scenarioRu": "Эскалация вопроса для решения руководства",
+      "prompt": "Choose the escalation that clearly separates facts, impact, uncertainty, and the requested decision.",
+      "instructionRu": "Выберите эскалацию, ясно разделяющую факты, последствия, неопределённость и запрашиваемое решение.",
+      "stimulus": "Ein Zulieferer hat einen bestätigten Liefertermin verpasst. Der genaue neue Termin ist noch unklar. Ohne das Bauteil kann die Pilotphase am Montag nicht vollständig starten. Die Geschäftsführung muss heute zwischen einem Teilstart und einer Verschiebung entscheiden.",
+      "answer": "Fakt: Der Liefertermin ist verstrichen. Auswirkung: kein vollständiger Start am Montag. Unsicherheit: neuer Termin offen. Entscheidung heute: Teilstart oder Verschiebung.",
+      "distractors": [
+        {
+          "text": "Der Zulieferer ist unzuverlässig und ruiniert wahrscheinlich das ganze Projekt. Bitte kümmern Sie sich darum.",
+          "reasonRu": "Оценка преувеличена, факты смешаны с предположениями, а запрашиваемое решение не определено."
+        },
+        {
+          "text": "Es gibt ein Lieferproblem. Weitere Informationen folgen irgendwann.",
+          "reasonRu": "Не названы подтверждённый факт, влияние, срок уточнения и решение руководства."
+        },
+        {
+          "text": "Wir starten am Montag teilweise; eine Entscheidung der Geschäftsführung ist nicht mehr nötig.",
+          "reasonRu": "Ответ самовольно принимает решение, которое по условию относится к полномочиям руководства."
+        }
+      ],
+      "explanation": "The escalation labels verified state, operational consequence, bounded unknown, and a decision with deadline.",
+      "explanationRu": "Эскалация отдельно обозначает подтверждённое состояние, операционное последствие, ограниченную неопределённость и решение со сроком.",
+      "targetConstruct": "executive escalation structured as fact, impact, uncertainty, and requested decision",
+      "targetConstructRu": "управленческая эскалация в структуре факт — последствие — неопределённость — решение",
+      "canDoRu": "Может кратко подготовить сложную ситуацию к управленческому решению."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Interpreting a comparison with changing denominators",
+      "scenarioRu": "Интерпретация сравнения при изменившемся знаменателе",
+      "prompt": "Choose the conclusion justified by the counts and denominators.",
+      "instructionRu": "Выберите вывод, обоснованный абсолютными числами и знаменателями.",
+      "stimulus": "Im ersten Quartal wurden 40 von 200 Anträgen zurückgewiesen. Im zweiten Quartal waren es 45 von 300. Der Bericht bezeichnet die fünf zusätzlichen Ablehnungen als Beleg für eine gestiegene Ablehnungsneigung.",
+      "answer": "Absolut 40 auf 45, die Quote aber von 20 auf 15 %; die Schlussfolgerung ist unbelegt.",
+      "distractors": [
+        {
+          "text": "Die Ablehnungsquote stieg um fünf Prozentpunkte, weil fünf weitere Anträge abgelehnt wurden.",
+          "reasonRu": "Пять дополнительных случаев нельзя напрямую переводить в процентные пункты при другом общем числе заявок."
+        },
+        {
+          "text": "Absolute Zahl und Quote blieben unverändert, weil beide Quartale Anträge enthalten.",
+          "reasonRu": "Изменились и абсолютное число отказов, и доля, причём в разных направлениях."
+        },
+        {
+          "text": "Die Quote stieg von 15 auf 20 Prozent, da das zweite Quartal zuerst genannt werden muss.",
+          "reasonRu": "Хронология задана явно: сначала 40/200 = 20%, затем 45/300 = 15%."
+        }
+      ],
+      "explanation": "A larger denominator can raise the count while lowering the rate; the report confuses absolute and relative change.",
+      "explanationRu": "Более крупный знаменатель может увеличить число случаев при снижении доли; отчёт смешивает абсолютное и относительное изменение.",
+      "targetConstruct": "comparison of absolute counts and rates under a changed denominator",
+      "targetConstructRu": "сопоставление абсолютных чисел и долей при изменившемся знаменателе",
+      "canDoRu": "Может распознавать ошибочный вывод из абсолютных чисел при разной базе сравнения."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Giving calibrated agreement",
+      "scenarioRu": "Выражение калиброванного согласия",
+      "prompt": "Choose the response that accepts the practical conclusion while limiting its evidential scope.",
+      "instructionRu": "Выберите ответ, который принимает практический вывод, но ограничивает силу и область доказательств.",
+      "stimulus": "Nach einem erfolgreichen vierwöchigen Test in einem kleinen Team sagt ein Kollege: «Damit ist bewiesen, dass das Modell im ganzen Unternehmen dauerhaft funktioniert.» Sie unterstützen eine vorsichtige Ausweitung, aber nicht diese starke Behauptung.",
+      "answer": "Vorsichtig ausweiten; vier Wochen im kleinen Team beweisen keine Dauerwirkung.",
+      "distractors": [
+        {
+          "text": "Ich stimme vollständig zu: Ein kleiner Kurztest beweist die dauerhafte Wirkung überall.",
+          "reasonRu": "Согласие принимает причинно и внешне слишком сильное обобщение без оговорок."
+        },
+        {
+          "text": "Der Test sagt überhaupt nichts aus, deshalb darf es keinerlei weitere Erprobung geben.",
+          "reasonRu": "Ответ необоснованно обнуляет положительный сигнал и отвергает осторожное расширение."
+        },
+        {
+          "text": "Ich stimme zu, aber nur weil mir das Modell persönlich gefällt.",
+          "reasonRu": "Реплика не ограничивает область доказательств и подменяет их личным предпочтением."
+        }
+      ],
+      "explanation": "The response supports the decision warranted by the pilot while rejecting claims beyond its duration, sample, and setting.",
+      "explanationRu": "Ответ поддерживает решение, оправданное пилотом, но отвергает выводы за пределами его длительности, выборки и условий.",
+      "targetConstruct": "calibrated agreement separating decision support from evidential overreach",
+      "targetConstructRu": "калиброванное согласие с разделением практической поддержки и доказательного преувеличения",
+      "canDoRu": "Может согласиться с выводом ровно в тех границах, которые поддерживают данные."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Tracking changes in expressed certainty",
+      "scenarioRu": "Отслеживание изменений выраженной уверенности",
+      "prompt": "Choose the statement that correctly tracks the certainty across the three sentences.",
+      "instructionRu": "Выберите утверждение, правильно описывающее степень уверенности в трёх предложениях.",
+      "stimulus": "1. Die Abweichung könnte auf einen Übertragungsfehler zurückgehen. 2. Zwei unabhängige Protokolle sprechen dafür, dass tatsächlich falsch übertragen wurde. 3. Sollte die noch ausstehende Originaldatei dies bestätigen, wäre die Ursache hinreichend belegt.",
+      "answer": "Der Text geht von einer Möglichkeit zu einer durch Belege gestützten Wahrscheinlichkeit über; die endgültige Bestätigung bleibt von der Originaldatei abhängig.",
+      "distractors": [
+        {
+          "text": "Bereits Satz 1 stellt den Übertragungsfehler als zweifelsfrei bewiesen dar.",
+          "reasonRu": "Könnte маркирует возможность, а не доказанный факт."
+        },
+        {
+          "text": "Satz 2 schwächt die Vermutung gegenüber Satz 1 ab, weil zwei Protokolle weniger als keine Hinweise sind.",
+          "reasonRu": "Два независимых журнала усиливают, а не ослабляют основание гипотезы."
+        },
+        {
+          "text": "Satz 3 bestätigt die Ursache endgültig, obwohl die Originaldatei ausdrücklich noch aussteht.",
+          "reasonRu": "Условная конструкция сохраняет финальное подтверждение зависимым от будущего результата."
+        }
+      ],
+      "explanation": "Könnte marks possibility, sprechen dafür raises support, and sollte… bestätigen keeps the strongest conclusion conditional.",
+      "explanationRu": "Könnte обозначает возможность, sprechen dafür усиливает поддержку, а sollte… bestätigen сохраняет окончательный вывод условным.",
+      "targetConstruct": "certainty tracking through modal, evidential, and conditional markers",
+      "targetConstructRu": "отслеживание уверенности по модальным, доказательным и условным маркерам",
+      "canDoRu": "Может различать градации уверенности и условия окончательного вывода."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Linking an unreal past cause to past and present consequences",
+      "scenarioRu": "Связь нереального прошлого условия с прошлыми и нынешними последствиями",
+      "prompt": "Choose the sentence that correctly expresses the unreal past condition, its past consequence, and its present result.",
+      "instructionRu": "Выберите предложение, правильно выражающее нереальное условие в прошлом, прошлое последствие и нынешний результат.",
+      "stimulus": "Tatsächlich wurde die Warnung nicht weitergeleitet. Deshalb wurde gestern falsch entschieden, und das Team ist heute noch unvorbereitet.",
+      "answer": "Wäre die Warnung weitergeleitet worden, hätte die Leitung gestern anders entschieden, und das Team wäre heute besser vorbereitet.",
+      "distractors": [
+        {
+          "text": "Würde die Warnung weitergeleitet, hätte die Leitung gestern anders entschieden, und das Team war heute besser vorbereitet.",
+          "reasonRu": "Условие не маркирует завершённое нереальное прошлое, а настоящее следствие дано в индикативе прошедшего времени."
+        },
+        {
+          "text": "Wäre die Warnung weitergeleitet, würde die Leitung gestern anders entscheiden, und das Team wäre heute vorbereitet gewesen.",
+          "reasonRu": "Нарушены временные отношения: условию не хватает worden, вчерашнее следствие не в Konjunktiv II Plusquamperfekt, нынешнее ошибочно отнесено в прошлое."
+        },
+        {
+          "text": "Hätte die Warnung weitergeleitet worden, wäre die Leitung gestern anders entschieden und das Team ist heute vorbereitet.",
+          "reasonRu": "Пассивное условие и прошлое следствие образованы грамматически неверно; настоящее следствие не контрфактическое."
+        }
+      ],
+      "explanation": "Wäre… worden marks the unreal past condition, hätte… entschieden its past consequence, and wäre… vorbereitet the present counterfactual result.",
+      "explanationRu": "Wäre… worden маркирует нереальное прошлое условие, hätte… entschieden — прошлое следствие, а wäre… vorbereitet — нынешний контрфактический результат.",
+      "targetConstruct": "mixed conditional with passive unreal past condition, past consequence, and present result",
+      "targetConstructRu": "смешанное условное предложение с пассивным нереальным прошлым условием, прошлым и нынешним следствиями",
+      "canDoRu": "Может связывать нереализованное прошлое условие с последствиями в разных временных планах."
+    }
+  ]
+}

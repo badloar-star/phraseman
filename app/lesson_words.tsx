@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
@@ -7,8 +7,10 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  BackHandler,
   Easing,
   InteractionManager,
+  Platform,
   Pressable,
   ScrollView,
   SectionList,
@@ -47,6 +49,9 @@ import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { safeRouterBack } from './navigation_back';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
@@ -68,6 +73,7 @@ import {
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
 const safeVocabularyEventPart = (value: unknown, max = 60): string =>
@@ -959,7 +965,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'could', ru: 'Мог бы / смог бы', uk: 'Міг би / зміг би', es: 'podría', pos: 'verbs' },
     { en: 'might', ru: 'Возможно (мало вероятно)', uk: 'Можливо', es: 'quizá', pos: 'verbs' },
     { en: 'would', ru: 'Бы (условное намерение)', uk: 'Би (умовний)', es: 'condicional (‑ía)', pos: 'verbs' },
-    { en: 'will', ru: 'Буду / будет (будущее)', uk: 'У майбутньому (will)', es: 'futuro (‑rá)', pos: 'verbs' },
+    { en: 'will', ru: 'Буду / будет (будущее)', uk: 'Буду / буде (майбутній)', es: 'futuro (‑rá)', pos: 'verbs' },
     { en: 'need', ru: 'Нужно / нуждаться', uk: 'Потрібно / потребувати', es: 'necesitar', pos: 'verbs' },
     { en: 'translate', ru: 'Переводить', uk: 'Перекладати', es: 'traducir',
     'pt-BR': 'traduzir', pos: 'verbs' },
@@ -2688,7 +2694,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget }) {
+function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, autoPractice = false, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; autoPractice?: boolean; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2706,6 +2712,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
   useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
@@ -2725,10 +2732,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
   const wordMistakeCountRef = useRef<Record<string, number>>({});
-  // [FeedbackKit] Локальная серия подряд-верных ответов ТОЛЬКО для ощущений
-  // (лесенка комбо/стингеры). НЕ участвует в экономике/XP — те считаются выше
-  // по своим правилам. Свой счётчик, т.к. в lesson_words нет combo-формулы.
-  const fkComboRef = useRef(0);
   // [FeedbackKit] Показ VictoryBurst на финал сессии — один раз (guard от
   // повторного показа при ре-рендерах, пока allDone держится true).
   const [victoryShown, setVictoryShown] = useState(false);
@@ -2742,6 +2745,26 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
+
+  // зачем: системный «Назад» перехватывает родитель (LessonWords) — там обработчик активен
+  // на ЛЮБОЙ вкладке, а Training монтируется только на вкладке тренировки. Свои модалки
+  // Training прокидывает наверх через onAndroidBackIntercept, чтобы «Назад» закрывал их,
+  // а не выкидывал с экрана.
+  useEffect(() => {
+    if (!onAndroidBackIntercept) return;
+    onAndroidBackIntercept(() => {
+      if (practiceRepeatConfirm) {
+        setPracticeRepeatConfirm(false);
+        return true;
+      }
+      if (victoryShown) {
+        setVictoryShown(false);
+        return true;
+      }
+      return false;
+    });
+    return () => onAndroidBackIntercept(null);
+  }, [onAndroidBackIntercept, practiceRepeatConfirm, victoryShown]);
 
   /** Снизу вверх + фейд; исчезновение — фейд и лёгкий подъём */
   const xpTranslateY = useRef(new Animated.Value(44)).current;
@@ -2850,6 +2873,27 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setVictoryShown(true);
   }, [sessionFinished]);
 
+  // ── Дроп коллекционной карточки за закрытый словарь урока ─────────────────
+  // зачем: владелец попросил шанс карточки не только за урок, но и за закрытие
+  // словаря. Шанс/дневной кап/pity — общие с уроком, считает сервер. eventId =
+  // vocab:<цель>:<урок> без дня: словарь урока закрывается один раз, второй
+  // ролл за него не положен (серверный леджер идемпотентен по eventId).
+  // Условие sessionTouchedRef — вход в уже пройденный раздел без ответов
+  // карточку не даёт, иначе фарм повторным открытием экрана.
+  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const cardDropRolledRef = useRef(false);
+  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
+
+  useEffect(() => {
+    if (!sessionFinished) return;
+    if (cardDropRolledRef.current) return;
+    if (!sessionTouchedRef.current) return;
+    cardDropRolledRef.current = true;
+    void maybeRollCollectibleDrop('vocab', `${studyTarget}:${lessonId ?? 0}`, { dailyScoped: false })
+      .then((drop) => { if (drop) setCardDrop(drop); })
+      .catch(() => {});
+  }, [sessionFinished, studyTarget, lessonId]);
+
   const currentItem: TrainingQueueItem | undefined = validQueue[qIdx % Math.max(validQueue.length, 1)];
   const current: Card | undefined = useMemo(
     () => currentItem ? buildCard(currentItem.word, currentItem.roundIndex, words, lang) : undefined,
@@ -2877,22 +2921,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
     const wordEn = current.word.en;
-    // [FeedbackKit] Серия ДО обновления этим ответом — нужна, чтобы отличить
-    // обрыв заметной серии (comboBreak) от обычной ошибки (wrong). Только для
-    // ОЩУЩЕНИЙ; экономика/прогресс ниже её не читают.
-    const fkStreakBefore = fkComboRef.current;
     // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
-    // [FeedbackKit] Ранее: hapticSuccess/hapticError + correct-звук; теперь
-    // fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
+    // [FeedbackKit] fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
-      fkComboRef.current = fkStreakBefore + 1;
-      fk.correct();
-      fk.combo(fkComboRef.current);
+      fk.verdict({ correct: true });
     } else {
-      fkComboRef.current = 0;
-      if (fkStreakBefore >= 3) fk.comboBreak(fkStreakBefore);
-      else fk.wrong();
+      fk.verdict({ correct: false });
     }
     if (isRight) {
       // Тост опыта — СРАЗУ после ответа, синхронно: не ждём ни задержку
@@ -2958,12 +2993,20 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           // выше) — здесь его НЕ дублируем, чтобы не появлялся повторно/поздно.
         }
 
+        // зачем: владелец — задания дня должны выполняться и на ПОВТОРЕ уже
+        // пройденного (репорт «кидает в урок, где слова уже выучены, и повтор
+        // не засчитывается»). Раньше зачёт жил внутри if (wordJustCompleted) и
+        // на повторе (prevCount === REQUIRED) молча не срабатывал — прогресс
+        // висел 0/3. Теперь двигаем задание на КАЖДЫЙ правильный ответ, а XP и
+        // статистика остаются привязаны к первому освоению (см. ниже) — иначе
+        // получилась бы бесконечная ферма опыта на одном уроке.
+        updateMultipleTaskProgress([{ type: 'words_learned' }], { studyTarget });
+
         if (wordJustCompleted) {
           void bumpStatsDaily('words_learned', 1, studyTarget);
           // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
           const finalQ = newQueue.filter(c => isTrainingCard(c) && c.word.en !== current.word.en);
           const newLearned = countLearnedWords(words, newCounts);
-          updateMultipleTaskProgress([{ type: 'words_learned' }], { studyTarget });
           if (finalQ.length === 0) {
             if (newLearned >= words.length) {
               applyLearnedCount(newLearned); applyTrainingQueue(finalQ, 0); setAllDone(true);
@@ -3051,12 +3094,26 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setCoachToast(null);
     wrongMistakesRef.current = [];
     locked.current = false;
-    // [FeedbackKit] Новый прогон — сбрасываем серию ощущений и разрешаем показать
-    // финальную мини-победу снова.
-    fkComboRef.current = 0;
+    // [FeedbackKit] Новый прогон — разрешаем показать финальную мини-победу снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };
+
+  // зачем: приход из задания дня (autoPractice=1) в уже пройденный раздел не должен
+  // упираться в экран «Всё выучено» — задание требует ПОВТОРА, значит очередь нужно
+  // собрать сразу. Ждём готовности слов, стартуем один раз за монтирование (guard),
+  // прогресс на диске не трогаем: startPractice только пересобирает очередь.
+  const autoPracticeFiredRef = useRef(false);
+  const startPracticeRef = useRef(startPractice);
+  startPracticeRef.current = startPractice;
+  useEffect(() => {
+    if (!autoPractice || autoPracticeFiredRef.current) return;
+    if (words.length === 0) return;
+    // Повтор нужен только когда учить уже нечего — иначе обычная очередь сама даст прогресс.
+    if (countLearnedWords(words, countsRef.current) < words.length) return;
+    autoPracticeFiredRef.current = true;
+    startPracticeRef.current();
+  }, [autoPractice, words]);
 
   const trainingStepLabel = `${learnedCnt} / ${words.length}`;
   const xpToastOverlay = xpToastVisible ? (
@@ -3065,7 +3122,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       style={{
         position: 'absolute', top: 100, alignSelf: 'center',
         backgroundColor: isLightTheme ? '#92400E' : '#FFC800', borderRadius: 20, paddingHorizontal: 20, paddingVertical: 10,
-        transform: [{ translateY: xpTranslateY }], opacity: xpOpacity, zIndex: 99999, elevation: 24,
+        transform: [{ translateY: xpTranslateY }], opacity: xpOpacity, zIndex: 99999, ...noAndroidOutline,
       }}
     >
       <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>+{xpToastAmount} XP</Text>
@@ -3075,7 +3132,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   if (allDone || (validQueue.length === 0 && learnedCnt >= words.length)) return (
     <View style={{ flex: 1 }}>
       <View testID="lesson-words-complete" style={{ flex:1, justifyContent:'center', alignItems:'center', gap:16, padding:20 }}>
-        <View style={{ width:80,height:80,borderRadius:40,backgroundColor:t.bgCard,borderWidth:0,borderColor:t.border,justifyContent:'center',alignItems:'center' }}>
+        <View style={{ width:80,height:80,borderRadius:40,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center' }}>
           <Ionicons name="checkmark-done-outline" size={36} color={t.correct}/>
         </View>
         <Text style={{ color:sx.primary, fontSize:f.h1, fontWeight:'700' }}>{ws.allLearned}</Text>
@@ -3089,13 +3146,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         <TouchableOpacity
           testID="lesson-words-complete-back"
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => safeRouterBack(router, '/(tabs)/lessons')}
+          onPress={() => safeRouterBack(router, '/lessons_list')}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>{pickTriLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← A la lección', 'pt-BR': '← Para a lição', vi: '← Về bài học', id: '← Ke pelajaran', tr: '← Derse', pl: '← Do lekcji' })}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           testID="lesson-words-repeat"
-          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 0, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
           onPress={() => {
             fk.tap();
             setPracticeRepeatConfirm(true);
@@ -3106,6 +3163,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>{pickTriLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir', 'pt-BR': 'Repetir', vi: 'Lặp lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' })}</Text>
         </TouchableOpacity>
       </View>
+      {/* Карточка за закрытый словарь — сюрприз поверх экрана итога. */}
+      <CollectibleDropModal
+        outcome={cardDropVisible ? cardDrop : null}
+        onClose={() => setCardDrop(null)}
+        onOpenCollection={() => {
+          setCardDrop(null);
+          router.push('/collectibles_screen' as any);
+        }}
+      />
       <ThemedConfirmModal
         visible={practiceRepeatConfirm}
         title={pickTriLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Pengulangan', tr: 'Tekrar', pl: 'Powtórka' })}
@@ -3382,7 +3448,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
         ListHeaderComponent={onStartTraining ? (
           <TouchableOpacity
             onPress={onStartTraining}
-            style={{ marginHorizontal: hPad, marginTop: ds.spacing.md, marginBottom: ds.spacing.xs, backgroundColor:t.bgCard, borderRadius: ds.radius.lg, paddingVertical: ds.spacing.sm, alignItems:'center', borderWidth:0, borderColor:t.border, flexDirection:'row', justifyContent:'center', gap:8 }}
+            style={{ marginHorizontal: hPad, marginTop: ds.spacing.md, marginBottom: ds.spacing.xs, backgroundColor:t.bgCard, borderRadius: ds.radius.lg, paddingVertical: ds.spacing.sm, alignItems:'center', flexDirection:'row', justifyContent:'center', gap:8 }}
           >
             <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
             <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>
@@ -3404,7 +3470,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
             <View style={{ borderBottomWidth: 0.5, borderBottomColor: t.border }}>
               <ScrollView
                 horizontal
-                decelerationRate="normal"
+                decelerationRate="fast"
                 nestedScrollEnabled
                 keyboardShouldPersistTaps="handled"
                 showsHorizontalScrollIndicator={false}
@@ -3473,7 +3539,7 @@ function FrenchVocabularyUnavailable({ lang, onBack }: { lang: Lang; onBack: () 
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: ds.spacing.md }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}>
         <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
       </View>
       <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
@@ -3504,8 +3570,12 @@ export default function LessonWords() {
   const { studyTarget } = useStudyTarget();
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
-  const { id, tab: tabParam, qaFocusWords } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[] }>();
+  const { id, tab: tabParam, qaFocusWords, autoPractice: autoPracticeParam } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[]; autoPractice?: string | string[] }>();
   const lessonId = parseInt(id || '1', 10);
+  // зачем: заход из задания дня в УЖЕ пройденный раздел упирался в экран «Всё
+  // выучено» — задание было не выполнить, хотя повторять разрешено. С этим
+  // флагом тренировка стартует сразу на всех словах урока (прогресс не сбрасываем).
+  const autoPractice = (Array.isArray(autoPracticeParam) ? autoPracticeParam[0] : autoPracticeParam) === '1';
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
   useEffect(() => {
     let cancelled = false;
@@ -3547,7 +3617,36 @@ export default function LessonWords() {
   const wordsShardGrantKey = lessonWordsShardsGrantedKey(lessonId, studyTarget);
   const ws = s.words;
 
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), и пользователь
+  // мог оказаться не на экране уроков. Обработчик живёт ЗДЕСЬ, а не в Training: Training
+  // монтируется только на вкладке тренировки, и на вкладке «Словарь» (а также при нулевой
+  // энергии, где список открыт сразу) «Назад» остался бы необработанным.
+  // Ссылка-перехватчик: Training регистрирует в неё свою проверку открытых модалок и
+  // возвращает true, если нажатие поглощено, — иначе выходим с экрана.
+  const androidBackInterceptRef = useRef<(() => boolean) | null>(null);
+  const setAndroidBackIntercept = useCallback((handler: (() => boolean) | null) => {
+    androidBackInterceptRef.current = handler;
+  }, []);
+
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
+
+  // Обработчик системного «Назад» (см. комментарий у androidBackInterceptRef выше).
+  // Порядок перехвата: модалка энергии → модалки тренировки → выход с экрана.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (noEnergyModalOpen) {
+        setNoEnergyModalOpen(false);
+        return true;
+      }
+      if (androidBackInterceptRef.current?.()) return true;
+      safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
+      return true;
+    });
+    return () => sub.remove();
+  }, [router, lessonId, noEnergyModalOpen]);
+
   /** null = «авто»: при 0 энергии сразу Словарь, при наличии — Повторение, без кадра с неверной вкладкой */
   const [userTab, setUserTab] = useState<'train' | 'list' | null>(initialTab);
   const tab = userTab !== null ? userTab : (canTrain ? 'train' : 'list');
@@ -3612,7 +3711,7 @@ export default function LessonWords() {
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TapScale testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}>
+        <TapScale testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TapScale>
         <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1}>{ws.title(lessonId)}</Text>
@@ -3623,7 +3722,7 @@ export default function LessonWords() {
         {frenchVocabularyBlocked ? (
           <FrenchVocabularyUnavailable
             lang={lang}
-            onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
+            onBack={() => router.replace({ pathname: '/lessons_list', params: { id: String(lessonId) } } as any)}
           />
         ) : frenchRemoteWordsLoading ? (
           <View testID="lesson-words-french-remote-loading" style={{ flex:1, justifyContent:'center', alignItems:'center', padding:20 }}>
@@ -3662,9 +3761,11 @@ export default function LessonWords() {
             userName={userName}
             initialLearned={learnedListForTraining}
             initialCounts={learnedCounts}
+            autoPractice={autoPractice}
             onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
             onNoEnergy={() => setNoEnergyModalOpen(true)}
             studyTarget={studyTarget}
+            onAndroidBackIntercept={setAndroidBackIntercept}
           />
         )}
       </View>

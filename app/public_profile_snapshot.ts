@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
-import { ensureArenaAuthUid } from './user_id_policy';
+import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
@@ -19,6 +18,17 @@ import {
 import { readLifetimeProfileStatsCache } from './lifetime_profile_stats';
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
 import { isLifetimePlanLocal } from './premium_guard';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import {
+  loadSeasonCosmetics,
+  SEASON1_FRAME_ID,
+} from './season_cosmetics';
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
 export const PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000;
@@ -49,6 +59,21 @@ type SnapshotCache = {
   isLifetime?: boolean;
 };
 
+type QueuedSnapshotInput = SnapshotInput & {
+  includesDailyXp: boolean;
+};
+
+type OwnerSyncState = {
+  token: AccountGenerationToken;
+  pending: QueuedSnapshotInput | null;
+  drain: Promise<void> | null;
+  dirty: boolean;
+  cacheLoaded: boolean;
+  cache: SnapshotCache;
+};
+
+const ownerSyncStates = new Map<string, OwnerSyncState>();
+
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
 }
@@ -76,19 +101,53 @@ function readNumber(raw: string | undefined | null, fallback = 0): number {
   return Number.isFinite(n) ? n : fallback;
 }
 
-async function readSnapshotCache(): Promise<SnapshotCache> {
+function snapshotCacheKey(stableId: string): string {
+  return `${PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY}:${encodeURIComponent(stableId)}`;
+}
+
+async function readSnapshotCache(stableId: string): Promise<SnapshotCache> {
   try {
-    const raw = await AsyncStorage.getItem(PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY);
+    const raw = await AsyncStorage.getItem(snapshotCacheKey(stableId));
     return raw ? JSON.parse(raw) as SnapshotCache : {};
   } catch {
     return {};
   }
 }
 
-async function writeSnapshotCache(cache: SnapshotCache): Promise<void> {
+async function writeSnapshotCache(stableId: string, cache: SnapshotCache): Promise<boolean> {
   try {
-    await AsyncStorage.setItem(PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY, JSON.stringify(cache));
-  } catch {}
+    await AsyncStorage.setItem(snapshotCacheKey(stableId), JSON.stringify(cache));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+const reasonPriority: Record<PublicProfileReason, number> = {
+  daily_xp: 0,
+  display_change: 1,
+  entitlement_change: 2,
+};
+
+function mergeQueuedInput(
+  current: QueuedSnapshotInput | null,
+  next: SnapshotInput,
+): QueuedSnapshotInput {
+  const merged: QueuedSnapshotInput = current
+    ? { ...current }
+    : { reason: next.reason, includesDailyXp: false };
+  for (const [key, value] of Object.entries(next)) {
+    if (key !== 'reason' && value !== undefined) (merged as Record<string, unknown>)[key] = value;
+  }
+  if (!current || reasonPriority[next.reason] > reasonPriority[current.reason]) merged.reason = next.reason;
+  merged.includesDailyXp = Boolean(current?.includesDailyXp || next.reason === 'daily_xp');
+  return merged;
+}
+
+function pruneOwnerSyncStates(): void {
+  for (const [key, state] of ownerSyncStates) {
+    if (!isCurrentAccountGeneration(state.token)) ownerSyncStates.delete(key);
+  }
 }
 
 function stableStringify(value: Record<string, unknown>): string {
@@ -98,13 +157,26 @@ function stableStringify(value: Record<string, unknown>): string {
   }, {}));
 }
 
-export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<void> {
+async function syncPublicProfileSnapshotUnsafe(
+  input: QueuedSnapshotInput,
+  accountToken: AccountGenerationToken,
+  ownerState: OwnerSyncState,
+): Promise<void> {
+  const isCurrent = () => isCurrentAccountGeneration(accountToken);
+  if (!isCurrent()) return;
   if (!CLOUD_SYNC_ENABLED || isJestRuntime()) return;
   const db = getFirestore();
   if (!db) return;
 
   const now = Date.now();
-  const cache = await readSnapshotCache();
+  if (!ownerState.cacheLoaded) {
+    ownerState.cache = await readSnapshotCache(accountToken.stableId!);
+    ownerState.cacheLoaded = true;
+  }
+  const cache = ownerState.cache;
+  if (!isCurrent()) return;
+  const xpFresh = cache.xpSyncedAt !== undefined && now - cache.xpSyncedAt < PUBLIC_PROFILE_XP_TTL_MS;
+  if (input.reason === 'daily_xp' && xpFresh && !ownerState.dirty) return;
   const [nameRaw, xpRaw, langRaw, avatarRaw, frameRaw, auraRaw, streakRaw, leagueRaw, weekRaw] = await Promise.all([
     input.name !== undefined ? Promise.resolve(input.name) : readString('user_name'),
     input.totalXp !== undefined ? Promise.resolve(String(input.totalXp)) : readString('user_total_xp'),
@@ -116,6 +188,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     input.leagueId !== undefined ? Promise.resolve(JSON.stringify({ leagueId: input.leagueId ?? 0 })) : readString('league_state_v3'),
     input.weekPoints !== undefined ? Promise.resolve(String(input.weekPoints)) : readString('week_points_v2'),
   ]);
+  if (!isCurrent()) return;
 
   const totalXp = Math.max(0, readNumber(xpRaw, 0));
   const level = getLevelFromXP(totalXp);
@@ -147,6 +220,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     [PROFILE_CARD_PUBLIC_FOCUS_KEY, null],
     [PROFILE_CARD_LEGEND_NO_KEY, null],
   ] as [string, string | null][]);
+  if (!isCurrent()) return;
   const rawProfileLevel = profilePairs[0]?.[1] ?? null;
   const rawTheme = profilePairs[1]?.[1] ?? null;
   const rawMotion = profilePairs[2]?.[1] ?? null;
@@ -159,20 +233,23 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
   const profileCardPublicFocus = normalizeProfileCardPublicFocus(rawFocus);
   const legendNoParsed = Math.floor(Number(rawLegendNo));
   const profileCardLegendNo = Number.isFinite(legendNoParsed) && legendNoParsed > 0 ? legendNoParsed : null;
+  const seasonProfileFrameId = (await loadSeasonCosmetics().catch(() => null))?.frames.includes(SEASON1_FRAME_ID)
+    ? SEASON1_FRAME_ID
+    : null;
+  if (!isCurrent()) return;
 
-  // Блоки статистики уровней II+ («Выучено»/«Арена»/«Путь») — денормализуем в публичный
+  // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
   // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
   // нет — поля не пишем (карточка у других просто не покажет строку, без вранья).
   const lifetimeStats = profileCardLevel >= 2
     ? await readLifetimeProfileStatsCache().catch(() => null)
     : null;
+  if (!isCurrent()) return;
   const cardStatsPayload = lifetimeStats
     ? {
         cardWordsLearned: Math.max(0, Math.floor(lifetimeStats.wordsLearned)),
         cardPhrasesLearned: Math.max(0, Math.floor(lifetimeStats.phrasesLearned)),
-        cardArenaWins: Math.max(0, Math.floor(lifetimeStats.arenaWins)),
-        cardArenaMatches: Math.max(0, Math.floor(lifetimeStats.arenaWins + lifetimeStats.arenaLosses)),
         cardAppDays: Math.max(0, Math.floor(lifetimeStats.appDaysUnion)),
         cardLongestStreak: Math.max(0, Math.floor(lifetimeStats.longestStreakDays)),
       }
@@ -185,8 +262,14 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
   // автоматически денормализуют актуальный флаг без протаскивания его через каждый
   // вызов. Денормализуем только при активном премиум-доступе: истёкший lifetime не
   // должен оставлять «Pro»-плашку у чужих.
-  const rawLifetime = input.isLifetime ?? (isPremium ? await isLifetimePlanLocal().catch(() => cache.isLifetime ?? false) : false);
-  const isLifetime = isPremium && rawLifetime;
+  // зачем: владелец (2026-08-03) — Pro бывает и безденежным (сертификат
+  // «Pro — навсегда», промокод, бессрочная выдача), там isPremium=false.
+  // Раньше гейт стоял только на isPremium и такой человек терял Pro-ауру
+  // в чужих профилях. Истёкший доступ по-прежнему плашку не оставляет.
+  const hasPaidOrGrantedAccess = isPremium || isVip;
+  const rawLifetime = input.isLifetime ?? (hasPaidOrGrantedAccess ? await isLifetimePlanLocal().catch(() => cache.isLifetime ?? false) : false);
+  if (!isCurrent()) return;
+  const isLifetime = hasPaidOrGrantedAccess && rawLifetime;
 
   const displayHash = stableStringify({
     name,
@@ -203,20 +286,24 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     profileCardMotion,
     profileCardPublicFocus,
     profileCardLegendNo,
+    seasonProfileFrameId,
     ...(cardStatsPayload ?? {}),
   });
 
-  const xpFresh = cache.xpSyncedAt !== undefined && now - cache.xpSyncedAt < PUBLIC_PROFILE_XP_TTL_MS;
   if (input.reason === 'daily_xp' && xpFresh && cache.displayHash === displayHash) return;
-  if (input.reason !== 'daily_xp' && cache.displayHash === displayHash) return;
+  if (input.reason !== 'daily_xp' && cache.displayHash === displayHash && (!input.includesDailyXp || xpFresh)) {
+    ownerState.dirty = false;
+    return;
+  }
 
   const stableId = await ensureAnonUser();
-  if (!stableId) return;
-  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  if (!stableId || !isCurrent() || (accountToken?.stableId && accountToken.stableId !== stableId)) return;
+  const stableLink = await ensureStableAuthLinkForStableIdDetailed(stableId);
+  if (!stableLink.ok || stableLink.stableUid !== stableId || !isCurrent()) return;
 
   try {
     const banDoc = await db.collection('banned_users').doc(stableId).get();
-    if (banDoc.exists) return;
+    if (banDoc.exists || !isCurrent()) return;
   } catch {}
 
   // nameLower ДОЛЖЕН обновляться вместе с name. Иначе при merge:true профиль
@@ -244,6 +331,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     profileCardTheme,
     profileCardMotion,
     profileCardPublicFocus,
+    seasonProfileFrameId,
     ...(profileCardLegendNo !== null ? { profileCardLegendNo } : {}),
     ...(cardStatsPayload ?? {}),
     displayHash,
@@ -251,36 +339,72 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     updatedReason: input.reason,
   };
 
+  if (!isCurrent()) return;
   await db.collection('public_profiles').doc(stableId).set(publicPayload, { merge: true });
 
-  try {
-    const arenaAuth = await ensureArenaAuthUid();
-    if (arenaAuth) {
-      await db.collection('arena_profiles').doc(arenaAuth).set({
-        courseTotalXp: totalXp,
-        courseAvatar: avatar,
-        courseFrame: frame,
-        courseAura: aura,
-        courseIsPremium: isPremium,
-        courseIsVip: isVip,
-        courseIsLifetime: isLifetime,
-        courseProfileCardLevel: profileCardLevel,
-        courseProfileCardTheme: profileCardTheme,
-        courseProfileCardMotion: profileCardMotion,
-        courseProfileCardPublicFocus: profileCardPublicFocus,
-        courseDisplayAt: now,
-        mirrorStableId: stableId,
-      }, { merge: true });
-    }
-  } catch {}
-
-  await writeSnapshotCache({
+  if (!isCurrent()) return;
+  const nextCache = {
     displayHash,
     isPremium,
     isVip,
     isLifetime,
-    xpSyncedAt: input.reason === 'daily_xp' ? now : cache.xpSyncedAt,
+    xpSyncedAt: input.includesDailyXp ? now : cache.xpSyncedAt,
+  };
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    const written = await writeSnapshotCache(stableId, nextCache);
+    if (!written || !isCurrentAccountGeneration(accountToken)) return;
+    ownerState.cache = nextCache;
+    ownerState.cacheLoaded = true;
+    ownerState.dirty = false;
   });
 }
+
+/** Public profile mirroring is best-effort and must never reject into UI event handlers. */
+export function syncPublicProfileSnapshot(
+  input: SnapshotInput,
+  accountToken?: AccountGenerationToken,
+): Promise<void> {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return Promise.resolve();
+  pruneOwnerSyncStates();
+  const ownerKey = accountScopeKey(operationToken);
+  if (!ownerKey) return Promise.resolve();
+  let state = ownerSyncStates.get(ownerKey);
+  if (!state) {
+    state = {
+      token: operationToken,
+      pending: null,
+      drain: null,
+      dirty: false,
+      cacheLoaded: false,
+      cache: {},
+    };
+    ownerSyncStates.set(ownerKey, state);
+  }
+  state.pending = mergeQueuedInput(state.pending, input);
+  if (input.reason !== 'daily_xp') state.dirty = true;
+  if (state.drain) return state.drain;
+  const ownerState = state;
+  ownerState.drain = Promise.resolve().then(async () => {
+    while (ownerState.pending && isCurrentAccountGeneration(operationToken)) {
+      const next = ownerState.pending;
+      ownerState.pending = null;
+      try {
+        await syncPublicProfileSnapshotUnsafe(next, operationToken, ownerState);
+      } catch {
+        ownerState.dirty = true;
+      }
+    }
+  }).finally(() => {
+    ownerState.drain = null;
+  });
+  return ownerState.drain;
+}
+
+export const __publicProfileSnapshotTestHooks = {
+  cacheKey: snapshotCacheKey,
+  resetRuntimeState: () => ownerSyncStates.clear(),
+};
 
 export default function __RouteShim() { return null; }

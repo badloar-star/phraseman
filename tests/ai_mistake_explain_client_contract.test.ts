@@ -24,8 +24,16 @@ describe('AI mistake explanation client contract', () => {
     expect(cardSource).toContain('testID="ai-mistake-card"');
     expect(cardSource).toContain('AiLimitUpsellCard');
     expect(cardSource).toContain('testID="ai-mistake-limit-card"');
+    expect(limitCardSource).toContain('TonalSurface');
     expect(limitCardSource).toContain('Получить фулл доступ');
     expect(cardSource).toContain('AiMistakeCardState');
+  });
+
+  it('keeps the mistake breakdown flat and lets its semantic blocks use the full host width', () => {
+    expect(cardSource).not.toContain("import TonalSurface from './TonalSurface'");
+    expect(cardSource).toContain("alignSelf: 'stretch'");
+    expect(cardSource).toContain("width: '100%'");
+    expect(cardSource).not.toContain('padding: 12');
   });
 
   it('suppresses repeat mistake-limit notices after the first one shown today', () => {

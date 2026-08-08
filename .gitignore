@@ -33,7 +33,18 @@ yarn-error.*
 # local env files
 .env
 .env*.local
+# зачем: бэкапы .env (functions/.env.bak-ГГГГММДД и т.п.) содержат боевые ключи
+# OpenAI/RevenueCat/Resend. Без этой строки они попадали в коммит — секреты ушли бы
+# в историю навсегда, с обязательной ротацией всех ключей. Файлы остаются на диске.
+.env.bak*
+*.env.bak*
+.env.backup*
+# зачем: per-project env (functions/.env.<projectId>) — тоже локальная конфигурация,
+# не должна ехать в репозиторий. В истории такой файл уже есть (d70513c77), но там
+# лежат только имена датасетов и флаги, боевых ключей нет — ротация не требуется.
 functions/.env.*
+!functions/.env.example
+!functions/.env*.template
 
 # Telegram Premium bot local secrets/state
 /tools/telegram-premium-bot/config.json
@@ -150,6 +161,7 @@ functions/scripts/diag_*
 # Next.js, and ad-hoc QA scripts. Keep app source and docs visible.
 /coverage/
 /.codex-tmp/
+**/.codex-tmp/
 /.artifacts/
 /.logs/
 /tmp/
@@ -228,6 +240,10 @@ functions/scripts/diag_*
 
 # Compiled JS sourcemaps for Cloud Functions (generated from TypeScript).
 /functions/lib/*.js.map
+# зачем: вложенная сборка /functions/lib/functions/** (180 сгенерированных .js/.map)
+# не покрывалась правилом выше и лезла в коммит. Это артефакт `tsc`, воспроизводимый
+# из исходников — в репозитории ему не место (шум в диффах, конфликты между сессиями).
+/functions/lib/functions/
 
 # Nested tool node_modules (intro_remotion has its own package install).
 /tools/intro_remotion/node_modules/
@@ -309,3 +325,11 @@ _frames/
 
 # Local isolated Codex worktrees
 /.worktrees/
+.superpowers/
+
+# Выжимка контента для генератора турниров — пересобирается на этапе build
+functions/src/generated/tournament_content.json
+
+# Огрызки от упавших правок редактора (*.tsx.tmp.<pid>.<hash>) — мусор,
+# засоряют git status и grep-поиск по проекту.
+*.tmp.[0-9]*.[0-9a-f]*

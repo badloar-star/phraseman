@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Animated, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from './TapScale';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
@@ -15,6 +15,7 @@ import {
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface CoachToastProps {
   category: WordCategory;
   labelRu: string;
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.28,
     shadowRadius: 18,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   headerRow: {
     flexDirection: 'row',

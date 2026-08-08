@@ -42,25 +42,6 @@ describe('normalizeRevenueCatFinancials', () => {
     });
   });
 
-  it('accepts lossless numeric strings from persisted or imported webhook rows', () => {
-    expect(normalizeRevenueCatFinancials({
-      price: '9.99',
-      price_in_purchased_currency: '8.50',
-      currency: 'eur',
-      tax_percentage: '0.20',
-      commission_percentage: '0.15',
-      renewal_number: '2',
-    })).toMatchObject({
-      grossUsdMicros: 9_990_000,
-      grossPurchasedCurrencyMicros: 8_500_000,
-      taxRatePpm: 200_000,
-      commissionRatePpm: 150_000,
-      estimatedProceedsUsdMicros: 6_493_500,
-      renewalNumber: 2,
-      financialCoverage: 'complete',
-    });
-  });
-
   it('does not convert absent or invalid financial values into zero', () => {
     expect(normalizeRevenueCatFinancials({})).toEqual({
       financialSchemaVersion: 1,
@@ -85,10 +66,6 @@ describe('normalizeRevenueCatFinancials', () => {
       price: Number.NaN,
       currency: 'not-a-currency',
       tax_percentage: 3,
-    })).not.toHaveProperty('grossUsdMicros');
-    expect(normalizeRevenueCatFinancials({
-      price: '9.99 USD',
-      tax_percentage: '15%',
     })).not.toHaveProperty('grossUsdMicros');
     expect(normalizeRevenueCatFinancials({
       price: 5,

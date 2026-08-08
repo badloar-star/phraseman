@@ -9,6 +9,7 @@ import {
   Animated,
   Easing,
   Platform,
+  Pressable,
   InteractionManager,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
@@ -19,7 +20,7 @@ import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { usePremium } from './PremiumContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
-import { hapticTap, hapticWarning } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
@@ -28,9 +29,9 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { soundDirector } from '../modules/audio/sound_director';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type NoEnergyModalChrome = {
   glow: string;
   borderColor: string;
@@ -40,7 +41,7 @@ type NoEnergyModalChrome = {
   subtitleColor: string;
 };
 
-const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
+export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
   dark: {
     glow: '#F59E0B',
     borderColor: 'rgba(245,158,11,0.34)',
@@ -59,9 +60,9 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
   },
   coral: {
     glow: '#FF7A66',
-    borderColor: 'rgba(255,100,100,0.40)',
+    borderColor: 'rgba(255,127,80,0.40)',
     surfaceColors: ['rgba(42,20,22,0.90)', 'rgba(22,9,11,0.93)', 'rgba(10,3,5,0.95)'],
-    cardGlowColors: ['rgba(255,122,102,0.28)', 'rgba(255,100,100,0.12)', 'transparent'],
+    cardGlowColors: ['rgba(255,122,102,0.28)', 'rgba(255,127,80,0.12)', 'transparent'],
     titleColor: '#FFF1EF',
     subtitleColor: '#FF9A8E',
   },
@@ -98,10 +99,10 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     subtitleColor: '#A9AECB',
   },
   ember: {
-    glow: '#FFA245',
-    borderColor: 'rgba(255,162,69,0.34)',
+    glow: '#FFCC55',
+    borderColor: 'rgba(255,204,85,0.34)',
     surfaceColors: ['rgba(35,26,18,0.9)', 'rgba(15,11,7,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(255,138,42,0.22)', 'rgba(255,138,42,0.08)', 'transparent'],
+    cardGlowColors: ['rgba(255,176,61,0.22)', 'rgba(255,176,61,0.08)', 'transparent'],
     titleColor: '#FFFFFF',
     subtitleColor: '#C9B4A4',
   },
@@ -114,12 +115,36 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     subtitleColor: '#A7C0B5',
   },
   volt: {
-    glow: '#D6FF3D',
-    borderColor: 'rgba(214,255,61,0.34)',
+    glow: '#C6FF34',
+    borderColor: 'rgba(198,255,52,0.34)',
     surfaceColors: ['rgba(28,32,16,0.9)', 'rgba(12,14,6,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(184,242,34,0.22)', 'rgba(184,242,34,0.08)', 'transparent'],
+    cardGlowColors: ['rgba(168,232,30,0.22)', 'rgba(168,232,30,0.08)', 'transparent'],
     titleColor: '#FFFFFF',
     subtitleColor: '#BFC6A3',
+  },
+  candyBlue: {
+    glow: '#B2D5E5',
+    borderColor: 'rgba(178,213,229,0.34)',
+    surfaceColors: ['rgba(18,34,41,0.90)', 'rgba(11,22,27,0.94)', 'rgba(1,2,3,0.96)'],
+    cardGlowColors: ['rgba(178,213,229,0.22)', 'rgba(178,213,229,0.08)', 'transparent'],
+    titleColor: '#EAF4F8',
+    subtitleColor: '#9DB9C4',
+  },
+  indigo: {
+    glow: '#C8C3FF',
+    borderColor: 'rgba(200,195,255,0.34)',
+    surfaceColors: ['rgba(28,27,46,0.90)', 'rgba(20,19,31,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(200,195,255,0.22)', 'rgba(200,195,255,0.08)', 'transparent'],
+    titleColor: '#F1EFFF',
+    subtitleColor: '#B7B3D9',
+  },
+  sagePorcelain: {
+    glow: 'rgba(49,95,80,0)',
+    borderColor: '#BDC8BD',
+    surfaceColors: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
+    cardGlowColors: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+    titleColor: '#17201D',
+    subtitleColor: '#52605A',
   },
 };
 
@@ -170,7 +195,7 @@ interface Props {
   visible: boolean;
   onClose: () => void;
   /**
-   * Если задано — основная кнопка («Понятно» / «На главную») вызывает это.
+   * Если задано — текстовая кнопка «Позже» вызывает это.
    * Иначе как раньше: `onBackHome ?? onClose`.
    * Нужно, когда `onClose` только закрывает окно (успех покупки за осколки), а «Понятно»
    * должно выполнить другое действие (например выход с урока).
@@ -206,9 +231,8 @@ function NoEnergyModal({
   const { theme: t, themeMode, f } = useTheme();
   const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
   const graphiteRadius = themeMode === 'minimalDark';
-  const isCompassTheme = false;
-  const modalRadius = isCompassTheme ? 10 : graphiteRadius ? 8 : 22;
-  const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
+  const modalRadius = graphiteRadius ? 8 : 22;
+  const buttonRadius = graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;
   const { energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -277,6 +301,10 @@ function NoEnergyModal({
     }
     // Пайволл-персонализация: модалка стала видимой = энергия закончилась.
     incrementEnergyZeroCount();
+    soundDirector.request('pm.energy.empty', {
+      scope: 'no-energy-modal',
+      dedupeKey: 'visible',
+    });
 
     // Все запущенные анимации сохраняем в список и останавливаем в cleanup
     // (Fabric: иначе анимация продолжает driver-update view, который уже
@@ -300,12 +328,11 @@ function NoEnergyModal({
     intro.start();
     running.push(intro);
 
-    const pulse = Animated.loop(
-      Animated.sequence([
-        Animated.timing(haloPulse, { toValue: 1, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-        Animated.timing(haloPulse, { toValue: 0, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-      ]),
-    );
+    // Один мягкий цикл вместо бесконечного pulse молнии.
+    const pulse = Animated.sequence([
+      Animated.timing(haloPulse, { toValue: 1, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+      Animated.timing(haloPulse, { toValue: 0, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+    ]);
     pulse.start();
     running.push(pulse);
 
@@ -321,7 +348,6 @@ function NoEnergyModal({
     }
     if (wasOpenRef.current) return;
     wasOpenRef.current = true;
-    hapticWarning();
     // «Нет энергии» в проде = пользователь уже увидел систему; не дублировать отдельным тутором на главной
     void AsyncStorage.setItem('energy_onboarding_shown', '1');
     emitAppEvent('bug_hunt_eligible_check');
@@ -382,20 +408,28 @@ function NoEnergyModal({
           />
         </View>
 
+        {/* Тап по фону закрывает модалку */}
+        <Pressable
+          style={StyleSheet.absoluteFill}
+          onPress={() => {
+            hapticTap();
+            onClose();
+          }}
+        />
+
         <Animated.View
           style={[
             styles.card,
             {
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : paywallCardBg,
+              backgroundColor: paywallCardBg,
               opacity: cardOp,
               transform: [{ scale: cardScale }],
-              shadowColor: isCompassTheme ? '#000' : art.glow,
-              shadowOpacity: isCompassTheme ? 0.52 : 0.45,
-              shadowRadius: isCompassTheme ? 18 : 24,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : art.borderColor,
+              shadowColor: art.glow,
+              shadowOpacity: 0.45,
+              shadowRadius: 24,
+              borderColor: art.borderColor,
               borderRadius: modalRadius,
             },
-            isCompassTheme && compassShadow(3),
           ]}
         >
           <LinearGradient
@@ -412,8 +446,6 @@ function NoEnergyModal({
             style={styles.cardGlow}
             pointerEvents="none"
           />
-          {isCompassTheme ? <CompassDepthSurface radius={modalRadius} selected /> : null}
-
           {/* Hero icon: молния с pulse-масштабом */}
           <Animated.View
             style={[
@@ -493,28 +525,17 @@ function NoEnergyModal({
             activeOpacity={0.7}
             style={{ paddingVertical: 10, alignItems: 'center', marginTop: 4 }}
           >
-            <Text style={{ fontSize: f.body, color: t.textGhost, textDecorationLine: 'underline' }}>
-              {onBackHome
-                ? triLang(lang, {
-                    ru: 'На главную',
-                    uk: 'На головну',
-                    es: 'Volver al inicio',
-                    'pt-BR': 'Voltar ao início',
-                    vi: 'Về trang chính',
-                    id: 'Kembali ke beranda',
-                    tr: 'Ana sayfaya dön',
-                    pl: 'Na stronę główną',
-                  })
-                : triLang(lang, {
-                    ru: 'Закрыть',
-                    uk: 'Закрити',
-                    es: 'Cerrar',
-                    'pt-BR': 'Fechar',
-                    vi: 'Đóng',
-                    id: 'Tutup',
-                    tr: 'Kapat',
-                    pl: 'Rozumiem',
-                  })}
+            <Text style={{ fontSize: f.body, color: t.textMuted }}>
+              {triLang(lang, {
+                ru: 'Позже',
+                uk: 'Пізніше',
+                es: 'Más tarde',
+                'pt-BR': 'Mais tarde',
+                vi: 'Để sau',
+                id: 'Nanti',
+                tr: 'Daha sonra',
+                pl: 'Później',
+              })}
             </Text>
           </TouchableOpacity>
         </Animated.View>
@@ -544,7 +565,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 20,
+    ...noAndroidOutline,
     overflow: 'hidden',
   },
   cardGlow: {

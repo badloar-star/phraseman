@@ -3,6 +3,8 @@ import { SYNC_KEYS } from './cloud_sync';
 
 const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   'user_name',
+  'generated_nickname_pending_v1',
+  'generated_name_confirmed_v1',
   'onboarding_done',
   'lang',
   'app_lang',

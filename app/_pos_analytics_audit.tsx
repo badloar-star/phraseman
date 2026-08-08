@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -154,7 +154,7 @@ export default function PosAnalyticsAuditScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40, gap: 14 }} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40, gap: 14 }} showsVerticalScrollIndicator={false}>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
             <StatCard label="tokens" value={audit.totalTokens} accent={t.textPrimary} />
             <StatCard label="resolved" value={`${audit.resolvedPct}%`} accent={readyColor} />

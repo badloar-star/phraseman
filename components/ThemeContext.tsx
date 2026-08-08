@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, Theme, ThemeMode } from '../constants/theme';
+import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
+import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
-import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
@@ -115,7 +115,7 @@ export const getVolumetricShadow = (
   level: 1 | 2 | 3 = 2,
 ) => {
   if (themeMode === 'gold') return goldShadow(level);
-  if (false) return compassShadow(level);
+  if (themeMode === 'sagePorcelain') return sagePorcelainShadow(level);
   if (isCinemaMode(themeMode)) return cinemaShadow(level);
   return {
     shadowColor:   '#000000',
@@ -144,7 +144,18 @@ interface ThemeCtx {
   /** Светлые иконки в status bar: тёмные темы + «глубокий» океан/сакура */
   statusBarLight: boolean;
   themeMode:    ThemeMode;
+  /**
+   * «Примерочная» (экран «Темы»): применённая тема без учёта примерки.
+   * `themeMode` выше — эффективная (примеряемая ?? применённая): её читают все
+   * потребители, поэтому тап по теме мгновенно перекрашивает весь экран.
+   */
+  appliedThemeMode: ThemeMode;
+  /** Примеряемая тема; null — примерка выключена. НЕ персистится и не проходит премиум-замок применения. */
+  previewThemeMode: ThemeMode | null;
+  setPreviewThemeMode: (m: ThemeMode | null) => void;
   isGoldThemeUnlocked: boolean;
+  /** «Дедушка»: юзер жил на бесплатной «Полночи» до её ухода в премиум — тема остаётся ему доступной. */
+  isMidnightGrandfathered: boolean;
   toggle:       () => void;  // cycles available app themes
   setThemeMode: (m: ThemeMode) => void;
   fontSize:     FontSize;
@@ -176,7 +187,11 @@ const ThemeContext = createContext<ThemeCtx>({
   isDark:       true,
   statusBarLight: true,
   themeMode:    'dark',
+  appliedThemeMode: 'dark',
+  previewThemeMode: null,
+  setPreviewThemeMode: () => {},
   isGoldThemeUnlocked: false,
+  isMidnightGrandfathered: false,
   toggle:       () => {},
   setThemeMode: () => {},
   fontSize:     'medium',
@@ -208,37 +223,59 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   volt: VOLT,
   business: BUSINESS,
   businessLight: BUSINESS_LIGHT,
+  candyBlue: CANDY_BLUE,
+  indigo: INDIGO,
+  sagePorcelain: SAGE_PORCELAIN,
 };
-const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
-/** Premium themes. Free theme: `midnight`; `gold` is unlocked only by reward. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt'];
+const CYCLE: ThemeMode[] = ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
+/** Premium themes. Free theme: `indigo`; `gold` is unlocked only by reward. */
+// зачем: с 2026-07-27 бесплатная тема-витрина — «Индиго» (выбор владельца);
+// «Полночь» ушла в премиум, но у старых бесплатных юзеров не отбирается —
+// см. флаг-«дедушка» MIDNIGHT_GRANDFATHER_KEY.
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'midnight', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
-const DEFAULT_THEME_MODE: ThemeMode = 'midnight';
+const DEFAULT_THEME_MODE: ThemeMode = 'indigo';
+const MIDNIGHT_GRANDFATHER_KEY = 'app_theme_midnight_grandfather';
 // business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.
-const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight']);
+// vanilla удалена полностью (2026-07-25): владелец решил снять светлую тему из выбора.
+const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla', 'minimalDark', 'candyBlue']);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
   const [themeMode, setThemeModeState] = useState<ThemeMode>(DEFAULT_THEME_MODE);
+  // зачем: «Примерочная» на экране «Тем» — фри-юзер по тапу видит ЛЮБУЮ тему вживую,
+  // применение остаётся под замком setThemeMode. Не персистится, сбрасывается при
+  // выходе с экрана тем (cleanup на unmount экрана).
+  const [previewThemeMode, setPreviewThemeMode] = useState<ThemeMode | null>(null);
+  const effectiveThemeMode = previewThemeMode ?? themeMode;
   // Плоский IG-режим: масштаб интерфейса не применяется, типографика фиксирована.
-  const isFlat = themeMode === 'business' || themeMode === 'businessLight';
+  const isFlat = effectiveThemeMode === 'business' || effectiveThemeMode === 'businessLight';
   const uiScale = isFlat ? 1 : windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
   const [premiumThemeAccess, setPremiumThemeAccess] = useState(false);
+  const [midnightGrandfathered, setMidnightGrandfathered] = useState(false);
 
   useEffect(() => {
-    setOskolokThemeMode(themeMode);
-  }, [themeMode]);
+    // зачем: осколки-виджет красится эффективной темой — примерка честная везде,
+    // при сбросе превью эффект вернёт применённую тему.
+    setOskolokThemeMode(effectiveThemeMode);
+  }, [effectiveThemeMode]);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const pairs = await AsyncStorage.multiGet(['app_theme', 'app_font_size']);
+      const pairs = await AsyncStorage.multiGet(['app_theme', 'app_font_size', MIDNIGHT_GRANDFATHER_KEY]);
       const themeStr = pairs[0]?.[1] ?? null;
       const fontStr = pairs[1]?.[1] ?? null;
+      // зачем: «Полночь» стала премиум, но кто уже жил на ней бесплатно —
+      // получает пожизненный флаг-«дедушка» и не теряет тему после апдейта.
+      const grandfathered = pairs[2]?.[1] === '1' || themeStr === 'midnight';
+      if (grandfathered && pairs[2]?.[1] !== '1') {
+        void AsyncStorage.setItem(MIDNIGHT_GRANDFATHER_KEY, '1');
+      }
       // Тот же смысл, что PremiumProvider: не опираться только на raw premium_active (RC/грейс/оверрайды).
       const [isPremium, hasGoldReward] = await Promise.all([
         getVerifiedPremiumStatus(),
@@ -247,6 +284,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       if (cancelled) return;
       setPremiumThemeAccess(isPremium);
       setGoldThemeUnlocked(hasGoldReward);
+      setMidnightGrandfathered(grandfathered);
       // Миграция: ocean/sakura больше не поддерживаются → заменяем на dark
       let migrated = themeStr;
       if (themeStr === 'ocean' || themeStr === 'sakura') {
@@ -262,12 +300,15 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
       }
       const valid =
-        false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||
-        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt';
+        false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false ||
+        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' ||
+        migrated === 'indigo' || migrated === 'sagePorcelain';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
-        if ((!isPremium && !DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(t)) || goldLocked) {
+        // «Полночь» у «дедушки» премиум-замком не считается.
+        const premiumLocked = PREMIUM_ONLY_THEMES.includes(t) && !(t === 'midnight' && grandfathered);
+        if ((!isPremium && !DEV_THEME_UNLOCKS && premiumLocked) || goldLocked) {
           setThemeModeState(DEFAULT_THEME_MODE);
           void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
         } else {
@@ -299,6 +340,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setThemeMode = useCallback((m: ThemeMode) => {
     if (m === 'gold' && !goldThemeUnlocked && !DEV_THEME_UNLOCKS) return;
+    if (m === 'midnight' && midnightGrandfathered) {
+      // «Дедушка»: старый бесплатный юзер «Полночи» может вернуться на неё всегда.
+      setThemeModeState(m);
+      void AsyncStorage.setItem('app_theme', m);
+      return;
+    }
     if (!DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(m) && !premiumThemeAccess) {
       void getVerifiedPremiumStatus()
         .then((isPremium) => {
@@ -315,12 +362,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     }
     setThemeModeState(m);
     void AsyncStorage.setItem('app_theme', m);
-  }, [goldThemeUnlocked, premiumThemeAccess]);
+  }, [goldThemeUnlocked, premiumThemeAccess, midnightGrandfathered]);
 
   const toggle = useCallback(() => {
     setThemeModeState(m => {
       const cycle = CYCLE.filter((mode) => {
         if (mode === 'gold') return goldThemeUnlocked || DEV_THEME_UNLOCKS;
+        if (mode === 'midnight' && midnightGrandfathered) return true;
         if (PREMIUM_ONLY_THEMES.includes(mode)) return premiumThemeAccess || DEV_THEME_UNLOCKS;
         return true;
       });
@@ -328,7 +376,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });
-  }, [goldThemeUnlocked, premiumThemeAccess]);
+  }, [goldThemeUnlocked, premiumThemeAccess, midnightGrandfathered]);
 
   const setFontSize = useCallback((s: FontSize) => {
     setFontSizeState(s);
@@ -339,17 +387,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     () => createFonts(FONT_SCALE[isFlat ? 'medium' : fontSize] * uiScale),
     [fontSize, uiScale, isFlat],
   );
-  const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
-  const isDark = true;
+  const theme = useMemo(() => THEME_MAP[effectiveThemeMode], [effectiveThemeMode]);
+  const isDark = !isLightThemeMode(effectiveThemeMode);
   const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
-    const isLuxuryTheme = themeMode === 'gold';
-    const isCompassTheme = false;
+    const isLuxuryTheme = effectiveThemeMode === 'gold';
     const radiusBase = isFlat
       // IG-плоскость: меньше скругления, плашки компактнее.
       ? { md: 8, lg: 10, xl: 12, xxl: 16 }
-      : isLuxuryTheme || isCompassTheme
+      : isLuxuryTheme
         ? { md: 10, lg: 12, xl: 14, xxl: 18 }
         : { md: 12, lg: 16, xl: 20, xxl: 24 };
     const noShadow = {
@@ -387,15 +434,21 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
           },
         },
     };
-  }, [uiScale, isDark, themeMode, isFlat]);
+  }, [uiScale, isDark, effectiveThemeMode, isFlat]);
 
   const value = useMemo<ThemeCtx>(
     () => ({
       theme,
       isDark,
       statusBarLight,
-      themeMode,
+      // зачем: наружу уходит эффективная тема (примерка ?? применённая) — так весь
+      // экран перекрашивается мгновенно; применённая доступна как appliedThemeMode.
+      themeMode: effectiveThemeMode,
+      appliedThemeMode: themeMode,
+      previewThemeMode,
+      setPreviewThemeMode,
       isGoldThemeUnlocked: goldThemeUnlocked,
+      isMidnightGrandfathered: midnightGrandfathered,
       toggle,
       setThemeMode,
       fontSize,
@@ -405,7 +458,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
+    [theme, isDark, statusBarLight, effectiveThemeMode, themeMode, previewThemeMode, goldThemeUnlocked, midnightGrandfathered, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

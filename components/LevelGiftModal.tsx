@@ -14,7 +14,7 @@ import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import {
-  Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View,
+  Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { Image } from 'expo-image';
 import {
@@ -22,6 +22,7 @@ import {
   isEnergyBonusGiftId, isPremiumLevelGiftId, rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
+import { emitAppEvent } from '../app/events';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
@@ -36,8 +37,12 @@ import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import PlusBadge from './PlusBadge';
 import {
   RewardModalPanelBackdrop,
+  RewardModalLiquidGlass,
+  rewardModalAccentColor,
   rewardModalPanelBorder,
   rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 import {
@@ -46,7 +51,14 @@ import {
   saveUnclaimedGift,
 } from '../app/level_gift_inventory';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../app/account_generation';
+import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 export {
   CLAIMED_GIFTS_KEY,
   loadClaimedGiftRarities,
@@ -67,8 +79,10 @@ interface Props {
   preRolledGift?: GiftDef;
   /** claim = apply now; inventory = reveal and save for later application */
   deliveryMode?: 'claim' | 'inventory';
+  /** open = show the chest ritual; apply = apply an already revealed inventory gift. */
+  presentationMode?: 'open' | 'apply';
   /** Override cleanup for gifts that are stored in a split source, such as one part of a premium pair. */
-  onGiftClaimed?: (gift: GiftDef) => Promise<void>;
+  onGiftClaimed?: (gift: GiftDef, accountToken: AccountGenerationToken) => Promise<void>;
   /** Whether dismissing the unopened claim modal should save the gift back to inventory. */
   saveOnDismiss?: boolean;
   /** Force premium application semantics for gifts that came from a premium pair. */
@@ -129,6 +143,7 @@ function LevelGiftModal({
   onClose,
   preRolledGift,
   deliveryMode = 'claim',
+  presentationMode = 'open',
   onGiftClaimed,
   saveOnDismiss = true,
   applyAsPremium,
@@ -153,17 +168,33 @@ function LevelGiftModal({
   const shakeAnim  = useRef(new Animated.Value(0)).current;
   const lidLift    = useRef(new Animated.Value(0)).current;
   const orbRise    = useRef(new Animated.Value(0)).current;
+  // зачем: пульсация награды живёт на ОТДЕЛЬНОМ значении от влёта (orbRise).
+  // Раньше цикл гонял сам orbRise 1↔1.12, из-за чего иконка бесконечно
+  // «выезжала» — выглядело как зацикленная анимация появления.
+  const orbPulse   = useRef(new Animated.Value(0)).current;
   const modalEntrance = useRef(new Animated.Value(0)).current;
   const modalGlow = useRef(new Animated.Value(0)).current;
   const idleLoop   = useRef<Animated.CompositeAnimation | null>(null);
   const glowLoop   = useRef<Animated.CompositeAnimation | null>(null);
   const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
   const isVisibleRef = useRef(false);
+  const openingAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const isCurrentOpening = (accountToken: AccountGenerationToken): boolean =>
+    isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken);
 
   // Roll (or use pre-rolled) gift when the modal becomes visible; премиум — отдельный пул
   useEffect(() => {
+    const justOpened = visible && !isVisibleRef.current;
     isVisibleRef.current = visible;
-    if (visible) {
+    if (!visible) {
+      idleLoop.current?.stop();
+      glowLoop.current?.stop();
+      orbHoverLoop.current?.stop();
+      return;
+    }
+    if (!justOpened) return;
+    openingAccountTokenRef.current = captureAccountGeneration();
+    {
       setPhase('box');
       setXpBoostAlreadyActive(false);
       setEnergyBoostAlreadyActive(false);
@@ -173,17 +204,33 @@ function LevelGiftModal({
       if (preRolledGift) {
         setGift(preRolledGift);
       } else {
+        const accountToken = openingAccountTokenRef.current;
         void (async () => {
-          setGift(await rollF2pLevelGiftForUser(level, { studyTarget }));
+          try {
+            const rolledGift = await rollF2pLevelGiftForUser(level, { studyTarget });
+            if (accountToken && isCurrentOpening(accountToken)) setGift(rolledGift);
+          } catch {
+            // Reservation remains unclaimed and can be retried after connectivity returns.
+            if (accountToken && isCurrentOpening(accountToken)) {
+              emitAppEvent('action_toast', {
+                type: 'info',
+                messageRu: 'Подарок не потерян. Подключись к интернету и попробуй открыть его снова.',
+                messageUk: 'Подарунок не втрачено. Підключися до інтернету й спробуй відкрити його знову.',
+                messageEs: 'El regalo sigue guardado. Conéctate a internet e intenta abrirlo de nuevo.',
+              });
+              onClose(false);
+            }
+          }
         })();
       }
-      fadeReveal.setValue(0);
+      fadeReveal.setValue(presentationMode === 'apply' ? 1 : 0);
       scaleAnim.setValue(1);
       shakeAnim.setValue(0);
       floatAnim.setValue(0);
       rockAnim.setValue(0);
       lidLift.setValue(0);
-      orbRise.setValue(0);
+      orbRise.setValue(presentationMode === 'apply' ? 1 : 0);
+      orbPulse.setValue(0);
       modalEntrance.setValue(0);
       modalGlow.setValue(0);
       Animated.spring(modalEntrance, {
@@ -200,12 +247,8 @@ function LevelGiftModal({
         ])
       );
       glowLoop.current.start();
-    } else {
-      idleLoop.current?.stop();
-      glowLoop.current?.stop();
-      orbHoverLoop.current?.stop();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, modalEntrance, modalGlow, studyTarget]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, orbPulse, modalEntrance, modalGlow, presentationMode, studyTarget, onClose]);
 
   useEffect(() => {
     if (!visible || !gift) {
@@ -231,14 +274,18 @@ function LevelGiftModal({
 
   useEffect(() => {
     if (!visible || !storesOnly || !gift) return;
-    void saveUnclaimedGift(level, gift);
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentAccountGeneration(accountToken)) return;
+    void saveUnclaimedGift(level, gift, accountToken);
   }, [visible, storesOnly, level, gift]);
 
   const rock = rockAnim.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
 
-  const handleTap = () => {
+  const handleTap = (skipOpeningAnimation = false) => {
     if (phase !== 'box' || !gift) return;
-    hapticTap();
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
+    if (!skipOpeningAnimation) hapticTap();
     setPhase('opening');
 
     idleLoop.current?.stop();
@@ -253,29 +300,31 @@ function LevelGiftModal({
     const applyP: Promise<ApplyGiftResult> = g.choices?.length || storesOnly
       ? Promise.resolve({ success: true })
       : (async () => {
-          const claimP = (onGiftClaimed ? onGiftClaimed(g) : markGiftClaimed(level))
-            .then(() => saveClaimedGiftRarity(level, g.rarity))
+          const claimP = (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken))
+            .then(() => saveClaimedGiftRarity(level, g.rarity, accountToken))
             .catch(() => {});
           await claimP;
+          if (!isCurrentAccountGeneration(accountToken)) return { success: false };
           const result = await applyGift(
             g,
             userName,
             energy,
             maxEnergy,
             setEnergyFn,
-            { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
+            { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken },
           );
+          if (!isCurrentAccountGeneration(accountToken)) return { success: false };
           if (result.success) {
             // Already claimed optimistically before applying the reward effect.
           } else if (!onGiftClaimed) {
-            await saveUnclaimedGift(level, g);
+            await saveUnclaimedGift(level, g, accountToken);
           }
           return result;
         })();
     const applyResultP: Promise<ApplyGiftResult> = applyP.catch(() => ({ success: false }));
     const updateAppliedMeta = () => {
       void applyResultP.then((result) => {
-        if (!isVisibleRef.current) return;
+        if (!isCurrentOpening(accountToken)) return;
         if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
         if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
         setAppliedResult(result);
@@ -285,32 +334,39 @@ function LevelGiftModal({
     let safetyTimer: ReturnType<typeof setTimeout> | undefined;
     let finalized = false;
     const finalize = () => {
-      if (finalized) return;
+      if (finalized || !isCurrentOpening(accountToken)) return;
       finalized = true;
       if (safetyTimer) clearTimeout(safetyTimer);
       if (storesOnly) {
-        void saveUnclaimedGift(level, g);
+        void saveUnclaimedGift(level, g, accountToken);
       }
       setAppliedResult({ success: true });
       setPhase('reveal');
       fadeReveal.setValue(0);
       orbRise.setValue(0);
+      orbPulse.setValue(0);
       Animated.parallel([
         Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
         Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
       ]).start(() => {
-        // мягкое «дыхание» награды после появления
+        if (!isCurrentOpening(accountToken)) return;
+        // зачем: после влёта — ТОЛЬКО пульсация масштаба на месте.
+        // Никакого вертикального хода, иначе цикл читается как повтор появления.
         orbHoverLoop.current?.stop();
         orbHoverLoop.current = Animated.loop(
           Animated.sequence([
-            Animated.timing(orbRise, { toValue: 1.12, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-            Animated.timing(orbRise, { toValue: 1, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
           ])
         );
         orbHoverLoop.current.start();
       });
       updateAppliedMeta();
     };
+    if (skipOpeningAnimation) {
+      finalize();
+      return;
+    }
     safetyTimer = setTimeout(finalize, LEVEL_GIFT_OPEN_SAFETY_MS);
 
     // Короткая дрожь → крышка отлетает (lidLift) → finalize раскрывает награду.
@@ -331,36 +387,59 @@ function LevelGiftModal({
   };
 
   const handleSkip = async () => {
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
+    if (presentationMode === 'apply') {
+      if (phase === 'opening') return;
+      onClose(phase === 'reveal');
+      return;
+    }
     if (!gift) { onClose(false); return; }
     if (phase === 'opening') return;
     if (storesOnly || saveOnDismiss) {
       // Save as unclaimed so user can pick it up later in the gifts inventory.
-      await saveUnclaimedGift(level, gift);
+      await saveUnclaimedGift(level, gift, accountToken);
+      if (!isCurrentOpening(accountToken)) return;
     }
     onClose(false);
   };
 
   const handleChoice = async (chosen: GiftDef) => {
     if (choiceBusy) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     setChoiceBusy(true);
     setGift(chosen);
     void hapticSuccess();
+    if (presentationMode === 'apply' && phase === 'box') {
+      setChoiceBusy(false);
+      return;
+    }
     if (storesOnly) {
-      void saveUnclaimedGift(level, chosen).catch(() => {});
+      void saveUnclaimedGift(level, chosen, accountToken).catch(() => {});
+      if (!isCurrentOpening(accountToken)) return;
       onClose(false);
       return;
     }
-    setAppliedResult({ success: true });
-    onClose(true);
-    if (isCosmeticGiftId(chosen.id)) {
-      setTimeout(() => router.push('/avatar_select' as any), 80);
+    if (presentationMode === 'apply') {
+      setAppliedResult({ success: true });
+      setChoiceBusy(false);
+    } else {
+      setAppliedResult({ success: true });
+      onClose(true);
+    }
+    if (presentationMode !== 'apply' && isCosmeticGiftId(chosen.id)) {
+      setTimeout(() => {
+        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
     }
     void (async () => {
       try {
-        const claimP = (onGiftClaimed ? onGiftClaimed(chosen) : markGiftClaimed(level))
-          .then(() => saveClaimedGiftRarity(level, chosen.rarity))
+        const claimP = (onGiftClaimed ? onGiftClaimed(chosen, accountToken) : markGiftClaimed(level, accountToken))
+          .then(() => saveClaimedGiftRarity(level, chosen.rarity, accountToken))
           .catch(() => {});
         await claimP;
+        if (!isCurrentAccountGeneration(accountToken)) return;
         const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
         const result = await applyGift(
           chosen,
@@ -368,9 +447,10 @@ function LevelGiftModal({
           energy,
           maxEnergy,
           setEnergyFn,
-          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
+          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken },
         );
-        if (isVisibleRef.current) {
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        if (isCurrentOpening(accountToken)) {
           if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
           if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
           setAppliedResult(result);
@@ -378,21 +458,39 @@ function LevelGiftModal({
         if (result.success) {
           // Already claimed optimistically before applying the reward effect.
         } else if (!onGiftClaimed) {
-          await saveUnclaimedGift(level, chosen);
+          await saveUnclaimedGift(level, chosen, accountToken);
         }
       } catch {
         // The user already saw the optimistic choice; keep retry paths/background logs quiet.
       } finally {
-        if (isVisibleRef.current) setChoiceBusy(false);
+        if (isCurrentOpening(accountToken)) {
+          setChoiceBusy(false);
+        }
       }
     })();
   };
 
+  const closeForCurrentOpening = (claimed: boolean, openAvatar = false) => {
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
+    onClose(claimed);
+    if (openAvatar) {
+      setTimeout(() => {
+        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
+    }
+  };
+
+  const previewingStoredGift = presentationMode === 'apply' && phase === 'box';
+
   if (!visible || !gift) return null;
 
   const rarity      = gift.rarity;
-  const palette     = paletteForRarity(rarity);
-  const accent      = palette.accent;
+  const rarityPalette = paletteForRarity(rarity);
+  const rarityAccent = rarityPalette.accent;
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
+  const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const rarityLabel = giftRarityUiLabel(rarity, lang);
   const showPlusBadge = applyAsPremium === true || isPremiumLevelGiftId(gift.id);
   const cosmeticLabel = cosmeticLabelForLang(appliedResult, lang);
@@ -400,8 +498,11 @@ function LevelGiftModal({
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const glowOpacity = modalGlow.interpolate({ inputRange: [0, 1], outputRange: [0.3, 0.7] });
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
-  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [16, 0, -7] });
-  const orbScale = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [0.2, 1, 1] });
+  // Влёт: снизу вверх, 0.2 → 1. Дальше значение не меняется — иконка стоит на месте.
+  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1], outputRange: [16, 0] });
+  const orbEnterScale = orbRise.interpolate({ inputRange: [0, 1], outputRange: [0.2, 1] });
+  // Пульсация: только масштаб, отдельным значением поверх влёта.
+  const orbPulseScale = orbPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
   // Непрозрачный фон панели — обязателен (modal_opaque_surfaces_contract).
   const solidPanel = rewardModalPanelColors(themeMode, t)[1];
   const canCloseWithIcon = phase !== 'opening' && !choiceBusy;
@@ -409,7 +510,17 @@ function LevelGiftModal({
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={handleSkip}>
-      <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          карточка подарка центрировалась во весь рост без прокрутки. Пока она
+          помещалась — вид верный, но на низком экране обрезалась сверху и
+          снизу вместе с кнопкой, и доскроллить было нечем. ScrollView с
+          flexGrow:1 сохраняет центрирование на больших экранах и даёт
+          прокрутку на маленьких. */}
+      <ScrollView
+        style={{ flex: 1, backgroundColor: screenDim }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
+        showsVerticalScrollIndicator={false}
+      >
         <Animated.View testID="level-gift-modal" style={{
           backgroundColor: solidPanel,
           borderRadius: 30,
@@ -419,26 +530,19 @@ function LevelGiftModal({
           width: 326,
           alignItems: 'center',
           overflow: 'hidden',
-          borderWidth: 1,
-          borderColor: rewardModalPanelBorder(themeMode, t, `${accent}55`),
-          shadowColor: accent,
+          borderWidth: 0,
+          borderColor: rewardModalPanelBorder(themeMode, t),
+          shadowColor: modalAccent,
           shadowOpacity: 0.42,
           shadowRadius: 34,
           shadowOffset: { width: 0, height: 0 },
-          elevation: 24,
+          ...noAndroidOutline,
           transform: [{ scale: modalScale }, { translateY: modalY }],
         }}>
           {/* Базовый материал reward-панели (непрозрачная подложка уже задана выше) */}
           <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
 
-          {/* Декоративный градиент по редкости — поверх непрозрачной подложки */}
-          <LinearGradient
-            pointerEvents="none"
-            colors={[palette.panelTop, palette.panelBottom]}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
-          />
+          <RewardModalLiquidGlass themeMode={themeMode} accent={modalAccent} intensity="strong" />
 
           {/* Верхняя линия-свечение */}
           <Animated.View
@@ -449,14 +553,14 @@ function LevelGiftModal({
               left: 30,
               right: 30,
               height: 1.5,
-              backgroundColor: accent,
+              backgroundColor: modalAccent,
               opacity: glowOpacity,
             }}
           />
-          {/* мягкая верхняя зона редкости */}
+          {/* мягкая верхняя зона активной темы */}
           <View
             pointerEvents="none"
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 80, backgroundColor: palette.accentSoft }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 80, backgroundColor: rewardModalSoftSurface(themeMode, t) }}
           />
 
           {canCloseWithIcon && (
@@ -477,7 +581,7 @@ function LevelGiftModal({
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: 'rgba(3,5,10,0.42)',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: 'rgba(255,255,255,0.18)',
               }}
             >
@@ -486,21 +590,21 @@ function LevelGiftModal({
           )}
 
           {/* Header */}
-          <Text style={{ color: accent, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 5 }}>
+          <Text style={{ color: modalAccent, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 5 }}>
             {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
           </Text>
-          <Text style={{ color: '#FFFFFF', fontSize: f.numMd + 2, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.numMd + 2, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
             {triLang(lang, { ru: 'Подарок за уровень', uk: 'Твій подарунок', es: 'Tu regalo', 'pt-BR': 'Seu presente', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyen', pl: 'Twój prezent' })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
             {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
-          {phase !== 'reveal' ? (
+          {phase !== 'reveal' && !previewingStoredGift ? (
             <>
-              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={handleTap} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
+              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={() => handleTap()} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
                 <GiftBox3D
-                  palette={palette}
+                  palette={rarityPalette}
                   size={LEVEL_GIFT_STAGE_SIZE}
                   idle={phase === 'box'}
                   opening={phase === 'opening'}
@@ -534,18 +638,14 @@ function LevelGiftModal({
                   activeOpacity={0.7}
                   onPress={handleSkip}
                   style={{
-                    marginTop: 18,
-                    paddingVertical: 11,
-                    paddingHorizontal: 22,
-                    borderRadius: 16,
-                    borderWidth: 1,
-                    borderColor: rewardModalPanelBorder(themeMode, t),
-                    backgroundColor: rewardModalSoftSurface(themeMode, t),
+                    marginTop: 14,
+                    paddingVertical: 8,
                     alignItems: 'center',
+                    alignSelf: 'stretch',
                   }}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde', 'pt-BR': 'Receber mais tarde', vi: 'Nhận sau', id: 'Klaim nanti', tr: 'Daha sonra al', pl: 'Odbierz później' })}
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -574,7 +674,7 @@ function LevelGiftModal({
                         onPress={() => { void handleChoice(choice); }}
                         style={{
                           borderRadius: 14,
-                          borderWidth: 1.2,
+                          borderWidth: 0,
                           borderColor: choice.rarity === 'epic' ? '#FFD70088' : choice.rarity === 'rare' ? '#60A5FA88' : t.border,
                           backgroundColor: choice.rarity === 'epic' ? 'rgba(245,158,11,0.12)' : choice.rarity === 'rare' ? 'rgba(37,99,235,0.10)' : t.bgSurface2,
                           paddingVertical: 10,
@@ -604,23 +704,19 @@ function LevelGiftModal({
                   {storesOnly && (
                     <TouchableOpacity
                       testID="level-gift-save-choice-later"
-                      activeOpacity={0.85}
+                      activeOpacity={0.7}
                       onPress={() => {
                         void hapticTap();
-                        onClose(false);
+                        closeForCurrentOpening(false);
                       }}
                       style={{
-                        borderRadius: 14,
-                        paddingVertical: 12,
-                        paddingHorizontal: 22,
-                        borderWidth: 1,
-                        borderColor: t.border,
-                        backgroundColor: t.bgSurface2,
+                        paddingVertical: 8,
                         alignItems: 'center',
+                        alignSelf: 'stretch',
                       }}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                        {triLang(lang, { ru: 'Выбрать позже', uk: 'Вибрати пізніше', es: 'Elegir más tarde', 'pt-BR': 'Escolher depois', vi: 'Chọn sau', id: 'Pilih nanti', tr: 'Sonra seç', pl: 'Wybierz później' })}
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -631,7 +727,7 @@ function LevelGiftModal({
               <View style={{ width: LEVEL_GIFT_STAGE_SIZE, height: LEVEL_GIFT_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>
                 {gift && <GiftOpenBurst key={`${gift.id}-${rarity}-single`} tier={animTierF2p(rarity)} size={LEVEL_GIFT_STAGE_SIZE} />}
                 {gift && (
-                  <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbScale }], zIndex: 2 }}>
+                  <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
                     <Image
                       source={getLevelGiftRewardIcon(gift.id, themeMode)}
                       style={{ width: 108, height: 108 }}
@@ -645,16 +741,16 @@ function LevelGiftModal({
               <View style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                borderWidth: 1,
-                borderColor: `${accent}55`,
+                borderWidth: 0,
+                borderColor: `${rarityAccent}55`,
                 borderRadius: 999,
                 paddingVertical: 5,
                 paddingHorizontal: 12,
-                backgroundColor: palette.accentSoft,
+                backgroundColor: rarityPalette.accentSoft,
                 marginBottom: 8,
               }}>
                 <Text style={{
-                  color: rarity === 'common' ? t.textSecond : accent,
+                  color: rarity === 'common' ? t.textSecond : rarityAccent,
                   fontSize: f.caption,
                   fontWeight: '800',
                   letterSpacing: 1.2,
@@ -665,7 +761,7 @@ function LevelGiftModal({
               </View>
 
               <View style={{ alignItems: 'center', marginBottom: 6, gap: 6 }}>
-                <Text style={{ color: '#FFFFFF', fontSize: f.h2 + 4, fontWeight: '900', textAlign: 'center' }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.h2 + 4, fontWeight: '900', textAlign: 'center' }}>
                   {gift ? giftDisplayTitleForLang(gift, lang) : ''}
                 </Text>
                 {showPlusBadge ? <PlusBadge themeMode={themeMode} size="xs" testID="level-gift-plus-badge" /> : null}
@@ -694,7 +790,7 @@ function LevelGiftModal({
                   paddingVertical: 8,
                   paddingHorizontal: 12,
                   marginBottom: 14,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.border,
                   alignItems: 'center',
                   gap: 8,
@@ -725,7 +821,7 @@ function LevelGiftModal({
                   paddingVertical: 8,
                   paddingHorizontal: 14,
                   marginBottom: 16,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: '#D97706',
                   alignItems: 'center',
                 }}>
@@ -778,7 +874,7 @@ function LevelGiftModal({
                   paddingVertical: 8,
                   paddingHorizontal: 14,
                   marginBottom: 16,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: '#D97706',
                   alignItems: 'center',
                 }}>
@@ -800,21 +896,20 @@ function LevelGiftModal({
                 </View>
               )}
 
-              {!storesOnly && isCosmeticGiftId(gift?.id) && (
+              {!storesOnly && !previewingStoredGift && isCosmeticGiftId(gift?.id) && (
                 <TouchableOpacity
                   testID="level-gift-open-avatar"
                   activeOpacity={0.85}
                   onPress={() => {
                     void hapticSuccess();
-                    onClose(true);
-                    setTimeout(() => router.push('/avatar_select' as any), 80);
+                    closeForCurrentOpening(true, true);
                   }}
                   style={{
                     backgroundColor: t.bgSurface2,
                     borderRadius: 14,
                     paddingVertical: 12,
                     paddingHorizontal: 24,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: t.border,
                     marginBottom: 10,
                   }}
@@ -830,16 +925,38 @@ function LevelGiftModal({
                 activeOpacity={0.85}
                 onPress={() => {
                   void hapticSuccess();
-                  onClose(!storesOnly);
+                  if (previewingStoredGift) {
+                    /**
+                     * зачем 2026-08-03 (владелец: «нажимаем применить — модалка
+                     * обновляется и показывает то же состояние, а должна по
+                     * моей логике закрыться»): здесь стоял голый handleTap(true)
+                     * — он применял подарок и переводил модалку в фазу reveal,
+                     * оставляя её открытой с ТОЙ ЖЕ кнопкой. Игрок видел почти
+                     * не изменившийся экран и был вынужден жать второй раз,
+                     * просто чтобы закрыть.
+                     *
+                     * Применение запускается внутри handleTap и продолжается
+                     * ФОНОМ (applyP не ждёт закрытия), поэтому закрыть модалку
+                     * сразу безопасно: эффект дойдёт до хранилища, а экран
+                     * подарков перезагрузит списки в closeGiftModal.
+                     *
+                     * claimed=true обязателен: он и убирает плитку из
+                     * инвентаря, и запускает перезагрузку вкладки «Активные».
+                     */
+                    handleTap(true);
+                    closeForCurrentOpening(true);
+                    return;
+                  }
+                  closeForCurrentOpening(!storesOnly);
                 }}
                 style={{
                   alignSelf: 'stretch',
                   borderRadius: 18,
                   paddingVertical: 15,
                   alignItems: 'center',
-                  borderWidth: 1,
-                  borderColor: `${accent}66`,
-                  shadowColor: accent,
+                  borderWidth: 0,
+                  borderColor: `${modalAccent}66`,
+                  shadowColor: modalAccent,
                   shadowOpacity: 0.28,
                   shadowRadius: 16,
                   shadowOffset: { width: 0, height: 0 },
@@ -848,15 +965,19 @@ function LevelGiftModal({
               >
                 <LinearGradient
                   pointerEvents="none"
-                  colors={palette.button}
+                  colors={primaryButtonColors}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
                 {/* верхний блик на кнопке */}
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
-                <Text style={{ color: palette.buttonInk, fontSize: f.bodyLg, fontWeight: '900' }}>
-                  {storesOnly
+                <Text style={{ color: primaryButtonText, fontSize: f.bodyLg, fontWeight: '900' }}>
+                  {presentationMode === 'apply' && phase === 'box'
+                    ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
+                    : presentationMode === 'apply'
+                    ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
+                    : storesOnly
                     ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
                     : triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
                 </Text>
@@ -866,7 +987,7 @@ function LevelGiftModal({
             </Animated.View>
           )}
         </Animated.View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }

@@ -1,11 +1,10 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, Text, ViewStyle } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../GoldBevel';
-import CompassDepthSurface from '../CompassDepthSurface';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
+import PressableScale from '../PressableScale';
 
 type PrimaryButtonProps = {
   label: string;
@@ -19,32 +18,31 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
   const { theme: t, f, ds, themeMode } = useTheme();
   const isDisabled = !!disabled || !!loading;
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = false;
-  const hasLuxuryGradient = !isDisabled && (isGoldTheme || isCompassTheme);
+  const hasLuxuryGradient = !isDisabled && isGoldTheme;
   const foreground = isGoldTheme && !isDisabled
     ? t.textOnGold
-    : isCompassTheme && !isDisabled
-      ? COMPASS_RICH.textDark
     : t.correctText;
-  const radius = isCompassTheme ? 9 : ds.radius.lg;
+  const radius = ds.radius.lg;
 
   return (
-    <TouchableOpacity
+    <PressableScale
       onPress={onPress}
       disabled={isDisabled}
-      activeOpacity={0.9}
-      style={[
+      busy={loading}
+      variant="primary"
+      style={styles.pressable}
+      contentStyle={[
         styles.button,
-        isGoldTheme && !isDisabled ? goldShadow(2) : isCompassTheme && !isDisabled ? compassShadow(2) : ds.shadow.soft,
+        isGoldTheme && !isDisabled ? goldShadow(2) : ds.shadow.soft,
         {
           minHeight: ds.buttonHeight,
           borderRadius: radius,
           backgroundColor: isDisabled || !hasLuxuryGradient ? (isDisabled ? t.bgSurface2 : t.accent) : 'transparent',
-          borderTopWidth: hasLuxuryGradient ? 1 : 0,
-          borderLeftWidth: hasLuxuryGradient ? 1 : 0,
-          borderRightWidth: hasLuxuryGradient ? StyleSheet.hairlineWidth : 0,
-          borderBottomWidth: hasLuxuryGradient ? 1 : 0,
-          borderColor: isDisabled ? t.border : isCompassTheme ? COMPASS_RICH.hairlineStrong : GOLD_RICH.hairlineStrong,
+          borderTopWidth: 0,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
+          borderBottomWidth: 0,
+          borderColor: isDisabled ? t.border : GOLD_RICH.hairlineStrong,
           overflow: 'hidden',
         },
         style,
@@ -59,25 +57,16 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
           style={StyleSheet.absoluteFill}
         />
       )}
-      {isCompassTheme && !isDisabled && (
-        <LinearGradient
-          colors={COMPASS_GRADIENTS.primaryButton}
-          locations={COMPASS_SURFACE_LOCATIONS}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFill}
-        />
-      )}
       {isGoldTheme && !isDisabled && <GoldBevel radius={ds.radius.lg} intensity="strong" />}
-      {isCompassTheme && !isDisabled && <CompassDepthSurface radius={radius} cream />}
       <Text style={{ color: foreground, fontSize: f.bodyLg, fontWeight: hasLuxuryGradient ? '800' : '700' }}>{label}</Text>
-    </TouchableOpacity>
+    </PressableScale>
   );
 }
 
 export default memo(PrimaryButton);
 
 const styles = StyleSheet.create({
+  pressable: { width: '100%' },
   button: {
     position: 'relative',
     width: '100%',

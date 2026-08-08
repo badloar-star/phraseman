@@ -1,0 +1,36 @@
+{
+  "patterns": {},
+  "memories": [],
+  "trajectories": [],
+  "errors": {},
+  "file_sequences": [],
+  "agents": {},
+  "edges": [],
+  "stats": {
+    "total_patterns": 0,
+    "total_memories": 0,
+    "total_trajectories": 0,
+    "total_errors": 0,
+    "session_count": 0,
+    "last_session": 0
+  },
+  "embeddingProvenance": null,
+  "activeTrajectories": {
+    "traj_1783673657065_cnqg8b31t": {
+      "id": "traj_1783673657065_cnqg8b31t",
+      "context": "20260710085416-verify-pageman-web-preview-app-l: Verify PageMan web preview: app loads, four tabs are visible, Library opens a bundled book, Quotes screen renders, and admin preview is separately build-verified.",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1783673657066
+    },
+    "traj_1784012919511_47ygtanxf": {
+      "id": "traj_1784012919511_47ygtanxf",
+      "context": "phraseman-approved-aura-mockup-2026-07-14: Open the latest approved Phraseman avatar aura mockup with all approved aura concepts",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1784012919511
+    }
+  }
+}

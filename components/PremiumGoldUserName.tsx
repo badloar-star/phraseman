@@ -2,6 +2,7 @@ import React, { memo, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
 
 type Props = {
   text: string;
@@ -53,7 +54,9 @@ function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
     return `premiumGold_${hash}`;
   }, [display, fontSize]);
 
-  const isSketch = false;
+  // зачем: пик GOLD_STOPS (#FFF4C8) — блик под тёмный фон, на фарфоре ник
+  // «проваливался» в середине. SKETCH-набор — тёмное золото для светлых фонов.
+  const isSketch = isLightThemeMode(themeMode);
   const gradientStops = themeMode === 'business'
     ? MONO_STOPS
     : (isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS);
@@ -102,8 +105,13 @@ function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
 export default memo(PremiumGoldUserName);
 
 const styles = StyleSheet.create({
-  wrap: { alignSelf: 'flex-start', position: 'relative' },
-  svg: { overflow: 'visible' },
+  wrap: {
+    alignSelf: 'flex-start',
+    position: 'relative',
+    maxWidth: '100%',
+    overflow: 'hidden',
+  },
+  svg: { overflow: 'hidden' },
   measure: {
     position: 'absolute',
     opacity: 0,

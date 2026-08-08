@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman · Карточка профиля 2.0 — интерактивная витрина переработки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════ СТРАНИЦА ═══════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#07080B;--ink:#F2F3F7;--mut:#8B8E9D;--dim:#62646F;
+  --spring:cubic-bezier(.34,1.56,.64,1);--ease-out:cubic-bezier(.22,.61,.36,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);padding:56px 40px 90px}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(700px 400px at 12% -5%,rgba(90,110,180,.10),transparent 65%),
+             radial-gradient(700px 500px at 95% 110%,rgba(60,150,140,.07),transparent 65%)}
+.wrap{max-width:1560px;margin:0 auto;position:relative}
+h1{font-size:34px;font-weight:800;letter-spacing:-.8px}
+.lede{margin-top:14px;max-width:920px;font-size:14.5px;line-height:1.65;color:var(--mut)}
+.lede b{color:#C9CBD6;font-weight:600}
+.lvl-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.lvl-legend i{font-style:normal;font-size:11px;font-weight:600;color:#AEB1BE;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+  padding:7px 12px;border-radius:999px}
+.lvl-legend i b{font-weight:800}
+
+.sec{margin-top:74px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.sec-name{display:flex;align-items:baseline;gap:14px}
+.sec-idx{font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--dim)}
+.sec-name h2{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.sec-name h2 em{font-style:normal;font-size:13px;font-weight:600;color:var(--mut);letter-spacing:.06em;margin-left:10px}
+.sec-desc{margin-top:10px;max-width:820px;font-size:13.5px;line-height:1.6;color:var(--mut)}
+.sec-desc b{color:#C9CBD6;font-weight:600}
+.sec-desc code{font-family:inherit;font-size:12px;background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;color:#C9CBD6}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#9FA2B0;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 11px;white-space:nowrap}
+
+.row{display:flex;gap:26px;overflow-x:auto;padding:30px 6px 30px;scroll-snap-type:x mandatory;align-items:flex-start}
+.row::-webkit-scrollbar{height:8px}
+.row::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px}
+.row::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:4px}
+.item{scroll-snap-align:start;flex-shrink:0}
+.cap{margin-top:16px;width:302px}
+.cap b{display:block;font-size:12.5px;font-weight:700}
+.cap span{display:block;font-size:11px;color:var(--mut);margin-top:3px;line-height:1.5}
+
+.notes{margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.note{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:24px}
+.note h3{font-size:14px;font-weight:800;letter-spacing:.02em;margin-bottom:12px}
+.note ul{list-style:none}
+.note li{font-size:12.5px;line-height:1.55;color:var(--mut);padding:5px 0 5px 18px;position:relative}
+.note li::before{content:'';position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.16)}
+.note li b{color:#C9CBD6;font-weight:600}
+.verdict{background:linear-gradient(150deg,rgba(90,166,255,.09),rgba(79,224,200,.05));border-color:rgba(90,166,255,.22)}
+.verdict li::before{background:#5AA6FF}
+
+/* переключатель reduced motion в шапке */
+.rm-switch{display:inline-flex;align-items:center;gap:14px;margin-top:24px;padding:12px 16px;border-radius:16px;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);cursor:pointer;user-select:none;
+  transition:border-color .2s}
+.rm-switch:hover{border-color:rgba(90,166,255,.35)}
+.rm-switch:focus-visible{outline:2px solid #5AA6FF;outline-offset:2px}
+.rm-switch .tumb{width:42px;height:24px;border-radius:999px;background:rgba(255,255,255,.1);position:relative;flex-shrink:0;
+  transition:background-color .2s}
+.rm-switch .tumb::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
+  background:#8B8E9D;transition:transform .25s var(--spring),background-color .2s}
+.rm-switch.on .tumb{background:rgba(90,166,255,.35)}
+.rm-switch.on .tumb::after{transform:translateX(18px);background:#5AA6FF}
+.rm-switch b{font-size:12px}
+.rm-switch span{font-size:10px;color:var(--mut)}
+
+/* пауза вечных циклов, когда страница вне фокуса (бюджет производительности) */
+body.pause .fx{animation-play-state:paused}
+
+/* ═══════════════════════ 01 · HERO — карточка 2.0 (AURORA-METAL) ═══════════════════════ */
+.card{width:302px;border-radius:28px;position:relative;overflow:hidden;padding:18px;
+  background:radial-gradient(120% 55% at 82% -8%,var(--glowT),transparent 62%),
+             radial-gradient(130% 65% at 14% 112%,var(--glowB),transparent 64%),
+             linear-gradient(170deg,#101219,#0A0B10);
+  border:1px solid var(--line)}
+/* вечный FX №1 (все платные уровни): дыхание света снизу — только opacity */
+.fx-breathe{position:absolute;left:0;right:0;bottom:0;height:52%;pointer-events:none;
+  background:radial-gradient(100% 100% at 50% 118%,var(--glowB),transparent 72%);
+  animation:breathe 5s ease-in-out infinite}
+/* вечный FX №2 · Azure: комета — только transform/opacity */
+.fx-comet{position:absolute;top:44px;left:-90px;width:72px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,#fff);transform:rotate(-16deg);opacity:0;
+  animation:comet 7.5s ease-in infinite;pointer-events:none}
+/* вечный FX №2 · Crimson: мерцающие звёзды — только opacity */
+.fx-tw{position:absolute;width:2.5px;height:2.5px;border-radius:50%;background:#fff;pointer-events:none;
+  animation:twinkle 2.8s ease-in-out infinite}
+.c-top{display:flex;align-items:center;gap:8px;position:relative;z-index:6;min-height:44px}
+.c-pill{display:flex;gap:6px;align-items:center;padding:8px 12px;border-radius:999px;
+  background:rgba(8,10,16,.5);border:1px solid var(--line);color:var(--ac);
+  font-size:9.5px;font-weight:800;letter-spacing:.08em;white-space:nowrap}
+/* живой чип щита с III уровня — виден каждый день, как у Duolingo */
+.c-shield{display:flex;gap:6px;align-items:center;padding:8px 12px;border-radius:999px;
+  font-size:9.5px;font-weight:800;letter-spacing:.03em;border:1px solid;white-space:nowrap}
+.c-shield.on{color:#35D07F;background:rgba(53,208,127,.1);border-color:rgba(53,208,127,.32)}
+.c-shield.cool{color:#8B8E9D;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+/* hit-зона 44px (аудит §3.1.7: было 31px) */
+.c-x{margin-left:auto;width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-family:inherit;cursor:pointer;
+  background:rgba(8,10,16,.5);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.78);
+  transition:transform .22s var(--spring),opacity .2s}
+.c-x:active{transform:scale(.94)}
+.c-id{text-align:center;margin:14px 0;position:relative;z-index:2}
+.c-avaw{position:relative;width:88px;height:88px;margin:0 auto 12px}
+.c-ava{position:absolute;inset:5px;border-radius:50%;background:linear-gradient(135deg,#6D5DF6,#9D8CFF);
+  display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff}
+/* кольцо аватара с III — статичное (вращение убрано: экономим вечный цикл) */
+.c-ava.ring{box-shadow:0 0 0 2px var(--line),0 0 22px var(--soft)}
+.c-ava.plain{box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+/* «LV 8» живёт ТОЛЬКО здесь — в статах дубля нет (аудит §3.1.1) */
+.c-lv{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:999px;
+  background:rgba(8,10,16,.78);border:1px solid var(--line);color:var(--ac);
+  font-size:8.5px;font-weight:800;letter-spacing:.08em;white-space:nowrap}
+.c-name{font-size:23px;font-weight:800;letter-spacing:-.3px;position:relative;display:inline-block}
+/* золото V + голо-перелив (::after = вечный FX №2 на Platinum, с паузой вместо бесконечного linear) */
+.c-name.holo{background:linear-gradient(100deg,#E8C86A 15%,#F7E7B0 42%,#C9982F 68%,#E8C86A 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;overflow:hidden}
+.c-name.holo::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.55) 50%,transparent 58%);
+  transform:translateX(-130%);animation:holo 6s ease-in-out infinite}
+.c-chips{display:flex;gap:8px;justify-content:center;margin-top:11px}
+.c-chip{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:999px;font-size:10.5px;font-weight:700}
+.c-chip.plus{background:linear-gradient(120deg,rgba(245,200,66,.18),rgba(245,200,66,.07));
+  border:1px solid rgba(245,200,66,.35);color:#F5C842}
+.c-chip.ttl{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#C9CBD6}
+/* статы: опыт / цепочка / лига — без дубля уровня */
+.c-stats{display:flex;padding:13px 0;margin-bottom:11px;border-radius:16px;position:relative;z-index:2;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075)}
+.c-stat{flex:1;text-align:center;position:relative}
+.c-stat+.c-stat::before{content:'';position:absolute;left:0;top:16%;bottom:16%;width:1px;background:rgba(255,255,255,.08)}
+.c-stat b{display:block;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.c-stat span{font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#8B8E9D;font-weight:600;display:block;margin-top:3px}
+/* модификаторы XP — раскрывающийся ряд чипов (аудит §3.1.4) */
+.c-mods{border-radius:16px;position:relative;z-index:2;background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.075);margin-bottom:11px}
+.c-mods-head{width:100%;display:flex;align-items:center;gap:8px;padding:13px 14px;min-height:44px;
+  background:none;border:none;font-family:inherit;color:var(--ink);cursor:pointer}
+.c-mods-head span{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9A9DAB;font-weight:700}
+.c-mods-head b{margin-left:auto;font-size:15px;font-weight:800;color:#35D07F;font-variant-numeric:tabular-nums}
+.c-mods-head .c-chev{color:#8B8E9D;display:flex;transition:transform .25s var(--spring)}
+.c-mods.open .c-chev{transform:rotate(90deg)}
+.c-mchips{display:none;flex-wrap:wrap;gap:6px;padding:0 14px 13px}
+.c-mods.open .c-mchips{display:flex}
+.c-mchip{font-size:10px;font-weight:600;padding:5px 9px;border-radius:8px;font-variant-numeric:tabular-nums;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);color:#C9CBD6;display:flex;align-items:center;gap:4px}
+.c-mchip.card-bonus{color:var(--ac);background:var(--soft);border-color:var(--line)}
+/* честные лайки при нуле (аудит §2.6.1) */
+.c-likes{display:flex;align-items:center;gap:9px;padding:10px 13px;margin-bottom:11px;border-radius:14px;
+  font-size:10.5px;color:#8B8E9D;border:1px dashed rgba(255,255,255,.14);position:relative;z-index:2;line-height:1.45}
+.c-likes span b{color:#C9CBD6;font-weight:700}
+/* тапабельные блоки-роутеры (аудит §3.1.3): hover-подсветка + стрелка › */
+.c-block{display:flex;align-items:center;gap:11px;padding:12px;margin-top:10px;border-radius:16px;cursor:pointer;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075);position:relative;z-index:2;min-height:56px;
+  transition:transform .22s var(--spring),background-color .2s,border-color .2s}
+.c-block:hover{background:var(--soft);border-color:var(--line)}
+.c-block:active{transform:scale(.98)}
+.c-bico{width:33px;height:33px;border-radius:11px;flex-shrink:0;background:var(--soft);color:var(--ac);
+  display:flex;align-items:center;justify-content:center}
+.c-block b{font-size:12.5px;font-weight:700;display:block;font-variant-numeric:tabular-nums}
+.c-block span{font-size:9px;color:#8B8E9D;display:block;margin-top:1px}
+.c-block .c-arr{margin-left:auto;color:var(--dim);display:flex;flex-shrink:0;
+  transition:transform .22s var(--spring),color .2s}
+.c-block:hover .c-arr{transform:translateX(3px);color:var(--ac)}
+.c-block.leg{background:var(--soft);border-color:var(--line)}
+.c-block.leg b{color:var(--ac);font-size:13.5px}
+/* один primary CTA по состоянию уровня (аудит §3.1.5) */
+.c-cta{width:100%;margin-top:14px;border:none;border-radius:16px;min-height:48px;padding:13px 18px;
+  display:flex;align-items:center;justify-content:center;gap:8px;position:relative;z-index:2;
+  font-family:inherit;font-size:13px;font-weight:800;color:#0A0B10;cursor:pointer;background:var(--ac);
+  transition:transform .22s var(--spring),opacity .2s}
+.c-cta:active{transform:scale(.97)}
+/* состояние «не хватает» — честный тупик прямо на CTA, а не ошибка по тапу */
+.c-cta.lack{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#C9CBD6}
+.c-cta.lack b{color:#F5C842;font-variant-numeric:tabular-nums}
+/* вершина лестницы: виральный CTA */
+.c-cta.share{background:linear-gradient(170deg,#E8C86A,#C9982F)}
+</style>
+<style>
+/* ═══════════════════════ 02 · КНОПКИ ═══════════════════════ */
+.bgrid{display:flex;flex-direction:column;gap:2px;margin-top:30px;min-width:900px}
+.brow{display:grid;grid-template-columns:170px repeat(5,1fr);gap:14px;align-items:center;
+  padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06)}
+.brow+.brow{margin-top:10px}
+.brow-head{background:none;border:none;padding:4px 18px 10px}
+.brow-head span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.bname b{display:block;font-size:13px;font-weight:700}
+.bname span{display:block;font-size:10px;color:var(--mut);margin-top:3px;line-height:1.45}
+.bcell{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:76px;justify-content:center}
+.bcell>span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700}
+/* пунктирная hit-area 44px */
+.hit{border:1.5px dashed rgba(90,166,255,.4);border-radius:50%;padding:3px;display:flex}
+.hit.sq{border-radius:14px}
+/* состояния кнопок */
+.kb{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(170deg,rgba(16,19,28,.88),rgba(10,12,18,.82));
+  border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.78);cursor:pointer;
+  transition:transform .22s var(--spring),border-color .2s,color .2s,opacity .2s;position:relative}
+.kb.pressed{transform:scale(.96)}
+.kb.disabled{opacity:.38;cursor:not-allowed}
+.kb.accent{color:#5AA6FF;border-color:rgba(90,166,255,.42)}
+.kb.like-on{color:#FF5B7F;border-color:rgba(255,91,127,.5)}
+.kb.success{color:#35D07F;border-color:rgba(53,208,127,.5)}
+.kcta{border:none;border-radius:14px;padding:12px 20px;display:flex;align-items:center;gap:8px;
+  font-family:inherit;font-size:12px;font-weight:800;color:#0A0B10;cursor:pointer;white-space:nowrap;
+  background:linear-gradient(170deg,#4FE0C8,#3AC9B2);transition:transform .22s var(--spring),opacity .2s}
+.kcta.pressed{transform:scale(.96)}
+.kcta.disabled{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8B8E9D;cursor:not-allowed}
+.kcta.success{background:linear-gradient(170deg,#35D07F,#2BB96C)}
+.kcta.loading{cursor:progress;opacity:.85}
+.kghost{border-radius:14px;padding:12px 18px;background:transparent;border:1px solid rgba(255,255,255,.16);
+  color:#C9CBD6;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;
+  transition:transform .22s var(--spring),border-color .2s,opacity .2s}
+.kghost.pressed{transform:scale(.96)}
+.kghost.disabled{opacity:.38;cursor:not-allowed}
+/* спиннер — только transform */
+.spin{width:16px;height:16px;border-radius:50%;flex-shrink:0;
+  border:2px solid rgba(255,255,255,.18);border-top-color:currentColor;animation:rot .7s linear infinite}
+.kcta .spin{border-color:rgba(10,11,16,.25);border-top-color:#0A0B10}
+/* живая полоса «потрогайте» */
+.live-strip{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:26px;padding:20px 22px;
+  border-radius:18px;background:linear-gradient(150deg,rgba(90,166,255,.07),rgba(79,224,200,.04));
+  border:1px solid rgba(90,166,255,.18)}
+.live-strip>span{font-size:11px;color:var(--mut);max-width:220px;line-height:1.5}
+.live-strip .kb,.live-strip .kcta,.live-strip .kghost{will-change:transform}
+
+/* ═══════════════════════ 03 · SOCIAL ═══════════════════════ */
+.like-flow{display:flex;gap:26px;margin-top:4px}
+.vs{margin-top:12px;padding:13px 14px;cursor:default}
+.vs-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+.vs-head span{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9A9DAB;font-weight:700}
+.vs-head b{font-size:10px;color:#5AA6FF;font-weight:700}
+.vs-row{margin-top:9px}
+.vs-lbl{display:flex;justify-content:space-between;font-size:10px;color:#8B8E9D;margin-bottom:5px;font-weight:600}
+.vs-lbl b{color:var(--ink);font-variant-numeric:tabular-nums}
+.vs-bars{display:flex;flex-direction:column;gap:3px}
+.vs-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+.vs-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.vs-bar.peer i{background:#5AA6FF}
+.vs-bar.you i{background:rgba(255,255,255,.4)}
+.vs-tag{font-size:8.5px;color:var(--dim);margin-top:2px}
+/* лайк-кнопка social */
+.like-btn{display:flex;align-items:center;gap:8px;border-radius:999px;padding:11px 16px;cursor:pointer;
+  background:linear-gradient(170deg,rgba(255,91,127,.14),rgba(255,91,127,.06));
+  border:1px solid rgba(255,91,127,.4);color:#FF5B7F;font-family:inherit;font-size:12px;font-weight:800;
+  transition:transform .22s var(--spring),opacity .2s;position:relative}
+.like-btn:active{transform:scale(.95)}
+.like-btn.off{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#8B8E9D;cursor:not-allowed}
+.like-btn.pop{animation:likepop .5s var(--spring)}
+.ptcl{position:absolute;width:5px;height:5px;border-radius:50%;pointer-events:none;
+  animation:ptcl .7s ease-out forwards}
+
+/* ═══════════════════════ 04 · MINI ═══════════════════════ */
+.mini-cols{display:flex;gap:26px;align-items:flex-start}
+.mini-panel{flex:1;min-width:300px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:18px}
+.mini-panel h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700;
+  margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.mini-panel h4 em{font-style:normal;color:#5AA6FF;letter-spacing:.02em;text-transform:none}
+.mrow{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:14px;cursor:pointer;
+  transition:background-color .18s,transform .18s var(--spring)}
+.mrow:hover{background:rgba(255,255,255,.045)}
+.mrow:active{transform:scale(.985)}
+.mava{position:relative;width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,#6D5DF6,#9D8CFF)}
+/* микро-кольцо цвета уровня */
+.mava::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--mac,transparent)}
+/* кольца топ-3 зала славы */
+.mava.rank1::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(245,200,66,.75)}
+.mava.rank2::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(199,208,222,.6)}
+.mava.rank3::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(205,146,92,.6)}
+.mshield{position:absolute;right:-2px;bottom:-2px;width:13px;height:13px;border-radius:50%;
+  background:#0A0B10;display:flex;align-items:center;justify-content:center;color:var(--mac)}
+.mname{flex:1;min-width:0}
+.mname b{display:block;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* читаемое золото V — без свечения */
+.gold-name{background:linear-gradient(100deg,#E8C86A 15%,#F7E7B0 42%,#C9982F 68%,#E8C86A 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.mname span{display:block;font-size:10px;color:var(--mut);margin-top:1px}
+.mmetric{text-align:right;flex-shrink:0}
+.mmetric b{display:block;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}
+.mmetric span{display:block;font-size:8.5px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
+.mrank{width:20px;font-size:12px;font-weight:800;color:var(--dim);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums}
+
+/* ═══════════════════════ 05 · UPGRADE ═══════════════════════ */
+.up-panel{width:340px;flex-shrink:0;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
+  border-radius:22px;padding:20px;position:relative;overflow:hidden}
+.up-panel h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.up-panel .sub{font-size:11px;color:var(--mut);line-height:1.5;margin-bottom:16px}
+.up-stepno{position:absolute;top:16px;right:18px;font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--dim)}
+/* flip-сравнение */
+.flip-stage{position:relative;height:300px;margin-bottom:14px}
+.flip-card{position:absolute;inset:0;transition:opacity .35s ease-out,transform .45s var(--spring)}
+.flip-card.back{opacity:0;transform:translateY(10px) scale(.97);pointer-events:none}
+.flip-card.front{opacity:1;transform:translateY(0) scale(1)}
+.flip-toggle{display:flex;gap:0;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.12);margin-bottom:14px}
+.flip-toggle button{flex:1;padding:9px;border:none;background:transparent;color:#8B8E9D;font-family:inherit;
+  font-size:11px;font-weight:700;cursor:pointer;transition:background-color .2s,color .2s}
+.flip-toggle button.on{background:rgba(79,224,200,.14);color:#4FE0C8}
+.mini-card{border-radius:18px;padding:16px;text-align:center;height:100%;
+  background:radial-gradient(120% 55% at 82% -8%,var(--glowT),transparent 62%),
+             radial-gradient(130% 65% at 14% 112%,var(--glowB),transparent 64%),
+             linear-gradient(170deg,#101219,#0A0B10);
+  border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.mini-card .mavaw{width:64px;height:64px;border-radius:50%;position:relative;
+  background:linear-gradient(135deg,#6D5DF6,#9D8CFF);display:flex;align-items:center;justify-content:center;
+  font-size:21px;font-weight:700;color:#fff}
+.mini-card .mavaw::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--line)}
+.mini-card .mnm{font-size:17px;font-weight:800}
+.mini-card .mlv{font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--ac);
+  padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+.mini-card .mperk{font-size:10.5px;color:#8B8E9D;line-height:1.5;max-width:220px}
+.mini-card .mperk b{color:var(--ac)}
+.perk-line{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;line-height:1.5;color:#C9CBD6;
+  padding:11px 13px;border-radius:12px;background:var(--soft,rgba(79,224,200,.08));border:1px solid var(--line,rgba(79,224,200,.3))}
+.perk-line svg{flex-shrink:0;margin-top:1px}
+/* подтверждение */
+.cf-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px}
+.cf-row span{color:#8B8E9D}
+.cf-row b{font-weight:800;font-variant-numeric:tabular-nums}
+.cf-row.total{border-bottom:none;padding-top:12px}
+.cf-row.total b{color:#4FE0C8;font-size:15px}
+/* церемония — статичный кадр burst */
+.burst-frame{position:relative;height:240px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(170deg,#0D0F16,#08090E);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center}
+.burst-iris{position:absolute;width:150px;height:150px;border-radius:50%;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(79,224,200,.5) 0%,rgba(79,224,200,.18) 45%,transparent 70%)}
+.burst-ray{position:absolute;left:50%;top:50%;width:2px;height:110px;transform-origin:top center;
+  background:linear-gradient(180deg,rgba(79,224,200,.55),transparent)}
+.burst-pt{position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50%}
+.burst-card{position:relative;z-index:2;width:120px;height:150px;border-radius:16px;
+  border:1px solid rgba(79,224,200,.5);
+  background:radial-gradient(120% 55% at 82% -8%,rgba(18,183,158,.18),transparent 62%),linear-gradient(170deg,#101219,#0A0B10);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#4FE0C8;letter-spacing:.1em}
+/* живая сцена церемонии */
+.cer-stage{position:relative;height:300px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(170deg,#0D0F16,#08090E);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.cer-dim{position:absolute;inset:0;background:rgba(4,5,8,.55);opacity:0;transition:opacity .15s ease-out;pointer-events:none}
+.cer-card{position:relative;z-index:2;width:190px;border-radius:22px;padding:18px 14px;text-align:center;
+  border:1px solid var(--line,#4a4c55);
+  background:radial-gradient(120% 55% at 82% -8%,var(--glowT,rgba(96,106,128,.1)),transparent 62%),
+             radial-gradient(130% 65% at 14% 112%,var(--glowB,rgba(96,106,128,.13)),transparent 64%),
+             linear-gradient(170deg,#101219,#0A0B10);
+  transition:transform .25s ease-in,opacity .25s ease-in;will-change:transform,opacity}
+.cer-card .cc-ava{width:54px;height:54px;border-radius:50%;margin:0 auto 9px;
+  background:linear-gradient(135deg,#6D5DF6,#9D8CFF);display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:700;color:#fff}
+.cer-card .cc-nm{font-size:15px;font-weight:800}
+.cer-card .cc-lv{margin-top:7px;display:inline-block;font-size:8.5px;font-weight:800;letter-spacing:.1em;
+  color:var(--ac,#94A3B8);padding:4px 10px;border-radius:999px;border:1px solid var(--line,#4a4c55)}
+.cer-card.collapse{transform:scale(.04);opacity:0}
+.cer-card.arrive{transition:transform .4s var(--spring),opacity .2s ease-out}
+.cer-flash{position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;z-index:3;
+  background:radial-gradient(circle,#fff 0%,var(--fc,rgba(79,224,200,.9)) 40%,transparent 72%);
+  transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none}
+.cer-flash.go{transition:transform .2s ease-out,opacity .2s ease-out;transform:translate(-50%,-50%) scale(16);opacity:1}
+.cer-flash.out{transition:opacity .25s ease-out;opacity:0}
+.cer-chips{position:absolute;left:0;right:0;bottom:14px;z-index:4;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:0 12px}
+.cer-chip{font-size:9.5px;font-weight:700;padding:5px 9px;border-radius:8px;color:#4FE0C8;
+  background:rgba(79,224,200,.12);border:1px solid rgba(79,224,200,.35);
+  opacity:0;transform:translateY(10px);transition:opacity .2s ease-out,transform .3s var(--spring)}
+.cer-chip.in{opacity:1;transform:translateY(0)}
+.cer-conf{position:absolute;left:50%;top:42%;width:6px;height:6px;border-radius:2px;z-index:5;pointer-events:none;
+  opacity:0}
+.cer-conf.go{animation:conf .85s ease-out forwards}
+.play-btn{display:inline-flex;align-items:center;gap:9px;border:none;border-radius:14px;padding:13px 22px;
+  font-family:inherit;font-size:13px;font-weight:800;color:#0A0B10;cursor:pointer;
+  background:linear-gradient(170deg,#4FE0C8,#3AC9B2);transition:transform .2s var(--spring),opacity .2s}
+.play-btn:active{transform:scale(.96)}
+.play-btn:disabled{opacity:.5;cursor:wait}
+/* тупик «не хватает» */
+.lack-bar{height:10px;border-radius:6px;background:rgba(255,255,255,.07);overflow:hidden;position:relative;margin:10px 0 8px}
+.lack-bar i{position:absolute;left:0;top:0;bottom:0;width:73%;border-radius:6px;
+  background:linear-gradient(90deg,#4FE0C8,#2E9E8C)}
+.lack-nums{display:flex;justify-content:space-between;font-size:10.5px;color:#8B8E9D;font-variant-numeric:tabular-nums}
+.lack-nums b{color:#4FE0C8}
+.lack-est{margin-top:10px;font-size:11.5px;color:#C9CBD6;line-height:1.55;padding:10px 13px;border-radius:12px;
+  background:rgba(79,224,200,.07);border:1px solid rgba(79,224,200,.2)}
+.lack-est b{color:#4FE0C8}
+
+/* ═══════════════════════ 06 · БОНУСЫ ═══════════════════════ */
+.perk-panel{width:340px;flex-shrink:0;border-radius:22px;padding:20px;position:relative;
+  background:linear-gradient(170deg,rgba(255,255,255,.035),rgba(255,255,255,.015));
+  border:1px solid var(--line)}
+.perk-panel h4{font-size:13px;font-weight:800;display:flex;align-items:center;gap:8px}
+.perk-panel h4 .lv-tag{margin-left:auto;font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--ac);
+  padding:4px 9px;border-radius:999px;border:1px solid var(--line)}
+.perk-panel .psub{font-size:10.5px;color:var(--mut);margin:3px 0 14px}
+.pk-row{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-top:1px solid rgba(255,255,255,.06)}
+.pk-ico{width:30px;height:30px;border-radius:10px;flex-shrink:0;background:var(--soft);color:var(--ac);
+  display:flex;align-items:center;justify-content:center}
+.pk-row b{font-size:12px;font-weight:700;display:block}
+.pk-row span{font-size:10px;color:#8B8E9D;display:block;margin-top:2px;line-height:1.45}
+.pk-state{margin-left:auto;flex-shrink:0;font-size:9px;font-weight:800;letter-spacing:.05em;padding:4px 8px;
+  border-radius:999px;align-self:center;white-space:nowrap}
+.pk-state.on{color:#35D07F;background:rgba(53,208,127,.1);border:1px solid rgba(53,208,127,.3)}
+.pk-state.cool{color:#8B8E9D;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.pk-state.used{color:#F5C842;background:rgba(245,200,66,.09);border:1px solid rgba(245,200,66,.3)}
+.pk-sample{margin-top:12px;padding:11px 13px;border-radius:12px;font-size:11.5px;color:#C9CBD6;line-height:1.5;
+  background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.14)}
+.pk-sample b{color:var(--ac);font-variant-numeric:tabular-nums}
+
+/* ═══════════════════════ 07 · СОБЫТИЯ (тосты) ═══════════════════════ */
+.toast{width:360px;flex-shrink:0;display:flex;gap:13px;align-items:flex-start;border-radius:18px;padding:16px;
+  background:linear-gradient(170deg,rgba(20,23,33,.96),rgba(12,14,20,.96));
+  border:1px solid var(--line,rgba(255,255,255,.12));position:relative;overflow:hidden}
+.toast::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ac,#5AA6FF)}
+.t-crest{width:38px;height:38px;border-radius:12px;flex-shrink:0;background:var(--soft);color:var(--ac);
+  display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.t-body{flex:1;min-width:0}
+.t-body b{display:block;font-size:12.5px;font-weight:800;line-height:1.4}
+.t-body span{display:block;font-size:10.5px;color:#8B8E9D;margin-top:3px;line-height:1.5}
+.t-cta{margin-top:9px;display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:800;
+  color:var(--ac);cursor:pointer;padding:6px 11px;border-radius:9px;border:1px solid var(--line);
+  transition:transform .18s var(--spring),background-color .2s}
+.t-cta:hover{background:var(--soft)}
+.t-cta:active{transform:scale(.95)}
+
+/* ═══════════════════════ 08 · СОСТОЯНИЯ ═══════════════════════ */
+.sk-card{width:320px;border-radius:28px;padding:16px;flex-shrink:0;
+  background:linear-gradient(170deg,#101219,#0A0B10);border:1px solid rgba(255,255,255,.08)}
+.sk{position:relative;overflow:hidden;border-radius:10px;background:rgba(255,255,255,.06)}
+.sk::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.09) 50%,transparent 75%);
+  transform:translateX(-110%);animation:shimmer 1.6s ease-in-out infinite}
+.sk-c{width:88px;height:88px;border-radius:50%;margin:26px auto 13px}
+.sk-l{height:13px;margin:9px auto}
+.state-badge{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;letter-spacing:.05em;
+  padding:6px 10px;border-radius:999px;color:#F5C842;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3)}
+.err-card{width:320px;border-radius:28px;padding:40px 24px;flex-shrink:0;text-align:center;
+  background:linear-gradient(170deg,#101219,#0A0B10);border:1px solid rgba(255,255,255,.08)}
+.err-ico{width:56px;height:56px;border-radius:18px;margin:0 auto 16px;color:#FF6B7E;
+  background:rgba(255,107,126,.1);border:1px solid rgba(255,107,126,.3);
+  display:flex;align-items:center;justify-content:center}
+.err-card h5{font-size:15px;font-weight:800;margin-bottom:6px}
+.err-card p{font-size:11.5px;color:var(--mut);line-height:1.55;margin-bottom:18px}
+.off-note{font-size:9.5px;color:#8B8E9D;margin-top:8px;text-align:center;line-height:1.5;position:relative;z-index:2}
+
+/* ═══════════════════════ 09 · МОУШН ═══════════════════════ */
+.mo-panel{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:22px;margin-top:26px}
+.mo-panel h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.mo-panel .sub{font-size:11px;color:var(--mut);line-height:1.5;margin-bottom:18px;max-width:640px}
+.mo-lanes{display:flex;flex-direction:column;gap:12px}
+.mo-lane{display:flex;align-items:center;gap:14px}
+.mo-lane>span{width:170px;flex-shrink:0;font-size:11px;font-weight:700;color:#C9CBD6}
+.mo-lane>span em{display:block;font-style:normal;font-size:9.5px;color:var(--dim);font-weight:600;margin-top:2px}
+.mo-track{flex:1;height:34px;border-radius:10px;background:rgba(255,255,255,.04);position:relative;overflow:hidden}
+.mo-puck{position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:8px;will-change:transform;
+  background:linear-gradient(170deg,#5AA6FF,#3A7BE0)}
+.mo-lane:nth-child(2) .mo-puck{background:linear-gradient(170deg,#4FE0C8,#2E9E8C)}
+.mo-lane:nth-child(3) .mo-puck{background:linear-gradient(170deg,#F5C842,#D8A72E)}
+.mo-lane:nth-child(4) .mo-puck{background:linear-gradient(170deg,#FF6B7E,#D84A5E)}
+.mo-track.run .p-linear{animation:drive .9s linear forwards}
+.mo-track.run .p-ease{animation:drive .9s var(--ease-out) forwards}
+.mo-track.run .p-spring{animation:drive .9s var(--spring) forwards}
+.mo-track.run .p-steps{animation:drive .9s cubic-bezier(.7,-0.4,.3,1.4) forwards}
+/* диаграмма хореографии церемонии */
+.tl{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.tl-row{display:flex;align-items:center;gap:12px}
+.tl-row>span{width:190px;flex-shrink:0;font-size:10.5px;font-weight:700;color:#C9CBD6;text-align:right;line-height:1.3}
+.tl-row>span em{display:block;font-style:normal;color:var(--dim);font-weight:600;font-size:9px}
+.tl-track{flex:1;height:22px;position:relative;background:rgba(255,255,255,.03);border-radius:6px}
+.tl-bar{position:absolute;top:3px;bottom:3px;border-radius:5px;display:flex;align-items:center;padding:0 8px;
+  font-size:8.5px;font-weight:800;letter-spacing:.05em;white-space:nowrap;overflow:hidden}
+.tl-scale{display:flex;justify-content:space-between;margin-left:202px;font-size:8.5px;color:var(--dim);
+  font-variant-numeric:tabular-nums;margin-top:4px}
+
+/* ═══════════════════════ АНИМАЦИИ — только transform / opacity ═══════════════════════ */
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes comet{0%,70%{transform:translateX(0) rotate(-16deg);opacity:0}76%{opacity:1}
+  90%{transform:translateX(440px) rotate(-16deg);opacity:0}100%{opacity:0}}
+@keyframes twinkle{0%,100%{opacity:.12}50%{opacity:.9}}
+@keyframes holo{0%{transform:translateX(-130%)}26%{transform:translateX(130%)}100%{transform:translateX(130%)}}
+@keyframes rot{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{transform:translateX(-110%)}60%,100%{transform:translateX(110%)}}
+@keyframes likepop{0%{transform:scale(1)}35%{transform:scale(1.18)}70%{transform:scale(.94)}100%{transform:scale(1)}}
+@keyframes ptcl{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+@keyframes conf{0%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1}
+  100%{transform:translate(var(--dx),var(--dy)) rotate(var(--rr)) scale(.7);opacity:0}}
+@keyframes drive{0%{transform:translateX(0)}100%{transform:translateX(var(--dist))}}
+
+/* ═══════════════════════ REDUCED MOTION ═══════════════════════ */
+/* переключатель в шапке: класс на body гасит ВСЕ вечные циклы */
+body.rm .fx,body.rm .c-name.holo::after,body.rm .sk::after,body.rm .spin{animation:none!important}
+body.rm .cer-card,body.rm .flip-card,body.rm .kb,body.rm .kcta,body.rm .kghost,
+body.rm .like-btn,body.rm .c-cta,body.rm .c-block,body.rm .cer-chip{transition-duration:.15s!important}
+body.rm .mo-track.run .mo-puck{animation-duration:.01s!important}
+/* уважение системной настройки */
+@media (prefers-reduced-motion:reduce){
+  .fx,.c-name.holo::after,.sk::after{animation:none!important}
+  .spin{animation-duration:1.6s!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Карточка профиля 2.0 — интерактивная витрина переработки</h1>
+  <p class="lede">Полная система из 7 поверхностей и 14 режимов по аудиту v2: стиль <b>AURORA-METAL</b>
+  (глубина света AURORA + «металл растёт с уровнем» из EMBLEM + дисциплина NOIR). Все исправления аудита
+  видны прямо в макетах: <b>«LV 8» только на аватаре</b>, живой чип щита с III уровня, раскрывающиеся
+  модификаторы XP, тапабельные блоки-роутеры, честные лайки при нуле, один primary CTA по состоянию уровня,
+  тап-зоны от 44px и моушн-система с reduced-motion из коробки. Данные персонажа везде одни:
+  <b>Nzn · Explorer · PLUS · 16K опыта · Lv.8 · цепочка 13 · Серебряная лига · ×2.95 · 330 💠</b>.</p>
+  <div class="lvl-legend">
+    <i><b>0</b> · Standard</i><i><b>I</b> · Pro — 200 💠</i><i><b>II</b> · Teal — 450 💠 · +2% XP</i>
+    <i><b>III</b> · Azure — 800 💠 · щит стрика</i><i><b>IV</b> · Crimson — 1400 💠 · +5% осколков</i>
+    <i><b>V</b> · Platinum — 2400 💠 · золотое имя + праздник</i>
+  </div>
+  <div class="rm-switch" id="rmSwitch" role="switch" aria-checked="false" tabindex="0">
+    <div class="tumb"></div>
+    <div><b>Reduced motion</b><br><span>глушит вечные циклы; церемония → кросс-фейд (секция 09)</span></div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ 01 · HERO ═══════════════════════ -->
+<section class="sec" id="s-hero">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">01</span><h2>HERO<em>карточка 2.0 на всех 6 уровнях</em></h2></div>
+      <p class="sec-desc">Своя карточка (R1–R4). Исправления аудита §3.1: <b>«LV 8» живёт только на аватаре</b>
+      (в статах — опыт / цепочка / лига, дубля нет); с III уровня в шапке <b>живой чип щита</b> — «Щит активен»
+      или «перезарядка · 4 дн» (виден каждый день, как у Duolingo); «Модификаторы XP» — <b>раскрывающийся ряд
+      чипов</b> (тапните на II–V); блоки «Выучено / Арена / Путь / Легенда» — <b>тапабельные роутеры</b> со
+      стрелкой › и hover-подсветкой; лайков 0 → <b>«Пока нет лайков»</b> вместо витрины нуля; внизу <b>один
+      primary CTA</b>: «Улучшить до следующего · цена 💠», состояние «не хватает N 💠» (баланс 330 💠),
+      на V — «Поделиться карточкой». Вечных FX не более двух: breathe + один уровневый
+      (комета Azure · звёзды Crimson · голо-перелив имени Platinum).</p>
+    </div>
+    <div class="tags"><span class="tag">R1–R4</span><span class="tag">1 primary CTA</span><span class="tag">щит III+</span><span class="tag">≤ 2 вечных FX</span></div>
+  </div>
+  <div class="row" id="row-hero"></div>
+</section>
+
+<!-- ═══════════════════════ 02 · КНОПКИ ═══════════════════════ -->
+<section class="sec" id="s-buttons">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">02</span><h2>КНОПКИ<em>анатомия во всех состояниях</em></h2></div>
+      <p class="sec-desc">Каждая кнопка карточки в состояниях <b>default / pressed / disabled / loading / success</b>.
+      Пунктирная рамка — <b>тап-зона 44×44px</b> (аудит §3.1.7: было 31px). Pressed — <code>scale(.96)</code>
+      с пружинным возвратом <code>cubic-bezier(.34,1.56,.64,1)</code>; loading — спиннер (только rotate);
+      success — чек. Кнопка «Апгрейд» на уровне V не рендерится вовсе (мёртвой кнопки больше нет),
+      а «не хватает осколков» — отдельное честное состояние CTA, а не ошибка по тапу.</p>
+    </div>
+    <div class="tags"><span class="tag">44px hit-area</span><span class="tag">spring .96→1</span><span class="tag">5 состояний</span></div>
+  </div>
+  <div class="row" style="padding-bottom:10px">
+    <div class="bgrid" id="btnGrid"></div>
+  </div>
+  <div class="live-strip">
+    <span><b style="color:#C9CBD6">Живая полоса.</b> Зажмите любую кнопку — сжатие .96, отпустите — пружинный возврат с лёгким overshoot.</span>
+    <button class="kb" data-live aria-label="Закрыть"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="kb accent" data-live aria-label="Апгрейд"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    <button class="kb" data-live data-like aria-label="Лайк"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-8-4.9-8-10.2C4 7 6.2 5 8.7 5c1.5 0 2.7.8 3.3 2 .6-1.2 1.8-2 3.3-2C17.8 5 20 7 20 10.3c0 5.3-8 10.2-8 10.2z"/></svg></button>
+    <button class="kcta" data-live>Улучшить до II · 450 💠</button>
+    <button class="kghost" data-live>Как заработать</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 03 · SOCIAL ═══════════════════════ -->
+<section class="sec" id="s-social">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">03</span><h2>SOCIAL<em>чужая карточка · Mira, Azure III</em></h2></div>
+      <p class="sec-desc">Режимы R8–R10. Чужая экономика скрыта: <b>ни цен, ни кнопки апгрейда</b>. Кнопка лайка
+      имеет три состояния и показывает их <b>заранее</b> (аудит §2.6.2): можно лайкнуть / «Вернись завтра»
+      (лимит 1 в день исчерпан, disabled) / момент тапа — сердце заливается с пружинным pop и вылетающими
+      частицами (один раз). Новый блок <b>«vs вы»</b>: компактные бары — его цепочка 31 против ваших 13,
+      опыт, лига. Чужой счётчик лайков показывается, т.к. ≥ 3 (правило §2.6.1).</p>
+    </div>
+    <div class="tags"><span class="tag">R8–R10</span><span class="tag">лайк-лимит виден</span><span class="tag">vs вы</span><span class="tag">pop + частицы</span></div>
+  </div>
+  <div class="row" id="row-social"></div>
+</section>
+
+<!-- ═══════════════════════ 04 · MINI ═══════════════════════ -->
+<section class="sec" id="s-mini">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">04</span><h2>MINI<em>строки списков: Зал славы · Клуб · Друзья</em></h2></div>
+      <p class="sec-desc">Режим S3. Строка = аватар с <b>микро-кольцом цвета уровня</b>, имя (<b>золотой
+      градиент при V</b> — читаемый, без свечения, аудит §2.7.1), <b>одна контекстная метрика</b> на строку
+      (XP в Зале славы, вклад за неделю в клубе, цепочка в друзьях), бейдж <b>щит-точка у III+</b>.
+      В Зале славы у топ-3 — кольца золото/серебро/бронза поверх кольца уровня.
+      <b>Вечных анимаций нет вообще</b> — списки скроллятся без композиторной нагрузки (аудит §3.3.1).</p>
+    </div>
+    <div class="tags"><span class="tag">S3</span><span class="tag">0 вечных FX</span><span class="tag">золото V</span><span class="tag">щит-точка III+</span></div>
+  </div>
+  <div class="row" style="align-items:stretch">
+    <div class="mini-cols" style="min-width:1080px">
+      <div class="mini-panel">
+        <h4>Зал славы <em>метрика: опыт</em></h4>
+        <div class="mrow"><span class="mrank">1</span>
+          <div class="mava rank1" style="--mac:#EDEFF4">A</div>
+          <div class="mname"><b class="gold-name">Arina</b><span>Легенда № 9 · Platinum</span></div>
+          <div class="mmetric"><b>31K</b><span>опыт</span></div></div>
+        <div class="mrow"><span class="mrank">2</span>
+          <div class="mava rank2" style="--mac:#5AA6FF">M<span class="mshield" id="ms1"></span></div>
+          <div class="mname"><b>Mira</b><span>Azure III</span></div>
+          <div class="mmetric"><b>24K</b><span>опыт</span></div></div>
+        <div class="mrow"><span class="mrank">3</span>
+          <div class="mava rank3" style="--mac:#4FE0C8">N</div>
+          <div class="mname"><b>Nzn</b><span>Teal II · вы</span></div>
+          <div class="mmetric"><b>16K</b><span>опыт</span></div></div>
+        <div class="mrow"><span class="mrank">4</span>
+          <div class="mava" style="--mac:#94A3B8">K</div>
+          <div class="mname"><b>Kesha</b><span>Standard</span></div>
+          <div class="mmetric"><b>14K</b><span>опыт</span></div></div>
+      </div>
+      <div class="mini-panel">
+        <h4>Клуб «Полиглоты» <em>метрика: вклад за неделю</em></h4>
+        <div class="mrow">
+          <div class="mava" style="--mac:#EDEFF4">A</div>
+          <div class="mname"><b class="gold-name">Arina</b><span>Легенда № 9</span></div>
+          <div class="mmetric"><b>2 140</b><span>XP / нед</span></div></div>
+        <div class="mrow">
+          <div class="mava" style="--mac:#5AA6FF">M<span class="mshield" id="ms2"></span></div>
+          <div class="mname"><b>Mira</b><span>Azure III</span></div>
+          <div class="mmetric"><b>1 860</b><span>XP / нед</span></div></div>
+        <div class="mrow">
+          <div class="mava" style="--mac:#FF6B7E">D<span class="mshield" id="ms3"></span></div>
+          <div class="mname"><b>Dana</b><span>Crimson IV</span></div>
+          <div class="mmetric"><b>1 590</b><span>XP / нед</span></div></div>
+        <div class="mrow">
+          <div class="mava" style="--mac:#9FB4CC">R</div>
+          <div class="mname"><b>Roma</b><span>Pro I</span></div>
+          <div class="mmetric"><b>980</b><span>XP / нед</span></div></div>
+      </div>
+      <div class="mini-panel">
+        <h4>Друзья <em>метрика: цепочка</em></h4>
+        <div class="mrow">
+          <div class="mava" style="--mac:#5AA6FF">M<span class="mshield" id="ms4"></span></div>
+          <div class="mname"><b>Mira</b><span>Azure III</span></div>
+          <div class="mmetric"><b>31</b><span>дней</span></div></div>
+        <div class="mrow">
+          <div class="mava" style="--mac:#EDEFF4">A</div>
+          <div class="mname"><b class="gold-name">Arina</b><span>Platinum V</span></div>
+          <div class="mmetric"><b>54</b><span>дней</span></div></div>
+        <div class="mrow">
+          <div class="mava" style="--mac:#4FE0C8">S</div>
+          <div class="mname"><b>Stas</b><span>Teal II</span></div>
+          <div class="mmetric"><b>9</b><span>дней</span></div></div>
+        <div class="mrow">
+          <div class="mava" style="--mac:#94A3B8">L</div>
+          <div class="mname"><b>Lena</b><span>Standard</span></div>
+          <div class="mmetric"><b>3</b><span>дня</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 05 · UPGRADE ═══════════════════════ -->
+<section class="sec" id="s-upgrade">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">05</span><h2>UPGRADE<em>полный флоу 0 → I → II → … → V</em></h2></div>
+      <p class="sec-desc">Режимы R11–R14 как четыре шага рядом. <b>(а) Превью</b> — карточка уже нового уровня
+      + flip-сравнение «было/станет» + строка бонуса из ТЗ. <b>(б) Подтверждение</b> — цена, остаток после
+      покупки, защита от двойного тапа. <b>(в) Церемония</b> — статичный кадр burst-а (ирис, лучи, 12 частиц)
+      и живая кнопка <b>«▶ Проиграть церемонию»</b>: сжатие в точку света 250мс → вспышка 200мс → разворот
+      пружиной 400мс → каскад чипов stagger 60мс → конфетти один раз. <b>(г) Тупик «не хватает»</b> —
+      полноценный экран с прогрессом накопления и роутами заработка, а не тост об ошибке (аудит §2.5.4).</p>
+    </div>
+    <div class="tags"><span class="tag">R11–R14</span><span class="tag">flip был/станет</span><span class="tag">1200мс церемония</span><span class="tag">тупик = экран</span></div>
+  </div>
+  <div class="row">
+
+    <!-- (а) Превью уровня -->
+    <div class="item"><div class="up-panel">
+      <span class="up-stepno">ШАГ 1 · R11</span>
+      <h4>Превью уровня II · Teal</h4>
+      <div class="sub">Карточка показана уже нового уровня. Переключатель — flip-сравнение «было / станет».</div>
+      <div class="flip-toggle" id="flipToggle">
+        <button data-f="0">Было · I Pro</button>
+        <button data-f="1" class="on">Станет · II Teal</button>
+      </div>
+      <div class="flip-stage" id="flipStage">
+        <div class="flip-card back" id="flipOld">
+          <div class="mini-card" style="--ac:#9FB4CC;--line:rgba(159,180,204,.4);--glowT:rgba(77,110,158,.2);--glowB:rgba(77,110,158,.3)">
+            <div class="mavaw">N</div><div class="mnm">Nzn</div>
+            <div class="mlv">I · PRO</div>
+            <div class="mperk">Стальной акцент, бейдж I в списках</div>
+          </div>
+        </div>
+        <div class="flip-card front" id="flipNew">
+          <div class="mini-card" style="--ac:#4FE0C8;--line:rgba(79,224,200,.4);--glowT:rgba(18,183,158,.18);--glowB:rgba(18,183,158,.3)">
+            <div class="mavaw">N</div><div class="mnm">Nzn</div>
+            <div class="mlv">II · TEAL</div>
+            <div class="mperk">+ блок «Выучено», свечение глубже, <b>бонус +2% XP</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="perk-line" style="--soft:rgba(79,224,200,.08);--line:rgba(79,224,200,.3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4FE0C8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18.5 10l-4.8 1.4L12 16l-1.7-4.6L5.5 10l4.8-1.4L12 4z"/></svg>
+        <div><b>+ бонус: +2% XP всегда.</b> Чип «Карточка ×1.02» появится в модификаторах XP — бонус виден каждый день.</div>
+      </div>
+    </div>
+    <div class="cap"><b>(а) Превью · R11</b><span>flip «было/станет» — кросс-фейд + пружина; бонус из ТЗ §2 виден до покупки, а не после</span></div></div>
+
+    <!-- (б) Подтверждение -->
+    <div class="item"><div class="up-panel">
+      <span class="up-stepno">ШАГ 2 · R12</span>
+      <h4>Подтверждение списания</h4>
+      <div class="sub">Прозрачная арифметика до тапа. Кнопка блокируется после первого нажатия (идемпотентный ключ запроса — аудит §2.8.3).</div>
+      <div class="cf-row"><span>Апгрейд</span><b>I Pro → II Teal</b></div>
+      <div class="cf-row"><span>Цена</span><b>450 💠</b></div>
+      <div class="cf-row"><span>Баланс сейчас</span><b>330 💠</b></div>
+      <div class="cf-row total"><span>После покупки</span><b>не хватает 120 💠</b></div>
+      <div style="display:flex;gap:8px;margin-top:18px">
+        <button class="kcta disabled" style="flex:1;justify-content:center" disabled>Недостаточно осколков</button>
+        <button class="kghost">Отмена</button>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button class="kcta" style="flex:1;justify-content:center" id="cfDemo">Демо: хватает · 200 💠</button>
+      </div>
+      <div class="sub" style="margin:10px 0 0;font-size:10px">Нажмите «Демо» — кнопка уйдёт в loading → success (защита от гонки апгрейда).</div>
+    </div>
+    <div class="cap"><b>(б) Подтверждение · R12</b><span>цена + остаток после; disabled-CTA объясняет причину, демо-кнопка показывает loading → success</span></div></div>
+
+    <!-- (в) Церемония -->
+    <div class="item"><div class="up-panel">
+      <span class="up-stepno">ШАГ 3 · R13</span>
+      <h4>Церемония успеха</h4>
+      <div class="sub">Слева — статичный кадр burst-а. Справа — живая сцена: нажмите «▶ Проиграть» (1200мс хореографии, конфетти один раз, без loop).</div>
+      <div style="display:flex;gap:12px;margin-bottom:14px">
+        <div class="burst-frame" style="flex:1;height:300px">
+          <div class="burst-iris"></div>
+          <div class="burst-ray" style="transform:rotate(0deg)"></div>
+          <div class="burst-ray" style="transform:rotate(45deg)"></div>
+          <div class="burst-ray" style="transform:rotate(90deg)"></div>
+          <div class="burst-ray" style="transform:rotate(135deg)"></div>
+          <div class="burst-ray" style="transform:rotate(180deg)"></div>
+          <div class="burst-ray" style="transform:rotate(225deg)"></div>
+          <div class="burst-ray" style="transform:rotate(270deg)"></div>
+          <div class="burst-ray" style="transform:rotate(315deg)"></div>
+          <div class="burst-pt" style="background:#4FE0C8;transform:translate(-52px,-70px)"></div>
+          <div class="burst-pt" style="background:#fff;transform:translate(40px,-84px)"></div>
+          <div class="burst-pt" style="background:#4FE0C8;transform:translate(66px,-30px)"></div>
+          <div class="burst-pt" style="background:#F5C842;transform:translate(-74px,-18px)"></div>
+          <div class="burst-pt" style="background:#4FE0C8;transform:translate(58px,38px)"></div>
+          <div class="burst-pt" style="background:#fff;transform:translate(-60px,44px)"></div>
+          <div class="burst-pt" style="background:#4FE0C8;transform:translate(14px,72px)"></div>
+          <div class="burst-pt" style="background:#F5C842;transform:translate(-20px,-96px)"></div>
+          <div class="burst-pt" style="background:#4FE0C8;transform:translate(80px,8px)"></div>
+          <div class="burst-pt" style="background:#fff;transform:translate(-84px,16px)"></div>
+          <div class="burst-pt" style="background:#4FE0C8;transform:translate(30px,-52px)"></div>
+          <div class="burst-pt" style="background:#F5C842;transform:translate(-38px,66px)"></div>
+          <div class="burst-card">II · TEAL</div>
+        </div>
+        <div class="cer-stage" style="flex:1;margin-bottom:0" id="cerStage">
+          <div class="cer-dim" id="cerDim"></div>
+          <div class="cer-card" id="cerCard" style="--ac:#9FB4CC;--line:rgba(159,180,204,.4);--glowT:rgba(77,110,158,.2);--glowB:rgba(77,110,158,.3)">
+            <div class="cc-ava">N</div><div class="cc-nm">Nzn</div><div class="cc-lv" id="cerLv">I · PRO</div>
+          </div>
+          <div class="cer-flash" id="cerFlash" style="--fc:rgba(79,224,200,.9)"></div>
+          <div class="cer-chips" id="cerChips">
+            <div class="cer-chip">+2% XP всегда</div>
+            <div class="cer-chip">Блок «Выучено»</div>
+            <div class="cer-chip">Бейдж II</div>
+          </div>
+        </div>
+      </div>
+      <button class="play-btn" id="cerPlay">▶ Проиграть церемонию</button>
+    </div>
+    <div class="cap"><b>(в) Церемония · R13</b><span>кадр burst-а статикой + живая JS-хореография 1200мс; при reduced-motion — кросс-фейд 200мс</span></div></div>
+
+    <!-- (г) Тупик «не хватает» -->
+    <div class="item"><div class="up-panel">
+      <span class="up-stepno">ШАГ 4 · R14</span>
+      <h4>Не хватает осколков</h4>
+      <div class="sub">Не ошибка, а план: виден прогресс накопления и понятные роуты заработка.</div>
+      <div class="cf-row"><span>Цель</span><b>II Teal · 450 💠</b></div>
+      <div class="lack-bar"><i></i></div>
+      <div class="lack-nums"><span><b>330 / 450 💠</b> накоплено</span><span>осталось <b style="color:#F5C842">120 💠</b></span></div>
+      <div class="lack-est">При вашем темпе (~60 💠/нед) уровень II откроется <b>~ через 2 недели</b>. Вызовы дня ускорят путь.</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <button class="kcta" style="justify-content:center">Заработать в вызовах дня</button>
+        <button class="kghost" style="text-align:center">Магазин осколков</button>
+      </div>
+    </div>
+    <div class="cap"><b>(г) Тупик · R14</b><span>прогресс-бар 330/450, честный срок «~2 недели», два позитивных CTA вместо тоста об ошибке</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 06 · БОНУСЫ ═══════════════════════ -->
+<section class="sec" id="s-perks">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">06</span><h2>БОНУСЫ<em>панель «Твои бонусы» II–V</em></h2></div>
+      <p class="sec-desc">Поверхность S5. Каждый бонус имеет постоянное место в UI — «виден каждый день», иначе он не ощущается
+      (ТЗ §1). Уровень II: чип <b>«Карточка ×1.02»</b> живёт в модификаторах XP, накопленный бонус показан строкой
+      (аудит §2.4.3). Уровень III: щит во <b>всех трёх состояниях</b> — «активна» / «перезарядка · 4 дн» /
+      «сработал вчера · спас цепочку 13 🔥» (аудит §2.3.4 — UI обязан их различать; §2.5.1 — щит виден каждый день,
+      как у Duolingo). Уровень IV: бонус осколков виден в момент начисления — <b>«+42 💠 · бонус карточки +2»</b>,
+      расчёт от агрегата против эксплойта дробления (аудит §2.1). Уровень V: золотое имя + «Праздник легенды»
+      с анти-фармом подарков (аудит §2.2).</p>
+    </div>
+    <div class="tags"><span class="tag">S5</span><span class="tag">виден каждый день</span><span class="tag">3 состояния щита</span><span class="tag">кумулятивно</span></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="perk-panel" style="--ac:#4FE0C8;--soft:rgba(79,224,200,.1);--line:rgba(79,224,200,.35)">
+      <h4>Твои бонусы <span class="lv-tag">II · TEAL</span></h4>
+      <div class="psub">Бонусы кумулятивные и работают всегда, пока уровень активен.</div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18.5 10l-4.8 1.4L12 16l-1.7-4.6L5.5 10l4.8-1.4L12 4z"/></svg></div>
+        <div><b>+2% XP всегда</b><span>Чип «Карточка ×1.02» живёт в модификаторах XP — бонус виден каждый день, а не в день покупки.</span></div>
+        <span class="pk-state on">активен</span>
+      </div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V2H6.5A2.5 2.5 0 004 4.5v15z"/><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"/></svg></div>
+        <div><b>Блок «Выучено»</b><span>1 240 слов · 318 фраз — тапабельный роутер в статистику.</span></div>
+        <span class="pk-state on">открыт</span>
+      </div>
+      <div class="pk-sample">Сегодня карточка добавила <b>+14 XP</b> к начислениям · итог модификаторов <b>×2.95 → ×3.01</b></div>
+    </div>
+    <div class="cap"><b>II · Teal — +2% XP</b><span>чип «Карточка ×1.02» в модификаторах; накопленный бонус отдельной строкой (аудит §2.4.3)</span></div></div>
+
+    <div class="item"><div class="perk-panel" style="--ac:#5AA6FF;--soft:rgba(90,166,255,.1);--line:rgba(90,166,255,.38)">
+      <h4>Защита цепочки <span class="lv-tag">III · AZURE</span></h4>
+      <div class="psub">Авто-заморозка 1 раз в 7 дней. Игрок всегда понимает, что со щитом.</div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/></svg></div>
+        <div><b>Щит активен</b><span>Пропустишь день — цепочка 13 🔥 будет спасена автоматически, без ручных действий.</span></div>
+        <span class="pk-state on">активна</span>
+      </div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/></svg></div>
+        <div><b>Перезарядка</b><span>Щит спасает ОДИН пропущенный день, затем восстанавливается 7 дней (аудит §2.3.1).</span></div>
+        <span class="pk-state cool">перезарядка · 4 дн</span>
+      </div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/></svg></div>
+        <div><b>Сработал вчера</b><span>Спас цепочку 13 🔥 — вместо сброса сработала авто-заморозка.</span></div>
+        <span class="pk-state used">спас цепочку</span>
+      </div>
+      <div class="pk-sample">Щит карточки расходуется <b>первым</b>, купленные заморозки — в последнюю очередь (аудит §2.3.3).</div>
+    </div>
+    <div class="cap"><b>III · Azure — щит стрика</b><span>три состояния различимы: активна / перезарядка · 4 дн / сработал вчера</span></div></div>
+
+    <div class="item"><div class="perk-panel" style="--ac:#FF6B7E;--soft:rgba(255,107,126,.09);--line:rgba(255,107,126,.38)">
+      <h4>Твои бонусы <span class="lv-tag">IV · CRIMSON</span></h4>
+      <div class="psub">Карточка начинает «окупаться» — бонус виден в каждом начислении.</div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M12 21L8.5 9l2-6M12 21L15.5 9l-2-6"/></svg></div>
+        <div><b>+5% осколков со всех начислений</b><span>Бонус считается от агрегата, а не от каждой мелочи — эксплойт дробления закрыт (аудит §2.1).</span></div>
+        <span class="pk-state on">активен</span>
+      </div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/></svg></div>
+        <div><b>Включает II + III</b><span>+2% XP и щит цепочки продолжают работать — бонусы кумулятивные.</span></div>
+        <span class="pk-state on">наследуется</span>
+      </div>
+      <div class="pk-sample">Пример начисления: <b>+42 💠 · бонус карточки +2</b> — игрок видит, что карточка работает на него.</div>
+    </div>
+    <div class="cap"><b>IV · Crimson — осколки ×1.05</b><span>бонус виден в момент начисления (ТЗ §3.3); selling point — «до Легенды раньше», а не окупаемость</span></div></div>
+
+    <div class="item"><div class="perk-panel" style="--ac:#EDEFF4;--soft:rgba(237,239,244,.08);--line:rgba(237,239,244,.4)">
+      <h4>Статус легенды <span class="lv-tag">V · PLATINUM</span></h4>
+      <div class="psub">Социальная вершина: бонус видят ДРУГИЕ.</div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.8 3.2L12 6l5.2 5.7L21 8.5V17H3V8.5z"/><path d="M4 20h16"/></svg></div>
+        <div><b>Золотое имя в списках</b><span>Зал славы, клуб и друзья видят имя золотым градиентом — читаемым, без свечения (аудит §2.7.1).</span></div>
+        <span class="pk-state on">в списках</span>
+      </div>
+      <div class="pk-row">
+        <div class="pk-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4 0 6.8-2.6 6.8-6.4 0-3-1.9-5.4-3.4-6.9-.5 1-1.3 1.8-2.4 2.3.3-2.5-.6-6-3.5-8 .2 3-1 4.6-2.3 6.2C5.9 10.9 5.2 12.7 5.2 14.4 5.2 18.6 8 22 12 22z"/></svg></div>
+        <div><b>«Праздник легенды»</b><span>Анонс в клубе + каждый друг получает +5 💠. Подарок — только друзьям старше 30 дней, кап 20 (анти-фарм, аудит §2.2).</span></div>
+        <span class="pk-state used">Легенда № 17</span>
+      </div>
+      <div class="pk-sample">🎉 <b>Nzn стал Легендой № 17!</b> Друзья получают +5 💠</div>
+    </div>
+    <div class="cap"><b>V · Platinum — золото + праздник</b><span>вершина продаётся признанием: золотое имя видят все, праздник раздаёт +5 💠 друзьям</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 07 · СОБЫТИЯ ═══════════════════════ -->
+<section class="sec" id="s-events">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">07</span><h2>СОБЫТИЯ<em>тосты и клубная лента</em></h2></div>
+      <p class="sec-desc">Поверхность S6. Единый шаблон события: <b>герб уровня слева + копия + CTA там, где уместно</b>
+      (аудит §4.1.5). Спасение стрика приходит утром после срабатывания щита — эмоциональный пик бонуса III.
+      Начисление с бонусом показывает карточку «работающей» (ТЗ §3.3). Анонс «Праздника легенды» —
+      виральный: друзья получают +5 💠 и видят вершину лестницы (ТЗ §3.4); rate-limit ленты — не более
+      1 анонса на клуб в час (аудит §2.7.2).</p>
+    </div>
+    <div class="tags"><span class="tag">S6</span><span class="tag">единый шаблон</span><span class="tag">герб + копия + CTA</span></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="toast" style="--ac:#5AA6FF;--soft:rgba(90,166,255,.1);--line:rgba(90,166,255,.38)">
+      <div class="t-crest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/></svg></div>
+      <div class="t-body">
+        <b>🛡 Карточка спасла цепочку!</b>
+        <span>Вчерашний день был пропущен, но щит Azure III сработал: цепочка 13 🔥 сохранена. Перезарядка — 7 дней.</span>
+        <span class="t-cta">Отлично</span>
+      </div>
+    </div>
+    <div class="cap"><b>Спасение стрика · III+</b><span>тост утром после авто-заморозки (ТЗ §3.2) — без него игрок не узнает, что щит сработал</span></div></div>
+
+    <div class="item"><div class="toast" style="--ac:#FF6B7E;--soft:rgba(255,107,126,.09);--line:rgba(255,107,126,.38)">
+      <div class="t-crest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M12 21L8.5 9l2-6M12 21L15.5 9l-2-6"/></svg></div>
+      <div class="t-body">
+        <b>+42 💠 · бонус карточки +2</b>
+        <span>Награда за вызов дня. Crimson IV добавил +5% — карточка окупается на глазах.</span>
+        <span class="t-cta">К бонусам</span>
+      </div>
+    </div>
+    <div class="cap"><b>Начисление с бонусом · IV+</b><span>формат «+N · бонус карточки +M» из ТЗ §3.3 — виден в момент каждого начисления</span></div></div>
+
+    <div class="item"><div class="toast" style="--ac:#E8C86A;--soft:rgba(232,200,106,.09);--line:rgba(232,200,106,.38)">
+      <div class="t-crest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.8 3.2L12 6l5.2 5.7L21 8.5V17H3V8.5z"/><path d="M4 20h16"/></svg></div>
+      <div class="t-body">
+        <b>🎉 Nzn стал Легендой № 17!</b>
+        <span>Друзья получают +5 💠. Анонс в клубной ленте — все видят вершину лестницы и хотят туда же.</span>
+        <span class="t-cta">Поздравить</span>
+      </div>
+    </div>
+    <div class="cap"><b>«Праздник легенды» · V</b><span>виральность вершины (ТЗ §3.4); rate-limit: не более 1 анонса на клуб в час (аудит §2.7.2)</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 08 · СОСТОЯНИЯ ═══════════════════════ -->
+<section class="sec" id="s-states">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">08</span><h2>СОСТОЯНИЯ<em>загрузка · офлайн · ошибка</em></h2></div>
+      <p class="sec-desc">Режимы R5–R7 (аудит §2.8). <b>Скелетон</b>: shimmer только на transform (translateX) — дешёвый
+      даже на слабом Android, никаких пустых модалок при медленной сети. <b>Офлайн</b>: бейдж свежести
+      «обновлено 12 мин назад», апгрейд и лайк disabled с пояснением — действия вернутся с сетью.
+      <b>Ошибка</b>: понятная копия, один CTA «Повторить», честное напоминание, что уровень карточки
+      хранится серверно и прогресс в безопасности.</p>
+    </div>
+    <div class="tags"><span class="tag">R5–R7</span><span class="tag">shimmer = transform</span><span class="tag">disabled с причиной</span></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="sk-card" aria-label="Карточка загружается">
+      <div class="sk sk-c"></div>
+      <div class="sk sk-l" style="width:44%"></div>
+      <div class="sk sk-l" style="width:62%"></div>
+      <div class="sk" style="height:54px;margin-top:16px;border-radius:14px"></div>
+      <div class="sk" style="height:44px;margin-top:10px;border-radius:14px"></div>
+      <div class="sk" style="height:44px;margin-top:10px;border-radius:14px"></div>
+      <div class="sk" style="height:48px;margin-top:14px;border-radius:16px"></div>
+    </div>
+    <div class="cap"><b>R5 · Загрузка</b><span>скелетон повторяет анатомию карточки; shimmer — чистый transform, без layout-анимаций</span></div></div>
+
+    <div class="item"><div class="sk-card" style="text-align:center">
+      <span class="state-badge">● офлайн · обновлено 12 мин назад</span>
+      <div class="c-id" style="margin-top:16px">
+        <div class="c-avaw"><div class="c-ava plain">N</div>
+          <div class="c-lv" style="--ac:#4FE0C8;--line:rgba(79,224,200,.4)">LV 8</div></div>
+        <div class="c-name">Nzn</div>
+      </div>
+      <div class="c-stats">
+        <div class="c-stat"><b>16K</b><span>опыт</span></div>
+        <div class="c-stat"><b>13</b><span>цепочка</span></div>
+        <div class="c-stat"><b style="font-size:13px;line-height:22px">Серебряная</b><span>лига</span></div>
+      </div>
+      <button class="c-cta lack" disabled style="opacity:.45;cursor:not-allowed">Улучшить до III · 800 💠</button>
+      <button class="like-btn off" disabled style="width:100%;justify-content:center;margin-top:10px;min-height:46px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-8-4.9-8-10.2C4 7 6.2 5 8.7 5c1.5 0 2.7.8 3.3 2 .6-1.2 1.8-2 3.3-2C17.8 5 20 7 20 10.3c0 5.3-8 10.2-8 10.2z"/></svg>
+        Лайкнуть
+      </button>
+      <div class="off-note">Офлайн: апгрейд и лайки недоступны —<br>вернутся автоматически с сетью</div>
+    </div>
+    <div class="cap"><b>R6 · Офлайн</b><span>данные помечены свежестью, деструктивные действия заблокированы с причиной (аудит §2.8.2)</span></div></div>
+
+    <div class="item"><div class="err-card">
+      <div class="err-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg></div>
+      <h5>Не удалось загрузить карточку</h5>
+      <p>Данные не пришли с сервера. Прогресс в безопасности: уровень карточки и баланс осколков хранятся серверно.</p>
+      <button class="kcta" style="width:100%;justify-content:center;min-height:48px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
+        Повторить
+      </button>
+    </div>
+    <div class="cap"><b>R7 · Ошибка</b><span>один понятный CTA вместо мёртвой пустой модалки (аудит §2.8.1)</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 09 · МОУШН ═══════════════════════ -->
+<section class="sec" id="s-motion">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">09</span><h2>МОУШН<em>«лучше Duolingo, дешевле Duolingo»</em></h2></div>
+      <p class="sec-desc">Моушн-система аудита §4.2. <b>(а)</b> Три одинаковые плашки проезжают один путь за 900мс —
+      разница только в кривой: linear механичен, ease-out вежлив, <b>пружина живая</b>. <b>(б)</b> Диаграмма
+      хореографии церемонии 1200мс — каждый этап только на transform/opacity. <b>(в)</b> Reduced motion —
+      переключатель в шапке страницы + уважение системной настройки: вечные циклы гаснут одним классом
+      на body, церемония деградирует до кросс-фейда 200мс.</p>
+    </div>
+    <div class="tags"><span class="tag">transform/opacity only</span><span class="tag">пружины</span><span class="tag">reduced motion</span></div>
+  </div>
+
+  <div class="mo-panel">
+    <h4>(а) Три кривые — один путь</h4>
+    <div class="sub">Одинаковые плашки, одинаковое расстояние, 900мс. Все интерактивные отклики карточки
+    (тап scale .96, появление, стрелки) используют пружину — ощущение «физики» = ощущение качества.</div>
+    <div class="mo-lanes">
+      <div class="mo-lane"><span>linear<em>механично · так НЕ надо</em></span><div class="mo-track"><div class="mo-puck p-linear"></div></div></div>
+      <div class="mo-lane"><span>ease-out<em>cubic-bezier(.22,.61,.36,1)</em></span><div class="mo-track"><div class="mo-puck p-ease"></div></div></div>
+      <div class="mo-lane"><span>пружина<em>cubic-bezier(.34,1.56,.64,1) · наш стандарт</em></span><div class="mo-track"><div class="mo-puck p-spring"></div></div></div>
+    </div>
+    <button class="play-btn" id="moPlay" style="margin-top:18px">▶ Проиграть</button>
+  </div>
+
+  <div class="mo-panel">
+    <h4>(б) Хореография церемонии апгрейда · 1200 мс</h4>
+    <div class="sub">Последовательность из аудита §4.2.4. Конфетти — 12 частиц один раз, без loop.
+    Живое воспроизведение — в секции 05(в), кнопка «▶ Проиграть церемонию».</div>
+    <div class="tl">
+      <div class="tl-row"><span>Затемнение сцены<em>150мс · opacity</em></span>
+        <div class="tl-track"><div class="tl-bar" style="left:0%;width:10%;background:rgba(139,142,157,.35);color:#C9CBD6">dim</div></div></div>
+      <div class="tl-row"><span>Сжатие в точку света<em>250мс · ease-in</em></span>
+        <div class="tl-track"><div class="tl-bar" style="left:10%;width:16.7%;background:rgba(90,166,255,.5);color:#0A0B10">scale → 0.04</div></div></div>
+      <div class="tl-row"><span>Вспышка-ирис<em>200мс · цвет уровня</em></span>
+        <div class="tl-track"><div class="tl-bar" style="left:26.7%;width:13.3%;background:rgba(79,224,200,.65);color:#0A0B10">flash</div></div></div>
+      <div class="tl-row"><span>Разворот пружиной<em>400мс · spring</em></span>
+        <div class="tl-track"><div class="tl-bar" style="left:40%;width:26.7%;background:rgba(79,224,200,.32);color:#C9CBD6">spring overshoot</div></div></div>
+      <div class="tl-row"><span>Каскад чипов бонусов<em>stagger 60мс</em></span>
+        <div class="tl-track"><div class="tl-bar" style="left:66.7%;width:12%;background:rgba(245,200,66,.45);color:#0A0B10">×3</div></div></div>
+      <div class="tl-row"><span>Конфетти<em>12 частиц · один раз</em></span>
+        <div class="tl-track"><div class="tl-bar" style="left:66.7%;width:23.3%;background:rgba(255,107,126,.38);color:#C9CBD6">без loop</div></div></div>
+    </div>
+    <div class="tl-scale"><span>0</span><span>300</span><span>600</span><span>900</span><span>1200</span><span>1500 мс</span></div>
+  </div>
+
+  <div class="mo-panel">
+    <h4>(в) Reduced motion — из коробки</h4>
+    <div class="sub">Переключатель в шапке страницы вешает класс <code>rm</code> на body: все вечные CSS-циклы
+    (breathe, комета, звёзды, голо-перелив, shimmer) получают animation:none, пружинные переходы сжимаются
+    до 150мс, живая церемония заменяется кросс-фейдом 200мс. Системная настройка
+    <code>prefers-reduced-motion:reduce</code> уважается автоматически — переключатель включится сам при загрузке.</div>
+    <button class="play-btn" id="rmDemo">Переключить reduced motion</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ЧЕМ ЭТО ЛУЧШЕ DUOLINGO ═══════════════════════ -->
+<section class="sec" id="s-notes">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">10</span><h2>ЧЕМ ЭТО ЛУЧШЕ DUOLINGO<em>итоговые принципы</em></h2></div>
+    </div>
+    <div class="tags"><span class="tag">итог</span></div>
+  </div>
+  <div class="notes" style="margin-top:26px">
+    <div class="note">
+      <h3>Хореография против статики</h3>
+      <ul>
+        <li>Карточка не «рендерится», а <b>разворачивается</b>: церемония 1200мс с этапами и каскадом чипов stagger 60мс</li>
+        <li>Появление элементов — translateY 12→0 + fade со stagger 45мс, как хороший монтаж</li>
+        <li>Duolingo выигрывает последовательностью — берём тот же приём и докручиваем пружинами</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Пружины против linear</h3>
+      <ul>
+        <li>Любой тап = scale .96 с пружинным возвратом <b>cubic-bezier(.34,1.56,.64,1)</b> и лёгким overshoot</li>
+        <li>Ни одной бесконечной linear-анимации: голо-перелив 6s ease-in-out с паузой вместо 7s linear (аудит §3.3.5)</li>
+        <li>Разница видна в секции 09(а) — три кривые на одном пути</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Reduced motion из коробки</h3>
+      <ul>
+        <li>Переключатель в шапке + уважение <b>prefers-reduced-motion</b> без единой строчки в компонентах</li>
+        <li>Вечные циклы гаснут одним классом на body, церемония деградирует до кросс-фейда 200мс</li>
+        <li>У конкурентов анимации либо есть, либо их нет; у нас — <b>управляемый спектр</b></li>
+      </ul>
+    </div>
+    <div class="note verdict">
+      <h3>Бюджет производительности</h3>
+      <ul>
+        <li>Только <b>transform/opacity</b> — ни layout-анимаций, ни backdrop-filter (полупрозрачные градиенты вместо)</li>
+        <li>Не более <b>2 вечных циклов</b> на карточку; в списках MINI — ноль вечных FX</li>
+        <li>Пауза вечных циклов при уходе страницы из фокуса (visibilitychange)</li>
+        <li>Тап-зоны ≥ 44px, числа — tabular-nums</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+/* ═══════════ ДАННЫЕ (реальные значения персонажа) ═══════════ */
+const U = {
+  name:'Nzn', title:'Explorer', plus:true,
+  xp:'16K', streak:'13', likes:0, league:'Серебряная',
+  xpTotal:'×2.95', mods:[['Лига','×1.5'],['Цепочка','×1.4'],['Подарок','×2.0']],
+  learned:'1 240 · 318', learnedSub:'слов · фраз — в статистику',
+  arena:'27 · 64%', arenaSub:'побед · винрейт — на арену',
+  path:'214 · 31', pathSub:'дней · рекорд — к цепочке',
+  legendNo:'№ 17', legendSub:'зал славы легенд',
+  balance:330,
+};
+const LEVELS = [
+  {n:0, roman:'',   name:'Standard', ac:'#94A3B8', soft:'rgba(148,163,184,.13)', line:'rgba(148,163,184,.38)', glowT:'rgba(96,106,128,.10)', glowB:'rgba(96,106,128,.13)', next:{roman:'I',  price:200}},
+  {n:1, roman:'I',  name:'Pro',      ac:'#9FB4CC', soft:'rgba(159,180,204,.13)', line:'rgba(159,180,204,.40)', glowT:'rgba(77,110,158,.20)', glowB:'rgba(77,110,158,.30)', next:{roman:'II', price:450}},
+  {n:2, roman:'II', name:'Teal',     ac:'#4FE0C8', soft:'rgba(79,224,200,.12)',  line:'rgba(79,224,200,.40)',  glowT:'rgba(18,183,158,.18)', glowB:'rgba(18,183,158,.30)', next:{roman:'III',price:800}},
+  {n:3, roman:'III',name:'Azure',    ac:'#5AA6FF', soft:'rgba(90,166,255,.13)',  line:'rgba(90,166,255,.42)',  glowT:'rgba(46,123,255,.22)', glowB:'rgba(46,123,255,.34)', next:{roman:'IV', price:1400}},
+  {n:4, roman:'IV', name:'Crimson',  ac:'#FF6B7E', soft:'rgba(255,107,126,.12)', line:'rgba(255,107,126,.42)', glowT:'rgba(226,51,80,.20)',  glowB:'rgba(226,51,80,.32)', next:{roman:'V',  price:2400}},
+  {n:5, roman:'V',  name:'Platinum', ac:'#EDEFF4', soft:'rgba(237,239,244,.10)', line:'rgba(237,239,244,.44)', glowT:'rgba(199,208,222,.16)',glowB:'rgba(199,208,222,.26)',next:null},
+];
+const HERO_CAPS = [
+  ['0 · Standard','CTA «Улучшить до I · 200 💠» активен — баланса 330 💠 хватает'],
+  ['I · Pro','честный тупик прямо на CTA: «До II не хватает 120 💠» (330 < 450)'],
+  ['II · Teal','чип «Карточка ×1.02» внутри модификаторов XP · блок «Выучено»'],
+  ['III · Azure','живой чип «Щит активен» в шапке · комета · кольцо аватара'],
+  ['IV · Crimson','щит «перезарядка · 4 дн» · мерцающие звёзды · блок «Путь»'],
+  ['V · Platinum','золотое имя с голо-переливом · «Легенда № 17» · CTA «Поделиться»'],
+];
+
+/* ═══════════ ИКОНКИ ═══════════ */
+const P = {
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  up:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+  chev:'<path d="M9 6l6 6-6 6"/>',
+  check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  spark:'<path d="M12 4l1.7 4.6L18.5 10l-4.8 1.4L12 16l-1.7-4.6L5.5 10l4.8-1.4L12 4z"/>',
+  dia:'<path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M12 21L8.5 9l2-6M12 21L15.5 9l-2-6"/>',
+  heart:'<path d="M12 20.5s-8-4.9-8-10.2C4 7 6.2 5 8.7 5c1.5 0 2.7.8 3.3 2 .6-1.2 1.8-2 3.3-2C17.8 5 20 7 20 10.3c0 5.3-8 10.2-8 10.2z"/>',
+  shield:'<path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/>',
+  book:'<path d="M4 19.5A2.5 2.5 0 016.5 17H20V2H6.5A2.5 2.5 0 004 4.5v15z"/><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"/>',
+  trophy:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 6H4.2C3.5 6 3 6.6 3 7.3 3 9.5 4.6 11 7 11M17 6h2.8c.7 0 1.2.6 1.2 1.3C21 9.5 19.4 11 17 11"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/>',
+  crown:'<path d="M3 8.5l3.8 3.2L12 6l5.2 5.7L21 8.5V17H3V8.5z"/><path d="M4 20h16"/>',
+  share:'<path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/>',
+};
+const ic = (n,s=14,w=1.7)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
+
+/* ═══════════ 01 · HERO — карточка 2.0 ═══════════ */
+const has = L => ({learned:L.n>=2, arena:L.n>=3, path:L.n>=4, legend:L.n>=5});
+function cardV2(L){
+  const b = has(L);
+  /* вечных FX не более 2: breathe + один уровневый */
+  const fx = [];
+  if (L.n>=1) fx.push('<div class="fx fx-breathe"></div>');
+  if (L.n===3) fx.push('<div class="fx fx-comet"></div>');
+  if (L.n===4) fx.push(
+    '<i class="fx fx-tw" style="top:60px;left:34px"></i>',
+    '<i class="fx fx-tw" style="top:88px;right:44px;animation-delay:1.2s;opacity:.5"></i>');
+  const shield = L.n>=3 ? (L.n===4
+    ? `<div class="c-shield cool">${ic('shield',11,2)}перезарядка · 4 дн</div>`
+    : `<div class="c-shield on">${ic('shield',11,2)}Щит активен</div>`) : '';
+  const pill = L.n ? `<div class="c-pill">${ic('spark',10,2.2)}${L.roman} · ${L.name.toUpperCase()}</div>` : '';
+  const mods = U.mods.map(m=>`<div class="c-mchip">${m[0]} ${m[1]}</div>`).join('')
+    + (L.n>=2 ? `<div class="c-mchip card-bonus">${ic('spark',9,2.2)}Карточка ×1.02</div>` : '');
+  let cta;
+  if (L.n===5) cta = `<button class="c-cta share">${ic('share',14,2)}Поделиться карточкой</button>`;
+  else if (L.next.price<=U.balance) cta = `<button class="c-cta">Улучшить до ${L.next.roman} · ${L.next.price} 💠</button>`;
+  else cta = `<button class="c-cta lack">До ${L.next.roman} не хватает&nbsp;<b>${(L.next.price-U.balance).toLocaleString('ru-RU')}&nbsp;💠</b></button>`;
+  const block = (icon,val,sub,leg)=>`<div class="c-block${leg?' leg':''}" role="button" tabindex="0"><div class="c-bico">${ic(icon,15,1.8)}</div><div><b>${val}</b><span>${sub}</span></div><i class="c-arr">${ic('chev',14,2.2)}</i></div>`;
+  return `<div class="card" style="--ac:${L.ac};--soft:${L.soft};--line:${L.line};--glowT:${L.glowT};--glowB:${L.glowB}">
+    ${fx.join('')}
+    <div class="c-top">${pill}${shield}<button class="c-x" aria-label="Закрыть">${ic('x',15,2)}</button></div>
+    <div class="c-id">
+      <div class="c-avaw"><div class="c-ava ${L.n>=3?'ring':'plain'}">N</div><div class="c-lv">LV 8</div></div>
+      <div class="c-name${L.n===5?' holo':''}">${U.name}</div>
+      <div class="c-chips"><div class="c-chip plus">${ic('dia',10,2)}PLUS</div><div class="c-chip ttl">${U.title}</div></div>
+    </div>
+    <div class="c-stats">
+      <div class="c-stat"><b>${U.xp}</b><span>опыт</span></div>
+      <div class="c-stat"><b>${U.streak}</b><span>цепочка</span></div>
+      <div class="c-stat"><b style="font-size:13px;line-height:22px">${U.league}</b><span>лига</span></div>
+    </div>
+    <div class="c-mods">
+      <button class="c-mods-head" aria-expanded="false"><span>Модификаторы XP</span><b>${U.xpTotal}</b><i class="c-chev">${ic('chev',13,2.2)}</i></button>
+      <div class="c-mchips">${mods}</div>
+    </div>
+    <div class="c-likes"><span style="color:#FF5B7F;display:flex;flex-shrink:0">${ic('heart',13,1.8)}</span><span><b>Пока нет лайков</b> — поделитесь карточкой, чтобы вас заметили</span></div>
+    ${b.learned?block('book',U.learned,U.learnedSub):''}
+    ${b.arena?block('trophy',U.arena,U.arenaSub):''}
+    ${b.path?block('compass',U.path,U.pathSub):''}
+    ${b.legend?block('crown','Легенда '+U.legendNo,U.legendSub,true):''}
+    ${cta}
+  </div>`;
+}
+document.getElementById('row-hero').innerHTML = LEVELS.map((L,i)=>
+  `<div class="item">${cardV2(L)}<div class="cap"><b>${HERO_CAPS[i][0]}</b><span>${HERO_CAPS[i][1]}</span></div></div>`).join('');
+
+/* раскрытие чипов модификаторов XP */
+document.getElementById('row-hero').addEventListener('click',e=>{
+  const h = e.target.closest('.c-mods-head');
+  if (!h) return;
+  const m = h.closest('.c-mods');
+  m.classList.toggle('open');
+  h.setAttribute('aria-expanded', m.classList.contains('open'));
+});
+
+/* ═══════════ 02 · КНОПКИ — матрица состояний ═══════════ */
+const ICON_X=ic('x',14,2), ICON_UP=ic('up',14,2), ICON_HEART=ic('heart',15,1.8), ICON_CHECK=ic('check',14,2.2);
+const SPIN='<span class="spin"></span>';
+const bcell=(inner,label,sq)=>`<div class="bcell"><div class="hit${sq?' sq':''}">${inner}</div><span>${label}</span></div>`;
+const brow=(name,sub,cells)=>`<div class="brow"><div class="bname"><b>${name}</b><span>${sub}</span></div>${cells.join('')}</div>`;
+document.getElementById('btnGrid').innerHTML =
+  `<div class="brow brow-head"><span>кнопка</span><span>default</span><span>pressed</span><span>disabled</span><span>loading</span><span>success</span></div>`
+  + brow('Закрыть','круг 36px · зона 44px',[
+      bcell(`<button class="kb">${ICON_X}</button>`,'default'),
+      bcell(`<button class="kb pressed">${ICON_X}</button>`,'pressed · .96'),
+      bcell(`<button class="kb disabled">${ICON_X}</button>`,'disabled'),
+      bcell(`<button class="kb">${SPIN}</button>`,'loading · rotate'),
+      bcell(`<button class="kb success">${ICON_CHECK}</button>`,'success')])
+  + brow('Апгрейд','акцент уровня',[
+      bcell(`<button class="kb accent">${ICON_UP}</button>`,'default'),
+      bcell(`<button class="kb accent pressed">${ICON_UP}</button>`,'pressed'),
+      bcell(`<button class="kb accent disabled">${ICON_UP}</button>`,'офлайн'),
+      bcell(`<button class="kb accent">${SPIN}</button>`,'loading'),
+      bcell(`<button class="kb success">${ICON_CHECK}</button>`,'success')])
+  + brow('Лайк','лимит 1 в день',[
+      bcell(`<button class="kb">${ICON_HEART}</button>`,'можно лайкнуть'),
+      bcell(`<button class="kb pressed">${ICON_HEART}</button>`,'pressed'),
+      bcell(`<button class="kb disabled">${ICON_HEART}</button>`,'вернись завтра'),
+      bcell(`<button class="kb">${SPIN}</button>`,'отправка'),
+      bcell(`<button class="kb like-on">${ICON_HEART}</button>`,'лайкнуто')])
+  + brow('Primary CTA','одна на карточку',[
+      bcell(`<button class="kcta">Улучшить до II · 450 💠</button>`,'default',1),
+      bcell(`<button class="kcta pressed">Улучшить до II · 450 💠</button>`,'pressed',1),
+      bcell(`<button class="kcta disabled">Не хватает 120 💠</button>`,'честный тупик',1),
+      bcell(`<button class="kcta loading">${SPIN}Проверяем…</button>`,'loading',1),
+      bcell(`<button class="kcta success">${ICON_CHECK}Готово</button>`,'success',1)])
+  + brow('Ghost','вторичное действие',[
+      bcell(`<button class="kghost">Как заработать</button>`,'default',1),
+      bcell(`<button class="kghost pressed">Как заработать</button>`,'pressed',1),
+      bcell(`<button class="kghost disabled">Как заработать</button>`,'disabled',1),
+      bcell(`<button class="kghost">${SPIN}</button>`,'loading',1),
+      bcell(`<button class="kghost">${ICON_CHECK}</button>`,'success',1)]);
+
+/* живая полоса «потрогайте» */
+document.querySelectorAll('[data-live]').forEach(b=>{
+  b.addEventListener('pointerdown',()=>b.classList.add('pressed'));
+  ['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>b.classList.remove('pressed')));
+  if (b.hasAttribute('data-like')) b.addEventListener('click',()=>popLike(b));
+});
+
+/* ═══════════ 03 · SOCIAL — чужая карточка ═══════════ */
+function popLike(btn){
+  if (btn.classList.contains('busy')) return;
+  btn.classList.add('busy','pop');
+  for (let i=0;i<8;i++){
+    const p=document.createElement('i');
+    p.className='ptcl';
+    const a=Math.random()*Math.PI*2, d=26+Math.random()*22;
+    p.style.setProperty('--dx',Math.cos(a)*d+'px');
+    p.style.setProperty('--dy',Math.sin(a)*d+'px');
+    p.style.background=i%2?'#FF5B7F':'#fff';
+    btn.appendChild(p);
+    setTimeout(()=>p.remove(),750);
+  }
+  setTimeout(()=>btn.classList.remove('pop','busy'),560);
+}
+function cardSocial(){
+  const L=LEVELS[3];
+  return `<div class="card" style="--ac:${L.ac};--soft:${L.soft};--line:${L.line};--glowT:${L.glowT};--glowB:${L.glowB}">
+    <div class="fx fx-breathe"></div><div class="fx fx-comet"></div>
+    <div class="c-top"><div class="c-pill">${ic('spark',10,2.2)}III · AZURE</div><div class="c-shield on">${ic('shield',11,2)}Щит активен</div><button class="c-x" aria-label="Закрыть">${ic('x',15,2)}</button></div>
+    <div class="c-id">
+      <div class="c-avaw"><div class="c-ava ring" style="background:linear-gradient(135deg,#3E7BFA,#7FB3FF)">M</div><div class="c-lv">LV 11</div></div>
+      <div class="c-name">Mira</div>
+      <div class="c-chips"><div class="c-chip ttl">Polyglot</div></div>
+    </div>
+    <div class="c-stats">
+      <div class="c-stat"><b>24K</b><span>опыт</span></div>
+      <div class="c-stat"><b>31</b><span>цепочка</span></div>
+      <div class="c-stat"><b style="font-size:13px;line-height:22px">Золотая</b><span>лига</span></div>
+    </div>
+    <div class="c-likes" style="border-style:solid;border-color:rgba(255,91,127,.25);color:#C9CBD6">
+      <span style="color:#FF5B7F;display:flex;flex-shrink:0">${ic('heart',13,1.8)}</span><span><b>47 лайков</b> — чужой счётчик виден, т.к. ≥ 3 (аудит §2.6.1)</span></div>
+    <button class="like-btn" id="likeLive" style="width:100%;justify-content:center;margin-top:4px;min-height:48px">${ic('heart',15,1.8)}<span>Лайкнуть · сегодня можно</span></button>
+  </div>`;
+}
+const socialPanel = `<div class="mini-panel" style="width:380px;flex:none">
+  <h4>Лайк — состояния видны заранее <em>аудит §2.6.2</em></h4>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <button class="like-btn" style="min-height:46px;justify-content:center">${ic('heart',15,1.8)}Можно лайкнуть</button>
+    <button class="like-btn off" disabled style="min-height:46px;justify-content:center">${ic('heart',15,1.8)}Вернись завтра · лимит 1/день</button>
+    <button class="like-btn" id="likeDemo" style="min-height:46px;justify-content:center">${ic('heart',15,1.8)}Нажми — pop + частицы</button>
+  </div>
+  <div class="vs">
+    <div class="vs-head"><span>Mira · vs вы</span><b>новый блок §4.1</b></div>
+    <div class="vs-row"><div class="vs-lbl"><span>Цепочка</span><b>31 vs 13</b></div>
+      <div class="vs-bars"><div class="vs-bar peer"><i style="width:100%"></i></div><div class="vs-bar you"><i style="width:42%"></i></div></div>
+      <div class="vs-tag">её 31 день · ваши 13 дней</div></div>
+    <div class="vs-row"><div class="vs-lbl"><span>Опыт</span><b>24K vs 16K</b></div>
+      <div class="vs-bars"><div class="vs-bar peer"><i style="width:100%"></i></div><div class="vs-bar you"><i style="width:67%"></i></div></div>
+      <div class="vs-tag">она в Золотой лиге · вы в Серебряной</div></div>
+    <div class="vs-row"><div class="vs-lbl"><span>Уровень карточки</span><b>III vs II</b></div>
+      <div class="vs-bars"><div class="vs-bar peer"><i style="width:60%"></i></div><div class="vs-bar you"><i style="width:40%"></i></div></div>
+      <div class="vs-tag">до её уровня вам 800 💠</div></div>
+  </div>
+</div>`;
+document.getElementById('row-social').innerHTML =
+  `<div class="item">${cardSocial()}<div class="cap"><b>R8–R9 · чужая карточка</b><span>нет цен и кнопки апгрейда — чужая экономика скрыта; лайк с состояниями</span></div></div>`
+  + `<div class="item">${socialPanel}<div class="cap"><b>R10 · сравнение «vs вы»</b><span>три контекстные метрики рядом с вашими — мотивация подтянуться</span></div></div>`;
+document.getElementById('likeDemo').addEventListener('click',e=>popLike(e.currentTarget));
+document.getElementById('likeLive').addEventListener('click',e=>{
+  popLike(e.currentTarget);
+  e.currentTarget.querySelector('span').textContent='Лайк отдан · вернись завтра';
+});
+
+/* щит-точки в MINI (S3) */
+['ms1','ms2','ms3','ms4'].forEach(id=>{
+  const el=document.getElementById(id);
+  if (el) el.innerHTML=ic('shield',7,3);
+});
+
+/* ═══════════ 05 · UPGRADE — интерактив ═══════════ */
+const flipOld=document.getElementById('flipOld'), flipNew=document.getElementById('flipNew');
+document.getElementById('flipToggle').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#flipToggle button').forEach(x=>x.classList.toggle('on',x===b));
+  const showNew=b.dataset.f==='1';
+  flipNew.classList.toggle('front',showNew); flipNew.classList.toggle('back',!showNew);
+  flipOld.classList.toggle('front',!showNew); flipOld.classList.toggle('back',showNew);
+});
+const cf=document.getElementById('cfDemo');
+cf.addEventListener('click',()=>{
+  if (cf.classList.contains('loading')||cf.classList.contains('success')) return;
+  cf.classList.add('loading'); cf.innerHTML='<span class="spin"></span>Списываем 200 💠…';
+  setTimeout(()=>{cf.classList.remove('loading');cf.classList.add('success');cf.textContent='Готово · уровень I активен ✓';},1300);
+});
+
+/* живая церемония: 150 dim → 250 сжатие → 200 вспышка → 400 пружина → stagger 60 → конфетти */
+const cerPlay=document.getElementById('cerPlay'), cerDim=document.getElementById('cerDim'),
+      cerCard=document.getElementById('cerCard'), cerLv=document.getElementById('cerLv'),
+      cerFlash=document.getElementById('cerFlash'),
+      cerChips=[...document.querySelectorAll('#cerChips .cer-chip')];
+const CER_I ={ac:'#9FB4CC',line:'rgba(159,180,204,.4)',glowT:'rgba(77,110,158,.2)',glowB:'rgba(77,110,158,.3)',lv:'I · PRO'};
+const CER_II={ac:'#4FE0C8',line:'rgba(79,224,200,.4)',glowT:'rgba(18,183,158,.18)',glowB:'rgba(18,183,158,.3)',lv:'II · TEAL'};
+function cerSwap(to){
+  const c=cerCard.style;
+  c.setProperty('--ac',to.ac); c.setProperty('--line',to.line);
+  c.setProperty('--glowT',to.glowT); c.setProperty('--glowB',to.glowB);
+  cerLv.textContent=to.lv;
+}
+function cerConfetti(){
+  const stage=document.getElementById('cerStage');
+  const colors=['#4FE0C8','#fff','#F5C842','#5AA6FF'];
+  for (let i=0;i<12;i++){
+    const s=document.createElement('i');
+    s.className='cer-conf';
+    const a=Math.random()*Math.PI*2, d=50+Math.random()*70;
+    s.style.setProperty('--dx',Math.cos(a)*d+'px');
+    s.style.setProperty('--dy',(Math.sin(a)*d-30)+'px');
+    s.style.setProperty('--rr',(Math.random()*260-130)+'deg');
+    s.style.background=colors[i%4];
+    stage.appendChild(s);
+    requestAnimationFrame(()=>s.classList.add('go'));
+    setTimeout(()=>s.remove(),950);
+  }
+}
+let cerBusy=false;
+function cerReset(){
+  cerCard.classList.remove('arrive');
+  cerCard.classList.add('collapse');
+  setTimeout(()=>{
+    cerSwap(CER_I);
+    cerCard.classList.remove('collapse');
+    cerChips.forEach(c=>c.classList.remove('in'));
+    cerBusy=false; cerPlay.disabled=false;
+  },280);
+}
+cerPlay.addEventListener('click',()=>{
+  if (cerBusy) return;
+  cerBusy=true; cerPlay.disabled=true;
+  cerChips.forEach(c=>c.classList.remove('in'));
+  if (document.body.classList.contains('rm')){
+    /* reduced motion: кросс-фейд 200мс вместо хореографии */
+    cerDim.style.opacity=1;
+    cerCard.style.opacity=0;
+    setTimeout(()=>{
+      cerSwap(CER_II);
+      cerCard.style.opacity=1;
+      cerDim.style.opacity=0;
+      cerChips.forEach((c,i)=>setTimeout(()=>c.classList.add('in'),120+i*40));
+      setTimeout(cerReset,2600);
+    },220);
+    return;
+  }
+  cerDim.style.opacity=1;                                          // 0–150 затемнение
+  setTimeout(()=>cerCard.classList.add('collapse'),150);           // 150–400 сжатие в точку света
+  setTimeout(()=>cerFlash.classList.add('go'),400);                // 400–600 вспышка-ирис
+  setTimeout(()=>{cerFlash.classList.add('out'); cerSwap(CER_II);},600);
+  setTimeout(()=>{cerCard.classList.remove('collapse'); cerCard.classList.add('arrive');},640); // разворот пружиной 400
+  setTimeout(()=>{
+    cerChips.forEach((c,i)=>setTimeout(()=>c.classList.add('in'),i*60)); // каскад чипов stagger 60
+    cerConfetti();                                                 // 12 частиц, один раз
+  },1050);
+  setTimeout(()=>{cerDim.style.opacity=0; cerFlash.classList.remove('go','out');},1700);
+  setTimeout(cerReset,3600);
+});
+
+/* ═══════════ 09 · МОУШН ═══════════ */
+document.getElementById('moPlay').addEventListener('click',()=>{
+  document.querySelectorAll('.mo-track').forEach(t=>{
+    t.style.setProperty('--dist',(t.clientWidth-34)+'px');
+    t.classList.remove('run');
+    void t.offsetWidth;
+    t.classList.add('run');
+  });
+});
+
+/* переключатель reduced motion */
+const rmSw=document.getElementById('rmSwitch');
+function setRM(v){
+  document.body.classList.toggle('rm',v);
+  rmSw.classList.toggle('on',v);
+  rmSw.setAttribute('aria-checked',String(v));
+}
+rmSw.addEventListener('click',()=>setRM(!document.body.classList.contains('rm')));
+rmSw.addEventListener('keydown',e=>{
+  if (e.key==='Enter'||e.key===' '){ e.preventDefault(); rmSw.click(); }
+});
+document.getElementById('rmDemo').addEventListener('click',()=>setRM(!document.body.classList.contains('rm')));
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setRM(true);
+
+/* пауза вечных циклов вне фокуса (бюджет производительности) */
+document.addEventListener('visibilitychange',()=>{
+  document.body.classList.toggle('pause',document.hidden);
+});
+</script>
+</body>
+</html>

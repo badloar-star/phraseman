@@ -3,12 +3,14 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 
-describe('legacy onboarding graphite league bonus asset', () => {
-  test('league bonus registry uses minimalDark chest and rejects onboarding-graphite leftovers', () => {
+describe('removed graphite league bonus asset', () => {
+  test('league bonus registry removes deleted theme chests and falls back to Indigo', () => {
     const source = fs.readFileSync(path.join(ROOT, 'constants/leagueBonusGiftImages.ts'), 'utf8');
 
     expect(source).not.toContain('onboarding-graphite');
-    expect(source).toContain("minimalDark: require('../assets/images/league_bonus/minimalDark-chest.webp')");
+    expect(source).toContain("const DEFAULT_THEME: LeagueBonusGiftImageTheme = 'indigo'");
+    expect(source).not.toContain('minimalDark-chest.webp');
+    expect(source).not.toContain('candyBlue-chest.webp');
   });
 
   test('league bonus minimalDark palette is no longer the old amber onboarding graphite chrome', () => {

@@ -43,6 +43,9 @@ export interface ReEngageUser {
   streakCount?: number | null;       // из progress.streak_count
   lastReEngagePushAt?: number | null;// users/{uid}.lastReEngagePushAt (ms)
   userName?: string | null;
+  /** Выбор юзера в разделе «Уведомления» (клиент зеркалит в users/{uid}.pushPrefs).
+   *  Отсутствие поля = старый клиент = всё разрешено. */
+  pushPrefs?: { streak?: boolean; offers?: boolean } | null;
 }
 
 export interface ReEngageCandidate {
@@ -75,6 +78,17 @@ function num(v: unknown): number | null {
 /** Достаёт нужные поля из сырого Firestore-документа в типизированный ReEngageUser. */
 export function parseReEngageUser(uid: string, data: Record<string, unknown> | undefined): ReEngageUser {
   const progress = (data?.progress ?? {}) as Record<string, unknown>;
+  const prefsRaw = data?.pushPrefs;
+  const pushPrefs = prefsRaw && typeof prefsRaw === 'object'
+    ? {
+        streak: typeof (prefsRaw as Record<string, unknown>).streak === 'boolean'
+          ? (prefsRaw as Record<string, unknown>).streak as boolean
+          : undefined,
+        offers: typeof (prefsRaw as Record<string, unknown>).offers === 'boolean'
+          ? (prefsRaw as Record<string, unknown>).offers as boolean
+          : undefined,
+      }
+    : null;
   return {
     uid,
     expoPushToken: typeof data?.expoPushToken === 'string' ? data.expoPushToken : null,
@@ -84,6 +98,7 @@ export function parseReEngageUser(uid: string, data: Record<string, unknown> | u
     streakCount: num(progress.streak_count),
     lastReEngagePushAt: num(data?.lastReEngagePushAt),
     userName: typeof progress.user_name === 'string' ? progress.user_name : null,
+    pushPrefs,
   };
 }
 
@@ -136,7 +151,10 @@ export function classifyReEngageUser(u: ReEngageUser, now: number): ReEngageReas
 
   // 1) Стрик под угрозой: есть серия, сегодня не заходил, но ещё в пределах суток
   //    (иначе серия уже сгорела — это уже кейс inactive_return).
+  // зачем: юзер может выключить «Серия под угрозой» в разделе уведомлений —
+  // клиент зеркалит выбор в pushPrefs.streak. Отсутствие поля = старый клиент = слать.
   if (streak >= STREAK_AT_RISK_MIN && hoursInactive >= STREAK_RISK_INACTIVE_HOURS && hoursInactive < 24) {
+    if (u.pushPrefs?.streak === false) return null;
     return 'streak_at_risk';
   }
 
@@ -371,7 +389,24 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   // 1) Scan + отбор кандидатов.
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    let query: FirebaseFirestore.Query = db.collection('users').orderBy('__name__').limit(PAGE_SIZE);
+    // зачем: раньше страница тянула документы users целиком, хотя ниже используется ровно
+    // тот набор полей, который читает parseReEngageUser. Проекция режет трафик и память
+    // функции (доки users самые «толстые» в базе), число тарифицируемых чтений не меняется.
+    // ВАЖНО: список ниже обязан совпадать с полями parseReEngageUser — добавляешь поле
+    // туда, добавь и сюда, иначе оно молча придёт пустым и кандидат отсеется.
+    let query: FirebaseFirestore.Query = db.collection('users')
+      .orderBy('__name__')
+      .limit(PAGE_SIZE)
+      .select(
+        'expoPushToken',
+        'pushTokenLang',
+        'pushTokenTimezone',
+        'last_active_at',
+        'lastReEngagePushAt',
+        'progress.streak_count',
+        'progress.user_name',
+        'pushPrefs',
+      );
     if (lastDoc) query = query.startAfter(lastDoc);
     const snap = await query.get();
     if (snap.empty) break;

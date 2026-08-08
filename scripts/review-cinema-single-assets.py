@@ -89,7 +89,8 @@ THEMES = ["midnight", "ember", "aurora", "volt"]
 
 def paths_for(theme: str, key: str) -> tuple[Path, Path]:
     source_name = "league-chest.png" if key == "league-chest" else f"home-{key}.png"
-    source = ROOT / "assets/images/cinema_dalle_sources/singles/v1" / theme / source_name
+    # зачем: черновики генерации вынесены из assets/ в asset_sources/.
+    source = ROOT / "asset_sources/cinema_dalle_sources/singles/v1" / theme / source_name
     if key == "league-chest":
         final = ROOT / "assets/images/league_bonus" / f"{theme}-chest.webp"
     else:

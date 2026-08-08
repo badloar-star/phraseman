@@ -27,7 +27,6 @@ export const FRENCH_TARGET_REMOTE_SURFACES = [
   'daily_phrase',
   'audio_metadata',
   'flashcard',
-  'personal_practice',
 ] as const satisfies readonly CoursePackSurface[];
 
 export function isFrenchStudyTargetServerPackActivationApproved(): boolean {

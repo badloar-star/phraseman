@@ -6,12 +6,46 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { hasClaimedPermission } from './admin/permissions';
+import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
+import { resolvePremiumAccess } from './premium_status';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
 const COMMUNITY_PURCHASES = 'community_pack_purchases';
+const FLASHCARD_PACK_GIFT_CLAIMS = 'flashcard_pack_gift_claims';
+const FLASHCARD_PACK_GIFT_ENTITLEMENTS = 'flashcard_pack_gift_entitlements';
+const FLASHCARD_PACK_GIFT_GRANTS = 'flashcard_pack_gift_grants';
+const PACK_GIFT_DURATION_MS = 48 * 60 * 60 * 1000;
 const COMMUNITY_RATINGS = 'community_pack_ratings';
 const SELLER_INBOX = 'community_seller_inbox';
+const FLASHCARD_SEMANTIC_KEYS = 'content_factory_flashcard_semantic_keys';
+const FLASHCARD_REGISTRY_CONFIG = 'flashcard_semantic_registry';
+
+async function syncFlashcardRegistryPackMutation(tx: FirebaseFirestore.Transaction, db: FirebaseFirestore.Firestore, previous: { id: string; studyTarget?: string; cards?: readonly unknown[] } | null, next: { id: string; studyTarget?: string; cards?: readonly unknown[] } | null) {
+  const plan = planFlashcardRegistryPackMutation(previous, next).filter((item) => item.addSources.length || item.removeSources.length);
+  if (!plan.length) return;
+  const configRef = db.collection('content_factory_config').doc(FLASHCARD_REGISTRY_CONFIG);
+  const [configSnapshot, ...snapshots] = await Promise.all([
+    tx.get(configRef),
+    ...plan.map((item) => tx.get(db.collection(FLASHCARD_SEMANTIC_KEYS).doc(item.docId))),
+  ]);
+  const config = configSnapshot.data() ?? {};
+  const currentGeneration = Number.isSafeInteger(Number(config.catalogGeneration)) ? Number(config.catalogGeneration) : 0;
+  const registryIsVerified = config.mode === 'registry'
+    && config.manifestComplete === true
+    && Number(config.verifiedGeneration) === currentGeneration;
+  for (let index = 0; index < plan.length; index += 1) {
+    const mutation = plan[index]; const ref = snapshots[index].ref; const current = snapshots[index].data() ?? {};
+    if (snapshots[index].exists && (current.partitionKey !== mutation.partitionKey || current.canonicalKey !== mutation.canonicalKey)) throw new HttpsError('aborted', 'flashcard_registry_hash_collision');
+    const next = applyFlashcardRegistryDocumentMutation(snapshots[index].exists ? { docId: mutation.docId, partitionKey: String(current.partitionKey), canonicalKey: String(current.canonicalKey), sources: Array.isArray(current.sources) ? current.sources as { packId: string; cardId: string }[] : [] } : null, mutation);
+    if (next) tx.set(ref, { ...next, updatedAt: Date.now() }, { merge: true });
+    else if (snapshots[index].exists) tx.delete(ref);
+  }
+  tx.set(configRef, registryIsVerified
+    ? { catalogGeneration: currentGeneration + 1, verifiedGeneration: currentGeneration + 1, manifestComplete: true, updatedAt: Date.now() }
+    : { catalogGeneration: currentGeneration + 1, manifestComplete: false, updatedAt: Date.now() }, { merge: true });
+}
 
 /** Снят с витрины по требованию модерации; автор может доработать и снова отправить на ревью. */
 const LISTING_ADMIN_REVISION = 'admin_revision_required';
@@ -25,6 +59,108 @@ const UGC_PACK_PRICE_SHARDS = 10;
 /** Базис 10_000 = 100 %. Часть цены не передаётся автору (остаётся в экономике приложения). */
 const PLATFORM_FEE_BPS = 1500;
 type CommunityStudyTarget = 'en' | 'fr';
+
+const DAY_MS = 86_400_000;
+const WEEKLY_BOONS_REMOTE_CONFIG_KEY = 'weekly_boons_config';
+const KNOWN_WEEKLY_BOON_IDS = new Set([
+  'streak_saver', 'mystery_monday', 'turbo_regen', 'energy_free_window',
+  'double_xp', 'flashcard_friday', 'speaking_saturday', 'early_bird',
+  'perfect_week', 'comeback',
+]);
+const OFFICIAL_FLASHCARD_PACK_IDS = new Set([
+  'official_prep_in_en', 'official_prep_on_en', 'official_prep_at_en',
+  'official_prep_to_en', 'official_prep_by_en', 'official_phrasal_verbs_en',
+  'official_movie_series_en', 'official_peaky_blinders_en', 'official_royal_tea_en',
+  'official_wild_west_en', 'official_dark_logic_en', 'official_negotiator_en',
+]);
+type WeeklyBoonServerConfig = {
+  schedule: Record<number, string | readonly string[]>;
+  enabled: Record<string, boolean>;
+};
+
+function parseWeeklyBoonServerConfig(raw: string): WeeklyBoonServerConfig {
+  if (!raw.trim()) throw new HttpsError('failed-precondition', 'weekly_boons_config_invalid');
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    throw new HttpsError('failed-precondition', 'weekly_boons_config_invalid');
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new HttpsError('failed-precondition', 'weekly_boons_config_invalid');
+  }
+  const value = parsed as Record<string, unknown>;
+  const schedule: Record<number, string | readonly string[]> = {};
+  const scheduleRaw = value.schedule;
+  if (scheduleRaw && typeof scheduleRaw === 'object' && !Array.isArray(scheduleRaw)) {
+    for (const [weekdayRaw, slotRaw] of Object.entries(scheduleRaw as Record<string, unknown>)) {
+      const weekday = Math.trunc(Number(weekdayRaw));
+      if (!Number.isFinite(weekday) || weekday < 0 || weekday > 6) continue;
+      if (typeof slotRaw === 'string' && KNOWN_WEEKLY_BOON_IDS.has(slotRaw)) schedule[weekday] = slotRaw;
+      else if (Array.isArray(slotRaw)) {
+        const ids = slotRaw.filter((id): id is string => typeof id === 'string' && KNOWN_WEEKLY_BOON_IDS.has(id));
+        if (ids.length) schedule[weekday] = ids;
+      }
+    }
+  }
+  const enabled: Record<string, boolean> = {};
+  if (value.enabled && typeof value.enabled === 'object' && !Array.isArray(value.enabled)) {
+    for (const [id, flag] of Object.entries(value.enabled as Record<string, unknown>)) {
+      if (KNOWN_WEEKLY_BOON_IDS.has(id) && typeof flag === 'boolean') enabled[id] = flag;
+    }
+  }
+  return { schedule, enabled };
+}
+
+function utcDateKey(ms: number): string {
+  return new Date(ms).toISOString().slice(0, 10);
+}
+
+function utcWeekNumber(dateKey: string): number {
+  const ms = new Date(`${dateKey}T12:00:00Z`).getTime();
+  const days = Math.floor(ms / DAY_MS);
+  return Math.floor((days + 4) / 7);
+}
+
+function resolveServerPrimaryBoon(config: WeeklyBoonServerConfig, dateKey: string): string | null {
+  const weekday = new Date(`${dateKey}T12:00:00Z`).getUTCDay();
+  const slot = config.schedule[weekday];
+  if (typeof slot === 'string') return config.enabled[slot] === false ? null : slot;
+  if (!slot?.length) return null;
+  const start = ((utcWeekNumber(dateKey) % slot.length) + slot.length) % slot.length;
+  for (let offset = 0; offset < slot.length; offset += 1) {
+    const candidate = slot[(start + offset) % slot.length];
+    if (config.enabled[candidate] !== false) return candidate;
+  }
+  return null;
+}
+
+async function readWeeklyBoonsRemoteConfigRaw(): Promise<string> {
+  try {
+    const snapshot = await admin.firestore().collection('remote_config').doc('app').get();
+    const texts = snapshot.data()?.texts as Record<string, unknown> | undefined;
+    const raw = texts?.[WEEKLY_BOONS_REMOTE_CONFIG_KEY];
+    return typeof raw === 'string' ? raw : '';
+  } catch {
+    throw new HttpsError('unavailable', 'weekly_boons_config_unavailable');
+  }
+}
+
+/**
+ * Возвращает UTC-день бонуса, если сейчас ещё можно обменять выданный в тот день
+ * 48-часовой ваучер. Окно до 72 ч от начала UTC-дня покрывает выдачу в любой момент
+ * бонусного дня, а локальный ваучер клиента держит точный expiresAt.
+ */
+async function activeFlashcardGiftOccurrence(nowMs: number): Promise<string | null> {
+  const config = parseWeeklyBoonServerConfig(await readWeeklyBoonsRemoteConfigRaw());
+  for (let daysAgo = 0; daysAgo <= 2; daysAgo += 1) {
+    const dateKey = utcDateKey(nowMs - daysAgo * DAY_MS);
+    const dayStartMs = new Date(`${dateKey}T00:00:00Z`).getTime();
+    if (nowMs >= dayStartMs + 3 * DAY_MS) continue;
+    if (resolveServerPrimaryBoon(config, dateKey) === 'flashcard_friday') return dateKey;
+  }
+  return null;
+}
 
 const UGC_CARD_THEME_KEYS = new Set([
   'neon_lime',
@@ -93,7 +229,7 @@ type SubmissionPayload = {
   descriptionPl?: string;
   cardThemeKey?: string;
   cardBackKey?: string;
-  priceShards: number;
+  readonly priceShards?: unknown;
   cards: Array<{
     id: string;
     en: string;
@@ -107,8 +243,22 @@ type SubmissionPayload = {
       tr?: string;
       pl?: string;
     };
+    richSchemaVersion?: 1;
+    exampleTarget?: string;
+    exampleSource?: string;
+    note?: string;
+    sourceReferences?: string[];
   }>;
 };
+
+function preserveExistingRichCardFields(existing: unknown, incoming: SubmissionPayload['cards']): SubmissionPayload['cards'] {
+  const byId = new Map((Array.isArray(existing) ? existing : []).filter((item): item is Record<string, unknown> => !!item && typeof item === 'object' && !Array.isArray(item)).map((item) => [String(item.id ?? ''), item]));
+  return incoming.map((card) => {
+    const prior = byId.get(card.id); if (!prior) return card;
+    const sourceReferences = card.sourceReferences?.length ? card.sourceReferences : Array.isArray(prior.sourceReferences) ? prior.sourceReferences.map(String).filter(Boolean) : undefined;
+    return { ...card, richSchemaVersion: card.richSchemaVersion ?? (Number(prior.richSchemaVersion) === 1 ? 1 : undefined), exampleTarget: card.exampleTarget || String(prior.exampleTarget ?? '').trim() || undefined, exampleSource: card.exampleSource || String(prior.exampleSource ?? '').trim() || undefined, note: card.note || String(prior.note ?? '').trim() || undefined, sourceReferences };
+  });
+}
 
 function normalizeCommunityPackStudyTarget(raw: unknown): CommunityStudyTarget {
   return raw === 'fr' ? 'fr' : 'en';
@@ -214,6 +364,11 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
         ...(sourceLocales.tr ? { tr: sourceLocales.tr } : {}),
         ...(sourceLocales.pl ? { pl: sourceLocales.pl } : {}),
       },
+      ...(Number(c.richSchemaVersion) === 1 ? { richSchemaVersion: 1 as const } : {}),
+      ...(String(c.exampleTarget ?? '').trim() ? { exampleTarget: String(c.exampleTarget).trim().slice(0, CARD_FIELD_MAX) } : {}),
+      ...(String(c.exampleSource ?? '').trim() ? { exampleSource: String(c.exampleSource).trim().slice(0, CARD_FIELD_MAX) } : {}),
+      ...(String(c.note ?? '').trim() ? { note: String(c.note).trim().slice(0, CARD_FIELD_MAX) } : {}),
+      ...(Array.isArray(c.sourceReferences) ? { sourceReferences: [...new Set(c.sourceReferences.map(String).map((value) => value.trim().slice(0, 500)).filter(Boolean))].slice(0, 50) } : {}),
     };
   });
   let cardThemeKey = String(raw.cardThemeKey ?? 'neon_lime').trim();
@@ -356,6 +511,7 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         cardBackKey: pd.cardBackKey ?? null,
         studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget),
       };
+      if (st === 'published') await syncFlashcardRegistryPackMutation(tx, db, { id: updatePackId, studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget), cards: Array.isArray(pd.cards) ? pd.cards : [] }, null);
       tx.set(subRef, {
         status: 'pending',
         authorStableId,
@@ -366,7 +522,7 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         previousPayloadSnapshot,
         callerAuthUid,
       });
-      tx.update(packRef, { listingStatus: 'update_pending', updatedAt: now });
+      tx.update(packRef, { listingStatus: 'update_pending', priceShards: UGC_PACK_PRICE_SHARDS, updatedAt: now });
     });
     return { submissionId: subRef.id };
   }
@@ -448,12 +604,17 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
 
     const editTargetEarly = String(d.editTargetPackId ?? '').trim();
     let editPackExistsForRestore = false;
+    let editPackForRestore: Record<string, unknown> | null = null;
     if (editTargetEarly && (action === 'reject' || action === 'request_changes')) {
       const ps = await tx.get(db.collection(COMMUNITY_PACKS).doc(editTargetEarly));
       editPackExistsForRestore = ps.exists;
+      editPackForRestore = ps.exists ? ps.data() as Record<string, unknown> : null;
     }
 
     if (action === 'reject') {
+      if (editTargetEarly && editPackExistsForRestore) {
+        await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTargetEarly, studyTarget: normalizeCommunityPackStudyTarget(editPackForRestore?.studyTarget), cards: Array.isArray(editPackForRestore?.cards) ? editPackForRestore.cards : [] });
+      }
       tx.update(subRef, {
         status: 'rejected',
         reviewedAt: now,
@@ -461,20 +622,31 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         moderatorMessage: msgForInbox,
       });
       if (editTargetEarly && editPackExistsForRestore) {
-        tx.update(db.collection(COMMUNITY_PACKS).doc(editTargetEarly), { listingStatus: 'published', updatedAt: now });
+        tx.update(db.collection(COMMUNITY_PACKS).doc(editTargetEarly), {
+          listingStatus: 'published',
+          priceShards: UGC_PACK_PRICE_SHARDS,
+          updatedAt: now,
+        });
       }
       writeModerationInbox('rejected');
       return;
     }
 
     if (action === 'request_changes') {
+      if (editTargetEarly && editPackExistsForRestore) {
+        await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTargetEarly, studyTarget: normalizeCommunityPackStudyTarget(editPackForRestore?.studyTarget), cards: Array.isArray(editPackForRestore?.cards) ? editPackForRestore.cards : [] });
+      }
       tx.update(subRef, {
         status: 'needs_revision',
         reviewedAt: now,
         moderatorMessage: effectiveMessage,
       });
       if (editTargetEarly && editPackExistsForRestore) {
-        tx.update(db.collection(COMMUNITY_PACKS).doc(editTargetEarly), { listingStatus: 'published', updatedAt: now });
+        tx.update(db.collection(COMMUNITY_PACKS).doc(editTargetEarly), {
+          listingStatus: 'published',
+          priceShards: UGC_PACK_PRICE_SHARDS,
+          updatedAt: now,
+        });
       }
       writeModerationInbox('revision_requested');
       return;
@@ -500,6 +672,8 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
       if (existingStudyTarget !== normalizeCommunityPackStudyTarget(payload.studyTarget)) {
         throw new HttpsError('failed-precondition', 'Cannot change pack study target');
       }
+      const cardsWithRichFallback = preserveExistingRichCardFields(existing.cards, payload.cards);
+      await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTarget, studyTarget: existingStudyTarget, cards: cardsWithRichFallback });
       tx.set(packRef, {
         ...existing,
         listingStatus: 'published',
@@ -522,9 +696,9 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         descriptionId: (payload.descriptionId ?? '').trim() || null,
         descriptionTr: (payload.descriptionTr ?? '').trim() || null,
         descriptionPl: (payload.descriptionPl ?? '').trim() || null,
-        priceShards: Math.floor(Number(payload.priceShards)),
-        cards: payload.cards,
-        cardCount: payload.cards.length,
+        priceShards: UGC_PACK_PRICE_SHARDS,
+        cards: cardsWithRichFallback,
+        cardCount: cardsWithRichFallback.length,
         cardThemeKey: themeKey,
         cardBackKey,
         updatedAt: now,
@@ -545,6 +719,8 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     if (packSnap.exists) {
       throw new HttpsError('already-exists', 'Published pack already exists for this id');
     }
+
+    await syncFlashcardRegistryPackMutation(tx, db, null, { id: submissionId, studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget), cards: payload.cards });
 
     tx.set(packRef, {
       listingStatus: 'published',
@@ -567,7 +743,7 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
       descriptionId: (payload.descriptionId ?? '').trim() || null,
       descriptionTr: (payload.descriptionTr ?? '').trim() || null,
       descriptionPl: (payload.descriptionPl ?? '').trim() || null,
-      priceShards: Math.floor(Number(payload.priceShards)),
+      priceShards: UGC_PACK_PRICE_SHARDS,
       cards: payload.cards,
       cardCount: payload.cards.length,
       cardThemeKey: themeKey,
@@ -688,8 +864,10 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1', enforc
             'У набора уже висит заявка на правку в очереди — обработайте её во вкладке заявок.',
           );
         }
+        if (st === 'published') await syncFlashcardRegistryPackMutation(tx, db, { id: packId, studyTarget, cards: Array.isArray(pack.cards) ? pack.cards : [] }, null);
         tx.update(packRef, patchAdminMessage({
           listingStatus: LISTING_ADMIN_REVISION,
+          priceShards: UGC_PACK_PRICE_SHARDS,
           updatedAt: now,
           adminLastAction: 'require_revision',
           adminLastActionAt: now,
@@ -705,8 +883,11 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1', enforc
         );
       }
 
+      if (st === 'published') await syncFlashcardRegistryPackMutation(tx, db, { id: packId, studyTarget, cards: Array.isArray(pack.cards) ? pack.cards : [] }, null);
+
       tx.update(packRef, patchAdminMessage({
         listingStatus: LISTING_ADMIN_REMOVED,
+        priceShards: UGC_PACK_PRICE_SHARDS,
         updatedAt: now,
         adminLastAction: 'remove',
         adminLastActionAt: now,
@@ -853,6 +1034,8 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
       studyTarget,
       buyerStableId,
       authorStableId,
+      status: 'completed',
+      acquisitionSource: 'paid_community_sale',
       priceShards: price,
       authorNetShards: net,
       platformFeeShards: price - net,
@@ -896,6 +1079,7 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
     });
 
     tx.update(packRef, {
+      priceShards: UGC_PACK_PRICE_SHARDS,
       salesCount: admin.firestore.FieldValue.increment(1),
       updatedAt: now,
     });
@@ -925,6 +1109,625 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
 
   return result;
 });
+
+/**
+ * Server-authoritative soft refund for a paid Community pack purchase.
+ * The receipt status gate, balance credit, user ledger and admin audit commit together.
+ */
+export const adminRefundCommunityPackPurchase = onCall(
+  { region: 'us-central1', enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    const actorUid = String(request.auth?.uid ?? '').trim();
+    const token = request.auth?.token;
+    if (!actorUid || !hasClaimedPermission(token, 'money.manual_access.write')) {
+      throw new HttpsError('permission-denied', 'Admin refund permission required');
+    }
+
+    const purchaseId = String(request.data?.purchaseId ?? '').trim();
+    if (!/^[A-Za-z0-9._:-]{1,500}$/.test(purchaseId)) {
+      throw new HttpsError('invalid-argument', 'purchase_id_invalid');
+    }
+    const reason = String(request.data?.reason ?? '').trim().slice(0, 3500);
+    const actorEmail = String(token?.email ?? '').trim().slice(0, 320) || actorUid;
+    const db = admin.firestore();
+    const purchaseRef = db.collection(COMMUNITY_PURCHASES).doc(purchaseId);
+    const auditRef = db.collection('admin_log').doc();
+
+    return db.runTransaction(async (tx) => {
+      const purchaseSnap = await tx.get(purchaseRef);
+      if (!purchaseSnap.exists) throw new HttpsError('not-found', 'purchase_not_found');
+      const purchase = (purchaseSnap.data() ?? {}) as Record<string, unknown>;
+      const status = String(purchase.status ?? 'completed');
+      const acquisitionSource = String(purchase.acquisitionSource ?? 'paid_community_sale');
+      if (status === 'refunded') throw new HttpsError('failed-precondition', 'purchase_already_refunded');
+      if (acquisitionSource === 'weekly_boon_gift') {
+        throw new HttpsError('failed-precondition', 'gift_purchase_not_refundable');
+      }
+      if (status !== 'completed') throw new HttpsError('failed-precondition', 'purchase_not_completed');
+      if (acquisitionSource !== 'paid_community_sale') {
+        throw new HttpsError('failed-precondition', 'purchase_source_not_refundable');
+      }
+
+      const buyerStableId = String(purchase.buyerStableId ?? purchase.buyerUid ?? '').trim();
+      const packId = String(purchase.packId ?? '').trim();
+      if (!buyerStableId || !packId) throw new HttpsError('failed-precondition', 'purchase_identity_missing');
+      const buyerRef = db.collection('users').doc(buyerStableId);
+      const buyerSnap = await tx.get(buyerRef);
+      if (!buyerSnap.exists) throw new HttpsError('not-found', 'buyer_not_found');
+
+      const amountShards = UGC_PACK_PRICE_SHARDS;
+      const balanceBefore = parseShards(buyerSnap.data());
+      const balanceAfter = balanceBefore + amountShards;
+      const nowMs = Date.now();
+      const nowIso = new Date(nowMs).toISOString();
+      const shardLogRef = buyerRef.collection('shard_log').doc();
+
+      tx.set(buyerRef, {
+        shards: balanceAfter,
+        ...shardLedgerMeta('earn', 'admin_community_pack_refund', nowMs),
+        updatedAt: nowMs,
+      }, { merge: true });
+      tx.create(shardLogRef, {
+        ts: nowIso,
+        type: 'earn',
+        amount: amountShards,
+        reason: 'admin_community_pack_refund',
+        source: 'admin_refund_pack',
+        purchaseId,
+        packId,
+        targetUid: buyerStableId,
+        balanceBefore,
+        balanceAfter,
+        actorUid,
+        actorEmail,
+      });
+      tx.update(purchaseRef, {
+        status: 'refunded',
+        refundedAt: nowIso,
+        refundedAtMs: nowMs,
+        refundedAmountShards: amountShards,
+        refundedBy: actorEmail,
+        refundedByUid: actorUid,
+        refundedByEmail: actorEmail,
+        refundReason: reason,
+        refundSource: 'admin_callable',
+      });
+      tx.create(auditRef, {
+        action: 'community_pack_purchase.refund',
+        actorUid,
+        actorEmail,
+        entity: { collection: COMMUNITY_PURCHASES, id: purchaseId },
+        reason,
+        before: { status, acquisitionSource, storedPriceShards: purchase.priceShards ?? null },
+        after: { status: 'refunded', refundedAmountShards: amountShards, buyerStableId, packId },
+        timestamp: nowIso,
+      });
+
+      return { purchaseId, buyerStableId, packId, amountShards, balanceAfter, refundedAt: nowIso };
+    });
+  },
+);
+
+type FlashcardPackGiftType = 'official' | 'community';
+
+async function stableIdentityAliases(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+): Promise<string[]> {
+  const hidden = await db.collection('users').where('canonicalStableId', '==', stableUid).get();
+  return [...new Set([stableUid, ...hidden.docs.map((doc) => doc.id)])];
+}
+
+function giftClaimId(stableUid: string, occurrenceId: string): string {
+  return `${stableUid}__${occurrenceId.replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 180)}`;
+}
+
+function officialPackIdsFromUserProgress(user: Record<string, unknown>): string[] {
+  const progress = user.progress && typeof user.progress === 'object' && !Array.isArray(user.progress)
+    ? user.progress as Record<string, unknown>
+    : {};
+  const stored = progress.flashcards_owned_packs_v1;
+  let parsed: unknown = stored;
+  if (typeof stored === 'string') {
+    try {
+      parsed = JSON.parse(stored) as unknown;
+    } catch {
+      return [];
+    }
+  }
+  return Array.isArray(parsed)
+    ? parsed.filter((item): item is string => typeof item === 'string' && OFFICIAL_FLASHCARD_PACK_IDS.has(item))
+    : [];
+}
+
+async function redeemFlashcardPackGift(request: {
+  auth?: { uid?: string } | null;
+  data?: Record<string, unknown>;
+}) {
+  if (!request.auth) throw new HttpsError('unauthenticated', 'Auth required');
+
+  const requestedBuyerStableId = String(request.data?.buyerStableId ?? '').trim();
+  const packId = String(request.data?.packId ?? '').trim();
+  const packType = String(request.data?.packType ?? 'community') as FlashcardPackGiftType;
+  const voucherId = String(request.data?.voucherId ?? '').trim();
+  const requestedOccurrenceId = String(request.data?.voucherOccurrenceId ?? '').trim();
+  const requestedStudyTarget = request.data?.studyTarget;
+  if (!requestedBuyerStableId || !packId || !['official', 'community'].includes(packType)) {
+    throw new HttpsError('invalid-argument', 'buyerStableId, packType and packId required');
+  }
+
+  if (voucherId && !/^[A-Za-z0-9_-]{1,180}$/.test(voucherId)) throw new HttpsError('invalid-argument', 'voucher_id_invalid');
+  if (requestedOccurrenceId && !/^[A-Za-z0-9_-]{1,180}$/.test(requestedOccurrenceId)) {
+    throw new HttpsError('invalid-argument', 'voucher_occurrence_id_invalid');
+  }
+  const now = Date.now();
+  const db = admin.firestore();
+  const buyerStableId = await resolveStableUidForAuth(db, request.auth.uid!, requestedBuyerStableId, {
+    requireKnownIdentity: true,
+  });
+  const studyTarget = normalizeCommunityPackStudyTarget(requestedStudyTarget);
+  const aliases = await stableIdentityAliases(db, buyerStableId);
+  let occurrenceId = '';
+  let occurrenceDate: string | null = null;
+
+  // A server grant is the authority for its occurrence. Never let the client
+  // select another claim namespace for the same voucher id.
+  if (voucherId) {
+    const grant = await db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId).get();
+    const data = grant.data() ?? {};
+    if (!grant.exists || !aliases.includes(String(data.ownerStableUid ?? ''))) {
+      throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
+    }
+    occurrenceId = String(data.occurrenceId ?? '').trim() || voucherId;
+    if (requestedOccurrenceId && requestedOccurrenceId !== occurrenceId) {
+      throw new HttpsError('failed-precondition', 'voucher_occurrence_mismatch');
+    }
+  } else {
+    occurrenceId = requestedOccurrenceId;
+  }
+
+  // Recovery must not depend on the voucher/config still being active: a server
+  // receipt is the durable authority for the exact choice already made.
+  if (occurrenceId) {
+    const priorClaimSnaps = await Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS)
+      .doc(giftClaimId(alias, occurrenceId)).get()));
+    const priorClaim = priorClaimSnaps.find((snap) => snap.exists);
+    if (priorClaim) {
+      const data = priorClaim.data() ?? {};
+      if (String(data.packId ?? '') !== packId || String(data.packType ?? '') !== packType || String(data.studyTarget ?? '') !== studyTarget) {
+        throw new HttpsError('failed-precondition', 'pack_gift_already_used');
+      }
+      return { alreadyOwned: false as const, gifted: true as const, replayed: true as const, packId, packType, studyTarget };
+    }
+  }
+  if (!voucherId) {
+    occurrenceDate = await activeFlashcardGiftOccurrence(now);
+    if (!occurrenceDate) throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
+    const activeOccurrenceId = `weekly_boon_${occurrenceDate}`;
+    if (occurrenceId && occurrenceId !== activeOccurrenceId) throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
+    occurrenceId = activeOccurrenceId;
+  }
+  if (!occurrenceId) throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
+  const purchaseId = `${buyerStableId}__${packId}`;
+  const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
+  const purchaseRef = db.collection(COMMUNITY_PURCHASES).doc(purchaseId);
+  const entitlementRef = db.collection(FLASHCARD_PACK_GIFT_ENTITLEMENTS)
+    .doc(`${buyerStableId}__${packType}__${packId}`);
+  const claimRefs = aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS).doc(giftClaimId(alias, occurrenceId)));
+  const canonicalClaimRef = db.collection(FLASHCARD_PACK_GIFT_CLAIMS).doc(giftClaimId(buyerStableId, occurrenceId));
+  const grantRef = voucherId ? db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId) : null;
+  const entitlementRefs = aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_ENTITLEMENTS)
+    .doc(`${alias}__${packType}__${packId}`));
+  const purchaseRefs = aliases.map((alias) => db.collection(COMMUNITY_PURCHASES).doc(`${alias}__${packId}`));
+  const userRefs = aliases.map((alias) => db.collection('users').doc(alias));
+
+  return db.runTransaction(async (tx) => {
+    const claimSnaps = await Promise.all(claimRefs.map((ref) => tx.get(ref)));
+    const priorClaim = claimSnaps.find((snap) => snap.exists);
+    if (priorClaim) {
+      const data = priorClaim.data() ?? {};
+      if (String(data.packId ?? '') !== packId || String(data.packType ?? '') !== packType || String(data.studyTarget ?? '') !== studyTarget) {
+        throw new HttpsError('failed-precondition', 'pack_gift_already_used');
+      }
+      return { alreadyOwned: false as const, gifted: true as const, replayed: true as const, packId, packType, studyTarget };
+    }
+
+    if (grantRef) {
+      const grant = await tx.get(grantRef);
+      const data = grant.data() ?? {};
+      const storedOccurrenceId = String(data.occurrenceId ?? '').trim() || voucherId;
+      if (!grant.exists || !aliases.includes(String(data.ownerStableUid ?? '')) || storedOccurrenceId !== occurrenceId) {
+        throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
+      }
+      if (data.claimedAt != null || Number(data.expiresAt ?? 0) <= now) {
+        throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
+      }
+      const allowedPackId = String(data.allowedPackId ?? '').trim();
+      if (allowedPackId && (packType !== 'official' || packId !== allowedPackId)) {
+        throw new HttpsError('permission-denied', 'voucher_pack_mismatch');
+      }
+    }
+
+    const [entitlementSnaps, userSnaps] = await Promise.all([
+      Promise.all(entitlementRefs.map((ref) => tx.get(ref))),
+      packType === 'official' ? Promise.all(userRefs.map((ref) => tx.get(ref))) : Promise.resolve([]),
+    ]);
+    const alreadyEntitled = entitlementSnaps.some((snap) => snap.exists);
+    const alreadyOfficialOwned = packType === 'official' && userSnaps.some((snap) => (
+      officialPackIdsFromUserProgress((snap.data() ?? {}) as Record<string, unknown>).includes(packId)
+    ));
+    const aliasPurchaseSnaps = packType === 'community'
+      ? await Promise.all(purchaseRefs.map((ref) => tx.get(ref)))
+      : [];
+    if (alreadyEntitled || alreadyOfficialOwned || aliasPurchaseSnaps.some((snap) => snap.exists)) {
+      return { alreadyOwned: true as const, gifted: false as const, packId, packType, studyTarget };
+    }
+    let authorStableId = '';
+    if (packType === 'official') {
+      if (studyTarget !== 'en' || !OFFICIAL_FLASHCARD_PACK_IDS.has(packId)) {
+        throw new HttpsError('not-found', 'pack_not_found');
+      }
+    } else {
+      const [packSnap, purchaseSnap] = await Promise.all([tx.get(packRef), tx.get(purchaseRef)]);
+      if (!packSnap.exists) throw new HttpsError('not-found', 'pack_not_found');
+      const pack = packSnap.data() as { listingStatus?: string; authorStableId?: string; studyTarget?: unknown };
+      requireMatchingPackStudyTarget(studyTarget, pack as Record<string, unknown>);
+      if (pack.listingStatus !== 'published') throw new HttpsError('failed-precondition', 'pack_not_published');
+      authorStableId = String(pack.authorStableId ?? '').trim();
+      if (!authorStableId) throw new HttpsError('failed-precondition', 'pack_author_missing');
+      if (aliases.includes(authorStableId)) throw new HttpsError('failed-precondition', 'own_pack_not_giftable');
+      if (purchaseSnap.exists) return { alreadyOwned: true as const, gifted: false as const, packId, packType, studyTarget };
+      tx.set(purchaseRef, {
+        packId, studyTarget, buyerStableId, authorStableId,
+        status: 'completed',
+        priceShards: 0, authorNetShards: 0, platformFeeShards: 0,
+        acquisitionSource: 'weekly_boon_gift', giftOccurrenceId: occurrenceId, boonOccurrenceDate: occurrenceDate, createdAt: now,
+      });
+    }
+
+    tx.set(entitlementRef, {
+      buyerStableId, packId, packType, studyTarget, giftOccurrenceId: occurrenceId, createdAt: now,
+    });
+    tx.set(canonicalClaimRef, {
+      buyerStableId, ownerAliases: aliases, packId, packType, studyTarget,
+      occurrenceId, occurrenceDate, createdAt: now,
+    });
+    if (grantRef) tx.set(grantRef, { claimedAt: now, claimedPackId: packId, claimedPackType: packType }, { merge: true });
+
+    return { alreadyOwned: false as const, gifted: true as const, packId, packType, studyTarget };
+  });
+}
+
+type LevelGiftLane = 'f2p' | 'premium';
+type LevelGiftRarity = 'common' | 'rare' | 'epic';
+type LevelGiftCatalogEntry = { id: string; rarity: LevelGiftRarity; weight: number };
+
+const LEVEL_GIFT_RESERVATIONS = 'level_gift_reservations';
+const LEVEL_GIFT_PACK_IDS: Record<string, string> = {
+  prem_level_unlock_negotiator: 'official_negotiator_en',
+  prem_level_unlock_dark_logic: 'official_dark_logic_en',
+  prem_level_unlock_wild_west: 'official_wild_west_en',
+  prem_level_unlock_royal_tea: 'official_royal_tea_en',
+  prem_level_unlock_peaky_blinders: 'official_peaky_blinders_en',
+};
+const LEVEL_GIFT_MILESTONES: Record<number, string> = {
+  5: 'xp_bank_150', 10: 'xp_bank_300', 15: 'cosmetic_avatar_common', 20: 'focus_15m_50',
+  25: 'pack_voucher_48h', 30: 'choice_3_level', 35: 'cosmetic_avatar_aura', 40: 'xp_bank_600',
+  45: 'cosmetic_avatar_aura', 50: 'choice_3_level', 55: 'chain_shield_3', 60: 'choice_3_level',
+  70: 'xp_2x_48h', 80: 'cosmetic_avatar_aura', 90: 'pack_voucher_48h', 100: 'choice_3_level',
+};
+const LEVEL_GIFT_F2P: LevelGiftCatalogEntry[] = [
+  ['energy_full', 'common', 9], ['energy_plus1', 'common', 8], ['xp_50', 'common', 7],
+  ['xp_100', 'common', 7], ['xp_250', 'common', 6], ['hint_1', 'common', 8],
+  ['shards_3', 'common', 7], ['xp_bank_150', 'common', 6], ['focus_10m_25', 'common', 4],
+  ['arena_extra_5', 'common', 5], ['xp_2x_24h', 'rare', 9], ['energy_plus2', 'rare', 7],
+  ['chain_shield_1', 'rare', 8], ['hint_3', 'rare', 6], ['shards_6', 'rare', 6],
+  ['xp_bank_300', 'rare', 6], ['focus_15m_50', 'rare', 5], ['cosmetic_avatar_common', 'rare', 5],
+  ['cosmetic_avatar_aura', 'rare', 4], ['club_boost_free', 'rare', 6], ['xp_2x_48h', 'epic', 3],
+  ['energy_plus3', 'epic', 2], ['chain_shield_3', 'epic', 2], ['wager_discount_25', 'epic', 2],
+  ['shards_10', 'epic', 2], ['xp_bank_600', 'epic', 2], ['pack_voucher_48h', 'epic', 1],
+  ['choice_3_level', 'epic', 2],
+].map(([id, rarity, weight]) => ({ id: String(id), rarity: rarity as LevelGiftRarity, weight: Number(weight) }));
+const LEVEL_GIFT_PREMIUM: LevelGiftCatalogEntry[] = [
+  { id: 'prem_shards_10', rarity: 'common', weight: 5 },
+  { id: 'prem_shards_15', rarity: 'rare', weight: 4 },
+  { id: 'prem_shards_20', rarity: 'epic', weight: 4 },
+  { id: 'premium_xp_bank_1000', rarity: 'epic', weight: 2 },
+  { id: 'premium_cosmetic_avatar', rarity: 'epic', weight: 2 },
+  { id: 'premium_cosmetic_aura', rarity: 'epic', weight: 2 },
+  { id: 'prem_pack_48h', rarity: 'epic', weight: 1 },
+];
+const PREMIUM_SAFE_BLOCKED_F2P = new Set([
+  'arena_extra_5', 'energy_full', 'energy_plus1', 'energy_plus2', 'energy_plus3', 'choice_3_level',
+]);
+
+function levelGiftHash(seed: string): number {
+  let hash = 2166136261;
+  for (let i = 0; i < seed.length; i += 1) {
+    hash ^= seed.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function levelGiftUnit(seed: string): number {
+  return levelGiftHash(seed) / 0x100000000;
+}
+
+function pickLevelGiftWeighted(pool: LevelGiftCatalogEntry[], seed: string): string {
+  if (!pool.length) throw new HttpsError('failed-precondition', 'level_gift_pool_empty');
+  const total = pool.reduce((sum, item) => sum + item.weight, 0);
+  let cursor = levelGiftUnit(seed) * total;
+  for (const item of pool) {
+    cursor -= item.weight;
+    if (cursor <= 0) return item.id;
+  }
+  return pool[pool.length - 1].id;
+}
+
+function selectLevelGift(params: {
+  stableUid: string;
+  level: number;
+  lane: LevelGiftLane;
+  studyTarget: 'en' | 'fr';
+  premium: boolean;
+  usedPackIds: string[];
+  recentGiftIds: string[];
+}): { giftId: string; allowedPackId?: string } {
+  const { stableUid, level, lane, studyTarget, premium, usedPackIds, recentGiftIds } = params;
+  const seed = `${stableUid}:${level}:${lane}:${studyTarget}`;
+  if (lane === 'premium') {
+    const eligible = studyTarget === 'en'
+      ? Object.entries(LEVEL_GIFT_PACK_IDS).filter(([, packId]) => !usedPackIds.includes(packId))
+      : [];
+    if (eligible.length && levelGiftUnit(`${seed}:permanent-pack`) < 0.08) {
+      const [giftId, allowedPackId] = eligible[levelGiftHash(`${seed}:pack-choice`) % eligible.length];
+      return { giftId, allowedPackId };
+    }
+    const pool = LEVEL_GIFT_PREMIUM;
+    return { giftId: pickLevelGiftWeighted(pool, `${seed}:weighted`) };
+  }
+
+  const milestone = LEVEL_GIFT_MILESTONES[level];
+  if (milestone) {
+    if (premium && milestone === 'choice_3_level') return { giftId: 'xp_bank_600' };
+    return { giftId: milestone };
+  }
+  let pool = premium ? LEVEL_GIFT_F2P.filter((item) => !PREMIUM_SAFE_BLOCKED_F2P.has(item.id)) : LEVEL_GIFT_F2P;
+  const isRound = new Set([10, 20, 30, 40, 50]).has(level);
+  const rarityRoll = levelGiftUnit(`${seed}:rarity`);
+  const rarity: LevelGiftRarity = isRound
+    ? (rarityRoll < 0.6 ? 'rare' : 'epic')
+    : (rarityRoll < 0.6 ? 'common' : rarityRoll < 0.9 ? 'rare' : 'epic');
+  let tier = pool.filter((item) => item.rarity === rarity);
+  if (!tier.length) tier = pool;
+  if (isRound && recentGiftIds.slice(-2).every((id) => id === 'hint_1')) {
+    tier = tier.filter((item) => item.id !== 'hint_1');
+  }
+  return { giftId: pickLevelGiftWeighted(tier.length ? tier : pool, `${seed}:weighted`) };
+}
+
+function safeLevelGiftPart(value: unknown, max = 80): string {
+  return String(value ?? '').replace(/[^A-Za-z0-9_-]/g, '_').slice(0, max);
+}
+
+export const levelGiftReserve = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const authUid = request.auth.uid;
+  const requestedStableId = String(request.data?.stableId ?? '').trim();
+  const level = Math.trunc(Number(request.data?.level));
+  const lane = String(request.data?.lane ?? '') as LevelGiftLane;
+  const studyTarget = normalizeCommunityPackStudyTarget(request.data?.studyTarget);
+  if (!requestedStableId || !Number.isInteger(level) || level < 1 || level > 100 || !['f2p', 'premium'].includes(lane)) {
+    throw new HttpsError('invalid-argument', 'level_gift_request_invalid');
+  }
+  const db = admin.firestore();
+  const stableUid = await resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });
+  const aliases = await stableIdentityAliases(db, stableUid);
+  const reservationId = `${safeLevelGiftPart(stableUid)}_${level}_${lane}_${studyTarget}`;
+  const userRef = db.collection('users').doc(stableUid);
+  const reservationRef = db.collection(LEVEL_GIFT_RESERVATIONS).doc(reservationId);
+  const reservationRefs = aliases.map((alias) => db.collection(LEVEL_GIFT_RESERVATIONS)
+    .doc(`${safeLevelGiftPart(alias)}_${level}_${lane}_${studyTarget}`));
+  const now = Date.now();
+  return db.runTransaction(async (tx) => {
+    const [userSnap, ...reservationSnaps] = await Promise.all([tx.get(userRef), ...reservationRefs.map((ref) => tx.get(ref))]);
+    const existingReservation = reservationSnaps.find((snap) => snap.exists);
+    if (existingReservation) {
+      const receipt = existingReservation.data() ?? {};
+      if (!aliases.includes(String(receipt.ownerStableUid ?? ''))) throw new HttpsError('permission-denied', 'level_gift_owner_mismatch');
+      return {
+        reservationId: existingReservation.id,
+        giftId: String(receipt.giftId ?? ''),
+        allowedPackId: String(receipt.allowedPackId ?? '') || undefined,
+        replayed: true as const,
+      };
+    }
+    const user = (userSnap.data() ?? {}) as Record<string, unknown>;
+    const serverState = (user.progressServerState && typeof user.progressServerState === 'object'
+      ? user.progressServerState : {}) as Record<string, unknown>;
+    const serverLevel = Math.max(0, Math.trunc(Number(serverState.level) || 0));
+    if (serverLevel < level) throw new HttpsError('failed-precondition', 'level_not_reached');
+    const premium = await resolvePremiumAccess(db, stableUid, now, authUid, tx);
+    if (lane === 'premium' && !premium) throw new HttpsError('permission-denied', 'premium_level_gift_required');
+    const levelGiftState = (user.levelGiftServerState && typeof user.levelGiftServerState === 'object'
+      ? user.levelGiftServerState : {}) as Record<string, unknown>;
+    const usedPackIds = Array.isArray(levelGiftState.premiumUnlockedPackIds)
+      ? levelGiftState.premiumUnlockedPackIds.filter((item): item is string => typeof item === 'string') : [];
+    const recentGiftIds = Array.isArray(levelGiftState.recentGiftIds)
+      ? levelGiftState.recentGiftIds.filter((item): item is string => typeof item === 'string').slice(-3) : [];
+    const selected = selectLevelGift({ stableUid, level, lane, studyTarget, premium, usedPackIds, recentGiftIds });
+    tx.set(reservationRef, {
+      ownerStableUid: stableUid, level, lane, studyTarget, giftId: selected.giftId,
+      allowedPackId: selected.allowedPackId ?? null, createdAt: now,
+    });
+    tx.set(userRef, {
+      levelGiftServerState: {
+        premiumUnlockedPackIds: selected.allowedPackId
+          ? [...new Set([...usedPackIds, selected.allowedPackId])]
+          : usedPackIds,
+        recentGiftIds: [...recentGiftIds, selected.giftId].slice(-3),
+      },
+    }, { merge: true });
+    return { reservationId, ...selected };
+  });
+});
+
+export const levelGiftActivatePackGift = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const requestedStableId = String(request.data?.stableId ?? '').trim();
+  const reservationId = String(request.data?.reservationId ?? '').trim();
+  if (!requestedStableId || !/^[A-Za-z0-9_-]{1,180}$/.test(reservationId)) {
+    throw new HttpsError('invalid-argument', 'level_gift_activation_invalid');
+  }
+  const db = admin.firestore();
+  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, { requireKnownIdentity: true });
+  const aliases = await stableIdentityAliases(db, stableUid);
+  const reservationRef = db.collection(LEVEL_GIFT_RESERVATIONS).doc(reservationId);
+  const voucherId = `level_${reservationId}`;
+  const grantRef = db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId);
+  const now = Date.now();
+  return db.runTransaction(async (tx) => {
+    const [reservationSnap, grantSnap] = await Promise.all([tx.get(reservationRef), tx.get(grantRef)]);
+    const reservation = reservationSnap.data() ?? {};
+    if (!reservationSnap.exists || !aliases.includes(String(reservation.ownerStableUid ?? ''))) {
+      throw new HttpsError('failed-precondition', 'level_gift_reservation_missing');
+    }
+    const giftId = String(reservation.giftId ?? '');
+    const allowedPackId = String(reservation.allowedPackId ?? '') || undefined;
+    if (!['pack_voucher_48h', 'prem_pack_48h'].includes(giftId) && !allowedPackId) {
+      throw new HttpsError('failed-precondition', 'level_gift_has_no_pack_reward');
+    }
+    if (grantSnap.exists) {
+      const existing = grantSnap.data() ?? {};
+      return { voucherId, expiresAt: Number(existing.expiresAt ?? 0), allowedPackId, replayed: true as const };
+    }
+    const expiresAt = now + PACK_GIFT_DURATION_MS;
+    tx.set(grantRef, {
+      ownerStableUid: stableUid, source: 'level_gift', sourceId: reservationId,
+      occurrenceId: voucherId, allowedPackId: allowedPackId ?? null, expiresAt, createdAt: now,
+    });
+    return { voucherId, expiresAt, allowedPackId };
+  });
+});
+
+/** Creates the voucher proof while the authoritative broadcast is still active. */
+export const flashcardPackGiftGrantGlobalBroadcast = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const authUid = request.auth.uid;
+  const requestedStableId = String(request.data?.stableId ?? '').trim();
+  const broadcastId = String(request.data?.broadcastId ?? '').trim();
+  if (!requestedStableId || !/^[A-Za-z0-9_-]{1,180}$/.test(broadcastId)) {
+    throw new HttpsError('invalid-argument', 'stableId and broadcastId required');
+  }
+  const db = admin.firestore();
+  const stableUid = await resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });
+  const now = Date.now();
+  const voucherId = `global_broadcast_${broadcastId}_${stableUid}`;
+  const broadcastRef = db.collection('global_broadcast_modals').doc(broadcastId);
+  const grantRef = db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId);
+  return db.runTransaction(async (tx) => {
+    const [broadcastSnap, grantSnap] = await Promise.all([
+      tx.get(broadcastRef), tx.get(grantRef),
+    ]);
+    const broadcast = broadcastSnap.data() ?? {};
+    if (!broadcastSnap.exists || broadcast.active !== true || broadcast.rewardType !== 'pack_trial_48h') {
+      throw new HttpsError('failed-precondition', 'broadcast_pack_gift_not_eligible');
+    }
+    if (grantSnap.exists) {
+      const existing = grantSnap.data() ?? {};
+      if (String(existing.ownerStableUid ?? '') !== stableUid) throw new HttpsError('permission-denied', 'voucher_owner_mismatch');
+      return { voucherId, expiresAt: Number(existing.expiresAt ?? 0), replayed: true as const };
+    }
+    const isPremium = await resolvePremiumAccess(db, stableUid, now, authUid, tx);
+    const audience = String(broadcast.premiumAudience ?? 'all');
+    if ((audience === 'premium' && !isPremium) || (audience === 'free' && isPremium)) {
+      throw new HttpsError('permission-denied', 'broadcast_audience_mismatch');
+    }
+    const expiresAt = now + PACK_GIFT_DURATION_MS;
+    tx.set(grantRef, { ownerStableUid: stableUid, source: 'global_broadcast', sourceId: broadcastId, occurrenceId: voucherId, expiresAt, createdAt: now });
+    return { voucherId, expiresAt };
+  });
+});
+
+/** Restores durable pack-gift state on a new device without trusting client storage. */
+export const flashcardPackGiftSyncState = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const requestedStableId = String(request.data?.stableId ?? '').trim();
+  if (!requestedStableId) throw new HttpsError('invalid-argument', 'stableId required');
+  const db = admin.firestore();
+  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, { requireKnownIdentity: true });
+  const aliases = await stableIdentityAliases(db, stableUid);
+  const now = Date.now();
+
+  const [grantQueries, entitlementQueries, userSnaps] = await Promise.all([
+    Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_GRANTS)
+      .where('ownerStableUid', '==', alias).get())),
+    Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_ENTITLEMENTS)
+      .where('buyerStableId', '==', alias).get())),
+    Promise.all(aliases.map((alias) => db.collection('users').doc(alias).get())),
+  ]);
+  const activeGrants = grantQueries.flatMap((snap) => snap.docs.flatMap((doc) => {
+    const grant = doc.data() ?? {};
+    const expiresAt = Number(grant.expiresAt ?? 0);
+    const occurrenceId = String(grant.occurrenceId ?? doc.id).trim() || doc.id;
+    if (!Number.isFinite(expiresAt) || expiresAt <= now || grant.claimedAt != null) return [];
+    return [{ voucherId: doc.id, occurrenceId, expiresAt, source: String(grant.source ?? 'server_grant') }];
+  }));
+  const activeGrantClaimSnaps = await Promise.all(activeGrants.map((grant) => Promise.all(
+    aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS).doc(giftClaimId(alias, grant.occurrenceId)).get()),
+  )));
+  const vouchers: { voucherId?: string; occurrenceId: string; expiresAt: number; source: string }[] = activeGrants
+    .filter((_grant, index) => !activeGrantClaimSnaps[index].some((snap) => snap.exists));
+
+  // Weekly state is virtual: it exists only while authoritative config says the
+  // occurrence is active, and never if an alias already claimed it.
+  try {
+    const occurrenceDate = await activeFlashcardGiftOccurrence(now);
+    if (occurrenceDate) {
+      const occurrenceId = `weekly_boon_${occurrenceDate}`;
+      const weeklyClaimSnaps = await Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS)
+        .doc(giftClaimId(alias, occurrenceId)).get()));
+      if (!weeklyClaimSnaps.some((snap) => snap.exists)) {
+        vouchers.push({
+          voucherId: undefined,
+          occurrenceId,
+          expiresAt: new Date(`${occurrenceDate}T00:00:00Z`).getTime() + 3 * DAY_MS,
+          source: 'weekly_boon',
+        });
+      }
+    }
+  } catch {
+    // Fail closed for weekly issuance while still restoring independent grants.
+  }
+
+  const entitlementMap = new Map<string, { packId: string; packType: FlashcardPackGiftType; studyTarget: CommunityStudyTarget }>();
+  for (const snap of entitlementQueries) {
+    for (const doc of snap.docs) {
+      const row = doc.data() ?? {};
+      const packId = String(row.packId ?? '').trim();
+      const packType = String(row.packType ?? '') as FlashcardPackGiftType;
+      const studyTarget = String(row.studyTarget ?? '') as CommunityStudyTarget;
+      if (!packId || !['official', 'community'].includes(packType) || !['en', 'fr'].includes(studyTarget)) continue;
+      entitlementMap.set(`${packType}:${studyTarget}:${packId}`, { packId, packType, studyTarget });
+    }
+  }
+  for (const userSnap of userSnaps) {
+    for (const packId of officialPackIdsFromUserProgress((userSnap.data() ?? {}) as Record<string, unknown>)) {
+      entitlementMap.set(`official:en:${packId}`, { packId, packType: 'official', studyTarget: 'en' });
+    }
+  }
+  return { vouchers, entitlements: [...entitlementMap.values()] };
+});
+
+/** One server-authoritative receipt for official and community gift redemption. */
+export const flashcardPackGiftRedeem = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, redeemFlashcardPackGift);
+
+/** Backwards-compatible callable name for clients already shipped during rollout. */
+export const communityRedeemPackGiftVoucher = onCall(
+  { enforceAppCheck: ENFORCE_APP_CHECK },
+  (request) => redeemFlashcardPackGift({ ...request, data: { ...(request.data ?? {}), packType: 'community' } }),
+);
 
 /**
  * Список непрочитанных событий продажи для автора (для модалки при входе).

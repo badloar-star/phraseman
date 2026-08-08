@@ -98,6 +98,7 @@ describe('stats_insights sanitizeBriefing', () => {
     expect(clean.year.goalPct).toBeLessThanOrEqual(100);
     expect(clean.percentiles.daily7).toBeNull(); // non-numeric → null
     expect(clean.percentiles.week).toBe(0);      // clamped to >= 0
+    expect(clean.lifetime).toEqual({ words: 0, phrases: 100000000, daysActive: 9 });
     expect(clean.weakCategories.length).toBeLessThanOrEqual(3);
     expect(clean.weakCategories[0].label.length).toBeLessThanOrEqual(80);
   });
@@ -145,6 +146,7 @@ describe('stats_insights buildSystemPrompt', () => {
     expect(prompt).toContain('practice consistency card');
     expect(prompt).toContain('Do NOT mention the score');
     expect(prompt).not.toContain('practice balance score');
+    expect(prompt).not.toMatch(/\b(?:quizzes|arenaWins)\b/);
   });
 });
 

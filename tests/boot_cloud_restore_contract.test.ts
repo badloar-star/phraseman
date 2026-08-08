@@ -6,6 +6,7 @@ const root = process.cwd();
 describe('boot cloud restore integration contract', () => {
   const layout = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
   const authProvider = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
+  const cloudSync = fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8');
 
   it('preserves the detailed restore outcome instead of erasing it into Promise<void>', () => {
     expect(layout).toContain('createBootCloudRestoreCoordinator');
@@ -25,5 +26,10 @@ describe('boot cloud restore integration contract', () => {
     expect(layout).toContain('if (bootRestoreOutcome.shouldSync)');
     expect(layout).toContain("if (bootRestoreOutcome.status === 'failed')");
     expect(layout).not.toContain("try { emitAppEvent('cloud_profile_hydrated');");
+  });
+
+  it('does not stage level-up rewards while restoring historical cloud XP', () => {
+    expect(cloudSync).not.toContain('level_up_reward_reconciler');
+    expect(cloudSync).not.toContain('reconcileLevelUpRewards');
   });
 });

@@ -1,14 +1,15 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, BackHandler, Modal, Platform, Pressable, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, BackHandler, Modal, Platform, Pressable, Share, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
+import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -16,11 +17,13 @@ import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { usePremium } from '../components/PremiumContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
 import { checkAchievements } from './achievements';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { STORE_URL } from './config';
@@ -28,11 +31,11 @@ import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier 
 import { markNextNavigationAsReplace } from './navigation_back';
 import { scheduleD1PersonalizedReminder } from './notifications';
 import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
-import { canShowReview, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
+import { canShowReview, getReviewActiveDays, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
 import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
-import { registerXP } from './xp_manager';
 import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
+import { normalizeProfileCardLevel, PROFILE_CARD_LEVEL_KEY, profileCardShardMultiplier } from './profile_card_system';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
 import { logAppWarning } from './app_health';
 import { formatLessonShardBatchReason } from './shard_earn_ui';
@@ -40,14 +43,25 @@ import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
+import { getFreeLessonLimit } from './remote_flags';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
+import type { SoftUpsellCandidate, SoftUpsellStudyTarget } from './soft_upsell_core';
+import {
+  candidateAfterLessonGrant,
+  createLessonSoftUpsellCtaHandler,
+  lessonSoftUpsellPersistenceScope,
+  shouldRenderLessonSoftUpsell,
+  type LessonSoftUpsellIdentity,
+} from './lesson_complete_soft_upsell';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
+import ReviewPromptModal from '../components/ReviewPromptModal';
 import CoachToast from '../components/CoachToast';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useOverlayVisible } from '../components/OverlayArbiter';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
 import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
@@ -56,11 +70,12 @@ import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
-import ResultsSequence from '../components/feedback/ResultsSequence';
+import ProgressCompletionView from '../components/feedback/ProgressCompletionView';
+import { buildProgressCompletionModel } from './completion/progress_completion_model';
+import { lessonSavedResultCopy } from './completion/progress_completion_copy';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
-  lessonBonusGrantedKey,
   lessonPerfectMilestoneKey,
   lessonProgressKey,
   lessonTopicShardGrantedKey,
@@ -81,13 +96,32 @@ const RESULTS_STARS_BY_TIER: Record<MedalTier, number> = {
   silver: 2,
   gold: 3,
 };
-// Витринное значение XP-тикера секвенции — то же «+500 XP», что и статичная
-// плашка бонуса ниже (s.lessonComplete.bonus). Только визуал: начисление XP
-// живёт в уроке/грантах, этот экран экономику не трогает.
-const RESULTS_SEQUENCE_XP = 500;
-
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
+
+const LESSON_SOFT_UPSELL_COPY = {
+  ru: { title: 'Первый урок — готово', body: 'Собери личный маршрут, чтобы дальше учить именно то, что пригодится тебе.', ctaLabel: 'Настроить мой путь', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Продолжить без настройки личного пути', ctaAccessibilityLabel: 'Настроить личный путь', ctaAccessibilityHint: 'Открыть настройку персонального плана' },
+  uk: { title: 'Перший урок — готово', body: 'Склади особистий маршрут, щоб далі вчити саме те, що знадобиться тобі.', ctaLabel: 'Налаштувати мій шлях', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Продовжити без налаштування особистого шляху', ctaAccessibilityLabel: 'Налаштувати особистий шлях', ctaAccessibilityHint: 'Відкрити налаштування персонального плану' },
+  es: { title: 'Primera lección completada', body: 'Crea una ruta personal para aprender justo lo que necesitas.', ctaLabel: 'Crear mi ruta', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Continuar sin crear una ruta personal', ctaAccessibilityLabel: 'Crear mi ruta personal', ctaAccessibilityHint: 'Abrir la configuración del plan personal' },
+  'pt-BR': { title: 'Primeira lição concluída', body: 'Crie uma rota pessoal para aprender exatamente o que você precisa.', ctaLabel: 'Criar minha rota', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Continuar sem criar uma rota pessoal', ctaAccessibilityLabel: 'Criar minha rota pessoal', ctaAccessibilityHint: 'Abrir a configuração do plano pessoal' },
+  vi: { title: 'Đã xong bài học đầu tiên', body: 'Tạo lộ trình cá nhân để học đúng những gì bạn cần.', ctaLabel: 'Tạo lộ trình của tôi', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Tiếp tục mà không tạo lộ trình cá nhân', ctaAccessibilityLabel: 'Tạo lộ trình cá nhân', ctaAccessibilityHint: 'Mở phần thiết lập kế hoạch cá nhân' },
+  id: { title: 'Pelajaran pertama selesai', body: 'Buat jalur pribadi untuk mempelajari hal yang benar-benar kamu perlukan.', ctaLabel: 'Buat jalur saya', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Lanjut tanpa membuat jalur pribadi', ctaAccessibilityLabel: 'Buat jalur pribadi', ctaAccessibilityHint: 'Buka pengaturan rencana pribadi' },
+  tr: { title: 'İlk ders tamamlandı', body: 'Tam ihtiyacın olanları öğrenmek için kişisel bir yol oluştur.', ctaLabel: 'Yolumu oluştur', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Kişisel yol oluşturmadan devam et', ctaAccessibilityLabel: 'Kişisel yol oluştur', ctaAccessibilityHint: 'Kişisel plan kurulumunu aç' },
+  pl: { title: 'Pierwsza lekcja ukończona', body: 'Ułóż własną ścieżkę, aby uczyć się dokładnie tego, czego potrzebujesz.', ctaLabel: 'Ułóż moją ścieżkę', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Kontynuuj bez układania własnej ścieżki', ctaAccessibilityLabel: 'Ułóż własną ścieżkę', ctaAccessibilityHint: 'Otwórz konfigurację planu osobistego' },
+} satisfies Record<Lang, LessonSoftUpsellCopy>;
+
+const FREE_LIMIT_SOFT_UPSELL_COPY = {
+  ru: { title: '3 бесплатных урока пройдено', body: 'Ты дошёл до границы бесплатного курса. Plus откроет следующие уроки и весь маршрут.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
+  uk: { title: '3 безкоштовні уроки пройдено', body: 'Ти дістався межі безкоштовного курсу. Plus відкриє наступні уроки й увесь маршрут.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
+  es: { title: '3 lecciones gratis completadas', body: 'Has llegado al límite del curso gratuito. Plus abre las siguientes lecciones y toda la ruta.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
+  'pt-BR': { title: '3 lições grátis concluídas', body: 'Você chegou ao limite do curso gratuito. O Plus libera as próximas lições e toda a rota.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
+  vi: { title: 'Đã hoàn thành 3 bài miễn phí', body: 'Bạn đã đến giới hạn khóa học miễn phí. Plus mở các bài tiếp theo và toàn bộ lộ trình.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
+  id: { title: '3 pelajaran gratis selesai', body: 'Kamu telah mencapai batas kursus gratis. Plus membuka pelajaran berikutnya dan seluruh jalur.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
+  tr: { title: '3 ücretsiz ders tamamlandı', body: 'Ücretsiz kurs sınırına ulaştın. Plus sonraki dersleri ve tüm yolu açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
+  pl: { title: 'Ukończono 3 darmowe lekcje', body: 'To koniec darmowej części kursu. Plus otwiera kolejne lekcje i całą ścieżkę.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
+} satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onClose }: {
   visible: boolean; context: ReviewContext; t: any; f: any; themeMode: string; bottomInset: number; lang: Lang; onClose: () => void;
@@ -123,27 +157,24 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
   };
 
   if (!visible || !variant) return null;
-  const isCompassTheme = false;
-  const panelRadius = isCompassTheme ? 14 : 24;
-  const buttonRadius = isCompassTheme ? 9 : 14;
+  const panelRadius = 24;
+  const buttonRadius = 14;
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={handleNo}>
       <Animated.View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end', opacity: fadeAnim }}>
         <Pressable style={{ flex: 1 }} onPress={handleNo} />
         <View style={{
-          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+          backgroundColor: t.bgCard,
           borderTopLeftRadius: panelRadius,
           borderTopRightRadius: panelRadius,
           padding: 28,
           paddingBottom: Math.max(40, bottomInset + 20),
           borderTopWidth: 0.5,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+          borderColor: t.border,
           alignItems: 'center',
           overflow: 'hidden',
-          ...(isCompassTheme ? compassShadow(3) : null),
         }}>
-          {isCompassTheme && <CompassDepthSurface radius={panelRadius} selected />}
           {step === 'ask' ? (
             <>
               <Text style={{ fontSize: 36, marginBottom: 14 }}>{variant.emoji}</Text>
@@ -158,45 +189,41 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                   style={{
                     flex: 1,
                     minHeight: 52,
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                    backgroundColor: t.bgSurface,
                     borderRadius: buttonRadius,
                     paddingVertical: 14,
                     paddingHorizontal: 12,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                    borderColor: t.border,
                     overflow: 'hidden',
-                    ...(isCompassTheme ? compassShadow(1) : null),
                   }}
                   onPress={handleNo}
                 >
-                  {isCompassTheme && <CompassDepthSurface radius={buttonRadius} quiet />}
                   <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{
                     flex: 1,
                     minHeight: 52,
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.correct,
+                    backgroundColor: t.correct,
                     borderRadius: buttonRadius,
                     paddingVertical: 14,
                     paddingHorizontal: 36,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                    borderColor: 'transparent',
                     overflow: 'hidden',
                     position: 'relative',
-                    ...(isCompassTheme ? compassShadow(1) : null),
                   }}
                   onPress={handleYes}
                 >
-                  {isCompassTheme && <CompassDepthSurface radius={buttonRadius} cream />}
                   <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                     <Text
                       style={{
-                        color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText,
+                        color: t.correctText,
                         fontSize: f.body,
                         fontWeight: '700',
                         lineHeight: f.body * 1.15,
@@ -264,7 +291,6 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   const dismiss = () => {
     Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true }).start(onDismiss);
   };
-  const isCompassTheme = false;
 
   const MEDAL_IMAGES: Record<string, any> = {
     bronze: require('../assets/images/levels/bronza.webp'),
@@ -377,33 +403,29 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
       <Pressable style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} onPress={dismiss} />
       <Animated.View style={{
         transform: [{ translateY }],
-        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-        borderRadius: isCompassTheme ? 14 : 28, padding: 28, marginHorizontal: 24,
+        backgroundColor: t.bgCard,
+        borderRadius: 28, padding: 28, marginHorizontal: 24,
         alignItems: 'center', width: '100%', maxWidth: 360,
-        borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.textSecond + '44',
+        borderWidth: 0, borderColor: t.textSecond + '44',
         overflow: 'hidden',
-        ...(isCompassTheme ? compassShadow(3) : { shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20 }),
+        shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20,
       }}>
-        {isCompassTheme && <CompassDepthSurface radius={14} selected />}
         {/* Icon / Image */}
         {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
           <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} contentFit="contain" />
         )}
         {notif.kind === 'lesson_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
-            {isCompassTheme && <CompassDepthSurface radius={12} selected />}
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
             <Text style={{ fontSize: 40 }}>🔓</Text>
           </View>
         )}
         {notif.kind === 'level_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
-            {isCompassTheme && <CompassDepthSurface radius={12} selected />}
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
             <Text style={{ fontSize: 40 }}>📋</Text>
           </View>
         )}
         {notif.kind === 'lingman_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
-            {isCompassTheme && <CompassDepthSurface radius={12} selected />}
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
             <Text style={{ fontSize: 40 }}>🎓</Text>
           </View>
         )}
@@ -427,21 +449,19 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
             alignItems: 'center',
             gap: 8,
             marginTop: 18,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
-            borderRadius: isCompassTheme ? 9 : 14,
+            backgroundColor: t.bgSurface,
+            borderRadius: 14,
             paddingHorizontal: 18,
             paddingVertical: 10,
             borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+            borderColor: 'transparent',
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}
           onPress={async () => {
             hapticTap();
             await Share.share({ message: shareMessage() }).catch(() => {});
           }}
         >
-          {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
           <Ionicons name="share-outline" size={18} color={t.textSecond} />
           <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
             {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
@@ -453,18 +473,16 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
           onPress={() => { hapticTap(); dismiss(); }}
           style={{
             marginTop: 14,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent,
-            borderRadius: isCompassTheme ? 9 : 16,
+            backgroundColor: t.accent,
+            borderRadius: 16,
             paddingHorizontal: 40,
             paddingVertical: 12,
             borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+            borderColor: 'transparent',
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}
         >
-          {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+          <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
             {triLang(lang, { ru: 'Отлично!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' })}
           </Text>
         </TouchableOpacity>
@@ -481,7 +499,12 @@ export default function LessonComplete() {
   const { theme: t, f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const isCompassTheme = false;
+  const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
+  const { hasPremiumAccess } = usePremium();
+  const [softUpsellAccountToken, setSoftUpsellAccountToken] = useState(() => captureAccountGeneration());
+  const softUpsellAccountScope = studyTarget === 'es'
+    ? ''
+    : lessonSoftUpsellPersistenceScope(softUpsellAccountToken);
   const params = useLocalSearchParams<{
     id: string;
     unlocked?: string;
@@ -505,8 +528,46 @@ export default function LessonComplete() {
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
   const c = s.lessonComplete;
+  const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);
+  const [completionAccessReady, setCompletionAccessReady] = useState(() => lessonId >= 32);
+  useEffect(() => {
+    if (lessonId >= 32) {
+      setCompletionRequiresPremium(false);
+      setCompletionAccessReady(true);
+      return;
+    }
+
+    let cancelled = false;
+    setCompletionAccessReady(false);
+    void Promise.all([
+      getVerifiedPremiumStatus().catch(() => false),
+      readLegacyFreeLessonCap(studyTarget).catch(() => undefined),
+    ]).then(([premium, legacyFreeLessonCap]) => {
+      if (cancelled) return;
+      setCompletionRequiresPremium(!premium && requiresPremiumForLesson(lessonId + 1, legacyFreeLessonCap));
+      setCompletionAccessReady(true);
+    });
+    return () => { cancelled = true; };
+  }, [lessonId, studyTarget]);
+  const nextLessonUnlockHint = completionRequiresPremium
+    ? triLang(lang, {
+        ru: 'Следующий урок доступен в Plus', uk: 'Наступний урок доступний у Plus', es: 'La siguiente lección está disponible en Plus',
+        'pt-BR': 'A próxima lição está disponível no Plus', vi: 'Bài học tiếp theo có trong Plus', id: 'Pelajaran berikutnya tersedia di Plus',
+        tr: 'Sonraki ders Plus’ta kullanılabilir', pl: 'Następna lekcja jest dostępna w Plus',
+      })
+    : lessonId < 32
+    ? triLang(lang, {
+        ru: 'Следующий урок уже разблокирован', uk: 'Наступний урок уже розблоковано', es: 'La siguiente lección ya está desbloqueada',
+        'pt-BR': 'A próxima lição já está desbloqueada', vi: 'Bài học tiếp theo đã được mở khóa', id: 'Pelajaran berikutnya sudah terbuka',
+        tr: 'Sonraki dersin kilidi açıldı', pl: 'Następna lekcja jest już odblokowana',
+      })
+    : triLang(lang, {
+        ru: 'Ты завершил весь курс', uk: 'Ти завершив увесь курс', es: 'Has terminado todo el curso',
+        'pt-BR': 'Você concluiu todo o curso', vi: 'Bạn đã hoàn thành toàn bộ khóa học', id: 'Kamu sudah menyelesaikan seluruh kursus',
+        tr: 'Tüm kursu tamamladın', pl: 'Ukończyłeś cały kurs',
+      });
   const [showReview, setShowReview] = useState(false);
-  const [reviewContext, setReviewContext] = useState<ReviewContext>('general');
+  const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [lessonScore, setLessonScore] = useState<number>(0);
   const [lessonCefr,  setLessonCefr]  = useState<string>('A1');
@@ -516,9 +577,66 @@ export default function LessonComplete() {
   const [bonusXP, setBonusXP] = useState(0);
   const [showPremiumBanner, setShowPremiumBanner] = useState(false);
   const [repeatOpening, setRepeatOpening] = useState(false);
+  const [softUpsellCandidates, setSoftUpsellCandidates] = useState<SoftUpsellCandidate[]>([]);
+  const softUpsellMountedRef = useRef(true);
+  const softUpsellIdentityRef = useRef<LessonSoftUpsellIdentity>({
+    accountScope: softUpsellAccountScope,
+    generation: softUpsellAccountToken.generation,
+    lessonId,
+    studyTarget: softUpsellStudyTarget,
+  });
+  softUpsellIdentityRef.current = {
+    accountScope: softUpsellAccountScope,
+    generation: softUpsellAccountToken.generation,
+    lessonId,
+    studyTarget: softUpsellStudyTarget,
+  };
   const repeatOpeningRef = useRef(false);
   const premiumBannerAnim = useRef(new Animated.Value(0)).current;
   const premiumBannerNextLesson = useRef(0);
+  const softUpsell = useSoftUpsellOpportunity({
+    candidates: softUpsellAccountScope ? softUpsellCandidates : [],
+    accountScope: softUpsellAccountScope,
+    studyTarget: softUpsellStudyTarget,
+    hasPremiumAccess,
+  });
+  const softUpsellCopy = softUpsell.opportunity?.trigger === 'free_lessons_complete'
+    ? FREE_LIMIT_SOFT_UPSELL_COPY[lang]
+    : LESSON_SOFT_UPSELL_COPY[lang];
+
+  const runSoftUpsellCta = useMemo(() => createLessonSoftUpsellCtaHandler({
+    onCta: softUpsell.onCta,
+    navigatePersonal: () => router.push('/personal_plan_setup' as any),
+    navigatePaywall: () => router.push({
+          pathname: '/premium_modal',
+          params: {
+            context: 'free_lessons_complete',
+            source: 'lesson_complete_soft_upsell',
+            ...lessonPurchaseContinuationParams(lessonId + 1),
+          },
+        } as any),
+  }), [lessonId, router, softUpsell.onCta]);
+  const handleSoftUpsellCta = useCallback(() => {
+    if (!softUpsell.opportunity) return Promise.resolve();
+    return runSoftUpsellCta(softUpsell.opportunity.trigger);
+  }, [runSoftUpsellCta, softUpsell.opportunity]);
+
+  useEffect(() => {
+    softUpsellMountedRef.current = true;
+    return () => { softUpsellMountedRef.current = false; };
+  }, []);
+
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((token) => {
+      setSoftUpsellCandidates([]);
+      setSoftUpsellAccountToken(token);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    setSoftUpsellCandidates([]);
+  }, [lessonId, softUpsellAccountScope, studyTarget]);
 
   // Notification queue
   const [, setNotifQueue] = useState<Notif[]>([]);
@@ -537,7 +655,7 @@ export default function LessonComplete() {
   const [resultsReady, setResultsReady] = useState(false);
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
-  const sequenceShowing = resultsSequenceVisible && resultsReady;
+  const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady;
 
   // ReviewModal показывается только когда очередь нотификаций опустела — без конфликта.
   // pendingReview хранит намерение «показать ревью», а useEffect ждёт тишины.
@@ -566,7 +684,24 @@ export default function LessonComplete() {
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
 
   useEffect(() => {
-    const decision = coachToastDecisionFromRouteParams(params as Record<string, unknown>);
+    const decision = coachToastDecisionFromRouteParams({
+      coachCategory: params.coachCategory,
+      coachMistakeCount: params.coachMistakeCount,
+      coachWeaknessScore: params.coachWeaknessScore,
+      coachPriorityScore: params.coachPriorityScore,
+      coachRecoveryScore: params.coachRecoveryScore,
+      coachFocusWords: params.coachFocusWords,
+      coachMicroDiagnosis: params.coachMicroDiagnosis,
+      coachMicroLabelRu: params.coachMicroLabelRu,
+      coachMicroLabelUk: params.coachMicroLabelUk,
+      coachMicroLabelEs: params.coachMicroLabelEs,
+      coachMicroLabelPtBr: params.coachMicroLabelPtBr,
+      coachMicroLabelVi: params.coachMicroLabelVi,
+      coachMicroLabelId: params.coachMicroLabelId,
+      coachMicroLabelTr: params.coachMicroLabelTr,
+      coachMicroLabelPl: params.coachMicroLabelPl,
+      coachDiagnosisEvidenceCount: params.coachDiagnosisEvidenceCount,
+    });
     setCoachToast(decision.show ? decision : null);
   }, [
     params.coachCategory,
@@ -620,7 +755,7 @@ export default function LessonComplete() {
     }
   }, [lessonId, studyTarget]);
 
-  const dismissNotif = () => {
+  const dismissNotif = useCallback(() => {
     setActiveNotif(null);
     setNotifQueue(prev => {
       const rest = prev.slice(1);
@@ -630,9 +765,16 @@ export default function LessonComplete() {
       }
       return rest;
     });
-  };
+  }, [scheduleActiveNotif]);
 
   const grantBonus = useCallback(async () => {
+      const grantAccountToken = captureAccountGeneration();
+      const capturedSoftUpsellIdentity: LessonSoftUpsellIdentity = {
+        accountScope: studyTarget === 'es' ? '' : lessonSoftUpsellPersistenceScope(grantAccountToken),
+        generation: grantAccountToken.generation,
+        lessonId,
+        studyTarget: softUpsellStudyTarget,
+      };
       const suppress = { suppressEarnEvent: true } as const;
       const shardKeys: ShardSource[] = [];
 
@@ -640,6 +782,15 @@ export default function LessonComplete() {
       // Модуль сам логирует сбой и ставит выдачу в retry-очередь — раньше
       // ошибка здесь молча съедала ВСЕ награды экрана (пустой catch).
       const firstBonus = await grantLessonFirstCompleteBonus({ lessonId, studyTarget, lang });
+      const softUpsellCandidate = candidateAfterLessonGrant({
+        status: firstBonus.status,
+        captured: capturedSoftUpsellIdentity,
+        current: softUpsellIdentityRef.current,
+        mounted: softUpsellMountedRef.current,
+        accountGenerationCurrent: isCurrentAccountGeneration(grantAccountToken),
+        freeLessonLimit: getFreeLessonLimit(),
+      });
+      if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
       if (firstBonus.status === 'granted') {
         if (firstBonus.hasBonusWon) {
           setBonusXP(firstBonus.bonusXP);
@@ -673,9 +824,14 @@ export default function LessonComplete() {
         const nP = await addShards('lesson_perfect', suppress);
         if (nP > 0) shardKeys.push('lesson_perfect');
       }
-      const eligible = await canShowReview();
+      const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
+      const eligible = wasPerfect && await canShowReview({
+        trigger: 'perfect_lesson',
+        completedLessons: lessonCount,
+        activeDays,
+      });
       if (eligible) {
-        setReviewContext(wasPerfect ? 'perfect_lesson' : 'general');
+        setReviewContext('perfect_lesson');
         pendingReview.current = true;
       }
 // [SHARDS] 5 уроков подряд без ошибок
@@ -717,10 +873,20 @@ export default function LessonComplete() {
       }
 
       if (shardKeys.length > 0) {
-        const total = shardKeys.reduce((acc, k) => acc + (SHARD_REWARDS[k] ?? 0), 0);
+        const baseTotal = shardKeys.reduce((acc, k) => acc + (SHARD_REWARDS[k] ?? 0), 0);
+        // Фаза 2: +5% осколков за карточку IV+ — та же per-source формула, что и в
+        // shards_system (бонус уже включён в фактическое начисление; здесь — показ).
+        const shardPerkM = profileCardShardMultiplier(
+          normalizeProfileCardLevel(await AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)),
+        );
+        const perkBonusTotal = shardKeys.reduce(
+          (acc, k) => acc + (shardPerkM > 1 ? Math.ceil((SHARD_REWARDS[k] ?? 0) * (shardPerkM - 1)) : 0),
+          0,
+        );
+        const total = baseTotal + perkBonusTotal;
         if (total > 0) {
           const reasonText = formatLessonShardBatchReason(shardKeys, lang);
-          emitAppEvent('shards_earned', { amount: total, reasonText });
+          emitAppEvent('shards_earned', { amount: total, ...(perkBonusTotal > 0 ? { bonus: perkBonusTotal } : {}), reasonText });
         }
       }
 
@@ -753,7 +919,7 @@ export default function LessonComplete() {
         tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy') },
       });
     }
-  }, [lang, lessonId, studyTarget]);
+  }, [lang, lessonId, softUpsellStudyTarget, studyTarget]);
 
   useEffect(() => {
     // Доначисляем бонусы, зависшие из-за прошлых сбоев (сеть/лимит XP).
@@ -797,7 +963,7 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) {
-        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/(tabs)/lessons' as any);
+        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lessons_list' as any);
         return;
       }
       grantBonus();
@@ -932,30 +1098,28 @@ export default function LessonComplete() {
     };
   }, [lessonId]);
 
-  const openPremiumBanner = useCallback((nextLesson: number) => {
-    premiumBannerNextLesson.current = nextLesson;
-    setShowPremiumBanner(true);
-    Animated.spring(premiumBannerAnim, {
-      toValue: 1,
-      friction: 8,
-      tension: 60,
-      useNativeDriver: true,
-    }).start();
-  }, [premiumBannerAnim]);
-
   const goNext = () => {
     const next = lessonId + 1;
     if (next <= 32) {
       void (async () => {
         const premium = await getVerifiedPremiumStatus().catch(() => false);
-        if (requiresPremiumForLesson(next) && !premium) {
-          // Показываем inline-баннер прямо на этом экране вместо немедленного replace.
-          // Пользователь видит свой результат, потом плавно получает предложение Premium.
-          openPremiumBanner(next);
+        const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
+        if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
+          // Экран результата остаётся единственным: для закрытого урока сразу открываем
+          // существующий путь Plus, без промежуточного баннера на завершении урока.
+          markNextNavigationAsReplace();
+          router.replace({
+            pathname: '/premium_modal',
+            params: {
+              context: lessonPaywallContext(next),
+              lessons_done: String(lessonId),
+              ...lessonPurchaseContinuationParams(next),
+            },
+          } as any);
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
-        router.replace({ pathname: '/lesson_menu', params: { id: next } });
+        router.replace({ pathname: '/lessons_list', params: { id: next } });
       })();
     } else {
       router.replace('/(tabs)/home' as any);
@@ -964,7 +1128,7 @@ export default function LessonComplete() {
 
   const goBackFromComplete = useCallback(() => {
     hapticTap();
-    router.replace({ pathname: '/lesson_menu', params: { id: lessonId } });
+    router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
   const handleRepeatLesson = useCallback(() => {
@@ -992,8 +1156,8 @@ export default function LessonComplete() {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (sequenceShowing) {
-        // «Назад» во время секвенции наград = закрыть её (эквивалент CTA), не уходя с экрана.
-        setSeqDone(true);
+        // Не оставляем пустой промежуточный экран: «Назад» выходит в список уроков.
+        goBackFromComplete();
         return true;
       }
       if (showPremiumBanner) {
@@ -1030,8 +1194,58 @@ export default function LessonComplete() {
     showAuthPrompt,
     showReview,
     activeNotif,
+    dismissNotif,
     goBackFromComplete,
   ]);
+
+  // Единственный видимый результат завершения урока. ResultsSequence уже содержит
+  // проверенную поочерёдную анимацию трёх звёзд; здесь не создаём ни карточек,
+  // ни модалок, ни промежуточного экрана после неё.
+  const legacyCompletionSurfacesEnabled = false;
+  if (!legacyCompletionSurfacesEnabled) {
+    if (sequenceShowing) {
+      return (
+        <ScreenGradient>
+          <SafeAreaView style={{ flex: 1 }}>
+            <ProgressCompletionView
+              model={buildProgressCompletionModel({
+                fact: c.title,
+                accumulated: nextLessonUnlockHint,
+                nextStep: nextLessonUnlockHint,
+                primaryAction: {
+                  id: 'continue',
+                  label: completionRequiresPremium
+                    ? triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
+                    : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
+                },
+              })}
+              stars={3}
+              xp={0}
+              subtitle={nextLessonUnlockHint}
+              onAction={() => {
+                if (pendingReview.current) {
+                  pendingReview.current = false;
+                  setShowReview(true);
+                  return;
+                }
+                goNext();
+              }}
+            />
+            <ReviewPromptModal
+              visible={showReview}
+              context={reviewContext}
+              lang={lang}
+              onClose={goNext}
+            />
+          </SafeAreaView>
+        </ScreenGradient>
+      );
+    }
+
+    // Пока сохраняется результат урока, никакие старые поверхности завершения не
+    // монтируются. Сразу после готовности появляется экран со звёздами выше.
+    return <ScreenGradient />;
+  }
 
   return (
     <ScreenGradient>
@@ -1049,22 +1263,20 @@ export default function LessonComplete() {
           zIndex: 10,
           width: 36,
           height: 36,
-          borderRadius: isCompassTheme ? 9 : 18,
-          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+          borderRadius: 18,
+          backgroundColor: t.bgCard,
           borderWidth: 0,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+          borderColor: t.border,
           justifyContent: 'center',
           alignItems: 'center',
           overflow: 'hidden',
-          ...(isCompassTheme ? compassShadow(1) : null),
         }}
       >
-        {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-        <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary} />
+        <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
       </TapScale>
       )}
       <ContentWrap>
-      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -1106,49 +1318,63 @@ export default function LessonComplete() {
           {/* Бонус +500 */}
           <View style={{
             flexDirection: 'row', alignItems: 'center', gap: 8,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.correctBg, borderRadius: isCompassTheme ? 9 : 14,
+            backgroundColor: t.correctBg, borderRadius: 14,
             paddingHorizontal: 18, paddingVertical: 12,
-            borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct, marginBottom: 20,
+            borderWidth: 1, borderColor: t.correct, marginBottom: 20,
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}>
-            {isCompassTheme && <CompassDepthSurface radius={9} selected />}
-            <Ionicons name="star" size={20} color={isCompassTheme ? COMPASS_RICH.cream : t.correct} />
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : t.correct, fontSize: 18, fontWeight: '700' }}>{c.bonus}</Text>
+            <Ionicons name="star" size={20} color={t.correct} />
+            <Text style={{ color: t.correct, fontSize: 18, fontWeight: '700' }}>{c.bonus}</Text>
           </View>
 
           {/* Совет отдохнуть */}
           <View style={{
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 10 : 14,
-            padding: 16, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+            backgroundColor: t.bgCard, borderRadius: 14,
+            padding: 16, borderWidth: 0, borderColor: t.border,
             width: '100%', marginBottom: 36,
             flexDirection: 'row', alignItems: 'center', gap: 12,
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}>
-            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
-            <Ionicons name="cafe-outline" size={24} color={isCompassTheme ? COMPASS_RICH.champagne : t.textSecond} />
+            <Ionicons name="cafe-outline" size={24} color={t.textSecond} />
             <Text style={{ color: t.textMuted, fontSize: 15, lineHeight: 22, flex: 1 }}>
               {c.rest}
             </Text>
           </View>
 
           {/* Следующий урок — Duolingo-кнопка (вдавливается в кромку при нажатии) */}
+          {shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity) && softUpsell.opportunity && (
+            <View style={{ width: '100%', marginBottom: 20 }}>
+              <SoftContextualUpsellCard
+                title={softUpsellCopy.title}
+                body={softUpsellCopy.body}
+                ctaLabel={softUpsellCopy.ctaLabel}
+                dismissLabel={softUpsellCopy.dismissLabel}
+                dismissAccessibilityLabel={softUpsellCopy.dismissAccessibilityLabel}
+                dismissAccessibilityHint={softUpsellCopy.dismissAccessibilityHint}
+                ctaAccessibilityLabel={softUpsellCopy.ctaAccessibilityLabel}
+                ctaAccessibilityHint={softUpsellCopy.ctaAccessibilityHint}
+                opportunity={softUpsell.opportunity}
+                onImpression={softUpsell.onImpression}
+                onDismiss={softUpsell.onDismiss}
+                onCta={handleSoftUpsellCta}
+              />
+            </View>
+          )}
+
           {lessonId < 32 && !showPremiumBanner && (
             <DuoPressable
               testID="lesson-complete-next-lesson"
-              edgeColor={isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border}
+              edgeColor={t.border}
               wrapStyle={{ marginBottom: 12 }}
               style={{
-                width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.bgSurface,
-                borderRadius: isCompassTheme ? 9 : 16, padding: 18,
-                borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                width: '100%', backgroundColor: t.bgSurface,
+                borderRadius: 16, padding: 18,
+                borderWidth: 0, borderColor: t.border,
                 overflow: 'hidden',
               }}
               onPress={goNext}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontSize: 18, fontWeight: '700' }}>
+              <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700' }}>
                 {c.nextLesson} {lessonId + 1} →
               </Text>
             </DuoPressable>
@@ -1168,14 +1394,13 @@ export default function LessonComplete() {
                 activeOpacity={0.88}
                 style={{
                   width: '100%',
-                  borderRadius: isCompassTheme ? 10 : 16,
+                  borderRadius: 16,
                   padding: 18,
                   alignItems: 'center',
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.textSecond,
+                  backgroundColor: t.textSecond,
                   borderWidth: 0,
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.gold + '55',
+                  borderColor: t.gold + '55',
                   overflow: 'hidden',
-                  ...(isCompassTheme ? compassShadow(2) : null),
                 }}
                 onPress={() => {
                   hapticTap();
@@ -1186,15 +1411,15 @@ export default function LessonComplete() {
                     params: {
                       context: lessonPaywallContext(premiumBannerNextLesson.current),
                       lessons_done: String(lessonId),
+                      ...lessonPurchaseContinuationParams(premiumBannerNextLesson.current),
                     },
                   } as any);
                 }}
               >
-                {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
+                <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
                   {triLang(lang, { ru: '🔓 Следующий урок закрыт', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
                 </Text>
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
+                <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
                   {triLang(lang, { ru: 'Открыть Plus — продолжить →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </TouchableOpacity>
@@ -1220,22 +1445,21 @@ export default function LessonComplete() {
               «пустую» плитку. Акцент сохраняем через accent-кромку, рамку и иконку. */}
           <DuoPressable
             testID="lesson-complete-repeat"
-            edgeColor={isCompassTheme ? COMPASS_RICH.hairline : t.accent}
+            edgeColor={t.accent}
             disabled={repeatOpening}
             accessibilityState={{ busy: repeatOpening }}
             pressedExternally={repeatOpening}
             wrapStyle={{ marginBottom: 14, opacity: repeatOpening ? 0.72 : 1 }}
             style={{
-              width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-              borderRadius: isCompassTheme ? 9 : 16, padding: 16,
-              borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent,
+              width: '100%', backgroundColor: t.bgCard,
+              borderRadius: 16, padding: 16,
+              borderWidth: 0, borderColor: t.accent,
               flexDirection: 'row', justifyContent: 'center', gap: 8,
               overflow: 'hidden',
             }}
             onPress={handleRepeatLesson}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} selected />}
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary, fontSize: 16, fontWeight: '600' }}>
+            <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '600' }}>
               ↺ {c.repeatLesson}
             </Text>
           </DuoPressable>
@@ -1248,10 +1472,10 @@ export default function LessonComplete() {
               gap: 8,
               padding: 12,
               marginTop: 4,
-              borderRadius: isCompassTheme ? 9 : 0,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent',
+              borderRadius: 0,
+              backgroundColor: 'transparent',
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+              borderColor: 'transparent',
               overflow: 'hidden',
             }}
             onPress={async () => {
@@ -1265,9 +1489,8 @@ export default function LessonComplete() {
               await Share.share({ message: msg }).catch(() => {});
             }}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-            <Ionicons name="share-outline" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.textSecond} />
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond, fontSize: 15 }}>
+            <Ionicons name="share-outline" size={18} color={t.textSecond} />
+            <Text style={{ color: t.textSecond, fontSize: 15 }}>
               {c.shareResult}
             </Text>
           </TouchableOpacity>
@@ -1276,15 +1499,14 @@ export default function LessonComplete() {
             testID="lesson-complete-back-home"
             style={{
               padding: 14,
-              borderRadius: isCompassTheme ? 9 : 0,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+              borderRadius: 0,
+              backgroundColor: 'transparent',
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+              borderColor: 'transparent',
               overflow: 'hidden',
             }}
             onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>
         </Animated.View>
@@ -1297,11 +1519,21 @@ export default function LessonComplete() {
           тап по экрану пропускает анимацию (внутри компонента), CTA закрывает. */}
       {sequenceShowing && (
         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }}>
-          <ResultsSequence
+          <ProgressCompletionView
+            model={buildProgressCompletionModel({
+              fact: c.title,
+              accumulated: c.subtitle(lessonId),
+              nextStep: lessonSavedResultCopy(lang),
+              primaryAction: {
+                id: 'continue',
+                label: triLang(lang, { ru: 'Продолжить путь', uk: 'Продовжити шлях', es: 'Continuar el camino', 'pt-BR': 'Continuar o caminho', vi: 'Tiếp tục hành trình', id: 'Lanjutkan perjalanan', tr: 'Yola devam et', pl: 'Kontynuuj drogę' }),
+              },
+              confirmed: {
+                perfect: medalTier === 'gold',
+              },
+            })}
             stars={RESULTS_STARS_BY_TIER[medalTier]}
-            xp={RESULTS_SEQUENCE_XP}
-            title={c.title}
-            subtitle={c.subtitle(lessonId)}
+            xp={bonusXP}
             badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
               <Image
                 source={MEDAL_IMAGES_COMPLETE[medalTier]}
@@ -1309,9 +1541,7 @@ export default function LessonComplete() {
                 contentFit="contain"
               />
             ) : undefined}
-            intensity="full"
-            onCtaPrimary={() => setSeqDone(true)}
-            ctaPrimaryLabel={triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
+            onAction={() => setSeqDone(true)}
           />
         </View>
       )}
@@ -1323,13 +1553,9 @@ export default function LessonComplete() {
           duration={2000}
         />
       )}
-      <ReviewModal
+      <ReviewPromptModal
         visible={showReview}
         context={reviewContext}
-        t={t}
-        f={f}
-        themeMode={themeMode}
-        bottomInset={bottomInset}
         lang={lang}
         onClose={() => setShowReview(false)}
       />

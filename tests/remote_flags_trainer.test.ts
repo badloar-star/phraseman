@@ -1,14 +1,21 @@
 import {
   FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT,
+  __resetRemoteFlagsForTest,
+  getEffectiveFreeTrainerSessions,
   getFreeTrainerSessionsPerDay,
   getTrainerAbGroup,
   trainerSessionsForGroup,
 } from '../app/remote_flags';
 
 describe('remote_flags — trainer sessions', () => {
-  it('default free trainer sessions per day is 2', () => {
-    expect(FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT).toBe(2);
-    expect(getFreeTrainerSessionsPerDay()).toBe(2);
+  beforeEach(() => {
+    __resetRemoteFlagsForTest();
+  });
+
+  it('default free trainer sessions per day is 1', async () => {
+    expect(FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT).toBe(1);
+    expect(getFreeTrainerSessionsPerDay()).toBe(1);
+    await expect(getEffectiveFreeTrainerSessions('user-abc-123')).resolves.toBe(1);
   });
 
   it('maps A/B groups to session counts', () => {
@@ -24,7 +31,7 @@ describe('remote_flags — trainer sessions', () => {
     expect(['A', 'B', 'C']).toContain(g1);
   });
 
-  it('without an A/B split env, falls back to group B (default 2 sessions)', () => {
+  it('without an A/B split, group assignment keeps its compatibility fallback', () => {
     // env-доли не заданы в тесте → total = 0 → деградация к 'B'
     expect(getTrainerAbGroup('any-user')).toBe('B');
   });

@@ -133,7 +133,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
   {
     id: 'expected_missing',
     title: loc({
-      ru: 'Что вы ожидали увидеть в приложении, но не нашли?',
+      ru: 'Что ты ожидал(а) увидеть в приложении, но не нашёл(ла)?',
       uk: 'Що ви очікували побачити в застосунку, але не знайшли?',
       es: '¿Qué esperabas encontrar en la app pero no estaba?',
       ptBR: 'O que você esperava encontrar no app, mas não achou?',
@@ -177,7 +177,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
   {
     id: 'one_thing_week',
     title: loc({
-      ru: 'Что бы вы улучшили прямо на этой неделе?',
+      ru: 'Что бы ты улучшил(а) прямо на этой неделе?',
       uk: 'Що б ви покращили прямо цього тижня?',
       es: '¿Qué mejorarías esta misma semana?',
       ptBR: 'O que você melhoraria já nesta semana?',
@@ -207,7 +207,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
   {
     id: 'friend_recommendation',
     title: loc({
-      ru: 'Если бы вы рекомендовали приложение другу, что бы вы ему рассказали о приложении?',
+      ru: 'Если бы ты рекомендовал(а) приложение другу, что бы ты ему о нём рассказал(а)?',
       uk: 'Якби ви рекомендували застосунок другу, що б ви йому розповіли про застосунок?',
       es: 'Si recomendaras la app a un amigo, ¿qué le contarías sobre ella?',
       ptBR: 'Se você recomendasse o app a um amigo, o que contaria sobre ele?',

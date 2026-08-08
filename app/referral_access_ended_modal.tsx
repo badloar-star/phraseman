@@ -13,8 +13,9 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
 interface ReferralAccessEndedModalProps {
@@ -116,6 +117,17 @@ export function ReferralAccessEndedModal({
     'Otwórz pełny dostęp',
   );
 
+  const closeLabel = L(
+    'Закрыть',
+    'Закрити',
+    'Cerrar',
+    'Fechar',
+    'Đóng',
+    'Tutup',
+    'Kapat',
+    'Zamknij',
+  );
+
   const styles = makeStyles(t);
 
   return (
@@ -137,7 +149,7 @@ export function ReferralAccessEndedModal({
             onPress={onClose}
             hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
             accessibilityRole="button"
-            accessibilityLabel="Закрыть"
+            accessibilityLabel={closeLabel}
           >
             <Ionicons name="close" size={22} color={t.textMuted} />
           </Pressable>
@@ -183,8 +195,7 @@ export function ReferralAccessEndedModal({
             style={({ pressed }) => [
               styles.btnSecondary,
               {
-                backgroundColor: pressed ? t.bgSurface2 : 'transparent',
-                borderColor: t.accent,
+                backgroundColor: pressed ? t.bgSurface2 : t.bgSurface,
               },
             ]}
             onPress={onOpenFullAccess}
@@ -226,7 +237,7 @@ function makeStyles(t: ReferralAccessEndedModalProps['t']) {
       shadowOffset: { width: 0, height: 8 },
       shadowOpacity: 0.18,
       shadowRadius: 20,
-      elevation: 10,
+      ...noAndroidOutline,
     },
     closeButton: {
       position: 'absolute',

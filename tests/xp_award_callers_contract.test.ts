@@ -8,7 +8,7 @@ const read = (file: string): string => fs.readFileSync(path.join(ROOT, file), 'u
 describe('XP award caller contracts', () => {
   it('does not gate real XP writes on a loaded display name', () => {
     const lesson = read('app/lesson1.tsx');
-    const quizzes = read('app/(tabs)/quizzes.tsx');
+    // зачем: строки про app/(tabs)/quizzes.tsx убраны — экран удалён вместе с квизами.
     const diagnostic = read('app/diagnostic_test.tsx');
     const irregularVerbs = read('app/lesson_irregular_verbs.tsx');
     const prepositions = read('app/preposition_drill.tsx');
@@ -17,10 +17,6 @@ describe('XP award caller contracts', () => {
     expect(lesson).toContain("registerXP(xpAmount, 'lesson_answer', userNameRef.current || ''");
     expect(lesson).not.toContain("registerXP(batch.baseTotal, 'lesson_complete'");
     expect(lesson).not.toContain('pendingLessonXpRef.current');
-
-    expect(quizzes).toContain("registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current || ''");
-    expect(quizzes).toContain("registerXP(pts, 'quiz_answer', userNameRef.current || ''");
-    expect(quizzes).not.toMatch(/if\s*\(userNameRef\.current\)\s*\{[\s\S]{0,900}?registerXP\(/);
 
     expect(diagnostic).toContain("registerXP(2, 'diagnostic_test', userNameRef.current || ''");
     expect(diagnostic).not.toContain('if (!userNameRef.current) return;');

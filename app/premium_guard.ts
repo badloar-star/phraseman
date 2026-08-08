@@ -2,8 +2,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
 import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
-import { isLoyaltyGiftActive } from './loyalty_gift';
+import { readGiftAccessFromCloud } from './gift_access_cloud';
+import { syncRevenueCatProjectionForAccount } from './revenuecat_projection_sync';
+import { DebugLogger } from './debug-logger';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
+import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 const RC_TIMEOUT_MS = 8000;
@@ -16,21 +26,153 @@ const RC_LAST_SEEN_KEY = 'premium_rc_last_seen_at';
 
 let _cachedRealResult: boolean | null = null;
 let _realCacheTime = 0;
+let _realCacheGeneration = -1;
 let _cachedVipResult: boolean | null = null;
 let _vipCacheTime = 0;
+let _vipCacheGeneration = -1;
 let _cachedAccessResult: boolean | null = null;
 let _accessCacheTime = 0;
+let _accessCacheGeneration = -1;
 let _lastCloudAccessRefreshTime = 0;
 let _cloudAccessRefreshInFlight: Promise<boolean> | null = null;
+let _premiumAccountTransitionEpoch = 0;
+let _premiumAccountDrainEpoch = 0;
+const _premiumAccountTransitionListeners = new Set<(epoch: number) => void>();
+let _premiumAccountWorkCount = 0;
+const _premiumAccountWorkIdleWaiters = new Set<() => void>();
+const _premiumAccountWorkCountByEpoch = new Map<number, number>();
+const _premiumAccountWorkIdleWaitersByEpoch = new Map<number, Set<() => void>>();
 
 /** Invalidate the in-memory cache (call after purchase/restore). */
 export function invalidatePremiumCache(): void {
   _cachedRealResult = null;
   _realCacheTime = 0;
+  _realCacheGeneration = -1;
   _cachedVipResult = null;
   _vipCacheTime = 0;
+  _vipCacheGeneration = -1;
   _cachedAccessResult = null;
   _accessCacheTime = 0;
+  _accessCacheGeneration = -1;
+}
+
+/**
+ * Starts a fail-closed entitlement boundary before the canonical account changes.
+ * This is intentionally synchronous: mounted UI must stop rendering account A's
+ * Premium/VIP state before any wipe, restore, or RevenueCat request for account B.
+ */
+export function beginPremiumAccountTransition(): number {
+  invalidatePremiumCache();
+  _lastCloudAccessRefreshTime = 0;
+  _cloudAccessRefreshInFlight = null;
+  _premiumAccountDrainEpoch = _premiumAccountTransitionEpoch;
+  _premiumAccountTransitionEpoch += 1;
+  const epoch = _premiumAccountTransitionEpoch;
+  for (const listener of _premiumAccountTransitionListeners) {
+    try {
+      listener(epoch);
+    } catch {
+      // A broken UI subscriber must not interrupt an auth/account transition.
+    }
+  }
+  return epoch;
+}
+
+export function onPremiumAccountTransition(
+  listener: (epoch: number) => void,
+): { remove: () => void } {
+  _premiumAccountTransitionListeners.add(listener);
+  return {
+    remove: () => {
+      _premiumAccountTransitionListeners.delete(listener);
+    },
+  };
+}
+
+export function getPremiumAccountTransitionEpoch(): number {
+  return _premiumAccountTransitionEpoch;
+}
+
+/**
+ * Registers delayed entitlement work against the current account epoch. Auth
+ * transitions invalidate the epoch first, then drain registered native writes
+ * before wiping account A, so an old VIP callback cannot finish into account B.
+ */
+export async function runPremiumAccountScopedWork<T>(
+  epoch: number,
+  work: (isCurrent: () => boolean) => Promise<T>,
+): Promise<T | undefined> {
+  if (epoch !== _premiumAccountTransitionEpoch) return undefined;
+  _premiumAccountWorkCount += 1;
+  _premiumAccountWorkCountByEpoch.set(
+    epoch,
+    (_premiumAccountWorkCountByEpoch.get(epoch) ?? 0) + 1,
+  );
+  const isCurrent = () => epoch === _premiumAccountTransitionEpoch;
+  try {
+    if (!isCurrent()) return undefined;
+    return await work(isCurrent);
+  } finally {
+    _premiumAccountWorkCount = Math.max(0, _premiumAccountWorkCount - 1);
+    const epochWorkCount = Math.max(0, (_premiumAccountWorkCountByEpoch.get(epoch) ?? 0) - 1);
+    if (epochWorkCount === 0) {
+      _premiumAccountWorkCountByEpoch.delete(epoch);
+      const epochWaiters = _premiumAccountWorkIdleWaitersByEpoch.get(epoch);
+      if (epochWaiters) {
+        for (const resolve of epochWaiters) resolve();
+        _premiumAccountWorkIdleWaitersByEpoch.delete(epoch);
+      }
+    } else {
+      _premiumAccountWorkCountByEpoch.set(epoch, epochWorkCount);
+    }
+    if (_premiumAccountWorkCount === 0) {
+      for (const resolve of _premiumAccountWorkIdleWaiters) resolve();
+      _premiumAccountWorkIdleWaiters.clear();
+    }
+  }
+}
+
+export function waitForPremiumAccountWorkIdle(): Promise<void> {
+  if (_premiumAccountWorkCount === 0) return Promise.resolve();
+  return new Promise<void>((resolve) => {
+    _premiumAccountWorkIdleWaiters.add(resolve);
+  });
+}
+
+/**
+ * Bounds account-transition drains without retaining a waiter forever when a
+ * native RevenueCat operation never settles. A timeout does not cancel native
+ * work; the account epoch still prevents its late callback from committing.
+ */
+export function waitForPremiumAccountWorkIdleWithDeadline(timeoutMs: number): Promise<boolean> {
+  const targetEpoch = _premiumAccountDrainEpoch;
+  if ((_premiumAccountWorkCountByEpoch.get(targetEpoch) ?? 0) === 0) return Promise.resolve(true);
+  return new Promise<boolean>((resolve) => {
+    let settled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const finish = (idle: boolean) => {
+      if (settled) return;
+      settled = true;
+      const epochWaiters = _premiumAccountWorkIdleWaitersByEpoch.get(targetEpoch);
+      epochWaiters?.delete(resolveIdle);
+      if (epochWaiters?.size === 0) _premiumAccountWorkIdleWaitersByEpoch.delete(targetEpoch);
+      if (timer) clearTimeout(timer);
+      resolve(idle);
+    };
+    const resolveIdle = () => finish(true);
+    const epochWaiters = _premiumAccountWorkIdleWaitersByEpoch.get(targetEpoch) ?? new Set<() => void>();
+    epochWaiters.add(resolveIdle);
+    _premiumAccountWorkIdleWaitersByEpoch.set(targetEpoch, epochWaiters);
+    timer = setTimeout(() => {
+      finish((_premiumAccountWorkCountByEpoch.get(targetEpoch) ?? 0) === 0);
+    }, Math.max(0, timeoutMs));
+  });
+}
+
+export function __getPremiumAccountWorkIdleWaiterCountForTests(): number {
+  let count = _premiumAccountWorkIdleWaiters.size;
+  for (const waiters of _premiumAccountWorkIdleWaitersByEpoch.values()) count += waiters.size;
+  return count;
 }
 
 /**
@@ -50,17 +192,58 @@ export async function forcePremiumActive(): Promise<boolean> {
 }
 
 /**
- * Локальный план — это разовая покупка «Навсегда» (non-consumable)?
+ * Returns the effective dev-only "no limits" override.
+ * The explicit no-premium kill switch always wins, and store builds ignore
+ * local tester flags entirely.
+ */
+export async function isTesterNoLimitsActive(): Promise<boolean> {
+  const pairs = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
+    .catch(() => [] as [string, string | null][]);
+  const noPremiumRaw = pairs.find(([key]) => key === 'tester_no_premium')?.[1];
+  const noLimitsRaw = pairs.find(([key]) => key === 'tester_no_limits')?.[1];
+  return noPremiumRaw !== 'true' && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
+}
+
+/**
+ * Пожизненный VIP-грант — это тоже Pro?
+ *
+ * зачем: владелец (2026-08-03) — получатель сертификата «Phraseman Pro — навсегда»
+ * видел в настройках «Plus активирован», потому что Pro определялся ТОЛЬКО по
+ * `premium_plan='lifetime'` (его пишет стор), а безденежные каналы пишут `vip_plan`.
+ * Сертификат обещает Pro на самом бланке — расхождение читалось как обман.
+ *
+ * Признаки пожизненного гранта:
+ *  • `promo_lifetime` — промокод/сертификат «навсегда» (promo_codes.ts пишет явно);
+ *  • любой активный VIP без даты окончания (`vip_until <= 0`) — так админка выдаёт
+ *    бессрочный доступ. Отдельного плана у неё нет: и месяц, и «бессрочно» пишут
+ *    `admin_vip`, поэтому единственный доступный различитель — отсутствие срока.
+ * Срочный VIP (месяц, рефералка, опрос) остаётся Plus.
+ */
+function isLifetimeVipValues(values: Readonly<Record<string, string>> | null): boolean {
+  if (!values) return false;
+  const state = getVipProgressState(values);
+  if (!state?.active) return false;
+  if (state.plan === 'promo_lifetime') return true;
+  return state.untilMs <= 0;
+}
+
+/**
+ * Локальный план — пожизненный доступ, который показывается как «Pro»?
  *
  * Видимое имя такого доступа — «Pro» (синяя палитра), в отличие от рекуррентного
- * Plus. Источник правды — ключ `premium_plan` в AsyncStorage: его пишет
- * persistStorePremiumLocally при подтверждении покупки/восстановления. VIP-гранты
- * (опрос/рефералка/админка/промо) пишут `vip_plan`, а НЕ `premium_plan='lifetime'`,
- * поэтому такой юзер остаётся Plus. Чистое чтение флага, без сетевых запросов.
+ * Plus. Два равноправных источника: разовая покупка «Навсегда» в сторе
+ * (`premium_plan='lifetime'`, пишет persistStorePremiumLocally) и пожизненный
+ * VIP-грант (сертификат/промокод «навсегда», бессрочная выдача из админки).
+ * Чистое чтение локального состояния, без сетевых запросов.
  */
 export async function isLifetimePlanLocal(): Promise<boolean> {
   const plan = await AsyncStorage.getItem('premium_plan').catch(() => null);
-  return String(plan ?? '').trim().toLowerCase() === 'lifetime';
+  if (String(plan ?? '').trim().toLowerCase() === 'lifetime') return true;
+  const generation = captureAccountGeneration();
+  if (!accountGenerationIsCurrent(generation)) return false;
+  const vipValues = await readVipSnapshotForGeneration(generation).catch(() => null);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  return isLifetimeVipValues(vipValues);
 }
 
 /**
@@ -68,9 +251,40 @@ export async function isLifetimePlanLocal(): Promise<boolean> {
  * RevenueCat sandbox can lag for a few seconds, so this gives the local
  * premium flag the same bounded grace window as a fresh RC confirmation.
  */
-export async function markPremiumStoreSeenNow(): Promise<void> {
-  await AsyncStorage.setItem(RC_LAST_SEEN_KEY, String(Date.now()));
+export async function markPremiumStoreSeenNow(options?: Readonly<{
+  alreadyTransitionLocked?: boolean;
+  isCurrent?: () => boolean;
+}>): Promise<void> {
+  if (options?.alreadyTransitionLocked) {
+    if (options.isCurrent && !options.isCurrent()) return;
+    await AsyncStorage.setItem(RC_LAST_SEEN_KEY, String(Date.now()));
+    if (options.isCurrent && !options.isCurrent()) return;
+    invalidatePremiumCache();
+    return;
+  }
+  const generation = captureAccountGeneration();
+  if (!accountGenerationIsCurrent(generation)) return;
+  await writeRealPremiumStorageForGeneration(generation, () => (
+    AsyncStorage.setItem(RC_LAST_SEEN_KEY, String(Date.now()))
+  ));
+  if (!accountGenerationIsCurrent(generation)) return;
   invalidatePremiumCache();
+}
+
+function accountGenerationIsCurrent(generation: AccountGenerationToken): boolean {
+  return !!generation.stableId && isCurrentAccountGeneration(generation, generation.stableId);
+}
+
+async function writeRealPremiumStorageForGeneration(
+  generation: AccountGenerationToken,
+  write: () => Promise<void>,
+): Promise<boolean> {
+  if (!accountGenerationIsCurrent(generation)) return false;
+  return withAccountTransitionLock(async () => {
+    if (!accountGenerationIsCurrent(generation)) return false;
+    await write();
+    return accountGenerationIsCurrent(generation);
+  });
 }
 
 /**
@@ -78,6 +292,9 @@ export async function markPremiumStoreSeenNow(): Promise<void> {
  * Admin-issued grants are intentionally excluded: those are VIP access now.
  */
 export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
+  const generation = captureAccountGeneration();
+  if (!accountGenerationIsCurrent(generation)) return false;
+  const finish = (result: boolean) => cacheReal(result, generation);
   const pairs = await AsyncStorage.multiGet([
     'tester_no_premium',
     'premium_active',
@@ -86,6 +303,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     'premium_rc_expiry_ms',
     'admin_premium_override',
   ]);
+  if (!accountGenerationIsCurrent(generation)) return false;
   const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
   const active   = pairs.find(p => p[0] === 'premium_active')?.[1];
   const plan     = pairs.find(p => p[0] === 'premium_plan')?.[1];
@@ -102,12 +320,13 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
 
   // Тестер «Снять премиум» должен срезать только dev-default premium,
   // но не VIP-доступ, который считается отдельно.
-  if (noPremium === 'true') return cacheReal(false);
-  // Dev builds are premium by default — вимикається лише прапорцем tester_no_premium вище
-  if (isDevRuntime && !IS_STORE_RELEASE) return cacheReal(true);
-
+  if (noPremium === 'true') return finish(false);
   // Return cached result if still fresh
-  if (_cachedRealResult !== null && Date.now() - _realCacheTime < CACHE_TTL_MS) {
+  if (
+    _cachedRealResult !== null
+    && _realCacheGeneration === generation.generation
+    && Date.now() - _realCacheTime < CACHE_TTL_MS
+  ) {
     return _cachedRealResult;
   }
 
@@ -124,29 +343,50 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   const restorePaidProgressLocally = async (): Promise<boolean> => {
     if (!paidProgressActive) return false;
     if (active !== 'true') {
-      await AsyncStorage.setItem('premium_active', 'true');
+      const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+        AsyncStorage.setItem('premium_active', 'true')
+      ));
+      if (!persisted) return false;
     }
-    return true;
+    return accountGenerationIsCurrent(generation);
   };
 
   if (!IS_EXPO_GO) {
     try {
+      const rcAppUserIdBefore = await Purchases.getAppUserID().catch(() => '');
+      if (!accountGenerationIsCurrent(generation) || rcAppUserIdBefore !== generation.stableId) return false;
       const info = await Promise.race([
         Purchases.getCustomerInfo(),
         new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
       ]);
+      if (!accountGenerationIsCurrent(generation)) return false;
       if (info) {
-        const activeSubscriptions = (info as any).activeSubscriptions;
-        const rcActive =
-          Object.keys((info as any).entitlements?.active ?? {}).length > 0 ||
-          (Array.isArray(activeSubscriptions) && activeSubscriptions.length > 0);
+        const rcAppUserIdAfter = await Purchases.getAppUserID().catch(() => '');
+        if (!accountGenerationIsCurrent(generation) || rcAppUserIdAfter !== generation.stableId) return false;
+        const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
 
         if (rcActive) {
-          await AsyncStorage.multiSet([
-            ['premium_active', 'true'],
-            [RC_LAST_SEEN_KEY, String(now)],
-          ]);
-          return cacheReal(true);
+          try {
+            const projectionSynced = await syncRevenueCatProjectionForAccount(generation.stableId!);
+            if (!accountGenerationIsCurrent(generation)) return false;
+            if (!projectionSynced) {
+              DebugLogger.error(
+                'premium_guard:revenuecat_projection_sync',
+                new Error('revenuecat_projection_not_confirmed'),
+                'warning',
+              );
+            }
+          } catch (error) {
+            if (!accountGenerationIsCurrent(generation)) return false;
+            DebugLogger.error('premium_guard:revenuecat_projection_sync', error, 'warning');
+          }
+          const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+            AsyncStorage.multiSet([
+              ['premium_active', 'true'],
+              [RC_LAST_SEEN_KEY, String(now)],
+            ])
+          ));
+          return persisted ? finish(true) : false;
         }
 
         // Cloud sync intentionally does not persist `premium_active`; real paid
@@ -154,8 +394,9 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         // has an identity/cache hiccup but our server-synced RC expiry is still
         // in the future, keep access instead of dropping the user to non-premium mode.
         if (rcExpiryActive && await restorePaidProgressLocally()) {
-          return cacheReal(true);
+          return finish(true);
         }
+        if (!accountGenerationIsCurrent(generation)) return false;
 
         // If local flag is true and RC transiently returns non-premium,
         // trust local state. RC can lag due to network issues, server-side
@@ -165,29 +406,46 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         // - expiry > Date.now(): time-limited premium (referral/trial) still valid
         if (active === 'true' && paidProgressActive) {
           const lastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY);
+          if (!accountGenerationIsCurrent(generation)) return false;
           const lastSeen = parseInt(lastSeenRaw || '0') || 0;
           // Never trust local premium forever when RC says inactive.
           // Keep a bounded grace window for sandbox/network delays.
           if (lastSeen > 0 && now - lastSeen <= RC_STALE_GRACE_MS) {
-            return cacheReal(true);
+            return finish(true);
           }
         }
 
-        await AsyncStorage.setItem('premium_active', 'false');
-        return cacheReal(false);
+        const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+          AsyncStorage.setItem('premium_active', 'false')
+        ));
+        return persisted ? finish(false) : false;
       }
     } catch {
+      if (!accountGenerationIsCurrent(generation)) return false;
       // RC unavailable — fall through to local check
     }
   }
 
   // Expo Go or RC unavailable: trust AsyncStorage with expiry validation
   if (adminExplicitRevoked) {
-    await AsyncStorage.setItem('premium_active', 'false');
-    return cacheReal(false);
+    const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+      AsyncStorage.setItem('premium_active', 'false')
+    ));
+    return persisted ? finish(false) : false;
   }
-  if (legacyAdminGrant) return cacheReal(false);
-  if (!storePlan) return cacheReal(false);
+  if (legacyAdminGrant) return finish(false);
+  if (!storePlan) {
+    // Старые dev-сборки безусловно писали premium_active=true. Без очистки этот
+    // флаг снова попадал в синхронный startup snapshot на каждом холодном запуске
+    // и на короткое время расходился с серверным entitlement.
+    if (isDevRuntime && active === 'true') {
+      const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+        AsyncStorage.setItem('premium_active', 'false')
+      ));
+      if (!persisted) return false;
+    }
+    return finish(false);
+  }
   // КРИТИЧНО (защита от ложной потери оплаченного премиума): сюда мы попадаем, когда
   // RevenueCat НЕ ОТВЕТИЛ (таймаут 8с или исключение) — в Expo Go или при сбое сети.
   // Это НЕ то же самое, что «RC сказал: не премиум» (та ветка выше, строки ~149-160).
@@ -199,60 +457,50 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   if (rcExpiryExpired || (expiry > 0 && expiry < now)) {
     if (active === 'true') {
       const lastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY);
+      if (!accountGenerationIsCurrent(generation)) return false;
       const lastSeen = parseInt(lastSeenRaw || '0') || 0;
       if (lastSeen > 0 && now - lastSeen <= RC_STALE_GRACE_MS) {
-        return cacheReal(true);
+        return finish(true);
       }
     }
-    await AsyncStorage.setItem('premium_active', 'false');
-    return cacheReal(false);
+    const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+      AsyncStorage.setItem('premium_active', 'false')
+    ));
+    return persisted ? finish(false) : false;
   }
-  if (active !== 'true' && !await restorePaidProgressLocally()) return cacheReal(false);
-  return cacheReal(true);
+  if (active !== 'true' && !await restorePaidProgressLocally()) {
+    return accountGenerationIsCurrent(generation) ? finish(false) : false;
+  }
+  return accountGenerationIsCurrent(generation) ? finish(true) : false;
 }
 
 export async function getVerifiedVipStatus(): Promise<boolean> {
+  const generation = captureAccountGeneration();
+  if (!accountGenerationIsCurrent(generation)) return false;
+  const stableId = generation.stableId!;
+  const finish = (result: boolean) => cacheVip(result, generation);
   // Тестер «Снять премиум» (tester_no_premium) — жёсткий kill-switch: должен
   // гасить и VIP, а не только real-премиум. Иначе админ-VIP-грант (или его
   // воскрешение из облака) возвращал доступ, и кнопка «Снять премиум» «не
   // работала». Проверяем ПЕРЕД кэшем, чтобы снятие срабатывало мгновенно.
   const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
-  if (noPremiumVip === 'true') return cacheVip(false);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (noPremiumVip === 'true') return finish(false);
 
-  if (_cachedVipResult !== null && Date.now() - _vipCacheTime < CACHE_TTL_MS) {
+  if (
+    _cachedVipResult !== null
+    && _vipCacheGeneration === generation.generation
+    && Date.now() - _vipCacheTime < CACHE_TTL_MS
+  ) {
     return _cachedVipResult;
   }
 
-  const pairs = await AsyncStorage.multiGet([
-    'vip_active',
-    'vip_plan',
-    'vip_from',
-    'vip_until',
-    'vip_expiry',
-    'vip_admin_override',
-    'vip_admin_grant_at',
-    'vip_grant_at',
-    'premium_plan',
-    'premium_expiry',
-    'admin_premium_override',
-    'premium_admin_grant_at',
-  ]);
-  const get = (key: string) => pairs.find(p => p[0] === key)?.[1];
-  const progress = {
-    vip_active: get('vip_active'),
-    vip_plan: get('vip_plan'),
-    vip_from: get('vip_from'),
-    vip_until: get('vip_until') ?? get('vip_expiry'),
-    vip_admin_override: get('vip_admin_override'),
-    vip_admin_grant_at: get('vip_admin_grant_at') ?? get('vip_grant_at'),
-    premium_plan: get('premium_plan'),
-    premium_expiry: get('premium_expiry'),
-    admin_premium_override: get('admin_premium_override'),
-    premium_admin_grant_at: get('premium_admin_grant_at'),
-  };
+  const progress = await readVipSnapshotForGeneration(generation);
+  if (!isCurrentAccountGeneration(generation, stableId)) return false;
+  if (!progress) return finish(false);
 
   const vipState = getVipProgressState(progress);
-  if (!vipState) return cacheVip(false);
+  if (!vipState) return finish(false);
 
   const storagePairs: [string, string][] = [
     ['vip_active', vipState.active ? 'true' : 'false'],
@@ -264,54 +512,67 @@ export async function getVerifiedVipStatus(): Promise<boolean> {
   if (vipState.grantAt) {
     storagePairs.push(['vip_admin_grant_at', String(parsePremiumProgressMs(vipState.grantAt) || vipState.grantAt)]);
   }
-  await AsyncStorage.multiSet(storagePairs).catch(() => {});
-  return cacheVip(vipState.active);
+  await writeVipSnapshotForAccount(stableId, Object.fromEntries(storagePairs)).catch(() => {});
+  if (!isCurrentAccountGeneration(generation, stableId)) return false;
+  return finish(vipState.active);
 }
 
 export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
+  const generation = captureAccountGeneration();
+  if (!accountGenerationIsCurrent(generation)) return false;
+  const finish = (result: boolean) => cacheAccess(result, generation);
   // Тестер «Снять премиум» — единый kill-switch на ВЕСЬ премиум-доступ:
   // real + VIP + intro-доступ + воскрешение из облака. Раньше флаг гасил только
   // real, а доступ оставался через VIP/intro (и cloud-refresh тянул его назад),
   // поэтому кнопка «Снять премиум» не снимала. Проверяем самым первым, до кэша
   // и до любого облачного обновления.
   const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
-  if (noPremiumAccess === 'true') return cacheAccess(false);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (noPremiumAccess === 'true') return finish(false);
 
-  if (_cachedAccessResult !== null && Date.now() - _accessCacheTime < CACHE_TTL_MS) {
+  if (
+    _cachedAccessResult !== null
+    && _accessCacheGeneration === generation.generation
+    && Date.now() - _accessCacheTime < CACHE_TTL_MS
+  ) {
     return _cachedAccessResult;
   }
 
-  const noLimits = await AsyncStorage.getItem('tester_no_limits').catch(() => null);
-  if (noLimits === 'true' && !IS_STORE_RELEASE) return cacheAccess(true);
+  if (await isTesterNoLimitsActive()) {
+    return accountGenerationIsCurrent(generation) ? finish(true) : false;
+  }
+  if (!accountGenerationIsCurrent(generation)) return false;
 
   const [realPremium, vip] = await Promise.all([
     getVerifiedRealPremiumStatus().catch(() => false),
     getVerifiedVipStatus().catch(() => false),
   ]);
-  if (realPremium || vip) return cacheAccess(true);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (realPremium || vip) return finish(true);
 
   if (await isIntroFullAccessActive().catch(() => false)) {
-    return cacheAccess(true);
+    return accountGenerationIsCurrent(generation) ? finish(true) : false;
+  }
+  if (!accountGenerationIsCurrent(generation)) return false;
+
+  const loyaltyGift = await readGiftAccessFromCloud('loyalty').catch(() => null);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
+    return finish(true);
   }
 
-  // Подарок лояльности (72ч для существующих free-юзеров). Производный доступ,
-  // как и intro: удаление ключей подарка мгновенно убирает доступ. Kill-switch
-  // tester_no_premium выше уже гасит и его. Платных/VIP не касается (им подарок не выдаётся).
-  if (await isLoyaltyGiftActive().catch(() => false)) {
-    return cacheAccess(true);
-  }
-
-  const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded();
+  const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
+  if (!accountGenerationIsCurrent(generation)) return false;
   if (cloudRefreshed) {
     invalidatePremiumCache();
     const [realAfterCloud, vipAfterCloud] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
     ]);
-    return cacheAccess(realAfterCloud || vipAfterCloud);
+    return accountGenerationIsCurrent(generation) ? finish(realAfterCloud || vipAfterCloud) : false;
   }
 
-  return cacheAccess(false);
+  return finish(false);
 }
 
 /** Backwards-compatible name used by feature gates: means Premium-level access, including VIP. */
@@ -319,25 +580,32 @@ export async function getVerifiedPremiumStatus(): Promise<boolean> {
   return getVerifiedPremiumAccessStatus();
 }
 
-function cacheReal(result: boolean): boolean {
+function cacheReal(result: boolean, generation: AccountGenerationToken): boolean {
+  if (!accountGenerationIsCurrent(generation)) return false;
   _cachedRealResult = result;
   _realCacheTime = Date.now();
+  _realCacheGeneration = generation.generation;
   return result;
 }
 
-function cacheVip(result: boolean): boolean {
+function cacheVip(result: boolean, generation: AccountGenerationToken): boolean {
+  if (!accountGenerationIsCurrent(generation)) return false;
   _cachedVipResult = result;
   _vipCacheTime = Date.now();
+  _vipCacheGeneration = generation.generation;
   return result;
 }
 
-function cacheAccess(result: boolean): boolean {
+function cacheAccess(result: boolean, generation: AccountGenerationToken): boolean {
+  if (!accountGenerationIsCurrent(generation)) return false;
   _cachedAccessResult = result;
   _accessCacheTime = Date.now();
+  _accessCacheGeneration = generation.generation;
   return result;
 }
 
-async function refreshPremiumAccessFromCloudIfNeeded(): Promise<boolean> {
+async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerationToken): Promise<boolean> {
+  if (!accountGenerationIsCurrent(generation)) return false;
   const now = Date.now();
   if (now - _lastCloudAccessRefreshTime < CACHE_TTL_MS) return false;
   if (_cloudAccessRefreshInFlight) return _cloudAccessRefreshInFlight;
@@ -346,8 +614,9 @@ async function refreshPremiumAccessFromCloudIfNeeded(): Promise<boolean> {
   _cloudAccessRefreshInFlight = (async () => {
     try {
       const cloudSync = await import('./cloud_sync');
+      if (!accountGenerationIsCurrent(generation)) return false;
       await cloudSync.restoreFromCloud();
-      return true;
+      return accountGenerationIsCurrent(generation);
     } catch {
       return false;
     } finally {

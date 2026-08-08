@@ -1,10 +1,20 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
-import type { ThemeMode } from '../constants/theme';
+import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 import { LinearGradient } from './SafeLinearGradient';
+
+// зачем 2026-08-04 (владелец: «плашка Plus тусклая, сливается с фоном на
+// светлых темах»): primaryButton — светлое золото → бронза, задумано для
+// тёмных фонов (там даёт яркий блик). На светлой (sagePorcelain, bgPrimary
+// #F0F1EC) светлый край градиента почти совпадает с фоном экрана — тот же
+// класс бага, что уже чинили в GiftExpiryCountdown (светлый акцент на
+// светлом фоне нечитаем, нужен отдельный тёмный вариант). На светлой теме
+// берём насыщенную тёмно-бронзовую заливку + светлый текст — контраст
+// вместо тонального совпадения.
+const LIGHT_THEME_GRADIENT = [GOLD_RICH.bronzeDark, GOLD_RICH.bronze, GOLD_RICH.antiqueGold] as const;
 
 type PlusBadgeSize = 'xs' | 'sm' | 'md';
 
@@ -38,7 +48,14 @@ export default function PlusBadge({
   testID,
 }: PlusBadgeProps) {
   const s = BADGE_SIZE[size];
-  const fg = themeMode === 'business' ? '#0A0A0A' : GOLD_RICH.bronzeDark;
+  // зачем: isLightThemeMode() в constants/theme.ts узнаёт только sagePorcelain
+  // — businessLight (тоже белый фон #FFFFFF) под неё не подпадает, но золото
+  // там точно так же слепнет. Не трогаем саму функцию (общая, 15+ мест
+  // зависят от её текущего поведения) — здесь просто добавляем вторую белую
+  // тему к локальной проверке.
+  const isLight = isLightThemeMode(themeMode as ThemeMode) || themeMode === 'businessLight';
+  const fg = isLight ? GOLD_RICH.champagne : (themeMode === 'business' ? '#0A0A0A' : GOLD_RICH.bronzeDark);
+  const gradientColors = isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
 
   return (
     <View
@@ -55,7 +72,7 @@ export default function PlusBadge({
     >
       <LinearGradient
         pointerEvents="none"
-        colors={GOLD_GRADIENTS.primaryButton}
+        colors={gradientColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={StyleSheet.absoluteFillObject}
@@ -79,7 +96,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     borderRadius: 999,
     overflow: 'hidden',
-    borderWidth: 0.5,
+    borderWidth: 0,
     borderColor: GOLD_RICH.hairlineStrong,
   },
   text: {

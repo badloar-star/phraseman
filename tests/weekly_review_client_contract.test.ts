@@ -6,46 +6,45 @@ describe('weekly review client contract', () => {
   const cardSource = fs.readFileSync(path.join(__dirname, '../app/WeeklyReviewCard.tsx'), 'utf8');
   const serverSource = fs.readFileSync(path.join(__dirname, '../functions/src/weekly_review.ts'), 'utf8');
 
-  it('premium regenerates daily, free — once a week (owner decision 2026-07-02)', () => {
-    expect(clientSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
-    expect(clientSource).toContain('const FREE_WINDOW_DAYS = 7');
-    expect(serverSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
-    expect(serverSource).toContain('const FREE_WINDOW_DAYS = 7');
+  it('Free never calls AI and Plus uses the server-owned rolling 24h window', () => {
+    expect(clientSource).toContain("if (!options.isPremium) return { status: 'free_eligible', snapshot }");
+    expect(clientSource).toContain("'weeklyReviewGenerate'");
+    expect(clientSource).not.toContain('buildLocalWeeklyReview');
+    expect(clientSource).not.toContain('local_fallback');
+    expect(serverSource).toContain('const PLUS_WINDOW_MS = DAY_MS');
+    expect(serverSource).toContain('weekly_review_plus_required');
   });
 
-  it('renders collapsed by default and expands only after a tap', () => {
-    expect(cardSource).toContain('const [expanded, setExpanded] = useState(false)');
-    expect(cardSource).toContain('setExpanded((value) => !value)');
-    expect(cardSource).toContain('{expanded &&');
+  it('renders the full Plus review without a disclosure control', () => {
+    expect(cardSource).toContain('<PlusReview');
+    expect(cardSource).toContain('review.patterns.map');
+    expect(cardSource).toContain('review.plan.map');
+    expect(cardSource).not.toContain('const [expanded, setExpanded] = useState(false)');
+    expect(cardSource).not.toContain('accessibilityState={{ expanded }}');
   });
 
   it('does not show a next-review countdown footer', () => {
     expect(cardSource).not.toContain('nextReviewCopy(');
   });
 
-  it('does not truncate recommended lesson titles in the work-on list', () => {
-    const recommendationTextIndex = cardSource.indexOf('{rec.label}');
-    const nearbySource = cardSource.slice(Math.max(0, recommendationTextIndex - 180), recommendationTextIndex + 80);
+  it('does not render the internal coverage note in the user-facing card', () => {
+    expect(cardSource).not.toContain('review.coverageNote');
+  });
 
-    expect(recommendationTextIndex).toBeGreaterThan(0);
-    expect(nearbySource).not.toContain('numberOfLines={1}');
-    expect(cardSource).toContain('recText: { flex: 1, flexShrink: 1');
-    expect(cardSource).toContain('recRow: { flexDirection:');
-    expect(cardSource).toContain('minHeight: 58');
+  it('does not truncate AI plan actions', () => {
+    expect(cardSource).toContain('{step.expectedOutcome}');
+    expect(cardSource).not.toContain('numberOfLines={1}>{step.expectedOutcome}');
+    expect(cardSource).toContain('planText: { flex: 1');
+    expect(cardSource).toContain('minHeight: 52');
   });
 
   it('brands the weekly guidance as Compass instead of an error analysis', () => {
     expect(cardSource).toContain("import { weeklyCompassIconSource } from '../constants/weeklyCompassIcons'");
-    expect(cardSource).toContain('function WeeklyCompassIcon({');
-    expect(cardSource).toContain('Animated.loop(');
+    expect(cardSource).not.toContain('Animated.loop(');
     expect(cardSource).not.toContain('name="compass-outline"');
     expect(cardSource).not.toContain('AI REHBER');
-    expect(cardSource).toContain("ru: 'Компас'");
-    expect(cardSource).toContain("ru: 'Ежедневный разбор ошибок'");
-    expect(cardSource).not.toContain("ru: 'Подсказывает, что потренировать дальше'");
-    expect(cardSource).toContain("ru: 'Компас готовит подсказки…'");
-    expect(cardSource).not.toContain("ru: 'Разбор ошибок'");
-    expect(cardSource).not.toContain("ru: 'Только по тем местам, где ты ошибался'");
-    expect(cardSource).not.toContain("ru: 'Готовлю твой разбор ошибок…'");
+    expect(cardSource).toContain('copy.title');
+    expect(cardSource).toContain('copy.updating');
+    expect(cardSource).not.toContain('copy.aiBadge');
   });
 });

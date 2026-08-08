@@ -71,10 +71,18 @@ describe('app art backdrop registry', () => {
     expect(paywallShared).not.toContain('const BG_GRADIENTS: Record<string, [string, string, string]>');
   });
 
+  it('uses dedicated quiet scrims for Sage Porcelain', () => {
+    const backdrop = fs.readFileSync(path.join(__dirname, '..', 'components', 'AppArtBackdrop.tsx'), 'utf8');
+
+    expect(backdrop).toMatch(/VERTICAL_SCRIMS:[\s\S]*?sagePorcelain: \['rgba\(252,253,249,0\.50\)', 'rgba\(240,241,236,0\.26\)', 'rgba\(252,253,249,0\.72\)'\],/);
+    expect(backdrop).toMatch(/EDGE_SCRIMS:[\s\S]*?sagePorcelain: \['rgba\(252,253,249,0\.52\)', 'rgba\(49,95,80,0\.03\)', 'rgba\(49,95,80,0\.02\)', 'rgba\(252,253,249,0\.46\)'\],/);
+  });
+
   it('maps the primary app routes to programmatic backdrop layers', () => {
     const cases = [
       ['/(tabs)/home', 'home'],
       ['/(tabs)/lessons', 'lessons'],
+      ['/lessons_list', 'lessons'],
       ['/(tabs)/arena', 'arena'],
       ['/(tabs)/friends', 'friends'],
       ['/(tabs)/settings', 'settings'],

@@ -64,6 +64,7 @@ export default function GlobalFriendGiftHost() {
 
       emitAppEvent('action_toast', {
         type: 'reward',
+        soundEventId: 'pm.social.gift_received',
         messageRu,
         messageUk: gifts.length === 1 ? `${from} подарував тобі: ${giftLabel(first, 'uk')} 🎁` : undefined,
         messageEs: gifts.length === 1 ? `${from} te regaló: ${giftLabel(first, 'es')} 🎁` : undefined,

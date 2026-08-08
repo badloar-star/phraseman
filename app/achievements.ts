@@ -6,6 +6,13 @@ import { addShardsRaw, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 import { writeFriendEvent } from './firestore_friend_activity';
 import { DEV_MODE, IS_STORE_RELEASE } from './config';
 import {
@@ -482,18 +489,18 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Ryzyko i wygrana', description: 'Wygraj zakład o serię: utrzymaj ją do końca, nie spadając poniżej poziomu z chwili zakładu.' },
   },
   wager_win_3: {
-    'pt-BR': { name: 'Três apostas certas', description: 'Ganhe 3 apostas na Arena no total.' },
-    vi: { name: 'Ba cược thắng', description: 'Thắng tổng cộng 3 cược trong Arena.' },
-    id: { name: 'Tiga taruhan menang', description: 'Menangkan total 3 taruhan di Arena.' },
-    tr: { name: 'Üç başarılı bahis', description: 'Arena’da toplam 3 bahis kazan.' },
-    pl: { name: 'Trzy udane zakłady', description: 'Wygraj łącznie 3 zakłady na Arenie.' },
+    'pt-BR': { name: 'Três apostas certas', description: 'Ganhe 3 apostas de sequência no total.' },
+    vi: { name: 'Ba cược thắng', description: 'Thắng tổng cộng 3 cược chuỗi.' },
+    id: { name: 'Tiga taruhan menang', description: 'Menangkan total 3 taruhan rangkaian.' },
+    tr: { name: 'Üç başarılı bahis', description: 'Toplam 3 seri bahsi kazan.' },
+    pl: { name: 'Trzy udane zakłady', description: 'Wygraj łącznie 3 zakłady o serię.' },
   },
   wager_win_10: {
-    'pt-BR': { name: 'Mão fria', description: 'Ganhe 10 apostas na Arena no total.' },
-    vi: { name: 'Tay lạnh', description: 'Thắng tổng cộng 10 cược trong Arena.' },
-    id: { name: 'Tangan dingin', description: 'Menangkan total 10 taruhan di Arena.' },
-    tr: { name: 'Soğukkanlı el', description: 'Arena’da toplam 10 bahis kazan.' },
-    pl: { name: 'Zimna ręka', description: 'Wygraj łącznie 10 zakładów na Arenie.' },
+    'pt-BR': { name: 'Mão fria', description: 'Ganhe 10 apostas de sequência no total.' },
+    vi: { name: 'Tay lạnh', description: 'Thắng tổng cộng 10 cược chuỗi.' },
+    id: { name: 'Tangan dingin', description: 'Menangkan total 10 taruhan rangkaian.' },
+    tr: { name: 'Soğukkanlı el', description: 'Toplam 10 seri bahsi kazan.' },
+    pl: { name: 'Zimna ręka', description: 'Wygraj łącznie 10 zakładów o serię.' },
   },
   personal_best: {
     'pt-BR': { name: 'Melhor semana', description: 'Bata seu recorde de XP semanal em uma semana do calendário.' },
@@ -1122,113 +1129,113 @@ export function achievementDescForLang(a: Achievement, lang: Lang): string {
 
 // Список достижений пополняется без миграции: новые id подхватываются loadAchievementStates().
 
-export const ALL_ACHIEVEMENTS: Achievement[] = [
+const ACHIEVEMENTS_WITH_RETIRED_FEATURES: Achievement[] = [
   // Серии (streak) — streak_count: дни подряд с начислением XP (см. updateStreakOnActivity)
   {
-    id:'streak_3', icon:'🔥', category:'streak', xp:30,
+    id: 'streak_3', icon:'🔥', category:'streak', xp:30,
     nameRu:'Первые три',        nameUk:'Перші три',
     descRu:'Три дня подряд с опытом — первый шаг к настоящей серии.',     descUk:'Три дні поспіль отримуй досвід у додатку (серія активності).',
   },
   {
-    id:'streak_7', icon:'🥇', category:'streak', xp:75,
+    id: 'streak_7', icon:'🥇', category:'streak', xp:75,
     nameRu:'Неделя подряд',       nameUk:'Тиждень поспіль',
     descRu:'7 дней подряд с опытом — первая настоящая серия.',    descUk:'7 днів поспіль з нарахуванням досвіду; заморозка, відновлення або щит можуть зберегти серію.',
   },
   {
-    id:'streak_14', icon:'🥈', category:'streak', xp:120,
+    id: 'streak_14', icon:'🥈', category:'streak', xp:120,
     nameRu:'Две недели',        nameUk:'Два тижні',
     descRu:'14 дней без перерыва. Привычка уже формируется.',   descUk:'14 днів поспіль з досвідом; це не те саме, що щоденний вхід.',
   },
   {
-    id:'streak_30', icon:'📅', category:'streak', xp:200,
+    id: 'streak_30', icon:'📅', category:'streak', xp:200,
     nameRu:'Месяц в строю',     nameUk:'Місяць у строю',
     descRu:'30 дней подряд. Это уже не эксперимент — это режим.',   descUk:'30 днів поспіль отримуй хоча б раз досвід за день.',
   },
   {
-    id:'streak_60', icon:'📆', category:'streak', xp:350,
+    id: 'streak_60', icon:'📆', category:'streak', xp:350,
     nameRu:'Два месяца',        nameUk:'Два місяці',
     descRu:'60 дней без пропуска. Половина пути к сотне.',   descUk:'60 днів поспіль тримай серію активності.',
   },
   {
-    id:'streak_100', icon:'💯', category:'streak', xp:500,
+    id: 'streak_100', icon:'💯', category:'streak', xp:500,
     nameRu:'Сто дней',          nameUk:'Сто днів',
     descRu:'100 дней подряд. Сотня — это уже характер.',  descUk:'100 днів поспіль без «пустих» днів для серії.',
   },
   {
-    id:'streak_200', icon:'⭐', category:'streak', xp:750,
+    id: 'streak_200', icon:'⭐', category:'streak', xp:750,
     nameRu:'Двести дней',       nameUk:'Двісті днів',
     descRu:'200 дней без перерыва. Это уже образ жизни.',  descUk:'200 днів поспіль із щоденним досвідом.',
   },
   {
-    id:'streak_365', icon:'🎉', category:'streak', xp:1200,
+    id: 'streak_365', icon:'🎉', category:'streak', xp:1200,
     nameRu:'Целый год',         nameUk:'Цілий рік',
     descRu:'Целый год подряд. Это не просто серия — это часть тебя.',  descUk:'365 днів поспіль тримай серію як у лічильнику стріка.',
   },
   {
-    id:'streak_500', icon:'👑', category:'streak', xp:2000,
+    id: 'streak_500', icon:'👑', category:'streak', xp:2000,
     nameRu:'500 дней',          nameUk:'500 днів',
     descRu:'500 дней подряд с опытом — редкое упорство.',  descUk:'500 днів поспіль з досвідом — рідкісна наполегливість.',
     secret: true,
   },
   {
-    id:'streak_repair', icon:'🔁', category:'streak', xp:100,
+    id: 'streak_repair', icon:'🔁', category:'streak', xp:100,
     nameRu:'Феникс',            nameUk:'Фенікс',
     descRu:'Пропустил день — и тут же вернулся. Феникс возрождается.', descUk:'Встигни скористатися відновленням після рівно одного пропущеного дня й завершити урок того ж дня.',
   },
   {
-    id:'perfect_week', icon:'✨', category:'streak', xp:150,
+    id: 'perfect_week', icon:'✨', category:'streak', xp:150,
     nameRu:'Идеальная неделя',  nameUk:'Ідеальний тиждень',
     descRu:'Каждый день с понедельника по воскресенье — ни одного пропуска.', descUk:'Отримуй досвід кожен день із понеділка по неділю одного календарного тижня.',
   },
 
   // Уроки — «завершён» = ≥45 верных в прогрессе урока
   {
-    id:'lesson_1', icon:'📘', category:'lessons', xp:25,
+    id: 'lesson_1', icon:'📘', category:'lessons', xp:25,
     nameRu:'Первый шаг',        nameUk:'Перший крок',
     descRu:'Пройди первый урок до конца и получи зачёт.',       descUk:'Заверши один урок: зарахунок при ≥45 правильних відповідей.',
   },
   {
-    id:'lesson_3', icon:'📗', category:'lessons', xp:50,
+    id: 'lesson_3', icon:'📗', category:'lessons', xp:50,
     nameRu:'Три урока',         nameUk:'Три уроки',
     descRu:'Три урока пройдено. Ритм набирается.',  descUk:'Усього три різні уроки з повним зарахунком.',
   },
   {
-    id:'lesson_5', icon:'📙', category:'lessons', xp:75,
+    id: 'lesson_5', icon:'📙', category:'lessons', xp:75,
     nameRu:'Пять уроков',       nameUk:'П\'ять уроків',
     descRu:'Пять уроков позади. Уже знаешь, как это работает.',          descUk:'П\'ять уроків доведено до зарахунку.',
   },
   {
-    id:'lesson_10', icon:'🎓', category:'lessons', xp:150,
+    id: 'lesson_10', icon:'🎓', category:'lessons', xp:150,
     nameRu:'Десять уроков',     nameUk:'Десять уроків',
     descRu:'Десять уроков. Ты уже не новичок.',         descUk:'Десять уроків із зарахунком у активі.',
   },
   {
-    id:'lesson_15', icon:'📚', category:'lessons', xp:225,
+    id: 'lesson_15', icon:'📚', category:'lessons', xp:225,
     nameRu:'Пятнадцать',        nameUk:'П\'ятнадцять',
     descRu:'15 уроков пройдено. Половина курса близко.',         descUk:'15 уроків завершено за правилами зарахунку.',
   },
   {
-    id:'lesson_20', icon:'🏫', category:'lessons', xp:300,
+    id: 'lesson_20', icon:'🏫', category:'lessons', xp:300,
     nameRu:'Двадцать уроков',   nameUk:'Двадцять уроків',
     descRu:'20 уроков. До финала рукой подать.',         descUk:'20 уроків із повним зарахунком.',
   },
   {
-    id:'lesson_all', icon:'🏆', category:'lessons', xp:600,
+    id: 'lesson_all', icon:'🏆', category:'lessons', xp:600,
     nameRu:'Полный курс',       nameUk:'Повний курс',
     descRu:'Все 32 урока пройдены. Курс завершён.',      descUk:'Усі 32 уроки хоча б раз із зарахунком.',
   },
   {
-    id:'lesson_perfect', icon:'✅', category:'lessons', xp:100,
+    id: 'lesson_perfect', icon:'✅', category:'lessons', xp:100,
     nameRu:'Ни одной ошибки',   nameUk:'Жодної помилки',
     descRu:'Урок пройден идеально — ни одного промаха.',   descUk:'Пройди урок без відповідей «помилка» й із зарахунком (≥45 правильних).',
   },
   {
-    id:'lesson_perfect3', icon:'💯', category:'lessons', xp:200,
+    id: 'lesson_perfect3', icon:'💯', category:'lessons', xp:200,
     nameRu:'Три идеальных',    nameUk:'Три ідеальних',
     descRu:'Три урока — и ни одной ошибки в каждом.', descUk:'Три різні уроки без жодної помилки в прогресі.',
   },
   {
-    id:'lesson_all_perfect', icon:'🌟', category:'lessons', xp:1500,
+    id: 'lesson_all_perfect', icon:'🌟', category:'lessons', xp:1500,
     nameRu:'Абсолют',           nameUk:'Абсолют',
     descRu:'Все 32 урока — без единой ошибки. Чище некуда.', descUk:'Усі 32 уроки ідеально: без «помилка» в кожному.',
     secret: true,
@@ -1236,366 +1243,311 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
 
   // XP — user_total_xp
   {
-    id:'xp_100', icon:'⚡', category:'xp', xp:20,
+    id: 'xp_100', icon:'⚡', category:'xp', xp:20,
     nameRu:'Первая сотня',      nameUk:'Перша сотня',
     descRu:'Первые 100 XP. Начало положено.',            descUk:'Накопич 100 XP у лічильнику «всього досвіду».',
   },
   {
-    id:'xp_250', icon:'✨', category:'xp', xp:30,
+    id: 'xp_250', icon:'✨', category:'xp', xp:30,
     nameRu:'250 опыта',         nameUk:'250 досвіду',
     descRu:'250 XP — и это только начало.',            descUk:'250 XP загалом (незалежно від джерела).',
   },
   {
-    id:'xp_500', icon:'💫', category:'xp', xp:50,
+    id: 'xp_500', icon:'💫', category:'xp', xp:50,
     nameRu:'Пятьсот',           nameUk:'П\'ятсот',
     descRu:'500 XP. Темп взят — не останавливайся.',            descUk:'500 XP на загальному лічильнику.',
   },
   {
-    id:'xp_1000', icon:'⭐', category:'xp', xp:75,
+    id: 'xp_1000', icon:'⭐', category:'xp', xp:75,
     nameRu:'Тысячник',          nameUk:'Тисячник',
     descRu:'Первая тысяча опыта. Дальше — больше.',          descUk:'1 000 XP загалом.',
   },
   {
-    id:'xp_2500', icon:'🌟', category:'xp', xp:100,
+    id: 'xp_2500', icon:'🌟', category:'xp', xp:100,
     nameRu:'2 500 опыта',       nameUk:'2 500 досвіду',
     descRu:'2 500 XP — и ни одной причины останавливаться.',          descUk:'2 500 XP загалом.',
   },
   {
-    id:'xp_5000', icon:'💎', category:'xp', xp:150,
+    id: 'xp_5000', icon:'💎', category:'xp', xp:150,
     nameRu:'Пять тысяч',        nameUk:'П\'ять тисяч',
     descRu:'5 000 XP. Ты уже далеко ушёл от старта.',          descUk:'5 000 XP загалом.',
   },
   {
-    id:'xp_10000', icon:'🏅', category:'xp', xp:200,
+    id: 'xp_10000', icon:'🏅', category:'xp', xp:200,
     nameRu:'Десять тысяч',      nameUk:'Десять тисяч',
     descRu:'10 000 XP. Это уже серьёзный результат.',         descUk:'10 000 XP загалом.',
   },
   {
-    id:'xp_20000', icon:'🎖️', category:'xp', xp:300,
+    id: 'xp_20000', icon:'🎖️', category:'xp', xp:300,
     nameRu:'Двадцать тысяч',    nameUk:'Двадцять тисяч',
     descRu:'20 000 XP. Английский уже не тот, что был.',         descUk:'20 000 XP загалом.',
   },
   {
-    id:'xp_50000', icon:'🏆', category:'xp', xp:500,
+    id: 'xp_50000', icon:'🏆', category:'xp', xp:500,
     nameRu:'Пятьдесят тысяч',    nameUk:'П\'ятдесят тисяч',
     descRu:'50 000 XP. Полпути к легенде.',         descUk:'50 000 XP загалом.',
     secret: true,
   },
   {
-    id:'xp_100000', icon:'👑', category:'xp', xp:1000,
+    id: 'xp_100000', icon:'👑', category:'xp', xp:1000,
     nameRu:'Легенда',           nameUk:'Легенда',
     descRu:'100 000 XP. Это не просто число — это путь.',        descUk:'100 000 XP загалом.',
     secret: true,
   },
   {
-    id:'wager_win', icon:'🎲', category:'xp', xp:150,
+    id: 'wager_win', icon:'🎲', category:'xp', xp:150,
     nameRu:'Рискнул — победил', nameUk:'Ризикнув — переміг',
     descRu:'Поставил на свою серию — и удержал её до конца. Слово не разошлось с делом.', descUk:'Виграй парі на стрік: тримай серію до кінця терміну, не падаючи нижче рівня на момент ставки.',
   },
   {
-    id:'personal_best', icon:'📈', category:'xp', xp:100,
+    id: 'personal_best', icon:'📈', category:'xp', xp:100,
     nameRu:'Лучшая неделя',     nameUk:'Найкращий тиждень',
     descRu:'Побей свой рекорд недельных очков опыта за календарную неделю.', descUk:'Побий свій рекорд тижневих очок досвіду за календарний тиждень.',
   },
 
   // Квизы
-  {
-    id:'quiz_first', icon:'📝', category:'quiz', xp:30,
-    nameRu:'Первый вызов',       nameUk:'Перший виклик',
-    descRu:'Первый вызов завершён — на любом уровне.', descUk:'Заверши будь-який квіз один раз (будь-яка складність).',
-  },
-  {
-    id:'quiz_medium', icon:'📊', category:'quiz', xp:60,
-    nameRu:'Средний уровень',   nameUk:'Середній рівень',
-    descRu:'Пройди вызов уровня Medium до конца.', descUk:'Доведи до кінця квіз із рівнем Medium.',
-  },
-  {
-    id:'quiz_hard', icon:'⚔️', category:'quiz', xp:100,
-    nameRu:'Принял вызов',      nameUk:'Прийняв виклик',
-    descRu:'Пройди вызов на Hard до конца.',  descUk:'Повністю пройди квіз рівня Hard.',
-  },
-  {
-    id:'quiz_all_levels', icon:'🎯', category:'quiz', xp:150,
-    nameRu:'Полный набор',      nameUk:'Повний набір',
-    descRu:'Попробовал Easy, Medium и Hard. Теперь выбирай свой.', descUk:'Хоча б раз пройди Easy, Medium і Hard (три окремі сесії).',
-  },
-  {
-    id:'quiz_perfect_easy', icon:'🌿', category:'quiz', xp:75,
-    nameRu:'Лёгкий идеал',      nameUk:'Легкий ідеал',
-    descRu:'Лёгкий уровень — и ни одной ошибки.', descUk:'Квіз Easy: усі відповіді за цей захід вірні.',
-  },
-  {
-    id:'quiz_perfect', icon:'🛡️', category:'quiz', xp:250,
-    nameRu:'Железные нервы',    nameUk:'Залізні нерви',
-    descRu:'Самый сложный уровень — и полная чистота.', descUk:'Квіз Hard без жодної помилки за проходження.',
-  },
-  {
-    id:'quiz_perfect_medium', icon:'🎪', category:'quiz', xp:150,
-    nameRu:'Меткий стрелок',    nameUk:'Влучний стрілець',
-    descRu:'Средний уровень — пройден без единого промаха.', descUk:'Квіз Medium без помилок: усі відповіді за захід вірні.',
-  },
-  {
-    id:'quiz_triple_perfect', icon:'🌈', category:'quiz', secret: true, xp:500,
-    nameRu:'Трижды идеал',      nameUk:'Тричі ідеал',
-    descRu:'Идеально на Easy, Medium и Hard — три уровня, ни одной ошибки.', descUk:'Ідеальні Easy, Medium і Hard: окремі квізи на кожен рівень.',
-  },
-  {
-    id:'quiz_speed_demon', icon:'💨', category:'quiz', secret: true, xp:300,
-    nameRu:'На скорости',       nameUk:'На швидкості',
-    descRu:'Пять раз прошёл Hard до конца. Это уже система.', descUk:'П\'ять раз повністю заверш квіз Hard (лічильник зберігається в додатку).',
-  },
 
   // Комбо и ежедневки (combo — подряд верных в уроке lesson1.tsx)
   {
-    id:'combo_3', icon:'🎯', category:'combo', xp:20,
+    id: 'combo_3', icon:'🎯', category:'combo', xp:20,
     nameRu:'В потоке',          nameUk:'У потоці',
     descRu:'3 верных ответа подряд во время урока.',   descUk:'3 вірні відповіді поспіль під час уроку.',
   },
   {
-    id:'combo_10', icon:'🎯', category:'combo', xp:60,
+    id: 'combo_10', icon:'🎯', category:'combo', xp:60,
     nameRu:'Снайпер',           nameUk:'Снайпер',
     descRu:'10 верных подряд на шагах урока.',         descUk:'10 вірних поспіль на кроках уроку.',
   },
   {
-    id:'combo_20', icon:'🧱', category:'combo', xp:120,
+    id: 'combo_20', icon:'🧱', category:'combo', xp:120,
     nameRu:'Несокрушимый',      nameUk:'Незламний',
     descRu:'20 верных ответов подряд без промаха.',         descUk:'20 вірних відповідей поспіль без промаху.',
   },
   {
-    id:'combo_50', icon:'🤖', category:'combo', xp:300,
+    id: 'combo_50', icon:'🤖', category:'combo', xp:300,
     nameRu:'Машина',            nameUk:'Машина',
     descRu:'50 верных ответов подряд в одной «серии».', descUk:'50 вірних відповідей поспіль в одній «серії».',
   },
   {
-    id:'combo_100', icon:'🦾', category:'combo', xp:600,
+    id: 'combo_100', icon:'🦾', category:'combo', xp:600,
     nameRu:'Непобедимый',       nameUk:'Непереможний',
     descRu:'100 верных ответов подряд в одной серии.', descUk:'100 вірних відповідей поспіль в одній серії.',
     secret: true,
   },
   {
-    id:'daily_task_first', icon:'📋', category:'combo', xp:30,
+    id: 'daily_task_first', icon:'📋', category:'combo', xp:30,
     nameRu:'Первое задание',    nameUk:'Перше завдання',
     descRu:'Выполни одно из ежедневных заданий на экране задач.', descUk:'Виконай одне з щоденних завдань на екрані завдань.',
   },
   {
-    id:'all_daily', icon:'✅', category:'combo', xp:100,
+    id: 'all_daily', icon:'✅', category:'combo', xp:100,
     nameRu:'Всё за день',       nameUk:'Усе за день',
     descRu:'За один календарный день закрой все три ежедневных задания.', descUk:'За один календарний день закрий усі три щоденні завдання.',
   },
   {
-    id:'daily_all_3', icon:'📌', category:'combo', xp:140,
+    id: 'daily_all_3', icon:'📌', category:'combo', xp:140,
     nameRu:'Три дня порядка', nameUk:'Три дні порядку',
     descRu:'Три дня подряд закрывай все ежедневные задания.', descUk:'Три дні поспіль закривай усі щоденні завдання.',
   },
   {
-    id:'daily_all_7', icon:'🗓️', category:'combo', xp:350,
+    id: 'daily_all_7', icon:'🗓️', category:'combo', xp:350,
     nameRu:'Неделя без хвостов', nameUk:'Тиждень без хвостів',
     descRu:'Семь дней подряд закрывай все ежедневные задания.', descUk:'Сім днів поспіль закривай усі щоденні завдання.',
     secret: true,
   },
   {
-    id:'daily_no_reroll', icon:'🎯', category:'combo', xp:120,
+    id: 'daily_no_reroll', icon:'🎯', category:'combo', xp:120,
     nameRu:'Без замен', nameUk:'Без замін',
     descRu:'Закрой все задания дня, не заменив ни одно из них.', descUk:'Закрий усі завдання дня, не замінивши жодного з них.',
   },
   {
-    id:'daily_phrase_first', icon:'💬', category:'combo', xp:35,
+    id: 'daily_phrase_first', icon:'💬', category:'combo', xp:35,
     nameRu:'Фраза дня', nameUk:'Фраза дня',
     descRu:'Открой карточку фразы дня и прочитай объяснение.', descUk:'Відкрий картку фрази дня й прочитай пояснення.',
   },
   {
-    id:'daily_phrase_save', icon:'🗂️', category:'combo', xp:60,
+    id: 'daily_phrase_save', icon:'🗂️', category:'combo', xp:60,
     nameRu:'В копилку', nameUk:'До скарбнички',
     descRu:'Сохрани фразу дня в карточки.', descUk:'Збережи фразу дня в картки.',
   },
 
   // Входы — счётчик цепочки ежедневного входа (login_bonus_v1), отдельно от цепочки дней по XP
   {
-    id:'login_7', icon:'🎒', category:'special', xp:75,
+    id: 'login_7', icon:'🎒', category:'special', xp:75,
     nameRu:'Верный ученик',     nameUk:'Вірний учень',
     descRu:'7 дней подряд открывал приложение. Привычка складывается.',     descUk:'7 днів поспіль заходь у додаток (ланцюжок входу).',
   },
   {
-    id:'login_14', icon:'📆', category:'special', xp:120,
+    id: 'login_14', icon:'📆', category:'special', xp:120,
     nameRu:'Две недели',        nameUk:'Два тижні',
     descRu:'14 дней подряд открывай приложение.',    descUk:'14 днів поспіль відкривай додаток.',
   },
   {
-    id:'login_30', icon:'🗓️', category:'special', xp:200,
+    id: 'login_30', icon:'🗓️', category:'special', xp:200,
     nameRu:'Месяц в приложении', nameUk:'Місяць у додатку',
     descRu:'30 дней подряд — Phraseman уже часть дня.',    descUk:'30 днів поспіль хоча б з одним входом на день.',
   },
   {
-    id:'login_60', icon:'📌', category:'special', xp:350,
+    id: 'login_60', icon:'📌', category:'special', xp:350,
     nameRu:'Два месяца',        nameUk:'Два місяці',
     descRu:'60 дней подряд заходи в приложение каждый день.',    descUk:'60 днів поспіль заходь у додаток кожен день.',
   },
   {
-    id:'login_365', icon:'🎊', category:'special', xp:1200,
+    id: 'login_365', icon:'🎊', category:'special', xp:1200,
     nameRu:'Целый год в приложении',  nameUk:'Цілий рік у додатку',
     descRu:'365 дней подряд с ежедневным входом.',   descUk:'365 днів поспіль із щоденним входом.',
     secret: true,
   },
   {
-    id:'comeback', icon:'👋', category:'special', secret: true, xp:100,
+    id: 'comeback', icon:'👋', category:'special', secret: true, xp:100,
     nameRu:'Возвращение', nameUk:'Повернення',
     descRu:'Вернулся после долгого перерыва — и сразу взял себя в руки.', descUk:'Повернись після ~7 і більше днів без активності: спрацює вітальний бонус повернення.',
   },
   {
-    id:'diagnosis', icon:'🔬', category:'special', xp:50,
+    id: 'diagnosis', icon:'🔬', category:'special', xp:50,
     nameRu:'Диагноз поставлен', nameUk:'Діагноз поставлено',
     descRu:'Пройди диагностический тест уровня до конца.', descUk:'Пройди діагностичний тест рівня до кінця.',
   },
   {
-    id:'night_owl', icon:'🦉', category:'special', secret: true, xp:75,
+    id: 'night_owl', icon:'🦉', category:'special', secret: true, xp:75,
     nameRu:'Ночная сова',      nameUk:'Нічна сова',
     descRu:'Получи опыт в приложении с 23:00 до 5:00 по местному времени.', descUk:'Отримай досвід у додатку з 23:00 до 5:00 за місцевим часом.',
   },
   {
-    id:'early_bird', icon:'🐦', category:'special', secret: true, xp:75,
+    id: 'early_bird', icon:'🐦', category:'special', secret: true, xp:75,
     nameRu:'Жаворонок',        nameUk:'Рання пташка',
     descRu:'Получи опыт между 5:00 и 7:00 по местному времени.',    descUk:'Отримай досвід між 5:00 і 7:00 за місцевим часом.',
   },
 
   // Медали CEFR: ruby/emerald/diamond по минимальному числу проходов среди уроков блока (pass_count)
-  { id:'gem_a1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A1 рубин',      nameUk:'A1 рубін',      descRu:'Уроки 1–8 пройдены дважды. Фундамент заложен.',    descUk:'Уроки 1–8: кожен завершено мінімум 2 рази (зарахування уроку).' },
-  { id:'gem_a1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A1 изумруд',    nameUk:'A1 смарагд',    descRu:'Уроки 1–8 пройдены трижды. Материал уже в крови.',    descUk:'Уроки 1–8: мінімум 3 проходи в кожного.' },
-  { id:'gem_a1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A1 бриллиант',  nameUk:'A1 діамант',    descRu:'Уроки 1–8 пройдены четыре раза. Это уже автоматизм.',    descUk:'Уроки 1–8: мінімум 4 проходи в кожного.', secret:true },
-  { id:'gem_a2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A2 рубин',      nameUk:'A2 рубін',      descRu:'Уроки 9–18 пройдены дважды. A2 закрепляется.',    descUk:'Уроки 9–18: кожен мінімум 2 повних проходи.' },
-  { id:'gem_a2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A2 изумруд',    nameUk:'A2 смарагд',    descRu:'Уроки 9–18 пройдены трижды. Уверенность растёт.',    descUk:'Уроки 9–18: мінімум 3 проходи на кожен.' },
-  { id:'gem_a2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A2 бриллиант',  nameUk:'A2 діамант',    descRu:'Уроки 9–18 пройдены четыре раза. A2 — твой уровень.',    descUk:'Уроки 9–18: мінімум 4 проходи на кожен.', secret:true },
-  { id:'gem_b1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B1 рубин',      nameUk:'B1 рубін',      descRu:'Уроки 19–28 пройдены дважды. B1 в работе.',    descUk:'Уроки 19–28: кожен урок блоку ≥2 проходів.' },
-  { id:'gem_b1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B1 изумруд',    nameUk:'B1 смарагд',    descRu:'Уроки 19–28 пройдены трижды. Грамматика становится инстинктом.',    descUk:'Уроки 19–28: по ≥3 проходи на урок.' },
-  { id:'gem_b1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B1 бриллиант',  nameUk:'B1 діамант',    descRu:'Уроки 19–28 пройдены четыре раза. B1 — твой фундамент.',    descUk:'Уроки 19–28: по ≥4 проходи на урок.', secret:true },
-  { id:'gem_b2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B2 рубин',      nameUk:'B2 рубін',      descRu:'Уроки 29–32 пройдены дважды. Финальный блок освоен.',    descUk:'Уроки 29–32: кожен урок ≥2 повних зарахунків.' },
-  { id:'gem_b2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B2 изумруд',    nameUk:'B2 смарагд',    descRu:'Уроки 29–32 пройдены трижды. Уровень B2 реальный.',    descUk:'Уроки 29–32: по ≥3 проходи кожен.' },
-  { id:'gem_b2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B2 бриллиант',  nameUk:'B2 діамант',    descRu:'Уроки 29–32 пройдены четыре раза. Это вершина курса.',    descUk:'Уроки 29–32: по ≥4 проходи на кожен урок.', secret:true },
+  { id: 'gem_a1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A1 рубин',      nameUk:'A1 рубін',      descRu:'Уроки 1–8 пройдены дважды. Фундамент заложен.',    descUk:'Уроки 1–8: кожен завершено мінімум 2 рази (зарахування уроку).' },
+  { id: 'gem_a1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A1 изумруд',    nameUk:'A1 смарагд',    descRu:'Уроки 1–8 пройдены трижды. Материал уже в крови.',    descUk:'Уроки 1–8: мінімум 3 проходи в кожного.' },
+  { id: 'gem_a1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A1 бриллиант',  nameUk:'A1 діамант',    descRu:'Уроки 1–8 пройдены четыре раза. Это уже автоматизм.',    descUk:'Уроки 1–8: мінімум 4 проходи в кожного.', secret:true },
+  { id: 'gem_a2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A2 рубин',      nameUk:'A2 рубін',      descRu:'Уроки 9–18 пройдены дважды. A2 закрепляется.',    descUk:'Уроки 9–18: кожен мінімум 2 повних проходи.' },
+  { id: 'gem_a2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A2 изумруд',    nameUk:'A2 смарагд',    descRu:'Уроки 9–18 пройдены трижды. Уверенность растёт.',    descUk:'Уроки 9–18: мінімум 3 проходи на кожен.' },
+  { id: 'gem_a2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A2 бриллиант',  nameUk:'A2 діамант',    descRu:'Уроки 9–18 пройдены четыре раза. A2 — твой уровень.',    descUk:'Уроки 9–18: мінімум 4 проходи на кожен.', secret:true },
+  { id: 'gem_b1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B1 рубин',      nameUk:'B1 рубін',      descRu:'Уроки 19–28 пройдены дважды. B1 в работе.',    descUk:'Уроки 19–28: кожен урок блоку ≥2 проходів.' },
+  { id: 'gem_b1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B1 изумруд',    nameUk:'B1 смарагд',    descRu:'Уроки 19–28 пройдены трижды. Грамматика становится инстинктом.',    descUk:'Уроки 19–28: по ≥3 проходи на урок.' },
+  { id: 'gem_b1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B1 бриллиант',  nameUk:'B1 діамант',    descRu:'Уроки 19–28 пройдены четыре раза. B1 — твой фундамент.',    descUk:'Уроки 19–28: по ≥4 проходи на урок.', secret:true },
+  { id: 'gem_b2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B2 рубин',      nameUk:'B2 рубін',      descRu:'Уроки 29–32 пройдены дважды. Финальный блок освоен.',    descUk:'Уроки 29–32: кожен урок ≥2 повних зарахунків.' },
+  { id: 'gem_b2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B2 изумруд',    nameUk:'B2 смарагд',    descRu:'Уроки 29–32 пройдены трижды. Уровень B2 реальный.',    descUk:'Уроки 29–32: по ≥3 проходи кожен.' },
+  { id: 'gem_b2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B2 бриллиант',  nameUk:'B2 діамант',    descRu:'Уроки 29–32 пройдены четыре раза. Это вершина курса.',    descUk:'Уроки 29–32: по ≥4 проходи на кожен урок.', secret:true },
 
   // Экзамены урока
   {
-    id:'exam_first', icon:'📜', category:'special', xp:75,
+    id: 'exam_first', icon:'📜', category:'special', xp:75,
     nameRu:'Экзамен сдан',       nameUk:'Іспит складено',
     descRu:'Сдай экзамен после урока (финальный тест урока) хотя бы один раз.', descUk:'Здай іспит після уроку (фінальний тест) хоча б один раз.',
   },
   {
-    id:'exam_ace', icon:'🎓', category:'special', secret: true, xp:250,
+    id: 'exam_ace', icon:'🎓', category:'special', secret: true, xp:250,
     nameRu:'Отличник',          nameUk:'Відмінник',
     descRu:'Набери не менее 90% на экзамене урока.',  descUk:'Набери не менш як 90% на іспиті уроку.',
   },
 
   // Карточки — все сохранённые в flashcards_v1 за один визит экрана коллекции
   {
-    id:'flashcards_session', icon:'🃏', category:'special', xp:50,
+    id: 'flashcards_session', icon:'🃏', category:'special', xp:50,
     nameRu:'Все карточки за раз',         nameUk:'Усі картки за раз',
     descRu:'За один заход на экран коллекции просмотри каждую сохранённую карточку.', descUk:'За один захід на екран колекції переглянь кожну збережену картку.',
   },
   {
-    id:'flashcards_save_25', icon:'🗂️', category:'special', xp:120,
+    id: 'flashcards_save_25', icon:'🗂️', category:'special', xp:120,
     nameRu:'Свой словарь', nameUk:'Свій словник',
     descRu:'Сохрани 25 карточек в коллекцию.', descUk:'Збережи 25 карток у колекцію.',
   },
   {
-    id:'flashcards_save_50', icon:'🗃️', category:'special', xp:250,
+    id: 'flashcards_save_50', icon:'🗃️', category:'special', xp:250,
     nameRu:'Архивариус', nameUk:'Архіваріус',
     descRu:'Сохрани 50 карточек в коллекцию.', descUk:'Збережи 50 карток у колекцію.',
     secret: true,
   },
   {
-    id:'flashcards_flip_100', icon:'🔄', category:'special', xp:220,
+    id: 'flashcards_flip_100', icon:'🔄', category:'special', xp:220,
     nameRu:'Сто переворотов', nameUk:'Сто переворотів',
     descRu:'Переверни карточки 100 раз при повторении.', descUk:'Переверни картки 100 разів під час повторення.',
   },
   {
-    id:'flashcards_view_7_days', icon:'📆', category:'special', xp:260,
+    id: 'flashcards_view_7_days', icon:'📆', category:'special', xp:260,
     nameRu:'Карточная неделя', nameUk:'Карткова неділя',
     descRu:'Семь дней подряд просматривай карточки в коллекции.', descUk:'Сім днів поспіль переглядай картки в колекції.',
     secret: true,
   },
   {
-    id:'flashcards_sources_4', icon:'🧩', category:'special', xp:180,
+    id: 'flashcards_sources_4', icon:'🧩', category:'special', xp:180,
     nameRu:'Четыре источника', nameUk:'Чотири джерела',
-    descRu:'Сохрани карточки из урока, вызовов, слов, глаголов и фразы дня.', descUk:'Збережи картки з уроку або квізу, слів, дієслів і фрази дня.',
+    descRu:'Сохрани карточки из урока, слов, глаголов и фразы дня.', descUk:'Збережи картки з уроку, слів, дієслів і фрази дня.',
   },
   {
-    id:'recall_first', icon:'🧠', category:'special', xp:40,
+    id: 'recall_first', icon:'🧠', category:'special', xp:40,
     nameRu:'Вспомнил сам', nameUk:'Згадав сам',
     descRu:'Дай первый верный ответ в Моей практике.', descUk:'Дай першу правильну відповідь у Моїй практиці.',
   },
   {
-    id:'recall_50', icon:'🧩', category:'special', xp:180,
+    id: 'recall_50', icon:'🧩', category:'special', xp:180,
     nameRu:'Память крепнет', nameUk:'Пам\'ять міцнішає',
     descRu:'Набери 50 верных ответов в Моей практике.', descUk:'Набери 50 правильних відповідей у Моїй практиці.',
   },
   {
-    id:'arena_first_win', icon:'🏆', category:'special', xp:120,
-    nameRu:'Первая дуэль', nameUk:'Перша дуель',
-    descRu:'Выиграй первый матч Арены.', descUk:'Виграй перший матч Арени.',
+    id: 'shards_100', icon:'💎', category:'special', secret: true, xp:250,
+    nameRu:'Собиратель жемчужин', nameUk:'Збирач перлин',
+    descRu:'Доведи баланс до 100 жемчужин.', descUk:'Доведи баланс до 100 перлин.',
   },
   {
-    id:'arena_10_wins', icon:'⚔️', category:'special', xp:350,
-    nameRu:'Десять побед', nameUk:'Десять перемог',
-    descRu:'Выиграй 10 матчей Арены.', descUk:'Виграй 10 матчів Арени.',
+    id: 'shards_spent_100', icon:'💠', category:'special', secret: true, xp:220,
+    nameRu:'Жемчужины в дело', nameUk:'Перлини в діло',
+    descRu:'Потрать суммарно 100 жемчужин в магазине, лиге или на энергию.', descUk:'Витрать загалом 100 перлин у магазині, лізі або на енергію.',
   },
   {
-    id:'shards_100', icon:'💎', category:'special', secret: true, xp:250,
-    nameRu:'Собиратель осколков', nameUk:'Збирач уламків',
-    descRu:'Доведи баланс до 100 осколков знаний.', descUk:'Доведи баланс до 100 уламків знань.',
-  },
-  {
-    id:'shards_spent_100', icon:'💠', category:'special', secret: true, xp:220,
-    nameRu:'Осколки в дело', nameUk:'Уламки в діло',
-    descRu:'Потрать суммарно 100 осколков в магазине, лиге или на энергию.', descUk:'Витрать загалом 100 уламків у магазині, лізі або на енергію.',
-  },
-  {
-    id:'energy_refill_first', icon:'⚡', category:'special', xp:70,
+    id: 'energy_refill_first', icon:'⚡', category:'special', xp:70,
     nameRu:'Второе дыхание', nameUk:'Друге дихання',
-    descRu:'Восстанови энергию за осколки первый раз.', descUk:'Віднови енергію за уламки вперше.',
+    descRu:'Восстанови энергию за жемчужины первый раз.', descUk:'Віднови енергію за перлини вперше.',
   },
   {
-    id:'energy_refill_5', icon:'🔋', category:'special', xp:180,
+    id: 'energy_refill_5', icon:'🔋', category:'special', xp:180,
     nameRu:'На полном заряде', nameUk:'На повному заряді',
-    descRu:'Пять раз восстанови энергию за осколки.', descUk:'П\'ять разів віднови енергію за уламки.',
+    descRu:'Пять раз восстанови энергию за жемчужины.', descUk:'П\'ять разів віднови енергію за перлини.',
     secret: true,
   },
   {
-    id:'league_result_first', icon:'🏁', category:'special', xp:70,
+    id: 'league_result_first', icon:'🏁', category:'special', xp:70,
     nameRu:'Итоги недели', nameUk:'Підсумки тижня',
     descRu:'Первая неделя в лиге позади. Посмотрим, куда выведет следующая.', descUk:'Отримай перший тижневий результат у лізі.',
   },
   {
-    id:'league_top3', icon:'🥉', category:'special', xp:180,
+    id: 'league_top3', icon:'🥉', category:'special', xp:180,
     nameRu:'В тройке', nameUk:'У трійці',
     descRu:'Заверши неделю в топ-3 своей лиги.', descUk:'Заверши тиждень у топ-3 своєї ліги.',
   },
   {
-    id:'league_champion', icon:'👑', category:'special', xp:320,
+    id: 'league_champion', icon:'👑', category:'special', xp:320,
     nameRu:'Первый в группе', nameUk:'Перший у групі',
     descRu:'Заверши неделю на первом месте в группе лиги.', descUk:'Заверши тиждень на першому місці в групі ліги.',
     secret: true,
   },
   {
-    id:'league_promoted', icon:'⬆️', category:'special', xp:160,
+    id: 'league_promoted', icon:'⬆️', category:'special', xp:160,
     nameRu:'Повышение', nameUk:'Підвищення',
     descRu:'Перейди в более высокую лигу по итогам недели.', descUk:'Перейди до вищої ліги за підсумками тижня.',
   },
   {
-    id:'league_diamond', icon:'💎', category:'special', xp:500,
+    id: 'league_diamond', icon:'💎', category:'special', xp:500,
     nameRu:'Алмазная планка', nameUk:'Діамантова планка',
     descRu:'Доберись до Алмазной лиги или выше.', descUk:'Дістанься Діамантової ліги або вище.',
     secret: true,
   },
   {
-    id:'league_boost_first', icon:'🚀', category:'special', xp:60,
+    id: 'league_boost_first', icon:'🚀', category:'special', xp:60,
     nameRu:'Разгон недели', nameUk:'Розгін тижня',
     descRu:'Активируй первый личный буст очков лиги.', descUk:'Активуй перший особистий буст очок ліги.',
   },
   {
-    id:'league_boost_5', icon:'📈', category:'special', xp:180,
+    id: 'league_boost_5', icon:'📈', category:'special', xp:180,
     nameRu:'Турбо-привычка', nameUk:'Турбо-звичка',
     descRu:'Активируй 5 личных бустов очков лиги.', descUk:'Активуй 5 особистих бустів очок ліги.',
   },
   {
-    id:'league_boost_x3', icon:'✖️', category:'special', xp:140,
+    id: 'league_boost_x3', icon:'✖️', category:'special', xp:140,
     nameRu:'Тройной ход', nameUk:'Потрійний хід',
     descRu:'Активируй личный буст лиги с множителем x3.', descUk:'Активуй особистий буст ліги з множником x3.',
     secret: true,
@@ -1603,143 +1555,105 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
 
   // Секрет: все алмазные гемы по A1–B2
   {
-    id:'gem_all_complete', icon:'🏆', category:'medal', secret: true, xp:1000,
+    id: 'gem_all_complete', icon:'🏆', category:'medal', secret: true, xp:1000,
     nameRu:'Коллекционер медалей', nameUk:'Колекціонер медалей',
     descRu:'Собери высшую (алмазную) медаль по всем четырём блокам: A1, A2, B1 и B2.', descUk:'Збери найвищу (діамантову) медаль з усіх чотирьох блоків: A1, A2, B1 і B2.',
   },
 
   // ── Социал / Друзья ───────────────────────────────────────────────────────
   {
-    id:'social_friend_first', icon:'🤝', category:'special', xp:50,
+    id: 'social_friend_first', icon:'🤝', category:'special', xp:50,
     nameRu:'Не один в поле',  nameUk:'Не один у полі',
     descRu:'Добавь первого друга через код приглашения.', descUk:'Додай першого друга через код запрошення.',
   },
   {
-    id:'social_friends_3', icon:'👯', category:'special', xp:75,
+    id: 'social_friends_3', icon:'👯', category:'special', xp:75,
     nameRu:'Своя тусовка',  nameUk:'Своя компанія',
     descRu:'Собери в друзьях сразу трёх человек.', descUk:'Збери в друзях одразу трьох людей.',
   },
   {
-    id:'social_friends_10', icon:'🌐', category:'special', xp:200,
+    id: 'social_friends_10', icon:'🌐', category:'special', xp:200,
     nameRu:'Магнит для людей',  nameUk:'Магніт для людей',
     descRu:'10 друзей в списке. Ты явно умеешь находить общий язык.', descUk:'10 друзів у списку. Ти явно вмієш знаходити спільну мову.',
     secret: true,
   },
   {
-    id:'social_gift_send', icon:'🎁', category:'special', xp:40,
+    id: 'social_gift_send', icon:'🎁', category:'special', xp:40,
     nameRu:'Дед Мороз',  nameUk:'Дід Мороз',
     descRu:'Отправь другу подарок — просто потому что можешь.', descUk:'Відправ подарунок другу — щит, прискорення досвіду або жетон арени.',
   },
   {
-    id:'social_gift_5', icon:'🎀', category:'special', xp:150,
+    id: 'social_gift_5', icon:'🎀', category:'special', xp:150,
     nameRu:'Санта на постоянке',  nameUk:'Санта на постійці',
     descRu:'Отправил 5 подарков друзьям. Щедрость — твоё второе имя.', descUk:'Надіслав 5 подарунків друзям. Щедрість — твоє друге ім\'я.',
   },
   {
-    id:'social_gift_10', icon:'💝', category:'special', xp:260,
+    id: 'social_gift_10', icon:'💝', category:'special', xp:260,
     nameRu:'Большая щедрость', nameUk:'Велика щедрість',
     descRu:'Отправь 10 подарков друзьям.', descUk:'Надішли 10 подарунків друзям.',
     secret: true,
   },
   {
-    id:'social_like_received', icon:'❤️', category:'special', xp:30,
+    id: 'social_like_received', icon:'❤️', category:'special', xp:30,
     nameRu:'Тебя заметили',  nameUk:'Тебе помітили',
     descRu:'Друг отметил лайком одно из твоих достижений. Слава пришла.', descUk:'Друг відзначив лайком одне з твоїх досягнень. Слава прийшла.',
   },
   {
-    id:'social_likes_5', icon:'💗', category:'special', xp:120,
+    id: 'social_likes_5', icon:'💗', category:'special', xp:120,
     nameRu:'Пять отметок', nameUk:'П\'ять відміток',
     descRu:'Получи 5 лайков от друзей на свои достижения.', descUk:'Отримай 5 лайків від друзів на свої досягнення.',
   },
-  {
-    id:'league_chat_first', icon:'💬', category:'special', xp:50,
-    nameRu:'Голос в лиге', nameUk:'Голос у лізі',
-    descRu:'Отправь первое сообщение в чате своей лиги.', descUk:'Надішли перше повідомлення в чаті своєї ліги.',
-  },
-  {
-    id:'league_chat_10', icon:'🗨️', category:'special', xp:160,
-    nameRu:'Командный эфир', nameUk:'Командний ефір',
-    descRu:'Отправь 10 сообщений в чате лиги.', descUk:'Надішли 10 повідомлень у чаті ліги.',
-  },
-
   // ── Арена (расширение) ────────────────────────────────────────────────────
-  {
-    id:'arena_streak_5', icon:'🔥', category:'special', xp:200,
-    nameRu:'Машина победы',  nameUk:'Машина перемоги',
-    descRu:'5 побед подряд в Арене без поражений.', descUk:'5 перемог поспіль в Арені без поразок.',
-  },
-  {
-    id:'arena_streak_10', icon:'💥', category:'special', xp:450,
-    nameRu:'Феномен',  nameUk:'Феномен',
-    descRu:'10 побед подряд в Арене. Соперники уже в панике.', descUk:'10 перемог поспіль в Арені. Суперники вже в паніці.',
-    secret: true,
-  },
-  {
-    id:'arena_duel_friend', icon:'🤺', category:'special', xp:75,
-    nameRu:'Разборки по-дружески',  nameUk:'Розборки по-дружньому',
-    descRu:'Победи в дуэли с другом по приглашению (через код комнаты).', descUk:'Переможи в дуелі з другом за запрошенням (через код кімнати).',
-  },
-  {
-    id:'arena_wager_win', icon:'🎲', category:'special', xp:120,
-    nameRu:'Риск — дело благородное',  nameUk:'Ризик — справа благородна',
-    descRu:'Поставь осколки на матч Арены и выиграй — хотя бы раз.', descUk:'Постав уламки на матч Арени та виграй — хоча б раз.',
-  },
-  {
-    id:'arena_wager_5', icon:'💰', category:'special', xp:300,
-    nameRu:'Профессиональный авантюрист',  nameUk:'Професійний авантюрист',
-    descRu:'Выиграл 5 ставок в Арене. Удача явно на твоей стороне.', descUk:'Виграв 5 ставок в Арені. Удача явно на твоєму боці.',
-    secret: true,
-  },
 
   // ── Тренер / Active Recall ────────────────────────────────────────────────
   {
-    id:'trainer_session', icon:'🧘', category:'special', xp:50,
+    id: 'trainer_session', icon:'🧘', category:'special', xp:50,
     nameRu:'Первая тренировка',  nameUk:'Перше тренування',
     descRu:'Пройди первую сессию в режиме «Моя практика».', descUk:'Пройди першу сесію в режимі «Моя практика».',
   },
   {
-    id:'trainer_100_correct', icon:'🧠', category:'special', xp:200,
+    id: 'trainer_100_correct', icon:'🧠', category:'special', xp:200,
     nameRu:'Стальная память',  nameUk:'Сталева пам\'ять',
     descRu:'100 правильных ответов суммарно в «Моей практике». Эти слова уже часть тебя.', descUk:'100 правильних відповідей загалом у «Моїй практиці». Ці слова вже частина тебе.',
     secret: true,
   },
   {
-    id:'trainer_7_days', icon:'📅', category:'special', xp:260,
+    id: 'trainer_7_days', icon:'📅', category:'special', xp:260,
     nameRu:'Неделя практики', nameUk:'Тиждень практики',
     descRu:'Семь дней подряд дай хотя бы один верный ответ в тренировке.', descUk:'Сім днів поспіль дай хоча б одну правильну відповідь у тренуванні.',
   },
   {
-    id:'trainer_500_correct', icon:'🏋️', category:'special', xp:600,
+    id: 'trainer_500_correct', icon:'🏋️', category:'special', xp:600,
     nameRu:'Пятьсот точных', nameUk:'П\'ятсот точних',
     descRu:'500 правильных ответов суммарно в тренировках.', descUk:'500 правильних відповідей загалом у тренуваннях.',
     secret: true,
   },
   {
-    id:'trainer_perfect_session', icon:'💯', category:'special', xp:180,
+    id: 'trainer_perfect_session', icon:'💯', category:'special', xp:180,
     nameRu:'Чистая сессия', nameUk:'Чиста сесія',
     descRu:'Заверши тренировку из 5+ вопросов без ошибки.', descUk:'Заверши тренування з 5+ питань без помилки.',
   },
 
   // ── Кастомизация ──────────────────────────────────────────────────────────
   {
-    id:'avatar_custom', icon:'🎨', category:'special', xp:50,
+    id: 'avatar_custom', icon:'🎨', category:'special', xp:50,
     nameRu:'Своё лицо',  nameUk:'Своє обличчя',
     descRu:'Выбери уникальный аватар в настройках профиля.', descUk:'Вибери унікальний аватар у налаштуваннях профілю.',
   },
   {
-    id:'profile_themed', icon:'🖼️', category:'special', xp:35,
+    id: 'profile_themed', icon:'🖼️', category:'special', xp:35,
     nameRu:'Интерьер готов',  nameUk:'Інтер\'єр готовий',
     descRu:'Установи стиль оформления профильной карточки.', descUk:'Встанови стиль оформлення для картки профілю.',
   },
 
   // ── Карточки / Паки ───────────────────────────────────────────────────────
   {
-    id:'pack_purchased', icon:'📦', category:'special', xp:60,
+    id: 'pack_purchased', icon:'📦', category:'special', xp:60,
     nameRu:'Коллекционер',  nameUk:'Колекціонер',
     descRu:'Первый набор карточек в коллекции — начало большой библиотеки.', descUk:'Отримай перший набір карток: покупка, community-пак або ваучер.',
   },
   {
-    id:'pack_5_purchased', icon:'📚', category:'special', xp:180,
+    id: 'pack_5_purchased', icon:'📚', category:'special', xp:180,
     nameRu:'Библиотекарь',  nameUk:'Бібліотекар',
     descRu:'5 наборов карточек в коллекции. Слов становится всё больше.', descUk:'5 наборів карток у колекції. Слів стає дедалі більше.',
     secret: true,
@@ -1747,146 +1661,124 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
 
   // ── Шаринг ────────────────────────────────────────────────────────────────
   {
-    id:'share_achievement', icon:'📣', category:'special', xp:35,
+    id: 'share_achievement', icon:'📣', category:'special', xp:35,
     nameRu:'Громкое достижение',  nameUk:'Гучне досягнення',
     descRu:'Поделись разблокированным достижением — пусть все знают.', descUk:'Поділись розблокованим досягненням — нехай усі знають.',
   },
 
   // ── Вехи / Milestones ─────────────────────────────────────────────────────
   {
-    id:'level_50', icon:'👑', category:'xp', xp:400,
+    id: 'level_50', icon:'👑', category:'xp', xp:400,
     nameRu:'Полтинник',  nameUk:'П\'ятдесятник',
     descRu:'Достигни 50-го уровня. Ты уже не новичок — ты легенда.', descUk:'Досягни 50-го рівня. Ти вже не новачок — ти легенда.',
     secret: true,
   },
   {
-    id:'xp_75000', icon:'🚀', category:'xp', xp:300,
+    id: 'xp_75000', icon:'🚀', category:'xp', xp:300,
     nameRu:'75К — и не останавливаться',  nameUk:'75К — і не зупинятись',
     descRu:'75 000 опыта суммарно. Путь к шестизначному числу открыт.', descUk:'75 000 досвіду загалом. Шлях до шестизначного числа відкрито.',
     secret: true,
   },
   {
-    id:'quiz_10_completed', icon:'🎯', category:'quiz', xp:100,
-    nameRu:'Первые десять',  nameUk:'Перші десять',
-    descRu:'10 вызовов позади. Только вперёд.', descUk:'10 квізових сесій завершено. Тільки вперед.',
-  },
-  {
-    id:'arena_streak_freeze', icon:'🛡️', category:'special', xp:50,
-    nameRu:'Хитрый план',  nameUk:'Хитрий план',
-    descRu:'Использовал заморозку цепочки и сохранил серию.', descUk:'Використав заморозку ланцюжка та зберіг серію.',
-  },
-  {
-    id:'wager_win_3', icon:'🍀', category:'xp', xp:200,
+    id: 'wager_win_3', icon:'🍀', category:'xp', xp:200,
     nameRu:'Три удачные ставки',  nameUk:'Три вдалі ставки',
-    descRu:'Выиграй 3 ставки в Арене суммарно.', descUk:'Виграй 3 ставки в Арені загалом.',
+    descRu:'Выиграй 3 пари на свою серию суммарно.', descUk:'Виграй 3 парі на свою серію загалом.',
     secret: true,
   },
 
   // ── Medium / Hardcore layer ───────────────────────────────────────────────
-  { id:'streak_150', icon:'🔥', category:'streak', xp:650, nameRu:'Полторы сотни', nameUk:'Півтори сотні', descRu:'150 дней без перерыва. Здесь уже не воля, а характер.', descUk:'150 днів поспіль отримуй досвід без порожнього дня.' },
-  { id:'streak_250', icon:'🏔️', category:'streak', xp:900, nameRu:'Четверть тысячи', nameUk:'Чверть тисячі', descRu:'250 дней подряд. Четверть тысячи — это отдельная категория людей.', descUk:'250 днів поспіль тримай серію активності.', secret:true },
-  { id:'streak_750', icon:'🗿', category:'streak', xp:3000, nameRu:'750 дней', nameUk:'750 днів', descRu:'750 дней. Это уже монументально.', descUk:'750 днів поспіль із щоденним досвідом.', secret:true },
-  { id:'streak_1000', icon:'👑', category:'streak', xp:5000, nameRu:'Тысяча дней', nameUk:'Тисяча днів', descRu:'1000 дней без пропуска. Тысяча. Этого не описать словами.', descUk:'1000 днів поспіль тримай серію активності.', secret:true },
-  { id:'streak_clean_365', icon:'🛡️', category:'streak', xp:1800, nameRu:'Чистый год', nameUk:'Чистий рік', descRu:'Год без единой починки или заморозки. Только ты и дисциплина.', descUk:'365 днів серії без відновлення чи заморозки за цей відрізок.', secret:true },
-  { id:'perfect_month', icon:'📅', category:'streak', xp:800, nameRu:'Месяц без пустоты', nameUk:'Місяць без порожнечі', descRu:'Каждый день целого месяца — ни одного пропуска.', descUk:'Отримуй досвід щодня одного календарного місяця.', secret:true },
-  { id:'night_week', icon:'🌙', category:'streak', xp:350, nameRu:'Ночная смена', nameUk:'Нічна зміна', descRu:'7 дней подряд получай опыт ночью: с 23:00 до 5:00.', descUk:'7 днів поспіль отримуй досвід уночі: з 23:00 до 5:00.', secret:true },
-  { id:'early_week', icon:'🌅', category:'streak', xp:300, nameRu:'Ранний режим', nameUk:'Ранній режим', descRu:'7 дней подряд получай опыт утром: с 5:00 до 7:00.', descUk:'7 днів поспіль отримуй досвід уранці: з 5:00 до 7:00.', secret:true },
+  { id: 'streak_150', icon:'🔥', category:'streak', xp:650, nameRu:'Полторы сотни', nameUk:'Півтори сотні', descRu:'150 дней без перерыва. Здесь уже не воля, а характер.', descUk:'150 днів поспіль отримуй досвід без порожнього дня.' },
+  { id: 'streak_250', icon:'🏔️', category:'streak', xp:900, nameRu:'Четверть тысячи', nameUk:'Чверть тисячі', descRu:'250 дней подряд. Четверть тысячи — это отдельная категория людей.', descUk:'250 днів поспіль тримай серію активності.', secret:true },
+  { id: 'streak_750', icon:'🗿', category:'streak', xp:3000, nameRu:'750 дней', nameUk:'750 днів', descRu:'750 дней. Это уже монументально.', descUk:'750 днів поспіль із щоденним досвідом.', secret:true },
+  { id: 'streak_1000', icon:'👑', category:'streak', xp:5000, nameRu:'Тысяча дней', nameUk:'Тисяча днів', descRu:'1000 дней без пропуска. Тысяча. Этого не описать словами.', descUk:'1000 днів поспіль тримай серію активності.', secret:true },
+  { id: 'streak_clean_365', icon:'🛡️', category:'streak', xp:1800, nameRu:'Чистый год', nameUk:'Чистий рік', descRu:'Год без единой починки или заморозки. Только ты и дисциплина.', descUk:'365 днів серії без відновлення чи заморозки за цей відрізок.', secret:true },
+  { id: 'perfect_month', icon:'📅', category:'streak', xp:800, nameRu:'Месяц без пустоты', nameUk:'Місяць без порожнечі', descRu:'Каждый день целого месяца — ни одного пропуска.', descUk:'Отримуй досвід щодня одного календарного місяця.', secret:true },
+  { id: 'night_week', icon:'🌙', category:'streak', xp:350, nameRu:'Ночная смена', nameUk:'Нічна зміна', descRu:'7 дней подряд получай опыт ночью: с 23:00 до 5:00.', descUk:'7 днів поспіль отримуй досвід уночі: з 23:00 до 5:00.', secret:true },
+  { id: 'early_week', icon:'🌅', category:'streak', xp:300, nameRu:'Ранний режим', nameUk:'Ранній режим', descRu:'7 дней подряд получай опыт утром: с 5:00 до 7:00.', descUk:'7 днів поспіль отримуй досвід уранці: з 5:00 до 7:00.', secret:true },
 
-  { id:'lesson_all_2x', icon:'🔁', category:'lessons', xp:700, nameRu:'Второй круг', nameUk:'Друге коло', descRu:'Все 32 урока завершены минимум по 2 раза.', descUk:'Усі 32 уроки завершено мінімум по 2 рази.' },
-  { id:'lesson_all_3x', icon:'🔂', category:'lessons', xp:1000, nameRu:'Тройной курс', nameUk:'Потрійний курс', descRu:'Все 32 урока завершены минимум по 3 раза.', descUk:'Усі 32 уроки завершено мінімум по 3 рази.', secret:true },
-  { id:'lesson_all_5x', icon:'♾️', category:'lessons', xp:1800, nameRu:'Пятый круг', nameUk:'П’яте коло', descRu:'Все 32 урока завершены минимум по 5 раз.', descUk:'Усі 32 уроки завершено мінімум по 5 разів.', secret:true },
-  { id:'lesson_perfect10', icon:'💯', category:'lessons', xp:400, nameRu:'Десять идеальных', nameUk:'Десять ідеальних', descRu:'10 разных уроков — и ни одной ошибки в каждом.', descUk:'10 різних уроків без жодної помилки в прогресі.' },
-  { id:'lesson_b2_perfect', icon:'🎓', category:'lessons', xp:500, nameRu:'B2 без ошибок', nameUk:'B2 без помилок', descRu:'Уроки 29–32 пройдены идеально — ни единой ошибки.', descUk:'Уроки 29–32 ідеально: без «помилка» в кожному.', secret:true },
-  { id:'lesson_marathon_day', icon:'🏁', category:'lessons', xp:700, nameRu:'Учебный марафон', nameUk:'Навчальний марафон', descRu:'За один день заверши 10 разных уроков с зачётом.', descUk:'За один день заверши 10 різних уроків із зарахунком.', secret:true },
-  { id:'lesson_all_perfect_2x', icon:'🌟', category:'lessons', xp:2500, nameRu:'Абсолют II', nameUk:'Абсолют II', descRu:'Все 32 урока пройдены идеально минимум по 2 раза.', descUk:'Усі 32 уроки пройдено ідеально мінімум по 2 рази.', secret:true },
+  { id: 'lesson_all_2x', icon:'🔁', category:'lessons', xp:700, nameRu:'Второй круг', nameUk:'Друге коло', descRu:'Все 32 урока завершены минимум по 2 раза.', descUk:'Усі 32 уроки завершено мінімум по 2 рази.' },
+  { id: 'lesson_all_3x', icon:'🔂', category:'lessons', xp:1000, nameRu:'Тройной курс', nameUk:'Потрійний курс', descRu:'Все 32 урока завершены минимум по 3 раза.', descUk:'Усі 32 уроки завершено мінімум по 3 рази.', secret:true },
+  { id: 'lesson_all_5x', icon:'♾️', category:'lessons', xp:1800, nameRu:'Пятый круг', nameUk:'П’яте коло', descRu:'Все 32 урока завершены минимум по 5 раз.', descUk:'Усі 32 уроки завершено мінімум по 5 разів.', secret:true },
+  { id: 'lesson_perfect10', icon:'💯', category:'lessons', xp:400, nameRu:'Десять идеальных', nameUk:'Десять ідеальних', descRu:'10 разных уроков — и ни одной ошибки в каждом.', descUk:'10 різних уроків без жодної помилки в прогресі.' },
+  { id: 'lesson_b2_perfect', icon:'🎓', category:'lessons', xp:500, nameRu:'B2 без ошибок', nameUk:'B2 без помилок', descRu:'Уроки 29–32 пройдены идеально — ни единой ошибки.', descUk:'Уроки 29–32 ідеально: без «помилка» в кожному.', secret:true },
+  { id: 'lesson_marathon_day', icon:'🏁', category:'lessons', xp:700, nameRu:'Учебный марафон', nameUk:'Навчальний марафон', descRu:'За один день заверши 10 разных уроков с зачётом.', descUk:'За один день заверши 10 різних уроків із зарахунком.', secret:true },
+  { id: 'lesson_all_perfect_2x', icon:'🌟', category:'lessons', xp:2500, nameRu:'Абсолют II', nameUk:'Абсолют II', descRu:'Все 32 урока пройдены идеально минимум по 2 раза.', descUk:'Усі 32 уроки пройдено ідеально мінімум по 2 рази.', secret:true },
 
-  { id:'xp_150000', icon:'⚡', category:'xp', xp:1200, nameRu:'150К опыта', nameUk:'150К досвіду', descRu:'150 000 XP. Ты в топе тех, кто не бросил.', descUk:'Накопич 150 000 XP загалом.', secret:true },
-  { id:'xp_250000', icon:'🚀', category:'xp', xp:1800, nameRu:'Четверть миллиона', nameUk:'Чверть мільйона', descRu:'250 000 XP. Четверть миллиона — это редкость.', descUk:'Накопич 250 000 XP загалом.', secret:true },
-  { id:'xp_500000', icon:'💎', category:'xp', xp:3000, nameRu:'Полмиллиона', nameUk:'Пів мільйона', descRu:'500 000 XP. Полмиллиона — и ты всё ещё здесь.', descUk:'Накопич 500 000 XP загалом.', secret:true },
-  { id:'xp_750000', icon:'🏆', category:'xp', xp:4200, nameRu:'Три четверти', nameUk:'Три чверті', descRu:'750 000 XP. Три четверти пути к миллиону.', descUk:'Накопич 750 000 XP загалом.', secret:true },
-  { id:'xp_1000000', icon:'👑', category:'xp', xp:6000, nameRu:'Миллионер опыта', nameUk:'Мільйонер досвіду', descRu:'Миллион XP. Это не просто цифра — это история.', descUk:'Накопич 1 000 000 XP загалом.', secret:true },
-  { id:'xp_2000000', icon:'♾️', category:'xp', xp:9000, nameRu:'Два миллиона', nameUk:'Два мільйони', descRu:'Два миллиона XP. Слов нет — только уважение.', descUk:'Накопич 2 000 000 XP загалом.', secret:true },
-  { id:'weekly_xp_5000', icon:'📈', category:'xp', xp:400, nameRu:'Неделя на 5К', nameUk:'Тиждень на 5К', descRu:'Набери 5 000 XP за одну календарную неделю.', descUk:'Набери 5 000 XP за один календарний тиждень.', secret:true },
-  { id:'weekly_xp_10000', icon:'🔥', category:'xp', xp:900, nameRu:'Неделя мясорубки', nameUk:'Тиждень м’ясорубки', descRu:'Набери 10 000 XP за одну календарную неделю.', descUk:'Набери 10 000 XP за один календарний тиждень.', secret:true },
-  { id:'wager_win_10', icon:'🎲', category:'xp', xp:600, nameRu:'Холодная рука', nameUk:'Холодна рука', descRu:'Выиграй 10 ставок в Арене суммарно.', descUk:'Виграй 10 ставок в Арені загалом.', secret:true },
+  { id: 'xp_150000', icon:'⚡', category:'xp', xp:1200, nameRu:'150К опыта', nameUk:'150К досвіду', descRu:'150 000 XP. Ты в топе тех, кто не бросил.', descUk:'Накопич 150 000 XP загалом.', secret:true },
+  { id: 'xp_250000', icon:'🚀', category:'xp', xp:1800, nameRu:'Четверть миллиона', nameUk:'Чверть мільйона', descRu:'250 000 XP. Четверть миллиона — это редкость.', descUk:'Накопич 250 000 XP загалом.', secret:true },
+  { id: 'xp_500000', icon:'💎', category:'xp', xp:3000, nameRu:'Полмиллиона', nameUk:'Пів мільйона', descRu:'500 000 XP. Полмиллиона — и ты всё ещё здесь.', descUk:'Накопич 500 000 XP загалом.', secret:true },
+  { id: 'xp_750000', icon:'🏆', category:'xp', xp:4200, nameRu:'Три четверти', nameUk:'Три чверті', descRu:'750 000 XP. Три четверти пути к миллиону.', descUk:'Накопич 750 000 XP загалом.', secret:true },
+  { id: 'xp_1000000', icon:'👑', category:'xp', xp:6000, nameRu:'Миллионер опыта', nameUk:'Мільйонер досвіду', descRu:'Миллион XP. Это не просто цифра — это история.', descUk:'Накопич 1 000 000 XP загалом.', secret:true },
+  { id: 'xp_2000000', icon:'♾️', category:'xp', xp:9000, nameRu:'Два миллиона', nameUk:'Два мільйони', descRu:'Два миллиона XP. Слов нет — только уважение.', descUk:'Накопич 2 000 000 XP загалом.', secret:true },
+  { id: 'weekly_xp_5000', icon:'📈', category:'xp', xp:400, nameRu:'Неделя на 5К', nameUk:'Тиждень на 5К', descRu:'Набери 5 000 XP за одну календарную неделю.', descUk:'Набери 5 000 XP за один календарний тиждень.', secret:true },
+  { id: 'weekly_xp_10000', icon:'🔥', category:'xp', xp:900, nameRu:'Неделя мясорубки', nameUk:'Тиждень м’ясорубки', descRu:'Набери 10 000 XP за одну календарную неделю.', descUk:'Набери 10 000 XP за один календарний тиждень.', secret:true },
+  { id: 'wager_win_10', icon:'🎲', category:'xp', xp:600, nameRu:'Холодная рука', nameUk:'Холодна рука', descRu:'Выиграй 10 пари на свою серию суммарно.', descUk:'Виграй 10 парі на свою серію загалом.', secret:true },
 
-  { id:'quiz_25_completed', icon:'🎯', category:'quiz', xp:220, nameRu:'25 вызовов', nameUk:'25 квізів', descRu:'25 вызовов завершено. Ты в теме.', descUk:'25 квізових сесій завершено.' },
-  { id:'quiz_50_completed', icon:'🏅', category:'quiz', xp:400, nameRu:'50 вызовов', nameUk:'50 квізів', descRu:'50 вызовов позади. Это уже серьёзно.', descUk:'50 квізових сесій завершено.', secret:true },
-  { id:'quiz_100_completed', icon:'🏆', category:'quiz', xp:800, nameRu:'Сто вызовов', nameUk:'Сто квізів', descRu:'100 вызовов. Ты сделал это сотню раз.', descUk:'100 квізових сесій завершено.', secret:true },
-  { id:'quiz_hard_10', icon:'⚔️', category:'quiz', xp:350, nameRu:'Hard-десятка', nameUk:'Hard-десятка', descRu:'10 раз прошёл вызов на Hard. Сложное стало привычным.', descUk:'10 разів заверши квіз рівня Hard.', secret:true },
-  { id:'quiz_hard_25', icon:'🛡️', category:'quiz', xp:700, nameRu:'Hard-житель', nameUk:'Hard-житель', descRu:'25 вызовов на Hard. Ты здесь живёшь.', descUk:'25 разів заверши квіз рівня Hard.', secret:true },
-  { id:'quiz_hard_perfect_3', icon:'💯', category:'quiz', xp:400, nameRu:'Три Hard без ошибки', nameUk:'Три Hard без помилки', descRu:'Три раза прошёл Hard без единой ошибки.', descUk:'3 рази пройди Hard-квіз без жодної помилки.', secret:true },
-  { id:'quiz_hard_perfect_10', icon:'👑', category:'quiz', xp:1000, nameRu:'Десять без промаха', nameUk:'Десять без промаху', descRu:'10 раз прошёл Hard без единой ошибки. Это уже мастерство.', descUk:'10 разів пройди Hard-квіз без жодної помилки.', secret:true },
-  { id:'quiz_perfect_7_days', icon:'📆', category:'quiz', xp:550, nameRu:'Идеальная неделя вызовов', nameUk:'Ідеальний тиждень квізів', descRu:'7 дней подряд — вызов без единой ошибки.', descUk:'7 днів поспіль заверши хоча б один квіз без помилки.', secret:true },
-  { id:'quiz_all_levels_perfect_same_day', icon:'🌈', category:'quiz', xp:900, nameRu:'Три короны за день', nameUk:'Три корони за день', descRu:'За один день пройди Easy, Medium и Hard без ошибок.', descUk:'За один день пройди Easy, Medium і Hard без помилок.', secret:true },
+  { id: 'combo_150', icon:'⚡', category:'combo', xp:800, nameRu:'150 подряд', nameUk:'150 поспіль', descRu:'150 верных ответов подряд в одной серии.', descUk:'150 правильних відповідей поспіль в одній серії.', secret:true },
+  { id: 'combo_250', icon:'🧠', category:'combo', xp:1200, nameRu:'Нечеловеческий ритм', nameUk:'Нелюдський ритм', descRu:'250 верных ответов подряд в одной серии.', descUk:'250 правильних відповідей поспіль в одній серії.', secret:true },
+  { id: 'combo_500', icon:'☢️', category:'combo', xp:2500, nameRu:'Ошибка запрещена', nameUk:'Помилка заборонена', descRu:'500 верных ответов подряд в одной серии.', descUk:'500 правильних відповідей поспіль в одній серії.', secret:true },
+  { id: 'daily_all_14', icon:'📌', category:'combo', xp:600, nameRu:'Две недели порядка', nameUk:'Два тижні порядку', descRu:'14 дней подряд закрывай все ежедневные задания.', descUk:'14 днів поспіль закривай усі щоденні завдання.', secret:true },
+  { id: 'daily_all_30', icon:'🗓️', category:'combo', xp:1200, nameRu:'30 дней без хвостов', nameUk:'30 днів без хвостів', descRu:'30 дней подряд закрывай все ежедневные задания.', descUk:'30 днів поспіль закривай усі щоденні завдання.', secret:true },
+  { id: 'daily_no_reroll_7', icon:'🎯', category:'combo', xp:450, nameRu:'Неделя без замен', nameUk:'Тиждень без замін', descRu:'7 дней подряд закрой все задания без замен.', descUk:'7 днів поспіль закрий усі завдання без замін.', secret:true },
+  { id: 'daily_no_reroll_30', icon:'🏆', category:'combo', xp:1400, nameRu:'Без торга', nameUk:'Без торгу', descRu:'30 дней подряд закрой все задания без замен.', descUk:'30 днів поспіль закрий усі завдання без замін.', secret:true },
+  { id: 'daily_phrase_read_30', icon:'💬', category:'combo', xp:250, nameRu:'30 фраз дня', nameUk:'30 фраз дня', descRu:'Открой и прочитай 30 фраз дня.', descUk:'Відкрий і прочитай 30 фраз дня.' },
+  { id: 'daily_phrase_save_30', icon:'🗂️', category:'combo', xp:350, nameRu:'Фразы в запасе', nameUk:'Фрази в запасі', descRu:'Сохрани 30 фраз дня в карточки.', descUk:'Збережи 30 фраз дня в картки.', secret:true },
+  { id: 'daily_phrase_save_100', icon:'🗃️', category:'combo', xp:900, nameRu:'Сто фраз в копилке', nameUk:'Сто фраз у скарбничці', descRu:'Сохрани 100 фраз дня в карточки.', descUk:'Збережи 100 фраз дня в картки.', secret:true },
 
-  { id:'combo_150', icon:'⚡', category:'combo', xp:800, nameRu:'150 подряд', nameUk:'150 поспіль', descRu:'150 верных ответов подряд в одной серии.', descUk:'150 правильних відповідей поспіль в одній серії.', secret:true },
-  { id:'combo_250', icon:'🧠', category:'combo', xp:1200, nameRu:'Нечеловеческий ритм', nameUk:'Нелюдський ритм', descRu:'250 верных ответов подряд в одной серии.', descUk:'250 правильних відповідей поспіль в одній серії.', secret:true },
-  { id:'combo_500', icon:'☢️', category:'combo', xp:2500, nameRu:'Ошибка запрещена', nameUk:'Помилка заборонена', descRu:'500 верных ответов подряд в одной серии.', descUk:'500 правильних відповідей поспіль в одній серії.', secret:true },
-  { id:'daily_all_14', icon:'📌', category:'combo', xp:600, nameRu:'Две недели порядка', nameUk:'Два тижні порядку', descRu:'14 дней подряд закрывай все ежедневные задания.', descUk:'14 днів поспіль закривай усі щоденні завдання.', secret:true },
-  { id:'daily_all_30', icon:'🗓️', category:'combo', xp:1200, nameRu:'30 дней без хвостов', nameUk:'30 днів без хвостів', descRu:'30 дней подряд закрывай все ежедневные задания.', descUk:'30 днів поспіль закривай усі щоденні завдання.', secret:true },
-  { id:'daily_no_reroll_7', icon:'🎯', category:'combo', xp:450, nameRu:'Неделя без замен', nameUk:'Тиждень без замін', descRu:'7 дней подряд закрой все задания без замен.', descUk:'7 днів поспіль закрий усі завдання без замін.', secret:true },
-  { id:'daily_no_reroll_30', icon:'🏆', category:'combo', xp:1400, nameRu:'Без торга', nameUk:'Без торгу', descRu:'30 дней подряд закрой все задания без замен.', descUk:'30 днів поспіль закрий усі завдання без замін.', secret:true },
-  { id:'daily_phrase_read_30', icon:'💬', category:'combo', xp:250, nameRu:'30 фраз дня', nameUk:'30 фраз дня', descRu:'Открой и прочитай 30 фраз дня.', descUk:'Відкрий і прочитай 30 фраз дня.' },
-  { id:'daily_phrase_save_30', icon:'🗂️', category:'combo', xp:350, nameRu:'Фразы в запасе', nameUk:'Фрази в запасі', descRu:'Сохрани 30 фраз дня в карточки.', descUk:'Збережи 30 фраз дня в картки.', secret:true },
-  { id:'daily_phrase_save_100', icon:'🗃️', category:'combo', xp:900, nameRu:'Сто фраз в копилке', nameUk:'Сто фраз у скарбничці', descRu:'Сохрани 100 фраз дня в карточки.', descUk:'Збережи 100 фраз дня в картки.', secret:true },
+  { id: 'login_100', icon:'📆', category:'special', xp:500, nameRu:'100 входов подряд', nameUk:'100 входів поспіль', descRu:'100 дней подряд открывай приложение.', descUk:'100 днів поспіль відкривай додаток.', secret:true },
+  { id: 'login_200', icon:'🗓️', category:'special', xp:850, nameRu:'200 входов подряд', nameUk:'200 входів поспіль', descRu:'200 дней подряд открывай приложение.', descUk:'200 днів поспіль відкривай додаток.', secret:true },
+  { id: 'exam_ace_5', icon:'🎓', category:'special', xp:400, nameRu:'Пять отличных экзаменов', nameUk:'П’ять відмінних іспитів', descRu:'5 раз набери не менее 90% на экзамене.', descUk:'5 разів набери не менш як 90% на іспиті.', secret:true },
+  { id: 'exam_ace_10', icon:'🏆', category:'special', xp:800, nameRu:'Десять отличных', nameUk:'Десять відмінних', descRu:'10 раз набери не менее 90% на экзамене.', descUk:'10 разів набери не менш як 90% на іспиті.', secret:true },
+  { id: 'flashcards_save_100', icon:'🗃️', category:'special', xp:500, nameRu:'100 карточек', nameUk:'100 карток', descRu:'Сохрани 100 карточек в коллекцию.', descUk:'Збережи 100 карток у колекцію.', secret:true },
+  { id: 'flashcards_save_250', icon:'📚', category:'special', xp:1000, nameRu:'Большой архив', nameUk:'Великий архів', descRu:'Сохрани 250 карточек в коллекцию.', descUk:'Збережи 250 карток у колекцію.', secret:true },
+  { id: 'flashcards_flip_500', icon:'🔄', category:'special', xp:650, nameRu:'500 переворотов', nameUk:'500 переворотів', descRu:'Переверни карточки 500 раз при повторении.', descUk:'Переверни картки 500 разів під час повторення.', secret:true },
+  { id: 'flashcards_flip_1000', icon:'♾️', category:'special', xp:1200, nameRu:'Тысяча переворотов', nameUk:'Тисяча переворотів', descRu:'Переверни карточки 1000 раз при повторении.', descUk:'Переверни картки 1000 разів під час повторення.', secret:true },
+  { id: 'flashcards_view_14_days', icon:'📆', category:'special', xp:500, nameRu:'Две карточные недели', nameUk:'Два карткові тижні', descRu:'14 дней подряд просматривай карточки в коллекции.', descUk:'14 днів поспіль переглядай картки в колекції.', secret:true },
+  { id: 'flashcards_view_30_days', icon:'🗓️', category:'special', xp:1000, nameRu:'Карточный месяц', nameUk:'Картковий місяць', descRu:'30 дней подряд просматривай карточки в коллекции.', descUk:'30 днів поспіль переглядай картки в колекції.', secret:true },
+  { id: 'shards_250', icon:'💎', category:'special', xp:500, nameRu:'250 жемчужин', nameUk:'250 перлин', descRu:'Доведи баланс до 250 жемчужин.', descUk:'Доведи баланс до 250 перлин.', secret:true },
+  { id: 'shards_500', icon:'💎', category:'special', xp:900, nameRu:'500 жемчужин', nameUk:'500 перлин', descRu:'Доведи баланс до 500 жемчужин.', descUk:'Доведи баланс до 500 перлин.', secret:true },
+  { id: 'shards_1000', icon:'💎', category:'special', xp:1800, nameRu:'Тысяча жемчужин', nameUk:'Тисяча перлин', descRu:'Доведи баланс до 1000 жемчужин.', descUk:'Доведи баланс до 1000 перлин.', secret:true },
+  { id: 'shards_spent_500', icon:'💠', category:'special', xp:800, nameRu:'500 жемчужин в дело', nameUk:'500 перлин у діло', descRu:'Потрать суммарно 500 жемчужин.', descUk:'Витрать загалом 500 перлин.', secret:true },
+  { id: 'shards_spent_1000', icon:'💠', category:'special', xp:1500, nameRu:'Большой оборот', nameUk:'Великий обіг', descRu:'Потрать суммарно 1000 жемчужин.', descUk:'Витрать загалом 1000 перлин.', secret:true },
+  { id: 'energy_refill_10', icon:'🔋', category:'special', xp:400, nameRu:'10 зарядок', nameUk:'10 зарядок', descRu:'10 раз восстанови энергию за жемчужины.', descUk:'10 разів віднови енергію за перлини.', secret:true },
+  { id: 'energy_refill_25', icon:'⚡', category:'special', xp:900, nameRu:'25 зарядок', nameUk:'25 зарядок', descRu:'25 раз восстанови энергию за жемчужины.', descUk:'25 разів віднови енергію за перлини.', secret:true },
+  { id: 'league_top3_5', icon:'🥉', category:'special', xp:500, nameRu:'Пять недель в топ-3', nameUk:'П’ять тижнів у топ-3', descRu:'5 раз заверши неделю в топ-3 своей лиги.', descUk:'5 разів заверши тиждень у топ-3 своєї ліги.', secret:true },
+  { id: 'league_champion_5', icon:'👑', category:'special', xp:850, nameRu:'Пять чемпионств', nameUk:'П’ять чемпіонств', descRu:'5 раз заверши неделю первым в группе лиги.', descUk:'5 разів заверши тиждень першим у групі ліги.', secret:true },
+  { id: 'league_champion_10', icon:'🏆', category:'special', xp:1600, nameRu:'Десять чемпионств', nameUk:'Десять чемпіонств', descRu:'10 раз заверши неделю первым в группе лиги.', descUk:'10 разів заверши тиждень першим у групі ліги.', secret:true },
+  { id: 'league_diamond_4_weeks', icon:'💎', category:'special', xp:1000, nameRu:'Месяц в Алмазе', nameUk:'Місяць у Діаманті', descRu:'4 недельных результата подряд получи в Алмазной лиге или выше.', descUk:'4 тижневі результати поспіль отримай у Діамантовій лізі або вище.', secret:true },
+  { id: 'social_friends_25', icon:'🌐', category:'special', xp:450, nameRu:'25 друзей', nameUk:'25 друзів', descRu:'25 друзей. Phraseman стал общим делом.', descUk:'25 друзів у списку.', secret:true },
+  { id: 'social_friends_50', icon:'🌍', category:'special', xp:900, nameRu:'50 друзей', nameUk:'50 друзів', descRu:'50 друзей. Ты строишь настоящее сообщество.', descUk:'50 друзів у списку.', secret:true },
+  { id: 'social_gift_25', icon:'🎁', category:'special', xp:550, nameRu:'25 подарков', nameUk:'25 подарунків', descRu:'Отправь 25 подарков друзьям.', descUk:'Надішли 25 подарунків друзям.', secret:true },
+  { id: 'social_gift_100', icon:'💝', category:'special', xp:1500, nameRu:'100 подарков', nameUk:'100 подарунків', descRu:'Отправь 100 подарков друзьям.', descUk:'Надішли 100 подарунків друзям.', secret:true },
+  { id: 'social_likes_25', icon:'❤️', category:'special', xp:450, nameRu:'25 лайков', nameUk:'25 лайків', descRu:'Получи 25 лайков от друзей на свои достижения.', descUk:'Отримай 25 лайків від друзів на свої досягнення.', secret:true },
+  { id: 'social_likes_100', icon:'💗', category:'special', xp:1200, nameRu:'100 лайков', nameUk:'100 лайків', descRu:'Получи 100 лайков от друзей на свои достижения.', descUk:'Отримай 100 лайків від друзів на свої досягнення.', secret:true },
+  { id: 'trainer_1000_correct', icon:'🧠', category:'special', xp:1000, nameRu:'1000 точных', nameUk:'1000 точних', descRu:'1000 правильных ответов в тренировках. Память уже не та — она лучше.', descUk:'1000 правильних відповідей загалом у тренуваннях.', secret:true },
+  { id: 'trainer_2500_correct', icon:'🏋️', category:'special', xp:1800, nameRu:'2500 точных', nameUk:'2500 точних', descRu:'2500 правильных ответов. Эти слова уже часть тебя.', descUk:'2500 правильних відповідей загалом у тренуваннях.', secret:true },
+  { id: 'trainer_10000_correct', icon:'👑', category:'special', xp:4500, nameRu:'10000 точных', nameUk:'10000 точних', descRu:'10 000 правильных ответов в тренировках. Это уже энциклопедия.', descUk:'10000 правильних відповідей загалом у тренуваннях.', secret:true },
+  { id: 'trainer_perfect_10_sessions', icon:'💯', category:'special', xp:600, nameRu:'10 чистых тренировок', nameUk:'10 чистих тренувань', descRu:'10 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'10 разів заверши тренування з 5+ питань без помилки.', secret:true },
+  { id: 'trainer_perfect_50_sessions', icon:'🏆', category:'special', xp:1600, nameRu:'50 чистых тренировок', nameUk:'50 чистих тренувань', descRu:'50 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'50 разів заверши тренування з 5+ питань без помилки.', secret:true },
+  { id: 'pack_10_purchased', icon:'📚', category:'special', xp:450, nameRu:'10 наборов', nameUk:'10 наборів', descRu:'10 наборов карточек в коллекции.', descUk:'10 наборів карток у колекції.', secret:true },
+  { id: 'pack_25_purchased', icon:'📦', category:'special', xp:1000, nameRu:'25 наборов', nameUk:'25 наборів', descRu:'25 наборов карточек в коллекции.', descUk:'25 наборів карток у колекції.', secret:true },
+  { id: 'share_achievement_10', icon:'📣', category:'special', xp:250, nameRu:'10 громких побед', nameUk:'10 гучних перемог', descRu:'Поделись 10 разблокированными достижениями.', descUk:'Поділись 10 розблокованими досягненнями.', secret:true },
 
-  { id:'login_100', icon:'📆', category:'special', xp:500, nameRu:'100 входов подряд', nameUk:'100 входів поспіль', descRu:'100 дней подряд открывай приложение.', descUk:'100 днів поспіль відкривай додаток.', secret:true },
-  { id:'login_200', icon:'🗓️', category:'special', xp:850, nameRu:'200 входов подряд', nameUk:'200 входів поспіль', descRu:'200 дней подряд открывай приложение.', descUk:'200 днів поспіль відкривай додаток.', secret:true },
-  { id:'exam_ace_5', icon:'🎓', category:'special', xp:400, nameRu:'Пять отличных экзаменов', nameUk:'П’ять відмінних іспитів', descRu:'5 раз набери не менее 90% на экзамене.', descUk:'5 разів набери не менш як 90% на іспиті.', secret:true },
-  { id:'exam_ace_10', icon:'🏆', category:'special', xp:800, nameRu:'Десять отличных', nameUk:'Десять відмінних', descRu:'10 раз набери не менее 90% на экзамене.', descUk:'10 разів набери не менш як 90% на іспиті.', secret:true },
-  { id:'flashcards_save_100', icon:'🗃️', category:'special', xp:500, nameRu:'100 карточек', nameUk:'100 карток', descRu:'Сохрани 100 карточек в коллекцию.', descUk:'Збережи 100 карток у колекцію.', secret:true },
-  { id:'flashcards_save_250', icon:'📚', category:'special', xp:1000, nameRu:'Большой архив', nameUk:'Великий архів', descRu:'Сохрани 250 карточек в коллекцию.', descUk:'Збережи 250 карток у колекцію.', secret:true },
-  { id:'flashcards_flip_500', icon:'🔄', category:'special', xp:650, nameRu:'500 переворотов', nameUk:'500 переворотів', descRu:'Переверни карточки 500 раз при повторении.', descUk:'Переверни картки 500 разів під час повторення.', secret:true },
-  { id:'flashcards_flip_1000', icon:'♾️', category:'special', xp:1200, nameRu:'Тысяча переворотов', nameUk:'Тисяча переворотів', descRu:'Переверни карточки 1000 раз при повторении.', descUk:'Переверни картки 1000 разів під час повторення.', secret:true },
-  { id:'flashcards_view_14_days', icon:'📆', category:'special', xp:500, nameRu:'Две карточные недели', nameUk:'Два карткові тижні', descRu:'14 дней подряд просматривай карточки в коллекции.', descUk:'14 днів поспіль переглядай картки в колекції.', secret:true },
-  { id:'flashcards_view_30_days', icon:'🗓️', category:'special', xp:1000, nameRu:'Карточный месяц', nameUk:'Картковий місяць', descRu:'30 дней подряд просматривай карточки в коллекции.', descUk:'30 днів поспіль переглядай картки в колекції.', secret:true },
-  { id:'arena_25_wins', icon:'⚔️', category:'special', xp:650, nameRu:'25 побед Арены', nameUk:'25 перемог Арени', descRu:'Выиграй 25 матчей Арены.', descUk:'Виграй 25 матчів Арени.', secret:true },
-  { id:'arena_50_wins', icon:'🏆', category:'special', xp:1100, nameRu:'50 побед Арены', nameUk:'50 перемог Арени', descRu:'Выиграй 50 матчей Арены.', descUk:'Виграй 50 матчів Арени.', secret:true },
-  { id:'arena_100_wins', icon:'👑', category:'special', xp:2200, nameRu:'100 побед Арены', nameUk:'100 перемог Арени', descRu:'Выиграй 100 матчей Арены.', descUk:'Виграй 100 матчів Арени.', secret:true },
-  { id:'arena_streak_15', icon:'🔥', category:'special', xp:750, nameRu:'15 побед подряд', nameUk:'15 перемог поспіль', descRu:'15 побед подряд в Арене без поражений.', descUk:'15 перемог поспіль в Арені без поразок.', secret:true },
-  { id:'arena_streak_25', icon:'💥', category:'special', xp:1500, nameRu:'25 побед подряд', nameUk:'25 перемог поспіль', descRu:'25 побед подряд в Арене без поражений.', descUk:'25 перемог поспіль в Арені без поразок.', secret:true },
-  { id:'arena_wager_10', icon:'💰', category:'special', xp:650, nameRu:'10 ставок Арены', nameUk:'10 ставок Арени', descRu:'Выиграй 10 ставок в Арене.', descUk:'Виграй 10 ставок в Арені.', secret:true },
-  { id:'arena_wager_25', icon:'💎', category:'special', xp:1300, nameRu:'25 ставок Арены', nameUk:'25 ставок Арени', descRu:'Выиграй 25 ставок в Арене.', descUk:'Виграй 25 ставок в Арені.', secret:true },
-  { id:'shards_250', icon:'💎', category:'special', xp:500, nameRu:'250 осколков', nameUk:'250 уламків', descRu:'Доведи баланс до 250 осколков знаний.', descUk:'Доведи баланс до 250 уламків знань.', secret:true },
-  { id:'shards_500', icon:'💎', category:'special', xp:900, nameRu:'500 осколков', nameUk:'500 уламків', descRu:'Доведи баланс до 500 осколков знаний.', descUk:'Доведи баланс до 500 уламків знань.', secret:true },
-  { id:'shards_1000', icon:'💎', category:'special', xp:1800, nameRu:'Тысяча осколков', nameUk:'Тисяча уламків', descRu:'Доведи баланс до 1000 осколков знаний.', descUk:'Доведи баланс до 1000 уламків знань.', secret:true },
-  { id:'shards_spent_500', icon:'💠', category:'special', xp:800, nameRu:'500 осколков в дело', nameUk:'500 уламків у діло', descRu:'Потрать суммарно 500 осколков.', descUk:'Витрать загалом 500 уламків.', secret:true },
-  { id:'shards_spent_1000', icon:'💠', category:'special', xp:1500, nameRu:'Большой оборот', nameUk:'Великий обіг', descRu:'Потрать суммарно 1000 осколков.', descUk:'Витрать загалом 1000 уламків.', secret:true },
-  { id:'energy_refill_10', icon:'🔋', category:'special', xp:400, nameRu:'10 зарядок', nameUk:'10 зарядок', descRu:'10 раз восстанови энергию за осколки.', descUk:'10 разів віднови енергію за уламки.', secret:true },
-  { id:'energy_refill_25', icon:'⚡', category:'special', xp:900, nameRu:'25 зарядок', nameUk:'25 зарядок', descRu:'25 раз восстанови энергию за осколки.', descUk:'25 разів віднови енергію за уламки.', secret:true },
-  { id:'league_top3_5', icon:'🥉', category:'special', xp:500, nameRu:'Пять недель в топ-3', nameUk:'П’ять тижнів у топ-3', descRu:'5 раз заверши неделю в топ-3 своей лиги.', descUk:'5 разів заверши тиждень у топ-3 своєї ліги.', secret:true },
-  { id:'league_champion_5', icon:'👑', category:'special', xp:850, nameRu:'Пять чемпионств', nameUk:'П’ять чемпіонств', descRu:'5 раз заверши неделю первым в группе лиги.', descUk:'5 разів заверши тиждень першим у групі ліги.', secret:true },
-  { id:'league_champion_10', icon:'🏆', category:'special', xp:1600, nameRu:'Десять чемпионств', nameUk:'Десять чемпіонств', descRu:'10 раз заверши неделю первым в группе лиги.', descUk:'10 разів заверши тиждень першим у групі ліги.', secret:true },
-  { id:'league_diamond_4_weeks', icon:'💎', category:'special', xp:1000, nameRu:'Месяц в Алмазе', nameUk:'Місяць у Діаманті', descRu:'4 недельных результата подряд получи в Алмазной лиге или выше.', descUk:'4 тижневі результати поспіль отримай у Діамантовій лізі або вище.', secret:true },
-  { id:'social_friends_25', icon:'🌐', category:'special', xp:450, nameRu:'25 друзей', nameUk:'25 друзів', descRu:'25 друзей. Phraseman стал общим делом.', descUk:'25 друзів у списку.', secret:true },
-  { id:'social_friends_50', icon:'🌍', category:'special', xp:900, nameRu:'50 друзей', nameUk:'50 друзів', descRu:'50 друзей. Ты строишь настоящее сообщество.', descUk:'50 друзів у списку.', secret:true },
-  { id:'social_gift_25', icon:'🎁', category:'special', xp:550, nameRu:'25 подарков', nameUk:'25 подарунків', descRu:'Отправь 25 подарков друзьям.', descUk:'Надішли 25 подарунків друзям.', secret:true },
-  { id:'social_gift_100', icon:'💝', category:'special', xp:1500, nameRu:'100 подарков', nameUk:'100 подарунків', descRu:'Отправь 100 подарков друзьям.', descUk:'Надішли 100 подарунків друзям.', secret:true },
-  { id:'social_likes_25', icon:'❤️', category:'special', xp:450, nameRu:'25 лайков', nameUk:'25 лайків', descRu:'Получи 25 лайков от друзей на свои достижения.', descUk:'Отримай 25 лайків від друзів на свої досягнення.', secret:true },
-  { id:'social_likes_100', icon:'💗', category:'special', xp:1200, nameRu:'100 лайков', nameUk:'100 лайків', descRu:'Получи 100 лайков от друзей на свои достижения.', descUk:'Отримай 100 лайків від друзів на свої досягнення.', secret:true },
-  { id:'league_chat_50', icon:'💬', category:'special', xp:450, nameRu:'50 сообщений в лиге', nameUk:'50 повідомлень у лізі', descRu:'Отправь 50 сообщений в чате лиги.', descUk:'Надішли 50 повідомлень у чаті ліги.', secret:true },
-  { id:'league_chat_100', icon:'🗨️', category:'special', xp:850, nameRu:'100 сообщений в лиге', nameUk:'100 повідомлень у лізі', descRu:'Отправь 100 сообщений в чате лиги.', descUk:'Надішли 100 повідомлень у чаті ліги.', secret:true },
-  { id:'trainer_1000_correct', icon:'🧠', category:'special', xp:1000, nameRu:'1000 точных', nameUk:'1000 точних', descRu:'1000 правильных ответов в тренировках. Память уже не та — она лучше.', descUk:'1000 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id:'trainer_2500_correct', icon:'🏋️', category:'special', xp:1800, nameRu:'2500 точных', nameUk:'2500 точних', descRu:'2500 правильных ответов. Эти слова уже часть тебя.', descUk:'2500 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id:'trainer_10000_correct', icon:'👑', category:'special', xp:4500, nameRu:'10000 точных', nameUk:'10000 точних', descRu:'10 000 правильных ответов в тренировках. Это уже энциклопедия.', descUk:'10000 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id:'trainer_perfect_10_sessions', icon:'💯', category:'special', xp:600, nameRu:'10 чистых тренировок', nameUk:'10 чистих тренувань', descRu:'10 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'10 разів заверши тренування з 5+ питань без помилки.', secret:true },
-  { id:'trainer_perfect_50_sessions', icon:'🏆', category:'special', xp:1600, nameRu:'50 чистых тренировок', nameUk:'50 чистих тренувань', descRu:'50 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'50 разів заверши тренування з 5+ питань без помилки.', secret:true },
-  { id:'pack_10_purchased', icon:'📚', category:'special', xp:450, nameRu:'10 наборов', nameUk:'10 наборів', descRu:'10 наборов карточек в коллекции.', descUk:'10 наборів карток у колекції.', secret:true },
-  { id:'pack_25_purchased', icon:'📦', category:'special', xp:1000, nameRu:'25 наборов', nameUk:'25 наборів', descRu:'25 наборов карточек в коллекции.', descUk:'25 наборів карток у колекції.', secret:true },
-  { id:'share_achievement_10', icon:'📣', category:'special', xp:250, nameRu:'10 громких побед', nameUk:'10 гучних перемог', descRu:'Поделись 10 разблокированными достижениями.', descUk:'Поділись 10 розблокованими досягненнями.', secret:true },
-
-  { id:'gem_a1_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'A1 обсидиан', nameUk:'A1 обсидіан', descRu:'Уроки 1–8: каждый завершён минимум 7 раз.', descUk:'Уроки 1–8: кожен завершено мінімум 7 разів.', secret:true },
-  { id:'gem_a1_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'A1 мифик', nameUk:'A1 міфік', descRu:'Уроки 1–8: каждый завершён минимум 10 раз.', descUk:'Уроки 1–8: кожен завершено мінімум 10 разів.', secret:true },
-  { id:'gem_a2_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'A2 обсидиан', nameUk:'A2 обсидіан', descRu:'Уроки 9–18: каждый завершён минимум 7 раз.', descUk:'Уроки 9–18: кожен завершено мінімум 7 разів.', secret:true },
-  { id:'gem_a2_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'A2 мифик', nameUk:'A2 міфік', descRu:'Уроки 9–18: каждый завершён минимум 10 раз.', descUk:'Уроки 9–18: кожен завершено мінімум 10 разів.', secret:true },
-  { id:'gem_b1_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'B1 обсидиан', nameUk:'B1 обсидіан', descRu:'Уроки 19–28: каждый завершён минимум 7 раз.', descUk:'Уроки 19–28: кожен завершено мінімум 7 разів.', secret:true },
-  { id:'gem_b1_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'B1 мифик', nameUk:'B1 міфік', descRu:'Уроки 19–28: каждый завершён минимум 10 раз.', descUk:'Уроки 19–28: кожен завершено мінімум 10 разів.', secret:true },
-  { id:'gem_b2_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'B2 обсидиан', nameUk:'B2 обсидіан', descRu:'Уроки 29–32: каждый завершён минимум 7 раз.', descUk:'Уроки 29–32: кожен завершено мінімум 7 разів.', secret:true },
-  { id:'gem_b2_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'B2 мифик', nameUk:'B2 міфік', descRu:'Уроки 29–32: каждый завершён минимум 10 раз.', descUk:'Уроки 29–32: кожен завершено мінімум 10 разів.', secret:true },
-  { id:'gem_all_obsidian', icon:'🏆', category:'medal', xp:2200, nameRu:'Все обсидианы', nameUk:'Усі обсидіани', descRu:'Собери обсидиановую медаль по A1, A2, B1 и B2.', descUk:'Збери обсидіанову медаль за A1, A2, B1 і B2.', secret:true },
-  { id:'gem_all_mythic', icon:'👑', category:'medal', xp:4000, nameRu:'Все мифики', nameUk:'Усі міфіки', descRu:'Собери мифическую медаль по A1, A2, B1 и B2.', descUk:'Збери міфічну медаль за A1, A2, B1 і B2.', secret:true },
+  { id: 'gem_a1_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'A1 обсидиан', nameUk:'A1 обсидіан', descRu:'Уроки 1–8: каждый завершён минимум 7 раз.', descUk:'Уроки 1–8: кожен завершено мінімум 7 разів.', secret:true },
+  { id: 'gem_a1_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'A1 мифик', nameUk:'A1 міфік', descRu:'Уроки 1–8: каждый завершён минимум 10 раз.', descUk:'Уроки 1–8: кожен завершено мінімум 10 разів.', secret:true },
+  { id: 'gem_a2_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'A2 обсидиан', nameUk:'A2 обсидіан', descRu:'Уроки 9–18: каждый завершён минимум 7 раз.', descUk:'Уроки 9–18: кожен завершено мінімум 7 разів.', secret:true },
+  { id: 'gem_a2_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'A2 мифик', nameUk:'A2 міфік', descRu:'Уроки 9–18: каждый завершён минимум 10 раз.', descUk:'Уроки 9–18: кожен завершено мінімум 10 разів.', secret:true },
+  { id: 'gem_b1_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'B1 обсидиан', nameUk:'B1 обсидіан', descRu:'Уроки 19–28: каждый завершён минимум 7 раз.', descUk:'Уроки 19–28: кожен завершено мінімум 7 разів.', secret:true },
+  { id: 'gem_b1_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'B1 мифик', nameUk:'B1 міфік', descRu:'Уроки 19–28: каждый завершён минимум 10 раз.', descUk:'Уроки 19–28: кожен завершено мінімум 10 разів.', secret:true },
+  { id: 'gem_b2_obsidian', icon:'💎', category:'medal', xp:700, nameRu:'B2 обсидиан', nameUk:'B2 обсидіан', descRu:'Уроки 29–32: каждый завершён минимум 7 раз.', descUk:'Уроки 29–32: кожен завершено мінімум 7 разів.', secret:true },
+  { id: 'gem_b2_mythic', icon:'💎', category:'medal', xp:1200, nameRu:'B2 мифик', nameUk:'B2 міфік', descRu:'Уроки 29–32: каждый завершён минимум 10 раз.', descUk:'Уроки 29–32: кожен завершено мінімум 10 разів.', secret:true },
+  { id: 'gem_all_obsidian', icon:'🏆', category:'medal', xp:2200, nameRu:'Все обсидианы', nameUk:'Усі обсидіани', descRu:'Собери обсидиановую медаль по A1, A2, B1 и B2.', descUk:'Збери обсидіанову медаль за A1, A2, B1 і B2.', secret:true },
+  { id: 'gem_all_mythic', icon:'👑', category:'medal', xp:4000, nameRu:'Все мифики', nameUk:'Усі міфіки', descRu:'Собери мифическую медаль по A1, A2, B1 и B2.', descUk:'Збери міфічну медаль за A1, A2, B1 і B2.', secret:true },
 ];
+
+export const isRetiredQuizArenaAchievement = (achievement: Pick<Achievement, 'id'>): boolean =>
+  achievement.id.startsWith('quiz_') || achievement.id.startsWith('arena_');
+
+export const ALL_ACHIEVEMENTS: Achievement[] = ACHIEVEMENTS_WITH_RETIRED_FEATURES.filter(
+  (achievement) => !isRetiredQuizArenaAchievement(achievement),
+);
 
 // AsyncStorage
 
@@ -1926,12 +1818,32 @@ const normalizeAchievementState = (s: AchievementState): AchievementState => ({
   shardClaimed: s.unlockedAt === null ? true : (s.shardClaimed === undefined ? false : s.shardClaimed),
 });
 
+const commitAchievementStoragePairs = async (
+  pairs: readonly (readonly [string, string])[],
+  accountToken: AccountGenerationToken,
+): Promise<boolean> => withAccountTransitionLock(async () => {
+  if (!isCurrentAccountGeneration(accountToken)) return false;
+  return withStorageLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return false;
+    for (const [key, value] of pairs) {
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      await AsyncStorage.setItem(key, value);
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+    }
+    return true;
+  });
+});
+
 const loadAchievementStatesFromKey = async (
   key: string,
   ids: Set<string> = new Set(ALL_ACHIEVEMENTS.map(a => a.id)),
+  accountToken: AccountGenerationToken,
+  persistMigrations = true,
 ): Promise<AchievementState[]> => {
   try {
+    if (!isCurrentAccountGeneration(accountToken)) return [];
     const raw = await AsyncStorage.getItem(key);
+    if (!isCurrentAccountGeneration(accountToken)) return [];
     if (raw) {
       const parsed: AchievementState[] = JSON.parse(raw);
       let normalizedDirty = false;
@@ -1954,6 +1866,8 @@ const loadAchievementStatesFromKey = async (
       }
       let shouldWrite = hadObsolete || addedNew || normalizedDirty;
       const integrity = await AsyncStorage.getItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`);
+      if (!isCurrentAccountGeneration(accountToken)) return [];
+      const writes: Array<readonly [string, string]> = [];
       if (integrity !== '1') {
         for (const s of next) {
           if (s.unlockedAt !== null) {
@@ -1961,17 +1875,25 @@ const loadAchievementStatesFromKey = async (
           }
         }
         shouldWrite = true;
-        await AsyncStorage.setItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`, '1');
+        writes.push([`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`, '1']);
       }
       if (shouldWrite) {
-        await AsyncStorage.setItem(key, JSON.stringify(next));
+        writes.push([key, JSON.stringify(next)]);
+      }
+      if (persistMigrations && writes.length > 0) {
+        const committed = await commitAchievementStoragePairs(writes, accountToken);
+        if (!committed) return [];
       }
       return next;
     }
     const initial: AchievementState[] = ALL_ACHIEVEMENTS
       .filter(a => ids.has(a.id))
       .map(a => ({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true }));
-    await AsyncStorage.setItem(key, JSON.stringify(initial));
+    if (!isCurrentAccountGeneration(accountToken)) return [];
+    if (persistMigrations) {
+      const committed = await commitAchievementStoragePairs([[key, JSON.stringify(initial)]], accountToken);
+      if (!committed) return [];
+    }
     return initial;
   } catch { return []; }
 };
@@ -1982,25 +1904,55 @@ const targetAchievementIds = (): Set<string> =>
 const globalAchievementIds = (): Set<string> =>
   new Set(ALL_ACHIEVEMENTS.filter(a => !isTargetAchievement(a.id)).map(a => a.id));
 
-export const loadAchievementStatesForTarget = async (
-  studyTarget?: RuntimeStudyTarget,
+const loadAchievementStatesForTargetInternal = async (
+  studyTarget: RuntimeStudyTarget | undefined,
+  accountToken: AccountGenerationToken,
+  persistMigrations: boolean,
 ): Promise<AchievementState[]> => {
   const target = storageStudyTarget(studyTarget);
   if (target === 'fr') {
     const [globalStates, targetStates] = await Promise.all([
-      loadAchievementStatesFromKey(STORAGE_KEY, globalAchievementIds()),
-      loadAchievementStatesFromKey(achievementStateKey('fr'), targetAchievementIds()),
+      loadAchievementStatesFromKey(STORAGE_KEY, globalAchievementIds(), accountToken, persistMigrations),
+      loadAchievementStatesFromKey(
+        achievementStateKey('fr'),
+        targetAchievementIds(),
+        accountToken,
+        persistMigrations,
+      ),
     ]);
+    if (!isCurrentAccountGeneration(accountToken)) return [];
     return [...globalStates, ...targetStates];
   }
-  return loadAchievementStatesFromKey(STORAGE_KEY);
+  return loadAchievementStatesFromKey(STORAGE_KEY, undefined, accountToken, persistMigrations);
 };
 
-export const loadAchievementStates = async (): Promise<AchievementState[]> => {
+export const loadAchievementStatesForTarget = async (
+  studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
+): Promise<AchievementState[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(
+    operationToken,
+    () => loadAchievementStatesForTargetInternal(studyTarget, operationToken, true),
+    [],
+  );
+};
+
+const loadAchievementStatesInternal = async (
+  accountToken: AccountGenerationToken,
+  persistMigrations: boolean,
+): Promise<AchievementState[]> => {
   const [legacyStates, frenchStates] = await Promise.all([
-    loadAchievementStatesFromKey(STORAGE_KEY),
-    loadAchievementStatesFromKey(achievementStateKey('fr'), targetAchievementIds()),
+    loadAchievementStatesFromKey(STORAGE_KEY, undefined, accountToken, persistMigrations),
+    loadAchievementStatesFromKey(
+      achievementStateKey('fr'),
+      targetAchievementIds(),
+      accountToken,
+      persistMigrations,
+    ),
   ]);
+  if (!isCurrentAccountGeneration(accountToken)) return [];
   const byId = new Map<string, AchievementState>();
   for (const state of legacyStates) byId.set(state.id, state);
   for (const state of frenchStates) {
@@ -2018,21 +1970,41 @@ export const loadAchievementStates = async (): Promise<AchievementState[]> => {
   return ALL_ACHIEVEMENTS.map(a => byId.get(a.id)).filter(Boolean) as AchievementState[];
 };
 
-const saveStates = async (states: AchievementState[], studyTarget?: RuntimeStudyTarget) => {
+export const loadAchievementStates = async (
+  accountToken?: AccountGenerationToken,
+): Promise<AchievementState[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(
+    operationToken,
+    () => loadAchievementStatesInternal(operationToken, true),
+    [],
+  );
+};
+
+const achievementStatePairs = (
+  states: AchievementState[],
+  studyTarget?: RuntimeStudyTarget,
+): Array<readonly [string, string]> => {
   const target = storageStudyTarget(studyTarget);
   const targetIds = targetAchievementIds();
   if (target === 'fr') {
-    const globalRows = states.filter(s => !targetIds.has(s.id));
-    const targetRows = states.filter(s => targetIds.has(s.id));
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(globalRows));
-      await AsyncStorage.setItem(achievementStateKey('fr'), JSON.stringify(targetRows));
-    } catch (e) {
-      if (__DEV__) console.warn('[achievements]', e);
-    }
-    return;
+    return [
+      [STORAGE_KEY, JSON.stringify(states.filter(s => !targetIds.has(s.id)))],
+      [achievementStateKey('fr'), JSON.stringify(states.filter(s => targetIds.has(s.id)))],
+    ];
   }
-  try { await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states)); } catch (e) { if (__DEV__) console.warn('[achievements]', e); }
+  return [[STORAGE_KEY, JSON.stringify(states)]];
+};
+
+const saveStates = async (
+  states: AchievementState[],
+  studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
+): Promise<boolean> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return false;
+  return commitAchievementStoragePairs(achievementStatePairs(states, studyTarget), operationToken);
 };
 
 const unlockOne = (states: AchievementState[], id: string): boolean => {
@@ -2073,16 +2045,22 @@ const shiftLocalDayKey = (key: string, days: number): string => {
   return localDayKey(date);
 };
 
-const bumpStoredCounter = async (key: string, amount = 1): Promise<number> => {
+const bumpStoredCounter = async (
+  key: string,
+  amount: number,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const add = Math.max(0, Math.floor(Number.isFinite(amount) ? amount : 0));
   if (add <= 0) return parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
   const cur = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const next = cur + add;
-  await AsyncStorage.setItem(key, String(next));
-  return next;
+  return await commitAchievementStoragePairs([[key, String(next)]], accountToken) ? next : 0;
 };
 
-const bumpConsecutiveDayStreak = async (key: string): Promise<number> => {
+const bumpConsecutiveDayStreak = async (key: string, accountToken: AccountGenerationToken): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const today = localDayKey();
   let prev: { lastDay?: string; streak?: number } = {};
   try {
@@ -2091,16 +2069,20 @@ const bumpConsecutiveDayStreak = async (key: string): Promise<number> => {
   } catch {
     prev = {};
   }
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (prev.lastDay === today) return Math.max(1, Math.floor(prev.streak ?? 1));
   const yesterday = shiftLocalDayKey(today, -1);
   const nextStreak = prev.lastDay === yesterday
     ? Math.max(0, Math.floor(prev.streak ?? 0)) + 1
     : 1;
-  await AsyncStorage.setItem(key, JSON.stringify({ lastDay: today, streak: nextStreak }));
-  return nextStreak;
+  return await commitAchievementStoragePairs(
+    [[key, JSON.stringify({ lastDay: today, streak: nextStreak })]],
+    accountToken,
+  ) ? nextStreak : 0;
 };
 
-const bumpConsecutiveWeekStreak = async (key: string): Promise<number> => {
+const bumpConsecutiveWeekStreak = async (key: string, accountToken: AccountGenerationToken): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const week = localWeekKey();
   let prev: { lastWeek?: string; streak?: number } = {};
   try {
@@ -2109,13 +2091,16 @@ const bumpConsecutiveWeekStreak = async (key: string): Promise<number> => {
   } catch {
     prev = {};
   }
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (prev.lastWeek === week) return Math.max(1, Math.floor(prev.streak ?? 1));
   const previousWeek = localWeekKey(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 7));
   const nextStreak = prev.lastWeek === previousWeek
     ? Math.max(0, Math.floor(prev.streak ?? 0)) + 1
     : 1;
-  await AsyncStorage.setItem(key, JSON.stringify({ lastWeek: week, streak: nextStreak }));
-  return nextStreak;
+  return await commitAchievementStoragePairs(
+    [[key, JSON.stringify({ lastWeek: week, streak: nextStreak })]],
+    accountToken,
+  ) ? nextStreak : 0;
 };
 
 const readConsecutiveDayStreakValue = async (key: string): Promise<number> => {
@@ -2126,7 +2111,10 @@ const readConsecutiveDayStreakValue = async (key: string): Promise<number> => {
   } catch { return 0; }
 };
 
-const bumpMonthlyActivityDays = async (key: string): Promise<{ monthKey: string; count: number; daysInMonth: number; isLastDay: boolean }> => {
+const bumpMonthlyActivityDays = async (
+  key: string,
+  accountToken: AccountGenerationToken,
+): Promise<{ monthKey: string; count: number; daysInMonth: number; isLastDay: boolean }> => {
   const now = new Date();
   const monthKey = localMonthKey(now);
   const today = localDayKey(now);
@@ -2138,15 +2126,22 @@ const bumpMonthlyActivityDays = async (key: string): Promise<{ monthKey: string;
   } catch {
     prev = {};
   }
+  if (!isCurrentAccountGeneration(accountToken)) return { monthKey, count: 0, daysInMonth, isLastDay: false };
   const days = prev.monthKey === monthKey && Array.isArray(prev.days)
     ? prev.days.filter((x): x is string => typeof x === 'string')
     : [];
   if (!days.includes(today)) days.push(today);
-  await AsyncStorage.setItem(key, JSON.stringify({ monthKey, days }));
+  const committed = await commitAchievementStoragePairs([[key, JSON.stringify({ monthKey, days })]], accountToken);
+  if (!committed) return { monthKey, count: 0, daysInMonth, isLastDay: false };
   return { monthKey, count: days.length, daysInMonth, isLastDay: now.getDate() === daysInMonth };
 };
 
-const addStoredSetValue = async (key: string, value: string): Promise<number> => {
+const addStoredSetValue = async (
+  key: string,
+  value: string,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const normalized = value.trim();
   if (!normalized) {
     try {
@@ -2164,39 +2159,40 @@ const addStoredSetValue = async (key: string, value: string): Promise<number> =>
   } catch {
     values = [];
   }
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (!values.includes(normalized)) {
     values.push(normalized);
-    await AsyncStorage.setItem(key, JSON.stringify(values));
+    if (!await commitAchievementStoragePairs([[key, JSON.stringify(values)]], accountToken)) return 0;
   }
   return values.length;
 };
 
 const ACHIEVEMENT_BACKFILL_KEY = 'achievements_progress_backfill_v3';
 
+// зачем: ставки на свою серию живы (xp_manager.ts), а Арена удалена — счётчик
+// побед по ставкам копится на живом событии 'wager_win' под этим ключом
+// (см. case 'wager_win'); старый achievement_arena_wager_win_count остаётся
+// только для обратной совместимости при восстановлении.
+const WAGER_WIN_COUNT_KEY = 'achievement_wager_win_count';
+
 const readStoredCounter = async (key: string): Promise<number> =>
   parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
 
-const readQuizAchievementCounterAcrossTargets = async (
-  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
+// зачем: readQuizAchievementCounterAcrossTargets и bumpQuizAchievementCounter
+// удалены вместе с достижениями викторин — счётчики achievement_quiz_* больше
+// никто не читает и не увеличивает.
+
+const setStoredCounterAtLeast = async (
+  key: string,
+  value: number,
+  accountToken: AccountGenerationToken,
 ): Promise<number> => {
-  const [englishLegacy, frenchScoped] = await Promise.all([
-    readStoredCounter(quizAchievementCounterKey(rawEnglishKey, 'en')),
-    readStoredCounter(quizAchievementCounterKey(rawEnglishKey, 'fr')),
-  ]);
-  return englishLegacy + frenchScoped;
-};
-
-export const bumpQuizAchievementCounter = (
-  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
-  studyTarget?: RuntimeStudyTarget,
-): Promise<number> => bumpStoredCounter(quizAchievementCounterKey(rawEnglishKey, studyTarget));
-
-const setStoredCounterAtLeast = async (key: string, value: number): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const safe = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
   const cur = await readStoredCounter(key);
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (safe > cur) {
-    await AsyncStorage.setItem(key, String(safe));
-    return safe;
+    return await commitAchievementStoragePairs([[key, String(safe)]], accountToken) ? safe : 0;
   }
   return cur;
 };
@@ -2211,12 +2207,17 @@ const readStoredNumberSet = async (key: string): Promise<number[]> => {
   } catch { return []; }
 };
 
-const addStoredNumberSetValue = async (key: string, value: number): Promise<number> => {
+const addStoredNumberSetValue = async (
+  key: string,
+  value: number,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
   const safe = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
   const values = await readStoredNumberSet(key);
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (safe > 0 && !values.includes(safe)) {
     values.push(safe);
-    await AsyncStorage.setItem(key, JSON.stringify(values));
+    if (!await commitAchievementStoragePairs([[key, JSON.stringify(values)]], accountToken)) return 0;
   }
   return values.length;
 };
@@ -2375,31 +2376,37 @@ const unlockWeeklyXpAchievements = async (unlock: (id: string) => void): Promise
   if (best >= 10000) unlock('weekly_xp_10000');
 };
 
-const markStreakSafetyUsed = async (): Promise<void> => {
+const markStreakSafetyUsed = async (accountToken: AccountGenerationToken): Promise<void> => {
   const streak = await readStoredCounter('streak_count');
-  await AsyncStorage.setItem('achievement_streak_safety_used_v1', JSON.stringify({
+  if (!isCurrentAccountGeneration(accountToken)) return;
+  await commitAchievementStoragePairs([['achievement_streak_safety_used_v1', JSON.stringify({
     streak,
     day: localDayKey(),
-  }));
+  })]], accountToken);
 };
 
 const backfillAchievementsFromLocalState = async (
   unlock: (id: string) => void,
   force = false,
   studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
 ): Promise<void> => {
+  if (!accountToken || !isCurrentAccountGeneration(accountToken)) return;
   if (!force && (await AsyncStorage.getItem(ACHIEVEMENT_BACKFILL_KEY)) === '1') return;
+  if (!isCurrentAccountGeneration(accountToken)) return;
 
   const [trainerCorrect, legacyRecallCorrect] = await Promise.all([
     readStoredCounter(trainerAchievementCorrectCountKey(studyTarget)),
     readStoredCounter(activeRecallAchievementCorrectCountKey(studyTarget)),
   ]);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   const practiceCorrect = Math.max(trainerCorrect, legacyRecallCorrect);
   if (practiceCorrect > 0) {
     await Promise.all([
-      setStoredCounterAtLeast(trainerAchievementCorrectCountKey(studyTarget), practiceCorrect),
-      setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(studyTarget), practiceCorrect),
+      setStoredCounterAtLeast(trainerAchievementCorrectCountKey(studyTarget), practiceCorrect, accountToken),
+      setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(studyTarget), practiceCorrect, accountToken),
     ]);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     if (practiceCorrect >= 1) unlock('recall_first');
     if (practiceCorrect >= 50) unlock('recall_50');
     if (practiceCorrect >= 100) unlock('trainer_100_correct');
@@ -2411,8 +2418,10 @@ const backfillAchievementsFromLocalState = async (
 
   const eventTargets = achievementProgressTargetsForEvent(studyTarget);
   const savedCards = await readStoredObjectLists(eventTargets.map(flashcardsSavedKey));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (savedCards.length > 0) {
-    await setStoredCounterAtLeast(flashcardsAchievementSavedCountKey(studyTarget), savedCards.length);
+    await setStoredCounterAtLeast(flashcardsAchievementSavedCountKey(studyTarget), savedCards.length, accountToken);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     if (savedCards.length >= 25) unlock('flashcards_save_25');
     if (savedCards.length >= 50) unlock('flashcards_save_50');
     if (savedCards.length >= 100) unlock('flashcards_save_100');
@@ -2425,9 +2434,10 @@ const backfillAchievementsFromLocalState = async (
     }
     const sourceSetKey = flashcardsAchievementSourceSetKey(studyTarget);
     const storedSources = await readStoredStringList(sourceSetKey);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     storedSources.forEach(source => sources.add(source));
     if (sources.size > storedSources.length) {
-      await AsyncStorage.setItem(sourceSetKey, JSON.stringify([...sources]));
+      if (!await commitAchievementStoragePairs([[sourceSetKey, JSON.stringify([...sources])]], accountToken)) return;
     }
     if (sources.size >= 4) unlock('flashcards_sources_4');
   }
@@ -2437,6 +2447,7 @@ const backfillAchievementsFromLocalState = async (
     readStoredStringLists(eventTargets.map(flashcardsMarketDevOwnedPacksKey)),
     readStoredStringLists(eventTargets.map(flashcardsCommunityOwnedPacksKey)),
   ]);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   const packCount = new Set([...officialPacks, ...legacyPacks, ...communityPacks]).size;
   if (packCount >= 1) unlock('pack_purchased');
   if (packCount >= 5) unlock('pack_5_purchased');
@@ -2444,19 +2455,15 @@ const backfillAchievementsFromLocalState = async (
   if (packCount >= 25) unlock('pack_25_purchased');
 
   const lifetimeSpent = await readStoredCounter('shards_lifetime_spent_v1');
-  const achievementSpent = await setStoredCounterAtLeast('achievement_shards_spent_total', lifetimeSpent);
+  if (!isCurrentAccountGeneration(accountToken)) return;
+  const achievementSpent = await setStoredCounterAtLeast('achievement_shards_spent_total', lifetimeSpent, accountToken);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (achievementSpent >= 100) unlock('shards_spent_100');
   if (achievementSpent >= 500) unlock('shards_spent_500');
   if (achievementSpent >= 1000) unlock('shards_spent_1000');
 
-  const arenaWins = await readStoredCounter('achievement_arena_win_count');
-  if (arenaWins >= 1) unlock('arena_first_win');
-  if (arenaWins >= 10) unlock('arena_10_wins');
-  if (arenaWins >= 25) unlock('arena_25_wins');
-  if (arenaWins >= 50) unlock('arena_50_wins');
-  if (arenaWins >= 100) unlock('arena_100_wins');
-
   const totalXP = await readStoredCounter('user_total_xp');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (totalXP >= 100) unlock('xp_100');
   if (totalXP >= 250) unlock('xp_250');
   if (totalXP >= 500) unlock('xp_500');
@@ -2478,95 +2485,97 @@ const backfillAchievementsFromLocalState = async (
   if (level >= 50) unlock('level_50');
 
   await unlockWeeklyXpAchievements(unlock);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   await unlockLessonPassAchievements(unlock);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (await countPerfectLessonsInRange(29, 32) >= 4) unlock('lesson_b2_perfect');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   const perfectPasses = await readPerfectLessonPassCounts();
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (perfectPasses.filter(count => count >= 2).length >= 32) unlock('lesson_all_perfect_2x');
 
-  const quizSessions = await readQuizAchievementCounterAcrossTargets('achievement_quiz_total_count');
-  if (quizSessions >= 10) unlock('quiz_10_completed');
-  if (quizSessions >= 25) unlock('quiz_25_completed');
-  if (quizSessions >= 50) unlock('quiz_50_completed');
-  if (quizSessions >= 100) unlock('quiz_100_completed');
-
-  const hardQuizzes = await readQuizAchievementCounterAcrossTargets('quiz_hard_count');
-  if (hardQuizzes >= 5) unlock('quiz_speed_demon');
-  if (hardQuizzes >= 10) unlock('quiz_hard_10');
-  if (hardQuizzes >= 25) unlock('quiz_hard_25');
-
-  const hardPerfect = await readQuizAchievementCounterAcrossTargets('achievement_quiz_hard_perfect_count');
-  if (hardPerfect >= 3) unlock('quiz_hard_perfect_3');
-  if (hardPerfect >= 10) unlock('quiz_hard_perfect_10');
-
+  // зачем: достижения арены и викторин удалены вместе с самими фичами, поэтому
+  // счётчики achievement_quiz_* / achievement_arena_win_count больше никем не
+  // читаются — убраны 4 лишних обращения к AsyncStorage на каждый пересчёт.
   const comboBest = await readStoredCounter(comboAchievementCounterKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (comboBest >= 150) unlock('combo_150');
   if (comboBest >= 250) unlock('combo_250');
   if (comboBest >= 500) unlock('combo_500');
 
   const dailyAllStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementAllDoneStreakKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (dailyAllStreak >= 3) unlock('daily_all_3');
   if (dailyAllStreak >= 7) unlock('daily_all_7');
   if (dailyAllStreak >= 14) unlock('daily_all_14');
   if (dailyAllStreak >= 30) unlock('daily_all_30');
 
   const noRerollStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementNoRerollStreakKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (noRerollStreak >= 7) unlock('daily_no_reroll_7');
   if (noRerollStreak >= 30) unlock('daily_no_reroll_30');
 
   const phraseReads = await readStoredCounter(dailyPhraseAchievementReadCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (phraseReads >= 30) unlock('daily_phrase_read_30');
   const phraseSaves = await readStoredCounter(dailyPhraseAchievementSaveCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (phraseSaves >= 30) unlock('daily_phrase_save_30');
   if (phraseSaves >= 100) unlock('daily_phrase_save_100');
 
   const shards = await readStoredCounter('shards_balance');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (shards >= 100) unlock('shards_100');
   if (shards >= 250) unlock('shards_250');
   if (shards >= 500) unlock('shards_500');
   if (shards >= 1000) unlock('shards_1000');
 
   const flips = await readStoredCounter(flashcardsAchievementFlipCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (flips >= 100) unlock('flashcards_flip_100');
   if (flips >= 500) unlock('flashcards_flip_500');
   if (flips >= 1000) unlock('flashcards_flip_1000');
 
   const flashViewStreak = await readConsecutiveDayStreakValue(flashcardsAchievementViewStreakKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (flashViewStreak >= 7) unlock('flashcards_view_7_days');
   if (flashViewStreak >= 14) unlock('flashcards_view_14_days');
   if (flashViewStreak >= 30) unlock('flashcards_view_30_days');
 
   const refills = await readStoredCounter('achievement_energy_refill_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (refills >= 1) unlock('energy_refill_first');
   if (refills >= 5) unlock('energy_refill_5');
   if (refills >= 10) unlock('energy_refill_10');
   if (refills >= 25) unlock('energy_refill_25');
 
   const top3 = await readStoredCounter('achievement_league_top3_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (top3 >= 5) unlock('league_top3_5');
   const champion = await readStoredCounter('achievement_league_champion_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (champion >= 5) unlock('league_champion_5');
   if (champion >= 10) unlock('league_champion_10');
   if (await readConsecutiveDayStreakValue('achievement_league_diamond_week_streak_v1') >= 4) unlock('league_diamond_4_weeks');
+  if (!isCurrentAccountGeneration(accountToken)) return;
 
   const gifts = await readStoredCounter('achievement_gift_sent_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (gifts >= 5) unlock('social_gift_5');
   if (gifts >= 10) unlock('social_gift_10');
   if (gifts >= 25) unlock('social_gift_25');
   if (gifts >= 100) unlock('social_gift_100');
 
-  const chat = await readStoredCounter('achievement_league_chat_message_count');
-  if (chat >= 10) unlock('league_chat_10');
-  if (chat >= 50) unlock('league_chat_50');
-  if (chat >= 100) unlock('league_chat_100');
-
   const perfectSessions = await readStoredCounter(trainerAchievementPerfectSessionCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (perfectSessions >= 10) unlock('trainer_perfect_10_sessions');
   if (perfectSessions >= 50) unlock('trainer_perfect_50_sessions');
 
   const shares = await readStoredCounter(shareAchievementCounterKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (shares >= 10) unlock('share_achievement_10');
 
-  await AsyncStorage.setItem(ACHIEVEMENT_BACKFILL_KEY, '1');
+  await commitAchievementStoragePairs([[ACHIEVEMENT_BACKFILL_KEY, '1']], accountToken);
 };
 
 export type AchievementEvent =
@@ -2604,9 +2613,6 @@ export type AchievementEvent =
   | { type: 'friend_added';   totalFriends: number }
   | { type: 'gift_sent' }
   | { type: 'achievement_liked'; likeTotal?: number }
-  | { type: 'league_chat_message' }
-  | { type: 'arena_win_streak'; streak: number }
-  | { type: 'arena_duel_friend_win' }
   | { type: 'arena_wager_win'; count?: number }
   | { type: 'trainer_correct'; correct: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'trainer_session_result'; correct: number; wrong: number; total: number; studyTarget?: RuntimeStudyTarget }
@@ -2619,13 +2625,53 @@ export type AchievementEvent =
   | { type: 'streak_freeze_used' }
   | { type: 'wager_win_streak'; count: number };
 
-let _achievementLock: Promise<unknown> = Promise.resolve();
+const ACHIEVEMENT_QUEUE_MAX_ACCOUNTS = 8;
+const achievementQueueByAccount = new Map<string, {
+  tail: Promise<unknown>;
+  accountToken: AccountGenerationToken;
+}>();
 
-export const checkAchievements = async (event: AchievementEvent): Promise<Achievement[]> => {
-  const result = _achievementLock.then(async () => {
+function pruneStaleAchievementQueues(): void {
+  for (const [key, entry] of achievementQueueByAccount) {
+    if (!isCurrentAccountGeneration(entry.accountToken)) achievementQueueByAccount.delete(key);
+  }
+}
+
+function enqueueAchievementOperation<T>(
+  accountToken: AccountGenerationToken,
+  operation: () => Promise<T>,
+  capacityFallback: T,
+): Promise<T> {
+  const accountKey = accountToken.stableId ? accountScopeKey(accountToken) : null;
+  if (!accountKey || !isCurrentAccountGeneration(accountToken)) return Promise.resolve(capacityFallback);
+  pruneStaleAchievementQueues();
+  const existing = achievementQueueByAccount.get(accountKey);
+  if (!existing && achievementQueueByAccount.size >= ACHIEVEMENT_QUEUE_MAX_ACCOUNTS) {
+    return Promise.resolve(capacityFallback);
+  }
+  const result = (existing?.tail ?? Promise.resolve()).then(operation);
+  const tail = result.then(
+    () => undefined,
+    () => undefined,
+  ).finally(() => {
+    if (achievementQueueByAccount.get(accountKey)?.tail === tail) achievementQueueByAccount.delete(accountKey);
+  });
+  achievementQueueByAccount.set(accountKey, { tail, accountToken });
+  return result;
+}
+
+export const checkAchievements = async (
+  event: AchievementEvent,
+  accountToken?: AccountGenerationToken,
+): Promise<Achievement[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(operationToken, async () => {
+  const execute = async (): Promise<Achievement[]> => {
   try {
     const eventStudyTarget = 'studyTarget' in event ? event.studyTarget : undefined;
-    const states = await loadAchievementStatesForTarget(eventStudyTarget);
+    const states = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return [];
     const justUnlocked: Achievement[] = [];
 
     const u = (id: string) => {
@@ -2635,7 +2681,24 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
     };
 
-    await backfillAchievementsFromLocalState(u, event.type === 'backfill', eventStudyTarget);
+    // зачем: владелец на новом аккаунте увидел лавину тостов. Backfill — это НЕ достижение
+    // «прямо сейчас», а сверка уже накопленного локального состояния (пройденные уроки,
+    // сохранённые карточки, счётчики тренажёра). Раньше его разблокировки шли в общий поток
+    // и вываливались тостами по 3.8с штука. Теперь помечаем их notified сразу: XP за них
+    // начисляется как обычно, на экране достижений они видны, но празднования не устраивают.
+    const backfilledIds = new Set<string>();
+    const backfillUnlock = (id: string) => {
+      const before = justUnlocked.length;
+      u(id);
+      if (justUnlocked.length > before) backfilledIds.add(id);
+    };
+    await backfillAchievementsFromLocalState(
+      backfillUnlock,
+      event.type === 'backfill',
+      eventStudyTarget,
+      operationToken,
+    );
+    if (!isCurrentAccountGeneration(operationToken)) return [];
 
     switch (event.type) {
       case 'streak': {
@@ -2657,6 +2720,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           let lastSafetyStreak: number | null = null;
           try {
             const raw = await AsyncStorage.getItem('achievement_streak_safety_used_v1');
+            if (!isCurrentAccountGeneration(operationToken)) return [];
             const parsed = raw ? JSON.parse(raw) : null;
             const n = Math.floor(Number(parsed?.streak));
             if (Number.isFinite(n) && n > 0) lastSafetyStreak = n;
@@ -2666,7 +2730,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           if (lastSafetyStreak === null || s - lastSafetyStreak >= 365) u('streak_clean_365');
         }
         {
-          const month = await bumpMonthlyActivityDays('achievement_perfect_month_days_v1');
+          const month = await bumpMonthlyActivityDays('achievement_perfect_month_days_v1', operationToken);
           if (month.isLastDay && month.count >= month.daysInMonth) u('perfect_month');
         }
         break;
@@ -2691,11 +2755,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (xp >= 1000000) u('xp_1000000');
         if (xp >= 2000000) u('xp_2000000');
         await unlockWeeklyXpAchievements(u);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         break;
       }
       case 'lesson_complete': {
         const storedLessonCount = await countCompletedLessonsAcrossAchievementTargets();
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         const storedPerfectCount = await countPerfectLessonsInRange(1, 32);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         const c = Math.max(event.lessonCount, storedLessonCount);
         const perfectCount = Math.max(event.perfectCount ?? 0, storedPerfectCount);
         if (c >= 1)  u('lesson_1');
@@ -2713,88 +2780,36 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         }
         if (perfectCount >= 10) u('lesson_perfect10');
         if (await countPerfectLessonsInRange(29, 32) >= 4) u('lesson_b2_perfect');
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (event.lessonId && event.lessonId >= 1 && event.lessonId <= 32) {
           const dayKey = achievementLessonMarathonDayKey(localDayKey(), event.studyTarget);
-          const completedToday = await addStoredSetValue(dayKey, String(Math.floor(event.lessonId)));
+          const completedToday = await addStoredSetValue(dayKey, String(Math.floor(event.lessonId)), operationToken);
           if (completedToday >= 10) u('lesson_marathon_day');
         }
         await unlockLessonPassAchievements(u);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         break;
       }
       case 'lesson_perfect_pass': {
         const lessonId = Math.floor(event.lessonId);
         if (lessonId >= 1 && lessonId <= 32) {
-          await addStoredNumberSetValue(achievementLessonPerfectPassesKey(lessonId, event.studyTarget), event.passCount);
+          await addStoredNumberSetValue(achievementLessonPerfectPassesKey(lessonId, event.studyTarget), event.passCount, operationToken);
           const perfectPasses = await readPerfectLessonPassCounts();
+          if (!isCurrentAccountGeneration(operationToken)) return [];
           if (perfectPasses.filter(count => count >= 2).length >= 32) u('lesson_all_perfect_2x');
         }
         break;
       }
       case 'quiz': {
-        u('quiz_first');
-        if (event.level === 'medium') u('quiz_medium');
-        if (event.level === 'hard')   u('quiz_hard');
-        if (event.perfect) {
-          if (event.level === 'easy')   u('quiz_perfect_easy');
-          if (event.level === 'medium') u('quiz_perfect_medium');
-          if (event.level === 'hard')   u('quiz_perfect');
-        }
-        {
-          const allLevels = ['quiz_first','quiz_medium','quiz_hard'].every(
-            id => states.find(s => s.id === id)?.unlockedAt !== null
-          );
-          if (allLevels) u('quiz_all_levels');
-        }
-        {
-          const allPerfect = ['quiz_perfect_easy','quiz_perfect_medium','quiz_perfect'].every(
-            id => states.find(s => s.id === id)?.unlockedAt !== null
-          );
-          if (allPerfect) u('quiz_triple_perfect');
-        }
-        if (event.perfect) {
-          const dayKey = quizPerfectLevelsTodayKey(event.studyTarget);
-          let daily: { day?: string; levels?: string[] } = {};
-          try {
-            const raw = await AsyncStorage.getItem(dayKey);
-            daily = raw ? JSON.parse(raw) : {};
-          } catch {
-            daily = {};
-          }
-          const today = localDayKey();
-          const levels = daily.day === today && Array.isArray(daily.levels)
-            ? daily.levels.filter((x): x is string => typeof x === 'string')
-            : [];
-          if (!levels.includes(event.level)) levels.push(event.level);
-          await AsyncStorage.setItem(dayKey, JSON.stringify({ day: today, levels }));
-          if (['easy', 'medium', 'hard'].every(level => levels.includes(level))) {
-            u('quiz_all_levels_perfect_same_day');
-          }
-          const perfectStreak = await bumpConsecutiveDayStreak(quizPerfectStreakKey(event.studyTarget));
-          if (perfectStreak >= 7) u('quiz_perfect_7_days');
-        }
-        if (event.level === 'hard') {
-          const hardCountKey = quizAchievementCounterKey('quiz_hard_count', event.studyTarget);
-          const hardCountForTarget = await bumpStoredCounter(hardCountKey);
-          const hardCount = event.studyTarget === undefined
-            ? hardCountForTarget
-            : await readQuizAchievementCounterAcrossTargets('quiz_hard_count');
-          if (hardCount >= 5) u('quiz_speed_demon');
-          if (hardCount >= 10) u('quiz_hard_10');
-          if (hardCount >= 25) u('quiz_hard_25');
-          if (event.perfect) {
-            const hardPerfectKey = quizAchievementCounterKey('achievement_quiz_hard_perfect_count', event.studyTarget);
-            const hardPerfectForTarget = await bumpStoredCounter(hardPerfectKey);
-            const hardPerfect = event.studyTarget === undefined
-              ? hardPerfectForTarget
-              : await readQuizAchievementCounterAcrossTargets('achievement_quiz_hard_perfect_count');
-            if (hardPerfect >= 3) u('quiz_hard_perfect_3');
-            if (hardPerfect >= 10) u('quiz_hard_perfect_10');
-          }
-        }
+        // зачем: викторины удалены из приложения (см. RETIRED_QUIZ_ARENA_TASK_TYPES
+        // в daily_tasks.ts), вместе с ними удалены и их достижения. Обработчик
+        // остаётся заглушкой ради совместимости типа события, но больше не пишет
+        // счётчики в AsyncStorage — их всё равно никто не читал, а каждая запись
+        // раздувала achievements_state, который целиком уезжает в Firestore.
         break;
       }
       case 'combo': {
-        await setStoredCounterAtLeast(comboAchievementCounterKey(event.studyTarget), event.count);
+        await setStoredCounterAtLeast(comboAchievementCounterKey(event.studyTarget), event.count, operationToken);
         if (event.count >= 3)  u('combo_3');
         if (event.count >= 10) u('combo_10');
         if (event.count >= 20) u('combo_20');
@@ -2809,14 +2824,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         u('daily_task_first');
         if (event.allDone) {
           u('all_daily');
-          const streak = await bumpConsecutiveDayStreak(dailyTasksAchievementAllDoneStreakKey(event.studyTarget));
+          const streak = await bumpConsecutiveDayStreak(dailyTasksAchievementAllDoneStreakKey(event.studyTarget), operationToken);
           if (streak >= 3) u('daily_all_3');
           if (streak >= 7) u('daily_all_7');
           if (streak >= 14) u('daily_all_14');
           if (streak >= 30) u('daily_all_30');
           if (event.noReroll) {
             u('daily_no_reroll');
-            const noRerollStreak = await bumpConsecutiveDayStreak(dailyTasksAchievementNoRerollStreakKey(event.studyTarget));
+            const noRerollStreak = await bumpConsecutiveDayStreak(dailyTasksAchievementNoRerollStreakKey(event.studyTarget), operationToken);
             if (noRerollStreak >= 7) u('daily_no_reroll_7');
             if (noRerollStreak >= 30) u('daily_no_reroll_30');
           }
@@ -2835,10 +2850,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'comeback':      u('comeback');      break;
-      case 'wager_win':     u('wager_win');     break;
+      case 'wager_win': {
+        // зачем: ставки живы (пари на свою серию, xp_manager.ts), а вот Арена удалена.
+        // Раньше счётчик 3/10 висел на мёртвом событии arena_wager_win и достижения
+        // были недостижимы — теперь копим на живом событии, ключ один.
+        u('wager_win');
+        const wagerTotal = await bumpStoredCounter(WAGER_WIN_COUNT_KEY, 1, operationToken);
+        if (wagerTotal >= 3)  u('wager_win_3');
+        if (wagerTotal >= 10) u('wager_win_10');
+        break;
+      }
       case 'personal_best': u('personal_best'); break;
       case 'streak_repair':
-        await markStreakSafetyUsed();
+        await markStreakSafetyUsed(operationToken);
         u('streak_repair');
         break;
       case 'perfect_week':  u('perfect_week');  break;
@@ -2847,12 +2871,12 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         const h = new Date().getHours();
         if (h >= 23 || h < 5) {
           u('night_owl');
-          const streak = await bumpConsecutiveDayStreak('achievement_night_xp_streak_v1');
+          const streak = await bumpConsecutiveDayStreak('achievement_night_xp_streak_v1', operationToken);
           if (streak >= 7) u('night_week');
         }
         if (h >= 5 && h < 7) {
           u('early_bird');
-          const streak = await bumpConsecutiveDayStreak('achievement_early_xp_streak_v1');
+          const streak = await bumpConsecutiveDayStreak('achievement_early_xp_streak_v1', operationToken);
           if (streak >= 7) u('early_week');
         }
         break;
@@ -2864,7 +2888,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         u('exam_first');
         if (event.pct >= 90) {
           u('exam_ace');
-          const aces = await bumpStoredCounter('achievement_exam_ace_count');
+          const aces = await bumpStoredCounter('achievement_exam_ace_count', 1, operationToken);
           if (aces >= 5) u('exam_ace_5');
           if (aces >= 10) u('exam_ace_10');
         }
@@ -2872,19 +2896,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'flashcards_session': u('flashcards_session'); break;
       case 'flashcard_saved': {
-        const saved = await bumpStoredCounter(flashcardsAchievementSavedCountKey(event.studyTarget), event.count ?? 1);
+        const saved = await bumpStoredCounter(flashcardsAchievementSavedCountKey(event.studyTarget), event.count ?? 1, operationToken);
         if (saved >= 25) u('flashcards_save_25');
         if (saved >= 50) u('flashcards_save_50');
         if (saved >= 100) u('flashcards_save_100');
         if (saved >= 250) u('flashcards_save_250');
         if (event.source) {
-          const sources = await addStoredSetValue(flashcardsAchievementSourceSetKey(event.studyTarget), event.source);
+          const sources = await addStoredSetValue(flashcardsAchievementSourceSetKey(event.studyTarget), event.source, operationToken);
           if (sources >= 4) u('flashcards_sources_4');
         }
         break;
       }
       case 'flashcard_flipped': {
-        const flips = await bumpStoredCounter(flashcardsAchievementFlipCountKey(event.studyTarget), event.count ?? 1);
+        const flips = await bumpStoredCounter(flashcardsAchievementFlipCountKey(event.studyTarget), event.count ?? 1, operationToken);
         if (flips >= 100) u('flashcards_flip_100');
         if (flips >= 500) u('flashcards_flip_500');
         if (flips >= 1000) u('flashcards_flip_1000');
@@ -2893,7 +2917,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'flashcard_viewed': {
         const count = Math.max(0, Math.floor(event.count ?? 1));
         if (count > 0) {
-          const streak = await bumpConsecutiveDayStreak(flashcardsAchievementViewStreakKey(event.studyTarget));
+          const streak = await bumpConsecutiveDayStreak(flashcardsAchievementViewStreakKey(event.studyTarget), operationToken);
           if (streak >= 7) u('flashcards_view_7_days');
           if (streak >= 14) u('flashcards_view_14_days');
           if (streak >= 30) u('flashcards_view_30_days');
@@ -2903,12 +2927,12 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'daily_phrase': {
         if (event.action === 'read') {
           u('daily_phrase_first');
-          const reads = await bumpStoredCounter(dailyPhraseAchievementReadCountKey(event.studyTarget));
+          const reads = await bumpStoredCounter(dailyPhraseAchievementReadCountKey(event.studyTarget), 1, operationToken);
           if (reads >= 30) u('daily_phrase_read_30');
         }
         if (event.action === 'save') {
           u('daily_phrase_save');
-          const saves = await bumpStoredCounter(dailyPhraseAchievementSaveCountKey(event.studyTarget));
+          const saves = await bumpStoredCounter(dailyPhraseAchievementSaveCountKey(event.studyTarget), 1, operationToken);
           if (saves >= 30) u('daily_phrase_save_30');
           if (saves >= 100) u('daily_phrase_save_100');
         }
@@ -2917,23 +2941,16 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'active_recall': {
         const key = activeRecallAchievementCorrectCountKey(event.studyTarget);
         const add = Math.max(1, Math.floor(event.correct ?? 1));
-        const current = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
-        const next = current + add;
-        await AsyncStorage.setItem(key, String(next));
+        const next = await bumpStoredCounter(key, add, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1) u('recall_first');
         if (next >= 50) u('recall_50');
         break;
       }
       case 'arena_win': {
-        const key = 'achievement_arena_win_count';
-        const current = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
-        const next = current + 1;
-        await AsyncStorage.setItem(key, String(next));
-        if (next >= 1) u('arena_first_win');
-        if (next >= 10) u('arena_10_wins');
-        if (next >= 25) u('arena_25_wins');
-        if (next >= 50) u('arena_50_wins');
-        if (next >= 100) u('arena_100_wins');
+        // зачем: Арена удалена — достижения арены выпилены, счётчик
+        // achievement_arena_win_count никто не читал. Заглушка ради совместимости
+        // типа события; каждая запись зря раздувала achievements_state в Firestore.
         break;
       }
       case 'shards': {
@@ -2944,14 +2961,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'shards_spent': {
-        const spent = await bumpStoredCounter('achievement_shards_spent_total', event.amount);
+        const spent = await bumpStoredCounter('achievement_shards_spent_total', event.amount, operationToken);
         if (spent >= 100) u('shards_spent_100');
         if (spent >= 500) u('shards_spent_500');
         if (spent >= 1000) u('shards_spent_1000');
         break;
       }
       case 'energy_refill': {
-        const refills = await bumpStoredCounter('achievement_energy_refill_count');
+        const refills = await bumpStoredCounter('achievement_energy_refill_count', 1, operationToken);
         if (refills >= 1) u('energy_refill_first');
         if (refills >= 5) u('energy_refill_5');
         if (refills >= 10) u('energy_refill_10');
@@ -2964,25 +2981,25 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (total >= 2) u('league_result_first');
         if (total >= 3 && rank <= 3) {
           u('league_top3');
-          const top3 = await bumpStoredCounter('achievement_league_top3_count');
+          const top3 = await bumpStoredCounter('achievement_league_top3_count', 1, operationToken);
           if (top3 >= 5) u('league_top3_5');
         }
         if (total >= 2 && rank === 1) {
           u('league_champion');
-          const champion = await bumpStoredCounter('achievement_league_champion_count');
+          const champion = await bumpStoredCounter('achievement_league_champion_count', 1, operationToken);
           if (champion >= 5) u('league_champion_5');
           if (champion >= 10) u('league_champion_10');
         }
         if (event.promoted) u('league_promoted');
         if ((event.newLeagueId ?? 0) >= 8) {
           u('league_diamond');
-          const diamondStreak = await bumpConsecutiveWeekStreak('achievement_league_diamond_week_streak_v1');
+          const diamondStreak = await bumpConsecutiveWeekStreak('achievement_league_diamond_week_streak_v1', operationToken);
           if (diamondStreak >= 4) u('league_diamond_4_weeks');
         }
         break;
       }
       case 'league_boost': {
-        const boosts = await bumpStoredCounter('achievement_league_boost_count');
+        const boosts = await bumpStoredCounter('achievement_league_boost_count', 1, operationToken);
         if (boosts >= 1) u('league_boost_first');
         if (boosts >= 5) u('league_boost_5');
         if (event.multiplier >= 3) u('league_boost_x3');
@@ -2999,6 +3016,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           if (allDiamonds) u('gem_all_complete');
         }
         await unlockLessonPassAchievements(u);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         break;
       }
 
@@ -3014,9 +3032,8 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'gift_sent': {
         const giftKey = 'achievement_gift_sent_count';
-        const cur = parseInt((await AsyncStorage.getItem(giftKey)) ?? '0', 10) || 0;
-        const next = cur + 1;
-        await AsyncStorage.setItem(giftKey, String(next));
+        const next = await bumpStoredCounter(giftKey, 1, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1) u('social_gift_send');
         if (next >= 5) u('social_gift_5');
         if (next >= 10) u('social_gift_10');
@@ -3031,48 +3048,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if ((event.likeTotal ?? 0) >= 100) u('social_likes_100');
         break;
       }
-      case 'league_chat_message': {
-        const messages = await bumpStoredCounter('achievement_league_chat_message_count');
-        if (messages >= 1) u('league_chat_first');
-        if (messages >= 10) u('league_chat_10');
-        if (messages >= 50) u('league_chat_50');
-        if (messages >= 100) u('league_chat_100');
-        break;
-      }
-      case 'arena_win_streak': {
-        const ws = event.streak;
-        if (ws >= 5)  u('arena_streak_5');
-        if (ws >= 10) u('arena_streak_10');
-        if (ws >= 15) u('arena_streak_15');
-        if (ws >= 25) u('arena_streak_25');
-        break;
-      }
-      case 'arena_duel_friend_win': {
-        u('arena_duel_friend');
-        break;
-      }
       case 'arena_wager_win': {
-        u('arena_wager_win');
-        const wagerKey = 'achievement_arena_wager_win_count';
-        const cur = parseInt((await AsyncStorage.getItem(wagerKey)) ?? '0', 10) || 0;
-        const next = event.count !== undefined
-          ? await setStoredCounterAtLeast(wagerKey, event.count)
-          : (cur > 0 ? cur : await bumpStoredCounter(wagerKey));
-        if (next >= 5) u('arena_wager_5');
-        if (next >= 10) {
-          u('arena_wager_10');
-          u('wager_win_10');
-        }
-        if (next >= 25) u('arena_wager_25');
+        // зачем: Арена удалена — событие больше никто не шлёт. Заглушка ради
+        // совместимости типа; счёт ставок теперь ведёт case 'wager_win' выше,
+        // и лишняя запись в AsyncStorage не раздувает achievements_state.
         break;
       }
       case 'trainer_correct': {
         const trainerKey = trainerAchievementCorrectCountKey(event.studyTarget);
-        const cur = parseInt((await AsyncStorage.getItem(trainerKey)) ?? '0', 10) || 0;
         const add = Math.max(1, Math.floor(event.correct));
-        const next = cur + add;
-        await AsyncStorage.setItem(trainerKey, String(next));
-        await setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(event.studyTarget), next);
+        const next = await bumpStoredCounter(trainerKey, add, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
+        await setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(event.studyTarget), next, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1)   u('recall_first');
         if (next >= 50)  u('recall_50');
         if (next >= 100) u('trainer_100_correct');
@@ -3081,7 +3069,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (next >= 2500) u('trainer_2500_correct');
         if (next >= 10000) u('trainer_10000_correct');
         {
-          const streak = await bumpConsecutiveDayStreak(trainerAchievementCorrectStreakKey(event.studyTarget));
+          const streak = await bumpConsecutiveDayStreak(trainerAchievementCorrectStreakKey(event.studyTarget), operationToken);
           if (streak >= 7) u('trainer_7_days');
         }
         break;
@@ -3090,7 +3078,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (event.total > 0) u('trainer_session');
         if (event.total >= 5 && event.wrong <= 0 && event.correct >= event.total) {
           u('trainer_perfect_session');
-          const perfectSessions = await bumpStoredCounter(trainerAchievementPerfectSessionCountKey(event.studyTarget));
+          const perfectSessions = await bumpStoredCounter(trainerAchievementPerfectSessionCountKey(event.studyTarget), 1, operationToken);
           if (perfectSessions >= 10) u('trainer_perfect_10_sessions');
           if (perfectSessions >= 50) u('trainer_perfect_50_sessions');
         }
@@ -3114,7 +3102,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'achievement_shared': {
         u('share_achievement');
-        const shares = await bumpStoredCounter(shareAchievementCounterKey(event.studyTarget));
+        const shares = await bumpStoredCounter(shareAchievementCounterKey(event.studyTarget), 1, operationToken);
         if (shares >= 10) u('share_achievement_10');
         break;
       }
@@ -3123,18 +3111,12 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'quiz_session_count': {
-        const count = event.studyTarget === undefined
-          ? event.count
-          : Math.max(event.count, await readQuizAchievementCounterAcrossTargets('achievement_quiz_total_count'));
-        if (count >= 10) u('quiz_10_completed');
-        if (count >= 25) u('quiz_25_completed');
-        if (count >= 50) u('quiz_50_completed');
-        if (count >= 100) u('quiz_100_completed');
+        // зачем: заглушка — достижения викторин удалены вместе с самой фичей,
+        // читать счётчик больше незачем (см. case 'quiz' выше).
         break;
       }
       case 'streak_freeze_used': {
-        await markStreakSafetyUsed();
-        u('arena_streak_freeze');
+        await markStreakSafetyUsed(operationToken);
         break;
       }
       case 'wager_win_streak': {
@@ -3145,12 +3127,48 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
     }
 
     if (justUnlocked.length > 0) {
-      await saveStates(states, eventStudyTarget);
+      // зачем: _achievementLock (локальная цепочка промисов этого модуля) и withStorageLock
+      // (глобальный мьютекс storage_mutex) — ДВА независимых замка над одним хранилищем.
+      // claimAchievementShardReward/markAchievementsNotified пишут под вторым, а этот путь
+      // писал вообще без него: между чтением states (500 строк выше) и записью успевал
+      // пройти claim, и его shardClaimed затирался целиком — награда снова показывалась как
+      // «забрать», а тост об уже показанном достижении всплывал повторно.
+      // Читать всё под глобальным мьютексом нельзя: между чтением и записью лежит длинная
+      // асинхронная логика, и держать на ней замок, общий с осколками/заданиями/стриками, —
+      // прямой путь к залипанию. Поэтому пишем слиянием: под замком перечитываем свежий
+      // снимок и накатываем на него ТОЛЬКО свои разблокировки, не трогая чужие поля.
+      const unlockedIds = new Set(justUnlocked.map((a) => a.id));
+      const fresh = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, false);
+      if (!isCurrentAccountGeneration(operationToken)) return [];
+      const freshById = new Map(fresh.map((s) => [s.id, s]));
+      for (const row of states) {
+          if (!unlockedIds.has(row.id)) continue;
+          const current = freshById.get(row.id);
+          if (!current) {
+            // Той же логикой гасим тост и когда строки в свежем снимке ещё нет:
+            // иначе backfill-достижение проскочило бы в очередь тостов этим путём.
+            freshById.set(row.id, backfilledIds.has(row.id) ? { ...row, notified: true } : row);
+            continue;
+          }
+          // Разблокировка идемпотентна: если параллельный путь уже проставил unlockedAt,
+          // оставляем более раннюю метку. Остальные поля (shardClaimed, notified) — чужая
+          // зона ответственности, их снимок свежее нашего.
+          if (current.unlockedAt === null) current.unlockedAt = row.unlockedAt;
+          // Тихий backfill: гасим тост сразу в том же снимке, чтобы getPendingNotifications
+          // его уже не поднял. Только для СВОИХ backfill-разблокировок (см. backfilledIds) —
+          // достижения, добытые живым действием игрока, празднуются как раньше.
+          if (backfilledIds.has(row.id)) current.notified = true;
+      }
+      const saved = await saveStates(Array.from(freshById.values()), eventStudyTarget, operationToken);
+      if (!saved) return [];
+      if (!isCurrentAccountGeneration(operationToken)) return [];
       emitAppEvent('achievement_unlocked');
 
       const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+      if (!isCurrentAccountGeneration(operationToken)) return [];
       const lang = (await AsyncStorage.getItem('app_lang').catch(() => null))
         || (await AsyncStorage.getItem('user_lang').catch(() => null));
+      if (!isCurrentAccountGeneration(operationToken)) return [];
       const safeUser = userName || 'Player';
       const safeLang = (lang as 'ru' | 'uk') || 'ru';
       for (const ach of justUnlocked) {
@@ -3169,6 +3187,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
                 achievementId: ach.id,
                 nameRu: ach.nameRu,
               },
+              accountToken: operationToken,
             }).catch(() => {});
           }, 0);
         }
@@ -3177,78 +3196,164 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
     }
     return justUnlocked;
   } catch { return []; }
-  });
-  _achievementLock = result.catch(() => {});
-  return result;
+  };
+  return isCurrentAccountGeneration(operationToken) ? execute() : [];
+  }, []);
 };
 
-export const claimAchievementShardReward = async (achievementId: string): Promise<boolean> => {
-  const reserved = await withStorageLock(async () => {
-    const states = await loadAchievementStates();
-    const s = states.find(x => x.id === achievementId);
-    if (!s || s.unlockedAt === null || s.shardClaimed) {
-      return false;
-    }
-    s.shardClaimed = true;
-    await saveStates(states);
-    return true;
-  });
-  if (!reserved) return false;
+const ACHIEVEMENT_SHARD_PAYOUT_PENDING_PREFIX = 'achievement_shard_payout_pending_v1:';
+const ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT = 64;
 
-  const n = await addShardsRaw(1, `achievement:${achievementId}`, {
+const achievementPayoutOwnerHash = (stableId: string): string => {
+  let hash = 2166136261;
+  for (let index = 0; index < stableId.length; index += 1) {
+    hash ^= stableId.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+};
+
+const achievementPayoutOpId = (stableId: string, achievementId: string): string => {
+  const safeId = achievementId.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 48);
+  return `achievement:${achievementPayoutOwnerHash(stableId)}:${safeId}`;
+};
+
+const achievementPayoutPendingKey = (stableId: string): string =>
+  `${ACHIEVEMENT_SHARD_PAYOUT_PENDING_PREFIX}${encodeURIComponent(stableId)}`;
+
+const readAchievementPayoutPending = async (
+  stableId: string,
+  accountToken: AccountGenerationToken,
+): Promise<Record<string, string> | null> => {
+  if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+  try {
+    const raw = await AsyncStorage.getItem(achievementPayoutPendingKey(stableId));
+    if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+    const parsed: unknown = raw ? JSON.parse(raw) : {};
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return Object.fromEntries(Object.entries(parsed as Record<string, unknown>)
+      .filter((entry): entry is [string, string] => (
+        typeof entry[0] === 'string'
+        && typeof entry[1] === 'string'
+        && /^[A-Za-z0-9_:-]{8,80}$/.test(entry[1])
+      ))
+      .slice(-ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT));
+  } catch {
+    return {};
+  }
+};
+
+export const claimAchievementShardReward = async (
+  achievementId: string,
+  accountToken?: AccountGenerationToken,
+): Promise<boolean> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return false;
+  return enqueueAchievementOperation(operationToken, async () => {
+  const states = await loadAchievementStatesInternal(operationToken, true);
+  if (!isCurrentAccountGeneration(operationToken)) return false;
+  const state = states.find(x => x.id === achievementId);
+  if (!state || state.unlockedAt === null || state.shardClaimed) return false;
+  const ownerStableId = operationToken.stableId ?? '';
+  const pending = await readAchievementPayoutPending(ownerStableId, operationToken);
+  if (!pending || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+  const payoutOpId = pending[achievementId] ?? achievementPayoutOpId(ownerStableId, achievementId);
+  if (!pending[achievementId]) {
+    pending[achievementId] = payoutOpId;
+    const pendingEntries = Object.entries(pending).slice(-ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT);
+    const journaled = await commitAchievementStoragePairs([[
+      achievementPayoutPendingKey(ownerStableId),
+      JSON.stringify(Object.fromEntries(pendingEntries)),
+    ]], operationToken);
+    if (!journaled || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+  }
+
+  // зачем: владелец вернул награду за достижения — экран всё это время обещал
+  // «+1 жемчужина» и показывал кнопку «Получить», но выплата была обнулена
+  // экономикой «Монеты и Звёзды», и игрок жал кнопку впустую. Теперь код
+  // совпадает с обещанием на экране: ровно +1 жемчужина за достижение.
+  const ACHIEVEMENT_SHARD_PAYOUT = 1 as number;
+  if (ACHIEVEMENT_SHARD_PAYOUT <= 0) return true;
+
+  const n = await addShardsRaw(ACHIEVEMENT_SHARD_PAYOUT, `achievement:${achievementId}`, {
     showEarnModal: false,
     skipServerAwait: true,
+    accountToken: operationToken,
+    idempotencyKey: payoutOpId,
   });
+  if (!isCurrentAccountGeneration(operationToken, ownerStableId) || n < 1) return false;
   if (n >= 1) {
+    const freshStates = await loadAchievementStatesInternal(operationToken, false);
+    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+    const freshState = freshStates.find(x => x.id === achievementId);
+    if (!freshState || freshState.unlockedAt === null) return false;
+    freshState.shardClaimed = true;
+    delete pending[achievementId];
+    const finalized = await commitAchievementStoragePairs([
+      ...achievementStatePairs(freshStates),
+      [achievementPayoutPendingKey(ownerStableId), JSON.stringify(pending)],
+    ], operationToken);
+    if (!finalized || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
     try {
       const balance = await getShardsBalance();
+      if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
       emitAppEvent('shards_balance_updated', { balance });
     } catch (e) {
       if (__DEV__) console.warn('[achievements]', e);
     }
     return true;
   }
-
-  await withStorageLock(async () => {
-    const states = await loadAchievementStates();
-    const s = states.find(x => x.id === achievementId);
-    if (s) {
-      s.shardClaimed = false;
-      await saveStates(states);
-    }
-  });
   return false;
+  }, false);
 };
 
 export const hasPendingShardReward = (state: AchievementState | undefined): boolean =>
   !!state && state.unlockedAt !== null && state.shardClaimed === false;
 
-export const markAchievementsNotified = async (ids: string[]) => {
-  try {
-    const states = await loadAchievementStates();
+export const markAchievementsNotified = async (
+  ids: string[],
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  await enqueueAchievementOperation(operationToken, async () => {
+    const states = await loadAchievementStatesInternal(operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return;
     ids.forEach(id => {
       const s = states.find(s => s.id === id);
       if (s) s.notified = true;
     });
-    await saveStates(states);
-  } catch (e) {
-    if (__DEV__) console.warn('[achievements]', e);
-  }
+    await saveStates(states, undefined, operationToken);
+    if (!isCurrentAccountGeneration(operationToken)) return;
+  }, undefined);
 };
 
-export const getPendingNotifications = async (): Promise<Achievement[]> => {
+export const getPendingNotifications = async (
+  accountToken?: AccountGenerationToken,
+): Promise<Achievement[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(operationToken, async () => {
   try {
-    const states = await loadAchievementStates();
+    const states = await loadAchievementStatesInternal(operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return [];
     return states
       .filter(s => s.unlockedAt !== null && !s.notified)
       .map(s => ALL_ACHIEVEMENTS.find(a => a.id === s.id))
       .filter(Boolean) as Achievement[];
   } catch { return []; }
+  }, []);
 };
 
-export const unlockAllAchievements = async (): Promise<void> => {
+export const unlockAllAchievements = async (
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  await enqueueAchievementOperation(operationToken, async () => {
   try {
-    const states = await loadAchievementStates();
+    const states = await loadAchievementStatesInternal(operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return;
     const now = new Date().toISOString();
     const existingIds = new Set(states.map(s => s.id));
 
@@ -3266,10 +3371,12 @@ export const unlockAllAchievements = async (): Promise<void> => {
       }
     });
 
-    await saveStates(states);
+    await saveStates(states, undefined, operationToken);
+    if (!isCurrentAccountGeneration(operationToken)) return;
   } catch (e) {
     if (__DEV__) console.warn('[achievements]', e);
   }
+  }, undefined);
 };
 
 export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unlocked: number; missing: string[] }> => {
@@ -3278,8 +3385,15 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
   if ((!isDevRuntime && !DEV_MODE && !isTestRuntime) || IS_STORE_RELEASE) {
     throw new Error('devSeedAchievementsSmoke is not available in production builds');
   }
+  const operationToken = captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
 
-  await unlockAllAchievements();
+  await unlockAllAchievements(operationToken);
+  if (!isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
 
   const now = new Date().toISOString();
   const fullLessonProgress = JSON.stringify(Array.from({ length: 50 }, () => 'correct'));
@@ -3288,18 +3402,15 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     fullLessonProgress,
   ]);
 
-  await AsyncStorage.multiSet([
+  const seeded = await commitAchievementStoragePairs([
     ['streak_count', '500'],
     ['user_total_xp', '100000'],
     ['login_bonus_v1', JSON.stringify({ consecutiveDays: 365, lastClaimDate: now })],
     ['achievement_active_recall_correct_count', '50'],
-    ['achievement_arena_win_count', '10'],
     ['shards_balance', '100'],
-    ['quiz_hard_count', '5'],
     // Новые счётчики для новых достижений
     ['achievement_all_daily_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
     ['achievement_gift_sent_count', '10'],
-    ['achievement_league_chat_message_count', '10'],
     ['achievement_league_boost_count', '5'],
     ['achievement_energy_refill_count', '5'],
     ['achievement_shards_spent_total', '100'],
@@ -3307,17 +3418,22 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     ['achievement_flashcards_flip_count', '100'],
     ['achievement_flashcards_view_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
     ['achievement_flashcards_source_set_v1', JSON.stringify(['lesson', 'word', 'verb', 'daily_phrase'])],
-    ['achievement_arena_wager_win_count', '5'],
     ['achievement_trainer_correct_count', '500'],
     ['achievement_trainer_correct_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
-    ['achievement_arena_win_streak', '10'],
-    ['quiz_session_count', '10'],
-    ['achievement_wager_win_count', '3'],
+    // зачем: 10 — порог верхнего достижения wager_win_10, чтобы QA-сид открывал
+    // оба живых достижения по ставкам (wager_win_3 и wager_win_10).
+    ['achievement_wager_win_count', '10'],
     ['pack_purchased_count', '5'],
     ...lessonPairs,
-  ]);
+  ], operationToken);
+  if (!seeded || !isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
 
-  const states = await loadAchievementStates();
+  const states = await loadAchievementStates(operationToken);
+  if (!isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
   const unlockedIds = new Set(states.filter(s => s.unlockedAt !== null).map(s => s.id));
   const missing = ALL_ACHIEVEMENTS.map(a => a.id).filter(id => !unlockedIds.has(id));
 

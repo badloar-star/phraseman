@@ -1,11 +1,21 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 
 const root = path.resolve(__dirname, '..');
 const read = (relativePath: string): string => {
   const file = path.join(root, relativePath);
   return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
 };
+
+function resolveCapabilityHash(hash: string): { resolved: boolean; route: string; capabilityId: string } {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-capabilities.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then((m) => process.stdout.write(JSON.stringify(m.resolveCapabilityHash(${JSON.stringify(hash)}))))`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout);
+}
 
 describe('Admin v2 native app messages workflow', () => {
   const core = read('admin/v2/scripts/admin-core.js');
@@ -16,7 +26,7 @@ describe('Admin v2 native app messages workflow', () => {
   const permissions = read('functions/src/admin/permissions.ts');
 
   test('uses a native Campaigns subpage under Application', () => {
-    expect(capabilities).toContain("'app-messages': 'campaigns'");
+    expect(capabilities).toContain("nativeRoute: 'campaigns'");
     expect(core).toContain("campaigns: { title: 'Кампании'");
     expect(core).toContain('function renderCampaigns');
     expect(core).toContain("campaigns: 'application'");
@@ -60,10 +70,11 @@ describe('Admin v2 native app messages workflow', () => {
     expect(functions).not.toContain(".catch(() => null)");
   });
 
-  test('makes destructive legacy gaps explicit instead of silently deleting data', () => {
-    expect(core).toContain('Редактирование и удаление будут перенесены следующим безопасным срезом');
-    expect(core).toContain('Старый модуль сообщений');
-    expect(core).toContain('title="Открыть старый модуль для редактирования, удаления и аварийной сверки"');
+  test('keeps unavailable editing and deletion explicit without an old-admin escape action', () => {
+    expect(core).toContain('Редактирование и удаление пока недоступны');
+    expect(core).not.toContain('Старый модуль сообщений');
+    expect(core).not.toContain('href="#app-messages"');
+    expect(resolveCapabilityHash('#campaigns')).toEqual({ resolved: false, route: 'campaigns', capabilityId: '' });
     expect(core).toContain('title="Сначала показать точное сообщение, аудиторию и срок без записи в рабочее приложение"');
     expect(core).toContain('title="Включить или выключить сообщение через серверную команду с причиной и журнал действий"');
   });

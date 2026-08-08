@@ -1,19 +1,19 @@
 export type OverlayKey =
   | 'onboardingWelcome'
+  | 'authRecovery'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
+  | 'personalAdminMessage'
   | 'leagueBonusAvailable'
   | 'notifNudge'
   | 'introFullAccess'
-  | 'loyaltyGift'
   | 'dailyPlan'
   | 'levelUp'
   | 'themedAlert'
   | 'premiumCelebration'
   | 'vipCelebration'
   | 'leagueResult'
-  | 'arenaSeasonResult'
   | 'streakRevive'
   | 'entitlementExpired'
   | 'referralWelcome'
@@ -26,6 +26,8 @@ export type OverlayKey =
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
   | 'collectibleDrop'
+  | 'reviewPrompt'
+  | 'coinsMigration'
   | 'shardsEarned'
   | 'matchFoundToastScreen'
   | 'matchFoundToast'
@@ -46,19 +48,19 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // арбитр welcome держит единственный слот первым, остальные ждут очереди.
   'onboardingWelcome',
   'update',
+  'authRecovery',
   'releaseNotes',
   'broadcast',
+  'personalAdminMessage',
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
-  'loyaltyGift',
   'dailyPlan',
   'levelUp',
   'themedAlert',
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',
-  'arenaSeasonResult',
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
@@ -73,6 +75,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'lessonCompleteNotif',
   'arenaRoomConfirm',
   'collectibleDrop',
+  'reviewPrompt',
   'shardsEarned',
   'matchFoundToastScreen',
   'matchFoundToast',
@@ -81,6 +84,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
+  // coinsMigration — одноразовый информ-модал «Осколки → Монеты» (без награды по тапу,
+  // закрывает юзер): дожидается всех наград/тостов, стоит перед «идеальной неделей».
+  'coinsMigration',
   // perfectWeekReward — недельный бонус («Идеальная неделя»). По требованию показывается
   // САМЫМ ПОСЛЕДНИМ: дожидается, пока закроются ВСЕ остальные окна (приветствие, обновление,
   // «что нового», компас, праздники, тосты) — и только тогда занимает слот. Награда уже
@@ -145,17 +151,19 @@ export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>
 // ════════════════════════════════════════════════════════════════════════════
 export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'onboardingWelcome',
+  'authRecovery',
   'update',
   'releaseNotes',
   'broadcast',
+  'personalAdminMessage',
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
-  'loyaltyGift',
+  'levelUp',
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',
-  'arenaSeasonResult',
+  'streakRevive',
   'entitlementExpired',
   'referralWelcome',
   'themedAlert',
@@ -165,12 +173,14 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'boonActivated',
   'compassBriefing',
   'collectibleDrop',
+  'reviewPrompt',
   'achievementToast',
   // arenaRoomConfirm = ThemedChoiceModal = НАТИВНЫЙ <Modal> (как themedAlert). Без него
   // в этом списке передача слота из/в это окно шла без 360мс-зазора → на iOS present
   // поверх ещё закрывающегося нативного модала (напр. глобального update/introFullAccess
   // при заходе в комнату) ломал стек модалок (фриз / одно окно пропадало).
   'arenaRoomConfirm',
+  'coinsMigration',
 ]);
 
 /** Рендерится ли ключ нативным <Modal> (нужен ли зазор при передаче слота). */
@@ -199,20 +209,20 @@ export function isForceEvictable(key: OverlayKey | null): boolean {
 
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
+  authRecovery: false,
   update: false,
   releaseNotes: false,
   broadcast: false,
+  personalAdminMessage: false,
   leagueBonusAvailable: false,
   notifNudge: false,
   introFullAccess: false,
-  loyaltyGift: false,
   dailyPlan: false,
   levelUp: false,
   themedAlert: false,
   premiumCelebration: false,
   vipCelebration: false,
   leagueResult: false,
-  arenaSeasonResult: false,
   streakRevive: false,
   entitlementExpired: false,
   referralWelcome: false,
@@ -225,6 +235,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,
   collectibleDrop: false,
+  reviewPrompt: false,
   shardsEarned: false,
   matchFoundToastScreen: false,
   matchFoundToast: false,
@@ -233,6 +244,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   dailyTaskRewardToast: false,
   coachToast: false,
   actionToast: false,
+  coinsMigration: false,
 };
 
 export function resolveNextOverlay(

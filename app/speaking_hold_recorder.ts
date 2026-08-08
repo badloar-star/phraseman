@@ -43,6 +43,21 @@ export const MAX_HOLD_MS = 20000;
 /** Below this we treat the capture as "nothing said" (button fat-fingered). */
 export const MIN_CAPTURE_SEC = 0.25;
 
+/** Convert little-endian signed PCM16 into the 0..4 scale used by VoiceEqualizer. */
+export function pcm16VolumeSample(bytes: Uint8Array): number {
+  const sampleCount = Math.floor(bytes.length / 2);
+  if (sampleCount <= 0) return 0;
+  let squareSum = 0;
+  for (let i = 0; i < sampleCount * 2; i += 2) {
+    let sample = (bytes[i] ?? 0) | ((bytes[i + 1] ?? 0) << 8);
+    if (sample >= 0x8000) sample -= 0x10000;
+    const normalized = sample / 32768;
+    squareSum += normalized * normalized;
+  }
+  const rms = Math.sqrt(squareSum / sampleCount);
+  return Math.max(0, Math.min(4, rms * 16));
+}
+
 let holdAttemptSequence = 0;
 
 type LiveAudioStreamModule = {
@@ -134,6 +149,8 @@ export interface StartHoldRecordingOptions {
    * "listening" UI / cue on this callback, not synchronously after start.
    */
   onFirstAudio?: () => void;
+  /** Live PCM loudness for animation only; never participates in recognition. */
+  onLevel?: (rawVolume: number) => void;
 }
 
 /**
@@ -237,6 +254,11 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
       const bytes = base64ToBytes(base64Chunk);
       if (bytes.length > 0) {
         chunks.push(bytes);
+        try {
+          opts?.onLevel?.(pcm16VolumeSample(bytes));
+        } catch {
+          /* UI animation callbacks must never interrupt audio capture. */
+        }
         // Первый реальный чанк = мик пишет по-настоящему. Сообщаем один раз,
         // чтобы UI показал «Говори» именно сейчас, а не в момент cold-start.
         if (!firstAudioFired) {

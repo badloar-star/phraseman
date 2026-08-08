@@ -4,6 +4,7 @@ import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets'
 import { LEVEL_GIFT_IMAGE_SOURCES } from '../constants/levelGiftImages';
 import { LEVEL_GIFT_REWARD_ICON_SOURCES } from '../constants/levelGiftRewardIcons';
 import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
+import { REFERRAL_INVITE_BANNER_IMAGES } from '../components/ReferralInviteBannerArt';
 
 // Pre-load critical bundled images so Metro-served assets are already cached in dev.
 // Image.getSize() only works with network URIs, not require() assets.
@@ -25,73 +26,10 @@ const MEDAL_IMAGES = [
   require('../assets/images/levels/almaz.webp'),
 ];
 
-const ARENA_RANK_IMAGES = [
-  require('../assets/images/arena_ranks/v2/arena-rank-bronze-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-bronze-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-bronze-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-silver-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-silver-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-silver-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-gold-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-gold-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-gold-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-platinum-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-platinum-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-platinum-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-diamond-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-diamond-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-diamond-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-master-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-master-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-master-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-grandmaster-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-grandmaster-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-grandmaster-iii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-legend-i.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-legend-ii.webp'),
-  require('../assets/images/arena_ranks/v2/arena-rank-legend-iii.webp'),
-];
-
-const ARENA_ACTION_IMAGES = [
-  require('../assets/images/arena_actions/arena-action-match-dark.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-dark.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-dark.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-dark.webp'),
-  require('../assets/images/arena_actions/arena-action-match-gold.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-gold.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-gold.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-gold.webp'),
-  require('../assets/images/arena_actions/arena-action-match-coral.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-coral.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-coral.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-coral.webp'),
-  require('../assets/images/arena_actions/arena-action-match-minimalDark.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-minimalDark.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-minimalDark.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-minimalDark.webp'),
-  require('../assets/images/arena_actions/arena-action-match-midnight.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-midnight.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-midnight.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-midnight.webp'),
-  require('../assets/images/arena_actions/arena-action-match-ember.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-ember.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-ember.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-ember.webp'),
-  require('../assets/images/arena_actions/arena-action-match-aurora.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-aurora.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-aurora.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-aurora.webp'),
-  require('../assets/images/arena_actions/arena-action-match-volt.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-volt.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-volt.webp'),
-  require('../assets/images/arena_actions/arena-action-season-reward-volt.webp'),
-];
-
 const LESSON_INTRO_CTA_IMAGES = [
   require('../assets/images/lesson_intro/intro-cta-dark.webp'),
   require('../assets/images/lesson_intro/intro-cta-premium-gold.webp'),
   require('../assets/images/lesson_intro/intro-cta-coral.webp'),
-  require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
 ];
 
 function isDevMetroAssetUri(uri: string) {
@@ -148,10 +86,9 @@ export const preloadPrimaryTabImages = async () => {
     await warmImageSources([
       ...CLUB_IMAGES,
       ...MEDAL_IMAGES,
-      ...ARENA_RANK_IMAGES,
-      ...ARENA_ACTION_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
+      ...REFERRAL_INVITE_BANNER_IMAGES,
     ]);
   } catch {
     // Silently fail - preloading is entirely optional.
@@ -175,10 +112,9 @@ export const preloadImages = async () => {
     const allImages = [
       ...CLUB_IMAGES,
       ...MEDAL_IMAGES,
-      ...ARENA_RANK_IMAGES,
-      ...ARENA_ACTION_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
+      ...REFERRAL_INVITE_BANNER_IMAGES,
       ...LEVEL_GIFT_IMAGE_SOURCES,
       ...LEVEL_GIFT_REWARD_ICON_SOURCES,
       ...OSKOLOK_IMAGE_SOURCES,

@@ -1,0 +1,731 @@
+{
+  "generatedAt": "2026-07-13T06:19:15.868Z",
+  "app": {
+    "name": "Phraseman: Учи Английский",
+    "googlePlayPackage": "app.phraseman",
+    "appStoreId": "6764800879"
+  },
+  "collection": {
+    "source": "public Google Play and App Store review interfaces",
+    "observedReviewDateFrom": "2026-04-10T15:50:08.834Z",
+    "observedReviewDateTo": "2026-07-10T12:44:06.962Z",
+    "fetchedCounts": {
+      "googlePlay": 53,
+      "appStore": 3
+    },
+    "dedupeRule": "Unique by store + reviewId; if repeated, retain the last fetched record.",
+    "languageRule": "uk if Ukrainian-specific letters occur; else ru for Cyrillic; else en for Latin; otherwise und.",
+    "themeCoding": "Deterministic case-insensitive keyword rules in .codex-tmp/review-research/build-manifest.cjs; codes may overlap. Counts are directional, not sentiment-model output.",
+    "limitations": "Only publicly retrievable written reviews; rating-only entries, authenticated comments, deleted/private posts and non-indexed social comments are not represented."
+  },
+  "themeCodebook": {
+    "motivation": "нрав|интерес|увлек|мотива|доволь|супер|люблю|классн|great|best|recommend|enjoy",
+    "ux": "удоб|понят|навига|интерфейс|легко|интуитив|user.?friendly|easy",
+    "repetition": "повтор|запомин|интерваль|ошибк.*верн|review|memory",
+    "theory": "теори|объясн|правил|подсказ|пример|grammar",
+    "phrases": "фраз|выражен|лексик|phras",
+    "social": "друз|арен|лиг|соревн|рейтинг|club",
+    "audio_positive": "хорош.*произнош|озвучк.*хорош|жив.*пример|native.?speaker audio",
+    "audio_problem": "нет звук|без звук|пропада.*звук|микрофон.*не|не работает.*микрофон|озвучк.*read|проблем.*озвуч",
+    "monetization_access": "платн|подписк|доступ|закры.*урок|trial|premium|оплат",
+    "payment": "оплат|платеж|карт|росси",
+    "progress_account": "прогресс.*проп|обнул|аккаунт|восстанов.*прогресс",
+    "writing_request": "клавиатур|ввод.*слов|написат|typing",
+    "style_request": "классическ.*стил|средневеков|светл.*фон|оформлен",
+    "pronunciation_request": "произнош|повтор.*фраз|с робот|голос.*носител"
+  },
+  "reviewCount": 56,
+  "reviews": [
+    {
+      "store": "google_play",
+      "reviewId": "86bdc7d1-ab82-4e75-a14f-b238938341cf",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=86bdc7d1-ab82-4e75-a14f-b238938341cf",
+      "date": "2026-04-10T15:50:08.834Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "ad660202-f706-45bb-9a7e-06564b4eeef4",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=ad660202-f706-45bb-9a7e-06564b4eeef4",
+      "date": "2026-04-10T16:19:59.828Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "0f350705-7299-4873-af3f-29312b88a3eb",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=0f350705-7299-4873-af3f-29312b88a3eb",
+      "date": "2026-04-10T16:32:47.350Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "7301ab5e-5307-4ff8-835e-bae6b0aaaa01",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=7301ab5e-5307-4ff8-835e-bae6b0aaaa01",
+      "date": "2026-04-10T16:45:27.171Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "6245c861-f808-4a56-a152-f9f3df371fed",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=6245c861-f808-4a56-a152-f9f3df371fed",
+      "date": "2026-04-10T17:30:30.666Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "786d4f39-0927-416f-8b4b-edd3a54a5016",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=786d4f39-0927-416f-8b4b-edd3a54a5016",
+      "date": "2026-04-11T06:43:16.641Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "2b1eaf16-586e-4645-941c-5b742df37b46",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=2b1eaf16-586e-4645-941c-5b742df37b46",
+      "date": "2026-04-11T07:43:23.700Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "26b38495-506f-44fa-825e-85be0ec98c3b",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=26b38495-506f-44fa-825e-85be0ec98c3b",
+      "date": "2026-04-12T11:07:52.922Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "946adc6d-c947-4062-9412-0b3da27434dc",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=946adc6d-c947-4062-9412-0b3da27434dc",
+      "date": "2026-04-12T16:30:12.972Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "phrases"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "e45dbdeb-4d36-4c40-82f5-46390e2f6da3",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=e45dbdeb-4d36-4c40-82f5-46390e2f6da3",
+      "date": "2026-04-14T07:21:33.866Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "ux"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "1c10d79f-b932-4ba3-b93d-d6af24139908",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=1c10d79f-b932-4ba3-b93d-d6af24139908",
+      "date": "2026-04-15T11:51:45.514Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "61c5bbec-b2a5-46f0-ab8a-2b2ef85ace3d",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=61c5bbec-b2a5-46f0-ab8a-2b2ef85ace3d",
+      "date": "2026-04-15T21:30:55.634Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "013d863d-4a5e-416c-93ac-5e0f7b5b452f",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=013d863d-4a5e-416c-93ac-5e0f7b5b452f",
+      "date": "2026-04-16T09:29:43.336Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "767065f0-31e4-43fa-849d-a4cc8166fd96",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=767065f0-31e4-43fa-849d-a4cc8166fd96",
+      "date": "2026-04-17T18:51:09.470Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "7532845e-7bd1-4561-957c-7c616d783bf6",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=7532845e-7bd1-4561-957c-7c616d783bf6",
+      "date": "2026-04-17T20:21:30.210Z",
+      "rating": 4,
+      "language": "ru",
+      "themeCodes": [
+        "theory",
+        "phrases",
+        "writing_request"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "8d65128d-575b-4806-b957-668afc992837",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=8d65128d-575b-4806-b957-668afc992837",
+      "date": "2026-04-18T07:02:44.409Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "repetition",
+        "phrases"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "0f8fa6c2-882b-4064-a859-bd61178813fd",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=0f8fa6c2-882b-4064-a859-bd61178813fd",
+      "date": "2026-04-22T11:24:14.387Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "phrases",
+        "pronunciation_request"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "aba3aa25-4fbd-44e9-90e4-82ee89268c6b",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=aba3aa25-4fbd-44e9-90e4-82ee89268c6b",
+      "date": "2026-04-23T07:11:08.903Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "repetition",
+        "theory",
+        "phrases"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "009c9dd7-138a-4fbf-b727-26dfcaedc6fe",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=009c9dd7-138a-4fbf-b727-26dfcaedc6fe",
+      "date": "2026-04-23T12:04:50.284Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "ux",
+        "repetition",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "5e86ff5b-c20b-49ae-bed7-1a8a6dbae242",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=5e86ff5b-c20b-49ae-bed7-1a8a6dbae242",
+      "date": "2026-05-03T10:25:34.101Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "0e87ee72-7c26-4396-af87-a6bc7584bced",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=0e87ee72-7c26-4396-af87-a6bc7584bced",
+      "date": "2026-05-06T09:16:38.971Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "40e93865-bec3-46dc-ba41-61d1839dc0a0",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=40e93865-bec3-46dc-ba41-61d1839dc0a0",
+      "date": "2026-05-07T08:37:02.535Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "app_store",
+      "reviewId": "14037311637",
+      "permalink": "https://itunes.apple.com/ru/review?id=6764800879&type=Purple%20Software",
+      "date": "2026-05-07T08:49:46.000Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "theory",
+        "audio_positive",
+        "pronunciation_request"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "c0660438-1468-4627-ba09-65c7b475f7cc",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=c0660438-1468-4627-ba09-65c7b475f7cc",
+      "date": "2026-05-07T12:19:06.974Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "phrases",
+        "pronunciation_request"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "dfc1fcce-0cad-4beb-8580-e2f91b967be2",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=dfc1fcce-0cad-4beb-8580-e2f91b967be2",
+      "date": "2026-05-07T17:06:29.562Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "d57b5f5d-0c7f-4e0d-bd88-9ac5ddbf5444",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=d57b5f5d-0c7f-4e0d-bd88-9ac5ddbf5444",
+      "date": "2026-05-09T21:18:47.801Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "theory",
+        "audio_problem",
+        "monetization_access"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "4a932e03-bed6-44de-af8f-0560bddfdbb1",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=4a932e03-bed6-44de-af8f-0560bddfdbb1",
+      "date": "2026-05-11T16:19:12.154Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "b1513ea5-9a1c-4a5d-a1a2-f3c16675ab08",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=b1513ea5-9a1c-4a5d-a1a2-f3c16675ab08",
+      "date": "2026-05-12T13:32:18.839Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "repetition",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "21a92821-5233-4d7a-99cf-ec485f92720d",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=21a92821-5233-4d7a-99cf-ec485f92720d",
+      "date": "2026-05-13T10:19:41.806Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "ux"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "9f9d1f20-dc08-4b70-828f-29346723fd25",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=9f9d1f20-dc08-4b70-828f-29346723fd25",
+      "date": "2026-05-14T05:46:23.965Z",
+      "rating": 2,
+      "language": "ru",
+      "themeCodes": [
+        "ux",
+        "phrases",
+        "progress_account"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "ca2001ef-b370-41a3-9a9f-ec0fe3f98e1c",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=ca2001ef-b370-41a3-9a9f-ec0fe3f98e1c",
+      "date": "2026-05-14T17:37:03.990Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "theory",
+        "phrases",
+        "social"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "8eea4af7-890d-45af-b44f-54ae66adfe1f",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=8eea4af7-890d-45af-b44f-54ae66adfe1f",
+      "date": "2026-05-14T20:24:14.387Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "560f1473-a1ad-4242-8a54-17a5688701dd",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=560f1473-a1ad-4242-8a54-17a5688701dd",
+      "date": "2026-05-15T13:01:35.448Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "08771b8d-bede-449b-ac0d-24c90c1f257b",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=08771b8d-bede-449b-ac0d-24c90c1f257b",
+      "date": "2026-05-17T16:34:38.675Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "32ef0636-5206-4fa2-9107-ead1f19302e8",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=32ef0636-5206-4fa2-9107-ead1f19302e8",
+      "date": "2026-05-17T18:58:42.153Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "62e3dc54-427f-4374-9645-4bd89f926668",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=62e3dc54-427f-4374-9645-4bd89f926668",
+      "date": "2026-05-20T11:29:54.715Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "e920bff5-eaf3-4c2e-ac7a-67de991cd41d",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=e920bff5-eaf3-4c2e-ac7a-67de991cd41d",
+      "date": "2026-05-21T03:30:22.768Z",
+      "rating": 1,
+      "language": "ru",
+      "themeCodes": [
+        "monetization_access",
+        "payment",
+        "progress_account"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "f42302e0-a913-4ac1-ab44-5f570f94a16a",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=f42302e0-a913-4ac1-ab44-5f570f94a16a",
+      "date": "2026-05-21T13:59:04.904Z",
+      "rating": 1,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "729f51e1-87ed-4416-8c56-42a9e40ab047",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=729f51e1-87ed-4416-8c56-42a9e40ab047",
+      "date": "2026-05-22T16:07:32.158Z",
+      "rating": 1,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "ab0cece7-8cc7-4994-b4e1-c3ddb319fb36",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=ab0cece7-8cc7-4994-b4e1-c3ddb319fb36",
+      "date": "2026-05-24T04:16:57.106Z",
+      "rating": 2,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "monetization_access"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "bc453db2-ddb0-456b-adae-d3747f2ef1f5",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=bc453db2-ddb0-456b-adae-d3747f2ef1f5",
+      "date": "2026-05-24T07:48:12.203Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "repetition",
+        "phrases",
+        "social"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "9d742a58-a59e-4503-9ae3-4ee5ea8a87df",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=9d742a58-a59e-4503-9ae3-4ee5ea8a87df",
+      "date": "2026-05-27T09:15:53.138Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "theory",
+        "phrases"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "ab021d80-08ea-4c78-9167-4953f4c06f05",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=ab021d80-08ea-4c78-9167-4953f4c06f05",
+      "date": "2026-05-27T10:36:14.170Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "ux"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "961fe508-a2bf-4d4a-98bd-c0a5f39c9ada",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=961fe508-a2bf-4d4a-98bd-c0a5f39c9ada",
+      "date": "2026-05-28T04:33:35.460Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "4d85f7b8-0954-4465-b7ea-4ec7caeaf6ec",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=4d85f7b8-0954-4465-b7ea-4ec7caeaf6ec",
+      "date": "2026-06-04T05:10:15.740Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "theory"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "51a610b3-2228-4ca9-97bd-cb135ec9c4b6",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=51a610b3-2228-4ca9-97bd-cb135ec9c4b6",
+      "date": "2026-06-08T20:30:47.351Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "monetization_access",
+        "payment"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "b9e24708-d672-41d0-98ac-7daa0ca84eda",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=b9e24708-d672-41d0-98ac-7daa0ca84eda",
+      "date": "2026-06-09T12:28:00.356Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "app_store",
+      "reviewId": "14179651541",
+      "permalink": "https://itunes.apple.com/ru/review?id=6764800879&type=Purple%20Software",
+      "date": "2026-06-13T23:21:37.000Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "phrases",
+        "payment",
+        "pronunciation_request"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "6b513801-ef75-4765-8702-05e16b4be83f",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=6b513801-ef75-4765-8702-05e16b4be83f",
+      "date": "2026-06-17T13:17:40.152Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "66ca7da0-0e91-4639-9b59-f0449fe5d6cc",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=66ca7da0-0e91-4639-9b59-f0449fe5d6cc",
+      "date": "2026-06-18T18:32:35.641Z",
+      "rating": 5,
+      "language": "und",
+      "themeCodes": [
+        "uncoded"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "b5590388-2c38-4b13-84fc-f8c45f4e061c",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=b5590388-2c38-4b13-84fc-f8c45f4e061c",
+      "date": "2026-06-22T08:35:19.623Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "4e81b619-cd7a-44f4-901b-af527112a0af",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=4e81b619-cd7a-44f4-901b-af527112a0af",
+      "date": "2026-06-30T03:18:59.728Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "social"
+      ]
+    },
+    {
+      "store": "app_store",
+      "reviewId": "14249453650",
+      "permalink": "https://itunes.apple.com/us/review?id=6764800879&type=Purple%20Software",
+      "date": "2026-07-01T13:18:21.000Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "phrases",
+        "social",
+        "payment"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "948026ab-283d-4fea-a80c-7afff5217f7b",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=948026ab-283d-4fea-a80c-7afff5217f7b",
+      "date": "2026-07-05T15:07:58.911Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "audio_problem",
+        "monetization_access"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "3b723a36-3c35-45ad-8268-b3cd9cef2864",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=3b723a36-3c35-45ad-8268-b3cd9cef2864",
+      "date": "2026-07-10T03:47:44.691Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "motivation",
+        "ux",
+        "repetition",
+        "theory",
+        "payment"
+      ]
+    },
+    {
+      "store": "google_play",
+      "reviewId": "a0df4635-4c6b-425b-9dec-3b024a5fd60c",
+      "permalink": "https://play.google.com/store/apps/details?id=app.phraseman&reviewId=a0df4635-4c6b-425b-9dec-3b024a5fd60c",
+      "date": "2026-07-10T12:44:06.962Z",
+      "rating": 5,
+      "language": "ru",
+      "themeCodes": [
+        "uncoded"
+      ]
+    }
+  ]
+}

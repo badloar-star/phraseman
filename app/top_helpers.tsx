@@ -19,10 +19,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import ContentWrap from '../components/ContentWrap';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -30,7 +31,6 @@ import { triLang } from '../constants/i18n';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
-import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal';
@@ -42,13 +42,38 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { safeRouterBack } from './navigation_back';
 import { logFeatureOpened } from './firebase';
 import { loadTopHelpers, type TopHelperRow } from './firestore_top_helpers';
+import { captureAccountGeneration } from './account_generation';
+import {
+  peekScreenSnapshotForToken,
+  rememberScreenSnapshot,
+  screenSnapshotKey,
+} from './screen_snapshot_store';
+
+/** Идентификатор экрана в общем дисковом снапшоте (screen_snapshot_store). */
+const TOP_HELPERS_SCREEN_ID = 'top-helpers';
+
+/** Ровно то, что нужно нарисовать первый кадр без скелетонов. */
+type TopHelpersWarmSnapshot = Readonly<{
+  rows: TopHelperRow[];
+  myUid: string;
+  description: string;
+  enabled: boolean;
+}>;
 import SkeletonBlock from '../components/SkeletonShimmer';
 
 const HELPERS_AVATAR_SIZE = 52;
 const HELPERS_ACCENT = '#F59E0B';
 
+// Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
+// свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
+const LEGEND_CARD_NAME_GOLD = {
+  color: '#F5C842',
+  textShadowColor: 'rgba(245,200,66,0.45)',
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 6,
+} as const;
+
 function boardTitle(lang: string): string {
-  // Название единое для всех языков (как «Help Board») — бренд раздела.
   return triLang(lang as never, {
     ru: 'Топ хелперов', uk: 'Топ хелперів', es: 'Top Helpers', 'pt-BR': 'Top Helpers',
     vi: 'Top Helpers', id: 'Top Helpers', tr: 'Top Helpers', pl: 'Top Helpers',
@@ -125,16 +150,26 @@ function HelperSkeletonRows({ borderColor, bgCard }: { borderColor: string; bgCa
 
 export default function TopHelpersScreen() {
   const router = useRouter();
+  const { source } = useLocalSearchParams<{ source?: string }>();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
-  const [rows, setRows] = useState<TopHelperRow[]>([]);
-  const [myUid, setMyUid] = useState('');
-  const [description, setDescription] = useState('');
-  const [enabled, setEnabled] = useState(true);
-  const [loading, setLoading] = useState(true);
+  // зачем: экран открывался со скелетон-строками при КАЖДОМ холодном старте —
+  // данных не было вообще до ответа сети. Читаем снапшот прошлой сессии синхронно
+  // (его положил бутстрап одним общим чтением) и рисуем настоящий список с первого
+  // кадра; loadTopHelpers ниже всё равно отработает и тихо уточнит цифры.
+  const renderToken = captureAccountGeneration();
+  const helpersWarm = peekScreenSnapshotForToken<TopHelpersWarmSnapshot>(
+    TOP_HELPERS_SCREEN_ID,
+    renderToken,
+  );
+  const [rows, setRows] = useState<TopHelperRow[]>(() => helpersWarm?.rows ?? []);
+  const [myUid, setMyUid] = useState(() => helpersWarm?.myUid ?? '');
+  const [description, setDescription] = useState(() => helpersWarm?.description ?? '');
+  const [enabled, setEnabled] = useState(() => helpersWarm?.enabled ?? true);
+  const [loading, setLoading] = useState(() => helpersWarm == null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
 
   const load = useCallback(async () => {
@@ -144,12 +179,24 @@ export default function TopHelpersScreen() {
       setMyUid(snap.myUid);
       setDescription(snap.description);
       setEnabled(snap.enabled);
+      // зачем: зеркалим результат на диск, чтобы СЛЕДУЮЩЕЕ открытие (в том числе
+      // после холодного старта) нарисовало список сразу, без скелетон-строк.
+      // Запись фоновая и отложенная — UI её не ждёт, Firestore не трогается.
+      rememberScreenSnapshot<TopHelpersWarmSnapshot>(
+        screenSnapshotKey(TOP_HELPERS_SCREEN_ID, renderToken),
+        {
+          rows: snap.rows,
+          myUid: snap.myUid,
+          description: snap.description,
+          enabled: snap.enabled,
+        },
+      );
     } catch {
       // сеть/парсинг упали — оставляем что было (в т.ч. кэш из snap)
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [renderToken]);
 
   useEffect(() => {
     logFeatureOpened('top_helpers');
@@ -251,14 +298,12 @@ export default function TopHelpersScreen() {
             </PremiumAvatarHalo>
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
-              <View style={{ flexShrink: 1, minWidth: 0 }}>
+            <View style={{ minWidth: 0, overflow: 'hidden' }}>
+              <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
                 {hasLeagueCrown ? (
                   <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayCrownCount} />
-                ) : item.isPremium ? (
+                ) : item.isPremium || item.isVip ? (
                   <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
-                ) : item.isVip ? (
-                  <VipGreenUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
                 ) : (
                   <Text
                     numberOfLines={1}
@@ -266,14 +311,15 @@ export default function TopHelpersScreen() {
                       fontSize: isTop3 ? 16 : 15,
                       color: t.textPrimary,
                       fontWeight: isMe || isTop3 ? '700' : '600',
+                      ...((item.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null),
                     }}
                   >
                     {item.displayName}
                   </Text>
                 )}
               </View>
-              <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} />
             </View>
+            <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} style={{ marginTop: 3 }} />
             <Text numberOfLines={1} style={{ color: HELPERS_ACCENT, fontSize: f.label, marginTop: 2, fontWeight: '700' }}>
               {helperTitle(item.confirmed, lang)}
             </Text>
@@ -316,29 +362,12 @@ export default function TopHelpersScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
-        {/* Шапка: назад + заголовок */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 12,
-            paddingVertical: 10,
-            gap: 8,
-          }}
-        >
-          <Pressable
-            onPress={() => {
-              hapticTap();
-              safeRouterBack(router);
-            }}
-            hitSlop={10}
-            style={{ padding: 6 }}
-          >
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
-          </Pressable>
-          <Ionicons name="ribbon" size={22} color={HELPERS_ACCENT} />
-          <Text style={{ fontSize: 20, fontWeight: '800', color: t.textPrimary }}>{boardTitle(lang)}</Text>
-        </View>
+        {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
+            с центрированным заголовком и крестиком вместо стрелки «назад». */}
+        <SectionSheetHeader
+          title={boardTitle(lang)}
+          onClose={() => safeRouterBack(router, source === 'settings' ? '/(tabs)/settings' as any : undefined)}
+        />
 
         <ContentWrap>
           {!enabled ? (

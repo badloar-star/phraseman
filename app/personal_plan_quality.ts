@@ -10,11 +10,6 @@ import { getLessonData } from './lesson_data_all';
 import { tasksForMinutes } from './personal_plan_catalog';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
 import {
-  getPersonalPlanQuizCoverage,
-  getPersonalPlanQuizPhrases,
-  type PersonalPlanQuizSource,
-} from './personal_plan_quizzes';
-import {
   getPersonalPlanMissingWordItems,
   validatePersonalPlanMissingWordItemQuality,
 } from './personal_plan_missing_word_items';
@@ -147,10 +142,6 @@ function userCopyForDay(day: PlanDay): string {
   });
 }
 
-function hasLessonTwoBeforeQuiz(day: PlanDay): boolean {
-  return day.tasks.some((task) => task.destination.type === 'lesson' && task.destination.lessonId === 2);
-}
-
 function phraseText(phrase: LessonPhrase): string {
   return [
     phrase.english,
@@ -207,53 +198,10 @@ function phraseGrammarTagsForDay(day: PlanDay): string[] {
   return [...tags];
 }
 
-function sourceId(source: PersonalPlanQuizSource): string {
-  if (source.type === 'lesson_phrase') return `lesson_phrase:${source.id}`;
-  return `plan_phrase:${source.lessonId}:${source.phraseId}`;
-}
-
-function collectAvailableCoverageSources(day: PlanDay): Set<string> {
-  const available = new Set<string>();
-
-  for (const task of day.tasks) {
-    if (task.destination.type === 'lesson') {
-      for (const id of task.destination.requiredPhraseIds ?? []) {
-        available.add(`lesson_phrase:${id}`);
-      }
-    }
-    if (task.destination.type === 'plan_phrase_lesson' || task.destination.type === 'plan_phrase_recall') {
-      const lesson = getPersonalPlanPhraseLesson(task.destination.lessonId);
-      for (const phrase of lesson?.phrases.slice(0, task.destination.requiredPhrases) ?? []) {
-        available.add(`plan_phrase:${task.destination.lessonId}:${String(phrase.id)}`);
-      }
-    }
-  }
-
-  return available;
-}
-
-function buildQuizQuestionSources(day: PlanDay): PersonalPlanDayPassport['coverage']['quizQuestionSources'] {
-  const available = collectAvailableCoverageSources(day);
-  const result: PersonalPlanDayPassport['coverage']['quizQuestionSources'] = [];
-
-  for (const task of day.tasks) {
-    if (task.destination.type !== 'quiz') continue;
-    const quiz = getPersonalPlanQuizPhrases(task.destination.quizId, 'Alex') ?? [];
-    const coverage = getPersonalPlanQuizCoverage(task.destination.quizId);
-    for (const item of quiz) {
-      const questionId = item.questionId ?? '';
-      const sources: PersonalPlanQuizSource[] = coverage?.[questionId] ?? [];
-      const sourceIds = sources.map(sourceId);
-      result.push({
-        quizId: task.destination.quizId,
-        questionId,
-        sourceIds,
-        covered: sourceIds.some((id: string) => available.has(id)),
-      });
-    }
-  }
-
-  return result;
+function buildQuizQuestionSources(_day: PlanDay): PersonalPlanDayPassport['coverage']['quizQuestionSources'] {
+  // Retired quiz tasks remain visible in the passport's quizIds compatibility list,
+  // but no deleted runtime content is loaded to manufacture question-level coverage.
+  return [];
 }
 
 function validateTaskOrder(
@@ -333,69 +281,6 @@ function validatePhraseDestination(
       day,
       'missing_teaching_notes',
       `Key route vocabulary "${wordWithoutVocabNote.correct || wordWithoutVocabNote.text}" must have teachingNote`,
-      task,
-    );
-  }
-}
-
-function validateQuizDestination(
-  issues: PersonalPlanDayQualityIssue[],
-  plan: PersonalPlanDefinition,
-  day: PlanDay,
-  task: PlanDailyTask,
-  destination: Extract<PlanTaskDestination, { type: 'quiz' }>,
-): void {
-  const quiz = getPersonalPlanQuizPhrases(destination.quizId, 'Alex');
-  if (!quiz) {
-    addIssue(issues, plan, day, 'missing_quiz', `Missing quiz "${destination.quizId}"`, task);
-    return;
-  }
-  if (destination.questionCount !== 10 || quiz.length !== 10) {
-    addIssue(issues, plan, day, 'quiz_question_count', `Quiz "${destination.quizId}" must contain 10 questions`, task);
-  }
-  const quizItemWithoutPerChoiceExplanation = quiz.find((item) => {
-    const choiceCount = item.choices.length;
-    return item.explanations.length !== choiceCount || item.explanationsUK.length !== choiceCount;
-  });
-  if (quizItemWithoutPerChoiceExplanation) {
-    addIssue(
-      issues,
-      plan,
-      day,
-      'quiz_explanations_count',
-      `Quiz "${destination.quizId}" must explain every answer choice: ${String(quizItemWithoutPerChoiceExplanation.questionId)}`,
-      task,
-    );
-  }
-  if (!hasLessonTwoBeforeQuiz(day)) {
-    const hasQuestionGrammar = quiz.some((item) => {
-      const texts = [item.ru, item.uk, ...item.choices];
-      return texts.some((text) => text.includes('?') || /^(Are|Is|Am)\b/i.test(text));
-    });
-    if (hasQuestionGrammar) {
-      addIssue(issues, plan, day, 'forbidden_question_grammar', `Quiz "${destination.quizId}" uses questions before lesson 2`, task);
-    }
-  }
-
-  const coverage = getPersonalPlanQuizCoverage(destination.quizId);
-  if (!coverage) {
-    addIssue(issues, plan, day, 'missing_quiz_coverage', `Quiz "${destination.quizId}" must declare source phrases`, task);
-    return;
-  }
-
-  const available = collectAvailableCoverageSources(day);
-  const uncoveredItem = quiz.find((item) => {
-    const questionId = item.questionId ?? '';
-    const sources: PersonalPlanQuizSource[] = coverage[questionId] ?? [];
-    return sources.length === 0 || !sources.some((source: PersonalPlanQuizSource) => available.has(sourceId(source)));
-  });
-  if (uncoveredItem) {
-    addIssue(
-      issues,
-      plan,
-      day,
-      'uncovered_quiz_item',
-      `Quiz "${destination.quizId}" asks "${String(uncoveredItem.questionId)}" before its source phrase is in the day`,
       task,
     );
   }
@@ -482,7 +367,6 @@ export function validatePersonalPlanDay(
     }
     if (task.destination.type === 'quiz') {
       addIssue(issues, plan, day, 'plan_quiz_disabled', 'Personal plan days must not include quiz tasks', task);
-      validateQuizDestination(issues, plan, day, task, task.destination);
     }
     if (task.destination.type === 'plan_exercise') {
       validatePlanExerciseDestination(issues, plan, day, task, task.destination);

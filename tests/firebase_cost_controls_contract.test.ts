@@ -15,7 +15,6 @@ describe('Firebase cost controls', () => {
     for (const name of [
       'communityGetPackRatingSummary',
       'communitySubmitPackRating',
-      'leagueChatToggleLike',
     ]) {
       expect(indexSource).not.toContain(name);
       expect(packageJson).not.toContain(`functions:${name}`);
@@ -41,16 +40,17 @@ describe('Firebase cost controls', () => {
 
   it('keeps referral cost guardrails: no code generation on sign-in, lazy invite link on share, no referral reads in friends sync', () => {
     const authProviderSource = read('app/auth_provider.ts');
-    const inviteSource = read('app/settings_invite_friend.tsx');
+    // зачем: экран settings_invite_friend удалён (2026-07-25) — cloud invite
+    // теперь строится только по явному нажатию «Пригласить» на /referrals.
+    const referralsSource = read('app/referrals.tsx');
     const friendsSource = read('app/firestore_friends.ts');
 
     // Код выдаётся лениво (по «Пригласить»), а не на каждый вход.
     expect(authProviderSource).not.toContain("import('./referral_system')");
     expect(authProviderSource).not.toContain('generateReferralCode');
-    // Экран настроек делает cloud invite только по явному нажатию Share, не при render/load.
-    expect(inviteSource).toContain('const onSendInvite = useCallback(async () => {');
-    expect(inviteSource).toContain('await buildCloudReferralInviteShare');
-    expect(inviteSource).not.toContain('isReferralCloudEnabled');
+    // Экран рефералов делает cloud invite только по явному нажатию Share, не при render/load.
+    expect(referralsSource).toContain('const handleInvite = useCallback(async () => {');
+    expect(referralsSource).toContain('await buildCloudReferralInviteShare');
     // Синк друзей не читает реферальные коллекции. ЕДИНСТВЕННОЕ разрешённое чтение
     // referral_codes — явный поиск по введённому коду (lookupInviteCode, dd94792b0:
     // друг вводит РЕФЕРАЛЬНЫЙ код вместо friend-кода — иначе «код не найден»).
@@ -96,8 +96,9 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps new web and admin/background cost controls cheap by default', () => {
+    // зачем: functions/src/retired_community_features.ts удалён вместе с
+    // community-фичами Арены — его 2 проверки ниже убраны, остальные живые остаются.
     const adminPushSource = read('functions/src/admin_push_jobs.ts');
-    const helpBoardSource = read('functions/src/help_board.ts');
     const siteStatsSource = read('functions/src/site_stats.ts');
     const webStatsSource = read('knowly-www/assets/stats.js');
     const startSource = read('knowly-www/assets/start.js');
@@ -105,23 +106,12 @@ describe('Firebase cost controls', () => {
 
     expect(adminPushSource).toContain("schedule: 'every 6 hours'");
     expect(adminPushSource).not.toContain("schedule: '*/30 * * * *'");
-    expect(helpBoardSource).toContain("schedule: '0 * * * *'");
     expect(siteStatsSource).toContain('const rawEvents = Array.isArray(body.events)');
     expect(webStatsSource).toContain('{ events: initialEvents }');
     expect(startSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");
     expect(startSource).toContain('PRICE_CACHE_TTL_MS = 60 * 60 * 1000');
     expect(thanksSource).toContain('var MAX_ATTEMPTS = 12');
     expect(thanksSource).toContain('function nextPollDelayMs()');
-  });
-
-  it('does not deploy the dormant Constellations minute cron', () => {
-    const indexSource = read('functions/src/index.ts');
-    const packageJson = read('functions/package.json');
-
-    expect(indexSource).not.toContain('export const constellationCron');
-    expect(packageJson).not.toContain('functions:constellationCron');
-    expect(indexSource).toContain('onConstellationQueueWrite');
-    expect(indexSource).toContain('constellationSubmitAction');
   });
 
   it('keeps duplicate identity cleanup callable-driven but not scheduled', () => {
@@ -175,7 +165,7 @@ describe('Firebase cost controls', () => {
     expect(publicProfileSource).toContain("PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1'");
     expect(publicProfileSource).toContain('PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000');
     expect(publicProfileSource).toContain("collection('public_profiles').doc(stableId).set");
-    expect(publicProfileSource).toContain("collection('arena_profiles').doc(arenaAuth).set");
+    expect(publicProfileSource).not.toContain("collection('arena_profiles')");
     expect(publicProfileSource).toContain('displayHash');
     expect(xpSource).toMatch(/syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'daily_xp'/);
     expect(avatarSource).toMatch(/syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'display_change'/);
@@ -187,7 +177,7 @@ describe('Firebase cost controls', () => {
 
   it('defers non-critical avatar cosmetics while profile-card Pro purchase syncs immediately', () => {
     const avatarSource = read('app/avatar_select.tsx');
-    const profileCardSource = read('app/profile_card_upgrade.tsx');
+    const profileCardSource = read('components/PlayerProfileModal.tsx');
 
     expect(avatarSource).toContain('AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
     expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
@@ -196,8 +186,8 @@ describe('Firebase cost controls', () => {
 
     expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
     expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\(\);/g) ?? []).length).toBe(2);
-    expect(profileCardSource).not.toContain("syncProfileCardDisplayToCloud('deferred')");
+    expect((profileCardSource.match(/syncToCloud\(\{ forceNow: true \}\)/g) ?? []).length).toBe(1);
+    expect(profileCardSource).not.toContain('syncToCloud({ deferMs:');
   });
 
   it('updates percentile stats daily and keeps full-scan friend/premium cron cadence modest', () => {
@@ -213,6 +203,17 @@ describe('Firebase cost controls', () => {
     expect(premiumExpirySource).toContain("schedule: 'every 12 hours'");
     expect(friendsFeedSource).toContain('const CACHE_TTL_MS = 6 * 60 * 60 * 1000');
     expect(friendsScreenSource).toContain('useEffect(() => { void load(false); }, [load]);');
+  });
+
+  it('prunes the friend feed with a bounded window instead of reading the whole subcollection', () => {
+    // зачем: pruneOldEvents вызывается из appendFriendEvent, то есть ВНУТРИ полного
+    // постраничного обхода всех пользователей (крон каждые 12ч). Безлимитный
+    // `.orderBy('ts','desc').get()` читал всю подколлекцию my_events целиком ради
+    // удаления хвоста за пределами 15 свежих — лишние чтения умножались на размер базы.
+    const friendActivitySource = read('functions/src/friend_activity_mirror.ts');
+    expect(friendActivitySource).toContain('.offset(MAX_EVENTS_PER_FRIEND)');
+    expect(friendActivitySource).toContain('.limit(PRUNE_BATCH_LIMIT)');
+    expect(friendActivitySource).not.toMatch(/\.orderBy\('ts', 'desc'\)\s*\.get\(\)/);
   });
 
   it('does not let native App Check mint placeholder tokens before a real provider is configured', () => {
@@ -261,8 +262,9 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps second-layer cost guards for low-value reads and callables', () => {
+    // зачем: app/services/arena_hill.ts удалён вместе с Ареной — его 4 проверки
+    // ниже убраны, живая проверка daily_phrase_system/indexes остаётся.
     const dailyPhraseSource = read('app/daily_phrase_system.ts');
-    const arenaHillSource = read('app/services/arena_hill.ts');
     const indexes = read('firestore.indexes.json');
 
     expect(dailyPhraseSource).toContain("where('scheduledDate', '==', date)");
@@ -271,11 +273,6 @@ describe('Firebase cost controls', () => {
     expect(dailyPhraseSource).not.toContain('.limit(500)');
     expect(indexes).toContain('"collectionGroup": "daily_phrases"');
     expect(indexes).toContain('"fieldPath": "scheduledDate"');
-
-    expect(arenaHillSource).toContain("ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1'");
-    expect(arenaHillSource).toContain('ARENA_HILL_TOP_CACHE_TTL_MS = 30 * 60 * 1000');
-    expect(arenaHillSource).toContain('readStoredArenaHillTopCache');
-    expect(arenaHillSource).toContain('writeStoredArenaHillTopCache');
   });
 
   it('keeps hot progress and league callables from repairing identity links on every call', () => {
@@ -310,10 +307,10 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps admin VIP writes canonical so the orphan reconcile trigger can be retired', () => {
-    // Раньше существовали отдельные admin/legacy/index.html и admin/v2/* —
-    // их объединили в один канонический admin/index.html (v2 удалена). Проверяем
-    // канонические VIP-записи в нём.
-    const adminSource = read('admin/index.html');
+    // зачем: admin/index.html сейчас — это редирект-заглушка на /legacy.html,
+    // который hosting раздаёт из admin/v2/legacy.html (единственная рабочая
+    // админка, см. CLAUDE.md). Проверяем канонические VIP-записи в живом файле.
+    const adminSource = read('admin/v2/legacy.html');
 
     expect(adminSource).toContain('resolveAdminVipWriteTarget');
     expect(adminSource).toContain('identityHidden: data.identityHidden === true');

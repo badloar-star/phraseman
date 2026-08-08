@@ -1,0 +1,301 @@
+video|slot|role|phrase_en|ipa|translation_ru
+1|1|source_hook|SHUT UP|ʃʌt ʌp|ЗАТКНИСЬ
+1|2|source|I AM HOME|aɪ əm həʊm|Я ДОМА
+1|3|source|OPEN THE DOOR|ˈəʊpən ðə dɔː|ОТКРОЙ ДВЕРЬ
+1|4|source|I LIKE THIS|aɪ laɪk ðɪs|МНЕ ЭТО НРАВИТСЯ
+1|5|source|SHE IS HERE|ʃiː ɪz hɪə|ОНА ЗДЕСЬ
+2|1|source_hook|TURN LEFT|tɜːn left|ПОВЕРНИ НАЛЕВО
+2|2|source|DON'T TOUCH ME|dəʊnt tʌtʃ miː|НЕ ТРОГАЙ МЕНЯ
+2|3|source|WHAT IS THIS?|wɒt ɪz ðɪs|ЧТО ЭТО?
+2|4|source|I NEED HELP|aɪ niːd help|МНЕ НУЖНА ПОМОЩЬ
+2|5|source|CLOSE THE WINDOW|kləʊz ðə ˈwɪndəʊ|ЗАКРОЙ ОКНО
+3|1|source_hook|HE IS READY|hiː ɪz ˈredi|ОН ГОТОВ
+3|2|source|I FEEL GOOD|aɪ fiːl ɡʊd|Я ЧУВСТВУЮ СЕБЯ ХОРОШО
+3|3|source|LEAVE ME ALONE|liːv miː əˈləʊn|ОСТАВЬ МЕНЯ В ПОКОЕ
+3|4|source|COME WITH ME|kʌm wɪð miː|ПОЙДЁМ СО МНОЙ
+3|5|source|STOP RIGHT NOW|stɒp raɪt naʊ|ОСТАНОВИСЬ ПРЯМО СЕЙЧАС
+4|1|source_hook|WE ARE LATE|wi ɑː leɪt|МЫ ОПАЗДЫВАЕМ
+4|2|source|CALL ME|kɔːl miː|ПОЗВОНИ МНЕ
+4|3|source|IT IS HOT|ɪt ɪz hɒt|ЖАРКО
+4|4|source|GET OUT NOW|ɡet aʊt naʊ|УБИРАЙСЯ ОТСЮДА
+4|5|source|I AM BUSY|aɪ əm ˈbɪzi|Я ЗАНЯТ
+5|1|source_hook|SIT DOWN|sɪt daʊn|САДИСЬ
+5|2|source|WHAT ARE YOU DOING?|wɒt ɑː juː ˈduːɪŋ|ЧТО ТЫ ДЕЛАЕШЬ?
+5|3|source|I WORK TODAY|aɪ wɜːk təˈdeɪ|Я РАБОТАЮ СЕГОДНЯ
+5|4|source|THIS IS MINE|ðɪs ɪz maɪn|ЭТО МОЁ
+5|5|source|LOOK AT MY FACE|lʊk ət maɪ feɪs|ПОСМОТРИ МНЕ В ЛИЦО
+6|1|source_hook|HE IS TIRED|hiː ɪz ˈtaɪəd|ОН УСТАЛ
+6|2|source|I WANT FOOD|aɪ wɒnt fuːd|Я ХОЧУ ЕСТЬ
+6|3|source|WAIT HERE|weɪt hɪə|ПОДОЖДИ ЗДЕСЬ
+6|4|source|SHE IS HAPPY|ʃiː ɪz ˈhæpi|ОНА СЧАСТЛИВА
+6|5|source|I FEEL BAD|aɪ fiːl bæd|Я ЧУВСТВУЮ СЕБЯ ПЛОХО
+7|1|source_hook|SHUT YOUR MOUTH|ʃʌt jɔː maʊθ|ЗАКРОЙ СВОЙ РОТ
+7|2|source|WHAT DO YOU WANT?|wɒt də juː wɒnt|ЧТО ТЫ ХОЧЕШЬ?
+7|3|source|I LIKE MUSIC|aɪ laɪk ˈmjuːzɪk|Я ЛЮБЛЮ МУЗЫКУ
+7|4|source|TAKE A SEAT|teɪk ə siːt|ПРИСАЖИВАЙСЯ
+7|5|source|HE IS SICK|hiː ɪz sɪk|ОН БОЛЕЕТ
+8|1|source_hook|THIS IS GOOD|ðɪs ɪz ɡʊd|ЭТО ХОРОШО
+8|2|source|DON'T LOOK AT ME|dəʊnt lʊk ət miː|НЕ СМОТРИ НА МЕНЯ
+8|3|source|LOOK AT ME|lʊk ət miː|ПОСМОТРИ НА МЕНЯ
+8|4|source|I NEED WATER|aɪ niːd ˈwɔːtə|МНЕ НУЖНА ВОДА
+8|5|source|CLOSE THE DOOR|kləʊz ðə dɔː|ЗАКРОЙ ДВЕРЬ
+9|1|source_hook|WE ARE READY|wi ɑː ˈredi|МЫ ГОТОВЫ
+9|2|source|I AM SORRY|aɪ əm ˈsɒri|МНЕ ЖАЛЬ
+9|3|source|STOP STARING|stɒp ˈsteərɪŋ|ХВАТИТ ПЯЛИТЬСЯ
+9|4|source|FOLLOW ME|ˈfɒləʊ miː|ИДИ ЗА МНОЙ
+9|5|source|I FEEL TIRED|aɪ fiːl ˈtaɪəd|Я УСТАЛ
+10|1|source_hook|OPEN YOUR EYES|ˈəʊpən jɔːr aɪz|ОТКРОЙ ГЛАЗА
+10|2|source|HE IS BACK|hiː ɪz bæk|ОН ВЕРНУЛСЯ
+10|3|source|THIS IS FUN|ðɪs ɪz fʌn|ЭТО ВЕСЕЛО
+10|4|source|BACK OFF NOW|bæk ɒf naʊ|ОТОЙДИ СЕЙЧАС ЖЕ
+10|5|source|STAY HERE|steɪ hɪə|СТОЙ ЗДЕСЬ
+11|1|source_hook|ARE YOU OKAY?|ɑː juː əʊˈkeɪ|ТЫ В ПОРЯДКЕ?
+11|2|source|I WANT MORE|aɪ wɒnt mɔː|Я ХОЧУ ЕЩЁ
+11|3|source|TURN AROUND|tɜːn əˈraʊnd|ПОВЕРНИСЬ
+11|4|source|SHE IS BUSY|ʃiː ɪz ˈbɪzi|ОНА ЗАНЯТА
+11|5|source|FIGHT ME|faɪt miː|ДЕРИСЬ СО МНОЙ
+12|1|source_hook|I FEEL COLD|aɪ fiːl kəʊld|МНЕ ХОЛОДНО
+12|2|source|COME INSIDE|kʌm ɪnˈsaɪd|ЗАХОДИ ВНУТРЬ
+12|3|source|WHAT DID YOU SAY?|wɒt dɪd juː seɪ|ЧТО ТЫ СКАЗАЛ?
+12|4|source|I NEED TIME|aɪ niːd taɪm|МНЕ НУЖНО ВРЕМЯ
+12|5|source|SIT HERE|sɪt hɪə|СЯДЬ ЗДЕСЬ
+13|1|source_hook|SAY IT AGAIN|seɪ ɪt əˈɡen|ПОВТОРИ ЭТО
+13|2|source|HE IS QUIET|hiː ɪz ˈkwaɪət|ОН ТИХИЙ
+13|3|source|THIS IS EASY|ðɪs ɪz ˈiːzi|ЭТО ЛЕГКО
+13|4|source|WAIT A BIT|weɪt ə bɪt|ПОДОЖДИ НЕМНОГО
+13|5|source|SHE IS LATE|ʃiː ɪz leɪt|ОНА ОПОЗДАЛА
+14|1|source_hook|I FEEL FINE|aɪ fiːl faɪn|Я В ПОРЯДКЕ
+14|2|source|KISS ME NOW|kɪs miː naʊ|ПОЦЕЛУЙ МЕНЯ
+14|3|source|GO AHEAD|ɡəʊ əˈhed|ДАВАЙ ВПЕРЁД
+14|4|source|WHAT IS GOING ON?|wɒt ɪz ˈɡəʊɪŋ ɒn|ЧТО ПРОИСХОДИТ?
+14|5|source|I WANT THAT|aɪ wɒnt ðæt|Я ХОЧУ ЭТО
+15|1|source_hook|CLOSE THE BOX|kləʊz ðə bɒks|ЗАКРОЙ КОРОБКУ
+15|2|source|HE IS WRONG|hiː ɪz rɒŋ|ОН НЕ ПРАВ
+15|3|source|YOU ARE UGLY|juː ɑːr ˈʌɡli|ТЫ УРОДЛИВЫЙ
+15|4|source|THIS IS BIG|ðɪs ɪz bɪɡ|ЭТО БОЛЬШОЕ
+15|5|source|MOVE BACK|muːv bæk|ОТОЙДИ НАЗАД
+16|1|source_hook|ARE YOU SERIOUS?|ɑː juː ˈsɪəriəs|ТЫ СЕРЬЁЗНО?
+16|2|source|I NEED MONEY|aɪ niːd ˈmʌni|МНЕ НУЖНЫ ДЕНЬГИ
+16|3|source|TURN THE LIGHT|tɜːn ðə laɪt|ВКЛЮЧИ СВЕТ
+16|4|source|I HATE YOU|aɪ heɪt juː|Я ТЕБЯ НЕНАВИЖУ
+16|5|source|WE ARE HERE|wi ɑː hɪə|МЫ ЗДЕСЬ
+17|1|source_hook|I FEEL HAPPY|aɪ fiːl ˈhæpi|Я СЧАСТЛИВ
+17|2|source|WALK WITH ME|wɔːk wɪð miː|ГУЛЯЙ СО МНОЙ
+17|3|source|WHAT IS YOUR NAME?|wɒt ɪz jɔː neɪm|КАК ТЕБЯ ЗОВУТ?
+17|4|source|I LIKE YOU|aɪ laɪk juː|ТЫ МНЕ НРАВИШЬСЯ
+17|5|source|HIT ME THEN|hɪt miː ðen|ТОГДА УДАРЬ МЕНЯ
+18|1|source_hook|OPEN THE BAG|ˈəʊpən ðə bæɡ|ОТКРОЙ СУМКУ
+18|2|source|HE IS RIGHT|hiː ɪz raɪt|ОН ПРАВ
+18|3|source|THIS IS NEW|ðɪs ɪz njuː|ЭТО НОВОЕ
+18|4|source|STAND UP|stænd ʌp|ВСТАНЬ
+18|5|source|SHE IS NICE|ʃiː ɪz naɪs|ОНА МИЛАЯ
+19|1|source_hook|SMELL MY FEET|smel maɪ fiːt|ПОНЮХАЙ МОИ НОГИ
+19|2|source|I FEEL SICK|aɪ fiːl sɪk|МНЕ ПЛОХО
+19|3|source|COME BACK|kʌm bæk|ВЕРНИСЬ
+19|4|source|WHAT DO YOU MEAN?|wɒt də juː miːn|ЧТО ТЫ ИМЕЕШЬ В ВИДУ?
+19|5|source|I NEED SPACE|aɪ niːd speɪs|МНЕ НУЖНО ПРОСТРАНСТВО
+20|1|source_hook|TURN THE KEY|tɜːn ðə kiː|ПОВЕРНИ КЛЮЧ
+20|2|source|BITE ME|baɪt miː|УКУСИ МЕНЯ
+20|3|source|HE IS LOUD|hiː ɪz laʊd|ОН ГРОМКИЙ
+20|4|source|THIS IS HARD|ðɪs ɪz hɑːd|ЭТО СЛОЖНО
+20|5|source|STAY CALM|steɪ kɑːm|СОХРАНЯЙ СПОКОЙСТВИЕ
+21|1|source_hook|ARE YOU LOST?|ɑː juː lɒst|ТЫ ПОТЕРЯЛСЯ?
+21|2|source|I LIKE DOGS|aɪ laɪk dɒɡz|Я ЛЮБЛЮ СОБАК
+21|3|source|YOU ARE FAT|juː ɑː fæt|ТЫ ТОЛСТЫЙ
+21|4|source|OPEN THE FRIDGE|ˈəʊpən ðə frɪdʒ|ОТКРОЙ ХОЛОДИЛЬНИК
+21|5|source|SHE IS SAD|ʃiː ɪz sæd|ОНА ГРУСТНАЯ
+22|1|source_hook|I FEEL WEAK|aɪ fiːl wiːk|Я ЧУВСТВУЮ СЛАБОСТЬ
+22|2|source|WAIT FOR ME|weɪt fə miː|ПОДОЖДИ МЕНЯ
+22|3|source|I WANT PEACE|aɪ wɒnt piːs|Я ХОЧУ ПОКОЯ
+22|4|source|LICK THIS|lɪk ðɪs|ЛИЗНИ ЭТО
+22|5|source|CLOSE THE BOOK|kləʊz ðə bʊk|ЗАКРОЙ КНИГУ
+23|1|source_hook|HE IS CLEAN|hiː ɪz kliːn|ОН ЧИСТЫЙ
+23|2|source|THIS IS OLD|ðɪs ɪz əʊld|ЭТО СТАРОЕ
+23|3|source|GO WITH ME|ɡəʊ wɪð miː|ПОЙДЁМ СО МНОЙ
+23|4|source|I NEED QUIET|aɪ niːd ˈkwaɪət|МНЕ НУЖНА ТИШИНА
+23|5|source|PULL MY FINGER|pʊl maɪ ˈfɪŋɡə|ПОТЯНИ МОЙ ПАЛЕЦ
+24|1|source_hook|TURN THE PAGE|tɜːn ðə peɪdʒ|ПЕРЕВЕРНИ СТРАНИЦУ
+24|2|source|SHE IS READY|ʃiː ɪz ˈredi|ОНА ГОТОВА
+24|3|source|I FEEL STRONG|aɪ fiːl strɒŋ|Я ЧУВСТВУЮ СЕБЯ СИЛЬНЫМ
+24|4|source|COME THIS WAY|kʌm ðɪs weɪ|ИДИ СЮДА
+24|5|source|WHAT IS WRONG?|wɒt ɪz rɒŋ|ЧТО НЕ ТАК?
+25|1|source_hook|SLAP ME|slæp miː|УДАРЬ МЕНЯ
+25|2|source|I LIKE CATS|aɪ laɪk kæts|Я ЛЮБЛЮ КОШЕК
+25|3|source|OPEN THE WINDOW|ˈəʊpən ðə ˈwɪndəʊ|ОТКРОЙ ОКНО
+25|4|source|HE IS FAST|hiː ɪz fɑːst|ОН БЫСТРЫЙ
+25|5|source|THIS IS SAFE|ðɪs ɪz seɪf|ЭТО БЕЗОПАСНО
+26|1|source_hook|MOVE FORWARD|muːv ˈfɔːwəd|ДВИГАЙСЯ ВПЕРЁД
+26|2|source|PUNCH ME HERE|pʌntʃ miː hɪə|УДАРЬ МЕНЯ СЮДА
+26|3|source|ARE YOU REAL?|ɑː juː rɪəl|ТЫ НАСТОЯЩИЙ?
+26|4|source|I WANT ANSWERS|aɪ wɒnt ˈɑːnsəz|Я ХОЧУ ОТВЕТЫ
+26|5|source|CLOSE YOUR EYES|kləʊz jɔːr aɪz|ЗАКРОЙ ГЛАЗА
+27|1|source_hook|SHE IS ANGRY|ʃiː ɪz ˈæŋɡri|ОНА ЗЛАЯ
+27|2|source|I FEEL BETTER|aɪ fiːl ˈbetə|МНЕ ЛУЧШЕ
+27|3|source|CHOKE ME|tʃəʊk miː|ЗАДУШИ МЕНЯ
+27|4|source|WAIT INSIDE|weɪt ɪnˈsaɪd|ПОДОЖДИ ВНУТРИ
+27|5|source|I NEED REST|aɪ niːd rest|МНЕ НУЖЕН ОТДЫХ
+28|1|source_hook|TURN THE RADIO|tɜːn ðə ˈreɪdiəʊ|ВКЛЮЧИ РАДИО
+28|2|source|HE IS KIND|hiː ɪz kaɪnd|ОН ДОБРЫЙ
+28|3|source|THIS IS BORING|ðɪs ɪz ˈbɔːrɪŋ|ЭТО СКУЧНО
+28|4|source|SPANK ME|spæŋk miː|ОТШЛЁПАЙ МЕНЯ
+28|5|source|GO HOME|ɡəʊ həʊm|ИДИ ДОМОЙ
+29|1|source_hook|I LIKE RAIN|aɪ laɪk reɪn|Я ЛЮБЛЮ ДОЖДЬ
+29|2|source|OPEN THE MAP|ˈəʊpən ðə mæp|ОТКРОЙ КАРТУ
+29|3|source|SHE IS COOL|ʃiː ɪz kuːl|ОНА КРУТАЯ
+29|4|source|I FEEL READY|aɪ fiːl ˈredi|Я ГОТОВ
+29|5|source|UNDRESS ME|ʌnˈdres miː|РАЗДЕНЬ МЕНЯ
+30|1|source_hook|COME ON|kʌm ɒn|ДАВАЙ
+30|2|source|I WANT TRUTH|aɪ wɒnt truːθ|Я ХОЧУ ПРАВДУ
+30|3|source|CLOSE THE MAP|kləʊz ðə mæp|ЗАКРОЙ КАРТУ
+30|4|source|HE IS SHY|hiː ɪz ʃaɪ|ОН СТЕСНИТЕЛЬНЫЙ
+30|5|source|THIS IS SIMPLE|ðɪs ɪz ˈsɪmpəl|ЭТО ПРОСТО
+31|1|source_hook|SMELL THIS|smel ðɪs|ПОНЮХАЙ ЭТО
+31|2|source|STAY WITH ME|steɪ wɪð miː|ОСТАНЬСЯ СО МНОЙ
+31|3|source|ARE YOU NERVOUS?|ɑː juː ˈnɜːvəs|ТЫ НЕРВНИЧАЕШЬ?
+31|4|source|I NEED FOOD|aɪ niːd fuːd|МНЕ НУЖНА ЕДА
+31|5|source|TURN THE TV|tɜːn ðə ˌtiːˈviː|ВКЛЮЧИ ТЕЛЕВИЗОР
+32|1|source_hook|SHE IS BRAVE|ʃiː ɪz breɪv|ОНА СМЕЛАЯ
+32|2|source|HOLD MY HAND|həʊld maɪ hænd|ДЕРЖИ МОЮ РУКУ
+32|3|source|I FEEL CALM|aɪ fiːl kɑːm|Я СПОКОЕН
+32|4|source|GO OUT|ɡəʊ aʊt|ВЫЙДИ
+32|5|source|I LIKE MOVIES|aɪ laɪk ˈmuːviz|Я ЛЮБЛЮ ФИЛЬМЫ
+33|1|source_hook|OPEN THE GATE|ˈəʊpən ðə ɡeɪt|ОТКРОЙ ВОРОТА
+33|2|source|HE IS STRONG|hiː ɪz strɒŋ|ОН СИЛЬНЫЙ
+33|3|source|SQUEEZE ME|skwiːz miː|СОЖМИ МЕНЯ
+33|4|source|THIS IS FAIR|ðɪs ɪz feə|ЭТО ЧЕСТНО
+33|5|source|MOVE CLOSER|muːv ˈkləʊsə|ПОДОЙДИ БЛИЖЕ
+34|1|source_hook|I WANT CONTROL|aɪ wɒnt kənˈtrəʊl|Я ХОЧУ КОНТРОЛЬ
+34|2|source|SHE IS QUIET|ʃiː ɪz ˈkwaɪət|ОНА ТИХАЯ
+34|3|source|I FEEL SAFE|aɪ fiːl seɪf|Я В БЕЗОПАСНОСТИ
+34|4|source|SCARE ME|skeə miː|НАПУГАЙ МЕНЯ
+34|5|source|COME HERE|kʌm hɪə|ИДИ СЮДА
+35|1|source_hook|I NEED ANSWERS|aɪ niːd ˈɑːnsəz|МНЕ НУЖНЫ ОТВЕТЫ
+35|2|source|TURN THE PHONE|tɜːn ðə fəʊn|ВКЛЮЧИ ТЕЛЕФОН
+35|3|source|HE IS POLITE|hiː ɪz pəˈlaɪt|ОН ВЕЖЛИВЫЙ
+35|4|source|THIS IS STRANGE|ðɪs ɪz streɪndʒ|ЭТО СТРАННО
+35|5|source|SCRATCH MY BACK|skrætʃ maɪ bæk|ПОЧЕШИ МНЕ СПИНУ
+36|1|source_hook|WAIT OUTSIDE|weɪt ˌaʊtˈsaɪd|ПОДОЖДИ СНАРУЖИ
+36|2|source|ARE YOU HUNGRY?|ɑː juː ˈhʌŋɡri|ТЫ ГОЛОДНЫЙ?
+36|3|source|I LIKE NATURE|aɪ laɪk ˈneɪtʃə|Я ЛЮБЛЮ ПРИРОДУ
+36|4|source|SHE IS KIND|ʃiː ɪz kaɪnd|ОНА ДОБРАЯ
+36|5|source|I FEEL LUCKY|aɪ fiːl ˈlʌki|МНЕ ПОВЕЗЛО
+37|1|source_hook|WAKE UP IDIOT|weɪk ʌp ˈɪdiət|ПРОСЫПАЙСЯ ИДИОТ
+37|2|source|GO INSIDE|ɡəʊ ɪnˈsaɪd|ИДИ ВНУТРЬ
+37|3|source|I WANT CHANGE|aɪ wɒnt tʃeɪndʒ|Я ХОЧУ ПЕРЕМЕН
+37|4|source|CLOSE THE FILE|kləʊz ðə faɪl|ЗАКРОЙ ФАЙЛ
+37|5|source|HE IS LATE|hiː ɪz leɪt|ОН ОПОЗДАЛ
+38|1|source_hook|THIS IS CLEAR|ðɪs ɪz klɪə|ЭТО ПОНЯТНО
+38|2|source|GRAB MY ARM|ɡræb maɪ ɑːm|СХВАТИ МОЮ РУКУ
+38|3|source|STAY BACK|steɪ bæk|ОТОЙДИ НАЗАД
+38|4|source|I NEED AIR|aɪ niːd eə|МНЕ НУЖЕН ВОЗДУХ
+38|5|source|TURN THE CAR|tɜːn ðə kɑː|РАЗВЕРНИ МАШИНУ
+39|1|source_hook|SHE IS SMART|ʃiː ɪz smɑːt|ОНА УМНАЯ
+39|2|source|I FEEL PROUD|aɪ fiːl praʊd|Я ГОРЖУСЬ
+39|3|source|TICKLE ME|ˈtɪkəl miː|ПОЩЕКОЧИ МЕНЯ
+39|4|source|COME LATER|kʌm ˈleɪtə|ПРИХОДИ ПОЗЖЕ
+39|5|source|ARE YOU READY?|ɑː juː ˈredi|ТЫ ГОТОВ?
+40|1|source_hook|I LIKE COFFEE|aɪ laɪk ˈkɒfi|Я ЛЮБЛЮ КОФЕ
+40|2|source|OPEN THE DRAWER|ˈəʊpən ðə drɔː|ОТКРОЙ ЯЩИК
+40|3|source|HE IS FUNNY|hiː ɪz ˈfʌni|ОН СМЕШНОЙ
+40|4|source|POKE ME|pəʊk miː|ТКНИ МЕНЯ
+40|5|source|THIS IS REAL|ðɪs ɪz rɪəl|ЭТО ПРАВДА
+41|1|source_hook|WAIT NOW|weɪt naʊ|ПОДОЖДИ
+41|2|source|I WANT QUIET|aɪ wɒnt ˈkwaɪət|Я ХОЧУ ТИШИНЫ
+41|3|source|CLOSE THE DRAWER|kləʊz ðə drɔː|ЗАКРОЙ ЯЩИК
+41|4|source|SHE IS ALONE|ʃiː ɪz əˈləʊn|ОНА ОДИНОКА
+41|5|source|CARRY ME|ˈkæri miː|НЕСИ МЕНЯ
+42|1|source_hook|I FEEL FREE|aɪ fiːl friː|Я ЧУВСТВУЮ СВОБОДУ
+42|2|source|GO SLOW|ɡəʊ sləʊ|ИДИ МЕДЛЕННО
+42|3|source|I NEED SLEEP|aɪ niːd sliːp|МНЕ НУЖНО ПОСПАТЬ
+42|4|source|TURN THE FAN|tɜːn ðə fæn|ВКЛЮЧИ ВЕНТИЛЯТОР
+42|5|source|HE IS BUSY|hiː ɪz ˈbɪzi|ОН ЗАНЯТ
+43|1|source_hook|PINCH ME|pɪntʃ miː|УЩИПНИ МЕНЯ
+43|2|source|THIS IS WARM|ðɪs ɪz wɔːm|ЭТО ТЁПЛОЕ
+43|3|source|COME EARLY|kʌm ˈɜːli|ПРИХОДИ ПОРАНЬШЕ
+43|4|source|ARE YOU SURE?|ɑː juː ʃɔː|ТЫ УВЕРЕН?
+43|5|source|I LIKE GAMES|aɪ laɪk ɡeɪmz|Я ЛЮБЛЮ ИГРЫ
+44|1|source_hook|OPEN THE FILE|ˈəʊpən ðə faɪl|ОТКРОЙ ФАЙЛ
+44|2|source|CATCH ME|kætʃ miː|ПОЙМАЙ МЕНЯ
+44|3|source|SHE IS STRONG|ʃiː ɪz strɒŋ|ОНА СИЛЬНАЯ
+44|4|source|I FEEL BRAVE|aɪ fiːl breɪv|Я ЧУВСТВУЮ СЕБЯ СМЕЛЫМ
+44|5|source|CLOSE THE GATE|kləʊz ðə ɡeɪt|ЗАКРОЙ ВОРОТА
+45|1|source_hook|HE IS LATE|hiː ɪz leɪt|ОН ОПОЗДАЛ
+45|2|source|THIS IS REAL|ðɪs ɪz rɪəl|ЭТО РЕАЛЬНО
+45|3|source|PUSH ME HARD|pʊʃ miː hɑːd|ТОЛКНИ МЕНЯ СИЛЬНЕЕ
+45|4|source|I WANT LOVE|aɪ wɒnt lʌv|Я ХОЧУ ЛЮБВИ
+45|5|source|STAY CLOSE|steɪ kləʊs|БУДЬ РЯДОМ
+46|1|source_hook|SHE IS FAST|ʃiː ɪz fɑːst|ОНА БЫСТРАЯ
+46|2|source|I NEED HOPE|aɪ niːd həʊp|МНЕ НУЖНА НАДЕЖДА
+46|3|source|GO FASTER|ɡəʊ ˈfɑːstə|ИДИ БЫСТРЕЕ
+46|4|source|HUG ME NOW|hʌɡ miː naʊ|ОБНИМИ МЕНЯ
+46|5|source|TURN THE HEAT|tɜːn ðə hiːt|ВКЛЮЧИ ОБОГРЕВ
+47|1|source_hook|ARE YOU MAD?|ɑː juː mæd|ТЫ ЗЛИШЬСЯ?
+47|2|source|I LIKE SUMMER|aɪ laɪk ˈsʌmə|Я ЛЮБЛЮ ЛЕТО
+47|3|source|OPEN YOUR MIND|ˈəʊpən jɔː maɪnd|ОТКРОЙ СВОЙ РАЗУМ
+47|4|source|HE IS COLD|hiː ɪz kəʊld|ОН ХОЛОДНЫЙ
+47|5|source|DROP IT NOW|drɒp ɪt naʊ|БРОСЬ ЭТО
+48|1|source_hook|THIS IS SWEET|ðɪs ɪz swiːt|ЭТО СЛАДКОЕ
+48|2|source|WAIT A MOMENT|weɪt ə ˈməʊmənt|ПОДОЖДИ СЕКУНДУ
+48|3|source|I WANT HELP|aɪ wɒnt help|Я ХОЧУ ПОМОЩИ
+48|4|source|CLOSE YOUR MOUTH|kləʊz jɔː maʊθ|ЗАКРОЙ СВОЙ РОТ
+48|5|source|SHE IS LOUD|ʃiː ɪz laʊd|ОНА ГРОМКАЯ
+49|1|source_hook|TRUST ME|trʌst miː|ДОВЕРЬСЯ МНЕ
+49|2|source|I FEEL WARM|aɪ fiːl wɔːm|МНЕ ТЕПЛО
+49|3|source|COME CLOSER|kʌm ˈkləʊsə|ПОДОЙДИ БЛИЖЕ
+49|4|source|HE IS HONEST|hiː ɪz ˈɒnɪst|ОН ЧЕСТНЫЙ
+49|5|source|THIS IS WRONG|ðɪs ɪz rɒŋ|ЭТО НЕПРАВИЛЬНО
+50|1|source_hook|I NEED LOVE|aɪ niːd lʌv|МНЕ НУЖНА ЛЮБОВЬ
+50|2|source|KICK ME|kɪk miː|ПННИ МЕНЯ
+50|3|source|GO OUTSIDE|ɡəʊ ˌaʊtˈsaɪd|ВЫЙДИ НА УЛИЦУ
+50|4|source|I LIKE WINTER|aɪ laɪk ˈwɪntə|Я ЛЮБЛЮ ЗИМУ
+50|5|source|SHE IS WILD|ʃiː ɪz waɪld|ОНА ДИКАЯ
+51|1|source_hook|MOVE NOW|muːv naʊ|ДВИГАЙСЯ
+51|2|source|ARE YOU LYING?|ɑː juː ˈlaɪɪŋ|ТЫ ВРЁШЬ?
+51|3|source|FEED ME|fiːd miː|ПОКОРМИ МЕНЯ
+51|4|source|TURN THE WATER|tɜːn ðə ˈwɔːtə|ВКЛЮЧИ ВОДУ
+51|5|source|I WANT FUN|aɪ wɒnt fʌn|Я ХОЧУ ВЕСЕЛЬЯ
+52|1|source_hook|CLOSE THE BAG|kləʊz ðə bæɡ|ЗАКРОЙ СУМКУ
+52|2|source|HE IS SWEET|hiː ɪz swiːt|ОН МИЛЫЙ
+52|3|source|THIS IS LOUD|ðɪs ɪz laʊd|ЭТО ГРОМКО
+52|4|source|HATE ME THEN|heɪt miː ðen|ТОГДА НЕНАВИДЬ МЕНЯ
+52|5|source|STAY STRONG|steɪ strɒŋ|БУДЬ СИЛЬНЫМ
+53|1|source_hook|I FEEL ALIVE|aɪ fiːl əˈlaɪv|Я ЧУВСТВУЮ СЕБЯ ЖИВЫМ
+53|2|source|OPEN YOUR HEART|ˈəʊpən jɔː hɑːt|ОТКРОЙ СВОЁ СЕРДЦЕ
+53|3|source|SHE IS GENTLE|ʃiː ɪz ˈdʒentəl|ОНА НЕЖНАЯ
+53|4|source|I NEED PEACE|aɪ niːd piːs|МНЕ НУЖЕН ПОКОЙ
+53|5|source|DARE ME|deə miː|ИСПЫТАЙ МЕНЯ
+54|1|source_hook|GO BACK|ɡəʊ bæk|ВЕРНИСЬ НАЗАД
+54|2|source|I LIKE PIZZA|aɪ laɪk ˈpiːtsə|Я ЛЮБЛЮ ПИЦЦУ
+54|3|source|WAIT FOR HIM|weɪt fə hɪm|ПОДОЖДИ ЕГО
+54|4|source|HE IS BRAVE|hiː ɪz breɪv|ОН СМЕЛЫЙ
+54|5|source|THIS IS DARK|ðɪs ɪz dɑːk|ЭТО ТЁМНОЕ
+55|1|source_hook|SPIT IT OUT|spɪt ɪt aʊt|ВЫПЛЮНЬ ЭТО
+55|2|source|COME FAST|kʌm fɑːst|ПРИХОДИ БЫСТРЕЕ
+55|3|source|I WANT SPACE|aɪ wɒnt speɪs|Я ХОЧУ ПРОСТРАНСТВО
+55|4|source|CLOSE THE EYES|kləʊz ði aɪz|ЗАКРОЙ ГЛАЗА
+55|5|source|SHE IS COLD|ʃiː ɪz kəʊld|ОНА ХОЛОДНАЯ
+56|1|source_hook|I FEEL LOST|aɪ fiːl lɒst|Я ЧУВСТВУЮ СЕБЯ ПОТЕРЯННЫМ
+56|2|source|IGNORE ME|ɪɡˈnɔː miː|ИГНОРИРУЙ МЕНЯ
+56|3|source|TURN THE MUSIC|tɜːn ðə ˈmjuːzɪk|ВКЛЮЧИ МУЗЫКУ
+56|4|source|ARE YOU HAPPY?|ɑː juː ˈhæpi|ТЫ СЧАСТЛИВ?
+56|5|source|I LIKE CHOCOLATE|aɪ laɪk ˈtʃɒklət|Я ЛЮБЛЮ ШОКОЛАД
+57|1|source_hook|OPEN THE JAR|ˈəʊpən ðə dʒɑː|ОТКРОЙ БАНКУ
+57|2|source|HE IS GENTLE|hiː ɪz ˈdʒentəl|ОН НЕЖНЫЙ
+57|3|source|CHASE ME|tʃeɪs miː|ДОГОНИ МЕНЯ
+57|4|source|THIS IS FUNNY|ðɪs ɪz ˈfʌni|ЭТО СМЕШНО
+57|5|source|STAY QUIET|steɪ ˈkwaɪət|БУДЬ ТИХИМ
+58|1|source_hook|I NEED TRUST|aɪ niːd trʌst|МНЕ НУЖНО ДОВЕРИЕ
+58|2|source|SHE IS TALL|ʃiː ɪz tɔːl|ОНА ВЫСОКАЯ
+58|3|source|I FEEL YOUNG|aɪ fiːl jʌŋ|Я ЧУВСТВУЮ СЕБЯ МОЛОДЫМ
+58|4|source|BLOCK ME|blɒk miː|ЗАБЛОКИРУЙ МЕНЯ
+58|5|source|GO AWAY|ɡəʊ əˈweɪ|УХОДИ
+59|1|source_hook|I WANT FREEDOM|aɪ wɒnt ˈfriːdəm|Я ХОЧУ СВОБОДУ
+59|2|source|CLOSE THE CURTAIN|kləʊz ðə ˈkɜːtən|ЗАКРОЙ ШТОРУ
+59|3|source|HE IS LOST|hiː ɪz lɒst|ОН ПОТЕРЯЛСЯ
+59|4|source|THIS IS PERFECT|ðɪs ɪz ˈpɜːfɪkt|ЭТО ИДЕАЛЬНО
+59|5|source|WATCH ME NOW|wɒtʃ miː naʊ|СМОТРИ НА МЕНЯ
+60|1|source_hook|COME TONIGHT|kʌm təˈnaɪt|ПРИХОДИ ВЕЧЕРОМ
+60|2|source|I LIKE STARS|aɪ laɪk stɑːz|Я ЛЮБЛЮ ЗВЁЗДЫ
+60|3|source|SHE IS MINE|ʃiː ɪz maɪn|ОНА МОЯ
+60|4|source|I FEEL COMPLETE|aɪ fiːl kəmˈpliːt|Я ЧУВСТВУЮ СЕБЯ ЦЕЛЫМ
+60|5|source|MARRY ME|ˈmæri miː|ВЫХОДИ ЗА МЕНЯ

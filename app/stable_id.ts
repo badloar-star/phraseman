@@ -20,6 +20,7 @@ import * as Crypto from 'expo-crypto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO } from './config';
 import { beginInitialAccountGeneration, invalidateAccountGeneration } from './account_generation';
+import { assertAccountDeleteStableIdentityAvailable } from './account_delete_quarantine';
 
 const SECURE_KEY = 'phraseman_stable_uid';
 const ASYNC_KEY = 'phraseman_stable_uid_cache';
@@ -89,7 +90,11 @@ export function peekStableId(): string | null {
 }
 
 async function readOrCreateStableId(epoch: number): Promise<string> {
+  await assertAccountDeleteStableIdentityAvailable();
+  assertCurrentStableIdRead(epoch);
   if (cachedId) {
+    await assertAccountDeleteStableIdentityAvailable(cachedId);
+    assertCurrentStableIdRead(epoch);
     beginInitialAccountGeneration(cachedId);
     return cachedId;
   }
@@ -116,6 +121,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
         } catch { /* ignore legacy migration errors */ }
       }
       if (stored) {
+        await assertAccountDeleteStableIdentityAvailable(stored);
         assertCurrentStableIdRead(epoch);
         cachedId = stored;
         await AsyncStorage.setItem(ASYNC_KEY, stored);
@@ -134,6 +140,8 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
     const cached = await AsyncStorage.getItem(ASYNC_KEY);
     assertCurrentStableIdRead(epoch);
     if (cached) {
+      await assertAccountDeleteStableIdentityAvailable(cached);
+      assertCurrentStableIdRead(epoch);
       cachedId = cached;
       if (SecureStore && opts) {
         await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(() => {});
@@ -145,6 +153,8 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
 
   // Создаём новый ID
   const newId = Crypto.randomUUID();
+  assertCurrentStableIdRead(epoch);
+  await assertAccountDeleteStableIdentityAvailable(newId);
   assertCurrentStableIdRead(epoch);
 
   if (SecureStore && opts) {
@@ -171,10 +181,6 @@ export function getStableId(): Promise<string> {
   if (stableIdMutationInFlight) {
     const barrier = stableIdMutationInFlight;
     return barrier.then(() => getStableId());
-  }
-  if (cachedId) {
-    beginInitialAccountGeneration(cachedId);
-    return Promise.resolve(cachedId);
   }
   if (stableIdLoadInFlight) return stableIdLoadInFlight;
   const pending = readOrCreateStableId(stableIdOperationEpoch);
@@ -225,12 +231,17 @@ export function setStableId(newId: string): Promise<void> {
   if (!newId || typeof newId !== 'string') {
     return Promise.reject(new Error('setStableId: newId must be non-empty string'));
   }
+  const loadToDrain = stableIdLoadInFlight;
   stableIdOperationEpoch += 1;
   const epoch = stableIdOperationEpoch;
   stableIdLoadInFlight = null;
   if (cachedId !== newId) invalidateAccountGeneration();
   const previous = stableIdMutationInFlight ?? Promise.resolve();
-  const mutation = previous.catch(() => {}).then(() => persistStableId(newId, epoch));
+  const mutation = previous
+    .catch(() => {})
+    .then(() => loadToDrain?.catch(() => {}))
+    .then(() => assertAccountDeleteStableIdentityAvailable(newId))
+    .then(() => persistStableId(newId, epoch));
   stableIdMutationInFlight = mutation;
   void mutation.finally(() => {
     if (stableIdMutationInFlight === mutation) stableIdMutationInFlight = null;
@@ -261,39 +272,38 @@ export function _resetStableIdCache(): void {
  * Не путать с _resetStableIdCache: тот лишь чистит in-memory кеш,
  * а stored value в SecureStore/AsyncStorage остаётся прежним.
  */
-async function clearStableIdStorage(epoch: number): Promise<void> {
-  if (epoch !== stableIdOperationEpoch) return;
+async function clearStableIdStorage(): Promise<void> {
   cachedId = null;
   const SecureStore = getSecureStore();
   if (SecureStore) {
     const opts = getSecureStoreOpts(SecureStore);
-    try {
-      // Удаляем и новый (с keychainService) и legacy (без opts) на случай миграции.
-      await SecureStore.deleteItemAsync(SECURE_KEY, opts);
-    } catch {
-      /* ignore */
-    }
-    try {
-      await SecureStore.deleteItemAsync(SECURE_KEY);
-    } catch {
-      /* ignore */
+    await SecureStore.deleteItemAsync(SECURE_KEY, opts);
+    await SecureStore.deleteItemAsync(SECURE_KEY);
+    const [currentValue, legacyValue] = await Promise.all([
+      SecureStore.getItemAsync(SECURE_KEY, opts),
+      SecureStore.getItemAsync(SECURE_KEY),
+    ]);
+    if (currentValue !== null || legacyValue !== null) {
+      throw new Error('stable_id_secure_clear_mismatch');
     }
   }
-  try {
-    await AsyncStorage.removeItem(ASYNC_KEY);
-  } catch {
-    /* ignore */
-  }
-  if (epoch !== stableIdOperationEpoch) return;
+  await AsyncStorage.removeItem(ASYNC_KEY);
+  const asyncValue = await AsyncStorage.getItem(ASYNC_KEY);
+  if (asyncValue !== null) throw new Error('stable_id_async_clear_mismatch');
 }
 
 export function clearStableId(): Promise<void> {
+  const loadToDrain = stableIdLoadInFlight;
   stableIdOperationEpoch += 1;
-  const epoch = stableIdOperationEpoch;
   stableIdLoadInFlight = null;
   invalidateAccountGeneration();
   const previous = stableIdMutationInFlight ?? Promise.resolve();
-  const mutation = previous.catch(() => {}).then(() => clearStableIdStorage(epoch));
+  const mutation = previous
+    .catch(() => {})
+    .then(async () => {
+      await loadToDrain?.catch(() => {});
+      await clearStableIdStorage();
+    });
   stableIdMutationInFlight = mutation;
   void mutation.finally(() => {
     if (stableIdMutationInFlight === mutation) stableIdMutationInFlight = null;

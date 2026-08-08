@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -8,6 +8,7 @@ import {
   Easing,
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -21,7 +22,7 @@ import {
   type DailyTask,
   type TaskProgress,
 } from '../app/daily_tasks';
-import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from '../app/daily_task_achievement_icons';
+import { getDailyTaskAchievementIcon } from '../app/daily_task_achievement_icons';
 import { navigateDailyTask } from '../app/daily_task_navigation';
 import { localizedDailyTaskStrings } from '../app/daily_tasks_es_locale';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
@@ -55,9 +56,11 @@ type ThemeChrome = {
   chipText: string;
   taskGlow: string;
   taskBorder: string;
+  errorText?: string;
+  errorBg?: string;
 };
 
-const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
+export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
   dark: {
     accent: '#8FE5AD',
     accentSoft: 'rgba(143,229,173,0.16)',
@@ -131,12 +134,38 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskBorder: 'rgba(124,244,210,0.28)',
   },
   volt: {
-    accent: '#D7FF45',
-    accentSoft: 'rgba(215,255,69,0.17)',
-    chipBg: 'rgba(215,255,69,0.14)',
-    chipText: '#F4FFC0',
-    taskGlow: 'rgba(215,255,69,0.09)',
-    taskBorder: 'rgba(215,255,69,0.30)',
+    accent: '#C6FF34',
+    accentSoft: 'rgba(198,255,52,0.17)',
+    chipBg: 'rgba(198,255,52,0.14)',
+    chipText: '#F0FFBC',
+    taskGlow: 'rgba(198,255,52,0.09)',
+    taskBorder: 'rgba(198,255,52,0.30)',
+  },
+  candyBlue: {
+    accent: '#B2D5E5',
+    accentSoft: 'rgba(178,213,229,0.17)',
+    chipBg: 'rgba(178,213,229,0.14)',
+    chipText: '#E4F2F8',
+    taskGlow: 'rgba(178,213,229,0.09)',
+    taskBorder: 'rgba(178,213,229,0.28)',
+  },
+  indigo: {
+    accent: '#C8C3FF',
+    accentSoft: 'rgba(200,195,255,0.17)',
+    chipBg: 'rgba(200,195,255,0.14)',
+    chipText: '#ECEAFF',
+    taskGlow: 'rgba(200,195,255,0.09)',
+    taskBorder: 'rgba(200,195,255,0.28)',
+  },
+  sagePorcelain: {
+    accent: '#315F50',
+    accentSoft: '#D9E9E1',
+    chipBg: '#E1E5DC',
+    chipText: '#17201D',
+    taskGlow: 'rgba(49,95,80,0)',
+    taskBorder: '#BDC8BD',
+    errorText: '#A8464D',
+    errorBg: '#F2DFE0',
   },
 };
 
@@ -171,7 +200,7 @@ function getDailyTitle(lang: Lang): string {
 }
 
 function getTaskIcon(task: DailyTask) {
-  return DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+  return getDailyTaskAchievementIcon(task.id);
 }
 
 function taskTitle(task: DailyTask, lang: Lang): string {
@@ -468,7 +497,16 @@ export default function DailyTasksFirstVisitModal({
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
-      <View style={styles.root}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          панель центрировалась во весь рост без прокрутки — на низком экране
+          обрезалась сверху и снизу вместе с кнопкой. ScrollView с flexGrow:1
+          сохраняет вид на больших экранах и даёт прокрутку на маленьких.
+          Подложка-Pressable для закрытия по тапу остаётся под панелью. */}
+      <ScrollView
+        style={styles.rootScroll}
+        contentContainerStyle={styles.root}
+        showsVerticalScrollIndicator={false}
+      >
         <Pressable style={StyleSheet.absoluteFillObject} onPress={onClose} accessibilityLabel={copy.closeA11y} />
         <Animated.View
           style={[
@@ -553,7 +591,19 @@ export default function DailyTasksFirstVisitModal({
               )}
             </View>
 
-            {errorText && <Text style={[styles.errorText, { color: chrome.chipText, fontSize: f.sub }]}>{errorText}</Text>}
+            {errorText && (
+              <Text style={[
+                styles.errorText,
+                {
+                  backgroundColor: chrome.errorBg ?? 'transparent',
+                  color: chrome.errorText ?? chrome.chipText,
+                  fontSize: f.sub,
+                  ...(chrome.errorBg ? { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12 } : {}),
+                },
+              ]}>
+                {errorText}
+              </Text>
+            )}
 
             <TouchableOpacity
               accessibilityRole="button"
@@ -581,14 +631,21 @@ export default function DailyTasksFirstVisitModal({
             </TouchableOpacity>
           </View>
         </Animated.View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
+  rootScroll: {
     flex: 1,
+    backgroundColor: 'transparent',
+  },
+  root: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     backgroundColor: 'transparent',
   },

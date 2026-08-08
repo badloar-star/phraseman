@@ -1,0 +1,574 @@
+/* global EnglishTestI18n */
+
+/**
+ * English Level Test — Certificate Generator v2
+ * Multiple themes, animations, full-screen certificate page.
+ */
+(function (global) {
+  'use strict';
+
+  const CERT_WIDTH = 1100;
+  const CERT_HEIGHT = 780;
+  const CERTIFICATE_NAME_MAX_WIDTH = 760;
+
+  const THEMES = {
+    gold: {
+      name: 'Gold',
+      bg: '#faf8f3',
+      border: '#b8941d',
+      border2: '#e8d5a3',
+      title: '#1a1a1a',
+      text: '#333333',
+      accent: '#c9a96e',
+      level: '#1a1a1a',
+      ribbon: '#c9a96e',
+    },
+    dark: {
+      name: 'Midnight',
+      bg: '#0a0f1c',
+      border: '#475569',
+      border2: '#1e293b',
+      title: '#ffffff',
+      text: '#cbd5e1',
+      accent: '#38bdf8',
+      level: '#7dd3fc',
+      ribbon: '#38bdf8',
+    },
+    emerald: {
+      name: 'Emerald',
+      bg: '#ecfdf5',
+      border: '#16a34a',
+      border2: '#bbf7d0',
+      title: '#064e3b',
+      text: '#065f46',
+      accent: '#22c55e',
+      level: '#064e3b',
+      ribbon: '#22c55e',
+    },
+    rose: {
+      name: 'Rose',
+      bg: '#fff1f2',
+      border: '#e11d48',
+      border2: '#fecdd3',
+      title: '#881337',
+      text: '#9f1239',
+      accent: '#f43f5e',
+      level: '#881337',
+      ribbon: '#f43f5e',
+    },
+    royal: {
+      name: 'Royal',
+      bg: '#1e1b4b',
+      border: '#818cf8',
+      border2: '#312e81',
+      title: '#ffffff',
+      text: '#c7d2fe',
+      accent: '#818cf8',
+      level: '#e0e7ff',
+      ribbon: '#6366f1',
+    },
+  };
+  const CERTIFICATE_LEVELS = new Set(['Pre-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
+
+  const LANGS = Object.fromEntries(EnglishTestI18n.UI_LOCALES.map((locale) => [
+    locale,
+    {
+      label: EnglishTestI18n.LOCALE_META[locale].label,
+      dateLocale: EnglishTestI18n.LOCALE_META[locale].dateLocale,
+    },
+  ]));
+
+  let currentTheme = 'gold';
+  let activeCertificateClose = null;
+  let activeCertificateReturnFocus = null;
+
+  function certificateLocale(locale) {
+    return typeof EnglishTestI18n !== 'undefined' && EnglishTestI18n.UI_LOCALES.includes(locale) ? locale : 'en';
+  }
+
+  function certificateTestLanguage(testLanguage) {
+    return typeof EnglishTestI18n !== 'undefined'
+      && EnglishTestI18n.TEST_LANGUAGES.includes(testLanguage) ? testLanguage : 'en';
+  }
+
+  function certificateCopy(locale, key, vars) {
+    return typeof EnglishTestI18n !== 'undefined' ? EnglishTestI18n.t(certificateLocale(locale), key, vars) : '';
+  }
+
+  function certificateLanguage(data, locale) {
+    return EnglishTestI18n.TESTS[certificateTestLanguage(data.testLanguage)].certificateNames[certificateLocale(locale)];
+  }
+
+  function isAppleMobile() {
+    const ua = navigator.userAgent || '';
+    return /iPad|iPhone|iPod/.test(ua)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  function escapeXml(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function sanitizeFilenameComponent(value, fallback, maxLength = 40, unicode = false) {
+    const allowed = unicode ? /[^\p{L}\p{N}\p{M}]+/gu : /[^a-z0-9-]+/g;
+    const safe = String(value ?? '').normalize('NFKC').toLocaleLowerCase()
+      .replace(allowed, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    return Array.from(safe || fallback).slice(0, maxLength).join('');
+  }
+
+  let certificateNameMeasureContext = null;
+  function certificateNameFontSize(name) {
+    try {
+      if (!certificateNameMeasureContext) {
+        certificateNameMeasureContext = document.createElement('canvas').getContext('2d');
+      }
+      if (certificateNameMeasureContext) {
+        certificateNameMeasureContext.font = 'bold 50px Georgia';
+        const measuredWidth = certificateNameMeasureContext.measureText(String(name || '')).width;
+        if (Number.isFinite(measuredWidth) && measuredWidth > 0) {
+          return Math.max(10, Math.min(50, (50 * CERTIFICATE_NAME_MAX_WIDTH) / measuredWidth)).toFixed(1);
+        }
+      }
+    } catch (_) {
+      // Canvas can be unavailable in restricted browsers; the conservative fallback still fits 60 characters.
+    }
+    return Math.max(10, Math.min(50, CERTIFICATE_NAME_MAX_WIDTH / Math.max(1, Array.from(String(name || '')).length))).toFixed(1);
+  }
+
+  function certificateFilename(data, themeKey, locale) {
+    const language = EnglishTestI18n.TESTS[certificateTestLanguage(data.testLanguage)];
+    const currentLocale = certificateLocale(locale);
+    const languageSlug = sanitizeFilenameComponent(language.filenameSlugs[currentLocale] || language.filenameSlug, 'english');
+    const level = CERTIFICATE_LEVELS.has(data.result?.estimatedLevel) ? data.result.estimatedLevel.toLowerCase() : 'unknown';
+    const name = sanitizeFilenameComponent(data.name, 'learner', 40, true);
+    const theme = Object.prototype.hasOwnProperty.call(THEMES, themeKey) ? themeKey : 'gold';
+    return `phraseman-${languageSlug}-level-${level}-${name}-${theme}.png`;
+  }
+
+  function buildSvg(data, themeKey, langKey) {
+    const { name, result } = data;
+    const t = THEMES[themeKey] || THEMES.gold;
+    const locale = certificateLocale(langKey);
+    const L = LANGS[locale];
+    const language = certificateLanguage(data, locale);
+    const dateStr = new Date().toLocaleDateString(L.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
+    const cx = CERT_WIDTH / 2;
+
+    return `<svg viewBox="0 0 ${CERT_WIDTH} ${CERT_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:${t.bg};stop-opacity:1" />
+          <stop offset="100%" style="stop-color:${t.border2};stop-opacity:0.35" />
+        </linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#bgGrad)"/>
+      <rect x="32" y="32" width="${CERT_WIDTH - 64}" height="${CERT_HEIGHT - 64}" fill="none" stroke="${t.border}" stroke-width="3" rx="10"/>
+      <rect x="48" y="48" width="${CERT_WIDTH - 96}" height="${CERT_HEIGHT - 96}" fill="none" stroke="${t.border2}" stroke-width="1.5" rx="6"/>
+
+      <rect x="${cx - 120}" y="58" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
+
+      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">${escapeXml(certificateCopy(locale, 'certificate.bodyTitle'))}</text>
+      <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.certifies'))}</text>
+      <text x="${cx}" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="${certificateNameFontSize(name)}" fill="${t.title}" font-weight="bold">${escapeXml(name)}</text>
+      <line x1="300" y1="320" x2="${CERT_WIDTH - 300}" y2="320" stroke="${t.border}" stroke-width="2"/>
+      <text x="${cx}" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.completed', { language }))}</text>
+      <text x="${cx}" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.received'))}</text>
+      <text x="${cx}" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="72" fill="${t.level}" font-weight="bold">${escapeXml(result.estimatedLevel)}</text>
+      <text x="${cx}" y="550" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.summary', { correct: result.correct, answered: result.answered }))}</text>
+
+      <rect x="${cx - 120}" y="590" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
+
+      <text x="${cx}" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="${t.text}" font-weight="600">${escapeXml(dateStr)}</text>
+      <text x="${cx}" y="690" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${t.text}">
+        ${escapeXml(certificateCopy(locale, 'certificate.informal'))}
+      </text>
+      <text x="${cx}" y="715" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${t.text}">
+        knowlyapps.com/english-level-test/
+      </text>
+    </svg>`;
+  }
+
+  function createConfetti(container) {
+    const colors = ['#22c55e', '#38bdf8', '#f43f5e', '#fbbf24', '#a78bfa', '#34d399'];
+    for (let i = 0; i < 60; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `
+        position: absolute;
+        width: ${6 + Math.random() * 8}px;
+        height: ${6 + Math.random() * 8}px;
+        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+        left: ${Math.random() * 100}%;
+        top: -20px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1001;
+      `;
+      container.appendChild(el);
+      const duration = 1500 + Math.random() * 2000;
+      const delay = Math.random() * 800;
+      el.animate([
+        { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+        { transform: `translateY(${400 + Math.random() * 300}px) rotate(${360 + Math.random() * 720}deg)`, opacity: 0 }
+      ], { duration, delay, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', fill: 'forwards' });
+    }
+  }
+
+  function renderCertificate(data) {
+    const inheritedReturnFocus = activeCertificateReturnFocus;
+    if (typeof activeCertificateClose === 'function') activeCertificateClose({ supersede: true });
+    let currentLang = certificateLocale(data.uiLocale);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const previouslyFocused = inheritedReturnFocus || document.activeElement;
+    const container = document.createElement('div');
+    container.className = 'elt-cert-modal';
+    container.innerHTML = `
+      <div class="elt-cert-backdrop"></div>
+      <div class="elt-cert-container" role="dialog" aria-modal="true" aria-label="${certificateCopy(currentLang, 'certificate.dialogLabel')}">
+        <button class="elt-cert-close" type="button" aria-label="${certificateCopy(currentLang, 'certificate.closeLabel')}">&times;</button>
+
+        <div class="elt-cert-langs" role="group" aria-label="${certificateCopy(currentLang, 'certificate.languageGroup')}">
+          ${Object.entries(LANGS).map(([key, lang]) => `
+            <button class="elt-cert-lang-btn${key === currentLang ? ' active' : ''}" data-lang="${key}" type="button">${lang.label}</button>
+          `).join('')}
+        </div>
+
+        <div class="elt-cert-themes" role="group">
+          ${Object.entries(THEMES).map(([key, t]) => `
+            <button class="elt-cert-theme-btn${key === currentTheme ? ' active' : ''}" data-theme="${key}" type="button" aria-pressed="${String(key === currentTheme)}" style="--theme-color:${t.ribbon}" title="${t.name}">
+              <span class="elt-cert-theme-swatch" style="background:${t.ribbon}"></span>
+              <span class="elt-cert-theme-name">${t.name}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        <div class="elt-cert-wrap" id="certRenderArea">
+          ${buildSvg(data, currentTheme, currentLang)}
+        </div>
+
+        ${data.cta ? `
+        <div class="elt-cert-cta">
+          <p class="elt-cert-cta-text">${escapeXml(data.cta.text)}</p>
+          <button class="elt-btn elt-btn-primary elt-cert-cta-btn" id="certCtaBtn">${escapeXml(data.cta.label)}</button>
+        </div>` : ''}
+
+        <div class="elt-cert-actions">
+          <button class="elt-btn elt-btn-primary" id="certDownloadPng">${certificateCopy(currentLang, 'certificate.downloadPng')}</button>
+          <button class="elt-btn elt-btn-secondary" id="certPrint">${certificateCopy(currentLang, 'certificate.printPdf')}</button>
+          <button class="elt-btn elt-btn-ghost" id="certClose">${certificateCopy(currentLang, 'certificate.close')}</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(container);
+    function renderLocaleUi() {
+      const text = (key) => certificateCopy(currentLang, key);
+      container.querySelector('.elt-cert-container').setAttribute('aria-label', text('certificate.dialogLabel'));
+      container.querySelector('.elt-cert-close').setAttribute('aria-label', text('certificate.closeLabel'));
+      container.querySelector('.elt-cert-langs').setAttribute('aria-label', text('certificate.languageGroup'));
+      container.querySelector('.elt-cert-themes').setAttribute('aria-label', text('certificate.themeGroup'));
+      container.querySelector('#certDownloadPng').textContent = text('certificate.downloadPng');
+      container.querySelector('#certPrint').textContent = text('certificate.printPdf');
+      container.querySelector('#certClose').textContent = text('certificate.close');
+      container.querySelectorAll('.elt-cert-lang-btn').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.lang === currentLang));
+      });
+      container.querySelectorAll('.elt-cert-theme-btn').forEach((button) => {
+        const themeName = text(`certificate.themes.${button.dataset.theme}`);
+        button.setAttribute('aria-pressed', String(button.dataset.theme === currentTheme));
+        button.title = themeName;
+        button.querySelector('.elt-cert-theme-name').textContent = themeName;
+      });
+      if (data.cta) {
+        container.querySelector('.elt-cert-cta-text').textContent = text('certificate.ctaText');
+        container.querySelector('#certCtaBtn').textContent = text('certificate.ctaButton');
+      }
+    }
+    renderLocaleUi();
+    let savePreviewUrl = null;
+    let saveGeneration = 0;
+    let saveInProgress = false;
+    let closed = false;
+    if (!reducedMotion) createConfetti(container);
+
+    const closeButton = container.querySelector('.elt-cert-close');
+    closeButton.focus();
+
+    function handleModalKeydown(e) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const focusable = [...container.querySelectorAll(
+        'button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      )].filter((element) => element.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener('keydown', handleModalKeydown);
+
+    function clearSavePreview() {
+      saveGeneration++;
+      container.querySelector('.elt-cert-save-link')?.remove();
+      container.querySelector('.elt-cert-save-hint')?.remove();
+      // PNG подменял SVG на месте — возвращаем SVG, чтобы повторное скачивание/печать работали.
+      const svg = container.querySelector('#certRenderArea svg');
+      if (svg) svg.style.display = '';
+      if (savePreviewUrl) {
+        URL.revokeObjectURL(savePreviewUrl);
+        savePreviewUrl = null;
+      }
+    }
+
+    function rebuildCertArea() {
+      const area = container.querySelector('#certRenderArea');
+      area.innerHTML = buildSvg(data, currentTheme, currentLang);
+      if (!reducedMotion) {
+        area.animate([
+          { opacity: 0.5, transform: 'scale(0.98)' },
+          { opacity: 1, transform: 'scale(1)' }
+        ], { duration: 300, easing: 'ease-out' });
+      }
+    }
+
+    const inner = container.querySelector('.elt-cert-container');
+    if (reducedMotion) {
+      inner.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 120, fill: 'forwards' });
+    } else {
+      inner.animate([
+        { transform: 'perspective(1400px) rotateY(-24deg) scale(0.88)', opacity: 0 },
+        { transform: 'perspective(1400px) rotateY(5deg) scale(1.01)', opacity: 1, offset: 0.72 },
+        { transform: 'perspective(1400px) rotateY(0deg) scale(1)', opacity: 1 }
+      ], { duration: 680, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' });
+    }
+
+    container.querySelectorAll('.elt-cert-theme-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.theme === currentTheme) return;
+        clearSavePreview();
+        currentTheme = btn.dataset.theme;
+        container.querySelectorAll('.elt-cert-theme-btn').forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        rebuildCertArea();
+      });
+    });
+
+    container.querySelectorAll('.elt-cert-lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.lang === currentLang) return;
+        clearSavePreview();
+        currentLang = btn.dataset.lang;
+        container.querySelectorAll('.elt-cert-lang-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderLocaleUi();
+        rebuildCertArea();
+      });
+    });
+
+    closeButton.addEventListener('click', close);
+    container.querySelector('.elt-cert-backdrop').addEventListener('click', close);
+    container.querySelector('#certClose').addEventListener('click', close);
+    const downloadButton = container.querySelector('#certDownloadPng');
+    downloadButton.addEventListener('click', async () => {
+      if (saveInProgress || closed) return;
+      clearSavePreview();
+      const generation = saveGeneration;
+      const themeKey = currentTheme;
+      saveInProgress = true;
+      downloadButton.disabled = true;
+      downloadButton.setAttribute('aria-busy', 'true');
+      try {
+        savePreviewUrl = await downloadPng(
+          data,
+          container,
+          themeKey,
+          currentLang,
+          () => closed || generation !== saveGeneration,
+        );
+      } finally {
+        saveInProgress = false;
+        if (!closed) {
+          downloadButton.disabled = false;
+          downloadButton.removeAttribute('aria-busy');
+        }
+      }
+    });
+    // Печатаем свежесобранный SVG, а не innerHTML области: после iOS-сохранения
+    // там лежит PNG-подмена с подсказкой, которые в печать попадать не должны.
+    container.querySelector('#certPrint').addEventListener('click', () => printCert(buildSvg(data, currentTheme, currentLang), currentLang));
+
+    const ctaBtn = container.querySelector('#certCtaBtn');
+    if (data.cta && ctaBtn) {
+      ctaBtn.addEventListener('click', () => {
+        if (typeof data.cta.onClick === 'function') data.cta.onClick();
+        const win = window.open(data.cta.url, '_blank', 'noopener');
+        if (!win) {
+          window.location.href = data.cta.url;
+        } else {
+          close();
+        }
+      });
+    }
+
+    function close({ supersede = false } = {}) {
+      if (closed && !supersede) return;
+      closed = true;
+      document.removeEventListener('keydown', handleModalKeydown);
+      clearSavePreview();
+      if (supersede) {
+        if (activeCertificateClose === close) activeCertificateClose = null;
+        container.remove();
+        return;
+      }
+      inner.animate([
+        { transform: 'scale(1)', opacity: 1 },
+        { transform: 'scale(0.92)', opacity: 0 }
+      ], { duration: reducedMotion ? 60 : 250, easing: 'ease-in', fill: 'forwards' }).onfinish = () => {
+        if (activeCertificateClose !== close) return;
+        activeCertificateClose = null;
+        activeCertificateReturnFocus = null;
+        container.remove();
+        if (previouslyFocused?.isConnected) previouslyFocused.focus();
+        if (typeof data.onClose === 'function') data.onClose();
+      };
+    }
+    activeCertificateClose = close;
+    activeCertificateReturnFocus = previouslyFocused;
+  }
+
+  async function svgToPng(svgEl) {
+    const svgData = new XMLSerializer().serializeToString(svgEl);
+    const canvas = document.createElement('canvas');
+    canvas.width = CERT_WIDTH * 2;
+    canvas.height = CERT_HEIGHT * 2;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(2, 2);
+
+    const img = new Image();
+    const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+
+    return new Promise((resolve, reject) => {
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, CERT_WIDTH, CERT_HEIGHT);
+        URL.revokeObjectURL(url);
+        resolve(canvas);
+      };
+      img.onerror = (error) => {
+        URL.revokeObjectURL(url);
+        reject(error);
+      };
+      img.src = url;
+    });
+  }
+
+  function showIosSavePreview(container, pngBlob, filename, locale) {
+    // зачем: владелец спросил «почему отдельно» — вторая копия сертификата ниже
+    // сбивала с толку. Теперь PNG подменяет SVG НА МЕСТЕ: удерживать нужно ту же
+    // картинку, которую пользователь уже видит, а подсказка появляется под ней.
+    const objectUrl = URL.createObjectURL(pngBlob);
+    const wrap = container.querySelector('#certRenderArea');
+    const svg = wrap.querySelector('svg');
+    if (svg) svg.style.display = 'none';
+    const link = document.createElement('a');
+    link.className = 'elt-cert-save-link';
+    link.download = filename;
+    link.href = objectUrl;
+    const img = document.createElement('img');
+    img.alt = certificateCopy(locale, 'certificate.iosReadyImageAlt');
+    img.src = objectUrl;
+    link.appendChild(img);
+    wrap.appendChild(link);
+    const hint = document.createElement('p');
+    hint.textContent = certificateCopy(locale, 'certificate.iosLongPressHint');
+    hint.className = 'elt-cert-save-hint';
+    wrap.appendChild(hint);
+    hint.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return objectUrl;
+  }
+
+  async function downloadPng(data, container, themeKey, locale, isCancelled) {
+    const svgEl = container.querySelector('#certRenderArea svg');
+    if (!svgEl) return null;
+    try {
+      const canvas = await svgToPng(svgEl);
+      const pngBlob = await new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error('PNG generation returned an empty blob'));
+        }, 'image/png');
+      });
+      if (isCancelled()) return null;
+      const filename = certificateFilename(data, themeKey, locale);
+      if (isAppleMobile()) {
+        return showIosSavePreview(container, pngBlob, filename, locale);
+      }
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = URL.createObjectURL(pngBlob);
+      link.hidden = true;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(link.href), 60000);
+      return null;
+    } catch (_e) {
+      if (!isCancelled()) alert(certificateCopy(locale, 'certificate.pngFailure'));
+      return null;
+    }
+  }
+
+  function printCert(svgMarkup, locale) {
+    if (!svgMarkup) return;
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+    const printTitle = escapeXml(certificateCopy(locale, 'certificate.printTitle'));
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>${printTitle}</title>
+          <style>
+            @media print {
+              body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+              .cert-box { width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+            }
+            body { font-family: Georgia, serif; background: #fff; }
+            .cert-box { padding: 20px; }
+            svg { max-width: 100%; height: auto; }
+          </style>
+        </head>
+        <body>
+          <div class="cert-box">
+            ${svgMarkup}
+          </div>
+          <script>window.onload = function(){ setTimeout(function(){ window.print(); }, 200); };</script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
+
+  global.EnglishTestCertificate = {
+    show: renderCertificate,
+    themes: THEMES,
+  };
+})(typeof window !== 'undefined' ? window : globalThis);

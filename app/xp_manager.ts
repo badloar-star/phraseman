@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
-import { ensureAnonUser, markCloudSyncPending } from './cloud_sync';
+import { markCloudSyncPending } from './cloud_sync';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
+import { getLeagueHotHoursMultiplier } from './league_hot_hours';
 import { DebugLogger } from './debug-logger';
-import { addOrUpdateScore, streakMultiplier } from './hall_of_fame_utils';
-import { loadLeagueState } from './league_engine';
+import { enqueueSecondaryXpProjection, streakMultiplier } from './hall_of_fame_utils';
+import { getWeekId, loadLeagueState } from './league_engine';
 import { consumeGiftXpBank, readGiftMultiplier, readGiftMultiplierForBaseXp } from './level_gift_system';
 import { getLeagueBoostMultiplier } from './league_personal_boosts';
 import { recordActivityForRepair } from './streak_repair';
@@ -20,6 +20,7 @@ import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
+import { consumeSeasonGoldenLessonMultiplier, peekSeasonGoldenLessonCharges } from './season_reward_apply';
 import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
@@ -37,14 +38,23 @@ import {
   XP_LEVEL_RESTORE_250_TO_400_KEY,
 } from './xp_level_restore';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
-import { ensureUnclaimedGiftForLevel } from './level_gift_inventory';
+import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
 async function getClubWeekTierMultiplier(): Promise<number> {
   try {
     const state = await loadLeagueState();
-    return 1 + (state?.leagueId ?? 0) * 0.1;
+    if (!state || state.weekId !== getWeekId()) return 1;
+    const leagueId = Math.max(0, Math.min(11, Math.trunc(Number(state.leagueId) || 0)));
+    return 1 + leagueId * 0.1;
   } catch {
     return 1;
   }
@@ -77,6 +87,10 @@ export function normalizeArenaMultipliersFirestore(raw: unknown): MultiplierBrea
     // Старые arena_profiles этих полей не хранят — дефолтим к нейтральным.
     leagueChestM: typeof m.leagueChestM === 'number' ? m.leagueChestM : 1,
     boonXpContribution: typeof m.boonXpContribution === 'number' ? m.boonXpContribution : 0,
+    // Старые arena_profiles без cardM — бонус карточки нейтрален.
+    cardM: typeof m.cardM === 'number' ? m.cardM : 1,
+    // Старые arena_profiles без hotHoursM — горячие часы нейтральны.
+    hotHoursM: typeof m.hotHoursM === 'number' ? m.hotHoursM : 1,
     total: typeof m.total === 'number' ? m.total : 1,
   };
 }
@@ -104,8 +118,7 @@ export type XPSource =
   | 'exam_complete'
   | 'achievement_reward'
   | 'level_up_bonus'
-  | 'plan_task_complete'    // Завершение задачи персонального плана
-  | 'club_mission_complete'; // Первое прохождение миссии «Разговорного клуба»
+  | 'plan_task_complete';    // Завершение задачи персонального плана
 
 interface XPResult {
   finalDelta: number;
@@ -117,7 +130,12 @@ export type RegisterXPOptions = {
   eventId?: string;
   payload?: Record<string, unknown>;
   skipLeagueChestMultiplier?: boolean;
+  accountToken?: AccountGenerationToken;
 };
+
+function isXpAccountGenerationCurrent(token: AccountGenerationToken): boolean {
+  return isCurrentAccountGeneration(token);
+}
 
 function progressEventTypeForSource(source: XPSource): ProgressEventType | null {
   switch (source) {
@@ -139,7 +157,6 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'achievement_reward':
     case 'level_up_bonus':
     case 'plan_task_complete':
-    case 'club_mission_complete':
     case 'wager_win':
       return source;
     case 'wager_bet':
@@ -170,6 +187,17 @@ function sanitizeLocalXpAmount(amount: number): number {
 function sanitizeLocalXpMultiplier(multiplier: number): number {
   if (!Number.isFinite(multiplier)) return 1;
   return Math.max(1, Math.min(MAX_LOCAL_XP_MULTIPLIER, multiplier));
+}
+
+/**
+ * Фаза 1 бонусов карточки: постоянный XP-буст +2% (×1.02) для уровня карточки II+.
+ * Значение зеркалит PROFILE_CARD_XP_BOOST, а ключ — PROFILE_CARD_LEVEL_KEY из
+ * app/profile_card_system.ts — модуль НЕ импортируем сюда, чтобы не поймать цикл
+ * импортов через shards_system/events (паттерн 'streak_count'/'comeback_active').
+ */
+async function readProfileCardXpMultiplier(): Promise<number> {
+  const raw = await storageGetString('profile_card_level');
+  return parseInt(raw || '0') >= 2 ? 1.02 : 1;
 }
 
 function patchProfileXpSnapshot(totalXp: number): void {
@@ -226,6 +254,18 @@ function submitProgressEventOptimistically(
       emitAppEvent('xp_changed');
     })
     .catch((serverError) => {
+      // зачем: XP уже начислен локально, сервер тут только догоняет. 'progress_event_pending'
+      // и 'progress_server_unavailable' — штатные состояния (нет сети / событие ещё в durable
+      // очереди и уйдёт следующим флашем), а не сбой: они попадали в лог как WARNING и пугали
+      // владельца красным Console Error на экране, хотя опыт не терялся. Настоящие сбои
+      // отправки логируем как раньше.
+      const diagnostic = String((serverError as { message?: string })?.message ?? serverError);
+      const isExpectedRetry = diagnostic.includes('progress_event_pending')
+        || diagnostic.includes('progress_server_unavailable');
+      if (isExpectedRetry) {
+        if (__DEV__) console.info('[xp_manager] progress event queued for retry:', diagnostic);
+        return;
+      }
       DebugLogger.error(logLabel, serverError, 'warning');
     });
 }
@@ -249,30 +289,98 @@ export const getLessonDifficultyMultiplier = (lessonNumber: number): number => {
   return Math.min(LESSON_DIFF_CAP, raw);
 };
 
-// Сериализует все вызовы registerXP — предотвращает race condition на user_total_xp
-// при быстрых параллельных ответах (fire-and-forget без await).
-let _xpLock: Promise<unknown> = Promise.resolve();
-// Таймаут — только страховка от «зависшего» предыдущего вызова (внутри лока
-// НЕТ ожидаемых сетевых операций — всё AsyncStorage; сервер fire-and-forget).
-// 1200мс были малы: медленный storage бюджетного Android при серии быстрых
-// ответов превышал их, вызовы шли параллельно, и read-modify-write
-// user_total_xp терял одно из начислений. 10с закрывает окно гонки, оставаясь
-// защитой от вечного дедлока.
+// Same-account awards stay strictly serialized. The timeout only reports a
+// stalled operation; it must never let a second stateful award overtake it.
 const XP_LOCK_WAIT_TIMEOUT_MS = 10_000;
+const XP_QUEUE_MAX_ACCOUNTS = 8;
+const XP_MULTIPLIER_CACHE_MAX_ACCOUNTS = 8;
 
-function waitForPreviousXpLock(lock: Promise<unknown>): Promise<void> {
-  return new Promise((resolve) => {
-    let settled = false;
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    const finish = () => {
-      if (settled) return;
-      settled = true;
-      if (timer) clearTimeout(timer);
-      resolve();
-    };
-    timer = setTimeout(finish, XP_LOCK_WAIT_TIMEOUT_MS);
-    (timer as any)?.unref?.();
-    lock.then(finish, finish);
+type XpQueueEntry = {
+  token: AccountGenerationToken;
+  tail: Promise<void>;
+};
+
+type XpMultiplierSnapshot = {
+  token: AccountGenerationToken;
+  club: number;
+  leagueGroup: number;
+  refresh: Promise<void> | null;
+};
+
+const xpQueueByAccount = new Map<string, XpQueueEntry>();
+const xpMultiplierByAccount = new Map<string, XpMultiplierSnapshot>();
+
+function pruneStaleXpRuntimeState(): void {
+  for (const [key, entry] of xpQueueByAccount) {
+    if (!isXpAccountGenerationCurrent(entry.token)) xpQueueByAccount.delete(key);
+  }
+  for (const [key, entry] of xpMultiplierByAccount) {
+    if (!isXpAccountGenerationCurrent(entry.token)) xpMultiplierByAccount.delete(key);
+  }
+}
+
+function enqueueXpOperation<T>(
+  token: AccountGenerationToken,
+  operation: () => Promise<T>,
+  staleValue: T,
+): Promise<T> {
+  const key = accountScopeKey(token);
+  if (!key || !isXpAccountGenerationCurrent(token)) return Promise.resolve(staleValue);
+  pruneStaleXpRuntimeState();
+  const previous = xpQueueByAccount.get(key)?.tail ?? Promise.resolve();
+  const result = previous.then(async () => {
+    let watchdog: ReturnType<typeof setTimeout> | null = setTimeout(() => {
+      DebugLogger.error(
+        'xp_manager.ts:registerXP:watchdog',
+        new Error('xp_operation_exceeded_10s'),
+        'warning',
+      );
+    }, XP_LOCK_WAIT_TIMEOUT_MS);
+    (watchdog as any)?.unref?.();
+    try {
+      return await operation();
+    } finally {
+      if (watchdog) clearTimeout(watchdog);
+      watchdog = null;
+    }
+  });
+  const tail = result.then(() => undefined, () => undefined).finally(() => {
+    if (xpQueueByAccount.get(key)?.tail === tail) xpQueueByAccount.delete(key);
+  });
+  xpQueueByAccount.set(key, { token, tail });
+  if (xpQueueByAccount.size > XP_QUEUE_MAX_ACCOUNTS) pruneStaleXpRuntimeState();
+  return result;
+}
+
+function getXpMultiplierSnapshot(token: AccountGenerationToken): XpMultiplierSnapshot {
+  pruneStaleXpRuntimeState();
+  const key = accountScopeKey(token);
+  const existing = key ? xpMultiplierByAccount.get(key) : undefined;
+  if (existing) return existing;
+  const snapshot: XpMultiplierSnapshot = { token, club: 1, leagueGroup: 1, refresh: null };
+  if (key) {
+    xpMultiplierByAccount.set(key, snapshot);
+    if (xpMultiplierByAccount.size > XP_MULTIPLIER_CACHE_MAX_ACCOUNTS) pruneStaleXpRuntimeState();
+  }
+  return snapshot;
+}
+
+function refreshXpMultiplierSnapshot(
+  token: AccountGenerationToken,
+  snapshot: XpMultiplierSnapshot,
+): void {
+  if (snapshot.refresh || !isXpAccountGenerationCurrent(token)) return;
+  snapshot.refresh = Promise.allSettled([
+    getCombinedClubMultiplier(),
+    getLeagueGroupBoostMultiplier(),
+  ]).then(([club, leagueGroup]) => {
+    if (!isXpAccountGenerationCurrent(token)) return;
+    if (club.status === 'fulfilled') snapshot.club = sanitizeLocalXpMultiplier(club.value);
+    if (leagueGroup.status === 'fulfilled') {
+      snapshot.leagueGroup = sanitizeLocalXpMultiplier(leagueGroup.value);
+    }
+  }).finally(() => {
+    snapshot.refresh = null;
   });
 }
 
@@ -286,18 +394,22 @@ export const registerXP = async (
 ): Promise<XPResult> => {
   amount = sanitizeLocalXpAmount(amount);
   if (amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };
-  const result = waitForPreviousXpLock(_xpLock).then(async () => {
+  const accountToken = options?.accountToken ?? captureAccountGeneration();
+  const staleResult = (multiplier = 1): XPResult => ({ finalDelta: 0, multiplier, isBonus: false });
+  return enqueueXpOperation(accountToken, async () => {
   let resolvedName = userName;
   let appliedDelta = amount;
   let scoreWritten = false;
   let totalXpWritten = false;
   let weeklyXpWritten = false;
   try {
+    if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
     if (!resolvedName) {
       const [canonicalUid, xpStored] = await Promise.all([
         getCanonicalUserId(),
         storageGetString('user_total_xp'),
       ]);
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const level = getLevelFromXP(parseInt(xpStored || '0', 10));
       const title = getTitleString(level, lang);
       const suffix = canonicalUid ? canonicalUid.replace(/-/g, '').slice(-4) : String(Math.floor(1000 + Math.random() * 9000));
@@ -315,15 +427,20 @@ export const registerXP = async (
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)
-      const clubM = await getCombinedClubMultiplier();
+      const multiplierSnapshot = getXpMultiplierSnapshot(accountToken);
+      const clubM = multiplierSnapshot.club;
+      const leagueGroupBoostM = multiplierSnapshot.leagueGroup;
+      refreshXpMultiplierSnapshot(accountToken, multiplierSnapshot);
 
       // Б) Множитель за длину цепочки (x2, x3, x5)
       const streakRaw = await storageGetString('streak_count');
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const streakM = streakMultiplier(parseInt(streakRaw || '0'));
 
       // В) Comeback бонус (x2)
       const todayStr = new Date().toISOString().split('T')[0];
       const comebackRaw = await storageGetString('comeback_active');
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const comebackM = (comebackRaw === todayStr) ? 2 : 1;
 
       // Г) Множитель сложности урока (+5% за каждый урок, только для lesson_answer/lesson_complete)
@@ -333,35 +450,54 @@ export const registerXP = async (
 
       // Д) Подарок за уровень: timed multiplier или запас XP с ×2, без бесконечного стака.
       const giftState = await readGiftMultiplierForBaseXp(amount);
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const giftM = giftState.multiplier;
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
-      const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
+      // Горячие 2 часа: ×2 для зоны вылета в конце недели (локальный кэш лиги, без сети).
+      const hotHoursM = await getLeagueHotHoursMultiplier();
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const leagueChestM = options?.skipLeagueChestMultiplier
         ? 1
         : await consumeLeagueChestXpOverrideMultiplier();
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
 
       // Ж) Weekly Boons: «Двойной четверг» (×2) + «Ранняя пташка» (×1.1 до 10:00).
       // Аддитивный вклад в ту же формулу, что и остальные множители.
       const boonXpContribution = boonXpMultiplierContribution();
 
+      // З) Фаза 1: постоянный XP-буст карточки уровня II+ (×1.02) — как остальные
+      // множители, только для заработанного XP (внутри if isEarnedXP).
+      const cardM = await readProfileCardXpMultiplier();
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
+
+      // И) Season Pass «Золотой урок» (владелец 2026-08-03): ×3 на ВЕСЬ следующий
+      // урок — peek на каждом ответе урока, заряд списывается на lesson_complete
+      // (иначе первый же ответ съел бы заряд, а «урок» = все ответы + завершение).
+      const isLessonXp = source === 'lesson_answer' || source === 'lesson_complete';
+      const goldenCharges = isLessonXp ? await peekSeasonGoldenLessonCharges() : 0;
+      const goldenLessonM = goldenCharges > 0 ? 3 : 1;
+      if (source === 'lesson_complete' && goldenCharges > 0) {
+        // guard-ok: декремент ЗАРЯДА расходника (season_golden_lesson_v1.remaining),
+        // не баланс/XP юзера — тот же класс, что remainingUses у xp_boost сундука.
+        void consumeSeasonGoldenLessonMultiplier().catch(() => {});
+      }
+
       totalMultiplier = sanitizeLocalXpMultiplier(
-        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution,
+        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1) + (goldenLessonM - 1),
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
-      // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
-      try {
-        const db = firestore();
-        ensureAnonUser().then((uid: string | null) => {
-          if (!uid) return;
-          db.collection('arena_profiles').doc(uid).set({
-            multipliers: { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, total: totalMultiplier, updatedAt: Date.now() },
-          }, { merge: true }).catch(() => {});
-        }).catch(() => {});
-      } catch (e) {
-        if (__DEV__) console.warn('[xp_manager]', e);
-      }
+      // зачем: здесь была запись множителей в arena_profiles/{uid} «для показа другим
+      // игрокам». Арена выведена из эксплуатации (tests/quiz_arena_decommission_contract):
+      // firestore.rules держит `allow read, write: if false`, сервер в эту коллекцию не
+      // пишет, поле multipliers не читает ни один экран. То есть на КАЖДЫЙ начисляемый XP
+      // (каждый правильный ответ, 16 источников) уходил сетевой запрос, который правила
+      // гарантированно отклоняли, а .catch(() => {}) делал отказ невидимым — чистый расход
+      // батареи и радио. Контракт декоммиссии искал клиентские файлы по слову «arena» в
+      // ИМЕНИ файла, поэтому xp_manager.ts под зачистку не попал. Публичный профиль
+      // синхронизируется правильным путём — syncPublicProfileSnapshot (TTL 24ч) ниже.
 
       const eventType = progressEventTypeForSource(source);
       if (progressServerRequired() && eventType && finalDelta > 0) {
@@ -384,7 +520,12 @@ export const registerXP = async (
         };
       }
       if (giftState.consumeBank && finalDelta > 0) {
-        await consumeGiftXpBank(amount).catch(() => 0);
+        const giftBankCommitted = await withAccountTransitionLock(async () => {
+          if (!isXpAccountGenerationCurrent(accountToken)) return false;
+          await consumeGiftXpBank(amount).catch(() => 0);
+          return isXpAccountGenerationCurrent(accountToken);
+        });
+        if (!giftBankCommitted) return staleResult(totalMultiplier);
       }
     }
 
@@ -411,18 +552,32 @@ export const registerXP = async (
           payload: baseFallbackPayload,
         };
       }
-      if (finalDelta > 0 && !(await reserveLocalProgressEvent(progressEventRequest?.eventId))) {
+      const reservation = await withAccountTransitionLock(async () => {
+        if (!isXpAccountGenerationCurrent(accountToken)) return { stale: true, reserved: false };
+        const reserved = finalDelta <= 0
+          || await reserveLocalProgressEvent(progressEventRequest?.eventId);
+        return { stale: !isXpAccountGenerationCurrent(accountToken), reserved };
+      });
+      if (reservation.stale) return staleResult(totalMultiplier);
+      if (finalDelta > 0 && !reservation.reserved) {
         if (progressEventRequest) {
+          if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
           submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel);
         }
       return { finalDelta: 0, multiplier: totalMultiplier, isBonus: false };
     }
 
     // 3. Обновляем глобальный счетчик user_total_xp (XP никогда не уходит в минус)
-    const currentTotal = await storageGetNumber('user_total_xp', 0);
-    const newTotal = Math.max(0, currentTotal + finalDelta);
+    let currentTotal = 0;
+    let newTotal = 0;
     let scoreAvatar: string | undefined;
+    const localCommit = await withAccountTransitionLock(async () => {
+    if (!isXpAccountGenerationCurrent(accountToken)) return false;
+    currentTotal = await storageGetNumber('user_total_xp', 0);
+    if (!isXpAccountGenerationCurrent(accountToken)) return false;
+    newTotal = Math.max(0, currentTotal + finalDelta);
     await storageSetString('user_total_xp', String(newTotal));
+    if (!isXpAccountGenerationCurrent(accountToken)) return false;
     patchProfileXpSnapshot(newTotal);
     totalXpWritten = true;
     // Offline: streak_count не приходит через mirrorProgressResultToLocal —
@@ -435,14 +590,17 @@ export const registerXP = async (
     if (finalDelta > 0) {
       const todayKey = getLocalDayKey();
       const lastDate = await AsyncStorage.getItem('last_active_date');
+      if (!isXpAccountGenerationCurrent(accountToken)) return false;
       if (!isSameLocalOrUtcDay(lastDate)) {
         const prevStreak = Number((await AsyncStorage.getItem('streak_count')) ?? '0') || 0;
+        if (!isXpAccountGenerationCurrent(accountToken)) return false;
         const next = isYesterdayFlexible(lastDate) ? prevStreak + 1 : 1;
         await AsyncStorage.multiSet([
           ['streak_count', String(next)],
           ['last_active_date', todayKey],
           ['streak_last_date', todayKey],
         ]);
+        if (!isXpAccountGenerationCurrent(accountToken)) return false;
       }
     }
     // XP-01: Track weekly XP in lockstep with total XP. addWeeklyXp internally
@@ -450,67 +608,86 @@ export const registerXP = async (
     // via SYNC_KEYS in cloud_sync.ts → users/{canonicalUid}.progress.weekly_xp.
     if (finalDelta > 0) {
       await addWeeklyXp(finalDelta);
+      if (!isXpAccountGenerationCurrent(accountToken)) return false;
       weeklyXpWritten = true;
-      refreshWeeklyRecapNotificationAfterXpChange(lang);
+      // зачем 2026-08-03 (владелец: «сезон очки капали не за опыт а за звёзды»):
+      // здесь стоял `void addSeasonPassXp(finalDelta)` — дорожка сезона качалась
+      // ЛЮБЫМ начислением опыта, включая уроки, повторения и бусты. Сезон из-за
+      // этого был не про турниры вообще. Начисление перенесено в турнирный
+      // экран (addSeasonPassStars), а опыт сезон больше не двигает.
     }
+    return isXpAccountGenerationCurrent(accountToken);
+    });
+    if (!localCommit) return staleResult(totalMultiplier);
+    if (finalDelta > 0) refreshWeeklyRecapNotificationAfterXpChange(lang);
 
     // 3.1. Уведомляем все подписчики о смене XP
-    if (finalDelta > 0) {
+    if (finalDelta > 0 && isXpAccountGenerationCurrent(accountToken)) {
       emitAppEvent('xp_changed');
     }
-    if (progressEventRequest) {
+    if (progressEventRequest && isXpAccountGenerationCurrent(accountToken)) {
       submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel);
     }
 
     // 3.2. Детектируем level-up прямо здесь — надёжнее чем в home.tsx через listener
     if (finalDelta > 0) {
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
       const prevLvl = getLevelFromXP(currentTotal);
       const newLvl  = getLevelFromXP(newTotal);
       if (newLvl > prevLvl) {
         // Обновляем аватар и рамку по финальному уровню
         const currentAvatar = await storageGetString('user_avatar');
+        if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
         const newFr = getBestFrameForLevel(newLvl);
         scoreAvatar = newAv;
-        // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни текущего начисления
-        const queueRaw = await storageGetString('pending_level_up_queue');
-        let queue: number[] = [];
-        try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
-        for (let lvl = prevLvl + 1; lvl <= newLvl; lvl++) {
-          if (!queue.includes(lvl)) queue.push(lvl);
-          // ГАРАНТИЯ подарка за уровень: катаем и кладём подарок в инвентарь
-          // ПРЯМО СЕЙЧАС, не дожидаясь показа модала. Даже если модал уровня
-          // не появится (краш/закрытие/гонка), подарок не потеряется — юзер
-          // найдёт его в разделе «Подарки». Идемпотентно, фоном (не блокируем
-          // горячий путь начисления XP).
-          void ensureUnclaimedGiftForLevel(lvl).catch(() => {});
-        }
-        await AsyncStorage.multiSet([
-          ['user_avatar', newAv],
-          ['user_frame', newFr.id],
-          ['pending_level_up_queue', JSON.stringify(queue)],
-          ['user_prev_xp', String(newTotal)],
-        ]);
-        emitAppEvent('level_up_pending');
+        const profileCommitted = await withAccountTransitionLock(async () => {
+          if (!isXpAccountGenerationCurrent(accountToken)) return false;
+          await AsyncStorage.multiSet([
+            ['user_avatar', newAv],
+            ['user_frame', newFr.id],
+            ['user_prev_xp', String(newTotal)],
+          ]);
+          return isXpAccountGenerationCurrent(accountToken);
+        });
+        if (!profileCommitted) return staleResult(totalMultiplier);
+        await reconcileLevelUpRewards(currentTotal, newTotal);
+        if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
         emitAppEvent('xp_changed');    // обновляем UI в home.tsx
         // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}
         writeFriendEvent('level_up', { level: newLvl }).catch(() => {});
-        checkAchievements({ type: 'level_reached', level: newLvl }).catch(() => {});
+        // зачем: владелец на новом аккаунте получил лавину модалок и тостов. Причина —
+        // самоподдерживающийся каскад: достижение → registerXP('achievement_reward') →
+        // новый уровень → level_reached → новые достижения → снова XP → снова уровень.
+        // Рекурсия по XP-достижениям была заглушена ниже (см. проверку source), но
+        // level_reached вызывался БЕЗУСЛОВНО и оставался открытой дверью для нового витка.
+        // Уровень, аватар, рамка и сундук начисляются как прежде — гасим только повторную
+        // проверку достижений от XP, который сам был наградой за достижение/уровень.
+        if (source !== 'achievement_reward' && source !== 'level_up_bonus') {
+          checkAchievements({ type: 'level_reached', level: newLvl }, accountToken).catch(() => {});
+        }
       } else {
-        await storageSetString('user_prev_xp', String(newTotal));
+        await withAccountTransitionLock(async () => {
+          if (!isXpAccountGenerationCurrent(accountToken)) return;
+          await storageSetString('user_prev_xp', String(newTotal));
+        });
+        if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         scoreAvatar = (await storageGetString('user_avatar')) ?? String(getBestAvatarForLevel(newLvl));
+        if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
       }
     }
 
+    if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
     scoreWritten = true;
-    void addOrUpdateScore(resolvedName, finalDelta, lang, scoreAvatar).catch((scoreError) => {
-      DebugLogger.error('xp_manager.ts:registerXP:addOrUpdateScore', scoreError, 'warning');
+    void enqueueSecondaryXpProjection(resolvedName, finalDelta, lang, scoreAvatar, accountToken).catch((scoreError) => {
+      DebugLogger.error('xp_manager.ts:registerXP:secondaryProjection', scoreError, 'warning');
     });
 
     // 4. Ремонт цепочки: любая активность с XP восстанавливает цепочку
     if (isEarnedXP && finalDelta > 0) {
-      recordActivityForRepair().catch(() => {});
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
+      recordActivityForRepair(accountToken).catch(() => {});
     }
 
     // 5. ТРИГГЕРЫ: Автоматизация прогресса
@@ -522,35 +699,44 @@ export const registerXP = async (
     // Пропускаем если source === 'achievement_reward', чтобы не создавать рекурсию:
     // checkAchievements → registerXP('achievement_reward') → checkAchievements → ...
     if (finalDelta > 0 && source !== 'achievement_reward' && source !== 'level_up_bonus') {
-      checkAchievements({ type: 'xp', totalXP: newTotal }).catch(() => {});
-      checkAchievements({ type: 'time_of_day' }).catch(() => {});
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
+      checkAchievements({ type: 'xp', totalXP: newTotal }, accountToken).catch(() => {});
+      checkAchievements({ type: 'time_of_day' }, accountToken).catch(() => {});
     }
     if (finalDelta > 0 && source === 'wager_win') {
-      checkAchievements({ type: 'wager_win' }).catch(() => {});
+      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
+      checkAchievements({ type: 'wager_win' }, accountToken).catch(() => {});
     }
 
     // XP is local-first. Mark cloud sync as pending; the app-level
     // background/inactive flush decides when to send the phone's state.
+    if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
     markCloudSyncPending();
 
     // Public profile is local-first: user sees XP immediately, server snapshot refreshes rarely.
     if (finalDelta > 0) {
       void (async () => {
+        if (!isXpAccountGenerationCurrent(accountToken)) return;
         const streakVal = (await storageGetNumber('streak_count', 0)) || undefined;
+        if (!isXpAccountGenerationCurrent(accountToken)) return;
         const frameId = await storageGetString('user_frame');
+        if (!isXpAccountGenerationCurrent(accountToken)) return;
         const lsRaw = await storageGetString('league_state_v3');
+        if (!isXpAccountGenerationCurrent(accountToken)) return;
         let leagueId: number | undefined;
         try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
+        const avatar = await storageGetString('user_avatar');
+        if (!isXpAccountGenerationCurrent(accountToken)) return;
         await syncPublicProfileSnapshot({
           reason: 'daily_xp',
           name: resolvedName,
           totalXp: newTotal,
           lang,
-          avatar: String((await storageGetString('user_avatar')) || getLevelFromXP(newTotal)),
+          avatar: String(avatar || getLevelFromXP(newTotal)),
           streak: streakVal,
           leagueId,
           frame: frameId ?? undefined,
-        });
+        }, accountToken);
       })().catch(() => {});
     }
 
@@ -560,16 +746,21 @@ export const registerXP = async (
       isBonus: totalMultiplier > 1
     };
   } catch (error) {
+    if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
     DebugLogger.error('xp_manager.ts:registerXP', error, 'critical');
     const fallbackDelta = Number.isFinite(appliedDelta) ? appliedDelta : amount;
+    const fallbackCommitted = await withAccountTransitionLock(async () => {
+    if (!isXpAccountGenerationCurrent(accountToken)) return false;
     // Fallback: the XP counter is the source of truth. Optional surfaces
     // (leaderboards, boosts, achievements, notifications) must not be able to
     // make a completed lesson look like it awarded nothing.
     if (!totalXpWritten && fallbackDelta !== 0) {
       try {
         const currentTotal = await storageGetNumber('user_total_xp', 0);
+        if (!isXpAccountGenerationCurrent(accountToken)) return false;
         const fallbackTotal = Math.max(0, currentTotal + fallbackDelta);
         await storageSetString('user_total_xp', String(fallbackTotal));
+        if (!isXpAccountGenerationCurrent(accountToken)) return false;
         patchProfileXpSnapshot(fallbackTotal);
         totalXpWritten = true;
       } catch (storageError) {
@@ -584,20 +775,21 @@ export const registerXP = async (
         if (__DEV__) console.warn('[xp_manager]', weeklyError);
       }
     }
-    if (fallbackDelta > 0) {
+    return isXpAccountGenerationCurrent(accountToken);
+    });
+    if (!fallbackCommitted) return staleResult();
+    if (fallbackDelta > 0 && isXpAccountGenerationCurrent(accountToken)) {
       emitAppEvent('xp_changed');
     }
-    if (!scoreWritten) {
+    if (!scoreWritten && isXpAccountGenerationCurrent(accountToken)) {
       scoreWritten = true;
-      void addOrUpdateScore(resolvedName, fallbackDelta, lang).catch((scoreError) => {
+      void enqueueSecondaryXpProjection(resolvedName, fallbackDelta, lang, undefined, accountToken).catch((scoreError) => {
         if (__DEV__) console.warn('[xp_manager]', scoreError);
       });
     }
     return { finalDelta: fallbackDelta, multiplier: 1, isBonus: false };
   }
-  });
-  _xpLock = result.catch(() => {});
-  return result;
+  }, staleResult());
 };
 
 const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
@@ -635,6 +827,16 @@ export const migrateXPFormulaV2 = async (): Promise<void> => {
 };
 
 export const __xpManagerTestHooks = {
+  resetXpRuntimeState: () => {
+    xpQueueByAccount.clear();
+    xpMultiplierByAccount.clear();
+  },
+  setXpMultiplierSnapshot: (club: number, leagueGroup: number) => {
+    const token = captureAccountGeneration();
+    const snapshot = getXpMultiplierSnapshot(token);
+    snapshot.club = sanitizeLocalXpMultiplier(club);
+    snapshot.leagueGroup = sanitizeLocalXpMultiplier(leagueGroup);
+  },
   sanitizeLocalXpAmount,
   sanitizeLocalXpMultiplier,
   localProgressEventLedgerKey,
@@ -659,13 +861,16 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+    // Горячие 2 часа: тот же вклад, что registerXP добавляет при начислении.
+    const hotHoursM = await getLeagueHotHoursMultiplier();
     // H13: ранее UI занижал множитель — не учитывал leagueChestM и boonXpContribution,
-    // которые registerXP уже добавляет к финальной формуле. Используем peek (НЕ consume),
     // иначе UI прожжёт одноразовый league chest бонус.
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
     const boonXpContribution = boonXpMultiplierContribution();
+    // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
+    const cardM = await readProfileCardXpMultiplier();
 
-    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
+    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
   } catch {
     return 1;
   }
@@ -682,7 +887,39 @@ export interface MultiplierBreakdown {
   leagueChestM: number;
   /** Аддитивный вклад weekly boons (двойной четверг / ранняя пташка). */
   boonXpContribution: number;
+  /** Фаза 1: постоянный XP-буст карточки II+ (×1.02), иначе нейтральная 1. */
+  cardM: number;
+  /** «Горячие 2 часа» лиги: ×2 для зоны вылета в конце недели, иначе 1. */
+  hotHoursM: number;
   total: number;
+}
+
+// зачем: PlayerProfileModal раньше монтировался со skeleton и подменял его на
+// реальные множители мгновение спустя (заметный "мигающий" reveal). Множители
+// нигде не хранятся синхронно (все источники — AsyncStorage/Firestore чтения),
+// поэтому держим последний резолвленный снимок в памяти модуля: первый вызов в
+// сессии всё ещё асинхронный, но повторное открытие модалки (в течение той же
+// сессии) отдаёт синхронный кэш и рендерится сразу в финальном состоянии, а
+// свежее значение подтягивается в фоне и тихо обновляет тот же объект.
+let lastResolvedMultiplierBreakdown: MultiplierBreakdown | null = null;
+
+/** Синхронный доступ к последнему резолвленному брейкдауну (null = ещё не считали в этой сессии). */
+export function peekLastMultiplierBreakdown(): MultiplierBreakdown | null {
+  return lastResolvedMultiplierBreakdown;
+}
+
+// зачем: module-scope кэш выше НЕ был привязан ни к какому uid — он просто держал
+// последний резолвленный брейкдаун процесса. При logout/смене аккаунта БЕЗ
+// полного рестарта приложения (общий девайс, QA свитчит тестовые аккаунты)
+// PlayerProfileModal синхронно читал peekLastMultiplierBreakdown() и мгновенно
+// показывал множители ПРЕДЫДУЩЕГО аккаунта как текущие — до того, как фоновый
+// getCurrentMultiplierBreakdown() успевал их молча перезаписать. Это утечка
+// данных одного аккаунта в сессию другого. Вызывается из
+// wipeLocalAccountDataUnsafe (cloud_sync.ts) и signOutCurrentProvider
+// (auth_provider.ts) — единственных точек, через которые проходит любой logout/
+// account-switch/account-delete flow.
+export function resetMultiplierBreakdownCache(): void {
+  lastResolvedMultiplierBreakdown = null;
 }
 
 export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdown> => {
@@ -696,12 +933,17 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+    const hotHoursM = await getLeagueHotHoursMultiplier();
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
     const boonXpContribution = boonXpMultiplierContribution();
-    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
-    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, total };
+    // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
+    const cardM = await readProfileCardXpMultiplier();
+    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
+    const breakdown: MultiplierBreakdown = { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, cardM, hotHoursM, total };
+    lastResolvedMultiplierBreakdown = breakdown;
+    return breakdown;
   } catch {
-    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, total: 1 };
+    return lastResolvedMultiplierBreakdown ?? { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, cardM: 1, hotHoursM: 1, total: 1 };
   }
 };
 

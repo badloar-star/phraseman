@@ -28,6 +28,10 @@ import {
   type BoonReward,
 } from '../app/boons/boon_rewards';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import BoonChestModal, { type BoonChestRarity } from './BoonChestModal';
 
 const CLAIM_KEY = MYSTERY_MONDAY_CLAIM_KEY;
@@ -47,10 +51,15 @@ function rollFromWeek(weekId: string): number {
   return ((h >>> 0) % 1000) / 1000;
 }
 
-/** Размер награды → «редкость» сундука (драма растёт с призом). */
+/**
+ * Размер награды → «редкость» сундука (драма растёт с призом).
+ * зачем: пороги привязаны к актуальной шкале MYSTERY_TIERS (1/2/3/5). Старые
+ * пороги 8/15 после перехода на скромную шкалу стали недостижимы — сундук
+ * всегда был бы голубым, и золотой топ-тир не читался как редкая удача.
+ */
 function rarityForShards(shards: number): BoonChestRarity {
-  if (shards >= 15) return 'epic';
-  if (shards >= 8) return 'rare';
+  if (shards >= 5) return 'epic';
+  if (shards >= 3) return 'rare';
   return 'common';
 }
 
@@ -106,15 +115,19 @@ export default function MysteryMondayHost() {
     'Сундук недели', 'Скриня тижня', 'Cofre de la semana', 'Baú da semana',
     'Rương của tuần', 'Peti minggu ini', 'Haftanın sandığı', 'Skrzynia tygodnia',
   );
+  // зачем: число склоняем — при тире «1» без склонения выходило «1 жемчужин».
+  // Сказуемое тоже согласуем по числу («1 жемчужина — теперь твоя»).
+  // UK-строка раньше содержала русское «жемчужин»; правильное слово — «перлина/перлин».
+  const one = reward.shards % 10 === 1 && reward.shards % 100 !== 11;
   const rewardLine = L(
-    `${reward.shards} осколков — теперь твои`,
-    `${reward.shards} осколків — тепер твої`,
-    `${reward.shards} fragmentos — ahora son tuyos`,
-    `${reward.shards} fragmentos — agora são seus`,
+    `${reward.shards} ${ruKnowledgeShardsAfterNumber(reward.shards)} — теперь ${one ? 'твоя' : 'твои'}`,
+    `${reward.shards} ${ukKnowledgeShardsAfterNumber(reward.shards)} — тепер ${one ? 'твоя' : 'твої'}`,
+    `${reward.shards} perlas — ahora son tuyos`,
+    `${reward.shards} perlas — agora são seus`,
     `${reward.shards} mảnh — giờ là của bạn`,
     `${reward.shards} serpihan — kini milikmu`,
     `${reward.shards} parça — artık senin`,
-    `${reward.shards} odłamków — teraz twoje`,
+    `${reward.shards} monet — teraz twoje`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',

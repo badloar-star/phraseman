@@ -34,8 +34,9 @@ describe('daily tasks claim optimistic UI contract', () => {
     expect(source).toContain('const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy');
   });
 
-  it('does not require a second tap or show the old repeat-tap copy', () => {
-    expect(source).toContain('void handleTaskNav(task);');
+  it('uses an explicit explanation-sheet start action instead of the old repeat-tap flow', () => {
+    expect(source).toContain('setSelectedQuest(task);');
+    expect(source).toContain('void handleTaskNav(taskToStart);');
     expect(source).not.toContain('Нажми ещё раз');
     expect(source).not.toContain('Toca otra vez');
     expect(source).not.toContain('taskConfirmTrack');

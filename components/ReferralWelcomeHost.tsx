@@ -2,9 +2,8 @@
  * ReferralWelcomeHost — глобальный хост приветствия ПРИГЛАШЁННОГО.
  *
  * Показывает один раз на главной (после онбординга) тем, кто пришёл по реферал-ссылке,
- * объясняя награду: «установи → ВВЕДИ КОД (если ещё не) → пройди 1 урок полностью →
- * получишь 7 дней полного доступа». До этого реферал-ссылка молча вела на главную и
- * новичок не знал про подарок (награда referee = 7 дней, functions/src/referral.ts).
+ * объясняя условие: «установи → ВВЕДИ КОД (если ещё не) → оформи Plus или Pro →
+ * пригласившему откроется один прокрут рулетки с призом Plus от 1 до 365 дней».
  *
  * Монтируется из app/_layout.tsx внутри OverlayArbiterProvider (рядом с
  * ArenaFriendInviteHost), поэтому НЕ требует правок home.tsx. Видимостью управляет
@@ -14,7 +13,7 @@
  */
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -25,6 +24,7 @@ import {
   markReferralWelcomeSeen,
   type ReferralWelcomeDecision,
 } from '../app/referral_welcome_state';
+import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 
 function makeL(lang: Lang) {
   return (
@@ -43,15 +43,20 @@ export default function ReferralWelcomeHost() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang } = useLang();
+  const rouletteOn = useReferralRouletteEnabled();
   const L = makeL(lang as Lang);
 
   const [welcomeDecision, setWelcomeDecision] = useState<ReferralWelcomeDecision | null>(null);
-  const wantShow = welcomeDecision?.show ?? false;
+  const wantShow = rouletteOn && (welcomeDecision?.show ?? false);
   const visible = useOverlayVisible('referralWelcome', wantShow);
 
   // Один раз при монтировании решаем, надо ли показывать (читает только AsyncStorage).
   useEffect(() => {
     let alive = true;
+    if (!rouletteOn) {
+      setWelcomeDecision(null);
+      return;
+    }
     decideReferralWelcome()
       .then((d) => {
         if (alive && d.show) setWelcomeDecision(d);
@@ -60,7 +65,7 @@ export default function ReferralWelcomeHost() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [rouletteOn]);
 
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;
@@ -81,7 +86,9 @@ export default function ReferralWelcomeHost() {
     setWelcomeDecision(null);
     void markReferralWelcomeSeen().catch(() => {});
     try {
-      router.push('/referral_code_entry' as never);
+      // зачем: экран ввода кода удалён — единый экран рефералов сам выдвигает
+      // шит «Код от друга» по параметру enter=1.
+      router.push('/referrals?enter=1' as never);
     } catch {
       /* роут недоступен — просто закрываем */
     }
@@ -100,24 +107,24 @@ export default function ReferralWelcomeHost() {
     'Masz zaproszenie — jest prezent',
   );
   const body = L(
-    'Пройди один урок полностью — и получишь 7 дней полного доступа бесплатно. Твой друг тоже получит свои 7 дней.',
-    'Пройди один урок повністю — і отримаєш 7 днів повного доступу безкоштовно. Твій друг теж отримає свої 7 днів.',
-    'Completa una lección entera y obtienes 7 días de acceso total gratis. Tu amigo también recibe sus 7 días.',
-    'Conclua uma lição inteira e ganhe 7 dias de acesso total grátis. Seu amigo também ganha 7 dias.',
-    'Hoàn thành một bài học và nhận 7 ngày truy cập đầy đủ miễn phí. Bạn của bạn cũng nhận 7 ngày.',
-    'Selesaikan satu pelajaran penuh dan dapatkan 7 hari akses penuh gratis. Temanmu juga dapat 7 hari.',
-    'Bir dersi tamamen bitir, 7 gün tam erişim bedava senin olsun. Arkadaşın da kendi 7 gününü alır.',
-    'Ukończ całą lekcję i zgarnij 7 dni pełnego dostępu za darmo. Twój znajomy też dostaje swoje 7 dni.',
+    'Оформи Plus или Pro — пригласивший тебя друг получит ключ. Награда — Plus от 1 дня до 365 дней.',
+    'Оформи Plus або Pro — друг, який тебе запросив, отримає ключ. Нагорода — Plus від 1 до 365 днів.',
+    'Compra Plus o Pro: quien te invitó recibirá una llave. Recompensa: Plus de 1 a 365 días.',
+    'Assine Plus ou Pro: quem convidou você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
+    'Mua Plus hoặc Pro: người mời bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
+    'Beli Plus atau Pro: teman yang mengundangmu mendapat kunci. Hadiah: Plus 1–365 hari.',
+    'Plus veya Pro satın al: seni davet eden arkadaşın bir anahtar kazanır. Ödül: 1–365 gün Plus.',
+    'Kup Plus lub Pro: osoba, która cię zaprosiła, dostanie klucz. Nagroda: Plus od 1 do 365 dni.',
   );
   const primaryCta = L(
-    'Пройти первый урок',
-    'Пройти перший урок',
-    'Empezar la primera lección',
-    'Fazer a primeira lição',
-    'Học bài đầu tiên',
-    'Mulai pelajaran pertama',
-    'İlk dersi yap',
-    'Zrób pierwszą lekcję',
+    'Начать учиться',
+    'Почати навчання',
+    'Empezar a aprender',
+    'Começar a aprender',
+    'Bắt đầu học',
+    'Mulai belajar',
+    'Öğrenmeye başla',
+    'Zacznij naukę',
   );
   const codeCta = L(
     'У меня есть код приглашения',
@@ -135,6 +142,7 @@ export default function ReferralWelcomeHost() {
     ?? (t as { bgPrimary?: string }).bgPrimary
     ?? '#15181a';
   const accent = (t as { accent?: string }).accent ?? '#34C759';
+  const accentText = (t as { correctText?: string }).correctText ?? '#07110A';
   const textPrimary = (t as { textPrimary?: string }).textPrimary ?? '#FFFFFF';
   const textSecond = (t as { textSecond?: string; textSecondary?: string }).textSecond
     ?? (t as { textSecondary?: string }).textSecondary
@@ -149,7 +157,7 @@ export default function ReferralWelcomeHost() {
             style={[styles.card, { backgroundColor: bgCard, transform: [{ scale }], opacity }]}
           >
             <View style={[styles.badge, { backgroundColor: accent }]}>
-              <Ionicons name="gift" size={30} color="#fff" />
+              <Ionicons name="gift" size={30} color={accentText} />
             </View>
             <Text style={[styles.title, { color: textPrimary }]}>{title}</Text>
             <Text style={[styles.body, { color: textSecond }]}>{body}</Text>
@@ -160,7 +168,7 @@ export default function ReferralWelcomeHost() {
               style={[styles.primaryBtn, { backgroundColor: accent }]}
               accessibilityRole="button"
             >
-              <Text style={styles.primaryBtnText}>{primaryCta}</Text>
+              <Text style={[styles.primaryBtnText, { color: accentText }]}>{primaryCta}</Text>
             </Pressable>
 
             {showCodeCta ? (

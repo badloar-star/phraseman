@@ -221,11 +221,16 @@ const SKIP_DIRS = new Set([
   '.gradle',
   '.claude',
   '.codex-tmp',
+  '.logs',
   '.next',
+  '.ruflo',
+  '.ruvector',
   // Design-brainstorm HTML artifacts; not product copy.
   '.superpowers',
+  '.swarm',
   '.turbo',
   '.vscode',
+  '.worktrees',
   'android',
   'build',
   'coverage',
@@ -239,9 +244,13 @@ const SKIP_PATH_PARTS = [
   'scripts/missing_edits_dump',
   'scripts/out',
   'docs/heisenberg',
+  'docs/reports',
   // Generated Gustav study-target packs (fr) are not source-locale product
   // input; the fr arena bank alone holds 200k+ items and drowns the scan.
   'docs/gustav/generated',
+  // Bundled image trees are large binary assets. Locale text references are in
+  // app source maps, not image bytes or generated thumbnails.
+  'assets/images',
   // Compiled build output duplicating functions/src; scanning it double-counts
   // every server string and audits stale artifacts.
   'functions/lib',
@@ -433,7 +442,6 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/french_flashcard_remote_runtime.ts',
   'app/french_lesson_remote_runtime.ts',
   'app/french_lesson_words_remote_runtime.ts',
-  'app/french_personal_practice_remote_runtime.ts',
   'app/french_quiz_remote_runtime.ts',
   'app/french_target_remote_registration.ts',
 ]);
@@ -503,6 +511,61 @@ function normalizeLocale(input) {
   } catch (_err) {
     throw new Error(`Invalid BCP 47 locale: ${raw}`);
   }
+}
+
+function interfaceLocaleKey(input) {
+  const canonical = normalizeLocale(input);
+  const baseLang = canonical.split('-')[0].toLowerCase();
+  if (REGISTERED_INTERFACE_SOURCE_LOCALES.includes(canonical)) return canonical;
+  if (REGISTERED_INTERFACE_SOURCE_LOCALES.includes(baseLang)) return baseLang;
+  return baseLang;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function localeAgnosticKeyPath(keyPath, locale) {
+  let normalized = String(keyPath || '');
+  const canonical = normalizeLocale(locale);
+  const variants = Array.from(new Set([
+    canonical,
+    canonical.toLowerCase(),
+    canonical.split('-')[0].toLowerCase(),
+    canonical.toUpperCase().replace(/-/g, '_'),
+  ])).filter(Boolean);
+
+  for (const variant of variants) {
+    const escaped = escapeRegExp(variant);
+    normalized = normalized
+      .replace(new RegExp(`(^|\\.)${escaped}(?=\\.|$)`, 'g'), '$1')
+      .replace(new RegExp(`\\[${escaped}\\]`, 'g'), '')
+      .replace(new RegExp(`_${escaped}(?=$|\\.)`, 'g'), '');
+  }
+
+  normalized = normalized
+    .replace(/\.{2,}/g, '.')
+    .replace(/\.$/, '')
+    .replace(/(^|\.)sourceLocales\.(?=[^.]+$)/g, '$1')
+    .replace(/([A-Za-z0-9]+)(RU|UK|ES|Ru|Uk|Es)$/g, '$1');
+  const localizedBases = heisenbergLocales.LOCALIZED_KEY_BASES.join('|');
+  for (const entry of LOCALE_REGISTRY) {
+    const compact = entry.code.replace(/-/g, '');
+    const titleSuffix = entry.code.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join('');
+    const suffixes = [compact.toUpperCase(), titleSuffix];
+    for (const suffix of suffixes) {
+      normalized = normalized.replace(new RegExp(`(${localizedBases})${escapeRegExp(suffix)}$`), '$1');
+    }
+  }
+  return normalized;
+}
+
+function localizedRuntimeUnitKey(item) {
+  return [
+    normalizePath(item.file || ''),
+    item.surface || '',
+    localeAgnosticKeyPath(item.keyPath || '', item.locale || ''),
+  ].join('::');
 }
 
 function localeSlug(locale) {
@@ -728,7 +791,31 @@ function positionOf(sf, node) {
 
 function makeStableId(rel, line, fieldPath, index) {
   const suffix = index === undefined ? '' : `[${index}]`;
-  return `${normalizePath(rel)}:${line}:${fieldPath}${suffix}`;
+  return `${normalizePath(rel)}:${fieldPath}${suffix}`;
+}
+
+function hasDirectLocaleSiblings(prop) {
+  if (!ts || !prop?.parent || !ts.isObjectLiteralExpression(prop.parent)) return false;
+  let localeSiblingCount = 0;
+  for (const sibling of prop.parent.properties) {
+    if (!ts.isPropertyAssignment(sibling)) continue;
+    const locale = inferExactLocaleKey(propertyName(sibling.name));
+    if (!locale || AMBIGUOUS_EXACT_LOCALE_KEYS.has(locale)) continue;
+    if (translatableExpressionText(sibling.initializer, sibling.getSourceFile()) !== null) localeSiblingCount += 1;
+  }
+  return localeSiblingCount >= 2;
+}
+
+function inferRegisteredLocaleSuffix(name) {
+  const raw = String(name || '');
+  const bases = heisenbergLocales.LOCALIZED_KEY_BASES.join('|');
+  for (const entry of LOCALE_REGISTRY) {
+    const compact = entry.code.replace(/-/g, '');
+    const titleSuffix = entry.code.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join('');
+    const suffixes = [compact.toUpperCase(), titleSuffix];
+    if (suffixes.some((suffix) => new RegExp(`^(?:${bases})${escapeRegExp(suffix)}$`).test(raw))) return entry.code;
+  }
+  return null;
 }
 
 function lineColumnAt(text, index) {
@@ -1063,6 +1150,8 @@ function extractLocalizedItemsFromText(rel, text) {
       }
 
       const directLocale = inferDirectLocaleFieldKey(key, rel, pathParts.join('.')) ||
+        (inferExactLocaleKey(key) && hasDirectLocaleSiblings(node) ? inferExactLocaleKey(key) : null) ||
+        inferRegisteredLocaleSuffix(key) ||
         (isExplicitLocaleKey(key) ? inferLocaleFromKey(key, null) : null);
       if (directLocale) {
         const direct = translatableExpressionText(node.initializer, sf);
@@ -1623,39 +1712,202 @@ function buildBatchLocaleCoverageAudit(inventory, locales = STRUCTURED_BATCH_SOU
 
 function missingTargetSourceItems(inventory, targetLocale) {
   const canonical = normalizeLocale(targetLocale);
-  const baseLang = canonical.split('-')[0].toLowerCase();
-  const targetLocaleKey = KNOWN_APP_LOCALES.includes(canonical) ? canonical : baseLang;
+  const targetLocaleKey = interfaceLocaleKey(canonical);
   const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== targetLocaleKey);
-  const byFileLocale = countItemsByFileAndLocale(inventory.items || []);
-  const productionFiles = inventory.files.filter((file) => PRODUCT_SURFACES.has(file.surface));
-  const gapFiles = new Set();
+  const productionItems = (inventory.items || []).filter((item) => PRODUCT_SURFACES.has(item.surface));
+  const targetUnits = new Set(
+    productionItems
+      .filter((item) => item.locale === targetLocaleKey)
+      .map((item) => localizedRuntimeUnitKey(item)),
+  );
 
-  for (const file of productionFiles) {
-    const counts = byFileLocale[file.file] || {};
-    const sourceItemCount = sourceLocales.reduce((sum, locale) => sum + (counts[locale] || 0), 0);
-    const targetItemCount = counts[targetLocaleKey] || 0;
-    if (sourceItemCount > 0 && targetItemCount === 0) {
-      gapFiles.add(file.file);
+  const candidates = new Map();
+  for (const item of productionItems) {
+    if (!sourceLocales.includes(item.locale)) continue;
+    const unitKey = localizedRuntimeUnitKey(item);
+    if (targetUnits.has(unitKey)) continue;
+    if (!candidates.has(unitKey)) {
+      candidates.set(unitKey, { ...item, sourceTexts: {} });
+    }
+    candidates.get(unitKey).sourceTexts[item.locale] = item.text;
+  }
+  return [...candidates.values()];
+}
+
+function buildLocalizationRuntimeLedger(inventory, targetLocales = HEISENBERG_BATCH_SOURCE_LOCALES) {
+  const requestedLocales = targetLocales.map((locale) => interfaceLocaleKey(locale));
+  const productionItems = (inventory.items || []).filter((item) => PRODUCT_SURFACES.has(item.surface));
+  const units = new Map();
+
+  for (const item of productionItems) {
+    const unitKey = localizedRuntimeUnitKey(item);
+    if (!units.has(unitKey)) {
+      units.set(unitKey, {
+        unitKey,
+        studyTarget: 'en',
+        file: normalizePath(item.file || ''),
+        surface: item.surface || '',
+        fieldRole: localeAgnosticKeyPath(item.keyPath || '', item.locale || ''),
+        sourceLocalesPresent: new Set(),
+        targetLocalesPresent: new Set(),
+      });
+    }
+    const unit = units.get(unitKey);
+    if (LEGACY_INLINE_APP_LOCALES.includes(item.locale)) {
+      unit.sourceLocalesPresent.add(item.locale);
+    }
+    if (requestedLocales.includes(item.locale)) {
+      unit.targetLocalesPresent.add(item.locale);
     }
   }
 
-  return (inventory.items || []).filter(
-    (item) =>
-      gapFiles.has(item.file) &&
-      sourceLocales.includes(item.locale) &&
-      PRODUCT_SURFACES.has(item.surface),
+  const sourceBackedUnits = [...units.values()]
+    .filter((unit) => unit.sourceLocalesPresent.size > 0)
+    .sort((a, b) => a.file.localeCompare(b.file) || a.surface.localeCompare(b.surface) || a.fieldRole.localeCompare(b.fieldRole));
+
+  const rows = [];
+  const localeSummary = {};
+  const scopes = [];
+  const summarizeRows = (scopeRows) => ({
+    totalUnits: scopeRows.length,
+    presentUnits: scopeRows.filter((row) => row.targetPresent).length,
+    missingUnits: scopeRows.filter((row) => !row.targetPresent).length,
+    reviewRequiredUnits: scopeRows.filter((row) => !row.releaseReady).length,
+    releaseReadyUnits: scopeRows.filter((row) => row.releaseReady).length,
+  });
+  const explicitCefrLevel = (unit) => {
+    const evidence = `${unit.file} ${unit.fieldRole}`;
+    const match = evidence.match(/(?:^|[\/_.:\[\]-])(a1|a2|b1|b2|c1|c2)(?=$|[\/_.:\]\-])/i);
+    return match ? match[1].toUpperCase() : 'unclassified';
+  };
+  for (const sourceLocale of requestedLocales) {
+    const localeRows = sourceBackedUnits.map((unit) => {
+      const targetPresent = unit.targetLocalesPresent.has(sourceLocale);
+      const status = targetPresent ? 'present_needs_review' : 'missing_candidate';
+      return {
+        studyTarget: 'en',
+        sourceLocale,
+        surface: unit.surface,
+        cefrLevel: explicitCefrLevel(unit),
+        file: unit.file,
+        unitKey: unit.unitKey,
+        fieldRole: unit.fieldRole,
+        sourceLocalesPresent: [...unit.sourceLocalesPresent].sort(),
+        targetPresent,
+        structurallyValid: targetPresent,
+        semanticCleared: false,
+        go: false,
+        applyable: !targetPresent,
+        integrated: targetPresent,
+        runtimeSelected: false,
+        humanApproved: false,
+        releaseReady: false,
+        status,
+      };
+    });
+    rows.push(...localeRows);
+    const surfaces = {};
+    for (const surface of [...new Set(localeRows.map((row) => row.surface))].sort()) {
+      surfaces[surface] = summarizeRows(localeRows.filter((row) => row.surface === surface));
+    }
+    for (const surface of Object.keys(surfaces)) {
+      const surfaceRows = localeRows.filter((row) => row.surface === surface);
+      for (const cefrLevel of [...new Set(surfaceRows.map((row) => row.cefrLevel))].sort()) {
+        const scopeSummary = summarizeRows(surfaceRows.filter((row) => row.cefrLevel === cefrLevel));
+        scopes.push({
+          sourceLocale,
+          surface,
+          cefrLevel,
+          ...scopeSummary,
+          scopedReady: scopeSummary.totalUnits > 0 && scopeSummary.releaseReadyUnits === scopeSummary.totalUnits,
+        });
+      }
+    }
+    localeSummary[sourceLocale] = {
+      ...summarizeRows(localeRows),
+      surfaces,
+    };
+  }
+
+  return {
+    schemaVersion: 'heisenberg-localization-runtime-ledger-v1',
+    generatedAt: new Date().toISOString(),
+    summary: {
+      studyTarget: 'en',
+      sourceLocales: requestedLocales,
+      sourceBackedUnits: sourceBackedUnits.length,
+      rows: rows.length,
+      locales: localeSummary,
+      scopes,
+    },
+    rows,
+  };
+}
+
+function buildPresentLocaleReviewCandidates(inventory, targetLocale, options = {}) {
+  const targetLocaleKey = interfaceLocaleKey(normalizeLocale(targetLocale));
+  const productionItems = (inventory.items || []).filter(
+    (item) => PRODUCT_SURFACES.has(item.surface) && (!options.surface || item.surface === options.surface),
   );
+  const sourceByUnit = new Map();
+  for (const item of productionItems) {
+    if (!LEGACY_INLINE_APP_LOCALES.includes(item.locale)) continue;
+    const unitKey = localizedRuntimeUnitKey(item);
+    if (!sourceByUnit.has(unitKey)) sourceByUnit.set(unitKey, []);
+    sourceByUnit.get(unitKey).push(item);
+  }
+  const candidates = [];
+  const seen = new Set();
+  for (const targetItem of productionItems) {
+    if (targetItem.locale !== targetLocaleKey) continue;
+    const unitKey = localizedRuntimeUnitKey(targetItem);
+    if (seen.has(unitKey)) continue;
+    const sourceItems = sourceByUnit.get(unitKey) || [];
+    if (!sourceItems.length) continue;
+    seen.add(unitKey);
+    const sourceTexts = Object.fromEntries(sourceItems.map((item) => [item.locale, item.text]));
+    const preferredSource = sourceItems.find((item) => item.locale === 'ru') || sourceItems[0];
+    candidates.push({
+      schema: 'heisenberg-existing-runtime-review-candidate-v1',
+      id: `existing:${unitKey}`,
+      origin: 'existing-runtime',
+      status: 'EXISTING_NEEDS_REVIEW',
+      integrated: true,
+      studyTarget: 'en',
+      file: targetItem.file,
+      line: targetItem.line,
+      surface: targetItem.surface,
+      unitKey,
+      keyPath: targetItem.keyPath,
+      targetItemId: targetItem.id,
+      targetItemKeyPath: targetItem.keyPath,
+      sourceLocale: preferredSource.locale,
+      sourceText: preferredSource.text,
+      sourceTexts,
+      targetLocale: targetLocaleKey,
+      targetText: targetItem.text,
+      machineGenerated: false,
+      humanApproved: false,
+      runtimeReviewApproved: false,
+      reviewerImportAllowed: false,
+      integrationApplyAllowed: false,
+      productionApplyAllowed: false,
+      activationApproved: false,
+    });
+  }
+  return candidates.sort((a, b) => a.file.localeCompare(b.file) || a.keyPath.localeCompare(b.keyPath));
 }
 
 function buildExistingLocaleAudit(inventory, targetLocale) {
   const canonical = normalizeLocale(targetLocale);
   const baseLang = canonical.split('-')[0].toLowerCase();
-  const targetLocaleKey = KNOWN_APP_LOCALES.includes(canonical) ? canonical : baseLang;
-  const targetIsKnownAppLocale = KNOWN_APP_LOCALES.includes(canonical) || KNOWN_APP_LOCALES.includes(baseLang);
-  const shouldRunLegacyInlineCoverage = LEGACY_INLINE_APP_LOCALES.includes(targetLocaleKey);
+  const targetLocaleKey = interfaceLocaleKey(canonical);
+  const targetIsKnownAppLocale = REGISTERED_INTERFACE_SOURCE_LOCALES.includes(targetLocaleKey);
   const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== targetLocaleKey);
   const fieldMarkerByLocale = { ru: 'ruFields', uk: 'ukFields', es: 'esFields' };
   const targetFieldMarker = fieldMarkerByLocale[targetLocaleKey];
+  const shouldRunLegacyFieldCoverage = Boolean(targetFieldMarker);
+  const shouldRunItemCoverage = targetIsKnownAppLocale;
   const sourceFieldMarkers = sourceLocales.map((locale) => fieldMarkerByLocale[locale]).filter(Boolean);
   const byFileLocale = countItemsByFileAndLocale(inventory.items || []);
   const byFileSourceKind = countItemsByFileAndSourceKind(inventory.items || []);
@@ -1669,7 +1921,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       .map((coverage) => [coverage.file, coverage]),
   );
 
-  const fieldCoverageGaps = shouldRunLegacyInlineCoverage ? productionFiles
+  const fieldCoverageGaps = shouldRunLegacyFieldCoverage ? productionFiles
     .map((file) => {
       const sourceFieldCount = sourceFieldMarkers.reduce((sum, marker) => sum + (file.markers[marker] || 0), 0);
       const targetFieldCount = targetFieldMarker ? file.markers[targetFieldMarker] || 0 : 0;
@@ -1687,7 +1939,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       summarizeFileRisk(file, `Has ${sourceFieldCount} localized source-language field marker(s), but no ${baseLang.toUpperCase()} field marker.`),
     ) : [];
 
-  const itemCoverageGaps = shouldRunLegacyInlineCoverage ? productionFiles
+  const itemCoverageGaps = shouldRunItemCoverage ? productionFiles
     .map((file) => {
       const counts = byFileLocale[file.file] || {};
       const sourceItemCount = sourceLocales.reduce((sum, locale) => sum + (counts[locale] || 0), 0);
@@ -1954,8 +2206,8 @@ function buildExistingLocaleAuditMarkdown(audit) {
 function buildTranslationBlocks(items, targetLocale, options = {}) {
   const blockSize = Number(options.blockSize || 40);
   const canonical = normalizeLocale(targetLocale);
-  const baseLang = canonical.split('-')[0].toLowerCase();
-  const targetIsKnownAppLocale = KNOWN_APP_LOCALES.includes(baseLang);
+  const targetLocaleKey = interfaceLocaleKey(canonical);
+  const targetIsKnownAppLocale = REGISTERED_INTERFACE_SOURCE_LOCALES.includes(targetLocaleKey);
   const grouped = new Map();
   for (const item of items) {
     const key = item.surface;
@@ -1968,11 +2220,12 @@ function buildTranslationBlocks(items, targetLocale, options = {}) {
       keyPath: item.keyPath,
       sourceLocale: item.locale || 'unknown',
       targetLocale: canonical,
-      targetSlot: targetIsKnownAppLocale ? `${baseLang}-field-gap` : 'external-locale-workspace',
+      targetSlot: targetIsKnownAppLocale ? `${targetLocaleKey}-field-gap` : 'external-locale-workspace',
       sourceText: item.text,
+      sourceTexts: item.sourceTexts || { [item.locale || 'unknown']: item.text },
       notes: targetIsKnownAppLocale
         ? [
-            `Create or fill only explicit ${baseLang} locale fields/items for this content.`,
+            `Create or fill only explicit ${targetLocaleKey} locale fields/items for this content.`,
             'Do not change existing ru/uk source fields or mix target text into another locale.',
             'Preserve placeholders, punctuation intent, examples, and English grammar terms unless target-language pedagogy requires adaptation.',
           ]
@@ -2096,6 +2349,7 @@ function buildRunbook(targetLocale, outDir) {
   lines.push('- `agent_review_board.md`: mandatory reviewer roles, prompts, and verdict format.');
   lines.push('- `research_checklist.md`: source-based research gates.');
   lines.push('- `guard_report.json`: overwrite/mixing safety report.');
+  lines.push('- `runtime_ledger.json`: per-source-locale runtime unit status ledger; present text still requires semantic/native approval.');
   lines.push('- `existing_locale_audit.md/json`: generated when the target already exists as an app locale.');
   lines.push('');
   lines.push('## Integration gate');
@@ -2140,6 +2394,8 @@ module.exports = {
   PRODUCT_SURFACES,
   RESEARCH_SOURCES,
   buildBatchLocaleCoverageAudit,
+  buildLocalizationRuntimeLedger,
+  buildPresentLocaleReviewCandidates,
   buildResearchChecklist,
   buildAgentReviewBoardMarkdown,
   buildExistingLocaleAudit,

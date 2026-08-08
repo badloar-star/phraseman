@@ -1,0 +1,72 @@
+/* Shared Phraseman public-site backdrop.
+   The root layer is decorative and cannot intercept forms, links, drawers, or modals. */
+html {
+  background-color: #f7efe5;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #f7efe5;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .34), rgba(255, 255, 255, .24)),
+    url("/assets/gift-background-champagne-glass-v3.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: none;
+  opacity: 1;
+  transform: none;
+  animation: none;
+  will-change: auto;
+}
+
+/* Legacy Phraseman pages own a foreground .bg layer. Keep their selected
+   light/dark text palette while replacing only that layer's artwork. */
+.bg {
+  background-color: #0a0a0e !important;
+  background-image:
+    linear-gradient(rgba(10, 10, 14, .82), rgba(10, 10, 14, .88)),
+    url("/assets/gift-background-champagne-glass-v3.webp") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+html[data-theme="light"] .bg {
+  background-color: #f7efe5 !important;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .34), rgba(255, 255, 255, .24)),
+    url("/assets/gift-background-champagne-glass-v3.webp") !important;
+}
+
+/* Knowly legal pages use white text and translucent dark surfaces. Their
+   existing background owner keeps a dark wash so contrast remains intact. */
+.km-page-bg {
+  background-color: #070a10 !important;
+  background-image:
+    linear-gradient(rgba(7, 10, 16, .8), rgba(7, 10, 16, .86)),
+    url("/assets/gift-background-champagne-glass-v3.webp") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-blend-mode: normal !important;
+  filter: none !important;
+}
+
+.km-page-bg::after {
+  background: linear-gradient(rgba(7, 10, 16, .08), rgba(7, 10, 16, .2)) !important;
+}

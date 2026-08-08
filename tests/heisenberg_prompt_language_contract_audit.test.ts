@@ -91,7 +91,6 @@ function writeFullFixtureRepo(scenario: string): void {
   writeFixture(`${scenario}/functions/src/ai_language_contract.ts`, FULL_AI_OUTPUT_LANG);
   writeFixture(`${scenario}/functions/src/re_engage_push.ts`, FULL_SERVER_COPY);
   writeFixture(`${scenario}/functions/src/premium_expiry_reminder.ts`, FULL_SERVER_COPY);
-  writeFixture(`${scenario}/functions/src/compass_chat_content.ts`, FULL_SERVER_COPY);
 }
 
 describe('heisenberg prompt language contract audit', () => {
@@ -125,7 +124,6 @@ describe('heisenberg prompt language contract audit', () => {
     writeFixture(`${scenario}/functions/src/ai_language_contract.ts`, FULL_AI_OUTPUT_LANG);
     writeFixture(`${scenario}/functions/src/re_engage_push.ts`, FULL_SERVER_COPY);
     writeFixture(`${scenario}/functions/src/premium_expiry_reminder.ts`, FULL_SERVER_COPY);
-    writeFixture(`${scenario}/functions/src/compass_chat_content.ts`, FULL_SERVER_COPY);
 
     const report = buildHeisenbergPromptLanguageContractAudit(fixtureRoot(scenario), {
       generatedAt: GENERATED_AT,
@@ -151,7 +149,6 @@ describe('heisenberg prompt language contract audit', () => {
     writeFixture(`${scenario}/functions/src/ai_language_contract.ts`, AI_OUTPUT_LANG_MISSING_TR);
     writeFixture(`${scenario}/functions/src/re_engage_push.ts`, FULL_SERVER_COPY);
     writeFixture(`${scenario}/functions/src/premium_expiry_reminder.ts`, FULL_SERVER_COPY);
-    writeFixture(`${scenario}/functions/src/compass_chat_content.ts`, FULL_SERVER_COPY);
 
     const report = buildHeisenbergPromptLanguageContractAudit(fixtureRoot(scenario), {
       generatedAt: GENERATED_AT,
@@ -175,7 +172,6 @@ describe('heisenberg prompt language contract audit', () => {
     writeFixture(`${scenario}/functions/src/ai_language_contract.ts`, FULL_AI_OUTPUT_LANG);
     writeFixture(`${scenario}/functions/src/re_engage_push.ts`, copyMissingVi);
     writeFixture(`${scenario}/functions/src/premium_expiry_reminder.ts`, FULL_SERVER_COPY);
-    writeFixture(`${scenario}/functions/src/compass_chat_content.ts`, FULL_SERVER_COPY);
 
     const report = buildHeisenbergPromptLanguageContractAudit(fixtureRoot(scenario), {
       generatedAt: GENERATED_AT,
@@ -199,7 +195,6 @@ describe('heisenberg prompt language contract audit', () => {
     writeFixture(`${scenario}/functions/src/ai_language_contract.ts`, FULL_AI_OUTPUT_LANG);
     writeFixture(`${scenario}/functions/src/re_engage_push.ts`, FULL_SERVER_COPY);
     writeFixture(`${scenario}/functions/src/premium_expiry_reminder.ts`, FULL_SERVER_COPY);
-    writeFixture(`${scenario}/functions/src/compass_chat_content.ts`, FULL_SERVER_COPY);
 
     const report = buildHeisenbergPromptLanguageContractAudit(fixtureRoot(scenario), {
       generatedAt: GENERATED_AT,
@@ -258,7 +253,7 @@ describe('heisenberg prompt language contract audit', () => {
     expect(report.sections.aiLanguageContract.file).toBe('functions/src/ai_language_contract.ts');
     expect(report.sections.aiLanguageContract.checked).toBeGreaterThan(0);
     expect(report.sections.serverCopyMaps.checked).toBeGreaterThan(0);
-    expect(report.summary.filesScanned).toBeGreaterThanOrEqual(5);
+    expect(report.summary.filesScanned).toBeGreaterThanOrEqual(4);
   });
 
   it('exposes the prompt language contract audit as a runnable CLI file', () => {

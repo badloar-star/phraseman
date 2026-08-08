@@ -5,16 +5,15 @@
  *  - уважают настройку тактильного отклика (кэш haptics_tap), и
  *  - гасят наложение/дребезг (общий кулдаун, анти-наложение tap↔feedback).
  *
- * Даёт FeedbackKit удобную «палитру силы» по уровням серии (спек §2/§4):
- *  light (искра) → medium (молния) → peak (гроза).
+ * зачем 2026-08-03 (владелец: «убрать эффект серии полностью»): medium()/peak()
+ * (уровни «молния»/«гроза» эффекта серии 5/10) убраны — light() остаётся для
+ * fk.transition() (смена задания), с сериями больше не связан.
  * Всё огню-и-забыл (fire-and-forget): промисы не ждём, ошибки глушит сам хук.
  */
 import {
   hapticTap,
   hapticSoftImpact,
   hapticLightImpact,
-  hapticMediumImpact,
-  hapticHeavyImpact,
   hapticSuccess,
   hapticError,
 } from '../../hooks/use-haptics';
@@ -29,19 +28,9 @@ export function pop(): void {
   void hapticSoftImpact();
 }
 
-/** Искра (уровень 1) — лёгкий импульс. */
+/** Лёгкий импульс (используется fk.transition — смена задания). */
 export function light(): void {
   void hapticLightImpact();
-}
-
-/** Молния (уровень 2) — средний импульс. */
-export function medium(): void {
-  void hapticMediumImpact();
-}
-
-/** Гроза (уровень 3) — сильнейший импульс. */
-export function peak(): void {
-  void hapticHeavyImpact();
 }
 
 /** Верный ответ / веха — «успех». */

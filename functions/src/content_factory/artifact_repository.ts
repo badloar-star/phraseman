@@ -6,6 +6,8 @@ export interface ArtifactReceipt {
   readonly contentHash: string;
   readonly objectGeneration: string;
   readonly byteSize: number;
+  readonly referenceState: 'pending_commit';
+  readonly finalizationKey: string;
 }
 
 function canonicalize(value: unknown): unknown {
@@ -37,5 +39,7 @@ export function buildArtifactReceipt(input: {
   const contentHash = createHash('sha256').update(serialized).digest('hex');
   const byteSize = input.byteSize ?? Buffer.byteLength(serialized, 'utf8');
   if (!input.objectGeneration.trim() || !Number.isSafeInteger(byteSize) || byteSize < 1) throw new Error('artifact_receipt_invalid');
-  return Object.freeze({ objectPath: artifactObjectPath(input.releaseId, input.surface, input.lessonId), contentHash, objectGeneration: input.objectGeneration, byteSize });
+  const objectPath = artifactObjectPath(input.releaseId, input.surface, input.lessonId);
+  const finalizationKey = createHash('sha256').update(`${objectPath}\n${input.objectGeneration}\n${contentHash}`).digest('hex');
+  return Object.freeze({ objectPath, contentHash, objectGeneration: input.objectGeneration, byteSize, referenceState: 'pending_commit' as const, finalizationKey });
 }

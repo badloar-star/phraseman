@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2 Макет · Ворота эпизода + Access Boost (ВЭ)</title>
+<style>
+/* ============================================================
+   Витрина Learning V2 · Режим: Ворота эпизода + Access Boost (ВЭ)
+   Скопировано с одобренного эталона 02-phrase-builder.html: токены тем,
+   телефон-рама, fx-слой с flyGlyph/flyStar, панель витрины, tf()/reduced().
+   Закон G27-G30: никаких картинок и эмодзи, типографика - герой,
+   глубокие градиенты и переливы тона. Запреты владельца: без обводок
+   контейнеров, без подписей-расшифровок под названием.
+   Нормативная база: 05-stars-progress-and-mastery.md §5-6 (ворота,
+   Access Boost за shards, честность интерфейса, server quote),
+   04-activity-catalog-and-storyboards.md § Star surfaces (earned vs
+   access vs purchased звёзды визуально различны, бесплатный путь первый).
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --text-on-gold:#1A1A1A;
+  --shard:#7FD4E8; --shard-bg:rgba(127,212,232,0.14);
+  --boost:#B9C9BE; --boost-bg:rgba(185,201,190,0.12);
+}
+:root[data-theme="gold"] {
+  --bg-primary:#030303; --bg-card:#0A0A0A; --bg-surface:#111111; --bg-surface2:#171717;
+  --text-primary:#F7F1E4; --text-second:#E9CE7A; --text-muted:#B8AD92; --text-ghost:#6D6554;
+  --correct:#D6B35A; --correct-bg:rgba(214,179,90,0.16);
+  --wrong:#B65A4A; --wrong-bg:rgba(182,90,74,0.13);
+  --gold:#D6B35A; --gold-bg:rgba(214,179,90,0.14);
+  --accent:#B8903A; --accent-bg:rgba(184,144,58,0.12); --correct-text:#0A0702;
+  --btn-shadow:#3C2A0B; --card-shadow:rgba(0,0,0,0.78);
+  --chip-grad-a:#242012; --chip-grad-b:#0E0C07; --chip-edge:#060503;
+  --bg-grad-a:#0D0A04; --bg-grad-b:#010101;
+  --sheen:rgba(214,179,90,0.05);
+  --cta-grad:linear-gradient(180deg,#F6E3A1 0%,#D6B35A 52%,#A87F30 100%);
+  --cta-hi:rgba(255,255,255,0.5);
+  --ok-grad:linear-gradient(180deg,#EED592 0%,#C8A44C 100%);
+  --chip-hi:rgba(246,227,161,0.12);
+  --surface-grad:linear-gradient(160deg,#1B1710,#0A0906);
+  --hero-grad:linear-gradient(180deg,#FFF9E8 15%,#E9CE7A 100%);
+  --text-on-gold:#0A0702;
+  --shard:#8FC7D9; --shard-bg:rgba(143,199,217,0.14);
+  --boost:#C7BEA4; --boost-bg:rgba(199,190,164,0.14);
+}
+:root[data-theme="coral"] {
+  --bg-primary:#090405; --bg-card:#171013; --bg-surface:#22171B; --bg-surface2:#302126;
+  --text-primary:#FFFFFF; --text-second:#FF8A66; --text-muted:#B9A6AE; --text-ghost:#75656C;
+  --correct:#4A90FF; --correct-bg:rgba(74,144,255,0.14);
+  --wrong:#FF6464; --wrong-bg:rgba(255,100,100,0.14);
+  --gold:#FFD060; --gold-bg:rgba(255,208,96,0.14);
+  --accent:#FF7F50; --accent-bg:rgba(255,127,80,0.12); --correct-text:#FFFFFF;
+  --btn-shadow:#7A2E14; --card-shadow:rgba(0,0,0,0.6);
+  --chip-grad-a:#3A2630; --chip-grad-b:#180E12; --chip-edge:#0B0608;
+  --bg-grad-a:#140709; --bg-grad-b:#010101;
+  --sheen:rgba(255,127,80,0.05);
+  --cta-grad:linear-gradient(180deg,#FF9E76 0%,#FF7F50 50%,#E45E31 100%);
+  --cta-hi:rgba(255,255,255,0.42);
+  --ok-grad:linear-gradient(180deg,#6FA6FF 0%,#3F82F2 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#2B1C23,#130A0E);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#F3C9B8 100%);
+  --text-on-gold:#1A1208;
+  --shard:#8FD6F2; --shard-bg:rgba(143,214,242,0.14);
+  --boost:#D9C3C9; --boost-bg:rgba(217,195,201,0.14);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh;
+  display:flex; gap:40px; align-items:flex-start; justify-content:center;
+  padding:36px 24px 80px; flex-wrap:wrap;
+}
+svg { display:block; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:800px; position:relative; overflow:hidden;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+
+/* ---------- Шапка ---------- */
+.hdr { padding:18px 18px 0; flex:0 0 auto; position:relative; z-index:2; }
+.hdr-row { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted);
+  display:grid; place-items:center; flex:0 0 auto;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.icon-btn svg { width:17px; height:17px; }
+.hdr-title { flex:1; text-align:center; font-size:13.5px; font-weight:800; letter-spacing:0.4px; color:var(--text-muted); }
+
+/* ---------- Скролл-контент ---------- */
+.scroller { flex:1; overflow-y:auto; overflow-x:hidden; position:relative; z-index:2; scrollbar-width:none; -ms-overflow-style:none; }
+.scroller::-webkit-scrollbar { display:none; }
+
+/* ---------- Герой: закрытый эпизод ---------- */
+.prompt { padding:14px 22px 0; }
+.task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
+.hero { margin-top:8px; font-size:27px; line-height:1.18; font-weight:800; letter-spacing:0.1px; background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.candoo { margin-top:7px; font-size:15px; font-weight:600; line-height:1.4; color:var(--text-muted); }
+
+/* ---------- Карточка звёзд доступа: премиум-градиент ---------- */
+.stars-card {
+  margin:16px 20px 0; border-radius:22px; padding:17px 20px 16px;
+  background:linear-gradient(155deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
+  box-shadow:0 4px 0 var(--chip-edge), 0 18px 34px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  position:relative; overflow:hidden;
+}
+.stars-headline { font-size:20px; font-weight:800; color:var(--text-primary); letter-spacing:0.1px; }
+.stars-headline b { color:var(--gold); }
+
+.bar-track {
+  margin-top:13px; height:11px; border-radius:999px; background:rgba(0,0,0,0.28);
+  overflow:hidden; position:relative; box-shadow:inset 0 1px 3px rgba(0,0,0,0.4);
+}
+.bar-fill {
+  position:absolute; inset:0; border-radius:999px;
+  background:linear-gradient(90deg, var(--accent), var(--gold));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t-slow) var(--ease-slide);
+  box-shadow:0 0 16px var(--gold-bg);
+}
+.bar-thresh {
+  position:absolute; top:-4px; bottom:-4px; width:2px; background:rgba(255,255,255,0.3);
+  right:0;
+}
+
+/* Раздельные строки earned / purchased / до открытия — закон 05 §9.2 */
+.star-rows { margin-top:13px; display:flex; flex-direction:column; gap:8px; }
+.star-row { display:flex; align-items:center; gap:10px; }
+.star-row .si { width:24px; height:24px; border-radius:8px; display:grid; place-items:center; flex:0 0 auto; }
+.star-row .si svg { width:15px; height:15px; }
+.star-row.earned .si { background:var(--gold-bg); color:var(--gold); }
+.star-row.boost .si { background:var(--boost-bg); color:var(--boost); }
+.star-row.deficit .si { background:var(--surface-grad); color:var(--text-ghost); }
+.star-row .st { font-size:14.5px; font-weight:700; color:var(--text-muted); flex:1; }
+.star-row .st b { color:var(--text-primary); font-weight:800; }
+.star-row.deficit .st b { color:var(--text-second); }
+
+/* SVG-глиф boost-звезды: контур с насечкой у основания луча, отличим от золотой заливки */
+.boost-star-icon { color:var(--boost); }
+
+/* ---------- Кнопки: бесплатный путь ПЕРВЫЙ (закон 05 §6.1) ---------- */
+.actions { padding:16px 20px 0; display:flex; flex-direction:column; gap:10px; }
+.cta {
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:16.5px; font-weight:800; letter-spacing:0.2px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint);
+  display:flex; align-items:center; justify-content:center; gap:8px; position:relative; overflow:hidden;
+}
+.cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.cta svg { width:18px; height:18px; }
+.cta .chev { margin-left:auto; transition:transform var(--t-normal) var(--ease-outquint); }
+.cta.expanded .chev { transform:rotate(90deg); }
+
+.boost-btn {
+  width:100%; height:50px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:16px; font-weight:800; letter-spacing:0.2px;
+  color:var(--text-primary);
+  background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
+  box-shadow:0 4px 0 var(--chip-edge), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), opacity var(--t-fast);
+  display:flex; align-items:center; justify-content:center; gap:9px;
+}
+.boost-btn:active { transform:translateY(3px); box-shadow:0 1px 0 var(--chip-edge), 0 6px 12px var(--card-shadow); }
+.boost-btn svg { width:17px; height:17px; color:var(--shard); }
+.boost-btn.locked { opacity:0.5; cursor:default; }
+.boost-btn.locked:active { transform:none; }
+
+/* Полоса объяснения блокировки буста (высота зарезервирована) */
+.boost-lock-lane { min-height:34px; padding:6px 4px 0; }
+.boost-lock-note { font-size:13px; font-weight:600; color:var(--text-ghost); line-height:1.5; text-align:center; opacity:0; transition:opacity var(--t-fast) ease; }
+.boost-lock-note.show { opacity:1; }
+
+/* ---------- Список слабых сессий: раскрывается под CTA ----------
+   зачем: экран 19 без скролла ни в одном состоянии (правка владельца) -
+   max-height 360px и padding 13px закладывали больше, чем нужно для
+   3 строк, и вместе с картой звёзд эпизод не помещался в 800px. */
+.weak-list { max-height:0; overflow:hidden; transition:max-height var(--t-slow) var(--ease-outquint); }
+.weak-list.open { max-height:260px; }
+.weak-inner { padding-top:10px; display:flex; flex-direction:column; gap:6px; }
+.weak-item {
+  border:none; cursor:pointer; width:100%; text-align:left; border-radius:14px; padding:10px 14px;
+  background:var(--surface-grad); color:var(--text-primary);
+  display:flex; align-items:center; gap:12px;
+  box-shadow:inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.weak-item:active { transform:scale(0.98); }
+.weak-item .wt { flex:1; min-width:0; }
+.weak-item .wtitle { font-size:14.5px; font-weight:700; color:var(--text-primary); }
+.weak-item .wstars { margin-top:4px; display:flex; align-items:center; gap:5px; }
+.weak-item .wstars svg { width:11px; height:11px; color:var(--gold); opacity:0.28; }
+.weak-item .wstars svg.on { opacity:1; }
+.weak-item .wpossible { margin-left:6px; font-size:11.5px; font-weight:800; color:var(--text-second); }
+.weak-item .warrow { color:var(--text-ghost); flex:0 0 auto; }
+.weak-item .warrow svg { width:16px; height:16px; }
+
+/* ---------- Полоса подсказки (нижняя) ----------
+   зачем: экран 19 обязан вмещаться в 800px БЕЗ скролла в любом состоянии
+   (правка владельца) - полная резервация высоты блока даже когда он скрыт
+   (margin 14/22 + padding + текст = ~76px) не помещалась в бюджет вместе
+   с открытым списком слабых сессий. Схлопываем margin/padding до нуля,
+   когда сообщение не показано - высота полосы 0px, никакого прыжка CTA
+   нет, т.к. сама полоса лежит НИЖЕ dock-а, не толкает его. */
+.hint-lane { flex:0 0 auto; min-height:0; padding:0 20px; position:relative; z-index:2; }
+.blocklog {
+  margin:0; max-height:0; border-radius:16px; padding:0 14px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--bg-surface2);
+  color:var(--text-muted); font-size:13px; font-weight:600; text-align:center;
+  opacity:0; transform:translateY(8px); pointer-events:none; overflow:hidden;
+  transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint), max-height var(--t-fast) ease, margin var(--t-fast) ease, padding var(--t-fast) ease;
+}
+.blocklog.show { opacity:1; transform:none; max-height:60px; margin:10px 0 16px; padding:11px 14px; }
+
+/* ---------- Успех: раскрытые ворота ---------- */
+.gate-success { padding:26px 20px 20px; text-align:center; display:none; }
+.gate-success.show { display:block; }
+.gate-lock-wrap { width:96px; height:96px; margin:0 auto; border-radius:28px; display:grid; place-items:center; background:var(--ok-grad); box-shadow:0 6px 0 var(--btn-shadow), 0 18px 32px var(--card-shadow), inset 0 1px 0 var(--cta-hi); }
+.gate-lock-wrap svg { width:42px; height:42px; color:var(--correct-text); }
+.gate-shackle { transform-origin:12px 9px; transition:transform var(--t-normal) var(--ease-spring); }
+.gate-lock-wrap.open .gate-shackle { transform:rotate(-38deg) translateY(-1px); }
+.gate-success-title { margin-top:18px; font-size:20px; font-weight:800; color:var(--text-primary); }
+.gate-success-note { margin-top:8px; font-size:14.5px; font-weight:600; color:var(--text-muted); line-height:1.45; }
+
+/* ================= Нижний лист: подтверждение / успех буста ================= */
+.sheet-scrim { position:absolute; inset:0; background:rgba(0,0,0,0.5); z-index:8; opacity:0; pointer-events:none; transition:opacity var(--t-normal) ease; }
+.sheet-scrim.show { opacity:1; pointer-events:auto; }
+.sheet {
+  position:absolute; left:0; right:0; bottom:0; z-index:9;
+  background:linear-gradient(170deg, var(--bg-card), var(--bg-primary));
+  border-radius:28px 28px 0 0; padding:14px 22px 26px;
+  box-shadow:0 -18px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  transform:translateY(100%); transition:transform var(--t-slow) var(--ease-spring);
+}
+.sheet.show { transform:translateY(0); }
+.sheet-grip { width:38px; height:4px; border-radius:999px; background:rgba(255,255,255,0.14); margin:0 auto 16px; }
+.sheet-title { font-size:19px; font-weight:800; color:var(--text-primary); }
+
+.quote-rows { margin-top:16px; display:flex; flex-direction:column; gap:2px; }
+.quote-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; }
+.quote-row + .quote-row { border-top:1px solid rgba(255,255,255,0.06); }
+.quote-row .ql { font-size:14.5px; font-weight:600; color:var(--text-muted); }
+.quote-row .qv { font-size:14.5px; font-weight:800; color:var(--text-primary); }
+.quote-row .qv.warn { color:var(--wrong); }
+.quote-row .qv.shard { color:var(--shard); }
+
+/* Честная строка (закон 05: буст не мастерство) обычным кеглем, без мелкого шрифта-расшифровки */
+.honesty-line { margin-top:14px; font-size:14px; font-weight:600; line-height:1.5; color:var(--text-muted); }
+
+.ttl-pill {
+  margin-top:16px; display:inline-flex; align-items:center; gap:7px; border-radius:999px; padding:8px 14px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--accent-bg);
+  color:var(--text-second); font-size:13.5px; font-weight:800;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.ttl-pill svg { width:14px; height:14px; }
+.ttl-pill.expiring { color:var(--wrong); background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--wrong-bg); }
+
+.sheet-cta {
+  margin-top:20px; width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), background var(--t-fast);
+  position:relative; overflow:hidden;
+}
+.sheet-cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.sheet-cta .fill { position:absolute; inset:0; background:rgba(255,255,255,0.22); transform:scaleX(0); transform-origin:left; pointer-events:none; }
+.sheet-cta.processing .fill { animation:procfill 600ms linear forwards; }
+@keyframes procfill { to { transform:scaleX(1); } }
+.sheet-cta .lbl { position:relative; }
+.sheet-cta.secondary { background:var(--surface-grad); color:var(--text-muted); box-shadow:0 4px 0 rgba(0,0,0,0.3), 0 10px 20px var(--card-shadow); margin-top:10px; }
+.sheet-cancel {
+  margin-top:12px; width:100%; height:46px; border:none; border-radius:16px; cursor:pointer;
+  font-family:inherit; font-size:15px; font-weight:700; color:var(--text-ghost); background:transparent;
+}
+.sheet-cancel:active { opacity:0.6; }
+
+.sheet-error { margin-top:14px; font-size:14px; font-weight:700; color:var(--wrong); line-height:1.5; }
+
+/* Слой полётов */
+.fx { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:10; }
+.fly { position:absolute; will-change:transform, opacity; left:0; top:0; }
+.goldwave {
+  position:absolute; top:-12%; bottom:-12%; width:44%; pointer-events:none;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 24%, transparent), transparent);
+  transform:translateX(-170%) skewX(-16deg); filter:blur(2px);
+}
+
+/* ================= ПАНЕЛЬ ================= */
+.panel { width:380px; max-width:92vw; display:flex; flex-direction:column; gap:18px; }
+.panel h1 { font-size:22px; font-weight:800; }
+.panel h1 span { color:#58CC89; }
+.pcard { background:#131A15; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,0.35); }
+.pcard h2 { font-size:13px; text-transform:uppercase; letter-spacing:1.4px; color:#8AB49A; margin-bottom:12px; font-weight:800; }
+.chiprow { display:flex; flex-wrap:wrap; gap:8px; }
+.pbtn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 14px;
+  background:#1D2921; color:#DDE8E0; font-size:13.5px; font-weight:700; font-family:inherit;
+  transition:transform 120ms cubic-bezier(0.23,1,0.32,1), background 150ms;
+}
+.pbtn:active { transform:scale(0.95); }
+.pbtn.on { background:#47C870; color:#042010; }
+.spec { font-size:13px; line-height:1.65; color:#B9C8BE; }
+.spec .row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; }
+.spec .row + .row { border-top:1px solid rgba(255,255,255,0.05); }
+.spec .val { color:#58CC89; font-weight:700; text-align:right; white-space:nowrap; }
+.note { font-size:12.5px; color:#8AA394; line-height:1.6; margin-top:10px; }
+
+:root[data-reduced="1"] .bar-fill, :root[data-reduced="1"] .sheet, :root[data-reduced="1"] .weak-list,
+:root[data-reduced="1"] .blocklog, :root[data-reduced="1"] .cta, :root[data-reduced="1"] .boost-btn,
+:root[data-reduced="1"] .gate-lock-wrap .gate-shackle {
+  transition-duration:80ms !important; animation-duration:1ms !important;
+}
+
+@media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><circle cx="15" cy="8" r="2.4" fill="currentColor"/><circle cx="9" cy="16" r="2.4" fill="currentColor"/></symbol>
+    <!-- Заработанная звезда: сплошная золотая заливка -->
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z" fill="currentColor"/></symbol>
+    <!-- Boost-звезда: ОБЯЗАН отличаться от заработанной. Контур (не заливка) + насечка-зарубка
+         у основания верхнего луча, как метка "надрезано, не выращено". Визуально сразу читается
+         как другая сущность, не просто перекрашенная золотая звезда (закон 05: earned != purchased). -->
+    <symbol id="i-boost-star" viewBox="0 0 24 24">
+      <path d="M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M9.6 6.6l1.15 2.35" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-star-empty" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="M3 12h2M19 12h2M6.5 8v8M17.5 8v8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><rect x="4.4" y="9.4" width="2.6" height="5.2" rx="1" fill="currentColor"/><rect x="17" y="9.4" width="2.6" height="5.2" rx="1" fill="currentColor"/><path d="M6.5 12h11" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5L19.5 12 13 17.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <!-- Осколок: гранёный кристалл, отличим от звезды и от буст-звезды -->
+    <symbol id="i-shard" viewBox="0 0 24 24"><path d="M12 2l6.5 5.5-2.2 9.2L12 22l-4.3-5.3L5.5 7.5 12 2z" fill="currentColor"/><path d="M12 2v20M5.5 7.5h13M7.8 16.7h8.4" stroke="rgba(0,0,0,0.22)" stroke-width="1" fill="none"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2.6" stroke="currentColor" stroke-width="2" fill="none"/><path class="gate-shackle" d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M12 7.4V12l3.4 2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 3a6.5 6.5 0 0 0-3.6 11.9c0.7 0.5 1.1 1.2 1.1 2V18h5v-1.1c0-0.8 0.4-1.5 1.1-2A6.5 6.5 0 0 0 12 3z" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linejoin="round"/><path d="M10 21h4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <div class="hdr">
+      <div class="hdr-row">
+        <button class="icon-btn" title="Закрыть"><svg><use href="#i-x"/></svg></button>
+        <div class="hdr-title" id="hdrTitle">Ворота эпизода</div>
+        <button class="icon-btn" title="Настройки"><svg><use href="#i-sliders"/></svg></button>
+      </div>
+    </div>
+
+    <div class="scroller" id="scroller">
+      <div id="gateView">
+        <div class="prompt">
+          <div class="task-label">Эпизод 3</div>
+          <div class="hero">My people, my things</div>
+          <div class="candoo">Могу рассказать о семье и назвать свои вещи</div>
+        </div>
+
+        <div class="stars-card">
+          <div class="stars-headline"><b id="earnedBigVal">26</b> из <span id="reqBigVal">30</span> звёзд доступа</div>
+          <div class="bar-track"><div class="bar-fill" id="barFill"></div><div class="bar-thresh"></div></div>
+
+          <div class="star-rows">
+            <div class="star-row earned">
+              <div class="si"><svg><use href="#i-star"/></svg></div>
+              <div class="st">Заработано: <b id="earnedVal">24</b></div>
+            </div>
+            <div class="star-row boost">
+              <div class="si boost-star-icon"><svg><use href="#i-boost-star"/></svg></div>
+              <div class="st">Доступ куплен: <b id="purchasedVal">2</b></div>
+            </div>
+            <div class="star-row deficit">
+              <div class="si"><svg><use href="#i-star-empty"/></svg></div>
+              <div class="st">До открытия: <b id="deficitVal">4</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="cta" id="ctaRepeat">
+            <span class="lbl">Повторить слабые задания</span>
+            <svg class="chev"><use href="#i-arrow"/></svg>
+          </button>
+          <div class="weak-list" id="weakList">
+            <div class="weak-inner" id="weakInner"></div>
+          </div>
+
+          <button class="boost-btn locked" id="ctaBoost">
+            <svg><use href="#i-shard"/></svg>
+            <span id="boostLabel">Открыть за 12 осколков</span>
+          </button>
+          <div class="boost-lock-lane">
+            <div class="boost-lock-note" id="boostLockNote"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gate-success" id="gateSuccess">
+        <div class="gate-lock-wrap" id="gateLockWrap"><svg><use href="#i-lock"/></svg></div>
+        <div class="gate-success-title">Эпизод 3 открыт</div>
+        <div class="gate-success-note">Доступ пройден. Возвращайся к слабым заданиям в любой момент: это то, что действительно закрепляет материал.</div>
+        <button class="cta" id="ctaStartEpisode" style="margin-top:22px"><span class="lbl">Начать эпизод</span></button>
+      </div>
+    </div>
+
+    <div class="hint-lane">
+      <div class="blocklog" id="blocklog"></div>
+    </div>
+
+    <div class="sheet-scrim" id="scrim"></div>
+    <div class="sheet" id="sheet">
+      <div class="sheet-grip"></div>
+      <div id="sheetConfirm">
+        <div class="sheet-title">Открыть Эпизод 3</div>
+        <div class="quote-rows" id="quoteRows">
+          <div class="quote-row"><span class="ql">Не хватает</span><span class="qv" id="qDeficit">4 звезды доступа</span></div>
+          <div class="quote-row"><span class="ql">Цена</span><span class="qv shard" id="qPrice">12 осколков (3 за звезду)</span></div>
+          <div class="quote-row"><span class="ql">Баланс</span><span class="qv" id="qBalance">45 осколков</span></div>
+        </div>
+        <div class="honesty-line">Буст откроет путь, но не засчитает владение материалом и не влияет на проверку.</div>
+        <div class="ttl-pill" id="ttlPill"><svg><use href="#i-clock"/></svg><span id="ttlText">Котировка действительна 5:00</span></div>
+        <div class="sheet-error" id="sheetError" style="display:none"></div>
+        <button class="sheet-cta" id="confirmBtn"><span class="fill"></span><span class="lbl" id="confirmLbl">Подтвердить за 12 осколков</span></button>
+        <button class="sheet-cta secondary" id="altActionBtn" style="display:none"><span class="lbl" id="altActionLbl">Как заработать осколки</span></button>
+        <button class="sheet-cancel" id="cancelBtn">Отмена</button>
+      </div>
+    </div>
+
+    <div class="fx" id="fx"></div>
+  </div>
+</div>
+
+<div class="panel">
+  <h1>V2 &middot; Волна М6 &middot; <span>Ворота эпизода</span></h1>
+
+  <div class="pcard">
+    <h2>Тема приложения</h2>
+    <div class="chiprow">
+      <button class="pbtn on" data-theme-btn="dark">Тёмная</button>
+      <button class="pbtn" data-theme-btn="gold">Золотая</button>
+      <button class="pbtn" data-theme-btn="coral">Коралловая</button>
+    </div>
+    <div class="chiprow" style="margin-top:10px">
+      <button class="pbtn" id="slowBtn">Замедлить &times;4</button>
+      <button class="pbtn" id="rmBtn">Reduced motion</button>
+    </div>
+  </div>
+
+  <div class="pcard">
+    <h2>Прогон состояний</h2>
+    <div class="chiprow">
+      <button class="pbtn" id="runBlock1">Первая блокировка</button>
+      <button class="pbtn" id="runBlock2">Вторая блокировка</button>
+      <button class="pbtn" id="runFullPurchase">Полный флоу покупки</button>
+      <button class="pbtn" id="runQuoteExpired">Котировка истекла</button>
+      <button class="pbtn" id="runInsufficient">Мало осколков</button>
+      <button class="pbtn" id="runDeficitTooBig">Дефицит больше 3</button>
+      <button class="pbtn" id="runReset">Сброс</button>
+    </div>
+    <div class="note">
+      Счётчик честных блокировок бесплатного пути: <b id="blockCounterLabel">0 из 2</b>.
+      Первый тап по воротам без добора показывает только бесплатный CTA «Повторить слабые задания».
+      Кнопка буста активируется только после второй честной блокировки — по закону 05 бесплатный путь
+      предлагается первым минимум дважды, прежде чем появляется платный. «Полный флоу покупки»
+      прогоняет подтверждение → processing 600&nbsp;мс → успех: 4 контурные boost-звезды летят по дуге
+      в полосу прогресса, полоса дозаполняется, замок расщёлкивается (поворот дужки + scale-поп), золотая волна.
+    </div>
+  </div>
+
+  <div class="pcard">
+    <h2>Спецификация для RN (Reanimated 4)</h2>
+    <div class="spec">
+      <div class="row"><span>Нижний лист: раскрытие</span><span class="val">320 мс &middot; spring (d22 s280)</span></div>
+      <div class="row"><span>Раскрытие списка слабых сессий</span><span class="val">320 мс &middot; max-height outquint</span></div>
+      <div class="row"><span>Пресс кнопок (3D-кромка)</span><span class="val">120 мс &middot; вибро</span></div>
+      <div class="row"><span>Processing подтверждения</span><span class="val">600 мс &middot; заливка внутри кнопки, без спиннера</span></div>
+      <div class="row"><span>Полёт 4 boost-звёзд по дуге</span><span class="val">700 мс &middot; стаггер 90 мс &middot; тик-хаптик</span></div>
+      <div class="row"><span>Дозаполнение полосы прогресса</span><span class="val">320 мс &middot; slide, синхронно с посадкой звёзд</span></div>
+      <div class="row"><span>Расщёлк замка</span><span class="val">450 мс &middot; поворот дужки spring + scale-поп корпуса</span></div>
+      <div class="row"><span>Золотая волна на успехе</span><span class="val">700 мс &middot; перелив по экрану</span></div>
+      <div class="row"><span>Таймер котировки</span><span class="val">тик раз в секунду &middot; заупрямку &lt;60с меняет цвет на wrong</span></div>
+    </div>
+    <div class="note">Только transform / opacity (UI-тред). Геометрия карточки звёзд и кнопок зарезервирована заранее &mdash; success не меняет высоту сцены рывком. Reduced motion: полёт звёзд заменяется мгновенной синхронной посадкой без дуги, замок открывается без анимации поворота (только конечный кадр).</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Экономика (05 &sect;5-6, честность интерфейса)</h2>
+    <div class="spec">
+      <div class="row"><span>Цена звезды доступа</span><span class="val">3 осколка (HYP-V2-006)</span></div>
+      <div class="row"><span>Cap на одни ворота</span><span class="val">максимум 3 звезды буста</span></div>
+      <div class="row"><span>Дефицит &gt; 3</span><span class="val">буст недоступен, только review</span></div>
+      <div class="row"><span>Условие показа буста</span><span class="val">loop+minimum+checkpoint пройдены, 2 честные блокировки</span></div>
+      <div class="row"><span>Цена</span><span class="val">только с сервера &middot; getV2AccessQuote</span></div>
+      <div class="row"><span>Клиент</span><span class="val">не вычисляет rate/total, только показывает quote</span></div>
+      <div class="row"><span>Покупка</span><span class="val">opId идемпотентность, требует сеть</span></div>
+      <div class="row"><span>Offline</span><span class="val">буст недоступен, бесплатный путь работает</span></div>
+      <div class="row"><span>Влияние на mastery</span><span class="val">нет &middot; не входит в LearningEvidence/checkpoint</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Демо-контент: 3 слабые сессии эпизода 2 (для «Повторить слабые задания») ===== */
+const WEAK_SESSIONS = [
+  { title: 'Сессия 4: Моя семья', stars: 1, possible: 2 },
+  { title: 'Сессия 7: Мои вещи', stars: 1, possible: 2 },
+  { title: 'Сессия 9: Чьё это', stars: 0, possible: 2 },
+];
+
+/* ===== Демо-состояние ворот (детерминированный снепшот витрины) ===== */
+const REQUIRED_ACCESS = 30;
+let earned = 24;
+let purchased = 2;
+let deficit = REQUIRED_ACCESS - earned - purchased; // 4
+let freeBlockCount = 0; // закон 05: буст показывается только после двух честных блокировок
+let unlocked = false;
+let quoteExpirySec = 300;
+let quoteTimer = null;
+let currentQuote = null; // { deficitCovered, unit, total, balance }
+let purchaseMode = 'normal'; // normal | expired | insufficient | deficitTooBig
+
+const $ = (id) => document.getElementById(id);
+const phone = $('phone'), fx = $('fx'), scroller = $('scroller');
+const scrim = $('scrim'), sheet = $('sheet');
+const blocklog = $('blocklog');
+
+const tf = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tf')) || 1;
+const reduced = () => document.documentElement.dataset.reduced === '1' ||
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function icon(name) { return `<svg viewBox="0 0 24 24"><use href="#${name}"/></svg>`; }
+
+/* ===== Синхронизация звёздной карточки ===== */
+const barFill = $('barFill');
+function syncStarsCard() {
+  $('earnedBigVal').textContent = String(earned + purchased);
+  $('reqBigVal').textContent = String(REQUIRED_ACCESS);
+  $('earnedVal').textContent = String(earned);
+  $('purchasedVal').textContent = String(purchased);
+  deficit = Math.max(0, REQUIRED_ACCESS - earned - purchased);
+  $('deficitVal').textContent = String(deficit);
+  barFill.style.transform = `scaleX(${Math.min(1, (earned + purchased) / REQUIRED_ACCESS)})`;
+}
+
+/* ===== Раздел «Повторить слабые задания»: раскрытие списка ===== */
+let weakOpen = false;
+function renderWeakList() {
+  const inner = $('weakInner');
+  inner.innerHTML = '';
+  WEAK_SESSIONS.forEach((w) => {
+    const btn = document.createElement('button');
+    btn.className = 'weak-item';
+    const starsHtml = Array.from({ length: 3 }).map((_, i) =>
+      `<svg class="${i < w.stars ? 'on' : ''}" viewBox="0 0 24 24"><use href="#i-star"/></svg>`
+    ).join('');
+    btn.innerHTML = `
+      <div class="wt">
+        <div class="wtitle">${w.title}</div>
+        <div class="wstars">${starsHtml}<span class="wpossible">+${w.possible} возможно</span></div>
+      </div>
+      <div class="warrow">${icon('i-arrow')}</div>`;
+    btn.addEventListener('click', () => { /* переход к сессии — вне рамок этого макета */ });
+    inner.appendChild(btn);
+  });
+}
+$('ctaRepeat').addEventListener('click', () => {
+  weakOpen = !weakOpen;
+  $('ctaRepeat').classList.toggle('expanded', weakOpen);
+  $('weakList').classList.toggle('open', weakOpen);
+});
+
+/* ===== Кнопка буста: заблокирована до двух честных блокировок ===== */
+function syncBoostGate() {
+  const boostBtn = $('ctaBoost');
+  const note = $('boostLockNote');
+  const eligible = freeBlockCount >= 2;
+  $('boostLabel').textContent = `Открыть за ${priceFor(deficit)} осколков`;
+  if (deficit > 3) {
+    boostBtn.classList.add('locked');
+    note.textContent = 'Сначала добери до 3 звёзд бесплатно: буст ограничен.';
+    note.classList.add('show');
+  } else if (!eligible) {
+    boostBtn.classList.add('locked');
+    note.textContent = '';
+    note.classList.remove('show');
+  } else {
+    boostBtn.classList.remove('locked');
+    note.textContent = '';
+    note.classList.remove('show');
+  }
+  $('blockCounterLabel').textContent = `${Math.min(freeBlockCount, 2)} из 2`;
+}
+function priceFor(def) { return def * 3; }
+
+/* ===== Тап по воротам (симулируется тапом по CTA «Начать эпизод», когда заблокирован) =====
+   По закону 05: первый прогон показывает только бесплатный путь. Каждая честная
+   блокировка увеличивает freeBlockCount. Здесь эмулируется кнопкой в панели. */
+function logBlock(msg) {
+  clearTimeout(logBlock._t);
+  blocklog.textContent = msg;
+  blocklog.classList.add('show');
+  logBlock._t = setTimeout(() => blocklog.classList.remove('show'), 2600 / tf());
+}
+function registerHonestBlock(reason) {
+  if (freeBlockCount < 2) freeBlockCount += 1;
+  syncBoostGate();
+  logBlock(reason);
+}
+
+/* ===== Клик по заблокированному бусту: пояснение, не пустое ничего ===== */
+$('ctaBoost').addEventListener('click', () => {
+  if ($('ctaBoost').classList.contains('locked')) {
+    if (deficit > 3) return logBlock('Дефицит больше 3: сначала бесплатный добор.');
+    if (freeBlockCount < 2) return logBlock('Bust появится после повторной попытки бесплатного пути.');
+    return;
+  }
+  openConfirmSheet();
+});
+
+/* ===== Нижний лист подтверждения ===== */
+function openSheet() { scrim.classList.add('show'); sheet.classList.add('show'); }
+function closeSheet() {
+  scrim.classList.remove('show'); sheet.classList.remove('show');
+  clearInterval(quoteTimer);
+  $('confirmBtn').classList.remove('processing');
+  $('sheetError').style.display = 'none';
+  $('altActionBtn').style.display = 'none';
+  $('ttlPill').classList.remove('expiring');
+}
+scrim.addEventListener('click', closeSheet);
+$('cancelBtn').addEventListener('click', closeSheet);
+
+function openConfirmSheet() {
+  // зачем: цена всегда приходит "с сервера" (getV2AccessQuote) — клиент здесь
+  // только отображает уже посчитанную котировку, не считает rate/total сам
+  const unit = 3;
+  const cappedDeficit = Math.min(deficit, 3);
+  const total = priceFor(cappedDeficit);
+  const balance = purchaseMode === 'insufficient' ? total - 3 : 45;
+  currentQuote = { deficit: cappedDeficit, unit, total, balance };
+  quoteExpirySec = purchaseMode === 'expired' ? 8 : 300;
+
+  $('qDeficit').textContent = `${cappedDeficit} ${starWord(cappedDeficit)} доступа`;
+  $('qPrice').textContent = `${total} осколков (${unit} за звезду)`;
+  $('qBalance').textContent = `${balance} осколков`;
+  $('confirmLbl').textContent = `Подтвердить за ${total} осколков`;
+  $('sheetError').style.display = 'none';
+  $('altActionBtn').style.display = 'none';
+  $('confirmBtn').style.display = '';
+  $('ttlPill').style.display = '';
+  $('ttlPill').classList.remove('expiring');
+
+  clearInterval(quoteTimer);
+  updateTtl();
+  quoteTimer = setInterval(() => {
+    quoteExpirySec -= 1;
+    if (quoteExpirySec <= 0) {
+      clearInterval(quoteTimer);
+      showQuoteExpired();
+      return;
+    }
+    updateTtl();
+  }, 1000 / tf());
+
+  openSheet();
+}
+function starWord(n) {
+  if (n === 1) return 'звезда';
+  if (n >= 2 && n <= 4) return 'звезды';
+  return 'звёзд';
+}
+function updateTtl() {
+  const m = Math.floor(quoteExpirySec / 60), s = quoteExpirySec % 60;
+  $('ttlText').textContent = `Котировка действительна ${m}:${String(s).padStart(2, '0')}`;
+  $('ttlPill').classList.toggle('expiring', quoteExpirySec <= 30);
+}
+function showQuoteExpired() {
+  // Ошибка прогона: "Котировка истекла" — цена обновилась, списания не было
+  const newTotal = currentQuote.total; // в демо цена не меняется, но помечена как новая
+  $('sheetError').style.display = '';
+  $('sheetError').textContent = 'Котировка истекла. Цена обновилась, подтверди ещё раз: списания не было.';
+  $('qPrice').textContent = `${newTotal} осколков (${currentQuote.unit} за звезду) · новая котировка`;
+  quoteExpirySec = 300;
+  updateTtl();
+  clearInterval(quoteTimer);
+  quoteTimer = setInterval(() => {
+    quoteExpirySec -= 1;
+    if (quoteExpirySec <= 0) { clearInterval(quoteTimer); showQuoteExpired(); return; }
+    updateTtl();
+  }, 1000 / tf());
+}
+
+$('confirmBtn').addEventListener('click', () => {
+  if (purchaseMode === 'insufficient') return showInsufficient();
+  if ($('confirmBtn').classList.contains('processing')) return;
+  runPurchaseProcessing();
+});
+
+function showInsufficient() {
+  $('sheetError').style.display = '';
+  $('sheetError').textContent = `Не хватает осколков: нужно ${currentQuote.total}, на балансе ${currentQuote.balance}.`;
+  $('altActionBtn').style.display = '';
+  $('altActionLbl').textContent = 'Как заработать осколки';
+  $('altActionBtn').onclick = () => { closeSheet(); };
+}
+
+function runPurchaseProcessing() {
+  // Processing 600мс: заливка внутри кнопки, БЕЗ полноэкранного спиннера — закон Optimistic UI владельца:
+  // геометрия листа не меняется, только внутренняя заливка кнопки сигналит ожидание
+  const btn = $('confirmBtn');
+  btn.classList.add('processing');
+  clearInterval(quoteTimer);
+  setTimeout(() => {
+    btn.classList.remove('processing');
+    closeSheet();
+    applyBoostPurchase(currentQuote.deficit);
+  }, 600 * tf());
+}
+
+/* ===== Применение покупки: 4 контурные boost-звезды летят по дуге, полоса дозаполняется, замок открывается ===== */
+function phonePoint(el) {
+  const p = phone.getBoundingClientRect(), r = el.getBoundingClientRect();
+  return { x: r.left - p.left + r.width / 2, y: r.top - p.top + r.height / 2 };
+}
+function flyBoostStars(count, onDone) {
+  const target = document.querySelector('.stars-card');
+  const origin = { x: phone.getBoundingClientRect().width / 2, y: phone.getBoundingClientRect().height * 0.62 };
+  const to = phonePoint(target);
+  if (reduced()) { onDone(); return; }
+  let landed = 0;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.className = 'fly';
+    // Полёт использует ТОТ ЖЕ контурный boost-глиф с насечкой — отдельный стиль полёта,
+    // визуально отличим от золотых flyStar звёзд успеха в 02-phrase-builder.html
+    el.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" style="color:var(--boost)"><use href="#i-boost-star"/></svg>`;
+    fx.appendChild(el);
+    const midX = (origin.x + to.x) / 2, arcY = Math.min(origin.y, to.y) - 100;
+    let finished = false;
+    const finish = () => { if (finished) return; finished = true; el.remove(); landed += 1; if (landed === count) onDone(); };
+    const anim = el.animate([
+      { transform: `translate(${origin.x}px, ${origin.y}px) scale(1) rotate(0deg)` },
+      { transform: `translate(${midX}px, ${arcY}px) scale(1.25) rotate(-18deg)`, offset: 0.55 },
+      { transform: `translate(${to.x}px, ${to.y}px) scale(0.4) rotate(0deg)` },
+    ], { duration: 700 * tf(), delay: i * 90 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' });
+    anim.onfinish = finish;
+    setTimeout(finish, (700 + i * 90 + 260) * tf());
+  }
+}
+function goldWave() {
+  if (reduced()) return;
+  const w = document.createElement('div');
+  w.className = 'goldwave'; fx.appendChild(w);
+  w.animate([
+    { transform: 'translateX(-170%) skewX(-16deg)', opacity: 0 },
+    { transform: 'translateX(30%) skewX(-16deg)', opacity: 1, offset: 0.45 },
+    { transform: 'translateX(320%) skewX(-16deg)', opacity: 0 },
+  ], { duration: 700 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' }).onfinish = () => w.remove();
+  setTimeout(() => { if (w.isConnected) w.remove(); }, 900 * tf());
+}
+
+function applyBoostPurchase(deficitCovered) {
+  flyBoostStars(deficitCovered, () => {
+    purchased += deficitCovered;
+    syncStarsCard();
+    if (!reduced()) goldWave();
+    setTimeout(() => openGateSuccess(), reduced() ? 0 : 160 * tf());
+  });
+}
+
+/* ===== Успех: карточка ворот сменяется раскрытыми воротами, замок расщёлкивается ===== */
+function openGateSuccess() {
+  unlocked = true;
+  $('gateView').style.display = 'none';
+  const gs = $('gateSuccess');
+  gs.classList.add('show');
+  const lockWrap = $('gateLockWrap');
+  requestAnimationFrame(() => {
+    lockWrap.classList.add('open');
+  });
+  $('hdrTitle').textContent = 'Эпизод 3 открыт';
+}
+
+$('ctaStartEpisode').addEventListener('click', () => { /* переход в эпизод — вне рамок макета */ });
+
+/* ===== Панель: тема/скорость/reduced ===== */
+document.querySelectorAll('[data-theme-btn]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.themeBtn;
+    document.querySelectorAll('[data-theme-btn]').forEach((x) => x.classList.toggle('on', x === b));
+  });
+});
+$('slowBtn').addEventListener('click', () => {
+  const on = $('slowBtn').classList.toggle('on');
+  document.documentElement.style.setProperty('--tf', on ? 4 : 1);
+});
+$('rmBtn').addEventListener('click', () => {
+  const on = $('rmBtn').classList.toggle('on');
+  document.documentElement.dataset.reduced = on ? '1' : '';
+});
+
+/* ===== Прогоны панели ===== */
+function resetAll() {
+  earned = 24; purchased = 2; freeBlockCount = 0; unlocked = false; purchaseMode = 'normal';
+  weakOpen = false;
+  closeSheet();
+  $('gateView').style.display = '';
+  $('gateSuccess').classList.remove('show');
+  $('gateLockWrap').classList.remove('open');
+  $('ctaRepeat').classList.remove('expanded');
+  $('weakList').classList.remove('open');
+  $('hdrTitle').textContent = 'Ворота эпизода';
+  syncStarsCard();
+  syncBoostGate();
+  renderWeakList();
+}
+
+$('runBlock1').addEventListener('click', () => {
+  resetAll();
+  freeBlockCount = 0;
+  syncBoostGate();
+  registerHonestBlock('Продолжай: бесплатный путь ещё доберёт недостающие звёзды.');
+});
+$('runBlock2').addEventListener('click', () => {
+  resetAll();
+  freeBlockCount = 1;
+  syncBoostGate();
+  registerHonestBlock('Буст открыт: попробуй бесплатный путь ещё раз или используй буст.');
+});
+$('runFullPurchase').addEventListener('click', () => {
+  resetAll();
+  // зачем: дефолтный снепшот (earned 24 + purchased 2, deficit 4) превышает
+  // cap буста в 3 звезды и держит кнопку .locked - клик по "Полный флоу
+  // покупки" раньше просто логировал отказ и лист не открывался (баг).
+  // Дефицит 3 - пограничный валидный кейс для демонстрации покупки.
+  earned = 27; purchased = 0; freeBlockCount = 2; purchaseMode = 'normal';
+  syncStarsCard();
+  syncBoostGate();
+  $('ctaBoost').click();
+});
+$('runQuoteExpired').addEventListener('click', () => {
+  resetAll();
+  earned = 27; purchased = 0; freeBlockCount = 2; purchaseMode = 'expired';
+  syncStarsCard();
+  syncBoostGate();
+  $('ctaBoost').click();
+});
+$('runInsufficient').addEventListener('click', () => {
+  resetAll();
+  earned = 27; purchased = 0; freeBlockCount = 2; purchaseMode = 'insufficient';
+  syncStarsCard();
+  syncBoostGate();
+  $('ctaBoost').click();
+});
+$('runDeficitTooBig').addEventListener('click', () => {
+  resetAll();
+  earned = 20; purchased = 0; freeBlockCount = 2; purchaseMode = 'normal';
+  syncStarsCard();
+  syncBoostGate();
+  logBlock('Дефицит больше 3: буст временно недоступен.');
+});
+$('runReset').addEventListener('click', resetAll);
+
+resetAll();
+</script>
+</body>
+</html>

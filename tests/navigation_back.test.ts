@@ -3,6 +3,7 @@ type RouterStub = {
   canDismiss: jest.Mock<boolean, []>;
   back: jest.Mock<void, []>;
   dismiss: jest.Mock<void, [number?]>;
+  dismissTo: jest.Mock<void, [any]>;
   replace: jest.Mock<void, [any]>;
 };
 
@@ -17,6 +18,7 @@ function makeRouter(canGoBack = true): RouterStub {
     canDismiss: jest.fn(() => false),
     back: jest.fn(),
     dismiss: jest.fn(),
+    dismissTo: jest.fn(),
     replace: jest.fn(),
   };
 }
@@ -27,6 +29,7 @@ function makeDismissableRouter(): RouterStub {
     canDismiss: jest.fn(() => true),
     back: jest.fn(),
     dismiss: jest.fn(),
+    dismissTo: jest.fn(),
     replace: jest.fn(),
   };
 }
@@ -41,7 +44,7 @@ describe('safeRouterBack', () => {
     jest.useRealTimers();
   });
 
-  it('uses fallback instead of native back when there is no recorded in-app previous route', () => {
+  it('uses native dismissTo to the fallback when there is no recorded in-app previous route', () => {
     const navigation = loadNavigationBack();
     const router = makeRouter(true);
 
@@ -49,7 +52,7 @@ describe('safeRouterBack', () => {
 
     expect(router.canGoBack).not.toHaveBeenCalled();
     expect(router.back).not.toHaveBeenCalled();
-    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
   });
 
   it('does not exit the app when a standalone screen is the first recorded route', () => {
@@ -61,10 +64,10 @@ describe('safeRouterBack', () => {
 
     expect(router.canGoBack).not.toHaveBeenCalled();
     expect(router.back).not.toHaveBeenCalled();
-    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
   });
 
-  it('replaces to the recorded previous route instead of using native back', () => {
+  it('dismisses natively to the recorded previous route instead of using native back', () => {
     const navigation = loadNavigationBack();
     const router = makeRouter(true);
 
@@ -74,12 +77,12 @@ describe('safeRouterBack', () => {
 
     expect(router.canGoBack).not.toHaveBeenCalled();
     expect(router.back).not.toHaveBeenCalled();
-    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
 
     navigation.rememberNavigationPath('/(tabs)/home');
     jest.advanceTimersByTime(300);
 
-    expect(router.replace).toHaveBeenCalledTimes(1);
+    expect(router.dismissTo).toHaveBeenCalledTimes(1);
   });
 
   // Регрессия: выход из теории/любого экрана урока должен вернуть на меню ИМЕННО
@@ -96,7 +99,18 @@ describe('safeRouterBack', () => {
     navigation.safeRouterBack(router, '/lesson_menu' as any);
 
     // Возврат — на меню урока 5, а не на голый '/lesson_menu' (= урок 1).
-    expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=5');
+    expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=5');
+  });
+
+  it('preserves the tournament room when closing the post-match review', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/tournament_results?roomId=room-42');
+    navigation.rememberNavigationPath('/tournament_review?roomId=room-42');
+    navigation.safeRouterBack(router, '/(tabs)/tournaments' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/tournament_results?roomId=room-42');
   });
 
   // Косметические query (вкладки/фильтры) внутри одного экрана НЕ должны плодить
@@ -112,7 +126,7 @@ describe('safeRouterBack', () => {
 
     // Один экран lesson_words (id=3) свернулся в одну запись → «назад» уводит домой,
     // а не на ту же страницу с прошлой вкладкой.
-    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
   });
 
   // Смена ИДЕНТИФИЦИРУЮЩЕГО параметра (другой урок) — это РАЗНЫЕ экраны, их нельзя
@@ -125,7 +139,7 @@ describe('safeRouterBack', () => {
     navigation.rememberNavigationPath('/lesson_menu?id=6');
     navigation.safeRouterBack(router, '/lesson_menu' as any);
 
-    expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=5');
+    expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=5');
   });
 
   it('preserves replace semantics through the transient premium dispatcher', () => {
@@ -141,7 +155,7 @@ describe('safeRouterBack', () => {
 
     navigation.safeRouterBack(router, '/(tabs)/home' as any);
 
-    expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=9');
+    expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=9');
   });
 
   it('dismisses a paywall modal natively when the stack supports it', () => {
@@ -172,7 +186,7 @@ describe('safeRouterBack', () => {
 
     expect(router.canDismiss).not.toHaveBeenCalled();
     expect(router.dismiss).not.toHaveBeenCalled();
-    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
   });
 
   it('replaces instead of native-dismiss when a concrete paywall route replaced its source route', () => {
@@ -188,6 +202,6 @@ describe('safeRouterBack', () => {
 
     expect(router.canDismiss).not.toHaveBeenCalled();
     expect(router.dismiss).not.toHaveBeenCalled();
-    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
   });
 });

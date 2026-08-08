@@ -24,7 +24,17 @@
 
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
+import {
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
+  ACCOUNT_DELETE_TOMBSTONES,
+  accountDeletePermanentDenialId,
+} from './account_delete_job';
 import { parseProgressMs, ProgressLike } from './premium_status';
+import {
+  aggregatePremiumLineages,
+  MAX_OWNER_LINEAGES,
+  type PremiumLineageState,
+} from './revenuecat_premium_lineage';
 
 const REGION = 'us-central1';
 
@@ -138,6 +148,51 @@ type SweepStats = {
   errors: number;
 };
 
+const PREMIUM_AUTHORITY_FIELDS = [
+  'premium_plan',
+  'premium_expiry',
+  'admin_premium_override',
+  'premium_rc_active_lineage',
+  'premium_rc_expiry_ms',
+  'premium_rc_event_type',
+  'premium_rc_updated_at',
+  'vip_active',
+  'vip_until',
+  'vip_expiry',
+  'vip_admin_override',
+  'vip_plan',
+] as const;
+
+/** Strict CAS token for every field that can change an expiry decision. */
+export function samePremiumAuthority(scanned: ProgressLike, current: ProgressLike): boolean {
+  const left = scanned ?? {};
+  const right = current ?? {};
+  return PREMIUM_AUTHORITY_FIELDS.every((field) => (
+    cleanStr(left[field]) === cleanStr(right[field])
+  ));
+}
+
+export function reconcilePremiumExpiry(
+  currentProgress: Record<string, unknown>,
+  currentLineages: PremiumLineageState[],
+  now: number,
+): ExpiryDeactivation | null {
+  const aggregate = currentLineages.length > 0
+    ? aggregatePremiumLineages(currentLineages, currentProgress, now)
+    : null;
+  const authoritativeProgress = aggregate?.progressPatch ?? currentProgress;
+  const decision = planExpiryDeactivation(authoritativeProgress, now);
+  const patch: Record<string, string> = {};
+  if (aggregate) {
+    for (const [key, value] of Object.entries(aggregate.progressPatch)) {
+      if (cleanStr(currentProgress[key]) !== cleanStr(value)) patch[key] = cleanStr(value);
+    }
+  }
+  if (decision) Object.assign(patch, decision.patch);
+  if (Object.keys(patch).length === 0) return null;
+  return { patch, reasons: decision?.reasons ?? [] };
+}
+
 /**
  * Постраничный скан users/ (cursor по __name__, как в compute_leaderboard_stats.ts):
  * для каждого юзера считаем patch чистой функцией и merge-им только при необходимости.
@@ -157,15 +212,43 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
     const writes: Array<Promise<void>> = [];
     for (const doc of page.docs) {
       stats.scanned += 1;
-      const progress = (doc.data()?.progress ?? {}) as Record<string, unknown>;
-      const decision = planExpiryDeactivation(progress, now);
-      if (!decision) continue;
+      const scannedProgress = (doc.data()?.progress ?? {}) as Record<string, unknown>;
+      if (!planExpiryDeactivation(scannedProgress, now)) continue;
 
       writes.push(
-        doc.ref
-          .set({ progress: decision.patch, updatedAt: now }, { merge: true })
-          .then(() => {
-            stats.deactivated += 1;
+        db.runTransaction(async (tx) => {
+          const current = await tx.get(doc.ref);
+          const tombstone = await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(doc.id));
+          const permanentDenial = await tx.get(
+            db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(doc.id)),
+          );
+          const lineageSnapshot = await tx.get(
+            db.collection('revenuecat_premium_lineages')
+              .where('ownerUid', '==', doc.id)
+              .limit(MAX_OWNER_LINEAGES + 1),
+          );
+          if (!current.exists || tombstone.exists || permanentDenial.exists) return null;
+          if (lineageSnapshot.docs.length > MAX_OWNER_LINEAGES) {
+            throw new Error('premium_lineage_limit');
+          }
+
+          const currentProgress = (current.data()?.progress ?? {}) as Record<string, unknown>;
+          if (!samePremiumAuthority(scannedProgress, currentProgress)) return null;
+          const currentLineages = lineageSnapshot.docs
+            .map((lineage) => lineage.data() as PremiumLineageState);
+          const decision = reconcilePremiumExpiry(currentProgress, currentLineages, now);
+          if (!decision) return null;
+
+          const update: Record<string, unknown> = { updatedAt: now };
+          for (const [key, value] of Object.entries(decision.patch)) {
+            update[`progress.${key}`] = value;
+          }
+          tx.update(doc.ref, update);
+          return decision;
+        })
+          .then((decision) => {
+            if (!decision) return;
+            if (decision.reasons.length > 0) stats.deactivated += 1;
             for (const r of decision.reasons) {
               stats.byReason[r] = (stats.byReason[r] ?? 0) + 1;
             }

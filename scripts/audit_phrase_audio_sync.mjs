@@ -266,7 +266,11 @@ for (const p of phrases) {
     // form (old wording) — that's the classic "shows new, speaks old" case.
     const englishUrl = keyToUrl.get(englishKey);
     const anyAltUrl = altKeys.map((k) => keyToUrl.get(k)).find(Boolean);
-    const staleUrl = englishUrl || anyAltUrl;
+    const idVoiced = lessonVoiced.find((candidate) => candidate.id === p.id);
+    const staleIdUrl = idVoiced && coreWords(idVoiced.text) !== coreWords(shown)
+      ? idVoiced.url
+      : undefined;
+    const staleUrl = englishUrl || anyAltUrl || staleIdUrl;
     if (staleUrl) {
       const voiced = urlToVoiced.get(staleUrl) || '(unknown)';
       findings.AUDIO_SAYS_OLD.push({

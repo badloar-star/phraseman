@@ -110,6 +110,17 @@ describe('main tabs borderless production surfaces', () => {
     expectMigrated(HOME_TARGET_IDS);
   });
 
+  it('keeps the Home stats card outer surface borderless', () => {
+    const homeSource = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+    const marker = 'testID="home-stats-card"';
+    const markerIndex = homeSource.indexOf(marker);
+    expect(markerIndex).toBeGreaterThan(-1);
+
+    const cardBlock = homeSource.slice(markerIndex, homeSource.indexOf('overflow: \'hidden\'', markerIndex));
+    expect(cardBlock).toContain('borderWidth: 0');
+    expect(cardBlock).not.toContain('borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT');
+  });
+
   it('migrates the reviewed Quizzes containers', () => {
     expectMigrated(QUIZZES_TARGET_IDS);
   });

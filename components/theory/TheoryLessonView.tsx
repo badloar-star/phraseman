@@ -2,12 +2,13 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useTheme, getVolumetricShadow } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
+import { isLightThemeMode } from '../../constants/theme';
 
 import TapScale from '../TapScale';
 import ScreenGradient from '../ScreenGradient';
@@ -401,6 +402,11 @@ export default function TheoryLessonView({
   }, [metrics, sections]);
 
   // Тема для интерактивов (общая форма для всех четырёх).
+  // зачем: чипы/слоты дриллов были захардкожены белыми альфами, а текст на
+  // заливках correct/accent — тёмным #0F1115 «под тёмные темы». На sagePorcelain
+  // чипы пропадали на светлом t.bgSurface, а на тёмно-зелёных заливках текст
+  // становился тёмным-по-тёмному. Токены считаются здесь один раз на все дриллы.
+  const lightDrills = isLightThemeMode(themeMode);
   const drillTheme = useMemo(
     () => ({
       textPrimary: t.textPrimary,
@@ -408,8 +414,12 @@ export default function TheoryLessonView({
       correct: t.correct,
       wrong: t.wrong,
       bgCard: t.bgCard,
+      chipBg: lightDrills ? 'rgba(23,32,29,0.06)' : 'rgba(255,255,255,0.06)',
+      chipBgStrong: lightDrills ? 'rgba(23,32,29,0.09)' : 'rgba(255,255,255,0.10)',
+      chipBgFaint: lightDrills ? 'rgba(23,32,29,0.04)' : 'rgba(255,255,255,0.04)',
+      onAccentText: lightDrills ? t.correctText : '#0F1115',
     }),
-    [t.textPrimary, t.textMuted, t.correct, t.wrong, t.bgCard],
+    [t.textPrimary, t.textMuted, t.correct, t.wrong, t.bgCard, t.correctText, lightDrills],
   );
 
   // ─── Рендер интерактива ───────────────────────────────────────────────────

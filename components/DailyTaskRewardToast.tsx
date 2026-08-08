@@ -1,13 +1,13 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, PanResponder, StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
 import { onAppEvent, emitAppEvent } from '../app/events';
@@ -25,6 +25,7 @@ import {
 import { localizedDailyTaskStrings } from '../app/daily_tasks_es_locale';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../app/target_storage_keys';
 import type { ThemeMode } from '../constants/theme';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const AUTO_DISMISS_MS = 12_000;
 const MAX_QUEUE = 3;
@@ -51,7 +52,6 @@ type DailyTaskRewardToastThemeStyle = {
   accentRailColor: string;
   auraColor: string;
   borderColor: string;
-  borderWidth: number;
   radius: number;
   shadowColor: string;
   iconName: IoniconName;
@@ -74,7 +74,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#47C870',
     auraColor: 'rgba(71,200,112,0.22)',
     borderColor: 'rgba(118,255,158,0.42)',
-    borderWidth: 1,
     radius: 18,
     shadowColor: 'rgba(4,30,14,0.86)',
     iconName: 'leaf-outline',
@@ -95,7 +94,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#D8B45F',
     auraColor: 'rgba(214,179,90,0.30)',
     borderColor: 'rgba(255,218,137,0.58)',
-    borderWidth: 1,
     radius: 20,
     shadowColor: 'rgba(0,0,0,0.90)',
     iconName: 'trophy-outline',
@@ -113,20 +111,19 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
   coral: {
     cardColors: ['#3B2024', '#100809'],
     sheenColors: ['rgba(255,112,104,0.28)', 'rgba(255,190,122,0.08)', 'rgba(255,112,104,0)'],
-    accentRailColor: '#FF6464',
-    auraColor: 'rgba(255,100,100,0.26)',
+    accentRailColor: '#FF7F50',
+    auraColor: 'rgba(255,127,80,0.26)',
     borderColor: 'rgba(255,124,116,0.52)',
-    borderWidth: 1,
     radius: 18,
     shadowColor: 'rgba(60,8,14,0.82)',
     iconName: 'flame-outline',
-    iconBg: 'rgba(255,100,100,0.18)',
+    iconBg: 'rgba(255,127,80,0.18)',
     iconBorderColor: 'rgba(255,136,128,0.55)',
     iconColor: '#FF8A80',
     titleColor: '#FFF7F5',
     taskColor: '#E0BBC1',
     xpColor: '#FFD060',
-    claimBg: '#FF6464',
+    claimBg: '#FF7F50',
     claimText: '#FFFFFF',
     claimBorderColor: 'rgba(255,218,210,0.62)',
     buttonIconName: 'flame-outline',
@@ -137,7 +134,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#6EA8FF',
     auraColor: 'rgba(110,168,255,0.18)',
     borderColor: 'rgba(110,168,255,0.30)',
-    borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0.72)',
     iconName: 'sparkles-outline',
@@ -158,7 +154,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#0095F6',
     auraColor: 'rgba(0,149,246,0.10)',
     borderColor: 'rgba(255,255,255,0.12)',
-    borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0.72)',
     iconName: 'sparkles-outline',
@@ -179,7 +174,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#0095F6',
     auraColor: 'rgba(0,149,246,0.10)',
     borderColor: 'rgba(0,0,0,0.10)',
-    borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0)',
     iconName: 'sparkles-outline',
@@ -194,13 +188,52 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBorderColor: 'rgba(0,149,246,0.40)',
     buttonIconName: 'gift-outline',
   },
+  candyBlue: {
+    cardColors: ['#16282F', '#0B161B'],
+    sheenColors: ['rgba(178,213,229,0.18)', 'rgba(178,213,229,0.05)', 'rgba(178,213,229,0)'],
+    accentRailColor: '#B2D5E5',
+    auraColor: 'rgba(178,213,229,0.18)',
+    borderColor: 'rgba(178,213,229,0.30)',
+    radius: 14,
+    shadowColor: 'rgba(0,0,0,0.72)',
+    iconName: 'sparkles-outline',
+    iconBg: 'rgba(178,213,229,0.12)',
+    iconBorderColor: 'rgba(178,213,229,0.30)',
+    iconColor: '#B2D5E5',
+    titleColor: '#EAF4F8',
+    taskColor: '#9DB9C4',
+    xpColor: '#FFC53D',
+    claimBg: '#B2D5E5',
+    claimText: '#07110A',
+    claimBorderColor: '#D9EDF5',
+    buttonIconName: 'gift-outline',
+  },
+  indigo: {
+    cardColors: ['#222140', '#14131F'],
+    sheenColors: ['rgba(200,195,255,0.18)', 'rgba(200,195,255,0.05)', 'rgba(200,195,255,0)'],
+    accentRailColor: '#C8C3FF',
+    auraColor: 'rgba(200,195,255,0.18)',
+    borderColor: 'rgba(200,195,255,0.30)',
+    radius: 14,
+    shadowColor: 'rgba(0,0,0,0.72)',
+    iconName: 'sparkles-outline',
+    iconBg: 'rgba(200,195,255,0.12)',
+    iconBorderColor: 'rgba(200,195,255,0.30)',
+    iconColor: '#C8C3FF',
+    titleColor: '#F1EFFF',
+    taskColor: '#B7B3D9',
+    xpColor: '#FFC53D',
+    claimBg: '#C8C3FF',
+    claimText: '#17162B',
+    claimBorderColor: '#E4E1FF',
+    buttonIconName: 'gift-outline',
+  },
   midnight: {
     cardColors: ['#1A1D2C', '#0D0E16'],
     sheenColors: ['rgba(143,160,255,0.2)', 'rgba(143,160,255,0.05)', 'rgba(143,160,255,0)'],
     accentRailColor: '#8FA0FF',
     auraColor: 'rgba(91,124,255,0.18)',
     borderColor: 'rgba(143,160,255,0.3)',
-    borderWidth: 1,
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
@@ -217,23 +250,22 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
   },
   ember: {
     cardColors: ['#231A12', '#0F0B07'],
-    sheenColors: ['rgba(255,162,69,0.2)', 'rgba(255,162,69,0.05)', 'rgba(255,162,69,0)'],
-    accentRailColor: '#FFA245',
-    auraColor: 'rgba(255,138,42,0.18)',
-    borderColor: 'rgba(255,162,69,0.3)',
-    borderWidth: 1,
+    sheenColors: ['rgba(255,204,85,0.2)', 'rgba(255,204,85,0.05)', 'rgba(255,204,85,0)'],
+    accentRailColor: '#FFCC55',
+    auraColor: 'rgba(255,176,61,0.18)',
+    borderColor: 'rgba(255,204,85,0.3)',
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
-    iconBg: 'rgba(255,162,69,0.12)',
-    iconBorderColor: 'rgba(255,162,69,0.3)',
-    iconColor: '#FFA245',
+    iconBg: 'rgba(255,204,85,0.12)',
+    iconBorderColor: 'rgba(255,204,85,0.3)',
+    iconColor: '#FFCC55',
     titleColor: '#FFFFFF',
     taskColor: '#C9B4A4',
     xpColor: '#FFCB5C',
-    claimBg: '#FFA245',
-    claimText: '#2A1502',
-    claimBorderColor: '#FFD9A8',
+    claimBg: '#FFCC55',
+    claimText: '#2A1A02',
+    claimBorderColor: '#FFE9B8',
     buttonIconName: 'sparkles-outline',
   },
   aurora: {
@@ -242,7 +274,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#3DE8A6',
     auraColor: 'rgba(46,230,160,0.18)',
     borderColor: 'rgba(61,232,166,0.3)',
-    borderWidth: 1,
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
@@ -259,24 +290,43 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
   },
   volt: {
     cardColors: ['#1C2010', '#0C0E06'],
-    sheenColors: ['rgba(214,255,61,0.2)', 'rgba(214,255,61,0.05)', 'rgba(214,255,61,0)'],
-    accentRailColor: '#D6FF3D',
-    auraColor: 'rgba(184,242,34,0.18)',
-    borderColor: 'rgba(214,255,61,0.3)',
-    borderWidth: 1,
+    sheenColors: ['rgba(198,255,52,0.2)', 'rgba(198,255,52,0.05)', 'rgba(198,255,52,0)'],
+    accentRailColor: '#C6FF34',
+    auraColor: 'rgba(168,232,30,0.18)',
+    borderColor: 'rgba(198,255,52,0.3)',
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
-    iconBg: 'rgba(214,255,61,0.12)',
-    iconBorderColor: 'rgba(214,255,61,0.3)',
-    iconColor: '#D6FF3D',
+    iconBg: 'rgba(198,255,52,0.12)',
+    iconBorderColor: 'rgba(198,255,52,0.3)',
+    iconColor: '#C6FF34',
     titleColor: '#FFFFFF',
     taskColor: '#BFC6A3',
     xpColor: '#FFE85C',
-    claimBg: '#D6FF3D',
-    claimText: '#1A2002',
-    claimBorderColor: '#EFFF9E',
+    claimBg: '#C6FF34',
+    claimText: '#182002',
+    claimBorderColor: '#E8FF96',
     buttonIconName: 'sparkles-outline',
+  },
+  sagePorcelain: {
+    cardColors: ['#FCFDF9', '#F5F7F2'],
+    sheenColors: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+    accentRailColor: '#315F50',
+    auraColor: 'rgba(49,95,80,0)',
+    borderColor: '#BDC8BD',
+    radius: 14,
+    shadowColor: 'rgba(23,32,29,0)',
+    iconName: 'gift-outline',
+    iconBg: '#D9E9E1',
+    iconBorderColor: '#BDC8BD',
+    iconColor: '#315F50',
+    titleColor: '#17201D',
+    taskColor: '#52605A',
+    xpColor: '#8B6320',
+    claimBg: '#315F50',
+    claimText: '#FFFFFF',
+    claimBorderColor: '#315F50',
+    buttonIconName: 'gift-outline',
   },
 };
 
@@ -311,17 +361,18 @@ async function refreshDailyTaskAchievements(
 }
 
 function DailyTaskRewardToast() {
-  const { f, ds, themeMode } = useTheme();
+  const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const bottomOffset = useGlobalBottomOverlayOffset();
 
   const [toast, setToast] = useState<DailyTaskRewardToastItem | null>(null);
-  const [claiming, setClaiming] = useState(false);
   const [overlayWanted, setOverlayWanted] = useState(false);
   const overlayVisible = useOverlayVisible('dailyTaskRewardToast', overlayWanted);
 
   const translateY = useRef(new Animated.Value(150)).current;
+  const swipeX = useRef(new Animated.Value(0)).current;
+  const swipeY = useRef(new Animated.Value(0)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.96)).current;
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -331,11 +382,18 @@ function DailyTaskRewardToast() {
   const queueRef = useRef<DailyTaskRewardToastItem[]>([]);
   const claimingRef = useRef(false);
   const inFlightClaimKeysRef = useRef<Set<string>>(new Set());
+  /** Ключ тоста, для которого звук и вибрация уже отыграли.
+   *
+   *  зачем: эффект показа зависит от `overlayVisible`, а слот арбитра у
+   *  транзиентных тостов отбирается сторожем в пользу ждущего оверлея и потом
+   *  возвращается. Без этой отметки каждое возвращение видимости при ТОМ ЖЕ
+   *  тосте просило звук заново — один звук сам собой отбивал серию повторов
+   *  (тот же класс бага закрыт в AchievementToast). */
+  const cuedToastKeyRef = useRef<string | null>(null);
 
   const finishCurrent = useCallback(() => {
     const next = queueRef.current.shift() ?? null;
     claimingRef.current = false;
-    setClaiming(false);
 
     if (next) {
       activeRef.current = next;
@@ -347,6 +405,10 @@ function DailyTaskRewardToast() {
 
     activeRef.current = null;
     activeKeyRef.current = null;
+    // Очередь пуста — снимаем отметку отклика, чтобы та же задача в новом показе
+    // снова прозвучала. Сброс привязан к смене тоста, а не к потере видимости:
+    // слот арбитр отбирает и возвращает по ходу показа.
+    cuedToastKeyRef.current = null;
     setToast(null);
     setOverlayWanted(false);
   }, []);
@@ -385,6 +447,49 @@ function DailyTaskRewardToast() {
     ]).start(finishCurrent);
   }, [finishCurrent, opacity, scale, toast, translateY]);
 
+  const swipeResponder = useMemo(() => PanResponder.create({
+    onStartShouldSetPanResponder: () => false,
+    onMoveShouldSetPanResponder: (_event, gesture) => (
+      Math.abs(gesture.dx) > 8 || Math.abs(gesture.dy) > 8
+    ),
+    onPanResponderGrant: () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    },
+    onPanResponderMove: (_event, gesture) => {
+      swipeX.setValue(gesture.dx);
+      swipeY.setValue(gesture.dy);
+    },
+    onPanResponderRelease: (_event, gesture) => {
+      const shouldDismiss = Math.abs(gesture.dx) > 36
+        || Math.abs(gesture.dy) > 36
+        || Math.abs(gesture.vx) > 0.5
+        || Math.abs(gesture.vy) > 0.5;
+      if (shouldDismiss) {
+        Animated.parallel([
+          Animated.timing(swipeX, { toValue: gesture.dx * 3, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+          Animated.timing(swipeY, { toValue: gesture.dy * 3, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+          Animated.timing(opacity, { toValue: 0, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+        ]).start(() => dismissCurrent(false));
+        return;
+      }
+      Animated.parallel([
+        Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+        Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+      ]).start();
+      timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
+    },
+    onPanResponderTerminate: () => {
+      Animated.parallel([
+        Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+        Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+      ]).start();
+      timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
+    },
+  }), [dismissCurrent, opacity, swipeX, swipeY]);
+
   const enqueue = useCallback((item: DailyTaskRewardToastItem) => {
     const key = itemKey(item);
     if (inFlightClaimKeysRef.current.has(key)) return;
@@ -399,7 +504,6 @@ function DailyTaskRewardToast() {
 
     activeRef.current = item;
     activeKeyRef.current = key;
-    setClaiming(false);
     setToast(item);
     setOverlayWanted(true);
   }, []);
@@ -411,7 +515,6 @@ function DailyTaskRewardToast() {
       activeRef.current = item;
       activeKeyRef.current = itemKey(item);
       claimingRef.current = false;
-      setClaiming(false);
       setToast(item);
       setOverlayWanted(true);
       return;
@@ -489,6 +592,8 @@ function DailyTaskRewardToast() {
     if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
 
     translateY.setValue(150);
+    swipeX.setValue(0);
+    swipeY.setValue(0);
     opacity.setValue(0);
     scale.setValue(0.96);
     rafRef.current = requestAnimationFrame(() => {
@@ -514,7 +619,17 @@ function DailyTaskRewardToast() {
       ]).start();
     });
 
-    hapticSuccess();
+    // Отклик — РОВНО один раз на тост: повторный вход в эффект при том же
+    // тосте (арбитр вернул слот после выселения) звук не переигрывает.
+    if (cuedToastKeyRef.current !== itemKey(toast)) {
+      cuedToastKeyRef.current = itemKey(toast);
+      hapticSuccess();
+      soundDirector.request('pm.social.quest_complete', {
+        scope: 'daily-task-reward',
+        dedupeKey: `${toast.studyTarget ?? 'default'}:${toast.taskId}`,
+        deferAfterVoice: true,
+      });
+    }
     timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
 
     return () => {
@@ -527,28 +642,28 @@ function DailyTaskRewardToast() {
         rafRef.current = null;
       }
     };
-  }, [dismissCurrent, opacity, overlayVisible, scale, toast, translateY]);
+  }, [dismissCurrent, opacity, overlayVisible, scale, swipeX, swipeY, toast, translateY]);
 
   useEffect(() => () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
   }, []);
 
-  const handleClaim = useCallback(async () => {
+  // зачем: владелец убрал кнопку «Забрать» — награда за вызов дня начисляется
+  // САМА, как только задание выполнено. Тост стал уведомлением «+XP получено»,
+  // а не действием. Тело клейма не тронуто: claimTaskWithReward остаётся
+  // единственным путём начисления (идемпотентность по eventId, резерв и откат),
+  // поэтому автоматический вызов так же защищён от гонок и двойного начисления,
+  // как прежний тап по кнопке. Тост при этом НЕ закрывается — пользователь
+  // должен успеть прочитать, за что и сколько ему дали.
+  const claimReward = useCallback(async () => {
     const current = activeRef.current;
     if (!current) return;
     const claimKey = itemKey(current);
     if (claimingRef.current || inFlightClaimKeysRef.current.has(claimKey)) return;
 
-    hapticTap();
     claimingRef.current = true;
     inFlightClaimKeysRef.current.add(claimKey);
-    setClaiming(true);
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-    dismissCurrent();
 
     try {
       if (current.previewOnly) {
@@ -629,21 +744,22 @@ function DailyTaskRewardToast() {
       });
     } finally {
       inFlightClaimKeysRef.current.delete(claimKey);
+      claimingRef.current = false;
     }
-  }, [dismissCurrent, lang]);
+  }, [lang]);
+
+  // зачем: автоначисление вместо кнопки. Запускаем ровно один раз на каждый
+  // показанный тост — ключ задания в зависимостях, а claimingRef/
+  // inFlightClaimKeysRef внутри claimReward гасят повторный вход, если эффект
+  // переиграется. previewOnly (админский предпросмотр) ничего не начисляет.
+  const activeToastKey = toast ? itemKey(toast) : null;
+  useEffect(() => {
+    if (!activeToastKey || !toast || toast.previewOnly) return;
+    void claimReward();
+  }, [activeToastKey, claimReward, toast]);
 
   if (!toast || !overlayVisible) return null;
 
-  const claimLabel = triLang(lang, {
-    ru: 'Забрать',
-    uk: 'Забрати',
-    es: 'Reclamar',
-    'pt-BR': 'Resgatar',
-    vi: 'Nhận',
-    id: 'Ambil',
-    tr: 'Al',
-    pl: 'Odbierz',
-  });
   const title = triLang(lang, {
     ru: 'Вызов дня выполнен',
     uk: 'Виклик дня виконано',
@@ -666,18 +782,15 @@ function DailyTaskRewardToast() {
   });
   const visualThemeMode = toast.previewThemeMode ?? themeMode;
   const themeStyle = DAILY_TASK_REWARD_TOAST_THEME_STYLES[visualThemeMode];
-  const claimBg = themeStyle.claimBg;
-  const claimFg = themeStyle.claimText;
-  const claimIcon = themeStyle.buttonIconName;
-
   return (
     <Animated.View
-      pointerEvents="box-none"
+      {...swipeResponder.panHandlers}
+      pointerEvents="auto"
       style={[
         styles.host,
         {
           bottom: bottomOffset,
-          transform: [{ translateY }, { scale }],
+          transform: [{ translateY }, { translateX: swipeX }, { translateY: swipeY }, { scale }],
           opacity,
         },
       ]}
@@ -701,7 +814,7 @@ function DailyTaskRewardToast() {
           {
             borderColor: themeStyle.borderColor,
             borderRadius: themeStyle.radius,
-            borderWidth: themeStyle.borderWidth,
+            borderWidth: 0,
             shadowColor: themeStyle.shadowColor,
           },
         ]}
@@ -712,7 +825,7 @@ function DailyTaskRewardToast() {
             styles.accentRail,
             {
               backgroundColor: themeStyle.accentRailColor,
-              width: Math.max(5, themeStyle.borderWidth + 4),
+              width: 5,
             },
           ]}
         />
@@ -751,35 +864,7 @@ function DailyTaskRewardToast() {
           </Text>
         </View>
 
-        <TouchableOpacity
-          accessibilityRole="button"
-          activeOpacity={0.86}
-          disabled={claiming}
-          onPress={handleClaim}
-          style={[
-            styles.claimButton,
-            {
-              backgroundColor: claimBg,
-              borderColor: themeStyle.claimBorderColor,
-              minHeight: Math.max(44, ds.buttonHeight - 8),
-            },
-          ]}
-        >
-          <Ionicons
-            name={claimIcon}
-            size={16}
-            color={claimFg}
-          />
-          <Text
-            numberOfLines={1}
-            style={[
-              styles.claimText,
-              { color: claimFg, fontSize: f.caption },
-            ]}
-          >
-            {claimLabel}
-          </Text>
-        </TouchableOpacity>
+        {/* Награда начисляется автоматически; свайп по карточке закрывает тост. */}
       </LinearGradient>
     </Animated.View>
   );
@@ -806,7 +891,7 @@ const styles = StyleSheet.create({
     minHeight: 92,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
@@ -833,7 +918,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -852,21 +937,6 @@ const styles = StyleSheet.create({
   },
   xp: {
     marginTop: 2,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  claimButton: {
-    width: 104,
-    borderRadius: 14,
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    gap: 5,
-  },
-  claimText: {
-    flexShrink: 1,
     fontWeight: '900',
     letterSpacing: 0,
   },

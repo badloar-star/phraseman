@@ -8,16 +8,16 @@
 // в Purchases никогда не уходит (хук покупки шлёт RAW-пакет).
 //
 // Два состояния (по UrgencyState из app/paywall_urgency.ts):
-//  • isActive (77ч идут): таймер + «Сейчас X» / «Скоро будет ~2X» + закрепление.
+//  • isActive (77ч идут): статичная дата повышения + «Сейчас X» / «Скоро будет ~2X» + закрепление.
 //  • grace (77ч прошли, remainingMs>0): «цену сохранили, ещё ~2 недели».
 // Нет реальной цены или futurePrice=null → блок не рендерится.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
-import { getUrgencyState, formatCountdown, type UrgencyState } from '../../app/paywall_urgency';
+import { type UrgencyState } from '../../app/paywall_urgency';
 import type { PaywallChrome } from './paywallShared';
 
 interface Props {
@@ -39,31 +39,32 @@ interface Props {
   isLifetime?: boolean;
 }
 
+// Месяцы для статичной даты повышения цены (без Intl — на части Android/Hermes
+// локализованные месяцы недоступны). Формат ru/uk/pl/id/tr: «1 сентября»;
+// es/pt-BR: «1 de septiembre»; vi: «1 tháng 9».
+const RAISE_MONTHS: Record<Lang, readonly string[]> = {
+  ru: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
+  uk: ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'],
+  es: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  'pt-BR': ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+  vi: ['tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6', 'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'],
+  id: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+  tr: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+  pl: ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'],
+};
+
+function formatRaiseDate(date: Date, lang: Lang): string {
+  const day = date.getDate();
+  const monthName = RAISE_MONTHS[lang][date.getMonth()];
+  if (lang === 'vi') return `${day} ${monthName}`;
+  if (lang === 'es' || lang === 'pt-BR') return `${day} de ${monthName}`;
+  return `${day} ${monthName}`;
+}
+
 export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPrice, futurePrice, period, compact, isLifetime }: Props) {
   const { tc, textPrimary, textMuted, cardBorder } = chrome;
-  const [timer, setTimer] = useState(urgency.remainingFormatted || formatCountdown(urgency.remainingMs));
-
-  // Живой тик раз в секунду считает время локально; storage проверяем только при истечении окна.
-  useEffect(() => {
-    if (!urgency.isActive) return;
-    let dead = false;
-    const endsAt = Date.now() + Math.max(0, urgency.remainingMs);
-    const updateFromClock = () => {
-      const remainingMs = Math.max(0, endsAt - Date.now());
-      setTimer(formatCountdown(remainingMs));
-      return remainingMs > 0;
-    };
-
-    updateFromClock();
-    const iv = setInterval(() => {
-      if (updateFromClock()) return;
-      clearInterval(iv);
-      void getUrgencyState().then((s) => {
-        if (!dead) setTimer(s.remainingFormatted);
-      });
-    }, 1000);
-    return () => { dead = true; clearInterval(iv); };
-  }, [urgency.isActive, urgency.remainingMs]);
+  // Статичная дата конца окна «старой цены» — без живого тикающего таймера.
+  const raiseDate = formatRaiseDate(new Date(Date.now() + Math.max(0, urgency.remainingMs)), lang);
 
   // Нет реальной цены — ничего не показываем (без «NaN»/выдуманных значений).
   if (!currentPrice || !futurePrice) return null;
@@ -87,7 +88,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
     }
     if (!urgency.isActive) return null;
     return (
-      <View style={[S.compactActiveWrap, { backgroundColor: tc.urgencyBg, borderColor: `${tc.urgencyTimerText}3a` }]}>
+      <View style={[S.compactActiveWrap, { backgroundColor: chrome.cardBgStrong }]}>
         <View style={S.compactUrgencyHead}>
           <Ionicons name="time" size={18} color={tc.urgencyTimerText} style={S.compactUrgencyIcon} />
           <Text style={[S.compactUrgencyTitle, { color: tc.urgencyLabelText }]}>
@@ -107,17 +108,17 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <View style={S.compactTimerRow}>
           <Text style={[S.compactTimerLabel, { color: textMuted }]}>
             {triLang(lang, {
-              ru: 'Старая цена действует ещё',
-              uk: 'Стара ціна діє ще',
-              es: 'El precio anterior dura',
-              'pt-BR': 'O preço antigo vale por',
-              vi: 'Giá cũ còn hiệu lực',
-              id: 'Harga lama berlaku',
-              tr: 'Eski fiyat kalan süre',
-              pl: 'Stara cena działa jeszcze',
+              ru: 'Цена вырастет',
+              uk: 'Ціна зросте',
+              es: 'El precio subirá el',
+              'pt-BR': 'O preço subirá em',
+              vi: 'Giá sẽ tăng vào',
+              id: 'Harga naik pada',
+              tr: 'Fiyat artıyor:',
+              pl: 'Cena wzrośnie',
             })}
           </Text>
-          <Text style={[S.compactTimerBig, { color: tc.urgencyTimerText }]}>{timer}</Text>
+          <Text style={[S.compactTimerBig, { color: tc.urgencyTimerText }]}>{raiseDate}</Text>
         </View>
 
         <View style={[S.compactPriceLine, { borderTopColor: `${tc.urgencyTimerText}26` }]}>
@@ -202,11 +203,11 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
       <View style={S.timerRow}>
         <Text style={[S.timerLabel, { color: textMuted }]}>
           {triLang(lang, {
-            ru: 'Старая цена держится ещё', uk: 'Стара ціна тримається ще', es: 'El precio anterior dura aún',
-            'pt-BR': 'O preço antigo dura ainda', vi: 'Giá cũ còn giữ trong', id: 'Harga lama bertahan', tr: 'Eski fiyat hâlâ geçerli', pl: 'Stara cena trzyma się jeszcze',
+            ru: 'Цена вырастет', uk: 'Ціна зросте', es: 'El precio subirá el',
+            'pt-BR': 'O preço subirá em', vi: 'Giá sẽ tăng vào', id: 'Harga naik pada', tr: 'Fiyat artıyor:', pl: 'Cena wzrośnie',
           })}
         </Text>
-        <Text style={[S.timer, { color: tc.urgencyTimerText }]}>{timer}</Text>
+        <Text style={[S.timer, { color: tc.urgencyTimerText }]}>{raiseDate}</Text>
       </View>
 
       {/* Доминанта = твоя цена («Сейчас», крупно+акцент). Будущая — заметно мельче
@@ -254,13 +255,13 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
 }
 
 const S = StyleSheet.create({
-  wrap: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 13, marginTop: 16, flexDirection: 'row', alignItems: 'center' },
+  wrap: { borderRadius: 16, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 13, marginTop: 16, flexDirection: 'row', alignItems: 'center' },
   wrapActive: { flexDirection: 'column', alignItems: 'stretch' },
   headerRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 9 },
   headline: { flex: 1, fontSize: 14, fontWeight: '900', lineHeight: 19 },
   // компактный режим — мини-блок
-  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 16, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 11, marginTop: 16 },
-  compactActiveWrap: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 15, marginTop: 16 },
+  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 16, borderWidth: 0, paddingHorizontal: 14, paddingVertical: 11, marginTop: 16 },
+  compactActiveWrap: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 15, marginTop: 16 },
   compactUrgencyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   compactUrgencyIcon: { marginRight: 8, flexShrink: 0 },
   compactUrgencyTitle: { flex: 1, fontSize: 16, lineHeight: 20, fontWeight: '900', letterSpacing: 0 },

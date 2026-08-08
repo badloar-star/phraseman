@@ -25,9 +25,14 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, DeviceEventEmitter, Easing, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { CLOUD_SYNC_ENABLED } from '../app/config';
 import { getLinkedAuthInfo } from '../app/auth_provider';
+import { subscribeAccountGeneration } from '../app/account_generation';
+// зачем: visible стартует false → async shouldShow() вставляет карточку в поток Home
+// вторым проходом и телепортирует всё, что ниже. Оборачиваем каждый flip видимости
+// в плавный layout-переход (Performance Bible → Layout Stability), а не в телепорт.
+import { animateNextLayoutTransition } from '../app/smooth_layout';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
@@ -36,20 +41,16 @@ import { LinearGradient } from './SafeLinearGradient';
 import PremiumCard from './PremiumCard';
 import RegistrationPromptModal from './RegistrationPromptModal';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const DISMISSED_AT_KEY = 'auth_save_banner_dismissed_at';
 const XP_THRESHOLD = 1000;
 const DISMISS_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней
 
-async function shouldShow(): Promise<boolean> {
+async function shouldShow(isCurrent: () => boolean): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED) return false;
   try {
-    const info = await getLinkedAuthInfo();
-    if (info) return false; // уже залогинен
-  } catch {
-    return false;
-  }
-  try {
     const xpRaw = await AsyncStorage.getItem('user_total_xp');
+    if (!isCurrent()) return false;
     const xp = parseInt(xpRaw ?? '0', 10) || 0;
     if (xp < XP_THRESHOLD) return false;
   } catch {
@@ -57,44 +58,136 @@ async function shouldShow(): Promise<boolean> {
   }
   try {
     const dismissedRaw = await AsyncStorage.getItem(DISMISSED_AT_KEY);
+    if (!isCurrent()) return false;
     if (dismissedRaw) {
       const dismissedAt = parseInt(dismissedRaw, 10) || 0;
       if (Date.now() - dismissedAt < DISMISS_COOLDOWN_MS) return false;
     }
   } catch { /* ignore */ }
+  try {
+    if (!isCurrent()) return false;
+    const info = await getLinkedAuthInfo();
+    if (!isCurrent()) return false;
+    if (info) return false; // уже залогинен
+  } catch {
+    return false;
+  }
   return true;
 }
 
-function SaveProgressBanner() {
+interface SaveProgressBannerProps {
+  ownerActive?: boolean;
+}
+
+function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
 
   const [visible, setVisible] = useState(false);
   const [authModalVisible, setAuthModalVisible] = useState(false);
   const enterAnim = useRef(new Animated.Value(0)).current;
+  const ownerActiveRef = useRef(ownerActive);
+  const visibleRef = useRef(visible);
+  const dirtyRef = useRef(false);
+  const authLinkedRef = useRef(false);
+  const checkGenerationRef = useRef(0);
+  const checkInFlightRef = useRef<Promise<void> | null>(null);
+  ownerActiveRef.current = ownerActive;
+  visibleRef.current = visible;
 
-  const recheck = useCallback(async () => {
-    const ok = await shouldShow();
-    setVisible(ok);
+  const applyVisibility = useCallback((nextVisible: boolean) => {
+    if (visibleRef.current === nextVisible) return;
+    visibleRef.current = nextVisible;
+    animateNextLayoutTransition();
+    setVisible(nextVisible);
   }, []);
 
+  const recheck = useCallback((): Promise<void> => {
+    if (!ownerActiveRef.current) {
+      dirtyRef.current = true;
+      return Promise.resolve();
+    }
+    // Пока карточка уже видима, XP-события не должны повторно ходить в auth/Firestore.
+    if (visibleRef.current || authLinkedRef.current) return Promise.resolve();
+    if (checkInFlightRef.current) {
+      // The second event may contain newer XP/account state than the read that
+      // is already underway. Preserve exactly one catch-up check instead of
+      // silently treating the in-flight request as current.
+      dirtyRef.current = true;
+      return checkInFlightRef.current;
+    }
+    dirtyRef.current = false;
+    const generation = checkGenerationRef.current;
+    const isCurrent = () => ownerActiveRef.current
+      && generation === checkGenerationRef.current
+      && !authLinkedRef.current;
+    const task = (async () => {
+      const ok = await shouldShow(isCurrent);
+      if (!isCurrent()) return;
+    // зачем: setVisible здесь вставляет/убирает баннер из потока Home и двигает всё
+    // ниже — планируем плавный layout-переход СТРОГО перед setState (не после).
+      applyVisibility(ok);
+    })().finally(() => {
+      if (checkInFlightRef.current === task) checkInFlightRef.current = null;
+      if (ownerActiveRef.current && dirtyRef.current && !visibleRef.current && !authLinkedRef.current) {
+        void recheck();
+      }
+    });
+    checkInFlightRef.current = task;
+    return task;
+  }, [applyVisibility]);
+
   useEffect(() => {
-    let alive = true;
-    (async () => {
-      const ok = await shouldShow();
-      if (alive) setVisible(ok);
-    })();
     // Любое изменение XP или линка — перепроверяем.
     const xpSub = DeviceEventEmitter.addListener('xp_changed', recheck);
     const xpUpdSub = DeviceEventEmitter.addListener('xp_updated', recheck);
-    const linkSub = DeviceEventEmitter.addListener('auth_provider_linked', () => setVisible(false));
+    const linkSub = DeviceEventEmitter.addListener('auth_provider_linked', () => {
+      checkGenerationRef.current += 1;
+      authLinkedRef.current = true;
+      dirtyRef.current = false;
+      applyVisibility(false);
+    });
+    const deletedSub = DeviceEventEmitter.addListener('account_deleted', () => {
+      checkGenerationRef.current += 1;
+      authLinkedRef.current = false;
+      dirtyRef.current = true;
+      applyVisibility(false);
+      void recheck();
+    });
     return () => {
-      alive = false;
       xpSub.remove();
       xpUpdSub.remove();
       linkSub.remove();
+      deletedSub.remove();
     };
-  }, [recheck]);
+  }, [applyVisibility, recheck]);
+
+  useEffect(() => {
+    return subscribeAccountGeneration(() => {
+      // Account changes do not necessarily emit a provider or deletion event.
+      // A pending request belongs to the old identity and must not decide B.
+      checkGenerationRef.current += 1;
+      checkInFlightRef.current = null;
+      authLinkedRef.current = false;
+      dirtyRef.current = true;
+      applyVisibility(false);
+      if (ownerActiveRef.current) void recheck();
+    }).remove;
+  }, [applyVisibility, recheck]);
+
+  useEffect(() => {
+    if (!ownerActive) {
+      checkGenerationRef.current += 1;
+      return;
+    }
+    void recheck();
+  }, [ownerActive, recheck]);
+
+  useEffect(() => () => {
+    ownerActiveRef.current = false;
+    checkGenerationRef.current += 1;
+    checkInFlightRef.current = null;
+  }, []);
 
   useEffect(() => {
     if (!visible) {
@@ -112,11 +205,12 @@ function SaveProgressBanner() {
 
   const handleDismiss = useCallback(async () => {
     hapticTap();
-    setVisible(false);
+    // зачем: закрытие "×" убирает карточку из потока — плавный переход, а не телепорт.
+    applyVisibility(false);
     try {
       await AsyncStorage.setItem(DISMISSED_AT_KEY, String(Date.now()));
     } catch { /* ignore */ }
-  }, []);
+  }, [applyVisibility]);
 
   const handleSignInPress = useCallback(() => {
     hapticTap();
@@ -247,7 +341,7 @@ function SaveProgressBanner() {
               shadowOpacity: 0.34,
               shadowRadius: 12,
               shadowOffset: { width: 0, height: 6 },
-              elevation: 5,
+              ...noAndroidOutline,
             }}
           >
             <LinearGradient
@@ -293,7 +387,9 @@ function SaveProgressBanner() {
             marginTop: 14,
             paddingTop: 13,
             borderTopWidth: 1,
-            borderTopColor: 'rgba(255,255,255,0.08)',
+            // зачем: белый 8% divider невидим на фарфоровой карточке sagePorcelain —
+            // семантический t.border работает в обеих полярностях.
+            borderTopColor: t.border,
           }}
         >
           <Text
@@ -313,14 +409,10 @@ function SaveProgressBanner() {
               'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
             'pt-BR':
               'Vincule sua conta: suas lições, XP, sequência e conquistas ficam seguros. Mesmo se o celular decidir tirar férias sem avisar.',
-            vi:
-              'Liên kết tài khoản để bài học, XP, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
-            id:
-              'Tautkan akunmu agar pelajaran, XP, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
-            tr:
-              'Hesabını bağla; derslerin, XP, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
-            pl:
-              'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
+            vi: 'Liên kết tài khoản để bài học, XP, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
+            id: 'Tautkan akunmu agar pelajaran, XP, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
+            tr: 'Hesabını bağla; derslerin, XP, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
+            pl: 'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
           })}
           </Text>
         </View>
@@ -332,10 +424,12 @@ function SaveProgressBanner() {
         visible={authModalVisible}
         context="home_banner"
         onClose={() => setAuthModalVisible(false)}
-        onSignedIn={() => {
-          setAuthModalVisible(false);
-          setVisible(false);
-        }}
+            onSignedIn={() => {
+              setAuthModalVisible(false);
+          // зачем: успешный логин убирает баннер из потока — плавный переход, не телепорт.
+              authLinkedRef.current = true;
+              applyVisibility(false);
+            }}
       />
     </>
   );

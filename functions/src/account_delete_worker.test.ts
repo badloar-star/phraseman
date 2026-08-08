@@ -40,12 +40,16 @@ describe('account deletion worker binding', () => {
     const sharedRef = { path: 'account_deletion_jobs/shared' };
     const failedExpiredRef = { path: 'account_deletion_jobs/failed-expired' };
     const expiredTombstoneRef = { path: 'account_deletion_tombstones/expired' };
+    const expiredAuthMarkerRef = { path: 'account_deletion_auth_markers/expired' };
     const batchSet = jest.fn();
     const batchDelete = jest.fn();
     const batchCommit = jest.fn(async () => undefined);
     const docsFor = (collection: string, field: string) => {
       if (collection === 'account_deletion_tombstones') {
         return [{ id: 'expired-tombstone', ref: expiredTombstoneRef }];
+      }
+      if (collection === 'account_deletion_auth_markers') {
+        return [{ id: 'expired-auth-marker', ref: expiredAuthMarkerRef }];
       }
       if (field === 'nextAttemptAtMs') {
         return [
@@ -87,6 +91,7 @@ describe('account deletion worker binding', () => {
     expect(batchSet.mock.calls.some(([ref]) => ref === failedExpiredRef)).toBe(false);
     expect(batchDelete).toHaveBeenCalledWith(failedExpiredRef);
     expect(batchDelete).toHaveBeenCalledWith(expiredTombstoneRef);
+    expect(batchDelete).toHaveBeenCalledWith(expiredAuthMarkerRef);
     expect(batchCommit).toHaveBeenCalledTimes(1);
   });
 

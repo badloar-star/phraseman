@@ -19,7 +19,7 @@ const base = {
   icon, progress, titleColor: '#fff', descriptionColor: '#ddd', surfaceColor: '#111', borderColor: '#333', accentColor: '#9cff00',
 };
 
-test('full task copy is visible and unchanged across emphasis press', async () => {
+test('full task copy is visible and unchanged across the first press', async () => {
   const onPress = jest.fn();
   await render(<DailyTaskCard {...base} onPress={onPress} />);
   expect(screen.getByTestId('task-title').props.children).toBe(base.title);
@@ -82,11 +82,31 @@ test('task and bonus variants retain the established card geometry', async () =>
   expect(bonusStyle).toMatchObject({ minHeight: 0, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 9 });
 });
 
-test('first-tap emphasis is visible without concealing the description', async () => {
-  const { rerender } = await render(<DailyTaskCard {...base} emphasized={false} />);
-  await rerender(<DailyTaskCard {...base} emphasized />);
-  expect(StyleSheet.flatten(screen.getByTestId('task').props.style)).toMatchObject({ borderColor: '#9cff00', borderWidth: 1 });
+test('the task card gives immediate visual feedback while the first press is held', async () => {
+  await render(<DailyTaskCard {...base} onPress={jest.fn()} />);
+  const pressable = screen.getByTestId('task-pressable');
+  const responderEvent = {
+    persist: jest.fn(),
+    currentTarget: 1,
+    nativeEvent: {
+      pageX: 10,
+      pageY: 10,
+      locationX: 10,
+      locationY: 10,
+      timestamp: 1,
+      touches: [{ pageX: 10, pageY: 10, locationX: 10, locationY: 10 }],
+      changedTouches: [{ pageX: 10, pageY: 10, locationX: 10, locationY: 10 }],
+    },
+  };
+
+  await act(() => { fireEvent(pressable, 'responderGrant', responderEvent); });
+
+  expect(StyleSheet.flatten(pressable.props.style)).toMatchObject({
+    opacity: 0.86,
+    transform: [{ scale: 0.985 }],
+  });
   expect(screen.getByTestId('task-description').props.children).toBe(base.description);
+  await act(() => { fireEvent(pressable, 'responderRelease', responderEvent); });
 });
 
 test('measured short action remains inline and preserves its contextual accessibility label', async () => {

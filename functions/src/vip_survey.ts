@@ -2,11 +2,10 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { VIP_SURVEY_ID, VIP_SURVEY_REWARD_DAYS } from './vip_survey_contract';
 
 const USERS = 'users';
 const VIP_SURVEY_RESPONSES = 'vip_survey_responses';
-const VIP_SURVEY_ID = 'vip_feedback_v2';
-const VIP_REWARD_DAYS = 30;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 type ReviewIntent = 'yes' | 'no' | 'not_now';
@@ -180,7 +179,7 @@ export const submitVipSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       reviewIntent,
       storeOpened,
       platform,
-      rewardDays: VIP_REWARD_DAYS,
+      rewardDays: VIP_SURVEY_REWARD_DAYS,
       updatedAt: nowIso,
       updatedAtMs: nowMs,
     };
@@ -200,12 +199,12 @@ export const submitVipSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
         vipFrom: String(existingVipFrom || existingGrantAt || nowMs),
         vipUntil: String(existingVipUntil || 0),
         vipPlan: String(existingResponse.vipPlan || progress.vip_plan || 'survey_vip'),
-        rewardDays: VIP_REWARD_DAYS,
+        rewardDays: VIP_SURVEY_REWARD_DAYS,
       };
     }
 
     const vipFrom = nowMs;
-    const vipUntil = nowMs + VIP_REWARD_DAYS * DAY_MS;
+    const vipUntil = nowMs + VIP_SURVEY_REWARD_DAYS * DAY_MS;
     const vipPlan = 'survey_vip';
     tx.set(userRef, {
       progress: {
@@ -240,7 +239,7 @@ export const submitVipSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       vipFrom: String(vipFrom),
       vipUntil: String(vipUntil),
       vipPlan,
-      rewardDays: VIP_REWARD_DAYS,
+      rewardDays: VIP_SURVEY_REWARD_DAYS,
     };
   });
 });

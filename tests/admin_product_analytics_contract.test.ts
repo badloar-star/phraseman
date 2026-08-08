@@ -6,7 +6,7 @@ const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 
 describe('Admin v2 product analytics contract', () => {
   it('keeps product analytics inside the existing Analytics tab', () => {
-    const html = read('admin/v2/scripts/admin-analytics-app.js');
+    const html = read('admin/v2/scripts/admin-core.js');
     for (const id of ['product-analytics-panel', 'product-analytics-screens', 'product-analytics-lessons', 'product-analytics-learning-dropoff', 'product-analytics-conversion', 'product-analytics-retention', 'product-analytics-quality', 'product-analytics-sessions']) {
       expect(html).toContain(`id="${id}"`);
     }
@@ -42,7 +42,7 @@ describe('Admin v2 product analytics contract', () => {
   });
 
   it('discloses consent coverage instead of presenting the sample as all users', () => {
-    const html = read('admin/v2/scripts/admin-analytics-app.js');
+    const html = read('admin/v2/scripts/admin-core.js');
     expect(html).toContain('только по событиям пользователей, разрешивших аналитику');
     expect(html).toContain('Установка приложения не равна уникальному человеку');
   });
@@ -64,7 +64,7 @@ describe('Admin v2 product analytics contract', () => {
   it('exports an admin-only aggregate callable', () => {
     const callable = read('functions/src/admin_product_analytics.ts');
     const index = read('functions/src/index.ts');
-    expect(callable).toContain('hasProductAnalyticsAuth(request.auth)');
+    expect(callable).toContain("hasClaimedPermission(request.auth?.token, 'money.read')");
     expect(callable).toContain("new HttpsError('permission-denied'");
     expect(callable).toContain('ANALYTICS_BIGQUERY_DATASET');
     expect(callable).toContain('dataThroughMs');

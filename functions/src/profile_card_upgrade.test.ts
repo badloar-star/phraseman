@@ -7,7 +7,28 @@ type FakeRef = {
   path: string;
   get: () => Promise<FakeSnap>;
   set: (data: DocData, opts?: { merge?: boolean }) => Promise<void>;
+  collection: (name: string) => FakeCollection;
 };
+
+type FakeCollection = {
+  doc: (id?: string) => FakeRef;
+  get: () => Promise<{ docs: FakeSnap[]; size: number }>;
+};
+
+let autoId = 0;
+
+function collectionFor(path: string): FakeCollection {
+  const depth = path.split('/').length + 1;
+  return {
+    doc: (id?: string) => refFor(`${path}/${id || `auto_${++autoId}`}`),
+    get: async () => {
+      const children = [...docs.keys()]
+        .filter((k) => k.startsWith(`${path}/`) && k.split('/').length === depth)
+        .map((k) => snapFor(k));
+      return { docs: children, size: children.length };
+    },
+  };
+}
 
 type FakeSnap = {
   id: string;
@@ -48,6 +69,7 @@ function refFor(path: string): FakeRef {
     set: async (data: DocData, opts?: { merge?: boolean }) => {
       docs.set(path, opts?.merge ? deepMerge(docs.get(path) ?? {}, data) : { ...data });
     },
+    collection: (name: string) => collectionFor(`${path}/${name}`),
   };
 }
 
@@ -264,5 +286,78 @@ describe('profileCardUpgrade', () => {
     const res = await callUpgrade({ expectedLevel: 0, cost: 1 });
 
     expect(res).toMatchObject({ ok: true, level: 1, spent: 200, balance: 800 });
+  });
+});
+
+describe('profileCardUpgrade — Фаза 4: «праздник легенды»', () => {
+  it('grants +5 shards with server markers and a shard_log to every friend of a fresh Legend', async () => {
+    docs.set('users/u1', { shards: 2400, progress: { profile_card_level: 4 } });
+    docs.set('users/u1/friends/f1', { since: 1 });
+    docs.set('users/u1/friends/f2', { since: 2 });
+    docs.set('users/f1', { shards: 10 });
+    docs.set('users/f2', { shards: 0 });
+
+    const res = await callUpgrade({ expectedLevel: 4 });
+
+    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 5, legendNo: 1 });
+    for (const [fid, before, after] of [['f1', 10, 15], ['f2', 0, 5]] as const) {
+      const friend = docs.get(`users/${fid}`) as Record<string, any>;
+      expect(friend.shards).toBe(after);
+      expect(friend.shards_updated_op).toBe('earn');
+      expect(friend.shards_updated_reason).toBe('legend_celebration_gift');
+      expect(Number.isFinite(friend.shards_updated_at_ms)).toBe(true);
+      const log = [...docs.entries()].find(([path, data]) =>
+        path.startsWith(`users/${fid}/shard_log/`) && (data as Record<string, unknown>).reason === 'legend_celebration_gift');
+      expect(log).toBeDefined();
+      expect(log![1]).toMatchObject({ type: 'earn', amount: 5, balanceBefore: before, balanceAfter: after, legendUid: 'u1', legendNo: 1 });
+    }
+  });
+
+  it('announces the new Legend into the friends feed with a stable doc id (no duplicates)', async () => {
+    docs.set('users/u1', { shards: 2400, progress: { profile_card_level: 4 } });
+
+    const res = await callUpgrade({ expectedLevel: 4 });
+
+    expect(res).toMatchObject({ ok: true, level: 5, legendNo: 1 });
+    const feedDoc = docs.get('users/u1/my_events/legend_celebration') as Record<string, any>;
+    expect(feedDoc).toMatchObject({
+      type: 'achievement',
+      uid: 'u1',
+      payload: { icon: '👑', nameRu: 'Легенда №1' },
+    });
+    expect(Number.isFinite(feedDoc.ts)).toBe(true);
+  });
+
+  it('does not gift or announce on an idempotent replay (level already granted earlier)', async () => {
+    docs.set('users/u1', { shards: 500, progress: { profile_card_level: 5, profile_card_legend_no: 7 } });
+    docs.set('users/u1/friends/f1', { since: 1 });
+    docs.set('users/f1', { shards: 42 });
+
+    const res = await callUpgrade({ expectedLevel: 4 });
+
+    expect(res).toMatchObject({ ok: true, alreadyApplied: true, spent: 0 });
+    expect((docs.get('users/f1') as Record<string, any>).shards).toBe(42);
+    expect(docs.get('users/u1/my_events/legend_celebration')).toBeUndefined();
+  });
+
+  it('does not gift or announce on non-Legend upgrades', async () => {
+    docs.set('users/u1', { shards: 800, progress: { profile_card_level: 2 } });
+    docs.set('users/u1/friends/f1', { since: 1 });
+    docs.set('users/f1', { shards: 42 });
+
+    const res = await callUpgrade({ expectedLevel: 2 });
+
+    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 3, spent: 800 });
+    expect((docs.get('users/f1') as Record<string, any>).shards).toBe(42);
+    expect(docs.get('users/u1/my_events/legend_celebration')).toBeUndefined();
+  });
+
+  it('keeps the upgrade successful even when the legend has no friends', async () => {
+    docs.set('users/u1', { shards: 2400, progress: { profile_card_level: 4 } });
+
+    const res = await callUpgrade({ expectedLevel: 4 });
+
+    expect(res).toMatchObject({ ok: true, level: 5, legendNo: 1 });
+    expect(docs.get('users/u1/my_events/legend_celebration')).toBeDefined();
   });
 });

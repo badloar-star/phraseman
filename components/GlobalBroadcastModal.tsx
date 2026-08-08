@@ -5,7 +5,6 @@ import { Image } from 'expo-image';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
-import CompassDepthSurface from './CompassDepthSurface';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { oskolokImageForPackShards } from '../app/oskolok';
@@ -16,7 +15,6 @@ import {
   GlobalBroadcastModalPayload,
   recordReviewPromoClick,
 } from '../app/global_broadcast_modal';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { triLang } from '../constants/i18n';
 
 type Props = {
@@ -67,7 +65,6 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
   const shardsAmount = payload?.rewardType === 'shards'
     ? Math.max(0, Math.floor(Number(payload.rewardAmount ?? 0)))
     : 0;
-  const isCompassTheme = false;
   const dimColor = 'rgba(0,0,0,0.62)';
 
   const closeOnce = async () => {
@@ -131,40 +128,24 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
         />
         <View style={[
           styles.card,
-          isCompassTheme && compassShadow(3),
           {
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent,
-            borderRadius: isCompassTheme ? 14 : 20,
-            overflow: isCompassTheme ? 'hidden' : 'visible',
+            backgroundColor: t.bgCard,
+            borderRadius: 20,
+            overflow: 'visible',
           },
         ]}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <Text style={styles.emoji}>{'📣'}</Text>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
 
           {reward && (
-            <View style={[
-              styles.rewardBlock,
-              isCompassTheme && compassShadow(1),
-              isCompassTheme && {
-                borderRadius: 10,
-                borderWidth: 0,
-                borderColor: COMPASS_RICH.hairlineQuiet,
-                backgroundColor: COMPASS_RICH.charcoal,
-                overflow: 'hidden',
-                paddingHorizontal: 14,
-                paddingVertical: 12,
-              },
-            ]}>
-              {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
+            <View style={styles.rewardBlock}>
               {shardsAmount > 0 ? (
                 <Image source={oskolokImageForPackShards(shardsAmount)} style={styles.oskolokImg} contentFit="contain" />
               ) : (
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
-              <Text style={[styles.rewardLine, { color: isCompassTheme ? COMPASS_RICH.champagne : t.accent, fontSize: f.bodyLg }]}>
+              <Text style={[styles.rewardLine, { color: t.accent, fontSize: f.bodyLg }]}>
                 {triLang(lang, {
                   ru: reward.labelRu,
                   uk: reward.labelUk,
@@ -180,16 +161,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
           )}
 
           {isReviewPromo && (
-            <View style={[
-              styles.reviewNote,
-              isCompassTheme && {
-                borderRadius: 9,
-                borderWidth: 0,
-                borderColor: COMPASS_RICH.hairlineQuiet,
-                backgroundColor: COMPASS_RICH.mist,
-                paddingVertical: 8,
-              },
-            ]}>
+            <View style={styles.reviewNote}>
               <Text style={[styles.reviewNoteText, { color: t.textMuted, fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Откроется страница приложения в магазине.',
@@ -210,22 +182,19 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
             onPress={() => { void (isReviewPromo ? openReview() : closeOnce()); }}
             style={({ pressed }) => [
               styles.btn,
-              isCompassTheme && compassShadow(2),
               {
-                backgroundColor: isCompassTheme ? 'transparent' : t.accent,
-                borderRadius: isCompassTheme ? 10 : 14,
+                backgroundColor: t.accent,
+                borderRadius: 14,
                 borderWidth: 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
-                overflow: isCompassTheme ? 'hidden' : 'visible',
+                overflow: 'visible',
                 opacity: pressed || busy ? 0.85 : 1,
               },
             ]}
           >
-            {isCompassTheme && <CompassDepthSurface radius={10} cream />}
             {false && busy ? (
               <View />
             ) : (
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
                 {isReviewPromo && payload
                   ? triLang(lang, {
                     ru: payload.reviewCtaRu,
@@ -254,20 +223,9 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
             <Pressable
               disabled={busy}
               onPress={() => { void closeOnce(); }}
-              style={[
-                styles.secondaryBtn,
-                isCompassTheme && compassShadow(1),
-                isCompassTheme && {
-                  borderRadius: 9,
-                  borderWidth: 0,
-                  borderColor: COMPASS_RICH.hairlineQuiet,
-                  backgroundColor: COMPASS_RICH.charcoal,
-                  overflow: 'hidden',
-                },
-              ]}
+              style={styles.secondaryBtn}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-              <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
+              <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Позже',
                   uk: 'Пізніше',
@@ -354,8 +312,11 @@ const styles = StyleSheet.create({
     minHeight: 52,
   },
   secondaryBtn: {
-    paddingVertical: 12,
-    paddingHorizontal: 18,
+    alignSelf: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     marginTop: 4,
+    minHeight: 40,
+    justifyContent: 'center',
   },
 });

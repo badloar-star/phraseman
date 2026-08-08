@@ -1,4 +1,4 @@
-/* Квиз-воронка /start/: 7 вопросов → персональный план → email → пейвол
+/* Квиз-воронка /start/: 6 вопросов → персональный план → email → пейвол
    (Stripe/PayPal). Всё состояние в памяти + ответы дублируются в sessionStorage
    (переживает reload). UTM первого касания хранится в localStorage и
    прикрепляется к заказу.
@@ -112,7 +112,7 @@
       options: [
         { v: 'yes', e: '🙈', t: 'Да, очень', d: 'начнём наедине с телефоном' },
         { v: 'bit', e: '😅', t: 'Немного', d: 'разговоримся постепенно' },
-        { v: 'no', e: '😎', t: 'Нет', d: 'сразу добавим дуэли' },
+        { v: 'no', e: '😎', t: 'Нет', d: 'сразу добавим больше разговорной практики' },
       ],
     },
     { id: 'build', type: 'build' },
@@ -201,7 +201,7 @@
     return h('div', { class: 'qscreen' }, [
       h('p', { class: 'kicker' }, ['Бесплатный подбор · 2 минуты']),
       h('h1', {}, ['Соберём ваш план английского', h('span', { class: 'gold-accent' }, [' под вашу жизнь'])]),
-      h('p', { class: 'sub' }, ['7 коротких вопросов — и вы получите план: с чего начать, сколько заниматься и какие фразы учить первыми.']),
+      h('p', { class: 'sub' }, ['6 коротких вопросов — и вы получите план: с чего начать, сколько заниматься и какие фразы учить первыми.']),
       h('div', { class: 'qstats' }, [
         h('div', {}, [h('b', {}, ['10 000+']), h('span', {}, ['живых фраз'])]),
         h('div', {}, [h('b', {}, ['15 мин']), h('span', {}, ['в день'])]),
@@ -334,7 +334,13 @@
       if (!endpoint) return;
       fetch(endpoint, {
         method: 'POST',
-        body: JSON.stringify({ email: email, answers: state.answers, utm: readUtm(), page: location.pathname }),
+        body: JSON.stringify({
+          email: email,
+          answers: state.answers,
+          utm: readUtm(),
+          page: location.pathname,
+          marketingConsent: false,
+        }),
         keepalive: true,
       }).catch(function () {});
     } catch (_) { /* noop */ }
@@ -376,13 +382,13 @@
           emailInput,
         ]),
       ]),
+      h('p', { class: 'qsecure' }, ['На этот адрес придёт только ваш персональный план.']),
       errBox,
       h('button', { class: 'btn-gold', type: 'button', onclick: submit }, ['Прислать план и продолжить →']),
       h('button', {
         class: 'qskip-link', type: 'button',
         onclick: function () { track('lead_skip'); goNext(); },
       }, ['Продолжить без письма →']),
-      h('p', { class: 'qsecure' }, ['Никакого спама: план и максимум пара полезных писем. Отписка — в один клик из любого письма.']),
       backButton(),
     ]);
   }
@@ -669,7 +675,7 @@
 
   function comparisonTable() {
     var rows = [
-      { t: 'Уроки, фразы дня, дуэли и лиги', free: '✓', prem: '✓' },
+      { t: 'Уроки, фразы дня и лиги', free: '✓', prem: '✓' },
       { t: 'Все планы и темы: Поездка, Работа, Переезд…', free: '—', prem: '✓' },
       { t: 'Энергия на уроки', free: 'дневной лимит', prem: 'без лимитов' },
       { t: 'ИИ-диалоги с разбором ваших ошибок', free: '—', prem: '✓' },

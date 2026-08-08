@@ -6,6 +6,9 @@ import { hasPermission } from './admin/permissions';
 import { CANONICAL_RELEASE_SURFACES, type CanonicalReleaseSurface } from './content_factory/course_release_contract';
 import { parseHashedJsonBytes } from './content_factory/release_surface_delivery';
 import { courseCatalogId } from './language_release';
+import { deriveContentFactoryRolloutMetricsFromDocuments } from './content_factory/rollout_metrics';
+import { CONTENT_FACTORY_BUDGET_COLLECTION } from './content_factory/content_factory_budget';
+import { resolveJobConfig } from './openai_jobs_config';
 
 const REGION = 'us-central1';
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
@@ -18,7 +21,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function roleFromToken(token: Record<string, unknown>): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
+  return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
 }
 
 function requireContentReader(request: { auth?: { token?: Record<string, unknown> } }): void {
@@ -74,7 +77,10 @@ export interface ContentFactoryJobDetailInput {
 }
 
 export function buildContentFactoryJobDetail(input: ContentFactoryJobDetailInput): Readonly<ContentFactoryJobDetailInput> {
-  const units = [...input.units].sort((left, right) => {
+  const units: ReadDocument[] = input.units.map((unit): ReadDocument => ({
+    ...unit,
+    attemptHistory: Object.freeze(Array.isArray(unit.attemptHistory) ? [...unit.attemptHistory] : []),
+  })).sort((left, right) => {
     const lessonDelta = Number(left.lessonId ?? 0) - Number(right.lessonId ?? 0);
     if (lessonDelta) return lessonDelta;
     const surfaceDelta = (SURFACE_ORDER.get(String(left.surface ?? '')) ?? 99) - (SURFACE_ORDER.get(String(right.surface ?? '')) ?? 99);
@@ -165,23 +171,47 @@ export const adminGetContentFactoryWorkspace = onCall(
     requireContentReader(request as { auth?: { token?: Record<string, unknown> } });
     const input = parseContentFactoryWorkspaceRequest(request.data);
     const db = admin.firestore();
+    const workspaceQuery = (collection: string): admin.firestore.Query => {
+      let query: admin.firestore.Query = db.collection(collection);
+      if (input.studyTarget) query = query.where('studyTarget', '==', input.studyTarget);
+      if (input.learnerSourceLocale) query = query.where('learnerSourceLocale', '==', input.learnerSourceLocale);
+      return query;
+    };
     const [catalogsSnap, releasesSnap, historySnap, registriesSnap] = await Promise.all([
-      db.collection('content_factory_catalog').limit(input.limit).get(),
-      db.collection('content_factory_releases').limit(input.limit).get(),
-      db.collection('content_factory_release_history').limit(input.limit).get(),
+      workspaceQuery('content_factory_catalog').limit(input.limit).get(),
+      workspaceQuery('content_factory_releases').limit(input.limit).get(),
+      workspaceQuery('content_factory_release_history').limit(input.limit).get(),
       db.collection('content_factory_source_registry').limit(input.limit).get(),
     ]);
-    const matchesIdentity = (item: ReadDocument): boolean => (
-      (!input.studyTarget || item.studyTarget === input.studyTarget)
-      && (!input.learnerSourceLocale || item.learnerSourceLocale === input.learnerSourceLocale || item.sourceLocale === input.learnerSourceLocale)
-    );
     const sortNewest = (items: ReadDocument[]): ReadDocument[] => items.sort((left, right) => String(right.timestamp ?? right.createdAt ?? right.sealedAt ?? '').localeCompare(String(left.timestamp ?? left.createdAt ?? left.sealedAt ?? '')));
     return {
       ok: true,
-      catalogs: catalogsSnap.docs.map(withId).filter(matchesIdentity),
-      releases: sortNewest(releasesSnap.docs.map(withId).filter(matchesIdentity)),
-      history: sortNewest(historySnap.docs.map(withId).filter(matchesIdentity)),
+      catalogs: catalogsSnap.docs.map(withId),
+      releases: sortNewest(releasesSnap.docs.map(withId)),
+      history: sortNewest(historySnap.docs.map(withId)),
       sourceRegistries: registriesSnap.docs.map(withId),
     };
+  },
+);
+
+export const adminGetContentFactoryRolloutMetrics = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requireContentReader(request as { auth?: { token?: Record<string, unknown> } });
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const day = new Date(nowMs).toISOString().slice(0, 10);
+    const [stagesSnap, unitsSnap, jobsSnap, budgetSnap, jobConfig] = await Promise.all([
+      db.collection('content_factory_stages').orderBy('updatedAt', 'desc').limit(101).get(),
+      db.collection('content_factory_job_units').orderBy('startedAtMs', 'desc').limit(101).get(),
+      db.collection('content_factory_jobs').orderBy('createdAt', 'desc').limit(101).get(),
+      db.collection(CONTENT_FACTORY_BUDGET_COLLECTION).doc(day).get(),
+      resolveJobConfig(db, 'content_factory'),
+    ]);
+    const reservedUnits = Number(budgetSnap.data()?.generationCount ?? 0);
+    const stageDocs = stagesSnap.docs.slice(0, 100).map(withId);
+    const unitDocs = unitsSnap.docs.slice(0, 100).map(withId);
+    const jobDocs = jobsSnap.docs.slice(0, 100).map(withId);
+    return { ok: true, metrics: deriveContentFactoryRolloutMetricsFromDocuments({ nowMs, stageDocs, unitDocs, jobDocs, truncation: { stages: stagesSnap.size > 100, units: unitsSnap.size > 100, jobs: jobsSnap.size > 100 }, budgetCapUnits: jobConfig.globalDailyCap, budgetReservedUnits: Number.isSafeInteger(reservedUnits) && reservedUnits >= 0 ? reservedUnits : 0 }) };
   },
 );

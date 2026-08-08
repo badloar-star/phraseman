@@ -64,8 +64,10 @@ describe('Admin v2 promo codes workflow', () => {
     expect(functionsIndex).toContain('adminListPromoCodes');
   });
 
-  test('marks promo codes as native v2 and updates control-panel migration map', () => {
-    expect(capabilities).toContain("'promo-codes': 'money'");
+  test('keeps promo codes on the native V2 money route without a fallback', () => {
+    expect(capabilities).toMatch(/\{\s*id: 'promo-codes',[^}]*nativeRoute: 'money'/);
+    expect(capabilities).not.toMatch(/\{\s*id: 'promo-codes',[^}]*legacy(?:Tab|Page)/);
+    expect(core).not.toMatch(/href=["'][^"']*admin\/index\.html[^"']*promo-codes/);
     expect(core).toContain("primaryLabel: 'Открыть промокоды'");
     expect(core).toContain("risk: 'Серверная команда'");
     expect(core).toContain('guarded: true');

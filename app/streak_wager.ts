@@ -50,13 +50,20 @@ export interface WagerTier {
   label:          string;
 }
 
+/**
+ * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7):
+ * выплаты монет за выигранное пари обнулены (4/8/12/20/32/60 → 0). Структура пари,
+ * тиры, XP-награда, скидки и UI сохранены — пари теперь играется ради XP.
+ * ОТКРЫТЫЙ ВОПРОС к владельцу: судьба ставки в монетах (спека: «убрать с монет
+ * или резко сократить — обсудить»). Пока ставка списывается, а монетный выигрыш = 0.
+ */
 export const WAGER_TIERS: WagerTier[] = [
-  { tierIdx: 0, betShards:  1, daysRequired:   7, rewardShards:  4, rewardXP:   500, label: '×4' },
-  { tierIdx: 1, betShards:  2, daysRequired:  14, rewardShards:  8, rewardXP:  1500, label: '×4' },
-  { tierIdx: 2, betShards:  3, daysRequired:  21, rewardShards: 12, rewardXP:  2500, label: '×4' },
-  { tierIdx: 3, betShards:  5, daysRequired:  30, rewardShards: 20, rewardXP:  4000, label: '×4' },
-  { tierIdx: 4, betShards:  8, daysRequired:  50, rewardShards: 32, rewardXP:  7500, label: '×4' },
-  { tierIdx: 5, betShards: 15, daysRequired: 100, rewardShards: 60, rewardXP: 15000, label: '×4' },
+  { tierIdx: 0, betShards:  1, daysRequired:   7, rewardShards:  0, rewardXP:   500, label: '×4' },
+  { tierIdx: 1, betShards:  2, daysRequired:  14, rewardShards:  0, rewardXP:  1500, label: '×4' },
+  { tierIdx: 2, betShards:  3, daysRequired:  21, rewardShards:  0, rewardXP:  2500, label: '×4' },
+  { tierIdx: 3, betShards:  5, daysRequired:  30, rewardShards:  0, rewardXP:  4000, label: '×4' },
+  { tierIdx: 4, betShards:  8, daysRequired:  50, rewardShards:  0, rewardXP:  7500, label: '×4' },
+  { tierIdx: 5, betShards: 15, daysRequired: 100, rewardShards:  0, rewardXP: 15000, label: '×4' },
 ];
 
 export async function getEffectiveWagerStake(tierIdx: number): Promise<{

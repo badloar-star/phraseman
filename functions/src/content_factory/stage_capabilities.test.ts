@@ -1,0 +1,49 @@
+import { assertStageCapabilityRequest, generationStageCapabilities, stageCapability, stageLanguagePolicy } from './stage_capabilities';
+import { type GenerationStageKind } from './stage_contracts';
+
+const kinds: readonly GenerationStageKind[] = [
+  'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
+  'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement',
+  'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement',
+];
+
+describe('server-authoritative stage capability matrix', () => {
+  test('represents every stage kind exactly once', () => {
+    expect(Object.keys(generationStageCapabilities).sort()).toEqual([...kinds].sort());
+    expect(new Set(Object.keys(generationStageCapabilities)).size).toBe(kinds.length);
+  });
+
+  test.each([
+    ['lesson_outline', 1, 'A1', []],
+    ['lesson_phrases', 50, 'A2', ['lesson_outline']],
+    ['quiz_questions', 10, 'B2', ['quiz_topic']],
+    ['flashcard_items', 20, 'C1', ['flashcard_pack_idea']],
+    ['arena_questions', 10, 'B1', ['arena_topic']],
+    ['arena_question_replacement', 1, 'B1', ['arena_questions']],
+  ] as const)('accepts preserved R1-R9 combination %s', (kind, count, cefr, prerequisites) => {
+    expect(() => assertStageCapabilityRequest({ kind, count, cefr, studyTarget: 'en', sourceLocale: 'ru', prerequisiteKinds: prerequisites })).not.toThrow();
+  });
+
+  test('rejects unsupported levels, locale pairs, counts and prerequisite shapes', () => {
+    expect(() => assertStageCapabilityRequest({ kind: 'arena_topic', count: 1, cefr: 'C1', studyTarget: 'en', sourceLocale: 'ru', prerequisiteKinds: [] })).toThrow('stage_capability_cefr_unsupported');
+    expect(() => assertStageCapabilityRequest({ kind: 'lesson_outline', count: 1, cefr: 'A1', studyTarget: 'xx', sourceLocale: 'ru', prerequisiteKinds: [] })).toThrow('stage_capability_locale_pair_unsupported');
+    expect(() => assertStageCapabilityRequest({ kind: 'lesson_phrases', count: 49, cefr: 'A2', studyTarget: 'en', sourceLocale: 'ru', prerequisiteKinds: ['lesson_outline'] })).toThrow('stage_capability_count_unsupported');
+    expect(() => assertStageCapabilityRequest({ kind: 'quiz_questions', count: 10, cefr: 'A2', studyTarget: 'en', sourceLocale: 'ru', prerequisiteKinds: [] })).toThrow('stage_capability_prerequisites_invalid');
+  });
+
+  test('keeps cross-scope lesson phrases explicit only for flashcard items', () => {
+    expect(stageCapability('flashcard_items').dependencyScopePolicy).toBe('same_scope_or_lesson_phrases');
+    expect(stageCapability('lesson_theory').dependencyScopePolicy).toBe('same_scope');
+  });
+
+  test('exposes the gated rich flashcard runtime consumer without publishing the editorial idea', () => {
+    expect(stageCapability('flashcard_pack_idea')).toMatchObject({ publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false });
+    expect(stageCapability('flashcard_items')).toMatchObject({ publicationPolicy: 'standard', runtimeConsumer: true });
+    expect(stageCapability('flashcard_item_replacement')).toMatchObject({ publicationPolicy: 'standard', runtimeConsumer: true });
+  });
+
+  test('exposes language and exact prerequisite cardinality to Admin', () => {
+    expect(stageLanguagePolicy).toMatchObject({ studyTargets: expect.arrayContaining(['en', 'fr', 'de']), sourceLocales: expect.arrayContaining(['ru', 'en']), sameLanguageAllowed: false });
+    expect(stageCapability('quiz_questions').prerequisiteCardinality).toEqual({ min: 1, max: 1 });
+  });
+});

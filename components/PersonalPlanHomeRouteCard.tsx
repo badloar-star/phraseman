@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
@@ -10,6 +10,9 @@ import { hapticTap } from '../hooks/use-haptics';
 import type { PersonalPlanHomeSnapshot } from '../app/personal_plan_state';
 import { getPersonalPlanArt } from '../app/personal_plan_art';
 
+import { noAndroidOutline } from '../constants/androidGlow';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from './LangContext';
 type Props = {
   compactMargin?: boolean;
   snapshot: PersonalPlanHomeSnapshot;
@@ -19,27 +22,31 @@ type Props = {
   plusLocked?: boolean;
 };
 
-function cardCopy(snapshot: PersonalPlanHomeSnapshot): {
+function minutesLabel(minutes: number, lang: Lang): string {
+  return triLang(lang, { ru: `${minutes} минут`, uk: `${minutes} хвилин`, es: `${minutes} min`, 'pt-BR': `${minutes} min`, vi: `${minutes} phút`, id: `${minutes} menit`, tr: `${minutes} dk`, pl: `${minutes} min` });
+}
+
+function cardCopy(snapshot: PersonalPlanHomeSnapshot, lang: Lang): {
   kicker: string;
   subtitle: string;
 } {
   if (snapshot.todayDone) {
     return {
-      kicker: 'План на сегодня готов',
-      subtitle: 'Можно отдыхать или заниматься дальше',
+      kicker: triLang(lang, { ru: 'План на сегодня готов', uk: 'План на сьогодні готовий', es: 'El plan de hoy está listo', 'pt-BR': 'O plano de hoje está pronto', vi: 'Kế hoạch hôm nay đã xong', id: 'Rencana hari ini sudah selesai', tr: 'Bugünkü plan hazır', pl: 'Plan na dziś gotowy' }),
+      subtitle: triLang(lang, { ru: 'Можно отдыхать или заниматься дальше', uk: 'Можна відпочивати або займатися далі', es: 'Puedes descansar o seguir practicando', 'pt-BR': 'Você pode descansar ou continuar praticando', vi: 'Bạn có thể nghỉ ngơi hoặc luyện tập thêm', id: 'Anda bisa istirahat atau terus berlatih', tr: 'Dinlenebilir ya da devam edebilirsin', pl: 'Możesz odpocząć albo ćwiczyć dalej' }),
     };
   }
   if (snapshot.isCarryover) {
     return {
-      kicker: 'Продолжить план',
-      subtitle: `Незакрытые задания · ${snapshot.minutesPerDay} минут`,
+      kicker: triLang(lang, { ru: 'Продолжить план', uk: 'Продовжити план', es: 'Continuar el plan', 'pt-BR': 'Continuar o plano', vi: 'Tiếp tục kế hoạch', id: 'Lanjutkan rencana', tr: 'Plana devam et', pl: 'Kontynuuj plan' }),
+      subtitle: triLang(lang, { ru: `Незакрытые задания · ${minutesLabel(snapshot.minutesPerDay, lang)}`, uk: `Незакриті завдання · ${minutesLabel(snapshot.minutesPerDay, lang)}`, es: `Tareas pendientes · ${minutesLabel(snapshot.minutesPerDay, lang)}`, 'pt-BR': `Tarefas pendentes · ${minutesLabel(snapshot.minutesPerDay, lang)}`, vi: `Nhiệm vụ còn dang dở · ${minutesLabel(snapshot.minutesPerDay, lang)}`, id: `Tugas belum selesai · ${minutesLabel(snapshot.minutesPerDay, lang)}`, tr: `Tamamlanmamış görevler · ${minutesLabel(snapshot.minutesPerDay, lang)}`, pl: `Niedokończone zadania · ${minutesLabel(snapshot.minutesPerDay, lang)}` }),
     };
   }
   // Обычное состояние: верхнюю надпись «Мой план» не показываем (kicker пустой),
   // название плана и день ниже сами несут смысл.
   return {
     kicker: '',
-    subtitle: `${snapshot.todayTitle} · ${snapshot.minutesPerDay} минут`,
+    subtitle: `${snapshot.todayTitle} · ${minutesLabel(snapshot.minutesPerDay, lang)}`,
   };
 }
 
@@ -50,11 +57,12 @@ function withAlpha(color: string, alphaHex: string): string {
 
 function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot, onPress, plusLocked = false }: Props) {
   const router = useRouter();
+  const { lang } = useLang();
   const { theme: t, themeMode } = useTheme();
   const isGold = themeMode === 'gold';
   const isCompass = false;
   const isPaperHomeTheme = false;
-  const copy = cardCopy(snapshot);
+  const copy = cardCopy(snapshot, lang);
   const art = getPersonalPlanArt(snapshot.planId);
   const actionAccent = isGold ? '#FFE8A8' : isCompass ? '#F2C48D' : t.accent;
   const cardGradient = isGold ? ['#211808', '#0A0702'] as const : isCompass ? ['#1F1F21', '#171719'] as const : isPaperHomeTheme ? ['rgba(255,253,246,0.98)', 'rgba(237,227,210,0.94)'] as const : t.cardGradient;
@@ -87,7 +95,16 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot, onPress, pl
       activeOpacity={0.86}
       onPress={openPlan}
       accessibilityRole="button"
-      accessibilityLabel={`Мой план: ${snapshot.planName}, день ${snapshot.dayIndex}`}
+      accessibilityLabel={triLang(lang, {
+          ru: `Мой план: ${snapshot.planName}, день ${snapshot.dayIndex}`,
+          uk: `Мій план: ${snapshot.planName}, день ${snapshot.dayIndex}`,
+          es: `Mi plan: ${snapshot.planName}, día ${snapshot.dayIndex}`,
+          'pt-BR': `Meu plano: ${snapshot.planName}, dia ${snapshot.dayIndex}`,
+          vi: `Kế hoạch của tôi: ${snapshot.planName}, ngày ${snapshot.dayIndex}`,
+          id: `Rencanaku: ${snapshot.planName}, hari ${snapshot.dayIndex}`,
+          tr: `Planım: ${snapshot.planName}, gün ${snapshot.dayIndex}`,
+          pl: `Mój plan: ${snapshot.planName}, dzień ${snapshot.dayIndex}`,
+      })}
       style={[
         styles.wrap,
         compactMargin ? styles.compactMargin : styles.defaultMargin,
@@ -127,7 +144,7 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot, onPress, pl
             <Text style={[styles.title, { color: cardText }]}>
               {snapshot.planName}
               {'\n'}
-              <Text style={[styles.titleDay, { color: actionAccent }]}>день {snapshot.dayIndex}</Text>
+              <Text style={[styles.titleDay, { color: actionAccent }]}>{triLang(lang, { ru: `день ${snapshot.dayIndex}`, uk: `день ${snapshot.dayIndex}`, es: `día ${snapshot.dayIndex}`, 'pt-BR': `dia ${snapshot.dayIndex}`, vi: `ngày ${snapshot.dayIndex}`, id: `hari ${snapshot.dayIndex}`, tr: `gün ${snapshot.dayIndex}`, pl: `dzień ${snapshot.dayIndex}` })}</Text>
             </Text>
             <Text style={[styles.subtitle, { color: cardMuted }]} numberOfLines={2}>
               {copy.subtitle}
@@ -177,7 +194,7 @@ const styles = StyleSheet.create<{
     shadowOpacity: 0.24,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 5,
+    ...noAndroidOutline,
   },
   compactMargin: {
     marginHorizontal: 8,

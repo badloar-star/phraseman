@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import auth from '@react-native-firebase/auth';
 import { Image } from 'expo-image';
@@ -184,17 +184,6 @@ function communityPackValidationToast(
         tr: 'Paketin adını ve açıklamasını gir.',
         pl: 'Podaj nazwę i opis zestawu.',
       };
-    case 'price':
-      return {
-        ru: 'Что-то пошло не так с отправкой набора — попробуйте ещё раз.',
-        uk: 'Щось пішло не так з надсиланням набору — спробуйте ще раз.',
-        es: 'Algo salió mal al enviar el pack — inténtalo otra vez.',
-        'pt-BR': 'Algo deu errado ao enviar o pacote. Tente novamente.',
-        vi: 'Đã xảy ra lỗi khi gửi bộ thẻ. Hãy thử lại.',
-        id: 'Ada yang salah saat mengirim paket. Coba lagi.',
-        tr: 'Paket gönderilirken bir şey ters gitti. Tekrar dene.',
-        pl: 'Coś poszło nie tak przy wysyłaniu zestawu. Spróbuj ponownie.',
-      };
     case 'card_fields':
       return {
         ru: 'У каждой карточки должны быть EN и перевод.',
@@ -219,14 +208,14 @@ function communityPackValidationToast(
       };
     default:
       return {
-        ru: 'Проверь название, описание, цену и все карточки.',
-        uk: 'Перевірте назву, опис, ціну та всі картки.',
-        es: 'Revisa el título, la descripción, el precio y todas las tarjetas.',
-        'pt-BR': 'Verifique o título, a descrição, o preço e todos os cartões.',
-        vi: 'Kiểm tra tên, mô tả, giá và tất cả thẻ.',
-        id: 'Periksa judul, deskripsi, harga, dan semua kartu.',
-        tr: 'Adı, açıklamayı, fiyatı ve tüm kartları kontrol et.',
-        pl: 'Sprawdź nazwę, opis, cenę i wszystkie karty.',
+        ru: 'Проверь название, описание и все карточки.',
+        uk: 'Перевірте назву, опис і всі картки.',
+        es: 'Revisa el título, la descripción y todas las tarjetas.',
+        'pt-BR': 'Verifique o título, a descrição e todos os cartões.',
+        vi: 'Kiểm tra tên, mô tả và tất cả thẻ.',
+        id: 'Periksa judul, deskripsi, dan semua kartu.',
+        tr: 'Adı, açıklamayı ve tüm kartları kontrol et.',
+        pl: 'Sprawdź nazwę, opis i wszystkie karty.',
       };
   }
 }
@@ -727,14 +716,14 @@ export default function CommunityPackCreateScreen() {
           await auth().signInAnonymously();
         } catch {
           emitAppEvent('action_toast', actionToastTri('error', {
-            ru: 'Войдите в приложение (облако).',
-            uk: 'Увійдіть у застосунок (хмара).',
-            es: 'Inicia sesión en la app (nube).',
-            'pt-BR': 'Entre no aplicativo (nuvem).',
-            vi: 'Đăng nhập vào ứng dụng (đám mây).',
-            id: 'Masuk ke aplikasi (cloud).',
-            tr: 'Uygulamaya giriş yap (bulut).',
-            pl: 'Zaloguj się w aplikacji (chmura).',
+            ru: 'Не удалось подтвердить аккаунт. Перезапусти раздел и попробуй снова.',
+            uk: 'Не вдалося підтвердити акаунт. Перезапусти розділ і спробуй ще раз.',
+            es: 'No se pudo confirmar la cuenta. Reabre la sección e inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível confirmar a conta. Reabra a seção e tente novamente.',
+            vi: 'Không thể xác nhận tài khoản. Mở lại mục này rồi thử lại.',
+            id: 'Tidak dapat mengonfirmasi akun. Buka ulang bagian ini lalu coba lagi.',
+            tr: 'Hesap doğrulanamadı. Bölümü yeniden açıp tekrar dene.',
+            pl: 'Nie udało się potwierdzić konta. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
           }));
           return;
         }
@@ -846,7 +835,7 @@ export default function CommunityPackCreateScreen() {
             <View style={styles.formHorizontalInset}>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 24 }}>
                 {communityPacksTargetEnabled
-                  ? L('Создание наборов с облаком недоступно в этой сборке.', 'Створення наборів з хмарою недоступне в цьому білді.', 'Crear packs con la nube no está disponible en esta versión.', 'A criação de packs com nuvem não está disponível nesta versão.', 'Tính năng tạo bộ thẻ bằng đám mây không khả dụng trong bản dựng này.', 'Pembuatan paket dengan cloud tidak tersedia di build ini.', 'Bulutla paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów z chmurą nie jest dostępne w tej wersji.')
+                  ? L('Создание наборов недоступно в этой сборке.', 'Створення наборів недоступне в цьому білді.', 'Crear packs no está disponible en esta versión.', 'A criação de packs não está disponível nesta versão.', 'Tính năng tạo bộ thẻ không khả dụng trong bản dựng này.', 'Pembuatan paket tidak tersedia di build ini.', 'Paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów nie jest dostępne w tej wersji.')
                   : L('Community-наборы для French закрыты до отдельной проверки источников.', 'Community-набори для French закриті до окремої перевірки джерел.', 'Los packs community para French están bloqueados hasta una revisión de fuentes.', 'Os packs community para French estão bloqueados até uma revisão de fontes.', 'Các gói community cho French đang bị khóa cho đến khi kiểm tra nguồn riêng.', 'Paket community untuk French dikunci sampai pemeriksaan sumber terpisah.', 'French için community paketleri ayrı kaynak kontrolüne kadar kapalı.', 'Pakiety community dla French są zablokowane do osobnej kontroli źródeł.')}
               </Text>
             </View>
@@ -915,7 +904,7 @@ export default function CommunityPackCreateScreen() {
           <BouncyScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
-            decelerationRate="normal"
+            decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
             onScroll={(e) => {
@@ -953,14 +942,35 @@ export default function CommunityPackCreateScreen() {
                 }}
               >
                 {L(
-                  'Место для твоего творчества. Если пак пройдёт проверку на адекватность, он попадёт в руки других юзеров. А ты получишь их осколки.',
-                  'Місце для твоєї творчості. Якщо пак пройде перевірку на адекватність, він потрапить у руки інших юзерів. А ти отримаєш їх осколки.',
-                  'Aquí puedes crear tu pack. Si supera la moderación, otros usuarios podrán usarlo y tú ganarás fragmentos.',
-                  'Aqui você pode criar seu pack. Se passar pela moderação, outros usuários poderão usá-lo e você ganhará fragmentos.',
-                  'Đây là nơi bạn tạo bộ thẻ của mình. Nếu vượt qua kiểm duyệt, người dùng khác có thể dùng nó và bạn sẽ nhận được mảnh.',
+                  'Место для твоего творчества. Если пак пройдёт проверку на адекватность, он попадёт в руки других юзеров. А ты получишь их жемчужины.',
+                  'Місце для твоєї творчості. Якщо пак пройде перевірку на адекватність, він потрапить у руки інших юзерів. А ти отримаєш їх жемчужини.',
+                  'Aquí puedes crear tu pack. Si supera la moderación, otros usuarios podrán usarlo y tú ganarás perlas.',
+                  'Aqui você pode criar seu pack. Se passar pela moderação, outros usuários poderão usá-lo e você ganhará perlas.',
+                  'Đây là nơi bạn tạo bộ thẻ của mình. Nếu vượt qua kiểm duyệt, người dùng khác có thể dùng nó và bạn sẽ nhận được xu.',
                   'Di sini kamu bisa membuat paketmu. Jika lolos moderasi, pengguna lain bisa memakainya dan kamu akan mendapatkan fragmen.',
-                  'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen parça kazanırsın.',
-                  'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz odłamki.',
+                  'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen jeton kazanırsın.',
+                  'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz monety.',
+                )}
+              </Text>
+              <Text
+                accessibilityRole="text"
+                style={{
+                  color: t.textSecond,
+                  fontSize: f.caption,
+                  lineHeight: 18,
+                  marginBottom: 14,
+                  fontWeight: '600',
+                }}
+              >
+                {L(
+                  'Цена набора для всех: 10 жемчужин. Изменить её нельзя.',
+                  'Ціна набору для всіх: 10 перлин. Її не можна змінити.',
+                  'Precio fijo para todos: 10 perlas. No se puede cambiar.',
+                  'Preço fixo para todos: 10 pérolas. Não pode ser alterado.',
+                  'Giá cố định cho mọi người: 10 ngọc trai. Không thể thay đổi.',
+                  'Harga tetap untuk semua: 10 mutiara. Tidak dapat diubah.',
+                  'Herkes için sabit fiyat: 10 inci. Değiştirilemez.',
+                  'Stała cena dla wszystkich: 10 pereł. Nie można jej zmienić.',
                 )}
               </Text>
               <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
@@ -1056,7 +1066,7 @@ export default function CommunityPackCreateScreen() {
 
                 <ScrollView
                   horizontal
-                  decelerationRate="normal"
+                  decelerationRate="fast"
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.cardBackThumbRow}
                   keyboardShouldPersistTaps="handled"
@@ -1100,7 +1110,7 @@ export default function CommunityPackCreateScreen() {
                   paddingVertical: 14,
                   paddingHorizontal: 16,
                   borderRadius: 14,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.accent,
                   alignItems: 'center',
                   opacity: rows.length >= 50 || isEditingCard ? 0.45 : 1,
@@ -1176,7 +1186,7 @@ export default function CommunityPackCreateScreen() {
                         paddingVertical: 12,
                         paddingHorizontal: 8,
                         borderRadius: 12,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: t.border,
                         alignItems: 'center',
                       }}
@@ -1346,7 +1356,7 @@ function draftLabelStyle(t: { textMuted: string }) {
 function fieldInputStyle(t: { bgCard: string; textPrimary: string; border: string }) {
   return {
     backgroundColor: t.bgCard,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: t.border,
     borderRadius: 12,
     paddingHorizontal: 16,
@@ -1374,7 +1384,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   stepperRow: {
     flexDirection: 'row',
@@ -1387,7 +1397,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 16,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   stepperHit: { padding: 8, minWidth: 48, alignItems: 'center' },
   stepperVal: { fontSize: 22, fontWeight: '800', minWidth: 0, textAlign: 'center' },
@@ -1396,7 +1406,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   cardBackHeroRow: {
     flexDirection: 'row',
@@ -1426,7 +1436,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 86,
     borderRadius: 12,
-    borderWidth: 1.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',

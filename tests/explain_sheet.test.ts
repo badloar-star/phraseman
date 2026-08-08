@@ -11,7 +11,7 @@
  *   2) Контракты компонентов, которые нельзя отрендерить — через интроспекцию
  *      исходника (тот же стиль, что в остальных tests/*.test.ts): флаг-гейтинг,
  *      вызов submitExplainReport (а НЕ submitErrorReport), отправка phraseEn без
- *      хэша, рендер текста, события аналитики, проводка в DailyPhraseCard.
+ *      хэша, рендер текста, события аналитики, продовая проводка в lesson1.tsx.
  *
  * explain_phrase_client замокан, чтобы импорт хука не тянул @react-native-firebase
  * (он не замокан в jest и упал бы в node).
@@ -57,6 +57,20 @@ const baseState: ExplainRequestState = {
 };
 
 describe('useExplainRequest: resolveExplainDisplay (чистая логика тела шторки)', () => {
+  it('keeps callable failures as retryable errors instead of successful explanations', () => {
+    const src = read(path.join(APP_DIR, 'explain_phrase_request.ts'));
+    const catchStart = src.indexOf('} catch (error) {');
+    const catchEnd = src.indexOf('// req раскладываем', catchStart);
+    const catchBlock = src.slice(catchStart, catchEnd);
+
+    expect(catchStart).toBeGreaterThan(-1);
+    expect(catchEnd).toBeGreaterThan(catchStart);
+    expect(catchBlock).toContain("status: 'error'");
+    expect(catchBlock).toContain('error: true');
+    expect(catchBlock).not.toContain("status: 'ok'");
+    expect(catchBlock).not.toContain('aiErrorToast');
+  });
+
   it('reuses only successful resolved explanations for instant reopen', () => {
     expect(canReuseExplainRequestState({
       ...baseState,
@@ -253,13 +267,18 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).not.toContain('👶');
   });
 
-  it('слайд-ап на legacy Animated + Modal + LinearGradient (дом-паттерн NoEnergyModal, НЕ reanimated)', () => {
+  it('интерактивная шторка: reanimated + drag-to-dismiss по паттерну RegistrationPromptModal', () => {
     expect(src).toContain("from 'react-native'");
-    expect(src).toContain('Animated');
+    expect(src).toContain('react-native-reanimated');
+    expect(src).toContain('react-native-gesture-handler');
+    expect(src).toContain('GestureDetector');
     expect(src).toContain('translateY');
     expect(src).toContain("from './SafeLinearGradient'");
-    expect(src).toContain('MOTION_SPRING_LEGACY');
-    expect(src).not.toContain('react-native-reanimated');
+    // Тяга вниз 1:1, вверх резина ×0.12; закрытие по 88px / velocity 900.
+    expect(src).toContain('ty < 0 ? ty * 0.12 : ty');
+    expect(src).toContain('> 88');
+    expect(src).toContain('> 900');
+    expect(src).not.toContain('MOTION_SPRING_LEGACY');
   });
 
   it('содержит футер-репорт ExplainReportButton', () => {
@@ -362,17 +381,20 @@ describe('analytics.ts: новые события зарегистрирован
   });
 });
 
-describe('DailyPhraseCard.tsx: кнопка вшита за флагом с верными пропами', () => {
-  const src = read(path.join(COMPONENTS_DIR, 'DailyPhraseCard.tsx'));
+describe('ExplainSheet: продовая проводка (футер урока, app/lesson1.tsx)', () => {
+  // Раньше кнопка жила в DailyPhraseCard — вход переехал в футер урока: lesson1.tsx
+  // рендерит ExplainSheet напрямую (ExplainButton остался переиспользуемым триггером
+  // для других поверхностей). DailyPhraseCard проводки больше не содержит.
+  const src = read(path.join(__dirname, '..', 'app', 'lesson1.tsx'));
 
-  it('импортирует и рендерит ExplainButton', () => {
-    expect(src).toContain("import ExplainButton from './ExplainButton'");
-    expect(src).toContain('<ExplainButton');
+  it('импортирует и рендерит ExplainSheet', () => {
+    expect(src).toContain("import ExplainSheet from '../components/ExplainSheet'");
+    expect(src).toContain('<ExplainSheet');
   });
 
-  it('передаёт phraseEn=phrase.english и phraseMeaning=phraseCopy.meaning || phrase.meaning', () => {
-    expect(src).toMatch(/phraseEn=\{phrase\.english\}/);
-    expect(src).toMatch(/phraseMeaning=\{phraseCopy\.meaning \|\| phrase\.meaning\}/);
+  it('передаёт phraseEn/phraseMeaning/lang с реальными значениями текущей фразы', () => {
+    expect(src).toMatch(/phraseEn=\{/);
+    expect(src).toMatch(/phraseMeaning=\{lessonPhraseMeaningForLang\(phrase, lang, studyTarget\)\}/);
     expect(src).toMatch(/lang=\{lang\}/);
   });
 });

@@ -24,10 +24,35 @@ import {
   resetPostHog,
   isPostHogEnabled,
 } from './posthog_client';
+import {
+  SOFT_UPSELL_CONTEXTS,
+  SOFT_UPSELL_TRIGGERS,
+  type SoftUpsellContext,
+  type SoftUpsellDestination,
+  type SoftUpsellStudyTarget,
+  type SoftUpsellSuppressionReason,
+  type SoftUpsellTrigger,
+} from './soft_upsell_core';
+import type { GovernedProductAnalyticsEventName } from './product_analytics_event_catalog';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  | GovernedProductAnalyticsEventName
+  // Consent-gated product navigation/session analytics (schema v1).
+  | 'product_session_start'
+  | 'product_session_resume'
+  | 'product_session_background'
+  | 'product_screen_view'
+  | 'product_screen_leave'
+  | 'product_operation_failure'
+  | 'soft_upsell_eligible'
+  | 'soft_upsell_impression'
+  | 'soft_upsell_cta'
+  | 'soft_upsell_dismiss'
+  | 'soft_upsell_suppressed'
+  | 'settings_message_impression'
+  | 'settings_poll_vote'
   // обучение
   | 'app_open'
   | 'lesson_start'
@@ -83,6 +108,8 @@ export type AnalyticsEvent =
   | 'login_bonus_received'
   // ── ВОРОНКА КОНВЕРСИИ ──────────────────────────────────────────────────
   | 'onboarding_step_view'        // показан шаг онбординга (props.step)
+  | 'onboarding_skip'             // нажал «Пропустить» (props.step — откуда ушёл)
+  | 'onboarding_welcome_sheet_view' // показана приветственная шторка после онбординга
   | 'onboarding_complete'
   | 'onboarding_source_select'
   | 'onboarding_plan_goal_select'    // выбрана цель плана (props.goal)
@@ -112,6 +139,7 @@ export type AnalyticsEvent =
   | 'loyalty_gift_ended_cta'      // нажата «Открыть полный доступ» после истечения
   | 'loyalty_gift_ended_dismiss'  // «Продолжить бесплатно» после истечения
   | 'paywall_shown'
+  | 'experiment_exposure'
   | 'paywall_personalization_tag_shown'
   | 'paywall_plan_select'
   | 'paywall_cta_click'
@@ -121,6 +149,7 @@ export type AnalyticsEvent =
   | 'paywall_exit_offer_shown'    // exit-intent: показан тёплый триал-оффер при попытке уйти
   | 'paywall_exit_offer_accepted' // exit-intent: юзер согласился попробовать триал
   | 'paywall_exit_offer_declined' // exit-intent: юзер отказался и закрыл
+  | 'paywall_inventory_resolved'
   | 'purchase_started'            // нажат CTA, открывается диалог стора
   | 'purchase_completed'
   | 'purchase_failed'
@@ -263,6 +292,89 @@ export const trackEvent = async (
     /* no-op */
   }
 };
+
+export const SOFT_UPSELL_ANALYTICS_EVENTS = [
+  'soft_upsell_eligible',
+  'soft_upsell_impression',
+  'soft_upsell_cta',
+  'soft_upsell_dismiss',
+  'soft_upsell_suppressed',
+] as const;
+
+type SoftUpsellAnalyticsEvent = (typeof SOFT_UPSELL_ANALYTICS_EVENTS)[number];
+type SoftUpsellAnalyticsBase = {
+  context: SoftUpsellContext;
+  trigger: SoftUpsellTrigger;
+  studyTarget: SoftUpsellStudyTarget;
+  overlayOccupied: boolean;
+  schemaVersion: 1;
+  triggerValue: number;
+};
+type SoftUpsellNoOutcomeFields = {
+  destination?: never;
+  suppressionReason?: never;
+};
+export type SoftUpsellAnalyticsPayloadByEvent = {
+  soft_upsell_eligible: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields;
+  soft_upsell_impression: SoftUpsellAnalyticsBase & {
+    destination: SoftUpsellDestination;
+    suppressionReason?: never;
+  };
+  soft_upsell_cta: SoftUpsellAnalyticsBase & {
+    destination: SoftUpsellDestination;
+    suppressionReason?: never;
+  };
+  soft_upsell_dismiss: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields;
+  soft_upsell_suppressed: SoftUpsellAnalyticsBase & {
+    destination?: never;
+    suppressionReason: SoftUpsellSuppressionReason;
+  };
+};
+
+const SOFT_UPSELL_DESTINATIONS: readonly SoftUpsellDestination[] = ['personal_plan', 'paywall'];
+const SOFT_UPSELL_SUPPRESSION_REASONS: readonly SoftUpsellSuppressionReason[] = [
+  'no_candidate', 'premium', 'disabled', 'overlay_occupied', 'session_cap',
+  'global_cooldown', 'context_cooldown', 'milestone_consumed', 'invalid_trigger_value',
+];
+
+export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEvent>(
+  event: Event,
+  payload: SoftUpsellAnalyticsPayloadByEvent[Event],
+): Promise<void> {
+  const candidate = payload as SoftUpsellAnalyticsBase & {
+    destination?: unknown;
+    suppressionReason?: unknown;
+  };
+  if (!SOFT_UPSELL_ANALYTICS_EVENTS.includes(event)) return;
+  if (!SOFT_UPSELL_CONTEXTS.includes(candidate?.context)) return;
+  if (!SOFT_UPSELL_TRIGGERS.includes(candidate?.trigger)) return;
+  if (candidate?.studyTarget !== 'en' && candidate?.studyTarget !== 'fr') return;
+  if (typeof candidate?.overlayOccupied !== 'boolean' || candidate?.schemaVersion !== 1) return;
+  if (!Number.isSafeInteger(candidate?.triggerValue) || candidate.triggerValue < 0 || candidate.triggerValue > 10_000) return;
+
+  const destinationAllowed = event === 'soft_upsell_impression' || event === 'soft_upsell_cta';
+  if (destinationAllowed) {
+    if (!SOFT_UPSELL_DESTINATIONS.includes(candidate.destination as SoftUpsellDestination)) return;
+  } else if (candidate.destination != null) return;
+
+  if (event === 'soft_upsell_suppressed') {
+    if (!SOFT_UPSELL_SUPPRESSION_REASONS.includes(candidate.suppressionReason as SoftUpsellSuppressionReason)) return;
+  } else if (candidate.suppressionReason != null) return;
+
+  const props: Record<string, string | number | boolean> = {
+    context: candidate.context,
+    trigger: candidate.trigger,
+    studyTarget: candidate.studyTarget,
+    overlayOccupied: candidate.overlayOccupied,
+    schemaVersion: candidate.schemaVersion,
+    triggerValue: candidate.triggerValue,
+  };
+  if (destinationAllowed) props.destination = candidate.destination as SoftUpsellDestination;
+  if (event === 'soft_upsell_suppressed') {
+    props.suppressionReason = candidate.suppressionReason as SoftUpsellSuppressionReason;
+  }
+  await trackEvent(event, props);
+}
 
 // ── Очередь (отладка / резерв) ─────────────────────────────────────────────────
 export const getEventQueue = async (): Promise<EventRecord[]> => {

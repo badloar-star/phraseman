@@ -25,6 +25,12 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isPremiumAccessActive } from './premium_status';
 import {
+  isTournamentTestRoom,
+  TOURNAMENT_ROOMS_COLLECTION,
+  type TournamentRoomDoc,
+} from './tournament_core';
+import { normalizeTournamentEconomy } from './tournament_economy';
+import {
   COLLECTIBLE_POOL,
   COLLECTIBLE_SECRET_BY_SET,
   COLLECTIBLE_SET_CARD_IDS,
@@ -64,14 +70,22 @@ export const COLLECTIBLES_DROP_DEFAULTS: CollectiblesDropConfig = {
   dailyAttemptCap: 24,
   pityEpicAt: 15,
   pityLegendaryAt: 35,
-  setBonusShards: 15,
+  // Новая экономика (план 2026-07-20, §7): бонус за сбор сета не даёт монет.
+  // Поле конфига сохранено (мёртвая структура); gameplay-начисление = 0.
+  setBonusShards: 0,
 };
 
 // Активности без дропа вовсе (произношение / диалог с Компасом): шанс = 0.
 const NO_DROP_KINDS: ReadonlySet<string> = new Set(['pronounce', 'dialog']);
 
 // Качественные активности; kind = префикс eventId до первого ':'.
-const EVENT_ID_RE = /^(lesson|plan|quiz|arena|exam|pronounce|dialog):[A-Za-z0-9_.:-]{1,80}$/;
+// зачем: владелец попросил давать шанс карточки не только за урок — добавлены
+// tournament (участие в турнире, независимо от места), vocab (закрыт словарь
+// урока), verbs (закрыт раздел неправильных глаголов), prep (закрыт раздел
+// предлогов). Шанс/кап/pity у них ОБЩИЕ с уроком — отдельной экономики нет,
+// поэтому список правил дропа не меняется, только расширяется валидация.
+export const EVENT_ID_RE =
+  /^(lesson|plan|quiz|arena|exam|tournament|vocab|verbs|prep|pronounce|dialog):[A-Za-z0-9_.:-]{1,80}$/;
 
 /**
  * Шанс дропа для типа активности с учётом конфига. pronounce/dialog → 0,
@@ -339,6 +353,48 @@ async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: strin
   }
 }
 
+type TournamentCollectibleRoom = Pick<
+  TournamentRoomDoc,
+  'roomId' | 'slotId' | 'ticketsRequired' | 'testMode' | 'economySnapshot'
+>;
+
+/**
+ * Tournament event ids are server-authoritative: a client-supplied room id is
+ * eligible only when it resolves to the same persisted, paid, rewarding room.
+ * Other collectible event kinds retain their existing behavior and perform no
+ * tournament read.
+ */
+export async function assertCollectibleRewardEventEligible(
+  eventId: string,
+  loadRoom: (roomId: string) => Promise<unknown>,
+): Promise<void> {
+  if (!eventId.startsWith('tournament:')) return;
+
+  const roomId = eventId.slice('tournament:'.length);
+  const rawRoom = await loadRoom(roomId);
+  if (!rawRoom || typeof rawRoom !== 'object' || Array.isArray(rawRoom)) {
+    throw new HttpsError('failed-precondition', 'tournament_collectible_room_invalid');
+  }
+
+  const room = rawRoom as Partial<TournamentCollectibleRoom>;
+  if (room.roomId !== roomId || typeof room.slotId !== 'string' || room.slotId.length === 0) {
+    throw new HttpsError('failed-precondition', 'tournament_collectible_room_invalid');
+  }
+
+  const persistedRoom = room as TournamentCollectibleRoom;
+  const entryGems = persistedRoom.economySnapshot
+    ? normalizeTournamentEconomy(persistedRoom.economySnapshot).entryGems
+    : null;
+  const ticketsRequired = persistedRoom.ticketsRequired;
+  if (isTournamentTestRoom(persistedRoom)
+    || typeof ticketsRequired !== 'number'
+    || !Number.isSafeInteger(ticketsRequired)
+    || ticketsRequired <= 0
+    || entryGems === 0) {
+    throw new HttpsError('failed-precondition', 'tournament_collectible_reward_disabled');
+  }
+}
+
 export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -349,6 +405,10 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
   }
 
   const db = admin.firestore();
+  await assertCollectibleRewardEventEligible(eventIdRaw, async (roomId) => {
+    const roomSnap = await db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId).get();
+    return roomSnap.exists ? roomSnap.data() : null;
+  });
   // stableId НИКОГДА не берём из тела запроса (см. phraseman security audit).
   const stableUid = await resolveStableUidForAuth(db, authUid);
   await assertNotBanned(db, stableUid);

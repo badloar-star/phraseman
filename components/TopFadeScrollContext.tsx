@@ -14,6 +14,8 @@ import { Animated } from 'react-native';
  */
 interface TopFadeScrollCtx {
   scrollY: Animated.Value;
+  /** Покадровый офсет активного таба для таббара (см. reportTabBarOffset). */
+  tabBarScrollY: Animated.Value;
   /**
    * Лёгкий JS-onScroll: пишет вертикальный офсет в scrollY маски через setValue.
    * Подходит и как сам onScroll (home), и как `listener` в Animated.event табов
@@ -21,21 +23,49 @@ interface TopFadeScrollCtx {
    * Маска не ре-рендерится покадрово: scrollY слушается порогом, opacity — native-timing.
    */
   onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
+  /**
+   * Как onScroll, но кормит ТОЛЬКО верхнюю маску, не таббар: на табе с этим
+   * транспортом капсула не схлопывается от скролла. Машина состояний таббара
+   * в (tabs)/_layout при этом одна на всех — исключение живёт в самом табе.
+   * зачем: владелец убрал сворачивание таббара на «Турнирах» (2026-08-02),
+   * остальные разделы сворачиваются как раньше.
+   */
+  onScrollMaskOnly: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
+  reportTabBarOffset: (y: number) => void;
+  setTabBarManualLift: (manual: boolean) => void;
+  isTabBarManualLift: () => boolean;
 }
 
 const Ctx = createContext<TopFadeScrollCtx | null>(null);
 
 export function TopFadeScrollProvider({ children }: { children: React.ReactNode }) {
   const scrollY = useRef(new Animated.Value(0)).current;
+  const tabBarScrollY = useRef(new Animated.Value(0)).current;
+  const tabBarManualLiftRef = useRef(false);
   const value = useMemo<TopFadeScrollCtx>(
     () => ({
       scrollY,
       onScroll: (e) => {
         const y = e?.nativeEvent?.contentOffset?.y;
+        if (typeof y === 'number') {
+          scrollY.setValue(y);
+          tabBarScrollY.setValue(y);
+        }
+      },
+      onScrollMaskOnly: (e) => {
+        const y = e?.nativeEvent?.contentOffset?.y;
         if (typeof y === 'number') scrollY.setValue(y);
       },
+      reportTabBarOffset: (y) => {
+        if (typeof y === 'number') tabBarScrollY.setValue(y);
+      },
+      setTabBarManualLift: (manual) => {
+        tabBarManualLiftRef.current = manual;
+      },
+      isTabBarManualLift: () => tabBarManualLiftRef.current,
+      tabBarScrollY,
     }),
-    [scrollY],
+    [scrollY, tabBarScrollY],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -9,7 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
@@ -146,17 +146,17 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
 }
 
 const S = StyleSheet.create({
-  wrap: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 14, marginTop: 16 },
+  wrap: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 14, marginTop: 16 },
   ribbon: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start',
-    paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, borderWidth: 1, marginBottom: 13,
+    paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, borderWidth: 0, marginBottom: 13,
   },
   ribbonText: { fontSize: 13, fontWeight: '900' },
   row: { flexDirection: 'row', gap: 12 },
   rowGap: { paddingBottom: 13 },
   railCol: { alignItems: 'center', width: 26 },
   dot: {
-    width: 26, height: 26, borderRadius: 13, borderWidth: 1.5,
+    width: 26, height: 26, borderRadius: 13, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   rail: { flex: 1, width: StyleSheet.hairlineWidth, marginTop: 2 },

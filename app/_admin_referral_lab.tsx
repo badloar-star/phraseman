@@ -1,12 +1,17 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 /**
- * _admin_referral_lab.tsx — DEV/QA превью реферальных VIP-модалок.
+ * _admin_referral_lab.tsx — DEV/QA превью реферальной VIP-модалки.
  *
- * Зачем: модалки ReferralAccessActivatedModal (VIP открылся) и
- * ReferralAccessEndedModal (VIP закончился) в обычном приложении показываются
- * только когда друзья реально выполнили условие или истёк срок доступа. Руками
- * это не воспроизвести. Здесь обе модалки открываются с разным числом дней и
- * друзей, чтобы проверить вёрстку и тексты.
+ * Зачем: ReferralAccessEndedModal (VIP закончился) в обычном приложении
+ * показывается только когда у пользователя реально истёк срок доступа —
+ * руками это не воспроизвести. Здесь модалка открывается по кнопке, чтобы
+ * проверить вёрстку и тексты.
+ *
+ * зачем удалено превью Activated: модалка ReferralAccessActivatedModal описывала
+ * отменённое правило (до 2026-07-25 друг квалифицировался «установил + ввёл код +
+ * прошёл урок», дни получали оба). Теперь квалификация — покупка Plus/Pro другом,
+ * награда приходит только пригласившему через поток «Награда за друга» со своими
+ * экранами; приглашённый отдельно ничего не получает. Модалка удалена целиком.
  *
  * ВАЖНО: изолированное превью. Никаких записей в Firestore/AsyncStorage —
  * только показ компонента. Открывается под ENABLE_DEV_TOOLS из админ-хаба.
@@ -15,23 +20,14 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { ENABLE_DEV_TOOLS } from './config';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
 import { ReferralAccessEndedModal } from './referral_access_ended_modal';
-
-type ActivatedPreview = { grantedDays: number; friendsCount: number; untilLabel?: string };
-
-const ACTIVATED_VARIANTS: readonly ActivatedPreview[] = [
-  { grantedDays: 7, friendsCount: 1, untilLabel: 'до 17 июня' },
-  { grantedDays: 14, friendsCount: 2, untilLabel: 'до 24 июня' },
-  { grantedDays: 30, friendsCount: 5, untilLabel: 'до 10 июля' },
-];
 
 export default function AdminReferralLab() {
   const router = useRouter();
@@ -39,7 +35,6 @@ export default function AdminReferralLab() {
   const { theme: t } = useTheme();
   const { lang } = useLang();
 
-  const [activated, setActivated] = useState<ActivatedPreview | null>(null);
   const [endedOpen, setEndedOpen] = useState(false);
 
   useEffect(() => {
@@ -79,30 +74,6 @@ export default function AdminReferralLab() {
         contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 32 }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={[styles.sectionLabel, { color: t.textSecond }]}>VIP ОТКРЫЛСЯ (Activated)</Text>
-        {ACTIVATED_VARIANTS.map((v) => (
-          <TouchableOpacity
-            key={v.grantedDays}
-            onPress={() => {
-              hapticTap();
-              setActivated(v);
-            }}
-            activeOpacity={0.8}
-            testID={`referral-lab-activated-${v.grantedDays}`}
-            style={[styles.row, { backgroundColor: t.bgCard, borderColor: t.border }]}
-          >
-            <Ionicons name="gift" size={22} color={t.accent} style={{ marginRight: 12 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.rowTitle, { color: t.textPrimary }]}>
-                {v.grantedDays} дней · {v.friendsCount}{' '}
-                {v.friendsCount === 1 ? 'друг' : 'друга'}
-              </Text>
-              <Text style={[styles.rowDesc, { color: t.textMuted }]}>{v.untilLabel}</Text>
-            </View>
-            <Ionicons name="play-outline" size={18} color={t.textMuted} />
-          </TouchableOpacity>
-        ))}
-
         <Text style={[styles.sectionLabel, { color: t.textSecond }]}>VIP ЗАКОНЧИЛСЯ (Ended)</Text>
         <TouchableOpacity
           onPress={() => {
@@ -111,7 +82,7 @@ export default function AdminReferralLab() {
           }}
           activeOpacity={0.8}
           testID="referral-lab-ended"
-          style={[styles.row, { backgroundColor: t.bgCard, borderColor: t.border }]}
+          style={[styles.row, { backgroundColor: t.bgCard }]}
         >
           <Ionicons name="time-outline" size={22} color="#E5484D" style={{ marginRight: 12 }} />
           <View style={{ flex: 1 }}>
@@ -123,16 +94,6 @@ export default function AdminReferralLab() {
           <Ionicons name="play-outline" size={18} color={t.textMuted} />
         </TouchableOpacity>
       </ScrollView>
-
-      <ReferralAccessActivatedModal
-        visible={activated !== null}
-        grantedDays={activated?.grantedDays ?? 0}
-        friendsCount={activated?.friendsCount ?? 0}
-        untilLabel={activated?.untilLabel}
-        onClose={() => setActivated(null)}
-        L={L}
-        t={t}
-      />
 
       <ReferralAccessEndedModal
         visible={endedOpen}
@@ -166,8 +127,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    // зачем: запрет владельца «никаких обводок контейнеров» — ряд отделяется
+    // тоном bgCard на bgPrimary, рамка (унаследованная) убрана при аудите.
     borderRadius: 12,
-    borderWidth: 1,
     padding: 14,
     marginBottom: 10,
   },

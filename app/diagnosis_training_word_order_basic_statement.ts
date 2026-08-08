@@ -81,7 +81,7 @@ function wordOrderEsFeedback(input: {
 
 const CORE_MODEL = tri(
   'В обычной английской фразе сначала говорим, кто делает действие. Потом само действие. Потом что, где и когда. Русский может двигать куски свободнее, а английскому чаще нужен ровный каркас.',
-  'У звичайній англійській фразі спочатку кажемо, хто робить дію. Потім сама дія. Потім що, де і коли. Українська може рухати шматки вільніше, а англійській частіше потрібен рівний каркас.',
+  'У звичайній англійській фразі спочатку кажемо, хто робить дію. Потім сама дія. Потім що, де і коли. Українська може рухати звороти вільніше, а англійській частіше потрібен рівний каркас.',
   'Una afirmacion normal en ingles suele mantener un marco fijo: quien, accion, que, donde y cuando.',
   {
     'pt-BR': 'Uma afirmação normal em inglês costuma manter uma estrutura fixa: quem faz a ação, a ação, o quê, onde e quando.',
@@ -547,7 +547,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       correctAnswer: 'They often call me after work.',
       correctFeedback: tri('Да. Often рядом с call, а me идет после call.', 'Так. Often поруч із call, а me йде після call.', 'Yes. Often before call; me after call.'),
       wrong: {
-        'They call often me after work.': tri('Частотное слово разорвало действие и получателя. В базовом варианте держи этот кусок вместе.', 'Слово частоти розiрвало дiю й отримувача. У базовому варiантi тримай цей шматок разом.', 'Often should not split call me.'),
+        'They call often me after work.': tri('Частотное слово разорвало действие и получателя. В базовом варианте держи этот кусок вместе.', 'Слово частоти розiрвало дiю й отримувача. У базовому варiантi тримай цей зворот разом.', 'Often should not split call me.'),
         'Often they me call after work.': tri('Me стоит перед call. Нужно: They often call me after work.', 'Me стоїть перед call. Потрібно: They often call me after work.', 'Use They often call me after work.'),
         'They me often call after work.': tri('Me стоит слишком рано. Базово: They often call me after work.', 'Me стоїть занадто рано. Базово: They often call me after work.', 'Use They often call me after work.'),
       },
@@ -660,7 +660,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       action: 'switch_to_guided_mode',
       card: tri(
         'Режим подсказки: сначала выбираем, кто действует, потом действие, потом остальной кусок.',
-        'Режим підказки: спочатку обираємо, хто діє, потім дію, потім решту шматка.',
+        'Режим підказки: спочатку обираємо, хто діє, потім дію, потім решту звороту.',
         'Modo guiado: primero elegimos quien actua, despues la accion y despues el resto.',
       ),
     },

@@ -1,9 +1,11 @@
 import {
   CollectiblesDropState,
+  EVENT_ID_RE,
   parseDropState,
   rollCollectibleDrop,
   collectiblesDropConfigFromData,
   COLLECTIBLES_DROP_DEFAULTS,
+  assertCollectibleRewardEventEligible,
 } from './collectibles';
 import { CollectiblePoolCard } from './collectibles_catalog';
 
@@ -30,6 +32,73 @@ describe('parseDropState', () => {
 
   test('мусор на входе превращается в нулевое состояние', () => {
     expect(parseDropState('not-json', '2026-06-11')).toEqual(freshState());
+  });
+});
+
+describe('EVENT_ID_RE', () => {
+  test('пропускает все точки дропа, включая турнир/словарь/глаголы/предлоги', () => {
+    const valid = [
+      'lesson:5:2026-06-11',
+      'plan:task7',
+      'quiz:q1',
+      'arena:room9',
+      'exam:level3',
+      'tournament:room_abc123',
+      'vocab:en:12',
+      'verbs:en:12',
+      'prep:en:12',
+    ];
+    for (const eventId of valid) expect(EVENT_ID_RE.test(eventId)).toBe(true);
+  });
+
+  test('отвергает неизвестный kind и мусор — клиент не может выдумать активность', () => {
+    const invalid = ['hack:1', 'tournaments:1', 'vocabulary:1', 'lesson', ':5', 'lesson:пять', ''];
+    for (const eventId of invalid) expect(EVENT_ID_RE.test(eventId)).toBe(false);
+  });
+});
+
+describe('tournament collectible reward eligibility', () => {
+  const paidRoom = {
+    roomId: 'paid-room',
+    slotId: 'daily-1200',
+    ticketsRequired: 1,
+    testMode: false,
+    economySnapshot: { entryGems: 3, botEntryGems: 3 },
+  };
+
+  test('does not load tournament state for non-tournament collectible events', async () => {
+    const loadRoom = jest.fn();
+
+    await expect(assertCollectibleRewardEventEligible('lesson:5', loadRoom)).resolves.toBeUndefined();
+    expect(loadRoom).not.toHaveBeenCalled();
+  });
+
+  test.each([
+    ['missing room', null],
+    ['mismatched room identity', { ...paidRoom, roomId: 'another-room' }],
+    ['explicit test room', { ...paidRoom, testMode: true, ticketsRequired: 0 }],
+    ['zero-entry nonrewarding room', { ...paidRoom, economySnapshot: { entryGems: 0, botEntryGems: 0 } }],
+    ['free room', { ...paidRoom, ticketsRequired: 0 }],
+    ['malformed admission price', { ...paidRoom, ticketsRequired: 'free' }],
+  ])('rejects %s before a tournament collectible can roll', async (_label, room) => {
+    const loadRoom = jest.fn().mockResolvedValue(room);
+
+    await expect(assertCollectibleRewardEventEligible('tournament:paid-room', loadRoom))
+      .rejects.toThrow(/tournament_collectible/);
+    expect(loadRoom).toHaveBeenCalledWith('paid-room');
+  });
+
+  test('allows a validated paid tournament room', async () => {
+    const loadRoom = jest.fn().mockResolvedValue(paidRoom);
+
+    await expect(assertCollectibleRewardEventEligible('tournament:paid-room', loadRoom)).resolves.toBeUndefined();
+  });
+
+  test('preserves paid legacy rooms that predate economy snapshots', async () => {
+    const { economySnapshot: _economySnapshot, ...legacyPaidRoom } = paidRoom;
+    const loadRoom = jest.fn().mockResolvedValue(legacyPaidRoom);
+
+    await expect(assertCollectibleRewardEventEligible('tournament:paid-room', loadRoom)).resolves.toBeUndefined();
   });
 });
 
@@ -142,7 +211,7 @@ describe('rollCollectibleDrop', () => {
     }
   });
 
-  test('закрытие реального сета из каталога даёт секретку и 15 осколков', () => {
+  test('закрытие реального сета из каталога даёт секретку, но 0 монет (новая экономика)', () => {
     // Берём реальный set01_animals: все, кроме одной карточки, уже собраны.
     const { COLLECTIBLE_SET_CARD_IDS, COLLECTIBLE_SECRET_BY_SET, COLLECTIBLE_POOL } =
       require('./collectibles_catalog');
@@ -160,7 +229,8 @@ describe('rollCollectibleDrop', () => {
       expect(res.card.id).toBe(missing);
       expect(res.setCompleted).toBe(true);
       expect(res.secretCardId).toBe(COLLECTIBLE_SECRET_BY_SET[setId]);
-      expect(res.bonusShards).toBe(15);
+      // План 2026-07-20 §7: бонус за сет обнулён, секретная карточка сохранена.
+      expect(res.bonusShards).toBe(0);
     }
   });
 

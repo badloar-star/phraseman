@@ -22,6 +22,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useTheme } from '../ThemeContext';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 export type PlashkaKind = 'good' | 'bad';
 
 export interface FeedbackPlashkaProps {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 10,
+    ...noAndroidOutline,
   },
   accentBar: {
     position: 'absolute',

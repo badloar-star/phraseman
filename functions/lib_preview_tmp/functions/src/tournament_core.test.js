@@ -1,0 +1,691 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tournament_core_1 = require("./tournament_core");
+// «Турниры» Фаза 1 — чистая математика без Firestore (спека §5–§8, §11).
+const task = (taskId, mode, isVoice = false, verified = true) => ({
+    taskId,
+    mode,
+    isVoice,
+    difficulty: 1,
+    payload: isVoice
+        ? { phrase: taskId, reference: `reference/${taskId}` }
+        : { phrase: taskId, options: ['yes', 'no', 'maybe', 'later'], correctIndex: 0 },
+    tags: [],
+    verified,
+});
+const player = (id, score, isBot = false) => ({
+    id, isBot, name: id, avatar: '🦊', color: '#47C870', score, streak: 0,
+});
+describe('scoring (§5)', () => {
+    it('base correct answer at zero elapsed gets full +40% speed bonus', () => {
+        const s = (0, tournament_core_1.scoreAnswer)({ correct: true, elapsedMs: 0, maxMs: 10000, streakBefore: 0, isVoice: false });
+        expect(s).toBe(Math.round(tournament_core_1.TOURNAMENT_BASE_SCORE * (1 + tournament_core_1.TOURNAMENT_MAX_SPEED_BONUS_RATIO)));
+    });
+    it('answer at the time limit gets no speed bonus', () => {
+        const s = (0, tournament_core_1.scoreAnswer)({ correct: true, elapsedMs: 10000, maxMs: 10000, streakBefore: 0, isVoice: false });
+        expect(s).toBe(tournament_core_1.TOURNAMENT_BASE_SCORE);
+    });
+    it('elapsed beyond the limit is clamped, never negative bonus', () => {
+        const s = (0, tournament_core_1.scoreAnswer)({ correct: true, elapsedMs: 99000, maxMs: 10000, streakBefore: 0, isVoice: false });
+        expect(s).toBe(tournament_core_1.TOURNAMENT_BASE_SCORE);
+    });
+    it('voice tasks get ×1.5 base (and bonus scales from it)', () => {
+        const s = (0, tournament_core_1.scoreAnswer)({ correct: true, elapsedMs: 10000, maxMs: 10000, streakBefore: 0, isVoice: true });
+        expect(s).toBe(Math.round(tournament_core_1.TOURNAMENT_BASE_SCORE * 1.5));
+    });
+    it('wrong answer scores zero regardless of speed/streak', () => {
+        expect((0, tournament_core_1.scoreAnswer)({ correct: false, elapsedMs: 0, maxMs: 10000, streakBefore: 9, isVoice: false })).toBe(0);
+    });
+    it('streak ×1.5 applies from 3rd correct in a row', () => {
+        const s = (0, tournament_core_1.scoreAnswer)({ correct: true, elapsedMs: 10000, maxMs: 10000, streakBefore: 2, isVoice: false });
+        expect(s).toBe(Math.round(tournament_core_1.TOURNAMENT_BASE_SCORE * 1.5));
+    });
+    it('streak ×2 applies from 5th correct in a row', () => {
+        const s = (0, tournament_core_1.scoreAnswer)({ correct: true, elapsedMs: 10000, maxMs: 10000, streakBefore: 4, isVoice: false });
+        expect(s).toBe(tournament_core_1.TOURNAMENT_BASE_SCORE * 2);
+    });
+    it('scoreRound accumulates running streak and resets on a mistake', () => {
+        const answers = [true, true, true, false, true].map((correct) => ({
+            correct, elapsedMs: 10000, maxMs: 10000, streakBefore: 0, isVoice: false,
+        }));
+        const { roundScore, streakAfter } = (0, tournament_core_1.scoreRound)(answers);
+        // 100 + 100 + 150 (стрик 3-й) + 0 + 100 = 450
+        expect(roundScore).toBe(450);
+        expect(streakAfter).toBe(1);
+    });
+});
+describe('seeded task selection (§6)', () => {
+    const pool = [
+        ...Array.from({ length: 10 }, (_, i) => task(`q${i}`, 'quiz')),
+        ...Array.from({ length: 6 }, (_, i) => task(`f${i}`, 'flashcard')),
+        ...Array.from({ length: 4 }, (_, i) => task(`v${i}`, 'voice', true)),
+        task('unverified1', 'quiz', false, false),
+    ];
+    it('same roomId+roundNo always yields the same task set', () => {
+        const a = (0, tournament_core_1.selectRoundTasks)({ pool, roomId: 'room1', roundNo: 2, count: 6, modeKind: 'mix' });
+        const b = (0, tournament_core_1.selectRoundTasks)({ pool, roomId: 'room1', roundNo: 2, count: 6, modeKind: 'mix' });
+        expect(a.map((t) => t.taskId)).toEqual(b.map((t) => t.taskId));
+    });
+    it('different rounds give different sets (seed = roomId + roundNo)', () => {
+        const r1 = (0, tournament_core_1.selectRoundTasks)({ pool, roomId: 'room1', roundNo: 1, count: 6, modeKind: 'mix' });
+        const r2 = (0, tournament_core_1.selectRoundTasks)({ pool, roomId: 'room1', roundNo: 2, count: 6, modeKind: 'mix' });
+        expect(r1.map((t) => t.taskId)).not.toEqual(r2.map((t) => t.taskId));
+    });
+    it('single-mode rounds pick tasks of one mode only', () => {
+        for (let room = 0; room < 8; room += 1) {
+            const sel = (0, tournament_core_1.selectRoundTasks)({ pool, roomId: `room${room}`, roundNo: 1, count: 5, modeKind: 'single' });
+            const modes = new Set(sel.map((t) => t.mode));
+            expect(modes.size).toBe(1);
+        }
+    });
+    it('unverified tasks never enter a round', () => {
+        const sel = (0, tournament_core_1.selectRoundTasks)({ pool, roomId: 'room1', roundNo: 3, count: 20, modeKind: 'mix' });
+        expect(sel.some((t) => t.taskId === 'unverified1')).toBe(false);
+    });
+    it('rounds 1/3 are single-mode, 2/4 are mix per spec rotation', () => {
+        expect((0, tournament_core_1.roundStateFor)(1)).toBe('round1');
+        expect((0, tournament_core_1.roundStateFor)(4)).toBe('round4');
+        expect((0, tournament_core_1.tableStateFor)(3)).toBe('table3');
+        expect((0, tournament_core_1.tableStateFor)(4)).toBeNull();
+    });
+    it('seededShuffle is a deterministic permutation', () => {
+        const items = [1, 2, 3, 4, 5, 6, 7, 8];
+        const a = (0, tournament_core_1.seededShuffle)(items, 'seed-x');
+        const b = (0, tournament_core_1.seededShuffle)(items, 'seed-x');
+        expect(a).toEqual(b);
+        expect(a.slice().sort()).toEqual(items.slice().sort());
+    });
+});
+describe('state machine (§11)', () => {
+    it('walks the full happy path in order', () => {
+        let state = tournament_core_1.TOURNAMENT_STATES[0];
+        const visited = [state];
+        while (true) {
+            const next = (0, tournament_core_1.nextTournamentState)(state);
+            if (!next)
+                break;
+            expect((0, tournament_core_1.canTransitionTournament)(state, next)).toBe(true);
+            visited.push(next);
+            state = next;
+        }
+        expect(visited).toEqual([...tournament_core_1.TOURNAMENT_STATES]);
+    });
+    it('rejects skipping states and going backwards', () => {
+        expect((0, tournament_core_1.canTransitionTournament)('lobby', 'round2')).toBe(false);
+        expect((0, tournament_core_1.canTransitionTournament)('round3', 'round2')).toBe(false);
+        expect((0, tournament_core_1.canTransitionTournament)('results', 'rewards')).toBe(true);
+        expect((0, tournament_core_1.canTransitionTournament)('rewards', 'closed')).toBe(true);
+        expect((0, tournament_core_1.canTransitionTournament)('closed', 'scheduled')).toBe(false);
+    });
+    it('rejects unknown states', () => {
+        expect((0, tournament_core_1.canTransitionTournament)('lobby', 'nope')).toBe(false);
+        expect((0, tournament_core_1.canTransitionTournament)(tournament_core_1.TOURNAMENT_STATE_CANCELLED, 'round1')).toBe(false);
+    });
+    it('cancel is allowed only before rounds start', () => {
+        expect((0, tournament_core_1.canCancelTournament)('scheduled')).toBe(true);
+        expect((0, tournament_core_1.canCancelTournament)('lobby')).toBe(true);
+        expect((0, tournament_core_1.canCancelTournament)('round1')).toBe(false);
+        expect((0, tournament_core_1.canCancelTournament)('results')).toBe(false);
+    });
+});
+describe('prizes / placements (§7)', () => {
+    it('prize table matches the approved 50/25/10 + ticket back + title', () => {
+        expect(tournament_core_1.TOURNAMENT_PRIZES.map((p) => p.gems)).toEqual([50, 25, 10]);
+        expect((0, tournament_core_1.prizeForPlace)(1)?.ticketBack).toBe(true);
+        expect((0, tournament_core_1.prizeForPlace)(1)?.titleId).toBe('tournament_champion_of_day');
+        expect((0, tournament_core_1.prizeForPlace)(2)?.ticketBack).toBe(true);
+        expect((0, tournament_core_1.prizeForPlace)(3)?.ticketBack).toBe(false);
+        expect((0, tournament_core_1.prizeForPlace)(4)).toBeNull();
+    });
+    it('bots never take prize places; prizes shift to real players', () => {
+        const players = [
+            player('bot-a', 900, true),
+            player('u1', 800),
+            player('bot-b', 700, true),
+            player('u2', 600),
+            player('u3', 100),
+        ];
+        const { standings, realPlacements } = (0, tournament_core_1.computePlacements)(players);
+        expect(standings[0].id).toBe('bot-a');
+        expect(realPlacements.map((p) => [p.player.id, p.place])).toEqual([['u1', 1], ['u2', 2], ['u3', 3]]);
+    });
+});
+describe('season / bank / hot streak (§8, §9)', () => {
+    it('season points by place', () => {
+        expect((0, tournament_core_1.seasonPointsForPlace)(1)).toBe(25);
+        expect((0, tournament_core_1.seasonPointsForPlace)(2)).toBe(15);
+        expect((0, tournament_core_1.seasonPointsForPlace)(3)).toBe(10);
+        expect((0, tournament_core_1.seasonPointsForPlace)(9)).toBe(2);
+    });
+    it('bank contribution is 20% of ticket value in gems, floored', () => {
+        expect((0, tournament_core_1.bankContributionGems)(1, 10)).toBe(2);
+        expect((0, tournament_core_1.bankContributionGems)(3, 10)).toBe(6);
+        expect((0, tournament_core_1.bankContributionGems)(0, 10)).toBe(0);
+    });
+    it('hot streak increments on win and resets on loss', () => {
+        expect((0, tournament_core_1.nextHotStreak)(0, true)).toBe(1);
+        expect((0, tournament_core_1.nextHotStreak)(4, true)).toBe(5);
+        expect((0, tournament_core_1.nextHotStreak)(9, false)).toBe(0);
+    });
+    it('week id matches ISO week format used by league functions', () => {
+        expect((0, tournament_core_1.tournamentWeekId)(Date.UTC(2026, 6, 21))).toMatch(/^2026-W\d{2}$/);
+    });
+});
+describe('schedule config (§2)', () => {
+    it('defaults to 3 daily slots 12:00/19:00/21:00', () => {
+        expect(tournament_core_1.DEFAULT_TOURNAMENT_SCHEDULE.slots.map((s) => s.localTime)).toEqual(['12:00', '19:00', '21:00']);
+        expect(tournament_core_1.DEFAULT_TOURNAMENT_SCHEDULE.freeWeeklyEntry).toBe(true);
+    });
+    it('normalize keeps valid slots, drops malformed, falls back to defaults', () => {
+        const cfg = (0, tournament_core_1.normalizeTournamentSchedule)({
+            slots: [
+                { slotId: 'vip_sun', localTime: '20:00', timezone: 'Europe/Moscow', ticketsRequired: 5, enabled: true },
+                { slotId: '', localTime: '25:99' },
+                'garbage',
+            ],
+            ticketGemValue: 12,
+        });
+        expect(cfg.slots).toHaveLength(1);
+        expect(cfg.slots[0].ticketsRequired).toBe(5);
+        expect(cfg.ticketGemValue).toBe(12);
+        expect((0, tournament_core_1.normalizeTournamentSchedule)(null)).toEqual({
+            slots: [],
+            freeWeeklyEntry: false,
+            ticketGemValue: 0,
+        });
+    });
+    it('room id is deterministic and filesystem-safe', () => {
+        const id = (0, tournament_core_1.tournamentRoomId)('daily_1200', 'Europe/Moscow', '2026-07-21');
+        expect(id).toBe('daily_1200_Europe_Moscow_2026-07-21');
+    });
+    it('slot start time resolves in the slot timezone', () => {
+        const ms = (0, tournament_core_1.slotStartMs)('2026-07-21', '12:00', 'Europe/Moscow');
+        const shown = new Date(ms).toLocaleString('en-GB', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit' });
+        expect(shown).toBe('12:00');
+        expect((0, tournament_core_1.dateKeyInTimezone)(ms, 'Europe/Moscow')).toBe('2026-07-21');
+    });
+});
+describe('Phase-1 hardening contracts', () => {
+    const hardening = require('./tournament_core');
+    const choiceTask = {
+        taskId: 'choice-1',
+        mode: 'choice',
+        isVoice: false,
+        difficulty: 1,
+        payload: {
+            phrase: 'I am ready',
+            options: ['Я готов', 'Я устал', 'Я дома', 'Я занят'],
+            correctIndex: 0,
+            correctAnswer: 'Я готов',
+        },
+        tags: ['daily'],
+        verified: true,
+    };
+    const fillRoom = () => ({
+        roomId: 'room-budget', slotId: 'daily', seed: 'room-budget', state: 'lobby', startsAt: 10000,
+        players: Array.from({ length: 16 }, (_, index) => player(`p${index}`, 0, index >= 2)),
+        rounds: [], version: 1, createdAtMs: 0,
+    });
+    const roundsFor = (tasks) => Array.from({ length: 4 }, (_, roundIndex) => ({
+        roundNo: roundIndex + 1,
+        mode: 'mix',
+        taskIds: tasks.slice(roundIndex * 6, roundIndex * 6 + 6).map((candidate) => candidate.taskId),
+        tasks: tasks.slice(roundIndex * 6, roundIndex * 6 + 6)
+            .map((candidate) => hardening.toPublicTournamentTask(candidate)),
+        results: {},
+    }));
+    it('accepts only explicitly verified, structurally valid tasks', () => {
+        expect(hardening.validateTournamentTask(choiceTask)).toEqual({ ok: true, kind: 'choice' });
+        expect(hardening.validateTournamentTask({ ...choiceTask, verified: undefined })).toEqual({
+            ok: false,
+            reason: 'task_not_verified',
+        });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            payload: { ...choiceTask.payload, correctIndex: 99 },
+        })).toEqual({ ok: false, reason: 'choice_contract_invalid' });
+        expect(hardening.validateTournamentTask({ ...choiceTask, difficulty: 4 })).toEqual({
+            ok: false,
+            reason: 'task_difficulty_invalid',
+        });
+    });
+    it('publishes the task without answer keys or voice references', () => {
+        const publicTask = hardening.toPublicTournamentTask({
+            ...choiceTask,
+            payload: { ...choiceTask.payload },
+        });
+        expect(publicTask).toEqual({
+            taskId: 'choice-1',
+            mode: 'choice',
+            kind: 'choice',
+            isVoice: false,
+            difficulty: 1,
+            payload: {
+                phrase: 'I am ready',
+                options: ['Я готов', 'Я устал', 'Я дома', 'Я занят'],
+            },
+        });
+        expect(JSON.stringify(publicTask)).not.toMatch(/correct|reference/i);
+    });
+    it('rejects unexpected private payload structures instead of persisting them to taskSecrets', () => {
+        const adversarial = {
+            ...choiceTask,
+            payload: {
+                ...choiceTask.payload,
+                explanation: 'unknown fields are not public',
+                correct_answer: 'secret snake case',
+                CorrectAnswer: 'secret alternate case',
+                answerKey: 'secret alias',
+                nested: { hint: 'also unknown', expected_answer: 'secret nested' },
+                cards: [{ label: 'unknown array', correct_option: 2 }],
+            },
+        };
+        expect(hardening.validateTournamentTask(adversarial)).toEqual({
+            ok: false,
+            reason: 'task_payload_fields_invalid',
+        });
+        expect(hardening.toPublicTournamentTask(adversarial)).toBeNull();
+    });
+    it('enforces byte-aware per-mode bounds for every persisted string and array', () => {
+        const limits = hardening.TOURNAMENT_TASK_LIMITS;
+        const exactEmojiPhrase = '🙂'.repeat(Math.floor(limits.phraseBytes / 4));
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            payload: { ...choiceTask.payload, phrase: exactEmojiPhrase },
+        })).toEqual({ ok: true, kind: 'choice' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            payload: { ...choiceTask.payload, phrase: `${exactEmojiPhrase}🙂` },
+        })).toEqual({ ok: false, reason: 'choice_contract_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            taskId: 'i'.repeat(limits.taskIdBytes + 1),
+        })).toEqual({ ok: false, reason: 'task_identity_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            tags: Array.from({ length: limits.maxTags + 1 }, () => 'tag'),
+        })).toEqual({ ok: false, reason: 'task_tags_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            payload: { ...choiceTask.payload, options: Array.from({ length: 4 }, () => 'o'.repeat(limits.optionBytes + 1)) },
+        })).toEqual({ ok: false, reason: 'choice_contract_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            mode: 'translate-bank',
+            payload: {
+                phrase: 'Translate',
+                wordBank: Array.from({ length: limits.maxWordBankItems + 1 }, () => 'word'),
+                correctTokens: ['word'],
+            },
+        })).toEqual({ ok: false, reason: 'translate_contract_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            mode: 'timeattack',
+            payload: {
+                prompt: 'Fast',
+                items: Array.from({ length: limits.maxTimeattackItems + 1 }, () => ({
+                    prompt: 'item', options: ['a', 'b'], correctIndex: 0,
+                })),
+            },
+        })).toEqual({ ok: false, reason: 'timeattack_contract_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            mode: 'voice', isVoice: true,
+            payload: { phrase: 'Speak', reference: 'r'.repeat(limits.referenceBytes + 1) },
+        })).toEqual({ ok: false, reason: 'voice_contract_invalid' });
+    });
+    it('rejects a cumulatively oversized fill although every selected task is schema-valid', () => {
+        const limits = hardening.TOURNAMENT_TASK_LIMITS;
+        const tasks = Array.from({ length: 24 }, (_, index) => ({
+            taskId: `time-budget-${index}`,
+            mode: 'timeattack', isVoice: false, difficulty: 1 + Math.floor(index / 8),
+            payload: {
+                prompt: 'p'.repeat(limits.promptBytes),
+                items: Array.from({ length: limits.maxTimeattackItems }, (_, itemIndex) => ({
+                    prompt: 'i'.repeat(limits.promptBytes),
+                    options: Array.from({ length: limits.maxTimeattackOptions }, (_, optionIndex) => (`${itemIndex}-${optionIndex}`.padEnd(limits.optionBytes, 'o'))),
+                    correctIndex: 0,
+                })),
+            },
+            tags: Array.from({ length: limits.maxTags }, () => 't'.repeat(limits.tagBytes)),
+            verified: true,
+        }));
+        expect(tasks.every((candidate) => hardening.validateTournamentTask(candidate).ok)).toBe(true);
+        const result = hardening.validateTournamentFillMutation({
+            room: fillRoom(), rounds: roundsFor(tasks), selectedTasks: tasks, botPlayers: [],
+            metadata: { ready: true, readyAtMs: 10000 },
+        });
+        expect(result).toMatchObject({ ok: false, reason: 'fill_size_budget_exceeded' });
+        expect(result.serializedBytes).toBeGreaterThan(hardening.TOURNAMENT_FILL_SERIALIZED_BUDGET_BYTES);
+    });
+    it('accepts a max-bound product-safe fill and rejects oversized round taskIds arrays', () => {
+        const limits = hardening.TOURNAMENT_TASK_LIMITS;
+        const tasks = Array.from({ length: 24 }, (_, index) => ({
+            ...choiceTask,
+            taskId: `choice-budget-${index}`,
+            difficulty: 1 + Math.floor(index / 8),
+            payload: {
+                phrase: 'p'.repeat(limits.phraseBytes),
+                options: Array.from({ length: 4 }, () => 'o'.repeat(limits.optionBytes)),
+                correctIndex: 0,
+                correctAnswer: 'a'.repeat(limits.answerBytes),
+            },
+            tags: Array.from({ length: limits.maxTags }, () => 't'.repeat(limits.tagBytes)),
+        }));
+        const rounds = roundsFor(tasks);
+        expect(hardening.validateTournamentFillMutation({
+            room: fillRoom(), rounds, selectedTasks: tasks, botPlayers: [], metadata: { ready: true },
+        }).ok).toBe(true);
+        expect(hardening.validateTournamentFillMutation({
+            room: fillRoom(),
+            rounds: [{ ...rounds[0], taskIds: Array.from({ length: limits.maxTaskIdsPerRound + 1 }, (_, i) => `q${i}`) }],
+            selectedTasks: tasks,
+            botPlayers: [],
+        })).toMatchObject({ ok: false, reason: 'fill_rounds_invalid' });
+    });
+    it('requires the complete supported schema for every server-verifiable task kind', () => {
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            payload: { phrase: 'I am ready', options: ['a', 'b'], correctIndex: 0 },
+        })).toEqual({ ok: false, reason: 'choice_contract_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            mode: 'translate-bank',
+            payload: { phrase: 'Ð¯ Ð³Ð¾Ñ‚Ð¾Ð²', wordBank: ['I', 'am', 'ready'], correctTokens: [] },
+        })).toEqual({ ok: false, reason: 'translate_contract_invalid' });
+        expect(hardening.validateTournamentTask({
+            ...choiceTask,
+            mode: 'timeattack',
+            payload: { prompt: 'Fast set', items: [{ options: ['a', 'b'], correctIndex: 0 }] },
+        })).toEqual({ ok: false, reason: 'timeattack_contract_invalid' });
+    });
+    it('normalizes choice, translate-bank and timeattack answers consistently', () => {
+        expect(hardening.verifyTournamentAnswer(choiceTask, { selectedIndex: 0 })).toBe(true);
+        expect(hardening.verifyTournamentAnswer(choiceTask, { selectedIndex: '0' })).toBe(false);
+        const translate = {
+            ...choiceTask,
+            taskId: 'translate-1',
+            mode: 'translate-bank',
+            payload: {
+                phrase: 'Я готов',
+                wordBank: ['I', 'am', 'ready'],
+                correctTokens: ['I', 'am', 'ready'],
+            },
+        };
+        expect(hardening.validateTournamentTask(translate)).toEqual({ ok: true, kind: 'translate' });
+        expect(hardening.verifyTournamentAnswer(translate, { tokens: ['I', 'am', 'ready'] })).toBe(true);
+        expect(hardening.verifyTournamentAnswer(translate, { tokens: ['ready', 'I', 'am'] })).toBe(false);
+        const timeattack = {
+            ...choiceTask,
+            taskId: 'time-1',
+            mode: 'timeattack',
+            payload: {
+                prompt: 'Fast set',
+                items: [
+                    { prompt: 'one', options: ['a', 'b'], correctIndex: 1 },
+                    { prompt: 'two', options: ['x', 'y'], correctIndex: 0 },
+                ],
+            },
+        };
+        expect(hardening.validateTournamentTask(timeattack)).toEqual({ ok: true, kind: 'timeattack' });
+        expect(hardening.verifyTournamentAnswer(timeattack, { selectedIndexes: [1, 0] })).toBe(true);
+        expect(hardening.verifyTournamentAnswer(timeattack, { selectedIndexes: [1, 1] })).toBe(false);
+    });
+    it('never credits voice from a client-supplied reference string', () => {
+        const voice = {
+            ...choiceTask,
+            taskId: 'voice-1',
+            mode: 'voice',
+            isVoice: true,
+            payload: { phrase: 'I am ready', reference: 'voice/reference/1' },
+        };
+        expect(hardening.validateTournamentTask(voice)).toEqual({ ok: true, kind: 'voice' });
+        expect(hardening.validateTournamentTask({ ...voice, isVoice: false })).toEqual({
+            ok: false,
+            reason: 'voice_contract_invalid',
+        });
+        expect(hardening.verifyTournamentAnswer(voice, 'voice/reference/1')).toBe(false);
+        expect(hardening.verifyTournamentAnswer(voice, { reference: 'voice/reference/1' })).toBe(false);
+        expect(hardening.tournamentFeatureGates()).toMatchObject({
+            voiceScoring: { enabled: false, reason: 'verified_voice_evidence_contract_missing' },
+        });
+    });
+    it('excludes voice tasks from room selection while voice evidence is disabled', () => {
+        const voice = {
+            ...choiceTask,
+            taskId: 'voice-disabled',
+            mode: 'voice',
+            isVoice: true,
+            payload: { phrase: 'I am ready', reference: 'voice/reference/1' },
+        };
+        const selected = hardening.selectRoundTasks({
+            pool: [voice, choiceTask], roomId: 'room-no-voice', roundNo: 1, count: 10, modeKind: 'mix',
+        });
+        expect(selected.map((candidate) => candidate.taskId)).toEqual(['choice-1']);
+    });
+    it('enforces the round difficulty progression before seeded mode selection', () => {
+        const pool = [1, 2, 3].flatMap((difficulty) => Array.from({ length: 8 }, (_, index) => ({
+            ...choiceTask,
+            taskId: `d${difficulty}-${index}`,
+            difficulty,
+            mode: index % 2 === 0 ? 'choice' : 'quiz',
+        })));
+        const expected = { 1: [1], 2: [1, 2], 3: [2], 4: [2, 3] };
+        for (const roundNo of [1, 2, 3, 4]) {
+            const selected = hardening.selectRoundTasks({
+                pool, roomId: `room-difficulty-${roundNo}`, roundNo, count: 20,
+                modeKind: roundNo % 2 === 1 ? 'single' : 'mix',
+            });
+            expect(new Set(selected.map((candidate) => candidate.difficulty)))
+                .toEqual(new Set(expected[roundNo]));
+        }
+    });
+    it('derives bounded scoring time only from server timestamps', () => {
+        expect(hardening.serverBoundedElapsedMs({
+            stateStartedAtMs: 1000,
+            receivedAtMs: 7000,
+            taskCount: 3,
+            maxMsPerTask: 10000,
+        })).toBe(2000);
+        expect(hardening.serverBoundedElapsedMs({
+            stateStartedAtMs: 10000,
+            receivedAtMs: 9000,
+            taskCount: 3,
+            maxMsPerTask: 10000,
+        })).toBe(10000);
+    });
+    it('drops schedule slots with an invalid IANA timezone', () => {
+        expect((0, tournament_core_1.normalizeTournamentSchedule)({
+            slots: [{ slotId: 'bad', localTime: '12:00', timezone: 'Mars/Olympus', ticketsRequired: 1, enabled: true }],
+            freeWeeklyEntry: true,
+            ticketGemValue: 10,
+        }).slots).toEqual([]);
+    });
+    it('persists every table/final/results state and advances after deadlines', () => {
+        expect(hardening.stateAfterTournamentDeadline('round1')).toBe('table1');
+        expect(hardening.stateAfterTournamentDeadline('table1')).toBe('round2');
+        expect(hardening.stateAfterTournamentDeadline('round4')).toBe('final');
+        expect(hardening.stateAfterTournamentDeadline('final')).toBe('results');
+        expect(hardening.stateAfterTournamentDeadline('results')).toBe('rewards');
+        expect(hardening.stateAfterTournamentDeadline('rewards')).toBe('closed');
+    });
+    it('refunds the recorded paid provenance exactly and restores free provenance separately', () => {
+        expect(hardening.cancellationRefundForPlayer({
+            id: 'paid', isBot: false, name: 'P', avatar: '🙂', color: '#000', score: 0, streak: 0,
+            entry: { kind: 'ticket', ticketsSpent: 5, bankContributionGems: 10, weekId: '2026-W30' },
+        })).toEqual({ tickets: 5, restoreFreeWeek: null, bankContributionGems: 10, compensationGems: 3 });
+        expect(hardening.cancellationRefundForPlayer({
+            id: 'free', isBot: false, name: 'F', avatar: '🙂', color: '#000', score: 0, streak: 0,
+            entry: { kind: 'free_weekly', ticketsSpent: 0, bankContributionGems: 0, weekId: '2026-W30' },
+        })).toEqual({ tickets: 0, restoreFreeWeek: '2026-W30', bankContributionGems: 0, compensationGems: 3 });
+    });
+    it('exposes implemented rewards and explicit pending gates without unsafe fields', () => {
+        expect(hardening.tournamentRewardPlan(1)).toMatchObject({
+            gems: 50,
+            tickets: 1,
+            titleId: 'tournament_champion_of_day',
+            pending: {
+                xpCashback: 'disabled_pending_progress_event_contract',
+                avatarFrameExpiry: 'disabled_pending_avatar_frame_contract',
+                referralTickets: 'disabled_pending_referral_receipt_contract',
+                seasonPayout: 'disabled_pending_season_payout_contract',
+            },
+        });
+        expect(hardening.tournamentRewardPlan(8)).toMatchObject({ gems: 0, tickets: 0 });
+    });
+});
+describe('transaction plan semantics', () => {
+    const plans = require('./tournament_core');
+    const tasks = [
+        {
+            taskId: 'q1', mode: 'choice', isVoice: false, difficulty: 1,
+            payload: { phrase: 'one', options: ['yes', 'no', 'maybe', 'later'], correctIndex: 0 }, tags: [], verified: true,
+        },
+    ];
+    const room = () => ({
+        roomId: 'room-race', slotId: 'daily', seed: 'room-race', state: 'round1', startsAt: 1000,
+        stateStartedAtMs: 1000, stateDeadlineAtMs: 11000, participantAuthUids: ['auth-u1', 'auth-u2'],
+        players: [player('u1', 0), player('u2', 0), { ...player('bot1', 0, true), botWinRate: 1 }],
+        rounds: [{ roundNo: 1, mode: 'choice', taskIds: ['q1'], results: {} }],
+        version: 1, createdAtMs: 0,
+    });
+    it('optimistic transaction retry preserves two submissions and replay scores once', () => {
+        const answer = [{ taskId: 'q1', answer: { selectedIndex: 0 } }];
+        const first = plans.applyTournamentSubmission(room(), {
+            playerId: 'u1', roundNo: 1, answers: answer, tasks, receivedAtMs: 2000,
+        });
+        const afterRetry = plans.applyTournamentSubmission(first.room, {
+            playerId: 'u2', roundNo: 1, answers: answer, tasks, receivedAtMs: 2500,
+        });
+        const replay = plans.applyTournamentSubmission(afterRetry.room, {
+            playerId: 'u1', roundNo: 1, answers: answer, tasks, receivedAtMs: 3000,
+        });
+        expect(Object.keys(afterRetry.room.rounds[0].results).sort()).toEqual(['u1', 'u2']);
+        expect(afterRetry.room.players.find((p) => p.id === 'u1')?.score).toBe(first.room.players.find((p) => p.id === 'u1')?.score);
+        expect(replay.replay).toBe(true);
+        expect(replay.room).toEqual(afterRetry.room);
+    });
+    it('join then cancel refunds the joined provenance; cancel then join fails closed', () => {
+        const lobby = { ...room(), state: 'lobby', players: [], rounds: [] };
+        const entrant = {
+            ...player('u1', 0),
+            entry: { kind: 'ticket', ticketsSpent: 1, bankContributionGems: 2, weekId: '2026-W30' },
+        };
+        const joined = plans.applyTournamentJoin(lobby, entrant, 'auth-u1');
+        const cancelled = plans.planTournamentCancellation(joined, 'not_enough_players', 2000);
+        expect(cancelled.refunds).toEqual([{ playerId: 'u1', tickets: 1, restoreFreeWeek: null, bankContributionGems: 2, compensationGems: 3 }]);
+        expect(() => plans.applyTournamentJoin(cancelled.room, entrant, 'auth-u1')).toThrow('room_not_joinable');
+    });
+    it('repeated join appends the current auth identity without charging again', () => {
+        const joined = {
+            ...room(), state: 'lobby', startsAt: 10000,
+            players: [player('u1', 0)], participantAuthUids: ['old-auth'], rounds: [],
+        };
+        const replay = plans.applyTournamentJoin(joined, player('u1', 0), 'new-auth', 9000);
+        expect(replay.players).toHaveLength(1);
+        expect(replay.participantAuthUids).toEqual(['old-auth', 'new-auth']);
+        expect(replay.version).toBe(joined.version + 1);
+    });
+    it('rejects a new join at or after the lobby start cutoff', () => {
+        const lobby = { ...room(), state: 'lobby', startsAt: 10000, players: [], rounds: [] };
+        expect(() => plans.applyTournamentJoin(lobby, player('u1', 0), 'auth-u1', 10000))
+            .toThrow('join_cutoff_elapsed');
+    });
+    it('conservatively refunds legacy entrants and permits an idempotent active-room recovery cancel', () => {
+        const legacyPlayer = player('legacy-u1', 0);
+        expect(plans.cancellationRefundForPlayer(legacyPlayer, { fallbackTickets: 1 }))
+            .toEqual({ tickets: 1, restoreFreeWeek: null, bankContributionGems: 0, compensationGems: 3 });
+        const legacyRound = {
+            ...room(), state: 'round1', players: [legacyPlayer], stateDeadlineAtMs: undefined,
+        };
+        const first = plans.planTournamentCancellation(legacyRound, 'legacy_gameplay_unverifiable', 12000, { allowActive: true, fallbackTickets: 1 });
+        const replay = plans.planTournamentCancellation(first.room, 'legacy_gameplay_unverifiable', 13000, { allowActive: true, fallbackTickets: 1 });
+        expect(first.refunds[0]).toMatchObject({ playerId: 'legacy-u1', tickets: 1 });
+        expect(replay).toMatchObject({ alreadyCancelled: true, refunds: [] });
+    });
+    it('classifies legacy missing-deadline and missing-secret rooms for safe recovery', () => {
+        const scheduled = { ...room(), state: 'scheduled', startsAt: 10000, stateDeadlineAtMs: undefined };
+        expect(plans.legacyTournamentRecoveryAction(scheduled, 9000, true)).toBe('wait');
+        expect(plans.legacyTournamentRecoveryAction(scheduled, 10000, true)).toBe('cancel');
+        expect(plans.legacyTournamentRecoveryAction({ ...scheduled, state: 'lobby' }, 10000, true)).toBe('cancel');
+        expect(plans.legacyTournamentRecoveryAction({ ...scheduled, state: 'round1' }, 10000, true)).toBe('cancel');
+        expect(plans.legacyTournamentRecoveryAction({
+            ...scheduled, state: 'round1', stateDeadlineAtMs: 11000,
+        }, 10000, false)).toBe('cancel');
+    });
+    it('propagates transient task snapshot reads but returns null for proven missing data', async () => {
+        const transient = new Error('firestore_unavailable');
+        await expect(plans.loadCompleteTournamentTasks(['q1'], async () => { throw transient; })).rejects.toBe(transient);
+        await expect(plans.loadCompleteTournamentTasks(['q1'], async () => null)).resolves.toBeNull();
+        await expect(plans.loadCompleteTournamentTasks(['q1'], async () => tasks[0])).resolves.toEqual(tasks);
+    });
+    it('repeated cancellation emits no second refund or compensation', () => {
+        const paid = {
+            ...player('u1', 0),
+            entry: { kind: 'ticket', ticketsSpent: 5, bankContributionGems: 10, weekId: '2026-W30' },
+        };
+        const first = plans.planTournamentCancellation({ ...room(), state: 'lobby', players: [paid], rounds: [] }, 'not_enough_players', 2000);
+        const replay = plans.planTournamentCancellation(first.room, 'not_enough_players', 3000);
+        expect(first.refunds).toHaveLength(1);
+        expect(first.receiptId).toBe('tournament_cancel_room-race');
+        expect(replay).toMatchObject({ alreadyCancelled: true, refunds: [] });
+    });
+    it('deadline completion records missing humans as zero and scores bots in that round', () => {
+        const answer = [{ taskId: 'q1', answer: { selectedIndex: 0 } }];
+        const submitted = plans.applyTournamentSubmission(room(), {
+            playerId: 'u1', roundNo: 1, answers: answer, tasks, receivedAtMs: 2000,
+        });
+        const completed = plans.completeTournamentRoundAtDeadline(submitted.room, tasks, 11001);
+        expect(completed.room.rounds[0].results.u2).toMatchObject({ correct: 0, roundScore: 0, timedOut: true });
+        expect(completed.room.rounds[0].results.bot1.roundScore).toBeGreaterThan(0);
+        expect(completed.room.players.find((p) => p.id === 'bot1')?.score).toBeGreaterThan(0);
+        expect(completed.room.state).toBe('table1');
+    });
+    it('repeated finalization plan emits season/played/streak/claim effects once', () => {
+        const finalRoom = {
+            ...room(), state: 'results', players: [player('u1', 100), player('u2', 50)],
+            rounds: [], stateDeadlineAtMs: 2000,
+        };
+        const first = plans.planTournamentFinalization(finalRoom, 3000);
+        const replay = plans.planTournamentFinalization(first.room, 4000);
+        expect(first.receiptId).toBe('tournament_finalize_room-race');
+        expect(first.playerEffects).toHaveLength(2);
+        expect(first.playerEffects[0]).toMatchObject({
+            playerId: 'u1', seasonPoints: 25, tournamentsPlayed: 1, won: true,
+            reward: { gems: 50, tickets: 1 },
+        });
+        expect(replay).toMatchObject({ alreadyFinalized: true, playerEffects: [] });
+    });
+});
+describe('bot personas (§3)', () => {
+    it('generates deterministic realistic profiles', () => {
+        const a = (0, tournament_core_1.generateBotProfiles)(50, 'tournament-v1');
+        const b = (0, tournament_core_1.generateBotProfiles)(50, 'tournament-v1');
+        expect(a).toEqual(b);
+        expect(a).toHaveLength(50);
+        for (const bot of a) {
+            expect(bot.winRate).toBeGreaterThanOrEqual(0.15);
+            expect(bot.winRate).toBeLessThanOrEqual(0.85);
+            expect(bot.name.length).toBeGreaterThan(0);
+            expect(bot.botId).toMatch(/^bot_\d{3}$/);
+        }
+    });
+    it('winRate distribution is not degenerate (spread across the range)', () => {
+        const bots = (0, tournament_core_1.generateBotProfiles)(200, 'tournament-v1');
+        const rates = bots.map((b) => b.winRate);
+        expect(Math.min(...rates)).toBeLessThan(0.4);
+        expect(Math.max(...rates)).toBeGreaterThan(0.6);
+    });
+    it('bot answers are deterministic per room/round and voice-aware', () => {
+        const bot = (0, tournament_core_1.generateBotProfiles)(1, 'tournament-v1')[0];
+        const tasks = [task('a', 'quiz'), task('b', 'voice', true)];
+        const p = { roomId: 'room1', roundNo: 1, tasks, maxMsPerTask: 8000 };
+        const run1 = (0, tournament_core_1.simulateBotAnswers)(bot, p);
+        const run2 = (0, tournament_core_1.simulateBotAnswers)(bot, p);
+        expect(run1).toEqual(run2);
+        expect(run1[1].isVoice).toBe(true);
+        for (const ans of run1)
+            expect(ans.elapsedMs).toBeLessThanOrEqual(8000);
+    });
+});
+//# sourceMappingURL=tournament_core.test.js.map

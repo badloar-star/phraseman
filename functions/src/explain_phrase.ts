@@ -29,8 +29,8 @@ import {
 import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { aiGloballyDisabled } from './remote_gates';
-import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
-import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
+import { validateExplainInput, sanitizeExplanationOutput, wrongScriptRatio } from './explain/explain_gates';
+import { buildExplainPrompt, buildJudgeOutputLanguageSample, resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
@@ -108,11 +108,24 @@ export const explainPhrase = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '512MiB',
+  minInstances: 0,
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request): Promise<ExplainResponse> => {
   // 1. Auth gate — identity NEVER from body.
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+
+  // Прогрев инстанса (см. app/ai_callable_resilience.ts). Выходим САМЫМ первым
+  // делом — до Firestore, до гейтов, до OpenAI.
+  // зачем: у функции minInstances: 0 (осознанная экономия, сторож
+  // ai_functions_warm_instance_contract). Клиент будит инстанс заранее, пока
+  // пользователь читает карточку, — тогда реальный вызов попадает на тёплый
+  // сервер. Ping ОБЯЗАН быть бесплатным: ниже по коду идут чтения Firestore и
+  // списание дневного free-капа, и прогрев не имеет права ни платить за них,
+  // ни тратить квоту пользователя.
+  if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
+    return { ok: true, text: '', status: 'pending', fromCache: false };
+  }
 
   const apiKey = asText(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
@@ -140,7 +153,7 @@ export const explainPhrase = onCall({
 
   // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
   // считаются (гейт ценности фичи). При исчерпании — бесплатный fallback-текст.
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
   if (!isPremium) {
     try {
       await enforceFreeJobGenLimit('phrase', authUid, stableUid, FREE_DAILY_CAP);
@@ -216,6 +229,7 @@ export const explainPhrase = onCall({
 
   // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
   const sanitized = sanitizeExplanationOutput(gen.text);
+  const judgeLanguageSample = buildJudgeOutputLanguageSample(sanitized);
   const judgeText = sanitized;
   const verdict = await judgeExplanation({ text: judgeText, phraseEn, lang, apiKey, studyTarget });
 
@@ -249,6 +263,8 @@ export const explainPhrase = onCall({
     genCompletionTokens: gen.completionTokens,
     judgePromptTokens: verdict.promptTokens,
     judgeCompletionTokens: verdict.completionTokens,
+    judgeWrongScriptRatio: wrongScriptRatio(sanitized, lang),
+    judgeMaskedStudyFragments: judgeLanguageSample.maskedFragmentCount,
     verdict: verdict.reason,
     published: verdict.ok,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),

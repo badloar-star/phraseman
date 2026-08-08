@@ -13,31 +13,33 @@
  *    уважает настройку тактильного отклика (кэш haptics_tap) и анти-наложение.
  *    Тумблер uiSounds вибрацию НЕ глушит — у неё свой тумблер.
  *
- * fk.combo(n) НЕ владеет счётчиком серии — счётчик у хоста (в lesson1 он ещё и
- * участвует в формуле XP, спек §2). n — текущее значение серии; fk сам выбирает
- * ноту лесенки и пороговый стингер по уровню.
+ * зачем 2026-08-03 (владелец: «убрать эффект серии полностью»): эффект серии
+ * 5/10 (визуальная молния + отдельные звуки combo_5/combo_10 + усиленная
+ * хаптика по уровню) убран целиком. Вердикт больше не зависит от длины серии —
+ * везде звучит и вибрирует одинаково, как обычный верный/неверный ответ.
  */
-import { getUserSettingsSnapshot } from '../user_settings_store';
 import * as haptics from './haptics';
-import { play, type SoundName } from './sound_bank';
-import { comboLevelFor } from './combo_engine';
-
-/** Разрешены ли UI-звуки прямо сейчас (синхронно из снапшота настроек). */
-function soundsOn(): boolean {
-  return getUserSettingsSnapshot().uiSounds !== false;
-}
-
-/** Проиграть звук с учётом тумблера uiSounds. */
-function sfx(name: SoundName, volume?: number): void {
-  if (!soundsOn()) return;
-  play(name, volume != null ? { volume } : undefined);
-}
+import { soundDirector } from '../../modules/audio/sound_director';
+import type { SoundRequestOptions } from '../../modules/audio/sound_arbiter';
 
 export type MilestoneKind = 'star1' | 'star2' | 'star3' | 'medal' | 'chord';
 export type FeedbackSurface = 'lesson' | 'practice';
 
-export interface ComboOptions {
-  surface?: FeedbackSurface;
+/**
+ * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+ * раз»): correct()/wrong() раньше не принимали никаких опций, поэтому все
+ * вызовы (сейчас — только из турнира) делили общий на всё приложение лимит
+ * звуков 2/сек. В турнире несколько источников (тап, вердикт, тик таймера)
+ * легитимно случаются в одну секунду. rateLimit опционален — без него
+ * поведение не меняется ни для одного существующего вызова.
+ */
+export type VerdictSoundOptions = Pick<SoundRequestOptions, 'scope' | 'rateLimit'>;
+
+export interface VerdictOptions {
+  correct: boolean;
+  completesUnit?: boolean;
+  completionEvent?: 'pm.complete.micro' | 'pm.complete.session' | 'pm.complete.perfect';
+  dedupeKey?: string;
 }
 
 export const fk = {
@@ -56,8 +58,8 @@ export const fk = {
   },
 
   /** Верный ответ: тёплый «дин-дон» + success haptic. */
-  correct(): void {
-    sfx('correct');
+  correct(options?: VerdictSoundOptions): void {
+    soundDirector.request('pm.learn.correct', options);
     haptics.correct();
   },
 
@@ -65,52 +67,22 @@ export const fk = {
    * Ошибка: по просьбе пользователя ЗВУК неправильного ответа убран совсем —
    * остаётся только error-хаптика (мягкая вибрация, НЕ «бззз»).
    */
-  wrong(): void {
+  wrong(options?: VerdictSoundOptions): void {
+    soundDirector.request('pm.learn.needs_work', options);
     haptics.wrong();
   },
 
-  /**
-   * Серия (хост передаёт своё текущее значение n). Проигрывает ноту лесенки
-   * min(n-1,10) и — при входе в новый уровень — пороговый стингер. Вибрация
-   * усиливается с уровнем (искра→light, молния→medium, гроза→peak).
-   *
-   * fk НЕ хранит счётчик: он лишь маппит n→звук. Пороговый стингер срабатывает,
-   * когда n РАВНО порогу входа в уровень (3/5/10) — ровно один раз на серию.
-   */
-  combo(n: number, options: ComboOptions = {}): void {
-    if (n <= 0) return;
-
-    const level = comboLevelFor(n);
-
-    // Звуки серии оставлены ТОЛЬКО на двух молниях в основном уроке:
-    //  - crack на n===5 (1-я молния), thunder на n===10 (2-я молния).
-    // Лесенка нот (ladder), spark (n===3) и fizzle убраны из звука; вибрация
-    // на каждый верный ответ остаётся.
-    if (options.surface === 'lesson') {
-      if (n === 5) {
-        sfx('crack');
-      } else if (n === 10) {
-        sfx('thunder');
-      }
-    }
-
-    // Хаптика по уровню серии.
-    if (level >= 3) haptics.peak();
-    else if (level >= 2) haptics.medium();
-    else if (level >= 1) haptics.light();
-    else haptics.tap();
-  },
-
-  /**
-   * Обрыв серии: «шипение остывания» + error haptic. fromValue — значение серии
-   * до обрыва. Обрыв — это всё же неверный ответ, поэтому несёт тот же error
-   * haptic, что и fk.wrong() (сохраняем прежнюю тактильную обратную связь ошибки),
-   * а звук — «остывание» вместо «тупа».
-   */
-  comboBreak(fromValue: number): void {
-    if (fromValue <= 0) return;
-    // Звук 'fizzle' убран — остаётся только error-хаптика.
-    haptics.wrong();
+  /** Atomic verdict: one decision replaces correct+completion stacking. */
+  verdict({ correct, completesUnit, completionEvent, dedupeKey }: VerdictOptions): void {
+    soundDirector.requestLearningVerdict({
+      correct,
+      completesUnit,
+      completionEvent,
+      dedupeKey,
+      scope: 'learning-verdict',
+    });
+    if (correct) haptics.correct();
+    else haptics.wrong();
   },
 
   /** Смена задания. Звук 'whoosh' убран — остаётся лёгкая вибрация. */
@@ -126,17 +98,19 @@ export const fk = {
   milestone(kind: MilestoneKind): void {
     switch (kind) {
       case 'star1':
-        sfx('star_1');
+        soundDirector.request('pm.complete.star_1');
         break;
       case 'star2':
-        sfx('star_2');
+        soundDirector.request('pm.complete.star_2');
         break;
       case 'star3':
-        sfx('star_3');
+        soundDirector.request('pm.complete.star_3');
         break;
       case 'medal':
+        soundDirector.request('pm.complete.micro');
+        break;
       case 'chord':
-        // Звук убран — только хаптика ниже.
+        soundDirector.request('pm.complete.session');
         break;
     }
     haptics.success();

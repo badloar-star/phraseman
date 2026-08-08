@@ -7,10 +7,10 @@ import { CINEMA, cinemaAlpha, type CinemaPalette } from './cinemaThemes';
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
-  bgPrimary:   '#07100A',
-  bgCard:      '#152019',
-  bgSurface:   '#1D2D23',
-  bgSurface2:  '#253630',
+  bgPrimary:   '#030604',
+  bgCard:      '#101710',
+  bgSurface:   '#17241A',
+  bgSurface2:  '#203028',
   // Текст
   textPrimary: '#F0F7F2',
   textOnCard:  '#F0F7F2',   // = textPrimary (тёмный фон и карточки одного типа)
@@ -49,9 +49,9 @@ export const DARK = {
   cardShadow:  'rgba(0,0,0,0.55)',
   glow:        'rgba(71,200,112,0.32)',
   // Градиент карточки — усиленный контраст (светлее слева-сверху, темнее справа-снизу)
-  cardGradient: ['#1F2E24', '#070F0A'] as [string, string],
+  cardGradient: ['#2B4A32', '#070B08'] as [string, string],
   // Градиент фона экрана (сверху → снизу)
-  bgGradient: ['#07120B', '#010201'] as [string, string],
+  bgGradient: ['#050B06', '#010101'] as [string, string],
 };
 
 export const GOLD = {
@@ -88,23 +88,23 @@ export const GOLD = {
   cardShadow:  'rgba(0,0,0,0.78)',
   glow:        GOLD_RICH.bronzeWash,
   cardGradient: [GOLD_GRADIENTS.premiumPanel[0], GOLD_GRADIENTS.premiumPanel[2]] as [string, string],
-  bgGradient: ['#151005', '#010101'] as [string, string],
+  bgGradient: ['#0D0A04', '#010101'] as [string, string],
 };
 
 export const CORAL = {
   // Coral / Finance Dark: soft rose screen background with warm cocoa surfaces.
-  bgPrimary:   '#1C1113',
-  bgCard:      '#21181B',
-  bgSurface:   '#2D2024',
-  bgSurface2:  '#3A2A2E',
+  bgPrimary:   '#090405',
+  bgCard:      '#171013',
+  bgSurface:   '#22171B',
+  bgSurface2:  '#302126',
   textPrimary: '#FFFFFF',
   textOnCard:  '#FFFFFF',
-  textSecond:  '#FF6464',
+  textSecond:  '#FF8A66',
   textMuted:   '#B9A6AE',
   textGhost:   '#75656C',
   heroTextPrimary: '#FFFFFF',
   heroTextMuted:   '#D8C2C5',
-  border:      'rgba(255,100,100,0.15)',
+  border:      'rgba(255,127,80,0.15)',
   borderLight: '#2D2024',
   correct:     '#4A90FF',
   correctBg:   'rgba(74,144,255,0.14)',
@@ -113,19 +113,19 @@ export const CORAL = {
   gold:        '#FFD060',
   goldBg:      'rgba(255,208,96,0.14)',
   textOnGold:  '#1A1208',
-  accent:      '#FF6464',
-  accentBg:    'rgba(255,100,100,0.12)',
+  accent:      '#FF7F50',
+  accentBg:    'rgba(255,127,80,0.12)',
   correctText: '#FFFFFF',
   shadowDark:       '#050510',
-  shadowLight:      'rgba(255,100,100,0.26)',
-  borderHighlight:  'rgba(255,110,110,0.16)',
+  shadowLight:      'rgba(255,127,80,0.26)',
+  borderHighlight:  'rgba(255,140,100,0.16)',
   isGlowEnabled:    false,
   isGlossEnabled:   false,
-  btnShadow:   '#6A1A2A',
+  btnShadow:   '#8A3A1E',
   cardShadow:  'rgba(0,0,0,0.60)',
-  glow:        'rgba(255,100,100,0.22)',
-  cardGradient: ['#2E2226', '#0B0708'] as [string, string],
-  bgGradient: ['#17090C', '#010101'] as [string, string],
+  glow:        'rgba(255,127,80,0.22)',
+  cardGradient: ['#3A242B', '#070304'] as [string, string],
+  bgGradient: ['#0E0507', '#010101'] as [string, string],
 };
 
 // ─── LIGHT OCEAN ─────────────────────────────────────────────────────────────
@@ -224,10 +224,11 @@ export const LIGHT_SAKURA = {
 // ─── MODERN MINIMAL (Apple-like) ─────────────────────────────────────────────
 // Neutral grayscale, generous whitespace, rounded cards, subtle contrast.
 export const MINIMAL_DARK = {
-  bgPrimary:   '#121212',
-  bgCard:      '#232428',
-  bgSurface:   '#2D2F34',
-  bgSurface2:  '#363940',
+  // Legacy minimalDark palette retained only for stored-data and asset compatibility.
+  bgPrimary:   '#0B0B0C',
+  bgCard:      '#121214',
+  bgSurface:   '#171717',
+  bgSurface2:  '#202024',
   textPrimary: '#F5F5F5',
   textOnCard:  '#F5F5F5',
   textSecond:  '#6EA8FF',
@@ -236,7 +237,7 @@ export const MINIMAL_DARK = {
   heroTextPrimary: '#F5F5F5',
   heroTextMuted:   '#A7ABB3',
   border:      'rgba(255,255,255,0.14)',
-  borderLight: '#3A3D44',
+  borderLight: '#2E2E33',
   correct:     '#6EA8FF',
   correctBg:   'rgba(110,168,255,0.18)',
   wrong:       '#F26D6D',
@@ -255,8 +256,8 @@ export const MINIMAL_DARK = {
   btnShadow:   'rgba(0,0,0,0.45)',
   cardShadow:  'rgba(0,0,0,0.42)',
   glow:        'rgba(110,168,255,0.16)',
-  cardGradient: ['#31343B', '#23262C'] as [string, string],
-  bgGradient: ['#111318', '#010102'] as [string, string],
+  cardGradient: ['#1F2937', '#0B0B0C'] as [string, string],
+  bgGradient: ['#0B0B0C', '#010102'] as [string, string],
 };
 
 // ─── «ЧЁРНОЕ КИНО» (midnight/ember/aurora/volt) ──────────────────────────────
@@ -401,8 +402,102 @@ export const BUSINESS_LIGHT = {
   bgGradient:  ['#FFFFFF', '#FFFFFF'] as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight';
+// Legacy candyBlue palette retained only for stored-data and asset compatibility.
+// Тёмная холодная синева + нежный «леденцовый» голубой акцент. На залитых
+// акцентом CTA — тёмный текст (UI Contrast Rule, как у lime/green тем).
+export const CANDY_BLUE = {
+  bgPrimary:   '#0B161B',
+  bgCard:      '#122229',
+  bgSurface:   '#16282F',
+  bgSurface2:  '#1C323B',
+  textPrimary: '#EAF4F8',
+  textOnCard:  '#EAF4F8',
+  textSecond:  '#9DB9C4',
+  textMuted:   '#7FA0AD',
+  textGhost:   '#4E6A76',
+  heroTextPrimary: '#EAF4F8',
+  heroTextMuted:   '#7FA0AD',
+  border:      'rgba(178,213,229,0.14)',
+  borderLight: '#24383F',
+  correct:     '#B2D5E5',
+  correctBg:   'rgba(178,213,229,0.16)',
+  wrong:       '#F26D6D',
+  wrongBg:     'rgba(242,109,109,0.14)',
+  gold:        '#FFC53D',
+  goldBg:      'rgba(255,197,61,0.14)',
+  textOnGold:  '#1A1408',
+  accent:      '#B2D5E5',
+  accentBg:    'rgba(178,213,229,0.14)',
+  correctText: '#07110A',
+  shadowDark:       'rgba(0,0,0,0.5)',
+  shadowLight:      'rgba(178,213,229,0.18)',
+  borderHighlight:  'rgba(178,213,229,0.14)',
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   '#3A5A68',
+  cardShadow:  'rgba(0,0,0,0.45)',
+  glow:        'rgba(178,213,229,0.16)',
+  cardGradient: ['#122229', '#0E1C22'] as [string, string],
+  bgGradient: ['#0B161B', '#050C0F', '#010203'] as unknown as [string, string],
+};
+
+// ─── «ИНДИГО» (indigo) ───────────────────────────────────────────────────────
+// Тёмный индиго-сумрак + мягкий лавандовый акцент; на залитых CTA — тёмный
+// текст #17162B. Вторичный оттенок градиентов — royal dusk #273468.
+export const INDIGO = {
+  bgPrimary:   '#14131F',
+  bgCard:      '#1C1B2E',
+  bgSurface:   '#222140',
+  bgSurface2:  '#2A2952',
+  textPrimary: '#F1EFFF',
+  textOnCard:  '#F1EFFF',
+  textSecond:  '#B7B3D9',
+  textMuted:   '#9A95C2',
+  textGhost:   '#605C8A',
+  heroTextPrimary: '#F1EFFF',
+  heroTextMuted:   '#9A95C2',
+  border:      'rgba(200,195,255,0.14)',
+  borderLight: '#34325E',
+  correct:     '#C8C3FF',
+  correctBg:   'rgba(200,195,255,0.16)',
+  wrong:       '#F26D8A',
+  wrongBg:     'rgba(242,109,138,0.14)',
+  gold:        '#FFC53D',
+  goldBg:      'rgba(255,197,61,0.14)',
+  textOnGold:  '#1A1408',
+  accent:      '#C8C3FF',
+  accentBg:    'rgba(200,195,255,0.14)',
+  correctText: '#17162B',
+  shadowDark:       'rgba(0,0,0,0.5)',
+  shadowLight:      'rgba(200,195,255,0.18)',
+  borderHighlight:  'rgba(200,195,255,0.14)',
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   '#3D3A72',
+  cardShadow:  'rgba(0,0,0,0.45)',
+  glow:        'rgba(200,195,255,0.16)',
+  cardGradient: ['#273468', '#16152A'] as [string, string],
+  bgGradient: ['#14131F', '#0C0B16', '#010102'] as unknown as [string, string],
+};
+
+// зачем 2026-08-04 (владелец: «в светлой теме фон должен быть темнее даже на
+// главной и на других страницах» — заметно, тёплый серо-зелёный, не белый):
+// bgPrimary был #F0F1EC (L≈0.94) — практически неотличим от bgCard #FCFDF9
+// (L≈0.98), карточки/плашки тонули в фоне. Затемняем bgPrimary к #DCE1D8
+// (сдвиг в сторону accent #315F50, шалфейный тон темы, не серый нейтрал),
+// bgCard/bgSurface остаются светлыми — контраст карточка/фон вырос заметно.
+export const SAGE_PORCELAIN = {
+  // зачем 2026-08-04: textGhost был #61706A (AA-контраст ровно на грани старого
+  // светлого bgPrimary #F0F1EC). На новом тёмном bgPrimary #DCE1D8 контраст
+  // упал ниже 4.5:1 (WCAG AA) — затемнили до #4E5D55 (5.23:1), та же серо-
+  // зелёная семья, видимый сдвиг минимален.
+  bgPrimary:'#DCE1D8', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#4E5D55', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#E7EAE2','#D2D9CC'] as [string,string]
+};
+
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
 export type Theme = typeof DARK;
+
+export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
   primary: string;
@@ -428,6 +523,9 @@ const _checkAURORA:   Theme = AURORA   as any;
 const _checkVOLT:     Theme = VOLT     as any;
 const _checkBUSINESS: Theme = BUSINESS as any;
 const _checkBUSINESS_LIGHT: Theme = BUSINESS_LIGHT as any;
+const _checkCANDY_BLUE: Theme = CANDY_BLUE as any;
+const _checkSAGE_PORCELAIN: Theme = SAGE_PORCELAIN as any;
+const _checkINDIGO: Theme = INDIGO as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {
@@ -643,23 +741,15 @@ export const getXPProgress = (totalXP: number) => {
 
 /**
  * Максимальная энергия в зависимости от уровня.
- * Каждые 10 уровней даётся +1 слот энергии (базовые 5).
+ * Пять слотов доступны до 49 уровня; на 50 уровне открывается один дополнительный слот.
  */
-export const getMaxEnergyForLevel = (level: number): number => {
-  if (level >= 50) return 10;
-  if (level >= 40) return 9;
-  if (level >= 30) return 8;
-  if (level >= 20) return 7;
-  if (level >= 10) return 6;
-  return 5;
+export const getMaxEnergyForLevel = (level: number, baseEnergy: number = 5): number => {
+  const safeBase = Number.isFinite(baseEnergy) ? Math.max(1, Math.floor(baseEnergy)) : 5;
+  return safeBase + (level >= 50 ? 1 : 0);
 };
 
 /** Уровень на котором откроется следующий слот энергии (null если уже максимум) */
 export const getNextEnergyUnlockLevel = (level: number): number | null => {
-  if (level < 10) return 10;
-  if (level < 20) return 20;
-  if (level < 30) return 30;
-  if (level < 40) return 40;
   if (level < 50) return 50;
   return null;
 };

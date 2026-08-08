@@ -27,10 +27,10 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).not.toMatch(/messageRowActions:[\s\S]*?paddingLeft: 16[\s\S]*?messageRowCta:/);
   });
 
-  it('opens the Firestore messages subscription only while the inbox modal is visible', () => {
-    expect(inboxSource).toContain('if (!visible) return;');
+  it('opens the Firestore subscription while either the standalone or embedded surface is visible', () => {
+    expect(inboxSource).toContain('if (!runtimeActive || !effectiveVisible) return;');
     expect(inboxSource).toContain('subscribeUserAppMessages');
-    expect(inboxSource).toContain('}, [applyAppMessagesSnapshot, visible]);');
+    expect(inboxSource).toContain('}, [applyAppMessagesSnapshot, effectiveVisible, runtimeActive]);');
   });
 
   it('refreshes the closed inbox badge from cache plus a throttled one-shot poll', () => {
@@ -38,7 +38,7 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).toContain("state === 'active'");
     expect(inboxSource).toContain('readCachedAppMessagesSnapshot');
     expect(inboxSource).toContain('refreshAppMessagesSnapshotOnce');
-    expect(inboxSource).toContain('if (!isScreenFocused || visible) return;');
+    expect(inboxSource).toContain('if (!runtimeActive || effectiveVisible) return;');
   });
 
   it('claims report-reply rewards optimistically without a visible network wait', () => {

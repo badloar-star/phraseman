@@ -17,19 +17,20 @@ describe('current league icon content alignment', () => {
     expect(screenSource).toContain('translateY: safeContentOffset.y');
   });
 
-  it('renders generated league cards inside a fixed native-aspect rounded mask behind native UI text', () => {
+  it('renders the active league heraldry in the arena emblem slot', () => {
     const screenSource = fs.readFileSync(path.join(process.cwd(), 'app', 'club_screen.tsx'), 'utf8');
-    const engineSource = fs.readFileSync(path.join(process.cwd(), 'app', 'league_engine.ts'), 'utf8');
+    const sceneSource = fs.readFileSync(path.join(process.cwd(), 'components', 'league', 'LeagueArenaScene.tsx'), 'utf8');
 
-    expect(engineSource).toContain('cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-med.webp")');
-    expect(screenSource).toContain('CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO = 768 / 363');
-    expect(screenSource).toContain('borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS');
-    expect(screenSource).toContain("overflow:'hidden'");
-    expect(screenSource).toContain('const previewLeagueCardImage = (previewLeague as any).cardImageUri');
-    expect(screenSource).toContain('source={previewLeagueCardImage}');
-    expect(screenSource).toContain('StyleSheet.absoluteFillObject');
-    expect(screenSource).toContain("contentFit=\"cover\"");
-    expect(screenSource).toContain("previewLeagueCardImage ? '#FFFFFF' : t.textPrimary");
+    expect(screenSource).toContain('leagueIcon={<LeagueIcon');
+    expect(screenSource).toContain('league={myLeague}');
+    expect(screenSource).toContain('size={84}');
+    expect(screenSource).toContain('alignContent={false}');
+    expect(sceneSource).toContain('leagueIcon: React.ReactNode');
+    expect(sceneSource).toContain('testID="league-arena-emblem"');
+    expect(sceneSource).toContain('emblemSlot');
+    expect(sceneSource).toContain('{leagueIcon}');
+    expect(screenSource).not.toContain('CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO');
+    expect(screenSource).not.toContain('previewLeagueCardImage');
   });
 
   it('does not render vector fallback underneath transparent bundled heraldry images', () => {

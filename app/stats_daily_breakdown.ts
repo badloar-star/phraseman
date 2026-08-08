@@ -3,14 +3,17 @@
  * Хранятся в AsyncStorage и синхронизируются с Firestore через cloud_sync (ключ stats_daily_breakdown_v1).
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import { streakCalendarShortWeekdays } from '../constants/streak_stats_i18n';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import type { Lang } from '../constants/i18n';
 import { syncToCloud } from './cloud_sync';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureArenaAuthUid } from './user_id_policy';
 import { statsDailyBreakdownKey, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 const STORAGE_KEY = 'stats_daily_breakdown_v1';
 
@@ -18,6 +21,7 @@ const MIN_ACTIVE_MS = 60_000;
 const MAX_DAY_ROWS = 500;
 
 export type StatsDailyMetric =
+  | 'lessons_completed'
   | 'words_learned'
   | 'flashcards_saved'
   | 'phrases_learned'
@@ -30,6 +34,7 @@ export type StatsDailyMetric =
   | 'shards_spent';
 
 const METRICS_LIST: StatsDailyMetric[] = [
+  'lessons_completed',
   'words_learned',
   'flashcards_saved',
   'phrases_learned',
@@ -174,72 +179,40 @@ function extractDailyPoints(val: unknown): number {
   return 0;
 }
 
-function mergeArenaHistoryCount(localValue: number, historyValue: number): number {
-  return Math.max(
-    Math.max(0, Math.floor(Number(localValue) || 0)),
-    Math.max(0, Math.floor(Number(historyValue) || 0)),
-  );
-}
-
-async function loadArenaHistoryDailyCounts(
-  fromStr: string,
-  toStr: string,
-): Promise<{ wins: Record<string, number>; losses: Record<string, number> }> {
-  const empty = { wins: {}, losses: {} };
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return empty;
-  try {
-    const uid = await ensureArenaAuthUid();
-    if (!uid) return empty;
-    const fromMs = new Date(fromStr + 'T00:00:00.000Z').getTime();
-    const toMs = new Date(toStr + 'T23:59:59.999Z').getTime();
-    const snap = await firestore()
-      .collection('arena_profiles')
-      .doc(uid)
-      .collection('match_history')
-      .where('createdAt', '>=', fromMs)
-      .where('createdAt', '<=', toMs)
-      .get();
-    const wins: Record<string, number> = {};
-    const losses: Record<string, number> = {};
-    snap.forEach((doc) => {
-      const d = doc.data() as { createdAt?: unknown; won?: unknown; isDraw?: unknown };
-      const createdAt = typeof d.createdAt === 'number' ? d.createdAt : 0;
-      if (!createdAt || d.isDraw === true) return;
-      const day = toDateStr(new Date(createdAt));
-      if (day < fromStr || day > toStr) return;
-      if (d.won === true) wins[day] = (wins[day] ?? 0) + 1;
-      else losses[day] = (losses[day] ?? 0) + 1;
-    });
-    return { wins, losses };
-  } catch {
-    return empty;
-  }
-}
-
 /** Увеличить счётчик за сегодняшнюю дату (UTC‑день как в daily_stats). */
 export async function bumpStatsDaily(
   metric: StatsDailyMetric,
   delta: number,
   studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
 ): Promise<void> {
   if (!Number.isFinite(delta) || delta <= 0) return;
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
   const day = toDateStr(new Date());
   const add = Math.floor(delta);
   try {
     const raw = await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget));
+    if (!isCurrentAccountGeneration(operationToken)) return;
     const store = parseStore(raw);
     const row = { ...(store[day] ?? {}) };
     row[metric] = Math.max(0, Math.floor(Number(row[metric] ?? 0) + add));
     store[day] = row;
     const pruned = pruneStore(store);
-    await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), JSON.stringify(pruned));
+    const commit = async (): Promise<boolean> => {
+      if (!isCurrentAccountGeneration(operationToken)) return false;
+      await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), JSON.stringify(pruned));
+      return isCurrentAccountGeneration(operationToken);
+    };
+    const committed = await withAccountTransitionLock(commit);
+    if (!committed) return;
     void import('./activity_365_analytics')
       .then(({ invalidateActivity365Cache }) => invalidateActivity365Cache())
       .catch(() => {});
   } catch {
     /* ignore */
   }
-  void syncToCloud();
+  if (isCurrentAccountGeneration(operationToken)) void syncToCloud();
 }
 
 function randIntInclusive(min: number, max: number): number {
@@ -258,9 +231,6 @@ export type DevLifetimePathRandomSums = {
   wordsLearned: number;
   flashcardsSaved: number;
   phrasesLearned: number;
-  quizzesTotal: number;
-  arenaWins: number;
-  arenaLosses: number;
   dailyTasksClaimed: number;
   shardsEarned: number;
   shardsSpent: number;
@@ -270,9 +240,6 @@ const ZERO_DEV_SUMS: DevLifetimePathRandomSums = {
   wordsLearned: 0,
   flashcardsSaved: 0,
   phrasesLearned: 0,
-  quizzesTotal: 0,
-  arenaWins: 0,
-  arenaLosses: 0,
   dailyTasksClaimed: 0,
   shardsEarned: 0,
   shardsSpent: 0,
@@ -290,28 +257,23 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     const store = parseStore(raw);
     for (const day of dates) {
-      const row: Required<DayRow> = {
+      const row: DayRow = {
+        lessons_completed: randIntInclusive(0, 3),
         words_learned: randIntInclusive(0, 45),
         flashcards_saved: randIntInclusive(0, 14),
         phrases_learned: randIntInclusive(0, 60),
-        quizzes_completed: randIntInclusive(0, 8),
-        arena_wins: randIntInclusive(0, 6),
-        arena_losses: randIntInclusive(0, 6),
         daily_tasks_claimed: randIntInclusive(0, 5),
         plan_tasks_completed: randIntInclusive(0, 5),
         shards_earned: randIntInclusive(0, 90),
         shards_spent: randIntInclusive(0, 55),
       };
       store[day] = row;
-      sums.wordsLearned += row.words_learned;
-      sums.flashcardsSaved += row.flashcards_saved;
-      sums.phrasesLearned += row.phrases_learned;
-      sums.quizzesTotal += row.quizzes_completed;
-      sums.arenaWins += row.arena_wins;
-      sums.arenaLosses += row.arena_losses;
-      sums.dailyTasksClaimed += row.daily_tasks_claimed;
-      sums.shardsEarned += row.shards_earned;
-      sums.shardsSpent += row.shards_spent;
+      sums.wordsLearned += row.words_learned ?? 0;
+      sums.flashcardsSaved += row.flashcards_saved ?? 0;
+      sums.phrasesLearned += row.phrases_learned ?? 0;
+      sums.dailyTasksClaimed += row.daily_tasks_claimed ?? 0;
+      sums.shardsEarned += row.shards_earned ?? 0;
+      sums.shardsSpent += row.shards_spent ?? 0;
     }
     const pruned = pruneStore(store);
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(pruned));
@@ -331,10 +293,12 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
  * Слова и фразы, выученные за последние 7 дней (включая сегодня) и за 7 дней до них.
  * Для строки «+N слов и +M фраз за неделю» в карточке недели на экране статистики.
  */
-export async function loadWeeklyLearnedCounts(): Promise<{ words7: number; phrases7: number }> {
+export async function loadWeeklyLearnedCounts(
+  studyTarget?: RuntimeStudyTarget,
+): Promise<{ words7: number; phrases7: number }> {
   let store: Store = {};
   try {
-    store = parseStore(await AsyncStorage.getItem(STORAGE_KEY));
+    store = parseStore(await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget)));
   } catch {
     store = {};
   }
@@ -398,18 +362,10 @@ export async function loadLifetimeTotalsChartDays(
   }
 
   const dates = buildLifetimePathChartDateRange(todayStr);
-  const arenaHistory = kind === 'arena_wins' || kind === 'arena_losses'
-    ? await loadArenaHistoryDailyCounts(dates[0], dates[dates.length - 1])
-    : null;
   return dates.map(dateStr => {
     const cal = new Date(dateStr + 'T12:00:00');
     const row = store[dateStr];
-    const localValue = Math.max(0, Math.floor(Number(row?.[kind as StatsDailyMetric] ?? 0)));
-    const value = kind === 'arena_wins'
-      ? mergeArenaHistoryCount(localValue, arenaHistory?.wins[dateStr] ?? 0)
-      : kind === 'arena_losses'
-        ? mergeArenaHistoryCount(localValue, arenaHistory?.losses[dateStr] ?? 0)
-        : localValue;
+    const value = Math.max(0, Math.floor(Number(row?.[kind as StatsDailyMetric] ?? 0)));
     return {
       date: dateStr,
       shortLabel: wdays[cal.getDay()],

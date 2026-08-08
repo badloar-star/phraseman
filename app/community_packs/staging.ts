@@ -8,20 +8,27 @@ let stagedNavigationPackId: string | null = null;
 
 /**
  * Підготувати картки UGC-набору перед `router.push` на колекцію з `?pack=`.
+ *
+ * зачем: раньше вызывающий делал `await` перед навигацией — тап по своему
+ * набору висел на сетевом чтении Firestore, и экран открывался с задержкой.
+ * Теперь помечаем `packId` синхронно и уходим в навигацию сразу, а карточки
+ * догружаются фоном: коллекция всё равно сама грузит UGC-наборы и кладёт их
+ * в кэш, так что первый кадр берётся из кэша, а свежие данные догоняют.
  */
-export async function stageCommunityPackCardsForNavigation(
+export function stageCommunityPackCardsForNavigation(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
-): Promise<boolean> {
+): void {
   stagedCommunityPackMarketCards = null;
   stagedNavigationPackId = packId;
-  const cards = await fetchCommunityPackCards(packId, studyTarget);
-  if (cards.length === 0) {
-    stagedNavigationPackId = null;
-    return false;
-  }
-  stagedCommunityPackMarketCards = cards;
-  return true;
+  void fetchCommunityPackCards(packId, studyTarget)
+    .then((cards) => {
+      // Гонка: пока грузили, пользователь мог уйти в другой набор —
+      // поздний ответ не должен подменять актуальный staging.
+      if (stagedNavigationPackId !== packId) return;
+      if (cards.length > 0) stagedCommunityPackMarketCards = cards;
+    })
+    .catch(() => {});
 }
 
 export function consumeStagedCommunityPackMarketCards(): CardItem[] | null {

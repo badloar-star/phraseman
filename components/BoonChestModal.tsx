@@ -14,10 +14,15 @@ import { Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, Vie
 import type { ImageSourcePropType } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
+import { useLang } from './LangContext';
+import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
+import { RewardModalLiquidGlass } from './RewardModalBackdrop';
+import { soundDirector } from '../modules/audio/sound_director';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const STAGE_SIZE = 150;
 /** Подстраховка: даже если spring не доиграет колбэк — раскрытие произойдёт. */
 const OPEN_SAFETY_MS = 520;
@@ -61,7 +66,8 @@ export default function BoonChestModal({
   onClaim,
   onClose,
 }: BoonChestModalProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
+  const { lang } = useLang();
   const [phase, setPhase] = useState<Phase>('box');
 
   const modalEntrance = useRef(new Animated.Value(0)).current;
@@ -72,6 +78,10 @@ export default function BoonChestModal({
   const lidLift = useRef(new Animated.Value(0)).current;
   const fadeReveal = useRef(new Animated.Value(0)).current;
   const orbRise = useRef(new Animated.Value(0)).current;
+  // зачем: пульсация награды живёт на ОТДЕЛЬНОМ значении от влёта (orbRise).
+  // Раньше цикл гонял сам orbRise 1↔1.12, из-за чего иконка бесконечно
+  // «выезжала» — выглядело как зацикленная анимация появления.
+  const orbPulse = useRef(new Animated.Value(0)).current;
   const idleLoop = useRef<Animated.CompositeAnimation | null>(null);
   const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
 
@@ -91,6 +101,7 @@ export default function BoonChestModal({
     lidLift.setValue(0);
     fadeReveal.setValue(0);
     orbRise.setValue(0);
+    orbPulse.setValue(0);
 
     Animated.spring(modalEntrance, { toValue: 1, useNativeDriver: true, tension: 115, friction: 12 }).start();
 
@@ -114,11 +125,15 @@ export default function BoonChestModal({
       idleLoop.current?.stop();
       orbHoverLoop.current?.stop();
     };
-  }, [visible, modalEntrance, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, fadeReveal, orbRise]);
+  }, [visible, modalEntrance, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, fadeReveal, orbRise, orbPulse]);
 
   const handleTap = () => {
     if (phase !== 'box') return;
     hapticTap();
+    soundDirector.request('pm.reward.chest_open', {
+      scope: 'boon-chest',
+      dedupeKey: title,
+    });
     setPhase('opening');
     idleLoop.current?.stop();
     floatAnim.setValue(0);
@@ -135,15 +150,18 @@ export default function BoonChestModal({
       setPhase('reveal');
       fadeReveal.setValue(0);
       orbRise.setValue(0);
+      orbPulse.setValue(0);
       Animated.parallel([
         Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
         Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
       ]).start(() => {
+        // зачем: после влёта — ТОЛЬКО пульсация масштаба на месте.
+        // Никакого вертикального хода, иначе цикл читается как повтор появления.
         orbHoverLoop.current?.stop();
         orbHoverLoop.current = Animated.loop(
           Animated.sequence([
-            Animated.timing(orbRise, { toValue: 1.12, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-            Animated.timing(orbRise, { toValue: 1, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
           ]),
         );
         orbHoverLoop.current.start();
@@ -171,16 +189,23 @@ export default function BoonChestModal({
   };
 
   const requestClose = () => {
-    // Закрыл, НЕ открыв сундук — не дисмиссим молча, а открываем тут же:
-    // момент «вот твоя награда» не должен потеряться.
+    // Крестик/«Позже» в фазе сундука — честное «отложить», БЕЗ открытия.
+    // Награда не теряется: PerfectWeek уже начислил приз до показа, а
+    // MysteryMonday/Comeback покажут сундук снова при следующем запуске,
+    // пока награда не забрана.
     if (phase === 'box') {
-      handleTap();
+      onClose();
       return;
     }
     if (phase === 'opening') return; // идёт анимация — дождёмся reveal
     onClaim(); // страховка-идемпотент (claim не должен пропасть)
     onClose();
   };
+
+  const laterLabel = triLang(lang, {
+    ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde',
+    vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później',
+  });
 
   if (!visible) return null;
 
@@ -191,8 +216,11 @@ export default function BoonChestModal({
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
-  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [16, 0, -7] });
-  const orbScale = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [0.2, 1, 1] });
+  // Влёт: снизу вверх, 0.2 → 1. Дальше значение не меняется — иконка стоит на месте.
+  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1], outputRange: [16, 0] });
+  const orbEnterScale = orbRise.interpolate({ inputRange: [0, 1], outputRange: [0.2, 1] });
+  // Пульсация: только масштаб, отдельным значением поверх влёта.
+  const orbPulseScale = orbPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
 
   const solidPanel = (t as { bgCard?: string; bgPrimary?: string }).bgCard
     ?? (t as { bgPrimary?: string }).bgPrimary ?? '#15181a';
@@ -221,6 +249,7 @@ export default function BoonChestModal({
             style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
           />
           <View pointerEvents="none" style={[styles.topGlow, { backgroundColor: palette.accentSoft }]} />
+          <RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />
 
           {phase === 'box' && (
             <TouchableOpacity
@@ -238,31 +267,44 @@ export default function BoonChestModal({
           <Text style={[styles.title, { color: accent }]}>{title}</Text>
 
           {phase !== 'reveal' ? (
-            <TouchableOpacity
-              testID="boon-chest-box-open"
-              activeOpacity={0.85}
-              onPress={handleTap}
-              disabled={phase === 'opening'}
-              style={{ alignItems: 'center' }}
-            >
-              <GiftBox3D
-                palette={palette}
-                size={STAGE_SIZE}
-                idle={phase === 'box'}
-                opening={phase === 'opening'}
-                floatY={floatAnim}
-                rock={rock}
-                scale={scaleAnim}
-                shakeX={shakeAnim}
-                lidLift={lidLift}
-              />
-              {phase === 'box' && <Text style={[styles.tapHint, { color: textMuted }]}>{tapHint}</Text>}
-            </TouchableOpacity>
+            <>
+              <TouchableOpacity
+                testID="boon-chest-box-open"
+                activeOpacity={0.85}
+                onPress={handleTap}
+                disabled={phase === 'opening'}
+                style={{ alignItems: 'center' }}
+              >
+                <GiftBox3D
+                  palette={palette}
+                  size={STAGE_SIZE}
+                  idle={phase === 'box'}
+                  opening={phase === 'opening'}
+                  floatY={floatAnim}
+                  rock={rock}
+                  scale={scaleAnim}
+                  shakeX={shakeAnim}
+                  lidLift={lidLift}
+                />
+                {phase === 'box' && <Text style={[styles.tapHint, { color: textMuted }]}>{tapHint}</Text>}
+              </TouchableOpacity>
+              {phase === 'box' && (
+                <TouchableOpacity
+                  testID="boon-chest-later"
+                  accessibilityRole="button"
+                  activeOpacity={0.7}
+                  onPress={requestClose}
+                  style={styles.laterBtn}
+                >
+                  <Text style={[styles.laterText, { color: textMuted }]}>{laterLabel}</Text>
+                </TouchableOpacity>
+              )}
+            </>
           ) : (
             <Animated.View style={{ opacity: fadeReveal, alignItems: 'center', transform: [{ translateY: revealY }] }}>
               <View style={styles.orbStage}>
                 <GiftOpenBurst key={`${rarity}-burst`} tier={animTierF2p(rarity)} size={STAGE_SIZE} />
-                <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbScale }], zIndex: 2 }}>
+                <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
                   <Image source={rewardIcon} resizeMode="contain" style={styles.orbIcon} />
                 </Animated.View>
               </View>
@@ -286,6 +328,11 @@ export default function BoonChestModal({
                 <View pointerEvents="none" style={styles.claimBtnGloss} />
                 <Text style={[styles.claimBtnText, { color: palette.buttonInk }]}>{claimCta}</Text>
               </TouchableOpacity>
+              {/* зачем: «Позже» в фазе reveal вела на тот же requestClose, что и
+                  «Продолжить» — награда уже начислена, откладывать нечего. Две
+                  кнопки с одинаковым исходом только заставляли выбирать впустую.
+                  В фазе закрытого сундука «Позже» остаётся: там это честное
+                  «не открывать сейчас». */}
             </Animated.View>
           )}
         </Animated.View>
@@ -310,11 +357,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 22,
     alignItems: 'center',
     overflow: 'hidden',
-    borderWidth: 1,
+    borderWidth: 0,
     shadowOpacity: 0.42,
     shadowRadius: 34,
     shadowOffset: { width: 0, height: 0 },
-    elevation: 24,
+    ...noAndroidOutline,
   },
   topGlow: { position: 'absolute', top: 0, left: 0, right: 0, height: 80 },
   closeX: {
@@ -328,7 +375,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(3,5,10,0.42)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,255,255,0.18)',
   },
   closeXText: { color: '#CFC8EE', fontSize: 22, lineHeight: 26, fontWeight: '800' },
@@ -366,4 +413,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.22)',
   },
   claimBtnText: { fontSize: 16, fontWeight: '900' },
+  laterBtn: {
+    alignSelf: 'stretch',
+    marginTop: 12,
+    paddingVertical: 8,
+    alignItems: 'center',
+  },
+  laterText: { fontSize: 14, fontWeight: '700' },
 });

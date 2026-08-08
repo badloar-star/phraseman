@@ -2,7 +2,7 @@
 // Каталог — единственный источник правды лаборатории: все 17 семей из контракта
 // V2_ACTIVITY_FAMILIES, русские самодостаточные названия (без подписей-расшифровок),
 // группа для тона и примитив взаимодействия для плеера. Полнота закреплена тестом.
-import type { Ionicons } from '@expo/vector-icons';
+import type Ionicons from '@expo/vector-icons/Ionicons';
 import { V2_ACTIVITY_FAMILIES, type V2ActivityFamily } from '../../modules/learning-v2/contracts/activity';
 
 export type LabInteraction = 'choice' | 'assemble' | 'speak' | 'listen';
@@ -46,7 +46,6 @@ export const LAB_MODE_CATALOG: readonly LabModeEntry[] = Object.freeze([
   { family: 'speed_match', title: 'Скоростное совпадение', group: 'build', interaction: 'choice', icon: 'flash-outline' },
   { family: 'quick_spoken_response', title: 'Быстрый ответ вслух', group: 'transfer', interaction: 'speak', icon: 'chatbubble-ellipses-outline' },
   { family: 'scripted_dialogue', title: 'Диалог по сценарию', group: 'transfer', interaction: 'speak', icon: 'people-outline' },
-  { family: 'speaking_club_mission', title: 'Миссия разговорного клуба', group: 'transfer', interaction: 'speak', icon: 'rocket-outline' },
   { family: 'personalized_review', title: 'Личное повторение', group: 'transfer', interaction: 'choice', icon: 'refresh-circle-outline' },
   { family: 'describe_scene', title: 'Опиши сцену', group: 'transfer', interaction: 'speak', icon: 'image-outline', removedByOwner: true },
 ]);

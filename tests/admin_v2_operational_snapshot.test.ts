@@ -157,15 +157,15 @@ describe('Admin v2 operational snapshot truth model', () => {
     });
   });
 
-  test('wires Overview and Diagnostics to the stored read-only briefing without generation', () => {
+  test('wires Overview and Diagnostics to the stored read-only briefing without generation or duplicate refresh controls', () => {
     expect(core).toContain("import { buildOperationalSnapshot");
-    expect(core).toContain('function maybeLoadOperationalBriefing()');
+    expect(core).toContain('function refreshCurrentRouteReadModels()');
     expect(core).toContain('loadDailyBriefing(false)');
     expect(core).toContain('renderOverviewOperationalState');
     expect(core).toContain('renderDiagnosticsSourceHealth');
     expect(core).toContain('latestEventAtMs');
     expect(core).toContain('role="alert"');
-    expect(core).toContain('data-action="load-daily-briefing"');
+    expect(core).toContain('Снимок обновляется автоматически при открытии.');
     expect(core).toContain('Новые подачи паков · 24 ч');
     expect(core).toContain('Открытые репорты и события очередей · 24 ч');
     expect(core).toContain("value == null");
@@ -175,7 +175,7 @@ describe('Admin v2 operational snapshot truth model', () => {
     expect(core).not.toContain("['Критические сигналы', 'Контент на проверке', 'Открытые обращения', 'Последнее изменение']");
     expect(core).not.toContain("['API', 'Ошибки', 'Неудачные задания', 'Операции отката']");
 
-    const autoLoadBlock = core.slice(core.indexOf('function maybeLoadOperationalBriefing()'), core.indexOf('function applySupportListResult'));
+    const autoLoadBlock = core.slice(core.indexOf('function refreshCurrentRouteReadModels()'), core.indexOf('function agentOfficeRefreshKey'));
     expect(autoLoadBlock).not.toContain('generateDailyBriefing');
   });
 });

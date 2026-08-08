@@ -33,7 +33,7 @@ export interface StatsInsightsBriefing {
   rhythm: { active7: number; xp7: number; minutes7: number; bestDay: string };
   year: { activeDays: number; currentStreak: number; longestStreak: number; bestMonth: string; goalPct: number };
   percentiles: { totalXp: number | null; week: number | null; daily7: number | null };
-  lifetime: { words: number; phrases: number; quizzes: number; arenaWins: number; daysActive: number };
+  lifetime: { words: number; phrases: number; daysActive: number };
   weakCategories: Array<{ label: string; pct: number }>;
 }
 
@@ -258,14 +258,14 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
         )
       : localText(
           briefing.lang,
-          `Всего закреплено ${totalItems} слов/фраз и ${briefing.lifetime.quizzes} квизов. Продолжай маленькими повторениями.`,
-          `Усього закріплено ${totalItems} слів/фраз і ${briefing.lifetime.quizzes} квізів. Продовжуй малими повтореннями.`,
-          `Tienes ${totalItems} palabras/frases y ${briefing.lifetime.quizzes} quizzes. Sigue con repasos pequeños.`,
-          `Você trabalhou ${totalItems} palavras/frases e ${briefing.lifetime.quizzes} quizzes. Continue com pequenas revisões.`,
-          `Bạn đã ôn ${totalItems} từ/cụm từ và ${briefing.lifetime.quizzes} bài quiz. Hãy tiếp tục với các lượt ôn nhỏ.`,
-          `Kamu sudah melatih ${totalItems} kata/frasa dan ${briefing.lifetime.quizzes} kuis. Lanjutkan dengan pengulangan kecil.`,
-          `Toplam ${totalItems} kelime/ifade ve ${briefing.lifetime.quizzes} quiz pekişti. Küçük tekrarlarla devam et.`,
-          `Łącznie utrwalono ${totalItems} słów/fraz i ${briefing.lifetime.quizzes} quizów. Kontynuuj małymi powtórkami.`,
+          `Всего закреплено ${totalItems} слов/фраз. Продолжай маленькими повторениями.`,
+          `Усього закріплено ${totalItems} слів/фраз. Продовжуй малими повтореннями.`,
+          `Tienes ${totalItems} palabras/frases trabajadas. Sigue con repasos pequeños.`,
+          `Você trabalhou ${totalItems} palavras/frases. Continue com pequenas revisões.`,
+          `Bạn đã ôn ${totalItems} từ/cụm từ. Hãy tiếp tục với các lượt ôn nhỏ.`,
+          `Kamu sudah melatih ${totalItems} kata/frasa. Lanjutkan dengan pengulangan kecil.`,
+          `Toplam ${totalItems} kelime/ifade pekişti. Küçük tekrarlarla devam et.`,
+          `Łącznie utrwalono ${totalItems} słów/fraz. Kontynuuj małymi powtórkami.`,
         ),
   };
 }

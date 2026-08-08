@@ -1,6 +1,6 @@
 // Score bands + the "what exactly drags the score down" hint for the speaking
 // ("Устно") mode. Turns the raw 0–100 score into a human verdict (Отлично /
-// Хорошо / Почти / Пока нечётко) and picks ONE concrete, actionable hint per
+// score band) and picks ONE concrete, actionable hint per
 // attempt — the most damaging issue first, so the learner is never left with
 // just a percentage.
 //

@@ -49,7 +49,6 @@ const INSTRUCTIONS: Partial<Record<V2ActivityFamily, string>> = {
   speed_match: 'Успей выбрать перевод до конца таймера',
   quick_spoken_response: 'Ответь вслух одной фразой',
   scripted_dialogue: 'Произнеси свою реплику диалога',
-  speaking_club_mission: 'Выполни мини-миссию вслух',
   personalized_review: 'Выбери верный вариант из своей истории',
   describe_scene: 'Режим снят с направления владельцем',
 };

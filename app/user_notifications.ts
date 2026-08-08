@@ -10,9 +10,12 @@ import { getCanonicalUserId } from './user_id_policy';
  * (functions/src/user_notifications.ts), клиент читает/помечает/удаляет.
  */
 
-const CACHE_KEY = 'user_notifications_cache_v1';
-const LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1';
+const LEGACY_CACHE_KEY = 'user_notifications_cache_v1';
+const LEGACY_LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1';
+const CACHE_KEY_PREFIX = 'user_notifications_cache_v2:';
+const LAST_REFRESH_KEY_PREFIX = 'user_notifications_last_refresh_ms_v2:';
 const MAX_NOTIFICATIONS = 50;
+const MAX_MEMORY_OWNERS = 2;
 
 export type UserNotificationType =
   | 'friend_request'
@@ -20,26 +23,7 @@ export type UserNotificationType =
   | 'activity_like'
   | 'friend_gift_received'
   | 'friend_gift_thanks'
-  | 'help_board_comment'
-  | 'help_board_reply'
-  | 'help_board_like'
-  | 'league_chat_reply'
   | 'report_reply';
-
-export interface UserNotificationNavHelpBoard {
-  kind: 'help_board';
-  topicId: string;
-  commentId?: string;
-  boardKey?: string;
-}
-
-export interface UserNotificationNavLeagueChat {
-  kind: 'league_chat';
-  groupId: string;
-  weekId: string;
-  leagueId: number;
-  messageId: string;
-}
 
 export interface UserNotificationNavFriends {
   kind: 'friends';
@@ -51,8 +35,6 @@ export interface UserNotificationNavReportReply {
 }
 
 export type UserNotificationNav =
-  | UserNotificationNavHelpBoard
-  | UserNotificationNavLeagueChat
   | UserNotificationNavFriends
   | UserNotificationNavReportReply;
 
@@ -60,7 +42,7 @@ export interface UserNotificationReportReply {
   messageId: string;
   title: string;
   body: string;
-  shards: number;
+  coins: number;
   claimed: boolean;
   claimedAtMs: number | null;
 }
@@ -76,6 +58,10 @@ export interface UserNotification {
   reportReply?: UserNotificationReportReply | null;
   read: boolean;
   createdAt: number;
+}
+
+export function isUserNotificationVisible(row: UserNotification): boolean {
+  return Boolean(row);
 }
 
 const getFirestore = () => {
@@ -103,13 +89,13 @@ function normalizeReportReply(value: unknown): UserNotificationReportReply | nul
   const row = value as Record<string, unknown>;
   const messageId = cleanText(row.messageId, 128);
   if (!messageId) return null;
-  const shards = Math.max(0, Math.floor(Number(row.shards ?? 0) || 0));
+  const coins = Math.max(0, Math.min(1, Math.floor(Number(row.coins ?? row.shards ?? 0) || 0)));
   const claimedAtMsRaw = Math.floor(Number(row.claimedAtMs ?? 0) || 0);
   return {
     messageId,
     title: cleanText(row.title, 120),
     body: cleanText(row.body, 1200),
-    shards,
+    coins,
     claimed: row.claimed === true,
     claimedAtMs: claimedAtMsRaw > 0 ? claimedAtMsRaw : null,
   };
@@ -131,48 +117,76 @@ function normalizeNotification(id: string, data: Record<string, unknown>): UserN
   };
 }
 
-let cachedMemory: UserNotification[] | null = null;
+const cachedMemoryByOwner = new Map<string, UserNotification[]>();
+const refreshInFlightByOwner = new Map<string, Promise<UserNotification[]>>();
+let legacyCacheCleanupStarted = false;
+
+function ownerStorageKey(prefix: string, ownerUid: string): string {
+  return `${prefix}${encodeURIComponent(ownerUid)}`;
+}
+
+function rememberOwnerCache(ownerUid: string, list: UserNotification[]): void {
+  cachedMemoryByOwner.delete(ownerUid);
+  cachedMemoryByOwner.set(ownerUid, list);
+  while (cachedMemoryByOwner.size > MAX_MEMORY_OWNERS) {
+    const oldestOwnerUid = cachedMemoryByOwner.keys().next().value;
+    if (typeof oldestOwnerUid !== 'string') break;
+    cachedMemoryByOwner.delete(oldestOwnerUid);
+  }
+}
+
+function cleanupUnownedLegacyCache(): void {
+  if (legacyCacheCleanupStarted) return;
+  legacyCacheCleanupStarted = true;
+  void AsyncStorage.multiRemove([LEGACY_CACHE_KEY, LEGACY_LAST_REFRESH_KEY]).catch(() => {});
+}
 
 /** Мгновенный первый кадр: последний известный снапшот без похода в сеть. */
-export function peekCachedUserNotifications(): UserNotification[] {
-  return cachedMemory ?? [];
+export function peekCachedUserNotifications(ownerUid?: string | null): UserNotification[] {
+  const safeOwnerUid = String(ownerUid || '').trim();
+  return safeOwnerUid ? (cachedMemoryByOwner.get(safeOwnerUid) ?? []) : [];
 }
 
 export async function readCachedUserNotifications(): Promise<UserNotification[]> {
-  if (cachedMemory) return cachedMemory;
+  cleanupUnownedLegacyCache();
+  const ownerUid = await getNotificationOwnerUid();
+  if (!ownerUid) return [];
+  const memory = cachedMemoryByOwner.get(ownerUid);
+  if (memory) return memory;
   try {
-    const raw = await AsyncStorage.getItem(CACHE_KEY);
+    const raw = await AsyncStorage.getItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid));
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    cachedMemory = parsed.filter((row) => row && typeof row === 'object' && typeof row.id === 'string');
-    return cachedMemory ?? [];
+    const currentOwnerUid = await getNotificationOwnerUid();
+    if (currentOwnerUid !== ownerUid) return [];
+    const list = parsed.filter((row) => row && typeof row === 'object' && typeof row.id === 'string');
+    rememberOwnerCache(ownerUid, list);
+    return list;
   } catch {
     return [];
   }
 }
 
-async function getNotificationsQuery(): Promise<any | null> {
+function getNotificationsQuery(ownerUid: string): any | null {
   const db = getFirestore();
   if (!db) return null;
-  const stableUid = await getNotificationOwnerUid();
-  if (!stableUid) return null;
   return db
     .collection('users')
-    .doc(stableUid)
+    .doc(ownerUid)
     .collection('notifications')
     .orderBy('createdAt', 'desc')
     .limit(MAX_NOTIFICATIONS);
 }
 
-function writeCache(list: UserNotification[]): void {
-  cachedMemory = list;
-  AsyncStorage.setItem(CACHE_KEY, JSON.stringify(list)).catch(() => {});
+function writeCache(ownerUid: string, list: UserNotification[]): void {
+  rememberOwnerCache(ownerUid, list);
+  AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(list)).catch(() => {});
 }
 
-async function readLastRefreshMs(): Promise<number> {
+async function readLastRefreshMs(ownerUid: string): Promise<number> {
   try {
-    const raw = await AsyncStorage.getItem(LAST_REFRESH_KEY);
+    const raw = await AsyncStorage.getItem(ownerStorageKey(LAST_REFRESH_KEY_PREFIX, ownerUid));
     const n = Math.floor(Number(raw || 0));
     return Number.isFinite(n) && n > 0 ? n : 0;
   } catch {
@@ -180,8 +194,11 @@ async function readLastRefreshMs(): Promise<number> {
   }
 }
 
-async function writeLastRefreshMs(ms: number): Promise<void> {
-  await AsyncStorage.setItem(LAST_REFRESH_KEY, String(Math.max(0, Math.floor(ms)))).catch(() => {});
+async function writeLastRefreshMs(ownerUid: string, ms: number): Promise<void> {
+  await AsyncStorage.setItem(
+    ownerStorageKey(LAST_REFRESH_KEY_PREFIX, ownerUid),
+    String(Math.max(0, Math.floor(ms))),
+  ).catch(() => {});
 }
 
 export function countUnreadNotifications(list: UserNotification[]): number {
@@ -192,57 +209,46 @@ export async function refreshUserNotificationsOnce(options: {
   force?: boolean;
   minIntervalMs?: number;
 } = {}): Promise<UserNotification[]> {
-  const now = Date.now();
-  const minIntervalMs = Math.max(0, Math.floor(Number(options.minIntervalMs ?? 0)) || 0);
-  if (!options.force && minIntervalMs > 0) {
-    const lastRefreshMs = await readLastRefreshMs();
-    if (lastRefreshMs > 0 && now - lastRefreshMs < minIntervalMs) {
-      return readCachedUserNotifications();
+  cleanupUnownedLegacyCache();
+  const ownerUid = await getNotificationOwnerUid();
+  if (!ownerUid) return [];
+  const existingRefresh = refreshInFlightByOwner.get(ownerUid);
+  if (existingRefresh) return existingRefresh;
+
+  const refresh = (async (): Promise<UserNotification[]> => {
+    const now = Date.now();
+    const minIntervalMs = Math.max(0, Math.floor(Number(options.minIntervalMs ?? 0)) || 0);
+    if (!options.force && minIntervalMs > 0) {
+      const lastRefreshMs = await readLastRefreshMs(ownerUid);
+      if (lastRefreshMs > 0 && now - lastRefreshMs < minIntervalMs) {
+        const currentOwnerUid = await getNotificationOwnerUid();
+        return currentOwnerUid === ownerUid ? (cachedMemoryByOwner.get(ownerUid) ?? readCachedUserNotifications()) : [];
+      }
+    }
+
+    const query = getNotificationsQuery(ownerUid);
+    if (!query) return readCachedUserNotifications();
+    try {
+      const snap = await query.get();
+      const currentOwnerUid = await getNotificationOwnerUid();
+      if (currentOwnerUid !== ownerUid) return [];
+      const list = (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {}));
+      writeCache(ownerUid, list);
+      await writeLastRefreshMs(ownerUid, now);
+      return list;
+    } catch {
+      const currentOwnerUid = await getNotificationOwnerUid();
+      return currentOwnerUid === ownerUid ? readCachedUserNotifications() : [];
+    }
+  })();
+  refreshInFlightByOwner.set(ownerUid, refresh);
+  try {
+    return await refresh;
+  } finally {
+    if (refreshInFlightByOwner.get(ownerUid) === refresh) {
+      refreshInFlightByOwner.delete(ownerUid);
     }
   }
-
-  const query = await getNotificationsQuery();
-  if (!query) return readCachedUserNotifications();
-  try {
-    const snap = await query.get();
-    const list = (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {}));
-    writeCache(list);
-    await writeLastRefreshMs(now);
-    return list;
-  } catch {
-    return readCachedUserNotifications();
-  }
-}
-
-/**
- * Realtime-подписка на центр событий. Возвращает unsubscribe.
- * Первый колбэк может прийти из кеша (offline-friendly), затем — live.
- */
-export function subscribeUserNotifications(
-  onChange: (list: UserNotification[]) => void,
-): () => void {
-  let disposed = false;
-  let unsubscribeSnapshot: (() => void) | null = null;
-
-  void (async () => {
-    const query = await getNotificationsQuery();
-    if (disposed) return;
-    if (!query) return;
-    unsubscribeSnapshot = query.onSnapshot(
-      (snap: any) => {
-        if (disposed || !snap) return;
-        const list = (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {}));
-        writeCache(list);
-        onChange(list);
-      },
-      () => {},
-    );
-  })();
-
-  return () => {
-    disposed = true;
-    if (unsubscribeSnapshot) unsubscribeSnapshot();
-  };
 }
 
 /** Пометить события прочитанными (батчем; правила пускают только read/readAt/updatedAt). */

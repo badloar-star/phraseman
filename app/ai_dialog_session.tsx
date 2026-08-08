@@ -13,7 +13,7 @@ import {
   Platform,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
@@ -27,6 +27,7 @@ import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from './audio_playback_mode';
 import { setManagedAudioMode } from './audio_session_coordinator';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import {
   dialogScenarioNextStepHint,
   dialogScenarioTitle,
@@ -55,6 +56,7 @@ import {
   callPremiumDialogSend,
   callPremiumDialogTranslate,
   callPremiumDialogReview,
+  warmPremiumDialog,
   classifyPremiumDialogError,
   getPremiumDialogErrorMessage,
   type DialogChatTurn,
@@ -68,10 +70,6 @@ import {
   shouldShowTranslateButton,
   translateRemaining as computeTranslateRemaining,
 } from './dialog_translate_limit';
-import {
-  hasFreeDialogLeft,
-  markFreeDialogUsed,
-} from './dialogs_limit_session';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -89,7 +87,10 @@ import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
+import { useTurnReadyCue } from '../hooks/use-turn-ready-cue';
+import AiDialogConsentGate from './ai_dialog_consent_gate';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const RECOMMENDED_EXCHANGES = 8;
 // 'unavailable' — устройство/движок реально не умеет распознавание (жёсткий отказ).
 // 'error' — транзиентный сбой (движок дал error/nomatch без текста, start() кинул):
@@ -187,11 +188,11 @@ function dialogRetryLabel(lang: Lang): string {
   });
 }
 
-export default function AiDialogSession() {
+function AiDialogSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
   // Доступ к фиче «ИИ-диалоги» с учётом «Пульта»: true → пейвол не показываем
   // (фича переведена в «Фри»). Серверный isPremium ниже остаётся СЫРЫМ premium —
   // «Фри» снимает замок, но НЕ выдаёт премиум-квоту реплик.
@@ -199,7 +200,13 @@ export default function AiDialogSession() {
   const router = useRouter();
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  // зачем: экран диалога не размонтируется при сворачивании приложения, поэтому нужен явный
+  // сигнал «ушли в фон» — иначе распознавание речи продолжает слушать микрофон (см. эффект ниже).
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
+  const { playTurnReady } = useTurnReadyCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
@@ -213,6 +220,24 @@ export default function AiDialogSession() {
     },
     [params.scenarioId, params.lessonId],
   );
+
+  useEffect(() => {
+    if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
+    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
+    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+  }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
+
+  // зачем: будим Cloud Run при входе в диалог. У premiumDialogSend
+  // minInstances: 0 (владелец не платит за тёплый инстанс), поэтому первая
+  // отправка ждала бы холодного старта 2–5 сек — а собеседник, который «думает»
+  // пять секунд перед первой репликой, ощущается сломанным. Пока пользователь
+  // читает приветствие и печатает, инстанс успевает подняться.
+  // Греем ТОЛЬКО после подтверждения доступа: у кого диалог закрыт пейволом,
+  // тот его не откроет, и прогрев был бы вызовом впустую.
+  useEffect(() => {
+    if (!accessResolved || !dialogAccess) return;
+    warmPremiumDialog();
+  }, [accessResolved, dialogAccess]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
@@ -252,6 +277,7 @@ export default function AiDialogSession() {
   // Invalidates an in-flight permission/model/start sequence when the finger is
   // released or the conversation mode is turned off.
   const voiceInputGenerationRef = useRef(0);
+  const voiceInputSessionRef = useRef(0);
   const holdPressActiveRef = useRef(false);
   useEffect(() => {
     conversationModeRef.current = conversationMode;
@@ -262,7 +288,7 @@ export default function AiDialogSession() {
   const sendVoiceTextRef = useRef<(text: string) => void>(() => undefined);
   const conversationReleasePendingRef = useRef(false);
   const conversationSendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const finalizeConversationSendRef = useRef<() => void>(() => undefined);
+  const finalizeConversationSendRef = useRef<(session: number) => void>(() => undefined);
   // Идёт озвучка ответа ИИ (для подсказки «Отвечает…» под полем ввода).
   const [aiSpeaking, setAiSpeaking] = useState(false);
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
@@ -338,6 +364,7 @@ export default function AiDialogSession() {
         return;
       }
       if (action === 'noop') return;
+      if (!accessResolved) return;
       // action === 'fetch': новая реплика, нужен серверный вызов.
 
       const clean = stripMarkers(rawText);
@@ -375,7 +402,7 @@ export default function AiDialogSession() {
         setTranslatingIdx(null);
       }
     },
-    [flipped, translations, translatingIdx, translateUsed, lang, scenario.id],
+    [accessResolved, flipped, translations, translatingIdx, translateUsed, lang, scenario.id, studyTarget],
   );
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
@@ -386,8 +413,13 @@ export default function AiDialogSession() {
   }, []);
 
   const startVoiceInput = useCallback(async () => {
+    if (!runtimeActiveRef.current) return;
     if (sending || ended || voiceInputStatus === 'requesting') return;
+    if (!accessResolved) return;
     const generation = ++voiceInputGenerationRef.current;
+    const session = ++voiceInputSessionRef.current;
+    const isCurrentSession = () =>
+      voiceInputMountedRef.current && runtimeActiveRef.current && session === voiceInputSessionRef.current;
     hapticTap();
     // Глушим играющий ответ-TTS перед стартом микрофона: иначе он течёт в
     // распознаватель и портит транскрипт (образец: SpeakingPanel stopListening).
@@ -411,7 +443,7 @@ export default function AiDialogSession() {
 
     setVoiceInputStatus('requesting');
     const permission = await requestSpeechPermissionForHold(speechModule);
-    if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
     if (permission === 'denied') {
       setVoiceInputStatus('denied');
       return;
@@ -426,6 +458,7 @@ export default function AiDialogSession() {
     const acc = new TranscriptAccumulator();
     let latest = '';
     const applyTranscript = (value: string) => {
+      if (!isCurrentSession()) return;
       const next = value.trim();
       if (!next) return;
       latest = next;
@@ -444,6 +477,7 @@ export default function AiDialogSession() {
     // не эмитится и сразу приходит result — поэтому один раз по любому из них.
     let cuePlayed = false;
     const playCueOnce = () => {
+      if (!isCurrentSession()) return;
       if (cuePlayed) return;
       cuePlayed = true;
       playRecordStart();
@@ -451,6 +485,7 @@ export default function AiDialogSession() {
     // Любой признак жизни движка снимает watchdog: на редких OEM 'start' не
     // эмитится, а сразу приходит result — снимаем и там, и там.
     const startSub = speechModule.addListener('start', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (!holdPressActiveRef.current) {
         try {
@@ -464,6 +499,7 @@ export default function AiDialogSession() {
       playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: any) => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (holdPressActiveRef.current) {
         setVoiceInputStatus('listening');
@@ -487,9 +523,10 @@ export default function AiDialogSession() {
       }
     });
     const endSub = speechModule.addListener('end', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (conversationReleasePendingRef.current) {
-        finalizeConversationSendRef.current();
+        finalizeConversationSendRef.current(session);
         return;
       }
       restoreLoudPlaybackMode();
@@ -497,9 +534,10 @@ export default function AiDialogSession() {
       if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
     });
     const errorSub = speechModule.addListener('error', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (conversationReleasePendingRef.current && latestTranscriptRef.current.trim()) {
-        finalizeConversationSendRef.current();
+        finalizeConversationSendRef.current(session);
         return;
       }
       restoreLoudPlaybackMode();
@@ -508,6 +546,7 @@ export default function AiDialogSession() {
       if (voiceInputMountedRef.current) setVoiceInputStatus(latest ? 'idle' : 'error');
     });
     const noMatchSub = speechModule.addListener('nomatch', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
@@ -523,7 +562,7 @@ export default function AiDialogSession() {
     } catch {
       onDevice = false;
     }
-    if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
 
     try {
       try {
@@ -531,7 +570,7 @@ export default function AiDialogSession() {
       } catch {
         // expo-speech-recognition may own the native session on some devices.
       }
-      if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+      if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
       if (!holdPressActiveRef.current) {
         cleanupVoiceInputListeners();
         restoreLoudPlaybackMode();
@@ -543,6 +582,7 @@ export default function AiDialogSession() {
       clearRecognizerWatchdog();
       recognizerWatchdogRef.current = setTimeout(() => {
         recognizerWatchdogRef.current = null;
+        if (!isCurrentSession()) return;
         try {
           speechModule.abort();
         } catch {
@@ -578,9 +618,10 @@ export default function AiDialogSession() {
       cleanupVoiceInputListeners();
       restoreLoudPlaybackMode();
       // start() кинул — почти всегда транзиентно (сервис занят/умер); даём «Повторить».
-      if (voiceInputMountedRef.current) setVoiceInputStatus('error');
+      if (isCurrentSession()) setVoiceInputStatus('error');
     }
   }, [
+    accessResolved,
     cleanupVoiceInputListeners,
     clearRecognizerWatchdog,
     ended,
@@ -601,6 +642,9 @@ export default function AiDialogSession() {
     voiceInputMountedRef.current = true;
     return () => {
       voiceInputMountedRef.current = false;
+      voiceInputGenerationRef.current += 1;
+      voiceInputSessionRef.current += 1;
+      holdPressActiveRef.current = false;
       conversationReleasePendingRef.current = false;
       if (conversationSendTimerRef.current != null) {
         clearTimeout(conversationSendTimerRef.current);
@@ -616,6 +660,38 @@ export default function AiDialogSession() {
       restoreLoudPlaybackMode();
     };
   }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
+
+  // зачем: сворачивание приложения НЕ размонтирует экран, поэтому cleanup выше не срабатывает
+  // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
+  // Обрываем жёстко (abort), снимаем отложенную отправку реплики и возвращаем режим
+  // воспроизведения. Возобновление — только по явному действию пользователя.
+  // Speech capture lifecycle invariant: blur/background invalidates pending starts,
+  // aborts live capture, clears deferred delivery, and never auto-resumes on return.
+  useEffect(() => {
+    if (runtimeActive) return;
+    voiceInputGenerationRef.current += 1;
+    voiceInputSessionRef.current += 1;
+    holdPressActiveRef.current = false;
+    conversationReleasePendingRef.current = false;
+    if (conversationSendTimerRef.current != null) {
+      clearTimeout(conversationSendTimerRef.current);
+      conversationSendTimerRef.current = null;
+    }
+    clearRecognizerWatchdog();
+    cleanupVoiceInputListeners();
+    try {
+      speechModule?.abort();
+    } catch {
+      /* no-op */
+    }
+    try {
+      stopSpeaking();
+    } catch {
+      /* no-op */
+    }
+    restoreLoudPlaybackMode();
+    if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, stopSpeaking]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -716,38 +792,36 @@ export default function AiDialogSession() {
       const done = () => {
         if (voiceInputMountedRef.current) setAiSpeaking(false);
       };
+      // зачем: «твой ход» звучит ТОЛЬКО когда собеседник договорил сам (onDone).
+      // onStopped/onError — это обрыв: уход с экрана, выключенная озвучка,
+      // сбой синтеза. Там ход к пользователю не переходит, и звук был бы враньём.
+      const doneSpeaking = () => {
+        done();
+        if (voiceInputMountedRef.current && conversationModeRef.current) playTurnReady();
+      };
       speak(clean, undefined, {
         language: 'en-US',
         voice: '',
-        onDone: done,
+        onDone: doneSpeaking,
         onStopped: done,
         onError: done,
       });
     },
-    [speak],
+    [speak, playTurnReady],
   );
 
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || sending || ended) return;
+      if (!accessResolved) return;
       hapticTap();
 
-      // Является ли этот ход тем самым первым ходом, что тратит единственный
-      // пожизненный бесплатный диалог. Списание — ТОЛЬКО после успешного ответа
-      // (см. ниже), чтобы сбой сети не сжигал бесплатную попытку.
-      let consumesFreeDialog = false;
-
-      // Первый ход не-premium: тратит ЕДИНСТВЕННЫЙ пожизненный бесплатный диалог.
-      // Если он уже потрачен — полный замок (никаких «реплик в день»).
-      if (userExchanges === 0 && !dialogAccess) {
-        if (!(await hasFreeDialogLeft())) {
-          void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id });
-          void trackEvent('paywall_shown', { context: 'dialog_limit' });
-          router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-          return;
-        }
-        consumesFreeDialog = true;
+      if (!dialogAccess) {
+        void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'plus_required' });
+        void trackEvent('paywall_shown', { context: 'dialog_limit' });
+        router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+        return;
       }
 
       const exchangeIndex = userExchanges + 1;
@@ -781,9 +855,6 @@ export default function AiDialogSession() {
         speakAiReply(res.assistantMessage);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyTurnState(res.turnState);
-        // Бесплатный диалог списываем ТОЛЬКО здесь — после успешного ответа ИИ.
-        // Сервер ставит тот же пожизненный флаг; это мгновенный локальный UX-замок.
-        if (consumesFreeDialog) void markFreeDialogUsed();
       } catch (error) {
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
@@ -794,12 +865,13 @@ export default function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router, lang, gameRequestFields, applyTurnState, speakAiReply],
+    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState, speakAiReply],
   );
   sendVoiceTextRef.current = (text: string) => {
     void send(text);
   };
-  finalizeConversationSendRef.current = () => {
+  finalizeConversationSendRef.current = (session: number) => {
+    if (!voiceInputMountedRef.current || !runtimeActiveRef.current || session !== voiceInputSessionRef.current) return;
     if (!conversationReleasePendingRef.current) return;
     conversationReleasePendingRef.current = false;
     if (conversationSendTimerRef.current != null) {
@@ -836,10 +908,12 @@ export default function AiDialogSession() {
   // Отпустил микрофон: сразу гасим красное active-состояние и останавливаем
   // recognizer. В разговорном режиме после финального result ещё авто-отправляем.
   const handleMicPressOut = useCallback(() => {
+    const session = voiceInputSessionRef.current;
     holdPressActiveRef.current = false;
     voiceInputGenerationRef.current += 1;
     clearRecognizerWatchdog();
     if (voiceInputStatusRef.current === 'requesting') {
+      voiceInputSessionRef.current += 1;
       conversationReleasePendingRef.current = false;
       cleanupVoiceInputListeners();
       try {
@@ -863,7 +937,7 @@ export default function AiDialogSession() {
       clearConversationSendTimer();
       conversationSendTimerRef.current = setTimeout(() => {
         conversationSendTimerRef.current = null;
-        finalizeConversationSendRef.current();
+        finalizeConversationSendRef.current(session);
       }, CONVERSATION_SEND_GRACE_MS);
     }
   }, [
@@ -883,16 +957,18 @@ export default function AiDialogSession() {
     if (sending || ended) return;
     const trimmed = lastSentTextRef.current.trim();
     if (!trimmed) return;
+    if (!accessResolved) return;
     hapticTap();
+    if (!dialogAccess) {
+      void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_retry' });
+      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+      return;
+    }
     void trackEvent('ai_dialog_retry', { scenarioId: scenario.id });
 
     // История БЕЗ последней реплики пользователя (она уже в messages, передаём как userText).
     const priorMessages = messages.slice(0, -1);
     const history: DialogChatTurn[] = priorMessages.map((m) => ({ role: m.role, content: m.text }));
-
-    // Списываем бесплатный диалог только при успехе первого хода (как в send).
-    const consumesFreeDialog =
-      !dialogAccess && messages.filter((m) => m.role === 'user').length === 1;
 
     setLastErrorMessage('');
     setLastErrorKind(null);
@@ -916,7 +992,6 @@ export default function AiDialogSession() {
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
       speakAiReply(res.assistantMessage);
       applyTurnState(res.turnState);
-      if (consumesFreeDialog) void markFreeDialogUsed();
     } catch (error) {
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
       setLastErrorKind(classifyPremiumDialogError(error));
@@ -924,7 +999,7 @@ export default function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario, lang, gameRequestFields, applyTurnState, speakAiReply]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState, speakAiReply]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -959,7 +1034,7 @@ export default function AiDialogSession() {
   // Диалог завершён → один раз запрашиваем финальный разбор фраз ученика.
   // Транскрипт шлём без [[...]]-маркеров: тьютору-ревьюеру они только мешают.
   useEffect(() => {
-    if (!ended || userExchanges <= 0 || reviewRequestedRef.current) return;
+    if (!accessResolved || !ended || userExchanges <= 0 || reviewRequestedRef.current) return;
     reviewRequestedRef.current = true;
     setReviewStatus('loading');
     const transcript: DialogChatTurn[] = messages.map((m) => ({
@@ -987,7 +1062,7 @@ export default function AiDialogSession() {
         setReviewStatus('error');
         void trackEvent('ai_dialog_review_failed', { scenarioId: scenario.id });
       });
-  }, [ended, userExchanges, messages, scenario, lang]);
+  }, [accessResolved, ended, userExchanges, messages, scenario, lang, studyTarget]);
 
   useEffect(() => {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
@@ -1029,8 +1104,6 @@ export default function AiDialogSession() {
       <View
         style={{
           backgroundColor: glassFill(t.bgSurface, 0.46),
-          borderTopWidth: 1,
-          borderTopColor: glassFill(t.accent, 0.14),
           borderRadius: 12,
           padding: 12,
           marginTop: 12,
@@ -1263,7 +1336,7 @@ export default function AiDialogSession() {
             accessibilityRole="button"
             onPress={() => {
               hapticTap();
-              router.replace('/(tabs)/lessons' as any);
+              router.replace('/lessons_list' as any);
             }}
             style={{
               marginTop: 22,
@@ -1516,45 +1589,13 @@ export default function AiDialogSession() {
           />
         </View>
 
-        {/* Пробный бесплатный диалог — короткая плашка-«подарок». */}
-        {!hasPremiumAccess && (
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 5,
-              marginHorizontal: 16,
-              marginTop: 8,
-              alignSelf: 'flex-start',
-              backgroundColor: t.bgCard,
-              borderRadius: 11,
-              paddingHorizontal: 9,
-              paddingVertical: 4,
-            }}
-          >
-            <Ionicons name="gift-outline" size={13} color={t.accent} />
-            <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Пробный диалог — бесплатно',
-                uk: 'Пробний діалог — безкоштовно',
-                es: 'Diálogo de prueba — gratis',
-                'pt-BR': 'Diálogo de teste — grátis',
-                vi: 'Đối thoại dùng thử — miễn phí',
-                id: 'Dialog uji coba — gratis',
-                tr: 'Deneme diyaloğu — ücretsiz',
-                pl: 'Dialog próbny — gratis',
-              })}
-            </Text>
-          </View>
-        )}
-
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           // H11: Android — нужен явный 'height', иначе клавиатура перекрывает поле ввода.
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
+          <ScrollView ref={scrollRef} decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
             {messages.map((m, i) => {
               const isUser = m.role === 'user';
               // Анимируем появление ТОЛЬКО для приходящих позже реплик. Самое первое
@@ -1610,7 +1651,7 @@ export default function AiDialogSession() {
                         shadowOpacity: 0.25,
                         shadowRadius: 6,
                         shadowOffset: { width: 0, height: 2 },
-                        elevation: 2,
+                        ...noAndroidOutline,
                       }}
                     >
                       <Text
@@ -1634,15 +1675,13 @@ export default function AiDialogSession() {
                         borderBottomLeftRadius: 6,
                         paddingHorizontal: 16,
                         paddingVertical: 12,
-                        borderTopWidth: 1,
-                        borderTopColor: glassFill(t.accent, 0.14),
                         maxWidth: '82%',
                         flexShrink: 1,
                         shadowColor: t.shadowDark,
                         shadowOpacity: 0.18,
                         shadowRadius: 6,
                         shadowOffset: { width: 0, height: 2 },
-                        elevation: 1,
+                        ...noAndroidOutline,
                       }}
                     >
                       <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8, flexShrink: 1 }}>
@@ -1759,9 +1798,31 @@ export default function AiDialogSession() {
                         const isTranslating = translatingIdx === i;
                         const hasTranslation = translations[i] != null;
                         const isFlipped = flipped[i] === true;
-                        // Скрываем кнопку только у НЕ открытых реплик при исчерпанном лимите.
+                        // зачем: раньше кнопка при исчерпанном лимите просто ИСЧЕЗАЛА —
+                        // пользователь читал это как поломку («в последней реплике нет
+                        // перевода»), потому что не знал про лимит 3 перевода на диалог.
+                        // Теперь вместо пустоты — спокойная подпись с причиной, без кнопки.
                         if (!shouldShowTranslateButton(hasTranslation, translateUsed, TRANSLATE_LIMIT_PER_DIALOG)) {
-                          return null;
+                          return (
+                            <View
+                              style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 8, alignSelf: 'flex-start' }}
+                              accessibilityRole="text"
+                            >
+                              <Ionicons name="lock-closed-outline" size={13} color={t.textMuted} />
+                              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
+                                {triLang(lang, {
+                                  ru: `Переводы на диалог: ${TRANSLATE_LIMIT_PER_DIALOG} из ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  uk: `Переклади на діалог: ${TRANSLATE_LIMIT_PER_DIALOG} з ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  es: `Traducciones por diálogo: ${TRANSLATE_LIMIT_PER_DIALOG} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  'pt-BR': `Traduções por diálogo: ${TRANSLATE_LIMIT_PER_DIALOG} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  vi: `Bản dịch mỗi hội thoại: ${TRANSLATE_LIMIT_PER_DIALOG}/${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  id: `Terjemahan per dialog: ${TRANSLATE_LIMIT_PER_DIALOG} dari ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  tr: `Diyalog başına çeviri: ${TRANSLATE_LIMIT_PER_DIALOG}/${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  pl: `Tłumaczenia na dialog: ${TRANSLATE_LIMIT_PER_DIALOG} z ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                })}
+                              </Text>
+                            </View>
+                          );
                         }
                         if (isTranslating) {
                           return (
@@ -1900,8 +1961,6 @@ export default function AiDialogSession() {
                   alignItems: 'center',
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 14,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   paddingHorizontal: 16,
                   paddingVertical: 12,
                   marginBottom: 12,
@@ -1951,8 +2010,6 @@ export default function AiDialogSession() {
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 18,
                   padding: 18,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   marginTop: 6,
                   marginBottom: 6,
                 }}
@@ -2051,6 +2108,7 @@ export default function AiDialogSession() {
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
                   <TouchableOpacity
                     onPress={() => {
+                      if (!accessResolved) return;
                       hapticTap();
                       void trackEvent('paywall_shown', { context: 'dialog_analysis', source: 'dialog_analysis' });
                       router.push({
@@ -2344,8 +2402,6 @@ export default function AiDialogSession() {
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
                   padding: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   marginTop: 6,
                 }}
               >
@@ -2381,6 +2437,7 @@ export default function AiDialogSession() {
                 {!hasPremiumAccess && (
                   <TouchableOpacity
                     onPress={() => {
+                      if (!accessResolved) return;
                       hapticTap();
                       router.push({
                         pathname: '/premium_modal',
@@ -2423,8 +2480,6 @@ export default function AiDialogSession() {
               <View
                 style={{
                   borderRadius: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   paddingHorizontal: 14,
                   paddingVertical: 12,
@@ -2477,6 +2532,7 @@ export default function AiDialogSession() {
               {speechModule && (
                 <TouchableOpacity
                   onPress={() => {
+                    if (!accessResolved) return;
                     hapticTap();
                     if (!hasPremiumAccess) {
                       void trackEvent('paywall_shown', {
@@ -2497,6 +2553,7 @@ export default function AiDialogSession() {
                       });
                       if (!next) {
                         voiceInputGenerationRef.current += 1;
+                        voiceInputSessionRef.current += 1;
                         holdPressActiveRef.current = false;
                         conversationReleasePendingRef.current = false;
                         // Выключаем — гасим всё голосовое, чтобы не «зависло».
@@ -2781,5 +2838,17 @@ export default function AiDialogSession() {
         </KeyboardAvoidingView>
       </SafeAreaView>
     </ScreenGradient>
+  );
+}
+
+// зачем: явное согласие на AI-диалоги (владелец) — экран даже не монтируется,
+// пока пользователь не подтвердил, что его сообщения уйдут в OpenAI. Gate живёт
+// снаружи, а не внутри компонента: внутри слишком много точек отправки
+// (обычный send + разговорный режим), одна внешняя точка входа надёжнее.
+export default function AiDialogSessionRoute() {
+  return (
+    <AiDialogConsentGate>
+      <AiDialogSession />
+    </AiDialogConsentGate>
   );
 }

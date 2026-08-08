@@ -2,12 +2,19 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
 import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TopFadeMask from '../components/TopFadeMask';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
+import { captureAccountGeneration } from './account_generation';
+import {
+  peekScreenSnapshotForToken,
+  rememberScreenSnapshot,
+  screenSnapshotKey,
+} from './screen_snapshot_store';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -56,6 +63,7 @@ function resolveChrome(themeMode: ThemeMode, t: ReturnType<typeof useTheme>['the
   if (false) return { ...base, bg: ['#202020', '#101010', '#050505'], card: ['#232522', '#0B0C0A'], accent: '#C8FF00', accent2: '#A6FF5D', accentSoft: 'rgba(200,255,0,0.13)', border: 'rgba(200,255,0,0.24)' };
   if (themeMode === 'gold') return { ...base, bg: ['#171008', '#0B0804', '#030201'], card: ['#211A10', '#080604'], accent: '#E8C46A', accent2: '#FFF0B8', accentSoft: 'rgba(232,196,106,0.15)', border: 'rgba(232,196,106,0.26)', muted: '#CBBE9A', surface: 'rgba(232,196,106,0.08)' };
   if (themeMode === 'coral') return { ...base, bg: ['#463036', '#251719', '#12090B'], card: ['#302126', '#10090B'], accent: '#FF7373', accent2: '#FFD060', accentSoft: 'rgba(255,115,115,0.14)', border: 'rgba(255,115,115,0.22)' };
+  if (themeMode === 'sagePorcelain') return { ...base, bg: ['#DCE1D8', '#CDD5C7', '#BFC8B8'], card: ['#FCFDF9', '#DCE1D8'], accent: '#315F50', accent2: '#52605A', accentSoft: '#D9E9E1', border: '#CFD6CE', text: '#17201D', muted: '#52605A', surface: '#E1E5DC' };
   if (false) return { ...base, bg: ['#343235', '#29292B', '#1E1E20'], card: ['#2D2D30', '#1F1F22'], accent: '#F6C78E', accent2: '#FFE1B5', accentSoft: 'rgba(246,199,142,0.14)', border: 'rgba(246,199,142,0.22)' };
   if (false) return { ...base, bg: ['#FFF8EA', '#F4E6CD', '#EBD8BC'], card: ['#FFFDF6', '#F2E1C8'], accent: '#B7791F', accent2: '#166E65', accentSoft: 'rgba(183,121,31,0.13)', border: 'rgba(91,63,25,0.18)', text: '#201811', muted: '#6A5C4D', surface: 'rgba(70,48,20,0.055)' };
   if (themeMode === 'minimalDark') return { ...base, bg: ['#22252A', '#15171A', '#08090A'], card: ['#25282D', '#0E1012'], accent: '#D7DEE8', accent2: '#8EA7C6', accentSoft: 'rgba(215,222,232,0.12)', border: 'rgba(215,222,232,0.18)' };
@@ -124,27 +132,50 @@ function WeekBar({
 
 /** B7: тёплая память статистики плана на процесс — повторные заходы рисуют контент
  * первым кадром; без неё каждый заход начинался с «Нет данных о плане». */
-let planStatsWarm: {
+type PlanStatsWarm = {
   planInstanceId: string;
   plan: PersonalPlanDefinition;
   stats: PersonalPlanStatsSummary;
   weakSpots: PlanWeakSpotView | null;
   xpLedger: PlanXpLedgerEntry | null;
-} | null = null;
+};
+
+let planStatsWarm: PlanStatsWarm | null = null;
+
+/** Идентификатор экрана в общем дисковом снапшоте (screen_snapshot_store). */
+const PLAN_STATS_SCREEN_ID = 'personal-plan-stats';
+
+/**
+ * Тёплая память + дисковый снапшот прошлой сессии.
+ *
+ * зачем: planStatsWarm живёт только внутри процесса, поэтому ПЕРВЫЙ заход после
+ * холодного старта рисовал скелетон на весь экран. Диск поднят бутстрапом одним
+ * общим чтением, поэтому здесь это синхронное чтение из памяти — без нагрузки.
+ */
+function readPlanStatsWarm(): PlanStatsWarm | null {
+  if (planStatsWarm) return planStatsWarm;
+  return peekScreenSnapshotForToken<PlanStatsWarm>(
+    PLAN_STATS_SCREEN_ID,
+    captureAccountGeneration(),
+  );
+}
 
 export default function PersonalPlanStatsScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
-  const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => planStatsWarm?.stats ?? null);
-  const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => planStatsWarm?.weakSpots ?? null);
-  const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(() => planStatsWarm?.xpLedger ?? null);
-  const [plan, setPlan] = useState<PersonalPlanDefinition | null>(() => planStatsWarm?.plan ?? null);
-  const [planInstanceId, setPlanInstanceId] = useState<string | null>(() => planStatsWarm?.planInstanceId ?? null);
+  // зачем: один синхронный снимок на монтирование — и память процесса, и дисковый
+  // снапшот прошлой сессии. Даёт настоящий контент первым кадром вместо скелетона.
+  const warm = readPlanStatsWarm();
+  const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => warm?.stats ?? null);
+  const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => warm?.weakSpots ?? null);
+  const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(() => warm?.xpLedger ?? null);
+  const [plan, setPlan] = useState<PersonalPlanDefinition | null>(() => warm?.plan ?? null);
+  const [planInstanceId, setPlanInstanceId] = useState<string | null>(() => warm?.planInstanceId ?? null);
   // Открытый на просмотр прошлый день (read-only): тема, фразы, задания + «пройти
   // заново». null = лист закрыт.
   const [reviewDay, setReviewDay] = useState<PlanDay | null>(null);
-  const [loading, setLoading] = useState(() => planStatsWarm == null);
+  const [loading, setLoading] = useState(() => warm == null);
   const chrome = useMemo(() => resolveChrome(themeMode, t), [themeMode, t]);
   const isGold = themeMode === 'gold';
   const screenBg = isGold ? '#090704' : t.bgPrimary;
@@ -198,6 +229,12 @@ export default function PersonalPlanStatsScreen() {
       weakSpots: nextWeakSpots,
       xpLedger: nextXpLedger,
     };
+    // зачем: зеркалим на диск — следующий холодный старт откроет статистику плана
+    // мгновенно, без скелетона. Запись фоновая и отложенная, UI её не ждёт.
+    rememberScreenSnapshot(
+      screenSnapshotKey(PLAN_STATS_SCREEN_ID, captureAccountGeneration()),
+      planStatsWarm,
+    );
     setStats(nextStats);
     setWeakSpots(nextWeakSpots);
     setXpLedger(nextXpLedger);
@@ -333,11 +370,15 @@ export default function PersonalPlanStatsScreen() {
           </View>
         </View>
 
-        <BouncyWrap>
+        {/* зачем: BouncyWrap клонирует СВОЕГО ребёнка (overScrollMode) и вешает на него
+            нативный жест скролла — прослойка между обёрткой и списком забирала жест
+            себе, и на Android экран только тянулся резинкой, не скроллясь. Анимация
+            появления уехала НАРУЖУ обёртки, список стал прямым ребёнком. */}
         <Animated.View style={{ flex: 1, opacity: fade, transform: [{ translateY: slide }] }}>
+        <BouncyWrap>
         <Reanimated.ScrollView
           showsVerticalScrollIndicator={false}
-          decelerationRate="normal"
+          decelerationRate="fast"
           bounces
           alwaysBounceVertical
           overScrollMode="always"
@@ -401,7 +442,7 @@ export default function PersonalPlanStatsScreen() {
               <ScrollView
                 ref={dayRailRef}
                 horizontal
-                decelerationRate="normal"
+                decelerationRate="fast"
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.dayRail}
               >
@@ -455,15 +496,16 @@ export default function PersonalPlanStatsScreen() {
                       color={chrome.accent}
                     />
                   </View>
-                  <Text style={[styles.weakLabel, { color: chrome.text }]} numberOfLines={2}>{row.label}</Text>
+                  {/* зачем: text-integrity — название слабого места переносится, ряд растёт. */}
+                  <FlowText testID={`plan-weak-label-${row.id}`} provenance="authored" style={[styles.weakLabel, { color: chrome.text }]}>{row.label}</FlowText>
                   <Text style={[styles.weakCount, { color: chrome.muted }]}>{row.wrongCount} {row.wrongCount === 1 ? 'промах' : 'промаха'}</Text>
                 </View>
               ))}
             </LinearGradient>
           ) : null}
         </Reanimated.ScrollView>
-        </Animated.View>
         </BouncyWrap>
+        </Animated.View>
         </Reanimated.View>
       </LinearGradient>
 

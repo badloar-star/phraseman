@@ -255,4 +255,12 @@ describe('isCorrectAnswer — BrE answer accepted as AmE', () => {
     const assembled = 'Please, confirm that important booking via that official link.';
     expect(isCorrectAnswer(assembled, canon)).toBe(true);
   });
+
+  // Регресс 2026-07-20: юзер собрал "I am Anna" из плиток "listen & build" (impuls_d3_p1),
+  // канон хранится как "I'm Anna." — раньше личный план (personal_plan_exercise.tsx)
+  // сравнивал через свою нормализацию без раскрытия сокращений и засчитывал ошибку.
+  it('expanded contraction from listen-build tiles matches contracted canonical answer', () => {
+    expect(isCorrectAnswer('I am Anna', "I'm Anna.")).toBe(true);
+    expect(isCorrectAnswer("It's not clear", 'It is not clear.')).toBe(true);
+  });
 });

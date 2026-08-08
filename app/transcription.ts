@@ -218,6 +218,8 @@ const DICT: Record<string, string> = {
   school: 'skuːl', job: 'dʒɒb', city: 'ˈsɪti', country: 'ˈkʌntri',
   water: 'ˈwɔːtər', food: 'fuːd', money: 'ˈmʌni', book: 'bʊk',
   car: 'kɑːr', phone: 'foʊn',
+  // зачем: точная транскрипция вместо приблизительной из правил (репорт про [k] в pharmacy).
+  pharmacy: 'ˈfɑːrməsi', pharmacies: 'ˈfɑːrməsiz',
   story: 'ˈstɔːri', problem: 'ˈprɒbləm', question: 'ˈkwesʃən', answer: 'ˈænsər',
   idea: 'aɪˈdiːə', reason: 'ˈriːzən', point: 'pɔɪnt',
   fact: 'fækt', news: 'njuːz',
@@ -312,7 +314,10 @@ function ruleBasedIPA(word: string): string {
     [/a([^aeiou])e\b/g, 'eɪ$1'], [/i([^aeiou])e\b/g, 'aɪ$1'],
     [/o([^aeiou])e\b/g, 'oʊ$1'], [/u([^aeiou])e\b/g, 'juː$1'],
     // Consonants
-    [/c(?=[ei])/g, 's'], [/c/g, 'k'],
+    // зачем: юзер сообщил, что в транскрипции pharmacy звучит [k] вместо [s].
+    // Мягкая "c" в английском — перед e, i И y (pharmacy, agency, policy, fancy),
+    // а "y" в классе отсутствовала, поэтому все слова на -cy читались через [k].
+    [/c(?=[eiy])/g, 's'], [/c/g, 'k'],
     [/g(?=[ei])/g, 'dʒ'],
     [/x/g, 'ks'], [/z/g, 'z'],
     [/j/g, 'dʒ'], [/y(?=[aeiou])/g, 'j'], [/y\b/g, 'i'],

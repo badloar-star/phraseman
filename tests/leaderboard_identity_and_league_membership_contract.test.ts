@@ -26,8 +26,7 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(source).toMatch(/const stableId = await ensureNameCallableAuthReady\(NAME_RESERVE_TIMEOUT_MS\);[\s\S]*?ensureStableAuthLinkForStableId\(stableId\)/);
     expect(source).not.toContain('leaderboardPushMyScore');
     expect(source).not.toContain('leaderboardUpdatePremium');
-    expect(source).toContain('const NAME_CHECK_TIMEOUT_MS = 1_500;');
-    expect(source).toContain('const NAME_CHECK_AUTH_TIMEOUT_MS = 800;');
+    expect(source).toContain('const NAME_CHECK_TIMEOUT_MS = 3_500;');
     expect(source).toContain('const NAME_CHECK_IDENTITY_TIMEOUT_MS = 3_500;');
     expect(source).toContain('const NAME_AUTH_LINK_VERIFY_TIMEOUT_MS = 2_500;');
     expect(source).toContain('const NAME_AUTH_LINK_VERIFIED_TTL_MS = 5 * 60_000;');
@@ -42,11 +41,12 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(source).toContain('async function ensureNameReservationIdentityReady');
     expect(source).toContain('export function warmNameAvailabilityAuth');
     expect(source).toContain('export async function checkNameAvailabilityDetailed');
-    expect(source).toContain('async function checkNameIndexAvailabilityFast');
-    expect(source).toContain("db.collection('name_index').doc(nameLower).get()");
+    expect(source).toContain('export function normalizeNameIndexKey');
+    expect(source).toContain("normalize('NFKC').replace(/\\s+/g, ' ')");
+    expect(source).not.toContain('async function checkNameIndexAvailabilityFast');
+    expect(source).not.toContain("'name_index_check'");
     expect(source).toMatch(/await ensureStableAuthLinkForStableId\(stableId\)\.catch\(\(\) => false\);[\s\S]*?ensureNameStableAuthLinkVerified\(stableId\)/);
     expect(source).toMatch(/const identityPromise = ensureNameReservationIdentityReady\(NAME_CHECK_IDENTITY_TIMEOUT_MS\);[\s\S]*?const authPromise = ensureNameCallableAuthReady\(NAME_CHECK_IDENTITY_TIMEOUT_MS\);/);
-    expect(source).toMatch(/const fastResult = await checkNameIndexAvailabilityFast\(name, readCachedNameReservationIdentity\(\)\);[\s\S]*?if \(fastResult\) return fastResult;/);
     expect(source).toMatch(/let stableId = readCachedNameReservationIdentity\(\) \|\| await authPromise;[\s\S]*?if \(!stableId\) stableId = await identityPromise;/);
     expect(source).toMatch(/withTimeout\(\s*runNameAvailabilityCheck\(name, stableId\),\s*NAME_CHECK_TIMEOUT_MS/);
     expect(source).toContain("source?: 'onboarding' | 'settings';");

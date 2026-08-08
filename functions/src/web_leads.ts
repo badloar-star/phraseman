@@ -23,6 +23,7 @@ import { onSchedule } from 'firebase-functions/v2/scheduler';
 
 import { upsertEmailContact, emailContactDocId, normalizeEmailContactEmail } from './email_contacts';
 import { suppressionDocId, unsubscribeUrlFor } from './email_unsubscribe';
+import { RESEND_API_KEY } from './resend_secret';
 
 const REGION = 'us-central1';
 const LEADS_COLLECTION = 'web_leads';
@@ -30,8 +31,7 @@ const ORDERS_COLLECTION = 'web_premium_orders';
 const SUPPRESSIONS_COLLECTION = 'email_suppressions';
 const SITE_ORIGIN = 'https://knowlyapps.com';
 
-const resendApiKey = defineString('RESEND_API_KEY', { default: '' });
-const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
 const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
 const PAID_STATUSES = new Set(['paid_pending_activation', 'paid_pending_manual_activation', 'activated']);
@@ -203,15 +203,17 @@ async function sendResendEmail(params: {
   text: string;
   html: string;
 }): Promise<boolean> {
-  const key = resendApiKey.value();
+  const key = RESEND_API_KEY.value();
   if (!key) return false;
+  const from = webCheckoutEmailFrom.value().trim();
+  if (!from) return false;
   try {
     const unsubscribeUrl = unsubscribeUrlFor(params.to);
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: webCheckoutEmailFrom.value() || 'Phraseman <onboarding@resend.dev>',
+        from,
         to: [params.to],
         subject: params.subject,
         text: params.text,
@@ -343,6 +345,7 @@ export const webLeadCapture = onRequest(
     timeoutSeconds: 20,
     maxInstances: 3,
     invoker: 'public',
+    secrets: [RESEND_API_KEY],
   },
   async (req, res) => {
     if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;
@@ -359,6 +362,7 @@ export const webLeadCapture = onRequest(
 
     const db = getFirestore();
     const answers = cleanAttribution(body.answers);
+    const marketingConsent = body.marketingConsent === true;
     const ref = db.collection(LEADS_COLLECTION).doc(emailContactDocId(email));
 
     try {
@@ -366,6 +370,7 @@ export const webLeadCapture = onRequest(
       const existing = snap.exists ? (snap.data() ?? {}) : null;
       const nowMs = Date.now();
       const lastPlanEmailMs = Number(existing?.planEmailSentAtMs) || 0;
+      const effectiveMarketingConsent = marketingConsent || existing?.marketingConsent === true;
       // Кулдаун письма: эндпоинт публичный, нельзя позволить бомбить чужой ящик.
       const shouldEmail = !suppressed && nowMs - lastPlanEmailMs > PLAN_EMAIL_COOLDOWN_MS;
 
@@ -374,7 +379,15 @@ export const webLeadCapture = onRequest(
         answers: answers ?? existing?.answers ?? null,
         utm: cleanAttribution(body.utm) ?? existing?.utm ?? null,
         page: cleanShortText(body.page, 120) || null,
-        status: suppressed ? 'unsubscribed' : String(existing?.status ?? 'active'),
+        marketingConsent: marketingConsent || existing?.marketingConsent === true,
+        ...(marketingConsent && existing?.marketingConsent !== true
+          ? { marketingConsentAtMs: nowMs, marketingConsentAt: FieldValue.serverTimestamp() }
+          : {}),
+        status: suppressed
+          ? 'unsubscribed'
+          : effectiveMarketingConsent
+            ? (existing?.status === 'marketing_not_opted_in' ? 'active' : String(existing?.status ?? 'active'))
+            : 'marketing_not_opted_in',
         ...(existing ? {} : { createdAtMs: nowMs, createdAt: FieldValue.serverTimestamp(), nudgeCount: 0 }),
         updatedAt: FieldValue.serverTimestamp(),
         updatedAtIso: new Date().toISOString(),
@@ -404,7 +417,10 @@ export const webLeadCapture = onRequest(
 /* ───────────────────────── Догоняющие письма ───────────────────────── */
 
 export const webLeadNudgeCron = onSchedule(
-  { schedule: '17 */6 * * *', timeZone: 'Etc/UTC', region: REGION, memory: '256MiB', timeoutSeconds: 300 },
+  {
+    schedule: '17 */6 * * *', timeZone: 'Etc/UTC', region: REGION,
+    memory: '256MiB', timeoutSeconds: 300, secrets: [RESEND_API_KEY],
+  },
   async () => {
     const db = getFirestore();
     const snap = await db.collection(LEADS_COLLECTION).where('status', '==', 'active').limit(300).get();
@@ -414,6 +430,10 @@ export const webLeadNudgeCron = onSchedule(
     let sent = 0;
     for (const doc of snap.docs) {
       const lead = doc.data();
+      if (lead.marketingConsent !== true) {
+        await doc.ref.set({ status: 'marketing_not_opted_in' }, { merge: true });
+        continue;
+      }
       const email = normalizeEmailContactEmail(lead.email);
       if (!email) continue;
       const nudgeCount = Number(lead.nudgeCount) || 0;

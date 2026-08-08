@@ -24,6 +24,7 @@ import { resolveIsLifetimePlan } from './premium_status';
 import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { getLevelFromXP } from './xp_levels';
+import { hasClaimedPermission, type AdminPermission } from './admin/permissions';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -125,8 +126,8 @@ function readLeaderboardProjection(
   return proj;
 }
 
-const REPLY_SHARDS_MIN = 0;
-const REPLY_SHARDS_MAX = 100;
+const REPORT_RESOLUTIONS = ['confirmed_fixed', 'duplicate', 'in_progress', 'rejected', 'unconfirmed'] as const;
+export type ReportResolution = typeof REPORT_RESOLUTIONS[number];
 const REPLY_TITLE_MAX = 120;
 const REPLY_BODY_MAX = 1200;
 
@@ -139,14 +140,76 @@ const REPORT_COLLECTIONS: ReadonlySet<string> = new Set([
   'community_pack_reports',
 ]);
 
-function requireAdmin(request: { auth?: { token?: Record<string, unknown> } | null }): void {
-  if (request.auth?.token?.admin !== true) {
-    throw new HttpsError('permission-denied', 'Admin only');
+export function requireReportReplyPermission(
+  request: { auth?: { token?: Record<string, unknown> } | null },
+  permission: Extract<AdminPermission, 'reports.reply.draft' | 'reports.reply.send'>,
+): void {
+  if (!hasClaimedPermission(request.auth?.token, permission)) {
+    throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   }
 }
 
 function cleanString(value: unknown, maxLen: number): string {
   return String(value ?? '').trim().slice(0, maxLen);
+}
+
+export function normalizeReportReplyReward(data: unknown): { resolution: ReportResolution; coins: 0 | 1 } {
+  const input = data && typeof data === 'object' && !Array.isArray(data)
+    ? data as Record<string, unknown>
+    : {};
+  const resolution = cleanString(input.resolution, 40) as ReportResolution;
+  const coins = Number(input.coins ?? 0);
+  if (!(REPORT_RESOLUTIONS as readonly string[]).includes(resolution)) {
+    throw new HttpsError('invalid-argument', 'unsupported report resolution');
+  }
+  if (!Number.isInteger(coins) || (coins !== 0 && coins !== 1)) {
+    throw new HttpsError('invalid-argument', 'coins must be exactly 0 or 1');
+  }
+  if (coins === 1 && resolution !== 'confirmed_fixed') {
+    throw new HttpsError('failed-precondition', 'one coin requires confirmed_fixed');
+  }
+  return { resolution, coins: coins as 0 | 1 };
+}
+
+export function reportDocumentAllowsCoin(
+  report: FirebaseFirestore.DocumentData,
+  resolution: ReportResolution,
+): boolean {
+  return resolution === 'confirmed_fixed'
+    && (cleanString(report.resolution, 40) === 'confirmed_fixed' || cleanString(report.status, 40) === 'fixed');
+}
+
+export function normalizeStoredReportReplyClaimAmount(
+  message: FirebaseFirestore.DocumentData,
+): 0 | 1 {
+  if (message.coins !== undefined) return Number(message.coins) === 1 ? 1 : 0;
+  return Math.floor(Number(message.shards) || 0) > 0 ? 1 : 0;
+}
+
+export function reportRecipientCandidate(
+  reportCollection: string,
+  report: FirebaseFirestore.DocumentData,
+): string {
+  if (reportCollection === 'error_reports') {
+    return cleanString(report.stableUid || report.uid, 128);
+  }
+  if (reportCollection === 'explain_report_entries') {
+    return cleanString(report.stableUid || report.uid, 128);
+  }
+  if (reportCollection === 'user_reports' || reportCollection === 'community_pack_reports') {
+    return cleanString(report.reporterUid, 128);
+  }
+  return '';
+}
+
+export function reportRecipientIdentityLookup(
+  reportCollection: string,
+  report: FirebaseFirestore.DocumentData,
+): { originalUid: string; authUid: string; requestedStableId?: string } {
+  const originalUid = reportRecipientCandidate(reportCollection, report);
+  const storedAuthUid = cleanString(report.authUid || report.reporterAuthUid, 128);
+  if (!storedAuthUid) return { originalUid, authUid: originalUid };
+  return { originalUid, authUid: storedAuthUid, requestedStableId: originalUid };
 }
 
 /**
@@ -170,25 +233,19 @@ function cleanString(value: unknown, maxLen: number): string {
 export const adminReplyToReport = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
-    requireAdmin(request);
+    requireReportReplyPermission(request, 'reports.reply.send');
 
-    const uid = cleanString(request.data?.uid, 128);
     const reportCollection = cleanString(request.data?.reportCollection, 64);
     const reportId = cleanString(request.data?.reportId, 128);
     const title = cleanString(request.data?.title, REPLY_TITLE_MAX);
     const body = cleanString(request.data?.body, REPLY_BODY_MAX);
-    const shardsRaw = Number(request.data?.shards ?? 0);
-    const shards = Number.isFinite(shardsRaw) ? Math.floor(shardsRaw) : NaN;
+    const reward = normalizeReportReplyReward(request.data);
 
-    if (!uid || uid === 'unknown') throw new HttpsError('invalid-argument', 'uid required');
     if (!REPORT_COLLECTIONS.has(reportCollection)) {
       throw new HttpsError('invalid-argument', `reportCollection must be one of: ${Array.from(REPORT_COLLECTIONS).join(', ')}`);
     }
     if (!reportId) throw new HttpsError('invalid-argument', 'reportId required');
     if (!title || !body) throw new HttpsError('invalid-argument', 'title and body required');
-    if (!Number.isFinite(shards) || shards < REPLY_SHARDS_MIN || shards > REPLY_SHARDS_MAX) {
-      throw new HttpsError('invalid-argument', `shards must be ${REPLY_SHARDS_MIN}..${REPLY_SHARDS_MAX}`);
-    }
 
     const db = admin.firestore();
     const adminEmail = String(request.auth?.token?.email ?? '');
@@ -196,6 +253,24 @@ export const adminReplyToReport = onCall(
     const nowIso = new Date(nowMs).toISOString();
 
     const reportRef = db.collection(reportCollection).doc(reportId);
+    const initialReportSnap = await reportRef.get();
+    if (!initialReportSnap.exists) {
+      throw new HttpsError('not-found', `report ${reportCollection}/${reportId} not found`);
+    }
+    const recipientIdentity = reportRecipientIdentityLookup(
+      reportCollection,
+      initialReportSnap.data() ?? {},
+    );
+    const { originalUid } = recipientIdentity;
+    if (!originalUid || originalUid === 'unknown') {
+      throw new HttpsError('failed-precondition', 'report recipient identity is missing');
+    }
+    const uid = await resolveStableUidForAuth(
+      db,
+      recipientIdentity.authUid,
+      recipientIdentity.requestedStableId,
+      { requireKnownIdentity: true, repairLinks: false },
+    );
     const userRef = db.collection('users').doc(uid);
     const messageRef = userRef.collection(USER_MESSAGES_COLLECTION).doc();
     const notificationRef = userNotificationRef(db, uid, `report_reply_${messageRef.id}`);
@@ -228,12 +303,16 @@ export const adminReplyToReport = onCall(
       if (typeof report.replyMessageId === 'string' && report.replyMessageId) {
         throw new HttpsError('already-exists', 'report already replied');
       }
+      if (reward.coins === 1 && !reportDocumentAllowsCoin(report, reward.resolution)) {
+        throw new HttpsError('failed-precondition', 'report is not server-confirmed as fixed');
+      }
 
       tx.set(messageRef, {
         kind: 'report_reply',
         title,
         body,
-        shards,
+        coins: reward.coins,
+        resolution: reward.resolution,
         claimed: false,
         claimedAtMs: null,
         reportCollection,
@@ -255,7 +334,8 @@ export const adminReplyToReport = onCall(
           messageId: messageRef.id,
           title,
           body,
-          shards,
+          coins: reward.coins,
+          resolution: reward.resolution,
           claimed: false,
           claimedAtMs: null,
           reportCollection,
@@ -267,7 +347,7 @@ export const adminReplyToReport = onCall(
       // подтверждение состоялось независимо от того, заберёт ли юзер награду).
       // В той же транзакции обновляем публичную проекцию борда «Топ хелперов»,
       // чтобы рейтинг на борде и счётчик титула никогда не разъезжались.
-      if (shards > 0) {
+      if (reward.coins === 1) {
         tx.set(userRef, {
           progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: admin.firestore.FieldValue.increment(1) },
         }, { merge: true });
@@ -284,9 +364,15 @@ export const adminReplyToReport = onCall(
         status: 'answered',
         replyMessageId: messageRef.id,
         replyNotificationId: notificationRef.id,
-        replyShards: shards,
+        replyTitle: title,
+        replyBody: body,
+        replyCoins: reward.coins,
+        resolution: reward.resolution,
         repliedAt: nowIso,
+        repliedAtMs: nowMs,
         repliedBy: adminEmail,
+        replyRecipientUid: uid,
+        ...(originalUid !== uid ? { replyOriginalUid: originalUid } : {}),
       }, { merge: true });
 
       tx.set(auditRef, {
@@ -294,11 +380,11 @@ export const adminReplyToReport = onCall(
         adminEmail,
         action: 'reply_to_report',
         uid,
-        details: { reportCollection, reportId, shards, title },
+        details: { reportCollection, reportId, coins: reward.coins, resolution: reward.resolution, title },
       });
     });
 
-    return { ok: true, messageId: messageRef.id, notificationId: notificationRef.id, shards };
+    return { ok: true, messageId: messageRef.id, notificationId: notificationRef.id, coins: reward.coins };
   },
 );
 
@@ -334,7 +420,7 @@ export const claimReportReward = onCall(
       if (!messageSnap.exists) throw new HttpsError('not-found', 'message not found');
       const message = messageSnap.data() ?? {};
       if (message.kind !== 'report_reply') throw new HttpsError('failed-precondition', 'not a report reply');
-      const amount = Math.floor(Number(message.shards) || 0);
+      const amount = normalizeStoredReportReplyClaimAmount(message);
       if (amount <= 0) throw new HttpsError('failed-precondition', 'nothing to claim');
       if (message.claimed === true) throw new HttpsError('already-exists', 'already claimed');
 
@@ -353,7 +439,7 @@ export const claimReportReward = onCall(
         shards: after,
         shards_updated_at_ms: nowMs,
         shards_updated_op: 'earn',
-        shards_updated_reason: 'report_reply_claim',
+        shards_updated_reason: 'report_reply_coin_claim',
         updatedAt: nowMs,
       }, { merge: true });
 
@@ -362,7 +448,7 @@ export const claimReportReward = onCall(
         ts: nowIso,
         type: 'earn',
         amount,
-        reason: 'report_reply_claim',
+        reason: 'report_reply_coin_claim',
         balanceBefore: before,
         balanceAfter: after,
         messageId,
@@ -403,7 +489,7 @@ const DRAFT_SYSTEM_PROMPT = [
 export const adminDraftReportReply = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] },
   async (request) => {
-    requireAdmin(request);
+    requireReportReplyPermission(request, 'reports.reply.draft');
 
     const reportText = cleanString(request.data?.reportText, 4000);
     const verdict = cleanString(request.data?.verdict, 16);

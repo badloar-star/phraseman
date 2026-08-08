@@ -2,22 +2,41 @@ import fs from 'fs';
 import path from 'path';
 
 describe('avatar_select Plus aura contract', () => {
-  const source = fs.readFileSync(path.join(__dirname, '../app/avatar_select.tsx'), 'utf8');
+  const screenSource = fs.readFileSync(path.join(__dirname, '../app/avatar_select.tsx'), 'utf8');
+  const catalogSource = fs.readFileSync(path.join(__dirname, '../app/customization_catalog.ts'), 'utf8');
 
-  it('unlocks both Plus aura variants from paid Plus or admin-granted Plus', () => {
-    const sharedPlusOwnedChecks = source.match(
-      /const isOwned = isPremiumAura \|\| isVipAura \? hasPlusAuraAccess :/g,
-    ) ?? [];
-
-    expect(source).toContain('const hasPlusAuraAccess = isPremium || isVip;');
-    expect(sharedPlusOwnedChecks).toHaveLength(2);
-    expect(source).not.toContain('premiumAuraAccess');
+  it('unlocks one canonical Plus aura from paid Plus or admin-granted Plus', () => {
+    expect(catalogSource).toContain('const plusAura = !aura.proOnly && (aura.premiumOnly === true || aura.vipOnly === true);');
+    expect(catalogSource).toContain('const hasPlusAuraAccess = input.isPremium || input.isVip;');
+    expect(catalogSource).toContain('(plusAura && hasPlusAuraAccess)');
+    expect(catalogSource).not.toContain('premiumAuraAccess');
   });
 
-  it('presents both locked status auras as Plus upsells', () => {
-    expect(source).toMatch(/if \(isPremiumAura \|\| isVipAura\) \{[\s\S]*\/premium_modal/);
-    expect(source).toMatch(/isPremiumAura \|\| isVipAura\s*\?\s*<PlusBadge/);
-    expect(source).not.toContain('Доступно только с VIP-доступом');
-    expect(source).not.toContain('shield-checkmark');
+  it('presents the locked status aura as a Plus upsell', () => {
+    expect(catalogSource).toContain('if (plusAura && !hasPlusAuraAccess) {');
+    expect(catalogSource).toContain("return { isOwned: false, availability: { kind: 'plus' } };");
+    expect(screenSource).toContain("case 'open-plus': return copy.plus;");
+    expect(screenSource).toContain("pathname: '/premium_modal'");
+    expect(screenSource).not.toContain('Доступно только с VIP-доступом');
+    expect(screenSource).not.toContain('shield-checkmark');
+  });
+
+  it('passes the Pro entitlement through preview, catalog, and apply validation', () => {
+    expect(screenSource).toContain('const { isPremium, isVip, isPro } = usePremium();');
+    expect(screenSource).toContain('resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip, isPro)');
+    expect(screenSource).toContain('isPro,');
+    expect(catalogSource).toContain('if (aura.proOnly && !input.isPro)');
+  });
+
+  it('describes locked Pro aura as a special Pro reward instead of opening Plus', () => {
+    expect(screenSource).toContain("case 'explain-pro-reward': return localized(lang, {");
+    expect(screenSource).toContain("ru: 'Особая награда для Pro-аккаунта'");
+    expect(screenSource).toContain("if (resolvedAction.kind === 'explain-pro-reward') {");
+  });
+
+  it('normalizes legacy Plus IDs before tile selection equality', () => {
+    expect(screenSource).toContain('const previewAuraCatalogId = previewStoredAuraSelection === null');
+    expect(screenSource).toContain(': normalizeAvatarAuraId(previewStoredAuraSelection);');
+    expect(screenSource).toContain("item.id === previewAuraCatalogId");
   });
 });

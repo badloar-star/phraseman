@@ -29,6 +29,10 @@ function makeUser(uid, isAnonymous) {
     uid,
     email: null,
     isAnonymous,
+    getIdToken: async (forceRefresh) => {
+      testState.calls.push(forceRefresh ? 'token-refresh' : 'token-read');
+      return 'test-id-token';
+    },
     linkWithCredential: async (credential) => {
       testState.calls.push('link');
       if (testState.linkImpl) return testState.linkImpl(credential);
@@ -54,6 +58,10 @@ function authInstance() {
       return { user: makeUser(testState.providerUid, false) };
     },
     signInAnonymously: async () => ({ user: makeUser(testState.anonUid, true) }),
+    signOut: async () => {
+      testState.calls.push('signout');
+      testState.isAnonymous = true;
+    },
   };
 }
 

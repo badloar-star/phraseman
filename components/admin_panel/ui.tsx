@@ -6,7 +6,7 @@
 // app/_admin_settings_testers.tsx и его секций — в прод-бандл не попадает
 // (гейт settings_testers.tsx отсекает весь граф через __DEV__).
 // ════════════════════════════════════════════════════════════════════════════
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Alert, Switch, Text, TouchableOpacity, View } from 'react-native';
 import AccordionChevronIonicons from '../AccordionChevronIonicons';
@@ -55,10 +55,11 @@ export const CHAPTERS: { id: AdminChapterId; label: string; icon: string }[] = [
 /** Раздел → глава + ключевые слова для поиска (русские синонимы того, что внутри). */
 const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }> = {
   new_paywall_v2: { chapter: 'monetization', keywords: 'пейвол paywall v2 макет premium подписка' },
+  soft_upsell_previews: { chapter: 'monetization', keywords: 'мягкие пейволы soft upsell превью premium подписка первый урок недельный обзор серия тренировка ии диалог' },
   platform_ui_preview: { chapter: 'system', keywords: 'android ios платформа превью ui' },
-  cosmetics_preview: { chapter: 'social', keywords: 'аватары ауры рамки косметика бюсты осколки' },
+  cosmetics_preview: { chapter: 'social', keywords: 'аватары ауры рамки косметика бюсты жемчуг' },
   account: { chapter: 'data', keywords: 'аккаунт xp без ограничений энергия достижения снять премиум mastery перепройти' },
-  friends_admin: { chapter: 'social', keywords: 'друзья подарки осколки активность сид buddy gift' },
+  friends_admin: { chapter: 'social', keywords: 'друзья подарки жемчуг активность сид buddy gift' },
   auth_dev: { chapter: 'data', keywords: 'auth google apple вход регистрация signout привязка' },
   arena_modals: { chapter: 'gameplay', keywords: 'арена ранг повышение понижение победа поражение лига финал недели трон rollover' },
   league_bonus: { chapter: 'rewards', keywords: 'лига бонус корона сундук редкая тема chest crown' },
@@ -68,7 +69,7 @@ const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }
   ai_dialogue: { chapter: 'gameplay', keywords: 'ии диалог ai dialog лимит чат' },
   referral_modals: { chapter: 'monetization', keywords: 'реферал vip приглашение friend code пригласи' },
   error_states: { chapter: 'system', keywords: 'ошибки edge микрофон unavailable слияние аккаунтов denied' },
-  soft_monetization: { chapter: 'monetization', keywords: 'celebration vip празднование streak revive blur монетизация pending' },
+  soft_monetization: { chapter: 'monetization', keywords: 'celebration vip празднование streak revive blur жемчужинизация pending' },
   activity_365_qa: { chapter: 'system', keywords: 'статистика 365 год активность heatmap' },
   paywall_personalization: { chapter: 'monetization', keywords: 'персонализация счётчики пейвол energy zero streak lost hard block' },
   trainer_debug: { chapter: 'gameplay', keywords: 'тренер trainer сессии ошибки srs лог weak точечный повтор' },
@@ -76,7 +77,7 @@ const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }
   toasts: { chapter: 'toasts', keywords: 'тосты достижения streak daily task reward уведомления' },
   medal_toasts: { chapter: 'toasts', keywords: 'медали тост бронза серебро золото premium' },
   levelup: { chapter: 'rewards', keywords: 'level up уровень подарки gift dual глобальный' },
-  shards: { chapter: 'rewards', keywords: 'осколки shards профиль карточка источники' },
+  shards: { chapter: 'rewards', keywords: 'жемчуг shards профиль карточка источники' },
   onboarding: { chapter: 'system', keywords: 'онбординг язык цель уровень время mini aha план пейвол legal analytics consent' },
   conversion_push: { chapter: 'monetization', keywords: 'пуши конверсия upsell expiring уведомления d+4 d+7' },
   core_modals: { chapter: 'modals', keywords: 'noenergy арена лимит quiz timeout warning report update notif release broadcast match toast энергия' },
@@ -86,14 +87,16 @@ const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }
   data: { chapter: 'data', keywords: 'сброс все данные статистика reset wipe' },
   // Новые секции (добавлены при редизайне 2026-06):
   scenarios_conflicts: { chapter: 'scenarios', keywords: 'сценарии конфликты цепочки парад окон тройной удар revive level up inbox' },
-  reward_modals_extra: { chapter: 'rewards', keywords: 'release wave shard reward профиль карточка апгрейд энергия refill осколки' },
+  reward_modals_extra: { chapter: 'rewards', keywords: 'release wave shard reward профиль карточка апгрейд энергия refill жемчуг' },
   system_modals_extra: { chapter: 'modals', keywords: 'choice выбор delete удаление аккаунта сертификат имя экзамен report pack жалоба explain объясни' },
   banners_toasts_extra: { chapter: 'toasts', keywords: 'ingame тост баннер rank change save progress привязка инлайн' },
   vip_survey_extra: { chapter: 'monetization', keywords: 'vip опрос survey отзыв review prompt напрямую' },
+  review_prompt_previews: { chapter: 'modals', keywords: 'оценка отзыв review идеальный урок зачёт серия bottom sheet preview' },
   labs_hub: { chapter: 'labs', keywords: 'лаборатории speaking referral интро celebration anim delivery повтор review очередь стек модалки swipe preview' },
   gifts_catalog: { chapter: 'rewards', keywords: 'справочник подарки каталог все подарки иконки описания уровень премиум вехи друзья сундук лиги gift catalog' },
   collectible_drop_modals: { chapter: 'modals', keywords: 'коллекция карточка дроп сокровищница новая карточка получение подарок редкость сет собран секретка collectible drop modal' },
   user_consents: { chapter: 'data', keywords: 'согласия consent gdpr возраст аналитика приватность дата отзыв granted denied user_consents' },
+  ux_overhaul_modals: { chapter: 'modals', keywords: 'ux обновление новые модалы тосты превью аудит boon chest streak revive eli5 avatar editor sheet реферал referral access shard paywall collectible drop themed confirm blocking action toast reward' },
 };
 
 export interface AdminNavState {

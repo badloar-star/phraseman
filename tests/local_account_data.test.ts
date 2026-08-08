@@ -2,8 +2,18 @@ import {
   hasMeaningfulLocalAccountData,
   isMeaningfulStoredAccountValue,
 } from '../app/local_account_data';
+import { accountLocalDataKeysForToday } from '../app/cloud_sync';
 
 describe('meaningful local account data', () => {
+  it('wipes generated nickname pending state during account transitions', () => {
+    expect(accountLocalDataKeysForToday('2026-07-12')).toEqual(expect.arrayContaining([
+      'generated_nickname_pending_v1',
+      'generated_name_confirmed_v1',
+    ]));
+  });
+  it('wipes account-scoped Today recommendation history', () => {
+    expect(accountLocalDataKeysForToday('2026-07-12')).toContain('today_recommendation_history_v1');
+  });
   it('rejects empty/default representations', () => {
     ['', '0', 'false', 'null', '[]', '{}'].forEach((value) => {
       expect(isMeaningfulStoredAccountValue(value)).toBe(false);

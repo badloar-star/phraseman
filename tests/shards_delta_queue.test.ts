@@ -1,6 +1,3 @@
-// K3: офлайн-очередь неотправленных дельт осколков. Гарантии: идемпотентная
-// постановка (один opId — одна запись), точечное удаление подтверждённых,
-// устойчивость к битому JSON, кап длины.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 jest.mock('@react-native-async-storage/async-storage');
@@ -11,99 +8,425 @@ jest.mock('../app/storage_mutex', () => ({
 }));
 
 import {
+  enqueueAppliedShardDeltaWithStorage,
   enqueueShardDelta,
+  consumeExactLegacyQuarantinedShardDelta,
+  hasQuarantinedShardDeltaQueue,
+  hasExactLegacyQuarantinedShardDelta,
   newShardOpId,
   readShardDeltaQueue,
   removeShardDeltas,
+  shardDeltaQueueStorageKey,
   type PendingShardDelta,
 } from '../app/shards_delta_queue';
 
-const QUEUE_KEY = 'shards_delta_queue_v1';
+const LEGACY_QUEUE_KEY = 'shards_delta_queue_v1';
+const LEGACY_QUARANTINE_KEY = 'shards_delta_queue_v1_quarantine:ownerless';
+const OWNER_A = 'stable-owner-a';
+const OWNER_B = 'stable-owner-b';
 const mockStorage: Record<string, string> = {};
 
 const entry = (opId: string, over: Partial<PendingShardDelta> = {}): PendingShardDelta => ({
   opId,
+  ownerStableId: OWNER_A,
   delta: 2,
   type: 'earn',
   reason: 'lesson_first',
   createdAtMs: 1000,
+  localApplied: true,
   ...over,
 });
 
 beforeEach(() => {
   jest.clearAllMocks();
-  Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
-  (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
-    Promise.resolve(mockStorage[k] ?? null),
+  Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
+  (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
+    Promise.resolve(mockStorage[key] ?? null),
   );
-  (AsyncStorage.setItem as jest.Mock).mockImplementation((k: string, v: string) => {
-    mockStorage[k] = v;
+  (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+    mockStorage[key] = value;
+    return Promise.resolve();
+  });
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(
+    (pairs: readonly (readonly [string, string])[]) => {
+      pairs.forEach(([key, value]) => { mockStorage[key] = value; });
+      return Promise.resolve();
+    },
+  );
+  (AsyncStorage.removeItem as jest.Mock).mockImplementation((key: string) => {
+    delete mockStorage[key];
     return Promise.resolve();
   });
 });
 
-describe('shards_delta_queue', () => {
+describe('shards_delta_queue v2 account isolation', () => {
   it('newShardOpId matches the server opId charset/length', () => {
     expect(newShardOpId()).toMatch(/^[A-Za-z0-9_-]{8,80}$/);
   });
 
-  it('enqueues a pending delta and reads it back', async () => {
+  it('enqueues and reads an owner-bound pending delta', async () => {
     await enqueueShardDelta(entry('op-a-11111111'));
-    const queue = await readShardDeltaQueue();
-    expect(queue).toHaveLength(1);
-    expect(queue[0]).toMatchObject({ opId: 'op-a-11111111', delta: 2, type: 'earn' });
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([
+      expect.objectContaining({
+        opId: 'op-a-11111111',
+        ownerStableId: OWNER_A,
+        delta: 2,
+        type: 'earn',
+      }),
+    ]);
   });
 
-  it('is idempotent: enqueueing the same opId twice keeps one entry', async () => {
+  it('accepts an exact legacy customization opId but rejects unsafe path or whitespace characters', async () => {
+    await expect(enqueueShardDelta(entry('customization:legacy-op-1234'))).resolves.toBe(true);
+    await expect(enqueueShardDelta(entry('customization/legacy-op-1234'))).resolves.toBe(false);
+    await expect(enqueueShardDelta(entry('customization legacy-op-1234'))).resolves.toBe(false);
+
+    expect((await readShardDeltaQueue(OWNER_A)).map((item) => item.opId))
+      .toEqual(['customization:legacy-op-1234']);
+  });
+
+  it('is idempotent within one owner queue', async () => {
     await enqueueShardDelta(entry('op-dup-1234'));
     await enqueueShardDelta(entry('op-dup-1234', { delta: 99 }));
-    const queue = await readShardDeltaQueue();
+
+    const queue = await readShardDeltaQueue(OWNER_A);
     expect(queue).toHaveLength(1);
-    expect(queue[0].delta).toBe(2); // первая запись сохранена, не перезаписана
+    expect(queue[0].delta).toBe(2);
   });
 
-  it('removes only the confirmed opIds', async () => {
+  it('builds wallet writes from the latest value inside the locked queue commit', async () => {
+    const queueKey = shardDeltaQueueStorageKey(OWNER_A);
+    mockStorage.shards_balance = '100';
+    let replacedConcurrentBalance = false;
+    (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => {
+      if (key === queueKey && !replacedConcurrentBalance) {
+        replacedConcurrentBalance = true;
+        mockStorage.shards_balance = '140';
+      }
+      return mockStorage[key] ?? null;
+    });
+
+    const result = await enqueueAppliedShardDeltaWithStorage(
+      entry('op-atomic-commit'),
+      async () => {
+        const current = Number(await AsyncStorage.getItem('shards_balance'));
+        const next = current + 5;
+        return {
+          commit: true as const,
+          value: next,
+          walletPairs: [['shards_balance', String(next)]] as const,
+        };
+      },
+    );
+
+    expect(result).toEqual({ ok: true, committed: true, value: 145 });
+    expect(mockStorage.shards_balance).toBe('145');
+    expect(JSON.parse(mockStorage[queueKey])).toEqual([
+      expect.objectContaining({ opId: 'op-atomic-commit', localApplied: true }),
+    ]);
+  });
+
+  it('distinguishes an exact pending retry from a conflicting reused opId', async () => {
+    const original = entry('op-pending-retry', {
+      type: 'spend',
+      delta: 30,
+      reason: 'card_pack',
+    });
+    await enqueueShardDelta(original);
+    const buildWalletUpdate = jest.fn(async () => ({
+      commit: true as const,
+      value: 70,
+      walletPairs: [['shards_balance', '70']] as const,
+    }));
+
+    await expect(enqueueAppliedShardDeltaWithStorage(original, buildWalletUpdate))
+      .resolves.toEqual({ ok: true, duplicateExact: true });
+    expect(buildWalletUpdate).not.toHaveBeenCalled();
+
+    await expect(enqueueAppliedShardDeltaWithStorage(
+      { ...original, delta: 31 },
+      buildWalletUpdate,
+    )).resolves.toEqual({ ok: false });
+    expect(buildWalletUpdate).not.toHaveBeenCalled();
+  });
+
+  it('removes only confirmed opIds from the specified owner queue', async () => {
     await enqueueShardDelta(entry('op-1-aaaaaaaa'));
     await enqueueShardDelta(entry('op-2-bbbbbbbb', { type: 'spend', reason: 'card_pack' }));
     await enqueueShardDelta(entry('op-3-cccccccc'));
-    await removeShardDeltas(['op-1-aaaaaaaa', 'op-3-cccccccc']);
-    const queue = await readShardDeltaQueue();
-    expect(queue.map((q) => q.opId)).toEqual(['op-2-bbbbbbbb']);
+
+    await removeShardDeltas(OWNER_A, ['op-1-aaaaaaaa', 'op-3-cccccccc']);
+
+    expect((await readShardDeltaQueue(OWNER_A)).map((item) => item.opId))
+      .toEqual(['op-2-bbbbbbbb']);
   });
 
-  it('removeShardDeltas([]) is a no-op', async () => {
-    await enqueueShardDelta(entry('op-x-12345678'));
-    await removeShardDeltas([]);
-    expect(await readShardDeltaQueue()).toHaveLength(1);
+  it('removeShardDeltas with an empty id list is a no-op', async () => {
+    await enqueueShardDelta(entry('op-noop-12345678'));
+    const writesBefore = (AsyncStorage.setItem as jest.Mock).mock.calls.length;
+
+    await removeShardDeltas(OWNER_A, []);
+
+    expect(await readShardDeltaQueue(OWNER_A)).toHaveLength(1);
+    expect((AsyncStorage.setItem as jest.Mock).mock.calls).toHaveLength(writesBefore);
   });
 
-  it('tolerates corrupt queue JSON (returns empty, does not throw)', async () => {
-    mockStorage[QUEUE_KEY] = '{not valid json';
-    expect(await readShardDeltaQueue()).toEqual([]);
-    // и поверх мусора можно снова поставить в очередь
-    await enqueueShardDelta(entry('op-recover-1'));
-    expect(await readShardDeltaQueue()).toHaveLength(1);
+  it('isolates account A and B by storage key and entry owner', async () => {
+    await enqueueShardDelta(entry('op-owner-a'));
+    await enqueueShardDelta(entry('op-owner-b', { ownerStableId: OWNER_B }));
+
+    expect((await readShardDeltaQueue(OWNER_A)).map((item) => item.opId)).toEqual(['op-owner-a']);
+    expect((await readShardDeltaQueue(OWNER_B)).map((item) => item.opId)).toEqual(['op-owner-b']);
+    expect(shardDeltaQueueStorageKey(OWNER_A)).not.toBe(shardDeltaQueueStorageKey(OWNER_B));
   });
 
-  it('filters out structurally invalid entries on read', async () => {
-    mockStorage[QUEUE_KEY] = JSON.stringify([
-      { opId: 'ok-entry-1', delta: 1, type: 'earn', reason: 'r' },
-      { opId: 'bad-type', delta: 1, type: 'weird', reason: 'r' },
-      { delta: 1, type: 'earn', reason: 'r' }, // нет opId
+  it('quarantines the whole raw queue when any embedded owner mismatches', async () => {
+    const raw = JSON.stringify([
+      entry('op-valid-owner'),
+      entry('op-wrong-owner', { ownerStableId: OWNER_B }),
+      { opId: 'op-ownerless', delta: 1, type: 'earn', reason: 'lesson_first' },
+    ]);
+    mockStorage[shardDeltaQueueStorageKey(OWNER_A)] = raw;
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(true);
+    expect(Object.values(mockStorage)).toContain(raw);
+  });
+
+  it('quarantines the whole raw queue when any v2 entry is structurally invalid', async () => {
+    const raw = JSON.stringify([
+      entry('op-structurally-valid'),
+      { ...entry('bad-type'), type: 'invalid' },
+      { ...entry('bad-delta'), delta: Number.NaN },
+      { ...entry('bad-reason'), reason: 42 },
       null,
     ]);
-    const queue = await readShardDeltaQueue();
-    expect(queue.map((q) => q.opId)).toEqual(['ok-entry-1']);
+    mockStorage[shardDeltaQueueStorageKey(OWNER_A)] = raw;
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(Object.values(mockStorage)).toContain(raw);
   });
 
-  it('caps the queue length, dropping the oldest overflow', async () => {
-    for (let i = 0; i < 55; i += 1) {
-      await enqueueShardDelta(entry(`op-${String(i).padStart(4, '0')}-zz`));
+  it('rejects every non-canonical row shape before enqueueing it', async () => {
+    const invalidEntries: PendingShardDelta[] = [
+      entry('has space 1234'),
+      entry('op-fractional', { delta: 1.5 }),
+      entry('op-zero-time', { createdAtMs: 0 }),
+      entry('op-long-reason', { reason: 'x'.repeat(65) }),
+    ];
+
+    for (const invalidEntry of invalidEntries) {
+      await expect(enqueueShardDelta(invalidEntry)).resolves.toBe(false);
     }
-    const queue = await readShardDeltaQueue();
-    expect(queue).toHaveLength(50);
-    // Старейшие (0..4) вытеснены, новейший (54) на месте.
-    expect(queue[0].opId).toBe('op-0005-zz');
-    expect(queue[queue.length - 1].opId).toBe('op-0054-zz');
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(AsyncStorage.setItem).not.toHaveBeenCalledWith(
+      shardDeltaQueueStorageKey(OWNER_A),
+      expect.any(String),
+    );
+  });
+
+  it('quarantines persisted rows that cannot be sent to the server unchanged', async () => {
+    const raw = JSON.stringify([
+      entry('op-valid-row'),
+      entry('has space 1234'),
+      entry('op-fractional', { delta: 1.5 }),
+      entry('op-zero-time', { createdAtMs: 0 }),
+      entry('op-long-reason', { reason: 'x'.repeat(65) }),
+    ]);
+    mockStorage[shardDeltaQueueStorageKey(OWNER_A)] = raw;
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(Object.values(mockStorage)).toContain(raw);
+  });
+
+  it('preserves corrupt v2 JSON in quarantine and denies a new enqueue', async () => {
+    const corruptRaw = '{not valid json';
+    mockStorage[shardDeltaQueueStorageKey(OWNER_A)] = corruptRaw;
+
+    await expect(enqueueShardDelta(entry('op-after-corrupt'))).resolves.toBe(false);
+    const quarantineKeys = Object.keys(mockStorage).filter((key) =>
+      key.startsWith('shards_delta_queue_v2_quarantine:'),
+    );
+    expect(quarantineKeys).toHaveLength(1);
+    expect(mockStorage[quarantineKeys[0]]).toBe(corruptRaw);
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(mockStorage[quarantineKeys[0]]).toBe(corruptRaw);
+  });
+
+  it('preserves all 51 pending operations without dropping the oldest', async () => {
+    for (let index = 0; index < 51; index += 1) {
+      await enqueueShardDelta(entry(`op-${String(index).padStart(4, '0')}-zz`));
+    }
+
+    const queue = await readShardDeltaQueue(OWNER_A);
+    expect(queue).toHaveLength(51);
+    expect(queue[0].opId).toBe('op-0000-zz');
+    expect(queue[50].opId).toBe('op-0050-zz');
+  });
+
+  it('fails closed at bounded capacity without dropping or replacing durable entries', async () => {
+    const fullQueue = Array.from({ length: 1000 }, (_, index) =>
+      entry(`op-cap-${String(index).padStart(4, '0')}`),
+    );
+    mockStorage[shardDeltaQueueStorageKey(OWNER_A)] = JSON.stringify(fullQueue);
+
+    await expect(enqueueShardDelta(entry('op-over-capacity'))).resolves.toBe(false);
+    const queue = await readShardDeltaQueue(OWNER_A);
+    expect(queue).toHaveLength(1000);
+    expect(queue[0].opId).toBe('op-cap-0000');
+    expect(queue[999].opId).toBe('op-cap-0999');
+  });
+
+  it('quarantines ownerless v1 entries and never assigns them to the current owner', async () => {
+    mockStorage[LEGACY_QUEUE_KEY] = JSON.stringify([
+      { opId: 'legacy-ownerless', delta: 1, type: 'earn', reason: 'lesson_first', createdAtMs: 1 },
+    ]);
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(true);
+    expect(mockStorage[LEGACY_QUEUE_KEY]).toBeUndefined();
+    const quarantineKeys = Object.keys(mockStorage).filter((key) =>
+      key.startsWith('shards_delta_queue_v1_quarantine:'),
+    );
+    expect(quarantineKeys).toHaveLength(1);
+    expect(mockStorage[quarantineKeys[0]]).toContain('legacy-ownerless');
+    await expect(enqueueShardDelta(entry('op-after-legacy-quarantine'))).resolves.toBe(false);
+    expect(mockStorage[shardDeltaQueueStorageKey(OWNER_A)]).toBeUndefined();
+  });
+
+  it('drops an empty legacy v1 queue without ever arming quarantine', async () => {
+    mockStorage[LEGACY_QUEUE_KEY] = '[]';
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(false);
+    expect(mockStorage[LEGACY_QUEUE_KEY]).toBeUndefined();
+    expect(Object.keys(mockStorage).filter((key) =>
+      key.startsWith('shards_delta_queue_v1_quarantine:'),
+    )).toHaveLength(0);
+    // Заработок осколков не должен быть заблокирован пустым остатком миграции.
+    await expect(enqueueShardDelta(entry('op-after-empty-legacy'))).resolves.toBe(true);
+  });
+
+  it('self-heals an already-emptied legacy quarantine instead of blocking forever', async () => {
+    mockStorage[LEGACY_QUARANTINE_KEY] = '[]';
+
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(false);
+    expect(mockStorage[LEGACY_QUARANTINE_KEY]).toBeUndefined();
+    await expect(enqueueShardDelta(entry('op-after-empty-quarantine'))).resolves.toBe(true);
+  });
+
+  it('self-heals an already-emptied owner quarantine instead of blocking forever', async () => {
+    const ownerQuarantineKey =
+      `shards_delta_queue_v2_quarantine:${encodeURIComponent(OWNER_A)}`;
+    mockStorage[ownerQuarantineKey] = '[]';
+
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(false);
+    expect(mockStorage[ownerQuarantineKey]).toBeUndefined();
+    await expect(enqueueShardDelta(entry('op-after-empty-owner-quarantine'))).resolves.toBe(true);
+  });
+
+  it('keeps quarantine armed while a real pending row is still held', async () => {
+    mockStorage[LEGACY_QUARANTINE_KEY] = JSON.stringify([
+      { opId: 'legacy-real-row', delta: 7, type: 'spend', reason: 'avatar_aura', createdAtMs: 5 },
+    ]);
+
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(true);
+    expect(mockStorage[LEGACY_QUARANTINE_KEY]).toBeDefined();
+    await expect(enqueueShardDelta(entry('op-blocked-by-real-row'))).resolves.toBe(false);
+  });
+
+  it('quarantines corrupt legacy JSON verbatim before removing the legacy key', async () => {
+    mockStorage[LEGACY_QUEUE_KEY] = '{legacy corrupt bytes';
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(mockStorage[LEGACY_QUEUE_KEY]).toBeUndefined();
+    const quarantineKeys = Object.keys(mockStorage).filter((key) =>
+      key.startsWith('shards_delta_queue_v1_quarantine:'),
+    );
+    expect(quarantineKeys).toHaveLength(1);
+    expect(mockStorage[quarantineKeys[0]]).toBe('{legacy corrupt bytes');
+  });
+
+  it('matches and consumes only one exact valid legacy-v1 recovery row', async () => {
+    const exact = {
+      opId: 'customization:legacy-recovery',
+      delta: 35,
+      type: 'spend' as const,
+      reason: 'avatar_aura',
+      createdAtMs: 1000,
+    };
+    const unrelated = {
+      opId: 'customization:unrelated-row',
+      delta: 10,
+      type: 'spend' as const,
+      reason: 'custom_avatar',
+      createdAtMs: 1001,
+    };
+    mockStorage[LEGACY_QUARANTINE_KEY] = JSON.stringify([exact, unrelated]);
+
+    await expect(hasExactLegacyQuarantinedShardDelta(OWNER_A, exact)).resolves.toBe(true);
+    await expect(hasExactLegacyQuarantinedShardDelta(
+      OWNER_A,
+      { ...exact, delta: 36 },
+    )).resolves.toBe(false);
+    await expect(consumeExactLegacyQuarantinedShardDelta(OWNER_A, exact)).resolves.toBe(true);
+    expect(JSON.parse(mockStorage[LEGACY_QUARANTINE_KEY])).toEqual([unrelated]);
+    expect(Object.entries(mockStorage)).toEqual(expect.arrayContaining([
+      [expect.stringContaining('shards_delta_queue_v1_resolved:'), JSON.stringify(exact)],
+    ]));
+    await expect(hasExactLegacyQuarantinedShardDelta(OWNER_A, exact)).resolves.toBe(true);
+    await expect(consumeExactLegacyQuarantinedShardDelta(OWNER_A, exact)).resolves.toBe(true);
+    expect(JSON.parse(mockStorage[LEGACY_QUARANTINE_KEY])).toEqual([unrelated]);
+  });
+
+  it.each([
+    ['missing row', null],
+    ['malformed legacy quarantine', '{bad json'],
+    ['duplicate matching rows', JSON.stringify([
+      {
+        opId: 'customization:legacy-recovery',
+        delta: 35,
+        type: 'spend',
+        reason: 'avatar_aura',
+        createdAtMs: 1000,
+      },
+      {
+        opId: 'customization:legacy-recovery',
+        delta: 35,
+        type: 'spend',
+        reason: 'avatar_aura',
+        createdAtMs: 1001,
+      },
+    ])],
+  ])('fails closed for %s during exact legacy recovery', async (_case, raw) => {
+    if (raw !== null) mockStorage[LEGACY_QUARANTINE_KEY] = raw;
+    await expect(hasExactLegacyQuarantinedShardDelta(OWNER_A, {
+      opId: 'customization:legacy-recovery',
+      delta: 35,
+      type: 'spend',
+      reason: 'avatar_aura',
+      createdAtMs: 1000,
+    })).resolves.toBe(false);
+  });
+
+  it('blocks legacy recovery when an owner-v2 quarantine also exists', async () => {
+    mockStorage[LEGACY_QUARANTINE_KEY] = JSON.stringify([{
+      opId: 'customization:legacy-recovery',
+      delta: 35,
+      type: 'spend',
+      reason: 'avatar_aura',
+      createdAtMs: 1000,
+    }]);
+    mockStorage[`shards_delta_queue_v2_quarantine:${encodeURIComponent(OWNER_A)}`] = '{corrupt v2';
+
+    await expect(hasExactLegacyQuarantinedShardDelta(OWNER_A, {
+      opId: 'customization:legacy-recovery',
+      delta: 35,
+      type: 'spend',
+      reason: 'avatar_aura',
+      createdAtMs: 1000,
+    })).resolves.toBe(false);
   });
 });

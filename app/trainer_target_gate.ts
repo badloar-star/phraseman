@@ -12,7 +12,7 @@ export type TrainerSourceGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
   surface: TrainerSourceGatedSurface;
-  reason?: 'french_srs_trainer_source_gate' | 'french_trainer_remote_personal_practice_available';
+  reason?: 'french_srs_trainer_source_gate' | 'french_trainer_local_mistakes_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -32,7 +32,6 @@ const TRAINER_BLOCKED_ROUTES = Object.freeze([
   '/trainer',
   '/trainer_words_session',
   '/trainer_phrases_session',
-  '/trainer_arena_session',
 ]);
 
 export function trainerSourceGateForTarget(
@@ -54,7 +53,7 @@ export function trainerSourceGateForTarget(
     enabled: true,
     studyTarget: 'fr',
     surface,
-    reason: 'french_trainer_remote_personal_practice_available',
+    reason: 'french_trainer_local_mistakes_available',
     blockedRoutes: [],
     requiredEvidence: FRENCH_TRAINER_REQUIRED_EVIDENCE,
   };

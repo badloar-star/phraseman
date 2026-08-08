@@ -2,6 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { normalizeLessonPassCount } from './medal_utils';
 import {
+  LEGACY_FREE_LESSON_MIN,
+  normalizeLegacyFreeLessonCap,
+} from './legacy_free_lesson_access';
+import { IS_STORE_RELEASE } from './config';
+import { captureAccountGeneration } from './account_generation';
+import {
+  legacyFreeLessonCapKey,
   lessonBestScoreKey,
   lessonPassCountKey,
   lessonProgressKey,
@@ -14,6 +21,7 @@ import {
 /** Last loaded lessons list state (session memory — first paint without «zero flash»). */
 export type LessonsTabSnapshot = {
   noLimits: boolean;
+  legacyFreeLessonCap: number;
   persistedUnlocked: number[];
   scores: number[];
   progCounts: number[];
@@ -23,9 +31,23 @@ export type LessonsTabSnapshot = {
   examPassCounts: Record<string, number>;
 };
 
+// зачем: кэш заштампован поколением аккаунта (2026-08-02) — после смены аккаунта
+// синхронный boot-снимок прежнего пользователя (очки/медали/exam best pct) не должен
+// мигнуть на первом кадре списка уроков. Тот же паттерн, что у сессионного кэша
+// в app/(tabs)/lessons.tsx (замена privacy-крышки убранного таба «Уроки»).
 let lastSnapshotByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
+let lastSnapshotGeneration = -1;
+
+function dropSnapshotsOfOtherGenerations(): void {
+  const generation = captureAccountGeneration().generation;
+  if (generation !== lastSnapshotGeneration) {
+    lastSnapshotByTarget = {};
+    lastSnapshotGeneration = generation;
+  }
+}
 
 export function getLessonsTabInitialState(studyTarget?: RuntimeStudyTarget): LessonsTabSnapshot | null {
+  dropSnapshotsOfOtherGenerations();
   return lastSnapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
 }
 
@@ -39,7 +61,8 @@ export async function loadLessonsTabStateFromStorage(
 ): Promise<LessonsTabSnapshot> {
   const target = storageStudyTarget(studyTarget);
   const unlockedKey = unlockedLessonsKey(studyTarget);
-  const metaKeys = ['tester_no_limits', unlockedKey] as const;
+  const legacyCapKey = legacyFreeLessonCapKey(studyTarget);
+  const metaKeys = ['tester_no_premium', 'tester_no_limits', unlockedKey, legacyCapKey] as const;
   const lessonKeys: string[] = [];
   for (let i = 1; i <= 32; i++) {
     lessonKeys.push(
@@ -58,10 +81,16 @@ export async function loadLessonsTabStateFromStorage(
     );
   }
   const allKeys = [...metaKeys, ...lessonKeys, ...examKeys];
+  // Штамп до чтения: если аккаунт сменится, пока multiGet в полёте, смешанный
+  // снимок не должен осесть в кэше (last-write-guard, как у осколков).
+  const generationAtLoadStart = captureAccountGeneration().generation;
   const entries = await AsyncStorage.multiGet(allKeys);
   const map: Record<string, string | null> = Object.fromEntries(entries);
 
-  const noLimits = map.tester_no_limits === 'true';
+  const noLimits = map.tester_no_premium !== 'true'
+    && map.tester_no_limits === 'true'
+    && !IS_STORE_RELEASE;
+  const legacyFreeLessonCap = normalizeLegacyFreeLessonCap(map[legacyCapKey]) ?? LEGACY_FREE_LESSON_MIN;
   let persistedUnlocked: number[] = [];
   if (map[unlockedKey]) {
     try {
@@ -110,6 +139,7 @@ export async function loadLessonsTabStateFromStorage(
 
   const snap: LessonsTabSnapshot = {
     noLimits,
+    legacyFreeLessonCap,
     persistedUnlocked,
     scores,
     progCounts,
@@ -118,7 +148,16 @@ export async function loadLessonsTabStateFromStorage(
     examBestPcts,
     examPassCounts,
   };
-  lastSnapshotByTarget[target] = snap;
+  // Сначала сброс чужих поколений, потом запись — снапшот ложится уже в кэш
+  // текущего аккаунта и не смешивается с прежним.
+  dropSnapshotsOfOtherGenerations();
+  // В кэш — только снимок, дочитанный в том же поколении аккаунта; экрану
+  // возвращаем в любом случае (его собственный refetch на фокусе догонит).
+  if (generationAtLoadStart === captureAccountGeneration().generation) {
+    dropSnapshotsOfOtherGenerations();
+    lastSnapshotByTarget[target] = snap;
+    lastSnapshotGeneration = generationAtLoadStart;
+  }
   return snap;
 }
 

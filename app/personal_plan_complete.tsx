@@ -1,14 +1,15 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import ProgressProofBlock from '../components/feedback/ProgressProofBlock';
+import { buildProgressCompletionModel } from './completion/progress_completion_model';
 import {
   getPlanById,
   type PersonalPlanDefinition,
@@ -39,7 +40,7 @@ type CompleteView = {
  */
 export default function PersonalPlanCompleteScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const [view, setView] = useState<CompleteView | null>(null);
@@ -110,12 +111,32 @@ export default function PersonalPlanCompleteScreen() {
 
   const { summary, nextPlan } = view;
   const accent = nextPlan.accent || t.accent;
+  const completionModel = buildProgressCompletionModel({
+    fact: triLang(lang, {
+      ru: `Маршрут «${summary.planName}» пройден`, uk: `Маршрут «${summary.planName}» пройдено`, es: `Ruta «${summary.planName}» completada`, 'pt-BR': `Rota «${summary.planName}» concluída`, vi: `Đã hoàn thành «${summary.planName}»`, id: `Rute «${summary.planName}» selesai`, tr: `«${summary.planName}» rotası tamamlandı`, pl: `Trasa „${summary.planName}” ukończona`,
+    }),
+    accumulated: triLang(lang, { ru: `${summary.completedTasks} вызовов за ${summary.totalDays} дней`, uk: `${summary.completedTasks} викликів за ${summary.totalDays} днів`, es: `${summary.completedTasks} tareas en ${summary.totalDays} días`, 'pt-BR': `${summary.completedTasks} tarefas em ${summary.totalDays} dias`, vi: `${summary.completedTasks} nhiệm vụ trong ${summary.totalDays} ngày`, id: `${summary.completedTasks} tugas dalam ${summary.totalDays} hari`, tr: `${summary.totalDays} günde ${summary.completedTasks} görev`, pl: `${summary.completedTasks} zadań w ${summary.totalDays} dni` }),
+    nextStep: nextPlan.goal,
+    primaryAction: { id: 'next-plan', label: triLang(lang, { ru: 'Начать новый маршрут', uk: 'Почати новий маршрут', es: 'Empezar nueva ruta', 'pt-BR': 'Começar nova rota', vi: 'Bắt đầu lộ trình mới', id: 'Mulai rute baru', tr: 'Yeni rotaya başla', pl: 'Zacznij nową trasę' }) },
+    confirmed: { routeComplete: true },
+  });
 
   return (
     <ScreenGradient>
-      <View style={[styles.safe, { paddingTop: insets.top }]}>
-        <BounceView style={styles.safe}>
-          <View style={[styles.card, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          BounceView даёт «резинку», но НЕ прокрутку — он рассчитан на экраны,
+          где контент влезает целиком. На низком экране карточка поздравления с
+          кнопками не влезала и обрезалась, а доскроллить было нечем. Скролл с
+          flexGrow:1 сохраняет центрирование на больших экранах, bounces
+          оставляет то же ощущение резинки. */}
+      <ScrollView
+        style={styles.safeScroll}
+        contentContainerStyle={[styles.safeContent, { paddingTop: insets.top }]}
+        showsVerticalScrollIndicator={false}
+        bounces
+      >
+        <View style={styles.safeContent}>
+          <View style={[styles.card, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
             <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
               <Ionicons name="trophy" size={34} color={t.correctText} />
             </View>
@@ -132,18 +153,7 @@ export default function PersonalPlanCompleteScreen() {
                 pl: 'TRASA UKOŃCZONA',
               })}
             </Text>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
-              {triLang(lang, {
-                ru: `Ты прошёл «${summary.planName}»`,
-                uk: `Ти пройшов «${summary.planName}»`,
-                es: `Completaste «${summary.planName}»`,
-                'pt-BR': `Você concluiu «${summary.planName}»`,
-                vi: `Bạn đã hoàn thành «${summary.planName}»`,
-                id: `Kamu menyelesaikan «${summary.planName}»`,
-                tr: `«${summary.planName}» rotasını bitirdin`,
-                pl: `Ukończyłeś «${summary.planName}»`,
-              })}
-            </Text>
+            <ProgressProofBlock model={completionModel} testID="personal-plan-progress-proof" />
 
             <View style={styles.statsRow}>
               <View style={[styles.statBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
@@ -219,8 +229,8 @@ export default function PersonalPlanCompleteScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-        </BounceView>
-      </View>
+        </View>
+      </ScrollView>
     </ScreenGradient>
   );
 }
@@ -228,6 +238,18 @@ export default function PersonalPlanCompleteScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 22,
+    paddingVertical: 24,
+  },
+  safeScroll: {
+    flex: 1,
+  },
+  safeContent: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 22,
     paddingVertical: 24,

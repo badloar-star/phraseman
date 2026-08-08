@@ -13,6 +13,15 @@ type LbStore = Record<string, Record<string, LbDocData | undefined>>;
 // Shared holder so the firebase-admin mock's firestore() returns the per-test
 // stub db (the callables call admin.firestore() internally, ignoring any arg).
 let currentDb: any = null;
+let cryptoCounter = 0;
+
+jest.mock('node:crypto', () => ({
+  ...jest.requireActual('node:crypto'),
+  randomInt: (min: number, max?: number) => {
+    cryptoCounter += 1;
+    return max === undefined ? cryptoCounter % min : min + (cryptoCounter % (max - min));
+  },
+}));
 
 // firebase-admin FieldValue.delete() → our stub recognizes { __delete: true }.
 jest.mock('firebase-admin', () => ({
@@ -23,7 +32,7 @@ jest.mock('firebase-admin', () => ({
 
 // Import AFTER the mock is registered.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { nameCheckAvailability, nameReserve } = require('./leaderboard');
+const { nameCheckAvailability, nameGenerateAndReserve, nameReserve } = require('./leaderboard');
 
 function makeDbStub(initial: LbStore = {}) {
   const store: LbStore = {
@@ -243,6 +252,33 @@ describe('nameReserve — atomic uniqueness', () => {
     });
   });
 
+  it('releases the authoritative current index when the client oldName is stale', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+            nickname_free_change_available: '1',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Stale client name', source: 'settings' },
+      'auth-a',
+    );
+
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
+  });
+
   it('allows changing an onboarding draft name before the profile is completed', async () => {
     const { db, store } = makeDbStub({
       users: {
@@ -253,6 +289,7 @@ describe('nameReserve — atomic uniqueness', () => {
             user_name_lower: 'civi',
             nickname_changed_at: '1776999999000',
             user_total_xp: '0',
+            nickname_free_change_available: '1',
           },
         },
       },
@@ -278,6 +315,7 @@ describe('nameReserve — atomic uniqueness', () => {
             user_name_lower: 'civi',
             nickname_changed_at: '1776999999000',
             user_total_xp: '120',
+            nickname_free_change_available: '1',
           },
         },
       },
@@ -302,6 +340,7 @@ describe('nameReserve — atomic uniqueness', () => {
             user_name: 'Civi',
             user_name_lower: 'civi',
             nickname_changed_at: '1776999999000',
+            nickname_free_change_available: '1',
           },
         },
       },
@@ -340,7 +379,7 @@ describe('nameReserve — atomic uniqueness', () => {
     expect(res.nextChangeAt).toBe(1778209599000);
   });
 
-  it('still allows onboarding source to replace the profile name after onboarding was relaunched', async () => {
+  it('does not let a spoofed onboarding source bypass the rename cooldown', async () => {
     const { db, store } = makeDbStub({
       users: {
         'stable-a': {
@@ -360,9 +399,9 @@ describe('nameReserve — atomic uniqueness', () => {
       { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'onboarding' },
       'auth-a',
     );
-    expect(res.status).toBe('ok');
-    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
-    expect(store.name_index['civi']).toBeUndefined();
+    expect(res.status).toBe('cooldown');
+    expect(store.name_index['nova']).toBeUndefined();
+    expect(store.name_index['civi']).toMatchObject({ uid: 'stable-a' });
   });
 
   it('reclaims a name whose owner account is GONE (no users doc)', async () => {
@@ -442,5 +481,107 @@ describe('nameCheckAvailability — mirrors reservation logic', () => {
     });
     const res: any = await callableRun(nameCheckAvailability, { stableId: 'stable-me', name: 'Mine' }, 'auth-me');
     expect(res.available).toBe(true);
+  });
+});
+
+describe('nameGenerateAndReserve — server-owned automatic nickname', () => {
+  beforeEach(() => { cryptoCounter = 0; });
+  it('atomically assigns a smart word plus five digits and grants three settings renames', async () => {
+    const { db, store } = makeDbStub({ users: { 'stable-a': { firebaseAuthUid: 'auth-a' } } });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-a' }, 'auth-a');
+
+    expect(res.status).toBe('ok');
+    expect(res.name).toMatch(/^[A-Z][A-Za-z]+ [0-9]{5}$/);
+    expect(store.users['stable-a']?.progress).toMatchObject({
+      user_name: res.name,
+      nickname_grace_renames_remaining: '3',
+    });
+    expect(store.name_index[res.name.toLowerCase()]).toMatchObject({ uid: 'stable-a' });
+  });
+
+  it('is idempotent and returns the already assigned nickname', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: { user_name: 'Quantum 48271', user_name_lower: 'quantum 48271' },
+        },
+      },
+      name_index: { 'quantum 48271': { uid: 'stable-a', name: 'Quantum 48271', nameLower: 'quantum 48271' } },
+    });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-a' }, 'auth-a');
+    expect(res).toMatchObject({ status: 'ok', name: 'Quantum 48271' });
+  });
+
+  it('does not treat an owned but tombstoned index entry as a valid reservation', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: { user_name: 'Quantum 48271', user_name_lower: 'quantum 48271' },
+        },
+      },
+      name_index: {
+        'quantum 48271': { uid: 'stable-a', name: 'Quantum 48271', nameLower: 'quantum 48271', identityHidden: true },
+      },
+    });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-a' }, 'auth-a');
+    expect(res.status).toBe('ok');
+    expect(res.name).not.toBe('Quantum 48271');
+  });
+
+  it('clears the tombstone when reclaiming a generated nickname slot', async () => {
+    const { db, store } = makeDbStub({
+      users: { 'stable-a': { firebaseAuthUid: 'auth-a' } },
+      name_index: {
+        'axiom 10002': { uid: 'stable-old', name: 'Axiom 10002', nameLower: 'axiom 10002', identityHidden: true },
+      },
+    });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-a' }, 'auth-a');
+    expect(res.name).toBe('Axiom 10002');
+    const indexDoc = store.name_index[res.name.toLowerCase()];
+    expect(indexDoc?.identityHidden).toBeUndefined();
+  });
+});
+
+describe('settings rename grace policy', () => {
+  it('allows three successful renames and blocks the fourth during cooldown', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Alpha 10001',
+            user_name_lower: 'alpha 10001',
+            nickname_changed_at: '1776999999000',
+            nickname_grace_renames_remaining: '3',
+          },
+        },
+      },
+      name_index: { 'alpha 10001': { uid: 'stable-a', name: 'Alpha 10001', nameLower: 'alpha 10001' } },
+    });
+
+    let oldName = 'Alpha 10001';
+    for (const nextName of ['Omega 10002', 'Axiom 10003', 'Neon 10004']) {
+      const res: any = await callableRun(
+        nameReserve,
+        { stableId: 'stable-a', name: nextName, oldName, source: 'settings' },
+        'auth-a',
+      );
+      expect(res.status).toBe('ok');
+      oldName = nextName;
+    }
+    expect((store.users['stable-a']?.progress as Record<string, unknown>).nickname_grace_renames_remaining).toBe('0');
+
+    const blocked: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Vector 10005', oldName, source: 'onboarding' },
+      'auth-a',
+    );
+    expect(blocked.status).toBe('cooldown');
   });
 });

@@ -3,7 +3,9 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const ROOT = process.cwd();
-const SOURCE_DIR = path.join(ROOT, 'assets/images/cinema_dalle_sources');
+// зачем: черновики генерации вынесены из assets/ в asset_sources/ — они не
+// нужны в сборке приложения, но остаются в репозитории для регенерации.
+const SOURCE_DIR = path.join(ROOT, 'asset_sources/cinema_dalle_sources');
 const CINEMA_THEMES = ['midnight', 'ember', 'aurora', 'volt'];
 
 const LEARNING_OBJECT_SUBJECTS = [

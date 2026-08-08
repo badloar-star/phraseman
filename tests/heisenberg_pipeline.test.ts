@@ -10,6 +10,25 @@ declare const require: any;
 const core = require('../scripts/lib/heisenberg_core.cjs');
 
 describe('heisenberg localization pipeline core', () => {
+  it('wires the named Heisenberg gate to release-readiness checks, not only translation scans', () => {
+    const pipelineSource = require('fs').readFileSync(require('path').join(__dirname, '..', 'scripts', 'heisenberg_pipeline.cjs'), 'utf8');
+
+    expect(pipelineSource).toContain("runCheck('npm', ['run', 'heisenberg:production-readiness'], root)");
+    expect(pipelineSource).toContain("runCheck('npm', ['run', 'heisenberg:blocker-matrix'], root)");
+    expect(pipelineSource).toContain("runCheck('npm', ['run', 'heisenberg:raw-strings:strict'], root)");
+    expect(pipelineSource).toContain("runCheck('npm', ['run', 'heisenberg:prompt-language-audit:strict'], root)");
+    expect(pipelineSource).toContain("runCheck('npm', ['run', 'heisenberg:preflight:strict'], root)");
+  });
+
+  it('supports surface-scoped translation runs for a bounded first-language slice', () => {
+    const pipeline = require('../scripts/heisenberg_pipeline.cjs');
+    const args = pipeline.parseArgs(['--all-batch', '--surface', 'ui-locale', '--audit-only']);
+    const childArgs = pipeline.childArgsForLocale(args, 'pt-BR');
+
+    expect(childArgs).toEqual(expect.arrayContaining(['--surface', 'ui-locale']));
+    expect(childArgs).toContain('--audit-only');
+  });
+
   it('normalizes BCP 47 locale tags', () => {
     expect(core.normalizeLocale('fr-fr')).toBe('fr-FR');
     expect(core.localeSlug('pt-BR')).toBe('pt-br');
@@ -57,6 +76,12 @@ describe('heisenberg localization pipeline core', () => {
     expect(core.shouldSkipRelative('docs/HEISENBERG_LOCALIZATION_PIPELINE.md')).toBe(false);
     expect(core.shouldSkipRelative('.claude/settings.local.json')).toBe(true);
     expect(core.shouldSkipRelative('.codex-tmp/edge-profile/domains_config.json')).toBe(true);
+    expect(core.shouldSkipRelative('.worktrees/level-up-local-reliability/package.json')).toBe(true);
+    expect(core.shouldSkipRelative('.ruflo/state.json')).toBe(true);
+    expect(core.shouldSkipRelative('.ruvector/index.json')).toBe(true);
+    expect(core.shouldSkipRelative('.swarm/state.json')).toBe(true);
+    expect(core.shouldSkipRelative('docs/reports/big-audit.json')).toBe(true);
+    expect(core.shouldSkipRelative('assets/images/cards/generated.webp')).toBe(true);
   });
 
   it('generates a mandatory agent review board with stable reviewer roles', () => {
@@ -335,6 +360,22 @@ describe('heisenberg localization pipeline core', () => {
     expect(report.summary.completeUnits).toBe(1);
   });
 
+  it('extracts registered locale values from inline locale containers and title-case suffix fields', () => {
+    const text = `
+      const GAME = {
+        accept: { ru: 'Принять', uk: 'Прийняти', es: 'Aceptar', 'pt-BR': 'Aceitar', vi: 'Chấp nhận' },
+      };
+      const toasts = {
+        failed: { messageRu: 'Ошибка', messageUk: 'Помилка', messageEs: 'Error', messagePtBr: 'Erro', messageVi: 'Lỗi' },
+      };
+    `;
+    const items = core.extractLocalizedItemsFromText('constants/arena_i18n.ts', text);
+    const ids = items.map((item: any) => `${item.locale}:${item.keyPath}:${item.text}`);
+    expect(ids).toContain('pt-BR:accept.pt-BR:Aceitar');
+    expect(ids).toContain('pt-BR:failed.messagePtBr:Erro');
+    expect(ids).toContain('vi:failed.messageVi:Lỗi');
+  });
+
   it('counts ambiguous Indonesian id helper-call siblings as batch locale coverage', () => {
     const items = core.extractLocalizedItemsFromText(
       'app/ai_dialog_scenarios.ts',
@@ -575,7 +616,259 @@ describe('heisenberg localization pipeline core', () => {
 
     expect(audit.summary.targetLocalizedItems).toBe(1);
     expect(audit.summary.targetItemsBySurface).toEqual({ 'ui-locale': 1 });
+    expect(audit.summary.fieldCoverageGapFiles).toBe(0);
+    expect(audit.blockers.join(' ')).not.toContain('PT');
     expect(missingItems).toEqual([]);
+  });
+
+  it('keeps planned regional locale translation blocks in canonical locale slots', () => {
+    const blocks = core.buildTranslationBlocks([
+      {
+        id: 'app/demo.ts:sourceLocales.ru.title',
+        file: 'app/demo.ts',
+        line: 12,
+        surface: 'app-other',
+        keyPath: 'sourceLocales.ru.title',
+        locale: 'ru',
+        text: 'Заголовок',
+      },
+    ], 'pt-BR');
+
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].rows[0]).toMatchObject({
+      targetLocale: 'pt-BR',
+      targetSlot: 'pt-BR-field-gap',
+    });
+    expect(blocks[0].rows[0].notes.join(' ')).toContain('pt-BR locale fields/items');
+  });
+
+  it('detects partial target gaps by localized runtime unit instead of whole file presence', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 1,
+        localizedItems: 3,
+        byLocale: { ru: 2, 'pt-BR': 1 },
+        bySurface: { 'daily-phrase': 3 },
+      },
+      files: [
+        {
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          localizedItems: 3,
+          markers: {
+            ruFields: 2,
+            ukFields: 0,
+            esFields: 0,
+            localeTriples: 0,
+          },
+        },
+      ],
+      items: [
+        {
+          id: 'app/idioms_data.ts:id:11.sourceLocales.ru.literal',
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          locale: 'ru',
+          keyPath: 'id:11.sourceLocales.ru.literal',
+          text: 'дословно',
+        },
+        {
+          id: 'app/idioms_data.ts:id:11.sourceLocales.ru.meaning',
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          locale: 'ru',
+          keyPath: 'id:11.sourceLocales.ru.meaning',
+          text: 'значение',
+        },
+        {
+          id: 'app/idioms_data.ts:id:11.sourceLocales.pt-BR.meaning',
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          locale: 'pt-BR',
+          keyPath: 'id:11.sourceLocales.pt-BR.meaning',
+          text: 'significado',
+        },
+      ],
+    };
+
+    const missingItems = core.missingTargetSourceItems(inventory, 'pt-BR');
+
+    expect(missingItems.map((item: any) => item.keyPath)).toEqual(['id:11.sourceLocales.ru.literal']);
+  });
+
+  it('deduplicates missing translation candidates and keeps all available source references', () => {
+    const inventory = {
+      items: [
+        { file: 'constants/arena_i18n.ts', surface: 'ui-locale', locale: 'ru', keyPath: 'loadingQuestions.ru', text: 'дословно' },
+        { file: 'constants/arena_i18n.ts', surface: 'ui-locale', locale: 'uk', keyPath: 'loadingQuestions.uk', text: 'дослівно' },
+      ],
+    };
+
+    const missingItems = core.missingTargetSourceItems(inventory, 'pt-BR');
+    const blocks = core.buildTranslationBlocks(missingItems, 'pt-BR', { blockSize: 40 });
+
+    expect(missingItems).toHaveLength(1);
+    expect(missingItems[0].sourceTexts).toEqual({ ru: 'дословно', uk: 'дослівно' });
+    expect(blocks[0].rows[0].sourceTexts).toEqual({ ru: 'дословно', uk: 'дослівно' });
+  });
+
+  it('deduplicates title-case locale suffix fields into one runtime unit', () => {
+    const inventory = {
+      items: [
+        { file: 'constants/arena_i18n.ts', surface: 'ui-locale', locale: 'ru', keyPath: 'error.messageRu', text: 'Ошибка' },
+        { file: 'constants/arena_i18n.ts', surface: 'ui-locale', locale: 'uk', keyPath: 'error.messageUk', text: 'Помилка' },
+        { file: 'constants/arena_i18n.ts', surface: 'ui-locale', locale: 'es', keyPath: 'error.messageEs', text: 'Error' },
+      ],
+    };
+    const missingItems = core.missingTargetSourceItems(inventory, 'pt-BR');
+    expect(missingItems).toHaveLength(1);
+    expect(missingItems[0].sourceTexts).toEqual({ ru: 'Ошибка', uk: 'Помилка', es: 'Error' });
+  });
+
+  it('builds a runtime ledger for present and missing source-locale units without claiming release readiness', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 1,
+        localizedItems: 3,
+        byLocale: { ru: 2, 'pt-BR': 1 },
+        bySurface: { 'daily-phrase': 3 },
+      },
+      files: [
+        {
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          localizedItems: 3,
+          markers: {},
+        },
+      ],
+      items: [
+        {
+          id: 'ru-literal',
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          locale: 'ru',
+          keyPath: 'id:11.sourceLocales.ru.literal',
+          text: 'дословно',
+        },
+        {
+          id: 'ru-meaning',
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          locale: 'ru',
+          keyPath: 'id:11.sourceLocales.ru.meaning',
+          text: 'значение',
+        },
+        {
+          id: 'pt-meaning',
+          file: 'app/idioms_data.ts',
+          surface: 'daily-phrase',
+          locale: 'pt-BR',
+          keyPath: 'id:11.sourceLocales.pt-BR.meaning',
+          text: 'significado',
+        },
+      ],
+    };
+
+    const ledger = core.buildLocalizationRuntimeLedger(inventory, ['pt-BR']);
+
+    expect(ledger.schemaVersion).toBe('heisenberg-localization-runtime-ledger-v1');
+    expect(ledger.summary.locales).toEqual({
+      'pt-BR': {
+        totalUnits: 2,
+        presentUnits: 1,
+        missingUnits: 1,
+        reviewRequiredUnits: 2,
+        releaseReadyUnits: 0,
+        surfaces: {
+          'daily-phrase': {
+            totalUnits: 2,
+            presentUnits: 1,
+            missingUnits: 1,
+            reviewRequiredUnits: 2,
+            releaseReadyUnits: 0,
+          },
+        },
+      },
+    });
+    expect(ledger.summary.scopes).toEqual([
+      {
+        sourceLocale: 'pt-BR',
+        surface: 'daily-phrase',
+        cefrLevel: 'unclassified',
+        totalUnits: 2,
+        presentUnits: 1,
+        missingUnits: 1,
+        reviewRequiredUnits: 2,
+        releaseReadyUnits: 0,
+        scopedReady: false,
+      },
+    ]);
+    expect(ledger.rows.map((row: any) => ({
+      sourceLocale: row.sourceLocale,
+      unitKey: row.unitKey,
+      status: row.status,
+      releaseReady: row.releaseReady,
+    }))).toEqual([
+      {
+        sourceLocale: 'pt-BR',
+        unitKey: 'app/idioms_data.ts::daily-phrase::id:11.literal',
+        status: 'missing_candidate',
+        releaseReady: false,
+      },
+      {
+        sourceLocale: 'pt-BR',
+        unitKey: 'app/idioms_data.ts::daily-phrase::id:11.meaning',
+        status: 'present_needs_review',
+        releaseReady: false,
+      },
+    ]);
+  });
+
+  it('builds one existing-runtime review candidate per present localized unit', () => {
+    const inventory = {
+      items: [
+        { id: 'ru', file: 'constants/demo_i18n.ts', surface: 'ui-locale', locale: 'ru', keyPath: 'save.ru', text: 'Сохранить' },
+        { id: 'uk', file: 'constants/demo_i18n.ts', surface: 'ui-locale', locale: 'uk', keyPath: 'save.uk', text: 'Зберегти' },
+        { id: 'es', file: 'constants/demo_i18n.ts', surface: 'ui-locale', locale: 'es', keyPath: 'save.es', text: 'Guardar' },
+        { id: 'pt', file: 'constants/demo_i18n.ts', surface: 'ui-locale', locale: 'pt-BR', keyPath: 'save.pt-BR', text: 'Salvar' },
+      ],
+    };
+    const rows = core.buildPresentLocaleReviewCandidates(inventory, 'pt-BR', { surface: 'ui-locale' });
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({
+      origin: 'existing-runtime',
+      status: 'EXISTING_NEEDS_REVIEW',
+      integrated: true,
+      keyPath: 'save.pt-BR',
+      targetText: 'Salvar',
+      sourceTexts: { ru: 'Сохранить', uk: 'Зберегти', es: 'Guardar' },
+      runtimeReviewApproved: false,
+      activationApproved: false,
+    });
+  });
+
+  it('groups runtime ledger scopes by explicit CEFR evidence without guessing a level', () => {
+    const inventory = {
+      files: [],
+      items: [
+        { file: 'app/lesson_data_a1.ts', surface: 'lessons', locale: 'ru', keyPath: 'lesson.1.rule', text: 'RU' },
+        { file: 'app/lesson_data_a1.ts', surface: 'lessons', locale: 'pt-BR', keyPath: 'lesson.1.rule', text: 'PT' },
+        { file: 'app/lesson_data.ts', surface: 'lessons', locale: 'ru', keyPath: 'lesson.2.rule', text: 'RU2' },
+      ],
+    };
+
+    const ledger = core.buildLocalizationRuntimeLedger(inventory, ['pt-BR']);
+
+    expect(ledger.rows.map((row: any) => row.cefrLevel)).toEqual(['A1', 'unclassified']);
+    expect(ledger.summary.scopes.map((scope: any) => ({
+      surface: scope.surface,
+      cefrLevel: scope.cefrLevel,
+      totalUnits: scope.totalUnits,
+      presentUnits: scope.presentUnits,
+    }))).toEqual([
+      { surface: 'lessons', cefrLevel: 'A1', totalUnits: 1, presentUnits: 1 },
+      { surface: 'lessons', cefrLevel: 'unclassified', totalUnits: 1, presentUnits: 0 },
+    ]);
   });
 
   it('audits an existing UI locale without treating it as a study target', () => {
@@ -925,9 +1218,7 @@ describe('heisenberg localization pipeline core', () => {
     };
 
     const items = core.missingTargetSourceItems(inventory, 'es');
-    expect(items.map((item: any) => `${item.file}:${item.locale}`)).toEqual([
-      'app/missing_es.ts:ru',
-      'app/missing_es.ts:uk',
-    ]);
+    expect(items.map((item: any) => `${item.file}:${item.locale}`)).toEqual(['app/missing_es.ts:ru']);
+    expect(items[0].sourceTexts).toEqual({ ru: 'RU', uk: 'UK' });
   });
 });

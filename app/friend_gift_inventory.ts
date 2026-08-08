@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GIFT_TTL_MS } from './gift_expiry';
 
 export const FRIEND_GIFT_INVENTORY_KEY = 'friend_gift_inventory_v1';
 
@@ -40,8 +41,26 @@ const parseStoredGifts = (raw: string | null): StoredFriendGiftInventoryItem[] =
   }
 };
 
-export async function loadStoredFriendGiftInventory(): Promise<StoredFriendGiftInventoryItem[]> {
-  return parseStoredGifts(await AsyncStorage.getItem(FRIEND_GIFT_INVENTORY_KEY));
+/** Мс сгорания подарка друга: 72ч от локального получения (savedAt), не от отправки. */
+export const friendGiftExpiresAtMs = (
+  gift: Pick<StoredFriendGiftInventoryItem, 'ts' | 'savedAt'>,
+): number => (gift.savedAt || gift.ts) + GIFT_TTL_MS;
+
+export async function loadStoredFriendGiftInventory(
+  nowMs: number = Date.now(),
+): Promise<StoredFriendGiftInventoryItem[]> {
+  const stored = parseStoredGifts(await AsyncStorage.getItem(FRIEND_GIFT_INVENTORY_KEY));
+  // зачем (2026-08-02, владелец): любой полученный подарок живёт 72 часа и
+  // исчезает из раздела «Подарки»; сгоревшие вычищаем прямо при чтении.
+  const alive = stored.filter((gift) => nowMs < friendGiftExpiresAtMs(gift));
+  if (alive.length !== stored.length) {
+    try {
+      await AsyncStorage.setItem(FRIEND_GIFT_INVENTORY_KEY, JSON.stringify(alive));
+    } catch {
+      // Повторная чистка произойдёт при следующем чтении.
+    }
+  }
+  return alive;
 }
 
 export async function saveFriendGiftsToInventory(gifts: StoredFriendGiftInventoryItem[]): Promise<void> {

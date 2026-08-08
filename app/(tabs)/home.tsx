@@ -1,8 +1,11 @@
-﻿import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { tabSwipeLock } from '../tabSwipeLock';
+// зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
+// обрезались при крупном шрифте и на длинных языках. FlowText переносит.
+import { FlowText } from '../../components/text-integrity';
 import { getStreakFreezeCostShards } from '../remote_flags';
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
@@ -11,7 +14,7 @@ import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
@@ -33,8 +36,7 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { CompassBriefingHost } from '../compass';
-import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
+import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
@@ -58,6 +60,7 @@ import PlusBadge from '../../components/PlusBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
@@ -71,23 +74,18 @@ import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
-import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
-import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import GoldBevel from '../../components/GoldBevel';
-import CompassBevel from '../../components/CompassBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
-import { oskolokImageForPackShards } from '../oskolok';
+import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
-import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
+import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import AppMessagesInbox from '../../components/AppMessagesInbox';
-import CommunityChatHubButton from '../../components/CommunityChatHubButton';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
@@ -96,11 +94,13 @@ import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
-import { shouldShowLeagueRace } from '../league_race_visibility';
+import { getCachedLeagueStateSync } from '../league_open_cache_policy';
 import { getHomeMenuImages } from '../home_menu_icons';
+import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import { isStudyTargetSourceUiLang } from '../study_target_lang_dev';
 import {
@@ -111,30 +111,52 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
-import { formatLeagueChatUnreadBadge } from '../league_chat_unread';
-import { useLeagueChatUnread } from '../use_league_chat_unread';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
+import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from '../survey_client';
+import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../survey_daily_task';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts } from '../survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
+import { getCanonicalUserId } from '../user_id_policy';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { noAndroidOutline } from '../../constants/androidGlow';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
 const CARD_W = (CONTENT_W - 32 - 10) / 2;
-const USE_ELITE_HOME_STATUS = true;
 // Rollback: set false to return to the previous elite home status card.
-const HOME_STATUS_DENSE_PROGRESS_EXPERIMENT = true;
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
-// Бесконечный shimmer прогресс-бара гоняем на НАТИВНОМ драйвере: это чистый transform
-// (translateX), безопасный для Fabric, и он НЕ должен крутиться на JS-потоке всю сессию —
-// иначе главный экран (всегда смонтирован) греет телефон и тормозит нажатия кнопок.
-const HOME_SHIMMER_USE_NATIVE_DRIVER = true;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
 const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.webp');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
+/**
+ * Сессионный флаг: нижняя часть главной («Вызовы дня», «Цель лиги», фраза дня, подвал)
+ * уже проходила отложенный второй проход.
+ *
+ * зачем: второй проход через InteractionManager экономит бюджет ХОЛОДНОГО СТАРТА, но
+ * useState(false) выполнялся заново на каждом маунте таба. Возврат с любого раздела
+ * размораживает главную → флаг снова false → блоки исчезали и вставлялись кадром позже,
+ * толкая верстку («элементы появляются с задержкой»). Флаг в module-scope переживает
+ * маунты/ремаунты в рамках процесса, поэтому отложенный проход бывает ровно один раз —
+ * так же, как homeStatsLoadedOnce выше. Сбрасывать при смене аккаунта НЕ нужно: флаг
+ * говорит только «можно ли рендерить эти блоки», а сами цифры внутри берутся из
+ * account-scoped состояния и кэшей, поэтому чужие данные он показать не может.
+ */
+let homeBelowFoldReadyOnce = false;
+/**
+ * Единая высота карточки статистики на главной.
+ *
+ * зачем: было `minHeight: homeStatsReady ? 184 : 196` — пока данные не готовы, панель на
+ * 12px ВЫШЕ, а при готовности сжимается, и весь контент под ней подскакивает вверх. Ровно
+ * то «подпрыгивание при открытии/возврате на главную», на которое жаловался владелец
+ * (ориентир — Bevel: открыл и статично). Держим одну высоту в обоих состояниях: берём
+ * бОльшую из двух, чтобы готовое содержимое гарантированно влезало без обрезки.
+ */
+const HOME_STATS_CARD_MIN_HEIGHT = 196;
 const GREETINGS_RU = [
     'Твой лингвистический дзен', 'Время покорять вершины', 'Зарядись знаниями', 'Твой мозг скажет «спасибо»',
     'Готов к новым инсайтам?', 'Мир ждет твоего слова', 'На шаг ближе к цели', 'Твой интеллект в тонусе',
@@ -317,26 +339,11 @@ function parseStoredStreak(raw: string | null): number {
         return 0;
     }
 }
-function formatHomeCompactXpValue(value: number, compactFrom = 10_000): string {
-    const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
-    if (n < compactFrom)
-        return String(n);
-    const thousands = n / 1000;
-    if (n < 100_000) {
-        const truncated = Math.floor(thousands * 10) / 10;
-        return `${Number.isInteger(truncated) ? truncated.toFixed(0) : truncated.toFixed(1)}K`;
-    }
-    return `${Math.floor(thousands)}K`;
-}
-function formatHomeXpProgressLabel(xpInLevel: number, xpNeeded: number): string {
-    const compactFrom = Math.max(xpInLevel, xpNeeded) >= 10_000 ? 1_000 : 10_000;
-    return `${formatHomeCompactXpValue(xpInLevel, compactFrom)} / ${formatHomeCompactXpValue(xpNeeded, compactFrom)} XP`;
-}
 type HomeMenuIconAlign = {
     x: number;
     y: number;
 };
-type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice' | 'dialogs';
+type HomeMenuIconAlignKey = 'lesson' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice' | 'dialogs';
 const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
 };
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
@@ -369,20 +376,17 @@ function LightSketchMenuImage({ width, height, lighten, align, ...props }: Light
     void lighten;
     return <Image {...props} style={imageStyle as any}/>;
 }
-function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number, arenaBonus = 0, totalOverride?: number): {
+function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number, totalOverride?: number): {
     leagueName: string;
     progress: number;
     goal: number;
     myContribution: number;
     leaderName: string;
     leaderPoints: number;
-} | null {
-    if (!group.length)
-        return null;
+} {
     const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
     const goal = getLeagueChestGoal(leagueId);
-    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0)
-        + Math.max(0, Math.floor(Number(arenaBonus) || 0));
+    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
     const leader = sorted[0];
     return {
         leagueName,
@@ -514,8 +518,21 @@ export default function HomeScreen() {
     const topFadeScroll = useTopFadeScroll();
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
-    const { goToTab, activeIdx, focusTick } = useTabNav();
-    const homeRuntimeActive = useRuntimeActive(activeIdx === 0);
+    const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
+    const isHomeOwner = runtimeOwnerId === 'home';
+    const homeRuntimeActive = useRuntimeActive(isHomeOwner);
+    const homeRuntimeActiveRef = useRef(homeRuntimeActive);
+    // Home may mount while another retained tab owns runtime work. Mark its
+    // first handoff dirty so the daily-task summary never remains at the
+    // placeholder 0 completed tasks.
+    const homeDataDirtyRef = useRef(true);
+    const homeDailySummaryDirtyRef = useRef(false);
+    const shardsDirtyRef = useRef(false);
+    const streakMarkersDirtyRef = useRef(false);
+    const reviveOfferDirtyRef = useRef(false);
+    useEffect(() => {
+        homeRuntimeActiveRef.current = homeRuntimeActive;
+    }, [homeRuntimeActive]);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -567,7 +584,24 @@ export default function HomeScreen() {
             tr: 'gün',
             pl: 'dzień',
         })
-        : s.home.streakDays;
+        : triLang(lang, {
+            ru: (() => {
+                const remainder100 = Math.abs(displayStreak) % 100;
+                const remainder10 = Math.abs(displayStreak) % 10;
+                return remainder100 >= 11 && remainder100 <= 14
+                    ? 'дней'
+                    : remainder10 >= 2 && remainder10 <= 4
+                        ? 'дня'
+                        : 'дней';
+            })(),
+            uk: s.home.streakDays,
+            es: s.home.streakDays,
+            'pt-BR': s.home.streakDays,
+            vi: s.home.streakDays,
+            id: s.home.streakDays,
+            tr: s.home.streakDays,
+            pl: s.home.streakDays,
+        });
     const streakScaleAnim = useRef(new Animated.Value(1)).current;
     const [totalXP, setTotalXP] = useState(() => initialTotalXP);
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!((homeStatsLoadedOnce && hh) || appSnapshot.profile || appSnapshot.progress));
@@ -605,7 +639,17 @@ export default function HomeScreen() {
     const homeFeatureTipSwipeHandledRef = useRef(false);
     const homeFeatureTipHintPulse = useRef(new Animated.Value(0)).current;
     // Кросс-фейд содержимого карточки при смене подсказки (1 = видно, 0 = скрыто на миг перехода).
-    const homeFeatureTipContentAnim = useRef(new Animated.Value(1)).current;
+    // 0 = карточка на месте (видна), -1 = уехала (старая), 1 = ещё не приехала (новая).
+    const homeFeatureTipContentAnim = useRef(new Animated.Value(0)).current;
+    // зачем: владелец попросил, чтобы подсказка не подменялась мгновенно, а «уезжала»
+    // и уступала место следующей из стопки. Направление задаёт знак сдвига: вперёд
+    // (тап / свайп влево) — старая уходит влево, новая приходит справа; назад — наоборот.
+    const homeFeatureTipDirectionRef = useRef(1);
+    // Системное «Уменьшение движения» — переезд заменяем мягким фейдом (DESIGN.md: ветка обязательна).
+    const homeFeatureTipReduceMotion = useReduceMotion();
+    // Подложка-стопка: на миг перехода приподнимается и подаётся вперёд, будто нижняя
+    // карточка выходит на место верхней. 0 = покой, 1 = пик подмены.
+    const homeFeatureTipStackAnim = useRef(new Animated.Value(0)).current;
     // Ключ текущей подсказки — источник для проигрывания кросс-фейда при её смене.
     const homeFeatureTipContentKey = `${homeFeatureTipsReplayCount}:${homeFeatureTipIndex}`;
     const homeFeatureTipContentKeyRef = useRef(homeFeatureTipContentKey);
@@ -625,11 +669,23 @@ export default function HomeScreen() {
         pl: "Cześć,",
     }));
     const [taskProgress, setTaskProgress] = useState<TaskProgress[]>([]);
-    const [tasksCompleted, setTasksCompleted] = useState(0);
+    // зачем: гидрируем синхронно из снапшота (тот же паттерн, что userName/streak выше) —
+    // раньше стартовал с 0 и «прыгал» на реальное число вторым проходом (belowFoldReady),
+    // заметно на каждом повторном открытии Home. Холодный первый-в-жизни запуск (hh=null) — 0.
+    const [tasksCompleted, setTasksCompleted] = useState(() => hh?.tasksCompleted ?? 0);
+    const initialSurveyDailyTask = (() => {
+        const stableId = captureAccountGeneration().stableId;
+        return stableId ? peekSurveyDailyTask({ stableId, dayKey: getTodayKey(), lang }) : null;
+    })();
     /** Сколько сегментов на плитке «Задания» — как на экране заданий (тот же getTodayTasksSafe). */
-    const [dailyTaskBarCount, setDailyTaskBarCount] = useState(3);
+    // зачем: полоска ЗАФИКСИРОВАНА на время видимой сессии Главной. Поздний ответ
+    // про опрос кэшируется до следующего входа и не имеет права добавлять или
+    // убирать точки под рукой у пользователя (правило «первый кадр = финальная
+    // геометрия»). Фикс был снесён коммитом-снимком 95eec1717 и восстановлен.
+    // Числа 5/4, а не 4/3: обычных заданий четыре (baseTotal ниже), опрос — пятое.
+    const [dailyTaskBarCount] = useState(initialSurveyDailyTask ? 5 : 4);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
-    const { isPremium, isVip, hasPremiumAccess } = usePremium();
+    const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
     // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
     // переведена в «Фри». Раньше уже СОЗДАННЫЙ план открывался фри-юзеру без замка
     // (карточка вела прямо в /personal_plan) — дыра в пейволе после снятия премиума.
@@ -637,10 +693,13 @@ export default function HomeScreen() {
     // [SRS] Количество фраз, готовых к повторению сегодня (из локального стора).
     // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
     // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
-    const [dueCount, setDueCount] = useState(0);
+    // зачем: гидрируем синхронно из снапшота — раньше стартовал с 0 и подпись «ждут
+    // сегодня» прыгала на реальное число вторым проходом при каждом повторном открытии
+    // Home; холодный первый-в-жизни запуск (hh=null) честно остаётся 0.
+    const [dueCount, setDueCount] = useState(() => hh?.dueCount ?? 0);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
-    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip);
+    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip, isPro);
     const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
     // Бонусные баннеры
     const [loginBonus, setLoginBonus] = useState<{
@@ -688,24 +747,15 @@ export default function HomeScreen() {
     const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
     const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
-    const isSketchLightTheme = false;
+    const isSketchLightTheme = themeMode === 'sagePorcelain';
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
-    const isCompassTheme = false;
     const goldMetal = GOLD_RICH.metalGold;
     const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
     const goldSoftBg = 'rgba(214,179,90,0.055)';
     const goldIconPlateBg = 'rgba(246,227,161,0.026)';
     const goldPanelBg = 'rgba(10,10,10,0.72)';
-    const compassPanel = COMPASS_GRADIENTS.premiumPanel;
-    const compassTile = COMPASS_GRADIENTS.raisedTile;
-    const compassHairline = COMPASS_RICH.hairline;
-    const compassHairlineStrong = COMPASS_RICH.hairlineStrong;
-    const compassPanelBg = 'rgba(24,24,25,0.92)';
-    const compassIconPlateBg = 'rgba(255,230,181,0.08)';
-    const compassSubtleTrack = 'rgba(255,230,181,0.10)';
-    const compassHomeRadius = 10;
     const goldPanelRaisedBg = 'rgba(17,17,17,0.68)';
     const goldPremiumPanel = ['rgba(29,26,18,0.74)', 'rgba(13,12,10,0.64)', 'rgba(4,4,3,0.52)'] as [
         string,
@@ -720,38 +770,32 @@ export default function HomeScreen() {
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
     const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
-    const isPaperHomeTheme = false;
-    const lightPanelBg = isSketchLightTheme ? 'rgba(255,252,246,0.94)' : 'rgba(255,255,255,0.50)';
-    const lightPanelBorder = isSketchLightTheme ? 'rgba(52,45,35,0.28)' : 'rgba(255,255,255,0.48)';
-    const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,55,44,0.13)' : 'rgba(255,255,255,0.28)';
-    const lightPanelChevronBg = isSketchLightTheme ? 'rgba(63,55,44,0.14)' : 'rgba(255,255,255,0.58)';
-    const sketchHomePanelGradient = ['rgba(255,253,246,0.98)', 'rgba(237,227,210,0.94)'] as [string, string];
+    const isPaperHomeTheme = themeMode === 'sagePorcelain';
+    const lightPanelBg = t.bgCard;
+    const lightPanelBorder = t.border;
+    const lightPanelIconBg = t.accentBg;
+    const lightPanelChevronBg = t.bgSurface2;
+    const sketchHomePanelGradient = [t.bgCard, t.bgSurface] as [string, string];
     const homeThemePanelGradient = isGoldTheme
         ? goldPremiumPanel
-        : isCompassTheme
-            ? compassPanel
-            : isPaperHomeTheme
-                ? sketchHomePanelGradient
-                : t.cardGradient;
+        : isPaperHomeTheme
+            ? sketchHomePanelGradient
+            : t.cardGradient;
     const homeThemePanelBorder = isGoldTheme
         ? GOLD_RICH.hairlineStrong
-        : isCompassTheme
-            ? compassHairlineStrong
-            : isPaperHomeTheme
-                ? lightPanelBorder
-                : 'rgba(103,153,229,0.26)';
+        : isPaperHomeTheme
+            ? lightPanelBorder
+            : 'rgba(103,153,229,0.26)';
     const homeThemePanelText = isPaperHomeTheme ? '#171615' : t.textPrimary;
     const homeThemePanelMuted = isPaperHomeTheme ? '#48443C' : t.textMuted;
     const homeThemePanelAccent = isPaperHomeTheme ? t.accent : (isLightTheme ? t.textSecond : t.gold);
     const homeThemeIconPlateBg = isGoldTheme
         ? 'rgba(18,14,8,0.92)'
-        : isCompassTheme
-            ? '#10100C'
-            : isPaperHomeTheme
-                ? lightPanelIconBg
-                : 'rgba(40,47,58,0.96)';
+        : isPaperHomeTheme
+            ? lightPanelIconBg
+            : 'rgba(40,47,58,0.96)';
     const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
-    const homeThemeTrackBg = isPaperHomeTheme ? 'rgba(56,52,44,0.18)' : 'rgba(83,96,116,0.72)';
+    const homeThemeTrackBg = isPaperHomeTheme ? t.bgSurface2 : 'rgba(83,96,116,0.72)';
     const energyEmptyTint = isSketchLightTheme
         ? 'rgba(47,49,59,0.42)'
         : 'rgba(255,245,252,0.38)';
@@ -780,7 +824,7 @@ export default function HomeScreen() {
             shadowOpacity: 0.36,
             shadowRadius: 9,
             shadowOffset: { width: 0, height: 2 },
-            elevation: 6,
+            ...noAndroidOutline,
         }
         : null;
     const homeStreakIconFrameStyle = homeFrozenStreakIconFrameStyle ?? streakIconGlowStyle;
@@ -797,28 +841,92 @@ export default function HomeScreen() {
     const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const energyIconRef = useRef<View>(null);
     const mountedRef = useRef(true);
+    // зачем: last_opened_lesson_changed летит из onAppEvent-подписки внутри useEffect с
+    // deps=[] (регистрируется один раз при маунте) — без рефов замыкание держало бы
+    // studyTarget/lang ПЕРВОГО рендера и путало бы уроки/язык названия при смене на лету.
+    const studyTargetRef = useRef(studyTarget);
+    useEffect(() => { studyTargetRef.current = studyTarget; }, [studyTarget]);
+    const langRef = useRef(lang);
+    useEffect(() => { langRef.current = lang; }, [lang]);
+    // зачем: с 2026-08-02 плановая карточка на главной заменена карточкой последнего
+    // урока, значения ниже в рендере ЭТОГО экрана не читаются. Машинерия (state +
+    // события + запись в снапшот) сохранена: она держит кэш плана тёплым для других
+    // экранов (например /personal_plan читает его через peekHomeScreenHydration),
+    // её сторожит tests/home_learning_cta_contract.test.ts.
     const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
-    const [hasActivePersonalPlanState, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
+    const [, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
     const refreshDailyTaskSummary = useCallback(async () => {
+        const lostOwnership = () => {
+            if (homeRuntimeActiveRef.current) return false;
+            homeDailySummaryDirtyRef.current = true;
+            return true;
+        };
         try {
             const taskList = await getTodayTasksSafe(studyTarget);
+            if (lostOwnership()) return;
             const progress = await loadTodayProgress(taskList, studyTarget);
-            if (!mountedRef.current)
+            if (!mountedRef.current || lostOwnership())
                 return;
+            const baseTotal = taskList.length > 0 ? taskList.length : 4;
             setTaskProgress(progress);
-            setDailyTaskBarCount(taskList.length > 0 ? taskList.length : 3);
             const progressById = new Map(progress.map((row) => [row.taskId, row]));
-            setTasksCompleted(taskList.filter((task) => progressById.get(task.id)?.completed === true).length);
+            const nextTasksCompleted = taskList.filter((task) => progressById.get(task.id)?.completed === true).length;
+            setTasksCompleted(nextTasksCompleted);
+            // зачем: обновляем снапшот и на лёгком refresh-пути (не только в loadData) —
+            // иначе выполнение задания между полными загрузками не долетает до кэша,
+            // и следующее открытие Home снова покажет устаревшее число до второго прохода.
+            patchHomeScreenHydration({ tasksCompleted: nextTasksCompleted }, studyTarget);
+            void (async () => {
+                try {
+                    const accountToken = captureAccountGeneration();
+                    const stableId = await getCanonicalUserId();
+                    if (lostOwnership() || !stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    const dayKey = getTodayKey();
+                    const scope = { stableId, dayKey, lang };
+                    let survey = peekSurveyDailyTask(scope);
+                    const completed = await isSurveyDailyTaskDone({ stableId, dayKey });
+                    if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    if (completed) {
+                        survey = buildServerConfirmedLegacyCompletion(lang);
+                        const requestId = beginSurveyDailyTaskRequest(scope);
+                        commitSurveyDailyTaskRequest(scope, requestId, survey);
+                    } else if (!survey && isSurveyCloudEnabled()) {
+                        const requestId = beginSurveyDailyTaskRequest(scope);
+                        const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                        if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                        const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
+                        if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                        survey = migrated
+                            ? buildServerConfirmedLegacyCompletion(lang)
+                            : lookup.survey && lookup.survey.questions.length > 0
+                                ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
+                                : null;
+                        if (!commitSurveyDailyTaskRequest(scope, requestId, survey)) {
+                            survey = peekSurveyDailyTask(scope);
+                        }
+                    }
+                    if (!mountedRef.current || lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });
+                    // зачем: обновляем ТОЛЬКО число выполненных — оно обязано быть
+                    // честным. Общее число сегментов намеренно НЕ трогаем: полоска
+                    // зафиксирована на видимую сессию, иначе точки прыгают под рукой
+                    // (см. dailyTaskBarCount выше). Новое значение приедет со
+                    // следующим входом на Главную.
+                    setTasksCompleted(counts.done);
+                    patchHomeScreenHydration({ tasksCompleted: counts.done }, studyTarget);
+                } catch {
+                    /* Keep the already-rendered ordinary task summary. */
+                }
+            })();
         }
         catch {
             /* keep previous summary */
         }
-    }, [studyTarget]);
+    }, [lang, studyTarget]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
     const [homeLeagueCrownCount, setHomeLeagueCrownCount] = useState(() => hh?.homeLeagueCrownCount ?? 0);
-    const [homeLeagueRaceVisible, setHomeLeagueRaceVisible] = useState(() => hh?.homeLeagueRaceVisible ?? false);
     const [homeLeagueChest, setHomeLeagueChest] = useState<{
         leagueName: string;
         progress: number;
@@ -826,8 +934,15 @@ export default function HomeScreen() {
         myContribution: number;
         leaderName: string;
         leaderPoints: number;
-    } | null>(() => hh?.homeLeagueChest ?? null);
-    const homeLeagueChatUnreadCount = useLeagueChatUnread({ active: false });
+    }>(() => {
+        const cachedLeagueState = getCachedLeagueStateSync();
+        const cachedLeague = cachedLeagueState
+            ? LEAGUES.find((league) => league.id === cachedLeagueState.leagueId) ?? null
+            : null;
+        return cachedLeagueState
+            ? buildHomeLeagueChest(cachedLeagueState.group, cachedLeague ? clubTierShortName(cachedLeague, lang) : 'Лига недели', cachedLeagueState.leagueId)
+            : hh?.homeLeagueChest ?? buildHomeLeagueChest([], clubTierShortName(LEAGUES[0], lang), LEAGUES[0].id);
+    });
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
@@ -865,7 +980,6 @@ export default function HomeScreen() {
     const statsPulseSessionRef = useRef(false);
     const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
-    const eliteStatusShimmer = useRef(new Animated.Value(0)).current;
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const showEnergyTooltip = () => {
@@ -918,49 +1032,31 @@ export default function HomeScreen() {
         Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
     }, [lang, studyTarget]);
     useEffect(() => {
-        if (!USE_ELITE_HOME_STATUS || !homeRuntimeActive)
+        if (!homeRuntimeActive)
             return;
         eliteStatusEntrance.setValue(1);
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
         eliteActivityTileEntrance.forEach((anim) => anim.setValue(1));
-        let shimmerLoop: Animated.CompositeAnimation | null = null;
-        let shimmerStopTimer: ReturnType<typeof setTimeout> | null = null;
-        const startShimmer = () => {
-            if (shimmerLoop) return;
-            shimmerLoop = Animated.loop(Animated.sequence([
-                Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
-                Animated.delay(1100),
-                Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
-            ]));
-            shimmerLoop.start();
-            shimmerStopTimer = setTimeout(stopShimmer, 7600);
-        };
-        const stopShimmer = () => {
-            if (shimmerStopTimer) {
-                clearTimeout(shimmerStopTimer);
-                shimmerStopTimer = null;
-            }
-            shimmerLoop?.stop();
-            shimmerLoop = null;
-        };
-        // Крутим только когда приложение на переднем плане — нет смысла греть телефон в кармане.
-        if (AppState.currentState === 'active') startShimmer();
-        const appSub = AppState.addEventListener('change', (state) => {
-            if (state === 'active') startShimmer();
-            else stopShimmer();
-        });
-        return () => {
-            appSub.remove();
-            stopShimmer();
-        };
-    }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, homeRuntimeActive, lang]);
+        // зачем: владелец (2026-07-27) — «свечение на главной, которое стихает за
+        // пару секунд, убрать». Это был бегущий блик по XP-полосе героя: цикл на
+        // 2.8 c + пауза, глушился таймером на 7.6 c — отсюда и ощущение затухания.
+        // Вместе с ним ушли таймер, AppState-подписка и вечный кадр анимации.
+    }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, homeRuntimeActive, lang]);
     // Миграция xp_migration_v2 переехала из экрана в xp_manager.migrateXPFormulaV2()
     // (вызывается на старте из _layout.tsx) — one-shot миграциям не место в маунте таба (D4).
     // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
     // фраза дня, подвал) монтируются вторым проходом после первого кадра.
-    const [belowFoldReady, setBelowFoldReady] = useState(false);
+    // зачем: флаг стартовал с false на КАЖДОМ маунте главной. При возврате с любого
+    // раздела таб размораживается заново, флаг опять false — и «Вызовы дня», «Цель лиги»,
+    // фраза дня, подвал пропадали, а через кадр (runAfterInteractions) вставлялись в поток,
+    // толкая верстку. Владелец: «возврат на главную — элементы появляются с задержкой,
+    // хочу как в Bevel: сразу видно всю страницу». Второй проход нужен ТОЛЬКО первому
+    // маунту в сессии (бюджет холодного старта): дальше отдаём готовую страницу сразу.
+    const [belowFoldReady, setBelowFoldReady] = useState(homeBelowFoldReadyOnce);
     useEffect(() => {
+        if (homeBelowFoldReadyOnce) return undefined;
         const task = InteractionManager.runAfterInteractions(() => {
+            homeBelowFoldReadyOnce = true;
             setBelowFoldReady(true);
         });
         return () => { task?.cancel?.(); };
@@ -968,6 +1064,21 @@ export default function HomeScreen() {
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
+        const requestHomeDataRefresh = () => {
+            if (!homeRuntimeActiveRef.current) {
+                homeDataDirtyRef.current = true;
+                return;
+            }
+            loadData();
+        };
+        const requestDailyTaskSummaryRefresh = () => {
+            if (!homeRuntimeActiveRef.current) {
+                homeDailySummaryDirtyRef.current = true;
+                return;
+            }
+            homeDailySummaryDirtyRef.current = false;
+            void refreshDailyTaskSummary();
+        };
         let resumeTimer: ReturnType<typeof setTimeout> | null = null;
         let resumeTask: {
             cancel?: () => void;
@@ -987,9 +1098,9 @@ export default function HomeScreen() {
                     resumeTimer = null;
                     resumeTask = InteractionManager.runAfterInteractions(() => {
                         if (refreshKind === 'cloud')
-                            loadData();
+                            requestHomeDataRefresh();
                         else
-                            void refreshDailyTaskSummary();
+                            requestDailyTaskSummaryRefresh();
                     });
                 }, refreshKind === 'cloud' ? FOREGROUND_CLOUD_REFRESH_DELAY_MS : FOREGROUND_LIGHT_REFRESH_DELAY_MS);
             }
@@ -1004,11 +1115,11 @@ export default function HomeScreen() {
             }
         });
         // Слушаем событие изменения XP (от тестеров и других экранов)
-        const xpSub = DeviceEventEmitter.addListener('xp_changed', () => { loadData(); });
-        const dailyTaskCompletedSub = onAppEvent('daily_task_completed', () => { void refreshDailyTaskSummary(); });
-        const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', () => { void refreshDailyTaskSummary(); });
-        const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', () => { void refreshDailyTaskSummary(); });
-        const dailyTaskSetRerolledSub = onAppEvent('daily_tasks_set_rerolled', () => { void refreshDailyTaskSummary(); });
+        const xpSub = DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh);
+        const dailyTaskCompletedSub = onAppEvent('daily_task_completed', requestDailyTaskSummaryRefresh);
+        const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', requestDailyTaskSummaryRefresh);
+        const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', requestDailyTaskSummaryRefresh);
+        const dailyTaskSetRerolledSub = onAppEvent('daily_tasks_set_rerolled', requestDailyTaskSummaryRefresh);
         const personalPlanSub = onAppEvent('personal_plan_updated', (payload) => {
             if (payload?.snapshot) {
                 setHasActivePersonalPlanState(true);
@@ -1017,9 +1128,9 @@ export default function HomeScreen() {
             else if (payload?.planId) {
                 setHasActivePersonalPlanState(true);
             }
-            loadData();
+            requestHomeDataRefresh();
         });
-        const leagueStateSub = onAppEvent('league_local_state_updated', () => { loadData(); });
+        const leagueStateSub = onAppEvent('league_local_state_updated', requestHomeDataRefresh);
         const crownSub = onAppEvent('league_crown_updated', ({ expiresAt, crownCount }) => {
             setHomeLeagueCrownExpiresAt(expiresAt);
             setHomeLeagueCrownCount(Math.max(1, Math.floor(Number(crownCount) || 1)));
@@ -1028,9 +1139,19 @@ export default function HomeScreen() {
         const shardsSub = DeviceEventEmitter.addListener('shards_earned', (payload: {
             amount: number;
         }) => {
+            if (!homeRuntimeActiveRef.current) {
+                shardsDirtyRef.current = true;
+                return;
+            }
             getShardsBalance().then(bal => {
+                if (!homeRuntimeActiveRef.current) {
+                    shardsDirtyRef.current = true;
+                    return;
+                }
                 setShardsBalance(bal);
-                setShardsBonusText(`+${payload.amount} 💎`);
+                // зачем: надпись всплывает прямо над иконкой баланса жемчужин —
+                // эмодзи-алмаз 💎 дублировал бы ассет, который уже на экране.
+                setShardsBonusText(`+${payload.amount}`);
                 shardsBonusAnim.setValue(0);
                 Animated.sequence([
                     Animated.timing(shardsBonusAnim, { toValue: 1, duration: 300, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
@@ -1046,22 +1167,60 @@ export default function HomeScreen() {
         // Цепочка только что обнулена (или markStreakLost вызван из любого места) — подтянуть
         // оффер и поднять модалку, не дожидаясь следующего loadData.
         const reviveOfferSub = onAppEvent('streak_revive_offer', () => {
+            if (!homeRuntimeActiveRef.current) {
+                reviveOfferDirtyRef.current = true;
+                return;
+            }
             void getReviveOffer().then((o) => {
-                if (!mountedRef.current || !o)
+                if (!mountedRef.current)
+                    return;
+                if (!homeRuntimeActiveRef.current) {
+                    reviveOfferDirtyRef.current = true;
+                    return;
+                }
+                if (!o)
                     return;
                 setReviveOffer(o);
                 setReviveModalVisible(true);
             });
         });
         const refreshWeekMarkers = () => {
+            if (!homeRuntimeActiveRef.current) {
+                streakMarkersDirtyRef.current = true;
+                return;
+            }
             void readCurrentStreakWeekMarkers().then((markers) => {
-                if (mountedRef.current) setWeekMarkers(markers);
+                if (!mountedRef.current) return;
+                if (!homeRuntimeActiveRef.current) {
+                    streakMarkersDirtyRef.current = true;
+                    return;
+                }
+                setWeekMarkers(markers);
             }).catch(() => {});
         };
         const freezeUpdatedSub = onAppEvent('streak_freeze_updated', refreshWeekMarkers);
         const revivedSub = onAppEvent('streak_revived', () => {
+            soundDirector.request('pm.streak.saved', {
+                scope: 'streak-revive',
+                dedupeKey: 'restored',
+            });
             refreshWeekMarkers();
-            loadData();
+            requestHomeDataRefresh();
+        });
+        const streakSeededSub = onAppEvent('streak_seeded', requestHomeDataRefresh);
+        // зачем: владелец — «зашёл в урок, а карточка "Продолжить урок" на Главной ещё
+        // старая, пока не перезайду в приложение». lesson1.tsx эмитит это СРАЗУ при входе
+        // в урок (см. lesson1.tsx рядом с correctCount/score). Патчим state напрямую —
+        // не requestHomeDataRefresh: полный loadData() дороже (XP/streak/лига/etc.) и не
+        // нужен ради одной карточки, к тому же дешёвый путь работает и когда home сейчас
+        // не активна (homeRuntimeActiveRef), в отличие от dirty-флагов выше.
+        const lastOpenedLessonSub = onAppEvent('last_opened_lesson_changed', (payload) => {
+            if (!payload || !mountedRef.current) return;
+            if ((payload.studyTarget ?? undefined) !== studyTargetRef.current) return;
+            const lessonNames = lessonNamesForStudyTarget(langRef.current, studyTargetRef.current);
+            const name = lessonNames[payload.lessonId - 1];
+            if (!name) return;
+            setLastLesson({ id: payload.lessonId, name, progress: payload.progress, score: payload.score });
         });
         return () => {
             mountedRef.current = false;
@@ -1081,6 +1240,8 @@ export default function HomeScreen() {
             reviveOfferSub.remove();
             freezeUpdatedSub.remove();
             revivedSub.remove();
+            streakSeededSub.remove();
+            lastOpenedLessonSub.remove();
             deferredReadyTaskRef.current?.cancel?.();
             deferredReadyTaskRef.current = null;
             deferredReloadTaskRef.current?.cancel?.();
@@ -1138,10 +1299,14 @@ export default function HomeScreen() {
             completeHomeFeatureTips();
             return;
         }
+        // Направление подмены фиксируем ДО setState — эффект анимации читает его уже по новому ключу.
+        homeFeatureTipDirectionRef.current = 1;
         persistHomeFeatureTipIndex(nextIndex);
     }, [completeHomeFeatureTips, homeFeatureTipIndex, homeFeatureTips.length, homeFeatureTipsDone, persistHomeFeatureTipIndex]);
     const previousHomeFeatureTip = useCallback(() => {
         if (homeFeatureTipsDone) return;
+        if (homeFeatureTipIndex <= 0) return;
+        homeFeatureTipDirectionRef.current = -1;
         persistHomeFeatureTipIndex(homeFeatureTipIndex - 1);
     }, [homeFeatureTipIndex, homeFeatureTipsDone, persistHomeFeatureTipIndex]);
     const handleHomeFeatureTipNext = useCallback(() => {
@@ -1243,29 +1408,66 @@ export default function HomeScreen() {
     useEffect(() => {
         if (!homeFeatureTipCardVisible) {
             homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
-            homeFeatureTipContentAnim.setValue(1);
+            homeFeatureTipContentAnim.setValue(0);
+            homeFeatureTipStackAnim.setValue(0);
             return;
         }
         // Первое появление карточки: контент уже въезжает вместе с самим блоком (LayoutAnimation),
         // отдельный кросс-фейд не запускаем — только фиксируем текущий ключ.
         if (!homeFeatureTipCardWasVisibleRef.current || homeFeatureTipContentKeyRef.current === homeFeatureTipContentKey) {
             homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
-            homeFeatureTipContentAnim.setValue(1);
+            homeFeatureTipContentAnim.setValue(0);
+            homeFeatureTipStackAnim.setValue(0);
             return;
         }
         homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
-        homeFeatureTipContentAnim.setValue(0);
-        const anim = Animated.timing(homeFeatureTipContentAnim, {
-            toValue: 1,
-            duration: MOTION_DURATION.normal,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-        });
+        // При reduce-motion — только мягкий фейд без горизонтального переезда (движение укачивает).
+        if (homeFeatureTipReduceMotion) {
+            homeFeatureTipStackAnim.setValue(0);
+            homeFeatureTipContentAnim.setValue(1);
+            const fade = Animated.timing(homeFeatureTipContentAnim, {
+                toValue: 0,
+                duration: MOTION_DURATION.fast,
+                easing: Easing.out(Easing.cubic),
+                useNativeDriver: true,
+            });
+            fade.start();
+            return () => {
+                fade.stop();
+            };
+        }
+        // Подмена карточки: новая приезжает со своей стороны (1 → 0) — текст к этому моменту
+        // уже сменился состоянием, поэтому «уход» старой играет подложка-стопка под карточкой.
+        homeFeatureTipContentAnim.setValue(1);
+        homeFeatureTipStackAnim.setValue(0);
+        const anim = Animated.parallel([
+            Animated.timing(homeFeatureTipContentAnim, {
+                toValue: 0,
+                duration: MOTION_DURATION.normal,
+                easing: Easing.out(Easing.cubic),
+                useNativeDriver: true,
+            }),
+            // Стопка «подаёт» следующую карточку и возвращается — конечная длительность, без цикла.
+            Animated.sequence([
+                Animated.timing(homeFeatureTipStackAnim, {
+                    toValue: 1,
+                    duration: MOTION_DURATION.fast,
+                    easing: Easing.out(Easing.cubic),
+                    useNativeDriver: true,
+                }),
+                Animated.timing(homeFeatureTipStackAnim, {
+                    toValue: 0,
+                    duration: MOTION_DURATION.normal,
+                    easing: Easing.out(Easing.cubic),
+                    useNativeDriver: true,
+                }),
+            ]),
+        ]);
         anim.start();
         return () => {
             anim.stop();
         };
-    }, [homeFeatureTipCardVisible, homeFeatureTipContentAnim, homeFeatureTipContentKey]);
+    }, [homeFeatureTipCardVisible, homeFeatureTipContentAnim, homeFeatureTipContentKey, homeFeatureTipReduceMotion, homeFeatureTipStackAnim]);
     // Синхронизируем «была ли видна карточка» для ветки первого появления в кросс-фейде.
     // Появление/исчезновение карточки со сдвигом контента ниже анимируется через
     // configureAccordionLayout(), вызываемый в call-site'ах ПЕРЕД setState (LayoutAnimation
@@ -1273,16 +1475,6 @@ export default function HomeScreen() {
     useEffect(() => {
         homeFeatureTipCardWasVisibleRef.current = homeFeatureTipCardVisible;
     }, [homeFeatureTipCardVisible]);
-    // Открыть «Личный план» с проверкой доступа: фри без премиума → пейвол (не сам план).
-    // Сам экран плана тоже защищён входным замком — это лишь чтобы не мелькал экран.
-    const openPersonalPlan = useCallback(() => {
-        hapticTap();
-        if (planAccess) {
-            router.push('/personal_plan' as any);
-        } else {
-            router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
-        }
-    }, [planAccess, router]);
     // Debounce-флаг: если loadData уже выполняется — не запускаем повторно.
     // Устраняет 3 одновременных вызова (focusTick + activeIdx + AppState) при возврате на главную.
     // needsReloadRef: если вызов был пропущен во время загрузки — повторим после завершения.
@@ -1293,6 +1485,8 @@ export default function HomeScreen() {
     const deferredReadyTaskRef = useRef<{ cancel?: () => void } | null>(null);
     const homeRefreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const lastHomeRefreshRef = useRef<{ key: string; at: number }>({ key: '', at: 0 });
+    const homeRefreshKeyRef = useRef<string | null>(null);
+    const homeLeagueCrownLoadedRef = useRef(false);
     const markHomeStatsReady = useCallback(() => {
         deferredReadyTaskRef.current?.cancel?.();
         deferredReadyTaskRef.current = InteractionManager.runAfterInteractions(() => {
@@ -1302,29 +1496,46 @@ export default function HomeScreen() {
         });
     }, []);
     useEffect(() => {
-        if (activeIdx !== 0) return;
+        if (!homeRuntimeActive) return;
+        const homeRefreshKey = `${studyTarget}:${lang}`;
+        // Returning from a section must reveal the preserved Home tree, not
+        // restart its data pipeline. A real study-target/UI-language change is
+        // the only reason this effect performs a fresh full load.
+        if (homeRefreshKeyRef.current === homeRefreshKey) return;
+        homeRefreshKeyRef.current = homeRefreshKey;
         if (homeRefreshTimerRef.current) {
             clearTimeout(homeRefreshTimerRef.current);
             homeRefreshTimerRef.current = null;
         }
         homeRefreshTimerRef.current = setTimeout(() => {
             homeRefreshTimerRef.current = null;
-            const key = `${studyTarget}:${lang}`;
             const now = Date.now();
-            if (lastHomeRefreshRef.current.key === key && now - lastHomeRefreshRef.current.at < 750) {
+            if (lastHomeRefreshRef.current.key === homeRefreshKey && now - lastHomeRefreshRef.current.at < 750) {
                 return;
             }
-            lastHomeRefreshRef.current = { key, at: now };
-            void Promise.all([refreshDailyTaskSummary(), loadData()]);
+            lastHomeRefreshRef.current = { key: homeRefreshKey, at: now };
+            if (!homeRuntimeActiveRef.current) {
+                homeDataDirtyRef.current = true;
+                return;
+            }
+            // Full loading includes the daily summary. Running both creates a
+            // race in which the light refresh may overwrite the full result.
+            void loadData();
         }, 80);
         return () => {
             if (homeRefreshTimerRef.current) {
                 clearTimeout(homeRefreshTimerRef.current);
                 homeRefreshTimerRef.current = null;
+                // The key was latched before the delayed work ran.  Re-open it
+                // through the normal dirty path when ownership returns.
+                homeRefreshKeyRef.current = null;
+                homeDataDirtyRef.current = true;
             }
         };
-    }, [activeIdx, focusTick, studyTarget, lang, refreshDailyTaskSummary]);
+    }, [homeRuntimeActive, studyTarget, lang]);
     useEffect(() => {
+        if (!isHomeOwner || homeLeagueCrownLoadedRef.current) return;
+        homeLeagueCrownLoadedRef.current = true;
         let cancelled = false;
         void ensureAnonUser()
             .then((uid) => {
@@ -1348,7 +1559,7 @@ export default function HomeScreen() {
         return () => {
             cancelled = true;
         };
-    }, [focusTick]);
+    }, [isHomeOwner]);
     /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
     useEffect(() => {
         if (!homeStatsReady || !homeRuntimeActive)
@@ -1419,10 +1630,10 @@ export default function HomeScreen() {
         };
     }, [homeStatsReady, focusTick, homeRuntimeActive, statsHintPulseAnim]);
     useEffect(() => {
-        if (homeStatsReady && activeIdx === 0) {
+        if (homeStatsReady && isHomeOwner) {
             emitAppEvent('app_first_content_ready');
         }
-    }, [homeStatsReady, activeIdx]);
+    }, [homeStatsReady, isHomeOwner]);
     const loadData = async () => {
         if (loadingRef.current) {
             needsReloadRef.current = true;
@@ -1430,6 +1641,8 @@ export default function HomeScreen() {
         }
         loadingRef.current = true;
         needsReloadRef.current = false;
+        const homeHydrationStartedAt = Date.now();
+        let streakPaywallOpenedThisLoad = false;
         if (streakTimerRef.current) {
             clearTimeout(streakTimerRef.current);
             streakTimerRef.current = null;
@@ -1511,8 +1724,9 @@ export default function HomeScreen() {
                 selectedTitleHydratedRef.current = true;
                 setSelectedTitleKey(storedTitleKey || null);
             }
-            if (name)
-                setUserName(name);
+            const hydratedName = resolveHydratedProfileName(homeHydrationStartedAt, name);
+            if (hydratedName)
+                setUserName(hydratedName);
             const currentStreakNum = parseInt(streakVal || '0') || 0;
             if (streakVal)
                 setStreak(currentStreakNum);
@@ -1628,7 +1842,22 @@ export default function HomeScreen() {
             let snapLastLessonId: number | null = null;
             let snapLastLessonProgress = 0;
             let snapLastLessonScore = '0.0';
-            const lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
+            let lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
+            // зачем: у пользователей, успевших заглянуть в заблокированный урок до
+            // фикса в lesson_menu, в сторе остался его id — кнопка «Урок» вела на
+            // экран «Урок заблокирован» каждый раз и выглядела как поломка. Если
+            // запомненный урок недоступен — откатываемся к ближайшему доступному
+            // ниже по списку, чтобы кнопка всегда открывала то, что можно учить.
+            if (lastId && lastId >= 1 && lastId <= 32) {
+                try {
+                    const { isLessonUnlockedByEarnedProgress } = await import('../lesson_lock_system');
+                    while (lastId > 1 && !(await isLessonUnlockedByEarnedProgress(lastId, studyTarget))) {
+                        lastId -= 1;
+                    }
+                } catch {
+                    // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
+                }
+            }
             if (lastId && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
                 const saved = lessonEntries[lastId - 1]?.[1] ?? null;
@@ -1678,7 +1907,7 @@ export default function HomeScreen() {
             setPremiumFreezeUsed(freeFreezeRaw === 'true');
             setTotalXPMulti(baseMulti);
             rememberHomeScreenHydration({
-                userName: name ?? '',
+                userName: hydratedName,
                 totalXP: xpSnap,
                 streak: currentStreakNum,
                 displayStreak: currentStreakNum,
@@ -1696,17 +1925,25 @@ export default function HomeScreen() {
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
                 lastLessonScore: snapLastLessonScore,
-                homeLeagueRaceVisible,
+                // зачем: rememberHomeScreenHydration ПОЛНОСТЬЮ заменяет снапшот (не мёржит) —
+                // на этом шаге dueCount/tasksCompleted этого прогона loadData ещё не посчитаны
+                // (считаются ниже), поэтому переносим предыдущее известное значение, чтобы не
+                // затереть его на 0/undefined; ниже patchHomeScreenHydration допишет свежее.
+                dueCount: hh?.dueCount,
+                tasksCompleted: hh?.tasksCompleted,
                 homeLeagueCrownExpiresAt,
                 homeLeagueCrownCount,
-                homeLeagueChest,
+                // The long-lived event subscriptions call the first loadData closure,
+                // which can still have a null React value. Preserve the newest cache
+                // rather than letting that stale closure erase the league row.
+                homeLeagueChest: homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null,
                 personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
             }, studyTarget);
             patchAppSnapshot({
                 profile: {
-                    source: 'local',
-                    updatedAt: Date.now(),
-                    name: name ?? '',
+                    source: 'storage',
+                    updatedAt: homeHydrationStartedAt,
+                    name: hydratedName,
                     avatar: avatarSnap,
                     frame: frameSnap,
                     aura: normalizeAvatarAuraId(savedAuraSnap) ?? undefined,
@@ -1725,7 +1962,6 @@ export default function HomeScreen() {
             });
             if (mountedRef.current)
                 markHomeStatsReady();
-            const taskList = await getTodayTasksSafe(studyTarget);
             // Имя для лиги: либо настоящее, либо анонимная подстановка на основе уровня (как в club_screen.tsx),
             // чтобы checkLeagueOnAppOpen не записал в Firestore "пустого" пользователя.
             const leagueName = (name && name.trim())
@@ -1734,11 +1970,18 @@ export default function HomeScreen() {
                     const lvl = getXPProgress(xpNum).level;
                     return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
                 })();
+            // зачем: префетч лиги СТАРТУЕТ здесь, до await getTodayTasksSafe, а не внутри
+            // Promise.all ниже. Раньше он ждал загрузку задач, и пользователь, успевший
+            // тапнуть «Лиги» раньше, попадал на пустой экран — кэш ещё не был наполнен.
+            // Промис уходит в работу сразу, а Promise.all ниже просто дожидается его.
+            // Firestore-чтений это не добавляет: вызов ровно один, просто раньше.
+            const leagueOpenPromise = checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null);
+            const taskList = await getTodayTasksSafe(studyTarget);
             const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
                 loadTodayProgress(taskList, studyTarget),
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
                 // Если remote недоступен — функция сама перейдет на локальный state.
-                checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null),
+                leagueOpenPromise,
                 // SRS-счётчик считается из локального стора (AsyncStorage, без сети) —
                 // дёшево и безопасно, поэтому показываем реальное число и в проде,
                 // а не всегда 0. При сбое — пустой массив (подпись «Ошибки под контролем»).
@@ -1758,21 +2001,28 @@ export default function HomeScreen() {
                 ? leagueOpenResult.result
                 : await loadPendingResult().catch(() => null);
             setTaskProgress(tp);
-            const nSlots = taskList.length > 0 ? taskList.length : 3;
-            setDailyTaskBarCount(nSlots);
             const taskProgressById = new Map(tp.map((row) => [row.taskId, row]));
-            setTasksCompleted(taskList.filter((task) => taskProgressById.get(task.id)?.completed).length);
+            const loadedTasksCompleted = taskList.filter((task) => taskProgressById.get(task.id)?.completed).length;
+            setTasksCompleted(loadedTasksCompleted);
+            // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
+            // Home второй проход (belowFoldReady) стартует с этого числа, а не с 0.
+            patchHomeScreenHydration({ tasksCompleted: loadedTasksCompleted }, studyTarget);
+            // The full Home load can finish after the light summary request. Run the
+            // summary again so this late base update cannot hide the survey indicator.
+            if (homeRuntimeActiveRef.current) {
+                void refreshDailyTaskSummary();
+            } else {
+                homeDataDirtyRef.current = true;
+            }
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
-                const showLeagueRace = shouldShowLeagueRace(leagueState.group?.length ?? 0, name);
                 const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
                 const matchingFreshBonus = freshLeagueBonus
                     && freshLeagueBonus.weekId === leagueState.weekId
                     && freshLeagueBonus.leagueId === leagueState.leagueId
                     ? freshLeagueBonus
                     : null;
-                const nextHomeLeagueChest = showLeagueRace
-                    ? buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
+                const nextHomeLeagueChest = buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
                         ru: 'Лига недели',
                         uk: 'Ліга тижня',
                         es: 'Liga semanal',
@@ -1781,18 +2031,14 @@ export default function HomeScreen() {
                         id: "Liga mingguan",
                         tr: "Haftalık lig",
                         pl: "Liga tygodnia",
-                    }), leagueState.leagueId, matchingFreshBonus?.arenaBonus ?? 0, matchingFreshBonus?.progress)
-                    : null;
-                setHomeLeagueRaceVisible(showLeagueRace);
+                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints);
                 setEngineLeague(league);
-                setHomeLeagueChest(nextHomeLeagueChest);
+                setHomeLeagueChest((prev) => nextHomeLeagueChest ?? prev);
                 patchHomeScreenHydration({
-                    homeLeagueRaceVisible: showLeagueRace,
-                    homeLeagueChest: nextHomeLeagueChest,
+                    ...(nextHomeLeagueChest ? { homeLeagueChest: nextHomeLeagueChest } : {}), // null не затирает кэш — иначе карточка Лиги «пропадает» с главной
                 }, studyTarget);
             }
             else {
-                setHomeLeagueRaceVisible(false);
                 setHomeLeagueChest((prev) => prev);
             }
             if (leaguePending && mountedRef.current) {
@@ -1824,6 +2070,9 @@ export default function HomeScreen() {
                 }
             }
             setDueCount(dueItems.length);
+            // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
+            // Home подпись «Моя практика» стартует с этого числа, а не с 0 (см. dueCount выше).
+            patchHomeScreenHydration({ dueCount: dueItems.length }, studyTarget);
             setMedalCounts(countMedals(allMedals));
             // [BANNERS] Login bonus, comeback, personal best, streak repair
             if (bonusRaw) {
@@ -1869,6 +2118,7 @@ export default function HomeScreen() {
                     if (shownToday !== today) {
                         await AsyncStorage.setItem('streak_paywall_shown', today);
                         router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streakBefore) } } as any);
+                        streakPaywallOpenedThisLoad = true;
                     }
                 }
             }
@@ -1878,7 +2128,11 @@ export default function HomeScreen() {
             const offer = await getReviveOffer();
             if (offer && mountedRef.current) {
                 setReviveOffer(offer);
-                setReviveModalVisible(true);
+                if (streakPaywallOpenedThisLoad) {
+                    reviveOfferDirtyRef.current = true;
+                } else {
+                    setReviveModalVisible(true);
+                }
             }
             // Premium celebration: pending выставлен в premium_modal (IAP) или cloud_sync (admin grant).
             const pending = await isCelebrationPending();
@@ -1935,23 +2189,74 @@ export default function HomeScreen() {
             loadingRef.current = false;
             // Если во время загрузки пришёл ещё один запрос — выполняем его сейчас
             if (needsReloadRef.current) {
+                if (!homeRuntimeActiveRef.current) {
+                    needsReloadRef.current = false;
+                    homeDataDirtyRef.current = true;
+                    return;
+                }
                 needsReloadRef.current = false;
                 if (deferredReloadTimerRef.current)
                     clearTimeout(deferredReloadTimerRef.current);
                 deferredReloadTaskRef.current?.cancel?.();
-                deferredReloadTimerRef.current = setTimeout(() => {
+            deferredReloadTimerRef.current = setTimeout(() => {
                     deferredReloadTimerRef.current = null;
                     if (!mountedRef.current)
                         return;
                     deferredReloadTaskRef.current = InteractionManager.runAfterInteractions(() => {
                         deferredReloadTaskRef.current = null;
-                        if (mountedRef.current)
+                        if (mountedRef.current && homeRuntimeActiveRef.current)
                             loadData();
+                        else if (mountedRef.current)
+                            homeDataDirtyRef.current = true;
                     });
                 }, 120);
             }
         }
     };
+    useEffect(() => {
+        if (!homeRuntimeActive) return;
+        if (homeDataDirtyRef.current) {
+            homeDataDirtyRef.current = false;
+            homeDailySummaryDirtyRef.current = false;
+            loadData();
+            return;
+        }
+        if (!homeDailySummaryDirtyRef.current) return;
+        homeDailySummaryDirtyRef.current = false;
+        void refreshDailyTaskSummary();
+    }, [homeRuntimeActive, focusTick, refreshDailyTaskSummary]);
+    useEffect(() => {
+        if (!homeRuntimeActive) {
+            shardsAnim.stopAnimation();
+            shardsBonusAnim.stopAnimation();
+            shardsAnim.setValue(1);
+            shardsBonusAnim.setValue(0);
+            return;
+        }
+        if (shardsDirtyRef.current) {
+            shardsDirtyRef.current = false;
+            void getShardsBalance().then((balance) => {
+                if (homeRuntimeActiveRef.current) setShardsBalance(balance);
+                else shardsDirtyRef.current = true;
+            });
+        }
+        if (streakMarkersDirtyRef.current) {
+            streakMarkersDirtyRef.current = false;
+            void readCurrentStreakWeekMarkers().then((markers) => {
+                if (homeRuntimeActiveRef.current) setWeekMarkers(markers);
+                else streakMarkersDirtyRef.current = true;
+            }).catch(() => {});
+        }
+        if (reviveOfferDirtyRef.current) {
+            reviveOfferDirtyRef.current = false;
+            void getReviveOffer().then((offer) => {
+                if (homeRuntimeActiveRef.current && offer) {
+                    setReviveOffer(offer);
+                    setReviveModalVisible(true);
+                } else if (!homeRuntimeActiveRef.current) reviveOfferDirtyRef.current = true;
+            });
+        }
+    }, [focusTick, homeRuntimeActive, shardsAnim, shardsBonusAnim]);
     const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
         hapticTap();
@@ -1969,23 +2274,25 @@ export default function HomeScreen() {
             const ok = await spendShards(FREEZE_COST_SHARDS, 'streak_freeze');
             if (!ok) {
                 await enqueueThemedBlockingInfoAlert(triLang(lang, {
-                    ru: 'Недостаточно осколков',
-                    uk: 'Недостатньо уламків',
+                    ru: 'Недостаточно жемчужин',
+                    uk: 'Недостатньо перлин',
                     es: `No tienes suficientes ${BRAND_SHARDS_ES}`,
-                    'pt-BR': "Você não tem fragmentos suficientes",
-                    vi: "Bạn không có đủ mảnh",
-                    id: "Fragmen kamu tidak cukup",
-                    tr: "Yeterli parçan yok",
-                    pl: "Nie masz wystarczająco odłamków",
+                    'pt-BR': "Você não tem pérolas suficientes",
+                    vi: "Bạn không có đủ xu",
+                    id: "Mutiara kamu tidak cukup",
+                    tr: "Yeterli incin yok",
+                    pl: "Nie masz wystarczająco monet",
+                // зачем: системный алерт принимает только текст — валюту называем
+                // словом («жемчужин»), как в магазине, а не эмодзи-алмазом 💎.
                 }), triLang(lang, {
-                    ru: `Заморозка стоит ${FREEZE_COST_SHARDS} 💎. У тебя ${shardsBalance} 💎.`,
-                    uk: `Заморозка коштує ${FREEZE_COST_SHARDS} 💎. У тебе ${shardsBalance} 💎.`,
-                    es: `Congelar la racha cuesta ${FREEZE_COST_SHARDS} 💎 · Tienes ${shardsBalance} 💎`,
-                    'pt-BR': `Congelar a sequência custa ${FREEZE_COST_SHARDS} 💎 · Você tem ${shardsBalance} 💎`,
-                    vi: `Đóng băng chuỗi tốn ${FREEZE_COST_SHARDS} 💎 · Bạn có ${shardsBalance} 💎`,
-                    id: `Bekukan rangkaian seharga ${FREEZE_COST_SHARDS} 💎 · Kamu punya ${shardsBalance} 💎`,
-                    tr: `Seriyi dondurmak ${FREEZE_COST_SHARDS} 💎 · Sende ${shardsBalance} 💎 var`,
-                    pl: `Zamrożenie serii kosztuje ${FREEZE_COST_SHARDS} 💎 · Masz ${shardsBalance} 💎`,
+                    ru: `Заморозка стоит ${FREEZE_COST_SHARDS} жемчужин. У тебя ${shardsBalance}.`,
+                    uk: `Заморозка коштує ${FREEZE_COST_SHARDS} перлин. У тебе ${shardsBalance}.`,
+                    es: `Congelar la racha cuesta ${FREEZE_COST_SHARDS} perlas · Tienes ${shardsBalance}`,
+                    'pt-BR': `Congelar a sequência custa ${FREEZE_COST_SHARDS} pérolas · Você tem ${shardsBalance}`,
+                    vi: `Đóng băng chuỗi tốn ${FREEZE_COST_SHARDS} ngọc trai · Bạn có ${shardsBalance}`,
+                    id: `Bekukan rangkaian seharga ${FREEZE_COST_SHARDS} mutiara · Kamu punya ${shardsBalance}`,
+                    tr: `Seriyi dondurmak ${FREEZE_COST_SHARDS} inci · Sende ${shardsBalance} var`,
+                    pl: `Zamrożenie serii kosztuje ${FREEZE_COST_SHARDS} pereł · Masz ${shardsBalance}`,
                 }), 'OK');
                 return;
             }
@@ -2003,16 +2310,19 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 lessons, 2 arena, 3 friends, 4 settings — см. app/(tabs)/_layout.tsx */
+    /** Индексы табов: 0 home, 1 tournaments, 2 friends, 3 settings —
+     *  см. app/(tabs)/_layout.tsx. Таб «Уроки» убран (2026-08-02): полный список —
+     *  push-маршрут /lessons_list, открывается плиткой «Уроки» ниже.
+     *  зачем: карта дублирует _layout.tsx, поэтому при любом изменении набора
+     *  вкладок её обязательно править вместе с ним — иначе переходы отсюда
+     *  уводят не на тот экран. */
     const TAB_IDX: Record<string, number> = {
-        '/(tabs)/lessons': 1,
-        lessons: 1,
-        '/(tabs)/arena': 2,
-        arena: 2,
-        '/(tabs)/friends': 3,
-        friends: 3,
-        '/(tabs)/settings': 4,
-        settings: 4,
+        '/(tabs)/tournaments': 1,
+        tournaments: 1,
+        '/(tabs)/friends': 2,
+        friends: 2,
+        '/(tabs)/settings': 3,
+        settings: 3,
     };
     const go = (path: string) => {
         hapticTap();
@@ -2083,7 +2393,7 @@ export default function HomeScreen() {
     // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
     const bannersJSX = (<>
       {loginBonus && (<View style={{ marginHorizontal: 16, marginBottom: 10, borderRadius: loginBonusChrome.radius, overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : { shadowColor: loginBonusChrome.shadowColor, shadowOpacity: isLightTheme ? 0.10 : 0.22, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 7 }) }}>
-          <LinearGradient colors={loginBonusCardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 74, borderRadius: loginBonusChrome.radius, paddingVertical: 13, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 1, borderColor: loginBonusBorder, overflow: 'hidden' }}>
+          <LinearGradient colors={loginBonusCardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 74, borderRadius: loginBonusChrome.radius, paddingVertical: 13, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 0, borderColor: loginBonusBorder, overflow: 'hidden' }}>
             {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
             <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, backgroundColor: loginBonusAccent, opacity: isLightTheme ? 0.72 : 0.90 }}/>
             <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusAccentSoft, borderWidth: 1, borderColor: loginBonusBorder }}>
@@ -2183,10 +2493,17 @@ export default function HomeScreen() {
     </>);
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
-        const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
+        const { level, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
-        const homeQuickRowPad = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16;
-        const homeQuickRowGap = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10;
+        const lastLessonImage = getHomeLastLessonImage(themeMode);
+        // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
+        // и после смены языка интерфейса оставалось на старом языке (укр. экран —
+        // русское название). Резолвим по текущему lang в рендере, как lessons.tsx.
+        const lastLessonName = lastLesson == null
+            ? ''
+            : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
+        const homeQuickRowPad = 8;
+        const homeQuickRowGap = 14;
         const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
         const homeQuickIconPlateSize = Math.min(118, Math.max(88, homeQuickTileWidth - 20));
         const homeQuickIconImageSize = Math.max(96, homeQuickIconPlateSize + 18);
@@ -2194,111 +2511,60 @@ export default function HomeScreen() {
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homePracticeIconSize = 64;
         const homePracticeIconImageSize = homePracticeIconSize;
-        const homeTodayIconSize = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 84 : 96;
+        const homeTodayIconSize = 84;
         const homeTodayIconImageSize = homeTodayIconSize;
         const homeTodayCardMinHeight = 112;
         const homeTodayLeagueCardMinHeight = 120;
         const homeTodayCardPadX = 16;
         const homeTodayCardPadY = 12;
         const homeTodayCardGap = 14;
+        // зачем: владелец (2026-08-02) — плитка «Уроки» открывает раздел всех
+        // уроков (/lessons_list, бывший таб «Уроки»), а продолжение последнего
+        // урока переехало на плашку ниже (бывшая плашка плана). Таб с книжкой
+        // из таббара убран — этот вход теперь единственный в полный список.
         const quickItems = [
-            { key: 'lessons', iconKey: 'lesson' as const, testID: 'home-quick-lessons', img: menuImages.lesson, label: s.tabs.lessons, sub: triLang(lang, {
-                    ru: '32 урока',
-                    uk: '32 уроки',
-                    es: '32 lecciones',
-                    'pt-BR': "32 lições",
-                    vi: "32 bài học",
-                    id: "32 pelajaran",
-                    tr: "32 ders",
-                    pl: "32 lekcje",
-                }), path: 'lessons' },
-            { key: 'quizzes', iconKey: 'quizes' as const, testID: 'home-quick-quizzes', img: menuImages.quizes, label: s.tabs.quizzes, sub: triLang(lang, {
-                    ru: '3 уровня',
-                    uk: '3 рівні',
-                    es: '3 niveles de dificultad',
-                    'pt-BR': "3 níveis de dificuldade",
-                    vi: "3 mức độ khó",
-                    id: "3 tingkat kesulitan",
-                    tr: "3 zorluk seviyesi",
-                    pl: "3 poziomy trudności",
-                }), path: '/quizzes_screen' },
-            { key: 'flashcards', iconKey: 'cards' as const, testID: 'home-quick-flashcards', img: menuImages.cards, label: s.tabs.flashcards, sub: triLang(lang, {
-                    ru: 'Свои фразы',
-                    uk: 'Свої фрази',
-                    es: 'Tus tarjetas',
-                    'pt-BR': "Seus cartões",
-                    vi: "Thẻ của bạn",
-                    id: "Kartumu",
-                    tr: "Kartların",
-                    pl: "Twoje fiszki",
-                }), path: '/flashcards' },
+            {
+                key: 'lesson',
+                iconKey: 'lesson' as const,
+                testID: 'home-quick-lesson',
+                img: menuImages.lesson,
+                label: triLang(lang, {
+                    ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições',
+                    vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
+                }),
+                onPress: () => { go('/lessons_list'); },
+            },
+            {
+                key: 'practice',
+                iconKey: 'practice' as const,
+                testID: 'home-quick-practice',
+                img: menuImages.practice,
+                label: triLang(lang, {
+                    ru: 'Практика', uk: 'Практика', es: 'Práctica', 'pt-BR': 'Prática',
+                    vi: 'Luyện tập', id: 'Latihan', tr: 'Pratik', pl: 'Praktyka',
+                }),
+                onPress: () => {
+                    // Прогреваем снапшот тренажёра до навигации — первый кадр без спиннера.
+                    void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale });
+                    go('/trainer');
+                },
+            },
+            {
+                key: 'flashcards',
+                iconKey: 'cards' as const,
+                testID: 'home-quick-flashcards',
+                img: menuImages.cards,
+                label: s.tabs.flashcards,
+                onPress: () => { go('/flashcards'); },
+            },
         ];
         const visibleQuickItems = quickItems;
-        const themedClubIcon = menuImages.league;
-        /** Второй ряд быстрых плиток — тот же визуал, что «Уроки / Квизы / Карточки». */
-        const activityQuickItems = [
-            {
-                key: 'daily',
-                kind: 'tasks' as const,
-                iconKey: 'dayTasks' as const,
-                label: triLang(lang, {
-                    ru: 'Вызовы дня',
-                    uk: 'Виклики дня',
-                    es: 'Tareas del día',
-                    'pt-BR': "Tarefas do dia",
-                    vi: "Nhiệm vụ hôm nay",
-                    id: "Tugas harian",
-                    tr: "Günün görevleri",
-                    pl: "Zadania dnia",
-                }),
-                path: '/daily_tasks_screen' as const,
-                img: menuImages.dayTasks,
-            },
-            {
-                key: 'league',
-                kind: 'league' as const,
-                iconKey: 'league' as const,
-                label: triLang(lang, {
-                    ru: 'Лига недели',
-                    uk: 'Ліга тижня',
-                    es: 'Liga de la semana',
-                    'pt-BR': "Liga da semana",
-                    vi: "Giải đấu trong tuần",
-                    id: "Liga minggu ini",
-                    tr: "Haftanın ligi",
-                    pl: "Liga tygodnia",
-                }),
-                path: '/league_screen' as const,
-            },
-            {
-                key: 'attest',
-                kind: 'image' as const,
-                iconKey: 'test' as const,
-                label: s.home.attestTile,
-                path: '/diagnostic_test' as const,
-                img: menuImages.test,
-            },
-            {
-                key: 'speaking_club',
-                kind: 'image' as const,
-                iconKey: 'dialogs' as const,
-                label: triLang(lang, {
-                    ru: 'Разговорный клуб',
-                    uk: 'Розмовний клуб',
-                    es: 'Club de charla',
-                    'pt-BR': "Clube de conversa",
-                    vi: "CLB hội thoại",
-                    id: "Klub bicara",
-                    tr: "Konuşma kulübü",
-                    pl: "Klub rozmów",
-                }),
-                path: '/speaking_club_home' as const,
-                img: menuImages.dialogs,
-            },
-        ];
-        const visibleActivityQuickItems = activityQuickItems;
+        // зачем: удалён мёртвый второй ряд плиток (activityQuickItems /
+        // visibleActivityQuickItems / themedClubIcon) — он объявлялся, но никогда
+        // не рендерился, поэтому «Аттестация» числилась в
+        // коде как разделы главной, которых пользователь не видит. Реальный ряд —
+        // visibleQuickItems (Урок / Практика / Карточки), см. рендер ниже.
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
-        const homeXpProgressLabel = formatHomeXpProgressLabel(xpInLevel, xpNeeded);
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
@@ -2322,10 +2588,9 @@ export default function HomeScreen() {
         const eliteWeekDayFontSize = Math.max(12, f.label - 1);
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
-        const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
-        const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance), themeMode);
+        const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
         const homeHeaderShardIconSize = 34;
-        const homeHeaderShardIconWidth = isCompassTheme ? 42 : homeHeaderShardIconSize;
+        const homeHeaderShardIconWidth = homeHeaderShardIconSize;
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
         // освобождает место, вся шапка помещается в один ряд.
         const homeEnergyIconSize = 30;
@@ -2334,8 +2599,9 @@ export default function HomeScreen() {
             ? Math.min(100, Math.round((homeLeagueChest.progress / Math.max(1, homeLeagueChest.goal)) * 100))
             : 0;
         const homeLeagueChestReady = homeLeagueChestPct >= 100;
+        // зачем: полоса прогресса лиги убрана с главной (2026-08-03), градиент
+        // заливки больше не нужен — остался только цвет процента.
         const homeLeagueChestAccent = homeLeagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
-        const homeLeagueChestFill = homeLeagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
         const openHomeProfile = () => {
             hapticTap();
             setHomeProfilePlayer({
@@ -2373,22 +2639,50 @@ export default function HomeScreen() {
                 style={{ width: 48, height: 46, alignItems: 'center', justifyContent: 'center' }}
             >
                 <View style={{ width: 44, height: 38, alignItems: 'center', justifyContent: 'center' }}>
-                    <Ionicons name="person-circle-outline" size={30} color={isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                    <Ionicons name="person-circle-outline" size={30} color={isGoldTheme ? GOLD_RICH.paleGold : t.accent} />
                 </View>
             </TouchableOpacity>
         );
         const showHomeFeatureTipCard = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
         const currentHomeFeatureTip = homeFeatureTips[clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length)] ?? homeFeatureTips[0];
-        const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent;
+        const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
         const showHomeFeatureTipTapHint = homeFeatureTipIndex === 0;
         const homeFeatureTipHintOpacity = homeFeatureTipHintPulse.interpolate({ inputRange: [0, 1], outputRange: [0.72, 0.98] });
         const homeFeatureTipHintScale = homeFeatureTipHintPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.035] });
         const homeFeatureTipA11y = currentHomeFeatureTip
             ? `${currentHomeFeatureTip.title}. ${currentHomeFeatureTip.body}`
             : '';
-        const experimentalStatusStreakWidth = eliteStatsCompact ? 74 : 86;
-        const experimentalStatusTopRowHeight = eliteStatsCompact ? 72 : 86;
-        const experimentalStatusWeekDotSize = eliteStatsCompact ? 28 : 31;
+        // -1 = позиция «ушедшей» карточки, 0 = покой, 1 = позиция «пришедшей».
+        // Знак сдвига берём из направления листания: вперёд новая приезжает справа, назад — слева.
+        const homeFeatureTipSwapOffset = 26 * homeFeatureTipDirectionRef.current;
+        const homeFeatureTipContentTranslate = homeFeatureTipReduceMotion
+            ? 0
+            : homeFeatureTipContentAnim.interpolate({
+                inputRange: [-1, 0, 1],
+                outputRange: [-homeFeatureTipSwapOffset, 0, homeFeatureTipSwapOffset],
+            });
+        // Гаснет на обоих краях — и когда уходит, и когда приходит; в покое (0) полностью видна.
+        const homeFeatureTipContentOpacity = homeFeatureTipContentAnim.interpolate({
+            inputRange: [-1, 0, 1],
+            outputRange: [0, 1, 0],
+        });
+        // Подложка-стопка на миг подмены подтягивается вверх и «раскрывается» ближе к верхней карточке.
+        const homeFeatureTipStackTranslate = homeFeatureTipStackAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, -5],
+        });
+        const homeFeatureTipStackOpacity = homeFeatureTipStackAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0.55, 0.82],
+        });
+        // Сама плашка на миг подмены слегка «садится» — читается как замена карточки целиком,
+        // а не как подмена одного текста внутри неподвижной панели. Не ниже 0.97 (правило пресса).
+        const homeFeatureTipCardScale = homeFeatureTipReduceMotion
+            ? 1
+            : homeFeatureTipStackAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 0.975],
+            });
         const experimentalStatusLevelLabel = triLang(lang, {
             ru: 'Уровень',
             uk: 'Рівень',
@@ -2399,85 +2693,166 @@ export default function HomeScreen() {
             tr: "Seviye",
             pl: "Poziom",
         });
-        const renderExperimentalHomeStatus = () => (<Animated.View style={{
+        // зачем: владелец вернул герой-модуль (серия+уровень+XP+неделя) как был.
+        // Аватар слева занимает место бывшей стрик-колонки, поэтому кружки недели
+        // получают больше ширины и не жмутся (24 → 28 в компактном режиме).
+        const experimentalStatusWeekDotSize = eliteStatsCompact ? 26 : 30;
+        const homeHeroAvatarSize = eliteStatsCompact ? 68 : 76;
+        const homeHeroStreakIconSize = eliteStatsCompact ? 30 : 34;
+        // Единица («дней») уступает место, когда ряд и так плотный: узкий экран
+        // со щитом заморозки, либо трёхзначная серия.
+        const homeHeroShowStreakUnit = !(eliteStatsCompact && (streakAtRisk && !freezeActive)) && displayStreak < 100;
+        const renderHomeHeroStatus = () => (<Animated.View style={{
                 opacity: eliteStatusEntrance,
                 transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
             }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: eliteStatsCompact ? 10 : 14 }}>
-                <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
+              {/* зачем: владелец вернул раскладку «как было раньше» — слева аватарка,
+                  а серия (иконка + число дней) уехала в правый верхний угол карточки.
+                  Освободившиеся ~86px ширины забирает полоса XP и ряд дней недели. */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: eliteStatsCompact ? 12 : 14 }}>
+                <TouchableOpacity
+                  testID="home-hero-avatar-button"
+                  activeOpacity={0.82}
+                  // зачем: аватар в карточке ведёт в кастомизацию внешнего вида.
+                  // Карточка профиля осталась за бюстом в верхнем хедере — две
+                  // разные цели не должны дублировать друг друга.
+                  onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
                     nav.push('/avatar_select');
-                }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ flexShrink: 0 }}>
-                  <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
+                  }}
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Изменить внешний вид',
+                    uk: 'Змінити зовнішній вигляд',
+                    es: 'Cambiar apariencia',
+                    'pt-BR': 'Alterar aparência',
+                    vi: 'Đổi diện mạo',
+                    id: 'Ubah tampilan',
+                    tr: 'Görünümü değiştir',
+                    pl: 'Zmień wygląd',
+                  })}
+                  hitSlop={6}
+                  style={{
+                    width: homeHeroAvatarSize,
+                    flexShrink: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <AvatarView
+                    avatar={userAvatar}
+                    level={level}
+                    size={homeHeroAvatarSize}
+                    auraId={effectiveUserAvatarAura}
+                    ownerActive={homeRuntimeActive}
+                  />
                 </TouchableOpacity>
 
-                <View style={{ flex: 1, minWidth: 0, paddingRight: eliteStatsCompact ? 0 : 2 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 9 }}>
-                    <View style={{
-                    borderRadius: 999,
-                    paddingHorizontal: 10,
-                    paddingVertical: 4,
-                    backgroundColor: isPaperHomeTheme ? 'rgba(64,102,190,0.12)' : 'rgba(125,174,255,0.16)',
-                    borderWidth: 0,
-                    borderColor: 'transparent',
-                }}>
-                      <Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
-                        {experimentalStatusLevelLabel} {level}
-                      </Text>
-                    </View>
-                  </View>
+                <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, gap: eliteStatsCompact ? 10 : 12 }}>
+                  {/* Ряд «Уровень N» + серия справа: серия больше не занимает
+                      отдельную колонку, поэтому полоса XP тянется во всю ширину. */}
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <FlowText testID="home-level-title" provenance="authored" maxFontSizeMultiplier={1} style={{ flexShrink: 1, color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
+                      {experimentalStatusLevelLabel} {level}
+                    </FlowText>
 
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 10 }}>
-                    <Text style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 14 : 16, fontWeight: '900', lineHeight: eliteStatsCompact ? 18 : 20 }} numberOfLines={1}>
-                      {homeXpProgressLabel}
-                    </Text>
+                    <TouchableOpacity
+                      testID="home-streak-status-panel"
+                      activeOpacity={0.82}
+                      onPress={(event) => {
+                        event.stopPropagation?.();
+                        hapticTap();
+                        nav.push('/streak_stats');
+                      }}
+                      accessibilityRole="button"
+                      accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`}
+                      hitSlop={6}
+                      style={{
+                        flexShrink: 0,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: eliteStatsCompact ? 4 : 6,
+                      }}
+                    >
+                      <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeHeroStreakIconSize}/>
+                      <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 23, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 27, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
+                        {displayStreak}
+                      </Animated.Text>
+                      {/* зачем: на узком экране со щитом и трёхзначной серией ряд
+                          переполнялся и «Уровень N» уходил в многоточие. Слово-единица
+                          — наименее ценная часть (иконка + число читаются сами), поэтому
+                          жертвуем им, а не заголовком. Для озвучки полная формулировка
+                          остаётся в accessibilityLabel кнопки. */}
+                      {homeHeroShowStreakUnit ? (
+                        <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelMuted, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, includeFontPadding: false }}>
+                          {homeStreakDaysLabel}
+                        </Text>
+                      ) : null}
+                      {/* Щит «защитить серию» — отдельная кнопка рядом с числом, а не
+                          наложение поверх иконки: в компактном ряду перекрытие давало
+                          промахи по тапу. */}
+                      {streakAtRisk && !freezeActive ? (
+                        <Pressable
+                          testID="home-streak-freeze-shield"
+                          accessibilityRole="button"
+                          accessibilityLabel={triLang(lang, {
+                            ru: 'Защитить серию',
+                            uk: 'Захистити серію',
+                            es: 'Proteger la racha',
+                            'pt-BR': 'Proteger a sequência',
+                            vi: 'Bảo vệ chuỗi',
+                            id: 'Lindungi rangkaian',
+                            tr: 'Seriyi koru',
+                            pl: 'Chroń serię',
+                          })}
+                          hitSlop={10}
+                          onPress={(event) => {
+                            event.stopPropagation?.();
+                            hapticTap();
+                            void handleFreezeStreak();
+                          }}
+                          style={({ pressed }) => ({
+                            marginLeft: 2,
+                            width: 34,
+                            height: 34,
+                            borderRadius: 12,
+                            overflow: 'hidden',
+                            borderWidth: 0,
+                            opacity: pressed ? 0.82 : 1,
+                            transform: [{ scale: pressed ? 0.96 : 1 }],
+                          })}
+                        >
+                          <LinearGradient colors={homeThemePanelGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 12 }}>
+                            <StreakChainIcon themeMode={themeMode} frozen streakDays={streak} size={24}/>
+                          </LinearGradient>
+                        </Pressable>
+                      ) : null}
+                    </TouchableOpacity>
                   </View>
 
                   <View style={{
-                    height: 12,
+                    height: 18,
                     borderRadius: 999,
                     overflow: 'hidden',
                     backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
-                    borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent',
-                }}>
-                    <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.correct] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
-                      <Animated.View style={{ width: 72, height: '100%', transform: [{ translateX: eliteShimmerX }] }}>
-                        <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}/>
-                      </Animated.View>
+                    borderWidth: 0,
+                  }}>
+                    <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.accent] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
                     </LinearGradient>
                   </View>
-                </View>
 
-                <TouchableOpacity activeOpacity={0.82} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/streak_stats');
-                }} accessibilityRole="button" accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`} style={{
-                    width: experimentalStatusStreakWidth,
-                    minHeight: experimentalStatusTopRowHeight,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    borderRadius: 18,
-                }}>
-                  <Animated.Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 34 : 42, fontWeight: '900', lineHeight: eliteStatsCompact ? 38 : 46, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }} numberOfLines={1}>
-                    {displayStreak}
-                  </Animated.Text>
-                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={2}>
-                    {homeStreakDaysLabel}
-                  </Text>
-                </TouchableOpacity>
+                </View>
               </View>
 
-              <View style={{ height: 1, backgroundColor: isPaperHomeTheme ? 'rgba(50,72,110,0.12)' : 'rgba(255,255,255,0.10)', marginTop: 19, marginBottom: 18 }}/>
-
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: eliteStatsCompact ? 2 : 5 }}>
+              {/* зачем: владелец выбрал вариант B — дни недели вынесены из правой
+                  колонки на всю ширину карточки, чтобы ряд был отцентрован, а не
+                  прижат вправо под аватаром. */}
+              <View testID="home-week-days-row" style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginTop: eliteStatsCompact ? 14 : 16, paddingHorizontal: eliteStatsCompact ? 0 : 2 }}>
                 {weekDays.map((d, i) => {
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
-                  return (<View key={i} style={{ alignItems: 'center', gap: 6, minWidth: experimentalStatusWeekDotSize + 5 }}>
+                      return (<View key={i} style={{ width: experimentalStatusWeekDotSize, flexShrink: 1, alignItems: 'center', gap: 4 }}>
                     <View style={{
                     width: experimentalStatusWeekDotSize,
                     height: experimentalStatusWeekDotSize,
@@ -2489,11 +2864,11 @@ export default function HomeScreen() {
                     borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),
                     borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
                 }}>
-                      {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={weekDotTheme.checkColor}/>)}
+                          {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 14 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 14 : 16} color={weekDotTheme.checkColor}/>)}
                     </View>
                     {/* Метка дня («Пн», «Ср»…) не обрезается в многоточие: ширина по
                         содержимому + разрешаем не сжимать (numberOfLines убран). */}
-                    <Text allowFontScaling={false} style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16, textAlign: 'center' }}>
+                    <Text maxFontSizeMultiplier={1} style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 10 : 11, fontWeight: '900', lineHeight: eliteStatsCompact ? 12 : 14, textAlign: 'center' }}>
                       {d}
                     </Text>
                   </View>);
@@ -2511,21 +2886,36 @@ export default function HomeScreen() {
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
+        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
-          {/* ХЕДЕР: один ряд. Слева — письмо (новости команды) + бюст (карточка профиля).
-              Справа — энергия (1 иконка + цифры), осколки, видео, чаты, колокольчик (центр событий).
+          {/* ХЕДЕР: один ряд. Слева — осколки + бюст (карточка профиля).
+              Справа — энергия (1 иконка + цифры), видео, чаты, колокольчик (единый центр событий и сообщений команды).
               Имя убрано с главной: оно есть в карточке профиля по тапу на бюст. */}
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 0 }}>
-                <AppMessagesInbox />
-                {renderHomeProfileButton()}
+                <TouchableOpacity activeOpacity={0.75} onPress={() => {
+                    hapticTap();
+                    nav.push('/shards_shop');
+                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
+                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={`Баланс: ${shardsBalance} жемчужин`} />
+                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
+                  </Animated.View>
+                </TouchableOpacity>
+                {/* зачем: владелец попросил поменять местами бюст/профиль и колокольчик —
+                    теперь колокольчик (с бейджем непрочитанных) идёт сразу после осколков,
+                    а аватар/бюст профиля уходит на дальний правый край, где раньше был
+                    колокольчик. onPress/бейдж каждой кнопки не тронуты. */}
+                <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
                 <View style={{ flex: 1, minWidth: 0 }} />
+                {/* зачем: хедер сжат с 5 целей до 3 (осколки/профиль/колокольчик) —
+                {/* зачем: хедер — осколки/профиль/видео/колокольчик: владелец вернул
+                    видео-иконку; энергия живёт чипом у CTA (не пугает на входе). */}
                 {showHomeEnergy && (
                   <View ref={energyIconRef} collapsable={false} style={{ flexShrink: 0 }}>
-                    <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
+                    <TouchableOpacity activeOpacity={0.7} accessibilityLabel={`qa-home-energy ${homeEnergyCountLabel}`} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
                       <EnergyIcon filled={energyCount > 0} themeColor={energyCount > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
                       <Text style={{ color: t.heroTextPrimary, fontSize: 14, fontWeight: '900' }} numberOfLines={1}>
                         {homeEnergyCountLabel}
@@ -2538,18 +2928,8 @@ export default function HomeScreen() {
                     </TouchableOpacity>
                   </View>
                 )}
-                <TouchableOpacity activeOpacity={0.75} onPress={() => {
-                    hapticTap();
-                    nav.push('/shards_shop');
-                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
-                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
-                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
-                  </Animated.View>
-                </TouchableOpacity>
-                <LingmanVideosButton />
-                <CommunityChatHubButton />
-                <NotificationCenterButton />
+                <LingmanVideosButton ownerActive={homeRuntimeActive} />
+                {renderHomeProfileButton()}
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -2560,418 +2940,146 @@ export default function HomeScreen() {
             }}>{shardsBonusText}</Animated.Text>
             </View>
           </View>
+          </Animated.View>
 
+          {/* ── ФОКУС ДНЯ: три кольца + один CTA (Bevel-подход) ── */}
+          {/* зачем: владелец заменил витрину статистики на one-glance статус дня —
+              кольца Урок/Практика/Карточки, единственная акцентная кнопка и строка
+              Компаса. Полная статистика — по тапу на статус-строку (/streak_stats). */}
+          <Animated.View style={sectionStyle(1)}>
+          {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
+          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
+              {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
+              {renderHomeHeroStatus()}
+            </LinearGradient>
+          </TouchableOpacity>
+
+          {/* БЫСТРЫЙ СТАРТ: Уроки (полный список) / Практика / Карточки.
+              зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
+              называет действие, подпись под ней короткая (запрет на подписи-
+              расшифровки соблюдён: это label плитки, а не описание). */}
+          <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
+            {/* Заголовок секции — тот же кегль/вес, что у «Сегодня» ниже: одна
+                типографическая ступень для всех разделов главного экрана. */}
+            <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
+              <FlowText testID="home-quickstart-title" provenance="authored" style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }}>
+                {triLang(lang, {
+                  ru: 'Быстрый старт', uk: 'Швидкий старт', es: 'Inicio rápido', 'pt-BR': 'Início rápido',
+                  vi: 'Bắt đầu nhanh', id: 'Mulai cepat', tr: 'Hızlı başlangıç', pl: 'Szybki start',
+                })}
+              </FlowText>
+            </View>
+            <View style={{ marginBottom: 12, paddingHorizontal: 8, gap: 14, flexDirection: 'row' }}>
+              {visibleQuickItems.map((item, index) => {
+                const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
+                const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
+                const tilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
+                const tileIconBg = isGoldTheme ? goldIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                return (
+                  <Animated.View key={item.key} style={{ flex: 1, opacity: tileOpacity, transform: [{ translateY: tileY }] }}>
+                    <TouchableOpacity
+                      testID={item.testID}
+                      accessible={true}
+                      accessibilityRole="button"
+                      accessibilityLabel={item.label}
+                      activeOpacity={0.78}
+                      onPress={item.onPress}
+                      style={{
+                        flex: 1,
+                        borderRadius: isGoldTheme ? 14 : 18,
+                        overflow: 'hidden',
+                        backgroundColor: tilePanelBg,
+                        borderWidth: isPaperHomeTheme ? 1 : 0,
+                        borderColor: isPaperHomeTheme ? homeThemePanelBorder : 'transparent',
+                        ...(isGoldTheme ? goldShadow(1) : {}),
+                      }}>
+                      <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
+                        {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
+                        <View style={{
+                          width: homeQuickIconPlateSize,
+                          height: homeQuickIconPlateSize,
+                          borderRadius: homeQuickIconRadius,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: tileIconBg,
+                        }}>
+                          <LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
+                        </View>
+                        {/* зачем: подпись плитки быстрого старта — короткие лейблы («Уроки»,
+                            «Практика», «Карточки») в реальных локалях умещаются в одну строку;
+                            FlowText переносит целиком вместо обрезания на случай длинных переводов. */}
+                        <FlowText testID="home-quick-tile-label" provenance="authored" style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }}>{item.label}</FlowText>
+                      </View>
+                    </TouchableOpacity>
+                  </Animated.View>
+                );
+              })}
+            </View>
+          </View>
+
+
+
+
+          {/* Очередь баннеров (лимит 1) — ПОД фокус-блоком: уведомление никогда
+              не важнее первого учебного действия дня. */}
           {bannersJSX}
           </Animated.View>
 
-          {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
-          <Animated.View style={sectionStyle(1)}>
-          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
-              {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-              {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
-              {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}
-              {!USE_ELITE_HOME_STATUS && (<View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: isGoldTheme ? 18 : 24, overflow: 'hidden' }} pointerEvents="none">
-                  <View style={{ position: 'absolute', top: -30, right: -20, width: 110, height: 110, borderRadius: 55, backgroundColor: t.textSecond + '12' }}/>
-                  <View style={{ position: 'absolute', bottom: -20, left: -10, width: 70, height: 70, borderRadius: 35, backgroundColor: t.correct + '10' }}/>
-                </View>)}
-
-              {USE_ELITE_HOME_STATUS ? (HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? renderExperimentalHomeStatus() : (<Animated.View style={{
-                    opacity: eliteStatusEntrance,
-                    transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
-                }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18, gap: eliteStatsCompact ? 8 : 10 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, minWidth: 0 }}>
-                      <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/avatar_select');
-                }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ marginRight: eliteStatsCompact ? 10 : 12 }}>
-                        <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
-                      </TouchableOpacity>
-                      <View style={{ flex: 1, minWidth: eliteStatsCompact ? 74 : 112 }}>
-                        <View style={{
-                    alignSelf: 'flex-start',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    borderRadius: 999,
-                    paddingHorizontal: 9,
-                    paddingVertical: 3,
-                    marginBottom: 4,
-                    backgroundColor: isGoldTheme ? 'rgba(246, 201, 92, 0.16)' : (isLightTheme ? 'rgba(64, 102, 190, 0.10)' : 'rgba(125, 174, 255, 0.14)'),
-                    borderWidth: 0,
-                    borderColor: 'transparent',
-                }}>
-                          <Text allowFontScaling={false} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : t.textPrimary, fontSize: eliteLevelBadgeFontSize, fontWeight: '900', lineHeight: eliteLevelBadgeFontSize + 4, letterSpacing: 0 }} numberOfLines={1}>
-                            {triLang(lang, {
-                    ru: 'Уровень',
-                    uk: 'Рівень',
-                    es: 'Nivel',
-                    'pt-BR': "Nível",
-                    vi: "Cấp",
-                    id: "Level",
-                    tr: "Seviye",
-                    pl: "Poziom",
-                })} {level}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-
-                    <View style={{ alignItems: 'flex-end', width: eliteStreakColumnWidth, flexShrink: 0 }}>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 5, width: '100%' }}>
-                        <Animated.Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStreakValueSize, fontWeight: '900', lineHeight: eliteStreakValueSize + 5, transform: [{ scale: streakScaleAnim }], minWidth: eliteStreakColumnWidth - eliteStreakIconBox - 7, textAlign: 'right', includeFontPadding: false }} numberOfLines={1}>
-                          {displayStreak}
-                        </Animated.Text>
-                        <View style={[{
-                    width: eliteStreakIconBox,
-                    height: eliteStreakIconBox,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }, homeStreakIconFrameStyle]}>
-                          <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
-                        </View>
-                      </View>
-                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={2}>
-                        {homeStreakDaysLabel}
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View style={{ marginBottom: 15 }}>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 7 }}>
-                      <Text style={{ color: t.textMuted, fontSize: eliteMetaFontSize, fontWeight: '800' }}>{homeXpProgressLabel}</Text>
-                      {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
-                            <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
-                          </View>)}
-                    </View>
-                    <View style={{
-                    height: 12,
-                    borderRadius: 8,
-                    overflow: 'hidden',
-                    backgroundColor: isSketchLightTheme ? 'rgba(56,52,44,0.56)' : isLightTheme ? 'rgba(255,255,255,0.35)' : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.08)',
-                    borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent',
-                }}>
-                      <LinearGradient colors={isSketchLightTheme ? [t.accent, t.correct] : isLightTheme ? [t.accent, '#FFFFFFAA'] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 8, overflow: 'hidden' }}>
-                        {(isGoldTheme) && (<>
-                            <LinearGradient colors={['rgba(255,255,255,0.34)', 'rgba(255,255,255,0.055)', 'rgba(0,0,0,0.14)']} locations={[0, 0.46, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill}/>
-                            <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 1, backgroundColor: 'rgba(0,0,0,0.26)' }}/>
-                          </>)}
-                        <Animated.View style={{ width: 72, height: '100%', transform: [{ translateX: eliteShimmerX }] }}>
-                          <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}/>
-                        </Animated.View>
-                      </LinearGradient>
-                    </View>
-                  </View>
-
-                  {hasPremiumAccess && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 13 }}>
-                      <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.metallicFill : [t.gold, '#FFF2B0']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 12, paddingHorizontal: 9, paddingVertical: 4, flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                        <Ionicons name="trophy" size={14} color={t.textOnGold}/>
-                        <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>
-                          {triLang(lang, {
-                        ru: `Обошёл ${homeXpPercentile}% по XP`,
-                        uk: `Обійшов ${homeXpPercentile}% за XP`,
-                        es: `Por delante del ${homeXpPercentile}% en XP`,
-                        'pt-BR': `À frente de ${homeXpPercentile}% em XP`,
-                        vi: `Vượt ${homeXpPercentile}% về XP`,
-                        id: `Lebih unggul dari ${homeXpPercentile}% dalam XP`,
-                        tr: `XP’de %${homeXpPercentile} öndesin`,
-                        pl: `Przed ${homeXpPercentile}% w XP`,
-                    })}
-                        </Text>
-                      </LinearGradient>
-                    </View>)}
-
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 2 }}>
-                    {weekDays.map((d, i) => {
-                      const marker = markerForWeekDay(i);
-                      const marked = isWeekDayMarked(i);
-                      return (<View key={i} style={{ alignItems: 'center', gap: 6, width: 34 }}>
-                        <View style={{
-                        width: eliteWeekDotSize, height: eliteWeekDotSize, borderRadius: eliteWeekDotSize / 2,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden',
-                        backgroundColor: marker === 'freeze' ? weekDotFill(i, marker, weekDotTheme.freezeBg) : isGoldTheme && !marker ? 'transparent' : weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                        borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked && !isGoldTheme ? 0 : 1),
-                        borderColor: isGoldTheme
-                            ? weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder)
-                            : weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
-                    }}>
-                          {isGoldTheme && !marker && (<>
-                              <LinearGradient colors={weekDone[i] ? GOLD_GRADIENTS.metallicFill : ['rgba(23,23,23,0.66)', 'rgba(10,10,10,0.58)', 'rgba(7,7,7,0.50)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
-                              <GoldBevel radius={eliteWeekDotSize / 2} intensity={marked ? 'normal' : 'quiet'}/>
-                            </>)}
-                          {renderWeekMarkerContent(marker, eliteWeekDotSize, eliteStatsCompact ? 15 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={weekDotTheme.checkColor}/>)}
-                        </View>
-                        <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : t.textPrimary, t.textMuted), fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
-                      </View>);
-                    })}
-                  </View>
-                  {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
-                        color: t.accent,
-                        fontSize: 13,
-                        fontWeight: '700',
-                        marginTop: 14,
-                        textAlign: 'center',
-                        lineHeight: 18,
-                        transform: [{ scale: statsHintPulseAnim }],
-                    }}>
-                      {s.home.statsPulseHint}
-                    </Animated.Text>)}
-                </Animated.View>)) : (<>
-              {/* Верхняя строка: Уровень + Цепочка */}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>{triLang(lang, {
-                    ru: 'Уровень',
-                    uk: 'Рівень',
-                    es: 'Nivel',
-                    'pt-BR': "Nível",
-                    vi: "Cấp độ",
-                    id: "Level",
-                    tr: "Seviye",
-                    pl: "Poziom",
-                })}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                    <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/avatar_select');
-                }} accessibilityRole="button" accessibilityLabel="Avatar">
-                      <AvatarView avatar={userAvatar} level={level} size={44} auraId={effectiveUserAvatarAura}/>
-                    </TouchableOpacity>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: 20, fontWeight: '800', lineHeight: 24 }} numberOfLines={1}>
-                        {triLang(lang, {
-                    ru: 'Ур.',
-                    uk: 'Рів.',
-                    es: 'Nv.',
-                    'pt-BR': "Nv.",
-                    vi: "Cấp",
-                    id: "Lv.",
-                    tr: "Sv.",
-                    pl: "Poz.",
-                })} {level}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={{ alignItems: 'flex-end', marginLeft: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                    <Animated.Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 38, transform: [{ scale: streakScaleAnim }] }}>{displayStreak}</Animated.Text>
-                    <View style={[{
-                        width: homeLargeStreakIconBox,
-                        height: homeLargeStreakIconBox,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }, homeStreakIconFrameStyle]}>
-                      <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeLargeStreakIconSize}/>
-                    </View>
-                  </View>
-                  <Text style={{ color: t.textSecond, fontSize: 13, textAlign: 'right' }} numberOfLines={2}>{homeStreakDaysLabel}</Text>
-                </View>
-              </View>
-
-              {/* Прогресс XP — толще */}
-              <View style={{ marginBottom: 14 }}>
-                <View style={{ height: 9, backgroundColor: t.bgSurface, borderRadius: 5, overflow: 'hidden' }}>
-                  <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.progressMetal : [isLightTheme ? t.accent : t.gold, isLightTheme ? t.accent : t.gold]} locations={undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${Math.min(100, Math.round(progress * 100))}%` as any, height: '100%', borderRadius: 5 }}/>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{homeXpProgressLabel}</Text>
-                  {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
-                      <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
-                    </View>)}
-                </View>
-              </View>
-
-              {/* МИНИ-БЕЙДЖ XP-ПЕРЦЕНТИЛЯ */}
-              {hasPremiumAccess && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-                  <View style={{ backgroundColor: t.gold, borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                    <Text style={{ fontSize: 12 }}>🏆</Text>
-                    <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>
-                      {triLang(lang, {
-                        ru: `Обошёл ${homeXpPercentile}% по XP`,
-                        uk: `Обійшов ${homeXpPercentile}% за XP`,
-                        es: `Por delante del ${homeXpPercentile}% en XP`,
-                        'pt-BR': `À frente de ${homeXpPercentile}% em XP`,
-                        vi: `Vượt ${homeXpPercentile}% về XP`,
-                        id: `Lebih unggul dari ${homeXpPercentile}% dalam XP`,
-                        tr: `XP’de %${homeXpPercentile} öndesin`,
-                        pl: `Przed ${homeXpPercentile}% w XP`,
-                    })}
-                    </Text>
-                  </View>
-                </View>)}
-
-              {/* Точки недели — крупнее */}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 4 }}>
-                {weekDays.map((d, i) => {
-                  const marker = markerForWeekDay(i);
-                  const marked = isWeekDayMarked(i);
-                  return (<View key={i} style={{ alignItems: 'center', gap: 6 }}>
-                    <View style={{
-                        width: 22, height: 22, borderRadius: 11,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                        borderWidth: marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),
-                        borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
-                    }}>
-                      {renderWeekMarkerContent(marker, 22, 14, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={14} color={weekDotTheme.checkColor}/>)}
-                    </View>
-                    <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : t.textPrimary, t.textMuted), fontSize: 12, fontWeight: i === todayIdx ? '800' : '600' }}>{d}</Text>
-                  </View>);
-                })}
-              </View>
-              {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
-                        color: t.accent,
-                        fontSize: 13,
-                        fontWeight: '700',
-                        marginTop: 14,
-                        textAlign: 'center',
-                        lineHeight: 18,
-                        transform: [{ scale: statsHintPulseAnim }],
-                    }}>
-                  {s.home.statsPulseHint}
-                </Animated.Text>)}
-              </>)}
-            </LinearGradient>
-          </TouchableOpacity>
-          </Animated.View>
-
-          {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
+          {/* ПРОДОЛЖИТЬ УРОК (карточка — только после первого захода в любой урок / last_opened_lesson) */}
           {(<Animated.View style={sectionStyle(2)}>
-          {/* ЗАМОРОЗКА ЦЕПОЧКИ — для всех когда цепочка под угрозой */}
-          {streakAtRisk && !freezeActive && (<TouchableOpacity activeOpacity={0.88} onPress={handleFreezeStreak} style={{
-                        marginHorizontal: 16,
-                        marginBottom: 12,
-                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 16,
-                        backgroundColor: isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : t.bgCard,
-                        borderWidth: 1,
-                        borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairlineStrong : (t.accent + '55'),
-                        padding: 16,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 12,
-                        ...({}),
-                    }}>
-              <View style={{ width: 42, height: 42, borderRadius: isCompassTheme ? compassHomeRadius : 21, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : (t.accent + '24'), borderWidth: 1, borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : (t.accent + '5C') }}>
-                <Ionicons name="snow-outline" size={24} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent}/>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 13, fontWeight: '700' }}>
-                  {triLang(lang, {
-                        ru: `Защити цепочку ${streak} дней — заходи сегодня`,
-                        uk: `Захисти ланцюжок ${streak} днів — заходь сьогодні`,
-                        es: `Llevas ${streak} días de racha: no la pierdas hoy`,
-                        'pt-BR': `Você está há ${streak} dias em sequência: não perca hoje`,
-                        vi: `Bạn đã giữ chuỗi ${streak} ngày: đừng để mất hôm nay`,
-                        id: `Rangkaianmu sudah ${streak} hari: jangan hilang hari ini`,
-                        tr: `${streak} günlük serin var: bugün kaybetme`,
-                        pl: `Masz serię ${streak} dni: nie strać jej dziś`,
-                    })}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: 12, marginTop: 2 }}>
-                  {!hasPremiumAccess
-                        ? triLang(lang, {
-                            ru: 'Доступно только для Plus',
-                            uk: 'Доступно лише для Plus',
-                            es: 'Solo disponible con Plus',
-                            'pt-BR': "Disponível apenas com Plus",
-                            vi: "Chỉ có với Plus",
-                            id: "Hanya tersedia dengan Plus",
-                            tr: "Yalnızca Plus ile kullanılabilir",
-                            pl: "Dostępne tylko z Plus",
-                        })
-                        : !premiumFreezeUsed
-                            ? triLang(lang, {
-                                ru: 'Заморозить бесплатно — бонус Plus',
-                                uk: 'Заморозити безкоштовно — бонус Plus',
-                                es: 'Primera congelación gratis con Plus',
-                                'pt-BR': "Primeiro congelamento grátis com Plus",
-                                vi: "Lần đóng băng đầu miễn phí với Plus",
-                                id: "Pembekuan pertama gratis dengan Plus",
-                                tr: "Plus ile ilk dondurma ücretsiz",
-                                pl: "Pierwsze zamrożenie gratis z Plus",
-                            })
-                            : triLang(lang, {
-                                ru: `Заморозить за ${FREEZE_COST_SHARDS} 💎`,
-                                uk: `Заморозити за ${FREEZE_COST_SHARDS} 💎`,
-                                es: `Congela tu racha por ${FREEZE_COST_SHARDS} 💎`,
-                                'pt-BR': `Congele sua sequência por ${FREEZE_COST_SHARDS} 💎`,
-                                vi: `Đóng băng chuỗi với ${FREEZE_COST_SHARDS} 💎`,
-                                id: `Bekukan rangkaianmu seharga ${FREEZE_COST_SHARDS} 💎`,
-                                tr: `Serini ${FREEZE_COST_SHARDS} 💎 karşılığında dondur`,
-                                pl: `Zamroź serię za ${FREEZE_COST_SHARDS} 💎`,
-                            })}
-                </Text>
-              </View>
-              <View style={{ alignItems: 'flex-end', gap: 2 }}>
-                {!hasPremiumAccess
-                        ? <PlusBadge themeMode={themeMode} size="xs" />
-                        : hasPremiumAccess && !premiumFreezeUsed
-                            ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 12, fontWeight: '700' }}>
-                        {triLang(lang, {
-                                    ru: 'Бесплатно',
-                                    uk: 'Безкоштовно',
-                                    es: 'Gratis',
-                                    'pt-BR': "Grátis",
-                                    vi: "Miễn phí",
-                                    id: "Gratis",
-                                    tr: "Ücretsiz",
-                                    pl: "Gratis",
-                                })}
-                      </Text>
-                            : <Text style={{ color: shardsBalance >= FREEZE_COST_SHARDS ? (isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent) : t.textGhost, fontSize: 12, fontWeight: '700' }}>
-                        {FREEZE_COST_SHARDS} 💎
-                      </Text>}
-                <Ionicons name="chevron-forward" size={16} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent}/>
-              </View>
-            </TouchableOpacity>)}
 
-          {personalPlanSnapshot ? (
-            <PersonalPlanHomeRouteCard
-              snapshot={personalPlanSnapshot}
-              compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT}
-              onPress={openPersonalPlan}
-            />
-          ) : hasActivePersonalPlanState ? (
-            <TouchableOpacity
-              testID="home-personal-plan-card"
-              activeOpacity={0.88}
-              onPress={openPersonalPlan}
-              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Личный план</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>Открыть задания на сегодня</Text>
-            </TouchableOpacity>
-          ) : hasPremiumAccess || lastLesson == null ? (
-            <TouchableOpacity
-              testID="home-choose-personal-plan"
-              activeOpacity={0.88}
-              onPress={() => { hapticTap(); router.push('/personal_plan_setup' as any); }}
-              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Выбрать свой план обучения</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>3 вопроса — и план готов</Text>
-            </TouchableOpacity>
-          ) : (
+          {/* зачем: владелец (2026-08-02) — плашка плана заменена плашкой последнего
+              открытого урока: один тап продолжает учёбу ровно там, где остановился.
+              Форма — как у рядов «Сегодня» (вызовы дня): иконка 64, название,
+              тонкий прогресс, счётчик справа. Вход в план остался: «Уроки» → «Маршрут». */}
+          {lastLesson == null ? null : (
             <TouchableOpacity
               testID="home-continue-lesson"
-              activeOpacity={0.88}
-              onPress={() => { hapticTap(); router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any); }}
-              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
+              activeOpacity={0.82}
+              onPress={() => {
+                hapticTap();
+                logFeatureOpened('lesson_menu');
+                trackFeatureOpened('lesson_menu').catch(() => { });
+                perfNavStart('lesson_menu');
+                router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
+              }}
+              style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>{s.home.continueBtn}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{lastLesson.name}</Text>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+                {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
+                  <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <LightSketchMenuImage source={lastLessonImage} width={64} height={64} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
+                  </View>
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
+                      {lastLessonName}
+                    </FlowText>
+                  </View>
+                  <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
+                    <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса, тот же паттерн что «0/4» у «Вызовов дня» */ }}>
+                      {Math.max(0, Math.min(50, lastLesson.progress))}/50
+                    </Text>
+                  </View>
+                </View>
+              </LinearGradient>
             </TouchableOpacity>
           )}
 
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
           {showHomeFeatureTipCard && currentHomeFeatureTip ? (
+            <View style={{ marginHorizontal: 8, marginBottom: 18 }}>
+              {/* стопка как у Bevel: под текущей подсказкой виден край следующей */}
+              {clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length) < homeFeatureTips.length - 1 && (
+                <Animated.View pointerEvents="none" style={{ position: 'absolute', left: 14, right: 14, top: 12, bottom: -8, borderRadius: isGoldTheme ? 18 : 24, overflow: 'hidden', opacity: homeFeatureTipStackOpacity, transform: [{ translateY: homeFeatureTipStackTranslate }] }}>
+                  <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}/>
+                </Animated.View>
+              )}
+            <Animated.View style={{ transform: [{ scale: homeFeatureTipCardScale }] }}>
             <TouchableOpacity
               testID="home-feature-tip-card"
               accessible={true}
@@ -2984,21 +3092,19 @@ export default function HomeScreen() {
               onTouchEnd={handleHomeFeatureTipTouchEnd}
               onTouchCancel={handleHomeFeatureTipTouchCancel}
               style={{
-                marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
-                marginBottom: 12,
-                borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                borderRadius: isGoldTheme ? 18 : 24,
                 overflow: 'hidden',
-                ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
+                ...(isGoldTheme ? goldShadow(1) : {}),
               }}
             >
               <LinearGradient
                 colors={homeThemePanelGradient}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
                   minHeight: 124,
-                  borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                  borderRadius: isGoldTheme ? 18 : 24,
                   borderWidth: 0,
                   borderColor: 'transparent',
                   paddingHorizontal: 18,
@@ -3007,35 +3113,36 @@ export default function HomeScreen() {
                 }}
               >
                 {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
                 <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.11 : 0.08, backgroundColor: homeFeatureTipAccent }]} pointerEvents="none"/>
+                <TapScale onPress={() => { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel="qa-home-tips-close" style={{ position: 'absolute', top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)', zIndex: 5 }}>
+                  <Ionicons name="close" size={16} color={homeThemePanelMuted}/>
+                </TapScale>
                 <Animated.View style={{
                   gap: 9,
                   justifyContent: 'center',
                   minHeight: 92,
-                  opacity: homeFeatureTipContentAnim,
-                  transform: [{ translateY: homeFeatureTipContentAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+                  opacity: homeFeatureTipContentOpacity,
+                  transform: [{ translateX: homeFeatureTipContentTranslate }],
                 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }} numberOfLines={2}>
+                  <FlowText testID="home-feature-tip-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }}>
                     {currentHomeFeatureTip.title}
-                  </Text>
-                  <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(14, f.body), fontWeight: '800', lineHeight: Math.max(20, f.body + 6) }} numberOfLines={5}>
+                  </FlowText>
+                  <FlowText testID="home-feature-tip-body" provenance="authored" style={{ color: homeThemePanelMuted, fontSize: Math.max(14, f.body), fontWeight: '800', lineHeight: Math.max(20, f.body + 6) }}>
                     {currentHomeFeatureTip.body}
-                  </Text>
+                  </FlowText>
                   {(showHomeFeatureTipTapHint || currentHomeFeatureTip.icon) ? (
                     <View style={{ minHeight: 18, justifyContent: 'center' }}>
                       {showHomeFeatureTipTapHint ? (
                         <Animated.Text
                           style={{
                             color: homeThemePanelMuted,
-                            fontSize: 10,
+                            fontSize: 10, // guard-ok: подсказка-хинт «тапни», не подпись-расшифровка под заголовком
                             fontWeight: '800',
                             lineHeight: 12,
                             opacity: homeFeatureTipHintOpacity,
                             textAlign: 'center',
                             transform: [{ scale: homeFeatureTipHintScale }],
                           }}
-                          numberOfLines={1}
                         >
                           тапни по подсказке
                         </Animated.Text>
@@ -3053,94 +3160,24 @@ export default function HomeScreen() {
                 </Animated.View>
               </LinearGradient>
             </TouchableOpacity>
+            </Animated.View>
+            </View>
           ) : null}
           </Animated.View>)}
 
           {/* Persistent баннер "Сохрани прогресс" — для незалогиненных юзеров с XP ≥ 1000.
                 Сам решает показываться или нет (см. SaveProgressBanner.tsx). */}
           <View style={{ paddingHorizontal: 16, marginBottom: 10 }}>
-            <SaveProgressBanner />
+            <SaveProgressBanner ownerActive={homeRuntimeActive} />
           </View>
 
           {/* D4: секции ниже первого экрана (быстрый доступ, SRS-ряд, тренер, фраза дня,
               подвал) монтируются вторым проходом — belowFoldReady/InteractionManager. */}
           {belowFoldReady && (<>
-          {/* БЫСТРЫЙ ДОСТУП: уроки + квизы + карточки */}
-          <Animated.View style={sectionStyle(3)}>
-          <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
-          {USE_ELITE_HOME_STATUS && (<View style={{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 10 }}>
-              <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
-                {triLang(lang, {
-                    ru: 'Быстрый старт',
-                    uk: 'Швидкий старт',
-                    es: 'Inicio rapido',
-                    'pt-BR': "Inicio rapido",
-                    vi: "Bat dau nhanh",
-                    id: "Mulai cepat",
-                    tr: "Hizli baslangic",
-                    pl: "Szybki start",
-                })}
-              </Text>
-            </View>)}
-          <View style={{ marginBottom: 12, paddingHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, gap: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10, flexDirection: 'row' }}>
-              {visibleQuickItems.map((item, index) => {
-                const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
-                const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isPaperHomeTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
-                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
-                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
-                return (<Animated.View key={item.label} style={{
-                        flex: 1,
-                        opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
-                        transform: USE_ELITE_HOME_STATUS ? [{ translateY: tileY }] : [],
-                    }}>
-                <TouchableOpacity testID={item.testID} accessibilityLabel={`qa-${item.testID}`} accessible={true} activeOpacity={0.78} onPress={() => {
-                        go(item.path);
-                    }} style={{
-                        flex: 1,
-                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
-                        borderWidth: 0,
-                        borderColor: 'transparent',
-                        overflow: 'hidden',
-                        backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
-                        ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
-                        ...({}),
-                    }}>
-              {USE_ELITE_HOME_STATUS ? (<View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
-                      {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
-                      {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
-                      <View style={{
-                            width: homeQuickIconPlateSize,
-                            height: homeQuickIconPlateSize,
-                            borderRadius: homeQuickIconRadius,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: tileIconBg,
-                        }}>
-                        {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
-                            : <View style={{ width: homeQuickIconImageSize, height: homeQuickIconImageSize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>...</Text></View>}
-                      </View>
-                      <Text style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>{item.label}</Text>
-                    </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
-                  {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
-                  <View style={{ position: 'relative' }}>
-                    {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
-                            : <View style={{ width: homeQuickIconLegacySize, height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>}
-                  </View>
-                  <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>{item.label}</Text>
-                  </LinearGradient>)}
-                </TouchableOpacity>
-                </Animated.View>);
-            })}
-          </View>
-          </View>
-          </Animated.View>
 
-          {/* SRS ПОВТОРЕНИЕ + ряд «Задания дня / Лига / Аттестация» */}
+          {/* СЕГОДНЯ: вызовы дня + лига одним полотном */}
           <Animated.View style={sectionStyle(4)}>
-          {HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (<>
+          <>
           <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
             <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
               {triLang(lang, {
@@ -3155,497 +3192,97 @@ export default function HomeScreen() {
                 })}
             </Text>
           </View>
-          <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 8 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
-                {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
-                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
-                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.practice} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
+          {/* зачем: владелец попросил низ «не плашками» — одно полотно тоном,
+              строки внутри разделены hairline (не рамка контейнера). Практика
+              отсюда ушла: её вход — кольцо и Компас. Уроки ушли следом
+              (2026-07-26): их вход — таббар и плитки быстрого доступа. */}
+          <View style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+              {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
+              {/* зачем: владелец (2026-07-26) — строка «Уроки» убрана из полотна
+                  «Сегодня»: вход в уроки уже есть в таббаре и в плитках быстрого
+                  доступа, третья копия только удлиняла блок. «Сегодня» теперь про
+                  дневную активность (вызовы дня + цель лиги), а не про навигацию. */}
+              <TouchableOpacity activeOpacity={0.82} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
+                <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <LightSketchMenuImage source={menuImages.dayTasks} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={2}>
-                    {triLang(lang, {
-                    ru: 'Моя практика',
-                    uk: 'Моя практика',
-                    es: 'Mi práctica',
-                    'pt-BR': "Minha prática",
-                    vi: "Luyện tập của tôi",
-                    id: "Latihan saya",
-                    tr: "Pratiğim",
-                    pl: "Moje ćwiczenie",
-                })}
-                  </Text>
-                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={2}>
-                    {dueCount > 0
-                        ? triLang(lang, {
-                            ru: `${dueCount} ждут сегодня`,
-                            uk: `${dueCount} чекають сьогодні`,
-                            es: `${dueCount} esperan hoy`,
-                            'pt-BR': `${dueCount} esperam hoje`,
-                            vi: `${dueCount} đang chờ hôm nay`,
-                            id: `${dueCount} menunggu hari ini`,
-                            tr: `${dueCount} bugün bekliyor`,
-                            pl: `${dueCount} czeka dziś`,
-                        })
-                        : triLang(lang, {
-                            ru: 'Ошибки под контролем',
-                            uk: 'Помилки під контролем',
-                            es: 'Errores bajo control',
-                            'pt-BR': "Erros sob controle",
-                            vi: "Lỗi trong tầm kiểm soát",
-                            id: "Kesalahan terkendali",
-                            tr: "Hatalar kontrol altında",
-                            pl: "Błędy pod kontrolą",
-                        })}
-                  </Text>
-                </View>
-                {dueCount > 0 ? (<View style={{ minWidth: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : '#E05050', marginRight: 2 }}>
-                    <Text style={{ color: isGoldTheme ? t.textOnGold : '#fff', fontSize: 13, fontWeight: '900' }}>{dueCount}</Text>
-                  </View>) : null}
-              </LinearGradient>
-            </TouchableOpacity>
-
-            <TouchableOpacity activeOpacity={0.85} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
-                {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
-                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
-                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={2}>
-                    {triLang(lang, {
+                <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
+                  {triLang(lang, {
                     ru: 'Вызовы дня',
                     uk: 'Виклики дня',
                     es: 'Tareas del día',
-                    'pt-BR': "Tarefas do dia",
-                    vi: "Nhiệm vụ hôm nay",
-                    id: "Tugas harian",
-                    tr: "Günün görevleri",
-                    pl: "Zadania dnia",
-                })}
-                  </Text>
-                  <View style={{ marginTop: 12, flexDirection: 'row', gap: 7, width: 138 }}>
-                    {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
-                        const done = ti < tasksCompleted;
-                        const fillStart = isGoldTheme
-                            ? GOLD_RICH.agedGold
-                            : themeMode === 'coral'
-                                ? '#FF5C6C'
-                                : false
-                                    ? '#7CFF00'
-                                    : '#438CFF';
-                        const fillMid = isGoldTheme
-                            ? GOLD_RICH.champagne
-                            : themeMode === 'coral'
-                                ? '#FF9270'
-                                : false
-                                    ? '#B7FF00'
-                                    : '#76B5FF';
-                        const fillEnd = isGoldTheme
-                            ? GOLD_RICH.paleGold
-                            : themeMode === 'coral'
-                                ? '#FFD06A'
-                                : false
-                                    ? '#E5FF67'
-                                    : '#62F2B0';
-                        return (<View key={ti} style={{
-                            flex: 1,
-                            height: 11,
-                            borderRadius: 999,
-                            padding: 1,
-                            overflow: 'hidden',
-                            backgroundColor: done
-                                ? (isGoldTheme ? 'rgba(255,232,168,0.24)' : 'rgba(122,181,255,0.24)')
-                                : (isLightTheme ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.10)'),
-                            borderWidth: 1,
-                            borderColor: done
-                                ? (isGoldTheme ? 'rgba(255,232,168,0.60)' : themeMode === 'coral' ? 'rgba(255,146,112,0.62)' : false ? 'rgba(183,255,0,0.58)' : 'rgba(118,181,255,0.58)')
-                                : (isLightTheme ? 'rgba(0,0,0,0.13)' : 'rgba(255,255,255,0.13)'),
-                            shadowColor: done ? fillMid : '#000',
-                            shadowOpacity: done ? 0.35 : 0.16,
-                            shadowRadius: done ? 6 : 3,
-                            shadowOffset: { width: 0, height: 2 },
-                            elevation: done ? 3 : 1,
-                        }}>
-                          <LinearGradient
-                            colors={done
-                                ? [fillStart, fillMid, fillEnd]
-                                : (isLightTheme ? ['rgba(255,255,255,0.22)', 'rgba(0,0,0,0.07)', 'rgba(0,0,0,0.12)'] : ['rgba(255,255,255,0.13)', 'rgba(255,255,255,0.055)', 'rgba(0,0,0,0.18)'])}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 1 }}
-                            style={{ flex: 1, borderRadius: 999, overflow: 'hidden' }}
-                          >
-                            <View pointerEvents="none" style={{ position: 'absolute', left: 3, right: 3, top: 1, height: 3, borderRadius: 999, backgroundColor: done ? 'rgba(255,255,255,0.46)' : 'rgba(255,255,255,0.10)', opacity: done ? 0.9 : 0.55 }}/>
-                            <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, borderRadius: 999, backgroundColor: 'rgba(0,0,0,0.16)', opacity: done ? 0.28 : 0.38 }}/>
-                          </LinearGradient>
-                        </View>);
-                    })}
-                  </View>
+                    'pt-BR': 'Tarefas do dia',
+                    vi: 'Nhiệm vụ hôm nay',
+                    id: 'Tugas harian',
+                    tr: 'Günün görevleri',
+                    pl: 'Zadania dnia',
+                  })}
+                </FlowText>
+                <View style={{ flexDirection: 'row', gap: 4, marginRight: 6 }}>
+                  {Array.from({ length: dailyTaskBarCount }, (_, ti) => (
+                    <View key={ti} style={{ width: 15, height: 5, borderRadius: 3, overflow: 'hidden', backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)' }}>
+                      {ti < tasksCompleted ? <View style={{ flex: 1, backgroundColor: t.correct }}/> : null}
+                    </View>
+                  ))}
                 </View>
-              </LinearGradient>
-            </TouchableOpacity>
-
-            {homeLeagueChest && (<TouchableOpacity testID="home-league-open" activeOpacity={0.88} onPress={() => {
-                    hapticTap();
-                    nav.push('/league_screen');
-                }} style={{ borderRadius: 24, overflow: 'hidden' }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                    ru: 'Цель лиги',
-                    uk: 'Ціль ліги',
-                    es: 'Meta de liga',
-                    'pt-BR': "Meta da liga",
-                    vi: "Mục tiêu giải đấu",
-                    id: "Target liga",
-                    tr: "Lig hedefi",
-                    pl: "Cel ligi",
-                })}>
-              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayLeagueCardMinHeight, borderRadius: 24, borderWidth: 1, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, overflow: 'hidden' }}>
-                <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -16, width: 126, height: 126, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false} />
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 }}>
-                  <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
+                <View testID="home-daily-task-progress" style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
+                  <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
+                    {tasksCompleted}/{dailyTaskBarCount}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <>
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)' }}/>
+                <TouchableOpacity testID="home-league-open" activeOpacity={0.82} onPress={() => { hapticTap(); nav.push('/league_screen'); }} accessibilityRole="button" style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
+                  <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Image source={leagueBonusGiftImage} style={{ width: 64, height: 64 }} contentFit="contain" accessible={false}/>
                   </View>
+                  {/* зачем: владелец (2026-08-03) — строка на главной про саму лигу,
+                      а не про цель: заголовок «Лига · <название>», полоса прогресса
+                      убрана (прогресс живёт на экране лиги). Процент справа оставлен —
+                      это единственный оставшийся индикатор. */}
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={2}>
-                      {triLang(lang, {
-                    ru: 'Цель лиги',
-                    uk: 'Ціль ліги',
-                    es: 'Meta de liga',
-                    'pt-BR': "Meta da liga",
-                    vi: "Mục tiêu giải đấu",
-                    id: "Target liga",
-                    tr: "Lig hedefi",
-                    pl: "Cel ligi",
-                })}
-                    </Text>
-                    <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={2}>
-                      {homeLeagueChest.leagueName}
-                    </Text>
-                  </View>
-                  <Text style={{ color: homeLeagueChestAccent, fontSize: Math.max(27, f.h2 + 2), fontWeight: '900' }}>
-                    {homeLeagueChestPct}%
-                  </Text>
-                </View>
-                <View style={{ height: 9, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0.5, borderColor: leagueBonusPalette.trackBorder }}>
-                  <LinearGradient colors={homeLeagueChestFill} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ height: '100%', width: `${homeLeagueChestPct}%` as any, borderRadius: 6 }}/>
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>)}
-          </View>
-          </>) : (<>
-
-          {/* ТРЕНЕР — стационарная кнопка, всегда видна */}
-          <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); }} style={{
-                borderRadius: isGoldTheme ? 14 : 16,
-                borderWidth: 0,
-                borderColor: 'transparent',
-                overflow: 'hidden',
-                backgroundColor: USE_ELITE_HOME_STATUS
-                    ? (isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
-                    : 'transparent',
-                ...(isGoldTheme ? goldShadow(1) : {}),
-                ...({}),
-            }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: isGoldTheme ? 14 : 16, padding: 14 }}>
-              {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
-              <View style={{ width: homePracticeIconSize, height: homePracticeIconSize, borderRadius: 12, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}>
-                <LightSketchMenuImage source={menuImages.practice} width={homePracticeIconImageSize} height={homePracticeIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, {
-                ru: 'Моя практика',
-                uk: 'Моя практика',
-                es: 'Mi práctica',
-                'pt-BR': "Minha prática",
-                vi: "Luyện tập của tôi",
-                id: "Latihan saya",
-                tr: "Pratiğim",
-                pl: "Moje ćwiczenie",
-            })}
-                </Text>
-                <Text style={{ display: 'none', color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, {
-                ru: '🧠 Моя практика',
-                uk: '🧠 Моя практика',
-                es: '🧠 Mi práctica',
-                'pt-BR': "🧠 Minha prática",
-                vi: "🧠 Luyện tập của tôi",
-                id: "🧠 Latihan saya",
-                tr: "🧠 Pratiğim",
-                pl: "🧠 Moje ćwiczenie",
-            })}
-                </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
-                  {dueCount > 0
-                ? triLang(lang, {
-                    ru: `${dueCount} ждут сегодня`,
-                    uk: `${dueCount} чекають сьогодні`,
-                    es: `${dueCount} esperan hoy`,
-                    'pt-BR': `${dueCount} esperam hoje`,
-                    vi: `${dueCount} đang chờ hôm nay`,
-                    id: `${dueCount} menunggu hari ini`,
-                    tr: `${dueCount} bugün bekliyor`,
-                    pl: `${dueCount} czeka dziś`,
-                })
-                : triLang(lang, {
-                    ru: 'Ошибки под контролем',
-                    uk: 'Помилки під контролем',
-                    es: 'Errores bajo control',
-                    'pt-BR': "Erros sob controle",
-                    vi: "Lỗi trong tầm kiểm soát",
-                    id: "Kesalahan terkendali",
-                    tr: "Hatalar kontrol altında",
-                    pl: "Błędy pod kontrolą",
-                })}
-                </Text>
-                <Text style={{ display: 'none', color: t.textSecond, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
-                  {dueCount > 0
-                ? triLang(lang, {
-                    ru: `${dueCount} ждут сегодня`,
-                    uk: `${dueCount} чекають сьогодні`,
-                    es: `${dueCount} esperan hoy`,
-                    'pt-BR': `${dueCount} esperam hoje`,
-                    vi: `${dueCount} đang chờ hôm nay`,
-                    id: `${dueCount} menunggu hari ini`,
-                    tr: `${dueCount} bugün bekliyor`,
-                    pl: `${dueCount} czeka dziś`,
-                })
-                : triLang(lang, {
-                    ru: 'Закрепи сложное',
-                    uk: 'Повторення помилок',
-                    es: 'Repaso de errores',
-                    'pt-BR': "Revisão de erros",
-                    vi: "Ôn lỗi sai",
-                    id: "Tinjauan kesalahan",
-                    tr: "Hata tekrarı",
-                    pl: "Powtórka błędów",
-                })}
-                </Text>
-              </View>
-              {dueCount > 0 && (<View style={{ backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : '#E05050', borderRadius: 11, minWidth: 22, height: 22, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 }}>
-                  <Text style={{ color: isGoldTheme ? t.textOnGold : '#fff', fontSize: 11, fontWeight: '900' }}>{dueCount}</Text>
-                </View>)}
-              <Ionicons name="chevron-forward" size={18} color={t.textGhost}/>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
-            <View style={{ marginBottom: 12, paddingHorizontal: 16, gap: 10, flexDirection: 'row' }}>
-              {visibleActivityQuickItems.map((item, index) => {
-                const tileOpacity = eliteActivityTileEntrance[index] ?? eliteStatusEntrance;
-                const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isPaperHomeTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
-                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
-                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
-                return (<Animated.View key={item.key} style={{
-                        flex: 1,
-                        opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
-                        transform: USE_ELITE_HOME_STATUS ? [{ translateY: tileY }] : [],
-                    }}>
-                  <TouchableOpacity testID={`home-activity-${item.key}`} activeOpacity={0.78} onPress={() => { go(item.path); }} style={{
-                        flex: 1,
-                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
-                        borderWidth: 0,
-                        borderColor: 'transparent',
-                        overflow: 'hidden',
-                        backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
-                        ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
-                        ...({}),
-                    }}>
-                    {USE_ELITE_HOME_STATUS ? (<View style={{ flex: 1, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
-                    {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
-                    {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
-                    <View style={{
-                            position: 'relative',
-                            width: homeQuickIconPlateSize,
-                            height: homeQuickIconPlateSize,
-                            borderRadius: homeQuickIconRadius,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: tileIconBg,
-                        }}>
-                      {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
-                      {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
-                        testID="home-league-chat-unread-badge"
-                        style={{
-                            position: 'absolute',
-                            top: -7,
-                            right: -7,
-                            minWidth: 21,
-                            height: 21,
-                            paddingHorizontal: 6,
-                            borderRadius: 11,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#E9505F',
-                            borderWidth: 1.5,
-                            borderColor: tileIconBg,
-                        }}>
-                        <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>
-                          {formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}
-                        </Text>
-                      </View>) : null}
-                    </View>
-                    <Text style={{ color: t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
-                      {item.label}
-                    </Text>
-                    {item.kind === 'tasks' ? (<View style={{ width: '100%', marginTop: 1 }}>
-                        <View style={{ flexDirection: 'row', gap: 4 }}>
-                          {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
-                                const done = ti < tasksCompleted;
-                                return (<View key={ti} style={{ flex: 1, height: 3, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)', borderRadius: 2, overflow: 'hidden' }}>
-                                {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }}/> : null}
-                              </View>);
-                            })}
-                        </View>
-                      </View>) : null}
-                  </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
-                      {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
-                      <View style={{ position: 'relative', height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}>
-                        {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
-                        {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
-                          testID="home-league-chat-unread-badge"
-                          style={{
-                              position: 'absolute',
-                              top: -7,
-                              right: -7,
-                              minWidth: 21,
-                              height: 21,
-                              paddingHorizontal: 6,
-                              borderRadius: 11,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              backgroundColor: '#E9505F',
-                              borderWidth: 1.5,
-                              borderColor: t.bgCard,
-                          }}>
-                          <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>
-                            {formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}
-                          </Text>
-                        </View>) : null}
-                      </View>
-                      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
-                        {item.label}
-                      </Text>
-                      {item.kind === 'tasks' ? (<View style={{ width: '100%', marginTop: 2 }}>
-                          <View style={{ flexDirection: 'row', gap: 4 }}>
-                            {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
-                                const done = ti < tasksCompleted;
-                                return (<View key={ti} style={{ flex: 1, height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
-                                  {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }}/> : null}
-                                </View>);
-                            })}
-                          </View>
-                        </View>) : null}
-                  </LinearGradient>)}
-                </TouchableOpacity>
-                </Animated.View>);
-            })}
-            </View>
-          </View>
-
-          {homeLeagueChest && (<TouchableOpacity testID="home-league-open" activeOpacity={0.88} onPress={() => {
-                    hapticTap();
-                    nav.push('/league_screen');
-                }} style={{ marginHorizontal: 16, marginBottom: 12 }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                    ru: 'Цель лиги',
-                    uk: 'Ціль ліги',
-                    es: 'Meta de liga',
-                    'pt-BR': "Meta da liga",
-                    vi: "Mục tiêu giải đấu",
-                    id: "Target liga",
-                    tr: "Lig hedefi",
-                    pl: "Cel ligi",
-                })}>
-              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, padding: 14, overflow: 'hidden', ...({}) }}>
-                <Image
-                  pointerEvents="none"
-                  source={leagueBonusGiftImage}
-                  style={{
-                    position: 'absolute',
-                    right: -8,
-                    top: -16,
-                    width: 120,
-                    height: 120,
-                    opacity: homeLeagueChestReady ? 0.22 : 0.14,
-                    transform: [{ rotate: '-8deg' }],
-                  }}
-                  contentFit="contain"
-                  accessible={false}
-                />
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
-                    <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, borderRadius: isCompassTheme ? compassHomeRadius : Math.round(homeTodayIconSize / 2), backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
-                    </View>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                      <FlowText testID="home-league-goal-title" provenance="authored" style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                         {triLang(lang, {
-                    ru: 'Цель лиги',
-                    uk: 'Ціль ліги',
-                    es: 'Meta de liga',
-                    'pt-BR': "Meta da liga",
-                    vi: "Mục tiêu giải đấu",
-                    id: "Target liga",
-                    tr: "Lig hedefi",
-                    pl: "Cel ligi",
-                })}
-                      </Text>
-                      <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '800' }} numberOfLines={1}>
-                        {homeLeagueChest.leagueName}
+                          ru: 'Лига',
+                          uk: 'Ліга',
+                          es: 'Liga',
+                          'pt-BR': 'Liga',
+                          vi: 'Giải đấu',
+                          id: 'Liga',
+                          tr: 'Lig',
+                          pl: 'Liga',
+                        })} · {homeLeagueChest.leagueName}
+                      </FlowText>
+                      <Text style={{ color: homeLeagueChestAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                        {homeLeagueChestPct}%
                       </Text>
                     </View>
                   </View>
-                  <Text style={{ color: homeLeagueChestAccent, fontSize: f.h2, fontWeight: '900' }}>
-                    {homeLeagueChestPct}%
-                  </Text>
-                </View>
-                <View style={{ height: 10, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0.5, borderColor: leagueBonusPalette.trackBorder }}>
-                  <LinearGradient colors={homeLeagueChestFill} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ height: '100%', width: `${homeLeagueChestPct}%` as any, borderRadius: 6 }}/>
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>)}
-          </>)}
+                </TouchableOpacity>
+              </>
+              {/* зачем 2026-08-03 (владелец: «сезон с главной надо перенести в
+                  турнир»): здесь стояла плашка «Сезон» (SeasonPassTodayCard),
+                  открывавшая /season_pass. Сезон переехал в хаб турниров, потому
+                  что дорожка теперь качается ТОЛЬКО турнирными звёздами — вход с
+                  главной обещал бы прогресс за обычную учёбу, которого больше
+                  нет. Точка входа одна: вкладка «Турниры». */}
+            </LinearGradient>
+          </View>
+
+          </>
 
           </Animated.View>
 
-          {/* ── ФРАЗА ДНЯ + ПОДВАЛ ── */}
+          {/* ── ФРАЗА ДНЯ ── */}
+          {/* зачем: владелец (2026-08-03) — убрана кнопка «Нашёл ошибку?» с
+              главного экрана; репорт с этого экрана был низкой ценности, а
+              визуально это лишний пункт в подвале. Другие экраны кнопку не
+              теряют — правка точечная, только home. */}
           <Animated.View style={sectionStyle(5)}>
-          {HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (<>
-          <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
-            <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
-              {triLang(lang, {
-                    ru: 'Дополнительно',
-                    uk: 'Додатково',
-                    es: 'Adicional',
-                    'pt-BR': "Adicional",
-                    vi: "Thêm nữa",
-                    id: "Tambahan",
-                    tr: "Ekstra",
-                    pl: "Dodatkowo",
-                })}
-            </Text>
-          </View>
           <DailyPhraseCard variant="homeAdditional" />
-          </>) : <DailyPhraseCard />}
-
-          {/* Подвал */}
-          <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>
-            <ReportErrorButton screen="home" dataId="home_main" dataText={triLang(lang, {
-                ru: 'Главный экран',
-                uk: 'Головний екран',
-                es: 'Pantalla de inicio',
-                'pt-BR': "Tela inicial",
-                vi: "Màn hình chính",
-                id: "Layar beranda",
-                tr: "Ana ekran",
-                pl: "Ekran główny",
-            })}/>
-          </View>
           </Animated.View>
           </>)}
 
@@ -3668,8 +3305,8 @@ export default function HomeScreen() {
         ? energyTTAnchor.x + energyTTAnchor.w / 2
         : energyTooltipLeftClamped + 28;
     const energyArrowLeft = Math.min(ENERGY_TOOLTIP_W - 26, Math.max(12, Math.round(energyIconCenterX - energyTooltipLeftClamped - 7)));
-    const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
-    const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : isCompassTheme ? 'rgba(242,196,141,0.12)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
+    const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
+    const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
     // Кэш вне рендера (см. computeHomeTitles): при неизменных входах — ноль работы.
     const { allTitles, earnedTitles, currentTitleKey } = computeHomeTitles({
         level,
@@ -3873,7 +3510,7 @@ export default function HomeScreen() {
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
           <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setTitleModalVisible(false)} />
           <View style={{ maxHeight: Math.min(SCREEN_H * 0.74, 620), width: '100%', maxWidth: 560, alignSelf: 'center' }}>
-            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, elevation: 24 }}>
+            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: f.h2 + 5 }} numberOfLines={1}>
@@ -3883,18 +3520,18 @@ export default function HomeScreen() {
                     {titleModalSubtitle}
                   </Text>
                 </View>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: isCompassTheme ? compassHomeRadius : 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : isCompassTheme ? COMPASS_RICH.wash : t.bgSurface2, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? compassHairline : t.border }}>
+                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
                   <Ionicons name="close" size={22} color={t.textPrimary}/>
                 </TouchableOpacity>
               </View>
 
-              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
+              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} numberOfLines={2}>
                   {titleModalEarnedLabel}
                 </Text>
               </View>
 
-              <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
+              <ScrollView decelerationRate="fast" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
                     return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
@@ -3984,7 +3621,6 @@ export default function HomeScreen() {
                 // Очистку AsyncStorage делаем фоном — её результат на UI не влияет.
                 void clearPendingResult();
             }}/>)}
-      <CompassBriefingHost onStartDay={openPersonalPlan} />
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
     </View>);
 }

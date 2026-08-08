@@ -13,6 +13,10 @@ const hostSrc = readFileSync(
   join(__dirname, '..', 'components', 'EntitlementExpiredHost.tsx'),
   'utf8',
 );
+const rewardCardSrc = readFileSync(
+  join(__dirname, '..', 'components', 'reward_v2', 'RewardCardV2.tsx'),
+  'utf8',
+);
 const layoutSrc = readFileSync(join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
 const arbiterSrc = readFileSync(
   join(__dirname, '..', 'components', 'overlay_arbiter_core.ts'),
@@ -50,20 +54,27 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).toContain('WAS_ACTIVE_KEY');
     expect(hostSrc).toContain('SHOW_COOLDOWN_MS');
     expect(hostSrc).toContain('hasAnyPlusAccess');
-    expect(hostSrc).toContain('await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]).catch(() => {})');
+    expect(hostSrc).toContain('accountEntitlementStorageKey');
+    expect(hostSrc).toContain('await AsyncStorage.removeItem(wasActiveKey).catch(() => {})');
     // Второй кандидат не перетирает первого в одной сессии.
     expect(hostSrc).toContain('prev ?? k');
   });
 
-  it('keeps full locale coverage for both kinds', () => {
+  it('waits for an active account generation and rejects stale entitlement checks', () => {
+    // Early boot returns false from premium_guard while stable identity is still
+    // uninitialized. That is "not ready", not a verified Plus expiration.
+    expect(hostSrc).toContain('captureAccountGeneration');
+    expect(hostSrc).toContain('subscribeAccountGeneration');
+    expect(hostSrc).toContain("accountGeneration.phase !== 'active'");
+    expect(hostSrc).toContain('!accountGeneration.stableId');
+    expect(hostSrc).toContain('isCurrentAccountGeneration');
+  });
+
+  it('keeps full locale coverage for renewal copy', () => {
     for (const lang of ['ru', 'uk', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
       expect(hostSrc).toContain(`${lang.replace(/'/g, '')}`);
     }
-    // У каждой локали обе ветки: premium и vip.
-    const premiumCount = (hostSrc.match(/premium: \{/g) ?? []).length;
-    const vipCount = (hostSrc.match(/vip: \{/g) ?? []).length;
-    expect(premiumCount).toBe(8);
-    expect(vipCount).toBe(8);
+    expect(hostSrc).not.toMatch(/value:\s*['`][^'`]*(invite|friend|amigo|amiga|друг|друга|znajomego|teman|arkadaş)/i);
   });
 
   it('routes CTA to paywall with expiry context', () => {
@@ -71,6 +82,23 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).toContain("pathname: '/premium_modal'");
     expect(hostSrc).toContain('premium_expired');
     expect(hostSrc).toContain('vip_expired');
+  });
+
+  it('never replaces expiry renewal content with referral roulette promotion', () => {
+    expect(hostSrc).not.toContain('useReferralRouletteEnabled');
+    expect(hostSrc).toContain('const tx = TEXTS[lang] ?? TEXTS.ru');
+    expect(hostSrc).toContain('semantic="gold"');
+    expect(hostSrc).toContain("icon={'👑'}");
+    expect(hostSrc).not.toContain("semantic={copyKind === 'premium' ? 'gold' : 'social'}");
+    expect(hostSrc).not.toContain("icon={copyKind === 'premium' ? '👑' : '🤝'}");
+    expect(hostSrc).toContain("const context = kind === 'premium' ? 'premium_expired' : 'vip_expired'");
+  });
+
+  it('shows the full expiry heading without one-line truncation', () => {
+    expect(hostSrc).toContain("kicker: 'Plus-доступ завершился'");
+    expect(hostSrc).toContain('allowKickerWrap');
+    expect(rewardCardSrc).toContain('allowKickerWrap?: boolean');
+    expect(rewardCardSrc).toMatch(/allowKickerWrap\s*\?\s*\(\s*<Text[^>]*>\s*\{kicker\.toUpperCase\(\)\}/s);
   });
 
   it('uses Plus wording for the user-facing vip expiry card', () => {

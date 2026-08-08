@@ -1,5 +1,6 @@
 import {
   buildPromoVipPatch,
+  buildPromoCodeDeletePlan,
   decidePromoRedemption,
   normalizePromoCode,
   type PromoCodeDoc,
@@ -111,5 +112,86 @@ describe('buildPromoVipPatch', () => {
     expect(patch.vip_plan).toBe('promo_lifetime');
     expect(patch.vip_until).toBe('0');
     expect(patch.promo_vip_last_code).toBe('FOREVER');
+  });
+});
+
+describe('promo code deletion', () => {
+  const nowMs = Date.UTC(2026, 7, 1, 12, 0, 0);
+
+  it('builds an audit plan for an ordinary promo code', () => {
+    expect(buildPromoCodeDeletePlan({
+      code: 'WELCOME7',
+      expectedUpdatedAtMs: nowMs,
+      promo: { ...code({ rewardDays: 30, maxRedemptions: 1 }), updatedAtMs: nowMs },
+      giftCertificateExists: false,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: 'Campaign retired',
+    })).toEqual({
+      code: 'WELCOME7',
+      auditDoc: {
+        action: 'promo_code_delete',
+        targetUid: 'WELCOME7',
+        reason: 'Campaign retired',
+        details: {
+          enabled: true,
+          maxRedemptions: 1,
+          rewardDays: 30,
+          rewardKind: 'days',
+          usedCount: 0,
+        },
+        adminEmail: 'owner@example.com',
+        adminUid: 'owner-uid',
+        ts: new Date(nowMs).toISOString(),
+      },
+    });
+  });
+
+  it.each([
+    ['linked certificate document', { ...code(), updatedAtMs: nowMs }, true],
+    ['certificate identity marker', { ...code(), updatedAtMs: nowMs, certificateId: 'GIFT-7QW8E9R2TY' }, false],
+    ['certificate batch marker', { ...code(), updatedAtMs: nowMs, certificateBatchId: 'gift-batch-1' }, false],
+    ['certificate product marker', { ...code(), updatedAtMs: nowMs, certificateProduct: 'yearly' }, false],
+  ])('refuses a gift-backed code detected by %s', (_label, promo, giftCertificateExists) => {
+    expect(() => buildPromoCodeDeletePlan({
+      code: 'GIFT-7QW8E9R2TY',
+      expectedUpdatedAtMs: nowMs,
+      promo,
+      giftCertificateExists,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_backed_promo_delete_forbidden');
+  });
+
+  it.each([
+    ['createdBy marker', { ...code(), updatedAtMs: nowMs, createdBy: 'web_checkout' }],
+    ['order note marker', { ...code(), updatedAtMs: nowMs, note: 'web_checkout web_orders/order-123' }],
+  ])('refuses an unredeemed paid checkout code detected by %s', (_label, promo) => {
+    expect(() => buildPromoCodeDeletePlan({
+      code: 'PAID-ORDER',
+      expectedUpdatedAtMs: nowMs,
+      promo,
+      giftCertificateExists: false,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('paid_checkout_promo_delete_forbidden');
+  });
+
+  it('refuses a stale delete request after the promo was edited', () => {
+    expect(() => buildPromoCodeDeletePlan({
+      code: 'WELCOME7',
+      expectedUpdatedAtMs: nowMs - 1,
+      promo: { ...code(), updatedAtMs: nowMs },
+      giftCertificateExists: false,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('promo_code_delete_conflict');
   });
 });

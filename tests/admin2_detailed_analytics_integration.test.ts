@@ -12,17 +12,17 @@ describe('Admin 2 detailed analytics integration', () => {
 
   it('owns every detailed analytics renderer inside Admin 2', () => {
     const shell = read('admin/v2/index.html');
-    expect(shell).toContain('/v2/scripts/components/analytics-language.js');
+    expect(shell).toContain('/scripts/components/analytics-language.js');
     for (const renderer of renderers) {
       const file = `admin/v2/scripts/pages/${renderer}`;
       expect(fs.existsSync(path.join(ROOT, file))).toBe(true);
-      expect(shell).toContain(`/v2/scripts/pages/${renderer}`);
+      expect(shell).toContain(`/scripts/pages/${renderer}`);
     }
   });
 
-  it('mounts the detailed views only on the Admin 2 analytics route', () => {
+  it('keeps the frozen Admin 2 contract mirrored on the single live legacy surface', () => {
     const core = read('admin/v2/scripts/admin-core.js');
-    const legacy = read('admin/legacy.html');
+    const legacy = read('admin/v2/legacy.html');
     for (const id of [
       'product-analytics-panel', 'product-analytics-sessions', 'product-analytics-screens',
       'product-analytics-lessons', 'product-analytics-learning-dropoff',
@@ -30,7 +30,7 @@ describe('Admin 2 detailed analytics integration', () => {
       'product-analytics-quality', 'subscription-analytics-panel', 'subscription-analytics-content',
     ]) {
       expect(core).toContain(`id="${id}"`);
-      expect(legacy).not.toContain(`id="${id}"`);
+      expect(legacy).toContain(`id="${id}"`);
     }
   });
 

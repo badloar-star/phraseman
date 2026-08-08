@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -47,6 +47,7 @@ import {
 import BouncyScrollView from '../components/BouncyScrollView';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -292,20 +293,21 @@ function FlippableCard({
             ]}
           >
             <>
+              {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт
+                  layout stability) — статично уменьшаем кегль (f.body вместо f.h3) с запасом
+                  под длинные фразы, перенос уже даёт numberOfLines=2. guard-ok */}
               <Text
-                style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
+                style={[styles.cardEN, { color: t.textPrimary, fontSize: f.body }]}
                 numberOfLines={2}
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
               >
                 {card.en}
               </Text>
               <View style={[styles.cardSep, { backgroundColor: t.borderLight }]} />
+              {/* зачем: аналогично — статичный кегль поменьше (f.caption вместо f.body),
+                  numberOfLines=3 уже даёт перенос под длинный перевод. guard-ok */}
               <Text
-                style={[styles.cardRU, { color: t.textSecond, fontSize: f.body }]}
+                style={[styles.cardRU, { color: t.textSecond, fontSize: f.caption }]}
                 numberOfLines={3}
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
               >
                 {resolveFlashcardBackText(card, cardLang)}
               </Text>
@@ -472,12 +474,20 @@ export default function PackOpeningScreen() {
     };
   }, [packId, lang, officialPacksEnabled, communityPacksEnabled, studyTarget]);
 
+  // зачем: лёгкое предвкушение на входе в экран, до первого флипа — карточки
+  // уже загружены и видны закрытыми, но ещё ничего не открыто.
+  useEffect(() => {
+    if (cards.length === 0 || flippedSet.size > 0) return;
+    soundDirector.request('pm.reward.pack_reveal_start', { scope: 'pack-opening', dedupeKey: packId });
+  }, [cards.length, flippedSet.size, packId]);
+
   // ── Конфетті + помітка про церемонію коли всі відкриті ─────────────────────
   useEffect(() => {
     if (cards.length === 0) return;
     if (flippedSet.size < cards.length) return;
     setShowConfetti(true);
     void hapticSuccess();
+    soundDirector.request('pm.reward.pack_complete', { scope: 'pack-opening', dedupeKey: packId });
     void markPackCeremoniallyOpened(packId, studyTarget);
     const timer = setTimeout(() => setShowConfetti(false), 3500);
     return () => clearTimeout(timer);
@@ -659,7 +669,7 @@ export default function PackOpeningScreen() {
 
       {/* Сітка карточок */}
       <BouncyScrollView
-        decelerationRate="normal"
+        decelerationRate="fast"
         contentContainerStyle={{
           paddingHorizontal: H_PADDING,
           paddingTop: 12,
@@ -803,7 +813,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     borderRadius: 16,
-    borderWidth: 1.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 12,
@@ -842,6 +852,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1.5,
+    borderWidth: 0,
   },
 });

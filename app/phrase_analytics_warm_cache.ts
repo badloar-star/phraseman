@@ -3,6 +3,14 @@ import { isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import type { PhraseAnalyticsResult } from './phrase_analytics';
 import type { ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
+import {
+  peekScreenSnapshotForToken,
+  rememberScreenSnapshot,
+  screenSnapshotKey,
+} from './screen_snapshot_store';
+
+/** Идентификатор экрана в общем дисковом снапшоте (screen_snapshot_store). */
+const SCREEN_ID = 'phrase-analytics';
 
 export type PhraseAnalyticsWarmValue = {
   data: PhraseAnalyticsResult | null;
@@ -31,8 +39,17 @@ export function readPhraseAnalyticsWarm(
   now = Date.now(),
 ): { value: PhraseAnalyticsWarmValue; isFresh: boolean } | null {
   const key = cacheKey(token, contentKey);
-  if (!key || entry?.key !== key || !isCurrentAccountGeneration(token)) return null;
-  return { value: entry.value, isFresh: now - entry.updatedAt <= TTL_MS };
+  if (!key || !isCurrentAccountGeneration(token)) return null;
+  if (entry?.key === key) return { value: entry.value, isFresh: now - entry.updatedAt <= TTL_MS };
+  // зачем: entry живёт только в памяти процесса — после холодного старта экран
+  // показывал скелетон вместо аналитики. Поднимаем снапшот прошлой сессии (его
+  // положил бутстрап одним общим чтением): цифры видны с первого кадра, а полный
+  // пересчёт идёт фоном и тихо уточняет (isFresh:false).
+  const restored = peekScreenSnapshotForToken<PhraseAnalyticsWarmValue>(
+    SCREEN_ID, token, { variant: contentKey, nowMs: now },
+  );
+  if (!restored) return null;
+  return { value: restored, isFresh: false };
 }
 
 export function beginPhraseAnalyticsRequest(
@@ -50,6 +67,14 @@ export function commitPhraseAnalyticsWarm(
 ): boolean {
   if (!request.key || request.requestId !== latestRequestId || !isCurrentAccountGeneration(request.token)) return false;
   entry = { key: request.key, value, updatedAt: now };
+  // зачем: зеркалим на диск — следующий холодный старт откроет аналитику мгновенно.
+  const marker = ':phrase-analytics:';
+  const at = request.key.indexOf(marker);
+  rememberScreenSnapshot(
+    screenSnapshotKey(SCREEN_ID, request.token, at < 0 ? '' : request.key.slice(at + marker.length)),
+    value,
+    now,
+  );
   return true;
 }
 

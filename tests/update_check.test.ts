@@ -42,6 +42,23 @@ afterEach(() => {
 });
 
 describe('checkForUpdate platform-specific version manifest', () => {
+  it('checks the published version manifest instead of disabling update notices', async () => {
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: async () => ({ versionCode: 76, message: 'Shared release' }),
+    });
+
+    await expect(checkForUpdate()).resolves.toEqual({
+      available: true,
+      storeUrl: IOS_STORE_URL,
+      message: 'Shared release',
+    });
+    expect(global.fetch).toHaveBeenCalledWith(
+      'https://raw.githubusercontent.com/badloar-star/phraseman-version/main/version.json',
+      { cache: 'no-store' },
+    );
+  });
+
   it('shows an update on iOS when only the iOS manifest version is newer', async () => {
     global.fetch.mockResolvedValue({
       ok: true,

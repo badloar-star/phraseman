@@ -87,6 +87,14 @@ export function maskSpokenWordKeepInitial(word: string): string {
     .join('');
 }
 
+/** Маскирует каждое слово фразы, сохраняя пробелы и первую букву каждого слова. */
+export function maskSpokenPhraseKeepInitial(phrase: string): string {
+  return phrase
+    .split(/(\s+)/)
+    .map((part) => (/^\s+$/u.test(part) ? part : maskSpokenWordKeepInitial(part)))
+    .join('');
+}
+
 /** First concrete sound hint in the report, for the "/TH/ instead of /S/" line. */
 export function firstSoundHint(
   report: readonly SpokenWordEntry[],

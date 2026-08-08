@@ -19,14 +19,15 @@ describe('OpenAI runtime cost controls', () => {
     expect(companion).not.toContain('(start the conversation: greet me warmly');
   });
 
-  test('weekly review and stats insights are generated from local templates, not paid callables', () => {
+  test('weekly review callable is Plus-only and stats insights remain local', () => {
     const weekly = read('app/weekly_review_client.ts');
     const stats = read('app/stats_insights_client.ts');
 
-    expect(weekly).toContain('buildLocalWeeklyReview');
+    expect(weekly).toContain("'weeklyReviewGenerate'");
+    expect(weekly).toContain('if (!options.isPremium)');
+    expect(weekly.indexOf('if (!options.isPremium)'))
+      .toBeLessThan(weekly.indexOf("import('@react-native-firebase/functions')"));
     expect(stats).toContain('buildLocalStatsInsights');
-    expect(weekly).not.toContain("weeklyReviewGenerate'");
-    expect(weekly).not.toContain('"weeklyReviewGenerate"');
     expect(stats).not.toContain("statsInsightsGenerate'");
     expect(stats).not.toContain('"statsInsightsGenerate"');
   });
@@ -48,6 +49,19 @@ describe('OpenAI runtime cost controls', () => {
       expect(source).toContain('if (existing) return existing;');
       expect(source).toContain(`${map}.set(key, request);`);
       expect(source).toContain(`${map}.delete(key);`);
+    }
+  });
+
+  test('Explain clients serve completed local answers before reaching a callable', () => {
+    const phrase = read('app/explain_phrase_client.ts');
+    const mistake = read('app/ai_mistake_explain_client.ts');
+
+    for (const source of [phrase, mistake]) {
+      expect(source).toContain("from './explain_local_cache'");
+      expect(source).toContain('readExplainLocalCache');
+      expect(source).toContain('writeExplainLocalCache');
+      expect(source.indexOf('const localCached = await readExplainLocalCache'))
+        .toBeLessThan(source.indexOf('const fn = httpsCallable'));
     }
   });
 
@@ -174,11 +188,9 @@ describe('OpenAI runtime cost controls', () => {
       'stats_insights_billing',
       'compass_billing',
       'league_compass_daily_billing',
-      'help_board_compass_billing',
       'choice_explain_billing',
       'quiz_explain_billing',
       'mistake_explain_billing',
-      'speaking_club_billing',
     ];
     for (const collectionName of REQUIRED_BILLING_COLLECTIONS) {
       expect(budgetFn).toContain(`collection: '${collectionName}'`);

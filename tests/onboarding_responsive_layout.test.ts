@@ -14,9 +14,10 @@ describe('clean onboarding responsive layout contract', () => {
 
   it('keeps long text from clipping on the branded welcome screen', () => {
     expect(source).toContain('numberOfLines={3}');
-    expect(source).toContain('adjustsFontSizeToFit');
-    expect(source).toContain('minimumFontScale={0.78}');
     expect(source).toContain('letterSpacing: 0');
+    // зачем: ужимать шрифт под контейнер запрещено (прыгающая геометрия первого кадра
+    // и нечитаемый текст на длинных локалях) — длинный текст лечится переносом/вёрсткой.
+    expect(source).not.toContain('adjustsFontSizeToFit');
   });
 
   it('keeps the name step usable when the keyboard is open', () => {
@@ -30,10 +31,18 @@ describe('clean onboarding responsive layout contract', () => {
     expect(source).toContain('testID="onboarding-age-no"');
     expect(source).toContain('testID="onboarding-legal-checkbox"');
     expect(source).toContain('testID="onboarding-analytics-checkbox"');
-    expect(source).toContain('setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE)');
-    expect(source).toContain("setAnalyticsConsent(analyticsAllowed ? 'granted' : 'denied')");
+    // Онбординг спрашивает только «есть ли 16» — значит и записывать он должен ровно
+    // этот факт. Синтетический год рождения (текущий − 16) уезжал в Firestore как
+    // персональные данные: у всех одинаковый, бесполезный, лишний по GDPR ст. 5(1)(c).
+    expect(source).toContain('confirmAdultAgeAttestation()');
+    expect(source).not.toContain('setBirthYear');
+    expect(source).not.toContain('getFullYear() - MIN_FULL_ACCESS_AGE');
+    // зачем: согласие пишется в двух ветках (granted/denied) вместе с трекингом события,
+    // а не одним тернарником — проверяем оба исхода, а не конкретную форму записи.
+    expect(source).toContain("setAnalyticsConsent('granted')");
+    expect(source).toContain("setAnalyticsConsent('denied')");
     expect(source).toContain("if (ageAnswer !== 'yes')");
-    expect(source).toContain("setLegalError('Приложение доступно с 16 лет.')");
+    expect(source).toContain('Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.');
     expect(source).not.toContain('BackHandler.exitApp()');
     expect(source).not.toContain("label={ageAnswer === 'no'");
     expect(source).not.toContain("loading={ageAnswer === 'no'");

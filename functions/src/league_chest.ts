@@ -1,18 +1,28 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { isResidentMember } from './league_residents';
 
 const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
 const PACK_TRIAL_MS = 48 * 60 * 60 * 1000;
 const MIN_RACE_PARTICIPANTS = 10;
-const BASE_SHARDS_MIN = 15;
-const BASE_SHARDS_MAX = 35;
-const GOLD_DUPLICATE_SHARDS = 25;
-const AURA_DUPLICATE_SHARDS = 10;
-const AVATAR_DUPLICATE_SHARDS = 12;
+// Новая экономика (план 2026-07-20, §7): сундук лиги больше не даёт монет —
+// все shard-дропы обнулены (косметика/титулы сундука сохранены). Структура
+// дропов не удалена: sumShardDrops складывает нули, а guard-ы shardReward > 0
+// ниже просто не срабатывают.
+const BASE_SHARDS_MIN = 0;
+const BASE_SHARDS_MAX = 0;
+const GOLD_DUPLICATE_SHARDS = 0;
+const AURA_DUPLICATE_SHARDS = 0;
+const AVATAR_DUPLICATE_SHARDS = 0;
 const ENERGY_MS = 5 * 60 * 1000;
-const LEAGUE_CHEST_BASE_GOAL = 200_000;
+// зачем (владелец 2026-08-04): комнаты дозаполняются жителями, и их опыт по
+// решению владельца засчитывается в общую цель. Замер показал: 28 жителей дают
+// ~159 000 XP за неделю, то есть прежний порог 200 000 закрывался бы почти без
+// участия человека и сундук перестал бы быть достижением. Владелец поднял базу
+// до 400 000; шаг за лигу прежний.
+const LEAGUE_CHEST_BASE_GOAL = 400_000;
 const LEAGUE_CHEST_GOAL_STEP = 20_000;
 const CROWN_AURA = 'league_chest_crown';
 const CROWN_NICK_COLOR = '#16B7D9';
@@ -21,14 +31,14 @@ const GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
 const ENERGY_OVERRIDE_KEY = 'league_chest_energy_override_v1';
 const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
 const STREAK_SHIELD_KEY = 'chain_shield';
-const ARENA_DAILY_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const PACK_TRIAL_GIFT_KEY = 'flashcard_pack_trial_gift_v1';
+const PACK_GIFT_GRANTS = 'flashcard_pack_gift_grants';
 const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
 const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
 const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
 const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
-const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-gold', 'aura-coral'] as const;
+const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-coral'] as const;
 const CUSTOM_AVATAR_DROP_IDS = Array.from(
   { length: 30 },
   (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`,
@@ -41,7 +51,6 @@ type RewardKind =
   | 'xp_boost'
   | 'energy_fast_recovery'
   | 'streak_shield'
-  | 'arena_plays'
   | 'pack_trial_48h'
   | 'avatar_aura'
   | 'custom_avatar'
@@ -191,6 +200,10 @@ function sumShardDrops(drops: RewardDrop[]): number {
   ), 0);
 }
 
+function isLeagueChestAuraId(value: unknown): value is typeof AVATAR_AURA_IDS[number] {
+  return typeof value === 'string' && AVATAR_AURA_IDS.includes(value as typeof AVATAR_AURA_IDS[number]);
+}
+
 function buildClaimedRewardResponse(params: {
   claim: FirebaseFirestore.DocumentData | undefined;
   user: FirebaseFirestore.DocumentData | undefined;
@@ -205,6 +218,7 @@ function buildClaimedRewardResponse(params: {
     xpOverrideUses?: number;
     streakShieldCount?: number;
     themeGoldUnlocked?: boolean;
+    packGiftVoucherId?: string;
     expiresAt: number;
   };
   claimedAtMs: number;
@@ -221,6 +235,7 @@ function buildClaimedRewardResponse(params: {
       xpOverrideUses: Math.max(0, readInt(claim?.xpOverrideUses, 0)) || undefined,
       streakShieldCount: Math.max(0, readInt(claim?.streakShieldCount, 0)) || undefined,
       themeGoldUnlocked: claim?.themeGoldUnlocked === true,
+      packGiftVoucherId: sanitizeString(claim?.packGiftVoucherId, 180) || undefined,
       expiresAt,
     }
     : undefined;
@@ -270,12 +285,6 @@ function buildLeagueRewardDrops(params: {
     kind: 'streak_shield',
     rarity: 'rare',
     amount: 1,
-  });
-  addIf('arena_plays', 0.20, {
-    id: 'league_arena_plays_5',
-    kind: 'arena_plays',
-    rarity: 'common',
-    amount: 5,
   });
   addIf('bonus_shards', 0.15, {
     id: 'league_bonus_shards',
@@ -364,22 +373,12 @@ export function buildRewardProgressPatch(params: {
     progressPatch[STREAK_SHIELD_KEY] = next;
   }
 
-  const arenaPlays = drops
-    .filter((drop) => drop.kind === 'arena_plays')
-    .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 5)), 0);
-  if (arenaPlays > 0) {
-    const cur = parseJsonObject(getExistingField(user, ARENA_DAILY_GIFT_BONUS_KEY));
-    const sameDay = cur.date === today;
-    const extra = sameDay ? Math.max(0, readInt(cur.extra, 0)) : 0;
-    progressPatch[ARENA_DAILY_GIFT_BONUS_KEY] = JSON.stringify({ date: today, extra: extra + arenaPlays });
-  }
-
   if (drops.some((drop) => drop.kind === 'pack_trial_48h')) {
     progressPatch[PACK_TRIAL_GIFT_KEY] = JSON.stringify({ packId: 'league_bonus_voucher', expiresAt: now + PACK_TRIAL_MS });
   }
 
-  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && drop.auraId);
-  if (auraDrop?.auraId) {
+  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && isLeagueChestAuraId(drop.auraId));
+  if (auraDrop?.auraId && isLeagueChestAuraId(auraDrop.auraId)) {
     const owned = parseJsonObject(getExistingField(user, AVATAR_AURA_OWNED_KEY));
     progressPatch[AVATAR_AURA_OWNED_KEY] = JSON.stringify({ ...owned, [auraDrop.auraId]: true });
     progressPatch[AVATAR_AURA_GIFT_OWNED_KEY] = auraDrop.auraId;
@@ -423,19 +422,17 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
   const lbRef = db.collection('leaderboard').doc(stableUid);
   const claimRef = db.collection('league_chest_claims').doc(claimDocId(stableUid, weekId, groupId));
   const eventRef = db.collection('league_chest_events').doc(eventDocId(weekId, groupId));
-  const arenaEventRef = db.collection('arena_club_events').doc(`${safeId(weekId)}_${safeId(groupId)}`);
   const userRef = db.collection('users').doc(stableUid);
   const now = Date.now();
   const expiresAt = now + MS_WEEK;
 
   return db.runTransaction(async (tx) => {
-    const [groupSnap, lbSnap, claimSnap, userSnap, eventSnap, arenaEventSnap] = await Promise.all([
+    const [groupSnap, lbSnap, claimSnap, userSnap, eventSnap] = await Promise.all([
       tx.get(groupRef),
       tx.get(lbRef),
       tx.get(claimRef),
       tx.get(userRef),
       tx.get(eventRef),
-      tx.get(arenaEventRef),
     ]);
 
     if (claimSnap.exists) {
@@ -477,6 +474,11 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         uid,
         name: sanitizeString(m?.name, 48) || 'Player',
         points: Math.max(0, readInt(m?.points, 0)),
+        // зачем (владелец 2026-08-04): опыт жителей засчитывается в общую цель
+        // недели — это его явное решение. Но корону забрать они не могут:
+        // корона пишется в league_crowns и в профиль победителя, у жителя
+        // профиля не существует. Поэтому метку тащим до выбора победителя.
+        isResident: isResidentMember(uid, m),
       }))
       .filter((m) => !!m.uid);
     if (!members.some((m) => m.uid === stableUid)) {
@@ -488,9 +490,7 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
 
     const goal = getLeagueChestGoal(leagueId);
     const leaguePoints = members.reduce((sum, m) => sum + m.points, 0);
-    const arenaEvent = arenaEventSnap.data() || {};
-    const arenaBonus = Math.max(0, readInt(arenaEvent.totalPoints, 0));
-    const totalPoints = leaguePoints + arenaBonus;
+    const totalPoints = leaguePoints;
     if (totalPoints < goal) {
       return { ok: true, claimed: false, status: 'not_ready', progress: totalPoints, goal };
     }
@@ -499,8 +499,10 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
     const firstReachedAt = existingReachedAt || now;
     const completedInMs = groupCreatedAt > 0 ? Math.max(0, firstReachedAt - groupCreatedAt) : null;
 
-    members.sort((a, b) => b.points - a.points);
-    const winner = members[0];
+    members.sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
+    // Корону получает лучший ЖИВОЙ игрок. Житель на первом месте — обычная
+    // ситуация (они растут круглосуточно), но награда обязана достаться человеку.
+    const winner = members.find((m) => !m.isResident);
     const crown = winner
       ? {
         uid: winner.uid,
@@ -540,7 +542,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         goal,
         memberCount: members.length,
         leaguePoints,
-        arenaBonus,
         updatedAt: now,
       }, { merge: true });
       tx.set(crownRef, {
@@ -578,6 +579,8 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
     const streakShieldCount = rewardDrops
       .filter((drop) => drop.kind === 'streak_shield')
       .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 1)), 0);
+    const packGiftDrop = rewardDrops.find((drop) => drop.kind === 'pack_trial_48h');
+    const packGiftVoucherId = packGiftDrop ? `league_${claimDocId(stableUid, weekId, groupId)}` : '';
     const userPatch: Record<string, unknown> = {
       ...buildRewardProgressPatch({ drops: rewardDrops, user, now, expiresAt }),
       updatedAt: now,
@@ -604,11 +607,22 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       xpOverrideUses: xpBoost ? Math.max(1, readInt(xpBoost.uses, 3)) : 0,
       streakShieldCount,
       themeGoldUnlocked: rewardDrops.some((drop) => drop.kind === 'gold_theme'),
+      packGiftVoucherId: packGiftVoucherId || null,
       expiresAt,
       createdAt: now,
     });
 
     tx.set(userRef, userPatch, { merge: true });
+    if (packGiftDrop && packGiftVoucherId) {
+      tx.set(db.collection(PACK_GIFT_GRANTS).doc(packGiftVoucherId), {
+        ownerStableUid: stableUid,
+        source: 'league_chest',
+        sourceId: claimRef.id,
+        occurrenceId: packGiftVoucherId,
+        expiresAt: Math.max(now + 1, readInt(packGiftDrop.expiresAt, now)),
+        createdAt: now,
+      });
+    }
     if (shardReward > 0) {
       tx.set(userRef.collection('shard_log').doc(), {
         ts: new Date(now).toISOString(),
@@ -637,6 +651,7 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         xpOverrideUses: xpBoost ? Math.max(1, readInt(xpBoost.uses, 3)) : undefined,
         streakShieldCount: streakShieldCount > 0 ? streakShieldCount : undefined,
         themeGoldUnlocked: rewardDrops.some((drop) => drop.kind === 'gold_theme'),
+        packGiftVoucherId: packGiftVoucherId || undefined,
         expiresAt,
       },
     };

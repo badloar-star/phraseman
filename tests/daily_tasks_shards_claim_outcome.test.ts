@@ -37,7 +37,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   claimDailyTasksAllShardsRewardDetailed,
   resumePendingDailyTasksAllShardsClaims,
+  SHARD_REWARDS,
 } from '../app/shards_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 const DAY = '2026-06-21';
 const REWARD_KEY = `daily_tasks_all_shards_${DAY}`;
@@ -51,7 +56,17 @@ const flushAsync = async (turns = 6) => {
 
 beforeEach(async () => {
   mockCallable.mockReset();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('stable-abc-123');
   await AsyncStorage.clear();
+  // Экономика «Монеты и Звёзды» (docs/plans/2026-07-20) обнулила игровые начисления
+  // монет (в проде daily_tasks_all = 0). Тесты проверяют механику claim, а не каталог,
+  // поэтому поднимаем награду до 1, как было до миграции.
+  SHARD_REWARDS.daily_tasks_all = 1;
+});
+
+afterEach(() => {
+  SHARD_REWARDS.daily_tasks_all = 0;
 });
 
 describe('claimDailyTasksAllShardsRewardDetailed', () => {

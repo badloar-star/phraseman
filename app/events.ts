@@ -3,6 +3,7 @@ import type { PlannedTriLangCopy } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import type { SoundEventId } from '../modules/audio/sound_events';
 
 /** Анти-бурст для `action_toast` внутри ~400 мс (мульти-тап); дальше фильтрует ActionToast. */
 let _lastActionToastKey = '';
@@ -35,13 +36,24 @@ export type AppEventMap = {
   league_local_state_updated: undefined;
   league_crown_updated: { uid: string; expiresAt: number; crownCount?: number };
   /** Непрочитанные сообщения чата лиги изменились — обновить badge на главной/в клубе. */
-  league_chat_unread_changed: { roomKey: string; unreadCount: number };
   /** Локальное dev/admin inbox-сообщение изменилось — перечитать inbox без Firestore. */
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
   remote_config_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
   mystery_chest_claimed: undefined;
+  /**
+   * Сезонные ЗВЁЗДЫ пропуска изменились — обновить экран дорожки.
+   *
+   * зачем 2026-08-03 (владелец: «сезон очки капали не за опыт а за звёзды»):
+   * событие звалось season_pass_xp_changed и приходило из registerXP на любое
+   * начисление опыта. Теперь источник один — завершённый турнирный раунд.
+   */
+  season_pass_stars_changed: { totalStars: number };
+  season_pass_gift_inventory_changed: undefined;
+  season_cosmetics_changed: undefined;
+  /** Платная дорожка сезона куплена/разблокирована — экран дорожки открывает pass-клеймы. */
+  season_pass_plus_changed: undefined;
   /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
   collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
@@ -53,6 +65,8 @@ export type AppEventMap = {
     reasonKey?: string;
     /** Готовая строка (например батч за урок) — приоритет над reasonKey */
     reasonText?: string;
+    /** Фаза 2: бонусная часть от карточки IV+ (уже входит в amount; опционально — для отдельного показа). */
+    bonus?: number;
   };
   shards_balance_updated: {
     balance: number;
@@ -80,6 +94,8 @@ export type AppEventMap = {
   streak_revive_offer: { lostStreak: number; missedDays?: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
+  /** DEV/admin: вручную посеяно число дней streak — главная перечитывает локальное состояние. */
+  streak_seeded: { days: number };
   /** Активное пари аннулировано (например, после revive или потери цепочки). */
   wager_lost: { reason: 'revive' | 'streak_broken' };
   streak_freeze_updated: { active: boolean };
@@ -88,7 +104,10 @@ export type AppEventMap = {
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */
   lesson_replay_started: { lessonId: number; spent: number; studyTarget?: string };
   action_toast: {
-    type: 'success' | 'error' | 'info' | 'reward';
+    /** 'warning' — есть срок и цена бездействия, но ничего не сломалось. */
+    type: 'success' | 'error' | 'info' | 'warning' | 'reward';
+    /** Optional exact semantic cue; the visible ActionToast remains the playback trigger. */
+    soundEventId?: SoundEventId;
     messageRu: string;
     messageUk?: string;
     /** Испанский UX (например dev); если нет — ActionToast использует базовую строку */
@@ -113,6 +132,12 @@ export type AppEventMap = {
   notif_permission_nudge: { missedDays: number };
   /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
   dialogs_progress_changed: undefined;
+  /**
+   * Юзер зашёл в урок (любым путём: меню, задания дня, личный план, повтор) — карточка
+   * «Продолжить урок X» на Главной обязана смениться СРАЗУ, не дожидаясь возврата на таб
+   * или полного loadData(). lesson1.tsx эмитит сразу при входе, home.tsx патчит lastLesson точечно.
+   */
+  last_opened_lesson_changed: { lessonId: number; progress: number; score: string; studyTarget?: RuntimeStudyTarget };
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */
@@ -164,7 +189,13 @@ export function emitAppEvent<K extends keyof AppEventMap>(
             ? (() => {
                 const t = (payload as AppEventMap['action_toast']).type;
                 // 'reward' нет в словаре result у trackActivity — для аналитики это успех.
-                return t === 'reward' ? 'success' : t;
+                if (t === 'reward') return 'success';
+                // зачем: 'warning' в словаре result тоже нет. Предупреждение —
+                // это НЕ сбой (ничего не сломалось), поэтому в аналитике оно
+                // проходит как info, а не как error: иначе счётчик ошибок
+                // раздуют штатные плашки про оплату и сгорающую цепочку.
+                if (t === 'warning') return 'info';
+                return t;
               })()
             : 'info',
           tags: {

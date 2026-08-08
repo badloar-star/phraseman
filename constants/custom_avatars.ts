@@ -1,9 +1,15 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { Lang } from './i18n';
+export { CUSTOM_AVATAR_OWNED_KEY } from './customization_storage_keys';
 
-export const CUSTOM_AVATAR_BUY_COST = 50;
-export const CUSTOM_AVATAR_RESTYLE_COST = 10;
-export const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
+// зачем: жемчуг больше не фармится (SHARD_REWARDS обнулён в app/shards_system.ts) —
+// каждая цена стала прямым ценником в евро. По витрине стора 210+30 жемчужин = €3.99,
+// т.е. ~€0,017 за жемчужину. Старые 35/10 давали €0,60 за ВЕЧНЫЙ аватар — дешевле
+// разового 30-минутного буста лиги (€0,34–0,77), что ломало иерархию ценности.
+// Новая шкала: расходники €0,05–0,85 → вечная косметика €1,5–2 → карточка профиля €3–41.
+export const CUSTOM_AVATAR_BUY_COST = 90;
+/** Рестайл держим ~25–30% от цены аватара: смена стиля дешевле новой вещи. */
+export const CUSTOM_AVATAR_RESTYLE_COST = 25;
 
 export type CustomAvatarGradient = {
   id: string;
@@ -125,7 +131,7 @@ const CUSTOM_AVATAR_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
   'custom-gen-55': { ru: 'Фонарь учёбы', uk: 'Ліхтар навчання', es: 'Farol de estudio', 'pt-BR': 'Lanterna de estudo', vi: 'Đèn học tập', id: 'Lentera Belajar', tr: 'Çalışma Feneri', pl: 'Latarnia nauki' },
   'custom-gen-56': { ru: 'Колокол голоса', uk: 'Дзвін голосу', es: 'Campana de voz', 'pt-BR': 'Sino da voz', vi: 'Chuông giọng nói', id: 'Lonceng Suara', tr: 'Ses Çanı', pl: 'Dzwon głosu' },
   'custom-gen-57': { ru: 'Жемчужная спираль', uk: 'Перлова спіраль', es: 'Espiral perlada', 'pt-BR': 'Espiral perolada', vi: 'Vòng xoắn ngọc trai', id: 'Spiral Mutiara', tr: 'İnci Sarmalı', pl: 'Perłowa spirala' },
-  'custom-gen-58': { ru: 'Монеты жара', uk: 'Монети жару', es: 'Monedas de brasa', 'pt-BR': 'Moedas de brasa', vi: 'Đồng xu than hồng', id: 'Koin Bara', tr: 'Kor Para', pl: 'Monety żaru' },
+  'custom-gen-58': { ru: 'Жемчужины жара', uk: 'Перлини жару', es: 'Perlas de brasa', 'pt-BR': 'Pérolas de brasa', vi: 'Ngọc trai than hồng', id: 'Mutiara Bara', tr: 'Kor İncisi', pl: 'Perły żaru' },
   'custom-gen-59': { ru: 'Флакон чернил', uk: 'Флакон чорнила', es: 'Frasco de tinta', 'pt-BR': 'Frasco de tinta', vi: 'Lọ mực', id: 'Botol Tinta', tr: 'Mürekkep Şişesi', pl: 'Flakon atramentu' },
   'custom-gen-60': { ru: 'Серебряный ключ', uk: 'Срібний ключ', es: 'Llave plateada', 'pt-BR': 'Chave prateada', vi: 'Chìa khóa bạc', id: 'Kunci Perak', tr: 'Gümüş Anahtar', pl: 'Srebrny klucz' },
   'custom-gen-61': { ru: 'Кристальный цветок', uk: 'Кришталевий цвіт', es: 'Flor cristalina', 'pt-BR': 'Flor cristalina', vi: 'Hoa pha lê', id: 'Bunga Kristal', tr: 'Kristal Çiçek', pl: 'Kryształowy kwiat' },

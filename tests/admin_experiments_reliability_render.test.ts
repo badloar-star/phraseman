@@ -6,7 +6,7 @@ const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
 
 describe('Admin experiment and reliability rendering', () => {
   it('mounts inside existing analytics and explains causal and source limits', () => {
-    const core = read('admin/v2/scripts/admin-analytics-app.js');
+    const core = read('admin/v2/scripts/admin-core.js');
     const page = read('admin/v2/scripts/pages/product-analytics.js');
     expect(core).toContain('id="product-analytics-experiments"');
     expect(core).toContain('id="product-analytics-reliability"');

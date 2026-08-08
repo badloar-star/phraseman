@@ -12,7 +12,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
-import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
+import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
@@ -21,32 +21,62 @@ import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
-import {
-  LOYALTY_GIFT_STARTED_AT_KEY,
-  LOYALTY_GIFT_ENDS_AT_KEY,
-  LOYALTY_GIFT_CLAIMED_KEY,
-} from './loyalty_gift';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { resumePendingDailyTasksAllShardsClaims, resumePendingShardDeltas } from './shards_system';
+import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
 import {
   ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
   ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
 } from './account_delete_timeout';
-import { runAccountDeleteEnqueueWithDeadline } from './account_delete_enqueue';
+import {
+  startAccountDeleteEnqueueWithDeadline,
+  type AccountDeleteEnqueueOperation,
+} from './account_delete_enqueue';
+import {
+  isAccountDeleteIdentityQuarantined as readAccountDeleteIdentityQuarantine,
+  isAccountDeleteIdentityQuarantinedFromKnownState,
+} from './account_delete_quarantine';
 import {
   beginInitialAccountGeneration,
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
+// зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
+// в xp_manager.ts (защита от утечки предыдущего аккаунта в PlayerProfileModal).
+import { resetMultiplierBreakdownCache } from './xp_manager';
+// зачем: сброс кэша состояния лиги предыдущего аккаунта при смене юзера — см.
+// clearCachedLeagueStateSnapshot в league_open_cache_policy.ts (защита от утечки
+// ранга/группы/участников лиги предыдущего аккаунта в club_screen).
+import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
+import { clearDailyTasksScreenSnapshotOnDisk } from './daily_tasks_screen_persist';
+import { clearScreenSnapshots } from './screen_snapshot_store';
+import { clearTrainerPracticeSnapshotOnDisk } from './trainer_practice_persist';
+import {
+  isVipSnapshotStorageKey,
+  VIP_STORAGE_KEYS,
+  writeVipSnapshotForAccount,
+} from './premium_vip_storage';
+import {
+  extractExamBestPctOverlay,
+  publishExamBestPctOverlay,
+} from './exam_best_pct_overlay';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
 import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation';
 import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
 import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
+import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
+import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+// зачем: экран «Сегодня» удалён (2026-08-03) вместе с lib/today, но ключ его
+// истории остаётся на устройствах прежних версий. Держим его в списке очистки
+// при смене аккаунта — иначе чужие данные переживут выход из аккаунта (тот же
+// класс бага, что «чужие пиксели после смены аккаунта»).
+const LEGACY_TODAY_ACCOUNT_STORAGE_KEYS = ['today_recommendation_history_v1'] as const;
 import {
   activeRecallItemsKey,
   achievementStateKey,
@@ -88,6 +118,8 @@ import {
   lessonBestScoreKey,
   lessonBonusHintsKey,
   lessonBonusGrantedKey,
+  legacyFreeLessonCapKey,
+  legacyFreeLessonMigrationKey,
   lessonIntroShownKey,
   lessonIrregularShardsGrantedKey,
   lessonListeningProgressKey,
@@ -130,6 +162,12 @@ import {
   userStatsKey,
   statsDailyBreakdownKey,
 } from './target_storage_keys';
+import {
+  LEGACY_FREE_LESSON_MIGRATION_COMPLETE,
+  LEGACY_FREE_LESSON_MIN,
+  migrateLegacyFreeLessonAccessForAllTargets,
+  normalizeLegacyFreeLessonCap,
+} from './legacy_free_lesson_access';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -158,20 +196,14 @@ const GRAMMAR_HINT_STORAGE_IDS = ['grammar_hint_articles', 'grammar_hint_some_an
 
 export const FRENCH_TARGET_SYNC_KEYS = [
   unlockedLessonsKey('fr'),
+  legacyFreeLessonCapKey('fr'),
+  legacyFreeLessonMigrationKey('fr'),
   premiumCourseLevelKey('fr'),
   lessonUnlockRepairKey('fr'),
   lastOpenedLessonKey('fr'),
   lingmanExamAvailableKey('fr'),
   lingmanCertificateKey('fr'),
   diagnosticLastKey('fr'),
-  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'),
-  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'),
-  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'),
-  quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
-  quizAchievementCounterKey('quiz_hard_count', 'fr'),
-  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
-  quizPerfectLevelsTodayKey('fr'),
-  quizPerfectStreakKey('fr'),
   achievementStateKey('fr'),
   comboAchievementCounterKey('fr'),
   dailyPhraseAchievementReadCountKey('fr'),
@@ -211,6 +243,15 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
   FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
   dailyTasksRerollKey('fr'),
+  quizNavLevelKey('fr'),
+  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'),
+  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'),
+  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
+  quizAchievementCounterKey('quiz_hard_count', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
+  quizPerfectLevelsTodayKey('fr'),
+  quizPerfectStreakKey('fr'),
   ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
     lessonBestScoreKey(lessonId, 'fr'),
     lessonPassCountKey(lessonId, 'fr'),
@@ -313,10 +354,13 @@ export function mergeDailyTasksProgressForRestore(localRaw: string | null | unde
 
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
 // Экспорт: тот же набор должен учитываться при сбросе локали после merge аккаунта (auth_provider).
+const SEASON_COSMETICS_SYNC_KEY = 'season_cosmetics_v1';
 export const SYNC_KEYS = [
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
+  // Server-confirmed survey completion timestamp; restored locally, never uploaded by clients.
+  'shard_survey_last_at_ms',
   // XP-01: Weekly XP tracking — synced so users/{uid}.progress.weekly_xp matches device.
   'weekly_xp',
   'weekly_xp_period_start',
@@ -328,6 +372,7 @@ export const SYNC_KEYS = [
   'custom_avatar_gift_owned_v1',
   'avatar_aura_owned_v1',
   'avatar_aura_gift_owned_v1',
+  SEASON_COSMETICS_SYNC_KEY,
   // Команда админки на разовое изменение энергии (обнулить/налить). Клиент применяет
   // её один раз по метке at (см. energy_system.applyAdminEnergyCommand) — energy_state
   // остаётся client-owned, команда лишь одноразовый триггер из облака на устройство.
@@ -350,6 +395,8 @@ export const SYNC_KEYS = [
   'language_profile_v1::en',
   'language_profile_v1::fr',
   'unlocked_lessons',
+  legacyFreeLessonCapKey('en'),
+  legacyFreeLessonMigrationKey('en'),
   'flashcards',
   'flashcards_v1',
   'achievements_state',
@@ -358,13 +405,16 @@ export const SYNC_KEYS = [
   'achievement_trainer_correct_count',
   'achievement_trainer_correct_streak_v1',
   'achievement_trainer_perfect_session_count',
+  quizAchievementCounterKey('achievement_quiz_total_count', 'en'),
+  quizAchievementCounterKey('quiz_hard_count', 'en'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'en'),
+  quizPerfectLevelsTodayKey('en'),
+  quizPerfectStreakKey('en'),
+  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'en'),
+  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'en'),
+  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'en'),
   'achievement_all_daily_streak_v1',
   'helpful_error_reports_confirmed_v1',
-  'achievement_quiz_total_count',
-  'quiz_hard_count',
-  'achievement_quiz_hard_perfect_count',
-  'achievement_quiz_perfect_levels_today_v1',
-  'achievement_quiz_perfect_streak_v1',
   'achievement_daily_phrase_read_count',
   'achievement_daily_phrase_save_count',
   'achievement_flashcards_saved_count',
@@ -374,11 +424,7 @@ export const SYNC_KEYS = [
   'achievement_shards_spent_total',
   'achievement_energy_refill_count',
   'achievement_league_boost_count',
-  'achievement_league_chat_message_count',
   'achievement_gift_sent_count',
-  'achievement_arena_win_count',
-  'achievement_arena_win_streak',
-  'achievement_arena_wager_win_count',
   'active_recall_items',
   'onboarding_done',
   'lang',
@@ -428,7 +474,6 @@ export const SYNC_KEYS = [
   'premium_free_freeze_used',
   'chain_shield',
   'gift_xp_multiplier',
-  'arena_daily_gift_bonus_v1',
   flashcardsPackTrialGiftKey('en'),
   'club_gift_free_boost_v1',
   // Анти-повтор премиум pack-unlock подарков уровня: без синка при смене
@@ -477,9 +522,8 @@ export const SYNC_KEYS = [
   // ── Осколки: дополнительные ключи (баланс/история — отдельный канал) ───────
   // Сам баланс (shards) живёт в users/{uid}.shards и грузится через
   // loadShardsFromCloud(); здесь только защита от повтора single-time событий
-  // и счётчик арены для milestone-бонусов.
+  // и служебные маркеры разовых событий.
   'shards_one_time_events',
-  'shards_arena_wins_total',
 
   // ── UI / поведение ─────────────────────────────────────────────────────────
   // app_theme / app_font_size / haptics_tap — только локально на устройстве (см. wipeLocalAccountData KEEP).
@@ -499,10 +543,6 @@ export const SYNC_KEYS = [
   'phraseman_foreground_daily_ms_v1',
 
   // ── Блок «Весь путь» / метрики статистики (локально накапливаются) ─────────
-  'lifetime_quiz_easy_v1',
-  'lifetime_quiz_medium_v1',
-  'lifetime_quiz_hard_v1',
-  'lifetime_quiz_counters_migrated_v1',
   'lifetime_daily_tasks_claimed_v1',
   'shards_lifetime_earned_v1',
   'shards_lifetime_spent_v1',
@@ -526,18 +566,14 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => lessonTheoryXpClaimedKey(i + 1, 'en')),
   ...Array.from({ length: 32 }, (_, i) => achievementLessonPerfectPassesKey(i + 1, 'en')),
   ...FRENCH_TARGET_SYNC_KEYS,
-  // ── Подарочный доступ (intro / loyalty): зеркалим срок в облако, чтобы при смене
+  // ── Подарочный доступ intro: зеркалим срок в облако, чтобы при смене
   //    телефона / переустановке подарок не терялся и восстанавливался (Д2-фикс).
-  //    Зеркалим И started, И ends (getIntroFullAccessState требует оба). claimed —
-  //    чтобы лояльный подарок не выдался повторно на новом устройстве. ВНИМАНИЕ: это
+  //    Зеркалим И started, И ends (getIntroFullAccessState требует оба). ВНИМАНИЕ: это
   //    лёгкий вариант (анти-потеря). Это НЕ серверная защита от ручного продления —
   //    клиент всё ещё может переписать срок локально; для бесплатного подарка риск
   //    низкий. Полную защиту (CF-выдача + blocked-ключи) делать отдельно.
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
-  LOYALTY_GIFT_STARTED_AT_KEY,
-  LOYALTY_GIFT_ENDS_AT_KEY,
-  LOYALTY_GIFT_CLAIMED_KEY,
   // ── Claim-маркеры модальных бонусов (Mystery Monday / Comeback / Perfect Week).
   //    Зеркалим в облако, чтобы переустановка / смена устройства не давала повторно
   //    забрать недельную/разовую награду (анти-фарм переустановкой, аудит P2 #12).
@@ -567,6 +603,53 @@ export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string
   return safe;
 }
 
+const LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS = [
+  'personal_plan_attempt_events_v1',
+  'personal_plan_recovery_applied_actions_v1',
+] as const;
+
+const LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES = [
+  'personal_plan_day_runtime_v1:',
+] as const;
+
+function isLearningV2AccountLocalKey(key: string): boolean {
+  return (LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS as readonly string[]).includes(key)
+    || LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
+}
+
+async function listAllAccountLocalStorageKeys(): Promise<string[]> {
+  try {
+    return [...await AsyncStorage.getAllKeys()];
+  } catch (e) {
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      console.warn('[cloud_sync] account-local key scan failed', e);
+    }
+    // Preserve the established fail-closed error contract used by account
+    // switch and clean-install recovery callers.
+    throw new Error('learning_v2_account_key_scan_failed');
+  }
+}
+
+function learningV2AccountLocalKeysFrom(allKeys: readonly string[]): string[] {
+  return Array.from(new Set([
+    ...LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS,
+    ...allKeys.filter(isLearningV2AccountLocalKey),
+  ]));
+}
+
+async function listLearningV2AccountLocalKeys(): Promise<string[]> {
+  return learningV2AccountLocalKeysFrom(await listAllAccountLocalStorageKeys());
+}
+
+async function collectAccountLocalDataKeys(): Promise<string[]> {
+  const allKeys = await listAllAccountLocalStorageKeys();
+  return Array.from(new Set([
+    ...accountLocalDataKeysForToday(),
+    ...learningV2AccountLocalKeysFrom(allKeys),
+    ...allKeys.filter(isVipSnapshotStorageKey),
+  ]));
+}
+
 export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
     dailyTasksProgressKey(todayKey, target),
@@ -574,8 +657,16 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     dailyTasksAdminOverrideKey(target),
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
-    quizNavLevelKey(target),
     diagnosticOpenFlagKey(target),
+    quizNavLevelKey(target),
+    quizLifetimeCounterKey('lifetime_quiz_easy_v1', target),
+    quizLifetimeCounterKey('lifetime_quiz_medium_v1', target),
+    quizLifetimeCounterKey('lifetime_quiz_hard_v1', target),
+    quizAchievementCounterKey('achievement_quiz_total_count', target),
+    quizAchievementCounterKey('quiz_hard_count', target),
+    quizAchievementCounterKey('achievement_quiz_hard_perfect_count', target),
+    quizPerfectLevelsTodayKey(target),
+    quizPerfectStreakKey(target),
     irregularVerbsGlobalKey(target),
     lingmanCertificateKey(target),
     flashcardsMarketplaceBuiltCardsCacheKey(target),
@@ -601,6 +692,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
     'daily_tasks_progress',
+    'shard_survey_done_daykey_v1',
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
     'shards_balance',
@@ -618,6 +710,8 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     // Прочее account-level
     'last_active_date',
     'user_profile',
+    'generated_nickname_pending_v1',
+    'generated_name_confirmed_v1',
     // Производный display-флаг реального премиума (НЕ в SYNC_KEYS, пересчитывается
     // резолвером). Чистим при смене/сбросе аккаунта, чтобы старое premium_active='true'
     // не перетекло к новому аккаунту до первого пересчёта доступа.
@@ -633,6 +727,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'login_bonus_v1',
     'last_opened_lesson',
     PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
+    ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
+    ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
+    ...LEGACY_TODAY_ACCOUNT_STORAGE_KEYS,
     ...localOnlyTargetKeys,
   ]));
 }
@@ -683,12 +780,20 @@ let syncInFlight: Promise<void> | null = null;
 let pendingSync = false;
 let lastSuccessfulSyncAt = 0;
 let lastActivityStampAt = 0;
+export type CloudAccessFailureReason =
+  | 'app_check_unavailable'
+  | 'identity_unavailable'
+  | 'transport_unavailable';
+
+export type StableAuthLinkFailure = CloudAccessFailureReason | 'stable_id_mismatch';
+
 export type StableAuthLinkEnsureResult = {
   ok: boolean;
   requestedStableId: string;
   stableUid: string | null;
   authUid: string | null;
   source: 'disabled' | 'cache' | 'callable' | 'unavailable';
+  failure?: StableAuthLinkFailure;
 };
 
 export type StableAuthLinkMetadata = {
@@ -701,6 +806,34 @@ export type StableAuthLinkMetadata = {
 
 let stableAuthLinkPromise: Promise<StableAuthLinkEnsureResult> | null = null;
 let stableAuthLinkKey = '';
+
+function classifyCloudAccessFailure(
+  error: unknown,
+  appCheckReady: boolean,
+): StableAuthLinkFailure {
+  const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
+  const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
+  const combined = `${code} ${message}`;
+  if (combined.includes('stable_id_mismatch')) return 'stable_id_mismatch';
+  if (combined.includes('auth_required')) return 'identity_unavailable';
+
+  const explicitlyAppCheck = combined.includes('app check') || combined.includes('appcheck');
+  const missingAttestationLikely = code.includes('unauthenticated');
+  if (explicitlyAppCheck || (!appCheckReady && missingAttestationLikely)) {
+    return 'app_check_unavailable';
+  }
+
+  if (
+    code.includes('unavailable')
+    || code.includes('deadline-exceeded')
+    || code.includes('network-request-failed')
+    || combined.includes('timeout')
+    || combined.includes('network')
+  ) {
+    return 'transport_unavailable';
+  }
+  return 'identity_unavailable';
+}
 
 async function readStableAuthLinkCache(key: string): Promise<boolean> {
   try {
@@ -901,6 +1034,10 @@ const PREMIUM_PROGRESS_KEYS = new Set([
   'vip_admin_override',
   'vip_admin_grant_at',
   'vip_migrated_from_admin_grant_at',
+  'intro_access_until_ms',
+  'intro_access_granted_at_ms',
+  'loyalty_gift_until_ms',
+  'loyalty_gift_granted_at_ms',
 ]);
 
 // Ключи, которые ВЫДАЁТ ТОЛЬКО СЕРВЕР (CF collectiblesClaimDrop и т.п.).
@@ -928,6 +1065,7 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   // ломается синк XP/streak/прогресса. profile_card_theme/motion/public_focus НЕ сюда —
   // они клиент-выбираемые и синкаются штатно.
   'profile_card_level',
+  'shard_survey_last_at_ms',
 ]);
 
 export const isServerOwnedProgressKey = (key: string): boolean => {
@@ -1021,6 +1159,10 @@ export function shouldSyncPremiumProgressField(
 const LESSON_RESTORE_MERGE_KEYS = [
   'unlocked_lessons',
   unlockedLessonsKey('fr'),
+  legacyFreeLessonCapKey('en'),
+  legacyFreeLessonMigrationKey('en'),
+  legacyFreeLessonCapKey('fr'),
+  legacyFreeLessonMigrationKey('fr'),
   ...Array.from({ length: 32 }, (_, i) => {
     const lessonId = i + 1;
     return [
@@ -1044,6 +1186,15 @@ const LEVEL_EXAM_RESTORE_MERGE_KEYS = LEVEL_EXAM_RESTORE_LEVELS.flatMap((level) 
 const RESTORE_MERGE_KEY_SET = new Set<string>([
   ...LESSON_RESTORE_MERGE_KEYS,
   ...LEVEL_EXAM_RESTORE_MERGE_KEYS,
+  SEASON_COSMETICS_SYNC_KEY,
+]);
+const LEGACY_FREE_LESSON_CAP_RESTORE_KEYS = new Set<string>([
+  legacyFreeLessonCapKey('en'),
+  legacyFreeLessonCapKey('fr'),
+]);
+const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
+  legacyFreeLessonMigrationKey('en'),
+  legacyFreeLessonMigrationKey('fr'),
 ]);
 
 // #10 multi-device: strictly-additive lifetime counters (bumpStoredCounter only
@@ -1054,13 +1205,11 @@ const RESTORE_MERGE_KEY_SET = new Set<string>([
 // values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
 export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'achievement_quiz_total_count',
-  'achievement_quiz_hard_perfect_count',
   'quiz_hard_count',
+  'achievement_quiz_hard_perfect_count',
   'achievement_trainer_correct_count',
   'achievement_trainer_perfect_session_count',
   'achievement_active_recall_correct_count',
-  'achievement_arena_win_count',
-  'achievement_arena_wager_win_count',
   'achievement_flashcards_flip_count',
   'achievement_flashcards_saved_count',
   'achievement_daily_phrase_read_count',
@@ -1068,12 +1217,15 @@ export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'achievement_energy_refill_count',
   'achievement_gift_sent_count',
   'achievement_league_boost_count',
-  'achievement_league_chat_message_count',
   'achievement_shards_spent_total',
-  'shards_arena_wins_total',
   'shards_lifetime_earned_v1',
 ] as const;
 const MONOTONIC_COUNTER_RESTORE_KEY_SET = new Set<string>(MONOTONIC_COUNTER_RESTORE_KEYS);
+
+function isMonotonicCounterRestoreKey(key: string): boolean {
+  const scoped = targetScopedRestoreInfo(key);
+  return MONOTONIC_COUNTER_RESTORE_KEY_SET.has(scoped?.id ?? key);
+}
 
 function parseLessonProgressArray(raw: unknown): string[] | null {
   if (typeof raw !== 'string' || raw.trim() === '') return null;
@@ -1221,15 +1373,122 @@ function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | 
   return JSON.stringify(merged);
 }
 
+type SeasonCosmeticsRestoreState = {
+  frames: string[];
+  nickColors: string[];
+  activeNickColor: string | null;
+  nickShimmer: boolean;
+  titles: string[];
+  auraStages: number[];
+  secretAuras: string[];
+  customAvatarGrants: number;
+};
+
+function parseSeasonCosmeticsRestoreState(raw: string | null | undefined): SeasonCosmeticsRestoreState | null {
+  if (typeof raw !== 'string' || raw.trim() === '') return null;
+  try {
+    const value = JSON.parse(raw) as Record<string, unknown> | null;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    const strings = (field: string): string[] => Array.isArray(value[field])
+      ? [...new Set((value[field] as unknown[]).filter((item): item is string => typeof item === 'string' && item.trim().length > 0))]
+      : [];
+    const stages = Array.isArray(value.auraStages)
+      ? [...new Set(value.auraStages
+        .map((item) => Math.floor(Number(item)))
+        .filter((item) => Number.isInteger(item) && item >= 1 && item <= 4))].sort((a, b) => a - b)
+      : [];
+    return {
+      frames: strings('frames'),
+      nickColors: strings('nickColors'),
+      activeNickColor: typeof value.activeNickColor === 'string' && value.activeNickColor.trim()
+        ? value.activeNickColor
+        : null,
+      nickShimmer: value.nickShimmer === true,
+      titles: strings('titles'),
+      auraStages: stages,
+      secretAuras: strings('secretAuras'),
+      customAvatarGrants: Math.max(0, Math.floor(Number(value.customAvatarGrants) || 0)),
+    };
+  } catch {
+    return null;
+  }
+}
+
+/** Permanent Season Pass cosmetics are additive and can never regress on restore. */
+function mergeSeasonCosmeticsRestoreValue(
+  cloudValue: string,
+  localValue: string | null | undefined,
+): string {
+  const cloud = parseSeasonCosmeticsRestoreState(cloudValue);
+  const local = parseSeasonCosmeticsRestoreState(localValue);
+  if (!local) return cloud ? JSON.stringify(cloud) : cloudValue;
+  if (!cloud) return JSON.stringify(local);
+  const union = <T,>(cloudValues: readonly T[], localValues: readonly T[]): T[] => (
+    [...new Set([...cloudValues, ...localValues])]
+  );
+  return JSON.stringify({
+    frames: union(cloud.frames, local.frames),
+    nickColors: union(cloud.nickColors, local.nickColors),
+    activeNickColor: local.activeNickColor ?? cloud.activeNickColor,
+    nickShimmer: cloud.nickShimmer || local.nickShimmer,
+    titles: union(cloud.titles, local.titles),
+    auraStages: union(cloud.auraStages, local.auraStages).sort((a, b) => a - b),
+    secretAuras: union(cloud.secretAuras, local.secretAuras),
+    customAvatarGrants: Math.max(cloud.customAvatarGrants, local.customAvatarGrants),
+  } satisfies SeasonCosmeticsRestoreState);
+}
+
+/**
+ * #11 multi-device: уроковый прогресс, чей merge в mergeLessonRestoreValue
+ * строго МОНОТОНЕН (union множеств / max / OR / лучшее качество ответов) —
+ * применение такого merge не может откатить достижения ни на одном устройстве.
+ * Поэтому эти семьи ключей restore подмешивает даже в sticky-ветке
+ * (localXP ≥ cloudXP), где полный merge запрещён XP-гейтом.
+ *
+ * Держать СИНХРОННЫМ с монотонными ветками mergeLessonRestoreValue: новое
+ * семейство прогресс-ключей (новый тип контента, напр. Learning V2) добавляется
+ * ОДНОЙ строкой сюда + соответствующей веткой стратегии в mergeLessonRestoreValue.
+ * Ключи с НЕ-монотонной стратегией (lesson*_cellIndex, даты, кап бесплатных
+ * уроков, streak/weekly-скаляры) сюда НЕ входят. Контракт поведения —
+ * tests/cloud_sync_lesson_union_restore.test.ts.
+ */
+function isMonotonicLessonRestoreKey(key: string): boolean {
+  const scoped = targetScopedRestoreInfo(key);
+  const restoreId = scoped?.id ?? key;
+  if (restoreId === 'unlocked_lessons') return true;
+  if (/^level_exam_[A-Za-z0-9_-]+_(?:passed|available|pct|best_pct|pass_count|attempt_count|medal_tier)$/.test(restoreId)) return true;
+  if (/^lesson\d+_(?:pass_count|best_score|progress)$/.test(restoreId)) return true;
+  if (scoped?.domain === 'lesson_progress' && /^\d+$/.test(restoreId)) return true;
+  if (/^achievement_lesson_\d+_perfect_passes_v1$/.test(restoreId)) return true;
+  return false;
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
   localValue: string | null | undefined,
 ): string {
+  if (key === SEASON_COSMETICS_SYNC_KEY) {
+    return mergeSeasonCosmeticsRestoreValue(cloudValue, localValue);
+  }
+  if (LEGACY_FREE_LESSON_CAP_RESTORE_KEYS.has(key)) {
+    const cloudCap = normalizeLegacyFreeLessonCap(cloudValue);
+    const localCap = normalizeLegacyFreeLessonCap(localValue);
+    if (cloudCap === null && localCap === null) return String(LEGACY_FREE_LESSON_MIN);
+    if (cloudCap === null) return String(localCap);
+    if (localCap === null) return String(cloudCap);
+    return String(Math.max(cloudCap, localCap));
+  }
+  if (LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS.has(key)) {
+    return cloudValue === LEGACY_FREE_LESSON_MIGRATION_COMPLETE ||
+      localValue === LEGACY_FREE_LESSON_MIGRATION_COMPLETE
+      ? LEGACY_FREE_LESSON_MIGRATION_COMPLETE
+      : cloudValue;
+  }
   // #10 multi-device: strictly-additive lifetime counters take the max so a
   // concurrent push of a lower value on another device can't lose progress.
   // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
-  if (MONOTONIC_COUNTER_RESTORE_KEY_SET.has(key)) {
+  if (isMonotonicCounterRestoreKey(key)) {
     return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
   }
   // K2: владение (покупки/выдачи) строго аддитивно — union вместо перезаписи облаком.
@@ -1336,7 +1595,7 @@ async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unk
     const storageValue = cloudProgressStorageValue(key, val);
     // K2: owned-ключи (fr-scoped паки флешкарт и т.п.) мержим union'ом и в sticky-ветке —
     // покупка на другом девайсе догоняет устройство, локальная офлайн-покупка не теряется.
-    if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key)) {
+    if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key) || isMonotonicCounterRestoreKey(key)) {
       const merged = mergeLessonRestoreValue(key, storageValue, localValue);
       if (merged !== localValue) pairs.push([key, merged]);
       continue;
@@ -1449,6 +1708,15 @@ const getFirestore = () => {
 // Возвращает stable ID (переживает переустановку), при наличии Firebase — также входит анонимно.
 // ВАЖНО: ждём signInAnonymously чтобы избежать гонки на холодном старте — иначе
 // первые Firestore операции (league_groups, leaderboard write) падают с PERMISSION_DENIED.
+async function isAccountDeleteIdentityQuarantined(): Promise<boolean> {
+  const auth = getAuth();
+  try {
+    return await readAccountDeleteIdentityQuarantine(auth?.currentUser);
+  } catch {
+    return true;
+  }
+}
+
 let _anonAuthReady: Promise<void> | null = null;
 function ensureAnonAuthReady(): Promise<void> {
   if (_anonAuthReady) return _anonAuthReady;
@@ -1483,6 +1751,7 @@ export async function waitForAnonAuth(timeoutMs = 20_000): Promise<boolean> {
 
 export async function ensureAnonUser(): Promise<string | null> {
   if (!CLOUD_SYNC_ENABLED) return null;
+  if (await isAccountDeleteIdentityQuarantined()) return null;
   // Всегда используем canonical stable ID как ключ users/*
   const stableId = await getCanonicalUserId();
   await ensureAnonAuthReady();
@@ -1492,8 +1761,10 @@ export async function ensureAnonUser(): Promise<string | null> {
 async function waitForFirebaseAuthUid(): Promise<string | null> {
   let authUid = getAuthUserId();
   if (authUid) return authUid;
-  for (let i = 0; i < 4; i += 1) {
-    await new Promise((resolve) => setTimeout(resolve, 350));
+  // Холодный старт (Redmi/Android 10): Firebase Auth/мост поднимаются дольше
+  // старых ~1.4с — auth_link обрывался ДО появления uid (инцидент 2026-07-21).
+  for (let i = 0; i < 80; i += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 250));
     authUid = getAuthUserId();
     if (authUid) return authUid;
   }
@@ -1524,9 +1795,13 @@ export async function ensureStableAuthLinkForStableIdDetailed(
     return { ok: true, requestedStableId, stableUid: requestedStableId || null, authUid: null, source: 'disabled' };
   }
   const stableId = String(stableIdRaw || '').trim();
+  if (await isAccountDeleteIdentityQuarantined()) {
+    const authUid = getAuth()?.currentUser?.uid ?? null;
+    return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'identity_unavailable' };
+  }
   const authUid = await waitForFirebaseAuthUid();
   if (!stableId || !authUid) {
-    return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+    return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'identity_unavailable' };
   }
 
   const key = `${stableId}:${authUid}`;
@@ -1539,11 +1814,8 @@ export async function ensureStableAuthLinkForStableIdDetailed(
 
   stableAuthLinkKey = promiseKey;
   stableAuthLinkPromise = (async () => {
+    const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
     try {
-      const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
-      if (!appCheckReady) {
-        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
-      }
       const fn = callable<
         { stableId: string; linkMetadata?: StableAuthLinkMetadata },
         { ok: boolean; stableUid: string; authUid: string }
@@ -1563,10 +1835,12 @@ export async function ensureStableAuthLinkForStableIdDetailed(
         stableUid: ok ? actualStableUid : null,
         authUid: actualAuthUid,
         source: 'callable',
+        ...(ok ? {} : { failure: 'identity_unavailable' as const }),
       };
     } catch (error) {
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
-      return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+      const failure = classifyCloudAccessFailure(error, appCheckReady);
+      return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure };
     } finally {
       stableAuthLinkPromise = null;
     }
@@ -1585,6 +1859,177 @@ export async function ensureStableAuthLink(): Promise<boolean> {
   const stableId = await ensureAnonUser();
   if (!stableId) return false;
   return ensureStableAuthLinkForStableId(stableId);
+}
+
+export type AuthRecoveryHint = {
+  found: boolean;
+  linked: boolean;
+  provider?: 'google' | 'apple' | null;
+  maskedEmail?: string | null;
+};
+
+export type AuthRecoveryCodeRequestResult = {
+  ok: true;
+  maskedEmail: string;
+  expiresInSec: number;
+  provider: 'google' | 'apple';
+};
+
+export type AuthRecoveryCodeConfirmResult = {
+  ok: true;
+  stableId: string;
+  recoveryEventId: string;
+  handoffEligibleUntil: number;
+};
+
+export class AuthSessionChangedError extends Error {
+  readonly code = 'auth_session_changed' as const;
+
+  constructor() {
+    super('auth_session_changed');
+    this.name = 'AuthSessionChangedError';
+  }
+}
+
+function captureRecoveryAuthSession(): string {
+  const authUid = getCurrentUid();
+  if (!authUid) throw new AuthSessionChangedError();
+  return authUid;
+}
+
+function assertRecoveryAuthSession(expectedAuthUid: string): void {
+  if (getCurrentUid() !== expectedAuthUid) throw new AuthSessionChangedError();
+}
+
+/**
+ * Подсказка «каким аккаунтом входить» для recovery-модалки: сервер отдаёт
+ * только МАСКУ email (usk***@gmail.com) и провайдера по stable_id — полный
+ * email никогда не покидает сервер. Best-effort: любой сбой → null, модалка
+ * просто показывается без подсказки.
+ */
+export async function fetchAuthRecoveryHint(stableIdRaw: string): Promise<AuthRecoveryHint | null> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
+  const stableId = String(stableIdRaw || '').trim();
+  if (!stableId) return null;
+  const authUid = await waitForFirebaseAuthUid();
+  if (!authUid) return null;
+  try {
+    const fn = callable<{ stableId: string }, AuthRecoveryHint>('authRecoveryHint');
+    const res = await withTimeout(fn({ stableId }), STABLE_AUTH_LINK_TIMEOUT_MS, 'recovery_hint');
+    return res?.data ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Запрашивает email-код восстановления. Ошибки callable намеренно не
+ * преобразуются: UI должен различать исходные Firebase/HttpsError code и message
+ * (`resource-exhausted`, `recovery_no_email`, `account_delete_pending`, ...).
+ */
+export async function requestAuthRecoveryCode(
+  stableIdRaw: string,
+): Promise<AuthRecoveryCodeRequestResult> {
+  const stableId = String(stableIdRaw || '').trim();
+  const expectedAuthUid = captureRecoveryAuthSession();
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  assertRecoveryAuthSession(expectedAuthUid);
+  const fn = callable<{ stableId: string }, AuthRecoveryCodeRequestResult>(
+    'authRequestRecoveryCode',
+    { timeout: STABLE_AUTH_LINK_TIMEOUT_MS },
+  );
+  const res = await fn({ stableId });
+  assertRecoveryAuthSession(expectedAuthUid);
+  const data = res?.data;
+  if (
+    data?.ok !== true
+    || typeof data.maskedEmail !== 'string'
+    || !data.maskedEmail.trim()
+    || typeof data.expiresInSec !== 'number'
+    || !Number.isFinite(data.expiresInSec)
+    || data.expiresInSec <= 0
+    || (data.provider !== 'google' && data.provider !== 'apple')
+  ) {
+    throw new Error('auth_recovery_request_response_invalid');
+  }
+  return {
+    ok: true,
+    maskedEmail: data.maskedEmail.trim(),
+    expiresInSec: data.expiresInSec,
+    provider: data.provider,
+  };
+}
+
+/** Подтверждает код, сохраняя исходный HttpsError для точного UI-mapping. */
+export async function confirmAuthRecoveryCode(
+  stableIdRaw: string,
+  codeRaw: string,
+): Promise<AuthRecoveryCodeConfirmResult> {
+  const stableId = String(stableIdRaw || '').trim();
+  const code = String(codeRaw || '').trim();
+  const expectedAuthUid = captureRecoveryAuthSession();
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  assertRecoveryAuthSession(expectedAuthUid);
+  const fn = callable<
+    { stableId: string; code: string },
+    AuthRecoveryCodeConfirmResult
+  >('authConfirmRecoveryCode', { timeout: STABLE_AUTH_LINK_TIMEOUT_MS });
+  const res = await fn({ stableId, code });
+  assertRecoveryAuthSession(expectedAuthUid);
+  const data = res?.data;
+  const recoveryEventId = String(data?.recoveryEventId ?? '').trim();
+  if (
+    data?.ok !== true
+    || String(data.stableId ?? '').trim() !== stableId
+    || !recoveryEventId
+    || recoveryEventId.length > 160
+    || recoveryEventId.includes('/')
+    || typeof data.handoffEligibleUntil !== 'number'
+    || !Number.isFinite(data.handoffEligibleUntil)
+    || data.handoffEligibleUntil <= Date.now()
+  ) {
+    throw new Error('auth_recovery_confirm_response_invalid');
+  }
+  return {
+    ok: true,
+    stableId,
+    recoveryEventId,
+    handoffEligibleUntil: data.handoffEligibleUntil,
+  };
+}
+
+export type AuthRecoveryHandoffCompleteResult = Readonly<{
+  ok: true;
+  recoveryEventId: string;
+  completed: true;
+}>;
+
+/** Acks an adopted recovery session on the default Auth app with UID drift guards. */
+export async function completeAuthRecoveryHandoffViaServer(
+  recoveryEventIdRaw: string,
+): Promise<AuthRecoveryHandoffCompleteResult> {
+  const recoveryEventId = String(recoveryEventIdRaw ?? '').trim();
+  if (!recoveryEventId || recoveryEventId.length > 160 || recoveryEventId.includes('/')) {
+    throw new Error('auth_recovery_event_id_invalid');
+  }
+  const expectedAuthUid = captureRecoveryAuthSession();
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  assertRecoveryAuthSession(expectedAuthUid);
+  const fn = callable<
+    { recoveryEventId: string },
+    AuthRecoveryHandoffCompleteResult
+  >('authCompleteRecoveryHandoff', { timeout: STABLE_AUTH_LINK_TIMEOUT_MS });
+  const res = await fn({ recoveryEventId });
+  assertRecoveryAuthSession(expectedAuthUid);
+  const data = res?.data;
+  if (
+    data?.ok !== true
+    || data.completed !== true
+    || String(data.recoveryEventId ?? '').trim() !== recoveryEventId
+  ) {
+    throw new Error('auth_recovery_handoff_response_invalid');
+  }
+  return { ok: true, recoveryEventId, completed: true };
 }
 
 export type MergeStableAccountsResult = {
@@ -1608,6 +2053,7 @@ export async function mergeStableAccountsViaServer(
   stableIdB: string,
 ): Promise<MergeStableAccountsResult | null> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
+  if (await isAccountDeleteIdentityQuarantined()) return null;
   const a = String(stableIdA || '').trim();
   const b = String(stableIdB || '').trim();
   if (!a || !b) return null;
@@ -1647,6 +2093,7 @@ export function resetAnonAuthCacheForSignOut(): void {
 
 // ── Получить uid текущего пользователя ───────────────────────────────────────
 export function getCurrentUid(): string | null {
+  if (isAccountDeleteIdentityQuarantinedFromKnownState(getAuth()?.currentUser)) return null;
   return getAuthUserId();
 }
 
@@ -1813,21 +2260,6 @@ async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string 
     }
   }
 
-  const cloudArenaBonus = cloudData['arena_daily_gift_bonus_v1'];
-  if (cloudArenaBonus) {
-    const [localRaw, cloud] = await Promise.all([
-      AsyncStorage.getItem('arena_daily_gift_bonus_v1'),
-      Promise.resolve(safeParseObject(cloudArenaBonus)),
-    ]);
-    const local = safeParseObject(localRaw);
-    if (
-      typeof cloud.date === 'string' &&
-      (cloud.date !== local.date || numField(cloud, 'extra') > numField(local, 'extra'))
-    ) {
-      pairs.push(['arena_daily_gift_bonus_v1', String(cloudArenaBonus)]);
-    }
-  }
-
   return pairs;
 }
 
@@ -1928,44 +2360,6 @@ async function doSyncToCloud(): Promise<void> {
       { merge: true }
     );
     if (!isSyncGenerationCurrent()) return;
-    // Снимок уровня/аватара на arena_profiles — топ арены читает всем одну коллекцию.
-    if (firebaseAuthUidRow) {
-      try {
-        const arenaUid = await ensureArenaAuthUid();
-        if (arenaUid === firebaseAuthUidRow) {
-          if (!isSyncGenerationCurrent()) return;
-          const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
-          const avatar = (data['user_avatar'] ?? '').trim();
-          const frame = (data['user_frame'] ?? '').trim();
-          const aura = (data['user_avatar_aura'] ?? '').trim();
-          const profileCardLevel = Math.max(0, Math.min(1, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
-          const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
-          const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
-          const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
-          await db
-            .collection('arena_profiles')
-            .doc(arenaUid)
-            .set(
-              {
-                courseTotalXp: totalXp,
-                courseAvatar: avatar || null,
-                courseFrame: frame || null,
-                courseAura: aura || null,
-                courseProfileCardLevel: profileCardLevel,
-                courseProfileCardTheme: profileCardTheme,
-                courseProfileCardMotion: profileCardMotion,
-                courseProfileCardPublicFocus: profileCardPublicFocus,
-                courseDisplayAt: now,
-                mirrorStableId: uid,
-              },
-              { merge: true },
-            );
-          if (!isSyncGenerationCurrent()) return;
-        }
-      } catch {
-        /* ignore */
-      }
-    }
     lastSuccessfulSyncAt = now;
     if (needActivityStamp || needHeartbeat || shouldSendCreatedAt) {
       lastActivityStampAt = now;
@@ -1995,6 +2389,8 @@ async function doSyncToCloud(): Promise<void> {
 async function applyRestoreFromUserDoc(
   doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
   isCurrent: () => boolean = () => true,
+  afterLegacyRestore?: (root: Record<string, unknown>) => void,
+  vipOwnerStableId?: string,
 ): Promise<boolean> {
   const assertCurrent = () => {
     if (!isCurrent()) throw new Error('stale_account_generation');
@@ -2002,6 +2398,10 @@ async function applyRestoreFromUserDoc(
   assertCurrent();
   if (!doc.exists) return false;
   const root = doc.data() ?? {};
+  const completeRestore = (applied: boolean): boolean => {
+    try { afterLegacyRestore?.(root); } catch { /* visual overlay must never alter restore */ }
+    return applied;
+  };
   const progressServerAuthoritative = root.progressServerAuthoritative === true;
   if (root.created_at) {
     assertCurrent();
@@ -2155,7 +2555,7 @@ async function applyRestoreFromUserDoc(
     // the counter never regresses on this device.
     const localCounterMap = Object.fromEntries(
       await AsyncStorage.multiGet([
-        ...MONOTONIC_COUNTER_RESTORE_KEYS,
+        ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
         'weekly_xp',
         'weekly_xp_period_start',
         'week_points',
@@ -2163,7 +2563,7 @@ async function applyRestoreFromUserDoc(
       ]),
     ) as Record<string, string | null>;
     assertCurrent();
-    for (const key of MONOTONIC_COUNTER_RESTORE_KEYS) {
+    for (const key of getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey)) {
       const cloudVal = cloudData[key];
       if (cloudVal === null || cloudVal === undefined) continue;
       const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localCounterMap[key]);
@@ -2193,6 +2593,21 @@ async function applyRestoreFromUserDoc(
       stickyPairs.push(['login_bonus_v1', mergedLoginBonus]);
     }
 
+    // Season Pass status rewards are permanent ownership. Pull their union even
+    // when local XP wins, otherwise a reward earned on another device vanishes.
+    const cloudSeasonCosmetics = cloudData[SEASON_COSMETICS_SYNC_KEY];
+    if (cloudSeasonCosmetics !== null && cloudSeasonCosmetics !== undefined && String(cloudSeasonCosmetics).trim()) {
+      const localSeasonCosmetics = await AsyncStorage.getItem(SEASON_COSMETICS_SYNC_KEY);
+      assertCurrent();
+      const mergedSeasonCosmetics = mergeSeasonCosmeticsRestoreValue(
+        cloudProgressStorageValue(SEASON_COSMETICS_SYNC_KEY, cloudSeasonCosmetics),
+        localSeasonCosmetics,
+      );
+      if (mergedSeasonCosmetics !== localSeasonCosmetics) {
+        stickyPairs.push([SEASON_COSMETICS_SYNC_KEY, mergedSeasonCosmetics]);
+      }
+    }
+
     // Косметика, выданная из админки/облака (аура «Нимб» бета-тестерам, арена-ауры и т.п.),
     // должна догонять устройство ДАЖЕ когда локальный XP ≥ облачного (обычный случай у
     // активного юзера). Иначе owned-ключи не в sticky → админская выдача не появляется, а
@@ -2220,6 +2635,28 @@ async function applyRestoreFromUserDoc(
         if (cloudVal === null || cloudVal === undefined || String(cloudVal).trim() === '') continue;
         const merged = mergeOwnedRestoreValue(cloudProgressStorageValue(key, cloudVal), localOwnedMap[key]);
         if (merged !== localOwnedMap[key]) stickyPairs.push([key, merged]);
+      }
+    }
+    // #11 multi-device: уроки с другого устройства догоняют этот девайс даже
+    // когда localXP ≥ cloudXP (обычный случай у активного юзера на втором
+    // устройстве). Уроковый прогресс строго монотонен (union/max/OR — см.
+    // isMonotonicLessonRestoreKey), поэтому подмешивание не может откатить
+    // локальные достижения, а следующий исходящий sync увезёт объединённое
+    // состояние обратно в облако — устройства сходятся. Без этого блока
+    // XP-гейт выше навсегда отрезал уроковый прогресс на более активном
+    // устройстве: Plus/косметика (sticky выше) ездили между девайсами,
+    // а уроки — нет.
+    const stickyLessonKeys = getRuntimeSyncKeys().filter(isMonotonicLessonRestoreKey);
+    if (stickyLessonKeys.length > 0) {
+      const localLessonStickyMap = Object.fromEntries(
+        await AsyncStorage.multiGet(stickyLessonKeys),
+      ) as Record<string, string | null>;
+      assertCurrent();
+      for (const key of stickyLessonKeys) {
+        const cloudVal = cloudData[key];
+        if (cloudVal === null || cloudVal === undefined) continue;
+        const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localLessonStickyMap[key]);
+        if (merged !== localLessonStickyMap[key]) stickyPairs.push([key, merged]);
       }
     }
     const cloudActiveAura = cloudData[USER_AVATAR_AURA_KEY];
@@ -2284,29 +2721,35 @@ async function applyRestoreFromUserDoc(
       }
     }
     stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
-    // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
-    if (cloudVipActive !== null && !stripPremiumActive) {
-      stickyPairs.push(
-        ['vip_active', cloudVipActive ? 'true' : 'false'],
-        ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
-        ['vip_from', cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0'],
-        ['vip_until', cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0'],
-        ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
-      );
-      if (cloudVipState?.grantAt) stickyPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
-    }
+    let appliedStickyState = false;
     if (stickyPairs.length > 0) {
       assertCurrent();
       await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
       assertCurrent();
+      appliedStickyState = true;
+    }
+    // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
+    if (cloudVipActive !== null && !stripPremiumActive && vipOwnerStableId) {
+      await writeVipSnapshotForAccount(vipOwnerStableId, {
+        vip_active: cloudVipActive ? 'true' : 'false',
+        vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
+        vip_from: cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0',
+        vip_until: cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0',
+        vip_admin_override: cloudVipActive ? 'true' : 'false',
+        vip_admin_grant_at: cloudVipState?.grantAt ?? '',
+      });
+      assertCurrent();
+      appliedStickyState = true;
+    }
+    if (appliedStickyState) {
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
       assertCurrent();
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
       assertCurrent();
-      return true;
+      return completeRestore(true);
     }
-    return false;
+    return completeRestore(false);
   }
 
   const pairs: [string, string][] = [];
@@ -2316,7 +2759,7 @@ async function applyRestoreFromUserDoc(
   const localLessonRestoreMap = Object.fromEntries(
     await AsyncStorage.multiGet([
       ...RESTORE_MERGE_KEY_SET,
-      ...MONOTONIC_COUNTER_RESTORE_KEYS,
+      ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
       ...ownedUnionRuntimeKeys,
       'weekly_xp',
       'weekly_xp_period_start',
@@ -2346,6 +2789,9 @@ async function applyRestoreFromUserDoc(
       key === 'app_version' ||
       key === 'device_platform'
     ) {
+      continue;
+    }
+    if ((VIP_STORAGE_KEYS as readonly string[]).includes(key) || key === 'vip_expiry' || key === 'vip_grant_at') {
       continue;
     }
     // tester «Снять премиум»: не воскрешаем премиум/VIP/admin-grant из облака.
@@ -2412,17 +2858,18 @@ async function applyRestoreFromUserDoc(
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
-  if (cloudVipActive !== null) {
-    const vipPairs: [string, string][] = [
-      ['vip_active', cloudVipActive ? 'true' : 'false'],
-      ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
-      ['vip_from', cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0'],
-      ['vip_until', cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0'],
-      ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
-    ];
-    if (cloudVipState?.grantAt) vipPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
+  if (cloudVipActive !== null && !stripPremiumActive) {
     assertCurrent();
-    await AsyncStorage.multiSet(sanitizeStoragePairs(vipPairs));
+    if (vipOwnerStableId) {
+      await writeVipSnapshotForAccount(vipOwnerStableId, {
+        vip_active: cloudVipActive ? 'true' : 'false',
+        vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
+        vip_from: cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0',
+        vip_until: cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0',
+        vip_admin_override: cloudVipActive ? 'true' : 'false',
+        vip_admin_grant_at: cloudVipState?.grantAt ?? '',
+      });
+    }
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
@@ -2433,7 +2880,7 @@ async function applyRestoreFromUserDoc(
   assertCurrent();
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
   assertCurrent();
-  return true;
+  return completeRestore(true);
 }
 
 /**
@@ -2441,57 +2888,126 @@ async function applyRestoreFromUserDoc(
  * Снижает чтения Firestore по сравнению с restoreFromCloud + migrateLocalProgressToCloud.
  */
 export type CloudRestoreResult = 'restored' | 'not_found' | 'failed';
-type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean };
+export type CloudRestoreFailureReason = CloudAccessFailureReason | 'provider_reauth_required';
+type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean } & {
+  failureReason: CloudRestoreFailureReason | null;
+};
+export type CloudRestoreRecoveryDetails = Pick<CloudRestoreAttempt, 'status' | 'failureReason'>;
+type CloudRestoreOptions = Readonly<{
+  canPublishExamBestPctOverlay?: () => boolean;
+}>;
+
+function tryPublishExamBestPctOverlay(
+  root: Record<string, unknown>,
+  stableId: string,
+  isCurrent: () => boolean,
+  canPublish: (() => boolean) | undefined,
+): void {
+  try {
+    if (!canPublish || !isCurrent() || !canPublish()) return;
+    if (root.progressServerAuthoritative !== true) return;
+    const progress = root.progress;
+    if (!progress || typeof progress !== 'object' || Array.isArray(progress)) return;
+    const values = extractExamBestPctOverlay(progress as Record<string, unknown>);
+    if (Object.keys(values).length === 0 || !isCurrent() || !canPublish()) return;
+    publishExamBestPctOverlay(stableId, values);
+  } catch {
+    /* legacy restore remains authoritative if the render-only overlay rejects input */
+  }
+}
 
 function completedCloudRestoreAttempt(applied: boolean): CloudRestoreAttempt {
-  return { status: 'restored', applied };
+  return { status: 'restored', applied, failureReason: null };
+}
+
+function failedCloudRestoreAttempt(failureReason: CloudRestoreFailureReason): CloudRestoreAttempt {
+  return { status: 'failed', applied: false, failureReason };
+}
+
+function cloudRestoreFailureForStableLink(
+  failure: StableAuthLinkFailure | undefined,
+): CloudRestoreFailureReason {
+  if (failure === 'stable_id_mismatch') return 'provider_reauth_required';
+  if (failure === 'app_check_unavailable') return 'app_check_unavailable';
+  if (failure === 'transport_unavailable') return 'transport_unavailable';
+  return 'identity_unavailable';
+}
+
+async function completeLegacyLessonMigrationAfterRestore(
+  attempt: CloudRestoreAttempt,
+): Promise<CloudRestoreAttempt> {
+  await migrateLegacyFreeLessonAccessForAllTargets(attempt.status).catch(() => {});
+  return attempt;
 }
 
 export async function restoreAndMigrateFromCloud(): Promise<boolean> {
-  return (await restoreAndMigrateFromCloudResult(true)).applied;
+  const attempt = await completeLegacyLessonMigrationAfterRestore(
+    await restoreAndMigrateFromCloudResult(true),
+  );
+  return attempt.applied;
 }
 
-async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): Promise<CloudRestoreAttempt> {
-  if (!CLOUD_SYNC_ENABLED) return { status: 'failed', applied: false };
+async function restoreAndMigrateFromCloudResult(
+  syncMissingDocument: boolean,
+  options: CloudRestoreOptions = {},
+): Promise<CloudRestoreAttempt> {
+  if (!CLOUD_SYNC_ENABLED) return failedCloudRestoreAttempt('transport_unavailable');
   const db = getFirestore();
-  if (!db) return { status: 'failed', applied: false };
+  if (!db) return failedCloudRestoreAttempt('transport_unavailable');
   const uid = await ensureAnonUser();
-  if (!uid) return { status: 'failed', applied: false };
+  if (!uid) return failedCloudRestoreAttempt('identity_unavailable');
   beginInitialAccountGeneration(uid);
   const accountGeneration = captureAccountGeneration();
   const isCurrent = () => isCurrentAccountGeneration(accountGeneration, uid);
-  if (!isCurrent()) return { status: 'failed', applied: false };
+  if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
   try {
-    await ensureStableAuthLinkForStableId(uid).catch(() => false);
-    if (!isCurrent()) return { status: 'failed', applied: false };
+    const stableLink = await ensureStableAuthLinkForStableIdDetailed(uid);
+    if (!stableLink.ok || stableLink.stableUid !== uid) {
+      return {
+        status: 'failed',
+        applied: false,
+        failureReason: cloudRestoreFailureForStableLink(stableLink.failure),
+      };
+    }
+    if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     const doc = await withTimeout<any>(
       db.collection('users').doc(uid).get(),
       RESTORE_FIRESTORE_READ_MS,
       'restore_user_doc',
     );
-    if (!isCurrent()) return { status: 'failed', applied: false };
+    if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
-    if (!isCurrent()) return { status: 'failed', applied: false };
+    if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     if (!doc.exists) {
       if (!migrated && syncMissingDocument) {
         await syncToCloud();
-        if (!isCurrent()) return { status: 'failed', applied: false };
+        if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
         await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
       }
-      return { status: 'not_found', applied: false };
+      return { status: 'not_found', applied: false, failureReason: null };
     }
     if (!migrated) {
       await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
-      if (!isCurrent()) return { status: 'failed', applied: false };
+      if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     }
-    if (!isCurrent()) return { status: 'failed', applied: false };
+    if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     const applied = await withRestoreApplicationLock(() => (
-      applyRestoreFromUserDoc(doc, isCurrent)
+      applyRestoreFromUserDoc(doc, isCurrent, options.canPublishExamBestPctOverlay
+        ? (root) => tryPublishExamBestPctOverlay(
+          root,
+          uid,
+          isCurrent,
+          options.canPublishExamBestPctOverlay,
+        )
+        : undefined, uid)
     ));
-    if (!isCurrent()) return { status: 'failed', applied: false };
+    if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     return completedCloudRestoreAttempt(applied);
-  } catch {
-    return { status: 'failed', applied: false };
+  } catch (error) {
+    return failedCloudRestoreAttempt(
+      cloudRestoreFailureForStableLink(classifyCloudAccessFailure(error, appCheckReady)),
+    );
   }
 }
 
@@ -2503,16 +3019,32 @@ export async function restoreFromCloud(): Promise<boolean> {
 }
 
 /** Auth-safe restore result: distinguishes an empty account from a transport failure. */
-export async function restoreFromCloudDetailed(): Promise<CloudRestoreResult> {
-  return (await restoreAndMigrateFromCloudResult(false)).status;
+export async function restoreFromCloudWithRecoveryDetails(
+  options: CloudRestoreOptions = {},
+): Promise<CloudRestoreRecoveryDetails> {
+  const attempt = await completeLegacyLessonMigrationAfterRestore(
+    await restoreAndMigrateFromCloudResult(false, options),
+  );
+  return { status: attempt.status, failureReason: attempt.failureReason };
+}
+
+export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}): Promise<CloudRestoreResult> {
+  const attempt = await completeLegacyLessonMigrationAfterRestore(
+    await restoreAndMigrateFromCloudResult(false, options),
+  );
+  return attempt.status;
 }
 
 export const __cloudSyncTestHooks = {
+  classifyCloudAccessFailure,
+  cloudRestoreFailureForStableLink,
   completedCloudRestoreAttempt,
   applyRestoreFromUserDoc,
   mergeLessonRestoreValue,
+  isMonotonicLessonRestoreKey,
   mergeOwnedFlagMap,
   mergeOwnedRestoreValue,
+  mergeSeasonCosmeticsRestoreValue,
   isOwnedUnionRestoreKey,
   buildRestoreSnapshot,
   isSuspiciousLocalXpGap,
@@ -2653,42 +3185,6 @@ export async function forceSyncToCloud(): Promise<boolean> {
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
     );
-    if (firebaseAuthUidRow) {
-      try {
-        const arenaUid = await ensureArenaAuthUid();
-        if (arenaUid === firebaseAuthUidRow) {
-          const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
-          const avatar = (data['user_avatar'] ?? '').trim();
-          const frame = (data['user_frame'] ?? '').trim();
-          const aura = (data['user_avatar_aura'] ?? '').trim();
-          const profileCardLevel = Math.max(0, Math.min(1, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
-          const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
-          const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
-          const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
-          await withTimeout(
-            db.collection('arena_profiles').doc(arenaUid).set(
-              {
-                courseTotalXp: totalXp,
-                courseAvatar: avatar || null,
-                courseFrame: frame || null,
-                courseAura: aura || null,
-                courseProfileCardLevel: profileCardLevel,
-                courseProfileCardTheme: profileCardTheme,
-                courseProfileCardMotion: profileCardMotion,
-                courseProfileCardPublicFocus: profileCardPublicFocus,
-                courseDisplayAt: now,
-                mirrorStableId: uid,
-              },
-              { merge: true },
-            ),
-            FORCE_SYNC_FIRESTORE_WRITE_MS,
-            'arena_profile_set',
-          );
-        }
-      } catch {
-        /* ignore */
-      }
-    }
     lastSuccessfulSyncAt = now;
     lastActivityStampAt = now;
     pendingSync = false;
@@ -2710,43 +3206,129 @@ export async function forceSyncToCloud(): Promise<boolean> {
 // (язык, тема, размер шрифта, haptics) — это per-device preferences, а не per-account.
 //
 // ВАЖНО: stable_id не трогаем тут — это делает clearStableId() в stable_id.ts.
-export async function saveAccountSwitchEmergencyBackup(reason: string): Promise<void> {
-  try {
-    const keys = accountLocalDataKeysForToday();
-    const pairs = (await AsyncStorage.multiGet(keys)).filter(([, value]) => value != null);
-    const stableId = await getCanonicalUserId().catch(() => null);
-    await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, JSON.stringify({
-      version: 1,
-      createdAt: Date.now(),
-      reason: String(reason || 'unknown').slice(0, 80),
-      stableId,
-      pairs,
-    }));
-  } catch (e) {
-    if (typeof __DEV__ !== 'undefined' && __DEV__) {
-      console.warn('[cloud_sync] account switch emergency backup failed', e);
-    }
+export async function saveAccountSwitchEmergencyBackup(
+  reason: string,
+  expectedStableId?: string,
+): Promise<boolean> {
+  if (await isAccountDeleteIdentityQuarantined()) return false;
+  const stableId = await getCanonicalUserId();
+  if (!stableId || (expectedStableId && stableId !== expectedStableId)) {
+    throw new Error('account_switch_backup_identity_unavailable');
   }
+  const shardQueueKey = shardDeltaQueueStorageKey(stableId);
+  const keys = Array.from(new Set([
+    ...await collectAccountLocalDataKeys(),
+    shardQueueKey,
+  ]));
+  const pairs = (await AsyncStorage.multiGet(keys)).filter(([, value]) => value != null) as Array<[string, string]>;
+  const queueRaw = pairs.find(([key]) => key === shardQueueKey)?.[1] ?? null;
+  const payload = {
+    version: 2,
+    createdAt: Date.now(),
+    reason: String(reason || 'unknown').slice(0, 80),
+    stableId,
+    pairs,
+  };
+  const raw = JSON.stringify(payload);
+  const previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  try {
+    await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, raw);
+    const verifiedRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+    if (verifiedRaw !== raw) throw new Error('account_switch_backup_verification_failed');
+    const verified = JSON.parse(verifiedRaw) as typeof payload;
+    const verifiedQueueRaw = verified.pairs.find(([key]) => key === shardQueueKey)?.[1] ?? null;
+    if (verified.stableId !== stableId || verifiedQueueRaw !== queueRaw) {
+      throw new Error('account_switch_backup_verification_failed');
+    }
+  } catch (e) {
+    try {
+      if (previousBackupRaw == null) {
+        await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+      } else {
+        await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, previousBackupRaw);
+      }
+    } catch {
+      throw new Error('account_switch_backup_rollback_failed');
+    }
+    throw e;
+  }
+  return true;
 }
 
-export async function wipeLocalAccountData(): Promise<void> {
-  const accountKeys = new Set<string>(accountLocalDataKeysForToday());
+async function wipeLocalAccountDataUnsafe(): Promise<void> {
+  const { cancelPendingGeneratedNicknameRetry } = await import('./nickname_guard');
+  cancelPendingGeneratedNicknameRetry();
+  const accountKeys = await collectAccountLocalDataKeys();
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
-  const toRemove = Array.from(accountKeys).filter((k) => !KEEP.has(k));
-  try {
-    await AsyncStorage.multiRemove(toRemove);
-  } catch (e) {
-    if (__DEV__) console.warn('[cloud_sync] wipeLocalAccountData partial failure', e);
-  }
+  const toRemove = accountKeys.filter((key) => !KEEP.has(key));
+  await AsyncStorage.multiRemove(toRemove);
+  // Generation-bound writers are the primary barrier. This final scan is
+  // defense-in-depth for a callback that committed during the first removal.
+  const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
+    .filter((key) => !KEEP.has(key));
+  await AsyncStorage.multiRemove(lateLearningV2Keys);
   // Сбрасываем in-memory bookkeeping синка
   lastSuccessfulSyncAt = 0;
   lastActivityStampAt = 0;
   pendingSync = false;
   resetAppSnapshotForAccountSwitch();
+  // зачем: без этого PlayerProfileModal мог мгновенно отрендерить множители
+  // XP предыдущего аккаунта (см. комментарий у resetMultiplierBreakdownCache).
+  resetMultiplierBreakdownCache();
+  // зачем: без этого club_screen мог мгновенно отрендерить ранг/группу лиги
+  // предыдущего аккаунта (см. комментарий у clearCachedLeagueStateSnapshot).
+  clearCachedLeagueStateSnapshot();
+  // зачем: дисковый снапшот «Вызовов дня» ключуется по аккаунту, но при wipe локальных
+  // данных его надо стереть вместе с остальным — иначе он остаётся мусором на диске.
+  clearDailyTasksScreenSnapshotOnDisk();
+  // зачем: ключ снапшота практики содержит только target+язык, БЕЗ uid — без сброса
+  // следующий вошедший увидел бы на первом кадре чужую статистику ошибок.
+  clearTrainerPracticeSnapshotOnDisk();
+  // зачем: общий снапшот экранов (стрик, рефералы, топ, аналитика и др.) поднимается
+  // в память при старте и синхронно рисует первый кадр — при wipe его надо стереть
+  // вместе с остальным, иначе на диске останутся чужие цифры.
+  clearScreenSnapshots();
   if (syncTimer) {
     clearTimeout(syncTimer);
     syncTimer = null;
+  }
+}
+
+export async function wipeLocalAccountData(): Promise<void> {
+  await withAccountTransitionLock(wipeLocalAccountDataUnsafe);
+}
+
+const CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS = [
+  'auth_clean_install_recovery_v1',
+  'auth_clean_install_recovery_adoption_v1',
+] as const;
+
+/**
+ * Wipes only account-scoped source data during an authoritative clean-install
+ * L→S adoption. Both nonsecret recovery journals are verified before and after
+ * the wipe so a crash remains resumable and source data is never merged into S.
+ */
+export async function wipeLocalAccountDataForCleanInstallRecovery(): Promise<void> {
+  await withAccountTransitionLock(wipeLocalAccountDataForCleanInstallRecoveryWhileLocked);
+}
+
+/** Internal recovery primitive: caller must already own the account-transition lock. */
+export async function wipeLocalAccountDataForCleanInstallRecoveryWhileLocked(): Promise<void> {
+  const before = await AsyncStorage.multiGet([...CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS]);
+  if (before.some(([, raw]) => raw === null)) {
+    throw new Error('clean_recovery_journal_required_for_wipe');
+  }
+  const sourceAccountKeys = await collectAccountLocalDataKeys();
+  await wipeLocalAccountDataUnsafe();
+  const residualSourceRows = await AsyncStorage.multiGet(sourceAccountKeys);
+  if (residualSourceRows.some(([, raw]) => raw !== null)) {
+    throw new Error('clean_recovery_source_wipe_incomplete');
+  }
+  for (const [key, expectedRaw] of before) {
+    if (await AsyncStorage.getItem(key) !== expectedRaw) {
+      throw new Error('clean_recovery_journal_changed_during_wipe');
+    }
   }
 }
 
@@ -2755,6 +3337,7 @@ export async function wipeLocalAccountData(): Promise<void> {
 export async function deleteCloudData(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
   if (IS_EXPO_GO) return;
+  if (await isAccountDeleteIdentityQuarantined()) return;
   const canonicalUid = await getCanonicalUserId();
   await ensureAnonUser();
   await initFirebaseAppCheckIfAvailable().catch(() => {});
@@ -2781,11 +3364,17 @@ export type AccountDeleteEnqueueAck = {
   created: boolean;
 };
 
-export async function enqueueCloudDeletion(stableId: string | null): Promise<AccountDeleteEnqueueAck> {
+export function startCloudDeletionEnqueue(
+  stableId: string | null,
+): AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
-    throw new Error('account_delete_enqueue_unavailable');
+    return startAccountDeleteEnqueueWithDeadline(
+      async () => { throw new Error('account_delete_enqueue_unavailable'); },
+      async () => { throw new Error('account_delete_enqueue_unavailable'); },
+      ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
+    );
   }
-  return runAccountDeleteEnqueueWithDeadline(
+  return startAccountDeleteEnqueueWithDeadline(
     () => initFirebaseAppCheckIfAvailable().catch(() => {}),
     async () => {
       const fn = callable<{ stableId?: string | null }, AccountDeleteEnqueueAck>(
@@ -2798,6 +3387,10 @@ export async function enqueueCloudDeletion(stableId: string | null): Promise<Acc
     },
     ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
   );
+}
+
+export async function enqueueCloudDeletion(stableId: string | null): Promise<AccountDeleteEnqueueAck> {
+  return startCloudDeletionEnqueue(stableId).acknowledgment;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

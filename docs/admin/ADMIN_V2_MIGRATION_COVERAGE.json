@@ -66,13 +66,13 @@
     },
     {
       "capabilityId": "paywall-ab",
-      "label": "A/B экрана оплаты",
+      "label": "A/B-тест пейволов",
       "route": "application",
       "legacyTab": "paywall-ab",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
-      "notes": "Функция временно открывается отдельной ссылкой на старый интерфейс до пофункционального переноса."
+      "status": "guarded",
+      "nativeRoute": "application",
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "app-messages",
@@ -425,6 +425,16 @@
       "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
+      "capabilityId": "plans",
+      "label": "Планы",
+      "route": "content",
+      "legacyTab": null,
+      "legacyPage": null,
+      "status": "guarded",
+      "nativeRoute": "plans",
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
+    },
+    {
       "capabilityId": "explain-reports",
       "label": "Репорты объяснений",
       "route": "content",
@@ -613,6 +623,16 @@
       "status": "fallback",
       "nativeRoute": null,
       "notes": "Функция временно открывается отдельной ссылкой на старый интерфейс до пофункционального переноса."
+    },
+    {
+      "capabilityId": "coin-center",
+      "label": "Центр монет",
+      "route": "money",
+      "legacyTab": null,
+      "legacyPage": null,
+      "status": "guarded",
+      "nativeRoute": "coin-center",
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Серверные callable биржи (adminGetCoinExchangeCenter, adminSetCoinExchangeRate) ещё не опубликованы; раздел честно показывает состояние ошибки до их выкатки."
     }
   ],
   "buttonCoverage": [
@@ -25776,11 +25796,11 @@
   ],
   "summary": {
     "capabilities": {
-      "total": 59,
+      "total": 61,
       "inventory": 0,
       "ported": 0,
-      "fallback": 47,
-      "guarded": 12,
+      "fallback": 46,
+      "guarded": 15,
       "blocked": 0
     },
     "buttons": {

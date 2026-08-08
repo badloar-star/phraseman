@@ -23,11 +23,8 @@ describe('ai_dialog_flags', () => {
     expect(isAiDialogEnabled()).toBe(false);
   });
 
-  it('gives exactly TWO lifetime free dialogs (not a per-day reply count)', () => {
-    // Подняли с 1 до 2 (2026-06-28): одна попытка не давала прочувствовать
-    // ценность фичи до пейвола. Сервер (enforceLifetimeFreeDialog) держит тот же
-    // лимит через счётчик freeDialogCount — числа ДОЛЖНЫ совпадать.
-    expect(FREE_DIALOGS_LIFETIME_DEFAULT).toBe(2);
-    expect(getFreeDialogsLifetime()).toBe(2);
+  it('does not grant lifetime trial dialogs while Dialogs is a Plus feature', () => {
+    expect(FREE_DIALOGS_LIFETIME_DEFAULT).toBe(0);
+    expect(getFreeDialogsLifetime()).toBe(0);
   });
 });

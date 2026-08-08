@@ -13,13 +13,13 @@ describe('trainer_weak_spot plan trainer completion contract', () => {
   const helperSource = read('app/trainer_plan_task_route.ts');
   const wordsSource = read('app/trainer_words_session.tsx');
   const phrasesSource = read('app/trainer_phrases_session.tsx');
-  const arenaSource = read('app/trainer_arena_session.tsx');
 
   it('routes plan trainer tasks through the live trainer-plan router, not legacy smart session', () => {
     expect(navigationSource).toContain("pathname: '/trainer_plan_session'");
     expect(planRouterSource).toContain('getTrainerPremiumItemsForPlan(');
     expect(planRouterSource).toContain("if (queue === 'words') return '/trainer_words_session'");
-    expect(planRouterSource).toContain("if (queue === 'arena') return '/trainer_arena_session'");
+    // Арена обслуживается фразовой сессией — битого роута '/trainer_arena_session' нет.
+    expect(planRouterSource).not.toContain("return '/trainer_arena_session'");
     expect(planRouterSource).toContain("return '/trainer_phrases_session'");
   });
 
@@ -28,11 +28,18 @@ describe('trainer_weak_spot plan trainer completion contract', () => {
     expect(helperSource).toContain("routeParamString(params.planTrainerTask) === '1'");
     expect(helperSource).toContain('markPersonalPlanTaskCompleted({');
 
-    for (const source of [wordsSource, phrasesSource, arenaSource]) {
+    for (const source of [wordsSource, phrasesSource]) {
       expect(source).toContain('readTrainerPlanTaskContext({');
       expect(source).toContain('getTrainerPremiumItemsForPlanQueue(');
       expect(source).toContain('planTrainerCompletionTracked.current = true');
       expect(source).toContain('markTrainerPlanTaskCompleted(planTrainerContext, studyTarget)');
     }
+  });
+
+  it('serves plan arena items through the phrases session merged queue', () => {
+    // Однострочные якоря (CRLF-безопасно): plan-ветка грузит и арену плана,
+    // объединяя её с фразами тем же компаратором.
+    expect(phrasesSource).toContain("'arena',");
+    expect(phrasesSource).toContain('mergePhraseSessionItems(planPhrases, planArena, planTrainerContext.requiredItems)');
   });
 });

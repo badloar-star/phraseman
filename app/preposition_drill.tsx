@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,6 +16,9 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
+import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ClozeGapText from '../components/ClozeGapText';
@@ -39,6 +42,7 @@ import { safeRouterBack } from './navigation_back';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { glassFill } from '../components/GlassSurface';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
 
@@ -108,9 +112,6 @@ export default function PrepositionDrillScreen() {
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  // [FeedbackKit] Локальная серия подряд-верных ответов (лесенка комбо) — только
-  // ощущения; экономику/прогресс не трогает. + мини-победа на финал прогона.
-  const fkComboRef = useRef(0);
   const [victoryShown, setVictoryShown] = useState(false);
   const victoryFiredRef = useRef(false);
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
@@ -292,6 +293,24 @@ export default function PrepositionDrillScreen() {
     victoryFiredRef.current = true;
     setVictoryShown(true);
   }, [done]);
+
+  // ── Дроп коллекционной карточки за закрытый раздел предлогов ──────────────
+  // зачем: владелец попросил шанс карточки и за закрытие предлогов. Шанс/кап/
+  // pity — общие с уроком, решает сервер. eventId = prep:<цель>:<урок> без дня:
+  // раздел закрывается один раз, режим повтора (reviewMode) второй карточки не
+  // даёт — иначе можно было бы фармить повторными прогонами.
+  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const cardDropRolledRef = useRef(false);
+  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
+
+  useEffect(() => {
+    if (!done || reviewMode || total === 0) return;
+    if (cardDropRolledRef.current) return;
+    cardDropRolledRef.current = true;
+    void maybeRollCollectibleDrop('prep', `${studyTarget ?? 'en'}:${lessonId}`, { dailyScoped: false })
+      .then((drop) => { if (drop) setCardDrop(drop); })
+      .catch(() => {});
+  }, [done, reviewMode, total, studyTarget, lessonId]);
   const speakSentenceEn = useCallback((template: string, prep: string) => {
     if (!voiceOut) return;
     const line = template.replace(/__/g, prep).replace(/\s+/g, ' ').trim();
@@ -394,13 +413,10 @@ export default function PrepositionDrillScreen() {
     setSelected(option);
     setIsCorrect(ok);
     speakSentenceEn(item.sentenceTemplate, item.correct);
-    // [FeedbackKit] Вердикт ответа (звук+вибра). Ранее: hapticSuccess+correct /
-    // hapticError. fk.correct/fk.wrong дают тот же haptic + тёплый/мягкий звук,
-    // fk.combo — лесенку серии. Экономика/прогресс ниже считаются как раньше.
+    // [FeedbackKit] Вердикт ответа (звук+вибра). fk.correct/fk.wrong дают тот же
+    // haptic + тёплый/мягкий звук. Экономика/прогресс ниже считаются как раньше.
     if (ok) {
-      fkComboRef.current += 1;
-      fk.correct();
-      fk.combo(fkComboRef.current);
+      fk.verdict({ correct: true });
       showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -426,11 +442,7 @@ export default function PrepositionDrillScreen() {
         .then(r => setXpToastAmount(r.finalDelta))
         .catch(() => {});
     } else {
-      // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
-      const brokeFrom = fkComboRef.current;
-      fkComboRef.current = 0;
-      if (brokeFrom >= 3) fk.comboBreak(brokeFrom);
-      else fk.wrong();
+      fk.verdict({ correct: false });
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = wrongIds.includes(item.id) ? wrongIds : [...wrongIds, item.id];
       setAnsweredIds(nextAnswered);
@@ -466,8 +478,7 @@ export default function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
-    // [FeedbackKit] Новый прогон — сброс серии и разрешение показать финал снова.
-    fkComboRef.current = 0;
+    // [FeedbackKit] Новый прогон — разрешение показать финал снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };
@@ -479,8 +490,7 @@ export default function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
-    // [FeedbackKit] Новый прогон — сброс серии и разрешение показать финал снова.
-    fkComboRef.current = 0;
+    // [FeedbackKit] Новый прогон — разрешение показать финал снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };
@@ -527,7 +537,7 @@ export default function PrepositionDrillScreen() {
             <EnergyBar size={30} />
           </View>
 
-          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), marginBottom: 12 }}>
+          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 14, marginBottom: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
           </View>
 
@@ -536,7 +546,7 @@ export default function PrepositionDrillScreen() {
               <BouncyScrollView
                 ref={scrollRef}
                 style={{ flex: 1 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{ paddingBottom: scrollBottomPad }}
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled
@@ -560,8 +570,6 @@ export default function PrepositionDrillScreen() {
                 style={{
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: ds.radius.lg,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: ds.spacing.md,
                   marginBottom: ds.spacing.md,
                   ...(effectiveOs === 'android' ? { elevation: 2 } : {}),
@@ -805,7 +813,7 @@ export default function PrepositionDrillScreen() {
                 transform: [{ translateY: xpTranslateY }],
                 opacity: xpOpacity,
                 zIndex: 99999,
-                elevation: 24,
+                ...noAndroidOutline,
               }}
             >
               <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>
@@ -834,6 +842,15 @@ export default function PrepositionDrillScreen() {
         </ContentWrap>
 
         <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} />
+        {/* Карточка за закрытый раздел предлогов — сюрприз поверх экрана итога. */}
+        <CollectibleDropModal
+          outcome={cardDropVisible ? cardDrop : null}
+          onClose={() => setCardDrop(null)}
+          onOpenCollection={() => {
+            setCardDrop(null);
+            router.push('/collectibles_screen' as any);
+          }}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

@@ -36,8 +36,10 @@ describe('admin premium delivery contract', () => {
     const listenerStart = premiumContext.indexOf('Live VIP grants/revokes from admin/index.html');
     const listenerBody = premiumContext.slice(listenerStart, premiumContext.indexOf('// Reload when app comes to foreground', listenerStart));
 
-    expect(listenerBody).toContain('ensureStableAuthLinkForStableId');
-    expect(listenerBody.indexOf('ensureStableAuthLinkForStableId(uid)')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
+    expect(listenerBody).toContain('ensureStableAuthLinkForStableIdDetailed');
+    expect(listenerBody.indexOf('ensureStableAuthLinkForStableIdDetailed(uid)')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
+    expect(listenerBody).toContain("stableLink?.failure === 'stable_id_mismatch'");
+    expect(listenerBody.indexOf('stableLink.stableUid !== uid')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
     expect(listenerBody).toContain('scheduleRetry');
     expect(listenerBody).toContain('2_500');
   });
@@ -52,6 +54,19 @@ describe('admin premium delivery contract', () => {
     expect(reloadBody).toContain('if (accessAfterCloud)');
     expect(reloadBody).toContain('getVerifiedRealPremiumStatus().catch');
     expect(reloadBody).toContain('getVerifiedVipStatus().catch');
+  });
+
+  it('does not redirect a direct AI-dialog entry before entitlement resolution finishes', () => {
+    const dialogSession = fs.readFileSync(path.join(process.cwd(), 'app', 'ai_dialog_session.tsx'), 'utf8');
+    const redirectStart = dialogSession.indexOf("source: 'ai_dialog_direct_entry'");
+    const redirectEffect = dialogSession.slice(Math.max(0, redirectStart - 260), redirectStart + 260);
+
+    expect(premiumContext).toContain('accessResolved: boolean;');
+    expect(premiumContext).toContain('const [accessResolved, setAccessResolved] = useState(false);');
+    expect(premiumContext).toContain('setAccessResolved(true);');
+    expect(dialogSession).toContain('const { hasPremiumAccess, accessResolved } = usePremium();');
+    expect(redirectEffect).toContain('if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;');
+    expect(redirectEffect).toContain('[accessResolved, aiDialogGateOpen, dialogAccess, router]');
   });
 
   it('restarts the VIP listener after provider login or stable-id merge', () => {

@@ -2,7 +2,10 @@ export const HOME_BACK_FALLBACK = '/(tabs)/home';
 
 type SafeBackRouter = {
   canGoBack?: () => boolean;
+  canDismiss?: () => boolean;
   back: () => void;
+  dismiss?: (count?: number) => void;
+  dismissTo?: (target: any) => void;
   replace: (fallback: any) => void;
 };
 
@@ -28,6 +31,11 @@ type ModalDismissRouter = SafeBackRouter & {
 // ──────────────────────────────────────────────────────────────────────────
 
 const MAX_HISTORY = 50;
+// Native POP_TO removes the abandoned screens instead of leaving replace-created
+// instances behind. Keep a remote build-time kill switch for the old Android/Fabric
+// teardown regression: EXPO_PUBLIC_NATIVE_POP_TO_BACK=0 restores deterministic replace.
+const NATIVE_POP_TO_BACK_ENABLED =
+  typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 let navigationStack: string[] = [];
 let suppressNextRemember = false;
 // Когда экран уходит через router.replace (свап, а не push) — следующий честный
@@ -64,12 +72,38 @@ const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_a',
   '/paywall_b',
   '/paywall_c',
+  '/paywall_d',
+  '/paywall_e',
+  '/paywall_f',
+  '/paywall_g',
 ]);
 
-/** true для пейволов и транзитных диспетчеров — на них «назад» вести нельзя. */
+// Экраны СЫГРАННОГО турнира — тоже конечные точки, а не место возврата.
+//
+// зачем 2026-08-02 (владелец: «если турнир закончен, то при выходе потом
+// кнопка назад из общего раздела возвращает в окно „турнир завершён“»):
+// турнир — одноразовое событие. Его лобби, раунд, межраундовая таблица и
+// экран итогов существуют, пока идёт игра; после выхода возвращаться туда
+// некуда — комната закрыта, играть в ней больше нельзя. Оставаясь в стеке,
+// они делали «назад» из хаба турниров ловушкой: игрок снова видел «Турнир
+// завершён» вместо возврата на предыдущий экран.
+//
+// Тот же класс проблемы, что с пейволом выше, и лечится тем же приёмом:
+// при выборе цели возврата такие записи пропускаются, и «назад» уходит на
+// первый реальный экран под ними.
+const FINISHED_TOURNAMENT_BASE_PATHS: ReadonlySet<string> = new Set([
+  '/tournament_lobby',
+  '/tournament_round',
+  '/tournament_table',
+  '/tournament_results',
+]);
+
+/** true для пейволов, транзитных диспетчеров и отыгранных экранов турнира. */
 function isNonBackTargetPath(path: string): boolean {
   const base = basePath(path);
-  return PAYWALL_BASE_PATHS.has(base) || isTransientRedirectPath(base);
+  return PAYWALL_BASE_PATHS.has(base)
+    || FINISHED_TOURNAMENT_BASE_PATHS.has(base)
+    || isTransientRedirectPath(base);
 }
 
 /**
@@ -106,6 +140,7 @@ function currentPath(): string | null {
 // иначе смена вкладки/фильтра внутри одного экрана плодила бы записи в стеке.
 const IDENTITY_QUERY_KEYS: ReadonlySet<string> = new Set([
   'id',
+  'roomId',
   'lessonId',
   'level',
   'planId',
@@ -206,12 +241,7 @@ export function safeRouterBack(
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
   clearPendingNoopBackTimer();
-  // Native-stack router.back() hard-crashes the app on Android/Fabric during the
-  // Back teardown (see screenOptions note in app/_layout.tsx — the stack already
-  // forces animation:'none' to work around that native fault). Going back through
-  // router.back() re-exposes that crash on the universal "exit from any section"
-  // path. Since the stack has no animation, a deterministic replace to the previous
-  // route is visually identical and never triggers the native crash.
+  const leavingPath = currentPath();
 
   // Снимаем текущий маршрут со стека и берём предыдущий — честный «назад».
   if (navigationStack.length > 0) {
@@ -226,7 +256,10 @@ export function safeRouterBack(
   while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
     navigationStack.pop();
   }
-  const target = currentPath() ?? fallback;
+  // Settings sheets must always return to Settings. Their opener can be a cached
+  // tab, which is not guaranteed to be present in the reconstructed history.
+  const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';
+  const target = forceSettingsFallback ? fallback : (currentPath() ?? fallback);
 
   // Если по какой-то причине предыдущий совпал с местом, где мы стоим, или
   // стек опустел — уходим на fallback (главную), чтобы не было no-op/петли.
@@ -234,6 +267,32 @@ export function safeRouterBack(
   // не возвращаемся на него, а уходим на fallback.
   const safeTarget =
     target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
+
+  // A Settings sheet is opened above the already-mounted Settings tab. Dismiss it
+  // instead of replacing the route so the tab instance and its scroll offset stay intact.
+  if (forceSettingsFallback && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+    router.dismiss(1);
+    return;
+  }
+
+  // `dismissTo` performs a native POP_TO: abandoned screens are actually unmounted,
+  // so their subscriptions/animations cannot survive as retained stack work. For two
+  // parameterized instances of the same pathname POP_TO is ambiguous, therefore pop
+  // exactly one native entry instead. The replace fallback remains remotely switchable.
+  const samePathDifferentIdentity =
+    !!leavingPath &&
+    leavingPath.split('?')[0] === String(safeTarget).split('?')[0] &&
+    basePath(leavingPath) !== basePath(String(safeTarget));
+  if (NATIVE_POP_TO_BACK_ENABLED) {
+    if (samePathDifferentIdentity && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+      router.dismiss(1);
+      return;
+    }
+    if (typeof router.dismissTo === 'function') {
+      router.dismissTo(safeTarget);
+      return;
+    }
+  }
 
   // Гасим запись следующего rememberNavigationPath, иначе целевой маршрут
   // запушится заново и стек снова закольцуется.
@@ -255,17 +314,25 @@ export function dismissPaywallModal(
   while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
     navigationStack.pop();
   }
-  const target = currentPath() ?? fallback;
+  // The Plus modal opened from Settings goes through a transient dispatcher, so
+  // use its explicit Settings fallback instead of stale tab history.
+  const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';
+  const target = forceSettingsFallback ? fallback : (currentPath() ?? fallback);
   const safeTarget =
     target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
 
   const shouldReplace = paywallDismissShouldReplace;
   paywallDismissShouldReplace = false;
-  suppressNextRemember = true;
-  if (!shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+  if (!forceSettingsFallback && !shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
     router.dismiss(1);
     return;
   }
 
+  if (NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function') {
+    router.dismissTo(safeTarget);
+    return;
+  }
+
+  suppressNextRemember = true;
   router.replace(safeTarget);
 }

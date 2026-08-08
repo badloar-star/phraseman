@@ -1,6 +1,6 @@
 import { useRef, useSyncExternalStore } from 'react';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
-import type { ArenaProfile } from './types/arena';
+import type { CustomizationSnapshot } from './customization_snapshot';
 
 export const APP_SNAPSHOT_RESOURCE_LIMITS = {
   friendProfileMaxEntries: 240,
@@ -27,7 +27,15 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
   totalXp: number;
   level: number;
   premiumActive: boolean;
+  premiumPlan?: string;
   vipActive: boolean;
+  /**
+   * Активный VIP-грант без даты окончания (сертификат/промокод «навсегда»,
+   * бессрочная выдача из админки) — такой доступ показывается как «Pro».
+   * зачем: снапшот должен знать тир на первом кадре, иначе плашка моргает
+   * «Plus» → «Pro» после reload().
+   */
+  vipLifetime?: boolean;
 }
 
 export interface AppSnapshotProgress extends AppSnapshotMeta {
@@ -64,14 +72,10 @@ export interface AppSnapshotFriends extends AppSnapshotMeta {
   profiles: Record<string, AppSnapshotFriendProfile>;
 }
 
-export interface AppSnapshotArena extends AppSnapshotMeta {
-  profile: ArenaProfile | null;
-  historyCount: number;
-}
-
 export interface AppSnapshotSettings extends AppSnapshotMeta {
   autoCheck: boolean;
   voiceOut: boolean;
+  uiSounds: boolean;
   speechRate: number;
   speechVoiceId: string;
   hardMode: boolean;
@@ -86,8 +90,8 @@ export interface AppSnapshot {
   progress?: AppSnapshotProgress;
   lessons?: AppSnapshotLessons;
   friends?: AppSnapshotFriends;
-  arena?: AppSnapshotArena;
   settings?: AppSnapshotSettings;
+  customization?: CustomizationSnapshot;
   primedAt?: number;
 }
 
@@ -105,8 +109,45 @@ function shallowPatchChanged(current: AppSnapshot, patch: Partial<AppSnapshot>):
   return Object.entries(patch).some(([key, value]) => current[key as keyof AppSnapshot] !== value);
 }
 
+function preserveNewerProfile(
+  current: Readonly<AppSnapshot>,
+  patch: Partial<AppSnapshot>,
+): Partial<AppSnapshot> {
+  const storageHydrationLostSameTick = Boolean(
+    patch.profile
+    && current.profile
+    && patch.profile.updatedAt === current.profile.updatedAt
+    && patch.profile.source === 'storage'
+    && current.profile.source !== 'storage',
+  );
+  if (
+    !patch.profile
+    || !current.profile
+    || (
+      patch.profile.updatedAt >= current.profile.updatedAt
+      && !storageHydrationLostSameTick
+    )
+  ) {
+    return patch;
+  }
+  return { ...patch, profile: current.profile };
+}
+
 export function getAppSnapshot(): Readonly<AppSnapshot> {
   return snapshot;
+}
+
+export function resolveHydratedProfileName(
+  hydrationStartedAt: number,
+  hydratedName: string | null | undefined,
+): string {
+  const candidate = String(hydratedName ?? '').trim();
+  const currentProfile = snapshot.profile;
+  if (!currentProfile) return candidate;
+  if (currentProfile.updatedAt >= hydrationStartedAt) {
+    return currentProfile.name || candidate;
+  }
+  return candidate || currentProfile.name;
 }
 
 export function subscribeAppSnapshot(listener: Listener): () => void {
@@ -117,7 +158,8 @@ export function subscribeAppSnapshot(listener: Listener): () => void {
 }
 
 export function patchAppSnapshot(patchOrFn: Patch): void {
-  const patch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
+  const requestedPatch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
+  const patch = requestedPatch ? preserveNewerProfile(snapshot, requestedPatch) : requestedPatch;
   if (!patch || !shallowPatchChanged(snapshot, patch)) return;
   snapshot = { ...snapshot, ...patch };
   emitSnapshotChanged();

@@ -3,7 +3,11 @@
  * On iOS, RNFBAppCheckModule.sharedInstance() must run before FirebaseApp.configure();
  * see plugins/withIosFirebaseEarlyConfigure.js.
  */
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
+import {
+  APP_CHECK_REAL_ATTESTATION_ENABLED,
+  CLOUD_SYNC_ENABLED,
+  IS_EXPO_GO,
+} from './config';
 
 let appCheckInitPromise: Promise<boolean> | null = null;
 let appCheckReady = false;
@@ -65,13 +69,12 @@ export async function initFirebaseAppCheckIfAvailable(
 
   const debugToken = String(process.env.EXPO_PUBLIC_APP_CHECK_DEBUG_TOKEN || '').trim();
   const useDebugProvider =
-    !IS_STORE_RELEASE &&
+    !APP_CHECK_REAL_ATTESTATION_ENABLED &&
     (process.env.EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG === '1' || debugToken.length > 0);
 
-  // Internal/preview release builds are not installed from the stores, so real
-  // attestation can produce invalid tokens. Use debug explicitly there; store
-  // builds use Play Integrity / App Attest.
-  if (!IS_STORE_RELEASE && !useDebugProvider) {
+  // Internal/preview builds use debug only when explicitly configured. Builds
+  // explicitly marked for real attestation use Play Integrity / App Attest.
+  if (!APP_CHECK_REAL_ATTESTATION_ENABLED && !useDebugProvider) {
     setAppCheckAutoRefreshEnabled(false);
     return false;
   }

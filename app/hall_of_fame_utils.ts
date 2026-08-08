@@ -12,6 +12,7 @@ import { markStreakLost } from './streak_revive';
 import { incrementStreakLostCount } from './paywall_personalization';
 import { repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
+import { getCardStreakShieldStatus, tryConsumeCardStreakShield } from './profile_card_streak_shield';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import {
   getLocalDayKey,
@@ -23,6 +24,11 @@ import type { Lang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getCurrentWeekStartIso } from './weekly_xp';
+import {
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -122,12 +128,31 @@ export const resetWeekPointsIfStale = async (): Promise<void> => {
     const data: { weekKey?: string; points?: number } = JSON.parse(raw);
     if (data.weekKey !== currentWeekKey) {
       await AsyncStorage.multiSet([
+        // Финал завершившейся недели — до обнуления, чтобы лиговый rollover
+        // мог считать переход по реальным очкам, а не по устаревшему кэшу группы.
+        ['week_points_last_final', JSON.stringify({ weekKey: data.weekKey ?? '', points: Number(data.points ?? 0) || 0 })],
         ['week_points_v2', JSON.stringify({ weekKey: currentWeekKey, points: 0 })],
         ['week_points', '0'],
       ]);
     }
   } catch (e) {
     if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
+  }
+};
+
+// Возвращает финальные очки завершившейся недели, сохранённые resetWeekPointsIfStale,
+// если сохранённый weekKey совпадает с запрошенным weekId; иначе null.
+export const getLastWeekFinalPoints = async (weekId: string): Promise<number | null> => {
+  try {
+    const raw = await AsyncStorage.getItem('week_points_last_final');
+    if (!raw) return null;
+    const data: { weekKey?: string; points?: number } = JSON.parse(raw);
+    if (data.weekKey !== weekId) return null;
+    const points = Number(data.points ?? 0);
+    return Number.isFinite(points) ? points : null;
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return null;
   }
 };
 
@@ -204,7 +229,9 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
 
 // ── Обновить цепочку (дней подряд) и week_days_done при активности ───────────────────────────
 // Вызывать при ЛЮБОМ начислении опыта
-export const updateStreakOnActivity = async (): Promise<number> => {
+export const updateStreakOnActivity = async (
+  accountToken?: AccountGenerationToken,
+): Promise<number> => {
   try {
     await repairDevSeededStreakInStorage();
 
@@ -251,11 +278,24 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       else if (lastActive && missedExactlyOneDay && await wasRepairedToday()) {
         // streak не меняем — починка спасла
       }
-      // 3. Первый вход в приложение
+      // 3. Карточный щит III+ (Фаза 3): бесплатная авто-заморозка 1 раз в 7 дней.
+      // Приоритет ниже ручной заморозки и починки, но выше щита друга (его бережём).
+      // Достижение streak_freeze_used здесь НЕ эмитим — оно считает ручные заморозки.
+      else if (lastActive && missedExactlyOneDay && await tryConsumeCardStreakShield(today)) {
+        // streak не меняем — щит карточки спас. Маркер недели — как у ручной заморозки.
+        await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
+        emitAppEvent('action_toast', {
+          type: 'reward',
+          messageRu: `🛡 Карточка спасла цепочку ${streak} дн.`,
+          messageUk: `🛡 Картка врятувала ланцюжок ${streak} дн.`,
+          messageEs: `🛡 La tarjeta salvó tu racha de ${streak} días`,
+        });
+      }
+      // 4. Первый вход в приложение
       else if (lastActive === null) {
         streak = 1;
       }
-      // 4. Chain Shield активен — защищает от потери цепочки
+      // 5. Chain Shield активен — защищает от потери цепочки
       else if (lastActive && missedExactlyOneDay) {
         const csRaw = await AsyncStorage.getItem('chain_shield');
         if (csRaw) {
@@ -302,7 +342,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
           streak = 1;
         }
       }
-      // 5. Цепочка потеряна
+      // 6. Цепочка потеряна
       else {
         const prevStreak = streak;
         logStreakLost(prevStreak);
@@ -319,7 +359,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
 
     // Достижения по цепочке + пари (только при реальном изменении — не в firstLoads)
     if (!isSameLocalOrUtcDay(lastActive)) {
-      checkAchievements({ type: 'streak', streak }).catch(() => {});
+      checkAchievements({ type: 'streak', streak }, accountToken).catch(() => {});
       checkWagerProgress(streak).catch(() => {});
     }
 
@@ -341,7 +381,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       await AsyncStorage.setItem('week_days_done', JSON.stringify(weekDone));
       // Проверяем идеальную неделю (все 7 дней)
       if (weekDone.every(Boolean)) {
-        checkAchievements({ type: 'perfect_week' }).catch(() => {});
+        checkAchievements({ type: 'perfect_week' }, accountToken).catch(() => {});
       }
     }
 
@@ -362,11 +402,12 @@ export const updateStreakOnActivity = async (): Promise<number> => {
  * 4. daily_stats      — для графика статистики (опыт за день)
  * 5. streak           — цепочка дней подряд + week_days_done
  */
-export const addOrUpdateScore = async (
+const addOrUpdateScoreUnsafe = async (
   name: string,
   delta: number,
   lang: string,
   avatar?: string,
+  accountToken?: AccountGenerationToken,
 ) => {
   // Разрешаем отрицательный опыт для списания ставок (wagers)
   if (!name || delta === 0) return;
@@ -431,7 +472,7 @@ export const addOrUpdateScore = async (
         if (finalizedWeekXp > prevPeakRoll) {
           await AsyncStorage.setItem(PB_KEY, String(finalizedWeekXp));
           if (prevPeakRoll > 0) {
-            checkAchievements({ type: 'personal_best' }).catch(() => {});
+            checkAchievements({ type: 'personal_best' }, accountToken).catch(() => {});
           }
         }
         wpData = { weekKey: currentWeekKey, points: 0 };
@@ -449,7 +490,7 @@ export const addOrUpdateScore = async (
     if (wpData.points > prevPeak) {
       await AsyncStorage.setItem(PB_KEY, String(wpData.points));
       if (prevPeak > 0) {
-        checkAchievements({ type: 'personal_best' }).catch(() => {});
+        checkAchievements({ type: 'personal_best' }, accountToken).catch(() => {});
       }
     }
   } catch (e) {
@@ -501,16 +542,101 @@ export const addOrUpdateScore = async (
 
   // ── 5. Цепочка и week_days_done — только при положительном начислении ────────
   if (delta > 0) {
-    await updateStreakOnActivity();
+    await updateStreakOnActivity(accountToken);
   }
 
   // ── 6. Синхронизируем клуб недели (fire-and-forget)
   // leaderboard теперь обновляется только через syncToCloud в xp_manager.ts
   // чтобы избежать race condition (pushMyScore читала старый XP до обновления)
   if (delta > 0) {
-    updateMyGroupPoints(newWeekPts).catch(() => {});
+    updateMyGroupPoints(newWeekPts, accountToken).catch(() => {});
   }
 
+};
+
+export const addOrUpdateScore = async (
+  name: string,
+  delta: number,
+  lang: string,
+  avatar?: string,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  if (!accountToken) {
+    await addOrUpdateScoreUnsafe(name, delta, lang, avatar);
+    return;
+  }
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    await addOrUpdateScoreUnsafe(name, delta, lang, avatar, accountToken);
+  });
+};
+
+type PendingSecondaryXpProjection = {
+  name: string;
+  delta: number;
+  lang: string;
+  avatar?: string;
+  accountToken?: AccountGenerationToken;
+  timer: ReturnType<typeof setTimeout> | null;
+  waiters: Array<{ resolve: () => void; reject: (error: unknown) => void }>;
+};
+
+// Leaderboards, daily chart and streak mirrors are projections of already committed
+// XP. Coalescing a burst keeps the first-frame XP contract intact while replacing
+// dozens of repeated AsyncStorage read/write cycles with one account-scoped commit.
+const SECONDARY_XP_PROJECTION_BATCH_MS = 300;
+const pendingSecondaryXpProjections = new Map<string, PendingSecondaryXpProjection>();
+
+const secondaryProjectionKey = (accountToken?: AccountGenerationToken): string =>
+  accountToken ? `${accountToken.generation}:${accountToken.stableId ?? 'anonymous'}` : 'legacy';
+
+const flushSecondaryXpProjection = async (key: string): Promise<void> => {
+  const pending = pendingSecondaryXpProjections.get(key);
+  if (!pending) return;
+  pendingSecondaryXpProjections.delete(key);
+  if (pending.timer) clearTimeout(pending.timer);
+  try {
+    await addOrUpdateScore(pending.name, pending.delta, pending.lang, pending.avatar, pending.accountToken);
+    pending.waiters.forEach(({ resolve }) => resolve());
+  } catch (error) {
+    pending.waiters.forEach(({ reject }) => reject(error));
+  }
+};
+
+/** Batch non-authoritative score projections without delaying the visible XP award. */
+export const enqueueSecondaryXpProjection = (
+  name: string,
+  delta: number,
+  lang: string,
+  avatar?: string,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  if (!name || delta === 0) return Promise.resolve();
+  const key = secondaryProjectionKey(accountToken);
+  return new Promise<void>((resolve, reject) => {
+    const existing = pendingSecondaryXpProjections.get(key);
+    if (existing) {
+      existing.name = name;
+      existing.delta += delta;
+      existing.lang = lang;
+      existing.avatar = avatar?.trim() || existing.avatar;
+      existing.waiters.push({ resolve, reject });
+      return;
+    }
+    const pending: PendingSecondaryXpProjection = {
+      name,
+      delta,
+      lang,
+      avatar,
+      accountToken,
+      timer: null,
+      waiters: [{ resolve, reject }],
+    };
+    pending.timer = setTimeout(() => {
+      void flushSecondaryXpProjection(key);
+    }, SECONDARY_XP_PROJECTION_BATCH_MS);
+    pendingSecondaryXpProjections.set(key, pending);
+  });
 };
 
 /**
@@ -545,6 +671,10 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
     const todayStr = getLocalDayKey();
     // Заморозка уже активна сегодня — цепочка сохранится автоматически
     if (isStreakFreezeActiveToday(freeze, todayStr)) return { willLose: false, streakBefore: streak };
+
+    // Карточный щит III+ уже сработал сегодня — цепочка спасена, риск/paywall не показываем.
+    const cardShield = await getCardStreakShieldStatus(todayStr);
+    if (cardShield.usedToday) return { willLose: false, streakBefore: streak };
 
     return { willLose: true, streakBefore: streak };
   } catch (e) {

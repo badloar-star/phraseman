@@ -8,10 +8,14 @@
 // Kept separate from use-audio.ts so the speak() hook stays small.
 
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
-import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { Directory, File, Paths } from 'expo-file-system';
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
 import { getPhraseAudioUrl, normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
+import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
+import {
+  acquireAudioActivity,
+  whenAudioActivitySettled,
+  type AudioActivityLease,
+} from '../modules/audio/audio_activity';
 
 const CACHE_DIR_NAME = 'phrase-audio';
 
@@ -55,6 +59,7 @@ let currentSub: { remove: () => void } | null = null;
 // Watchdog текущего плеера: если клип не заиграл вовремя (исчерпан нативный лимит
 // плееров / клип не декодировался), снимаем плеер и уходим в фолбэк.
 let currentWatchdog: ReturnType<typeof setTimeout> | null = null;
+let currentVoiceLease: AudioActivityLease | null = null;
 
 // Каждый createAudioPlayer — сырой нативный AudioPlayer БЕЗ авто-release
 // (в отличие от useAudioPlayer). Если хоть один путь пропустит remove(), нативный
@@ -173,16 +178,13 @@ function maybeSweepPhraseAudioCache(protectedUri?: string): void {
     });
 }
 
-function downloadFileWithTimeout(url: string, file: File): Promise<File | null> {
+function downloadFileWithTimeout(nativeDownload: Promise<string | null>): Promise<string | null> {
   let timer: ReturnType<typeof setTimeout> | null = null;
   const timeout = new Promise<null>((resolve) => {
     timer = setTimeout(() => resolve(null), DOWNLOAD_TIMEOUT_MS);
   });
-  // expo-file-system ships two structurally-identical `File` declarations
-  // (FileSystem vs ExpoFileSystem.types); downloadFileAsync resolves to the
-  // latter, so cast back to the imported `File` to keep the signature aligned.
   return Promise.race([
-    File.downloadFileAsync(url, file) as Promise<File>,
+    nativeDownload,
     timeout,
   ]).finally(() => {
     if (timer) clearTimeout(timer);
@@ -191,9 +193,7 @@ function downloadFileWithTimeout(url: string, file: File): Promise<File | null> 
 
 async function ensureAudioMode(): Promise<void> {
   try {
-    // Other screens can change the shared native audio session after phrase
-    // audio has played once, so restore the phrase mode on every clip.
-    await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);
+    await whenAudioActivitySettled();
   } catch {
     // Non-fatal; playback may still work with default mode.
   }
@@ -213,28 +213,35 @@ async function getCachedOrDownload(key: string, url: string): Promise<string | n
     // fall through to download
   }
 
-  if (inFlightDownloads.has(key)) return inFlightDownloads.get(key)!;
-
-  const task = (async (): Promise<string | null> => {
-    try {
-      const dir = cacheDir();
-      if (!dir.exists) dir.create({ intermediates: true });
-      const downloaded = await downloadFileWithTimeout(url, file);
-      if (!downloaded) return null;
-      if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
-        maybeSweepPhraseAudioCache(downloaded.uri);
-        return downloaded.uri;
+  let nativeDownload = inFlightDownloads.get(key);
+  if (!nativeDownload) {
+    nativeDownload = (async (): Promise<string | null> => {
+      try {
+        const dir = cacheDir();
+        if (!dir.exists) dir.create({ intermediates: true });
+        // expo-file-system ships two structurally-identical `File` declarations;
+        // the cast keeps the imported File API aligned.
+        const downloaded = await (File.downloadFileAsync(url, file) as Promise<File>);
+        if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
+          maybeSweepPhraseAudioCache(downloaded.uri);
+          return downloaded.uri;
+        }
+        return null;
+      } catch {
+        return null;
       }
-      return null;
-    } catch {
-      return null;
-    } finally {
-      inFlightDownloads.delete(key);
-    }
-  })();
+    })();
+    const ownedDownload = nativeDownload;
+    nativeDownload.finally(() => {
+      if (inFlightDownloads.get(key) === ownedDownload) inFlightDownloads.delete(key);
+    });
+    inFlightDownloads.set(key, nativeDownload);
+  }
 
-  inFlightDownloads.set(key, task);
-  return task;
+  // A slow native download keeps ownership in the map until it actually settles.
+  // The timeout releases only this caller so fallback TTS can start; later callers
+  // join the same native promise instead of starting a duplicate mp3 request.
+  return downloadFileWithTimeout(nativeDownload);
 }
 
 export function stopPhraseAudio(): void {
@@ -255,6 +262,8 @@ export function stopPhraseAudio(): void {
   if (livePlayers.size > 0) {
     for (const player of Array.from(livePlayers)) disposePlayer(player);
   }
+  currentVoiceLease?.release();
+  currentVoiceLease = null;
 }
 
 /**
@@ -269,6 +278,8 @@ export async function playPhraseByText(
 ): Promise<boolean> {
   const url = getPhraseAudioUrl(text);
   if (!url) return false;
+  const voicePolicyToken = voicePlaybackPolicy.captureStart();
+  if (voicePolicyToken === null) return false;
 
   const key = normalizePhraseAudioKey(text);
   // Claim this playback: stop whatever was playing and capture the new token.
@@ -276,13 +287,22 @@ export async function playPhraseByText(
   const myGeneration = playGeneration;
   const superseded = () => playGeneration !== myGeneration;
 
-  await ensureAudioMode();
-  if (superseded()) return true; // stop()/another play() happened during await
-
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
-  if (superseded()) return true; // user moved on while downloading — do not play
+  if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) return true;
   const source: string = cachedUri ?? url;
+
+  const voiceLease = acquireAudioActivity('spoken');
+  currentVoiceLease = voiceLease;
+  const releaseVoiceLease = () => {
+    voiceLease.release();
+    if (currentVoiceLease === voiceLease) currentVoiceLease = null;
+  };
+  await ensureAudioMode();
+  if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) {
+    releaseVoiceLease();
+    return true;
+  }
 
   try {
     const player = createAudioPlayer(source);
@@ -317,6 +337,7 @@ export async function playPhraseByText(
       if (currentSub === sub) currentSub = null;
       disposePlayer(player);
       if (currentPlayer === player) currentPlayer = null;
+      releaseVoiceLease();
       // Провал старта на актуальном клипе → сообщаем ошибку, чтобы вызывающая
       // сторона ушла в системный TTS (иначе фраза молча пропадает).
       if (fromWatchdog && !superseded()) {
@@ -360,6 +381,7 @@ export async function playPhraseByText(
         if (currentSub === sub) currentSub = null;
         disposePlayer(player);
         if (currentPlayer === player) currentPlayer = null;
+        releaseVoiceLease();
         if (!wasSuperseded) cb?.onDone?.();
       }
     });
@@ -377,6 +399,7 @@ export async function playPhraseByText(
     player.play();
     return true;
   } catch (e) {
+    releaseVoiceLease();
     cb?.onError?.(e instanceof Error ? e : new Error(String(e)));
     return false;
   }

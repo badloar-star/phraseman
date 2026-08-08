@@ -2,11 +2,18 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { randomInt } from 'node:crypto';
 
 const MAX_DAILY7_XP = 500_000;
 const MAX_DAILY7_TIME_MS = 7 * 24 * 60 * 60 * 1000;
 const NAME_INDEX = 'name_index';
 const NICKNAME_CHANGE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+const GENERATED_NICKNAME_WORDS = [
+  'Alpha', 'Axiom', 'Cosmos', 'Delta', 'Helium', 'Ion', 'Lambda', 'Neon',
+  'Nova', 'Omega', 'Orbit', 'Photon', 'Quark', 'Quantum', 'Radium', 'Sigma',
+  'Tensor', 'Vector', 'Vertex', 'Xenon', 'Zenith',
+] as const;
+const GENERATED_NICKNAME_ATTEMPTS = 16;
 
 function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -39,24 +46,31 @@ function readProgressMs(
   return Number.isFinite(value) && value > 0 ? value : 0;
 }
 
-function usesSettingsRenameRules(
-  requestData: FirebaseFirestore.DocumentData | undefined,
-): boolean {
-  return requestData?.source === 'settings';
-}
-
-function usesOnboardingRenameRules(
-  requestData: FirebaseFirestore.DocumentData | undefined,
-): boolean {
-  return requestData?.source === 'onboarding';
-}
-
 function readProgressFlag(
   data: FirebaseFirestore.DocumentData | undefined,
   key: string,
 ): boolean {
   const raw = data?.progress?.[key];
   return raw === true || raw === '1' || raw === 'true';
+}
+
+function readProgressCount(
+  data: FirebaseFirestore.DocumentData | undefined,
+  key: string,
+): number | null {
+  const raw = data?.progress?.[key];
+  if (raw === undefined || raw === null || raw === '') return null;
+  const value = Math.trunc(Number(raw));
+  return Number.isFinite(value) ? Math.max(0, value) : null;
+}
+
+function generateNicknameCandidates(): string[] {
+  const candidates = new Set<string>();
+  while (candidates.size < GENERATED_NICKNAME_ATTEMPTS) {
+    const word = GENERATED_NICKNAME_WORDS[randomInt(GENERATED_NICKNAME_WORDS.length)];
+    candidates.add(`${word} ${randomInt(10_000, 100_000)}`);
+  }
+  return [...candidates];
 }
 
 function assertValidName(name: string): void {
@@ -221,6 +235,79 @@ export const nameCheckAvailability = onCall(HOT_CALLABLE_OPTIONS, async (request
   return { ok: true, available: true };
 });
 
+export const nameGenerateAndReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  const db = admin.firestore();
+  const authUid = request.auth.uid;
+  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
+  await assertNotBanned(db, stableUid);
+  const candidates = generateNicknameCandidates();
+  let assignedName = '';
+
+  await db.runTransaction(async (tx) => {
+    const now = Date.now();
+    const userRef = db.collection('users').doc(stableUid);
+    const userSnap = await tx.get(userRef);
+    const userData = userSnap.data();
+    const existingName = readProgressString(userData, 'user_name');
+    const existingNameLower = readProgressString(userData, 'user_name_lower') || existingName.toLowerCase();
+    if (existingName && existingNameLower) {
+      const existingRef = db.collection(NAME_INDEX).doc(existingNameLower);
+      const existingSnap = await tx.get(existingRef);
+      if (
+        existingSnap.exists &&
+        existingSnap.data()?.uid === stableUid &&
+        !nameIndexDocIsHidden(existingSnap.data())
+      ) {
+        assignedName = existingName;
+        return;
+      }
+    }
+
+    let chosen: { name: string; nameLower: string; ref: FirebaseFirestore.DocumentReference } | null = null;
+    for (const candidate of candidates) {
+      const normalized = normalizeName(candidate);
+      const ref = db.collection(NAME_INDEX).doc(normalized.nameLower);
+      const snap = await tx.get(ref);
+      if (!snap.exists || nameIndexDocIsHidden(snap.data())) {
+        try {
+          await txAssertNoLiveLegacyNameOwner(tx, db, stableUid, normalized.name, normalized.nameLower);
+          chosen = { ...normalized, ref };
+          break;
+        } catch (error) {
+          if (error instanceof HttpsError && error.message === 'name_taken') continue;
+          throw error;
+        }
+      }
+    }
+    if (!chosen) throw new HttpsError('resource-exhausted', 'nickname_generation_exhausted');
+
+    assignedName = chosen.name;
+    tx.set(chosen.ref, {
+      uid: stableUid,
+      authUid,
+      name: chosen.name,
+      nameLower: chosen.nameLower,
+      identityHidden: admin.firestore.FieldValue.delete(),
+      updatedAt: now,
+    }, { merge: true });
+    tx.set(db.collection('leaderboard').doc(stableUid), { name: chosen.name, nameLower: chosen.nameLower, firebaseAuthUid: authUid, updatedAt: now }, { merge: true });
+    tx.set(userRef, {
+      progress: {
+        user_name: chosen.name,
+        user_name_lower: chosen.nameLower,
+        nickname_changed_at: String(now),
+        nickname_change_available_at: String(now + NICKNAME_CHANGE_COOLDOWN_MS),
+        nickname_grace_renames_remaining: '3',
+      },
+      updatedAt: now,
+    }, { merge: true });
+    tx.set(db.collection('public_profiles').doc(stableUid), { uid: stableUid, name: chosen.name, nameLower: chosen.nameLower, updatedAt: now }, { merge: true });
+  });
+
+  return { ok: true, status: 'ok' as const, name: assignedName };
+});
+
 export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
@@ -256,20 +343,22 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
         readProgressString(userData, 'user_name_lower') ||
         readProgressString(userData, 'user_name').toLowerCase() ||
         oldNameLower;
-      const oldIndexNameLower = oldNameLower || currentNameLower;
+      // users.progress is authoritative. oldName only covers legacy clients
+      // whose current name has not reached the user document yet.
+      const oldIndexNameLower = currentNameLower || oldNameLower;
       const oldRef = oldIndexNameLower && oldIndexNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldIndexNameLower) : null;
       const oldSnap = oldRef ? await tx.get(oldRef) : null;
       const previousChangeAt = readProgressMs(userData, 'nickname_changed_at');
       const isNameChange = Boolean(currentNameLower && currentNameLower !== nameLower);
-      const enforceSettingsCooldown = usesSettingsRenameRules(request.data);
-      const isOnboardingReservation = usesOnboardingRenameRules(request.data);
       const isInitialNameSet = !currentNameLower;
       const freeChangeAvailable = readProgressFlag(userData, 'nickname_free_change_available');
-      const consumesFreeChange = isNameChange && enforceSettingsCooldown && freeChangeAvailable;
-      const grantsFreeChange = isOnboardingReservation || isInitialNameSet;
+      const storedGraceChanges = readProgressCount(userData, 'nickname_grace_renames_remaining');
+      const graceChangesRemaining = storedGraceChanges ?? (freeChangeAvailable ? 1 : 0);
+      const consumesGraceChange = isNameChange && graceChangesRemaining > 0;
+      const grantsFreeChange = isInitialNameSet;
       const nicknameChangedAt = isNameChange || previousChangeAt <= 0 ? now : previousChangeAt;
 
-      if (isNameChange && previousChangeAt > 0 && enforceSettingsCooldown && !freeChangeAvailable) {
+      if (isNameChange && previousChangeAt > 0 && !consumesGraceChange) {
         const nextChangeAt = previousChangeAt + NICKNAME_CHANGE_COOLDOWN_MS;
         if (now < nextChangeAt) {
           cooldownUntil = nextChangeAt;
@@ -321,8 +410,11 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
           user_name_lower: nameLower,
           nickname_changed_at: String(nicknameChangedAt),
           nickname_change_available_at: String(nicknameChangedAt + NICKNAME_CHANGE_COOLDOWN_MS),
-          ...(grantsFreeChange ? { nickname_free_change_available: '1' } : {}),
-          ...(consumesFreeChange ? { nickname_free_change_available: '0' } : {}),
+          ...(grantsFreeChange && storedGraceChanges === null ? { nickname_free_change_available: '1' } : {}),
+          ...(consumesGraceChange ? {
+            nickname_grace_renames_remaining: String(graceChangesRemaining - 1),
+            nickname_free_change_available: '0',
+          } : {}),
         },
         updatedAt: now,
       }, { merge: true });

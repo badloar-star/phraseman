@@ -29,7 +29,7 @@ export type DailyTaskCardProps = {
   title: string;
   description: string;
   icon: ReactNode;
-  progress: ReactNode;
+  progress?: ReactNode;
   titleColor: string;
   descriptionColor: string;
   surfaceColor: string;
@@ -47,7 +47,6 @@ export type DailyTaskCardProps = {
   descriptionTextProps?: TextProps;
   iconStyle?: StyleProp<ViewStyle>;
   variant?: 'task' | 'bonus';
-  emphasized?: boolean;
 };
 
 function CardAction({ testID, action, onReflow, variant }: { testID: string; action: DailyCardAction; onReflow: () => void; variant?: 'task' | 'bonus' }) {
@@ -89,14 +88,21 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
   const [stacked, setStacked] = useState(false);
   const requestStack = useCallback(() => setStacked(true), []);
   return (
-    <View testID={props.testID} style={[styles.card, props.variant === 'bonus' && styles.bonusCard, { backgroundColor: props.surfaceColor, borderColor: props.emphasized ? props.accentColor : props.borderColor }, props.outerStyle]}>
+    <View testID={props.testID} style={[styles.card, props.variant === 'bonus' && styles.bonusCard, { backgroundColor: props.surfaceColor, borderColor: props.borderColor }, props.outerStyle]}>
       {props.background}
-      <Pressable testID={`${props.testID}-pressable`} disabled={!props.onPress} onPress={props.onPress} style={styles.pressable}>
+      <Pressable
+        testID={`${props.testID}-pressable`}
+        accessibilityRole={props.onPress ? 'button' : undefined}
+        accessibilityLabel={props.onPress ? `${props.title}. ${props.description}` : undefined}
+        disabled={!props.onPress}
+        onPress={props.onPress}
+        style={({ pressed }) => [styles.pressable, pressed && styles.pressablePressed]}
+      >
         <View testID={`${props.testID}-content`} style={[styles.content, props.variant === 'bonus' && styles.bonusContent, stacked && styles.contentStacked]}>
           <View testID={`${props.testID}-icon`} style={[styles.icon, props.variant === 'bonus' && styles.bonusIcon, { borderColor: props.accentColor }, props.iconStyle]}>{props.icon}</View>
           <View style={styles.copy}>
             <FlowText {...props.titleTextProps} testID={`${props.testID}-title`} provenance="authored" accessibilityLabel={props.title} style={[styles.title, props.titleTextProps?.style, { color: props.titleColor }]}>{props.title}</FlowText>
-            <FlowText {...props.descriptionTextProps} testID={`${props.testID}-description`} provenance="authored" accessibilityLabel={props.description} style={[styles.description, props.descriptionTextProps?.style, { color: props.descriptionColor }]}>{props.description}</FlowText>
+            {props.description ? <FlowText {...props.descriptionTextProps} testID={`${props.testID}-description`} provenance="authored" accessibilityLabel={props.description} style={[styles.description, props.descriptionTextProps?.style, { color: props.descriptionColor }]}>{props.description}</FlowText> : null}
           </View>
           <View style={[styles.actions, stacked && styles.actionsStacked]}>
             {props.action ? <CardAction testID={props.testID} action={props.action} onReflow={requestStack} variant={props.variant} /> : null}
@@ -104,7 +110,7 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
             {props.reroll ? <Pressable accessibilityRole="button" accessibilityLabel={props.reroll.accessibilityLabel} onPress={(event) => { event.stopPropagation(); props.reroll?.onPress(); }} style={styles.iconAction}>{props.reroll.icon}</Pressable> : null}
           </View>
         </View>
-        {props.variant !== 'bonus' ? <View pointerEvents="none" style={styles.progressLayer} accessibilityRole="progressbar">{props.progress}</View> : null}
+        {props.variant !== 'bonus' && props.progress ? <View testID={`${props.testID}-progress`} pointerEvents="none" style={styles.progressLayer} accessibilityRole="progressbar">{props.progress}</View> : null}
       </Pressable>
       {props.variant === 'bonus' ? <View testID={`${props.testID}-progress`} pointerEvents="none" style={styles.bonusProgress} accessibilityRole="progressbar">{props.progress}</View> : null}
       {props.premium}
@@ -112,21 +118,24 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
   );
 }
 
-export type DailyBonusCardProps = Omit<DailyTaskCardProps, 'accentColor' | 'onPress' | 'reroll' | 'premium'>;
+export type DailyBonusCardProps = Omit<DailyTaskCardProps, 'accentColor' | 'onPress' | 'reroll' | 'premium' | 'progress'> & {
+  progress: ReactNode;
+};
 
 export function DailyBonusCard(props: DailyBonusCardProps) {
   return <DailyTaskCard {...props} variant="bonus" accentColor={props.borderColor} />;
 }
 
 const styles = StyleSheet.create({
-  card: { minHeight: 92, borderWidth: 1, borderRadius: 22, overflow: 'hidden', paddingHorizontal: 22, paddingVertical: 12, gap: 8 },
+  card: { minHeight: 92, borderWidth: 0, borderRadius: 22, overflow: 'hidden', paddingHorizontal: 22, paddingVertical: 12, gap: 8 },
   bonusCard: { minHeight: 0, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 9, gap: 0 },
   pressable: { minWidth: 0, flexGrow: 1, justifyContent: 'center' },
+  pressablePressed: { opacity: 0.86, transform: [{ scale: 0.985 }] },
   progressLayer: StyleSheet.absoluteFillObject,
-  content: { flexDirection: 'row', alignItems: 'center', gap: 14, minWidth: 0, minHeight: 66 },
+  content: { flexDirection: 'row', alignItems: 'center', gap: 12, minWidth: 0, minHeight: 72 },
   bonusContent: { gap: 10, minHeight: 0 },
   contentStacked: { flexDirection: 'column', alignItems: 'stretch' },
-  icon: { width: 56, minHeight: 56, borderWidth: 1, borderRadius: 18, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  icon: { width: 72, minHeight: 72, borderWidth: 0, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   bonusIcon: { width: 38, minHeight: 38, borderRadius: 11 },
   copy: { flex: 1, minWidth: 0, gap: 3 },
   title: { fontWeight: '900', flexShrink: 1 },

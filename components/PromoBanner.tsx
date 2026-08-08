@@ -1,7 +1,7 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
@@ -9,6 +9,7 @@ import { useTheme } from './ThemeContext';
 import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
+import { animateNextLayoutTransition } from '../app/smooth_layout';
 import {
   getPromoBannerAudience,
   getPromoBannerCampaignId,
@@ -90,6 +91,10 @@ export default function PromoBanner() {
   });
   const refreshGeneration = useRef(0);
   const refreshRef = useRef<() => void>(() => {});
+  // зачем: баннер стоит в потоке НАД всем стеком навигации (_layout), и его
+  // асинхронное появление мгновенно сдвигало вниз все открытые экраны.
+  // Отслеживаем flip видимости и оборачиваем его в плавный layout-переход.
+  const lastVisibleRef = useRef(false);
   const expiryScheduler = useRef(createCampaignExpiryScheduler({
     now: Date.now,
     setTimeout: (listener, delayMs) => setTimeout(listener, delayMs),
@@ -100,6 +105,8 @@ export default function PromoBanner() {
     const generation = ++refreshGeneration.current;
     void readState(lang, Date.now(), hasPremiumAccess).then((next) => {
       if (generation !== refreshGeneration.current) return;
+      if (lastVisibleRef.current !== next.visible) animateNextLayoutTransition();
+      lastVisibleRef.current = next.visible;
       setState(next);
       expiryScheduler.setUntil(next.visible ? next.untilMs : null, () => refreshRef.current());
     });
@@ -131,6 +138,10 @@ export default function PromoBanner() {
       useNativeDriver: true,
     }).start(() => {
       translateX.setValue(0);
+      // зачем: после слайда вправо баннер размонтируется — без перехода контент
+      // под ним «телепортировался» вверх; теперь высота схлопывается плавно.
+      animateNextLayoutTransition();
+      lastVisibleRef.current = false;
       setState((prev) => ({ ...prev, visible: false }));
     });
   }, [state.dismissalKey, translateX]);

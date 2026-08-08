@@ -372,7 +372,10 @@ describe('progress_events engine', () => {
   });
 
   // ECON-2: суточный потолок XP с гриндабельных источников (lesson_answer и т.п.).
-  describe('daily per-source XP cap (ECON-2)', () => {
+  // Суточные потолки XP сняты 2026-07-26: они срезали только серверный total, а клиент при
+  // зеркалировании берёт Math.max(local, server) и всегда оставался со своим полным числом —
+  // потолок не ограничивал фарм, а навсегда расщеплял баланс телефона и сервера.
+  describe('daily XP accrual is not capped by how much was earned today', () => {
     const answerEvent = (xpDelta: number, id: string) => normalizeProgressEvent({
       eventId: `lesson:1:answer:${id}`,
       type: 'lesson_answer',
@@ -380,25 +383,31 @@ describe('progress_events engine', () => {
       payload: { xpDelta },
     });
 
-    it('awards full XP while under the daily lesson_answer cap', () => {
+    it('awards full XP regardless of how much this source already gave today', () => {
       const result = applyProgressEvent({}, answerEvent(80, 'a'), now, {
         sourceXpToday: { lesson_answer: 1000 },
       });
       expect(result.xpDelta).toBe(80);
     });
 
-    it('clamps XP to the remaining daily budget near the cap', () => {
+    it('keeps awarding full XP past the old per-source daily budget', () => {
       const result = applyProgressEvent({}, answerEvent(100, 'b'), now, {
         sourceXpToday: { lesson_answer: 7950 },
       });
-      expect(result.xpDelta).toBe(50); // 8000 - 7950
+      expect(result.xpDelta).toBe(100);
     });
 
-    it('awards zero once the daily cap is exhausted', () => {
+    it('keeps awarding full XP past the old global daily budget', () => {
       const result = applyProgressEvent({}, answerEvent(100, 'c'), now, {
-        sourceXpToday: { lesson_answer: 8000 },
+        sourceXpToday: { lesson_answer: 50_000 },
+        totalXpToday: 500_000,
       });
-      expect(result.xpDelta).toBe(0);
+      expect(result.xpDelta).toBe(100);
+    });
+
+    it('still clamps a single forged event to the per-event cap', () => {
+      const result = applyProgressEvent({}, answerEvent(999_999, 'd'), now, {});
+      expect(result.xpDelta).toBe(100); // EVENT_XP_CAP.lesson_answer
     });
   });
 

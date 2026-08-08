@@ -1,6 +1,11 @@
-import { __cloudSyncTestHooks } from '../app/cloud_sync';
+import { __cloudSyncTestHooks, SYNC_KEYS } from '../app/cloud_sync';
 
-const { mergeOwnedRestoreValue, isOwnedUnionRestoreKey, mergeLessonRestoreValue } = __cloudSyncTestHooks;
+const {
+  mergeOwnedRestoreValue,
+  mergeSeasonCosmeticsRestoreValue,
+  isOwnedUnionRestoreKey,
+  mergeLessonRestoreValue,
+} = __cloudSyncTestHooks;
 
 // K2 (UX_PROBLEMS_AUDIT_2026-07-04): в ветке restore «облако победило» (арбитр — XP)
 // owned/purchased-ключи слепо перезаписывались облаком. Офлайн-покупка (пак флешкарт,
@@ -8,6 +13,53 @@ const { mergeOwnedRestoreValue, isOwnedUnionRestoreKey, mergeLessonRestoreValue 
 // Фикс: владение строго аддитивно → union вместо перезаписи.
 
 describe('K2 owned/purchased union restore (offline purchases survive cloud-wins)', () => {
+  describe('season cosmetics restore', () => {
+    it('includes permanent season cosmetics in cloud sync', () => {
+      expect(SYNC_KEYS).toContain('season_cosmetics_v1');
+    });
+
+    it('unions every permanent cosmetic and keeps the strongest scalar state', () => {
+      const cloud = JSON.stringify({
+        frames: ['season1_card_frame'],
+        nickColors: ['#57C8DE'],
+        activeNickColor: '#57C8DE',
+        nickShimmer: false,
+        titles: ['Сезон 1'],
+        auraStages: [1, 3],
+        secretAuras: [],
+        customAvatarGrants: 1,
+      });
+      const local = JSON.stringify({
+        frames: ['offline-frame'],
+        nickColors: ['#FF00FF'],
+        activeNickColor: '#FF00FF',
+        nickShimmer: true,
+        titles: ['Финал сезона 1'],
+        auraStages: [2, 4],
+        secretAuras: ['purple_vortex'],
+        customAvatarGrants: 3,
+      });
+      const merged = JSON.parse(mergeSeasonCosmeticsRestoreValue(cloud, local));
+
+      expect(new Set(merged.frames)).toEqual(new Set(['season1_card_frame', 'offline-frame']));
+      expect(new Set(merged.nickColors)).toEqual(new Set(['#57C8DE', '#FF00FF']));
+      expect(merged.activeNickColor).toBe('#FF00FF');
+      expect(merged.nickShimmer).toBe(true);
+      expect(new Set(merged.titles)).toEqual(new Set(['Сезон 1', 'Финал сезона 1']));
+      expect(merged.auraStages).toEqual([1, 2, 3, 4]);
+      expect(merged.secretAuras).toEqual(['purple_vortex']);
+      expect(merged.customAvatarGrants).toBe(3);
+    });
+
+    it('routes season cosmetics through the actual restore merge call site', () => {
+      const cloud = JSON.stringify({ frames: ['cloud'], auraStages: [1] });
+      const local = JSON.stringify({ frames: ['local'], auraStages: [4] });
+      const merged = JSON.parse(mergeLessonRestoreValue('season_cosmetics_v1', cloud, local));
+      expect(new Set(merged.frames)).toEqual(new Set(['cloud', 'local']));
+      expect(merged.auraStages).toEqual([1, 4]);
+    });
+  });
+
   describe('isOwnedUnionRestoreKey', () => {
     it('recognizes base owned keys', () => {
       expect(isOwnedUnionRestoreKey('avatar_aura_owned_v1')).toBe(true);

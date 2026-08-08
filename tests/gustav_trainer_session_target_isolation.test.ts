@@ -38,23 +38,20 @@ describe('Gustav trainer session target isolation', () => {
     });
   });
 
-  it('keeps English trainer session limit on legacy keys for compatibility', async () => {
-    // Дефолт = 2 бесплатные сессии/день (remote_flags). После каждого consume — на одну меньше.
-    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(2);
+  it('keeps English trainer session storage on legacy keys for compatibility', async () => {
+    // зачем: тренажёр стал бесплатным без дневного лимита — тест больше не про
+    // исчерпание сессий, а про то, что English продолжает писать в legacy-ключи
+    // (это и есть предмет изоляции таргетов). Счётчик пишется, но не запирает вход.
+    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(Number.POSITIVE_INFINITY);
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(true);
     expect(storage.trainer_session_entry_v1).toContain('/trainer_words_session');
     await expect(consumeTrainerSessionEntry('/trainer_words_session', 'en')).resolves.toBe(true);
     expect(storage.trainer_free_session_v1).toContain('"count":1');
-    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(1);
-    // Вторая сессия — последняя бесплатная.
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(true);
-    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'en')).resolves.toBe(true);
-    expect(storage.trainer_free_session_v1).toContain('"count":2');
-    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(0);
   });
 
   it('uses scoped French trainer session storage when the French trainer gate is open', async () => {
-    await expect(getFreeSessionsLeftToday('fr')).resolves.toBe(2);
+    await expect(getFreeSessionsLeftToday('fr')).resolves.toBe(Number.POSITIVE_INFINITY);
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'fr')).resolves.toBe(true);
     await expect(consumeTrainerSessionEntry('/trainer_words_session', 'fr')).resolves.toBe(true);
 

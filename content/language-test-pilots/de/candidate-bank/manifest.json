@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "bankVersion": "2026-08-02.de-full-authored.1",
+  "language": "de",
+  "status": "candidate_bank",
+  "publishable": false,
+  "authorReviewStatus": "self_checked",
+  "externalReviewStatus": "pending",
+  "completedLevels": [],
+  "authoredLevels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+  ]
+}

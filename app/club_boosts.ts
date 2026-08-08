@@ -69,14 +69,14 @@ export const CLUB_BOOSTS: BoostDef[] = [
     nameId: '+100% XP selama 2 jam',
     nameTr: '2 saat boyunca +%100 XP',
     namePl: '+100% XP przez 2 godziny',
-    descRU: 'Все члены клуба получают +100% XP в течение 2 часов',
-    descUK: 'Всі члени клубу отримують +100% XP протягом 2 годин',
-    descES: 'Todos los miembros del club obtienen +100 % XP durante 2 horas',
-    descPtBr: 'Todos os membros do clube recebem +100% XP por 2 horas',
-    descVi: 'Tất cả thành viên câu lạc bộ nhận +100% XP trong 2 giờ',
-    descId: 'Semua anggota klub mendapatkan +100% XP selama 2 jam',
-    descTr: 'Tüm kulüp üyeleri 2 saat boyunca +%100 XP alır',
-    descPl: 'Wszyscy członkowie klubu otrzymują +100% XP przez 2 godziny',
+    descRU: 'Все участники лиги получают +100% XP в течение 2 часов',
+    descUK: 'Усі учасники ліги отримують +100% XP протягом 2 годин',
+    descES: 'Todos los participantes de la liga obtienen +100 % XP durante 2 horas',
+    descPtBr: 'Todos os participantes da liga recebem +100% XP por 2 horas',
+    descVi: 'Tất cả người tham gia giải đấu nhận +100% XP trong 2 giờ',
+    descId: 'Semua peserta liga mendapatkan +100% XP selama 2 jam',
+    descTr: 'Tüm lig katılımcıları 2 saat boyunca +%100 XP alır',
+    descPl: 'Wszyscy uczestnicy ligi otrzymują +100% XP przez 2 godziny',
     multiplier: 2.0,
     durationMs: 2 * 60 * 60 * 1000, // 2 часа
     cost: 25,
@@ -396,65 +396,9 @@ export function formatBoostTimeRemainingUK(boost: ActiveBoost): string {
   }
 }
 
-/** Оставшееся время буста для языка интерфейса. */
-export function formatBoostTimeRemainingForLang(boost: ActiveBoost, lang: Lang): string {
-  const ms = getBoostTimeRemaining(boost);
-  if (ms <= 0) {
-    return triLang(lang, {
-      ru: 'Истек',
-      uk: 'Вийшов',
-      es: 'Terminado',
-      'pt-BR': 'Encerrado',
-      vi: 'Đã kết thúc',
-      id: 'Berakhir',
-      tr: 'Bitti',
-      pl: 'Zakończono',
-    });
-  }
-
-  const totalSeconds = Math.floor(ms / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  if (hours > 0) {
-    return triLang(lang, {
-      ru: `${hours}ч ${minutes}м`,
-      uk: `${hours}г ${minutes}м`,
-      es: `${hours} h ${minutes} min`,
-      'pt-BR': `${hours} h ${minutes} min`,
-      vi: `${hours} giờ ${minutes} phút`,
-      id: `${hours} j ${minutes} mnt`,
-      tr: `${hours} sa ${minutes} dk`,
-      pl: `${hours} godz. ${minutes} min`,
-    });
-  }
-
-  if (minutes > 0) {
-    return triLang(lang, {
-      ru: `${minutes}м ${seconds}s`,
-      uk: `${minutes}м ${seconds}s`,
-      es: `${minutes} min ${seconds} s`,
-      'pt-BR': `${minutes} min ${seconds} s`,
-      vi: `${minutes} phút ${seconds} giây`,
-      id: `${minutes} mnt ${seconds} dtk`,
-      tr: `${minutes} dk ${seconds} sn`,
-      pl: `${minutes} min ${seconds} s`,
-    });
-  }
-
-  return triLang(lang, {
-    ru: `${seconds}s`,
-    uk: `${seconds}s`,
-    es: `${seconds} s`,
-    'pt-BR': `${seconds} s`,
-    vi: `${seconds} giây`,
-    id: `${seconds} dtk`,
-    tr: `${seconds} sn`,
-    pl: `${seconds} s`,
-  });
-}
-
+// зачем: formatBoostTimeRemainingForLang удалён — единственный потребитель
+// (ActiveBoostBar) снесён 2026-07-25; boostNameForLang ниже ЖИВОЙ — его зовёт
+// getBoostNotification, не удалять за компанию.
 export function boostNameForLang(def: BoostDef, lang: Lang): string {
   return triLang(lang, {
     ru: def.nameRU,

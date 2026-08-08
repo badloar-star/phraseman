@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta name="google" content="notranslate">
+  <title>Телеграм оплаты</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      --acc: #00ff66;
+      --acc-soft: #86efac;
+      --acc-rgb: 0,255,102;
+      --panel-bg: rgba(0,8,3,0.94);
+      --panel-border: rgba(var(--acc-rgb),0.34);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #e8f5eb;
+      background:
+        radial-gradient(ellipse at center, #001107 0%, #000604 55%, #000 100%) fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, rgba(var(--acc-rgb),0.05) 0%, rgba(0,0,0,0) 65%),
+        linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.78) 100%);
+    }
+    .shell { position: relative; z-index: 1; min-height: 100vh; }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--panel-border);
+      box-shadow: 0 0 20px rgba(var(--acc-rgb),0.14);
+    }
+    h1 {
+      font-family: "Courier New", Consolas, monospace;
+      font-size: 18px;
+      letter-spacing: .06em;
+      color: var(--acc-soft);
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(var(--acc-rgb),0.55);
+    }
+    .status { margin-left: auto; color: #9ca3af; font-size: 12px; }
+    main { padding: 18px 24px 30px; }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    input, select {
+      min-height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--panel-border);
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      padding: 8px 11px;
+      outline: none;
+    }
+    input { width: min(360px, 100%); }
+    input:focus, select:focus { border-color: var(--acc); box-shadow: 0 0 8px rgba(var(--acc-rgb),0.38); }
+    button {
+      min-height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--panel-border);
+      background: rgba(var(--acc-rgb),0.16);
+      color: var(--acc-soft);
+      padding: 8px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: rgba(var(--acc-rgb),0.28); box-shadow: 0 0 12px rgba(var(--acc-rgb),0.42); }
+    button:disabled { opacity: .58; cursor: wait; box-shadow: none; }
+    .section-title {
+      margin: 14px 0 8px;
+      color: var(--acc-soft);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+    .table-card {
+      border: 1px solid #243226;
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(4,8,5,0.82);
+    }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: var(--panel-bg); }
+    th {
+      padding: 10px 14px;
+      text-align: left;
+      white-space: nowrap;
+      color: var(--acc-soft);
+      opacity: .86;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      border-bottom: 1px solid var(--panel-border);
+    }
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(var(--acc-rgb),0.08);
+      font-size: 13px;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    tr:hover td { background: rgba(var(--acc-rgb),0.055); }
+    .nick-btn {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      padding: 0;
+      min-height: auto;
+      font-weight: 850;
+      text-decoration: underline;
+      text-decoration-color: rgba(var(--acc-rgb),0.35);
+      text-underline-offset: 3px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 2px 9px;
+      border: 1px solid #244a2f;
+      background: #071a10;
+      color: #86efac;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .muted { color: #8b948d; }
+    .login {
+      display: grid;
+      place-items: center;
+      min-height: 70vh;
+      padding: 24px;
+    }
+    .login-card {
+      max-width: 520px;
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      background: var(--panel-bg);
+      padding: 24px;
+      box-shadow: 0 0 24px rgba(var(--acc-rgb),0.16);
+    }
+    .login-card p { margin: 10px 0 16px; color: #a7b2aa; line-height: 1.5; }
+    .error { color: #fca5a5; margin-top: 10px; font-size: 13px; }
+    .notice {
+      display: none;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(var(--acc-rgb),0.34);
+      padding: 9px 10px;
+      color: #dfffe9;
+      background: rgba(var(--acc-rgb),0.12);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .notice.show { display: block; }
+    .notice.success { border-color: rgba(34,197,94,.55); background: rgba(34,197,94,.14); }
+    .notice.info { border-color: rgba(96,165,250,.48); background: rgba(96,165,250,.12); }
+    .hidden { display: none !important; }
+    .detail-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background: rgba(0,0,0,0.68);
+    }
+    .detail {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 21;
+      width: min(620px, 100vw);
+      height: 100vh;
+      transform: translateX(105%);
+      transition: transform .18s ease;
+      overflow-y: auto;
+      border-left: 1px solid var(--panel-border);
+      background: #080d09;
+      box-shadow: -20px 0 60px rgba(0,0,0,.55);
+    }
+    .detail.open { transform: translateX(0); }
+    .detail-head {
+      position: sticky;
+      top: 0;
+      background: #080d09;
+      border-bottom: 1px solid var(--panel-border);
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .detail-title { font-size: 18px; font-weight: 850; color: #fff; }
+    .close-btn { margin-left: auto; min-width: 38px; padding: 7px 10px; }
+    .detail-body { padding: 16px 18px 30px; }
+    .dsec {
+      border: 1px solid #243226;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.025);
+    }
+    .dsec h3 { color: var(--acc-soft); font-size: 13px; margin-bottom: 10px; }
+    .drow {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .drow:last-child { border-bottom: 0; }
+    .k { color: #8b948d; font-size: 12px; }
+    .v { color: #fff; font-size: 13px; text-align: right; word-break: break-word; }
+    @media (max-width: 720px) {
+      header, main { padding-left: 14px; padding-right: 14px; }
+      .toolbar { align-items: stretch; }
+      input, select, button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section id="login" class="login">
+      <div class="login-card">
+        <h1>Телеграм оплаты</h1>
+        <p>Вход только для админа PhraseMan. После входа откроется список заявок и карточки пользователей.</p>
+        <button id="signin">Войти с Google</button>
+        <div id="login-error" class="error"></div>
+      </div>
+    </section>
+
+    <section id="app" class="hidden">
+      <header>
+        <h1>Телеграм оплаты</h1>
+        <div id="status" class="status">загрузка</div>
+      </header>
+      <main>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Ник">
+          <select id="period">
+            <option value="">Все периоды</option>
+            <option value="monthly">Месяц</option>
+            <option value="yearly">Год</option>
+          </select>
+          <button id="refresh" type="button">Обновить</button>
+        </div>
+
+        <div class="section-title">Записи</div>
+        <div class="table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ник</th>
+                  <th>Период</th>
+                </tr>
+              </thead>
+              <tbody id="rows">
+                <tr><td colspan="2" class="muted" style="text-align:center;padding:38px">Загрузка...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <div id="detail-overlay" class="detail-overlay"></div>
+  <aside id="detail" class="detail" aria-live="polite">
+    <div class="detail-head">
+      <div class="detail-title" id="detail-title">Пользователь</div>
+      <button id="detail-close" class="close-btn" type="button">x</button>
+    </div>
+    <div id="detail-body" class="detail-body"></div>
+  </aside>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, getRedirectResult, onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getFirestore, collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, updateDoc, where } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+    const app = initializeApp({
+      apiKey: 'AIzaSyBxO_8xe9-HV-wFSMO4abkCHvZX8zb-T7s',
+      authDomain: 'phraseman-ea0b3.firebaseapp.com',
+      projectId: 'phraseman-ea0b3',
+      storageBucket: 'phraseman-ea0b3.firebasestorage.app',
+    });
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    const $ = (id) => document.getElementById(id);
+    let testerRows = [];
+    let unsubscribeRows = null;
+    let currentTesterDetail = null;
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+    }
+
+    function normalizePeriod(row) {
+      if (row.plan === 'yearly') return 'год';
+      if (row.planDuration && String(row.planDuration).includes('год')) return 'год';
+      return 'месяц';
+    }
+
+    function testerActivationStatus(row) {
+      return row && (row.testerActivationStatus === 'activated' || row.activatedAt) ? 'активирован' : 'ожидает';
+    }
+
+    function renderRows() {
+      const term = $('search').value.trim().toLowerCase();
+      const period = $('period').value;
+      const filtered = testerRows.filter((row) => {
+        const hay = `${row.appNickname || ''}`.toLowerCase();
+        if (term && !hay.includes(term)) return false;
+        if (period && row.plan !== period) return false;
+        return true;
+      });
+
+      if (!filtered.length) {
+        $('rows').innerHTML = '<tr><td colspan="2" class="muted" style="text-align:center;padding:38px">Нет записей</td></tr>';
+        return;
+      }
+
+      $('rows').innerHTML = filtered.map((row) => `
+        <tr>
+          <td><button type="button" class="nick-btn" data-order-id="${escapeHtml(row.id || '')}">${escapeHtml(row.appNickname || '-')}</button></td>
+          <td><span class="pill">${normalizePeriod(row)}</span></td>
+        </tr>
+      `).join('');
+
+      document.querySelectorAll('.nick-btn').forEach((btn) => {
+        btn.addEventListener('click', () => openTesterUserCard(btn.dataset.orderId || ''));
+      });
+    }
+
+    function readProgress(data) {
+      return data && typeof data.progress === 'object' ? data.progress : {};
+    }
+
+    function userNameFromDoc(docSnap) {
+      const data = docSnap.data() || {};
+      const progress = readProgress(data);
+      return progress.user_name || data.user_name || data.displayName || docSnap.id;
+    }
+
+    // Все документы users с данным ником (а НЕ первый попавшийся). «Таня» — частое имя:
+    // в базе несколько профилей с одинаковым user_name (вкл. старые осиротевшие после
+    // переустановки). Молчаливый docs[0] приводил к выдаче VIP в чужой/мёртвый документ.
+    // Заявка telegram_premium_orders несёт telegramUserId, но приложение НЕ хранит его в
+    // users/{stableId}, поэтому искать по id нельзя — отдаём админу выбор из кандидатов.
+    async function findUserMatches(nickname) {
+      const clean = String(nickname || '').trim();
+      if (!clean) return [];
+      const seen = new Map();
+      const collect = (snap) => {
+        snap.docs.forEach((d) => { if (!seen.has(d.id)) seen.set(d.id, d); });
+      };
+      collect(await getDocs(query(collection(db, 'users'), where('progress.user_name', '==', clean), limit(20))));
+      collect(await getDocs(query(collection(db, 'users'), where('user_name', '==', clean), limit(20))));
+      if (!seen.size) {
+        const direct = await getDoc(doc(db, 'users', clean));
+        if (direct.exists()) seen.set(direct.id, direct);
+      }
+      return Array.from(seen.values()).sort((a, b) => candidateLiveScore(b) - candidateLiveScore(a));
+    }
+
+    // «Живость» документа: чем выше — тем вероятнее это настоящий активный аккаунт.
+    // Сортируем кандидатов так, чтобы живой профиль был сверху списка выбора.
+    function candidateLiveScore(docSnap) {
+      const data = docSnap.data() || {};
+      const p = readProgress(data);
+      const xp = Number(p.user_total_xp || data.user_total_xp || 0) || 0;
+      const lastActive = premiumMsLocal(p.last_active_at || data.last_active_at || data.updatedAt);
+      // last_active_at доминирует (мс), XP — вторичный сигнал.
+      return lastActive + Math.min(xp, 1_000_000);
+    }
+
+    function premiumMsLocal(v) {
+      if (v == null || v === '') return 0;
+      if (typeof v === 'object') {
+        if (typeof v.toMillis === 'function') return Math.max(0, v.toMillis() || 0);
+        if (typeof v.seconds === 'number') return Math.max(0, v.seconds * 1000);
+      }
+      const n = Number(v);
+      return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0;
+    }
+
+    function candidateMeta(docSnap) {
+      const data = docSnap.data() || {};
+      const p = readProgress(data);
+      const xp = Number(p.user_total_xp || data.user_total_xp || 0) || 0;
+      const platform = String(p.device_platform || data.device_platform || p.platform || '').trim() || '—';
+      const version = String(p.app_version || data.app_version || '').trim() || '—';
+      const vipActive = String(p.vip_active || '').trim() === 'true' && String(p.vip_admin_override || '').trim() !== 'false';
+      const lastActiveMs = premiumMsLocal(p.last_active_at || data.last_active_at || data.updatedAt);
+      const lastActive = lastActiveMs > 0 ? new Date(lastActiveMs).toLocaleString('ru-RU') : '—';
+      return { id: docSnap.id, level: levelFromXp(xp), xp, platform, version, vipActive, lastActive };
+    }
+
+    // Сохранена для обратной совместимости (refreshOpenTesterDetailFromRows и др.):
+    // возвращает самого «живого» кандидата.
+    async function findUserByNickname(nickname) {
+      const matches = await findUserMatches(nickname);
+      return matches[0] || null;
+    }
+
+    function levelFromXp(xp) {
+      const safe = Math.max(0, Number(xp) || 0);
+      return Math.floor(Math.sqrt(safe / 100)) + 1;
+    }
+
+    function activationMonthsForPlan(plan) {
+      return plan === 'yearly' ? 12 : 1;
+    }
+
+    function buildTesterVipUpdate(plan, progress) {
+      const grantAt = String(Date.now());
+      const fromStr = grantAt;
+      const months = activationMonthsForPlan(plan);
+      const currentUntil = parseInt(String((progress || {}).vip_until || '0'), 10) || 0;
+      const base = currentUntil > Date.now() ? currentUntil : Date.now();
+      const until = new Date(base);
+      until.setMonth(until.getMonth() + months);
+      const expiryStr = String(until.getTime());
+      return {
+        fields: {
+          'progress.vip_active': 'true',
+          'progress.vip_plan': 'telegram_tester',
+          'progress.vip_from': fromStr,
+          'progress.vip_until': expiryStr,
+          'progress.vip_admin_override': 'true',
+          'progress.vip_admin_grant_at': grantAt,
+        },
+        grantAt,
+        expiryStr,
+      };
+    }
+
+    function openFullUserCard(userDoc) {
+      const target = new URL('index.html', window.location.href);
+      target.searchParams.set('openUser', userDoc.id);
+      window.location.href = target.toString();
+    }
+
+    function renderTesterDetail(tester, userDoc, hasOtherCandidates = false) {
+      const data = userDoc.data() || {};
+      const progress = readProgress(data);
+      const name = userNameFromDoc(userDoc);
+      const xp = Number(progress.user_total_xp || data.user_total_xp || 0) || 0;
+      const activeUntil = progress.vip_until ? new Date(parseInt(String(progress.vip_until), 10) || 0).toLocaleString('ru-RU') : '-';
+      const meta = candidateMeta(userDoc);
+      const period = normalizePeriod(tester);
+      const status = testerActivationStatus(tester);
+      // Если у ника были другие кандидаты — даём вернуться к выбору, чтобы не выдать в не тот профиль.
+      const backBtn = hasOtherCandidates
+        ? '<button type="button" id="back-to-picker" style="margin-bottom:10px;background:#2a3142">← к выбору профиля</button>'
+        : '';
+
+      $('detail-title').textContent = name || tester.appNickname || 'Пользователь';
+      $('detail-body').innerHTML = `
+        ${backBtn}
+        <div class="dsec">
+          <h3>Профиль</h3>
+          <div class="drow"><span class="k">Ник</span><span class="v">${escapeHtml(name)}</span></div>
+          <div class="drow"><span class="k">UID</span><span class="v">${escapeHtml(userDoc.id)}</span></div>
+          <div class="drow"><span class="k">Уровень</span><span class="v">${levelFromXp(xp)} · ${meta.xp} XP</span></div>
+          <div class="drow"><span class="k">Платформа</span><span class="v">${escapeHtml(meta.platform)} · v${escapeHtml(meta.version)}</span></div>
+          <div class="drow"><span class="k">Активность</span><span class="v">${escapeHtml(meta.lastActive)}</span></div>
+          <div class="drow"><span class="k">Текущий срок</span><span class="v">${escapeHtml(activeUntil)}</span></div>
+        </div>
+        <div class="dsec">
+          <h3>Период</h3>
+          <div class="drow"><span class="k">Из записи</span><span class="v">${escapeHtml(period)}</span></div>
+          <div class="drow"><span class="k">Состояние</span><span id="tester-activation-status" class="v" data-activation-status="${escapeHtml(status)}">${escapeHtml(status)}</span></div>
+          <div style="display:grid;gap:8px;margin-top:12px">
+            <button type="button" id="activate-selected">Активировать период из записи</button>
+            <button type="button" id="activate-month">Активировать месяц</button>
+            <button type="button" id="activate-year">Активировать год</button>
+            <button type="button" id="open-full-card">Открыть полную карточку</button>
+          </div>
+          <div id="activation-notice" class="notice" aria-live="polite"></div>
+          <div id="activation-error" class="error"></div>
+        </div>
+      `;
+
+      if (hasOtherCandidates) {
+        const back = $('back-to-picker');
+        if (back) back.onclick = () => openTesterUserCard(tester.id);
+      }
+      $('activate-selected').onclick = () => activateTesterPeriod(tester.id, userDoc.id, tester.plan || 'monthly');
+      $('activate-month').onclick = () => activateTesterPeriod(tester.id, userDoc.id, 'monthly');
+      $('activate-year').onclick = () => activateTesterPeriod(tester.id, userDoc.id, 'yearly');
+      $('open-full-card').onclick = () => openFullUserCard(userDoc);
+      currentTesterDetail = { testerId: tester.id, userDoc };
+    }
+
+    function setActivationNotice(message, kind = 'info') {
+      const notice = $('activation-notice');
+      if (!notice) return;
+      notice.textContent = message || '';
+      notice.className = `notice ${kind} ${message ? 'show' : ''}`;
+    }
+
+    function setActivationButtonsBusy(isBusy) {
+      ['activate-selected', 'activate-month', 'activate-year'].forEach((id) => {
+        const button = $(id);
+        if (!button) return;
+        button.disabled = isBusy;
+      });
+    }
+
+    async function refreshOpenTesterDetailFromRows() {
+      if (!currentTesterDetail?.testerId || !$('detail').classList.contains('open')) return;
+      const tester = testerRows.find((row) => row.id === currentTesterDetail.testerId);
+      if (!tester) return;
+      const userDoc = currentTesterDetail.userDoc?.id
+        ? await getDoc(doc(db, 'users', currentTesterDetail.userDoc.id))
+        : await findUserByNickname(tester.appNickname || '');
+      if (!userDoc || !userDoc.exists()) return;
+      renderTesterDetail(tester, userDoc);
+    }
+
+    async function activateTesterPeriod(orderId, uid, plan) {
+      const tester = testerRows.find((row) => row.id === orderId);
+      if (!tester) return;
+      const preSnap = await getDoc(doc(db, 'users', uid)).catch(() => null);
+      // Показываем АДРЕСАТА (ник/платформа/UID) прямо в подтверждении — последняя страховка
+      // от выдачи VIP в не тот документ при совпадении ников.
+      const who = preSnap && preSnap.exists()
+        ? (() => { const m = candidateMeta(preSnap); return `${userNameFromDoc(preSnap)} · Lvl ${m.level} · ${m.platform} v${m.version}\nUID: ${m.id}`; })()
+        : `UID: ${uid}`;
+      const ok = window.confirm(`Активировать VIP (${plan}) для:\n${who}\n\nПроверь, что это НУЖНЫЙ профиль.`);
+      if (!ok) return;
+      try {
+        setActivationButtonsBusy(true);
+        setActivationNotice('Активирую доступ...', 'info');
+        const userSnap = await getDoc(doc(db, 'users', uid));
+        if (!userSnap.exists()) throw new Error('Пользователь не найден.');
+        const progress = readProgress(userSnap.data() || {});
+        const grant = buildTesterVipUpdate(plan, progress);
+        await updateDoc(doc(db, 'users', uid), grant.fields);
+        await updateDoc(doc(db, 'telegram_premium_orders', tester.id), {
+          status: 'vip_activated',
+          testerActivationStatus: 'activated',
+          activatedAt: grant.grantAt,
+          activatedUserId: uid,
+          activatedPeriod: plan,
+          activatedUntil: grant.expiryStr,
+        });
+        Object.assign(tester, {
+          status: 'vip_activated',
+          testerActivationStatus: 'activated',
+          activatedAt: grant.grantAt,
+          activatedUserId: uid,
+          activatedPeriod: plan,
+          activatedUntil: grant.expiryStr,
+        });
+        renderRows();
+        const freshUser = await getDoc(doc(db, 'users', uid));
+        renderTesterDetail(tester, freshUser.exists() ? freshUser : userSnap);
+        setActivationNotice('VIP активирован. Статус записи обновлён.', 'success');
+      } catch (error) {
+        const errorEl = $('activation-error');
+        if (errorEl) errorEl.textContent = error?.message || String(error);
+      } finally {
+        setActivationButtonsBusy(false);
+      }
+    }
+
+    // Выбор кандидата, когда по нику найдено НЕСКОЛЬКО документов. Не выдаём вслепую —
+    // показываем админу список (платформа/версия/уровень/активность/VIP), он жмёт нужный.
+    function renderCandidatePicker(tester, matches) {
+      $('detail-title').textContent = (tester?.appNickname || 'Пользователь') + ' — выбор профиля';
+      const rows = matches.map((d, i) => {
+        const m = candidateMeta(d);
+        const vipBadge = m.vipActive ? '<span class="pill" style="background:#1f6f4a;color:#bdf5d6">VIP</span>' : '';
+        const top = i === 0 ? '<span class="pill" style="background:#2a3550;color:#cfe0ff">самый активный</span>' : '';
+        return `
+          <div class="dsec" style="cursor:pointer;border:1px solid #2a3142;border-radius:10px;padding:10px;margin-bottom:8px" data-pick-uid="${escapeHtml(m.id)}">
+            <div class="drow"><span class="k">Профиль</span><span class="v">Lvl ${m.level} · ${m.xp} XP ${top} ${vipBadge}</span></div>
+            <div class="drow"><span class="k">Платформа</span><span class="v">${escapeHtml(m.platform)} · v${escapeHtml(m.version)}</span></div>
+            <div class="drow"><span class="k">Активность</span><span class="v">${escapeHtml(m.lastActive)}</span></div>
+            <div class="drow"><span class="k">UID</span><span class="v" style="font-size:11px;opacity:.7">${escapeHtml(m.id)}</span></div>
+          </div>`;
+      }).join('');
+      $('detail-body').innerHTML = `
+        <div class="dsec">
+          <h3>Найдено профилей с этим ником: ${matches.length}</h3>
+          <div class="muted" style="margin-bottom:10px">Имя совпадает у нескольких аккаунтов. Выбери НАСТОЯЩИЙ (обычно самый активный, со свежей активностью и прогрессом), чтобы VIP не ушёл в чужой/старый профиль.</div>
+        </div>
+        ${rows}`;
+      document.querySelectorAll('[data-pick-uid]').forEach((el) => {
+        el.addEventListener('click', async () => {
+          const uid = el.getAttribute('data-pick-uid') || '';
+          const picked = await getDoc(doc(db, 'users', uid));
+          if (picked.exists()) renderTesterDetail(tester, picked, true);
+        });
+      });
+    }
+
+    window.openTesterUserCard = async function openTesterUserCard(orderId) {
+      const tester = testerRows.find((row) => row.id === orderId);
+      const nickname = tester?.appNickname || '';
+      $('detail-title').textContent = nickname || 'Пользователь';
+      $('detail-body').innerHTML = '<div class="dsec"><div class="muted">Открываю карточку пользователя...</div></div>';
+      $('detail-overlay').style.display = 'block';
+      $('detail').classList.add('open');
+
+      const matches = await findUserMatches(nickname);
+      if (!matches.length) {
+        $('detail-body').innerHTML = '<div class="dsec"><h3>Профиль</h3><div class="muted">Пользователь с таким ником не найден.</div></div>';
+        return;
+      }
+
+      if (matches.length > 1) {
+        renderCandidatePicker(tester, matches);
+        return;
+      }
+
+      renderTesterDetail(tester, matches[0]);
+    };
+
+    function closeDetail() {
+      $('detail').classList.remove('open');
+      $('detail-overlay').style.display = 'none';
+    }
+
+    function startRowsListener() {
+      if (unsubscribeRows) unsubscribeRows();
+      $('status').textContent = 'онлайн';
+      unsubscribeRows = onSnapshot(
+        query(collection(db, 'telegram_premium_orders'), orderBy('paidAt', 'desc'), limit(100)),
+            (snap) => {
+              testerRows = snap.docs.map((docSnap) => ({ id: docSnap.id, ...docSnap.data() }));
+              renderRows();
+              refreshOpenTesterDetailFromRows();
+              $('status').textContent = `обновлено: ${new Date().toLocaleTimeString('ru-RU')}`;
+            },
+        (error) => {
+          $('status').textContent = 'нет доступа';
+          $('rows').innerHTML = `<tr><td colspan="2" class="muted" style="text-align:center;padding:38px">${escapeHtml(error.message)}</td></tr>`;
+        }
+      );
+    }
+
+    async function signIn() {
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (error) {
+        if (error && (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-supported-in-this-environment')) {
+          await signInWithRedirect(auth, provider);
+          return;
+        }
+        $('login-error').textContent = error?.message || String(error);
+      }
+    }
+
+    $('signin').addEventListener('click', signIn);
+    $('refresh').addEventListener('click', renderRows);
+    $('search').addEventListener('input', renderRows);
+    $('period').addEventListener('change', renderRows);
+    $('detail-close').addEventListener('click', closeDetail);
+    $('detail-overlay').addEventListener('click', closeDetail);
+
+    getRedirectResult(auth).catch(() => undefined);
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        $('login').classList.remove('hidden');
+        $('app').classList.add('hidden');
+        return;
+      }
+      const token = await user.getIdTokenResult(true);
+      if (token.claims.admin === true) {
+        $('login').classList.add('hidden');
+        $('app').classList.remove('hidden');
+        startRowsListener();
+      } else {
+        await signOut(auth);
+        $('login-error').textContent = 'Нет admin-доступа.';
+      }
+    });
+  </script>
+</body>
+</html>

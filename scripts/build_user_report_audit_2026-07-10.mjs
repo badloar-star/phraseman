@@ -118,7 +118,7 @@ const publicSummaries = {
   28: 'первая плитка показывалась с лишней заглавной буквой',
   29: 'возник вопрос об артикле перед словосочетанием ancient map',
   30: 'возник вопрос о вариантах the problem и this problem',
-  31: 'замена ежедневного задания могла списать осколки без выполнимого результата',
+  31: 'замена ежедневного задания могла списать жемчужины без выполнимого результата',
   32: 'в переводе фразы не хватало указательного слова',
   33: 'новое слово могло появиться без предварительного введения',
   34: 'возник вопрос об указательном слове в переводе',
@@ -157,7 +157,7 @@ for (const row of rows) {
 
 if (rows.length !== 48) throw new Error(`Expected 48 rows, got ${rows.length}`);
 
-const rewardText = (count) => `${count} ${count === 1 ? 'осколок' : count < 5 ? 'осколка' : 'осколков'}`;
+const rewardText = (count) => `${count} ${count === 1 ? 'жемчужина' : count < 5 ? 'жемчужины' : 'жемчужин'}`;
 
 const replies = rows.map(({ reportNo, reportId, uid, title, reward, verdict, group, publicSummary }) => {
   const rewardSentence = reward > 0

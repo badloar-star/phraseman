@@ -7,7 +7,7 @@ import { assertCourseRelease, type CourseRelease } from './content_factory/cours
 
 const REGION = 'us-central1';
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
-function roleFromToken(token: Record<string, unknown>): AdminRole | null { return hasAdminRole(token.adminRole) ? token.adminRole : null; }
+function roleFromToken(token: Record<string, unknown>): AdminRole | null { return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner'; }
 
 export function assertReleaseActivationMetadata(value: unknown): void {
   if (!isRecord(value) || value.reviewStatus !== 'approved') throw new Error('course_release_not_approved');
@@ -80,7 +80,7 @@ export const adminActivateCourseRelease = onCall(
       if (revision !== input.expectedRevision) throw new HttpsError('failed-precondition', 'catalog_changed_reload_before_activation');
       const nextRevision = revision + 1;
       const nextActive = { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, blueprintId: release.blueprintId, blueprintHash: release.blueprintHash };
-      const audit = { action: 'content_factory.course_release.activate', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease ?? null }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
+      const audit = { action: 'content_factory.course_release.activate', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease ?? null }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
       tx.set(catalogRef, { studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, revision: nextRevision, activeRelease: nextActive, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
       tx.create(historyRef, audit);
       tx.create(auditRef, audit);
@@ -125,7 +125,7 @@ export const adminRollbackCourseRelease = onCall(
       if (revision !== input.expectedRevision || current.releaseId !== input.expectedCurrentReleaseId) throw new HttpsError('failed-precondition', 'catalog_changed_reload_before_rollback');
       const nextRevision = revision + 1;
       const nextActive = { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, blueprintId: release.blueprintId, blueprintHash: release.blueprintHash };
-      const audit = { action: 'content_factory.course_release.rollback', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
+      const audit = { action: 'content_factory.course_release.rollback', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
       tx.set(catalogRef, { revision: nextRevision, activeRelease: nextActive, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
       tx.create(historyRef, audit);
       tx.create(auditRef, audit);

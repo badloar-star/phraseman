@@ -13,10 +13,10 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 // режимов без места на экране и постепенно выпиливается — не использовать в новом коде.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Animated, BackHandler, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { File } from 'expo-file-system';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -24,11 +24,13 @@ import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
+import { isCorrectAnswer } from '../constants/contractions';
 import { personalPlanPromptForLang } from './personal_plan_prompt_locale';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
 import AiMistakeCard from '../components/AiMistakeCard';
+import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
 import {
@@ -47,7 +49,12 @@ import {
 import { isSpeakingEnabled } from './remote_flags';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { hapticError, hapticSuccess, hapticTap, hapticWarning } from '../hooks/use-haptics';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
+import { updateMultipleTaskProgress } from './daily_tasks';
+import { actionToastTri, emitAppEvent } from './events';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { VoiceEqualizer } from './voice_equalizer';
 import { speakingTargetTokens, speakingMatchedFlags } from './speaking_word_match';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
@@ -101,7 +108,8 @@ import { planExerciseRendererContractForType, type PlanExerciseVisualShell } fro
 import { evaluateRecallAnswer } from './review_evaluator';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
-
+import { beginPersonalPlanChoiceAttempt, type PersonalPlanChoiceAttemptState } from './personal_plan_choice_attempt';
+import { noAndroidOutline } from '../constants/androidGlow';
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';
 }
@@ -131,9 +139,6 @@ function isPersonalPlanListenBuildItem(item: unknown): item is PersonalPlanListe
   );
 }
 
-function normalizePlanAnswer(value: string): string {
-  return value.trim().toLowerCase().replace(/[.!?]+$/g, '').replace(/\s+/g, ' ');
-}
 
 // Одна строка во всех активных языках интерфейса (RU / UK / ES).
 // Старый авто-разбор «Почему так» (planExerciseExplanation + типы LocalizedText/
@@ -274,11 +279,13 @@ function PlanListenChooseAudioButton({
   accent,
   actionText,
   mutedText,
+  lang,
 }: {
   item: PersonalPlanListenChooseItem | PersonalPlanListenBuildItem;
   accent: string;
   actionText: string;
   mutedText: string;
+  lang: Lang;
 }) {
   const playback = useMemo(() => buildPlanListeningPlaybackSource(item), [item]);
   const source = playback.source === 'in_app_audio' ? playback.playerSource : null;
@@ -287,12 +294,43 @@ function PlanListenChooseAudioButton({
   const disabled = playback.source !== 'in_app_audio';
   const isPlaying = Boolean(status?.playing);
   const isBuffering = Boolean(status?.isBuffering);
-  const label = disabled ? 'Аудио готовится' : isBuffering ? 'Загрузка' : isPlaying ? 'Слушаю' : 'Слушать';
+  // зачем: юзер-украинец сообщил, что кнопка подписана по-русски «Слушать».
+  // Строки были захардкожены, хотя весь остальной экран уже локализован через triLang.
+  const label = disabled
+    ? triLang(lang, {
+        ru: 'Аудио готовится', uk: 'Аудіо готується', es: 'Preparando el audio',
+        'pt-BR': 'Preparando o áudio', vi: 'Đang chuẩn bị âm thanh',
+        id: 'Menyiapkan audio', tr: 'Ses hazırlanıyor', pl: 'Przygotowuję audio',
+      })
+    : isBuffering
+      ? triLang(lang, {
+          ru: 'Загрузка', uk: 'Завантаження', es: 'Cargando',
+          'pt-BR': 'Carregando', vi: 'Đang tải', id: 'Memuat', tr: 'Yükleniyor', pl: 'Ładowanie',
+        })
+      : isPlaying
+        ? triLang(lang, {
+            ru: 'Слушаю', uk: 'Слухаю', es: 'Escuchando',
+            'pt-BR': 'Ouvindo', vi: 'Đang nghe', id: 'Mendengarkan', tr: 'Dinleniyor', pl: 'Słucham',
+          })
+        : triLang(lang, {
+            ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
+            'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Słuchaj',
+          });
 
   return (
     <TouchableOpacity
       accessibilityRole="button"
-      accessibilityLabel={disabled ? 'Аудио готовится' : 'Слушать фразу'}
+      accessibilityLabel={disabled
+        ? triLang(lang, {
+            ru: 'Аудио готовится', uk: 'Аудіо готується', es: 'Preparando el audio',
+            'pt-BR': 'Preparando o áudio', vi: 'Đang chuẩn bị âm thanh',
+            id: 'Menyiapkan audio', tr: 'Ses hazırlanıyor', pl: 'Przygotowuję audio',
+          })
+        : triLang(lang, {
+            ru: 'Слушать фразу', uk: 'Слухати фразу', es: 'Escuchar la frase',
+            'pt-BR': 'Ouvir a frase', vi: 'Nghe cụm từ', id: 'Dengarkan frasa',
+            tr: 'İfadeyi dinle', pl: 'Posłuchaj frazy',
+          })}
       activeOpacity={0.82}
       disabled={disabled}
       onPress={() => {
@@ -427,6 +465,7 @@ function PlanPronunciationRecorder({
   onScored,
   onScoringChange,
   onBlocked,
+  energyBlocked = false,
 }: {
   accent: string;
   actionText: string;
@@ -438,8 +477,16 @@ function PlanPronunciationRecorder({
   onScoringChange: (scoring: boolean) => void;
   /** Speech can't run here (no recognizer / mic denied) → host lets the user advance. */
   onBlocked: (blocked: PronunciationBlock) => void;
+  /** зачем: аудит нашёл, что запись голоса не проверяла noEnergyModalOpen — пользователь
+      мог продолжать записывать/пересдавать произношение под уже открытым блокирующим
+      окном «нет энергии». Хост передаёт своё noEnergyModalOpen сюда. */
+  energyBlocked?: boolean;
 }) {
   const { speak: speakFallbackAudio, stop: stopAudio } = useAudio();
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
+  const mountedRef = useRef(true);
   const { playCorrect } = useCorrectSound();
   // Тема нужна, чтобы кольцо результата (SpeakingScoreRing) выглядело ТОЧНО как в
   // уроках «Устно» (SpeakingPanel): тот же цвет трека/текста/центра и pass/fail-цвета.
@@ -462,6 +509,7 @@ function PlanPronunciationRecorder({
   }, [targetAudioStatus]);
   const targetPlaybackDoneTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const targetPlaybackFallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const targetPlaybackGenerationRef = useRef(0);
   const clearTargetPlaybackTimers = useCallback(() => {
     if (targetPlaybackDoneTimerRef.current != null) {
       clearTimeout(targetPlaybackDoneTimerRef.current);
@@ -495,7 +543,8 @@ function PlanPronunciationRecorder({
   const [pronunciationScoringLocal, setPronunciationScoringLocal] = useState(false);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [blocked, setBlockedLocal] = useState<PronunciationBlock>(null);
-  const finishTargetPlayback = useCallback(() => {
+  const finishTargetPlayback = useCallback((playbackGeneration: number) => {
+    if (!mountedRef.current || !runtimeActiveRef.current || playbackGeneration !== targetPlaybackGenerationRef.current) return;
     clearTargetPlaybackTimers();
     setPronunciationSpeakingTarget(false);
     setPronunciationHeardTarget(true);
@@ -507,7 +556,11 @@ function PlanPronunciationRecorder({
   // start(), снимается первым событием жизни движка; иначе через 7с гасит попытку.
   const recognizerWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const finishAttemptTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const finishAttemptRef = useRef<() => void>(() => undefined);
+  const recognizerSubsRef = useRef<{ remove?: () => void }[]>([]);
+  const captureGenerationRef = useRef(0);
+  const installRecognitionListenersRef = useRef<(captureGeneration: number) => void>(() => undefined);
+  // attemptGen — поколение попытки, от которой пришёл вызов (см. attemptGenRef).
+  const finishAttemptRef = useRef<(attemptGen?: number) => void>(() => undefined);
   const clearRecognizerWatchdog = useCallback(() => {
     if (recognizerWatchdogRef.current != null) {
       clearTimeout(recognizerWatchdogRef.current);
@@ -520,6 +573,10 @@ function PlanPronunciationRecorder({
       finishAttemptTimerRef.current = null;
     }
   }, []);
+  const cleanupRecognitionListeners = useCallback(() => {
+    recognizerSubsRef.current.forEach((sub) => sub?.remove?.());
+    recognizerSubsRef.current = [];
+  }, []);
   const targetTextRef = useRef(targetText);
   targetTextRef.current = targetText;
   // Best (highest-scoring) transcript accumulated across all alternatives of all
@@ -530,6 +587,14 @@ function PlanPronunciationRecorder({
   const bestConfidenceRef = useRef<number | undefined>(undefined);
   const bestSegmentsRef = useRef<ReadonlyArray<{ segment?: string; confidence?: number }> | undefined>(undefined);
   const scoredRef = useRef(false);
+  // зачем: юзер сообщил «после неидеальной первой попытки следующие не записываются».
+  // Причина — гонка: finishAttempt() старой попытки возвращает аудиосессию в режим
+  // воспроизведения (allowsRecording:false) с задержкой (таймер 1.5с или поздний
+  // нативный 'end' на Android) и глушит микрофон УЖЕ НАЧАВШЕЙСЯ новой попытки.
+  // Счётчик поколений: запоздавший колбэк старой попытки не трогает сессию новой.
+  const attemptGenRef = useRef(0);
+  // Поколение попытки, которую распознаватель слушает сейчас (0 = не слушает).
+  const listeningGenRef = useRef(0);
   // Union of all words heard this attempt — reassembles fast segmented speech so
   // it isn't scored as "only the last word". See TranscriptAccumulator.
   const accRef = useRef(new TranscriptAccumulator());
@@ -591,8 +656,11 @@ function PlanPronunciationRecorder({
   }, []);
 
   const startHold = useCallback(() => {
+    if (!runtimeActiveRef.current) return;
     if (!holdMode) return;
     if (holdRecRef.current) return;
+    const captureGeneration = ++captureGenerationRef.current;
+    targetPlaybackGenerationRef.current += 1;
     hapticTap();
     holdFinishingRef.current = false;
     clearTargetPlaybackTimers();
@@ -613,6 +681,7 @@ function PlanPronunciationRecorder({
     setBlocked(null);
     scoredRef.current = false;
     const beginCapture = () => {
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current || !systemHoldPressedRef.current) return;
       // НЕ показываем «Говори» синхронно: AudioRecord прогревается ~100-300мс.
       holdRecRef.current = startHoldRecording({
         onFirstAudio: () => {
@@ -629,6 +698,7 @@ function PlanPronunciationRecorder({
     }
     void (async () => {
       const permission = await ensureHoldMicPermission();
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (permission === 'denied') {
         setPronunciationPreparing(false);
         setBlocked('denied');
@@ -649,6 +719,7 @@ function PlanPronunciationRecorder({
   }, [holdMode, clearTargetPlaybackTimers, stopAudio, targetAudioPlayer, targetAudioPlayerSource, setBlocked, playRecordStart, ensureHoldMicPermission]);
 
   const endHold = useCallback(async () => {
+    const captureGeneration = captureGenerationRef.current;
     const rec = holdRecRef.current;
     if (!rec) {
       setPronunciationPreparing(false);
@@ -668,6 +739,11 @@ function PlanPronunciationRecorder({
     } catch {
       wavUri = null;
     }
+    if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+      deleteHoldRecording(wavUri);
+      setPronunciationScoring(false);
+      return;
+    }
     if (!wavUri) {
       // Ничего не записалось (слишком коротко/сбой) — не 0%, просто сброс.
       setPronunciationScoring(false);
@@ -679,6 +755,7 @@ function PlanPronunciationRecorder({
       locale: PLAN_RECOGNITION_LOCALE,
     });
     deleteHoldRecording(wavUri);
+    if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
     setPronunciationScoring(false);
     const heard = (verdict?.transcript ?? '').trim();
     if (!heard) return; // не расслышал — без штрафа
@@ -722,6 +799,11 @@ function PlanPronunciationRecorder({
   }, [targetText, setPronunciationScoring, setBlocked, speechModule, clearTargetPlaybackTimers, clearFinishAttemptTimer]);
 
   useEffect(() => () => {
+    mountedRef.current = false;
+    captureGenerationRef.current += 1;
+    targetPlaybackGenerationRef.current += 1;
+    attemptGenRef.current += 1;
+    listeningGenRef.current = 0;
     clearTargetPlaybackTimers();
     clearFinishAttemptTimer();
     // Незавершённая hold-запись при размонтировании — отменяем, файл не пишем.
@@ -734,9 +816,54 @@ function PlanPronunciationRecorder({
     systemHoldPressedRef.current = false;
   }, [clearTargetPlaybackTimers, clearFinishAttemptTimer]);
 
+  // Speech capture lifecycle invariant: blur/background invalidates permission/start,
+  // removes recognition/audioend listeners, cancels PCM, and never auto-resumes.
+  useEffect(() => {
+    if (runtimeActive) return;
+    captureGenerationRef.current += 1;
+    targetPlaybackGenerationRef.current += 1;
+    attemptGenRef.current += 1;
+    listeningGenRef.current = 0;
+    systemHoldPressedRef.current = false;
+    holdFinishingRef.current = false;
+    clearRecognizerWatchdog();
+    clearFinishAttemptTimer();
+    clearTargetPlaybackTimers();
+    cleanupRecognitionListeners();
+    finishAttemptRef.current = () => undefined;
+    try {
+      speechModule?.abort();
+    } catch {
+      /* no-op */
+    }
+    try {
+      holdRecRef.current?.cancel();
+    } catch {
+      /* no-op */
+    }
+    holdRecRef.current = null;
+    try {
+      targetAudioPlayer.pause();
+    } catch {
+      /* no-op */
+    }
+    stopAudio();
+    restoreLoudPlaybackMode();
+    equalizerRef.current?.setSample(0);
+    setPronunciationPreparing(false);
+    setPronunciationSpeakingTarget(false);
+    setPronunciationListening(false);
+    setPronunciationScoring(false);
+  }, [runtimeActive, speechModule, targetAudioPlayer, stopAudio, clearRecognizerWatchdog, clearFinishAttemptTimer, clearTargetPlaybackTimers, cleanupRecognitionListeners, setPronunciationScoring]);
+
   // Recognition result → score it locally and report up.
   useEffect(() => {
-    if (!speechModule) return undefined; // no recognizer: nothing to listen to
+    if (!speechModule || !runtimeActive) return undefined; // inactive owners never subscribe or capture
+
+    const installRecognitionListeners = (captureGeneration: number) => {
+      cleanupRecognitionListeners();
+      const isCurrentSession = () =>
+        mountedRef.current && runtimeActiveRef.current && captureGeneration === captureGenerationRef.current;
 
     // Consider every alternative of every result event, keeping the one that
     // scores highest against the target. The engine often puts the correct
@@ -764,8 +891,13 @@ function PlanPronunciationRecorder({
     };
 
     // Score the accumulated best transcript exactly once per attempt.
-    const finishAttempt = () => {
+    const finishAttempt = (attemptGen?: number) => {
+      if (!isCurrentSession()) return;
       clearFinishAttemptTimer();
+      // Запоздавший колбэк УЖЕ ЗАВЕРШЁННОЙ попытки (таймер 1.5с или поздний нативный
+      // 'end') не должен ничего делать: пользователь мог начать новую запись, и возврат
+      // сессии в режим воспроизведения заглушил бы живой микрофон.
+      if (attemptGen !== undefined && attemptGen !== attemptGenRef.current) return;
       // Попытка закончилась (любым исходом) — сессия больше не «запись».
       restoreLoudPlaybackMode();
       if (scoredRef.current) return;
@@ -800,7 +932,9 @@ function PlanPronunciationRecorder({
       }
       // Android segmented sessions can emit a final result for only part of the
       // phrase, then send the tail as another final result. Wait briefly for it.
-      finishAttemptTimerRef.current = setTimeout(finishAttempt, delayMs);
+      // Поколение фиксируем здесь: за 900мс пользователь может начать новую попытку.
+      const pendingGen = attemptGenRef.current;
+      finishAttemptTimerRef.current = setTimeout(() => finishAttempt(pendingGen), delayMs);
     };
 
     // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
@@ -808,12 +942,14 @@ function PlanPronunciationRecorder({
     // ~100-300мс терял начало речи). На Android звук молчит, играет вибро.
     let cuePlayed = false;
     const playCueOnce = () => {
+      if (!isCurrentSession()) return;
       if (cuePlayed) return;
       cuePlayed = true;
       playRecordStart();
     };
 
     const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
+      if (!isCurrentSession()) return;
       // Первый результат = движок точно жив (на редких OEM 'start' не эмитится).
       clearRecognizerWatchdog();
       if (systemHoldPressedRef.current) {
@@ -840,6 +976,7 @@ function PlanPronunciationRecorder({
 
     // Любой признак жизни движка снимает watchdog «заглохшего» распознавателя.
     const startSub = speechModule.addListener('start', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (!systemHoldPressedRef.current) {
         try {
@@ -855,6 +992,7 @@ function PlanPronunciationRecorder({
     });
     const resultSub = speechModule.addListener('result', applyResult);
     const noMatchSub = speechModule.addListener('nomatch', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       restoreLoudPlaybackMode();
       setPronunciationPreparing(false);
@@ -868,13 +1006,27 @@ function PlanPronunciationRecorder({
     // `end` is the backstop: if the engine ended without a final `result` event
     // (early silence cut-off), still score whatever best we captured.
     const endSub = speechModule.addListener('end', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
-      finishAttempt();
+      // 'end' движка не несёт в себе, к КАКОЙ попытке он относится, а на Android
+      // приходит с задержкой (нативный stop() асинхронный). Поэтому доводим только
+      // если попытка ещё «живая» (listeningGen != 0). Если stopSpeaking её уже закрыл,
+      // доводку делает его таймер, а поздний 'end' обязан молчать — иначе он вернёт
+      // сессию в playback поверх уже начатой НОВОЙ записи и заглушит микрофон.
+      if (listeningGenRef.current === 0) {
+        setPronunciationPreparing(false);
+        equalizerRef.current?.setSample(0);
+        return;
+      }
+      const endGen = listeningGenRef.current;
+      listeningGenRef.current = 0;
+      finishAttempt(endGen);
       setPronunciationPreparing(false);
       setPronunciationListening(false);
       equalizerRef.current?.setSample(0);
     });
     const errorSub = speechModule.addListener('error', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       restoreLoudPlaybackMode();
       setPronunciationPreparing(false);
@@ -886,24 +1038,32 @@ function PlanPronunciationRecorder({
     });
     // Live volume → equalizer imperatively (no setState → no re-render during recording).
     const volumeSub = speechModule.addListener('volumechange', (event: any) => {
+      if (!isCurrentSession()) return;
       equalizerRef.current?.setSample(Number(event?.value));
     });
     const audioEndSub = speechModule.addListener('audioend', (event: any) => {
+      if (!isCurrentSession()) return;
       const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
       deleteTransientSpeechRecordingFile(uri);
     });
+    recognizerSubsRef.current = [
+      startSub,
+      resultSub,
+      noMatchSub,
+      endSub,
+      errorSub,
+      volumeSub,
+      audioEndSub,
+    ].filter(Boolean) as { remove?: () => void }[];
+    };
+    installRecognitionListenersRef.current = installRecognitionListeners;
 
     return () => {
       clearRecognizerWatchdog();
       clearFinishAttemptTimer();
       finishAttemptRef.current = () => undefined;
-      startSub?.remove?.();
-      resultSub?.remove?.();
-      noMatchSub?.remove?.();
-      endSub?.remove?.();
-      errorSub?.remove?.();
-      volumeSub?.remove?.();
-      audioEndSub?.remove?.();
+      installRecognitionListenersRef.current = () => undefined;
+      cleanupRecognitionListeners();
       try {
         // stop() flushes a final result; abort() would discard a live attempt.
         speechModule.stop();
@@ -912,26 +1072,29 @@ function PlanPronunciationRecorder({
       }
       restoreLoudPlaybackMode();
     };
-  }, [onScored, speechModule, playCorrect, clearRecognizerWatchdog, clearFinishAttemptTimer]);
+  }, [onScored, speechModule, runtimeActive, playCorrect, playRecordStart, clearRecognizerWatchdog, clearFinishAttemptTimer, cleanupRecognitionListeners, setPronunciationScoring]);
 
   const listenPronunciationTarget = useCallback(() => {
+    if (!runtimeActiveRef.current) return;
+    const playbackGeneration = ++targetPlaybackGenerationRef.current;
     hapticTap();
     clearTargetPlaybackTimers();
     stopAudio();
     setPronunciationSpeakingTarget(true);
 
     const playFallbackAudio = () => {
+      if (!runtimeActiveRef.current || playbackGeneration !== targetPlaybackGenerationRef.current) return;
       clearTargetPlaybackTimers();
       targetPlaybackDoneTimerRef.current = setTimeout(
-        finishTargetPlayback,
+        () => finishTargetPlayback(playbackGeneration),
         Math.min(6000, Math.max(1300, targetText.length * 55 + 650)),
       );
       speakFallbackAudio(targetText, 0.86, {
         language: 'en-US',
         voice: '',
-        onDone: finishTargetPlayback,
-        onStopped: finishTargetPlayback,
-        onError: finishTargetPlayback,
+        onDone: () => finishTargetPlayback(playbackGeneration),
+        onStopped: () => finishTargetPlayback(playbackGeneration),
+        onError: () => finishTargetPlayback(playbackGeneration),
       });
     };
 
@@ -942,6 +1105,7 @@ function PlanPronunciationRecorder({
         } catch {
           // Playback still tries; the mode call is best-effort on edge runtimes.
         }
+        if (!runtimeActiveRef.current || playbackGeneration !== targetPlaybackGenerationRef.current) return;
         try {
           try {
             targetAudioPlayer.volume = 1;
@@ -973,11 +1137,11 @@ function PlanPronunciationRecorder({
           // мягкий потолок. Кнопка повтора разблокируется, юзер слышит живой голос.
           const durationMs = Math.round(((targetAudioPlayer.duration || 0) * 1000)) || 2600;
           targetPlaybackDoneTimerRef.current = setTimeout(
-            finishTargetPlayback,
+            () => finishTargetPlayback(playbackGeneration),
             Math.min(6000, Math.max(900, durationMs + 150)),
           );
         } catch {
-          if (Platform.OS === 'android') playFallbackAudio();
+          if (Platform.OS === 'android' && runtimeActiveRef.current && playbackGeneration === targetPlaybackGenerationRef.current) playFallbackAudio();
           else setPronunciationSpeakingTarget(false);
         }
       })();
@@ -1001,6 +1165,9 @@ function PlanPronunciationRecorder({
   ]);
 
   const startSpeaking = useCallback(async () => {
+    if (!runtimeActiveRef.current) return;
+    const captureGeneration = ++captureGenerationRef.current;
+    targetPlaybackGenerationRef.current += 1;
     hapticTap();
     clearTargetPlaybackTimers();
     setPronunciationSpeakingTarget(false);
@@ -1022,6 +1189,7 @@ function PlanPronunciationRecorder({
     }
     try {
       const permission = await requestSpeechPermissionForHold(speechModule);
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (permission === 'denied') {
         setPronunciationListening(false);
         setPronunciationPreparing(false);
@@ -1048,6 +1216,12 @@ function PlanPronunciationRecorder({
       bestSegmentsRef.current = undefined;
       accRef.current.reset();
       scoredRef.current = false;
+      // Новая попытка: всё, что прилетит от предыдущей, теперь считается устаревшим.
+      attemptGenRef.current += 1;
+      // Поколение попытки, которую слушает распознаватель ПРЯМО СЕЙЧАС. Слушатели
+      // ('end'/'error') живут дольше одной попытки, поэтому сверяются именно с ним.
+      listeningGenRef.current = attemptGenRef.current;
+      installRecognitionListenersRef.current(captureGeneration);
       equalizerRef.current?.setSample(0);
       // Hand the audio session from playback ("Послушать") to capture BEFORE
       // starting recognition, so iOS doesn't drop the first ~300ms of speech.
@@ -1057,6 +1231,7 @@ function PlanPronunciationRecorder({
       } catch {
         // Some runtimes may reject the record-mode switch; recognition still tries.
       }
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (!systemHoldPressedRef.current) {
         setPronunciationPreparing(false);
         restoreLoudPlaybackMode();
@@ -1069,6 +1244,7 @@ function PlanPronunciationRecorder({
       } catch {
         onDevice = false;
       }
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       // cue перенесён в слушатель 'start' — играет по реальному старту движка,
       // а не сразу после speechModule.start() (иначе терялось начало речи).
       // На Android звук и так молчит (use-record-start-cue) — только вибро.
@@ -1080,6 +1256,7 @@ function PlanPronunciationRecorder({
       clearRecognizerWatchdog();
       recognizerWatchdogRef.current = setTimeout(() => {
         recognizerWatchdogRef.current = null;
+        if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
         try {
           speechModule.abort();
         } catch {
@@ -1118,8 +1295,8 @@ function PlanPronunciationRecorder({
     clearTargetPlaybackTimers,
     stopAudio,
     speechModule,
+    setPronunciationScoring,
     setBlocked,
-    playRecordStart,
     targetAudioPlayer,
     targetAudioPlayerSource,
   ]);
@@ -1138,6 +1315,11 @@ function PlanPronunciationRecorder({
       return;
     }
     const shouldSettleAfterStop = pronunciationListeningRef.current;
+    // Попытка, которую слушали, завершена ЗДЕСЬ. Дальше 'end' может прийти с
+    // задержкой (Android): к тому времени listeningGen уже принадлежит новой
+    // попытке, и без этой фиксации поздний 'end' выдал бы себя за неё.
+    const endingGen = listeningGenRef.current;
+    listeningGenRef.current = 0;
     if (shouldSettleAfterStop) {
       setPronunciationListening(false);
       setPronunciationScoring(true);
@@ -1148,14 +1330,17 @@ function PlanPronunciationRecorder({
       // end/error listener will settle state
     }
     if (shouldSettleAfterStop) {
+      // Запоминаем, ЧЬЯ это отложенная доводка: через 1.5с пользователь может уже
+      // записывать заново — тогда старый таймер обязан промолчать (иначе глушит микрофон).
       schedulePlanSpeechStopSettlement(
         finishAttemptTimerRef,
-        () => finishAttemptRef.current(),
+        () => finishAttemptRef.current(endingGen),
       );
     }
   }, [clearRecognizerWatchdog, setPronunciationScoring, speechModule]);
 
   const startUnifiedHold = useCallback(() => {
+    if (!runtimeActiveRef.current) return;
     systemHoldPressedRef.current = true;
     if (Platform.OS === 'android' && pcmHoldMode) {
       startHold();
@@ -1269,7 +1454,7 @@ function PlanPronunciationRecorder({
           // Прослушивание фразы — НЕ обязательно: юзер может произнести сразу, если хочет.
           // Единственное ограничение — нельзя говорить, ПОКА звучит фраза (микрофон поймал бы
           // озвучку), поэтому блокируем только на время проигрывания target-аудио.
-          enabled={!pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}
+          enabled={!energyBlocked && !pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}
           preparing={pronunciationPreparing}
           listening={pronunciationListening}
           accent={accent}
@@ -1672,11 +1857,13 @@ function PlanChoiceTile({
             useGridOptions ? s.optionGridText : s.optionText,
             { color: textColor, fontWeight: showPressed ? '700' : (useGridOptions ? '500' : '600') },
           ]}
-          // Длинные слова в узкой 48%-плитке резались до огрызка «t...». Ужимаем
-          // шрифт в ОДНУ строку (не переносим по слогам — это выглядело сломано).
-          numberOfLines={useGridOptions ? 1 : undefined}
-          adjustsFontSizeToFit={useGridOptions}
-          minimumFontScale={useGridOptions ? 0.55 : undefined}
+          // зачем: adjustsFontSizeToFit запрещён в проекте (сжатие текста запрещённый
+          // паттерн, см. AGENTS.md Performance Bible). Длинные слова в узкой 48%-плитке
+          // раньше резались до «t...» при принудительной 1 строке + сжатии шрифта.
+          // Вместо сжатия — статичный чуть уменьшенный кегль (optionGridText) и перенос
+          // до 2 строк; плитка центрирована и имеет только minHeight, так что при
+          // переносе она просто становится выше, а не ломает сетку.
+          numberOfLines={useGridOptions ? 2 : undefined}
         >
           {option}
         </Text>
@@ -1690,14 +1877,75 @@ export default function PersonalPlanExerciseScreen() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { playCorrect } = useCorrectSound();
+  // зачем: владелец попросил, чтобы ошибки в персональных заданиях тратили энергию и
+  // блокировали экран при 0 — точно так же, как в уроках (lesson1.tsx/review.tsx).
+  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
+  const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });
+  useEffect(() => { energyRef.current = { energy, bonusEnergy, energyUnlimited }; }, [energy, bonusEnergy, energyUnlimited]);
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleExerciseScroll = useCallback((e: any) => {
     fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0);
   }, [fadeScrollY]);
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), и пользователь
+  // мог оказаться не на экране плана. Заводим тот же путь выхода, что и у кнопки, по
+  // образцу lesson1.tsx. Возвращаем true: событие обработано, дефолтный выход не нужен.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      safeRouterBack(router, '/personal_plan');
+      return true;
+    });
+    return () => sub.remove();
+  }, [router]);
+
+  // зачем: аудит нашёл, что закрытие модала тапом мимо/кнопкой «назад» на Android (в
+  // отличие от «Позже», который уводит с экрана через onGotIt) оставляет пользователя
+  // на этом же экране с энергией 0 — а любое следующее обновление EnergyContext
+  // (сворачивание/разворачивание приложения, тик восстановления, бонус/премиум-событие)
+  // заново триггерит гейт и открывает модал снова, хотя пользователь его уже закрыл.
+  // energyGateDismissedRef — «уже показывали и закрыли на этом заходе экрана», сбрасывается
+  // только при реальном размонтировании (новый заход на экран — новый шанс показать).
+  const energyGateDismissedRef = useRef(false);
+  // Гейт на входе: энергия уже на нуле до первого ответа — сразу блокирующий модал,
+  // как в lesson1.tsx (entryEnergyGateLessonRef). energyReady ждёт первого live-чтения,
+  // чтобы не мигнуть модалом на дефолтных значениях контекста при холодном старте.
+  useEffect(() => {
+    if (!energyReady || energyUnlimited) return;
+    if (energy + bonusEnergy > 0) return;
+    if (energyGateDismissedRef.current) return;
+    setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
+
   const params = useLocalSearchParams();
   const { theme: t, themeMode, f } = useTheme();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
+  // Общий путь траты энергии за ошибку в задании — та же механика, что в
+  // review.tsx/lesson1.tsx. Ответ к этому моменту уже засчитан вызывающей стороной;
+  // модал догоняет с задержкой (даёт красному фидбэку отыграть), totalBefore/After
+  // читаем из energyRef — без stale closure. Один хелпер на все режимы упражнения
+  // (выбор, listen-build, recall, произношение), чтобы не дублировать в 4 местах.
+  // зачем: объявлен ПОСЛЕ useStudyTarget() — деп-массив [spendOne, studyTarget]
+  // читает studyTarget в момент выполнения тела компонента, а не только внутри
+  // колбэка, поэтому TS требует объявления до использования (TS2448/TS2454).
+  const spendEnergyOnMistake = useCallback(() => {
+    if (energyRef.current.energyUnlimited) return;
+    const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
+    spendOne().then((success) => {
+      if (!success) return;
+      // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
+      // никогда не засчитывалось из личных заданий — lesson1.tsx/review.tsx шлют этот
+      // инкремент, а этот экран — нет. Квест молча не продвигался у части юзеров.
+      updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
+      setTimeout(() => {
+        const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
+        if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+      }, 800);
+    }).catch(() => {});
+  }, [spendOne, studyTarget]);
   const isGold = themeMode === 'gold';
   const accent = isGold ? '#FFE8A8' : t.accent;
   const actionText = isGold ? '#1B1205' : '#08110C';
@@ -1722,10 +1970,15 @@ export default function PersonalPlanExerciseScreen() {
   const [selected, setSelected] = useState<string | null>(null);
   const [lastResult, setLastResult] = useState<'correct' | 'wrong' | null>(null);
   const [saving, setSaving] = useState(false);
+  const choiceAttemptStateRef = useRef<PersonalPlanChoiceAttemptState | null>(null);
   const [completed, setCompleted] = useState(false);
   // Идёт авто-переход на следующее задание (replace) — подавляем финал-модал дня,
   // чтобы он не мелькнул между завершением и навигацией.
   const [advancing, setAdvancing] = useState(false);
+  // Синхронный lock закрывает окно двойного тапа до следующего React render.
+  const advancingRef = useRef(false);
+  // XP/resume side-effects запускаются один раз, даже если загрузка следующего шага требует retry.
+  const completionSideEffectsStartedRef = useRef(false);
   const [typedAnswer, setTypedAnswer] = useState('');
   const [buildWords, setBuildWords] = useState<string[]>([]);
   const [recallItems, setRecallItems] = useState<PersonalPlanPhraseRecallItem[]>([]);
@@ -1767,8 +2020,13 @@ export default function PersonalPlanExerciseScreen() {
   const chrome = useMemo(() => chromeForExerciseType(currentExerciseType), [currentExerciseType]);
   const chromeTitle = lang === 'es' ? chrome.titleEs : chrome.title;
   const handlePronunciationScored = useCallback((result: PlanPronunciationScoringResult) => {
+    // зачем: аудит нашёл, что запись, начатая ДО открытия модала «нет энергии», всё
+    // равно долетает до onScored (та же гонка, что со свайпом в trainer_words_session) —
+    // не даём такой попытке списать ещё одну единицу энергии задним числом.
+    if (noEnergyModalOpen) return;
     setPronunciationScore(result);
-  }, []);
+    if (!result.passed) spendEnergyOnMistake();
+  }, [spendEnergyOnMistake, noEnergyModalOpen]);
 
   useEffect(() => {
     if (!isRecallMode) {
@@ -1839,6 +2097,8 @@ export default function PersonalPlanExerciseScreen() {
     setLastResult(null);
     setSaving(false);
     setCompleted(false);
+    advancingRef.current = false;
+    completionSideEffectsStartedRef.current = false;
     setAdvancing(false);
     setTypedAnswer('');
     setBuildWords([]);
@@ -1919,7 +2179,8 @@ export default function PersonalPlanExerciseScreen() {
     })();
   }, [answerAudioSource, answerAudioPlayer, speakPhraseFallback]);
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
-  const done = !advancing && (completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult));
+  // Финал дня разрешён только после успешного persisted completion + успешного resolver result `null`.
+  const done = !advancing && completed;
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
   const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
   const itemPrompt = item && 'promptRu' in item ? personalPlanPromptForLang(item, lang) : '';
@@ -2024,6 +2285,7 @@ export default function PersonalPlanExerciseScreen() {
           state={mistakeExplain.aiMistakeState}
           explanation={mistakeExplain.aiMistakeText}
           remaining={mistakeExplain.aiMistakeRemaining}
+          waitLine={mistakeExplain.aiMistakeWaitLine}
           onExplain={mistakeExplain.explain}
           targetAnswer={mistakeTargetAnswer}
           userAnswer={mistakeUserAnswer}
@@ -2042,13 +2304,17 @@ export default function PersonalPlanExerciseScreen() {
   ) : null;
 
   const submit = async (answer: string) => {
-    if (!item || !session || saving || done) return;
+    if (!item || !session || done || noEnergyModalOpen) return;
     if (!('correctAnswer' in item)) return;
     const isCorrect = answer === item.correctAnswer;
-    // Первая попытка на этом item уже записана как 'wrong' — доклик в правильный
-    // вариант правит только экран (звук/переход), но не пишет вторую попытку.
-    const alreadyRecorded = lastResult === 'wrong';
-    setSaving(true);
+    const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
+      itemKey: `${routeTaskKey}::${item.id}`,
+      isCorrect,
+    });
+    choiceAttemptStateRef.current = attempt.state;
+    if (!attempt.accepted) return;
+
+    if (attempt.shouldPersist) setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
     // Хаптик ошибки даёт сама плитка (warning-хаптик + shake на каждый неверный
@@ -2059,7 +2325,8 @@ export default function PersonalPlanExerciseScreen() {
       speakCurrentPhrase();
     }
 
-    if (!alreadyRecorded) {
+    if (attempt.shouldPersist) {
+      if (!isCorrect) spendEnergyOnMistake();
       await submitAndStorePlanExerciseAnswer(session, {
         result: isCorrect ? 'correct' : 'wrong',
         contentUnitId: item.id,
@@ -2076,13 +2343,28 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       setCorrectIds((current) => current.includes(item.id) ? current : [...current, item.id]);
     }
-    setSaving(false);
+    if (attempt.shouldPersist) setSaving(false);
   };
 
   const submitListenBuild = async () => {
-    if (!item || !session || saving || done || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
+    if (!item || !session || saving || done || noEnergyModalOpen || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
     const answer = buildWords.join(' ');
-    const isCorrect = normalizePlanAnswer(answer) === normalizePlanAnswer(item.correctAnswer);
+    // зачем: raw normalizePlanAnswer (lowercase+trim only) не раскрывала сокращения —
+    // "I am Anna" засчитывался неверным против цели "I'm Anna." (репорт юзера 2026-07-20,
+    // impuls_d3_p1). isCorrectAnswer — общий пайплайн (сокращения, BrE/AmE, пунктуация),
+    // тот же что и в lesson1/review_evaluator.
+    const isCorrect = isCorrectAnswer(answer, item.correctAnswer);
+    // зачем: аудит нашёл, что кнопка «Попробовать ещё раз» просто чистит поле ввода на
+    // ТОМ ЖЕ вопросе — без дедупа энергия списывалась за каждую повторную неверную
+    // попытку одного задания (в отличие от submit(), где beginPersonalPlanChoiceAttempt
+    // уже ограничивает трату одним разом на itemKey). Общий ref с submit() безопасен —
+    // ключ включает item.id, второй режим для того же id одновременно не активен.
+    const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
+      itemKey: `${routeTaskKey}::${item.id}`,
+      isCorrect,
+    });
+    choiceAttemptStateRef.current = attempt.state;
+    if (!attempt.accepted) return;
     setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
@@ -2090,7 +2372,10 @@ export default function PersonalPlanExerciseScreen() {
       hapticSuccess();
       playCorrect();
       speakCurrentPhrase();
-    } else hapticError();
+    } else {
+      hapticError();
+      if (attempt.shouldPersist) spendEnergyOnMistake();
+    }
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -2111,13 +2396,21 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   const submitRecall = async () => {
-    if (!item || !session || saving || done || !isRecallMode || !('targetText' in item)) return;
+    if (!item || !session || saving || done || noEnergyModalOpen || !isRecallMode || !('targetText' in item)) return;
     const evaluation = evaluateRecallAnswer(
       typedAnswer,
       item.targetText,
       'alternatives' in item ? item.alternatives : undefined,
     );
     const isCorrect = evaluation.ok;
+    // зачем: тот же дедуп попыток, что в submitListenBuild — «Попробовать ещё раз» не
+    // должно списывать энергию повторно за один и тот же вопрос (аудит).
+    const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
+      itemKey: `${routeTaskKey}::${item.id}`,
+      isCorrect,
+    });
+    choiceAttemptStateRef.current = attempt.state;
+    if (!attempt.accepted) return;
     setSaving(true);
     setSelected(typedAnswer.trim());
     setLastResult(isCorrect ? 'correct' : 'wrong');
@@ -2125,7 +2418,10 @@ export default function PersonalPlanExerciseScreen() {
       hapticSuccess();
       playCorrect();
       speakCurrentPhrase();
-    } else hapticError();
+    } else {
+      hapticError();
+      if (attempt.shouldPersist) spendEnergyOnMistake();
+    }
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -2148,59 +2444,91 @@ export default function PersonalPlanExerciseScreen() {
   // Завершение всего задания: отметить выполненным, начислить XP, стереть resume
   // и СРАЗУ открыть следующее задание дня (без модала «Задание закрыто»). Если
   // следующего нет — оставляем экран, чтобы показался финал дня (done-плашка).
-  const finishTaskAndAdvance = async (practicedPhraseIds: string[]) => {
-    // Подавляем финал-модал дня на время вычисления/перехода — иначе он мелькнёт.
+  const finishTaskAndAdvance = async (practicedPhraseIds: string[]): Promise<boolean> => {
+    // React state обновляется асинхронно: ref должен захватиться до первого await,
+    // иначе два быстрых тапа запускают две completion-записи и две replace-навигации.
+    if (advancingRef.current) return false;
+    advancingRef.current = true;
     setAdvancing(true);
 
-    // КРИТИЧЕСКИЙ ПУТЬ перехода = только «отметить задание выполненным» →
-    // «вычислить следующее задание». Всё остальное — best-effort side-effects,
-    // которые по дизайну НЕ должны задерживать смену экрана (иначе на медленном
-    // диске/сети последний правильный ответ выглядит как зависание перед
-    // переходом). markCompleted держим в await ПЕРЕД resolveNextPlanTask, потому
-    // что resolveNextPlanTask читает completed-флаги (хотя текущее задание он и
-    // так исключает по id — но так следующий заход на план увидит его закрытым).
-    await markPersonalPlanTaskCompleted({
-      taskId: planTaskId,
-      planId,
-      planInstanceId,
-      studyTarget,
-      dayIndex,
-    }).catch(() => undefined);
-
-    // XP/streak/leaderboard/lifetime-статистика — в ФОН. Эти ошибки и так
-    // глотаются («stats must never block the learner's progress»), а внутри —
-    // 5+ обращений к AsyncStorage и сетевой registerXP. Держать их в await
-    // означало бы тормозить переход на сотни мс — пускаем не блокируя экран.
-    // Передаём САМИ id отработанных фраз (item.id === id фразы): lifetime-метрика
-    // phrases_learned дедуплицируется по плану, поэтому одна фраза дня в разных
-    // заданиях/бонус-заданиях не раздувает «выучено».
-    void awardPlanTaskCompletion({
-      lang,
-      studyTarget,
-      practicedPhraseIds,
-      phrasesPracticed: practicedPhraseIds.length,
-      planInstanceId,
-      planTaskId,
-    }).catch(() => undefined);
-    // resume этому заданию больше не нужен — оно закрыто. Тоже в фон: его
-    // отсутствие не влияет на выбор следующего задания.
-    void clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
-
-    const nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget }).catch(() => null);
-    if (nextTask) {
-      // Свап текущего экрана на следующее задание: «назад» из него ведёт в меню
-      // плана, а не в только что закрытое задание. advancing оставляем true —
-      // экран всё равно уходит, мелькание финал-модала исключено.
-      openPersonalPlanTask(router, nextTask.plan, nextTask.day, nextTask.task, nextTask.planInstanceId, 'replace');
-      return;
+    try {
+      // Это критическая запись. Ошибка не должна маскироваться под успешно
+      // закрытое задание или «день завершён».
+      await markPersonalPlanTaskCompleted({
+        taskId: planTaskId,
+        planId,
+        planInstanceId,
+        studyTarget,
+        dayIndex,
+      });
+    } catch {
+      advancingRef.current = false;
+      setAdvancing(false);
+      if (!isPronunciationMode) setLastResult('correct');
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить выполнение задания. Нажми «Дальше» ещё раз.',
+        uk: 'Не вдалося зберегти виконання завдання. Натисни «Далі» ще раз.',
+        es: 'No se pudo guardar la tarea. Pulsa «Siguiente» otra vez.',
+        'pt-BR': 'Não foi possível salvar a tarefa. Toque em “Avançar” novamente.',
+        vi: 'Không thể lưu nhiệm vụ. Hãy nhấn “Tiếp” lần nữa.',
+        id: 'Tugas tidak dapat disimpan. Ketuk “Lanjut” sekali lagi.',
+        tr: 'Görev kaydedilemedi. “Devam” düğmesine tekrar dokun.',
+        pl: 'Nie udało się zapisać zadania. Naciśnij „Dalej” ponownie.',
+      }));
+      return false;
     }
-    // Заданий дня больше нет — показываем финал дня на этом экране.
+
+    // Некритические метрики запускаются только после подтверждённой записи и
+    // только один раз на текущий routeTaskKey. Повтор resolver не дублирует их.
+    if (!completionSideEffectsStartedRef.current) {
+      completionSideEffectsStartedRef.current = true;
+      void awardPlanTaskCompletion({
+        lang,
+        studyTarget,
+        practicedPhraseIds,
+        phrasesPracticed: practicedPhraseIds.length,
+        planInstanceId,
+        planTaskId,
+      }).catch(() => undefined);
+      void clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
+    }
+
+    let nextTask;
+    try {
+      nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget });
+    } catch {
+      // Ошибка чтения очереди не равна «следующих заданий нет».
+      advancingRef.current = false;
+      setAdvancing(false);
+      if (!isPronunciationMode) setLastResult('correct');
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Задание сохранено, но следующий шаг не загрузился. Нажми «Дальше» ещё раз.',
+        uk: 'Завдання збережено, але наступний крок не завантажився. Натисни «Далі» ще раз.',
+        es: 'La tarea se guardó, pero el siguiente paso no cargó. Pulsa «Siguiente» otra vez.',
+        'pt-BR': 'A tarefa foi salva, mas o próximo passo não carregou. Toque em “Avançar” novamente.',
+        vi: 'Nhiệm vụ đã được lưu nhưng bước tiếp theo chưa tải. Hãy nhấn “Tiếp” lần nữa.',
+        id: 'Tugas tersimpan, tetapi langkah berikutnya gagal dimuat. Ketuk “Lanjut” lagi.',
+        tr: 'Görev kaydedildi ancak sonraki adım yüklenemedi. “Devam”a tekrar dokun.',
+        pl: 'Zadanie zapisano, ale kolejny krok się nie wczytał. Naciśnij „Dalej” ponownie.',
+      }));
+      return false;
+    }
+
+    if (nextTask) {
+      // Lock остаётся закрытым до replace/смены routeTaskKey.
+      openPersonalPlanTask(router, nextTask.plan, nextTask.day, nextTask.task, nextTask.planInstanceId, 'replace');
+      return true;
+    }
+
+    // Только успешный resolver result `null` означает настоящий финал дня.
+    advancingRef.current = false;
     setAdvancing(false);
     setCompleted(true);
+    return true;
   };
 
   const next = async () => {
-    if (!item) return;
+    if (!item || advancingRef.current) return;
     if (lastResult === 'wrong') {
       setSelected(null);
       setTypedAnswer('');
@@ -2228,7 +2556,7 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   const completePronunciation = async () => {
-    if (!item || !session || saving || done || !('targetText' in item)) return;
+    if (advancingRef.current || !item || !session || saving || done || noEnergyModalOpen || !('targetText' in item)) return;
     // Normal path: completion is gated on a real on-device score that reached the
     // pass threshold. Escape hatch: when speech genuinely can't run here (no
     // recognizer on the device, or the user declined mic access), we let the
@@ -2324,7 +2652,7 @@ export default function PersonalPlanExerciseScreen() {
           trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
         />
 
-        <BouncyScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"
@@ -2397,6 +2725,7 @@ export default function PersonalPlanExerciseScreen() {
                   accent={accent}
                   actionText={actionText}
                   mutedText={t.textMuted}
+                  lang={lang}
                 />
                 <View
                   accessibilityLabel="Поле собранной фразы"
@@ -2499,6 +2828,7 @@ export default function PersonalPlanExerciseScreen() {
                 onScored={handlePronunciationScored}
                 onScoringChange={setPronunciationScoring}
                 onBlocked={setPronunciationBlocked}
+                energyBlocked={noEnergyModalOpen}
               />
 
               {/* Кнопку «Дальше/Продолжить» показываем ТОЛЬКО когда есть что
@@ -2578,6 +2908,7 @@ export default function PersonalPlanExerciseScreen() {
                     accent={accent}
                     actionText={actionText}
                     mutedText={t.textMuted}
+                    lang={lang}
                   />
                 ) : null}
                 {false && isListeningMode && isPersonalPlanListenChooseItem(item) ? (
@@ -2623,6 +2954,7 @@ export default function PersonalPlanExerciseScreen() {
                     state={mistakeExplain.aiMistakeState}
                     explanation={mistakeExplain.aiMistakeText}
                     remaining={mistakeExplain.aiMistakeRemaining}
+                    waitLine={mistakeExplain.aiMistakeWaitLine}
                     onExplain={mistakeExplain.explain}
                     targetAnswer={mistakeTargetAnswer}
                     userAnswer={mistakeUserAnswer}
@@ -2663,7 +2995,7 @@ export default function PersonalPlanExerciseScreen() {
                       // Блокируем всё только когда ответ уже закрыт верно. До этого
                       // все плитки кликабельны — неверную можно тапнуть (тряхнётся),
                       // и тут же выбрать правильную на месте.
-                      disabled={lastResult === 'correct' || saving}
+                      disabled={lastResult === 'correct'}
                       showPressed={on}
                       accent={accent}
                       bgColor={bgColor}
@@ -2707,6 +3039,17 @@ export default function PersonalPlanExerciseScreen() {
           actionText={actionText}
           mutedText={t.textMuted}
           surfaceColor={t.bgCard}
+        />
+        <NoEnergyModal
+          visible={noEnergyModalOpen}
+          onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
+          onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, '/personal_plan'); }}
+        />
+        <AiExplainConsentModal
+          visible={mistakeExplain.consentGate.visible}
+          lang={lang}
+          onAccept={mistakeExplain.consentGate.onAccept}
+          onDecline={mistakeExplain.consentGate.onDecline}
         />
       </LinearGradient>
     </View>
@@ -2894,7 +3237,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     padding: 22,
     gap: 14,
-    elevation: 6,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.2,
     shadowRadius: 22,
@@ -2908,7 +3251,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     minHeight: 196,
     justifyContent: 'center',
     gap: 16,
-    elevation: 10,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.26,
     shadowRadius: 26,
@@ -2925,7 +3268,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 5,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.18,
     shadowRadius: 14,
@@ -2987,7 +3330,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     padding: 18,
     gap: 12,
-    elevation: 5,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.16,
     shadowRadius: 18,
@@ -3000,7 +3343,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     padding: 18,
     gap: 14,
-    elevation: 12,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.24,
     shadowRadius: 22,
@@ -3021,7 +3364,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   feedbackTitle: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
   feedbackBody: { fontSize: 15, lineHeight: 22, fontWeight: '700' },
   inlineFeedbackHost: { flex: 1, minHeight: 12, justifyContent: 'center', paddingVertical: 16 },
-  retryAfterMistake: { marginTop: 12, alignSelf: 'center', borderWidth: 0, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 11 },
+  retryAfterMistake: { marginTop: 12, alignSelf: 'center', borderWidth:0, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 11 },
   inlineFeedback: {
     width: '100%',
     borderRadius: 14,
@@ -3094,7 +3437,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     minHeight: 72,
     borderRadius: 22,
     borderWidth: 0,
-    elevation: 5,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.22,
     shadowRadius: 18,
@@ -3173,5 +3516,8 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  optionGridText: { fontSize: 20, lineHeight: 25, fontWeight: '700', textAlign: 'center' },
+  // зачем: было 20/25 + adjustsFontSizeToFit(min 0.55)+numberOfLines=1 — сжимало длинные
+  // слова до огрызка. Убрали сжатие: статичный кегль чуть меньше + перенос на 2 строки
+  // (см. numberOfLines={2} у Text выше), тайл растёт по высоте, а не режет текст.
+  optionGridText: { fontSize: 18, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
 });

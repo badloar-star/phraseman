@@ -10,6 +10,7 @@ import {
   getPaywallVariant,
   getRemoteConfigSignature,
   isReferralEnabled,
+  isReferralRouletteEnabled,
   isLeagueXpPromotionEnabled,
   isMaintenanceBanner,
   isMaintenanceBlock,
@@ -30,7 +31,6 @@ import {
   normalizeManualUpdatePlatform,
   shouldShowManualUpdate,
   isAiGloballyDisabled,
-  isCompassEnabled,
   parsePromoUntilMs,
   shouldShowPromoBanner,
   isPromoBannerEnabled,
@@ -51,17 +51,25 @@ describe('remote_flags', () => {
 
   describe('defaults', () => {
     it('returns hardcoded defaults before any snapshot', () => {
-      expect(getFreeLessonLimit()).toBe(8);
-      expect(getRemoteNumber('free_daily_quiz_limit')).toBe(3);
-      expect(getRemoteNumber('arena_daily_max')).toBe(5);
+      expect(getFreeLessonLimit()).toBe(3);
+      expect(getRemoteNumber('free_daily_quiz_limit')).toBe(1);
+      expect(getRemoteNumber('arena_daily_max')).toBe(1);
       expect(getRemoteNumber('max_energy')).toBe(5);
+      expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(10 * 60 * 1000);
+      expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
+      expect(getRemoteNumber('free_trainer_sessions_per_day')).toBe(1);
+      expect(getRemoteNumber('trainer_ab_a_pct')).toBe(0);
+      expect(getRemoteNumber('trainer_ab_b_pct')).toBe(0);
+      expect(getRemoteNumber('trainer_ab_c_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_quiz_pct')).toBe(0);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(true);
+      expect(isReferralRouletteEnabled()).toBe(true);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
       expect(isPaywallTimersEnabled()).toBe(true);
       expect(getStreakFreezeCostShards()).toBe(10);
@@ -75,11 +83,21 @@ describe('remote_flags', () => {
   });
 
   describe('snapshot override', () => {
+    it('treats weekly review V2 as a boolean kill-switch, not a client rollout bucket', () => {
+      applyRemoteConfigSnapshot({
+        bools: { weekly_review_ai_v2_enabled: true },
+        numbers: { weekly_review_ai_v2_enabled_rollout_pct: 0 },
+      });
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
+      applyRemoteConfigSnapshot({ bools: { weekly_review_ai_v2_enabled: false } });
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(false);
+    });
+
     it('applies numeric overrides', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12, free_daily_quiz_limit: 10 } });
       expect(getFreeLessonLimit()).toBe(12);
       expect(getRemoteNumber('free_daily_quiz_limit')).toBe(10);
-      expect(getRemoteNumber('arena_daily_max')).toBe(5);
+      expect(getRemoteNumber('arena_daily_max')).toBe(1);
     });
 
     it('applies boolean overrides', () => {
@@ -88,15 +106,11 @@ describe('remote_flags', () => {
       expect(isLeagueXpPromotionEnabled()).toBe(true);
     });
 
-    it('ai_global_disable — над-флаг: выключает весь ИИ, перекрывая compass_enabled', () => {
-      // По умолчанию ИИ работает.
-      applyRemoteConfigSnapshot({ bools: { ai_global_disable: false, compass_enabled: true } });
+    it('ai_global_disable — над-флаг: включается/выключается независимо', () => {
+      applyRemoteConfigSnapshot({ bools: { ai_global_disable: false } });
       expect(isAiGloballyDisabled()).toBe(false);
-      expect(isCompassEnabled()).toBe(true);
-      // Рубильник ВКЛ — весь ИИ выключен, даже если compass_enabled=true.
-      applyRemoteConfigSnapshot({ bools: { ai_global_disable: true, compass_enabled: true } });
+      applyRemoteConfigSnapshot({ bools: { ai_global_disable: true } });
       expect(isAiGloballyDisabled()).toBe(true);
-      expect(isCompassEnabled()).toBe(false);
     });
 
     it('streak_freeze_cost_shards override применяется и клампится', () => {
@@ -109,9 +123,21 @@ describe('remote_flags', () => {
     it('clamps out-of-range values to bounds', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 999, max_energy: 0, paywall_v2_pct: 250, league_xp_promotion_threshold: 0 } });
       expect(getFreeLessonLimit()).toBe(32);
-      expect(getRemoteNumber('max_energy')).toBe(1);
+      expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1);
+    });
+
+    it('reads the referral roulette kill switch from the numbers branch and resets to default-on', () => {
+      applyRemoteConfigSnapshot({ numbers: { referral_roulette_enabled: false } });
+      expect(isReferralRouletteEnabled()).toBe(false);
+      applyRemoteConfigSnapshot({ numbers: {} });
+      expect(isReferralRouletteEnabled()).toBe(true);
+    });
+
+    it('keeps the runtime energy base fixed at five', () => {
+      applyRemoteConfigSnapshot({ numbers: { max_energy: 7 } });
+      expect(getRemoteNumber('max_energy')).toBe(5);
     });
 
     it('ignores wrong-typed values (keeps default)', () => {
@@ -119,7 +145,7 @@ describe('remote_flags', () => {
         numbers: { free_lesson_limit: 'lots' as unknown as number },
         bools: { league_xp_promotion_enabled: 'yes' as unknown as boolean },
       });
-      expect(getFreeLessonLimit()).toBe(8);
+      expect(getFreeLessonLimit()).toBe(3);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
     });
 
@@ -127,7 +153,7 @@ describe('remote_flags', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12 } });
       expect(getFreeLessonLimit()).toBe(12);
       applyRemoteConfigSnapshot({ numbers: { arena_daily_max: 9 } });
-      expect(getFreeLessonLimit()).toBe(8);
+      expect(getFreeLessonLimit()).toBe(3);
       expect(getRemoteNumber('arena_daily_max')).toBe(9);
     });
   });

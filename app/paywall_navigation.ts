@@ -2,7 +2,8 @@ import { InteractionManager } from 'react-native';
 
 import { refreshPaywallAbConfigInBackground, resolvePaywallAbVariantSync, type PaywallAbVariant } from './paywall_variant';
 
-type PaywallRoute = '/paywall_a' | '/paywall_b' | '/paywall_c';
+type PaywallRoute = '/paywall_a' | '/paywall_b' | '/paywall_c'
+  | '/paywall_d' | '/paywall_e' | '/paywall_f' | '/paywall_g';
 
 type PaywallRouter = {
   push: (href: any) => void;
@@ -17,6 +18,10 @@ const PAYWALL_ROUTES: Record<PaywallAbVariant, PaywallRoute> = {
   A: '/paywall_a',
   B: '/paywall_b',
   C: '/paywall_c',
+  D: '/paywall_d',
+  E: '/paywall_e',
+  F: '/paywall_f',
+  G: '/paywall_g',
 };
 
 function normalizePaywallParams(params: PaywallNavigationParams = {}): Record<string, string | string[]> {
@@ -74,7 +79,13 @@ export function openPremiumPaywall(
 ): void {
   const normalized = normalizePaywallParams(params);
   if (normalized.manage === '1') {
-    router[mode]('/manage_subscription' as any);
+    // зачем: раньше сюда доезжал голый '/manage_subscription' без параметров —
+    // экран терял уже известный план (settings.tsx уже знает premiumPlan синхронно)
+    // и был вынужден заново резолвить его из AsyncStorage/RevenueCat со спиннером.
+    // Форвардим остальные параметры (напр. plan), чтобы modal открывался мгновенно.
+    const { manage: _manage, ...rest } = normalized;
+    const hasRest = Object.keys(rest).length > 0;
+    router[mode](hasRest ? { pathname: '/manage_subscription', params: rest } as any : '/manage_subscription' as any);
     return;
   }
   router[mode]({

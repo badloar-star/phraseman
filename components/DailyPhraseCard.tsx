@@ -10,13 +10,17 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { useAudio } from '../hooks/use-audio';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { syncWidgetData } from '../app/widget_bridge';
 import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
+import { softShadow, noAndroidOutline } from '../constants/androidGlow';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import {
@@ -45,9 +49,13 @@ import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
+import TonalSurface from './TonalSurface';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
+
+// зачем: старт позиции листа под экраном для slide-up bottom sheet (владелец, 2026-08-04).
+const SHEET_SLIDE_DISTANCE = 420;
 
 interface Props {
   userLevel?: number;
@@ -59,27 +67,38 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak } = useAudio();
+  const reduceMotion = useReduceMotion();
+  // зачем: модалка «Фраза дня» стала bottom sheet — низ должен уважать home indicator/nav bar.
+  const insets = useStableSafeAreaInsets();
+  const sheetBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
   const homeAdditional = variant === 'homeAdditional';
+  const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget, lang)
   ));
+  const [homeQuestAnswered, setHomeQuestAnswered] = useState(false);
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [questAnswered, setQuestAnswered] = useState(false);
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
   const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
   const [selectedQuestOptionId, setSelectedQuestOptionId] = useState<string | null>(null);
   const [questXpDelta, setQuestXpDelta] = useState<number | null>(null);
-  // Whether today's quest has been answered — gates revealing the meaning on the
-  // home card itself (the homeAdditional plaque). Before answering we show a
-  // teaser CTA instead of the translation so the quiz keeps its "guess" point.
-  const [cardQuestAnswered, setCardQuestAnswered] = useState(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
+  const modalEntranceAnim = useRef(new Animated.Value(0)).current;
+  const wasDetailsVisibleRef = useRef(false);
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
+  const phraseLang: DailyPhraseInterfaceLang = lang;
+  const questOptions = phrase
+    ? buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang)
+    : [];
+  const selectedQuestCorrect = selectedQuestOptionId
+    ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
+    : false;
 
   useEffect(() => {
     let cancelled = false;
@@ -145,23 +164,72 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     successAnim.setValue(0);
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
 
-  // Mirror today's answered-state onto the card so the homeAdditional plaque can
-  // hide the meaning until the quest is solved. Re-checks whenever the phrase
-  // changes (new day / new phrase => fresh quiz, meaning hidden again).
+  // зачем: владелец — кнопка "Проверить себя" на плашке хоума должна пропадать
+  // сразу после ответа на квиз дня, не дожидаясь повторного открытия шторки.
   useEffect(() => {
-    if (!dailyPhraseGateOpen || !phrase) {
-      setCardQuestAnswered(false);
-      return;
-    }
+    setHomeQuestAnswered(false);
+    if (!dailyPhraseGateOpen || !phrase) return;
     let cancelled = false;
-    setCardQuestAnswered(false);
     const phraseId = phrase.id || phrase.date;
     const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
     hasDailyPhraseQuestAnswered({ phraseId, date })
-      .then((answered) => { if (!cancelled && answered) setCardQuestAnswered(true); })
+      .then((answered) => { if (!cancelled && answered) setHomeQuestAnswered(true); })
       .catch(() => {});
     return () => { cancelled = true; };
-  }, [dailyPhraseGateOpen, phrase?.id, phrase?.date, phrase?.scheduledDate, phrase, studyTarget]);
+  }, [dailyPhraseGateOpen, phrase?.id, phrase?.date, phrase?.scheduledDate]);
+
+  useEffect(() => {
+    const opened = detailsVisible && !wasDetailsVisibleRef.current;
+    wasDetailsVisibleRef.current = detailsVisible;
+
+    if (!detailsVisible) {
+      modalEntranceAnim.stopAnimation();
+      modalEntranceAnim.setValue(0);
+      return;
+    }
+
+    if (!opened) return;
+
+    if (reduceMotion) {
+      modalEntranceAnim.setValue(1);
+      return;
+    }
+
+    modalEntranceAnim.setValue(0);
+    // зачем: bottom sheet — тот же iOS-drawer easing, что и в ExplainSheet, лист едет снизу.
+    const entrance = Animated.timing(modalEntranceAnim, {
+      toValue: 1,
+      duration: 220,
+      easing: Easing.bezier(0.32, 0.72, 0, 1),
+      useNativeDriver: true,
+    });
+    entrance.start();
+
+    return () => entrance.stop();
+  }, [detailsVisible, modalEntranceAnim, reduceMotion]);
+
+  useEffect(() => {
+    if (!reduceMotion) return;
+
+    modalEntranceAnim.stopAnimation();
+    modalEntranceAnim.setValue(detailsVisible ? 1 : 0);
+    shakeAnim.stopAnimation();
+    shakeAnim.setValue(0);
+    explanationAnim.stopAnimation();
+    explanationAnim.setValue(questAnswered || showQuestExplanation ? 1 : 0);
+    successAnim.stopAnimation();
+    successAnim.setValue(questAnswered && selectedQuestCorrect ? 1 : 0);
+  }, [
+    detailsVisible,
+    explanationAnim,
+    modalEntranceAnim,
+    questAnswered,
+    reduceMotion,
+    selectedQuestCorrect,
+    shakeAnim,
+    showQuestExplanation,
+    successAnim,
+  ]);
 
   useEffect(() => {
     if (!dailyPhraseGateOpen || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
@@ -205,30 +273,34 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
         accessibilityRole="text"
         accessibilityLabel={gateCopy.title}
         style={[
-          homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
-          {
+          homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
+          !homeAdditional && {
             backgroundColor: chrome.colors[1] || t.bgCard,
             borderColor: chrome.border,
             shadowColor: chrome.shadow,
           },
         ]}
       >
-        <LinearGradient
-          pointerEvents="none"
-          colors={chrome.colors}
-          locations={[0, 0.56, 1]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFillObject}
-        />
-        <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+        {!homeAdditional && (
+          <>
+            <LinearGradient
+              pointerEvents="none"
+              colors={chrome.colors}
+              locations={[0, 0.56, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFillObject}
+            />
+            <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+          </>
+        )}
         <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
               <Ionicons name="shield-checkmark-outline" size={22} color={chrome.title} />
             </View>
           )}
-          <View style={styles.plaqueCopy}>
+          <View style={[styles.plaqueCopy, homeAdditional && styles.homeAdditionalCopy]}>
             <View style={styles.titleRow}>
               <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: chrome.title, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={2}>
                 {gateCopy.title}
@@ -277,17 +349,16 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     tr: 'Günün ifadesi',
     pl: 'Fraza dnia',
   });
-  const questTeaser = triLang(lang, {
-    uk: 'Натисни й вгадай значення → +XP',
-    ru: 'Нажми и угадай значение → +XP',
-    es: 'Toca y adivina el significado → +XP',
-    'pt-BR': 'Toque e adivinhe o significado → +XP',
-    vi: 'Chạm để đoán nghĩa → +XP',
-    id: 'Ketuk dan tebak artinya → +XP',
-    tr: 'Dokun ve anlamını tahmin et → +XP',
-    pl: 'Dotknij i odgadnij znaczenie → +XP',
+  const homeActionLabel = triLang(lang, {
+    uk: 'Перевірити себе',
+    ru: 'Проверить себя',
+    es: 'Ponte a prueba',
+    'pt-BR': 'Teste-se',
+    vi: 'Tự kiểm tra',
+    id: 'Uji diri',
+    tr: 'Kendini dene',
+    pl: 'Sprawdź się',
   });
-  const phraseLang: DailyPhraseInterfaceLang = lang;
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
@@ -297,11 +368,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     pl: phrase.sourceLocales?.pl?.meaning,
   };
   const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');
-  const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
-  const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang);
-  const selectedQuestCorrect = selectedQuestOptionId
-    ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
-    : false;
   const successOverlayOpacity = successAnim.interpolate({
     inputRange: [0, 0.08, 0.78, 1],
     outputRange: [0, 1, 1, 0],
@@ -330,6 +396,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   const runWrongAnswerShake = () => {
     shakeAnim.setValue(0);
+    if (reduceMotion) {
+      return;
+    }
     Animated.sequence([
       Animated.timing(shakeAnim, { toValue: -8, duration: 45, easing: Easing.out(Easing.quad), useNativeDriver: true }),
       Animated.timing(shakeAnim, { toValue: 8, duration: 60, easing: Easing.out(Easing.quad), useNativeDriver: true }),
@@ -341,6 +410,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   const runCorrectAnswerAnimation = () => {
     successAnim.setValue(0);
+    if (reduceMotion) {
+      successAnim.setValue(1);
+      return;
+    }
     Animated.sequence([
       Animated.timing(successAnim, {
         toValue: 0.78,
@@ -363,6 +436,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     setQuestPreviouslyAnswered(false);
     setSelectedQuestOptionId(null);
     setQuestXpDelta(null);
+    shakeAnim.stopAnimation();
+    explanationAnim.stopAnimation();
+    successAnim.stopAnimation();
     shakeAnim.setValue(0);
     explanationAnim.setValue(0);
     successAnim.setValue(0);
@@ -371,6 +447,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const revealQuestExplanation = () => {
     explanationAnim.setValue(0);
     setShowQuestExplanation(true);
+    if (reduceMotion) {
+      explanationAnim.setValue(1);
+      return;
+    }
     Animated.timing(explanationAnim, {
       toValue: 1,
       duration: 230,
@@ -389,7 +469,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
     if (alreadyAnswered) {
       setQuestAnswered(true);
-      setCardQuestAnswered(true);
       setShowQuestExplanation(true);
       setQuestPreviouslyAnswered(true);
       setSelectedQuestOptionId(null);
@@ -404,8 +483,24 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   };
 
   const closeDetails = () => {
-    setDetailsVisible(false);
-    resetQuest();
+    modalEntranceAnim.stopAnimation();
+    // зачем: bottom sheet должен уезжать вниз перед закрытием, а не исчезать
+    // мгновенно — иначе шторка выглядит как обрыв, а не как выезд/уезд.
+    if (reduceMotion) {
+      setDetailsVisible(false);
+      resetQuest();
+      return;
+    }
+    Animated.timing(modalEntranceAnim, {
+      toValue: 0,
+      duration: 180,
+      easing: Easing.in(Easing.cubic),
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (!finished) return;
+      setDetailsVisible(false);
+      resetQuest();
+    });
   };
 
   const handleQuestOptionPress = (optionId: string) => {
@@ -416,8 +511,8 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     answeredQuestKeysRef.add(questKey);
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
-    setCardQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
+    setHomeQuestAnswered(true);
     revealQuestExplanation();
     markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
 
@@ -444,10 +539,16 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       <Pressable
         onPress={openDetails}
         accessibilityRole="button"
-        accessibilityLabel={title}
+        accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}.${homeQuestAnswered ? '' : ` ${homeActionLabel}`}` : title}
         style={({ pressed }) => [
-          homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
-          {
+          homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
+          // зачем: владелец (2026-08-03) — «Фраза дня» на главной должна
+          // читаться как свой отдельный контейнер, а не голый текст на фоне
+          // экрана. Заливка — тот же тихий тон иконки-чипа (rgba ~0.13-0.15
+          // на тему), никакой рамки: подложка едва заметна и скруглена, без
+          // borderWidth (запрет владельца на контуры вокруг блоков).
+          homeAdditional && { backgroundColor: chrome.iconBg },
+          !homeAdditional && {
             backgroundColor: chrome.colors[1] || t.bgCard,
             borderColor: chrome.border,
             shadowColor: chrome.shadow,
@@ -455,24 +556,19 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
           pressed && styles.pressed,
         ]}
       >
-        <LinearGradient
-          pointerEvents="none"
-          colors={chrome.colors}
-          locations={[0, 0.56, 1]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFillObject}
-        />
-        <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
-        {homeAdditional && dailyPhraseImage ? (
-          <View pointerEvents="none" style={styles.homeAdditionalGhostWrap}>
-            <Image
-              source={dailyPhraseImage}
-              style={styles.homeAdditionalGhostImage}
-              contentFit="contain"
+        {!homeAdditional && (
+          <>
+            <LinearGradient
+              pointerEvents="none"
+              colors={chrome.colors}
+              locations={[0, 0.56, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFillObject}
             />
-          </View>
-        ) : null}
+            <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+          </>
+        )}
         <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
@@ -483,25 +579,34 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               )}
             </View>
           )}
-          <View style={styles.plaqueCopy}>
-            <View style={styles.titleRow}>
-              <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: chrome.title, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={1}>
-                {title}
-              </Text>
-            </View>
-            <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: chrome.phrase, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body, lineHeight: homeAdditional ? Math.round(Math.max(25, f.h2) * 1.3) : undefined }]} numberOfLines={2}>
-              {phrase.english}
-            </Text>
-            {homeAdditional && (
-              cardQuestAnswered ? (
-                <Text style={[styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}>
-                  {homeAdditionalMeaning}
+          <View style={[styles.plaqueCopy, homeAdditional && styles.homeAdditionalCopy]}>
+            {homeAdditional ? (
+              <>
+                <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: homeKickerFontSize, lineHeight: Math.round(homeKickerFontSize * 1.3) }]}>
+                  {title}
                 </Text>
-              ) : (
-                <Text style={[styles.homeAdditionalTeaser, { color: chrome.title, fontSize: Math.max(13, f.label) }]} numberOfLines={2}>
-                  {questTeaser}
+                <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]}>
+                  {phrase.english}
                 </Text>
-              )
+                {!homeQuestAnswered && (
+                  <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>
+                    <Text style={[styles.homeAdditionalActionText, { color: chrome.actionText, fontSize: Math.max(13, f.label) }]}>
+                      {homeActionLabel}
+                    </Text>
+                  </View>
+                )}
+              </>
+            ) : (
+              <>
+                <View style={styles.titleRow}>
+                  <Text style={[styles.plaqueTitle, { color: chrome.title, fontSize: f.caption }]} numberOfLines={1}>
+                    {title}
+                  </Text>
+                </View>
+                <Text style={[styles.plaquePhrase, { color: chrome.phrase, fontSize: f.body }]} numberOfLines={2}>
+                  {phrase.english}
+                </Text>
+              </>
             )}
           </View>
         </View>
@@ -515,18 +620,34 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
         onRequestClose={closeDetails}
       >
         <View style={styles.modalRoot}>
-          <Pressable style={styles.backdrop} onPress={closeDetails} />
+          <Animated.View style={[styles.backdrop, { opacity: modalEntranceAnim }]}>
+            <Pressable style={StyleSheet.absoluteFillObject} onPress={closeDetails} />
+          </Animated.View>
           <Animated.View
             style={[
               styles.sheet,
               {
                 backgroundColor: t.bgCard,
-                borderColor: t.border,
                 shadowColor: t.accent,
+                paddingBottom: 16 + sheetBottomInset,
               },
-              { transform: [{ translateX: shakeAnim }] },
+              {
+                transform: [
+                  { translateX: shakeAnim },
+                  {
+                    translateY: modalEntranceAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [SHEET_SLIDE_DISTANCE, 0],
+                    }),
+                  },
+                ],
+              },
             ]}
           >
+            <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
+            <View style={styles.grabber} pointerEvents="none">
+              <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+            </View>
             {questAnswered && selectedQuestCorrect && !questPreviouslyAnswered && (
               <Animated.View
                 pointerEvents="none"
@@ -570,37 +691,69 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   {phrase.english}
                 </Text>
               </View>
-              {showQuestExplanation && (
+              {/* зачем 2026-08-04 (владелец: «убери нижнюю зону, где текст
+                  уходит под безопасную зону, а кнопку сохранить перенеси вверх
+                  слева от кнопки озвучить»): закладка жила в отдельной полосе
+                  под скроллом — она съедала высоту листа и на телефонах с
+                  большим домашним индикатором подъезжала под safe area. В шапке
+                  бокс закладки 36×36 совпадает с соседними круглыми кнопками.
+                  Кнопки собраны в свой ряд с шагом 6: общий gap шапки (12) на
+                  трёх иконках отъедал ширину у фразы. */}
+              <View style={styles.sheetActions}>
+                {questAnswered && phrase.allowSave !== false && (
+                  <AddToFlashcard
+                    en={phrase.english}
+                    ru={phrase.meaning}
+                    uk={phrase.meaning_uk}
+                    es={phrase.meaning_es}
+                    sourceLocales={flashcardSourceLocales}
+                    source="daily_phrase"
+                    sourceId={phrase.id || phrase.date}
+                    studyTarget={studyTarget}
+                    size={24}
+                    literalRu={phrase.literal}
+                    literalUk={phrase.literal_uk}
+                    literalEs={phrase.literal_es}
+                    explanationRu={phrase.meaning}
+                    explanationUk={phrase.meaning_uk}
+                    explanationEs={phrase.meaning_es}
+                    exampleRu={phrase.text}
+                    exampleUk={phrase.text_uk}
+                    exampleEs={phrase.text_es}
+                  />
+                )}
+                {showQuestExplanation && (
+                  <Pressable
+                    onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, {
+                      uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
+                      'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
+                    })}
+                    style={({ pressed }) => [
+                      styles.closeButton,
+                      { backgroundColor: t.bgSurface2 },
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <Ionicons name="volume-high" size={20} color={t.accent} />
+                  </Pressable>
+                )}
                 <Pressable
-                  onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                  onPress={closeDetails}
                   hitSlop={8}
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
-                    'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
-                  })}
+                  accessibilityLabel="Close"
                   style={({ pressed }) => [
                     styles.closeButton,
                     { backgroundColor: t.bgSurface2 },
                     pressed && styles.pressed,
                   ]}
                 >
-                  <Ionicons name="volume-high" size={20} color={t.accent} />
+                  <Ionicons name="close" size={20} color={t.textMuted} />
                 </Pressable>
-              )}
-              <Pressable
-                onPress={closeDetails}
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel="Close"
-                style={({ pressed }) => [
-                  styles.closeButton,
-                  { backgroundColor: t.bgSurface2 },
-                  pressed && styles.pressed,
-                ]}
-              >
-                <Ionicons name="close" size={20} color={t.textMuted} />
-              </Pressable>
+              </View>
             </View>
 
             <ScrollView
@@ -609,7 +762,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               showsVerticalScrollIndicator={false}
             >
               {!questAnswered && (
-                <View style={[styles.questBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.questBlock, { borderColor: t.border }]}>
                   <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
                     {triLang(lang, {
                       ru: 'Что это значит?',
@@ -623,12 +776,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                     })}
                   </Text>
                   <View style={styles.questOptions}>
-                    {questOptions.map((option) => (
+                    {questOptions.map((option, optionIndex) => (
                         <Pressable
                           key={option.id}
                           onPress={() => handleQuestOptionPress(option.id)}
                           accessibilityRole="button"
-                          accessibilityLabel={option.text}
+                          accessibilityLabel={`${optionIndex + 1}. ${option.text}`}
                           style={({ pressed }) => [
                             styles.questOption,
                             {
@@ -638,6 +791,11 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                             pressed && styles.pressed,
                           ]}
                         >
+                          <View style={[styles.optionMarker, { backgroundColor: t.accent }]}>
+                            <Text style={[styles.optionMarkerText, { color: t.correctText, fontSize: f.caption }]}>
+                              {optionIndex + 1}
+                            </Text>
+                          </View>
                           <Text
                             style={[
                               styles.questOptionText,
@@ -649,7 +807,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                         </Pressable>
                       ))}
                   </View>
-                </View>
+                </TonalSurface>
               )}
 
               {showQuestExplanation && (
@@ -689,61 +847,34 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                       </Text>
                     </Animated.View>
                   )}
-                  <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.literalBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelLiteral}
                     </Text>
                     <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
                       {phraseCopy.literal}
                     </Text>
-                  </View>
+                  </TonalSurface>
 
-                  <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                  <TonalSurface radius={18} tone="raised" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.meaningBlock, { borderColor: t.accent }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelMeaning}
                     </Text>
                     <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
                       {phraseCopy.meaning}
                     </Text>
-                  </View>
+                  </TonalSurface>
 
-                  <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
-                    {phraseCopy.text}
-                  </Text>
-                  <ExplainButton
-                    phraseEn={phrase.english}
-                    phraseMeaning={phraseCopy.meaning || phrase.meaning}
-                    lang={lang}
-                    style={styles.explainButton}
-                  />
+                  <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.explanationBlock, { borderColor: t.border }]}>
+                    <View style={[styles.explanationRail, { backgroundColor: t.accent }]} />
+                    <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
+                      {phraseCopy.text}
+                    </Text>
+                  </TonalSurface>
                 </Animated.View>
               )}
             </ScrollView>
 
-            {questAnswered && phrase.allowSave !== false && (
-              <View style={[styles.saveRow, { borderTopColor: t.border }]}>
-                <AddToFlashcard
-                  en={phrase.english}
-                  ru={phrase.meaning}
-                  uk={phrase.meaning_uk}
-                  es={phrase.meaning_es}
-                  sourceLocales={flashcardSourceLocales}
-                  source="daily_phrase"
-                  sourceId={phrase.id || phrase.date}
-                  studyTarget={studyTarget}
-                  size={24}
-                  literalRu={phrase.literal}
-                  literalUk={phrase.literal_uk}
-                  literalEs={phrase.literal_es}
-                  explanationRu={phrase.meaning}
-                  explanationUk={phrase.meaning_uk}
-                  explanationEs={phrase.meaning_es}
-                  exampleRu={phrase.text}
-                  exampleUk={phrase.text_uk}
-                  exampleEs={phrase.text_es}
-                />
-              </View>
-            )}
           </Animated.View>
         </View>
       </Modal>
@@ -768,25 +899,20 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     padding: 14,
     overflow: 'hidden',
+    // зачем: фон плашки рисует градиент внутри — Android заливал квадрат.
     shadowOpacity: 0.12,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 4,
+    ...noAndroidOutline,
   },
-  homeAdditionalPlaque: {
-    minHeight: 134,
-    marginHorizontal: 8,
+  homeAdditionalEditorial: {
+    alignSelf: 'center',
+    maxWidth: '90%',
     marginTop: 10,
     marginBottom: 16,
-    borderRadius: 24,
-    borderWidth: 0,
-    paddingHorizontal: 20,
-    paddingVertical: 17,
-    overflow: 'hidden',
-    shadowOpacity: 0.14,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 9 },
-    elevation: 4,
+    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 14,
   },
   pressed: {
     opacity: 0.78,
@@ -814,10 +940,14 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   homeAdditionalContent: {
-    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    paddingRight: 78,
     zIndex: 2,
+  },
+  homeAdditionalCopy: {
+    alignItems: 'center',
+    flex: 0,
+    maxWidth: '100%',
   },
   plaqueGlow: {
     position: 'absolute',
@@ -827,18 +957,6 @@ const styles = StyleSheet.create({
     height: 132,
     borderRadius: 66,
     opacity: 0.62,
-  },
-  homeAdditionalGhostWrap: {
-    position: 'absolute',
-    right: 16,
-    top: 24,
-    width: 82,
-    height: 82,
-    opacity: 0.34,
-  },
-  homeAdditionalGhostImage: {
-    width: 82,
-    height: 82,
   },
   titleRow: {
     minHeight: 28,
@@ -860,16 +978,39 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 26,
     flexShrink: 1,
+    textAlign: 'center',
+  },
+  homeAdditionalKicker: {
+    fontWeight: '900',
+    letterSpacing: 0.7,
+    marginBottom: 4,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
   homeAdditionalPhrase: {
     fontWeight: '900',
-    lineHeight: 34,
+    flexShrink: 1,
+    textAlign: 'center',
+  },
+  homeAdditionalAction: {
+    minHeight: 44,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 22,
+    marginTop: 11,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+  },
+  homeAdditionalActionText: {
+    fontWeight: '900',
+    lineHeight: 18,
   },
   homeAdditionalSub: {
     fontWeight: '800',
     lineHeight: 19,
     marginTop: 5,
-    minHeight: 38,
+    textAlign: 'center',
   },
   homeAdditionalTeaser: {
     fontWeight: '900',
@@ -881,8 +1022,7 @@ const styles = StyleSheet.create({
   },
   modalRoot: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 18,
+    justifyContent: 'flex-end',
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -890,14 +1030,26 @@ const styles = StyleSheet.create({
   },
   sheet: {
     width: '100%',
-    maxHeight: '84%',
-    borderRadius: 22,
+    maxHeight: '86%',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     borderWidth: 0,
     overflow: 'hidden',
+    paddingTop: 6,
     shadowOpacity: 0.22,
     shadowRadius: 24,
-    shadowOffset: { width: 0, height: 12 },
-    elevation: 16,
+    shadowOffset: { width: 0, height: -8 },
+    ...noAndroidOutline,
+  },
+  grabber: {
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  grabberPill: {
+    width: 44,
+    height: 5,
+    borderRadius: 3,
+    opacity: 0.9,
   },
   successOverlay: {
     position: 'absolute',
@@ -921,11 +1073,9 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#22C55E',
-    shadowOpacity: 0.38,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 9,
+    // зачем: круг (radius 35) без непрозрачного фона — Android рисовал
+    // квадратный outline вокруг него. На iOS зелёное свечение как было.
+    ...softShadow({ color: '#22C55E', opacity: 0.38, radius: 18, offsetY: 8, elevation: 9 }),
   },
   sheetHeader: {
     flexDirection: 'row',
@@ -959,6 +1109,11 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 28,
   },
+  sheetActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
   closeButton: {
     width: 36,
     height: 36,
@@ -966,8 +1121,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // зачем 2026-08-04 (владелец: «текст уходит вниз под безопасную зону»):
+  // жёсткий maxHeight: 390 обрывал историю фразы на полуслове даже там, где
+  // на экране оставалось место — лист-то может занять 86% высоты. Теперь
+  // высоту скролла ограничивает сам лист (flexShrink), а не магическое число,
+  // поэтому на большом телефоне видно больше текста, а на маленьком лист
+  // по-прежнему не вылезает за свои 86% и за safe area.
   sheetScroll: {
-    maxHeight: 390,
+    flexShrink: 1,
   },
   sheetScrollContent: {
     paddingHorizontal: 16,
@@ -978,6 +1139,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 0,
     padding: 13,
+  },
+  literalBlock: {
+    paddingVertical: 11,
+  },
+  meaningBlock: {
+    borderWidth: 1,
+    padding: 15,
   },
   detailLabel: {
     fontWeight: '900',
@@ -992,6 +1160,18 @@ const styles = StyleSheet.create({
   storyText: {
     fontWeight: '500',
     lineHeight: 23,
+    flex: 1,
+  },
+  explanationBlock: {
+    borderWidth: 1,
+    flexDirection: 'row',
+    gap: 12,
+    padding: 15,
+  },
+  explanationRail: {
+    alignSelf: 'stretch',
+    borderRadius: 2,
+    width: 4,
   },
   explainButton: {
     marginTop: 2,
@@ -1015,9 +1195,25 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     paddingHorizontal: 14,
     paddingVertical: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 11,
     justifyContent: 'center',
   },
+  optionMarker: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    alignItems: 'center',
+    flexShrink: 0,
+    justifyContent: 'center',
+  },
+  optionMarkerText: {
+    fontWeight: '900',
+    lineHeight: 16,
+  },
   questOptionText: {
+    flex: 1,
     fontWeight: '800',
     lineHeight: 21,
   },
@@ -1047,15 +1243,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   explanationWrap: {
-    gap: 12,
-  },
-  saveRow: {
-    borderTopWidth: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     gap: 12,
   },
 });

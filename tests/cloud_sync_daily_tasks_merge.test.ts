@@ -10,7 +10,10 @@ import {
   wipeLocalAccountData,
 } from '../app/cloud_sync';
 import * as DailyTasks from '../app/daily_tasks';
+
+(globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
 import { normalizeDevSeededStreakValue } from '../app/streak_safety';
+import { readVipSnapshotForAccount } from '../app/premium_vip_storage';
 import { DIAGNOSIS_TRAINING_IDS } from '../app/personal_practice_training_ids';
 import {
   activeRecallItemsKey,
@@ -248,7 +251,6 @@ describe('streak cloud restore safety', () => {
       'achievement_flashcards_flip_count',
       'achievement_shards_spent_total',
       'achievement_league_boost_count',
-      'achievement_league_chat_message_count',
       'achievement_all_daily_streak_v1',
       'flashcards_v1',
     ]));
@@ -421,9 +423,12 @@ describe('streak cloud restore safety', () => {
         [quizNavLevelKey('fr'), 'medium'],
         [diagnosticOpenFlagKey('en'), '1'],
         [diagnosticOpenFlagKey('fr'), '1'],
+        ['shard_survey_done_daykey_v1', '2026-05-20'],
       ]);
 
       await wipeLocalAccountData();
+
+      await expect(AsyncStorage.getItem('shard_survey_done_daykey_v1')).resolves.toBeNull();
 
       await expect(AsyncStorage.getItem(englishVisitedKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(frenchVisitedKey)).resolves.toBeNull();
@@ -904,8 +909,8 @@ describe('streak cloud restore safety', () => {
       league_result_pending: pendingResult,
     }));
 
-    // Other safe cloud fields (for example the current league state) may still
-    // be restored; the consumed-result tombstone must only block the modal.
+    // Restore may safely apply unrelated cloud state; the dismissal contract is
+    // that the already-consumed league result itself never reappears.
     expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('league_result_pending')).resolves.toBeNull();
   });
@@ -1007,7 +1012,7 @@ describe('premium cloud sync safety', () => {
       vip_until: expiry,
       vip_admin_override: 'true',
       vip_admin_grant_at: String(Date.now()),
-    }));
+    }), undefined, undefined, 'cloud-stable');
 
     expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('vip_plan')).resolves.toBe('admin_vip');
@@ -1032,12 +1037,32 @@ describe('premium cloud sync safety', () => {
       premium_plan: 'admin_grant',
       admin_premium_override: 'true',
       premium_expiry: { toMillis: () => expiryMs },
-    }));
+    }), undefined, undefined, 'cloud-stable');
 
     expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('premium_expiry')).resolves.toBe(String(Math.floor(expiryMs)));
     await expect(AsyncStorage.getItem('vip_until')).resolves.toBe(String(Math.floor(expiryMs)));
     await expect(AsyncStorage.getItem('vip_active')).resolves.toBe('true');
     await expect(AsyncStorage.getItem('premium_active')).resolves.toBe('false');
+  });
+
+  it('restores a cloud-only admin VIP into the scoped owner on an otherwise empty install', async () => {
+    const expiry = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      vip_active: 'true',
+      vip_plan: 'admin_vip',
+      vip_until: expiry,
+      vip_admin_override: 'true',
+      vip_admin_grant_at: '123',
+    }), undefined, undefined, 'clean-install-stable');
+
+    expect(restored).toBe(true);
+    await expect(readVipSnapshotForAccount('clean-install-stable')).resolves.toMatchObject({
+      vip_active: 'true',
+      vip_plan: 'admin_vip',
+      vip_until: expiry,
+      vip_admin_override: 'true',
+      vip_admin_grant_at: '123',
+    });
   });
 });

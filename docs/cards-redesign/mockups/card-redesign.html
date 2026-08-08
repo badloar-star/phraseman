@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman · Карточка профиля — 3 концепта редизайна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════ СТРАНИЦА ═══════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#07080B;--ink:#F2F3F7;--mut:#8B8E9D;--dim:#62646F}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);padding:56px 40px 90px}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(700px 400px at 12% -5%,rgba(90,110,180,.10),transparent 65%),
+             radial-gradient(700px 500px at 95% 110%,rgba(60,150,140,.07),transparent 65%)}
+.wrap{max-width:1560px;margin:0 auto;position:relative}
+h1{font-size:34px;font-weight:800;letter-spacing:-.8px}
+.lede{margin-top:14px;max-width:860px;font-size:14.5px;line-height:1.65;color:var(--mut)}
+.lede b{color:#C9CBD6;font-weight:600}
+.lvl-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.lvl-legend i{font-style:normal;font-size:11px;font-weight:600;color:#AEB1BE;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+  padding:7px 12px;border-radius:999px}
+.lvl-legend i b{font-weight:800}
+
+.sec{margin-top:74px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.sec-name{display:flex;align-items:baseline;gap:14px}
+.sec-idx{font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--dim)}
+.sec-name h2{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.sec-name h2 em{font-style:normal;font-size:13px;font-weight:600;color:var(--mut);letter-spacing:.06em;margin-left:10px}
+.sec-desc{margin-top:10px;max-width:780px;font-size:13.5px;line-height:1.6;color:var(--mut)}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#9FA2B0;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 11px;white-space:nowrap}
+
+.row{display:flex;gap:26px;overflow-x:auto;padding:30px 6px 30px;scroll-snap-type:x mandatory;align-items:flex-start}
+.row::-webkit-scrollbar{height:8px}
+.row::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px}
+.row::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:4px}
+.item{scroll-snap-align:start;flex-shrink:0}
+.cap{margin-top:16px;width:302px}
+.cap b{display:block;font-size:12.5px;font-weight:700}
+.cap span{display:block;font-size:11px;color:var(--mut);margin-top:3px;line-height:1.5}
+
+.notes{margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.note{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:24px}
+.note h3{font-size:14px;font-weight:800;letter-spacing:.02em;margin-bottom:12px}
+.note ul{list-style:none}
+.note li{font-size:12.5px;line-height:1.55;color:var(--mut);padding:5px 0 5px 18px;position:relative}
+.note li::before{content:'';position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.16)}
+.note li b{color:#C9CBD6;font-weight:600}
+.verdict{background:linear-gradient(150deg,rgba(90,166,255,.09),rgba(79,224,200,.05));border-color:rgba(90,166,255,.22)}
+.verdict li::before{background:#5AA6FF}
+
+/* ═══════════════════════ СТИЛЬ 1 · NOIR ═══════════════════════ */
+.n-card{width:302px;background:#0B0B0D;border:1px solid rgba(255,255,255,.075);border-radius:26px;
+  padding:22px 24px 20px;position:relative;overflow:hidden}
+.n-card::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent)}
+.n-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.n-brand{font-size:9px;font-weight:600;letter-spacing:.34em;color:#5E5F68;text-transform:uppercase;line-height:1.9}
+.n-brand em{display:block;font-style:normal;color:var(--ac);letter-spacing:.26em;font-weight:600}
+.n-chrome{display:flex;gap:14px;align-items:center;color:#4B4C54;font-size:13px;padding-top:1px}
+.n-chrome svg{display:block;opacity:.75}
+.n-id{display:flex;gap:15px;align-items:center;margin-bottom:22px}
+.n-ava{width:54px;height:54px;border-radius:50%;flex-shrink:0;position:relative;
+  background:linear-gradient(135deg,#6D5DF6,#9D8CFF);display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:600;color:#fff;box-shadow:0 0 0 1px var(--line)}
+.n-ava.ring{box-shadow:0 0 0 1px var(--line),0 0 0 6px var(--soft)}
+.n-ava i{position:absolute;bottom:-4px;right:-4px;min-width:19px;height:19px;border-radius:10px;
+  background:#0B0B0D;border:1px solid var(--line);color:var(--ac);font-size:9px;font-style:normal;
+  display:flex;align-items:center;justify-content:center;font-weight:700;padding:0 4px}
+.n-plus{font-size:8.5px;letter-spacing:.26em;color:#D8B45A;font-weight:700;margin-bottom:4px}
+.n-name{font-size:26px;font-weight:650;letter-spacing:-.6px;line-height:1.05}
+.n-name.holo{background:linear-gradient(100deg,#fff 25%,#AAB4C8 45%,#fff 60%,#C7D0DE 80%);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:holoText 7s linear infinite}
+.n-title{font-size:9px;letter-spacing:.22em;color:var(--ac);text-transform:uppercase;margin-top:5px;font-weight:600}
+.n-hr{height:1px;background:rgba(255,255,255,.075);margin-bottom:16px}
+.n-stats{display:flex;margin-bottom:14px}
+.n-stat{flex:1;text-align:center;position:relative}
+.n-stat+.n-stat::before{content:'';position:absolute;left:0;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.09)}
+.n-stat b{display:block;font-size:21px;font-weight:300;letter-spacing:-.3px;font-variant-numeric:tabular-nums}
+.n-stat span{font-size:8px;letter-spacing:.17em;text-transform:uppercase;color:#62636C;font-weight:600;margin-top:5px;display:block}
+.n-meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:7.5px 0;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.n-meta:last-child{border-bottom:none}
+.n-meta>span{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#62636C;font-weight:600;flex-shrink:0}
+.n-meta b{font-size:12.5px;font-weight:500;color:#D8D9E0;text-align:right}
+.n-meta b.ac{color:var(--ac);font-weight:650}
+.n-mods-sub{font-size:9.5px;color:#71727B;text-align:right;padding:0 0 7px;margin-top:-4px;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.n-legend{margin-top:14px;padding:11px 0 10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  text-align:center;font-size:9.5px;letter-spacing:.38em;color:var(--ac);font-weight:600}
+.n-star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.5;pointer-events:none}
+
+/* ═══════════════════════ СТИЛЬ 2 · AURORA ═══════════════════════ */
+.a-card{width:302px;border-radius:28px;position:relative;overflow:hidden;padding:20px 18px 20px;
+  background:radial-gradient(120% 55% at 82% -8%,var(--glowT),transparent 62%),
+             radial-gradient(130% 65% at 14% 112%,var(--glowB),transparent 64%),
+             linear-gradient(170deg,#101219,#0A0B10);
+  border:1px solid rgba(255,255,255,.09)}
+.a-breathe{position:absolute;left:0;right:0;bottom:0;height:52%;pointer-events:none;
+  background:radial-gradient(100% 100% at 50% 118%,var(--glowB),transparent 72%);
+  animation:breathe 5s ease-in-out infinite}
+.a-sheen{position:absolute;inset:-30%;pointer-events:none;
+  background:linear-gradient(105deg,transparent 44%,rgba(255,255,255,.075) 50%,transparent 56%);
+  transform:translateX(-70%);animation:sheen 6.5s ease-in-out infinite}
+.a-comet{position:absolute;top:44px;left:-90px;width:72px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,#fff);filter:drop-shadow(0 0 5px #fff);
+  transform:rotate(-16deg);opacity:0;animation:comet 7.5s ease-in infinite;pointer-events:none}
+.a-tw{position:absolute;width:2.5px;height:2.5px;border-radius:50%;background:#fff;pointer-events:none;animation:twinkle 2.8s ease-in-out infinite}
+.a-pill{position:absolute;top:14px;left:14px;z-index:6;display:flex;gap:6px;align-items:center;
+  padding:7px 11px;border-radius:999px;background:rgba(8,10,16,.44);border:1px solid var(--line);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ac);
+  font-size:9.5px;font-weight:700;letter-spacing:.06em}
+.a-btn{position:absolute;z-index:6;width:31px;height:31px;border-radius:50%;
+  background:rgba(8,10,16,.44);border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.78)}
+.a-btn.x{top:14px;right:14px}
+.a-btn.up{top:53px;right:14px;color:var(--ac);border-color:var(--line);box-shadow:0 0 16px var(--soft)}
+.a-id{text-align:center;margin:30px 0 16px;position:relative;z-index:2}
+.a-avaw{position:relative;width:88px;height:88px;margin:0 auto 13px}
+.a-avaw svg{position:absolute;inset:0;animation:spin 9s linear infinite}
+.a-ava{position:absolute;inset:6px;border-radius:50%;
+  background:linear-gradient(135deg,#6D5DF6,#9D8CFF);display:flex;align-items:center;justify-content:center;
+  font-size:28px;font-weight:600;color:#fff}
+.a-avaw.l0 svg{display:none}
+.a-avaw.l0 .a-ava{box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+.a-lvl{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);padding:3px 9px;border-radius:999px;
+  background:rgba(8,10,16,.72);border:1px solid var(--line);color:var(--ac);
+  font-size:8.5px;font-weight:800;letter-spacing:.08em;backdrop-filter:blur(6px);white-space:nowrap}
+.a-name{font-size:23px;font-weight:700;letter-spacing:-.3px}
+.a-chips{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.a-chip{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:999px;font-size:10.5px;font-weight:600}
+.a-chip.plus{background:linear-gradient(120deg,rgba(245,200,66,.18),rgba(245,200,66,.07));
+  border:1px solid rgba(245,200,66,.35);color:#F5C842}
+.a-chip.ttl{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#C9CBD6}
+.a-glass{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.075);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:16px;position:relative;z-index:2}
+.a-stats{display:flex;padding:13px 0;margin-bottom:11px}
+.a-stat{flex:1;text-align:center;position:relative}
+.a-stat+.a-stat::before{content:'';position:absolute;left:0;top:16%;bottom:16%;width:1px;background:rgba(255,255,255,.08)}
+.a-stat b{display:block;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.a-stat span{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#8B8E9D;font-weight:600;display:block;margin-top:3px}
+.a-duo{display:flex;gap:10px;margin-bottom:11px;position:relative;z-index:2}
+.a-duo .a-glass{flex:1;display:flex;align-items:center;gap:9px;padding:10px 12px;margin-bottom:0}
+.a-duo b{font-size:12px;font-weight:700;display:block}
+.a-duo span{font-size:8.5px;color:#8B8E9D;display:block;margin-top:1px}
+.a-mods{padding:13px 14px}
+.a-mods-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.a-mods-top span{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9A9DAB;font-weight:700}
+.a-mods-top b{font-size:17px;font-weight:800;color:#35D07F;font-variant-numeric:tabular-nums}
+.a-mchips{display:flex;flex-wrap:wrap;gap:6px}
+.a-mchip{font-size:10px;font-weight:600;padding:5px 9px;border-radius:8px;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);color:#C9CBD6}
+.a-block{display:flex;align-items:center;gap:11px;padding:11px 12px;margin-top:10px}
+.a-bico{width:33px;height:33px;border-radius:11px;flex-shrink:0;background:var(--soft);color:var(--ac);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px var(--soft)}
+.a-block b{font-size:12.5px;font-weight:700;display:block}
+.a-block span{font-size:9px;color:#8B8E9D;display:block;margin-top:1px}
+.a-block.leg{justify-content:center;text-align:center;background:var(--soft);border-color:var(--line)}
+.a-block.leg b{color:var(--ac);font-size:13.5px}
+</style>
+<style>
+/* ═══════════════════════ СТИЛЬ 3 · EMBLEM ═══════════════════════ */
+.e-card{width:302px;border-radius:22px;position:relative;overflow:hidden;padding:18px 20px 18px;
+  background:linear-gradient(165deg,#17181F,#0C0D12 55%,#101117);
+  border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.e-card::before{content:'';position:absolute;inset:6px;border:1px solid var(--hair);border-radius:16px;pointer-events:none;z-index:4}
+.e-card::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-radial-gradient(circle at 90% -14%,transparent 0 7px,rgba(255,255,255,.018) 7px 8px)}
+.e-wm{position:absolute;right:6px;top:38%;font-family:'Cormorant Garamond',serif;font-size:128px;
+  line-height:1;color:var(--ac);opacity:.06;font-weight:600;pointer-events:none;z-index:1}
+.e-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:3;margin-bottom:16px}
+.e-crestw{display:flex;align-items:center;gap:9px}
+.e-crest{width:26px;height:30px;clip-path:polygon(0 0,100% 0,100% 68%,50% 100%,0 68%);
+  background:var(--soft);border:none;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;color:var(--ac);padding-bottom:3px}
+.e-brand{font-size:7.5px;letter-spacing:.3em;color:#71727C;font-weight:700}
+.e-chrome{display:flex;gap:12px;color:#54555E;font-size:12px;padding-top:2px}
+.e-chrome svg{opacity:.8}
+.e-id{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;margin-bottom:6px}
+.e-plus{display:inline-block;font-size:8px;letter-spacing:.3em;color:#D8B45A;font-weight:700;
+  border-top:1px solid rgba(216,180,90,.45);border-bottom:1px solid rgba(216,180,90,.45);
+  padding:3px 2px;margin-bottom:11px}
+.e-name{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;line-height:1;
+  text-shadow:0 1px 0 rgba(0,0,0,.65);letter-spacing:.01em}
+.e-title{font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ac);margin-top:8px;font-weight:700}
+.e-lvl-line{font-size:7.5px;letter-spacing:.22em;color:#71727C;margin-top:5px;font-weight:600}
+.e-lvl-line b{color:var(--ac);font-weight:700}
+.e-seal{text-align:center;flex-shrink:0;margin-top:2px}
+.e-seal-ava{width:62px;height:62px;border-radius:50%;margin:0 auto;
+  background:linear-gradient(135deg,#6D5DF6,#9D8CFF);display:flex;align-items:center;justify-content:center;
+  font-size:21px;color:#fff;font-weight:600;
+  box-shadow:0 0 0 2px var(--line),0 0 0 5px rgba(0,0,0,.4),0 0 0 6px var(--hair)}
+.e-seal span{font-size:7.5px;letter-spacing:.28em;color:var(--ac);margin-top:7px;display:block;font-weight:700}
+.e-div{display:flex;align-items:center;gap:9px;margin:14px 0 12px;position:relative;z-index:2}
+.e-div i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--hair),transparent)}
+.e-div b{color:var(--ac);font-size:7px;font-weight:400}
+.e-stats{display:flex;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  padding:11px 0;margin-bottom:11px;position:relative;z-index:2}
+.e-stat{flex:1;text-align:center}
+.e-stat+.e-stat{border-left:1px solid var(--hair)}
+.e-stat b{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.e-stat span{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#71727C;display:block;margin-top:3px;font-weight:700}
+.e-spec{display:flex;align-items:baseline;padding:4.5px 0;position:relative;z-index:2}
+.e-spec>span{color:#7B7C85;letter-spacing:.13em;text-transform:uppercase;font-size:8px;font-weight:700;flex-shrink:0}
+.e-spec i{flex:1;border-bottom:1px dotted rgba(255,255,255,.15);margin:0 8px;transform:translateY(-3px)}
+.e-spec b{font-weight:600;color:#D8D9E0;font-size:11.5px}
+.e-spec b.ac{color:var(--ac)}
+.e-sub{font-size:8.5px;color:#6A6B74;text-align:right;padding:0 0 4px;position:relative;z-index:2}
+.e-feat{display:flex;align-items:baseline;padding:4.5px 0;position:relative;z-index:2}
+.e-feat>u{text-decoration:none;color:var(--ac);font-size:7px;margin-right:2px;flex-shrink:0}
+.e-feat>span{color:#7B7C85;letter-spacing:.13em;text-transform:uppercase;font-size:8px;font-weight:700;flex-shrink:0;margin-left:5px}
+.e-feat i{flex:1;border-bottom:1px dotted rgba(255,255,255,.15);margin:0 8px;transform:translateY(-3px)}
+.e-feat b{font-weight:600;color:#D8D9E0;font-size:11.5px}
+.e-legend{margin-top:13px;text-align:center;padding:10px 0 9px;
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);position:relative;z-index:2}
+.e-legend b{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.22em;color:var(--ac);font-weight:600}
+.e-legend span{display:block;font-size:7px;letter-spacing:.28em;color:#71727C;margin-top:4px;font-weight:700}
+
+/* ═══════════════════════ АНИМАЦИИ ═══════════════════════ */
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes sheen{0%,55%{transform:translateX(-70%)}85%,100%{transform:translateX(70%)}}
+@keyframes comet{0%,70%{transform:translateX(0) rotate(-16deg);opacity:0}76%{opacity:1}90%{transform:translateX(440px) rotate(-16deg);opacity:0}100%{opacity:0}}
+@keyframes twinkle{0%,100%{opacity:.12}50%{opacity:.9}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes holoText{to{background-position:220% 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Карточка профиля — 3 концепта редизайна</h1>
+  <p class="lede">Все шесть уровней карточки — от <b>Standard</b> до <b>Platinum</b> — в трёх разных визуальных мирах.
+  Данные везде одни и те же (Nzn · Explorer · 16K опыта · Lv.8 · цепочка 13 · Серебряная лига · модификаторы ×2.95),
+  меняется только подача. Мелкие плашки и дублирующие контейнеры убраны: статистика собрана в один элемент,
+  лайки и лига слиты в мета-строки, модификаторы XP стали компактными. Уровневые блоки
+  (<b>«Выучено» II+</b>, <b>«Арена» III+</b>, <b>«Путь» IV+</b>, <b>«Легенда» V</b>) сохранены и показаны на своих уровнях.</p>
+  <div class="lvl-legend">
+    <i><b>0</b> · Standard</i><i><b>I</b> · Pro — 200 💠</i><i><b>II</b> · Teal — 450 💠</i>
+    <i><b>III</b> · Azure — 800 💠</i><i><b>IV</b> · Crimson — 1400 💠</i><i><b>V</b> · Platinum — 2400 💠</i>
+  </div>
+</header>
+
+<section class="sec" id="s-noir">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">01</span><h2>NOIR<em>редакционный минимализм</em></h2></div>
+      <p class="sec-desc">Люкс через типографику и воздух: ни одной плашки, ни одного бокса — только волосные линии,
+      крупные тонкие цифры и микро-капс. Акцент уровня живёт в деталях: кольце аватара, подписях, линиях.
+      Карточка выглядит как страница дорогого журнала, а не игровой интерфейс.</p>
+    </div>
+    <div class="tags"><span class="tag">0 плашек</span><span class="tag">волосные линии</span><span class="tag">типографика</span><span class="tag">монохром + 1 акцент</span></div>
+  </div>
+  <div class="row" id="row-noir"></div>
+</section>
+
+<section class="sec" id="s-aurora">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">02</span><h2>AURORA<em>стекло и глубина света</em></h2></div>
+      <p class="sec-desc">Премиальное матовое стекло на глубоком градиенте: свечение уровня поднимается снизу и «дышит»,
+      аватар — герой композиции с орбитальным кольцом. Статистика — одна стеклянная капсула, а не три плитки.
+      Сюда идеально ложится текущий движок эффектов: падающая звезда Azure, мерцающие звёзды Crimson, голо-перелив Platinum.</p>
+    </div>
+    <div class="tags"><span class="tag">стекло</span><span class="tag">живой свет</span><span class="tag">герой-аватар</span><span class="tag">FX по уровням</span></div>
+  </div>
+  <div class="row" id="row-aurora"></div>
+</section>
+
+<section class="sec" id="s-emblem">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">03</span><h2>EMBLEM<em>карта члена клуба</em></h2></div>
+      <p class="sec-desc">Статусная «металлическая» карта: двойная гравированная рамка, герб, гильош-узор, засечный шрифт.
+      Аватар — печать в правом верхнем углу, уровень — выгравированная римская цифра-водяной знак.
+      Лайки, лига и модификаторы превращены в «спецификации» с точечными лидерами, как в сертификате.</p>
+    </div>
+    <div class="tags"><span class="tag">гравюра</span><span class="tag">аватар-печать справа</span><span class="tag">металл по уровню</span><span class="tag">сериф</span></div>
+  </div>
+  <div class="row" id="row-emblem"></div>
+</section>
+
+<section class="notes">
+  <div class="note">
+    <h3>Что убрано из текущего дизайна</h3>
+    <ul>
+      <li>Отдельные боксы под каждую мелочь — <b>6 контейнеров стали 1–2 элементами</b></li>
+      <li>Двойные пилюли в шапке (PLUS + уровень карточки) — слиты в одну строку</li>
+      <li>Тяжёлые плитки статистики — теперь единый ряд с тонкими разделителями</li>
+      <li>Крупные подписи капсом под каждым числом — стали тише и короче</li>
+      <li>Строка лайков на всю ширину с большим сердцем — компактная мета-строка</li>
+    </ul>
+  </div>
+  <div class="note">
+    <h3>Что сохранено полностью</h3>
+    <ul>
+      <li>Все данные: опыт, уровень, цепочка, лайки, лига, модификаторы XP</li>
+      <li>Бейдж подписки <b>PLUS</b> и обозначение уровня карточки</li>
+      <li>Уровневые блоки: <b>Выучено (II+), Арена (III+), Путь (IV+), Легенда №N (V)</b></li>
+      <li>Кольцо аватара с III уровня, перелив имени и звёздное небо на V</li>
+      <li>Кнопка апгрейда карточки (в Aurora — стеклянный круг со стрелкой)</li>
+    </ul>
+  </div>
+  <div class="note verdict">
+    <h3>Рекомендация</h3>
+    <ul>
+      <li><b>AURORA</b> — основной кандидат: живая, премиальная, и текущий FX-движок (свечения, комета, звёзды) переносится почти один в один</li>
+      <li><b>NOIR</b> — если хочется максимально «дорогого» взрослого образа; дешевле всего в реализации</li>
+      <li><b>EMBLEM</b> — самый статусный и необычный; хорош, если карточка задумана как «членская карта клуба»</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+<script>
+/* ═══════════ ДАННЫЕ (реальные значения со скриншота) ═══════════ */
+const U = {
+  name:'Nzn', title:'Explorer', plus:true,
+  xp:'16K', lvl:'Lv.8', streak:'13',
+  likes:'0', league:'Серебряная',
+  xpTotal:'×2.95', mods:[['Лига','×1.5'],['Цепочка','×1.4'],['Подарок','×2.0']],
+  learned:'1 240 · 318', learnedSub:'слов · фраз выучено',
+  arena:'27 · 64%', arenaSub:'побед · винрейт',
+  path:'214 · 31', pathSub:'дней · рекорд серии',
+  legendNo:'№ 17', legendSub:'высший уровень карточки',
+};
+const LEVELS = [
+  {n:0, roman:'',  name:'Standard',     ac:'#94A3B8', soft:'rgba(148,163,184,.13)', line:'rgba(148,163,184,.38)', hair:'rgba(148,163,184,.20)', glowT:'rgba(96,106,128,.10)', glowB:'rgba(96,106,128,.13)'},
+  {n:1, roman:'I', name:'Phraseman Pro',ac:'#9FB4CC', soft:'rgba(159,180,204,.13)', line:'rgba(159,180,204,.40)', hair:'rgba(159,180,204,.22)', glowT:'rgba(77,110,158,.20)', glowB:'rgba(77,110,158,.30)'},
+  {n:2, roman:'II',name:'Teal',         ac:'#4FE0C8', soft:'rgba(79,224,200,.12)',  line:'rgba(79,224,200,.40)',  hair:'rgba(79,224,200,.22)',  glowT:'rgba(18,183,158,.18)', glowB:'rgba(18,183,158,.30)'},
+  {n:3, roman:'III',name:'Azure',       ac:'#5AA6FF', soft:'rgba(90,166,255,.13)',  line:'rgba(90,166,255,.42)',  hair:'rgba(90,166,255,.24)',  glowT:'rgba(46,123,255,.22)', glowB:'rgba(46,123,255,.34)'},
+  {n:4, roman:'IV',name:'Crimson',      ac:'#FF6B7E', soft:'rgba(255,107,126,.12)', line:'rgba(255,107,126,.42)', hair:'rgba(255,107,126,.24)', glowT:'rgba(226,51,80,.20)',  glowB:'rgba(226,51,80,.32)'},
+  {n:5, roman:'V', name:'Platinum',     ac:'#EDEFF4', soft:'rgba(237,239,244,.10)', line:'rgba(237,239,244,.44)', hair:'rgba(237,239,244,.26)', glowT:'rgba(199,208,222,.16)',glowB:'rgba(199,208,222,.26)'},
+];
+const CAPTIONS = [
+  ['Standard','база: чистая подача, ноль декора'],
+  ['I · Pro','стальной акцент, имя карточки в шапке'],
+  ['II · Teal','+ блок «Выучено»'],
+  ['III · Azure','+ блок «Арена», кольцо аватара'],
+  ['IV · Crimson','+ блок «Путь», мерцающие звёзды'],
+  ['V · Platinum','+ «Легенда № 17», перелив имени'],
+];
+
+/* ═══════════ ИКОНКИ ═══════════ */
+const P = {
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  up:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+  spark:'<path d="M12 4l1.7 4.6L18.5 10l-4.8 1.4L12 16l-1.7-4.6L5.5 10l4.8-1.4L12 4z"/>',
+  dia:'<path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M12 21L8.5 9l2-6M12 21L15.5 9l-2-6"/>',
+  heart:'<path d="M12 20.5s-8-4.9-8-10.2C4 7 6.2 5 8.7 5c1.5 0 2.7.8 3.3 2 .6-1.2 1.8-2 3.3-2C17.8 5 20 7 20 10.3c0 5.3-8 10.2-8 10.2z"/>',
+  shield:'<path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V5.8L12 3z"/>',
+  book:'<path d="M4 19.5A2.5 2.5 0 016.5 17H20V2H6.5A2.5 2.5 0 004 4.5v15z"/><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"/>',
+  trophy:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 6H4.2C3.5 6 3 6.6 3 7.3 3 9.5 4.6 11 7 11M17 6h2.8c.7 0 1.2.6 1.2 1.3C21 9.5 19.4 11 17 11"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/>',
+  crown:'<path d="M3 8.5l3.8 3.2L12 6l5.2 5.7L21 8.5V17H3V8.5z"/><path d="M4 20h16"/>',
+  flame:'<path d="M12 22c4 0 6.8-2.6 6.8-6.4 0-3-1.9-5.4-3.4-6.9-.5 1-1.3 1.8-2.4 2.3.3-2.5-.6-6-3.5-8 .2 3-1 4.6-2.3 6.2C5.9 10.9 5.2 12.7 5.2 14.4 5.2 18.6 8 22 12 22z"/>',
+};
+const ic = (n,s=14,w=1.7)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
+
+/* ═══════════ общие куски ═══════════ */
+const has = L => ({learned:L.n>=2, arena:L.n>=3, path:L.n>=4, legend:L.n>=5});
+const lvlTag = L => L.n===0 ? '' : `${L.roman} · ${L.name}`;
+
+/* ═══════════ NOIR ═══════════ */
+function cardNoir(L){
+  const b = has(L);
+  const stars = L.n===5 ? '<i class="n-star" style="top:70px;left:40px"></i><i class="n-star" style="top:46px;left:150px;opacity:.3"></i><i class="n-star" style="top:96px;right:52px;opacity:.35"></i>' : '';
+  return `<div class="n-card" style="--ac:${L.ac};--soft:${L.soft};--line:${L.line}">
+    ${stars}
+    <div class="n-top">
+      <div class="n-brand">Phraseman${L.n?`<em>${lvlTag(L)}</em>`:''}</div>
+      <div class="n-chrome">${ic('up',14)}${ic('x',13)}</div>
+    </div>
+    <div class="n-id">
+      <div class="n-ava${L.n>=3?' ring':''}">N<i>8</i></div>
+      <div>
+        <div class="n-plus">◆ PLUS</div>
+        <div class="n-name${L.n===5?' holo':''}">${U.name}</div>
+        <div class="n-title">${U.title}</div>
+      </div>
+    </div>
+    <div class="n-hr"></div>
+    <div class="n-stats">
+      <div class="n-stat"><b>${U.xp}</b><span>опыт</span></div>
+      <div class="n-stat"><b>${U.lvl}</b><span>уровень</span></div>
+      <div class="n-stat"><b>${U.streak}</b><span>цепочка</span></div>
+    </div>
+    <div class="n-hr"></div>
+    <div class="n-meta"><span>Лайки</span><b>${U.likes}</b></div>
+    <div class="n-meta"><span>Лига</span><b>${U.league}</b></div>
+    <div class="n-meta" style="border-bottom:none;padding-bottom:4px"><span>Модификаторы XP</span><b class="ac">${U.xpTotal}</b></div>
+    <div class="n-mods-sub">${U.mods.map(m=>`${m[0]} ${m[1]}`).join(' · ')}</div>
+    ${b.learned?`<div class="n-meta"><span>Выучено</span><b>${U.learned}</b></div>`:''}
+    ${b.arena?`<div class="n-meta"><span>Арена</span><b>${U.arena}</b></div>`:''}
+    ${b.path?`<div class="n-meta"><span>Путь</span><b>${U.path}</b></div>`:''}
+    ${b.legend?`<div class="n-legend">ЛЕГЕНДА · ${U.legendNo.toUpperCase()}</div>`:''}
+  </div>`;
+}
+
+/* ═══════════ AURORA ═══════════ */
+function cardAurora(L,i){
+  const b = has(L);
+  const gid = `rg${i}`;
+  const fx = [];
+  if (L.n>=1) fx.push('<div class="a-breathe"></div>');
+  if (L.n===1||L.n===5) fx.push('<div class="a-sheen"></div>');
+  if (L.n===3) fx.push('<div class="a-comet"></div>');
+  if (L.n===4||L.n===5) fx.push(
+    '<i class="a-tw" style="top:60px;left:34px"></i>',
+    '<i class="a-tw" style="top:88px;right:44px;animation-delay:.7s"></i>',
+    '<i class="a-tw" style="top:38px;left:120px;animation-delay:1.3s;opacity:.4"></i>',
+    '<i class="a-tw" style="top:130px;left:56px;animation-delay:1.9s;opacity:.3"></i>');
+  return `<div class="a-card" style="--ac:${L.ac};--soft:${L.soft};--line:${L.line};--glowT:${L.glowT};--glowB:${L.glowB}">
+    ${fx.join('')}
+    ${L.n?`<div class="a-pill">${ic('spark',11,2)}${lvlTag(L)}</div>`:''}
+    <div class="a-btn x">${ic('x',13,2)}</div>
+    <div class="a-btn up">${ic('up',13,2)}</div>
+    <div class="a-id">
+      <div class="a-avaw l${L.n===0?0:1}">
+        <svg viewBox="0 0 88 88"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="${L.ac}"/><stop offset=".5" stop-color="${L.ac}" stop-opacity=".15"/><stop offset="1" stop-color="${L.ac}"/>
+        </linearGradient></defs>
+        <circle cx="44" cy="44" r="42" fill="none" stroke="url(#${gid})" stroke-width="2" stroke-linecap="round" stroke-dasharray="200 64"/></svg>
+        <div class="a-ava">N</div>
+        <div class="a-lvl">LV 8</div>
+      </div>
+      <div class="a-name">${U.name}</div>
+      <div class="a-chips">
+        <div class="a-chip plus">${ic('dia',10,2)}PLUS</div>
+        <div class="a-chip ttl">${U.title}</div>
+      </div>
+    </div>
+    <div class="a-glass a-stats">
+      <div class="a-stat"><b>${U.xp}</b><span>опыт</span></div>
+      <div class="a-stat"><b>${U.lvl}</b><span>уровень</span></div>
+      <div class="a-stat"><b>${U.streak}</b><span>цепочка</span></div>
+    </div>
+    <div class="a-duo">
+      <div class="a-glass"><span style="color:#FF5B7F;display:flex">${ic('heart',15,1.8)}</span><div><b>${U.likes}</b><span>лайки</span></div></div>
+      <div class="a-glass"><span style="color:${L.ac};display:flex">${ic('shield',15,1.8)}</span><div><b>${U.league}</b><span>текущая лига</span></div></div>
+    </div>
+    <div class="a-glass a-mods">
+      <div class="a-mods-top"><span>Модификаторы XP</span><b>${U.xpTotal}</b></div>
+      <div class="a-mchips">${U.mods.map(m=>`<div class="a-mchip">${m[0]} ${m[1]}</div>`).join('')}</div>
+    </div>
+    ${b.learned?`<div class="a-glass a-block"><div class="a-bico">${ic('book',15,1.8)}</div><div><b>${U.learned}</b><span>${U.learnedSub}</span></div></div>`:''}
+    ${b.arena?`<div class="a-glass a-block"><div class="a-bico">${ic('trophy',15,1.8)}</div><div><b>${U.arena}</b><span>${U.arenaSub}</span></div></div>`:''}
+    ${b.path?`<div class="a-glass a-block"><div class="a-bico">${ic('compass',15,1.8)}</div><div><b>${U.path}</b><span>${U.pathSub}</span></div></div>`:''}
+    ${b.legend?`<div class="a-glass a-block leg"><div class="a-bico">${ic('crown',15,1.8)}</div><div><b>Легенда ${U.legendNo}</b><span>${U.legendSub}</span></div></div>`:''}
+  </div>`;
+}
+
+/* ═══════════ EMBLEM ═══════════ */
+function cardEmblem(L){
+  const b = has(L);
+  return `<div class="e-card" style="--ac:${L.ac};--soft:${L.soft};--line:${L.line};--hair:${L.hair}">
+    ${L.n?`<div class="e-wm">${L.roman}</div>`:''}
+    <div class="e-top">
+      <div class="e-crestw"><div class="e-crest">P</div><div class="e-brand">PHRASEMAN</div></div>
+      <div class="e-chrome">${ic('up',12)}${ic('x',12)}</div>
+    </div>
+    <div class="e-id">
+      <div>
+        <div class="e-plus">◆ PLUS</div>
+        <div class="e-name">${U.name}</div>
+        <div class="e-title">${U.title}</div>
+        ${L.n?`<div class="e-lvl-line">КАРТА <b>${lvlTag(L)}</b></div>`:`<div class="e-lvl-line">БАЗОВАЯ КАРТА</div>`}
+      </div>
+      <div class="e-seal">
+        <div class="e-seal-ava">N</div>
+        <span>LV 8</span>
+      </div>
+    </div>
+    <div class="e-div"><i></i><b>◆</b><i></i></div>
+    <div class="e-stats">
+      <div class="e-stat"><b>${U.xp}</b><span>опыт</span></div>
+      <div class="e-stat"><b>${U.lvl}</b><span>уровень</span></div>
+      <div class="e-stat"><b>${U.streak}</b><span>цепочка</span></div>
+    </div>
+    <div class="e-spec"><span>Лайки</span><i></i><b>${U.likes}</b></div>
+    <div class="e-spec"><span>Лига</span><i></i><b>${U.league}</b></div>
+    <div class="e-spec" style="padding-bottom:1px"><span>Модификаторы XP</span><i></i><b class="ac">${U.xpTotal}</b></div>
+    <div class="e-sub">${U.mods.map(m=>`${m[0]} ${m[1]}`).join(' · ')}</div>
+    ${b.learned?`<div class="e-feat"><u>◆</u><span>Выучено</span><i></i><b>${U.learned}</b></div>`:''}
+    ${b.arena?`<div class="e-feat"><u>◆</u><span>Арена</span><i></i><b>${U.arena}</b></div>`:''}
+    ${b.path?`<div class="e-feat"><u>◆</u><span>Путь</span><i></i><b>${U.path}</b></div>`:''}
+    ${b.legend?`<div class="e-legend"><b>ЛЕГЕНДА · ${U.legendNo.toUpperCase()}</b><span>${U.legendSub}</span></div>`:''}
+  </div>`;
+}
+
+/* ═══════════ РЕНДЕР ═══════════ */
+function fill(rowId, fn){
+  const row = document.getElementById(rowId);
+  row.innerHTML = LEVELS.map((L,i)=>`<div class="item">${fn(L,i)}
+    <div class="cap"><b>${CAPTIONS[i][0]}</b><span>${CAPTIONS[i][1]}</span></div></div>`).join('');
+}
+fill('row-noir', cardNoir);
+fill('row-aurora', cardAurora);
+fill('row-emblem', cardEmblem);
+</script>
+</body>
+</html>

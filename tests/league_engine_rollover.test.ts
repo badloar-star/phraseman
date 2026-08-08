@@ -11,10 +11,14 @@ jest.mock('../app/firestore_leagues', () => ({
 
 jest.mock('../app/hall_of_fame_utils', () => ({
   loadWeekLeaderboard: jest.fn(async () => []),
+  getLastWeekFinalPoints: jest.fn(async () => null),
 }));
+
+import { getOrCreateLeagueGroup } from '../app/firestore_leagues';
 
 import {
   calculateResult,
+  capLeagueStep,
   checkLeagueOnAppOpen,
   clearPendingResult,
   CLUBS,
@@ -113,6 +117,33 @@ describe('league locale coverage', () => {
   });
 });
 
+// зачем: регрессия по репорту 20.07.2026 (Natalia) — за один ролловер игрока перекинуло
+// с лиги 3 на лигу 6, потому что накопленные за пропущенные недели повышения применялись
+// суммой. Очки при этом не терялись, но смена лиги читалась как потеря прогресса.
+describe('league step cap (multi-week chain)', () => {
+  it('caps a multi-league promotion to a single step up', () => {
+    expect(capLeagueStep(3, 6)).toBe(4);
+  });
+
+  it('caps a multi-league demotion to a single step down', () => {
+    expect(capLeagueStep(6, 2)).toBe(5);
+  });
+
+  it('keeps a legitimate single-step transition untouched', () => {
+    expect(capLeagueStep(3, 4)).toBe(4);
+    expect(capLeagueStep(3, 2)).toBe(2);
+  });
+
+  it('keeps the same league when the chain ends where it started', () => {
+    expect(capLeagueStep(3, 3)).toBe(3);
+  });
+
+  it('never steps outside the ladder bounds', () => {
+    expect(capLeagueStep(0, -5)).toBe(0);
+    expect(capLeagueStep(CLUBS.length - 1, CLUBS.length + 5)).toBe(CLUBS.length - 1);
+  });
+});
+
 describe('league weekly rollover', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
@@ -143,6 +174,25 @@ describe('league weekly rollover', () => {
     expect(getWeekId(new Date('2026-07-06T00:00:00.000Z'))).toBe('2026-W28');
   });
 
+  it('accepts a legitimate solo group after moving to a new week', async () => {
+    await saveState({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group: makeGroup(1200),
+    });
+    jest.mocked(getOrCreateLeagueGroup).mockResolvedValueOnce([
+      { uid: 'me', name: 'QA Monday', points: 0, isMe: true },
+    ]);
+
+    const opened = await checkLeagueOnAppOpen('QA Monday', 0);
+
+    expect(opened.state.weekId).toBe(getWeekId());
+    expect(opened.state.group).toEqual([
+      expect.objectContaining({ uid: 'me', name: 'QA Monday', points: 0, isMe: true }),
+    ]);
+    expect(opened.state.group.some((member) => member.uid === 'u1')).toBe(false);
+  });
+
   it('keeps fifth place in a sixteen-person group because top zone is three', () => {
     const { group, myPoints } = makeGroupWithMyRank(16, 5);
     const result = calculateResult({
@@ -159,6 +209,36 @@ describe('league weekly rollover', () => {
       promoted: false,
       demoted: false,
     });
+  });
+
+  it('gives equal XP the same promotion rank at the top boundary', () => {
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W31',
+      group: [
+        { uid: 'other-top', name: 'Other', points: 100, isMe: false },
+        { uid: 'me', name: 'QA Monday', points: 100, isMe: true },
+        { uid: 'middle', name: 'Middle', points: 50, isMe: false },
+        { uid: 'bottom', name: 'Bottom', points: 0, isMe: false },
+      ],
+    }, 100);
+
+    expect(result).toMatchObject({ myRank: 1, promoted: true, demoted: false });
+  });
+
+  it('gives equal XP the same demotion outcome at the bottom boundary', () => {
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W31',
+      group: [
+        { uid: 'top', name: 'Top', points: 100, isMe: false },
+        { uid: 'middle', name: 'Middle', points: 50, isMe: false },
+        { uid: 'other-bottom', name: 'Other Bottom', points: 0, isMe: false },
+        { uid: 'me', name: 'QA Monday', points: 0, isMe: true },
+      ],
+    }, 0);
+
+    expect(result).toMatchObject({ myRank: 3, promoted: false, demoted: true });
   });
 
   it('keeps the current percentage promotion logic when XP promotion mode is off', () => {
@@ -276,7 +356,7 @@ describe('league weekly rollover', () => {
     expect(opened.result?.group.some(m => m.name === 'QA Monday' && m.isMe)).toBe(true);
   });
 
-  it('repairs an already saved pending result with rank 0', async () => {
+  it('repairs an already saved pending result structurally without changing its outcome', async () => {
     await AsyncStorage.setItem('user_name', 'QA Monday');
     const pending = {
       prevLeagueId: 0,
@@ -294,18 +374,20 @@ describe('league weekly rollover', () => {
     const repaired = await loadPendingResult();
     const savedPending = JSON.parse(await AsyncStorage.getItem('league_result_pending') || '{}');
 
+    // Ремонт только структурный: isMe восстановлен, но исход (rank 0, лига, флаги)
+    // остаётся ровно тем, что был вычислен на ролловере — не пересчитывается.
     expect(repaired).toMatchObject({
       prevLeagueId: 0,
-      newLeagueId: 1,
-      myRank: 1,
+      newLeagueId: 0,
+      myRank: 0,
       totalInGroup: 10,
-      promoted: true,
+      promoted: false,
     });
-    expect(savedPending.myRank).toBe(1);
+    expect(savedPending.myRank).toBe(0);
     expect(savedPending.group.some((m: GroupMember) => m.name === 'QA Monday' && m.isMe)).toBe(true);
   });
 
-  it('recalculates an already saved pending result with the current top-three zone', async () => {
+  it('preserves the outcome of an already saved pending result (structural repair only)', async () => {
     const { group } = makeGroupWithMyRank(16, 5);
     const stalePending = {
       prevLeagueId: 0,
@@ -323,17 +405,19 @@ describe('league weekly rollover', () => {
     const savedPending = JSON.parse(await AsyncStorage.getItem('league_result_pending') || '{}');
     const savedState = JSON.parse(await AsyncStorage.getItem('league_state_v3') || '{}');
 
+    // Поля исхода не пересчитываются: pending показывает ровно тот результат,
+    // что был сохранён на ролловере, даже если зона/состав группы «изменились» бы.
     expect(repaired).toMatchObject({
       prevLeagueId: 0,
-      newLeagueId: 0,
+      newLeagueId: 1,
       myRank: 5,
       totalInGroup: 16,
-      promoted: false,
+      promoted: true,
       demoted: false,
     });
-    expect(savedPending.promoted).toBe(false);
-    expect(savedPending.newLeagueId).toBe(0);
-    expect(savedState.leagueId).toBe(0);
+    expect(savedPending.promoted).toBe(true);
+    expect(savedPending.newLeagueId).toBe(1);
+    expect(savedState.leagueId).toBe(1);
   });
 
   it('demotes the bottom result zone and uses stored weekly points from league state', async () => {
@@ -373,7 +457,7 @@ describe('league weekly rollover', () => {
     expect(result).toMatchObject({
       prevLeagueId: 3,
       newLeagueId: 3,
-      myRank: 6,
+      myRank: 5,
       totalInGroup: 10,
       promoted: false,
       demoted: false,

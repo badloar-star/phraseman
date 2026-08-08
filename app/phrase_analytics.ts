@@ -10,7 +10,7 @@
 //   генерируем PersonalInsights с живыми текстами
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { loadMistakeLog } from './mistake_log';
+import { loadMistakeLog, type MistakeEntry } from './mistake_log';
 import { getLessonData } from './lesson_data_all';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, LESSON_NAMES_ES, lessonNamesForLang } from '../constants/lessons';
 import { DebugLogger } from './debug-logger';
@@ -20,6 +20,7 @@ import {
   getPersonalTrainingResolvedAt,
   loadResolvedPersonalTrainings,
 } from './diagnosis_training_progress';
+import type { PhraseWindowSummary } from './weekly_review_types';
 
 // ── Типы ─────────────────────────────────────────────────────────────────────
 
@@ -89,6 +90,82 @@ export interface PhraseAnalyticsResult {
   totalMistakes: number;
   /** Период аналитики в днях */
   windowDays: number;
+}
+
+export interface PhraseAnalyticsWindows {
+  last7: PhraseWindowSummary;
+  previous7: PhraseWindowSummary;
+  last30: PhraseWindowSummary;
+  delta: { accuracyPct: number | null; mistakes: number };
+  phraseTrends: Map<string, 'up' | 'flat' | 'down'>;
+}
+
+function normalizedMistakePhrase(value: string): string {
+  return value.trim().replace(/[.!?,;¿¡]+$/, '').toLocaleLowerCase();
+}
+
+function summarizeMistakeWindow(entries: readonly MistakeEntry[]): PhraseWindowSummary {
+  const counts = new Map<string, number>();
+  for (const entry of entries) {
+    const key = normalizedMistakePhrase(entry.phrase);
+    if (key) counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return {
+    mistakes: entries.length,
+    uniquePhrases: counts.size,
+    repeatedMistakes: Array.from(counts.values()).reduce((sum, value) => sum + Math.max(0, value - 1), 0),
+    recoveredPhrases: 0,
+    // The current local log records mistakes, not every correct attempt. Null is
+    // intentionally honest; the AI must not invent accuracy from incomplete data.
+    accuracyPct: null,
+  };
+}
+
+export function summarizePhraseMistakeWindows(
+  entries: readonly MistakeEntry[],
+  nowMs = Date.now(),
+): PhraseAnalyticsWindows {
+  const dayMs = 24 * 60 * 60 * 1000;
+  const valid = entries.filter((entry) => Number.isFinite(entry.ts) && entry.ts <= nowMs);
+  const last7Entries = valid.filter((entry) => entry.ts >= nowMs - 7 * dayMs);
+  const previous7Entries = valid.filter((entry) => entry.ts < nowMs - 7 * dayMs && entry.ts >= nowMs - 14 * dayMs);
+  const last30Entries = valid.filter((entry) => entry.ts >= nowMs - 30 * dayMs);
+  const last7 = summarizeMistakeWindow(last7Entries);
+  const previous7 = summarizeMistakeWindow(previous7Entries);
+  const last30 = summarizeMistakeWindow(last30Entries);
+  const currentKeys = new Set(last7Entries.map((entry) => normalizedMistakePhrase(entry.phrase)));
+  const priorKeys = new Set(last30Entries
+    .filter((entry) => entry.ts < nowMs - 7 * dayMs)
+    .map((entry) => normalizedMistakePhrase(entry.phrase)));
+  last30.recoveredPhrases = Array.from(priorKeys).filter((key) => key && !currentKeys.has(key)).length;
+
+  const currentCounts = new Map<string, number>();
+  const previousCounts = new Map<string, number>();
+  for (const entry of last7Entries) {
+    const key = normalizedMistakePhrase(entry.phrase);
+    if (key) currentCounts.set(key, (currentCounts.get(key) ?? 0) + 1);
+  }
+  for (const entry of previous7Entries) {
+    const key = normalizedMistakePhrase(entry.phrase);
+    if (key) previousCounts.set(key, (previousCounts.get(key) ?? 0) + 1);
+  }
+  const phraseTrends = new Map<string, 'up' | 'flat' | 'down'>();
+  for (const key of new Set([...currentCounts.keys(), ...previousCounts.keys()])) {
+    const current = currentCounts.get(key) ?? 0;
+    const previous = previousCounts.get(key) ?? 0;
+    phraseTrends.set(key, current > previous ? 'up' : current < previous ? 'down' : 'flat');
+  }
+
+  return {
+    last7,
+    previous7,
+    last30,
+    delta: {
+      accuracyPct: null,
+      mistakes: last7.mistakes - previous7.mistakes,
+    },
+    phraseTrends,
+  };
 }
 
 export interface PosCoverageSample {

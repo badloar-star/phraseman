@@ -1,0 +1,297 @@
+/* Phraseman — новая главная (редизайн 2026-07-25).
+   зачем: владелец утвердил продающую структуру (SELLING-RULES.md) и тексты
+   (COPY-DRAFT.md): светлая тема, золото бренда, аврора, одна цель страницы.
+   Файл отдельный от phraseman.css: старые страницы живут на старом CSS,
+   пока не переведены на новый стиль. */
+
+:root {
+  --bg: #fdfdfc;
+  --surface: #fff;
+  --tint: #f7f4ec;
+  --tint-2: #efe9dc;
+  --ink: #201c12;
+  --body: #4c4636;
+  --soft: #6f6852;
+  --gold: #e8a13c;
+  --gold-deep: #b8860f;
+  --gold-ink: #3a2905;
+  --gold-grad: linear-gradient(115deg, #f7de8b 0%, #e3b84b 48%, #c2902e 100%);
+  --pill: 999px;
+  --shadow: 0 12px 34px rgba(120, 90, 20, .10), 0 2px 8px rgba(120, 90, 20, .05);
+  --shadow-lg: 0 32px 80px rgba(120, 90, 20, .14), 0 8px 20px rgba(120, 90, 20, .07);
+  --ease: cubic-bezier(.23, 1, .32, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--body);
+  font: 400 17px/1.68 "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2 { color: var(--ink); line-height: 1.14; margin: 0; text-wrap: balance; font-weight: 900; letter-spacing: -.02em; }
+::selection { background: #f3dda2; color: var(--ink); }
+button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 3px solid rgba(184, 134, 15, .6);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
+
+/* зерно — деликатная «плёнка» поверх всего */
+.grain {
+  position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: .38;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.022 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* сцена хиро: WebGL-аврора на десктопе, CSS-фолбэк везде.
+   зачем: клип только по X (держит блобы авроры от горизонтального скролла),
+   по Y — visible, иначе поповер выбора магазина обрезался кромкой сцены
+   (баг с прода, скрин владельца 2026-07-26). */
+.stage { position: relative; overflow-x: clip; overflow-y: visible; }
+.aurora-css, .stage canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.aurora-css::before, .aurora-css::after {
+  content: ""; position: absolute; width: 72vmax; height: 72vmax; border-radius: 50%;
+  filter: blur(72px); opacity: .5; will-change: transform;
+}
+.aurora-css::before { background: radial-gradient(circle, #f7de8b 0%, transparent 60%); top: -36vmax; left: -14vmax; }
+.aurora-css::after { background: radial-gradient(circle, #ffcda2 0%, transparent 58%); top: -28vmax; right: -20vmax; opacity: .38; }
+@media (prefers-reduced-motion: no-preference) {
+  .aurora-css::before { animation: drift-a 26s ease-in-out infinite alternate; }
+  .aurora-css::after { animation: drift-b 32s ease-in-out infinite alternate; }
+  @keyframes drift-a { to { transform: translate3d(9vmax, 7vmax, 0) scale(1.12); } }
+  @keyframes drift-b { to { transform: translate3d(-8vmax, 5vmax, 0) scale(1.07); } }
+}
+/* зачем: владелец 2026-07-26 — «на телефоне тормозит»: blur(72px)-блобы дороги
+   для мобильного GPU. На узких экранах блобы выключены, фон — лёгкий статичный
+   градиент без filter; текстовые blur-переходы тоже без размытия. */
+@media (max-width: 720px) {
+  .aurora-css::before, .aurora-css::after { animation: none; filter: none; opacity: 0; content: none; }
+  .aurora-css {
+    background:
+      radial-gradient(130% 90% at 25% -12%, rgba(247, 222, 139, .6), transparent 62%),
+      radial-gradient(110% 80% at 95% -5%, rgba(255, 205, 162, .38), transparent 58%);
+  }
+  .js .blur-in { filter: none; transition: opacity .45s var(--ease) .1s; }
+  .grain { opacity: .25; }
+}
+.stage > .wrap { position: relative; z-index: 1; }
+
+/* шапка: на мобиле все вкладки видимы сразу — второй строкой-чипсами */
+.top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 6px; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 900; color: var(--ink); font-size: 17px; flex: none; }
+.brand img { width: 36px; height: 36px; border-radius: 11px; }
+.nav { display: flex; align-items: center; gap: 24px; font-weight: 600; font-size: 14.5px; }
+.nav a:hover { color: var(--ink); }
+.nav .b {
+  background: var(--ink); color: #f7edd6; font-weight: 700; padding: 12px 22px;
+  border-radius: var(--pill); transition: transform .14s var(--ease), background .14s;
+}
+.nav .b:hover { background: #3a3322; color: #f7edd6; }
+.nav .b:active { transform: scale(.96); }
+.nav-chips { display: none; }
+@media (max-width: 900px) {
+  .nav a:not(.b) { display: none; }
+  /* зачем: владелец потребовал «на мобиле все кнопки сразу» — вкладки не прячем
+     в бургер, а показываем строкой чипсов под шапкой */
+  .nav-chips {
+    display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 12px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .nav-chips::-webkit-scrollbar { display: none; }
+  .nav-chips a {
+    flex: none; background: var(--surface); box-shadow: var(--shadow);
+    border-radius: var(--pill); padding: 11px 16px; font-weight: 600; font-size: 14px; color: var(--ink);
+  }
+  .nav-chips a:active { transform: scale(.96); }
+}
+
+/* хиро: чистая типографика, одна кнопка.
+   зачем: владелец на широком мониторе увидел «всё сдвинуто, а не посредине» —
+   композиция целиком центрируется, а не прижимается к левому краю обёртки */
+.hero { padding: clamp(34px, 7vh, 96px) 0 clamp(56px, 10vh, 120px); max-width: 780px; margin-inline: auto; text-align: center; }
+.hero h1 { font-size: clamp(2.05rem, 5vw, 3.6rem); }
+.hero .sub { font-size: clamp(1.05rem, 1.5vw, 1.24rem); max-width: 34em; margin: 20px auto 34px; }
+.cta-zone { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+  background: var(--gold-grad); color: var(--gold-ink);
+  font: 700 17.5px/1 "Golos Text", system-ui, sans-serif;
+  padding: 20px 34px; border: 0; border-radius: var(--pill); cursor: pointer;
+  box-shadow: 0 16px 38px rgba(200, 140, 30, .32);
+  transition: transform .16s var(--ease), box-shadow .16s; overflow: hidden;
+}
+.btn:hover { box-shadow: 0 20px 46px rgba(200, 140, 30, .42); }
+.btn:active { transform: scale(.97); }
+.btn > * { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .btn::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 44%; left: -60%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .5), transparent);
+    transform: skewX(-18deg); animation: sheen 4.6s var(--ease) infinite;
+  }
+  @keyframes sheen { 0%, 74% { left: -60%; } 100% { left: 130%; } }
+}
+.fear { font-size: 14.5px; color: var(--soft); font-weight: 500; }
+
+/* умная кнопка: поповер выбора платформ на десктопе */
+.dl { position: relative; display: inline-block; }
+.pop {
+  position: absolute; top: calc(100% + 12px); left: 0; min-width: 322px;
+  background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-lg); padding: 14px;
+  opacity: 0; pointer-events: none; transform: translateY(-6px) scale(.97); transform-origin: top left;
+  transition: opacity .18s var(--ease), transform .18s var(--ease); z-index: 70;
+}
+.dl.open .pop { opacity: 1; pointer-events: auto; transform: none; }
+.pop a.store { display: flex; align-items: center; gap: 14px; padding: 13px 14px; border-radius: 16px; transition: background .12s; }
+.pop a.store:hover { background: var(--tint); }
+.pop a.store:active { transform: scale(.985); }
+.pop svg { width: 26px; height: 26px; fill: var(--ink); flex: none; }
+.pop .s-name { font-weight: 700; color: var(--ink); font-size: 15.5px; line-height: 1.25; }
+.pop .s-name small { display: block; font-weight: 500; color: var(--soft); font-size: 12.5px; }
+.pop .qr { display: flex; gap: 14px; align-items: center; margin-top: 10px; padding: 12px 14px; border-radius: 16px; background: var(--tint); }
+.pop .qr img { width: 66px; height: 66px; flex: none; }
+.pop .qr span { font-size: 13px; color: var(--body); line-height: 1.45; }
+/* зачем: на сенсорных экранах (планшет и пр.) QR бессмысленен — прячем строку */
+@media (hover: none) and (pointer: coarse) { .pop .qr { display: none; } }
+
+section { padding: clamp(46px, 8vh, 92px) 0; text-align: center; }
+.h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.lead { max-width: 36em; margin: 14px auto 0; font-size: 1.05rem; }
+.cta-rep { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+/* узнавание себя */
+.you { margin: 30px auto 0; display: grid; gap: 12px; padding: 0; list-style: none; max-width: 40em; text-align: left; }
+.you li {
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: clamp(1.02rem, 1.4vw, 1.15rem); color: var(--ink); font-weight: 500;
+  background: var(--surface); border-radius: 18px; box-shadow: var(--shadow); padding: 18px 22px;
+}
+.you svg { flex: none; width: 24px; height: 24px; margin-top: 1px; }
+.close-line { margin: 26px auto 0; font-size: 1.08rem; color: var(--ink); font-weight: 600; max-width: 36em; }
+
+/* демо */
+.demo-sec { background: linear-gradient(165deg, var(--tint), #fbf8ef); border-radius: 32px; padding: clamp(26px, 5vw, 56px); }
+.demo {
+  position: relative; background: var(--surface); border-radius: 28px; box-shadow: var(--shadow-lg);
+  padding: 30px 30px 26px; max-width: 520px; margin: 30px auto 0; text-align: left; overflow: hidden;
+  transform: rotateX(var(--rx, 0)) rotateY(var(--ry, 0));
+  transition: transform .2s ease-out; will-change: transform;
+}
+.glare {
+  position: absolute; inset: -40%;
+  background: radial-gradient(circle at var(--gx, 30%) var(--gy, 20%), rgba(255, 255, 255, .5), transparent 42%);
+  pointer-events: none; opacity: 0; transition: opacity .3s;
+}
+.demo:hover .glare { opacity: 1; }
+.demo .en { font-size: clamp(1.5rem, 2.3vw, 1.9rem); font-weight: 900; color: var(--ink); margin: 0 0 6px; line-height: 1.3; min-height: 2.7em; }
+.demo .ru { color: var(--soft); font-size: 16.5px; margin: 0; min-height: 1.6em; }
+.demo .why { background: var(--tint); border-radius: 16px; padding: 14px 16px; font-size: 15px; line-height: 1.55; color: var(--body); margin-top: 14px; display: none; }
+.demo.explained .why { display: block; }
+.demo .acts { display: flex; align-items: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.icon-btn {
+  width: 56px; height: 56px; border: 0; border-radius: 50%; background: var(--gold-grad); cursor: pointer;
+  display: grid; place-items: center; box-shadow: 0 10px 24px rgba(200, 140, 30, .38);
+  transition: transform .15s var(--ease); flex: none;
+}
+.icon-btn:active { transform: scale(.9); }
+.icon-btn svg { width: 21px; height: 21px; fill: var(--gold-ink); }
+.chip {
+  border: 0; background: #efe9da; color: var(--ink);
+  font: 600 14.5px/1 "Golos Text", system-ui, sans-serif; padding: 16px 19px; border-radius: var(--pill);
+  cursor: pointer; transition: background .12s, transform .12s var(--ease);
+}
+.chip:hover { background: var(--tint-2); }
+.chip:active { transform: scale(.95); }
+.next { margin-left: auto; }
+
+/* траектория */
+.path { margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.path > div { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 26px 24px; text-align: left; }
+.path b { display: block; color: var(--gold-deep); font-size: 14px; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px; }
+.path h3 { margin: 0 0 8px; color: var(--ink); font-size: 1.08rem; font-weight: 700; }
+.path p { margin: 0; font-size: 15px; }
+.honest { margin: 26px 0 0; font-weight: 600; color: var(--ink); font-size: 1.05rem; }
+@media (max-width: 820px) { .path { grid-template-columns: 1fr; } }
+
+/* отзывы */
+.quotes { margin-top: 32px; columns: 2; column-gap: 16px; }
+.quote { break-inside: avoid; background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 26px 28px; margin-bottom: 16px; text-align: left; }
+.stars { color: var(--gold-deep); letter-spacing: 2px; font-size: 14px; }
+.quote p { color: var(--ink); font-weight: 500; font-size: 15.5px; line-height: 1.62; margin: 10px 0 12px; }
+.quote footer { color: var(--soft); font-size: 13.5px; font-weight: 600; }
+.all-reviews { margin-top: 10px; font-weight: 700; color: var(--ink); font-size: 15px; }
+.all-reviews a { color: var(--gold-deep); }
+.all-reviews a:hover { text-decoration: underline; }
+@media (max-width: 760px) { .quotes { columns: 1; } }
+
+/* честные ответы */
+.faq { margin: 30px auto 0; display: grid; gap: 10px; max-width: 46em; text-align: left; }
+.faq details { background: var(--surface); border-radius: 18px; box-shadow: var(--shadow); padding: 6px 22px; }
+.faq summary {
+  cursor: pointer; font-weight: 700; color: var(--ink); font-size: 1.02rem; padding: 14px 0;
+  list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 22px; font-weight: 500; color: var(--gold-deep); transition: transform .2s var(--ease); flex: none; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 16px; font-size: 15.5px; }
+.risk { margin: 26px 0 0; font-weight: 600; color: var(--ink); font-size: 1.05rem; }
+
+/* мостик на тест уровня */
+.test-bridge {
+  background: var(--surface); border-radius: 30px; box-shadow: var(--shadow);
+  padding: clamp(26px, 4.5vw, 48px);
+  display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap;
+  text-align: left;
+}
+.test-bridge .lead { margin-left: 0; }
+.test-bridge .lead { max-width: 30em; }
+.test-bridge .cnt { color: var(--gold-deep); font-variant-numeric: tabular-nums; }
+.btn-ink { background: var(--ink); color: #f7edd6; }
+.btn-ink::after { display: none; }
+/* мостик подарков: тёплый фон, чтобы отличался от блока теста */
+.gift-bridge { background: linear-gradient(135deg, #fdf4d8, #f9e9bd); }
+
+/* финал */
+.final {
+  background: var(--gold-grad); border-radius: 34px;
+  padding: clamp(44px, 7vw, 84px) clamp(24px, 5vw, 64px);
+  text-align: center; position: relative; overflow: hidden; margin-bottom: clamp(36px, 6vh, 70px);
+}
+.final::before {
+  content: ""; position: absolute; width: 560px; height: 560px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, .5), transparent 62%);
+  top: -280px; left: 50%; transform: translateX(-50%);
+}
+.final h2 { color: #2c1f04; font-size: clamp(1.6rem, 3.2vw, 2.4rem); position: relative; }
+.final p { color: #5d430e; max-width: 32em; margin: 14px auto 30px; font-size: 1.05rem; position: relative; }
+.final .cta-zone { align-items: center; position: relative; }
+.final .fear { color: #6d5316; }
+
+.footer { padding: 6px 0 100px; color: var(--soft); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.footer nav { display: flex; gap: 16px 18px; flex-wrap: wrap; }
+.footer a:hover { color: var(--ink); }
+
+/* зачем: владелец 2026-07-26 — липкая нижняя кнопка УДАЛЕНА совсем:
+   на телефоне одна кнопка скачивания — в хиро; тёмная «Скачать» из шапки скрыта */
+@media (max-width: 720px) {
+  .nav .b { display: none; }
+}
+
+/* появления: включаются только при JS, дефолт видимый */
+.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+.js [data-split] .ch { display: inline-block; will-change: transform, filter; }
+.js .blur-in { opacity: 0; filter: blur(8px); transition: opacity .7s var(--ease) .3s, filter .7s var(--ease) .3s; }
+.js .blur-in.go { opacity: 1; filter: blur(0); }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .js .blur-in { opacity: 1; filter: none; transition: none; }
+  .btn::after { animation: none; display: none; }
+}
+.spark { position: absolute; width: 3px; height: 14px; border-radius: 2px; background: #fff; pointer-events: none; z-index: 9; left: 0; top: 0; }

@@ -1,0 +1,649 @@
+{
+  "schemaVersion": 1,
+  "language": "es",
+  "level": "B1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a workplace revision request", "scenarioRu": "Чтение рабочей просьбы внести исправления",
+      "prompt": "Choose the action and deadline stated in the email.", "instructionRu": "Выберите указанное в письме действие и срок.",
+      "stimulus": "De: Lucía. El presupuesto está casi listo, pero faltan los gastos de transporte. Añádelos y envíame la versión corregida antes de las 15:00 del jueves. La presentación puede esperar hasta el viernes.",
+      "answer": "Añadir los gastos y enviar el presupuesto corregido antes de las 15:00 del jueves.",
+      "distractors": [
+        {"text": "Terminar la presentación, añadirle los gastos de transporte y enviarla antes de las 15:00 del jueves.", "reasonRu": "В письме просят исправить бюджет, а презентация может подождать до пятницы."},
+        {"text": "Enviar el presupuesto sin cambios y preparar una explicación sobre los gastos pendientes antes de las 15:00 del jueves.", "reasonRu": "Срок сохранён, но требуется добавить транспортные расходы и отправить исправленную версию, а не объяснение."},
+        {"text": "Revisar los gastos de transporte, corregir la presentación y enviar ambos documentos antes de las 15:00 del jueves.", "reasonRu": "Исправить и отправить нужно бюджет; презентация может ждать до пятницы."}
+      ],
+      "explanation": "Lucía requests one correction and sets Thursday at 15:00 as the deadline for the revised budget.",
+      "explanationRu": "Лусия просит добавить транспортные расходы и устанавливает срок отправки исправленного бюджета: четверг, 15:00.",
+      "targetConstruct": "integrating requested action and deadline in a workplace email", "targetConstructRu": "сопоставление требуемого действия и срока в рабочем письме",
+      "canDoRu": "Может понять задачу и срок в коротком рабочем письме."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Separating background from a completed event", "scenarioRu": "Различение фона и завершённого события",
+      "prompt": "Choose the two past forms that organise the narrative.", "instructionRu": "Выберите две формы прошедшего времени, правильно организующие рассказ.",
+      "stimulus": "Mientras Ana ______ el informe, su jefa la ______ para una reunión urgente.",
+      "answer": "revisaba / llamó",
+      "distractors": [
+        {"text": "revisó / llamaba", "reasonRu": "Формы ошибочно представляют проверку как завершённое событие, а звонок — как фон."},
+        {"text": "revisaba / llamaba", "reasonRu": "Две формы imperfecto не выделяют завершённый звонок, прервавший процесс."},
+        {"text": "revisó / llamó", "reasonRu": "Две формы indefinido не передают длительный процесс после mientras."}
+      ],
+      "explanation": "Revisaba gives the ongoing background; llamó marks the completed interrupting event.",
+      "explanationRu": "Revisaba задаёт продолжавшийся фон, а llamó обозначает завершённое событие, которое его прервало.",
+      "targetConstruct": "imperfect background contrasted with a preterite foreground event", "targetConstructRu": "противопоставление фонового imperfecto и завершённого indefinido",
+      "canDoRu": "Может различить фон и основное событие в рассказе о прошлом."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Rescheduling a professional appointment", "scenarioRu": "Перенос деловой встречи",
+      "prompt": "Choose the reply that apologises and proposes a concrete alternative.", "instructionRu": "Выберите ответ с извинением и конкретным альтернативным временем.",
+      "stimulus": "No puedes asistir a la cita del martes a las diez. ¿Qué escribes?",
+      "answer": "Lo siento, el martes a las diez no me es posible. ¿Podríamos vernos el miércoles a la misma hora?",
+      "distractors": [
+        {"text": "Lo siento, el martes no podré asistir a la cita. Le escribiré la semana que viene, cuando haya revisado toda mi agenda y sepa qué otras fechas tengo libres.", "reasonRu": "Ответ вежлив, но откладывает выбор и не предлагает конкретной альтернативы сейчас."},
+        {"text": "Lo siento, no recuerdo si la cita era el martes o el jueves. ¿Podría confirmarme otra vez el día y la hora?", "reasonRu": "Реплика уточняет исходную встречу, но не сообщает о невозможности прийти и не предлагает замену."},
+        {"text": "El martes a las diez no me es posible. Cambie directamente la cita al miércoles a la misma hora y envíeme la confirmación cuando lo haya hecho.", "reasonRu": "Альтернатива конкретна, но приказная форма неуместна для вежливого согласования переноса."}
+      ],
+      "explanation": "The message apologises, states the conflict clearly, and offers a precise replacement slot.",
+      "explanationRu": "Сообщение содержит извинение, ясно сообщает о невозможности прийти и предлагает точное новое время.",
+      "targetConstruct": "polite rescheduling with a concrete alternative", "targetConstructRu": "вежливый перенос встречи с конкретной альтернативой",
+      "canDoRu": "Может вежливо перенести встречу и предложить другое время."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Understanding pay in a job offer", "scenarioRu": "Понимание условий оплаты в вакансии",
+      "prompt": "Choose the employment term defined by the advert.", "instructionRu": "Выберите термин из сферы трудоустройства по описанию в вакансии.",
+      "stimulus": "Oferta: contrato de un año, horario de 9:00 a 17:00 y 1.600 euros al mes. ¿Cómo se llama la cantidad que se paga cada mes?",
+      "answer": "El sueldo.",
+      "distractors": [
+        {"text": "El horario.", "reasonRu": "Horario обозначает рабочее расписание, а не денежную выплату."},
+        {"text": "El contrato.", "reasonRu": "Contrato — соглашение об условиях работы, а не ежемесячная сумма."},
+        {"text": "La experiencia.", "reasonRu": "Experiencia описывает трудовой опыт кандидата, а не оплату."}
+      ],
+      "explanation": "Sueldo is the regular amount an employee receives for work.",
+      "explanationRu": "Sueldo — регулярная сумма, которую работник получает за свою работу.",
+      "targetConstruct": "employment vocabulary for monthly salary", "targetConstructRu": "лексика трудоустройства для обозначения ежемесячной зарплаты",
+      "canDoRu": "Может понять основные условия оплаты в объявлении о работе."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Giving a direct health recommendation", "scenarioRu": "Прямая рекомендация по самочувствию",
+      "prompt": "Choose the form required after recomiendo que.", "instructionRu": "Выберите форму, требуемую после recomiendo que.",
+      "stimulus": "Tienes fiebre. Te recomiendo que ______ en casa hoy.",
+      "answer": "descanses",
+      "distractors": [
+        {"text": "descansas", "reasonRu": "После recomendar que при разных субъектах требуется subjuntivo, а не indicativo."},
+        {"text": "descansar", "reasonRu": "После союза que нужна личная форма глагола, а не инфинитив."},
+        {"text": "descansaste", "reasonRu": "Прошедшая форма не выражает рекомендацию на сегодня."}
+      ],
+      "explanation": "A recommendation directed at another person takes the present subjunctive descanses.",
+      "explanationRu": "Рекомендация другому человеку после recomiendo que требует формы настоящего subjuntivo descanses.",
+      "targetConstruct": "present subjunctive after recomendar que", "targetConstructRu": "настоящее subjuntivo после recomendar que",
+      "canDoRu": "Может дать прямую рекомендацию с подходящей глагольной формой."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Understanding the cause of a delivery delay", "scenarioRu": "Понимание причины задержки доставки",
+      "prompt": "Choose the stated cause and consequence.", "instructionRu": "Выберите указанные причину и последствие.",
+      "stimulus": "Aviso de reparto: debido al cierre de la carretera por las fuertes lluvias, los pedidos previstos para hoy llegarán mañana. Nuestro almacén funciona con normalidad.",
+      "answer": "La carretera está cerrada por la lluvia, por eso los pedidos llegarán un día más tarde.",
+      "distractors": [
+        {"text": "El almacén ha cerrado por las fuertes lluvias y todos los pedidos previstos para hoy quedan cancelados definitivamente.", "reasonRu": "В уведомлении прямо сказано, что склад работает нормально и заказы лишь задерживаются."},
+        {"text": "La carretera ha vuelto a abrir después de la lluvia, por eso todos los pedidos previstos saldrán hoy y llegarán esta tarde.", "reasonRu": "Дорога закрыта, а доставка перенесена на завтра."},
+        {"text": "La lluvia dañó los pedidos dentro del almacén y la empresa tendrá que prepararlos de nuevo para enviarlos la próxima semana.", "reasonRu": "О повреждении заказов и недельной задержке ничего не сообщается."}
+      ],
+      "explanation": "The notice links the rain-related road closure to a one-day delivery delay.",
+      "explanationRu": "Уведомление связывает закрытие дороги из-за дождя с переносом доставки на один день.",
+      "targetConstruct": "connecting explicit cause and consequence in a service notice", "targetConstructRu": "связь явно названных причины и последствия в сервисном уведомлении",
+      "canDoRu": "Может понять причину и результат задержки в уведомлении."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Recognising a bank transfer fee", "scenarioRu": "Понимание комиссии за банковский перевод",
+      "prompt": "Choose the banking term that completes the notice.", "instructionRu": "Выберите банковский термин, дополняющий уведомление.",
+      "stimulus": "La transferencia es gratuita dentro del país, pero para envíos internacionales el banco cobra cinco euros por realizar la operación. ¿Cómo se llama ese cobro?",
+      "answer": "Una comisión.",
+      "distractors": [
+        {"text": "Un saldo.", "reasonRu": "Saldo — остаток денег на счёте, а не плата за операцию."},
+        {"text": "Un recibo.", "reasonRu": "Recibo подтверждает оплату или получение денег, но не обозначает сбор банка."},
+        {"text": "Una clave.", "reasonRu": "Clave — код доступа, а не стоимость международного перевода."}
+      ],
+      "explanation": "A comisión is the fee charged for carrying out a banking operation.",
+      "explanationRu": "Comisión — плата, которую банк взимает за выполнение операции.",
+      "targetConstruct": "banking vocabulary for a transaction fee", "targetConstructRu": "банковская лексика для обозначения комиссии за операцию",
+      "canDoRu": "Может понять сообщение о комиссии за банковский перевод."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Disagreeing constructively in a meeting", "scenarioRu": "Конструктивное несогласие на встрече",
+      "prompt": "Choose the reply that disagrees politely and gives a relevant reason.", "instructionRu": "Выберите вежливое несогласие с уместным обоснованием.",
+      "stimulus": "Un compañero propone lanzar el proyecto mañana, pero aún faltan las pruebas de seguridad. ¿Qué respondes?",
+      "answer": "Entiendo que tenemos prisa, pero preferiría esperar hasta terminar las pruebas de seguridad.",
+      "distractors": [
+        {"text": "No estoy de acuerdo: lanzar el proyecto mañana sería una irresponsabilidad, y no pienso seguir discutiendo una idea tan absurda.", "reasonRu": "Реплика называет причину, но выражает несогласие агрессивно и прекращает рабочее обсуждение."},
+        {"text": "Estoy de acuerdo con lanzar el proyecto mañana sin cambios; si las pruebas detectan algún problema después, podremos corregirlo en la siguiente versión.", "reasonRu": "Ответ принимает предложение и откладывает обязательные проверки до небезопасного запуска."},
+        {"text": "Las pruebas de seguridad terminaron la semana pasada, ¿verdad?", "reasonRu": "Реплика предполагает факт, который противоречит указанной ситуации."}
+      ],
+      "explanation": "The response acknowledges the pressure, disagrees without attacking, and gives the safety reason.",
+      "explanationRu": "Ответ признаёт срочность, спокойно выражает несогласие и объясняет его необходимостью закончить проверки безопасности.",
+      "targetConstruct": "polite disagreement with a concise work-related reason", "targetConstructRu": "вежливое несогласие с краткой рабочей причиной",
+      "canDoRu": "Может корректно не согласиться на рабочей встрече и объяснить позицию."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Sending a document to a colleague", "scenarioRu": "Отправка документа коллеге",
+      "prompt": "Choose the combined pronouns that replace the recipient and document.", "instructionRu": "Выберите сочетание местоимений, заменяющее получателя и документ.",
+      "stimulus": "Ana necesitaba el informe, así que ayer ______ envié por correo electrónico.",
+      "answer": "se lo",
+      "distractors": [
+        {"text": "le lo", "reasonRu": "Перед lo местоимение le заменяется на se; сочетание le lo ненормативно."},
+        {"text": "se la", "reasonRu": "La не согласуется с существительным мужского рода informe."},
+        {"text": "lo se", "reasonRu": "В сочетании косвенное местоимение должно стоять перед прямым."}
+      ],
+      "explanation": "Le becomes se before the masculine direct-object pronoun lo: se lo envié.",
+      "explanationRu": "Перед прямым местоимением lo форма le заменяется на se: se lo envié.",
+      "targetConstruct": "combined indirect and direct object pronouns se lo", "targetConstructRu": "сочетание косвенного и прямого дополнений se lo",
+      "canDoRu": "Может заменить получателя и предмет двумя местоимениями."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a public-library exception", "scenarioRu": "Чтение исключения из правил библиотеки",
+      "prompt": "Choose the visit permitted by all conditions in the notice.", "instructionRu": "Выберите посещение, которое соответствует всем условиям объявления.",
+      "stimulus": "Biblioteca municipal: de lunes a viernes, 9:00–19:00. Los sábados abre solo la sala de estudio, de 10:00 a 14:00. No se prestan libros durante el fin de semana. El lunes festivo permanecerá cerrada.",
+      "answer": "Estudiar en la sala el sábado a las once sin pedir libros prestados.",
+      "distractors": [
+        {"text": "Devolver y pedir libros nuevos el sábado a las doce.", "reasonRu": "По выходным выдача книг не производится."},
+        {"text": "Usar la sala de estudio el sábado desde las cinco de la tarde hasta la hora habitual de cierre.", "reasonRu": "В субботу зал работает только до 14:00, а не по будничному расписанию."},
+        {"text": "Consultar libros en la biblioteca el lunes festivo por la mañana y devolverlos por la tarde.", "reasonRu": "В праздничный понедельник библиотека полностью закрыта."}
+      ],
+      "explanation": "Saturday study is allowed from 10:00 to 14:00, while weekend lending is unavailable.",
+      "explanationRu": "В субботу можно заниматься с 10:00 до 14:00, но брать книги на дом по выходным нельзя.",
+      "targetConstruct": "integrating opening hours, restrictions, and an exception", "targetConstructRu": "сопоставление часов работы, ограничения и исключения",
+      "canDoRu": "Может сопоставить расписание и исключения в объявлении учреждения."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Distinguishing a medical diagnosis", "scenarioRu": "Различение медицинского диагноза",
+      "prompt": "Choose the word for the doctor’s identification of the illness.", "instructionRu": "Выберите слово, обозначающее определение болезни врачом.",
+      "stimulus": "Después de escuchar los síntomas y examinar a Pablo, la médica explicó qué enfermedad tenía. ¿Cómo se llama esa conclusión?",
+      "answer": "El diagnóstico.",
+      "distractors": [
+        {"text": "El tratamiento.", "reasonRu": "Tratamiento — способ лечения после определения проблемы."},
+        {"text": "El síntoma.", "reasonRu": "Síntoma — отдельное проявление болезни, а не вывод врача."},
+        {"text": "La cita.", "reasonRu": "Cita — назначенное время приёма, а не медицинское заключение."}
+      ],
+      "explanation": "Diagnóstico names the medical conclusion about which illness a patient has.",
+      "explanationRu": "Diagnóstico обозначает медицинский вывод о том, какое заболевание есть у пациента.",
+      "targetConstruct": "health vocabulary distinguishing diagnosis from symptoms and treatment", "targetConstructRu": "медицинская лексика: отличие диагноза от симптомов и лечения",
+      "canDoRu": "Может различить основные понятия при описании врачебного приёма."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Clarifying an ambiguous work instruction", "scenarioRu": "Уточнение неоднозначного рабочего поручения",
+      "prompt": "Choose the neutral clarification that does not assign blame.", "instructionRu": "Выберите нейтральное уточнение без обвинения собеседника.",
+      "stimulus": "Tu responsable dice: «Envía el archivo cuando esté listo», pero no sabes si se refiere al informe o a la presentación.",
+      "answer": "Para asegurarme de haber entendido, ¿se refiere al informe o a la presentación?",
+      "distractors": [
+        {"text": "No se explica nada bien: primero habla de un archivo y luego no dice cuál. Dígame de una vez qué quiere que envíe.", "reasonRu": "Реплика уточняет файл, но обвиняет собеседника и звучит конфликтно."},
+        {"text": "Enviaré los dos archivos sin comprobar si están terminados.", "reasonRu": "Ответ не уточняет поручение и добавляет рискованное действие."},
+        {"text": "Para asegurarme, ¿quiere que envíe los dos archivos cuando estén listos?", "reasonRu": "Вопрос предполагает отправку обоих файлов вместо уточнения, какой именно файл имелся в виду."}
+      ],
+      "explanation": "The speaker checks their own understanding and names the two possible referents neutrally.",
+      "explanationRu": "Говорящий проверяет собственное понимание и нейтрально называет два возможных файла.",
+      "targetConstruct": "non-blaming clarification of an ambiguous instruction", "targetConstructRu": "нейтральное уточнение неоднозначного поручения",
+      "canDoRu": "Может тактично уточнить непонятное рабочее поручение."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Predicting an outcome from current evidence", "scenarioRu": "Прогноз результата по текущим данным",
+      "prompt": "Choose the future form that expresses the prediction.", "instructionRu": "Выберите форму будущего времени для прогноза.",
+      "stimulus": "El cielo está muy oscuro y el viento aumenta; seguramente ______ esta noche.",
+      "answer": "lloverá",
+      "distractors": [
+        {"text": "llovería", "reasonRu": "Condicional выражал бы зависимый или гипотетический результат, а здесь дан прямой прогноз на ночь."},
+        {"text": "llovía", "reasonRu": "Imperfecto описывает прошлый фон и не выражает будущий результат."},
+        {"text": "llueva", "reasonRu": "Здесь нет конструкции, требующей subjuntivo; seguramente вводит уверенный прогноз."}
+      ],
+      "explanation": "Lloverá is the simple-future form used for the evidence-based prediction.",
+      "explanationRu": "Lloverá — форма простого будущего, выражающая прогноз на основании наблюдаемых признаков.",
+      "targetConstruct": "simple future for a prediction based on stated evidence", "targetConstructRu": "простое будущее для прогноза по указанным признакам",
+      "canDoRu": "Может выразить прогноз, опираясь на текущую ситуацию."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Identifying the main judgement in a balanced review", "scenarioRu": "Определение основной оценки в сбалансированном отзыве",
+      "prompt": "Choose the statement that best summarises the reviewer’s evaluation.", "instructionRu": "Выберите утверждение, лучше всего передающее оценку автора.",
+      "stimulus": "El hotel está muy bien situado y las habitaciones son cómodas. El desayuno, sin embargo, ofrece pocas opciones y el servicio es lento en horas punta. Aun así, volvería por la tranquilidad y la ubicación.",
+      "answer": "La experiencia fue positiva en general, aunque el desayuno y la rapidez del servicio podrían mejorar.",
+      "distractors": [
+        {"text": "El hotel fue completamente decepcionante por el desayuno, el servicio, las habitaciones y la ubicación; el autor no piensa volver.", "reasonRu": "Автор прямо говорит, что вернулся бы, и положительно оценивает комнаты, тишину и расположение."},
+        {"text": "El desayuno fue lo mejor del hotel y compensó tanto la ubicación poco práctica como las habitaciones incómodas y el ruido constante.", "reasonRu": "В тексте завтрак критикуется, а расположение, комнаты и тишина оцениваются положительно."},
+        {"text": "La única ventaja fueron las habitaciones; el resto no se menciona.", "reasonRu": "Автор также хвалит расположение и тишину и называет недостатки."}
+      ],
+      "explanation": "The review is favourable overall but explicitly criticises breakfast variety and service speed.",
+      "explanationRu": "В целом отзыв положительный, но автор прямо критикует выбор на завтраке и скорость обслуживания.",
+      "targetConstruct": "identifying the main evaluation across praise and criticism", "targetConstructRu": "определение общей оценки при сочетании похвалы и критики",
+      "canDoRu": "Может понять основную оценку в сбалансированном отзыве."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Reporting a repair to a landlord", "scenarioRu": "Сообщение владельцу жилья о ремонте",
+      "prompt": "Choose the housing term for the property owner.", "instructionRu": "Выберите жилищный термин, обозначающий владельца сдаваемого жилья.",
+      "stimulus": "La calefacción del apartamento alquilado no funciona. Marta escribe al dueño para pedir una reparación. En este contexto, el dueño es el ______.",
+      "answer": "propietario",
+      "distractors": [
+        {"text": "inquilino", "reasonRu": "Inquilino — человек, который снимает жильё, а не владеет им."},
+        {"text": "vecino", "reasonRu": "Vecino живёт рядом, но не обязательно является владельцем квартиры."},
+        {"text": "técnico", "reasonRu": "Técnico может выполнить ремонт, но не обозначает собственника жилья."}
+      ],
+      "explanation": "Propietario is the owner from whom the tenant rents the flat.",
+      "explanationRu": "Propietario — собственник, у которого жилец арендует квартиру.",
+      "targetConstruct": "housing vocabulary distinguishing property owner and tenant", "targetConstructRu": "жилищная лексика: различение собственника и арендатора",
+      "canDoRu": "Может понять роли участников в ситуации аренды жилья."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Writing a formal information request", "scenarioRu": "Формальный письменный запрос информации",
+      "prompt": "Choose the message with an appropriate opening, purpose, and closing.", "instructionRu": "Выберите сообщение с уместными обращением, целью и завершением.",
+      "stimulus": "Quieres pedir información a una academia que no conoces sobre sus cursos nocturnos.",
+      "answer": "Buenos días: Me gustaría recibir información sobre los cursos nocturnos y sus horarios. Muchas gracias de antemano. Atentamente, Elena Ruiz.",
+      "distractors": [
+        {"text": "Hola: Quiero que me manden ahora toda la información disponible sobre los cursos nocturnos, incluidos precios, horarios, profesores, materiales y condiciones de inscripción. No me hagan esperar una respuesta. Elena Ruiz.", "reasonRu": "Сообщение формулирует запрос, но тон слишком фамильярный и требовательный для первого официального обращения."},
+        {"text": "Estimados señores: Confirmo mi asistencia al curso nocturno de mañana y les comunico que ya conozco su horario, precio y programa completo. Muchas gracias por su atención. Atentamente, Elena Ruiz.", "reasonRu": "Сообщение формально подтверждает уже выбранный курс и утверждает, что информация известна, вместо запроса сведений."},
+        {"text": "Buenas tardes: Les informo de que los horarios de todos sus cursos nocturnos han cambiado desde este mes y les envío los nuevos datos para que actualicen su página. Gracias por confirmar la recepción. Atentamente, Elena Ruiz.", "reasonRu": "Автор сообщает учреждению о якобы известных изменениях вместо того, чтобы запросить сведения."}
+      ],
+      "explanation": "The formal message introduces the request clearly and closes courteously with the sender’s identity.",
+      "explanationRu": "Формальное письмо ясно формулирует запрос и вежливо завершается с указанием имени отправителя.",
+      "targetConstruct": "formal written request with opening, purpose, and closing", "targetConstructRu": "формальный письменный запрос с обращением, целью и завершением",
+      "canDoRu": "Может составить краткий официальный запрос информации."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Giving hypothetical advice to a colleague", "scenarioRu": "Гипотетический совет коллеге",
+      "prompt": "Choose the conditional form that presents advice as a personal suggestion.", "instructionRu": "Выберите условную форму, представляющую совет как личное предложение.",
+      "stimulus": "Un compañero no sabe cómo resolver el desacuerdo con su jefa. Yo que él, ______ con ella en privado antes de la próxima reunión.",
+      "answer": "hablaría",
+      "distractors": [
+        {"text": "habló", "reasonRu": "Indefinido утверждает завершённый разговор, а ситуация просит дать совет о будущем действии."},
+        {"text": "hablará", "reasonRu": "Futuro предсказывает действие коллеги, а не выражает личную рекомендацию говорящего."},
+        {"text": "hablaba", "reasonRu": "Imperfecto описывает прошлый процесс или привычку и не формирует гипотетический совет."}
+      ],
+      "explanation": "Yo que él frames a hypothetical personal position and takes the conditional hablaría for advice.",
+      "explanationRu": "Yo que él задаёт гипотетическую личную позицию, а condicional hablaría выражает совет.",
+      "targetConstruct": "conditional in the advice frame yo que él", "targetConstructRu": "condicional в конструкции совета yo que él",
+      "canDoRu": "Может дать совет как гипотетическое личное решение."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Selecting an alternative during travel disruption", "scenarioRu": "Выбор альтернативы при сбое в поездке",
+      "prompt": "Choose the route that still meets the traveller’s deadline.", "instructionRu": "Выберите маршрут, позволяющий успеть к указанному сроку.",
+      "stimulus": "El tren directo de las 8:10 a Córdoba está cancelado. Los viajeros pueden tomar el tren de las 8:25 hasta Sevilla y allí cambiar al servicio de las 9:40, con llegada a Córdoba a las 10:35. El siguiente tren directo llega a las 11:20. Laura debe estar en Córdoba antes de las once.",
+      "answer": "Salir a las 8:25, cambiar en Sevilla y llegar a Córdoba a las 10:35.",
+      "distractors": [
+        {"text": "Esperar el siguiente tren directo, que llega a Córdoba después de las once, a las 11:20.", "reasonRu": "Этот поезд прибывает позже установленного срока — после одиннадцати."},
+        {"text": "Tomar el tren cancelado de las 8:10 y viajar sin transbordo.", "reasonRu": "Отменённым поездом воспользоваться невозможно."},
+        {"text": "Viajar hasta Sevilla a las 8:25 y quedarse allí hasta las 11:20.", "reasonRu": "Нужно сделать пересадку на рейс 9:40, а не оставаться в Севилье."}
+      ],
+      "explanation": "Only the 8:25 service with the Sevilla connection reaches Córdoba before 11:00.",
+      "explanationRu": "Только маршрут с отправлением в 8:25 и пересадкой в Севилье прибывает в Кордову до 11:00.",
+      "targetConstruct": "integrating cancellation, connection, arrival, and deadline", "targetConstructRu": "сопоставление отмены, пересадки, прибытия и крайнего срока",
+      "canDoRu": "Может выбрать подходящий маршрут из уведомления о сбое."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Requesting money back for a cancelled journey", "scenarioRu": "Возврат денег за отменённую поездку",
+      "prompt": "Choose the travel term for returning the ticket price.", "instructionRu": "Выберите термин, обозначающий возврат стоимости билета.",
+      "stimulus": "Como el autobús fue cancelado y no había otro servicio, los pasajeros solicitaron la devolución del dinero pagado. Solicitaron un ______.",
+      "answer": "reembolso",
+      "distractors": [
+        {"text": "retraso", "reasonRu": "Retraso — опоздание транспорта, а не возврат уплаченных денег."},
+        {"text": "transbordo", "reasonRu": "Transbordo — пересадка с одного транспорта на другой."},
+        {"text": "andén", "reasonRu": "Andén — платформа отправления или прибытия."}
+      ],
+      "explanation": "Reembolso is the repayment of money after a cancelled or unsatisfactory service.",
+      "explanationRu": "Reembolso — возврат денег после отменённой или неоказанной услуги.",
+      "targetConstruct": "travel vocabulary for a refund after cancellation", "targetConstructRu": "транспортная лексика для возврата денег после отмены",
+      "canDoRu": "Может понять требование вернуть деньги за отменённую поездку."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Responding to a customer complaint", "scenarioRu": "Ответ на жалобу клиента",
+      "prompt": "Choose the response that acknowledges the problem and offers a remedy.", "instructionRu": "Выберите ответ, который признаёт проблему и предлагает решение.",
+      "stimulus": "Un cliente dice que recibió una lámpara rota. Eres responsable de atención al cliente. ¿Qué respondes?",
+      "answer": "Lamentamos lo ocurrido. Podemos enviarle hoy una lámpara nueva o devolverle el importe; indíquenos qué opción prefiere.",
+      "distractors": [
+        {"text": "Nuestros productos salen revisados del almacén, así que el daño tuvo que producirse después y no es responsabilidad nuestra; consulte con la empresa de transporte.", "reasonRu": "Ответ перекладывает ответственность, не признаёт проблему клиента и не предлагает замену или возврат."},
+        {"text": "Gracias por avisarnos. Registramos que la lámpara llegó rota, pero no ofrecemos cambio ni devolución.", "reasonRu": "Реплика признаёт проблему, но отказывается от какого-либо средства исправления."},
+        {"text": "Lamentamos que la lámpara llegara rota. Envíenos una foto y más adelante estudiaremos si corresponde tomar alguna medida.", "reasonRu": "Ответ признаёт повреждение, но откладывает решение и не предлагает конкретного средства исправления."}
+      ],
+      "explanation": "The reply apologises, recognises the damage, and gives two concrete remedies.",
+      "explanationRu": "Ответ содержит извинение, признаёт повреждение и предлагает два конкретных способа решить проблему.",
+      "targetConstruct": "complaint response combining acknowledgement and remedy", "targetConstructRu": "ответ на жалобу с признанием проблемы и предложением решения",
+      "canDoRu": "Может корректно ответить на жалобу и предложить выход."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Referring to a future event with cuando", "scenarioRu": "Будущее событие в придаточном с cuando",
+      "prompt": "Choose the mood used after cuando for a future event not yet completed.", "instructionRu": "Выберите наклонение после cuando для ещё не завершённого будущего события.",
+      "stimulus": "Te enviaré la versión definitiva cuando el equipo la ______.",
+      "answer": "apruebe",
+      "distractors": [
+        {"text": "aprueba", "reasonRu": "Indicativo представлял бы событие как обычный факт, а здесь речь о ещё не наступившем условии будущей отправки."},
+        {"text": "aprobará", "reasonRu": "После cuando в придаточном будущего времени не используется futuro simple."},
+        {"text": "aprobó", "reasonRu": "Indefinido обозначал бы уже завершённое одобрение, что противоречит будущей отправке."}
+      ],
+      "explanation": "A future event introduced by cuando takes present subjunctive apruebe.",
+      "explanationRu": "Ещё не наступившее будущее событие после cuando требует настоящего subjuntivo apruebe.",
+      "targetConstruct": "present subjunctive after cuando for a future event", "targetConstructRu": "настоящее subjuntivo после cuando для будущего события",
+      "canDoRu": "Может связать будущее действие с ещё не наступившим временным событием."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Checking eligibility for a training course", "scenarioRu": "Проверка условий участия в учебном курсе",
+      "prompt": "Choose the applicant who meets every stated condition.", "instructionRu": "Выберите кандидата, соответствующего всем указанным условиям.",
+      "stimulus": "Curso de gestión básica: dirigido a personas con al menos seis meses de experiencia laboral. Para inscribirse antes del 30 de septiembre hay que presentar el formulario, un documento de identidad y un certificado de la empresa. No se exige título universitario.",
+      "answer": "Una persona con ocho meses de experiencia que entrega los tres documentos el 25 de septiembre.",
+      "distractors": [
+        {"text": "Una persona sin experiencia laboral que presenta un título universitario, el formulario, su identidad y un certificado académico antes del 30 de septiembre.", "reasonRu": "Высшее образование и документы не заменяют обязательные шесть месяцев трудового опыта."},
+        {"text": "Una persona con un año de experiencia que entrega solo su documento de identidad.", "reasonRu": "Опыт подходит, но отсутствуют заявление и справка от компании."},
+        {"text": "Una persona con seis meses de experiencia que presenta todo el 2 de octubre.", "reasonRu": "Документы подаются после крайнего срока 30 сентября."}
+      ],
+      "explanation": "The applicant has sufficient experience, supplies every required document, and applies before the deadline.",
+      "explanationRu": "Кандидат имеет достаточный опыт, подаёт все обязательные документы и укладывается в срок.",
+      "targetConstruct": "integrating eligibility, documents, and application deadline", "targetConstructRu": "сопоставление требований к опыту, документам и сроку подачи",
+      "canDoRu": "Может проверить соответствие условиям учебного объявления."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Recognising a suspicious web link", "scenarioRu": "Распознавание подозрительной интернет-ссылки",
+      "prompt": "Choose the digital-account term described in the warning.", "instructionRu": "Выберите термин цифровой безопасности по описанию в предупреждении.",
+      "stimulus": "El mensaje pide pulsar una dirección web para confirmar la contraseña, pero la dirección no pertenece al banco. ¿Qué elemento resulta sospechoso?",
+      "answer": "Un enlace.",
+      "distractors": [
+        {"text": "Un archivo adjunto.", "reasonRu": "Adjunto — файл, прикреплённый к сообщению, а здесь описан веб-адрес."},
+        {"text": "Un usuario.", "reasonRu": "Usuario — имя или лицо, использующее аккаунт, а не адрес перехода."},
+        {"text": "Una copia.", "reasonRu": "Copia — дубликат сообщения или данных, а не веб-ссылка."}
+      ],
+      "explanation": "Enlace is the web link the message asks the recipient to open.",
+      "explanationRu": "Enlace — веб-ссылка, которую получателю предлагают открыть.",
+      "targetConstruct": "digital vocabulary distinguishing a link from an attachment", "targetConstructRu": "цифровая лексика: отличие ссылки от вложения",
+      "canDoRu": "Может понять базовое предупреждение о цифровой безопасности."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Leaving a complete phone message", "scenarioRu": "Полное сообщение по телефону",
+      "prompt": "Choose the message containing identity, purpose, and a callback request.", "instructionRu": "Выберите сообщение с именем, целью звонка и просьбой перезвонить.",
+      "stimulus": "Llamas a una empresa para preguntar por una entrevista, pero la responsable no está. ¿Qué mensaje dejas?",
+      "answer": "Soy Daniel Torres. Llamo por la entrevista del lunes. ¿Podría decirle que me llame al 555 018 249?",
+      "distractors": [
+        {"text": "Soy Daniel Torres y llamo por la entrevista del lunes. Quería confirmar que recuerdo la dirección y la hora; volveré a intentarlo otro día.", "reasonRu": "Имя и цель указаны, но человек не оставляет номер и не просит перезвонить."},
+        {"text": "Soy Daniel Torres. Quería saber si la responsable está hoy en la oficina.", "reasonRu": "Представление есть, но не названы интервью и просьба перезвонить."},
+        {"text": "Es por una entrevista. Mi número ya aparece seguramente en su teléfono.", "reasonRu": "Не указано имя, а просьба и контакт оставлены неясными."}
+      ],
+      "explanation": "The message identifies the caller, states the interview purpose, and gives a callback number.",
+      "explanationRu": "Сообщение называет звонящего, указывает цель — собеседование — и оставляет номер для обратного звонка.",
+      "targetConstruct": "complete phone message with identity, purpose, and callback request", "targetConstructRu": "полное телефонное сообщение с именем, целью и просьбой перезвонить",
+      "canDoRu": "Может оставить содержательное сообщение отсутствующему собеседнику."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Stating a general rule in an office", "scenarioRu": "Общее правило в офисе",
+      "prompt": "Choose the passive se construction used for a general rule.", "instructionRu": "Выберите конструкцию pasiva refleja для общего правила.",
+      "stimulus": "En esta oficina ______ los teléfonos durante las reuniones.",
+      "answer": "se apagan",
+      "distractors": [
+        {"text": "se apaga", "reasonRu": "Единственное число не согласуется с подлежащим los teléfonos во множественном числе."},
+        {"text": "apagan", "reasonRu": "Без se форма требует названного или понятного личного субъекта и не выражает общее правило тем же способом."},
+        {"text": "se apagarán", "reasonRu": "Будущее описывало бы отдельное последующее действие, а объявление формулирует постоянное правило."}
+      ],
+      "explanation": "The passive se construction agrees in the plural with its grammatical subject los teléfonos: se apagan.",
+      "explanationRu": "В конструкции pasiva refleja глагол согласуется с грамматическим подлежащим los teléfonos во множественном числе: se apagan.",
+      "targetConstruct": "plural passive se construction for a general rule", "targetConstructRu": "pasiva refleja во множественном числе для общего правила",
+      "canDoRu": "Может понять и сформулировать общее правило учреждения."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Resolving a pronoun across sentences", "scenarioRu": "Определение связи местоимения между предложениями",
+      "prompt": "Choose what the object pronoun la refers to.", "instructionRu": "Выберите, к чему относится местоимение прямого дополнения la.",
+      "stimulus": "La directora recibió la propuesta de formación de Clara. Después de leerla, la consideró útil, pero pidió reducir el presupuesto. ¿Qué consideró útil la directora?",
+      "answer": "La propuesta de formación.",
+      "distractors": [
+        {"text": "A Clara.", "reasonRu": "Clara названа автором предложения, но местоимение la после leer относится к документу."},
+        {"text": "La reducción del presupuesto.", "reasonRu": "Сокращение бюджета — последующая просьба директора, а не объект оценки útil."},
+        {"text": "La experiencia de la directora.", "reasonRu": "Опыт директора в тексте не упоминается и не заменяется местоимением la."}
+      ],
+      "explanation": "Both instances of la refer back to the feminine noun phrase la propuesta de formación.",
+      "explanationRu": "Оба употребления la отсылают к существительному женского рода la propuesta de formación.",
+      "targetConstruct": "resolving an object pronoun across two sentences", "targetConstructRu": "определение объекта местоимения по межфразовой связи",
+      "canDoRu": "Может определить, к чему относится местоимение в связном тексте."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Separating recyclable household waste", "scenarioRu": "Сортировка бытовых отходов",
+      "prompt": "Choose the environmental action described.", "instructionRu": "Выберите экологическое действие по описанию.",
+      "stimulus": "En el edificio hay contenedores distintos para papel, vidrio y residuos orgánicos. Los vecinos deben separar la basura para facilitar el ______.",
+      "answer": "reciclaje",
+      "distractors": [
+        {"text": "consumo", "reasonRu": "Consumo — использование товаров или ресурсов, а не переработка отсортированных отходов."},
+        {"text": "tráfico", "reasonRu": "Tráfico относится к движению транспорта и не связан с контейнерами."},
+        {"text": "desperdicio", "reasonRu": "Desperdicio означает отходы или растрату, но не процесс их повторной переработки."}
+      ],
+      "explanation": "Separating materials into different containers facilitates reciclaje.",
+      "explanationRu": "Разделение материалов по разным контейнерам облегчает reciclaje — переработку отходов.",
+      "targetConstruct": "environmental vocabulary for recycling separated waste", "targetConstructRu": "экологическая лексика для переработки отсортированных отходов",
+      "canDoRu": "Может понять инструкцию по сортировке бытовых отходов."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Giving advice without imposing a decision", "scenarioRu": "Совет без навязывания решения",
+      "prompt": "Choose the helpful advice that leaves the decision to the listener.", "instructionRu": "Выберите полезный совет, оставляющий решение собеседнику.",
+      "stimulus": "Una amiga duda si aceptar un trabajo que exige un viaje largo cada día. Te pide opinión.",
+      "answer": "Yo compararía el tiempo de viaje con las ventajas del puesto, pero la decisión final es tuya.",
+      "distractors": [
+        {"text": "Tienes que rechazarlo ahora mismo: un viaje tan largo siempre arruina cualquier ventaja que pueda tener un puesto de trabajo.", "reasonRu": "Реплика категорично навязывает решение и без проверки обесценивает все возможные преимущества."},
+        {"text": "Acéptalo hoy mismo, porque cualquier trabajo es mejor que ninguno.", "reasonRu": "Совет поспешный, категоричный и основан на неподтверждённом обобщении."},
+        {"text": "No conozco la oferta, así que no quiero escuchar más detalles.", "reasonRu": "Ответ отказывается помогать, хотя собеседница прямо просит мнение."}
+      ],
+      "explanation": "The advice proposes a useful comparison while explicitly respecting the friend’s choice.",
+      "explanationRu": "Совет предлагает практично сравнить факторы и прямо сохраняет право выбора за подругой.",
+      "targetConstruct": "practical advice that respects the listener’s autonomy", "targetConstructRu": "практический совет с уважением самостоятельного решения собеседника",
+      "canDoRu": "Может дать взвешенный совет, не навязывая решение."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Expressing how long an activity has continued", "scenarioRu": "Выражение длительности продолжающегося действия",
+      "prompt": "Choose the gerund that completes llevar plus duration.", "instructionRu": "Выберите герундий, завершающий конструкцию llevar с длительностью.",
+      "stimulus": "Marta empezó en esta empresa hace tres años y todavía trabaja aquí. Lleva tres años ______ en la empresa.",
+      "answer": "trabajando",
+      "distractors": [
+        {"text": "trabaja", "reasonRu": "После llevar с указанием длительности в этой конструкции нужен gerundio, а не личная форма."},
+        {"text": "trabajar", "reasonRu": "Инфинитив не образует конструкцию продолжающегося действия llevar + gerundio."},
+        {"text": "trabajaría", "reasonRu": "Condicional не сочетается здесь с llevar для выражения реально продолжающейся длительности."}
+      ],
+      "explanation": "Llevar plus a duration and the gerund trabajando expresses an activity continuing to the present.",
+      "explanationRu": "Llevar с указанием длительности и герундием trabajando обозначает действие, продолжающееся до настоящего момента.",
+      "targetConstruct": "llevar plus duration and gerund for an ongoing activity", "targetConstructRu": "llevar с длительностью и gerundio для продолжающегося действия",
+      "canDoRu": "Может сообщить, как долго продолжается действие."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Understanding cause and response in local news", "scenarioRu": "Понимание причины и реакции в местной новости",
+      "prompt": "Choose the sequence of cause, consequence, and response reported.", "instructionRu": "Выберите указанную последовательность причины, последствия и принятых мер.",
+      "stimulus": "Las intensas lluvias del domingo hicieron subir el nivel del río y varias calles del barrio quedaron inundadas. No hubo heridos. El ayuntamiento cerró dos accesos y habilitó el centro deportivo para las familias que no podían volver a casa.",
+      "answer": "La lluvia provocó inundaciones; se cerraron accesos y se ofreció alojamiento temporal.",
+      "distractors": [
+        {"text": "El cierre de calles causó la lluvia y dejó varios heridos.", "reasonRu": "Причина и следствие перепутаны, а в новости прямо сказано, что пострадавших не было."},
+        {"text": "El río bajó y el centro deportivo cerró sus puertas.", "reasonRu": "Уровень реки поднялся, а спортивный центр открыли для семей."},
+        {"text": "Las familias organizaron un evento deportivo para reabrir los accesos.", "reasonRu": "Такое мероприятие не упоминается; центр использовали как временное убежище."}
+      ],
+      "explanation": "Heavy rain caused flooding, and the authorities restricted access and opened temporary shelter.",
+      "explanationRu": "Сильный дождь вызвал наводнение, после чего власти закрыли подъезды и открыли временное убежище.",
+      "targetConstruct": "connecting cause, consequence, and institutional response in news", "targetConstructRu": "связь причины, последствия и действий властей в новости",
+      "canDoRu": "Может восстановить ход событий в короткой местной новости."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming relief after good news", "scenarioRu": "Обозначение облегчения после хорошей новости",
+      "prompt": "Choose the emotion described by the change in situation.", "instructionRu": "Выберите эмоцию, соответствующую изменению ситуации.",
+      "stimulus": "Nora estaba muy preocupada por los resultados médicos. Cuando le dijeron que todo estaba bien, ¿qué sintió?",
+      "answer": "Alivio.",
+      "distractors": [
+        {"text": "Orgullo.", "reasonRu": "Orgullo связан с достижением или высокой оценкой себя или другого, а не с исчезновением тревоги."},
+        {"text": "Vergüenza.", "reasonRu": "Vergüenza — чувство неловкости или стыда, которого ситуация не описывает."},
+        {"text": "Decepción.", "reasonRu": "Decepción возникает при неблагоприятном результате, тогда как новость хорошая."}
+      ],
+      "explanation": "Alivio is the feeling produced when a serious worry disappears.",
+      "explanationRu": "Alivio — облегчение, возникающее, когда серьёзная тревога исчезает.",
+      "targetConstruct": "emotion vocabulary for relief after worry", "targetConstructRu": "лексика эмоций для облегчения после тревоги",
+      "canDoRu": "Может различить близкие эмоциональные состояния по контексту."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Correcting a scheduling misunderstanding", "scenarioRu": "Исправление недопонимания в расписании",
+      "prompt": "Choose the tactful correction that restates the intended arrangement.", "instructionRu": "Выберите тактичное исправление с повторным изложением договорённости.",
+      "stimulus": "Tu compañero cree que presentarás el informe el jueves, pero el acuerdo era revisarlo juntos ese día y presentarlo el viernes.",
+      "answer": "Creo que ha habido un malentendido: el jueves lo revisamos juntos y la presentación es el viernes.",
+      "distractors": [
+        {"text": "Te equivocas otra vez: nunca escuchas lo que acordamos y por eso ahora tendremos que rehacer todo el calendario del informe y la presentación.", "reasonRu": "Реплика обвиняет коллегу и придумывает необходимость менять весь план вместо спокойного восстановления договорённости."},
+        {"text": "Sí, presentaré el informe el jueves como acabas de decir.", "reasonRu": "Ответ подтверждает ошибочное понимание вместо его исправления."},
+        {"text": "El viernes no puedo revisar nada, así que cambiemos todo el plan: revisemos y presentemos el informe el miércoles antes de la reunión.", "reasonRu": "Вносится новое изменение, которого ситуация не требует, вместо восстановления договорённости."}
+      ],
+      "explanation": "The response frames the issue as a misunderstanding and clearly restores both agreed steps.",
+      "explanationRu": "Ответ называет ситуацию недопониманием и спокойно восстанавливает оба согласованных этапа.",
+      "targetConstruct": "tactful correction followed by a clear restatement", "targetConstructRu": "тактичное исправление с ясным повторением договорённости",
+      "canDoRu": "Может корректно исправить недопонимание и уточнить план."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Identifying a place with a relative clause", "scenarioRu": "Описание места относительным придаточным",
+      "prompt": "Choose the relative word that refers to a place.", "instructionRu": "Выберите относительное слово, относящееся к месту.",
+      "stimulus": "La sala ______ hacemos las entrevistas está al final del pasillo.",
+      "answer": "donde",
+      "distractors": [
+        {"text": "quien", "reasonRu": "Quien относится к человеку, а antecedente sala обозначает место."},
+        {"text": "cuando", "reasonRu": "Cuando вводит временную связь, а здесь определяется помещение."},
+        {"text": "cuanto", "reasonRu": "Cuanto выражает количество и не связывает существительное места с придаточным."}
+      ],
+      "explanation": "Donde introduces the clause that identifies what happens in the room.",
+      "explanationRu": "Donde вводит придаточное, которое определяет помещение через происходящее в нём действие.",
+      "targetConstruct": "relative clause with donde referring to a place", "targetConstructRu": "относительное придаточное с donde для обозначения места",
+      "canDoRu": "Может определить место с помощью относительного придаточного."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Comparing mobile service plans", "scenarioRu": "Сравнение тарифов мобильной связи",
+      "prompt": "Choose the plan that satisfies all stated needs.", "instructionRu": "Выберите тариф, удовлетворяющий всем указанным требованиям.",
+      "stimulus": "Plan A: 18 € al mes, 20 GB, llamadas ilimitadas, compromiso mínimo de 12 meses. Plan B: 22 € al mes, 50 GB, llamadas ilimitadas, sin plazo mínimo. Iván necesita al menos 40 GB y quiere poder cancelar en cualquier momento.",
+      "answer": "El Plan B, porque incluye 50 GB y no exige un plazo mínimo.",
+      "distractors": [
+        {"text": "El Plan A, porque cuesta menos y sus 20 GB superan el mínimo de Iván.", "reasonRu": "Ивану нужно не менее 40 GB, а тариф A предоставляет только 20 GB."},
+        {"text": "El Plan A, porque permite cancelar en cualquier momento sin un compromiso mínimo.", "reasonRu": "Тариф A предусматривает минимальное обязательство на 12 месяцев."},
+        {"text": "Ninguno, porque los dos limitan las llamadas y exigen un plazo mínimo.", "reasonRu": "Оба тарифа включают безлимитные звонки, а у тарифа B нет минимального срока."}
+      ],
+      "explanation": "Only Plan B meets both the 40 GB minimum and the no-minimum-term requirement.",
+      "explanationRu": "Только тариф B одновременно даёт не менее 40 GB и не устанавливает минимальный срок.",
+      "targetConstruct": "comparing price, allowance, and cancellation conditions", "targetConstructRu": "сравнение цены, объёма услуг и условий отмены",
+      "canDoRu": "Может сравнить тарифы по нескольким практическим условиям."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Applying for study funding", "scenarioRu": "Подача заявки на финансирование обучения",
+      "prompt": "Choose the education term for financial support.", "instructionRu": "Выберите учебный термин, обозначающий финансовую поддержку.",
+      "stimulus": "El curso cuesta 900 euros, pero la institución ofrece una ayuda económica a estudiantes con pocos recursos. ¿Cómo se llama esa ayuda?",
+      "answer": "Una beca.",
+      "distractors": [
+        {"text": "La matrícula.", "reasonRu": "Matrícula — регистрация на курс или плата за обучение, а не финансовая помощь."},
+        {"text": "Un plazo.", "reasonRu": "Plazo — период или крайний срок выполнения действия."},
+        {"text": "Un certificado.", "reasonRu": "Certificado подтверждает обучение или достижение, но не оплачивает курс."}
+      ],
+      "explanation": "Beca is financial support granted to help someone study.",
+      "explanationRu": "Beca — финансовая помощь, предоставляемая для обучения.",
+      "targetConstruct": "education vocabulary for a study grant", "targetConstructRu": "образовательная лексика для учебной финансовой помощи",
+      "canDoRu": "Может понять основные условия финансирования обучения."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Negotiating a shared weekend plan", "scenarioRu": "Согласование общего плана на выходные",
+      "prompt": "Choose the response that accepts one preference and proposes a compromise.", "instructionRu": "Выберите ответ, который принимает одно пожелание и предлагает компромисс.",
+      "stimulus": "Tu amiga quiere pasar todo el sábado en la ciudad; tú prefieres hacer una excursión fuera, pero ambos queréis cenar juntos.",
+      "answer": "Podemos hacer la excursión por la mañana, volver por la tarde y cenar en la ciudad como propones.",
+      "distractors": [
+        {"text": "Haremos la excursión todo el sábado; la cena en la ciudad no es importante y podemos dejarla para otro día.", "reasonRu": "Ответ полностью отвергает желание подруги поужинать вместе в городе и не ищет общего решения."},
+        {"text": "De acuerdo, pasaremos todo el sábado en la ciudad y olvidaremos la excursión.", "reasonRu": "Говорящий полностью отказывается от собственного предпочтения вместо компромисса."},
+        {"text": "Mejor hacemos planes separados y hablamos la semana que viene.", "reasonRu": "Предложение разрушает общий план, хотя совместимое решение возможно."}
+      ],
+      "explanation": "The proposal preserves the excursion and the shared city dinner in one workable schedule.",
+      "explanationRu": "Предложение сохраняет и экскурсию, и совместный ужин в городе в одном выполнимом расписании.",
+      "targetConstruct": "negotiated compromise preserving both parties’ priorities", "targetConstructRu": "компромисс, сохраняющий важные пожелания обеих сторон",
+      "canDoRu": "Может согласовать общий план через практический компромисс."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Expressing an unreal present preference", "scenarioRu": "Нереальное пожелание в настоящем",
+      "prompt": "Choose the verb forms for a hypothetical present condition and result.", "instructionRu": "Выберите формы для гипотетического условия и результата в настоящем.",
+      "stimulus": "Si ______ más tiempo libre, ______ un curso de fotografía.",
+      "answer": "tuviera / haría",
+      "distractors": [
+        {"text": "tengo / haré", "reasonRu": "Indicativo и будущее представляют условие как реальную перспективу, а задача задаёт нереальное настоящее."},
+        {"text": "tendría / hiciera", "reasonRu": "Формы стоят в обратных частях: после si здесь нужен imperfecto de subjuntivo, а в результате condicional."},
+        {"text": "tuve / hice", "reasonRu": "Две формы indefinido описывают завершённые события прошлого, а не гипотезу."}
+      ],
+      "explanation": "An unreal present condition uses si plus imperfect subjunctive and a conditional result.",
+      "explanationRu": "Нереальное условие в настоящем строится с imperfecto de subjuntivo после si и condicional в результате.",
+      "targetConstruct": "si plus imperfect subjunctive with a conditional result", "targetConstructRu": "si с imperfecto de subjuntivo и результатом в condicional",
+      "canDoRu": "Может выразить нереальное пожелание, относящееся к настоящему."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Identifying audience and purpose in an institutional message", "scenarioRu": "Определение адресата и цели официального сообщения",
+      "prompt": "Choose the intended audience and practical purpose.", "instructionRu": "Выберите предполагаемого адресата и практическую цель сообщения.",
+      "stimulus": "A las familias del alumnado: el próximo miércoles las clases terminarán a las 13:00 por una reunión del profesorado. Les rogamos que organicen la recogida de los menores una hora antes de lo habitual.",
+      "answer": "Se dirige a las familias para que recojan a los estudiantes más temprano.",
+      "distractors": [
+        {"text": "Se dirige al profesorado para cancelar definitivamente la reunión del miércoles.", "reasonRu": "Адресат — семьи, а совещание не отменяется."},
+        {"text": "Se dirige al alumnado adulto para anunciar una hora adicional de clase.", "reasonRu": "Занятия заканчиваются раньше, и речь идёт о несовершеннолетних, которых забирают."},
+        {"text": "Se dirige a toda la ciudad para cambiar el horario escolar durante el año.", "reasonRu": "Сообщение касается семей конкретной школы и только одной следующей среды."}
+      ],
+      "explanation": "The opening names the families, and the requested action is earlier collection of minors.",
+      "explanationRu": "В начале названы семьи учеников, а требуемое действие — забрать несовершеннолетних раньше обычного.",
+      "targetConstruct": "inferring audience and requested action from an institutional notice", "targetConstructRu": "определение адресата и требуемого действия в официальном сообщении",
+      "canDoRu": "Может понять, кому адресовано официальное сообщение и что требуется сделать."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Submitting a request to a public office", "scenarioRu": "Подача обращения в государственное учреждение",
+      "prompt": "Choose the civic-service term for the document asking the authority to act.", "instructionRu": "Выберите термин для документа с официальной просьбой к учреждению.",
+      "stimulus": "Para pedir la autorización, hay que completar un formulario, firmar el documento oficial de petición y entregarlo con una copia del documento de identidad. ¿Qué documento se presenta?",
+      "answer": "La solicitud.",
+      "distractors": [
+        {"text": "La cita.", "reasonRu": "Cita — назначенное время посещения, а не подписанный документ с просьбой."},
+        {"text": "La ventanilla.", "reasonRu": "Ventanilla — место обслуживания в учреждении, а не документ."},
+        {"text": "El comprobante.", "reasonRu": "Comprobante подтверждает уже выполненную операцию или оплату, но не инициирует запрос."}
+      ],
+      "explanation": "Solicitud is the formal written request submitted to an authority.",
+      "explanationRu": "Solicitud — официальное письменное заявление или просьба, подаваемая в учреждение.",
+      "targetConstruct": "civic-service vocabulary for a formal application", "targetConstructRu": "лексика государственных услуг для официального заявления",
+      "canDoRu": "Может понять базовую инструкцию по подаче официального заявления."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Requesting a refund with evidence", "scenarioRu": "Запрос возврата денег с подтверждением",
+      "prompt": "Choose the calm request that states the evidence and desired remedy.", "instructionRu": "Выберите спокойный запрос с подтверждением и желаемым решением.",
+      "stimulus": "Te cobraron dos veces por la misma compra. Tienes el recibo y ambos cargos aparecen en tu cuenta.",
+      "answer": "Buenos días. En el recibo figura una sola compra, pero en mi cuenta aparecen dos cargos. ¿Podrían revisar el caso y devolver el segundo importe?",
+      "distractors": [
+        {"text": "Me han robado al cobrarme dos veces. Exijo la devolución inmediata y una disculpa pública; si no, presentaré una denuncia.", "reasonRu": "Реплика упоминает двойное списание и возврат, но агрессивно обвиняет в краже и требует несоразмерной публичной реакции вместо спокойной проверки."},
+        {"text": "Buenos días. En mi cuenta aparecen dos cargos por la misma compra. ¿Podrían revisarlos y explicarme qué ocurrió?", "reasonRu": "Реплика приводит проблему и просит проверку, но не формулирует требуемое решение — возврат второго списания."},
+        {"text": "Veo dos cargos en mi cuenta, pero no hace falta que los revisen ni que respondan.", "reasonRu": "Реплика упоминает проблему, но прямо отказывается от её решения."}
+      ],
+      "explanation": "The request cites the receipt and account entries, asks for review, and specifies refunding the duplicate charge.",
+      "explanationRu": "Запрос ссылается на чек и операции по счёту, просит провести проверку и вернуть повторно списанную сумму.",
+      "targetConstruct": "evidence-based refund request with a specific remedy", "targetConstructRu": "обоснованный запрос возврата с конкретным требуемым решением",
+      "canDoRu": "Может спокойно запросить возврат денег, опираясь на подтверждения."
+    }
+  ]
+}

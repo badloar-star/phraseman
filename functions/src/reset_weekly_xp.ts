@@ -41,15 +41,26 @@ export async function resetWeeklyXp(): Promise<{ updated: number; skipped: numbe
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    let query: FirebaseFirestore.Query = db.collection('users').orderBy('__name__').limit(PAGE_SIZE);
+    // зачем: обнуление недельного XP не читает НИ ОДНОГО поля пользователя — оно просто
+    // перезаписывает progress.weekly_xp. Раньше страница тянула документы целиком, а это
+    // самые «толстые» доки в базе (весь progress). Тарификация чтений не меняется, но
+    // трафик и память функции падают на порядок. guard-ok: .select() без полей намеренно —
+    // нужны только ссылки на документы для batch.set.
+    let query: FirebaseFirestore.Query = db.collection('users')
+      .orderBy('__name__')
+      .limit(PAGE_SIZE)
+      .select();
     if (lastDoc) query = query.startAfter(lastDoc);
     const snap = await query.get();
     if (snap.empty) break;
     lastDoc = snap.docs[snap.docs.length - 1];
 
     for (const doc of snap.docs) {
-      const data = doc.data();
-      if (!data || typeof data !== 'object') { skipped++; continue; }
+      // При .select() тело документа не запрашивается: doc.data() отдаёт пустой объект, и
+      // прежняя проверка «данные не объект» больше не различает валидные доки. Существование
+      // документа гарантировано самим попаданием в результат запроса, поэтому пропускать
+      // здесь нечего — счётчик skipped остаётся в контракте функции и в логах ради
+      // совместимости, но при выборке-по-ссылкам он честно нулевой.
       batch.set(doc.ref, {
         progress: {
           weekly_xp: '0',

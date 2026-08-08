@@ -9,10 +9,18 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   aiOffline,
   AiOfflineError,
-  aiErrorToast,
-  aiGlobalBudgetToast,
   AI_GLOBAL_BUDGET_ERROR_CODE,
 } from './ai_kill_switch_copy';
+import {
+  warmAiFunction,
+  withAiCallableRetry,
+  isDefinitelyNotStarted,
+  aiAttemptTimeoutMs,
+} from './ai_callable_resilience';
+import {
+  withExplainCallableTimeout,
+  EXPLAIN_CALLABLE_TIMEOUT_MS,
+} from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -91,7 +99,7 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
   const text = `${code} ${message}`;
 
-  if (text.includes('dialog_free_limit')) return 'free_limit';
+  if (text.includes('dialog_free_limit') || text.includes('dialog_plus_required')) return 'free_limit';
   if (text.includes('dialog_premium_cap')) return 'premium_limit';
   // Глобальный бюджет ИИ иссяк (на всех сразу) — сервер шлёт resource-exhausted
   // с сообщением 'explain_global_budget'. ВАЖНО: проверяем ДО общего
@@ -104,7 +112,8 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
     text.includes('dialog_provider_failed') ||
     text.includes('dialog_empty_reply') ||
     text.includes('unavailable') ||
-    text.includes('deadline-exceeded')
+    text.includes('deadline-exceeded') ||
+    text.includes('functions/internal')
   ) {
     return 'provider_unavailable';
   }
@@ -132,14 +141,14 @@ export function getPremiumDialogErrorMessage(
         });
       }
       return triLang(lang, {
-        ru: 'Пробный диалог уже пройден. Открой все диалоги — полный доступ.',
-        uk: 'Пробний діалог уже пройдено. Відкрий усі діалоги — повний доступ.',
-        es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Plus.',
-        'pt-BR': 'Você já usou o diálogo grátis. Desbloqueie todos os diálogos com Plus.',
-        vi: 'Bạn đã dùng cuộc đối thoại miễn phí. Mở tất cả cuộc đối thoại với Plus.',
-        id: 'Dialog gratis sudah digunakan. Buka semua dialog dengan Plus.',
-        tr: 'Ücretsiz diyaloğu zaten kullandın. Plus ile tüm diyalogları aç.',
-        pl: 'Darmowy dialog został już wykorzystany. Otwórz wszystkie dialogi z Plus.',
+        ru: 'Диалоги входят в Plus. Открой Plus, чтобы начать разговор.',
+        uk: 'Діалоги входять у Plus. Відкрий Plus, щоб почати розмову.',
+        es: 'Los diálogos están incluidos en Plus. Abre Plus para empezar a hablar.',
+        'pt-BR': 'Os diálogos estão incluídos no Plus. Abra o Plus para começar a conversar.',
+        vi: 'Đối thoại thuộc gói Plus. Mở Plus để bắt đầu trò chuyện.',
+        id: 'Dialog termasuk dalam Plus. Buka Plus untuk mulai berbicara.',
+        tr: 'Diyaloglar Plus kapsamındadır. Konuşmaya başlamak için Plus’ı aç.',
+        pl: 'Dialogi są dostępne w Plus. Otwórz Plus, aby zacząć rozmowę.',
       });
     case 'premium_limit':
       return triLang(lang, {
@@ -152,12 +161,17 @@ export function getPremiumDialogErrorMessage(
         tr: 'Bugünkü diyalog limiti doldu. Yarın tekrar dene.',
         pl: 'Dzisiejszy limit dialogów został wyczerpany. Spróbuj jutro.',
       });
-    case 'global_budget': {
-      // Глобальный бюджет ИИ иссяк (на всех). Забавная плашка вместо сухого
-      // «сервис недоступен» — тот же набор, что и в разборе ошибок.
-      const budget = aiGlobalBudgetToast(lang);
-      return `${budget.title}\n\n${budget.message}`;
-    }
+    case 'global_budget':
+      return triLang(lang, {
+        ru: 'Сервис диалогов временно недоступен.\n\nДостигнут общий лимит сервиса. Попробуй позже.',
+        uk: 'Сервіс діалогів тимчасово недоступний.\n\nДосягнуто загального ліміту сервісу. Спробуй пізніше.',
+        es: 'El servicio de diálogos no está disponible temporalmente.\n\nSe alcanzó el límite general del servicio. Inténtalo más tarde.',
+        'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nO limite geral do serviço foi atingido. Tente mais tarde.',
+        vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nDịch vụ đã đạt giới hạn chung. Hãy thử lại sau.',
+        id: 'Layanan dialog untuk sementara tidak tersedia.\n\nBatas umum layanan telah tercapai. Coba lagi nanti.',
+        tr: 'Diyalog hizmeti geçici olarak kullanılamıyor.\n\nHizmetin genel sınırına ulaşıldı. Daha sonra tekrar dene.',
+        pl: 'Usługa dialogów jest chwilowo niedostępna.\n\nOsiągnięto ogólny limit usługi. Spróbuj później.',
+      });
     case 'rate_limited':
       return triLang(lang, {
         ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
@@ -192,15 +206,39 @@ export function getPremiumDialogErrorMessage(
         pl: 'Dialogi AI są dostępne tylko od 16 lat. Ten tryb jest teraz zablokowany ze względów bezpieczeństwa.',
       });
     case 'provider_unavailable':
+      return triLang(lang, {
+        ru: 'Сервис диалогов временно недоступен.\n\nСообщение не отправлено. Попробуй ещё раз через минуту.',
+        uk: 'Сервіс діалогів тимчасово недоступний.\n\nПовідомлення не надіслано. Спробуй ще раз за хвилину.',
+        es: 'El servicio de diálogos no está disponible temporalmente.\n\nEl mensaje no se envió. Inténtalo de nuevo en un minuto.',
+        'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nA mensagem não foi enviada. Tente novamente em um minuto.',
+        vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nTin nhắn chưa được gửi. Hãy thử lại sau một phút.',
+        id: 'Layanan dialog untuk sementara tidak tersedia.\n\nPesan belum terkirim. Coba lagi dalam satu menit.',
+        tr: 'Diyalog hizmeti geçici olarak kullanılamıyor.\n\nMesaj gönderilmedi. Bir dakika sonra tekrar dene.',
+        pl: 'Usługa dialogów jest chwilowo niedostępna.\n\nWiadomość nie została wysłana. Spróbuj ponownie za minutę.',
+      });
     case 'network':
+      return triLang(lang, {
+        ru: 'Не удалось связаться с сервером.\n\nПроверь интернет-соединение и попробуй ещё раз.',
+        uk: 'Не вдалося зв’язатися із сервером.\n\nПеревір інтернет-з’єднання та спробуй ще раз.',
+        es: 'No se pudo conectar con el servidor.\n\nComprueba tu conexión a internet e inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível conectar ao servidor.\n\nVerifique sua conexão com a internet e tente novamente.',
+        vi: 'Không thể kết nối với máy chủ.\n\nHãy kiểm tra kết nối mạng rồi thử lại.',
+        id: 'Tidak dapat terhubung ke server.\n\nPeriksa koneksi internet lalu coba lagi.',
+        tr: 'Sunucuya bağlanılamadı.\n\nİnternet bağlantını kontrol edip tekrar dene.',
+        pl: 'Nie udało się połączyć z serwerem.\n\nSprawdź połączenie z internetem i spróbuj ponownie.',
+      });
     case 'unknown':
-    default: {
-      // ИИ не ответил / связь оборвалась / непонятный сбой. Забавная плашка
-      // вместо сухого текста — тот же набор, что и в разборе ошибок; зовёт
-      // «попробуй ещё раз», и кнопка «Повторить» для этих видов доступна.
-      const copy = aiErrorToast(lang);
-      return `${copy.title}\n\n${copy.message}`;
-    }
+    default:
+      return triLang(lang, {
+        ru: 'Не удалось отправить сообщение.\n\nПопробуй ещё раз. Если ошибка повторится, вернись позже.',
+        uk: 'Не вдалося надіслати повідомлення.\n\nСпробуй ще раз. Якщо помилка повториться, повернися пізніше.',
+        es: 'No se pudo enviar el mensaje.\n\nInténtalo de nuevo. Si el error se repite, vuelve más tarde.',
+        'pt-BR': 'Não foi possível enviar a mensagem.\n\nTente novamente. Se o erro continuar, volte mais tarde.',
+        vi: 'Không thể gửi tin nhắn.\n\nHãy thử lại. Nếu lỗi lặp lại, hãy quay lại sau.',
+        id: 'Pesan tidak dapat dikirim.\n\nCoba lagi. Jika kesalahan berulang, kembali nanti.',
+        tr: 'Mesaj gönderilemedi.\n\nTekrar dene. Hata tekrarlanırsa daha sonra geri dön.',
+        pl: 'Nie udało się wysłać wiadomości.\n\nSpróbuj ponownie. Jeśli błąd się powtórzy, wróć później.',
+      });
   }
 }
 
@@ -224,12 +262,42 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
   });
 }
 
-export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<PremiumDialogResponse> {
+/** Необязательные крючки вызова: UI подменяет подпись под индикатором на повторе. */
+export interface CallPremiumDialogSendOptions {
+  /** Дёргается, когда первый вызов не удался и пошёл тихий повтор. */
+  onRetryStart?: () => void;
+}
+
+/**
+ * Прогрев инстанса premiumDialogSend. Зовётся при ОТКРЫТИИ экрана диалога —
+ * пока пользователь читает приветствие и печатает первое сообщение (5–15 сек),
+ * инстанс просыпается, и отправка идёт на тёплый сервер.
+ *
+ * зачем: у функции minInstances: 0 (владелец не платит за тёплый инстанс,
+ * сторож ai_functions_warm_instance_contract). Из трёх ИИ-функций у диалога
+ * задержка ощущается сильнее всего — собеседник, который «думает» 5 секунд
+ * перед первой репликой, читается как зависший.
+ *
+ * Никогда не бросает — вызывать через `void`.
+ */
+export function warmPremiumDialog(): void {
+  void warmAiFunction('premiumDialogSend', async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogSend');
+    return fn({ warmupPing: true });
+  });
+}
+
+export async function callPremiumDialogSend(
+  req: PremiumDialogRequest,
+  options?: CallPremiumDialogSendOptions,
+): Promise<PremiumDialogResponse> {
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();
-  // Возрастная группа берётся из единого источника (age_gate) и уходит на сервер
-  // для safety-флага и возрастного гейта (defense-in-depth поверх клиентского блока).
+  // зачем: возрастную группу сюда НЕ добавлять. После онбординга возраст ничего не
+  // блокирует (см. age_gate.isFullAccess), а лишняя отправка метки — это передача
+  // персональных данных без цели. Закреплено age_post_onboarding_no_blockers_contract.
   const key = premiumDialogSendRequestKey(req);
   const existing = premiumDialogSendInFlight.get(key);
   if (existing) return existing;
@@ -240,7 +308,32 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogSend',
     );
-    const res = await fn(req);
+    // зачем: раньше здесь не было НИ таймаута, НИ повтора — при холодном старте
+    // (minInstances: 0) сообщение просто не отправлялось, и пользователь видел
+    // ошибку. Сторож нужен и сам по себе: без него зависший вызов висел бы вечно.
+    //
+    // ⚠️ ОСТОРОЖНО с идемпотентностью (разбор аудита 2026-08-04): этот вызов
+    // списывает дневную квоту (functions/src/premium_dialog.ts →
+    // enforceDailyQuota) ДО обращения к OpenAI. Поэтому здесь строгая проверка
+    // isDefinitelyNotStarted, а НЕ общая isColdStartLike.
+    //
+    // Разница принципиальная: общая проверка повторяет и по ТАЙМАУТУ, а таймаут
+    // означает «мы не знаем, что там» — запрос мог дойти, снять квоту и в этот
+    // момент генерировать ответ. Повтор снял бы вторую единицу и отправил
+    // сообщение дважды. Здесь повторяем ровно те сбои, где сервер гарантированно
+    // не начал работу; на таймауте показываем честную ошибку с кнопкой повтора.
+    const res = await withAiCallableRetry(
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'premiumDialogSend',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
+      {
+        label: 'premiumDialogSend',
+        shouldRetry: isDefinitelyNotStarted,
+        onRetryStart: options?.onRetryStart,
+      },
+    );
     return res.data;
   })().finally(() => {
     premiumDialogSendInFlight.delete(key);
@@ -314,7 +407,15 @@ export async function callPremiumDialogReview(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogReview',
     );
-    const res = await fn(req);
+    // Идемпотентно: разбор только читает транскрипт и ничего не списывает.
+    const res = await withAiCallableRetry(
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'premiumDialogReview',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
+      { label: 'premiumDialogReview' },
+    );
     return res.data;
   })().finally(() => {
     premiumDialogReviewInFlight.delete(key);
@@ -372,7 +473,19 @@ export async function callPremiumDialogTranslate(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogTranslate',
     );
-    const res = await fn(req);
+    // Идемпотентно: перевод кэшируется на сервере, лимит «3 на диалог» держит
+    // вызывающий экран локально — повтор упавшего вызова его не тратит.
+    // База 25с, а не общие 35с: у premiumDialogTranslate серверный
+    // timeoutSeconds всего 20 (functions/src/premium_dialog.ts) — ждать сильно
+    // дольше сервера бессмысленно, он к тому моменту уже сдался.
+    const res = await withAiCallableRetry(
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'premiumDialogTranslate',
+        aiAttemptTimeoutMs(25000, attempt),
+      ),
+      { label: 'premiumDialogTranslate' },
+    );
     return res.data;
   })().finally(() => {
     premiumDialogTranslateInFlight.delete(key);

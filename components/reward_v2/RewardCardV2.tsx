@@ -2,6 +2,7 @@ import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
+import PressableScale from '../PressableScale';
 import PrimaryButton from '../ui/PrimaryButton';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY } from '../../constants/motion';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
@@ -28,6 +29,8 @@ export type RewardCardSemantic = 'gold' | 'shards' | 'danger' | 'warning' | 'soc
 export type RewardCardBodyProps = {
   /** Короткая строка-категория сверху, БЕЗ эмодзи: «Уровень 12 · Эпический». */
   kicker: string;
+  /** Allows a long kicker to wrap instead of being truncated with an ellipsis. */
+  allowKickerWrap?: boolean;
   /** Контент кольца: строка = эмодзи, иначе любой ReactNode (Image/SVG). */
   icon: React.ReactNode;
   title: string;
@@ -36,6 +39,11 @@ export type RewardCardBodyProps = {
   reasonText?: string;
   ctaLabel: string;
   onCta: () => void;
+  /** зачем: владелец (2026-08-02) — карточке нужен второй, менее громкий путь
+      (пример: «Продлить Plus» + «Пригласить друга»). Tonal-кнопка между CTA и
+      ghost: мягкая поверхность без обводки, текст акцентом, форма как у CTA. */
+  secondaryLabel?: string;
+  onSecondary?: () => void;
   ghostLabel?: string;
   onGhost?: () => void;
   semantic?: RewardCardSemantic;
@@ -81,6 +89,7 @@ export function rewardCardBackdropColor(themeMode: ReturnType<typeof useTheme>['
 
 export function RewardCardBody({
   kicker,
+  allowKickerWrap = false,
   icon,
   title,
   value,
@@ -88,6 +97,8 @@ export function RewardCardBody({
   reasonText,
   ctaLabel,
   onCta,
+  secondaryLabel,
+  onSecondary,
   ghostLabel,
   onGhost,
   semantic = 'neutral',
@@ -208,9 +219,15 @@ export function RewardCardBody({
             style={styles.kickerRuleGrad}
             pointerEvents="none"
           />
-          <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
-            {kicker.toUpperCase()}
-          </Text>
+          {allowKickerWrap ? (
+            <Text style={[styles.kicker, styles.kickerWrap, { color: accent, fontSize: Math.max(11, f.label - 1) }]}>
+              {kicker.toUpperCase()}
+            </Text>
+          ) : (
+            <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
+              {kicker.toUpperCase()}
+            </Text>
+          )}
           <LinearGradient
             colors={[withAlpha(accent, '88'), 'transparent']}
             start={{ x: 0, y: 0.5 }}
@@ -274,6 +291,19 @@ export function RewardCardBody({
       ) : null}
       {children}
       <PrimaryButton label={ctaLabel} onPress={onCta} style={styles.cta} />
+      {secondaryLabel && onSecondary ? (
+        <PressableScale
+          onPress={onSecondary}
+          variant="primary"
+          style={styles.secondary}
+          contentStyle={[
+            styles.secondaryInner,
+            { minHeight: ds.buttonHeight, borderRadius: ds.radius.lg, backgroundColor: soft },
+          ]}
+        >
+          <Text style={{ color: accent, fontSize: f.bodyLg, fontWeight: '700' }}>{secondaryLabel}</Text>
+        </PressableScale>
+      ) : null}
       {ghostLabel && onGhost ? (
         <TouchableOpacity onPress={onGhost} activeOpacity={0.7} style={styles.ghost}>
           <Text style={[styles.ghostText, { color: t.textMuted, fontSize: f.sub }]}>{ghostLabel}</Text>
@@ -334,7 +364,7 @@ const styles = StyleSheet.create({
   card: {
     width: 326,
     maxWidth: '94%',
-    borderWidth: 1,
+    borderWidth: 0,
     paddingTop: 26,
     paddingHorizontal: 20,
     paddingBottom: 18,
@@ -384,6 +414,9 @@ const styles = StyleSheet.create({
     letterSpacing: 2.5,
     textAlign: 'center',
   },
+  kickerWrap: {
+    flexShrink: 1,
+  },
   ringWrap: {
     marginTop: 20,
     alignItems: 'center',
@@ -394,14 +427,14 @@ const styles = StyleSheet.create({
     width: 134,
     height: 134,
     borderRadius: 67,
-    borderWidth: 1.5,
+    borderWidth: 0,
   },
   ringGlowMid: {
     position: 'absolute',
     width: 118,
     height: 118,
     borderRadius: 59,
-    borderWidth: 2.5,
+    borderWidth: 0,
   },
   ringOuter: {
     width: 106,
@@ -438,7 +471,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginTop: 14,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 11,
     paddingHorizontal: 14,
   },
@@ -455,6 +488,16 @@ const styles = StyleSheet.create({
   cta: {
     alignSelf: 'stretch',
     marginTop: 18,
+  },
+  secondary: {
+    alignSelf: 'stretch',
+    marginTop: 10,
+  },
+  secondaryInner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    overflow: 'hidden',
   },
   ghost: {
     paddingVertical: 10,

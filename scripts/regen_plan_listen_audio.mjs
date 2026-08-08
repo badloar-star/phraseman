@@ -16,6 +16,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { writePlanRuntimeAudioCompact } from './write_plan_runtime_audio_compact.mjs';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
@@ -109,6 +111,9 @@ for (const u of updates) {
   if (reg !== before) rewrites++;
   else console.warn(`registry: could not rewrite targetText for ${u.id}`);
 }
-if (!DRY) fs.writeFileSync(regPath, reg);
+if (!DRY) {
+  fs.writeFileSync(regPath, reg);
+  writePlanRuntimeAudioCompact();
+}
 
 console.log(`\nDone: ${done} generated, ${skipped} skipped (already matching). Registry rewrites: ${rewrites}${DRY ? ' (dry)' : ''}`);

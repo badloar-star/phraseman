@@ -19,6 +19,7 @@
  */
 
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFileSync, statSync } from 'node:fs';
 import { join, sep } from 'node:path';
 
@@ -123,8 +124,20 @@ const FIREBASE_CLIENT_CONFIG_FILES = new Set([
   'admin/beta_testers.html',
   'admin/full.html',
   'admin/site.html',
+  'admin/v2/testers.html',
+  'admin/v2/beta_testers.html',
+  'admin/v2/full.html',
+  'admin/v2/site.html',
 ]);
 const FIREBASE_CLIENT_KEY_CONTEXT = /\b(?:apiKey|api_key|current_key)\s*[:=]/;
+const TEST_OR_DOC_FIXTURE_PATH = /(?:^|\/)(?:tests|docs)\/|\.test\.[cm]?[jt]sx?$/;
+const UPPERCASE_BEARER_PLACEHOLDER = /\b(?:authorization|bearer)\s*[:=]\s*["']?[A-Z][A-Z0-9_-]{31,}["']?/;
+// Exact SHA-256 of the deterministic auth-rotation fixture duplicated in source and lib preview tests.
+// Hashing avoids embedding the fixture value or broadly exempting secret-like test assignments.
+const ALLOWLISTED_TEST_FIXTURE_VALUE_SHA256 = new Set([
+  '1eb0161f6e2c97eb29249ea0c3508c241ce56f37c01295481c6af98b622931e6',
+]);
+const sha256 = value => createHash('sha256').update(value).digest('hex');
 // Auto-generated maps of PUBLIC Firebase Storage download URLs for bundled
 // learning audio. The "?alt=media&token=<uuid>" values are per-file public read
 // tokens for already-public assets the client must stream — not secrets. Exempt
@@ -135,6 +148,9 @@ const PUBLIC_STORAGE_URL_MAP_FILES = new Set([
   'app/plan_audio_url_map.generated.ts',
   'app/phrase_audio_url_map.generated.ts',
   'app/collectibles/collectible_image_url_map.generated.ts',
+  // То же самое для арта достижений: /achievement-images/** объявлен публичным
+  // на чтение в storage.rules, токен в URL — обычный публичный read-token.
+  'constants/achievementImageUrlMap.generated.ts',
 ]);
 const FIREBASE_STORAGE_DOWNLOAD_URL = /firebasestorage\.googleapis\.com\/.*[?&]alt=media&token=/;
 function isExemptFinding(ruleId, line, relPath) {
@@ -147,6 +163,24 @@ function isExemptFinding(ruleId, line, relPath) {
     FIREBASE_CLIENT_KEY_CONTEXT.test(line)
   ) {
     return true;
+  }
+  // Documentation and tests use long UPPERCASE_IDENTIFIERS as explicit placeholders.
+  // Keep the exemption contextual: mixed-case/high-entropy bearer values still fail.
+  if (
+    ruleId === 'generic-bearer' &&
+    TEST_OR_DOC_FIXTURE_PATH.test(relPath) &&
+    UPPERCASE_BEARER_PLACEHOLDER.test(line)
+  ) {
+    return true;
+  }
+  // Auth-rotation tests need one long deterministic fixture value. Exempt only its exact
+  // hash in a test path; any altered or newly introduced secret-shaped value still fails.
+  if (
+    ruleId === 'named-secret-assign' &&
+    TEST_OR_DOC_FIXTURE_PATH.test(relPath)
+  ) {
+    const fixtureValue = namedSecretAssignmentHit(line);
+    if (fixtureValue && ALLOWLISTED_TEST_FIXTURE_VALUE_SHA256.has(sha256(fixtureValue))) return true;
   }
   // Public Firebase Storage download tokens in generated client media URL maps.
   if (

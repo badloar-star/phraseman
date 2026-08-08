@@ -16,7 +16,7 @@
 // всё по createdAtMs — часть коллекций тогда молча вернёт пусто. Поэтому у
 // каждого источника указано СВОЁ поле (см. loadDigestSources): created_at у
 // users, eventTimestampMs у RevenueCat, day-строка у paywall_funnel,
-// receivedAtMs у почты, createdAt(число) у help_board/league_chat и т.д.
+// receivedAtMs у почты и другие схемы дат по источникам.
 //
 // Архитектура: чистые aggregateDigestFacts / buildDigestPrompt (unit-тестируемы)
 // отделены от I/O (loadDigestSources / runAdminDailyDigest). Модель и kill-switch —
@@ -37,6 +37,11 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const DIGESTS_COLLECTION = 'admin_digests';
 const DIGEST_RUNS_COLLECTION = 'admin_digest_runs';
 const DIGEST_STATE_REF = 'admin_digest_state/owner';
+const COMMUNITY_PACK_FIXED_PRICE_SHARDS = 10;
+
+export function canonicalCommunityPackPurchaseShards(purchase: { acquisitionSource?: unknown }): number {
+  return purchase.acquisitionSource === 'weekly_boon_gift' ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
+}
 
 // ── Типы сырых строк из источников ────────────────────────────────────────────
 export interface DigestSourceRows {
@@ -65,23 +70,19 @@ export interface DigestSourceRows {
     explainReports: Array<{ reason?: string }>;
     websiteInbox: Array<{ topic?: string; message?: string }>;
     supportInbox: Array<{ subject?: string }>;
-    helpBoard: Array<{ title?: string }>;
-    leagueModeration: Array<{ status?: string }>;
   };
-  /** Активность сообщества/маркетинга за 24ч (рефералы, покупки контента, промо, паки, опрос, арена). */
+  /** Активность сообщества/маркетинга за 24ч (рефералы, покупки контента, промо, паки, опрос). */
   community: {
     /** referral_attributions: новые привязки рефералов (+ статус). */
     referrals: Array<{ status?: string }>;
     /** community_pack_purchases: покупки UGC-паков за 💎. */
-    packPurchases: Array<{ packId?: string; priceShards?: number }>;
+    packPurchases: Array<{ packId?: string; priceShards?: number; acquisitionSource?: string }>;
     /** promo_redemptions (collectionGroup): активации промокодов. */
     promoRedemptions: Array<{ code?: string }>;
     /** vip_survey_responses: ответы на Plus-опрос. */
     surveyResponses: Array<{ uid?: string }>;
     /** community_pack_submissions: новые паки, поданные на модерацию. */
     packSubmissions: Array<{ title?: string; submissionKind?: string }>;
-    /** arena_rooms_live: созданные кастомные комнаты арены (эфемерны, TTL 24ч). */
-    arenaRooms: Array<{ title?: string }>;
   };
 }
 
@@ -235,14 +236,13 @@ export interface DigestFacts {
   };
   // Новые идеи с содержимым — чтобы ИИ оценил, на что стоит обратить внимание.
   ideas: { total: number; byCategory: Record<string, number>; items: DigestIdea[] };
-  // Активность сообщества/маркетинга за сутки (рефералы, UGC-покупки, промо, паки, опрос, арена).
+  // Активность сообщества/маркетинга за сутки (рефералы, UGC-покупки, промо, паки, опрос).
   community: {
     referrals: { total: number; byStatus: Record<string, number> };
     packPurchases: { total: number; shardsSpent: number };
     promoRedemptions: { total: number; byCode: Record<string, number> };
     surveyResponses: { total: number };
     packSubmissions: { total: number; titles: string[] };
-    arenaRooms: { total: number };
   };
   // Прочие очереди — компактные строки «раздел: сколько накопилось».
   queues: DigestQueueLine[];
@@ -360,12 +360,10 @@ export function aggregateDigestFacts(rows: DigestSourceRows, windowHours = 24): 
     { name: 'Жалобы «непонятно объяснили»', total: q.explainReports.length, note: topReasonNote(q.explainReports) },
     { name: 'Обращения с сайта', total: q.websiteInbox.length, note: redactDigestUserText(q.websiteInbox[0]?.topic, 40) },
     { name: 'Письма в почту поддержки', total: q.supportInbox.length, note: redactDigestUserText(q.supportInbox[0]?.subject, 60) },
-    { name: 'Новые темы на доске помощи', total: q.helpBoard.length, note: redactDigestUserText(q.helpBoard[0]?.title, 60) },
-    { name: 'Очередь модерации чата лиг', total: q.leagueModeration.length, note: '' },
   ].filter((l) => l.total > 0);
 
   const c = rows.community;
-  const shardsSpent = c.packPurchases.reduce((sum, p) => sum + (Number(p.priceShards) || 0), 0);
+  const shardsSpent = c.packPurchases.reduce((sum, p) => sum + canonicalCommunityPackPurchaseShards(p), 0);
   const community = {
     referrals: { total: c.referrals.length, byStatus: countBy(c.referrals, (r) => r.status) },
     packPurchases: { total: c.packPurchases.length, shardsSpent },
@@ -375,7 +373,6 @@ export function aggregateDigestFacts(rows: DigestSourceRows, windowHours = 24): 
       total: c.packSubmissions.length,
       titles: c.packSubmissions.slice(0, 5).map((s) => clip(s.title, 80)).filter((t) => t.length > 0),
     },
-    arenaRooms: { total: c.arenaRooms.length },
   };
 
   return {
@@ -446,7 +443,7 @@ const DIGEST_COMPARISON_DEFINITIONS: ReadonlyArray<{
   { id: 'user_ideas', label: 'Новые идеи пользователей', sourceIds: ['user_ideas'], read: (f) => f.ideas.total },
   { id: 'referrals', label: 'Новые реферальные связи', sourceIds: ['referral_attributions'], read: (f) => f.community.referrals.total },
   { id: 'community_pack_purchases', label: 'Покупки паков сообщества', sourceIds: ['community_pack_purchases'], read: (f) => f.community.packPurchases.total },
-  { id: 'moderation_backlog', label: 'Новые элементы в очередях разбора', sourceIds: ['user_reports', 'community_pack_reports', 'explain_report_entries', 'website_contact_inbox', 'support_inbox', 'help_board_topics', 'league_chat_moderation_queue'], read: (f) => f.queues.reduce((sum, row) => sum + row.total, 0) },
+  { id: 'moderation_backlog', label: 'Новые элементы в очередях разбора', sourceIds: ['user_reports', 'community_pack_reports', 'explain_report_entries', 'website_contact_inbox', 'support_inbox'], read: (f) => f.queues.reduce((sum, row) => sum + row.total, 0) },
 ]);
 
 export function buildDigestComparisons(
@@ -497,8 +494,7 @@ export function isDigestEmpty(facts: DigestFacts): boolean {
     facts.community.packPurchases.total === 0 &&
     facts.community.promoRedemptions.total === 0 &&
     facts.community.surveyResponses.total === 0 &&
-    facts.community.packSubmissions.total === 0 &&
-    facts.community.arenaRooms.total === 0
+    facts.community.packSubmissions.total === 0
   );
 }
 
@@ -667,10 +663,9 @@ export async function loadDigestSources(
     user_ideas: 'Идеи пользователей', user_reports: 'Жалобы на пользователей',
     community_pack_reports: 'Жалобы на паки сообщества', explain_report_entries: 'Отзывы об объяснениях',
     website_contact_inbox: 'Обращения с сайта', support_inbox: 'Почта поддержки',
-    help_board_topics: 'Доска помощи', league_chat_moderation_queue: 'Модерация чата лиг',
     referral_attributions: 'Реферальные связи', community_pack_purchases: 'Покупки паков сообщества',
     promo_redemptions: 'Активации промокодов', vip_survey_responses: 'Ответы на опрос Plus',
-    community_pack_submissions: 'Паки на модерации', arena_rooms_live: 'Комнаты Арены',
+    community_pack_submissions: 'Паки на модерации',
   };
   const recordCoverage = (sourceId: string, status: DigestSourceCoverage['status'], rowCount: number, error?: unknown) => {
     sourceCoverage.push({
@@ -810,8 +805,8 @@ export async function loadDigestSources(
   const [
     reports, cancels, appErrors, safety,
     newUsers, purchases, paywallPurchases, ideas,
-    userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration,
-    referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms,
+    userReports, packReports, explainReports, websiteInbox, supportInbox,
+    referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions,
   ] = await Promise.all([
     // — Основные (у всех есть числовой createdAtMs) —
     byMs('error_reports', 'createdAtMs', (d) => {
@@ -847,26 +842,30 @@ export async function loadDigestSources(
     byMs('explain_report_entries', 'createdAtMs', (d) => ({ reason: d.data().reason as string })),
     loadWebsiteInbox(),
     byMs('support_inbox', 'receivedAtMs', (d) => ({ subject: d.data().subject as string })),
-    byMs('help_board_topics', 'createdAt', (d) => ({ title: d.data().title as string })), // createdAt здесь числовое (Date.now())
-    byMs('league_chat_moderation_queue', 'createdAt', (d) => ({ status: d.data().status as string })), // createdAt числовое
     // — Community / маркетинг (разные поля времени) —
     loadReferrals(), // referral_attributions.createdAt = Timestamp
-    byMs('community_pack_purchases', 'createdAt', (d) => ({ packId: d.data().packId as string, priceShards: d.data().priceShards as number })), // createdAt числовое
+    byMs('community_pack_purchases', 'createdAt', (d) => {
+      const purchase = d.data();
+      return {
+        packId: purchase.packId as string,
+        acquisitionSource: purchase.acquisitionSource as string,
+        priceShards: canonicalCommunityPackPurchaseShards(purchase),
+      };
+    }), // createdAt числовое
     loadPromoRedemptions(), // collectionGroup promo_redemptions.redeemedAtMs
     byMs('vip_survey_responses', 'updatedAtMs', (d) => ({ uid: (d.data().uid as string) || d.id })),
     byMs('community_pack_submissions', 'submittedAt', (d) => {
       const x = d.data();
       return { title: (x.payload?.titleRu as string) || (x.payload?.titleEs as string) || (x.title as string), submissionKind: x.submissionKind as string };
     }),
-    byMs('arena_rooms_live', 'createdAt', (d) => ({ title: d.data().title as string })), // createdAt числовое, TTL 24ч
   ]);
 
   return {
     sourceCoverage: sourceCoverage.sort((a, b) => a.label.localeCompare(b.label, 'ru')),
     reports, cancels, appErrors, safety,
     newUsers, purchases, paywallPurchases, ideas,
-    queues: { userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration },
-    community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
+    queues: { userReports, packReports, explainReports, websiteInbox, supportInbox },
+    community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions },
   };
 }
 

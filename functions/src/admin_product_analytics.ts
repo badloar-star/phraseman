@@ -1,15 +1,13 @@
 import { BigQuery } from '@google-cloud/bigquery';
-import { CallableRequest, HttpsError, onCall } from 'firebase-functions/v2/https';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { hasClaimedPermission } from './admin/permissions';
+import { parseProductAnalyticsPayloadValue } from './admin_analytics_trends_core';
 
 const REGION = 'us-central1';
 const CACHE_TTL_MS = 10 * 60 * 1000;
-const MAXIMUM_BYTES_BILLED = 5_000_000_000;
-const PRODUCT_ANALYTICS_ROLES = new Set(['owner', 'admin', 'analyst']);
 const SUPPORTED_DAYS = new Set([7, 28, 90]);
-const FIREBASE_PROJECT_ID = 'phraseman-ea0b3';
-const FIREBASE_TOKEN_ISSUER = `https://securetoken.google.com/${FIREBASE_PROJECT_ID}`;
-const DATASET_PATTERN = /^phraseman-ea0b3\.analytics_[0-9]{6,20}$/;
+const DATASET_PATTERN = /^(?:[a-z][a-z0-9-]{4,61}[a-z0-9]\.)?[A-Za-z_][A-Za-z0-9_]*$/;
 
 type ProductAnalyticsPlatform = 'all' | 'ios' | 'android';
 export type ProductAnalyticsQueryRow = { row_kind?: string; payload?: string };
@@ -25,31 +23,8 @@ export function normalizeProductAnalyticsPlatform(value: unknown): ProductAnalyt
   return value === 'ios' || value === 'android' ? value : 'all';
 }
 
-export function hasProductAnalyticsAuth(auth: unknown): boolean {
-  if (!auth || typeof auth !== 'object') return false;
-  const candidate = auth as { uid?: unknown; token?: unknown };
-  if (typeof candidate.uid !== 'string' || candidate.uid.trim().length === 0) return false;
-  if (!candidate.token || typeof candidate.token !== 'object') return false;
-  const claims = candidate.token as {
-    admin?: unknown;
-    adminRole?: unknown;
-    aud?: unknown;
-    iss?: unknown;
-    firebase?: unknown;
-  };
-  const firebase = claims.firebase as { sign_in_provider?: unknown } | null;
-  return claims.admin === true
-    && typeof claims.adminRole === 'string'
-    && PRODUCT_ANALYTICS_ROLES.has(claims.adminRole)
-    && claims.aud === FIREBASE_PROJECT_ID
-    && claims.iss === FIREBASE_TOKEN_ISSUER
-    && firebase != null
-    && typeof firebase.sign_in_provider === 'string'
-    && firebase.sign_in_provider.length > 0;
-}
-
-export function validatedAnalyticsDatasetTable(value: unknown): string {
-  const dataset = String(value ?? '').trim();
+function datasetTable(): string {
+  const dataset = String(process.env.ANALYTICS_BIGQUERY_DATASET ?? '').trim();
   if (!dataset || !DATASET_PATTERN.test(dataset)) {
     throw new HttpsError(
       'failed-precondition',
@@ -59,14 +34,9 @@ export function validatedAnalyticsDatasetTable(value: unknown): string {
   return `\`${dataset}.events_*\``;
 }
 
-function datasetTable(): string {
-  return validatedAnalyticsDatasetTable(process.env.ANALYTICS_BIGQUERY_DATASET);
-}
-
-export function buildProductAnalyticsAggregateQuery(): string {
-  const table = datasetTable();
+export function buildProductAnalyticsAggregateQuery(table: string): string {
   return `
-CREATE TEMP TABLE raw_base AS
+WITH raw_base AS (
   SELECT
     event_name,
     user_pseudo_id,
@@ -238,16 +208,16 @@ CREATE TEMP TABLE raw_base AS
       'exit_trial_offer_shown', 'exit_trial_offer_accepted', 'exit_trial_offer_declined'
     )
     -- ANALYTICS_EVENT_ALLOWLIST_END
-;
-CREATE TEMP TABLE base AS
+),
+base AS (
   SELECT * EXCEPT(duplicate_rank) FROM raw_base
   WHERE duplicate_rank = 1
     AND (
       NOT (STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_'))
       OR schema_version = 1
     )
-;
-WITH session_facts AS (
+),
+session_facts AS (
   SELECT
     session_id,
     COUNTIF(event_name = 'product_session_start') > 0 AS has_session_start,
@@ -590,8 +560,8 @@ conversion_context_rows AS (
   FROM conversion_events
   GROUP BY context_bucket, source_bucket
 ),
-conversion_failure_facts AS (
-  SELECT
+conversion_failure_rows AS (
+  SELECT 'conversion_failure' AS row_kind, TO_JSON_STRING(STRUCT(
     CASE
       WHEN purchase_error IN (
         'identity_sync', 'no_active_entitlement_after_purchase', 'payment_pending',
@@ -600,17 +570,11 @@ conversion_failure_facts AS (
       ) THEN purchase_error
       ELSE 'legacy_or_other'
     END AS reason,
-    user_pseudo_id
-  FROM conversion_events
-  WHERE event_name = 'purchase_failed'
-),
-conversion_failure_rows AS (
-  SELECT 'conversion_failure' AS row_kind, TO_JSON_STRING(STRUCT(
-    reason,
     COUNT(*) AS events,
     COUNT(DISTINCT user_pseudo_id) AS app_instances
   )) AS payload
-  FROM conversion_failure_facts
+  FROM conversion_events
+  WHERE event_name = 'purchase_failed'
   GROUP BY reason
 ),
 activity_days AS (
@@ -872,16 +836,12 @@ activation_summary_row AS (
   )) AS payload
   FROM first_touch_instance_facts
 ),
-acquisition_channel_facts AS (
-  SELECT IFNULL(acquisition_channel_bucket, 'direct_or_unknown') AS channel
-  FROM first_touch_instance_facts
-),
 acquisition_channel_rows AS (
   SELECT 'acquisition_channel' AS row_kind, TO_JSON_STRING(STRUCT(
-    channel,
+    IFNULL(acquisition_channel_bucket, 'direct_or_unknown') AS channel,
     COUNT(*) AS consented_first_touch_app_instances
   )) AS payload
-  FROM acquisition_channel_facts
+  FROM first_touch_instance_facts
   GROUP BY channel
 ),
 review_answers AS (
@@ -903,32 +863,24 @@ review_summary_row AS (
   )) AS payload
   FROM review_answers
 ),
-review_delay_facts AS (
-  SELECT IFNULL(actual_delay_bucket, 'unknown') AS delay_bucket, correct, user_pseudo_id
-  FROM review_answers
-),
 review_delay_rows AS (
   SELECT 'review_delay' AS row_kind, TO_JSON_STRING(STRUCT(
-    delay_bucket,
+    IFNULL(actual_delay_bucket, 'unknown') AS delay_bucket,
     COUNT(*) AS answers,
     COUNTIF(correct = 1) AS correct_answers,
     SAFE_DIVIDE(COUNTIF(correct = 1), COUNT(*)) AS accuracy,
     COUNT(DISTINCT user_pseudo_id) AS consented_app_instances
   )) AS payload
-  FROM review_delay_facts
-  GROUP BY delay_bucket
-),
-mastery_transition_facts AS (
-  SELECT IFNULL(mastery_transition, 'none') AS transition, user_pseudo_id
   FROM review_answers
+  GROUP BY delay_bucket
 ),
 mastery_transition_rows AS (
   SELECT 'mastery_transition' AS row_kind, TO_JSON_STRING(STRUCT(
-    transition,
+    IFNULL(mastery_transition, 'none') AS transition,
     COUNT(*) AS events,
     COUNT(DISTINCT user_pseudo_id) AS consented_app_instances
   )) AS payload
-  FROM mastery_transition_facts
+  FROM review_answers
   GROUP BY transition
 ),
 review_content_lesson_samples AS (
@@ -1046,65 +998,42 @@ weekly_effective_learner_rows AS (
   CROSS JOIN warehouse_watermark
   GROUP BY week_start_utc, data_through_date
 ),
-experiment_exposure_facts AS (
-  SELECT
+experiment_exposure_rows AS (
+  SELECT 'experiment_exposure' AS row_kind, TO_JSON_STRING(STRUCT(
     experiment_id,
     experiment_definition_version AS definition_version,
     experiment_variant_id AS variant_id,
     experiment_control_variant_id AS control_variant_id,
     experiment_surface AS surface,
     experiment_config_revision AS config_revision,
-    exposure_id,
-    user_pseudo_id,
-    event_timestamp
-  FROM base
-  WHERE event_name = 'experiment_exposure'
-    AND assignment_quality = 'frozen'
-    AND experiment_id IS NOT NULL
-    AND exposure_id IS NOT NULL
-),
-experiment_exposure_rows AS (
-  SELECT 'experiment_exposure' AS row_kind, TO_JSON_STRING(STRUCT(
-    experiment_id,
-    definition_version,
-    variant_id,
-    control_variant_id,
-    surface,
-    config_revision,
     COUNT(DISTINCT exposure_id) AS exposures,
     COUNT(DISTINCT user_pseudo_id) AS consented_app_instances,
     MAX(event_timestamp) AS data_through_micros,
     'behavioral_only_no_server_revenue_join' AS outcome_scope
   )) AS payload
-  FROM experiment_exposure_facts
-  GROUP BY experiment_id, definition_version, variant_id, control_variant_id, surface, config_revision
-),
-release_adoption_facts AS (
-  SELECT
-    IFNULL(NULLIF(app_version, ''), 'unknown') AS app_version,
-    IFNULL(NULLIF(build_number, ''), 'unknown') AS build_number,
-    platform,
-    user_pseudo_id,
-    session_id,
-    event_timestamp
   FROM base
-  WHERE event_name = 'product_session_start'
+  WHERE event_name = 'experiment_exposure'
+    AND assignment_quality = 'frozen'
+    AND experiment_id IS NOT NULL
+    AND exposure_id IS NOT NULL
+  GROUP BY experiment_id, definition_version, variant_id, control_variant_id, surface, config_revision
 ),
 release_adoption_rows AS (
   SELECT 'release_adoption' AS row_kind, TO_JSON_STRING(STRUCT(
-    app_version,
-    build_number,
+    IFNULL(NULLIF(app_version, ''), 'unknown') AS app_version,
+    IFNULL(NULLIF(build_number, ''), 'unknown') AS build_number,
     platform,
     COUNT(DISTINCT user_pseudo_id) AS consented_app_instances,
     COUNT(DISTINCT session_id) AS consented_sessions,
     MAX(event_timestamp) AS data_through_micros,
     'analytics_consent_only' AS coverage
   )) AS payload
-  FROM release_adoption_facts
+  FROM base
+  WHERE event_name = 'product_session_start'
   GROUP BY app_version, build_number, platform
 ),
-operation_failure_facts AS (
-  SELECT
+operation_failure_rows AS (
+  SELECT 'operation_failure' AS row_kind, TO_JSON_STRING(STRUCT(
     IFNULL(NULLIF(app_version, ''), 'unknown') AS app_version,
     IFNULL(NULLIF(build_number, ''), 'unknown') AS build_number,
     platform,
@@ -1112,38 +1041,17 @@ operation_failure_facts AS (
     IFNULL(NULLIF(operation, ''), 'unknown') AS operation,
     IFNULL(NULLIF(failure_code, ''), 'unknown_bounded') AS failure_code,
     retryable,
-    user_pseudo_id,
-    event_timestamp
-  FROM base
-  WHERE event_name = 'product_operation_failure'
-),
-operation_failure_rows AS (
-  SELECT 'operation_failure' AS row_kind, TO_JSON_STRING(STRUCT(
-    app_version,
-    build_number,
-    platform,
-    feature,
-    operation,
-    failure_code,
-    retryable,
     COUNT(*) AS failures,
     COUNT(DISTINCT user_pseudo_id) AS affected_consented_app_instances,
     MAX(event_timestamp) AS data_through_micros
   )) AS payload
-  FROM operation_failure_facts
-  GROUP BY app_version, build_number, platform, feature, operation, failure_code, retryable
-),
-daily_kpi_facts AS (
-  SELECT
-    FORMAT_DATE('%Y-%m-%d', DATE(TIMESTAMP_MICROS(event_timestamp), @reportingTimezone)) AS local_date,
-    event_name,
-    session_id,
-    user_pseudo_id
   FROM base
+  WHERE event_name = 'product_operation_failure'
+  GROUP BY app_version, build_number, platform, feature, operation, failure_code, retryable
 ),
 daily_kpi_rows AS (
   SELECT 'daily_kpi' AS row_kind, TO_JSON_STRING(STRUCT(
-    local_date,
+    FORMAT_DATE('%Y-%m-%d', DATE(TIMESTAMP_MICROS(event_timestamp), @reportingTimezone)) AS local_date,
     COUNT(DISTINCT IF(event_name = 'product_session_start', session_id, NULL)) AS sessions,
     COUNT(DISTINCT IF(event_name = 'product_session_start', user_pseudo_id, NULL)) AS active_consented_app_instances,
     COUNTIF(event_name = 'product_screen_view') AS screen_views,
@@ -1151,7 +1059,7 @@ daily_kpi_rows AS (
     COUNTIF(event_name = 'lesson_complete') AS lesson_completes,
     COUNTIF(event_name = 'learning_review_answer') AS review_answers
   )) AS payload
-  FROM daily_kpi_facts
+  FROM base
   GROUP BY local_date
 ),
 quality_row AS (
@@ -1228,6 +1136,58 @@ UNION ALL SELECT * FROM session_last_rows
 `;
 }
 
+export function buildProductAnalyticsPurchaseFailureQuery(table: string): string {
+  return `
+WITH raw_failures AS (
+  SELECT
+    user_pseudo_id,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'error') AS purchase_error,
+    ROW_NUMBER() OVER (
+      PARTITION BY COALESCE(
+        (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'event_id'),
+        CONCAT(event_name, ':', user_pseudo_id, ':', CAST(event_timestamp AS STRING))
+      )
+      ORDER BY event_timestamp
+    ) AS duplicate_rank
+  FROM ${table}
+  WHERE _TABLE_SUFFIX BETWEEN @fromSuffix AND @toSuffix
+    AND event_timestamp >= @fromMicros
+    AND event_timestamp < @toMicrosExclusive
+    AND (@platform = 'all' OR LOWER(platform) = @platform)
+    AND event_name = 'purchase_failed'
+),
+deduplicated_failures AS (
+  SELECT user_pseudo_id, purchase_error
+  FROM raw_failures
+  WHERE duplicate_rank = 1
+),
+governed_failures AS (
+  SELECT
+    user_pseudo_id,
+    CASE
+      WHEN purchase_error IN (
+        'identity_sync', 'no_active_entitlement_after_purchase', 'payment_pending',
+        'network_error', 'payment_error', 'store_error', 'configuration_error',
+        'sdk_other', 'unknown'
+      ) THEN purchase_error
+      ELSE 'legacy_or_other'
+    END AS reason
+  FROM deduplicated_failures
+)
+SELECT
+  'conversion_failure' AS row_kind,
+  TO_JSON_STRING(STRUCT(
+    reason,
+    COUNT(*) AS events,
+    COUNT(DISTINCT user_pseudo_id) AS app_instances
+  )) AS payload
+FROM governed_failures
+GROUP BY reason
+ORDER BY reason
+LIMIT 10
+`;
+}
+
 function yyyymmdd(date: Date): string {
   return date.toISOString().slice(0, 10).replace(/-/g, '');
 }
@@ -1237,12 +1197,10 @@ function bigQueryLocation(): string {
   return /^[A-Za-z0-9-]{2,30}$/.test(location) ? location : 'US';
 }
 
-function parsePayload(row: ProductAnalyticsQueryRow): Record<string, unknown> | null {
-  try {
-    return typeof row.payload === 'string' ? JSON.parse(row.payload) as Record<string, unknown> : null;
-  } catch {
-    return null;
-  }
+export function parseProductAnalyticsPayload(
+  row: ProductAnalyticsQueryRow,
+): Record<string, unknown> | null {
+  return parseProductAnalyticsPayloadValue(row.payload);
 }
 
 export async function loadProductAnalyticsAggregateRows(input: {
@@ -1250,24 +1208,18 @@ export async function loadProductAnalyticsAggregateRows(input: {
   endExclusiveMs: number;
   platform?: ProductAnalyticsPlatform;
   reportingTimezone?: string;
+  maximumBytesBilled?: string;
 }): Promise<{ rows: ProductAnalyticsQueryRow[]; exportPending: boolean }> {
   const start = new Date(input.startMs);
   const endInclusive = new Date(Math.max(input.startMs, input.endExclusiveMs - 1));
-  const requestedTimezone = input.reportingTimezone ?? 'UTC';
-  let reportingTimezone: string;
-  try {
-    reportingTimezone = new Intl.DateTimeFormat('en-CA', { timeZone: requestedTimezone })
-      .resolvedOptions().timeZone;
-  } catch {
-    throw new HttpsError('invalid-argument', 'Invalid IANA reporting timezone');
-  }
+  const reportingTimezone = input.reportingTimezone ?? 'UTC';
   const localDate = (value: Date) => new Intl.DateTimeFormat('en-CA', {
     timeZone: reportingTimezone, year: 'numeric', month: '2-digit', day: '2-digit',
   }).format(value);
   const bigquery = new BigQuery();
   try {
     const [rows] = await bigquery.query({
-      query: buildProductAnalyticsAggregateQuery(),
+      query: buildProductAnalyticsAggregateQuery(datasetTable()),
       params: {
         fromSuffix: yyyymmdd(start),
         toSuffix: yyyymmdd(endInclusive),
@@ -1279,11 +1231,42 @@ export async function loadProductAnalyticsAggregateRows(input: {
         platform: input.platform ?? 'all',
       },
       location: bigQueryLocation(),
-      // The BigQuery Node client models this INT64 REST field as a string to
-      // preserve integer precision. The source constant remains a hard number.
-      maximumBytesBilled: String(MAXIMUM_BYTES_BILLED),
+      maximumBytesBilled: input.maximumBytesBilled ?? '5000000000',
     }) as [ProductAnalyticsQueryRow[], unknown];
     return { rows, exportPending: false };
+  } catch (error) {
+    if (!isAnalyticsExportPendingError(error)) throw error;
+    return { rows: [], exportPending: true };
+  }
+}
+
+export async function loadProductAnalyticsPurchaseFailureRows(input: {
+  startMs: number;
+  endExclusiveMs: number;
+  platform?: ProductAnalyticsPlatform;
+  maximumBytesBilled?: string;
+}): Promise<{ rows: ProductAnalyticsQueryRow[]; exportPending: boolean }> {
+  const start = new Date(input.startMs);
+  const endInclusive = new Date(Math.max(input.startMs, input.endExclusiveMs - 1));
+  const bigquery = new BigQuery();
+  try {
+    const [rows] = await bigquery.query({
+      query: buildProductAnalyticsPurchaseFailureQuery(datasetTable()),
+      params: {
+        fromSuffix: yyyymmdd(start),
+        toSuffix: yyyymmdd(endInclusive),
+        fromMicros: Math.floor(input.startMs * 1000),
+        toMicrosExclusive: Math.floor(input.endExclusiveMs * 1000),
+        platform: input.platform ?? 'all',
+      },
+      location: bigQueryLocation(),
+      maximumBytesBilled: input.maximumBytesBilled ?? '5000000000',
+      maxResults: 10,
+    }) as [ProductAnalyticsQueryRow[], unknown];
+    const boundedRows = rows
+      .filter((row) => row.row_kind === 'conversion_failure')
+      .slice(0, 10);
+    return { rows: boundedRows, exportPending: false };
   } catch (error) {
     if (!isAnalyticsExportPendingError(error)) throw error;
     return { rows: [], exportPending: true };
@@ -1299,20 +1282,18 @@ export function isAnalyticsExportPendingError(error: unknown): boolean {
     || message.includes('not found: table');
 }
 
-export async function handleAdminProductAnalytics(
-  request: CallableRequest<{ rangeDays?: unknown; platform?: unknown }>,
-) {
-  if (!hasProductAnalyticsAuth(request.auth)) {
+export const adminProductAnalytics = onCall({
+  region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK,
+  timeoutSeconds: 60,
+  memory: '512MiB',
+}, async (request) => {
+  if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
 
   const rangeDays = clampProductAnalyticsDays(request.data?.rangeDays);
   const platform = normalizeProductAnalyticsPlatform(request.data?.platform);
-  console.info('admin_product_analytics authorized', {
-    role: String(request.auth?.token?.adminRole ?? 'unknown'),
-    rangeDays,
-    platform,
-  });
   const cacheKey = `${rangeDays}:${platform}`;
   const cached = cache.get(cacheKey);
   if (cached && cached.expiresAtMs > Date.now()) return cached.value;
@@ -1357,7 +1338,7 @@ export async function handleAdminProductAnalytics(
     ? { export_status: 'waiting_for_first_daily_export' }
     : {};
   for (const row of rows) {
-    const payload = parsePayload(row);
+    const payload = parseProductAnalyticsPayload(row);
     if (!payload) continue;
     if (row.row_kind === 'screen') screens.push(payload);
     else if (row.row_kind === 'lesson') lessons.push(payload);
@@ -1498,15 +1479,4 @@ export async function handleAdminProductAnalytics(
   };
   cache.set(cacheKey, { expiresAtMs: Date.now() + CACHE_TTL_MS, value });
   return value;
-}
-
-export const adminProductAnalytics = onCall({
-  region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
-  // The bounded query is synchronous so the admin receives one internally
-  // consistent snapshot. Production execution is currently fast, but the
-  // ceiling must also tolerate growth of the daily GA4 export.
-  timeoutSeconds: 300,
-  memory: '1GiB',
-  maxInstances: 3,
-}, handleAdminProductAnalytics);
+});

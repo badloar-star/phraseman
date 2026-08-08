@@ -54,12 +54,9 @@ export function redirectSystemPath({
     return `/home${query}`;
   }
 
-  // Extract room id from web/app links:
-  // - https://badloar-star.github.io/phraseman/duel/ABC123
-  // - phraseman://duel/ABC123
-  const duelMatch = raw.match(/\/duel\/([A-Za-z0-9_-]+)/i) ?? raw.match(/^duel\/([A-Za-z0-9_-]+)/i);
-  if (duelMatch?.[1]) {
-    return `/arena_join?roomId=${encodeURIComponent(duelMatch[1])}`;
+  // Retired Quiz/Arena links from older installs must land on a valid safe screen.
+  if (/(?:^|\/)(?:duel|arena(?:[_/-][a-z0-9_-]+)?|quizzes?(?:_screen)?)(?:[/?#]|$)/i.test(raw)) {
+    return '/home';
   }
 
   // "Phrase of the day" widget taps:

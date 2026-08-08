@@ -9,18 +9,9 @@
  * PREMIUM_CONTEXT_VALUES — `satisfies` ниже гарантирует, что списки не разойдутся.
  */
 export type PremiumContext =
-  | 'arena'
-  // Игра «Созвездия» (specs/constellations.md C5): апселл Plus в лобби/поиске
-  // режима (безлимит игр). Шапка/тексты пейвола — как arena, контекст отдельный
-  // для аналитики конверсии режима.
-  | 'constellations'
   | 'no_energy'
   | 'course_after_lesson3'
   | 'lesson_b1'
-  | 'quiz_limit'
-  | 'quiz_level'
-  | 'quiz_medium'
-  | 'quiz_hard'
   | 'flashcard_limit'
   | 'flashcard_training'
   | 'flashcard_autoplay'
@@ -62,24 +53,24 @@ export type PremiumContext =
   | 'notification_upsell'
   /** Добавление второго и последующих языков обучения (фри = 1 язык). */
   | 'language_add'
-  /** Дневной free-лимит ИИ-разборов (choice/quiz/phrase/mistake) исчерпан. */
+  /** Дневной free-лимит ИИ-разборов учебных ответов исчерпан. */
   | 'ai_explain'
   /** Недельный обзор: free видит тизер, полный разбор и план — в Plus. */
   | 'weekly_review'
-  /** Премиум-аура вокруг аватара (лиги/Арена/друзья). */
+  /** Премиум-аура вокруг аватара (лиги, друзья и списки сообщества). */
   | 'avatar_aura'
+  /** Софт-апсейл на результатах последнего бесплатного урока (раньше падал в generic). */
+  | 'free_lessons_complete'
+  /** Вернувшийся после 7+ дней неактивности (раньше шёл как streak — обещал спасти сгоревшую серию). */
+  | 'winback'
+  /** Закончился реферальный/подарочный VIP-доступ (friends; раньше generic). */
+  | 'referral_ended'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
-  'arena',
-  'constellations',
   'no_energy',
   'course_after_lesson3',
   'lesson_b1',
-  'quiz_limit',
-  'quiz_level',
-  'quiz_medium',
-  'quiz_hard',
   'flashcard_limit',
   'flashcard_training',
   'flashcard_autoplay',
@@ -110,6 +101,9 @@ export const PREMIUM_CONTEXT_VALUES = [
   'ai_explain',
   'weekly_review',
   'avatar_aura',
+  'free_lessons_complete',
+  'winback',
+  'referral_ended',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

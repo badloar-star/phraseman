@@ -10,17 +10,21 @@ import {
   type ViewStyle, type StyleProp,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 
 import { useTheme } from '../ThemeContext';
 import { getPaywallThemeConfig, type ThemePaywallConfig } from '../paywallThemeConfig';
 import { getPaywallSocialProof } from '../../app/paywall_variant';
+import { CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP } from '../../app/paywall_copy';
+import { PaywallContextIcon } from './PaywallContextIcons';
 import type { PremiumContext } from '../../app/premium_context';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
-import type { ThemeMode } from '../../constants/theme';
+import { isLightThemeMode, SAGE_PORCELAIN, type ThemeMode } from '../../constants/theme';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
+import { PaywallIdleFloat } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 // ── фоновые градиенты активных A/B/C paywall-экранов; незнакомая тема → dark ──
 function screenBgTuple(themeMode: string): [string, string, string] {
@@ -36,6 +40,7 @@ export interface PaywallChrome {
   textMuted: string;
   divider: string;
   cardBg: string;
+  cardBgStrong: string;
   cardBorder: string;
   uncheckedBorder: string;
 }
@@ -43,17 +48,27 @@ export interface PaywallChrome {
 /** Цветовая обвязка пейвола, адаптивная к теме (паттерн v2). */
 export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
   const { themeMode } = useTheme();
-  return useMemo(() => ({
-    tc: getPaywallThemeConfig(overrideThemeMode ?? themeMode),
-    themeMode: overrideThemeMode ?? themeMode,
-    bgColors: screenBgTuple(overrideThemeMode ?? themeMode),
-    textPrimary: '#FFFFFF',
-    textMuted: 'rgba(255,255,255,0.62)',
-    divider: 'rgba(255,255,255,0.06)',
-    cardBg: 'rgba(255,255,255,0.035)',
-    cardBorder: 'rgba(255,255,255,0.08)',
-    uncheckedBorder: 'rgba(255,255,255,0.22)',
-  }), [overrideThemeMode, themeMode]);
+  return useMemo(() => {
+    const mode = overrideThemeMode ?? themeMode;
+    const tc = getPaywallThemeConfig(mode);
+    // зачем: хром-текст был захардкожен белым «для всех тем», а sagePorcelain —
+    // светлая: заголовок/цены/пункты исчезали на фарфоровом фоне (скрин владельца
+    // 2026-08-02). Светлая ветка берёт утверждённые токены SAGE_PORCELAIN
+    // (план 2026-08-01), тёмные темы не меняются ни на бит.
+    const light = isLightThemeMode(mode);
+    return {
+      tc,
+      themeMode: mode,
+      bgColors: screenBgTuple(mode),
+      textPrimary: light ? SAGE_PORCELAIN.textPrimary : '#FFFFFF',
+      textMuted: light ? SAGE_PORCELAIN.textMuted : 'rgba(255,255,255,0.62)',
+      divider: light ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)',
+      cardBg: tc.panelBg,
+      cardBgStrong: tc.panelBgStrong,
+      cardBorder: light ? SAGE_PORCELAIN.border : 'rgba(255,255,255,0.08)', // guard-ok: не новая рамка — перекраска давно живущего chrome-токена (кнопка закрытия, радио-строки)
+      uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : 'rgba(255,255,255,0.22)',
+    };
+  }, [overrideThemeMode, themeMode]);
 }
 
 /**
@@ -178,13 +193,8 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
 // ── глиф контекста (SVG-иконки Ionicons вместо эмодзи-зоопарка) ──────────────
 const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphMap>> = {
   no_energy: 'flash',
-  arena: 'trophy',
   course_after_lesson3: 'book',
   lesson_b1: 'book',
-  quiz_limit: 'extension-puzzle',
-  quiz_level: 'extension-puzzle',
-  quiz_medium: 'extension-puzzle',
-  quiz_hard: 'flame',
   flashcard_limit: 'albums',
   flashcard_training: 'school',
   flashcard_autoplay: 'play-circle',
@@ -215,6 +225,9 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   ai_explain: 'bulb',
   weekly_review: 'calendar',
   avatar_aura: 'color-wand',
+  free_lessons_complete: 'flag',
+  winback: 'refresh',
+  referral_ended: 'gift',
   generic: 'diamond',
 };
 
@@ -222,17 +235,61 @@ export function contextGlyph(ctx: PremiumContext): keyof typeof Ionicons.glyphMa
   return CONTEXT_GLYPH[ctx] ?? 'diamond';
 }
 
-/** Капсула с глифом контекста + тёплое свечение акцента. */
+/** Капсула с глифом контекста + тёплое свечение акцента. Парит (PaywallIdleFloat —
+ *  общий лифт для всех пейволов A–G; луп гейтится фокусом/AppState/reduce-motion). */
 export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chrome: PaywallChrome }) {
-  const { tc, cardBorder } = chrome;
+  // зачем: borderColor у капсулы убран — запрет владельца на обводку контейнеров;
+  // форму держат фон-тон + гало PaywallIdleFloat.
+  const { tc } = chrome;
   const isDialogLimit = ctx === 'dialog_limit';
   return (
-    <View style={[S.glyphCap, { borderColor: cardBorder, shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
-      {isDialogLimit ? (
-        <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
-      ) : (
-        <Ionicons name={contextGlyph(ctx)} size={32} color={tc.heroAccent} />
-      )}
+    // зачем: владелец жаловался, что иконка «упирается в полоску сверху и
+    // обрезается». Капсула парит на ±5px (PaywallIdleFloat), а её гало выступает
+    // ещё на 6px за края — итого ~11px выходят ВЫШЕ бокса. ScrollView режет всё,
+    // что вылезло за верх вьюпорта, поэтому клиппинг был виден как полоса-срез.
+    // Резервируем клиренс в самой капсуле: фикс едет вместе с компонентом во все
+    // варианты A–G и не зависит от отступов конкретного экрана.
+    <PaywallIdleFloat style={S.glyphFloat} haloColor={`${tc.heroAccent}2E`} haloRadius={42} haloInset={6}>
+      <View style={[S.glyphCap, { shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
+        {isDialogLimit ? (
+          <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
+        ) : (
+          /* зачем: владелец убрал стоковые Ionicons из хиро — фирменный контурный
+             набор PaywallContextIcons, у каждого контекста своя иконка (макеты
+             docs/paywall-audit). Цвет — акцент контекста темы, как раньше. */
+          <PaywallContextIcon ctx={ctx} size={32} color={tc.heroAccent} />
+        )}
+      </View>
+    </PaywallIdleFloat>
+  );
+}
+
+// ── хиро-объяснение: субтайтл контекста + 3 выгоды момента ───────────────────
+// зачем (аудит «пейволы-объясняют», жалоба юзера на «Ты растёшь быстро»):
+// субтайтлы написаны для всех контекстов в paywall_copy, но не рендерились ни в
+// одном варианте — юзер видел лозунг без причины показа. Блок един для всех рук
+// A–G, чтобы A/B-эксперимент продолжал сравнивать доказательную часть, а не хиро.
+export function PaywallHeroExplain({ ctx, chrome, lang, subtitle }: {
+  ctx: PremiumContext;
+  chrome: PaywallChrome;
+  lang: Lang;
+  subtitle: string;
+}) {
+  const LP = makeLP(lang);
+  const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 3);
+  return (
+    <View style={S.heroExplainWrap}>
+      <Text style={[S.heroExplainSubtitle, { color: chrome.textPrimary }]}>{subtitle}</Text>
+      <View style={S.heroExplainBens}>
+        {benefits.map((b, i) => (
+          <View key={b.ru} style={S.heroExplainBenRow}>
+            <Ionicons name="checkmark" size={15} color={chrome.tc.heroAccent} style={S.heroExplainBenIcon} />
+            <Text style={[S.heroExplainBenText, { color: chrome.textMuted }]}>
+              {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
+            </Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }
@@ -511,14 +568,14 @@ const S = StyleSheet.create({
     transform: [{ rotate: '-12deg' }],
   },
   closeBtn: {
-    alignSelf: 'flex-end', marginBottom: 7,
-    width: 36, height: 36, borderRadius: 18, borderWidth: 1,
+    alignSelf: 'flex-start', marginBottom: 7,
+    width: 40, height: 40, borderRadius: 20, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
   },
   priceRetryBox: {
     alignSelf: 'stretch', alignItems: 'center', gap: 12,
     paddingVertical: 22, paddingHorizontal: 19, marginTop: 10,
-    borderRadius: 16, borderWidth: 1,
+    borderRadius: 16, borderWidth: 0,
   },
   priceRetryText: { fontSize: 15.5, lineHeight: 22, textAlign: 'center' },
   priceRetryBtn: { paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
@@ -526,19 +583,35 @@ const S = StyleSheet.create({
   tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',
-    maxWidth: '100%', paddingHorizontal: 13, paddingVertical: 8, borderRadius: 18, borderWidth: 1,
+    maxWidth: '100%', paddingHorizontal: 13, paddingVertical: 8, borderRadius: 18, borderWidth: 0,
   },
   tagText: { flexShrink: 1, fontSize: 13, fontWeight: '700' },
-  testimonialCard: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
+  testimonialCard: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
   testimonialTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 10 },
   testimonialText: { fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
   testimonialAuthor: { fontSize: 12, marginTop: 5 },
+  // Клиренс под парение (±5px) + вылет гало (6px), чтобы ScrollView не срезал
+  // верх капсулы. Держим геометрию стабильной с первого кадра (Perf Bible).
+  glyphFloat: { marginTop: 11 },
   glyphCap: {
-    alignSelf: 'center', width: 70, height: 70, borderRadius: 35, borderWidth: 1,
+    alignSelf: 'center', width: 70, height: 70, borderRadius: 35,
     alignItems: 'center', justifyContent: 'center',
-    shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 20, elevation: 7,
+    // зачем: фон капсулы задаётся динамически как `${tc.heroAccent}10`
+    // (полупрозрачный), поэтому Android рисовал КВАДРАТ вокруг круга.
+    // Свечение здесь и так даёт гало из PaywallIdleFloat — elevation не нужен.
+    // радиус 16 — потолок DESIGN.md; свечение добирает гало PaywallIdleFloat
+    shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 16,
+    ...noAndroidOutline,
   },
   glyphCompassImage: { height: 62, width: 62 },
+  // хиро-объяснение (субтайтл + выгоды момента) — фиксированная геометрия с
+  // первого кадра: копия синхронная, без загрузок и сдвигов (layout stability).
+  heroExplainWrap: { marginTop: 9, alignItems: 'center' },
+  heroExplainSubtitle: { textAlign: 'center', fontSize: 14, lineHeight: 19.5, maxWidth: 320, opacity: 0.82 },
+  heroExplainBens: { marginTop: 12, gap: 6, alignSelf: 'center' },
+  heroExplainBenRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, maxWidth: 316 },
+  heroExplainBenIcon: { marginTop: 1.5 },
+  heroExplainBenText: { fontSize: 13, lineHeight: 18, flexShrink: 1 },
   socialRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 14 },
   starsRow: { flexDirection: 'row', gap: 2 },
   socialText: { fontSize: 13, fontWeight: '700' },
@@ -548,8 +621,12 @@ const S = StyleSheet.create({
   sticky: {
     position: 'absolute', left: 10, right: 10, bottom: 12, zIndex: 50,
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderRadius: 20, borderWidth: 1, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 22, elevation: 14,
+    borderRadius: 20, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
+    // зачем: фон sticky-панели приходит из темы (может быть полупрозрачным),
+    // а radius 20 + elevation давали квадрат под панелью на Android.
+    // Радиус 16 — потолок DESIGN.md (perf-guard).
+    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 16,
+    ...noAndroidOutline,
   },
   stickyTextWrap: { flex: 1, minWidth: 0 },
   stickyTitle: { fontSize: 14, fontWeight: '900' },

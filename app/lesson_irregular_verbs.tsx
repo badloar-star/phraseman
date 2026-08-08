@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -24,6 +24,9 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { useAudio } from '../hooks/use-audio';
 import fk from './feedback/feedback_kit';
 import VictoryBurst from '../components/feedback/VictoryBurst';
@@ -287,9 +290,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   const [btnStates, setBtnStates] = useState<BtnState[]>(['idle', 'idle', 'idle', 'idle']);
   const [phase, setPhase] = useState<'answering' | 'feedback'>('answering');
   const [feedbackCorrect, setFeedbackCorrect] = useState(true);
-  // [FeedbackKit] Локальная серия подряд-верных ОТВЕТОВ по формам (для лесенки
-  // комбо/стингеров) — только ощущения, экономику/SRS не трогает.
-  const fkComboRef = useRef(0);
   // [FeedbackKit] Мини-победа «Глагол освоен»: показываем формы освоенного
   // глагола (base–past–part). null = скрыта; ставится при чистом проходе глагола.
   const [learnedBurst, setLearnedBurst] = useState<{ base: string; past: string; pp: string } | null>(null);
@@ -340,9 +340,23 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
     loadSettings().then(s => { setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
   }, []);
 
+  // ── Дроп коллекционной карточки за закрытый раздел глаголов ───────────────
+  // зачем: владелец попросил шанс карточки и за закрытие неправильных глаголов.
+  // Шанс/дневной кап/pity — общие с уроком, решает сервер. eventId =
+  // verbs:<цель>:<урок> без дня: раздел закрывается один раз, повторный вход в
+  // уже пройденный раздел карточку не даёт (леджер идемпотентен по eventId).
+  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const cardDropRolledRef = useRef(false);
+  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
+
   useEffect(() => {
     if (!allDone) return;
-  }, [allDone]);
+    if (cardDropRolledRef.current) return;
+    cardDropRolledRef.current = true;
+    void maybeRollCollectibleDrop('verbs', `${studyTarget ?? 'en'}:${lessonId ?? 0}`, { dailyScoped: false })
+      .then((drop) => { if (drop) setCardDrop(drop); })
+      .catch(() => {});
+  }, [allDone, studyTarget, lessonId]);
 
   const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
     const form = FORM_SEQ[stepIdx];
@@ -423,17 +437,10 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
     if (voiceOut) speakAudio(word, speechRate, { language: 'en-US' });
 
     if (isCorrect) {
-      // [FeedbackKit] Ранее: hapticSuccess + correct-звук. fk.correct даёт тот же
-      // haptic + тёплый «дин-дон»; fk.combo — лесенку нот/стингеры серии.
-      fkComboRef.current += 1;
-      fk.correct();
-      fk.combo(fkComboRef.current);
+      // [FeedbackKit] fk.correct даёт haptic + тёплый «дин-дон».
+      fk.verdict({ correct: true });
     } else {
-      // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
-      const brokeFrom = fkComboRef.current;
-      fkComboRef.current = 0;
-      if (brokeFrom >= 3) fk.comboBreak(brokeFrom);
-      else fk.wrong();
+      fk.verdict({ correct: false });
       hadErrorThisVerb.current = true;
       shakyThisVerb.current = true;
 
@@ -494,6 +501,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
             AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
           });
           setLearnedCnt(c => c + 1);
+          // зачем: задание дня двигается и на ПОВТОРЕ уже выученного глагола
+          // (владелец: «задания дня можно выполнить, просто повторив пройденное»).
+          // Здесь это работает без правки: очередь повтора (practiceAll → onReset)
+          // содержит ВСЕ глаголы урока, а не только «на сегодня», и каждый чистый
+          // проход попадает сюда. Повторный XP отсекается идемпотентным eventId
+          // ниже ('verb:...:learned'), поэтому фермы опыта не возникает.
           updateMultipleTaskProgress([{ type: 'verb_learned' }], { studyTarget });
           registerXP(POINTS_PER_VERB, 'verb_learned', userName || '', lang, lessonId, {
             eventId: [
@@ -562,7 +575,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   if (allDone) return (
     <>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-        <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center' }}>
           <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
         </View>
         <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700' }}>
@@ -593,7 +606,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 0, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
           onPress={() => { fk.tap(); onReset(); }}
           activeOpacity={0.8}
         >
@@ -603,6 +616,15 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
           </Text>
         </TouchableOpacity>
       </View>
+      {/* Карточка за закрытый раздел глаголов — сюрприз поверх экрана итога. */}
+      <CollectibleDropModal
+        outcome={cardDropVisible ? cardDrop : null}
+        onClose={() => setCardDrop(null)}
+        onOpenCollection={() => {
+          setCardDrop(null);
+          router.push('/collectibles_screen' as any);
+        }}
+      />
     </>
   );
 
@@ -910,7 +932,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
       <Animated.ScrollView
         horizontal
-        decelerationRate="normal"
+        decelerationRate="fast"
         nestedScrollEnabled
         showsHorizontalScrollIndicator={true}
         scrollEventThrottle={16}
@@ -1015,10 +1037,10 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const { theme: t, f } = useTheme();
   const pack = stringsForLang(lang);
   return (
-    <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
+    <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
       <TouchableOpacity
         onPress={onStartLearn}
-        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 0, borderColor: t.border, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
+        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}
       >
         <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
         <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
@@ -1038,7 +1060,7 @@ function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack:
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}>
         <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
       </View>
       <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
@@ -1071,8 +1093,12 @@ export default function LessonIrregularVerbs() {
   const rootPack = stringsForLang(lang);
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, autoPractice: autoPracticeParam } = useLocalSearchParams<{ id: string; autoPractice?: string | string[] }>();
   const lessonId = parseInt(id || '1', 10);
+  // зачем: заход из задания дня, когда по SRS на сегодня глаголов нет (activePortion
+  // пустой) — экран сразу показывал «Всё выучено», и verb_learned было не выполнить.
+  // Флаг включает режим повтора всех глаголов урока; SRS и прогресс не сбрасываются.
+  const autoPractice = (Array.isArray(autoPracticeParam) ? autoPracticeParam[0] : autoPracticeParam) === '1';
   useEffect(() => {
     let cancelled = false;
     void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
@@ -1097,6 +1123,9 @@ export default function LessonIrregularVerbs() {
   const [srsMap, setSrsMap] = useState<VerbSrsMap>({});
   const [practiceAll, setPracticeAll] = useState(false);
   const [learnTabKey, setLearnTabKey] = useState(0);
+  // Карта SRS грузится асинхронно; до неё activePortion пуст просто из-за отсутствия
+  // данных, и решать «учить нечего» нельзя — иначе повтор включится по ложной причине.
+  const [srsLoaded, setSrsLoaded] = useState(false);
 
   useEffect(() => {
     if (!canTrain) {
@@ -1125,7 +1154,7 @@ export default function LessonIrregularVerbs() {
       if (Object.keys(map).length === 0 && Object.keys(counts).length > 0) {
         map = await seedSrsFromLegacyCounts(counts, studyTarget);
       }
-      if (!cancelled) setSrsMap(map);
+      if (!cancelled) { setSrsMap(map); setSrsLoaded(true); }
     })();
     return () => { cancelled = true; };
   }, [irregularStorageKey, studyTarget]);
@@ -1147,6 +1176,23 @@ export default function LessonIrregularVerbs() {
     }
     return [];
   }, [portions, dueBaseSet]);
+
+  // зачем: приход из задания дня (autoPractice=1) — задание требует повтора, а по SRS
+  // на сегодня может не быть ни одного глагола. Тогда сразу включаем режим «все глаголы
+  // урока» и открываем вкладку «Учить», чтобы задание было выполнимо, а не упиралось в
+  // экран «Всё выучено». Прогресс и SRS не сбрасываем — practiceAll меняет только очередь.
+  const autoPracticeFiredRef = useRef(false);
+  useEffect(() => {
+    if (!autoPractice || autoPracticeFiredRef.current) return;
+    if (!srsLoaded || !canTrain || frenchIrregularBlocked) return;
+    if (allVerbs.length === 0) return;
+    autoPracticeFiredRef.current = true;
+    setUserTab('learn');
+    // Есть что учить по расписанию — обычная очередь сама даст прогресс, повтор не нужен.
+    if (activePortion.length > 0) return;
+    setPracticeAll(true);
+    setLearnTabKey(k => k + 1);
+  }, [autoPractice, srsLoaded, canTrain, frenchIrregularBlocked, allVerbs.length, activePortion.length]);
 
   // В режиме practiceAll тренируем все глаголы урока (прогресс/SRS как обычно).
   const verbsForLearnTab = practiceAll ? allVerbs : activePortion;
@@ -1170,7 +1216,11 @@ export default function LessonIrregularVerbs() {
             <TapScale onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
-            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{lessonId}. {title}</Text>
+            {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт layout
+                stability) — статично уменьшаем кегль до f.h3 (как в остальных хедерах проекта),
+                длинные названия уроков (напр. "Неправильные глаголы") влезают в одну строку
+                без сжатия. guard-ok */}
+            <Text style={{ color: sx.primary, fontSize: f.h3, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1}>{lessonId}. {title}</Text>
             <View style={{ width: 28 }} />
           </View>
 

@@ -1,8 +1,7 @@
-import { createHmac, randomBytes } from 'node:crypto';
 import * as admin from 'firebase-admin';
-import { CallableRequest, HttpsError, onCall } from 'firebase-functions/v2/https';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasVerifiedCallablePermission } from './admin/permissions';
+import { hasClaimedPermission } from './admin/permissions';
 import {
   aggregateSubscriptionAnalytics,
   type SubscriptionAnalyticsRow,
@@ -40,38 +39,20 @@ function firestoreTimestampMs(value: unknown): number | null {
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : null;
 }
 
-function opaqueIdentifier(value: unknown, requestKey: Buffer): string | undefined {
-  const normalized = String(value ?? '').trim();
-  return normalized ? createHmac('sha256', requestKey).update(normalized).digest('hex') : undefined;
-}
-
-type SubscriptionAnalyticsRequest = {
-  rangeDays?: unknown;
-  store?: unknown;
-  productId?: unknown;
-};
-
-export async function handleAdminSubscriptionAnalytics(
-  request: CallableRequest<SubscriptionAnalyticsRequest>,
-) {
-  if (!hasVerifiedCallablePermission(request.auth, 'money.read')) {
+export const adminSubscriptionAnalytics = onCall({
+  region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK,
+  timeoutSeconds: 60,
+  memory: '512MiB',
+}, async (request) => {
+  if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
 
   const rangeDays = clampSubscriptionAnalyticsDays(request.data?.rangeDays);
   const store = normalizeSubscriptionStore(request.data?.store);
   const productId = normalizeProductId(request.data?.productId);
-  console.info('admin_subscription_analytics authorized', {
-    role: String(request.auth?.token?.adminRole ?? 'unknown'),
-    rangeDays,
-    store,
-    productFilterApplied: Boolean(productId),
-    documentCap: DOCUMENT_CAP,
-  });
   const fromMs = Date.now() - rangeDays * 24 * 60 * 60 * 1000;
-  // Per-invocation key preserves in-request deduplication without producing
-  // stable identifiers that could be linked across exports or brute-forced.
-  const requestIdentifierKey = randomBytes(32);
   const rows: (SubscriptionAnalyticsRow & ServerRevenueRow)[] = [];
   let cursor: FirebaseFirestore.QueryDocumentSnapshot | null = null;
   let reachedCap = false;
@@ -79,7 +60,6 @@ export async function handleAdminSubscriptionAnalytics(
   while (rows.length < DOCUMENT_CAP) {
     let query: FirebaseFirestore.Query = admin.firestore()
       .collection('revenuecat_premium_events')
-      .where('createdAt', '>=', admin.firestore.Timestamp.fromMillis(fromMs))
       .orderBy('createdAt', 'desc')
       .limit(Math.min(PAGE_SIZE, DOCUMENT_CAP - rows.length));
     if (cursor) query = query.startAfter(cursor);
@@ -88,29 +68,9 @@ export async function handleAdminSubscriptionAnalytics(
     rows.push(...snapshot.docs.map((doc) => {
       const data = doc.data();
       return {
-        eventId: opaqueIdentifier(doc.id, requestIdentifierKey),
-        eventType: data.eventType,
-        productId: data.productId,
-        periodType: data.periodType,
-        store: data.store,
-        environment: data.environment,
-        transactionId: opaqueIdentifier(data.transactionId, requestIdentifierKey),
-        originalTransactionId: opaqueIdentifier(data.originalTransactionId, requestIdentifierKey),
-        eventTimestampMs: data.eventTimestampMs,
+        eventId: doc.id,
+        ...data,
         createdAtMs: firestoreTimestampMs(data.createdAt),
-        cancelReason: data.cancelReason,
-        expirationReason: data.expirationReason,
-        expirationAtMs: data.expirationAtMs,
-        billingCadence: data.billingCadence,
-        grossUsdMicros: data.grossUsdMicros,
-        grossPurchasedCurrencyMicros: data.grossPurchasedCurrencyMicros,
-        purchasedCurrency: data.purchasedCurrency,
-        taxRatePpm: data.taxRatePpm,
-        commissionRatePpm: data.commissionRatePpm,
-        estimatedProceedsUsdMicros: data.estimatedProceedsUsdMicros,
-        financialCoverage: data.financialCoverage,
-        renewalNumber: data.renewalNumber,
-        isTrialConversion: data.isTrialConversion,
       };
     }));
     cursor = snapshot.docs[snapshot.docs.length - 1];
@@ -151,11 +111,4 @@ export async function handleAdminSubscriptionAnalytics(
     generatedAtMs: Date.now(),
     dataThroughMs: metrics.dataThroughMs,
   };
-}
-
-export const adminSubscriptionAnalytics = onCall({
-  region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
-  timeoutSeconds: 60,
-  memory: '512MiB',
-}, handleAdminSubscriptionAnalytics);
+});

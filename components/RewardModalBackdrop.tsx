@@ -12,6 +12,12 @@ type RewardModalPanelBackdropProps = RewardModalBackdropProps & {
   opacity?: number;
 };
 
+type RewardModalLiquidGlassProps = {
+  themeMode: ThemeMode;
+  accent: string;
+  intensity?: 'regular' | 'strong';
+};
+
 export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: RewardModalBackdropProps) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -54,6 +60,75 @@ export function RewardModalPanelBackdrop({
   );
 }
 
+/**
+ * Static "liquid glass" illusion for reward/gift modals.
+ *
+ * Deliberately avoids realtime native blur/backdrop filters: this is only gradients,
+ * highlights and tonal veils, so it keeps the premium material feeling without
+ * adding a realtime blur cost on low-end devices.
+ */
+export function RewardModalLiquidGlass({
+  themeMode,
+  accent,
+  intensity = 'regular',
+}: RewardModalLiquidGlassProps) {
+  if (themeMode === 'sagePorcelain') return null;
+  const strong = intensity === 'strong';
+  const accentVeil = withAccentAlpha(accent, strong ? '42' : '30');
+  const accentSoft = withAccentAlpha(accent, strong ? '24' : '18');
+  const topLight = themeMode === 'gold'
+    ? 'rgba(255,232,172,0.20)'
+    : 'rgba(255,255,255,0.18)';
+  const sideLight = themeMode === 'gold'
+    ? 'rgba(255,213,128,0.16)'
+    : 'rgba(255,255,255,0.12)';
+
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill} testID="reward-modal-liquid-glass">
+      <LinearGradient
+        pointerEvents="none"
+        colors={[topLight, 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0)']}
+        locations={[0, 0.42, 1]}
+        style={[StyleSheet.absoluteFill, { opacity: strong ? 0.86 : 0.68 }]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={['rgba(0,0,0,0)', accentSoft, accentVeil]}
+        locations={[0, 0.58, 1]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 22,
+          right: 22,
+          height: 1,
+          backgroundColor: topLight,
+          opacity: strong ? 0.9 : 0.68,
+        }}
+      />
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          top: 18,
+          left: -34,
+          width: 112,
+          height: 220,
+          borderRadius: 80,
+          backgroundColor: sideLight,
+          opacity: strong ? 0.34 : 0.24,
+          transform: [{ rotate: '18deg' }],
+        }}
+      />
+    </View>
+  );
+}
+
 export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string, string, string] {
   switch (themeMode) {
     case 'gold':
@@ -72,6 +147,12 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['#111905', '#1B2608', '#050702'];
     case 'minimalDark':
       return ['#0F141C', '#0A0D13', '#030508'];
+    case 'candyBlue':
+      return ['#0B161B', '#122229', '#04090C'];
+    case 'indigo':
+      return ['#14131F', '#1C1B2E', '#060510'];
+    case 'sagePorcelain':
+      return ['#FCFDF9', '#F5F7F2', '#E7EAE3'];
     case 'dark':
     default:
       return ['#15231A', '#0A120E', '#040906'];
@@ -96,6 +177,12 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#C8F336';
     case 'minimalDark':
       return '#6EA8FF';
+    case 'candyBlue':
+      return '#B2D5E5';
+    case 'indigo':
+      return '#C8C3FF';
+    case 'sagePorcelain':
+      return '#315F50';
     case 'dark':
     default:
       return t.gold;
@@ -121,6 +208,12 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(200,243,54,0.34)';
     case 'minimalDark':
       return 'rgba(110,168,255,0.30)';
+    case 'candyBlue':
+      return 'rgba(178,213,229,0.30)';
+    case 'indigo':
+      return 'rgba(200,195,255,0.30)';
+    case 'sagePorcelain':
+      return '#BDC8BD';
     case 'dark':
     default:
       return 'rgba(88,204,137,0.30)';
@@ -145,6 +238,12 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(200,243,54,0.09)';
     case 'minimalDark':
       return 'rgba(110,168,255,0.08)';
+    case 'candyBlue':
+      return 'rgba(178,213,229,0.08)';
+    case 'indigo':
+      return 'rgba(200,195,255,0.08)';
+    case 'sagePorcelain':
+      return '#E1E5DC';
     case 'dark':
     default:
       return 'rgba(255,255,255,0.055)';
@@ -169,6 +268,12 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#ECFCCB', '#A3E635'];
     case 'minimalDark':
       return ['#D7E7FF', '#6EA8FF'];
+    case 'candyBlue':
+      return ['#E4F2F8', '#B2D5E5'];
+    case 'indigo':
+      return ['#ECEAFF', '#C8C3FF'];
+    case 'sagePorcelain':
+      return ['#315F50', '#315F50'];
     case 'dark':
     default:
       return ['#F0F7F2', '#8FE5AD'];
@@ -176,8 +281,12 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
 }
 
 export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
-  if (false) return '#111827';
-  return false ? '#FFFDF6' : '#101214';
+  switch (themeMode) {
+    case 'sagePorcelain':
+      return '#FFFFFF';
+    default:
+      return '#101214';
+  }
 }
 
 /**
@@ -224,7 +333,7 @@ function withAccentAlpha(hex: string, alpha: string): string {
   return hex;
 }
 
-function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, string, string] {
+export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, string, string] {
   switch (themeMode) {
     case 'gold':
       return ['#2A1707', '#171006', '#050302'];
@@ -242,13 +351,19 @@ function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, strin
       return ['#22320A', '#101805', '#030501'];
     case 'minimalDark':
       return ['#101824', '#090D15', '#020407'];
+    case 'candyBlue':
+      return ['#122229', '#0B161B', '#020506'];
+    case 'indigo':
+      return ['#1C1B2E', '#14131F', '#040309'];
+    case 'sagePorcelain':
+      return ['#DCE1D8', '#FCFDF9', '#CDD5C7'];
     case 'dark':
     default:
       return ['#0F2718', '#07110C', '#020503'];
   }
 }
 
-function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, string] {
+export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, string] {
   switch (themeMode) {
     case 'gold':
       return ['#3A260C', '#1C1307', '#070402'];
@@ -266,15 +381,25 @@ function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, 
       return ['#2B3C0B', '#182206', '#050701'];
     case 'minimalDark':
       return ['#152032', '#0A101B', '#030508'];
+    case 'candyBlue':
+      return ['#1C323B', '#0E1C22', '#020506'];
+    case 'indigo':
+      return ['#2A2952', '#16152A', '#040309'];
+    case 'sagePorcelain':
+      return ['#FCFDF9', '#F5F7F2', '#E7EAE3'];
     case 'dark':
     default:
       return ['#13301D', '#0A150F', '#030604'];
   }
 }
 
-function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
+export function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
   const strong = intensity === 'strong';
   switch (themeMode) {
+    case 'sagePorcelain': {
+      const opacity = strong ? '0.38' : '0.26';
+      return [`rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`];
+    }
     case 'gold':
       return strong
         ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.70)']
@@ -286,9 +411,11 @@ function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'st
   }
 }
 
-function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
+export function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
   const strong = intensity === 'strong';
   switch (themeMode) {
+    case 'sagePorcelain':
+      return ['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)'];
     case 'gold':
       return strong
         ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)']

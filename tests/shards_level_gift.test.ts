@@ -11,11 +11,15 @@ import {
   giftRarityUiLabel,
 } from '../app/level_gift_system';
 import { getShardsBalance } from '../app/shards_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  captureAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn().mockResolvedValue(false) }));
-jest.mock('../app/arena_daily_limit', () => ({ addArenaPlaysBonusForToday: jest.fn() }));
 jest.mock('../app/club_boosts', () => ({ grantClubGiftFreeBoostFromLevel: jest.fn() }));
 jest.mock('../app/flashcards/marketplace', () => ({
   primeMarketplaceBuiltCardsCacheFromAccessibleStorage: jest.fn(),
@@ -35,6 +39,7 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
+  __resetAccountGenerationForTests();
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach(k => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
@@ -62,19 +67,62 @@ describe('level_gift_system — shards_3', () => {
     expect(gift!.weight).toBe(7);
   });
 
-  it('applyGift shards_3 добавляет +3 к балансу осколков', async () => {
+  // зачем (2026-08-02, владелец): «+жемчужины» платили 0 — обман. Бывшие жемчужные подарки
+  // теперь честно начисляют мгновенный XP и не трогают баланс жемчуга.
+  it('applyGift shards_3 начисляет +150 XP и не трогает баланс жемчуга', async () => {
+    const { registerXP } = jest.requireMock('../app/xp_manager') as { registerXP: jest.Mock };
     const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'shards_3')!;
-    await applyGift(gift, 'TestUser', 3, 5, jest.fn());
-    const balance = await getShardsBalance();
-    expect(balance).toBe(3);
+    const result = await applyGift(gift, 'TestUser', 3, 5, jest.fn());
+    expect(result.success).toBe(true);
+    expect(registerXP).toHaveBeenCalledWith(
+      150,
+      'achievement_reward',
+      'TestUser',
+      'ru',
+      undefined,
+      expect.objectContaining({
+        payload: expect.objectContaining({ giftId: 'shards_3', surface: 'level_gift' }),
+      }),
+    );
+    await expect(getShardsBalance()).resolves.toBe(0);
   });
 
-  it('applyGift shards_3 суммируется с уже имеющимися осколками', async () => {
+  it('бывшие жемчужные подарки не пишут в хранилище баланса жемчуга', async () => {
+    const { registerXP } = jest.requireMock('../app/xp_manager') as { registerXP: jest.Mock };
     mockStorage['shards_balance'] = '5';
-    const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'shards_3')!;
-    await applyGift(gift, 'TestUser', 3, 5, jest.fn());
-    const balance = await getShardsBalance();
-    expect(balance).toBe(8);
+    const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'shards_6')!;
+    const result = await applyGift(gift, 'TestUser', 3, 5, jest.fn());
+    expect(result.success).toBe(true);
+    expect(registerXP).toHaveBeenCalledWith(
+      350,
+      'achievement_reward',
+      'TestUser',
+      'ru',
+      undefined,
+      expect.objectContaining({
+        payload: expect.objectContaining({ giftId: 'shards_6', surface: 'level_gift' }),
+      }),
+    );
+    // Баланс в сторадже не тронут: XP-подарок не имеет права писать в жемчуг.
+    expect(mockStorage['shards_balance']).toBe('5');
+  });
+
+  it('completes the token-bound XP grant without re-entering the transition lock', async () => {
+    beginAccountGeneration('account-a');
+    const accountToken = captureAccountGeneration();
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    try {
+      const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'shards_3')!;
+      const result = await Promise.race([
+        applyGift(gift, 'TestUser', 3, 5, jest.fn(), { isPremium: false, accountToken }),
+        new Promise<'timeout'>((resolve) => { timeout = setTimeout(() => resolve('timeout'), 1000); }),
+      ]);
+
+      expect(result).toEqual({ success: true });
+      await expect(getShardsBalance()).resolves.toBe(0);
+    } finally {
+      if (timeout) clearTimeout(timeout);
+    }
   });
 
   it('keeps bonus lesson hints isolated between English legacy and French', async () => {
@@ -102,14 +150,26 @@ describe('level_gift_system — shards_3', () => {
     expect(giftRarityUiLabel('common', 'ru')).toBeTruthy();
   });
 
-  it('premium shard gifts keep Plus as a badge, not as title text', () => {
+  it('premium XP gifts keep Plus as a badge, not as title text', () => {
     const gift = ALL_LEVEL_GIFT_DEFS.find((g: GiftDef) => g.id === 'prem_shards_15')!;
 
-    expect(giftDisplayTitleForLang(gift, 'ru')).toBe('+15 осколков');
-    expect(giftDisplayTitleForLang(gift, 'es')).toBe('+15 fragmentos');
-    expect(giftDisplayTitleForLang(gift, 'pt-BR')).toBe('+15 fragmentos');
+    expect(giftDisplayTitleForLang(gift, 'ru')).toBe('+800 XP');
+    expect(giftDisplayTitleForLang(gift, 'es')).toBe('+800 XP');
+    expect(giftDisplayTitleForLang(gift, 'pt-BR')).toBe('+800 XP');
     expect(giftDisplayTitleForLang(gift, 'ru')).not.toMatch(/плюс/i);
     expect(giftDisplayTitleForLang(gift, 'es')).not.toMatch(/plus/i);
+  });
+
+  // Контракт честности: ни одна карточка пулов не обещает жемчуг/осколки —
+  // выплата валюты из level-gift отключена §7, обещание было бы обманом.
+  it('ни один подарок пула не обещает жемчуг или осколки в заголовке', () => {
+    const currencyPromise = /жемчуж|перлин|осколк|perla|pérola/i;
+    for (const g of ALL_LEVEL_GIFT_DEFS) {
+      expect(`${g.titleRU} ${g.titleUK} ${g.titleES ?? ''}`).not.toMatch(currencyPromise);
+      for (const choice of g.choices ?? []) {
+        expect(`${choice.titleRU} ${choice.titleUK} ${choice.titleES ?? ''}`).not.toMatch(currencyPromise);
+      }
+    }
   });
 });
 

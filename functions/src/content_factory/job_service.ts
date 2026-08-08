@@ -1,5 +1,6 @@
 import type { FactorySurface } from './contracts';
 import type { CanonicalReleaseSurface } from './course_release_contract';
+import { canonicalizeFactorySurfaces } from './generation_plan';
 
 export type GenerationUnitState = 'queued' | 'running' | 'succeeded' | 'failed';
 
@@ -14,10 +15,6 @@ export interface GenerationUnit {
   readonly attempts: number;
 }
 
-const SURFACE_MAP: Readonly<Record<FactorySurface, CanonicalReleaseSurface>> = {
-  lessons: 'lesson', vocabulary: 'lesson', drills: 'lesson', quizzes: 'quiz', cards: 'flashcard', arena_questions: 'arena',
-};
-
 export function splitGenerationJob(input: {
   jobId: string;
   studyTarget: string;
@@ -26,7 +23,7 @@ export function splitGenerationJob(input: {
   surfaces: readonly FactorySurface[];
 }): GenerationUnit[] {
   if (!/^[A-Za-z0-9._-]{1,160}$/.test(input.jobId) || !input.studyTarget.trim() || !input.learnerSourceLocale.trim()) throw new Error('generation_job_identity_invalid');
-  const surfaces = [...new Set(input.surfaces.map((surface) => SURFACE_MAP[surface]).filter(Boolean))];
+  const surfaces = canonicalizeFactorySurfaces(input.surfaces);
   const units: GenerationUnit[] = [];
   for (const surface of surfaces) {
     for (const lessonId of input.lessonIds) {

@@ -1,0 +1,15 @@
+{
+  "_comment": "Разрешённые рабочие папки и ветки. Читают: scripts/canonical_workspace_guard.mjs, scripts/select_branch.mjs, tests/single_workspace_runtime_contract.test.mjs. Список закрытый — агенты сюда ничего не дописывают, только владелец.",
+  "root": "C:\\appsprojects\\phraseman",
+  "primaryBranch": "feature/referral-roulette",
+  "workspaces": [
+    {
+      "path": "C:\\appsprojects\\phraseman",
+      "role": "Единственная рабочая папка. Владелец и все агенты работают здесь, на релизной ветке.",
+      "allowedBranches": ["*"]
+    }
+  ],
+  "allowedBranches": [
+    "feature/referral-roulette"
+  ]
+}

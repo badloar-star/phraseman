@@ -28,7 +28,6 @@ import {
   getLeagueSyncForceIntervalMs,
   getLeagueSyncMinDelta,
   getLeagueSyncMinIntervalMs,
-  isLeagueRealtimeMembersEnabled,
   isLeagueStartupRegistrationEnabled,
 } from './remote_flags';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
@@ -42,10 +41,17 @@ import {
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from './profile_card_system';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 
 // Дебаунс для updateMyGroupPoints — не чаще 1 раза в 8 сек
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
 let _pendingGroupPts: number | null = null;
+let _pendingGroupPtsAccountToken: AccountGenerationToken | null = null;
+let _pendingGroupPtsResolvers: Array<() => void> = [];
 
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
@@ -104,6 +110,31 @@ function countMembersInData(data: any): number {
   const m = data?.members;
   if (!m || typeof m !== 'object') return 0;
   return Object.values(m).filter((member: any) => member?.identityHidden !== true).length;
+}
+
+/**
+ * Сколько ЖИВЫХ игроков в комнате — вместимость и «одиночество» считаются
+ * только по ним.
+ *
+ * зачем (аудит 2026-08-04): комнаты дозаполняются синтетическими жителями до
+ * 28 участников. Если считать их занятыми местами, ломаются сразу два
+ * механизма и оба — в сторону возврата болезни, которую жители лечат:
+ *   • findGroupIdWithSpace счёл бы комнату «1 живой + 28 жителей» полной и
+ *     отправил следующего человека создавать НОВУЮ комнату-одиночку;
+ *   • tryRelocateSoloToSharedGroup сравнивает число участников с 1, чтобы
+ *     понять «человек сидит один» — с жителями там 29, и переселение
+ *     одиночек к людям перестало бы срабатывать вообще.
+ * Живые обязаны собираться вместе; жители лишь заполняют фон.
+ * Зеркало серверного countLiveMembers (functions/src/league_residents.ts).
+ */
+function countLiveMembersInData(data: any): number {
+  const m = data?.members;
+  if (!m || typeof m !== 'object') return 0;
+  return Object.entries(m).filter(([uid, member]: [string, any]) => (
+    member?.identityHidden !== true
+    && member?.isResident !== true
+    && !String(uid).startsWith('res_')
+  )).length;
 }
 
 /** Firestore числа + надёжное сравнение id клуба (избегаем рассинхрона 0 / long / int). */
@@ -378,7 +409,8 @@ async function findGroupIdWithSpace(
       if (!idOk(doc.id)) continue;
       const d = doc.data();
       if (normLeagueIdData(d.leagueId) !== normLeagueIdData(leagueId)) continue;
-      const n = countMembersInData(d);
+      // Вместимость — по живым: жители мест не занимают (см. countLiveMembersInData).
+      const n = countLiveMembersInData(d);
       if (n >= GROUP_SIZE) continue;
       if (d.members?.[myUid]) return doc.id;
       return doc.id;
@@ -411,7 +443,9 @@ async function findGroupIdWithSpace(
     if (!idOk(doc.id)) continue;
     const d = doc.data();
     if (normLeagueIdData(d.leagueId) !== normLeagueIdData(leagueId)) continue;
-    const n = countMembersInData(d);
+    // Вместимость — по живым: иначе комната «1 человек + 28 жителей» считалась
+    // бы полной и следующий игрок плодил бы новую одиночку.
+    const n = countLiveMembersInData(d);
     if (n >= GROUP_SIZE) continue;
     if (d.members?.[myUid]) return doc.id;
     candidates.push({ id: doc.id, n });
@@ -436,7 +470,10 @@ async function tryRelocateSoloToSharedGroup(
   const fromSnap = await gRef(fromGroupId).get();
   if (!fromSnap.exists) return null;
   const sData = fromSnap.data() ?? {};
-  if (countMembersInData(sData) !== 1 || !sData.members?.[uid]) return null;
+  // «Сольник» = один ЖИВОЙ в комнате. С жителями всего участников 29, и старое
+  // сравнение с 1 не срабатывало бы никогда — переселение одиночек к людям
+  // умерло бы молча, а живые остались размазаны по разным комнатам.
+  if (countLiveMembersInData(sData) !== 1 || !sData.members?.[uid]) return null;
 
   const toId = await findGroupIdWithSpace(db, weekId, leagueId, uid, fromGroupId);
   if (!toId || toId === fromGroupId) return null;
@@ -582,8 +619,11 @@ export async function getOrCreateLeagueGroup(
     getVerifiedVipStatus().catch(() => false),
     isLifetimePlanLocal().catch(() => false),
   ]);
-  // «Pro» = lifetime только при активном премиум-доступе (иначе Plus/без плашки).
-  const memberLifetime = memberPremium && memberLifetimeRaw;
+  // «Pro» = lifetime только при активном доступе (иначе Plus/без плашки).
+  // зачем: доступ бывает и безденежным (сертификат «Pro — навсегда», промокод,
+  // бессрочная выдача) — там memberPremium=false, но Pro-аура положена
+  // (владелец, 2026-08-03). Истёкший lifetime по-прежнему не даёт плашку.
+  const memberLifetime = (memberPremium || memberVip) && memberLifetimeRaw;
   const memberStreak   = streakRaw  ? parseInt(streakRaw, 10) : 0;
   const memberTotalXp  = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
   const memberProfileCardLevel = normalizeProfileCardLevel(cardLevelRaw);
@@ -940,34 +980,55 @@ export async function fetchLeagueTopMembers(
 // ── Обновить очки в группе (дебаунс 8с) ────────────────────────────────────
 // 8 секунд — компромисс: не спамим Firestore при серии уроков, но не теряем
 // очки при закрытии приложения через 10-20 сек после занятия.
-export function updateMyGroupPoints(weekPoints: number): Promise<void> {
+export function updateMyGroupPoints(
+  weekPoints: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return Promise.resolve();
   if (isJestRuntime()) return Promise.resolve();
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return Promise.resolve();
   _pendingGroupPts = weekPoints;
+  _pendingGroupPtsAccountToken = operationToken;
   if (_groupPtsTimer) clearTimeout(_groupPtsTimer);
   return new Promise(resolve => {
+    _pendingGroupPtsResolvers.push(resolve);
     _groupPtsTimer = setTimeout(async () => {
       _groupPtsTimer = null;
       const pts = _pendingGroupPts;
+      const token = _pendingGroupPtsAccountToken;
+      const resolvers = _pendingGroupPtsResolvers;
       _pendingGroupPts = null;
-      if (pts === null) { resolve(); return; }
-      await _doUpdateGroupPoints(pts);
-      resolve();
+      _pendingGroupPtsAccountToken = null;
+      _pendingGroupPtsResolvers = [];
+      try {
+        if (pts === null || !token || !isCurrentAccountGeneration(token)) return;
+        await _doUpdateGroupPoints(pts, {}, token);
+      } finally {
+        resolvers.forEach((settle) => settle());
+      }
     }, 8_000);
     (_groupPtsTimer as any)?.unref?.();
   });
 }
 
-async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boolean } = {}): Promise<void> {
+async function _doUpdateGroupPoints(
+  weekPoints: number,
+  options: { force?: boolean } = {},
+  accountToken: AccountGenerationToken,
+): Promise<void> {
+  const isCurrent = () => isCurrentAccountGeneration(accountToken);
+  if (!isCurrent()) return;
   const db = getFirestore();
   if (!db) return;
   const uid = await ensureAnonUser();
-  if (!uid) return;
+  if (!uid || !isCurrent()) return;
   try {
     const weekId = getWeekId();
     let leagueId = 0;
     try {
       const leagueRaw = await AsyncStorage.getItem(LEAGUE_STATE_V3_KEY);
+      if (!isCurrent()) return;
       const leagueState = leagueRaw ? JSON.parse(leagueRaw) : null;
       leagueId = normLeagueIdData(leagueState?.leagueId, 0);
     } catch {
@@ -975,11 +1036,13 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
     }
 
     const cachedBeforeAuth = await readLeagueMemberSyncCache();
+    if (!isCurrent()) return;
     if (!options.force && shouldSkipLeaguePointsCallable(cachedBeforeAuth, weekId, leagueId, weekPoints)) return;
 
     await ensureStableAuthLink().catch(() => false);
+    if (!isCurrent()) return;
     const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
-    if (!appCheckReady) return;
+    if (!appCheckReady || !isCurrent()) return;
 
     const [
       [, avatarRaw],
@@ -1004,12 +1067,15 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
       PROFILE_CARD_MOTION_KEY,
       PROFILE_CARD_PUBLIC_FOCUS_KEY,
     ]);
+    if (!isCurrent()) return;
     const [memberPremium, memberVip, memberLifetimeRaw] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
       isLifetimePlanLocal().catch(() => false),
     ]);
-    const memberLifetime = memberPremium && memberLifetimeRaw;
+    if (!isCurrent()) return;
+    // зачем: см. выше — безденежный пожизненный доступ тоже даёт Pro-ауру.
+    const memberLifetime = (memberPremium || memberVip) && memberLifetimeRaw;
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
     const memberName = (nameRaw ?? '').trim();
     const member = withoutUndefinedFields({
@@ -1032,13 +1098,16 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
     const memberHash = leagueMemberHash(member);
     const profileHash = leagueMemberHash(member, false);
     const cachedSync = await readLeagueMemberSyncCache();
+    if (!isCurrent()) return;
     if (!options.force && shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, weekPoints)) return;
 
     const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean; groupId?: string }>('leagueUpdateMyMember');
+    if (!isCurrent()) return;
     await fn({
       stableId: uid,
       member,
     });
+    if (!isCurrent()) return;
     if (cachedSync?.groupId && cachedSync.weekId === weekId) {
       writeLeagueMemberSyncCache({
         weekId,
@@ -1054,8 +1123,11 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
 
 export async function syncMyLeagueMemberProfileNow(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
+  const accountToken = captureAccountGeneration();
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
   try {
     const weekPoints = await getMyWeekPoints();
+    if (!isCurrentAccountGeneration(accountToken)) return;
     const [[, nameRaw], [, leagueRaw]] = await AsyncStorage.multiGet(['user_name', LEAGUE_STATE_V3_KEY]);
     const name = (nameRaw ?? '').trim();
     if (name) {
@@ -1068,7 +1140,7 @@ export async function syncMyLeagueMemberProfileNow(): Promise<void> {
       }
       await getOrCreateLeagueGroup(getWeekId(), leagueId, name, weekPoints).catch(() => null);
     }
-    await _doUpdateGroupPoints(weekPoints, { force: true });
+    await _doUpdateGroupPoints(weekPoints, { force: true }, accountToken);
   } catch {}
 }
 
@@ -1097,6 +1169,9 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
     // писала в «прошлую» неделю, а UI и leaderboard — в текущую, и указатель
     // groupId указывал на сольник.
     const weekId = getWeekId();
+    // Home/league rollover must apply the previous week's authoritative result
+    // before startup registration can place the user into the new week's room.
+    if (leagueState?.weekId && leagueState.weekId !== weekId) return;
 
     const weekPoints = await getMyWeekPoints();
     const cachedRegistration = await readLeagueStartupRegistrationCache();
@@ -1159,6 +1234,12 @@ function mapLeagueMembersToGroupList(
         profileCardPublicFocus: normalizeProfileCardPublicFocus(m.profileCardPublicFocus),
         streak: m.streak ?? undefined,
         totalXp: m.totalXp ?? undefined,
+        // зачем (аудит 2026-08-04): метка синтетического жителя обязана
+        // доезжать до движка лиг — по ней calculateResult исключает его из
+        // подсчёта ранга и зон перехода, как это делает сервер. Без метки
+        // остаётся только префикс uid, а он мог бы не совпасть при смене
+        // формата и клиент молча разошёлся бы с сервером в итогах недели.
+        isResident: m.isResident === true || String(key).startsWith('res_'),
         leagueBoostMultiplier: boostLive ? mult : undefined,
         leagueBoostExpiresAt: boostLive ? until : undefined,
       } as GroupMember;
@@ -1177,126 +1258,6 @@ async function fetchGroupMembers(
   if (!snap.exists) return [];
   const members: Record<string, any> = snap.data()?.members ?? {};
   return mapLeagueMembersToGroupList(members, myUid, myName, myWeekPoints);
-}
-
-/**
- * Живе оновлення списку учасників клубу (та сама `league_groups` що в адмінці), без 60s кешу league_engine.
- */
-export function subscribeToLeagueGroupMembers(
-  onUpdate: (members: GroupMember[]) => void,
-): () => void {
-  if (!CLOUD_SYNC_ENABLED) return () => {};
-  const db = getFirestore();
-  if (!db) return () => {};
-  if (!isLeagueRealtimeMembersEnabled()) {
-    let cancelled = false;
-    void (async () => {
-      try {
-        const uid = await ensureAnonUser();
-        if (cancelled || !uid) return;
-        const lbSnap = await db.collection(COL_LB).doc(uid).get();
-        const lbData =
-          (lbSnap?.data?.() as { groupId?: string; groupWeekId?: string; leagueId?: number } | undefined) || {};
-        if (!lbSnap?.exists || !lbData.groupId || lbData.groupWeekId !== getWeekId()) {
-          if (!cancelled) onUpdate([]);
-          return;
-        }
-        const [myName, wp, groupSnap] = await Promise.all([
-          AsyncStorage.getItem('user_name').then((x) => (x || '').trim() || 'Игрок'),
-          getMyWeekPoints(),
-          db.collection('league_groups').doc(lbData.groupId).get(),
-        ]);
-        if (cancelled) return;
-        const members: Record<string, any> =
-          (groupSnap?.data?.() as { members?: Record<string, any> } | undefined)?.members ?? {};
-        onUpdate(mapLeagueMembersToGroupList(members, uid, myName, wp));
-      } catch {
-        if (!cancelled) onUpdate([]);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }
-  const r: { lb: (() => void) | null; g: (() => void) | null } = { lb: null, g: null };
-  let cancelled = false;
-  let lastReconcileAt = 0;
-  const RECONCILE_THROTTLE_MS = 30_000;
-
-  const triggerReconcile = (myLeagueId: number) => {
-    const now = Date.now();
-    if (now - lastReconcileAt < RECONCILE_THROTTLE_MS) return;
-    lastReconcileAt = now;
-    void (async () => {
-      try {
-        const myName = ((await AsyncStorage.getItem('user_name')) || '').trim() || 'Игрок';
-        const wp = await getMyWeekPoints();
-        await getOrCreateLeagueGroup(getWeekId(), myLeagueId, myName, wp);
-      } catch (e) {
-        if (__DEV__) console.warn('[firestore_leagues] reconcile failed', e);
-      }
-    })();
-  };
-
-  void (async () => {
-    const uid = await ensureAnonUser();
-    if (cancelled || !uid) return;
-    r.lb = db.collection(COL_LB).doc(uid).onSnapshot(
-      (lbSnap: any) => {
-        if (r.g) {
-          r.g();
-          r.g = null;
-        }
-        if (!lbSnap?.exists) {
-          onUpdate([]);
-          return;
-        }
-        const lbData =
-          (lbSnap.data() as { groupId?: string; groupWeekId?: string; leagueId?: number } | undefined) || {};
-        const gid = lbData.groupId;
-        const gWeekId = lbData.groupWeekId;
-        const myLeagueId = normLeagueIdData(lbData.leagueId, 0);
-        const currentWeekId = getWeekId();
-
-        // Stale weekId или нет groupId — игнорируем и форсим reconcile
-        if (!gid || gWeekId !== currentWeekId) {
-          onUpdate([]);
-          triggerReconcile(myLeagueId);
-          return;
-        }
-
-        r.g = db.collection('league_groups').doc(gid).onSnapshot(
-          (gSnap: any) => {
-            if (!gSnap?.exists) {
-              onUpdate([]);
-              triggerReconcile(myLeagueId);
-              return;
-            }
-            void (async () => {
-              const myName = ((await AsyncStorage.getItem('user_name')) || '').trim() || 'Игрок';
-              const wp = await getMyWeekPoints();
-              const members: Record<string, any> =
-                (gSnap.data() as { members?: Record<string, any> } | undefined)?.members ?? {};
-              const memberCount = Object.keys(members).length;
-
-              // Solo-группа — пользователь застрял один. Не выдаём в UI, форсим reconcile.
-              if (memberCount <= 1) {
-                triggerReconcile(myLeagueId);
-                return;
-              }
-              onUpdate(mapLeagueMembersToGroupList(members, uid, myName, wp));
-            })();
-          },
-        );
-      },
-    );
-  })();
-
-  return () => {
-    cancelled = true;
-    r.g?.();
-    r.lb?.();
-  };
 }
 
 /** Пушит личный буст (×2/×3) в league_groups.members.{uid} — другие участники видят модификатор. */

@@ -3,7 +3,7 @@
 // готовые ярусы GiftOpenEffects; legendary получает premium-ярус.
 import React, { useEffect, useMemo } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import CollectibleArt from './CollectibleArt';
 import { GiftOpenBurst, type GiftAnimTier } from './GiftOpenEffects';
 import HoloFoilCard from './HoloFoilCard';
@@ -21,6 +21,7 @@ import {
   findCollectibleSet,
 } from '../app/collectibles/catalog';
 import type { CollectibleDropOutcome } from '../app/collectibles/storage';
+import { soundDirector } from '../modules/audio/sound_director';
 
 function dropAnimTier(rarity: string): GiftAnimTier {
   if (rarity === 'legendary') return 'premium';
@@ -51,7 +52,12 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   const secret = outcome?.secretCardId ? findCollectibleCard(outcome.secretCardId) : null;
 
   useEffect(() => {
-    if (outcome) void hapticSuccess();
+    if (!outcome) return;
+    void hapticSuccess();
+    soundDirector.request('pm.reward.collectible', {
+      scope: 'collectible-drop',
+      dedupeKey: `${outcome.setId}:${outcome.cardId}`,
+    });
   }, [outcome]);
 
   const rarityColor = outcome ? COLLECTIBLE_RARITY_COLORS[outcome.rarity] ?? '#9AA6C0' : '#9AA6C0';
@@ -76,6 +82,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
               rarityColor={rarityColor}
               width={200}
               height={160}
+              tiltEnabled={false}
               style={{ backgroundColor: `${rarityColor}1C`, borderRadius: 18 }}
             >
               <CollectibleArt
@@ -112,7 +119,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
           {outcome.setCompleted && (
             <View style={styles.setCompletedBox}>
               <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Сет собран! +15 осколков', uk: 'Сет зібрано! +15 уламків', es: '¡Set completo! +15 fragmentos', 'pt-BR': 'Conjunto completo! +15 fragmentos', vi: 'Đủ bộ! +15 mảnh', id: 'Set lengkap! +15 pecahan', tr: 'Set tamam! +15 parça', pl: 'Komplet! +15 odłamków' })}
+                {triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' })}
               </Text>
               {!!secret && (
                 <Text style={[styles.setCompletedSub, { color: t.textSecond, fontSize: f.sub }]}>

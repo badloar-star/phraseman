@@ -4,7 +4,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { loadWeekLeaderboard } from './hall_of_fame_utils';
+import { loadWeekLeaderboard, getLastWeekFinalPoints } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
 import { rememberLeagueStateSnapshot, sanitizeLeagueState } from './league_open_cache_policy';
@@ -22,7 +22,6 @@ export interface ClubDef {
   shortUK:    string;  // «Ініціатори»
   ionIcon:    string;
   imageUri?:  any;  // изображение клуба (require() asset)
-  cardImageUri?: any; // большая фоновая карточка лиги (require() asset)
   color:      string;
   frameId:    string;  // id рамки в FRAMES
   tagRU:      string;
@@ -36,7 +35,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-med.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-med.webp"), color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-med.webp"), color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Медная лига',  nameUK: 'Мідь', nameES: 'Cobre',
     shortRU: 'Медная лига', shortUK: 'Мідь',
     tagRU: 'Бонус: +0% XP', tagUK: 'Бонус: +0% XP', tagES: 'Bonificación: +0% XP',
@@ -46,7 +45,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-bronz.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-bronz.webp"), color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-bronz.webp"), color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Бронзовая лига', nameUK: 'Бронза', nameES: 'Bronce',
     shortRU: 'Бронзовая лига', shortUK: 'Бронза',
     tagRU: 'Бонус: +10% XP',  tagUK: 'Бонус: +10% XP', tagES: 'Bonificación: +10% XP',
@@ -56,17 +55,17 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твою відданість помічено! Адепти знають: повторення — мати навчання. Продовжуй в тому ж дусі!',
   },
   {
-    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-serebro.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-serebro.webp"), color: '#4A90A4', frameId: 'club_seeker',
+    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-serebro.webp"), color: '#4A90A4', frameId: 'club_seeker',
     nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
     shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
-    descRU: 'Твое любопытство — твой двигатель. Ты ищешь новые знания, и это круто. На этом этапе многие сдаются, но ты блестишь на их фоне, как начищенная монета. Не бойся ошибаться, ведь именно так рождается истина и приятный бонус в +20% опыта.',
-    descUK: 'Твоя допитливість — твій двигун. Ти шукаєш нові знання, і це круто. На цьому етапі багато хто здається, але ти сяєш на їхньому фоні, як начищена монета. Не бійся помилятися, адже саме так народжується істина і приємний бонус у +20% досвіду.',
+    descRU: 'Твое любопытство — твой двигатель. Ты ищешь новые знания, и это круто. На этом этапе многие сдаются, но ты блестишь на их фоне, как начищенная жемчужина. Не бойся ошибаться, ведь именно так рождается истина и приятный бонус в +20% опыта.',
+    descUK: 'Твоя допитливість — твій двигун. Ти шукаєш нові знання, і це круто. На цьому етапі багато хто здається, але ти сяєш на їхньому фоні, як начищена жемчужина. Не бійся помилятися, адже саме так народжується істина і приємний бонус у +20% досвіду.',
     greetingRU: 'Ты на верном пути, искатель! Каждый новый урок — это открытие нового горизонта.',
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
   {
-    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-zoloto.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-zoloto.webp"), color: '#7BA84A', frameId: 'club_practitioner',
+    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-zoloto.webp"), color: '#7BA84A', frameId: 'club_practitioner',
     nameRU: 'Золотая лига',   nameUK: 'Золото', nameES: 'Oro',
     shortRU: 'Золотая лига',  shortUK: 'Золото',
     tagRU: 'Бонус: +30% XP', tagUK: 'Бонус: +30% XP', tagES: 'Bonificación: +30% XP',
@@ -76,7 +75,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Справа майстра боїться! Практики будують знання цеглина за цеглиною. Ти у відмінній формі!',
   },
   {
-    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-platina.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-platina.webp"), color: '#C8A84A', frameId: 'club_analyst',
+    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-platina.webp"), color: '#C8A84A', frameId: 'club_analyst',
     nameRU: 'Платиновая лига', nameUK: 'Платина', nameES: 'Platino',
     shortRU: 'Платиновая лига', shortUK: 'Платина',
     tagRU: 'Бонус: +40% XP', tagUK: 'Бонус: +40% XP', tagES: 'Bonificación: +40% XP',
@@ -86,7 +85,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твій розум гостріший, ніж учора! Аналітики перетворюють складність на ясність. Ти мислиш системно!',
   },
   {
-    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-izumrud.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-izumrud.webp"), color: '#CD7F32', frameId: 'club_erudite',
+    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-izumrud.webp"), color: '#CD7F32', frameId: 'club_erudite',
     nameRU: 'Изумрудная лига', nameUK: 'Смарагд', nameES: 'Esmeralda',
     shortRU: 'Изумрудная лига', shortUK: 'Смарагд',
     tagRU: 'Бонус: +50% XP', tagUK: 'Бонус: +50% XP', tagES: 'Bonificación: +50% XP',
@@ -96,7 +95,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-sapfir.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-sapfir.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-sapfir.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Сапфировая лига', nameUK: 'Сапфір', nameES: 'Zafiro',
     shortRU: 'Сапфировая лига', shortUK: 'Сапфір',
     tagRU: 'Бонус: +60% XP', tagUK: 'Бонус: +60% XP', tagES: 'Bonificación: +60% XP',
@@ -106,7 +105,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'flame-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-rubin.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-rubin.webp"), color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'flame-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-rubin.webp"), color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Рубиновая лига', nameUK: 'Рубін', nameES: 'Rubí',
     shortRU: 'Рубиновая лига', shortUK: 'Рубін',
     tagRU: 'Бонус: +70% XP', tagUK: 'Бонус: +70% XP', tagES: 'Bonificación: +70% XP',
@@ -116,7 +115,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Експертний рівень! Твої знання виходять за межі підручника. Ти говориш — всі слухають!',
   },
   {
-    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-almaz.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-almaz.webp"), color: '#A8B4C0', frameId: 'club_magister',
+    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-almaz.webp"), color: '#A8B4C0', frameId: 'club_magister',
     nameRU: 'Алмазная лига', nameUK: 'Діамант', nameES: 'Diamante',
     shortRU: 'Алмазная лига', shortUK: 'Діамант',
     tagRU: 'Бонус: +80% XP',  tagUK: 'Бонус: +80% XP', tagES: 'Bonificación: +80% XP',
@@ -126,7 +125,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Магістерська мантія тобі личить! Ти в абсолютній еліті тих, хто вивчає англійську. Капелюх долу!',
   },
   {
-    id: 9, ionIcon: 'sparkles-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-cherniy-almaz.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-cherniy-almaz.webp"), color: '#E87E30', frameId: 'club_thinker',
+    id: 9, ionIcon: 'sparkles-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-cherniy-almaz.webp"), color: '#E87E30', frameId: 'club_thinker',
     nameRU: 'Лига Черного Алмаза', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
     shortRU: 'Лига Черного Алмаза', shortUK: 'Чорний Діамант',
     tagRU: 'Бонус: +90% XP',   tagUK: 'Бонус: +90% XP', tagES: 'Bonificación: +90% XP',
@@ -136,7 +135,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш англійською! Це найвищий рівень занурення. Мислителі — рідкість і гордість ліги!',
   },
   {
-    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-efir.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-efir.webp"), color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-efir.webp"), color: '#D4A017', frameId: 'club_master',
     nameRU: 'Эфирная лига',  nameUK: 'Ефір', nameES: 'Éter',
     shortRU: 'Эфирная лига', shortUK: 'Ефір',
     tagRU: 'Бонус: +100% XP',   tagUK: 'Бонус: +100% XP', tagES: 'Bonificación: +100% XP',
@@ -146,7 +145,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Майстер слова! Ти серед найкращих у додатку. Твоя англійська — це мистецтво. Ми пишаємось тобою!',
   },
   {
-    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-vishaya.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-vishaya.webp"), color: '#FFD700', frameId: 'club_professor',
+    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-vishaya.webp"), color: '#FFD700', frameId: 'club_professor',
     nameRU: 'Высшая лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
     shortRU: 'Высшая лига',  shortUK: 'Вища Ліга',
     tagRU: 'Бонус: +110% XP', tagUK: 'Бонус: +110% XP', tagES: 'Bonificación: +110% XP',
@@ -302,7 +301,7 @@ export function clubDescForLang(club: Pick<ClubDef, 'id' | 'descRU' | 'descUK'>,
 export const LEAGUES = CLUBS.map(c => ({
   id: c.id, nameRU: c.nameRU, nameUK: c.nameUK, nameES: c.nameES,
   shortRU: c.shortRU, shortUK: c.shortUK,
-  ionIcon: c.ionIcon, imageUri: c.imageUri, cardImageUri: c.cardImageUri, color: c.color, frameId: c.frameId,
+  ionIcon: c.ionIcon, imageUri: c.imageUri, color: c.color, frameId: c.frameId,
   icon: '', tagRU: c.tagRU, tagUK: c.tagUK, tagES: c.tagES, descRU: c.descRU, descUK: c.descUK,
   greetingRU: c.greetingRU, greetingUK: c.greetingUK,
 }));
@@ -328,6 +327,14 @@ export interface GroupMember {
   uid?:      string;
   botId?:    string;
   isBot?:    boolean;
+  /**
+   * Синтетический «житель», дозаполняющий комнату (владелец 2026-08-04).
+   * В таблице виден как обычный игрок, но в НАГРАДАХ не участвует: сервер
+   * (league_finalize_cron) считает ранги и зоны перехода только среди живых,
+   * и клиент обязан считать так же — иначе покажет один результат, а сервер
+   * запишет другой.
+   */
+  isResident?: boolean;
   isPremium?: boolean;
   isVip?: boolean;
   isLifetime?: boolean;
@@ -400,6 +407,17 @@ export const LEAGUE_RESULT_ZONE_RATIO = 0.15;
 export const getLeagueResultZoneSize = (total: number): number => (
   total >= 2 ? Math.max(1, Math.round(total * LEAGUE_RESULT_ZONE_RATIO)) : 0
 );
+
+/**
+ * Житель ли этот участник комнаты — зеркало серверного isResidentMember
+ * (functions/src/league_residents.ts). Проверяем и метку, и префикс uid:
+ * метка может отсутствовать в старых снапшотах комнаты, лежащих в кэше.
+ */
+export const isResidentGroupMember = (member: GroupMember | null | undefined): boolean => {
+  if (!member) return false;
+  if (member.isResident === true) return true;
+  return typeof member.uid === 'string' && member.uid.startsWith('res_');
+};
 
 const normalizeMemberName = (name?: string | null): string =>
   String(name ?? '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -499,18 +517,15 @@ const repairPendingResultForCurrentUser = async (
     'stored-points',
   );
 
-  const repaired = calculateResult(
-    {
-      leagueId: result.prevLeagueId,
-      weekId: getWeekId(),
-      group: repairedGroup,
-    },
-    storedPoints,
-  );
-
+  // Ремонт — ТОЛЬКО структурный: находим/помечаем текущего пользователя в группе
+  // (isMe, актуальное имя, uid). Исход (prevLeagueId/newLeagueId/myRank/totalInGroup/
+  // promoted/demoted) НЕ пересчитываем: иначе смена имени/uid между ролловером и
+  // показом модалки могла «перевести» пользователя в другую лигу, чем было решено
+  // на ролловере. Если пользователь в группе не найден — ensureCurrentUserInGroup
+  // аккуратно добавит запись с isMe, поля исхода всё равно сохраняются.
   return {
-    ...repaired,
-    prevLeagueId: result.prevLeagueId,
+    ...result,
+    group: repairedGroup,
   };
 };
 
@@ -549,6 +564,32 @@ export const getWeekId = (d: Date = new Date()): string => {
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
   const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+};
+
+const LEAGUE_FINALIZATION_GRACE_MS = 15 * 60 * 1000;
+
+/**
+ * The server finalizes the previous league week at 00:05 UTC. During the first
+ * minutes of Monday a missing result means "not ready yet", not "calculate it
+ * permanently from a possibly stale local snapshot".
+ */
+export const isLeagueFinalizationGracePeriod = (now: Date = new Date()): boolean => {
+  if (now.getUTCDay() !== 1) return false;
+  const elapsed = now.getUTCHours() * 60 * 60 * 1000
+    + now.getUTCMinutes() * 60 * 1000
+    + now.getUTCSeconds() * 1000
+    + now.getUTCMilliseconds();
+  return elapsed < LEAGUE_FINALIZATION_GRACE_MS;
+};
+
+// Сравнение weekId формата «YYYY-Www» по (год, номер недели).
+// >0: a позже b; 0: равны; <0: a раньше b (например, часы устройства откатили назад).
+const compareWeekIds = (a: string, b: string): number => {
+  const pa = /^(\d{4})-W(\d{2})$/.exec(a);
+  const pb = /^(\d{4})-W(\d{2})$/.exec(b);
+  if (!pa || !pb) return a.localeCompare(b); // неожиданный формат — резервное строковое сравнение
+  if (pa[1] !== pb[1]) return Number(pa[1]) - Number(pb[1]);
+  return Number(pa[2]) - Number(pb[2]);
 };
 
 export const loadLeagueState = async (): Promise<LeagueState | null> => {
@@ -622,12 +663,45 @@ export const markLeagueResultShown = async (result: LeagueResult): Promise<void>
   } catch {}
 };
 
-let _groupCache: { group: GroupMember[]; ts: number } | null = null;
+let _groupCache: {
+  group: GroupMember[];
+  ts: number;
+  weekId: string;
+  leagueId: number;
+  userKey: string;
+} | null = null;
 const GROUP_CACHE_TTL = 60_000; // 60 сек
 
 /** Скинути кеш групи (екран клубу / після фокусу), щоб fetchGroupForUser знову пішов у Firestore. */
 export const invalidateLeagueGroupCache = () => {
   _groupCache = null;
+};
+
+/**
+ * Схлопнулась ли свежая группа относительно уже известной.
+ *
+ * зачем: 2026-07-27 владелец видел «2 участника → сразу 1 → упс, ты тут один →
+ * бесконечный скелет». Причина: getOrCreateLeagueGroup отдаёт результат
+ * fetchGroupMembers БЕЗ проверки размера. Если документ league_groups ещё не
+ * долетел до реплики (или всех, кроме меня, отфильтровал identityHidden), в ответ
+ * приходит массив из одного меня — и checkLeagueOnAppOpen честно писал его в
+ * league_state_v3, УНИЧТОЖАЯ реальных участников. Дальше 6-часовой троттл
+ * консервировал испорченный кэш, поэтому симптом не лечился перезаходом.
+ *
+ * Правило: группа из одного меня НИКОГДА не затирает группу, где людей больше.
+ * Реальный уход участников так не теряется — их вычищает недельный ролловер и
+ * серверный leagueFinalizeCron, а не разовое чтение. Чистая функция.
+ */
+export const isCollapsedLeagueGroup = (
+  fresh: GroupMember[] | null | undefined,
+  known: GroupMember[] | null | undefined,
+): boolean => {
+  const freshList = Array.isArray(fresh) ? fresh : [];
+  const knownList = Array.isArray(known) ? known : [];
+  // Схлопыванием считаем только падение до «меня одного»: любой ответ с двумя и
+  // более участниками — нормальные данные, даже если кто-то действительно вышел.
+  if (freshList.length > 1) return false;
+  return freshList.length < knownList.length;
 };
 
 /**
@@ -646,19 +720,37 @@ const fetchGroupForUser = async (
   // Кэш на 60 сек чтобы не спамить Firestore при каждом рендере
   const now = Date.now();
   const myUid = await getMyUidSafe();
-  if (_groupCache && now - _groupCache.ts < GROUP_CACHE_TTL) {
+  const targetWeekId = weekId ?? getWeekId();
+  const userKey = myUid || `name:${myName.trim().toLocaleLowerCase()}`;
+  const cacheMatchesRequest = !!_groupCache
+    && _groupCache.weekId === targetWeekId
+    && _groupCache.leagueId === leagueId
+    && _groupCache.userKey === userKey;
+  if (_groupCache && cacheMatchesRequest && now - _groupCache.ts < GROUP_CACHE_TTL) {
     return ensureCurrentUserInGroup(_groupCache.group, myName, myWeekPoints, myUid);
   }
   // Пробуем получить реальную группу из Firestore
   const remoteGroup = await getOrCreateLeagueGroup(
-    weekId ?? getWeekId(),
+    targetWeekId,
     leagueId,
     myName,
     myWeekPoints,
   );
   if (remoteGroup && remoteGroup.length > 0) {
     const repairedRemoteGroup = ensureCurrentUserInGroup(remoteGroup, myName, myWeekPoints, myUid);
-    _groupCache = { group: repairedRemoteGroup, ts: Date.now() };
+    // зачем: схлопнутый ответ (только я) не должен попадать в 60-секундный кэш —
+    // иначе повторные входы в течение минуты гарантированно получали бы «ты тут
+    // один», даже когда следующий запрос вернул бы полную группу.
+    const knownSameGroup = cacheMatchesRequest ? _groupCache?.group : null;
+    if (!isCollapsedLeagueGroup(repairedRemoteGroup, knownSameGroup)) {
+      _groupCache = {
+        group: repairedRemoteGroup,
+        ts: Date.now(),
+        weekId: targetWeekId,
+        leagueId,
+        userKey,
+      };
+    }
     return repairedRemoteGroup;
   }
   return null;
@@ -691,6 +783,12 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   const normalizedGroup = ensureCurrentUserInGroup(state.group, '', myWeekPoints, null);
   const updated = normalizedGroup
     .map(m => m.isMe ? { ...m, points: myWeekPoints } : m)
+    // зачем (аудит 2026-08-04): жители дозаполняют комнату визуально, но в
+    // наградах не участвуют. Сервер (computeGroupResults) считает ранг и зоны
+    // перехода ТОЛЬКО среди живых — клиент обязан считать так же, иначе
+    // покажет «Переход», а сервер запишет другое место. Плюс жители раздували
+    // бы total, сдвигая границы топ-15%/низ-15% для живых.
+    .filter(m => !isResidentGroupMember(m))
     .sort((a, b) => b.points - a.points);
 
   const total        = updated.length;
@@ -698,14 +796,21 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   // отдавало мне топ-1 + автоматический promotion при reset/гонке. Помечаем как «вне группы»,
   // и hasValidGroup=false ниже отключает promotion/demotion целиком.
   const meIndex      = updated.findIndex(m => m.isMe);
-  const myRank       = meIndex >= 0 ? meIndex + 1 : total + 1;
   const meInGroup    = meIndex >= 0;
+  const myPoints     = meInGroup ? readMemberPoints(updated[meIndex], myWeekPoints) : 0;
+  // Competition ranking: equal XP means equal rank and therefore the same
+  // promotion/demotion outcome at a zone boundary.
+  const myRank       = meInGroup
+    ? 1 + updated.filter((member) => readMemberPoints(member, 0) > myPoints).length
+    : total + 1;
+  const myBottomRank = meInGroup
+    ? 1 + updated.filter((member) => readMemberPoints(member, 0) < myPoints).length
+    : total + 1;
 
   // Need at least 2 participants for meaningful ranking AND me present in the group
   const hasValidGroup = total >= 2 && meInGroup;
   const zoneSize     = getLeagueResultZoneSize(total);
   const topCutoff    = hasValidGroup ? zoneSize : 0;
-  const bottomCutoff = hasValidGroup ? total - zoneSize + 1 : total + 1;
   const xpPromotionMode = isLeagueXpPromotionEnabled();
   const xpPromotionThreshold = getLeagueXpPromotionThreshold();
   const promoted = xpPromotionMode
@@ -713,7 +818,7 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
     : hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
   const demoted = xpPromotionMode
     ? false
-    : hasValidGroup && myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
+    : hasValidGroup && myBottomRank <= zoneSize && state.leagueId > 0 && !promoted;
 
   return {
     prevLeagueId: state.leagueId,
@@ -773,6 +878,93 @@ const fetchServerLeagueResult = async (
   }
 };
 
+/**
+ * Читает ВСЕ финализированные серверные результаты пользователя
+ * (users/{uid}/league_week_results/*). Нужно для цепочки переходов, когда
+ * приложение не открывалось несколько недель подряд: cron записывал результат
+ * каждую неделю, а клиентский ролловер применяет максимум один переход.
+ * firestore.rules: allow read (= get + list) для владельца — list разрешён.
+ * Возвращает null если облако недоступно (включая Expo Go / выключенный sync).
+ */
+const fetchServerLeagueResultsAll = async (
+  uid: string,
+): Promise<{ weekId: string; result: ServerLeagueWeekResult }[] | null> => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    const firestore = require('@react-native-firebase/firestore').default;
+    const snap = await firestore()
+      .collection('users')
+      .doc(uid)
+      .collection('league_week_results')
+      .get();
+    const out: { weekId: string; result: ServerLeagueWeekResult }[] = [];
+    snap.forEach((doc: any) => {
+      const d = doc.data();
+      if (!d || typeof d.rank !== 'number' || typeof d.total !== 'number') return;
+      out.push({ weekId: doc.id, result: d as ServerLeagueWeekResult });
+    });
+    return out;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Собирает валидную цепочку серверных результатов за пропущенные недели:
+ * недели из [startWeekId, endWeekId), отсортированные по возрастанию. Первое
+ * звено должно стартовать из startLeagueId, каждое следующее — из лиги,
+ * куда перевело предыдущее; шаг ≤ 1 лига, диапазон 0..CLUBS.length-1.
+ * Цепочка обрывается на первом невалидном звене (дальше истории не доверяем).
+ */
+const buildServerResultChain = (
+  all: { weekId: string; result: ServerLeagueWeekResult }[] | null,
+  startWeekId: string,
+  endWeekId: string,
+  startLeagueId: number,
+): ServerLeagueWeekResult[] => {
+  if (!all) return [];
+  const inRange = all
+    .filter(({ weekId }) =>
+      compareWeekIds(weekId, startWeekId) >= 0 && compareWeekIds(weekId, endWeekId) < 0)
+    .sort((a, b) => compareWeekIds(a.weekId, b.weekId));
+  const chain: ServerLeagueWeekResult[] = [];
+  let currentLeague = startLeagueId;
+  for (const { weekId, result } of inRange) {
+    const valid = result.prevLeagueId === currentLeague
+      && Math.abs(result.newLeagueId - result.prevLeagueId) <= 1
+      && result.newLeagueId >= 0
+      && result.newLeagueId < CLUBS.length;
+    if (!valid) {
+      console.warn('[league_engine] server league result chain broken, ignoring the rest', {
+        weekId, expectedLeagueId: currentLeague, result,
+      });
+      break;
+    }
+    chain.push(result);
+    currentLeague = result.newLeagueId;
+  }
+  return chain;
+};
+
+/**
+ * Ограничивает переход лиги ОДНОЙ ступенью за ролловер.
+ *
+ * зачем: buildServerResultChain валидирует шаг каждого звена (<=1), но суммарный переход
+ * раньше не ограничивался — несколько пропущенных недель с promoted складывались в +3
+ * лиги за один ролловер (репорт 20.07.2026: Золотая id3 → Сапфировая id6 «одним разом»,
+ * пользователь прочитал это как понижение и потерю очков). Одиночный путь такую проверку
+ * имеет, цепочечный — нет. Остальные звенья остаются историей для модалки, но лигу не
+ * двигают: иначе отпуск на месяц = подъём через полстолбца лестницы без единой игры.
+ *
+ * XP-режим усиливает проблему: в нём demoted всегда false, а promoted выдаётся при
+ * достижении порога, то есть у активного игрока повышение накапливается каждую неделю.
+ */
+export const capLeagueStep = (fromLeagueId: number, targetLeagueId: number): number => {
+  if (targetLeagueId === fromLeagueId) return fromLeagueId;
+  const stepped = fromLeagueId + Math.sign(targetLeagueId - fromLeagueId);
+  return Math.max(0, Math.min(CLUBS.length - 1, stepped));
+};
+
 export const checkLeagueOnAppOpen = async (
   myName: string,
   myWeekPoints: number, // передаём НЕДЕЛЬНЫЕ очки
@@ -828,16 +1020,59 @@ export const checkLeagueOnAppOpen = async (
     return { needShowResult: false, result: null, state };
   }
 
-  // Новая неделя — считаем итоги
-  if (currentWeekId !== state.weekId) {
+  // Новая неделя — считаем итоги. Ролловер только ВПЕРЁД: если часы устройства
+  // откатили назад (currentWeekId < state.weekId), проваливаемся в ветку «та же
+  // неделя» ниже — обновим свои очки в группе без ролловера и без затирания weekId.
+  if (compareWeekIds(currentWeekId, state.weekId) > 0) {
     const storedMyPoints = getStoredMyPointsFromLeagueState(state, myName, myUid);
     const rolloverGroup = ensureCurrentUserInGroup(state.group, myName, storedMyPoints, myUid, 'stored-points');
 
     // Предпочитаем серверный результат (leagueFinalizeCron) — он авторитетен,
     // потому что считался по реальным очкам всех участников, а не по кэшу клиента.
+    // Но принимаем его только после валидации: лига «откуда» должна совпадать с
+    // нашей, переход — максимум на 1 лигу и в пределах допустимого диапазона.
     let result: LeagueResult;
+    // Если неделя пропущена не одна — пробуем цепочку серверных результатов за
+    // все пропущенные недели (один модал, но лига — итоговая по серверной истории).
+    const serverChain = myUid
+      ? buildServerResultChain(
+          await fetchServerLeagueResultsAll(myUid),
+          state.weekId,
+          currentWeekId,
+          state.leagueId,
+        )
+      : [];
+    if (serverChain.length > 0) {
+      const last = serverChain[serverChain.length - 1];
+      const chainTargetLeagueId = last.newLeagueId;
+      const cappedLeagueId = capLeagueStep(state.leagueId, chainTargetLeagueId);
+      if (cappedLeagueId !== chainTargetLeagueId) {
+        console.warn('[league_engine] multi-week chain capped to a single league step', {
+          fromLeagueId: state.leagueId, chainTargetLeagueId, cappedLeagueId, weeks: serverChain.length,
+        });
+      }
+      result = {
+        prevLeagueId: state.leagueId,
+        newLeagueId: cappedLeagueId,
+        myRank: last.rank,
+        totalInGroup: last.total,
+        promoted: cappedLeagueId > state.leagueId,
+        demoted: cappedLeagueId < state.leagueId,
+        group: rolloverGroup,
+      };
+    } else {
     const serverResult = myUid ? await fetchServerLeagueResult(myUid, state.weekId) : null;
-    if (serverResult) {
+    const serverResultValid = !!serverResult
+      && serverResult.prevLeagueId === state.leagueId
+      && Math.abs(serverResult.newLeagueId - serverResult.prevLeagueId) <= 1
+      && serverResult.newLeagueId >= 0
+      && serverResult.newLeagueId < CLUBS.length;
+    if (serverResult && !serverResultValid) {
+      console.warn('[league_engine] server league result rejected, falling back to local calc', {
+        weekId: state.weekId, stateLeagueId: state.leagueId, serverResult,
+      });
+    }
+    if (serverResult && serverResultValid) {
       result = {
         prevLeagueId: serverResult.prevLeagueId,
         newLeagueId: serverResult.newLeagueId,
@@ -847,8 +1082,27 @@ export const checkLeagueOnAppOpen = async (
         demoted: serverResult.demoted,
         group: rolloverGroup,
       };
+    } else if (
+      myUid
+      && CLOUD_SYNC_ENABLED
+      && !IS_EXPO_GO
+      && isLeagueFinalizationGracePeriod()
+    ) {
+      // Keep the previous-week state untouched. A later focus/open retries the
+      // authoritative result instead of making a local estimate irreversible.
+      return {
+        needShowResult: false,
+        result: null,
+        state: { ...state, group: rolloverGroup },
+      };
     } else {
-      result = calculateResult({ ...state, group: rolloverGroup }, storedMyPoints);
+      // Локальный резервный расчёт: кэш группы может отставать (юзер добрал очки в конце
+      // недели, а снапшот не обновился) — берём максимум из кэша и финала,
+      // сохранённого resetWeekPointsIfStale перед обнулением счётчика.
+      const lastFinal = await getLastWeekFinalPoints(state.weekId);
+      const effectiveMyPoints = Math.max(storedMyPoints, lastFinal ?? 0);
+      result = calculateResult({ ...state, group: rolloverGroup }, effectiveMyPoints);
+    }
     }
     await savePendingResult(result);
 
@@ -863,7 +1117,9 @@ export const checkLeagueOnAppOpen = async (
       group:    rolloverGroup,
     });
 
-    const remote = await fetchGroupForUser(result.newLeagueId, myName, 0);
+    // Новая неделя/лига означает новую комнату. Одиночная серверная группа здесь
+    // валидна и не должна сравниваться по размеру со снимком прошлой недели.
+    const remote = await fetchGroupForUser(result.newLeagueId, myName, 0, currentWeekId);
     const finalGroup = remote ?? rolloverGroup;
     const newState: LeagueState = {
       leagueId: result.newLeagueId,
@@ -885,7 +1141,15 @@ export const checkLeagueOnAppOpen = async (
   // Та же неделя — обновляем группу из Firestore (свежие данные всех участников).
   // Если remote недоступен — НЕ переписываем state.group (там могут быть реальные
   // участники, загруженные ранее), только обновляем мои очки.
-  const freshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, currentWeekId);
+  // При откате часов назад (currentWeekId < state.weekId) тоже попадаем сюда:
+  // ролловер не делаем и группу тянем за state.weekId — за «настоящую» неделю.
+  const effectiveWeekId = compareWeekIds(currentWeekId, state.weekId) >= 0 ? currentWeekId : state.weekId;
+  const rawFreshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, effectiveWeekId);
+  // зачем: неполный ответ Firestore (документ группы не долетел до реплики) приходил
+  // как валидная группа из одного меня и затирал реальных участников в кэше — владелец
+  // видел «2 участника → 1 → упс, ты тут один». Схлопнутый ответ отбрасываем и живём
+  // на прошлой группе, как при полном отказе сети. Лишних чтений это не создаёт.
+  const freshGroup = isCollapsedLeagueGroup(rawFreshGroup, state.group) ? null : rawFreshGroup;
   const updatedGroup = freshGroup ?? ensureCurrentUserInGroup(state.group, myName, myWeekPoints, myUid)
     .sort((a, b) => b.points - a.points);
 

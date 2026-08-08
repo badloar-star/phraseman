@@ -4,28 +4,33 @@ import path from 'path';
 describe('avatar_select bouncy layout contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '../app/avatar_select.tsx'), 'utf8');
 
-  it('keeps fixed page chrome outside normal scroll but inside the bouncy transform layer', () => {
-    const bouncyLayerStart = source.indexOf('<Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>');
-    const wrapStart = source.indexOf('<BouncyWrap>', bouncyLayerStart);
-    const scrollStart = source.indexOf('<Reanimated.ScrollView', wrapStart);
-    const scrollEnd = source.indexOf('</Reanimated.ScrollView>', scrollStart);
-    const bouncyLayerEnd = source.indexOf('</Reanimated.View>', scrollEnd);
-    const title = source.indexOf('>Кастомизация</Text>', bouncyLayerStart);
-    const currentAvatar = source.indexOf('>Текущий аватар</Text>', bouncyLayerStart);
-    const resetButton = source.indexOf('>Вернуть аватар уровня</Text>', bouncyLayerStart);
+  // зачем: BouncyWrap клонирует СВОЕГО ребёнка (overScrollMode) и вешает на него
+  // GestureDetector с нативным жестом скролла. Любая прослойка между обёрткой и
+  // списком забирает жест себе — на Android скролл умирает, остаётся только
+  // резинка. Тест закрепляет, что список — прямой ребёнок, а bouncyStyle живёт
+  // в style самого списка.
+  it('keeps the virtualized list as the direct child of the bouncy wrapper', () => {
+    const wrapStart = source.indexOf('<BouncyWrap>');
+    const listStart = source.indexOf('<Reanimated.FlatList', wrapStart);
+    const listEnd = source.indexOf('/>', listStart);
+    const wrapEnd = source.indexOf('</BouncyWrap>', listEnd);
 
-    expect(bouncyLayerStart).toBeGreaterThan(-1);
     expect(wrapStart).toBeGreaterThan(-1);
-    expect(wrapStart).toBeGreaterThan(bouncyLayerStart);
+    expect(listStart).toBeGreaterThan(wrapStart);
+    expect(listEnd).toBeGreaterThan(listStart);
+    expect(wrapEnd).toBeGreaterThan(listEnd);
     expect(source).not.toContain('<BouncyWrap style={bouncyStyle}>');
-    expect(scrollStart).toBeGreaterThan(wrapStart);
-    expect(scrollEnd).toBeGreaterThan(scrollStart);
-    expect(bouncyLayerEnd).toBeGreaterThan(scrollEnd);
-    expect(title).toBeGreaterThan(bouncyLayerStart);
-    expect(title).toBeLessThan(scrollStart);
-    expect(currentAvatar).toBeGreaterThan(bouncyLayerStart);
-    expect(currentAvatar).toBeLessThan(scrollStart);
-    expect(resetButton).toBeGreaterThan(bouncyLayerStart);
-    expect(resetButton).toBeLessThan(scrollStart);
+
+    // Между <BouncyWrap> и <Reanimated.FlatList> не должно быть ни одного тега —
+    // только пробелы и комментарии.
+    const between = source.slice(wrapStart + '<BouncyWrap>'.length, listStart);
+    expect(between.replace(/\{\/\*[\s\S]*?\*\/\}/g, '').trim()).toBe('');
+
+    // Резинка применяется к списку напрямую.
+    const listSource = source.slice(listStart, listEnd);
+    expect(listSource).toContain('style={[styles.flex, bouncyStyle]}');
+
+    expect(source.match(/<Reanimated\.FlatList/g)).toHaveLength(1);
+    expect(source).not.toContain('<ScrollView');
   });
 });

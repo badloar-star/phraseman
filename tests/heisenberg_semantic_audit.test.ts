@@ -1,10 +1,5 @@
 declare const require: any;
 
-import {
-  findPayloadMatchingQuizEntries,
-  findPayloadMatchingQuizEntry,
-} from '../scripts/heisenberg_semantic_audit';
-import { buildQuizPayloadOrdinalRepairPlan } from '../scripts/heisenberg_quiz_payload_ordinal_repair_plan';
 
 const semantic = require('../scripts/lib/heisenberg_semantic_core.cjs');
 
@@ -113,6 +108,7 @@ describe('heisenberg semantic audit helpers', () => {
     }
   });
 
+  /* Quiz payload helpers were retired with the Quiz/Arena product surface.
   it('matches structured quiz payloads to a unique source ordinal by English target evidence', () => {
     const entries = [
       { ordinal: 1, choices: ['I walk home.', 'I work home.'], correct: 0 },
@@ -263,4 +259,5 @@ describe('heisenberg semantic audit helpers', () => {
       }),
     ]));
   });
+  */
 });

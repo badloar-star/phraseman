@@ -18,11 +18,21 @@ interface RewardTier {
   shards: number;
 }
 
+/**
+ * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7)
+ * обнуляла выплаты из буня — сундук показывал «0 жемчужин — теперь твои», то есть
+ * пустое окно с анимацией открытия.
+ *
+ * зачем: владелец (2026-07-27) закрыл висевший в этом файле открытый вопрос и разрешил
+ * маленькую выплату — сундук снова что-то даёт, но по скромной шкале 1/2/3/5 (максимум
+ * 5 жемчужин в неделю), чтобы не размывать продажу жемчужин. Веса, claim-гарды и
+ * модалки не менялись.
+ */
 const MYSTERY_TIERS: readonly RewardTier[] = [
-  { weight: 60, shards: 3 },
-  { weight: 27, shards: 5 },
-  { weight: 10, shards: 8 },
-  { weight: 3, shards: 15 },
+  { weight: 60, shards: 1 },
+  { weight: 27, shards: 2 },
+  { weight: 10, shards: 3 },
+  { weight: 3, shards: 5 },
 ];
 
 /**
@@ -40,8 +50,12 @@ export function pickMysteryReward(roll: number): BoonReward {
   return { shards: MYSTERY_TIERS[0].shards };
 }
 
-/** Фиксированная награда «Дня возвращения». */
-export const COMEBACK_REWARD: BoonReward = { shards: 5 };
+/**
+ * Фиксированная награда «Дня возвращения».
+ * зачем: та же правка владельца, что и у MYSTERY_TIERS — «пустых» сундуков в приложении
+ * не остаётся, но выплата минимальная (1 жемчужина).
+ */
+export const COMEBACK_REWARD: BoonReward = { shards: 1 };
 
 /** Текущий week-id (UTC, ISO-неделя-подобный номер) — для недельных claim-ключей. */
 export function currentWeekId(todayKey: string = getTodayKey()): string {

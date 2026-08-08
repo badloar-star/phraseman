@@ -35,7 +35,7 @@ export function shouldShowExitTrialOffer(params: {
   // План #7: расширено на больше high-value контекстов — exit-offer «0–30 сек» даёт
   // самый высокий ROI среди re-engagement-механик (Superwall: 17% revenue от abandon).
   const EXIT_TRIAL_CONTEXTS = new Set([
-    'course_after_lesson3', 'no_energy', 'quiz_limit',
+    'course_after_lesson3', 'no_energy',
     'intro_ended', 'streak', 'trainer_limit', 'flashcard_limit',
   ]);
   return (

@@ -38,7 +38,7 @@ const FLASHCARDS_MARKET_DEV_OWNED_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}
 const FLASHCARDS_MARKET_DEV_ACTIVE_PACK_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}_active_pack_v1`;
 
 const RAW_TARGET_SENSITIVE_PATTERNS = [
-  /^lesson\d+_(?:progress|best_score|pass_count|words|listening_progress|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
+  /^lesson\d+_(?:progress|best_score|pass_count|last_completed_at_v1|words|listening_progress|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
   /^lesson\d+_words_shards_granted$/,
   /^lesson\d+_irregular_shards_granted$/,
   /^lesson_finished_once_v1_\d+$/,
@@ -50,6 +50,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^theory_sections_seen_\d+$/,
   /^prep_drill_perfect_\d+$/,
   /^unlocked_lessons$/,
+  /^legacy_free_lesson_(?:cap|migration)_v1$/,
   /^premium_course_level$/,
   /^lesson_unlock_repair_v3$/,
   /^last_opened_lesson$/,
@@ -194,6 +195,12 @@ export function lessonBestScoreKey(lessonId: string | number, studyTarget?: Runt
 
 export function lessonPassCountKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
   const raw = `lesson${lessonId}_pass_count`;
+  return scopedOrLegacyKey(raw, 'lesson_progress', studyTarget);
+}
+
+/** Дата (YYYY-MM-DD, UTC) последнего прохождения урока — для revision_lesson. */
+export function lessonLastCompletedAtKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
+  const raw = `lesson${lessonId}_last_completed_at_v1`;
   return scopedOrLegacyKey(raw, 'lesson_progress', studyTarget);
 }
 
@@ -351,12 +358,24 @@ export function statsDailyBreakdownKey(studyTarget?: RuntimeStudyTarget): string
   return scopedOrLegacyKey('stats_daily_breakdown_v1', 'target_stats', studyTarget);
 }
 
+export function statsPrimaryMetricKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('stats_primary_metric_v1', 'target_stats', studyTarget);
+}
+
 export function achievementStateKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('achievements_v1', 'achievements', studyTarget);
 }
 
 export function unlockedLessonsKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('unlocked_lessons', 'lesson_progress', studyTarget);
+}
+
+export function legacyFreeLessonCapKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('legacy_free_lesson_cap_v1', 'lesson_progress', studyTarget);
+}
+
+export function legacyFreeLessonMigrationKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('legacy_free_lesson_migration_v1', 'lesson_progress', studyTarget);
 }
 
 export function premiumCourseLevelKey(studyTarget?: RuntimeStudyTarget): string {
@@ -469,6 +488,21 @@ export function weeklyReviewStorageKey(studyTarget?: RuntimeStudyTarget): string
   return scopedOrLegacyKey('weekly_review_v1', 'trainer_practice', studyTarget);
 }
 
+export function weeklyReviewV2StorageKey(
+  accountScope: string,
+  lang: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  const normalizedScope = String(accountScope ?? '').trim();
+  if (!normalizedScope) throw new Error('weekly_review_account_scope_required');
+  const normalizedLang = String(lang ?? '').trim() || 'ru';
+  return targetKey(
+    'trainer_practice',
+    storageStudyTarget(studyTarget),
+    `weekly_review_v2:${normalizedScope}:${normalizedLang}`,
+  );
+}
+
 export function statsInsightsStorageKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('stats_insights_v1', 'trainer_practice', studyTarget);
 }
@@ -574,6 +608,13 @@ export function flashcardsSwipeSessionDraftKey(studyTarget?: RuntimeStudyTarget)
 
 export function flashcardsSwipeMemoryKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('flashcards_swipe_memory_v1', 'flashcards', studyTarget);
+}
+
+// зачем: та же схема, что flashcardsDeleteHintSeenKey (flashcards_collection.tsx) —
+// одноразовая подсказка про экран «Тренировка карточек» (жест/аудио/кнопки),
+// показываем один раз при первом входе в play-фазу.
+export function flashcardsSwipeHintSeenKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('flashcards_swipe_hint_seen', 'flashcards', studyTarget);
 }
 
 export function flashcardsMarketplaceBuiltCardsCacheKey(studyTarget?: RuntimeStudyTarget): string {

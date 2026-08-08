@@ -14,12 +14,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flushMistakeLog, logMistake } from './mistake_log';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
-import { getCachedFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { compactPlanMistakeContext, type PersonalPlanMistakeContext } from './personal_plan_mistake_context';
 import { computePhraseAnalytics, type PhraseAnalyticsResult } from './phrase_analytics';
 import { normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot } from './pos_workout_engine';
-import { storageSourceLocale, storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
+import { storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
@@ -101,6 +100,12 @@ function todayEnd(): number {
   return d.getTime();
 }
 
+function todayStart(): number {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d.getTime();
+}
+
 function nextInterval(correctStreak: number): number {
   const days = INTERVALS[Math.min(correctStreak, INTERVALS.length - 1)] ?? 30;
   return daysFromNow(days);
@@ -163,16 +168,27 @@ function isTrainerPlannedLocale(lang: Lang): lang is PlannedInterfaceLang {
 }
 
 export function trainerTranslationForLang(
-  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>,
+  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>
+    & Partial<Pick<TrainerItem, 'key' | 'arenaQuestion'>>,
   lang: Lang,
 ): string {
+  // Old DEV arena rows were persisted with empty translations. Resolve their
+  // meaning from the canonical seed so an already-saved iPhone session is fixed
+  // immediately, without requiring the owner to clear or reseed AsyncStorage.
+  const arenaSeed = item.arenaQuestion
+    ? DEV_ARENA.find(candidate => candidate.question === (item.arenaQuestion?.question || item.key))
+    : undefined;
+  const translationRu = item.translationRu || arenaSeed?.translationRu || '';
+  const translationUk = item.translationUk || arenaSeed?.translationUk || '';
+  const translationEs = item.translationEs || arenaSeed?.translationEs || '';
+  const sourceLocales = item.sourceLocales || arenaSeed?.sourceLocales;
   if (isTrainerPlannedLocale(lang)) {
-    const planned = item.sourceLocales?.[lang]?.trim();
+    const planned = sourceLocales?.[lang]?.trim();
     return planned || TRAINER_TRANSLATION_NEEDS_REVIEW[lang];
   }
-  if (lang === 'uk') return item.translationUk || item.translationRu || item.translationEs || '';
-  if (lang === 'es') return item.translationEs || item.translationRu || item.translationUk || '';
-  return item.translationRu || item.translationUk || item.translationEs || '';
+  if (lang === 'uk') return translationUk || translationRu || translationEs;
+  if (lang === 'es') return translationEs || translationRu || translationUk;
+  return translationRu || translationUk || translationEs;
 }
 
 async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
@@ -188,23 +204,10 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
   }
 }
 
-function mergeFrenchRemotePracticeItems(
-  localItems: TrainerItem[],
-  studyTarget?: RuntimeStudyTarget,
-  sourceLocale?: RuntimeSourceLocale,
-): TrainerItem[] {
-  if (storageStudyTarget(studyTarget) !== 'fr') return localItems;
-  const remoteItems = getCachedFrenchRemotePersonalPractice(storageSourceLocale(sourceLocale));
-  if (remoteItems.length === 0) return localItems;
-  return uniqueTrainerItems([...localItems, ...remoteItems]);
-}
-
 async function loadTrainerItemsForSessions(
   studyTarget?: RuntimeStudyTarget,
-  sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
-  const items = await load(studyTarget);
-  return mergeFrenchRemotePracticeItems(items, studyTarget, sourceLocale);
+  return load(studyTarget);
 }
 
 function applyPlanMistakeContext(item: TrainerItem, context?: PersonalPlanMistakeContext): void {
@@ -494,10 +497,12 @@ export async function getTrainerTotalDue(studyTarget?: RuntimeStudyTarget): Prom
 export interface TrainerDashboard {
   due: Record<TrainerQueue, number>;
   totalDue: number;
+  overdue: number;
   totalTracked: number;
   active: number;
   future: number;
   archived: number;
+  archivedPhrases: number;
   hardestQueue: TrainerQueue | null;
   hardestMistakes: number;
   hardestCategory: WordCategory | null;
@@ -516,7 +521,7 @@ export async function getTrainerDashboard(
   analyticsStatsInput?: PhraseAnalyticsResult | null | Promise<PhraseAnalyticsResult | null>,
 ): Promise<TrainerDashboard> {
   const target = storageStudyTarget(studyTarget);
-  const items = await loadTrainerItemsForSessions(studyTarget, sourceLocale);
+  const items = await loadTrainerItemsForSessions(studyTarget);
   const posMastery = await getPosMasterySnapshot(studyTarget);
   const end = todayEnd();
   const sessionContentEnabled = trainerSessionContentAvailableForTarget(studyTarget);
@@ -525,6 +530,7 @@ export async function getTrainerDashboard(
     : [];
   const dueItems = activeItems.filter(i => i.nextDue <= end);
   const archived = sessionContentEnabled ? items.filter(i => i.archived).length : 0;
+  const archivedPhrases = sessionContentEnabled ? items.filter(i => i.archived && i.queue === 'phrases').length : 0;
   const due: Record<TrainerQueue, number> = {
     words: dueItems.filter(i => i.queue === 'words').length,
     phrases: dueItems.filter(i => i.queue === 'phrases').length,
@@ -565,10 +571,12 @@ export async function getTrainerDashboard(
   return {
     due,
     totalDue: due.words + due.phrases + due.arena,
+    overdue: dueItems.filter((item) => item.nextDue < todayStart()).length,
     totalTracked,
     active: activeItems.length,
     future: activeItems.filter(i => i.nextDue > end).length,
     archived,
+    archivedPhrases,
     hardestQueue: hardest && hardest.mistakes > 0 ? hardest.queue : null,
     hardestMistakes: hardest?.mistakes ?? 0,
     hardestCategory: analyticsHardestCategory?.category ?? fallbackCategoryForTarget?.[0] ?? null,
@@ -595,12 +603,25 @@ export async function getDueItems(
   sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = await loadTrainerItemsForSessions(studyTarget, sourceLocale);
+  const items = await loadTrainerItemsForSessions(studyTarget);
   const end = todayEnd();
   return items
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
     .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
     .slice(0, limit);
+}
+
+/**
+ * Прогрет ли in-memory кэш очереди для этого таргета.
+ *
+ * зачем: getCachedDueItems на холодном кэше возвращает `[]` — неотличимо от
+ * «сегодня нечего повторять». Экранам сессий нужно различать эти два случая,
+ * чтобы синхронно отрисовать первую карточку на прогретом кэше и не показать
+ * по ошибке экран «всё сделано» на холодном. Map.has различает «не грузили»
+ * и «загрузили пустое».
+ */
+export function hasCachedTrainerItems(studyTarget?: RuntimeStudyTarget): boolean {
+  return trainerStoreCache.has(trainerStoreKey(studyTarget));
 }
 
 export function getCachedDueItems(
@@ -611,7 +632,7 @@ export function getCachedDueItems(
 ): TrainerItem[] {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
   const end = todayEnd();
-  return mergeFrenchRemotePracticeItems(trainerStoreCache.get(trainerStoreKey(studyTarget)) ?? [], studyTarget, sourceLocale)
+  return (trainerStoreCache.get(trainerStoreKey(studyTarget)) ?? [])
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
     .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
     .slice(0, limit);
@@ -661,7 +682,7 @@ export async function getTrainerPremiumItems(
   sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = (await loadTrainerItemsForSessions(studyTarget, sourceLocale)).map(withTrainerCategory);
+  const items = (await loadTrainerItemsForSessions(studyTarget)).map(withTrainerCategory);
   const end = todayEnd();
   const active = items.filter(i => !i.archived && i.nextDue > 0);
   const categoryPriority = await loadCategoryPriorityScores(studyTarget);
@@ -839,11 +860,31 @@ const DEV_WORDS_ES: Record<string, string> = Object.fromEntries(DEV_WORDS_ES_ITE
 const DEV_PHRASES_ES: Record<string, string> = Object.fromEntries(DEV_PHRASES_ES_ITEMS.map(item => [item.key, item.es]));
 
 const DEV_ARENA = [
-  { question: 'She ___ to the store yesterday', correct: 'went',    options: ['go', 'went', 'gone', 'goes'],   rule: 'Past Simple' },
-  { question: 'I ___ never seen this before',   correct: 'have',    options: ['have', 'had', 'has', 'having'], rule: 'Present Perfect' },
-  { question: 'They ___ waiting for an hour',   correct: 'were',    options: ['are', 'were', 'was', 'be'],     rule: 'Past Continuous' },
-  { question: 'He ___ his keys again',          correct: 'lost',    options: ['lose', 'lost', 'loses', 'loss'],rule: 'Past Simple' },
-  { question: 'We ___ finish by tomorrow',      correct: 'must',    options: ['must', 'can', 'may', 'might'],  rule: 'Modals' },
+  {
+    question: 'She ___ to the store yesterday', correct: 'went', options: ['go', 'went', 'gone', 'goes'], rule: 'Past Simple',
+    translationRu: 'Она ходила в магазин вчера', translationUk: 'Вона ходила до магазину вчора', translationEs: 'Ella fue a la tienda ayer',
+    sourceLocales: { 'pt-BR': 'Ela foi à loja ontem', vi: 'Hôm qua cô ấy đã đi đến cửa hàng', id: 'Dia pergi ke toko kemarin', tr: 'Dün mağazaya gitti', pl: 'Wczoraj poszła do sklepu' },
+  },
+  {
+    question: 'I ___ never seen this before', correct: 'have', options: ['have', 'had', 'has', 'having'], rule: 'Present Perfect',
+    translationRu: 'Я никогда раньше этого не видел', translationUk: 'Я ніколи раніше цього не бачив', translationEs: 'Nunca he visto esto antes',
+    sourceLocales: { 'pt-BR': 'Eu nunca vi isto antes', vi: 'Tôi chưa bao giờ thấy điều này trước đây', id: 'Saya belum pernah melihat ini sebelumnya', tr: 'Bunu daha önce hiç görmedim', pl: 'Nigdy wcześniej tego nie widziałem' },
+  },
+  {
+    question: 'They ___ waiting for an hour', correct: 'were', options: ['are', 'were', 'was', 'be'], rule: 'Past Continuous',
+    translationRu: 'Они ждали целый час', translationUk: 'Вони чекали цілу годину', translationEs: 'Llevaban una hora esperando',
+    sourceLocales: { 'pt-BR': 'Eles estavam esperando há uma hora', vi: 'Họ đã đợi suốt một giờ', id: 'Mereka sudah menunggu selama satu jam', tr: 'Bir saattir bekliyorlardı', pl: 'Czekali przez godzinę' },
+  },
+  {
+    question: 'He ___ his keys again', correct: 'lost', options: ['lose', 'lost', 'loses', 'loss'], rule: 'Past Simple',
+    translationRu: 'Он снова потерял ключи', translationUk: 'Він знову загубив ключі', translationEs: 'Volvió a perder las llaves',
+    sourceLocales: { 'pt-BR': 'Ele perdeu as chaves de novo', vi: 'Anh ấy lại làm mất chìa khóa', id: 'Dia kehilangan kuncinya lagi', tr: 'Anahtarlarını yine kaybetti', pl: 'Znowu zgubił klucze' },
+  },
+  {
+    question: 'We ___ finish by tomorrow', correct: 'must', options: ['must', 'can', 'may', 'might'], rule: 'Modals',
+    translationRu: 'Мы должны закончить к завтрашнему дню', translationUk: 'Ми маємо закінчити до завтра', translationEs: 'Debemos terminar para mañana',
+    sourceLocales: { 'pt-BR': 'Precisamos terminar até amanhã', vi: 'Chúng ta phải hoàn thành trước ngày mai', id: 'Kita harus selesai paling lambat besok', tr: 'Yarına kadar bitirmeliyiz', pl: 'Musimy skończyć do jutra' },
+  },
 ];
 
 const DEV_ANALYTICS_PICKED = ['go', 'in', 'the', 'has', 'wait', 'must to', 'call to', 'a', 'never not'];
@@ -959,10 +1000,15 @@ export async function devSeedTrainer(studyTarget?: RuntimeStudyTarget): Promise<
     if (existing) {
       existing.nextDue = todayMs;
       existing.archived = false;
+      existing.translationRu = a.translationRu;
+      existing.translationUk = a.translationUk;
+      existing.translationEs = a.translationEs;
+      existing.sourceLocales = a.sourceLocales;
     } else {
       items.push({
         key: a.question, queue: 'arena',
-        translationRu: '', translationUk: '',
+        translationRu: a.translationRu, translationUk: a.translationUk,
+        translationEs: a.translationEs, sourceLocales: a.sourceLocales,
         arenaQuestion: { question: a.question, correct: a.correct, options: a.options, rule: a.rule },
         lessonId: 0, mistakeCount: 1, correctStreak: 0,
         nextDue: todayMs, createdAt: now, archived: false,
@@ -1031,8 +1077,10 @@ export async function devSeedTrainerScenario(
     ...DEV_ARENA.map((a, i) => devItem({
       key: a.question,
       queue: 'arena',
-      translationRu: '',
-      translationUk: '',
+      translationRu: a.translationRu,
+      translationUk: a.translationUk,
+      translationEs: a.translationEs,
+      sourceLocales: a.sourceLocales,
       arenaQuestion: a,
       lessonId: 5 + i,
       mistakeCount: scenario === 'hard' ? 5 : 1 + (i % 2),

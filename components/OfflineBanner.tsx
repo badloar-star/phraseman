@@ -12,9 +12,12 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, PanResponder, StyleSheet, Text } from 'react-native';
+// зачем: сырой useSafeAreaInsets отдаёт 0 до прихода нативных метрик и плашка
+// прыгала бы вниз; стабильная обёртка знает top-инсет синхронно с первого кадра.
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { subscribeNetStatus } from '../app/net_status';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const AUTO_HIDE_MS = 10_000;
 
 const L = (lang: string, map: Record<string, string>): string =>
@@ -118,7 +121,7 @@ const styles = StyleSheet.create({
     left: 12,
     right: 12,
     zIndex: 9999,
-    elevation: 12,
+    ...noAndroidOutline,
     borderRadius: 10,
     paddingVertical: 6,
     paddingHorizontal: 12,

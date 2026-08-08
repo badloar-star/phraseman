@@ -4,6 +4,20 @@ import path from 'path';
 describe('new paywalls activate Premium locally after RevenueCat success', () => {
   const sharedHook = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
 
+  it('keeps the dev preview open and explains that no store purchase was started', () => {
+    const purchaseStart = sharedHook.indexOf('const handlePurchase = useCallback');
+    const packageSelection = sharedHook.indexOf("const pkg = selected === 'lifetime'", purchaseStart);
+    expect(purchaseStart).toBeGreaterThan(-1);
+    expect(packageSelection).toBeGreaterThan(purchaseStart);
+
+    const devPreviewBranch = sharedHook.slice(purchaseStart, packageSelection);
+    expect(devPreviewBranch).toContain('showDevPurchasePreviewAlert(lang)');
+    expect(devPreviewBranch).not.toContain('dismissPaywallModal(router)');
+    expect(devPreviewBranch).not.toContain('finishPersonalPlanActivationFlow()');
+    expect(sharedHook).toContain('Покупка не запускалась');
+    expect(sharedHook).toContain('сборке с подключённым магазином');
+  });
+
   it('shared A/B/C purchase hook persists CustomerInfo metadata and emits activation', () => {
     const purchaseStart = sharedHook.indexOf('const handlePurchase = useCallback');
     const restoreStart = sharedHook.indexOf('const handleRestore = useCallback');
@@ -12,10 +26,15 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
     const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
 
-    expect(purchaseBody).toContain('const { customerInfo } = await Purchases.purchasePackage(pkg)');
+    expect(purchaseBody).toContain('() => Purchases.purchasePackage(pkg)');
+    expect(purchaseBody).toContain('const { customerInfo } = purchaseResult.value;');
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');
+    expect(purchaseBody).toContain('customerInfoConfirmsProductAccess(customerInfo, pkg.product.identifier)');
+    expect(purchaseBody).not.toContain('Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0');
     expect(purchaseBody).toContain('persistStorePremiumLocally');
     expect(purchaseBody).toContain("emitAppEvent('premium_activated')");
+    expect(purchaseBody).toContain('await refillToMax(isCommitCurrent)');
+    expect(purchaseBody).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
   });
 
   it('does not age-gate the store purchase before RevenueCat', () => {
@@ -44,14 +63,18 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
     const restoreBody = sharedHook.slice(restoreStart, closeStart);
 
-    expect(restoreBody.indexOf('await syncRevenueCatIdentity()')).toBeGreaterThan(-1);
-    expect(restoreBody.indexOf('await syncRevenueCatIdentity()')).toBeLessThan(
+    expect(restoreBody.indexOf('await syncRevenueCatIdentity(isOperationAccountCurrent)')).toBeGreaterThan(-1);
+    expect(restoreBody.indexOf('await syncRevenueCatIdentity(isOperationAccountCurrent)')).toBeLessThan(
       restoreBody.indexOf('Purchases.restorePurchases()'),
     );
+    expect(restoreBody).toContain('revenueCatCustomerInfoHasPremiumAccess(info)');
+    expect(restoreBody).not.toContain('Object.keys(info.entitlements.active).length > 0');
     expect(restoreBody).toContain('revenueCatPremiumMetadata(info)');
     expect(restoreBody).toContain('inferPremiumPlanFromProductId');
     expect(restoreBody).toContain('persistStorePremiumLocally');
     expect(restoreBody).toContain("emitAppEvent('premium_activated')");
+    expect(restoreBody).toContain('await refillToMax(isCommitCurrent)');
+    expect(restoreBody).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
   });
 
   it('does not let purchase and restore run at the same time', () => {
@@ -65,10 +88,32 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
     const restoreBody = sharedHook.slice(restoreStart, closeStart);
 
-    expect(purchaseBody).toContain('if (!pkg || purchasing || restoring) return;');
-    expect(restoreBody).toContain('if (DEV_IAP_BYPASS || restoring || purchasing) return;');
+    expect(purchaseBody).toContain("operationRef.current = 'purchase'");
+    expect(restoreBody).toContain("operationRef.current = 'restore'");
     expect(sharedHook).toContain('}, [selected, packages, purchasing, restoring, router');
     expect(sharedHook).toContain('}, [router, restoring, purchasing, context');
+  });
+
+  it('does not apply a store result to a different account generation', () => {
+    expect((sharedHook.match(/const operationAccount = captureAccountGeneration\(\);/g) ?? []).length).toBe(2);
+    expect(sharedHook).toContain('const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);');
+    expect(sharedHook).toContain('initRevenueCat(isOperationAccountCurrent)');
+    expect(sharedHook).toContain('syncRevenueCatIdentity(isOperationAccountCurrent)');
+    expect(sharedHook).toContain('runRevenueCatOperationForGeneration(');
+    expect(sharedHook).toContain('commitRevenueCatResultForGeneration(operationAccount');
+    expect(sharedHook).toMatch(/persistStorePremiumLocally\([\s\S]*?isCommitCurrent,[\s\S]*?false,[\s\S]*?true,/);
+    expect(sharedHook).toContain('if (!persisted || !isCommitCurrent()) return false;');
+  });
+
+  it('enforces the lifetime kill-switch in selection and purchase, not only in UI', () => {
+    expect(sharedHook).toContain("if (plan === 'lifetime' && !lifetimeAvailable) return;");
+    // Гейт покупки усилен 2026-07-27: помимо админ-килл-свитча учитывает источник
+    // пейвола (в онбординге lifetime скрыт — значит и купить его нельзя).
+    expect(sharedHook).toContain(
+      "if (selected === 'lifetime' && (!isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {",
+    );
+    expect(sharedHook).toContain("onAppEvent('remote_config_changed'");
+    expect(sharedHook).toContain("if (!lifetimeAvailable && selected === 'lifetime') setSelected('yearly');");
   });
 
   it('retired v2 route only redirects into the active A/B/C dispatcher', () => {

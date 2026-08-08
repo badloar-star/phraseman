@@ -8,11 +8,13 @@ import React from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Linking,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
+import { PaywallCtaShine } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 interface Props {
   lang: Lang;
@@ -96,6 +98,9 @@ export default function PaywallCtaBlock({
             pointerEvents="none"
           />
         ) : null}
+        {/* Блик-полоса раз в ~5.6с (гейтится фокусом/AppState/reduce-motion);
+            лежит ПОД текстом — поздние siblings рисуются поверх. */}
+        <PaywallCtaShine />
         {busy
           ? <ActivityIndicator color={tc.ctaText} />
           : <Text style={[S.ctaText, { color: tc.ctaText }]} numberOfLines={1}>{label}</Text>}
@@ -186,7 +191,10 @@ export default function PaywallCtaBlock({
 const S = StyleSheet.create({
   cta: {
     borderRadius: 32, paddingVertical: 18, alignItems: 'center', overflow: 'hidden',
-    shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.42, shadowRadius: 16, elevation: 9,
+    // зачем: главная CTA-кнопка пейвола — фон рисует градиент внутри, поэтому
+    // Android заливал квадрат вокруг скругления 32. На iOS тень как была.
+    shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.42, shadowRadius: 16,
+    ...noAndroidOutline,
   },
   ctaText: { fontSize: 19, fontWeight: '900', letterSpacing: 0, paddingHorizontal: 14 },
   subLine: { textAlign: 'center', fontSize: 13, lineHeight: 17.5, marginTop: 10, fontVariant: ['tabular-nums'] },
@@ -198,7 +206,7 @@ const S = StyleSheet.create({
   ghostText: { fontSize: 13.5, textDecorationLine: 'underline', opacity: 0.6 },
   trust: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-    gap: 8, borderRadius: 12, borderWidth: 1, paddingVertical: 9, paddingHorizontal: 13, marginTop: 11,
+    gap: 8, borderRadius: 12, borderWidth: 0, paddingVertical: 9, paddingHorizontal: 13, marginTop: 11,
   },
   trustIcon: { flexShrink: 0 },
   trustText: { flex: 1, fontSize: 13, lineHeight: 17.5, fontWeight: '700' },

@@ -258,7 +258,7 @@ test('friendSendGift rejects reusing an idempotency key for a different gift', a
   await sendGift({ idempotencyKey: 'fg_test_1234567890' });
 
   await expect(sendGift({
-    giftId: 'arena_extra_5',
+    giftId: 'xp_boost_2x_24h',
     idempotencyKey: 'fg_test_1234567890',
   })).rejects.toMatchObject({
     code: 'already-exists',
@@ -292,12 +292,25 @@ test('friendThankGift rejects reusing an idempotency key for another thanks gift
   await thankGift({ idempotencyKey: 'fgt_test_1234567890' });
 
   await expect(thankGift({
-    giftId: 'arena_extra_5',
+    giftId: 'xp_boost_2x_24h',
     idempotencyKey: 'fgt_test_1234567890',
   })).rejects.toMatchObject({
     code: 'already-exists',
     message: 'Idempotency key already used for another friend gift thanks',
   });
+});
+
+test('friend gift callables reject the retired Arena gift before any mutation', async () => {
+  await expect(sendGift({ giftId: 'arena_extra_5' })).rejects.toMatchObject({
+    code: 'invalid-argument',
+    message: 'Unsupported gift id',
+  });
+  await expect(thankGift({ giftId: 'arena_extra_5' })).rejects.toMatchObject({
+    code: 'invalid-argument',
+    message: 'Valid sender, friend and gift required',
+  });
+  expect(docs.get('users/sender')).toMatchObject({ shards: 100 });
+  expect(docs.get('users/recipient')).not.toHaveProperty('arena_extra_plays_today');
 });
 
 test('friendSendGift does not start another quest while either user has an active quest', async () => {
@@ -349,6 +362,8 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
     rewardApplied: true,
     callerShards: 14,
     shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
+    callerXpBeforeReward: 4100,
+    rewardXpApplied: 1000,
     callerXp: 5100,
   });
   expect(second).toMatchObject({
@@ -357,6 +372,7 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
     rewardApplied: false,
     callerShards: 14,
     shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
+    rewardXpApplied: 0,
     callerXp: 5100,
   });
   expect(docs.get('users/sender')).toMatchObject({ shards: 14, progress: { user_total_xp: '5100' } });
@@ -365,6 +381,40 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
     status: 'completed',
     rewardClaimedByUid: { sender: true, recipient: true },
   });
+});
+
+test('friendClaimQuestReward does not reapply the caller reward while completing an unclaimed partner', async () => {
+  const questId = 'quest_sender_recipient_partial_2026-W24';
+  docs.set(`friend_quests/${questId}`, {
+    questId,
+    participantUids: ['sender', 'recipient'],
+    status: 'ready',
+    startedAtMs: Date.now() - 3600000,
+    expiresAtMs: Date.now() + 3600000,
+    weekKey: '2026-W24',
+    targetXp: 3000,
+    rewardShards: 10,
+    rewardXp: 1000,
+    startXpByUid: { sender: 1000, recipient: 900 },
+    rewardClaimedByUid: { sender: true },
+  });
+  docs.set('users/sender', { ...docs.get('users/sender'), shards: 14, progress: { user_total_xp: '5100' } });
+  docs.set('users/recipient', { ...docs.get('users/recipient'), shards: 9, progress: { user_total_xp: '3900' } });
+
+  const { friendClaimQuestReward } = require('./friend_gifts');
+  const result = await friendClaimQuestReward({
+    auth: { uid: 'auth-sender' },
+    data: { stableId: 'sender', questId },
+  });
+
+  expect(result).toMatchObject({
+    rewardApplied: false,
+    callerXpBeforeReward: 5100,
+    rewardXpApplied: 0,
+    callerXp: 5100,
+  });
+  expect(docs.get('users/sender')).toMatchObject({ shards: 14, progress: { user_total_xp: '5100' } });
+  expect(docs.get('users/recipient')).toMatchObject({ shards: 19, progress: { user_total_xp: '4900' } });
 });
 
 export {};

@@ -18,6 +18,10 @@ import { checkComebackEligible, markComebackGranted } from '../app/boons/comebac
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import BoonChestModal from './BoonChestModal';
 
 function makeL(lang: Lang) {
@@ -70,19 +74,24 @@ export default function ComebackBoonHost() {
 
   if (!visible) return null;
 
+  // зачем: прежнее «Ты вернулся. Хорошо.» звучало сухо и почти укоризненно —
+  // рядом с подарком это читалось как «мы тебе не особо рады». Тон радостный.
   const title = L(
-    'Ты вернулся. Хорошо.', 'Ти повернувся. Добре.', 'Volviste. Bien.', 'Você voltou. Que bom.',
-    'Bạn quay lại rồi. Tốt.', 'Kamu kembali. Bagus.', 'Geri döndün. Güzel.', 'Wróciłeś. Dobrze.',
+    'С возвращением! Мы скучали', 'З поверненням! Ми сумували', '¡Bienvenido de vuelta! Te echábamos de menos', 'Bem-vindo de volta! Sentimos sua falta',
+    'Chào mừng trở lại! Chúng tôi đã nhớ bạn', 'Selamat datang kembali! Kami merindukanmu', 'Tekrar hoş geldin! Seni özledik', 'Witaj z powrotem! Tęskniliśmy',
   );
+  // зачем: награда = 1, и без склонения выходило «1 жемчужин твои».
+  // Сказуемое согласуем по числу; UK-строка раньше брала русское слово «жемчужин».
+  const cbOne = COMEBACK_REWARD.shards % 10 === 1 && COMEBACK_REWARD.shards % 100 !== 11;
   const rewardLine = L(
-    `Серия под защитой и ${COMEBACK_REWARD.shards} осколков твои`,
-    `Серія під захистом і ${COMEBACK_REWARD.shards} осколків твої`,
-    `Racha protegida y ${COMEBACK_REWARD.shards} fragmentos tuyos`,
-    `Sequência protegida e ${COMEBACK_REWARD.shards} fragmentos seus`,
-    `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} mảnh là của bạn`,
+    `Серия под защитой и ${COMEBACK_REWARD.shards} ${ruKnowledgeShardsAfterNumber(COMEBACK_REWARD.shards)} ${cbOne ? 'твоя' : 'твои'}`,
+    `Серія під захистом і ${COMEBACK_REWARD.shards} ${ukKnowledgeShardsAfterNumber(COMEBACK_REWARD.shards)} ${cbOne ? 'твоя' : 'твої'}`,
+    `Racha protegida y ${COMEBACK_REWARD.shards} perlas tuyos`,
+    `Sequência protegida e ${COMEBACK_REWARD.shards} perlas seus`,
+    `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} xu là của bạn`,
     `Streak aman dan ${COMEBACK_REWARD.shards} serpihan jadi milikmu`,
-    `Serin korumada ve ${COMEBACK_REWARD.shards} parça senin`,
-    `Seria chroniona i ${COMEBACK_REWARD.shards} odłamków twoje`,
+    `Serin korumada ve ${COMEBACK_REWARD.shards} jeton senin`,
+    `Seria chroniona i ${COMEBACK_REWARD.shards} monet twoje`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',

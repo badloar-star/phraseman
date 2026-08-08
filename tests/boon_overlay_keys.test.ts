@@ -33,27 +33,25 @@ describe('boon overlay keys — согласованность структур'
   });
 });
 
-describe('intro/loyalty overlay keys — гейтятся через арбитр (P1: anti-ANR)', () => {
-  it('introFullAccess и loyaltyGift есть во всех 3 структурах арбитра', () => {
-    for (const k of ['introFullAccess', 'loyaltyGift'] as OverlayKey[]) {
+describe('intro overlay key — гейтится через арбитр (P1: anti-ANR)', () => {
+  it('introFullAccess есть во всех 3 структурах арбитра', () => {
+    for (const k of ['introFullAccess'] as OverlayKey[]) {
       expect(OVERLAY_PRIORITY).toContain(k);
       expect(EMPTY_OVERLAY_WANTS[k]).toBe(false);
     }
   });
 
-  it('системные модалы (update) приоритетнее intro/loyalty', () => {
+  it('системные модалы (update) приоритетнее intro', () => {
     expect(resolveNextOverlay(null, { update: true, introFullAccess: true })).toBe('update');
-    expect(resolveNextOverlay(null, { update: true, loyaltyGift: true })).toBe('update');
   });
 
-  it('intro/loyalty приоритетнее dailyPlan/levelUp (welcome-поток раньше рутины)', () => {
+  it('intro приоритетнее dailyPlan/levelUp (welcome-поток раньше рутины)', () => {
     expect(resolveNextOverlay(null, { introFullAccess: true, dailyPlan: true })).toBe('introFullAccess');
-    expect(resolveNextOverlay(null, { loyaltyGift: true, levelUp: true })).toBe('loyaltyGift');
   });
 
   it('удалённые мёртвые ключи отсутствуют в арбитре', () => {
     const all = new Set<string>(OVERLAY_PRIORITY);
-    for (const dead of ['releaseWave', 'firstLessonSheet', 'boonEarlyPlashka']) {
+    for (const dead of ['releaseWave', 'firstLessonSheet', 'boonEarlyPlashka', 'loyaltyGift']) {
       expect(all.has(dead)).toBe(false);
     }
   });

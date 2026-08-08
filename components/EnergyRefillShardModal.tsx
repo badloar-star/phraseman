@@ -3,6 +3,7 @@ import React, { memo, useCallback, useState } from 'react';
 import {
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -26,6 +27,7 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
 import { triLang } from '../constants/i18n';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   visible: boolean;
   onClose: () => void;
@@ -114,24 +116,24 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
   });
 
   const hintUnlimited = triLang(lang, {
-    ru: 'У тебя безлимит энергии (Plus или тестовый режим). Осколки на заряд не тратятся.',
-    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Уламки на заряд не витрачаються.',
-    es: 'Tienes energía ilimitada (Plus o modo de prueba). Los fragmentos no se gastan en la recarga.',
-    'pt-BR': 'Você tem energia ilimitada (Plus ou modo de teste). Fragmentos não são gastos na recarga.',
-    vi: 'Bạn có năng lượng không giới hạn (Plus hoặc chế độ thử nghiệm). Mảnh sẽ không bị dùng để nạp.',
-    id: 'Kamu punya energi tanpa batas (Plus atau mode uji). Shard tidak dipakai untuk isi ulang.',
-    tr: 'Sınırsız enerjin var (Plus veya test modu). Yenileme için parça harcanmaz.',
-    pl: 'Masz energię bez limitu (Plus albo tryb testowy). Odłamki nie są wydawane na odnowienie.',
+    ru: 'У тебя безлимит энергии (Plus или тестовый режим). Жемчуг на заряд не тратится.',
+    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Перлини на заряд не витрачаються.',
+    es: 'Tienes energía ilimitada (Plus o modo de prueba). Los perlas no se gastan en la recarga.',
+    'pt-BR': 'Você tem energia ilimitada (Plus ou modo de teste). Pérolas não são gastos na recarga.',
+    vi: 'Bạn có năng lượng không giới hạn (Plus hoặc chế độ thử nghiệm). Xu sẽ không bị dùng để nạp.',
+    id: 'Kamu punya energi tanpa batas (Plus atau mode uji). Koin tidak dipakai untuk isi ulang.',
+    tr: 'Sınırsız enerjin var (Plus veya test modu). Yenileme için jeton harcanmaz.',
+    pl: 'Masz energię bez limitu (Plus albo tryb testowy). Monety nie są wydawane na odnowienie.',
   });
   const hintFull = triLang(lang, {
-    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за осколки.`,
-    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за уламки.`,
-    es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de fragmentos.`,
-    'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com fragmentos.`,
-    vi: `Năng lượng cơ bản đã đầy (${maxEnergy} ⚡). Trước tiên hãy dùng ⚡ trong bài học hoặc quiz; sau đó bạn có thể khôi phục đầy bằng mảnh.`,
-    id: `Energi dasar sudah penuh (${maxEnergy} ⚡). Gunakan ⚡ dulu di pelajaran atau kuis; setelah itu kamu bisa memulihkan penuh dengan shard.`,
-    tr: `Temel enerji zaten dolu (${maxEnergy} ⚡). Önce bir ders veya quizde ⚡ harca; sonra parçalarla tamamen yenileyebilirsin.`,
-    pl: `Podstawowa energia jest już pełna (${maxEnergy} ⚡). Najpierw zużyj ⚡ w lekcji albo quizie; potem możesz odnowić ją za odłamki.`,
+    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за жемчуг.`,
+    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за перлини.`,
+    es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de perlas.`,
+    'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com pérolas.`,
+    vi: `Năng lượng cơ bản đã đầy (${maxEnergy} ⚡). Trước tiên hãy dùng ⚡ trong bài học hoặc quiz; sau đó bạn có thể khôi phục đầy bằng xu.`,
+    id: `Energi dasar sudah penuh (${maxEnergy} ⚡). Gunakan ⚡ dulu di pelajaran atau kuis; setelah itu kamu bisa memulihkan penuh dengan koin.`,
+    tr: `Temel enerji zaten dolu (${maxEnergy} ⚡). Önce bir ders veya quizde ⚡ harca; sonra jetonlarla tamamen yenileyebilirsin.`,
+    pl: `Podstawowa energia jest już pełna (${maxEnergy} ⚡). Najpierw zużyj ⚡ w lekcji albo quizie; potem możesz odnowić ją za monety.`,
   });
   const hintOk = triLang(lang, {
     ru: `Полный заряд базовой энергии (${maxEnergy} ⚡) за`,
@@ -170,7 +172,14 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <View style={styles.overlayRoot}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          карточка пополнения энергии центрировалась во весь рост без прокрутки
+          — на низком экране обрезалась вместе с кнопкой покупки. */}
+      <ScrollView
+        style={styles.overlayScroll}
+        contentContainerStyle={styles.overlayRoot}
+        showsVerticalScrollIndicator={false}
+      >
         <Pressable
           style={[styles.backdrop, { backgroundColor: isLight ? 'rgba(0,0,0,0.48)' : 'rgba(0,0,0,0.72)' }]}
           onPress={() => {
@@ -251,7 +260,7 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
             </View>
           </LinearGradient>
         </View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }
@@ -259,8 +268,14 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
 export default memo(EnergyRefillShardModal);
 
 const styles = StyleSheet.create({
-  overlayRoot: {
+  overlayScroll: {
     flex: 1,
+  },
+  overlayRoot: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 28,
@@ -280,7 +295,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.45,
     shadowRadius: 28,
-    elevation: 24,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 23.5,
@@ -288,8 +303,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     gap: 10,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderWidth: 0,
   },
   kicker: {
     fontSize: 10,

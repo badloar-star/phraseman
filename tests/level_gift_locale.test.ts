@@ -1,6 +1,5 @@
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn().mockResolvedValue(false) }));
-jest.mock('../app/arena_daily_limit', () => ({ addArenaPlaysBonusForToday: jest.fn() }));
 jest.mock('../app/club_boosts', () => ({ grantClubGiftFreeBoostFromLevel: jest.fn() }));
 jest.mock('../app/flashcards/marketplace', () => ({
   primeMarketplaceBuiltCardsCacheFromAccessibleStorage: jest.fn(),
@@ -56,6 +55,26 @@ describe('level_gift_system — locale coverage', () => {
       expect(giftDescForLang(g, 'ru')).toBe(src.ru.d);
       expect(giftTitleForLang(g, 'uk')).toBe(src.uk.t);
       expect(giftDescForLang(g, 'uk')).toBe(src.uk.d);
+    }
+  });
+
+  it('names the free shared boost as a league boost in every interface language', () => {
+    const gift = ALL_LEVEL_GIFT_DEFS.find((item) => item.id === 'club_boost_free');
+    expect(gift).toBeDefined();
+
+    const expectedTitles = {
+      ru: 'Буст лиги бесплатно',
+      uk: 'Буст ліги безкоштовно',
+      es: 'Impulso de liga gratis',
+      'pt-BR': 'Boost de liga grátis',
+      vi: 'Tăng lực giải đấu miễn phí',
+      id: 'Boost liga gratis',
+      tr: 'Ücretsiz lig boostu',
+      pl: 'Darmowy boost ligi',
+    } as const;
+
+    for (const [lang, title] of Object.entries(expectedTitles)) {
+      expect(giftTitleForLang(gift!, lang as keyof typeof expectedTitles)).toBe(title);
     }
   });
 

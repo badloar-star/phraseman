@@ -20,6 +20,7 @@ import {
   parseEnabledOnboardingSteps,
   type OnboardingStepId,
 } from './onboarding_flow';
+import type { SoftUpsellTrigger } from './soft_upsell_core';
 
 export type RemoteNumberKey =
   | 'free_lesson_limit'
@@ -43,7 +44,6 @@ export type RemoteNumberKey =
   | 'league_sync_force_interval_ms'
   | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
-  | 'league_chat_auth_ttl_ms'
   | 'arena_sr_win'
   | 'arena_sr_loss'
   | 'arena_sr_bot_win'
@@ -53,23 +53,32 @@ export type RemoteNumberKey =
   | 'streak_freeze_cost_shards';
 
 export type RemoteBoolKey =
+  // Онбординг: kill-switch кнопки «Пропустить» (владелец может выключить без
+  // релиза, если увидит просадку показов пейвола) и приветственной шторки.
+  | 'onboarding_skip_enabled'
+  | 'onboarding_welcome_sheet_enabled'
+  | 'weekly_review_ai_v2_enabled'
+  | 'soft_upsell_first_lesson_enabled'
+  | 'soft_upsell_free_lessons_complete_enabled'
+  | 'soft_upsell_weekly_review_enabled'
+  | 'soft_upsell_second_ai_dialogue_enabled'
+  | 'soft_upsell_streak_enabled'
+  | 'soft_upsell_repeated_training_enabled'
   | 'referral_enabled'
+  // Мастер-флаг «Рулетка Plus + реферальная программа». Живёт в numbers
+  // (remote_config/app.numbers.referral_roulette_enabled) — туда его пишут
+  // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
+  // Дефолт true (kill-switch). Подхватывается из numbers в applyRemoteConfigSnapshot.
+  | 'referral_roulette_enabled'
+  | 'referral_roulette_emergency_stop'
   | 'speaking_enabled'
   | 'collectibles_enabled'
   | 'league_xp_promotion_enabled'
   | 'league_startup_registration_enabled'
-  | 'league_realtime_members_enabled'
   | 'lifetime_button_enabled'
   | 'explain_enabled'
   | 'ideas_enabled'
   | 'ai_global_disable'
-  | 'compass_enabled'
-  | 'compass_ai_voice_enabled'
-  | 'compass_deep_dive_enabled'
-  | 'compass_lesson_invite_enabled'
-  | 'compass_economy_enabled'
-  | 'compass_retention_enabled'
-  | 'compass_topic_map_enabled'
   | 'maintenance_banner'
   | 'maintenance_block'
   // Legacy remote flag kept for compatibility with already-published configs.
@@ -132,9 +141,6 @@ export type RemoteBoolKey =
   | 'gate_energy_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
-  // «Разговорный клуб»: true = free получает 1 миссию в день, безлимит за Plus;
-  // false = аварийное «фри для всех» (premium-капы сервера применяются и к free).
-  | 'gate_speaking_club_premium'
   // Раздел «Топ хелперов» (борд топ-репортёров багов) в настройках. Дефолт TRUE =
   // kill-switch: борд показывается, админ может выключить его в «Пульте» живьём
   // (onSnapshot), без релиза — тогда пункт в настройках прячется и сам экран отдаёт
@@ -235,19 +241,19 @@ export type RemoteTextKey =
  * baseline without resolving Remote Config (e.g. trainer_session.ts fallback).
  * Kept in sync with DEFAULT_NUMBERS.free_trainer_sessions_per_day below.
  */
-export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 2;
+export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 1;
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
-  free_lesson_limit: 8,
-  free_daily_quiz_limit: 3,
-  arena_daily_max: 5,
+  free_lesson_limit: 3,
+  free_daily_quiz_limit: 1,
+  arena_daily_max: 1,
   arena_shard_refill_cost: 5,
   arena_shard_refill_slots: 5,
   max_energy: 5,
   energy_recovery_interval_ms: 10 * 60 * 1000,
-  free_trainer_sessions_per_day: 2,
+  free_trainer_sessions_per_day: 1,
   trainer_ab_a_pct: 0,
-  trainer_ab_b_pct: 100,
+  trainer_ab_b_pct: 0,
   trainer_ab_c_pct: 0,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
@@ -259,7 +265,6 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
   league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
-  league_chat_auth_ttl_ms: 7 * 24 * 60 * 60 * 1000,
   arena_sr_win: 25,
   arena_sr_loss: 20,
   arena_sr_bot_win: 12,
@@ -268,17 +273,34 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
+  // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
+  // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
+  onboarding_skip_enabled: true,
+  onboarding_welcome_sheet_enabled: true,
+  // Global client kill-switch only. Server owns percentage rollout by canonical stableUid.
+  weekly_review_ai_v2_enabled: true,
+  // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.
+  soft_upsell_first_lesson_enabled: true,
+  soft_upsell_free_lessons_complete_enabled: true,
+  soft_upsell_weekly_review_enabled: false,
+  soft_upsell_second_ai_dialogue_enabled: false,
+  soft_upsell_streak_enabled: false,
+  soft_upsell_repeated_training_enabled: false,
   // Дефолт true = kill-switch семантика (фича едет с релизом, админка может
   // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
   // задеплоенная invite-страница — иначе ссылки будут битыми.
   referral_enabled: true,
+  // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
+  // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
+  referral_roulette_enabled: true,
+  // Отдельный hard stop. Отсутствие ключа безопасно сохраняет рабочее состояние.
+  referral_roulette_emergency_stop: false,
   speaking_enabled: true,
   // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
   // админка может экстренно выключить).
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
   league_startup_registration_enabled: true,
-  league_realtime_members_enabled: true,
   // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
   // phraseman_premium_lifetime_v1 заведён в App Store + Google Play и привязан в
   // RevenueCat (entitlement premium, пакет $rc_lifetime в default offering), т.е.
@@ -300,26 +322,13 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // остаются, и адмін может их закрыть.
   ideas_enabled: false,
   // ai_global_disable — ГЛАВНЫЙ рубильник ВСЕГО ИИ (Компас, «объясни», разбор
-  // ошибок, диалоги, разговорный клуб, комментарий дня). Дефолт FALSE = ИИ
+  // ошибок, диалоги, комментарий дня). Дефолт FALSE = ИИ
   // работает как сейчас. Админ ставит TRUE в «Пульте» → у всех живьём (onSnapshot):
   //  • ручные вызовы ИИ показывают забавную плашку/экран-заглушку (Компас «отдыхает»);
   //  • фоновые/авто-вызовы просто не запускаются — юзер ничего не видит.
   // Это НАД-флаг: перекрывает compass_enabled/explain_enabled и т.д. Сервер тоже
   // уважает его (aiGloballyDisabled в functions) — клиентский гейт нельзя обойти.
   ai_global_disable: false,
-  // ── Компас (глобальный обучающий оркестратор) ──────────────────────────────
-  // compass_enabled — ГЛАВНЫЙ выключатель всей фичи. Дефолт TRUE = kill-switch:
-  // Компас включён из коробки; админ-тумблер в «Пульте» может мгновенно выключить
-  // его у всех без релиза (onSnapshot), и НИЧЕГО в основном приложении не страдает
-  // — весь код Компаса изолирован в app/compass/ и за этим флагом. Под-флаги ниже
-  // — точечные рычаги отдельных крыльев (работают только при главном compass_enabled).
-  compass_enabled: true,
-  compass_ai_voice_enabled: true,
-  compass_deep_dive_enabled: true,
-  compass_lesson_invite_enabled: true,
-  compass_economy_enabled: true,
-  compass_retention_enabled: true,
-  compass_topic_map_enabled: true,
   // Режим обслуживания (управляется из «Пульта»). Дефолт FALSE — приложение
   // работает. banner = мягкая плашка сверху; block = жёсткий полноэкранный
   // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
@@ -366,15 +375,14 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_arena_premium: true,
   gate_energy_premium: true,
   gate_extra_languages_premium: true,
-  gate_speaking_club_premium: true,
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
   // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
   top_helpers_enabled: true,
-  // Подарок «3 дня полного доступа» новым юзерам: дефолт TRUE = kill-switch
-  // (новые получают подарок и модал как сейчас). Админ ставит false в «Пульте» →
+  // Подарок «3 дня полного доступа» новым юзерам: безопасный дефолт false.
+  // Админ может явно включить его в «Пульте»; при false
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
   // Уже выданные подарки не отбираются (гейт только в точке выдачи).
-  intro_full_access_enabled: true,
+  intro_full_access_enabled: false,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -428,7 +436,8 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   arena_daily_max: { min: 0, max: 999 },
   arena_shard_refill_cost: { min: 0, max: 9999 },
   arena_shard_refill_slots: { min: 0, max: 999 },
-  max_energy: { min: 1, max: 99 },
+  // Product invariant: base capacity is exactly 5; level 50 adds the sixth slot.
+  max_energy: { min: 5, max: 5 },
   energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
   free_trainer_sessions_per_day: { min: 0, max: 99 },
   trainer_ab_a_pct: { min: 0, max: 100 },
@@ -444,7 +453,6 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
-  league_chat_auth_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
   arena_sr_win: { min: 0, max: 999 },
   arena_sr_loss: { min: 0, max: 999 },
   arena_sr_bot_win: { min: 0, max: 999 },
@@ -539,6 +547,12 @@ export function applyRemoteConfigSnapshot(snapshot: {
     const raw = snapshot.bools?.[key];
     if (typeof raw === 'boolean') nextBools[key] = raw;
   }
+  // Мастер-флаг рулетки живёт в numbers (boolean) — подхватываем отдельно,
+  // чтобы сервер и админка писали один и тот же ключ.
+  const rouletteRaw = snapshot.numbers?.referral_roulette_enabled;
+  if (typeof rouletteRaw === 'boolean') nextBools.referral_roulette_enabled = rouletteRaw;
+  const rouletteEmergencyRaw = snapshot.numbers?.referral_roulette_emergency_stop;
+  if (typeof rouletteEmergencyRaw === 'boolean') nextBools.referral_roulette_emergency_stop = rouletteEmergencyRaw;
   for (const key of Object.keys(DEFAULT_TEXTS) as RemoteTextKey[]) {
     const raw = snapshot.texts?.[key];
     if (typeof raw === 'string') nextTexts[key] = raw;
@@ -640,7 +654,6 @@ export const getLeagueSyncMinIntervalMs = () => getRemoteNumber('league_sync_min
 export const getLeagueSyncForceIntervalMs = () => getRemoteNumber('league_sync_force_interval_ms');
 export const getLeagueStartupRegistrationIntervalMs = () => getRemoteNumber('league_startup_registration_interval_ms');
 export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_ms');
-export const getLeagueChatAuthTtlMs = () => getRemoteNumber('league_chat_auth_ttl_ms');
 export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
 export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
 export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
@@ -648,6 +661,23 @@ export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_r
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
+export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
+export const isReferralRouletteEmergencyStopped = () => getRemoteBool('referral_roulette_emergency_stop');
+
+const SOFT_UPSELL_FLAG_BY_TRIGGER: Record<SoftUpsellTrigger, RemoteBoolKey> = {
+  first_lesson: 'soft_upsell_first_lesson_enabled',
+  free_lessons_complete: 'soft_upsell_free_lessons_complete_enabled',
+  weekly_review: 'soft_upsell_weekly_review_enabled',
+  second_ai_dialogue: 'soft_upsell_second_ai_dialogue_enabled',
+  streak_milestone: 'soft_upsell_streak_enabled',
+  repeated_training: 'soft_upsell_repeated_training_enabled',
+};
+
+export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boolean> {
+  return Object.fromEntries(
+    Object.entries(SOFT_UPSELL_FLAG_BY_TRIGGER).map(([trigger, flag]) => [trigger, getRemoteBool(flag)]),
+  ) as Record<SoftUpsellTrigger, boolean>;
+}
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
@@ -909,38 +939,29 @@ export function shouldShowPromoBanner(params: {
 export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
-export const isLeagueRealtimeMembersEnabled = () => getRemoteBool('league_realtime_members_enabled');
-/** Кнопка Phraseman Pro (lifetime) показывается на пейволах. Дефолт false. */
+// зачем: league_realtime_members_enabled удалён целиком (тип+дефолт+хелпер) —
+// realtime-подписка на участников лиги снесена (subscribeToLeagueGroupMembers,
+// 2026-07-25), мёртвый kill-switch в «Пульте» лишь вводил бы в заблуждение.
+// Старый ключ в Firestore-доке безопасно игнорируется циклом по DEFAULT_FLAGS.
+/** Phraseman Pro показывается как раскрываемая разовая покупка. Дефолт true. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
 /** Борд «Топ хелперов» в настройках (топ-репортёры багов). Дефолт true — kill-switch. */
 export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
 /**
- * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт true =
- * kill-switch (новые получают подарок как сейчас). false (из «Пульта») → новые
- * юзеры больше не получают ни подарок, ни приветственный модал; уже выданные
- * подарки не отбираются. Гейт применяется в app/intro_full_access.ts (точка выдачи).
+ * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт false:
+ * новые юзеры не получают ни подарок, ни приветственный модал. Включение из
+ * «Пульта» действует только на будущие выдачи; уже выданные подарки не отбираются.
+ * Гейт применяется в app/intro_full_access.ts (точка выдачи).
  */
 export const isIntroFullAccessEnabled = () => getRemoteBool('intro_full_access_enabled');
 
-/**
- * Компас — ГЛАВНЫЙ выключатель всей фичи. Дефолт false (sell-switch). Если false —
- * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже
- * имеют силу ТОЛЬКО когда главный включён (см. app/compass/compass_flags.ts).
- */
 /**
  * Глобальный рубильник всего ИИ. TRUE = весь ИИ выключен (ручные вызовы → забавная
  * заглушка, фоновые → тихо no-op). Это НАД-флаг: все ИИ-геттеры ниже уважают его.
  */
 export const isAiGloballyDisabled = () => getRemoteBool('ai_global_disable');
-export const isCompassEnabled = () => getRemoteBool('compass_enabled') && !isAiGloballyDisabled();
-export const isCompassAiVoiceEnabled = () => getRemoteBool('compass_ai_voice_enabled') && !isAiGloballyDisabled();
-export const isCompassDeepDiveEnabled = () => getRemoteBool('compass_deep_dive_enabled');
-export const isCompassLessonInviteEnabled = () => getRemoteBool('compass_lesson_invite_enabled');
-export const isCompassEconomyEnabled = () => getRemoteBool('compass_economy_enabled');
-export const isCompassRetentionEnabled = () => getRemoteBool('compass_retention_enabled');
-export const isCompassTopicMapEnabled = () => getRemoteBool('compass_topic_map_enabled');
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
 export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
 export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');

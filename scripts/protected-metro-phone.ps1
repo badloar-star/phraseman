@@ -1,4 +1,8 @@
 ﻿<#
+  DEPRECATED for iPhone: use `npm run metro:iphone` (scripts/metro-iphone-lan.ps1) instead -
+  it now has its own restart watchdog with the same hardening. This script stays in use
+  only for metro:phone / Android (adb reverse) mode.
+
   protected-metro-phone.ps1 — «неубиваемый» Metro для РЕАЛЬНОГО телефона, порт 8085 по умолчанию.
 
   Поддерживает И iPhone, И Android:

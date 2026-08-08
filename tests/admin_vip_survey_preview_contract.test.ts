@@ -7,12 +7,11 @@ describe('admin VIP survey preview', () => {
   const surveySection = fs.readFileSync(path.join(root, 'components', 'admin_panel', 'sections', 'VipSurveyExtraSection.tsx'), 'utf8');
   const inbox = fs.readFileSync(path.join(root, 'components', 'AppMessagesInbox.tsx'), 'utf8');
   const modal = fs.readFileSync(path.join(root, 'components', 'VipSurveyModal.tsx'), 'utf8');
-  const reviewPrompt = fs.readFileSync(path.join(root, 'components', 'VipSurveyReviewPromptModal.tsx'), 'utf8');
   const storeReview = fs.readFileSync(path.join(root, 'app', 'store_review.ts'), 'utf8');
   const surveyClient = fs.readFileSync(path.join(root, 'app', 'vip_survey.ts'), 'utf8');
   const surveyDevAuth = fs.readFileSync(path.join(root, 'app', 'vip_survey_dev_auth.ts'), 'utf8');
   const appMessages = fs.readFileSync(path.join(root, 'app', 'app_messages.ts'), 'utf8');
-  const admin = fs.readFileSync(path.join(root, 'admin', 'index.html'), 'utf8');
+  const admin = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
   const maestro = fs.readFileSync(path.join(root, 'maestro', 'flows', 'dev_only', 'vip_survey_e2e.yaml'), 'utf8');
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
@@ -28,8 +27,8 @@ describe('admin VIP survey preview', () => {
     expect(screen).toContain('nav.dismissAll');
     expect(screen).toContain("router.replace('/(tabs)/home'");
     expect(screen).not.toContain("nav.navigate('/(tabs)/home'");
-    expect(surveySection).toContain('Завершение опроса отправит реальные ответы и активирует Plus через callable');
-    expect(appMessages).toContain('AsyncStorage.setItem(LOCAL_APP_MESSAGES_KEY');
+    expect(screen).toContain('Завершение опроса отправляет реальные ответы в админку');
+    expect(appMessages).toContain('AsyncStorage.setItem(appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX');
     expect(appMessages).toContain('admin_test_vip_survey_');
     expect(appMessages).toContain("if (message.kind === 'vip_survey') return !hasPremiumAccess");
     expect(appMessages).toContain("audience: 'free'");
@@ -41,7 +40,7 @@ describe('admin VIP survey preview', () => {
 
   it('submits the test survey through the real callable and keeps admin results live', () => {
     expect(inbox).toContain('VipSurveyModal');
-    expect(inbox).toContain('VipSurveyReviewPromptModal');
+    expect(inbox).not.toContain('VipSurveyReviewPromptModal');
     expect(inbox).toContain('useIsFocused');
     expect(inbox).toContain('if (!renderButton) return null');
     expect(inbox).toContain('vip-survey-inbox-cta');
@@ -67,7 +66,7 @@ describe('admin VIP survey preview', () => {
     expect(modal).toContain('spellCheck={false}');
     expect(modal).toContain('<View style={StyleSheet.absoluteFill} />');
     expect(modal).not.toContain('StyleSheet.absoluteFill} onPress={onClose}');
-    expect(modal).toContain('setError(copy.error)');
+    expect(modal).toContain('setError(classifySubmitError(detail))');
     expect(modal).not.toContain('`${copy.error} (${detail})`');
     expect(modal).toContain('Нажми «Завершить опрос» — и Plus активируется.');
     expect(modal).not.toContain('VIP-аккаунт активирован');
@@ -91,22 +90,15 @@ describe('admin VIP survey preview', () => {
     expect(persistBody).not.toContain('tester_no_premium');
     expect(surveyClient).toMatch(/if \(active\) \{\r?\n\s*emitAppEvent\('vip_activated'\);/);
     expect(surveyClient).toContain("emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' })");
-    expect(reviewPrompt).toContain('Твой Plus активирован');
-    expect(reviewPrompt).toContain('Хотите поделиться впечатлением о Phraseman?');
-    expect(reviewPrompt).toContain('Написать отзыв');
-    expect(reviewPrompt).toContain('vip-survey-review-write');
-    expect(reviewPrompt).toContain('openStoreReviewPage');
-    expect(reviewPrompt).toContain('recordVipSurveyReviewClickFromApp');
     expect(storeReview).toContain('itms-apps://itunes.apple.com/app/id');
     expect(storeReview).toContain('market://details?id=');
     expect(storeReview).toContain('WebBrowser.openBrowserAsync');
     expect(storeReview).not.toMatch(legacyRuntimePattern);
     expect(modal).not.toContain('previewOnly?: boolean');
     expect(modal).not.toContain("vipPlan: 'survey_vip_preview'");
-    expect(admin).toContain('onSnapshot');
-    expect(admin).toContain("collection(db, 'vip_survey_responses')");
-    expect(admin).toContain('refreshVipSurveyUsers');
-    expect(admin).toContain('renderVipSurveyResponses()');
+    // Старый admin/index.html выведен из эксплуатации (Admin V2 — единственная
+    // админ-поверхность); живого просмотра ответов VIP-опроса в V2 пока нет —
+    // поэтому ассерты на onSnapshot/vip_survey_responses в старой админке сняты.
 
     const finishStart = modal.indexOf('const finish = async () => {');
     const finishBody = modal.slice(finishStart, modal.indexOf('const goNext', finishStart));

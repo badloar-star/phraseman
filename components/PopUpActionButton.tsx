@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect } from 'react';
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 import Reanimated, {
   interpolate,
   useAnimatedStyle,
@@ -20,9 +20,9 @@ interface Props {
   disabled?: boolean;
   /** Цвет поверхности кнопки. Default — зелёный (как Duolingo «Проверить»). */
   color?: string;
-  /** Цвет 3D-кромки. Default — затемнённый цвет поверхности. */
+  /** @deprecated Сохранено для совместимости; декоративная кромка не рисуется. */
   edgeColor?: string;
-  /** Цвет текста. Default белый. */
+  /** Цвет текста. По умолчанию тёмный для контраста с ярко-зелёной заливкой. */
   textColor?: string;
   testID?: string;
   style?: StyleProp<ViewStyle>;
@@ -36,7 +36,8 @@ const DEFAULT_EDGE = '#15803D';
  *
  * Когда пользователь ввёл/выбрал все слова — кнопка «Проверить»/«Продолжить»
  * выезжает снизу вверх с пружиной и фейдом. Абсолютно позиционирована у нижнего
- * края экрана, поверх контента. Внутри — DuoPressable (Duolingo 3D-нажатие).
+ * края экрана, поверх контента. Внутри — DuoPressable с коротким press-откликом
+ * без декоративной обводки.
  *
  * Точки внедрения (см. BUTTON_AUDIT): review.tsx, personal_plan_exercise.tsx,
  * diagnostic_test.tsx, quizzes.tsx (hard mode).
@@ -51,7 +52,7 @@ function PopUpActionButton({
   disabled,
   color = DEFAULT_COLOR,
   edgeColor = DEFAULT_EDGE,
-  textColor = '#fff',
+  textColor = '#07110A',
   testID,
   style,
 }: Props) {

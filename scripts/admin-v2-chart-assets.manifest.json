@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "package": "chart.js",
+      "version": "4.4.3",
+      "source": "node_modules/chart.js/dist/chart.umd.js",
+      "destination": "admin/v2/vendor/chart.umd.js",
+      "sha256": "6e708cb2c2b41604db1f5dec01724856ec53ac867899a1e4e2cfb8f0ace6bed9"
+    },
+    {
+      "package": "chartjs-plugin-zoom",
+      "version": "2.0.1",
+      "source": "node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js",
+      "destination": "admin/v2/vendor/chartjs-plugin-zoom.min.js",
+      "sha256": "503c709802be285c676afe0369bf5f72066d0b0c23929188c3158f35c0327a9c"
+    },
+    {
+      "package": "hammerjs",
+      "version": "2.0.8",
+      "source": "node_modules/hammerjs/hammer.min.js",
+      "destination": "admin/v2/vendor/hammer.min.js",
+      "sha256": "7953631f0e54794d2352a3cfa591c0914d73e14f90141058e3cf16bee7939bcf"
+    }
+  ],
+  "licenses": [
+    {
+      "package": "chart.js",
+      "version": "4.4.3",
+      "source": "node_modules/chart.js/LICENSE.md",
+      "sha256": "41a84aa2caba645f966a18d9c2056b73e6d3a81d80bc0046bc0011a2634d4cce"
+    },
+    {
+      "package": "chartjs-plugin-zoom",
+      "version": "2.0.1",
+      "source": "node_modules/chartjs-plugin-zoom/LICENSE.md",
+      "sha256": "faf50ba4a21e0c740c96e9bbce1b862273cfe5dd2cdf200d3271a781094c6ba9"
+    },
+    {
+      "package": "hammerjs",
+      "version": "2.0.8",
+      "source": "node_modules/hammerjs/LICENSE.md",
+      "sha256": "4d93df6544df47a49b25add3aff67ff9ff47e4756d85dd0c3e1beba8520ab9f2"
+    },
+    {
+      "package": "@kurkle/color",
+      "version": "0.3.4",
+      "source": "node_modules/@kurkle/color/LICENSE.md",
+      "sha256": "89ba0032731489153d552db918b727feb05128cf9eca20092875a9ad14147671"
+    }
+  ],
+  "noticeDestination": "admin/v2/vendor/THIRD_PARTY_NOTICES.txt"
+}

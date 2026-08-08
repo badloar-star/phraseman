@@ -1,0 +1,260 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const shards_apply_delta_1 = require("./shards_apply_delta");
+const fs_1 = require("fs");
+const path_1 = require("path");
+// K3: серверный callable shardsApplyDelta — единственная точка записи баланса
+// осколков (runTransaction + идемпотентность по opId). Здесь покрываем чистое ядро:
+// валидацию входа и вычисление исхода транзакции (идемпотентность / spend-guard).
+describe('validateShardsApplyDeltaInput', () => {
+    // Новая экономика (план 2026-07-20, §7): client-initiated earn полностью
+    // отключён (каталог обнулён), поэтому базовый валидный op — spend.
+    const base = {
+        opId: 'abcd1234efgh',
+        ownerStableId: 'stable-owner-a',
+        delta: 1,
+        type: 'spend',
+        reason: 'card_pack',
+    };
+    it('rejects every client-initiated earn op (coins are purchase-only now)', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            type: 'earn',
+            reason: 'lesson_first',
+        }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            type: 'earn',
+            reason: 'global_broadcast_modal',
+            delta: 30,
+        }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            type: 'earn',
+            reason: 'achievement:streak_7',
+        }).ok).toBe(false);
+    });
+    it('accepts a well-formed spend op', () => {
+        const r = (0, shards_apply_delta_1.validateShardsApplyDeltaInput)(base);
+        expect(r.ok).toBe(true);
+        if (r.ok) {
+            expect(r.value).toEqual({
+                opId: 'abcd1234efgh',
+                ownerStableId: 'stable-owner-a',
+                delta: 1,
+                type: 'spend',
+                reason: 'card_pack',
+            });
+        }
+    });
+    it('accepts an exact legacy customization opId without accepting paths or whitespace', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            opId: 'customization:legacy-intent-1234',
+        }).ok).toBe(true);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            opId: 'customization/legacy-intent-1234',
+        }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            opId: 'customization legacy-intent-1234',
+        }).ok).toBe(false);
+    });
+    it('accepts a spend op', () => {
+        const r = (0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, type: 'spend', reason: 'card_pack' });
+        expect(r.ok).toBe(true);
+    });
+    it('rejects unknown earn reasons even before the zeroed catalog lookup', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            type: 'earn',
+            reason: 'unknown_dynamic_reward',
+        }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            type: 'earn',
+            reason: 'global_broadcast_modal',
+            delta: 29,
+        }).ok).toBe(false);
+    });
+    it('leaves spend amount and reason behavior unchanged', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({
+            ...base,
+            type: 'spend',
+            reason: 'future_shop_item',
+            delta: 99999,
+        }).ok).toBe(true);
+    });
+    it('rejects a too-short opId (idempotency key must be robust)', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, opId: 'short' }).ok).toBe(false);
+    });
+    it('rejects an opId with illegal characters', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, opId: 'has space 1234' }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, opId: 'path/traversal/x' }).ok).toBe(false);
+    });
+    it('rejects a non earn/spend type', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, type: 'admin' }).ok).toBe(false);
+    });
+    it('requires an explicit ownerStableId', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, ownerStableId: undefined }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, ownerStableId: '   ' }).ok).toBe(false);
+    });
+    it('rejects zero / negative / non-finite delta', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, delta: 0 }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, delta: -5 }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, delta: NaN }).ok).toBe(false);
+    });
+    it('enforces the per-op earn cap (anti-farm backstop against delta:99999)', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, type: 'earn', delta: 99999 }).ok).toBe(false);
+        // Spend не капим — оно только уменьшает баланс, фарма не даёт.
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, type: 'spend', delta: 99999 }).ok).toBe(true);
+    });
+    it('rejects non-canonical delta, owner, and reason values instead of rewriting them', () => {
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, delta: 3.9 }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, delta: '3' }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, ownerStableId: ' stable-owner-a ' }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, reason: '   ' }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, reason: ' padded ' }).ok).toBe(false);
+        expect((0, shards_apply_delta_1.validateShardsApplyDeltaInput)({ ...base, reason: 'x'.repeat(65) }).ok).toBe(false);
+    });
+});
+describe('shardsApplyDelta owner boundary', () => {
+    it('denies a resolved auth owner mismatch', () => {
+        expect((0, shards_apply_delta_1.shardOwnerMatchesResolvedIdentity)('stable-owner-a', 'stable-owner-a')).toBe(true);
+        expect((0, shards_apply_delta_1.shardOwnerMatchesResolvedIdentity)('stable-owner-a', 'stable-owner-b')).toBe(false);
+        expect((0, shards_apply_delta_1.shardOwnerMatchesResolvedIdentity)(null, 'stable-owner-a')).toBe(false);
+    });
+    it('revalidates the authoritative owner after a transaction retry or relink', () => {
+        expect((0, shards_apply_delta_1.shardTransactionOwnerMatchesIdentity)({
+            authUid: 'provider-a',
+            ownerStableId: 'stable-a',
+            authLinkExists: true,
+            authLinkStableId: 'stable-a',
+            ownerUserExists: true,
+            ownerUserFirebaseAuthUid: 'provider-a',
+        })).toBe(true);
+        expect((0, shards_apply_delta_1.shardTransactionOwnerMatchesIdentity)({
+            authUid: 'provider-a',
+            ownerStableId: 'stable-a',
+            authLinkExists: true,
+            authLinkStableId: 'stable-b',
+            ownerUserExists: true,
+            ownerUserFirebaseAuthUid: 'provider-a',
+        })).toBe(false);
+        expect((0, shards_apply_delta_1.shardTransactionOwnerMatchesIdentity)({
+            authUid: 'provider-a',
+            ownerStableId: 'stable-a',
+            authLinkExists: false,
+            authLinkStableId: null,
+            ownerUserExists: true,
+            ownerUserFirebaseAuthUid: 'provider-a',
+        })).toBe(true);
+    });
+    it('reads deletion guards, auth link, receipt, and user inside the balance transaction', () => {
+        const source = (0, fs_1.readFileSync)((0, path_1.join)(__dirname, 'shards_apply_delta.ts'), 'utf8');
+        const transactionSource = source.slice(source.indexOf('db.runTransaction'));
+        expect(transactionSource).toContain('tx.get(authMarkerRef)');
+        expect(transactionSource).toContain('tx.get(tombstoneRef)');
+        expect(transactionSource).toContain('tx.get(authLinkRef)');
+        expect(transactionSource).toContain('tx.get(receiptRef)');
+        expect(transactionSource).toContain('tx.get(userRef)');
+        expect(transactionSource).toContain("'account_delete_pending'");
+        expect(transactionSource).toContain("'Shard operation owner changed'");
+    });
+    it('reads a fresh earn counter only after receipt and owner checks, then writes it atomically', () => {
+        const source = (0, fs_1.readFileSync)((0, path_1.join)(__dirname, 'shards_apply_delta.ts'), 'utf8');
+        const transactionSource = source.slice(source.indexOf('db.runTransaction'));
+        const receiptRead = transactionSource.indexOf('tx.get(receiptRef)');
+        const receiptOutcome = transactionSource.indexOf('receiptSnap.exists');
+        const counterRead = transactionSource.indexOf('tx.get(earnCounterRef)');
+        const receiptWrite = transactionSource.indexOf('tx.set(receiptRef');
+        const counterWrite = transactionSource.indexOf('tx.set(earnCounterRef');
+        const balanceWrite = transactionSource.indexOf('tx.set(userRef');
+        expect(receiptRead).toBeGreaterThan(-1);
+        expect(receiptOutcome).toBeGreaterThan(receiptRead);
+        expect(counterRead).toBeGreaterThan(receiptOutcome);
+        expect(receiptWrite).toBeGreaterThan(counterRead);
+        expect(counterWrite).toBeGreaterThan(counterRead);
+        expect(balanceWrite).toBeGreaterThan(counterRead);
+    });
+    it('stores idempotency only in the dedicated server receipt namespace', () => {
+        const source = (0, fs_1.readFileSync)((0, path_1.join)(__dirname, 'shards_apply_delta.ts'), 'utf8');
+        expect(source).toContain("const SHARD_OPERATION_RECEIPTS_COLLECTION = 'shard_operation_receipts'");
+        expect(source).not.toContain("const REWARD_CLAIMS_COLLECTION = 'reward_claims'");
+    });
+    it('accepts an idempotent replay only when the receipt matches the exact operation', () => {
+        const receipt = {
+            opId: 'abcd1234efgh',
+            type: 'spend',
+            reason: 'shop_item',
+            delta: -25,
+        };
+        expect((0, shards_apply_delta_1.shardReceiptMatchesOperation)(receipt, {
+            opId: 'abcd1234efgh',
+            type: 'spend',
+            reason: 'shop_item',
+            signedDelta: -25,
+        })).toBe(true);
+        expect((0, shards_apply_delta_1.shardReceiptMatchesOperation)(receipt, {
+            opId: 'abcd1234efgh',
+            type: 'earn',
+            reason: 'shop_item',
+            signedDelta: 25,
+        })).toBe(false);
+        expect((0, shards_apply_delta_1.shardReceiptMatchesOperation)(receipt, {
+            opId: 'abcd1234efgh',
+            type: 'spend',
+            reason: 'shop_item',
+            signedDelta: -20,
+        })).toBe(false);
+        expect((0, shards_apply_delta_1.shardReceiptMatchesOperation)({}, {
+            opId: 'abcd1234efgh',
+            type: 'spend',
+            reason: 'shop_item',
+            signedDelta: -25,
+        })).toBe(false);
+    });
+    it('rejects a conflicting receipt before returning an idempotent result', () => {
+        const source = (0, fs_1.readFileSync)((0, path_1.join)(__dirname, 'shards_apply_delta.ts'), 'utf8');
+        const transactionSource = source.slice(source.indexOf('db.runTransaction'));
+        const conflictCheck = transactionSource.indexOf('shardReceiptMatchesOperation(');
+        const outcome = transactionSource.indexOf('computeShardsDeltaOutcome(', conflictCheck);
+        expect(conflictCheck).toBeGreaterThan(-1);
+        expect(outcome).toBeGreaterThan(conflictCheck);
+        expect(transactionSource).toContain("'shard_operation_conflict'");
+    });
+});
+describe('computeShardsDeltaOutcome — atomicity core', () => {
+    it('earn adds the delta and marks the op for writing', () => {
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(false, 10, 2)).toEqual({
+            write: true, alreadyApplied: false, insufficient: false, balance: 12,
+        });
+    });
+    it('spend subtracts and writes when funds suffice', () => {
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(false, 10, -4)).toEqual({
+            write: true, alreadyApplied: false, insufficient: false, balance: 6,
+        });
+    });
+    it('idempotent replay: claim already exists → no write, returns current balance', () => {
+        // Тот же opId второй раз — дельту не удваиваем.
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(true, 12, 2)).toEqual({
+            write: false, alreadyApplied: true, insufficient: false, balance: 12,
+        });
+    });
+    it('spend that would go negative → insufficient, no write, balance untouched', () => {
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(false, 3, -10)).toEqual({
+            write: false, alreadyApplied: false, insufficient: true, balance: 3,
+        });
+    });
+    it('spend to exactly zero is allowed', () => {
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(false, 10, -10)).toEqual({
+            write: true, alreadyApplied: false, insufficient: false, balance: 0,
+        });
+    });
+    it('treats a missing/garbage current balance as 0', () => {
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(false, NaN, 5).balance).toBe(5);
+        expect((0, shards_apply_delta_1.computeShardsDeltaOutcome)(false, -7, 5).balance).toBe(5);
+    });
+});
+//# sourceMappingURL=shards_apply_delta.test.js.map

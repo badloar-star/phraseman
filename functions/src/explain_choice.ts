@@ -112,7 +112,7 @@ export const explainChoice = onCall({
 
   // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
   // считаются (это гейт ценности фичи, а не только защита кошелька OpenAI).
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
   if (!isPremium) {
     try {
       await enforceFreeJobGenLimit('choice', authUid, stableUid, FREE_DAILY_CAP);

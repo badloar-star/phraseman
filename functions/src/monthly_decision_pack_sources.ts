@@ -5,7 +5,6 @@ import {
 } from './admin_product_analytics';
 import { aggregateServerRevenueAnalytics, type ServerRevenueRow } from './admin_revenue_analytics_core';
 import type { DecisionPackInput, MonthlyReportingWindow } from './monthly_decision_pack_core';
-import { loadOperationalAggregateProjection } from './monthly_decision_pack_firestore_sources';
 
 const REVENUECAT_PAGE_SIZE = 500;
 export const DECISION_PACK_REVENUECAT_ROW_CAP = 10_000;
@@ -235,27 +234,19 @@ async function loadRevenueRows(fromMs: number): Promise<{ rows: ServerRevenueRow
 }
 
 export async function loadDecisionPackAggregateInput(window: MonthlyReportingWindow, generatedAtMs: number): Promise<DecisionPackInput> {
-  const loadProductScope = async (startMs: number, endExclusiveMs: number) => {
+  const loadProductScope = async (startMs: number, endExclusiveMs: number, maximumBytesBilled: string) => {
     try {
-      const result = await loadProductAnalyticsAggregateRows({ startMs, endExclusiveMs, reportingTimezone: window.timezone });
+      const result = await loadProductAnalyticsAggregateRows({ startMs, endExclusiveMs, reportingTimezone: window.timezone, maximumBytesBilled });
       return { ...result, unavailableReason: result.exportPending ? 'waiting_for_daily_export' : undefined };
     } catch (error) {
       if (!isExpectedProductSourceUnavailableError(error)) throw error;
       return { rows: [] as ProductAnalyticsQueryRow[], exportPending: true, unavailableReason: 'warehouse_not_configured' };
     }
   };
-  const [productMonth, productBaseline, revenue, operational] = await Promise.all([
-    loadProductScope(window.startMs, window.endExclusiveMs),
-    loadProductScope(window.baselineStartMs, window.baselineEndExclusiveMs),
+  const [productMonth, productBaseline, revenue] = await Promise.all([
+    loadProductScope(window.startMs, window.endExclusiveMs, '5000000000'),
+    loadProductScope(window.baselineStartMs, window.baselineEndExclusiveMs, '10000000000'),
     loadRevenueRows(window.baselineStartMs),
-    loadOperationalAggregateProjection({
-      db: admin.firestore(),
-      monthStartMs: window.startMs,
-      monthEndExclusiveMs: window.endExclusiveMs,
-      baselineStartMs: window.baselineStartMs,
-      baselineEndExclusiveMs: window.baselineEndExclusiveMs,
-      generatedAtMs,
-    }),
   ]);
   const inWindow = (row: ServerRevenueRow, start: number, end: number) => {
     const at = finite(row.eventTimestampMs) ?? finite(row.createdAtMs);
@@ -263,7 +254,7 @@ export async function loadDecisionPackAggregateInput(window: MonthlyReportingWin
   };
   const monthRows = revenue.rows.filter((row) => inWindow(row, window.startMs, window.endExclusiveMs));
   const baselineRows = revenue.rows.filter((row) => inWindow(row, window.baselineStartMs, window.baselineEndExclusiveMs));
-  const projected = buildDecisionPackAggregateInput({
+  return buildDecisionPackAggregateInput({
     window,
     generatedAtMs,
     productMonthRows: productMonth.rows,
@@ -275,16 +266,6 @@ export async function loadDecisionPackAggregateInput(window: MonthlyReportingWin
     revenueTruncated: revenue.truncated,
     revenueRows: revenue.rows.length,
   });
-  const operationalSources = new Map(operational.sources.map((source) => [source.id, source]));
-  const sections = projected.sections ?? {};
-  sections.notifications_referrals = operational.notificationsReferrals;
-  sections.social_features = operational.socialFeatures;
-  sections.feedback_support = operational.feedbackSupport;
-  return {
-    ...projected,
-    sources: projected.sources.map((source) => operationalSources.get(source.id) ?? source),
-    sections,
-  };
 }
 
 export function isExpectedProductSourceUnavailableError(error: unknown): boolean {

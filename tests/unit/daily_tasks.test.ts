@@ -19,6 +19,7 @@ import {
 jest.mock('@react-native-async-storage/async-storage');
 
 const mockStorage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+(globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
 describe('daily_tasks', () => {
   beforeEach(() => {
@@ -62,31 +63,31 @@ describe('daily_tasks', () => {
 
     it('returns different task sets for different days of month', () => {
       // Day 1 vs day 2 produce different sets
-      const origGetDate = Date.prototype.getDate;
+      const origGetUTCDate = Date.prototype.getUTCDate;
 
-      Date.prototype.getDate = function () { return 1; };
+      Date.prototype.getUTCDate = function () { return 1; };
       const day1Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = function () { return 2; };
+      Date.prototype.getUTCDate = function () { return 2; };
       const day2Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = origGetDate;
+      Date.prototype.getUTCDate = origGetUTCDate;
 
       expect(day1Tasks).not.toEqual(day2Tasks);
     });
 
-    it('cycles back for day 31 (index = 0 mod 30)', () => {
-      const origGetDate = Date.prototype.getDate;
+    it('cycles back for day 10 after the nine-day active rotation', () => {
+      const origGetUTCDate = Date.prototype.getUTCDate;
 
-      Date.prototype.getDate = function () { return 1; };
+      Date.prototype.getUTCDate = function () { return 1; };
       const day1Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = function () { return 31; };
-      const day31Tasks = getTodayTasks().map(t => t.id);
+      Date.prototype.getUTCDate = function () { return 10; };
+      const day10Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = origGetDate;
+      Date.prototype.getUTCDate = origGetUTCDate;
 
-      expect(day31Tasks).toEqual(day1Tasks);
+      expect(day10Tasks).toEqual(day1Tasks);
     });
   });
 
@@ -183,8 +184,8 @@ describe('daily_tasks', () => {
     });
 
     it('skips already-completed tasks', async () => {
-      const origGetDate = Date.prototype.getDate;
-      Date.prototype.getDate = function () { return 1; };
+      const origGetUTCDate = Date.prototype.getUTCDate;
+      Date.prototype.getUTCDate = function () { return 1; };
 
       const initial: TaskProgress[] = [
         { taskId: 'da1', current: 1, completed: true, claimed: false },
@@ -196,7 +197,7 @@ describe('daily_tasks', () => {
 
       const { allProgress } = await updateTaskProgress('daily_active', 1);
 
-      Date.prototype.getDate = origGetDate;
+      Date.prototype.getUTCDate = origGetUTCDate;
 
       // Already completed, should remain unchanged
       const da1 = allProgress.find(p => p.taskId === 'da1')!;

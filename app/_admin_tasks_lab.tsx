@@ -13,7 +13,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { ENABLE_DEV_TOOLS } from './config';
 import { useTheme } from '../components/ThemeContext';
@@ -178,7 +178,7 @@ export default function AdminTasksLab() {
         <TextInput value={title} onChangeText={setTitle} placeholder="Напр. «Первое впечатление»" placeholderTextColor={t.textMuted} style={inputStyle} />
 
         <Text style={[styles.label, { color: t.textSecond }]}>Описание (подпись под названием)</Text>
-        <TextInput value={subtitle} onChangeText={setSubtitle} placeholder="Напр. «Пара вопросов — и осколки твои»" placeholderTextColor={t.textMuted} style={inputStyle} />
+        <TextInput value={subtitle} onChangeText={setSubtitle} placeholder="Напр. «Пара вопросов — и жемчуг твой»" placeholderTextColor={t.textMuted} style={inputStyle} />
 
         <Text style={[styles.label, { color: t.textSecond }]}>Цвет плашки</Text>
         <View style={styles.swatchRow}>

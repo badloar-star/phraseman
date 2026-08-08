@@ -41,7 +41,12 @@ describe('admin emails surface', () => {
   });
 
   test('web checkout sends activation email and persists site emails', () => {
-    expect(webCheckout).toContain("defineString('RESEND_API_KEY'");
+    const resendSecret = readFileSync(
+      path.join(root, 'functions', 'src', 'resend_secret.ts'),
+      'utf8',
+    );
+    expect(resendSecret).toContain("defineSecret('RESEND_API_KEY')");
+    expect(webCheckout).toContain("from './resend_secret'");
     expect(webCheckout).toContain('sendActivationEmail');
     expect(webCheckout).toContain('handlePaidOrderSideEffects');
     expect(webCheckout).toContain('customerEmailSentAt');

@@ -1,8 +1,21 @@
 import { useCallback } from 'react';
 import * as Haptics from 'expo-haptics';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let cachedHapticTap: boolean | null = null;
+/**
+ * зачем: владелец жаловался на «микрозадержку при нажатии», особенно заметную
+ * сразу после запуска. Раньше здесь было `null` = «настройку ещё не читали», и
+ * КАЖДЫЙ тап до прогрева кэша уходил в `await AsyncStorage.getItem` — то есть
+ * лишний асинхронный поход в нативное хранилище на каждое нажатие в первые
+ * секунды жизни приложения.
+ *
+ * Теперь стартуем сразу с `true` — это ровно тот же дефолт, что и у самого
+ * хранилища (`hydrateHapticsTapFromStorage`: ключа нет → true) и что при
+ * ошибке чтения. Прогрев из AsyncStorage и переключатель в настройках всё так
+ * же перезаписывают значение через setHapticCacheEnabled; единственная разница
+ * — в узком окне до прогрева у пользователя с ВЫКЛЮЧЕННЫМ хаптиком может
+ * пройти одна-две вибрации. Это дешевле, чем задержка на каждом нажатии у всех.
+ */
+let cachedHapticTap: boolean = true;
 
 /**
  * Кулдаун лёгкого касания (selection). Гасит дребезг от очень частых тапов
@@ -34,12 +47,11 @@ let lastFeedbackHapticAt = Number.NEGATIVE_INFINITY;
 /** Момент последней ЛЮБОЙ фактически проигранной вибрации (tap или feedback). */
 let lastAnyHapticAt = Number.NEGATIVE_INFINITY;
 
-// Синхронный кэш — читаем при старте приложения
-if (typeof window !== 'undefined') {
-  AsyncStorage.getItem('haptics_tap').then(val => {
-    cachedHapticTap = val !== 'false';
-  }).catch(() => {});
-}
+// зачем: прогрев кэша живёт в app/haptics_tap_preload.ts
+// (hydrateHapticsTapFromStorage, вызывается из корневого layout). Прежний
+// модульный getItem здесь его дублировал — лишнее чтение хранилища на импорт
+// модуля плюс гонка: если пользователь успевал переключить тумблер раньше, чем
+// разрезолвится этот промис, значение затиралось обратно старым.
 
 /** Вызывать при изменении настройки хаптика чтобы сразу обновить кэш */
 export function setHapticCacheEnabled(enabled: boolean) {
@@ -88,11 +100,6 @@ export async function hapticTap() {
   try {
     if (cachedHapticTap === false) return;
     if (!canRunTapHaptic()) return;
-    if (cachedHapticTap === null) {
-      const val = await AsyncStorage.getItem('haptics_tap');
-      cachedHapticTap = val !== 'false';
-      if (!cachedHapticTap) return;
-    }
     await Haptics.selectionAsync();
   } catch {}
 }
@@ -101,11 +108,6 @@ async function runIfEnabled(run: () => Promise<void>) {
   try {
     if (cachedHapticTap === false) return;
     if (!canRunFeedbackHaptic()) return;
-    if (cachedHapticTap === null) {
-      const val = await AsyncStorage.getItem('haptics_tap');
-      cachedHapticTap = val !== 'false';
-      if (!cachedHapticTap) return;
-    }
     await run();
   } catch {}
 }
@@ -147,11 +149,6 @@ export async function hapticCelebrate() {
   try {
     if (cachedHapticTap === false) return;
     if (!canRunFeedbackHaptic()) return;
-    if (cachedHapticTap === null) {
-      const val = await AsyncStorage.getItem('haptics_tap');
-      cachedHapticTap = val !== 'false';
-      if (!cachedHapticTap) return;
-    }
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     setTimeout(() => {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});

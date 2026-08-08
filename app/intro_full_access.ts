@@ -6,7 +6,8 @@ import {
   cancelUpsellNotifications,
 } from './notifications';
 import type { Lang } from '../constants/i18n';
-import { persistGiftAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
+import { claimIntroFullAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
+import { DebugLogger } from './debug-logger';
 import {
   INTRO_FULL_ACCESS_DURATION_MS,
   INTRO_FULL_ACCESS_ENDED_SEEN_KEY,
@@ -15,7 +16,6 @@ import {
   INTRO_FULL_ACCESS_STORAGE_KEYS,
   INTRO_FULL_ACCESS_WELCOME_SEEN_KEY,
 } from './intro_full_access_keys';
-import { isIntroFullAccessEnabled } from './remote_flags';
 
 export {
   INTRO_FULL_ACCESS_DURATION_MS,
@@ -45,24 +45,17 @@ export async function startIntroFullAccessAfterOnboarding(
   nowMs: number = Date.now(),
   lang: Lang = 'ru',
 ): Promise<void> {
-  // Kill-switch из «Пульта»: когда админ выключил приветственный подарок, новые
-  // юзеры НЕ получают ни 72ч доступа, ни модал. Гейт стоит здесь — в точке ВЫДАЧИ,
-  // поэтому уже выданные подарки не отбираются (их стор заполнен, они докатывают
-  // свои часы). Стор не пишем → getIntroFullAccessState вернёт active:false и
-  // welcomeUnseen:false, значит приветственный модал тоже не покажется.
-  if (!isIntroFullAccessEnabled()) return;
-
-  // Подарок выдаётся РОВНО ОДИН РАЗ за всю жизнь установки: если отметка о старте
-  // уже есть (даже если 72ч давно истекли) — повторно не выдаём. Для проверки в
-  // разработке отметку стирает кнопка «Онбординг — просмотреть повторно» в админке
-  // (resetIntroFullAccessForAdmin), после чего подарок выдаётся как новому юзеру.
+  // Локальная отметка позволяет быстро завершить повторный вызов. Источник истины
+  // для новой выдачи и kill-switch — серверный introFullAccessClaim. Подарок выдаётся
+  // ровно один раз на canonical account; локальный admin reset не продлевает его.
   const existingStart = parsePositiveMs(await AsyncStorage.getItem(INTRO_FULL_ACCESS_STARTED_AT_KEY));
   if (existingStart) return;
 
   // H4 cloud-guard: после переустановки AsyncStorage чист, но Firestore помнит
   // что подарок уже выдавался → НЕ выдаём повторно. Если cloud-grant ещё активен —
   // восстанавливаем endsAt в локальный стор, юзер докатает оставшиеся часы.
-  // Best-effort: при оффлайне/ошибке падаем на обычный локальный путь (выдача).
+  // Direct read нужен для быстрого восстановления. При ошибке callable повторно
+  // проверит тот же canonical account; без успешного ответа локальный доступ не создаётся.
   const cloudState = await readGiftAccessFromCloud('intro');
   if (cloudState?.grantedAtMs) {
     const remainingEndsAt = cloudState.endsAtMs && cloudState.endsAtMs > nowMs ? cloudState.endsAtMs : null;
@@ -82,25 +75,40 @@ export async function startIntroFullAccessAfterOnboarding(
     return;
   }
 
-  const endsAt = nowMs + INTRO_FULL_ACCESS_DURATION_MS;
+  let grant;
+  try {
+    grant = await claimIntroFullAccessOnCloud();
+  } catch (error) {
+    DebugLogger.error('intro_full_access:claim', error, 'warning');
+    return;
+  }
+
+  if (grant.endsAtMs <= nowMs) {
+    await AsyncStorage.multiSet([
+      [INTRO_FULL_ACCESS_STARTED_AT_KEY, String(grant.grantedAtMs)],
+      [INTRO_FULL_ACCESS_ENDS_AT_KEY, String(grant.endsAtMs)],
+      [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true'],
+      [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'true'],
+    ]);
+    return;
+  }
 
   await AsyncStorage.multiSet([
-    [INTRO_FULL_ACCESS_STARTED_AT_KEY, String(nowMs)],
-    [INTRO_FULL_ACCESS_ENDS_AT_KEY, String(endsAt)],
-    [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'false'],
+    [INTRO_FULL_ACCESS_STARTED_AT_KEY, String(grant.grantedAtMs)],
+    [INTRO_FULL_ACCESS_ENDS_AT_KEY, String(grant.endsAtMs)],
+    [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, grant.alreadyGranted ? 'true' : 'false'],
     [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
   ]);
 
-  // Пишем в облако ПОСЛЕ AsyncStorage — UI не блокируем. Сервер увидит подарок и
-  // ИИ-функции откроются. Если запись упадёт (offline) — попробуем при следующем
-  // sync (TODO опционально: добавить в cloud_sync SYNC_KEYS, но достаточно одного push).
-  void persistGiftAccessOnCloud('intro', nowMs, endsAt);
-
-  scheduleIntroExpiringNotification(endsAt, lang).catch(() => {});
-  scheduleUpsellNotifications(endsAt, lang).catch(() => {});
+  // Сервер уже атомарно выдал или replay-нул grant; локально сохраняются только
+  // точные серверные timestamps, затем восстанавливаются прежние уведомления.
+  scheduleIntroExpiringNotification(grant.endsAtMs, lang).catch(() => {});
+  scheduleUpsellNotifications(grant.endsAtMs, lang).catch(() => {});
 
   // Воронка: старт 72-часового полного доступа — ключевой шаг между онбордингом и пейволом.
-  void import('./analytics').then(({ trackEvent }) => trackEvent('intro_full_access_started', {})).catch(() => {});
+  if (!grant.alreadyGranted) {
+    void import('./analytics').then(({ trackEvent }) => trackEvent('intro_full_access_started', {})).catch(() => {});
+  }
 }
 
 export async function getIntroFullAccessState(nowMs: number = Date.now()): Promise<IntroFullAccessState> {

@@ -3,6 +3,13 @@ import fs from 'fs';
 import path from 'path';
 
 describe('buildTrainerFillGapOptions', () => {
+  it('uses the uniform shuffle instead of a random sort that can pin the correct answer', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'trainer_fill_gap_options.ts'), 'utf8');
+
+    expect(source).toContain("import { shuffle } from './utils_shuffle';");
+    expect(source).not.toContain('.sort(() => Math.random() - 0.5)');
+  });
+
   it('does not use other words from the current phrase as distractors', () => {
     const options = buildTrainerFillGapOptions({
       correctWord: 'help',
@@ -117,7 +124,7 @@ describe('buildTrainerFillGapOptions', () => {
     expect(options.map((option) => option.toLowerCase())).not.toEqual(expect.arrayContaining(['he', 'is', 'in', 'the']));
   });
 
-  it('keeps modal distractors grammatical without borrowing neighboring words', () => {
+  it('does not use other modals as meaning-only distractors', () => {
     const options = buildTrainerFillGapOptions({
       correctWord: 'Could',
       phrase: 'Could you help me please',
@@ -125,10 +132,37 @@ describe('buildTrainerFillGapOptions', () => {
       shuffle: false,
     });
 
-    expect(options).toEqual(['Could', 'can', 'will', 'would']);
+    expect(options).toContain('Could');
+    for (const alternativeModal of ['Can', 'Will', 'Would']) {
+      expect(options).not.toContain(alternativeModal);
+    }
   });
 
-  it('prefers phrase-authored distractors over generic same-category fillers', () => {
+  it('uses the same initial-letter case for every option when the answer starts a sentence', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'Could',
+      phrase: 'Could you help me please',
+      category: 'modal',
+      shuffle: false,
+    });
+
+    expect(options).toHaveLength(4);
+    expect(options.every((option) => option[0] === option[0]?.toUpperCase())).toBe(true);
+  });
+
+  it('does not let capitalized source distractors reveal a lowercase answer', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'you',
+      phrase: 'Could you help me please',
+      category: 'pronoun',
+      sourceDistractors: ['They', 'He', 'We'],
+      shuffle: false,
+    });
+
+    expect(options).toEqual(['you', 'they', 'he', 'we']);
+  });
+
+  it('rejects phrase-authored subject alternatives when Past Simple makes all of them fit', () => {
     const options = buildTrainerFillGapOptions({
       correctWord: 'You',
       phrase: 'You sat here yesterday',
@@ -137,7 +171,10 @@ describe('buildTrainerFillGapOptions', () => {
       shuffle: false,
     });
 
-    expect(options).toEqual(['You', 'They', 'I', 'He']);
+    expect(options).toContain('You');
+    for (const alternativeSubject of ['They', 'I', 'He', 'We']) {
+      expect(options).not.toContain(alternativeSubject);
+    }
   });
 
   it('does not offer subject pronouns that agree with the same 3rd-person-singular auxiliary', () => {
@@ -200,9 +237,9 @@ describe('buildTrainerFillGapOptions', () => {
     }
   });
 
-  it('still allows any pronoun distractor when the verb is tense-neutral (past simple)', () => {
-    // Regression guard for the existing "You sat here yesterday" expectation:
-    // "sat" agrees with every subject, so no pronoun is an alternative answer.
+  it('rejects subject-pronoun distractors when the verb is tense-neutral (past simple)', () => {
+    // Past Simple agrees with every subject, so another subject pronoun would
+    // produce another grammatically valid sentence and cannot be a distractor.
     const options = buildTrainerFillGapOptions({
       correctWord: 'You',
       phrase: 'You sat here yesterday',
@@ -211,13 +248,127 @@ describe('buildTrainerFillGapOptions', () => {
       shuffle: false,
     });
 
-    expect(options).toEqual(['You', 'They', 'I', 'He']);
+    expect(options).toContain('You');
+    for (const alternativeSubject of ['They', 'I', 'He', 'We']) {
+      expect(options).not.toContain(alternativeSubject);
+    }
+  });
+
+  it('does not offer alternative indefinite subjects for Everyone helped us', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'Everyone',
+      phrase: 'Everyone helped us',
+      category: 'pronoun',
+      sourceDistractors: ['Someone', 'Anyone', 'Nobody'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('Everyone');
+    for (const alternativeSubject of ['Someone', 'Anyone', 'Nobody']) {
+      expect(options).not.toContain(alternativeSubject);
+    }
+  });
+
+  it('does not offer other modals that create equally valid meanings', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'can',
+      phrase: 'You can start now',
+      category: 'modal',
+      sourceDistractors: ['could', 'will', 'would'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('can');
+    for (const alternativeModal of ['could', 'will', 'would']) {
+      expect(options).not.toContain(alternativeModal);
+    }
+  });
+
+  it('does not offer demonstratives as semantic alternatives to the article in The food is cooked here', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'The',
+      phrase: 'The food is cooked here',
+      category: 'article',
+      sourceDistractors: ['a', 'an', 'this', 'that', 'these'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('The');
+    for (const alternativeDeterminer of ['This', 'That']) {
+      expect(options).not.toContain(alternativeDeterminer);
+    }
   });
 
   it('routes the phrases trainer fill-gap UI through the shared option builder', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'trainer_phrases_session.tsx'), 'utf8');
+    const fillGapSource = source.slice(source.indexOf('function FillGapMode'), source.indexOf('export default function TrainerPhrasesSession'));
 
     expect(source).toContain('buildTrainerFillGapOptions');
     expect(source).not.toContain('function buildFillGapOptions');
+    expect(fillGapSource).toContain('trainerTranslationForLang(item, lang)');
+    expect(fillGapSource).toContain('{promptText}');
+  });
+
+  it('does not offer a near-synonym adjective ("glad"/"pleased") as a distractor for "happy"', () => {
+    // WORD_POOLS_L1.adjectives itself has no "glad"/"pleased" entries, so force
+    // the scenario via sourceDistractors (still exercises the same synonym-cluster
+    // filter that also guards the generic CATEGORY_POOLS fallback).
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'happy',
+      phrase: 'She is happy today',
+      category: 'adjective',
+      sourceDistractors: ['glad', 'pleased', 'big', 'tall'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('happy');
+    for (const nearSynonym of ['glad', 'pleased']) {
+      expect(options).not.toContain(nearSynonym);
+    }
+  });
+
+  it('keeps unrelated adjectives (big, tall) as valid distractors for "happy"', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'happy',
+      phrase: 'She is happy today',
+      category: 'adjective',
+      sourceDistractors: ['glad', 'pleased', 'big', 'tall'],
+      shuffle: false,
+    });
+
+    expect(options).toEqual(expect.arrayContaining(['big', 'tall']));
+  });
+
+  it('does not offer a same-cluster adjective from the generic pool fallback ("terrible" for "awful")', () => {
+    // Both "terrible" and "awful" are present in WORD_POOLS_L1.adjectives, so this
+    // exercises the CATEGORY_POOLS fallback path directly (no sourceDistractors).
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'awful',
+      phrase: 'The weather was awful',
+      category: 'adjective',
+      shuffle: false,
+    });
+
+    expect(options).toContain('awful');
+    expect(options).not.toContain('terrible');
+  });
+
+  it('does not offer a near-synonym verb ("purchase"-like "buy"/"get") pair across sourceDistractors', () => {
+    // "get" and "buy" are both plausible near-synonyms in casual usage for
+    // acquiring something; force via sourceDistractors since exact pool overlap
+    // for this cluster isn't guaranteed to hit the fallback path.
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'big',
+      phrase: 'That is a big house',
+      category: 'adjective',
+      sourceDistractors: ['large', 'huge', 'small', 'old'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('big');
+    for (const nearSynonym of ['large', 'huge']) {
+      expect(options).not.toContain(nearSynonym);
+    }
+    expect(options).toEqual(expect.arrayContaining(['small', 'old']));
   });
 });

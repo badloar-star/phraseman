@@ -5,10 +5,17 @@
 // Слушает premium_deactivated / vip_deactivated. Показывает карточку ТОЛЬКО если
 // подписка реально была активна (флаг ставится на *_activated): события деактивации
 // эмитятся снапшотами PremiumContext и у юзеров, никогда не имевших подписки.
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from '../app/account_generation';
 import { emitAppEvent, onAppEvent } from '../app/events';
+import { isTournamentInterruptionProtectedPath } from '../app/tournament_interruption_guard';
 import {
   getVerifiedPremiumAccessStatus,
   getVerifiedRealPremiumStatus,
@@ -33,159 +40,121 @@ const LAST_SHOWN_KEY: Record<Kind, string> = {
 /** Одна и та же деактивация не должна долбить карточкой каждый старт. */
 const SHOW_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
-type Copy = { kicker: string; title: string; value: string; cta: string; ghost: string };
+function accountEntitlementStorageKey(baseKey: string, stableId: string): string {
+  return `${baseKey}::${encodeURIComponent(stableId)}`;
+}
 
-const TEXTS: Record<string, Record<Kind, Copy>> = {
+function entitlementAccountIsCurrent(token: AccountGenerationToken): token is AccountGenerationToken & { stableId: string } {
+  return token.phase === 'active'
+    && !!token.stableId
+    && isCurrentAccountGeneration(token, token.stableId);
+}
+
+type Copy = { kicker: string; title: string; value: string; cta: string; invite: string; ghost: string };
+
+const TEXTS: Record<string, Copy> = {
   ru: {
-    premium: {
-      kicker: 'Подписка завершилась',
-      title: 'Plus закончился',
-      value: 'Прогресс цел. Верни безлимит уроков и все темы.',
-      cta: 'Продлить',
-      ghost: 'Позже',
-    },
-    vip: {
-      kicker: 'Plus-доступ завершился',
-      title: 'Plus закончился',
-      value: 'Пригласи друзей — получишь снова, по 7 дней за каждого.',
-      cta: 'Продлить Plus',
-      ghost: 'Позже',
-    },
+    kicker: 'Plus-доступ завершился',
+    title: 'Plus закончился',
+    value: 'Прогресс цел. Верни безлимит уроков и все темы.',
+    cta: 'Продлить Plus',
+    invite: 'Пригласить друга',
+    ghost: 'Позже',
   },
   uk: {
-    premium: {
-      kicker: 'Підписка завершилась',
-      title: 'Plus закінчився',
-      value: 'Прогрес цілий. Поверни безліміт уроків і всі теми.',
-      cta: 'Продовжити',
-      ghost: 'Пізніше',
-    },
-    vip: {
-      kicker: 'Plus-доступ завершився',
-      title: 'Plus закінчився',
-      value: 'Запроси друзів — отримаєш знову, по 7 днів за кожного.',
-      cta: 'Продовжити Plus',
-      ghost: 'Пізніше',
-    },
+    kicker: 'Plus-доступ завершився',
+    title: 'Plus закінчився',
+    value: 'Прогрес цілий. Поверни безліміт уроків і всі теми.',
+    cta: 'Продовжити Plus',
+    invite: 'Запросити друга',
+    ghost: 'Пізніше',
   },
   es: {
-    premium: {
-      kicker: 'Suscripción finalizada',
-      title: 'Plus terminó',
-      value: 'Tu progreso está a salvo. Recupera lecciones ilimitadas y todos los temas.',
-      cta: 'Renovar',
-      ghost: 'Más tarde',
-    },
-    vip: {
-      kicker: 'Acceso Plus finalizado',
-      title: 'Plus terminó',
-      value: 'Invita amigos y recupéralo: 7 días por cada uno.',
-      cta: 'Pasar a Plus',
-      ghost: 'Más tarde',
-    },
+    kicker: 'Acceso Plus finalizado',
+    title: 'Plus terminó',
+    value: 'Tu progreso está a salvo. Recupera lecciones ilimitadas y todos los temas.',
+    cta: 'Renovar Plus',
+    invite: 'Invitar a un amigo',
+    ghost: 'Más tarde',
   },
   'pt-BR': {
-    premium: {
-      kicker: 'Assinatura encerrada',
-      title: 'O Plus acabou',
-      value: 'Seu progresso está salvo. Recupere aulas ilimitadas e todos os temas.',
-      cta: 'Renovar',
-      ghost: 'Depois',
-    },
-    vip: {
-      kicker: 'Acesso Plus encerrado',
-      title: 'O Plus acabou',
-      value: 'Convide amigos e recupere: 7 dias por cada um.',
-      cta: 'Assinar Plus',
-      ghost: 'Depois',
-    },
+    kicker: 'Acesso Plus encerrado',
+    title: 'O Plus acabou',
+    value: 'Seu progresso está salvo. Recupere aulas ilimitadas e todos os temas.',
+    cta: 'Renovar Plus',
+    invite: 'Convidar um amigo',
+    ghost: 'Depois',
   },
   vi: {
-    premium: {
-      kicker: 'Gói đã kết thúc',
-      title: 'Plus đã hết hạn',
-      value: 'Tiến độ vẫn an toàn. Lấy lại bài học không giới hạn và mọi chủ đề.',
-      cta: 'Gia hạn',
-      ghost: 'Để sau',
-    },
-    vip: {
-      kicker: 'Plus đã kết thúc',
-      title: 'Plus đã hết hạn',
-      value: 'Mời bạn bè để nhận lại — 7 ngày cho mỗi người.',
-      cta: 'Nâng cấp Plus',
-      ghost: 'Để sau',
-    },
+    kicker: 'Plus đã kết thúc',
+    title: 'Plus đã hết hạn',
+    value: 'Tiến độ vẫn an toàn. Lấy lại bài học không giới hạn và mọi chủ đề.',
+    cta: 'Gia hạn Plus',
+    invite: 'Mời bạn bè',
+    ghost: 'Để sau',
   },
   id: {
-    premium: {
-      kicker: 'Langganan berakhir',
-      title: 'Plus berakhir',
-      value: 'Progresmu aman. Dapatkan kembali pelajaran tanpa batas dan semua tema.',
-      cta: 'Perpanjang',
-      ghost: 'Nanti',
-    },
-    vip: {
-      kicker: 'Akses Plus berakhir',
-      title: 'Plus berakhir',
-      value: 'Undang teman untuk mendapatkannya lagi — 7 hari per teman.',
-      cta: 'Ambil Plus',
-      ghost: 'Nanti',
-    },
+    kicker: 'Akses Plus berakhir',
+    title: 'Plus berakhir',
+    value: 'Progresmu aman. Dapatkan kembali pelajaran tanpa batas dan semua tema.',
+    cta: 'Perpanjang Plus',
+    invite: 'Undang teman',
+    ghost: 'Nanti',
   },
   tr: {
-    premium: {
-      kicker: 'Abonelik sona erdi',
-      title: 'Plus bitti',
-      value: 'İlerlemen güvende. Sınırsız ders ve tüm temaları geri al.',
-      cta: 'Yenile',
-      ghost: 'Sonra',
-    },
-    vip: {
-      kicker: 'Plus erişimi sona erdi',
-      title: 'Plus bitti',
-      value: 'Arkadaşlarını davet et, her biri için 7 gün daha kazan.',
-      cta: 'Plus’a geç',
-      ghost: 'Sonra',
-    },
+    kicker: 'Plus erişimi sona erdi',
+    title: 'Plus bitti',
+    value: 'İlerlemen güvende. Sınırsız ders ve tüm temaları geri al.',
+    cta: 'Plus’ı yenile',
+    invite: 'Arkadaşını davet et',
+    ghost: 'Sonra',
   },
   pl: {
-    premium: {
-      kicker: 'Subskrypcja wygasła',
-      title: 'Plus się skończyło',
-      value: 'Twój postęp jest bezpieczny. Odzyskaj nielimitowane lekcje i wszystkie motywy.',
-      cta: 'Przedłuż',
-      ghost: 'Później',
-    },
-    vip: {
-      kicker: 'Dostęp Plus wygasł',
-      title: 'Plus się skończył',
-      value: 'Zaproś znajomych — odzyskasz po 7 dni za każdego.',
-      cta: 'Przejdź na Plus',
-      ghost: 'Później',
-    },
+    kicker: 'Dostęp Plus wygasł',
+    title: 'Plus się skończył',
+    value: 'Twój postęp jest bezpieczny. Odzyskaj nielimitowane lekcje i wszystkie motywy.',
+    cta: 'Przedłuż Plus',
+    invite: 'Zaproś znajomego',
+    ghost: 'Później',
   },
 };
 
 function EntitlementExpiredHost() {
   const { lang } = useLang();
   const router = useRouter();
+  const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const [kind, setKind] = useState<Kind | null>(null);
-  const overlayVisible = useOverlayVisible('entitlementExpired', kind != null);
+  const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
+  const overlayVisible = useOverlayVisible(
+    'entitlementExpired',
+    kind != null && !tournamentInterruptionProtected,
+  );
 
-  const maybeShow = useCallback(async (k: Kind) => {
+  const maybeShow = useCallback(async (k: Kind, expectedAccount: AccountGenerationToken) => {
+    if (!entitlementAccountIsCurrent(expectedAccount)) return;
+    const stableId = expectedAccount.stableId;
+    const wasActiveKey = accountEntitlementStorageKey(WAS_ACTIVE_KEY[k], stableId);
+    const lastShownKey = accountEntitlementStorageKey(LAST_SHOWN_KEY[k], stableId);
     try {
       invalidatePremiumCache();
-      const hasAnyPlusAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+      const hasAnyPlusAccess = await getVerifiedPremiumAccessStatus().catch(() => null);
+      if (!entitlementAccountIsCurrent(expectedAccount) || hasAnyPlusAccess == null) return;
       if (hasAnyPlusAccess) {
         // A source can deactivate while another source still keeps Plus active
         // (for example: promo VIP active, real premium inactive on startup).
-        await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]).catch(() => {});
+        await AsyncStorage.removeItem(wasActiveKey).catch(() => {});
         return;
       }
-      const wasActive = await AsyncStorage.getItem(WAS_ACTIVE_KEY[k]);
+      const wasActive = await AsyncStorage.getItem(wasActiveKey);
+      if (!entitlementAccountIsCurrent(expectedAccount)) return;
       if (wasActive !== '1') return;
-      await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]);
-      const lastShownRaw = await AsyncStorage.getItem(LAST_SHOWN_KEY[k]);
+      await AsyncStorage.removeItem(wasActiveKey);
+      if (!entitlementAccountIsCurrent(expectedAccount)) return;
+      const lastShownRaw = await AsyncStorage.getItem(lastShownKey);
+      if (!entitlementAccountIsCurrent(expectedAccount)) return;
       const lastShown = lastShownRaw ? Number(lastShownRaw) : 0;
       if (Number.isFinite(lastShown) && Date.now() - lastShown < SHOW_COOLDOWN_MS) return;
       // prev ?? k: premium-карточка приоритетнее, второй кандидат не перетирает первого.
@@ -196,18 +165,41 @@ function EntitlementExpiredHost() {
   }, []);
 
   useEffect(() => {
+    const acceptAccount = (next: AccountGenerationToken) => {
+      // Any visible decision belongs to the previous account. Close it before
+      // adopting the next generation, including direct active A → active B swaps.
+      setKind(null);
+      setAccountGeneration(next);
+    };
+    acceptAccount(captureAccountGeneration());
+    const subscription = subscribeAccountGeneration(acceptAccount);
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    const markWasActive = (k: Kind) => {
+      const token = captureAccountGeneration();
+      if (!entitlementAccountIsCurrent(token)) return;
+      const key = accountEntitlementStorageKey(WAS_ACTIVE_KEY[k], token.stableId);
+      void AsyncStorage.setItem(key, '1').catch(() => {});
+    };
+    const checkDeactivated = (k: Kind) => {
+      const token = captureAccountGeneration();
+      if (!entitlementAccountIsCurrent(token)) return;
+      void maybeShow(k, token);
+    };
     const subs = [
       onAppEvent('premium_activated', () => {
-        void AsyncStorage.setItem(WAS_ACTIVE_KEY.premium, '1').catch(() => {});
+        markWasActive('premium');
       }),
       onAppEvent('vip_activated', () => {
-        void AsyncStorage.setItem(WAS_ACTIVE_KEY.vip, '1').catch(() => {});
+        markWasActive('vip');
       }),
       onAppEvent('premium_deactivated', () => {
-        void maybeShow('premium');
+        checkDeactivated('premium');
       }),
       onAppEvent('vip_deactivated', () => {
-        void maybeShow('vip');
+        checkDeactivated('vip');
       }),
     ];
     return () => subs.forEach((s) => s.remove());
@@ -221,24 +213,35 @@ function EntitlementExpiredHost() {
    * «был активен»; статус неактивен при стоящем флаге → показываем карточку.
    */
   useEffect(() => {
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     let cancelled = false;
+    const checkedAccount = accountGeneration;
+    const stableId = accountGeneration.stableId;
+    const isCurrent = () => !cancelled && entitlementAccountIsCurrent(checkedAccount);
     (async () => {
       try {
         const [isPrem, isVip] = await Promise.all([
           getVerifiedRealPremiumStatus(),
           getVerifiedVipStatus(),
         ]);
-        if (cancelled) return;
+        if (!isCurrent()) return;
         if (isPrem) {
-          await AsyncStorage.setItem(WAS_ACTIVE_KEY.premium, '1');
+          await AsyncStorage.setItem(
+            accountEntitlementStorageKey(WAS_ACTIVE_KEY.premium, stableId),
+            '1',
+          );
         } else {
-          await maybeShow('premium');
+          await maybeShow('premium', checkedAccount);
         }
+        if (!isCurrent()) return;
         if (isVip) {
-          await AsyncStorage.setItem(WAS_ACTIVE_KEY.vip, '1');
+          await AsyncStorage.setItem(
+            accountEntitlementStorageKey(WAS_ACTIVE_KEY.vip, stableId),
+            '1',
+          );
         } else if (!isPrem) {
           // VIP-карточку не дублируем поверх premium-кейса в одной сессии.
-          await maybeShow('vip');
+          await maybeShow('vip', checkedAccount);
         }
       } catch {
         // Guard недоступен (ранний старт) — попробуем в следующей сессии.
@@ -247,7 +250,7 @@ function EntitlementExpiredHost() {
     return () => {
       cancelled = true;
     };
-  }, [maybeShow]);
+  }, [accountGeneration, maybeShow]);
 
   /** #3 немое место: предупреждение «триал кончается через 2 ч» (только тост, без модалки). */
   useEffect(() => {
@@ -279,36 +282,53 @@ function EntitlementExpiredHost() {
   }, [lang]);
 
   const markShownAndClose = useCallback(() => {
-    if (kind) void AsyncStorage.setItem(LAST_SHOWN_KEY[kind], String(Date.now())).catch(() => {});
+    const token = captureAccountGeneration();
+    if (kind && entitlementAccountIsCurrent(token)) {
+      const key = accountEntitlementStorageKey(LAST_SHOWN_KEY[kind], token.stableId);
+      void AsyncStorage.setItem(key, String(Date.now())).catch(() => {});
+    }
     setKind(null);
   }, [kind]);
 
   if (!kind || !overlayVisible) return null;
 
-  const langTexts = TEXTS[lang] ?? TEXTS.ru;
-  const tx = langTexts[kind];
+  const tx = TEXTS[lang] ?? TEXTS.ru;
 
   return (
     <RewardCardV2
       visible
-      semantic={kind === 'premium' ? 'gold' : 'social'}
+      semantic="gold"
       kicker={tx.kicker}
-      icon={kind === 'premium' ? '👑' : '🤝'}
+      allowKickerWrap
+      icon={'👑'}
       title={tx.title}
       value={tx.value}
       ctaLabel={tx.cta}
       onCta={() => {
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
         navigateAfterModalClose(markShownAndClose, () => {
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           router.push({
             pathname: '/premium_modal',
             params: { context },
           } as never);
         });
       }}
+      /** зачем: владелец (2026-08-02, вариант А) — второй путь с карточки: позвать
+          друга (/referrals). Друг оформит Plus/Pro → пригласившему придёт «Награда
+          за друга». Продление остаётся главным CTA, реферал — tonal-кнопкой ниже. */
+      secondaryLabel={tx.invite}
+      onSecondary={() => {
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+        navigateAfterModalClose(markShownAndClose, () => {
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+          router.push({ pathname: '/referrals' } as never);
+        });
+      }}
       ghostLabel={tx.ghost}
       onGhost={markShownAndClose}
-      /** Маркетинговая карточка: тап по фону = «Позже», не CTA. */
+      /** Карточка продления: тап по фону = «Позже», не CTA. */
       backdropAction="ghost"
     />
   );

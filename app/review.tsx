@@ -24,7 +24,7 @@
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import DuoPressable from '../components/DuoPressable';
@@ -35,7 +35,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  AppState, AppStateStatus, Animated, Dimensions, Easing as SlideEasing, ScrollView,
+  AppState, AppStateStatus, Animated, BackHandler, Dimensions, Easing as SlideEasing, Platform, ScrollView,
   StyleSheet,
   Text, TextInput, TouchableOpacity,
   View,
@@ -99,6 +99,8 @@ import { frenchTrainerGateCopy, srsReviewContentAvailableForTarget } from './tra
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { resolvePersonalPracticeSeededDuePhrases } from './personal_plan_practice_seeded_gate';
 import BouncyScrollView from '../components/BouncyScrollView';
+import { trackEvent } from './analytics';
+import { buildLearningReviewAnswerPayload } from './learning_review_analytics';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -110,6 +112,8 @@ const safeReviewEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 const makeReviewSessionId = (): string =>
   `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+const makeReviewAttemptId = (): string =>
+  `ra_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 12)}`;
 
 const REVIEW_TRANSLATION_UNAVAILABLE_HINT: Record<PlannedInterfaceLang, string> = {
   'pt-BR': 'Tradução ainda indisponível para esta frase',
@@ -719,6 +723,24 @@ export default function ReviewScreen() {
     }
   }, [router]);
 
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), из-за чего после
+  // повторения пользователь мог не вернуться на экран, с которого пришёл, и бейдж
+  // «к повторению» не пересчитывался по focusTick. Модалка энергии перехватывает первым
+  // нажатием, как в lesson1.tsx: сначала закрыть её, а не выходить из сессии.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (noEnergyModalOpen) {
+        onCloseEnergyModal();
+        return true;
+      }
+      safeRouterBack(router);
+      return true;
+    });
+    return () => sub.remove();
+  }, [noEnergyModalOpen, onCloseEnergyModal, router]);
+
   // Данные сессии
   const [items,   setItems]   = useState<RecallItem[]>([]);
   const [index,   setIndex]   = useState(0);
@@ -759,6 +781,14 @@ export default function ReviewScreen() {
   const checkingRef   = useRef(false);                          // защита от двойного вызова checkAnswer
   const userNameRef   = useRef<string | null>(null);             // кэш имени пользователя
   const reviewSessionIdRef = useRef(makeReviewSessionId());
+  const reviewAttemptIdRef = useRef(makeReviewAttemptId());
+  const reviewSessionStartedAtRef = useRef(0);
+  const reviewSessionStartedRef = useRef(false);
+  const reviewSessionCompletedRef = useRef(false);
+  const persistedAnswerCountRef = useRef(0);
+  const persistedCorrectCountRef = useRef(0);
+  const plannedItemCountRef = useRef(0);
+  const pendingReviewWritesRef = useRef<Promise<unknown>[]>([]);
   const recallSessionTracked = useRef(false);                   // recall_session засчитывается один раз за сессию
   const cuePagerRef = useRef<ScrollView | null>(null);
   /** После свайпа пользователем — не дёргаем scrollTo из useEffect (уже на месте). */
@@ -793,6 +823,7 @@ export default function ReviewScreen() {
   // Инициализирует задание для карточки (пропуск / выбор / ввод)
   const loadCard = useCallback((item: RecallItem, itemIndex: number, poolItems: RecallItem[]) => {
     checkingRef.current = false;
+    reviewAttemptIdRef.current = makeReviewAttemptId();
     const nextMode = pickReviewMode(params.trainerMode, itemIndex, item.phrase);
     setMode(nextMode);
     setPickedChoice(null);
@@ -839,7 +870,23 @@ export default function ReviewScreen() {
     itemsPromise.then(due => {
       setItems(due);
       setLoading(false);
-      if (due.length > 0) loadCard(due[0], 0, due);
+      if (due.length > 0) {
+        loadCard(due[0], 0, due);
+        if (!reviewSessionStartedRef.current) {
+          reviewSessionStartedAtRef.current = Date.now();
+          reviewSessionStartedRef.current = true;
+          plannedItemCountRef.current = due.length;
+          void trackEvent('learning_review_session_start', {
+            schema_version: 1,
+            event_id: `${reviewSessionIdRef.current}:start`,
+            review_session_id: reviewSessionIdRef.current,
+            study_target: studyTarget,
+            review_mode: trainerMode,
+            planned_item_count: due.length,
+            occurred_at_ms: reviewSessionStartedAtRef.current,
+          });
+        }
+      }
     });
     AsyncStorage.getItem('user_name').then(n => { userNameRef.current = n; }).catch(() => {});
     return () => {
@@ -847,6 +894,26 @@ export default function ReviewScreen() {
       if (timer) clearTimeout(timer);
     };
   }, [loadCard, params.trainerMode, planPracticeRequiredPhrases, planPracticeTaskId, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
+
+  useEffect(() => () => {
+    if (!reviewSessionStartedRef.current || reviewSessionCompletedRef.current) return;
+    reviewSessionCompletedRef.current = true;
+    const abandonedAtMs = Date.now();
+    const pendingWrites = [...pendingReviewWritesRef.current];
+    void Promise.all(pendingWrites).then(() => trackEvent('learning_review_session_abandoned', {
+      schema_version: 1,
+      event_id: `${reviewSessionIdRef.current}:abandoned`,
+      review_session_id: reviewSessionIdRef.current,
+      study_target: studyTarget,
+      review_mode: trainerMode,
+      planned_item_count: plannedItemCountRef.current,
+      answered_item_count: persistedAnswerCountRef.current,
+      correct_item_count: persistedCorrectCountRef.current,
+      duration_ms: Math.max(0, abandonedAtMs - reviewSessionStartedAtRef.current),
+      abandon_reason: 'screen_unmounted_before_complete',
+      occurred_at_ms: abandonedAtMs,
+    }));
+  }, [studyTarget, trainerMode]);
 
   const shouldShowBurnHint = status === 'result' && canBurn && !burnHintSeen;
 
@@ -994,7 +1061,39 @@ export default function ReviewScreen() {
         }).catch(() => {});
       }
     }
-    markReviewed(item.phrase, ok, tokenMeta, studyTarget).catch(() => {});
+    const responseTimeMs = Math.max(0, Date.now() - cardStartTime.current);
+    const reviewAttemptId = reviewAttemptIdRef.current;
+    const persistedReview = markReviewed(item.phrase, ok, tokenMeta, studyTarget).then((transition) => {
+      if (!transition) return;
+      persistedAnswerCountRef.current += 1;
+      if (transition.correct) persistedCorrectCountRef.current += 1;
+      return trackEvent('learning_review_answer', buildLearningReviewAnswerPayload({
+        eventId: reviewAttemptId,
+        reviewSessionId: reviewSessionIdRef.current,
+        reviewAttemptId,
+        analyticsItemId: transition.analyticsItemId,
+        lessonId: transition.lessonId,
+        studyTarget,
+        source: transition.source,
+        reviewMode: mode,
+        contentVersion: undefined,
+        correct: transition.correct,
+        responseTimeMs,
+        actualDelayBucket: transition.actualDelayBucket,
+        dueStatus: transition.dueStatus,
+        previousRepetitions: transition.previousRepetitions,
+        nextRepetitions: transition.nextRepetitions,
+        previousIntervalDays: transition.previousIntervalDays,
+        nextIntervalDays: transition.nextIntervalDays,
+        previousMasteryState: transition.previousMasteryState,
+        nextMasteryState: transition.nextMasteryState,
+        masteryTransition: transition.masteryTransition,
+      }));
+    }).catch(() => {});
+    pendingReviewWritesRef.current.push(persistedReview);
+    void persistedReview.finally(() => {
+      pendingReviewWritesRef.current = pendingReviewWritesRef.current.filter(pending => pending !== persistedReview);
+    });
 
     if (!recallSessionTracked.current) {
       recallSessionTracked.current = true;
@@ -1031,7 +1130,6 @@ export default function ReviewScreen() {
       ).catch(() => {});
     }
 
-    checkingRef.current = false;
   }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode, studyTarget, playCorrect, speakAnswer]);
 
   const onWordBankTap = useCallback((tile: WordBankTile) => {
@@ -1171,6 +1269,24 @@ export default function ReviewScreen() {
   // ВАЖНО: этот хук должен быть до любых условных return!
   useEffect(() => {
     if (!done) return;
+    if (reviewSessionStartedRef.current && !reviewSessionCompletedRef.current) {
+      reviewSessionCompletedRef.current = true;
+      const completedAtMs = Date.now();
+      const pendingWrites = [...pendingReviewWritesRef.current];
+      void Promise.all(pendingWrites).then(() => trackEvent('learning_review_session_complete', {
+        schema_version: 1,
+        event_id: `${reviewSessionIdRef.current}:complete`,
+        review_session_id: reviewSessionIdRef.current,
+        study_target: studyTarget,
+        review_mode: trainerMode,
+        planned_item_count: plannedItemCountRef.current,
+        answered_item_count: persistedAnswerCountRef.current,
+        correct_item_count: persistedCorrectCountRef.current,
+        duration_ms: Math.max(0, completedAtMs - reviewSessionStartedAtRef.current),
+        completion_reason: 'all_cards_answered',
+        occurred_at_ms: completedAtMs,
+      }));
+    }
     if (planPracticeTaskId && !planPracticeCompletionTracked.current) {
       planPracticeCompletionTracked.current = true;
       void markPersonalPlanTaskCompleted({
@@ -1561,7 +1677,7 @@ export default function ReviewScreen() {
 
       <BouncyScrollView
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: (isPlanPracticeTask ? 6 : 32) + bottomInset }}
-        decelerationRate="normal"
+        decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!isPlanPracticeTask}
         showsVerticalScrollIndicator={false}
@@ -1801,7 +1917,10 @@ export default function ReviewScreen() {
                   pl: "Poprawna odpowiedź:",
                 })}
               </Text>
-              <Text style={{ color: t.correct, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '600' }} numberOfLines={isPlanPracticeTask ? 2 : undefined}>
+              {/* зачем: обрезка снята — в режиме плана скролл выключен
+                  (scrollEnabled={!isPlanPracticeTask}), и numberOfLines={2} делал
+                  правильный ответ нечитаемым. Тот же баг, что в lesson1.tsx. */}
+              <Text style={{ color: t.correct, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '600' }}>
                 {englishRecallSurface(item.phrase)}
               </Text>
             </Animated.View>

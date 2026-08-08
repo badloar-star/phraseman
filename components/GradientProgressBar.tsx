@@ -80,7 +80,10 @@ export function GradientProgressBar({
 
 const styles = StyleSheet.create({
   track: {
-    width: '100%',
+    // НЕ width: '100%' — с marginHorizontal у вызовов (trainer-сессии, exam)
+    // полоса становилась шире родителя и уезжала за правый край экрана.
+    // stretch в колонке занимает доступную ширину с учётом margin'ов.
+    alignSelf: 'stretch',
     overflow: 'hidden',
   },
   fillClip: {

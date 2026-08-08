@@ -1,5 +1,6 @@
 import {
   createCoalescedAsyncRunner,
+  FOREGROUND_INTERACTION_GRACE_MS,
   getForegroundRefreshKind,
   scheduleCoalescedForegroundTask,
   shouldRunDeepForegroundRefresh,
@@ -56,9 +57,9 @@ describe('app resume policy', () => {
     jest.setSystemTime(0);
     try {
       const calls: string[] = [];
-      scheduleCoalescedForegroundTask('same-key', () => { calls.push('old'); });
-      scheduleCoalescedForegroundTask('same-key', () => { calls.push('new'); });
-      scheduleCoalescedForegroundTask('other-key', () => { calls.push('other'); });
+      scheduleCoalescedForegroundTask('same-key', () => { calls.push('old'); }, 0);
+      scheduleCoalescedForegroundTask('same-key', () => { calls.push('new'); }, 0);
+      scheduleCoalescedForegroundTask('other-key', () => { calls.push('other'); }, 0);
 
       await jest.advanceTimersByTimeAsync(0);
       expect(calls).toEqual(['new']);
@@ -68,6 +69,23 @@ describe('app resume policy', () => {
 
       await jest.advanceTimersByTimeAsync(1);
       expect(calls).toEqual(['new', 'other']);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('keeps foreground housekeeping off the first interactive moment by default', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(0);
+    try {
+      const calls: string[] = [];
+      scheduleCoalescedForegroundTask('resume-housekeeping', () => { calls.push('run'); });
+
+      await jest.advanceTimersByTimeAsync(FOREGROUND_INTERACTION_GRACE_MS - 1);
+      expect(calls).toEqual([]);
+
+      await jest.advanceTimersByTimeAsync(1);
+      expect(calls).toEqual(['run']);
     } finally {
       jest.useRealTimers();
     }

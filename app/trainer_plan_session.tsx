@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -18,9 +18,10 @@ import {
 } from './trainer_plan_task_route';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 
-function routeForQueue(queue: TrainerQueue): '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session' {
+// Арена обслуживается фразовой сессией (trainerSessionPhrase подставляет
+// correct в маркер пропуска) — отдельного роута '/trainer_arena_session' нет.
+function routeForQueue(queue: TrainerQueue): '/trainer_words_session' | '/trainer_phrases_session' {
   if (queue === 'words') return '/trainer_words_session';
-  if (queue === 'arena') return '/trainer_arena_session';
   return '/trainer_phrases_session';
 }
 
@@ -44,7 +45,7 @@ export default function TrainerPlanSession() {
           messageEs: 'French trainer is still behind source gate.',
         });
         markNextNavigationAsReplace();
-        router.replace('/(tabs)/lessons' as any);
+        router.replace('/lessons_list' as any);
         return;
       }
 

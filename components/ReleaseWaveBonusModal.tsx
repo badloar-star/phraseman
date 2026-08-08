@@ -10,34 +10,40 @@ import {
   persistNativeBuildIdAfterReleaseWaveFlow,
 } from '../app/release_wave_bonus';
 import { oskolokImageForPackShards } from '../app/oskolok';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import RewardCardV2 from './reward_v2/RewardCardV2';
 
 const TEXTS = {
   ru: {
     kicker: 'Бонус обновления',
     value: 'Спасибо, что ты с нами! Подарок за свежий релиз.',
-    title: (n: number) => `+${n} осколков знаний`,
+    // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+    title: (n: number) => `+${n} ${ruKnowledgeShardsAfterNumber(n)}`,
     cta: 'Забрать',
     ctaPreview: 'Закрыть',
   },
   uk: {
     kicker: 'Бонус оновлення',
     value: 'Дякуємо, що ти з нами! Подарунок за свіжий реліз.',
-    title: (n: number) => `+${n} осколків знань`,
+    // зачем: было русское «жемчужин» в украинской строке + без склонения.
+    title: (n: number) => `+${n} ${ukKnowledgeShardsAfterNumber(n)}`,
     cta: 'Забрати',
     ctaPreview: 'Закрити',
   },
   es: {
     kicker: 'Bono de actualización',
     value: '¡Gracias por estar con nosotros! Un regalo por la nueva versión.',
-    title: (n: number) => `+${n} fragmentos`,
+    title: (n: number) => `+${n} perlas`,
     cta: 'Reclamar',
     ctaPreview: 'Cerrar',
   },
   'pt-BR': {
     kicker: 'Bônus de atualização',
     value: 'Obrigado por estar conosco! Um presente pela nova versão.',
-    title: (n: number) => `+${n} fragmentos`,
+    title: (n: number) => `+${n} perlas`,
     cta: 'Resgatar',
     ctaPreview: 'Fechar',
   },
@@ -65,7 +71,7 @@ const TEXTS = {
   pl: {
     kicker: 'Bonus za aktualizację',
     value: 'Dzięki, że jesteś z nami! Prezent za nową wersję.',
-    title: (n: number) => `+${n} odłamków wiedzy`,
+    title: (n: number) => `+${n} monet`,
     cta: 'Odbierz',
     ctaPreview: 'Zamknij',
   },

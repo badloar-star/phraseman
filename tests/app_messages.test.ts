@@ -52,7 +52,12 @@ describe('app_messages', () => {
     expect(snapshot.messages.find((m) => m.id === 'm2')?.reaction).toBe('like');
   });
 
-  it('keeps regular dismissed messages visible until admin expiry or deactivation', () => {
+  // зачем: тест требовал, чтобы «убранное» сообщение оставалось в инбоксе до
+  // админского срока. Но в приложении кнопка называется «Убрать уведомление»
+  // (components/AppMessagesInbox.tsx) — пользователь ждёт, что оно ИСЧЕЗНЕТ, и код
+  // так и делает (hiddenByUserState в app_messages.ts, поведение давнее). Тест
+  // описывал так и не выпущенное поведение — приводим его к реальному UX.
+  it('hides a dismissed message from the inbox, as the "remove notification" action promises', () => {
     const dismissed = normalizeAppMessage('m1', {
       active: true,
       createdAtMs: now,
@@ -66,8 +71,8 @@ describe('app_messages', () => {
       now,
     );
 
-    expect(snapshot.messages.map((m) => m.id)).toEqual(['m1']);
-    expect(snapshot.messages[0].unread).toBe(false);
+    // Убранное сообщение уходит из списка целиком, непрочитанных не остаётся.
+    expect(snapshot.messages.map((m) => m.id)).toEqual([]);
     expect(snapshot.unreadCount).toBe(0);
   });
 
@@ -259,8 +264,13 @@ describe('app_messages', () => {
 
   it('seeds an admin VIP survey test as a local-only inbox message', async () => {
     const id = await seedLocalVipSurveyTestMessage(now);
-    const rawMessages = await AsyncStorage.getItem('app_messages_local_preview_v1');
-    const rawStates = await AsyncStorage.getItem('app_message_local_preview_states_v1');
+    const keys = await AsyncStorage.getAllKeys();
+    const messageKey = keys.find((key) => key.startsWith('app_messages_local_preview_v2:'));
+    const stateKey = keys.find((key) => key.startsWith('app_message_local_preview_states_v2:'));
+    expect(messageKey).toBeDefined();
+    expect(stateKey).toBeDefined();
+    const rawMessages = await AsyncStorage.getItem(messageKey!);
+    const rawStates = await AsyncStorage.getItem(stateKey!);
     const messages = JSON.parse(rawMessages || '[]');
     const states = JSON.parse(rawStates || '[]');
 

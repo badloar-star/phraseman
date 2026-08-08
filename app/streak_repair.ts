@@ -15,6 +15,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isStreakFreezeActiveToday } from './streak_freeze';
 import { recordMissedStreakWeekMarkersEndingYesterday } from './streak_week_markers';
 import { getLocalDayKey, isDayBeforeYesterdayFlexible, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 export interface RepairState {
   eligibleDate:  string | null;   // YYYY-MM-DD когда стала доступна починка
@@ -94,20 +100,26 @@ export const isRepairEligible = async (): Promise<boolean> => {
  * Вызывать при любой активности с XP (из xp_manager.ts).
  * Возвращает { nowRepaired: true } если цепочку только что починили.
  */
-export const recordActivityForRepair = async (): Promise<{ nowRepaired: boolean }> => {
-  return recordLessonForRepair();
+export const recordActivityForRepair = async (
+  accountToken?: AccountGenerationToken,
+): Promise<{ nowRepaired: boolean }> => {
+  return recordLessonForRepair(accountToken);
 };
 
 /**
  * @deprecated используй recordActivityForRepair
  */
-export const recordLessonForRepair = async (): Promise<{ nowRepaired: boolean }> => {
+const recordLessonForRepairUnsafe = async (
+  accountToken: AccountGenerationToken,
+): Promise<{ nowRepaired: boolean }> => {
   try {
     const t = today();
     const eligible = await isRepairEligible();
+    if (!isCurrentAccountGeneration(accountToken)) return { nowRepaired: false };
     if (!eligible) return { nowRepaired: false };
 
     const state = await loadRepairState();
+    if (!isCurrentAccountGeneration(accountToken)) return { nowRepaired: false };
     const updated: RepairState = {
       ...state,
       repairDate:   t,
@@ -119,14 +131,30 @@ export const recordLessonForRepair = async (): Promise<{ nowRepaired: boolean }>
     // 1 урок = починка готова
     if (updated.lessonsToday >= 1) {
       updated.repaired = true;
+      if (!isCurrentAccountGeneration(accountToken)) return { nowRepaired: false };
       await save(updated);
+      if (!isCurrentAccountGeneration(accountToken)) return { nowRepaired: false };
       await recordMissedStreakWeekMarkersEndingYesterday('repair').catch(() => {});
       return { nowRepaired: true };
     }
 
+    if (!isCurrentAccountGeneration(accountToken)) return { nowRepaired: false };
     await save(updated);
     return { nowRepaired: false };
   } catch { return { nowRepaired: false }; }
+};
+
+export const recordLessonForRepair = async (
+  accountToken?: AccountGenerationToken,
+): Promise<{ nowRepaired: boolean }> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) {
+    return { nowRepaired: false };
+  }
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(operationToken)) return { nowRepaired: false };
+    return recordLessonForRepairUnsafe(operationToken);
+  });
 };
 
 /**

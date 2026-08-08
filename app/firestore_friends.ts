@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
+import { ensureAnonUser } from './cloud_sync';
 import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normalizeInviteCodeInput } from './friend_code';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
@@ -95,9 +95,18 @@ export const REFERRAL_CODE_INDEX_COLLECTION = 'referral_codes';
 
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
 const FUNCTIONS_REGION = 'us-central1';
-export const FRIEND_NAME_LOOKUP_AUTH_MS = 1_200;
-export const FRIEND_NAME_LOOKUP_LINK_MS = 1_200;
-export const FRIEND_NAME_LOOKUP_CALLABLE_MS = 2_500;
+// friendLookupUser has a 15 s server budget and may need a cold start plus the
+// legacy-name compatibility queries. The former 2.5 s client cutoff converted valid
+// late responses into a false "not found" result.
+export const FRIEND_NAME_LOOKUP_CALLABLE_MS = 12_000;
+const FRIEND_NAME_LOOKUP_ATTEMPTS = 2;
+
+function friendLookupUnavailable(cause?: unknown): Error {
+  const error = new Error('friend_lookup_unavailable') as Error & { cause?: unknown };
+  error.name = 'FriendLookupUnavailableError';
+  error.cause = cause;
+  return error;
+}
 
 /** Не даём облачному пути зависнуть навечно (в UI тогда «Генерируем код…» без счётчика ошибок). */
 const FRIEND_CODE_CLOUD_TOTAL_MS = 38_000;
@@ -349,13 +358,12 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
 export async function lookupUserByNickname(query: string): Promise<InviteCodeLookupResult | null> {
   const normalized = String(query ?? '').normalize('NFKC').trim().replace(/^@+/, '').replace(/\s+/g, ' ').trim();
   if (normalized.length < 2 || normalized.length > 32) return null;
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) throw friendLookupUnavailable();
 
-  const stableId = await getCanonicalUserId();
-  if (!stableId) return null;
-  const authReady = await withTimeout(ensureAnonUser(), FRIEND_NAME_LOOKUP_AUTH_MS);
-  if (!authReady) return null;
-  await withTimeout(ensureStableAuthLinkForStableId(stableId), FRIEND_NAME_LOOKUP_LINK_MS);
+  // ensureAnonUser already owns the bounded Firebase-auth bootstrap (20 s). A
+  // shorter wrapper here used to abort a valid first launch after 1.2 s.
+  const stableId = await ensureAnonUser();
+  if (!stableId) throw friendLookupUnavailable();
 
   try {
     const fn = callable<
@@ -375,31 +383,40 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
         } | null;
       }
     >('friendLookupUser', { timeout: FRIEND_NAME_LOOKUP_CALLABLE_MS });
-    const res = await withTimeout(fn({ stableId, query: normalized }), FRIEND_NAME_LOOKUP_CALLABLE_MS);
-    const data = res?.data;
-    const u = data?.user;
-    const uid = u?.uid;
-    const name = typeof u?.name === 'string'
-      ? u.name.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim()
-      : '';
-    if (typeof uid !== 'string' || !uid.trim()) return null;
-    // Сервер вернул полный профиль из users.progress — прокидываем в UI, чтобы карточка
-    // показала имя/уровень/аватар без догрузки из leaderboard (у многих его нет).
-    const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) && v > 0 ? Math.floor(v) : 0);
-    const strf = (v: unknown, max: number): string =>
-      typeof v === 'string' ? v.normalize('NFKC').trim().slice(0, max) : '';
-    const profile: LookupUserProfile = {
-      ...(name ? { name } : {}),
-      totalXp: num(u?.totalXp),
-      level: num(u?.level),
-      avatar: strf(u?.avatar, 64),
-      frame: strf(u?.frame, 64),
-      aura: strf(u?.aura, 64),
-      isPremium: u?.isPremium === true,
-    };
-    return { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}), profile };
-  } catch {
-    return null;
+    for (let attempt = 0; attempt < FRIEND_NAME_LOOKUP_ATTEMPTS; attempt += 1) {
+      // A scale-to-zero cold start can fail the transport once even though the
+      // authenticated read is valid. Retry inside the same user action so the
+      // user does not have to press Search a second time.
+      // eslint-disable-next-line no-await-in-loop
+      const res = await withTimeout(fn({ stableId, query: normalized }), FRIEND_NAME_LOOKUP_CALLABLE_MS);
+      if (!res) continue;
+      const data = res.data;
+      const u = data?.user;
+      const uid = u?.uid;
+      const name = typeof u?.name === 'string'
+        ? u.name.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim()
+        : '';
+      if (typeof uid !== 'string' || !uid.trim()) return null;
+      // Сервер вернул полный профиль из users.progress — прокидываем в UI, чтобы карточка
+      // показала имя/уровень/аватар без догрузки из leaderboard (у многих его нет).
+      const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) && v > 0 ? Math.floor(v) : 0);
+      const strf = (v: unknown, max: number): string =>
+        typeof v === 'string' ? v.normalize('NFKC').trim().slice(0, max) : '';
+      const profile: LookupUserProfile = {
+        ...(name ? { name } : {}),
+        totalXp: num(u?.totalXp),
+        level: num(u?.level),
+        avatar: strf(u?.avatar, 64),
+        frame: strf(u?.frame, 64),
+        aura: strf(u?.aura, 64),
+        isPremium: u?.isPremium === true,
+      };
+      return { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}), profile };
+    }
+    throw friendLookupUnavailable();
+  } catch (cause) {
+    if (cause instanceof Error && cause.message === 'friend_lookup_unavailable') throw cause;
+    throw friendLookupUnavailable(cause);
   }
 }
 

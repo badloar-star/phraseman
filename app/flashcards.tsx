@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -31,7 +31,7 @@ import {
   sortCommunityMarketPacksByRating,
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
-import { getShardsBalance } from './shards_system';
+import { getShardsBalance, peekLastKnownShardsBalance } from './shards_system';
 import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
@@ -68,7 +68,7 @@ export default function FlashcardsHubScreen() {
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
-  const [shardBalance, setShardBalance] = useState(0);
+  const [shardBalance, setShardBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const leaveFlashcardsHub = useCallback(() => {
@@ -86,9 +86,13 @@ export default function FlashcardsHubScreen() {
   }, [lang]);
 
   const openFlashcardsPlusPaywall = useCallback((source: string) => {
+    // зачем: арена — такой же режим отработки, как свайп, поэтому переиспользуем
+    // готовый контекст flashcard_training (копия и цена там уже про тренировку).
+    // Без этой ветки арена падала бы в flashcard_limit — текст «лимит карточек»,
+    // который к режиму отношения не имеет.
     const context = source.includes('audio')
       ? 'flashcard_autoplay'
-      : source.includes('training')
+      : source.includes('training') || source.includes('arena')
         ? 'flashcard_training'
         : 'flashcard_limit';
     router.push({
@@ -259,6 +263,22 @@ export default function FlashcardsHubScreen() {
     );
   }, [flashcardsAccess, flashcardsHubGateOpen, officialPacksEnabled, openFlashcardsPlusPaywall, ownedPackIds, router, showFrenchFlashcardsGate]);
 
+  // зачем: третий режим отработки (макет C4). Гейты доступа — те же, что у
+  // свайпа и аудио: французский гейт и Plus-пейвол, чтобы режим не стал
+  // случайной дырой в платном доступе.
+  const openArena = useCallback(() => {
+    void hapticTap();
+    if (!flashcardsHubGateOpen) {
+      showFrenchFlashcardsGate();
+      return;
+    }
+    if (!flashcardsAccess) {
+      openFlashcardsPlusPaywall('flashcards_arena');
+      return;
+    }
+    router.push('/flashcards_arena' as any);
+  }, [flashcardsAccess, flashcardsHubGateOpen, openFlashcardsPlusPaywall, router, showFrenchFlashcardsGate]);
+
   useFocusEffect(
     useCallback(() => {
       primeCustomFlashcardsCache(studyTarget);
@@ -334,7 +354,7 @@ export default function FlashcardsHubScreen() {
         <View style={styles.scrollRegion}>
           <BouncyScrollView
             style={styles.scrollView}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[
               styles.scrollContent,
               { paddingBottom: scrollBottomPadding },
@@ -359,6 +379,7 @@ export default function FlashcardsHubScreen() {
               hubAuthorStableId={communityPacksEnabled ? hubAuthorStableId : null}
               onTrainingPress={openTraining}
               onAudioPress={openAudioMode}
+              onArenaPress={openArena}
               hasFlashcardsPlus={flashcardsAccess}
             />
           </BouncyScrollView>

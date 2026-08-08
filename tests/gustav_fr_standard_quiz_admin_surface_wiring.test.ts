@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const repoRoot = path.resolve(__dirname, '..');
-const adminIndexPath = path.join(repoRoot, 'admin', 'index.html');
+const adminIndexPath = path.join(repoRoot, 'admin', 'v2', 'legacy.html');
 const workflowPath = path.join(repoRoot, 'admin', 'french-quizzes-workflow.js');
 
 describe('Gustav French standard quiz admin surface wiring', () => {

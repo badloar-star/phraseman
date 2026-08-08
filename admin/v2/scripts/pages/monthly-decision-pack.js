@@ -1,9 +1,6 @@
 (function monthlyDecisionPackAdminV2() {
   'use strict';
 
-  const MAX_INLINE_ZIP_BYTES = 4 * 1024 * 1024;
-  const MAX_BASE64_LENGTH = Math.ceil(MAX_INLINE_ZIP_BYTES / 3) * 4 + 4;
-
   function esc(value) {
     return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
   }
@@ -13,29 +10,8 @@
     return Number.isFinite(bytes) ? (bytes / 1024).toFixed(1) + ' КиБ' : '—';
   }
 
-  function clientError(code, message) {
-    const error = new Error(message);
-    error.code = code;
-    return error;
-  }
-
-  function safeDecisionPackFilename(value) {
-    const filename = String(value || '');
-    return filename.length <= 120 && /^phraseman-monthly-decision-pack-\d{4}-\d{2}-[a-z0-9-]+(?:-preliminary)?\.zip$/.test(filename)
-      ? filename
-      : 'phraseman-monthly-decision-pack.zip';
-  }
-
-  function decodeBase64(data) {
-    if (!data || data.mimeType !== 'application/zip') throw clientError('invalid-argument', 'decision_pack_mime_type_invalid');
-    if (!Number.isInteger(data.byteSize) || data.byteSize <= 0 || data.byteSize > MAX_INLINE_ZIP_BYTES) {
-      throw clientError('resource-exhausted', 'decision_pack_zip_size_invalid');
-    }
-    if (typeof data.base64 !== 'string' || !data.base64 || data.base64.length > MAX_BASE64_LENGTH || data.base64.length % 4 !== 0 || !/^[A-Za-z0-9+/]*={0,2}$/.test(data.base64)) {
-      throw clientError('invalid-argument', 'decision_pack_base64_invalid');
-    }
-    const binary = atob(data.base64);
-    if (binary.length !== data.byteSize) throw clientError('invalid-argument', 'decision_pack_byte_size_mismatch');
+  function decodeBase64(base64) {
+    const binary = atob(String(base64 || ''));
     const bytes = new Uint8Array(binary.length);
     for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
     return bytes;
@@ -88,19 +64,18 @@
     try {
       const response = await window.callAdminMonthlyDecisionPack({ month, timezone });
       const data = response?.data || {};
-      const bytes = decodeBase64(data);
-      const filename = safeDecisionPackFilename(data.filename);
-      const blob = new Blob([bytes], { type: 'application/zip' });
+      const bytes = decodeBase64(data.base64);
+      const blob = new Blob([bytes], { type: data.mimeType || 'application/zip' });
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.href = url;
-      anchor.download = filename;
+      anchor.download = data.filename || 'phraseman-monthly-decision-pack.zip';
       document.body.appendChild(anchor);
       anchor.click();
       anchor.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       renderPreview(data);
-      status.textContent = 'ZIP сформирован и передан браузеру: ' + filename + '.';
+      status.textContent = 'ZIP сформирован и передан браузеру: ' + (data.filename || '') + '.';
       status.style.color = '#4ade80';
     } catch (error) {
       const code = String(error?.code || '');

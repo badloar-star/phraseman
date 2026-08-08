@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { monoIcon } from '../../constants/monoIcon';
@@ -172,7 +172,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollFront ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,
@@ -236,7 +236,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollBack ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,

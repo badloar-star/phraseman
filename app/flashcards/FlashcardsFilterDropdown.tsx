@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
@@ -6,6 +6,7 @@ import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
 import { FilterGroup } from './selectors';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 type Props = {
   visible: boolean;
   lang: Lang;
@@ -46,10 +47,10 @@ export default function FlashcardsFilterDropdown({
           shadowOffset: { width: 0, height: 4 },
           shadowOpacity: 0.25,
           shadowRadius: 12,
-          elevation: 50,
+          ...noAndroidOutline,
         }}
       >
-        <ScrollView decelerationRate="normal" bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>
+        <ScrollView decelerationRate="fast" bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>
           <TouchableOpacity
             onPress={() => onSelect('all')}
             style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 }}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
   Linking,
@@ -11,7 +11,7 @@ import {
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -38,6 +38,7 @@ import {
   beginLingmanSnapshotRequest, commitLingmanSnapshot, isLingmanSnapshotRequestCurrent,
   lingmanSnapshotCacheKey, patchLingmanUnread, readLingmanSnapshot,
 } from './lingman_youtube_cache';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 function formatViews(count?: number): string {
   if (!Number.isFinite(count)) return '';
@@ -51,6 +52,9 @@ export default function LingmanVideosScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
+  const screenRuntimeActive = useRuntimeActive(true);
+  const screenRuntimeActiveRef = useRef(screenRuntimeActive);
+  screenRuntimeActiveRef.current = screenRuntimeActive;
   const renderToken = captureAccountGeneration();
   const renderAccountScope = accountScopeKey(renderToken);
   const initialChannel = getActiveYoutubeChannel();
@@ -152,6 +156,7 @@ export default function LingmanVideosScreen() {
   }), [lang]);
 
   const load = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
+    if (!screenRuntimeActiveRef.current) return;
     const token = captureAccountGeneration();
     if (accountScopeKey(token) !== renderAccountScope) return;
     const activeChannel = getActiveYoutubeChannel();
@@ -165,18 +170,33 @@ export default function LingmanVideosScreen() {
       setLoadedKey(requestKey);
       setCachedSnapshot(warm.value);
     }
+    if (warm?.isFresh && mode !== 'refresh' && warm.value.unreadCount > 0) {
+      const latestVideoId = warm.value.latestVideoId ?? warm.value.videos[0]?.id ?? null;
+      const openedSnapshot = { ...warm.value, unreadCount: 0 };
+      if (commitLingmanSnapshot(request, openedSnapshot)) {
+        void markLingmanYoutubeCatalogSeen(latestVideoId);
+        setCachedSnapshot(openedSnapshot);
+      }
+      setLoading(false);
+      return;
+    }
     if (warm?.isFresh && mode !== 'refresh') { setLoading(false); return; }
     try {
       const next = await getLingmanYoutubeSnapshot();
-      if (commitLingmanSnapshot(request, next)) {
+      const latestVideoId = next.latestVideoId ?? next.videos[0]?.id ?? null;
+      const openedSnapshot = next.unreadCount > 0
+        ? { ...next, unreadCount: 0 }
+        : next;
+      if (screenRuntimeActiveRef.current && commitLingmanSnapshot(request, openedSnapshot)) {
+        if (next.unreadCount > 0) void markLingmanYoutubeCatalogSeen(latestVideoId);
         const committed = readLingmanSnapshot(token, activeChannel.channelId);
         setLoadedKey(requestKey);
-        setCachedSnapshot(committed?.value ?? next);
+        setCachedSnapshot(committed?.value ?? openedSnapshot);
       }
     } catch {
       // Keep the last successful catalog visible.
     } finally {
-      if (isLingmanSnapshotRequestCurrent(request)) {
+      if (screenRuntimeActiveRef.current && isLingmanSnapshotRequestCurrent(request)) {
         setLoading(false);
         setRefreshing(false);
       }
@@ -184,15 +204,17 @@ export default function LingmanVideosScreen() {
   }, [renderAccountScope]);
 
   useEffect(() => {
+    if (!screenRuntimeActive) return;
     void load('initial');
-  }, [load]);
+  }, [load, screenRuntimeActive]);
 
   // Админ из «Пульта» добавил пин / сменил канал, пока экран открыт → перечитать
   // ленту живьём (remote_config_changed), чтобы новое видео появилось сверху.
   useEffect(() => {
+    if (!screenRuntimeActive) return;
     const sub = onAppEvent('remote_config_changed', () => { void load('refresh'); });
     return () => sub.remove();
-  }, [load]);
+  }, [load, screenRuntimeActive]);
 
   const openExternalUrl = (rawUrl: string, fallbackVideoId?: string) => {
     const trustedUrl = getTrustedLingmanYoutubeUrl(rawUrl, fallbackVideoId);

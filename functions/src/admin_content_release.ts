@@ -12,7 +12,7 @@ import { validateReleaseReviewCandidate } from './content_factory/release_review
 const REGION = 'us-central1';
 
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
-function roleFromToken(token: Record<string, unknown>): AdminRole | null { return hasAdminRole(token.adminRole) ? token.adminRole : null; }
+function roleFromToken(token: Record<string, unknown>): AdminRole | null { return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner'; }
 
 export function parseSealCourseReleaseRequest(data: unknown): { jobId: string; idempotencyKey: string; requestId: string } {
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'seal request required');

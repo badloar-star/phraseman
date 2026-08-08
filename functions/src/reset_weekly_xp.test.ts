@@ -68,21 +68,31 @@ jest.mock('firebase-admin', () => {
         if (col !== 'users') throw new Error(`Unexpected collection: ${col}`);
         return {
           orderBy: () => ({
-            limit: (n: number) => ({
-              get: async () => {
-                const page = allDocs().slice(0, n);
-                return { empty: page.length === 0, docs: page };
-              },
-              startAfter: (lastDoc: { _uid: string }) => ({
+            limit: (n: number) => {
+              // .select() в Firestore возвращает тот же Query, только без тел документов.
+              // Мок отражает это: цепочка продолжается, а data() отдаёт пустой объект —
+              // ровно как в проде при выборке-по-ссылкам.
+              const page = (docs: Array<{ _uid: string; ref: { _uid: string }; data: () => unknown }>) =>
+                docs.map((d) => ({ ...d, data: () => ({}) }));
+              const build = (projected: boolean) => ({
                 get: async () => {
-                  const all = allDocs();
-                  const idx = all.findIndex(d => d._uid === lastDoc._uid);
-                  const rest = idx >= 0 ? all.slice(idx + 1) : [];
-                  const page = rest.slice(0, n);
-                  return { empty: page.length === 0, docs: page };
+                  const slice = allDocs().slice(0, n);
+                  return { empty: slice.length === 0, docs: projected ? page(slice) : slice };
                 },
-              }),
-            }),
+                select: () => build(true),
+                startAfter: (lastDoc: { _uid: string }) => ({
+                  get: async () => {
+                    const all = allDocs();
+                    const idx = all.findIndex(d => d._uid === lastDoc._uid);
+                    const rest = idx >= 0 ? all.slice(idx + 1) : [];
+                    const slice = rest.slice(0, n);
+                    return { empty: slice.length === 0, docs: projected ? page(slice) : slice };
+                  },
+                  select: () => build(true),
+                }),
+              });
+              return build(false);
+            },
           }),
         };
       },
@@ -124,21 +134,30 @@ beforeEach(() => {
         if (col !== 'users') throw new Error(`Unexpected collection: ${col}`);
         return {
           orderBy: () => ({
-            limit: (n: number) => ({
-              get: async () => {
-                const page = allDocs().slice(0, n);
-                return { empty: page.length === 0, docs: page };
-              },
-              startAfter: (lastDoc: { _uid: string }) => ({
+            limit: (n: number) => {
+              // См. комментарий у мока выше: .select() возвращает тот же Query,
+              // но data() отдаёт пустой объект (тела документов не запрашиваются).
+              const project = (docs: Array<{ _uid: string; ref: { _uid: string }; data: () => unknown }>) =>
+                docs.map((d) => ({ ...d, data: () => ({}) }));
+              const build = (projected: boolean) => ({
                 get: async () => {
-                  const all = allDocs();
-                  const idx = all.findIndex(d => d._uid === lastDoc._uid);
-                  const rest = idx >= 0 ? all.slice(idx + 1) : [];
-                  const page = rest.slice(0, PAGE_SIZE);
-                  return { empty: page.length === 0, docs: page };
+                  const slice = allDocs().slice(0, n);
+                  return { empty: slice.length === 0, docs: projected ? project(slice) : slice };
                 },
-              }),
-            }),
+                select: () => build(true),
+                startAfter: (lastDoc: { _uid: string }) => ({
+                  get: async () => {
+                    const all = allDocs();
+                    const idx = all.findIndex(d => d._uid === lastDoc._uid);
+                    const rest = idx >= 0 ? all.slice(idx + 1) : [];
+                    const slice = rest.slice(0, PAGE_SIZE);
+                    return { empty: slice.length === 0, docs: projected ? project(slice) : slice };
+                  },
+                  select: () => build(true),
+                }),
+              });
+              return build(false);
+            },
           }),
         };
       },

@@ -20,6 +20,7 @@ import {
   lessonProgressKey,
   quizPerfectLevelsTodayKey,
   quizPerfectStreakKey,
+  quizAchievementCounterKey,
   shareAchievementCounterKey,
   trainerAchievementCorrectCountKey,
   trainerAchievementCorrectStreakKey,
@@ -107,26 +108,31 @@ describe('Gustav achievement state target isolation', () => {
     expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'combo_500')?.unlockedAt).toBeNull();
   });
 
-  it('keeps French quiz perfect evidence out of legacy English quiz streak keys', async () => {
-    await AsyncStorage.setItem(
-      'achievement_quiz_perfect_levels_today_v1',
-      JSON.stringify({ day: '2026-05-22', levels: ['easy', 'medium', 'hard'] }),
-    );
-    await AsyncStorage.setItem('achievement_quiz_perfect_streak_v1', JSON.stringify({ day: '2026-05-22', streak: 7 }));
-
+  // зачем: раньше здесь проверялась изоляция quiz-достижений между языками.
+  // Викторины удалены из приложения вместе со своими достижениями, поэтому
+  // контракт перевёрнут: quiz-событие обязано быть НО-ОП и не плодить записи
+  // в хранилище — иначе мёртвые счётчики снова начнут уезжать в Firestore.
+  it('quiz events are inert: no achievement rows and no counter writes', async () => {
     await checkAchievements({ type: 'quiz', level: 'easy', perfect: true, studyTarget: 'fr' });
+    await checkAchievements({ type: 'quiz_session_count', count: 42, studyTarget: 'fr' });
 
+    // Ни один quiz-счётчик не должен появиться в хранилище — именно эти записи
+    // раньше раздували achievements_state, который целиком уезжает в Firestore.
+    expect(await AsyncStorage.getItem(quizPerfectLevelsTodayKey('fr'))).toBeNull();
+    expect(await AsyncStorage.getItem(quizPerfectStreakKey('fr'))).toBeNull();
+    expect(await AsyncStorage.getItem('achievement_quiz_perfect_streak_v1')).toBeNull();
+    expect(await AsyncStorage.getItem('achievement_quiz_perfect_levels_today_v1')).toBeNull();
+    expect(await AsyncStorage.getItem(quizAchievementCounterKey('quiz_hard_count', 'fr'))).toBeNull();
+
+    // И ни одной записи достижения викторин/арены — их определений больше нет.
+    // (Само хранилище checkAchievements инициализирует живыми достижениями —
+    //  это ожидаемо, проверяем именно отсутствие мёртвых.)
     const legacy = JSON.parse(await AsyncStorage.getItem('achievements_v1') ?? '[]');
     const french = JSON.parse(await AsyncStorage.getItem(achievementStateKey('fr')) ?? '[]');
-    const frenchLevels = JSON.parse(await AsyncStorage.getItem(quizPerfectLevelsTodayKey('fr')) ?? '{}');
-    const frenchStreak = JSON.parse(await AsyncStorage.getItem(quizPerfectStreakKey('fr')) ?? '{}');
-
-    expect(await AsyncStorage.getItem('achievement_quiz_perfect_streak_v1')).toBe(JSON.stringify({ day: '2026-05-22', streak: 7 }));
-    expect(frenchLevels.levels).toEqual(['easy']);
-    expect(frenchStreak.streak).toBe(1);
-    expect(legacy.find((s: { id: string }) => s.id === 'quiz_perfect_easy')).toBeUndefined();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'quiz_perfect_easy')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'quiz_perfect_7_days')?.unlockedAt).toBeNull();
+    const deadRows = [...legacy, ...french].filter(
+      (s: { id: string }) => s.id.startsWith('quiz_') || s.id.startsWith('arena_'),
+    );
+    expect(deadRows).toEqual([]);
   });
 
   it('stores French exam and gem achievements in the scoped target bucket', async () => {

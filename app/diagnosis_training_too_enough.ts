@@ -108,7 +108,7 @@ function makeStep(input: {
     ),
     microTask: tri(
       'Выбери живой кусок с too или enough.',
-      'Обери живий шматок із too або enough.',
+      'Обери живий зворот із too або enough.',
       'Elige el bloque natural con too o enough.',
     ),
     sentence: input.sentence,
@@ -124,7 +124,7 @@ function makeStep(input: {
           withEs(input.wrong[option] ??
             tri(
               `Почти, но здесь нужен другой кусок: ${input.correctAnswer}.`,
-              `Майже, але тут потрібен інший шматок: ${input.correctAnswer}.`,
+              `Майже, але тут потрібен інший зворот: ${input.correctAnswer}.`,
               `Casi. Usa: ${input.correctAnswer}.`,
             ), esFeedback),
         ]),
@@ -438,7 +438,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       correctAnswer: 'too',
       correctFeedback: tri('Да. Слишком горячий = too hot.', 'Так. Занадто гаряча = too hot.', 'Yes. Too hot.'),
       wrong: {
-        enough: tri('Enough значит “достаточно”, а здесь перебор. Нужен кусок too hot.', 'Enough означає “достатньо”, а тут перебір. Потрібен шматок too hot.', 'Use too hot.'),
+        enough: tri('Enough значит “достаточно”, а здесь перебор. Нужен кусок too hot.', 'Enough означає “достатньо”, а тут перебір. Потрібен зворот too hot.', 'Use too hot.'),
         'too much': tri('Too much не ставим перед hot. Нормально: too hot.', 'Too much не ставимо перед hot. Нормально: too hot.', 'Use too hot.'),
         many: tri('Many здесь вообще не подходит. Горячий кофе = too hot.', 'Many тут взагалі не підходить. Гаряча кава = too hot.', 'Use too hot.'),
       },
@@ -459,7 +459,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       wrong: {
         enough: tri('Enough expensive не звучит естественно и не дает смысл “слишком”. Нужно too expensive.', 'Enough expensive не звучить природно і не дає сенс “занадто”. Потрібно too expensive.', 'Use too expensive.'),
         'too many': tri('Too many не ставим перед expensive. Нормально: too expensive.', 'Too many не ставимо перед expensive. Нормально: too expensive.', 'Use too expensive.'),
-        many: tri('Many не подходит к expensive. Нужен кусок too expensive.', 'Many не підходить до expensive. Потрібен шматок too expensive.', 'Use too expensive.'),
+        many: tri('Many не подходит к expensive. Нужен кусок too expensive.', 'Many не підходить до expensive. Потрібен зворот too expensive.', 'Use too expensive.'),
       },
       clue: tri('Перебор по цене: too expensive.', 'Перебір за ціною: too expensive.', 'Too expensive.'),
       finalHint: tri('Фраза: This phone is too expensive.', 'Фраза: This phone is too expensive.', 'Sentence: This phone is too expensive.'),

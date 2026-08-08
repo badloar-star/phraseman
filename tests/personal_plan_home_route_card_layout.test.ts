@@ -16,7 +16,9 @@ describe('personal plan home route card layout', () => {
     // Название плана и день — на разных строках, день выделен отдельным акцентным <Text>.
     expect(titleBlock).toContain('{snapshot.planName}');
     expect(titleBlock).toContain("{'\\n'}");
-    expect(titleBlock).toContain('день {snapshot.dayIndex}');
+    // зачем: день локализован через triLang (i18n-аудит) — проверяем сам
+    // ключ словаря, а не дословный русский текст.
+    expect(titleBlock).toContain('ru: `день ${snapshot.dayIndex}`');
     expect(titleBlock).toContain('styles.titleDay');
     expect(titleBlock).toContain('color: actionAccent');
     expect(titleBlock).not.toContain('numberOfLines={1}');
@@ -25,10 +27,10 @@ describe('personal plan home route card layout', () => {
 
   it('hides the "Мой план" kicker in the default state', () => {
     // В обычном состоянии верхняя надпись пустая (kicker: ''), но «План на сегодня готов»
-    // и «Продолжить план» остаются.
+    // и «Продолжить план» остаются (локализованы через triLang — i18n-аудит).
     expect(source).toContain("kicker: ''");
-    expect(source).toContain("kicker: 'План на сегодня готов'");
-    expect(source).toContain("kicker: 'Продолжить план'");
+    expect(source).toContain("ru: 'План на сегодня готов'");
+    expect(source).toContain("ru: 'Продолжить план'");
     expect(source).not.toContain("kicker: 'Мой план'");
     // Пустой kicker не рендерит лишнюю строку.
     expect(source).toContain('copy.kicker ? (');

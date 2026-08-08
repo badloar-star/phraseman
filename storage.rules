@@ -55,6 +55,18 @@ service firebase.storage {
       allow write: if false;
     }
 
+    // Public, read-only achievement art (one webp per achievement id). Та же
+    // модель, что у collectible-images: стрим по HTTPS + дисковый кэш, чтобы
+    // 6.63 MB иконок не ехали в нативный бинарь (сжато до ~3.4 MB и отдаётся по
+    // требованию). «Ядро» первых достижений остаётся в бандле и работает офлайн
+    // (constants/achievementCoreArt.ts), поэтому заглушка пользователю не видна.
+    // Заливает только scripts/upload_achievement_images_to_storage.mjs (в обход правил).
+    match /achievement-images/{allPaths=**} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+
     // Default deny for any other path.
     match /{allPaths=**} {
       allow read, write: if false;

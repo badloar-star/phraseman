@@ -22,7 +22,31 @@ describe('reported user UI regressions', () => {
   it('does not make the phrase check button look active before the word bank is complete', () => {
     expect(trainerSource).toContain('const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;');
     expect(trainerSource).toContain('disabled={!canCheck || feedback !== \'none\'}');
-    expect(trainerSource).toContain('opacity: canCheck ? 1 : 0.4');
+    expect(trainerSource).toContain("opacity: canCheck || feedback !== 'none' ? 1 : 0.4");
+  });
+
+  it('allows the phrase-result action to scroll into view on short screens', () => {
+    expect(trainerSource).toContain("contentContainerStyle={{ padding: 16, paddingTop: 8, flexGrow: 1 }}");
+    expect(trainerSource).not.toContain("contentContainerStyle={{ padding: 16, paddingTop: 8, flex: 1 }}");
+  });
+
+  it('keeps the advance action but removes the redundant repeat action', () => {
+    expect(trainerSource).toContain('onAdvance: () => void;');
+    expect(trainerSource).toContain("ru: 'Готово →'");
+    expect(trainerSource).not.toContain('const retry = () => {');
+    expect(trainerSource).not.toContain("ru: 'Повторить ещё раз'");
+    expect(trainerSource).not.toContain('waitForPhraseAnswerFeedback');
+  });
+
+  it('records only the first graded attempt when a learner retries the same phrase', () => {
+    expect(trainerSource).toContain('const hasRecordedResult = useRef(false);');
+    expect(trainerSource).toContain('if (hasRecordedResult.current) return;');
+  });
+
+  it('keeps one primary English result with the save action beside it', () => {
+    expect(lessonSource).toContain('testID="lesson1-primary-answer-row"');
+    expect(lessonSource).toContain('testID="lesson1-primary-save"');
+    expect(lessonSource).not.toContain("<View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15");
   });
 
   it('never leaves a multi-word phrase in the original word order', () => {

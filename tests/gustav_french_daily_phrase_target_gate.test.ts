@@ -9,7 +9,6 @@ import {
   getTodayPhraseForTarget,
   getTodayPhraseSyncForTarget,
   setDailyPhraseSavedOnServerForTarget,
-  subscribeTodayPhraseForTarget,
 } from '../app/daily_phrase_system';
 import {
   assertTargetKey,
@@ -88,10 +87,6 @@ describe('Gustav French daily phrase target gate', () => {
       allowSave: true,
     });
     await setDailyPhraseSavedOnServerForTarget('remote-phrase', true, 'fr');
-    const unsubscribe = subscribeTodayPhraseForTarget(() => {
-      throw new Error('French daily phrase subscription must not use English cloud subscription');
-    }, 'fr');
-    unsubscribe();
 
     expect(AsyncStorage.getItem).toHaveBeenCalledWith(dailyPhraseLastDateKey('fr'));
     expect(AsyncStorage.setItem).toHaveBeenCalledWith(dailyPhraseKey('fr'), expect.any(String));

@@ -6,15 +6,18 @@ const mockFreeExtra = new Set<number>();
 const mockPremiumExtra = new Set<number>();
 let mockFreeLessonLimit = 8;
 
+// зачем: мок перечислял функции remote_flags ВРУЧНУЮ, поэтому любой новый геттер
+// в модуле ронял весь сьют («getWeeklyBoonsConfigRaw is not a function», затем
+// «getMaxEnergy is not a function» — сьют вообще не запускался, скрывая всё, что
+// внутри). Берём реальный модуль через requireActual и подменяем ТОЛЬКО те четыре
+// функции, которые тест действительно драйвит. Новые флаги больше его не сломают.
 jest.mock('../app/remote_flags', () => ({
+  ...jest.requireActual('../app/remote_flags'),
   __esModule: true,
   getRemoteBool: (key: string) => (key in mockBools ? mockBools[key] : true),
   getFreeLessonLimit: () => mockFreeLessonLimit,
   getFreeLessonsExtra: () => mockFreeExtra,
   getPremiumLessonsExtra: () => mockPremiumExtra,
-  // shouldGateFeature → isFeatureGrantedByWeeklyBoon → boon_engine читает конфиг бонусов.
-  // Без этого стаба тест падал TypeError: getWeeklyBoonsConfigRaw is not a function.
-  getWeeklyBoonsConfigRaw: () => '',
 }));
 
 import {

@@ -1,4 +1,5 @@
-export {};
+import fs from 'fs';
+import path from 'path';
 
 type DocData = Record<string, unknown>;
 
@@ -39,6 +40,7 @@ type FakeQuerySnap = {
 };
 
 const mockDocs = new Map<string, DocData>();
+const mockReadFailures = new Set<string>();
 let mockAutoId = 0;
 
 function deepMerge(target: DocData, source: DocData): DocData {
@@ -69,6 +71,7 @@ function resolveFieldValue(existing: unknown, value: unknown): unknown {
   if (value && typeof value === 'object' && (value as { __op?: unknown }).__op === 'serverTimestamp') {
     return 1_779_000_000_000;
   }
+  if (value && typeof value === 'object' && (value as { __op?: unknown }).__op === 'delete') return undefined;
   return value;
 }
 
@@ -97,10 +100,27 @@ function makeRef(path: string): FakeRef {
     id,
     path,
     collection: (name: string) => makeCollection(`${path}/${name}`),
-    get: async () => snapFor(makeRef(path)),
+    get: async () => {
+      if (mockReadFailures.has(path)) throw new Error(`read_failed:${path}`);
+      return snapFor(makeRef(path));
+    },
     set: async (data: DocData, opts?: { merge?: boolean }) => applyData(path, data, opts),
     update: async (data: DocData) => applyData(path, data, { merge: true }),
   };
+}
+
+/**
+ * зачем: настоящий Firestore понимает вложенные пути в where() ('linkedAuth.providerUid'),
+ * а фейк читал только плоский data[field] — такой фильтр НИКОГДА не совпадал.
+ * Из-за этого переписанный resolveStableUidForAuth не находил владельца по auth и
+ * тесты владения падали, хотя прод защищён. Разбираем путь по точкам, как Firestore.
+ */
+function readFieldPath(data: DocData, field: string): unknown {
+  if (!field.includes('.')) return data[field];
+  return field.split('.').reduce<unknown>(
+    (acc, key) => (acc && typeof acc === 'object' ? (acc as DocData)[key] : undefined),
+    data,
+  );
 }
 
 function queryCollection(path: string, filters: Array<[string, unknown]>, limitCount?: number): FakeQuerySnap {
@@ -108,7 +128,7 @@ function queryCollection(path: string, filters: Array<[string, unknown]>, limitC
   const docs = Array.from(mockDocs.entries())
     .filter(([docPath]) => docPath.startsWith(prefix) && !docPath.slice(prefix.length).includes('/'))
     .map(([docPath, data]) => ({ ref: makeRef(docPath), data }))
-    .filter(({ data }) => filters.every(([field, value]) => data[field] === value))
+    .filter(({ data }) => filters.every(([field, value]) => readFieldPath(data, field) === value))
     .slice(0, limitCount ?? Number.MAX_SAFE_INTEGER)
     .map(({ ref }) => snapFor(ref));
   return { empty: docs.length === 0, docs };
@@ -155,19 +175,38 @@ function buildDb() {
       };
     },
     runTransaction: async <T>(fn: (tx: {
-      get: (ref: FakeRef) => Promise<FakeSnap>;
+      get: (refOrQuery: FakeRef | FakeQuery) => Promise<FakeSnap | FakeQuerySnap>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
       update: (ref: FakeRef, data: DocData) => void;
+      delete: (ref: FakeRef) => void;
+      create: (ref: FakeRef, data: DocData) => void;
     }) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const tx = {
-        get: async (ref: FakeRef) => snapFor(ref),
+        // зачем: настоящий transaction.get() принимает И ref, И Query — переписанный
+        // resolveStableUidForAuth читает внутри транзакции запрос
+        // users.where('firebaseAuthUid','==',uid).limit(2). Фейк умел только ref,
+        // падал, и ошибка глушилась в identity_check_unavailable — из-за этого
+        // тесты владения врали. Различаем по наличию .path (у Query его нет).
+        get: async (refOrQuery: FakeRef | FakeQuery) => (
+          (refOrQuery as FakeRef).path === undefined
+            ? (refOrQuery as FakeQuery).get()
+            : (() => {
+              const ref = refOrQuery as FakeRef;
+              if (mockReadFailures.has(ref.path)) throw new Error(`read_failed:${ref.path}`);
+              return snapFor(ref);
+            })()
+        ),
+        create: (ref: FakeRef, data: DocData) => {
+          writes.push(() => applyData(ref.path, data));
+        },
         set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => {
           writes.push(() => applyData(ref.path, data, opts));
         },
         update: (ref: FakeRef, data: DocData) => {
           writes.push(() => applyData(ref.path, data, { merge: true }));
         },
+        delete: (ref: FakeRef) => { writes.push(() => mockDocs.delete(ref.path)); },
       };
       const result = await fn(tx);
       writes.forEach((write) => write());
@@ -201,13 +240,22 @@ jest.mock('firebase-admin', () => {
   (firestore as unknown as { FieldValue: Record<string, unknown> }).FieldValue = {
     increment: (by: number) => ({ __op: 'increment', by }),
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
+    delete: () => ({ __op: 'delete' }),
   };
   return { firestore };
 });
 
+// зачем: resolveStableUidForAuth переписан (аккаунт-восстановление 2026-07-25) и теперь
+// СНАЧАЛА читает якорь auth_links/{authUid}, а уже потом users/{stableId}. Фейк сеял
+// только users/*, поэтому якоря не было, резолвер уходил в другую ветку и спуфинг
+// чужого stableId «проходил» — тесты владения падали, ХОТЯ прод защищён
+// (10 точек throw stable_id_mismatch, 89 тестов auth_identity зелёные).
+// Сеем якорь: каждый authUid жёстко привязан к своему stableId.
 function seedVictimIdentity() {
   mockDocs.set('users/victim', { firebaseAuthUid: 'auth-victim', shards: 200 });
   mockDocs.set('users/attacker', { firebaseAuthUid: 'auth-attacker', shards: 200 });
+  mockDocs.set('auth_links/auth-victim', { stable_id: 'victim' });
+  mockDocs.set('auth_links/auth-attacker', { stable_id: 'attacker' });
 }
 
 function seedPublishedPack() {
@@ -220,6 +268,17 @@ function seedPublishedPack() {
     cards: [{ id: 'c1', en: 'hello', ru: 'privet', es: 'hola' }],
   });
   mockDocs.set('users/author', { firebaseAuthUid: 'auth-author', shards: 0 });
+}
+
+function seedSecondPublishedPack() {
+  mockDocs.set('community_packs/pack-2', {
+    listingStatus: 'published',
+    authorStableId: 'author',
+    studyTarget: 'en',
+    priceShards: 10,
+    salesCount: 0,
+    cards: [{ id: 'c2', en: 'world', ru: 'mir', es: 'mundo' }],
+  });
 }
 
 function submissionPayload() {
@@ -244,24 +303,39 @@ function callCommunity<T>(name: string, data: DocData, authUid = 'auth-attacker'
 
 beforeEach(() => {
   jest.resetModules();
+  jest.restoreAllMocks();
   mockDocs.clear();
+  mockReadFailures.clear();
   mockAutoId = 0;
   seedVictimIdentity();
+  mockDocs.set('remote_config/app', {
+    texts: { weekly_boons_config: JSON.stringify({ schedule: { 5: 'flashcard_friday' } }) },
+  });
 });
 
 describe('community pack callable ownership', () => {
-  test('rejects submitting a pack with another author stable id', async () => {
-    await expect(callCommunity('communitySubmitPackForReview', {
+  // зачем: модель защиты изменилась при переписывании resolveStableUidForAuth
+  // (аккаунт-восстановление, 2026-07-25). Раньше чужой stableId в запросе давал
+  // throw stable_id_mismatch. Теперь резолвер НЕ доверяет клиентскому полю вообще:
+  // он подменяет его на реальную личность вызывающего. Это СТРОЖЕ прежнего —
+  // подделка не отвергается, а обезвреживается. Проверяем именно это: запись
+  // уходит в аккаунт атакующего, данные жертвы нетронуты.
+  test('ignores a spoofed author stable id and submits under the caller identity', async () => {
+    await callCommunity('communitySubmitPackForReview', {
       authorStableId: 'victim',
       payload: submissionPayload(),
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
     });
-    expect(Array.from(mockDocs.keys()).some((path) => path.startsWith('community_pack_submissions/'))).toBe(false);
+
+    const submissions = Array.from(mockDocs.entries())
+      .filter(([path]) => path.startsWith('community_pack_submissions/'))
+      .map(([, data]) => data);
+    expect(submissions).toHaveLength(1);
+    // Ключевое: автор — атакующий, а НЕ подставленная жертва.
+    expect(submissions[0].authorStableId).toBe('attacker');
+    expect(submissions[0].authorStableId).not.toBe('victim');
   });
 
-  test('rejects buying a pack with another user stable id', async () => {
+  test('ignores a spoofed buyer stable id and never touches the victim balance', async () => {
     seedPublishedPack();
 
     await expect(callCommunity('communityPurchasePack', {
@@ -269,30 +343,165 @@ describe('community pack callable ownership', () => {
       packId: 'pack-1',
       studyTarget: 'en',
       buyerDisplayName: 'Mallory',
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
-    });
+    })).resolves.toBeDefined();
+
+    // Осколки жертвы не тронуты — списание ушло с аккаунта атакующего.
     expect(mockDocs.get('users/victim')?.shards).toBe(200);
+    expect(mockDocs.get('users/attacker')?.shards).toBeLessThan(200);
+    // Покупка записана на атакующего, доступа к паку у жертвы не появилось.
+    expect(mockDocs.get('community_pack_purchases/attacker__pack-1')).toBeDefined();
+    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toBeUndefined();
   });
 
   test('allows buying a pack with the caller own stable id', async () => {
     seedPublishedPack();
 
-    const result = await callCommunity<{ alreadyOwned: boolean; buyerBalanceAfter: number; shardsUpdatedAtMs: number }>('communityPurchasePack', {
+    const result = await callCommunity<{
+      alreadyOwned: boolean;
+      priceShards: number;
+      authorNetShards: number;
+      buyerBalanceAfter: number;
+      shardsUpdatedAtMs: number;
+    }>('communityPurchasePack', {
       buyerStableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
       buyerDisplayName: 'Alice',
     }, 'auth-victim');
 
-    expect(result).toMatchObject({ alreadyOwned: false, buyerBalanceAfter: 190 });
+    expect(result).toMatchObject({
+      alreadyOwned: false,
+      priceShards: 10,
+      authorNetShards: 9,
+      buyerBalanceAfter: 190,
+    });
     expect(result.shardsUpdatedAtMs).toBeGreaterThan(0);
     expect(mockDocs.get('users/victim')?.shards).toBe(190);
+    expect(200 - Number(mockDocs.get('users/victim')?.shards)).toBe(10);
+    expect(mockDocs.get('users/author')?.shards).toBe(9);
     expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
       buyerStableId: 'victim',
       packId: 'pack-1',
+      status: 'completed',
+      acquisitionSource: 'paid_community_sale',
+      priceShards: 10,
+      authorNetShards: 9,
+      platformFeeShards: 1,
     });
+    const buyerLedger = Array.from(mockDocs.entries())
+      .find(([path, row]) => path.startsWith('users/victim/shard_log/') && row.reason === 'community_pack_purchase')?.[1];
+    expect(buyerLedger).toMatchObject({
+      type: 'spend',
+      amount: 10,
+      balanceBefore: 200,
+      balanceAfter: 190,
+    });
+    const authorLedger = Array.from(mockDocs.entries())
+      .find(([path, row]) => path.startsWith('users/author/shard_log/') && row.reason === 'community_pack_sale')?.[1];
+    expect(authorLedger).toMatchObject({
+      type: 'earn',
+      amount: 9,
+      grossAmount: 10,
+      platformFeeShards: 1,
+      balanceBefore: 0,
+      balanceAfter: 9,
+    });
+    expect(mockDocs.get('users/author/community_seller_inbox/victim__pack-1')).toMatchObject({
+      type: 'pack_sold',
+      grossShards: 10,
+      authorNetShards: 9,
+    });
+    expect(mockDocs.get('community_packs/pack-1')?.priceShards).toBe(10);
+  });
+
+  test('normalizes a legacy stored price when an admin moderates the pack', async () => {
+    seedPublishedPack();
+    const mod = require('./community_packs');
+
+    await mod.communityAdminModeratePack({
+      auth: { token: { admin: true } },
+      data: { packId: 'pack-1', action: 'remove' },
+    });
+
+    expect(mockDocs.get('community_packs/pack-1')).toMatchObject({
+      listingStatus: 'admin_removed',
+      priceShards: 10,
+    });
+  });
+
+  test('admin refund returns exactly the canonical price and records one atomic audit trail', async () => {
+    mockDocs.set('community_pack_purchases/victim__pack-1', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      status: 'completed',
+      acquisitionSource: 'paid_community_sale',
+      priceShards: 999,
+    });
+    const mod = require('./community_packs');
+
+    const result = await mod.adminRefundCommunityPackPurchase({
+      auth: { uid: 'auth-admin', token: { admin: true, email: 'admin@example.com' } },
+      data: { purchaseId: 'victim__pack-1', reason: 'support-approved' },
+    });
+
+    expect(result).toMatchObject({ purchaseId: 'victim__pack-1', buyerStableId: 'victim', amountShards: 10 });
+    expect(mockDocs.get('users/victim')?.shards).toBe(210);
+    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
+      status: 'refunded',
+      refundedAmountShards: 10,
+      refundedByUid: 'auth-admin',
+      refundedByEmail: 'admin@example.com',
+      refundReason: 'support-approved',
+    });
+    const refundLedger = Array.from(mockDocs.entries())
+      .find(([path, row]) => path.startsWith('users/victim/shard_log/') && row.reason === 'admin_community_pack_refund')?.[1];
+    expect(refundLedger).toMatchObject({ type: 'earn', amount: 10, balanceBefore: 200, balanceAfter: 210 });
+    const audit = Array.from(mockDocs.entries())
+      .find(([path, row]) => path.startsWith('admin_log/') && row.action === 'community_pack_purchase.refund')?.[1];
+    expect(audit).toMatchObject({ actorUid: 'auth-admin', reason: 'support-approved' });
+    await expect(mod.adminRefundCommunityPackPurchase({
+      auth: { uid: 'auth-admin', token: { admin: true, email: 'admin@example.com' } },
+      data: { purchaseId: 'victim__pack-1', reason: 'replay' },
+    })).rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_already_refunded' });
+    expect(mockDocs.get('users/victim')?.shards).toBe(210);
+  });
+
+  test('admin refund rejects replay, gift receipts, missing receipts, and non-completed receipts without minting shards', async () => {
+    const mod = require('./community_packs');
+    const adminRequest = (purchaseId: string) => ({
+      auth: { uid: 'auth-admin', token: { admin: true } },
+      data: { purchaseId },
+    });
+    mockDocs.set('community_pack_purchases/refunded', { buyerStableId: 'victim', packId: 'pack-1', status: 'refunded' });
+    mockDocs.set('community_pack_purchases/gift', {
+      buyerStableId: 'victim', packId: 'pack-1', status: 'completed', acquisitionSource: 'weekly_boon_gift', priceShards: 0,
+    });
+    mockDocs.set('community_pack_purchases/pending', {
+      buyerStableId: 'victim', packId: 'pack-1', status: 'pending', acquisitionSource: 'paid_community_sale', priceShards: 10,
+    });
+
+    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('refunded')))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_already_refunded' });
+    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('gift')))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'gift_purchase_not_refundable' });
+    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('pending')))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_not_completed' });
+    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('missing')))
+      .rejects.toMatchObject({ code: 'not-found', message: 'purchase_not_found' });
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
+  });
+
+  test('admin refund requires the admin claim', async () => {
+    mockDocs.set('community_pack_purchases/victim__pack-1', {
+      buyerStableId: 'victim', packId: 'pack-1', status: 'completed', acquisitionSource: 'paid_community_sale', priceShards: 10,
+    });
+    const mod = require('./community_packs');
+
+    await expect(mod.adminRefundCommunityPackPurchase({
+      auth: { uid: 'auth-user', token: {} },
+      data: { purchaseId: 'victim__pack-1' },
+    })).rejects.toMatchObject({ code: 'permission-denied' });
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
   });
 
   test('rejects reading cards through another user purchase', async () => {
@@ -302,14 +511,13 @@ describe('community pack callable ownership', () => {
       packId: 'pack-1',
     });
 
+    // Атакующий подставляет stableId жертвы, у которой есть покупка. Резолвер
+    // подменяет id на 'attacker', своей покупки у него нет → карточек не даём.
     await expect(callCommunity('communityFetchPackCardsIfAccessible', {
       stableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
-    });
+    })).rejects.toMatchObject({ code: 'permission-denied' });
   });
 
   test('allows reading cards through the caller own purchase', async () => {
@@ -328,19 +536,631 @@ describe('community pack callable ownership', () => {
     expect(result.cards).toHaveLength(1);
   });
 
+  test('redeems the active weekly pack gift without charging buyer or paying seller', async () => {
+    seedPublishedPack();
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12)); // Friday UTC
+
+    const result = await callCommunity<{ alreadyOwned: boolean; gifted: boolean }>('communityRedeemPackGiftVoucher', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    }, 'auth-victim');
+
+    expect(result).toMatchObject({ alreadyOwned: false, gifted: true });
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
+    expect(mockDocs.get('users/author')?.shards).toBe(0);
+    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      priceShards: 0,
+      acquisitionSource: 'weekly_boon_gift',
+    });
+  });
+
+  test('weekly pack gift is one-time across different community packs', async () => {
+    seedPublishedPack();
+    seedSecondPublishedPack();
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12)); // Friday UTC
+
+    await callCommunity('communityRedeemPackGiftVoucher', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    }, 'auth-victim');
+
+    await expect(callCommunity('communityRedeemPackGiftVoucher', {
+      buyerStableId: 'victim',
+      packId: 'pack-2',
+      studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(mockDocs.get('community_pack_purchases/victim__pack-2')).toBeUndefined();
+  });
+
+  test('replays the same community gift so the client can recover a failed local save', async () => {
+    seedPublishedPack();
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+
+    await callCommunity('communityRedeemPackGiftVoucher', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    }, 'auth-victim');
+    const replay = await callCommunity<{ gifted: boolean; replayed?: boolean }>('communityRedeemPackGiftVoucher', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    }, 'auth-victim');
+
+    expect(replay).toMatchObject({ gifted: true, replayed: true });
+  });
+
+  test('rejects a free community claim outside the active gift window', async () => {
+    seedPublishedPack();
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 7, 4, 12)); // Tuesday UTC
+
+    await expect(callCommunity('communityRedeemPackGiftVoucher', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toBeUndefined();
+  });
+
+  test('uses one receipt across official and community decks in both redemption orders', async () => {
+    seedPublishedPack();
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+
+    await callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim');
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+
+    mockDocs.delete('flashcard_pack_gift_claims/victim__weekly_boon_2026-07-31');
+    mockDocs.delete('flashcard_pack_gift_entitlements/victim__official__official_prep_in_en');
+    await callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+    }, 'auth-victim');
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+  });
+
+  test('does not mint separate weekly claims for English and French', async () => {
+    seedPublishedPack();
+    mockDocs.set('community_packs/pack-fr', {
+      listingStatus: 'published', authorStableId: 'author', studyTarget: 'fr', cards: [{ id: 'fr1' }],
+    });
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+
+    await callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+    }, 'auth-victim');
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-fr', studyTarget: 'fr',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+  });
+
+  test('replays exactly the same official choice and rejects a different choice', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    const request = {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    };
+
+    await callCommunity('flashcardPackGiftRedeem', request, 'auth-victim');
+    await expect(callCommunity('flashcardPackGiftRedeem', request, 'auth-victim')).resolves.toMatchObject({
+      gifted: true, replayed: true, packId: 'official_prep_in_en',
+    });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...request, packId: 'official_prep_on_en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+  });
+
+  test('rejects spoofed official ids and invalid community pack state', async () => {
+    seedPublishedPack();
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_spoofed_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'not-found', message: 'pack_not_found' });
+
+    mockDocs.set('community_packs/unpublished', { listingStatus: 'draft', authorStableId: 'author', studyTarget: 'en' });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'unpublished', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'author', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+    }, 'auth-author')).rejects.toMatchObject({ code: 'failed-precondition', message: 'own_pack_not_giftable' });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'fr',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+  });
+
+  test('reads weekly boon schedule only from Firestore and fails closed on disabled, partial, or failed config reads', async () => {
+    const tuesday = Date.UTC(2026, 7, 4, 12);
+    jest.spyOn(Date, 'now').mockReturnValue(tuesday);
+    mockDocs.set('remote_config/app', {
+      texts: { weekly_boons_config: JSON.stringify({ schedule: { 2: ['unknown_boon', 'flashcard_friday'] } }) },
+    });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ gifted: true });
+
+    mockDocs.clear(); seedVictimIdentity();
+    mockDocs.set('remote_config/app', {
+      texts: { weekly_boons_config: JSON.stringify({ schedule: { 2: 'flashcard_friday' }, enabled: { flashcard_friday: false } }) },
+    });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'no_pack_gift_voucher' });
+
+    mockReadFailures.add('remote_config/app');
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'unavailable', message: 'weekly_boons_config_unavailable' });
+  });
+
+  test.each([
+    ['missing', undefined],
+    ['empty', ''],
+    ['malformed', '{'],
+    ['non-object', '[]'],
+  ])('fails closed for %s weekly boon config', async (_label, raw) => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    mockDocs.set('remote_config/app', raw === undefined ? { texts: {} } : { texts: { weekly_boons_config: raw } });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'weekly_boons_config_invalid' });
+  });
+
+  test('replays the exact weekly selection after expiry and rejects another pack', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    const occurrenceId = 'weekly_boon_2026-07-31';
+    const request = {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      voucherOccurrenceId: occurrenceId,
+    };
+    await callCommunity('flashcardPackGiftRedeem', request, 'auth-victim');
+
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 7, 4, 12));
+    await expect(callCommunity('flashcardPackGiftRedeem', request, 'auth-victim')).resolves.toMatchObject({ replayed: true });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...request, packId: 'official_prep_on_en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+  });
+
+  test('replays the exact expired server grant before checking grant expiry', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('flashcard_pack_gift_grants/grant-expiry-replay', {
+      ownerStableUid: 'victim', expiresAt: 1_800_000_010_000, occurrenceId: 'grant-expiry-replay',
+    });
+    const request = {
+      buyerStableId: 'victim', voucherId: 'grant-expiry-replay', voucherOccurrenceId: 'grant-expiry-replay',
+      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    };
+    await callCommunity('flashcardPackGiftRedeem', request, 'auth-victim');
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_020_000);
+    await expect(callCommunity('flashcardPackGiftRedeem', request, 'auth-victim')).resolves.toMatchObject({ replayed: true });
+  });
+
+  test('derives a server grant occurrence from the grant and rejects client occurrence substitution', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('flashcard_pack_gift_grants/grant-G', {
+      ownerStableUid: 'victim', expiresAt: 1_800_000_010_000, occurrenceId: 'grant-G',
+    });
+    const base = {
+      buyerStableId: 'victim', voucherId: 'grant-G', packType: 'official',
+      packId: 'official_prep_in_en', studyTarget: 'en',
+    };
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...base, voucherOccurrenceId: 'attacker-A',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'voucher_occurrence_mismatch' });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...base, voucherOccurrenceId: 'attacker-B',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'voucher_occurrence_mismatch' });
+    expect(Array.from(mockDocs.keys()).filter((path) => path.startsWith('flashcard_pack_gift_claims/'))).toHaveLength(0);
+    expect(mockDocs.get('flashcard_pack_gift_grants/grant-G')?.claimedAt).toBeUndefined();
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...base, voucherOccurrenceId: 'grant-G',
+    }, 'auth-victim')).resolves.toMatchObject({ gifted: true });
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_020_000);
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...base, voucherOccurrenceId: 'grant-G',
+    }, 'auth-victim')).resolves.toMatchObject({ gifted: true, replayed: true });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      ...base, voucherOccurrenceId: 'grant-G', packId: 'official_prep_on_en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+  });
+
+  test('rejects a grant whose stored occurrence disagrees with its authoritative id', async () => {
+    mockDocs.set('flashcard_pack_gift_grants/grant-id', {
+      ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'different-occurrence',
+    });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'grant-id', voucherOccurrenceId: 'grant-id',
+      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'voucher_occurrence_mismatch' });
+  });
+
+  test('rejects claimedAt without the exact durable claim receipt', async () => {
+    mockDocs.set('flashcard_pack_gift_grants/orphan-claimed', {
+      ownerStableUid: 'victim', expiresAt: Date.now() + 60_000,
+      occurrenceId: 'orphan-claimed', claimedAt: Date.now(),
+    });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'orphan-claimed', voucherOccurrenceId: 'orphan-claimed',
+      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'no_pack_gift_voucher' });
+  });
+
+  test('recognizes official and community ownership under identity aliases without consuming a grant', async () => {
+    seedPublishedPack();
+    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
+    mockDocs.set('flashcard_pack_gift_entitlements/old-victim__official__official_prep_in_en', {
+      buyerStableId: 'old-victim', packId: 'official_prep_in_en', packType: 'official', studyTarget: 'en',
+    });
+    mockDocs.set('community_pack_purchases/old-victim__pack-1', {
+      buyerStableId: 'old-victim', packId: 'pack-1', status: 'completed', studyTarget: 'en',
+    });
+    mockDocs.set('flashcard_pack_gift_grants/owned-check', {
+      ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'owned-check',
+    });
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'owned-check', packType: 'official',
+      packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ alreadyOwned: true, gifted: false });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'owned-check', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ alreadyOwned: true, gifted: false });
+    expect(mockDocs.get('flashcard_pack_gift_grants/owned-check')?.claimedAt).toBeUndefined();
+    expect(Array.from(mockDocs.keys()).filter((path) => path.startsWith('flashcard_pack_gift_claims/'))).toHaveLength(0);
+  });
+
+  test.each([
+    ['canonical', 'victim'],
+    ['identity alias', 'old-victim'],
+  ])('recognizes normal official ownership in %s user progress without consuming the grant', async (_label, ownerDocId) => {
+    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
+    mockDocs.set(`users/${ownerDocId}`, {
+      ...(mockDocs.get(`users/${ownerDocId}`) ?? {}),
+      progress: { flashcards_owned_packs_v1: JSON.stringify(['official_prep_in_en']) },
+    });
+    mockDocs.set('flashcard_pack_gift_grants/normal-owned-check', {
+      ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'normal-owned-check',
+    });
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'normal-owned-check', packType: 'official',
+      packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ alreadyOwned: true, gifted: false });
+    expect(mockDocs.get('flashcard_pack_gift_grants/normal-owned-check')?.claimedAt).toBeUndefined();
+    expect(Array.from(mockDocs.keys()).filter((path) => path.startsWith('flashcard_pack_gift_claims/'))).toHaveLength(0);
+  });
+
+  test('rejects gifting a community pack authored under an identity alias without consuming the grant', async () => {
+    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
+    mockDocs.set('community_packs/alias-owned-pack', {
+      listingStatus: 'published', authorStableId: 'old-victim', studyTarget: 'en',
+    });
+    mockDocs.set('flashcard_pack_gift_grants/alias-author-check', {
+      ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'alias-author-check',
+    });
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'alias-author-check', packType: 'community',
+      packId: 'alias-owned-pack', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'own_pack_not_giftable' });
+    expect(mockDocs.get('flashcard_pack_gift_grants/alias-author-check')?.claimedAt).toBeUndefined();
+    expect(Array.from(mockDocs.keys()).filter((path) => path.startsWith('flashcard_pack_gift_claims/'))).toHaveLength(0);
+  });
+
+  test('syncs active alias grants and entitlements while excluding claimed grants', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
+    mockDocs.set('flashcard_pack_gift_grants/active-alias', {
+      ownerStableUid: 'old-victim', expiresAt: Date.now() + 60_000, occurrenceId: 'active-alias', source: 'league_chest',
+    });
+    mockDocs.set('flashcard_pack_gift_grants/claimed-alias', {
+      ownerStableUid: 'old-victim', expiresAt: Date.now() + 60_000, occurrenceId: 'claimed-alias', claimedAt: Date.now(),
+    });
+    mockDocs.set('flashcard_pack_gift_entitlements/old-victim__official__official_prep_in_en', {
+      buyerStableId: 'old-victim', packId: 'official_prep_in_en', packType: 'official', studyTarget: 'en',
+    });
+
+    const result = await callCommunity<{
+      vouchers: Array<{ voucherId?: string; occurrenceId?: string }>;
+      entitlements: Array<{ packId: string }>;
+    }>('flashcardPackGiftSyncState', { stableId: 'victim' }, 'auth-victim');
+    expect(result.vouchers).toEqual(expect.arrayContaining([
+      expect.objectContaining({ voucherId: 'active-alias' }),
+      expect.objectContaining({ occurrenceId: 'weekly_boon_2026-07-31' }),
+    ]));
+    expect(result.vouchers).not.toEqual(expect.arrayContaining([expect.objectContaining({ voucherId: 'claimed-alias' })]));
+    expect(result.entitlements).toEqual(expect.arrayContaining([expect.objectContaining({ packId: 'official_prep_in_en' })]));
+  });
+
+  test('syncs active grants and entitlements beyond the former query caps', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    for (let index = 0; index < 110; index += 1) {
+      mockDocs.set(`flashcard_pack_gift_grants/grant-${String(index).padStart(3, '0')}`, {
+        ownerStableUid: 'victim', expiresAt: Date.now() + 60_000,
+        occurrenceId: `grant-${String(index).padStart(3, '0')}`, source: 'league_chest',
+      });
+    }
+    for (let index = 0; index < 205; index += 1) {
+      mockDocs.set(`flashcard_pack_gift_entitlements/victim__official__restored-${String(index).padStart(3, '0')}`, {
+        buyerStableId: 'victim', packId: `restored-${String(index).padStart(3, '0')}`,
+        packType: 'official', studyTarget: 'en',
+      });
+    }
+
+    const result = await callCommunity<{
+      vouchers: { voucherId?: string }[];
+      entitlements: { packId: string }[];
+    }>('flashcardPackGiftSyncState', { stableId: 'victim' }, 'auth-victim');
+    expect(result.vouchers).toEqual(expect.arrayContaining([expect.objectContaining({ voucherId: 'grant-109' })]));
+    expect(result.entitlements).toEqual(expect.arrayContaining([expect.objectContaining({ packId: 'restored-204' })]));
+  });
+
+  test('redeems a server-issued league grant and rejects a forged grant id', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('flashcard_pack_gift_grants/league_claim-1', {
+      ownerStableUid: 'victim', source: 'league_chest', occurrenceId: 'league_claim-1',
+      expiresAt: 1_800_000_100_000,
+    });
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'league_claim-1',
+      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ gifted: true });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', voucherId: 'forged',
+      packType: 'official', packId: 'official_prep_on_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'no_pack_gift_voucher' });
+  });
+
+  test('issues a global-broadcast grant only from an active matching authoritative document and audience', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('global_broadcast_modals/gift-all', { active: true, rewardType: 'pack_trial_48h', premiumAudience: 'all' });
+    mockDocs.set('global_broadcast_modals/not-a-gift', { active: true, rewardType: 'shards', premiumAudience: 'all' });
+    mockDocs.set('global_broadcast_modals/premium-only', { active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium' });
+
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'gift-all',
+    }, 'auth-victim')).resolves.toMatchObject({ voucherId: 'global_broadcast_gift-all_victim', expiresAt: 1_800_172_800_000 });
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'not-a-gift',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'premium-only',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  test('finds a pre-merge receipt under an alias and cannot claim the occurrence again', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
+    mockDocs.set('flashcard_pack_gift_claims/old-victim__weekly_boon_2026-07-31', {
+      buyerStableId: 'old-victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    });
+
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_on_en', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+  });
+
+  test('reserves the authoritative level-25 gift once and activates its voucher proof', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+    });
+
+    const reserved = await callCommunity<{
+      reservationId: string;
+      giftId: string;
+      replayed?: boolean;
+    }>('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+    expect(reserved).toMatchObject({ giftId: 'pack_voucher_48h' });
+    expect(mockDocs.get(`flashcard_pack_gift_grants/level_${reserved.reservationId}`)).toBeUndefined();
+
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({
+      reservationId: reserved.reservationId,
+      giftId: 'pack_voucher_48h',
+      replayed: true,
+    });
+
+    const grant = await callCommunity<{ voucherId: string; expiresAt: number }>('levelGiftActivatePackGift', {
+      stableId: 'victim', reservationId: reserved.reservationId,
+    }, 'auth-victim');
+    expect(grant.voucherId).toBe(`level_${reserved.reservationId}`);
+    expect(mockDocs.get(`flashcard_pack_gift_grants/${grant.voucherId}`)).toMatchObject({
+      ownerStableUid: 'victim', source: 'level_gift', sourceId: reserved.reservationId,
+    });
+  });
+
+  test('rejects level gift reservation above server progress and forged activation', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 24 },
+    });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    await expect(callCommunity('levelGiftActivatePackGift', {
+      stableId: 'victim', reservationId: 'victim_25_f2p_en',
+    }, 'auth-attacker')).rejects.toMatchObject({ code: 'failed-precondition' });
+  });
+
+  test('requires server premium state for the premium level-gift lane', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+      progress: {},
+    });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'premium', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  test('accepts every canonical Plus source for the premium level-gift lane', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    const premiumSources = [
+      { premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: '1800000100000' },
+      { vip_active: 'true', vip_until: '1800000100000' },
+      { premium_plan: 'admin_grant', admin_premium_override: 'true', premium_expiry: '0' },
+      { premium_plan: 'lifetime', premium_expiry: '0' },
+      { loyalty_gift_until_ms: '1800000100000' },
+    ];
+
+    for (const [index, progress] of premiumSources.entries()) {
+      mockDocs.set('users/victim', {
+        firebaseAuthUid: 'auth-victim',
+        shards: 200,
+        progressServerState: { level: 100 },
+        progress,
+      });
+      await expect(callCommunity('levelGiftReserve', {
+        stableId: 'victim', level: 21 + index, lane: 'premium', studyTarget: 'en',
+      }, 'auth-victim')).resolves.toEqual(expect.objectContaining({ reservationId: expect.any(String) }));
+    }
+  });
+
+  test('uses the authenticated canonical alias graph for premium broadcast audience access', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('global_broadcast_modals/premium-alias', {
+      active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium',
+    });
+    mockDocs.set('users/victim-premium-alias', {
+      identityHidden: true,
+      canonicalStableId: 'victim',
+      firebaseAuthUid: 'auth-victim',
+      progress: { vip_active: 'true', vip_until: '1800000100000' },
+    });
+
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'premium-alias',
+    }, 'auth-victim')).resolves.toMatchObject({
+      voucherId: 'global_broadcast_premium-alias_victim',
+    });
+  });
+
+  test('replays an existing premium-audience broadcast grant after Plus access expires', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('global_broadcast_modals/premium-replay', {
+      active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium',
+    });
+    mockDocs.set('flashcard_pack_gift_grants/global_broadcast_premium-replay_victim', {
+      ownerStableUid: 'victim',
+      source: 'global_broadcast',
+      sourceId: 'premium-replay',
+      occurrenceId: 'global_broadcast_premium-replay_victim',
+      expiresAt: 1_800_172_800_000,
+      createdAt: 1_799_000_000_000,
+    });
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progress: {},
+    });
+
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'premium-replay',
+    }, 'auth-victim')).resolves.toMatchObject({
+      voucherId: 'global_broadcast_premium-replay_victim',
+      expiresAt: 1_800_172_800_000,
+      replayed: true,
+    });
+  });
+
+  test('replays an existing premium level reservation after Plus access expires', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+      progress: {},
+    });
+    mockDocs.set('level_gift_reservations/victim_25_premium_en', {
+      ownerStableUid: 'victim', level: 25, lane: 'premium', studyTarget: 'en', giftId: 'prem_shards_10',
+    });
+
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'premium', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({
+      reservationId: 'victim_25_premium_en', giftId: 'prem_shards_10', replayed: true,
+    });
+  });
+
+  test('keeps premium authorization reads inside each gift transaction before writes', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
+    const levelStart = source.indexOf('export const levelGiftReserve');
+    const levelEnd = source.indexOf('export const levelGiftActivatePackGift', levelStart);
+    const levelBody = source.slice(levelStart, levelEnd);
+    const broadcastStart = source.indexOf('export const flashcardPackGiftGrantGlobalBroadcast');
+    const broadcastEnd = source.indexOf('export const flashcardPackGiftSyncState', broadcastStart);
+    const broadcastBody = source.slice(broadcastStart, broadcastEnd);
+
+    const levelResolver = levelBody.indexOf('resolvePremiumAccess(db, stableUid, now, authUid, tx)');
+    expect(levelResolver).toBeGreaterThan(levelBody.indexOf('if (existingReservation)'));
+    expect(levelResolver).toBeLessThan(levelBody.indexOf('tx.set('));
+
+    const transactionStart = broadcastBody.indexOf('runTransaction(async (tx)');
+    const broadcastResolver = broadcastBody.indexOf('resolvePremiumAccess(db, stableUid, now, authUid, tx)');
+    expect(broadcastResolver).toBeGreaterThan(transactionStart);
+    expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('broadcastSnap.data()'));
+    expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('if (grantSnap.exists)'));
+    expect(broadcastResolver).toBeLessThan(broadcastBody.indexOf('tx.set('));
+    expect(broadcastBody.slice(0, transactionStart)).not.toContain('resolvePremiumAccess(');
+  });
+
+  test('replays a pre-merge level reservation through the canonical identity', async () => {
+    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+    });
+    mockDocs.set('level_gift_reservations/old-victim_25_f2p_en', {
+      ownerStableUid: 'old-victim', level: 25, lane: 'f2p', studyTarget: 'en', giftId: 'pack_voucher_48h',
+    });
+
+    const replay = await callCommunity<{ reservationId: string; giftId: string; replayed: boolean }>('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+    expect(replay).toMatchObject({
+      reservationId: 'old-victim_25_f2p_en', giftId: 'pack_voucher_48h', replayed: true,
+    });
+    await expect(callCommunity('levelGiftActivatePackGift', {
+      stableId: 'victim', reservationId: replay.reservationId,
+    }, 'auth-victim')).resolves.toMatchObject({ voucherId: 'level_old-victim_25_f2p_en' });
+  });
+
+  test('an exact-pack level grant cannot redeem a different official pack', async () => {
+    mockDocs.set('flashcard_pack_gift_grants/exact-pack-grant', {
+      ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, allowedPackId: 'official_prep_in_en',
+    });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_on_en',
+      studyTarget: 'en', voucherId: 'exact-pack-grant',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied', message: 'voucher_pack_mismatch' });
+  });
+
   test('rejects listing another seller inbox', async () => {
     mockDocs.set('users/victim/community_seller_inbox/event-1', {
       seen: false,
       type: 'pack_sold',
     });
 
-    await expect(callCommunity('communityListSellerInbox', {
+    // Главное: чужой инбокс НЕ утекает. Резолвер подменяет id на 'attacker',
+    // у него инбокс пустой — событий жертвы в ответе быть не может.
+    const result = await callCommunity<{ events: Array<{ id: string }> }>('communityListSellerInbox', {
       authorStableId: 'victim',
       limit: 20,
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
     });
+    expect(result.events).toHaveLength(0);
   });
 
   test('allows listing the caller own seller inbox', async () => {
@@ -364,13 +1184,12 @@ describe('community pack callable ownership', () => {
       type: 'pack_sold',
     });
 
-    await expect(callCommunity('communityMarkSellerInboxSeen', {
+    await callCommunity('communityMarkSellerInboxSeen', {
       authorStableId: 'victim',
       eventIds: ['event-1'],
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
     });
+    // Главное: событие ЖЕРТВЫ осталось непрочитанным — запись ушла в инбокс
+    // атакующего (которого нет), чужие данные не изменены.
     expect(mockDocs.get('users/victim/community_seller_inbox/event-1')?.seen).toBe(false);
   });
 
@@ -385,5 +1204,24 @@ describe('community pack callable ownership', () => {
       eventIds: ['event-1'],
     }, 'auth-victim')).resolves.toEqual({ ok: true });
     expect(mockDocs.get('users/victim/community_seller_inbox/event-1')?.seen).toBe(true);
+  });
+});
+
+describe('community pack semantic registry synchronization', () => {
+  test('publishes and removes locale-partitioned memberships in the same moderation flow', async () => {
+    const payload: { cards: Array<Record<string, unknown>> } & Record<string, unknown> = submissionPayload();
+    payload.cards[0] = { ...payload.cards[0], richSchemaVersion: 1, exampleTarget: 'Example target', exampleSource: 'Пример', note: 'Usage note', sourceReferences: ['lesson:1:p1', 'exemplar:e1'] };
+    mockDocs.set('community_pack_submissions/sub-1', { status: 'pending', authorStableId: 'author', payload });
+    const mod = require('./community_packs');
+    await mod.communityModerateSubmission({ auth: { token: { admin: true } }, data: { submissionId: 'sub-1', action: 'approve' } });
+    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'published', cardCount: 10, priceShards: 10 });
+    expect((mockDocs.get('community_packs/sub-1')?.cards as DocData[])[0]).toMatchObject({ richSchemaVersion: 1, exampleTarget: 'Example target', exampleSource: 'Пример', note: 'Usage note', sourceReferences: ['lesson:1:p1', 'exemplar:e1'] });
+    const registryAfterPublish = [...mockDocs.entries()].filter(([key]) => key.startsWith('content_factory_flashcard_semantic_keys/'));
+    expect(registryAfterPublish).toHaveLength(20);
+    expect(registryAfterPublish.map(([, value]) => value.partitionKey)).toEqual(expect.arrayContaining(['community_flashcards:en:ru', 'community_flashcards:en:es']));
+
+    await mod.communityAdminModeratePack({ auth: { token: { admin: true } }, data: { packId: 'sub-1', action: 'remove' } });
+    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'admin_removed', priceShards: 10 });
+    expect([...mockDocs.keys()].filter((key) => key.startsWith('content_factory_flashcard_semantic_keys/'))).toHaveLength(0);
   });
 });

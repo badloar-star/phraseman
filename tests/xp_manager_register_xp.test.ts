@@ -1,4 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('../app/config', () => ({
   CLOUD_SYNC_ENABLED: false,
@@ -28,12 +32,13 @@ jest.mock('../app/debug-logger', () => ({
 }));
 
 jest.mock('../app/hall_of_fame_utils', () => ({
-  addOrUpdateScore: jest.fn(async () => {}),
+  enqueueSecondaryXpProjection: jest.fn(async () => {}),
   streakMultiplier: jest.fn(() => 1),
 }));
 
 jest.mock('../app/league_engine', () => ({
   loadLeagueState: jest.fn(async () => ({ leagueId: 0 })),
+  getWeekId: jest.fn(() => '2026-W31'),
 }));
 
 jest.mock('../app/level_gift_system', () => ({
@@ -105,15 +110,250 @@ jest.mock('../app/progress_events_client', () => ({
   submitProgressEvent: jest.fn(async () => {}),
 }));
 
+jest.mock('../app/level_up_reward_reconciler', () => ({
+  reconcileLevelUpRewards: jest.fn(async () => []),
+}));
+
 describe('registerXP', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('test-account');
+    const { __xpManagerTestHooks } = await import('../app/xp_manager');
+    __xpManagerTestHooks.resetXpRuntimeState();
     await AsyncStorage.clear();
+  });
+
+  it('serializes 50 same-account awards without losing any XP', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    await AsyncStorage.setItem('user_total_xp', '0');
+
+    const results = await Promise.all(Array.from({ length: 50 }, (_, index) => registerXP(
+      1,
+      'achievement_reward',
+      'Learner',
+      'ru',
+      undefined,
+      { eventId: `achievement:concurrent:${index}` },
+    )));
+
+    expect(results.reduce((sum, result) => sum + result.finalDelta, 0)).toBe(50);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('50');
+  });
+
+  it('lets account B commit while account A is stalled before its local commit', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { readGiftMultiplierForBaseXp } = await import('../app/level_gift_system');
+    (readGiftMultiplierForBaseXp as jest.Mock).mockReturnValueOnce(new Promise(() => {}));
+    beginAccountGeneration('account-a');
+    void registerXP(5, 'bonus_chest', 'A');
+    for (let i = 0; i < 20 && (readGiftMultiplierForBaseXp as jest.Mock).mock.calls.length === 0; i += 1) await Promise.resolve();
+
+    beginAccountGeneration('account-b');
+    await AsyncStorage.setItem('user_total_xp', '100');
+    const bAward = registerXP(7, 'achievement_reward', 'B');
+    const timeout = new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 100));
+
+    await expect(Promise.race([bAward.then(() => 'settled' as const), timeout])).resolves.toBe('settled');
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('107');
+  });
+
+  it('uses the 10s watchdog only for diagnostics and never starts a conflicting consume', async () => {
+    jest.useFakeTimers();
+    const { registerXP } = await import('../app/xp_manager');
+    const { consumeGiftXpBank, readGiftMultiplierForBaseXp } = await import('../app/level_gift_system');
+    let releaseConsume!: (value: number) => void;
+    (readGiftMultiplierForBaseXp as jest.Mock).mockResolvedValueOnce({ multiplier: 2, consumeBank: true });
+    (consumeGiftXpBank as jest.Mock).mockReturnValue(new Promise<number>((resolve) => { releaseConsume = resolve; }));
+
+    const first = registerXP(5, 'bonus_chest', 'Learner');
+    for (let i = 0; i < 30 && (consumeGiftXpBank as jest.Mock).mock.calls.length === 0; i += 1) await Promise.resolve();
+    expect(consumeGiftXpBank).toHaveBeenCalledTimes(1);
+    const second = registerXP(5, 'bonus_chest', 'Learner');
+
+    await jest.advanceTimersByTimeAsync(10_001);
+    expect(readGiftMultiplierForBaseXp).toHaveBeenCalledTimes(1);
+    expect(consumeGiftXpBank).toHaveBeenCalledTimes(1);
+
+    releaseConsume(5);
+    await Promise.all([first, second]);
+    jest.useRealTimers();
+  });
+
+  it('does not await a stale group-boost network refresh before local XP commit', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { getLeagueGroupBoostMultiplier } = await import('../app/league_group_boosts');
+    (getLeagueGroupBoostMultiplier as jest.Mock).mockReturnValueOnce(new Promise(() => {}));
+    await AsyncStorage.setItem('user_total_xp', '20');
+
+    const award = registerXP(5, 'lesson_complete', 'Learner', 'ru', 1, {
+      eventId: 'lesson:stale-group-boost:complete_xp',
+    });
+    const timeout = new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 100));
+
+    await expect(Promise.race([award, timeout])).resolves.toMatchObject({ finalDelta: 5 });
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('25');
+  });
+
+  it('serializes chest and gift one-time multipliers across concurrent awards', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { consumeGiftXpBank, readGiftMultiplierForBaseXp } = await import('../app/level_gift_system');
+    const { consumeLeagueChestXpOverrideMultiplier } = await import('../app/services/league_chest_rewards');
+    (readGiftMultiplierForBaseXp as jest.Mock)
+      .mockResolvedValueOnce({ multiplier: 2, consumeBank: true })
+      .mockResolvedValueOnce({ multiplier: 1, consumeBank: false });
+    (consumeLeagueChestXpOverrideMultiplier as jest.Mock)
+      .mockResolvedValueOnce(2)
+      .mockResolvedValueOnce(1);
+    await AsyncStorage.setItem('user_total_xp', '0');
+
+    const [first, second] = await Promise.all([
+      registerXP(10, 'bonus_chest', 'Learner'),
+      registerXP(10, 'bonus_chest', 'Learner'),
+    ]);
+
+    expect([first.finalDelta, second.finalDelta]).toEqual([30, 10]);
+    expect(consumeGiftXpBank).toHaveBeenCalledTimes(1);
+    expect(consumeLeagueChestXpOverrideMultiplier).toHaveBeenCalledTimes(2);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('40');
+  });
+
+  it('refuses XP mutation before boot resolves an active account identity', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    __resetAccountGenerationForTests();
+
+    await expect(registerXP(10, 'bonus_chest', 'Learner')).resolves.toEqual({
+      finalDelta: 0,
+      multiplier: 1,
+      isBonus: false,
+    });
+    expect(AsyncStorage.getItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.multiSet).not.toHaveBeenCalled();
+  });
+
+  it('rechecks account ownership after the last-active read before streak multiSet', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+    let release!: (value: string | null) => void;
+    const lastActiveRead = new Promise<string | null>((resolve) => { release = resolve; });
+    const originalGetItem = storage.getItem.getMockImplementation();
+    storage.getItem.mockImplementation((key) => (
+      key === 'last_active_date'
+        ? lastActiveRead
+        : originalGetItem!(key)
+    ));
+    beginAccountGeneration('account-a');
+    await AsyncStorage.setItem('user_total_xp', '100');
+
+    const request = registerXP(10, 'bonus_chest', 'Learner');
+    for (let i = 0; i < 50 && !storage.getItem.mock.calls.some(([key]) => key === 'last_active_date'); i += 1) {
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+    const reachedBoundary = storage.getItem.mock.calls.some(([key]) => key === 'last_active_date');
+    beginAccountGeneration('account-b');
+    release('2000-01-01');
+
+    await expect(request).resolves.toEqual({ finalDelta: 0, multiplier: 1, isBonus: false });
+    storage.getItem.mockImplementation(originalGetItem!);
+    expect(reachedBoundary).toBe(true);
+    expect(storage.multiSet).not.toHaveBeenCalledWith(expect.arrayContaining([
+      ['last_active_date', expect.any(String)],
+    ]));
+  });
+
+  it('rechecks account ownership after fallback XP read before writing', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { getXPMultiplier } = await import('../app/club_boosts');
+    const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+    let release!: (value: string | null) => void;
+    const xpRead = new Promise<string | null>((resolve) => { release = resolve; });
+    const originalGetItem = storage.getItem.getMockImplementation();
+    storage.getItem.mockImplementation((key) => (
+      key === 'user_total_xp'
+        ? xpRead
+        : originalGetItem!(key)
+    ));
+    (getXPMultiplier as jest.Mock).mockRejectedValueOnce(new Error('boost_failed'));
+    beginAccountGeneration('account-a');
+
+    const request = registerXP(5, 'lesson_complete', 'Learner', 'ru', 1);
+    for (let i = 0; i < 50 && !storage.getItem.mock.calls.some(([key]) => key === 'user_total_xp'); i += 1) {
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+    const reachedBoundary = storage.getItem.mock.calls.some(([key]) => key === 'user_total_xp');
+    beginAccountGeneration('account-b');
+    release('20');
+
+    await expect(request).resolves.toEqual({ finalDelta: 0, multiplier: 1, isBonus: false });
+    storage.getItem.mockImplementation(originalGetItem!);
+    expect(reachedBoundary).toBe(true);
+    expect(storage.setItem).not.toHaveBeenCalledWith('user_total_xp', '25');
+  });
+
+  it('does not commit account A XP after account B becomes active during awaited local gift state', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { readGiftMultiplierForBaseXp } = await import('../app/level_gift_system');
+    const { addWeeklyXp } = await import('../app/weekly_xp');
+    const { emitAppEvent } = await import('../app/events');
+    const { checkAchievements } = await import('../app/achievements');
+    const { enqueueSecondaryXpProjection } = await import('../app/hall_of_fame_utils');
+    const { markCloudSyncPending } = await import('../app/cloud_sync');
+    let release!: (value: { multiplier: number; consumeBank: boolean }) => void;
+    (readGiftMultiplierForBaseXp as jest.Mock).mockReturnValueOnce(new Promise((resolve) => {
+      release = resolve;
+    }));
+
+    beginAccountGeneration('account-a');
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '100'],
+      ['streak_count', '3'],
+      ['last_active_date', '2000-01-01'],
+    ]);
+    const request = registerXP(10, 'bonus_chest', 'Learner', 'ru', 1, {
+      eventId: 'bonus_chest:account-race',
+    });
+    for (let i = 0; i < 12 && (readGiftMultiplierForBaseXp as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    expect(readGiftMultiplierForBaseXp).toHaveBeenCalledTimes(1);
+
+    beginAccountGeneration('account-b');
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '700'],
+      ['streak_count', '9'],
+      ['last_active_date', '2099-01-01'],
+    ]);
+    release({ multiplier: 1, consumeBank: false });
+
+    await expect(request).resolves.toEqual({ finalDelta: 0, multiplier: 1, isBonus: false });
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('700');
+    expect(await AsyncStorage.getItem('streak_count')).toBe('9');
+    expect(await AsyncStorage.getItem('last_active_date')).toBe('2099-01-01');
+    expect(addWeeklyXp).not.toHaveBeenCalled();
+    expect(emitAppEvent).not.toHaveBeenCalled();
+    expect(checkAchievements).not.toHaveBeenCalled();
+    expect(enqueueSecondaryXpProjection).not.toHaveBeenCalled();
+    expect(markCloudSyncPending).not.toHaveBeenCalled();
+  });
+
+  it('preserves the same-account XP commit with an explicit active generation', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { addWeeklyXp } = await import('../app/weekly_xp');
+    beginAccountGeneration('account-a');
+    await AsyncStorage.setItem('user_total_xp', '100');
+
+    await expect(registerXP(10, 'bonus_chest', 'Learner', 'ru', 1, {
+      eventId: 'bonus_chest:same-account',
+    })).resolves.toEqual({ finalDelta: 10, multiplier: 1, isBonus: false });
+
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('110');
+    expect(addWeeklyXp).toHaveBeenCalledWith(10);
   });
 
   it('adds XP when the caller already has a resolved player name', async () => {
     const { registerXP } = await import('../app/xp_manager');
-    const { addOrUpdateScore } = await import('../app/hall_of_fame_utils');
+    const { enqueueSecondaryXpProjection } = await import('../app/hall_of_fame_utils');
     const { addWeeklyXp } = await import('../app/weekly_xp');
     const { patchAppSnapshot } = await import('../app/app_snapshot_store');
     const { markCloudSyncPending, syncToCloud } = await import('../app/cloud_sync');
@@ -128,7 +368,13 @@ describe('registerXP', () => {
 
     expect(result).toEqual({ finalDelta: 10, multiplier: 1, isBonus: false });
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('110');
-    expect(addOrUpdateScore).toHaveBeenCalledWith('Learner', 10, 'ru', 'avatar-1');
+    expect(enqueueSecondaryXpProjection).toHaveBeenCalledWith(
+      'Learner',
+      10,
+      'ru',
+      'avatar-1',
+      expect.objectContaining({ stableId: 'test-account', phase: 'active' }),
+    );
     expect(addWeeklyXp).toHaveBeenCalledWith(10);
     expect(markCloudSyncPending).toHaveBeenCalled();
     expect(syncToCloud).not.toHaveBeenCalled();
@@ -151,11 +397,11 @@ describe('registerXP', () => {
 
   it('keeps XP when leaderboard side effects fail after local event reservation', async () => {
     const { registerXP } = await import('../app/xp_manager');
-    const { addOrUpdateScore } = await import('../app/hall_of_fame_utils');
+    const { enqueueSecondaryXpProjection } = await import('../app/hall_of_fame_utils');
     const { addWeeklyXp } = await import('../app/weekly_xp');
     const { emitAppEvent } = await import('../app/events');
 
-    (addOrUpdateScore as jest.Mock).mockRejectedValueOnce(new Error('leaderboard_failed'));
+    (enqueueSecondaryXpProjection as jest.Mock).mockRejectedValueOnce(new Error('leaderboard_failed'));
     await AsyncStorage.setItem('user_total_xp', '40');
 
     const result = await registerXP(7, 'lesson_complete', 'Learner', 'ru', 1, {
@@ -168,10 +414,10 @@ describe('registerXP', () => {
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
   });
 
-  it('falls back to base XP when a multiplier lookup fails before the normal write', async () => {
+  it('commits base XP when the background multiplier refresh fails', async () => {
     const { registerXP } = await import('../app/xp_manager');
     const { getXPMultiplier } = await import('../app/club_boosts');
-    const { addOrUpdateScore } = await import('../app/hall_of_fame_utils');
+    const { enqueueSecondaryXpProjection } = await import('../app/hall_of_fame_utils');
     const { addWeeklyXp } = await import('../app/weekly_xp');
 
     (getXPMultiplier as jest.Mock).mockRejectedValueOnce(new Error('boost_failed'));
@@ -183,7 +429,13 @@ describe('registerXP', () => {
 
     expect(result).toEqual({ finalDelta: 5, multiplier: 1, isBonus: false });
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('25');
-    expect(addOrUpdateScore).toHaveBeenCalledWith('Learner', 5, 'ru');
+    expect(enqueueSecondaryXpProjection).toHaveBeenCalledWith(
+      'Learner',
+      5,
+      'ru',
+      'avatar-1',
+      expect.objectContaining({ stableId: 'test-account', phase: 'active' }),
+    );
     expect(addWeeklyXp).toHaveBeenCalledWith(5);
   });
 
@@ -203,6 +455,7 @@ describe('registerXP', () => {
     const { registerXP, __xpManagerTestHooks } = await import('../app/xp_manager');
     const { getXPMultiplier } = await import('../app/club_boosts');
     (getXPMultiplier as jest.Mock).mockResolvedValueOnce(999_999);
+    __xpManagerTestHooks.setXpMultiplierSnapshot(999_999, 1);
     await AsyncStorage.setItem('user_total_xp', '100');
 
     const result = await registerXP(2_000, 'lesson_complete', 'Learner');
@@ -212,16 +465,64 @@ describe('registerXP', () => {
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('25100');
   });
 
+  it('clamps a corrupted league tier to the real ladder before applying its XP bonus', async () => {
+    const { getCurrentMultiplier } = await import('../app/xp_manager');
+    const { loadLeagueState } = await import('../app/league_engine');
+    (loadLeagueState as jest.Mock).mockResolvedValueOnce({ leagueId: 50, weekId: '2026-W31', group: [] });
+
+    await expect(getCurrentMultiplier()).resolves.toBeCloseTo(2.1, 5);
+  });
+
+  it('awaits level-up reward reconciliation and leaves the pending event to the reconciler', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { reconcileLevelUpRewards } = await import('../app/level_up_reward_reconciler');
+    const { emitAppEvent } = await import('../app/events');
+    let finishReconciliation!: () => void;
+    (reconcileLevelUpRewards as jest.Mock).mockImplementationOnce(() => new Promise<void>((resolve) => {
+      finishReconciliation = resolve;
+    }));
+    await AsyncStorage.setItem('user_total_xp', '350');
+
+    let settled = false;
+    const registration = registerXP(100, 'lesson_complete', 'Learner').then(() => {
+      settled = true;
+    });
+    await new Promise((resolve) => setImmediate(resolve));
+
+    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(350, 450);
+    expect(settled).toBe(false);
+    expect(emitAppEvent).not.toHaveBeenCalledWith('level_up_pending');
+
+    finishReconciliation();
+    await registration;
+    expect(settled).toBe(true);
+    expect(emitAppEvent).not.toHaveBeenCalledWith('level_up_pending');
+    expect(emitAppEvent).toHaveBeenCalledWith('energy_reload');
+    expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
+    const { writeFriendEvent } = await import('../app/firestore_friend_activity');
+    const { checkAchievements } = await import('../app/achievements');
+    expect(writeFriendEvent).toHaveBeenCalledWith('level_up', { level: 2 });
+    expect(checkAchievements).toHaveBeenCalledWith(
+      { type: 'level_reached', level: 2 },
+      expect.objectContaining({ stableId: 'test-account', phase: 'active' }),
+    );
+  });
+
   it('keeps local ledgers account-owned and maps club missions to server events', async () => {
     const { __xpManagerTestHooks } = await import('../app/xp_manager');
     expect(__xpManagerTestHooks.LOCAL_PROGRESS_EVENT_LEDGER_MAX).toBeGreaterThanOrEqual(500);
     expect(__xpManagerTestHooks.localProgressEventLedgerKey('account-A')).not.toBe(
       __xpManagerTestHooks.localProgressEventLedgerKey('account-B'),
     );
-    expect(__xpManagerTestHooks.progressEventTypeForSource('club_mission_complete')).toBe('club_mission_complete');
   });
 
-  it('leaves the XP balance unchanged and commits the server-migration marker once', async () => {
+  // зачем: клиентский пересчёт XP по старой кривой ОСОЗНАННО отключён (см. коммент
+  // в xp_manager.ts: «Level-formula repair is a server/admin migration, not a
+  // boot-time client mutation») — устройство не имеет права само домыслить баланс и
+  // протащить юзера через несколько уровней. Раньше тест требовал ровно такого
+  // пересчёта (10000 → 16000). Теперь фиксируем ЗАЩИТУ: миграция ставит маркеры,
+  // но баланс не трогает, и повторный запуск тоже ничего не меняет.
+  it('never rewrites XP on device: marks the migration done and leaves the balance intact', async () => {
     const { migrateXPFormulaV2 } = await import('../app/xp_manager');
     const { XP_LEVEL_RESTORE_250_TO_400_KEY } = await import('../app/xp_level_restore');
     await AsyncStorage.setItem('user_total_xp', '10000');
@@ -230,6 +531,7 @@ describe('registerXP', () => {
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('10000');
     expect(await AsyncStorage.getItem(XP_LEVEL_RESTORE_250_TO_400_KEY)).toBe('1');
 
+    // Идемпотентность: второй прогон не «догоняет» баланс задним числом.
     await migrateXPFormulaV2();
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('10000');
   });
@@ -258,6 +560,8 @@ describe('registerXP: offline streak_count fallback respects local-day transitio
 
   beforeEach(async () => {
     jest.clearAllMocks();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('test-account');
     await AsyncStorage.clear();
     simulatedZone = 'Australia/Brisbane'; // UTC+10, no DST
   });

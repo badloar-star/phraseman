@@ -5,11 +5,14 @@
 // SAVE-бейджи +64–72% в кейсах RevenueCat. Никаких выдуманных зачёркиваний.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
+import { PaywallBadgePop } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 
 interface Props {
@@ -26,19 +29,25 @@ interface Props {
   trialDays: number | null;
   loading: boolean;
   disabled?: boolean;
-  /** Цена lifetime из стора (priceString). Показываем третью карточку Phraseman Pro
-   *  ТОЛЬКО когда lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
+  /** Цена разовой покупки из стора. Раскрытие Phraseman Pro доступно только когда
+   *  lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
+  /** Цена приманки-якоря «6 месяцев» (вариант G, computeDecoyPriceString).
+   *  Когда задана — между «Годом» и «Месяцем» рендерится полноразмерная
+   *  display-only карточка: без onSelect, не выбирается и не покупается. */
+  decoyPriceString?: string | null;
 }
 
 export default function PaywallPlanCards({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, trialDays, loading, disabled,
-  lifetimePrice, lifetimeAvailable,
+  lifetimePrice, lifetimeAvailable, decoyPriceString,
 }: Props) {
-  const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
+  const { tc, textPrimary, textMuted, cardBg, uncheckedBorder } = chrome;
+  const [showLifetimeOffer, setShowLifetimeOffer] = React.useState(false);
+  const lifetimeOfferExpanded = showLifetimeOffer || selected === 'lifetime';
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
@@ -92,17 +101,37 @@ export default function PaywallPlanCards({
     hidePerMonth = false,
   ) => {
     const sel = selected === plan;
+    const planSurfaceColors = [
+      `${tc.heroAccent}${sel ? '28' : '14'}`,
+      sel ? chrome.cardBgStrong : cardBg,
+      cardBg,
+    ] as [string, string, string];
     return (
       <TouchableOpacity
+        accessibilityRole="radio"
+        accessibilityLabel={`${name} ${price}`.trim()}
+        accessibilityState={{ selected: sel, disabled: !!disabled }}
         activeOpacity={0.72}
         disabled={disabled}
         onPress={() => onSelect(plan)}
         style={[S.card, {
-          borderColor: sel ? tc.selectedCardBorder : cardBorder,
-          backgroundColor: sel ? `${tc.heroAccent}10` : cardBg,
+          backgroundColor: sel ? chrome.cardBgStrong : cardBg,
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
         }]}
       >
+        <LinearGradient
+          colors={planSurfaceColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <View
+          pointerEvents="none"
+          style={[
+            S.cardHighlight,
+            { backgroundColor: `${tc.heroAccent}${sel ? '66' : '2E'}` },
+          ]}
+        />
         <View style={S.planHeader}>
           <View style={S.nameWrap}>
             <Ionicons
@@ -113,17 +142,17 @@ export default function PaywallPlanCards({
             <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>{name}</Text>
           </View>
           {badge !== null && (
-            <View style={[S.saveBadge, { backgroundColor: tc.savingsBadgeBg }]}>
+            <PaywallBadgePop pulse style={[S.saveBadge, { backgroundColor: tc.savingsBadgeBg }]}>
               <Text style={[S.saveBadgeText, { color: tc.savingsBadgeText }]}>{badge}</Text>
-            </View>
+            </PaywallBadgePop>
           )}
         </View>
         <View style={S.priceWrap}>
+          {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — S.price уже
+              flexShrink:1, numberOfLines={1} усекает хвостом по умолчанию */}
           <Text
             style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.82}
           >
             {price || (loading ? '…' : '—')}
           </Text>
@@ -132,6 +161,90 @@ export default function PaywallPlanCards({
         {sub ? <Text style={[S.sub, { color: textMuted }]}>{sub}</Text> : null}
       </TouchableOpacity>
     );
+  };
+
+  // Якорь-приманка «6 месяцев» (вариант G): ПОЛНОРАЗМЕРНАЯ карточка, визуально
+  // идентичная невыбранным карточкам планов (те же стили/градиент/подсветка),
+  // но принципиально display-only — намеренно View без какой-либо обработки
+  // нажатия: якорь не выбирается, не попадает в selectPlan/покупку, дефолтный
+  // выбор остаётся годовым.
+  const renderDecoyCard = (name: string, price: string) => {
+    const decoySurfaceColors = [
+      `${tc.heroAccent}14`,
+      cardBg,
+      cardBg,
+    ] as [string, string, string];
+    return (
+      <View
+        accessibilityRole="text"
+        accessibilityLabel={`${name} ${price}`.trim()}
+        style={[S.card, {
+          backgroundColor: cardBg,
+          shadowColor: 'transparent',
+        }]}
+      >
+        <LinearGradient
+          colors={decoySurfaceColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <View
+          pointerEvents="none"
+          style={[
+            S.cardHighlight,
+            { backgroundColor: `${tc.heroAccent}2E` },
+          ]}
+        />
+        <View style={S.planHeader}>
+          <View style={S.nameWrap}>
+            <Ionicons name="ellipse-outline" size={24} color={uncheckedBorder} />
+            <Text style={[S.name, { color: textMuted }]}>{name}</Text>
+          </View>
+        </View>
+        <View style={S.priceWrap}>
+          {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — S.price уже
+              flexShrink:1, numberOfLines={1} усекает хвостом по умолчанию */}
+          <Text
+            style={[S.price, { color: textPrimary }]}
+            numberOfLines={1}
+          >
+            {price}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
+  const decoyName = triLang(lang, {
+    ru: '6 месяцев', uk: '6 місяців', es: '6 meses', 'pt-BR': '6 meses',
+    vi: '6 tháng', id: '6 bulan', tr: '6 ay', pl: '6 miesięcy',
+  });
+
+  const lifetimeOfferTitle = triLang(lang, {
+    ru: 'Дополнительное предложение',
+    uk: 'Додаткова пропозиція',
+    es: 'Oferta adicional',
+    'pt-BR': 'Oferta adicional',
+    vi: 'Ưu đãi khác',
+    id: 'Penawaran tambahan',
+    tr: 'Ek teklif',
+    pl: 'Dodatkowa oferta',
+  });
+  const lifetimeOfferSubtitle = triLang(lang, {
+    ru: 'Phraseman Pro · разовая покупка',
+    uk: 'Phraseman Pro · разова покупка',
+    es: 'Phraseman Pro · compra única',
+    'pt-BR': 'Phraseman Pro · compra única',
+    vi: 'Phraseman Pro · mua một lần',
+    id: 'Phraseman Pro · pembelian sekali',
+    tr: 'Phraseman Pro · tek seferlik satın alma',
+    pl: 'Phraseman Pro · zakup jednorazowy',
+  });
+  const toggleLifetimeOffer = () => {
+    const nextExpanded = !lifetimeOfferExpanded;
+    if (!nextExpanded && selected === 'lifetime') onSelect('yearly');
+    setShowLifetimeOffer(nextExpanded);
   };
 
   return (
@@ -154,6 +267,7 @@ export default function PaywallPlanCards({
         savingsPct !== null && savingsPct > 0 ? `−${savingsPct}%` : null,
         true, // hidePerMonth — это годовая сумма, а не цена за месяц
       )}
+      {decoyPriceString ? renderDecoyCard(decoyName, decoyPriceString) : null}
       {renderCard(
         'monthly',
         triLang(lang, {
@@ -170,7 +284,33 @@ export default function PaywallPlanCards({
         null,
         null,
       )}
-      {lifetimeAvailable && renderCard(
+      {lifetimeAvailable && (
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={lifetimeOfferTitle}
+          accessibilityHint={lifetimeOfferSubtitle}
+          accessibilityState={{ expanded: lifetimeOfferExpanded, disabled: !!disabled }}
+          disabled={disabled}
+          hitSlop={4}
+          onPress={toggleLifetimeOffer}
+          style={({ pressed }) => [
+            S.offerToggle,
+            { backgroundColor: cardBg },
+            pressed && !disabled ? S.offerTogglePressed : null,
+          ]}
+        >
+          <View style={S.offerToggleCopy}>
+            <Text style={[S.offerToggleTitle, { color: textPrimary }]}>{lifetimeOfferTitle}</Text>
+            <Text style={[S.offerToggleSubtitle, { color: textMuted }]}>{lifetimeOfferSubtitle}</Text>
+          </View>
+          <Ionicons
+            name={lifetimeOfferExpanded ? 'chevron-up' : 'chevron-down'}
+            size={20}
+            color={textMuted}
+          />
+        </Pressable>
+      )}
+      {lifetimeAvailable && lifetimeOfferExpanded && renderCard(
         'lifetime',
         'Phraseman Pro',
         lifetimePrice || '',
@@ -194,9 +334,16 @@ export default function PaywallPlanCards({
 const S = StyleSheet.create({
   wrap: { gap: 11, marginTop: 16 },
   card: {
-    borderRadius: 18, borderWidth: 1.5, paddingHorizontal: 17, paddingVertical: 15,
-    shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12, elevation: 5,
+    // зачем: карточки тарифов безрамочные (тон вместо обводки — контракт
+    // paywall_tonal_surfaces); мёртвые borderColor-пропсы убраны, borderWidth: 0 явно.
+    borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15,
+    // зачем: фон карточки тарифа приходит из темы (может быть полупрозрачным) —
+    // Android рисовал квадрат вокруг скругления 18.
+    shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12,
+    ...noAndroidOutline,
+    overflow: 'hidden',
   },
+  cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },
   planHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
   nameWrap: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0, flex: 1 },
   name: { flexShrink: 1, fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },
@@ -206,4 +353,18 @@ const S = StyleSheet.create({
   price: { flexShrink: 1, fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
   per: { fontSize: 13, fontWeight: '700' },
   sub: { marginTop: 7, fontSize: 13, lineHeight: 18 },
+  offerToggle: {
+    minHeight: 48,
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  offerTogglePressed: { opacity: 0.72 },
+  offerToggleCopy: { flex: 1, minWidth: 0 },
+  offerToggleTitle: { fontSize: 14.5, lineHeight: 19, fontWeight: '800' },
+  offerToggleSubtitle: { marginTop: 2, fontSize: 12.5, lineHeight: 17, fontWeight: '600' },
 });

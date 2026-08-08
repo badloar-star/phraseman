@@ -1,6 +1,7 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
+import AudioWaveform from '../components/flashcards/AudioWaveform';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -28,6 +29,7 @@ import { useAudio } from '../hooks/use-audio';
 import { peekFlashcardsCache } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -92,6 +94,7 @@ export default function FlashcardsAudioScreen() {
   const flashcardsAccess = useFeatureAccess('flashcards');
   const { theme: t, statusBarLight, f } = useTheme();
   const { speak, stop } = useAudio();
+  const runtimeActive = useRuntimeActive();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
@@ -236,6 +239,19 @@ export default function FlashcardsAudioScreen() {
         tr: 'Kullanılabilir set yok.',
         pl: 'Brak dostępnych zestawów.',
       }),
+      // зачем: юзеры писали «не могу получить набор карточек». При сетевой ошибке экран
+      // показывал то же «Нет доступных наборов», что и при реально пустом списке —
+      // человек думал, что карточек нет, вместо «связь подвела, попробуй ещё раз».
+      loadFailed: triLang(lang, {
+        ru: 'Не удалось загрузить наборы. Проверьте связь и попробуйте ещё раз.',
+        uk: 'Не вдалося завантажити набори. Перевірте зв’язок і спробуйте ще раз.',
+        es: 'No se pudieron cargar los packs. Revisa la conexión e inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível carregar os pacotes. Verifique a conexão e tente novamente.',
+        vi: 'Không tải được bộ thẻ. Kiểm tra kết nối và thử lại.',
+        id: 'Gagal memuat paket. Periksa koneksi dan coba lagi.',
+        tr: 'Setler yüklenemedi. Bağlantını kontrol edip tekrar dene.',
+        pl: 'Nie udało się wczytać zestawów. Sprawdź połączenie i spróbuj ponownie.',
+      }),
       nothingSelected: triLang(lang, {
         ru: 'Выбери хотя бы один набор.',
         uk: 'Вибери хоча б один набір.',
@@ -369,7 +385,8 @@ export default function FlashcardsAudioScreen() {
       setSources(next);
       setSelectedIds((current) => reconcileSelectedSourceIds(current, next, requestedSourceId));
     } catch {
-      setLoadError(text.empty);
+      // Сетевая/серверная ошибка — это НЕ «наборов нет». Говорим правду и зовём повторить.
+      setLoadError(text.loadFailed);
     } finally {
       setLoadingSources(false);
     }
@@ -380,7 +397,7 @@ export default function FlashcardsAudioScreen() {
     requestedFilter,
     requestedSourceId,
     studyTarget,
-    text.empty,
+    text.loadFailed,
   ]);
 
   useEffect(() => {
@@ -549,7 +566,7 @@ export default function FlashcardsAudioScreen() {
   }, [cardIndex, deck.length, goToPosition]);
 
   useEffect(() => {
-    if (phase !== 'play' || !isPlaying || !currentCard) return;
+    if (!runtimeActive || phase !== 'play' || !isPlaying || !currentCard) return;
     const token = runTokenRef.current + 1;
     runTokenRef.current = token;
     clearPlaybackTimers();
@@ -622,6 +639,7 @@ export default function FlashcardsAudioScreen() {
     phase,
     playbackNonce,
     registerFlipped,
+    runtimeActive,
     side,
     speak,
     stop,
@@ -779,11 +797,11 @@ export default function FlashcardsAudioScreen() {
       {renderHeader(() => safeRouterBack(router, '/flashcards' as any))}
       <BouncyScrollView
         style={styles.scroll}
-        decelerationRate="normal"
+        decelerationRate="fast"
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(bottomInset, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.summaryPanel, { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+        <View style={[styles.summaryPanel, { backgroundColor: glassFill(t.bgCard, 0.46) }]}>
           <View style={styles.summaryRow}>
             <View style={[styles.summaryIcon, { backgroundColor: t.accent }]}>
               <Ionicons name="headset-outline" size={24} color={t.correctText} />
@@ -876,7 +894,7 @@ export default function FlashcardsAudioScreen() {
                 styles.sourceRow,
                 selected
                   ? { backgroundColor: `${source.accent}22`, borderWidth: 0, borderColor: 'transparent' }
-                  : { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
+                  : { backgroundColor: glassFill(t.bgCard, 0.46) },
               ]}
             >
               <View style={[styles.sourceIcon, { backgroundColor: `${source.accent}24` }]}>
@@ -1056,6 +1074,10 @@ export default function FlashcardsAudioScreen() {
             </View>
           </View>
 
+          {/* зачем: A-35 — раньше не было никакой обратной связи «звук идёт»:
+              кнопка play и тишина. Волна показывает воспроизведение и гаснет
+              на паузе, вне фокуса и при «Уменьшении движения». */}
+          <AudioWaveform active={runtimeActive} playing={isPlaying} color={t.accent} height={26} style={{ marginBottom: 14 }} />
           <View style={styles.controlRow}>
             <TapScale onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
               <Ionicons name="play-skip-back" size={20} color={t.textSecond} />
@@ -1088,7 +1110,7 @@ export default function FlashcardsAudioScreen() {
     <>
       {renderHeader(backToSetup)}
       <View style={[styles.doneWrap, { paddingBottom: Math.max(bottomInset, 16) + 12 }]}>
-        <View style={[styles.donePanel, { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+        <View style={[styles.donePanel, { backgroundColor: glassFill(t.bgCard, 0.46) }]}>
           <View style={[styles.doneIcon, { backgroundColor: t.correctBg }]}>
             <Ionicons name="checkmark-circle" size={46} color={t.correct} />
           </View>

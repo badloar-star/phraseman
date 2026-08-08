@@ -20,6 +20,7 @@ import Reanimated, {
   Easing,
   cancelAnimation,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withDelay,
   withRepeat,
@@ -195,6 +196,13 @@ function Ribbon({ active, width, height, rgb, baseFrac, amp, phase, dur, delay, 
 
 function AuroraBackground({ active, width, height, bg, auroraRgb, main }: AuroraBackgroundProps) {
   const particles = useMemo(buildParticleSeeds, []);
+  // зачем: при «Уменьшении движения» гасим ВСЁ движение фона — дрейф трёх лент
+  // и 22 всплывающие частицы. Сама картинка (градиент, ленты, свечение)
+  // остаётся: правило требует убрать движение, а не лишить экран вида.
+  // Побочно это самый дешёвый кадр для слабых Android — ровно та аудитория,
+  // ради которой стек фона делали лёгким (см. шапку файла).
+  const reduceMotion = useReducedMotion();
+  const motionActive = active && !reduceMotion;
 
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="none">
@@ -205,9 +213,9 @@ function AuroraBackground({ active, width, height, bg, auroraRgb, main }: Aurora
         style={StyleSheet.absoluteFill}
       />
 
-      <Ribbon active={active} width={width} height={height} rgb={auroraRgb[0]} baseFrac={0.24} amp={height * 0.05} phase={0} dur={7000} delay={0} opacityPeak={0.12} />
-      <Ribbon active={active} width={width} height={height} rgb={auroraRgb[1]} baseFrac={0.36} amp={height * 0.06} phase={1.8} dur={9000} delay={400} opacityPeak={0.09} />
-      <Ribbon active={active} width={width} height={height} rgb={auroraRgb[2]} baseFrac={0.5} amp={height * 0.07} phase={3.4} dur={11000} delay={800} opacityPeak={0.07} />
+      <Ribbon active={motionActive} width={width} height={height} rgb={auroraRgb[0]} baseFrac={0.24} amp={height * 0.05} phase={0} dur={7000} delay={0} opacityPeak={0.12} />
+      <Ribbon active={motionActive} width={width} height={height} rgb={auroraRgb[1]} baseFrac={0.36} amp={height * 0.06} phase={1.8} dur={9000} delay={400} opacityPeak={0.09} />
+      <Ribbon active={motionActive} width={width} height={height} rgb={auroraRgb[2]} baseFrac={0.5} amp={height * 0.07} phase={3.4} dur={11000} delay={800} opacityPeak={0.07} />
 
       <Svg width={width} height={height} style={StyleSheet.absoluteFill}>
         <Defs>
@@ -220,11 +228,13 @@ function AuroraBackground({ active, width, height, bg, auroraRgb, main }: Aurora
         <Rect x="0" y="0" width={width} height={height} fill="url(#centerGlow)" />
       </Svg>
 
-      <View style={StyleSheet.absoluteFill} pointerEvents="none">
-        {particles.map((seed, i) => (
-          <Particle key={`pt_${i}`} seed={seed} active={active} color={auroraRgb[2].includes(',') ? `rgb(${auroraRgb[2]})` : main} width={width} height={height} />
-        ))}
-      </View>
+      {motionActive ? (
+        <View style={StyleSheet.absoluteFill} pointerEvents="none">
+          {particles.map((seed, i) => (
+            <Particle key={`pt_${i}`} seed={seed} active color={auroraRgb[2].includes(',') ? `rgb(${auroraRgb[2]})` : main} width={width} height={height} />
+          ))}
+        </View>
+      ) : null}
     </View>
   );
 }

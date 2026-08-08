@@ -18,6 +18,7 @@ import {
 import { router } from 'expo-router';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 
 function makeL(lang: Lang) {
@@ -37,7 +38,24 @@ interface ConsentReverifyHostProps {
 
 export default function ConsentReverifyHost({ forceVisible, onForceClose }: ConsentReverifyHostProps = {}) {
   const { lang } = useLang();
-  const { theme } = useTheme();
+  const { theme, themeMode } = useTheme();
+  // зачем: бокс согласия был фикс-тёмным, а состояния красились токенами темы —
+  // на sagePorcelain выбранный вариант (accent 9% на тёмном) был неразличим, а
+  // неактивная кнопка «Продолжить» становилась светлой заплаткой. Светлая ветка —
+  // фарфоровые поверхности с тёмным текстом; тёмные темы не меняются.
+  const light = isLightThemeMode(themeMode);
+  const cc = {
+    box: light ? '#FCFDF9' : '#161a1f',
+    title: light ? '#17201D' : '#fff',
+    body: light ? '#52605A' : '#c7ccd2',
+    fine: light ? '#61706A' : '#9aa0a6',
+    link: light ? '#2E5366' : '#7fb4ff',
+    choiceBg: light ? '#E1E5DC' : '#1f242b',
+    choiceText: light ? '#17201D' : '#fff',
+    warn: light ? '#8B6320' : '#fbbf24',
+    // Невыбранный чекбокс раньше был невидим (borderWidth 0 без фона) — тональная подложка.
+    checkboxBg: light ? 'rgba(23,32,29,0.10)' : 'rgba(255,255,255,0.14)',
+  } as const;
   const L = makeL(lang as Lang);
 
   const [ageConfirmed, setAgeConfirmed] = useState(false);
@@ -143,84 +161,106 @@ export default function ConsentReverifyHost({ forceVisible, onForceClose }: Cons
       }}
     >
       <View style={styles.overlay}>
-        <View style={styles.box}>
-          <ScrollView keyboardShouldPersistTaps="handled">
-            <Text style={styles.title}>{copy.title}</Text>
-            <Text style={styles.intro}>{copy.intro}</Text>
+        <View style={[styles.box, { backgroundColor: cc.box }]}>
+          <ScrollView decelerationRate="fast" keyboardShouldPersistTaps="handled">
+            <Text style={[styles.title, { color: cc.title }]}>{copy.title}</Text>
+            <Text style={[styles.intro, { color: cc.body }]}>{copy.intro}</Text>
 
-            <Text style={styles.ageQuestion}>{copy.ageQ}</Text>
+            <Text style={[styles.ageQuestion, { color: cc.title }]}>{copy.ageQ}</Text>
             <View style={styles.choiceRow}>
               <Pressable
                 testID="reverify-age-yes"
+                accessibilityRole="button"
+                accessibilityState={{ selected: ageConfirmed }}
                 style={[
                   styles.choiceBtn,
-                  ageConfirmed && { borderColor: theme.accent, backgroundColor: `${theme.accent}18` },
+                  { backgroundColor: cc.choiceBg },
+                  // зачем: на фарфоре 9%-тинт неотличим от фона кнопки — светлая
+                  // тема показывает выбор полной заливкой акцентом.
+                  ageConfirmed && (light
+                    ? { backgroundColor: theme.accent }
+                    : { backgroundColor: `${theme.accent}18` }),
                 ]}
                 onPress={() => {
                   setAgeConfirmed(true);
                   setAgeDeniedNotice(false);
                 }}
               >
-                <Text style={styles.choiceBtnText}>{copy.yes}</Text>
+                <Text style={[styles.choiceBtnText, { color: ageConfirmed && light ? theme.correctText : cc.choiceText }]}>{copy.yes}</Text>
               </Pressable>
               <Pressable
                 testID="reverify-age-no"
+                accessibilityRole="button"
+                accessibilityState={{ selected: ageDeniedNotice && !ageConfirmed }}
                 style={[
                   styles.choiceBtn,
-                  ageDeniedNotice && !ageConfirmed && { borderColor: '#fbbf24', backgroundColor: '#fbbf2418' },
+                  { backgroundColor: cc.choiceBg },
+                  ageDeniedNotice && !ageConfirmed && (light
+                    ? { backgroundColor: `${cc.warn}26` }
+                    : { backgroundColor: '#fbbf2418' }),
                 ]}
                 onPress={() => {
                   setAgeConfirmed(false);
                   setAgeDeniedNotice(true);
                 }}
               >
-                <Text style={styles.choiceBtnText}>{copy.no}</Text>
+                <Text style={[styles.choiceBtnText, { color: cc.choiceText }]}>{copy.no}</Text>
               </Pressable>
             </View>
             {ageDeniedNotice && !ageConfirmed ? (
-              <Text testID="reverify-age-notice" style={styles.ageDeniedText}>
+              <Text testID="reverify-age-notice" style={[styles.ageDeniedText, { color: cc.warn }]}>
                 {copy.ageDeniedText}
               </Text>
             ) : null}
 
-            <Pressable style={styles.row} onPress={() => setAcceptTerms((v) => !v)}>
-              <View style={[styles.checkbox, acceptTerms && { backgroundColor: theme.accent, borderColor: theme.accent }]}>
+            <Pressable style={styles.row} accessibilityRole="checkbox" accessibilityState={{ checked: acceptTerms }} onPress={() => setAcceptTerms((v) => !v)}>
+              <View style={[styles.checkbox, { backgroundColor: cc.checkboxBg }, acceptTerms && { backgroundColor: theme.accent }]}>
                 {acceptTerms && <Text style={[styles.checkmark, { color: theme.correctText }]}>✓</Text>}
               </View>
-              <Text style={styles.rowText}>
-                <Text onPress={() => openLegal('terms')} style={styles.link}>{copy.acceptTerms}</Text>
+              <Text style={[styles.rowText, { color: cc.body }]}>
+                <Text onPress={() => openLegal('terms')} style={[styles.link, { color: cc.link }]}>{copy.acceptTerms}</Text>
               </Text>
             </Pressable>
 
-            <Pressable style={styles.row} onPress={() => setAcceptPrivacy((v) => !v)}>
-              <View style={[styles.checkbox, acceptPrivacy && { backgroundColor: theme.accent, borderColor: theme.accent }]}>
+            <Pressable style={styles.row} accessibilityRole="checkbox" accessibilityState={{ checked: acceptPrivacy }} onPress={() => setAcceptPrivacy((v) => !v)}>
+              <View style={[styles.checkbox, { backgroundColor: cc.checkboxBg }, acceptPrivacy && { backgroundColor: theme.accent }]}>
                 {acceptPrivacy && <Text style={[styles.checkmark, { color: theme.correctText }]}>✓</Text>}
               </View>
-              <Text style={styles.rowText}>
-                <Text onPress={() => openLegal('privacy')} style={styles.link}>{copy.acceptPrivacy}</Text>
+              <Text style={[styles.rowText, { color: cc.body }]}>
+                <Text onPress={() => openLegal('privacy')} style={[styles.link, { color: cc.link }]}>{copy.acceptPrivacy}</Text>
               </Text>
             </Pressable>
 
-            <Text style={styles.analyticsQuestion}>{copy.analyticsQ}</Text>
-            <Text style={styles.analyticsFine}>{copy.analyticsFine}</Text>
+            <Text style={[styles.analyticsQuestion, { color: cc.title }]}>{copy.analyticsQ}</Text>
+            <Text style={[styles.analyticsFine, { color: cc.fine }]}>{copy.analyticsFine}</Text>
             <View style={styles.choiceRow}>
               <Pressable
+                accessibilityRole="button"
+                accessibilityState={{ selected: analyticsChoice === 'granted' }}
                 style={[
                   styles.choiceBtn,
-                  analyticsChoice === 'granted' && { borderColor: theme.accent, backgroundColor: `${theme.accent}18` },
+                  { backgroundColor: cc.choiceBg },
+                  analyticsChoice === 'granted' && (light
+                    ? { backgroundColor: theme.accent }
+                    : { backgroundColor: `${theme.accent}18` }),
                 ]}
                 onPress={() => setAnalyticsChoice('granted')}
               >
-                <Text style={styles.choiceBtnText}>{copy.allow}</Text>
+                <Text style={[styles.choiceBtnText, { color: analyticsChoice === 'granted' && light ? theme.correctText : cc.choiceText }]}>{copy.allow}</Text>
               </Pressable>
               <Pressable
+                accessibilityRole="button"
+                accessibilityState={{ selected: analyticsChoice === 'denied' }}
                 style={[
                   styles.choiceBtn,
-                  analyticsChoice === 'denied' && { borderColor: theme.accent, backgroundColor: `${theme.accent}18` },
+                  { backgroundColor: cc.choiceBg },
+                  analyticsChoice === 'denied' && (light
+                    ? { backgroundColor: theme.accent }
+                    : { backgroundColor: `${theme.accent}18` }),
                 ]}
                 onPress={() => setAnalyticsChoice('denied')}
               >
-                <Text style={styles.choiceBtnText}>{copy.notNow}</Text>
+                <Text style={[styles.choiceBtnText, { color: analyticsChoice === 'denied' && light ? theme.correctText : cc.choiceText }]}>{copy.notNow}</Text>
               </Pressable>
             </View>
 
@@ -236,8 +276,8 @@ export default function ConsentReverifyHost({ forceVisible, onForceClose }: Cons
               <Text style={[styles.continueText, { color: canSubmit ? theme.correctText : theme.textMuted }]}>{copy.continue}</Text>
             </Pressable>
 
-            <Pressable style={styles.previewClose} onPress={() => onForceClose?.()}>
-              <Text style={styles.previewCloseText}>✕ Закрыть превью (админ)</Text>
+            <Pressable style={styles.previewClose} accessibilityRole="button" onPress={() => onForceClose?.()}>
+              <Text style={[styles.previewCloseText, { color: cc.fine }]}>✕ Закрыть превью (админ)</Text>
             </Pressable>
           </ScrollView>
         </View>

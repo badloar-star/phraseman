@@ -9,10 +9,12 @@ function read(rel: string): string {
 
 describe('friends invite code first paint', () => {
   it('starts cached friend-code render and cloud ensure before deferred friends work', () => {
-    const source = read('app/(tabs)/friends.tsx');
-    const effectStart = source.indexOf('mountedRef.current = true;');
+    // зачем: файл на Windows живёт то с LF, то с CRLF — контракт не про переносы
+    // строк, поэтому нормализуем; ensure теперь с колбэком отмены (гейт видимого таба).
+    const source = read('app/(tabs)/friends.tsx').replace(/\r\n/g, '\n');
+    const effectStart = source.indexOf('useEffect(() => {\n    mountedRef.current = true;');
     const cachedRead = source.indexOf('readCachedMyInviteCodeForFriends().then', effectStart);
-    const ensureRead = source.indexOf('void syncMyInviteCode();', effectStart);
+    const ensureRead = source.indexOf('void syncMyInviteCode(() => cancelled);', effectStart);
     const deferredWork = source.indexOf('InteractionManager.runAfterInteractions', effectStart);
 
     expect(effectStart).toBeGreaterThanOrEqual(0);
@@ -21,13 +23,5 @@ describe('friends invite code first paint', () => {
     expect(deferredWork).toBeGreaterThan(effectStart);
     expect(cachedRead).toBeLessThan(deferredWork);
     expect(ensureRead).toBeLessThan(deferredWork);
-  });
-
-  it('keeps the legacy friends screen from deferring friend-code generation', () => {
-    const source = read('app/friends_screen.tsx');
-
-    expect(source).toContain('readCachedMyInviteCodeForFriends');
-    expect(source).toContain("const code = await ensureMyInviteCodeForFriends('');");
-    expect(source).not.toContain('InteractionManager.runAfterInteractions');
   });
 });

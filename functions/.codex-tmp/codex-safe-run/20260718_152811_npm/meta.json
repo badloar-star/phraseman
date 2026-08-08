@@ -1,0 +1,20 @@
+{
+  "startedAt": "2026-07-18T15:28:11.161Z",
+  "cwd": "C:\\appsprojects\\phraseman\\functions",
+  "command": [
+    "npm",
+    "exec",
+    "--",
+    "jest",
+    "src/shards_apply_delta.test.ts",
+    "--runInBand",
+    "--no-cache"
+  ],
+  "stdoutPath": ".codex-tmp/codex-safe-run/20260718_152811_npm/stdout.log",
+  "stderrPath": ".codex-tmp/codex-safe-run/20260718_152811_npm/stderr.log",
+  "finishedAt": "2026-07-18T15:28:11.181Z",
+  "exitCode": -4058,
+  "signal": null,
+  "stdoutBytes": 0,
+  "stderrBytes": 23
+}

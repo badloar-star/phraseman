@@ -234,6 +234,9 @@ export function subscribeToActiveLeagueGroupBoost(
   void (async () => {
     const uid = await ensureAnonUser();
     if (cancelled || !uid) return;
+    // зачем: onSnapshot без второго аргумента при permission-denied/офлайне отдаёт
+    // ошибку в необработанный поток и роняет приложение. Буст лиги — украшение, а не
+    // критичные данные: гасим ошибку и отдаём null, экран живёт на кэше.
     r.lb = db.collection('leaderboard').doc(uid).onSnapshot((lbSnap: any) => {
       r.group?.();
       r.group = null;
@@ -256,7 +259,12 @@ export function subscribeToActiveLeagueGroupBoost(
             onUpdate(resolvedBoost);
           });
         }
+      }, () => {
+        /* группа недоступна (правила/офлайн) — оставляем последнее кэшированное значение */
       });
+    }, () => {
+      /* лидерборд недоступен — буст не показываем, но подписку не роняем */
+      onUpdate(null);
     });
   })();
   return () => {

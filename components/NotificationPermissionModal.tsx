@@ -1,11 +1,9 @@
 import React, { memo } from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import type { Lang } from '../constants/i18n';
 import { triLang } from '../constants/i18n';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type Props = {
   visible: boolean;
@@ -31,7 +29,6 @@ function NotificationPermissionModal({
   cancelLabel,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
 
   const resolvedTitle =
     title ??
@@ -72,13 +69,18 @@ function NotificationPermissionModal({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-        <View style={{ width: '100%', maxWidth: 390, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 18, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, padding: 20, overflow: 'hidden', ...(isCompassTheme ? compassShadow(3) : null) }}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          карточка центрировалась во весь рост без прокрутки — на низком экране
+          обрезалась вместе с кнопками «Разрешить»/«Не сейчас». */}
+      <ScrollView
+        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)' }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={{ width: '100%', maxWidth: 390, backgroundColor: t.bgCard, borderRadius: 18, borderWidth: 0, borderColor: t.border, padding: 20, overflow: 'hidden' }}>
           <View style={{ alignItems: 'center', marginBottom: 10 }}>
-            <View style={{ width: 54, height: 54, borderRadius: isCompassTheme ? 10 : 27, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.accent}55`, overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
-              {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-              <Ionicons name="notifications-outline" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+            <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: `${t.accent}55`, overflow: 'hidden' }}>
+              <Ionicons name="notifications-outline" size={26} color={t.accent} />
             </View>
           </View>
 
@@ -92,32 +94,16 @@ function NotificationPermissionModal({
           <View style={{ marginTop: 14, gap: 8 }}>
             {resolvedPoints.map((p) => (
               <View key={p} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <Ionicons name="checkmark-circle" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.correct} />
+                <Ionicons name="checkmark-circle" size={16} color={t.correct} />
                 <Text style={{ color: t.textMuted, fontSize: f.sub, flex: 1 }}>{p}</Text>
               </View>
             ))}
           </View>
 
-          <View style={{ flexDirection: 'row', gap: 10, marginTop: 20 }}>
-            <TouchableOpacity onPress={onCancel} activeOpacity={0.8} style={{ flex: 1, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
-              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-              <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
-                {cancelLabel ??
-                  triLang(lang, {
-                    ru: 'Не сейчас',
-                    uk: 'Не зараз',
-                    es: 'Ahora no',
-                    'pt-BR': 'Agora não',
-                    vi: 'Không phải bây giờ',
-                    id: 'Nanti saja',
-                    tr: 'Şimdi değil',
-                    pl: 'Nie teraz',
-                  })}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ flex: 1, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
-              {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.body }}>
+          {/* Единый стандарт: primary на всю ширину, под ней — центрированная текстовая «Позже». */}
+          <View style={{ marginTop: 20 }}>
+            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
+              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
                 {confirmLabel ??
                   triLang(lang, {
                     ru: 'Включить',
@@ -131,9 +117,24 @@ function NotificationPermissionModal({
                   })}
               </Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={onCancel} activeOpacity={0.7} style={{ alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, marginTop: 4, minHeight: 40, justifyContent: 'center' }}>
+              <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
+                {cancelLabel ??
+                  triLang(lang, {
+                    ru: 'Позже',
+                    uk: 'Пізніше',
+                    es: 'Más tarde',
+                    'pt-BR': 'Mais tarde',
+                    vi: 'Để sau',
+                    id: 'Nanti saja',
+                    tr: 'Daha sonra',
+                    pl: 'Później',
+                  })}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }

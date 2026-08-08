@@ -7,7 +7,7 @@ import {
   StyleSheet,
   InteractionManager,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -230,6 +230,8 @@ function AddToFlashcard({
             } else if (result === 'limit_reached') {
               setSaved(false);
               router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);
+            } else if (result === 'stale') {
+              setSaved(false);
             }
           } catch {
             setSaved(false);

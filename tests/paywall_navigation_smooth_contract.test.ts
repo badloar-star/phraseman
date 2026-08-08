@@ -22,14 +22,33 @@ function listSourceFiles(dir: string): string[] {
 }
 
 describe('paywall navigation and scroll smoothness contract', () => {
-  it('renders the normal premium dispatcher path as real paywall content, not a blank redirect screen', () => {
+  it('renders every paywall dispatcher path as real paywall content, not a blank redirect screen', () => {
     const source = readAppFile('premium_modal.tsx');
 
     expect(source).toContain("import PaywallA from './paywall_a';");
     expect(source).toContain("import PaywallB from './paywall_b';");
     expect(source).toContain("import PaywallC from './paywall_c';");
     expect(source).toContain('return renderPaywallRoute(paywallRouteRef.current);');
-    expect(source).toContain('if (!isPersonalPlanContext && !isManageContext)');
+    // personal_plan ТОЖЕ рендерит пейвол сразу. Раньше гейт был
+    // `!isPersonalPlanContext && !isManageContext`, и personal_plan висел голым
+    // градиентом всё время сетевой проверки доступа (до 2.5с) — это и была
+    // «пустая страница перед пейволом». Только manage=1 остаётся на подложке,
+    // потому что ведёт на /manage_subscription, а не на пейвол.
+    expect(source).toContain('if (!isManageContext)');
+    expect(source).not.toContain('if (!isPersonalPlanContext && !isManageContext)');
+  });
+
+  it('does not re-navigate to a paywall it already rendered (no unmount/remount flash)', () => {
+    const source = readAppFile('premium_modal.tsx');
+    // В personal_plan-эффекте не должно остаться replace на пейвол: пейвол уже
+    // отрисован синхронно, и replace размонтировал бы его ради идентичной копии.
+    const start = source.indexOf('const finished = await maybeFinishAlreadyPremiumPersonalPlan');
+    expect(start).toBe(-1);
+    expect(source).toContain('await maybeFinishAlreadyPremiumPersonalPlan(params, router);');
+    const effectStart = source.indexOf('if (!isPersonalPlanContext) return;');
+    expect(effectStart).toBeGreaterThan(-1);
+    const effectBlock = source.slice(effectStart, source.indexOf('}, [rootNavReady]);', effectStart));
+    expect(effectBlock).not.toContain('replaceToPaywall');
   });
 
   it('keeps regular paywalls as native bottom modals', () => {

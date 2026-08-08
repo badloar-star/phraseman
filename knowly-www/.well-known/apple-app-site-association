@@ -5,10 +5,9 @@
       {
         "appIDs": ["KZPP5PAG8Y.app.phraseman"],
         "components": [
-          { "/": "/phraseman/invite*", "comment": "Referral invite deep link" },
-          { "/": "/phraseman/duel*", "comment": "Arena duel deep link" }
+          { "/": "/phraseman/invite*", "comment": "Referral invite deep link" }
         ],
-        "paths": ["/phraseman/invite*", "/phraseman/duel*"]
+        "paths": ["/phraseman/invite*"]
       }
     ]
   }

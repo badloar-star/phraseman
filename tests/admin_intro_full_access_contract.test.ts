@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('admin onboarding cleanup contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '_admin_settings_testers.tsx'), 'utf8');
-  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'index.html'), 'utf8');
+  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
   const labs = fs.readFileSync(path.join(process.cwd(), 'components', 'admin_panel', 'sections', 'LabsSection.tsx'), 'utf8');
   const legacyRoute = 'admin' + '_intro' + '_preview';
   const legacyQaTab = 'onboarding' + '-qa';

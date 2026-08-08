@@ -292,7 +292,6 @@ const JOBS = [
   { out: 'trainer_theme_icons/{v}/phrases.webp', w: 256, h: 256, kind: 'glyph', m: M.phrases },
   { out: 'trainer_theme_icons/{v}/words.webp', w: 256, h: 256, kind: 'glyph', m: M.words },
   // Недельные буны.
-  { out: 'weekly_boon_icons/png/{v}/arena_saturday.webp', w: 256, h: 256, kind: 'glyph', m: M.swords },
   { out: 'weekly_boon_icons/png/{v}/comeback.webp', w: 256, h: 256, kind: 'glyph', m: M.comeback },
   { out: 'weekly_boon_icons/png/{v}/double_xp.webp', w: 256, h: 256, kind: 'glyph', m: M.doubleXp },
   { out: 'weekly_boon_icons/png/{v}/early_bird.webp', w: 256, h: 256, kind: 'glyph', m: M.earlyBird },

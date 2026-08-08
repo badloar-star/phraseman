@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, AppState, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useIsFocused } from '@react-navigation/native';
+import { AccessibilityInfo, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -9,18 +8,20 @@ import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { getActiveYoutubeChannel, getLingmanYoutubeSnapshot } from '../app/lingman_youtube';
 import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
-import { hasRemoteConfigSnapshotApplied, isVideoButtonEnabled } from '../app/remote_flags';
+import { isVideoButtonEnabled } from '../app/remote_flags';
 import { onAppEvent } from '../app/events';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 
 function readVideoButtonVisibility() {
-  const remoteReady = hasRemoteConfigSnapshotApplied();
-  return { remoteReady, enabled: remoteReady && isVideoButtonEnabled() };
+  return { enabled: isVideoButtonEnabled() };
 }
 
-function LingmanVideosButton() {
+type LingmanVideosButtonProps = {
+  ownerActive?: boolean;
+};
+
+function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
   const router = useRouter();
-  const isFocused = useIsFocused();
   const { lang } = useLang();
   const { theme: t, themeMode, isDark } = useTheme();
   const [unreadCount, setUnreadCount] = useState(0);
@@ -28,7 +29,6 @@ function LingmanVideosButton() {
   // Видимость кнопки управляется из «Пульта» (video_button_enabled). Дефолт true.
   // Реагируем на смену remote_config живьём (onSnapshot → событие) и на фокус.
   const initialVisibility = readVideoButtonVisibility();
-  const [remoteReady, setRemoteReady] = useState(initialVisibility.remoteReady);
   const [enabled, setEnabled] = useState(initialVisibility.enabled);
   const badgePulse = useRef(new Animated.Value(1)).current;
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
@@ -46,24 +46,18 @@ function LingmanVideosButton() {
   });
 
   useEffect(() => {
+    if (!ownerActive) return;
     const sync = () => {
       const next = readVideoButtonVisibility();
-      setRemoteReady(next.remoteReady);
       setEnabled(next.enabled);
     };
     sync();
     const sub = onAppEvent('remote_config_changed', sync);
     return () => sub.remove();
-  }, []);
-
-  useEffect(() => {
-    if (!isFocused) return;
-    const next = readVideoButtonVisibility();
-    setRemoteReady(next.remoteReady);
-    setEnabled(next.enabled);
-  }, [isFocused]);
+  }, [ownerActive]);
 
   const refresh = useCallback(() => {
+    if (!isVideoButtonEnabled()) return () => {};
     let alive = true;
     void getLingmanYoutubeSnapshot().then((snapshot) => {
       if (alive) setUnreadCount(snapshot.unreadCount);
@@ -74,28 +68,17 @@ function LingmanVideosButton() {
   }, []);
 
   useEffect(() => {
-    if (!isFocused) return;
+    if (!ownerActive || !enabled) return;
     return refresh();
-  }, [isFocused, refresh]);
-
-  useEffect(() => {
-    let cleanup: undefined | (() => void);
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state !== 'active' || !isFocused) return;
-      cleanup?.();
-      cleanup = refresh();
-    });
-    return () => {
-      cleanup?.();
-      sub.remove();
-    };
-  }, [isFocused, refresh]);
+  }, [enabled, ownerActive, refresh]);
 
   // Свежий пин/новый канал из «Пульта» (remote_config) → пересчитать бейдж
   // «новых», даже если экран уже открыт (не только по фокусу).
   useEffect(() => {
+    if (!ownerActive) return;
     let cleanup: undefined | (() => void);
     const sub = onAppEvent('remote_config_changed', () => {
+      if (!isVideoButtonEnabled()) return;
       cleanup?.();
       cleanup = refresh();
     });
@@ -103,19 +86,20 @@ function LingmanVideosButton() {
       cleanup?.();
       sub.remove();
     };
-  }, [refresh]);
+  }, [ownerActive, refresh]);
 
   useEffect(() => {
+    if (!ownerActive) return;
     void AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
     const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => subscription.remove();
-  }, []);
+  }, [ownerActive]);
 
   useEffect(() => {
     // Пульс бейджа крутится только на видимом экране И на переднем плане (плюс
     // сохранённый reduce-motion гард): freezeOnBlur:false держит ушедшие экраны
     // живыми — без гарда луп грел бы телефон в фоне.
-    if (unreadCount <= 0 || reduceMotion || !isFocused) {
+    if (!enabled || unreadCount <= 0 || reduceMotion || !ownerActive) {
       badgePulse.setValue(1);
       return;
     }
@@ -137,22 +121,16 @@ function LingmanVideosButton() {
       badgePulse.setValue(1);
     };
 
-    if (AppState.currentState === 'active') start();
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') start();
-      else stop();
-    });
+    start();
     return () => {
-      appSub.remove();
-      loop?.stop();
-      loop = null;
+      stop();
     };
-  }, [badgePulse, reduceMotion, unreadCount, isFocused]);
+  }, [badgePulse, enabled, ownerActive, reduceMotion, unreadCount]);
 
   // Кнопка выключена из «Пульта» — не рендерим вход на экран видео (сам экран
   // /lingman_videos остаётся доступным по прямой ссылке). Все хуки выше вызваны
   // безусловно, поэтому ранний return здесь не нарушает правила хуков.
-  if (!remoteReady || !enabled) return null;
+  if (!enabled) return null;
 
   return (
     <TouchableOpacity

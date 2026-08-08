@@ -3,6 +3,7 @@ import { Animated, StyleSheet, Text } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { LinearGradient } from './SafeLinearGradient';
 import { themedToastChrome } from '../constants/themedToastChrome';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 interface Props {
   message: string | null;
@@ -65,12 +66,13 @@ const styles = StyleSheet.create({
     right: 24,
     zIndex: 999999,
     borderRadius: 16,
-    borderWidth: 0,
     overflow: 'hidden',
     paddingVertical: 14,
     paddingHorizontal: 20,
+    // зачем: фон тоста приходит из темы, поэтому Android рисовал квадрат
+    // вокруг скругления 16 (elevation 28 делал его особенно заметным).
     shadowOpacity: 0.25,
     shadowRadius: 10,
-    elevation: 28,
+    ...noAndroidOutline,
   },
 });

@@ -33,7 +33,15 @@ describe('canonical speaking push-to-talk UI contract', () => {
     expect(onboarding).toContain("setStatus('preprompt')");
     expect(onboarding).toContain("active={status === 'listening'}");
     expect(onboarding).toContain("if (statusRef.current === 'requesting')");
-    expect(onboarding).toContain("if (pressActiveRef.current && mountedRef.current) setStatus('listening')");
+    // зачем: раньше утверждение было привязано к ОДНОСТРОЧНОЙ записи, и падало,
+    // как только рядом с setStatus('listening') появился второй вызов
+    // (playRecordStart через playCueOnce) и строку пришлось раскрыть в блок.
+    // Контракт здесь про ПОВЕДЕНИЕ — «слушаем» включается только когда палец
+    // ещё на кнопке и экран жив, — поэтому проверяем гард вместе с переходом,
+    // не диктуя форматирование.
+    expect(onboarding).toMatch(
+      /if \(pressActiveRef\.current && mountedRef\.current\)\s*\{?\s*setStatus\('listening'\)/,
+    );
     expect(onboardingCopy).toContain("ru: 'Готовлю микрофон…'");
     expect(onboarding).toContain("permission === 'granted_after_prompt'");
   });

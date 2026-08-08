@@ -21,6 +21,7 @@ type Props = {
   kind: ProfileCardFxKind;
   radius: number;
   accent: string;
+  /** Зарезервировано (бывшая «комета» azure убрана 2026-07-19). */
   secondary: string;
   accentSoft: string;
   /** Цвет свечения снизу (обязателен для glow-линейки; fallback — accent). */
@@ -202,50 +203,6 @@ function TopGlow({ radius, top }: { radius: number; top: string }) {
   );
 }
 
-/** Падающая звезда: короткий пролёт по диагонали, потом длинная пауза (≈1 раз в 7 секунд). */
-function CometStreak({ radius, tint }: { radius: number; tint: string }) {
-  const progress = useFxLoop(7000, true);
-  const [size, setSize] = useState({ w: 0, h: 0 });
-  const { w, h } = size;
-
-  const style = useAnimatedStyle(() => {
-    // Полёт занимает первые 22% лупа, остальное — пауза (звезда невидима).
-    const t = Math.min(1, progress.value / 0.22);
-    const flying = progress.value < 0.22;
-    return {
-      opacity: flying ? interpolate(t, [0, 0.12, 0.85, 1], [0, 1, 1, 0]) : 0,
-      transform: [
-        { translateX: interpolate(t, [0, 1], [-0.3 * w, w * 1.05]) },
-        { translateY: interpolate(t, [0, 1], [h * 0.16, h * 0.52]) },
-        { rotateZ: '14deg' },
-      ],
-    };
-  });
-
-  return (
-    <View
-      pointerEvents="none"
-      onLayout={(e: LayoutChangeEvent) => setSize({
-        w: Math.round(e.nativeEvent.layout.width),
-        h: Math.round(e.nativeEvent.layout.height),
-      })}
-      style={[StyleSheet.absoluteFill, { borderRadius: radius, overflow: 'hidden' }]}
-    >
-      {w > 0 && (
-        <Reanimated.View style={[{ width: 86, height: 2, flexDirection: 'row', alignItems: 'center' }, style]}>
-          <LinearGradient
-            colors={['transparent', tint]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={{ flex: 1, height: 2, borderRadius: 1 }}
-          />
-          <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: '#FFFFFF', marginLeft: -2 }} />
-        </Reanimated.View>
-      )}
-    </View>
-  );
-}
-
 type StarSpec = { left: `${number}%`; top: `${number}%`; size: number };
 
 // Две группы звёзд мерцают в противофазе — небо «живёт», а не мигает целиком.
@@ -328,7 +285,7 @@ function useReduceMotion(): boolean {
   return reduce;
 }
 
-function ProfileCardMotionFxBase({ kind, radius, accent, secondary, accentSoft, glowBottom, glowTop, enabled = true }: Props) {
+function ProfileCardMotionFxBase({ kind, radius, accent, accentSoft, glowBottom, glowTop, enabled = true }: Props) {
   const reduceMotion = useReduceMotion();
   if (!enabled || kind === 'none') return null;
   const bottom = glowBottom ?? accent;
@@ -342,7 +299,7 @@ function ProfileCardMotionFxBase({ kind, radius, accent, secondary, accentSoft, 
     </>
   );
 
-  // При reduce-motion оставляем только статичное свечение, без блика/звёзд/кометы.
+  // При reduce-motion оставляем только статичное свечение, без блика/звёзд.
   if (reduceMotion) return glow;
 
   switch (kind) {
@@ -353,14 +310,9 @@ function ProfileCardMotionFxBase({ kind, radius, accent, secondary, accentSoft, 
       // Teal: свечение (дышит ярче) + блик.
       return (<>{glow}<SheenBand radius={radius} /></>);
     case 'azure':
-      // Azure: свечение + падающая звезда + блик.
-      return (
-        <>
-          {glow}
-          <CometStreak radius={radius} tint={secondary} />
-          <SheenBand radius={radius} />
-        </>
-      );
+      // Azure: свечение + блик. Белая пролетающая «комета» убрана по фидбеку
+      // владельца 2026-07-19 — остаётся деликатный шиин, как у steel.
+      return (<>{glow}<SheenBand radius={radius} /></>);
     case 'crimson':
       // Crimson: свечение + мерцающие звёзды + блик.
       return (

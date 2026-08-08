@@ -30,10 +30,17 @@ import {
   claimAchievementShardReward,
   devSeedAchievementsSmoke,
   loadAchievementStates,
+  loadAchievementStatesForTarget,
+  markAchievementsNotified,
 } from '../app/achievements';
 import { addShardsRaw } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { MAX_LEVEL } from '../constants/theme';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 import {
   achievementLessonPerfectPassesKey,
   flashcardsSavedKey,
@@ -52,10 +59,96 @@ describe('achievements', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
     jest.clearAllMocks();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('achievements-test-account');
   });
 
   afterEach(() => {
     jest.useRealTimers();
+  });
+
+  it('does not let an omitted-token achievement event commit after account A switches to B', async () => {
+    let release!: (value: string | null) => void;
+    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
+    beginAccountGeneration('account-a');
+
+    const request = checkAchievements({ type: 'energy_refill' });
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    expect(AsyncStorage.getItem).toHaveBeenCalledTimes(1);
+    beginAccountGeneration('account-b');
+    release(null);
+
+    await expect(request).resolves.toEqual([]);
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+  });
+
+  it('rejects exported achievement storage boundaries before identity initialization', async () => {
+    __resetAccountGenerationForTests();
+
+    await expect(loadAchievementStatesForTarget('en')).resolves.toEqual([]);
+    await expect(loadAchievementStates()).resolves.toEqual([]);
+    await expect(claimAchievementShardReward(ALL_ACHIEVEMENTS[0].id)).resolves.toBe(false);
+    await expect(markAchievementsNotified([ALL_ACHIEVEMENTS[0].id])).resolves.toBeUndefined();
+
+    expect(AsyncStorage.getItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(addShardsRaw).not.toHaveBeenCalled();
+  });
+
+  it('discards an omitted-token exported read when account A switches to B', async () => {
+    let release!: (value: string | null) => void;
+    const readA = new Promise<string | null>((resolve) => { release = resolve; });
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(readA);
+    beginAccountGeneration('account-a');
+
+    const request = loadAchievementStatesForTarget('en');
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    beginAccountGeneration('account-b');
+    release(null);
+
+    await expect(request).resolves.toEqual([]);
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+  });
+
+  it('does not reserve or pay an achievement claim after account A switches to B', async () => {
+    let release!: (value: string | null) => void;
+    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+    const id = ALL_ACHIEVEMENTS[0].id;
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
+    beginAccountGeneration('account-a');
+
+    const claim = claimAchievementShardReward(id);
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    beginAccountGeneration('account-b');
+    release(JSON.stringify([{ id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false }]));
+
+    await expect(claim).resolves.toBe(false);
+    expect(addShardsRaw).not.toHaveBeenCalled();
+  });
+
+  it('does not mark account A notifications after a deferred read resolves under account B', async () => {
+    let release!: (value: string | null) => void;
+    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+    const id = ALL_ACHIEVEMENTS[0].id;
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
+    beginAccountGeneration('account-a');
+
+    const marking = markAchievementsNotified([id]);
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    beginAccountGeneration('account-b');
+    release(JSON.stringify([{ id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: false, shardClaimed: true }]));
+
+    await marking;
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
   });
 
   it('has unique ids, Spanish copy and image entries for every achievement', () => {
@@ -66,12 +159,35 @@ describe('achievements', () => {
     const missingEs = ids.filter(id => !ACHIEVEMENT_ES[id]);
     expect(missingEs).toEqual([]);
 
-    const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
-    const screenSource = fs.readFileSync(screenPath, 'utf8');
-    const imageBlock = screenSource.match(/export const ACHIEVEMENT_IMAGE:[\s\S]*?};/)?.[0] ?? '';
-    const imageIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
-    const missingImages = ids.filter(id => !imageIds.has(id));
+    // зачем: арт больше не бандлится целиком — «ядро» лежит в require-реестре,
+    // остальное стримится из Storage по сгенерированной карте URL. Требование
+    // прежнее: у КАЖДОГО достижения должен быть источник картинки, иначе
+    // пользователь увидит заглушку вместо награды.
+    const imageBlock = fs.readFileSync(
+      path.join(__dirname, '..', 'constants', 'achievementImageAssets.ts'), 'utf8');
+    const urlMap = fs.readFileSync(
+      path.join(__dirname, '..', 'constants', 'achievementImageUrlMap.generated.ts'), 'utf8');
+
+    const bundledIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
+    const remoteIds = new Set([...urlMap.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"https:/gm)].map(m => m[1]));
+
+    const missingImages = ids.filter(id => !bundledIds.has(id) && !remoteIds.has(id));
     expect(missingImages).toEqual([]);
+  });
+
+  it('shares the generated image registry with compact achievement surfaces', () => {
+    const statsSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'streak_stats.tsx'), 'utf8');
+    const toastSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'AchievementToast.tsx'), 'utf8');
+
+    // зачем: цель контракта прежняя — компактные поверхности берут арт из общего
+    // источника, а не заводят свою копию реестра. Изменился только вход: теперь
+    // это achievementImageSource (бандл + URL) либо общий компонент AchievementArt.
+    expect(statsSource).toContain("import AchievementArt from '../components/AchievementArt'");
+    expect(toastSource).toContain("import { achievementImageSource } from '../constants/achievementImageAssets'");
+
+    // Ни одна поверхность не должна require-ить арт напрямую в обход реестра.
+    expect(statsSource).not.toMatch(/require\('\.\.\/assets\/images\/achievements\//);
+    expect(toastSource).not.toMatch(/require\('\.\.\/assets\/images\/achievements\//);
   });
 
   it('renders generated achievement art immediately and keeps fallback only for image errors', () => {
@@ -82,8 +198,16 @@ describe('achievements', () => {
 
     expect(source).toContain("import { Image as ExpoImage } from 'expo-image';");
     expect(achievementImageComponent).toContain('source && !imageFailed');
-    expect(achievementImageComponent).not.toContain('onLoad={() => setLoaded(true)}');
     expect(achievementImageComponent).toContain('onError={() => setImageFailed(true)}');
+
+    // зачем: раньше здесь стоял запрет на onLoad — он имел смысл, пока весь арт
+    // лежал в бандле и появлялся в первом же кадре. Теперь арт достижения может
+    // приходить из сети, и заглушку нужно держать ИМЕННО до onLoad, иначе между
+    // «источник появился» и «картинка отрисовалась» мелькнёт пустое место.
+    expect(achievementImageComponent).toContain('onLoad={() => setImageLoaded(true)}');
+    expect(achievementImageComponent).toContain('!imageLoaded');
+
+    // Иконки категорий остаются бандлёнными — там ожидание onLoad не нужно.
     expect(categoryImageComponent).toContain('source && !imageFailed');
     expect(categoryImageComponent).not.toContain('onLoad={() => setLoaded(true)}');
     expect(categoryImageComponent).toContain('onError={() => setImageFailed(true)}');
@@ -114,19 +238,25 @@ describe('achievements', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('uses pluralized RU/UK copy for the received achievements count', () => {
+  it('keeps the stats achievements counter on live unlocked count and hides the zero state', () => {
+    // зачем: редизайн карточки («Все N») снял существительное после числа —
+    // плюрализация ruAchievementRewardPhrase жила только в мёртвом {false && ...}
+    // блоке и удалена вместе с ним. Контракт охраняет живое: счётчик — из
+    // loadAchievementStates (unlocked, не общий тотал) и запрет «Все 0».
     const file = path.join(__dirname, '..', 'app', 'streak_stats.tsx');
     const source = fs.readFileSync(file, 'utf8');
 
-    expect(source).toContain('ruAchievementRewardPhrase(achievementCount)');
-    expect(source).toContain('ukAchievementRewardPhrase(achievementCount)');
+    expect(source).toContain('Все ${achievementCount}');
+    expect(source).toContain('Усі ${achievementCount}');
+    expect(source).toContain('achievementCount > 0');
     expect(source).toContain('loadAchievementStates()');
     expect(source).not.toContain('ALL_ACHIEVEMENTS.length');
-    expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} наград`');
-    expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} нагород`');
   });
 
-  it('claims achievement shards through the local-first path without a blocking global shard modal', async () => {
+  // зачем: владелец вернул награду за достижения — экран всё время обещал
+  // «+1 жемчужина», а выплата была обнулена и кнопка «Получить» работала
+  // впустую. Тест закрепляет, что обещание на экране совпадает с начислением.
+  it('grants exactly +1 pearl per achievement and marks it claimed', async () => {
     const id = ALL_ACHIEVEMENTS[0].id;
     await AsyncStorage.setItem('achievements_v1', JSON.stringify([
       { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
@@ -134,10 +264,58 @@ describe('achievements', () => {
 
     await expect(claimAchievementShardReward(id)).resolves.toBe(true);
 
-    expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, {
+    expect(addShardsRaw).toHaveBeenCalledTimes(1);
+    expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, expect.objectContaining({
       showEarnModal: false,
       skipServerAwait: true,
-    });
+      accountToken: expect.objectContaining({ stableId: 'achievements-test-account', phase: 'active' }),
+    }));
+    const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(true);
+  });
+
+  it('does not double-pay when the same achievement is claimed twice', async () => {
+    const id = ALL_ACHIEVEMENTS[0].id;
+    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
+      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
+    ]));
+
+    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
+    await expect(claimAchievementShardReward(id)).resolves.toBe(false);
+    expect(addShardsRaw).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps a durable pending payout and retries the same id after a switch before payout confirmation', async () => {
+    const id = ALL_ACHIEVEMENTS[0].id;
+    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
+      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
+    ]));
+    let releasePayout!: (value: number) => void;
+    (addShardsRaw as jest.Mock).mockReturnValueOnce(new Promise<number>((resolve) => { releasePayout = resolve; }));
+    beginAccountGeneration('account-a');
+
+    const first = claimAchievementShardReward(id);
+    for (let i = 0; i < 30 && (addShardsRaw as jest.Mock).mock.calls.length === 0; i += 1) await Promise.resolve();
+    expect(addShardsRaw).toHaveBeenCalledTimes(1);
+    const firstOptions = (addShardsRaw as jest.Mock).mock.calls[0][2];
+    expect(firstOptions.idempotencyKey).toMatch(/^achievement:/);
+    const pendingKey = (await AsyncStorage.getAllKeys())
+      .find((key) => key.startsWith('achievement_shard_payout_pending_v1:'));
+    expect(pendingKey).toBeTruthy();
+
+    beginAccountGeneration('account-b');
+    releasePayout(1);
+    await expect(first).resolves.toBe(false);
+    const afterSwitch = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(afterSwitch.find((state: { id: string }) => state.id === id)?.shardClaimed).toBe(false);
+
+    beginAccountGeneration('account-a');
+    (addShardsRaw as jest.Mock).mockResolvedValueOnce(1);
+    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
+    const retryOptions = (addShardsRaw as jest.Mock).mock.calls[1][2];
+    expect(retryOptions.idempotencyKey).toBe(firstOptions.idempotencyKey);
+    const afterRetry = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(afterRetry.find((state: { id: string }) => state.id === id)?.shardClaimed).toBe(true);
   });
 
   it('updates the achievement reward modal before the claim promise finishes', () => {
@@ -158,21 +336,22 @@ describe('achievements', () => {
     const source = fs.readFileSync(screenPath, 'utf8');
 
     expect(source).toContain('const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;');
-    expect(source).toContain('showAllAchievements || !!stateMap.get(a.id)?.unlockedAt');
+    expect(source).toContain('isVisibleAchievement(a, stateMap)');
     expect(source).toContain('testID="achievements-dev-show-all-toggle"');
     expect(source).toContain('if (catAchs.length === 0) return [];');
     expect(source).not.toContain('unlockedCount} / {total}');
   });
 
-  it('wires nearest locked achievements into the achievements screen header', () => {
+  // зачем: секция «Ближайшие награды» удалена с экрана по запросу владельца —
+  // тест обновлён, чтобы подтвердить отсутствие удалённого кода вместо его наличия.
+  it('does not render the removed "nearest rewards" section on the achievements screen', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
 
-    expect(source).toContain("import { getNearestLockedAchievements } from './achievement_nearest';");
-    expect(source).toContain('const nearestAchievements = useMemo(() =>');
-    expect(source).toContain('getNearestLockedAchievements(');
-    expect(source).toContain('<NearestAchievementsBlock');
-    expect(source).toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
+    expect(source).not.toContain("import { getNearestLockedAchievements } from './achievement_nearest';");
+    expect(source).not.toContain('const nearestAchievements = useMemo(() =>');
+    expect(source).not.toContain('<NearestAchievementsBlock');
+    expect(source).not.toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
   });
 
   it('wires card pack achievements into both official and community purchase flows', () => {
@@ -185,16 +364,16 @@ describe('achievements', () => {
 
     expect(officialSource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
     expect(communitySource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
-    expect(communitySource).toContain('trackExternalShardSpendAchievement(pack.priceShards)');
+    expect(communitySource).toContain('trackExternalShardSpendAchievement(COMMUNITY_PACK_PRICE_SHARDS)');
     expect(trackingSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys'");
     expect(trackingSource).toContain('const target = storageStudyTarget(studyTarget)');
     expect(trackingSource).not.toContain("studyTarget === 'fr'");
   });
 
   it('keeps flashcard source achievement aligned with live save sources', () => {
+    // зачем: экран квизов снят целиком (3eba05191, вместе с Ареной) — живые
+    // source="..." сохранения остались только в уроках и карточке дня.
     const files = [
-      path.join(__dirname, '..', 'app', '(tabs)', 'quizzes.tsx'),
-      path.join(__dirname, '..', 'app', 'quizzes.tsx'),
       path.join(__dirname, '..', 'app', 'lesson1.tsx'),
       path.join(__dirname, '..', 'app', 'lesson_words.tsx'),
       path.join(__dirname, '..', 'app', 'lesson_irregular_verbs.tsx'),
@@ -215,11 +394,9 @@ describe('achievements', () => {
   it('wires friend count achievements for both accepted and observed friendships', () => {
     const acceptPath = path.join(__dirname, '..', 'app', 'firestore_friend_requests.ts');
     const tabPath = path.join(__dirname, '..', 'app', '(tabs)', 'friends.tsx');
-    const rootPath = path.join(__dirname, '..', 'app', 'friends_screen.tsx');
 
     expect(fs.readFileSync(acceptPath, 'utf8')).toContain("type: 'friend_added'");
     expect(fs.readFileSync(tabPath, 'utf8')).toContain("type: 'friend_added'");
-    expect(fs.readFileSync(rootPath, 'utf8')).toContain("type: 'friend_added'");
   });
 
   it('can unlock every achievement through its public event contract', async () => {
@@ -284,9 +461,6 @@ describe('achievements', () => {
       await checkAchievements({ type: 'gift_sent' });
     }
     await checkAchievements({ type: 'achievement_liked', likeTotal: 100 });
-    for (let i = 0; i < 100; i += 1) {
-      await checkAchievements({ type: 'league_chat_message' });
-    }
     for (let i = 0; i < 10; i += 1) {
       await checkAchievements({ type: 'achievement_shared' });
     }
@@ -326,8 +500,6 @@ describe('achievements', () => {
     for (let i = 0; i < 100; i += 1) {
       await checkAchievements({ type: 'arena_win' });
     }
-    await checkAchievements({ type: 'arena_win_streak', streak: 25 });
-    await checkAchievements({ type: 'arena_duel_friend_win' });
     for (let i = 0; i < 25; i += 1) {
       await checkAchievements({ type: 'arena_wager_win', count: i + 1 });
     }
@@ -507,7 +679,9 @@ describe('achievements', () => {
     expect(await AsyncStorage.getItem('streak_count')).toBe('500');
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('100000');
     expect(await AsyncStorage.getItem('achievement_active_recall_correct_count')).toBe('50');
-    expect(await AsyncStorage.getItem('achievement_arena_win_count')).toBe('10');
+    // зачем: Арена удалена — achievement_arena_win_count больше не сеется.
+    // Проверяем живой счётчик ставок на серию (открывает wager_win_3 и _10).
+    expect(await AsyncStorage.getItem('achievement_wager_win_count')).toBe('10');
     expect(await AsyncStorage.getItem('shards_balance')).toBe('100');
 
     const loginRaw = await AsyncStorage.getItem('login_bonus_v1');
@@ -515,5 +689,49 @@ describe('achievements', () => {
 
     const lessonProgress = await AsyncStorage.getItem('lesson32_progress');
     expect(JSON.parse(lessonProgress ?? '[]').filter((x: string) => x === 'correct')).toHaveLength(50);
+  });
+
+  it('lets account B and the transition lock proceed when account A achievement storage never resolves', async () => {
+    const never = new Promise<string | null>(() => {});
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(never);
+    beginAccountGeneration('account-a');
+    void checkAchievements({ type: 'energy_refill' });
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+
+    beginAccountGeneration('account-b');
+    const bResult = checkAchievements({ type: 'energy_refill' });
+    const transition = withAccountTransitionLock(async () => 'transition-settled');
+    const timeout = new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 100));
+
+    await expect(Promise.race([bResult.then(() => 'b-settled' as const), timeout])).resolves.toBe('b-settled');
+    await expect(Promise.race([transition, timeout])).resolves.toBe('transition-settled');
+  });
+});
+
+describe('запись состояния достижений не затирает параллельные правки', () => {
+  // зачем: _achievementLock (локальная цепочка промисов модуля) и withStorageLock
+  // (глобальный мьютекс) — два НЕЗАВИСИМЫХ замка над одним хранилищем. Путь
+  // checkAchievements писал вообще без второго, поэтому параллельный
+  // claimAchievementShardReward терял свой shardClaimed, а уже показанный тост всплывал
+  // повторно. Лечится слиянием: под замком перечитать свежий снимок и накатить только
+  // свои разблокировки. Храповик держит эту форму записи.
+  const source = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements.ts'), 'utf8');
+
+  it('пишет разблокировки через слияние со свежим снимком под общим мьютексом', () => {
+    expect(source).toContain('return withStorageLock(async () => {');
+    expect(source).toContain('const fresh = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, false);');
+    expect(source).toContain('const saved = await saveStates(Array.from(freshById.values()), eventStudyTarget, operationToken);');
+  });
+
+  it('не пишет весь массив states напрямую в обход слияния', () => {
+    // Прямой saveStates(states, eventStudyTarget) — ровно тот путь, который затирал
+    // чужие поля. Слияние обязано идти через freshById.
+    expect(source).not.toContain('await saveStates(states, eventStudyTarget);');
+  });
+
+  it('сохраняет более раннюю метку разблокировки при гонке', () => {
+    expect(source).toContain('if (current.unlockedAt === null) current.unlockedAt = row.unlockedAt;');
   });
 });

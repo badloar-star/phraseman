@@ -1,4 +1,3 @@
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_a.tsx — вариант A «Компакт» (эксперимент paywall_ab).
 //
@@ -12,26 +11,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import * as Crypto from 'expo-crypto';
 
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
 import {
-  normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy,
-  applyWinBackCopy, applyWinBackPlannedCopy,
-  CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP,
+  resolvePaywallContext, getPaywallCopy, getHeroPlannedCopy,
+  applyWinBackCopy, applyWinBackPlannedCopy, makeLP,
 } from './paywall_copy';
 import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
+import { parseResumeLessonId } from './paywall_lesson_continuation';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
+import { trackPaywallExperimentExposure } from './analytics_experiments';
+import { createPaywallAnalyticsImpression, paywallImpressionParams } from './paywall_analytics_impression';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import { isPaywallReviewsEnabled } from './remote_flags';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallCloseButton,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallHeroExplain, PaywallSocialRow, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
@@ -41,24 +42,29 @@ import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 
 const VARIANT = 'A' as const;
 
 export default function PaywallA() {
-  const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string }>();
-  const ctx = normalizePremiumContext(params.context);
+  const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string; resume_kind?: string; resume_lesson_id?: string }>();
+  const ctx = resolvePaywallContext(params.context, params.source);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
+  const resumeLessonId = params.resume_kind === 'course_lesson'
+    ? parseResumeLessonId(params.resume_lesson_id)
+    : null;
   const isOnboarding = source === 'onboarding_plan';
   // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
-  const insets = useStableSafeAreaInsets();
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
+  const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
+  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
@@ -78,9 +84,10 @@ export default function PaywallA() {
   };
 
   useEffect(() => {
-    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT });
+    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...paywallImpressionParams(analyticsImpression) });
+    void trackPaywallExperimentExposure(VARIANT, analyticsImpression.id);
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
-  }, [ctx, source]);
+  }, [analyticsImpression, ctx, source]);
 
   useEffect(() => {
     let dead = false;
@@ -117,7 +124,7 @@ export default function PaywallA() {
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
-  const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 4);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
@@ -133,7 +140,6 @@ export default function PaywallA() {
             <PaywallCloseButton
               onPress={() => { hapticTap(); closeWithDim('close'); }}
               chrome={chrome}
-              style={{ marginTop: Math.max(insets.top - 38, 6) }}
             />
           ) : null}
 
@@ -141,49 +147,58 @@ export default function PaywallA() {
               прижимает CTA вниз); на маленьких — мягко скроллится. */}
           <ScrollView
             showsVerticalScrollIndicator={false}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[S.scroll, isOnboarding && S.scrollOnboardingStickyPad]}
             onLayout={isOnboarding ? sticky.onViewportLayout : undefined}
             onScroll={isOnboarding ? sticky.onScroll : undefined}
             scrollEventThrottle={32}
           >
-            <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
+            <PaywallEntrance index={0}>
+              <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
+            </PaywallEntrance>
 
-            <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+            <PaywallEntrance index={1}>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
+            </PaywallEntrance>
 
-            {p.offeringsFailed ? (
-              <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
-            ) : (
-              <PaywallPlanCards
+            <PaywallEntrance index={2}>
+              {p.offeringsFailed ? (
+                <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
+              ) : (
+                <PaywallPlanCards
+                  lang={lang as Lang}
+                  chrome={chrome}
+                  selected={p.selected}
+                  onSelect={p.selectPlan}
+                  yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
+                  yearlyFull={p.yearlyPrice}
+                  monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
+                  savingsPct={p.savingsPct}
+                  perDayLabel={p.perDayLabel}
+                  trialDays={null /* триал объяснён таймлайном ниже — без дубля */}
+                  loading={p.loading}
+                  disabled={p.purchasing}
+                  lifetimePrice={p.lifetimePrice}
+                  lifetimeAvailable={p.lifetimeAvailable}
+                />
+              )}
+            </PaywallEntrance>
+
+            <PaywallEntrance index={3}>
+              <PaywallPriceUrgency
                 lang={lang as Lang}
                 chrome={chrome}
-                selected={p.selected}
-                onSelect={p.selectPlan}
-                yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
-                yearlyFull={p.yearlyPrice}
-                monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
-                savingsPct={p.savingsPct}
-                perDayLabel={p.perDayLabel}
-                trialDays={null /* триал объяснён таймлайном ниже — без дубля */}
-                loading={p.loading}
-                disabled={p.purchasing}
-                lifetimePrice={p.lifetimePrice}
-                lifetimeAvailable={p.lifetimeAvailable}
+                urgency={p.urgency}
+                currentPrice={price}
+                futurePrice={p.futurePrice}
+                period={period}
+                compact
+                isLifetime={isLifetimeSel}
               />
-            )}
+            </PaywallEntrance>
 
-            <PaywallPriceUrgency
-              lang={lang as Lang}
-              chrome={chrome}
-              urgency={p.urgency}
-              currentPrice={price}
-              futurePrice={p.futurePrice}
-              period={period}
-              compact
-              isLifetime={isLifetimeSel}
-            />
-
-            <View style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
+            <PaywallEntrance index={4} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -198,54 +213,56 @@ export default function PaywallA() {
                 trustHasTrial={!!p.trialDays}
                 isOnboarding={isOnboarding}
               />
-            </View>
+            </PaywallEntrance>
 
-            <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
+            <PaywallEntrance index={5}>
+              <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
+            </PaywallEntrance>
 
-            <PersonalizationProofCard
-              lang={lang as Lang}
-              chrome={chrome}
-              tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}
-              profile={profile}
-              mirror={mirror}
-            />
+            <PaywallEntrance index={6}>
+              <PersonalizationProofCard
+                ctx={ctx}
+                lang={lang as Lang}
+                chrome={chrome}
+                tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}
+                profile={profile}
+                mirror={mirror}
+              />
+            </PaywallEntrance>
 
             {/* Полный таймлайн триала «сегодня→напомним→списание» теперь и на «Компакт»:
                 показывается только при реальной бесплатной intro-фазе из стора. */}
             {p.trialDays && (
-              <PaywallTrialTimeline
-                lang={lang as Lang}
-                chrome={chrome}
-                days={p.trialDays}
-                priceLabel={price || '…'}
-                periodLabel={period}
-              />
+              <PaywallEntrance index={7}>
+                <PaywallTrialTimeline
+                  lang={lang as Lang}
+                  chrome={chrome}
+                  days={p.trialDays}
+                  priceLabel={price || '…'}
+                  periodLabel={period}
+                />
+              </PaywallEntrance>
             )}
 
-            <View style={S.benefits}>
-              {benefits.map((b, i) => (
-                <View key={i} style={S.benefitRow}>
-                  <Ionicons name="checkmark-circle" size={17} color={chrome.textMuted} />
-                  <Text style={[S.benefitText, { color: chrome.textMuted }]}>
-                    {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
-                  </Text>
-                </View>
-              ))}
-            </View>
-
-            <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
+            {/* зачем: контекстные бенефиты переехали в хиро (PaywallHeroExplain) —
+                нижний дубль под сгибом удалён по аудиту «пейволы-объясняют». */}
+            <PaywallEntrance index={9}>
+              <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
+            </PaywallEntrance>
 
             <View style={S.spacer} />
 
-            <PaywallLegalDisclosure
-              lang={lang as Lang}
-              chrome={chrome}
-              priceLabel={price}
-              periodLabel={period}
-              hasTrial={!!p.trialDays}
-              trialDays={p.trialDays}
-              isLifetime={isLifetimeSel}
-            />
+            <PaywallEntrance index={10}>
+              <PaywallLegalDisclosure
+                lang={lang as Lang}
+                chrome={chrome}
+                priceLabel={price}
+                periodLabel={period}
+                hasTrial={!!p.trialDays}
+                trialDays={p.trialDays}
+                isLifetime={isLifetimeSel}
+              />
+            </PaywallEntrance>
           </ScrollView>
           <PaywallStickyBar
             visible={isOnboarding && sticky.visible && !p.ctaDisabled}
@@ -257,6 +274,20 @@ export default function PaywallA() {
           />
         </View>
       </SafeAreaView>
+      {/* зачем: exit-intent оффер триала рисуем НАШЕЙ модалкой, а не нативным
+          Alert — системный диалог игнорирует тему приложения (белый лист с
+          капс-кнопками) и выбивался из дизайна. Копия и колбэки приходят
+          готовыми из usePaywallPurchase. */}
+      <ThemedConfirmModal
+        visible={!!p.exitOffer}
+        title={p.exitOffer?.title ?? ''}
+        message={p.exitOffer?.message ?? ''}
+        confirmLabel={p.exitOffer?.confirmLabel ?? ''}
+        cancelLabel={p.exitOffer?.cancelLabel ?? ''}
+        onConfirm={() => p.exitOffer?.onConfirm()}
+        onCancel={() => p.exitOffer?.onCancel()}
+        testIDPrefix="paywall-exit-offer"
+      />
     </PaywallBackground>
   );
 }

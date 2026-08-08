@@ -1,0 +1,94 @@
+import { GenerationStageSchemaError, runGenerationStage, transitionGenerationStage, type StageGenerationProvider } from './stage_runner';
+import { buildStagePromptPacket } from './prompt_registry';
+import { buildPromptContext } from './prompt_context';
+
+describe('generation stage runner', () => {
+  const packet = buildStagePromptPacket('challenge_questions', 'v1', buildPromptContext({ studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Identity', count: 2, approvedArtifactIds: [], exemplarIds: [], previousContentFingerprints: [] }));
+
+  it('accepts structured output with exact identity and count', async () => {
+    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] }) };
+    const result = await runGenerationStage({ provider, model: 'fake', packet });
+    expect(result.artifact).toMatchObject({ stage: 'challenge_questions' });
+    expect(result.attempts).toBe(1);
+    expect(result.receipt).toMatchObject({ status: 'passed', promptHash: packet.promptHash, contextHash: packet.contextHash, schemaHash: packet.schemaHash, validation: { serverValidated: true, errors: [] } });
+  });
+
+  it('repairs only the invalid JSON at most twice using validation errors', async () => {
+    const prompts: string[] = [];
+    const responses = ['{"stage":"challenge_questions","items":[]}', '{"stage":"challenge_questions","items":[{"id":"q1"}]}', '{"stage":"challenge_questions","items":[{"id":"q1"},{"id":"q2"}]}'];
+    const provider: StageGenerationProvider = { generate: async ({ prompt }) => { prompts.push(prompt); return responses.shift() ?? '{}'; } };
+    const result = await runGenerationStage({ provider, model: 'fake', packet });
+    expect(result.attempts).toBe(3);
+    expect(prompts[1]).toContain('validationErrors');
+    expect(prompts[1]).toContain('previousJson');
+    expect(prompts[1]).toContain(packet.system);
+    expect(prompts[1]).toContain(packet.task);
+    expect(prompts[1]).toContain(packet.contextHash);
+    expect(prompts[1]).toContain(packet.schemaHash);
+    expect(prompts[1]).toContain('untrustedPreviousJson');
+  });
+
+  it('negotiates json_schema with fallback and still runs the server validator', async () => {
+    const formats: unknown[] = [];
+    const provider: StageGenerationProvider = { generate: async (input) => { formats.push(input.responseFormat); return JSON.stringify({ stage: 'wrong', items: [{ id: 'q1' }, { id: 'q2' }] }); } };
+    await expect(runGenerationStage({ provider, model: 'gpt-4.1-mini', packet, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
+    expect(formats[0]).toMatchObject({ type: 'json_schema', json_schema: { strict: false, schema: packet.outputSchema } });
+    formats.length = 0;
+    await runGenerationStage({ provider: { generate: async (input) => { formats.push(input.responseFormat); return JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] }); } }, model: 'unknown-model', packet, maxRepairs: 0 });
+    expect(formats[0]).toEqual({ type: 'json_object' });
+  });
+
+  it('accounts every provider request and records policy evidence', async () => {
+    const reserved: number[] = [];
+    const responses = ['{}', JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] })];
+    const result = await runGenerationStage({ provider: { generate: async () => responses.shift()! }, model: 'fake', packet, maxRepairs: 1, beforeProviderCall: async (callIndex) => { reserved.push(callIndex); } });
+    expect(reserved).toEqual([1, 2]);
+    expect(result.receipt).toMatchObject({ providerRequests: { requestedUnits: 2, usedUnits: 2, refundedUnits: 0 }, policyVersion: 'content-stage-policy-r9a-v1', operatorCorrection: { status: 'unavailable_not_collected' } });
+    expect(result.receipt.repairAttemptHashes).toHaveLength(1);
+  });
+
+  it('uses transport request count when one logical generation retries HTTP', async () => {
+    let count = 0;
+    const provider: StageGenerationProvider = {
+      getProviderRequestCount: () => count,
+      generate: async () => { count += 3; return JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] }); },
+    };
+    const result = await runGenerationStage({ provider, model: 'fake', packet, maxRepairs: 0 });
+    expect(result.receipt.providerRequests).toMatchObject({ requestedUnits: 3, usedUnits: 3, refundedUnits: 0, unit: 'provider_requests' });
+  });
+
+  it('fails closed after the repair budget is exhausted', async () => {
+    const provider: StageGenerationProvider = { generate: async () => '{}' };
+    await expect(runGenerationStage({ provider, model: 'fake', packet })).rejects.toThrow('generation_stage_schema_failed');
+  });
+
+  it('retains every parseable repair candidate so an earlier valid partial can be checkpointed', async () => {
+    const partial = { stage: 'flashcard_items', items: [{ id: 'c1' }] };
+    const flashcardPacket = buildStagePromptPacket('flashcard_items', 'v3', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'Home', count: 10, approvedArtifactIds: ['idea-1'], exemplarIds: [], previousContentFingerprints: [] }), { packIdea: { packId: 'home' }, previousCardKeys: [], lessonCardKeys: [], publishedCardKeys: [] });
+    const responses = [JSON.stringify(partial), '{}', 'not-json'];
+    const provider: StageGenerationProvider = { generate: async () => responses.shift()! };
+    const error = await runGenerationStage({ provider, model: 'fake', packet: flashcardPacket, maxRepairs: 2 }).catch((value) => value);
+    expect(error).toBeInstanceOf(GenerationStageSchemaError);
+    expect(error.candidateArtifacts).toEqual([partial, {}]);
+  });
+
+  it('supports explicit pause, resume and cancel transitions', () => {
+    expect(transitionGenerationStage('running', 'pause')).toBe('paused');
+    expect(transitionGenerationStage('paused', 'resume')).toBe('queued');
+    expect(transitionGenerationStage('queued', 'cancel')).toBe('cancelled');
+    expect(() => transitionGenerationStage('approved', 'cancel')).toThrow('generation_stage_transition_invalid');
+  });
+
+  it('fails strict v2 lesson phrases that only satisfy the generic item count', async () => {
+    const lessonPacket = buildStagePromptPacket('lesson_phrases', 'v2', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'Directions', count: 50, approvedArtifactIds: ['outline-1'], exemplarIds: [], previousContentFingerprints: [] }));
+    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'lesson_phrases', items: Array.from({ length: 50 }, (_, index) => ({ id: `p${index}` })) }) };
+    await expect(runGenerationStage({ provider, model: 'fake', packet: lessonPacket, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
+  });
+
+  it('fails a v2 flashcard batch when a rich card field is missing', async () => {
+    const flashcardPacket = buildStagePromptPacket('flashcard_items', 'v2', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'City', count: 1, approvedArtifactIds: ['idea-1'], exemplarIds: [], previousContentFingerprints: [] }), { packIdea: { packId: 'city' } });
+    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'flashcard_items', items: [{ id: 'c1', front: 'Hello', back: 'Привет' }] }) };
+    await expect(runGenerationStage({ provider, model: 'fake', packet: flashcardPacket, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
+  });
+
+});

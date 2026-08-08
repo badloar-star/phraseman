@@ -1,0 +1,1169 @@
+{
+  "schemaVersion": 1,
+  "language": "fr",
+  "level": "A1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Introducing oneself",
+      "scenarioRu": "Представление себя",
+      "prompt": "Choose the correct form of être.",
+      "instructionRu": "Выберите правильную форму глагола être.",
+      "stimulus": "Bonjour, je ______ Léa.",
+      "answer": "suis",
+      "distractors": [
+        {
+          "text": "es",
+          "reasonRu": "Es относится к tu, а подлежащее здесь je."
+        },
+        {
+          "text": "est",
+          "reasonRu": "Est — форма третьего лица единственного числа, а говорящий называет себя."
+        },
+        {
+          "text": "sommes",
+          "reasonRu": "Sommes относится к nous и не согласуется с je."
+        }
+      ],
+      "explanation": "Je takes the first-person singular form suis.",
+      "explanationRu": "С je употребляется форма первого лица единственного числа suis.",
+      "targetConstruct": "first-person singular present of être for identity",
+      "targetConstructRu": "первое лицо единственного числа être при назывании личности",
+      "canDoRu": "Может назвать себя при простом знакомстве."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Greeting someone in the evening",
+      "scenarioRu": "Приветствие вечером",
+      "prompt": "Choose the greeting appropriate at eight in the evening.",
+      "instructionRu": "Выберите приветствие, подходящее для восьми часов вечера.",
+      "stimulus": "Il est vingt heures. Tu rencontres ta voisine.",
+      "answer": "Bonsoir !",
+      "distractors": [
+        {
+          "text": "Bonjour !",
+          "reasonRu": "Bonjour обычно используют утром и днём, а здесь уже вечер."
+        },
+        {
+          "text": "Bonne nuit !",
+          "reasonRu": "Bonne nuit говорят при прощании перед сном, а не как обычное приветствие при встрече."
+        },
+        {
+          "text": "Bon appétit !",
+          "reasonRu": "Bon appétit желают перед едой; это не приветствие по времени суток."
+        }
+      ],
+      "explanation": "Bonsoir is the standard greeting in the evening.",
+      "explanationRu": "Bonsoir — стандартное приветствие вечером.",
+      "targetConstruct": "time-appropriate distinction among common French greetings",
+      "targetConstructRu": "выбор французского повседневного приветствия по времени суток",
+      "canDoRu": "Может выбрать подходящее приветствие вечером."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a meeting message",
+      "scenarioRu": "Чтение сообщения о встрече",
+      "prompt": "What time is the meeting?",
+      "instructionRu": "Во сколько встреча?",
+      "stimulus": "Salut Lucas, on se retrouve devant le cinéma à 18 h 30. À tout à l'heure ! — Emma",
+      "answer": "À 18 h 30.",
+      "distractors": [
+        {
+          "text": "À 16 h 30.",
+          "reasonRu": "В сообщении указано 18 h 30, а не 16 h 30."
+        },
+        {
+          "text": "À 8 h 30.",
+          "reasonRu": "Число 18 нельзя сокращать до 8; речь о вечернем времени."
+        },
+        {
+          "text": "À 19 h.",
+          "reasonRu": "19 h в сообщении не указано."
+        }
+      ],
+      "explanation": "The message explicitly states 18 h 30.",
+      "explanationRu": "В сообщении прямо указано время 18 h 30.",
+      "targetConstruct": "explicit clock-time retrieval from an informal message",
+      "targetConstructRu": "извлечение явно указанного времени из неформального сообщения",
+      "canDoRu": "Может найти время встречи в коротком сообщении."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Meeting a new colleague",
+      "scenarioRu": "Знакомство с новым коллегой",
+      "prompt": "Choose the polite response to an introduction.",
+      "instructionRu": "Выберите вежливый ответ при знакомстве.",
+      "stimulus": "— Bonjour, je m'appelle Paul. — ______",
+      "answer": "Enchantée, Clara.",
+      "distractors": [
+        {
+          "text": "Non, merci.",
+          "reasonRu": "Так отвечают на предложение, а не на представление человека."
+        },
+        {
+          "text": "Ça coûte combien ?",
+          "reasonRu": "Это вопрос о цене и он не соответствует знакомству."
+        },
+        {
+          "text": "Au revoir, Paul.",
+          "reasonRu": "Au revoir завершает встречу, тогда как здесь человек только представился."
+        }
+      ],
+      "explanation": "Enchantée plus one's own name is a natural polite response when meeting someone.",
+      "explanationRu": "Enchantée и собственное имя — естественный вежливый ответ при знакомстве от лица Клары.",
+      "targetConstruct": "reciprocal introduction formula in a first meeting",
+      "targetConstructRu": "ответная формула представления при первой встрече",
+      "canDoRu": "Может вежливо ответить, когда собеседник представляется."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Saying one's age",
+      "scenarioRu": "Сообщение своего возраста",
+      "prompt": "Choose the correct verb form.",
+      "instructionRu": "Выберите правильную форму глагола.",
+      "stimulus": "J'______ dix-neuf ans.",
+      "answer": "ai",
+      "distractors": [
+        {
+          "text": "suis",
+          "reasonRu": "Во французском возраст выражают с avoir, а не с être."
+        },
+        {
+          "text": "as",
+          "reasonRu": "As относится к tu, а подлежащее здесь je."
+        },
+        {
+          "text": "a",
+          "reasonRu": "A относится к il или elle, а не к je."
+        }
+      ],
+      "explanation": "French expresses age with avoir: j'ai dix-neuf ans.",
+      "explanationRu": "Во французском возраст выражают глаголом avoir: j'ai dix-neuf ans.",
+      "targetConstruct": "first-person avoir in the age construction",
+      "targetConstructRu": "первое лицо avoir в конструкции возраста",
+      "canDoRu": "Может сообщить свой возраст."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Talking about family",
+      "scenarioRu": "Разговор о семье",
+      "prompt": "Who is Chloé?",
+      "instructionRu": "Кем приходится Хлоя?",
+      "stimulus": "Chloé est la fille de mes parents. Elle a le même père et la même mère que moi.",
+      "answer": "Ma sœur.",
+      "distractors": [
+        {
+          "text": "Ma mère.",
+          "reasonRu": "Мать — один из родителей говорящего, а Хлоя является дочерью этих родителей."
+        },
+        {
+          "text": "Ma fille.",
+          "reasonRu": "В тексте Хлоя — дочь родителей говорящего, а не самого говорящего."
+        },
+        {
+          "text": "Ma tante.",
+          "reasonRu": "Тётя — сестра родителя, что не соответствует описанию."
+        }
+      ],
+      "explanation": "A girl with the same parents as the speaker is the speaker's sister.",
+      "explanationRu": "Девушка с теми же родителями, что и у говорящего, — его сестра.",
+      "targetConstruct": "immediate-family noun sœur from direct kinship clues",
+      "targetConstructRu": "слово sœur по прямым признакам родства",
+      "canDoRu": "Может определить ближайшего родственника по простому описанию."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a station announcement",
+      "scenarioRu": "Чтение объявления на вокзале",
+      "prompt": "Which platform does the train leave from?",
+      "instructionRu": "С какой платформы отправляется поезд?",
+      "stimulus": "Train pour Lyon : départ à 10 h 12, voie 4.",
+      "answer": "Voie 4.",
+      "distractors": [
+        {
+          "text": "Voie 10.",
+          "reasonRu": "10 относится к часу отправления, а не к номеру пути."
+        },
+        {
+          "text": "Voie 12.",
+          "reasonRu": "12 — минуты времени отправления, а не номер пути."
+        },
+        {
+          "text": "Voie 14.",
+          "reasonRu": "Номер 14 в объявлении не встречается."
+        }
+      ],
+      "explanation": "The notice marks the departure as voie 4.",
+      "explanationRu": "В объявлении указано отправление с пути 4.",
+      "targetConstruct": "platform-number retrieval from a short station notice",
+      "targetConstructRu": "извлечение номера пути из короткого вокзального объявления",
+      "canDoRu": "Может найти номер пути в простом объявлении."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Ordering in a café",
+      "scenarioRu": "Заказ в кафе",
+      "prompt": "Choose the polite request.",
+      "instructionRu": "Выберите вежливую просьбу.",
+      "stimulus": "Tu veux commander un café.",
+      "answer": "Je voudrais un café, s'il vous plaît.",
+      "distractors": [
+        {
+          "text": "Donne-moi un café.",
+          "reasonRu": "Повелительная форма с moi звучит слишком прямолинейно для обычного заказа незнакомому сотруднику."
+        },
+        {
+          "text": "Tu es un café.",
+          "reasonRu": "Фраза означает «ты — кофе» и не является просьбой."
+        },
+        {
+          "text": "Je n'aime pas le café.",
+          "reasonRu": "Это сообщение о предпочтении, а не заказ."
+        }
+      ],
+      "explanation": "Je voudrais ... s'il vous plaît is a conventional polite café request.",
+      "explanationRu": "Je voudrais ... s'il vous plaît — стандартная вежливая формула заказа в кафе.",
+      "targetConstruct": "polite service request with je voudrais",
+      "targetConstructRu": "вежливая просьба в сфере услуг с je voudrais",
+      "canDoRu": "Может вежливо заказать простой напиток."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Identifying a book",
+      "scenarioRu": "Указание на книгу",
+      "prompt": "Choose the correct definite article.",
+      "instructionRu": "Выберите правильный определённый артикль.",
+      "stimulus": "C'est ______ livre de Marc.",
+      "answer": "le",
+      "distractors": [
+        {
+          "text": "la",
+          "reasonRu": "Livre — существительное мужского рода, поэтому la не подходит."
+        },
+        {
+          "text": "les",
+          "reasonRu": "Les употребляется во множественном числе, а livre здесь в единственном."
+        },
+        {
+          "text": "l'",
+          "reasonRu": "L' ставится перед гласной или немым h, а livre начинается с согласного звука."
+        }
+      ],
+      "explanation": "Livre is masculine singular and begins with a consonant, so it takes le.",
+      "explanationRu": "Livre — существительное мужского рода в единственном числе и начинается с согласного, поэтому нужен артикль le.",
+      "targetConstruct": "masculine singular definite article before a consonant",
+      "targetConstructRu": "определённый артикль мужского рода единственного числа перед согласным",
+      "canDoRu": "Может выбрать определённый артикль для знакомого существительного."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Choosing a drink",
+      "scenarioRu": "Выбор напитка",
+      "prompt": "Which item is a drink?",
+      "instructionRu": "Что из перечисленного является напитком?",
+      "stimulus": "Tu as soif. Que peux-tu boire ?",
+      "answer": "De l'eau.",
+      "distractors": [
+        {
+          "text": "Du pain.",
+          "reasonRu": "Pain — хлеб, его едят, а не пьют."
+        },
+        {
+          "text": "Du fromage.",
+          "reasonRu": "Fromage — сыр, это еда."
+        },
+        {
+          "text": "Une pomme.",
+          "reasonRu": "Pomme — яблоко, а не напиток."
+        }
+      ],
+      "explanation": "Eau means water and is something one drinks.",
+      "explanationRu": "Eau означает «вода»; её пьют.",
+      "targetConstruct": "basic drink noun eau contrasted with foods",
+      "targetConstructRu": "базовое название напитка eau в отличие от еды",
+      "canDoRu": "Может отличить название простого напитка от названий еды."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Checking opening hours",
+      "scenarioRu": "Проверка часов работы",
+      "prompt": "When is the bakery open on Wednesday?",
+      "instructionRu": "Когда пекарня открыта в среду?",
+      "stimulus": "BOULANGERIE — lundi–vendredi : 7 h–19 h ; samedi : 8 h–13 h ; dimanche : fermé.",
+      "answer": "De 7 h à 19 h.",
+      "distractors": [
+        {
+          "text": "De 8 h à 13 h.",
+          "reasonRu": "Это часы работы в субботу, а вопрос относится к среде."
+        },
+        {
+          "text": "Elle est fermée.",
+          "reasonRu": "Закрыто в воскресенье, не в среду."
+        },
+        {
+          "text": "De 7 h à 13 h.",
+          "reasonRu": "Такой интервал в объявлении не указан."
+        }
+      ],
+      "explanation": "Wednesday is between Monday and Friday, when the bakery is open 7 h–19 h.",
+      "explanationRu": "Среда входит в период с понедельника по пятницу, когда пекарня открыта с 7 до 19 часов.",
+      "targetConstruct": "weekday mapping to a posted opening-hours range",
+      "targetConstructRu": "соотнесение дня недели с диапазоном часов работы",
+      "canDoRu": "Может понять простое расписание работы на знакомый день."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Requesting repetition",
+      "scenarioRu": "Просьба повторить",
+      "prompt": "Choose the polite response when you do not understand.",
+      "instructionRu": "Выберите вежливый ответ, если вы не поняли.",
+      "stimulus": "La personne parle trop vite et tu ne comprends pas.",
+      "answer": "Je ne comprends pas. Pouvez-vous répéter, s'il vous plaît ?",
+      "distractors": [
+        {
+          "text": "Parlez plus vite !",
+          "reasonRu": "Просьба говорить быстрее усугубляет проблему и звучит приказом."
+        },
+        {
+          "text": "Oui, tout est clair.",
+          "reasonRu": "Фраза ложно сообщает, что всё понятно, и не просит о помощи."
+        },
+        {
+          "text": "Je répète pour vous.",
+          "reasonRu": "Это обещание повторить самому, а нужно попросить собеседника."
+        }
+      ],
+      "explanation": "The response states the problem and politely asks the speaker to repeat.",
+      "explanationRu": "Ответ сообщает о непонимании и вежливо просит собеседника повторить.",
+      "targetConstruct": "polite repair request after non-understanding",
+      "targetConstructRu": "вежливая просьба о повторе при непонимании",
+      "canDoRu": "Может сообщить о непонимании и попросить повторить."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Talking about languages",
+      "scenarioRu": "Разговор о языках",
+      "prompt": "Choose the correct present-tense form.",
+      "instructionRu": "Выберите правильную форму настоящего времени.",
+      "stimulus": "Nous ______ français à la maison.",
+      "answer": "parlons",
+      "distractors": [
+        {
+          "text": "parle",
+          "reasonRu": "Parle употребляется с je или il/elle, а подлежащее здесь nous."
+        },
+        {
+          "text": "parlez",
+          "reasonRu": "Parlez относится к vous."
+        },
+        {
+          "text": "parlent",
+          "reasonRu": "Parlent относится к ils или elles."
+        }
+      ],
+      "explanation": "Regular -er verbs take -ons with nous: nous parlons.",
+      "explanationRu": "Правильные глаголы на -er получают окончание -ons с nous: nous parlons.",
+      "targetConstruct": "nous present ending of a regular -er verb",
+      "targetConstructRu": "форма настоящего времени правильного глагола на -er с nous",
+      "canDoRu": "Может построить простое высказывание о том, на каком языке говорит группа."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Finding medicine",
+      "scenarioRu": "Поиск лекарства",
+      "prompt": "Where can you buy medicine?",
+      "instructionRu": "Где можно купить лекарство?",
+      "stimulus": "Tu dois acheter un médicament.",
+      "answer": "À la pharmacie.",
+      "distractors": [
+        {
+          "text": "À la gare.",
+          "reasonRu": "Gare — вокзал, а не место покупки лекарств."
+        },
+        {
+          "text": "À la bibliothèque.",
+          "reasonRu": "Bibliothèque — библиотека."
+        },
+        {
+          "text": "À la boulangerie.",
+          "reasonRu": "Boulangerie продаёт хлеб и выпечку, а не лекарства."
+        }
+      ],
+      "explanation": "A pharmacie is the place where medicine is sold.",
+      "explanationRu": "Pharmacie — место, где продают лекарства.",
+      "targetConstruct": "common town-place noun pharmacie",
+      "targetConstructRu": "название городского места pharmacie",
+      "canDoRu": "Может выбрать нужное знакомое место в городе."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading an invitation",
+      "scenarioRu": "Чтение приглашения",
+      "prompt": "Who is inviting whom, where, and when?",
+      "instructionRu": "Кто кого приглашает, куда и когда?",
+      "stimulus": "Salut Inès ! Tu viens chez moi samedi à 19 h pour dîner ? — Hugo",
+      "answer": "Hugo invite Inès chez lui samedi à 19 h.",
+      "distractors": [
+        {
+          "text": "Inès invite Hugo au restaurant dimanche à 19 h.",
+          "reasonRu": "Перепутаны отправитель и адресат, а также место и день."
+        },
+        {
+          "text": "Hugo invite Inès chez elle samedi à 9 h.",
+          "reasonRu": "Chez moi относится к дому Хьюго, а время указано 19 h."
+        },
+        {
+          "text": "Hugo invite Inès chez lui vendredi à 19 h.",
+          "reasonRu": "В приглашении указана суббота, а не пятница."
+        }
+      ],
+      "explanation": "Hugo signs the message and asks Inès to come to his home on Saturday at 19 h.",
+      "explanationRu": "Сообщение подписал Хьюго; он зовёт Инес к себе домой в субботу в 19 часов.",
+      "targetConstruct": "sender-addressee-place-time integration in an invitation",
+      "targetConstructRu": "совмещение отправителя, адресата, места и времени в приглашении",
+      "canDoRu": "Может понять основные детали короткого личного приглашения."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Accepting an invitation",
+      "scenarioRu": "Принятие приглашения",
+      "prompt": "Choose the appropriate acceptance.",
+      "instructionRu": "Выберите подходящий ответ с согласием.",
+      "stimulus": "— Tu veux venir dîner samedi ? — ______",
+      "answer": "Oui, avec plaisir !",
+      "distractors": [
+        {
+          "text": "Non, je ne peux pas.",
+          "reasonRu": "Это отказ, а не принятие приглашения."
+        },
+        {
+          "text": "Où est la gare ?",
+          "reasonRu": "Вопрос о вокзале не отвечает на приглашение."
+        },
+        {
+          "text": "Je voudrais l'addition.",
+          "reasonRu": "Это просьба о счёте в заведении, а не ответ на приглашение."
+        }
+      ],
+      "explanation": "Oui, avec plaisir clearly and warmly accepts the invitation.",
+      "explanationRu": "Oui, avec plaisir ясно и доброжелательно принимает приглашение.",
+      "targetConstruct": "brief positive acceptance of a social invitation",
+      "targetConstructRu": "краткое положительное принятие личного приглашения",
+      "canDoRu": "Может кратко и уместно принять приглашение."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Describing objects in a room",
+      "scenarioRu": "Описание предметов в комнате",
+      "prompt": "Choose the sentence that correctly restates the description.",
+      "instructionRu": "Выберите предложение, соответствующее описанию.",
+      "stimulus": "Dans la chambre, on voit deux chaises.",
+      "answer": "Il y a deux chaises dans la chambre.",
+      "distractors": [
+        {
+          "text": "Il y a une chaise dans la chambre.",
+          "reasonRu": "В описании указаны два стула, а не один."
+        },
+        {
+          "text": "Elle y a deux chaises dans la chambre.",
+          "reasonRu": "В безличной конструкции нужен элемент il: il y a."
+        },
+        {
+          "text": "Il sont deux chaises dans la chambre.",
+          "reasonRu": "Для сообщения о наличии используется il y a, а не il sont."
+        }
+      ],
+      "explanation": "Il y a introduces the existence of one or more objects; the plural is marked on deux chaises.",
+      "explanationRu": "Оборот il y a сообщает о наличии предметов; множественное число выражено в deux chaises.",
+      "targetConstruct": "existential il y a with a plural noun phrase",
+      "targetConstructRu": "экзистенциальный оборот il y a с существительным во множественном числе",
+      "canDoRu": "Может сообщить о наличии нескольких знакомых предметов."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Taking public transport",
+      "scenarioRu": "Поездка на общественном транспорте",
+      "prompt": "Which vehicle is described?",
+      "instructionRu": "Какой транспорт описан?",
+      "stimulus": "Il roule en ville, s'arrête à plusieurs arrêts et transporte beaucoup de passagers sur la route.",
+      "answer": "Le bus.",
+      "distractors": [
+        {
+          "text": "Le vélo.",
+          "reasonRu": "Велосипед обычно перевозит одного человека и не следует по маршруту с остановками для множества пассажиров."
+        },
+        {
+          "text": "L'avion.",
+          "reasonRu": "Самолёт не ездит по городским дорогам между остановками."
+        },
+        {
+          "text": "Le bateau.",
+          "reasonRu": "Лодка движется по воде, а в описании указана дорога."
+        }
+      ],
+      "explanation": "A bus travels on roads, follows city stops, and carries many passengers.",
+      "explanationRu": "Автобус едет по дороге, останавливается на городских остановках и перевозит много пассажиров.",
+      "targetConstruct": "basic transport noun bus from concrete features",
+      "targetConstructRu": "слово bus по конкретным признакам транспорта",
+      "canDoRu": "Может определить знакомый вид транспорта по простому описанию."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Following simple directions",
+      "scenarioRu": "Следование простым указаниям",
+      "prompt": "What should you do after turning right?",
+      "instructionRu": "Что нужно сделать после поворота направо?",
+      "stimulus": "Tournez à droite après la banque, puis continuez tout droit jusqu'à la place.",
+      "answer": "Continuer tout droit jusqu'à la place.",
+      "distractors": [
+        {
+          "text": "Tourner à gauche avant la banque.",
+          "reasonRu": "Указано повернуть направо после банка."
+        },
+        {
+          "text": "S'arrêter immédiatement devant la banque.",
+          "reasonRu": "После поворота нужно продолжить путь, а не остановиться."
+        },
+        {
+          "text": "Retourner à la gare.",
+          "reasonRu": "Вокзал в инструкции не упоминается."
+        }
+      ],
+      "explanation": "The second step is to continue straight to the square.",
+      "explanationRu": "Второй шаг — идти прямо до площади.",
+      "targetConstruct": "sequencing two explicit route instructions",
+      "targetConstructRu": "последовательность двух явных указаний маршрута",
+      "canDoRu": "Может выполнить второй шаг короткой инструкции пути."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Declining an invitation",
+      "scenarioRu": "Отказ от приглашения",
+      "prompt": "Choose the polite refusal with a short reason.",
+      "instructionRu": "Выберите вежливый отказ с краткой причиной.",
+      "stimulus": "— Tu viens au cinéma ce soir ? — ______",
+      "answer": "Désolé, je travaille ce soir.",
+      "distractors": [
+        {
+          "text": "Non.",
+          "reasonRu": "Односложный отказ возможен, но в этой ситуации менее вежлив, чем извинение с краткой причиной."
+        },
+        {
+          "text": "Oui, j'adore le cinéma.",
+          "reasonRu": "Это согласие, а не отказ."
+        },
+        {
+          "text": "Le film commence à vingt heures.",
+          "reasonRu": "Фраза сообщает время, но не отвечает, придёт ли говорящий."
+        }
+      ],
+      "explanation": "The response declines clearly while softening the refusal with an apology and a brief reason.",
+      "explanationRu": "Ответ ясно отказывает и смягчает отказ извинением и краткой причиной.",
+      "targetConstruct": "polite invitation refusal with apology and reason",
+      "targetConstructRu": "вежливый отказ от приглашения с извинением и причиной",
+      "canDoRu": "Может вежливо отказаться от приглашения и кратко объяснить причину."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Locating someone inside a building",
+      "scenarioRu": "Указание местонахождения внутри здания",
+      "prompt": "Choose the correct preposition and article.",
+      "instructionRu": "Выберите правильное сочетание предлога и артикля.",
+      "stimulus": "Paul est ______ musée.",
+      "answer": "dans le",
+      "distractors": [
+        {
+          "text": "dans la",
+          "reasonRu": "Musée — существительное мужского рода, поэтому нужен артикль le."
+        },
+        {
+          "text": "dans les",
+          "reasonRu": "Musée здесь в единственном числе, а les — форма множественного числа."
+        },
+        {
+          "text": "sur le",
+          "reasonRu": "Sur le означает «на», тогда как речь о нахождении внутри музея."
+        }
+      ],
+      "explanation": "Dans marks location inside, and masculine singular musée takes le.",
+      "explanationRu": "Dans обозначает нахождение внутри, а существительное musée мужского рода в единственном числе требует le.",
+      "targetConstruct": "dans le for location inside a masculine singular place",
+      "targetConstructRu": "сочетание dans le для нахождения внутри места мужского рода",
+      "canDoRu": "Может сказать, что человек находится внутри знакомого места."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Describing rainy weather",
+      "scenarioRu": "Описание дождливой погоды",
+      "prompt": "Which sentence means that it is raining?",
+      "instructionRu": "Какое предложение означает, что идёт дождь?",
+      "stimulus": "Regarde par la fenêtre : de l'eau tombe du ciel.",
+      "answer": "Il pleut.",
+      "distractors": [
+        {
+          "text": "Il neige.",
+          "reasonRu": "Il neige означает, что идёт снег, а в описании с неба падает вода."
+        },
+        {
+          "text": "Il fait chaud.",
+          "reasonRu": "Фраза говорит о высокой температуре, а не о дожде."
+        },
+        {
+          "text": "Il y a du vent.",
+          "reasonRu": "Фраза означает, что ветрено; падающая вода указывает на дождь."
+        }
+      ],
+      "explanation": "Il pleut is the basic French expression for rain.",
+      "explanationRu": "Il pleut — базовое французское выражение со значением «идёт дождь».",
+      "targetConstruct": "basic weather expression il pleut",
+      "targetConstructRu": "базовое погодное выражение il pleut",
+      "canDoRu": "Может понять простое сообщение о дождливой погоде."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a shop label",
+      "scenarioRu": "Чтение магазинной этикетки",
+      "prompt": "What do you get for €2.40?",
+      "instructionRu": "Что можно купить за 2,40 евро?",
+      "stimulus": "OFFRE : 3 pommes — 2,40 €",
+      "answer": "Trois pommes.",
+      "distractors": [
+        {
+          "text": "Une pomme.",
+          "reasonRu": "На этикетке указано количество 3, а не 1."
+        },
+        {
+          "text": "Deux pommes.",
+          "reasonRu": "Число 2 относится к цене, а количество яблок равно 3."
+        },
+        {
+          "text": "Quatre pommes.",
+          "reasonRu": "Цифра 4 является частью цены 2,40 €, а не количеством яблок."
+        }
+      ],
+      "explanation": "The label offers three apples for €2.40.",
+      "explanationRu": "На этикетке предлагаются три яблока за 2,40 евро.",
+      "targetConstruct": "quantity-price extraction from a simple product label",
+      "targetConstructRu": "извлечение количества и цены из простой товарной этикетки",
+      "canDoRu": "Может понять количество и цену в коротком магазинном объявлении."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Asking a price",
+      "scenarioRu": "Вопрос о цене",
+      "prompt": "Choose the natural question about the visible scarf.",
+      "instructionRu": "Выберите естественный вопрос о цене видимого шарфа.",
+      "stimulus": "Tu montres une écharpe au vendeur et tu veux connaître son prix.",
+      "answer": "Combien coûte cette écharpe ?",
+      "distractors": [
+        {
+          "text": "Où habite cette écharpe ?",
+          "reasonRu": "Habiter употребляется о месте проживания и не подходит для предмета или цены."
+        },
+        {
+          "text": "À quelle heure est cette écharpe ?",
+          "reasonRu": "Вопрос относится ко времени, а не к стоимости."
+        },
+        {
+          "text": "Pourquoi mangez-vous cette écharpe ?",
+          "reasonRu": "Шарф не является едой; вопрос не соответствует ситуации покупки."
+        }
+      ],
+      "explanation": "Combien coûte ...? directly asks the price of one visible item.",
+      "explanationRu": "Вопрос Combien coûte ...? прямо запрашивает цену одного видимого предмета.",
+      "targetConstruct": "direct price inquiry with combien coûte",
+      "targetConstructRu": "прямой вопрос о цене с combien coûte",
+      "canDoRu": "Может спросить цену видимого товара."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Describing a car",
+      "scenarioRu": "Описание автомобиля",
+      "prompt": "Choose the adjective with correct agreement.",
+      "instructionRu": "Выберите прилагательное с правильным согласованием.",
+      "stimulus": "C'est une voiture ______.",
+      "answer": "blanche",
+      "distractors": [
+        {
+          "text": "blanc",
+          "reasonRu": "Blanc — форма мужского рода, а voiture — женского рода."
+        },
+        {
+          "text": "blancs",
+          "reasonRu": "Blancs — мужской род множественного числа, но voiture стоит в единственном числе."
+        },
+        {
+          "text": "blanches",
+          "reasonRu": "Blanches — женский род множественного числа, а речь об одном автомобиле."
+        }
+      ],
+      "explanation": "Feminine singular voiture requires the feminine singular adjective blanche.",
+      "explanationRu": "С существительным voiture женского рода в единственном числе нужна форма прилагательного blanche.",
+      "targetConstruct": "feminine singular agreement of a familiar color adjective",
+      "targetConstructRu": "согласование знакомого прилагательного цвета в женском роде единственного числа",
+      "canDoRu": "Может согласовать простое прилагательное с существительным женского рода."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Getting dressed to go outside",
+      "scenarioRu": "Выбор одежды для выхода",
+      "prompt": "What do you put on your feet?",
+      "instructionRu": "Что надевают на ноги?",
+      "stimulus": "Tu vas marcher dehors. Tu mets ______ aux pieds.",
+      "answer": "des chaussures",
+      "distractors": [
+        {
+          "text": "un chapeau",
+          "reasonRu": "Chapeau надевают на голову."
+        },
+        {
+          "text": "une chemise",
+          "reasonRu": "Chemise надевают на верхнюю часть тела."
+        },
+        {
+          "text": "des gants",
+          "reasonRu": "Gants надевают на руки."
+        }
+      ],
+      "explanation": "Chaussures are worn on the feet.",
+      "explanationRu": "Chaussures — обувь, которую надевают на ноги.",
+      "targetConstruct": "everyday clothing noun chaussures by body location",
+      "targetConstructRu": "название предмета одежды chaussures по месту ношения",
+      "canDoRu": "Может выбрать название повседневного предмета одежды."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading today's public notice",
+      "scenarioRu": "Чтение сегодняшнего объявления",
+      "prompt": "Which service is closed today?",
+      "instructionRu": "Что сегодня закрыто?",
+      "stimulus": "MARDI 12 MAI — Piscine fermée aujourd'hui. Bibliothèque et café ouverts.",
+      "answer": "La piscine.",
+      "distractors": [
+        {
+          "text": "La bibliothèque.",
+          "reasonRu": "В объявлении библиотека указана как открытая."
+        },
+        {
+          "text": "Le café.",
+          "reasonRu": "Кафе также указано как открытое."
+        },
+        {
+          "text": "La bibliothèque et le café.",
+          "reasonRu": "Оба этих места открыты; закрыт только бассейн."
+        }
+      ],
+      "explanation": "The notice explicitly says the pool is closed today.",
+      "explanationRu": "В объявлении прямо сказано, что сегодня закрыт бассейн.",
+      "targetConstruct": "open-closed status retrieval from a short public notice",
+      "targetConstructRu": "извлечение статуса открыто или закрыто из короткого объявления",
+      "canDoRu": "Может понять, какая знакомая услуга сегодня недоступна."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Finding the bathroom",
+      "scenarioRu": "Поиск туалета",
+      "prompt": "Choose the polite question.",
+      "instructionRu": "Выберите вежливый вопрос.",
+      "stimulus": "Tu es dans un restaurant et tu cherches les toilettes.",
+      "answer": "Excusez-moi, où sont les toilettes, s'il vous plaît ?",
+      "distractors": [
+        {
+          "text": "Les toilettes sont ici.",
+          "reasonRu": "Это утверждение о месте, а говорящий не знает, где находится туалет."
+        },
+        {
+          "text": "Donnez-moi les toilettes.",
+          "reasonRu": "Туалет не является предметом, который можно передать; формулировка неестественна."
+        },
+        {
+          "text": "Combien coûtent les toilettes ?",
+          "reasonRu": "Это вопрос о цене, а не о местонахождении."
+        }
+      ],
+      "explanation": "Excusez-moi and s'il vous plaît frame a clear, polite location question.",
+      "explanationRu": "Excusez-moi и s'il vous plaît оформляют ясный и вежливый вопрос о местонахождении.",
+      "targetConstruct": "polite public location request for toilets",
+      "targetConstructRu": "вежливый вопрос о местонахождении туалета в общественном месте",
+      "canDoRu": "Может вежливо спросить, где находится туалет."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Stating a dietary preference",
+      "scenarioRu": "Сообщение о пищевом предпочтении",
+      "prompt": "Choose the correctly negated sentence.",
+      "instructionRu": "Выберите предложение с правильным отрицанием.",
+      "stimulus": "Tu veux dire que tu ne manges pas de viande.",
+      "answer": "Je ne mange pas de viande.",
+      "distractors": [
+        {
+          "text": "Je mange ne pas de viande.",
+          "reasonRu": "Части ne и pas должны окружать личную форму глагола: ne mange pas."
+        },
+        {
+          "text": "Je pas mange de viande.",
+          "reasonRu": "Pas ставится после личной формы глагола, а ne — перед ней."
+        },
+        {
+          "text": "Je ne pas mange de viande.",
+          "reasonRu": "В этой конструкции pas должно стоять после mange, а не перед ним."
+        }
+      ],
+      "explanation": "Standard French negation places ne before and pas after the finite verb.",
+      "explanationRu": "Стандартное французское отрицание ставит ne перед личной формой глагола, а pas — после неё.",
+      "targetConstruct": "ne ... pas placement around a present-tense verb",
+      "targetConstructRu": "расположение ne ... pas вокруг глагола в настоящем времени",
+      "canDoRu": "Может построить простое отрицательное предложение."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Describing a headache",
+      "scenarioRu": "Описание головной боли",
+      "prompt": "Which body part hurts?",
+      "instructionRu": "Какая часть тела болит?",
+      "stimulus": "J'ai mal à la tête.",
+      "answer": "La tête.",
+      "distractors": [
+        {
+          "text": "La main.",
+          "reasonRu": "Main означает «кисть руки», а в предложении названа tête."
+        },
+        {
+          "text": "Le pied.",
+          "reasonRu": "Pied означает «ступня» и не упомянут в симптоме."
+        },
+        {
+          "text": "Le dos.",
+          "reasonRu": "Dos означает «спина», а говорящий жалуется на голову."
+        }
+      ],
+      "explanation": "Tête means head, so the speaker has a headache.",
+      "explanationRu": "Tête означает «голова», поэтому речь о головной боли.",
+      "targetConstruct": "basic body-part noun tête in a symptom phrase",
+      "targetConstructRu": "базовое название части тела tête в сообщении о симптоме",
+      "canDoRu": "Может понять простое сообщение о том, какая часть тела болит."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a daily schedule",
+      "scenarioRu": "Чтение распорядка дня",
+      "prompt": "It is 9 h 30. What is the next activity?",
+      "instructionRu": "Сейчас 9:30. Какое занятие будет следующим?",
+      "stimulus": "8 h : petit-déjeuner — 9 h : bus — 10 h : cours de français — 12 h : déjeuner",
+      "answer": "Le cours de français.",
+      "distractors": [
+        {
+          "text": "Le petit-déjeuner.",
+          "reasonRu": "Завтрак был в 8 часов и уже прошёл."
+        },
+        {
+          "text": "Le bus.",
+          "reasonRu": "Автобус был в 9 часов; в 9:30 это уже не следующее событие."
+        },
+        {
+          "text": "Le déjeuner.",
+          "reasonRu": "Обед будет в 12 часов, но раньше него указан урок в 10 часов."
+        }
+      ],
+      "explanation": "After 9 h 30, the earliest listed activity is the French class at 10 h.",
+      "explanationRu": "После 9:30 ближайшее указанное занятие — урок французского в 10 часов.",
+      "targetConstruct": "next-event identification in a simple timetable",
+      "targetConstructRu": "определение следующего события в простом расписании",
+      "canDoRu": "Может определить следующее занятие по простому распорядку."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Arriving late",
+      "scenarioRu": "Опоздание",
+      "prompt": "Choose the appropriate brief apology.",
+      "instructionRu": "Выберите подходящее краткое извинение.",
+      "stimulus": "Tu arrives dix minutes après l'heure du rendez-vous.",
+      "answer": "Désolé d'être en retard.",
+      "distractors": [
+        {
+          "text": "Félicitations pour mon retard !",
+          "reasonRu": "Félicitations выражает поздравление и не подходит для извинения."
+        },
+        {
+          "text": "Merci d'être en retard.",
+          "reasonRu": "Фраза благодарит за опоздание и не выражает сожаления говорящего."
+        },
+        {
+          "text": "À demain, peut-être.",
+          "reasonRu": "Это возможное прощание, а не извинение за текущее опоздание."
+        }
+      ],
+      "explanation": "Désolé d'être en retard directly and politely acknowledges the lateness.",
+      "explanationRu": "Désolé d'être en retard прямо и вежливо признаёт опоздание.",
+      "targetConstruct": "brief apology acknowledging lateness",
+      "targetConstructRu": "краткое извинение с признанием опоздания",
+      "canDoRu": "Может кратко извиниться за опоздание."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Referring back to a bag",
+      "scenarioRu": "Повторное указание на сумку",
+      "prompt": "Choose the correct object pronoun.",
+      "instructionRu": "Выберите правильное объектное местоимение.",
+      "stimulus": "— Tu vois le sac ? — Oui, je ______ vois.",
+      "answer": "le",
+      "distractors": [
+        {
+          "text": "la",
+          "reasonRu": "La заменяет существительное женского рода, а sac — мужского рода."
+        },
+        {
+          "text": "les",
+          "reasonRu": "Les заменяет существительное во множественном числе, а речь об одной сумке."
+        },
+        {
+          "text": "lui",
+          "reasonRu": "Lui — косвенное дополнение «ему/ей», а voir принимает прямое дополнение."
+        }
+      ],
+      "explanation": "Masculine singular direct object le sac is replaced by le before the verb.",
+      "explanationRu": "Прямое дополнение le sac мужского рода в единственном числе заменяется местоимением le перед глаголом.",
+      "targetConstruct": "masculine singular direct-object pronoun le",
+      "targetConstructRu": "прямое объектное местоимение le мужского рода единственного числа",
+      "canDoRu": "Может заменить знакомое существительное простым прямым местоимением."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Lighting a room",
+      "scenarioRu": "Освещение комнаты",
+      "prompt": "Which object do you turn on to get light?",
+      "instructionRu": "Какой предмет включают, чтобы получить свет?",
+      "stimulus": "La chambre est sombre. Tu allumes ______.",
+      "answer": "la lampe",
+      "distractors": [
+        {
+          "text": "le lit",
+          "reasonRu": "Lit — кровать; её не включают для освещения."
+        },
+        {
+          "text": "la table",
+          "reasonRu": "Table — стол, а не источник света."
+        },
+        {
+          "text": "la porte",
+          "reasonRu": "Porte — дверь; её открывают или закрывают, но обычно не включают."
+        }
+      ],
+      "explanation": "A lampe is switched on to provide light.",
+      "explanationRu": "Lampe — лампа, которую включают для освещения.",
+      "targetConstruct": "high-frequency household noun lampe by function",
+      "targetConstructRu": "частотное название домашнего предмета lampe по функции",
+      "canDoRu": "Может определить знакомый домашний предмет по его назначению."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Understanding a prohibition sign",
+      "scenarioRu": "Понимание запрещающего знака",
+      "prompt": "What is forbidden?",
+      "instructionRu": "Что запрещено?",
+      "stimulus": "MUSÉE — NE PAS TOUCHER LES OBJETS",
+      "answer": "Toucher les objets.",
+      "distractors": [
+        {
+          "text": "Regarder les objets.",
+          "reasonRu": "Знак запрещает трогать, но не запрещает смотреть."
+        },
+        {
+          "text": "Entrer dans le musée.",
+          "reasonRu": "Запрета на вход в тексте нет."
+        },
+        {
+          "text": "Lire les informations.",
+          "reasonRu": "Чтение информации не упомянуто как запрещённое действие."
+        }
+      ],
+      "explanation": "Ne pas toucher explicitly means that touching the objects is prohibited.",
+      "explanationRu": "Ne pas toucher прямо означает запрет трогать предметы.",
+      "targetConstruct": "explicit prohibited action in a public sign",
+      "targetConstructRu": "явно запрещённое действие в общественном знаке",
+      "canDoRu": "Может понять простой запрет в общественном месте."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Asking for help in a shop",
+      "scenarioRu": "Просьба о помощи в магазине",
+      "prompt": "Choose the polite request for help.",
+      "instructionRu": "Выберите вежливую просьбу о помощи.",
+      "stimulus": "Tu ne trouves pas ta taille et tu parles à une vendeuse.",
+      "answer": "Avez-vous cette taille ?",
+      "distractors": [
+        {
+          "text": "Cherchez ma taille maintenant !",
+          "reasonRu": "Повелительная форма звучит резко и не содержит вежливого обращения."
+        },
+        {
+          "text": "Je connais déjà toutes les tailles.",
+          "reasonRu": "Фраза утверждает обратное ситуации и не просит помощи."
+        },
+        {
+          "text": "La vendeuse cherche sa taille.",
+          "reasonRu": "Это сообщение о продавце в третьем лице, а не обращение к нему."
+        }
+      ],
+      "explanation": "Excusez-moi plus pouvez-vous m'aider forms a clear polite request to staff.",
+      "explanationRu": "Excusez-moi и pouvez-vous m'aider образуют ясную вежливую просьбу к сотруднику.",
+      "targetConstruct": "polite availability inquiry with avez-vous",
+      "targetConstructRu": "вежливая просьба сотруднику о помощи с pouvez-vous",
+      "canDoRu": "Может вежливо попросить помощи в магазине."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Going to school",
+      "scenarioRu": "Поездка в школу",
+      "prompt": "Choose the correct present form of aller.",
+      "instructionRu": "Выберите правильную форму aller в настоящем времени.",
+      "stimulus": "Nous ______ à l'école en bus.",
+      "answer": "allons",
+      "distractors": [
+        {
+          "text": "vais",
+          "reasonRu": "Vais употребляется с je, а подлежащее здесь nous."
+        },
+        {
+          "text": "allez",
+          "reasonRu": "Allez относится к vous."
+        },
+        {
+          "text": "vont",
+          "reasonRu": "Vont относится к ils или elles."
+        }
+      ],
+      "explanation": "The present-tense form of aller with nous is allons.",
+      "explanationRu": "Форма aller в настоящем времени с nous — allons.",
+      "targetConstruct": "nous present form of irregular aller",
+      "targetConstructRu": "форма неправильного глагола aller с nous в настоящем времени",
+      "canDoRu": "Может сказать, куда направляется группа."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Using a simple map",
+      "scenarioRu": "Использование простой карты",
+      "prompt": "Which direction should you go?",
+      "instructionRu": "В каком направлении нужно идти?",
+      "stimulus": "Sur la carte, la poste est à l'est de l'école. Tu es à l'école et tu vas à la poste.",
+      "answer": "Vers l'est.",
+      "distractors": [
+        {
+          "text": "Vers l'ouest.",
+          "reasonRu": "Ouest — противоположное направление; почта находится к востоку."
+        },
+        {
+          "text": "Vers le nord.",
+          "reasonRu": "Север в описании не указан."
+        },
+        {
+          "text": "Vers le sud.",
+          "reasonRu": "Юг в описании не указан."
+        }
+      ],
+      "explanation": "Est means east, so one travels east from the school to the post office.",
+      "explanationRu": "Est означает восток, поэтому от школы к почте нужно идти на восток.",
+      "targetConstruct": "cardinal direction est in a direct map relation",
+      "targetConstructRu": "сторона света est в прямом отношении на карте",
+      "canDoRu": "Может понять основное направление по простой карте."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a call-back note",
+      "scenarioRu": "Чтение записки с просьбой перезвонить",
+      "prompt": "Whom should you call, and at what number?",
+      "instructionRu": "Кому и по какому номеру нужно позвонить?",
+      "stimulus": "Nina, appelle Marie au 06 42 18 35 70 avant 18 h. — Papa",
+      "answer": "Marie, au 06 42 18 35 70.",
+      "distractors": [
+        {
+          "text": "Papa, au 06 42 18 35 70.",
+          "reasonRu": "Папа оставил записку, но позвонить нужно Мари."
+        },
+        {
+          "text": "Nina, au 06 42 18 35 70.",
+          "reasonRu": "Нина — адресат записки, а не человек, которому нужно позвонить."
+        },
+        {
+          "text": "Marie, au 06 42 18 53 70.",
+          "reasonRu": "В варианте переставлены цифры 35 и 53; он не совпадает с запиской."
+        }
+      ],
+      "explanation": "The note instructs Nina to call Marie at 06 42 18 35 70.",
+      "explanationRu": "Записка просит Нину позвонить Мари по номеру 06 42 18 35 70.",
+      "targetConstruct": "person-number pairing in a short practical note",
+      "targetConstructRu": "соотнесение человека и номера телефона в короткой записке",
+      "canDoRu": "Может найти имя и номер телефона в простой записке."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Ending a service exchange",
+      "scenarioRu": "Завершение разговора в сфере услуг",
+      "prompt": "Choose the polite closing.",
+      "instructionRu": "Выберите вежливое завершение разговора.",
+      "stimulus": "La vendeuse te donne ton achat et dit : «Voilà, c'est tout.»",
+      "answer": "Merci, au revoir et bonne journée !",
+      "distractors": [
+        {
+          "text": "Je voudrais commencer la conversation.",
+          "reasonRu": "Фраза говорит о начале разговора и не подходит к завершению покупки."
+        },
+        {
+          "text": "Donnez-moi encore la même chose.",
+          "reasonRu": "Это новый запрос, а не вежливое завершение обмена."
+        },
+        {
+          "text": "Où est votre maison ?",
+          "reasonRu": "Личный вопрос не связан с завершением обслуживания."
+        }
+      ],
+      "explanation": "Merci, au revoir and bonne journée appropriately thank the staff member and close the exchange.",
+      "explanationRu": "Merci, au revoir и bonne journée благодарят сотрудника и уместно завершают разговор.",
+      "targetConstruct": "polite service closing with thanks and farewell",
+      "targetConstructRu": "вежливое завершение обслуживания с благодарностью и прощанием",
+      "canDoRu": "Может вежливо завершить короткий разговор после покупки."
+    }
+  ]
+}

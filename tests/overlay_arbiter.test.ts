@@ -154,11 +154,11 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
     const protectedKeys: OverlayKey[] = [
       'onboardingWelcome',
       'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
-      'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
+      'introFullAccess', 'dailyPlan', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
-      'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-      'perfectWeekReward', 'compassBriefing', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
-      'collectibleDrop', 'arenaInvite',
+      'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+      'perfectWeekReward', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
+      'collectibleDrop', 'reviewPrompt', 'arenaInvite', 'coinsMigration',
     ];
     for (const k of protectedKeys) {
       expect(isForceEvictable(k)).toBe(false);
@@ -250,18 +250,23 @@ describe('OverlayArbiter: исчерпывающая классификация 
   // Защищённые: закрывает ЮЗЕР (сундук с осколками / крупное окно / user-dismissed уведомление).
   // Выселять по таймеру нельзя — потеряется награда или окно, которое юзер читает.
   const PROTECTED_REGISTRY: readonly OverlayKey[] = [
-    'onboardingWelcome',
-    'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
-    'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
+    'onboardingWelcome', 'authRecovery',
+    'update', 'releaseNotes', 'broadcast', 'personalAdminMessage', 'leagueBonusAvailable', 'notifNudge',
+    'introFullAccess', 'dailyPlan', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
-    'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-    'perfectWeekReward', 'compassBriefing',
+    'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+    'perfectWeekReward',
+    // coinsMigration — одноразовый информ-модал «Осколки → Монеты»: награды нет,
+    // но окно закрывает юзер — выселять таймером нельзя.
+    'coinsMigration',
     // lessonResultsSequence — секвенция наград lesson_complete: закрывается ТОЛЬКО
     // тапом юзера по CTA (доступна ≤3с, спек FeedbackKit §2.1) — выселять нельзя,
     // иначе празднование обрывается на середине, пока юзер его смотрит.
     'lessonResultsSequence',
     'lessonCompleteNotif', 'arenaRoomConfirm',
-    'collectibleDrop', 'arenaInvite',
+    'collectibleDrop', 'reviewPrompt', 'arenaInvite',
+    // coinsMigration — одноразовый информ-модал: закрывает юзер по CTA, выселять нельзя.
+    'coinsMigration',
   ];
 
   it('каждый ключ OVERLAY_PRIORITY классифицирован РОВНО в одном реестре (нет пропущенных)', () => {
@@ -303,12 +308,26 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // Зазор нужен ТОЛЬКО при переходе одной нативной модалки в ДРУГУЮ нативную.
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
+  it('serializes a pending review prompt after an active native modal with a handoff gap', () => {
+    const reviewPrompt = 'reviewPrompt' as OverlayKey;
+
+    expect(resolveNextOverlay('update', wants('update', reviewPrompt))).toBe('update');
+    expect(resolveNextOverlay('update', wants(reviewPrompt))).toBe(reviewPrompt);
+    expect(isNativeModal(reviewPrompt)).toBe(true);
+    expect(needsHandoffGap('update', reviewPrompt)).toBe(true);
+  });
+
+  it('classifies the streak revive prompt as a native modal requiring handoff', () => {
+    expect(isNativeModal('streakRevive')).toBe(true);
+    expect(needsHandoffGap('update', 'streakRevive')).toBe(true);
+  });
+
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }
-    for (const k of ['actionToast', 'coachToast', 'streakRevive'] as OverlayKey[]) {
+    for (const k of ['actionToast', 'coachToast'] as OverlayKey[]) {
       expect(isNativeModal(k)).toBe(false);
     }
     expect(isNativeModal(null)).toBe(false);
@@ -322,6 +341,8 @@ describe('OverlayArbiter native-modal handoff gap', () => {
     expect(needsHandoffGap('entitlementExpired', 'compassBriefing')).toBe(true);
     expect(needsHandoffGap('update', 'notifNudge')).toBe(true);
     expect(needsHandoffGap('entitlementExpired', 'referralWelcome')).toBe(true);
+    expect(needsHandoffGap('update', 'levelUp')).toBe(true);
+    expect(needsHandoffGap('levelUp', 'releaseNotes')).toBe(true);
   });
 
   it('needsHandoffGap: НЕТ для первого показа, закрытия в никуда, тех же и не-нативных', () => {

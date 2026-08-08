@@ -108,7 +108,7 @@ function makeStep(input: {
     ),
     microTask: tri(
       'Выбери живой кусок: very, really, quite или too.',
-      'Обери живий шматок: very, really, quite або too.',
+      'Обери живий зворот: very, really, quite або too.',
       'Elige el bloque natural: very, really, quite o too.',
     ),
     sentence: input.sentence,
@@ -124,7 +124,7 @@ function makeStep(input: {
           withEs(input.wrong[option] ??
             tri(
               `Почти, но здесь нужен другой кусок: ${input.correctAnswer}.`,
-              `Майже, але тут потрiбен iнший шматок: ${input.correctAnswer}.`,
+              `Майже, але тут потрiбен iнший зворот: ${input.correctAnswer}.`,
               `Casi. Usa: ${input.correctAnswer}.`,
             ), esFeedback),
         ]),
@@ -665,7 +665,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
         'many useful / much tired / many difficult': tri('Здесь не считаем предметы и не говорим о количестве. Нужны короткие усилители качества.', 'Тут не рахуємо предмети i не говоримо про кiлькiсть. Потрiбнi короткi пiдсилювачi якостi.', 'Use very useful / really tired / quite difficult.'),
         'very useful / really much tired / quite much difficult': tri('После разговорного или мягкого усилителя не добавляем лишнее much. Фраза должна быть короче.', 'Пiсля розмовного або мʼякого пiдсилювача не додаємо зайве much. Фраза має бути коротшою.', 'Use really tired / quite difficult.'),
       },
-      clue: tri('Три живых куска: нейтрально, разговорно, мягко. Во всех трех усилитель идет перед качеством.', 'Три живi шматки: нейтрально, розмовно, мʼяко. В усiх трьох пiдсилювач iде перед якiстю.', 'Three chunks.'),
+      clue: tri('Три живых куска: нейтрально, разговорно, мягко. Во всех трех усилитель идет перед качеством.', 'Три живi звороти: нейтрально, розмовно, мʼяко. В усiх трьох пiдсилювач iде перед якiстю.', 'Three chunks.'),
       finalHint: tri('Ответ: very useful / really tired / quite difficult.', 'Вiдповiдь: very useful / really tired / quite difficult.', 'Answer: very useful / really tired / quite difficult.'),
       focusWords: ['very useful', 'really tired', 'quite difficult'],
     }),

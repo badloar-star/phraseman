@@ -3,18 +3,28 @@ import { useRouter } from 'expo-router';
 import {
   ActivityIndicator,
   View, Text, TouchableOpacity, TextInput, ScrollView, Animated,
-  Share, Keyboard, StyleSheet, Modal, InteractionManager,
+  Share, Keyboard, StyleSheet, Modal, InteractionManager, Platform,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { FlashList } from '@shopify/flash-list';
-import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
+import Reanimated, {
+  FadeInDown,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 // FlashList с поддержкой Reanimated-обработчика скролла (onScroll-worklet на UI-потоке).
 const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
 import TapScale from '../../components/TapScale';
 import DuoPressable from '../../components/DuoPressable';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+// зачем: «добавить друга» — низкий Bevel-шит на общем каркасе шторок рефералки.
+import CenteredDialogShell from '../../components/centered_dialog_shell';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { glassFill } from '../../components/GlassSurface';
 import { useLang } from '../../components/LangContext';
@@ -25,28 +35,39 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
-import VipGreenUserName from '../../components/VipGreenUserName';
 import LeagueCrownName from '../../components/LeagueCrownName';
 import ProfileCardBadge from '../../components/ProfileCardBadge';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import { softShadow } from '../../constants/androidGlow';
 import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
 import { getSocialFriendsIcon } from '../../constants/socialIconAssets';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
-import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
+import { getLevelFromXP, getXPProgress, isLightThemeMode, type ThemeMode } from '../../constants/theme';
 import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import {
   normalizeProfileCardLevel,
   normalizeProfileCardMotion,
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from '../profile_card_system';
-import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+
+// Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
+// свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
+const LEGEND_CARD_NAME_GOLD = {
+  color: '#F5C842',
+  textShadowColor: 'rgba(245,200,66,0.45)',
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 6,
+} as const;
 import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
 import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
 import {
@@ -64,6 +85,8 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
+import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from '../friends_profiles_batch';
+import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { fetchActiveLeagueCrowns } from '../services/league_chest_rewards';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
@@ -95,7 +118,11 @@ import {
   setActivityLikeCount,
 } from '../friend_activity_like_optimistic';
 import { trackActivity } from '../app_activity';
-import { getShardsBalance } from '../shards_system';
+import {
+  getShardsBalance,
+  peekLastKnownShardsBalance,
+  replaceShardsBalanceForAccountGeneration,
+} from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
 import { claimUnseenFriendGifts, type IncomingFriendGift } from '../friend_gift_inbox';
 import { emitAppEvent } from '../events';
@@ -116,18 +143,28 @@ import { checkAchievements } from '../achievements';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
 import {
   getClaimableReferralState,
-  summarizeInvites,
+  peekClaimableReferralState,
   type ReferralInvite,
 } from '../referral_vip';
 import { buildCloudReferralInviteShare } from '../referral_invite_share';
 import { generateReferralCode, getReferralCode } from '../referral_system';
 import { isReferralCloudEnabled } from '../referral_flags';
+import { useReferralRoulettePolicy } from '../referral_roulette_flag';
+import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
 import {
   shouldShowReferralAccessEnded,
   markReferralAccessEndedSeen,
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
 import { useAppSnapshotSelector } from '../app_snapshot_store';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
+import { readVipSnapshotForGeneration } from '../premium_vip_storage';
+import {
+  isReferralAccountRequestCurrent,
+  readReferralDrain,
+  readReferralInvites,
+} from '../referrals_cache';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -235,6 +272,12 @@ function makeFriendsChrome(themeMode: ThemeMode, t: any): FriendsChrome {
   };
 }
 
+function friendGiftAccent(giftId: FriendGiftId | string, t: any): string {
+  if (giftId === 'chain_shield_1') return '#7AA7FF';
+  if (giftId === 'xp_boost_2x_24h') return '#F0A23A';
+  return t.accent;
+}
+
 async function writeProfilesCache(cache: Record<string, ProfileCacheEntry>, retainUids: readonly string[] = []): Promise<void> {
   try {
     await AsyncStorage.setItem(
@@ -265,8 +308,8 @@ function shouldUseLookupDisplayName(profile: FriendProfile | null): boolean {
   return !current || current === '…' || current === '...' || current === 'Phraseman' || current === 'Friend' || current === 'Player' || current === 'Игрок';
 }
 
-function placeholderFriendProfile(uid: string, fallbackName?: string): FriendProfile {
-  const sanitizedName = cleanFriendDisplayName(fallbackName);
+function placeholderFriendProfile(uid: string, candidateName?: string): FriendProfile {
+  const sanitizedName = cleanFriendDisplayName(candidateName);
   return {
     uid,
     name: sanitizedName || 'Phraseman',
@@ -314,9 +357,9 @@ function friendProfileFromLookup(uid: string, lp: LookupUserProfile | undefined)
 function profileWithLookupDisplayName(
   uid: string,
   profile: FriendProfile | null,
-  fallbackName?: string,
+  candidateName?: string,
 ): FriendProfile | null {
-  const sanitizedName = cleanFriendDisplayName(fallbackName);
+  const sanitizedName = cleanFriendDisplayName(candidateName);
   if (!sanitizedName) return profile;
   if (!profile) return placeholderFriendProfile(uid, sanitizedName);
   if (!shouldUseLookupDisplayName(profile)) return profile;
@@ -474,39 +517,36 @@ function profileFromArenaDoc(uid: string, data: Record<string, unknown>): Friend
   });
 }
 
+/** Конвертация batch-ответа сервера в локальный FriendProfile (поля normalizePublicFriendProfile). */
+function profileFromBatchRecord(rec: FriendProfileBatchRecord): FriendProfile {
+  return normalizePublicFriendProfile({
+    uid: rec.uid,
+    name: rec.displayName,
+    totalXp: rec.totalXp,
+    weeklyXp: 0,
+    streak: 0,
+    isPremium: rec.isPremium,
+    isVip: rec.isVip,
+    isLifetime: rec.isLifetime,
+    avatar: rec.avatar,
+    frame: rec.frame,
+    aura: rec.aura,
+    profileCardLevel: rec.profileCardLevel,
+    profileCardTheme: undefined,
+    profileCardMotion: undefined,
+    profileCardPublicFocus: undefined,
+  });
+}
+
 async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfile | null> {
   try {
-    const db = getDb();
-    if (!db) return null;
-    let profile: FriendProfile | null = null;
-
-    const leaderboardSnap = await db.collection('leaderboard').doc(uid).get();
-    if (leaderboardSnap.exists) {
-      profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(uid, leaderboardSnap.data() ?? {}));
-    }
-    if (!profile || profile.totalXp <= 0) {
-      const byAuthSnap = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
-      const byAuthDoc = byAuthSnap.docs?.[0];
-      if (byAuthDoc) {
-        profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(byAuthDoc.id, byAuthDoc.data() ?? {}));
-      }
-    }
-
-    if (!profile || profile.totalXp <= 0) {
-      const arenaByStableSnap = await db.collection('arena_profiles').where('mirrorStableId', '==', uid).limit(1).get();
-      const arenaByStableDoc = arenaByStableSnap.docs?.[0];
-      if (arenaByStableDoc) {
-        profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaByStableDoc.data() ?? {}));
-      }
-    }
-
-    if (!profile || profile.totalXp <= 0) {
-      const arenaSnap = await db.collection('arena_profiles').doc(uid).get();
-      if (arenaSnap.exists) {
-        profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaSnap.data() ?? {}));
-      }
-    }
-
+    // Пачечный серверный путь (1 callable вместо 4-RTT цепочки); legacy-цепочка
+    // (leaderboard → arena_profiles) теперь выполняется внутри friendsGetProfiles.
+    // TODO(legacy-compat): для IS_EXPO_GO/CLOUD_SYNC_ENABLED=false старая цепочка
+    // видна в git-истории при необходимости.
+    const map = await fetchFriendProfilesBatch([uid]);
+    const rec = map[uid];
+    const profile = rec ? profileFromBatchRecord(rec) : null;
     if (!profile && __DEV__) console.warn('[friendProfile] public profile missing for uid:', uid);
     return profile;
   } catch (e) {
@@ -564,7 +604,11 @@ async function loadProfiles(
 
   if (toFetch.length > 0) {
     await ensureAnonUser();
-    const fetched = await mapWithConcurrency(toFetch, 6, (uid) => fetchFriendProfileFromFirestore(uid));
+    const batchMap = await fetchFriendProfilesBatch(toFetch);
+    const fetched = toFetch.map((uid) => {
+      const rec = batchMap[uid];
+      return rec ? profileFromBatchRecord(rec) : null;
+    });
     const fetchedProfiles = fetched.filter((p): p is FriendProfile => p !== null);
     const crownMap = await fetchActiveLeagueCrowns(fetchedProfiles.map((p) => p.uid));
     const newEntries: Record<string, ProfileCacheEntry> = {};
@@ -663,16 +707,85 @@ function FriendsThemeIcon({
   );
 }
 
+// ── Микроанимации списков (D-редизайн): каскад, пульс, pop ─────────────────────
+
+/** Мягкий пульс (opacity 0.6→1) — для кнопки подарка, когда подарок реально доступен. */
+function PulseOn({ active, children }: { active: boolean; children: React.ReactNode }) {
+  const opacity = useSharedValue(1);
+  // зачем: withRepeat(-1) без гарда крутится вечно даже когда вкладка «Друзья»
+  // в фоне или приложение свёрнуто — это грелка батареи. Гардим фокусом экрана
+  // и активностью приложения (контракт tests/perf_freeze_contract.test.ts).
+  //
+  // зачем ownerVisible 2026-07-27 (владелец: «приложение греет телефон»): все
+  // табы живут в ОДНОМ роутном экране, поэтому useIsFocused() возвращает true
+  // и для невидимых — одного useRuntimeActive() было мало, пульс крутился,
+  // пока пользователь сидел на главной. runtimeOwnerId — честный сигнал.
+  const { runtimeOwnerId } = useTabNav();
+  const runtimeActive = useRuntimeActive(runtimeOwnerId === 'friends');
+  useEffect(() => {
+    if (active && runtimeActive) {
+      opacity.value = withRepeat(withTiming(0.6, { duration: 900 }), -1, true);
+    } else {
+      opacity.value = withTiming(1, { duration: 150 });
+    }
+  }, [active, runtimeActive, opacity]);
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
+  return <Reanimated.View style={style}>{children}</Reanimated.View>;
+}
+
+/** Кнопка лайка с pop-анимацией сердечка (scale 1→1.4→1) при тапе. */
+function ActivityLikeButton({
+  testID, liked, count, likeColor, chrome, t, f, accessibilityLabel, onPress,
+}: {
+  testID: string; liked: boolean; count: number; likeColor: string;
+  chrome: FriendsChrome; t: any; f: any;
+  accessibilityLabel: string; onPress: () => void;
+}) {
+  const scale = useSharedValue(1);
+  const heartStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
+  const handlePress = () => {
+    scale.value = withSequence(withTiming(1.4, { duration: 120 }), withTiming(1, { duration: 180 }));
+    onPress();
+  };
+  return (
+    <TapScale
+      testID={testID}
+      onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      style={{
+        minWidth: 44,
+        minHeight: 44,
+        borderRadius: 14,
+        paddingHorizontal: 7,
+        paddingVertical: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: liked ? 'rgba(255,45,85,0.16)' : chrome.button,
+        borderWidth: 0.5,
+        borderColor: liked ? 'rgba(255,45,85,0.55)' : chrome.border,
+      }}
+    >
+      <Reanimated.View style={heartStyle}>
+        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={19} color={liked ? likeColor : t.textMuted} />
+      </Reanimated.View>
+      <Text style={{ color: liked ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
+        {count}
+      </Text>
+    </TapScale>
+  );
+}
+
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, referralStatus,
+  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, giftAvailable,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
   themeMode: ThemeMode;
-  /** Статус приглашения, если друг пришёл по твоему коду. */
-  referralStatus?: 'pending' | 'qualified' | 'rewarded';
+  /** Подарок реально доступен (баланс осколков ≥ цены самого дешёвого) — кнопка мягко пульсирует. */
+  giftAvailable?: boolean;
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
@@ -687,7 +800,6 @@ function FriendRow({
         flexDirection: 'row', alignItems: 'center',
         backgroundColor: glassFill(chrome.card, 0.46),
         borderRadius: 16, padding: 14, marginBottom: 10,
-        borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),
       }}
     >
       <TouchableOpacity
@@ -705,39 +817,18 @@ function FriendRow({
           <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={FRIEND_ROW_AVATAR_SIZE} auraId={usesPremiumAura ? undefined : effectiveAura} animateAura={false} />
         </PremiumAvatarHalo>
         <View style={{ flex: 1, minWidth: 0 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
-            <View style={{ flexShrink: 1, minWidth: 0 }}>
+          <View style={{ minWidth: 0, overflow: 'hidden' }}>
+            <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
               {hasLeagueCrown
                 ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
-                : profile.isPremium
+                : profile.isPremium || profile.isVip
                 ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-                : profile.isVip
-                ? <VipGreenUserName text={profile.name} fontSize={f.body} />
-                : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
+                : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', ...((profile.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }} numberOfLines={1}>{profile.name}</Text>
               }
             </View>
-            <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} />
           </View>
+          <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} style={{ marginTop: 3 }} />
           <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
-          {referralStatus && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 3 }}>
-              <Ionicons
-                name={referralStatus === 'pending' ? 'hourglass-outline' : 'checkmark-circle'}
-                size={12}
-                color={referralStatus === 'pending' ? t.textMuted : t.accent}
-              />
-              <Text
-                style={{ fontSize: f.xs ?? 11, fontWeight: '700', color: referralStatus === 'pending' ? t.textMuted : t.accent }}
-                numberOfLines={1}
-              >
-                {referralStatus === 'pending'
-                  ? triLang(lang as any, { ru: 'По твоему приглашению', uk: 'За твоїм запрошенням', es: 'Por tu invitación', 'pt-BR': 'Pelo seu convite', vi: 'Theo lời mời của bạn', id: 'Lewat undanganmu', tr: 'Senin davetinle', pl: 'Z twojego zaproszenia' })
-                  : referralStatus === 'qualified'
-                  ? triLang(lang as any, { ru: 'Готов открыть доступ', uk: 'Готовий відкрити доступ', es: 'Listo para abrir acceso', 'pt-BR': 'Pronto para abrir acesso', vi: 'Sẵn sàng mở quyền', id: 'Siap buka akses', tr: 'Erişim açmaya hazır', pl: 'Gotowy otworzyć dostęp' })
-                  : triLang(lang as any, { ru: 'Доступ открыт', uk: 'Доступ відкрито', es: 'Acceso abierto', 'pt-BR': 'Acesso aberto', vi: 'Đã mở quyền', id: 'Akses dibuka', tr: 'Erişim açıldı', pl: 'Dostęp otwarty' })}
-              </Text>
-            </View>
-          )}
         </View>
       </TouchableOpacity>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0, marginLeft: 12 }}>
@@ -764,7 +855,9 @@ function FriendRow({
             accessibilityLabel={triLang(lang as any, { ru: `Подарить ${profile.name}`, uk: `Подарувати ${profile.name}`, es: `Regalar a ${profile.name}`, 'pt-BR': `Presentear ${profile.name}`, vi: `Tặng quà cho ${profile.name}`, id: `Beri hadiah ke ${profile.name}`, tr: `${profile.name} kullanıcısına hediye gönder`, pl: `Podaruj ${profile.name}` })}
             style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Ionicons name="gift-outline" size={18} color={t.accent} />
+            <PulseOn active={giftAvailable === true}>
+              <Ionicons name="gift-outline" size={18} color={t.accent} />
+            </PulseOn>
           </TapScale>
           <TapScale
             testID={`friend-delete-${profile.uid}`}
@@ -802,25 +895,23 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
     <View testID={`friend-request-row-${profile.uid}`} style={{
       flexDirection: 'row', alignItems: 'center',
       backgroundColor: glassFill(chrome.card, 0.46), borderRadius: 16, padding: 14, marginBottom: 10,
-      borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), gap: 12,
+      gap: 12,
     }}>
       <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask} animateShimmer={false}>
         <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} animateAura={false} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
-          <View style={{ flexShrink: 1, minWidth: 0 }}>
+        <View style={{ minWidth: 0, overflow: 'hidden' }}>
+          <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
             {hasLeagueCrown
               ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
-              : profile.isPremium
+              : profile.isPremium || profile.isVip
               ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-              : profile.isVip
-              ? <VipGreenUserName text={profile.name} fontSize={f.body} />
               : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
             }
           </View>
-          <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} />
         </View>
+        <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} style={{ marginTop: 3 }} />
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginTop: 2 }}>
@@ -909,10 +1000,8 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
         <View style={{ flex: 1 }}>
           {hasLeagueCrown
             ? <LeagueCrownName text={profile.name} fontSize={f.h3 ?? f.body + 2} count={displayLeagueCrownCount} />
-            : profile.isPremium
+            : profile.isPremium || profile.isVip
             ? <PremiumGoldUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
-            : profile.isVip
-            ? <VipGreenUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
             : <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? 18, fontWeight: '800' }}>{profile.name}</Text>
           }
           <Text style={{ color: t.textSecond, fontSize: f.body, marginTop: 2 }}>
@@ -1212,7 +1301,7 @@ function FriendQuestStartedModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
-        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>
           <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(232,195,106,0.42)']} style={{ padding: 22, gap: 14 }}>
             <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 82, height: 82 }}>
               <FriendsThemeIcon themeMode={themeMode} size={82} accessibilityLabel="Friend quest" />
@@ -1247,7 +1336,7 @@ function FriendQuestCompletedModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
-        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>
           <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(52,199,89,0.24)']} style={{ padding: 22, gap: 14 }}>
             <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#19351F' }}>
               <Ionicons name="sparkles-outline" size={38} color={monoIcon(themeMode, '#B9F6C9')} />
@@ -1494,7 +1583,7 @@ function ActivityTab({
 
   const showFeed = !emptyNoFriends && !emptyNoEvents;
 
-  const renderFeedItem = ({ item }: { item: ActivityFeedItem }) => {
+  const renderFeedItem = ({ item, index }: { item: ActivityFeedItem; index: number }) => {
         if (item.kind === 'section') {
           const label = item.section === 'today'
             ? L('Сегодня', 'Сьогодні', 'Hoy', 'Hoje', 'Hôm nay', 'Hari ini', 'Bugün', 'Dzisiaj')
@@ -1502,12 +1591,14 @@ function ActivityTab({
             ? L('Вчера', 'Вчора', 'Ayer', 'Ontem', 'Hôm qua', 'Kemarin', 'Dün', 'Wczoraj')
             : L('Ранее', 'Раніше', 'Antes', 'Antes', 'Trước đó', 'Sebelumnya', 'Daha önce', 'Wcześniej');
           return (
-            <Text
-              testID={`friends-activity-section-${item.section}`}
-              style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4, marginBottom: 10 }}
-            >
-              {label}
-            </Text>
+            <Reanimated.View entering={FadeInDown.duration(280)}>
+              <Text
+                testID={`friends-activity-section-${item.section}`}
+                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4, marginBottom: 10 }}
+              >
+                {label}
+              </Text>
+            </Reanimated.View>
           );
         }
         const event = item.event;
@@ -1524,12 +1615,13 @@ function ActivityTab({
           ? lessonsDayText(name, item.lessonsCount, lang)
           : eventText(event, name, lang);
         return (
+          <Reanimated.View entering={FadeInDown.delay(Math.min(index, 10) * 40).duration(320)}>
           <View
             testID={`friends-activity-row-${event.uid}-${event.id}`}
             style={{
               flexDirection: 'row', alignItems: 'flex-start', gap: 12,
               backgroundColor: glassFill(chrome.card, 0.46), borderRadius: 16, padding: 14, marginBottom: 10,
-              borderTopWidth: 1, borderTopColor: isMilestone ? color + '55' : glassFill(t.accent, 0.14),
+              ...(isMilestone ? { borderTopWidth: 1, borderTopColor: color + '55' } : null),
             }}
           >
             <TouchableOpacity
@@ -1575,30 +1667,19 @@ function ActivityTab({
                 </Text>
               </View>
             </TouchableOpacity>
-            <TapScale
+            <ActivityLikeButton
               testID={`friends-activity-like-${event.uid}-${event.id}`}
-              onPress={() => { void handleActivityLike(event); }}
-              accessibilityRole="button"
+              liked={likedToday}
+              count={likeCount}
+              likeColor={likeColor}
+              chrome={chrome}
+              t={t}
+              f={f}
               accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad', 'Like de atividade', 'Thích hoạt động', 'Like aktivitas', 'Etkinlik beğenisi', 'Polubienie aktywności')}
-              style={{
-                minWidth: 44,
-                minHeight: 44,
-                borderRadius: 14,
-                paddingHorizontal: 7,
-                paddingVertical: 5,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: likedToday ? 'rgba(255,45,85,0.16)' : chrome.button,
-                borderWidth: 0.5,
-                borderColor: likedToday ? 'rgba(255,45,85,0.55)' : chrome.border,
-              }}
-            >
-              <Ionicons name={likedToday ? 'heart' : 'heart-outline'} size={19} color={likedToday ? likeColor : t.textMuted} />
-              <Text style={{ color: likedToday ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
-                {likeCount}
-              </Text>
-            </TapScale>
+              onPress={() => { void handleActivityLike(event); }}
+            />
           </View>
+          </Reanimated.View>
         );
   };
 
@@ -1632,7 +1713,6 @@ function ActivityTab({
               style={{
                 flexDirection: 'row', alignItems: 'center', gap: 12,
                 backgroundColor: glassFill(t.accent, 0.14), borderRadius: 16, padding: 14, marginBottom: 14,
-                borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),
               }}
             >
               <View style={{
@@ -1720,44 +1800,29 @@ function AddFriendModal({
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const searchReady = isFriendSearchReady(codeInput);
   const codeMode = isFriendCodeQuery(codeInput);
-  // Юзер открыл модалку «добавить друга» именно чтобы ввести имя — открываем
-  // клавиатуру сами. Задержка ждёт slide-анимацию pageSheet: без неё фокус на
+  // Юзер открыл шит «добавить друга» именно чтобы ввести имя — открываем
+  // клавиатуру сами. Задержка ждёт выезд шторки (380мс): без неё фокус на
   // iOS теряется и клавиатура не поднимается.
   const searchInputRef = useRef<TextInput>(null);
   useEffect(() => {
     if (!visible) return;
-    const id = setTimeout(() => searchInputRef.current?.focus(), 320);
+    const id = setTimeout(() => searchInputRef.current?.focus(), 260);
     return () => clearTimeout(id);
   }, [visible]);
+  // зачем: владелец (2026-07-26) — окно «Добавить друга» должно появляться ПОСРЕДИ
+  // экрана и быть полностью независимым от клавиатуры: клавиатура выезжает под ним
+  // и не двигает его. Раньше был нижний шит (ReferralSheetShell), который рос
+  // паддингом под клавиатуру и визуально «поднимался». Каркас шита остался за
+  // шитами рефералки, а здесь — отдельный центрированный CenteredDialogShell.
   return (
-    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
-      <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
-        <ScreenGradient forceFullBleed artBackdrop="friends">
-          <SafeAreaView style={{ flex: 1 }} edges={['top', 'right', 'bottom', 'left']}>
-          <View style={{ flex: 1 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 10 }}>
-            <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
-              {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
-            </Text>
-            <TapScale
-              onPress={onClose}
-              hitSlop={8}
-              style={{
-                width: 44, height: 44, borderRadius: 22,
-                alignItems: 'center', justifyContent: 'center',
-                backgroundColor: chrome.button,
-                borderWidth: 0, borderColor: 'transparent',
-              }}
-            >
-              <Ionicons name="close" size={24} color={t.textMuted} />
-            </TapScale>
-          </View>
-
-          <ScrollView
-            keyboardShouldPersistTaps="handled"
-            decelerationRate="normal"
-            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 28, gap: 14 }}
-          >
+    <CenteredDialogShell
+      visible={visible}
+      onClose={onClose}
+      testID="friends-add-sheet"
+      title={L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+      closeLabel={L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+    >
+      <View style={{ gap: 14, paddingBottom: 4 }}>
             <View
               testID="friends-code-search-card"
               style={{
@@ -1772,13 +1837,15 @@ function AddFriendModal({
                 <TextInput
                   ref={searchInputRef}
                   testID="friends-code-input"
-                  accessibilityLabel="Friend name input"
+                  accessibilityLabel={L('Введите имя друга', 'Введіть імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
                   style={{
+                    // зачем: без обводки (правило владельца) — поле отделяем тоном
+                    // поверхности, а не рамкой.
                     flex: 1, backgroundColor: chrome.surface, borderRadius: 14,
                     minHeight: 58,
                     paddingHorizontal: 16, paddingVertical: 12,
                     fontSize: 20, fontWeight: '900', color: t.textPrimary,
-                    letterSpacing: codeMode ? 4 : 0, borderWidth: 0.5, borderColor: chrome.border,
+                    letterSpacing: codeMode ? 4 : 0,
                   }}
                   placeholder=""
                   maxLength={FRIEND_SEARCH_MAX_LENGTH}
@@ -1804,8 +1871,6 @@ function AddFriendModal({
                     borderRadius: 14,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 0.5,
-                    borderColor: searchReady ? t.accent : chrome.border,
                     opacity: isSearching ? 0.6 : 1,
                   }}
                 >
@@ -1821,12 +1886,30 @@ function AddFriendModal({
               </View>
             )}
 
+            {/* Скелетон-shimmer на время поиска (opacity loop, UI-анимация). */}
+            {isSearching && !foundUser && (
+              <View testID="friends-search-skeleton" style={{ gap: 10 }}>
+                {[0, 1].map((row) => (
+                  <PulseOn key={row} active>
+                    <View style={{
+                      height: row === 0 ? 76 : 20,
+                      borderRadius: 14,
+                      backgroundColor: chrome.button,
+                      width: row === 0 ? '100%' : '60%',
+                    }} />
+                  </PulseOn>
+                ))}
+              </View>
+            )}
+
             {foundUser && (
-              <FoundUserCard
-                profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
-                isAdding={isAdding} lang={lang} t={t} f={f} chrome={chrome}
-                themeMode={themeMode}
-              />
+              <Reanimated.View entering={FadeInDown.duration(280)}>
+                <FoundUserCard
+                  profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
+                  isAdding={isAdding} lang={lang} t={t} f={f} chrome={chrome}
+                  themeMode={themeMode}
+                />
+              </Reanimated.View>
             )}
 
             {addFeedback && (
@@ -1835,12 +1918,8 @@ function AddFriendModal({
                 <Text style={{ color: t.correct, fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
               </View>
             )}
-          </ScrollView>
-          </View>
-          </SafeAreaView>
-        </ScreenGradient>
-      </SafeAreaProvider>
-    </Modal>
+      </View>
+    </CenteredDialogShell>
   );
 }
 
@@ -1851,29 +1930,31 @@ export default function FriendsTabScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const { goHome, activeIdx, focusTick } = useTabNav();
-  const friendsTabVisible = activeIdx === 3;
+  const { goHome, focusTick, runtimeOwnerId } = useTabNav();
+  const friendsTabVisible = runtimeOwnerId === 'friends';
+  const friendsRuntimeActive = useRuntimeActive(friendsTabVisible);
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
-  // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6 — будим JS
-  // только на пересечении порога, сам скролл идёт UI-потоком (onAnimatedScroll).
-  const topFadeShown = useSharedValue(false);
-  const topFadeOnScroll = topFadeScroll?.onScroll;
-  const notifyTopFade = useCallback((y: number) => {
-    topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
-  }, [topFadeOnScroll]);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
-    onScrollWorklet: (y: number) => {
-      'worklet';
-      const shown = y > 6;
-      if (shown !== topFadeShown.value) {
-        topFadeShown.value = shown;
-        runOnJS(notifyTopFade)(y);
-      }
-    },
-  });
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const handleFriendsScroll = useCallback((e: any) => {
+    topFadeScroll?.onScroll?.(e);
+    onBouncyScroll(e);
+  }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
+  // зачем: мягкие альфы стекла рассчитаны на светлый фон; проверка была только на
+  // удалённую businessLight — sagePorcelain получала «тёмную» густоту акцента.
+  const lightGlass = themeMode === 'businessLight' || isLightThemeMode(themeMode);
+  const friendGiftSheetColors = [
+    glassFill(t.accent, lightGlass ? 0.10 : 0.18),
+    chrome.card,
+    chrome.cardSoft,
+  ] as [string, string, string];
+  const friendGiftPillColors = [
+    glassFill(t.accent, lightGlass ? 0.12 : 0.20),
+    chrome.surface,
+    chrome.card,
+  ] as [string, string, string];
   const sentGiftChrome = false
     ? {
         shellColors: ['rgba(21,24,18,0.98)', 'rgba(13,16,12,0.98)', 'rgba(2,3,4,0.98)'] as const,
@@ -1932,52 +2013,164 @@ export default function FriendsTabScreen() {
   } | null>(null);
 
   // ── Реферал: накопленные дни доступа + модалки активации/окончания ──────────
-  const [referralInvites, setReferralInvites] = useState<ReferralInvite[]>([]);
+  const referralAccountToken = captureAccountGeneration();
+  const referralAccountKey = accountScopeKey(referralAccountToken);
+  const warmReferralState = peekClaimableReferralState();
+  const warmReferralInvites = readReferralInvites(referralAccountToken);
+  const warmReferralDrain = readReferralDrain(referralAccountToken);
+  const [referralInviteState, setReferralInvites] = useState<ReferralInvite[]>(() => (
+    warmReferralInvites?.value ?? warmReferralState?.invites ?? []
+  ));
+  const [referralDrain, setReferralDrain] = useState(() => warmReferralDrain?.value ?? warmReferralState?.drain ?? {
+    softEnabled: true,
+    emergencyStop: false,
+    serverNowMs: 0,
+    activePendingCount: 0,
+    claimableQualifiedCount: 0,
+    availableCreditCount: 0,
+    latestPendingDeadlineMs: 0,
+    earliestCreditExpiryMs: 0,
+  });
+  const [hasReferralServerDrain, setHasReferralServerDrain] = useState(() => (
+    !!warmReferralDrain || !!warmReferralState
+  ));
+  const [referralStateAccountKey, setReferralStateAccountKey] = useState<string | null>(() => (
+    referralAccountKey
+  ));
   const [accessEndedOpen, setAccessEndedOpen] = useState(false);
   /** РЕФЕРАЛЬНЫЙ код (referral_codes) — отдельный от friend-кода (myCode). Для «Пригласить». */
-  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [referralCodeState, setReferralCode] = useState<string | null>(null);
+  const [referralCodeAccountKey, setReferralCodeAccountKey] = useState<string | null>(() => (
+    referralAccountKey
+  ));
   const referralEnabled = isReferralCloudEnabled();
+  const roulettePolicy = useReferralRoulettePolicy();
+  const scopedReferralState = selectAccountScopedReferralState(referralAccountKey, {
+    accountKey: referralStateAccountKey,
+    invites: referralInviteState,
+    drain: hasReferralServerDrain ? referralDrain : null,
+  });
+  const referralCode = selectAccountScopedReferralState(referralAccountKey, {
+    accountKey: referralCodeAccountKey,
+    referralCode: referralCodeState,
+  }).referralCode;
+  const referralSurface = selectReferralSurfaceState({
+    referralEnabled,
+    remotePolicy: roulettePolicy,
+    persistedDrain: scopedReferralState.drain,
+  });
+  const referralMarketingVisible = referralSurface.marketingVisible;
   const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
   const referralLastRefreshAtRef = useRef(0);
+  const friendsRuntimeActiveRef = useRef(friendsRuntimeActive);
+  const referralRuntimeGenerationRef = useRef(0);
+  const referralRefreshDirtyRef = useRef(false);
+  const inviteCodeDirtyRef = useRef(false);
+  friendsRuntimeActiveRef.current = friendsRuntimeActive;
+  useEffect(() => {
+    if (!friendsRuntimeActive) {
+      referralRuntimeGenerationRef.current += 1;
+      referralRefreshDirtyRef.current = true;
+      referralRefreshInFlightRef.current = null;
+    }
+  }, [friendsRuntimeActive]);
+
+  useEffect(() => {
+    const token = captureAccountGeneration();
+    if (!isReferralAccountRequestCurrent(token, referralAccountKey)) {
+      setReferralInvites([]);
+      setHasReferralServerDrain(false);
+      return;
+    }
+    setReferralStateAccountKey(referralAccountKey);
+    setReferralInvites(readReferralInvites(token)?.value ?? []);
+    const nextDrain = readReferralDrain(token)?.value;
+    setHasReferralServerDrain(!!nextDrain);
+    setReferralDrain(nextDrain ?? {
+      softEnabled: roulettePolicy.softEnabled,
+      emergencyStop: roulettePolicy.emergencyStop,
+      serverNowMs: 0,
+      activePendingCount: 0,
+      claimableQualifiedCount: 0,
+      availableCreditCount: 0,
+      latestPendingDeadlineMs: 0,
+      earliestCreditExpiryMs: 0,
+    });
+  }, [referralAccountKey, roulettePolicy.emergencyStop, roulettePolicy.softEnabled]);
 
   const refreshReferralState = useCallback(async (options: { force?: boolean } = {}) => {
-    if (!isReferralCloudEnabled()) return;
+    if (!friendsRuntimeActiveRef.current) {
+      referralRefreshDirtyRef.current = true;
+      return;
+    }
+    if (!referralEnabled || referralSurface.emergencyStop) return;
     const now = Date.now();
     if (!options.force && now - referralLastRefreshAtRef.current < FRIENDS_REFERRAL_REFRESH_TTL_MS) return;
     if (referralRefreshInFlightRef.current) return referralRefreshInFlightRef.current;
     referralLastRefreshAtRef.current = now;
+    const requestToken = captureAccountGeneration();
+    const runtimeGeneration = referralRuntimeGenerationRef.current;
+    const isCurrentRequest = () => {
+      const current = friendsRuntimeActiveRef.current
+      && runtimeGeneration === referralRuntimeGenerationRef.current
+      && isReferralAccountRequestCurrent(requestToken, referralAccountKey);
+      if (!current) referralRefreshDirtyRef.current = true;
+      return current;
+    };
+    if (!isCurrentRequest()) return;
+    referralRefreshDirtyRef.current = false;
     const task = (async () => {
     // Реферальный код (ensure на сервере). Без него «Пригласить» делилась бы friend-кодом,
     // которого нет в referral_codes → друг получал «код не найден» и наград не было (C1).
-    try {
+    if (referralMarketingVisible) try {
       // Кэш-код первым: серверный ensure только когда кода ещё нет, а не на каждый фокус таба.
       let rc = await getReferralCode();
+      if (!isCurrentRequest()) return;
       if (!rc || rc.trim().length < 4) {
         await generateReferralCode(myProfile?.name ?? 'User');
+        if (!isCurrentRequest()) return;
         rc = await getReferralCode();
+        if (!isCurrentRequest()) return;
       }
-      if (rc && rc.trim().length >= 4) setReferralCode(rc.trim().toUpperCase());
+      if (rc && rc.trim().length >= 4) {
+        setReferralCodeAccountKey(accountScopeKey(requestToken));
+        setReferralCode(rc.trim().toUpperCase());
+      }
     } catch { /* нет auth_links / сети — добьём ретраем ниже (useEffect) */ }
+    if (!isCurrentRequest()) return;
     const state = await getClaimableReferralState({ force: options.force });
-    if (state.ok) {
+    if (state.ok && isCurrentRequest()) {
+      setReferralStateAccountKey(accountScopeKey(requestToken));
       setReferralInvites(prev => referralInvitesKey(prev) === referralInvitesKey(state.invites) ? prev : state.invites);
+      setReferralDrain(current => JSON.stringify(current) === JSON.stringify(state.drain) ? current : state.drain);
+      setHasReferralServerDrain(true);
     }
+    if (!isCurrentRequest()) return;
 
     // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
     // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
     try {
-      const pairs = await AsyncStorage.multiGet(['vip_plan', 'vip_until']);
-      const plan = pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '';
-      const until = Number(pairs.find(p => p[0] === 'vip_until')?.[1] ?? '0') || 0;
+      const vip = await readVipSnapshotForGeneration(requestToken);
+      if (!isCurrentRequest()) return;
+      const plan = vip?.vip_plan ?? '';
+      const until = Number(vip?.vip_until ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
-      if (show) setAccessEndedOpen(true);
+      if (show && isCurrentRequest()) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }
     })();
-    referralRefreshInFlightRef.current = task.finally(() => {
-      referralRefreshInFlightRef.current = null;
+    const ownedTask = task.finally(() => {
+      if (referralRefreshInFlightRef.current === ownedTask) referralRefreshInFlightRef.current = null;
     });
-    return referralRefreshInFlightRef.current;
-  }, [myProfile?.name]);
+    referralRefreshInFlightRef.current = ownedTask;
+    return ownedTask;
+  }, [
+    myProfile?.name,
+    referralAccountKey,
+    referralEnabled,
+    referralMarketingVisible,
+    referralSurface.emergencyStop,
+    friendsRuntimeActive,
+  ]);
 
   /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
   const dismissReferralAccessEnded = useCallback(async () => {
@@ -1988,23 +2181,29 @@ export default function FriendsTabScreen() {
   /** Не пускать второй Share, пока первый ещё готовится/открыт (двойной тап = два шеринга). */
   const inviteShareBusyRef = useRef(false);
   const handleReferralInvite = useCallback(async () => {
-    if (inviteShareBusyRef.current) return;
+    if (!referralMarketingVisible || inviteShareBusyRef.current) return;
+    const requestToken = captureAccountGeneration();
+    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
     inviteShareBusyRef.current = true;
     hapticTap();
     try {
       const name = myProfile?.name ?? '';
       const share = await buildCloudReferralInviteShare({ lang, userName: name }).catch(() => null);
+      if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
       if (share?.message) {
         await Share.share({ message: share.message });
       }
     } finally {
       inviteShareBusyRef.current = false;
     }
-  }, [lang, myProfile?.name]);
+  }, [lang, myProfile?.name, referralAccountKey, referralMarketingVisible]);
 
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [foundUser, setFoundUser] = useState<FriendProfile | null>(null);
+  // зачем: «один код» (решение владельца 2026-07-25) — если пользователь нашёл друга
+  // по РЕФЕРАЛЬНОМУ коду, то при добавлении тот же ввод привязывает и приглашение.
+  const lastLookupSourceRef = useRef<string | null>(null);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [addFeedback, setAddFeedback] = useState<string | null>(null);
@@ -2055,7 +2254,10 @@ export default function FriendsTabScreen() {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
   const [giftTarget, setGiftTarget] = useState<FriendProfile | null>(null);
-  const [giftBalance, setGiftBalance] = useState(0);
+  const giftTargetRef = useRef<FriendProfile | null>(giftTarget);
+  giftTargetRef.current = giftTarget;
+  const giftRequestInFlightRef = useRef(false);
+  const [giftBalance, setGiftBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [giftBusyId, setGiftBusyId] = useState<FriendGiftId | null>(null);
   const [sentGiftReceipt, setSentGiftReceipt] = useState<{
     targetName: string;
@@ -2064,10 +2266,13 @@ export default function FriendsTabScreen() {
     balanceAfter: number;
     dailyRemaining?: number;
   } | null>(null);
+  const sentGiftReceiptNativeVisibleRef = useRef(false);
   const [incomingGiftModal, setIncomingGiftModal] = useState<{ gifts: IncomingFriendGift[] } | null>(null);
   const [activeFriendQuest, setActiveFriendQuest] = useState<FriendQuest | null>(null);
   const [friendQuestStarted, setFriendQuestStarted] = useState<FriendQuest | null>(null);
+  const [pendingFriendQuestStarted, setPendingFriendQuestStarted] = useState<FriendQuest | null>(null);
   const [friendQuestCompleted, setFriendQuestCompleted] = useState<FriendQuest | null>(null);
+
   /** Анти-клин iOS: одновременный present двух <Modal> глушит тачи всего экрана («мёртвый экран»
    *  при серии быстрых тапов по карточке). Пока открыта/открывается одна модалка — вторую не пускаем. */
   const modalWedgeGuardRef = useRef(false);
@@ -2081,22 +2286,17 @@ export default function FriendsTabScreen() {
   /** Локальный кеш профилей с TTL — инициализируется из модульного peekProfilesCache() (переживает ремаунты). */
   const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache());
 
-  const syncMyInviteCode = useCallback(async () => {
-    // Retry up to 5 times with 3s delay — Auth may not be ready immediately on cold launch.
-    for (let attempt = 0; attempt < 5; attempt++) {
-      const code = await ensureMyInviteCodeForFriends('');
-      if (!mountedRef.current) return;
-      if (code) {
-        setMyCode(code);
-        setFriendCodeLoadError(false);
-        return;
-      }
-      if (attempt < 4) {
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        if (!mountedRef.current) return;
-      }
+  const syncMyInviteCode = useCallback(async (isCancelled: () => boolean = () => false) => {
+    const stopped = () => !mountedRef.current || isCancelled();
+    // Ретрай/бэкофф живёт внутри синглтона (dedupe с referrals.tsx — один сетевой проход).
+    const code = await ensureMyInviteCodeForFriends('User');
+    if (stopped()) return;
+    if (code) {
+      setMyCode(code);
+      setFriendCodeLoadError(false);
+    } else {
+      setFriendCodeLoadError(true);
     }
-    setFriendCodeLoadError(true);
   }, []);
 
   const retryFriendCode = useCallback(() => {
@@ -2107,18 +2307,31 @@ export default function FriendsTabScreen() {
 
   // ── My code + my data ──────────────────────────────────────────────────────
 
-  // Предзагрузка при премаунте (задумано): данные готовы ДО того как юзер откроет таб.
+  // mountedRef живёт весь маунт экрана; табы не размонтируются при переключении.
   useEffect(() => {
     mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
+  // Локальный кеш остаётся частью премаунта: он даёт первый кадр без сети.
+  useEffect(() => {
     void readCachedMyInviteCodeForFriends().then(cached => {
       if (mountedRef.current && cached) setMyCode(prev => prev ?? cached);
     });
-    void syncMyInviteCode();
+  }, []);
+
+  // Сетевое обслуживание стартует только для видимого таба. Иначе фоновый
+  // премаунт запускал retry кода, профиль и Firestore cleanup, а их ответы продолжали
+  // будить тяжёлое дерево friends после ухода на соседний таб.
+  useEffect(() => {
+    if (!friendsRuntimeActive) return;
+    let cancelled = false;
+    void syncMyInviteCode(() => cancelled);
     const task = InteractionManager.runAfterInteractions(() => {
-      void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
+      void fetchMyProfile().then(p => { if (!cancelled && mountedRef.current && p) setMyProfile(p); });
       // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
       void startFriendsTabSwrPrime().then(() => {
-        if (!mountedRef.current) return;
+        if (cancelled || !mountedRef.current) return;
         const fresh = peekProfilesCache();
         profilesCacheRef.current = { ...fresh };
         setProfiles(prev => {
@@ -2131,8 +2344,8 @@ export default function FriendsTabScreen() {
       });
       void cleanupStaleFriendData();
     });
-    return () => { mountedRef.current = false; task.cancel(); };
-  }, [syncMyInviteCode]);
+    return () => { cancelled = true; task.cancel(); };
+  }, [friendsRuntimeActive, syncMyInviteCode]);
 
   const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {
@@ -2186,63 +2399,86 @@ export default function FriendsTabScreen() {
   }, []);
 
   useEffect(() => {
-    if (!friendsTabVisible) return;
+    if (!friendsRuntimeActive) return;
     const cancelled = { current: false };
-    void ensureFriendRequestViewerAuthLink();
     void startFriendsTabSwrPrime();
-    void pollIncomingFriendGifts(cancelled);
-    void refreshFriendQuest(cancelled);
-    void refreshReferralState();
-    return () => { cancelled.current = true; };
-  }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
+    // Подарки/квесты/рефералка — после первого кадра списка, не залпом с подписками.
+    const task = InteractionManager.runAfterInteractions(() => {
+      void pollIncomingFriendGifts(cancelled);
+      void refreshFriendQuest(cancelled);
+      const force = referralRefreshDirtyRef.current;
+      referralRefreshDirtyRef.current = false;
+      void refreshReferralState({ force });
+    });
+    return () => { cancelled.current = true; task.cancel(); };
+  }, [friendsRuntimeActive, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
 
   // Реф-код один раз создаётся и НАВСЕГДА закрепляется за аккаунтом в AsyncStorage
   // (REFERRAL_KEY) — поэтому при каждом монтировании/возврате на вкладку читаем его
   // СИНХРОННО из кеша и сразу вшиваем в текст. Без этого код стартовал с null и «моргал»:
   // пропадал при переключении вкладок и всплывал лишь через ~1.5 с после ответа сервера.
   useEffect(() => {
-    if (!referralEnabled) return;
+    invalidateInviteCodeShared(referralAccountKey);
+    setReferralCodeAccountKey(referralAccountKey);
+    setReferralCode(null);
+  }, [referralAccountKey]);
+
+  useEffect(() => {
+    if (!referralMarketingVisible) return;
     let cancelled = false;
+    const requestToken = captureAccountGeneration();
     void getReferralCode().then(rc => {
-      if (!cancelled && rc && rc.trim().length >= 4) {
+      if (
+        !cancelled
+        && rc
+        && rc.trim().length >= 4
+        && isReferralAccountRequestCurrent(requestToken, referralAccountKey)
+      ) {
+        setReferralCodeAccountKey(accountScopeKey(requestToken));
         setReferralCode(prev => prev ?? rc.trim().toUpperCase());
       }
     }).catch(() => { /* нет кеша — сетевой ретрай ниже добьёт первую генерацию */ });
     return () => { cancelled = true; };
-  }, [referralEnabled]);
+  }, [referralAccountKey, referralMarketingVisible]);
 
   // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
   // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
   // зияет пустота. refreshReferralState бьёт лишь раз на фокус, поэтому добиваем код
   // ограниченным ретраем с бэкоффом, пока он не появится (auth готовится за пару секунд).
   useEffect(() => {
-    if (!referralEnabled || referralCode) return;
+    if (!friendsRuntimeActive || !referralMarketingVisible || referralCode) return;
     let cancelled = false;
-    let attempt = 0;
-    const tick = async () => {
-      if (cancelled) return;
-      attempt += 1;
-      try {
-        await generateReferralCode(myProfile?.name ?? 'User');
-        const rc = await getReferralCode();
-        if (!cancelled && rc && rc.trim().length >= 4) {
-          setReferralCode(rc.trim().toUpperCase());
-          return;
-        }
-      } catch { /* ещё не готово — повторим */ }
-      if (!cancelled && attempt < 5) {
-        timer = setTimeout(() => { void tick(); }, 1500 * attempt);
+    const requestToken = captureAccountGeneration();
+    const runtimeGeneration = referralRuntimeGenerationRef.current;
+    const isCurrentRequest = () => !cancelled
+      && friendsRuntimeActiveRef.current
+      && runtimeGeneration === referralRuntimeGenerationRef.current
+      && isReferralAccountRequestCurrent(requestToken, referralAccountKey);
+    const lease = acquireInviteCodeShared(myProfile?.name ?? 'User');
+    void lease.promise.then(code => {
+      if (
+        isCurrentRequest()
+        && code
+      ) {
+        inviteCodeDirtyRef.current = false;
+        setReferralCodeAccountKey(accountScopeKey(requestToken));
+        setReferralCode(code);
+      } else if (!isCurrentRequest()) {
+        inviteCodeDirtyRef.current = true;
       }
+    });
+    return () => {
+      cancelled = true;
+      inviteCodeDirtyRef.current = true;
+      lease.release();
     };
-    let timer = setTimeout(() => { void tick(); }, 1500);
-    return () => { cancelled = true; clearTimeout(timer); };
-  }, [referralEnabled, referralCode, myProfile?.name]);
+  }, [friendsRuntimeActive, referralAccountKey, referralMarketingVisible, referralCode, myProfile?.name]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
   // ──
 
   useEffect(() => {
-    if (!friendsTabVisible) return;
+    if (!friendsRuntimeActive) return;
     let cancelled = false;
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
@@ -2293,9 +2529,24 @@ export default function FriendsTabScreen() {
       const uid = await ensureAnonUser();
       if (!uid || cancelled) return;
 
-      await ensureFriendRequestViewerAuthLink();
-      if (cancelled) return;
-
+      // Подписки стартуют СРАЗУ: auth-link выполняется внутри subscribe* (там же retry
+      // холодной гонки). Внешний await гарантированно задерживал первый снапшот до 15 с.
+      // При permission-denied subscribe* вернёт onError — перезапускаем после явного линка.
+      const resubscribeAfterLink = () => {
+        void ensureFriendRequestViewerAuthLink(uid).then(ok => {
+          if (!ok || cancelled) return;
+          unsubFriends();
+          unsubFriends = subscribeToFriends((data, meta) => {
+            if (cancelled) return;
+            const fromCache = meta?.fromCache === true;
+            if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
+            setFriends(data);
+            if (data.length > 0) {
+              void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+            }
+          });
+        });
+      };
       unsubFriends = subscribeToFriends((data, meta) => {
         if (cancelled) return;
         const fromCache = meta?.fromCache === true;
@@ -2303,6 +2554,10 @@ export default function FriendsTabScreen() {
         setFriends(data);
         if (data.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+        }
+      }, err => {
+        if (String((err as { code?: string })?.code ?? '').includes('permission-denied')) {
+          resubscribeAfterLink();
         }
       });
 
@@ -2317,7 +2572,7 @@ export default function FriendsTabScreen() {
       unsubFriends();
       unsubRequests();
     };
-  }, [friendsTabVisible]);
+  }, [friendsRuntimeActive]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -2343,7 +2598,7 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
-    if (!friendsTabVisible || uids.length === 0) return;
+    if (!friendsRuntimeActive || uids.length === 0) return;
     let cancelled = false;
     void (async () => {
       // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
@@ -2356,7 +2611,7 @@ export default function FriendsTabScreen() {
       });
     })();
     return () => { cancelled = true; };
-  }, [friends, requests, friendsTabVisible, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [friends, requests, friendsRuntimeActive, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Cleanup ────────────────────────────────────────────────────────────────
 
@@ -2403,6 +2658,7 @@ export default function FriendsTabScreen() {
         }
       }
       const result = isCode ? await lookupUserByFriendCode(codeUpper) : await lookupUserByNickname(query);
+      lastLookupSourceRef.current = result?.source ?? null;
       if (!result) {
         await trackActivity('friends:search_result', {
           feature: 'friends',
@@ -2506,6 +2762,18 @@ export default function FriendsTabScreen() {
         result: result === 'sent' ? 'success' : result === 'error' ? 'error' : 'blocked',
         tags: { targetUid: targetUser.uid, requestResult: result },
       });
+      // зачем: «один код» — друг найден по реферальному коду, значит этот же ввод
+      // привязывает приглашение (сервер идемпотентен, invalid/too_old тихо
+      // игнорируются). Один callable строго по явному действию пользователя.
+      if (
+        (result === 'sent' || result === 'already_sent' || result === 'already_friends')
+        && lastLookupSourceRef.current === 'referral_code'
+      ) {
+        lastLookupSourceRef.current = null;
+        void import('../referral_bootstrap')
+          .then(({ applyManualReferralCode }) => applyManualReferralCode(previousCodeInput))
+          .catch(() => {});
+      }
       if (result === 'sent') {
         setFoundUser(null);
         setCodeInput('');
@@ -2561,6 +2829,9 @@ export default function FriendsTabScreen() {
     setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
     if (!hadFriend) {
       setFriends(prev => prev.some(friend => friend.uid === request.fromUid) ? prev : [...prev, optimisticFriend]);
+      // зачем: лёгкий социальный сигнал «теперь вы друзья» — играет сразу,
+      // оптимистично, как и локальное добавление в список выше.
+      soundDirector.request('pm.social.friend_added', { scope: 'friends' });
     }
     acceptFriendRequest(request.fromUid)
       .then(() => {
@@ -2597,8 +2868,14 @@ export default function FriendsTabScreen() {
   const openGiftPicker = useCallback((profile: FriendProfile) => {
     if (modalWedgeGuardRef.current) return;
     hapticTap();
+    giftTargetRef.current = profile;
     setGiftTarget(profile);
-    void getShardsBalance().then(setGiftBalance).catch(() => setGiftBalance(0));
+    const requestAccountToken = captureAccountGeneration();
+    void getShardsBalance().then((balance) => {
+      if (!isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)) return;
+      if (giftTargetRef.current?.uid !== profile.uid) return;
+      setGiftBalance((prev) => (prev === balance ? prev : balance));
+    }).catch(() => {});
   }, []);
 
   const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
@@ -2644,50 +2921,76 @@ export default function FriendsTabScreen() {
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
     if (!isFriendGiftsCloudEnabled()) {
-      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube', 'Os presentes exigem sincronização na nuvem', 'Quà tặng cần đồng bộ đám mây', 'Hadiah memerlukan sinkronisasi cloud', 'Hediyeler için bulut senkronizasyonu gerekir', 'Prezenty wymagają synchronizacji w chmurze'));
+      showFeedback(L('Подарки временно недоступны. Попробуй позже.', 'Подарунки тимчасово недоступні. Спробуй пізніше.', 'Los regalos no están disponibles ahora. Inténtalo más tarde.', 'Os presentes estão temporariamente indisponíveis. Tente mais tarde.', 'Quà tặng tạm thời chưa khả dụng. Hãy thử lại sau.', 'Hadiah sementara tidak tersedia. Coba lagi nanti.', 'Hediyeler geçici olarak kullanılamıyor. Daha sonra dene.', 'Prezenty są chwilowo niedostępne. Spróbuj później.'));
       emitAppEvent('action_toast', {
         type: 'info',
-        messageRu: 'Подарки доступны только с облачной синхронизацией',
-        messageUk: 'Подарунки доступні лише з хмарною синхронізацією',
-        messageEs: 'Los regalos requieren sincronizacion en la nube',
-        messagePtBr: 'Os presentes exigem sincronização na nuvem',
-        messageVi: 'Quà tặng cần đồng bộ đám mây',
-        messageId: 'Hadiah memerlukan sinkronisasi cloud',
-        messageTr: 'Hediyeler için bulut senkronizasyonu gerekir',
-        messagePl: 'Prezenty wymagają synchronizacji w chmurze',
+        messageRu: 'Подарки временно недоступны. Попробуй позже.',
+        messageUk: 'Подарунки тимчасово недоступні. Спробуй пізніше.',
+        messageEs: 'Los regalos no están disponibles ahora. Inténtalo más tarde.',
+        messagePtBr: 'Os presentes estão temporariamente indisponíveis. Tente mais tarde.',
+        messageVi: 'Quà tặng tạm thời chưa khả dụng. Hãy thử lại sau.',
+        messageId: 'Hadiah sementara tidak tersedia. Coba lagi nanti.',
+        messageTr: 'Hediyeler geçici olarak kullanılamıyor. Daha sonra dene.',
+        messagePl: 'Prezenty są chwilowo niedostępne. Spróbuj później.',
       });
       return;
     }
     if (balanceOverride < gift.costShards) {
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków'));
+      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
       emitAppEvent('action_toast', {
         type: 'info',
-        messageRu: 'Не хватает осколков',
-        messageUk: 'Не вистачає осколків',
-        messageEs: 'No tienes suficientes fragmentos',
-        messagePtBr: 'Fragmentos insuficientes',
-        messageVi: 'Không đủ mảnh',
-        messageId: 'Pecahan tidak cukup',
+        messageRu: 'Не хватает жемчуга',
+        messageUk: 'Не вистачає перлин',
+        messageEs: 'No tienes suficientes perlas',
+        messagePtBr: 'Perlas insuficientes',
+        messageVi: 'Không đủ ngọc trai',
+        messageId: 'Mutiara tidak cukup',
         messageTr: 'Parça yetersiz',
-        messagePl: 'Za mało odłamków',
+        messagePl: 'Za mało pereł',
       });
       return;
     }
+    const giftAccountToken = captureAccountGeneration();
+    if (
+      !accountScopeKey(giftAccountToken)
+      || !giftAccountToken.stableId
+      || !isCurrentAccountGeneration(giftAccountToken)
+    ) return;
     hapticTap();
     setGiftBusyId(giftId);
     const target = explicitTarget;
     const sentGiftName = giftLabel(gift);
-    showFeedback(L('Отправляем подарок...', 'Надсилаємо подарунок...', 'Enviando regalo...', 'Enviando presente...', 'Đang gửi quà...', 'Mengirim hadiah...', 'Hediye gönderiliyor...', 'Wysyłanie prezentu...'));
+    const optimisticBalance = Math.max(0, balanceOverride - gift.costShards);
+    setGiftBalance(optimisticBalance);
+    setGiftTarget(null);
+    sentGiftReceiptNativeVisibleRef.current = true;
+    setSentGiftReceipt({
+      targetName: target.name,
+      giftName: sentGiftName,
+      costShards: gift.costShards,
+      balanceAfter: optimisticBalance,
+      dailyRemaining: undefined,
+    });
+    void replaceShardsBalanceForAccountGeneration(
+      optimisticBalance,
+      giftAccountToken,
+      giftAccountToken.stableId,
+      {
+        op: 'spend',
+        reason: 'friend_gift_optimistic',
+      },
+    );
+    showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
     emitAppEvent('action_toast', {
-      type: 'info',
-      messageRu: `Отправляем подарок: ${sentGiftName}`,
-      messageUk: `Надсилаємо подарунок: ${sentGiftName}`,
-      messageEs: `Enviando regalo: ${sentGiftName}`,
-      messagePtBr: `Enviando presente: ${sentGiftName}`,
-      messageVi: `Đang gửi quà: ${sentGiftName}`,
-      messageId: `Mengirim hadiah: ${sentGiftName}`,
-      messageTr: `Hediye gönderiliyor: ${sentGiftName}`,
-      messagePl: `Wysyłanie prezentu: ${sentGiftName}`,
+      type: 'success',
+      messageRu: `Подарок отправлен: ${sentGiftName}`,
+      messageUk: `Подарунок надіслано: ${sentGiftName}`,
+      messageEs: `Regalo enviado: ${sentGiftName}`,
+      messagePtBr: `Presente enviado: ${sentGiftName}`,
+      messageVi: `Đã gửi quà: ${sentGiftName}`,
+      messageId: `Hadiah terkirim: ${sentGiftName}`,
+      messageTr: `Hediye gönderildi: ${sentGiftName}`,
+      messagePl: `Prezent wysłany: ${sentGiftName}`,
     });
     try {
       const res = await sendFriendGiftWithShards({
@@ -2695,9 +2998,10 @@ export default function FriendsTabScreen() {
         giftId,
         senderDisplayName: myProfile?.name ?? '',
       });
+      if (!isCurrentAccountGeneration(giftAccountToken)) return;
       const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
+      if (!isCurrentAccountGeneration(giftAccountToken)) return;
       setGiftBalance(guardedBalance);
-      setGiftTarget(null);
       setSentGiftReceipt({
         targetName: target.name,
         giftName: sentGiftName,
@@ -2708,22 +3012,14 @@ export default function FriendsTabScreen() {
       if (res.questStarted && res.quest) {
         const quest = res.quest as FriendQuest;
         setActiveFriendQuest(quest);
-        setFriendQuestStarted(quest);
+        if (sentGiftReceiptNativeVisibleRef.current) {
+          setPendingFriendQuestStarted(quest);
+        } else {
+          setFriendQuestStarted(quest);
+        }
       } else {
         void refreshFriendQuest(undefined, { force: true });
       }
-      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
-      emitAppEvent('action_toast', {
-        type: 'success',
-        messageRu: `Подарок отправлен: ${sentGiftName}`,
-        messageUk: `Подарунок надіслано: ${sentGiftName}`,
-        messageEs: `Regalo enviado: ${sentGiftName}`,
-        messagePtBr: `Presente enviado: ${sentGiftName}`,
-        messageVi: `Đã gửi quà: ${sentGiftName}`,
-        messageId: `Hadiah terkirim: ${sentGiftName}`,
-        messageTr: `Hediye gönderildi: ${sentGiftName}`,
-        messagePl: `Prezent wysłany: ${sentGiftName}`,
-      });
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
@@ -2731,18 +3027,30 @@ export default function FriendsTabScreen() {
         tags: { giftId, targetUid: target.uid, cost: gift.costShards },
       });
     } catch (e) {
+      if (!isCurrentAccountGeneration(giftAccountToken)) return;
       const msg = e instanceof Error ? e.message : String(e);
       const kind = classifyFriendGiftError(e);
+      setGiftBalance(balanceOverride);
+      void replaceShardsBalanceForAccountGeneration(
+        balanceOverride,
+        giftAccountToken,
+        giftAccountToken.stableId,
+        {
+          op: 'replace',
+          reason: 'friend_gift_rollback',
+        },
+      );
+      setSentGiftReceipt(null);
       if (kind !== 'unknown') {
         const feedback =
           kind === 'limit'
             ? L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany')
             : kind === 'not_enough_shards'
-            ? L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków')
+            ? L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł')
             : kind === 'not_friends' || kind === 'user_missing'
             ? L('Дружба уже не активна. Обнови список друзей.', 'Дружба вже не активна. Онови список друзів.', 'La amistad ya no esta activa. Actualiza la lista.', 'A amizade não está mais ativa. Atualize a lista.', 'Tình bạn không còn hoạt động. Hãy làm mới danh sách.', 'Pertemanan sudah tidak aktif. Segarkan daftar.', 'Arkadaşlık artık aktif değil. Listeyi yenile.', 'Znajomość nie jest już aktywna. Odśwież listę.')
             : kind === 'auth' || kind === 'identity_changed'
-            ? L('Аккаунт ещё связывается с облаком. Подожди пару секунд и попробуй снова.', 'Акаунт ще зв’язується з хмарою. Зачекай кілька секунд і спробуй знову.', 'La cuenta aun se esta vinculando. Espera unos segundos e intentalo de nuevo.', 'A conta ainda esta vinculando. Espere alguns segundos e tente de novo.', 'Tài khoản đang liên kết đám mây. Chờ vài giây rồi thử lại.', 'Akun masih ditautkan ke cloud. Tunggu sebentar lalu coba lagi.', 'Hesap buluta bağlanıyor. Birkaç saniye bekleyip tekrar dene.', 'Konto nadal łączy się z chmurą. Poczekaj chwilę i spróbuj ponownie.')
+            ? L('Подарок не дошёл. Жемчуг вернулся.', 'Подарунок не дійшов. Перлини повернулися.', 'No se pudo enviar el regalo. Recuperaste las perlas.', 'O presente não foi enviado. As pérolas voltaram.', 'Không gửi được quà. Ngọc trai đã hoàn lại.', 'Hadiah tidak terkirim. Mutiara dikembalikan.', 'Hediye ulaşmadı. İnciler geri geldi.', 'Prezent nie dotarł. Perły wróciły.')
             : kind === 'network'
             ? L('Сеть не ответила. Подарок не списан, попробуй ещё раз.', 'Мережа не відповіла. Подарунок не списано, спробуй ще раз.', 'La red no respondio. No se cobro el regalo; intentalo de nuevo.', 'A rede não respondeu. O presente não foi cobrado; tente de novo.', 'Mạng chưa phản hồi. Quà chưa bị trừ, hãy thử lại.', 'Jaringan tidak merespons. Hadiah belum ditagih; coba lagi.', 'Ağ yanıt vermedi. Hediye ücretlendirilmedi, tekrar dene.', 'Sieć nie odpowiedziała. Prezent nie został pobrany, spróbuj ponownie.')
             : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');
@@ -2779,7 +3087,7 @@ export default function FriendsTabScreen() {
       }
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
-          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Pecahan tidak cukup atau pertemanan sudah tidak aktif', 'Parça yetersiz veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
+          ? L('Не хватает жемчуга или дружба уже не активна', 'Не вистачає перлин або дружба вже не активна', 'Faltan perlas o la amistad ya no esta activa', 'Pérolas insuficientes ou amizade não está mais ativa', 'Không đủ ngọc trai hoặc tình bạn không còn hoạt động', 'Mutiara tidak cukup atau pertemanan sudah tidak aktif', 'İnci yetersiz veya arkadaşlık artık aktif değil', 'Za mało pereł albo znajomość nie jest już aktywna')
           : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       emitAppEvent('action_toast', {
@@ -2800,34 +3108,51 @@ export default function FriendsTabScreen() {
         tags: { giftId, targetUid: target.uid, error: msg },
       });
     } finally {
-      setGiftBusyId(null);
+      if (isCurrentAccountGeneration(giftAccountToken)) setGiftBusyId(null);
     }
   };
 
-  const requestSendGift = (giftId: FriendGiftId) => {
-    if (!giftTarget || giftBusyId) return;
+  const requestSendGift = async (giftId: FriendGiftId) => {
+    if (!giftTarget || giftBusyId || giftRequestInFlightRef.current) return;
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
-    if (giftBalance < gift.costShards) {
-      const missing = gift.costShards - giftBalance;
-      setGiftTarget(null);
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków'));
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: `Нужно ещё осколков: ${missing}`,
-        messageUk: `Потрібно ще осколків: ${missing}`,
-        messageEs: `Necesitas más fragmentos: ${missing}`,
-        messagePtBr: `Você precisa de mais fragmentos: ${missing}`,
-        messageVi: `Cần thêm mảnh: ${missing}`,
-        messageId: `Butuh pecahan lagi: ${missing}`,
-        messageTr: `Daha fazla parça gerekiyor: ${missing}`,
-        messagePl: `Potrzeba więcej odłamków: ${missing}`,
-      });
-      router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
-      return;
-    }
     const target = giftTarget;
-    void handleSendGift(giftId, target, giftBalance);
+    const requestAccountToken = captureAccountGeneration();
+    if (
+      !accountScopeKey(requestAccountToken)
+      || !requestAccountToken.stableId
+      || !isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)
+    ) return;
+    giftRequestInFlightRef.current = true;
+    try {
+      const freshBalance = await getShardsBalance();
+      if (!isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)) return;
+      if (giftTargetRef.current?.uid !== target.uid) return;
+      setGiftBalance((prev) => (prev === freshBalance ? prev : freshBalance));
+      if (freshBalance < gift.costShards) {
+        const missing = gift.costShards - freshBalance;
+        setGiftTarget(null);
+        showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: `Нужно ещё жемчуга: ${missing}`,
+          messageUk: `Потрібно ще перлин: ${missing}`,
+          messageEs: `Necesitas más perlas: ${missing}`,
+          messagePtBr: `Você precisa de mais pérolas: ${missing}`,
+          messageVi: `Cần thêm ngọc trai: ${missing}`,
+          messageId: `Butuh mutiara lagi: ${missing}`,
+          messageTr: `Daha fazla inci gerekiyor: ${missing}`,
+          messagePl: `Potrzeba więcej monet: ${missing}`,
+        });
+        router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
+        return;
+      }
+      await handleSendGift(giftId, target, freshBalance);
+    } catch {
+      return;
+    } finally {
+      giftRequestInFlightRef.current = false;
+    }
   };
 
   const incomingReplyTarget = useCallback((gift: IncomingFriendGift): FriendProfile => {
@@ -2935,10 +3260,26 @@ export default function FriendsTabScreen() {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'friends' | 'activity'>('friends');
 
+  const handleSentGiftReceiptDismissed = useCallback(() => {
+    sentGiftReceiptNativeVisibleRef.current = false;
+    setPendingFriendQuestStarted(pending => {
+      if (pending) setFriendQuestStarted(pending);
+      return null;
+    });
+  }, []);
+
+  const closeSentGiftReceipt = useCallback(() => {
+    setSentGiftReceipt(null);
+    // React Native fires Modal.onDismiss only on iOS. Android can safely promote
+    // after visibility is cleared because it does not have the iOS double-present wedge.
+    if (Platform.OS !== 'ios') handleSentGiftReceiptDismissed();
+  }, [handleSentGiftReceiptDismissed]);
+
   // Обновляем гард на каждый рендер: любая открытая модалка блокирует открытие следующей.
   modalWedgeGuardRef.current = selectedPlayer !== null || deleteTarget !== null
     || giftTarget !== null || incomingGiftModal !== null
-    || friendQuestCompleted !== null || addModalOpen;
+    || sentGiftReceipt !== null || pendingFriendQuestStarted !== null
+    || friendQuestStarted !== null || friendQuestCompleted !== null || addModalOpen;
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -2951,23 +3292,6 @@ export default function FriendsTabScreen() {
   );
 
   const friendUids = useMemo(() => friends.map(f => f.uid), [friends]);
-
-  /** uid друга → статус его реферал-приглашения (для метки в строке). */
-  const referralStatusByUid = useMemo(() => {
-    const map = new Map<string, 'pending' | 'qualified' | 'rewarded'>();
-    for (const inv of referralInvites) {
-      if (inv.status === 'pending' || inv.status === 'qualified' || inv.status === 'rewarded') {
-        map.set(inv.refereeStableId, inv.status);
-      } else if (inv.status === 'skipped_referrer_cap') {
-        // legacy «лимит месяца» снова claimable (M1) — показываем как qualified.
-        map.set(inv.refereeStableId, 'qualified');
-      }
-    }
-    return map;
-  }, [referralInvites]);
-
-  /** Сводка по статусам приглашений — для бейджа на кнопке хедера и модалки. */
-  const referralSummary = useMemo(() => summarizeInvites(referralInvites), [referralInvites]);
 
   const friendQuestPeerUid = useMemo(() => {
     if (!activeFriendQuest) return '';
@@ -2997,12 +3321,12 @@ export default function FriendsTabScreen() {
     showsVerticalScrollIndicator: false,
     keyboardShouldPersistTaps: 'handled' as const,
     contentContainerStyle: { paddingBottom: tabContentBottomPad, paddingHorizontal: PX, paddingTop: insets.top },
-    decelerationRate: 'normal' as const,
+    decelerationRate: 'fast' as const,
     scrollEventThrottle: 16,
     bounces: true,
     alwaysBounceVertical: true,
     overScrollMode: 'always' as const,
-    onScroll: onAnimatedScroll,
+    onScroll: handleFriendsScroll,
   };
 
   const listHeader = (
@@ -3023,7 +3347,7 @@ export default function FriendsTabScreen() {
           </TapScale>
           <View style={{ flex: 1 }} />
           {/* Разделы одним рядом компактных иконок (как чипы на главной, но свои иконки:
-              на главной — колокольчик/чат/видео, здесь — люди/пульс/мегафон/добавить). */}
+              на главной — колокольчик/чат/видео, здесь — люди/пульс/добавить). */}
           {(['friends', 'activity'] as const).map(tab => {
             const active = activeTab === tab;
             const tabLabel = tab === 'friends'
@@ -3067,38 +3391,6 @@ export default function FriendsTabScreen() {
               </TouchableOpacity>
             );
           })}
-          {isReferralCloudEnabled() && (
-            <TouchableOpacity
-              testID="friends-open-referrals"
-              accessibilityRole="button"
-              accessibilityLabel={L('Мои рефералы', 'Мої реферали', 'Mis referidos', 'Meus indicados', 'Lời mời của tôi', 'Referal saya', 'Davetlerim', 'Moje polecenia')}
-              onPressIn={() => hapticTap()}
-              onPress={() => router.push('/referrals' as any)}
-              activeOpacity={0.8}
-              style={{
-                width: 40, height: 40, borderRadius: 20,
-                backgroundColor: chrome.button, borderWidth: 0, borderColor: 'transparent',
-                justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 10,
-              }}
-            >
-              <Ionicons name="megaphone-outline" size={19} color={t.textPrimary} />
-              {referralSummary.qualified > 0 && (
-                <View
-                  style={{
-                    position: 'absolute', top: -3, right: -3,
-                    minWidth: 18, height: 18, borderRadius: 9,
-                    backgroundColor: t.correct ?? '#34C759',
-                    borderWidth: 1.5, borderColor: t.bgPrimary ?? '#000',
-                    alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4,
-                  }}
-                >
-                  <Text style={{ color: t.correctText ?? '#fff', fontSize: 10, fontWeight: '900' }}>
-                    {referralSummary.qualified}
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          )}
           <TouchableOpacity
             testID="friends-open-add"
             onPressIn={() => hapticTap()}
@@ -3124,8 +3416,6 @@ export default function FriendsTabScreen() {
                   borderRadius: 16,
                   padding: 14,
                   backgroundColor: glassFill(chrome.card, 0.46),
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   gap: 12,
                 }}
               >
@@ -3175,7 +3465,7 @@ export default function FriendsTabScreen() {
                   );
                 })}
                 <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '700' }}>
-                  {L('+10 осколков и +1000 XP каждому', '+10 осколків і +1000 XP кожному', '+10 shards and +1000 XP each', '+10 fragmentos e +1000 XP para cada', '+10 mảnh và +1000 XP mỗi người', '+10 pecahan dan +1000 XP masing-masing', 'Herkese +10 parça ve +1000 XP', '+10 odłamków i +1000 XP dla każdego')}
+                  {L('+10 жемчуга и +1000 XP каждому', '+10 перлин і +1000 XP кожному', '+10 pearls and +1000 XP each', '+10 pérolas e +1000 XP para cada', '+10 ngọc trai và +1000 XP mỗi ngườи', '+10 mutiara dan +1000 XP masing-masing', 'Herkese +10 inci ve +1000 XP', '+10 pereł i +1000 XP dla każdego')}
                 </Text>
               </View>
             )}
@@ -3221,63 +3511,6 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
-                {referralEnabled ? (
-                  <>
-                    <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
-                      {L(
-                        'Получите 7 дней полного Plus-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
-                        'Отримайте 7 днів повного Plus-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
-                        'Recibe 7 días de acceso Plus completo a todo por cada amigo invitado que instale la app, introduzca tu código',
-                        'Receba 7 dias de acesso Plus completo a tudo por um amigo convidado que instalar o app, inserir seu código',
-                        'Nhận 7 ngày Plus đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
-                        'Dapatkan 7 hari Plus penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
-                        'Davet ettiğin arkadaş uygulamayı kurup kodunu girerse',
-                        'Otrzymasz 7 dni pełnego Plus za znajomego, który zainstaluje aplikację i wpisze twój kod',
-                      )}
-                      {referralCode ? (
-                        <Text testID="friends-referral-code-inline" style={{ color: t.accent, fontWeight: '900', letterSpacing: 1 }}>
-                          {' '}{referralCode}
-                        </Text>
-                      ) : null}
-                      {L(
-                        ' и пройдёт один урок полностью. Друг тоже получит 7 дней полного доступа.',
-                        ' і повністю пройде один урок. Друг теж отримає 7 днів повного доступу.',
-                        ' y complete una lección. Tu amigo también recibirá 7 días.',
-                        ' e concluir uma lição. Ele também recebe 7 dias.',
-                        ' và hoàn thành một bài học. Bạn ấy cũng nhận 7 ngày.',
-                        ' dan menyelesaikan satu pelajaran. Temanmu juga dapat 7 hari.',
-                        ' ve bir dersi tamamen bitirirse 7 gün tam Plus erişim kazanırsın. Arkadaşın da 7 gün alır.',
-                        ' i ukończy jedną lekcję. Znajomy też dostanie 7 dni.',
-                      )}
-                    </Text>
-                    <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
-                      <DuoPressable
-                        testID="friends-empty-invite"
-                        onPress={() => { void handleReferralInvite(); }}
-                        edgeColor={t.accent}
-                        wrapStyle={{ flex: 1 }}
-                        style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12 }}
-                      >
-                        <Ionicons name="share-social" size={20} color={t.correctText} />
-                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
-                          {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
-                        </Text>
-                      </DuoPressable>
-                      <TapScale
-                        testID="friends-empty-enter-code"
-                        onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
-                        style={{ flex: 1, minHeight: 58, backgroundColor: chrome.button, borderRadius: 14, borderWidth: 0, borderColor: 'transparent' }}
-                      >
-                        <View style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
-                          <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
-                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
-                            {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
-                          </Text>
-                        </View>
-                      </TapScale>
-                    </View>
-                  </>
-                ) : (
                   <>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                       {L(
@@ -3306,7 +3539,6 @@ export default function FriendsTabScreen() {
                       </DuoPressable>
                     </View>
                   </>
-                )}
               </View>
   );
 
@@ -3342,16 +3574,18 @@ export default function FriendsTabScreen() {
           data={sortedFriends}
           keyExtractor={(profile: FriendProfile) => profile.uid}
           renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => (
-            <FriendRow
-              profile={profile}
-              rank={i + 1}
-              onPress={() => openProfile(profile)}
-              onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
-              onGift={() => openGiftPicker(profile)}
-              lang={lang} t={t} f={f} chrome={chrome}
-              themeMode={themeMode}
-              referralStatus={referralStatusByUid.get(profile.uid)}
-            />
+            <Reanimated.View entering={FadeInDown.delay(Math.min(i, 10) * 40).duration(320)}>
+              <FriendRow
+                profile={profile}
+                rank={i + 1}
+                onPress={() => openProfile(profile)}
+                onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
+                onGift={() => openGiftPicker(profile)}
+                lang={lang} t={t} f={f} chrome={chrome}
+                themeMode={themeMode}
+                giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
+              />
+            </Reanimated.View>
           )}
           ListHeaderComponent={<>{listHeader}{friendsPreList}</>}
           ListEmptyComponent={friendsEmptyState}
@@ -3401,7 +3635,11 @@ export default function FriendsTabScreen() {
             style={StyleSheet.absoluteFill}
             onPress={() => setGiftTarget(null)}
           />
-          <View style={{
+          <LinearGradient
+            colors={friendGiftSheetColors}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
             backgroundColor: chrome.card,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
@@ -3410,7 +3648,20 @@ export default function FriendsTabScreen() {
             gap: 12,
             borderWidth: 0,
             borderColor: 'transparent',
+            overflow: 'hidden',
           }}>
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 22,
+                right: 22,
+                height: 1,
+                backgroundColor: glassFill(t.accent, lightGlass ? 0.28 : 0.42),
+                opacity: 0.75,
+              }}
+            />
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
               {giftTarget ? (() => {
                 const effectiveAura = getEffectiveAvatarAuraId(giftTarget.aura, giftTarget.isPremium, giftTarget.isVip);
@@ -3425,7 +3676,7 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
                   {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo', 'Presente para amigo', 'Quà cho bạn bè', 'Hadiah untuk teman', 'Arkadaşına hediye', 'Prezent dla znajomego')}
                 </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }} numberOfLines={1}>
+                <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }}>
                   {giftTarget?.name ?? ''}
                 </Text>
               </View>
@@ -3445,7 +3696,11 @@ export default function FriendsTabScreen() {
               </TouchableOpacity>
             </View>
 
-            <View style={{
+            <LinearGradient
+              colors={friendGiftPillColors}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{
               alignSelf: 'flex-start',
               flexDirection: 'row',
               alignItems: 'center',
@@ -3459,14 +3714,17 @@ export default function FriendsTabScreen() {
                 source={oskolokImageForPackShards(giftBalance)}
                 style={{ width: 20, height: 20 }}
                 contentFit="contain"
-                accessibilityLabel="Осколки"
+                accessibilityLabel="Жемчуг"
               />
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
-            </View>
+            </LinearGradient>
 
             {addFeedback && giftTarget && (
-              <View
+              <LinearGradient
                 testID="friend-gift-feedback"
+                colors={friendGiftPillColors}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -3475,7 +3733,7 @@ export default function FriendsTabScreen() {
                   paddingVertical: 10,
                   borderRadius: 12,
                   backgroundColor: chrome.surface,
-                  borderWidth: 0.5,
+                  borderWidth: 0,
                   borderColor: chrome.border,
                 }}
               >
@@ -3483,7 +3741,7 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
                   {addFeedback}
                 </Text>
-              </View>
+              </LinearGradient>
             )}
 
             {FRIEND_GIFT_CATALOG.map(gift => {
@@ -3492,6 +3750,12 @@ export default function FriendsTabScreen() {
               const disabled = giftBusyId !== null;
               const displayCost = cannotAfford ? gift.costShards - giftBalance : gift.costShards;
               const displayCostText = cannotAfford ? `+${displayCost}` : `${displayCost}`;
+              const giftAccentColor = friendGiftAccent(gift.id, t);
+              const optionColors = [
+                glassFill(giftAccentColor, lightGlass ? 0.13 : 0.22),
+                chrome.surface,
+                chrome.card,
+              ] as [string, string, string];
               return (
                 <TouchableOpacity
                   key={gift.id}
@@ -3509,23 +3773,42 @@ export default function FriendsTabScreen() {
                     opacity: sendingThisGift ? 0.82 : disabled ? 0.45 : cannotAfford ? 0.72 : 1,
                     borderWidth: 0,
                     borderColor: 'transparent',
+                    overflow: 'hidden',
                   }}
                 >
+                  <LinearGradient
+                    colors={optionColors}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={StyleSheet.absoluteFill}
+                  />
+                  <View
+                    pointerEvents="none"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 16,
+                      right: 16,
+                      height: 1,
+                      backgroundColor: glassFill(giftAccentColor, lightGlass ? 0.30 : 0.52),
+                      opacity: 0.62,
+                    }}
+                  />
                   <View style={{
                     width: 38,
                     height: 38,
                     borderRadius: 12,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: chrome.card,
+                    backgroundColor: glassFill(giftAccentColor, lightGlass ? 0.16 : 0.22),
                   }}>
-                    <Ionicons name={gift.icon as any} size={21} color={t.accent} />
+                    <Ionicons name={gift.icon as any} size={21} color={giftAccentColor} />
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
                       {giftLabel(gift)}
                     </Text>
-                    <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }} numberOfLines={2}>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
                       {giftDescription(gift)}
                     </Text>
                   </View>
@@ -3534,14 +3817,14 @@ export default function FriendsTabScreen() {
                       <ActivityIndicator size="small" color={t.accent} />
                     ) : (
                       <>
-                    <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', textAlign: 'right' }}>
+                    <Text style={{ color: giftAccentColor, fontSize: f.body, fontWeight: '900', textAlign: 'right' }}>
                       {displayCostText}
                     </Text>
                     <Image
                       source={oskolokImageForPackShards(displayCost)}
                       style={{ width: 22, height: 22 }}
                       contentFit="contain"
-                      accessibilityLabel="Осколки"
+                      accessibilityLabel="Жемчуг"
                     />
                       </>
                     )}
@@ -3549,7 +3832,7 @@ export default function FriendsTabScreen() {
                 </TouchableOpacity>
               );
             })}
-          </View>
+          </LinearGradient>
         </View>
       </Modal>
 
@@ -3557,7 +3840,8 @@ export default function FriendsTabScreen() {
         visible={sentGiftReceipt !== null}
         transparent
         animationType="fade"
-        onRequestClose={() => setSentGiftReceipt(null)}
+        onRequestClose={closeSentGiftReceipt}
+        onDismiss={handleSentGiftReceiptDismissed}
       >
         <View testID="friend-gift-sent-modal" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(7, 8, 13, 0.72)' }}>
           <LinearGradient
@@ -3577,7 +3861,7 @@ export default function FriendsTabScreen() {
               elevation: 18,
             }}
           >
-            <View style={{ borderRadius: sentGiftChrome.innerRadius, overflow: 'hidden', backgroundColor: sentGiftChrome.innerBg, borderWidth: 1, borderColor: sentGiftChrome.innerBorder }}>
+            <View style={{ borderRadius: sentGiftChrome.innerRadius, overflow: 'hidden', backgroundColor: sentGiftChrome.innerBg, borderWidth: 0, borderColor: sentGiftChrome.innerBorder }}>
               <LinearGradient
                 colors={sentGiftChrome.washColors}
                 start={{ x: 0, y: 0 }}
@@ -3591,7 +3875,7 @@ export default function FriendsTabScreen() {
                     colors={sentGiftChrome.iconColors}
                     start={{ x: 0.1, y: 0 }}
                     end={{ x: 0.95, y: 1 }}
-                    style={{ width: 72, height: 72, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)' }}
+                    style={{ width: 72, height: 72, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: 'rgba(255,255,255,0.22)' }}
                   >
                     <Ionicons name="checkmark" size={38} color={sentGiftChrome.buttonText} />
                   </LinearGradient>
@@ -3603,7 +3887,7 @@ export default function FriendsTabScreen() {
                   {L('Подарок отправлен', 'Подарунок надіслано', 'Gift sent', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany')}
                 </Text>
                 {sentGiftReceipt ? (
-                  <View style={{ borderRadius: 18, padding: 14, gap: 10, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)' }}>
+                  <View style={{ borderRadius: 18, padding: 14, gap: 10, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 0, borderColor: 'rgba(255,255,255,0.12)' }}>
                     <Text style={{ color: sentGiftChrome.bodyColor, fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {L(
                         `${sentGiftReceipt.targetName} получит: ${sentGiftReceipt.giftName}`,
@@ -3622,7 +3906,7 @@ export default function FriendsTabScreen() {
                           {L('Списано', 'Списано', 'Spent', 'Gasto', 'Đã trừ', 'Terpakai', 'Harcanan', 'Pobrano')}
                         </Text>
                         <Text style={{ color: monoIcon(themeMode, '#F3C45E'), fontSize: f.sub, fontWeight: '900' }}>{sentGiftReceipt.costShards}</Text>
-                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} contentFit="contain" accessibilityLabel="Осколки" />
+                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} contentFit="contain" accessibilityLabel="Жемчуг" />
                       </View>
                       <View style={{ width: 1, height: 14, backgroundColor: 'rgba(255,255,255,0.16)' }} />
                       <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>
@@ -3641,9 +3925,9 @@ export default function FriendsTabScreen() {
                 ) : null}
                 <TouchableOpacity
                   testID="friend-gift-sent-ok"
-                  onPress={() => setSentGiftReceipt(null)}
+                  onPress={closeSentGiftReceipt}
                   activeOpacity={0.86}
-                  style={{ minHeight: 48, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', backgroundColor: sentGiftChrome.buttonBg, borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)' }}
+                  style={{ minHeight: 48, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', backgroundColor: sentGiftChrome.buttonBg, borderWidth: 0, borderColor: 'rgba(255,255,255,0.18)' }}
                 >
                   <Text style={{ color: sentGiftChrome.buttonText, fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('Понятно', 'Зрозуміло', 'Done', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
@@ -3672,14 +3956,12 @@ export default function FriendsTabScreen() {
               maxWidth: 372,
               borderRadius: 28,
               padding: 1,
-              shadowColor: '#D9A441',
-              shadowOpacity: 0.32,
-              shadowRadius: 28,
-              shadowOffset: { width: 0, height: 16 },
-              elevation: 18,
+              // зачем: фон рисует LinearGradient, поэтому Android не выводил
+              // скруглённый outline и заливал квадрат вокруг карточки.
+              ...softShadow({ color: '#D9A441', opacity: 0.32, radius: 28, offsetY: 16, elevation: 18 }),
             }}
           >
-          <View style={{ borderRadius: 27, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+          <View style={{ borderRadius: 27, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>
             <LinearGradient
               colors={['rgba(68,48,20,0.06)', 'rgba(255,255,255,0)', 'rgba(184,132,38,0.12)']}
               start={{ x: 0, y: 0 }}
@@ -3719,7 +4001,7 @@ export default function FriendsTabScreen() {
                       ? L('Новые подарки', 'Нові подарунки', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
                       : L('Подарок получен', 'Подарунок отримано', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
                   </Text>
-                  <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: 'rgba(255,255,255,0.54)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.14)' }}>
+                  <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: 'rgba(255,255,255,0.54)', borderWidth: 0, borderColor: 'rgba(126,88,27,0.14)' }}>
                     <Text style={{ color: monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {multi
                         ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
@@ -3742,7 +4024,7 @@ export default function FriendsTabScreen() {
                     activeOpacity={0.86}
                     disabled={giftBusyId !== null}
                     onPress={handleIncomingGiftThanks}
-                    style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.62)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.16)' }}
+                    style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.62)', borderWidth: 0, borderColor: 'rgba(126,88,27,0.16)' }}
                   >
                     <Text style={{ color: monoIcon(themeMode, '#3D2B10', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                       {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
@@ -3754,7 +4036,7 @@ export default function FriendsTabScreen() {
                       activeOpacity={0.86}
                       disabled={giftBusyId !== null}
                       onPress={() => void handleIncomingGiftReply('chain_shield_1')}
-                      style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
+                      style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 0, borderColor: 'rgba(255,255,255,0.16)' }}
                     >
                       <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                         {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
@@ -3782,7 +4064,7 @@ export default function FriendsTabScreen() {
                     router.push('/level_gifts_inventory' as any);
                   }}
                   activeOpacity={0.86}
-                  style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
+                  style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 0, borderColor: 'rgba(255,255,255,0.16)' }}
                 >
                   <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('В подарки', 'До подарунків', 'Gifts', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}
@@ -3806,7 +4088,7 @@ export default function FriendsTabScreen() {
       </Modal>
 
       <FriendQuestStartedModal
-        visible={friendQuestStarted !== null}
+        visible={friendQuestStarted !== null && sentGiftReceipt === null}
         onClose={() => setFriendQuestStarted(null)}
         L={L}
         f={f}
@@ -3822,12 +4104,14 @@ export default function FriendsTabScreen() {
       />
 
       <ReferralAccessEndedModal
-        visible={accessEndedOpen}
+        visible={referralMarketingVisible && accessEndedOpen}
         onInviteFriend={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); void handleReferralInvite(); }}
         onOpenFullAccess={() => {
           setAccessEndedOpen(false);
           void dismissReferralAccessEnded();
-          router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'referral_ended' } } as any);
+          {/* зачем: аудит «пейволы-объясняют» — конец подарочного VIP показывал generic-копию;
+              контекст referral_ended говорит юзеру, что именно закончилось. */}
+          router.push({ pathname: '/premium_modal', params: { context: 'referral_ended', source: 'referral_ended' } } as any);
         }}
         onClose={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); }}
         L={L}

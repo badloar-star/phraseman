@@ -4,7 +4,7 @@ import path from 'path';
 describe('telegram testers admin page contract', () => {
   const htmlPath = path.join(process.cwd(), 'admin', 'testers.html');
   const html = fs.existsSync(htmlPath) ? fs.readFileSync(htmlPath, 'utf8') : '';
-  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'index.html'), 'utf8');
+  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
   const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
   const functionSource = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'telegram_premium_bot.ts'), 'utf8');
 

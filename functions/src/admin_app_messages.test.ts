@@ -1,9 +1,12 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
+  appMessageLockActive,
+  appMessageLockOwner,
   appMessagePollStructureChanged,
   normalizeAppMessageCreateInput,
   normalizeAppMessageCleanupInput,
   normalizeAppMessageDeleteInput,
+  normalizePersonalAppMessageInput,
   normalizeAppMessageToggleInput,
   normalizeAppMessageUpdateInput,
 } from './admin_app_messages';
@@ -17,6 +20,19 @@ const base = {
   ttlDays: 14,
   translations: { ru: { title: 'Новый урок', body: 'Откройте новый урок сегодня.' } },
 };
+
+function completeSettingsTranslations(ru: Record<string, unknown>) {
+  return {
+    ru,
+    uk: { ...ru },
+    es: { ...ru },
+    ptBr: { ...ru },
+    vi: { ...ru },
+    id: { ...ru },
+    tr: { ...ru },
+    pl: { ...ru },
+  };
+}
 
 describe('normalizeAppMessageCreateInput', () => {
   test('creates a bounded message and falls empty languages back to RU', () => {
@@ -63,6 +79,88 @@ describe('normalizeAppMessageCreateInput', () => {
   });
 });
 
+describe('normalizePersonalAppMessageInput', () => {
+  const personal = {
+    uid: 'stable-user_123',
+    title: 'Ответ команды',
+    body: 'Мы проверили ваш вопрос.',
+    deliveryMode: 'next_login_modal',
+    reason: 'Ответ на обращение пользователя',
+    idempotencyKey: 'personal-message-1',
+    requestId: 'request-personal-1',
+  } as const;
+
+  test('accepts a stable UID and only the two personal delivery modes', () => {
+    expect(normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_000_000_000)).toMatchObject({
+      uid: 'stable-user_123',
+      deliveryMode: 'next_login_modal',
+      document: {
+        kind: 'personal_admin_message',
+        deliveryMode: 'next_login_modal',
+        title: 'Ответ команды',
+        body: 'Мы проверили ваш вопрос.',
+        createdBy: 'admin@example.com',
+      },
+    });
+    expect(normalizePersonalAppMessageInput({ ...personal, deliveryMode: 'inbox' }, 'admin@example.com').deliveryMode).toBe('inbox');
+    expect(() => normalizePersonalAppMessageInput({ ...personal, deliveryMode: 'push' }, 'admin@example.com')).toThrow(HttpsError);
+  });
+
+  test('normalizes settings polls as fixed campaigns with 2-4 options', () => {
+    const ruPoll = {
+      title: 'Важное от Phraseman', body: 'Помогите выбрать направление.',
+      pollQuestion: 'Что улучшить первым?', pollOptions: ['Уроки', 'Квизы', 'Диалоги', 'Повторение'],
+    };
+    const result = normalizeAppMessageCreateInput({
+      ...base,
+      kind: 'poll',
+      active: true,
+      deliverySurface: 'settings',
+      settingsSlot: 'top',
+      controlPercent: 10,
+      translations: completeSettingsTranslations(ruPoll),
+    }, 'admin@example.com', 1_800_000_000_000);
+    expect(result.document).toMatchObject({
+      deliverySurface: 'settings', settingsSlot: 'top', voteMode: 'fixed', controlPercent: 10,
+    });
+
+    expect(() => normalizeAppMessageCreateInput({
+      ...base,
+      kind: 'poll', deliverySurface: 'settings', settingsSlot: 'bottom',
+      translations: {
+        ru: { title: 'Опрос', body: 'Ответьте.', pollQuestion: 'Выберите', pollOptions: ['1', '2', '3', '4', '5'] },
+      },
+    }, 'admin@example.com')).toThrow('Poll requires a RU question and 2-4 options');
+  });
+
+  test('requires complete translations and an explicit audience for a live settings campaign', () => {
+    expect(() => normalizeAppMessageCreateInput({
+      ...base,
+      active: true,
+      deliverySurface: 'settings',
+      settingsSlot: 'top',
+      translations: base.translations,
+    }, 'admin@example.com')).toThrow('settings_translations_required');
+
+    expect(() => normalizeAppMessageCreateInput({
+      ...base,
+      active: true,
+      audience: 'unexpected',
+      deliverySurface: 'settings',
+      settingsSlot: 'top',
+      translations: completeSettingsTranslations(base.translations.ru),
+    }, 'admin@example.com')).toThrow('settings_audience_required');
+  });
+
+  test('rejects foreign recipient aliases and keeps retry fingerprint stable', () => {
+    expect(() => normalizePersonalAppMessageInput({ ...personal, recipientUid: 'other-user' }, 'admin@example.com')).toThrow(HttpsError);
+    const first = normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_000_000_000);
+    const retry = normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_060_000_000);
+    expect(retry.requestFingerprint).toBe(first.requestFingerprint);
+    expect(retry.document.createdAtMs).not.toBe(first.document.createdAtMs);
+  });
+});
+
 describe('normalizeAppMessageToggleInput', () => {
   test('accepts a reasoned active-state change and rejects malformed ids', () => {
     expect(normalizeAppMessageToggleInput({ messageId: 'message_123', active: false, reason: 'Campaign ended', idempotencyKey: 'toggle-1', requestId: 'req-1' })).toMatchObject({ messageId: 'message_123', active: false });
@@ -75,10 +173,11 @@ describe('app message edit and delete commands', () => {
     const result = normalizeAppMessageUpdateInput({
       ...base,
       messageId: 'message_123',
+      active: true,
       resetPollEngagement: false,
       translations: { ru: { title: 'Новая тема', body: 'Новый текст' } },
     });
-    expect(result).toMatchObject({ messageId: 'message_123', resetPollEngagement: false });
+    expect(result).toMatchObject({ messageId: 'message_123', active: true, resetPollEngagement: false });
     expect(result.patch).toMatchObject({ kind: 'message', audience: 'free', priority: 12, titleRu: 'Новая тема', messageRu: 'Новый текст' });
     expect(result.patch).not.toHaveProperty('createdAtMs');
     expect(result.patch).not.toHaveProperty('expiresAtMs');
@@ -98,11 +197,27 @@ describe('app message edit and delete commands', () => {
     const result = normalizeAppMessageUpdateInput({
       ...base,
       messageId: 'legacy_poll_1',
+      active: true,
       kind: 'poll',
       pollOptionIds: ['opt_1', 'opt_2'],
       translations: { ru: { title: 'Выбор', body: 'Ответьте', pollQuestion: 'Да или нет?', pollOptions: ['Да', 'Нет'] } },
     });
     expect(result.patch.poll).toMatchObject({ optionIds: ['opt_1', 'opt_2'], options: [{ id: 'opt_1' }, { id: 'opt_2' }] });
+  });
+
+  test('requires the requested post-edit active state and fingerprints it', () => {
+    const input = {
+      ...base,
+      messageId: 'message_123',
+      active: false,
+      translations: { ru: { title: 'Draft', body: 'Keep inactive' } },
+    };
+    const inactive = normalizeAppMessageUpdateInput(input);
+    const active = normalizeAppMessageUpdateInput({ ...input, active: true });
+    expect(inactive.active).toBe(false);
+    expect(active.active).toBe(true);
+    expect(active.requestFingerprint).not.toBe(inactive.requestFingerprint);
+    expect(() => normalizeAppMessageUpdateInput({ ...input, active: undefined })).toThrow(HttpsError);
   });
 
   test('requires a reasoned bounded delete command', () => {
@@ -118,5 +233,36 @@ describe('app message edit and delete commands', () => {
       requestId: 'req-cleanup-1',
     }).messageIds).toEqual(['message_123', 'message_456']);
     expect(() => normalizeAppMessageCleanupInput({ messageIds: [], reason: 'x', idempotencyKey: 'cleanup-2', requestId: 'req-cleanup-2' })).toThrow(HttpsError);
+  });
+});
+
+describe('appMessageLockActive', () => {
+  const now = 1_800_000_000_000;
+
+  test('holds the document while a fresh claim is in flight', () => {
+    expect(appMessageLockActive({ operationId: 'delete-1', claimedAtMs: now - 5_000 }, now)).toBe(true);
+  });
+
+  test('releases a claim abandoned by a crashed or timed-out invocation', () => {
+    // зачем: без протухания сорвавшееся удаление блокировало сообщение навсегда
+    expect(appMessageLockActive({ operationId: 'delete-1', claimedAtMs: now - 300_000 }, now)).toBe(false);
+  });
+
+  test('treats legacy string locks as released so stuck messages recover', () => {
+    expect(appMessageLockActive('delete-legacy', now)).toBe(false);
+  });
+
+  test('treats a missing or malformed claim as released', () => {
+    expect(appMessageLockActive(undefined, now)).toBe(false);
+    expect(appMessageLockActive({ operationId: 'delete-1' }, now)).toBe(false);
+    expect(appMessageLockActive({ operationId: 'delete-1', claimedAtMs: 0 }, now)).toBe(false);
+  });
+});
+
+describe('appMessageLockOwner', () => {
+  test('reads the owning operation from both the object and the legacy string shape', () => {
+    expect(appMessageLockOwner({ operationId: 'update-7', claimedAtMs: 1 })).toBe('update-7');
+    expect(appMessageLockOwner('update-7')).toBe('update-7');
+    expect(appMessageLockOwner(undefined)).toBe('');
   });
 });

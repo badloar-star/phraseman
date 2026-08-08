@@ -5,7 +5,6 @@ import { ensureAnonUser } from '../cloud_sync';
 import { replaceShardsBalanceLocal } from '../shards_system';
 import { emitAppEvent } from '../events';
 import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
-import { addArenaPlaysBonusForClaimDayOnce } from '../arena_daily_limit';
 import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from '../flashcards/marketplace';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -24,7 +23,12 @@ import {
 export const LEAGUE_CROWN_NICK_COLOR = '#16B7D9';
 export const LEAGUE_CHEST_SHARDS_REWARD = 30;
 export const LEAGUE_CHEST_ENERGY_MS = 5 * 60 * 1000;
-export const LEAGUE_CHEST_BASE_GOAL = 200_000;
+// зачем (владелец 2026-08-04): порог поднят с 200 000 до 400 000, потому что
+// опыт жителей теперь идёт в общую цель (~159 000 за неделю с 28 жителями) и
+// прежняя цель закрывалась бы сама. Значение обязано совпадать с серверным
+// LEAGUE_CHEST_BASE_GOAL в functions/src/league_chest.ts, иначе клиент покажет
+// «готово», а сервер откажет в выдаче.
+export const LEAGUE_CHEST_BASE_GOAL = 400_000;
 export const LEAGUE_CHEST_GOAL_STEP = 20_000;
 export const LEAGUE_GOLD_THEME_UNLOCK_KEY = 'league_gold_theme_unlocked_v1';
 export const LEAGUE_GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
@@ -127,6 +131,7 @@ export type LeagueChestClaim = {
     xpOverrideUses?: number;
     streakShieldCount?: number;
     themeGoldUnlocked?: boolean;
+    packGiftVoucherId?: string;
     expiresAt: number;
   };
 };
@@ -402,88 +407,6 @@ export async function fetchLeagueBonusProgressSnapshot(): Promise<LeagueBonusPro
   });
 }
 
-export function subscribeLeagueBonusAvailability(
-  onAvailable: (availability: LeagueBonusAvailability) => void,
-): () => void {
-  const db = getDb();
-  if (!db) return () => {};
-  let closed = false;
-  let meta: { weekId: string; groupId: string; leagueId: number } | null = null;
-  let myUid = '';
-  let groupData: Record<string, unknown> | null = null;
-  let arenaData: Record<string, unknown> | null = null;
-  let claimExists = false;
-  let locallyClaimed = false;
-  let lastKey = '';
-  const unsubs: Array<() => void> = [];
-
-  const maybeEmit = () => {
-    if (closed || !meta || !myUid) return;
-    const availability = buildLeagueBonusAvailability({
-      meta,
-      myUid,
-      groupData,
-      arenaData,
-      claimExists,
-      locallyClaimed,
-    });
-    if (!availability) return;
-    const key = `${availability.weekId}:${availability.groupId}:${availability.progress}:${availability.crownUid ?? ''}`;
-    if (key === lastKey) return;
-    lastKey = key;
-    onAvailable(availability);
-  };
-
-  void (async () => {
-    const resolved = await Promise.all([resolveMyLeagueGroupMeta(), ensureAnonUser()]).catch(() => [null, null] as const);
-    if (closed) return;
-    meta = resolved[0];
-    myUid = String(resolved[1] ?? '');
-    if (!meta || !myUid) return;
-    const [claimRaw, pendingRaw] = await Promise.all([
-      AsyncStorage.getItem(localClaimKey(myUid, meta.weekId, meta.groupId)).catch(() => null),
-      AsyncStorage.getItem(localPendingClaimKey(myUid, meta.weekId, meta.groupId)).catch(() => null),
-    ]);
-    locallyClaimed = claimRaw === '1' || pendingRaw === '1';
-    if (closed) return;
-    const arenaDocId = `${safeId(meta.weekId)}_${safeId(meta.groupId)}`;
-    // Защита от гонки: teardown мог отработать, пока выше шли await'ы. В этом случае
-    // unsubs уже очищены, поэтому каждый новый onSnapshot отзываем немедленно, а не складываем.
-    const track = (unsub: () => void) => {
-      if (closed) {
-        try { unsub(); } catch {}
-        return;
-      }
-      unsubs.push(unsub);
-    };
-    track(
-      db.collection('league_groups').doc(meta.groupId).onSnapshot((snap) => {
-        groupData = snap.exists ? (snap.data() as Record<string, unknown>) : null;
-        maybeEmit();
-      }, () => {}),
-    );
-    track(
-      db.collection('arena_club_events').doc(arenaDocId).onSnapshot((snap) => {
-        arenaData = snap.exists ? (snap.data() as Record<string, unknown>) : null;
-        maybeEmit();
-      }, () => {}),
-    );
-    track(
-      db.collection('league_chest_claims').doc(claimDocId(myUid, meta.weekId, meta.groupId)).onSnapshot((snap) => {
-        claimExists = snap.exists;
-        maybeEmit();
-      }, () => {}),
-    );
-  })();
-
-  return () => {
-    closed = true;
-    unsubs.forEach((unsub) => {
-      try { unsub(); } catch {}
-    });
-  };
-}
-
 export async function readLeagueChestEnergyOverrideMs(): Promise<number | null> {
   try {
     const raw = await AsyncStorage.getItem(ENERGY_OVERRIDE_KEY);
@@ -662,9 +585,17 @@ async function applyLocalRewardPack(
     if (drop.kind === 'gold_theme') {
       await unlockLeagueGoldThemeReward('league_chest');
     } else if (drop.kind === 'arena_plays') {
-      await addArenaPlaysBonusForClaimDayOnce(rewardAmount(drop) || 5, `${claimEffectId ?? 'league_chest'}:${drop.id}:arena_plays`, claimedAtMs);
+      // The Arena feature is retired. Keep the chest claim idempotent while
+      // intentionally skipping its former Arena-only reward.
     } else if (drop.kind === 'pack_trial_48h') {
-      const trial = await setPackGiftTrial48hOnce(studyTarget, `${claimEffectId ?? 'league_chest'}:${drop.id}:pack_trial_48h`, drop.expiresAt);
+      const trial = await setPackGiftTrial48hOnce(
+        studyTarget,
+        `${claimEffectId ?? 'league_chest'}:${drop.id}:pack_trial_48h`,
+        drop.expiresAt,
+        rewardPack.packGiftVoucherId,
+        rewardPack.packGiftVoucherId,
+        'league_chest',
+      );
       if (trial) await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
     } else if (drop.kind === 'avatar_aura') {
       await grantAvatarAuraReward(drop.auraId);

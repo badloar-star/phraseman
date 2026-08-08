@@ -3,73 +3,74 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.55",
+    "version": "1.6.6",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "runtimeVersion": "1.5.53",
+    "runtimeVersion": "1.6.6",
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
       "checkAutomatically": "ON_ERROR_RECOVERY",
       "fallbackToCacheTimeout": 0,
       "assetPatternsToBeBundled": [
-        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/*",
+        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf",
+        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf",
         "assets/fonts/*.ttf",
         "assets/images/achievement_categories/*",
-        "assets/images/arena_actions/*",
-        "assets/images/arena/*",
-        "assets/images/arena_match/*",
-        "assets/images/arena_ranks/**/*",
-        "assets/images/arena_tickets/*",
-        "assets/images/achievements/*",
+        "assets/images/achievements/streak_3.webp",
+        "assets/images/achievements/streak_7.webp",
+        "assets/images/achievements/perfect_week.webp",
+        "assets/images/achievements/lesson_1.webp",
+        "assets/images/achievements/lesson_3.webp",
+        "assets/images/achievements/lesson_5.webp",
+        "assets/images/achievements/lesson_perfect.webp",
+        "assets/images/achievements/xp_100.webp",
+        "assets/images/achievements/xp_250.webp",
+        "assets/images/achievements/xp_500.webp",
+        "assets/images/achievements/combo_3.webp",
+        "assets/images/achievements/combo_10.webp",
+        "assets/images/achievements/daily_task_first.webp",
+        "assets/images/achievements/all_daily.webp",
+        "assets/images/achievements/daily_phrase_first.webp",
+        "assets/images/achievements/login_7.webp",
+        "assets/images/achievements/comeback.webp",
+        "assets/images/achievements/diagnosis.webp",
+        "assets/images/achievements/exam_first.webp",
+        "assets/images/achievements/flashcards_session.webp",
+        "assets/images/achievements/recall_first.webp",
+        "assets/images/achievements/shards_100.webp",
+        "assets/images/achievements/energy_refill_first.webp",
+        "assets/images/achievements/league_result_first.webp",
         "assets/images/avatars/*",
         "assets/images/daily_task_icons/**/*",
         "assets/images/energy/*",
         "assets/images/flashcard_backs/*",
-        "assets/images/friends/*",
-        "assets/images/home/*",
         "assets/images/header_glyphs/*",
-        "assets/images/home_menu/*",
+        "assets/images/home_menu/**/*",
         "assets/images/league/league_crown.webp",
         "assets/images/league_bonus/*",
-        "assets/images/lesson_cycle_end_modal/*",
-        "assets/images/levels/league-v4-icons/*",
-        "assets/images/levels/league-v4/*",
-        "assets/images/levels/league-v5-heraldry/*.png",
-        "assets/images/levels/league-v5-heraldry/*.webp",
         "assets/images/levels/league-v6-icons/*.webp",
-        "assets/images/levels/league-v6-cards/*.webp",
         "assets/images/levels/generated-v5-dalle/*.webp",
         "assets/images/levels/*.webp",
         "assets/images/lesson_intro/*",
-        "assets/images/lessons/*",
-        "assets/images/level_gifts/*",
         "assets/images/level_gift_reward_icons/*",
-        "assets/images/messages/*",
-        "assets/images/onboarding/*",
-        "assets/images/quizzes/level_cards/*",
-        "assets/images/quizzes/level_logos/*",
-        "assets/images/quizzes/theme_cards/*",
-        "assets/images/quizzes/theme_logos/*",
-        "assets/images/reward_modals/*",
-        "assets/images/settings/*",
-        "assets/images/shards/*",
-        "assets/images/statistics/*.webp",
-        "assets/images/statistics/cards/**/*",
+        "assets/images/settings/**/*",
+        "assets/images/currency/*",
         "assets/images/splash-icon.png",
-        "assets/images/streak_overlays/*",
+        "assets/images/streak_overlays/*.webp",
         "assets/images/theo/*",
         "assets/images/weekly_boon_icons/png/**/*",
-        "assets/images/trainer_theme_icons/**/*"
+        "assets/images/trainer_theme_icons/**/*.webp",
+        "assets/images/tournament/themes/**/*.webp"
       ]
     },
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 98,
+      "versionCode": 111,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -85,11 +86,6 @@
               "scheme": "https",
               "host": "knowlyapps.com",
               "pathPrefix": "/phraseman/invite"
-            },
-            {
-              "scheme": "https",
-              "host": "knowlyapps.com",
-              "pathPrefix": "/phraseman/duel"
             }
           ],
           "category": [
@@ -112,6 +108,7 @@
         "android.permission.ACCESS_ADSERVICES_AD_ID",
         "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
         "android.permission.ACCESS_ADSERVICES_TOPICS",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.SYSTEM_ALERT_WINDOW"
@@ -120,7 +117,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "98",
+      "buildNumber": "111",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -128,11 +125,15 @@
       ],
       "googleServicesFile": "./GoogleService-Info.plist",
       "entitlements": {
-        "com.apple.security.application-groups": ["group.app.phraseman.widget"]
+        "com.apple.security.application-groups": ["group.app.phraseman.widget"],
+        "com.apple.developer.devicecheck.appattest-environment": "production"
       },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSPhotoLibraryUsageDescription": "Phraseman may access photos only if you explicitly choose an image in the app."
+        "NSPhotoLibraryUsageDescription": "Phraseman не открывает вашу медиатеку. Разрешение запрашивается только если вы сами решите сохранить изображение с результатами обучения.",
+        "NSMicrophoneUsageDescription": "Микрофон нужен, чтобы проверять ваше произношение английских фраз и вести голосовой диалог с ИИ-собеседником.",
+        "NSSpeechRecognitionUsageDescription": "Распознавание речи проверяет, насколько верно вы произнесли английскую фразу, и позволяет отвечать голосом в диалогах.",
+        "NSFaceIDUsageDescription": "Face ID защищает сохранённые данные вашего аккаунта на устройстве."
       }
     },
     "web": {
@@ -152,15 +153,30 @@
                   {
                     "path": "./assets/fonts/Inter-Regular.ttf",
                     "weight": 400
-                  },
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Inter-SemiBold",
+                "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Inter-SemiBold.ttf",
                     "weight": 600
-                  },
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Inter-Bold",
+                "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Inter-Bold.ttf",
                     "weight": 700
-                  },
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Inter-Black",
+                "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Inter-Black.ttf",
                     "weight": 900
@@ -238,6 +254,7 @@
       "./plugins/withAndroidDevCleartext",
       "./plugins/withAndroidDevServer127",
       "./plugins/withAndroidDevClientAutoMetro",
+      "./plugins/withProductionAndroidBundleHygiene",
       "./plugins/withAndroidSplashWindowBackground",
       "./plugins/withIosFirebaseEarlyConfigure",
       "./plugins/withAndroidDailyPhraseWidget",

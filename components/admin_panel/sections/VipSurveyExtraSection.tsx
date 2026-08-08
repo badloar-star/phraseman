@@ -2,7 +2,6 @@
 // засев inbox-сообщения и переход на главную).
 import React, { useState } from 'react';
 import VipSurveyModal from '../../VipSurveyModal';
-import VipSurveyReviewPromptModal from '../../VipSurveyReviewPromptModal';
 import { AccordionSection, AdminHint, ButtonRow } from '../ui';
 import { qaToast } from '../qa_utils';
 
@@ -14,7 +13,6 @@ interface Props {
 
 export default function VipSurveyExtraSection({ open, onToggle, onSeedInboxPreview }: Props) {
   const [surveyVisible, setSurveyVisible] = useState(false);
-  const [reviewPromptVisible, setReviewPromptVisible] = useState(false);
 
   return (
     <AccordionSection
@@ -42,13 +40,6 @@ export default function VipSurveyExtraSection({ open, onToggle, onSeedInboxPrevi
         sub="⚠️ Завершение опроса отправит реальные ответы и активирует Plus через callable"
         onPress={() => setSurveyVisible(true)}
       />
-      <ButtonRow
-        testID="admin-extra-vip-survey-review"
-        icon="star-outline"
-        label="VipSurveyReviewPromptModal"
-        sub="Просьба об отзыве после опроса. «Написать отзыв» откроет магазин."
-        onPress={() => setReviewPromptVisible(true)}
-      />
 
       <VipSurveyModal
         visible={surveyVisible}
@@ -58,10 +49,6 @@ export default function VipSurveyExtraSection({ open, onToggle, onSeedInboxPrevi
           setSurveyVisible(false);
           qaToast('success', 'QA: опрос завершён (ответы отправлены по-настоящему)');
         }}
-      />
-      <VipSurveyReviewPromptModal
-        visible={reviewPromptVisible}
-        onClose={() => setReviewPromptVisible(false)}
       />
     </AccordionSection>
   );

@@ -114,7 +114,7 @@ function retryFor(correct: string, contrast: TriText, finalHint: TriText): [TriT
     contrast,
     tri(
       'Потом проверь форму после английского куска. Нормально: should call, must leave, have to work, has to go.',
-      'Потім перевір форму після англійського шматка. Нормально: should call, must leave, have to work, has to go.',
+      'Потім перевір форму після англійського звороту. Нормально: should call, must leave, have to work, has to go.',
       'Luego revisa el bloque: should call, must leave, have to work, has to go.',
     ),
     tri(
@@ -160,7 +160,7 @@ function modalStep(input: {
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери кусок, который передает нужную силу: совет, правило, запрет, необходимость или "не обязательно".',
-      'Обери шматок, який передає потрібну силу: пораду, правило, заборону, необхідність або "не обовʼязково".',
+      'Обери зворот, який передає потрібну силу: пораду, правило, заборону, необхідність або "не обовʼязково".',
       'Elige el bloque con la fuerza correcta.',
     ),
     sentence: input.sentence,
@@ -263,7 +263,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       'Must звучить як жорстке правило або обовʼязок: You must stop.',
       "Mustn't означає заборону: You mustn't smoke here.",
       'Have to означає необхідність через ситуацію: I have to work.',
-      'З he/she/it потрібен шматок has to: She has to leave.',
+      'З he/she/it потрібен зворот has to: She has to leave.',
       "Don't have to означає не обовʼязково, а не заборону.",
       'Після should і must дія не отримує зайвий хвіст: should call, must leave.',
       'У питанні з have to потрібен do/does: Do you have to work?',
@@ -376,7 +376,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       id: 'Dia harus pergi lebih awal.',
       tr: 'Erken ayrılmak zorunda.',
       pl: 'Ona musi wyjść wcześniej.',
-      why: tri('С she нужен кусок has to.', 'З she потрібен шматок has to.', 'Con she usa has to.'),
+      why: tri('С she нужен кусок has to.', 'З she потрібен зворот has to.', 'Con she usa has to.'),
     },
     {
       en: "You don't have to come.",
@@ -485,7 +485,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       translation: tri('Ей стоит позвонить ему.', 'Їй варто подзвонити йому.', 'She should call him.'),
       options: ['call', 'calls', 'to call', 'calling'],
       correctAnswer: 'call',
-      correctFeedback: tri('Да. Нормальный кусок: should call.', 'Так. Нормальний шматок: should call.', 'Yes. The chunk is should call.'),
+      correctFeedback: tri('Да. Нормальный кусок: should call.', 'Так. Нормальний зворот: should call.', 'Yes. The chunk is should call.'),
       wrong: {
         calls: tri('После should не добавляй -s. Даже с she нормально: should call.', 'Після should не додавай -s. Навіть із she нормально: should call.', 'Use should call.'),
         'to call': tri('После should не нужен to. Нормально: should call.', 'Після should не потрібен to. Нормально: should call.', 'Use should call.'),
@@ -508,7 +508,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       wrong: {
         "mustn't": tri("mustn't звучит как запрет. Для мягкого совета нужен shouldn't.", "mustn't звучить як заборона. Для мʼякої поради потрібен shouldn't.", "Mustn't is prohibition. Use shouldn't."),
         "don't have to": tri("don't have to значит не обязательно. Здесь смысл: не стоит переживать = shouldn't worry.", "don't have to означає не обовʼязково. Тут зміст: не варто хвилюватися = shouldn't worry.", "Don't have to means not necessary."),
-        "haven't to": tri("haven't to не рабочий базовый кусок. Здесь нужен shouldn't worry.", "haven't to не робочий базовий шматок. Тут потрібно shouldn't worry.", "Use shouldn't worry."),
+        "haven't to": tri("haven't to не рабочий базовый кусок. Здесь нужен shouldn't worry.", "haven't to не робочий базовий зворот. Тут потрібно shouldn't worry.", "Use shouldn't worry."),
       },
       contrast: tri('Не стоит делать = should not, коротко shouldn\'t.', 'Не варто робити = should not, коротко shouldn\'t.', "Not a good idea = shouldn't."),
       finalHint: tri("You shouldn't worry.", "You shouldn't worry.", "You shouldn't worry."),
@@ -542,7 +542,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       translation: tri('Он должен уйти сейчас.', 'Він повинен піти зараз.', 'He must leave now.'),
       options: ['leave', 'leaves', 'to leave', 'leaving'],
       correctAnswer: 'leave',
-      correctFeedback: tri('Да. Нормальный кусок: must leave.', 'Так. Нормальний шматок: must leave.', 'Yes. The chunk is must leave.'),
+      correctFeedback: tri('Да. Нормальный кусок: must leave.', 'Так. Нормальний зворот: must leave.', 'Yes. The chunk is must leave.'),
       wrong: {
         leaves: tri('После must не добавляй -s. Даже с he нормально: must leave.', 'Після must не додавай -s. Навіть із he нормально: must leave.', 'Use must leave.'),
         'to leave': tri('После must не нужен to. Нормально: must leave.', 'Після must не потрібен to. Нормально: must leave.', 'Use must leave.'),
@@ -580,7 +580,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       translation: tri('Мне нужно работать завтра.', 'Мені потрібно працювати завтра.', 'I have to work tomorrow.'),
       options: ['have to', 'has to', 'should to', 'must to'],
       correctAnswer: 'have to',
-      correctFeedback: tri('Да. С I нужен кусок have to work.', 'Так. З I потрібен шматок have to work.', 'Yes. I takes have to work.'),
+      correctFeedback: tri('Да. С I нужен кусок have to work.', 'Так. З I потрібен зворот have to work.', 'Yes. I takes have to work.'),
       wrong: {
         'has to': tri('has to идет с he/she/it. С I нужен вариант have to.', 'has to іде з he/she/it. З I потрібен варіант have to.', 'I takes have to.'),
         'should to': tri('should to не работает. Если это совет, было бы should work.', 'should to не працює. Якби це була порада, було б should work.', 'Should to is not the chunk.'),
@@ -599,7 +599,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       translation: tri('Ей нужно уйти рано.', 'Їй потрібно піти рано.', 'She has to leave early.'),
       options: ['has to', 'have to', 'must to', 'should to'],
       correctAnswer: 'has to',
-      correctFeedback: tri('Да. С she нужен кусок has to leave.', 'Так. З she потрібен шматок has to leave.', 'Yes. She takes has to leave.'),
+      correctFeedback: tri('Да. С she нужен кусок has to leave.', 'Так. З she потрібен зворот has to leave.', 'Yes. She takes has to leave.'),
       wrong: {
         'have to': tri('have to идет с I/you/we/they. С she нужен вариант has to.', 'have to іде з I/you/we/they. З she потрібен варіант has to.', 'She takes has to.'),
         'must to': tri('must to не работает. Нормально: must leave, без to.', 'must to не працює. Нормально: must leave, без to.', 'Use must leave, not must to leave.'),
@@ -660,7 +660,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       wrong: {
         "don't have to": tri("С she отрицание собирается через does: нужен doesn't have to, а не don't have to.", "З she заперечення збирається через does: потрібно doesn't have to, а не don't have to.", "Use doesn't have to."),
         "mustn't": tri("mustn't значит, что ей запрещено работать. Здесь просто не обязательно.", "mustn't означає, що їй заборонено працювати. Тут просто не обовʼязково.", 'Mustn\'t is prohibition.'),
-        "hasn't to": tri("hasn't to не базовый кусок. Нормально: doesn't have to.", "hasn't to не базовий шматок. Нормально: doesn't have to.", "Use doesn't have to."),
+        "hasn't to": tri("hasn't to не базовый кусок. Нормально: doesn't have to.", "hasn't to не базовий зворот. Нормально: doesn't have to.", "Use doesn't have to."),
       },
       contrast: tri("She + doesn't have to.", "She + doesn't have to.", "She + doesn't have to."),
       finalHint: tri("She doesn't have to work tomorrow.", "She doesn't have to work tomorrow.", "She doesn't have to work tomorrow."),
@@ -682,7 +682,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       correctAnswer: "You don't have to come / You mustn't smoke here",
       correctFeedback: tri("Да. don't have to = не обязательно. mustn't = нельзя.", "Так. don't have to = не обовʼязково. mustn't = не можна.", 'Yes. Not necessary / prohibited.'),
       wrong: {
-        "You mustn't come / You don't have to smoke here": tri("Куски поменялись местами. mustn't - запрет, don't have to - не обязательно.", "Шматки помінялися місцями. mustn't - заборона, don't have to - не обовʼязково.", 'The chunks are reversed.'),
+        "You mustn't come / You don't have to smoke here": tri("Куски поменялись местами. mustn't - запрет, don't have to - не обязательно.", "Звороти помінялися місцями. mustn't - заборона, don't have to - не обовʼязково.", 'The chunks are reversed.'),
         "You shouldn't come / You must smoke here": tri("shouldn't - только совет не приходить, а must smoke вообще заставляет курить.", "shouldn't - лише порада не приходити, а must smoke взагалі змушує курити.", 'Wrong force in both parts.'),
         "You haven't to come / You mustn't to smoke here": tri("haven't to и mustn't to ломают форму. Нормально: don't have to / mustn't smoke.", "haven't to і mustn't to ламають форму. Нормально: don't have to / mustn't smoke.", 'Use the normal chunks.'),
       },
@@ -707,7 +707,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Совет / правило / необходимость: should / must / have to.', 'Так. Порада / правило / необхідність: should / must / have to.', 'Yes. Advice / rule / necessity.'),
       wrong: {
         'You must rest / You should stop / I must to work': tri('must rest слишком жестко для совета, should stop слабее правила, а must to не работает.', 'must rest надто жорстко для поради, should stop слабше правила, а must to не працює.', 'Wrong force and form.'),
-        'You should to rest / You must to stop / I have work': tri('should to и must to не работают. А в I have work потерялся кусок have to.', 'should to і must to не працюють. А в I have work загубився шматок have to.', 'The chunks are broken.'),
+        'You should to rest / You must to stop / I have work': tri('should to и must to не работают. А в I have work потерялся кусок have to.', 'should to і must to не працюють. А в I have work загубився зворот have to.', 'The chunks are broken.'),
         "You have to rest / You don't have to stop / I should to work": tri('Смысл смешался: совет стал необходимостью, правило стало "не обязательно", should to не работает.', 'Зміст змішався: порада стала необхідністю, правило стало "не обовʼязково", should to не працює.', 'The meanings are mixed.'),
       },
       contrast: tri('Сначала сила, потом форма.', 'Спочатку сила, потім форма.', 'Force first, then form.'),
@@ -730,7 +730,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       correctAnswer: "Do you have to work? / She doesn't have to work",
       correctFeedback: tri("Да. Вопрос: Do you have to...? С she в отрицании: doesn't have to.", "Так. Питання: Do you have to...? З she в запереченні: doesn't have to.", 'Yes. Do you have to / she does not have to.'),
       wrong: {
-        "Have you to work? / She hasn't to work": tri("Have you to и hasn't to не базовые современные куски. Нормально через do/does.", "Have you to і hasn't to не базові сучасні шматки. Нормально через do/does.", 'Use do/does.'),
+        "Have you to work? / She hasn't to work": tri("Have you to и hasn't to не базовые современные куски. Нормально через do/does.", "Have you to і hasn't to не базові сучасні звороти. Нормально через do/does.", 'Use do/does.'),
         "Must you have to work? / She don't have to work": tri("Must you have to звучит лишним, а с she нужно doesn't, не don't.", "Must you have to звучить зайвим, а з she потрібно doesn't, не don't.", 'Use Do you have to and she does not.'),
         "Do you has to work? / She doesn't has to work": tri('После do/does возвращается have to, не has to.', 'Після do/does повертається have to, не has to.', 'After do/does use have to.'),
       },
@@ -755,8 +755,8 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       correctFeedback: tri("Да. should rest = стоит отдохнуть. don't have to go = не обязательно идти.", "Так. should rest = варто відпочити. don't have to go = не обовʼязково йти.", 'Yes. Advice plus no obligation.'),
       wrong: {
         "You must rest, but you mustn't go home.": tri("must rest делает совет приказом, а mustn't go home означает запрет идти домой.", "must rest робить пораду наказом, а mustn't go home означає заборону йти додому.", 'Too strong and wrong meaning.'),
-        "You should to rest, but you haven't to go home.": tri("should to и haven't to ломают готовые куски. Нормально: should rest / don't have to go.", "should to і haven't to ламають готові шматки. Нормально: should rest / don't have to go.", 'Use the normal chunks.'),
-        "You have to rest, but you don't must go home.": tri("have to rest звучит как необходимость, а don't must не рабочий кусок. Нужен don't have to.", "have to rest звучить як необхідність, а don't must не робочий шматок. Потрібен don't have to.", "Use don't have to."),
+        "You should to rest, but you haven't to go home.": tri("should to и haven't to ломают готовые куски. Нормально: should rest / don't have to go.", "should to і haven't to ламають готові звороти. Нормально: should rest / don't have to go.", 'Use the normal chunks.'),
+        "You have to rest, but you don't must go home.": tri("have to rest звучит как необходимость, а don't must не рабочий кусок. Нужен don't have to.", "have to rest звучить як необхідність, а don't must не робочий зворот. Потрібен don't have to.", "Use don't have to."),
       },
       contrast: tri("Совет + нет обязанности = should + don't have to.", "Порада + немає обовʼязку = should + don't have to.", "Advice + no obligation."),
       finalHint: tri("You should rest, but you don't have to go home.", "You should rest, but you don't have to go home.", "You should rest, but you don't have to go home."),
@@ -785,7 +785,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показать силу фразы и готовый кусок.', 'Звичайне пояснення: показати силу фрази й готовий шматок.', 'Muestra la fuerza de la frase y el bloque listo.'),
+    depth1: tri('Обычное объяснение: показать силу фразы и готовый кусок.', 'Звичайне пояснення: показати силу фрази й готовий зворот.', 'Muestra la fuerza de la frase y el bloque listo.'),
     depth2: tri('Проще: спросить, это совет, правило, запрет или необходимость?', 'Простіше: спитати, це порада, правило, заборона чи необхідність?', 'Pregunta por la fuerza: consejo, regla, prohibicion o necesidad.'),
     depth3: tri('Еще проще: сравнить should rest / must stop / have to work.', 'Ще простіше: порівняти should rest / must stop / have to work.', 'Compara should rest / must stop / have to work.'),
     depth4: tri("Почти подсказка: показать прямо should, must, have to, don't have to или mustn't.", "Майже підказка: показати прямо should, must, have to, don't have to або mustn't.", 'Senala el bloque correcto.'),

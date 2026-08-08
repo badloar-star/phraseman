@@ -6,6 +6,7 @@ import type { MedalTier } from '../app/medal_utils';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { getMedalToastThemeStyle } from './medalToastThemeStyles';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 interface MedalPalette {
   primary: string;
@@ -236,29 +237,12 @@ function MedalToast({
             { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }) },
             { scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) },
           ],
-          shadowColor: tierAccent,
         },
       ]}
     >
-      {/* Светящийся halo сзади */}
-      <View
-        pointerEvents="none"
-        style={[
-          styles.halo,
-          {
-            backgroundColor: tierGlow,
-            opacity: visualTheme.haloOpacity,
-          },
-        ]}
-      />
-      <View
-        pointerEvents="none"
-        style={[
-          styles.aura,
-          { backgroundColor: visualTheme.auraColor },
-        ]}
-      />
-
+      {/* зачем: свечение вокруг тоста (halo + aura + цветная тень по акценту медали)
+          выбивалось из дизайна — убрано. Плашка отделяется от фона тоном градиента
+          и мягкой нейтральной тенью, без цветного ореола. */}
       <LinearGradient
         colors={visualTheme.cardBgColors}
         start={{ x: 0, y: 0 }}
@@ -362,27 +346,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 20,
     right: 20,
-    shadowOpacity: 0.55,
-    shadowRadius: 22,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 16,
-  },
-  halo: {
-    position: 'absolute',
-    top: -10,
-    left: -10,
-    right: -10,
-    bottom: -10,
-    borderRadius: 28,
-  },
-  aura: {
-    position: 'absolute',
-    top: 4,
-    left: 8,
-    right: 8,
-    height: 28,
-    borderRadius: 22,
-    opacity: 0.72,
+    // зачем: нейтральная мягкая тень вместо цветного свечения по акценту медали —
+    // плашка остаётся приподнятой над фоном, но без ореола.
+    // зачем: карточка внутри скруглена на 22 и с overflow:hidden, а фон даёт
+    // тема — Android заливал квадрат вокруг плашки медали.
+    shadowColor: '#000',
+    shadowOpacity: 0.28,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 8 },
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 22,

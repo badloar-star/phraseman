@@ -2,9 +2,13 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
-import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { hasPhraseAudio, playPhraseByText, stopPhraseAudio } from './phrase_audio_player';
+import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
+import {
+  acquireAudioActivity,
+  whenAudioActivitySettled,
+  type AudioActivityLease,
+} from '../modules/audio/audio_activity';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
@@ -81,28 +85,42 @@ export function useAudio() {
   const lastTextRef = useRef('');
   const lastSpeakAtRef = useRef(0);
   const pendingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clipStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speechGenerationRef = useRef(0);
+  const speechLeaseRef = useRef<AudioActivityLease | null>(null);
+
+  const stopVoiceNow = () => {
+    speechGenerationRef.current += 1;
+    if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+    pendingTimerRef.current = null;
+    if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
+    clipStartTimerRef.current = null;
+    safeSpeechStop();
+    stopPhraseAudio();
+    speechLeaseRef.current?.release();
+    speechLeaseRef.current = null;
+  };
 
   useEffect(() => {
+    const unregisterVoiceStop = voicePlaybackPolicy.registerStop(stopVoiceNow);
     return () => {
-      if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
-      pendingTimerRef.current = null;
-      safeSpeechStop();
-      stopPhraseAudio();
+      unregisterVoiceStop();
+      stopVoiceNow();
+      lastTextRef.current = '';
     };
   }, []);
 
   const stop = useCallback(() => {
-    if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
-    pendingTimerRef.current = null;
+    stopVoiceNow();
     lastTextRef.current = '';
     lastSpeakAtRef.current = 0;
-    safeSpeechStop();
-    stopPhraseAudio();
   }, []);
 
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
     const normalized = text?.trim();
     if (!normalized) return;
+    const voicePolicyToken = voicePlaybackPolicy.captureStart();
+    if (voicePolicyToken === null) return;
 
     const spokenText = opts?.speechText?.trim() || normalized;
 
@@ -110,8 +128,12 @@ export function useAudio() {
     const dedupeKey = `${normalized}\u0000${spokenText}`;
     if (dedupeKey === lastTextRef.current && now - lastSpeakAtRef.current < 220) return;
 
+    speechGenerationRef.current += 1;
+    const generation = speechGenerationRef.current;
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
+    if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
+    clipStartTimerRef.current = null;
     safeSpeechStop();
     stopPhraseAudio();
 
@@ -139,9 +161,17 @@ export function useAudio() {
       let clipStartTimer: ReturnType<typeof setTimeout> | null = null;
       const clearClipStartTimer = () => {
         if (clipStartTimer) clearTimeout(clipStartTimer);
+        if (clipStartTimerRef.current === clipStartTimer) clipStartTimerRef.current = null;
         clipStartTimer = null;
       };
       const fallbackOnce = () => {
+        if (
+          speechGenerationRef.current !== generation
+          || !voicePlaybackPolicy.canStart(voicePolicyToken)
+        ) {
+          clearClipStartTimer();
+          return;
+        }
         if (fellBack) return;
         fellBack = true;
         clearClipStartTimer();
@@ -149,6 +179,7 @@ export function useAudio() {
         speakWithSystemTts();
       };
       clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS);
+      clipStartTimerRef.current = clipStartTimer;
       playPhraseByText(
         normalized,
         {
@@ -172,11 +203,40 @@ export function useAudio() {
     speakWithSystemTts();
 
     function speakWithSystemTts() {
+      if (
+        speechGenerationRef.current !== generation
+        || !voicePlaybackPolicy.canStart(voicePolicyToken)
+      ) return;
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = setTimeout(() => {
         pendingTimerRef.current = null;
-        void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined).finally(() => {
-          if (lastTextRef.current !== dedupeKey) return;
+        if (
+          speechGenerationRef.current !== generation
+          || !voicePlaybackPolicy.canStart(voicePolicyToken)
+        ) return;
+        speechLeaseRef.current?.release();
+        const speechLease = acquireAudioActivity('spoken');
+        speechLeaseRef.current = speechLease;
+        const releaseSpeechLease = () => {
+          speechLease.release();
+          if (speechLeaseRef.current === speechLease) speechLeaseRef.current = null;
+        };
+        void whenAudioActivitySettled().finally(() => {
+          if (
+            speechGenerationRef.current !== generation
+            || !voicePlaybackPolicy.canStart(voicePolicyToken)
+          ) {
+            releaseSpeechLease();
+            return;
+          }
+          if (lastTextRef.current !== dedupeKey) {
+            releaseSpeechLease();
+            return;
+          }
+          const finalError = (e: Error) => {
+            releaseSpeechLease();
+            opts?.onError?.(e);
+          };
           const speechOptions: SpeechOptions = {
             language,
             ...(requestedVoice ? { voice: requestedVoice } : {}),
@@ -184,20 +244,36 @@ export function useAudio() {
             pitch: opts?.pitch ?? 1,
             volume: 1,
             onStart: opts?.onStart,
-            onDone: opts?.onDone,
-            onStopped: opts?.onStopped,
+            onDone: () => {
+              releaseSpeechLease();
+              opts?.onDone?.();
+            },
+            onStopped: () => {
+              releaseSpeechLease();
+              opts?.onStopped?.();
+            },
             onError: requestedVoice
-              ? (e: Error) => retrySpeechWithoutVoice(spokenText, speechOptions, opts?.onError)
-              : opts?.onError,
+              ? (e: Error) => {
+                  if (!voicePlaybackPolicy.canStart(voicePolicyToken)) {
+                    releaseSpeechLease();
+                    return;
+                  }
+                  retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
+                }
+              : finalError,
             ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
           };
           try {
             Speech.speak(spokenText, speechOptions);
           } catch (e) {
             if (requestedVoice) {
-              retrySpeechWithoutVoice(spokenText, speechOptions, opts?.onError);
+              if (voicePlaybackPolicy.canStart(voicePolicyToken)) {
+                retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
+              } else {
+                releaseSpeechLease();
+              }
             } else {
-              opts?.onError?.(e instanceof Error ? e : new Error(String(e)));
+              finalError(e instanceof Error ? e : new Error(String(e)));
             }
           }
         });

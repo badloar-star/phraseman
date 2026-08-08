@@ -5,11 +5,29 @@ import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 import { bumpLifetimeShardsSpent } from './lifetime_profile_stats';
-import { replaceShardsBalanceLocal } from './shards_system';
+import {
+  replaceShardsBalanceForAccountGeneration,
+  replaceShardsBalanceLocal,
+} from './shards_system';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 
 const FUNCTIONS_REGION = 'us-central1';
 const friendGiftSendInFlight = new Map<string, Promise<FriendGiftSendResponse>>();
 const friendGiftThanksInFlight = new Map<string, Promise<{ ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }>>();
+const FRIEND_GIFT_IN_FLIGHT_MAX = 32;
+
+function accountOperationKey(token: AccountGenerationToken): string | null {
+  return accountScopeKey(token);
+}
+
+function isAccountOperationCurrent(token: AccountGenerationToken, expectedStableId?: string): boolean {
+  return isCurrentAccountGeneration(token, expectedStableId);
+}
 
 export type FriendGiftId = 'arena_extra_5' | 'chain_shield_1' | 'xp_boost_2x_24h';
 
@@ -189,28 +207,44 @@ function friendGiftSendRequestKey(data: {
   friendStableId: string;
   giftId: FriendGiftId;
   senderDisplayName?: string;
-}): string {
+}, accountToken: AccountGenerationToken): string {
   return JSON.stringify({
+    account: accountOperationKey(accountToken),
     friendStableId: data.friendStableId,
     giftId: data.giftId,
     senderDisplayName: data.senderDisplayName ?? '',
   });
 }
 
-async function prepareFriendGiftSender(): Promise<string> {
+async function prepareFriendGiftSender(accountToken: AccountGenerationToken): Promise<string> {
+  if (!isAccountOperationCurrent(accountToken)) {
+    throw new Error('friend_gift_identity_changed');
+  }
   const senderStableId = await ensureAnonUser();
   if (!senderStableId) {
     throw new Error('sender_unavailable');
   }
-  const link = await ensureStableAuthLinkForStableIdDetailed(senderStableId, { lastSignInAt: Date.now() })
+  if (!isAccountOperationCurrent(accountToken, senderStableId)) {
+    throw new Error('friend_gift_identity_changed');
+  }
+  const link = await ensureStableAuthLinkForStableIdDetailed(senderStableId)
     .catch(() => null);
+  if (!isAccountOperationCurrent(accountToken, senderStableId)) {
+    throw new Error('friend_gift_identity_changed');
+  }
   if (!link?.ok) {
     throw new Error('friend_gift_auth_unavailable');
   }
   if (link.stableUid && link.stableUid !== senderStableId) {
     throw new Error('friend_gift_identity_changed');
   }
+  if (!isAccountOperationCurrent(accountToken, senderStableId)) {
+    throw new Error('friend_gift_identity_changed');
+  }
   await initFirebaseAppCheckIfAvailable().catch(() => {});
+  if (!isAccountOperationCurrent(accountToken, senderStableId)) {
+    throw new Error('friend_gift_identity_changed');
+  }
   return senderStableId;
 }
 
@@ -222,12 +256,22 @@ export async function sendFriendGiftWithShards(data: {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
   }
-  const key = friendGiftSendRequestKey(data);
+  const accountToken = captureAccountGeneration();
+  if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) {
+    throw new Error('friend_gift_identity_changed');
+  }
+  const key = friendGiftSendRequestKey(data, accountToken);
   const existing = friendGiftSendInFlight.get(key);
   if (existing) return existing;
+  if (friendGiftSendInFlight.size >= FRIEND_GIFT_IN_FLIGHT_MAX) {
+    throw new Error('friend_gift_too_many_pending');
+  }
 
   const request = (async () => {
-    const senderStableId = await prepareFriendGiftSender();
+    const senderStableId = await prepareFriendGiftSender(accountToken);
+    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
+      throw new Error('friend_gift_identity_changed');
+    }
     const idempotencyKey = makeFriendGiftIdempotencyKey();
     const fn = callable<
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
@@ -245,18 +289,42 @@ export async function sendFriendGiftWithShards(data: {
       }),
       'friendSendGift',
     );
+    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
+      throw new Error('friend_gift_identity_changed');
+    }
     if (Number.isFinite(res.data.senderBalanceAfter)) {
-      await replaceShardsBalanceLocal(res.data.senderBalanceAfter, {
+      const options = {
         updatedAtMs: res.data.shardsUpdatedAtMs,
-        op: 'spend',
+        op: 'spend' as const,
         reason: 'friend_gift',
-      });
+      };
+      if (accountToken.phase === 'active' && accountToken.stableId) {
+        await replaceShardsBalanceForAccountGeneration(
+          res.data.senderBalanceAfter,
+          accountToken,
+          senderStableId,
+          options,
+        );
+      } else {
+        await replaceShardsBalanceLocal(res.data.senderBalanceAfter, options);
+      }
+    }
+    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
+      throw new Error('friend_gift_identity_changed');
     }
     if (Number.isFinite(res.data.costShards) && res.data.costShards > 0) {
-      void bumpLifetimeShardsSpent(res.data.costShards);
+      // The server gift is already authoritative at this point. Local counters are
+      // ancillary and must never turn that success into a UI rollback.
+      await bumpLifetimeShardsSpent(res.data.costShards, accountToken).catch(() => {});
     }
     const { checkAchievements } = await import('./achievements');
-    void checkAchievements({ type: 'gift_sent' });
+    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
+      throw new Error('friend_gift_identity_changed');
+    }
+    await checkAchievements({ type: 'gift_sent' }, accountToken).catch(() => []);
+    if (!isAccountOperationCurrent(accountToken, senderStableId)) {
+      throw new Error('friend_gift_identity_changed');
+    }
     return res.data;
   })().finally(() => {
     friendGiftSendInFlight.delete(key);
@@ -270,8 +338,9 @@ function friendGiftThanksRequestKey(data: {
   friendStableId: string;
   giftId: FriendGiftId;
   senderDisplayName?: string;
-}): string {
+}, accountToken: AccountGenerationToken): string {
   return JSON.stringify({
+    account: accountOperationKey(accountToken),
     friendStableId: data.friendStableId,
     giftId: data.giftId,
     senderDisplayName: data.senderDisplayName ?? '',
@@ -286,12 +355,22 @@ export async function sendFriendGiftThanks(data: {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
   }
-  const key = friendGiftThanksRequestKey(data);
+  const accountToken = captureAccountGeneration();
+  if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) {
+    throw new Error('friend_gift_identity_changed');
+  }
+  const key = friendGiftThanksRequestKey(data, accountToken);
   const existing = friendGiftThanksInFlight.get(key);
   if (existing) return existing;
+  if (friendGiftThanksInFlight.size >= FRIEND_GIFT_IN_FLIGHT_MAX) {
+    throw new Error('friend_gift_too_many_pending');
+  }
 
   const request = (async () => {
-    const senderStableId = await prepareFriendGiftSender();
+    const senderStableId = await prepareFriendGiftSender(accountToken);
+    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
+      throw new Error('friend_gift_identity_changed');
+    }
     const idempotencyKey = makeFriendGiftIdempotencyKey('fgt');
     const fn = callable<
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
@@ -307,6 +386,9 @@ export async function sendFriendGiftThanks(data: {
       }),
       'friendThankGift',
     );
+    if (!isAccountOperationCurrent(accountToken, senderStableId)) {
+      throw new Error('friend_gift_identity_changed');
+    }
     return res.data;
   })().finally(() => {
     friendGiftThanksInFlight.delete(key);

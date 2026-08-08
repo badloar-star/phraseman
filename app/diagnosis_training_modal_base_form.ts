@@ -40,7 +40,7 @@ type StepInput = {
 
 const explanation = tri(
   'Здесь работает очень маленький кусок. Слова can, should, must, could, would, may, might и will уже показывают идею "могу / следует / должен / возможно / буду". После них действие остается простым: без to, без -s, без -ed и без -ing.',
-  'Тут працює дуже маленький шматок. Слова can, should, must, could, would, may, might і will уже показують ідею "можу / слід / повинен / можливо / буду". Після них дія залишається простою: без to, без -s, без -ed і без -ing.',
+  'Тут працює дуже маленький зворот. Слова can, should, must, could, would, may, might і will уже показують ідею "можу / слід / повинен / можливо / буду". Після них дія залишається простою: без to, без -s, без -ed і без -ing.',
   'Aqui va una pieza muy pequena. Can, should, must, could, would, may, might y will ya dan la idea de puedo / deberia / debo / quiza / voy a. Despues, la accion queda simple: sin to, sin -s, sin -ed y sin -ing.',
   {
     'pt-BR': 'Aqui funciona uma parte bem pequena. Can, should, must, could, would, may, might e will já mostram a ideia de posso / deveria / devo / talvez / vou. Depois, a ação fica simples: sem to, sem -s, sem -ed e sem -ing.',
@@ -55,7 +55,7 @@ function retryFor(pattern: string, fullAnswer: string, correctAnswer: string): [
   return [
     tri(
       `Сначала найди слово-помощник. Здесь нужен готовый кусок: ${pattern}.`,
-      `Спочатку знайди слово-помічник. Тут потрібен готовий шматок: ${pattern}.`,
+      `Спочатку знайди слово-помічник. Тут потрібен готовий зворот: ${pattern}.`,
       `Primero encuentra la palabra de ayuda. Aqui necesitas el bloque: ${pattern}.`,
       {
         'pt-BR': `Primeiro encontre a palavra auxiliar. Aqui você precisa do bloco pronto: ${pattern}.`,
@@ -550,7 +550,7 @@ export const MODAL_BASE_FORM_TRAINING: DiagnosisTraining = {
         pl: 'Tak. Must już mówi "musisz"; dalej idzie proste leave.',
       }),
       wrong: {
-        'to leave': tri('После must не ставим to. Правильный кусок: must leave.', 'Після must не ставимо to. Правильний шматок: must leave.', 'Despues de must no ponemos to. El bloque correcto es must leave.', {
+        'to leave': tri('После must не ставим to. Правильный кусок: must leave.', 'Після must не ставимо to. Правильний зворот: must leave.', 'Despues de must no ponemos to. El bloque correcto es must leave.', {
           'pt-BR': 'Depois de must não colocamos to. O bloco correto é must leave.',
           vi: 'Sau must không đặt to. Khối đúng là must leave.',
           id: 'Setelah must jangan pakai to. Blok yang benar adalah must leave.',
@@ -697,7 +697,7 @@ export const MODAL_BASE_FORM_TRAINING: DiagnosisTraining = {
         pl: 'Tak. Po should od razu idzie see.',
       }),
       wrong: {
-        'to see': tri('Should to see звучит логично, но английский так не собирает этот кусок. Нужно should see.', 'Should to see звучить логічно, але англійська так не збирає цей шматок. Потрібно should see.', 'Should to see parece logico, pero el ingles no arma asi este bloque. Necesitamos should see.', {
+        'to see': tri('Should to see звучит логично, но английский так не собирает этот кусок. Нужно should see.', 'Should to see звучить логічно, але англійська так не збирає цей зворот. Потрібно should see.', 'Should to see parece logico, pero el ingles no arma asi este bloque. Necesitamos should see.', {
           'pt-BR': 'Should to see parece lógico, mas o inglês não monta esse bloco assim. Precisamos de should see.',
           vi: 'Should to see nghe có vẻ hợp lý, nhưng tiếng Anh không ghép khối này như vậy. Cần should see.',
           id: 'Should to see terdengar masuk akal, tetapi bahasa Inggris tidak menyusun blok ini begitu. Perlu should see.',
@@ -738,7 +738,7 @@ export const MODAL_BASE_FORM_TRAINING: DiagnosisTraining = {
       correctAnswer: 'follow',
       pattern: 'must follow',
       fullAnswer: 'They must follow the rules.',
-      correctFeedback: tri('Да. Must follow - короткий и правильный кусок.', 'Так. Must follow - короткий і правильний шматок.', 'Si. Must follow es el bloque corto y correcto.', {
+      correctFeedback: tri('Да. Must follow - короткий и правильный кусок.', 'Так. Must follow - короткий і правильний зворот.', 'Si. Must follow es el bloque corto y correcto.', {
         'pt-BR': 'Sim. Must follow é o bloco curto e correto.',
         vi: 'Đúng. Must follow là khối ngắn và đúng.',
         id: 'Ya. Must follow adalah blok pendek yang benar.',
@@ -851,7 +851,7 @@ export const MODAL_BASE_FORM_TRAINING: DiagnosisTraining = {
           tr: 'Ran geçmiş gibi görünür, ama could bu fikri zaten taşır. Could sonrasında run gelir.',
           pl: 'Ran wygląda jak przeszłość, ale could już niesie ten sens. Po could idzie run.',
         }),
-        running: tri('Running делает другой кусок. Здесь после could нужен простой run.', 'Running робить інший шматок. Тут після could потрібне просте run.', 'Running crea otro bloque. Aqui despues de could necesitamos run.', {
+        running: tri('Running делает другой кусок. Здесь после could нужен простой run.', 'Running робить інший зворот. Тут після could потрібне просте run.', 'Running crea otro bloque. Aqui despues de could necesitamos run.', {
           'pt-BR': 'Running cria outro bloco. Aqui, depois de could, precisamos de run simples.',
           vi: 'Running tạo một khối khác. Ở đây sau could cần run đơn giản.',
           id: 'Running membuat blok lain. Di sini setelah could perlu run sederhana.',
@@ -900,7 +900,7 @@ export const MODAL_BASE_FORM_TRAINING: DiagnosisTraining = {
           tr: 'Liked geçmiş eki ekler. Would sonrasında like gerekir.',
           pl: 'Liked dodaje końcówkę przeszłości. Po would potrzebne jest like.',
         }),
-        'to like': tri('Would to like - лишний to. Готовый кусок: would like.', 'Would to like - зайве to. Готовий шматок: would like.', 'Would to like tiene to de mas. El bloque listo es would like.', {
+        'to like': tri('Would to like - лишний to. Готовый кусок: would like.', 'Would to like - зайве to. Готовий зворот: would like.', 'Would to like tiene to de mas. El bloque listo es would like.', {
           'pt-BR': 'Would to like tem to sobrando. O bloco pronto é would like.',
           vi: 'Would to like có to thừa. Khối đúng là would like.',
           id: 'Would to like punya to yang berlebihan. Blok siap pakainya would like.',

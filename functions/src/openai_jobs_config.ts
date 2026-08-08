@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'constellations' | 'content_factory' | 'image_assets';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations', 'content_factory', 'image_assets'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament' | 'jarvis';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets', 'tournament', 'jarvis'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -43,9 +43,11 @@ const DAILY_CAP_MAX = 1_000_000;
 interface JobDefaults {
   model: JobModel;
   globalDailyCap: number; // 0 = без глобального капа
+  aiV2Enabled?: boolean;
+  rolloutPct?: number;
 }
 const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
-  weekly: { model: 'gpt-4o-mini', globalDailyCap: 0 },
+  weekly: { model: 'gpt-4o-mini', globalDailyCap: 500, aiV2Enabled: true, rolloutPct: 100 },
   stats: { model: 'gpt-4o-mini', globalDailyCap: 5000 },
   explain: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   dialog: { model: 'gpt-4.1-nano', globalDailyCap: 0 },
@@ -55,7 +57,6 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Тематические квизы: батч-«разбор» 1-на-вопрос (вопросов мало, повторяются между учениками) →
   // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
   quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
-  help_board: { model: 'gpt-4.1-nano', globalDailyCap: 1000 },
   // Дайджест для владельца: раз в сутки, один вызов на весь проект. Кап символический
   // (несколько ручных перегенераций в день максимум). Модель поумнее — сводка должна
   // осмысленно расставлять приоритеты, а не просто пересчитывать.
@@ -63,15 +64,25 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
   // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
   support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
-  constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
   image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
+  // ИИ-генератор турнирных заданий: батчи по 10 вопросов из админки. Кап —
+  // на БАТЧИ в сутки; каждый батч может стоить до 3 реальных запросов OpenAI
+  // (генерация + до 2 починок), т.е. фактический потолок запросов = 3×кап.
+  // Реальные траты по токенам видны в дашборде (tournament_ai_billing).
+  tournament: { model: 'gpt-4.1-mini', globalDailyCap: 300 },
+  // LLM-обогатитель Джарвиса: один прогон в сутки (крон 06:00), решений
+  // мало (максимум по одному на департамент) — кап символический, реальный
+  // денежный потолок держит отдельный технический бюджет (jarvis/llm_budget.ts).
+  jarvis: { model: 'gpt-4.1-nano', globalDailyCap: 20 },
 };
 
 export interface JobConfig {
   model: JobModel;
   globalDailyCap: number;
   enabled: boolean;
+  aiV2Enabled: boolean;
+  rolloutPct: number;
 }
 
 function text(value: unknown, max = 120): string {
@@ -91,11 +102,18 @@ function normalizeModel(value: unknown, fallback: JobModel, allowedModels: reado
   return (allowedModels as readonly string[]).includes(m) ? (m as JobModel) : fallback;
 }
 
-function normalizeCap(value: unknown, fallback: number): number {
+function normalizeCap(value: unknown, fallback: number, minimum = 0): number {
   const raw = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
   const n = typeof raw === 'number' ? raw : NaN;
   if (!Number.isFinite(n)) return fallback;
-  return Math.min(DAILY_CAP_MAX, Math.max(0, Math.floor(n)));
+  return Math.min(DAILY_CAP_MAX, Math.max(minimum, Math.floor(n)));
+}
+
+function normalizeRolloutPct(value: unknown, fallback: number): number {
+  const raw = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
+  const n = typeof raw === 'number' ? raw : NaN;
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(100, Math.max(0, Math.floor(n)));
 }
 
 function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | undefined): JobConfig {
@@ -106,10 +124,54 @@ function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | unde
   const allowedModels = allowedModelsForJob(job);
   return {
     model: normalizeModel(d?.model, def.model, allowedModels),
-    globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap),
+    globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap, job === 'weekly' ? 1 : 0),
     // enabled по умолчанию TRUE (kill-switch семантика): фича работает, выключается вручную.
     enabled: d?.enabled === false ? false : true,
+    aiV2Enabled: job === 'weekly'
+      ? (d?.aiV2Enabled == null ? def.aiV2Enabled === true : d.aiV2Enabled === true)
+      : false,
+    rolloutPct: job === 'weekly' ? normalizeRolloutPct(d?.rolloutPct, def.rolloutPct ?? 0) : 0,
   };
+}
+
+function mergeJobConfigForSet(
+  job: OpenAiJob,
+  previous: JobConfig,
+  update: Record<string, unknown>,
+): JobConfig {
+  const def = JOB_DEFAULTS[job];
+  const allowedModels = allowedModelsForJob(job);
+  return {
+    model: update.model == null ? previous.model : normalizeModel(update.model, def.model, allowedModels),
+    globalDailyCap:
+      update.globalDailyCap == null
+        ? previous.globalDailyCap
+        : normalizeCap(update.globalDailyCap, def.globalDailyCap),
+    enabled: update.enabled == null ? previous.enabled : update.enabled !== false,
+    aiV2Enabled:
+      job === 'weekly'
+        ? (update.aiV2Enabled == null ? previous.aiV2Enabled : update.aiV2Enabled === true)
+        : false,
+    rolloutPct:
+      job === 'weekly'
+        ? (update.rolloutPct == null
+          ? previous.rolloutPct
+          : normalizeRolloutPct(update.rolloutPct, def.rolloutPct ?? 0))
+        : 0,
+  };
+}
+
+export function isWeeklyReviewRolloutEnabled(stableUid: string, rolloutPct: number): boolean {
+  const normalizedUid = text(stableUid, 200);
+  const pct = normalizeRolloutPct(rolloutPct, 0);
+  if (!normalizedUid || pct <= 0) return false;
+  if (pct >= 100) return true;
+  let hash = 2166136261;
+  for (let i = 0; i < normalizedUid.length; i += 1) {
+    hash ^= normalizedUid.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0) % 100 < pct;
 }
 
 /**
@@ -126,6 +188,9 @@ export async function resolveJobConfig(
     return jobFromData(job, snap.data());
   } catch (e) {
     console.warn('resolveJobConfig failed, using fallback', job, e);
+    if (job === 'weekly') {
+      return { ...jobFromData(job, undefined), aiV2Enabled: false, rolloutPct: 0 };
+    }
     return jobFromData(job, undefined);
   }
 }
@@ -149,18 +214,9 @@ export const openAiJobsConfig = onCall({ region: REGION, enforceAppCheck: ENFORC
   if (action === 'set') {
     const job = request.data?.job;
     if (!isAllowedJob(job)) throw new HttpsError('invalid-argument', 'unsupported_job');
-    const def = JOB_DEFAULTS[job];
-    const allowedModels = allowedModelsForJob(job);
     const prevSnap = await ref.get();
     const prev = jobFromData(job, prevSnap.data());
-    const next: JobConfig = {
-      model: request.data?.model == null ? prev.model : normalizeModel(request.data.model, def.model, allowedModels),
-      globalDailyCap:
-        request.data?.globalDailyCap == null
-          ? prev.globalDailyCap
-          : normalizeCap(request.data.globalDailyCap, def.globalDailyCap),
-      enabled: request.data?.enabled == null ? prev.enabled : request.data.enabled !== false,
-    };
+    const next = mergeJobConfigForSet(job, prev, request.data ?? {});
     await ref.set(
       {
         [job]: next,
@@ -193,3 +249,8 @@ export const openAiJobsConfig = onCall({ region: REGION, enforceAppCheck: ENFORC
     updatedAtMs: Number(snap.data()?.updatedAtMs || 0),
   };
 });
+
+export const __openAiJobsConfigTestHooks = {
+  jobFromData,
+  mergeJobConfigForSet,
+};

@@ -1,11 +1,14 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  BackHandler,
+  Easing,
   PanResponder,
   Platform,
   ScrollView,
@@ -32,6 +35,7 @@ import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards, peekFlashcardsCache, type Flashcard } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
@@ -61,13 +65,14 @@ import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } fr
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
-import { flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
 } from './flashcards_target_gate';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 type Phase = 'select' | 'play';
 
@@ -150,6 +155,11 @@ type SessionBuild = {
 
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
+/** Высота закреплённой панели с кнопкой запуска на экране выбора наборов:
+ *  кнопка (heroStart, minHeight 54) + верхний отступ панели (10). Ровно на
+ *  столько увеличен отступ снизу у списка, иначе последний набор прячется
+ *  под панелью и его нельзя отметить. */
+const SELECT_START_BAR_HEIGHT = 64;
 
 const SOURCE_ACCENTS: Record<SourceKind, string> = {
   saved: '#7CDAFF',
@@ -414,12 +424,26 @@ function localizedField(
   return s(ru) || s(uk) || s(es);
 }
 
-function detailNoteForCard(card: CardItem, lang: FlashcardContentLang): string {
+/**
+ * зачем: alreadyShown — текст, уже выведенный рядом как «правильный перевод». Раньше
+ * example мог содержать его же, и пользователь видел одну фразу дважды подряд
+ * («Можешь включить свет? Можешь включить свет?» — репорт по карточке turn on).
+ * Сравниваем по нормализованному виду, чтобы регистр и пунктуация не мешали.
+ */
+function detailNoteForCard(card: CardItem, lang: FlashcardContentLang, alreadyShown?: string): string {
   const literal = localizedField(card, lang, card.literalRu, card.literalUk, card.literalEs);
   const explanation = localizedField(card, lang, card.explanationRu, card.explanationUk, card.explanationEs);
   const usage = localizedField(card, lang, card.usageNoteRu, card.usageNoteUk, card.usageNoteEs);
   const example = localizedField(card, lang, card.exampleRu, card.exampleUk, card.exampleEs);
-  return [literal, explanation, usage, example || s(card.description)].filter(Boolean).slice(0, 2).join('\n');
+  const shownKey = noteDedupKey(alreadyShown);
+  const parts = [literal, explanation, usage, example || s(card.description)]
+    .filter(Boolean)
+    .filter((part) => !shownKey || noteDedupKey(part) !== shownKey);
+  return parts.slice(0, 2).join('\n');
+}
+
+function noteDedupKey(value: string | undefined): string {
+  return s(value).toLocaleLowerCase().replace(/[\s\p{P}]+/gu, ' ').trim();
 }
 
 function packKey(pack: FlashcardMarketPack): string {
@@ -796,6 +820,7 @@ export default function FlashcardsSwipeScreen() {
   const flashcardsAccess = useFeatureAccess('flashcards');
   const audio = useAudio();
   const { playCorrect } = useCorrectSound();
+  const { playHintReveal } = useHintRevealCue();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
@@ -845,6 +870,13 @@ export default function FlashcardsSwipeScreen() {
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
+  // зачем: одноразовая подсказка «как пользоваться экраном» для новых юзеров —
+  // репорт «не понимают карточку/аудио/свайп». Схема 1:1 с flashcardsDeleteHintSeenKey
+  // из flashcards_collection.tsx (тот же "seen"-флаг в AsyncStorage, тот же UX баннера).
+  const [showSwipeHint, setShowSwipeHint] = useState(false);
+  const swipeHintAnim = useRef(new Animated.Value(0)).current;
+  const swipeHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const swipeHintCheckedRef = useRef(false);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
@@ -853,8 +885,28 @@ export default function FlashcardsSwipeScreen() {
   const planFlashcardsCompletionTracked = useRef(false);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
+  /**
+   * зачем: найденный черновик незавершённой тренировки. Держим НАГОТОВЕ, но не
+   * применяем сами — иначе экран прыгает в сессию без спроса. Юзер решает
+   * кнопкой «Продолжить тренировку»; данные уже в памяти, поэтому переход
+   * мгновенный, без повторной загрузки.
+   */
+  const [pendingDraft, setPendingDraft] = useState<{
+    restored: NonNullable<ReturnType<typeof restoreSessionDraft>>;
+    info: SessionInfo;
+    memory: SwipeMemory;
+  } | null>(null);
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const position = useRef(new Animated.ValueXY()).current;
+  // зачем: A-39 — карта при улёте растворяется (opacity 1→0 за 400мс).
+  // Отдельное значение от position, потому что затухание короче сдвига.
+  const flyOpacity = useRef(new Animated.Value(1)).current;
+  // зачем: A-55 — «Уменьшение движения» гасит размашистый полёт. Держим в ref,
+  // а не в state: settleCard — useCallback, и лишняя зависимость пересоздавала
+  // бы PanResponder на каждую смену настройки (жест бы срывался).
+  const reduceMotion = useReduceMotion();
+  const reduceMotionRef = useRef(reduceMotion);
+  useEffect(() => { reduceMotionRef.current = reduceMotion; }, [reduceMotion]);
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const planFlashcardsTaskId = routeParamString(params.planFlashcardsTask) === '1' ? routeParamString(params.planTaskId) : '';
   const isPlanFlashcardsTask = Boolean(planFlashcardsTaskId);
@@ -1150,6 +1202,50 @@ export default function FlashcardsSwipeScreen() {
         tr: "İfade",
         pl: "Zwrot",
       }),
+      // зачем: кнопка «Начать» гасла молча, пока грузились наборы или шёл запуск —
+      // репорт «Кнопка начать не сработала». Теперь подпись сама объясняет причину.
+      startLoading: triLang(lang, {
+        ru: 'Загружаем наборы…',
+        uk: 'Завантажуємо набори…',
+        es: 'Cargando mazos…',
+        'pt-BR': 'Carregando baralhos…',
+        vi: 'Đang tải bộ thẻ…',
+        id: 'Memuat set…',
+        tr: 'Setler yükleniyor…',
+        pl: 'Ładujemy zestawy…',
+      }),
+      startNoSelection: triLang(lang, {
+        ru: 'Выберите набор ниже',
+        uk: 'Виберіть набір нижче',
+        es: 'Elige un mazo abajo',
+        'pt-BR': 'Escolha um baralho abaixo',
+        vi: 'Chọn bộ thẻ bên dưới',
+        id: 'Pilih set di bawah',
+        tr: 'Aşağıdan set seç',
+        pl: 'Wybierz zestaw poniżej',
+      }),
+      startStarting: triLang(lang, {
+        ru: 'Готовим тренировку…',
+        uk: 'Готуємо тренування…',
+        es: 'Preparando la sesión…',
+        'pt-BR': 'Preparando o treino…',
+        vi: 'Đang chuẩn bị luyện tập…',
+        id: 'Menyiapkan latihan…',
+        tr: 'Antrenman hazırlanıyor…',
+        pl: 'Przygotowujemy trening…',
+      }),
+      // зачем: заглушка для карточки с пустым текстом — вместо пустого прямоугольника
+      // (репорты «Не видна карточка с вопросом»). Просим отметить через «Нашёл ошибку».
+      brokenCardPhrase: triLang(lang, {
+        ru: 'Текст карточки не загрузился',
+        uk: 'Текст картки не завантажився',
+        es: 'No se cargó el texto de la tarjeta',
+        'pt-BR': 'O texto do cartão não carregou',
+        vi: 'Không tải được nội dung thẻ',
+        id: 'Teks kartu gagal dimuat',
+        tr: 'Kart metni yüklenemedi',
+        pl: 'Nie udało się wczytać tekstu fiszki',
+      }),
       correctTranslation: triLang(lang, {
         ru: 'Правильный перевод',
         uk: 'Правильний переклад',
@@ -1420,6 +1516,29 @@ export default function FlashcardsSwipeScreen() {
         tr: "yeni",
         pl: "nowe",
       }),
+      // зачем: текст одноразовой подсказки на экране тренировки — жест/аудио/кнопки в одной строке.
+      swipeHint: triLang(lang, {
+        ru: 'Смахни карточку вправо/влево или используй кнопки. Значок динамика озвучит фразу.',
+        uk: 'Змахни картку вправо/вліво або використай кнопки. Значок динаміка озвучить фразу.',
+        es: 'Desliza la tarjeta a la derecha o izquierda, o usa los botones. El icono del altavoz la pronuncia.',
+        'pt-BR': 'Deslize o cartão para a direita/esquerda ou use os botões. O ícone de som lê a frase.',
+        vi: 'Vuốt thẻ sang phải/trái hoặc dùng các nút. Biểu tượng loa sẽ đọc cụm từ.',
+        id: 'Geser kartu ke kanan/kiri atau gunakan tombol. Ikon speaker akan mengucapkan frasa.',
+        tr: 'Kartı sağa/sola kaydır ya da düğmeleri kullan. Hoparlör simgesi ifadeyi seslendirir.',
+        pl: 'Przesuń fiszkę w prawo/lewo albo użyj przycisków. Ikona głośnika odczyta zwrot.',
+      }),
+      // зачем: accessibilityLabel кнопки закрытия одноразовой подсказки — раньше по
+      // ошибке использовался text.reload («Обновить»), что неверно озвучивалось скринридером.
+      dismissHint: triLang(lang, {
+        ru: 'Закрыть подсказку',
+        uk: 'Закрити підказку',
+        es: 'Cerrar sugerencia',
+        'pt-BR': 'Fechar dica',
+        vi: 'Đóng gợi ý',
+        id: 'Tutup petunjuk',
+        tr: 'İpucunu kapat',
+        pl: 'Zamknij podpowiedź',
+      }),
       sessionSummary: triLang(lang, {
         ru: 'Слабые вернутся внутри сессии. Лёгкие уйдут на повтор позже.',
         uk: 'Слабкі повернуться в сесії. Легкі підуть на повтор пізніше.',
@@ -1660,6 +1779,33 @@ export default function FlashcardsSwipeScreen() {
     [answerFor, planFlashcardsRequiredCards, planFlashcardsTaskId],
   );
 
+  /**
+   * Применить отложенный черновик по тапу «Продолжить тренировку».
+   * Всё уже в памяти — переход мгновенный, без сети и без загрузки.
+   */
+  const resumePendingDraft = useCallback(() => {
+    if (!pendingDraft) return;
+    void hapticTap();
+    const { restored, info, memory } = pendingDraft;
+    memoryRef.current = memory;
+    progressRef.current = restored.progress;
+    position.setValue({ x: 0, y: 0 });
+    setFeedback(restored.feedback);
+    setTrainingCards(restored.trainingCards);
+    setQueue(restored.queue);
+    setStats(restored.stats);
+    setSessionInfo(info);
+    setPendingDraft(null);
+    setPhase('play');
+  }, [pendingDraft, position]);
+
+  /** Отказ от черновика: чистим его и начинаем заново с текущим выбором. */
+  const discardPendingDraft = useCallback(() => {
+    void hapticTap();
+    setPendingDraft(null);
+    void clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
+  }, [studyTarget]);
+
   const startSession = useCallback(async () => {
     if (!flashcardsAccess) {
       openFlashcardsPlusPaywall('flashcards_training_start');
@@ -1725,15 +1871,13 @@ export default function FlashcardsSwipeScreen() {
         return;
       }
 
-      memoryRef.current = memory;
-      progressRef.current = restored.progress;
-      position.setValue({ x: 0, y: 0 });
-      setFeedback(restored.feedback);
-      setTrainingCards(restored.trainingCards);
-      setQueue(restored.queue);
-      setStats(restored.stats);
-      setSessionInfo(info);
-      setPhase('play');
+      // зачем: раньше здесь стоял setPhase('play') — экран выбора успевал
+      // показаться и ТУТ ЖЕ прыгал в сессию сам, без спроса. Юзер видел мигание
+      // и оказывался в незапрошенной тренировке. Теперь черновик держим наготове
+      // в памяти, а решение оставляем за юзером: на экране выбора появляется
+      // «Продолжить тренировку». Тап по ней — и восстановленное состояние
+      // применяется мгновенно, без повторной загрузки.
+      setPendingDraft({ restored, info, memory });
     })();
 
     return () => {
@@ -1753,6 +1897,19 @@ export default function FlashcardsSwipeScreen() {
     draftRestoreAttemptedRef.current = true;
     safeRouterBack(router, '/flashcards' as any);
   }, [router]);
+
+  // зачем: системный «Назад» на Android уходил мимо exitTraining/safeRouterBack и вёл себя
+  // иначе, чем кнопка выхода — терялся честный стек навигации (navigation_back.ts) и
+  // пометка draftRestoreAttemptedRef, из-за чего при следующем заходе мог всплыть черновик
+  // уже закрытой сессии. Заводим тот же путь, что и у кнопки, по образцу lesson1.tsx.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      exitTraining();
+      return true;
+    });
+    return () => sub.remove();
+  }, [exitTraining]);
 
   const openSettings = useCallback(() => {
     void hapticTap();
@@ -1801,6 +1958,16 @@ export default function FlashcardsSwipeScreen() {
 
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
+
+  // зачем: СТРАХОВКА от невидимой карточки. flyOpacity гасится при улёте и
+  // раньше возвращался в 1 ТОЛЬКО внутри finish(). Любой другой путь смены
+  // карточки (смена набора, перезапуск сессии, возврат на экран, обрыв
+  // анимации при уходе в фон) оставлял значение 0 — и следующая карточка
+  // рисовалась ПУСТОЙ. Привязываем сброс к самой карточке: новая карточка в
+  // кадре — всегда видима, независимо от того, как она там оказалась.
+  useEffect(() => {
+    flyOpacity.stopAnimation(() => flyOpacity.setValue(1));
+  }, [currentPrompt?.id, flyOpacity]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
   useEffect(() => {
@@ -1840,6 +2007,53 @@ export default function FlashcardsSwipeScreen() {
     });
   }, [currentPrompt?.id, position]);
 
+  // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
+  // (не на restore черновика посреди сессии, поэтому проверяем currentPrompt, а
+  // не просто phase). Флаг ставим сразу при показе, чтобы повторный маунт экрана
+  // (напр. быстрый back/forward) не показал баннер снова, пока идёт запрос к AsyncStorage.
+  useEffect(() => {
+    if (phase !== 'play' || !currentPrompt || swipeHintCheckedRef.current) return;
+    swipeHintCheckedRef.current = true;
+    void AsyncStorage.getItem(flashcardsSwipeHintSeenKey(studyTarget))
+      .then((seen) => {
+        if (seen === '1') return;
+        setShowSwipeHint(true);
+      })
+      .catch(() => {});
+  }, [currentPrompt, phase, studyTarget]);
+
+  const dismissSwipeHint = useCallback(() => {
+    if (swipeHintTimer.current) clearTimeout(swipeHintTimer.current);
+    Animated.timing(swipeHintAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
+      setShowSwipeHint(false);
+    });
+    void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1');
+  }, [studyTarget, swipeHintAnim]);
+
+  useEffect(() => {
+    if (!showSwipeHint) return;
+    Animated.timing(swipeHintAnim, { toValue: 1, duration: 300, useNativeDriver: true }).start();
+    // Автоскрытие через 6с — дольше, чем delete-hint (5с), т.к. текста тут больше (жест+аудио+кнопки).
+    swipeHintTimer.current = setTimeout(() => dismissSwipeHint(), 6000);
+    return () => {
+      if (swipeHintTimer.current) clearTimeout(swipeHintTimer.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSwipeHint]);
+
+  // зачем: репорт «свайп срабатывает мгновенно, аудио послушать не успеваю» —
+  // на быстром свайпе onPanResponderRelease мог сработать раньше, чем звук карточки
+  // вообще стартовал (речь запускается тапом по карточке, а не автоматически).
+  // Штампуем момент показа карточки и в релизе жеста считаем ответ полноценным
+  // свайпом только после короткой выдержки — это не блокирует жест визуально
+  // (карта всё ещё тянется пальцем), а лишь решает, when a fast flick counts.
+  const cardShownAtRef = useRef(0);
+  useEffect(() => {
+    if (!currentPrompt?.id) return;
+    cardShownAtRef.current = Date.now();
+  }, [currentPrompt?.id]);
+  const MIN_SWIPE_DWELL_MS = 220;
+
   const settleCard = useCallback(
     (direction: 'left' | 'right', after: () => void) => {
       if (settlingRef.current) return;
@@ -1859,17 +2073,40 @@ export default function FlashcardsSwipeScreen() {
           settleGuardRef.current = null;
         }
         position.setValue({ x: 0, y: 0 });
+        // зачем: вернуть непрозрачность ДО показа следующей карты — иначе
+        // она въедет в кадр невидимой (значение осталось бы 0 после улёта).
+        flyOpacity.setValue(1);
         after();
         settlingRef.current = false;
         setSettling(false);
       };
-      // 190мс анимация + запас; если штатный колбэк не пришёл — доводим руками.
-      settleGuardRef.current = setTimeout(finish, 450);
-      Animated.timing(position, {
-        toValue: { x: direction === 'right' ? width * 1.15 : -width * 1.15, y: 0 },
-        duration: 190,
-        useNativeDriver: true,
-      }).start(() => {
+      // зачем: A-39 из макета — карта уходит дугой (вбок + вниз) с доворотом и
+      // растворением, а не плоским сдвигом.
+      // КРИТИЧНО про длительность: пока идёт улёт, settlingRef блокирует ввод —
+      // экран не принимает ни свайп, ни кнопки. Эталонные 450мс из макета
+      // (это web, там ввод не блокируется) давали 450мс залипания и ощущение
+      // «свайп не срабатывает, надо дёргать несколько раз». Поэтому держим
+      // ИСХОДНЫЕ 190мс отзывчивости: форма движения из макета, тайминг — свой.
+      // Отзывчивость важнее буквального соответствия эталону.
+      const flyMs = reduceMotionRef.current ? 110 : 190;
+      settleGuardRef.current = setTimeout(finish, flyMs + 260);
+      Animated.parallel([
+        Animated.timing(position, {
+          toValue: {
+            x: direction === 'right' ? width * 1.15 : -width * 1.15,
+            y: reduceMotionRef.current ? 0 : 50,
+          },
+          duration: flyMs,
+          easing: Easing.in(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(flyOpacity, {
+          toValue: 0,
+          duration: flyMs,
+          easing: Easing.in(Easing.ease),
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
         position.stopAnimation(() => {
           finish();
         });
@@ -1959,6 +2196,10 @@ export default function FlashcardsSwipeScreen() {
   const revealCurrent = useCallback(() => {
     if (!currentPrompt || feedback || settling || settlingRef.current) return;
     void hapticTap();
+    // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
+    // сброс серии), поэтому у него свой звук, а не общий «тап». Ставим после
+    // ранних return'ов: на заблокированной карточке звука быть не должно.
+    playHintReveal();
     const key = currentPrompt.card.trainingKey;
     const cardProgress = progressRef.current[key] ?? emptyProgress();
     cardProgress.hints += 1;
@@ -1971,7 +2212,7 @@ export default function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [currentPrompt, feedback, settling, updateCardMemory]);
+  }, [currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!feedback) return;
@@ -2010,11 +2251,17 @@ export default function FlashcardsSwipeScreen() {
           position.setValue({ x: gesture.dx, y: gesture.dy * 0.16 });
         },
         onPanResponderRelease: (_, gesture) => {
-          if (gesture.dx > 96) {
+          // зачем: см. MIN_SWIPE_DWELL_MS выше — очень быстрый флик (меньше выдержки
+          // с момента появления карточки) не засчитываем как ответ, а мягко
+          // возвращаем карточку на место, чтобы у пользователя был шанс услышать
+          // озвучку/прочитать карточку перед тем, как жест «съест» её целиком.
+          const dwellMs = Date.now() - cardShownAtRef.current;
+          const dwellOk = dwellMs >= MIN_SWIPE_DWELL_MS;
+          if (dwellOk && gesture.dx > 96) {
             answerCurrent(true);
             return;
           }
-          if (gesture.dx < -96) {
+          if (dwellOk && gesture.dx < -96) {
             answerCurrent(false);
             return;
           }
@@ -2042,9 +2289,18 @@ export default function FlashcardsSwipeScreen() {
     ? Math.min(292, Math.max(218, height * 0.34))
     : Math.min(360, Math.max(250, height * 0.42));
   const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));
+  // зачем: у карточки был только minHeight и НИ maxHeight, ни overflow — при длинном
+  // объяснении она раздувалась под контент и наезжала на кнопки ответа снизу (репорт:
+  // блок теории вылез поверх карточки). Верхний предел считаем от уже известных величин,
+  // а НЕ через onLayout: замер дал бы прыжок геометрии на первом кадре, что запрещено
+  // контрактом стабильности лэйаута. Прокрутка остаётся внутри feedbackScroll.
+  const cardMaxHeight = Math.max(cardHeight, Math.floor(height * (isPlanFlashcardsTask ? 0.46 : 0.62)));
+  // зачем: A-39 — на улёте карта доворачивается до 16deg (в макете это
+  // финальная поза). При перетаскивании пальцем наклон мягче (7deg на пол-экрана),
+  // поэтому две точки: жест — деликатный, улёт за край — выразительный.
   const rotate = position.x.interpolate({
-    inputRange: [-width / 2, 0, width / 2],
-    outputRange: ['-7deg', '0deg', '7deg'],
+    inputRange: [-width * 1.15, -width / 2, 0, width / 2, width * 1.15],
+    outputRange: ['-16deg', '-7deg', '0deg', '7deg', '16deg'],
     extrapolate: 'clamp',
   });
   const yesOpacity = position.x.interpolate({
@@ -2068,15 +2324,57 @@ export default function FlashcardsSwipeScreen() {
     });
   }, []);
 
+  // зачем 2026-08-02 (владелец: «в разделе карточки при отмечании наборов»
+  // не добраться до кнопки): кнопка запуска стояла НАД списком наборов. Наборов
+  // бывает два десятка — человек прокручивал вниз, отмечал нужные, а кнопка
+  // оставалась далеко вверху за экраном. На маленьких экранах это читалось как
+  // «кнопки нет». Теперь кнопка закреплена внизу и всегда под большим пальцем,
+  // а список прокручивается под ней.
+  const renderSelectStartButton = () => {
+    const startBlockReason = loadingSources
+      ? { label: text.startLoading, icon: 'albums-outline' as const }
+      : starting
+        ? { label: text.startStarting, icon: 'sparkles-outline' as const }
+        : selectedSources.length === 0
+          ? { label: text.startNoSelection, icon: 'albums-outline' as const }
+          : null;
+    return (
+      <DuoPressable
+        onPress={startSession}
+        disabled={startBlockReason != null}
+        edgeColor={t.accent}
+        wrapStyle={{ width: '100%' }}
+        style={[
+          styles.heroStart,
+          {
+            // marginTop из heroStart нужен, когда кнопка стоит в потоке под
+            // блоком выше. В закреплённой панели он даёт лишний зазор.
+            marginTop: 0,
+            backgroundColor: startBlockReason ? t.bgSurface2 : t.accent,
+            opacity: startBlockReason ? 0.72 : 1,
+          },
+        ]}
+      >
+        <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
+        <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+          {startBlockReason?.label ?? text.start}
+        </Text>
+      </DuoPressable>
+    );
+  };
+
   const renderSelect = () => (
+    <View style={styles.selectRoot}>
     <Animated.ScrollView
-      decelerationRate="normal"
+      decelerationRate="fast"
       scrollEventThrottle={16}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
       contentContainerStyle={[
         styles.selectContent,
         {
-          paddingBottom: Math.max(28, bottomInset + 28),
+          // Отступ снизу = высота закреплённой панели с кнопкой, иначе последний
+          // набор в списке оказывался под ней и его нельзя было отметить.
+          paddingBottom: Math.max(28, bottomInset + 28) + SELECT_START_BAR_HEIGHT,
           paddingHorizontal: ds.spacing.lg,
         },
       ]}
@@ -2104,7 +2402,7 @@ export default function FlashcardsSwipeScreen() {
 
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
 
-      <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), shadowColor: t.cardShadow }]}>
+      <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }]}>
         <View style={styles.heroTop}>
           <View style={[styles.heroIcon, { backgroundColor: `${t.accent}22` }]}>
             <Ionicons name="sparkles-outline" size={22} color={t.accent} />
@@ -2122,26 +2420,68 @@ export default function FlashcardsSwipeScreen() {
           ].map(([label, value]) => (
             <View key={String(label)} style={[styles.heroStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
               <Text style={[styles.heroStatValue, { color: t.textPrimary, fontSize: f.body }]}>{value}</Text>
-              <Text style={[styles.heroStatLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>{label}</Text>
+              {/* зачем: text-integrity — подпись стата переносится, плитка растёт. */}
+              <FlowText testID={`flashcards-hero-stat-${String(label)}`} provenance="authored" style={[styles.heroStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</FlowText>
             </View>
           ))}
         </View>
-        <DuoPressable
-          onPress={startSession}
-          disabled={selectedSources.length === 0 || starting || loadingSources}
-          edgeColor={t.accent}
-          wrapStyle={{ marginTop: 14 }}
-          style={[
-            styles.heroStart,
-            {
-              backgroundColor: selectedSources.length === 0 || starting || loadingSources ? t.bgSurface2 : t.accent,
-              opacity: selectedSources.length === 0 || starting || loadingSources ? 0.72 : 1,
-            },
-          ]}
-        >
-          <Ionicons name={starting ? 'sparkles-outline' : 'play'} size={20} color={t.correctText} />
-          <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>{text.start}</Text>
-        </DuoPressable>
+        {/* зачем: раньше кнопка просто гасла (opacity 0.72) без единого слова о причине —
+            «Кнопка начать не сработала» (репорт 25.07). Теперь сама подпись говорит,
+            чего ждать или что сделать: грузятся наборы / не выбран набор / идёт запуск.
+            Геометрия не меняется — только текст и иконка, прыжка лэйаута нет. */}
+        {/* зачем (жалоба владельца 26.07): найденный черновик РАНЬШЕ применялся
+            сам — экран выбора мигал и тут же прыгал в тренировку без спроса.
+            Теперь решение за юзером: «Продолжить» возвращает в незаконченную
+            сессию, кнопка старта рядом начинает новую. Данные уже в памяти,
+            переход мгновенный. */}
+        {pendingDraft && (
+          <View style={{ marginTop: 14, gap: 8 }}>
+            <DuoPressable
+              onPress={resumePendingDraft}
+              edgeColor={t.accent}
+              style={[styles.heroStart, { backgroundColor: t.accent }]}
+            >
+              <Ionicons name="play-forward" size={20} color={t.correctText} />
+              <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+                {triLang(lang, {
+                  ru: 'Продолжить тренировку',
+                  uk: 'Продовжити тренування',
+                  es: 'Continuar entrenamiento',
+                  'pt-BR': 'Continuar treino',
+                  vi: 'Tiếp tục luyện tập',
+                  id: 'Lanjutkan latihan',
+                  tr: 'Antrenmana devam et',
+                  pl: 'Kontynuuj trening',
+                })}
+              </Text>
+            </DuoPressable>
+            <TouchableOpacity
+              onPress={discardPendingDraft}
+              activeOpacity={0.75}
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Начать заново', uk: 'Почати заново', es: 'Empezar de nuevo',
+                'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai ulang',
+                tr: 'Baştan başla', pl: 'Zacznij od nowa',
+              })}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              style={{ minHeight: 44, justifyContent: 'center', alignItems: 'center' }}
+            >
+              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: 'Начать заново',
+                  uk: 'Почати заново',
+                  es: 'Empezar de nuevo',
+                  'pt-BR': 'Começar de novo',
+                  vi: 'Bắt đầu lại',
+                  id: 'Mulai ulang',
+                  tr: 'Baştan başla',
+                  pl: 'Zacznij od nowa',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
 
       <Text style={[styles.segmentLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.sourcesTitle}</Text>
@@ -2174,19 +2514,20 @@ export default function FlashcardsSwipeScreen() {
                   styles.sourceRow,
                   selected
                     ? { backgroundColor: `${selectedAccent}2E` }
-                    : { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
+                    : { backgroundColor: glassFill(t.bgSurface, 0.46) },
                 ]}
               >
                 <View style={[styles.sourceIcon, { backgroundColor: `${selected ? selectedAccent : source.accent}22` }]}>
                   <Ionicons name={source.icon as any} size={21} color={selected ? selectedAccent : source.accent} />
                 </View>
                 <View style={styles.sourceTextBox}>
-                  <Text style={[styles.sourceTitle, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
+                  {/* зачем: text-integrity — название и подпись набора переносятся, ряд растёт. */}
+                  <FlowText testID={`flashcards-source-title-${source.id}`} provenance="authored" style={[styles.sourceTitle, { color: t.textPrimary, fontSize: f.body }]}>
                     {source.title}
-                  </Text>
-                  <Text style={[styles.sourceSubtitle, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+                  </FlowText>
+                  <FlowText testID={`flashcards-source-subtitle-${source.id}`} provenance="authored" style={[styles.sourceSubtitle, { color: t.textMuted, fontSize: f.caption }]}>
                     {source.subtitle} · {cardCountLabel(lang, source.count)}
-                  </Text>
+                  </FlowText>
                 </View>
                 <View
                   style={[
@@ -2205,6 +2546,24 @@ export default function FlashcardsSwipeScreen() {
         </View>
       )}
     </Animated.ScrollView>
+      {/* Закреплённая панель: кнопка запуска всегда под большим пальцем, сколько
+          бы наборов ни было в списке. */}
+      <View
+        style={[
+          styles.selectStartBar,
+          {
+            paddingHorizontal: ds.spacing.lg,
+            paddingBottom: Math.max(12, bottomInset + 12),
+            // зачем: подложка в тон фона — иначе строки списка просвечивают
+            // сквозь панель и «наезжают» на кнопку при прокрутке. Обводки нет,
+            // отделяем тоном (правило владельца: без рамок).
+            backgroundColor: glassFill(t.bgSurface, 0.94),
+          },
+        ]}
+      >
+        {renderSelectStartButton()}
+      </View>
+    </View>
   );
 
   const renderDone = () => {
@@ -2227,7 +2586,7 @@ export default function FlashcardsSwipeScreen() {
         >
           <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
         </TapScale>
-        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
           <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isPlanFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
           <Text style={[styles.doneTitle, isPlanFlashcardsTask && styles.planDoneTitle, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.bodyLg : f.h2 }]}>
             {cleanSession ? text.cleanDone : text.done}
@@ -2283,7 +2642,9 @@ export default function FlashcardsSwipeScreen() {
   const renderPlay = () => {
     if (done) return renderDone();
     if (!currentPrompt) return null;
-    const note = detailNoteForCard(currentPrompt.card, cardContentLang);
+    // зачем: trueTranslation уже показан в блоке «правильный перевод» — не дублируем
+    // его внутри заметки-примера.
+    const note = detailNoteForCard(currentPrompt.card, cardContentLang, currentPrompt.trueTranslation);
     const transcription = s(currentPrompt.card.transcription);
     const reportDataText = [
       `EN: ${currentPrompt.card.en}`,
@@ -2342,6 +2703,35 @@ export default function FlashcardsSwipeScreen() {
           <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: t.accent }]} />
         </View>
 
+        {/* Первое знакомство с экраном — одноразовая подсказка, схема как flashcardsDeleteHintSeenKey */}
+        {showSwipeHint ? (
+          <Animated.View
+            style={[
+              styles.swipeHintBanner,
+              {
+                opacity: swipeHintAnim,
+                transform: [
+                  { translateY: swipeHintAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
+                ],
+                backgroundColor: glassFill(t.bgSurface, 0.5),
+              },
+            ]}
+          >
+            <Ionicons name="sparkles-outline" size={18} color={t.textSecond} />
+            <Text style={[styles.swipeHintText, { color: t.textSecond, fontSize: f.caption }]}>
+              {text.swipeHint}
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              onPress={dismissSwipeHint}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityLabel={text.dismissHint}
+            >
+              <Ionicons name="close" size={18} color={t.textMuted} />
+            </TouchableOpacity>
+          </Animated.View>
+        ) : null}
+
         <View style={[styles.cardStage, isPlanFlashcardsTask && styles.planCardStage]}>
           {queue[1] ? (
             <View
@@ -2364,13 +2754,25 @@ export default function FlashcardsSwipeScreen() {
               {
                 width: cardWidth,
                 minHeight: cardHeight,
-                backgroundColor: t.bgSurface,
-                borderColor: feedback ? (feedback.kind === 'wrong' ? t.wrong : t.gold) : 'transparent',
-                borderWidth: feedback ? 1.2 : 0,
-                shadowColor: t.cardShadow,
+                // The feedback pane is independently capped and scrollable. Before it
+                // appears, let the card grow so a long localized translation remains
+                // readable on compact screens instead of being clipped by this cap.
+                maxHeight: feedback ? cardMaxHeight : undefined,
+                overflow: feedback ? 'hidden' : 'visible',
+                // зачем: обводка заменена на тон+тень — рамки вокруг блоков запрещены
+                // в проекте. Результат ответа теперь читается по подложке карточки и
+                // цвету тени, а не по контуру: мягче и «дороже», сигнал не потерян.
+                backgroundColor: feedback
+                  ? (feedback.kind === 'wrong' ? t.wrongBg : t.correctBg)
+                  : t.bgSurface,
+                shadowColor: feedback
+                  ? (feedback.kind === 'wrong' ? t.wrong : t.gold)
+                  : t.cardShadow,
               },
               {
                 transform: [...position.getTranslateTransform(), { rotate }],
+                // зачем: A-39 — карта растворяется на улёте, а не пропадает резко.
+                opacity: flyOpacity,
               },
             ]}
           >
@@ -2423,17 +2825,21 @@ export default function FlashcardsSwipeScreen() {
 
             <View style={[styles.enBox, isPlanFlashcardsTask && styles.planEnBox]}>
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
+              {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- лимит строк вместо запрещённого сжатия: фраза в карточке фикс-геометрии свайпа, аномально длинная не должна выдавить кнопки */}
               <Text
-                style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(22, f.h2 + 2) : Math.min(26, f.h1 + 3) }]}
-                // Shrink-to-fit (эталон FlashcardListItem): на Android жирный крупный
-                // центрированный текст без этого терял последнее слово при системном
-                // увеличении шрифта (напр. «to work» показывалось как «to»). numberOfLines
-                // обязателен — иначе Android игнорирует adjustsFontSizeToFit.
-                numberOfLines={isPlanFlashcardsTask ? 3 : 2}
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
+                style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
+                // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) — сжатие
+                // теряло слово при системном увеличении шрифта на Android («to work» → «to»).
+                // Вместо сжатия: чуть меньший базовый fontSize + больше строк — enBox не имеет
+                // фиксированной высоты (flex:1, justifyContent:'center'), поэтому перенос безопасен.
+                numberOfLines={isPlanFlashcardsTask ? 4 : 3}
               >
-                {currentPrompt.card.en}
+                {/* зачем: если у карточки в данных пустой en, enBox (flex:1, center) не
+                    схлопывается — карточка превращалась в пустой серый прямоугольник без
+                    единого слова (репорты «Не видна карточка с вопросом» 18 и 24.07).
+                    Корень в данных пока не найден, поэтому здесь честная заглушка вместо
+                    пустоты: человек видит, что карточка битая, и может её отметить. */}
+                {s(currentPrompt.card.en) || text.brokenCardPhrase}
               </Text>
               {transcription ? (
                 <Text style={[styles.transcriptionText, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
@@ -2588,7 +2994,7 @@ export default function FlashcardsSwipeScreen() {
       >
         <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
       </TapScale>
-      <View style={[styles.noCardsPanel, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+      <View style={[styles.noCardsPanel, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
         <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22` }]}>
           <Ionicons name="albums-outline" size={30} color={t.accent} />
         </View>
@@ -2670,6 +3076,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
   },
+  selectRoot: {
+    flex: 1,
+  },
+  selectStartBar: {
+    // Панель поверх списка, а не в потоке: список прокручивается под ней, а
+    // кнопка не уезжает за экран вместе с двумя десятками наборов.
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingTop: 10,
+  },
   selectContent: {
     paddingTop: 10,
     paddingBottom: 28,
@@ -2707,7 +3125,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.16,
     shadowRadius: 18,
-    elevation: 5,
+    ...noAndroidOutline,
   },
   heroTop: {
     flexDirection: 'row',
@@ -2912,6 +3330,26 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 999,
   },
+  // зачем: одноразовая подсказка-баннер над карточкой — без обводки (запрещена),
+  // разделяется тоном подложки (glassFill) + мягкой тенью, как остальные карточки проекта.
+  swipeHintBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    ...noAndroidOutline,
+  },
+  swipeHintText: {
+    flex: 1,
+    lineHeight: 18,
+  },
   cardStage: {
     flex: 1,
     alignItems: 'center',
@@ -2934,14 +3372,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.22,
     shadowRadius: 20,
-    elevation: 7,
+    ...noAndroidOutline,
   },
   planTrainingCard: {
     borderRadius: 18,
     padding: 12,
     shadowOpacity: 0.14,
     shadowRadius: 12,
-    elevation: 4,
+    ...noAndroidOutline,
   },
   swipeBadge: {
     position: 'absolute',

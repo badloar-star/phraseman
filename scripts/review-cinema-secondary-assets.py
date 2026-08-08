@@ -53,7 +53,8 @@ def source_path(theme: str, kind: str) -> Path:
         name = "medal.png"
     else:
         raise ValueError(kind)
-    return ROOT / "assets/images/cinema_dalle_sources/singles/v1" / theme / name
+    # зачем: черновики генерации вынесены из assets/ в asset_sources/.
+    return ROOT / "asset_sources/cinema_dalle_sources/singles/v1" / theme / name
 
 
 REDO_VISUAL = set()

@@ -7,7 +7,7 @@ import {
   type V2GenerationScope,
   type V2GenerationStage,
   type V2SeasonGenerationInput,
-} from './generation_plan';
+} from './v2_generation_plan';
 
 const TOP_LEVEL_FIELDS = [
   'schemaVersion', 'seasonId', 'scope', 'episodeIds', 'recipes',
@@ -109,13 +109,12 @@ function parseRecipes(value: unknown, episodeIds: readonly string[]): readonly V
   const seen = new Set<string>();
   const result = value.map((item) => {
     if (!isRecord(item)) throw new Error('v2_generation_recipes_invalid');
-    assertExactFields(item, ['episodeId', 'dialogue', 'speakingClub']);
+    assertExactFields(item, ['episodeId', 'dialogue']);
     const episodeId = parseString(item.episodeId, 'v2_generation_recipes_invalid', IDENTIFIER_PATTERN);
     if (!episodeIds.includes(episodeId) || seen.has(episodeId)) throw new Error('v2_generation_recipes_invalid');
     if (item.dialogue !== undefined && typeof item.dialogue !== 'boolean') throw new Error('v2_generation_recipes_invalid');
-    if (item.speakingClub !== undefined && typeof item.speakingClub !== 'boolean') throw new Error('v2_generation_recipes_invalid');
     seen.add(episodeId);
-    return Object.freeze({ episodeId, ...(item.dialogue === undefined ? {} : { dialogue: item.dialogue }), ...(item.speakingClub === undefined ? {} : { speakingClub: item.speakingClub }) });
+    return Object.freeze({ episodeId, ...(item.dialogue === undefined ? {} : { dialogue: item.dialogue }) });
   });
   return Object.freeze(result);
 }

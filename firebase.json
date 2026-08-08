@@ -9,17 +9,18 @@
   "hosting": [
     {
       "target": "admin",
-      "public": "admin",
+      "public": "admin/v2",
       "ignore": [
         "firebase.json",
         "**/.*",
-        "**/node_modules/**"
+        "**/node_modules/**",
+        "migration.html"
       ],
       "redirects": [
-        { "source": "/admin", "destination": "/", "type": 302 },
-        { "source": "/admin/", "destination": "/", "type": 302 },
-        { "source": "/admin/index.html", "destination": "/index.html", "type": 302 },
-        { "source": "/admin/**", "destination": "/", "type": 302 }
+        { "source": "/", "destination": "/legacy.html", "type": 302 },
+        { "source": "/index.html", "destination": "/legacy.html", "type": 302 },
+        { "source": "/v2", "destination": "/v2.html", "type": 302 },
+        { "source": "/v2/", "destination": "/v2.html", "type": 302 }
       ],
       "headers": [
         {
@@ -27,7 +28,7 @@
           "headers": [
             { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate, max-age=0" },
             { "key": "Pragma", "value": "no-cache" },
-            { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://*.cloudfunctions.net https://www.googleapis.com https://securetoken.googleapis.com https://identitytoolkit.googleapis.com wss://*.firebaseio.com; frame-src 'self' https://*.firebaseapp.com https://accounts.google.com https://apis.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'" },
+            { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com https://unpkg.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' http://127.0.0.1:43817 https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://*.cloudfunctions.net https://www.googleapis.com https://securetoken.googleapis.com https://identitytoolkit.googleapis.com https://www.google.com wss://*.firebaseio.com; frame-src 'self' https://*.firebaseapp.com https://accounts.google.com https://apis.google.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'" },
             { "key": "X-Frame-Options", "value": "DENY" },
             { "key": "X-Content-Type-Options", "value": "nosniff" },
             { "key": "Referrer-Policy", "value": "no-referrer" }
@@ -48,10 +49,14 @@
         { "source": "/phrase/legal/privacy", "destination": "/legal/privacy/", "type": 301 },
         { "source": "/phrase/legal/privacy/**", "destination": "/legal/privacy/", "type": 301 },
         { "source": "/phrase/legal/terms", "destination": "/legal/terms/", "type": 301 },
-        { "source": "/phrase/legal/terms/**", "destination": "/legal/terms/", "type": 301 }
+        { "source": "/phrase/legal/terms/**", "destination": "/legal/terms/", "type": 301 },
+        { "source": "/duel", "destination": "/download/", "type": 302 },
+        { "source": "/duel/**", "destination": "/download/", "type": 302 },
+        { "source": "/phraseman/duel", "destination": "/download/", "type": 302 },
+        { "source": "/phraseman/duel/**", "destination": "/download/", "type": 302 }
       ],
       "rewrites": [
-        { "source": "/phraseman/duel/**", "destination": "/phraseman/duel/index.html" },
+        { "source": "/api/english-test", "function": { "functionId": "englishTestApi", "region": "us-central1" } },
         { "source": "/unsubscribe", "function": { "functionId": "emailUnsubscribe", "region": "us-central1" } },
         { "source": "/unsubscribe/**", "function": { "functionId": "emailUnsubscribe", "region": "us-central1" } }
       ],
@@ -63,6 +68,12 @@
           ]
         },
         {
+          "source": "/api/english-test",
+          "headers": [
+            { "key": "Cache-Control", "value": "no-store" }
+          ]
+        },
+        {
           "source": "/.well-known/apple-app-site-association",
           "headers": [
             { "key": "Content-Type", "value": "application/json" }
@@ -71,13 +82,29 @@
       ]
     }
   ],
-  "functions": {
-    "source": "functions",
-    "runtime": "nodejs22"
-  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "runtime": "nodejs22"
+    },
+    {
+      "source": "functions-english-test",
+      "codebase": "english-test",
+      "runtime": "nodejs22",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "scripts"
+      ]
+    }
+  ],
   "react-native": {
     "app_check_token_auto_refresh": false,
-    "analytics_auto_collection_enabled": false
+    "analytics_auto_collection_enabled": false,
+    "android_task_executor_maximum_pool_size": 0
   },
   "emulators": {
     "functions": { "port": 5001 },

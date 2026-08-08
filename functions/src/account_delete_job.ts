@@ -4,6 +4,8 @@ import { HttpsError } from 'firebase-functions/v2/https';
 
 export const ACCOUNT_DELETE_JOBS = 'account_deletion_jobs';
 export const ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
+export const ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers';
+export const ACCOUNT_DELETE_PERMANENT_DENIALS = 'account_deletion_permanent_denials';
 
 export type AccountDeleteJobStatus = 'queued' | 'running' | 'completed' | 'failed';
 
@@ -56,6 +58,10 @@ export function accountDeleteJobId(authUid: string): string {
   return `adel_${sha256(authUid).slice(0, 40)}`;
 }
 
+export function accountDeletePermanentDenialId(identity: string): string {
+  return `adel_deny_${sha256(identity)}`;
+}
+
 function jobStatus(value: unknown): AccountDeleteJobStatus {
   if (value === 'running' || value === 'completed' || value === 'failed') return value;
   return 'queued';
@@ -70,9 +76,23 @@ export async function enqueueAccountDeletionJob(
   const jobId = accountDeleteJobId(authUid);
   const ref = db.collection(ACCOUNT_DELETE_JOBS).doc(jobId);
   const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableUid);
+  const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+  const permanentDenialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+    .doc(accountDeletePermanentDenialId(stableUid));
+  const authPermanentDenialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+    .doc(accountDeletePermanentDenialId(authUid));
 
   return db.runTransaction(async (tx) => {
     const snapshot = await tx.get(ref);
+    tx.set(authMarkerRef, {
+      jobId,
+      status: 'pending',
+      authUidHash: sha256(authUid),
+      stableUidHash: sha256(stableUid),
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
     tx.set(tombstoneRef, {
       jobId,
       status: 'pending',
@@ -82,6 +102,17 @@ export async function enqueueAccountDeletionJob(
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
+    const permanentDenial = {
+      status: 'denied',
+      stableUidHash: sha256(stableUid),
+      authUidHash: sha256(authUid),
+      createdAtMs: nowMs,
+      updatedAtMs: nowMs,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+    tx.set(permanentDenialRef, { ...permanentDenial, identityKind: 'stable' }, { merge: true });
+    tx.set(authPermanentDenialRef, { ...permanentDenial, identityKind: 'auth' }, { merge: true });
     if (snapshot.exists) {
       const existing = snapshot.data() ?? {};
       const status = jobStatus(existing.status);
@@ -208,6 +239,13 @@ export async function processAccountDeletionJob(
       ...stats,
     }, { merge: true });
     batch.set(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(claimed.stableUid), {
+      status: 'completed',
+      completedAtMs: nowMs,
+      retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    batch.set(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(claimed.authUid), {
       status: 'completed',
       completedAtMs: nowMs,
       retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,

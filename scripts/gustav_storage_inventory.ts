@@ -206,7 +206,6 @@ const REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES = [
   /^app\/avatar_select\.tsx$/,
   /^app\/debug-logger\.ts$/,
   /^app\/firestore_leaderboard\.ts$/,
-  /^app\/firestore_league_chat\.ts$/,
   /^app\/global_broadcast_modal\.ts$/,
   /^app\/hall_of_fame_utils\.ts$/,
   /^app\/level_gift_inventory\.ts$/,
@@ -410,7 +409,7 @@ const REVIEWED_TARGET_SENSITIVE_DYNAMIC_STORAGE_SOURCES = [
 
 // Reviewed GLOBAL (locale-independent) literal keys that landed after the last
 // baseline: monetization, paywalls, onboarding, notifications, analytics,
-// referral, help board, compass UX latches, remote config and infra caches.
+// referral, remote config and infrastructure caches.
 const REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE = new Set([
   // Monetization / paywall / trial / entitlement / win-back / upsell.
   'after_win_upsell_last_shown_v1',
@@ -465,12 +464,6 @@ const REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE = new Set([
   'compass_welcome_met_v1',
   'compass_social_seen_signatures_v1',
   'global_compass_social_last_poll',
-  // Help board UI state (hidden items / votes / last error) — account-global.
-  'help_board_hidden_topics_v1',
-  'help_board_hidden_comments_v1',
-  'help_board_hidden_compass_v1',
-  'help_board_last_submit_error_v1',
-  'help_board_my_votes_v1',
   'helpful_error_reports_confirmed_v1',
   // Notifications / push scheduling / immediacy markers.
   'notification_immediate_last_at',
@@ -509,7 +502,6 @@ const REVIEWED_GLOBAL_KEY_PATTERNS_POST_BASELINE = [
   /^winback_/,
   /^notification_upsell_/,
   /^home_feature_tips_/,
-  /^help_board_hidden_/,
   /^referral_clipboard_/,
 ] as const;
 

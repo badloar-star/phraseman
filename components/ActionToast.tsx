@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { onAppEvent } from '../app/events';
 import { useLang } from './LangContext';
@@ -15,9 +15,13 @@ import {
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
 import { themedToastChrome } from '../constants/themedToastChrome';
+import { noAndroidOutline } from '../constants/androidGlow';
+import { soundDirector } from '../modules/audio/sound_director';
+import type { SoundEventId } from '../modules/audio/sound_events';
 
 type ToastPayload = {
   type: ToastType;
+  soundEventId?: SoundEventId;
   messageRu: string;
   messageUk?: string;
   /** ES (UI en español). Si falta y `lang === "es"`, se usa un texto breve según `type`. */
@@ -29,14 +33,32 @@ type ToastPayload = {
   messagePl?: string;
 };
 
-type ToastType = 'success' | 'error' | 'info' | 'reward';
+/**
+ * зачем: 'warning' — отдельный тон между info и error. Предупреждение («оплата
+ * слетит», «цепочка сгорит в полночь») — это не ошибка (ничего не сломалось) и
+ * не просто инфо (есть срок и цена бездействия). Раньше такие тосты приходилось
+ * маскировать под error/info, и звук у них был чужой.
+ */
+type ToastType = 'success' | 'error' | 'info' | 'warning' | 'reward';
 
+const TOAST_SOUND_EVENTS: Record<ToastType, SoundEventId> = {
+  success: 'pm.system.success',
+  error: 'pm.system.error_recoverable',
+  info: 'pm.system.info',
+  warning: 'pm.system.warning',
+  reward: 'pm.reward.small',
+};
+
+/**
+ * зачем: тост рисует из тона только `icon` и `label`. Все цвета берутся из
+ * themedToastChrome(themeMode) и зависят от ТЕМЫ, а не от типа тоста. Поля
+ * accent/accentSoft/border остались от старой схемы, ничего не красили и
+ * расходились с реальным видом — удалены, чтобы следующий, кто добавит тон,
+ * не подбирал палитру, которая никуда не попадёт.
+ */
 type ToastTone = {
   icon: keyof typeof Ionicons.glyphMap;
   label: Record<string, string>;
-  accent: string;
-  accentSoft: string;
-  border: string;
 };
 
 const TOAST_TONES: Record<ToastType, ToastTone> = {
@@ -52,9 +74,6 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
       tr: 'Tamam',
       pl: 'Gotowe',
     },
-    accent: '#65E49A',
-    accentSoft: 'rgba(101,228,154,0.14)',
-    border: 'rgba(101,228,154,0.34)',
   },
   error: {
     icon: 'alert-circle',
@@ -68,9 +87,6 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
       tr: 'Bir şeyler ters gitti',
       pl: 'Błąd',
     },
-    accent: '#FF6E78',
-    accentSoft: 'rgba(255,110,120,0.14)',
-    border: 'rgba(255,110,120,0.36)',
   },
   info: {
     icon: 'information-circle',
@@ -84,9 +100,19 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
       tr: 'Bilgi',
       pl: 'Info',
     },
-    accent: '#74A7FF',
-    accentSoft: 'rgba(116,167,255,0.14)',
-    border: 'rgba(116,167,255,0.34)',
+  },
+  warning: {
+    icon: 'warning',
+    label: {
+      ru: 'Внимание',
+      uk: 'Увага',
+      es: 'Atención',
+      'pt-BR': 'Atenção',
+      vi: 'Chú ý',
+      id: 'Perhatian',
+      tr: 'Dikkat',
+      pl: 'Uwaga',
+    },
   },
   reward: {
     icon: 'gift',
@@ -100,9 +126,6 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
       tr: 'Ödül',
       pl: 'Nagroda',
     },
-    accent: '#F2C56A',
-    accentSoft: 'rgba(242,197,106,0.14)',
-    border: 'rgba(242,197,106,0.36)',
   },
 };
 
@@ -147,7 +170,10 @@ function ActionToast() {
   const rafOut = useRef<number | null>(null);
 
   const runHaptics = (payload: ToastPayload) => {
-    if (payload.type === 'error') hapticError();
+    // зачем: предупреждение ощущается как ошибка (что-то требует внимания),
+    // но не является ею — берём тот же «жёсткий» отклик, что и error, чтобы
+    // тост про сгорающую цепочку не проходил мимо как обычная инфо-плашка.
+    if (payload.type === 'error' || payload.type === 'warning') hapticError();
     else if (payload.type === 'success' || payload.type === 'reward') hapticSuccess();
     else hapticSoftImpact();
   };
@@ -158,6 +184,11 @@ function ActionToast() {
     if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
     if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
     showingKeyRef.current = toastKey(payload);
+    soundDirector.request(payload.soundEventId ?? TOAST_SOUND_EVENTS[payload.type], {
+      scope: 'action-toast',
+      dedupeKey: toastKey(payload),
+      deferAfterVoice: true,
+    });
     // Reset animated values before mounting the Animated.View. On Fabric, doing
     // setValue immediately after setToast can trip the React insertion-effect
     // update warning while native animated props are being attached.
@@ -264,7 +295,9 @@ function ActionToast() {
         ? 'Hecho.'
         : toast.type === 'reward'
           ? '¡Premio!'
-          : 'Listo.';
+          : toast.type === 'warning'
+            ? 'Atención.'
+            : 'Listo.';
   const message =
     lang === 'uk' ? (toast.messageUk ?? toast.messageRu)
       : lang === 'es' ? (toast.messageEs ?? esFallback)
@@ -343,7 +376,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 560,
     minHeight: 66,
-    borderWidth: 0,
     borderRadius: 16,
     paddingVertical: 12,
     paddingLeft: 16,
@@ -352,7 +384,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     overflow: 'hidden',
-    elevation: 8,
+    // зачем: фон тоста задаёт themedToastChrome (там все shadowColor — rgba
+    // с alpha < 1), поэтому Android не выводил скруглённый outline и рисовал
+    // квадрат вокруг радиуса 16.
+    ...noAndroidOutline,
   },
   accentRail: {
     position: 'absolute',

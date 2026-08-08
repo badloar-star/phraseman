@@ -25,14 +25,40 @@ export function uiSoundsLabel(lang: Lang): string {
 /** Подзаголовок тумблера «Звуки эффектов». */
 export function uiSoundsSub(lang: Lang): string {
   return triLang(lang, {
-    ru: 'Клики, верно/ошибка, награды',
-    uk: 'Кліки, правильно/помилка, нагороди',
-    es: 'Clics, acierto/error, recompensas',
-    'pt-BR': 'Cliques, acerto/erro, recompensas',
-    vi: 'Nhấp, đúng/sai, phần thưởng',
-    id: 'Klik, benar/salah, hadiah',
-    tr: 'Tıklamalar, doğru/yanlış, ödüller',
-    pl: 'Kliknięcia, poprawnie/błąd, nagrody',
+    ru: 'Ответы, награды и системные сигналы',
+    uk: 'Відповіді, нагороди та системні сигнали',
+    es: 'Respuestas, recompensas y señales del sistema',
+    'pt-BR': 'Respostas, recompensas e sinais do sistema',
+    vi: 'Câu trả lời, phần thưởng và tín hiệu hệ thống',
+    id: 'Jawaban, hadiah, dan sinyal sistem',
+    tr: 'Yanıtlar, ödüller ve sistem sinyalleri',
+    pl: 'Odpowiedzi, nagrody i sygnały systemowe',
+  });
+}
+
+export function voiceOutLabel(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Озвучивание',
+    uk: 'Озвучення',
+    es: 'Voz',
+    'pt-BR': 'Voz',
+    vi: 'Đọc thành tiếng',
+    id: 'Suara',
+    tr: 'Seslendirme',
+    pl: 'Odczytywanie',
+  });
+}
+
+export function voiceOutSub(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Произношение слов и фраз',
+    uk: 'Вимова слів і фраз',
+    es: 'Pronunciación de palabras y frases',
+    'pt-BR': 'Pronúncia de palavras e frases',
+    vi: 'Phát âm từ và cụm từ',
+    id: 'Pelafalan kata dan frasa',
+    tr: 'Kelime ve ifadelerin telaffuzu',
+    pl: 'Wymowa słów i zwrotów',
   });
 }
 

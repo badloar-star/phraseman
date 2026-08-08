@@ -70,6 +70,33 @@ describe('lesson intro screens (es locale fields)', () => {
     expect(text).toContain('Говорим так:');
   });
 
+  it('uses explicit singular and plural problem examples in lesson 9', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens_lesson9_v2.ts'), 'utf8');
+    const examples = LESSON_9_INTRO_SCREENS.flatMap((screen) => screen.examples ?? []);
+    const byEnglish = (english: string) => examples.find((example) => (
+      Array.isArray(example.en)
+        ? example.en.map((part: { text: string }) => part.text).join('')
+        : example.en
+    ) === english);
+
+    expect(byEnglish('Is there a problem?')).toMatchObject({
+      ru: 'Есть проблема?',
+      uk: 'Є проблема?',
+      es: '¿Hay un problema?',
+      trRU: 'Есть проблема?',
+      trUK: 'Є проблема?',
+    });
+    expect(byEnglish('Are there problems?')).toMatchObject({
+      ru: 'Есть проблемы?',
+      uk: 'Є проблеми?',
+      es: '¿Hay problemas?',
+      trRU: 'Есть проблемы?',
+      trUK: 'Є проблеми?',
+    });
+    expect(source).not.toContain("{ text: ' a question' }");
+    expect(source).not.toContain("{ text: ' questions' }");
+  });
+
   it('keeps rich intro color semantics separate from background fills', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
     const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');

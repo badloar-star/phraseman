@@ -37,7 +37,7 @@ const FRIEND_QUEST_REWARD_SHARDS = 10;
 const FRIEND_QUEST_REWARD_XP = 1000;
 const FRIEND_QUEST_DURATION_MS = DAY_MS;
 
-type FriendGiftId = 'arena_extra_5' | 'chain_shield_1' | 'xp_boost_2x_24h';
+type FriendGiftId = 'chain_shield_1' | 'xp_boost_2x_24h';
 
 type GiftCatalogItem = {
   id: FriendGiftId;
@@ -54,19 +54,6 @@ type GiftCatalogItem = {
 };
 
 const GIFT_CATALOG: Record<FriendGiftId, GiftCatalogItem> = {
-  arena_extra_5: {
-    id: 'arena_extra_5',
-    costShards: 5,
-    label: '+5 rating games today',
-    labelRu: '+5 рейтинг-игр',
-    labelUk: '+5 рейтинг-ігор',
-    labelEs: '+5 partidas Arena',
-    labelPtBr: '+5 partidas ranqueadas',
-    labelVi: '+5 trận xếp hạng',
-    labelId: '+5 game peringkat',
-    labelTr: '+5 sıralama oyunu',
-    labelPl: '+5 gier rankingowych',
-  },
   chain_shield_1: {
     id: 'chain_shield_1',
     costShards: 8,
@@ -297,20 +284,6 @@ function buildRecipientGiftPatch(
 ): Record<string, unknown> {
   const now = Date.now();
   const today = todayStrUtc();
-
-  if (giftId === 'arena_extra_5') {
-    const cur = parseJsonObject(getExistingField(recipientData, 'arena_daily_gift_bonus_v1'));
-    const sameDay = cur.date === today;
-    const extra = sameDay && typeof cur.extra === 'number' && Number.isFinite(cur.extra)
-      ? Math.max(0, Math.floor(cur.extra))
-      : 0;
-    const next = JSON.stringify({ date: today, extra: extra + 5 });
-    return {
-      arena_extra_plays_today: { date: today, n: extra + 5 },
-      progress: { arena_daily_gift_bonus_v1: next },
-      updatedAt: now,
-    };
-  }
 
   if (giftId === 'chain_shield_1') {
     const cur = parseJsonObject(getExistingField(recipientData, 'chain_shield'));
@@ -922,6 +895,13 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
     const callerAlreadyClaimed = rewardClaimedByUid[stableId] === true;
     if (participantUids.every((uid) => rewardClaimedByUid[uid] === true)) {
       const callerData = userDataByUid[stableId] ?? {};
+      const callerServerState = callerData.progressServerState && typeof callerData.progressServerState === 'object'
+        ? callerData.progressServerState as Record<string, unknown>
+        : {};
+      const callerXpBeforeReward = Math.max(
+        getTotalXp(callerData),
+        parseProgressInt(callerServerState.totalXp),
+      );
       return {
         ok: true,
         questId,
@@ -929,11 +909,21 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         reached: true,
         callerShards: parseShards(callerData.shards),
         shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
+        callerXpBeforeReward,
+        rewardXpApplied: 0,
         callerXp: getTotalXp(callerData),
       };
     }
 
     const nextClaimed = { ...rewardClaimedByUid };
+    const initialCallerData = userDataByUid[stableId] ?? {};
+    const initialCallerServerState = initialCallerData.progressServerState
+      && typeof initialCallerData.progressServerState === 'object'
+      ? initialCallerData.progressServerState as Record<string, unknown>
+      : {};
+    let callerXpBeforeReward: number | undefined = callerAlreadyClaimed
+      ? Math.max(getTotalXp(initialCallerData), parseProgressInt(initialCallerServerState.totalXp))
+      : undefined;
     for (const uid of participantUids) {
       if (nextClaimed[uid] === true) continue;
       const data = userDataByUid[uid] ?? {};
@@ -942,6 +932,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         ? data.progressServerState as Record<string, unknown>
         : {};
       const beforeXp = Math.max(getTotalXp(data), parseProgressInt(existingServerState.totalXp));
+      if (uid === stableId) callerXpBeforeReward = beforeXp;
       const afterShards = beforeShards + rewardShards;
       const afterXp = beforeXp + rewardXp;
       tx.set(userRefs[uid], {
@@ -1002,6 +993,8 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       reached: true,
       callerShards: parseShards(callerData.shards),
       shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
+      callerXpBeforeReward,
+      rewardXpApplied: callerAlreadyClaimed ? 0 : rewardXp,
       callerXp: getTotalXp(callerData),
     };
   });

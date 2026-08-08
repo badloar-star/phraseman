@@ -120,7 +120,10 @@ export async function loadPublishedCommunityMarketPacks(studyTarget?: RuntimeStu
       .filter(Boolean) as FlashcardMarketPack[];
     list.sort(sortCommunityMarketPacksByRating);
     return list.slice(0, 40);
-  } catch {
+  } catch (e) {
+    // зачем: вкладка «Сообщество» тихо показывала пустой список без единой
+    // подсказки в логах — владелец видел 0 наборов при 2 published в базе.
+    if (__DEV__) console.warn('[communityFirestore] loadPublishedCommunityMarketPacks failed', e);
     return [];
   }
 }
@@ -144,7 +147,8 @@ export async function loadAuthorCommunityPacksPendingUpdate(
       if (m) out.push(m);
     }
     return out;
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[communityFirestore] loadAuthorCommunityPacksPendingUpdate failed', e);
     return [];
   }
 }
@@ -169,6 +173,11 @@ export type CommunityPackEditorSnapshot = {
       tr?: string;
       pl?: string;
     };
+    richSchemaVersion?: 1;
+    exampleTarget?: string;
+    exampleSource?: string;
+    note?: string;
+    sourceReferences?: string[];
   }[];
 };
 
@@ -203,6 +212,11 @@ export async function fetchCommunityPackForAuthorEdit(
           tr: String((c.sourceLocales as Record<string, unknown> | undefined)?.tr ?? '').trim() || undefined,
           pl: String((c.sourceLocales as Record<string, unknown> | undefined)?.pl ?? '').trim() || undefined,
         },
+        richSchemaVersion: Number(c.richSchemaVersion) === 1 ? 1 as const : undefined,
+        exampleTarget: String(c.exampleTarget ?? '').trim() || undefined,
+        exampleSource: String(c.exampleSource ?? '').trim() || undefined,
+        note: String(c.note ?? '').trim() || undefined,
+        sourceReferences: Array.isArray(c.sourceReferences) ? c.sourceReferences.map(String).map((value) => value.trim()).filter(Boolean) : undefined,
       };
     });
     return {
@@ -232,6 +246,11 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
     const es = String(c.es ?? '').trim();
     /** У `CommunityPackCardPayload` третя колонка — нотатка/опис (редактор), не український переклад фрази. */
     const descriptionNote = String(c.uk ?? '').trim();
+    const richSchemaVersion = Number(c.richSchemaVersion) === 1 ? 1 as const : undefined;
+    const exampleTarget = String(c.exampleTarget ?? c.exampleEn ?? '').trim();
+    const exampleSource = String(c.exampleSource ?? c.exampleRu ?? '').trim();
+    const note = String(c.note ?? c.description ?? descriptionNote).trim();
+    const sourceReferences = Array.isArray(c.sourceReferences) ? c.sourceReferences.map(String).map((value) => value.trim()).filter(Boolean) : [];
     const sourceLocales = {
       'pt-BR': String((c.sourceLocales as Record<string, unknown> | undefined)?.['pt-BR'] ?? '').trim() || undefined,
       vi: String((c.sourceLocales as Record<string, unknown> | undefined)?.vi ?? '').trim() || undefined,
@@ -245,11 +264,18 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
       id: `${packId}_${id}`,
       en,
       sourceLocales,
-      description: descriptionNote || undefined,
+      description: note || undefined,
       categoryId: 'custom',
       isSystem: true,
       source: 'lesson',
       sourceId: `DEV:${packId}`,
+      richSchemaVersion,
+      exampleTarget: exampleTarget || undefined,
+      exampleSource: exampleSource || undefined,
+      note: note || undefined,
+      sourceReferences: sourceReferences.length ? sourceReferences : undefined,
+      exampleEn: exampleTarget || undefined,
+      exampleRu: exampleSource || undefined,
     } as CardItem;
     item.ru = ru;
     item.uk = ru;
@@ -303,7 +329,8 @@ export async function fetchCommunityPackMeta(
     const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();
     if (!snap.exists) return null;
     return mapCommunityPackDocToMarket(packId, snap.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[communityFirestore] fetchCommunityPackMeta failed', packId, e);
     return null;
   }
 }

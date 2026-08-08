@@ -1,11 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
+// зачем: app/arena_lobby.tsx, app/arena_rating.tsx (Арена) и app/(tabs)/quizzes.tsx
+// (квизы) удалены вместе с этими фичами; живые экраны ниже сохраняют проверку.
 const screens = [
-  'app/arena_lobby.tsx',
-  'app/arena_rating.tsx',
   'app/club_screen.tsx',
-  'app/(tabs)/quizzes.tsx',
   'app/daily_tasks_screen.tsx',
   'app/lesson_menu.tsx',
   'app/personal_plan.tsx',
@@ -22,7 +21,11 @@ describe('bouncy screen chrome contract', () => {
     const wrapEnd = source.indexOf('</BouncyWrap>', wrapStart);
     const layerEnd = source.indexOf('</Reanimated.View>', wrapEnd);
 
-    expect(source).toMatch(/import Reanimated(?:,\s*\{[^}]+\})? from 'react-native-reanimated';/);
+    // зачем: проверяем сам факт дефолтного импорта Reanimated, а не точную строку.
+    // Буквальное сравнение падало на живых экранах (streak_stats,
+    // personal_plan_stats_screen), где импорт с именованными членами:
+    // `import Reanimated, { FadeInDown, ... } from 'react-native-reanimated'`.
+    expect(source).toMatch(/import Reanimated(?:,\s*\{[^}]*\})?\s+from 'react-native-reanimated';/);
     expect(source).not.toContain('<BouncyWrap style={bouncyStyle}>');
     expect(layerStart).toBeGreaterThan(-1);
     expect(wrapStart).toBeGreaterThan(layerStart);

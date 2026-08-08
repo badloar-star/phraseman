@@ -66,6 +66,16 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     lastEventKey = key;
     lastEventAt = now;
 
+    // Decide whether the event has any sink before paying for identity reads.
+    // Explicit traces and sampled errors keep their existing diagnostic path.
+    const isErrorTrace = meta.result === 'error';
+    const shouldWrite =
+      meta.writeToFirestore === true
+      || (isErrorTrace && Math.random() < FIRESTORE_SAMPLE_RATE);
+    const canWriteToFirestore = shouldWrite
+      && (isErrorTrace || isAnalyticsConsentGranted());
+    if (!LOCAL_ACTIVITY_QUEUE_ENABLED && !canWriteToFirestore) return;
+
     const uid = await getCanonicalUserId().catch(() => null);
     const userName = await AsyncStorage.getItem('user_name').catch(() => null);
     const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
@@ -94,18 +104,12 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     // reserved for explicit debug/critical traces, with light sampling for
     // high-volume diagnostic streams so growth does not turn every tap into a
     // billable document write.
-    const isErrorTrace = meta.result === 'error';
-    const shouldWrite =
-      meta.writeToFirestore === true
-      || (isErrorTrace && Math.random() < FIRESTORE_SAMPLE_RATE);
-    if (!shouldWrite) return;
+    if (!canWriteToFirestore) return;
 
     // Гейт согласия (GDPR/ePrivacy): продуктовую телеметрию (uid+userName+действия)
     // НЕ пишем в облако без согласия на аналитику. Трейсы ОШИБОК (result:'error')
     // оставляем — это строго необходимая диагностика стабильности (как Crashlytics),
     // согласия не требует.
-    if (!isErrorTrace && !isAnalyticsConsentGranted()) return;
-
     await submitClientReport('app_activity', record).catch(() => {});
   } catch {
     // Activity logging must never affect product behavior.

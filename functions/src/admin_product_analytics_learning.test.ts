@@ -1,9 +1,7 @@
 import { buildProductAnalyticsAggregateQuery } from './admin_product_analytics';
 
-process.env.ANALYTICS_BIGQUERY_DATASET = 'phraseman-ea0b3.analytics_532376954';
-
 describe('product analytics learning outcome warehouse contract', () => {
-  const sql = buildProductAnalyticsAggregateQuery();
+  const sql = buildProductAnalyticsAggregateQuery('`demo.analytics.events_*`');
 
   it('warehouses every governed review lifecycle event', () => {
     expect(sql).toContain("'learning_review_session_start'");

@@ -11,6 +11,9 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
+import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
+import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
+import { EXPLAIN_CALLABLE_TIMEOUT_MS } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
@@ -51,12 +54,45 @@ export interface ExplainPhraseResponse {
   fromCache: boolean;
 }
 
+/** Необязательные крючки вызова: UI подменяет подпись под скелетоном на повторе. */
+export interface CallExplainPhraseOptions {
+  /** Дёргается, когда первый вызов не удался и пошёл тихий повтор. */
+  onRetryStart?: () => void;
+}
+
+/**
+ * Прогрев инстанса explainPhrase. Зовётся при ОТКРЫТИИ карточки фразы — пока
+ * пользователь читает, инстанс просыпается, и нажатие «объясни» попадает на
+ * тёплый сервер.
+ *
+ * зачем: у функции minInstances: 0 (владелец не платит за тёплый инстанс,
+ * сторож ai_functions_warm_instance_contract). Прогрев переносит холодный старт
+ * в паузу, когда человек и так занят. Ничего не стоит: сервер отвечает на ping
+ * до Firestore и OpenAI, инстанс гаснет сам.
+ *
+ * Никогда не бросает — вызывать через `void`.
+ */
+export function warmExplainPhrase(): void {
+  void warmAiFunction('explainPhrase', async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainPhrase');
+    return fn({ warmupPing: true });
+  });
+}
+
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
-export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
+export async function callExplainPhrase(
+  req: ExplainPhraseRequest,
+  options?: CallExplainPhraseOptions,
+): Promise<ExplainPhraseResponse> {
+  const key = explainPhraseRequestKey(req);
+  const localCached = await readExplainLocalCache({ kind: 'phrase', key });
+  if (localCached?.status === 'ok') {
+    return { ok: true, text: localCached.text, status: 'ok', fromCache: true };
+  }
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();
-  const key = explainPhraseRequestKey(req);
   const existing = explainPhraseInFlight.get(key);
   if (existing) return existing;
 
@@ -66,7 +102,26 @@ export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<Expl
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainPhrase',
     );
-    const res = await withExplainCallableTimeout(fn(req), 'explainPhrase');
+    // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как
+    // «no available instance» — пользователь видел ошибку на ровном месте.
+    // Повтор идемпотентен: объяснение фразы ничего не списывает при неудаче.
+    // Вторая попытка ждёт вдвое меньше: инстанс уже разбужен первой, и длинное
+    // окно там ничего не спасает — зато без укорочения общее ожидание перед
+    // показом ошибки складывалось бы в ~72 секунды.
+    const res = await withAiCallableRetry(
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'explainPhrase',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
+      { label: 'explainPhrase', onRetryStart: options?.onRetryStart },
+    );
+    if (res.data.status === 'ok') {
+      void writeExplainLocalCache({ kind: 'phrase', key }, {
+        text: res.data.text,
+        status: res.data.status,
+      });
+    }
     return res.data;
   })().finally(() => {
     explainPhraseInFlight.delete(key);

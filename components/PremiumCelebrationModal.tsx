@@ -30,6 +30,7 @@ import Reanimated, {
   cancelAnimation,
   interpolate,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withDelay,
   withRepeat,
@@ -49,6 +50,7 @@ import {
   type CelebrationFeature,
   type CelebrationVariant,
 } from './premium_celebration/celebrationContent';
+import { soundDirector } from '../modules/audio/sound_director';
 
 interface PremiumCelebrationModalProps {
   visible: boolean;
@@ -57,8 +59,12 @@ interface PremiumCelebrationModalProps {
 }
 
 const ROW_HEIGHT = 70;            // высота строки + gap (для расчёта скролла)
-const ROW_STEP_MS = 360;          // время на одну строку авто-прокрутки
-const REEL_START_DELAY = 900;     // пауза перед стартом проезда (на hero-вступление)
+// зачем: окно поздравления шло ~7с (900мс пауза + 16×360мс + финал) — юзер
+// жаловался «очень долго». Проезд ужат до ~3с: шаг строки 360→170мс, стартовая
+// пауза 900→450мс. Строки по-прежнему загораются по одной (эффект раскрытия
+// сохранён), но празднование не превращается в ожидание.
+const ROW_STEP_MS = 170;          // время на одну строку авто-прокрутки
+const REEL_START_DELAY = 450;     // пауза перед стартом проезда (на hero-вступление)
 const HERO_OFFSET = 248;          // высота hero-зоны сверху
 
 function localeText(map: CelebrationFeature['title'], lang: ReturnType<typeof useLang>['lang']): string {
@@ -66,12 +72,13 @@ function localeText(map: CelebrationFeature['title'], lang: ReturnType<typeof us
 }
 
 /** Одна строка-преимущество: подсвечивается когда камера до неё доезжает. */
-function FeatureRow({ feature, lang, lit, palette, f }: {
+function FeatureRow({ feature, lang, lit, palette, f, reduceMotion }: {
   feature: CelebrationFeature;
   lang: ReturnType<typeof useLang>['lang'];
   lit: boolean;
   palette: typeof CELEBRATION_PALETTES['premium'];
   f: ReturnType<typeof useTheme>['f'];
+  reduceMotion: boolean;
 }) {
   const p = useSharedValue(0);
   const flash = useSharedValue(0);
@@ -79,6 +86,15 @@ function FeatureRow({ feature, lang, lit, palette, f }: {
 
   useEffect(() => {
     if (lit) {
+      // зачем: при «Уменьшении движения» строка проявляется мягким фейдом без
+      // пружины, сдвига и вспышки — правило требует убрать ДВИЖЕНИЕ, а не
+      // смысл: понимание «пункт открылся» держится на opacity и галочке.
+      if (reduceMotion) {
+        p.value = withTiming(1, { duration: 160, easing: REasing.out(REasing.quad) });
+        flash.value = 0;
+        check.value = withTiming(1, { duration: 160 });
+        return;
+      }
       p.value = withSpring(1, { mass: 0.6, damping: 13, stiffness: 130 });
       flash.value = withSequence(
         withTiming(1, { duration: 220, easing: REasing.out(REasing.quad) }),
@@ -90,14 +106,16 @@ function FeatureRow({ feature, lang, lit, palette, f }: {
       flash.value = 0;
       check.value = 0;
     }
-  }, [lit, p, flash, check]);
+  }, [lit, p, flash, check, reduceMotion]);
 
   const rowStyle = useAnimatedStyle(() => ({
     opacity: interpolate(p.value, [0, 1], [0.28, 1]),
-    transform: [
-      { translateX: interpolate(p.value, [0, 1], [-26, 0]) },
-      { scale: interpolate(p.value, [0, 1], [0.95, 1]) },
-    ],
+    transform: reduceMotion
+      ? []
+      : [
+        { translateX: interpolate(p.value, [0, 1], [-26, 0]) },
+        { scale: interpolate(p.value, [0, 1], [0.95, 1]) },
+      ],
   }));
   const flashStyle = useAnimatedStyle(() => ({ opacity: interpolate(flash.value, [0, 1], [0, 0.22]) }));
   const checkStyle = useAnimatedStyle(() => ({
@@ -161,6 +179,10 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
   const [heroH, setHeroH] = useState(0);
   const stepTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Финальный хаптик отложен на 420мс. Без ref он срабатывал уже на СЛЕДУЮЩЕМ
+  // экране, если модалку закрыли в эту паузу — вибрация из ниоткуда.
+  const finaleHapticTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reduceMotion = useReducedMotion();
 
   const onHeroLayout = useCallback((e: { nativeEvent: { layout: { height: number } } }) => {
     const h = e.nativeEvent.layout.height;
@@ -190,6 +212,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
   const clearTimers = useCallback(() => {
     if (stepTimer.current) { clearTimeout(stepTimer.current); stepTimer.current = null; }
     if (startTimer.current) { clearTimeout(startTimer.current); startTimer.current = null; }
+    if (finaleHapticTimer.current) { clearTimeout(finaleHapticTimer.current); finaleHapticTimer.current = null; }
   }, []);
 
   useEffect(() => {
@@ -205,20 +228,37 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
 
     // вступление
     hapticSuccess();
-    heroIn.value = withTiming(1, { duration: 520, easing: REasing.out(REasing.back(1.4)) });
-    ringSpin.value = withRepeat(withTiming(1, { duration: 6000, easing: REasing.linear }), -1, false);
-    ringPulse.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1300, easing: REasing.inOut(REasing.sin) }),
-        withTiming(0, { duration: 1300, easing: REasing.inOut(REasing.sin) }),
-      ),
-      -1, true,
-    );
-    ctaT.value = withDelay(REEL_START_DELAY, withSpring(1, { mass: 0.6, damping: 12, stiffness: 120 }));
-    ctaShimmer.value = withDelay(
-      REEL_START_DELAY + 300,
-      withRepeat(withTiming(1, { duration: 2400, easing: REasing.linear }), -1, false),
-    );
+    soundDirector.request(variant === 'vip' ? 'pm.reward.vip_open' : 'pm.reward.premium_open', {
+      scope: 'premium-celebration',
+      dedupeKey: `${variant}:open`,
+    });
+    // зачем: при «Уменьшении движения» ВСЕ бесконечные циклы (вращение кольца,
+    // пульсация свечения, бегущий блик CTA) не запускаются вовсе — именно они
+    // крутились вопреки системной настройке. Статичные конечные значения
+    // сохраняют вид кадра: пользователь видит ту же карточку, просто без
+    // вечного движения. Тот же приём уже применён в PlayerProfileModal (A-54/55).
+    if (reduceMotion) {
+      heroIn.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.quad) });
+      ringSpin.value = 0;
+      ringPulse.value = 0.5;
+      ctaT.value = withDelay(REEL_START_DELAY, withTiming(1, { duration: 180 }));
+      ctaShimmer.value = 0;
+    } else {
+      heroIn.value = withTiming(1, { duration: 520, easing: REasing.out(REasing.back(1.4)) });
+      ringSpin.value = withRepeat(withTiming(1, { duration: 6000, easing: REasing.linear }), -1, false);
+      ringPulse.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 1300, easing: REasing.inOut(REasing.sin) }),
+          withTiming(0, { duration: 1300, easing: REasing.inOut(REasing.sin) }),
+        ),
+        -1, true,
+      );
+      ctaT.value = withDelay(REEL_START_DELAY, withSpring(1, { mass: 0.6, damping: 12, stiffness: 120 }));
+      ctaShimmer.value = withDelay(
+        REEL_START_DELAY + 300,
+        withRepeat(withTiming(1, { duration: 2400, easing: REasing.linear }), -1, false),
+      );
+    }
 
     // авто-прокрутка: подсвечиваем по строке + двигаем камеру + хаптик
     let i = 0;
@@ -233,7 +273,14 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
         scrollRef.current?.scrollTo({ y: maxScroll, animated: true });
         setFinaleLit(true);
         finaleScale.value = withDelay(150, withSpring(1, { mass: 0.6, damping: 10, stiffness: 120 }));
-        setTimeout(() => { hapticSuccess(); }, 420);
+        soundDirector.request(variant === 'vip' ? 'pm.reward.vip_finale' : 'pm.reward.premium_finale', {
+          scope: 'premium-celebration',
+          dedupeKey: `${variant}:finale`,
+        });
+        finaleHapticTimer.current = setTimeout(() => {
+          finaleHapticTimer.current = null;
+          hapticSuccess();
+        }, 420);
         return;
       }
       i += 1;
@@ -249,7 +296,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
 
     return () => clearTimers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, variant]);
+  }, [visible, variant, reduceMotion]);
 
   const skip = useCallback(() => {
     clearTimers();
@@ -262,6 +309,15 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
   }, [clearTimers, features.length, finaleScale, ctaT]);
 
   const handleClose = useCallback(() => { onClose(); }, [onClose]);
+
+  // зачем: аппаратная «назад» на Android раньше сразу выбрасывала из
+  // празднования, которое пользователь оплатил, — прямо посреди проезда ленты.
+  // Теперь она повторяет логику тапа по фону: сначала раскрыть всё, и только
+  // повторное нажатие закрывает. Выйти по-прежнему можно двумя нажатиями.
+  const handleBack = useCallback(() => {
+    if (skipped) { handleClose(); return; }
+    skip();
+  }, [skipped, skip, handleClose]);
 
   const heroStyle = useAnimatedStyle(() => ({
     opacity: heroIn.value,
@@ -285,7 +341,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
   if (!visible) return null;
 
   return (
-    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleClose}>
+    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleBack}>
       <View style={styles.root}>
         <AuroraBackground
           active={visible}
@@ -372,6 +428,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
         <View style={[styles.reelMask, { top: reelTop, bottom: reelBottom }]} pointerEvents={skipped ? 'box-none' : 'none'}>
           <ScrollView
             ref={scrollRef}
+            decelerationRate="fast"
             style={StyleSheet.absoluteFill}
             contentContainerStyle={styles.reelContent}
             showsVerticalScrollIndicator={false}
@@ -385,6 +442,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
                 lit={skipped || idx < litCount}
                 palette={palette}
                 f={f}
+                reduceMotion={reduceMotion}
               />
             ))}
             <Reanimated.View style={[styles.finale, { borderColor: `${palette.main}66`, backgroundColor: `${palette.main}1F` }, finaleStyle]}>
@@ -450,7 +508,7 @@ const styles = StyleSheet.create({
   ringConic: { position: 'absolute', width: 136, height: 136, borderRadius: 68, opacity: 0.8, overflow: 'hidden' },
   ringGlow: { position: 'absolute', width: 120, height: 120, borderRadius: 60, opacity: 0.5 },
   emblemDisc: {
-    width: 96, height: 96, borderRadius: 48, borderWidth: 1.5,
+    width: 96, height: 96, borderRadius: 48, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
   emblemEmoji: { fontSize: 52 },
@@ -469,13 +527,13 @@ const styles = StyleSheet.create({
   reelContent: { paddingHorizontal: 22, paddingTop: 14, paddingBottom: 30, gap: 11 },
   row: {
     flexDirection: 'row', alignItems: 'center', gap: 13,
-    paddingVertical: 13, paddingHorizontal: 15, borderRadius: 17, borderWidth: 1,
+    paddingVertical: 13, paddingHorizontal: 15, borderRadius: 17, borderWidth: 0,
     overflow: 'hidden',
   },
   rowBase: { borderRadius: 17, backgroundColor: 'rgba(8,10,9,0.82)' },
   rowTint: { borderRadius: 17 },
   rowFlash: { borderRadius: 17 },
-  rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 0, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   rowEmoji: { fontSize: 21 },
   rowText: { flex: 1, minWidth: 0 },
   rowTitle: { fontWeight: '800', letterSpacing: 0.1 },
@@ -483,7 +541,7 @@ const styles = StyleSheet.create({
   checkBadge: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   checkMark: { fontSize: 13, fontWeight: '900' },
 
-  finale: { marginTop: 8, padding: 20, borderRadius: 20, borderWidth: 1.5, alignItems: 'center' },
+  finale: { marginTop: 8, padding: 20, borderRadius: 20, borderWidth: 0, alignItems: 'center' },
   finaleBig: { fontSize: 19, fontWeight: '900', textAlign: 'center' },
   finaleSmall: { fontSize: 13, marginTop: 4, opacity: 0.8, textAlign: 'center', fontWeight: '600' },
 

@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const require = createRequire(import.meta.url);
+const { PROMPT_REGRESSION_CASES, promptRegressionManifest } = require('../functions/lib/content_factory/quality_regression_corpus.js');
+const { runPromptRegression } = require('../functions/lib/content_factory/quality_regression_score.js');
+const { buildPromptPromotionReport } = require('../functions/lib/content_factory/prompt_promotion_registry.js');
+const workspaceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const outputDir = path.resolve(workspaceRoot, '.codex-tmp', 'content-prompt-regression');
+if (!outputDir.includes(`${path.sep}.codex-tmp${path.sep}`)) throw new Error('prompt_regression_output_must_be_temp');
+fs.mkdirSync(outputDir, { recursive: true });
+const manifest = promptRegressionManifest(PROMPT_REGRESSION_CASES); const report = runPromptRegression(PROMPT_REGRESSION_CASES);
+const candidateReport = buildPromptPromotionReport('arena_questions', 'v4', 'v5');
+fs.writeFileSync(path.join(outputDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+fs.writeFileSync(path.join(outputDir, 'report.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+fs.writeFileSync(path.join(outputDir, 'arena-questions-v5-candidate-report.json'), `${JSON.stringify(candidateReport, null, 2)}\n`, 'utf8');
+process.stdout.write(JSON.stringify({ passed: report.passed && candidateReport.passed, cases: report.summary.total, manifestHash: report.manifestHash, reportHash: report.reportHash, candidate: candidateReport.candidate, candidateReportHash: candidateReport.reportHash, outputDir }));
+if (!report.passed || !candidateReport.passed) process.exitCode = 1;

@@ -1,10 +1,8 @@
 import { buildProductAnalyticsAggregateQuery } from './admin_product_analytics';
 
-process.env.ANALYTICS_BIGQUERY_DATASET = 'phraseman-ea0b3.analytics_532376954';
-
 describe('production first-touch activation query order', () => {
   it('selects each earliest milestone only after the previous valid milestone', () => {
-    const query = buildProductAnalyticsAggregateQuery();
+    const query = buildProductAnalyticsAggregateQuery('`project.analytics.events_*`');
     const onboarding = query.indexOf('first_touch_onboarding AS');
     const learningStart = query.indexOf('first_touch_learning_start AS');
     const learningComplete = query.indexOf('first_touch_learning_complete AS');

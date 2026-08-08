@@ -6,7 +6,15 @@ function read(rel: string): string {
 }
 
 describe('promo codes UI/admin contract', () => {
-  it('settings exposes promo code entry behind the remote flag', () => {
+  // зачем 2026-08-04 (владелец: «кнопка должна быть всегда там без исключений,
+  // на всех устройствах»): на свежем устройстве без сети Firestore remote
+  // config не успевал (или не мог) подтянуть promo_codes_enabled, флаг падал
+  // на дефолт false, и кнопка ввода промокода пропадала из настроек целиком.
+  // Ряд теперь безусловный — не зависит от сети вообще. Сервер (promo_codes.ts)
+  // по-прежнему уважает флаг: выключенный promo_codes_enabled в админке даёт
+  // явный ответ 'promo_disabled' на попытку активации, а не тихое исчезновение
+  // кнопки — это стережёт соседний тест ниже ('successful redemption...').
+  it('settings exposes promo code entry unconditionally, gated server-side only', () => {
     const flags = read('app/remote_flags.ts');
     const settings = read('app/(tabs)/settings.tsx');
 
@@ -14,9 +22,10 @@ describe('promo codes UI/admin contract', () => {
     expect(flags).toContain('promo_codes_enabled: false');
     expect(flags).toContain("isPromoCodesEnabled = () => getRemoteBool('promo_codes_enabled')");
 
-    expect(settings).toContain('isPromoCodesEnabled');
+    expect(settings).not.toContain('isPromoCodesEnabled');
+    expect(settings).not.toContain('promoCodesOn');
     expect(settings).toContain('settings-promo-code-row');
-    expect(settings).toContain("router.push('/promo_code_entry' as any)");
+    expect(settings).toContain("router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any)");
   });
 
   it('successful redemption wakes VIP access immediately', () => {
@@ -30,6 +39,7 @@ describe('promo codes UI/admin contract', () => {
     expect(entry).toContain("emitAppEvent('vip_activated')");
     expect(entry).toContain("emitAppEvent('premium_access_changed', { active: true, source: 'vip' })");
     expect(entry).toContain('<VipCelebrationModal');
+    expect(entry).toContain('TonalSurface');
     expect(entry).toContain('ActivityIndicator size="small"');
     expect(entry).toContain('Активируем…');
     expect(entry).toContain("['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo']");
@@ -47,8 +57,10 @@ describe('promo codes UI/admin contract', () => {
     expect(settings).toContain('Промокод');
     expect(settings).toContain('Полный доступ на 3 дня');
     expect(settings).toContain('Подарок: полный доступ на 3 дня');
-    expect(settings).toContain('Plus доступ активен');
-    expect(settings).not.toContain('Plus доступ активен\', \'Plus доступ активний\', \'Plus access active\', \'Acesso Plus ativo\', \'Quyền Plus đang hoạt động\', \'Akses Plus aktif\', \'Plus erişim aktif\', \'Dostęp Plus aktywny\')} · ${vipExpiryText}');
+    // 2026-07-26: подпись plusRowSub (включая «Plus доступ активен») удалена
+    // редизайном настроек (запрет владельца на подписи-расшифровки под
+    // названием) — статус теперь в plusRowLabel «… активирован ✓».
+    expect(settings).toContain("${L('активирован', 'активовано'");
   });
 
   it('admin has a promo code section with generation and copy controls', () => {

@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
+import { getProductAnalyticsSessionId } from './product_analytics_session_context';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -18,7 +19,11 @@ export function logEvent(name: string, params?: Record<string, string | number>)
   // согласия (GDPR/ePrivacy). Crashlytics/recordError ниже НЕ гейтятся — это
   // строго необходимая диагностика.
   if (!isAnalyticsConsentGranted()) return;
-  getAnalytics()?.logEvent(name, params).catch(() => {});
+  const productSessionId = getProductAnalyticsSessionId();
+  getAnalytics()?.logEvent(name, {
+    ...(params ?? {}),
+    ...(productSessionId ? { product_session_id: productSessionId } : {}),
+  }).catch(() => {});
 }
 
 /**
@@ -31,8 +36,8 @@ export function logEvent(name: string, params?: Record<string, string | number>)
  * здесь включаем сбор ТОЛЬКО при явном согласии — и выключаем при отзыве.
  * Вызывается из analytics_consent.ts (гидрация + каждая смена выбора).
  */
-export function applyAnalyticsCollectionConsent() {
-  getAnalytics()?.setAnalyticsCollectionEnabled(isAnalyticsConsentGranted()).catch(() => {});
+export async function applyAnalyticsCollectionConsent(enabled = isAnalyticsConsentGranted()): Promise<void> {
+  await getAnalytics()?.setAnalyticsCollectionEnabled(enabled).catch(() => {});
 }
 
 function paywallSourceForContext(context: string): 'settings' | 'onboarding' | 'automatic' {
@@ -82,12 +87,12 @@ export function recordError(error: Error, context?: string) {
 
 // ── Lesson events ─────────────────────────────────────────────────────────────
 
-export function logLessonComplete(lessonId: number) {
-  logEvent('lesson_complete', { lesson_id: lessonId });
+export function logLessonComplete(lessonId: number, attemptId: string, elapsedMs: number) {
+  logEvent('lesson_complete', { lesson_id: lessonId, lesson_attempt_id: attemptId, elapsed_ms: elapsedMs });
 }
 
-export function logLessonStart(lessonId: number) {
-  logEvent('lesson_start', { lesson_id: lessonId });
+export function logLessonStart(lessonId: number, totalPhrases: number, attemptId: string) {
+  logEvent('lesson_start', { lesson_id: lessonId, total_phrases: totalPhrases, lesson_attempt_id: attemptId });
 }
 
 // ── Quiz events ───────────────────────────────────────────────────────────────
@@ -119,7 +124,7 @@ export function logPremiumModalOpened(context: string) {
 }
 
 export function logPremiumPurchased(productId: string, context = 'generic') {
-  logEvent('premium_purchased', { product_id: productId });
+  logEvent('premium_purchased', { product_id: productId, context, source: paywallSourceForContext(context) });
   trackRevenueActivity('paywall:purchase_success', context, { productId });
 }
 
@@ -132,28 +137,28 @@ export function logCardPackPurchasedShards(packId: string, priceShards: number) 
 }
 
 export function logPaywallView(context: string) {
-  logEvent('paywall_view', { context });
+  logEvent('paywall_view', { context, source: paywallSourceForContext(context) });
   trackRevenueActivity('paywall:view', context);
 }
 
 export function logPaywallPlanSelect(context: string, plan: string) {
-  logEvent('paywall_plan_select', { context, plan });
+  logEvent('paywall_plan_select', { context, plan, source: paywallSourceForContext(context) });
   trackRevenueActivity('paywall:plan_select', context, { plan });
 }
 
 export function logPaywallCtaClick(context: string, plan: string) {
-  logEvent('paywall_cta_click', { context, plan });
+  logEvent('paywall_cta_click', { context, plan, source: paywallSourceForContext(context) });
   trackRevenueActivity('paywall:cta_click', context, { plan });
 }
 
 export function logPaywallContinueFree(context: string) {
-  logEvent('paywall_continue_free', { context });
+  logEvent('paywall_continue_free', { context, source: paywallSourceForContext(context) });
   // Унифицируем воронку: эти два закрытия раньше шли только в Firebase, теперь и в PostHog.
   void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_continue_free', { context })).catch(() => {});
 }
 
 export function logPaywallClose(context: string) {
-  logEvent('paywall_close', { context });
+  logEvent('paywall_close', { context, source: paywallSourceForContext(context) });
   void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_close', { context })).catch(() => {});
 }
 
@@ -186,16 +191,16 @@ export function logPaywallAbandonedPush() {
 }
 
 export function logExitTrialOfferShown(context: string, plan: string) {
-  logEvent('exit_trial_offer_shown', { context, plan });
+  logEvent('exit_trial_offer_shown', { context, plan, source: paywallSourceForContext(context) });
 }
 
 export function logExitTrialOfferAccepted(context: string, plan: string) {
-  logEvent('exit_trial_offer_accepted', { context, plan });
+  logEvent('exit_trial_offer_accepted', { context, plan, source: paywallSourceForContext(context) });
   trackRevenueActivity('paywall:trial_offer_accepted', context, { plan });
 }
 
 export function logExitTrialOfferDeclined(context: string, plan: string) {
-  logEvent('exit_trial_offer_declined', { context, plan });
+  logEvent('exit_trial_offer_declined', { context, plan, source: paywallSourceForContext(context) });
 }
 
 export function logTrainerDirectGateBlocked(route: string) {
@@ -245,14 +250,26 @@ export function logChangePlanStarted(from: string, to: string) {
 
 // ── Lesson drop-off ───────────────────────────────────────────────────────────
 
-export function logLessonAbandoned(lessonId: number, phraseIndex: number, totalPhrases: number) {
-  logEvent('lesson_abandoned', { lesson_id: lessonId, phrase_index: phraseIndex, total: totalPhrases });
+export function logLessonAbandoned(lessonId: number, phraseIndex: number, totalPhrases: number, attemptId: string, elapsedMs: number) {
+  logEvent('lesson_abandoned', {
+    lesson_id: lessonId,
+    phrase_index: phraseIndex,
+    total_phrases: totalPhrases,
+    lesson_attempt_id: attemptId,
+    elapsed_ms: elapsedMs,
+  });
 }
 
 // ── Answer accuracy ───────────────────────────────────────────────────────────
 
-export function logLessonAnswer(lessonId: number, isCorrect: boolean) {
-  logEvent('lesson_answer', { lesson_id: lessonId, correct: isCorrect ? 1 : 0 });
+export function logLessonAnswer(lessonId: number, isCorrect: boolean, phraseIndex: number, totalPhrases: number, attemptId: string) {
+  logEvent('lesson_answer', {
+    lesson_id: lessonId,
+    correct: isCorrect ? 1 : 0,
+    phrase_index: phraseIndex,
+    total_phrases: totalPhrases,
+    lesson_attempt_id: attemptId,
+  });
 }
 
 // ── Energy limit ──────────────────────────────────────────────────────────────

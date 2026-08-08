@@ -12,7 +12,7 @@ describe('Admin v2 trustworthy analytics contract', () => {
   const css = read('admin/v2/styles/admin.css');
 
   test('renders the native analytics snapshot instead of raw JSON or legacy analytics', () => {
-    expect(core).toContain("import { renderAdminAnalytics } from './admin-analytics-view.js'");
+    expect(core).toMatch(/import\s*\{[^}]*\brenderAdminAnalytics\b[^}]*\}\s*from '\.\/admin-analytics-view\.js';/);
     expect(core).not.toContain('JSON.stringify(snapshot, null, 2)');
     expect(view).toContain('Активные доступы');
     expect(view).toContain('События магазина');
@@ -23,17 +23,74 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain('Подписки магазина');
     expect(view).not.toContain('>Admin grant<');
     expect(view).not.toContain('../../admin/index.html');
+    expect(view).toContain('renderPaywallAnalyticsCategory');
   });
 
   test('has one primary refresh action, a labeled bounded period and accessible status', () => {
     expect(view.match(/data-action="load-analytics"/g)).toHaveLength(1);
     expect(view).toContain('class="button primary"');
-    expect(view).toContain('title="Обновить серверный снимок аналитики"');
+    expect(view).toContain('title="Обновить серверный снимок аналитики, сохраняя последний подтверждённый результат на экране"');
     expect(view).toContain('for="analytics-range"');
     expect(view).toContain('value="7"');
     expect(view).toContain('value="28"');
     expect(view).toContain('value="90"');
     expect(view).toContain('aria-live="polite"');
+  });
+
+  test('uses a compact report switcher instead of a long in-page analytics scroll', () => {
+    expect(view).toContain('id="analytics-report-select"');
+    expect(view).toContain('data-action="select-analytics-report"');
+    expect(view).toContain('data-analytics-report-panel');
+    expect(view).toContain('Сегодня');
+    expect(view).toContain('Рост');
+    expect(view).toContain('Деньги');
+    expect(view).toContain('Обучение');
+    expect(view).toContain('Что показывает:');
+    expect(view).toContain('Какое решение принять:');
+    expect(view).not.toContain('aria-label="Разделы аналитики"');
+    expect(view).not.toContain('href="#product-analytics-panel"');
+    expect(core).toContain('activeAnalyticsReport');
+    expect(core).toContain('syncAnalyticsReportVisibility');
+    expect(core).toContain("state.activeAnalyticsReport === 'product'");
+    expect(core).toContain("state.activeAnalyticsReport === 'subscriptions'");
+    expect(core).toContain("state.activeAnalyticsReport === 'exports'");
+  });
+
+  test('maps every visible analytics deep link to one real decision report', () => {
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
+
+    expect(capabilities).toContain("'today', '/today'");
+    expect(capabilities).toContain("'growth', '/growth'");
+    expect(capabilities).toContain("'subscriptions', '/subscriptions'");
+    expect(capabilities).not.toContain("'/money'");
+    expect(capabilities).toContain("'learning', '/learning'");
+    expect(core).toContain("today: 'overview'");
+    expect(core).toContain("growth: 'product'");
+    expect(core).toContain("subscriptions: 'subscriptions'");
+    expect(core).toContain("learning: 'exports'");
+    expect(core).toContain("['today', 'Сегодня']");
+    expect(core).toContain("['growth', 'Рост']");
+    expect(core).toContain("['subscriptions', 'Подписки']");
+    expect(core).toContain("['learning', 'Обучение']");
+    expect(view).toContain("reportShell('overview'");
+    expect(view).toContain("reportShell('product'");
+    expect(view).toContain("reportShell('subscriptions'");
+    expect(view).toContain("reportShell('exports'");
+    expect(view).not.toContain('старый ZIP');
+    expect(view).not.toContain('ZIP-пакет');
+    expect(view).not.toContain('новая кнопка сверху скачивает');
+  });
+
+  test('exports the current canonical analytics report as PDF and JSON', () => {
+    expect(analyticsState).toContain('export function createCanonicalAnalyticsReport');
+    expect(analyticsState).toContain('metrics: [');
+    expect(analyticsState).toContain('sourceHealth');
+    expect(core).toContain('downloadAnalyticsReportBundle');
+    expect(core).toContain("action === 'export-analytics-report'");
+    const reportExport = read('admin/v2/scripts/admin-report-export.js');
+    expect(reportExport).toContain('export function downloadAnalyticsReportBundle');
+    expect(reportExport).toContain('application/pdf');
+    expect(reportExport).toContain('application/json');
   });
 
   test('keeps the last good snapshot through loading and error states', () => {
@@ -46,6 +103,8 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain("model.status === 'partial'");
     expect(view).toContain("model.status === 'empty'");
     expect(view).toContain("model.status === 'error'");
+    expect(core).toContain('analyticsTrends: createAnalyticsTrendScopesState()');
+    expect(core).toContain('snapshot: state.analytics.snapshot');
   });
 
   test('mirrors the backend money.read permission and existing callable', () => {
@@ -54,6 +113,7 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(core).toContain("analyst: new Set(['users.read', 'money.read'");
     expect(core).toContain("disabledWhenUnauthorized('money.read')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot')");
+    expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsTrends')");
     expect(core).toContain("if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' }");
   });
 

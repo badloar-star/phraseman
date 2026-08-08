@@ -141,11 +141,126 @@ function parseRows(file) {
       video: Number(parts[idx.video]),
       slot: Number(parts[idx.slot]),
       role: parts[idx.role],
+      situation: parts[idx.situation] || '',
       phraseEn: parts[idx.phrase_en],
       translationRu: parts[idx.translation_ru],
       note: parts[idx.note] || '',
     };
   });
+}
+
+// Recovery packs carry a concrete situation per five-slot mini-video. Prefer it
+// over broad reaction footage so each stock query has a visible real-world cue.
+function recoverySituationSceneFor(row) {
+  const situation = String(row.situation || '').trim().toLowerCase();
+  if (!situation) return null;
+  const key = phraseKey(row.phraseEn);
+  const contexts = [
+    [/hotel check-in/, ['hotel reception', 'phone', 'hotel reception']],
+    [/hotel room/, ['hotel room', 'bed', 'hotel room']],
+    [/airport disruption/, ['airport gate', 'flight board', 'airport gate']],
+    [/lost luggage/, ['airport luggage', 'suitcase', 'airport luggage']],
+    [/taxi directions/, ['taxi car', 'map phone', 'taxi car']],
+    [/metro transfer/, ['metro station', 'train', 'metro station']],
+    [/bus route/, ['bus stop', 'bus', 'bus stop']],
+    [/train seating/, ['train seat', 'train', 'train seat']],
+    [/stranded travel/, ['train station', 'suitcase', 'train station']],
+    [/car rental/, ['rental car', 'car key', 'rental car']],
+    [/restaurant choice/, ['restaurant menu', 'food', 'restaurant menu']],
+    [/wrong order/, ['restaurant table', 'food plate', 'restaurant table']],
+    [/restaurant bill/, ['restaurant receipt', 'card payment', 'restaurant receipt']],
+    [/takeaway order/, ['takeaway food', 'paper bag', 'takeaway food']],
+    [/food allergy/, ['restaurant menu', 'food', 'restaurant menu']],
+    [/overcharge/, ['shop receipt', 'price tag', 'shop receipt']],
+    [/return purchase/, ['shop counter', 'shopping bag', 'shop counter']],
+    [/fee negotiation/, ['customer service', 'document', 'customer service']],
+    [/price comparison/, ['shopping phone', 'price tag', 'shopping phone']],
+    [/payment problem/, ['card terminal', 'bank card', 'card terminal']],
+    [/rescheduling/, ['calendar phone', 'calendar', 'calendar phone']],
+    [/workload/, ['office desk', 'laptop', 'office desk']],
+    [/meeting focus/, ['office meeting', 'laptop', 'office meeting']],
+    [/feasibility/, ['office notebook', 'calculator', 'office notebook']],
+    [/work update/, ['office laptop', 'notebook', 'office laptop']],
+    [/bad call signal/, ['phone call', 'smartphone', 'phone call']],
+    [/finding location/, ['phone map', 'smartphone', 'phone map']],
+    [/email problem/, ['laptop email', 'laptop', 'laptop email']],
+    [/phone battery/, ['phone charger', 'smartphone', 'phone charger']],
+    [/call handling/, ['phone call', 'smartphone', 'phone call']],
+    [/home security/, ['house door', 'key', 'house door']],
+    [/power outage/, ['circuit breaker', 'flashlight', 'circuit breaker']],
+    [/broken appliance/, ['kitchen appliance', 'kitchen', 'kitchen appliance']],
+    [/household supplies/, ['kitchen cupboard', 'groceries', 'kitchen cupboard']],
+    [/stuffy room/, ['window room', 'window', 'window room']],
+    [/feeling faint/, ['person sitting', 'water glass', 'person sitting']],
+    [/injury/, ['first aid', 'bandage', 'first aid']],
+    [/medical urgency/, ['doctor phone', 'smartphone', 'doctor phone']],
+    [/illness/, ['sick bed', 'water glass', 'sick bed']],
+    [/numbness/, ['hand arm', 'hand', 'hand arm']],
+    [/emergency call/, ['ambulance phone', 'smartphone', 'ambulance phone']],
+    [/lost person/, ['public station', 'smartphone', 'public station']],
+    [/personal threat/, ['street safety', 'person', 'street safety']],
+    [/gas hazard/, ['gas stove', 'gas flame', 'gas stove']],
+    [/asking assistance/, ['security desk', 'smartphone', 'security desk']],
+    [/awkward conversation/, ['friends cafe', 'conversation', 'friends cafe']],
+    [/leaving event/, ['party door', 'door', 'party door']],
+    [/personal discomfort/, ['serious conversation', 'person', 'serious conversation']],
+    [/conflict mediation/, ['two people conversation', 'people', 'two people conversation']],
+    [/returning favour/, ['coffee bill', 'bank card', 'coffee bill']],
+    [/dealbreaker/, ['serious conversation', 'person', 'serious conversation']],
+    [/needing space/, ['person alone', 'phone', 'person alone']],
+    [/physical boundary/, ['stop hand', 'person', 'stop hand']],
+    [/decision pressure/, ['serious conversation', 'people', 'serious conversation']],
+    [/changed decision/, ['contract paper', 'pen', 'contract paper']],
+    [/explaining events/, ['phone notes', 'smartphone', 'phone notes']],
+    [/staying relevant/, ['meeting notebook', 'notebook', 'meeting notebook']],
+    [/being interrupted/, ['meeting talk', 'people', 'meeting talk']],
+    [/calling out audacity/, ['argument face', 'person', 'argument face']],
+    [/privacy/, ['phone privacy', 'smartphone', 'phone privacy']],
+  ];
+  const context = contexts.find(([pattern]) => pattern.test(situation));
+  if (!context) return null;
+  const [, [place, support, baseQuery]] = context;
+  const aliases = new Map([
+    ['problem', 'reception staff'], ['booking', 'booking phone'], ['booked', 'booking phone'], ['missing', 'lost luggage'], ['gone', 'lost suitcase'], ['freezing', 'cold room'],
+    ['heater', 'heater'], ['blankets', 'blanket'], ['checkout', 'hotel checkout'], ['bumped', 'airport delay'],
+    ['delayed', 'flight delay'], ['security', 'airport security'], ['gate', 'airport gate'], ['tag', 'luggage tag'],
+    ['trace', 'luggage tracking'], ['essentials', 'travel bag'], ['sort', 'room cleaning'], ['blankets', 'blanket'], ['checkout', 'hotel checkout'], ['wrong', 'map route'], ['stop', 'stop sign'],
+    ['motorway', 'road map'], ['price', 'price tag'], ['missed', 'missed train'], ['next', 'train timetable'],
+    ['line', 'metro map'], ['seat', 'train seat'], ['reserved', 'train reservation'], ['cancelled', 'train cancelled'],
+    ['taxi', 'taxi car'], ['tank', 'car fuel'], ['damage', 'car scratch'], ['menu', 'restaurant menu'],
+    ['spicy', 'spicy food'], ['ordered', 'restaurant order'], ['chicken', 'chicken plate'], ['split', 'restaurant bill'],
+    ['bills', 'receipt card'], ['tip', 'tip jar'], ['takeaway', 'takeaway bag'], ['pack', 'food bag'],
+    ['allergic', 'food allergy'], ['dairy', 'dairy food'], ['receipt', 'paper receipt'], ['refund', 'refund receipt'],
+    ['return', 'shop return'], ['fit', 'clothes fitting'], ['fee', 'service fee'], ['budget', 'calculator money'],
+    ['cash', 'cash wallet'], ['card', 'bank card'], ['reschedule', 'calendar phone'], ['friday', 'calendar'],
+    ['urgent', 'office deadline'], ['bandwidth', 'office laptop'], ['meeting', 'office meeting'], ['clarify', 'meeting notes'],
+    ['figures', 'calculator'], ['done', 'office laptop'], ['signal', 'phone signal'], ['calling', 'phone call'],
+    ['location', 'phone map'], ['entrance', 'building entrance'], ['email', 'laptop email'], ['attachment', 'email attachment'],
+    ['charger', 'phone charger'], ['battery', 'phone battery'], ['voicemail', 'phone voicemail'], ['lock', 'door key'],
+    ['window', 'house window'], ['power', 'circuit breaker'], ['fuse', 'circuit breaker'], ['breaker', 'circuit breaker'],
+    ['appliance', 'kitchen appliance'], ['noises', 'kitchen appliance'], ['cupboard', 'kitchen cupboard'], ['air', 'open window'],
+    ['faint', 'person sitting'], ['blurry', 'person sitting'], ['bleeding', 'first aid'], ['throbbing', 'bandage'],
+    ['ambulance', 'ambulance phone'], ['emergency', 'ambulance phone'], ['threat', 'street safety'], ['gas', 'gas stove'],
+    ['security', 'security desk'], ['awkward', 'serious conversation'], ['leave', 'party door'], ['uncomfortable', 'serious conversation'],
+    ['conflict', 'two people conversation'], ['dealbreaker', 'serious conversation'], ['space', 'person alone'], ['privacy', 'phone privacy'],
+  ]);
+  const ignored = new Set(['a', 'an', 'the', 'i', 'im', 'ive', 'we', 'you', 'your', 'my', 'me', 'it', 'this', 'that', 'is', 'are', 'am', 'to', 'of', 'on', 'in', 'at', 'for', 'and', 'or', 'please', 'can', 'could', 'will', 'wont', 'dont', 'does', 'do', 'lets']);
+  const cueKey = key.replace(/'(?:s|m|ve|re|ll|d)\b/g, '');
+  const cueWords = cueKey.split(/\s+/).filter((word) => !ignored.has(word));
+  const matchedWord = cueWords.find((word) => aliases.has(word));
+  const slotCues = ['concerned person', 'phone hand', 'document hand', 'computer hand', 'person gesture'];
+  const slotCue = slotCues[Math.max(0, Math.min(4, Number(row.slot || 1) - 1))];
+  const rawCue = matchedWord ? aliases.get(matchedWord) : slotCue;
+  const cue = rawCue === place || rawCue === support ? slotCue : rawCue;
+  const visualElements = [...new Set([place, cue, support])];
+  const situationTag = situation.replace(/[^a-z0-9]+/g, ' ').trim();
+  const queryDetail = cue === slotCue ? cue : `${cue} ${slotCue}`;
+  return spec(`${situation}: ${key}`, visualElements, [
+    `${baseQuery} ${queryDetail} ${situationTag} close up`,
+    `${baseQuery} ${cue} close up`,
+    `${place} ${support} hand close up`,
+    `${cue} ${support} close up`,
+  ]);
 }
 
 function slug(value) {
@@ -2158,6 +2273,8 @@ function conversationSceneFor(key, hay) {
 function sceneFor(row) {
   const key = phraseKey(row.phraseEn);
   const hay = `${key} ${String(row.note || '').toLowerCase()}`;
+  const recovery = recoverySituationSceneFor(row);
+  if (recovery) return recovery;
   const conversational = conversationSceneFor(key, hay);
   if (conversational) return conversational;
 

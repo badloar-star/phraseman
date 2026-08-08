@@ -14,8 +14,12 @@ test('redirectSystemPath routes knowlyapps invite links to home', () => {
   expect(redirect('https://knowlyapps.com/phraseman/invite?ref=ABCL23')).toBe('/home?ref=ABCL23');
 });
 
-test('redirectSystemPath keeps duel links routed to arena join', () => {
-  expect(redirect('https://badloar-star.github.io/phraseman/duel/ROOM42')).toBe('/arena_join?roomId=ROOM42');
+// зачем: Арена/квизы сняты, роут /arena_join удалён. Старые ссылки-дуэли из уже
+// установленных приложений и мессенджеров продолжают приходить — они ОБЯЗАНЫ вести
+// на безопасный существующий экран, а не в несуществующий роут (иначе белый экран).
+// Проверяем все три формы URL, как их отдают разные клиенты.
+test('redirectSystemPath lands retired duel links on a safe screen', () => {
+  expect(redirect('https://badloar-star.github.io/phraseman/duel/ROOM42')).toBe('/home');
 });
 
 test('redirectSystemPath normalizes custom-scheme phrase links', () => {
@@ -23,9 +27,9 @@ test('redirectSystemPath normalizes custom-scheme phrase links', () => {
 });
 
 test('redirectSystemPath handles triple-slash custom-scheme duel links', () => {
-  expect(redirect('phraseman:///duel/ROOM42')).toBe('/arena_join?roomId=ROOM42');
+  expect(redirect('phraseman:///duel/ROOM42')).toBe('/home');
 });
 
 test('redirectSystemPath handles authority-form custom-scheme duel links', () => {
-  expect(redirect('phraseman://duel/ROOM42')).toBe('/arena_join?roomId=ROOM42');
+  expect(redirect('phraseman://duel/ROOM42')).toBe('/home');
 });

@@ -45,7 +45,7 @@ describe('paywall trial offer timing', () => {
   it('does not show the 3-day offer from unrelated paywalls', () => {
     expect(shouldShowExitTrialOffer({
       ...baseExitOfferParams,
-      context: 'arena',
+      context: 'theme',
     })).toBe(false);
   });
 

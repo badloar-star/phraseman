@@ -51,6 +51,304 @@
       "createdAt": "2026-03-27T13:02:36.254Z",
       "model": "sonnet",
       "modelRoutedBy": "default"
+    },
+    "weekly-xp-auditor": {
+      "agentId": "weekly-xp-auditor",
+      "agentType": "researcher",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:56:12.230Z",
+      "domain": "firebase-weekly-league",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "week-boundary-auditor": {
+      "agentId": "week-boundary-auditor",
+      "agentType": "researcher",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:56:12.289Z",
+      "domain": "time-boundaries-rollover",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "streak-projection-auditor": {
+      "agentId": "streak-projection-auditor",
+      "agentType": "reviewer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:56:12.321Z",
+      "domain": "streak-profile-projection",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "xp-client-auditor": {
+      "agentId": "xp-client-auditor",
+      "agentType": "reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:56:47.116Z",
+      "domain": "react-native-client",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "auth-server-audit": {
+      "agentId": "auth-server-audit",
+      "agentType": "security-reviewer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "model": "opus"
+      },
+      "createdAt": "2026-07-10T05:56:47.117Z",
+      "domain": "firebase-auth-identity",
+      "model": "opus",
+      "modelRoutedBy": "explicit"
+    },
+    "auth-client-audit": {
+      "agentId": "auth-client-audit",
+      "agentType": "code-reviewer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "model": "opus"
+      },
+      "createdAt": "2026-07-10T05:56:47.149Z",
+      "domain": "react-native-auth-state",
+      "model": "opus",
+      "modelRoutedBy": "explicit"
+    },
+    "xp-server-auditor": {
+      "agentId": "xp-server-auditor",
+      "agentType": "reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:56:47.156Z",
+      "domain": "firebase-cloud-functions",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "auth-crosscall-audit": {
+      "agentId": "auth-crosscall-audit",
+      "agentType": "researcher",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "model": "opus"
+      },
+      "createdAt": "2026-07-10T05:56:47.176Z",
+      "domain": "firestore-identity-callgraph",
+      "model": "opus",
+      "modelRoutedBy": "explicit"
+    },
+    "xp-identity-auditor": {
+      "agentId": "xp-identity-auditor",
+      "agentType": "security-reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "opus"
+      },
+      "createdAt": "2026-07-10T05:56:47.184Z",
+      "domain": "auth-identity-data-consistency",
+      "model": "opus",
+      "modelRoutedBy": "explicit"
+    },
+    "xp-adversarial-auditor": {
+      "agentId": "xp-adversarial-auditor",
+      "agentType": "reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "opus"
+      },
+      "createdAt": "2026-07-10T05:56:47.210Z",
+      "domain": "root-cause-analysis",
+      "model": "opus",
+      "modelRoutedBy": "explicit"
+    },
+    "audit4-reports-01-12": {
+      "agentId": "audit4-reports-01-12",
+      "agentType": "bug-analyst",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "noDeploy": true,
+        "noTests": true,
+        "noEdits": true,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:58:24.412Z",
+      "domain": "mobile-input-audio",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "audit4-reports-13-25": {
+      "agentId": "audit4-reports-13-25",
+      "agentType": "bug-analyst",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "noDeploy": true,
+        "noTests": true,
+        "noEdits": true,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:58:24.442Z",
+      "domain": "trainer-content-tts",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "audit4-reports-26-38": {
+      "agentId": "audit4-reports-26-38",
+      "agentType": "bug-analyst",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "noDeploy": true,
+        "noTests": true,
+        "noEdits": true,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:58:24.466Z",
+      "domain": "lesson-content-daily-tasks",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "audit4-reports-39-45": {
+      "agentId": "audit4-reports-39-45",
+      "agentType": "forensic-reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "readOnly": true,
+        "cwd": "C:\\appsprojects\\phraseman",
+        "noDeploy": true,
+        "noTests": true,
+        "noEdits": true,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T05:58:24.491Z",
+      "domain": "content-xp-metadata",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "audit5-progress-replay": {
+      "agentId": "audit5-progress-replay",
+      "agentType": "security-reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T06:01:26.439Z",
+      "domain": "phraseman-progress",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "audit5-xp-migration": {
+      "agentId": "audit5-xp-migration",
+      "agentType": "debugger",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T06:01:26.469Z",
+      "domain": "phraseman-progress",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "audit5-rules-league": {
+      "agentId": "audit5-rules-league",
+      "agentType": "security-reviewer",
+      "status": "terminated",
+      "health": 1,
+      "taskCount": 1,
+      "config": {
+        "model": "sonnet"
+      },
+      "createdAt": "2026-07-10T06:01:26.493Z",
+      "domain": "phraseman-progress",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "advisor-session-5-report-debug": {
+      "agentId": "advisor-session-5-report-debug",
+      "agentType": "advisor",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "requestedModel": "gpt-5.6-sol",
+        "reasoningEffort": "xhigh",
+        "mode": "PLAN",
+        "instructions": "Do not edit files. Plan a focused systematic-debugging plus TDD investigation for exactly report IDs #3, #7, #15, #21, #33 under the user's strict write scope. Preserve unrelated concurrent changes. Return concise risks and evidence requirements.",
+        "model": "inherit"
+      },
+      "createdAt": "2026-07-10T14:01:57.398Z",
+      "domain": "phraseman-focused-debugging",
+      "model": "inherit",
+      "modelRoutedBy": "explicit"
+    },
+    "advisor-session-marker": {
+      "agentId": "advisor-session-marker",
+      "agentType": "advisor",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 5,
+      "config": {
+        "mode": "SESSION",
+        "instruction": "Confirm session presence only; do not inspect or act on the user's task.",
+        "model": "inherit"
+      },
+      "createdAt": "2026-07-11T12:37:14.549Z",
+      "domain": "reader-platform-planning",
+      "model": "inherit",
+      "modelRoutedBy": "explicit"
     }
   },
   "version": "3.0.0"

@@ -1,13 +1,124 @@
 # Project Rules
 
+## Single Workspace And Branch Invariant
+
+- The only canonical checkout is `C:\appsprojects\phraseman`. The folder list in
+  `config/canonical-workspace.json` → `workspaces` is closed and guarded by
+  `tests/single_workspace_runtime_contract.test.mjs` — agents never add a folder to it.
+- The only canonical working branch is `feature/referral-roulette` — the release branch. ALL work,
+  including the learning-v2 rebuild, continues directly on it. `codex/learning-v2-rebuild` was
+  merged into it on 2026-08-02 at the owner's explicit request and must not be used again.
+  The branch list lives in `config/canonical-workspace.json` → `allowedBranches`, read by
+  `scripts/canonical_workspace_guard.mjs`; changing it is the owner's call, and it is still not
+  permission to create branches.
+- Never create a branch, Git worktree, separate checkout, forked coding task, or delegated coding session without an explicit owner request to create that exact branch/worktree/task.
+- An explicit owner request is required for every exception. A general request to implement, fix, review, test, deploy, continue, parallelize, or use agents is not permission to create a branch or worktree.
+- All Codex sessions, agents, LAN Metro servers, Android/iOS emulators, builds, tests, scripts, and local web servers must run from the canonical checkout and canonical branch.
+- Before resuming a frozen task, move its work into the canonical checkout first. Do not resume work inside an old worktree.
+- Existing historical branches and worktrees are frozen evidence only. Do not write to, run from, or delete them unless the owner explicitly requests that exact action.
+- If the canonical checkout or branch is unavailable, stop and report the mismatch. Never create a replacement workspace automatically.
+
+## 🤖 Джарвис обязан оставаться актуальным (владелец, 2026-08-02)
+
+Джарвис (`functions/src/jarvis/`) читает чужие коллекции и поля, но не участвует
+в их изменении. Переименовали поле — департамент **не упадёт**, он вернёт нули и
+будет бодро врать, что всё хорошо. Молчаливая ложь опаснее явной поломки: её
+никто не заметит, пока не потеряются деньги или жалоба ребёнка не останется без
+разбора.
+
+Поэтому при ЛЮБОМ изменении контента, схемы данных, коллекций или полей —
+**в том же ходу**, не дожидаясь напоминания владельца:
+
+1. Проверь, читает ли это Джарвис: `functions/src/jarvis/*_firestore_fetcher.ts`.
+2. Читает — обнови читатель под новую схему.
+3. Обнови таблицу контракта в `functions/src/jarvis/jarvis_data_contract_guard.test.ts`.
+4. Новый департамент → подключи в `all_departments_snapshot.ts` (поле обязательное,
+   забыть нельзя) **и** добавь в `JF_DEPARTMENT_META` в `admin/v2/legacy.html`.
+5. Новая коллекция → закрой правилом в `firestore.rules`.
+
+Страж `jarvis_data_contract_guard.test.ts` ломает сборку при расхождении.
+Обычные тесты департаментов это НЕ ловят — они на моках и остаются зелёными.
+Сломался страж — чини контракт, не удаляй проверку.
+
+## ⛔ ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА — `admin/v2/legacy.html` (КРИТИЧНО, читать первым)
+
+Владелец пользуется ОДНОЙ админкой:
+**https://phraseman-ea0b3.web.app/legacy.html#control-panel**
+
+Её исходник — **`admin/v2/legacy.html`** и ТОЛЬКО он. Проверено побайтово (md5 живой
+страницы == md5 этого файла). Firebase Hosting target `admin` публикует папку
+`admin/v2` (`firebase.json` → `"public": "admin/v2"`), поэтому любая правка вне этой
+папки на боевую НЕ попадает.
+
+**ВСЁ пишем сюда:** новые разделы, генераторы, кнопки, callable-вызовы, фиксы.
+Ни в какой другой файл админки писать НЕЛЬЗЯ.
+
+> ⚠️ Имя папки `v2` историческое и вводит в заблуждение: внутри лежит привычная
+> тёмная «старая» админка (`legacy.html`), а не какая-то новая. Не переименовывать
+> без отдельного решения владельца — сломается hosting target.
+
+### Заморожённые файлы админки (НЕ ТРОГАТЬ, только чтение)
+
+| Файл | Что это | Статус |
+|---|---|---|
+| `admin/legacy.html` | отставшая копия рабочей админки | 🧊 ЗАМОРОЖЕН, к удалению |
+| `admin/index.html` | редирект-заглушка на `/legacy.html` | 🧊 не редактировать |
+| `admin/full.html`, `admin/site.html` | исторические огрызки | 🧊 не редактировать |
+| `admin/v2/index.html` + `admin/v2/scripts/*` | белая v2-панель, владелец ей не пользуется | 🧊 не развивать без запроса |
+
+Признак ошибки: если правка админки НЕ находится в `admin/v2/legacy.html` — она
+почти наверняка уезжает в мёртвый файл. Остановись и проверь путь.
+
+Контракт защищён тестом `tests/admin_single_surface_contract.test.ts`.
+
+## ⛔ App Check для админки — НЕ ВКЛЮЧАТЬ БЕЗ СЛОВА ВЛАДЕЛЬЦА (2026-08-03, КРИТИЧНО)
+
+**Требование владельца: НИКОГДА не включать App Check на админских функциях, пока
+владелец САМ ЯВНО этого не потребует.** Не «заодно», не «для безопасности», не «раз уж
+чиню рядом». Только прямое распоряжение.
+
+Что именно запрещено (любой пункт = нарушение требования):
+
+- вернуть `enforceAppCheck: true` в `ADMIN_SENSITIVE_WRITE_OPTIONS`
+  (`functions/src/callable_options.ts`);
+- выставить env-переменную `ENFORCE_APP_CHECK_ADMIN=true`;
+- рассчитывать `ENFORCE_APP_CHECK_ADMIN` через `appCheckGroup()` — он наследует
+  глобальный `ENFORCE_APP_CHECK`, и общий раскат снова убьёт админку;
+- убрать флаговый ранний `return` из `requireAdminAppCheck()`.
+
+**История (почему правило жёсткое).** 2026-08-01 коммитом `58023df0f` в опции
+захардкодили `enforceAppCheck: true`, а в `admin/v2/legacy.html` вписали reCAPTCHA
+Enterprise site key `6LfteFAt...`. Но шаг 1 из
+`docs/reports/APP_CHECK_ENABLEMENT_PLAN_2026-06-13.md` (создать ключ в Firebase Console —
+ручное действие) выполнен НЕ был. Google этот ключ не признаёт: живая проверка на
+проде возвращает `Invalid site key or not loaded in api.js`. Значит админка физически
+не может получить App Check-токен, а сервер его требовал → Firebase рубил **все ~30
+админских функций** (выдача Plus, бан, удаление, награды, лиги, рефералы, конфиги)
+кодом `unauthenticated` ещё до входа в тело функции. Владелец двое суток не мог выдать
+Plus. Симптом в UI: «Plus не выдан: Unauthenticated».
+
+**Защита не падает.** Каждая админская функция отдельно требует custom claim
+`admin: true` в Firebase Auth токене (см. `actor()` в
+`functions/src/admin_access_controls.ts`) — без него вызов отклоняется
+`permission-denied`. App Check был вторым слоем против ботов, а не основным замком.
+
+**Когда владелец разрешит включить** — порядок обязателен: (1) создать настоящий
+reCAPTCHA Enterprise-ключ в Google Cloud и зарегистрировать веб-приложение в Firebase
+App Check; (2) прописать ключ в `admin/v2/legacy.html`; (3) убедиться в браузере, что
+`grecaptcha.enterprise.execute()` возвращает токен без ошибки; (4) только потом
+`ENFORCE_APP_CHECK_ADMIN=true`.
+
+Сторож: `functions/src/admin_sensitive_writes.test.ts` — краснеет при хардкоде энфорса
+и при наследовании глобального флага.
+
 ## Admin UI Bible
 
-- Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
+- Before changing `admin/v2/legacy.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
 - Admin UI must stay simple, categorized, icon-supported, tooltip-rich, accessible, and free of visual clutter. Do not add admin buttons, colors, overlays, menus, or text patterns that violate the Bible.
 
 ## Error Report Reply Preview Publishing
 
-- After Codex prepares and dry-runs a valid `replies.json`, it must immediately and idempotently add those drafts to `PREPARED_REPORT_REPLIES` in `admin/index.html`, run the focused preview contracts, and deploy only Firebase Hosting target `admin` via `npm run hosting:admin`. Do not ask for another confirmation before publishing this preview.
+- After preparing and dry-running a valid `replies.json`, immediately and idempotently add those drafts to `PREPARED_REPORT_REPLIES` in `admin/v2/legacy.html` (the single live admin surface — see the boundary rule at the top), run the focused preview contracts, and deploy only Firebase Hosting target `admin` via `npm run hosting:admin`. Do not ask for another confirmation before publishing this preview.
 - Preview publishing is static hosting only: it must not write Firestore, send user notifications, change report status, or award shards.
 - Live delivery remains exclusively manual: only the administrator presses `Отправить готовые ответы` in the admin UI. Codex must never run `reply_to_reports.mjs --send` as part of this workflow.
 - Preserve existing prepared drafts and unrelated user changes. Re-running the workflow must replace or skip the same `reportId`, never create duplicate preview entries.
@@ -63,11 +174,12 @@
 
 ## Codex OpenAI API Firewall
 
-- Codex sessions must not use the project OpenAI API key for local chat, responses, reviews, research, judging, phrase/content generation, image generation, transcription, embeddings, experiments, or batch analysis.
+- Codex sessions must not use any project-supplied or user-billed OpenAI API key for local chat, responses, reviews, research, judging, phrase/content generation, image generation, transcription, embeddings, experiments, or batch analysis.
+- Built-in Codex product capabilities that do not read or spend a project/user API credential are explicitly allowed. This includes image generation through Codex's built-in `image_gen`/DALL-E capability. Built-in image generation must still follow the `Codex Bulk Image Safety` rules above.
 - The only OpenAI API use allowed from Codex is TTS/voiceover generation through `/v1/audio/speech`, and only after an explicit user request for audio plus the existing spend guard (`PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1`) and a narrow batch plan.
 - Local Codex TTS scripts must read `OPENAI_TTS_API_KEY`, not the generic `OPENAI_API_KEY`. Do not add `OPENAI_API_KEY` back to `.env.local` for Codex convenience.
 - Production/user Phraseman sessions may continue to use Firebase/Cloud Functions secrets such as `OPENAI_API_KEY`; this firewall is for local Codex/dev sessions and scripts.
-- If a task seems to need OpenAI chat/responses/images/transcription from Codex, stop and report that the project firewall forbids it. Use local code, existing files, Firestore billing logs, official docs, or ask the user for an exported report instead.
+- If a task would require a project/user OpenAI API credential for chat, responses, images, or transcription, stop and report that the project firewall forbids that API spend. Do not block an equivalent built-in Codex capability that uses no project/user API credential.
 
 ## New Theme / Per-Theme Asset Hygiene
 
@@ -93,6 +205,9 @@
 - Provider sign-in must not use a client Firestore transaction to create/update `users/*` or `auth_links/*`. Stable-link writes and repair belong on server callables. A return of `transaction_[firestore/permission-denied]` from `signInWithProvider` is a regression.
 - `auth_links/{providerUid}` is the provider identity anchor. If server/callable discovers an existing provider-linked `stableUid`, it wins over the local anonymous `stable_id`; do not silently create a new account from an unverified Firestore fallback.
 - `deleteAccountAndWipe()` intentionally starts `deleteCloudData()` in the background, then signs out, wipes local account data, clears `stable_id`, and writes the local `account_delete_pending_auth_v1` guard. Do not make account deletion wait synchronously on the cloud delete before local exit.
+- Account deletion is split in two phases and **the UI must only ever await the fast one**. `beginAccountDeletion()` returns as soon as `prepareAccountDeletion()` has written the `account_delete_pending_auth_v1` guard (point of no return: the old email / Apple ID can no longer sign back in); everything network-bound — enqueue acknowledgement, transition drains, `signOutCurrentProvider()`, `ensureAnonUser()` — runs in the returned `completion` promise. `DeleteAccountConfirmModal` awaits `beginAccountDeletion()`, never `deleteAccountAndWipe()`; making it await the full flow reintroduces the shipped freeze where Settings locked up for tens of seconds on a slow network.
+- The success path must NOT restart the app (`expo-updates` `reloadAsync` / `DevSettings.reload`) and must NOT present a second native `<Modal>`. `emitAppEvent('account_deleted')` already mounts a clean onboarding in-place; confirmation is a 3s in-onboarding pill (`components/AccountDeletedNotice.tsx`, flagged via `app/account_deleted_notice.ts`), because presenting an alert during the delete modal's dismiss breaks the iOS presentation stack.
+- If the background phase dies (no network, app killed), `resumePendingAccountDeleteLocalExit()` finishes it on the next launch — that is why the guard is written before, not after, the network work.
 - `signInWithProvider()` must check `readAccountDeletePendingAuth(firebaseProviderUid)` immediately after `signInWithCredential` and before reading/writing `auth_links`. If the same provider UID is still pending deletion, it must `signOutCurrentProvider()`, best-effort `ensureAnonUser()`, and return `account_delete_pending` without writing Critical App Health.
 - Account switch/reset flows must use `signOutAndWipeForAccountSwitch()` rather than composing `signOutCurrentProvider()`, `clearStableId()`, and `ensureAnonUser()` manually; otherwise old account data can leak into a new account.
 - When touching this area, run the narrow guards: `tests/auth_provider_stable_link.test.ts`, `tests/account_delete_flow_contract.test.ts`, `tests/firestore_rules_security.test.ts`, `tests/stable_id.test.ts`, and `tests/auth_identity_anon_relink.test.ts`.
@@ -114,6 +229,22 @@
 - After CapCut is fully closed, create a timestamped backup of the current project folder or every file that will be changed before making edits.
 - After edits, mirror native draft changes consistently across root draft files and `Timelines/<draft-id>/draft_content.json`, then run structural gates before reopening or reporting completion.
 - Do not leave the user responsible for closing CapCut unless the close operation fails or the user explicitly asks to keep it open.
+
+## CapCut Russian Text Wrapping Invariant
+
+- CapCut must never be trusted to wrap Russian (Cyrillic) on-screen text automatically: it may split a word in the middle.
+- Before any Russian text is inserted or replaced in a CapCut draft, add explicit manual line breaks at spaces or clear phrase boundaries so every rendered line fits its text box. Never insert a break inside a word.
+- Balance those manual lines: prefer meaningful two- or three-word groups and avoid a final one-word column whenever it can be joined to the preceding line without exceeding the safe width. A safe break must not become visually unnatural merely to avoid CapCut auto-wrap.
+- Verify every affected Russian text element after the draft change (structurally and, when possible, in CapCut preview). If a line still cannot fit, shorten or rephrase it only with the user's authorization; do not permit mid-word wrapping.
+
+## CapCut Timeline Structural-Analysis Protocol
+
+- Before changing native CapCut timing, build and inspect a complete inventory of every populated track: segment start/end, material name/path, media type, text role, audio role, and phase membership. Do not infer phase boundaries from segment counts alone.
+- Treat every material whose name/path identifies an advertisement, for example `REKLAMA`, `AD`, or an explicitly supplied sponsor clip, as an immutable barrier. Preserve its source and target duration exactly; no phrase audio or phrase text may overlap the barrier. Move the entire barrier and all later elements together when an earlier lesson interval grows.
+- A timing change must preserve each segment's existing track, ordering, media identity, z-order, transform, and animation. It may change only start/duration values explicitly authorised by the user. Never create accidental parallel/stacked text lanes.
+- When expanding a phrase cycle, map every timeline track from ordered anchors: phrase boundaries, every advertisement barrier start/end, first/second lesson phase boundary, and outro. Shift all phase-two text, audio, video, overlays, counters, CTA, and background segments as one intact block after the final adjusted anchor.
+- Before writing, run a dry simulation that proves: no two text segments overlap on the same track; no language text/audio overlaps an ad barrier; every advertised segment duration is unchanged; all later phase-two track offsets are identical; and every native mirror will receive byte-identical JSON.
+- If a preview reveals a structural regression, close CapCut, restore the last known-good timestamped backup first, then investigate the inventory and repair from that baseline. Never stack another timing edit over the broken draft.
 
 ## Lingman Named Pipeline
 
@@ -145,6 +276,25 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - Never replace a whole screen with a centered spinner while loading — keep final geometry (skeleton blocks or last-known content). Layout must not shift when data arrives.
 - Focus-driven refetch (`useFocusEffect`) must (a) be wrapped in `useCallback`, (b) compare fresh data with current state and skip `setState` when nothing changed ("quiet revalidation"), and (c) respect a TTL (30–60s) unless an explicit app event invalidates it.
 
+### Layout stability (first frame = final geometry)
+
+Guarded by `tests/layout_stability_contract.test.ts` + baseline `config/layout-stability-baseline.json` (the baseline may ONLY shrink — new violations are red CI). Per-edit feedback: `scripts/hooks/layout_stability_hook.mjs` (PostToolUse). The bar is Bevel-grade: after the first frame, NOTHING on screen moves unless the user acted or an explicit animation runs.
+
+- Anything that arrives async either hydrates synchronously from a peek/snapshot cache, or its exact place is reserved with `SkeletonBlock` (`components/SkeletonShimmer.tsx`) matching the final width/height. Reference: `app/review.tsx` loading skeleton.
+- Never `if (loading) return null` on a screen: it is a blank frame followed by the whole screen popping in (ratcheted).
+- Counters visible on the first frame must not render `0` and then jump to the real value — hydrate from a module peek-cache (pattern: `app/home_screen_hydration.ts`) or reserve the digits with a small fixed-width `SkeletonBlock`.
+- Elements inserted into / removed from normal flow after the first frame (banners, inline cards) must wrap the visibility flip in `animateNextLayoutTransition()` from `app/smooth_layout.ts` — a smooth ~220ms push, never a teleport. Prefer overlay (`position: 'absolute'`, e.g. `components/OfflineBanner.tsx`) when the element must not displace content and does not cover controls.
+- Safe-area insets ONLY via `useStableSafeAreaInsets` (`app/stable_safe_area_metrics.ts`). The raw `useSafeAreaInsets` from `react-native-safe-area-context` reports 0 until native metrics land → inset jump (ratcheted).
+- `adjustsFontSizeToFit` is banned — on iOS it shrinks short variants to tiny font (known regression class); fix with wrapping/layout, never by shrinking text (ratcheted).
+- `onLayout` → `setState` measure-then-render is allowed only when the measured content is invisible until measured (opacity 0) or its container height is already reserved — a measurement must never move visible content.
+
+### Optimistic UI and offline mutations
+- Phraseman is local-first for ordinary rewards and reversible user actions: the visible result must update immediately, without `Applying...`, spinners, disabled close buttons, or waiting for a server response.
+- Persist the local intent/effect first, then synchronize or retry in the background. Offline/transient failure uses the existing no-network notification and must not roll back newer user-visible state merely because the server is temporarily unavailable.
+- Pending mutations must be account-scoped and idempotent where the underlying system supports a durable outbox. Never claim durable retry for a flow that has no journal/outbox yet.
+- Payments, authentication, destructive/security-sensitive actions, and genuinely server-authoritative competitive results are explicit exceptions; do not fake success for them.
+- `docs/OPTIMISTIC_UI_AND_OFFLINE_MUTATIONS.md` is the source of truth for implementation, retry, error, and exception rules.
+
 ### Stack navigation (no black frames)
 - The Stack `contentStyle.backgroundColor` and the root container background are CONSTANT theme colors. Never derive them from async readiness flags.
 - Screen transition animations only via flags in `app/config.ts` (`ENABLE_SCREEN_TRANSITIONS`, `SCREEN_FADE_TRANSITIONS` — fade is iOS-only until manually verified on Android/Fabric). No direct `animation: 'slide_*'` on individual `<Stack.Screen>`.
@@ -153,6 +303,74 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - NEVER statically import multi-hundred-KB generated data (plan days, quiz packs, generated registries) into screens or top-level module scope. Access content ONLY through its registry/loader (`app/plan_content_registry.ts`, `app/quiz_thematic_registry.ts`, `app/quiz_phrases_loader.ts`): they lazy-`require()` per plan/pack today and are the single seam where bundled content will be swapped for server-delivered content (French is already remote; English is planned). New content types must ship behind the same kind of accessor, not as a direct import.
 - Long lists (>~30 items, user-growable feeds/collections) use `FlashList`/`FlatList` with fixed-size rows — not `.map()` inside a `ScrollView`. Reference: `app/flashcards_collection.tsx`.
 - Keep screens under ~800 lines where practical; extract sections into memoized subcomponents and defer below-the-fold mounting via `InteractionManager.runAfterInteractions`.
+
+## Firestore Thread-Leak Invariant (`android_task_executor_maximum_pool_size: 0`)
+
+`firebase.json` → `react-native` → **`android_task_executor_maximum_pool_size: 0` — не удалять и не менять
+на другое значение без разбора нижеописанного бага.**
+
+Зачем (Crashlytics, 2026-07-26, 1.5.63 — 12 событий / 4 пользователя, «Repetitive crashes»):
+`java.lang.OutOfMemoryError: pthread_create (1040KB stack) failed` в
+`ReactNativeFirebaseFirestoreCollectionModule.sendOnSnapshotEvent`. Это исчерпание лимита
+ПОТОКОВ процесса, а не нехватка памяти под данные.
+
+Механизм — апстрим-баг RNFirebase (публичного тикета нет):
+`sendOnSnapshotEvent` берёт executor через `getTransactionalExecutor(listenerId)`
+(`ReactNativeFirebaseFirestoreCollectionModule.java:386`) — единственное место в модуле, где
+передаётся уникальный identifier. `TaskExecutorService` кэширует executors в статической
+`HashMap` по имени `...TransactionalExecutor<listenerId>` и при отписке листенера НЕ удаляет их
+(`shutdown()` — только при уничтожении модуля). Итог: каждая пере-подписка коллекционного
+`onSnapshot` = +1 вечный однопоточный пул (~1 МБ стека). В дампе краша нумерация `pool-N-thread-1`
+дошла до 6533, все спят на `LinkedBlockingQueue.take()`.
+
+Почему помогает `0`: в `TaskExecutorService.getTransactionalExecutor(String identifier)` стоит
+`maximumPoolSize != 0 ? identifier : ""` — при нуле identifier обнуляется, и все листенеры делят
+ОДИН общий executor. Утечка исчезает по конструкции, без патча нативного кода.
+Цена: операции Firestore сериализуются в один поток — поэтому коллекционные листенеры обязаны
+оставаться дешёвыми (см. ниже).
+
+Инварианты для нового кода:
+- Коллекционные `onSnapshot` (`.collection(...)`, а не `.doc(...)`) ВСЕГДА с `limit()` — они и
+  текут, и сериализуются. Doc-листенеры общий пул не плодят. На 2026-07-26 таких листенеров пять:
+  три в `app/app_messages.ts`, два в `app/firestore_friend_requests.ts`.
+- Не пере-подписывайся на коллекции чаще, чем нужно: нестабильные зависимости `useEffect`
+  умножают утечку (в `components/AppMessagesInbox.tsx` подписка завязана на `effectiveVisible`,
+  т.е. на открытие/закрытие ящика).
+- Настройка читается из `firebase.json` в build-time → после её изменения нужна ПЕРЕСБОРКА
+  Android-бинарника, JS-релиз её не подхватит.
+
+## EAS Production Build Gates (читать ДО подъёма версий)
+
+Профиль `production` запускает в post-install hook два сторожа подряд
+(`package.json` → `eas-build-post-install`). Оба падают на сервере уже ПОСЛЕ загрузки
+архива, то есть сжигают платную сборку. Прогоняй их локально до `eas build`.
+
+**`scripts/release_keys_gate.mjs`** — самое частое падение:
+- `android.versionCode` ОБЯЗАН быть РАВЕН `ios.buildNumber`. Разные номера (например
+  106 и 105) роняют сборку на обеих платформах. Поднимаешь один — поднимай оба на то же
+  число. Уникальность обеспечивается тем, что число растёт, а не тем, что платформы
+  расходятся.
+- Требует на месте `google-services.json`, `GoogleService-Info.plist`, упоминания
+  RC/Google/Apple-ключей в `app/revenuecat_init.ts` и `app/auth_provider.ts`,
+  `EXPO_PUBLIC_STORE_RELEASE=1` в `eas.json`.
+
+**`scripts/eas_production_version_gate.mjs`** — сверяет `app.json` с `origin/master`:
+- `version` изменена, `versionCode` > baseline, `ios.buildNumber` > baseline.
+
+Локальная проверка перед запуском сборки (обе должны дать EXIT=0):
+```
+node scripts/release_keys_gate.mjs
+EAS_BUILD_PROFILE=production EAS_BUILD_PLATFORM=android EXPO_PUBLIC_STORE_RELEASE=1 \
+  EXPO_PUBLIC_RC_ANDROID=goog_test EXPO_PUBLIC_RC_IOS=appl_test \
+  node scripts/eas_production_version_gate.mjs
+```
+
+Отдельно: `NSPhotoLibraryUsageDescription` и `NSFaceIDUsageDescription` в
+`ios.infoPlist` обязательны, хотя приложение ни галерею, ни Face ID не использует —
+`expo-file-system`/`expo-image` компилируют ссылку на `PHPhotoLibrary`, а
+`expo-secure-store` на `LAContext`, и робот Apple отклоняет бинарник с ITMS-90683.
+Удалить эти ключи нельзя: механизма strip-а разрешений у Expo нет. Privacy policy при
+этом обновлять НЕ надо — Apple требует описывать только реально собираемые данные.
 
 ## Session Communication And Impact-Analysis Protocol
 
@@ -163,3 +381,13 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - When the investigation reveals a directly related broken text, contract, test, validation, accessibility issue, or integration issue, fix it in the same change if doing so is safe and within scope. Do not silently expand into unrelated cleanup or remove existing functionality.
 - Before claiming completion, verify the actual final state with focused tests, checks, or inspection appropriate to the change. Reports must distinguish clearly between what was verified, what was inferred, and what could not be checked.
 - End every completed work report with a section titled `Находки и предложения` containing concise, actionable observations about improvements, risks, cleanup, or features that may be worth adding or removing. Do not present suggestions as completed work, and do not remove anything unless the user explicitly requests it.
+
+## Learning V2 Session Handover Protocol
+
+- Any session that researches, plans, implements, reviews, tests, integrates, or releases Phraseman Learning V2, its 32-episode curriculum, stars/access economy, voice activities, Speaking Club integration, Personal Review, dialogs, or Admin Content Studio must start by reading `docs/v2/HANDOVER.md`, `docs/v2/README.md`, `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md`, and `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md` completely.
+- Treat `docs/v2/HANDOVER.md` as the living cross-session execution record. Update it before ending a V2 session, before a planned compaction/handoff, and immediately after a completed numbered task or a material plan/decision change.
+- Every V2 handover must repeat the plan in three forms: the one-paragraph mission, the full phase/task status table, and the exact next executable task with files, commands, acceptance criteria, and expected output. A vague statement such as “continue the next task” is invalid.
+- Every V2 handover must record: user intent; authoritative documents and precedence; completed/partial/not-started work; worktree, branch, HEAD, base and upstream state; every changed file and purpose; RED/GREEN commands and counts; failed approaches and why; blockers/open findings; product/security/privacy/accessibility invariants; preserved dirty/untracked user changes; deploy/push/release state; and exact startup commands for the next session.
+- Do not overwrite `docs/HANDOVER.md` or the current `.planning/ROADMAP.md` for Learning V2. They belong to other work. Use `docs/v2/HANDOVER.md` and a separate V2 GSD milestone/workstream.
+- Do not claim a V2 phase or task is complete if a reproducibility, test, security, privacy, accessibility, data-migration, deployment, or handoff finding remains open. Mark it explicitly partial/provisional and name the exact closing step.
+- Preserve legacy features until the explicit Phase 14 owner decision. A handover, plan update, refactor, or new V2 implementation is never implicit permission to remove, hide, bypass, or replace legacy behavior.

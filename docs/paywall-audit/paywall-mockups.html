@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phraseman — аудит пейволов: текущие vs улучшенные</title>
+<style>
+/* ══ База страницы ══ */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#05090C;color:#E9F2EC;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1600px;margin:0 auto;padding:0 28px 90px}
+header.top{padding:46px 0 28px;border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{color:#58CC89;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+h1{font-size:30px;font-weight:900;margin:10px 0 12px;letter-spacing:-.01em}
+.lead{color:rgba(233,242,236,.72);max-width:920px;font-size:14.5px}
+.lead b{color:#BDEBD2}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.nav a{color:#BDEBD2;text-decoration:none;font-size:13px;font-weight:700;padding:8px 14px;border:1px solid rgba(88,204,137,.3);border-radius:999px;background:rgba(88,204,137,.07)}
+.nav a:hover{background:rgba(88,204,137,.16)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:rgba(233,242,236,.7);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:5px 11px;background:rgba(255,255,255,.03)}
+.chip i{width:12px;height:12px;border-radius:4px;flex:none}
+section{padding:54px 0 6px}
+h2{font-size:22px;font-weight:900;margin-bottom:6px}
+.sec-desc{color:rgba(233,242,236,.6);font-size:13.5px;max-width:960px;margin-bottom:28px}
+.sec-desc code{color:#9FE3BC;font-size:12px;background:rgba(88,204,137,.08);padding:1px 6px;border-radius:6px}
+.gallery{display:flex;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.mock{display:flex;flex-direction:column;gap:12px}
+.mock h3{font-size:15px;font-weight:800}
+.badge-tag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.tag-now{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55)}
+.tag-plus{background:rgba(88,204,137,.15);color:#58CC89;border:1px solid rgba(88,204,137,.35)}
+.cap{color:rgba(233,242,236,.55);font-size:12px;max-width:390px;line-height:1.6}
+.cap b{color:#9FE3BC;font-weight:700}
+.cap code{color:rgba(159,227,188,.85);font-size:11px}
+
+/* ══ Телефон 390×844 ══ */
+.phone{position:relative;width:390px;height:844px;flex:none;border-radius:54px;background:#000;padding:11px;box-shadow:0 0 0 2px #232a26,0 30px 60px -18px rgba(0,0,0,.75)}
+.screen{position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:linear-gradient(180deg,#07120B 0%,#030805 46%,#010201 100%)}
+.notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:27px;background:#000;border-radius:16px;z-index:30;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+.viewport{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent;z-index:2}
+.viewport::-webkit-scrollbar{width:5px}
+.viewport::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:3px}
+.pw{padding:56px 22px 26px;min-height:100%}
+.ic{width:16px;height:16px;flex:none}
+
+/* ══ Пейвол: общий хром ══ */
+.close{margin-left:auto;width:36px;height:36px;border-radius:18px;background:rgba(17,31,23,.74);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.62)}
+.glyph{width:70px;height:70px;border-radius:35px;margin:16px auto 0;background:rgba(88,204,137,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#58CC89;box-shadow:0 0 24px rgba(88,204,137,.35)}
+.pw h4.title{font-size:25px;line-height:30px;font-weight:900;text-align:center;margin:15px 0 0;color:#fff;letter-spacing:0}
+.plans{display:flex;flex-direction:column;gap:11px;margin-top:16px}
+.plan{position:relative;border-radius:18px;padding:15px 17px;background:rgba(17,31,23,.74);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.plan.sel{background:linear-gradient(135deg,rgba(88,204,137,.16),rgba(30,56,40,.88));border-color:#58CC89;box-shadow:0 5px 14px rgba(71,200,112,.28)}
+.hl{position:absolute;top:0;left:18px;right:18px;height:1px;background:rgba(88,204,137,.4);opacity:.72}
+.plan-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.plan-name{display:flex;align-items:center;gap:10px;font-size:16.5px;font-weight:800}
+.radio{width:24px;height:24px;border-radius:12px;border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;color:#042010;flex:none}
+.plan.sel .radio{background:#58CC89;border-color:#58CC89}
+.save{background:#FFC800;color:#07100A;font-size:12px;font-weight:900;padding:4px 10px;border-radius:10px}
+.price-row{margin-top:10px;display:flex;align-items:baseline;gap:5px}
+.price{font-size:23px;font-weight:900;font-variant-numeric:tabular-nums;color:#fff}
+.plan.sel .price{color:#58CC89}
+.per{font-size:13px;font-weight:700;color:rgba(255,255,255,.62)}
+.plan .sub{margin-top:7px;font-size:13px;line-height:18px;color:rgba(255,255,255,.62)}
+.offer{min-height:48px;border-radius:14px;background:rgba(17,31,23,.74);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.offer .t1{font-size:14.5px;font-weight:800}
+.offer .t2{font-size:12.5px;color:rgba(255,255,255,.62);margin-top:2px}
+.offer svg{color:rgba(255,255,255,.62)}
+
+/* urgency compact */
+.urg{margin-top:16px;border-radius:18px;padding:15px 16px;background:rgba(30,56,40,.88)}
+.urg-head{display:flex;align-items:center;gap:8px;color:#FFC800}
+.urg-title{font-size:16px;font-weight:900;color:#8AB49A}
+.urg-timer-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.urg-label{font-size:13.5px;font-weight:700;color:rgba(255,255,255,.62)}
+.urg-timer{font-size:24px;font-weight:900;color:#FFC800;font-variant-numeric:tabular-nums}
+.urg-prices{display:flex;justify-content:space-between;gap:10px;margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,200,0,.15)}
+.urg-now{font-size:14.5px;font-weight:900;color:#58CC89}
+.urg-future{font-size:13px;font-weight:700;color:rgba(255,255,255,.62);text-align:right}
+.urg-prices small{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.62)}
+.urg-body{margin-top:11px;font-size:13.5px;line-height:19px;color:rgba(255,255,255,.62)}
+
+/* CTA */
+.cta{margin-top:17px;position:relative;border-radius:32px;background:#58CC89;color:#042010;font-size:19px;font-weight:900;text-align:center;padding:18px 14px;overflow:hidden;box-shadow:0 6px 16px rgba(71,200,112,.4)}
+.cta-sub{text-align:center;font-size:13px;line-height:17.5px;margin-top:10px;color:rgba(255,255,255,.62);font-variant-numeric:tabular-nums}
+.trust{margin-top:11px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;background:rgba(88,204,137,.07);border:1px solid rgba(88,204,137,.15);padding:9px 13px;font-size:13px;line-height:17.5px;font-weight:700;color:#fff}
+.trust svg{color:#58CC89}
+.links{display:flex;justify-content:center;gap:9px;margin-top:12px;font-size:12.5px;color:rgba(255,255,255,.45)}
+.ghost{text-align:center;margin-top:10px;font-size:13.5px;text-decoration:underline;color:rgba(255,255,255,.4)}
+.social{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px}
+.stars{display:flex;gap:2px;color:#FFC800}
+.stars svg{width:13px;height:13px}
+.social span{font-size:13px;font-weight:700;color:#8AB49A}
+
+/* proof-карточки */
+.proof{margin-top:14px;border-radius:18px;padding:15px 17px;background:linear-gradient(135deg,rgba(88,204,137,.08),rgba(17,31,23,.74) 55%,rgba(30,56,40,.88));border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden}
+.proof-title{font-size:12px;font-weight:900;color:rgba(255,255,255,.62);text-transform:uppercase;margin-bottom:12px;letter-spacing:.02em}
+.proof-title.acc{color:#58CC89}
+.pers-main{font-size:16px;line-height:21px;font-weight:900}
+.pers-stats{display:flex;margin-top:13px;padding:11px 0;border-top:1px solid rgba(88,204,137,.14);border-bottom:1px solid rgba(88,204,137,.14)}
+.pers-stat{flex:1;text-align:center;min-width:0}
+.pers-stat b{display:block;font-size:19px;font-weight:900;font-variant-numeric:tabular-nums}
+.pers-stat span{font-size:11px;color:rgba(255,255,255,.62)}
+.pers-sub{margin-top:10px;font-size:13.5px;line-height:19px;color:rgba(255,255,255,.62)}
+.pct{display:flex;gap:8px;align-items:flex-start;margin-top:12px;padding-top:12px;border-top:1px solid rgba(88,204,137,.12);font-size:13.5px;font-weight:700}
+.pct svg{color:#58CC89;margin-top:2px}
+
+/* триал-таймлайн */
+.tl{margin-top:16px;border-radius:18px;padding:14px 16px;background:rgba(88,204,137,.05);border:1px solid rgba(255,255,255,.08)}
+.tl-ribbon{display:inline-flex;align-items:center;gap:7px;background:rgba(88,204,137,.1);border:1px solid rgba(88,204,137,.25);color:#58CC89;font-size:13px;font-weight:900;padding:6px 12px;border-radius:12px;margin-bottom:13px}
+.tl-row{display:flex;gap:12px}
+.tl-row + .tl-row{margin-top:13px}
+.tl-rail{width:26px;display:flex;flex-direction:column;align-items:center;flex:none}
+.tl-dot{width:26px;height:26px;border-radius:13px;border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.62);position:relative}
+.tl-dot svg{width:13px;height:13px}
+.tl-dot.lit{background:#58CC89;border-color:transparent;color:#042010}
+.tl-line{width:1px;flex:1;background:rgba(255,255,255,.08);margin-top:2px}
+.tl-body b{display:block;font-size:14px;font-weight:800;line-height:18.5px}
+.tl-body span{font-size:12.5px;line-height:17.5px;color:rgba(255,255,255,.62);display:block;margin-top:2px}
+
+/* бенефиты A */
+.bens{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.ben{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:19.5px;color:rgba(255,255,255,.62)}
+.ben svg{margin-top:2px;color:rgba(255,255,255,.62)}
+
+/* compare */
+.cmp{margin-top:13px}
+.cmp-row{display:flex;gap:12px;padding:13px 0}
+.cmp-row + .cmp-row{border-top:1px solid rgba(88,204,137,.13)}
+.cmp-ic{width:35px;height:35px;border-radius:12px;background:rgba(88,204,137,.09);border:1px solid rgba(88,204,137,.2);display:flex;align-items:center;justify-content:center;color:#58CC89;flex:none}
+.cmp-ic svg{width:21px;height:21px}
+.cmp-row b{display:block;font-size:15.5px;font-weight:900;margin-bottom:3px}
+.cmp-row p{font-size:13.5px;line-height:19.5px;color:rgba(255,255,255,.62)}
+
+/* faq */
+.faq-q{padding:11px 0}
+.faq-q + .faq-q{border-top:1px solid rgba(255,255,255,.08)}
+.faq-head{display:flex;justify-content:space-between;align-items:center;gap:9px;font-size:14px;font-weight:700}
+.faq-head svg{color:rgba(255,255,255,.62);width:15px;height:15px}
+.faq-a{font-size:13px;line-height:18.5px;color:rgba(255,255,255,.62);margin-top:8px}
+
+/* отзывы */
+.tst-q-block + .tst-q-block{margin-top:10px}
+.tst-q{font-size:14px;line-height:20px;font-style:italic}
+.tst-a{font-size:12px;color:rgba(255,255,255,.62);margin-top:5px}
+
+/* разделитель C */
+.dvd{display:flex;align-items:center;gap:10px;margin:24px 0 3px}
+.dvd .ln{flex:1;height:1px;background:rgba(255,255,255,.08)}
+.dvd span{font-size:11.5px;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.62);letter-spacing:.02em}
+
+.legal{margin-top:14px;padding:0 4px;font-size:11.5px;line-height:16.5px;text-align:center;color:rgba(255,255,255,.42)}
+
+/* ══ Модалки ══ */
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:28px;z-index:5}
+.dim.glow-amber{background:linear-gradient(180deg,rgba(245,158,11,.10),rgba(0,0,0,.72) 55%)}
+/* NoEnergyModal */
+.ne-card{position:relative;width:100%;max-width:320px;border-radius:22px;border:1px solid rgba(245,158,11,.34);background:linear-gradient(180deg,rgba(24,36,26,.92),rgba(10,22,14,.95) 50%,rgba(4,10,7,.96));padding:26px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 8px 24px rgba(245,158,11,.3);overflow:hidden}
+.ne-top-glow{position:absolute;top:0;left:0;right:0;height:210px;background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(16,185,129,.08) 55%,transparent);pointer-events:none}
+.bolt{width:68px;height:68px;display:flex;align-items:center;justify-content:center;position:relative;color:#FFC800;z-index:1}
+.bolt svg{width:56px;height:56px;filter:drop-shadow(0 0 14px rgba(255,200,0,.55))}
+.ne-title{font-size:22px;font-weight:700;color:#F4FFF7;text-align:center;z-index:1}
+.ne-sub{font-size:15px;line-height:22px;color:#63E894;text-align:center;z-index:1}
+.gold{position:relative;margin-top:4px;align-self:stretch;border-radius:14px;overflow:hidden;min-height:50px;display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 16px;background:linear-gradient(90deg,#5C4818,#9A7B1A 22%,#D4AF37 45%,#F0D060 55%,#D4AF37 78%,#8A6B12);box-shadow:0 4px 12px rgba(184,134,11,.45);color:#1a1206;font-weight:800;font-size:15px;z-index:1}
+.gold::after{content:"";position:absolute;top:-16px;bottom:-16px;left:0;width:110px;background:linear-gradient(90deg,transparent,rgba(255,252,235,.5),rgba(255,255,255,.72),rgba(255,252,235,.5),transparent);transform:translateX(-160px) skewX(-14deg)}
+.gold-rim{position:absolute;inset:0;border-radius:14px;border:1px solid rgba(255,220,140,.45);pointer-events:none}
+.ne-ghost{padding:8px 10px 2px;font-size:15px;color:rgba(255,255,255,.55);text-decoration:underline;z-index:1}
+/* AiLimitUpsellCard */
+.ai-scene{position:absolute;inset:0;display:flex;align-items:center;padding:26px;z-index:5;background:linear-gradient(180deg,rgba(3,8,5,.55),rgba(1,2,1,.78))}
+.ai-card{position:relative;width:100%;border-radius:12px;border:1px solid rgba(88,204,137,.4);background:#101C14;padding:13px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 18px rgba(88,204,137,.16);overflow:hidden}
+.ai-rule{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#58CC89,#FFD66B,#79D6FF)}
+.ai-row{display:flex;gap:10px;align-items:center;padding-top:2px}
+.ai-ic{width:34px;height:34px;border-radius:9px;background:#F4FFF7;color:#0C1710;display:flex;align-items:center;justify-content:center;flex:none}
+.ai-ic svg{width:18px;height:18px}
+.ai-title{flex:1;font-weight:900;font-size:15px;line-height:21px}
+.ai-cta{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border-radius:8px;background:#58CC89;color:#042010;font-weight:900;font-size:14px;overflow:hidden}
+/* CardPackShardPaywallModal */
+.sheet-wrap{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;flex-direction:column;justify-content:flex-end;z-index:5}
+.sheet{border-radius:24px 24px 20px 20px;background:linear-gradient(180deg,#111E15,#0A130D);margin:0 10px 10px;border:1px solid rgba(88,204,137,.18);overflow:hidden;box-shadow:0 -18px 40px rgba(0,0,0,.5)}
+.handle{height:4px;width:40px;border-radius:2px;background:rgba(255,255,255,.22);margin:12px auto 4px}
+.sheet-body{padding:10px 20px 16px}
+.pk-head{display:flex;gap:14px;align-items:center}
+.pk-ic{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,rgba(88,204,137,.28),rgba(88,204,137,.08));border:1px solid rgba(88,204,137,.3);display:flex;align-items:center;justify-content:center;color:#58CC89;flex:none}
+.pk-ic svg{width:32px;height:32px}
+.pk-kind{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.pk-title{font-size:21px;font-weight:900;margin-top:2px}
+.pk-alert{font-size:14px;font-weight:800;color:rgba(255,255,255,.85);margin-top:14px;letter-spacing:.3px}
+.pk-desc{font-size:14px;line-height:22px;color:rgba(255,255,255,.62);margin-top:10px}
+.pk-short{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.6)}
+.pk-short svg{width:22px;height:22px;color:#FFC800}
+.pk-price{margin-top:16px;border-radius:20px;padding:14px 20px;background:linear-gradient(135deg,rgba(88,204,137,.14),rgba(88,204,137,.05));border:1px solid rgba(88,204,137,.22);text-align:center}
+.pk-price .lbl{font-size:12px;font-weight:700;color:rgba(255,255,255,.55)}
+.pk-price .val{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:6px;font-size:26px;font-weight:900}
+.pk-price .val svg{width:26px;height:26px;color:#FFC800}
+.pk-cols{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.pk-col{flex:1;text-align:center}
+.pk-col .lbl{font-size:12px;font-weight:700;color:rgba(255,255,255,.55)}
+.pk-col b{font-size:24px;font-weight:900;display:flex;gap:8px;align-items:center;justify-content:center;margin-top:6px}
+.pk-col b svg{width:22px;height:22px;color:#FFC800}
+.pk-sep{width:1px;min-height:52px;background:rgba(88,204,137,.25);opacity:.85}
+.pk-sub{font-size:11px;color:rgba(255,255,255,.5);text-align:center;margin-top:8px;letter-spacing:.2px}
+.pk-cta{position:relative;margin:14px 16px 0;border-radius:16px;overflow:hidden;background:linear-gradient(90deg,#58CC89,#3FAE74);color:#042010;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px}
+.pk-cta svg{width:22px;height:22px}
+.pk-cancel{text-align:center;padding:12px 8px 8px;font-size:15px;font-weight:700;color:rgba(255,255,255,.75)}
+/* IntroFullAccessModal */
+.intro-panel{position:relative;width:100%;max-width:330px;border-radius:28px;border:1px solid rgba(88,204,137,.2);background:linear-gradient(160deg,rgba(17,31,23,.96),rgba(8,15,11,.98));padding:22px;display:flex;flex-direction:column;gap:13px;overflow:hidden}
+.intro-ic{width:58px;height:58px;border-radius:18px;background:rgba(88,204,137,.1);border:1px solid rgba(88,204,137,.25);display:flex;align-items:center;justify-content:center;color:#58CC89}
+.intro-ic svg{width:28px;height:28px}
+.intro-eyebrow{font-size:13px;font-weight:900;text-transform:uppercase;color:#58CC89}
+.intro-title{font-size:25px;line-height:30px;font-weight:900}
+.intro-body{font-size:15.5px;line-height:22px;font-weight:700;color:rgba(255,255,255,.78)}
+.intro-cta{border-radius:18px;min-height:56px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#58CC89,#2F9E66);color:#042010;font-size:17px;font-weight:900;margin-top:4px;text-align:center;padding:0 18px}
+.intro-footer{font-size:12px;line-height:17px;font-weight:700;text-align:center;color:rgba(255,255,255,.6)}
+
+/* ══ Aurora-фон улучшенных ══ */
+.aur{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.aur i{position:absolute;border-radius:50%;filter:blur(58px)}
+.aur .a1{width:280px;height:280px;left:-90px;top:-70px;background:rgba(88,204,137,.13)}
+.aur .a2{width:320px;height:320px;right:-110px;bottom:5%;background:rgba(88,160,204,.09)}
+
+/* marquee отзывов (C+) */
+.marq{overflow:hidden;margin:0 -17px}
+.marq-track{display:flex;gap:10px;width:max-content;padding:0 17px}
+.marq-item{width:230px;flex:none;background:rgba(17,31,23,.74);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:11px 13px}
+
+/* ══ Анимации улучшенных (только transform/opacity/filter; отключаются при reduced-motion) ══ */
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 16px rgba(88,204,137,.28)}50%{box-shadow:0 0 38px rgba(88,204,137,.6)}}
+@keyframes badgePop{0%{opacity:0;transform:scale(.4)}62%{opacity:1;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
+@keyframes shineSweep{0%{transform:translateX(-160%) skewX(-14deg)}55%,100%{transform:translateX(380%) skewX(-14deg)}}
+@keyframes goldSweep{0%{transform:translateX(-160px) skewX(-14deg)}100%{transform:translateX(560px) skewX(-14deg)}}
+@keyframes selGlow{0%,100%{box-shadow:0 5px 14px rgba(71,200,112,.25)}50%{box-shadow:0 5px 28px rgba(88,204,137,.55)}}
+@keyframes ping{0%{transform:scale(.7);opacity:.9}80%,100%{transform:scale(1.4);opacity:0}}
+@keyframes tick{0%{opacity:1}50%{opacity:.55}100%{opacity:1}}
+@keyframes auroraA{0%,100%{transform:translate(-8%,-6%) scale(1)}50%{transform:translate(7%,5%) scale(1.15)}}
+@keyframes auroraB{0%,100%{transform:translate(6%,4%) scale(1.1)}50%{transform:translate(-7%,-5%) scale(.95)}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes cardIn{0%{opacity:0;transform:scale(.85)}100%{opacity:1;transform:scale(1)}}
+@keyframes boltIn{0%{opacity:0;transform:scale(.2)}55%{opacity:1;transform:scale(1.15)}70%{transform:scale(.97)}100%{opacity:1;transform:scale(1)}}
+@keyframes boltShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}55%{transform:translateX(3px)}80%{transform:translateX(-1.5px)}}
+@keyframes halo{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.14);opacity:.9}}
+@keyframes ruleSlide{0%{background-position:0% 0}100%{background-position:200% 0}}
+@keyframes aiIn{0%{opacity:0;transform:translateY(14px) scale(.94)}55%{opacity:1;transform:translateY(-4px) scale(1.04)}72%{transform:translateY(0) scale(1)}84%{transform:translateX(-6px)}92%{transform:translateX(3px)}100%{opacity:1;transform:none}}
+@keyframes ctaGlowPulse{0%,100%{box-shadow:0 6px 16px rgba(71,200,112,.4)}50%{box-shadow:0 6px 30px rgba(88,204,137,.66)}}
+@keyframes popIn{0%{opacity:0;transform:scale(.5)}62%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:none}}
+@keyframes drawY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+@keyframes flagPop{0%{opacity:0;transform:translateX(-50%) scale(.5)}62%{opacity:1;transform:translateX(-50%) scale(1.12)}100%{opacity:1;transform:translateX(-50%) scale(1)}}
+
+/* ══ Replay: one-shot анимации заведены под .play; бесконечные циклы — нет ══ */
+@media (prefers-reduced-motion: no-preference){
+  /* базовые скрытые состояния one-shot элементов (видны только при .play) */
+  .imp .rise{opacity:0;transform:translateY(16px)}
+  .imp .ne-card,.imp .ai-card,.imp .bolt,.imp .pop{opacity:0}
+  .imp .draw{transform:scaleY(0);transform-origin:top}
+  /* one-shot: рестарт = снять .play → reflow → вернуть .play */
+  .imp.play .rise{animation:rise .62s cubic-bezier(.22,1,.36,1) forwards}
+  .imp.play .pop{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+  .imp.play .draw{animation:drawY .7s cubic-bezier(.22,1,.36,1) forwards}
+  .imp.play .save{animation:badgePop .7s cubic-bezier(.34,1.56,.64,1) .55s backwards}
+  .imp.play .ne-card{animation:cardIn .55s cubic-bezier(.34,1.3,.64,1) both}
+  .imp.play .ai-card{animation:aiIn .9s cubic-bezier(.22,1,.36,1) both}
+  .imp.play .bolt{animation:boltIn .6s cubic-bezier(.34,1.56,.64,1) .15s both,boltShake .5s ease .75s both}
+  .imp.play .flag{animation:flagPop .55s cubic-bezier(.34,1.56,.64,1) .5s backwards}
+  .imp .d1{animation-delay:.06s}.imp .d2{animation-delay:.13s}.imp .d3{animation-delay:.2s}
+  .imp .d4{animation-delay:.28s}.imp .d5{animation-delay:.36s}.imp .d6{animation-delay:.44s}
+  .imp .d7{animation-delay:.52s}.imp .d8{animation-delay:.6s}.imp .d9{animation-delay:.68s}
+  /* бесконечные циклы: replay их НЕ трогает */
+  .imp .glyph{animation:floaty 5s ease-in-out infinite,glowPulse 4.2s ease-in-out infinite}
+  .imp .glyph-tilt{transition:transform .25s ease}
+  .imp .glyph-tilt:hover{transform:perspective(320px) rotateX(7deg) rotateY(-9deg) scale(1.05)}
+  .imp .cta::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:34%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-160%) skewX(-14deg);animation:shineSweep 5.6s ease-in-out infinite}
+  .imp .plan.sel,.imp .tile.sel{animation:selGlow 3.4s ease-in-out infinite}
+  .imp .tl-dot.lit::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(88,204,137,.55);animation:ping 2.4s cubic-bezier(0,0,.2,1) infinite}
+  .imp .tick{animation:tick 1s steps(2,start) infinite}
+  .imp .aur .a1{animation:auroraA 18s ease-in-out infinite}
+  .imp .aur .a2{animation:auroraB 22s ease-in-out infinite}
+  .imp .marq-track{animation:marq 26s linear infinite}
+  .imp .marq:hover .marq-track{animation-play-state:paused}
+  .imp .bolt-halo{position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,0,.35),transparent 65%);animation:halo 2.2s ease-in-out infinite}
+  .imp .gold::after{animation:goldSweep 5.6s ease-in-out infinite}
+  .imp .ai-rule{background-size:200% 100%;animation:ruleSlide 5s linear infinite}
+  .imp .ai-cta::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-160%) skewX(-14deg);animation:shineSweep 5.6s ease-in-out infinite}
+  .imp .cta-glow{animation:ctaGlowPulse 3.8s ease-in-out infinite}
+  .imp .breathe{animation:breathe 4.6s ease-in-out infinite}
+  /* элементы с одновременно one-shot входом и бесконечным циклом: совмещённые правила */
+  .imp.play .glyph.rise{animation:rise .62s cubic-bezier(.22,1,.36,1) forwards,floaty 5s ease-in-out .62s infinite,glowPulse 4.2s ease-in-out .62s infinite}
+  .imp.play .hero-big.rise{animation:rise .62s cubic-bezier(.22,1,.36,1) forwards,breathe 4.6s ease-in-out .62s infinite}
+  .imp.play .tile.sel.pop{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards,selGlow 3.4s ease-in-out .5s infinite}
+}
+@media (prefers-reduced-motion: reduce){
+  .imp *{animation:none!important;transition:none!important}
+  .replay{display:none}
+}
+
+/* ══ Кнопка replay ══ */
+.replay{display:inline-flex;align-items:center;gap:8px;background:rgba(88,204,137,.1);border:1px solid rgba(88,204,137,.35);color:#9FE3BC;font-family:inherit;font-size:12.5px;font-weight:700;padding:9px 15px;border-radius:999px;cursor:pointer;transition:background .15s ease,transform .15s ease}
+.replay:hover{background:rgba(88,204,137,.2);transform:translateY(-1px)}
+.replay:active{transform:translateY(0)}
+
+/* ══ Концепты ══ */
+.tiles{display:flex;gap:10px;margin-top:16px}
+.tile{position:relative;flex:1;min-width:0;border-radius:16px;padding:14px 8px 12px;background:rgba(17,31,23,.74);border:1px solid rgba(255,255,255,.08);text-align:center;overflow:hidden}
+.tile.sel{background:linear-gradient(160deg,rgba(88,204,137,.18),rgba(30,56,40,.88));border-color:#58CC89;transform:scale(1.05);z-index:2}
+.tile .t-name{font-size:13.5px;font-weight:800}
+.tile .t-price{font-size:18px;font-weight:900;margin-top:7px;font-variant-numeric:tabular-nums}
+.tile.sel .t-price{color:#58CC89}
+.tile .t-day{font-size:10.5px;color:rgba(255,255,255,.55);margin-top:5px;line-height:1.35}
+.tile .t-radio{width:18px;height:18px;border-radius:9px;border:2px solid rgba(255,255,255,.22);margin:0 auto 7px;display:flex;align-items:center;justify-content:center;color:#042010}
+.tile.sel .t-radio{background:#58CC89;border-color:#58CC89}
+.tile .save{position:absolute;top:7px;right:7px;font-size:10px;padding:2px 7px;border-radius:8px}
+.swipe-hint{text-align:center;font-size:11px;color:rgba(255,255,255,.4);margin-top:10px;letter-spacing:.04em}
+.hero-big{width:104px;height:104px;border-radius:52px;margin:22px auto 0;background:rgba(88,204,137,.07);border:1px solid rgba(88,204,137,.22);display:flex;align-items:center;justify-content:center;color:#58CC89;box-shadow:0 0 34px rgba(88,204,137,.4)}
+.big-price{text-align:center;margin-top:18px}
+.big-price b{display:block;font-size:44px;font-weight:900;color:#58CC89;font-variant-numeric:tabular-nums;line-height:1}
+.big-price span{font-size:13.5px;color:rgba(255,255,255,.62);display:block;margin-top:8px}
+.alt-link{text-align:center;margin-top:12px;font-size:13px;color:rgba(255,255,255,.5);text-decoration:underline}
+.fv{margin-top:16px;border-radius:18px;background:rgba(17,31,23,.74);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.fv-head,.fv-row{display:flex;align-items:center;gap:8px;padding:10px 14px}
+.fv-head{background:rgba(88,204,137,.07);font-size:11.5px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.62)}
+.fv-row{border-top:1px solid rgba(255,255,255,.06);font-size:13px}
+.fv-name{flex:1;min-width:0;font-weight:700}
+.fv-cell{width:74px;flex:none;text-align:center;font-size:11.5px;color:rgba(255,255,255,.55)}
+.fv-head .fv-cell{color:rgba(255,255,255,.62)}
+.fv-row .fv-yes{color:#58CC89;font-weight:800}
+.fv-cell svg{width:15px;height:15px;vertical-align:-2px}
+.fv-row .fv-no{color:rgba(255,120,120,.55)}
+.flag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#FFC800;color:#07100A;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;padding:4px 12px;border-radius:999px;white-space:nowrap;z-index:3}
+.plan-wrap{position:relative}
+.plan.decoy{opacity:.72;filter:saturate(.6)}
+.decoy-note{text-align:center;font-size:11.5px;color:rgba(255,255,255,.45);margin-top:8px}
+.tl-hero{margin-top:14px;border-radius:20px;padding:17px 16px;background:linear-gradient(160deg,rgba(88,204,137,.1),rgba(17,31,23,.8));border:1px solid rgba(88,204,137,.22)}
+.tl-hero .tl-ribbon{font-size:14px;padding:8px 14px}
+.trust-big{margin-top:14px;border-radius:16px;background:rgba(88,204,137,.08);border:1px solid rgba(88,204,137,.2);padding:14px 16px;display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:20px;font-weight:700}
+.trust-big svg{color:#58CC89;margin-top:2px}
+.ccap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:13px 15px;max-width:390px;font-size:12px;line-height:1.65;color:rgba(233,242,236,.62)}
+.ccap b{color:#9FE3BC;font-weight:700}
+.ccap .row{margin-top:6px}
+.ccap .row:first-child{margin-top:0}
+/* ══ База исследований ══ */
+.refs{max-width:980px}
+.refs h4{font-size:14px;font-weight:900;margin:22px 0 4px;color:#BDEBD2}
+.refs .h-note{font-size:12px;color:rgba(233,242,236,.5);margin-bottom:8px}
+.ref{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px;line-height:1.6;color:rgba(233,242,236,.72)}
+.ref b{color:#E9F2EC}
+.ref .rt{flex:none;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;height:fit-content;margin-top:2px}
+.rt-aca{background:rgba(88,204,137,.14);color:#58CC89;border:1px solid rgba(88,204,137,.3)}
+.rt-ven{background:rgba(255,200,0,.1);color:#FFC800;border:1px solid rgba(255,200,0,.28)}
+
+/* ══ Таблица сравнения ══ */
+table.cmp-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.cmp-tbl th,.cmp-tbl td{border:1px solid rgba(255,255,255,.09);padding:11px 13px;text-align:left;vertical-align:top}
+.cmp-tbl th{background:rgba(88,204,137,.07);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:#9FE3BC}
+.cmp-tbl td{color:rgba(233,242,236,.8);line-height:1.6}
+.cmp-tbl td:first-child{font-weight:800;color:#fff;min-width:170px}
+footer.foot{margin-top:64px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);color:rgba(233,242,236,.4);font-size:12px;line-height:1.7}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-diamond" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M9.5 3L12 9l2.5-6M12 9v12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 6.5"/></symbol>
+  <symbol id="i-checkcircle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14.5l6-6 6 6"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.2c0 4.6-3 7.7-7 9.3-4-1.6-7-4.7-7-9.3V6l7-3z"/><path d="M9 11.8l2.2 2.2L15.4 9.6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v7A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5v-7M12 8v12.5M12 8s-3.5.2-4.5-1.6C6.7 4.9 8 3.5 9.5 3.7 11.4 3.9 12 8 12 8zm0 0s3.5.2 4.5-1.6c.8-1.5-.5-2.9-2-2.7C12.6 3.9 12 8 12 8z"/></symbol>
+  <symbol id="i-lock-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 7.8-1.3"/><circle cx="12" cy="15.2" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.2 9.5a5.8 5.8 0 0 1 11.6 0c0 4 1.7 5.6 1.7 5.6H4.5s1.7-1.6 1.7-5.6M10.3 18.5a1.9 1.9 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19M6 15h4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5c-5 0-9 3.3-9 7.4 0 2.4 1.3 4.5 3.3 5.9-.1 1.2-.6 2.6-1.6 3.7 1.9-.2 3.6-.9 4.8-1.8.8.2 1.6.3 2.5.3 5 0 9-3.3 9-7.4s-4-7.6-9-7.6z"/><circle cx="8.5" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></symbol>
+  <symbol id="i-navigate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 11.5L20 4l-4.5 16-3.5-6.5L4 11.5z"/><path d="M12 13.5L20 4"/></symbol>
+  <symbol id="i-infinite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7.2 15.8c-2.1 0-3.7-1.7-3.7-3.8s1.6-3.8 3.7-3.8c3.6 0 6 7.6 9.6 7.6 2.1 0 3.7-1.7 3.7-3.8s-1.6-3.8-3.7-3.8c-3.6 0-6 7.6-9.6 7.6z"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17.5l5.5-5.5 3.5 3.5 7.5-7.5"/><path d="M15.5 8h4.5v4.5"/></symbol>
+  <symbol id="i-flash" viewBox="0 0 24 24" fill="currentColor"><path d="M13.2 2.5L4.8 13.5h5.4L9 21.5l9.6-12h-5.6l.2-7z"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24" fill="currentColor"><path d="M10 3l1.1 3.6L14.5 8l-3.4 1.4L10 13l-1.1-3.6L5.5 8l3.4-1.4L10 3zM17.5 10l.8 2.5 2.4 1-2.4 1-.8 2.5-.8-2.5-2.4-1 2.4-1 .8-2.5zM8 15.5l.7 2.2 2.1.9-2.1.9L8 21.7l-.7-2.2-2.1-.9 2.1-.9.7-2.2z"/></symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l6.5 7.6L12 21.2 5.5 10.4 12 2.8z"/><path d="M5.5 10.4h13"/></symbol>
+</svg>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Phraseman · дизайн-аудит монетизации</div>
+  <h1>Пейволы: текущие экраны и улучшенные версии</h1>
+  <p class="lead">Слева — <b>точные мокапы текущих экранов</b>, собранные по коду из <b>app/paywall_a|b|c.tsx</b> и <b>components/paywall/*</b> (тёмная тема, реальный RU-копирайт). Ниже — <b>мягкие монетизационные поверхности</b>, <b>редизайн-предложения</b> и <b>6 альтернативных архитектур пейвола</b> с премиальными, но дешёвыми для GPU анимациями (только transform / opacity / filter, CSS-keyframes, поддержка <b>prefers-reduced-motion</b>). У каждого анимированного экрана есть кнопка <b>«▶ Проиграть анимацию»</b> — перезапускает входные анимации. Цены — <b>плейсхолдеры из DEV-режима</b> (год €34,99, месяц €5,99, Pro €99; триал 3 дня).</p>
+  <div class="nav">
+    <a href="#current">A. Текущие пейволы A / B / C</a>
+    <a href="#soft">B. Мягкие поверхности</a>
+    <a href="#improved">C. Улучшенные версии</a>
+    <a href="#table">D. Таблица сравнения</a>
+    <a href="#concepts">E. Дизайн-концепты (6)</a>
+    <a href="#research">F. База исследований</a>
+  </div>
+  <div class="legend">
+    <span class="chip"><i style="background:#07120B;border:1px solid rgba(255,255,255,.2)"></i>фон #07120B→#010201</span>
+    <span class="chip"><i style="background:#58CC89"></i>акцент / CTA #58CC89</span>
+    <span class="chip"><i style="background:#042010"></i>текст на CTA #042010</span>
+    <span class="chip"><i style="background:#FFC800"></i>бейдж −N% / таймер #FFC800</span>
+    <span class="chip"><i style="background:rgba(30,56,40,.95)"></i>панели panelBgStrong</span>
+  </div>
+</header>
+
+<!-- ════════════════════ A. ТЕКУЩИЕ ПЕЙВОЛЫ ════════════════════ -->
+<section id="current">
+  <h2>A. Текущие пейволы <span class="badge-tag tag-now">как в коде</span></h2>
+  <p class="sec-desc">Восстановлены по <code>app/paywall_a.tsx</code>, <code>app/paywall_b.tsx</code>, <code>app/paywall_c.tsx</code> и общим компонентам <code>components/paywall/*</code>. Контекст — <b>generic</b> («Учись быстрее с Plus», глиф diamond). Порядок блоков и тексты совпадают с кодом; сегодняшние экраны почти без анимации — мокапы статичны. Контент скроллится внутри рамки, как в приложении.</p>
+  <div class="gallery">
+
+    <!-- ── Вариант A «Компакт» ── -->
+    <div class="mock">
+      <h3>Вариант A «Компакт» <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title">Учись быстрее с Plus</h4>
+          <div class="plans">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="offer">
+              <div><div class="t1">Дополнительное предложение</div><div class="t2">Phraseman Pro · разовая покупка</div></div>
+              <svg width="20" height="20"><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="urg">
+            <div class="urg-head"><svg width="18" height="18"><use href="#i-time"/></svg><span class="urg-title">Цена скоро будет поднята</span></div>
+            <div class="urg-timer-row"><span class="urg-label">Старая цена действует ещё</span><span class="urg-timer">76:00:00</span></div>
+            <div class="urg-prices">
+              <span class="urg-now">Сейчас: €34,99<small>/год</small></span>
+              <span class="urg-future">Скоро: €69,98<small>/год</small></span>
+            </div>
+            <div class="urg-body">Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.</div>
+          </div>
+          <div class="cta">Попробовать 3 дн. бесплатно</div>
+          <div class="cta-sub">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost">Продолжить бесплатно</div>
+          <div class="social">
+            <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <span>4,8 · Google Play · 1 248 оценок</span>
+          </div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="pers-main">Мария, у тебя уже 128 фраз и 12 дн. серии.</div>
+            <div class="pers-stats">
+              <div class="pers-stat"><b>128</b><span>фраз</span></div>
+              <div class="pers-stat"><b>340</b><span>слов</span></div>
+              <div class="pers-stat"><b>1,2K</b><span>XP</span></div>
+              <div class="pers-stat"><b>12</b><span>дн. серия</span></div>
+            </div>
+            <div class="pers-sub">Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.</div>
+          </div>
+          <div class="tl">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="bens">
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Больше практики без ограничений</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Понятный следующий шаг каждый день</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Плюс-опции сразу после активации</div>
+          </div>
+          <div class="proof" style="background:rgba(17,31,23,.74)">
+            <div class="proof-title acc">Что говорят ученики</div>
+            <div class="tst-q-block"><div class="tst-q">«За месяц выучила больше фраз, чем за год на курсах. Тренер слабых мест — просто находка.»</div><div class="tst-a">— Анна, Москва</div></div>
+            <div class="tst-q-block"><div class="tst-q">«Перестал бояться говорить. Диалоги реально развязали язык.»</div><div class="tst-a">— Дмитрий, Санкт-Петербург</div></div>
+          </div>
+          <div class="legal">Это подписка с автопродлением: €34,99/год, списывается с твоего Google через Google Play. Подписка продлевается автоматически, пока ты не отменишь её минимум за 24 часа до конца текущего периода. Управлять и отменить: Google Play → Подписки. Если доступны 3 дня бесплатно: оплата спишется только после окончания пробного периода, если не отменить заранее.</div>
+        </div></div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>paywall_a.tsx</code> — glyph → title → PlanCards → Urgency(compact) → CTA → SocialRow → PersonalizationProofCard → TrialTimeline → benefits → отзывы → Legal. Отзывы рендерятся только при verified-данных (здесь — плейсхолдеры).</p>
+    </div>
+
+    <!-- ── Вариант B «Стори» ── -->
+    <div class="mock">
+      <h3>Вариант B «Стори» <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title">Учись быстрее с Plus</h4>
+          <div class="plans">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="offer">
+              <div><div class="t1">Дополнительное предложение</div><div class="t2">Phraseman Pro · разовая покупка</div></div>
+              <svg width="20" height="20"><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="urg">
+            <div class="urg-head"><svg width="18" height="18"><use href="#i-time"/></svg><span class="urg-title">Цена скоро будет поднята</span></div>
+            <div class="urg-timer-row"><span class="urg-label">Старая цена действует ещё</span><span class="urg-timer">76:00:00</span></div>
+            <div class="urg-prices">
+              <span class="urg-now">Сейчас: €34,99<small>/год</small></span>
+              <span class="urg-future">Скоро: €69,98<small>/год</small></span>
+            </div>
+            <div class="urg-body">Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.</div>
+          </div>
+          <div class="cta">Попробовать 3 дн. бесплатно</div>
+          <div class="cta-sub">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost">Продолжить бесплатно</div>
+          <div class="social">
+            <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <span>4,8 · Google Play · 1 248 оценок</span>
+          </div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="pers-main">Мария, у тебя уже 128 фраз и 12 дн. серии.</div>
+            <div class="pers-stats">
+              <div class="pers-stat"><b>128</b><span>фраз</span></div>
+              <div class="pers-stat"><b>340</b><span>слов</span></div>
+              <div class="pers-stat"><b>1,2K</b><span>XP</span></div>
+              <div class="pers-stat"><b>12</b><span>дн. серия</span></div>
+            </div>
+            <div class="pers-sub">Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.</div>
+            <div class="pct"><svg width="18" height="18"><use href="#i-trend"/></svg><span>Ты стабильнее 78% учеников на этой неделе.</span></div>
+          </div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Что даёт Plus</div>
+            <div class="cmp">
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-chat"/></svg></div><div><b>Диалоги для живой речи</b><p>Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-mic"/></svg></div><div><b>Устный ввод</b><p>Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-navigate"/></svg></div><div><b>Слабые места</b><p>Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-infinite"/></svg></div><div><b>Без free-стопов</b><p>Уроки, практика, энергия, карточки и личный план открыты без бесплатных дневных стопов и порогов.</p></div></div>
+            </div>
+          </div>
+          <div class="proof" style="background:rgba(17,31,23,.74)">
+            <div class="proof-title acc">Что говорят ученики</div>
+            <div class="tst-q-block"><div class="tst-q">«За месяц выучила больше фраз, чем за год на курсах. Тренер слабых мест — просто находка.»</div><div class="tst-a">— Анна, Москва</div></div>
+            <div class="tst-q-block"><div class="tst-q">«Перестал бояться говорить. Диалоги реально развязали язык.»</div><div class="tst-a">— Дмитрий, Санкт-Петербург</div></div>
+          </div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Частые вопросы</div>
+            <div class="faq-q">
+              <div class="faq-head">Что будет после триала?<svg><use href="#i-chevron-up"/></svg></div>
+              <div class="faq-a">3 дн. всё открыто бесплатно. Если уведомления разрешены, напомним перед окончанием. Отменишь — деньги не спишутся. Не отменишь — €34,99/год.</div>
+            </div>
+            <div class="faq-q"><div class="faq-head">Как отменить?<svg><use href="#i-chevron-down"/></svg></div></div>
+            <div class="faq-q"><div class="faq-head">Что входит в Plus?<svg><use href="#i-chevron-down"/></svg></div></div>
+          </div>
+          <div class="tl">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="legal">Это подписка с автопродлением: €34,99/год, списывается с твоего Google через Google Play. Подписка продлевается автоматически, пока ты не отменишь её минимум за 24 часа до конца текущего периода. Управлять и отменить: Google Play → Подписки. Если доступны 3 дня бесплатно: оплата спишется только после окончания пробного периода, если не отменить заранее.</div>
+        </div></div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>paywall_b.tsx</code> — вверху как A, затем PersonalizationProofCard (+перцентиль, плейсхолдер) → CompareCard «Что даёт Plus» → отзывы → FaqCard → TrialTimeline → Legal. Без списка бенефитов.</p>
+    </div>
+
+    <!-- ── Вариант C «Атриум» ── -->
+    <div class="mock">
+      <h3>Вариант C «Атриум» <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title">Учись быстрее с Plus</h4>
+          <div class="plans">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="offer">
+              <div><div class="t1">Дополнительное предложение</div><div class="t2">Phraseman Pro · разовая покупка</div></div>
+              <svg width="20" height="20"><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="urg">
+            <div class="urg-head"><svg width="18" height="18"><use href="#i-time"/></svg><span class="urg-title">Цена скоро будет поднята</span></div>
+            <div class="urg-timer-row"><span class="urg-label">Старая цена действует ещё</span><span class="urg-timer">76:00:00</span></div>
+            <div class="urg-prices">
+              <span class="urg-now">Сейчас: €34,99<small>/год</small></span>
+              <span class="urg-future">Скоро: €69,98<small>/год</small></span>
+            </div>
+            <div class="urg-body">Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.</div>
+          </div>
+          <div class="cta">Попробовать 3 дн. бесплатно</div>
+          <div class="cta-sub">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost">Продолжить бесплатно</div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="pers-main">Мария, у тебя уже 128 фраз и 12 дн. серии.</div>
+            <div class="pers-stats">
+              <div class="pers-stat"><b>128</b><span>фраз</span></div>
+              <div class="pers-stat"><b>340</b><span>слов</span></div>
+              <div class="pers-stat"><b>1,2K</b><span>XP</span></div>
+              <div class="pers-stat"><b>12</b><span>дн. серия</span></div>
+            </div>
+            <div class="pers-sub">Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.</div>
+            <div class="pct"><svg width="18" height="18"><use href="#i-trend"/></svg><span>Ты стабильнее 78% учеников на этой неделе.</span></div>
+          </div>
+          <div class="tl">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="dvd"><div class="ln"></div><span>для сомневающихся</span><div class="ln"></div></div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Что даёт Plus</div>
+            <div class="cmp">
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-chat"/></svg></div><div><b>Диалоги для живой речи</b><p>Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-mic"/></svg></div><div><b>Устный ввод</b><p>Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-navigate"/></svg></div><div><b>Слабые места</b><p>Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-infinite"/></svg></div><div><b>Без free-стопов</b><p>Уроки, практика, энергия, карточки и личный план открыты без бесплатных дневных стопов и порогов.</p></div></div>
+            </div>
+          </div>
+          <div class="proof" style="background:rgba(17,31,23,.74)">
+            <div class="proof-title acc">Что говорят ученики</div>
+            <div class="tst-q-block"><div class="tst-q">«За месяц выучила больше фраз, чем за год на курсах. Тренер слабых мест — просто находка.»</div><div class="tst-a">— Анна, Москва</div></div>
+            <div class="tst-q-block"><div class="tst-q">«Перестал бояться говорить. Диалоги реально развязали язык.»</div><div class="tst-a">— Дмитрий, Санкт-Петербург</div></div>
+          </div>
+          <div class="proof">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Частые вопросы</div>
+            <div class="faq-q">
+              <div class="faq-head">Что будет после триала?<svg><use href="#i-chevron-up"/></svg></div>
+              <div class="faq-a">3 дн. всё открыто бесплатно. Если уведомления разрешены, напомним перед окончанием. Отменишь — деньги не спишутся. Не отменишь — €34,99/год.</div>
+            </div>
+            <div class="faq-q"><div class="faq-head">Как отменить?<svg><use href="#i-chevron-down"/></svg></div></div>
+            <div class="faq-q"><div class="faq-head">Что входит в Plus?<svg><use href="#i-chevron-down"/></svg></div></div>
+          </div>
+          <div class="cta">Попробовать 3 дн. бесплатно</div>
+          <div class="cta-sub">затем €34,99/год · отмена в любой момент</div>
+          <div class="legal">Это подписка с автопродлением: €34,99/год, списывается с твоего Google через Google Play. Подписка продлевается автоматически, пока ты не отменишь её минимум за 24 часа до конца текущего периода. Управлять и отменить: Google Play → Подписки. Если доступны 3 дня бесплатно: оплата спишется только после окончания пробного периода, если не отменить заранее.</div>
+        </div></div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>paywall_c.tsx</code> — первый экран самодостаточен (без SocialRow!), ниже фолда «галерея доказательств»: разделитель «для сомневающихся» → CompareCard → отзывы → FaqCard → повторный CTA → Legal. Скролл-глубина трекается.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ B. МЯГКИЕ ПОВЕРХНОСТИ ════════════════════ -->
+<section id="soft">
+  <h2>B. Мягкие монетизационные поверхности <span class="badge-tag tag-now">как в коде</span></h2>
+  <p class="sec-desc">Стоп-экраны и апсейл-карточки, которые ведут в пейвол: <code>components/NoEnergyModal.tsx</code>, <code>components/AiLimitUpsellCard.tsx</code>, <code>app/flashcards/CardPackShardPaywallModal.tsx</code>, <code>components/IntroFullAccessModal.tsx</code>. У NoEnergyModal в коде уже есть живой shine на золотой кнопке (PremiumGoldButton, 5,6 с) — он сохранён и в мокапе.</p>
+  <div class="gallery">
+
+    <!-- ── NoEnergyModal ── -->
+    <div class="mock">
+      <h3>Нет энергии (NoEnergyModal) <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph" style="width:54px;height:54px;margin-top:2px"><svg width="26" height="26"><use href="#i-checkcircle"/></svg></div>
+          <h4 class="title" style="font-size:20px;line-height:25px">Фраза дня: break a leg</h4>
+          <div class="bens" style="margin-top:18px;opacity:.5">
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Повтори вслух три раза</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Собери фразу из слов</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Мини-диалог с AI</div>
+          </div>
+          <div style="height:340px"></div>
+        </div></div>
+        <div class="dim glow-amber">
+          <div class="ne-card">
+            <div class="ne-top-glow"></div>
+            <div class="bolt"><svg><use href="#i-flash"/></svg></div>
+            <div class="ne-title">Энергия закончилась</div>
+            <div class="ne-sub">+1 ⚡ вернётся через 7 мин. Хочешь учить без остановок — это Plus.</div>
+            <div class="gold"><div class="gold-rim"></div>✨ 👑 Получить Плюс ✨</div>
+            <div class="ne-ghost">Закрыть</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>NoEnergyModal.tsx</code> — overlay rgba(0,0,0,.72) + янтарный отблеск, карточка с градиентом dark, молния (pulse 1,1 с ×2 в коде), заголовок «Энергия закончилась», сабтайтл про +1 ⚡, золотая кнопка «👑 Получить Плюс» с shine-переливом (единственная анимация в текущих поверхностях), ghost «Закрыть».</p>
+    </div>
+
+    <!-- ── AiLimitUpsellCard ── -->
+    <div class="mock">
+      <h3>AI-лимит (AiLimitUpsellCard) <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <h4 class="title" style="font-size:20px;line-height:25px;margin-top:10px">Разбор фразы</h4>
+          <div class="proof" style="margin-top:16px;opacity:.55">
+            <div class="pers-main" style="font-size:15px">I look forward to hearing from you</div>
+            <div class="pers-sub">Жду вашего ответа · деловое письмо</div>
+          </div>
+          <div class="proof" style="opacity:.4">
+            <div class="pers-sub" style="margin-top:0">look forward to + V-ing — после «to» всегда герундий…</div>
+          </div>
+          <div style="height:280px"></div>
+        </div></div>
+        <div class="ai-scene">
+          <div class="ai-card">
+            <div class="ai-rule"></div>
+            <div class="ai-row">
+              <div class="ai-ic"><svg><use href="#i-flash"/></svg></div>
+              <div class="ai-title">Бесплатные объяснения закончились</div>
+            </div>
+            <div class="ai-cta"><svg width="17" height="17"><use href="#i-lock-open"/></svg>Получить фулл доступ</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>AiLimitUpsellCard.tsx</code> (внутри <code>ExplainSheet.tsx</code>): градиентная топ-линия (accent → #FFD66B → #79D6FF), белая плитка с молнией, заголовок «Бесплатные объяснения закончились», лайм-CTA «Получить фулл доступ» с тёмным текстом. В коде есть разовый вход (rise + overshoot + микро-тряска).</p>
+    </div>
+
+    <!-- ── CardPackShardPaywallModal: confirm ── -->
+    <div class="mock">
+      <h3>Пак за осколки — хватает <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <h4 class="title" style="font-size:20px;line-height:25px;margin-top:6px">Маркет карточек</h4>
+          <div class="plans" style="opacity:.45">
+            <div class="plan"><div class="plan-head"><div class="plan-name">Аэропорт и перелёты</div></div><div class="sub">24 карточки · 120 осколков</div></div>
+            <div class="plan"><div class="plan-head"><div class="plan-name">Собеседование</div></div><div class="sub">30 карточек · 150 осколков</div></div>
+          </div>
+          <div style="height:330px"></div>
+        </div></div>
+        <div class="sheet-wrap">
+          <div class="sheet">
+            <div class="handle"></div>
+            <div class="sheet-body">
+              <div class="pk-head">
+                <div class="pk-ic"><svg><use href="#i-gem"/></svg></div>
+                <div>
+                  <div class="pk-kind">Набор</div>
+                  <div class="pk-title">Аэропорт и перелёты</div>
+                </div>
+              </div>
+              <div class="pk-desc">Фразы для регистрации, паспортного контроля и посадки: всё, что слышишь в терминале и на борту.</div>
+              <div class="pk-short"><svg><use href="#i-card"/></svg>24 карточек</div>
+              <div class="pk-price">
+                <div class="lbl">Нужно осколков</div>
+                <div class="val"><svg><use href="#i-gem"/></svg>120<span style="font-size:15px;font-weight:700;color:rgba(255,255,255,.62)">осколков</span></div>
+              </div>
+              <div class="pk-sub">Откроется в одно касание</div>
+            </div>
+            <div class="pk-cta"><svg><use href="#i-gem"/></svg>Открыть за 120 осколков</div>
+            <div class="pk-cancel">Отмена</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>CardPackShardPaywallModal.tsx</code>, режим <code>confirm</code>: нижний шит с ручкой, «НАБОР» + название, описание, «24 карточек», ценник «Нужно осколков», CTA «Открыть за N осколков» с пульс-свечением (в коде ctaPulse 1,2 с), «Отмена». Название/описание пака — плейсхолдеры.</p>
+    </div>
+
+    <!-- ── CardPackShardPaywallModal: insufficient ── -->
+    <div class="mock">
+      <h3>Пак за осколки — не хватает <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <h4 class="title" style="font-size:20px;line-height:25px;margin-top:6px">Маркет карточек</h4>
+          <div class="plans" style="opacity:.45">
+            <div class="plan"><div class="plan-head"><div class="plan-name">Аэропорт и перелёты</div></div><div class="sub">24 карточки · 120 осколков</div></div>
+            <div class="plan"><div class="plan-head"><div class="plan-name">Собеседование</div></div><div class="sub">30 карточек · 150 осколков</div></div>
+          </div>
+          <div style="height:330px"></div>
+        </div></div>
+        <div class="sheet-wrap">
+          <div class="sheet">
+            <div class="handle"></div>
+            <div class="sheet-body">
+              <div class="pk-head">
+                <div class="pk-ic"><svg><use href="#i-gem"/></svg></div>
+                <div>
+                  <div class="pk-kind">Набор</div>
+                  <div class="pk-title">Аэропорт и перелёты</div>
+                </div>
+              </div>
+              <div class="pk-alert">Недостаточно осколков</div>
+              <div class="pk-desc">Пополни баланс в магазине осколков — кнопка ниже откроет вкладку с пакетами.</div>
+              <div class="pk-short"><svg><use href="#i-gem"/></svg>Не хватает ещё 90 осколков</div>
+              <div class="pk-price">
+                <div class="lbl">Для этого набора</div>
+                <div class="pk-cols">
+                  <div class="pk-col"><div class="lbl">Нужно</div><b><svg><use href="#i-gem"/></svg>120</b></div>
+                  <div class="pk-sep"></div>
+                  <div class="pk-col"><div class="lbl">У тебя</div><b><svg><use href="#i-gem"/></svg>30</b></div>
+                </div>
+              </div>
+              <div class="pk-sub">Пакеты осколков в магазине</div>
+            </div>
+            <div class="pk-cta"><svg><use href="#i-gem"/></svg>Пополнить осколки</div>
+            <div class="pk-cancel">Отмена</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>CardPackShardPaywallModal.tsx</code>, режим <code>insufficient</code>: «Недостаточно осколков» + интро, «Не хватает ещё N осколков», двухколоночный ценник «Нужно / У тебя», CTA «Пополнить осколки» ведёт в магазин осколков.</p>
+    </div>
+
+    <!-- ── IntroFullAccessModal ── -->
+    <div class="mock">
+      <h3>Подарок на старт (IntroFullAccessModal) <span class="badge-tag tag-now">текущий</span></h3>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <div class="dim" style="background:rgba(0,0,0,.72)">
+          <div class="intro-panel">
+            <div class="intro-ic"><svg><use href="#i-sparkles"/></svg></div>
+            <div class="intro-eyebrow">Подарок на старт</div>
+            <div class="intro-title">Три дня — всё открыто</div>
+            <div class="intro-body">Мы дарим тебе три дня полного доступа. Никаких лимитов, всё открыто, энергия бесконечная. Посмотри приложение в полной силе — и сам реши, что тебе нужно.</div>
+            <div class="intro-cta">Начать — всё открыто</div>
+            <div class="intro-footer">Это подарок. Подписка не включается автоматически.</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="cap"><b>Код:</b> <code>IntroFullAccessModal.tsx</code>, вариант <code>welcome</code>: иконка sparkles, eyebrow «ПОДАРОК НА СТАРТ», заголовок 25 px «Три дня — всё открыто», честный футер «Подписка не включается автоматически». Вариант <code>ended</code> («Три дня позади») ведёт в пейвол intro_ended.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ C. УЛУЧШЕННЫЕ ВЕРСИИ ════════════════════ -->
+<section id="improved">
+  <h2>C. Улучшенные версии <span class="badge-tag tag-plus">редизайн-предложение</span></h2>
+  <p class="sec-desc">Та же структура и копирайт, но «дороже Duolingo» по ощущениям — строго дёшево для GPU: только CSS-keyframes на <b>transform / opacity / filter</b>, без rAF-циклов, без layout-пересчётов, всё отключается при <b>prefers-reduced-motion</b>. Обновите страницу, чтобы пересмотреть каскад входа.</p>
+  <div class="gallery">
+
+    <!-- ── A+ «Компакт+» ── -->
+    <div class="mock">
+      <h3>A → A+ «Компакт+» <span class="badge-tag tag-plus">улучшенный</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph glyph-tilt rise d1"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Учись быстрее с Plus</h4>
+          <div class="plans rise d3">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="offer">
+              <div><div class="t1">Дополнительное предложение</div><div class="t2">Phraseman Pro · разовая покупка</div></div>
+              <svg width="20" height="20"><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="urg rise d4">
+            <div class="urg-head"><svg width="18" height="18"><use href="#i-time"/></svg><span class="urg-title">Цена скоро будет поднята</span></div>
+            <div class="urg-timer-row"><span class="urg-label">Старая цена действует ещё</span><span class="urg-timer tick">76:00:00</span></div>
+            <div class="urg-prices">
+              <span class="urg-now">Сейчас: €34,99<small>/год</small></span>
+              <span class="urg-future">Скоро: €69,98<small>/год</small></span>
+            </div>
+            <div class="urg-body">Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.</div>
+          </div>
+          <div class="rise d5"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d5">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust rise d6"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d6"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d6">Продолжить бесплатно</div>
+          <div class="social rise d7">
+            <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <span>4,8 · Google Play · 1 248 оценок</span>
+          </div>
+          <div class="proof rise d7">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="pers-main">Мария, у тебя уже 128 фраз и 12 дн. серии.</div>
+            <div class="pers-stats">
+              <div class="pers-stat"><b>128</b><span>фраз</span></div>
+              <div class="pers-stat"><b>340</b><span>слов</span></div>
+              <div class="pers-stat"><b>1,2K</b><span>XP</span></div>
+              <div class="pers-stat"><b>12</b><span>дн. серия</span></div>
+            </div>
+            <div class="pers-sub">Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.</div>
+          </div>
+          <div class="tl rise d8">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="bens rise d9">
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Больше практики без ограничений</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Понятный следующий шаг каждый день</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Плюс-опции сразу после активации</div>
+          </div>
+          <div class="legal">Это подписка с автопродлением: €34,99/год, списывается с твоего Google через Google Play. Подписка продлевается автоматически, пока ты не отменишь её минимум за 24 часа до конца текущего периода. Управлять и отменить: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <p class="cap"><b>Применено:</b> каскад входа блоков (staggered rise, 60 мс шаг), «живой» глиф (idle-float + пульс свечения, hover-tilt), pop бейджа −51% с пружинным overshoot, мягкое свечение выбранной карточки, тик таймера, shine-перелив на CTA (5,6 с, как у золотой кнопки). Взгляд ведётся к годовому плану и кнопке, экран перестаёт быть «фотографией».</p>
+    </div>
+
+    <!-- ── B+ «Стори+» ── -->
+    <div class="mock">
+      <h3>B → B+ «Стори+» <span class="badge-tag tag-plus">улучшенный</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph glyph-tilt rise d1"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Учись быстрее с Plus</h4>
+          <div class="plans rise d3">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="offer">
+              <div><div class="t1">Дополнительное предложение</div><div class="t2">Phraseman Pro · разовая покупка</div></div>
+              <svg width="20" height="20"><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="urg rise d4">
+            <div class="urg-head"><svg width="18" height="18"><use href="#i-time"/></svg><span class="urg-title">Цена скоро будет поднята</span></div>
+            <div class="urg-timer-row"><span class="urg-label">Старая цена действует ещё</span><span class="urg-timer tick">76:00:00</span></div>
+            <div class="urg-prices">
+              <span class="urg-now">Сейчас: €34,99<small>/год</small></span>
+              <span class="urg-future">Скоро: €69,98<small>/год</small></span>
+            </div>
+            <div class="urg-body">Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.</div>
+          </div>
+          <div class="rise d5"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d5">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust rise d6"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d6"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d6">Продолжить бесплатно</div>
+          <div class="proof rise d7">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="pers-main">Мария, у тебя уже 128 фраз и 12 дн. серии.</div>
+            <div class="pers-stats">
+              <div class="pers-stat"><b>128</b><span>фраз</span></div>
+              <div class="pers-stat"><b>340</b><span>слов</span></div>
+              <div class="pers-stat"><b>1,2K</b><span>XP</span></div>
+              <div class="pers-stat"><b>12</b><span>дн. серия</span></div>
+            </div>
+            <div class="pers-sub">Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.</div>
+            <div class="pct"><svg width="18" height="18"><use href="#i-trend"/></svg><span>Ты стабильнее 78% учеников на этой неделе.</span></div>
+          </div>
+          <div class="proof rise d8">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Что даёт Plus</div>
+            <div class="cmp">
+              <div class="cmp-row rise d7"><div class="cmp-ic"><svg><use href="#i-chat"/></svg></div><div><b>Диалоги для живой речи</b><p>Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.</p></div></div>
+              <div class="cmp-row rise d8"><div class="cmp-ic"><svg><use href="#i-mic"/></svg></div><div><b>Устный ввод</b><p>Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.</p></div></div>
+              <div class="cmp-row rise d9"><div class="cmp-ic"><svg><use href="#i-navigate"/></svg></div><div><b>Слабые места</b><p>Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.</p></div></div>
+              <div class="cmp-row rise d9"><div class="cmp-ic"><svg><use href="#i-infinite"/></svg></div><div><b>Без free-стопов</b><p>Уроки, практика, энергия, карточки и личный план открыты без бесплатных дневных стопов и порогов.</p></div></div>
+            </div>
+          </div>
+          <div class="tl rise d9">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="legal">Это подписка с автопродлением: €34,99/год, списывается с твоего Google через Google Play. Управлять и отменить: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <p class="cap"><b>Применено:</b> медленный aurora-мesh фон (два размытых блоба, 18–22 с, низкий контраст), каскад входа, построчный stagger карточек «Что даёт Plus», пульс активной точки триал-таймлайна, shine на CTA. Длинная страница читается как сценарий: каждый блок «приезжает» и удерживает внимание при скролле.</p>
+    </div>
+
+    <!-- ── C+ «Атриум+» ── -->
+    <div class="mock">
+      <h3>C → C+ «Атриум+» <span class="badge-tag tag-plus">улучшенный</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph glyph-tilt rise d1"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Учись быстрее с Plus</h4>
+          <div class="plans rise d3">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="offer">
+              <div><div class="t1">Дополнительное предложение</div><div class="t2">Phraseman Pro · разовая покупка</div></div>
+              <svg width="20" height="20"><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="urg rise d4">
+            <div class="urg-head"><svg width="18" height="18"><use href="#i-time"/></svg><span class="urg-title">Цена скоро будет поднята</span></div>
+            <div class="urg-timer-row"><span class="urg-label">Старая цена действует ещё</span><span class="urg-timer tick">76:00:00</span></div>
+            <div class="urg-prices">
+              <span class="urg-now">Сейчас: €34,99<small>/год</small></span>
+              <span class="urg-future">Скоро: €69,98<small>/год</small></span>
+            </div>
+            <div class="urg-body">Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.</div>
+          </div>
+          <div class="rise d5"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d5">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust rise d6"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d6"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d6">Продолжить бесплатно</div>
+          <div class="proof rise d7">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="pers-main">Мария, у тебя уже 128 фраз и 12 дн. серии.</div>
+            <div class="pers-stats">
+              <div class="pers-stat"><b>128</b><span>фраз</span></div>
+              <div class="pers-stat"><b>340</b><span>слов</span></div>
+              <div class="pers-stat"><b>1,2K</b><span>XP</span></div>
+              <div class="pers-stat"><b>12</b><span>дн. серия</span></div>
+            </div>
+            <div class="pers-sub">Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.</div>
+            <div class="pct"><svg width="18" height="18"><use href="#i-trend"/></svg><span>Ты стабильнее 78% учеников на этой неделе.</span></div>
+          </div>
+          <div class="tl rise d8">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="dvd rise d8"><div class="ln"></div><span>для сомневающихся</span><div class="ln"></div></div>
+          <div class="proof rise d9">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Что даёт Plus</div>
+            <div class="cmp">
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-chat"/></svg></div><div><b>Диалоги для живой речи</b><p>Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-mic"/></svg></div><div><b>Устный ввод</b><p>Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-navigate"/></svg></div><div><b>Слабые места</b><p>Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.</p></div></div>
+              <div class="cmp-row"><div class="cmp-ic"><svg><use href="#i-infinite"/></svg></div><div><b>Без free-стопов</b><p>Уроки, практика, энергия, карточки и личный план открыты без бесплатных дневных стопов и порогов.</p></div></div>
+            </div>
+          </div>
+          <div class="proof rise d9">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title acc">Что говорят ученики</div>
+            <div class="marq">
+              <div class="marq-track">
+                <div class="marq-item"><div class="tst-q">«За месяц выучила больше фраз, чем за год на курсах.»</div><div class="tst-a">— Анна, Москва</div></div>
+                <div class="marq-item"><div class="tst-q">«Перестал бояться говорить. Диалоги развязали язык.»</div><div class="tst-a">— Дмитрий, Санкт-Петербург</div></div>
+                <div class="marq-item"><div class="tst-q">«Тренер слабых мест — это вообще магия.»</div><div class="tst-a">— Ольга, Казань</div></div>
+                <div class="marq-item"><div class="tst-q">«За месяц выучила больше фраз, чем за год на курсах.»</div><div class="tst-a">— Анна, Москва</div></div>
+                <div class="marq-item"><div class="tst-q">«Перестал бояться говорить. Диалоги развязали язык.»</div><div class="tst-a">— Дмитрий, Санкт-Петербург</div></div>
+                <div class="marq-item"><div class="tst-q">«Тренер слабых мест — это вообще магия.»</div><div class="tst-a">— Ольга, Казань</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="proof rise d9">
+            <div class="hl" style="background:rgba(88,204,137,.22)"></div>
+            <div class="proof-title">Частые вопросы</div>
+            <div class="faq-q">
+              <div class="faq-head">Что будет после триала?<svg><use href="#i-chevron-up"/></svg></div>
+              <div class="faq-a">3 дн. всё открыто бесплатно. Если уведомления разрешены, напомним перед окончанием. Отменишь — деньги не спишутся. Не отменишь — €34,99/год.</div>
+            </div>
+            <div class="faq-q"><div class="faq-head">Как отменить?<svg><use href="#i-chevron-down"/></svg></div></div>
+            <div class="faq-q"><div class="faq-head">Что входит в Plus?<svg><use href="#i-chevron-down"/></svg></div></div>
+          </div>
+          <div class="rise d9"><div class="cta cta-glow">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d9">затем €34,99/год · отмена в любой момент</div>
+          <div class="legal">Это подписка с автопродлением: €34,99/год, списывается с твоего Google через Google Play. Управлять и отменить: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <p class="cap"><b>Применено:</b> всё из B+ плюс медленный marquee отзывов (transform-only, 26 с, пауза при наведении), тик таймера, glow-пульс повторного CTA внизу галереи, hover-tilt глифа. Нижний фолд получает собственные «маячки»: до него хочется доскроллить, а повторная кнопка заметна без крика.</p>
+    </div>
+
+    <!-- ── NoEnergyModal+ ── -->
+    <div class="mock">
+      <h3>Нет энергии → «Энергия+» <span class="badge-tag tag-plus">улучшенный</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph" style="width:54px;height:54px;margin-top:2px"><svg width="26" height="26"><use href="#i-checkcircle"/></svg></div>
+          <h4 class="title" style="font-size:20px;line-height:25px">Фраза дня: break a leg</h4>
+          <div class="bens" style="margin-top:18px;opacity:.5">
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Повтори вслух три раза</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Собери фразу из слов</div>
+            <div class="ben"><svg class="ic" width="17" height="17"><use href="#i-checkcircle"/></svg>Мини-диалог с AI</div>
+          </div>
+          <div style="height:340px"></div>
+        </div></div>
+        <div class="dim glow-amber">
+          <div class="ne-card">
+            <div class="ne-top-glow"></div>
+            <div class="bolt"><div class="bolt-halo"></div><svg><use href="#i-flash"/></svg></div>
+            <div class="ne-title">Энергия закончилась</div>
+            <div class="ne-sub">+1 ⚡ вернётся через 7 мин. Хочешь учить без остановок — это Plus.</div>
+            <div class="gold"><div class="gold-rim"></div>✨ 👑 Получить Плюс ✨</div>
+            <div class="ne-ghost">Закрыть</div>
+          </div>
+        </div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <p class="cap"><b>Применено:</b> пружинный вход карточки (scale .85→1), pop молнии с микро-тряской (как в коде, но собрано в один сценарий), мягкий halo-пульс за молнией (2,2 с), золотой shine-перелив кнопки. Момент фрустрации превращается в маленькое «событие», а не в тупик.</p>
+    </div>
+
+    <!-- ── AiLimitUpsellCard+ ── -->
+    <div class="mock">
+      <h3>AI-лимит → «AI-лимит+» <span class="badge-tag tag-plus">улучшенный</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="viewport"><div class="pw">
+          <div class="close"><svg class="ic"><use href="#i-close"/></svg></div>
+          <h4 class="title" style="font-size:20px;line-height:25px;margin-top:10px">Разбор фразы</h4>
+          <div class="proof" style="margin-top:16px;opacity:.55">
+            <div class="pers-main" style="font-size:15px">I look forward to hearing from you</div>
+            <div class="pers-sub">Жду вашего ответа · деловое письмо</div>
+          </div>
+          <div class="proof" style="opacity:.4">
+            <div class="pers-sub" style="margin-top:0">look forward to + V-ing — после «to» всегда герундий…</div>
+          </div>
+          <div style="height:280px"></div>
+        </div></div>
+        <div class="ai-scene">
+          <div class="ai-card">
+            <div class="ai-rule"></div>
+            <div class="ai-row">
+              <div class="ai-ic"><svg><use href="#i-flash"/></svg></div>
+              <div class="ai-title">Бесплатные объяснения закончились</div>
+            </div>
+            <div class="ai-cta"><svg width="17" height="17"><use href="#i-lock-open"/></svg>Получить фулл доступ</div>
+          </div>
+        </div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <p class="cap"><b>Применено:</b> вход карточки с overshoot и микро-тряской (как в коде, но плавнее), бегущий градиент топ-линии (background-position, 5 с), shine на CTA. Карточка перестаёт тонуть в ленте объяснений — глаз цепляется за движение линии и кнопки.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ D. ТАБЛИЦА СРАВНЕНИЯ ════════════════════ -->
+<section id="table">
+  <h2>D. Сводная таблица: что меняем и зачем</h2>
+  <p class="sec-desc">Статичное сравнение «текущий экран → улучшенная версия». Все анимации — CSS-only, transform/opacity/filter, отключаемые через prefers-reduced-motion.</p>
+  <table class="cmp-tbl">
+    <tr><th>Экран</th><th>Что изменено в «+» версии</th><th>Ожидаемый UX-эффект</th></tr>
+    <tr>
+      <td>A «Компакт» → A+</td>
+      <td>Каскад входа блоков; глиф: idle-float + glow-пульс; pop бейджа −51%; свечение выбранной годовой карточки; тик таймера; shine на CTA (5,6 с).</td>
+      <td>Экран «оживает» за ~1 с без смены копирайта; взгляд последовательно проходит глиф → заголовок → годовой план → CTA. Рост нажатий на годовой план и CTA без нового текста.</td>
+    </tr>
+    <tr>
+      <td>B «Стори» → B+</td>
+      <td>Aurora-фон (2 блоба, transform, 18–22 с); каскад; построчный stagger 4 value-карточек; пульс активной точки триал-таймлайна; shine на CTA.</td>
+      <td>Длинная страница читается как сценарий, а не как простыня: каждый доказательный блок получает свой момент появления. Меньше «слепоты» к блоку «Что даёт Plus».</td>
+    </tr>
+    <tr>
+      <td>C «Атриум» → C+</td>
+      <td>Всё из B+; marquee отзывов (transform-only, 26 с); glow-пульс повторного CTA; hover-tilt глифа; тик таймера.</td>
+      <td>«Галерея доказательств» перестаёт быть мёртвым низом: marquee и пульс повторной кнопки дают причину доскроллить и вторую точку конверсии — ровно там, где код уже мерит глубину скролла.</td>
+    </tr>
+    <tr>
+      <td>NoEnergyModal → «Энергия+»</td>
+      <td>Пружинный вход карточки; pop + микро-тряска молнии; halo-пульс; золотой shine (уже есть в коде — сохранён).</td>
+      <td>Стоп-экран ощущается как заботливое «событие», а не наказание: выше шанс, что пользователь дочитает оффер и нажмёт «Получить Плюс», а не закроет приложение.</td>
+    </tr>
+    <tr>
+      <td>AiLimitUpsellCard → «AI-лимит+»</td>
+      <td>Вход с overshoot и микро-тряской; бегущий градиент топ-линии; shine на CTA.</td>
+      <td>Карточка заметна в ленте контента без агрессии: движение линии и кнопки выделяет её среди статичных блоков разбора. Выше CTR «Получить фулл доступ».</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ════════════════════ E. ДИЗАЙН-КОНЦЕПТЫ ════════════════════ -->
+<section id="concepts">
+  <h2>E. Дизайн-концепты пейвола <span class="badge-tag tag-plus">6 архетипов</span></h2>
+  <p class="sec-desc">Текущие A/B/C отличаются только набором доказательных блоков — информационная архитектура одна. Ниже — <b>6 genuinely different архетипов</b>: разная структура выбора, а не рескин. Копирайт RU, цены — DEV-плейсхолдеры, анимации transform/opacity-only с кнопкой replay.</p>
+  <div class="gallery">
+
+    <!-- ── Концепт 1. «Колонна» ── -->
+    <div class="mock">
+      <h3>1. «Колонна» <span class="badge-tag tag-plus">концепт</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph glyph-tilt rise d1"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Учись быстрее с Plus</h4>
+          <div class="plans rise d3">
+            <div class="plan sel" style="padding:19px 17px">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price" style="font-size:27px">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan" style="padding:11px 17px">
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62);font-size:15px"><span class="radio" style="width:20px;height:20px"></span>Месяц</div><span style="font-size:15px;font-weight:800;color:rgba(255,255,255,.75)">€5,99</span></div>
+            </div>
+            <div class="alt-link rise d4">или Phraseman Pro — €99 разово</div>
+          </div>
+          <div class="rise d5"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d5">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust rise d6"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d6"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d6">Продолжить бесплатно</div>
+          <div class="legal">Подписка с автопродлением: €34,99/год через Google Play. Отмена: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <div class="ccap">
+        <div class="row"><b>Идея:</b> развитие текущей механики, а не революция: доминирующий yearly-дефолт с крупным бейджем, monthly — маленький якорь-строка, Pro — текстовая ссылка вместо карточки.</div>
+        <div class="row"><b>База:</b> эффект дефолта и якорение (Tversky &amp; Kahneman 1974; Thaler &amp; Sunstein, «Nudge»): предвыбранная доминирующая опция забирает большинство выборов.</div>
+        <div class="row"><b>Эффект:</b> дешёвый uplift доли yearly без смены воронки и риска регресса — хороший первый A/B-тест.</div>
+        <div class="row"><b>Риск:</b> это эволюция, а не прорыв — экран всё ещё похож на текущие A/B/C, потолок эффекта невысок.</div>
+      </div>
+    </div>
+
+    <!-- ── Концепт 2. «Плитки» ── -->
+    <div class="mock">
+      <h3>2. «Плитки» <span class="badge-tag tag-plus">концепт</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph glyph-tilt rise d1"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Выбери свой темп</h4>
+          <div class="tiles">
+            <div class="tile pop d3">
+              <div class="t-radio"></div>
+              <div class="t-name">Мес</div>
+              <div class="t-price">€5,99</div>
+              <div class="t-day">€0,20 в день</div>
+            </div>
+            <div class="tile sel pop d4">
+              <span class="save">−51%</span>
+              <div class="t-radio"><svg width="11" height="11"><use href="#i-check"/></svg></div>
+              <div class="t-name">Год</div>
+              <div class="t-price">€34,99</div>
+              <div class="t-day">€0,10 в день</div>
+            </div>
+            <div class="tile pop d5">
+              <div class="t-radio"></div>
+              <div class="t-name">Pro</div>
+              <div class="t-price">€99</div>
+              <div class="t-day">разово,<br>навсегда</div>
+            </div>
+          </div>
+          <div class="swipe-hint rise d6">листай и сравнивай →</div>
+          <div class="rise d7"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d7">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust rise d8"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d8"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d8">Продолжить бесплатно</div>
+          <div class="legal">Подписка с автопродлением: €34,99/год через Google Play. Отмена: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <div class="ccap">
+        <div class="row"><b>Идея:</b> три равноправные квадратные плитки в ряд (snap-скролл), выбранная крупнее и светится; под каждой — честная цена в день. Сравнение «бок о бок» вместо колонны.</div>
+        <div class="row"><b>База:</b> choice overload — Iyengar &amp; Lepper 2000 (JPSP 79(6):995): 24 вкуса джема → 3% покупок против 6 вкусов → 30%; мета-анализ Patall, Cooper et al.: оптимум 2–4 опции; простота side-by-side сравнения (Ariely 2008).</div>
+        <div class="row"><b>Эффект:</b> выбор без скролла за секунды; цена/день делает год «очевидно дешёвым» без агрессивных бейджей.</div>
+        <div class="row"><b>Риск:</b> три равные опции размывают дефолт yearly; на маленькой плитке негде аргументировать цену и разместить триал-инфо.</div>
+      </div>
+    </div>
+
+    <!-- ── Концепт 3. «Один план» ── -->
+    <div class="mock">
+      <h3>3. «Один план» <span class="badge-tag tag-plus">концепт</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="hero-big breathe rise d1"><svg width="46" height="46"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Весь Phraseman.<br>Одна цена.</h4>
+          <div class="big-price rise d3">
+            <b>€34,99</b>
+            <span>в год · €0,10 в день · первые 3 дня бесплатно</span>
+          </div>
+          <div class="rise d4"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d4">затем €34,99/год · отмена в любой момент</div>
+          <div class="alt-link rise d5">Другие варианты: месяц €5,99 · Pro €99 разово</div>
+          <div class="trust rise d6"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d6"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d6">Продолжить бесплатно</div>
+          <div class="legal">Подписка с автопродлением: €34,99/год через Google Play. Отмена: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <div class="ccap">
+        <div class="row"><b>Идея:</b> Calm-style: выбора нет вообще. Большой герой, одна цена, одна кнопка. Месяц и Pro спрятаны за текстовую ссылку «Другие варианты».</div>
+        <div class="row"><b>База:</b> choice overload (Iyengar &amp; Lepper 2000; Sethi-Iyengar, Huberman &amp; Jiang 2004: каждые +10 опций в 401k ≈ −1,5–2 п.п. участия); разборы Calm с единственным планом.</div>
+        <div class="row"><b>Эффект:</b> кратчайший путь к CTA и ноль паралича выбора — ставка на рост trial start и скорость принятия решения.</div>
+        <div class="row"><b>Риск:</b> без месячного якоря €34,99 выглядит «голой» ценой — возможны падение ARPU и потеря апсейла Pro; нельзя ретаргетить негодовых.</div>
+      </div>
+    </div>
+
+    <!-- ── Концепт 4. «Free vs Plus» ── -->
+    <div class="mock">
+      <h3>4. «Free vs Plus» <span class="badge-tag tag-plus">концепт</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <h4 class="title rise d1" style="margin-top:10px">Что откроется с Plus</h4>
+          <div class="fv rise d2">
+            <div class="fv-head"><span class="fv-name">&nbsp;</span><span class="fv-cell">Free</span><span class="fv-cell">Plus</span></div>
+            <div class="fv-row"><span class="fv-name">Уроки</span><span class="fv-cell">1–3 в день</span><span class="fv-cell fv-yes"><svg class="pop d2"><use href="#i-check"/></svg> все</span></div>
+            <div class="fv-row"><span class="fv-name">Энергия</span><span class="fv-cell">+1 / 10 мин</span><span class="fv-cell fv-yes"><svg class="pop d3"><use href="#i-check"/></svg> безлимит</span></div>
+            <div class="fv-row"><span class="fv-name">Диалоги с AI</span><span class="fv-cell fv-no"><svg><use href="#i-close"/></svg></span><span class="fv-cell fv-yes"><svg class="pop d4"><use href="#i-check"/></svg></span></div>
+            <div class="fv-row"><span class="fv-name">Разборы ошибок</span><span class="fv-cell">лимит в день</span><span class="fv-cell fv-yes"><svg class="pop d5"><use href="#i-check"/></svg> безлимит</span></div>
+            <div class="fv-row"><span class="fv-name">Устный ввод</span><span class="fv-cell fv-no"><svg><use href="#i-close"/></svg></span><span class="fv-cell fv-yes"><svg class="pop d6"><use href="#i-check"/></svg></span></div>
+            <div class="fv-row"><span class="fv-name">Статистика</span><span class="fv-cell">базовая</span><span class="fv-cell fv-yes"><svg class="pop d7"><use href="#i-check"/></svg> полная</span></div>
+            <div class="fv-row"><span class="fv-name">Темы и аура</span><span class="fv-cell fv-no"><svg><use href="#i-close"/></svg></span><span class="fv-cell fv-yes"><svg class="pop d8"><use href="#i-check"/></svg></span></div>
+          </div>
+          <div class="plans rise d4">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan" style="padding:11px 17px">
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62);font-size:15px"><span class="radio" style="width:20px;height:20px"></span>Месяц</div><span style="font-size:15px;font-weight:800;color:rgba(255,255,255,.75)">€5,99</span></div>
+            </div>
+          </div>
+          <div class="rise d6"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d6">затем €34,99/год · отмена в любой момент</div>
+          <div class="links rise d7"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d7">Продолжить бесплатно</div>
+          <div class="legal">Подписка с автопродлением: €34,99/год через Google Play. Отмена: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <div class="ccap">
+        <div class="row"><b>Идея:</b> таблица сравнения в стиле Duolingo Super: сначала ценность (7 строк ✓/✗), планы — под таблицей. Пользователь сам делает вывод «Plus — это много всего».</div>
+        <div class="row"><b>База:</b> простота сравнения (Ariely 2008 — лёгкие сравнения доминируют в выборе); teardown Duolingo Try Super (60fps.design); для feature-rich продукта ясность &gt; убеждение.</div>
+        <div class="row"><b>Эффект:</b> меньше недоверия к «пустым» обещаниям, выше обоснованность покупки; сильный ответ на «а что я получу?».</div>
+        <div class="row"><b>Риск:</b> колонка ✗ может читаться как «нам всё запрещают» (реактанс) — формулировки Free-столбца должны быть нейтральными, не карающими.</div>
+      </div>
+    </div>
+
+    <!-- ── Концепт 5. «Честный триал» ── -->
+    <div class="mock">
+      <h3>5. «Честный триал» <span class="badge-tag tag-plus">концепт</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <h4 class="title rise d1" style="margin-top:10px">3 дня — всё открыто</h4>
+          <div class="tl-hero rise d2">
+            <div class="tl-ribbon"><svg width="15" height="15"><use href="#i-gift"/></svg>3 дня бесплатно, потом €34,99/год</div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot lit"><svg><use href="#i-lock-open"/></svg></div><div class="tl-line draw d3"></div></div>
+              <div class="tl-body"><b>Сегодня — полный доступ</b><span>Все уроки и безлимит. Деньги не спишутся.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-bell"/></svg></div><div class="tl-line draw d4"></div></div>
+              <div class="tl-body"><b>День 2 — напомним</b><span>Пуш за день до конца — забыть невозможно.</span></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-rail"><div class="tl-dot"><svg><use href="#i-card"/></svg></div></div>
+              <div class="tl-body"><b>День 3 — спишется, только если не отменишь</b><span>Отменишь за день до конца — €34,99/год не спишется. Отмена — в два тапа.</span></div>
+            </div>
+          </div>
+          <div class="trust-big rise d5"><svg width="22" height="22"><use href="#i-shield"/></svg><span>Платить сейчас не нужно. Отмени за день до конца — и деньги не спишутся. Никаких сюрпризов.</span></div>
+          <div class="plans rise d6">
+            <div class="plan sel">
+              <div class="hl"></div>
+              <div class="plan-head">
+                <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                <span class="save">−51%</span>
+              </div>
+              <div class="price-row"><span class="price">€34,99</span></div>
+              <div class="sub">€2,92 / мес · €0,10 в день</div>
+            </div>
+            <div class="plan" style="padding:11px 17px">
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62);font-size:15px"><span class="radio" style="width:20px;height:20px"></span>Месяц</div><span style="font-size:15px;font-weight:800;color:rgba(255,255,255,.75)">€5,99</span></div>
+            </div>
+          </div>
+          <div class="rise d7"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d7">затем €34,99/год · отмена в любой момент</div>
+          <div class="links rise d8"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d8">Продолжить бесплатно</div>
+          <div class="legal">Подписка с автопродлением: €34,99/год через Google Play. Отмена: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <div class="ccap">
+        <div class="row"><b>Идея:</b> таймлайн триала — герой первого экрана (Blinkist-паттерн): «сегодня → напомним → списание» читается до цен. Планы вторичны, trust-блок крупный.</div>
+        <div class="row"><b>База:</b> кейс Blinkist × Purchasely (данные вендора): +23% стартов триала, −55% жалоб, push opt-in 6%→74%; снижение реактанса через радикальную прозрачность.</div>
+        <div class="row"><b>Эффект:</b> снимается страх №1 «забуду отменить» — растут старты триала и доля спокойных, а не «случайных» подписчиков.</div>
+        <div class="row"><b>Риск:</b> акцент на отмене может снизить долю прямых оплат; обещание «напомним» обязано реально работать, иначе это ложь и риск реджекта.</div>
+      </div>
+    </div>
+
+    <!-- ── Концепт 6. «Якорь и приманка» ── -->
+    <div class="mock">
+      <h3>6. «Якорь и приманка» <span class="badge-tag tag-plus">концепт</span></h3>
+      <div class="phone imp play"><div class="screen"><div class="notch"></div>
+        <div class="aur"><i class="a1"></i><i class="a2"></i></div>
+        <div class="viewport"><div class="pw">
+          <div class="close rise"><svg class="ic"><use href="#i-close"/></svg></div>
+          <div class="glyph glyph-tilt rise d1"><svg width="32" height="32"><use href="#i-diamond"/></svg></div>
+          <h4 class="title rise d2">Учись быстрее с Plus</h4>
+          <div class="plans rise d3">
+            <div class="plan">
+              <div class="hl" style="background:rgba(88,204,137,.18)"></div>
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>Месяц</div></div>
+              <div class="price-row"><span class="price">€5,99</span><span class="per">/ мес</span></div>
+            </div>
+            <div class="plan decoy">
+              <div class="plan-head"><div class="plan-name" style="color:rgba(255,255,255,.62)"><span class="radio"></span>6 месяцев</div></div>
+              <div class="price-row"><span class="price">€29,99</span></div>
+              <div class="sub">€5,00 / мес</div>
+            </div>
+            <div class="plan-wrap">
+              <span class="flag">Лучший выбор</span>
+              <div class="plan sel" style="padding:19px 17px">
+                <div class="hl"></div>
+                <div class="plan-head">
+                  <div class="plan-name"><span class="radio"><svg width="14" height="14"><use href="#i-check"/></svg></span>Год</div>
+                  <span class="save">−51%</span>
+                </div>
+                <div class="price-row"><span class="price" style="font-size:27px">€34,99</span></div>
+                <div class="sub">€2,92 / мес · €0,10 в день</div>
+              </div>
+            </div>
+            <div class="decoy-note rise d4">Год — всего на €5 дороже полугода</div>
+          </div>
+          <div class="rise d5"><div class="cta">Попробовать 3 дн. бесплатно</div></div>
+          <div class="cta-sub rise d5">затем €34,99/год · отмена в любой момент</div>
+          <div class="trust rise d6"><svg class="ic" width="14" height="14"><use href="#i-shield"/></svg><span>Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.</span></div>
+          <div class="links rise d6"><span>Восстановить</span><span>·</span><span>Условия</span><span>·</span><span>Конфиденциальность</span></div>
+          <div class="ghost rise d6">Продолжить бесплатно</div>
+          <div class="legal">Подписка с автопродлением: €34,99/год через Google Play. Отмена: Google Play → Подписки.</div>
+        </div></div>
+      </div></div>
+      <button class="replay" type="button" data-replay>▶ Проиграть анимацию</button>
+      <div class="ccap">
+        <div class="row"><b>Идея:</b> три плана, где заведомо невыгодный «6 месяцев за €29,99» делает год очевидным победителем: всего +€5 за вдвое больший срок. Годовая карточка визуально доминирует с флагом «Лучший выбор».</div>
+        <div class="row"><b>База:</b> decoy / attraction effect (Huber, Payne &amp; Puto 1982); эксперимент Ariely с подпиской The Economist (2008): target-опцию выбрали 84% против 32% без приманки, выручка $8&nbsp;012→$11&nbsp;444; left-digit effect (Thomas &amp; Morwitz 2005) в подаче цен.</div>
+        <div class="row"><b>Эффект:</b> смещение выбора в yearly без скидок и давления — рост ARPU и доли годовых.</div>
+        <div class="row"><b>Риск:</b> при близком рассмотрении выглядит манипуляцией; план-приманку надо реально завести в сторе (кто-то его купит); лишняя опция удлиняет выбор.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ F. БАЗА ИССЛЕДОВАНИЙ ════════════════════ -->
+<section id="research">
+  <h2>F. База исследований</h2>
+  <p class="sec-desc">На чём стоят текущие экраны и концепты. Два уровня доказательности: рецензируемые работы и вендорские агрегаты/кейсы (помечены — это маркетинговые данные платформ, доверять с поправкой).</p>
+  <div class="refs">
+    <h4>Академические источники</h4>
+    <p class="h-note">Рецензируемые журналы и книги — высокий уровень доверия.</p>
+    <div class="ref"><span class="rt rt-aca">study</span><span><b>Iyengar &amp; Lepper 2000</b>, JPSP 79(6):995 — «When choice is demotivating»: джем-эксперимент, 24 опции → 3% покупок против 6 опций → 30%.</span></div>
+    <div class="ref"><span class="rt rt-aca">study</span><span><b>Sethi-Iyengar, Huberman &amp; Jiang 2004</b> — пенсионные планы 401k: каждые +10 фондов ≈ −1,5–2 п.п. участия.</span></div>
+    <div class="ref"><span class="rt rt-aca">study</span><span><b>Huber, Payne &amp; Puto 1982</b> — asymmetric dominance (decoy effect): доминированная приманка смещает выбор к целевой опции.</span></div>
+    <div class="ref"><span class="rt rt-aca">book</span><span><b>Ariely 2008 «Predictably Irrational»</b> — эксперимент с The Economist: без приманки target выбирают 32%, с приманкой 84%; выручка $8&nbsp;012 → $11&nbsp;444.</span></div>
+    <div class="ref"><span class="rt rt-aca">study</span><span><b>Tversky &amp; Kahneman 1974</b> (якорение) и <b>1981</b> (фрейминг) — дефолты и якоря управляют выбором сильнее аргументов.</span></div>
+    <div class="ref"><span class="rt rt-aca">study</span><span><b>Thomas &amp; Morwitz 2005</b>, Journal of Consumer Research — left-digit effect: €2,92/мес ощущается заметно дешевле €3,00.</span></div>
+    <div class="ref"><span class="rt rt-aca">book</span><span><b>Cialdini, «Influence»</b> — social proof: рейтинг и отзывы как доказательство «уже выбрали другие».</span></div>
+    <div class="ref"><span class="rt rt-aca">meta</span><span><b>Patall, Cooper et al.</b> (мета-анализ выбора) — оптимум 2–4 опции: больше — паралич, меньше — нет ощущения контроля.</span></div>
+    <h4>Вендорские агрегаты и кейсы</h4>
+    <p class="h-note">Данные платформ подписок — направление полезно, цифры проверять своими A/B-тестами.</p>
+    <div class="ref"><span class="rt rt-ven">vendor</span><span><b>Adapty 2026</b> — анимированный пейвол в среднем ≈ ×2.9 к статичному; тесты структуры экрана бьют тесты копирайта ~2:1.</span></div>
+    <div class="ref"><span class="rt rt-ven">vendor</span><span><b>Superwall</b> — серия кейсов: 3 продукта против 1: +61% / +44%; выборка 32M показов пейволов.</span></div>
+    <div class="ref"><span class="rt rt-ven">vendor</span><span><b>Blinkist × Purchasely</b> — кейс trial-таймлайна: +23% стартов триала, −55% жалоб, push opt-in 6%→74%.</span></div>
+    <div class="ref"><span class="rt rt-ven">vendor</span><span><b>RevenueCat, State of Subscriptions</b> — install→trial 10.9%, trial→paid 25.6%; 7-дневный триал как сбалансированный дефолт индустрии.</span></div>
+    <div class="ref"><span class="rt rt-ven">vendor</span><span><b>60fps.design</b> — teardown Duolingo Try Super: липкий CTA, idle-анимация маскота, таблица Free/Super.</span></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div>Артефакт дизайн-аудита Phraseman. Мокапы восстановлены по коду (см. README.md рядом с этим файлом): структура, порядок блоков, RU-копирайт и цвета тёмной темы — из <b>components/paywallThemeConfig.ts</b> и компонентов <b>components/paywall/*</b>.</div>
+  <div>Цены €34,99/год, €5,99/мес, €99 Pro, таймер 76:00:00, рейтинг 4,8 и тексты отзывов — плейсхолдеры из DEV-режима, в проде подставляются из стора и remote-конфига. Файл автономен: без сети, шрифтов и картинок.</div>
+</footer>
+</div>
+<script>
+/* Replay: one-shot анимации заведены под класс .play на .phone.imp.
+   Рестарт: снять .play → форсировать reflow → вернуть .play.
+   Бесконечные циклы (shine/float/glow/marquee) от .play не зависят и не перезапускаются.
+   На загрузке .play уже стоит в разметке — входные анимации играют сами, один раз. */
+(function () {
+  function bindReplay() {
+    document.querySelectorAll('[data-replay]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var mock = btn.closest('.mock');
+        var phone = mock && mock.querySelector('.phone.imp');
+        if (!phone) return;
+        phone.classList.remove('play');
+        void phone.offsetWidth; /* force reflow — сбросить текущий прогресс keyframes */
+        phone.classList.add('play');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindReplay);
+  } else {
+    bindReplay();
+  }
+})();
+</script>
+</body>
+</html>

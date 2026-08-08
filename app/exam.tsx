@@ -1,10 +1,13 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
+import { soundDirector } from '../modules/audio/sound_director';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -425,6 +428,8 @@ function FrenchLingmanExamUnavailable({
 
 export default function ExamScreen() {
   const router = useRouter();
+  const runtimeActive = useRuntimeActive();
+  const { playTimerExpired } = useTimerTickCue();
   const {theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const {lang} = useLang();
@@ -458,7 +463,7 @@ export default function ExamScreen() {
   // уносил с экрана — часовая попытка терялась без единого вопроса.
   // Теперь во время quiz/review/countdown back требует подтверждения.
   useEffect(() => {
-    if (Platform.OS !== 'android') return;
+    if (!runtimeActive || Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       const p = phaseBackRef.current;
       if (p !== 'quiz' && p !== 'review' && p !== 'countdown') return false;
@@ -487,7 +492,7 @@ export default function ExamScreen() {
     });
     return () => sub.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- t3/router стабильны в рамках экрана
-  }, []);
+  }, [runtimeActive]);
 
   const [lessonsCompleted, setCompleted] = useState(0);
   const [certificate, setCertificate] = useState<LingmanCertificate | null>(null);
@@ -528,6 +533,9 @@ export default function ExamScreen() {
   const [countdownNum, setCountdownNum] = useState(3);
   const timerRef = useRef<ReturnType<typeof setInterval>|null>(null);
   const countdownTimerRef = useRef<ReturnType<typeof setTimeout>|null>(null);
+  const examDeadlineRef = useRef<number | null>(null);
+  const countdownRemainingMsRef = useRef(3 * 650);
+  const countdownDeadlineRef = useRef(0);
   const examAttemptIdRef = useRef<string>(makeExamAttemptId());
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
@@ -589,18 +597,30 @@ export default function ExamScreen() {
   },[frenchExamBlocked, studyTarget]);
 
   useEffect(()=>{
-    if(phase!=='quiz'){
+    if (phase !== 'quiz' && phase !== 'review') {
       if(timerRef.current) clearInterval(timerRef.current);
       return;
     }
-    timerRef.current = setInterval(()=>{
-      setTotalTimeLeft(p=>{
-        if(p<=1){ clearInterval(timerRef.current!); setPhase('review'); return 0; }
-        return p-1;
-      });
-    },1000);
+    if (!examDeadlineRef.current) {
+      examDeadlineRef.current = Date.now() + totalTimeLeft * 1000;
+    }
+    if (!runtimeActive) return;
+    const update = () => {
+      if (!examDeadlineRef.current) return;
+      const next = Math.max(0, Math.ceil((examDeadlineRef.current - Date.now()) / 1000));
+      setTotalTimeLeft(next);
+      if (next === 0 && phase === 'quiz') {
+        // зачем: экзамен сам уходит в разбор — без звука это выглядело как
+        // самопроизвольный переход. Предупреждающий тик здесь НЕ ставим:
+        // тут таймер на весь экзамен (минуты), а не на задание.
+        playTimerExpired();
+        setPhase('review');
+      }
+    };
+    update();
+    timerRef.current = setInterval(update,1000);
     return ()=>{ if(timerRef.current) clearInterval(timerRef.current); };
-  },[phase]);
+  },[phase, runtimeActive, playTimerExpired]);
 
   useEffect(() => {
     if (phase !== 'countdown') {
@@ -610,29 +630,35 @@ export default function ExamScreen() {
       }
       return;
     }
-    setCountdownNum(3);
-    let current = 3;
+    if (!runtimeActive) return;
+    countdownDeadlineRef.current = Date.now() + countdownRemainingMsRef.current;
     const tick = () => {
-      if (current <= 1) {
+      const remainingMs = Math.max(0, countdownDeadlineRef.current - Date.now());
+      countdownRemainingMsRef.current = remainingMs;
+      if (remainingMs <= 0) {
         setPhase('quiz');
+        // зачем: собранный «вдох» на старте первого вопроса — сигнализирует
+        // «началось важное» без давления, один раз на попытку.
+        soundDirector.request('pm.exam.begin', { scope: 'exam' });
         countdownTimerRef.current = null;
         return;
       }
-      current -= 1;
-      setCountdownNum(current);
-      countdownTimerRef.current = setTimeout(tick, 650);
+      setCountdownNum(Math.max(1, Math.ceil(remainingMs / 650)));
+      const untilNextStep = remainingMs % 650 || 650;
+      countdownTimerRef.current = setTimeout(tick, untilNextStep);
     };
-    countdownTimerRef.current = setTimeout(tick, 650);
+    tick();
     return () => {
+      countdownRemainingMsRef.current = Math.max(0, countdownDeadlineRef.current - Date.now());
       if (countdownTimerRef.current) {
         clearTimeout(countdownTimerRef.current);
         countdownTimerRef.current = null;
       }
     };
-  }, [phase]);
+  }, [phase, runtimeActive]);
 
   useEffect(() => {
-    if (phase !== 'countdown') return;
+    if (phase !== 'countdown' || !runtimeActive) return;
     countdownAnim.setValue(0.9);
     Animated.spring(countdownAnim, {
       toValue: 1,
@@ -640,7 +666,8 @@ export default function ExamScreen() {
       friction: 7,
       tension: 140,
     }).start();
-  }, [countdownNum, phase, countdownAnim]);
+    return () => countdownAnim.stopAnimation();
+  }, [countdownNum, phase, countdownAnim, runtimeActive]);
 
   const { flashKey, flash } = useWordFlash();
 
@@ -703,6 +730,8 @@ export default function ExamScreen() {
       setChoices(Array(questions.length).fill(null));
       setFlagged(Array(questions.length).fill(false));
       setTotalTimeLeft(TOTAL_EXAM_SECONDS);
+      examDeadlineRef.current = Date.now() + TOTAL_EXAM_SECONDS * 1000;
+      countdownRemainingMsRef.current = 3 * 650;
       setPhase('countdown');
     } finally {
       // Сбрасываем не сразу — даём React закоммитить переход фазы; при failure
@@ -849,7 +878,7 @@ export default function ExamScreen() {
     <FrenchLingmanExamUnavailable
       lang={lang}
       onBack={() => safeRouterBack(router)}
-      onLessons={() => router.replace('/(tabs)/lessons' as any)}
+      onLessons={() => router.replace('/lessons_list' as any)}
       sx={sx}
       t={t}
       f={f}
@@ -899,7 +928,7 @@ export default function ExamScreen() {
             {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'de 32 lecciones completadas', 'de 32 lições concluídas', 'trong 32 bài học đã hoàn thành', 'dari 32 pelajaran selesai', '/ 32 ders tamamlandı', 'z 32 lekcji ukończono')}
           </Text>
         </View>
-        <TouchableOpacity activeOpacity={0.75} style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/lessons' as any)}>
+        <TouchableOpacity activeOpacity={0.75} style={{marginTop:24}} onPress={()=>router.replace('/lessons_list' as any)}>
           <Text style={{color:sx.second,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
             {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →', 'Ir para as lições →', 'Đi tới bài học →', 'Ke pelajaran →', 'Derslere git →', 'Przejdź do lekcji →')}
           </Text>
@@ -924,7 +953,7 @@ export default function ExamScreen() {
           {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
         </Text>
       </View>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:20}}>
         {certificate && (
           <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:0,borderColor:'#d4a017',marginBottom:16}}>
             <Ionicons name="information-circle" size={18} color={monoIcon(themeMode, '#FFD700')}/>
@@ -1103,7 +1132,7 @@ export default function ExamScreen() {
         </View>
       </View>
 
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{paddingBottom:120}}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{paddingBottom:120}}>
         {questions.map((qItem, i) => {
           const isAnswered = choices[i] !== null;
           const isFlaggedItem = flagged[i];
@@ -1230,7 +1259,7 @@ export default function ExamScreen() {
           />
         </View>
       )}
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:24,alignItems:'center'}}>
         <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
@@ -1438,7 +1467,7 @@ export default function ExamScreen() {
           {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2', 'Meu diploma B2', 'Phần thưởng B2 của tôi', 'Diploma B2 saya', 'B2 diplomam', 'Mój dyplom B2')}
         </Text>
       </View>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:20,alignItems:'center'}}>
         <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:8}}>
           <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
           <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
@@ -1636,7 +1665,7 @@ export default function ExamScreen() {
       />
 
       <BouncyScrollView
-        decelerationRate="normal"
+        decelerationRate="fast"
         contentContainerStyle={{paddingHorizontal:20,paddingTop:16,paddingBottom:160}}
         keyboardShouldPersistTaps="handled"
       >

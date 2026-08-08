@@ -200,8 +200,10 @@ describe('heisenberg translation factory CLI (dry run)', () => {
     expect(plan.schema).toBe('heisenberg-translation-run-plan-v1');
     expect(plan.status).toBe('DRY_RUN');
     expect(plan.summary.rowsInScope).toBe(1); // only the pl row
-    expect(plan.summary.callsPlanned).toBe(3);
-    expect(plan.summary.estimatedCostUsd).toBeGreaterThan(0);
+    expect(plan.summary.callsPlanned).toBe(0);
+    expect(plan.summary.estimatedCostUsd).toBe(0);
+    expect(plan.summary.executionAvailable).toBe(false);
+    expect(plan.nextStep).toContain('heisenberg_claude_translation_packets.mjs');
     fs.rmSync(dir, { recursive: true, force: true });
   });
 

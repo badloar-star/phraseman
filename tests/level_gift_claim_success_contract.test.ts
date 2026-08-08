@@ -4,9 +4,56 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 
 const readSource = (relativePath: string): string =>
-  fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('level gift claim success contract', () => {
+  it('pins every modal inventory mutation to the immutable token captured for that opening', () => {
+    const single = readSource(path.join('components', 'LevelGiftModal.tsx'));
+    const dual = readSource(path.join('components', 'LevelGiftDualModal.tsx'));
+    const inventoryScreen = readSource(path.join('app', 'level_gifts_inventory.tsx'));
+    const giftSystem = readSource(path.join('app', 'level_gift_system.ts'));
+    const openingGuard = readSource(path.join('app', 'level_gift_opening_guard.ts'));
+
+    expect(single).toContain('captureAccountGeneration,');
+    expect(single).toContain('type AccountGenerationToken,');
+    expect(single).toContain('openingAccountTokenRef.current = captureAccountGeneration();');
+    expect(single).toContain('const accountToken = openingAccountTokenRef.current;');
+    expect(single).toContain('onGiftClaimed(g, accountToken)');
+    expect(single).toContain('markGiftClaimed(level, accountToken)');
+    expect(single).toContain('saveClaimedGiftRarity(level, g.rarity, accountToken)');
+    expect(single).toContain('saveUnclaimedGift(level, g, accountToken)');
+    expect(single).toContain('onGiftClaimed(chosen, accountToken)');
+    expect(single).toContain('markGiftClaimed(level, accountToken)');
+    expect(single).toContain('saveClaimedGiftRarity(level, chosen.rarity, accountToken)');
+    expect(single).toContain('saveUnclaimedGift(level, chosen, accountToken)');
+    expect(single.match(/studyTarget, accountToken/g)?.length).toBeGreaterThanOrEqual(2);
+    expect(single).not.toContain('if (!isVisibleRef.current)');
+    expect(single).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
+
+    expect(dual).toContain('captureAccountGeneration,');
+    expect(dual).toContain('type AccountGenerationToken,');
+    expect(dual).toContain('openingAccountTokenRef.current = captureAccountGeneration();');
+    expect(dual).toContain('const accountToken = openingAccountTokenRef.current;');
+    expect(dual).toContain('markDualGiftClaimed(level, accountToken)');
+    expect(dual).toContain('markGiftClaimed(level, accountToken)');
+    expect(dual).toContain('setLevelHadDualClaim(level, accountToken)');
+    expect(dual).toContain('saveClaimedGiftRarity(level, best, accountToken)');
+    expect(dual).toContain('saveRemainingGiftAfterPartialDualClaim(level, prem, accountToken)');
+    expect(dual).toContain('saveRemainingGiftAfterPartialDualClaim(level, f2p, accountToken)');
+    expect(dual).toContain('saveUnclaimedDualGift(level, { f2p, prem }, accountToken)');
+    expect(dual.match(/studyTarget, accountToken/g)?.length).toBeGreaterThanOrEqual(2);
+    expect(dual).toContain('studyTarget,\n          accountToken,');
+    expect(dual).not.toContain('if (!wasVisibleRef.current)');
+    expect(dual).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
+    expect(inventoryScreen).toContain('(_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)');
+    expect(giftSystem).toContain('return withAccountTransitionLock(async () => {');
+    expect(giftSystem).toContain('if (!isCurrentAccountGeneration(accountToken)) return { success: false };');
+    expect(giftSystem).toContain('return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);');
+    expect(openingGuard).toContain('currentOpeningToken === handlerToken');
+    expect(single).toContain('isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken)');
+    expect(dual).toContain('isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken)');
+  });
+
   it('claims single gifts locally before applying reward effects', () => {
     const source = readSource(path.join('components', 'LevelGiftModal.tsx'));
     const tapApplyBlock = source.slice(
@@ -18,23 +65,25 @@ describe('level gift claim success contract', () => {
       source.indexOf('if (!visible || !gift) return null'),
     );
 
-    expect(tapApplyBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(g) : markGiftClaimed(level))');
+    expect(tapApplyBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken))');
     expect(tapApplyBlock.indexOf('await claimP;')).toBeLessThan(tapApplyBlock.indexOf('const result = await applyGift('));
     expect(tapApplyBlock).toContain('if (result.success) {');
-    expect(tapApplyBlock).toMatch(/}\s*else if \(!onGiftClaimed\) \{\s*await saveUnclaimedGift\(level, g\);/);
+    expect(tapApplyBlock).toContain('} else if (!onGiftClaimed) {\n            await saveUnclaimedGift(level, g, accountToken);');
 
-    expect(choiceBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(chosen) : markGiftClaimed(level))');
+    expect(choiceBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(chosen, accountToken) : markGiftClaimed(level, accountToken))');
     expect(choiceBlock.indexOf('await claimP;')).toBeLessThan(choiceBlock.indexOf('const setEnergyFn = async'));
     expect(choiceBlock.indexOf('const setEnergyFn = async')).toBeLessThan(choiceBlock.indexOf('const result = await applyGift('));
     expect(choiceBlock).toContain('if (result.success) {');
-    expect(choiceBlock).toMatch(/}\s*else if \(!onGiftClaimed\) \{\s*await saveUnclaimedGift\(level, chosen\);/);
+    expect(choiceBlock).toContain('} else if (!onGiftClaimed) {\n          await saveUnclaimedGift(level, chosen, accountToken);');
   });
 
   it('closes dual gifts immediately and persists reward effects in the background', () => {
     const source = readSource(path.join('components', 'LevelGiftDualModal.tsx'));
     const outcomeBlock = source.slice(
       source.indexOf('const persistDualGiftOutcome = async'),
-      source.indexOf('const runOpenAnim ='),
+      // Граница — следующая функция (handleCloseMidWith): путь «закрыть в середине»
+      // легально использует isCurrentOpening, а persistDualGiftOutcome — нет.
+      source.indexOf('const handleCloseMidWith'),
     );
     const handleDoneBlock = source.slice(
       source.indexOf('const handleDone = async'),
@@ -45,20 +94,29 @@ describe('level gift claim success contract', () => {
       source.indexOf('if (!visible || !f2pGift || !premGift) return null'),
     );
 
-    expect(outcomeBlock).toContain('await markDualGiftClaimed(level);');
-    expect(outcomeBlock).toContain('await saveUnclaimedGift(level, prem);');
-    expect(outcomeBlock).toContain('await saveUnclaimedGift(level, f2p);');
-    expect(outcomeBlock).toContain('await saveUnclaimedDualGift(level, { f2p, prem });');
+    expect(outcomeBlock).toContain('await markDualGiftClaimed(level, accountToken);');
+    expect(outcomeBlock).toContain('await saveRemainingGiftAfterPartialDualClaim(level, prem, accountToken);');
+    expect(outcomeBlock).toContain('await saveRemainingGiftAfterPartialDualClaim(level, f2p, accountToken);');
+    expect(outcomeBlock).not.toContain('await saveUnclaimedGift(level, prem);');
+    expect(outcomeBlock).not.toContain('await saveUnclaimedGift(level, f2p);');
+    expect(outcomeBlock).toContain('await saveUnclaimedDualGift(level, { f2p, prem }, accountToken);');
+    expect(outcomeBlock).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
+    expect(outcomeBlock).not.toContain('isCurrentOpening(accountToken)');
 
     expect(handleDoneBlock).toContain('onClose(true);');
     expect(handleDoneBlock).toContain('void (async () => {');
     expect(handleDoneBlock).toContain('f2pApplyPromiseRef.current ?? Promise.resolve(f2pAppliedMeta)');
     expect(handleDoneBlock).toContain('premApplyPromiseRef.current ?? Promise.resolve(premAppliedMeta)');
-    expect(handleDoneBlock).toContain('await persistDualGiftOutcome(f2p, prem, f2pResult, premResult);');
+    expect(handleDoneBlock).toContain('await persistDualGiftOutcome(f2p, prem, f2pResult, premResult, accountToken);');
+    expect(handleDoneBlock).toContain('if (isCurrentOpening(accountToken)) {');
+    expect(handleDoneBlock.indexOf('if (isCurrentOpening(accountToken)) {')).toBeLessThan(
+      handleDoneBlock.indexOf('await persistDualGiftOutcome('),
+    );
 
     expect(handleUseNowBlock).toContain('onClose(true);');
     expect(handleUseNowBlock).toContain('void (async () => {');
-    expect(handleUseNowBlock).toContain('await persistDualGiftOutcome(f2p, prem, f2pResult, premResult);');
+    expect(handleUseNowBlock).toContain('await persistDualGiftOutcome(f2p, prem, f2pResult, premResult, accountToken);');
+    expect(handleUseNowBlock).toContain('if (isCurrentOpening(accountToken)) {');
     expect(handleUseNowBlock).not.toContain('await markDualGiftClaimed(level);');
     expect(handleUseNowBlock).not.toContain('await markGiftClaimed(level);');
   });

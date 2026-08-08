@@ -271,6 +271,56 @@ function buildPromoCodeWritePatch(params: {
   return patch;
 }
 
+/** Fail-closed deletion plan; gift-backed codes must use the certificate callable. */
+export function buildPromoCodeDeletePlan(params: {
+  code: string;
+  expectedUpdatedAtMs: unknown;
+  promo: FirebaseFirestore.DocumentData;
+  giftCertificateExists: boolean;
+  nowMs: number;
+  actorUid: string;
+  actorEmail: string;
+  reason: unknown;
+}): { code: string; auditDoc: Record<string, unknown> } {
+  const code = normalizePromoCode(params.code);
+  if (!CODE_RE.test(code)) throw new HttpsError('invalid-argument', 'bad_code');
+  const currentUpdatedAtMs = Number(params.promo.updatedAtMs ?? params.promo.createdAtMs ?? 0);
+  if (!Number.isSafeInteger(currentUpdatedAtMs)
+    || Number(params.expectedUpdatedAtMs) !== currentUpdatedAtMs) {
+    throw new HttpsError('aborted', 'promo_code_delete_conflict');
+  }
+  const giftBacked = params.giftCertificateExists
+    || Boolean(String(params.promo.certificateId ?? '').trim())
+    || Boolean(String(params.promo.certificateBatchId ?? '').trim())
+    || Boolean(String(params.promo.certificateProduct ?? '').trim());
+  if (giftBacked) {
+    throw new HttpsError('failed-precondition', 'gift_backed_promo_delete_forbidden');
+  }
+  const checkoutBacked = String(params.promo.createdBy ?? '').trim() === 'web_checkout'
+    || /^web_checkout\s+/.test(String(params.promo.note ?? '').trim());
+  if (checkoutBacked) {
+    throw new HttpsError('failed-precondition', 'paid_checkout_promo_delete_forbidden');
+  }
+  return {
+    code,
+    auditDoc: {
+      action: 'promo_code_delete',
+      targetUid: code,
+      reason: readAdminReason(params.reason),
+      details: {
+        enabled: params.promo.enabled === true,
+        maxRedemptions: Math.max(0, readInt(params.promo.maxRedemptions, 0)),
+        rewardDays: Math.max(0, readInt(params.promo.rewardDays, 0)),
+        rewardKind: readRewardKind(params.promo.rewardKind),
+        usedCount: Math.max(0, readInt(params.promo.usedCount, 0)),
+      },
+      adminEmail: String(params.actorEmail ?? '').trim().slice(0, 200),
+      adminUid: String(params.actorUid ?? '').trim().slice(0, 128),
+      ts: new Date(params.nowMs).toISOString(),
+    },
+  };
+}
+
 function sanitizeGeneratedPrefix(raw: unknown): string {
   const prefix = normalizePromoCode(raw)
     .replace(/[^A-Z0-9_-]/g, '')
@@ -415,6 +465,43 @@ export const promoCodeBatchUpsert = onCall({ region: REGION, enforceAppCheck: EN
   });
 
   return { ok: true, codes, rewardDays: payload.rewardDays, rewardKind: payload.rewardKind };
+});
+
+/** Deletes an ordinary promo code; gift-backed codes cannot bypass certificate deletion. */
+export const promoCodeDelete = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+  assertAdminPermission(request, 'money.manual_access.write');
+  const code = normalizePromoCode(request.data?.code);
+  if (!CODE_RE.test(code)) throw new HttpsError('invalid-argument', 'bad_code');
+
+  const db = admin.firestore();
+  const codeRef = db.collection(PROMO_CODES).doc(code);
+  const certificateRef = db.collection('gift_certificate_deliveries').doc(code);
+  const auditRef = db.collection('admin_log').doc();
+  const nowMs = Date.now();
+  const actorUid = String(request.auth?.uid ?? '');
+  const actorEmail = String(request.auth?.token?.email ?? '');
+
+  await db.runTransaction(async (tx) => {
+    const [codeSnapshot, certificateSnapshot] = await Promise.all([
+      tx.get(codeRef),
+      tx.get(certificateRef),
+    ]);
+    if (!codeSnapshot.exists) throw new HttpsError('not-found', 'promo_code_not_found');
+    const plan = buildPromoCodeDeletePlan({
+      code,
+      expectedUpdatedAtMs: request.data?.expectedUpdatedAtMs,
+      promo: codeSnapshot.data() ?? {},
+      giftCertificateExists: certificateSnapshot.exists,
+      nowMs,
+      actorUid,
+      actorEmail,
+      reason: request.data?.reason,
+    });
+    tx.delete(codeRef);
+    tx.create(auditRef, plan.auditDoc);
+  });
+
+  return { ok: true, code };
 });
 
 function promoDateMs(raw: unknown): number {

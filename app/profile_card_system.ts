@@ -21,6 +21,31 @@ export const PROFILE_CARD_MAX_LEVEL = 5;
 export const PROFILE_CARD_UPGRADE_COST = 200;
 
 export type ProfileCardLevel = 0 | 1 | 2 | 3 | 4 | 5;
+
+// Фаза 1 бонусов карточки (ТЗ 2026-07-19): постоянный XP-буст +2% для уровня II+.
+// Аддитивный вклад (cardM - 1) в общую формулу множителя в xp_manager; бонус
+// кумулятивен — любой уровень II…V даёт одни и те же ×1.02, с уровнем не растёт.
+// ВНИМАНИЕ: xp_manager НЕ импортирует этот модуль (цикл через shards_system/events)
+// — значение там продублировано литералом со ссылкой на эту константу.
+export const PROFILE_CARD_XP_BOOST = 1.02;
+
+/** XP-множитель бонуса карточки: уровень II+ → PROFILE_CARD_XP_BOOST, иначе 1. */
+export function profileCardXpMultiplier(level: ProfileCardLevel): number {
+  return level >= 2 ? PROFILE_CARD_XP_BOOST : 1;
+}
+
+// Фаза 2 бонусов карточки (ТЗ 2026-07-19): +5% осколков (×1.05) со всех
+// ЗАРАБОТАННЫХ начислений для уровня IV+ (кумулятивно IV…V, с уровнем не растёт).
+// Только заработок: траты, покупки за реальные деньги (RevenueCat) и серверные
+// компенсации/начисления бонус не получают. shards_system НЕ импортирует этот
+// модуль (анти-цикл, как и xp_manager) — значение там продублировано литералом
+// со ссылкой на эту константу.
+export const PROFILE_CARD_SHARD_BOOST = 1.05;
+
+/** Множитель осколков бонуса карточки: уровень IV+ → PROFILE_CARD_SHARD_BOOST, иначе 1. */
+export function profileCardShardMultiplier(level: ProfileCardLevel): number {
+  return level >= 4 ? PROFILE_CARD_SHARD_BOOST : 1;
+}
 // РЕШЕНИЕ 2026-07-05: линейка по luxury-ресёрчу — чистые «электрические» свечения на
 // почти чёрном (без золота/фиолета/камней). Рост редкости, вершина уходит в стелс-платину.
 // steel → teal → azure → crimson → platinum(holo).

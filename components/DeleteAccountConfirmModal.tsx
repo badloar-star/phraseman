@@ -9,18 +9,18 @@ import {
   Platform,
   ScrollView,
   Keyboard,
-  StyleSheet,
   type GestureResponderEvent,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
-import { deleteAccountAndWipe } from '../app/auth_provider';
+import { beginAccountDeletion } from '../app/auth_provider';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
+import { router } from 'expo-router';
 import { emitAppEvent } from '../app/events';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
+import { soundDirector } from '../modules/audio/sound_director';
 
 type Props = {
   visible: boolean;
@@ -33,32 +33,19 @@ type DeleteAccountCopy = {
   es: string;
 } & Record<PlannedInterfaceLang, string>;
 
-async function reloadAfterAccountDelete(): Promise<void> {
-  try {
-    const Updates = await import('expo-updates');
-    if (typeof Updates.reloadAsync === 'function') {
-      await Updates.reloadAsync();
-      return;
-    }
-  } catch {
-    // Fallback below covers dev clients where expo-updates reload is unavailable.
-  }
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { DevSettings } = require('react-native');
-    DevSettings?.reload?.();
-  } catch {
-    // If reload is unavailable, account_deleted still forces onboarding in-root.
-  }
-}
+/**
+ * Зазор на докрытие нативной модалки перед показом следующей (см. showInfoAlert).
+ * Нужен только на путях ОШИБКИ: там следом презентуется алерт, и два present
+ * подряд на iOS ломают стек презентаций.
+ */
+const ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360;
 
 /**
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
  */
 function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = false;
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,
@@ -83,8 +70,24 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
   const [deleting, setDeleting] = useState(false);
   const [footerWidth, setFooterWidth] = useState(0);
   const deleteInFlightRef = useRef(false);
+  // зачем: toLocaleUpperCase(String(lang)) бросал RangeError, когда lang не был
+  // валидным языковым тегом (undefined/null из контекста до гидрации, служебное
+  // значение). Исключение летело прямо из рендера модалки — экран настроек
+  // вставал намертво: шторку свернуть можно, а раздел уже мёртв, и ввод слова
+  // «УДАЛИТЬ» ни к чему не приводил. Локаль тут нужна только ради турецкого i,
+  // поэтому берём её best-effort и при любой ошибке падаем на обычный
+  // toUpperCase — сравнение подтверждения важнее локальных тонкостей регистра.
   const normalizeConfirm = useCallback(
-    (value: string) => value.trim().normalize('NFC').toLocaleUpperCase(String(lang)),
+    (value: string) => {
+      const base = value.trim().normalize('NFC');
+      try {
+        return typeof lang === 'string' && lang.length > 0
+          ? base.toLocaleUpperCase(lang)
+          : base.toUpperCase();
+      } catch {
+        return base.toUpperCase();
+      }
+    },
     [lang],
   );
   const deleteConfirmMatches = normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);
@@ -103,7 +106,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     }
   }, [visible]);
 
-  const showInfoAlert = useCallback(
+  const enqueueInfoAlert = useCallback(
     (title: string, message: string) => {
       void enqueueThemedBlockingInfoAlert(title || L({
         ru: 'Сообщение',
@@ -119,38 +122,34 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     [L],
   );
 
+  // зачем: алерт об ошибке — тоже нативный <Modal> (ThemedChoiceModal). Показывать его,
+  // пока окно удаления ещё открыто, нельзя: два present подряд на iOS ломают стек
+  // презентаций (тот же фриз, что и на успешном пути) — алерт оказывается под окном и
+  // не виден, а тапы перестают работать. Сначала закрываем окно, ждём кадр докрытия,
+  // и только потом ставим алерт в очередь.
+  const showInfoAlert = useCallback(
+    (title: string, message: string) => {
+      onRequestClose();
+      setTimeout(() => enqueueInfoAlert(title, message), ACCOUNT_DELETE_DISMISS_SETTLE_MS);
+    },
+    [enqueueInfoAlert, onRequestClose],
+  );
+
   const handleConfirmDelete = useCallback(async () => {
     if (deleteInFlightRef.current || deleting || !deleteConfirmMatches) return;
     deleteInFlightRef.current = true;
     doHaptic();
     setDeleting(true);
-    onRequestClose();
-    emitAppEvent('account_deleted');
-    void enqueueThemedBlockingInfoAlert(
-      L({
-        ru: 'Аккаунт удаляется',
-        uk: 'Акаунт видаляється',
-        es: 'Eliminando cuenta',
-        'pt-BR': 'Excluindo conta',
-        vi: 'Đang xóa tài khoản',
-        id: 'Menghapus akun',
-        tr: 'Hesap siliniyor',
-        pl: 'Usuwanie konta',
-      }),
-      L({
-        ru: 'Ты вышел из старого аккаунта. Серверная очистка продолжится в фоне.',
-        uk: 'Ви вийшли зі старого акаунта. Серверне очищення продовжиться у фоні.',
-        es: 'Saliste de la cuenta anterior. La limpieza del servidor continuará en segundo plano.',
-        'pt-BR': 'Você saiu da conta antiga. A limpeza do servidor continuará em segundo plano.',
-        vi: 'Bạn đã thoát tài khoản cũ. Việc dọn dữ liệu máy chủ sẽ tiếp tục trong nền.',
-        id: 'Kamu telah keluar dari akun lama. Pembersihan server akan berlanjut di latar belakang.',
-        tr: 'Eski hesaptan çıktın. Sunucu temizliği arka planda devam edecek.',
-        pl: 'Wylogowano stare konto. Czyszczenie serwera będzie kontynuowane w tle.',
-      }),
-      'OK',
-    );
     try {
-      const res = await deleteAccountAndWipe();
+      // зачем: ждём ТОЛЬКО быструю фазу — запись замка в SecureStore. После неё
+      // точка невозврата пройдена (старая почта/Apple ID уже не пускают в старый
+      // аккаунт), поэтому UI имеет право закрыться немедленно. Сеть — Cloud
+      // Function, signOut, новый анонимный аккаунт — доезжает фоном; если её
+      // оборвёт, следующий старт дочистит всё через
+      // resumePendingAccountDeleteLocalExit(). Раньше здесь ждали ВСЮ цепочку
+      // целиком, и на плохой сети настройки висели заблокированными десятки
+      // секунд — ровно то «зависает намертво», которое чиним.
+      const res = await beginAccountDeletion();
       if (!res.ok) {
         showInfoAlert(
           L({
@@ -163,21 +162,59 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
             tr: 'Hata',
             pl: 'Błąd',
           }),
-          L({
-            ru: 'Аккаунт не удалился на сервере. Проверь интернет и попробуй ещё раз.',
-            uk: 'Не вдалося видалити акаунт на сервері. Перевірте інтернет і спробуйте ще раз.',
-            es: 'No se pudo eliminar la cuenta en el servidor. Revisa Internet e inténtalo de nuevo.',
-            'pt-BR': 'Não foi possível excluir a conta no servidor. Verifique a Internet e tente novamente.',
-            vi: 'Không thể xóa tài khoản trên máy chủ. Hãy kiểm tra Internet và thử lại.',
-            id: 'Akun tidak dapat dihapus di server. Periksa internet dan coba lagi.',
-            tr: 'Hesap sunucuda silinemedi. İnterneti kontrol edip tekrar dene.',
-            pl: 'Nie udało się usunąć konta na serwerze. Sprawdź internet i spróbuj ponownie.',
+          res.reason === 'pending_guard_persist_failed'
+            ? L({
+            ru: 'Не удалось безопасно подготовить удаление. Аккаунт и данные не изменены. Освободи место на устройстве или перезапусти телефон и попробуй снова.',
+            uk: 'Не вдалося безпечно підготувати видалення. Акаунт і дані не змінено. Звільніть місце на пристрої або перезапустіть телефон і спробуйте знову.',
+            es: 'No pudimos preparar la eliminación de forma segura. La cuenta y los datos no cambiaron. Libera espacio o reinicia el teléfono e inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível preparar a exclusão com segurança. A conta e os dados não foram alterados. Libere espaço ou reinicie o telefone e tente novamente.',
+            vi: 'Không thể chuẩn bị xóa một cách an toàn. Tài khoản và dữ liệu chưa thay đổi. Hãy giải phóng dung lượng hoặc khởi động lại điện thoại rồi thử lại.',
+            id: 'Penghapusan belum dapat disiapkan dengan aman. Akun dan data tidak berubah. Kosongkan ruang atau mulai ulang ponsel lalu coba lagi.',
+            tr: 'Silme işlemi güvenli biçimde hazırlanamadı. Hesap ve veriler değişmedi. Yer aç veya telefonu yeniden başlatıp tekrar dene.',
+            pl: 'Nie udało się bezpiecznie przygotować usunięcia. Konto i dane nie zostały zmienione. Zwolnij miejsce lub uruchom telefon ponownie i spróbuj jeszcze raz.',
+          })
+            : L({
+            ru: 'Безопасный локальный выход не завершён. Аккаунт остаётся в режиме защиты; перезапусти приложение и повтори попытку.',
+            uk: 'Безпечний локальний вихід не завершено. Акаунт залишається в захищеному режимі; перезапустіть застосунок і повторіть спробу.',
+            es: 'La salida local segura no terminó. La cuenta permanece protegida; reinicia la aplicación e inténtalo de nuevo.',
+            'pt-BR': 'A saída local segura não foi concluída. A conta permanece protegida; reinicie o aplicativo e tente novamente.',
+            vi: 'Quá trình thoát an toàn trên thiết bị chưa hoàn tất. Tài khoản vẫn được bảo vệ; hãy khởi động lại ứng dụng và thử lại.',
+            id: 'Proses keluar lokal yang aman belum selesai. Akun tetap dilindungi; mulai ulang aplikasi lalu coba lagi.',
+            tr: 'Güvenli yerel çıkış tamamlanmadı. Hesap korumalı durumda; uygulamayı yeniden başlatıp tekrar dene.',
+            pl: 'Bezpieczne lokalne wyjście nie zostało ukończone. Konto pozostaje chronione; uruchom aplikację ponownie i spróbuj jeszcze raz.',
           }),
         );
         deleteInFlightRef.current = false;
         return;
       }
-      void reloadAfterAccountDelete();
+      // зачем: подтверждение пользователю — короткая плашка на первом экране
+      // онбординга, а НЕ алерт. Второй нативный <Modal> в том же тике, в котором
+      // закрывается этот, на iOS ломает стек презентаций (экран настроек остаётся
+      // на месте, тапы мертвы). Плашка живёт внутри уже смонтированного
+      // онбординга — никакого present/dismiss.
+      // зачем: точка невозврата пройдена (локальный замок записан) — именно это
+      // подтверждаем звуком, а не тап по кнопке. Ставим ДО onRequestClose():
+      // дальше экран размонтируется и уезжает онбординг, там звучать уже некому.
+      // Сеть при этом ещё доезжает фоном — звук привязан к необратимости, а не
+      // к ответу сервера.
+      soundDirector.request('pm.system.destructive_done', {
+        scope: 'account-delete',
+        dedupeKey: 'account-deleted',
+      });
+      markAccountDeletedNoticePending();
+      onRequestClose();
+      // зачем: удаление вызывают и с ВЛОЖЕННЫХ экранов-маршрутов («Приватность и
+      // данные», «Аккаунт»), а не только из вкладки настроек. Оверлей онбординга
+      // рисуется поверх, но сам экран остаётся в стеке навигации под ним — и
+      // после онбординга пользователь возвращался на мёртвый экран удалённого
+      // аккаунта. Владелец потребовал: закрыться должно ВСЁ. Сбрасываем стек в
+      // корень до показа онбординга; ошибку глушим — навигация не должна
+      // отменять само удаление.
+      try { router.dismissAll?.(); } catch { /* стек мог быть уже корневым */ }
+      try { router.replace('/(tabs)/home' as never); } catch { /* ignore */ }
+      // Событие само монтирует чистый онбординг — перезапуск приложения не нужен
+      // и раньше только добавлял задержку поверх ожидания сети.
+      emitAppEvent('account_deleted');
     } catch {
       showInfoAlert(
         L({
@@ -213,15 +250,6 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     onRequestClose();
   }, [deleting, onRequestClose]);
 
-  const handleFooterRelease = useCallback((event: GestureResponderEvent) => {
-    const width = footerWidth || 1;
-    if (event.nativeEvent.locationX >= width / 2) {
-      void handleConfirmDelete();
-      return;
-    }
-    handleCancel();
-  }, [footerWidth, handleCancel, handleConfirmDelete]);
-
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {
       if (!deleting) onRequestClose();
@@ -230,14 +258,13 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
         style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 16, overflow: 'hidden', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.copper : 'transparent', ...(isCompassTheme ? compassShadow(3) : null) }}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: t.bgCard, borderRadius: 16, overflow: 'hidden', borderWidth: 0, borderColor: 'transparent' }}>
           <ScrollView
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ padding: 24 }}
           >
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
+          <Text style={{ color: t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
             {L({
               ru: 'Удалить аккаунт?',
               uk: 'Видалити акаунт?',
@@ -337,7 +364,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               {item}
             </Text>
           ))}
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 10, marginBottom: 16, lineHeight: 20 }}>
+          <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 10, marginBottom: 16, lineHeight: 20 }}>
             {L({
               ru: '⚠️ Удаление аккаунта не отменяет подписку автоматически. Подписку нужно отменить в App Store или Google Play.',
               uk: '⚠️ Видалення акаунта не скасовує підписку автоматично. Підписку потрібно скасувати в App Store або Google Play.',
@@ -376,13 +403,13 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
           <TextInput
             testID="delete-account-confirm-input"
             style={{
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgPrimary,
+              backgroundColor: t.bgPrimary,
               color: t.textPrimary,
               fontSize: f.body,
               padding: 12,
-              borderRadius: isCompassTheme ? 9 : 10,
+              borderRadius: 10,
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+              borderColor: t.border,
               marginBottom: 20,
               outlineStyle: 'none' as any,
             }}
@@ -414,13 +441,15 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
             </Text>
           )}
           </ScrollView>
+          {/* зачем: у футера стоял onStartShouldSetResponderCapture={() => true} —
+              он ПЕРЕХВАТЫВАЛ касание на фазе capture, до кнопок, и подменял его
+              вычислением половины по locationX. При изменившейся вёрстке (gap,
+              padding, RTL, узкий экран) точка попадала не в ту половину, и
+              нажатие «Удалить» уходило в «Отмена» либо терялось вовсе — кнопка
+              выглядела мёртвой. Убираем перехват целиком: пусть каждая кнопка
+              получает своё касание сама, как и положено. */}
           <View
-            onLayout={event => setFooterWidth(event.nativeEvent.layout.width)}
-            onStartShouldSetResponderCapture={() => true}
-            onStartShouldSetResponder={() => true}
-            onResponderTerminationRequest={() => false}
-            onResponderRelease={handleFooterRelease}
-            style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent' }}
+            style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: t.border, backgroundColor: 'transparent' }}
           >
             <Pressable
               testID="delete-account-cancel"
@@ -429,18 +458,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               style={({ pressed }) => ({
                 flex: 1,
                 padding: 12,
-                borderRadius: isCompassTheme ? 9 : 10,
+                borderRadius: 10,
                 borderWidth: 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderColor: t.border,
                 alignItems: 'center',
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+                backgroundColor: 'transparent',
                 overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(1) : null),
                 opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
               })}
               onPress={handleCancel}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
                 ru: 'Отмена',
                 uk: 'Скасувати',
@@ -466,29 +493,25 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
                 tr: 'Sil',
                 pl: 'Usuń',
               })}
-              onStartShouldSetResponder={() => deleteConfirmMatches && !deleting}
-              onResponderRelease={handleConfirmDelete}
-              onTouchEnd={handleConfirmDelete}
+              // зачем: здесь висело ПЯТЬ обработчиков разом — onStartShouldSetResponder
+              // + onResponderRelease + onTouchEnd + onPress + onPressIn. Responder-пара
+              // забирала касание у Pressable, поэтому onPress мог не сработать вовсе,
+              // а onPressIn/onTouchEnd дублировали запуск. Оставляем ОДИН onPress:
+              // повторный вход всё равно закрыт deleteInFlightRef.
+              disabled={!deleteConfirmMatches || deleting}
               style={({ pressed }) => ({
                 flex: 1,
                 padding: 12,
-                borderRadius: isCompassTheme ? 9 : 10,
+                borderRadius: 10,
                 alignItems: 'center',
-                backgroundColor: isCompassTheme
-                  ? deleteConfirmMatches
-                    ? COMPASS_RICH.copper
-                    : COMPASS_RICH.charcoalSoft
-                  : deleteConfirmMatches ? t.wrong : t.bgSurface,
+                backgroundColor: deleteConfirmMatches ? t.wrong : t.bgSurface,
                 borderWidth: 0,
-                borderColor: isCompassTheme ? (deleteConfirmMatches ? COMPASS_RICH.copper : COMPASS_RICH.hairlineQuiet) : 'transparent',
+                borderColor: 'transparent',
                 overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(deleteConfirmMatches ? 2 : 1) : null),
                 opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.35,
               })}
               onPress={handleConfirmDelete}
-              onPressIn={handleConfirmDelete}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} selected={deleteConfirmMatches} quiet={!deleteConfirmMatches} />}
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
                   {deleting

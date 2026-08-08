@@ -23,6 +23,15 @@ export function cleanPhraseForDisplay(surface: string): string {
   return surface.split(' ').map(stripMarkers).filter(w => w.length > 0).join(' ');
 }
 
+/** Keep a correct alternative answer, but render the sentence punctuation from the canonical lesson line. */
+export function answerDisplayLineWithCanonicalPunctuation(answer: string, canonicalDisplay: string): string {
+  const normalizedAnswer = answer.replace(/\s+/g, ' ').trim();
+  if (!normalizedAnswer) return canonicalDisplay.trim();
+  const canonicalTerminal = canonicalDisplay.trim().match(/[.?!]$/)?.[0];
+  if (!canonicalTerminal) return normalizedAnswer;
+  return `${normalizedAnswer.replace(/\s*[.?!]+$/, '')}${canonicalTerminal}`;
+}
+
 /**
  * English line from lesson/active recall storage: spaced chunk markers (` … - … `) collapse to normal prose.
  * Hyphenated compounds (`fir-tree`, `Wi-Fi`) stay intact — только токены, равные «-», отбрасываются как в сборке слов урока.

@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -14,6 +14,7 @@ import type { LeagueBonusAvailability } from '../app/services/league_chest_rewar
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   visible: boolean;
   availability: LeagueBonusAvailability | null;
@@ -151,14 +152,14 @@ function LeagueBonusAvailableModal({
                       pl: `Masz najwięcej punktów. Liga zamknęła cel, a korona nie udaje skromności: jest twoja.`,
                     })
                     : triLang(lang, {
-                      ru: `Лига закрыла цель недели. Бонус уже готов: внутри осколки, усилители и редкие награды, которые выпадают отдельно для каждого игрока.`,
-                      uk: `Ліга закрила ціль тижня. Бонус уже готовий: усередині уламки, підсилювачі й рідкісні нагороди, що випадають окремо для кожного гравця.`,
-                      es: `La liga completó la meta semanal. El bono ya está listo: fragmentos, boosts y recompensas raras para cada jugador.`,
-                      'pt-BR': `A liga completou a meta semanal. O bônus já está pronto: fragmentos, boosts e recompensas raras para cada jogador.`,
-                      vi: `Giải đấu đã hoàn thành mục tiêu tuần. Phần thưởng đã sẵn sàng: mảnh, boost và phần thưởng hiếm cho từng người chơi.`,
-                      id: `Liga menyelesaikan target mingguan. Bonus sudah siap: pecahan, boost, dan hadiah langka untuk setiap pemain.`,
-                      tr: `Lig haftalık hedefi tamamladı. Bonus hazır: her oyuncu için parçalar, boostlar ve nadir ödüller var.`,
-                      pl: `Liga ukończyła cel tygodnia. Bonus jest gotowy: odłamki, boosty i rzadkie nagrody dla każdego gracza.`,
+                      ru: `Лига закрыла цель недели. Бонус уже готов: внутри жемчужины, усилители и редкие награды, которые выпадают отдельно для каждого игрока.`,
+                      uk: `Ліга закрила ціль тижня. Бонус уже готовий: усередині перлини, підсилювачі й рідкісні нагороди, що випадають окремо для кожного гравця.`,
+                      es: `La liga completó la meta semanal. El bono ya está listo: perlas, boosts y recompensas raras para cada jugador.`,
+                      'pt-BR': `A liga completou a meta semanal. O bônus já está pronto: pérolas, boosts e recompensas raras para cada jogador.`,
+                      vi: `Giải đấu đã hoàn thành mục tiêu tuần. Phần thưởng đã sẵn sàng: xu, boost và phần thưởng hiếm cho từng người chơi.`,
+                      id: `Liga menyelesaikan target mingguan. Bonus sudah siap: koin, boost, dan hadiah langka untuk setiap pemain.`,
+                      tr: `Lig haftalık hedefi tamamladı. Bonus hazır: her oyuncu için jetonlar, boostlar ve nadir ödüller var.`,
+                      pl: `Liga ukończyła cel tygodnia. Bonus jest gotowy: monety, boosty i rzadkie nagrody dla każdego gracza.`,
                     })}
                 </Text>
                 <View style={[styles.meta, { borderColor: modalTheme.metaBorder, backgroundColor: modalTheme.metaBg }]}>
@@ -177,6 +178,16 @@ function LeagueBonusAvailableModal({
                 >
                   <LinearGradient colors={modalTheme.primary} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
                   <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>{buttonLabel}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    hapticTap();
+                    onClose();
+                  }}
+                  style={styles.laterBtn}
+                >
+                  <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}</Text>
                 </TouchableOpacity>
               </View>
             </LinearGradient>
@@ -205,11 +216,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.38,
     shadowRadius: 28,
     shadowOffset: { width: 0, height: 16 },
-    elevation: 16,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 24,
-    borderWidth: 0.5,
+    borderWidth: 0,
     overflow: 'hidden',
     padding: 20,
     alignItems: 'center',
@@ -243,13 +254,13 @@ const styles = StyleSheet.create({
     width: 208,
     height: 208,
     borderRadius: 104,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   iconWrap: {
     width: 136,
     height: 136,
     borderRadius: 68,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 16,
@@ -283,7 +294,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 16,
     borderRadius: 14,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingHorizontal: 12,
     paddingVertical: 11,
     flexDirection: 'row',
@@ -307,5 +318,15 @@ const styles = StyleSheet.create({
   primaryText: {
     fontSize: 15,
     fontWeight: '900',
+  },
+  laterBtn: {
+    alignSelf: 'stretch',
+    marginTop: 10,
+    paddingVertical: 8,
+    alignItems: 'center',
+  },
+  laterText: {
+    fontSize: 14,
+    fontWeight: '700',
   },
 });

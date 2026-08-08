@@ -155,7 +155,7 @@ function possessiveStep(input: StepInput): DiagnosisTrainingStep {
     retryFeedback: retryFor(input.pattern, input.fullAnswer, input.correctAnswer),
     fallbackExplanation: tri(
       `Запомни короткую пару: ${input.pattern}. Если справа есть предмет, слово стоит перед ним. Если предмета справа нет, слово заменяет весь кусок.`,
-      `Запам'ятай коротку пару: ${input.pattern}. Якщо праворуч є предмет, слово стоїть перед ним. Якщо предмета праворуч немає, слово замінює весь шматок.`,
+      `Запам'ятай коротку пару: ${input.pattern}. Якщо праворуч є предмет, слово стоїть перед ним. Якщо предмета праворуч немає, слово замінює весь зворот.`,
       `Recuerda el par corto: ${input.pattern}. Si a la derecha hay una cosa, la palabra va antes. Si no hay cosa a la derecha, la palabra reemplaza todo el bloque.`,
       {
         'pt-BR': `Lembre o par curto: ${input.pattern}. Se à direita há um objeto, a palavra fica antes dele. Se não há objeto à direita, a palavra substitui todo o bloco.`,

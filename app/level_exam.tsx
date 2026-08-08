@@ -10,7 +10,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { lightenHex } from '../components/GradientProgressBar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -32,12 +32,14 @@ import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeature
 import { logMistake } from './mistake_log';
 import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
-import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
-import { getVerifiedPremiumStatus } from './premium_guard';
+import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
+import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { usePremium } from '../components/PremiumContext';
-import { lessonPaywallContext } from './monetization_policy';
+import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { levelExamKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
@@ -45,7 +47,10 @@ import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
+import { canShowReview } from './review_utils';
+import ReviewPromptModal from '../components/ReviewPromptModal';
 import { monoIcon } from '../constants/monoIcon';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -614,14 +619,17 @@ export default function LevelExam() {
         }
         return;
       }
-      const noLimits = await AsyncStorage.getItem('tester_no_limits');
-      if (noLimits === 'true') {
+      const noLimits = await isTesterNoLimitsActive();
+      if (noLimits) {
         if (!cancelled) setAccessState('allowed');
         return;
       }
 
+      const examLevel = lvl as CourseLevel;
+      const lastLessonForLevel = getLastLessonForLevel(examLevel);
+      const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
       const premiumNow = await getVerifiedPremiumStatus();
-      if (!premiumNow) {
+      if (!premiumNow && requiresPremiumForLesson(lastLessonForLevel, legacyFreeLessonCap)) {
         if (!cancelled) {
           setAccessBlockKind('premium');
           setBlockedText(triLang(lang, {
@@ -639,8 +647,12 @@ export default function LevelExam() {
         return;
       }
 
+      if (!premiumNow) {
+        if (!cancelled) setAccessState('allowed');
+        return;
+      }
+
       const reachedLevel = await getPremiumCourseLevel(studyTarget);
-      const examLevel = lvl as CourseLevel;
       if (getCourseLevelIndex(examLevel) <= getCourseLevelIndex(reachedLevel)) {
         if (!cancelled) setAccessState('allowed');
         return;
@@ -813,8 +825,8 @@ export default function LevelExam() {
     const correct = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
     const pct = Math.round(correct / total * 100);
     // Без ограничений: засчитываем сдачу и открытия, но % и награды «за идеал» — по фактическому счёту
-    const noLimits = await AsyncStorage.getItem('tester_no_limits');
-    const passed = noLimits === 'true' || pct >= PASS_PCT;
+    const noLimits = await isTesterNoLimitsActive();
+    const passed = noLimits || pct >= PASS_PCT;
     try {
       const attemptNumber = await recordLevelExamAttempt(lvl, studyTarget);
       setExamAttemptNumber(attemptNumber);
@@ -875,19 +887,32 @@ export default function LevelExam() {
     } catch (e) {
       void trackFeatureError('level_exam', 'complete', e, { level: lvl, correct, total, pct, passed }, 'level_exam');
     }
+    soundDirector.request(passed ? 'pm.complete.exam_pass' : 'pm.complete.exam_retry', {
+      scope: 'level-exam-result',
+      dedupeKey: `${studyTarget}:${lvl}:${pct}`,
+    });
     setPhase('result');
   };
 
   const correctCount = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
   const pct = total > 0 ? Math.round(correctCount / total * 100) : 0;
   const passed = pct >= PASS_PCT;
+  const [reviewPromptVisible, setReviewPromptVisible] = useState(false);
+  const leaveResultAfterReview = useCallback(async () => {
+    hapticTap();
+    if (await canShowReview({ trigger: 'level_exam_pass', scorePercent: pct, userContinued: true })) {
+      setReviewPromptVisible(true);
+      return;
+    }
+    safeRouterBack(router, '/lessons_list' as any);
+  }, [pct, router]);
 
   if (frenchExamBlocked) {
     return (
       <FrenchLevelExamUnavailable
         lang={lang}
-        onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
-        onLessons={() => { hapticTap(); router.replace('/(tabs)/lessons' as any); }}
+        onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }}
+        onLessons={() => { hapticTap(); router.replace('/lessons_list' as any); }}
         f={f}
         themeMode={themeMode}
       />
@@ -910,7 +935,7 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TapScale>
           </View>
@@ -952,15 +977,17 @@ export default function LevelExam() {
                 onPress={() => {
                   hapticTap();
                   if (accessBlockKind === 'premium') {
+                    const firstLessonForLevel = getFirstLessonForLevel(lvl as CourseLevel);
                     router.push({
                       pathname: '/premium_modal',
                       params: {
-                        context: lessonPaywallContext(getFirstLessonForLevel(lvl as CourseLevel)),
+                        context: lessonPaywallContext(firstLessonForLevel),
                         lessons_done: '0',
+                        ...lessonPurchaseContinuationParams(firstLessonForLevel),
                       },
                     } as any);
                   } else {
-                    router.replace('/(tabs)/lessons' as any);
+                    router.replace('/lessons_list' as any);
                   }
                 }}
                 style={{ backgroundColor: LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
@@ -1092,11 +1119,11 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TapScale>
           </View>
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
             <View
               style={{
                 backgroundColor: LX.card,
@@ -1254,12 +1281,12 @@ export default function LevelExam() {
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }}>
               <Ionicons name="chevron-back" size={26} color={sx.primary} />
             </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
           </View>
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
             {/* Итог */}
             <View style={{ alignItems: 'center', gap: 8, paddingVertical: 12 }}>
               {examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
@@ -1489,7 +1516,7 @@ export default function LevelExam() {
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
+              onPress={() => { void leaveResultAfterReview(); }}
               style={{
                 borderRadius: 14,
                 borderWidth: isGoldTheme ? 1 : 0,
@@ -1595,7 +1622,7 @@ export default function LevelExam() {
           </Text>
         </View>
 
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
           {/* Топик */}
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
             {triLang(lang, {
@@ -1759,9 +1786,18 @@ export default function LevelExam() {
         onCancel={() => setExitExamConfirm(false)}
         onConfirm={() => {
           setExitExamConfirm(false);
-          safeRouterBack(router, '/(tabs)/lessons' as any);
+          safeRouterBack(router, '/lessons_list' as any);
         }}
         confirmVariant="accent"
+      />
+      <ReviewPromptModal
+        visible={reviewPromptVisible}
+        context="level_exam_pass"
+        lang={lang}
+        onClose={() => {
+          setReviewPromptVisible(false);
+          safeRouterBack(router, '/lessons_list' as any);
+        }}
       />
     </SafeAreaView>
     </ScreenGradient>

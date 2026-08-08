@@ -18,10 +18,20 @@ test('compiles twelve ordered sessions in three zones', () => {
     'master', 'master', 'master', 'master',
   ]);
   result.sessions.forEach((session) => {
-    expect(session.cards.length).toBeGreaterThanOrEqual(7);
-    expect(session.cards.length).toBeLessThanOrEqual(9);
-    expect(new Set(session.cards.map((card) => card.family)).size).toBeGreaterThanOrEqual(3);
-    expect(new Set(session.cards.map((card) => card.family)).size).toBeLessThanOrEqual(4);
+    expect(session.cards).toHaveLength(12);
+    expect(
+      session.cards.every((card) =>
+        [
+          'phrase_builder',
+          'listen_choose',
+          'sound_contrast',
+          'listen_build_dictation',
+          'context_gap_grammar',
+          'speed_match',
+          'scripted_repeat_compare',
+        ].includes(card.family),
+      ),
+    ).toBe(true);
   });
 });
 
@@ -37,12 +47,35 @@ test('fades support and ends with independent non-reused prompts', () => {
   expect(result.sessions[11].cards.every((card) => card.promptNovelty !== 'trained')).toBe(true);
 });
 
-test('fails when the bank cannot produce seven traceable cards per session', () => {
+test('fails when the bank cannot produce twelve traceable cards per session', () => {
   expect(() => compileV2RequiredSessions({
     episodeId: 'ep-01',
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items: buildE1ContentItems().slice(0, 1),
+  })).toThrow('session_content_insufficient');
+});
+
+test('fails closed instead of substituting an unapproved activity family', () => {
+  const profile = buildEnglishProfile();
+  const supportedActivityFamilies = profile.supportedActivityFamilies.filter(
+    (family) => family !== 'scripted_repeat_compare',
+  );
+  const items = buildE1ContentItems().map((item) => ({
+    ...item,
+    compatibleFamilies: item.compatibleFamilies.filter(
+      (family) => family !== 'scripted_repeat_compare',
+    ),
+  }));
+
+  expect(() => compileV2RequiredSessions({
+    episodeId: 'ep-01',
+    canDoOutcomeId: 'obj-introduce-self',
+    profile: {
+      ...profile,
+      supportedActivityFamilies,
+    },
+    items,
   })).toThrow('session_content_insufficient');
 });
 

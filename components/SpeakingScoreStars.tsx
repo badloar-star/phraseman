@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { STAR_COUNT, starsForScore } from '../app/speaking_score_stars';
 

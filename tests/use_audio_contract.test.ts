@@ -27,6 +27,21 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('speakWithSystemTts();');
   });
 
+  it('invalidates the delayed clip fallback on stop or unmount so TTS cannot start on a hidden screen', () => {
+    expect(audioSource).toContain('const clipStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);');
+    expect(audioSource).toContain('const speechGenerationRef = useRef(0);');
+    expect(audioSource).toContain('speechGenerationRef.current += 1;');
+    expect(audioSource).toContain('speechGenerationRef.current !== generation');
+  });
+
+  it('gates every app voice start through the global voice policy', () => {
+    expect(audioSource).toContain('voicePlaybackPolicy.captureStart()');
+    expect(audioSource).toContain('voicePlaybackPolicy.canStart(voicePolicyToken)');
+    expect(audioSource).toContain('voicePlaybackPolicy.registerStop');
+    expect(phraseAudioSource).toContain('voicePlaybackPolicy.captureStart()');
+    expect(phraseAudioSource).toContain('voicePlaybackPolicy.canStart(voicePolicyToken)');
+  });
+
   it('does not leave stalled phrase-audio downloads in the shared in-flight map forever', () => {
     expect(phraseAudioSource).toContain('DOWNLOAD_TIMEOUT_MS');
     expect(phraseAudioSource).toContain('downloadFileWithTimeout');
@@ -36,17 +51,18 @@ describe('useAudio TTS resiliency', () => {
     expect(phraseAudioSource).toContain('inFlightDownloads.delete(key);');
   });
 
-  it('restores the loud phrase audio mode on every generated clip playback', () => {
-    expect(phraseAudioSource).toContain('LOUD_PLAYBACK_AUDIO_MODE');
-    expect(phraseAudioSource).toContain('await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);');
+  it('acquires spoken-audio activity for every generated clip playback', () => {
+    expect(phraseAudioSource).toContain("acquireAudioActivity('spoken')");
+    expect(phraseAudioSource).toContain('await whenAudioActivitySettled();');
     expect(phraseAudioSource).not.toContain('audioModeReady');
     expect(phraseAudioSource).toContain('player.volume = 1');
   });
 
-  it('restores the loud playback mode before system TTS fallback too', () => {
-    expect(audioSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
-    expect(audioSource).toContain('if (lastTextRef.current !== dedupeKey) return;');
-    expect(audioSource.indexOf('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)')).toBeLessThan(
+  it('acquires spoken-audio activity before system TTS fallback too', () => {
+    expect(audioSource).toContain("acquireAudioActivity('spoken')");
+    expect(audioSource).toContain('whenAudioActivitySettled()');
+    expect(audioSource).toContain('if (lastTextRef.current !== dedupeKey)');
+    expect(audioSource.indexOf("acquireAudioActivity('spoken')")).toBeLessThan(
       audioSource.indexOf('Speech.speak(spokenText, speechOptions)'),
     );
   });

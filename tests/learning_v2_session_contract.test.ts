@@ -97,6 +97,22 @@ test("enforces duration, card count and family diversity per required session", 
   });
 });
 
+test("rejects an unapproved family in a required V2 session", () => {
+  const value = clone(buildValidSessionSet()) as V2SessionSetBody;
+  const firstCard = (
+    value.sessions as unknown as Array<{
+      cards: Array<{ family: string; learningFunction: string }>;
+    }>
+  )[0].cards[0];
+  firstCard.family = "quick_spoken_response";
+  firstCard.learningFunction = "respond";
+
+  expect(validateV2SessionSet(value)).toMatchObject({
+    ok: false,
+    issues: expect.arrayContaining(["session_card_family_unapproved"]),
+  });
+});
+
 test("rejects duplicate card identities anywhere in the SessionSet", () => {
   const value = clone(buildValidSessionSet()) as V2SessionSetBody;
   const sessions = value.sessions as unknown as Array<{

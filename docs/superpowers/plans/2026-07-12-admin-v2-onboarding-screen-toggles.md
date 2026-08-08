@@ -100,7 +100,7 @@ test('a disabled restored step resolves forward', () => {
 
 - [ ] **Step 2: запустить RED**
 
-Run: `npx jest tests/onboarding_flow.test.ts --runInBand`
+Run: `npx jest tests/onboarding_flow.test.ts --runInBand`  
 Expected: FAIL because `app/onboarding_flow.ts` does not exist.
 
 - [ ] **Step 3: реализовать минимальный чистый модуль**
@@ -153,7 +153,7 @@ Parser принимает только JSON-массив строк, игнор�
 
 - [ ] **Step 4: запустить GREEN**
 
-Run: `npx jest tests/onboarding_flow.test.ts --runInBand`
+Run: `npx jest tests/onboarding_flow.test.ts --runInBand`  
 Expected: PASS.
 
 - [ ] **Step 5: закоммитить изолированно**
@@ -261,7 +261,7 @@ export function decideOnboardingTransition(
 
 - [ ] **Step 2: запустить RED**
 
-Run: `npx jest tests/onboarding_flow.test.ts tests/onboarding_disabled_steps_contract.test.ts --runInBand`
+Run: `npx jest tests/onboarding_flow.test.ts tests/onboarding_disabled_steps_contract.test.ts --runInBand`  
 Expected: FAIL on missing integration/helper.
 
 - [ ] **Step 3: реализовать enabled order и централизованные переходы**
@@ -293,7 +293,7 @@ const goRelative = useCallback((anchor: CleanOnboardingStep, direction: FlowDire
 
 - [ ] **Step 5: запустить GREEN**
 
-Run: `npx jest tests/onboarding_flow.test.ts tests/onboarding_disabled_steps_contract.test.ts tests/remote_flags.test.ts --runInBand`
+Run: `npx jest tests/onboarding_flow.test.ts tests/onboarding_disabled_steps_contract.test.ts tests/remote_flags.test.ts --runInBand`  
 Expected: PASS with zero failures.
 
 - [ ] **Step 6: закоммитить только новые изолированные тесты**
@@ -329,7 +329,7 @@ expect(core).toContain('expectedRevision');
 
 - [ ] **Step 2: запустить RED**
 
-Run: `npx jest tests/admin_v2_onboarding_steps_contract.test.ts --runInBand`
+Run: `npx jest tests/admin_v2_onboarding_steps_contract.test.ts --runInBand`  
 Expected: FAIL because the card/actions do not exist.
 
 - [ ] **Step 3: реализовать карточку внутри `renderApplication()`**

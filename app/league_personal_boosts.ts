@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { spendShards } from './shards_system';
 
-export type LeaguePersonalBoostId = 'x2_30m' | 'x2_1h' | 'x2_2h' | 'x3_15m';
+export type LeaguePersonalBoostId = 'x2_30m' | 'x2_1h' | 'x2_2h' | 'x3_15m' | 'x2_eod_pass';
 
 export interface LeaguePersonalBoostDef {
   id: LeaguePersonalBoostId;
@@ -24,10 +24,22 @@ export const LEAGUE_PERSONAL_BOOSTS: LeaguePersonalBoostDef[] = [
   { id: 'x2_1h', multiplier: 2, durationMs: 60 * 60 * 1000, costShards: 30 },
   { id: 'x2_2h', multiplier: 2, durationMs: 2 * 60 * 60 * 1000, costShards: 45 },
   { id: 'x3_15m', multiplier: 3, durationMs: 15 * 60 * 1000, costShards: 40 },
+  // зачем: Season Pass подарок «Буст лиги ×2» (владелец, каталог §1.2 — «до конца
+  // дня», не фиксированный час). durationMs здесь — placeholder (пересчитывается
+  // динамически в activateLeagueBoost для этого id); costShards=0, подарок уже
+  // оплачен прохождением уровня сезона, повторно платить нельзя.
+  { id: 'x2_eod_pass', multiplier: 2, durationMs: 60 * 60 * 1000, costShards: 0 },
 ];
 
 export const getLeagueBoostDef = (id: LeaguePersonalBoostId): LeaguePersonalBoostDef | undefined =>
   LEAGUE_PERSONAL_BOOSTS.find((b) => b.id === id);
+
+/** Мс до ближайшей ЛОКАЛЬНОЙ полуночи — «до конца дня» в часовом поясе юзера, не UTC. */
+const msUntilLocalMidnight = (nowMs: number): number => {
+  const now = new Date(nowMs);
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+  return Math.max(60 * 1000, midnight.getTime() - nowMs);
+};
 
 export const loadActiveLeagueBoost = async (): Promise<LeaguePersonalBoostState | null> => {
   try {
@@ -48,11 +60,12 @@ export const activateLeagueBoost = async (id: LeaguePersonalBoostId): Promise<Le
   const def = getLeagueBoostDef(id);
   if (!def) return null;
   const now = Date.now();
+  const durationMs = id === 'x2_eod_pass' ? msUntilLocalMidnight(now) : def.durationMs;
   const state: LeaguePersonalBoostState = {
     id: def.id,
     multiplier: def.multiplier,
     startedAt: now,
-    expiresAt: now + def.durationMs,
+    expiresAt: now + durationMs,
   };
   try {
     await AsyncStorage.setItem(LEAGUE_PERSONAL_BOOST_KEY, JSON.stringify(state));

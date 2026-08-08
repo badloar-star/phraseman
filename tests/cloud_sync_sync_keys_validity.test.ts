@@ -1,4 +1,8 @@
 import { FRENCH_TARGET_SYNC_KEYS, getRuntimeSyncKeys, SYNC_KEYS } from '../app/cloud_sync';
+import {
+  legacyFreeLessonCapKey,
+  legacyFreeLessonMigrationKey,
+} from '../app/target_storage_keys';
 
 const FRENCH_TARGET_KEY_RE = /^(?:[a-z_]+_v2::fr(?:$|::)|personal_practice_v2::fr::(?:ru|uk)(?:$|::))/;
 const FORBIDDEN_FRENCH_TARGET_LOCALE_SEGMENTS = [
@@ -41,6 +45,17 @@ describe('cloud sync storage key lists', () => {
 
   test('FRENCH_TARGET_SYNC_KEYS contains only non-empty string keys', () => {
     expect(badKeys(FRENCH_TARGET_SYNC_KEYS)).toEqual([]);
+  });
+
+  test('syncs the immutable legacy lesson cap and marker per study target', () => {
+    expect(SYNC_KEYS).toEqual(expect.arrayContaining([
+      legacyFreeLessonCapKey('en'),
+      legacyFreeLessonMigrationKey('en'),
+    ]));
+    expect(FRENCH_TARGET_SYNC_KEYS).toEqual(expect.arrayContaining([
+      legacyFreeLessonCapKey('fr'),
+      legacyFreeLessonMigrationKey('fr'),
+    ]));
   });
 
   test('FRENCH_TARGET_SYNC_KEYS is strictly French target scoped', () => {

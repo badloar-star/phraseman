@@ -3,36 +3,45 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 
-describe('arena SR explainer modal removal', () => {
-  it('does not auto-open the season ending-soon SR explainer from the arena lobby', () => {
-    const lobbySource = fs.readFileSync(path.join(ROOT, 'app', 'arena_lobby.tsx'), 'utf8');
+describe('arena season-result modal removal', () => {
+  it('keeps the SeasonResultModal component and its overlay key deleted', () => {
+    expect(fs.existsSync(path.join(ROOT, 'components', 'SeasonResultModal.tsx'))).toBe(false);
+    expect(fs.existsSync(path.join(ROOT, 'app', 'components', 'SeasonResultModal.tsx'))).toBe(false);
 
-    expect(lobbySource).not.toContain("kind=\"ending_soon\"");
-    expect(lobbySource).not.toContain('setSeasonEndingSoonModal');
-    expect(lobbySource).not.toContain('seasonEndingSoonShownRef');
-    expect(lobbySource).toContain("useOverlayVisible('arenaSeasonResult', seasonEndedModal !== null)");
-    expect(lobbySource).toContain('visible={seasonResultVisible}');
+    const arbiter = fs.readFileSync(path.join(ROOT, 'components', 'overlay_arbiter_core.ts'), 'utf8');
+    expect(arbiter).not.toContain('arenaSeasonResult');
+
+    const layout = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
+    expect(layout).not.toContain('SeasonResultModal');
   });
 
-  it('does not open the ceiling-reached SR explainer after arena results', () => {
-    const resultsSource = fs.readFileSync(path.join(ROOT, 'app', 'arena_results.tsx'), 'utf8');
-
-    expect(resultsSource).not.toContain("kind=\"ceiling_reached\"");
-    expect(resultsSource).not.toContain('setSeasonCeilingModal');
-    expect(resultsSource).not.toContain('seasonCeilingModal');
+  it('keeps the RankChangeModal component deleted (RankChangeBanner stays)', () => {
+    expect(fs.existsSync(path.join(ROOT, 'components', 'RankChangeModal.tsx'))).toBe(false);
+    expect(fs.existsSync(path.join(ROOT, 'app', 'components', 'RankChangeModal.tsx'))).toBe(false);
+    expect(fs.existsSync(path.join(ROOT, 'components', 'RankChangeBanner.tsx'))).toBe(true);
   });
 
-  it('uses plain season-rating wording in visible arena UI instead of raw SR abbreviation', () => {
-    const ratingSource = fs.readFileSync(path.join(ROOT, 'app', 'arena_rating.tsx'), 'utf8');
-    const seasonTopSource = fs.readFileSync(path.join(ROOT, 'app', 'arena_season_leaderboard.tsx'), 'utf8');
-
-    expect(ratingSource).toContain('seasonRatingLabel(lang)');
-    expect(ratingSource).toContain('сезонный рейтинг');
-    expect(ratingSource).not.toContain('} SR');
-
-    expect(seasonTopSource).toContain('seasonRatingShortLabel(lang)');
-    expect(seasonTopSource).toContain('сез. рейтинг');
-    expect(seasonTopSource).toContain('сезонный рейтинг');
-    expect(seasonTopSource).not.toContain('} SR');
+  it('keeps arena lobby/results season-modal state out of the codebase', () => {
+    const appDir = path.join(ROOT, 'app');
+    const offenders: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          walk(full);
+        } else if (/\.tsx?$/.test(entry.name)) {
+          const source = fs.readFileSync(full, 'utf8');
+          if (
+            source.includes('SeasonResultModal') ||
+            source.includes('seasonEndedModal') ||
+            source.includes('seasonResultVisible')
+          ) {
+            offenders.push(path.relative(ROOT, full));
+          }
+        }
+      }
+    };
+    walk(appDir);
+    expect(offenders).toEqual([]);
   });
 });

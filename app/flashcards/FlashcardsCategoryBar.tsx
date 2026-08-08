@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
@@ -22,7 +22,7 @@ export default function FlashcardsCategoryBar({
 }: Props) {
   return (
     <View style={{ borderTopWidth: 0.5, borderTopColor: t.border }}>
-      <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingTop: 6, paddingBottom: 4 }}>
+      <ScrollView horizontal decelerationRate="fast" showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingTop: 6, paddingBottom: 4 }}>
         {categories.map((cat) => {
           const active = cat.id === activeCat;
           const color = active ? t.textPrimary : t.textMuted;

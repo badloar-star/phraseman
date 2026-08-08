@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "language": "it",
+  "level": "A1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Introducing oneself", "scenarioRu": "Представление себя",
+      "prompt": "Choose the correct form of essere.", "instructionRu": "Выберите правильную форму глагола essere.",
+      "stimulus": "Ciao, io ______ Giulia.",
+      "answer": "sono",
+      "distractors": [
+        {"text": "sei", "reasonRu": "Sei относится к tu, а подлежащее здесь io."},
+        {"text": "è", "reasonRu": "È — форма третьего лица единственного числа, а говорящий говорит о себе."},
+        {"text": "siamo", "reasonRu": "Siamo относится к noi и не согласуется с io."}
+      ],
+      "explanation": "Io takes the first-person singular form sono.", "explanationRu": "С io употребляется форма первого лица единственного числа sono.",
+      "targetConstruct": "first-person singular present of essere for identity", "targetConstructRu": "первое лицо единственного числа essere при назывании личности",
+      "canDoRu": "Может назвать себя в простом знакомстве."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Greeting someone in the evening", "scenarioRu": "Приветствие вечером",
+      "prompt": "Choose the greeting appropriate at eight in the evening.", "instructionRu": "Выберите приветствие, подходящее для восьми часов вечера.",
+      "stimulus": "Sono le otto di sera. Incontri la tua vicina.",
+      "answer": "Buonasera!",
+      "distractors": [
+        {"text": "Buongiorno!", "reasonRu": "Buongiorno обычно используют утром и днём, а здесь уже вечер."},
+        {"text": "Buonanotte!", "reasonRu": "Buonanotte обычно говорят при прощании перед сном, а не как обычное приветствие при встрече."},
+        {"text": "Buon appetito!", "reasonRu": "Buon appetito желают перед едой, это не приветствие по времени суток."}
+      ],
+      "explanation": "Buonasera is the standard greeting in the evening.", "explanationRu": "Buonasera — стандартное приветствие вечером.",
+      "targetConstruct": "time-appropriate distinction among common greetings", "targetConstructRu": "выбор повседневного приветствия по времени суток",
+      "canDoRu": "Может выбрать подходящее приветствие вечером."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a meeting message", "scenarioRu": "Чтение сообщения о встрече",
+      "prompt": "What time is the meeting?", "instructionRu": "Во сколько встреча?",
+      "stimulus": "Ciao Luca, ci vediamo davanti al cinema alle 18:30. A dopo! — Marta",
+      "answer": "Alle 18:30.",
+      "distractors": [
+        {"text": "Alle 16:30.", "reasonRu": "В сообщении прямо указано 18:30, а не 16:30."},
+        {"text": "Alle 8:30.", "reasonRu": "Цифра 8 является частью времени 18:30, но сообщение не назначает встречу на 8:30."},
+        {"text": "A mezzanotte.", "reasonRu": "Полночь в сообщении не упоминается."}
+      ],
+      "explanation": "The message explicitly says alle 18:30.", "explanationRu": "В сообщении прямо сказано alle 18:30.",
+      "targetConstruct": "explicit meeting-time extraction from a short personal message", "targetConstructRu": "извлечение явно указанного времени встречи из короткого сообщения",
+      "canDoRu": "Может понять время простой встречи из сообщения."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Responding to an introduction", "scenarioRu": "Ответ при знакомстве",
+      "prompt": "Choose the natural polite reply.", "instructionRu": "Выберите естественный вежливый ответ.",
+      "stimulus": "— Ciao, mi chiamo Paolo. — ______",
+      "answer": "Piacere, io sono Elena.",
+      "distractors": [
+        {"text": "Non lo so.", "reasonRu": "Фраза означает «я не знаю» и не отвечает на представление."},
+        {"text": "Quanto costa?", "reasonRu": "Это вопрос о цене, неуместный при знакомстве."},
+        {"text": "È chiuso.", "reasonRu": "Фраза означает «закрыто» и не поддерживает знакомство."}
+      ],
+      "explanation": "Piacere plus one's name is a natural response when meeting someone.", "explanationRu": "Piacere с собственным именем — естественный ответ при знакомстве.",
+      "targetConstruct": "polite reciprocal response to a personal introduction", "targetConstructRu": "вежливый взаимный ответ на представление",
+      "canDoRu": "Может кратко и вежливо ответить при знакомстве."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Stating one's age", "scenarioRu": "Сообщение возраста",
+      "prompt": "Choose the correct verb form.", "instructionRu": "Выберите правильную форму глагола.",
+      "stimulus": "Io ______ ventiquattro anni.",
+      "answer": "ho",
+      "distractors": [
+        {"text": "sono", "reasonRu": "В итальянском возраст выражают глаголом avere, а не essere."},
+        {"text": "hai", "reasonRu": "Hai относится к tu, а подлежащее здесь io."},
+        {"text": "ha", "reasonRu": "Ha относится к lui, lei или Lei, а не к io."}
+      ],
+      "explanation": "Italian expresses age with avere: io ho ventiquattro anni.", "explanationRu": "В итальянском возраст выражается с avere: io ho ventiquattro anni.",
+      "targetConstruct": "first-person singular avere in the age construction", "targetConstructRu": "первое лицо avere в конструкции возраста",
+      "canDoRu": "Может сказать свой возраст."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Identifying a family member", "scenarioRu": "Определение члена семьи",
+      "prompt": "Who is Sofia?", "instructionRu": "Кем приходится София?",
+      "stimulus": "Sofia è la figlia di mia madre. Io sono suo fratello.",
+      "answer": "È mia sorella.",
+      "distractors": [
+        {"text": "È mia nonna.", "reasonRu": "Nonna — бабушка, а София названа дочерью матери говорящего."},
+        {"text": "È mia zia.", "reasonRu": "Zia — тётя; из текста следует, что у Софии и говорящего одна мать."},
+        {"text": "È mia figlia.", "reasonRu": "Говорящий называет себя братом Софии, а не её родителем."}
+      ],
+      "explanation": "A female child of the speaker's mother, when the speaker is her brother, is the speaker's sister.", "explanationRu": "Если София — дочь матери говорящего, а он её брат, то София — его сестра.",
+      "targetConstruct": "high-frequency immediate-family noun sorella", "targetConstructRu": "частотное название ближайшего родственника sorella",
+      "canDoRu": "Может понять простое обозначение близкого родственника."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a platform announcement", "scenarioRu": "Чтение объявления о платформе",
+      "prompt": "Which platform does the train leave from?", "instructionRu": "С какой платформы отправляется поезд?",
+      "stimulus": "Il treno per Firenze parte alle 10:15 dal binario 6.",
+      "answer": "Dal binario 6.",
+      "distractors": [
+        {"text": "Dal binario 10.", "reasonRu": "10:15 — время отправления, а номер платформы указан отдельно: 6."},
+        {"text": "Dal binario 15.", "reasonRu": "15 — минуты во времени 10:15, а не номер платформы."},
+        {"text": "Dal binario 5.", "reasonRu": "Платформа 5 в объявлении не названа."}
+      ],
+      "explanation": "The notice explicitly gives binario 6.", "explanationRu": "В объявлении прямо указан binario 6.",
+      "targetConstruct": "explicit platform-number extraction from a station notice", "targetConstructRu": "извлечение номера платформы из объявления на станции",
+      "canDoRu": "Может найти номер платформы в простом объявлении."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Ordering a drink in a café", "scenarioRu": "Заказ напитка в кафе",
+      "prompt": "Choose the polite request.", "instructionRu": "Выберите вежливую просьбу.",
+      "stimulus": "Sei al bar e vuoi un caffè.",
+      "answer": "Vorrei un caffè, per favore.",
+      "distractors": [
+        {"text": "Dammi un caffè!", "reasonRu": "Императив с dammi звучит слишком резко для нейтрального заказа незнакомому сотруднику."},
+        {"text": "Io sono un caffè.", "reasonRu": "Фраза означает «я — кофе» и не выражает заказ."},
+        {"text": "Dov'è il treno?", "reasonRu": "Это вопрос о местонахождении поезда, не связанный с заказом напитка."}
+      ],
+      "explanation": "Vorrei… per favore is a standard polite way to order.", "explanationRu": "Vorrei… per favore — стандартный вежливый способ сделать заказ.",
+      "targetConstruct": "polite café request with vorrei and per favore", "targetConstructRu": "вежливый заказ в кафе с vorrei и per favore",
+      "canDoRu": "Может вежливо заказать простой напиток."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Choosing a definite article", "scenarioRu": "Выбор определённого артикля",
+      "prompt": "Choose the correct definite article.", "instructionRu": "Выберите правильный определённый артикль.",
+      "stimulus": "______ libro è sul tavolo.",
+      "answer": "Il",
+      "distractors": [
+        {"text": "La", "reasonRu": "Libro — существительное мужского рода, поэтому la не согласуется с ним."},
+        {"text": "Le", "reasonRu": "Le — форма женского множественного числа, а libro стоит в единственном числе."},
+        {"text": "Gli", "reasonRu": "Gli — артикль мужского множественного числа, а здесь требуется единственное число."}
+      ],
+      "explanation": "Libro is masculine singular and takes il before a regular consonant.", "explanationRu": "Libro — мужской род, единственное число; перед обычной согласной употребляется il.",
+      "targetConstruct": "masculine singular definite article il before a regular consonant", "targetConstructRu": "определённый артикль il мужского рода единственного числа перед обычной согласной",
+      "canDoRu": "Может выбрать базовый определённый артикль для знакомого существительного."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Choosing a drink", "scenarioRu": "Выбор напитка",
+      "prompt": "Choose the word for the drink described.", "instructionRu": "Выберите слово для описанного напитка.",
+      "stimulus": "Hai sete e vuoi una bevanda semplice, senza colore e senza zucchero.",
+      "answer": "acqua",
+      "distractors": [
+        {"text": "pane", "reasonRu": "Pane — хлеб, это еда, а не напиток."},
+        {"text": "pasta", "reasonRu": "Pasta — макаронное блюдо, оно не соответствует описанию напитка."},
+        {"text": "formaggio", "reasonRu": "Formaggio — сыр, а не жидкость для утоления жажды."}
+      ],
+      "explanation": "Acqua is the basic colourless, sugar-free drink described.", "explanationRu": "Acqua — вода, простой бесцветный напиток без сахара.",
+      "targetConstruct": "basic food-and-drink distinction for acqua", "targetConstructRu": "базовое различение еды и напитков для слова acqua",
+      "canDoRu": "Может узнать слово acqua в конкретной бытовой ситуации."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading weekly opening hours", "scenarioRu": "Чтение расписания работы",
+      "prompt": "When is the library open on Saturday?", "instructionRu": "Когда библиотека открыта в субботу?",
+      "stimulus": "Biblioteca comunale — lunedì-venerdì: 9:00-18:00; sabato: 9:00-13:00; domenica: chiuso.",
+      "answer": "Dalle 9:00 alle 13:00.",
+      "distractors": [
+        {"text": "Dalle 9:00 alle 18:00.", "reasonRu": "Это время с понедельника по пятницу, а не в субботу."},
+        {"text": "Dalle 13:00 alle 18:00.", "reasonRu": "В субботу библиотека закрывается в 13:00, а не открывается в это время."},
+        {"text": "È chiusa tutto il sabato.", "reasonRu": "Полностью закрыта библиотека в воскресенье; в субботу она работает утром."}
+      ],
+      "explanation": "The Saturday line says 9:00-13:00.", "explanationRu": "В строке для субботы указано 9:00–13:00.",
+      "targetConstruct": "day-specific opening-hours extraction", "targetConstructRu": "извлечение часов работы для конкретного дня",
+      "canDoRu": "Может понять простое недельное расписание."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Requesting repetition", "scenarioRu": "Просьба повторить",
+      "prompt": "Choose the polite response when you do not understand.", "instructionRu": "Выберите вежливый ответ, если вы не поняли.",
+      "stimulus": "Una persona parla troppo velocemente e non capisci.",
+      "answer": "Scusi, può ripetere?",
+      "distractors": [
+        {"text": "Parla e basta!", "reasonRu": "Фраза звучит резко и не объясняет, что именно нужно повторить."},
+        {"text": "Ho capito tutto.", "reasonRu": "Фраза означает, что всё понятно, и противоречит ситуации."},
+        {"text": "Quanto costa il biglietto?", "reasonRu": "Вопрос о цене билета не просит повторить непонятную речь."}
+      ],
+      "explanation": "The response states the problem and politely asks the speaker to repeat.", "explanationRu": "Ответ сообщает о непонимании и вежливо просит собеседника повторить.",
+      "targetConstruct": "polite non-understanding signal plus repetition request", "targetConstructRu": "вежливый сигнал непонимания и просьба повторить",
+      "canDoRu": "Может сообщить, что не понял, и попросить повторить."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Talking about languages", "scenarioRu": "Разговор о языках",
+      "prompt": "Choose the correct present-tense form.", "instructionRu": "Выберите правильную форму настоящего времени.",
+      "stimulus": "Noi ______ italiano a casa.",
+      "answer": "parliamo",
+      "distractors": [
+        {"text": "parlo", "reasonRu": "Parlo относится к io, а подлежащее здесь noi."},
+        {"text": "parlate", "reasonRu": "Parlate относится к voi, а не к noi."},
+        {"text": "parla", "reasonRu": "Parla — форма третьего лица единственного числа или вежливый императив, не форма noi."}
+      ],
+      "explanation": "Regular -are verbs take -iamo with noi: parliamo.", "explanationRu": "Правильные глаголы на -are с noi получают окончание -iamo: parliamo.",
+      "targetConstruct": "noi present ending -iamo for a regular -are verb", "targetConstructRu": "окончание -iamo в настоящем времени правильного глагола на -are с noi",
+      "canDoRu": "Может сказать, на каком языке говорят несколько людей."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Finding medicine in town", "scenarioRu": "Поиск лекарства в городе",
+      "prompt": "Where should the person go?", "instructionRu": "Куда следует пойти человеку?",
+      "stimulus": "Marco ha bisogno di una medicina per il mal di testa.",
+      "answer": "In farmacia.",
+      "distractors": [
+        {"text": "In panetteria.", "reasonRu": "Panetteria — пекарня, где покупают хлеб, а не лекарства."},
+        {"text": "In biblioteca.", "reasonRu": "Biblioteca — библиотека, а не место продажи лекарств."},
+        {"text": "Allo stadio.", "reasonRu": "Stadio — стадион и не соответствует цели покупки лекарства."}
+      ],
+      "explanation": "A farmacia is the normal place to obtain medicine.", "explanationRu": "Farmacia — аптека, обычное место для приобретения лекарства.",
+      "targetConstruct": "high-frequency town place farmacia", "targetConstructRu": "частотное обозначение городского места farmacia",
+      "canDoRu": "Может выбрать нужное место в городе для простой задачи."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a simple invitation", "scenarioRu": "Чтение простого приглашения",
+      "prompt": "Who invites Anna, where, and when?", "instructionRu": "Кто приглашает Анну, куда и когда?",
+      "stimulus": "Cara Anna, vieni a casa mia sabato alle 20 per una pizza? Un abbraccio, Chiara",
+      "answer": "Chiara invita Anna a casa sua sabato alle 20.",
+      "distractors": [
+        {"text": "Anna invita Chiara al ristorante domenica alle 20.", "reasonRu": "Перепутаны отправитель и получатель, место и день."},
+        {"text": "Chiara invita Anna a scuola sabato alle 12.", "reasonRu": "В приглашении указаны дом и 20:00, а не школа и полдень."},
+        {"text": "Chiara invita Anna a casa sua venerdì alle 20.", "reasonRu": "Время и место верны, но день — sabato, а не venerdì."}
+      ],
+      "explanation": "The signature identifies Chiara; a casa mia refers to her home, and the invitation says sabato alle 20.", "explanationRu": "Подпись указывает на Кьяру; a casa mia означает её дом, а встреча назначена на субботу в 20:00.",
+      "targetConstruct": "sender, destination, and time extraction from a familiar invitation", "targetConstructRu": "извлечение отправителя, места и времени из знакомого приглашения",
+      "canDoRu": "Может понять основные сведения в коротком приглашении."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Accepting an invitation", "scenarioRu": "Принятие приглашения",
+      "prompt": "Choose the natural acceptance.", "instructionRu": "Выберите естественное согласие.",
+      "stimulus": "— Vuoi venire a cena da noi venerdì? — ______",
+      "answer": "Sì, grazie dell'invito.",
+      "distractors": [
+        {"text": "No, non so dov'è il pane.", "reasonRu": "Фраза не принимает приглашение и добавляет несвязанную информацию о хлебе."},
+        {"text": "Il venerdì è una sedia.", "reasonRu": "Предложение семантически бессмысленно и не отвечает на приглашение."},
+        {"text": "Quanto viene il treno?", "reasonRu": "Это неестественный вопрос о поезде, не выражающий согласие прийти на ужин."}
+      ],
+      "explanation": "Sì, volentieri accepts warmly, and grazie dell'invito acknowledges the invitation.", "explanationRu": "Sì, volentieri тепло выражает согласие, а grazie dell'invito благодарит за приглашение.",
+      "targetConstruct": "short appreciative acceptance of an invitation", "targetConstructRu": "краткое благодарное принятие приглашения",
+      "canDoRu": "Может естественно принять простое приглашение."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Describing several objects in a room", "scenarioRu": "Описание нескольких предметов в комнате",
+      "prompt": "Choose c'è or ci sono.", "instructionRu": "Выберите c'è или ci sono.",
+      "stimulus": "Sul tavolo ______ tre bicchieri.",
+      "answer": "ci sono",
+      "distractors": [
+        {"text": "c'è", "reasonRu": "C'è употребляется с единственным числом, а tre bicchieri — множественное."},
+        {"text": "sono c'è", "reasonRu": "Такое сочетание не образует нормативной конструкции наличия."},
+        {"text": "ha", "reasonRu": "Ha требует субъекта-владельца и не используется здесь для сообщения о наличии предметов."}
+      ],
+      "explanation": "Ci sono agrees with the plural noun phrase tre bicchieri.", "explanationRu": "Ci sono согласуется с множественным числом tre bicchieri.",
+      "targetConstruct": "plural existential ci sono", "targetConstructRu": "конструкция наличия ci sono во множественном числе",
+      "canDoRu": "Может сказать, что в месте находятся несколько предметов."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Choosing city transport", "scenarioRu": "Выбор городского транспорта",
+      "prompt": "Which transport does Lucia take?", "instructionRu": "На каком транспорте едет Лючия?",
+      "stimulus": "Lucia aspetta alla fermata. Sale sul numero 12 e compra il biglietto dall'autista.",
+      "answer": "L'autobus.",
+      "distractors": [
+        {"text": "La bicicletta.", "reasonRu": "У велосипеда нет маршрута №12 и водителя, продающего билет."},
+        {"text": "L'aereo.", "reasonRu": "Самолёт не останавливается на обычной городской fermata и билет не покупают у водителя."},
+        {"text": "La barca.", "reasonRu": "В тексте нет воды или причала; признаки соответствуют автобусу."}
+      ],
+      "explanation": "A numbered vehicle stopping at a fermata with an autista is an autobus.", "explanationRu": "Транспорт с номером маршрута, остановкой и водителем — это автобус.",
+      "targetConstruct": "basic transport noun autobus from concrete cues", "targetConstructRu": "базовое транспортное слово autobus по конкретным признакам",
+      "canDoRu": "Может узнать распространённый вид городского транспорта."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Following simple directions", "scenarioRu": "Следование простым указаниям пути",
+      "prompt": "What should you do after turning right?", "instructionRu": "Что нужно сделать после поворота направо?",
+      "stimulus": "Per arrivare al museo, gira a destra dopo la banca. Poi vai sempre dritto fino alla piazza.",
+      "answer": "Andare sempre dritto fino alla piazza.",
+      "distractors": [
+        {"text": "Girare subito a sinistra.", "reasonRu": "После поворота направо нужно идти прямо; левый поворот не указан."},
+        {"text": "Entrare nella banca.", "reasonRu": "Банк служит ориентиром, но входить в него не требуется."},
+        {"text": "Tornare indietro prima della banca.", "reasonRu": "Указание требует продолжить путь после банка, а не возвращаться назад."}
+      ],
+      "explanation": "The second explicit step is vai sempre dritto fino alla piazza.", "explanationRu": "Второй явный шаг — идти всё время прямо до площади.",
+      "targetConstruct": "two-step direction sequencing", "targetConstructRu": "понимание последовательности из двух указаний пути",
+      "canDoRu": "Может выполнить два простых последовательных указания пути."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Declining an invitation", "scenarioRu": "Вежливый отказ от приглашения",
+      "prompt": "Choose the polite decline with a brief reason.", "instructionRu": "Выберите вежливый отказ с краткой причиной.",
+      "stimulus": "— Vieni al concerto con noi stasera? — ______",
+      "answer": "Mi dispiace, lavoro.",
+      "distractors": [
+        {"text": "No. Basta.", "reasonRu": "Ответ понятен, но звучит резко и не содержит вежливого смягчения или причины."},
+        {"text": "Sì, vengo ieri.", "reasonRu": "Фраза одновременно соглашается и использует несовместимое прошедшее обстоятельство ieri."},
+        {"text": "Il concerto lavora stasera.", "reasonRu": "Предложение семантически неверно и не выражает отказ."}
+      ],
+      "explanation": "Mi dispiace softens the refusal, non posso declines, and devo lavorare gives a brief reason.", "explanationRu": "Mi dispiace смягчает отказ, non posso выражает невозможность, а devo lavorare кратко объясняет причину.",
+      "targetConstruct": "polite invitation decline with apology and brief reason", "targetConstructRu": "вежливый отказ от приглашения с сожалением и краткой причиной",
+      "canDoRu": "Может вежливо отказаться от простого приглашения."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Saying where someone is", "scenarioRu": "Сообщение о местонахождении",
+      "prompt": "Choose the correct articulated preposition.", "instructionRu": "Выберите правильный слитный предлог с артиклем.",
+      "stimulus": "Paolo è ______ supermercato.",
+      "answer": "nel",
+      "distractors": [
+        {"text": "nella", "reasonRu": "Supermercato — мужской род, поэтому форма с la не согласуется."},
+        {"text": "nei", "reasonRu": "Nei — мужское множественное число, а supermercato стоит в единственном."},
+        {"text": "sul", "reasonRu": "Sul означает «на», тогда как человек находится внутри супермаркета."}
+      ],
+      "explanation": "In plus il contracts to nel: nel supermercato.", "explanationRu": "Предлог in с артиклем il сливается в nel: nel supermercato.",
+      "targetConstruct": "articulated locative preposition nel with a masculine singular place", "targetConstructRu": "слитный предлог места nel с существительным мужского рода единственного числа",
+      "canDoRu": "Может сказать, что человек находится внутри знакомого места."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Describing rainy weather", "scenarioRu": "Описание дождливой погоды",
+      "prompt": "Choose the weather expression that matches the situation.", "instructionRu": "Выберите выражение о погоде, соответствующее ситуации.",
+      "stimulus": "Prendi l'ombrello: dal cielo cade molta acqua.",
+      "answer": "Piove.",
+      "distractors": [
+        {"text": "C'è il sole.", "reasonRu": "Фраза описывает солнечную погоду, а в ситуации с неба падает вода."},
+        {"text": "Nevica.", "reasonRu": "Nevica означает, что идёт снег, а не дождь."},
+        {"text": "Fa caldo.", "reasonRu": "Fa caldo говорит о температуре и не выражает факт дождя."}
+      ],
+      "explanation": "Piove means it is raining.", "explanationRu": "Piove означает «идёт дождь».",
+      "targetConstruct": "basic weather expression piove", "targetConstructRu": "базовое выражение о погоде piove",
+      "canDoRu": "Может понять простое сообщение о дожде."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a shop label", "scenarioRu": "Чтение ценника",
+      "prompt": "How much do two kilograms of apples cost?", "instructionRu": "Сколько стоят два килограмма яблок?",
+      "stimulus": "Mele — 2 kg — €4,00",
+      "answer": "Quattro euro.",
+      "distractors": [
+        {"text": "Due euro.", "reasonRu": "2 — количество килограммов, а цена всей указанной упаковки — €4,00."},
+        {"text": "Quattro chili.", "reasonRu": "4 относится к цене, а количество составляет 2 kg."},
+        {"text": "Sei euro.", "reasonRu": "Цена €6,00 на ценнике не указана."}
+      ],
+      "explanation": "The label pairs 2 kg with the total price €4,00.", "explanationRu": "Ценник связывает 2 кг с общей ценой €4,00.",
+      "targetConstruct": "price and quantity extraction from a simple retail label", "targetConstructRu": "извлечение цены и количества из простого ценника",
+      "canDoRu": "Может понять цену и количество на простом ценнике."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Asking the price", "scenarioRu": "Вопрос о цене",
+      "prompt": "Choose the natural question about the visible bag.", "instructionRu": "Выберите естественный вопрос о цене видимой сумки.",
+      "stimulus": "Sei in un negozio e vuoi sapere il prezzo di una borsa.",
+      "answer": "Quanto costa la borsa?",
+      "distractors": [
+        {"text": "Dove mangia questa borsa?", "reasonRu": "Вопрос означает «где ест эта сумка» и семантически бессмысленен."},
+        {"text": "Quanti anni costa?", "reasonRu": "Смешаны вопрос о возрасте и глагол стоимости; цена так не спрашивается."},
+        {"text": "Che ora è la borsa?", "reasonRu": "Форма вопроса о времени не подходит для цены товара."}
+      ],
+      "explanation": "Quanto costa questa borsa? asks the price of one visible feminine singular item.", "explanationRu": "Quanto costa questa borsa? спрашивает цену одного видимого предмета женского рода.",
+      "targetConstruct": "simple price request with quanto costa and a visible item", "targetConstructRu": "простой вопрос о цене с quanto costa и видимым предметом",
+      "canDoRu": "Может спросить цену товара в магазине."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Describing a room", "scenarioRu": "Описание комнаты",
+      "prompt": "Choose the correctly agreeing adjective.", "instructionRu": "Выберите прилагательное с правильным согласованием.",
+      "stimulus": "La camera ha due grandi finestre. È molto ______.",
+      "answer": "luminosa",
+      "distractors": [
+        {"text": "luminoso", "reasonRu": "Luminoso — мужская форма, а camera — женский род."},
+        {"text": "luminosi", "reasonRu": "Luminosi — мужское множественное число, а описывается одна camera."},
+        {"text": "luminose", "reasonRu": "Luminose — женское множественное число, но подлежащее стоит в единственном."}
+      ],
+      "explanation": "Camera is feminine singular, so the adjective is luminosa.", "explanationRu": "Camera — женский род, единственное число, поэтому прилагательное имеет форму luminosa.",
+      "targetConstruct": "feminine singular adjective agreement", "targetConstructRu": "согласование прилагательного в женском роде единственного числа",
+      "canDoRu": "Может согласовать простое прилагательное с существительным женского рода."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Choosing clothing for cold weather", "scenarioRu": "Выбор одежды для холода",
+      "prompt": "What does Luca put on?", "instructionRu": "Что надевает Лука?",
+      "stimulus": "Fuori fa freddo. Luca mette un capo caldo sopra la camicia.",
+      "answer": "Una giacca.",
+      "distractors": [
+        {"text": "Un sandalo.", "reasonRu": "Sandalo — открытая обувь, а не тёплая верхняя одежда поверх рубашки."},
+        {"text": "Un costume da bagno.", "reasonRu": "Купальник не соответствует холодной погоде и описанию верхнего слоя."},
+        {"text": "Un cappello da sole.", "reasonRu": "Шляпа от солнца не надевается поверх рубашки как тёплая одежда."}
+      ],
+      "explanation": "A giacca is a jacket worn over a shirt and fits cold weather.", "explanationRu": "Giacca — куртка или пиджак, который надевают поверх рубашки; это соответствует холоду.",
+      "targetConstruct": "everyday clothing noun giacca", "targetConstructRu": "повседневное название одежды giacca",
+      "canDoRu": "Может выбрать базовый предмет одежды по ситуации."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading an out-of-service notice", "scenarioRu": "Чтение объявления о неработающем сервисе",
+      "prompt": "What cannot be used today?", "instructionRu": "Чем сегодня нельзя пользоваться?",
+      "stimulus": "Oggi ascensore fuori servizio. Usare le scale.",
+      "answer": "L'ascensore.",
+      "distractors": [
+        {"text": "Le scale.", "reasonRu": "Лестницей как раз предлагают пользоваться вместо неработающего лифта."},
+        {"text": "L'ingresso.", "reasonRu": "Вход в объявлении не назван закрытым."},
+        {"text": "Il parcheggio.", "reasonRu": "Парковка в тексте вообще не упоминается."}
+      ],
+      "explanation": "Fuori servizio directly marks the ascensore as unavailable.", "explanationRu": "Fuori servizio прямо указывает, что лифт не работает.",
+      "targetConstruct": "explicit unavailable-service identification from a public notice", "targetConstructRu": "определение недоступного сервиса по публичному объявлению",
+      "canDoRu": "Может понять простое объявление о временно неработающем объекте."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Asking for the bathroom", "scenarioRu": "Вопрос о туалете",
+      "prompt": "Choose the polite location question.", "instructionRu": "Выберите вежливый вопрос о местонахождении.",
+      "stimulus": "Sei in un ristorante e cerchi il bagno.",
+      "answer": "Mi scusi, dov'è il bagno?",
+      "distractors": [
+        {"text": "Il bagno sono io.", "reasonRu": "Фраза означает «туалет — это я» и не задаёт вопроса о месте."},
+        {"text": "Quando costa il bagno?", "reasonRu": "Смешаны вопрос о времени и стоимости; местонахождение так не спрашивают."},
+        {"text": "Portami il bagno!", "reasonRu": "Императив «принесите мне туалет» не соответствует ситуации и звучит грубо."}
+      ],
+      "explanation": "Mi scusi opens politely and dov'è il bagno? asks the location directly.", "explanationRu": "Mi scusi вежливо привлекает внимание, а dov'è il bagno? прямо спрашивает местонахождение.",
+      "targetConstruct": "polite bathroom location request", "targetConstructRu": "вежливый вопрос о местонахождении туалета",
+      "canDoRu": "Может вежливо спросить, где находится туалет."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Stating a food preference", "scenarioRu": "Сообщение о пищевом предпочтении",
+      "prompt": "Choose the correctly placed negation.", "instructionRu": "Выберите правильно расположенное отрицание.",
+      "stimulus": "Io ______ mangio carne.",
+      "answer": "non",
+      "distractors": [
+        {"text": "no", "reasonRu": "No используется как самостоятельный ответ, а перед личным глаголом требуется non."},
+        {"text": "mai non", "reasonRu": "В базовой конструкции отрицание перед mangio выражается одним non; данная последовательность ненормативна."},
+        {"text": "mangio non", "reasonRu": "Non должно стоять перед личной формой глагола, а не после неё."}
+      ],
+      "explanation": "Simple verbal negation places non immediately before the finite verb: non mangio.", "explanationRu": "Простое отрицание ставит non непосредственно перед личной формой глагола: non mangio.",
+      "targetConstruct": "preverbal placement of simple negation non", "targetConstructRu": "позиция простого отрицания non перед личным глаголом",
+      "canDoRu": "Может отрицать простое действие в настоящем времени."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming a sore body part", "scenarioRu": "Название больной части тела",
+      "prompt": "Which body part hurts?", "instructionRu": "Какая часть тела болит?",
+      "stimulus": "Quando bevo, sento dolore qui, tra la bocca e il collo. Ho mal di ______.",
+      "answer": "gola",
+      "distractors": [
+        {"text": "piede", "reasonRu": "Piede — стопа и не находится между ртом и шеей."},
+        {"text": "mano", "reasonRu": "Mano — кисть руки, описание места боли ей не соответствует."},
+        {"text": "ginocchio", "reasonRu": "Ginocchio — колено, а боль ощущается в горле."}
+      ],
+      "explanation": "Gola is the throat, located between the mouth and neck.", "explanationRu": "Gola — горло, расположенное между ртом и шеей.",
+      "targetConstruct": "basic body-part noun gola from a direct symptom cue", "targetConstructRu": "базовое название части тела gola по прямому описанию симптома",
+      "canDoRu": "Может назвать знакомую часть тела при простом симптоме."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a daily schedule", "scenarioRu": "Чтение распорядка дня",
+      "prompt": "What does Sara do immediately after lunch?", "instructionRu": "Что Сара делает сразу после обеда?",
+      "stimulus": "La giornata di Sara: 8:00 lavoro; 13:00 pranzo; 14:00 lezione di italiano; 16:00 spesa; 19:00 casa.",
+      "answer": "Va alla lezione di italiano.",
+      "distractors": [
+        {"text": "Va a fare la spesa.", "reasonRu": "Покупки запланированы на 16:00, после урока, а не сразу после обеда."},
+        {"text": "Torna a casa.", "reasonRu": "Дом указан на 19:00, значительно позже обеда."},
+        {"text": "Comincia il lavoro.", "reasonRu": "Работа начинается в 8:00 и предшествует обеду."}
+      ],
+      "explanation": "Lunch is at 13:00 and the next listed activity is the Italian lesson at 14:00.", "explanationRu": "Обед указан на 13:00, а следующее действие — урок итальянского в 14:00.",
+      "targetConstruct": "next-activity identification in a simple ordered schedule", "targetConstructRu": "определение следующего действия в простом последовательном расписании",
+      "canDoRu": "Может найти следующее действие в простом распорядке дня."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Apologising for being late", "scenarioRu": "Извинение за опоздание",
+      "prompt": "Choose the appropriate short apology.", "instructionRu": "Выберите подходящее краткое извинение.",
+      "stimulus": "Arrivi dieci minuti tardi a una riunione.",
+      "answer": "Scusate il ritardo.",
+      "distractors": [
+        {"text": "Complimenti per il ritardo.", "reasonRu": "Complimenti выражает поздравление или похвалу, а не извинение."},
+        {"text": "Il ritardo è una bevanda.", "reasonRu": "Предложение бессмысленно и не признаёт опоздание."},
+        {"text": "Dovete aspettare sempre.", "reasonRu": "Фраза требует от других всегда ждать и звучит невежливо вместо извинения."}
+      ],
+      "explanation": "Scusate il ritardo directly and politely apologises to more than one person.", "explanationRu": "Scusate il ritardo прямо и вежливо выражает извинение перед несколькими людьми.",
+      "targetConstruct": "brief apology for lateness to a group", "targetConstructRu": "краткое извинение перед группой за опоздание",
+      "canDoRu": "Может кратко извиниться за опоздание."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Referring to a known book", "scenarioRu": "Отсылка к известной книге",
+      "prompt": "Choose the direct object pronoun.", "instructionRu": "Выберите прямое объектное местоимение.",
+      "stimulus": "Questo libro è interessante. ______ leggo ogni sera.",
+      "answer": "Lo",
+      "distractors": [
+        {"text": "La", "reasonRu": "La заменяет существительное женского рода, а libro — мужского."},
+        {"text": "Li", "reasonRu": "Li — мужское множественное число, а речь об одной книге."},
+        {"text": "Le", "reasonRu": "Le не заменяет мужское существительное единственного числа в роли прямого дополнения."}
+      ],
+      "explanation": "Libro is masculine singular, so the direct object clitic is lo.", "explanationRu": "Libro — мужской род, единственное число, поэтому прямое объектное местоимение — lo.",
+      "targetConstruct": "masculine singular direct object clitic lo", "targetConstructRu": "прямое объектное местоимение lo мужского рода единственного числа",
+      "canDoRu": "Может заменить знакомое существительное простым объектным местоимением."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Finding food in the kitchen", "scenarioRu": "Поиск еды на кухне",
+      "prompt": "Which object should you open?", "instructionRu": "Какой предмет нужно открыть?",
+      "stimulus": "Il latte è freddo e si trova in cucina, dentro il grande elettrodomestico bianco.",
+      "answer": "Il frigorifero.",
+      "distractors": [
+        {"text": "Il divano.", "reasonRu": "Divano — диван, он не охлаждает продукты и обычно находится не на кухне."},
+        {"text": "La lampada.", "reasonRu": "Lampada даёт свет, но не хранит молоко холодным."},
+        {"text": "Il cuscino.", "reasonRu": "Cuscino — подушка и не является кухонным электроприбором."}
+      ],
+      "explanation": "A frigorifero is the large kitchen appliance that keeps milk cold.", "explanationRu": "Frigorifero — холодильник, крупный кухонный прибор, который сохраняет молоко холодным.",
+      "targetConstruct": "high-frequency household object frigorifero", "targetConstructRu": "частотное название домашнего предмета frigorifero",
+      "canDoRu": "Может узнать базовый домашний предмет по его назначению."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a prohibition sign", "scenarioRu": "Чтение запрещающего знака",
+      "prompt": "What is prohibited?", "instructionRu": "Что запрещено?",
+      "stimulus": "VIETATO FUMARE in tutto l'edificio.",
+      "answer": "Fumare.",
+      "distractors": [
+        {"text": "Entrare.", "reasonRu": "Вход не запрещён; знак касается курения."},
+        {"text": "Parlare.", "reasonRu": "Запрета разговаривать в надписи нет."},
+        {"text": "Bere acqua.", "reasonRu": "Употребление воды не упоминается как запрещённое действие."}
+      ],
+      "explanation": "Vietato fumare explicitly means smoking is prohibited.", "explanationRu": "Vietato fumare прямо означает, что курить запрещено.",
+      "targetConstruct": "explicit prohibited-action identification from a familiar sign", "targetConstructRu": "определение явно запрещённого действия по знакомому знаку",
+      "canDoRu": "Может понять распространённый запрещающий знак."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Requesting help with a size", "scenarioRu": "Просьба помочь с размером",
+      "prompt": "Choose the polite shop request.", "instructionRu": "Выберите вежливую просьбу в магазине.",
+      "stimulus": "Questa maglietta è troppo piccola. Vuoi provare una taglia più grande.",
+      "answer": "Mi può aiutare? Ha una taglia più grande?",
+      "distractors": [
+        {"text": "Questa taglia deve diventare grande subito!", "reasonRu": "Требование нереалистично и не просит сотрудника найти другой размер."},
+        {"text": "La maglietta mangia poco.", "reasonRu": "Фраза не имеет смысла в ситуации выбора размера."},
+        {"text": "Dov'è la stazione dei vestiti?", "reasonRu": "Вопрос смешивает станцию и одежду и не выражает нужную просьбу."}
+      ],
+      "explanation": "The speaker politely asks for help and specifies the needed larger size.", "explanationRu": "Говорящий вежливо просит помочь и уточняет, что нужен больший размер.",
+      "targetConstruct": "basic shop assistance request specifying a larger size", "targetConstructRu": "базовая просьба о помощи в магазине с уточнением большего размера",
+      "canDoRu": "Может попросить сотрудника магазина помочь с размером."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Going to work", "scenarioRu": "Поездка на работу",
+      "prompt": "Choose the correct present form of andare.", "instructionRu": "Выберите правильную форму настоящего времени глагола andare.",
+      "stimulus": "Ogni mattina io ______ al lavoro in autobus.",
+      "answer": "vado",
+      "distractors": [
+        {"text": "vai", "reasonRu": "Vai относится к tu, а подлежащее здесь io."},
+        {"text": "va", "reasonRu": "Va относится к lui, lei или Lei, а не к io."},
+        {"text": "andiamo", "reasonRu": "Andiamo — форма noi, тогда как говорится об одном говорящем."}
+      ],
+      "explanation": "The irregular first-person singular of andare is vado.", "explanationRu": "Неправильная форма первого лица единственного числа andare — vado.",
+      "targetConstruct": "first-person singular present of irregular andare", "targetConstructRu": "первое лицо единственного числа настоящего времени неправильного andare",
+      "canDoRu": "Может сказать, куда регулярно ходит или едет."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Following a map direction", "scenarioRu": "Следование указанию по карте",
+      "prompt": "Which direction should you go?", "instructionRu": "В каком направлении нужно идти?",
+      "stimulus": "Sulla mappa il mare è in basso. L'albergo è verso il mare: devi andare a ______.",
+      "answer": "sud",
+      "distractors": [
+        {"text": "nord", "reasonRu": "На стандартной карте nord находится сверху, а море указано внизу."},
+        {"text": "est", "reasonRu": "Est — справа, но нужное направление обозначено вниз."},
+        {"text": "ovest", "reasonRu": "Ovest — слева, а не вниз к морю."}
+      ],
+      "explanation": "On a standard map, down corresponds to sud.", "explanationRu": "На стандартной карте направление вниз соответствует sud — югу.",
+      "targetConstruct": "cardinal direction sud from a simple map orientation", "targetConstructRu": "сторона света sud по простой ориентации карты",
+      "canDoRu": "Может понять базовое направление по простой карте."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a callback note", "scenarioRu": "Чтение записки с просьбой перезвонить",
+      "prompt": "Whom should Elena call, and at what number?", "instructionRu": "Кому и по какому номеру должна позвонить Елена?",
+      "stimulus": "Elena, ha telefonato Roberto. Puoi richiamarlo al 347 582 016? — Marco",
+      "answer": "Roberto, al 347 582 016.",
+      "distractors": [
+        {"text": "Marco, al 347 582 016.", "reasonRu": "Marco подписал записку, но звонил и ждёт обратного звонка Roberto."},
+        {"text": "Roberto, al 347 528 016.", "reasonRu": "В среднем блоке переставлены цифры: в записке указано 582, а не 528."},
+        {"text": "Elena, al 347 582 016.", "reasonRu": "Elena — адресат записки, а позвонить нужно Roberto."}
+      ],
+      "explanation": "The note says Roberto called and gives 347 582 016 for the callback.", "explanationRu": "В записке сказано, что звонил Роберто, и указан номер для обратного звонка 347 582 016.",
+      "targetConstruct": "person and phone-number extraction from a short callback note", "targetConstructRu": "извлечение имени и номера телефона из короткой записки",
+      "canDoRu": "Может понять, кому и по какому номеру нужно перезвонить."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Closing a service exchange", "scenarioRu": "Завершение общения в сервисной ситуации",
+      "prompt": "Choose the polite closing.", "instructionRu": "Выберите вежливое завершение разговора.",
+      "stimulus": "— Ecco il suo biglietto. — ______",
+      "answer": "Grazie, arrivederci!",
+      "distractors": [
+        {"text": "No, buongiorno ieri.", "reasonRu": "Фраза грамматически и временно несвязна и не завершает обслуживание."},
+        {"text": "Il biglietto è mio fratello.", "reasonRu": "Предложение семантически бессмысленно в этой ситуации."},
+        {"text": "Ripeta il prezzo per sempre!", "reasonRu": "Резкое требование бесконечно повторять цену не выражает благодарности и прощания."}
+      ],
+      "explanation": "Grazie acknowledges the service and arrivederci closes the exchange politely.", "explanationRu": "Grazie выражает благодарность, а arrivederci вежливо завершает разговор.",
+      "targetConstruct": "polite service closing with thanks and farewell", "targetConstructRu": "вежливое завершение обслуживания с благодарностью и прощанием",
+      "canDoRu": "Может вежливо завершить короткое общение с сотрудником."
+    }
+  ]
+}

@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
+import {
+  CUSTOMIZATION_STORAGE_KEYS,
+  USER_AVATAR_AURA_KEY,
+} from '../constants/customization_storage_keys';
 import { getLevelFromXP } from '../constants/theme';
-import { ARENA_RATING_SCREEN_CACHE_KEY, sanitizeArenaProfileForRating, sanitizeArenaRatingHistory } from './arena_rating_cache';
 import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   limitArray,
   patchAppSnapshot,
-  type AppSnapshotArena,
   type AppSnapshotFriends,
   type AppSnapshotProfile,
   type AppSnapshotProgress,
@@ -15,6 +16,18 @@ import {
 import { startFriendsTabSwrPrime, peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
 import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
+import { buildCustomizationSnapshot } from './customization_snapshot';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import {
+  migrateLegacyVipSnapshotOnce,
+  readVipSnapshotForGeneration,
+  type VipStorageValues,
+} from './premium_vip_storage';
+import {
+  REFERRAL_STATE_STORAGE_KEY,
+  hydrateReferralStateFromRaw,
+} from './referrals_cache';
+import { rememberLeagueStateSnapshot, sanitizeLeagueState } from './league_open_cache_policy';
 
 const BOOT_PROFILE_KEYS = [
   'user_name',
@@ -23,7 +36,7 @@ const BOOT_PROFILE_KEYS = [
   USER_AVATAR_AURA_KEY,
   'user_total_xp',
   'premium_active',
-  'vip_until',
+  'premium_plan',
 ] as const;
 
 const BOOT_PROGRESS_KEYS = [
@@ -53,6 +66,7 @@ const BOOT_SETTINGS_KEYS = [
 // false-positive (неверный язык/target) — нет.
 const BOOT_LANG_KEY = 'app_lang';
 const BOOT_STUDY_TARGET_KEY = 'study_target_v1';
+const BOOT_LEAGUE_STATE_KEY = 'league_state_v3';
 
 let peekAppLangState: string | null = null;
 let peekStudyTargetState: string | null = null;
@@ -90,9 +104,20 @@ function readBool(raw: string | null | undefined): boolean {
   return raw === '1' || raw === 'true';
 }
 
-function buildProfileSnapshot(values: Map<string, string | null>, now: number): AppSnapshotProfile {
+function buildProfileSnapshot(
+  values: Map<string, string | null>,
+  now: number,
+  vipSnapshot: VipStorageValues | null,
+): AppSnapshotProfile {
   const totalXp = readInt(values.get('user_total_xp'));
-  const vipUntil = Number(values.get('vip_until') ?? '0') || 0;
+  const vipUntil = Number(vipSnapshot?.vip_until ?? '0') || 0;
+  // зачем: пожизненный VIP-грант (сертификат «Pro — навсегда», промокод,
+  // бессрочная выдача из админки) не имеет даты окончания — vip_until = 0.
+  // Без этого признака он читался как «срок истёк» и на первом кадре терял и
+  // доступ, и тир Pro. Зеркалит isLifetimeVipValues в premium_guard.ts.
+  const vipPlanRaw = String(vipSnapshot?.vip_plan ?? '').trim().toLowerCase();
+  const vipGranted = readBool(vipSnapshot?.vip_active) || !!vipPlanRaw;
+  const vipLifetime = vipGranted && vipUntil <= 0;
   const name = values.get('user_name')?.trim() || '';
   const avatar = values.get('user_avatar')?.trim() || '1';
   const frame = values.get('user_frame')?.trim() || '';
@@ -108,7 +133,9 @@ function buildProfileSnapshot(values: Map<string, string | null>, now: number): 
     totalXp,
     level: getLevelFromXP(totalXp),
     premiumActive: readBool(values.get('premium_active')),
-    vipActive: vipUntil > now,
+    premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
+    vipActive: vipUntil > now || vipLifetime,
+    vipLifetime,
   };
 }
 
@@ -153,50 +180,60 @@ async function primeFriendsSnapshot(now: number): Promise<AppSnapshotFriends | n
   };
 }
 
-async function primeArenaSnapshot(now: number): Promise<AppSnapshotArena | null> {
-  const raw = await AsyncStorage.getItem(ARENA_RATING_SCREEN_CACHE_KEY).catch(() => null);
-  if (!raw) return null;
-  try {
-    const parsed = JSON.parse(raw) as { profile?: unknown; history?: unknown[]; ts?: unknown };
-    return {
-      source: 'storage',
-      updatedAt: Number(parsed.ts) || now,
-      profile: sanitizeArenaProfileForRating(parsed.profile),
-      historyCount: sanitizeArenaRatingHistory(parsed.history).length,
-    };
-  } catch {
-    return null;
-  }
-}
-
 export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
   const now = Date.now();
+  const accountGeneration = captureAccountGeneration();
+  const isAccountCurrent = () => (
+    !!accountGeneration.stableId
+    && isCurrentAccountGeneration(accountGeneration, accountGeneration.stableId)
+  );
+  if (!isAccountCurrent()) return;
+  await migrateLegacyVipSnapshotOnce(accountGeneration).catch(() => false);
+  if (!isAccountCurrent()) return;
+  const vipSnapshot = await readVipSnapshotForGeneration(accountGeneration);
+  if (!isAccountCurrent()) return;
   const lastOpenedKey = lastOpenedLessonKey(studyTarget);
   const keys = [
     ...BOOT_PROFILE_KEYS,
     ...BOOT_PROGRESS_KEYS,
+    ...CUSTOMIZATION_STORAGE_KEYS,
     ...BOOT_SETTINGS_KEYS,
     lastOpenedKey,
     BOOT_LANG_KEY,
     BOOT_STUDY_TARGET_KEY,
+    BOOT_LEAGUE_STATE_KEY,
+    REFERRAL_STATE_STORAGE_KEY,
   ];
-  const [pairs, friends, arena] = await Promise.all([
+  const [pairs, friends] = await Promise.all([
     AsyncStorage.multiGet(keys).catch(() => [] as [string, string | null][]),
     primeFriendsSnapshot(now),
-    primeArenaSnapshot(now),
     hydrateUserSettingsFromStorage().catch(() => {}),
-  ]).then(async ([storagePairs, friendsSnapshot, arenaSnapshot]) => [
+  ]).then(async ([storagePairs, friendsSnapshot]) => [
     storagePairs,
     friendsSnapshot,
-    arenaSnapshot,
   ] as const);
 
+  if (!isAccountCurrent()) return;
   const values = mapPairs(pairs);
   writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
   writePeekStudyTargetRaw(values.get(BOOT_STUDY_TARGET_KEY) ?? null);
+  try {
+    rememberLeagueStateSnapshot(sanitizeLeagueState(JSON.parse(values.get(BOOT_LEAGUE_STATE_KEY) ?? 'null')));
+  } catch {
+    rememberLeagueStateSnapshot(null);
+  }
+  hydrateReferralStateFromRaw(
+    values.get(REFERRAL_STATE_STORAGE_KEY),
+    captureAccountGeneration(),
+    now,
+  );
+  if (!isAccountCurrent()) return;
+  const profile = buildProfileSnapshot(values, now, vipSnapshot);
+  if (!isAccountCurrent()) return;
   patchAppSnapshot({
-    profile: buildProfileSnapshot(values, now),
+    profile,
     progress: buildProgressSnapshot(values, studyTarget, now),
+    customization: buildCustomizationSnapshot(values, now, profile.level),
     lessons: {
       source: 'storage',
       updatedAt: now,
@@ -205,7 +242,6 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     },
     settings: buildSettingsSnapshot(values, now),
     ...(friends ? { friends } : {}),
-    ...(arena ? { arena } : {}),
     primedAt: now,
   });
 }

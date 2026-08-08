@@ -36,15 +36,7 @@ export interface NormalizedRevenueCatFinancials {
 }
 
 function finiteNumber(value: unknown): number | null {
-  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
-  // RevenueCat's webhook contract uses JSON numbers. Accept their lossless
-  // string representation as well because older persisted/imported events may
-  // have crossed a CSV or Firestore serialization boundary before analysis.
-  if (typeof value !== 'string') return null;
-  const normalized = value.trim();
-  if (!/^-?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(normalized)) return null;
-  const parsed = Number(normalized);
-  return Number.isFinite(parsed) ? parsed : null;
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
 }
 
 function moneyMicros(value: unknown): number | null {

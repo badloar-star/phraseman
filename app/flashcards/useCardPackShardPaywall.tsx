@@ -1,10 +1,11 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CardPackShardPaywallModal from './CardPackShardPaywallModal';
 import type { FlashcardMarketPack } from './marketplace';
 import type { Lang } from '../../constants/i18n';
 import { purchaseCardPackWithShards, redeemPackGiftVoucher } from './cardPackShardPurchase';
 import { isPackCeremoniallyOpened } from './openedPacksTracker';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
+import { getShardsBalance } from '../shards_system';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 
 type Routerish = { push: (h: any) => void };
@@ -13,7 +14,7 @@ type Routerish = { push: (h: any) => void };
  * Стан paywall-модалки (замість системного Alert) для покупки набору за осколки.
  *
  * Підтримує 3 режими:
- *  - voucher       — активний 48-год подарунок-ваучер (для офіційних паків): пропонуємо
+ *  - voucher       — активний 48-год подарунок-ваучер (офіційні + community): пропонуємо
  *                    забрати безкоштовно з попередженням, що подарунок «згорить».
  *  - confirm       — звичайна покупка за осколки.
  *  - insufficient  — балансу не вистачає, кидаємо в магазин осколків.
@@ -22,6 +23,8 @@ export function useCardPackShardPaywall(args: {
   balance: number;
   /** Чи активний зараз 48-год ваучер. Приходить з shards_shop / flashcards. */
   hasVoucher?: boolean;
+  /** Server-verifiable Flashcard Friday window for a permanent community entitlement. */
+  hasCommunityVoucher?: boolean;
   studyTarget?: RuntimeStudyTarget;
   lang: Lang;
   router: Routerish;
@@ -37,6 +40,7 @@ export function useCardPackShardPaywall(args: {
   const {
     balance,
     hasVoucher = false,
+    hasCommunityVoucher = false,
     studyTarget,
     lang,
     router,
@@ -45,25 +49,50 @@ export function useCardPackShardPaywall(args: {
     onPurchaseEnd,
     onCommunityPackHiddenOnDevice,
   } = args;
-  const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher' } | null>(null);
+  const [paywall, setPaywall] = useState<{
+    pack: FlashcardMarketPack;
+    mode: 'confirm' | 'insufficient' | 'voucher';
+    displayedBalance: number;
+  } | null>(null);
   const [purchasing, setPurchasing] = useState(false);
+  const purchasingRef = useRef(false);
   const paywallRef = useRef(paywall);
   paywallRef.current = paywall;
 
   const openPaywall = useCallback(
     (pack: FlashcardMarketPack) => {
       if (purchasing) return;
-      // Ваучер працює тільки для офіційних паків (не community UGC).
-      const voucherEligible = hasVoucher && !pack.isCommunityUgc;
-      const mode: 'voucher' | 'confirm' | 'insufficient' = voucherEligible
-        ? 'voucher'
-        : balance < pack.priceShards
-        ? 'insufficient'
-        : 'confirm';
-      setPaywall({ pack, mode });
+      // Активний подарунок можна обміняти на будь-який доступний набір каталогу.
+      // Для community постійний entitlement підтверджує захищений server callable.
+      const voucherEligible = hasVoucher && (!pack.isCommunityUgc || hasCommunityVoucher);
+      // Локальный balance может быть устаревшим в обе стороны. Не запираем
+      // серверную покупку в «Недостаточно» до фактического ответа сервера.
+      const mode: 'voucher' | 'confirm' = voucherEligible ? 'voucher' : 'confirm';
+      setPaywall({ pack, mode, displayedBalance: balance });
     },
-    [balance, hasVoucher, purchasing],
+    [balance, hasCommunityVoucher, hasVoucher, purchasing],
   );
+
+  useEffect(() => {
+    if (purchasingRef.current) return;
+    setPaywall((prev) => {
+      if (!prev) return prev;
+      const voucherEligible = hasVoucher && (!prev.pack.isCommunityUgc || hasCommunityVoucher);
+      if (voucherEligible) {
+        if (prev.mode === 'voucher' && prev.displayedBalance === balance) return prev;
+        return { ...prev, mode: 'voucher', displayedBalance: balance };
+      }
+      if (prev.mode === 'insufficient') {
+        // Разблокируем только после реального изменения баланса до достаточного.
+        if (balance >= prev.pack.priceShards && balance !== prev.displayedBalance) {
+          return { ...prev, mode: 'confirm', displayedBalance: balance };
+        }
+        return prev.displayedBalance === balance ? prev : { ...prev, displayedBalance: balance };
+      }
+      if (prev.mode === 'confirm' && prev.displayedBalance === balance) return prev;
+      return { ...prev, mode: 'confirm', displayedBalance: balance };
+    });
+  }, [balance, hasCommunityVoucher, hasVoucher]);
 
   const closePaywall = useCallback(() => {
     if (purchasing) return;
@@ -71,9 +100,11 @@ export function useCardPackShardPaywall(args: {
   }, [purchasing]);
 
   const onConfirmPurchase = useCallback(async () => {
+    if (purchasingRef.current) return;
     const pw = paywallRef.current;
     if (!pw) return;
     if (pw.mode !== 'confirm' && pw.mode !== 'voucher') return;
+    purchasingRef.current = true;
     setPurchasing(true);
     onPurchaseStart?.(pw.pack.id);
     try {
@@ -97,17 +128,32 @@ export function useCardPackShardPaywall(args: {
         } else {
           setPaywall(null);
         }
+      } else if (r === 'wallet_sync_pending') {
+        // Replay мог успеть обновить локальный баланс прямо во время нажатия.
+        // Обновляем число в открытой модалке, но не закрываем её: повтор безопасен.
+        const freshBalance = await getShardsBalance().catch(() => balance);
+        setPaywall((prev) => (prev
+          ? { ...prev, displayedBalance: freshBalance }
+          : prev));
       } else if (r === 'insufficient') {
-        // Локальный баланс был завышен (рассинхрон с облаком). spendShards уже
-        // выровнял его — переключаем модалку в режим «не хватает» вместо тихого
-        // отказа, чтобы юзер не жал «Купить» по кругу.
-        setPaywall((prev) => (prev ? { ...prev, mode: 'insufficient' } : prev));
+        // Official spend и community reconcile уже попытались зеркалировать
+        // авторитетный server balance. Показываем перечитанное число.
+        const freshBalance = await getShardsBalance().catch(() => balance);
+        setPaywall((prev) => (prev
+          ? { ...prev, mode: 'insufficient', displayedBalance: freshBalance }
+          : prev));
+      } else if (r === 'no_voucher' || r === 'redeem_failed') {
+        // The voucher expired or the server could not confirm it. The redeem helper
+        // emits the visible error; close the stale confirmation instead of leaving a
+        // tappable modal that can only repeat the same failure.
+        setPaywall(null);
       }
     } finally {
+      purchasingRef.current = false;
       setPurchasing(false);
       onPurchaseEnd?.();
     }
-  }, [onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
+  }, [balance, onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
 
   const onGoToShards = useCallback(() => {
     navigateAfterModalClose(
@@ -122,7 +168,7 @@ export function useCardPackShardPaywall(args: {
         visible
         mode={paywall.mode}
         pack={paywall.pack}
-        balance={balance}
+        balance={paywall.displayedBalance}
         lang={lang}
         studyTarget={studyTarget}
         purchasing={purchasing}

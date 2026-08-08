@@ -115,6 +115,15 @@ const SUPPORT_LEVELS = new Set<LearningSupportLevel>([
   "visual_only",
   "none",
 ]);
+const REQUIRED_SESSION_ALLOWED_FAMILIES = new Set<V2ActivityFamily>([
+  "phrase_builder",
+  "listen_choose",
+  "sound_contrast",
+  "listen_build_dictation",
+  "context_gap_grammar",
+  "speed_match",
+  "scripted_repeat_compare",
+]);
 
 type SessionSetInputSnapshot =
   | { readonly ok: true; readonly value: unknown }
@@ -129,7 +138,7 @@ const snapshotSessionSetInput = (input: unknown): SessionSetInputSnapshot => {
   const active = new WeakSet<object>();
 
   const visit = (value: unknown): unknown => {
-    if (
+       if (
       value === null ||
       typeof value === "string" ||
       typeof value === "boolean"
@@ -312,13 +321,12 @@ export const validateV2SessionSet = (
     if (
       !Number.isSafeInteger(candidate.targetSeconds) ||
       Number(candidate.targetSeconds) < 150 ||
-      Number(candidate.targetSeconds) > 240
+      Number(candidate.targetSeconds) > 360
     )
       issues.push("session_target_seconds");
     if (
       !Array.isArray(candidate.cards) ||
-      candidate.cards.length < 7 ||
-      candidate.cards.length > 9
+      candidate.cards.length !== 12
     ) {
       issues.push("session_card_count");
       return;
@@ -338,17 +346,23 @@ export const validateV2SessionSet = (
       }
       if (
         !isIdentity(card.contentItemId) ||
-        !isIdentity(card.objectiveId) ||
-        !isIdentity(card.promptId) ||
-        !(V2_ACTIVITY_FAMILIES as readonly unknown[]).includes(card.family) ||
+         !isIdentity(card.objectiveId) ||
+         !isIdentity(card.promptId) ||
+         !(V2_ACTIVITY_FAMILIES as readonly unknown[]).includes(card.family) ||
         !LEARNING_FUNCTIONS.has(
           card.learningFunction as V2SessionLearningFunction,
         ) ||
         !SUPPORT_LEVELS.has(card.support as LearningSupportLevel) ||
         !["trained", "varied", "novel"].includes(String(card.promptNovelty))
-      )
-        issues.push("session_card_invalid");
-      if (typeof card.family === "string") families.add(card.family);
+       )
+         issues.push("session_card_invalid");
+       if (
+         typeof card.family !== "string" ||
+         !REQUIRED_SESSION_ALLOWED_FAMILIES.has(card.family as V2ActivityFamily)
+       ) {
+         issues.push("session_card_family_unapproved");
+       }
+       if (typeof card.family === "string") families.add(card.family);
     }
     if (families.size < 3 || families.size > 4)
       issues.push("session_family_count");

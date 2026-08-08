@@ -7,7 +7,7 @@
 //
 // Эти компоненты — маленькие и статически импортируются и экраном, и модулем
 // данных: сам по себе этот файл не тянет мегабайты контента.
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo, useRef, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
@@ -201,7 +201,7 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
       <View style={{ borderRadius: 10, borderWidth: 0, borderColor: c.border, overflow: 'hidden' }}>
         <Animated.ScrollView
           horizontal
-          decelerationRate="normal"
+          decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}

@@ -22,7 +22,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LinearGradient } from './SafeLinearGradient';
@@ -32,28 +32,36 @@ import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { getDeviceBootstrapLocale, type Lang } from '../constants/i18n';
+import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
+import AccountDeletedNotice from './AccountDeletedNotice';
+import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
+import { softShadow } from '../constants/androidGlow';
 import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
-import { setBirthYear, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
+// зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
+// рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
+import { confirmAdultAgeAttestation, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
 import { setAnalyticsConsent } from '../app/analytics_consent';
 import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
 import { requestNotificationPermissionWithFallback, scheduleDailyReminder } from '../app/notifications';
-import { ensureUniqueGeneratedNickname } from '../app/nickname_guard';
+import { GENERATED_NICKNAME_PENDING_KEY, resumePendingGeneratedNickname } from '../app/nickname_guard';
 import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
 import { onAppEvent } from '../app/events';
-import { getEnabledOnboardingSteps } from '../app/remote_flags';
+import { getEnabledOnboardingSteps, getRemoteBool } from '../app/remote_flags';
 import {
   decideOnboardingTransition,
   getOnboardingProgress,
   resolveEnabledOnboardingOrder,
   resolveOnboardingStep,
   runOnboardingTransitionEffects,
+  MANDATORY_ONBOARDING_STEP,
   type OnboardingStepId,
 } from '../app/onboarding_flow';
+import { markOnboardingWelcomePending } from '../app/onboarding_welcome_state';
+import { recordOnboardingFunnelCompletion, recordOnboardingFunnelStart } from '../app/onboarding_funnel';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
@@ -83,43 +91,44 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 
-const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.png');
+import { noAndroidOutline } from '../constants/androidGlow';
+const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 const ONBOARDING_ASSETS = {
-  sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.png'),
-  sourceStore: require('../assets/images/flow_clean_202607/source_store.png'),
-  sourceSocial: require('../assets/images/flow_clean_202607/source_social.png'),
-  sourceYoutube: require('../assets/images/flow_clean_202607/source_youtube.png'),
-  sourceGoogle: require('../assets/images/flow_clean_202607/source_google.png'),
-  sourceFriends: require('../assets/images/flow_clean_202607/source_friends.png'),
-  sourceOther: require('../assets/images/flow_clean_202607/source_other.png'),
+  sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.webp'),
+  sourceStore: require('../assets/images/flow_clean_202607/source_store.webp'),
+  sourceSocial: require('../assets/images/flow_clean_202607/source_social.webp'),
+  sourceYoutube: require('../assets/images/flow_clean_202607/source_youtube.webp'),
+  sourceGoogle: require('../assets/images/flow_clean_202607/source_google.webp'),
+  sourceFriends: require('../assets/images/flow_clean_202607/source_friends.webp'),
+  sourceOther: require('../assets/images/flow_clean_202607/source_other.webp'),
   languageEn: require('../assets/images/language_flags/language_en.webp'),
   languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
-  levelA0: require('../assets/images/flow_clean_202607/level_a0.png'),
-  levelA1: require('../assets/images/flow_clean_202607/level_a1.png'),
-  levelA2: require('../assets/images/flow_clean_202607/level_a2.png'),
-  levelB1: require('../assets/images/flow_clean_202607/level_b1.png'),
-  levelB2: require('../assets/images/flow_clean_202607/level_b2.png'),
-  goalSeries: require('../assets/images/flow_clean_202607/goal_series.png'),
-  goalEveryday: require('../assets/images/flow_clean_202607/goal_everyday.png'),
-  goalTravel: require('../assets/images/flow_clean_202607/goal_travel.png'),
-  goalWords: require('../assets/images/flow_clean_202607/goal_words.png'),
-  goalMind: require('../assets/images/flow_clean_202607/goal_mind.png'),
-  minutes5: require('../assets/images/flow_clean_202607/minutes_5.png'),
-  minutes10: require('../assets/images/flow_clean_202607/minutes_10.png'),
-  minutes15: require('../assets/images/flow_clean_202607/minutes_15.png'),
-  minutes20: require('../assets/images/flow_clean_202607/minutes_20.png'),
-  introCompass: require('../assets/images/flow_clean_202607/intro_compass.png'),
-  notifications: require('../assets/images/flow_clean_202607/notifications.png'),
-  planResult: require('../assets/images/flow_clean_202607/plan_result.png'),
-  startPlus: require('../assets/images/flow_clean_202607/start_plus.png'),
-  startFree: require('../assets/images/flow_clean_202607/start_free.png'),
-  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.png'),
-  benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.png'),
-  benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.png'),
-  benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.png'),
-  paywallYearly: require('../assets/images/flow_clean_202607/paywall_yearly.png'),
-  paywallMonthly: require('../assets/images/flow_clean_202607/paywall_monthly.png'),
-  paywallLifetime: require('../assets/images/flow_clean_202607/paywall_lifetime.png'),
+  levelA0: require('../assets/images/flow_clean_202607/level_a0.webp'),
+  levelA1: require('../assets/images/flow_clean_202607/level_a1.webp'),
+  levelA2: require('../assets/images/flow_clean_202607/level_a2.webp'),
+  levelB1: require('../assets/images/flow_clean_202607/level_b1.webp'),
+  levelB2: require('../assets/images/flow_clean_202607/level_b2.webp'),
+  goalSeries: require('../assets/images/flow_clean_202607/goal_series.webp'),
+  goalEveryday: require('../assets/images/flow_clean_202607/goal_everyday.webp'),
+  goalTravel: require('../assets/images/flow_clean_202607/goal_travel.webp'),
+  goalWords: require('../assets/images/flow_clean_202607/goal_words.webp'),
+  goalMind: require('../assets/images/flow_clean_202607/goal_mind.webp'),
+  minutes5: require('../assets/images/flow_clean_202607/minutes_5.webp'),
+  minutes10: require('../assets/images/flow_clean_202607/minutes_10.webp'),
+  minutes15: require('../assets/images/flow_clean_202607/minutes_15.webp'),
+  minutes20: require('../assets/images/flow_clean_202607/minutes_20.webp'),
+  introCompass: require('../assets/images/flow_clean_202607/intro_compass.webp'),
+  notifications: require('../assets/images/flow_clean_202607/notifications.webp'),
+  planResult: require('../assets/images/flow_clean_202607/plan_result.webp'),
+  startPlus: require('../assets/images/flow_clean_202607/start_plus.webp'),
+  startFree: require('../assets/images/flow_clean_202607/start_free.webp'),
+  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.webp'),
+  benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.webp'),
+  benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.webp'),
+  benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.webp'),
+  paywallYearly: require('../assets/images/flow_clean_202607/paywall_yearly.webp'),
+  paywallMonthly: require('../assets/images/flow_clean_202607/paywall_monthly.webp'),
+  paywallLifetime: require('../assets/images/flow_clean_202607/paywall_lifetime.webp'),
 };
 
 export type OnboardingProps = {
@@ -184,6 +193,13 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'name',
 ];
 
+// зачем: эти три ключа снимаются при удалении аккаунта ДО показа онбординга —
+// иначе он восстановит старый шаг вместо первого экрана. Значения ОБЯЗАНЫ
+// совпадать с ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE в app/account_deleted_notice.ts;
+// совпадение стережёт тест account_delete_flow_contract.
+// Литералы, а НЕ деструктуризация импорта: этот модуль и auth_provider образуют
+// цикл, и на устройстве константа приходила undefined — модуль падал с
+// ReferenceError, кнопка «Удалить» переставала работать вовсе.
 const FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
 const STEP_KEY = 'onboarding_step';
 const DONE_KEY = 'onboarding_done';
@@ -392,6 +408,24 @@ function trackOnboardingPlanTrialCta(tags: OnboardingAnalyticsTags) {
   trackOnboardingActivity('onboarding_plan_trial_cta', tags);
 }
 
+// зачем: владельцу нужно видеть в админке, на каком экране онбординга чаще всего
+// уходят из приложения. Показы каждого шага (onboarding_step_view) в Firestore НЕ
+// пишутся — это было бы ~10 платных записей на каждого нового пользователя. Вместо
+// этого при сворачивании/закрытии приложения пишем ОДНУ запись с последним
+// увиденным экраном: ~1 запись на пользователя вместо ~10, а воронка выходов
+// строится именно по ней. Согласие на аналитику проверяет сам trackActivity.
+function trackOnboardingExit(step: OnboardingStepId) {
+  void import('../app/app_activity')
+    .then(({ trackActivity }) => trackActivity('onboarding_exit', {
+      feature: 'onboarding',
+      screen: 'onboarding',
+      result: 'info',
+      tags: { step },
+      writeToFirestore: true,
+    }))
+    .catch(() => {});
+}
+
 function Background() {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -593,13 +627,19 @@ function WelcomeLogo() {
 
   return (
     <Animated.View style={{ opacity: enter, transform: [{ scale }] }}>
+      {/* зачем: на Android elevation погашен (иначе система рисует квадрат),
+          поэтому свечение даёт отдельный скруглённый слой под плиткой —
+          форма под нашим контролем, как на iOS. Статичный: у плитки уже есть
+          свой breathe-луп, второй анимации здесь не нужно. */}
+      <View pointerEvents="none" style={styles.logoTileGlow} />
       <LinearGradient
         colors={['rgba(238,245,255,0.34)', 'rgba(123,140,255,0.16)', 'rgba(201,92,255,0.12)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.logoTileLarge}
       >
-        <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageLarge} resizeMode="contain" />
+        {/* декоративный логотип: смысл несёт заголовок под плиткой */}
+        <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageLarge} resizeMode="contain" accessible={false} />
       </LinearGradient>
     </Animated.View>
   );
@@ -741,6 +781,39 @@ function LanguageCard({
   );
 }
 
+/**
+ * Контекст «пропустить весь онбординг». Держим в контексте, а не прокидываем
+ * пропсом в каждый из 13 экранов: ScreenFrame один, и ссылка появляется сразу
+ * везде, где есть футер.
+ *
+ * зачем: владелец (2026-07-26) — «на каждом экране должно быть Пропустить,
+ * чтобы сразу дойти до имени и согласий». null = ссылку не показываем
+ * (выключено из админки, либо экран оплаты — там свой выход «Продолжить без
+ * плана», второй выход бил бы по конверсии).
+ */
+const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
+
+/** Экран оплаты исключён намеренно: см. комментарий выше. */
+const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name'];
+
+function OnboardingSkipLink({ step, light }: { step: CleanOnboardingStep; light?: boolean }) {
+  const skip = React.useContext(OnboardingSkipContext);
+  if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null;
+  return (
+    <Pressable
+      testID="onboarding-skip"
+      onPressIn={() => { void hapticTap(); }}
+      onPress={skip}
+      style={({ pressed }) => [styles.skipButton, pressed && styles.pressed]}
+      hitSlop={8}
+      accessibilityRole="button"
+      accessibilityLabel="Пропустить знакомство"
+    >
+      <Text style={[styles.skipLabel, light && styles.skipLabelLight]}>Пропустить</Text>
+    </Pressable>
+  );
+}
+
 function ScreenFrame({
   step,
   title,
@@ -793,7 +866,12 @@ function ScreenFrame({
           ) : null}
           <FadeUp delay={90} style={styles.frameChildren}>{children}</FadeUp>
         </ScrollView>
-        {footer ? <FadeUp delay={150} style={[styles.footer, light && styles.footerLight, { paddingBottom: Math.max(12, bottomInset) }]}>{footer}</FadeUp> : null}
+        {footer ? (
+          <FadeUp delay={150} style={[styles.footer, light && styles.footerLight, { paddingBottom: Math.max(12, bottomInset) }]}>
+            {footer}
+            <OnboardingSkipLink step={step} light={light} />
+          </FadeUp>
+        ) : null}
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -977,11 +1055,20 @@ function CleanOnboarding({
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
+  // зачем: подтверждение только что выполненного удаления аккаунта. Забираем
+  // пометку в инициализаторе useState — ровно один раз за монтирование, ДО
+  // первого кадра, поэтому плашка не «доезжает» вторым кадром и не дёргает
+  // геометрию (layout stability). Повторные ре-рендеры пометку уже не увидят.
+  const [accountDeletedNotice, setAccountDeletedNotice] = useState(consumeAccountDeletedNotice);
   const [step, setStep] = useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome');
   const [restored, setRestored] = useState(false);
   const [authMode, setAuthMode] = useState(false);
   const [authLoading, setAuthLoading] = useState<AuthProviderId | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
+  // зачем: почта провайдера, под которой аккаунта не нашлось. Не null → показываем
+  // вопрос «такого аккаунта нет, создать?» вместо кнопок входа. Пустая строка —
+  // валидное значение (провайдер не отдал email), поэтому признак именно null/не-null.
+  const [unknownAccountEmail, setUnknownAccountEmail] = useState<string | null>(null);
   const [googleAvailable, setGoogleAvailable] = useState(false);
   const [appleAvailable, setAppleAvailable] = useState(false);
   const [source, setSource] = useState<DiscoverySource | null>(null);
@@ -996,8 +1083,14 @@ function CleanOnboarding({
   const [legalAccepted, setLegalAccepted] = useState(false);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
   const [legalError, setLegalError] = useState<string | null>(null);
-  const [finishBusy, setFinishBusy] = useState(false);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
+  // зачем: оба рубильника читаются как обычные kill-switch'и и обновляются по
+  // тому же событию remote_config_changed, что и список экранов — владелец
+  // выключает их из админки без релиза, живые сессии подхватывают за секунды.
+  const [skipEnabled, setSkipEnabled] = useState(() => getRemoteBool('onboarding_skip_enabled'));
+  const [welcomeSheetEnabled, setWelcomeSheetEnabled] = useState(
+    () => getRemoteBool('onboarding_welcome_sheet_enabled'),
+  );
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
 
@@ -1056,11 +1149,59 @@ function CleanOnboarding({
     go(previous);
   }, [enabledOrder, go, step]);
 
+  // зачем: владелец (2026-07-26) — «Пропустить» ведёт сразу к обязательному шагу
+  // «Имя и согласия». Пропущенные ответы НЕ ломают план: selectedGoal/Level/
+  // Minutes выше уже имеют дефолты (everyday / a2 / 10), человек поменяет их в
+  // настройках. Флаг для аналитики — чтобы в админке считать % пропустивших.
+  const skippedRef = useRef(false);
+  const skipOnboarding = useCallback(() => {
+    if (skippedRef.current || step === MANDATORY_ONBOARDING_STEP) return; // защита от двойного тапа
+    skippedRef.current = true;
+    trackOnboarding('onboarding_skip', { step });
+    // зачем: процент пропустивших владелец смотрит в админке, а она читает
+    // Firestore. Пишем ОДНУ запись на пользователя (пропустить можно один раз —
+    // защищено skippedRef), поэтому на стоимость это не влияет.
+    void import('../app/app_activity')
+      .then(({ trackActivity }) => trackActivity('onboarding_skip', {
+        feature: 'onboarding',
+        screen: 'onboarding',
+        result: 'info',
+        tags: { step },
+        writeToFirestore: true,
+      }))
+      .catch(() => {});
+    go(MANDATORY_ONBOARDING_STEP);
+  }, [go, step]);
+
+  // null = ссылки нет: выключено из админки (kill-switch) — тогда контекст пуст.
+  const skipHandler = useMemo(
+    () => (skipEnabled ? skipOnboarding : null),
+    [skipEnabled, skipOnboarding],
+  );
+
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
       setRemoteEnabledSteps(getEnabledOnboardingSteps());
+      setSkipEnabled(getRemoteBool('onboarding_skip_enabled'));
+      setWelcomeSheetEnabled(getRemoteBool('onboarding_welcome_sheet_enabled'));
     });
     return () => subscription.remove();
+  }, []);
+
+  // зачем: воронка «где чаще всего выходят» в админке. Пишем последний увиденный
+  // экран ОДИН раз при уходе в фон — подписка не пересоздаётся на каждом шаге
+  // (шаг читаем из ref), и запись не делается, если онбординг уже завершён.
+  const exitStepRef = useRef(step);
+  exitStepRef.current = step;
+  const exitLoggedRef = useRef(false);
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (next) => {
+      if (next === 'active') { exitLoggedRef.current = false; return; }
+      if (exitLoggedRef.current || finishingRef.current) return;
+      exitLoggedRef.current = true;
+      trackOnboardingExit(exitStepRef.current);
+    });
+    return () => sub.remove();
   }, []);
 
   useEffect(() => {
@@ -1102,6 +1243,14 @@ function CleanOnboarding({
     return () => { active = false; };
   }, [enabledOrder, persistStep, startAtNameStep]);
 
+  // Aggregate-only operational metric: it is independent of analytics consent
+  // and carries no user/device/stable identifier. The helper persists one opaque
+  // attempt token locally and the server deduplicates retries.
+  useEffect(() => {
+    if (!restored) return;
+    void recordOnboardingFunnelStart();
+  }, [restored]);
+
   useEffect(() => {
     let active = true;
     isGoogleSignInAvailable().then((ok) => { if (active) setGoogleAvailable(ok); }).catch(() => { if (active) setGoogleAvailable(false); });
@@ -1119,9 +1268,27 @@ function CleanOnboarding({
       if (result.result === 'error') {
         setAuthError(result.error === 'account_delete_pending'
           ? 'Этот аккаунт ещё удаляется. Попробуй позже.'
-          : result.error.includes('google_signin_timeout')
-            ? 'Google не ответил вовремя. Закрой окно входа, вернись в приложение и попробуй ещё раз.'
-            : 'Не получилось войти. Попробуй ещё раз.');
+          // зачем: удаление аккаунта двухфазное — Firebase-юзер сначала блокируется
+          // (disabled), а стирается фоновым воркером через 2-3 минуты. Вход в это окно
+          // возвращает auth/user-disabled и раньше падал в общую заглушку «не получилось
+          // войти» — владелец удалил аккаунт, попробовал войти и не понял, что происходит.
+          : result.error.includes('user-disabled')
+            ? 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.'
+            : result.error.includes('google_signin_timeout')
+              ? 'Google не ответил вовремя. Закрой окно входа, вернись в приложение и попробуй ещё раз.'
+              : 'Не получилось войти. Попробуй ещё раз.');
+        return;
+      }
+      // зачем: юзер нажал «У меня уже есть аккаунт» — он ЗАЯВИЛ, что возвращается.
+      // created_new означает, что аккаунта с этой почтой у нас нет (первый вход этим
+      // Google/Apple). Молча завести новый профиль — обмануть его ожидание: он ждёт
+      // свой прогресс, а получит пустой экран и решит, что прогресс потерян. Поэтому
+      // честно говорим «такого аккаунта нет» и спрашиваем, создавать ли. Привязка к
+      // этому моменту УЖЕ произошла (signInWithProvider её выполнил), поэтому «Да»
+      // ничего не делает заново — просто пускает дальше по обычному онбордингу,
+      // но уже с привязанным аккаунтом. Отказ возвращает на выбор провайдера.
+      if (result.result === 'created_new') {
+        setUnknownAccountEmail(result.email ?? '');
         return;
       }
       await AsyncStorage.multiSet([
@@ -1139,6 +1306,17 @@ function CleanOnboarding({
       setAuthLoading(null);
     }
   }, [authLoading, onDone]);
+
+  // зачем: «Создать аккаунт» после того, как вход не нашёл существующий профиль.
+  // Провайдер к этому моменту УЖЕ привязан (это сделал signInWithProvider), поэтому
+  // здесь никакой сетевой работы нет — просто уводим человека в обычный онбординг
+  // с первого шага. Отклик мгновенный, ждать нечего.
+  const continueAsNewAccount = useCallback(() => {
+    setUnknownAccountEmail(null);
+    setAuthMode(false);
+    setAuthError(null);
+    go('source');
+  }, [go]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
     setStudyTarget('en');
@@ -1318,10 +1496,14 @@ function CleanOnboarding({
   }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, planId, queueSelectedPlan, selectedBillingPlan, selectedMinutes]);
 
   const finish = useCallback(async () => {
-    if (finishBusy || finishingRef.current) return;
+    if (finishingRef.current) return;
     setLegalError(null);
     if (ageAnswer !== 'yes') {
-      setLegalError(ageAnswer === 'no' ? 'Приложение доступно с 16 лет.' : 'Подтверди, что тебе уже есть 16.');
+      setLegalError(
+        ageAnswer === 'no'
+          ? `Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`
+          : `Подтверди, что тебе уже есть ${MIN_FULL_ACCESS_AGE}.`,
+      );
       return;
     }
     if (!legalAccepted) {
@@ -1330,22 +1512,14 @@ function CleanOnboarding({
     }
 
     finishingRef.current = true;
-    setFinishBusy(true);
     try {
-      let finalName: string;
-      try {
-        finalName = await ensureUniqueGeneratedNickname();
-      } catch {
-        setLegalError('Не удалось создать уникальное имя. Проверь интернет и попробуй снова.');
-        return;
-      }
       const currentLevel = levelToCurrentLevel(selectedLevel);
       const profileMinutes = minutesToProfileMinutes(selectedMinutes);
       const targetLevel = targetAfterLevel(currentLevel);
       const estimatedDays = estimateDaysToTarget(currentLevel, targetLevel, profileMinutes);
       const targetDate = addDays(new Date(), estimatedDays || 30);
       const profile: UserProfile = {
-        name: finalName,
+        name: '',
         learningGoal: goalToLearningGoal(selectedGoal),
         minutesPerDay: profileMinutes,
         currentLevel,
@@ -1358,40 +1532,63 @@ function CleanOnboarding({
       };
 
       await AsyncStorage.multiSet([
-        ['user_name', finalName],
         ['user_profile', JSON.stringify(profile)],
+        [GENERATED_NICKNAME_PENDING_KEY, JSON.stringify({ createdAt: Date.now() })],
         [LEGAL_ACCEPTED_KEY, '1'],
         [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
-      await AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
-      await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE).catch(() => null);
-      await setAnalyticsConsent(analyticsAllowed ? 'granted' : 'denied').catch(() => null);
-      void recordConsentToCloud();
-      void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
-      if (analyticsAllowed && source) {
-        trackOnboarding('onboarding_source_select', {
-          source,
-          consented: true,
+      // зачем: онбординг спрашивает только «есть ли 16» (self-attestation), а не год
+      // рождения. Раньше здесь синтезировался фиктивный год (текущий − 16) и уезжал в
+      // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
+      // по GDPR ст. 5(1)(c). Пишем ровно тот факт, который пользователь подтвердил.
+      await confirmAdultAgeAttestation().catch(() => null);
+      if (analyticsAllowed) {
+        await setAnalyticsConsent('granted').catch(() => null);
+        if (source) {
+          trackOnboarding('onboarding_source_select', {
+            source,
+            consented: true,
+          });
+        }
+        trackOnboarding('onboarding_complete', {
+          goal: selectedGoal,
+          level: selectedLevel,
+          minutes: selectedMinutes,
+          target: studyTarget,
+          plusSelected,
         });
+      } else {
+        await setAnalyticsConsent('denied').catch(() => null);
       }
-      trackOnboarding('onboarding_complete', {
-        goal: selectedGoal,
-        level: selectedLevel,
-        minutes: selectedMinutes,
-        target: studyTarget,
-        plusSelected,
-      });
+      // Completion is emitted only after the validated finish path persisted
+      // DONE_KEY. It is intentionally non-blocking: telemetry cannot hold the UI.
+      // зачем: решение о согласии едет счётчиком на сервер, потому что отказ раньше
+      // не оставлял следа НИГДЕ (аналитика гейтится согласием и отказавшихся не
+      // видит) — без знаменателя долю согласий нельзя измерить, а значит нельзя
+      // понять, хватит ли выборки на вердикт A/B-теста пейвола.
+      void recordOnboardingFunnelCompletion(analyticsAllowed ? 'granted' : 'denied');
+      // зачем: владелец (2026-07-27) — приветственную шторку показываем НЕ поверх
+      // последнего экрана анкеты, а когда уже открылась главная. Поэтому здесь
+      // только ставим одноразовый флаг и сразу отдаём управление; шторку поднимет
+      // OnboardingWelcomeHost из _layout.tsx через OverlayArbiter. Рубильник
+      // выключен → флага нет, поведение ровно как раньше.
+      if (welcomeSheetEnabled) {
+        await markOnboardingWelcomePending();
+        trackOnboarding('onboarding_welcome_sheet_view', { skipped: skippedRef.current });
+      }
       onDone();
+      void resumePendingGeneratedNickname();
+      void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
+      void recordConsentToCloud().catch(() => null);
+      void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
     } finally {
-      setFinishBusy(false);
       finishingRef.current = false;
     }
   }, [
     ageAnswer,
     analyticsAllowed,
-    finishBusy,
     lang,
     legalAccepted,
     onDone,
@@ -1401,7 +1598,9 @@ function CleanOnboarding({
     selectedMinutes,
     source,
     studyTarget,
+    welcomeSheetEnabled,
   ]);
+
 
   if (!restored) {
     return (
@@ -1422,13 +1621,19 @@ function CleanOnboarding({
         <View style={styles.welcomeContent} testID="onboarding-welcome-screen">
           <View style={styles.welcomeLogoBlock}>
             <WelcomeLogo />
+            {/* зачем: убран шрифто-сжимающий проп (запрещён, ужимал текст на iOS) — оба варианта
+                короткие (макс. 2 строки при fontSize 34/lineHeight 39), запас numberOfLines={3}
+                достаточен без сжатия шрифта */}
             <Text
               style={styles.welcomeTitle}
               numberOfLines={3}
-              adjustsFontSizeToFit
-              minimumFontScale={0.78}
             >
-              {authMode ? 'Вернём твой прогресс' : 'От первых слов до свободной речи.'}
+              {/* зачем: обещание «вернём прогресс» противоречит тому, что аккаунта не
+                  нашлось — на этой развилке заголовок меняется на нейтральный, иначе
+                  экран сам себе противоречит. */}
+              {authMode
+                ? (unknownAccountEmail !== null ? 'Начнём с чистого листа' : 'Вернём твой прогресс')
+                : 'От первых слов до свободной речи.'}
             </Text>
             {authMode ? null : (
               <FadeUp delay={520}>
@@ -1437,7 +1642,25 @@ function CleanOnboarding({
             )}
           </View>
 
-          {authMode ? (
+          {authMode && unknownAccountEmail !== null ? (
+            <View style={styles.authButtons}>
+              <Text style={styles.unknownAccountText}>
+                {unknownAccountEmail
+                  ? `Аккаунта ${unknownAccountEmail} у нас нет.`
+                  : 'Такого аккаунта у нас нет.'}
+              </Text>
+              <PrimaryButton
+                label="Создать аккаунт"
+                onPress={continueAsNewAccount}
+                testID="onboarding-unknown-account-create"
+              />
+              <SecondaryButton
+                label="Войти другим способом"
+                onPress={() => setUnknownAccountEmail(null)}
+                testID="onboarding-unknown-account-retry"
+              />
+            </View>
+          ) : authMode ? (
             <View style={styles.authButtons}>
               {googleAvailable ? (
                 <GoogleSignInButton
@@ -1460,7 +1683,11 @@ function CleanOnboarding({
                 <Text style={styles.errorText}>Вход через Google или Apple недоступен на этом устройстве.</Text>
               ) : null}
               {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
-              <SecondaryButton label="Назад" onPress={() => setAuthMode(false)} testID="onboarding-auth-back" />
+              <SecondaryButton
+                label="Назад"
+                onPress={() => { setAuthMode(false); setAuthError(null); }}
+                testID="onboarding-auth-back"
+              />
             </View>
           ) : (
             <View style={styles.welcomeButtons}>
@@ -1791,13 +2018,11 @@ function CleanOnboarding({
             Keyboard.dismiss();
             void finish();
           }}
-          loading={finishBusy}
           disabled={ageAnswer !== 'yes' || !legalAccepted}
           testID="onboarding-finish"
         />
       )}
     >
-      <Text style={styles.consentLead}>Подтверди два пункта — и начинаем</Text>
       <View style={styles.ageButtons}>
         <Pressable
           testID="onboarding-age-yes"
@@ -1805,18 +2030,18 @@ function CleanOnboarding({
           onPress={() => { setAgeAnswer('yes'); setLegalError(null); }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'yes' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Мне есть 16</Text>
+          <Text style={styles.ageButtonText}>Мне есть {MIN_FULL_ACCESS_AGE}</Text>
         </Pressable>
         <Pressable
           testID="onboarding-age-no"
           onPressIn={() => { void hapticTap(); }}
           onPress={() => {
             setAgeAnswer('no');
-            setLegalError('Приложение доступно с 16 лет.');
+            setLegalError(`Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`);
           }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Мне нет 16</Text>
+          <Text style={styles.ageButtonText}>Мне нет {MIN_FULL_ACCESS_AGE}</Text>
         </Pressable>
       </View>
       <Text style={styles.consentSectionLabel}>ТВОЙ ВЫБОР</Text>
@@ -1891,6 +2116,7 @@ function CleanOnboarding({
 
   return (
     <OnboardingOrderContext.Provider value={enabledOrder}>
+    <OnboardingSkipContext.Provider value={skipHandler}>
     <View style={styles.root}>
       <Background />
       {bare ? (
@@ -1898,7 +2124,23 @@ function CleanOnboarding({
       ) : (
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
       )}
+      {accountDeletedNotice && (
+        <AccountDeletedNotice
+          onDone={() => setAccountDeletedNotice(false)}
+          message={triLang(lang, {
+            ru: 'Вы удалили все свои данные',
+            uk: 'Ви видалили всі свої дані',
+            es: 'Has eliminado todos tus datos',
+            'pt-BR': 'Você excluiu todos os seus dados',
+            vi: 'Bạn đã xóa toàn bộ dữ liệu của mình',
+            id: 'Kamu telah menghapus semua datamu',
+            tr: 'Tüm verilerini sildin',
+            pl: 'Usunięto wszystkie Twoje dane',
+          })}
+        />
+      )}
     </View>
+    </OnboardingSkipContext.Provider>
     </OnboardingOrderContext.Provider>
   );
 }
@@ -2070,16 +2312,33 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: 'rgba(231,238,255,0.42)',
     backgroundColor: 'rgba(255,255,255,0.08)',
     marginBottom: 36,
-    shadowColor: '#B7C8FF',
-    shadowOpacity: 0.34,
-    shadowRadius: 30,
-    shadowOffset: { width: 0, height: 16 },
-    elevation: 10,
+    // зачем: фон плитки рисует LinearGradient поверх полупрозрачного bg, поэтому
+    // Android не может вывести скруглённый outline и заливал КВАДРАТ 148×148
+    // вокруг логотипа. iOS-свечение (эталон владельца) оставляем как было,
+    // на Android elevation гасим — мягкий ореол даёт GlowHalo ниже.
+    ...softShadow({
+      color: '#B7C8FF',
+      opacity: 0.34,
+      radius: 30,
+      offsetY: 16,
+      backgroundColor: 'rgba(255,255,255,0.08)',
+      elevation: 10,
+    }),
     overflow: 'hidden',
+  },
+  // зачем: Android-замена elevation-свечению. Скруглённый слой на 10px шире
+  // плитки, лежит под ней (по потоку — до неё) и повторяет её радиус 32+10.
+  // На iOS не мешает: там работает родная shadow-тень, слой лишь чуть мягче.
+  logoTileGlow: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: -10,
+    width: 168,
+    height: 168,
+    borderRadius: 42,
+    backgroundColor: 'rgba(183,200,255,0.16)',
   },
   logoImageLarge: {
     width: 140,
@@ -2414,6 +2673,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '900',
   },
+  // зачем: «Пропустить» — вспомогательный выход, а не второе главное действие.
+  // Тише основной кнопки (приглушённый тон, вес 700 по DESIGN.md), но с полной
+  // зоной нажатия 44pt, чтобы попадать пальцем без промаха.
+  skipButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 44,
+    marginTop: 2,
+  },
+  skipLabel: {
+    color: 'rgba(220,228,255,0.62)',
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  skipLabelLight: {
+    color: 'rgba(31,42,68,0.62)',
+  },
   promiseList: {
     gap: 14,
     marginTop: 8,
@@ -2496,7 +2772,7 @@ const styles = StyleSheet.create({
     minHeight: 68,
     borderRadius: 12,
     backgroundColor: 'rgba(255,255,255,0.07)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,255,255,0.12)',
     padding: 10,
     flexDirection: 'row',
@@ -2510,7 +2786,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.04,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 1,
+    ...noAndroidOutline,
   },
   plusBenefitIcon: {
     width: 40,
@@ -2763,7 +3039,7 @@ const styles = StyleSheet.create({
   paywallPlanCard: {
     minHeight: 78,
     borderRadius: 14,
-    borderWidth: 1.5,
+    borderWidth: 0,
     borderColor: 'rgba(16,24,40,0.12)',
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
@@ -2774,7 +3050,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 2,
+    ...noAndroidOutline,
   },
   paywallPlanCardSelected: {
     borderColor: '#8B7CFF',
@@ -2835,7 +3111,7 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: '#CBD5E1',
     alignItems: 'center',
     justifyContent: 'center',
@@ -3201,6 +3477,17 @@ const styles = StyleSheet.create({
   linkText: {
     color: '#DCE7FF',
     textDecorationLine: 'underline',
+  },
+  // зачем: это НЕ ошибка, а нормальная развилка («аккаунта нет — создать?»), поэтому
+  // не красный errorText. Тон спокойный и светлый, вес и кегль — на уровне основного
+  // текста экрана, чтобы сообщение читалось как утверждение, а не как мелкая сноска.
+  unknownAccountText: {
+    color: '#E7ECFF',
+    fontSize: 17,
+    lineHeight: 24,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 6,
   },
   errorText: {
     color: '#FF9AAE',

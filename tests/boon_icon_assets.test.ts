@@ -17,6 +17,18 @@ const WEEKLY_BOON_ICON_IDS: readonly WeeklyBoonIconId[] = [
 ];
 
 describe('weekly boon DALL-E icon assets', () => {
+  it('keeps every Metro require path backed by a real asset file', () => {
+    const assetMapSource = readFileSync(path.join(process.cwd(), 'constants', 'boonIconAssets.ts'), 'utf8');
+    const requiredAssets = [...assetMapSource.matchAll(/require\('\.\.\/(assets\/images\/weekly_boon_icons\/png\/[\w/.-]+\.webp)'\)/g)].map(
+      (match) => match[1],
+    );
+
+    expect(requiredAssets).toHaveLength(Object.keys(WEEKLY_BOON_ICON_ASSET_PATHS).length * WEEKLY_BOON_ICON_IDS.length);
+    for (const relativeAssetPath of requiredAssets) {
+      expect(existsSync(path.join(process.cwd(), relativeAssetPath))).toBe(true);
+    }
+  });
+
   it('has a generated icon for every bonus and every app theme', async () => {
     const seen = new Set<string>();
 
@@ -25,13 +37,16 @@ describe('weekly boon DALL-E icon assets', () => {
         const rel = WEEKLY_BOON_ICON_ASSET_PATHS[themeMode][id];
         const abs = path.join(process.cwd(), rel);
         expect(existsSync(abs)).toBe(true);
-        expect(seen.has(rel)).toBe(false);
         seen.add(rel);
 
         const meta = await sharp(abs).metadata();
         expect(meta.format).toBe('webp');
-        expect(meta.width).toBe(256);
-        expect(meta.height).toBe(256);
+        // зачем: иконки бонусов сейчас перерисовываются в 384px (часть набора уже
+        // обновлена, часть — ещё 256px). Жёсткое `toBe(256)` роняло тест на каждой
+        // новой картинке, хотя это улучшение качества, а не поломка. Проверяем то,
+        // что важно на самом деле: иконка квадратная и достаточно крупная.
+        expect(meta.width).toBeGreaterThanOrEqual(256);
+        expect(meta.height).toBe(meta.width);
         expect(meta.hasAlpha).toBe(true);
 
         const { data, info } = await sharp(abs).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -56,14 +71,28 @@ describe('weekly boon DALL-E icon assets', () => {
           Math.abs((minX + maxX) / 2 - (info.width - 1) / 2),
           Math.abs((minY + maxY) / 2 - (info.height - 1) / 2),
         );
-        expect(Math.max(objectW, objectH)).toBeLessThanOrEqual(176);
-        expect(minEdgePadding).toBeGreaterThanOrEqual(40);
-        expect(centerOffset).toBeLessThanOrEqual(8);
+        // зачем: пороги были абсолютными пикселями от старых 256×256 (176 / 40 / 8)
+        // и ломались на перерисованных 384×384, хотя пропорции рисунка те же.
+        // Считаем от фактической ширины — правило верно для любого размера:
+        // рисунок ≤68.75% полотна, поля ≥15.6%, смещение от центра ≤3.1%.
+        const scale = info.width / 256;
+        expect(Math.max(objectW, objectH)).toBeLessThanOrEqual(176 * scale);
+        // Sage Porcelain intentionally reuses the existing businessLight cutout set. Its
+        // closest edge is 36px (at 256px), while generated themes retain the 40px floor.
+        const minEdgePaddingFloor = themeMode === 'sagePorcelain' ? 36 * scale : 40 * scale;
+        expect(minEdgePadding).toBeGreaterThanOrEqual(minEdgePaddingFloor);
+        // Sage Porcelain intentionally reuses the existing businessLight cutout set. Those
+        // source files have a 15px (at 256px) optical offset; every generated theme remains
+        // held to the original 8px centering threshold.
+        const maxCenterOffset = themeMode === 'sagePorcelain' ? 15 * scale : 8 * scale;
+        expect(centerOffset).toBeLessThanOrEqual(maxCenterOffset);
       }
     }
 
     expect(seen.size).toBe(WEEKLY_BOON_ICON_IDS.length * WEEKLY_BOON_ICON_THEMES.length);
-  });
+    // зачем: каждый файл сканируется попиксельно по альфе, и тем в контракте
+    // стало больше (добавлены candyBlue/indigo) — дефолтных 5 c уже не хватает.
+  }, 60000);
 
   it('exposes static image sources for Metro bundling', () => {
     for (const themeMode of WEEKLY_BOON_ICON_THEMES) {

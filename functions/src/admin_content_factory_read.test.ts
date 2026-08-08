@@ -20,20 +20,45 @@ describe('Language Factory protected reads', () => {
     expect(() => parseContentFactoryWorkspaceRequest({ studyTarget: 'French' })).toThrow(HttpsError);
   });
 
+  it('keeps rollout metric reads authoritative and bounded in the callable source', () => {
+    const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
+    expect(source).toContain("collection('content_factory_stages').orderBy('updatedAt', 'desc').limit(101)");
+    expect(source).toContain("collection('content_factory_job_units').orderBy('startedAtMs', 'desc').limit(101)");
+    expect(source).toContain("collection('content_factory_jobs').orderBy('createdAt', 'desc').limit(101)");
+    expect(source).toContain('truncation: { stages: stagesSnap.size > 100');
+    expect(source).toContain('requireContentReader(request');
+    expect(source).toContain("resolveJobConfig(db, 'content_factory')");
+    expect(source).toContain('CONTENT_FACTORY_BUDGET_COLLECTION');
+    expect(source).toContain('budgetCapUnits: jobConfig.globalDailyCap');
+  });
+
+  it('has no retired shadow-readiness surface queries', () => {
+    const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
+    expect(source).not.toMatch(/surface_comparisons|engineRequested|comparatorVersion/i);
+  });
+
+  it('applies workspace identity filters before the read limit', () => {
+    const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
+    expect(source).toContain("query.where('studyTarget', '==', input.studyTarget)");
+    expect(source).toContain("query.where('learnerSourceLocale', '==', input.learnerSourceLocale)");
+    expect(source).toContain("workspaceQuery('content_factory_releases').limit(input.limit).get()");
+  });
+
   it('sorts units by lesson and canonical surface and preserves the review state', () => {
     const detail = buildContentFactoryJobDetail({
       jobId: 'job-1',
       job: { studyTarget: 'fr', learnerSourceLocale: 'ru', state: 'needs_review' },
       units: [
-        { unitId: 'arena-2', lessonId: 2, surface: 'arena' },
-        { unitId: 'quiz-1', lessonId: 1, surface: 'quiz' },
+        { unitId: 'flashcard-2', lessonId: 2, surface: 'flashcard' },
+        { unitId: 'flashcard-1', lessonId: 1, surface: 'flashcard' },
         { unitId: 'lesson-1', lessonId: 1, surface: 'lesson' },
       ],
       review: { status: 'approved', reason: 'checked' },
       release: null,
       catalog: { revision: 3 },
     });
-    expect(detail.units.map((unit) => unit.unitId)).toEqual(['lesson-1', 'quiz-1', 'arena-2']);
+    expect(detail.units.map((unit) => unit.unitId)).toEqual(['lesson-1', 'flashcard-1', 'flashcard-2']);
+    expect(detail.units.every((unit) => Array.isArray(unit.attemptHistory))).toBe(true);
     expect(detail.review).toEqual({ status: 'approved', reason: 'checked' });
     expect(detail.catalog).toEqual({ revision: 3 });
   });

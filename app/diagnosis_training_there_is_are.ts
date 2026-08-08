@@ -73,7 +73,7 @@ const retry = (line: string): [TriText, TriText, TriText, TriText] => [
 
 const defaultWrong = (correctAnswer: string): TriText => tri(
   `Не этот кусок. Здесь нужно "${correctAnswer}": проверяем слово после there.`,
-  `Не цей шматок. Тут потрібно "${correctAnswer}": перевіряємо слово після there.`,
+  `Не цей зворот. Тут потрібно "${correctAnswer}": перевіряємо слово після there.`,
   `No es este bloque. Aquí necesitamos "${correctAnswer}": revisa la palabra después de there.`,
   {
     'pt-BR': `Não é este bloco. Aqui precisamos de "${correctAnswer}": verifique a palavra depois de there.`,
@@ -111,7 +111,7 @@ function step(input: {
     explanationBlock: input.explanationBlock,
     microTask: input.microTask ?? tri(
       'Выбери кусок, который нормально начинает эту фразу.',
-      'Обери шматок, який нормально починає цю фразу.',
+      'Обери зворот, який нормально починає цю фразу.',
       'Elige el bloque que empieza la frase de forma natural.',
       {
         'pt-BR': 'Escolha o bloco que começa esta frase de forma natural.',
@@ -179,7 +179,7 @@ export const THERE_IS_ARE_TRAINING: DiagnosisTraining = {
   }),
   shortDiagnosis: tri(
     'Ты знаешь слово "есть", но ставишь не тот английский кусок.',
-    'Ти знаєш слово "є", але ставиш не той англійський шматок.',
+    'Ти знаєш слово "є", але ставиш не той англійський зворот.',
     'Sabes decir "hay", pero eliges el bloque inglés equivocado.',
     {
       'pt-BR': 'Você sabe dizer "há", mas escolhe o bloco inglês errado.',

@@ -1,18 +1,17 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { emitAppEvent } from '../app/events';
 
 interface Props {
   visible: boolean;
   reportedUid: string;
   reportedName: string;
-  screen: 'leaderboard' | 'arena';
+  screen: 'leaderboard' | 'arena' | 'profile';
   lang: Lang;
   onClose: () => void;
   previewOnly?: boolean;
@@ -20,7 +19,6 @@ interface Props {
 
 function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
   const { theme: t, themeMode, f } = useTheme();
-  const isCompassTheme = false;
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -130,13 +128,23 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
+        {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+            форма жалобы центрировалась во весь рост без прокрутки. С поднятой
+            клавиатурой на низком экране кнопка «Отправить» уходила за границу и
+            жалобу нельзя было отправить. keyboardShouldPersistTaps сохраняет
+            закрытие по тапу мимо формы. */}
+        <ScrollView
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.53)' }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 18, paddingVertical: 18 }}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
         <TouchableOpacity
           style={{
-            flex: 1,
-            backgroundColor: 'rgba(0,0,0,0.53)',
+            flexGrow: 1,
+            width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: 18,
           }}
           activeOpacity={1}
           onPress={() => {
@@ -146,18 +154,16 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
       >
         <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 320, alignItems: 'stretch' }}>
           <View style={{
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderRadius: isCompassTheme ? 14 : 16,
+            backgroundColor: t.bgCard,
+            borderRadius: 16,
             padding: 24,
             width: '100%',
             maxWidth: 320,
             borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            borderColor: t.border,
             alignItems: 'center',
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(3) : null),
           }}>
-            {isCompassTheme && <CompassDepthSurface radius={14} selected />}
             <Text style={{ fontSize: 32, marginBottom: 12 }}>🚩</Text>
 
             {done ? (
@@ -168,8 +174,11 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
               </Text>
             ) : (
               <>
-                <Text
-                  numberOfLines={2}
+                {/* зачем: text-integrity — заголовок и ник переносятся, карточка
+                    растёт; ник — пользовательский контент (provenance user). */}
+                <FlowText
+                  testID="report-user-title"
+                  provenance="authored"
                   style={{
                     color: t.textPrimary,
                     fontSize: f.h3,
@@ -180,10 +189,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                   }}
                 >
                   {tx.title}
-                </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }} numberOfLines={1}>
+                </FlowText>
+                <FlowText testID="report-user-name" provenance="user" style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
                   {reportedName}
-                </Text>
+                </FlowText>
                 <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
                   <TouchableOpacity
                     onPress={() => {
@@ -192,14 +201,12 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                     }}
                     style={{
                       flex: 1, paddingVertical: 11, borderRadius: 10,
-                      backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgPrimary,
+                      backgroundColor: t.bgPrimary,
                       borderWidth: 0,
-                      borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                      borderColor: t.border,
                       overflow: 'hidden',
-                      ...(isCompassTheme ? compassShadow(1) : null),
                     }}
                   >
-                    {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
                     <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
                       {tx.cancel}
                     </Text>
@@ -207,11 +214,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                   <TouchableOpacity
                     onPress={handleSend}
                     disabled={loading}
-                    style={{ flex: 1, paddingVertical: 11, borderRadius: isCompassTheme ? 9 : 10, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}
+                    style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}
                   >
-                    {isCompassTheme && <CompassDepthSurface radius={9} cream />}
                     {false && loading ? <View />
-                      : <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
+                      : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
                           {tx.send}
                         </Text>
                     }
@@ -222,6 +228,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
           </View>
         </TouchableOpacity>
       </TouchableOpacity>
+        </ScrollView>
       </KeyboardAvoidingView>
     </Modal>
   );

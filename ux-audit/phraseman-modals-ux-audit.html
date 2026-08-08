@@ -1,0 +1,2707 @@
+<!DOCTYPE html>
+<html lang="ru" class="anims">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX-аудит модалов и тостов Phraseman — 2026-07-19</title>
+<style>
+:root{
+--bg:#030604;--card:#101710;--surface:#17241A;--surface2:#203028;
+--accent:#47C870;--accent-bg:rgba(71,200,112,.14);--correct-text:#042010;
+--gold:#FFC800;--gold-bg:rgba(255,200,0,.14);--on-gold:#1A1A1A;
+--text:#F0F7F2;--text2:#58CC89;--muted:#8AB49A;--ghost:#506A5C;--wrong:#F05454;
+--border:rgba(255,255,255,.07);--radius:20px;
+--blue:#6FB1FF;--violet:#B48CFF;--orange:#FF7A45;
+--spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:linear-gradient(160deg,#050B06,#010101) fixed;color:var(--text);
+font:15px/1.6 -apple-system,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+code,.mono{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.82em;color:var(--muted)}
+h1,h2,h3,h4{line-height:1.25}
+a{color:var(--text2)}
+
+/* ---------- шапка / хиро ---------- */
+.hero{padding:64px 0 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-40% -20% auto;height:420px;
+background:radial-gradient(closest-side,rgba(71,200,112,.16),transparent 70%);pointer-events:none}
+.hero .kicker{color:var(--text2);letter-spacing:.22em;font-size:12px;font-weight:800;text-transform:uppercase}
+.hero h1{font-size:clamp(30px,5vw,52px);font-weight:900;margin:14px 0 10px;
+background:linear-gradient(120deg,#F0F7F2 30%,#58CC89 70%,#FFC800);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--muted);max-width:760px;margin:0 auto 8px;font-size:16px}
+.hero .date{color:var(--ghost);font-size:13px;margin-bottom:26px}
+.navchips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 26px}
+.navchips a{display:inline-block;padding:8px 15px;border:1px solid var(--border);border-radius:999px;
+background:rgba(255,255,255,.03);color:var(--text);text-decoration:none;font-size:13px;font-weight:600;transition:border-color .2s,background .2s}
+.navchips a:hover{border-color:var(--accent);background:var(--accent-bg)}
+.animsw{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}
+.animsw input{display:none}
+.animsw .tk{width:44px;height:24px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);position:relative;transition:background .25s}
+.animsw .tk::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--muted);transition:transform .25s var(--spring),background .25s}
+.animsw input:checked+.tk{background:var(--accent)}
+.animsw input:checked+.tk::after{transform:translateX(20px);background:var(--correct-text)}
+
+/* ---------- секции ---------- */
+section{padding:46px 0 8px}
+.sec-kicker{color:var(--text2);letter-spacing:.2em;font-size:11px;font-weight:800;text-transform:uppercase}
+.sec-title{font-size:clamp(22px,3vw,32px);font-weight:900;margin:6px 0 6px}
+.sec-lead{color:var(--muted);max-width:820px;margin-bottom:24px}
+.cat-title{display:flex;align-items:center;gap:12px;margin:38px 0 6px;font-size:20px;font-weight:800}
+.cat-title .letter{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;
+background:var(--accent-bg);color:var(--accent);font-weight:900;font-size:16px;border:1px solid rgba(71,200,112,.3)}
+.cat-lead{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+
+/* ---------- TL;DR ---------- */
+.tldr{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.tldr .t{background:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+border:1px solid var(--border);border-radius:16px;padding:16px 18px}
+.tldr .t b{display:flex;gap:8px;font-size:14.5px;margin-bottom:6px}
+.tldr .t b .n{color:var(--gold);font-weight:900}
+.tldr .t p{color:var(--muted);font-size:13px}
+
+/* ---------- экосистема ---------- */
+.eco-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px}
+.eco-stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:center}
+.eco-stat .v{font-size:30px;font-weight:900;color:var(--text)}
+.eco-stat .v.a{color:var(--accent)} .eco-stat .v.g{color:var(--gold)} .eco-stat .v.r{color:var(--wrong)}
+.eco-stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+.arbiter{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px}
+.arbiter h4{font-size:14px;margin-bottom:4px}
+.arbiter .note{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chain .grp{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+.chain .grp .gl{width:100%;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ghost);font-weight:800;margin-bottom:2px}
+.chain .arrow{color:var(--ghost);font-weight:900}
+.chip{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--surface2);color:var(--text);border:1px solid var(--border);white-space:nowrap}
+.chip.hot{background:var(--accent-bg);border-color:rgba(71,200,112,.35);color:var(--text2)}
+.chip.warn{background:rgba(240,84,84,.1);border-color:rgba(240,84,84,.3);color:#FF9D9D}
+.arbiter .verdict{margin-top:14px;font-size:13px;color:var(--text);padding:12px 14px;border-left:3px solid var(--gold);background:var(--gold-bg);border-radius:0 12px 12px 0}
+
+/* ---------- принципы ---------- */
+.prins{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.prin{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+.prin .pn{font-size:11px;font-weight:900;color:var(--gold);letter-spacing:.12em}
+.prin h4{font-size:15px;margin:4px 0 8px}
+.prin p{font-size:13px;color:var(--muted)}
+.prin .src{display:block;margin-top:8px;font-size:11.5px;color:var(--ghost);font-style:italic}
+.prin .app{display:block;margin-top:8px;font-size:12.5px;color:var(--text2);border-top:1px dashed var(--border);padding-top:8px}
+
+/* ---------- токены ---------- */
+.tokens{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px}
+.panel h4{font-size:14px;margin-bottom:12px}
+.sw{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12.5px}
+.sw i{width:26px;height:26px;border-radius:8px;border:1px solid var(--border);flex:none}
+.sw code{margin-left:auto}
+.mtable{width:100%;border-collapse:collapse;font-size:12.5px}
+.mtable th{text-align:left;color:var(--ghost);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--border)}
+.mtable td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--muted)}
+.mtable td:first-child{color:var(--text);font-weight:600}
+
+/* ---------- карточка TIER 1 ---------- */
+.card{background:linear-gradient(160deg,rgba(255,255,255,.03),rgba(255,255,255,.008));
+border:1px solid var(--border);border-radius:22px;padding:24px;margin:22px 0}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:6px}
+.card-head h3{font-size:19px;font-weight:800}
+.badge{font-size:10px;font-weight:900;letter-spacing:.1em;padding:4px 10px;border-radius:999px;text-transform:uppercase}
+.b-live{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(71,200,112,.35)}
+.b-done{background:#47C870;color:#042010;border:1px solid #47C870}
+.b-part{background:rgba(111,177,255,.14);color:#6FB1FF;border:1px solid rgba(111,177,255,.4)}
+.impl-banner{margin:18px 0;padding:18px 22px;border-radius:16px;background:rgba(71,200,112,.08);border:1px solid rgba(71,200,112,.35)}
+.impl-banner h3{margin:0 0 8px;color:var(--accent)}
+.impl-banner li{margin:3px 0}
+
+.b-off{background:rgba(255,200,0,.1);color:var(--gold);border:1px solid rgba(255,200,0,.3)}
+.b-orphan{background:rgba(240,84,84,.1);color:#FF9D9D;border:1px solid rgba(240,84,84,.3)}
+.b-good{background:rgba(111,177,255,.12);color:var(--blue);border:1px solid rgba(111,177,255,.3)}
+.trigger{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.trigger b{color:var(--text2);font-weight:600}
+
+.phones{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;margin:8px 0 18px}
+.pw{display:flex;flex-direction:column;align-items:center}
+.pw .lbl{font-size:10.5px;font-weight:900;letter-spacing:.18em;color:var(--ghost);margin-bottom:8px;text-transform:uppercase}
+.pw .lbl.imp-l{color:var(--accent)}
+.cap{font-size:11px;color:var(--muted);margin-top:9px;text-align:center;line-height:1.55;max-width:300px}
+.cap b{color:var(--text2);font-weight:600}
+.replay{margin-top:10px;padding:7px 16px;border-radius:999px;border:1px solid rgba(71,200,112,.4);
+background:var(--accent-bg);color:var(--accent);font-size:12.5px;font-weight:700;cursor:pointer;transition:transform .15s,background .2s}
+.replay:hover{background:rgba(71,200,112,.24)}
+.replay:active{transform:scale(.94)}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.col{border-radius:16px;padding:16px 18px;font-size:13px}
+.col h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.col ul{list-style:none}
+.col li{padding:5px 0 5px 20px;position:relative;color:var(--muted)}
+.col li::before{position:absolute;left:0;top:5px}
+.col.prob{background:rgba(240,84,84,.06);border:1px solid rgba(240,84,84,.18)}
+.col.prob h4{color:#FF9D9D}
+.col.prob li::before{content:"✕";color:var(--wrong);font-size:11px;font-weight:900}
+.col.fix{background:var(--accent-bg);border:1px solid rgba(71,200,112,.2)}
+.col.fix h4{color:var(--accent)}
+.col.fix li{color:#BFE6CD}
+.col.fix li::before{content:"→";color:var(--accent);font-weight:900}
+.col li i{color:var(--ghost);font-style:normal;font-size:11.5px}
+
+/* ---------- телефон ---------- */
+.ph{width:292px;height:600px;border-radius:42px;border:1px solid var(--border);
+background:#0A0F0B;padding:9px;box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.03);flex:none}
+.ph.mini{width:236px;height:480px;border-radius:34px}
+.sc{position:relative;height:100%;border-radius:34px;overflow:hidden;background:linear-gradient(165deg,#050B06,#010102)}
+.ph.mini .sc{border-radius:26px}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:78px;height:20px;border-radius:999px;background:#000;z-index:5}
+.sk{position:absolute;left:14px;right:14px;border-radius:12px;background:rgba(255,255,255,.045)}
+.sk.s1{top:40px;height:64px}
+.sk.s2{top:116px;height:44px;right:38%}
+.sk.s3{top:172px;height:44px;right:55%}
+.skrow{position:absolute;top:40px;left:14px;right:14px;display:flex;gap:8px}
+.skrow i{flex:1;height:58px;border-radius:12px;background:rgba(255,255,255,.045)}
+.dm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;z-index:4}
+.dm.top{align-items:flex-start;padding-top:56px}
+.dm.bot{align-items:flex-end;padding-bottom:0}
+.d52{background:rgba(0,0,0,.52)} .d60{background:rgba(0,0,0,.6)} .d70{background:rgba(0,0,0,.7)}
+.d72{background:rgba(0,0,0,.72)} .d86{background:rgba(0,0,0,.86)} .d88{background:rgba(2,3,6,.88)}
+.dm.solid{background:#0b0b12}
+
+.mc{position:relative;width:100%;background:var(--card);border:1px solid var(--border);border-radius:20px;
+padding:18px 16px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.mc.gcard{background:linear-gradient(160deg,#2B4A32,#070B08)}
+.mc.gold-fr{border:1px solid rgba(255,200,0,.45);box-shadow:0 0 0 1px rgba(255,200,0,.12),0 18px 50px rgba(0,0,0,.5)}
+.mc.acc-fr{border:1px solid rgba(71,200,112,.5);box-shadow:0 0 24px rgba(71,200,112,.18)}
+.mc.red-fr{border:1px solid rgba(240,84,84,.45)}
+.mc.sheet{border-radius:24px 24px 0 0;padding:14px 16px 20px}
+.mc.tall{max-height:96%;overflow:hidden;display:flex;flex-direction:column}
+.rail{position:absolute;top:0;left:18px;right:18px;height:3px;border-radius:0 0 4px 4px;
+background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.graber{width:36px;height:5px;border-radius:99px;background:rgba(255,255,255,.18);margin:0 auto 12px}
+.xx{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+background:rgba(255,255,255,.07);color:var(--muted);font-size:12px;z-index:3}
+.xx.big{width:44px;height:44px;font-size:16px;border:1px solid var(--border)}
+.xx.honest{border:1px solid rgba(255,255,255,.25);color:var(--text)}
+.ki{font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text2)}
+.ki.gold{color:var(--gold)} .ki.red{color:#FF9D9D} .ki.blue{color:var(--blue)} .ki.mut{color:var(--muted)}
+.ti{font-size:17px;font-weight:800;margin:6px 0 4px}
+.ti.big{font-size:21px;font-weight:900}
+.su{font-size:11.5px;color:var(--muted);line-height:1.5}
+.su b{color:var(--text)}
+.val{font-size:22px;font-weight:900;color:var(--gold);margin:4px 0}
+.val.grn{color:var(--accent)} .val.blu{color:var(--blue)}
+.hr{height:1px;background:var(--border);margin:10px 0}
+.row{display:flex;gap:8px;align-items:center;justify-content:center}
+.sp4{height:4px}.sp8{height:8px}.sp12{height:12px}.sp16{height:16px}
+
+.ba,.bg,.bw,.br,.bo,.bs{display:block;width:100%;padding:11px 12px;border-radius:14px;font-size:13px;font-weight:800;
+text-align:center;border:none;margin-top:8px;position:relative;overflow:hidden}
+.ba{background:var(--accent);color:var(--correct-text)}
+.bg2{background:linear-gradient(120deg,#FFC800,#F2A93B);color:var(--on-gold)}
+.bw{background:#F3F0FF;color:#171126}
+.br{background:var(--wrong);color:#fff}
+.bo{background:none;color:var(--muted);text-decoration:underline;font-weight:600;font-size:12px;padding:8px}
+.bs{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.bhalf{display:flex;gap:8px}.bhalf>*{flex:1}
+.dis{opacity:.45}
+
+.ico-t{width:64px;height:64px;margin:0 auto 8px;border-radius:18px;display:grid;place-items:center;font-size:30px;
+background:var(--accent-bg);box-shadow:0 0 24px rgba(71,200,112,.25)}
+.ico-t.gold{background:var(--gold-bg);box-shadow:0 0 24px rgba(255,200,0,.28)}
+.ico-t.red{background:rgba(240,84,84,.12);box-shadow:0 0 24px rgba(240,84,84,.2)}
+.ico-t.blue{background:rgba(111,177,255,.12);box-shadow:0 0 24px rgba(111,177,255,.2)}
+.ringw{position:relative;width:96px;height:96px;margin:6px auto}
+.ringw .em{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;z-index:2}
+.ringc{position:absolute;inset:0;border-radius:50%;
+background:conic-gradient(from 0deg,var(--gold),rgba(255,200,0,.05),var(--gold));
+-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 calc(100% - 4px));
+mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 calc(100% - 4px))}
+.halo::before,.halo::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1.5px solid rgba(255,200,0,.35)}
+.halo.grn::before,.halo.grn::after{border-color:rgba(71,200,112,.4)}
+.halo.blu::before,.halo.blu::after{border-color:rgba(111,177,255,.4)}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:8px 0}
+.cchip{font-size:10px;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted)}
+.cchip.g{background:var(--gold-bg);color:var(--gold);border-color:rgba(255,200,0,.3)}
+.cchip.a{background:var(--accent-bg);color:var(--text2);border-color:rgba(71,200,112,.3)}
+.cchip.r{background:rgba(240,84,84,.1);color:#FF9D9D;border-color:rgba(240,84,84,.3)}
+.cchip.b{background:rgba(111,177,255,.1);color:var(--blue);border-color:rgba(111,177,255,.3)}
+
+.feat{display:flex;gap:9px;align-items:flex-start;text-align:left;padding:7px 4px;font-size:12px}
+.feat .fi{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-bg);display:grid;place-items:center;font-size:13px}
+.feat b{display:block;font-size:12px}
+.feat span{color:var(--muted);font-size:10.5px}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}
+.rgrid.g2{grid-template-columns:repeat(2,1fr)}
+.rcell{background:rgba(255,255,255,.045);border:1px solid var(--border);border-radius:12px;padding:8px 4px;font-size:9.5px;color:var(--muted)}
+.rcell b{display:block;font-size:11px;color:var(--text);margin-top:2px}
+.rcell .ri{font-size:18px}
+
+.chest{position:relative;width:110px;height:96px;margin:8px auto}
+.chest .body{position:absolute;bottom:0;left:0;right:0;height:62px;border-radius:14px;
+background:linear-gradient(160deg,#6B4A22,#3D2812);border:1px solid rgba(255,200,0,.4);box-shadow:0 8px 24px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.12)}
+.chest .body::after{content:"🔒";position:absolute;inset:0;display:grid;place-items:center;font-size:22px}
+.chest .lid{position:absolute;top:8px;left:-3px;right:-3px;height:32px;border-radius:14px 14px 6px 6px;
+background:linear-gradient(160deg,#8A6130,#54401F);border:1px solid rgba(255,200,0,.5);transform-origin:bottom center;z-index:2}
+.chest.epic .body{background:linear-gradient(160deg,#4A2E6B,#241238);border-color:rgba(180,140,255,.5)}
+.chest.epic .lid{background:linear-gradient(160deg,#6B4694,#3A2454);border-color:rgba(180,140,255,.6)}
+.orb{position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;
+display:grid;place-items:center;font-size:20px;z-index:3;
+background:radial-gradient(circle at 35% 30%,#FFF3C4,#FFC800 60%,#B8860B);box-shadow:0 0 26px rgba(255,200,0,.7)}
+.confetti-box{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:6}
+.cf{position:absolute;left:50%;top:42%;width:6px;height:10px;border-radius:2px;background:var(--c);opacity:0;will-change:transform}
+
+.prog{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin:8px 0}
+.prog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),#7FE0A0)}
+.prog.g i{background:linear-gradient(90deg,#FFC800,#FFE17A)}
+.dots{display:flex;gap:6px;justify-content:center;margin:8px 0}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.15)}
+.dots i.on{background:var(--accent)}
+
+.podi{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin:8px 0}
+.podi .pd{width:52px;border-radius:8px 8px 0 0;background:var(--surface2);border:1px solid var(--border);font-size:10px;color:var(--muted);text-align:center;padding-top:5px}
+.podi .pd.p1{height:52px;background:var(--gold-bg);border-color:rgba(255,200,0,.4)}
+.podi .pd.p2{height:38px}.podi .pd.p3{height:30px}
+.lrow{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:10px;font-size:11px;color:var(--muted)}
+.lrow .av{width:20px;height:20px;border-radius:50%;background:var(--surface2);flex:none;display:grid;place-items:center;font-size:9px}
+.lrow.me{background:var(--accent-bg);border:1px solid rgba(71,200,112,.3);color:var(--text)}
+.lrow .xp{margin-left:auto;color:var(--ghost);font-size:10px}
+
+.plan{display:flex;align-items:center;gap:10px;text-align:left;background:rgba(255,255,255,.04);
+border:1.5px solid var(--border);border-radius:14px;padding:10px 12px;margin-top:8px;font-size:12px}
+.plan.sel{border-color:var(--accent);background:var(--accent-bg)}
+.plan .pr{margin-left:auto;text-align:right}
+.plan .pr b{display:block;font-size:13px}
+.plan .pr span{font-size:10px;color:var(--muted)}
+.plan .bdg{font-size:9px;font-weight:900;background:var(--gold);color:var(--on-gold);border-radius:6px;padding:2px 6px}
+.rdot{width:16px;height:16px;border-radius:50%;border:2px solid var(--ghost);flex:none}
+.plan.sel .rdot{border-color:var(--accent);background:radial-gradient(circle,var(--accent) 40%,transparent 45%)}
+.urg{margin-top:8px;font-size:10.5px;color:#FFB86B;background:rgba(255,154,60,.1);border:1px solid rgba(255,154,60,.3);border-radius:10px;padding:6px 10px}
+.urg.honest{color:var(--muted);background:rgba(255,255,255,.04);border-color:var(--border)}
+.legal{font-size:8.5px;color:var(--ghost);margin-top:8px;line-height:1.45}
+
+.tst{position:absolute;left:12px;right:12px;bottom:16px;background:#16211A;border:1px solid var(--border);
+border-radius:16px;padding:11px 12px;display:flex;gap:10px;align-items:center;overflow:hidden;z-index:6;
+box-shadow:0 12px 32px rgba(0,0,0,.5)}
+.tst .tic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px}
+.tst .ttx{flex:1;text-align:left;min-width:0}
+.tst .ttx b{display:block;font-size:12px}
+.tst .ttx span{font-size:10.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tst .tx2{flex:none;color:var(--ghost);font-size:11px;padding:4px}
+.tst .tbtn{flex:none;background:var(--accent);color:var(--correct-text);font-size:11px;font-weight:800;border-radius:9px;padding:6px 10px}
+.tst .drn{position:absolute;left:0;bottom:0;height:3px;width:100%;transform-origin:left;background:var(--accent)}
+.tst.ok .tic{background:var(--accent-bg);color:var(--accent)} .tst.ok .drn{background:var(--accent)}
+.tst.rw .tic{background:var(--gold-bg);color:var(--gold)} .tst.rw .drn{background:var(--gold)}
+.tst.wn .tic{background:rgba(255,154,60,.12);color:#FFB86B} .tst.wn .drn{background:#FF9A3C}
+.tst.er .tic{background:rgba(240,84,84,.12);color:#FF9D9D} .tst.er .drn{background:var(--wrong)}
+.tst.top{bottom:auto;top:52px}
+
+.inp{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;
+padding:10px 12px;font-size:12.5px;color:var(--muted);text-align:left;margin-top:8px}
+.inp.err{border-color:rgba(240,84,84,.5);color:#FF9D9D}
+.pushdemo{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;padding:9px 11px;
+display:flex;gap:9px;align-items:center;text-align:left;margin:8px 0}
+.pushdemo .pi{width:30px;height:30px;border-radius:8px;background:var(--accent-bg);display:grid;place-items:center;font-size:14px;flex:none}
+.pushdemo b{font-size:11px;display:block}
+.pushdemo span{font-size:10px;color:var(--muted)}
+.stars{color:var(--gold);font-size:12px;letter-spacing:2px}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(4,32,16,.35);border-top-color:var(--correct-text);border-radius:50%;vertical-align:-2px;margin-right:6px}
+
+/* ---------- анимации (только .imp.play, только transform/opacity/filter) ---------- */
+@keyframes springIn{from{transform:translateY(18px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+@keyframes stagIn{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+@keyframes haloP{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:.12}}
+@keyframes floatY{0%,100%{transform:translateY(-6px)}50%{transform:translateY(6px)}}
+@keyframes shineM{0%{transform:translateX(-170%) skewX(-18deg)}42%,100%{transform:translateX(280%) skewX(-18deg)}}
+@keyframes cfFly{0%{transform:translate(0,0) rotate(0);opacity:1}75%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) rotate(var(--rot));opacity:0}}
+@keyframes burstF{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.45);opacity:0}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-4px) rotate(-1.2deg)}40%{transform:translateX(4px) rotate(1.2deg)}60%{transform:translateX(-3px) rotate(-.6deg)}80%{transform:translateX(3px) rotate(.6deg)}}
+@keyframes lidOpen{to{transform:translateY(-16px) rotate(-24deg);opacity:0}}
+@keyframes orbUp{0%{transform:translateX(-50%) translateY(18px) scale(.4);opacity:0}55%{transform:translateX(-50%) translateY(-6px) scale(1.1);opacity:1}100%{transform:translateX(-50%) translateY(0) scale(1);opacity:1}}
+@keyframes breathe{0%,100%{transform:translateX(-50%) scale(1);filter:brightness(1)}50%{transform:translateX(-50%) scale(1.06);filter:brightness(1.18)}}
+@keyframes ringRot{to{transform:rotate(360deg)}}
+@keyframes drainK{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes tGlow{0%,100%{box-shadow:0 0 10px rgba(255,200,0,.2)}50%{box-shadow:0 0 26px rgba(255,200,0,.55)}}
+@keyframes tstIn{from{transform:translateY(70px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+@keyframes softPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.03);opacity:1}}
+@keyframes burstOnce{0%{transform:scale(.2);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+
+.imp.play .a-spring{animation:springIn .42s var(--spring) both;animation-delay:var(--ad,0s)}
+.imp.play .a-stag>*{animation:stagIn .38s ease both}
+.imp.play .a-stag>*:nth-child(1){animation-delay:.08s}.imp.play .a-stag>*:nth-child(2){animation-delay:.14s}
+.imp.play .a-stag>*:nth-child(3){animation-delay:.2s}.imp.play .a-stag>*:nth-child(4){animation-delay:.26s}
+.imp.play .a-stag>*:nth-child(5){animation-delay:.32s}.imp.play .a-stag>*:nth-child(6){animation-delay:.38s}
+.imp.play .a-stag>*:nth-child(7){animation-delay:.44s}.imp.play .a-stag>*:nth-child(8){animation-delay:.5s}
+.imp.play .a-stag>*:nth-child(9){animation-delay:.56s}.imp.play .a-stag>*:nth-child(10){animation-delay:.62s}
+.imp.play .halo::before{animation:haloP 1.5s ease-in-out infinite}
+.imp.play .halo::after{animation:haloP 1.5s ease-in-out .75s infinite}
+.imp.play .a-float{animation:floatY 1.8s ease-in-out infinite}
+.imp.play .a-wiggle{animation:wiggle 1.7s ease-in-out infinite}
+.imp.play .shn{position:relative;overflow:hidden}
+.imp.play .shn::after{content:"";position:absolute;top:0;bottom:0;width:34%;left:0;
+background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);
+animation:shineM 2.8s ease-in-out infinite}
+.imp.play .cf{animation:cfFly var(--cd,1.9s) cubic-bezier(.2,.7,.4,1) var(--dl,0s) both}
+.imp.play .a-burst{animation:burstOnce .7s ease-out .15s both}
+.imp.play .a-shake{animation:shakeX .5s ease .2s both}
+.imp.play .a-lid{animation:lidOpen .36s ease-in .72s both}
+.imp.play .a-orb{animation:orbUp .6s var(--spring) 1.05s both,breathe 2s ease-in-out 1.8s infinite}
+.imp.play .a-ringrot{animation:ringRot 8s linear infinite}
+.imp.play .drn.a-drain{animation:drainK var(--dur,3s) linear .45s both}
+.imp.play .tst.a-tstin{animation:tstIn .44s var(--spring) both;animation-delay:var(--ad,0s)}
+.imp.play .a-glow{animation:tGlow 1.6s ease-in-out infinite}
+.imp.play .a-soft{animation:softPulse 2.2s ease-in-out infinite}
+.imp.play .spin{animation:ringRot .8s linear infinite}
+
+html:not(.anims) .imp,html:not(.anims) .imp *{animation:none!important;transition:none!important}
+html:not(.anims) .cf{opacity:0!important}
+
+/* ---------- TIER 2 ---------- */
+.t2{border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.02);margin:8px 0;overflow:hidden}
+.t2 summary{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;list-style:none;font-size:13.5px;font-weight:700}
+.t2 summary::-webkit-details-marker{display:none}
+.t2 summary::after{content:"▾";margin-left:auto;color:var(--ghost);transition:transform .2s}
+.t2[open] summary::after{transform:rotate(180deg)}
+.t2 summary code{font-weight:400}
+.t2 .t2b{padding:0 16px 14px;font-size:12.5px;color:var(--muted);display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.t2 .t2b{grid-template-columns:1fr}}
+.t2 .t2b b{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.t2 .t2b .pb b{color:#FF9D9D}.t2 .t2b .fx b{color:var(--accent)}
+.t2 .t2b ul{list-style:none}
+.t2 .t2b li{padding:3px 0 3px 16px;position:relative}
+.t2 .t2b .pb li::before{content:"✕";position:absolute;left:0;color:var(--wrong);font-size:10px}
+.t2 .t2b .fx li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+
+/* ---------- роадмап / футер ---------- */
+.road{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.road th{text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ghost);border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.road td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.045);vertical-align:top;color:var(--muted)}
+.road td:first-child{font-weight:900;white-space:nowrap}
+.road tr:last-child td{border-bottom:none}
+.p0{color:var(--wrong)}.p1{color:var(--gold)}.p2{color:var(--blue)}
+.road ul{list-style:none}.road li{padding:3px 0 3px 16px;position:relative}
+.road li::before{content:"•";position:absolute;left:2px;color:var(--accent)}
+footer{margin:56px 0 40px;padding:28px 0;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+footer h4{color:var(--text);font-size:13px;margin-bottom:8px}
+footer p{margin-bottom:8px;max-width:860px}
+@media(max-width:640px){.ph{width:262px;height:540px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Phraseman · Презентационный аудит</div>
+    <h1>UX-аудит модалов и тостов Phraseman</h1>
+    <p class="sub">57 оверлей-компонентов: точные макеты текущего состояния + предложения по улучшению
+      с анимациями уровня выше Duolingo — лёгкими по производительности и уважающими reduced-motion.</p>
+    <div class="date">2026-07-19 · статический анализ кода · все тексты в макетах — дословно из кода</div>
+    <nav class="navchips">
+      <a href="#tldr">TL;DR</a>
+      <a href="#eco">Экосистема</a>
+      <a href="#research">Принципы</a>
+      <a href="#tokens">Токены и motion</a>
+      <a href="#cat-a">A · Праздники</a>
+      <a href="#cat-b">B · Лига</a>
+      <a href="#cat-c">C · Экономика</a>
+      <a href="#cat-d">D · Монетизация</a>
+      <a href="#cat-e">E · Система</a>
+      <a href="#cat-f">F · Фидбек</a>
+      <a href="#tier2">TIER 2</a>
+      <a href="#toasts">Тосты</a>
+      <a href="#roadmap">Роадмап</a>
+    </nav>
+    <label class="animsw"><input type="checkbox" id="animToggle" checked><span class="tk"></span>Анимации в макетах «ПРЕДЛОЖЕНИЕ»</label>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= TL;DR ================= -->
+<section id="tldr">
+  <div class="sec-kicker">Резюме</div>
+  <h2 class="sec-title">TL;DR — 8 главных выводов</h2>
+  <p class="sec-lead">Архитектура оверлеев зрелая, проблемы — в консистентности, усталости от серий окон и выгорании праздников.</p>
+  <div class="tldr">
+    <div class="t"><b><span class="n">1</span>Арбитр есть — лимитов усталости нет</b>
+      <p>OverlayArbiter с 37 ключами и сторожем от залипания решает наложение окон, но серия из 5+ модалов подряд на старте полностью легальна: строго по одному, но бесконечно по цепочке.</p></div>
+    <div class="t"><b><span class="n">2</span>Треть наградных модалов — «сироты»</b>
+      <p>ShardReward, ThroneReward, RankChange, SeasonResult, DialogVictory, DailyTasksFirstVisit не подключены к проду; ещё 2–3 выключены флагами. Нужно решение по каждому: подключить или удалить.</p></div>
+    <div class="t"><b><span class="n">3</span>Три поколения дизайна сосуществуют</b>
+      <p>RewardCardV2, «лиговая рамка» и кастом-тяжёлые модалы живут параллельно. Фон ведёт себя по-разному: где-то = CTA, где-то = закрыть, где-то глухой. У сундуков — крестики-обманщики.</p></div>
+    <div class="t"><b><span class="n">4</span>Праздники выгорают</b>
+      <p>Доказанный рычаг индустрии — редкие большие праздники: milestone-анимация Duolingo дала +1.7% удержания дня-7. У Phraseman праздники частые и равноамплитудные — нужна ярусная модель.</p></div>
+    <div class="t"><b><span class="n">5</span>Тёмные паттерны — осознанные</b>
+      <p>Онбординг-пейвол без крестика, 77-часовой urgency-таймер с удвоением цены, NoEnergyModal без закрытия фоном и с hapticWarning. Каждый — осознанный риск «конверсия vs доверие», зафиксируем и честно посчитаем.</p></div>
+    <div class="t"><b><span class="n">6</span>Тосты — зоопарк из 9 компонентов</b>
+      <p>Разная геометрия (низ/верх), длительность (3–12 с), интерактив (от pointerEvents=none до свайпа). Error-тосты автоскрываются за 3.2 с, хотя индустриальный стандарт — липкий error до дисмисса.</p></div>
+    <div class="t"><b><span class="n">7</span>Тексты: ты/вы, склонения, a11y</b>
+      <p>Повсеместный разнобой «ты/вы» даже в одном модале; склонения ломаются («2 дней подряд», «1 осколков будут»); accessibilityLabel «Close»/«Закрыть» захардкожены.</p></div>
+    <div class="t"><b><span class="n">8</span>Motion-фундамент хороший, применение — нет</b>
+      <p>constants/motion.ts со springs и reduce-motion уже есть, но Reanimated — только у 2 модалов, конфетти выведены, половина системы карточек отключена флагами (motion/publicFocus = none).</p></div>
+  </div>
+</section>
+<section class="impl-banner" id="implemented">
+<h3>Внедрено в код 20–21.07.2026 (ветка codex/league-hub-redesign-20260719)</h3>
+<ul>
+<li><b>Удалено по приказу владельца:</b> LoyaltyGiftModal (со всей проводкой: арбитр, PremiumContext, premium_guard, cloud_sync, app/loyalty_gift.ts, тесты), ThroneRewardModal (Арены больше нет), арена-награда «+N боёв» из сундука лиги.</li>
+<li><b>Единый стандарт кнопок</b> (primary на всю ширину + текстовая «Позже») применён во всех отмеченных бейджем модалах; крестик сундука честно закрывает без открытия, награда не теряется.</li>
+<li><b>Шторки интерактивны:</b> ExplainSheet, MistakeEli5, AvatarEditorSheet, CardPackShardPaywall — drag-to-dismiss по паттерну RegistrationPromptModal.</li>
+<li><b>NoEnergyModal:</b> фон закрывает, hapticWarning убран, пульс одиночный, «Позже» вместо мелкой ссылки. <b>Пейвол:</b> живой таймер → «Цена вырастет {дата}» (единственный тронутый файл пейвола).</li>
+<li><b>Мелочи:</b> вращение «Новой карточки» убрано; осколки — актуальный ассет везде; склонения «2 дня подряд» / «1 осколок будет списан»; a11y-лейблы крестиков локализованы; VipSurvey — подтверждение выхода; «ты»-стиль; фейковый фолбэк наград лиги убран.</li>
+<li><b>Проверки:</b> tsc — 0 ошибок в наших файлах; jest — 11/12 сьютов, 127/129 тестов зелёные (единственный красный — social_arena_optimistic, дрейф другой сессии: декомисс Арены + новая покупка аватара). PlayerProfileModal и пейволы (кроме таймера) не тронуты.</li>
+</ul>
+</section>
+
+<!-- ================= Экосистема ================= -->
+<section id="eco">
+  <div class="sec-kicker">Карта экосистемы</div>
+  <h2 class="sec-title">57 оверлеев, один слот, ноль лимитов на серию</h2>
+  <p class="sec-lead">Статистика по статическому анализу: что живёт, что выключено, что сиротствует — и как арбитр разруливает очередь.</p>
+  <div class="eco-stats">
+    <div class="eco-stat"><div class="v">~40</div><div class="l">модалов всего</div></div>
+    <div class="eco-stat"><div class="v a">~27</div><div class="l">живых в проде</div></div>
+    <div class="eco-stat"><div class="v g">5</div><div class="l">выключено флагами</div></div>
+    <div class="eco-stat"><div class="v r">~8</div><div class="l">сиротских без прод-call-site</div></div>
+    <div class="eco-stat"><div class="v">9</div><div class="l">тостов</div></div>
+    <div class="eco-stat"><div class="v">7</div><div class="l">баннеров / инлайн-плашек</div></div>
+    <div class="eco-stat"><div class="v a">37</div><div class="l">ключей в OverlayArbiter</div></div>
+  </div>
+  <div class="arbiter">
+    <h4>Приоритетная очередь OverlayArbiter (сокращённо, по группам)</h4>
+    <div class="note">Один глобальный слот · не преemptive (текущий держит слот, пока ownState ≠ false) · сторож 15 с принудительно снимает только транзиентные · пауза 360 мс между нативными модалами (24 ключа) против iOS present-during-dismiss.</div>
+    <div class="chain">
+      <div class="grp"><span class="gl">Системные</span>
+        <span class="chip">onboardingWelcome</span><span class="chip">update</span><span class="chip">authRecovery</span><span class="chip">releaseNotes</span><span class="chip">broadcast</span><span class="chip">themedAlert</span></div>
+      <span class="arrow">→</span>
+      <div class="grp"><span class="gl">Праздники и награды</span>
+        <span class="chip">premiumCelebration</span><span class="chip">vipCelebration</span><span class="chip">leagueResult</span><span class="chip">levelUp</span><span class="chip">mysteryMondayChest</span><span class="chip">comebackDay</span><span class="chip">collectibleDrop</span><span class="chip">perfectWeekReward (последний)</span></div>
+      <span class="arrow">→</span>
+      <div class="grp"><span class="gl">Экономика и мотивация</span>
+        <span class="chip">leagueBonusAvailable</span><span class="chip">loyaltyGift</span><span class="chip">introFullAccess</span><span class="chip">streakRevive</span><span class="chip">entitlementExpired</span><span class="chip">referralWelcome</span><span class="chip">dailyPlan</span></div>
+      <span class="arrow">→</span>
+      <div class="grp"><span class="gl">Арена</span>
+        <span class="chip">arenaSeasonResult</span><span class="chip">arenaRoomConfirm</span><span class="chip">matchFound ×2</span><span class="chip">arenaInvite</span></div>
+      <span class="arrow">→</span>
+      <div class="grp"><span class="gl">Тосты</span>
+        <span class="chip hot">achievementToast</span><span class="chip hot">dailyTaskRewardToast</span><span class="chip hot">coachToast</span><span class="chip hot">actionToast</span><span class="chip hot">shardsEarned</span><span class="chip hot">lessonCompleteNotif</span></div>
+    </div>
+    <div class="verdict"><b>Вывод:</b> очередь решает наложение, но НЕ решает усталость. Серия <span class="mono">update → releaseNotes → broadcast → levelUp → сундук → тосты</span> легальна: пользователь на старте может получить 5+ окон подряд. Частотные лимиты (раз в день/неделю, кулдауны) живут в хостах, а не в арбитре — их нужно поднять на уровень системы («не более N оверлеев за сессию», «не чаще 1 праздника в день»).</div>
+  </div>
+</section>
+
+<!-- ================= Принципы ================= -->
+<section id="research">
+  <div class="sec-kicker">Что говорит наука и индустрия</div>
+  <h2 class="sec-title">8 принципов, на которые опирается аудит</h2>
+  <p class="sec-lead">Каждое предложение ниже в документе привязано к одному из этих принципов (в скобках у пунктов «Что улучшаем»).</p>
+  <div class="prins">
+    <div class="prin"><div class="pn">П1</div><h4>Праздник должен быть редким</h4>
+      <p>Duolingo показывает полноэкранные кастомные анимации ТОЛЬКО на milestone-дни (7/30/100/365); редизайн одной анимации-феникса дал +1.7% удержания дня-7.</p>
+      <span class="src">Deconstructor of Fun, 2026</span>
+      <span class="app">→ В Phraseman: ярусная модель праздников (Tier 1–3), milestone-gating вместо праздника на каждый чих.</span></div>
+    <div class="prin"><div class="pn">П2</div><h4>Праздник короткий</h4>
+      <p>2–3 секунды, не блокирует поток. Всё, что дольше, должно пропускаться первым тапом и не отключать скролл.</p>
+      <span class="src">CorsoUX, 2026</span>
+      <span class="app">→ Авто-ленты 6.5 с без скролла (PremiumCelebration) заменяем на фазы, читаемые с первой секунды.</span></div>
+    <div class="prin"><div class="pn">П3</div><h4>Соответствие срочности паттерну</h4>
+      <p>Модал — только блокирующие события; баннер/инлайн — важное не блокирующее; тост — мелкие подтверждения.</p>
+      <span class="src">Eleken Notification UX, 2026</span>
+      <span class="app">→ Информационные «бонус дня активирован» — кандидаты в тост/стрип, а не в модал.</span></div>
+    <div class="prin"><div class="pn">П4</div><h4>Тосты: длительность по тяжести</h4>
+      <p>success 3 с / info 4 с / warning 6 с / error — липкий до дисмисса; максимум 2–3 одновременно; прогресс-бар автозакрытия; pause-on-hover/тап.</p>
+      <span class="src">FrontendAtlas, Hyperframes, 2026</span>
+      <span class="app">→ Единый ToastKit с 4 тяжестями вместо 9 разнородных компонентов.</span></div>
+    <div class="prin"><div class="pn">П5</div><h4>Микро-анимации 200–300 мс, только transform/opacity</h4>
+      <p>Никаких layout-анимаций; prefers-reduced-motion обязателен; вход по пружине с лёгким overshoot.</p>
+      <span class="src">Tim Graf, 2026; Material motion</span>
+      <span class="app">→ Все предложенные анимации в этом документе — только transform/opacity/filter, с глобальным выключателем.</span></div>
+    <div class="prin"><div class="pn">П6</div><h4>Не прерывать середину задачи</h4>
+      <p>Модалы не должны врываться в поток; никаких вложенных модалов; альтернативы — инлайн, шторки, тосты.</p>
+      <span class="src">Eleken Modal UX</span>
+      <span class="app">→ Слот lessonCompleteNotif и дроп карточек осознанно ПОСЛЕ результатов — сохранить и распространить.</span></div>
+    <div class="prin"><div class="pn">П7</div><h4>Честная вежливость закрытия</h4>
+      <p>Видимый крестик/отказ равноправен CTA — иначе это dark pattern «спрятанный отказ» (hidden opt-out).</p>
+      <span class="app">→ Онбординг-пейвол без крестика, фон-ловушка NoEnergyModal, крестик-открывашка у сундуков — первые кандидаты на починку.</span></div>
+    <div class="prin"><div class="pn">П8</div><h4>Амплитуда праздника масштабируется по событию</h4>
+      <p>Малые действия — малые праздники, иначе эффект выгорает и перестаёт работать даже на больших событиях.</p>
+      <span class="src">Tim Graf; Duolingo milestone-gating</span>
+      <span class="app">→ Конфетти и фейерверк — только legendary/epic и milestone; «тихие» бонусы дня — спокойная анимация.</span></div>
+  </div>
+</section>
+
+<!-- ================= Токены и motion ================= -->
+<section id="tokens">
+  <div class="sec-kicker">Дизайн-система</div>
+  <h2 class="sec-title">Дизайн-токены и motion-спецификация</h2>
+  <p class="sec-lead">Тема dark «Deep Forest Green» (дефолт; всего тем 10, premium-only: dark, coral, minimalDark, ember, aurora, volt). У приложения УЖЕ есть хороший motion-фундамент (constants/motion.ts) — проблема не в токенах, а в непоследовательности применения.</p>
+  <div class="tokens">
+    <div class="panel">
+      <h4>Палитра (дефолтная тема)</h4>
+      <div class="sw"><i style="background:#030604"></i>bgPrimary<code>#030604</code></div>
+      <div class="sw"><i style="background:linear-gradient(160deg,#050B06,#010101)"></i>градиент фона<code>#050B06→#010101</code></div>
+      <div class="sw"><i style="background:#101710"></i>bgCard<code>#101710</code></div>
+      <div class="sw"><i style="background:#17241A"></i>bgSurface<code>#17241A</code></div>
+      <div class="sw"><i style="background:#203028"></i>bgSurface2<code>#203028</code></div>
+      <div class="sw"><i style="background:linear-gradient(160deg,#2B4A32,#070B08)"></i>градиент карточки<code>#2B4A32→#070B08</code></div>
+      <div class="sw"><i style="background:#47C870"></i>accent / correct (изумруд, НЕ lime — lime это тема volt)<code>#47C870</code></div>
+      <div class="sw"><i style="background:#042010"></i>correctText (текст на акценте)<code>#042010</code></div>
+      <div class="sw"><i style="background:#FFC800"></i>gold<code>#FFC800</code></div>
+      <div class="sw"><i style="background:#1A1A1A"></i>textOnGold<code>#1A1A1A</code></div>
+      <div class="sw"><i style="background:#F0F7F2"></i>textPrimary<code>#F0F7F2</code></div>
+      <div class="sw"><i style="background:#58CC89"></i>textSecond<code>#58CC89</code></div>
+      <div class="sw"><i style="background:#8AB49A"></i>textMuted<code>#8AB49A</code></div>
+      <div class="sw"><i style="background:#506A5C"></i>textGhost<code>#506A5C</code></div>
+      <div class="sw"><i style="background:#F05454"></i>wrong<code>#F05454</code></div>
+      <div class="hr"></div>
+      <div class="su">Радиусы: md 12 / lg 16 / xl 20 / xxl 24 · кнопка 52 (flat 44) · шрифт Inter, веса 500–900 (заголовки 800–900, тело 600–700) · border rgba(255,255,255,.07)</div>
+    </div>
+    <div class="panel">
+      <h4>Motion-спека (constants/motion.ts — уже в коде)</h4>
+      <table class="mtable">
+        <tr><th>Параметр</th><th>Значение</th><th>Где применяется</th></tr>
+        <tr><td>Длительности</td><td>fast 180 · normal 240 · slow 320 · celebrate 420 мс</td><td>все переходы</td></tr>
+        <tr><td>Spring ui</td><td>damping 20 / stiffness 300 (Reanimated)</td><td>карточки, модалы</td></tr>
+        <tr><td>Spring toast</td><td>damping 18 / stiffness 250</td><td>тосты</td></tr>
+        <tr><td>Spring micro</td><td>damping 25 / stiffness 400</td><td>иконки, бейджи</td></tr>
+        <tr><td>Вход модала</td><td>translateY 18 + scale .985 → 1, 280 мс; выход 180 мс</td><td>MotionModal / modal_motion_plan</td></tr>
+        <tr><td>Stagger</td><td>58 мс (HOME_ENTRANCE 58/46)</td><td>каскады списков</td></tr>
+        <tr><td>Reduce Motion</td><td>все длительности → 0</td><td>обязательно везде</td></tr>
+        <tr><td>Easing</td><td>Telegram slide, easeOutQuint; «резинка» Apple c=0.55 (bounceMath)</td><td>шторки, BounceView</td></tr>
+        <tr><td>Press-сжатия</td><td>icon .95 / flat .98 / card .988 / primary .97 + haptic</td><td>PressableScale</td></tr>
+      </table>
+      <div class="hr"></div>
+      <div class="su"><b style="color:var(--text)">Вывод:</b> токены и springs есть. Непоследовательность: Reanimated только у PremiumCelebration и DialogVictory; конфетти фактически выведены (статичное свечение); motion/publicFocus зашиты в 'none'/'balanced' у PlayerProfileModal — половина системы карточек выключена флагами.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= МОДАЛЫ ================= -->
+<section id="modals">
+  <div class="sec-kicker">Модалы</div>
+  <h2 class="sec-title">28 полных карточек TIER 1 — «СЕЙЧАС» vs «ПРЕДЛОЖЕНИЕ»</h2>
+  <p class="sec-lead">Слева — точный статичный макет по коду (реальные тексты, цвета, поведение фона и крестика). Справа — улучшенная версия с анимациями; кнопка «↻ Повторить» перезапускает их.</p>
+
+  <!-- ============ КАТЕГОРИЯ A ============ -->
+  <div class="cat-title" id="cat-a"><span class="letter">A</span>Праздники и награды</div>
+  <p class="cat-lead">Самая «громкая» категория: здесь решается, выгорят праздники или будут работать как у Duolingo.</p>
+
+  <!-- 1. BoonChestModal -->
+  <article class="card" id="m-boonchest">
+    <div class="card-head"><h3>BoonChestModal</h3><code>components/BoonChestModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> три хоста через OverlayArbiter — MysteryMondayHost («Сундук недели», раз в неделю), PerfectWeekHost («Идеальная неделя», epic), ComebackBoonHost («День возвращения», пропуск 2+ дней).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc gold-fr">
+              <div class="xx" title="✕">✕</div>
+              <div class="ti big">Сундук недели</div>
+              <div class="chest"><div class="lid"></div><div class="body"></div></div>
+              <div class="su">Нажми, чтобы открыть</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">dim 0.6 · карточка 326pt с градиентом редкости<br><b>фон: глухой</b> (без onPress) · <b>крестик: ОТКРЫВАЕТ сундук</b>, а не закрывает · анимацию нельзя пропустить</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play" data-cu><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc gold-fr a-spring">
+              <div class="confetti-box" data-n="14"></div>
+              <div class="xx honest">✕</div>
+              <div class="ti big">Сундук недели</div>
+              <div class="chest a-shake">
+                <div class="orb a-orb">💠</div>
+                <div class="lid a-lid"></div>
+                <div class="body"></div>
+              </div>
+              <div class="val">+<span class="cu" data-v="15">15</span> осколков</div>
+              <div class="su">теперь твои</div>
+              <div class="ba shn">Забрать</div>
+              <div class="bo">Открыть позже — сундук сохранится</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Честный ✕ закрывает (сундук ждёт в инвентаре) · дрожь → крышка → орб spring-подъём + дыхание · конфетти из крышки · count-up осколков 800 мс</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Крестик с неожиданной семантикой: ✕ в фазе box ОТКРЫВАЕТ сундук, а не закрывает модал.</li>
+        <li>Фон без onPress — глухая зона; пользователь тапает мимо и ничего не происходит.</li>
+        <li>Нет пути «пропустить анимацию»: дрожь 4×30 мс → крышка 360 мс → орб — обязательный ритуал.</li>
+        <li>Одинаковая амплитуда праздника у недельного сундука (3–15 осколков) и epic «Идеальной недели».</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>✕ = честное закрытие с подписью «сохранится в инвентаре»; отдельный ghost «Открыть позже» <i>(П7 — вежливость закрытия)</i>.</li>
+        <li>Тап по сундуку = открыть; тап по фону = отложить <i>(П7, предсказуемость)</i>.</li>
+        <li>Физика: дрожь → крышка → орб с overshoot-пружиной и дыханием — «дорогой» ритуал, но ≤2 с и скипаемый тапом <i>(П2, П5)</i>.</li>
+        <li>Конфетти и count-up — только у epic/недельного; comeback-вариант спокойнее <i>(П8, П1 — ярусы)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 2. BoonActivatedModal -->
+  <article class="card" id="m-boonactivated">
+    <div class="card-head"><h3>BoonActivatedModal</h3><code>components/BoonActivatedModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> BoonActivatedHost, раз в день — «тихий» дневной бонус (щит серии, ×2 опыт, быстрый заряд и т.п.), слот boonActivated.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d60">
+            <div class="mc acc-fr">
+              <div class="ico-t" style="width:76px;height:76px;font-size:36px">⚡</div>
+              <div class="ki">Бонус дня активирован</div>
+              <div class="ti">Двойной опыт</div>
+              <div class="su">Весь опыт сегодня ×2. Лучший день рвануть в лиге.</div>
+              <div class="ba">Отлично</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">dim 0.6 · иконка 104pt со свечением, блик CTA<br><b>фон: не закрывает</b> · крестика нет — выход только CTA или back</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d60">
+            <div class="mc acc-fr a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ringw halo grn a-float" style="width:84px;height:84px"><div class="em">⚡</div></div>
+              <div class="a-stag">
+                <div class="ki">Бонус дня активирован</div>
+                <div class="ti">Двойной опыт</div>
+                <div class="su">Весь опыт сегодня ×2. Лучший день рвануть в лиге.</div>
+                <div class="chips"><span class="cchip a">⏳ Действует до конца дня</span></div>
+                <div class="ba">Отлично</div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Фон закрывает · ✕ на месте · чип срока действия · ярус «тихий бонус» = мягкое halo+float, без конфетти и бликов <i>(П8)</i></div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Принудительный просмотр: фон не закрывает, крестика нет — только CTA «Отлично» или back.</li>
+        <li>Не сказано, до когда живёт бонус («весь день»? до полуночи? 24 часа?).</li>
+        <li>Полноэкранный модал на чисто информационное событие — тяжеловесный паттерн <i>(П3)</i>.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Фон = закрыть, ✕ 30→44pt hit-area <i>(П7)</i>.</li>
+        <li>Чип «Действует до конца дня» — снимает вопрос срока.</li>
+        <li>Амплитуда по ярусу: это НЕ milestone → спокойное halo + float, блик CTA убрать <i>(П8, П1)</i>.</li>
+        <li>Среднесрочно: кандидат на перевод в TodaysBoonStrip + тост, модал оставить для «больших» бонусов <i>(П3)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 3. CollectibleDropModal -->
+  <article class="card" id="m-collectible">
+    <div class="card-head"><h3>CollectibleDropModal</h3><code>components/CollectibleDropModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> дроп карточки Сокровищницы после lesson_complete — осознанно ПОСЛЕ экрана результатов (хороший паттерн, П6).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d88">
+            <div class="mc" style="border-color:rgba(180,140,255,.5)">
+              <div class="ki">Новая карточка!</div>
+              <div style="width:150px;height:100px;margin:10px auto;border-radius:14px;background:linear-gradient(135deg,#2A1B4E,#0E081D);border:1px solid rgba(180,140,255,.55);display:grid;place-items:center;font-size:34px;box-shadow:0 0 26px rgba(180,140,255,.35)">🃏</div>
+              <div class="chips"><span class="cchip" style="color:#C9A8FF;border-color:rgba(180,140,255,.4);background:rgba(180,140,255,.1)">Легендарная</span></div>
+              <div class="ti">to break the ice</div>
+              <div class="su">разрядить обстановку</div>
+              <div class="su" style="margin-top:4px">Сет «Small talk»</div>
+              <div class="ba">Класс!</div>
+              <div class="bo">В коллекцию</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">dim rgba(2,3,6,.88) · рамка и свечение по редкости (legendary=фиолет)<br><b>фон: не закрывает</b> · крестика нет · конфетти выведены — статичное свечение</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d88">
+            <div class="mc a-spring" style="border-color:rgba(180,140,255,.5)">
+              <div class="confetti-box" data-n="12"></div>
+              <div class="ki">Новая карточка!</div>
+              <div class="ringw" style="width:150px;height:100px;border-radius:14px">
+                <div class="ringc a-ringrot" style="border-radius:14px;background:conic-gradient(from 0deg,#B48CFF,rgba(180,140,255,.06),#FFD66B,rgba(180,140,255,.06),#B48CFF);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;padding:3px"></div>
+                <div class="em shn" style="border-radius:12px;background:linear-gradient(135deg,#2A1B4E,#0E081D);inset:3px;font-size:34px;overflow:hidden">🃏</div>
+              </div>
+              <div class="a-stag">
+                <div class="chips"><span class="cchip" style="color:#C9A8FF;border-color:rgba(180,140,255,.4);background:rgba(180,140,255,.1)">Легендарная</span><span class="cchip b">Карта 7 из 12 сета</span></div>
+                <div class="ti">to break the ice</div>
+                <div class="su">разрядить обстановку · Сет «Small talk»</div>
+                <div class="prog g"><i style="width:58%"></i></div>
+                <div class="su">До «Сет собран! +15 осколков» — ещё 5</div>
+                <div class="ba shn">Класс!</div>
+                <div class="bo">В коллекцию</div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Счётчик «7 из 12» + прогресс сета · голографический shine и вращающаяся conic-рамка по редкости · конфетти ТОЛЬКО legendary/epic</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Нет счётчика «карта X из Y» — упущенная мотивация добрать сет (а награда за сет существует: «Сет собран! +15 осколков»).</li>
+        <li>Конфетти фактически выведены — праздник обесценен до статичного свечения даже на legendary.</li>
+        <li>Фон не закрывает, крестика нет — только CTA/back.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Счётчик «Карта 7 из 12 сета» + прогресс-бар сета — эффект незавершённого действия работает на возвращение <i>(П1)</i>.</li>
+        <li>Редкость = амплитуда: common/rare — спокойный fade, epic — shine, legendary — shine + конфетти + вращение рамки <i>(П8)</i>.</li>
+        <li>Фон = закрыть, ✕ добавить <i>(П7)</i>.</li>
+        <li>Голографический блик по фольге — «дорогой» эффект без единого растра, только transform-градиент <i>(П5)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 4. PremiumCelebrationModal -->
+  <article class="card" id="m-premiumcelebration">
+    <div class="card-head"><h3>PremiumCelebrationModal (+ VipCelebrationModal)</h3><code>components/PremiumCelebrationModal.tsx, premium_celebration/</code><span class="badge b-live">Живой</span></div>
+    <p class="trigger"><b>Триггер:</b> покупка/активация Plus/Pro/VIP (home, AppMessagesInbox, promo_code_entry). Варианты: premium (золото 👑), vip (изумруд ✨), pro (синий 💎).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc" style="background:linear-gradient(160deg,#0E1420,#05070C)"><div class="notch"></div>
+          <div class="sk s1" style="background:rgba(255,200,0,.05)"></div>
+          <div class="dm" style="background:radial-gradient(circle at 50% 20%,rgba(255,200,0,.12),rgba(0,0,0,.75) 70%)">
+            <div class="mc gold-fr" style="background:linear-gradient(160deg,#231C08,#0B0803)">
+              <div style="font-size:34px">👑</div>
+              <div class="ti">Plus активирован</div>
+              <div class="su" style="color:#D8C48A">тапни, чтобы пропустить</div>
+              <div class="hr"></div>
+              <div class="feat"><div class="fi">⚡</div><div><b>Безлимитная энергия</b><span>Учи сколько хочешь</span></div></div>
+              <div class="feat"><div class="fi">📚</div><div><b>Все уроки открыты</b><span>Весь маршрут без замков</span></div></div>
+              <div class="feat"><div class="fi">🔁</div><div><b>Повторы без осколков</b><span>Повторяй свободно</span></div></div>
+              <div class="feat" style="opacity:.45"><div class="fi">♾️</div><div><b>Квизы без лимита</b><span>лента скроллится сама…</span></div></div>
+              <div class="su" style="margin-top:4px">…авто-лента 16 преимуществ, ~6.5 с, скролл выключен</div>
+              <div class="bg2">Поехали</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Полноэкранный AuroraBackground · авто-лента 16 строк, 360 мс/строка, scrollEnabled=false<br><b>тап = skip → раскрыть всё</b>, повторный = закрыть · крестика нет · hapticTap на КАЖДУЮ строку</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc" style="background:linear-gradient(160deg,#0E1420,#05070C)"><div class="notch"></div>
+          <div class="sk s1" style="background:rgba(255,200,0,.05)"></div>
+          <div class="dm" style="background:radial-gradient(circle at 50% 20%,rgba(255,200,0,.14),rgba(0,0,0,.78) 70%)">
+            <div class="mc gold-fr a-spring" style="background:linear-gradient(160deg,#231C08,#0B0803)">
+              <div class="confetti-box" data-n="10"></div>
+              <div class="xx honest" style="color:#D8C48A">✕</div>
+              <div class="ringw halo a-burst" style="width:76px;height:76px"><div class="em">👑</div><div class="ringc a-ringrot"></div></div>
+              <div class="ti">Plus активирован</div>
+              <div class="a-stag">
+                <div class="feat"><div class="fi">⚡</div><div><b>Безлимитная энергия</b><span>Учи сколько хочешь</span></div></div>
+                <div class="feat"><div class="fi">📚</div><div><b>Все уроки открыты</b></div></div>
+                <div class="feat"><div class="fi">🎤</div><div><b>Голос с оценкой фразы</b></div></div>
+                <div class="feat"><div class="fi">🧠</div><div><b>Умный Тренер</b></div></div>
+              </div>
+              <div class="bo" style="color:#D8C48A">+12 ещё ▾</div>
+              <div class="bg2 shn">Поехали</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">3 фазы вместо авто-ленты: burst + эмблема → 4 ключевых преимущества (остальные — раскрывашка «+12 ещё») → CTA · читается с первой секунды · haptic только на фазах</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Принудительный просмотр ~6.5 с: scrollEnabled=false, авто-лента ведёт сама.</li>
+        <li>16 × hapticTap — вибро-спам; haptic должен отмечать фазы, а не строки.</li>
+        <li>16 однотипных строк не читаются — были баги наезда ленты на заголовок.</li>
+        <li>Единственный модал на Reanimated — велик, но используется как «видеоролик», а не как интерфейс.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>3 фазы: эмблема → 4 ключевых преимущества → CTA; всё читается с первой секунды, без обязательного просмотра <i>(П2, П6)</i>.</li>
+        <li>Остальные 12 — раскрывашка «+12 ещё»: полнота сохранена, шум убран.</li>
+        <li>Haptic только на смене фаз (3 вместо 16) <i>(П5)</i>.</li>
+        <li>✕ и тап по фону — с первой секунды, не после скипа <i>(П7)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 5. LoyaltyGiftModal -->
+  <article class="card" id="m-loyaltygift">
+    <div class="card-head"><h3>LoyaltyGiftModal</h3><code>components/LoyaltyGiftModal.tsx</code><span class="badge b-live">Живой · за флагом LOYALTY_UPDATE_MODAL_ENABLED</span></div>
+    <p class="trigger"><b>Триггер:</b> слот loyaltyGift, один раз после обновления. Варианты gift (free: 3 дня Plus) / announce (Plus/VIP).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc tall" style="max-height:94%">
+              <div style="font-size:30px">🚀</div>
+              <div class="ki">Новая версия</div>
+              <div class="ti">Phraseman, которого ты ещё не видел</div>
+              <div class="su">Половина приложения переписана заново. Стало понятнее, живее и приятнее учиться. Вот что ты почувствуешь сразу:</div>
+              <div class="hr"></div>
+              <div class="su" style="text-align:left">✦ Подскажет, что учить сегодня<br>✦ Очень много новых занятий<br>✦ Диалоги: живая переписка по ролям<br>✦ Приятный живой голос<br>✦ Соревнуйся с другими<br>✦ Понятно объясняет промахи<br>✦ Коллекция красивых карточек</div>
+              <div class="su" style="text-align:left;margin-top:8px;background:rgba(255,255,255,.04);border-radius:10px;padding:8px">«Честно, по-настоящему»: Я говорю «мы» — хотя за всем этим стоит один человек…</div>
+              <div class="su" style="margin-top:8px"><b style="color:var(--gold)">Спасибо, что ты с самого начала</b><br>Держи 3 дня — всё открыто</div>
+              <div class="ba" style="margin-top:10px">Забрать 3 дня</div>
+              <div class="bo">Может позже</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Скролл-модал 92% высоты · 7 текстовых строк + заметка + карточка «идеи» + подарок<br>Текст захардкожен белым #FFFFFF вне токенов · <b>нет ни одного визуального образа, анимаций нет</b></div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc tall a-spring" style="max-height:94%">
+              <div class="xx honest">✕</div>
+              <div class="mc gold-fr a-glow" style="padding:12px;margin-bottom:10px">
+                <div class="ki gold">Подарок</div>
+                <div class="ti" style="margin:2px 0">3 дня — всё открыто</div>
+                <div class="chips"><span class="cchip g">Все занятия</span><span class="cchip g">Без замков</span><span class="cchip g">Все темы</span></div>
+              </div>
+              <div class="ringw halo grn a-float" style="width:72px;height:72px"><div class="em">🚀</div></div>
+              <div class="ki">Новая версия</div>
+              <div class="ti">Phraseman, которого ты ещё не видел</div>
+              <div class="a-stag" style="margin-top:6px">
+                <div class="feat"><div class="fi">🧭</div><div><b>Подскажет, что учить сегодня</b></div></div>
+                <div class="feat"><div class="fi">💬</div><div><b>Диалоги: живая переписка по ролям</b></div></div>
+                <div class="feat"><div class="fi">🃏</div><div><b>Коллекция красивых карточек</b></div></div>
+              </div>
+              <div class="bo">Все 7 новшеств и заметка автора ▾</div>
+              <div class="ba shn">Забрать 3 дня</div>
+              <div class="su" style="font-size:10px">Это подарок. Ничего не спишется, подписка не включится.</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Подарок — акцентным блоком сверху с ticket-glow · hero 🚀 с парением вместо стены текста · 3 фичи карточками, остальное — раскрывашка · тексты из токенов темы</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Самый длинный текстовый модал: интро + 7 highlight-строк + личная заметка + карточка «идеи» + подарок — стена текста.</li>
+        <li>Текст захардкожен белым #FFFFFF вне токенов темы.</li>
+        <li>Нет визуального образа и анимаций — «письмо», а не праздник обновления.</li>
+        <li>Главное (подарок 3 дня) — внизу длинного скролла.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Подарок — отдельным акцентным блоком сверху: ценность видна до скролла <i>(П3)</i>.</li>
+        <li>3 ключевые фичи карточками-иконками, остальные 4 + заметка автора — раскрывашка: тёплый текст сохранён, стена убрана <i>(П2)</i>.</li>
+        <li>Hero-ракета с float + halo: эмоция без растров <i>(П5)</i>.</li>
+        <li>Все цвета — из токенов; на 10 темах ничего не сломается.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 6. ReleaseWaveBonusModal -->
+  <article class="card" id="m-releasewave">
+    <div class="card-head"><h3>ReleaseWaveBonusModal</h3><code>components/ReleaseWaveBonusModal.tsx</code><span class="badge b-off">Выключен флагом</span></div>
+    <p class="trigger"><b>Триггер:</b> RELEASE_WAVE_BONUS_VERSION=0 — волна благодарности за свежий релиз; идемпотентный claim.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc gcard">
+              <div class="ki gold">Бонус обновления</div>
+              <div class="val">+50 осколков знаний</div>
+              <div class="su">Спасибо, что ты с нами! Подарок за свежий релиз.</div>
+              <div class="ba">Забрать</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">RewardCardV2-стиль · <b>фон/back = claim + закрыть</b> (начислит даже при случайном тапе)<br>busy без визуального индикатора — возможны двойные тапы</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc gcard a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ringw halo a-float" style="width:64px;height:64px"><div class="em">💠</div></div>
+              <div class="ki gold">Бонус обновления</div>
+              <div class="val">+<span class="cu" data-v="50">50</span> осколков знаний</div>
+              <div class="su">Спасибо, что ты с нами! Подарок за свежий релиз.</div>
+              <div class="ba"><span class="spin"></span>Забираем…</div>
+              <div class="bo">Позже</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Busy-стейт на CTA (спиннер + блокировка повторного тапа) · фон = «позже», не claim · ✕ честный · count-up награды</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Busy без визуального индикатора — двойные тапы возможны (claim идемпотентен, но UX «висит»).</li>
+        <li>Фон/back = claim+закрыть: случайный тап мимо карточки «забирает» награду.</li>
+        <li>Модал выключен флагом — судьба не решена.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Спиннер + «Забираем…» на время claim, CTA disabled <i>(П5)</i>.</li>
+        <li>Фон = отложить; claim — только явной кнопкой <i>(П7)</i>.</li>
+        <li>Решить судьбу: если включаем — это «тихий» ярус, мягкая анимация без конфетти <i>(П8)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- ============ КАТЕГОРИЯ B ============ -->
+  <div class="cat-title" id="cat-b"><span class="letter">B</span>Лига и арена</div>
+  <p class="cat-lead">Самые тяжёлые модалы приложения: градиентные рамки, энергошарды, каскады из 7 стадий.</p>
+
+  <!-- 7. LeagueResultModal -->
+  <article class="card" id="m-leagueresult">
+    <div class="card-head"><h3>LeagueResultModal</h3><code>app/LeagueResultModal.tsx (1362 строки; components/ClubResultModal.tsx = re-export)</code><span class="badge b-live">Живой</span></div>
+    <p class="trigger"><b>Триггер:</b> итоги недели лиги (home.tsx pendingLeagueResult, club_screen). Исходы: повышение / понижение / остался.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d86">
+            <div class="mc tall gold-fr" style="max-height:96%">
+              <div class="rail"></div>
+              <div class="xx">✕</div>
+              <div class="ki gold">Итоги недели</div>
+              <div class="ringw halo" style="width:74px;height:74px"><div class="em">🛡️</div><div class="ringc" style="background:conic-gradient(from 0deg,#FFC800,rgba(255,200,0,.05),#FFC800)"></div></div>
+              <div class="chips"><span class="cchip g">Повышен до Золотой</span></div>
+              <div class="su">Серебряная → <b>Золотая</b></div>
+              <div class="val" style="font-size:44px;margin:2px 0">3<span style="font-size:14px;color:var(--muted)"> / 30</span></div>
+              <div class="su" style="font-size:10px">Твоё место · Повышение: топ-5</div>
+              <div class="podi"><div class="pd p2">2</div><div class="pd p1">1</div><div class="pd p3">3</div></div>
+              <div class="lrow"><span class="av">АК</span>Анна К.<span class="xp">4 820</span></div>
+              <div class="lrow"><span class="av">ДМ</span>Дмитрий М.<span class="xp">4 310</span></div>
+              <div class="lrow me"><span class="av">Ты</span>Ты<span class="xp">3 990</span></div>
+              <div class="su" style="font-size:10px;margin-top:4px">Группа недели · 30 чел.</div>
+              <div class="chips"><span class="cchip a">💠 +40</span><span class="cchip a">⚡ ускорение</span></div>
+              <div class="su" style="font-size:10px">Новая лига — новые вызовы и бонусы!</div>
+              <div class="ba shn">🚀 Вперёд!</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">dim 0.86 + радиальные отблески · энергошарды вверх/вниз · каскад 7 стадий · хало 7с · место 64pt<br><b>Место доминирует над исходом</b>; эмодзи 🚀 + glow — шумно</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d86">
+            <div class="mc tall gold-fr a-spring" style="max-height:96%">
+              <div class="rail"></div>
+              <div class="xx honest">✕</div>
+              <div class="a-stag">
+                <div class="ti big" style="color:var(--gold)">Повышение!</div>
+                <div class="chips"><span class="cchip g">Серебряная → Золотая</span></div>
+                <div class="ringw halo" style="width:66px;height:66px"><div class="em">🛡️</div><div class="ringc a-ringrot" style="background:conic-gradient(from 0deg,#FFC800,rgba(255,200,0,.05),#FFC800)"></div></div>
+                <div class="su">Твоё место <b style="color:var(--text);font-size:15px">3 из 30</b> · Повышение: топ-5</div>
+              </div>
+              <div class="podi"><div class="pd p2">2</div><div class="pd p1">1</div><div class="pd p3">3</div></div>
+              <div class="lrow me"><span class="av">Ты</span>Ты — 3 990 XP<span class="xp">▲2</span></div>
+              <div class="chips"><span class="cchip a">💠 +40</span><span class="cchip a">⚡ ускорение</span></div>
+              <div class="ba shn">Вперёд</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Иерархия «исход → место»: заголовок-исход крупный, место 44pt→15pt · каскад 7→4 стадии · энергошарды оставить (фирменное!), но строго на transform · CTA без эмодзи</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Самый тяжёлый модал приложения: 1362 строки, каскад 7 стадий, энергошарды 2.6–4.2 с, хало 7 с, искры ✦, подиум, список группы.</li>
+        <li>Место 64pt визуально доминирует над исходом («Повышен»/«Понижен») — пользователь сначала видит цифру, а не результат.</li>
+        <li>Эмодзи 🚀 в CTA + glow + shine — шумно на фоне и так плотной сцены.</li>
+        <li>Энергошарды должны лететь строго на transform — проверить, что без layout-анимаций.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Иерархия: исход — герой (ti big), место — вторичная строка 15–17pt <i>(П8 — амплитуда по событию)</i>.</li>
+        <li>Каскад 7→4 стадии: исход → переход → подиум/группа → награды+CTA <i>(П2, П5)</i>.</li>
+        <li>Энергошарды оставить — фирменный ассет, но гарантировать transform-only <i>(П5)</i>.</li>
+        <li>CTA «Вперёд» без эмодзи; мотивационная строка остаётся <i>(П5 — меньше визуального шума)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 8. LeagueChestOpenModal -->
+  <article class="card" id="m-leaguechest">
+    <div class="card-head"><h3>LeagueChestOpenModal</h3><code>components/LeagueChestOpenModal.tsx</code><span class="badge b-live">Живой · есть P0-риск</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> открытие бонусного сундука лиги из club_screen. Режимы: isCrownWinner / обычный.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc gold-fr" style="padding-top:22px">
+              <div class="rail"></div>
+              <div class="ki gold">Бонус лиги открыт</div>
+              <div class="ringw halo" style="width:76px;height:76px"><div class="em">🏆</div></div>
+              <div class="ti">Награды готовы</div>
+              <div class="su" style="font-size:10px">Бонус собран. Награды выпадают отдельно для каждого игрока и сразу добавляются в профиль.</div>
+              <div class="rgrid">
+                <div class="rcell"><span class="ri">💠</span><b>+30</b>осколков</div>
+                <div class="rcell"><span class="ri">⚡</span><b>15 мин</b>быстрее</div>
+                <div class="rcell"><span class="ri">🛡️</span><b>+1</b>щит серии</div>
+                <div class="rcell"><span class="ri">⚔️</span><b>+2</b>боя Арена</div>
+                <div class="rcell"><span class="ri">📦</span><b>Пак</b>48 часов</div>
+                <div class="rcell"><span class="ri">✨</span><b>Аура</b>аватара</div>
+              </div>
+              <div class="ba">Забрать</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Рамка-градиент лиги · медальон 150pt с парением · сетка 3-в-ряд, caps 10pt<br><b>P0: без наград молча показывает 4 PREVIEW-мока — риск фейкового дропа!</b></div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc gold-fr a-spring" style="padding-top:22px">
+              <div class="rail"></div>
+              <div class="confetti-box" data-n="10"></div>
+              <div class="ki gold">Бонус лиги открыт</div>
+              <div class="ringw halo a-float" style="width:66px;height:66px"><div class="em">🏆</div></div>
+              <div class="ti">Награды готовы</div>
+              <div class="rgrid g2 a-stag">
+                <div class="rcell" style="padding:10px 4px"><span class="ri">💠</span><b style="font-size:13px">+30 осколков</b></div>
+                <div class="rcell" style="padding:10px 4px"><span class="ri">⚡</span><b style="font-size:13px">Энергия · 15 мин быстрее</b></div>
+                <div class="rcell" style="padding:10px 4px"><span class="ri">🛡️</span><b style="font-size:13px">Щит серии +1</b></div>
+                <div class="rcell" style="padding:10px 4px"><span class="ri">⚔️</span><b style="font-size:13px">+2 боя · Арена</b></div>
+              </div>
+              <div class="ba shn">Забрать</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">P0-фикс: без наград модал не показывается (или честное «награды начислятся позже») · сетка 2-в-ряд крупнее, текст 11–12pt · stagger-выпадение наград как у сундука</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li><b>P0:</b> при пустом списке наград молча показывает 4 PREVIEW-мока — пользователь видит несуществующие награды (фейковый дроп).</li>
+        <li>Мелкий caps 10pt в сетке 3-в-ряд — тексты типа «Энергия/15 мин быстрее» не читаются.</li>
+        <li>Shine 2600 мс ×3 + парение 1000 мс — довольно суетливо для рутинного еженедельного окна.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Убрать мок-фолбэк: пустые награды = модал не открывается / честный стейт <i>(П7 — честность интерфейса)</i>.</li>
+        <li>Сетка 2-в-ряд с текстом 11–12pt — читаемость наград важнее симметрии <i>(П3)</i>.</li>
+        <li>Stagger-выпадение ячеек (как орб у сундука) — фамильная «сундучная» физика вместо третьего shine <i>(П5, П8)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 9. LeagueBonusAvailableModal -->
+  <article class="card" id="m-leaguebonus">
+    <div class="card-head"><h3>LeagueBonusAvailableModal</h3><code>components/LeagueBonusAvailableModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> слот leagueBonusAvailable — лига закрыла недельную цель.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc acc-fr">
+              <div class="ki">Цель лиги выполнена</div>
+              <div style="font-size:36px;margin:8px 0">👑</div>
+              <div class="ti">Корона уже ждёт</div>
+              <div class="su">Ты набрал больше всех. Лига закрыла цель, а корона решила не изображать скромность: она твоя. Осталось забрать.</div>
+              <div class="su" style="font-size:10px;margin-top:6px">Корона: Дмитрий М.</div>
+              <div class="ba">Забрать корону</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap"><b>фон: закрывает БЕЗ claim</b> («отложить») — но это нигде не объяснено · крестика нет · body завышает ожидания</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc acc-fr a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ki">Цель лиги выполнена</div>
+              <div class="ringw halo a-float" style="width:66px;height:66px"><div class="em">👑</div></div>
+              <div class="ti">Корона уже ждёт</div>
+              <div class="su">Ты набрал больше всех — корона твоя. Осталось забрать.</div>
+              <div class="chips"><span class="cchip a">💠 осколки</span><span class="cchip a">⚡ ускорение</span><span class="cchip a">🛡️ щит</span></div>
+              <div class="bhalf"><div class="bs">Позже</div><div class="ba shn" style="margin-top:8px">Забрать корону</div></div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Ghost «Позже» рядом с CTA — «отложить» становится явным · чипы показывают РЕАЛЬНЫЙ пул наград вместо расплывчатых обещаний</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Фон закрывает БЕЗ claim — это «отложить», но пользователь не знает, что награда не потеряется.</li>
+        <li>Нет ghost-кнопки «позже» — единственный видимый выход «Забрать» ведёт в лигу.</li>
+        <li>Body «внутри осколки, усилители и редкие награды…» завышает ожидания относительно реального пула.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Явная ghost «Позже» + подпись «награда никуда не денется» <i>(П7)</i>.</li>
+        <li>Чипы реального пула наград вместо общих обещаний — обещание = факту <i>(П7)</i>.</li>
+        <li>Текст короче: длинная проза про корону — в детали лиги <i>(П2)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 10. RankChangeModal -->
+  <article class="card" id="m-rankchange">
+    <div class="card-head"><h3>RankChangeModal</h3><code>app/components/RankChangeModal.tsx</code><span class="badge b-orphan">Не подключён</span></div>
+    <p class="trigger"><b>Триггер:</b> повышение/понижение ранга арены. Прод-call-site НЕ найден (только админ-превью).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc gold-fr">
+              <div class="ti">🚀 Повышение ранга!</div>
+              <div style="width:110px;height:110px;margin:10px auto;border-radius:16px;background:linear-gradient(135deg,#4A3810,#1C1404);border:1px solid rgba(255,200,0,.4);display:grid;place-items:center;font-size:40px">🏅</div>
+              <div class="chips"><span class="cchip g">Золото II</span></div>
+              <div class="su">Ты справился — новый ранг заслужен!</div>
+              <div class="ba">Отлично! 🎉</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Каскад spring, heartbeat hero, shine<br><b>Картинка ранга ОДНА на все тиры (zoloto.webp)</b> — бронза выглядит как золото · не theme-aware · сиротский</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc a-spring" style="border-color:rgba(111,177,255,.45)">
+              <div class="confetti-box" data-n="8"></div>
+              <div class="ki blue">Повышение ранга</div>
+              <div class="ringw halo blu a-burst" style="width:96px;height:96px">
+                <div class="em" style="font-size:36px">🛡️</div>
+                <div class="ringc a-ringrot" style="background:conic-gradient(from 0deg,#6FB1FF,rgba(111,177,255,.05),#6FB1FF)"></div>
+              </div>
+              <div class="chips"><span class="cchip b">Платина I</span></div>
+              <div class="su">Ты справился — новый ранг заслужен!</div>
+              <div class="ba shn">Отлично</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Пер-тирные визуалы: цвет кольца/свечения = тир (бронза→легенда), один CSS-контур вместо растров · сначала решить: подключить или удалить</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Сиротский: прод-call-site не найден — код поддерживается, но не показывается.</li>
+        <li>Одна картинка zoloto.webp на все тиры обесценивает прогрессию (бронза = золото визуально).</li>
+        <li>Не theme-aware: жёсткие цвета поверх 10 тем.</li>
+        <li>Эмодзи в заголовке и CTA («Отлично! 🎉») — шум.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Сначала решение: подключить к смене ранга арены или удалить <i>(сиротский код — долг)</i>.</li>
+        <li>Пер-тирные визуалы на CSS: цвет кольца и свечения = тир; растровые ассеты не нужны <i>(П5)</i>.</li>
+        <li>Понижение — спокойный тон без конфетти и heartbeat (как MedalToast, см. раздел тостов) <i>(П8)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- ============ КАТЕГОРИЯ C ============ -->
+  <div class="cat-title" id="cat-c"><span class="letter">C</span>Экономика: сундуки и подарки</div>
+  <p class="cat-lead">Общий движок GiftBox3D (level_gift_box.tsx) — хорошая база; проблемы — в семантике крестиков и режимах.</p>
+
+  <!-- 11. LevelGiftModal -->
+  <article class="card" id="m-levelgift">
+    <div class="card-head"><h3>LevelGiftModal</h3><code>components/LevelGiftModal.tsx (952 строки)</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> повышение уровня (_layout levelUpOverlay) + инвентарь подарков. Режимы claim/inventory × open/apply — 5 режимов в одном компоненте.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d52">
+            <div class="mc acc-fr">
+              <div class="xx">✕</div>
+              <div class="ki">Уровень 12</div>
+              <div class="ti">Подарок за уровень</div>
+              <div class="su" style="font-size:10px">Награда за твой путь</div>
+              <div class="chest"><div class="lid"></div><div class="body"></div></div>
+              <div class="su">Нажми, чтобы открыть</div>
+              <div class="bo">Забрать позже</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">dim 0.52 · панель 326pt, редкостный градиент + liquid-glass + glow-линия<br><b>✕ в фазе box = «отложить»</b> — не объяснено; кнопка меняет смысл по 5 режимам</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d52">
+            <div class="mc acc-fr a-spring">
+              <div class="confetti-box" data-n="10"></div>
+              <div class="xx honest">✕</div>
+              <div class="ki">Уровень 12</div>
+              <div class="ti">Подарок за уровень</div>
+              <div class="chest a-shake">
+                <div class="orb a-orb">⚡</div>
+                <div class="lid a-lid"></div>
+                <div class="body"></div>
+              </div>
+              <div class="chips"><span class="cchip a">Редкость: редкий</span></div>
+              <div class="su">Открыто: <b>+5 ⚡ энергии</b><br>⚡ Действует до полуночи</div>
+              <div class="ba shn">Забрать</div>
+              <div class="bo">✕ или «позже» — подарок сохранится в разделе «Подарки»</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Семантика ✕ объяснена прямо в макете: «подарок сохранится в инвентаре» · единая CTA-логика по режимам · reveal: burst + орб + капсула редкости</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>5 режимов в одном компоненте (claim/inventory × open/apply) — кнопка меняет смысл, легко ошибиться.</li>
+        <li>✕ в фазе box = «отложить», но пользователь не знает, что подарок НЕ сгорит.</li>
+        <li>Текст-подстраховка «Сохранено в разделе "Подарки" в результатах» есть только ПОСЛЕ reveal — поздно.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Подпись у ✕: «сохранится в инвентаре» — снимает страх потери <i>(П7)</i>.</li>
+        <li>Единая CTA-логика: primary всегда «Забрать/Применить», secondary всегда «Позже» — без меняющихся смыслов <i>(П3)</i>.</li>
+        <li>Редкость-капсула и инфо-блоки («до полуночи», «буст заменён») остаются — они хороши <i>(П7 — честные условия)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 12. LevelGiftDualModal -->
+  <article class="card" id="m-levelgiftdual">
+    <div class="card-head"><h3>LevelGiftDualModal</h3><code>components/LevelGiftDualModal.tsx (1282 строки)</code><span class="badge b-live">Живой · Plus</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> повышение уровня у Plus-юзеров: два сундука (обычный + премиум), открываются в любом порядке.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d52">
+            <div class="mc gold-fr">
+              <div class="ki gold">Плюс: уровень 12</div>
+              <div class="ti">Два подарка</div>
+              <div class="su" style="font-size:10px">Открой оба (в любом порядке)</div>
+              <div class="row" style="align-items:flex-end">
+                <div class="chest" style="width:80px;height:72px;transform:scale(.8)"><div class="lid"></div><div class="body"></div></div>
+                <div class="chest epic" style="width:80px;height:72px;transform:scale(.8)"><div class="lid"></div><div class="body"></div></div>
+              </div>
+              <div class="su" style="font-size:10px;margin-top:4px">✕ доступен только при 0 или 2 открытых — после первого сундука исчезает</div>
+              <div class="ba">Получить всё</div>
+              <div class="bo">Забрать позже</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Два GiftBox3D (обычный + премиум)<br><b>Крестик в середине сценария исчезает</b> — выглядит как «нельзя выйти» · «Применяем...» — единственный busy-текст в инвентаре</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d52">
+            <div class="mc gold-fr a-spring">
+              <div class="confetti-box" data-n="12"></div>
+              <div class="xx honest">✕</div>
+              <div class="ki gold">Плюс: уровень 12</div>
+              <div class="ti">Два подарка</div>
+              <div class="dots"><i class="on"></i><i></i></div>
+              <div class="row" style="align-items:flex-end">
+                <div style="text-align:center">
+                  <div class="chest a-shake" style="width:76px;height:68px"><div class="orb a-orb">💠</div><div class="lid a-lid"></div><div class="body"></div></div>
+                  <div class="su" style="font-size:9px;margin-top:4px">Обычный ✓</div>
+                </div>
+                <div style="text-align:center">
+                  <div class="chest epic a-float" style="width:76px;height:68px"><div class="lid"></div><div class="body"></div></div>
+                  <div class="su" style="font-size:9px;margin-top:4px">Премиум — нажми</div>
+                </div>
+              </div>
+              <div class="ba shn">Получить всё</div>
+              <div class="bo">Сохранить и выйти — подарки останутся в инвентаре</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">✕ доступен ВСЕГДА с явным «сохранить и выйти» · прогресс «1 из 2» точками · второй сундук зовёт парением · конфетти после второго</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>✕ доступен только при 0 или 2 открытых сундуках: в середине сценария исчезает — выглядит как «нельзя выйти».</li>
+        <li>Нет индикатора прогресса «1 из 2».</li>
+        <li>«Применяем...» — единственный busy-текст; несогласован с остальными busy-стейтами.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>✕ всегда доступен с явным действием «сохранить и выйти» <i>(П7)</i>.</li>
+        <li>Точки «1 из 2» + состояние сундуков (открыт ✓ / нажми) — ясный сценарий <i>(П3)</i>.</li>
+        <li>Busy-стейты унифицировать: спиннер + «Применяем…» как у всех <i>(П5)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 13. EnergyRefillShardModal -->
+  <article class="card" id="m-energyrefill">
+    <div class="card-head"><h3>EnergyRefillShardModal</h3><code>components/EnergyRefillShardModal.tsx</code><span class="badge b-good">Эталон честности</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> долгий тап по индикатору энергии. Показываем как «хороший пример» — ориентир для остальных.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас — эталон</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d60">
+            <div class="mc">
+              <div class="ki">Энергия</div>
+              <div class="ico-t">⚡</div>
+              <div class="ti">Восстановить энергию</div>
+              <div class="su">Полный заряд базовой энергии (5 ⚡) за</div>
+              <div class="val grn">30 💠</div>
+              <div class="ba">Восстановить · 30</div>
+              <div class="bo">Закрыть</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap"><b>фон: закрывает</b> · явная цена · disabled при полной базе с info-тостом · нехватка → /shards_shop?need=… · три честных состояния (безлимит / полная / купить)</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение (минимум правок)</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d60">
+            <div class="mc a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ki">Энергия</div>
+              <div class="ico-t a-float">⚡</div>
+              <div class="ti">Восстановить энергию</div>
+              <div class="prog"><i style="width:20%"></i></div>
+              <div class="su">Сейчас 1 из 5 ⚡ · полный заряд за</div>
+              <div class="val grn">30 💠</div>
+              <div class="ba">Восстановить · 30</div>
+              <div class="bo">Закрыть</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Добавить только: прогресс-бар текущего заряда (видно, за что платишь) и ✕ · всё остальное — как есть, это ориентир для NoEnergyModal и сундуков</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Минимальны: нет визуализации текущего заряда (только текстом), нет ✕ (только фон и ghost).</li>
+        <li>Остальное — образцово: цена явная, состояния честные, нехватка ведёт в магазин с контекстом.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Прогресс-бар «1 из 5 ⚡» — видно ценность покупки до тапа <i>(П3)</i>.</li>
+        <li>✕ 44pt с RU-лейблом <i>(П7, a11y)</i>.</li>
+        <li><b>Использовать как эталон:</b> фон=закрыть, явная цена, честные disabled-состояния — перенести паттерн на NoEnergyModal и CardPackShardPaywallModal.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- ============ КАТЕГОРИЯ D ============ -->
+  <div class="cat-title" id="cat-d"><span class="letter">D</span>Монетизация и энергия</div>
+  <p class="cat-lead">Здесь живут осознанные тёмные паттерны. Задача аудита — зафиксировать их и предложить честные альтернативы без потери конверсии.</p>
+
+  <!-- 14. Пейвол A/B/C -->
+  <article class="card" id="m-paywall">
+    <div class="card-head"><h3>Пейвол A/B/C (эксперимент paywall_ab)</h3><code>app/premium_modal.tsx → /paywall_a|b|c · 26 контекстов</code><span class="badge b-live">Живой</span> <span class="badge b-part">ЧАСТИЧНО: таймер «Цена вырастет {дата}» внедрён</span></div>
+    <p class="trigger"><b>Триггер:</b> 26 контекстов (no_energy, course_after_lesson3, streak, trainer_limit…). Вне онбординга — нативный bottom-modal со свайпом и крестиком; из онбординга — экран БЕЗ крестика и свайп-закрытия. Подробный аудит уже существует: <code>docs/paywall-audit/</code> — здесь сводка, не дубль.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас: A «Компакт»</div>
+        <div class="ph mini"><div class="sc"><div class="notch"></div>
+          <div class="dm solid" style="padding:12px">
+            <div style="width:100%;text-align:center">
+              <div class="ico-t" style="width:52px;height:52px;font-size:24px">⚡</div>
+              <div class="ti" style="font-size:15px">Останови паузы из-за энергии</div>
+              <div class="stars">★★★★★ <span class="su" style="font-size:9px">4.9 · App Store</span></div>
+              <div class="plan sel"><span class="rdot"></span><div><b>Год</b> <span class="bdg">−58%</span></div><div class="pr"><b>2 990 ₽</b><span>7 дн. бесплатно</span></div></div>
+              <div class="plan"><span class="rdot"></span><div><b>Месяц</b></div><div class="pr"><b>499 ₽</b></div></div>
+              <div class="urg">⏳ Старая цена действует ещё 76:41:12<br>Сейчас: 2 990 ₽/год · Скоро: ~5 980 ₽/год</div>
+              <div class="bg2">Попробовать 7 дн. бесплатно</div>
+              <div class="su" style="font-size:9px">затем 2 990 ₽/год · отмена в любой момент</div>
+              <div class="bo" style="font-size:10px">Продолжить бесплатно</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Всё без скролла</div>
+      </div>
+      <div class="pw">
+        <div class="lbl">Сейчас: B «Стори»</div>
+        <div class="ph mini"><div class="sc"><div class="notch"></div>
+          <div class="dm solid" style="padding:12px">
+            <div style="width:100%;text-align:center">
+              <div class="ico-t gold" style="width:52px;height:52px;font-size:24px">👑</div>
+              <div class="ti" style="font-size:15px">Открой полный доступ к Phraseman</div>
+              <div class="su" style="font-size:10px;text-align:left;margin-top:6px">Что даёт Plus:<br>⚡ Безлимитная энергия<br>📚 Все уроки открыты<br>🎤 Голос с оценкой фразы</div>
+              <div class="su" style="font-size:9px;text-align:left;margin-top:6px;color:var(--ghost)">FAQ: Что будет после триала? · Как отменить? · Что входит в Plus?</div>
+              <div class="plan sel"><span class="rdot"></span><div><b>Год</b> <span class="bdg">−58%</span></div><div class="pr"><b>2 990 ₽</b></div></div>
+              <div class="urg">⏳ Цена скоро будет поднята · 76:41:12</div>
+              <div class="bg2">Попробовать 7 дн. бесплатно</div>
+              <div class="bo" style="font-size:10px">Продолжить бесплатно</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Лендинг + FAQ</div>
+      </div>
+      <div class="pw">
+        <div class="lbl">Сейчас: C «Атриум»</div>
+        <div class="ph mini"><div class="sc"><div class="notch"></div>
+          <div class="dm solid" style="padding:12px">
+            <div style="width:100%;text-align:center">
+              <div class="ti" style="font-size:15px">Имя, у тебя уже 1.2K фраз и 14 дн. серии</div>
+              <div class="chips"><span class="cchip a">1.2K фраз</span><span class="cchip a">14 дн. серии</span></div>
+              <div class="su" style="font-size:9px;letter-spacing:.1em">ЧТО ГОВОРЯТ УЧЕНИКИ</div>
+              <div class="su" style="font-size:10px;background:rgba(255,255,255,.04);border-radius:10px;padding:8px">«Наконец-то фразы, а не слова» — verified</div>
+              <div class="plan sel"><span class="rdot"></span><div><b>Год</b> <span class="bdg">−58%</span></div><div class="pr"><b>2 990 ₽</b></div></div>
+              <div class="urg">⏳ 76:41:12 до поднятия цены</div>
+              <div class="bg2">Попробовать 7 дн. бесплатно</div>
+              <div class="su" style="font-size:9px">ДЛЯ СОМНЕВАЮЩИХСЯ ▾</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Персонализация + соцдоказательства</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение (все варианты)</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm solid" style="padding:16px">
+            <div class="mc a-spring" style="background:transparent;border:none;box-shadow:none;text-align:center">
+              <div class="xx big honest" style="position:absolute;top:-6px;right:-2px">✕</div>
+              <div class="ico-t a-float" style="width:56px;height:56px;font-size:26px">⚡</div>
+              <div class="ti a-spring" style="--ad:.05s;font-size:17px">Останови паузы из-за энергии</div>
+              <div class="a-stag">
+                <div class="plan"><span class="rdot"></span><div><b>Год</b> <span class="bdg">−58%</span></div><div class="pr"><b>2 990 ₽</b><span>249 ₽/мес · 8 ₽/день</span></div></div>
+                <div class="plan sel"><span class="rdot"></span><div><b>Месяц</b></div><div class="pr"><b>499 ₽</b><span>сначала 7 дн. бесплатно</span></div></div>
+                <div class="urg honest">Цена вырастет 1 сентября — успей по текущей. Без таймера.</div>
+                <div class="bg2 shn">Попробовать 7 дн. бесплатно</div>
+                <div class="su" style="font-size:10px">Сегодня — полный доступ, деньги не спишутся · День 6 — напомним · День 7 — списание, только если не отменишь</div>
+                <div class="bs" style="margin-top:8px">Продолжить бесплатно</div>
+              </div>
+              <div class="legal">Это подписка с автопродлением: 2 990 ₽/год, списывается с твоего Apple ID через App Store… Управлять и отменить: Настройки → Apple ID → Подписки.</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Видимый ✕ в онбординг-варианте · «Продолжить бесплатно» — равноправная кнопка · urgency с датой вместо удвоения цены · год НЕ предвыбран · мини-таймлайн триала</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Онбординг-пейвол без крестика и свайпа (gestureEnabled:false): отказ спрятан в мелкую подчёркнутую ссылку 60%.</li>
+        <li>77-часовой urgency-таймер с удвоенной «будущей» ценой — countdown dark pattern (в коде помечен как «законный анонс»).</li>
+        <li>Год предвыбран по умолчанию; sticky-бар покупки «преследует» при скролле; fade-on-exit в онбординге 4 с.</li>
+        <li>При этом тексты честные: реальные цены, «отмена в два тапа», verified-отзывы, legal 11.5pt.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Видимый ✕ 44pt в онбординг-варианте + «Продолжить бесплатно» равноправной кнопкой <i>(П7 — спрятанный отказ = dark pattern)</i>.</li>
+        <li>Urgency без удвоения: дата повышения цены («вырастет 1 сентября») вместо живого таймера с 2X <i>(П7; снизит рефанды и жалобы)</i>.</li>
+        <li>Год НЕ предвыбран — пользователь выбирает сам; −58% остаётся как аргумент <i>(П7)</i>.</li>
+        <li>Мини-таймлайн триала из 3 шагов — он уже есть в коде, поднять выше <i>(П3)</i>. Детали — в docs/paywall-audit/.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 15. NoEnergyModal -->
+  <article class="card" id="m-noenergy">
+    <div class="card-head"><h3>NoEnergyModal</h3><code>components/NoEnergyModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> энергия = 0 при действии (или экзамен требует N⚡). Только для не-премиумов.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d72" style="background:radial-gradient(circle at 50% 30%,rgba(255,200,0,.1),rgba(0,0,0,.72) 65%)">
+            <div class="mc gold-fr">
+              <div class="ico-t gold a-soft" style="animation:none">⚡</div>
+              <div class="ti">Энергия закончилась</div>
+              <div class="su">Ты отлично поработал! +1 ⚡ восстановится через 12:34. А в Плюс энергия никогда не заканчивается.</div>
+              <div class="bg2 shn" style="animation:none">Получить Плюс</div>
+              <div class="bo">Закрыть</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Молния 64px: spring + тряска + pulse halo 2.2с infinite · hapticWarning при показе<br><b>фон: НЕ закрывает</b> · крестика нет · выбор: золотая CTA vs мелкая ссылка</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d72">
+            <div class="mc a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ico-t a-soft">⚡</div>
+              <div class="ti">Энергия закончилась</div>
+              <div class="su">Ты отлично поработал! Энергия восстановится сама.</div>
+              <div class="prog g"><i style="width:35%"></i></div>
+              <div class="bs">Подождать · +1 ⚡ через 12:34</div>
+              <div class="bg2 shn">Получить Плюс — без пауз</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Фон закрывает · равноправная вторичная «Подождать 12:34» с таймером прямо в кнопке · один мягкий pulse вместо вечного · hapticWarning убрать</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Принудительный выбор: фон не закрывает, крестика нет; золотая CTA с shine против мелкой ghost-ссылки.</li>
+        <li>hapticWarning на монетизационном стопе — телефон «ругается» в момент, когда пользователь и так расстроен.</li>
+        <li>Вечный pulse halo 2.2 с infinite на молнии.</li>
+        <li>Рандомизация текстов (8+ фраз) мешает A/B-замерам конверсии.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Фон = закрыть; ✕ добавить <i>(П7)</i>.</li>
+        <li>Равноправная вторичная кнопка «Подождать · +1 ⚡ через 12:34» — таймер прямо в кнопке; путь «не платить» честно виден <i>(П7, П3)</i>.</li>
+        <li>Один мягкий pulse-цикл вместо infinite; hapticWarning → нейтральный или никакого <i>(П5, П8)</i>.</li>
+        <li>Зафиксировать 1–2 текста для A/B вместо 8+ случайных <i>(измеримость)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 16. StreakReviveModal -->
+  <article class="card" id="m-streakrevive">
+    <div class="card-head"><h3>StreakReviveModal</h3><code>components/StreakReviveModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> оффер восстановления серии ≤24 ч (Home, streak_stats).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d72">
+            <div class="mc" style="padding:0;overflow:hidden">
+              <div style="background:#FF7A45;padding:18px 14px;position:relative">
+                <div class="xx" style="background:rgba(0,0,0,.18);color:#fff">✕</div>
+                <div style="font-size:64px;font-weight:900;color:#fff;line-height:1">148</div>
+                <div style="color:#FFE3D6;font-size:11px;font-weight:700">дней подряд</div>
+              </div>
+              <div style="padding:14px 16px 16px">
+                <div class="ti" style="font-size:15px">Рекорд всё ещё твой</div>
+                <div class="su" style="font-size:11px">Верни прерванную серию одним действием — либо спокойно начни заново.</div>
+                <div class="bw">Восстановить рекорд</div>
+                <div class="su" style="font-size:10px;margin-top:6px">Стоимость: 300 💠</div>
+                <div class="bo">Начать новую цепочку</div>
+                <div class="su" style="font-size:10px;color:#FFB86B;margin-top:6px">⏳ Истекает через 03:42</div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">«Пропуск» 342px: оранжевая шапка #FF7A45 с числом 100pt · primary в тёмной теме СВЕТЛАЯ #F3F0FF — вне системы<br><b>Склонение ломается: «2 дней подряд»</b> · давление таймером</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d72">
+            <div class="mc a-spring" style="padding:0;overflow:hidden">
+              <div style="background:linear-gradient(140deg,#B8501F,#FF7A45);padding:16px 14px;position:relative">
+                <div class="xx" style="background:rgba(0,0,0,.18);color:#fff">✕</div>
+                <div style="font-size:56px;font-weight:900;color:#fff;line-height:1" class="a-spring">148</div>
+                <div style="color:#FFE3D6;font-size:11px;font-weight:700">дней подряд</div>
+              </div>
+              <div style="padding:14px 16px 16px">
+                <div class="ti" style="font-size:15px">Рекорд всё ещё твой</div>
+                <div class="su" style="font-size:11px">Верни прерванную серию одним действием — либо спокойно начни заново.</div>
+                <div class="ba">Восстановить за 300 💠</div>
+                <div class="bo">Начать новую цепочку</div>
+                <div class="su" style="font-size:10px;margin-top:6px">Оффер честный: доступен до конца дня, потом серия обнулится.</div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Склонения чиним («2 дня подряд» → «2 дня» / корректные формы) · primary в акценте темы, цена в CTA · таймер менее агрессивный: честная дата вместо красного countdown</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Склонение «2 дней подряд» некорректно (должно «2 дня») — плюрализация местами ломается.</li>
+        <li>Primary-кнопка в тёмной теме СВЕТЛАЯ #F3F0FF — вне дизайн-системы.</li>
+        <li>Гигантское число 100pt + countdown «Истекает через {м:сс}» — осознанное давление; граничит с dark pattern.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Починить плюрализацию: «1 день / 2 дня / 5 дней подряд» <i>(тексты — доверие)</i>.</li>
+        <li>Primary — акцент темы, стоимость прямо в CTA «Восстановить за 300 💠» <i>(П7)</i>.</li>
+        <li>Таймер → честная формулировка «до конца дня»: срочность реальна, паника не нужна <i>(П7, П8)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 17. IntroFullAccessModal -->
+  <article class="card" id="m-introfull">
+    <div class="card-head"><h3>IntroFullAccessModal (welcome / ended)</h3><code>components/IntroFullAccessModal.tsx</code><span class="badge b-live">Живой</span></div>
+    <p class="trigger"><b>Триггер:</b> welcome — старт 3-дневного полного доступа; ended — intro_ended.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d72">
+            <div class="mc">
+              <div class="ico-t">✨</div>
+              <div class="ki">Подарок на старт</div>
+              <div class="ti">Три дня — всё открыто</div>
+              <div class="su">Мы дарим тебе три дня полного доступа. Никаких лимитов, всё открыто, энергия бесконечная. Посмотри приложение в полной силе — и сам реши, что тебе нужно.</div>
+              <div class="ba">Начать — всё открыто</div>
+              <div class="su" style="font-size:9.5px;margin-top:8px">Это подарок. Подписка не включается автоматически.</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Центр, dim 72% · честный футер про подарок<br>Крестика нет; фон не обрабатывается — но CTA одна и без давления</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d72">
+            <div class="mc a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ico-t a-float">✨</div>
+              <div class="ki">Подарок на старт</div>
+              <div class="ti">Три дня — всё открыто</div>
+              <div class="row" style="margin:10px 0;gap:4px">
+                <div style="flex:1;text-align:center"><div class="cchip a" style="display:block">День 1</div><div class="su" style="font-size:9px">всё открыто</div></div>
+                <div style="flex:1;text-align:center"><div class="cchip" style="display:block">День 2</div><div class="su" style="font-size:9px">пробуешь</div></div>
+                <div style="flex:1;text-align:center"><div class="cchip" style="display:block">День 3</div><div class="su" style="font-size:9px">решение — твоё</div></div>
+              </div>
+              <div class="ba shn">Начать — всё открыто</div>
+              <div class="su" style="font-size:9.5px;margin-top:8px">Это подарок. Подписка не включается автоматически.</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Почти идеален — добавить только ✕ и мини-таймлайн 3 дней (ожидания управляются заранее) · фон = закрыть</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Крестика нет, фон не обрабатывается — при одной CTA это терпимо, но непоследовательно с остальными модалами.</li>
+        <li>Не сказано, что будет на 4-й день — ожидание формирует пейвол intro_ended, который может удивить.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>✕ 44pt + фон=закрыть <i>(П7)</i>.</li>
+        <li>Мини-таймлайн «3 дня»: что сейчас, что потом — ended-вариант перестаёт быть сюрпризом <i>(П3)</i>.</li>
+        <li>Остальное сохранить: честный футер и отсутствие давления — эталон тона <i>(П7)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 18. CardPackShardPaywallModal -->
+  <article class="card" id="m-cardpack">
+    <div class="card-head"><h3>CardPackShardPaywallModal</h3><code>app/flashcards/CardPackShardPaywallModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> bottom-sheet покупки набора карточек за осколки. Режимы: confirm / insufficient / voucher.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet">
+              <div class="graber"></div>
+              <div class="ki mut">Набор</div>
+              <div class="ico-t blue" style="width:64px;height:64px;font-size:28px">🗂️</div>
+              <div class="ti" style="font-size:15px">Фразовые глаголы · Travel</div>
+              <div class="su" style="font-size:10.5px">20 карточек</div>
+              <div class="mc" style="margin-top:8px;padding:10px;background:rgba(255,255,255,.03)">
+                <div class="su" style="font-size:11px">Нужно осколков</div>
+                <div class="val grn" style="font-size:18px;margin:0">120 💠</div>
+                <div class="su" style="font-size:9.5px">Откроется в одно касание</div>
+              </div>
+              <div class="ba a-soft" style="animation:none;box-shadow:0 0 18px rgba(71,200,112,.5)">Открыть за 120 осколков</div>
+              <div class="bo">Отмена</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Bottom-sheet · свайп/фон закрывают · во время покупки закрытие заблокировано (осознанно)<br><b>Вечный пульс-свечение CTA 2.4с infinite</b> · «в одно касание» — подталкиватель</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet a-spring">
+              <div class="graber"></div>
+              <div class="ki mut">Набор</div>
+              <div class="ico-t blue" style="width:64px;height:64px;font-size:28px">🗂️</div>
+              <div class="ti" style="font-size:15px">Фразовые глаголы · Travel</div>
+              <div class="chips"><span class="cchip b">20 карточек</span><span class="cchip">У тебя: 340 💠</span></div>
+              <div class="mc" style="margin-top:8px;padding:10px;background:rgba(255,255,255,.03)">
+                <div class="su" style="font-size:11px">Цена</div>
+                <div class="val grn" style="font-size:18px;margin:0">120 💠</div>
+                <div class="su" style="font-size:9.5px">Останется 220 💠 · покупку нельзя отменить</div>
+              </div>
+              <div class="ba shn">Открыть за 120 осколков</div>
+              <div class="bo">Отмена</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Вечный пульс → one-shot shine (2.8с цикл с паузой, не бесконечный) · «Откроется в одно касание» → нейтральные условия: баланс после покупки + невозвратность</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Вечный пульс-свечение CTA 2.4 с infinite — визуальное давление на транзакцию.</li>
+        <li>«Откроется в одно касание» — подталкиватель, обесценивает серьёзность траты.</li>
+        <li>Не показан баланс после покупки (только в insufficient-режиме видны «Нужно/У тебя»).</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>One-shot shine вместо вечного пульса: привлекает внимание один раз, не давит <i>(П5, П8)</i>.</li>
+        <li>Нейтральные условия: «Останется 220 💠 · покупку нельзя отменить» — как в voucher-режиме, где честное ⚠️ уже есть <i>(П7)</i>.</li>
+        <li>В остальном модал честный: свайп/фон закрывают, блокировка при покупке осознанна — сохранить.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- ============ КАТЕГОРИЯ E ============ -->
+  <div class="cat-title" id="cat-e"><span class="letter">E</span>Система и аккаунт</div>
+  <p class="cat-lead">Регистрация, удаление аккаунта, разрешения, броадкасты, базовые confirm-модалы и профиль игрока.</p>
+
+  <!-- 19. RegistrationPromptModal -->
+  <article class="card" id="m-regprompt">
+    <div class="card-head"><h3>RegistrationPromptModal</h3><code>components/RegistrationPromptModal.tsx</code><span class="badge b-live">Живой</span></div>
+    <p class="trigger"><b>Триггер:</b> после 1-го урока, Settings, онбординг, Home-баннер (аноним XP≥1000), startup_recovery; флаг auth_prompt_shown_v1.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet">
+              <div class="graber"></div>
+              <div class="xx" style="width:26px;height:26px;font-size:10px">✕</div>
+              <div style="font-size:26px">🔗</div>
+              <div class="ti" style="font-size:16px">Всё в безопасности</div>
+              <div class="su">148 дней вашего прогресса ждут в облаке</div>
+              <div class="bs" style="margin-top:10px">G · Войти через Google</div>
+              <div class="bs"> · Войти через Apple</div>
+              <div class="bo">Позже</div>
+              <div class="su" style="font-size:9px;margin-top:6px">🛡 Данные на устройстве сохранятся · Privacy Policy | Terms of Use</div>
+              <div class="su" style="font-size:9.5px;margin-top:6px;color:#FFB86B">busy: «Входим... подожди пару секунд» → через 45 с: «можно безопасно закрыть»</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Bottom-sheet · drag-to-dismiss · каскад 6 элементов<br><b>✕ всего 30×30 (иконка 14)</b> · 45 с блокировки закрытия · «Позже» при recovery не сохраняет флаг — донимает каждый запуск · заголовок один на все контексты</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet a-spring">
+              <div class="graber"></div>
+              <div class="xx big honest" style="width:34px;height:34px;top:8px;right:8px">✕</div>
+              <div class="ico-t" style="width:48px;height:48px;font-size:22px">☁️</div>
+              <div class="ti" style="font-size:16px">Вернём прогресс</div>
+              <div class="su">Войди в тот же аккаунт Google или Apple — вернём прогресс из облака.</div>
+              <div class="chips"><span class="cchip a">🔥 148 дней серии</span><span class="cchip a">1.2K фраз</span></div>
+              <div class="a-stag">
+                <div class="bs">G · Войти через Google</div>
+                <div class="bs"> · Войти через Apple</div>
+              </div>
+              <div class="bo">Позже (запомним и не будем донимать)</div>
+              <div class="su" style="font-size:9.5px;margin-top:6px">busy → через 12 с: «долго? можно закрыть — попытка продолжится»</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">✕ 44pt hit-area · заголовок по контексту (recovery: «Вернём прогресс») · 45с → 12с до разблокировки · «Позже» при recovery сохраняет флаг</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Крестик мал: 30×30, иконка 14 — ниже нормы hit-area 44pt.</li>
+        <li>45 секунд до разблокировки закрытия при busy — долго; пользователь думает, что приложение зависло.</li>
+        <li>«Позже» при startup_recovery не сохраняет флаг — модал донимает каждый запуск.</li>
+        <li>Заголовок «Всё в безопасности» одинаков для всех контекстов, включая recovery, где пользователь потерял данные.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>✕ 44pt hit-area + RU accessibilityLabel <i>(П7, a11y)</i>.</li>
+        <li>Контекстные заголовки: recovery → «Вернём прогресс», после урока → «Сохрани прогресс» <i>(П3)</i>.</li>
+        <li>Разблокировка закрытия через 12 с вместо 45 с <i>(П7 — не держать заложником)</i>.</li>
+        <li>«Позже» сохраняет флаг и при recovery; повторный показ — через N дней <i>(П6 — не донимать)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 20. DeleteAccountConfirmModal -->
+  <article class="card" id="m-deleteaccount">
+    <div class="card-head"><h3>DeleteAccountConfirmModal</h3><code>components/DeleteAccountConfirmModal.tsx</code><span class="badge b-live">Живой</span></div>
+    <p class="trigger"><b>Триггер:</b> удаление аккаунта из настроек. Требует ввода «УДАЛИТЬ» — сдерживание хорошее.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div>
+          <div class="dm d70">
+            <div class="mc tall red-fr" style="max-height:94%">
+              <div class="ti" style="color:#FF6E78">Удалить аккаунт?</div>
+              <div class="su" style="font-size:10px">Активные данные аккаунта будут удалены или обезличены:</div>
+              <div class="su" style="text-align:left;font-size:10.5px;margin-top:6px">📊 Весь XP и уровень · 🔥 Цепочка и серия · 📚 Твой путь по всем урокам · 🃏 Сохранённые карточки · 🏆 Все достижения и медали · 🌍 Позиция в лиге и клубе · ⚙️ Все настройки</div>
+              <div class="su" style="font-size:9.5px;margin-top:6px;color:#FFB86B">⚠️ Удаление аккаунта не отменяет подписку автоматически.</div>
+              <div class="inp">УДАЛИТЬ</div>
+              <div class="bhalf"><div class="bs">Отмена</div><div class="br dis">Удалить</div></div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Центр 88%/420px, dim 0.7 · ввод «УДАЛИТЬ»<br><b>Футер-responder дублирует кнопки: тап по правой половине футера = подтвердить</b> · onPress+onTouchEnd одновременно · крестика нет · фон не закрывает</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div>
+          <div class="dm d70">
+            <div class="mc tall a-spring" style="max-height:94%">
+              <div class="xx honest">✕</div>
+              <div class="ico-t red" style="width:52px;height:52px;font-size:24px">🗑</div>
+              <div class="ti" style="color:#FF6E78">Удалить аккаунт?</div>
+              <div class="su" style="text-align:left;font-size:10.5px;margin-top:4px">
+                <div class="feat" style="padding:4px"><div class="fi">📊</div><div><b>Весь XP и уровень</b></div></div>
+                <div class="feat" style="padding:4px"><div class="fi">🔥</div><div><b>Цепочка и серия</b></div></div>
+                <div class="feat" style="padding:4px"><div class="fi">🏆</div><div><b>Все достижения и медали</b></div></div>
+                <div class="feat" style="padding:4px"><div class="fi">🌍</div><div><b>Позиция в лиге · настройки</b></div></div>
+              </div>
+              <div class="su" style="font-size:9.5px;color:#FFB86B">⚠️ Подписку нужно отменить отдельно в App Store или Google Play.</div>
+              <div class="inp">Введи «УДАЛИТЬ» для подтверждения</div>
+              <div class="br dis">Удалить навсегда</div>
+              <div class="bs">Отмена</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Футер-responder убран (подтверждение ТОЛЬКО красной кнопкой) · красная CTA — единственный красный элемент · ✕ добавлен · список потерь с иконками сохранён — он хорош</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Футер-responder дублирует кнопки: тап по правой половине футера = подтвердить — риск случайного подтверждения в деструктивном сценарии.</li>
+        <li>onPress + onTouchEnd одновременно — двойное срабатывание.</li>
+        <li>Нет ✕; фон не закрывает — единственный выход «Отмена».</li>
+        <li>Мёртвые compass-ветки в коде.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Убрать футер-responder: подтверждение только явной кнопкой <i>(деструктив = максимум явности)</i>.</li>
+        <li>✕ + фон = отмена; красный — только кнопка «Удалить», остальное нейтральное <i>(П7)</i>.</li>
+        <li>Список потерь с иконками — оставить, это сильная часть; ввод «УДАЛИТЬ» — оставить <i>(осознанное сдерживание)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 21. NotificationPermissionModal -->
+  <article class="card" id="m-notifperm">
+    <div class="card-head"><h3>NotificationPermissionModal</h3><code>components/NotificationPermissionModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> возврат после пропуска ≥1 дня, пуши выключены, установка ≥3 дней.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d72">
+            <div class="mc">
+              <div class="ico-t" style="width:54px;height:54px;font-size:24px">🔔</div>
+              <div class="ti" style="font-size:16px">Ты пропустил 2 дня</div>
+              <div class="su">Чтобы не срывать серию, включи напоминания. Мы напомним вовремя и без спама.</div>
+              <div class="su" style="text-align:left;margin-top:6px">✅ Напоминания в нужное время<br>✅ Поддержка цепочки и прогресса<br>✅ Отключается в любой момент</div>
+              <div class="bhalf"><div class="bs">Позже</div><div class="ba" style="margin-top:8px">Включить напоминания</div></div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Центр, dim 0.72 · колокол 54×54 · 3 строки с галками · фон = onCancel<br>Почти ок: не показано, ЧТО именно придёт</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s3"></div>
+          <div class="dm d72">
+            <div class="mc a-spring">
+              <div class="ico-t a-wiggle" style="width:54px;height:54px;font-size:24px">🔔</div>
+              <div class="ti" style="font-size:16px">Ты пропустил 2 дня</div>
+              <div class="su">Чтобы не срывать серию, включи напоминания. Без спама — вот пример:</div>
+              <div class="pushdemo a-stag">
+                <div><div class="pi">🌿</div></div>
+                <div><b>Phraseman · 19:00</b><span>«5 минут — и серия из 148 дней спасена 🔥»</span></div>
+              </div>
+              <div class="su" style="text-align:left">✅ В нужное время · ✅ Отключается в любой момент</div>
+              <div class="bhalf"><div class="bs">Позже</div><div class="ba shn" style="margin-top:8px">Включить напоминания</div></div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Пример реального пуша прямо в модале — снимает главный страх («что мне будут слать?») · лёгкий wiggle колокола · остальное не трогаем</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Не объяснено, «что именно придёт» — пользователь боится спама по умолчанию.</li>
+        <li>В остальном — хороший модал: равноправные кнопки, фон=отмена, честные буллеты.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Превью примера пуша (время, текст) — информированное согласие повышает opt-in и снижает отключения <i>(П7)</i>.</li>
+        <li>Микро-wiggle иконки — живость без давления <i>(П5)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 22. GlobalBroadcastModal -->
+  <article class="card" id="m-broadcast">
+    <div class="card-head"><h3>GlobalBroadcastModal</h3><code>components/GlobalBroadcastModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> Firestore-очередь броадкастов (награды, review_promo), 8 языков.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc">
+              <div style="font-size:32px">📣</div>
+              <div class="ti" style="font-size:16px">Заголовок из payload</div>
+              <div class="su">Текст броадкаста на языке пользователя…</div>
+              <div class="mc gold-fr" style="margin-top:8px;padding:10px">
+                <div class="su" style="font-size:10px">Награда</div>
+                <div class="val" style="font-size:18px;margin:0">+25 💠</div>
+              </div>
+              <div class="ba">Закрыть</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">busy-гард, hapticSuccess<br><b>тап по фону = claim + закрытие</b> — награда начисляется даже при случайном тапе · единственная CTA «Закрыть» при награде — странно</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ico-t gold" style="width:52px;height:52px;font-size:24px">📣</div>
+              <div class="ti" style="font-size:16px">Заголовок из payload</div>
+              <div class="su">Текст броадкаста на языке пользователя…</div>
+              <div class="mc gold-fr a-glow" style="margin-top:8px;padding:10px">
+                <div class="su" style="font-size:10px">Награда</div>
+                <div class="val" style="font-size:18px;margin:0">+<span class="cu" data-v="25">25</span> 💠</div>
+              </div>
+              <div class="ba shn">Забрать +25 💠</div>
+              <div class="bo">Позже</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Фон = «отложить», не claim · при награде — явная CTA «Забрать +25 💠» вместо «Закрыть» · ✕ на месте</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Фон как «положительное» действие (claim) — нестандартно: случайный тап забирает награду и закрывает.</li>
+        <li>При награде CTA называется «Закрыть» — пользователь не понимает, что награда уже начислена.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Фон = отложить; claim — только явной кнопкой «Забрать» <i>(П7)</i>.</li>
+        <li>CTA с суммой награды: действие прозрачно <i>(П3)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 23. ThemedConfirmModal / ChoiceModal -->
+  <article class="card" id="m-themedconfirm">
+    <div class="card-head"><h3>ThemedConfirmModal / ThemedChoiceModal</h3><code>components/ThemedConfirmModal.tsx, ThemedChoiceModal.tsx</code><span class="badge b-live">Живой · базовый</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> универсальные подтверждения и выборы по всему приложению (+ ThemedBlockingAlertHost поверх Choice).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc">
+              <div class="ti" style="font-size:16px">Подтвердить покупку</div>
+              <div class="su">300 осколков будут списаны после подтверждения.</div>
+              <div class="bs" style="margin-top:12px">Отмена</div>
+              <div class="ba">Подтвердить</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Центр, dim 0.6 · две полноширинные кнопки столбиком: сверху отмена, снизу акцент<br><b>Choice: любой выбор вызывает onPress() И onRequestClose()</b> — риск двойного закрытия/навигации · свайп-вниз=отмена неочевиден у центрированной карточки</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60">
+            <div class="mc a-spring">
+              <div class="xx honest">✕</div>
+              <div class="ti" style="font-size:16px">Подтвердить покупку</div>
+              <div class="su"><b style="color:var(--text)">300 💠</b> будут списаны после подтверждения.</div>
+              <div class="ba" style="margin-top:12px">Подтвердить · 300 💠</div>
+              <div class="bs">Отмена</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Порядок: primary снизу (ближе к пальцу, паттерн платформы) · ✕ у choice · одно событие на выбор — onRequestClose только системный</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Choice: выбор вызывает И onPress(), И onRequestClose() — риск двойного закрытия/навигации.</li>
+        <li>Нет ✕ у choice-модала.</li>
+        <li>Свайп-вниз = отмена — неочевидно для центрированной карточки (паттерн шторки на центре).</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Одно событие на выбор: onPress сам резолвит и закрывает; onRequestClose — только для системных путей (фон/back) <i>(П3)</i>.</li>
+        <li>✕ у choice; primary снизу как ближняя к большому пальцу зона <i>(П7)</i>.</li>
+        <li>Убрать свайп-отмену у центрированной карточки или заменить видимым ✕ <i>(П3)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 24. PlayerProfileModal -->
+  <article class="card" id="m-playerprofile">
+    <div class="card-head"><h3>PlayerProfileModal</h3><code>components/PlayerProfileModal.tsx (~2000 строк)</code><span class="badge b-live">Живой · есть P0</span></div>
+    <p class="trigger"><b>Триггер:</b> тап по игроку (Home-лидерборд, друзья, клуб, Hall of Fame).</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet tall" style="max-height:92%;background:linear-gradient(160deg,#1B2A20,#0A120C)">
+              <div class="graber"></div>
+              <div class="ringw" style="width:76px;height:76px"><div class="em" style="font-size:32px">🦊</div><div class="ringc a-ringrot" style="animation:none"></div></div>
+              <div class="ti" style="font-size:16px">Анна К. 👑</div>
+              <div class="chips"><span class="cchip">III · Мастер</span><span class="cchip b">LV 24</span><span class="cchip g">PLUS</span></div>
+              <div class="row" style="margin:8px 0">
+                <div class="rcell" style="flex:1"><b>12 480</b>опыт</div>
+                <div class="rcell" style="flex:1"><b>24</b>уровень</div>
+                <div class="rcell" style="flex:1"><b>148</b>цепочка</div>
+              </div>
+              <div class="su" style="font-size:10px">выучено: 840 слов · 1.2K фраз · дней в Phraseman: 203</div>
+              <div class="su" style="font-size:10px;margin-top:4px">Модификаторы XP: Лига · Цепочка · Буст лиги</div>
+              <div class="bhalf"><div class="bs">👍 Лайк</div><div class="ba" style="margin-top:8px">+ Добавить в друзья</div></div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Bottom-sheet 90%, AURORA-стекло, орбитальное кольцо 9с<br><b>P0: двойной тост «Заявка отправлена!»</b> (оптимистичный + после успеха) · motion/publicFocus зашиты в none/balanced — половина системы карточек выключена · чужим не объяснена пилюля уровня</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet tall a-spring" style="max-height:92%;background:linear-gradient(160deg,#1B2A20,#0A120C)">
+              <div class="graber"></div>
+              <div class="ringw halo grn" style="width:76px;height:76px"><div class="em" style="font-size:32px">🦊</div><div class="ringc a-ringrot"></div></div>
+              <div class="ti" style="font-size:16px">Анна К. 👑</div>
+              <div class="chips"><span class="cchip" title="Уровень мастерства по фразам">III · Мастер ⓘ</span><span class="cchip b">LV 24</span><span class="cchip g">PLUS</span></div>
+              <div class="row a-stag" style="margin:8px 0">
+                <div class="rcell" style="flex:1"><b>12 480</b>опыт</div>
+                <div class="rcell" style="flex:1"><b>24</b>уровень</div>
+                <div class="rcell" style="flex:1"><b>148</b>цепочка</div>
+              </div>
+              <div class="su" style="font-size:10px">«III · Мастер» — уровень владения фразами; растёт с точностью ответов</div>
+              <div class="bhalf"><div class="bs">👍 Лайк</div><div class="ba" style="margin-top:8px">+ Добавить в друзья</div></div>
+              <div class="tst ok" style="position:relative;left:auto;right:auto;bottom:auto;margin-top:10px;box-shadow:none">
+                <div class="tic">✓</div><div class="ttx"><b>Заявка отправлена!</b><span>один тост — без дубля</span></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">P0: один тост вместо двойного · включить motion-варианты карточек (флаги уже есть) · пилюля уровня с пояснением ⓘ для чужих профилей</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li><b>P0:</b> двойной тост «Заявка отправлена!» — оптимистичный сразу + второй после успеха сервера.</li>
+        <li>motion/publicFocus зашиты в 'none'/'balanced' — половина системы карточек отключена флагами.</li>
+        <li>Чужим не объяснена пилюля уровня («III · Мастер») — в своём профиле контекст есть, в чужом нет.</li>
+        <li>~2000 строк — кандидат на декомпозицию, но это вне UX-скоупа.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Один тост: оптимистичный, при ошибке — честный error-тост с откатом состояния <i>(П4)</i>.</li>
+        <li>Включить motion-варианты карточек — система уже построена, просто зафлажена <i>(П5)</i>.</li>
+        <li>Тултип/подпись под пилюлей уровня для чужих профилей <i>(П3)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- ============ КАТЕГОРИЯ F ============ -->
+  <div class="cat-title" id="cat-f"><span class="letter">F</span>Фидбек и контент</div>
+  <p class="cat-lead">Объяснения, сертификаты, опросы, реферальные — здесь репутационные моменты.</p>
+
+  <!-- 25. ExplainSheet -->
+  <article class="card" id="m-explainsheet">
+    <div class="card-head"><h3>ExplainSheet</h3><code>components/ExplainSheet.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> кнопка ExplainButton в lesson1 → Cloud Function explainPhrase.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet tall" style="max-height:86%">
+              <div class="graber"></div>
+              <div class="xx" style="width:30px;height:30px;font-size:11px">✕</div>
+              <div class="ti" style="font-size:16px;text-align:left">Простыми словами</div>
+              <div class="mc" style="margin:8px 0;padding:10px;background:rgba(255,255,255,.03)">
+                <div class="su" style="text-align:left"><b style="color:var(--text)">to break the ice</b> — разрядить обстановку</div>
+              </div>
+              <div class="su" style="text-align:left">
+                <div style="height:9px;border-radius:5px;background:rgba(255,255,255,.07);margin:7px 0;width:92%"></div>
+                <div style="height:9px;border-radius:5px;background:rgba(255,255,255,.07);margin:7px 0;width:100%"></div>
+                <div style="height:9px;border-radius:5px;background:rgba(255,255,255,.07);margin:7px 0;width:78%"></div>
+                <div style="height:9px;border-radius:5px;background:rgba(255,255,255,.07);margin:7px 0;width:60%"></div>
+              </div>
+              <div class="bo" style="text-align:left">Непонятно объяснили</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Bottom-sheet 86% · грабер 44×5 · скелетон 4 строки (хорош!)<br><b>крест 36×36 БЕЗ hitSlop · accessibilityLabel «Close» на английском</b></div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d60 bot">
+            <div class="mc sheet tall a-spring" style="max-height:86%">
+              <div class="graber"></div>
+              <div class="xx big honest" style="width:34px;height:34px" aria-label="Закрыть">✕</div>
+              <div class="ti" style="font-size:16px;text-align:left">Простыми словами</div>
+              <div class="mc" style="margin:8px 0;padding:10px;background:rgba(255,255,255,.03)">
+                <div class="su" style="text-align:left"><b style="color:var(--text)">to break the ice</b> — разрядить обстановку</div>
+              </div>
+              <div class="su a-stag" style="text-align:left;font-size:11.5px">
+                <div>Представь: ты пришёл на вечеринку, где никого не знаешь…</div>
+                <div>«Break the ice» — это первая фраза, которая снимает неловкость.</div>
+                <div><b style="color:var(--text)">Пример:</b> He told a joke to break the ice.</div>
+              </div>
+              <div class="bo" style="text-align:left">Непонятно объяснили</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">✕ hitSlop до 44pt + RU-лейбл «Закрыть» · скелетон оставить (хорош) · ответ появляется каскадом абзацев</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Крест 36×36 без hitSlop — реальная зона тапа меньше нормы 44pt.</li>
+        <li>accessibilityLabel «Close» — английский в RU-интерфейсе.</li>
+        <li>Остальное хорошо: скелетон 4 строки, лимит → AiLimitUpsellCard, фолбэк «Попробовать ещё раз».</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>hitSlop до 44pt + accessibilityLabel «Закрыть» <i>(a11y — P0 по роадмапу)</i>.</li>
+        <li>Каскад появления абзацев ответа — читаемость потокового текста <i>(П5)</i>.</li>
+        <li>Решить дубль: MistakeEli5Modal дублирует этот сценарий — полуудалён, довести удаление до конца.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 26. CertificateNameModal -->
+  <article class="card" id="m-certificatename">
+    <div class="card-head"><h3>CertificateNameModal</h3><code>components/CertificateNameModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> app/exam.tsx перед выдачей сертификата B2.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div>
+          <div class="dm d72">
+            <div class="mc">
+              <div class="chips"><span class="cchip" style="color:#FFD700;border-color:rgba(255,215,0,.4)">PHRASEMAN B2</span></div>
+              <div style="font-size:34px;margin:6px 0">📜</div>
+              <div class="ti" style="font-size:16px">Чьё имя указать на награде?</div>
+              <div class="su">Имя появится на награде Phraseman. Можно указать настоящее или ник.</div>
+              <div class="inp">Твоё имя или ник</div>
+              <div class="su" style="font-size:9px;text-align:right">0/40</div>
+              <div class="ba" style="background:#B8860B;color:#fff">Сохранить и выдать сертификат</div>
+              <div class="bo">Пропустить (выдать без имени)</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Золото #B8860B/#FFD700 захардкожено вне токенов<br><b>фон не закрывает</b> · скип third-level ссылкой · ты/вы разнобой</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div>
+          <div class="dm d72">
+            <div class="mc a-spring">
+              <div class="xx honest">✕</div>
+              <div class="chips"><span class="cchip g">PHRASEMAN B2</span></div>
+              <div class="ico-t gold a-float" style="width:56px;height:56px;font-size:26px">📜</div>
+              <div class="ti" style="font-size:16px">Чьё имя указать на награде?</div>
+              <div class="su">Подойдёт настоящее имя или ник — как хочешь.</div>
+              <div class="inp">Твоё имя или ник</div>
+              <div class="bg2">Сохранить и выдать сертификат</div>
+              <div class="bs">Выдать без имени</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Золото из токенов темы (gold/textOnGold) · скип — равноправная вторичная кнопка · единый ты-стиль · фон=закрыть с возвратом к экзамену</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Золото #B8860B/#FFD700 захардкожено — на других темах чужое.</li>
+        <li>Скип «Пропустить (выдать без имени)» — third-level подчёркнутая ссылка, хотя это легитимный выбор.</li>
+        <li>Ты/вы разнобой; фон не закрывает.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Золото из токенов (gold #FFC800 + textOnGold) — тема-консистентность <i>(дизайн-система)</i>.</li>
+        <li>Скип — вторичная кнопка: выбор без имени равноправен <i>(П7)</i>.</li>
+        <li>Единый ты-стиль во всех строках <i>(тон голоса)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 27. VipSurveyModal -->
+  <article class="card" id="m-vipsurvey">
+    <div class="card-head"><h3>VipSurveyModal</h3><code>components/VipSurveyModal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> 10 шагов из AppMessagesInbox → VipCelebration → VipSurveyReviewPrompt.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc tall" style="max-height:92%;text-align:left">
+              <div class="row" style="justify-content:space-between">
+                <span class="su">‹ назад</span><span class="su" style="color:var(--ghost)">7 / 10</span><span class="xx" style="position:static">✕</span>
+              </div>
+              <div class="prog"><i style="width:70%"></i></div>
+              <div class="ti" style="font-size:15px">Какой экран перегружен?</div>
+              <div class="bs" style="margin-top:10px">Главная</div>
+              <div class="bs">Уроки</div>
+              <div class="bs">Лига</div>
+              <div class="bs">Профиль</div>
+              <div class="su" style="font-size:10px;margin-top:8px;color:var(--ghost)">✕ на любом из 10 шагов молча сбрасывает весь прогресс</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">Шапка: назад / «{n} / 10» / крест · палитра серо-синяя #475569 вне акцента<br><b>Крестик молча сбрасывает 9 шагов ответов</b> — нет подтверждения и черновика · ты/вы смешаны</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="dm d72">
+            <div class="mc a-spring">
+              <div class="ico-t red" style="width:48px;height:48px;font-size:22px">✋</div>
+              <div class="ti" style="font-size:16px">Прервать опрос?</div>
+              <div class="su">Ты на шаге 7 из 10. Ответы пропадут, если выйти сейчас.</div>
+              <div class="ba" style="margin-top:12px">Продолжить — осталось 3 шага</div>
+              <div class="bs">Сохранить черновик и выйти</div>
+              <div class="bo">Выйти без сохранения</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Подтверждение выхода «Ответы пропадут» + вариант «Сохранить черновик» · палитра — акцент темы вместо серо-синего · единый ты-стиль</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Крестик молча сбрасывает до 9 шагов ответов — потеря работы пользователя без предупреждения.</li>
+        <li>Ты/вы смешаны между вопросами («Что вы ожидали…» vs «Нажми "Завершить опрос"»).</li>
+        <li>Палитра серо-синяя #475569 — вне акцента темы.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Подтверждение выхода с вариантом «Сохранить черновик» — ответы дорогие и пользовательские, и продукту нужны <i>(П7)</i>.</li>
+        <li>Единый ты-стиль по всем 10 шагам <i>(тон)</i>.</li>
+        <li>Палитра из токенов темы <i>(дизайн-система)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+
+  <!-- 28. ReferralAccessActivatedModal -->
+  <article class="card" id="m-referralactivated">
+    <div class="card-head"><h3>ReferralAccessActivatedModal</h3><code>app/referral_access_activated_modal.tsx</code><span class="badge b-live">Живой</span> <span class="badge b-done">Внедрено 21.07</span></div>
+    <p class="trigger"><b>Триггер:</b> друг выполнил условие рефералки (установил, ввёл код, прошёл 1 урок) — начислен доступ.</p>
+    <div class="phones">
+      <div class="pw">
+        <div class="lbl">Сейчас</div>
+        <div class="ph"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d72">
+            <div class="mc">
+              <div style="font-size:44px">💎</div>
+              <div class="ti" style="font-size:16px">7 дней доступа открыто</div>
+              <div class="su">Друг выполнил условие: установил приложение, ввёл ваш код и прошёл один урок полностью. Вы получили свои 7 дней.</div>
+              <div class="su" style="font-size:10px;margin-top:6px">7+7 не равно 14: друг получил свои 7 дней отдельно.</div>
+              <div class="su" style="font-size:10px;margin-top:4px">Открыто до 26 июля.</div>
+              <div class="ba">Готово</div>
+            </div>
+          </div>
+        </div></div>
+        <div class="cap">💎 64px spring<br><b>Смешение ты/вы: «ваш код», «Вы получили»</b> · визуал — один эмодзи, без фирменного образа</div>
+      </div>
+      <div class="pw">
+        <div class="lbl imp-l">Предложение</div>
+        <div class="ph imp play"><div class="sc"><div class="notch"></div>
+          <div class="sk s1"></div><div class="sk s2"></div>
+          <div class="dm d72">
+            <div class="mc a-spring">
+              <div class="confetti-box" data-n="12"></div>
+              <div class="ringw halo grn a-burst" style="width:84px;height:84px">
+                <div class="em" style="font-size:34px">💎</div>
+                <div class="ringc a-ringrot" style="background:conic-gradient(from 0deg,#47C870,rgba(71,200,112,.05),#47C870)"></div>
+              </div>
+              <div class="ti" style="font-size:16px">7 дней доступа открыто</div>
+              <div class="chips"><span class="cchip a">🎉 Друг прошёл 1 урок</span><span class="cchip a">До 26 июля</span></div>
+              <div class="su">Твой друг установил приложение, ввёл твой код и прошёл урок — ты получил 7 дней полного доступа.</div>
+              <div class="su" style="font-size:10px;margin-top:4px">7+7 ≠ 14: у друга свои 7 дней.</div>
+              <div class="ba shn">Готово</div>
+            </div>
+          </div>
+        </div></div>
+        <button class="replay">↻ Повторить</button>
+        <div class="cap">Единый ты-стиль · фирменный визуал: burst + halo + вращающееся кольцо вместо одного эмодзи · ключевые факты чипами</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col prob"><h4>Проблемы (из кода)</h4><ul>
+        <li>Смешение ты/вы: «ваш код», «Вы получили» — в одном модале.</li>
+        <li>Визуал — один эмодзи 💎 64px: событие реальное (друг дошёл до конца воронки!), а праздник минимальный.</li>
+        <li>Важная оговорка «7+7 не равно 14» хороша, но теряется текстом.</li>
+      </ul></div>
+      <div class="col fix"><h4>Что улучшаем и почему</h4><ul>
+        <li>Единый ты-стиль <i>(тон)</i>.</li>
+        <li>Фирменный burst + halo + кольцо: событие среднего яруса — заметнее тоста, скромнее milestone <i>(П8)</i>.</li>
+        <li>Факты чипами: «друг прошёл урок», «до 26 июля» — сканируется за секунду <i>(П3)</i>.</li>
+      </ul></div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= TIER 2 ================= -->
+<section id="tier2">
+  <div class="sec-kicker">Компактно</div>
+  <h2 class="sec-title">TIER 2 — 21 компонент короткими строками</h2>
+  <p class="sec-lead">Без телефонов: имя, статус, 1–2 ключевые проблемы, 1–2 улучшения.</p>
+
+  <details class="t2"><summary>ShardRewardModal <code>components/ShardRewardModal.tsx</code><span class="badge b-orphan">Не подключён</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Мёртвый прод-код (только QA-панель, помечен legacy); ветка bodySuggestion недостижима.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Удалить или перевести на RewardCardV2-стандарт; награды за репорты уже приходят reward-ActionToast'ом.</li></ul></div></div></details>
+
+  <details class="t2"><summary>ThroneRewardModal <code>components/ThroneRewardModal.tsx</code><span class="badge b-orphan">Не подключён</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Сиротский: прод-call-site не найден (только админ-превью); «Ты удержал трон!» + «+{shards} осколков» готовы, но не показываются.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Подключить к удержанию трона Арены (событие достойно праздника среднего яруса) или удалить.</li></ul></div></div></details>
+
+  <details class="t2"><summary>SeasonResultModal <code>components/SeasonResultModal.tsx</code><span class="badge b-orphan">Не подключён</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Слот в арбитре есть, прод-рендер не подключен; у ending_soon CTA «В бой» просто закрывает модал — несоответствие обещания.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Подключить и чинить CTA («В бой» → реальный переход) или удалить; сезонные итоги — сильный ретеншн-момент.</li></ul></div></div></details>
+
+  <details class="t2"><summary>DailyTasksFirstVisitModal <code>components/DailyTasksFirstVisitModal.tsx</code><span class="badge b-off">return null</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Отключён в проде (return null; заменён Компасом) — мёртвый код с текстами.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Удалить физически; если Компас не закрывает онбординг вызовов — вернуть осознанно.</li></ul></div></div></details>
+
+  <details class="t2"><summary>DialogVictoryCelebration <code>components/DialogVictoryCelebration.tsx</code><span class="badge b-orphan">Не подключён</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Прод-call-site не найден; Reanimated-таймлайн 0→1900мс с 26 конфетти готов, но эмодзи-герой 86pt — «самый дешёвый» ассет.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Подключить к финалу ИИ-диалога (success, Plus): метрики «Реплик/Цели/Доволен» и XP-счётчик — хорошие; заменить героя-эмодзи фирменным кольцом.</li></ul></div></div></details>
+
+  <details class="t2"><summary>WeeklyBoonDetailModal <code>components/WeeklyBoonDetailModal.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Нет deeplink «как воспользоваться» — описание бонуса без перехода к действию.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Кнопка-действие по типу бонуса (в лигу / в арену / в повторы) вместо одного «Закрыть».</li></ul></div></div></details>
+
+  <details class="t2"><summary>UpdateModal <code>components/UpdateModal.tsx</code><span class="badge b-off">Выключен: UPDATE_CHECK_URL=''</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Выключен; дублирует ForceUpdateGate — две визуальные системы «обнови приложение» с разным стилем и голосом.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Оставить одну систему (ForceUpdateGate) и удалить UpdateModal, либо развести: ForceUpdateGate=force, UpdateModal=optional — но в одном стиле.</li></ul></div></div></details>
+
+  <details class="t2"><summary>ReleaseNotesModal <code>components/ReleaseNotesModal.tsx</code><span class="badge b-off">Выключен флагом</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Тексты захардкожены под конкретный релиз («Визуал/Карточки/Статистика/Чат лиги») — быстро устарели.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Тексты из remote-config (как броадкасты) или удалить; релиз-ноуты можно слить с LoyaltyGiftModal-механикой.</li></ul></div></div></details>
+
+  <details class="t2"><summary>ForceUpdateGate <code>components/ForceUpdateGate.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Force-вариант — непрозрачный #0b0b12 без закрытия: оправдано, но без пояснения версии и ссылки «что нового».</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Добавить «минимальная версия X, у тебя Y» и ссылку на релиз-ноуты; голос Компаса сохранить — он хорош.</li></ul></div></div></details>
+
+  <details class="t2"><summary>UserWarningModal <code>components/UserWarningModal.tsx</code><span class="badge b-orphan">Подключение снято</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Прод-подключение снято; i18n только ru/uk/es; фон не закрывает; hapticWarning.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Если предупреждения пользователям нужны — вернуть через ThemedBlockingAlertHost с полным i18n; иначе удалить.</li></ul></div></div></details>
+
+  <details class="t2"><summary>ReportPackModal <code>components/ReportPackModal.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>i18n причин только ru/uk/es — 5 языков получают русские причины («Образа / ненависть» и т.д.).</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Доперевести 6 причин на все языки; успех-экран и троттлинг «⏳ Подожди 30 секунд» — хороши, оставить.</li></ul></div></div></details>
+
+  <details class="t2"><summary>ReportUserModal <code>components/ReportUserModal.tsx</code><span class="badge b-orphan">Подключение снято</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Только ник, без причины — асимметрично с ReportPackModal; пользователи сейчас не могут жаловаться на ники.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Либо вернуть с выбором причины (как у паков), либо удалить; полумера хуже обоих вариантов.</li></ul></div></div></details>
+
+  <details class="t2"><summary>MistakeEli5Modal <code>components/MistakeEli5Modal.tsx</code><span class="badge b-orphan">Не смонтирован</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Дублирует ExplainSheet; полуудалён — хуже, чем удалён (тянет код и тексты).</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Удалить файл; «Объясни проще» живёт в ExplainSheet.</li></ul></div></div></details>
+
+  <details class="t2"><summary>ReferralAccessEndedModal <code>app/referral_access_ended_modal.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Фон НЕ закрывает; a11y крестика «Закрыть» хардкод.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Фон=закрыть; тон «Всё, что ты открыл — осталось с тобой» — хороший, сохранить.</li></ul></div></div></details>
+
+  <details class="t2"><summary>VipSurveyReviewPromptModal <code>components/VipSurveyReviewPromptModal.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Нет «Не сейчас» — только крестик/фон; ты/вы разнобой («Твой Plus» vs «Хотите поделиться»).</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Явная ghost «Не сейчас»; единый ты-стиль; кнопка отзыва — акцент темы вместо хардкод #16A34A.</li></ul></div></div></details>
+
+  <details class="t2"><summary>CustomizationPurchaseConfirmModal <code>components/customization/CustomizationPurchaseConfirmModal.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>«1 осколков будут списаны» — грамматика; без иконки осколка.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Плюрализация «1 осколок / 2 осколка / 5 осколков»; иконка 💠 и итог «останется N».</li></ul></div></div></details>
+
+  <details class="t2"><summary>AvatarEditorSheet <code>components/customization/AvatarEditorSheet.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Единственный на нативной slide-анимации — непоследовательность со spring-стеком; белый 10px текст на произвольных градиентах — контраст плавает.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Перевести на общий MotionModal/spring; текст — из токенов или с подложкой (нарушает UI Contrast Rule).</li></ul></div></div></details>
+
+  <details class="t2"><summary>SoftContextualUpsellCard <code>components/SoftContextualUpsellCard.tsx</code><span class="badge b-good">Хороший</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Минимальные: нет.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Эталон мягкого апсейла: inline на lesson_complete, dismiss «Не сейчас» равноправный — использовать как образец для других апсейлов.</li></ul></div></div></details>
+
+  <details class="t2"><summary>AiLimitUpsellCard <code>components/AiLimitUpsellCard.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Нет собственного dismiss; «фулл доступ» — просторечие.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Крестик/«Позже»; «Получить полный доступ» вместо «фулл»; вход с overshoot + микро-тряской — оставить, он живой.</li></ul></div></div></details>
+
+  <details class="t2"><summary>app/modal.tsx <code>app/modal.tsx</code><span class="badge b-orphan">Стаб — удалить</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>Шаблонный стаб expo-router («This is a modal») в прод-бандле.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Удалить роут.</li></ul></div></div></details>
+
+  <details class="t2"><summary>MedalToast — тон «РАНГ ПОНИЖЕН» <code>components/MedalToast.tsx</code><span class="badge b-live">Живой</span></summary>
+    <div class="t2b"><div class="pb"><b>Проблемы</b><ul><li>«РАНГ ПОНИЖЕН» показывается с праздничным halo тира — двусмысленно: фейерверк на потере.</li></ul></div>
+    <div class="fx"><b>Улучшения</b><ul><li>Понижение — спокойный тон: без halo, приглушённый цвет, поддерживающий текст «Несколько верных ответов — и она вернётся» (он уже есть — усилить). См. раздел «Тосты».</li></ul></div></div></details>
+</section>
+
+<!-- ================= ТОСТЫ И БАННЕРЫ ================= -->
+<section id="toasts">
+  <div class="sec-kicker">Тосты и баннеры</div>
+  <h2 class="sec-title">Зоопарк из 13 компонентов → единый Phraseman ToastKit</h2>
+  <p class="sec-lead">9 тостов + 4 баннера/инлайн-плашки: разная геометрия, длительность 3–12 с, интерактив от «pointerEvents=none» до свайпа.</p>
+
+  <div class="panel" style="overflow-x:auto">
+    <h4>Текущее состояние (из кода)</h4>
+    <table class="mtable">
+      <tr><th>Компонент</th><th>Позиция</th><th>Длительность</th><th>Интерактив</th><th>Главная проблема</th></tr>
+      <tr><td>AchievementToast</td><td>низ</td><td>3800 мс</td><td>свайп + тап → полноэкранный Modal</td><td>описание обрезано 1 строкой</td></tr>
+      <tr><td>ActionToast</td><td>низ, центр</td><td>3200 мс</td><td>pointerEvents=none</td><td>3.2 с мало для длинных строк (billing); error автоскрывается</td></tr>
+      <tr><td>CoachToast</td><td>низ (bottom 24)</td><td>8000 мс</td><td>крестик + CTA</td><td>единоличная геометрия вне стандарта</td></tr>
+      <tr><td>DailyTaskRewardToast</td><td>низ</td><td>12000 мс</td><td>кнопка «Забрать»</td><td>12 с — почти модал; ок для награды, но без прогресс-бара</td></tr>
+      <tr><td>InGameToast</td><td>ВЕРХ (top 60)</td><td>3000 мс</td><td>нет</td><td>единственный верхний — конфликт паттерна; type игнорируется (void type)</td></tr>
+      <tr><td>MedalToast</td><td>низ (bottom 120)</td><td>стандарт</td><td>pointerEvents=none</td><td>«РАНГ ПОНИЖЕН» с праздничным halo — двусмысленно</td></tr>
+      <tr><td>XpGainBadge</td><td>inline-атом</td><td>240 мс</td><td>нет</td><td>ок — эталон микрофидбека</td></tr>
+      <tr><td>OfflineBanner</td><td>верх, под статус-баром</td><td>10000 мс</td><td>смахивание вверх</td><td>тёмная плашка rgba(30,30,36,.92) ХАРДКОД вне темы</td></tr>
+      <tr><td>PromoBanner</td><td>верх на всю ширину</td><td>до дисмисса</td><td>тап → URL, свайп/крестик</td><td>фиолет #3b1d6e/#5b21b6 хардкод; вне арбитра</td></tr>
+      <tr><td>SaveProgressBanner</td><td>inline на Home</td><td>—</td><td>CTA «Привязать»</td><td>тон хороший — эталон</td></tr>
+      <tr><td>ActiveBoostBar</td><td>inline</td><td>—</td><td>таймер 1 с</td><td>радиус 10 хардкод; опечатка «еще»</td></tr>
+      <tr><td>TodaysBoonStrip</td><td>inline</td><td>—</td><td>тап → WeeklyBoonDetailModal</td><td>хорошее состояние после claim («уже открыт»)</td></tr>
+      <tr><td>RankChangeBanner</td><td>inline в club_screen</td><td>авто 5 с</td><td>тап по ВСЕМУ баннеру закрывает</td><td>риск случайного дисмисса при чтении</td></tr>
+    </table>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <h4>Предложение: единая система «Phraseman ToastKit»</h4>
+    <div class="su" style="font-size:13px;line-height:1.7">
+      <b style="color:var(--text)">4 тяжести:</b> success (3 с) · info (4 с) · warning (6 с) · error (липкий до дисмисса) + reward как акцентный вариант success (золотой rail).
+      <b style="color:var(--text)">Единая геометрия:</b> снизу, одна и та же форма, иконка 34px в плашке тяжести, прогресс-бар автозакрытия, свайп-дисмисс, pause-on-тап.
+      <b style="color:var(--text)">Лимит 2</b> одновременно (у ActionToast уже есть очередь макс 2 + дедуп 1600 мс — поднять в систему), склейка дублей («+50 XP» ×3 → «+150 XP»).
+      <b style="color:var(--text)">Верх зарезервирован</b> за связью/системой (Offline) и маркетингом (Promo) — но оба перевести на токены темы.
+      InGameToast → в нижний стандарт и починить void type. MedalToast «понижение» → спокойный тон.
+    </div>
+  </div>
+
+  <h4 style="margin:26px 0 14px;font-size:16px">4 улучшенных тоста — анимированные</h4>
+  <div class="phones">
+    <div class="pw">
+      <div class="lbl imp-l">Success · 3 с</div>
+      <div class="ph imp play"><div class="sc"><div class="notch"></div>
+        <div class="sk s1"></div><div class="sk s2"></div><div class="sk s3"></div>
+        <div class="tst ok a-tstin">
+          <div class="tic">✓</div>
+          <div class="ttx"><b>Урок пройден</b><span>+50 XP получено</span></div>
+          <div class="tx2">✕</div>
+          <i class="drn a-drain" style="--dur:3s"></i>
+        </div>
+      </div></div>
+      <button class="replay">↻ Повторить</button>
+      <div class="cap">spring-вход снизу · прогресс-дрейн 3 с · свайп-дисмисс · pause при удержании</div>
+    </div>
+    <div class="pw">
+      <div class="lbl imp-l">Reward · 4 с + кнопка</div>
+      <div class="ph imp play"><div class="sc"><div class="notch"></div>
+        <div class="sk s1"></div><div class="sk s2"></div><div class="sk s3"></div>
+        <div class="tst rw a-tstin">
+          <div class="tic">🎁</div>
+          <div class="ttx"><b>Вызов дня выполнен</b><span>Награда: +50 XP</span></div>
+          <div class="tbtn">Забрать</div>
+          <i class="drn a-drain" style="--dur:4s"></i>
+        </div>
+      </div></div>
+      <button class="replay">↻ Повторить</button>
+      <div class="cap">золотой rail · кнопка-действие · награда не теряется: без тапа — напоминание позже</div>
+    </div>
+    <div class="pw">
+      <div class="lbl imp-l">Warning · 6 с</div>
+      <div class="ph imp play"><div class="sc"><div class="notch"></div>
+        <div class="sk s1"></div><div class="sk s2"></div><div class="sk s3"></div>
+        <div class="tst wn a-tstin">
+          <div class="tic">🔥</div>
+          <div class="ttx"><b>Цепочка 148 дн. сгорит в полночь</b><span>Позанимайся, чтобы сохранить</span></div>
+          <div class="tx2">✕</div>
+          <i class="drn a-drain" style="--dur:6s"></i>
+        </div>
+      </div></div>
+      <button class="replay">↻ Повторить</button>
+      <div class="cap">6 с — успеть прочитать длинную RU-строку · без панического красного</div>
+    </div>
+    <div class="pw">
+      <div class="lbl imp-l">Error · липкий</div>
+      <div class="ph imp play"><div class="sc"><div class="notch"></div>
+        <div class="sk s1"></div><div class="sk s2"></div><div class="sk s3"></div>
+        <div class="tst er a-tstin">
+          <div class="tic">💳</div>
+          <div class="ttx"><b>Проблема с оплатой подписки</b><span>Обнови способ оплаты, чтобы не потерять Plus</span></div>
+          <div class="tbtn" style="background:var(--wrong);color:#fff">Решить</div>
+          <div class="tx2">✕</div>
+        </div>
+      </div></div>
+      <button class="replay">↻ Повторить</button>
+      <div class="cap">НЕ автоскрывается — висит до дисмисса или действия · длинный текст в 2 строки читается</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:22px">
+    <h4>Отдельно: MedalToast «РАНГ ПОНИЖЕН» — смена тона</h4>
+    <div class="cols" style="grid-template-columns:1fr 1fr">
+      <div class="col prob"><h4>Сейчас</h4><ul>
+        <li>«РАНГ ПОНИЖЕН» показывается с праздничным halo тира (bronze/silver/gold glow) — фейерверк на потере, двусмысленно.</li>
+      </ul></div>
+      <div class="col fix"><h4>Предложение</h4><ul>
+        <li>Понижение — без halo, приглушённый серо-бронзовый тон, спокойный вход.</li>
+        <li>Текст-поддержка уже есть: «Несколько верных ответов — и она вернётся» — сделать её главной строкой, а «РАНГ ПОНИЖЕН» — тихим кикером <i>(П8)</i>.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= РОАДМАП ================= -->
+<section id="roadmap">
+  <div class="sec-kicker">Приоритеты</div>
+  <h2 class="sec-title">Роадмап P0 / P1 / P2</h2>
+  <p class="sec-lead">P0 — чиним немедленно (честность и потери данных), P1 — системная консистентность, P2 — полировка.</p>
+  <table class="road">
+    <tr><th style="width:64px">Приор.</th><th>Что делаем</th><th>Зачем</th><th>Затронутые файлы</th></tr>
+    <tr><td class="p0">P0</td><td><ul>
+      <li>Убрать мок-фолбэк наград (4 PREVIEW-мока при пустом списке)</li>
+      <li>Починить двойной тост «Заявка отправлена!»</li>
+      <li>Крестик-обманщик в сундуках → явная «Открыть позже»</li>
+      <li>Фон-закрытие в NoEnergyModal</li>
+      <li>Видимый отказ (✕ + равноправная кнопка) в онбординг-пейволе</li>
+      <li>Склонение «2 дней подряд» в StreakReviveModal</li>
+      <li>a11y-лейблы крестиков на RU + hit-area 44pt</li>
+    </ul></td>
+    <td>Риск фейкового дропа и потери доверия; случайные деструктивные действия; dark-pattern-претензии; потеря работы пользователя.</td>
+    <td class="mono">components/LeagueChestOpenModal.tsx · components/PlayerProfileModal.tsx · components/BoonChestModal.tsx · components/LevelGiftModal.tsx · components/NoEnergyModal.tsx · app/paywall_*.tsx · components/StreakReviveModal.tsx · components/ExplainSheet.tsx</td></tr>
+    <tr><td class="p1">P1</td><td><ul>
+      <li>Единый ToastKit (4 тяжести, липкий error, лимит 2, склейка дублей)</li>
+      <li>Ярусы праздников (Tier-модель: milestone / средний / тихий)</li>
+      <li>Ты/вы консистентность во всех текстах</li>
+      <li>Решение по каждому сиротскому модалу: подключить или удалить</li>
+      <li>Тематизировать Offline/Promo баннеры (токены вместо хардкода)</li>
+    </ul></td>
+    <td>Конец зоопарка геометрий; праздники перестают выгорать; единый голос; мёртвый код уходит из бандла.</td>
+    <td class="mono">components/*Toast*.tsx · components/OverlayArbiter.tsx (+ лимиты сессии) · components/OfflineBanner.tsx · components/PromoBanner.tsx · ~8 сиротских файлов</td></tr>
+    <tr><td class="p2">P2</td><td><ul>
+      <li>Reanimated-стандарт для всех наградных модалов</li>
+      <li>Lottie-праздник для milestone-событий (7/30/100/365 дней)</li>
+      <li>Haptic-спека: довести до всех модалов (сейчас частично есть)</li>
+    </ul></td>
+    <td>Один стек анимаций вместо RN Animated + Reanimated вперемешку; milestone-моменты уровня Duolingo.</td>
+    <td class="mono">constants/motion.ts · reward_v2/ · components/PremiumCelebrationModal.tsx (референс) · expo-haptics вызовы</td></tr>
+  </table>
+</section>
+
+<!-- ================= ФУТЕР ================= -->
+<footer>
+  <h4>Методология</h4>
+  <p>Статический анализ кода репозитория Phraseman (4 агента-исследователя): все модалы, тосты, баннеры, хосты и арбитр оверлеев. Все тексты в макетах «СЕЙЧАС» — дословные строки из кода; цвета — реальные hex из constants/theme.ts и компонентов.</p>
+  <p>Источники принципов: Deconstructor of Fun (2026, разбор Duolingo), Eleken (Notification UX, Modal UX), CorsoUX (2026), FrontendAtlas, Hyperframes (2026), Tim Graf (2026), Material motion, Apple HIG. Отдельный детальный аудит пейвола уже существует: <code>docs/paywall-audit/</code> (AUDIT.md + paywall-mockups.html).</p>
+  <p><b>Дисклеймер:</b> макеты — HTML-реконструкция по коду, а не скриншоты приложения; компоновка упрощена до ключевых элементов. Анимации в макетах «ПРЕДЛОЖЕНИЕ» — демонстрация целевого качества motion (только transform/opacity/filter; уважается prefers-reduced-motion; есть глобальный выключатель в шапке).</p>
+  <p style="color:var(--ghost)">Phraseman · UX-аудит оверлеев · 2026-07-19 · 28 полных карточек TIER 1 + 21 строка TIER 2 + 13 тостов/баннеров</p>
+</footer>
+</main>
+
+<script>
+(function(){
+var root=document.documentElement;
+var toggle=document.getElementById('animToggle');
+
+/* reduced-motion: стартуем выключенными */
+try{
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){
+    root.classList.remove('anims');toggle.checked=false;
+  }
+}catch(e){}
+
+function runCountUps(scope){
+  var els=scope.querySelectorAll('.cu');
+  for(var i=0;i<els.length;i++){(function(el){
+    var v=parseInt(el.getAttribute('data-v'),10)||0;
+    if(!root.classList.contains('anims')){el.textContent=v;return;}
+    var t0=performance.now();
+    function step(t){
+      var k=Math.min(1,(t-t0)/800);
+      var e=1-Math.pow(1-k,3); /* easeOutCubic */
+      el.textContent=Math.round(v*e);
+      if(k<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })(els[i]);}
+}
+
+toggle.addEventListener('change',function(){
+  root.classList.toggle('anims',toggle.checked);
+  if(toggle.checked){
+    var ps=document.querySelectorAll('.imp.play');
+    for(var i=0;i<ps.length;i++)runCountUps(ps[i]);
+  }
+});
+
+/* кнопки ↻ Повторить */
+var btns=document.querySelectorAll('.replay');
+for(var i=0;i<btns.length;i++){(function(b){
+  b.addEventListener('click',function(){
+    var wrap=b.closest('.pw');
+    var p=wrap?wrap.querySelector('.imp'):null;
+    if(!p)return;
+    p.classList.remove('play');
+    void p.offsetWidth; /* reflow — перезапуск one-shot анимаций */
+    p.classList.add('play');
+    runCountUps(p);
+  });
+})(btns[i]);}
+
+/* конфетти: генерим частицы с CSS-переменными --tx/--ty/--rot/--dl/--c */
+var COLORS=['#47C870','#FFC800','#6FB1FF','#F05454','#58CC89','#F2C56A'];
+var boxes=document.querySelectorAll('.confetti-box');
+for(var bi=0;bi<boxes.length;bi++){(function(box){
+  var n=parseInt(box.getAttribute('data-n'),10)||12;
+  for(var j=0;j<n;j++){
+    var s=document.createElement('span');
+    s.className='cf';
+    var tx=(Math.random()*2-1)*130;          /* разлёт по X */
+    var ty=-(20+Math.random()*70)+Math.random()*190; /* дуга вверх-вниз */
+    var rot=(Math.random()*2-1)*420;
+    s.style.setProperty('--tx',tx.toFixed(0)+'px');
+    s.style.setProperty('--ty',ty.toFixed(0)+'px');
+    s.style.setProperty('--rot',rot.toFixed(0)+'deg');
+    s.style.setProperty('--dl',(Math.random()*0.25).toFixed(2)+'s');
+    s.style.setProperty('--cd',(1.6+Math.random()*0.6).toFixed(2)+'s');
+    s.style.setProperty('--c',COLORS[j%COLORS.length]);
+    box.appendChild(s);
+  }
+})(boxes[bi]);}
+
+/* стартовые count-up */
+var plays=document.querySelectorAll('.imp.play');
+for(var pi=0;pi<plays.length;pi++)runCountUps(plays[pi]);
+})();
+</script>
+</body>
+</html>

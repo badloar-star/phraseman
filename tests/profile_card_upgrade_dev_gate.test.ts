@@ -2,48 +2,46 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * Profile card UI was rebuilt 2026-06 from a broken bottom-sheet (ProfileCardUpgradeModal,
- * deleted) into a full-screen route (app/profile_card_upgrade.tsx) reached from gated entry
- * points.
- *
- * DECISION 2026-07-05 (owner): the feature SHIPS. The old 2026-06-21 hold ("previews look
- * too similar") is resolved by the 5-level ladder — every level has a visually distinct
- * card. ENABLE_PROFILE_CARD is now a bare `true` (release), and the upgrade screen must
- * NOT hide behind ENABLE_DEV_TOOLS anymore. These checks lock in that every entry point
- * reads the single ENABLE_PROFILE_CARD flag (so the whole feature appears/disappears
- * together) and that the flag stays on for release.
+ * OWNER DECISION 2026-07-14: the standalone I-V profile-card screen is retired.
+ * The personal card opens from the home header profile icon and upgrades in place inside
+ * PlayerProfileModal. The route and its avatar-studio / QA entry points must not return.
  */
-describe('profile card upgrade gate (release decision 2026-07-05)', () => {
-  const avatarScreen = fs.readFileSync(
-    path.join(process.cwd(), 'app', 'avatar_select.tsx'),
-    'utf8',
-  );
-  const upgradeScreen = fs.readFileSync(
-    path.join(process.cwd(), 'app', 'profile_card_upgrade.tsx'),
-    'utf8',
-  );
+describe('profile card has one personal entry surface', () => {
+  const read = (relativePath: string) => fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8');
+  const avatarScreen = read('app/avatar_select.tsx');
+  const homeScreen = read('app/(tabs)/home.tsx');
+  const layout = read('app/_layout.tsx');
+  const controls = read('components/customization/CustomizationControls.tsx');
+  const profileModal = read('components/PlayerProfileModal.tsx');
+  const qaSection = read('components/admin_panel/sections/RewardModalsExtraSection.tsx');
 
-  it('gates the upgrade entry point behind the ENABLE_PROFILE_CARD flag', () => {
-    expect(avatarScreen).toContain('const showProfileCardSection = ENABLE_PROFILE_CARD;');
-    // The entry row that opens the full-screen upgrade flow is rendered only when the
-    // kill-switch is on, and navigates to the rebuilt route.
-    expect(avatarScreen).toContain("router.push('/profile_card_upgrade'");
+  it('does not ship or navigate to the retired standalone route', () => {
+    expect(fs.existsSync(path.join(process.cwd(), 'app', 'profile_card_upgrade.tsx'))).toBe(false);
+    expect(layout).not.toContain('Stack.Screen name="profile_card_upgrade"');
+    expect(avatarScreen).not.toContain("router.push('/profile_card_upgrade'");
+    expect(controls).not.toContain('onOpenProfileCard');
+    expect(qaSection).not.toContain('admin-extra-profile-card-upgrade');
+    expect(qaSection).not.toContain("router.push('/profile_card_upgrade'");
   });
 
-  it('routes the entry point to the rebuilt full-screen upgrade route', () => {
-    expect(upgradeScreen).toContain('export default function ProfileCardUpgradeScreen');
-    expect(upgradeScreen).toContain('upgradeProfileCardLevel');
+  it('opens the preserved profile modal from the home header profile icon', () => {
+    expect(homeScreen).toContain("ru: 'Моя карточка профиля'");
+    expect(homeScreen).toContain('onPress={openHomeProfile}');
+    expect(homeScreen).toContain('setHomeProfilePlayer({');
+    expect(homeScreen).toContain('<PlayerProfileModal');
   });
 
-  it('no longer hides the profile card behind ENABLE_DEV_TOOLS', () => {
-    expect(avatarScreen).not.toContain('ENABLE_DEV_TOOLS');
-    expect(upgradeScreen).not.toContain('ENABLE_DEV_TOOLS');
+  it('keeps profile upgrades inside the preserved modal', () => {
+    expect(profileModal).toContain('isMe && ENABLE_PROFILE_CARD && nextRealLevel !== null');
+    expect(profileModal).toContain('onPress={handleUpgradeButtonTap}');
+    expect(profileModal).toContain('const result = await upgradeProfileCardLevel();');
+    expect(profileModal).toContain('void syncToCloud({ forceNow: true });');
+    expect(profileModal).toContain('disabled={upgradeBusy}');
+    expect(profileModal).toContain('<ActivityIndicator size="small" color="#1A1205" />');
   });
 
   it('keeps the feature ON for release (owner decision 2026-07-05)', () => {
-    // The card ladder is a released, monetized feature now. If someone needs to pull it
-    // from a build, that is an owner decision — change this test together with the flag.
-    const config = fs.readFileSync(path.join(process.cwd(), 'app', 'config.ts'), 'utf8');
+    const config = read('app/config.ts');
     expect(config).toMatch(/export const ENABLE_PROFILE_CARD = true;/);
   });
 });
@@ -55,7 +53,7 @@ describe('profile card upgrade gate (release decision 2026-07-05)', () => {
  * actually gets charged. If they desync, the client promises one price and the server
  * charges another. This parity check fails loudly on the next one-sided reprice.
  */
-describe('profile card cost parity (client ↔ Cloud Function)', () => {
+describe('profile card cost parity (client to Cloud Function)', () => {
   function parseCostTable(src: string, tableName: string): Record<number, number> {
     const start = src.indexOf(tableName);
     expect(start).toBeGreaterThanOrEqual(0);

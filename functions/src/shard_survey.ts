@@ -35,6 +35,12 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 // Анти-спам: не больше N сабмитов опросов в сутки на пользователя (спека §2.2).
 // Легальный поток — единицы опросов в день; 20 покрывает ретраи с запасом.
 const SUBMIT_MAX_PER_DAY = 20;
+// зачем: решение владельца 2026-07-26 — за опрос ровно 1 жемчужина, ФИКСИРОВАННО.
+// config.rewardShards (1..20 из админки) сознательно НЕ используется для выплаты:
+// владелец не хочет, чтобы редактор опроса мог случайно выдать 20 монет. Поле
+// оставлено в конфиге/валидации ради обратной совместимости уже сохранённых
+// документов shard_surveys. Клиентский дубль: SHARD_REWARDS.survey_completed.
+const SURVEY_SHARD_AMOUNT = 1;
 
 function text(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
@@ -103,6 +109,7 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     platform,
   };
   const lastSurveyAtMs = Math.trunc(Number(progress.shard_survey_last_at_ms ?? 0)) || 0;
+  const completion = lastSurveyAtMs > 0 ? { completedAtMs: lastSurveyAtMs } : null;
 
   // Собираем валидные активные конфиги, сортируем по updatedAtMs (свежие раньше).
   // Сначала отсеиваем в памяти (аудитория + cooldown) — без I/O, затем берём топ-N
@@ -132,6 +139,7 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     if (config) {
       const lang = text(request.data?.lang, 10) || 'ru';
       return {
+        completion,
         survey: {
           surveyId: config.surveyId,
           title: resolveLocalized(config.title, lang),
@@ -151,7 +159,7 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     }
   }
 
-  return { survey: null };
+  return { survey: null, completion };
 });
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -228,7 +236,10 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     }
 
     const currentBalance = readShardBalance(userSnap.data()?.shards);
-    const reward = config.rewardShards;
+    // Фиксированная выплата (см. SURVEY_SHARD_AMOUNT): config.rewardShards
+    // намеренно игнорируется. Повторная отправка сюда не доходит — выше стоит
+    // проверка claimSnap.exists в этой же транзакции.
+    const reward = SURVEY_SHARD_AMOUNT;
     const newBalance = currentBalance + reward;
     const shardsUpdatedAtMs = nowMs;
 
@@ -273,7 +284,7 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
 // ────────────────────────────────────────────────────────────────────────────
 // adminWriteShardSurvey — создать/обновить конфиг опроса из админки.
 // Доступ: request.auth.token.admin === true (custom claim, как прочие
-// admin-callable проекта — см. admin_grant.ts, help_board.ts).
+  // admin-callable проекта — см. admin_grant.ts).
 // ────────────────────────────────────────────────────────────────────────────
 export const adminWriteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;

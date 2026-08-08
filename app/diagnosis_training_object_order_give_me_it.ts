@@ -521,7 +521,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Сначала вещь.', 'Спочатку річ.', 'Thing first.'),
         tri('Потом к человеку: to me.', 'Потім до людини: to me.', 'Then to the person: to me.'),
-        tri('Готовый кусок: give the book to me.', 'Готовий шматок: give the book to me.', 'Ready chunk: give the book to me.'),
+        tri('Готовый кусок: give the book to me.', 'Готовий зворот: give the book to me.', 'Ready chunk: give the book to me.'),
         tri('Ответ: Give the book to me.', 'Відповідь: Give the book to me.', 'Answer: Give the book to me.'),
       ],
       fallbackExplanation: tri('Вещь потом to + человек: give the book to me.', 'Річ потім to + людина: give the book to me.', 'Thing + to + person: give the book to me.'),
@@ -540,13 +540,13 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Файл идёт к ней: send the file to her.', 'Так. Файл іде до неї: send the file to her.', 'Yes. The file goes to her: send the file to her.'),
       wrong: {
         for: tri('Send обычно говорит, кому отправляем, через to: send the file to her.', 'Send зазвичай каже, кому надсилаємо, через to: send the file to her.', 'Send uses to for the receiver.'),
-        at: tri('Send the file at her не работает. Нужен кусок to her.', 'Send the file at her не працює. Потрібен шматок to her.', 'Use to her.'),
+        at: tri('Send the file at her не работает. Нужен кусок to her.', 'Send the file at her не працює. Потрібен зворот to her.', 'Use to her.'),
         from: tri('From her значит от неё. Здесь файл отправляют ей: to her.', 'From her означає від неї. Тут файл надсилають їй: to her.', 'From her means from her. Here use to her.'),
       },
       retryFeedback: [
         tri('Файл идёт кому?', 'Файл іде кому?', 'Who receives the file?'),
         tri('Ей: to her.', 'Їй: to her.', 'To her.'),
-        tri('Готовый кусок: send the file to her.', 'Готовий шматок: send the file to her.', 'Ready chunk: send the file to her.'),
+        tri('Готовый кусок: send the file to her.', 'Готовий зворот: send the file to her.', 'Ready chunk: send the file to her.'),
         tri('Ответ: Send the file to her.', 'Відповідь: Send the file to her.', 'Answer: Send the file to her.'),
       ],
       fallbackExplanation: tri('Send + вещь + to her.', 'Send + річ + to her.', 'Send + thing + to her.'),
@@ -565,13 +565,13 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Фото показывают им: show the photo to them.', 'Так. Фото показують їм: show the photo to them.', 'Yes. Show the photo to them.'),
       wrong: {
         for: tri('Show обычно ведёт к человеку через to: show the photo to them.', 'Show зазвичай веде до людини через to: show the photo to them.', 'Show uses to here.'),
-        at: tri('Show the photo at them не работает. Нужен кусок to them.', 'Show the photo at them не працює. Потрібен шматок to them.', 'Use to them.'),
+        at: tri('Show the photo at them не работает. Нужен кусок to them.', 'Show the photo at them не працює. Потрібен зворот to them.', 'Use to them.'),
         on: tri('On не показывает, кому показываем. Нужен to.', 'On не показує, кому показуємо. Потрібен to.', 'Use to for the receiver.'),
       },
       retryFeedback: [
         tri('Фото показывают кому?', 'Фото показують кому?', 'Who sees the photo?'),
         tri('Им: to them.', 'Їм: to them.', 'To them.'),
-        tri('Готовый кусок: show the photo to them.', 'Готовий шматок: show the photo to them.', 'Ready chunk: show the photo to them.'),
+        tri('Готовый кусок: show the photo to them.', 'Готовий зворот: show the photo to them.', 'Ready chunk: show the photo to them.'),
         tri('Ответ: Show the photo to them.', 'Відповідь: Show the photo to them.', 'Answer: Show the photo to them.'),
       ],
       fallbackExplanation: tri('Show + вещь + to them.', 'Show + річ + to them.', 'Show + thing + to them.'),
@@ -594,13 +594,13 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. С it безопасный порядок: give it to me.', 'Так. З it безпечний порядок: give it to me.', 'Yes. With it: give it to me.'),
       wrong: {
         'me it': tri('Give me it звучит плохо в стандартной учебной фразе. Безопаснее: give it to me.', 'Give me it звучить погано у стандартній навчальній фразі. Безпечніше: give it to me.', 'Give me it sounds awkward in standard learner English. Use give it to me.'),
-        'to me it': tri('Give to me it ломает порядок. Нужен кусок give it to me.', 'Give to me it ламає порядок. Потрібен шматок give it to me.', 'Use give it to me.'),
+        'to me it': tri('Give to me it ломает порядок. Нужен кусок give it to me.', 'Give to me it ламає порядок. Потрібен зворот give it to me.', 'Use give it to me.'),
         'it for me': tri('С give человеку обычно помогает to: give it to me.', 'З give людині зазвичай допомагає to: give it to me.', 'Give uses to here: give it to me.'),
       },
       retryFeedback: [
         tri('Вещь = it.', 'Річ = it.', 'Thing = it.'),
         tri('С it ставим: it to me.', 'З it ставимо: it to me.', 'With it: it to me.'),
-        tri('Готовый кусок: give it to me.', 'Готовий шматок: give it to me.', 'Ready chunk: give it to me.'),
+        tri('Готовый кусок: give it to me.', 'Готовий зворот: give it to me.', 'Ready chunk: give it to me.'),
         tri('Ответ: Give it to me.', 'Відповідь: Give it to me.', 'Answer: Give it to me.'),
       ],
       fallbackExplanation: tri('С it: give it to me.', 'З it: give it to me.', 'With it: give it to me.'),
@@ -623,13 +623,13 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. С it естественно: send it to her.', 'Так. З it природно: send it to her.', 'Yes. With it: send it to her.'),
       wrong: {
         'her it': tri('Send her it звучит плохо для стандартной учебной фразы. Лучше send it to her.', 'Send her it звучить погано для стандартної навчальної фрази. Краще send it to her.', 'Use send it to her.'),
-        'to her it': tri('Send to her it ломает порядок. Нужен кусок send it to her.', 'Send to her it ламає порядок. Потрібен шматок send it to her.', 'Use send it to her.'),
+        'to her it': tri('Send to her it ломает порядок. Нужен кусок send it to her.', 'Send to her it ламає порядок. Потрібен зворот send it to her.', 'Use send it to her.'),
         'it for her': tri('С send человеку обычно помогает to: send it to her.', 'З send людині зазвичай допомагає to: send it to her.', 'Send uses to here.'),
       },
       retryFeedback: [
         tri('Вещь = it.', 'Річ = it.', 'Thing = it.'),
         tri('К ней: to her.', 'До неї: to her.', 'To her.'),
-        tri('Готовый кусок: send it to her.', 'Готовий шматок: send it to her.', 'Ready chunk: send it to her.'),
+        tri('Готовый кусок: send it to her.', 'Готовий зворот: send it to her.', 'Ready chunk: send it to her.'),
         tri('Ответ: Send it to her.', 'Відповідь: Send it to her.', 'Answer: Send it to her.'),
       ],
       fallbackExplanation: tri('С it: send it to her.', 'З it: send it to her.', 'With it: send it to her.'),
@@ -652,13 +652,13 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. С it: show it to me.', 'Так. З it: show it to me.', 'Yes. With it: show it to me.'),
       wrong: {
         'me it': tri('Show me it звучит плохо для стандартной учебной фразы. Лучше show it to me.', 'Show me it звучить погано для стандартної навчальної фрази. Краще show it to me.', 'Use show it to me.'),
-        'to me it': tri('Show to me it ломает порядок. Нужен кусок show it to me.', 'Show to me it ламає порядок. Потрібен шматок show it to me.', 'Use show it to me.'),
+        'to me it': tri('Show to me it ломает порядок. Нужен кусок show it to me.', 'Show to me it ламає порядок. Потрібен зворот show it to me.', 'Use show it to me.'),
         'it for me': tri('С show человеку обычно помогает to: show it to me.', 'З show людині зазвичай допомагає to: show it to me.', 'Show uses to here.'),
       },
       retryFeedback: [
         tri('Вещь = it.', 'Річ = it.', 'Thing = it.'),
         tri('Кому показать? To me.', 'Кому показати? To me.', 'To me.'),
-        tri('Готовый кусок: show it to me.', 'Готовий шматок: show it to me.', 'Ready chunk: show it to me.'),
+        tri('Готовый кусок: show it to me.', 'Готовий зворот: show it to me.', 'Ready chunk: show it to me.'),
         tri('Ответ: Show it to me.', 'Відповідь: Show it to me.', 'Answer: Show it to me.'),
       ],
       fallbackExplanation: tri('С it: show it to me.', 'З it: show it to me.', 'With it: show it to me.'),
@@ -682,12 +682,12 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       wrong: {
         'it to me': tri('С buy обычно не "куда", а "для кого". Поэтому buy it for me.', 'З buy зазвичай не "куди", а "для кого". Тому buy it for me.', 'With buy, use for here: buy it for me.'),
         'me it': tri('Buy me it звучит плохо. С it безопаснее buy it for me.', 'Buy me it звучить погано. З it безпечніше buy it for me.', 'Use buy it for me.'),
-        'for me it': tri('Buy for me it ломает порядок. Нужен кусок buy it for me.', 'Buy for me it ламає порядок. Потрібен шматок buy it for me.', 'Use buy it for me.'),
+        'for me it': tri('Buy for me it ломает порядок. Нужен кусок buy it for me.', 'Buy for me it ламає порядок. Потрібен зворот buy it for me.', 'Use buy it for me.'),
       },
       retryFeedback: [
         tri('Вещь = it.', 'Річ = it.', 'Thing = it.'),
         tri('Для меня = for me.', 'Для мене = for me.', 'For me.'),
-        tri('Готовый кусок: buy it for me.', 'Готовий шматок: buy it for me.', 'Ready chunk: buy it for me.'),
+        tri('Готовый кусок: buy it for me.', 'Готовий зворот: buy it for me.', 'Ready chunk: buy it for me.'),
         tri('Ответ: Buy it for me.', 'Відповідь: Buy it for me.', 'Answer: Buy it for me.'),
       ],
       fallbackExplanation: tri('Buy + it + for me.', 'Buy + it + for me.', 'Buy + it + for me.'),
@@ -716,7 +716,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Вещь = it.', 'Річ = it.', 'Thing = it.'),
         tri('Для неё = for her.', 'Для неї = for her.', 'For her.'),
-        tri('Готовый кусок: make it for her.', 'Готовий шматок: make it for her.', 'Ready chunk: make it for her.'),
+        tri('Готовый кусок: make it for her.', 'Готовий зворот: make it for her.', 'Ready chunk: make it for her.'),
         tri('Ответ: Make it for her.', 'Відповідь: Make it for her.', 'Answer: Make it for her.'),
       ],
       fallbackExplanation: tri('Make + it + for her.', 'Make + it + for her.', 'Make + it + for her.'),

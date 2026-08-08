@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, type ViewStyle } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { View, Text, StyleSheet, PanResponder, type ViewStyle } from 'react-native';
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -7,8 +7,8 @@ import Reanimated, {
   withTiming,
   withSpring,
   cancelAnimation,
-  Easing,
 } from 'react-native-reanimated';
+import { AdaptiveLabel } from '../text-integrity/AdaptiveLabel';
 
 export type StatBar = {
   /** Уникальный ключ (например дата дня). */
@@ -23,6 +23,8 @@ export type StatBar = {
   bottomLabel: string;
   /** Выделить как «сегодня». */
   highlight?: boolean;
+  /** Значение для скраб-пузыря (видно только пока палец на графике). */
+  scrubLabel?: string;
 };
 
 type StatBarsProps = {
@@ -43,11 +45,29 @@ type StatBarsProps = {
   /** Задержка старта (для каскада карточек). */
   delayMs?: number;
   style?: ViewStyle;
+  /**
+   * Скраб-режим: постоянных подписей над столбиками нет; пока палец на
+   * графике — зажатый столбик подсвечен, над ним пузырь со значением и датой.
+   */
+  scrubEnabled?: boolean;
+  /** Цвет вспышки-подсветки зажатого столбика. */
+  scrubHighlightColor?: string;
+  scrubBubbleBg?: string;
+  scrubBubbleBorder?: string;
+  scrubValueColor?: string;
+  scrubCaptionColor?: string;
+  /** Первый скраб за сессию (экран гасит подсказку и пишет флаг в сторадж). */
+  onScrubStart?: () => void;
 };
 
 const PLOT_H_DEFAULT = 88;
 const MIN_ACTIVE_H = 14;
 const STUMP_H = 8;
+const BUBBLE_W = 96;
+const BUBBLE_ZONE_H = 42;
+const ROW_GAP = 7;
+/** Горизонтальный паддинг styles.row — учитываем в геометрии hit-тестинга скраба. */
+const ROW_PAD = 2;
 
 function Bar({
   bar,
@@ -57,6 +77,8 @@ function Bar({
   accentSoft,
   inactiveColor,
   delayMs,
+  pressed,
+  pressedColor,
 }: {
   bar: StatBar;
   index: number;
@@ -65,11 +87,14 @@ function Bar({
   accentSoft?: string;
   inactiveColor: string;
   delayMs: number;
+  pressed?: boolean;
+  pressedColor?: string;
 }) {
   const targetH = bar.active
     ? Math.max(MIN_ACTIVE_H, Math.round(bar.ratio * plotH))
     : STUMP_H;
   const grow = useSharedValue(0);
+  const pressGlow = useSharedValue(0);
 
   useEffect(() => {
     grow.value = 0;
@@ -81,8 +106,17 @@ function Bar({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetH, index, delayMs]);
 
+  useEffect(() => {
+    pressGlow.value = withTiming(pressed ? 1 : 0, { duration: 110 });
+    return () => cancelAnimation(pressGlow);
+  }, [pressed, pressGlow]);
+
   const animStyle = useAnimatedStyle(() => ({
     height: Math.max(2, targetH * grow.value),
+  }));
+
+  const pressStyle = useAnimatedStyle(() => ({
+    opacity: pressGlow.value * 0.3,
   }));
 
   return (
@@ -105,6 +139,13 @@ function Bar({
           // светлая «шапка» сверху на фоне основного accent.
           <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '55%', backgroundColor: accentSoft, opacity: 0.9 }} />
         ) : null}
+        {pressedColor ? (
+          // Вспышка подсветки зажатого столбика (скраб-режим).
+          <Reanimated.View
+            pointerEvents="none"
+            style={[StyleSheet.absoluteFill, { backgroundColor: pressedColor }, pressStyle]}
+          />
+        ) : null}
       </Reanimated.View>
     </View>
   );
@@ -113,6 +154,10 @@ function Bar({
 /**
  * Killer бар-чарт недели: столбики «вырастают» пружиной каскадом при появлении,
  * активные — с градиентной шапкой, «сегодня» подсвечен точкой-маркером.
+ * В скраб-режиме постоянных значений нет: зажал палец — подсветка и пузырь
+ * со значением и датой, отпустил — исчезло. Без JS-интервалов: позиция и
+ * видимость пузыря — shared values, React-стейт меняется только на границе
+ * столбиков.
  */
 export function StatBars({
   bars,
@@ -127,46 +172,200 @@ export function StatBars({
   bottomLabelMutedColor,
   delayMs = 0,
   style,
+  scrubEnabled = false,
+  scrubHighlightColor,
+  scrubBubbleBg,
+  scrubBubbleBorder,
+  scrubValueColor,
+  scrubCaptionColor,
+  onScrubStart,
 }: StatBarsProps) {
+  const [rowWidth, setRowWidth] = useState(0);
+  const [scrubIndex, setScrubIndex] = useState<number | null>(null);
+  const scrubIndexRef = useRef<number | null>(null);
+  const scrubStartedRef = useRef(false);
+  const bubbleOpacity = useSharedValue(0);
+  const bubbleX = useSharedValue(0);
+
+  const gap = ROW_GAP;
+  const columnCount = bars.length;
+  const columnWidth = columnCount > 0 && rowWidth > 0
+    ? Math.max(1, (rowWidth - ROW_PAD * 2 - gap * (columnCount - 1)) / columnCount)
+    : 1;
+
+  // BUG FIX (hit-testing): в RN locationX считается относительно touch target
+  // (дочерней колонки под пальцем), а не responder-вью, поэтому любой тап давал
+  // x≈0 и всегда выбирался первый столбик. Считаем x как pageX минус оконная
+  // позиция строки (measureInWindow) и выбираем ближайший центр колонки.
+  const rowRef = useRef<View | null>(null);
+  const rowPageXRef = useRef(0);
+  const measureRow = useCallback(() => {
+    const node = rowRef.current as unknown as {
+      measureInWindow?: (cb: (x: number) => void) => void;
+    } | null;
+    if (node && typeof node.measureInWindow === 'function') {
+      node.measureInWindow((x: number) => {
+        rowPageXRef.current = x;
+      });
+    }
+  }, []);
+
+  const scrubResponder = useMemo(() => {
+    if (!scrubEnabled) return null;
+    const colW = bars.length > 0 && rowWidth > 0
+      ? Math.max(1, (rowWidth - ROW_PAD * 2 - gap * (bars.length - 1)) / bars.length)
+      : 1;
+    const centerForIndex = (i: number): number => ROW_PAD + i * (colW + gap) + colW / 2;
+    const indexForX = (x: number): number => {
+      const n = bars.length;
+      if (n === 0) return 0;
+      let best = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < n; i++) {
+        const d = Math.abs(x - centerForIndex(i));
+        if (d < bestDist) {
+          bestDist = d;
+          best = i;
+        }
+      }
+      return best;
+    };
+    const handleScrub = (pageX: number) => {
+      const x = pageX - rowPageXRef.current;
+      const idx = indexForX(x);
+      const center = centerForIndex(idx);
+      const clamped = Math.max(BUBBLE_W / 2, Math.min(Math.max(BUBBLE_W / 2, rowWidth - BUBBLE_W / 2), center));
+      bubbleX.value = clamped - BUBBLE_W / 2;
+      bubbleOpacity.value = withTiming(1, { duration: 120 });
+      if (scrubIndexRef.current !== idx) {
+        scrubIndexRef.current = idx;
+        setScrubIndex(idx);
+      }
+      if (!scrubStartedRef.current) {
+        scrubStartedRef.current = true;
+        onScrubStart?.();
+      }
+    };
+    const endScrub = () => {
+      bubbleOpacity.value = withTiming(0, { duration: 140 });
+      if (scrubIndexRef.current !== null) {
+        scrubIndexRef.current = null;
+        setScrubIndex(null);
+      }
+    };
+    return PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      // Вертикальный скролл экрана забирает жест себе — пузырь при этом гасим.
+      onPanResponderTerminationRequest: () => true,
+      onPanResponderGrant: (evt) => {
+        // Перемеряем позицию строки (асинхронно) — пригодится для move-событий.
+        measureRow();
+        handleScrub(evt.nativeEvent.pageX);
+      },
+      onPanResponderMove: (evt) => handleScrub(evt.nativeEvent.pageX),
+      onPanResponderRelease: endScrub,
+      onPanResponderTerminate: endScrub,
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrubEnabled, rowWidth, bars.length, gap, onScrubStart, measureRow]);
+
+  const bubbleStyle = useAnimatedStyle(() => ({
+    opacity: bubbleOpacity.value,
+    transform: [{ translateX: bubbleX.value }],
+  }));
+
+  const columns = bars.map((bar, i) => (
+    <View key={bar.key} style={styles.col}>
+      {!scrubEnabled ? (
+        bar.topLabel ? (
+          <AdaptiveLabel testID={`stat-bar-top-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.topLabel, { color: bar.highlight ? topLabelColor : topLabelMutedColor }]}>
+            {bar.topLabel}
+          </AdaptiveLabel>
+        ) : <View style={{ height: 12 }} />
+      ) : null}
+      <Bar
+        bar={bar}
+        index={i}
+        plotH={height}
+        accent={accent}
+        accentSoft={accentSoft}
+        inactiveColor={inactiveColor}
+        delayMs={delayMs}
+        pressed={scrubEnabled && scrubIndex === i}
+        pressedColor={scrubEnabled ? scrubHighlightColor : undefined}
+      />
+      <View style={styles.bottomWrap}>
+        <AdaptiveLabel testID={`stat-bar-bottom-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.bottomLabel, { color: bar.highlight ? bottomLabelColor : bottomLabelMutedColor, fontWeight: bar.highlight ? '900' : '700' }]}>
+          {bar.bottomLabel}
+        </AdaptiveLabel>
+        {bar.highlight && todayDotColor ? (
+          <View style={[styles.todayDot, { backgroundColor: todayDotColor }]} />
+        ) : <View style={{ height: 4, marginTop: 3 }} />}
+      </View>
+    </View>
+  ));
+
+  if (!scrubEnabled) {
+    return <View style={[styles.row, style]}>{columns}</View>;
+  }
+
+  const activeBar = scrubIndex !== null ? bars[scrubIndex] : undefined;
+
   return (
-    <View style={[styles.row, style]}>
-      {bars.map((bar, i) => (
-        <View key={bar.key} style={styles.col}>
-          {bar.topLabel ? (
-            <Text style={[styles.topLabel, { color: bar.highlight ? topLabelColor : topLabelMutedColor }]} numberOfLines={1}>
-              {bar.topLabel}
-            </Text>
-          ) : <View style={{ height: 12 }} />}
-          <Bar
-            bar={bar}
-            index={i}
-            plotH={height}
-            accent={accent}
-            accentSoft={accentSoft}
-            inactiveColor={inactiveColor}
-            delayMs={delayMs}
-          />
-          <View style={styles.bottomWrap}>
-            <Text style={[styles.bottomLabel, { color: bar.highlight ? bottomLabelColor : bottomLabelMutedColor, fontWeight: bar.highlight ? '900' : '700' }]} numberOfLines={1}>
-              {bar.bottomLabel}
-            </Text>
-            {bar.highlight && todayDotColor ? (
-              <View style={[styles.todayDot, { backgroundColor: todayDotColor }]} />
-            ) : <View style={{ height: 4, marginTop: 3 }} />}
-          </View>
-        </View>
-      ))}
+    <View
+      style={style}
+      onLayout={(event) => setRowWidth(event.nativeEvent.layout.width)}
+    >
+      <View style={styles.bubbleZone} pointerEvents="none">
+        <Reanimated.View
+          style={[
+            styles.bubble,
+            { backgroundColor: scrubBubbleBg, borderColor: scrubBubbleBorder },
+            bubbleStyle,
+          ]}
+        >
+          <Text style={[styles.bubbleValue, { color: scrubValueColor }]}>
+            {activeBar ? (activeBar.scrubLabel ?? activeBar.topLabel ?? '') : ''}
+          </Text>
+          <Text style={[styles.bubbleCaption, { color: scrubCaptionColor }]}>
+            {activeBar ? activeBar.bottomLabel : ''}
+          </Text>
+        </Reanimated.View>
+      </View>
+      <View
+        ref={rowRef}
+        style={styles.row}
+        onLayout={measureRow}
+        {...(scrubResponder?.panHandlers ?? {})}
+      >
+        {columns}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'flex-end', gap: 7, paddingHorizontal: 2 },
+  row: { flexDirection: 'row', alignItems: 'flex-end', gap: ROW_GAP, paddingHorizontal: 2 },
   col: { flex: 1, alignItems: 'center', gap: 5 },
   topLabel: { fontSize: 9, fontWeight: '800' },
   bottomWrap: { alignItems: 'center' },
   bottomLabel: { fontSize: 10 },
   todayDot: { width: 4, height: 4, borderRadius: 2, marginTop: 3 },
+  bubbleZone: { height: BUBBLE_ZONE_H, justifyContent: 'flex-end' },
+  bubble: {
+    position: 'absolute',
+    bottom: 2,
+    left: 0,
+    width: BUBBLE_W,
+    borderRadius: 11,
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    alignItems: 'center',
+  },
+  bubbleValue: { fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  bubbleCaption: { fontSize: 10, fontWeight: '700', marginTop: 1 },
 });
 
 export default StatBars;

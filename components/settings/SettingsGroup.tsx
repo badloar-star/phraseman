@@ -14,33 +14,34 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, type ViewStyle, type TextStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
-import { compassShadow } from '../../constants/compassTheme';
+import TonalSurface from '../TonalSurface';
+import { FlowText } from '../text-integrity/FlowText';
 
 /**
  * Палитра плиток-иконок.
  *
- * Намеренно НЕ системные цвета Apple/iOS: каждый оттенок сдвинут от
- * соответствующего systemColor (#34C759, #FF3B30, #FF9500, #AF52DE …),
- * чтобы экран не читался как точная копия iOS/Telegram-настроек. Сохранены
- * 10 различимых «ролей»-хюэ (рядам нужна разноцветность для скан-абилити),
- * но тон уведён в более тёплую/глубокую гамму приложения.
+ * зачем: владелец попросил «нивелированные» цвета в настройках (референс Bevel) —
+ * раздел не должен быть ядовитым. Прежняя гамма была близка к неону; здесь те же
+ * 10 различимых «ролей»-хюэ (рядам нужна разноцветность для скан-абилити), но
+ * сатурация и яркость осознанно снижены: спокойные, припылённые тона, которые
+ * не спорят ни с одной темой приложения.
  *
- * Каждый цвет — пара [верх, низ] для лёгкого вертикального градиента плитки
- * (светлее сверху → насыщеннее снизу), вместо плоской iOS-заливки.
+ * Каждый цвет — пара [верх, низ] для едва заметного вертикального градиента
+ * плитки (светлее сверху → глубже снизу), вместо плоской iOS-заливки.
  */
 export const SETTINGS_TILE_COLORS = {
-  blue:   ['#4C8DF6', '#2D63D8'] as const, // прохладно-индиговый, не systemBlue
-  green:  ['#3FB984', '#2C9466'] as const, // лесной/изумрудный, не systemGreen
-  orange: ['#F6A53A', '#E07C1E'] as const, // янтарный, не systemOrange
-  red:    ['#F06868', '#D24545'] as const, // тёпло-коралловый, не systemRed
-  purple: ['#9B7BE8', '#7B5BD6'] as const, // лавандовый, не systemPurple
-  teal:   ['#3FB6C2', '#2C90A0'] as const, // приглушённый бирюзовый
-  pink:   ['#F26F9C', '#D8487F'] as const, // розово-маджента, не systemPink
-  indigo: ['#6F73DE', '#4F53C6'] as const, // сине-фиолетовый
-  gray:   ['#9AA0A8', '#727880'] as const, // тёплый графит
-  yellow: ['#F6C23A', '#E0A21E'] as const, // золотисто-жёлтый
+  blue:   ['#5E8FD0', '#43689F'] as const, // припылённый синий
+  green:  ['#5FA981', '#41815F'] as const, // шалфейный зелёный
+  orange: ['#D99A57', '#B57634'] as const, // мягкий янтарь
+  red:    ['#CF7A6E', '#A85A50'] as const, // глиняный коралл
+  purple: ['#9A87CB', '#75629F'] as const, // пыльная лаванда
+  teal:   ['#5FA8AF', '#42828A'] as const, // морской туман
+  pink:   ['#C77E9B', '#9E5C79'] as const, // увядшая роза
+  indigo: ['#7B82C4', '#5A6099'] as const, // сумеречный индиго
+  gray:   ['#8E959E', '#6B727B'] as const, // тёплый графит
+  yellow: ['#CBA65A', '#A88238'] as const, // приглушённое золото
 } as const satisfies Record<string, readonly [string, string]>;
 
 export type SettingsTileColor = keyof typeof SETTINGS_TILE_COLORS;
@@ -70,10 +71,13 @@ const TILE_GLYPH_ALIAS: Record<string, keyof typeof Ionicons.glyphMap> = {
   construct:       'build-outline',       // админ → гаечный ключ (контур)
 };
 
-const TILE_SIZE = 29;
+const TILE_SIZE = 30;
 
 /** Боковой отступ карточек от краёв экрана (как у Telegram). */
 export const SETTINGS_GROUP_MARGIN = 16;
+/** зачем: владелец попросил «такую же чистоту, как в референсе» — карточки
+ *  скруглены крупнее (16 вместо 12), ряды выше и дышат свободнее. */
+export const SETTINGS_GROUP_RADIUS = 16;
 /** Левый отступ ряда (paddingHorizontal). Иконка + текст начинаются отсюда. */
 const ROW_PAD_H = 14;
 /** Отступ контента после плитки. Делитель выровнен по тексту, не по иконке. */
@@ -128,23 +132,13 @@ export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIcon
         end={{ x: 0.5, y: 1 }}
         style={StyleSheet.absoluteFill}
       />
-      {/* Верхний внутренний блик — отделяет плитку от плоского iOS-вида. */}
+      {/* зачем: чистый вид по референсу — блик почти невидим (0.10 вместо 0.28),
+          плитка читается спокойной заливкой, а не «глянцевой конфетой». */}
       <LinearGradient
-        colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
+        colors={['rgba(255,255,255,0.10)', 'rgba(255,255,255,0)']}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 0.6 }}
         style={StyleSheet.absoluteFill}
-      />
-      {/*
-        Рамку рисуем НАКЛАДКОЙ поверх градиентов, а не на контейнере: на Android
-        borderWidth у View с overflow:'hidden' обрезается клипом и не виден.
-      */}
-      <View
-        pointerEvents="none"
-        style={[
-          StyleSheet.absoluteFillObject,
-          { borderRadius: radius, borderWidth: 0, borderColor: 'rgba(255,255,255,0.22)' },
-        ]}
       />
       <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color="#FFFFFF" />
     </View>
@@ -157,7 +151,9 @@ interface SettingsSectionTitleProps {
   style?: TextStyle;
 }
 
-/** Мелкий приглушённый заголовок секции над карточкой. */
+/** Приглушённый заголовок секции над карточкой.
+ *  зачем: по референсу владельца («General» в Bevel) — обычный регистр вместо
+ *  капса с разрядкой: спокойнее и чище, капс-лейблы читались как крик. */
 export function SettingsSectionTitle({ title, style }: SettingsSectionTitleProps) {
   const { f, theme: t } = useTheme();
   return (
@@ -165,13 +161,11 @@ export function SettingsSectionTitle({ title, style }: SettingsSectionTitleProps
       style={[
         {
           color: t.textMuted,
-          fontSize: f.label,
+          fontSize: f.body,
           fontWeight: '600',
-          textTransform: 'uppercase',
-          letterSpacing: 0.6,
           paddingHorizontal: SETTINGS_GROUP_MARGIN + ROW_PAD_H,
-          paddingTop: 22,
-          paddingBottom: 8,
+          paddingTop: 26,
+          paddingBottom: 10,
         },
         style,
       ]}
@@ -206,26 +200,23 @@ export function SettingsGroup({
   style,
 }: SettingsGroupProps) {
   const { theme: t } = useTheme();
-  const isCompass = false;
   const items = React.Children.toArray(children).filter(Boolean);
   const groupSurface = surfaceColor ?? t.bgCard;
   const groupBorder = borderColor ?? t.border;
   const groupDivider = dividerColor ?? groupBorder;
 
   return (
-    <View
+    <TonalSurface
+      radius={SETTINGS_GROUP_RADIUS}
+      backgroundColor={groupSurface}
       style={[
         {
           marginHorizontal: SETTINGS_GROUP_MARGIN,
           marginTop: marginTop ?? 0,
           marginBottom: marginBottom ?? 0,
-          borderRadius: 12,
-          backgroundColor: groupSurface,
-          borderWidth: 0,
-          borderColor: groupBorder,
+          borderRadius: SETTINGS_GROUP_RADIUS,
           overflow: 'hidden',
         },
-        isCompass ? compassShadow(1) : null,
         style,
       ]}
     >
@@ -243,7 +234,7 @@ export function SettingsGroup({
           {child}
         </View>
       ))}
-    </View>
+    </TonalSurface>
   );
 }
 
@@ -252,6 +243,10 @@ interface SettingsRowProps {
   color: SettingsTileColor;
   label: string;
   sub?: string;
+  /** Текущее значение справа (имя, тема, язык) — эппловский detail-текст.
+   *  зачем: запрет владельца на подписи-расшифровки ПОД названием; значение
+   *  живёт справа, ряд остаётся однострочным и чистым (референс Bevel). */
+  value?: string;
   onPress?: () => void;
   /** Правый аксессуар: по умолчанию шеврон. Передай switch / value-текст / null. */
   right?: React.ReactNode;
@@ -268,6 +263,7 @@ export function SettingsRow({
   color,
   label,
   sub,
+  value,
   onPress,
   right,
   hideChevron,
@@ -289,29 +285,45 @@ export function SettingsRow({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: ROW_PAD_H,
-        paddingVertical: 11,
-        minHeight: 52,
+        paddingVertical: 13,
+        minHeight: 56,
       }}
     >
       <SettingsIconTile icon={icon} color={danger ? DANGER_TILE_COLOR : color} />
       <View style={{ flex: 1, marginLeft: ROW_GAP, marginRight: 8 }}>
-        <Text
-          style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg }}
-          numberOfLines={2}
+        {/* зачем: text-integrity — вместо усечения numberOfLines текст переносится
+            (FlowText), ряд растёт по minHeight; длинные локали не режутся. */}
+        <FlowText
+          testID={testID ? `${testID}-label` : 'settings-row-label'}
+          provenance="authored"
+          style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}
         >
           {label}
-        </Text>
+        </FlowText>
         {sub ? (
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={2}>
+          <FlowText
+            testID={testID ? `${testID}-sub` : 'settings-row-sub'}
+            provenance="authored"
+            style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}
+          >
             {sub}
-          </Text>
+          </FlowText>
         ) : null}
       </View>
+      {value ? (
+        <FlowText
+          testID={testID ? `${testID}-value` : 'settings-row-value'}
+          provenance="authored"
+          style={{ color: t.textMuted, fontSize: f.body, maxWidth: '42%', marginRight: 6 }}
+        >
+          {value}
+        </FlowText>
+      ) : null}
       {right !== undefined
         ? right
         : hideChevron
           ? null
-          : <Ionicons name="chevron-forward" size={17} color={t.textGhost} />}
+          : <Ionicons name="chevron-forward" size={18} color={t.textGhost} />}
     </Container>
   );
 }

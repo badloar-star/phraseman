@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,6 +23,7 @@ const DEFAULT_PHRASE_VIDEO_TRACK_INDEX = 1;
 const REQUIRED_WIDTH = 1080;
 const REQUIRED_HEIGHT = 1920;
 const REQUIRED_ROWS = 300;
+const DEFAULT_PHRASE_DURATION_US = 6_333_333;
 const BANNED_GENERIC_QUERIES = new Set([
   'person talking close up',
   'dramatic reaction close up',
@@ -125,6 +127,14 @@ function backupFiles(files) {
   return backupDir;
 }
 
+function restoreFilesFromBackup(backupDir, files) {
+  for (const rel of files) {
+    const source = path.join(backupDir, rel);
+    const destination = path.join(DRAFT_DIR, rel);
+    if (fs.existsSync(source)) fs.copyFileSync(source, destination);
+  }
+}
+
 function loadManifest() {
   const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
   if (!Array.isArray(manifest.rows)) throw new Error('Manifest has no rows array');
@@ -207,14 +217,105 @@ function loadExcludedSources() {
   return { ids, manifests };
 }
 
-function findPhraseVideoTrack(draft) {
+function findPhraseVideoTrack(draft, { allowSingleSegment = false } = {}) {
   const track = draft.tracks?.[TRACK_INDEX];
   if (!track) throw new Error(`Track ${TRACK_INDEX} does not exist`);
   if (track.type !== 'video') throw new Error(`Track ${TRACK_INDEX} is ${track.type}, expected video`);
-  if ((track.segments || []).length !== REQUIRED_ROWS) {
+  const segmentCount = (track.segments || []).length;
+  if (segmentCount !== REQUIRED_ROWS && !(allowSingleSegment && segmentCount === 1)) {
     throw new Error(`Track ${TRACK_INDEX} has ${track.segments?.length || 0} segments, expected ${REQUIRED_ROWS}`);
   }
   return { track, trackIndex: TRACK_INDEX };
+}
+
+function findPhraseTimingTrack(draft) {
+  const candidates = (draft.tracks || [])
+    .map((track, trackIndex) => ({ track, trackIndex }))
+    .filter(({ track }) => track.type === 'text' && (track.segments || []).length === REQUIRED_ROWS)
+    .filter(({ track }) => {
+      const segments = track.segments || [];
+      return segments.every((segment) => {
+        const range = segment.target_timerange;
+        return Number.isFinite(range?.start) && Number.isFinite(range?.duration) && range.duration > 0;
+      });
+    });
+  const preferred = candidates.find(({ track }) => track.segments?.[0]?.target_timerange?.start === 0) || candidates[0];
+  if (!preferred) throw new Error('Could not find a 300-segment text track to anchor phrase background timing');
+  return {
+    trackIndex: preferred.trackIndex,
+    timings: preferred.track.segments.map((segment, index) => ({
+      index: index + 1,
+      start: Number(segment.target_timerange.start),
+      duration: Number(segment.target_timerange.duration),
+    })),
+  };
+}
+
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function positiveDuration(value, fallback = DEFAULT_PHRASE_DURATION_US) {
+  const duration = Number(value);
+  return Number.isFinite(duration) && duration > 0 ? Math.round(duration) : fallback;
+}
+
+function buildTopologyPlan(referenceDraft, rows) {
+  const { track } = findPhraseVideoTrack(referenceDraft, { allowSingleSegment: true });
+  if ((track.segments || []).length === REQUIRED_ROWS) return null;
+  const timing = findPhraseTimingTrack(referenceDraft);
+  return {
+    timingTrackIndex: timing.trackIndex,
+    entries: rows.map((row, index) => ({
+      index: row.index,
+      segmentId: randomUUID().toUpperCase(),
+      materialId: randomUUID().toUpperCase(),
+      sourceDuration: positiveDuration(row.durationUs),
+      targetStart: timing.timings[index].start,
+      targetDuration: timing.timings[index].duration,
+    })),
+  };
+}
+
+function applyRowToMaterial(material, row, durationUs) {
+  material.duration = durationUs;
+  material.path = posix(row.draftLocalPath);
+  material.media_path = '';
+  material.local_id = '';
+  material.has_audio = false;
+  material.reverse_path = '';
+  material.intensifies_path = '';
+  material.intensifies_audio_path = '';
+  material.cartoon_path = '';
+  material.material_id = '';
+  material.material_name = row.fileName || path.basename(row.draftLocalPath);
+  material.width = REQUIRED_WIDTH;
+  material.height = REQUIRED_HEIGHT;
+  material.source = 0;
+  material.source_platform = 0;
+  material.category_id = '';
+  material.category_name = '';
+  material.material_url = '';
+  material.request_id = '';
+  material.extra_type_option = 0;
+  material.is_ai_generate_content = false;
+  material.aigc_type = 'none';
+  material.check_flag = 62977791;
+}
+
+function applyRowToSegment(segment, timing, sourceDuration) {
+  const targetDuration = positiveDuration(timing?.targetDuration, sourceDuration);
+  segment.source_timerange = { start: 0, duration: sourceDuration };
+  segment.target_timerange = { start: Number(timing?.targetStart || 0), duration: targetDuration };
+  segment.render_timerange = { start: 0, duration: 0 };
+  segment.speed = sourceDuration / targetDuration;
+  segment.is_loop = false;
+  segment.volume = 0;
+  segment.last_nonzero_volume = 1;
+  segment.visible = true;
+  segment.clip = segment.clip || {};
+  segment.clip.alpha = 1;
+  segment.extra_material_refs = [];
 }
 
 function copyAssetsToDraft(rows) {
@@ -227,37 +328,57 @@ function copyAssetsToDraft(rows) {
   });
 }
 
-function patchDraftJson(draft, rows) {
+function patchDraftJson(draft, rows, topologyPlan) {
   const videos = new Map((draft.materials?.videos || []).map((item) => [item.id, item]));
-  const { track, trackIndex } = findPhraseVideoTrack(draft);
-  if ((track.segments || []).length !== rows.length) {
-    throw new Error(`Track ${trackIndex} has ${track.segments?.length || 0} segments, expected ${rows.length}`);
+  const { track, trackIndex } = findPhraseVideoTrack(draft, { allowSingleSegment: Boolean(topologyPlan) });
+  if (topologyPlan) {
+    if ((track.segments || []).length !== 1) {
+      throw new Error(`Track ${trackIndex} is not eligible for phrase-background expansion`);
+    }
+    const timing = findPhraseTimingTrack(draft);
+    if (timing.trackIndex !== topologyPlan.timingTrackIndex) {
+      throw new Error(`Phrase timing track mismatch: expected ${topologyPlan.timingTrackIndex}, found ${timing.trackIndex}`);
+    }
+    const templateSegment = track.segments[0];
+    const templateMaterial = videos.get(templateSegment.material_id);
+    if (!templateMaterial) throw new Error(`Missing background template material: ${templateSegment.material_id}`);
+    const allMaterialIds = new Set((draft.materials?.videos || []).map((item) => item.id));
+    const allSegmentIds = new Set((draft.tracks || []).flatMap((item) => (item.segments || []).map((segment) => segment.id)));
+    for (const entry of topologyPlan.entries) {
+      if (allMaterialIds.has(entry.materialId) || allSegmentIds.has(entry.segmentId)) {
+        throw new Error(`Generated CapCut id collision for phrase ${entry.index}`);
+      }
+    }
+    const newMaterials = [];
+    track.segments = rows.map((row, index) => {
+      const entry = topologyPlan.entries[index];
+      const material = clone(templateMaterial);
+      material.id = entry.materialId;
+      applyRowToMaterial(material, row, entry.sourceDuration);
+      newMaterials.push(material);
+      videos.set(material.id, material);
+      const segment = clone(templateSegment);
+      segment.id = entry.segmentId;
+      segment.material_id = entry.materialId;
+      applyRowToSegment(segment, entry, entry.sourceDuration);
+      return segment;
+    });
+    draft.materials = draft.materials || {};
+    draft.materials.videos = [...(draft.materials.videos || []), ...newMaterials];
   }
+  if ((track.segments || []).length !== rows.length) throw new Error(`Track ${trackIndex} has ${track.segments?.length || 0} segments, expected ${rows.length}`);
+  const timing = findPhraseTimingTrack(draft);
   const touched = [];
   for (const [index, segment] of track.segments.entries()) {
     const row = rows[index];
     const material = videos.get(segment.material_id);
     if (!material) throw new Error(`Missing video material for segment ${index + 1}: ${segment.material_id}`);
-    const durationUs = Number(row.durationUs || 6333333);
-    material.duration = durationUs;
-    material.path = posix(row.draftLocalPath);
-    material.media_path = '';
-    material.material_name = row.fileName || path.basename(row.draftLocalPath);
-    material.width = REQUIRED_WIDTH;
-    material.height = REQUIRED_HEIGHT;
-    material.has_audio = false;
-    material.source = 0;
-    material.source_platform = 0;
-    material.category_id = '';
-    material.category_name = '';
-    material.material_url = '';
-    material.request_id = '';
-    material.is_ai_generate_content = false;
-    material.aigc_type = 'none';
-    material.check_flag = 62977791;
-    if (segment.source_timerange?.duration && segment.source_timerange.duration > durationUs) {
-      segment.source_timerange.duration = durationUs;
-    }
+    const durationUs = positiveDuration(row.durationUs);
+    applyRowToMaterial(material, row, durationUs);
+    applyRowToSegment(segment, {
+      targetStart: timing.timings[index].start,
+      targetDuration: timing.timings[index].duration,
+    }, durationUs);
     touched.push({
       index: row.index,
       phraseEn: row.phraseEn,
@@ -288,6 +409,7 @@ function checkPatched(files, manifestRows) {
       errors.push({ file: rel, type: 'track_missing', message: error.message });
       continue;
     }
+    const timing = findPhraseTimingTrack(draft);
     const paths = [];
     for (const [index, segment] of (trackInfo.track.segments || []).entries()) {
       const material = videos.get(segment.material_id);
@@ -305,6 +427,14 @@ function checkPatched(files, manifestRows) {
       if (!material.material_name?.includes(String(row.index).padStart(3, '0'))) {
         errors.push({ file: rel, index: index + 1, type: 'material_name_not_indexed', material_name: material.material_name });
       }
+      const expected = timing.timings[index];
+      if (segment.target_timerange?.start !== expected.start || segment.target_timerange?.duration !== expected.duration) {
+        errors.push({ file: rel, index: index + 1, type: 'timing_mismatch', expected, actual: segment.target_timerange });
+      }
+      if (!segment.visible || Number(segment.clip?.alpha) !== 1 || Number(segment.volume) !== 0) {
+        errors.push({ file: rel, index: index + 1, type: 'visibility_or_audio_gate', visible: segment.visible, alpha: segment.clip?.alpha, volume: segment.volume });
+      }
+      if (material.media_path) errors.push({ file: rel, index: index + 1, type: 'draft_placeholder_media_path', media_path: material.media_path });
     }
     const uniquePaths = new Set(paths.filter(Boolean));
     if (uniquePaths.size !== REQUIRED_ROWS) {
@@ -322,7 +452,6 @@ function main() {
   if (!fs.existsSync(DRAFT_DIR)) throw new Error(`Draft not found: ${DRAFT_DIR}`);
   const files = draftFiles();
   const manifest = loadManifest();
-  const rows = CHECK_ONLY ? manifest.rows : copyAssetsToDraft(manifest.rows);
   const running = capCutIsRunning();
   if (!CHECK_ONLY && running.length) {
     throw new Error(`CapCut is running (${[...new Set(running)].join(', ')}). Close it before patching draft files.`);
@@ -331,15 +460,56 @@ function main() {
   const patched = [];
   if (!CHECK_ONLY) {
     backupDir = backupFiles(files);
-    for (const rel of files) {
-      const full = path.join(DRAFT_DIR, rel);
-      const draft = JSON.parse(fs.readFileSync(full, 'utf8'));
-      const result = patchDraftJson(draft, rows);
-      fs.writeFileSync(full, JSON.stringify(draft), 'utf8');
-      patched.push({ file: rel, trackIndex: result.trackIndex, touched: result.touched.length });
+    try {
+      const rows = copyAssetsToDraft(manifest.rows);
+      const referenceDraft = JSON.parse(fs.readFileSync(path.join(DRAFT_DIR, files[0]), 'utf8'));
+      const topologyPlan = buildTopologyPlan(referenceDraft, rows);
+      const drafts = files.map((rel) => ({
+        rel,
+        draft: JSON.parse(fs.readFileSync(path.join(DRAFT_DIR, rel), 'utf8')),
+      }));
+      const prepared = drafts.map(({ rel, draft }) => ({ rel, draft, result: patchDraftJson(draft, rows, topologyPlan) }));
+      for (const { rel, draft, result } of prepared) {
+        fs.writeFileSync(path.join(DRAFT_DIR, rel), JSON.stringify(draft), 'utf8');
+        patched.push({ file: rel, trackIndex: result.trackIndex, touched: result.touched.length });
+      }
+      const check = checkPatched(files, rows);
+      const report = {
+        status: check.errors.length ? 'failed' : 'ready',
+        draftDir: DRAFT_DIR,
+        manifest: MANIFEST_PATH,
+        assetSubdir: ASSET_SUBDIR,
+        maxProviderReuse: MAX_PROVIDER_REUSE,
+        backupDir,
+        patched,
+        topology: topologyPlan ? { createdSegments: topologyPlan.entries.length, timingTrackIndex: topologyPlan.timingTrackIndex } : { createdSegments: 0 },
+        summaries: check.summaries,
+        errors: check.errors,
+        sample: rows.slice(0, 12).map((row) => ({
+          index: row.index,
+          phraseEn: row.phraseEn,
+          query: row.query,
+          provider: row.provider,
+          providerId: row.providerId,
+          path: row.draftLocalPath || row.localPath,
+        })),
+      };
+      if (check.errors.length) {
+        restoreFilesFromBackup(backupDir, files);
+        report.rolledBack = true;
+        writeReport(report);
+        console.log(JSON.stringify(report, null, 2));
+        process.exit(1);
+      }
+      writeReport(report);
+      console.log(JSON.stringify(report, null, 2));
+      return;
+    } catch (error) {
+      restoreFilesFromBackup(backupDir, files);
+      throw error;
     }
   }
-  const check = checkPatched(files, rows);
+  const check = checkPatched(files, manifest.rows);
   const report = {
     status: check.errors.length ? 'failed' : 'ready',
     draftDir: DRAFT_DIR,
@@ -350,7 +520,7 @@ function main() {
     patched,
     summaries: check.summaries,
     errors: check.errors,
-    sample: rows.slice(0, 12).map((row) => ({
+    sample: manifest.rows.slice(0, 12).map((row) => ({
       index: row.index,
       phraseEn: row.phraseEn,
       query: row.query,

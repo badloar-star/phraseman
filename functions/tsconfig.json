@@ -3,6 +3,7 @@
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": false,
+    "rootDir": "..",
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
@@ -11,5 +12,6 @@
     "skipLibCheck": true
   },
   "compileOnSave": true,
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
 }

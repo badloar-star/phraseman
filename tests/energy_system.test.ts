@@ -8,8 +8,10 @@ import {
   getTimeUntilNextRecovery,
   formatTimeUntilRecovery,
   secondsUntilEnergyFull,
+  getEffectiveMaxEnergyValue,
   EnergyState,
 } from '../app/energy_system';
+import { TOTAL_XP_FOR_LEVEL } from '../constants/theme';
 
 // Мокируем AsyncStorage
 jest.mock('@react-native-async-storage/async-storage');
@@ -50,6 +52,17 @@ describe('Energy System', () => {
       const state = await getEnergyState();
 
       expect(state.current).toBe(3);
+    });
+  });
+
+  describe('level-aware capacity', () => {
+    it('shares the level-50 sixth slot with legacy gift helpers', async () => {
+      (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => {
+        if (key === 'user_total_xp') return String(TOTAL_XP_FOR_LEVEL(50));
+        return null;
+      });
+
+      await expect(getEffectiveMaxEnergyValue()).resolves.toBe(6);
     });
   });
 

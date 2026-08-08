@@ -160,7 +160,7 @@ function ReportPackModal({
             style={{
               backgroundColor: t.bgCard,
               borderColor: t.border,
-              borderWidth: 1,
+              borderWidth: 0,
               borderRadius: 18,
               padding: 22,
               maxHeight: '85%',
@@ -204,7 +204,7 @@ function ReportPackModal({
                     marginTop: 16,
                     backgroundColor: t.bgSurface,
                     borderColor: t.border,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderRadius: 12,
                     paddingVertical: 14,
                     paddingHorizontal: 12,
@@ -282,7 +282,7 @@ function ReportPackModal({
                     paddingHorizontal: 22,
                     paddingVertical: 10,
                     marginTop: 16,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: t.border,
                   }}
                 >
@@ -313,7 +313,7 @@ function ReportPackModal({
                         style={{
                           backgroundColor: active ? `${t.accent}25` : t.bgSurface,
                           borderColor: active ? t.accent : t.border,
-                          borderWidth: 1,
+                          borderWidth: 0,
                           borderRadius: 12,
                           padding: 12,
                           marginBottom: 8,
@@ -361,7 +361,7 @@ function ReportPackModal({
                       color: t.textPrimary,
                       backgroundColor: t.bgSurface,
                       borderColor: t.border,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderRadius: 12,
                       padding: 12,
                       fontSize: f.body,
@@ -381,7 +381,7 @@ function ReportPackModal({
                       flex: 1,
                       backgroundColor: t.bgSurface,
                       borderColor: t.border,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderRadius: 12,
                       paddingVertical: 14,
                       alignItems: 'center',
@@ -400,7 +400,7 @@ function ReportPackModal({
                       borderRadius: 12,
                       paddingVertical: 14,
                       alignItems: 'center',
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: !selected || loading ? t.border : t.accent,
                       opacity: !selected || loading ? 0.65 : 1,
                     }}

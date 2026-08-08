@@ -1,5 +1,8 @@
+// зачем: isLightThemeMode использовался ниже (строка 232) без импорта — правка
+// осталась недописанной и валила сборку, блокируя push всей ветки.
+import { isLightThemeMode } from '../../constants/theme';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -34,6 +37,14 @@ import Animated, {
 import { getVolumetricShadow, useTheme } from '../../components/ThemeContext';
 import type { Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
+// зачем: единая валюта — жемчуг; формы «жемчужина/жемчужины/жемчужин» берём из
+// общего словаря, чтобы склонения не разъезжались между экранами.
+import {
+  ruKnowledgeShardsAccusativeAfterNumber,
+  ruKnowledgeShardsGenitiveAfterNumber,
+  ukKnowledgeShardsAccusativeAfterNumber,
+  ukKnowledgeShardsGenitiveAfterNumber,
+} from '../../constants/shard_plurals';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { oskolokImageForPackShards } from '../oskolok';
 import {
@@ -104,30 +115,33 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     return {
       cancel: 'Скасувати',
       buy: 'Купити',
-      buyShards: 'Купити осколки',
-      forShards: (n: number) => `Купити за ${n} осколків`,
-      insufficientTitle: 'Недостатньо осколків',
+      buyShards: 'Купити перлини',
+      // зачем: «за» тут управляет знахідним відмінком — «за 1 перлину», не «за 1 перлина».
+      forShards: (n: number) => `Купити за ${n} ${ukKnowledgeShardsAccusativeAfterNumber(n)}`,
+      insufficientTitle: 'Недостатньо перлин',
       insufficientIntro:
-        'Поповніть баланс у магазині осколків — кнопка нижче відкриє вкладку з пакетами.',
+        'Поповніть баланс у магазині — кнопка нижче відкриє вкладку з пакетами.',
       balanceBlockTitle: 'Для цього набору',
       ctaSub: 'Покупка в одне торкання',
-      shopCtaSub: 'Пакети осколків у магазині',
-      voucherKicker: '🎁 Безкоштовний набір',
+      shopCtaSub: 'Пакети перлин у магазині',
+      voucherKicker: 'Безкоштовний набір',
       voucherTitle: 'Використати подарунок?',
       voucherIntro:
-        'Цей набір додасться у «Картки» безкоштовно — ціну осколків можна не платити.',
+        'Цей набір назавжди додасться у «Картки» безкоштовно — перлини витрачати не потрібно.',
       voucherWarn:
-        '⚠️ Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
-      voucherCta: '🎁 Використати подарунок',
+        'Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
+      voucherCta: 'Використати подарунок',
       voucherCtaBusy: '',
       voucherCtaSub: 'Подарунок «згорить» одразу після цього',
       packKindLabel: 'Набір',
       metaCards: (n: number) => `${n} карток`,
-      shortageRemaining: (n: number) => `Не вистачає ще ${n} осколків`,
+      // зачем: было русское «жемчужин» в украинском блоке + именительный падеж;
+      // «не вистачає» управляет родовим — «не вистачає ще 1 перлини».
+      shortageRemaining: (n: number) => `Не вистачає ще ${n} ${ukKnowledgeShardsGenitiveAfterNumber(n)}`,
       needLabel: 'Потрібно',
       youHaveLabel: 'У вас',
       costLabel: 'Вартість',
-      shardsUnit: 'осколків',
+      shardsUnit: 'жемчужин',
       waitBusy: '',
       reportPack: '⚐ Поскаржитися на набір',
       hidePack: 'Не показувати мені',
@@ -146,13 +160,13 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       balanceBlockTitle: 'Para este paquete',
       ctaSub: 'Compra con un solo toque',
       shopCtaSub: `Paquetes de ${S} en la tienda`,
-      voucherKicker: '🎁 Paquete gratis',
+      voucherKicker: 'Paquete gratis',
       voucherTitle: '¿Usar el regalo?',
       voucherIntro:
-        `Este paquete se añadirá a «Tarjetas» gratis; no gastarás ${S}.`,
+        `Este paquete se añadirá para siempre a «Tarjetas» gratis; no gastarás ${S}.`,
       voucherWarn:
-        '⚠️ El regalo es de un solo uso: al confirmar, desaparecerá y no podrás recuperarlo.',
-      voucherCta: '🎁 Usar regalo',
+        'El regalo es de un solo uso: al confirmar, desaparecerá y no podrás recuperarlo.',
+      voucherCta: 'Usar regalo',
       voucherCtaBusy: '',
       voucherCtaSub: 'El regalo se consumirá al confirmar',
       packKindLabel: 'Paquete',
@@ -170,30 +184,32 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   return {
     cancel: 'Отмена',
     buy: 'Открыть',
-    buyShards: 'Пополнить осколки',
-    forShards: (n: number) => `Открыть за ${n} осколков`,
-    insufficientTitle: 'Недостаточно осколков',
+    buyShards: 'Пополнить жемчуг',
+    // зачем: «за» требует винительного — «Открыть за 1 жемчужину», не «за 1 жемчужина».
+    forShards: (n: number) => `Открыть за ${n} ${ruKnowledgeShardsAccusativeAfterNumber(n)}`,
+    insufficientTitle: 'Недостаточно жемчуга',
     insufficientIntro:
-      'Пополни баланс в магазине осколков — кнопка ниже откроет вкладку с пакетами.',
+      'Пополни баланс в магазине — кнопка ниже откроет вкладку с пакетами.',
     balanceBlockTitle: 'Для этого набора',
     ctaSub: 'Откроется в одно касание',
-    shopCtaSub: 'Пакеты осколков в магазине',
-    voucherKicker: '🎁 Набор в подарок',
+    shopCtaSub: 'Пакеты жемчуга в магазине',
+    voucherKicker: 'Набор в подарок',
     voucherTitle: 'Использовать подарок?',
     voucherIntro:
-      'Этот набор добавится в «Карточки» бесплатно — осколки тратить не нужно.',
+      'Этот набор навсегда добавится в «Карточки» бесплатно — жемчуг тратить не нужно.',
     voucherWarn:
-      '⚠️ Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
-    voucherCta: '🎁 Использовать подарок',
+      'Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
+    voucherCta: 'Использовать подарок',
     voucherCtaBusy: '',
     voucherCtaSub: 'Подарок «сгорит» сразу после этого',
     packKindLabel: 'Набор',
     metaCards: (n: number) => `${n} карточек`,
-    shortageRemaining: (n: number) => `Не хватает ещё ${n} осколков`,
+    // зачем: «не хватает» требует родительного — «не хватает ещё 1 жемчужины».
+    shortageRemaining: (n: number) => `Не хватает ещё ${n} ${ruKnowledgeShardsGenitiveAfterNumber(n)}`,
     needLabel: 'Нужно',
     youHaveLabel: 'У тебя',
-    costLabel: 'Нужно осколков',
-    shardsUnit: 'осколков',
+    costLabel: 'Нужно жемчуга',
+    shardsUnit: 'жемчужин',
     waitBusy: '',
     reportPack: '⚐ Пожаловаться на набор',
     hidePack: 'Не показывать мне',
@@ -214,7 +230,9 @@ export default function CardPackShardPaywallModal({
   onCommunityPackHiddenOnDevice,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const isLightTheme = false;
+  // зачем: стаб false отдавал sagePorcelain тёмную ручку шторки (#3C5A50)
+  // вместо светлой #D1D9D1 на фарфоровой панели.
+  const isLightTheme = isLightThemeMode(themeMode);
   const sheetCardBg = t.bgCard;
   const sheetSurfaceBg = t.bgSurface;
   const sheetPrimaryBg = t.bgPrimary;
@@ -311,7 +329,8 @@ export default function CardPackShardPaywallModal({
   }, [visible, backdropO, sheetY, sheetOpacity, ctaPulse, dragTranslateY]);
 
   const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropO.value * 0.72,
+    // Подложка слабеет при оттягивании листа вниз (как в RegistrationPromptModal).
+    opacity: backdropO.value * 0.72 * (1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)),
   }));
 
   const sheetStyle = useAnimatedStyle(() => ({
@@ -379,7 +398,7 @@ export default function CardPackShardPaywallModal({
                       borderRadius: 24,
                       overflow: 'hidden',
                       backgroundColor: sheetCardBg,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: paywallVisual.borderAccent,
                     },
                     cardShadow,
@@ -415,7 +434,7 @@ export default function CardPackShardPaywallModal({
 
                     <ScrollView
                       style={{ maxHeight: maxSheetH - 120 }}
-                      decelerationRate="normal"
+                      decelerationRate="fast"
                       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 16 }}
                       showsVerticalScrollIndicator
                       bounces
@@ -434,7 +453,7 @@ export default function CardPackShardPaywallModal({
                                 borderRadius: 28,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.iconBorder,
                               }}
                             >
@@ -512,7 +531,7 @@ export default function CardPackShardPaywallModal({
                                 paddingVertical: 16,
                                 paddingHorizontal: 20,
                                 width: '100%',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.priceBorder,
                               }}
                             >
@@ -626,7 +645,7 @@ export default function CardPackShardPaywallModal({
                                 borderRadius: 28,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.iconBorder,
                               }}
                             >
@@ -698,14 +717,17 @@ export default function CardPackShardPaywallModal({
                               marginTop: 16,
                               borderRadius: 14,
                               padding: 14,
-                              borderWidth: 1,
+                              borderWidth: 0,
                               borderColor: `${t.gold}55`,
                               backgroundColor: `${t.gold}14`,
                             }}
                           >
-                            <Text style={{ color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>
-                              {str.voucherWarn}
-                            </Text>
+                            <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+                              <Ionicons name="alert-circle-outline" size={20} color={t.gold} />
+                              <Text style={{ flex: 1, color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>
+                                {str.voucherWarn}
+                              </Text>
+                            </View>
                           </Animated.View>
                         </>
                       ) : (
@@ -722,7 +744,7 @@ export default function CardPackShardPaywallModal({
                                 borderRadius: 28,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.iconBorder,
                               }}
                             >
@@ -793,7 +815,7 @@ export default function CardPackShardPaywallModal({
                                 paddingVertical: 14,
                                 paddingHorizontal: 24,
                                 width: '100%',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.priceBorder,
                                 alignItems: 'center',
                               }}
@@ -939,7 +961,9 @@ export default function CardPackShardPaywallModal({
                               >
                                 {purchasing ? (
                                   <ActivityIndicator size="small" color={t.bgPrimary} />
-                                ) : null}
+                                ) : (
+                                  <Ionicons name="gift-outline" size={22} color={t.bgPrimary} />
+                                )}
                                 <Text style={{ color: t.bgPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.voucherCta}
                                 </Text>

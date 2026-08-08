@@ -32,6 +32,7 @@ import LeagueCrownName from './LeagueCrownName';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   visible: boolean;
   crownName?: string;
@@ -59,13 +60,6 @@ const FALLBACK_CUSTOM_LOGO_COLOR: CustomAvatarLogoColor = 'black';
 const REWARD_IMAGE_ICON_SIZE = 64;
 const REWARD_COSMETIC_ICON_SIZE = 58;
 
-const PREVIEW_REWARDS: LeagueChestRewardDrop[] = [
-  { id: 'preview_shards', kind: 'shards', rarity: 'common', amount: 24 },
-  { id: 'preview_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
-  { id: 'preview_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-violet' },
-  { id: 'preview_gold', kind: 'gold_theme', rarity: 'legendary' },
-];
-
 function rewardAmount(drop: LeagueChestRewardDrop): number {
   return Math.max(0, Math.floor(Number(drop.amount) || 0));
 }
@@ -82,8 +76,6 @@ function getLeagueChestRewardIconId(drop: LeagueChestRewardDrop): LevelGiftRewar
       return 'energy_full';
     case 'streak_shield':
       return rewardAmount(drop) >= 3 ? 'chain_shield_3' : 'chain_shield_1';
-    case 'arena_plays':
-      return 'arena_extra_5';
     case 'pack_trial_48h':
       return 'pack_voucher_48h';
     case 'avatar_aura':
@@ -111,15 +103,9 @@ function slavicPlural(count: number, one: string, few: string, many: string): st
 }
 
 function shardsTitle(amount: number, lang: Lang): string {
-  if (lang === 'es') return `+${amount} fragmentos`;
-  if (lang === 'uk') return `+${amount} ${slavicPlural(amount, 'осколок', 'осколки', 'осколків')}`;
-  return `+${amount} ${slavicPlural(amount, 'осколок', 'осколка', 'осколков')}`;
-}
-
-function arenaPlaysTitle(amount: number, lang: Lang): string {
-  if (lang === 'es') return `+${amount} arenas`;
-  if (lang === 'uk') return `+${amount} ${slavicPlural(amount, 'бій', 'бої', 'боїв')}`;
-  return `+${amount} ${slavicPlural(amount, 'бой', 'боя', 'боёв')}`;
+  if (lang === 'es') return `+${amount} perlas`;
+  if (lang === 'uk') return `+${amount} ${slavicPlural(amount, 'перлина', 'перлини', 'перлин')}`;
+  return `+${amount} ${slavicPlural(amount, 'жемчужина', 'жемчужины', 'жемчужин')}`;
 }
 
 function formatMinutes(ms?: number): number {
@@ -179,15 +165,6 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
     };
   }
 
-  if (drop.kind === 'arena_plays') {
-    return {
-      title: arenaPlaysTitle(rewardAmount(drop) || 5, lang),
-      subtitle: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena' }),
-      accent: '#FFB86B',
-      icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
-    };
-  }
-
   if (drop.kind === 'pack_trial_48h') {
     return {
       title: triLang(lang, { ru: 'Пак фраз', uk: 'Пак фраз', es: 'Pack', 'pt-BR': 'Pacote de frases', vi: 'Gói cụm từ', id: 'Paket frasa', tr: 'İfade paketi', pl: 'Pakiet fraz' }),
@@ -240,7 +217,9 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
     case 'shards':
       return {
         title: shardsTitle(rewardAmount(drop), lang),
-        subtitle: triLang(lang, { ru: 'Осколки', uk: 'Уламки', es: 'Fragmentos', 'pt-BR': 'Fragmentos', vi: 'Mảnh', id: 'Pecahan', tr: 'Parça', pl: 'Odłamki' }),
+        // зачем: RU-интерфейс называет валюту «жемчужины» (constants/shard_plurals.ts),
+        // украинское «Перлины» протекало в русский сундук лиги.
+        subtitle: triLang(lang, { ru: 'Жемчужины', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perły' }),
         accent: '#9FDBFF',
         icon: { type: 'image', source: oskolokImageForPackShards(rewardAmount(drop), themeMode), scale: 'large' },
       };
@@ -259,6 +238,14 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
         icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
       };
   }
+
+  // Запасной вариант для видов вне switch (legacy 'arena_plays' и будущие).
+  // До рантайма не доходит: arena-дропы отфильтрованы из visibleRewards.
+  return {
+    title: triLang(lang, { ru: 'Награда', uk: 'Нагорода', es: 'Recompensa', 'pt-BR': 'Recompensa', vi: 'Phần thưởng', id: 'Hadiah', tr: 'Ödül', pl: 'Nagroda' }),
+    accent: '#9FDBFF',
+    icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
+  };
 }
 
 function RewardIcon({ card, drop }: { card: RewardCard; drop: LeagueChestRewardDrop }) {
@@ -331,8 +318,11 @@ function LeagueChestOpenModal({
   const crownFloat = useRef(new Animated.Value(0)).current;
   const shine = useRef(new Animated.Value(0)).current;
 
+  // Арена удалена из проекта: старые дропы «+N боёв» не показываем, даже если
+  // они придут из кэша или старого бэкенда. Пустого списка наград не подменяем
+  // фейковыми — честно пишем «Награды подгружаются…».
   const visibleRewards = useMemo(
-    () => (Array.isArray(rewards) && rewards.length > 0 ? rewards : PREVIEW_REWARDS),
+    () => (Array.isArray(rewards) ? rewards : []).filter((drop) => drop.kind !== 'arena_plays'),
     [rewards],
   );
   const rewardCards = useMemo(() => visibleRewards.map((drop) => ({ drop, card: formatReward(drop, lang, themeMode) })), [visibleRewards, lang, themeMode]);
@@ -485,7 +475,9 @@ function LeagueChestOpenModal({
                 <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(26, f.h1 + 2) }]}>
                   {isCrownWinner
                     ? triLang(lang, { ru: 'Ты взял корону', uk: 'Ти взяв корону', es: 'Tomaste la corona', 'pt-BR': 'Você pegou a coroa', vi: 'Bạn đã nhận vương miện', id: 'Kamu mengambil mahkota', tr: 'Tacını aldın', pl: 'Korona odebrana' })
-                    : triLang(lang, { ru: 'Награды готовы', uk: 'Нагороди готові', es: 'Recompensas listas', 'pt-BR': 'Recompensas prontas', vi: 'Phần thưởng đã sẵn sàng', id: 'Hadiah siap', tr: 'Ödüller hazır', pl: 'Nagrody gotowe' })}
+                    : rewardCards.length > 0
+                      ? triLang(lang, { ru: 'Награды готовы', uk: 'Нагороди готові', es: 'Recompensas listas', 'pt-BR': 'Recompensas prontas', vi: 'Phần thưởng đã sẵn sàng', id: 'Hadiah siap', tr: 'Ödüller hazır', pl: 'Nagrody gotowe' })
+                      : triLang(lang, { ru: 'Награды подгружаются…', uk: 'Нагороди завантажуються…', es: 'Cargando recompensas…', 'pt-BR': 'Carregando recompensas…', vi: 'Đang tải phần thưởng…', id: 'Memuat hadiah…', tr: 'Ödüller yükleniyor…', pl: 'Ładowanie nagród…' })}
                 </Text>
                 <View style={{ alignItems: 'center', maxWidth: '100%' }}>
                   <LeagueCrownName text={crownDisplayName} fontSize={Math.max(16, f.body)} />
@@ -496,25 +488,31 @@ function LeagueChestOpenModal({
                   </Text>
                 ) : null}
 
-                <View style={styles.rewardsGrid}>
-                  {rewardCards.map(({ drop, card }) => (
-                    <View key={`${drop.id}:${drop.kind}`} style={[styles.reward, { backgroundColor: modalTheme.rewardBg, borderColor: modalTheme.rewardBorder }]}>
-                      <RewardIcon card={card} drop={drop} />
-                      <Text
-                        style={[styles.rewardTitle, { color: t.textPrimary }]}
-                      >
-                        {card.title}
-                      </Text>
-                      {card.subtitle ? (
+                {rewardCards.length > 0 ? (
+                  <View style={styles.rewardsGrid}>
+                    {rewardCards.map(({ drop, card }) => (
+                      <View key={`${drop.id}:${drop.kind}`} style={[styles.reward, { backgroundColor: modalTheme.rewardBg, borderColor: modalTheme.rewardBorder }]}>
+                        <RewardIcon card={card} drop={drop} />
                         <Text
-                          style={[styles.rewardSubtitle, { color: card.accent }]}
+                          style={[styles.rewardTitle, { color: t.textPrimary }]}
                         >
-                          {card.subtitle}
+                          {card.title}
                         </Text>
-                      ) : null}
-                    </View>
-                  ))}
-                </View>
+                        {card.subtitle ? (
+                          <Text
+                            style={[styles.rewardSubtitle, { color: card.accent }]}
+                          >
+                            {card.subtitle}
+                          </Text>
+                        ) : null}
+                      </View>
+                    ))}
+                  </View>
+                ) : (
+                  <Text style={[styles.rewardsLoading, { color: t.textSecond, fontSize: Math.max(13, f.caption) }]}>
+                    {triLang(lang, { ru: 'Награды подгружаются…', uk: 'Нагороди завантажуються…', es: 'Cargando recompensas…', 'pt-BR': 'Carregando recompensas…', vi: 'Đang tải phần thưởng…', id: 'Memuat hadiah…', tr: 'Ödüller yükleniyor…', pl: 'Ładowanie nagród…' })}
+                  </Text>
+                )}
 
                 <View style={styles.actions}>
                   <TouchableOpacity
@@ -526,7 +524,21 @@ function LeagueChestOpenModal({
                     style={styles.primaryBtn}
                   >
                     <LinearGradient colors={modalTheme.primary} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
-                    <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>{triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}</Text>
+                    <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>
+                      {rewardCards.length > 0
+                        ? triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })
+                        : triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => {
+                      hapticTap();
+                      onClose();
+                    }}
+                    style={styles.laterBtn}
+                  >
+                    <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}</Text>
                   </TouchableOpacity>
                 </View>
                 </ScrollView>
@@ -558,11 +570,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 22,
     shadowOffset: { width: 0, height: 12 },
-    elevation: 14,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 22,
-    borderWidth: 0.5,
+    borderWidth: 0,
     overflow: 'hidden',
     maxHeight: '100%',
   },
@@ -649,7 +661,7 @@ const styles = StyleSheet.create({
     width: '31%',
     minHeight: 118,
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 7,
@@ -699,12 +711,10 @@ const styles = StyleSheet.create({
   },
   actions: {
     width: '100%',
-    flexDirection: 'row',
-    gap: 10,
     marginTop: 18,
   },
   primaryBtn: {
-    flex: 1,
+    alignSelf: 'stretch',
     minHeight: 46,
     borderRadius: 12,
     overflow: 'hidden',
@@ -714,5 +724,20 @@ const styles = StyleSheet.create({
   primaryText: {
     fontSize: 14,
     fontWeight: '900',
+  },
+  laterBtn: {
+    alignSelf: 'stretch',
+    marginTop: 10,
+    paddingVertical: 8,
+    alignItems: 'center',
+  },
+  laterText: {
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  rewardsLoading: {
+    marginTop: 20,
+    textAlign: 'center',
+    fontWeight: '700',
   },
 });

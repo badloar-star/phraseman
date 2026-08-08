@@ -5,7 +5,6 @@ const ROOT = path.resolve(__dirname, '..');
 const SETTINGS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8');
 const SETTINGS_EDU_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'settings_edu.tsx'), 'utf8');
 const SETTINGS_NOTIFICATIONS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'settings_notifications.tsx'), 'utf8');
-const SETTINGS_INVITE_FRIEND_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'settings_invite_friend.tsx'), 'utf8');
 const LANG_CONTEXT_SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'LangContext.tsx'), 'utf8');
 const THEME_CONTEXT_SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8');
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
@@ -43,16 +42,6 @@ describe('settings planned locale runtime copy', () => {
     expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('tr: DAYS_TR');
     expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('pl: DAYS_PL');
     expect(SETTINGS_NOTIFICATIONS_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
-  });
-
-  it('keeps invite friend offline share copy explicit for planned locales', () => {
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).toContain('const OFFLINE_SHARE_BODIES_BY_LANG: Record<Lang, readonly string[]>');
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).toContain("'pt-BR': OFFLINE_SHARE_BODIES_PT_BR");
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).toContain('vi: OFFLINE_SHARE_BODIES_VI');
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).toContain('id: OFFLINE_SHARE_BODIES_ID');
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).toContain('tr: OFFLINE_SHARE_BODIES_TR');
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).toContain('pl: OFFLINE_SHARE_BODIES_PL');
-    expect(SETTINGS_INVITE_FRIEND_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
   });
 
   it('resolves app language and theme defaults without legacy runtime fallback markers', () => {

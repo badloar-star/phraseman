@@ -16,6 +16,8 @@ import type { Lang } from '../constants/i18n';
 import { storageGet, storageSet, storageGetString, storageSetString } from '../lib/storage';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { BRONZE_UNLOCK_SCORE, FREE_LESSON_LIMIT } from './monetization_policy';
+import { isFeaturePremiumGated } from './feature_gates';
+import { getFreeLessonsExtra, getPremiumLessonsExtra } from './remote_flags';
 import {
   COURSE_LEVEL_RANGES,
   COURSE_LEVELS,
@@ -84,12 +86,30 @@ export const tryUnlockNextLesson = async (
   return false;
 };
 
+/**
+ * Открыт ли урок поурочным исключением «Пульта» — тот же приоритет, что в
+ * monetization_policy.isFreeLesson: premium_lessons_extra перебивает всё
+ * остальное, затем «весь раздел во Фри», затем free_lessons_extra.
+ */
+function isLessonFreeByRemoteException(lessonId: number): boolean {
+  if (getPremiumLessonsExtra().has(lessonId)) return false;
+  if (!isFeaturePremiumGated('lessons')) return true;
+  return getFreeLessonsExtra().has(lessonId);
+}
+
 export const isLessonUnlockedByEarnedProgress = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
   if (lessonId === 1) return true;
   if (lessonId < 1 || lessonId > 32) return false;
+
+  // зачем: вкладка уроков строит доступ через buildSequentialFreeLessonUnlocks и
+  // учитывает поурочные исключения «Пульта» (весь раздел во «Фри» / free_lessons_extra),
+  // а этот рантайм-гард их не знал. Из-за расхождения карточка урока выглядела
+  // открытой (без замочка), но экран урока встречал заглушкой «Урок заблокирован».
+  // Исключения трактуем здесь так же, как в политике.
+  if (isLessonFreeByRemoteException(lessonId)) return true;
 
   if (lessonId > FREE_LESSON_LIMIT) {
     return isLessonUnlocked(lessonId, studyTarget);

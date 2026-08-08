@@ -6,9 +6,16 @@
 //   fill_gap   — вставь пропущенное слово (то слово где была ошибка)
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Reanimated, {
+  FadeInDown,
+  FadeInUp,
+  useSharedValue,
+  useAnimatedStyle,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import {
   Animated,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -16,7 +23,7 @@ import {
 } from 'react-native';
 import TapScale from '../components/TapScale';
 import ReportErrorButton from '../components/ReportErrorButton';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -24,97 +31,75 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import SpeakingButton from '../components/SpeakingButton';
+import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
+import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { trackEvent } from './analytics';
 import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
-  getDueItems,
+  getCachedDueItems,
   getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
+import {
+  buildSessionWordBank,
+  buildTrainerSessionDeck,
+  getCachedPhraseSessionItems,
+  getPhraseSessionItems,
+  getWarmPhraseSessionDeck,
+  mergePhraseSessionItems,
+  normalizeGapToken,
+  PHRASE_SESSION_LIMIT,
+  sessionMeaningfulTokens,
+  trainerGapTokenIndex,
+  trainerSessionPhrase,
+  WORD_SESSION_LIMIT,
+  type SessionCard,
+} from './trainer_practice_hall';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
-import {
-  shuffleWordBankTiles,
-  tokenizeRecallPhrase,
-  type WordBankTile,
-} from './review_evaluator';
+import { type WordBankTile } from './review_evaluator';
 import { getLessonData } from './lesson_data_all';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
-import { getVerifiedPremiumStatus } from './premium_guard';
+// зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
-import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { LessonWord } from './lesson_data_types';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
+import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import {
   markTrainerPlanTaskCompleted,
   readTrainerPlanTaskContext,
   type TrainerPlanTaskRouteParams,
 } from './trainer_plan_task_route';
 
-type SessionMode = 'word_bank' | 'fill_gap';
-
-interface SessionCard {
-  item: TrainerItem;
-  mode: SessionMode;
-}
-
-const TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS = 700;
-
-function wait(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function waitForPhraseAnswerFeedback(
-  answerSpeech: Promise<void>,
-): Promise<void> {
-  await Promise.all([
-    answerSpeech.catch(() => undefined),
-    wait(TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS),
-  ]);
-}
-
-function buildDeck(items: TrainerItem[]): SessionCard[] {
-  const deck: SessionCard[] = [];
-  items.forEach((item, i) => {
-    // Если есть errorWord — чередуем word_bank и fill_gap; иначе всегда word_bank
-    const hasFillGap = !!item.errorWord;
-    const mode: SessionMode = hasFillGap && i % 2 === 0 ? 'fill_gap' : 'word_bank';
-    deck.push({ item, mode });
-  });
-  return deck;
-}
-
-function normalizeFillGapToken(value?: string): string {
-  return (value ?? '').toLowerCase().replace(/^[.!?,;:"()[\]{}]+|[.!?,;:"()[\]{}]+$/g, '').trim();
-}
-
 function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): readonly string[] | undefined {
   if (!item.lessonId || !errorWord) return undefined;
   const phrase = getLessonData(item.lessonId).find(row => row.english.trim() === item.key.trim());
   const rows: readonly LessonWord[] = phrase?.wordsEn ?? phrase?.words ?? [];
-  const errorKey = normalizeFillGapToken(errorWord);
+  const errorKey = normalizeGapToken(errorWord);
   const row = rows.find(word => {
-    const correct = normalizeFillGapToken(word.correct || word.text);
-    const text = normalizeFillGapToken(word.text);
+    const correct = normalizeGapToken(word.correct || word.text);
+    const text = normalizeGapToken(word.text);
     return correct === errorKey || text === errorKey;
   });
   return row?.distractors;
@@ -124,37 +109,90 @@ function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): r
 interface WordBankProps {
   item: TrainerItem;
   onResult: (correct: boolean) => void;
+  onAdvance: () => void;
   // Озвучка живёт на родителе (TrainerPhrasesSession), а не внутри карточки:
   // при переходе к следующему заданию карточка размонтируется (меняется key),
   // и если бы useAudio() был здесь, его cleanup оборвал бы фразу на полуслове.
   speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
-function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
+// Keep the Reanimated builder stable across taps; recreating it inside the tile map
+// adds avoidable JS work on the exact interaction that must feel immediate.
+const WORD_BANK_TILE_ENTERING = FadeInUp.springify().damping(12).stiffness(180);
+
+function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
+  const answerSoftBg = statsThemeSoftBg(themeMode, 'strong');
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
-  const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
+  // Фраза для сессии: у арены key — вопрос с маркером пропуска, полная фраза
+  // собирается подстановкой arenaQuestion.correct (trainerSessionPhrase).
+  const { phrase } = trainerSessionPhrase(item);
+  // Банк неизменен: взятые плитки не исчезают, а гаснут (opacity .18) — видно, что уже в ответе.
+  // Пунктуационные токены («—», «/») отфильтрованы; слоты переупорядочены 0..n-1,
+  // чтобы selected и speaking-autofill совпадали с банком по слотам.
+  const [bank] = useState<WordBankTile[]>(() => buildSessionWordBank(phrase));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
+  const [previewTile, setPreviewTile] = useState<WordBankTile | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const [speakingOpen, setSpeakingOpen] = useState(false);
+  const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
+  const [speakingResult, setSpeakingResult] = useState<SpeakingAttemptResult | null>(null);
+  const hasRecordedResult = useRef(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
-  const correctTokens = tokenizeRecallPhrase(item.key);
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult) => {
+    setSpeakingResult(result);
+    setSpeakingHoldActive(false);
+    setSpeakingOpen(false);
+  }, []);
+
+  const correctTokens = useMemo(() => sessionMeaningfulTokens(phrase), [phrase]);
+  // Tiles deliberately exclude punctuation so they remain easy to tap and grade;
+  // keep a sentence-final mark in the assembled visual phrase.
+  const terminalPunctuation = useMemo(() => phrase.match(/[.?!]+$/)?.[0] ?? '', [phrase]);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
+  const usedSlots = useMemo(() => new Set(selected.map(tile => tile.slot)), [selected]);
+  // The visual move begins on press-in, while selected remains the committed answer.
+  // If iOS turns the touch into a ScrollView gesture, onPressOut removes the preview
+  // and onPress never mutates the answer.
+  const visibleSelected = useMemo(
+    () => previewTile ? [...selected, previewTile] : selected,
+    [previewTile, selected],
+  );
+  // Перевод-задание: у арены перевода нет — честно показываем нейтральную формулировку.
+  const promptText = useMemo(() => {
+    const translation = trainerTranslationForLang(item, lang).trim();
+    if (translation) return translation;
+    return triLang(lang, {
+      ru: 'Собери английскую фразу из слов',
+      uk: 'Склади англійську фразу зі слів',
+      es: 'Forma la frase en inglés',
+      'pt-BR': 'Monte a frase em inglês',
+      vi: 'Sắp xếp câu tiếng Anh',
+      id: 'Susun frasa bahasa Inggris',
+      tr: 'İngilizce cümleyi kur',
+      pl: 'Ułóż angielską frazę',
+    });
+  }, [item, lang]);
 
   const tapBank = (tile: WordBankTile) => {
-    if (feedback !== 'none') return;
+    if (feedback !== 'none' || usedSlots.has(tile.slot)) return;
     setSelected(s => [...s, tile]);
-    setBank(b => b.filter(t => t.slot !== tile.slot));
   };
 
   const tapSelected = (tile: WordBankTile) => {
     if (feedback !== 'none') return;
-    setBank(b => [...b, tile].sort((a, b) => a.slot - b.slot));
     setSelected(s => s.filter(t => t.slot !== tile.slot));
+  };
+
+  const recordResult = (correct: boolean) => {
+    if (hasRecordedResult.current) return;
+    hasRecordedResult.current = true;
+    onResult(correct);
   };
 
   const check = () => {
@@ -166,7 +204,8 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
+      void speakAnswer(phrase, studyTarget);
+      recordResult(true);
     } else {
       hapticError();
       Animated.sequence([
@@ -175,48 +214,58 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         Animated.timing(shakeAnim, { toValue: 6, duration: 60, useNativeDriver: true }),
         Animated.timing(shakeAnim, { toValue: 0, duration: 60, useNativeDriver: true }),
       ]).start();
-      setTimeout(() => {
-        setFeedback('none');
-        setSelected([]);
-        setBank(shuffleWordBankTiles(item.key));
-        onResult(false);
-      }, 1200);
+      recordResult(false);
     }
   };
 
-  const borderColor = feedback === 'correct' ? '#40C080' : feedback === 'wrong' ? '#E05050' : t.border;
+  const zoneBg = feedback === 'correct'
+    ? t.correctBg
+    : feedback === 'wrong'
+      ? t.wrongBg
+      : t.bgSurface;
+  const checkBtnBg = feedback === 'correct'
+    ? t.correctBg
+    : feedback === 'wrong'
+      ? t.wrongBg
+      : canCheck ? accent : t.bgSurface;
+  const checkBtnColor = feedback === 'correct'
+    ? t.correct
+    : feedback === 'wrong'
+      ? t.wrong
+      : canCheck ? t.correctText : t.textMuted;
 
   return (
-    <View style={{ flex: 1, gap: 16 }}>
-      {/* Перевод — задание */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', borderWidth: 0, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-        {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
-        <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
+    <View style={{ flex: 1, gap: 14, position: 'relative' }}>
+      {/* Перевод — карточка-задание */}
+      <View style={[styles.promptCard, { backgroundColor: t.bgCard, borderWidth: 0, borderRadius: 20, overflow: 'visible' }]}>
+        <Text style={[styles.promptTag, { color: t.textGhost, fontSize: f.label - 1 }]}>
           {triLang(lang, {
-            ru: 'Составь фразу:',
-            uk: 'Склади фразу:',
-            es: 'Forma la frase:',
-            'pt-BR': 'Monte a frase:',
-            vi: 'Sắp xếp câu:',
-            id: 'Susun frasa:',
-            tr: 'Cümleyi kur:',
-            pl: 'Ułóż frazę:',
+            ru: 'Составь фразу',
+            uk: 'Склади фразу',
+            es: 'Forma la frase',
+            'pt-BR': 'Monte a frase',
+            vi: 'Sắp xếp câu',
+            id: 'Susun frasa',
+            tr: 'Cümleyi kur',
+            pl: 'Ułóż frazę',
           })}
         </Text>
-        <Text style={[styles.translationMain, { color: t.textPrimary, fontSize: f.body }]}>
-          {trainerTranslationForLang(item, lang)}
+        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: Math.round(f.bodyLg * 1.35), marginTop: 5 }}>
+          {promptText}
         </Text>
       </View>
 
-      {/* Область сборки */}
+      {/* Зона ответа — отдельная поверхность; плитки влетают с пружинкой */}
       <Animated.View style={[
-        styles.assemblyBox,
-        isCompassTheme && compassShadow(2),
-        { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? (feedback === 'correct' ? COMPASS_RICH.hairlineStrong : feedback === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : borderColor, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (feedback === 'none' ? 0 : 1.5), borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
+        styles.answerZone,
+        { backgroundColor: zoneBg, borderWidth: 0, borderRadius: 18, overflow: 'visible', transform: [{ translateX: shakeAnim }] },
       ]}>
-        {isCompassTheme ? <CompassDepthSurface radius={10} selected={feedback !== 'none'} quiet={feedback === 'none'} /> : null}
-        {selected.length === 0
-          ? <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+        {visibleSelected.length === 0
+          ? speakingResult
+            ? <Text style={{ color: speakingResult.passed ? t.correct : t.wrong, fontSize: f.bodyLg, fontWeight: '800', textAlign: 'center' }}>
+                {speakingResult.passed ? phrase : maskSpokenPhraseKeepInitial(phrase)}
+              </Text>
+            : <Text style={{ color: t.textMuted, fontSize: f.caption }}>
               {triLang(lang, {
                 ru: 'Тут появятся слова…',
                 uk: 'Тут з\'являться слова…',
@@ -229,82 +278,134 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
               })}
             </Text>
           : <View style={styles.tilesRow}>
-              {selected.map(tile => (
-                <TouchableOpacity
-                  key={tile.slot}
-                  onPress={() => tapSelected(tile)}
-                  style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : borderColor + '22', borderRadius: isCompassTheme ? 8 : 10, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
-                >
-                  {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-                  <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body }]}>{tile.text}</Text>
-                </TouchableOpacity>
+              {visibleSelected.map((tile, index) => (
+                // Влёт снизу с пружинкой — как в макете (bTileIn: translateY +16 → 0, fade).
+                <Reanimated.View key={tile.slot} entering={WORD_BANK_TILE_ENTERING}>
+                  <TouchableOpacity
+                    onPress={() => tapSelected(tile)}
+                    style={[styles.tile, { backgroundColor: answerSoftBg, borderRadius: 11, overflow: 'visible' }]}
+                  >
+                    <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}{index === visibleSelected.length - 1 ? terminalPunctuation : ''}</Text>
+                  </TouchableOpacity>
+                </Reanimated.View>
               ))}
             </View>
         }
       </Animated.View>
 
-      {/* Банк слов */}
+      {speakingResult && (
+        <SpeakingInlineResultStars
+          testID="trainer-speaking-score"
+          result={speakingResult}
+          theme={buildSpeakingPanelTheme(t)}
+        />
+      )}
+
+      {/* Банк слов — использованные гаснут, а не исчезают */}
       <View style={styles.tilesRow}>
         {bank.map(tile => {
+          const used = usedSlots.has(tile.slot);
+          const previewed = previewTile?.slot === tile.slot;
+          const committedTileStyle = { opacity: used ? 0.18 : 1 };
           const tileKey = `${tile.slot}`;
-          const on = flashKey === tileKey;
+          // зачем: юзер жаловался, что плитка не гаснет мгновенно. Тап ставил flash на 260мс,
+          // и акцентная подсветка перебивала гашение — плитка сначала вспыхивала и только потом
+          // тускнела. Взятая плитка гаснет сразу: used выигрывает у flash (`&& !used`).
+          const on = flashKey === tileKey && !used && !previewed;
           return (
             <DuoPressable
               key={tile.slot}
               withHaptic={false}
+              // No 90ms press-in delay here: a reversible visual preview starts at touch-down.
+              // The answer itself is still committed by onPress, so a ScrollView takeover
+              // cancels the preview without accidentally selecting the word.
+              delayPressIn={0}
+              onPressIn={() => setPreviewTile(tile)}
+              onPressOut={() => setPreviewTile(null)}
+              disabled={used || feedback !== 'none'}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               style={[
                 styles.tile,
-                isCompassTheme && compassShadow(1),
                 {
-                  backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard),
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                  backgroundColor: on ? t.accent : t.bgSurface2,
+                  borderColor: 'transparent',
                   borderWidth: 0,
-                  borderRadius: isCompassTheme ? 8 : 10,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
-                },
-              ]}
+                      borderRadius: 11,
+                      overflow: 'visible',
+                    },
+                    committedTileStyle,
+                    previewed && { opacity: 0.18 },
+                  ]}
               onPress={() => {
                 flash(tileKey);
-                requestAnimationFrame(() => { void hapticTap(); });
                 tapBank(tile);
               }}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-              <Text style={[styles.tileText, { color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
+              <Text style={[styles.tileText, { color: on ? t.correctText : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
             </DuoPressable>
           );
         })}
       </View>
 
-      {/* ???????????? ???????????????? */}
-      <TouchableOpacity
-        onPress={check}
-        disabled={!canCheck || feedback !== 'none'}
-        style={[styles.checkBtn, {
-          backgroundColor: isCompassTheme ? (canCheck ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : canCheck ? '#4A9EFF' : t.bgSurface,
-          borderWidth: 0,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent',
-          borderRadius: isCompassTheme ? 9 : 16,
-          overflow: isCompassTheme ? 'hidden' : 'visible',
-          opacity: canCheck ? 1 : 0.4,
-        }]}
-      >
-        {isCompassTheme ? <CompassDepthSurface radius={9} cream={canCheck} quiet={!canCheck} /> : null}
-        <Text style={[styles.checkBtnText, { fontSize: f.body }]}>
-          {triLang(lang, {
-            ru: 'Проверить',
-            uk: 'Перевірити',
-            es: 'Comprobar',
-            'pt-BR': 'Verificar',
-            vi: 'Kiểm tra',
-            id: 'Periksa',
-            tr: 'Kontrol et',
-            pl: 'Sprawdź',
-          })}
+      <SpeakingInlineSlot style={{ marginTop: 18 }}>
+        {speakingOpen && (
+          <SpeakingPanel
+            targetText={phrase}
+            lang={lang}
+            theme={buildSpeakingPanelTheme(t)}
+            presentation="inline"
+            holdActive={speakingHoldActive}
+            onScore={handleSpeakingScore}
+            onPass={({ score }) => {
+              void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
+              if (feedback !== 'none') return;
+              setSelected(correctTokens.map((text, slot) => ({ slot, text })));
+              setFeedback('correct');
+              hapticSuccess();
+              playCorrect();
+              void speakAnswer(phrase, studyTarget);
+              recordResult(true);
+            }}
+            onClose={() => {
+              setSpeakingHoldActive(false);
+              setSpeakingOpen(false);
+            }}
+          />
+        )}
+      </SpeakingInlineSlot>
+
+      {feedback !== 'correct' && (
+          /* После верного ответа эта поверхность полностью исчезает: результат уже
+             показан карточкой произношения/действиями и не должен дублироваться. */
+          <TouchableOpacity
+            onPress={check}
+            disabled={!canCheck || feedback !== 'none'}
+            style={[styles.checkBtn, {
+              backgroundColor: checkBtnBg,
+              borderWidth: 0,
+              borderRadius: 14,
+              overflow: 'visible',
+              opacity: canCheck || feedback !== 'none' ? 1 : 0.4,
+              marginTop: 'auto',
+            }]}
+          >
+        <Text style={[styles.checkBtnText, { color: checkBtnColor, fontSize: f.body }]}>
+          {feedback === 'wrong'
+              ? triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto', 'pt-BR': 'Incorreto', vi: 'Sai rồi', id: 'Salah', tr: 'Yanlış', pl: 'Niepoprawnie' })
+              : triLang(lang, {
+                ru: 'Проверить',
+                uk: 'Перевірити',
+                es: 'Comprobar',
+                'pt-BR': 'Verificar',
+                vi: 'Kiểm tra',
+                id: 'Periksa',
+                tr: 'Kontrol et',
+                pl: 'Sprawdź',
+              })}
         </Text>
       </TouchableOpacity>
+      )}
 
       {/* [SPEAKING] Произнести фразу вслух (premium). Говорение — необязательная
           надстройка: XP не начисляем (нет двойного счёта и обещания XP на пейволе);
@@ -313,24 +414,35 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
           раскладывает правильные слова по ячейкам и засчитывает фразу — юзеру не
           надо после «Готово» вручную собирать слова. */}
       <SpeakingButton
-        targetText={correctTokens.join(' ')}
+        targetText={phrase}
         lang={lang}
         variant="pill"
-        onPass={({ score }) => {
-          void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
-          if (feedback !== 'none') return; // карточка уже оценена — не вмешиваемся
-          // Заполняем поле ответа каноническими словами (как setSelectedWords в уроке)
-          // и очищаем банк, чтобы ручная сборка не конфликтовала с подставленным ответом.
-          setSelected(correctTokens.map((text, slot) => ({ slot, text })));
-          setBank([]);
-          // Верный устный ответ = правильная фраза, поэтому засчитываем сразу, не
-          // дожидаясь асинхронного selected (иначе check() прочитал бы старое состояние).
-          setFeedback('correct');
-          hapticSuccess();
-          playCorrect();
-          void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
+        inlineHold={{
+          onStart: () => {
+            setSpeakingResult(null);
+            setSpeakingOpen(true);
+            setSpeakingHoldActive(true);
+          },
+          onEnd: () => {
+            setSpeakingHoldActive(false);
+          },
         }}
       />
+
+      {feedback !== 'none' ? (
+        <View style={styles.resultActions}>
+          <TouchableOpacity
+            onPress={onAdvance}
+            style={[styles.resultActionButton, { backgroundColor: t.correct }]}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Готово, перейти к следующей фразе', uk: 'Готово, перейти до наступної фрази', es: 'Listo, pasar a la siguiente frase', 'pt-BR': 'Concluído, ir para a próxima frase', vi: 'Xong, chuyển sang câu tiếp theo', id: 'Selesai, lanjut ke frasa berikutnya', tr: 'Tamam, sonraki ifadeye geç', pl: 'Gotowe, przejdź do następnej frazy' })}
+          >
+            <Text style={[styles.resultActionText, { color: t.correctText, fontSize: f.body }]}>
+              {triLang(lang, { ru: 'Готово →', uk: 'Готово →', es: 'Listo →', 'pt-BR': 'Concluído →', vi: 'Xong →', id: 'Selesai →', tr: 'Tamam →', pl: 'Gotowe →' })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -339,30 +451,51 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
 interface FillGapProps {
   item: TrainerItem;
   onResult: (correct: boolean) => void;
+  onAdvance: () => void;
   // См. комментарий к WordBankProps.speakAnswer — озвучка принадлежит родителю,
   // чтобы фраза не обрывалась при размонтировании карточки на следующем задании.
   speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
-function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
+function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
   const { playCorrect } = useCorrectSound();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { flashKey, flash } = useWordFlash();
-  const errorWord = item.errorWord ?? '';
+  // У арены errorWord = arenaQuestion.correct, phrase — с подставленным словом;
+  // дистракторы — авторские arenaQuestion.options (buildTrainerFillGapOptions сам
+  // убирает correct, дедуплицирует и шафлит).
+  const { phrase, errorWord } = trainerSessionPhrase(item);
+  // Без исходного смысла She/He/You suggested... и can/could/will start
+  // одновременно подходят. Перевод превращает угадывание в честное восстановление.
+  const promptText = useMemo(() => trainerTranslationForLang(item, lang).trim(), [item, lang]);
   const [options] = useState(() => buildTrainerFillGapOptions({
     correctWord: errorWord,
-    phrase: item.key,
+    phrase,
     category: item.category,
     grammarTag: item.grammarTag,
-    sourceDistractors: lessonSourceDistractorsForItem(item, errorWord),
+    sourceDistractors: item.queue === 'arena' && item.arenaQuestion
+      ? item.arenaQuestion.options
+      : lessonSourceDistractorsForItem(item, errorWord),
   }));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const hasRecordedResult = useRef(false);
+  const shakeX = useSharedValue(0);
+  const shakeStyle = useAnimatedStyle(() => ({ transform: [{ translateX: shakeX.value }] }));
 
-  const phraseWithGap = item.key.replace(new RegExp(`\\b${errorWord}\\b`, 'i'), '___');
+  // Фраза крупно; пропуск — светящийся слот ровно на месте слова с ошибкой.
+  // buildTrainerSessionDeck гарантирует gapIndex >= 0 для fill_gap; -1 — фолбэк без слота.
+  const phraseWords = useMemo(() => phrase.split(' '), [phrase]);
+  const gapIndex = useMemo(() => trainerGapTokenIndex(phrase, errorWord), [phrase, errorWord]);
+
+  const recordResult = (correct: boolean) => {
+    if (hasRecordedResult.current) return;
+    hasRecordedResult.current = true;
+    onResult(correct);
+  };
 
   const pick = (opt: string) => {
     if (feedback !== 'none') return;
@@ -372,55 +505,76 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
+      void speakAnswer(phrase, studyTarget);
+      recordResult(true);
     } else {
       hapticError();
-      setTimeout(() => {
-        setChosen(null);
-        setFeedback('none');
-        onResult(false);
-      }, 1100);
+      shakeX.value = withSequence(
+        withTiming(-5, { duration: 55 }),
+        withTiming(5, { duration: 55 }),
+        withTiming(-3, { duration: 55 }),
+        withTiming(0, { duration: 55 }),
+      );
+      recordResult(false);
     }
   };
 
-  return (
-    <View style={{ flex: 1, gap: 16 }}>
-      {/* Перевод */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', borderWidth: 0, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-        {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
-        <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
-          {triLang(lang, {
-            ru: 'Вставь пропущенное слово:',
-            uk: 'Встав пропущене слово:',
-            es: 'Elige la palabra que falta:',
-            'pt-BR': 'Escolha a palavra que falta:',
-            vi: 'Chọn từ còn thiếu:',
-            id: 'Pilih kata yang hilang:',
-            tr: 'Eksik kelimeyi seç:',
-            pl: 'Wybierz brakujące słowo:',
-          })}
-        </Text>
-        <Text style={[styles.translationHint, { color: t.textMuted, fontSize: f.caption }]}>
-          {trainerTranslationForLang(item, lang)}
-        </Text>
-        <Text style={[styles.translationMain, { color: t.textPrimary, fontSize: f.bodyLg }]}>
-          {phraseWithGap}
-        </Text>
-      </View>
+  // зачем: продуктовое решение — в режиме "вставь пропущенное слово" оставляем
+  // только "Готово →"; повтор произношения доступен новым удержанием "Устно".
+  const gapBg = feedback === 'correct'
+    ? t.correctBg
+    : feedback === 'wrong'
+      ? t.wrongBg
+      : statsThemeSoftBg(themeMode, 'normal');
+  const gapColor = feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : accent;
+  const phraseFontSize = Math.round(f.bodyLg * 1.2);
 
-      {/* Варианты */}
-      <View style={{ gap: 10 }}>
+  return (
+    <View style={{ flex: 1, gap: 14 }}>
+      {/* Фраза крупно, пропуск светится; при ошибке — мягкая тряска */}
+      <Reanimated.View style={shakeStyle}>
+        <View style={[styles.gapCard, { backgroundColor: t.bgCard, borderWidth: 0, borderRadius: 20, overflow: 'visible' }]}>
+          <Text style={[styles.promptTag, { color: t.textGhost, fontSize: f.label - 1 }]}>
+            {triLang(lang, {
+              ru: 'Вставь пропущенное слово',
+              uk: 'Встав пропущене слово',
+              es: 'Elige la palabra que falta',
+              'pt-BR': 'Escolha a palavra que falta',
+              vi: 'Chọn từ còn thiếu',
+              id: 'Pilih kata yang hilang',
+              tr: 'Eksik kelimeyi seç',
+              pl: 'Wybierz brakujące słowo',
+            })}
+          </Text>
+          {promptText ? (
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.35) }}>
+              {promptText}
+            </Text>
+          ) : null}
+          <View style={styles.phraseWrap}>
+            {phraseWords.map((word, index) => (index === gapIndex ? (
+              <View key={`gap-${index}`} style={[styles.gapSlot, { backgroundColor: gapBg }]}>
+                <Text style={{ color: gapColor, fontSize: f.bodyLg, fontWeight: '900' }}>{chosen ?? '?'}</Text>
+              </View>
+            ) : (
+              <Text key={`w-${index}`} style={{ color: t.textPrimary, fontSize: phraseFontSize, fontWeight: '800', lineHeight: Math.round(phraseFontSize * 1.6) }}>{word}</Text>
+            )))}
+          </View>
+        </View>
+      </Reanimated.View>
+
+      {/* Варианты 2×2 */}
+      <View style={styles.chipsGrid}>
         {options.map(opt => {
           const isChosen = chosen === opt;
           const isCorrect = opt.toLowerCase() === errorWord.toLowerCase();
           const on = flashKey === opt;
-          let bg = on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard);
-          let bc = on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border);
-          let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
+          let bg = on ? t.accent : t.bgSurface2;
+          let tc = on ? t.correctText : t.textPrimary;
           let opacity = 1;
-          if (isChosen && feedback === 'correct') { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
-          if (isChosen && feedback === 'wrong')   { bg = isCompassTheme ? COMPASS_RICH.copperWash : t.wrongBg; bc = isCompassTheme ? COMPASS_RICH.copper : t.wrong; tc = isCompassTheme ? COMPASS_RICH.peach : t.wrong; }
-          if (!isChosen && feedback !== 'none' && isCorrect) { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
+          if (isChosen && feedback === 'correct') { bg = t.correctBg; tc = t.correct; }
+          if (isChosen && feedback === 'wrong')   { bg = t.wrongBg; tc = t.wrong; }
+          if (!isChosen && feedback !== 'none' && isCorrect) { bg = t.correctBg; tc = t.correct; }
           if (feedback !== 'none' && !isChosen && !isCorrect) opacity = 0.58;
           return (
             <DuoPressable
@@ -429,15 +583,14 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
               disabled={feedback !== 'none'}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+              wrapStyle={styles.chipWrap}
               style={[
-                styles.optionBtn,
-                isCompassTheme && compassShadow(feedback === 'none' ? 1 : 2),
+                styles.chip,
                 {
                   backgroundColor: bg,
-                  borderColor: bc,
-                  borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (feedback === 'none' && !on ? 0 : 1.5),
-                  borderRadius: isCompassTheme ? 9 : 14,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                  borderWidth: 0,
+                  borderRadius: 13,
+                  overflow: 'visible',
                   opacity,
                 },
               ]}
@@ -448,12 +601,40 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
                 pick(opt);
               }}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={9} selected={feedback !== 'none' && (isChosen || isCorrect)} quiet={feedback === 'none'} /> : null}
-              <Text style={[styles.optionText, { color: tc, fontSize: f.body, fontWeight: on ? '700' : '700' }]}>{opt}</Text>
+              <Text style={{ color: tc, fontSize: f.body, fontWeight: '800' }}>{opt}</Text>
             </DuoPressable>
           );
         })}
       </View>
+
+      {/* Микро-подсказка после ответа: честные данные — фраза целиком + её перевод.
+          Поля «объяснение правила» в TrainerItem нет — ничего не выдумываем. */}
+      {feedback !== 'none' ? (
+        <Reanimated.View entering={FadeInDown.duration(220)} style={[styles.noteRow, { backgroundColor: t.bgSurface, marginTop: 'auto' }]}>
+          <Ionicons name="bulb-outline" size={16} color={accent} />
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.caption - 1, fontWeight: '700' }}>{phrase}</Text>
+            {trainerTranslationForLang(item, lang).trim() ? (
+              <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>{trainerTranslationForLang(item, lang)}</Text>
+            ) : null}
+          </View>
+        </Reanimated.View>
+      ) : null}
+
+      {feedback !== 'none' ? (
+        <View style={styles.resultActions}>
+          <TouchableOpacity
+            onPress={onAdvance}
+            style={[styles.resultActionButton, { backgroundColor: t.correct }]}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Готово, перейти к следующей фразе', uk: 'Готово, перейти до наступної фрази', es: 'Listo, pasar a la siguiente frase', 'pt-BR': 'Concluído, ir para a próxima frase', vi: 'Xong, chuyển sang câu tiếp theo', id: 'Selesai, lanjut ke frasa berikutnya', tr: 'Tamam, sonraki ifadeye geç', pl: 'Gotowe, przejdź do następnej frazy' })}
+          >
+            <Text style={[styles.resultActionText, { color: t.correctText, fontSize: f.body }]}>
+              {triLang(lang, { ru: 'Готово →', uk: 'Готово →', es: 'Listo →', 'pt-BR': 'Concluído →', vi: 'Xong →', id: 'Selesai →', tr: 'Tamam →', pl: 'Gotowe →' })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -463,7 +644,7 @@ export default function TrainerPhrasesSession() {
   const router = useRouter();
   const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -474,18 +655,46 @@ export default function TrainerPhrasesSession() {
   // useAudio внутри карточки обрывал бы TTS-фразу на полуслове. Здесь же хук
   // переживает смену карточек, поэтому фраза доигрывает до конца.
   const { speakAnswer } = useSpeakAnswer();
+  // зачем: владелец попросил, чтобы ошибки в «Моя практика» тратили энергию и
+  // блокировали экран при 0 — точно так же, как в уроках (lesson1.tsx/review.tsx).
+  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
+  const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });
+  useEffect(() => { energyRef.current = { energy, bonusEnergy, energyUnlimited }; }, [energy, bonusEnergy, energyUnlimited]);
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
-  const [deck, setDeck] = useState<SessionCard[]>([]);
+  // зачем: юзер жаловался, что «отработка ошибок» открывается через скелет «Загружаем…».
+  // Экран практики на каждом фокусе прогревает кэш (prefetchTrainerPracticeSnapshot), поэтому
+  // к моменту перехода колода уже лежит в памяти — берём её синхронно в инициализаторе
+  // useState и рисуем первую карточку в первом же кадре. Холодный кэш (или plan-сессия со
+  // своими очередями) отдаёт null → работает прежний async-путь со скелетом. Гейт лимита и
+  // премиума НЕ пропускается: эффект ниже всё равно его отрабатывает и уводит на пейвол.
+  // Читаем params.planTaskId напрямую (а не planTrainerContext) — он объявлен ниже, а нам
+  // нужно ровно одно вычисление на монтирование, до первого рендера.
+  const warmDeckRef = useRef<SessionCard[] | null>(
+    !trainerGateOpen || params.planTaskId || params.planTrainerTask
+      ? null
+      : getWarmPhraseSessionDeck(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale),
+  );
+  const warmDeck = warmDeckRef.current;
+  const [deck, setDeck] = useState<SessionCard[]>(() => warmDeck ?? []);
   const [current, setCurrent] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [accessReady, setAccessReady] = useState(false);
+  const [loading, setLoading] = useState(() => warmDeck === null);
+  // Тёплый старт показывает карточку сразу, не дожидаясь проверки лимита. Сама проверка
+  // никуда не делась: эффект ниже её отрабатывает и при отказе уводит на пейвол через
+  // router.replace — экран просто не висит скелетом на время двух чтений AsyncStorage.
+  const [accessReady, setAccessReady] = useState(() => warmDeck !== null);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-  const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
+  // Тёплый старт: сессия реально начинается в первом кадре, а не когда добежит фоновая
+  // сверка — иначе длительность сессии в статистике занижалась бы на время гейта.
+  const sessionStartRef = useRef(warmDeck ? Date.now() : 0);
+  const pendingResultRef = useRef<Promise<void>>(Promise.resolve());
+  const advancingRef = useRef(false);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
     mode: params.mode,
     planDayIndex: params.planDayIndex,
@@ -504,10 +713,29 @@ export default function TrainerPhrasesSession() {
     params.requiredItems,
   ]);
 
+  // зачем: аудит нашёл, что закрытие модала тапом мимо/кнопкой «назад» на Android (в
+  // отличие от «Позже» → onGotIt, который уводит с экрана) оставляет пользователя тут же
+  // с энергией 0 — а любое следующее обновление EnergyContext (сворачивание/разворачивание,
+  // тик восстановления, бонус/премиум-событие) заново открывает уже закрытый модал.
+  const energyGateDismissedRef = useRef(false);
+  // Гейт на входе: энергия уже на нуле до первого ответа — сразу блокирующий модал,
+  // как в lesson1.tsx (entryEnergyGateLessonRef). energyReady ждёт первого live-чтения,
+  // чтобы не мигнуть модалом на дефолтных значениях контекста при холодном старте.
+  useEffect(() => {
+    if (!energyReady || energyUnlimited) return;
+    if (energy + bonusEnergy > 0) return;
+    if (energyGateDismissedRef.current) return;
+    setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
+
   useEffect(() => {
     let cancelled = false;
+    // Тёплый старт: колода уже отрисована из кэша — не откатываем экран обратно в скелет,
+    // пока фоном идёт гейт и точная загрузка. Иначе первый кадр был бы карточкой, а второй —
+    // «Загружаем…», что хуже, чем просто загрузка.
+    const startedWarm = warmDeckRef.current !== null;
     setLoadError(false);
-    setLoading(true);
+    if (!startedWarm) setLoading(true);
     void (async () => {
       try {
         if (!trainerGateOpen) {
@@ -516,18 +744,12 @@ export default function TrainerPhrasesSession() {
           setLoading(false);
           return;
         }
+        // зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
+        // премиум-гейт smart_trainer снят и для задач персонального плана тоже.
+        // Ветку planTrainerContext.taskId оставляем: она не про доступ, а про то,
+        // что дневной лимит к плановым задачам не применяется (см. else ниже).
         if (planTrainerContext.taskId) {
-          const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
           if (cancelled) return;
-          if (!planAllowed) {
-            logTrainerDirectGateBlocked('/trainer_phrases_session');
-            // Снимаем экран тренажёра со стека «назад»: при закрытии пейвола
-            // возврат сюда снова упёрся бы в этот же гейт → пейвол открывался бы
-            // заново «на месте» бесконечно. Уходим на реальный предыдущий экран.
-            markNextNavigationAsReplace();
-            router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
-            return;
-          }
         } else {
           const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session', studyTarget);
           if (cancelled) return;
@@ -542,23 +764,43 @@ export default function TrainerPhrasesSession() {
           }
         }
         setAccessReady(true);
-        await ensureFrenchRemotePersonalPractice(sourceLocale);
+        // Plan-контекст: фразовая сессия обслуживает и арену плана — грузим обе
+        // plan-очереди и объединяем тем же компаратором, что и свободную практику.
         const items = planTrainerContext.taskId
-          ? await getTrainerPremiumItemsForPlanQueue(
-              planTrainerContext.planInstanceId,
-              planTrainerContext.mode,
-              'phrases',
-              planTrainerContext.requiredItems,
-              studyTarget,
-            )
-          : await getDueItems('phrases', 15, studyTarget, sourceLocale);
+          ? await (async () => {
+              const [planPhrases, planArena] = await Promise.all([
+                getTrainerPremiumItemsForPlanQueue(
+                  planTrainerContext.planInstanceId,
+                  planTrainerContext.mode,
+                  'phrases',
+                  planTrainerContext.requiredItems,
+                  studyTarget,
+                ),
+                getTrainerPremiumItemsForPlanQueue(
+                  planTrainerContext.planInstanceId,
+                  planTrainerContext.mode,
+                  'arena',
+                  planTrainerContext.requiredItems,
+                  studyTarget,
+                ),
+              ]);
+              return mergePhraseSessionItems(planPhrases, planArena, planTrainerContext.requiredItems);
+            })()
+          : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
-        setDeck(buildDeck(items));
+        if (!startedWarm) sessionStartRef.current = Date.now();
+        // Тёплый старт: пользователь уже видит и, возможно, отвечает на карточку из кэша —
+        // подменять колоду под ним нельзя (сбились бы прогресс и текущий индекс). Точная
+        // загрузка нужна была только чтобы подтвердить гейт и наличие айтемов.
+        if (!startedWarm) setDeck(buildTrainerSessionDeck(items));
         setLoading(false);
       } catch {
         // Сбой загрузки колоды → экран ошибки с retry вместо вечного лоадера.
         if (cancelled) return;
+        // Тёплый старт уже показывает рабочую колоду из кэша — рушить её экраном ошибки
+        // из-за сбоя фоновой сверки нельзя, сессия полностью играбельна.
+        if (startedWarm) return;
         setLoadError(true);
         setLoading(false);
       }
@@ -566,34 +808,58 @@ export default function TrainerPhrasesSession() {
     return () => { cancelled = true; };
     }, [planTrainerContext, router, reloadKey, sourceLocale, studyTarget, trainerGateOpen]);
 
-  const handleResult = useCallback(async (answeredCorrectly: boolean) => {
+  const handleResult = useCallback((answeredCorrectly: boolean) => {
     const card = deck[current];
     if (!card) return;
 
-    const nextCorrect = correct + (answeredCorrectly ? 1 : 0);
-    const nextWrong = wrong + (answeredCorrectly ? 0 : 1);
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'phrases', answeredCorrectly, studyTarget);
-    const updates: { type: TaskType; increment: number }[] = [];
-    if (!dailySessionTracked.current) {
-      dailySessionTracked.current = true;
-      updates.push({ type: 'recall_session', increment: 1 });
-    }
-    if (answeredCorrectly) {
-      updates.push({ type: 'recall_answers', increment: 1 });
-      updates.push({ type: 'trainer_phrases', increment: 1 });
-      checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
-    }
+    pendingResultRef.current = (async () => {
+      await markTrainerResult(card.item.key, card.item.queue, answeredCorrectly, studyTarget);
+      const updates: { type: TaskType; increment: number }[] = [];
+      // «Моя практика» продвигает только trainer_phrases/trainer_arena.
+      // SRS recall_* принадлежит исключительно экрану /review.
+      if (answeredCorrectly) {
+        updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
+        checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
+      } else if (!energyRef.current.energyUnlimited) {
+        // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
+        // Ответ уже засчитан выше; модал догоняет с задержкой (даёт красному фидбэку
+        // отыграть), totalBefore/After читаем из ref — без stale closure.
+        const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
+        spendOne().then((success) => {
+          if (!success) return;
+          // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
+          // никогда не засчитывалось из этого экрана — lesson1.tsx/review.tsx шлют этот
+          // инкремент, а «Моя практика» — нет. Квест молча не продвигался у части юзеров.
+          updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
+          setTimeout(() => {
+            const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
+            if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+          }, 800);
+        }).catch(() => {});
+      }
+      if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
+    })().catch(() => {});
+  }, [deck, current, studyTarget, spendOne]);
 
+  const handleAdvance = useCallback(async () => {
+    if (advancingRef.current) return;
+    // зачем: аудит нашёл, что «Далее» не проверял noEnergyModalOpen — ответ, обнуливший
+    // энергию, засчитывался мгновенно, а модал открывается с задержкой ~800мс (см.
+    // handleResult), и за это окно пользователь успевал перейти на новый, полностью
+    // отвечаемый вопрос ДО появления блокировки. pendingResultRef её не покрывает —
+    // это fire-and-forget цепочка spendOne().then(...setTimeout...), не awaited-промис.
+    if (noEnergyModalOpen) return;
+    advancingRef.current = true;
+    await pendingResultRef.current;
     const next = current + 1;
     if (next >= deck.length) {
-      if (deck.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
       checkAchievements({
         type: 'trainer_session_result',
-        correct: nextCorrect,
-        wrong: nextWrong,
+        correct,
+        wrong,
         total: deck.length,
         studyTarget,
       }).catch(() => {});
@@ -601,8 +867,8 @@ export default function TrainerPhrasesSession() {
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget]);
+    advancingRef.current = false;
+  }, [deck.length, current, correct, wrong, studyTarget, noEnergyModalOpen]);
 
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
@@ -636,8 +902,8 @@ export default function TrainerPhrasesSession() {
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
             {copy.body}
           </Text>
-          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#40C080', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
+          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: t.correct, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -645,6 +911,40 @@ export default function TrainerPhrasesSession() {
   }
 
   if (done) {
+    // зачем: раньше после лимитированной пачки фраз сразу предлагали слова,
+    // даже если фраз ещё много осталось — юзер видел «прошёл фразы → слова →
+    // снова фразы» вместо того, чтобы сначала добить фразовую очередь целиком.
+    // Сначала проверяем остаток СВОЕЙ очереди, и только если она пуста — слова.
+    const morePhrasesChain = planTrainerContext.taskId
+      ? []
+      : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
+    const wordsChain = planTrainerContext.taskId || morePhrasesChain.length > 0
+      ? []
+      : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
+    const nextLabel = morePhrasesChain.length > 0
+      ? `${triLang(lang, {
+        ru: 'Дальше: Фразы',
+        uk: 'Далі: Фрази',
+        es: 'Siguiente: Frases',
+        'pt-BR': 'A seguir: Frases',
+        vi: 'Tiếp: Cụm từ',
+        id: 'Lanjut: Frasa',
+        tr: 'Sıradaki: İfadeler',
+        pl: 'Dalej: Frazy',
+      })} · ${morePhrasesChain.length}`
+      : wordsChain.length > 0
+      ? `${triLang(lang, {
+        ru: 'Дальше: Слова',
+        uk: 'Далі: Слова',
+        es: 'Siguiente: Palabras',
+        'pt-BR': 'A seguir: Palavras',
+        vi: 'Tiếp: Từ vựng',
+        id: 'Lanjut: Kata',
+        tr: 'Sıradaki: Kelimeler',
+        pl: 'Dalej: Słowa',
+      })} · ${wordsChain.length}`
+      : undefined;
+    const nextRoute = morePhrasesChain.length > 0 ? '/trainer_phrases_session' : '/trainer_words_session';
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -654,9 +954,12 @@ export default function TrainerPhrasesSession() {
               correct={correct}
               wrong={wrong}
               total={deck.length || correct + wrong}
-              accent="#40C080"
+              accent={accent}
+              durationMs={sessionStartRef.current > 0 ? Date.now() - sessionStartRef.current : undefined}
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
+              nextLabel={nextLabel}
+              onNext={nextLabel ? () => { hapticTap(); router.replace(nextRoute as any); } : undefined}
             />
           </ContentWrap>
         </SafeAreaView>
@@ -665,27 +968,6 @@ export default function TrainerPhrasesSession() {
   }
 
   const card = deck[current];
-  const modeLabel = card?.mode === 'fill_gap'
-    ? triLang(lang, {
-      ru: 'Заполни пропуск',
-      uk: 'Заповни пропуск',
-      es: 'Completa',
-      'pt-BR': 'Complete',
-      vi: 'Điền từ',
-      id: 'Lengkapi',
-      tr: 'Tamamla',
-      pl: 'Uzupełnij',
-    })
-    : triLang(lang, {
-      ru: 'Составь фразу',
-      uk: 'Склади фразу',
-      es: 'Forma la frase',
-      'pt-BR': 'Monte a frase',
-      vi: 'Sắp xếp câu',
-      id: 'Susun frasa',
-      tr: 'Cümleyi kur',
-      pl: 'Ułóż frazę',
-    });
 
   return (
     <ScreenGradient>
@@ -712,43 +994,54 @@ export default function TrainerPhrasesSession() {
               <ReportErrorButton
                 screen="trainer_phrases"
                 dataId={`trainer_phrase_${card.item.key ?? 'unknown'}`}
-                dataText={`${card.item.key}\n${trainerTranslationForLang(card.item, lang)}`}
+                dataText={`${trainerSessionPhrase(card.item).phrase}\n${trainerTranslationForLang(card.item, lang)}`}
                 variant="icon-flag"
                 accessibilityLabel="Сообщить об ошибке во фразе"
                 style={[
                   { width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, marginLeft: 8 },
-                  isCompassTheme && { borderRadius: 9, backgroundColor: COMPASS_RICH.charcoalRaised, borderColor: COMPASS_RICH.hairline, ...compassShadow(1) },
                 ]}
               />
             ) : null}
           </View>
 
-          {/* Прогресс */}
-          <GradientProgressBar
-            progress={deck.length > 0 ? current / deck.length : 0}
-            accent={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'}
-            style={styles.progressBar}
-          />
-
-          {/* Лейбл режима */}
-          <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-            <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '600' }}>{modeLabel}</Text>
+          {/* Прогресс: тонкая полоса + чип-счётчик */}
+          <View style={styles.progressRow}>
+            <GradientProgressBar
+              progress={deck.length > 0 ? current / deck.length : 0}
+              accent={accent}
+              height={6}
+              style={styles.progressBarFlex}
+            />
+            <View style={[styles.countChip, { backgroundColor: t.bgSurface }]}>
+              <Text style={{ color: t.textMuted, fontSize: f.label - 1, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                {deck.length > 0 ? Math.min(current + 1, deck.length) : 0} / {deck.length}
+              </Text>
+            </View>
           </View>
 
           <BouncyScrollView
-            decelerationRate="normal"
-            contentContainerStyle={{ padding: 16, paddingTop: 8, flex: 1 }}
+            decelerationRate="fast"
+            contentContainerStyle={{ padding: 16, paddingTop: 8, flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}
           >
+            {/* зачем: в ключ добавлена позиция в колоде. Раньше ключ был только из
+                item.key, и две подряд идущие карточки с одинаковым текстом заставляли
+                React переиспользовать инстанс — feedback оставался от прошлой карточки,
+                и «Проверить» блокировалась навсегда (репорт «через пару заданий»). */}
             {card?.mode === 'word_bank'
-              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} speakAnswer={speakAnswer} />
-              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} speakAnswer={speakAnswer} />
+              ? <WordBankMode key={card.item.key + '_' + current + '_wb'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
+              : card && <FillGapMode key={card.item.key + '_' + current + '_fg'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
             }
           </BouncyScrollView>
         </ContentWrap>
       </SafeAreaView>
+      <NoEnergyModal
+        visible={noEnergyModalOpen}
+        onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
+        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+      />
     </ScreenGradient>
   );
 }
@@ -762,21 +1055,75 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   headerTitle: { fontWeight: '700' },
-  progressBar: { marginHorizontal: 16 },
-  translationBox: {
-    borderRadius: 16,
-    padding: 16,
-    gap: 6,
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 9,
+    paddingHorizontal: 16,
+    marginBottom: 4,
   },
-  translationText: { fontWeight: '600' },
-  translationHint: { fontWeight: '600', lineHeight: 19 },
-  translationMain: { fontWeight: '700', lineHeight: 24 },
-  assemblyBox: {
-    minHeight: 72,
-    borderRadius: 16,
+  progressBarFlex: { flex: 1 },
+  countChip: {
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
+  promptCard: {
+    borderRadius: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 16,
+  },
+  promptTag: {
+    fontWeight: '800',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+  },
+  answerZone: {
+    minHeight: 96,
+    borderRadius: 18,
     padding: 12,
+    justifyContent: 'center',
+  },
+  gapCard: {
+    borderRadius: 20,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    gap: 12,
+  },
+  phraseWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    columnGap: 7,
+    rowGap: 8,
+  },
+  gapSlot: {
+    minWidth: 64,
+    height: 32,
+    borderRadius: 9,
+    paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  chipsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 9,
+  },
+  chipWrap: { flexBasis: '47%', flexGrow: 1 },
+  chip: {
+    height: 46,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  noteRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 14,
+    paddingVertical: 11,
+    paddingHorizontal: 14,
   },
   tilesRow: {
     flexDirection: 'row',
@@ -784,25 +1131,34 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   tile: {
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    borderRadius: 11,
+    height: 38,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tileText: { fontWeight: '600' },
   checkBtn: {
-    borderRadius: 16,
-    paddingVertical: 14,
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  checkBtnText: { color: '#fff', fontWeight: '800' },
-  optionBtn: {
     borderRadius: 14,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
+    minHeight: 48,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  optionText: { fontWeight: '700' },
+  checkBtnText: { fontWeight: '800' },
+  resultActions: {
+    gap: 10,
+  },
+  resultActionButton: {
+    minHeight: 48,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+  resultActionText: {
+    fontWeight: '800',
+    textAlign: 'center',
+  },
   doneContainer: {
     flex: 1,
     alignItems: 'center',

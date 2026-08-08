@@ -471,6 +471,29 @@
   max-width: 420px;
   margin-bottom: 4px;
 }
+.qlead-consent {
+  display: flex;
+  max-width: 420px;
+  margin: 14px auto 16px;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+}
+.qlead-consent input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--gold);
+  flex: 0 0 auto;
+}
+.qlead-consent input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
 .qskip-link {
   display: block;
   margin: 14px 0 4px;

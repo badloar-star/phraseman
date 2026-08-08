@@ -17,11 +17,20 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   business: ['#000000', '#000000'],
   // «Бизнес светлый»: тёплая бумажная подложка.
   businessLight: ['#FFFFFF', '#FFFFFF'],
+  // зачем 2026-08-04 (владелец: «в светлой теме фон должен быть темнее даже
+  // на главной и на других страницах», заметно): был почти-белый градиент
+  // #F7F8F4→#E7EAE3, неотличимый от карточек. Сдвинут в тёплый серо-зелёный
+  // ряд вокруг нового SAGE_PORCELAIN.bgPrimary #DCE1D8.
+  sagePorcelain: ['#E7EAE2', '#DCE1D8', '#CDD5C7'],
   // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
   midnight: [...CINEMA.midnight.bgGradient3],
   ember: [...CINEMA.ember.bgGradient3],
   aurora: [...CINEMA.aurora.bgGradient3],
   volt: [...CINEMA.volt.bgGradient3],
+  // Legacy candyBlue compatibility palette.
+  candyBlue: ['#0B161B', '#050C0F', '#010203'],
+  // «Индиго»: тёмный индиго-сумрак.
+  indigo: ['#14131F', '#0C0B16', '#010102'],
 };
 
 const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {

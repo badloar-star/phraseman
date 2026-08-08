@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -81,14 +81,14 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
     pl: 'Nieprawidłowa odpowiedź albo logika ćwiczenia',
   },
   payment_premium: {
-    ru: 'Подписка, покупка или осколки',
-    uk: 'Підписка, покупка або уламки',
-    es: 'Suscripción, compra o fragmentos',
-    'pt-BR': 'Assinatura, compra ou fragmentos',
-    vi: 'Gói đăng ký, giao dịch mua hoặc mảnh thưởng',
-    id: 'Langganan, pembelian, atau pecahan',
-    tr: 'Abonelik, satın alma veya parçalar',
-    pl: 'Subskrypcja, zakup albo odłamki',
+    ru: 'Подписка, покупка или жемчужины',
+    uk: 'Підписка, покупка або перлини',
+    es: 'Suscripción, compra o perlas',
+    'pt-BR': 'Assinatura, compra ou pérolas',
+    vi: 'Gói đăng ký, giao dịch mua hoặc xu thưởng',
+    id: 'Langganan, pembelian, atau koin',
+    tr: 'Abonelik, satın alma veya jetonlar',
+    pl: 'Subskrypcja, zakup albo monety',
   },
   other: {
     ru: 'Другая проблема',
@@ -372,13 +372,13 @@ function ReportErrorButton({
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Если ошибка подтвердится — получишь осколок.',
-                      uk: 'Якщо помилка підтвердиться — отримаєш уламок.',
+                      ru: 'Если ошибка подтвердится — получишь жемчужину.',
+                      uk: 'Якщо помилка підтвердиться — отримаєш перлину.',
                       es: 'Si confirmamos el error, recibirás un fragmento de conocimiento.',
                       'pt-BR': 'Se confirmarmos o erro, você receberá um fragmento de conhecimento.',
-                      vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một mảnh kiến thức.',
-                      id: 'Jika kesalahan terkonfirmasi, kamu akan menerima satu pecahan pengetahuan.',
-                      tr: 'Hata doğrulanırsa bir bilgi parçası alacaksın.',
+                      vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một xu kiến thức.',
+                      id: 'Jika kesalahan terkonfirmasi, kamu akan menerima satu koin pengetahuan.',
+                      tr: 'Hata doğrulanırsa bir bilgi jetonu alacaksın.',
                       pl: 'Jeśli błąd się potwierdzi, otrzymasz odłamek wiedzy.',
                     })}
                   </Text>

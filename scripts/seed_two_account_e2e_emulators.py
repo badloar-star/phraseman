@@ -139,7 +139,6 @@ def seed_device(serial: str, avd_name: str) -> None:
                 "streak_count": "21",
                 "shards_balance": "500",
                 "league_state_v3": json.dumps(league_state, separators=(",", ":")),
-                "league_chat_room_cache_v1": json.dumps(room, separators=(",", ":")),
                 "week_points_v2": json.dumps(week_points, separators=(",", ":")),
                 "leaderboard_cache_v1": json.dumps(leaderboard_cache, separators=(",", ":")),
             }

@@ -18,19 +18,19 @@ describe('admin v2 daily briefing and report center', () => {
     expect(core).toContain("'report-center':");
   });
 
-  it('uses callable-only briefing controls and renders source health explicitly', () => {
+  it('uses callable-only briefing controls and keeps the digest page minimal', () => {
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetDailyBriefing')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGenerateDailyDigest')");
     expect(core).toContain("data-action=\"load-daily-briefing\"");
     expect(core).toContain("data-action=\"generate-daily-briefing\"");
-    expect(core).toContain('Утренний отчёт руководителя');
-    expect(core).toContain('Сформировать отчёт');
+    expect(core).toContain('Брифинг');
+    expect(core).toContain('Сформировать дайджест');
     expect(core).toContain('Сделать сегодня');
     expect(core).toContain('Рост и деньги');
     expect(core).toContain('Риски продукта');
     expect(core).toContain('Очереди');
     expect(core).toContain('Идеи пользователей');
-    expect(core).toContain('Показать server facts JSON');
+    expect(core).not.toContain('Показать server facts JSON');
     expect(core).toContain('sourceHealth');
     expect(core).toContain('Неполная сводка');
   });
@@ -69,7 +69,9 @@ describe('admin v2 daily briefing and report center', () => {
     expect(core).toContain('generationResult?.preservedExisting');
     expect(core).toContain('не означает, что репортов нет вообще');
     expect(core).toContain("state.briefing = { state: 'idle'");
-    expect(core).toContain("state.reports = { state: 'idle'");
+    expect(core).toContain('defaultReportState(state.adminSettings)');
+    expect(core).toContain("items: []");
+    expect(core).toContain("replyDrafts: {}");
 
     const statusBlock = core.slice(core.indexOf('async function updateReportStatus'), core.indexOf('async function handleAction'));
     expect(statusBlock.indexOf('await actions.updateReportStatus')).toBeLessThan(statusBlock.indexOf('authStillValid(authGeneration, requiredPermission)'));
@@ -82,5 +84,19 @@ describe('admin v2 daily briefing and report center', () => {
     const sendBlock = core.slice(core.indexOf("if (action === 'send-report-reply')"), core.indexOf("if (action === 'search-admin-users')"));
     expect(sendBlock.indexOf('await actions.sendReportReply')).toBeLessThan(sendBlock.indexOf("authStillValid(authGeneration, 'reports.reply.send')"));
     expect(sendBlock.indexOf("authStillValid(authGeneration, 'reports.reply.send')")).toBeLessThan(sendBlock.indexOf('delete nextDrafts'));
+  });
+
+  it('rerenders the report center after accepting a successful background response', () => {
+    const loadBlock = core.slice(core.indexOf('async function loadReportQueue'), core.indexOf('function scheduleAdminAutoRefresh'));
+    const acceptedResult = loadBlock.indexOf('state.reports = {', loadBlock.indexOf('const result = await actions.listReportQueue'));
+
+    expect(acceptedResult).toBeGreaterThan(-1);
+    expect(loadBlock.indexOf('renderCurrentPage();', acceptedResult)).toBeGreaterThan(acceptedResult);
+  });
+
+  it('does not schedule a second report refresh while one is loading', () => {
+    const scheduleBlock = core.slice(core.indexOf('function scheduleAdminAutoRefresh'), core.indexOf('function assertFactoryWorkspaceCoverage'));
+
+    expect(scheduleBlock).toContain("state.reports.state === 'loading'");
   });
 });

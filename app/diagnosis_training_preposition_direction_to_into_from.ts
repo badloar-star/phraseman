@@ -239,7 +239,7 @@ function directionStep(input: {
         .filter((option) => option !== input.correctAnswer)
         .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый кусок с ${input.correctAnswer}.`,
-          `Майже. Тут потрібен готовий шматок з ${input.correctAnswer}.`,
+          `Майже. Тут потрібен готовий зворот з ${input.correctAnswer}.`,
           `Casi. Aquí necesitas el bloque con ${input.correctAnswer}.`,
         ), esFeedback)]),
     ),
@@ -249,7 +249,7 @@ function directionStep(input: {
       withEs(input.retry[2], esFeedback),
       tri(
         `Подсказка: готовый кусок - ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
-        `Підказка: готовий шматок - ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
+        `Підказка: готовий зворот - ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
         `Pista: el bloque listo es ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
       ),
     ],
@@ -425,7 +425,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка в маршруте. Слова похожи, но стрелка движения разная.', 'Тут пастка в маршруті. Слова схожі, але стрілка руху різна.', 'La trampa esta en la ruta. Las palabras se parecen, pero la flecha de movimiento es distinta.') },
     { id: 'intro_rule', type: 'rule', text: tri('Не начинай с перевода. Сначала спроси: действие идёт к месту, внутрь, откуда или наружу изнутри?', 'Не починай з перекладу. Спочатку спитай: дія йде до місця, всередину, звідки або назовні зсередини?', 'No empieces por la traduccion. Pregunta: hacia un lugar, hacia dentro, desde donde o desde dentro hacia fuera?') },
-    { id: 'intro_tone', type: 'encouragement', text: tri('Это чинится быстро, если видеть стрелку. Давай закрепим несколько готовых кусков.', 'Це швидко чиниться, якщо бачити стрілку. Закріпімо кілька готових шматків.', 'Esto se arregla rapido si ves la flecha. Vamos a fijar unos bloques listos.') },
+    { id: 'intro_tone', type: 'encouragement', text: tri('Это чинится быстро, если видеть стрелку. Давай закрепим несколько готовых кусков.', 'Це швидко чиниться, якщо бачити стрілку. Закріпімо кілька готових зворотів.', 'Esto se arregla rapido si ves la flecha. Vamos a fijar unos bloques listos.') },
   ],
   steps: [
     directionStep({
@@ -447,7 +447,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Спроси: куда идёт стрелка?', 'Спитай: куди йде стрілка?', 'Ask: where does the arrow go?'),
         tri('К месту = to.', 'До місця = to.', 'To a place = to.'),
-        tri('Готовый кусок: to work.', 'Готовий шматок: to work.', 'Ready block: to work.'),
+        tri('Готовый кусок: to work.', 'Готовий зворот: to work.', 'Ready block: to work.'),
       ],
       fallbackExplanation: tri('К месту или цели пути = to: go to work.', 'До місця або цілі шляху = to: go to work.', 'To a place or goal = to.'),
       focusWords: ['work'],
@@ -471,7 +471,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Drove показывает движение.', 'Drove показує рух.', 'Drove shows movement.'),
         tri('Цель поездки = to.', 'Ціль поїздки = to.', 'Destination = to.'),
-        tri('Готовый кусок: to Dublin.', 'Готовий шматок: to Dublin.', 'Ready block: to Dublin.'),
+        tri('Готовый кусок: to Dublin.', 'Готовий зворот: to Dublin.', 'Ready block: to Dublin.'),
       ],
       fallbackExplanation: tri('Ехать в город как к цели пути = drive to Dublin.', 'Їхати до міста як до цілі шляху = drive to Dublin.', 'Drive to a city as destination = to Dublin.'),
       focusWords: ['Dublin'],
@@ -495,7 +495,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Кто получает?', 'Хто отримує?', 'Who receives it?'),
         tri('Получатель = to.', 'Отримувач = to.', 'Receiver = to.'),
-        tri('Готовый кусок: to me.', 'Готовий шматок: to me.', 'Ready block: to me.'),
+        tri('Готовый кусок: to me.', 'Готовий зворот: to me.', 'Ready block: to me.'),
       ],
       fallbackExplanation: tri('После send человек-получатель часто идёт с to: send it to me.', 'Після send людина-отримувач часто йде з to: send it to me.', 'With send, receiver often uses to.'),
       focusWords: ['me'],
@@ -519,7 +519,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Есть вход внутрь?', 'Є вхід усередину?', 'Is there movement inside?'),
         tri('Внутрь = into.', 'Всередину = into.', 'Inside movement = into.'),
-        tri('Готовый кусок: into the room.', 'Готовий шматок: into the room.', 'Ready block: into the room.'),
+        tri('Готовый кусок: into the room.', 'Готовий зворот: into the room.', 'Ready block: into the room.'),
       ],
       fallbackExplanation: tri('Войти внутрь комнаты = go/walk into the room.', 'Увійти всередину кімнати = go/walk into the room.', 'Enter inside = into the room.'),
       focusWords: ['the room'],
@@ -543,7 +543,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Ключи куда движутся?', 'Ключі куди рухаються?', 'Where do the keys move?'),
         tri('Внутрь сумки = into.', 'Всередину сумки = into.', 'Inside the bag = into.'),
-        tri('Готовый кусок: into the bag.', 'Готовий шматок: into the bag.', 'Ready block: into the bag.'),
+        tri('Готовый кусок: into the bag.', 'Готовий зворот: into the bag.', 'Ready block: into the bag.'),
       ],
       fallbackExplanation: tri('Положить внутрь = put into.', 'Покласти всередину = put into.', 'Put inside = put into.'),
       focusWords: ['the bag'],
@@ -591,7 +591,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Спроси: откуда?', 'Спитай: звідки?', 'Ask: from where?'),
         tri('Откуда = from.', 'Звідки = from.', 'From where = from.'),
-        tri('Готовый кусок: from work.', 'Готовий шматок: from work.', 'Ready block: from work.'),
+        tri('Готовый кусок: from work.', 'Готовий зворот: from work.', 'Ready block: from work.'),
       ],
       fallbackExplanation: tri('С работы = from work.', 'З роботи = from work.', 'From work = from work.'),
       focusWords: ['work'],
@@ -615,7 +615,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Вопрос: откуда она?', 'Питання: звідки вона?', 'Question: where is she from?'),
         tri('Происхождение = from.', 'Походження = from.', 'Origin = from.'),
-        tri('Готовый кусок: from Ukraine.', 'Готовий шматок: from Ukraine.', 'Ready block: from Ukraine.'),
+        tri('Готовый кусок: from Ukraine.', 'Готовий зворот: from Ukraine.', 'Ready block: from Ukraine.'),
       ],
       fallbackExplanation: tri('Из страны / откуда родом = from.', 'З країни / звідки родом = from.', 'Country of origin = from.'),
       focusWords: ['Ukraine'],
@@ -639,7 +639,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('От кого пришло сообщение?', 'Від кого прийшло повідомлення?', 'Who did it come from?'),
         tri('Источник = from.', 'Джерело = from.', 'Source = from.'),
-        tri('Готовый кусок: from my friend.', 'Готовий шматок: from my friend.', 'Ready block: from my friend.'),
+        tri('Готовый кусок: from my friend.', 'Готовий зворот: from my friend.', 'Ready block: from my friend.'),
       ],
       fallbackExplanation: tri('От человека-источника = from: from my friend.', 'Від людини-джерела = from: from my friend.', 'Source person = from.'),
       focusWords: ['my friend'],
@@ -657,13 +657,13 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Изнутри машины наружу: out of the car.', 'Так. Зсередини машини назовні: out of the car.', 'Yes. From inside the car to outside: out of the car.'),
       wrong: {
         into: tri('Into - наоборот: внутрь машины. Здесь нужно выйти наружу, поэтому out of the car.', 'Into - навпаки: всередину машини. Тут треба вийти назовні, тому out of the car.', 'Into is the opposite: inside the car. Here: out of the car.'),
-        from: tri('From показывает “откуда”, но для выхода изнутри машины естественный блок: out of the car.', 'From показує “звідки”, але для виходу зсередини машини природний шматок: out of the car.', 'From shows from where, but exiting inside-to-outside is out of the car.'),
+        from: tri('From показывает “откуда”, но для выхода изнутри машины естественный блок: out of the car.', 'From показує “звідки”, але для виходу зсередини машини природний зворот: out of the car.', 'From shows from where, but exiting inside-to-outside is out of the car.'),
         to: tri('To показывает движение к месту. Здесь движение изнутри наружу: out of the car.', 'To показує рух до місця. Тут рух зсередини назовні: out of the car.', 'To means to a place. Here: out of the car.'),
       },
       retry: [
         tri('Человек был внутри машины?', 'Людина була всередині машини?', 'Was the person inside the car?'),
         tri('Изнутри наружу = out of.', 'Зсередини назовні = out of.', 'From inside to outside = out of.'),
-        tri('Готовый кусок: out of the car.', 'Готовий шматок: out of the car.', 'Ready block: out of the car.'),
+        tri('Готовый кусок: out of the car.', 'Готовий зворот: out of the car.', 'Ready block: out of the car.'),
       ],
       fallbackExplanation: tri('Выйти из машины = get out of the car.', 'Вийти з машини = get out of the car.', 'Exit a car = get out of the car.'),
       focusWords: ['the car'],
@@ -687,7 +687,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       retry: [
         tri('Телефон был внутри?', 'Телефон був усередині?', 'Was the phone inside?'),
         tri('Достаём наружу = out of.', 'Дістаємо назовні = out of.', 'Take outside = out of.'),
-        tri('Готовый кусок: out of the bag.', 'Готовий шматок: out of the bag.', 'Ready block: out of the bag.'),
+        tri('Готовый кусок: out of the bag.', 'Готовий зворот: out of the bag.', 'Ready block: out of the bag.'),
       ],
       fallbackExplanation: tri('Достать изнутри наружу = take out of.', 'Дістати зсередини назовні = take out of.', 'Take from inside to outside = take out of.'),
       focusWords: ['the bag'],
@@ -785,7 +785,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
         tri('С работы = from work. Внутрь комнаты = into the room.', 'З роботи = from work. Усередину кімнати = into the room.', 'From work. Into the room.'),
         tri('Готовая фраза: пришла откуда-то и вошла внутрь комнаты.', 'Готова фраза: прийшла звідкись і зайшла всередину кімнати.', 'Ready sentence: She came from work and went into the room.'),
       ],
-      fallbackExplanation: tri('В длинной фразе не угадывай. Разбей движение на куски: from work / into the room.', 'У довгій фразі не вгадуй. Розбий рух на шматки: from work / into the room.', 'Do not guess in a long sentence. Split into blocks: from work / into the room.'),
+      fallbackExplanation: tri('В длинной фразе не угадывай. Разбей движение на куски: from work / into the room.', 'У довгій фразі не вгадуй. Розбий рух на звороти: from work / into the room.', 'Do not guess in a long sentence. Split into blocks: from work / into the room.'),
       focusWords: ['work', 'the room'],
     }),
   ],
@@ -812,7 +812,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
     maxDepth: 4,
     depth1: tri('Сначала показываем стрелку движения.', 'Спочатку показуємо стрілку руху.', 'Primero mostramos la flecha de movimiento.'),
     depth2: tri('Потом уточняем: к месту, внутрь, откуда или наружу изнутри.', 'Потім уточнюємо: до місця, всередину, звідки або назовні зсередини.', 'Luego aclaramos: hacia un lugar, hacia dentro, desde donde o desde dentro hacia fuera.'),
-    depth3: tri('Показываем готовые куски: to work, into the room, from work, out of the car.', 'Показуємо готові шматки: to work, into the room, from work, out of the car.', 'Mostramos bloques listos: to work, into the room, from work, out of the car.'),
+    depth3: tri('Показываем готовые куски: to work, into the room, from work, out of the car.', 'Показуємо готові звороти: to work, into the room, from work, out of the car.', 'Mostramos bloques listos: to work, into the room, from work, out of the car.'),
     depth4: tri('Почти подсказка: называем нужную стрелку и просим выбрать маленькое слово.', 'Майже підказка: називаємо потрібну стрілку і просимо обрати маленьке слово.', 'Casi una pista: nombramos la flecha necesaria y pedimos elegir la palabra pequena.'),
   },
   failureRecovery: {

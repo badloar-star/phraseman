@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "release": "admin-content-factory-r1",
+  "environment": {
+    "firebaseProjectAlias": "REPLACE_WITH_NON_PRODUCTION_ALIAS",
+    "firebaseProjectId": "REPLACE_WITH_NON_PRODUCTION_PROJECT_ID",
+    "confirmedNonProduction": false,
+    "confirmedBy": "REPLACE_WITH_ADMIN_IDENTIFIER",
+    "confirmedAt": "REPLACE_WITH_ISO_TIMESTAMP"
+  },
+  "manualInvocation": {
+    "startedByAdministratorInAdminV2": false,
+    "codexTriggeredCallable": false,
+    "blueprintVersion": "english-core-32:v1",
+    "studyTarget": "REPLACE_WITH_TARGET_LANGUAGE",
+    "sourceLocale": "ru",
+    "lessonIds": [1],
+    "selectedSurfaces": ["lessons"],
+    "jobId": "REPLACE_WITH_JOB_ID",
+    "unitId": "REPLACE_WITH_UNIT_ID",
+    "startedAt": "REPLACE_WITH_ISO_TIMESTAMP",
+    "finishedAt": "REPLACE_WITH_ISO_TIMESTAMP"
+  },
+  "result": {
+    "state": "REPLACE_WITH_SUCCEEDED_OR_FAILED",
+    "attempts": 0,
+    "errorCode": null,
+    "retryable": null,
+    "errorMessageSanitized": null,
+    "artifact": {
+      "objectPath": null,
+      "contentHash": null,
+      "objectGeneration": null,
+      "qaStatus": null,
+      "qaErrors": [],
+      "phraseCount": null
+    }
+  },
+  "securityAttestation": {
+    "containsApiKey": false,
+    "containsAuthorizationHeader": false,
+    "containsFirebaseCredential": false,
+    "containsUnrelatedUserData": false
+  },
+  "administratorNotes": ""
+}

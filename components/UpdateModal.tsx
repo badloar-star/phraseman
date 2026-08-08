@@ -29,9 +29,9 @@ import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import type { ThemeMode } from '../constants/theme';
-import { COMPASS_RICH } from '../constants/compassTheme';
+import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 // Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
 // не казённое «Доступно обновление», а «это Компас, я подрос, обнови меня».
 const TEXTS = {
@@ -86,7 +86,7 @@ const TEXTS = {
 } as const;
 
 const pickUpdateText = (lang: string) => TEXTS[lang as keyof typeof TEXTS] ?? TEXTS.ru;
-const PREMIUM_UPDATE_EMBLEM = require('../assets/images/update_modal/update-modal-premium-emblem.png');
+const PREMIUM_UPDATE_EMBLEM = require('../assets/images/update_modal/update-modal-premium-emblem.webp');
 
 type UpdateModalPalette = {
   frame: [string, string, string];
@@ -140,29 +140,32 @@ const GOLD_PALETTE: UpdateModalPalette = {
   primaryShadow: '#E2AD4E',
 };
 
-const COMPASS_PALETTE: UpdateModalPalette = {
+// зачем: DEFAULT — тёмная «космическая» панель; на светлой sagePorcelain модалка
+// обновления выглядела инородной тёмной вспышкой. Фарфоровая панель + шалфейный
+// CTA с бронзовым стопом — язык светлой темы (план 2026-08-01).
+const SAGE_PALETTE: UpdateModalPalette = {
   ...DEFAULT_PALETTE,
-  frame: ['rgba(255,230,181,0.58)', 'rgba(180,119,78,0.34)', 'rgba(0,0,0,0.54)'],
-  panel: ['#2C2B2C', '#181819', '#050506'],
-  wash: ['rgba(242,196,141,0.14)', 'rgba(180,119,78,0.08)', 'rgba(0,0,0,0)'],
-  topSheen: ['rgba(255,230,181,0.38)', 'rgba(255,255,255,0)'],
-  stroke: COMPASS_RICH.hairlineStrong,
-  texture: 'rgba(242,196,141,0.12)',
-  orbit: 'rgba(242,196,141,0.24)',
-  star: 'rgba(255,230,181,0.82)',
-  title: '#FFF0D0',
-  body: 'rgba(216,210,200,0.84)',
-  primary: ['#FFE6B5', '#F4B978', '#B4774E'],
-  primaryPressed: ['#F7D7A2', '#E3A869', '#8F5434'],
-  primaryText: COMPASS_RICH.textDark,
-  primaryShadow: '#B4774E',
-  secondaryBg: COMPASS_RICH.charcoalRaised,
-  secondaryBorder: COMPASS_RICH.hairlineQuiet,
-  secondaryText: COMPASS_RICH.textMuted,
+  frame: ['rgba(49,95,80,0.30)', 'rgba(189,200,189,0.55)', 'rgba(139,99,32,0.25)'],
+  panel: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
+  wash: ['rgba(49,95,80,0.10)', 'rgba(217,233,225,0.10)', 'rgba(0,0,0,0)'],
+  topSheen: ['rgba(255,255,255,0.65)', 'rgba(255,255,255,0)'],
+  stroke: '#BDC8BD',
+  texture: 'rgba(49,95,80,0.05)',
+  orbit: 'rgba(49,95,80,0.18)',
+  star: 'rgba(49,95,80,0.55)',
+  title: '#17201D',
+  body: 'rgba(23,32,29,0.72)',
+  primary: ['#315F50', '#294E43', '#8B6320'],
+  primaryPressed: ['#294E43', '#223F37', '#7A5519'],
+  primaryText: '#FFFFFF',
+  primaryShadow: 'rgba(49,95,80,0.35)',
+  secondaryBg: '#E1E5DC',
+  secondaryBorder: '#CFD6CE',
+  secondaryText: 'rgba(23,32,29,0.72)',
 };
 
 const getUpdateModalPalette = (themeMode: ThemeMode): UpdateModalPalette =>
-  themeMode === 'gold' ? GOLD_PALETTE : false ? COMPASS_PALETTE : DEFAULT_PALETTE;
+  themeMode === 'gold' ? GOLD_PALETTE : isLightThemeMode(themeMode) ? SAGE_PALETTE : DEFAULT_PALETTE;
 
 function UpdateModalBackground({ palette }: { palette: UpdateModalPalette }) {
   return (
@@ -390,7 +393,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.24,
     shadowRadius: 30,
-    elevation: 18,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 29,
@@ -469,7 +472,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.18,
     shadowRadius: 18,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   updateBtnFill: {
     minHeight: 66,

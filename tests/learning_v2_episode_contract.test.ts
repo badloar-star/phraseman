@@ -268,7 +268,6 @@ const exactFamilies = [
   "microstory_radio",
   "branching_scene",
   "scripted_dialogue",
-  "speaking_club_mission",
   "personalized_review",
   "speed_match",
 ] as const;
@@ -539,9 +538,9 @@ describe("Learning V2 Task 1.2 — canonical activity and E1 contract", () => {
       hashAlgorithm: "sha256-utf8",
     });
   });
-  test("exports the exact exhaustive 17-family taxonomy and no checkpoint family", () => {
+  test("exports the exact exhaustive 16-family taxonomy and no checkpoint family", () => {
     expect(V2_ACTIVITY_FAMILIES).toEqual(exactFamilies);
-    expect(V2_ACTIVITY_FAMILIES).toHaveLength(17);
+    expect(V2_ACTIVITY_FAMILIES).toHaveLength(16);
     expect(V2_ACTIVITY_FAMILIES).not.toContain("checkpoint");
     expect(Object.isFrozen(V2_ACTIVITY_FAMILIES)).toBe(true);
   });

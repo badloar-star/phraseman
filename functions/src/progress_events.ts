@@ -3,7 +3,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { getLevelFromXP } from './xp_levels';
-import { markRefereeQualified } from './referral';
+import { applyLessonScoreSample, type LessonScoreStats } from './jarvis/content_lesson_stats';
+import { extractLessonScoreSample, lessonStatsDocId, shouldRecordLessonScore } from './jarvis/content_lesson_stats_write';
 
 export type ProgressMap = Record<string, unknown>;
 
@@ -27,7 +28,6 @@ export const PROGRESS_EVENT_TYPES = [
   'diagnostic_test',
   'plan_task_complete',
   'wager_win',
-  'club_mission_complete',
 ] as const;
 
 export type ProgressEventType = typeof PROGRESS_EVENT_TYPES[number];
@@ -125,41 +125,21 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   diagnostic_test: 2500,
   plan_task_complete: 1500,
   wager_win: 20000,
-  club_mission_complete: 1000,
 };
 
 /**
- * ECON-2: дневной потолок суммарного XP по «гриндабельным» источникам (ответы в уроках/квизах,
- * тренажёр предлогов, повторение). Множитель сложности урока + стрик + подарки применяются к
- * КАЖДОМУ ответу на клиенте, и при гринде отдельных вопросов в поздних уроках это даёт сотни тысяч
- * XP в день. Per-event cap (EVENT_XP_CAP) не ограничивает фарм количеством — нужен суточный потолок
- * по сумме. Источники, не входящие сюда (lesson_complete, exam_complete, награды), ограничены своими
- * разовыми/механическими лимитами и сюда не попадают.
+ * зачем: суточные потолки XP (ECON-2: GLOBAL_DAILY_XP_CAP = 25 000 и EVENT_DAILY_XP_CAP по каждому
+ * источнику) сняты по решению владельца 2026-07-26. Они срезали XP только на сервере, а клиент
+ * пишет user_total_xp локально без каких-либо суточных лимитов и при зеркалировании берёт
+ * Math.max(local, server) — то есть срезанное серверное значение всегда проигрывало локальному.
+ * Потолки не мешали фарму, но навсегда расщепляли баланс телефона и сервера: активный игрок видел
+ * у себя одно число, сервер хранил другое, и сойтись они уже не могли. Активная игра наказывалась,
+ * античит-эффекта не давалось. От подделанного xpDelta в запросе защищает оставшийся EVENT_XP_CAP
+ * (потолок на одно событие), от бесконечных попыток экзамена — EXAM_DAILY_ATTEMPT_LIMIT, от
+ * неограниченных вызовов функции — DAILY_EVENT_LIMIT. Счётчики sourceXp/totalXp в
+ * progress_daily_counters продолжают писаться — они нужны админ-аналитике и дают возможность
+ * вернуть потолок, не меняя схему данных.
  */
-export const GLOBAL_DAILY_XP_CAP = 25_000;
-
-const EVENT_DAILY_XP_CAP: Record<ProgressEventType, number> = {
-  lesson_answer: 8000,
-  lesson_complete: 8000,
-  quiz_answer: 8000,
-  dialog_complete: 3000,
-  exam_complete: 12_000,
-  daily_task_reward: 2000,
-  achievement_reward: 5000,
-  level_up_bonus: 2000,
-  daily_login_bonus: 500,
-  daily_phrase_quest: 1000,
-  bonus_chest: 5000,
-  vocabulary_learned: 3000,
-  verb_learned: 3000,
-  preposition_drill_answer: 2000,
-  preposition_drill_perfect: 3000,
-  review_answer: 4000,
-  diagnostic_test: 2500,
-  plan_task_complete: 4000,
-  wager_win: 20_000,
-  club_mission_complete: 2000,
-};
 
 /**
  * ECON-3: суточный лимит попыток экзамена. XP начисляется за каждую попытку, осколок — только за
@@ -580,14 +560,19 @@ function setUnlocked(progress: ProgressMap, patch: ProgressMap, lessonId: number
 }
 
 /**
- * Контекст одного дня для серверных лимитов (ECON-2/3/11). Передаётся из транзакции, где читается
+ * Контекст одного дня для серверных лимитов (ECON-3). Передаётся из транзакции, где читается
  * progress_daily_counters/{day}. Чистая функция остаётся тестируемой.
+ *
+ * зачем: суточные потолки XP сняты (см. комментарий у EVENT_XP_CAP), поэтому на начисление здесь
+ * влияет только examAttemptsToday. sourceXpToday/totalXpToday остаются в типе и продолжают
+ * писаться в счётчики — их читает админ-аналитика, и по ним можно вернуть потолок без миграции.
  */
 export type ProgressDailyContext = {
-  /** Уже начисленный сегодня XP по каждому источнику (до текущего события). */
+  /** Уже начисленный сегодня XP по каждому источнику. Аналитика; на начисление не влияет. */
   sourceXpToday?: Partial<Record<ProgressEventType, number>>;
-  /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). */
+  /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). Ограничивает XP за экзамен. */
   examAttemptsToday?: number;
+  /** Суммарный XP за сегодня. Аналитика; на начисление не влияет. */
   totalXpToday?: number;
 };
 
@@ -618,12 +603,12 @@ function xpFromPayload(event: ProgressEventInput, daily?: ProgressDailyContext):
     );
   }
 
-  if (requested <= 0) return 0;
-  const usedByType = Math.max(0, daily?.sourceXpToday?.[event.type] ?? 0);
-  const remainingByType = Math.max(0, EVENT_DAILY_XP_CAP[event.type] - usedByType);
-  const usedOverall = Math.max(0, daily?.totalXpToday ?? 0);
-  const remainingOverall = Math.max(0, GLOBAL_DAILY_XP_CAP - usedOverall);
-  return Math.min(requested, remainingByType, remainingOverall);
+  // зачем: здесь суточные потолки срезали уже честно заработанный XP. Сервер отдавал урезанный
+  // total, клиент при зеркалировании брал Math.max(local, server) и оставался со своим большим
+  // числом — потолок не ограничивал игрока, а только разводил два баланса навсегда. Оставляем
+  // единственную проверку, которая защищает от подделки: потолок на одно событие (EVENT_XP_CAP)
+  // применён выше при clampInt.
+  return Math.max(0, requested);
 }
 
 function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate: string): number {
@@ -713,6 +698,11 @@ function applyLessonFields(progress: ProgressMap, patch: ProgressMap, event: Pro
   }
 }
 
+/**
+ * @deprecated Реферальная квалификация больше НЕ завязана на урок 1 (с 2026-07-24
+ * условие — покупка Plus/Pro приглашённым, см. referral.ts). Функция оставлена как
+ * чистый предикат события «урок 1 пройден» для тестов/истории; в проде не вызывается.
+ */
 export function shouldQualifyReferralFromProgressEvent(event: ProgressEventInput): boolean {
   if (event.type !== 'lesson_complete') return false;
   const lessonId = clampInt(event.payload.lessonId, 0, 500);
@@ -884,12 +874,22 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const now = new Date();
   const todayKey = isoDateUtc(now);
   const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
+  // зачем: департамент «Контент» Джарвиса (владелец 2026-08-02) — дешёвый
+  // агрегат среднего балла по уроку. Пишется в той же транзакции, что уже
+  // начисляет XP — одна дополнительная запись документа на событие, без
+  // отдельного чтения всей истории и без нового collectionGroup-скана.
+  const recordLessonScore = shouldRecordLessonScore(event);
+  const lessonScoreSample = recordLessonScore ? extractLessonScoreSample(event) : null;
+  const lessonStatsRef = lessonScoreSample
+    ? db.collection('lesson_stats').doc(lessonStatsDocId(lessonScoreSample.lessonId, lessonScoreSample.target))
+    : null;
 
   const result = await db.runTransaction(async (tx) => {
-    const [userSnap, ledgerSnap, counterSnap] = await Promise.all([
+    const [userSnap, ledgerSnap, counterSnap, lessonStatsSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(ledgerRef),
       tx.get(dailyCounterRef),
+      lessonStatsRef ? tx.get(lessonStatsRef) : Promise.resolve(null),
     ]);
     if (ledgerSnap.exists) {
       const result = ledgerSnap.data()?.result as ProgressEventResult | undefined;
@@ -939,6 +939,16 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       }
     }
     tx.set(dailyCounterRef, counterPatch, { merge: true });
+    if (lessonStatsRef && lessonScoreSample) {
+      const previousStats = (lessonStatsSnap?.exists ? lessonStatsSnap.data()?.stats : null) as LessonScoreStats | null;
+      const nextStats = applyLessonScoreSample(previousStats, lessonScoreSample.score);
+      tx.set(lessonStatsRef, {
+        lessonId: lessonScoreSample.lessonId,
+        target: lessonScoreSample.target,
+        stats: nextStats,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    }
     const result: ProgressEventResult = {
       ok: true,
       stableUid,
@@ -979,12 +989,6 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     });
     return result;
   });
-
-  if (shouldQualifyReferralFromProgressEvent(event)) {
-    await markRefereeQualified(db, stableUid).catch((e) => {
-      console.warn('[progress_events] referral qualification failed', e);
-    });
-  }
 
   await projectProgressToCurrentLeague(db, stableUid, result).catch((e) => {
     console.warn('[progress_events] league projection failed', e);

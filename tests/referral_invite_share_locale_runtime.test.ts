@@ -3,7 +3,9 @@ import { join } from 'path';
 
 const source = readFileSync(join(__dirname, '..', 'app', 'referral_invite_share.ts'), 'utf8');
 const friendsSource = readFileSync(join(__dirname, '..', 'app', '(tabs)', 'friends.tsx'), 'utf8');
-const settingsSource = readFileSync(join(__dirname, '..', 'app', 'settings_invite_friend.tsx'), 'utf8');
+// зачем: экран settings_invite_friend удалён (2026-07-25) — шаринг живёт на
+// едином экране /referrals, инвариант «только message, без url» проверяем там.
+const referralsSource = readFileSync(join(__dirname, '..', 'app', 'referrals.tsx'), 'utf8');
 
 describe('referral invite share planned locale runtime copy', () => {
   it('does not route planned invite text through legacy RU/UK/ES branches', () => {
@@ -59,8 +61,8 @@ describe('referral invite share planned locale runtime copy', () => {
     expect(source).not.toContain('Уже установлено?');
     expect(source).not.toContain('Нет приложения');
     expect(friendsSource).toContain('Share.share({ message: share.message })');
-    expect(settingsSource).toContain('Share.share({ message: cloud.message })');
+    expect(referralsSource).toContain('Share.share({ message: share.message })');
     expect(friendsSource).not.toContain('message: share.message, url: share.url');
-    expect(settingsSource).not.toContain('message: cloud.message, url: cloud.url');
+    expect(referralsSource).not.toContain('message: share.message, url: share.url');
   });
 });

@@ -14,7 +14,23 @@ function between(startMarker: string, endMarker: string): string {
   return source.slice(start, end);
 }
 
+function numericStyleValue(styleName: string, property: string): number {
+  const styleStart = source.indexOf(`${styleName}: {`);
+  expect(styleStart).toBeGreaterThanOrEqual(0);
+  const styleEnd = source.indexOf('\n  },', styleStart);
+  expect(styleEnd).toBeGreaterThan(styleStart);
+  const styleBlock = source.slice(styleStart, styleEnd);
+  const match = styleBlock.match(new RegExp(`${property}:\\s*(\\d+)`));
+  expect(match).not.toBeNull();
+  return Number(match?.[1]);
+}
+
 describe('streak revive modal design contract', () => {
+  it('imports the responsive hook it calls at runtime', () => {
+    expect(source).toContain('useWindowDimensions');
+    expect(source).toMatch(/import \{[^}]*useWindowDimensions[^}]*\} from 'react-native';/s);
+  });
+
   it('uses the standalone asymmetric recovery pass', () => {
     expect(source).not.toContain("from './reward_v2/RewardCardV2'");
     expect(source).toContain('testID="streak-revive-pass"');
@@ -66,7 +82,15 @@ describe('streak revive modal design contract', () => {
     expect(source).toContain('styles.headerCompact');
     expect(source).toContain('styles.streakNumberCompact');
     expect(source).toContain('style={styles.bodyScroll}');
-    expect(source).toContain('adjustsFontSizeToFit');
+    expect(source).not.toContain('adjustsFontSizeToFit');
     expect(source).toContain('{busy ? busyLabel : primaryLabel}');
+  });
+
+  it('gives the large streak numeral enough line height to avoid clipping its top edge', () => {
+    for (const styleName of ['streakNumber', 'streakNumberCompact']) {
+      const fontSize = numericStyleValue(styleName, 'fontSize');
+      const lineHeight = numericStyleValue(styleName, 'lineHeight');
+      expect(lineHeight).toBeGreaterThanOrEqual(fontSize);
+    }
   });
 });

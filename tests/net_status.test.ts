@@ -1,4 +1,4 @@
-import { createNetStatusCoordinator, OFFLINE_BACKOFF_MS, ONLINE_SAFETY_MS } from '../app/net_status';
+import { createNetStatusCoordinator, OFFLINE_BACKOFF_MS, ONLINE_SAFETY_MS, PROBE_URLS } from '../app/net_status';
 
 function harness() {
   let now = 0;
@@ -7,6 +7,7 @@ function harness() {
   const timers = new Map<number, { listener: () => void; at: number }>();
   const activeListeners = new Set<(active: boolean) => void>();
   const fetches: Array<{ resolve: () => void; reject: () => void; signal?: AbortSignal }> = [];
+  let settledCount = 0;
   const deps = {
     fetch: jest.fn((_input: string, init: RequestInit) => new Promise<void>((resolve, reject) => {
       fetches.push({ resolve, reject: () => reject(new Error('offline')), signal: init.signal ?? undefined });
@@ -36,6 +37,16 @@ function harness() {
       const request = fetches.at(-1)!;
       online ? request.resolve() : request.reject();
       await settle();
+    },
+    // Multi-host probe: «offline» наступает только когда упали ВСЕ хосты,
+    // поэтому тест должен осадить каждый всплывающий fetch, пока они появляются.
+    async finishAllFetches(online: boolean) {
+      for (;;) {
+        if (fetches.length === settledCount) break;
+        const request = fetches[settledCount++];
+        online ? request.resolve() : request.reject();
+        await settle();
+      }
     },
     async fireProbeTimer() {
       const scheduled = [...timers.entries()].sort((a, b) => a[1].at - b[1].at)
@@ -67,15 +78,15 @@ describe('net status coordinator', () => {
   it('uses capped offline backoff and resets to online safety polling', async () => {
     const h = harness();
     h.net.subscribe(() => {});
-    await h.finishFetch(false);
+    await h.finishAllFetches(false);
     expect(h.net.debug().nextDelayMs).toBe(OFFLINE_BACKOFF_MS[0]);
     for (let index = 1; index < OFFLINE_BACKOFF_MS.length; index += 1) {
       await h.fireProbeTimer();
-      await h.finishFetch(false);
+      await h.finishAllFetches(false);
       expect(h.net.debug().nextDelayMs).toBe(OFFLINE_BACKOFF_MS[index]);
     }
     await h.fireProbeTimer();
-    await h.finishFetch(true);
+    await h.finishAllFetches(true);
     expect(h.net.debug().nextDelayMs).toBe(ONLINE_SAFETY_MS);
     expect(h.net.debug().offlineAttempt).toBe(0);
   });
@@ -83,17 +94,17 @@ describe('net status coordinator', () => {
   it('coalesces passive failures and keeps cooldown over unsubscribe/resubscribe', async () => {
     const h = harness();
     const off = h.net.subscribe(() => {});
-    await h.finishFetch(false);
+    await h.finishAllFetches(false);
     h.net.reportFailure();
     h.net.reportFailure();
     expect(h.net.debug().hasProbeTimer).toBe(true);
-    expect(h.deps.fetch).toHaveBeenCalledTimes(1);
+    expect(h.deps.fetch).toHaveBeenCalledTimes(PROBE_URLS.length);
     const nextProbeAt = h.net.debug().nextProbeAt;
     off();
     expect(h.net.debug().hasProbeTimer).toBe(false);
     h.net.subscribe(() => {});
     expect(h.net.debug().nextProbeAt).toBe(nextProbeAt);
-    expect(h.deps.fetch).toHaveBeenCalledTimes(1);
+    expect(h.deps.fetch).toHaveBeenCalledTimes(PROBE_URLS.length);
   });
 
   it('stops timers and aborts fetches in background; zero subscribers stay idle', async () => {

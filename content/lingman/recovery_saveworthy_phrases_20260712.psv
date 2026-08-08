@@ -1,0 +1,301 @@
+video|slot|role|situation|phrase_en|translation_ru|note
+1|1|hook|hotel check-in|There's a problem|Тут проблема|direct problem hook
+1|2|phrase|hotel check-in|My booking's missing|Брони нет|booking not found
+1|3|bait|hotel check-in|I'm checking in|Я заселяюсь|bait: checking in is hotel arrival, not checking something
+1|4|phrase|hotel check-in|Could you check?|Можете проверить?|polite request
+1|5|phrase|hotel check-in|I booked online|Я бронировал онлайн|booking context
+2|1|hook|hotel room|This room's freezing|Здесь жутко холодно|strong room complaint
+2|2|phrase|hotel room|The heater's broken|Обогрев сломан|clear room issue
+2|3|bait|hotel room|Sort this out|Разберитесь с этим|bait: sort out means fix the problem, not arrange objects
+2|4|phrase|hotel room|I need blankets|Нужны одеяла|practical request
+2|5|phrase|hotel room|When's checkout?|Когда выезд?|hotel timing
+3|1|hook|airport disruption|We've been bumped|Нас сняли с рейса|strong flight disruption hook
+3|2|phrase|airport disruption|Our flight's delayed|Рейс задержали|common airport phrase
+3|3|bait|airport disruption|I'm on standby|Я в листе ожидания|bait: standby is a waiting list, not standing nearby
+3|4|phrase|airport disruption|Where's security?|Где досмотр?|airport navigation
+3|5|phrase|airport disruption|Which gate now?|Какой теперь выход?|gate change context
+4|1|hook|lost luggage|My bag's gone|Моя сумка пропала|urgent luggage hook
+4|2|phrase|lost luggage|Here's my tag|Вот моя бирка|baggage claim detail
+4|3|bait|lost luggage|It went missing|Она пропала|bait: went missing means disappeared, not went somewhere
+4|4|phrase|lost luggage|Please trace it|Найдите её пожалуйста|luggage tracking
+4|5|phrase|lost luggage|I need essentials|Нужно самое нужное|emergency supplies
+5|1|hook|taxi directions|We're going wrong|Мы едем не туда|direct route warning
+5|2|phrase|taxi directions|Please stop here|Остановите здесь|taxi request
+5|3|bait|taxi directions|Drop me off|Высадите меня|bait: drop off means take and leave, not drop physically
+5|4|phrase|taxi directions|Avoid the motorway|Не езжайте по трассе|route preference
+5|5|phrase|taxi directions|How much roughly?|Примерно сколько?|fare estimate
+6|1|hook|metro transfer|We missed it|Мы не успели|missed transport hook
+6|2|phrase|metro transfer|When's the next?|Когда следующий?|next service
+6|3|bait|metro transfer|Get off here|Выходите здесь|bait: get off means leave transport, not merely get away
+6|4|phrase|metro transfer|Which line?|Какая линия?|metro navigation
+6|5|phrase|metro transfer|Two stops left|Ещё две остановки|route progress
+7|1|hook|bus route|This isn't ours|Это не наш|wrong bus hook
+7|2|phrase|bus route|Does this stop?|Он тут делает остановку?|bus stop question
+7|3|bait|bus route|I'm getting off|Я выхожу|bait: getting off means leaving transport
+7|4|phrase|bus route|Tap your card|Приложите карту|fare payment
+7|5|phrase|bus route|One stop left|Ещё одна остановка|route progress
+8|1|hook|train seating|This seat's taken|Место занято|seat conflict hook
+8|2|phrase|train seating|That's my seat|Это моё место|reservation claim
+8|3|bait|train seating|We're facing backwards|Мы едем спиной вперёд|bait: facing backwards describes seat direction
+8|4|phrase|train seating|Is this reserved?|Это место занято?|reservation check
+8|5|phrase|train seating|I'll swap seats|Я поменяюсь местами|polite solution
+9|1|hook|stranded travel|Last train's gone|Последний поезд ушёл|late travel hook
+9|2|phrase|stranded travel|Any replacement bus?|Есть автобус взамен?|replacement service
+9|3|bait|stranded travel|We're stranded|Мы застряли|bait: stranded need not mean on an island
+9|4|phrase|stranded travel|Where's taxi rank?|Где стоянка такси?|taxi location
+9|5|phrase|stranded travel|Can we share?|Поедем вместе?|shared taxi
+10|1|hook|car rental|This wasn't agreed|Мы так не решали|rental dispute hook
+10|2|phrase|car rental|The tank's empty|Бак пустой|vehicle issue
+10|3|bait|car rental|I'm fully covered|У меня полная страховка|bait: covered means insured here, not physically covered
+10|4|phrase|car rental|Check the damage|Осмотрите повреждения|rental inspection
+10|5|phrase|car rental|Note every scratch|Отметьте все царапины|damage record
+11|1|hook|restaurant choice|I'd skip that|Я бы это не брал|useful warning hook
+11|2|phrase|restaurant choice|What's popular here?|Что тут любят?|local recommendation
+11|3|bait|restaurant choice|It's quite rich|Блюдо очень сытное|bait: rich food is heavy or intense, not wealthy
+11|4|phrase|restaurant choice|Nothing too spicy|Только не острое|food preference
+11|5|phrase|restaurant choice|I'll trust you|Я вам доверюсь|recommendation response
+12|1|hook|wrong order|That's not mine|Это не моё|wrong order hook
+12|2|phrase|wrong order|I ordered chicken|Я заказал курицу|order correction
+12|3|bait|wrong order|Could you swap?|Можете заменить?|bait: swap can mean replace an item, not change places
+12|4|phrase|wrong order|Take it back|Унесите это|return dish
+12|5|phrase|wrong order|No rush though|Но не спешите|softens complaint
+13|1|hook|restaurant bill|Could we split?|Разделим счёт?|common bill hook
+13|2|phrase|restaurant bill|Separate bills please|Счета отдельно пожалуйста|bill request
+13|3|bait|restaurant bill|Service is included|Сервис уже в счёте|bait: included means already in the price
+13|4|phrase|restaurant bill|Can I tip?|Можно оставить чаевые?|tipping question
+13|5|phrase|restaurant bill|Charge my card|Спишите с карты|payment request
+14|1|hook|takeaway order|Make it takeaway|Сделайте с собой|takeaway hook
+14|2|phrase|takeaway order|Pack this please|Упакуйте это|packing request
+14|3|bait|takeaway order|I'll have this|Я возьму это|bait: have means choose or order here, not possess
+14|4|phrase|takeaway order|No cutlery needed|Приборы не нужны|reduces waste
+14|5|phrase|takeaway order|Bag it separately|Положите отдельно|separate bag
+15|1|hook|food allergy|I'm severely allergic|У меня сильная аллергия|safety hook
+15|2|phrase|food allergy|Does this contain?|Это тут есть?|ingredient question
+15|3|bait|food allergy|Dairy is out|Молочное нельзя|bait: out means excluded here, not physically outside
+15|4|phrase|food allergy|Use clean utensils|Возьмите чистые приборы|cross contamination safety
+15|5|phrase|food allergy|Please check again|Проверьте ещё раз|allergy confirmation
+16|1|hook|overcharge|You're overcharging me|Цена завышена|billing hook
+16|2|phrase|overcharge|Shelf price differs|Цена на полке иная|price mismatch
+16|3|bait|overcharge|That's daylight robbery|Это просто грабёж|bait: fixed idiom for an outrageous price
+16|4|phrase|overcharge|Please check receipt|Проверьте чек|receipt request
+16|5|phrase|overcharge|Refund the difference|Верните разницу|refund request
+17|1|hook|return purchase|This doesn't fit|Это не подходит|return hook
+17|2|phrase|return purchase|I kept receipt|Я сохранил чек|proof of purchase
+17|3|bait|return purchase|Store credit please|Верните на баланс|bait: store credit is shop balance, not a bank loan
+17|4|phrase|return purchase|Can I return?|Можно вернуть?|return question
+17|5|phrase|return purchase|It's still sealed|Это ещё запечатано|unused item condition
+18|1|hook|fee negotiation|Waive this fee|Уберите этот сбор|fee negotiation hook
+18|2|phrase|fee negotiation|This fee's new|Этот сбор новый|unexpected fee
+18|3|bait|fee negotiation|Meet me halfway|Давайте найдём компромисс|bait: meet halfway means compromise, not physical meeting
+18|4|phrase|fee negotiation|That's beyond budget|Это нам не по карману|budget limit
+18|5|phrase|fee negotiation|Any cheaper option?|Есть вариант дешевле?|lower price request
+19|1|hook|price comparison|I'll shop around|Я сравню цены|smart shopping hook
+19|2|phrase|price comparison|What's the catch?|В чём подвох?|offer skepticism
+19|3|bait|price comparison|It's a steal|Это очень выгодно|bait: a steal means a bargain, not theft
+19|4|phrase|price comparison|Can you match?|Сравняете цену?|price match request
+19|5|phrase|price comparison|I'll think overnight|Я решу завтра|delay purchase
+20|1|hook|payment problem|No change needed|Сдача не нужна|payment hook
+20|2|phrase|payment problem|Cash or card?|Наличные или карта?|payment choice
+20|3|bait|payment problem|Card got declined|Карту отклонили|bait: declined means the payment was refused, not a polite invitation refusal
+20|4|phrase|payment problem|Let's try contactless|Попробуем оплату касанием|payment retry
+20|5|phrase|payment problem|Could you retry?|Можете повторить?|retry request
+21|1|hook|rescheduling|Can we reschedule?|Можно перенести?|schedule hook
+21|2|phrase|rescheduling|Something came up|Появилось срочное дело|reason for change
+21|3|bait|rescheduling|Push it back|Перенеси на позже|bait: push back means postpone here, not push physically
+21|4|phrase|rescheduling|Does Friday work?|Пятница подойдёт?|date check
+21|5|phrase|rescheduling|Send new invite|Пришли новое приглашение|calendar update
+22|1|hook|workload|I'm snowed under|Я завален работой|workload hook
+22|2|phrase|workload|What's most urgent?|Что самое срочное?|priority check
+22|3|bait|workload|I've got bandwidth|У меня есть время|bait: bandwidth means available capacity, not internet speed
+22|4|phrase|workload|I need backup|Мне нужна помощь|support request
+22|5|phrase|workload|Let's reprioritise|Сменим приоритеты|work planning
+23|1|hook|meeting focus|Let's revisit this|Вернёмся к этому|meeting hook
+23|2|phrase|meeting focus|Could you clarify?|Можете уточнить?|clarification request
+23|3|bait|meeting focus|Let's park this|Отложим эту тему|bait: park means pause a topic, not park a car
+23|4|phrase|meeting focus|What's next step?|Какой шаг дальше?|action item
+23|5|phrase|meeting focus|Who owns this?|Кто за это отвечает?|responsibility check
+24|1|hook|feasibility|That's not feasible|Это не выйдет|feasibility hook
+24|2|phrase|feasibility|We need options|Нужны варианты|solution request
+24|3|bait|feasibility|It's a stretch|Это вряд ли выйдет|bait: a stretch means difficult or doubtful, not exercise
+24|4|phrase|feasibility|What's the tradeoff?|Чем придётся жертвовать?|decision cost
+24|5|phrase|feasibility|Give me figures|Дайте цифры|evidence request
+25|1|hook|work update|Consider it done|Считайте что готово|status hook
+25|2|phrase|work update|Nearly done now|Почти готово|progress update
+25|3|bait|work update|Send me updates|Держи меня в курсе|bait: updates are progress news here, not software patches
+25|4|phrase|work update|I'll flag issues|Я отмечу проблемы|risk update
+25|5|phrase|work update|It'll be ready|Сегодня будет готово|delivery promise
+26|1|hook|bad call signal|Signal keeps dropping|Связь пропадает|call quality hook
+26|2|phrase|bad call signal|You're very faint|Вас еле слышно|low audio
+26|3|bait|bad call signal|You're cutting out|Звук пропадает|bait: cutting out means the signal drops
+26|4|phrase|bad call signal|Try calling again|Позвоните снова|connection retry
+26|5|phrase|bad call signal|Switch to speaker|Включите динамик|call setting
+27|1|hook|finding location|I'm completely lost|Я совсем потерялся|location hook
+27|2|phrase|finding location|Share your location|Пришли геолокацию|map request
+27|3|bait|finding location|Round the corner|Совсем рядом|bait: round the corner means nearby, not a round corner
+27|4|phrase|finding location|Which entrance exactly?|Какой именно вход?|precise meeting point
+27|5|phrase|finding location|I'll wait outside|Я подожду снаружи|meeting arrangement
+28|1|hook|email problem|Check your spam|Проверь спам|email hook
+28|2|phrase|email problem|I sent it|Я это отправил|delivery confirmation
+28|3|bait|email problem|I copied you|Я поставил тебя в копию|bait: copied means added to email CC, not duplicated
+28|4|phrase|email problem|Open the attachment|Открой вложение|email action
+28|5|phrase|email problem|Reply all please|Ответь всем|email etiquette
+29|1|hook|phone battery|My phone's dying|Телефон садится|battery hook
+29|2|phrase|phone battery|Got a charger?|Есть зарядка?|charger request
+29|3|bait|phone battery|I'm running low|Заряд почти кончился|bait: running low means nearly depleted
+29|4|phrase|phone battery|Battery won't charge|Батарея не заряжается|charging issue
+29|5|phrase|phone battery|Use power saver|Включи экономию|battery setting
+30|1|hook|call handling|I'll call back|Я перезвоню|call hook
+30|2|phrase|call handling|Can you hold?|Подождёте на линии?|hold request
+30|3|bait|call handling|Put me through|Соедините меня|bait: put through means connect a call
+30|4|phrase|call handling|Leave a voicemail|Оставьте голосовое|missed call option
+30|5|phrase|call handling|Text me instead|Лучше напишите|channel switch
+31|1|hook|home security|Lock up properly|Хорошо всё заприте|security hook
+31|2|phrase|home security|Check every window|Проверьте все окна|home check
+31|3|bait|home security|Keep lights on|Оставьте свет включённым|bait: keep on means leave switched on
+31|4|phrase|home security|Hide spare keys|Спрячьте запасные ключи|security action
+31|5|phrase|home security|Set the alarm|Включите сигнализацию|alarm action
+32|1|hook|power outage|The power's out|Свет отключили|outage hook
+32|2|phrase|power outage|Check the breaker|Проверьте автомат|electrical check
+32|3|bait|power outage|It tripped again|Автомат снова выбило|bait: tripped means the breaker switched off
+32|4|phrase|power outage|Unplug everything first|Сначала всё отключите|safe troubleshooting
+32|5|phrase|power outage|Use a torch|Возьмите фонарик|outage action
+33|1|hook|broken appliance|It's acting up|Это барахлит|appliance hook
+33|2|phrase|broken appliance|Makes strange noises|Странно шумит|fault symptom
+33|3|bait|broken appliance|It's giving up|Оно скоро сломается|bait: giving up can describe a failing machine
+33|4|phrase|broken appliance|Don't force it|Не пытайтесь силой|damage prevention
+33|5|phrase|broken appliance|Call a technician|Вызовите мастера|repair action
+34|1|hook|household supplies|We've run out|У нас всё кончилось|supply hook
+34|2|phrase|household supplies|There's none left|Ничего не осталось|empty stock
+34|3|bait|household supplies|We're running low|Запасы почти кончились|bait: running low means supplies are nearly gone
+34|4|phrase|household supplies|Order some today|Закажи сегодня|restock action
+34|5|phrase|household supplies|Check the cupboard|Проверь шкаф|stock check
+35|1|hook|stuffy room|Leave it ajar|Оставь приоткрытым|airflow hook
+35|2|phrase|stuffy room|It's too stuffy|Тут слишком душно|room condition
+35|3|bait|stuffy room|Crack the window|Приоткрой окно|bait: crack means open slightly, not break
+35|4|phrase|stuffy room|Air the room|Проветри комнату|ventilation action
+35|5|phrase|stuffy room|Close it later|Закрой потом|follow-up action
+36|1|hook|feeling faint|I feel faint|Я сейчас упаду|health hook
+36|2|phrase|feeling faint|Please stay nearby|Побудьте рядом|support request
+36|3|bait|feeling faint|I'm light-headed|У меня кружится голова|bait: light-headed means dizzy, not an easy head
+36|4|phrase|feeling faint|My vision's blurry|Всё плывёт перед глазами|symptom detail
+36|5|phrase|feeling faint|Get me water|Дайте мне воды|immediate help
+37|1|hook|injury|It won't stop|Кровь всё идёт|persistent symptom hook
+37|2|phrase|injury|I'm bleeding badly|Сильно идёт кровь|urgent injury
+37|3|bait|injury|It's throbbing|Боль пульсирует|bait: throbbing is pulsing pain, not simply beating
+37|4|phrase|injury|Raise it higher|Поднимите выше|first aid action
+37|5|phrase|injury|Call someone now|Позовите кого-нибудь|urgent help
+38|1|hook|medical urgency|Should I worry?|Стоит волноваться?|medical hook
+38|2|phrase|medical urgency|It's getting worse|Становится хуже|symptom change
+38|3|bait|medical urgency|Major red flag|Это тревожный знак|bait: red flag means warning sign, not a literal flag
+38|4|phrase|medical urgency|Could this wait?|Это может подождать?|triage question
+38|5|phrase|medical urgency|Which number?|Куда звонить?|contact question
+39|1|hook|illness|I'm getting worse|Мне становится хуже|illness hook
+39|2|phrase|illness|My fever's rising|Температура растёт|symptom detail
+39|3|bait|illness|Nothing stays down|Меня рвёт от всего|bait: stays down means food or drink is not vomited
+39|4|phrase|illness|I need fluids|Мне нужно пить|hydration need
+39|5|phrase|illness|No appetite today|Сегодня нет аппетита|symptom detail
+40|1|hook|numbness|It feels numb|Я это не чувствую|numbness hook
+40|2|phrase|numbness|Pins and needles|Всё колет иголками|common symptom phrase
+40|3|bait|numbness|I've lost feeling|Всё онемело|bait: lost feeling means numbness, not lost emotions
+40|4|phrase|numbness|Try moving it|Попробуйте подвигать|mobility check
+40|5|phrase|numbness|Both sides hurt|Болит с двух сторон|symptom location
+41|1|hook|emergency call|Call an ambulance|Вызовите скорую|emergency hook
+41|2|phrase|emergency call|Give your location|Назовите адрес|dispatcher detail
+41|3|bait|emergency call|Stay on line|Не кладите трубку|bait: stay on the line means do not hang up
+41|4|phrase|emergency call|Unlock the door|Откройте дверь|responder access
+41|5|phrase|emergency call|Keep them talking|Говорите с ними|consciousness support
+42|1|hook|lost person|Stay in sight|Стойте на виду|safety hook
+42|2|phrase|lost person|Don't wander off|Не уходите далеко|stay nearby
+42|3|bait|lost person|Stay put|Оставайтесь на месте|bait: stay put means remain where you are
+42|4|phrase|lost person|Send live location|Пришлите геолокацию|location safety
+42|5|phrase|lost person|Find uniformed staff|Найдите работника в форме|trusted help
+43|1|hook|personal threat|Back away slowly|Медленно отойдите|threat hook
+43|2|phrase|personal threat|Don't make contact|Не подходите|avoid engagement
+43|3|bait|personal threat|Stand your ground|Не уступайте|bait: stand your ground means refuse to back down
+43|4|phrase|personal threat|Hands where visible|Держите руки на виду|de-escalation action
+43|5|phrase|personal threat|Call for help|Зовите на помощь|urgent action
+44|1|hook|gas hazard|That smells wrong|Запах очень странный|hazard hook
+44|2|phrase|gas hazard|Turn gas off|Перекройте газ|hazard response
+44|3|bait|gas hazard|Get some air|Выйдите подышать|bait: get some air means move to fresh air
+44|4|phrase|gas hazard|Don't touch switches|Не трогайте выключатели|spark prevention
+44|5|phrase|gas hazard|Leave immediately|Уходите сразу|evacuation action
+45|1|hook|asking assistance|I need assistance|Мне нужна помощь|help hook
+45|2|phrase|asking assistance|Please stay here|Останьтесь здесь|witness support
+45|3|bait|asking assistance|Can you cover?|Можете подменить?|bait: cover means take over or support, not place something over
+45|4|phrase|asking assistance|Get security please|Позовите охрану|security request
+45|5|phrase|asking assistance|Describe what happened|Опишите что случилось|incident report
+46|1|hook|awkward conversation|This feels awkward|Тут стало неловко|social awareness hook
+46|2|phrase|awkward conversation|Now's not ideal|Сейчас не время|timing warning
+46|3|bait|awkward conversation|Bad timing|Неудачный момент|bait: timing means appropriateness of the moment, not clock accuracy
+46|4|phrase|awkward conversation|Different topic please|Давайте сменим тему|conversation redirect
+46|5|phrase|awkward conversation|Let's talk privately|Поговорим наедине|privacy request
+47|1|hook|leaving event|Let's leave early|Давайте уйдём раньше|exit hook
+47|2|phrase|leaving event|I'm feeling drained|Я совсем без сил|energy reason
+47|3|bait|leaving event|Make an exit|Пора уйти|bait: make an exit means leave, not build a door
+47|4|phrase|leaving event|Say goodbye quickly|Быстро попрощаемся|social exit
+47|5|phrase|leaving event|Head home soon|Скоро поедем домой|departure plan
+48|1|hook|personal discomfort|I'm not comfortable|Мне не по себе|boundary hook
+48|2|phrase|personal discomfort|Please stop joking|Хватит шутить|clear request
+48|3|bait|personal discomfort|Touchy subject|Щекотливая тема|bait: touchy means sensitive, not something to touch
+48|4|phrase|personal discomfort|Change the topic|Смените тему|conversation boundary
+48|5|phrase|personal discomfort|I'm being serious|Я серьёзно|firmness marker
+49|1|hook|conflict mediation|Don't take sides|Не выбирай сторону|mediation hook
+49|2|phrase|conflict mediation|Hear both versions|Выслушай обе версии|fairness request
+49|3|bait|conflict mediation|Clear the air|Давайте всё проясним|bait: clear the air means resolve tension
+49|4|phrase|conflict mediation|Let's stay neutral|Давайте без оценок|neutrality request
+49|5|phrase|conflict mediation|Talk it through|Давайте всё обсудим|resolve by discussion
+50|1|hook|returning favour|We're even now|Теперь мы квиты|reciprocity hook
+50|2|phrase|returning favour|You owe nothing|Ты ничего не должен|debt cleared
+50|3|bait|returning favour|We're square|Теперь мы квиты|bait: square means even or settled here, not a shape
+50|4|phrase|returning favour|Thanks for helping|Спасибо за помощь|gratitude
+50|5|phrase|returning favour|Next one's mine|В следующий раз плачу я|future reciprocity
+51|1|hook|dealbreaker|That's a dealbreaker|Это неприемлемо|boundary hook
+51|2|phrase|dealbreaker|I won't agree|Я не соглашусь|firm refusal
+51|3|bait|dealbreaker|Not happening|Точно нет|bait: not happening is a firm refusal, not only a future prediction
+51|4|phrase|dealbreaker|This really matters|Для меня это важно|value statement
+51|5|phrase|dealbreaker|No exceptions here|Тут без исключений|firm rule
+52|1|hook|needing space|Give me space|Мне нужна пауза|space hook
+52|2|phrase|needing space|Give me time|Дай мне время|processing request
+52|3|bait|needing space|Mull it over|Хорошо обдумай|bait: mull over means consider carefully, not mix a drink
+52|4|phrase|needing space|I'll reach out|Я свяжусь позже|future contact
+52|5|phrase|needing space|Don't push me|Не дави на меня|anti-pressure request
+53|1|hook|physical boundary|Please back off|Отойдите пожалуйста|distance hook
+53|2|phrase|physical boundary|You're too close|Вы слишком близко|distance warning
+53|3|bait|physical boundary|Keep your distance|Держитесь подальше|bait: fixed request for physical or social distance
+53|4|phrase|physical boundary|Don't touch anything|Ничего не трогайте|clear boundary
+53|5|phrase|physical boundary|Wait over there|Ждите вон там|location request
+54|1|hook|decision pressure|Don't pressure me|Не давите на меня|pressure hook
+54|2|phrase|decision pressure|It's my choice|Это мой выбор|autonomy statement
+54|3|bait|decision pressure|Lay off me|Отстаньте от меня|bait: lay off means stop pressuring, not place down
+54|4|phrase|decision pressure|Stop asking me|Хватит меня спрашивать|repeated pressure
+54|5|phrase|decision pressure|The answer's no|Ответ нет|firm refusal
+55|1|hook|changed decision|I've reconsidered|Я передумал|decision hook
+55|2|phrase|changed decision|This won't work|Так не выйдет|revised decision
+55|3|bait|changed decision|I'm having doubts|Я теперь сомневаюсь|bait: having doubts means becoming uncertain
+55|4|phrase|changed decision|Let's pause this|Давайте пока остановимся|temporary pause
+55|5|phrase|changed decision|Nothing's been signed|Ничего не подписано|decision still open
+56|1|hook|explaining events|Here's what happened|Вот что случилось|story hook
+56|2|phrase|explaining events|Let me explain|Позвольте объяснить|request to speak
+56|3|bait|explaining events|Bottom line|Короче говоря|bait: bottom line means the essential conclusion, not a lower line
+56|4|phrase|explaining events|It started yesterday|Всё началось вчера|timeline detail
+56|5|phrase|explaining events|That's the sequence|Вот весь порядок|event order
+57|1|hook|staying relevant|That's irrelevant here|Это тут не важно|focus hook
+57|2|phrase|staying relevant|That proves nothing|Это ничего не доказывает|relevance objection
+57|3|bait|staying relevant|You're moving goalposts|Ты меняешь условия|bait: moving goalposts means changing the rules mid-discussion
+57|4|phrase|staying relevant|Stick to facts|Говори по фактам|discussion rule
+57|5|phrase|staying relevant|Answer the question|Ответьте на вопрос|direct request
+58|1|hook|being interrupted|Let me finish|Дайте договорить|interruption hook
+58|2|phrase|being interrupted|Please don't interrupt|Не перебивайте|polite boundary
+58|3|bait|being interrupted|Don't jump in|Не перебивайте|bait: jump in means interrupt or join suddenly, not physically jump
+58|4|phrase|being interrupted|Your turn next|Потом ваша очередь|turn taking
+58|5|phrase|being interrupted|One point first|Сначала один момент|structured response
+59|1|hook|calling out audacity|You've got nerve|Какая наглость|bold reaction hook
+59|2|phrase|calling out audacity|That's quite bold|Это очень смело|measured reaction
+59|3|bait|calling out audacity|Bit cheeky|Ну и наглость|bait: cheeky means boldly rude, not about cheeks
+59|4|phrase|calling out audacity|Who asked you?|Кто вас просил?|pushback
+59|5|phrase|calling out audacity|Watch your tone|Следите за тоном|respect boundary
+60|1|hook|privacy|This stays private|Это останется между нами|privacy hook
+60|2|phrase|privacy|Don't share this|Не делитесь этим|confidentiality request
+60|3|bait|privacy|Off the record|Не для записи|bait: off the record means unofficial and not publishable
+60|4|phrase|privacy|Leave names out|Не называйте имён|anonymity request
+60|5|phrase|privacy|Delete it afterwards|Потом удалите это|data cleanup

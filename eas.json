@@ -16,6 +16,7 @@
       "channel": "production",
       "autoIncrement": false,
       "env": {
+        "EXPO_PUBLIC_APP_CHECK_REAL_ATTESTATION": "1",
         "EXPO_PUBLIC_STORE_RELEASE": "1",
         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
         "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
@@ -26,6 +27,7 @@
       "channel": "testflight-dev",
       "autoIncrement": false,
       "env": {
+        "EXPO_PUBLIC_APP_CHECK_REAL_ATTESTATION": "1",
         "EXPO_PUBLIC_STORE_RELEASE": "0",
         "EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS": "1",
         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
@@ -35,6 +37,9 @@
   },
   "submit": {
     "production": {
+      "android": {
+        "serviceAccountKeyPath": "./service-account.json"
+      },
       "ios": {
         "ascAppId": "6764800879"
       }

@@ -148,7 +148,7 @@ function modalStep(input: {
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери кусок, который подходит по времени и тону: can, could, can\'t или couldn\'t.',
-      'Обери шматок, який підходить за часом і тоном: can, could, can\'t або couldn\'t.',
+      'Обери зворот, який підходить за часом і тоном: can, could, can\'t або couldn\'t.',
       'Elige el bloque can/could que coincide con tiempo y tono.',
     ),
     sentence: input.sentence,
@@ -465,8 +465,8 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Это умение сейчас, поэтому can.', 'Так. Це вміння зараз, тому can.', 'Yes. Ability now uses can.'),
       wrong: {
         could: tri('could чаще уводит в прошлое или делает просьбу вежливее. Для умения сейчас нужен can.', 'could частіше веде в минуле або робить прохання ввічливішим. Для вміння зараз потрібен can.', 'Could points to past or politeness. Use can.'),
-        am: tri('am speak не собирается. Для умения нужен кусок can speak.', 'am speak не збирається. Для вміння потрібен шматок can speak.', 'Use can speak.'),
-        have: tri('have speak не собирается. Здесь нужен кусок can speak.', 'have speak не збирається. Тут потрібен шматок can speak.', 'Use can speak.'),
+        am: tri('am speak не собирается. Для умения нужен кусок can speak.', 'am speak не збирається. Для вміння потрібен зворот can speak.', 'Use can speak.'),
+        have: tri('have speak не собирается. Здесь нужен кусок can speak.', 'have speak не збирається. Тут потрібен зворот can speak.', 'Use can speak.'),
       },
       contrast: tri('Если речь про умение сейчас, обычно нужен can.', 'Якщо йдеться про вміння зараз, зазвичай потрібен can.', 'Ability now = can.'),
       finalHint: tri('I can speak English.', 'I can speak English.', 'I can speak English.'),

@@ -36,6 +36,26 @@ import {
 } from './bundles/packIds';
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
+/**
+ * Градиенты обложек паков для полок хаба (макет A1 `.pk-cov` / `.mini-cov`).
+ * зачем: в макете у каждого пака своя тёмная обложка с кодовым именем — она
+ * и отличает паки друг от друга на полке. Данных об обложке в модели пака нет,
+ * поэтому выводим её из категории: один пак = один устойчивый цвет, полка
+ * читается как витрина, а не как список одинаковых плиток.
+ */
+export const PACK_CATEGORY_COVER: Record<FlashcardPackCategory, [string, string]> = {
+  business: ['#3D2B16', '#241B0C'],
+  travel: ['#123B33', '#0A2620'],
+  daily: ['#241D3D', '#141024'],
+  exam: ['#1A2C4A', '#0D1727'],
+  slang: ['#3D1F16', '#24100A'],
+  verbs: ['#17301F', '#0D1F13'],
+};
+
+export function packCoverGradient(category: FlashcardPackCategory): [string, string] {
+  return PACK_CATEGORY_COVER[category] ?? ['#241D3D', '#141024'];
+}
+
 const PACK_CATEGORY_ICONS: Record<FlashcardPackCategory, string> = {
   business: 'briefcase-outline',
   travel: 'airplane-outline',
@@ -176,6 +196,20 @@ const parseIdList = (raw: string | null): string[] => {
   }
 };
 
+// зачем: синхронное зеркало last-known owned pack ids в памяти по studyTarget —
+// экран магазина сеет ownedPackIds ИЗ него при первом рендере (peekWarmOwnedPackIds),
+// чтобы карточки уже открытых наборов не мигали «не куплено → куплено» после AsyncStorage round-trip.
+const warmOwnedPackIdsByTarget = new Map<string, string[]>();
+
+function warmOwnedKey(studyTarget?: RuntimeStudyTarget): string {
+  return storageStudyTarget(studyTarget);
+}
+
+/** Последний известный список owned id для studyTarget — без ожидания AsyncStorage. null если ещё не читали в этой сессии. */
+export function peekWarmOwnedPackIds(studyTarget?: RuntimeStudyTarget): string[] | null {
+  return warmOwnedPackIdsByTarget.get(warmOwnedKey(studyTarget)) ?? null;
+}
+
 export async function loadOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
   try {
     const ownedKey = flashcardsOwnedPacksKey(studyTarget);
@@ -186,9 +220,10 @@ export async function loadOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promis
     if (merged.length > 0 && fromOwned.length === 0 && fromLegacy.length > 0) {
       await AsyncStorage.setItem(ownedKey, JSON.stringify(merged));
     }
+    warmOwnedPackIdsByTarget.set(warmOwnedKey(studyTarget), merged);
     return merged;
   } catch {
-    return [];
+    return warmOwnedPackIdsByTarget.get(warmOwnedKey(studyTarget)) ?? [];
   }
 }
 

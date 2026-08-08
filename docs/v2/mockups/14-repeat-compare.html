@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2 Макет · Повтор за моделью (SB-06)</title>
+<style>
+/* ============================================================
+   Витрина Learning V2 · Режим: Scripted Repeat & Compare (SB-06,
+   VoiceActivityShell). Система 1:1 скопирована из
+   docs/v2/mockups/02-phrase-builder.html: те же CSS-токены трёх
+   тем, телефон-рама с виньеткой, шапка (сплошная barFill + пилюли
+   ошибок/серии/звёзд), премиум-стили, fx-слой (flyStar/flyMissToken
+   со страховочными таймерами), стрик-система с бонусами, CTA с
+   3D-кромкой и авто-«Дальше», панель витрины.
+   Голосовые законы (04, Unified Voice Activity Shell):
+   распознавание ТОЛЬКО on-device, никаких упоминаний сети/сервера;
+   запись НЕ стартует сама, только явный тап; tap-to-start/tap-to-stop
+   (не hold); TTS и микрофон взаимоисключены: пока играет эталон,
+   мик заблокирован с пояснением; UNCERTAIN — это неуверенность
+   СИСТЕМЫ, не ошибка ученика: бесплатный повтор, ошибки/серия не
+   трогаются; INVALID (тишина/обрыв) даёт typed fallback, помечен
+   в спеке как «voice evidence не выдаётся»; максимум 2 обязательных
+   учебных повтора, затем «Продолжить с поддержкой»; waveform
+   показывает только амплитуду, не «правильность». Mic 80px круглая,
+   центр дока.
+   Закон G27-G30: никаких картинок и эмодзи, типографика — герой.
+   Запреты владельца: без обводок (кроме односторонних), без
+   подписей-расшифровок мелким шрифтом.
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --text-on-gold:#1A1A1A;
+  --mic-idle-grad:linear-gradient(160deg,#22301F,#131C13);
+}
+:root[data-theme="gold"] {
+  --bg-primary:#030303; --bg-card:#0A0A0A; --bg-surface:#111111; --bg-surface2:#171717;
+  --text-primary:#F7F1E4; --text-second:#E9CE7A; --text-muted:#B8AD92; --text-ghost:#6D6554;
+  --correct:#D6B35A; --correct-bg:rgba(214,179,90,0.16);
+  --wrong:#B65A4A; --wrong-bg:rgba(182,90,74,0.13);
+  --gold:#D6B35A; --gold-bg:rgba(214,179,90,0.14);
+  --accent:#B8903A; --accent-bg:rgba(184,144,58,0.12); --correct-text:#0A0702;
+  --btn-shadow:#3C2A0B; --card-shadow:rgba(0,0,0,0.78);
+  --chip-grad-a:#242012; --chip-grad-b:#0E0C07; --chip-edge:#060503;
+  --bg-grad-a:#0D0A04; --bg-grad-b:#010101;
+  --sheen:rgba(214,179,90,0.05);
+  --cta-grad:linear-gradient(180deg,#F6E3A1 0%,#D6B35A 52%,#A87F30 100%);
+  --cta-hi:rgba(255,255,255,0.5);
+  --ok-grad:linear-gradient(180deg,#EED592 0%,#C8A44C 100%);
+  --chip-hi:rgba(246,227,161,0.12);
+  --surface-grad:linear-gradient(160deg,#1B1710,#0A0906);
+  --hero-grad:linear-gradient(180deg,#FFF9E8 15%,#E9CE7A 100%);
+  --text-on-gold:#0A0702;
+  --mic-idle-grad:linear-gradient(160deg,#201B10,#110D07);
+}
+:root[data-theme="coral"] {
+  --bg-primary:#090405; --bg-card:#171013; --bg-surface:#22171B; --bg-surface2:#302126;
+  --text-primary:#FFFFFF; --text-second:#FF8A66; --text-muted:#B9A6AE; --text-ghost:#75656C;
+  --correct:#4A90FF; --correct-bg:rgba(74,144,255,0.14);
+  --wrong:#FF6464; --wrong-bg:rgba(255,100,100,0.14);
+  --gold:#FFD060; --gold-bg:rgba(255,208,96,0.14);
+  --accent:#FF7F50; --accent-bg:rgba(255,127,80,0.12); --correct-text:#FFFFFF;
+  --btn-shadow:#7A2E14; --card-shadow:rgba(0,0,0,0.6);
+  --chip-grad-a:#3A2630; --chip-grad-b:#180E12; --chip-edge:#0B0608;
+  --bg-grad-a:#140709; --bg-grad-b:#010101;
+  --sheen:rgba(255,127,80,0.05);
+  --cta-grad:linear-gradient(180deg,#FF9E76 0%,#FF7F50 50%,#E45E31 100%);
+  --cta-hi:rgba(255,255,255,0.42);
+  --ok-grad:linear-gradient(180deg,#6FA6FF 0%,#3F82F2 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#2B1C23,#130A0E);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#F3C9B8 100%);
+  --text-on-gold:#1A1208;
+  --mic-idle-grad:linear-gradient(160deg,#2E1F26,#160D12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh;
+  display:flex; gap:40px; align-items:flex-start; justify-content:center;
+  padding:36px 24px 80px; flex-wrap:wrap;
+}
+svg { display:block; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:800px; position:relative; overflow:hidden;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+
+/* ---------- ActivityHeader (идентична эталону) ---------- */
+.hdr { padding:22px 16px 0; }
+.hdr-row { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted);
+  display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
+.progress-row { display:flex; align-items:center; gap:12px; margin-top:14px; }
+.bar-track {
+  flex:1; height:10px; border-radius:999px; background:var(--bg-surface2);
+  overflow:hidden; position:relative;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,0.35);
+}
+.bar-fill {
+  position:absolute; inset:0; border-radius:999px;
+  background:linear-gradient(90deg, var(--accent), var(--correct));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t-slow) var(--ease-slide);
+  box-shadow:0 0 14px var(--accent-bg);
+}
+.counter {
+  display:flex; align-items:center; gap:6px; border-radius:999px; padding:6px 12px;
+  font-weight:800; font-size:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.25);
+}
+.counter svg { width:14px; height:14px; }
+.counter.stars { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.22)), var(--gold-bg); color:var(--gold); }
+.counter.miss { background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--wrong-bg); color:var(--wrong); opacity:0.4; transition:opacity var(--t-fast); }
+.counter.miss.hasmiss { opacity:1; }
+.counter.streakp { display:none; color:var(--gold); position:relative; overflow:hidden; }
+.counter.streakp.show { display:flex; animation:pillIn calc(340ms * var(--tf)) var(--ease-spring); }
+@keyframes pillIn { 0%{transform:scale(0.6); opacity:0} 60%{transform:scale(1.12); opacity:1} 100%{transform:scale(1)} }
+.counter.streakp[data-tier="1"] { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.24)), var(--gold-bg); }
+.counter.streakp[data-tier="2"] { background:linear-gradient(155deg, color-mix(in srgb, var(--gold) 42%, transparent), rgba(0,0,0,0.3)); }
+.counter.streakp[data-tier="3"] { background:linear-gradient(150deg, var(--gold), color-mix(in srgb, var(--gold) 52%, #000)); color:var(--text-on-gold); }
+.counter.streakp[data-tier="3"]::after {
+  content:""; position:absolute; top:-40%; bottom:-40%; width:36%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform:translateX(-180%) skewX(-18deg);
+  animation:pillSheen calc(1800ms * var(--tf)) ease-in-out infinite;
+}
+@keyframes pillSheen { 0%{transform:translateX(-180%) skewX(-18deg)} 55%,100%{transform:translateX(420%) skewX(-18deg)} }
+.goldwave {
+  position:absolute; top:-12%; bottom:-12%; width:44%; pointer-events:none;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 24%, transparent), transparent);
+  transform:translateX(-170%) skewX(-16deg); filter:blur(2px);
+}
+.bonus-float {
+  position:absolute; font-weight:900; font-size:17px; color:var(--gold);
+  text-shadow:0 3px 14px rgba(0,0,0,0.5); pointer-events:none; will-change:transform, opacity;
+  left:0; top:0;
+}
+.spark-fly { position:absolute; left:0; top:0; color:var(--gold); will-change:transform, opacity; pointer-events:none; }
+.counter.bump svg, .counter.bump b { animation:bump calc(360ms * var(--tf)) var(--ease-spring); }
+@keyframes bump { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 100%{transform:scale(1)} }
+
+/* ---------- PromptZone: типографика-герой ---------- */
+.prompt { padding:22px 20px 0; }
+.task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
+.hero-row { display:flex; align-items:flex-start; gap:14px; margin-top:10px; }
+.hero {
+  flex:1; font-size:29px; line-height:1.2; font-weight:800; letter-spacing:0.1px;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+/* Слово фразы: базовый спан, подсветка при проигрывании эталона (chunk highlight) */
+.hero .w { display:inline-block; transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint); }
+.hero .w + .w { margin-left:0.28em; }
+.hero.playing .w { opacity:0.38; }
+.hero .w.lit { opacity:1; transform:translateY(-1px) scale(1.03); }
+.hero-sub { margin-top:6px; font-size:15px; font-weight:600; color:var(--text-muted); }
+.audio-col { display:flex; flex-direction:column; gap:8px; flex:0 0 auto; margin-top:4px; }
+.audio-btn {
+  width:46px; height:46px; border-radius:18px; border:none; cursor:pointer;
+  background:linear-gradient(150deg, var(--chip-grad-a), var(--chip-grad-b));
+  color:var(--text-second); display:grid; place-items:center;
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint), opacity var(--t-fast);
+}
+.audio-btn:active { transform:scale(0.92); }
+.audio-btn svg { width:20px; height:20px; }
+.audio-btn.slow { width:46px; height:32px; border-radius:12px; }
+.audio-btn.slow svg { width:16px; height:16px; }
+.audio-btn:disabled { opacity:0.35; pointer-events:none; }
+
+/* ---------- Пилюля состояния прослушивания эталона ---------- */
+.listen-pill {
+  margin:16px 20px 0; display:flex; align-items:center; gap:10px;
+  padding:11px 15px; border-radius:16px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--accent-bg);
+  opacity:0; transform:translateY(-6px); pointer-events:none;
+  transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.07);
+}
+.listen-pill.show { opacity:1; transform:none; }
+.listen-pill .dot { width:8px; height:8px; border-radius:50%; background:var(--text-second); flex:0 0 auto; }
+.listen-pill.show .dot { animation:dotPulse calc(900ms * var(--tf)) ease-in-out infinite; }
+@keyframes dotPulse { 0%,100%{opacity:0.4; transform:scale(0.85)} 50%{opacity:1; transform:scale(1.15)} }
+.listen-pill span { font-size:13.5px; font-weight:700; color:var(--text-second); }
+
+/* ---------- Зона капчура (CaptureCard): резервированная высота ---------- */
+.capture { margin:24px 20px 0; min-height:150px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:14px; transition:min-height var(--t-fast) ease; }
+/* зачем: в состояниях verdict/recovery всё содержимое .capture скрыто
+   (ready-line/rec-status/waveform/proc-line), а 150px резерва оставались
+   мёртвой зоной ровно там, где снизу появляется панель сравнения -
+   это и создавало переполнение рамы; схлопываем резерв, когда внутри пусто */
+.capture.compact { min-height:0; margin-top:8px; }
+.ready-line { font-size:15px; font-weight:600; color:var(--text-muted); text-align:center; padding-top:36px; }
+
+/* Waveform: только амплитуда, не «правильность» (закон 04) */
+.waveform { display:none; align-items:flex-end; justify-content:center; gap:5px; height:56px; }
+.waveform.show { display:flex; }
+.waveform .bar {
+  width:6px; border-radius:4px; background:linear-gradient(180deg, var(--text-second), var(--accent));
+  height:14px; transform-origin:bottom; transition:height var(--t-fast) ease;
+}
+:root[data-theme="dark"] .waveform .bar,
+:root[data-theme="coral"] .waveform .bar { background:linear-gradient(180deg, var(--text-second), var(--accent)); }
+.rec-status { display:none; align-items:center; gap:10px; }
+.rec-status.show { display:flex; }
+.rec-dot { width:9px; height:9px; border-radius:50%; background:var(--wrong); animation:recBlink calc(1000ms * var(--tf)) ease-in-out infinite; }
+@keyframes recBlink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.rec-status span { font-size:14.5px; font-weight:700; color:var(--text-primary); }
+.rec-status b { font-variant-numeric:tabular-nums; color:var(--text-second); }
+
+/* Processing: геометрия на месте, короткая подпись вместо спиннера на весь экран */
+.proc-line { display:none; align-items:center; gap:10px; font-size:14.5px; font-weight:700; color:var(--text-muted); }
+.proc-line.show { display:flex; }
+/* зачем: закон владельца - без обводок и без спиннеров; вместо кольца-обводки
+   три точки-градиента, дышащие по очереди (transform/opacity, UI-тред) */
+.proc-ring { position:relative; width:30px; height:8px; }
+.proc-ring::before, .proc-ring::after {
+  content:""; position:absolute; top:0; width:8px; height:8px; border-radius:50%;
+  background:linear-gradient(160deg, var(--text-second), var(--accent));
+  animation:procPulse calc(1080ms * var(--tf)) ease-in-out infinite;
+}
+.proc-ring::before { left:0; }
+.proc-ring::after { left:13px; animation-delay:calc(200ms * var(--tf)); }
+@keyframes procPulse { 0%,100%{transform:scale(0.62); opacity:0.35} 45%{transform:scale(1); opacity:1} }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ---------- Полоса вердикта слов (word chips по результату распознавания) ---------- */
+.verdict-row { margin:6px 20px 0; min-height:56px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.wchip {
+  border-radius:14px; padding:9px 14px; font-size:15.5px; font-weight:700; color:var(--text-primary);
+  background:linear-gradient(160deg, var(--chip-grad-a), var(--chip-grad-b));
+  box-shadow:0 3px 0 var(--chip-edge), inset 0 1px 0 var(--chip-hi);
+  opacity:0; transform:translateY(8px) scale(0.94);
+}
+.wchip.in { animation:wchipIn calc(280ms * var(--tf)) var(--ease-spring) forwards; }
+@keyframes wchipIn { to { opacity:1; transform:none; } }
+.wchip.ok { background:var(--ok-grad); color:var(--correct-text); box-shadow:0 3px 0 var(--btn-shadow), inset 0 1px 0 var(--cta-hi); }
+.wchip.miss { background:var(--bg-surface); color:var(--text-muted); box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.14); }
+
+/* ---------- Полоса фидбека: как в эталоне ---------- */
+.feedback-lane { min-height:78px; padding:12px 20px 0; display:flex; align-items:stretch; }
+.fb {
+  flex:1; border-radius:20px; padding:12px 14px;
+  display:flex; align-items:center; gap:12px;
+  opacity:0; transform:translateY(10px);
+  transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint);
+}
+.fb.show { opacity:1; transform:none; }
+.fb .fi { width:38px; height:38px; border-radius:13px; display:grid; place-items:center; flex:0 0 auto; }
+.fb .fi svg { width:18px; height:18px; }
+.fb .ft { font-size:14px; font-weight:700; line-height:1.35; color:var(--text-primary); }
+.fb .ft .w { font-weight:800; color:var(--text-second); }
+/* зачем: правило владельца - подпись мелким кеглем под текстом запрещена, минимум 15px */
+.fb .ft .sub { display:block; font-size:15px; font-weight:600; color:var(--text-muted); margin-top:2px; }
+.fb { box-shadow:inset 0 1px 0 rgba(255,255,255,0.07); }
+.fb.good { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--correct-bg); } .fb.good .fi { background:var(--ok-grad); color:var(--correct-text); box-shadow:inset 0 1px 0 var(--cta-hi); }
+.fb.hint { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--wrong-bg); } .fb.hint .fi { background:var(--surface-grad); color:var(--text-primary); }
+.fb.neutral { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--accent-bg); } .fb.neutral .fi { background:var(--surface-grad); color:var(--text-second); }
+
+/* ---------- Панель сравнения «Моя запись» / «Эталон» ---------- */
+.compare { margin:2px 20px 0; display:none; gap:10px; }
+.compare.show { display:flex; }
+.cmp-btn {
+  flex:1; border:none; cursor:pointer; border-radius:16px; padding:12px 14px;
+  display:flex; align-items:center; gap:10px; font-family:inherit; position:relative;
+  background:var(--surface-grad); color:var(--text-muted);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint), background var(--t-fast) ease,
+    box-shadow var(--t-fast) var(--ease-outquint), color var(--t-fast) ease, opacity var(--t-fast) ease;
+}
+.cmp-btn:active { transform:scale(0.97); }
+.cmp-btn .ci { width:30px; height:30px; border-radius:10px; display:grid; place-items:center; background:rgba(255,255,255,0.06); color:var(--text-second); flex:0 0 auto; transition:background var(--t-fast) ease, color var(--t-fast) ease; }
+.cmp-btn .cl { text-align:left; }
+.cmp-btn .cl b { display:block; font-size:13.5px; font-weight:800; color:var(--text-primary); }
+/* зачем: владелец - выбранное состояние должно читаться мгновенно без обводок:
+   ощутимо более светлый градиент, подъём, усиленная тень, акцентный бейдж-галочка;
+   невыбранный сосед слегка притухает, чтобы контраст был очевиден с первого взгляда */
+.compare.show .cmp-btn:not(.playing) { opacity:0.82; }
+.cmp-btn.playing {
+  background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 46%, var(--bg-surface2)), color-mix(in srgb, var(--accent) 14%, var(--bg-surface)));
+  color:var(--text-primary); opacity:1;
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px var(--card-shadow), 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent) inset, inset 0 1px 0 var(--cta-hi);
+}
+.cmp-btn.playing .cl b { color:var(--text-primary); }
+.cmp-btn.playing .ci { background:var(--ok-grad); color:var(--correct-text); }
+.cmp-btn.playing::after {
+  content:""; position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%;
+  box-shadow:0 3px 8px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  background-image:var(--ok-grad), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 13l5 5L19.5 7' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat, no-repeat; background-position:center, center; background-size:100% 100%, 60% 60%;
+}
+
+/* ---------- ActionDock: mic 80px по центру ---------- */
+.dock { margin-top:auto; padding:10px 16px 24px; display:flex; flex-direction:column; align-items:center; gap:14px; min-height:150px; justify-content:flex-end; }
+.dock-hint { font-size:13px; font-weight:700; color:var(--text-ghost); text-align:center; min-height:16px; }
+.mic-wrap { position:relative; width:100px; height:100px; display:grid; place-items:center; }
+.mic-ring {
+  position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, color-mix(in srgb, var(--wrong) 30%, transparent), transparent 70%);
+  opacity:0; transform:scale(0.7);
+}
+.mic-ring.pulse { animation:micPulse calc(1400ms * var(--tf)) ease-out infinite; }
+@keyframes micPulse { 0%{opacity:0.55; transform:scale(0.7)} 70%{opacity:0; transform:scale(1.28)} 100%{opacity:0; transform:scale(1.28)} }
+.mic-btn {
+  position:relative; width:80px; height:80px; border-radius:50%; border:none; cursor:pointer;
+  background:var(--mic-idle-grad); color:var(--text-second);
+  display:grid; place-items:center;
+  box-shadow:0 5px 0 var(--chip-edge), 0 16px 30px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint), background var(--t-fast) ease, box-shadow var(--t-press) var(--ease-outquint), color var(--t-fast);
+}
+.mic-btn:active { transform:scale(0.95) translateY(2px); }
+.mic-btn svg { width:30px; height:30px; }
+.mic-btn.recording { background:var(--cta-grad); color:var(--correct-text); box-shadow:0 5px 0 var(--btn-shadow), 0 18px 34px var(--card-shadow), inset 0 1px 0 var(--cta-hi); }
+.mic-btn:disabled { opacity:0.34; pointer-events:none; }
+.mic-btn.locked { background:var(--bg-surface2); color:var(--text-ghost); }
+
+/* ---------- CTA обычная (Ещё раз / Дальше / Продолжить с поддержкой) ---------- */
+.cta {
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  position:relative; overflow:hidden; display:none;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), background var(--t-fast), color var(--t-fast);
+}
+.cta.show { display:block; }
+.cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.cta.secondary { background:var(--surface-grad); color:var(--text-primary); box-shadow:0 5px 0 var(--chip-edge), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--chip-hi); }
+.cta .auto-fill { position:absolute; inset:0; background:rgba(255,255,255,0.22); transform:scaleX(0); transform-origin:left; pointer-events:none; }
+.cta.autonext .auto-fill { animation:autofill calc(1400ms * var(--tf)) linear forwards; }
+@keyframes autofill { to { transform:scaleX(1); } }
+.cta .cta-label { position:relative; }
+
+/* Слой полётов */
+.fx { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.fly { position:absolute; will-change:transform, opacity; left:0; top:0; }
+.confetto { position:absolute; width:9px; height:9px; border-radius:2.5px; will-change:transform, opacity; left:0; top:0; }
+
+/* ================= ПАНЕЛЬ ================= */
+.panel { width:380px; max-width:92vw; display:flex; flex-direction:column; gap:18px; }
+.panel h1 { font-size:22px; font-weight:800; }
+.panel h1 span { color:#58CC89; }
+.pcard { background:#131A15; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,0.35); }
+.pcard h2 { font-size:13px; text-transform:uppercase; letter-spacing:1.4px; color:#8AB49A; margin-bottom:12px; font-weight:800; }
+.chiprow { display:flex; flex-wrap:wrap; gap:8px; }
+.pbtn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 14px;
+  background:#1D2921; color:#DDE8E0; font-size:13.5px; font-weight:700; font-family:inherit;
+  transition:transform 120ms cubic-bezier(0.23,1,0.32,1), background 150ms;
+}
+.pbtn:active { transform:scale(0.95); }
+.pbtn.on { background:#47C870; color:#042010; }
+.spec { font-size:13px; line-height:1.65; color:#B9C8BE; }
+.spec .row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; }
+.spec .row + .row { border-top:1px solid rgba(255,255,255,0.05); }
+.spec .val { color:#58CC89; font-weight:700; text-align:right; white-space:nowrap; }
+.note { font-size:12.5px; color:#8AA394; line-height:1.6; margin-top:10px; }
+
+:root[data-reduced="1"] .wchip, :root[data-reduced="1"] .fb, :root[data-reduced="1"] .bar-fill, :root[data-reduced="1"] .cta, :root[data-reduced="1"] .hero .w, :root[data-reduced="1"] .listen-pill {
+  transition-duration:80ms !important; animation-duration:1ms !important;
+}
+:root[data-reduced="1"] .counter.streakp[data-tier="3"]::after { animation:none; }
+:root[data-reduced="1"] .counter.streakp.show { animation:none; }
+:root[data-reduced="1"] .mic-ring.pulse { animation:none; opacity:0; }
+:root[data-reduced="1"] .rec-dot { animation:none; }
+:root[data-reduced="1"] .listen-pill .dot { animation:none; }
+:root[data-reduced="1"] .proc-ring::before, :root[data-reduced="1"] .proc-ring::after { animation:none; opacity:0.9; transform:none; }
+:root[data-reduced="1"] .waveform .bar { transition-duration:1ms !important; }
+
+@media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5H4z" fill="currentColor"/><path d="M16 8.6a5 5 0 0 1 0 6.8M18.6 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-turtle" viewBox="0 0 24 24"><path d="M4 15c0-3.6 3.4-6.5 7.6-6.5S19 11.4 19 15c0 1.5-1 2.2-2.4 2.2H6.4C5 17.2 4 16.5 4 15z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><circle cx="17.6" cy="9.5" r="1.7" fill="currentColor"/><path d="M8 17.4v1.8M14 17.4v1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 13l5 5L19.5 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 3a6.5 6.5 0 0 0-3.6 11.9c0.7 0.5 1.1 1.2 1.1 2V18h5v-1.1c0-0.8 0.4-1.5 1.1-2A6.5 6.5 0 0 0 12 3z" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linejoin="round"/><path d="M10 21h4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5L19.5 12 13 17.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><circle cx="15" cy="8" r="2.4" fill="currentColor"/><circle cx="9" cy="16" r="2.4" fill="currentColor"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.1-3.2 0.3-4.8 1.2-2.2 1.2-3.5 3.6-4.4 8-0.9-4.4-2.2-6.8-4.4-8-1.6-0.9-3.1-1.1-4.8-1.2 1.7-0.1 3.2-0.3 4.8-1.2 2.2-1.2 3.5-3.6 4.4-8z" fill="currentColor"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 17.5V21M9 21h6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2.4" fill="currentColor"/></symbol>
+    <symbol id="i-mic-off" viewBox="0 0 24 24"><path d="M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" opacity="0.5"/><path d="M6 11a6 6 0 0 0 12 0M12 17.5V21M9 21h6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none" opacity="0.5"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4l9.2 15.8H2.8L12 4z" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linejoin="round"/><path d="M12 10v4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17.6" r="1.05" fill="currentColor"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M7 14h10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <div class="hdr">
+      <div class="hdr-row">
+        <button class="icon-btn" title="Закрыть"><svg width="17" height="17"><use href="#i-x"/></svg></button>
+        <div class="hdr-title" id="skillTitle">Знакомство · повтор за моделью</div>
+        <button class="icon-btn" title="Настройки урока"><svg width="18" height="18"><use href="#i-sliders"/></svg></button>
+      </div>
+      <div class="progress-row">
+        <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+        <div class="counter miss" id="missCounter"><svg><use href="#i-dot"/></svg><b id="missVal">0</b></div>
+        <div class="counter streakp" id="streakPill" data-tier="1"><svg><use href="#i-spark"/></svg><b id="streakVal">2</b></div>
+        <div class="counter stars" id="starCounter"><svg><use href="#i-star"/></svg><b id="starVal">0</b></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="task-label" id="taskLabel">Повтори</div>
+      <div class="hero-row">
+        <div class="hero" id="hero"></div>
+        <div class="audio-col">
+          <button class="audio-btn" id="playBtn" title="Прослушать эталон"><svg><use href="#i-sound"/></svg></button>
+          <button class="audio-btn slow" id="slowPlayBtn" title="Медленнее"><svg><use href="#i-turtle"/></svg></button>
+        </div>
+      </div>
+      <div class="hero-sub" id="heroSub"></div>
+    </div>
+
+    <div class="listen-pill" id="listenPill"><div class="dot"></div><span>Слушаем эталон</span></div>
+
+    <div class="capture" id="capture">
+      <div class="ready-line" id="readyLine">Когда будешь готов, нажми и скажи</div>
+      <div class="rec-status" id="recStatus"><div class="rec-dot"></div><span>Слушаю... <b id="recTimer">0:00</b></span></div>
+      <div class="waveform" id="waveform"></div>
+      <div class="proc-line" id="procLine"><div class="proc-ring"></div><span>Проверяем попытку...</span></div>
+    </div>
+
+    <div class="verdict-row" id="verdictRow"></div>
+
+    <div class="feedback-lane">
+      <div class="fb" id="fb">
+        <div class="fi" id="fbIcon"><svg><use href="#i-check"/></svg></div>
+        <div class="ft" id="fbText"></div>
+      </div>
+    </div>
+
+    <div class="compare" id="compare">
+      <button class="cmp-btn" id="cmpMine"><div class="ci"><svg width="15" height="15"><use href="#i-sound"/></svg></div><div class="cl"><b>Моя запись</b></div></button>
+      <button class="cmp-btn" id="cmpRef"><div class="ci"><svg width="15" height="15"><use href="#i-sound"/></svg></div><div class="cl"><b>Эталон</b></div></button>
+    </div>
+
+    <div class="dock">
+      <div class="dock-hint" id="dockHint">Честно: проверяем слова, не акцент</div>
+      <button class="cta" id="ctaMain"><span class="auto-fill"></span><span class="cta-label" id="ctaMainLabel">Дальше</span></button>
+      <div class="mic-wrap">
+        <div class="mic-ring" id="micRing"></div>
+        <button class="mic-btn" id="micBtn" title="Начать запись"><svg id="micIcon"><use href="#i-mic"/></svg></button>
+      </div>
+    </div>
+
+    <div class="fx" id="fx"></div>
+  </div>
+</div>
+
+<div class="panel">
+  <h1>V2 · Волна М5 · <span>Повтор за моделью</span></h1>
+
+  <div class="pcard">
+    <h2>Тема приложения</h2>
+    <div class="chiprow">
+      <button class="pbtn on" data-theme-btn="dark">Тёмная</button>
+      <button class="pbtn" data-theme-btn="gold">Золотая</button>
+      <button class="pbtn" data-theme-btn="coral">Коралловая</button>
+    </div>
+    <div class="chiprow" style="margin-top:10px">
+      <button class="pbtn" id="slowBtn">Замедлить ×4</button>
+      <button class="pbtn" id="rmBtn">Reduced motion</button>
+    </div>
+  </div>
+
+  <div class="pcard">
+    <h2>Прогон состояний</h2>
+    <div class="chiprow">
+      <button class="pbtn" id="runGood">Успех</button>
+      <button class="pbtn" id="runMiss">Не хватает слова</button>
+      <button class="pbtn" id="runUncertain">Шумно (UNCERTAIN)</button>
+      <button class="pbtn" id="runInvalid">Запись не получилась (INVALID)</button>
+      <button class="pbtn" id="runCombo">Серия</button>
+      <button class="pbtn" id="runReset">Сброс</button>
+    </div>
+    <div class="note">Или руками: тап по микрофону запускает запись, повторный тап останавливает. Пока играет эталон, мик заблокирован (пилюля «Слушаем эталон»). Запись не стартует сама ни при заходе на карточку, ни после диалога разрешений: только явный тап пользователя.</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Спецификация для RN (Reanimated 4)</h2>
+    <div class="spec">
+      <div class="row"><span>Chunk highlight эталона</span><span class="val">120 мс/слово · opacity+translateY</span></div>
+      <div class="row"><span>Тап мика: старт записи</span><span class="val">лёгкий haptic, без звука в микрофон</span></div>
+      <div class="row"><span>Кольцо записи (pulse)</span><span class="val">1400 мс · scale+opacity, cycle</span></div>
+      <div class="row"><span>Столбики амплитуды</span><span class="val">6-8 шт · transform scaleY, случайно</span></div>
+      <div class="row"><span>Тап мика: стоп → processing</span><span class="val">400 мс · геометрия на месте</span></div>
+      <div class="row"><span>Вход word chip (волна)</span><span class="val">80 мс/чип · spring d20 s300</span></div>
+      <div class="row"><span>Панель сравнения</span><span class="val">180 мс · opacity+translateY:8</span></div>
+      <div class="row"><span>Полёт звезды + трейл</span><span class="val">700 мс · slide · тик-хаптик</span></div>
+      <div class="row"><span>Бамп счётчика</span><span class="val">spring micro · scale 1.28</span></div>
+      <div class="row"><span>Пилюля серии: ярусы 2/4/6+</span><span class="val">накал градиента + искры</span></div>
+      <div class="row"><span>Ошибка/needs_work: тонировка</span><span class="val">180 мс · без тряски/вибро</span></div>
+      <div class="row"><span>UNCERTAIN/INVALID полоса</span><span class="val">200 мс · нейтральный тон, без error-хаптика</span></div>
+      <div class="row"><span>Авто-«Дальше»</span><span class="val">1400 мс · тап = сразу</span></div>
+    </div>
+    <div class="note">Только transform / opacity (UI-тред). Waveform скрыт от accessibility tree: вместо него объявляется «Идёт запись, N секунд» (закон 04). Reduced motion: кольцо и столбики теряют цикл, chunk highlight становится мгновенным.</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Контракт состояний (04 · SB-06 · Unified Voice Shell)</h2>
+    <div class="spec">
+      <div class="row"><span>Распознавание</span><span class="val">только on-device (expo-speech-recognition)</span></div>
+      <div class="row"><span>reference_playing</span><span class="val">мик заблокирован, авто-возврат в ready</span></div>
+      <div class="row"><span>ready → recording</span><span class="val">tap-to-start, не hold</span></div>
+      <div class="row"><span>recording → processing</span><span class="val">tap-to-stop, не hold</span></div>
+      <div class="row"><span>PASS_CONFIDENT</span><span class="val">волна чипов + звезда + серия</span></div>
+      <div class="row"><span>NEEDS_WORK_CONFIDENT</span><span class="val">верные чипы стоят, слот назван</span></div>
+      <div class="row"><span>UNCERTAIN</span><span class="val">не WRONG · ошибки/серия не трогает · free retry</span></div>
+      <div class="row"><span>INVALID_AUDIO_OR_SYSTEM</span><span class="val">«Ввести текстом» · без voice evidence</span></div>
+      <div class="row"><span>Учебные повторы</span><span class="val">максимум 2, затем «Продолжить с поддержкой»</span></div>
+      <div class="row"><span>Evidence</span><span class="val">speaking_word_match, не acoustic/pronunciation</span></div>
+    </div>
+    <div class="note">Технические сбои (UNCERTAIN/INVALID) не расходуют обязательные learning retries и не увеличивают счётчик ошибок в шапке: это неуверенность системы, а не ошибка ученика.</div>
+  </div>
+</div>
+
+<script>
+/* ===== Контент: две карточки RP. Reference + допустимые word-match кейсы. ===== */
+const CARDS = [
+  {
+    skill: 'Знакомство · повтор за моделью',
+    en: 'Nice to meet you',
+    ru: 'Приятно познакомиться',
+    words: ['Nice', 'to', 'meet', 'you'],
+    missWord: 'meet',
+    missHint: 'Не хватает meet: nice to MEET you',
+    praise: 'Фраза распознана',
+    audioFile: 'audio/nice_to_meet_you.mp3',
+    audioFileSlow: 'audio/nice_to_meet_you_slow.mp3',
+  },
+  {
+    skill: 'Знакомство · рады видеть',
+    en: 'Great to see you again',
+    ru: 'Рад снова тебя видеть',
+    words: ['Great', 'to', 'see', 'you', 'again'],
+    missWord: 'again',
+    missHint: 'Не хватает again: see you AGAIN',
+    praise: 'Фраза распознана',
+    /* зачем: mp3 для этой фразы ещё не сгенерирован — graceful fallback на
+       эмуляцию таймером (playReference сам это обрабатывает через audioFile==null) */
+    audioFile: null,
+    audioFileSlow: null,
+  },
+];
+
+const $ = (id) => document.getElementById(id);
+const phone = $('phone'), fx = $('fx');
+const hero = $('hero'), heroSub = $('heroSub');
+const playBtn = $('playBtn'), slowPlayBtn = $('slowPlayBtn');
+const listenPill = $('listenPill');
+const capture = $('capture'), readyLine = $('readyLine');
+const recStatus = $('recStatus'), recTimer = $('recTimer');
+const waveform = $('waveform'), procLine = $('procLine');
+const verdictRow = $('verdictRow');
+const fb = $('fb'), fbIcon = $('fbIcon'), fbText = $('fbText');
+const compare = $('compare'), cmpMine = $('cmpMine'), cmpRef = $('cmpRef');
+const micWrap = document.querySelector('.mic-wrap');
+const micBtn = $('micBtn'), micIcon = $('micIcon'), micRing = $('micRing');
+const ctaMain = $('ctaMain'), ctaMainLabel = $('ctaMainLabel');
+const dockHint = $('dockHint');
+
+let cardIx = 0, stars = 0, misses = 0, streak = 0, segDone = 0;
+const SEG_TOTAL = 8;
+let state = 'ready'; // ready | reference_playing | recording | processing | verdict | autonext | recovery
+let attempt = 0, autoTimer = null, recTimerHandle = null, waveTimerHandle = null, recSeconds = 0;
+
+const tf = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tf')) || 1;
+const reduced = () => document.documentElement.dataset.reduced === '1' ||
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const barFill = $('barFill');
+const syncBar = () => { barFill.style.transform = `scaleX(${segDone / SEG_TOTAL})`; };
+
+function icon(name, size) {
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#${name}"/></svg>`;
+}
+
+/* Столбики waveform: 7 штук, амплитуда — не «правильность» (закон 04) */
+function buildWaveform() {
+  waveform.innerHTML = '';
+  for (let i = 0; i < 7; i++) {
+    const b = document.createElement('div');
+    b.className = 'bar';
+    waveform.appendChild(b);
+  }
+}
+buildWaveform();
+function animateWaveform() {
+  if (reduced()) return;
+  [...waveform.children].forEach((bar) => { bar.style.height = (10 + Math.random() * 42) + 'px'; });
+  waveTimerHandle = setTimeout(animateWaveform, 140 * tf());
+}
+function stopWaveform() {
+  clearTimeout(waveTimerHandle);
+  [...waveform.children].forEach((bar) => { bar.style.height = '10px'; });
+}
+
+function renderCard(ix) {
+  stopReferenceAudio(); refRunId++;
+  if (cmpAudioEl) { cmpAudioEl.pause(); cmpAudioEl = null; }
+  const c = CARDS[ix % CARDS.length];
+  $('skillTitle').textContent = c.skill;
+  hero.innerHTML = c.words.map((w, i) => `<span class="w" data-i="${i}">${w}</span>`).join('');
+  heroSub.textContent = c.ru;
+  fb.className = 'fb'; fbText.textContent = '';
+  verdictRow.innerHTML = '';
+  compare.classList.remove('show');
+  ctaMain.classList.remove('show', 'autonext', 'secondary');
+  dockHint.textContent = 'Честно: проверяем слова, не акцент';
+  attempt = 0;
+  toReady();
+}
+
+function toReady() {
+  state = 'ready';
+  capture.classList.remove('compact');
+  readyLine.style.display = '';
+  readyLine.textContent = 'Когда будешь готов, нажми и скажи';
+  recStatus.classList.remove('show');
+  waveform.classList.remove('show');
+  procLine.classList.remove('show');
+  stopWaveform();
+  micBtn.disabled = false;
+  micBtn.classList.remove('recording', 'locked');
+  micIcon.innerHTML = icon('i-mic', 30);
+  micRing.classList.remove('pulse');
+}
+
+/* ===== Эталон: chunk highlight, мик заблокирован во время проигрывания.
+   Реальный аудио-файл ведёт подсветку слов по timeupdate; если файла нет
+   или он не грузится (onerror/catch) — прежняя эмуляция таймером по словам,
+   страница не ломается ===== */
+let refAudioEl = null;
+let refRunId = 0;
+function stopReferenceAudio() {
+  if (refAudioEl) { refAudioEl.pause(); refAudioEl.onended = null; refAudioEl.ontimeupdate = null; refAudioEl.onerror = null; refAudioEl = null; }
+}
+function playReference(slow) {
+  if (state === 'recording' || state === 'processing') return;
+  state = 'reference_playing';
+  const runId = ++refRunId;
+  listenPill.classList.add('show');
+  micBtn.disabled = true;
+  micBtn.classList.add('locked');
+  playBtn.disabled = true; slowPlayBtn.disabled = true;
+  const words = [...hero.querySelectorAll('.w')];
+  hero.classList.add('playing');
+
+  const finish = () => {
+    if (runId !== refRunId) return;
+    hero.classList.remove('playing');
+    words.forEach((x) => x.classList.remove('lit'));
+    listenPill.classList.remove('show');
+    playBtn.disabled = false; slowPlayBtn.disabled = false;
+    if (state === 'reference_playing') toReady();
+  };
+
+  const emulate = () => {
+    const per = (slow ? 420 : 200) * tf();
+    words.forEach((w, i) => {
+      setTimeout(() => {
+        if (runId !== refRunId) return;
+        words.forEach((x) => x.classList.remove('lit'));
+        w.classList.add('lit');
+      }, reduced() ? 0 : i * per);
+    });
+    const total = reduced() ? 60 : (words.length * per + 260);
+    setTimeout(finish, total);
+  };
+
+  const c = CARDS[cardIx % CARDS.length];
+  const src = slow ? c.audioFileSlow : c.audioFile;
+  if (reduced() || !src) { emulate(); return; }
+  const a = new Audio(src);
+  refAudioEl = a;
+  a.playbackRate = slow && !c.audioFileSlow ? 0.72 : 1;
+  a.ontimeupdate = () => {
+    if (runId !== refRunId || !a.duration || !words.length) return;
+    const frac = Math.min(0.999, a.currentTime / a.duration);
+    const ix = Math.floor(frac * words.length);
+    words.forEach((x, i) => x.classList.toggle('lit', i === ix));
+  };
+  a.onended = finish;
+  a.onerror = () => { if (runId === refRunId) emulate(); };
+  const p = a.play();
+  if (p && p.catch) p.catch(() => { if (runId === refRunId) emulate(); });
+}
+playBtn.addEventListener('click', () => playReference(false));
+slowPlayBtn.addEventListener('click', () => playReference(true));
+
+/* ===== Mic: tap-to-start / tap-to-stop. Не hold. Не стартует сама. ===== */
+micBtn.addEventListener('click', () => {
+  if (state === 'ready') return startRecording();
+  if (state === 'recording') return stopRecording();
+});
+
+function startRecording() {
+  state = 'recording';
+  readyLine.style.display = 'none';
+  recStatus.classList.add('show');
+  waveform.classList.add('show');
+  recSeconds = 0;
+  recTimer.textContent = '0:00';
+  micBtn.classList.add('recording');
+  micIcon.innerHTML = icon('i-stop', 26);
+  micRing.classList.add('pulse');
+  fb.className = 'fb'; fbText.textContent = '';
+  verdictRow.innerHTML = '';
+  compare.classList.remove('show');
+  ctaMain.classList.remove('show', 'autonext');
+  animateWaveform();
+  recTimerHandle = setInterval(() => {
+    recSeconds += 1;
+    const m = Math.floor(recSeconds / 60), s = recSeconds % 60;
+    recTimer.textContent = `${m}:${String(s).padStart(2, '0')}`;
+  }, 1000 * tf());
+}
+
+function stopRecording() {
+  clearInterval(recTimerHandle);
+  stopWaveform();
+  recStatus.classList.remove('show');
+  waveform.classList.remove('show');
+  micRing.classList.remove('pulse');
+  micBtn.classList.remove('recording');
+  micIcon.innerHTML = icon('i-mic', 30);
+  micBtn.disabled = true;
+  state = 'processing';
+  procLine.classList.add('show');
+  // зачем: капчур схлопывается сразу на processing - дальше в verdict/recovery
+  // внутри .capture всё равно ничего не показывается, резерв только мешал бы
+  capture.classList.add('compact');
+  setTimeout(() => { runOutcome(pendingOutcome || 'good'); pendingOutcome = null; }, 400 * tf());
+}
+
+/* ===== Вердикты ===== */
+let pendingOutcome = null;
+
+function runOutcome(kind) {
+  procLine.classList.remove('show');
+  micBtn.disabled = false;
+  if (kind === 'good') return verdictGood();
+  if (kind === 'miss') return verdictMiss();
+  if (kind === 'uncertain') return verdictUncertain();
+  if (kind === 'invalid') return verdictInvalid();
+}
+
+function wordChips(words, okMask) {
+  verdictRow.innerHTML = '';
+  words.forEach((w, i) => {
+    const el = document.createElement('div');
+    el.className = 'wchip';
+    el.textContent = w;
+    verdictRow.appendChild(el);
+    setTimeout(() => {
+      el.classList.add('in');
+      if (okMask[i]) el.classList.add('ok'); else el.classList.add('miss');
+    }, reduced() ? 0 : i * 80 * tf());
+  });
+}
+
+function verdictGood() {
+  state = 'verdict';
+  const c = CARDS[cardIx % CARDS.length];
+  wordChips(c.words, c.words.map(() => true));
+  const waveEnd = (c.words.length * 80 + 160) * tf();
+  setTimeout(() => {
+    fbIcon.innerHTML = icon('i-check', 18);
+    fbText.innerHTML = `<b class="w">${c.praise}</b><span class="sub">Проверяем слова, не акцент</span>`;
+    fb.className = 'fb good'; requestAnimationFrame(() => fb.classList.add('show'));
+    compare.classList.add('show');
+    streak += 1; misses = misses; // ошибки не трогаем при успехе
+    updateStreakPill();
+    if ((streak === 3 || streak === 5 || streak === 7) && !reduced()) { goldWave(); confettiBurst(); }
+    flyStar(compare.getBoundingClientRect(), () => {
+      stars += 1; $('starVal').textContent = stars; bump($('starCounter'));
+      if (segDone < SEG_TOTAL) { segDone += 1; syncBar(); }
+    });
+    const bonus = streak >= 5 ? 2 : streak >= 3 ? 1 : 0;
+    if (bonus > 0) {
+      setTimeout(() => floatLabel('+' + bonus, $('streakPill')), 260 * tf());
+      for (let b = 0; b < bonus; b++) {
+        setTimeout(() => {
+          flyStar($('streakPill').getBoundingClientRect(), () => { stars += 1; $('starVal').textContent = stars; bump($('starCounter')); });
+        }, (420 + b * 170) * tf());
+      }
+    }
+    toAutoNext();
+  }, reduced() ? 0 : waveEnd);
+}
+
+function verdictMiss() {
+  state = 'verdict';
+  const c = CARDS[cardIx % CARDS.length];
+  attempt += 1; streak = 0; resetStreakPill();
+  const okMask = c.words.map((w) => w !== c.missWord);
+  wordChips(c.words, okMask);
+  const waveEnd = (c.words.length * 80 + 160) * tf();
+  setTimeout(() => {
+    misses += 1; $('missVal').textContent = misses;
+    const mc = $('missCounter'); mc.classList.add('hasmiss'); bump(mc);
+    fbIcon.innerHTML = icon('i-bulb', 18);
+    fbText.textContent = c.missHint;
+    fb.className = 'fb hint'; requestAnimationFrame(() => fb.classList.add('show'));
+    compare.classList.add('show');
+    if (attempt < 2) {
+      dockHint.textContent = `Учебный повтор ${attempt} из 2`;
+      ctaMain.classList.add('show', 'secondary');
+      ctaMainLabel.textContent = 'Ещё раз';
+      state = 'recovery';
+    } else {
+      dockHint.textContent = 'Фраза целиком, по частям';
+      ctaMain.classList.add('show', 'secondary');
+      ctaMainLabel.textContent = 'Продолжить с поддержкой';
+      state = 'recovery';
+    }
+  }, reduced() ? 0 : waveEnd);
+}
+
+function verdictUncertain() {
+  state = 'verdict';
+  verdictRow.innerHTML = '';
+  fbIcon.innerHTML = icon('i-warn', 18);
+  fbText.innerHTML = 'Мы не уверены из-за шума. <span class="sub">Эта попытка не повлияет на звёзды</span>';
+  fb.className = 'fb neutral'; requestAnimationFrame(() => fb.classList.add('show'));
+  compare.classList.remove('show');
+  dockHint.textContent = 'Бесплатный повтор: это не твоя ошибка';
+  ctaMain.classList.add('show', 'secondary');
+  ctaMainLabel.textContent = 'Ещё раз';
+  state = 'recovery';
+  // зачем: UNCERTAIN — неуверенность системы, не ошибка ученика (закон 04):
+  // счётчик ошибок и серия остаются нетронутыми, попытка не расходует learning retry
+}
+
+function verdictInvalid() {
+  state = 'verdict';
+  verdictRow.innerHTML = '';
+  fbIcon.innerHTML = icon('i-mic-off', 18);
+  fbText.innerHTML = 'Запись не получилась. <span class="sub">Проверь микрофон или выбери другой способ</span>';
+  fb.className = 'fb neutral'; requestAnimationFrame(() => fb.classList.add('show'));
+  compare.classList.remove('show');
+  dockHint.textContent = 'Спека: voice evidence не выдаётся';
+  ctaMain.classList.add('show', 'secondary');
+  ctaMainLabel.innerHTML = 'Ввести текстом';
+  state = 'recovery';
+}
+
+ctaMain.addEventListener('click', () => {
+  if (state === 'autonext') return nextCard();
+  if (state === 'recovery') {
+    if (attempt >= 2 || ctaMainLabel.textContent.includes('Ввести') || ctaMainLabel.textContent.includes('поддержкой')) {
+      // typed fallback / продолжить с поддержкой завершают карточку без нового голосового доказательства
+      return finishWithSupport();
+    }
+    return retryVoice();
+  }
+});
+
+function retryVoice() {
+  ctaMain.classList.remove('show');
+  verdictRow.innerHTML = '';
+  fb.className = 'fb'; fbText.textContent = '';
+  compare.classList.remove('show');
+  toReady();
+}
+
+function finishWithSupport() {
+  fbIcon.innerHTML = icon('i-arrow', 18);
+  const c = CARDS[cardIx % CARDS.length];
+  fbText.innerHTML = `<b class="w">${c.en}</b><span class="sub">${c.ru}</span>`;
+  fb.className = 'fb neutral'; requestAnimationFrame(() => fb.classList.add('show'));
+  verdictRow.innerHTML = '';
+  c.words.forEach((w, i) => setTimeout(() => {
+    const el = document.createElement('div');
+    el.className = 'wchip ok in';
+    el.textContent = w;
+    verdictRow.appendChild(el);
+  }, i * 100 * tf()));
+  toAutoNext();
+}
+
+function toAutoNext() {
+  state = 'autonext';
+  ctaMain.classList.add('show');
+  ctaMain.classList.remove('secondary');
+  ctaMainLabel.textContent = 'Дальше';
+  dockHint.textContent = 'Продолжаем';
+  micBtn.disabled = true;
+  if (!reduced()) {
+    ctaMain.classList.add('autonext');
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(nextCard, 1400 * tf());
+  }
+}
+
+function nextCard() {
+  clearTimeout(autoTimer);
+  if (state !== 'autonext') return;
+  state = 'transition';
+  const zones = [document.querySelector('.prompt'), $('capture'), verdictRow, fb, compare];
+  zones.forEach((z) => {
+    z.style.transition = `transform ${240 * tf()}ms cubic-bezier(0.33,0.52,0.25,0.99), opacity ${200 * tf()}ms ease`;
+    z.style.transform = 'translateX(-46px) rotate(-2.5deg)'; z.style.opacity = '0';
+  });
+  setTimeout(() => {
+    cardIx += 1; renderCard(cardIx);
+    zones.forEach((z) => {
+      z.style.transition = 'none';
+      z.style.transform = 'translateX(52px) rotate(2.5deg)'; z.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        z.style.transition = `transform ${280 * tf()}ms cubic-bezier(0.38,0.70,0.125,1.0), opacity ${220 * tf()}ms ease`;
+        z.style.transform = 'none'; z.style.opacity = '1';
+        setTimeout(() => { z.style.transition = ''; }, 320 * tf());
+      }));
+    });
+  }, 250 * tf());
+}
+
+/* ===== Панель сравнения: подсветка активного плеера ===== */
+/* зачем: «Эталон» проигрывает настоящий mp3 (тот же источник, что playReference),
+   с фолбэком на 900мс-имитацию, если файла нет. «Моя запись» в статичной витрине
+   не имеет реального аудио пользователя — имитация длительности сохранена. */
+let cmpAudioEl = null;
+[cmpMine, cmpRef].forEach((btn) => {
+  btn.addEventListener('click', () => {
+    if (state === 'recording') return; // TTS/мик взаимоисключены
+    [cmpMine, cmpRef].forEach((b) => b.classList.remove('playing'));
+    btn.classList.add('playing');
+    if (cmpAudioEl) { cmpAudioEl.pause(); cmpAudioEl = null; }
+    const c = CARDS[cardIx % CARDS.length];
+    if (btn === cmpRef && c.audioFile) {
+      const a = new Audio(c.audioFile);
+      cmpAudioEl = a;
+      const stop = () => btn.classList.remove('playing');
+      a.onended = stop; a.onerror = () => setTimeout(stop, 900 * tf());
+      const p = a.play();
+      if (p && p.catch) p.catch(() => setTimeout(stop, 900 * tf()));
+      return;
+    }
+    setTimeout(() => btn.classList.remove('playing'), 900 * tf());
+  });
+});
+
+/* ===== Полёты наград (SVG-глифы, не эмодзи), 1:1 из эталона ===== */
+function phonePoint(el) {
+  const p = phone.getBoundingClientRect(), r = el.getBoundingClientRect();
+  return { x: r.left - p.left + r.width / 2, y: r.top - p.top + r.height / 2 };
+}
+function flyGlyph(fromRect, toEl, symbolId, colorVar, size, done) {
+  if (reduced()) { done && done(); return; }
+  let fired = false;
+  const fireDone = () => { if (fired) return; fired = true; done && done(); };
+  setTimeout(fireDone, (700 + 3 * 55 + 250) * tf());
+  const p = phone.getBoundingClientRect();
+  const from = { x: fromRect.left - p.left + fromRect.width / 2, y: fromRect.top - p.top + fromRect.height / 2 };
+  const to = phonePoint(toEl);
+  for (let t = 0; t <= 3; t++) {
+    const el = document.createElement('div');
+    el.className = 'fly';
+    el.innerHTML = `<svg width="${size - t * 3}" height="${size - t * 3}" viewBox="0 0 24 24" style="color:${colorVar}"><use href="#${symbolId}"/></svg>`;
+    el.style.opacity = t === 0 ? 1 : String(0.28 - t * 0.06);
+    fx.appendChild(el);
+    const midX = (from.x + to.x) / 2, arcY = Math.min(from.y, to.y) - 90;
+    const anim = el.animate([
+      { transform: `translate(${from.x}px, ${from.y}px) scale(1)` },
+      { transform: `translate(${midX}px, ${arcY}px) scale(${t === 0 ? 1.25 : 1})`, offset: 0.55 },
+      { transform: `translate(${to.x}px, ${to.y}px) scale(0.4)` },
+    ], { duration: 700 * tf(), delay: t * 55 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' });
+    anim.onfinish = () => { el.remove(); if (t === 0) fireDone(); };
+  }
+}
+function flyStar(fromRect, done) { flyGlyph(fromRect, $('starCounter'), 'i-star', 'var(--gold)', 26, done); }
+function bump(el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+function updateStreakPill() {
+  const pill = $('streakPill');
+  if (streak < 2) { resetStreakPill(); return; }
+  $('streakVal').textContent = streak;
+  pill.dataset.tier = streak >= 6 ? '3' : streak >= 4 ? '2' : '1';
+  pill.classList.add('show');
+  bump(pill);
+  if (!reduced()) sparkBurst(pill);
+}
+function resetStreakPill() {
+  const pill = $('streakPill');
+  pill.classList.remove('show'); pill.dataset.tier = '1';
+}
+function goldWave() {
+  const w = document.createElement('div');
+  w.className = 'goldwave'; fx.appendChild(w);
+  w.animate([
+    { transform: 'translateX(-170%) skewX(-16deg)', opacity: 0 },
+    { transform: 'translateX(30%) skewX(-16deg)', opacity: 1, offset: 0.45 },
+    { transform: 'translateX(320%) skewX(-16deg)', opacity: 0 },
+  ], { duration: 700 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' }).onfinish = () => w.remove();
+  setTimeout(() => { if (w.isConnected) w.remove(); }, 900 * tf());
+}
+function sparkBurst(pillEl) {
+  const o = phonePoint(pillEl);
+  for (let i = 0; i < 6; i++) {
+    const el = document.createElement('div');
+    el.className = 'spark-fly';
+    el.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24"><use href="#i-spark"/></svg>';
+    fx.appendChild(el);
+    const ang = -Math.PI * (0.15 + 0.7 * (i / 5));
+    const v = 34 + Math.random() * 26;
+    el.animate([
+      { transform: `translate(${o.x}px, ${o.y}px) scale(0.6)`, opacity: 1 },
+      { transform: `translate(${o.x + Math.cos(ang) * v}px, ${o.y + Math.sin(ang) * v}px) scale(1)`, opacity: 0 },
+    ], { duration: 520 * tf(), easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' }).onfinish = () => el.remove();
+    setTimeout(() => { if (el.isConnected) el.remove(); }, 700 * tf());
+  }
+}
+function floatLabel(text, nearEl) {
+  if (reduced()) return;
+  const o = phonePoint(nearEl);
+  const el = document.createElement('div');
+  el.className = 'bonus-float'; el.textContent = text;
+  fx.appendChild(el);
+  el.animate([
+    { transform: `translate(${o.x - 8}px, ${o.y + 10}px)`, opacity: 0 },
+    { transform: `translate(${o.x - 8}px, ${o.y - 8}px)`, opacity: 1, offset: 0.3 },
+    { transform: `translate(${o.x - 8}px, ${o.y - 36}px)`, opacity: 0 },
+  ], { duration: 950 * tf(), easing: 'ease-out', fill: 'forwards' }).onfinish = () => el.remove();
+  setTimeout(() => { if (el.isConnected) el.remove(); }, 1100 * tf());
+}
+function confettiBurst() {
+  const origin = phonePoint($('starCounter'));
+  const colors = ['var(--gold)', 'var(--correct)', 'var(--text-second)', 'var(--accent)'];
+  for (let i = 0; i < 16; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetto';
+    el.style.background = colors[i % colors.length];
+    fx.appendChild(el);
+    const ang = (Math.PI * 2 * i) / 16 + (Math.random() - 0.5) * 0.6;
+    const v = 90 + Math.random() * 130;
+    const dx = Math.cos(ang) * v, dy = Math.sin(ang) * v - 60;
+    const rot = (Math.random() - 0.5) * 540;
+    el.animate([
+      { transform: `translate(${origin.x}px, ${origin.y}px) rotate(0deg) scale(1)`, opacity: 1 },
+      { transform: `translate(${origin.x + dx}px, ${origin.y + dy + 40}px) rotate(${rot * 0.6}deg) scale(1)`, opacity: 1, offset: 0.55 },
+      { transform: `translate(${origin.x + dx * 1.25}px, ${origin.y + dy + 190}px) rotate(${rot}deg) scale(0.72)`, opacity: 0 },
+    ], { duration: (650 + Math.random() * 350) * tf(), easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' })
+    .onfinish = () => el.remove();
+  }
+}
+
+/* ===== Панель ===== */
+document.querySelectorAll('[data-theme-btn]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.themeBtn;
+    document.querySelectorAll('[data-theme-btn]').forEach((x) => x.classList.toggle('on', x === b));
+  });
+});
+$('slowBtn').addEventListener('click', () => {
+  const on = $('slowBtn').classList.toggle('on');
+  document.documentElement.style.setProperty('--tf', on ? 4 : 1);
+});
+$('rmBtn').addEventListener('click', () => {
+  const on = $('rmBtn').classList.toggle('on');
+  document.documentElement.dataset.reduced = on ? '1' : '';
+});
+
+function forceRecordThen(outcome) {
+  if (state !== 'ready') return;
+  pendingOutcome = outcome;
+  startRecording();
+  setTimeout(() => { if (state === 'recording') stopRecording(); }, 900 * tf());
+}
+$('runGood').addEventListener('click', () => forceRecordThen('good'));
+$('runMiss').addEventListener('click', () => forceRecordThen('miss'));
+$('runUncertain').addEventListener('click', () => forceRecordThen('uncertain'));
+$('runInvalid').addEventListener('click', () => forceRecordThen('invalid'));
+$('runCombo').addEventListener('click', () => { streak = 2; forceRecordThen('good'); });
+$('runReset').addEventListener('click', () => {
+  cardIx = 0; segDone = 0; stars = 0; misses = 0; streak = 0;
+  $('starVal').textContent = 0; $('missVal').textContent = 0;
+  $('missCounter').classList.remove('hasmiss');
+  resetStreakPill();
+  syncBar();
+  renderCard(0);
+});
+
+renderCard(0);
+</script>
+</body>
+</html>

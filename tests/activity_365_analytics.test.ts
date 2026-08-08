@@ -1,13 +1,35 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   activity365MonthGridCells,
   activity365ObservedMonthKeys,
   activity365NextStepKind,
   computeActivity365Analytics,
+  invalidateActivity365Cache,
   levelForFilter,
+  loadActivity365Analytics,
   valueForFilter,
 } from '../app/activity_365_analytics';
+import { statsDailyBreakdownKey } from '../app/target_storage_keys';
 
 describe('activity 365 analytics', () => {
+  beforeEach(() => {
+    (AsyncStorage as any).__reset?.();
+    invalidateActivity365Cache();
+  });
+
+  it('keeps cached daily lesson totals isolated by study target', async () => {
+    const today = new Date().toISOString().slice(0, 10);
+    await AsyncStorage.multiSet([
+      [statsDailyBreakdownKey('en'), JSON.stringify({ [today]: { lessons_completed: 1 } })],
+      [statsDailyBreakdownKey('fr'), JSON.stringify({ [today]: { lessons_completed: 3 } })],
+    ]);
+
+    const english = await loadActivity365Analytics('en');
+    const french = await loadActivity365Analytics('fr');
+
+    expect(english.days.find(day => day.date === today)?.metrics.lessons).toBe(1);
+    expect(french.days.find(day => day.date === today)?.metrics.lessons).toBe(3);
+  });
   it('computes streaks, months, score and goal forecast from deterministic data', () => {
     const statsMap: Record<string, { points: number }> = {};
     const fgDaily: Record<string, number> = {};
@@ -19,7 +41,7 @@ describe('activity 365 analytics', () => {
       breakdown[key] = {
         words_learned: day,
         phrases_learned: day + 1,
-        quizzes_completed: day % 2,
+        lessons_completed: day % 2,
       };
     }
     delete statsMap['2026-05-05'];
@@ -133,6 +155,21 @@ describe('activity 365 analytics', () => {
     expect(analytics.goal.remainingDays).toBe(99);
   });
 
+  it('counts completed lessons directly instead of treating learned phrases as lessons', () => {
+    const analytics = computeActivity365Analytics({
+      statsMap: {},
+      fgDaily: {},
+      breakdown: {
+        '2026-05-21': { lessons_completed: 2, words_learned: 8, phrases_learned: 12 },
+      },
+      goal: 180,
+      now: new Date('2026-05-21T12:00:00Z'),
+    });
+
+    const today = analytics.days.find(day => day.date === '2026-05-21')!;
+    expect(today.metrics.lessons).toBe(2);
+  });
+
   it('uses a softer build-week next step after the warmup phase', () => {
     expect(activity365NextStepKind(0, 0)).toBe('first_day');
     expect(activity365NextStepKind(2, 2)).toBe('warmup');
@@ -149,8 +186,8 @@ describe('activity 365 analytics', () => {
       },
       fgDaily: {},
       breakdown: {
-        '2026-05-09': { quizzes_completed: 0, arena_wins: 2, arena_losses: 1 },
-        '2026-05-10': { quizzes_completed: 4, arena_wins: 0, arena_losses: 0 },
+        '2026-05-09': { lessons_completed: 2, flashcards_saved: 1 },
+        '2026-05-10': { lessons_completed: 4, flashcards_saved: 3 },
       },
       goal: 180,
       now: new Date('2026-05-10T12:00:00Z'),
@@ -159,10 +196,10 @@ describe('activity 365 analytics', () => {
     const yesterday = analytics.days.find(day => day.date === '2026-05-09')!;
     const today = analytics.days.find(day => day.date === '2026-05-10')!;
 
-    expect(valueForFilter(yesterday, 'arena')).toBe(3);
-    expect(valueForFilter(today, 'quizzes')).toBe(4);
-    expect(levelForFilter(analytics.days, today, 'quizzes')).toBeGreaterThan(0);
-    expect(levelForFilter(analytics.days, yesterday, 'quizzes')).toBe(0);
+    expect(valueForFilter(yesterday, 'review')).toBe(1);
+    expect(valueForFilter(today, 'lessons')).toBe(4);
+    expect(levelForFilter(analytics.days, today, 'lessons')).toBeGreaterThan(0);
+    expect(levelForFilter(analytics.days, yesterday, 'review')).toBeGreaterThan(0);
   });
 
   it('keeps the monthly calendar on observed months instead of future padding months', () => {

@@ -1,84 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n-key="title">Phraseman Duel</title>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const translations = {
-        title: {
-          es: 'Duelo Phraseman',
-          'pt-BR': 'Duelo Phraseman',
-          vi: 'Trận đấu Phraseman',
-          id: 'Duel Phraseman',
-          tr: 'Phraseman Düellosu',
-          pl: 'Pojedynek Phraseman',
-        },
-        heading: {
-          es: 'Abriendo el duelo de Phraseman...',
-          'pt-BR': 'Abrindo o duelo do Phraseman...',
-          vi: 'Đang mở trận đấu Phraseman...',
-          id: 'Membuka duel Phraseman...',
-          tr: 'Phraseman düellosu açılıyor...',
-          pl: 'Otwieramy pojedynek Phraseman...',
-        },
-        openHint: {
-          es: 'Si la app no se abre, te enviaremos a Google Play.',
-          'pt-BR': 'Se o app não abrir, você será enviado ao Google Play.',
-          vi: 'Nếu ứng dụng không mở, bạn sẽ được chuyển tới Google Play.',
-          id: 'Jika aplikasi tidak terbuka, Anda akan diarahkan ke Google Play.',
-          tr: 'Uygulama açılmazsa Google Play’e yönlendirileceksiniz.',
-          pl: 'Jeśli aplikacja się nie otworzy, przekierujemy Cię do Google Play.',
-        },
-      };
-      const locale = new URLSearchParams(window.location.search).get('lang') || navigator.language || '';
-      const normalized = String(locale).toLowerCase();
-      const lang =
-        normalized.startsWith('pt') ? 'pt-BR' :
-        normalized.startsWith('vi') ? 'vi' :
-        normalized.startsWith('id') ? 'id' :
-        normalized.startsWith('tr') ? 'tr' :
-        normalized.startsWith('pl') ? 'pl' :
-        normalized.startsWith('es') ? 'es' :
-        '';
-      if (!lang) return;
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-i18n-key]').forEach((node) => {
-        const key = node.getAttribute('data-i18n-key');
-        const value = key && translations[key] && translations[key][lang];
-        if (value) node.textContent = value;
-      });
-    });
-    const segments = window.location.pathname.split('/').filter(Boolean);
-    const roomId = segments[segments.length - 1] || '';
-    if (roomId && roomId !== 'duel') {
-      window.location = 'phraseman://duel/' + encodeURIComponent(roomId);
-    }
-    setTimeout(() => {
-      window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
-    }, 1800);
-  </script>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #101214;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      text-align: center;
-    }
-    main { padding: 32px; }
-    h1 { font-size: 28px; margin: 0 0 8px; }
-    p { color: #b8c0c7; margin: 0; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="0; url=/download/" />
+  <link rel="canonical" href="https://knowlyapps.com/download/" />
+  <title>Phraseman</title>
+  <script>location.replace('/download/');</script>
 </head>
 <body>
-  <main>
-    <h1 data-i18n-key="heading">Opening Phraseman duel...</h1>
-    <p data-i18n-key="openHint">If the app does not open, you will be sent to Google Play.</p>
-  </main>
+  <p>This legacy link is no longer available. <a href="/download/">Continue to Phraseman</a>.</p>
 </body>
 </html>

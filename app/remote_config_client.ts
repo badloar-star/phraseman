@@ -64,7 +64,11 @@ function applyAndCache(raw: RawConfig | undefined): void {
   void AsyncStorage.setItem(REMOTE_CONFIG_CACHE_KEY, JSON.stringify(clean)).catch(() => {});
 }
 
-async function applyCachedConfig(): Promise<void> {
+/**
+ * Applies the persisted admin flags before route components take their first
+ * visibility decision. Network refresh remains deliberately separate.
+ */
+export async function primeRemoteConfigCacheFromStorage(): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
     if (!raw) return;
@@ -93,7 +97,7 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
 }
 
 export async function loadRemoteConfig(): Promise<void> {
-  await applyCachedConfig();
+  await primeRemoteConfigCacheFromStorage();
   const factory = await getFirestoreModule();
   if (!factory) return;
   try {

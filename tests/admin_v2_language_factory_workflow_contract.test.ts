@@ -11,13 +11,15 @@ describe('Admin v2 Language Factory workflow', () => {
     const firebase = read('admin/v2/scripts/admin-firebase.js');
     const router = read('admin/v2/scripts/admin-router.js');
 
-    expect(html).toContain('/v2/styles/admin.css');
-    expect(html).toContain('/v2/scripts/admin-router.js');
-    for (const route of ['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics']) {
-      expect(router).toContain(`'${route}'`);
-    }
+    expect(html).toContain('/styles/admin.css');
+    expect(html).toContain('/scripts/admin-router.js');
+    expect(router).toContain("import { ADMIN_SECTIONS,");
+    expect(router).toContain('new Set(ADMIN_SECTIONS.map((section) => section.route))');
+    const adminSectionsSource = core.slice(core.indexOf('export const ADMIN_SECTIONS'), core.indexOf('const PAGES'));
+    const canonicalRoutes = [...adminSectionsSource.matchAll(/\{ route: '([^']+)'/g)].map(([, route]) => route);
+    expect(canonicalRoutes).toEqual(['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics']);
     expect(core).toContain('english-core-32:v1');
-    expect(core).toContain('arena_questions');
+    expect(core).not.toContain('arena_questions');
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetContentFactoryJobDetail')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetContentFactoryUnitPreview')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminRunContentGenerationUnit')");

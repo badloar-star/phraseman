@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { hasVerifiedCallablePermission } from './admin/permissions';
+import { hasClaimedPermission } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   DECISION_PACK_FILE_NAMES,
@@ -10,7 +10,7 @@ import {
   type MonthlyReportingWindow,
 } from './monthly_decision_pack_core';
 import { loadDecisionPackAggregateInput } from './monthly_decision_pack_sources';
-import { createDecisionPackZip, DECISION_PACK_ZIP_LIMIT_BYTES } from './monthly_decision_pack_zip';
+import { createDecisionPackZip } from './monthly_decision_pack_zip';
 
 const REGION = 'us-central1';
 
@@ -37,7 +37,7 @@ export interface MonthlyDecisionPackResponse {
 
 const DEFAULT_DEPENDENCIES: GenerateDependencies = {
   nowMs: () => Date.now(),
-  hasPermission: (auth) => hasVerifiedCallablePermission(auth, 'money.read'),
+  hasPermission: (token) => hasClaimedPermission(token, 'money.read'),
   load: loadDecisionPackAggregateInput,
 };
 
@@ -56,10 +56,10 @@ function safeMonth(value: unknown): string | undefined {
 
 export async function generateMonthlyDecisionPackResponse(
   data: unknown,
-  auth: unknown,
+  authToken: unknown,
   dependencies: GenerateDependencies = DEFAULT_DEPENDENCIES,
 ): Promise<MonthlyDecisionPackResponse> {
-  if (!dependencies.hasPermission(auth)) throw new HttpsError('permission-denied', 'money.read permission required');
+  if (!dependencies.hasPermission(authToken)) throw new HttpsError('permission-denied', 'money.read permission required');
   const request = data && typeof data === 'object' ? data as Record<string, unknown> : {};
   const generatedAtMs = dependencies.nowMs();
   let window: MonthlyReportingWindow;
@@ -69,14 +69,6 @@ export async function generateMonthlyDecisionPackResponse(
     if (error instanceof HttpsError) throw error;
     throw new HttpsError('invalid-argument', String((error as Error)?.message ?? 'invalid_reporting_window'));
   }
-  const callableAuth = auth && typeof auth === 'object' ? auth as { token?: Record<string, unknown> } : null;
-  console.info('admin_monthly_decision_pack authorized', {
-    role: String(callableAuth?.token?.adminRole ?? 'unknown'),
-    month: window.month,
-    timezone: window.timezone,
-    preliminary: window.preliminary,
-    maxInlineZipBytes: DECISION_PACK_ZIP_LIMIT_BYTES,
-  });
   const aggregateInput = await dependencies.load(window, generatedAtMs);
   let files: ReturnType<typeof buildMonthlyDecisionPackFiles>;
   try {
@@ -111,4 +103,4 @@ export const adminMonthlyDecisionPack = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK,
   timeoutSeconds: 120,
   memory: '1GiB',
-}, async (request) => generateMonthlyDecisionPackResponse(request.data, request.auth));
+}, async (request) => generateMonthlyDecisionPackResponse(request.data, request.auth?.token));

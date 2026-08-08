@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -41,6 +41,7 @@ import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { buildPracticeOptionsByStepId } from './practice_option_shuffle';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Stage = 'intro' | 'practice' | 'done';
 
 export default function ProblemCoach() {
@@ -218,8 +219,6 @@ export default function ProblemCoach() {
 
   const cardStyle = {
     backgroundColor: glassFill(t.bgSurface, 0.46),
-    borderTopWidth: 1,
-    borderTopColor: glassFill(t.accent, 0.14),
     ...getVolumetricShadow(themeMode, t, 2),
   };
   const accentSoft = `${t.accent}18`;
@@ -333,7 +332,7 @@ export default function ProblemCoach() {
         <View style={styles.introGuideList}>
           {introLearningBlocks.map((block, index) => {
             const blockText = copy('text' in block ? block.text : block);
-            const blockKey = 'id' in block ? block.id : `${diagnosisTraining.id}-intro-${index}`;
+            const blockKey = 'id' in block ? block.id: `${diagnosisTraining.id}-intro-${index}`;
             return (
               <View key={blockKey} style={styles.introGuideRow}>
                 <View style={[styles.introGuideDot, { backgroundColor: t.gold }]} />
@@ -626,7 +625,7 @@ export default function ProblemCoach() {
     <ScreenGradient>
       <SafeAreaView style={styles.root}>
         {renderHeader()}
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
           <ContentWrap>
             {stage === 'intro' && renderIntro()}
             {stage === 'practice' && renderPractice()}
@@ -770,7 +769,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.35,
     shadowRadius: 14,
-    elevation: 8,
+    ...noAndroidOutline,
   },
   primaryButtonText: { fontWeight: '800', textAlign: 'center', letterSpacing: 0.3 },
   ctaIconWrap: {

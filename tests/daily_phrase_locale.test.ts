@@ -128,21 +128,15 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     expect(source).toContain('sourceLocales={flashcardSourceLocales}');
   });
 
-  it('shows the phrase meaning on the compact home plaque instead of generic save copy', () => {
+  it('localizes the compact home plaque CTA without rendering a meaning', () => {
     const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
     const source = fs.readFileSync(componentPath, 'utf8');
 
-    expect(source).toContain('const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;');
-    expect(source).toContain('{homeAdditionalMeaning}');
-    expect(source).not.toContain('rememberLabel');
-  });
-
-  it('allows compact home plaque meaning text to wrap instead of truncating to ellipsis', () => {
-    const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
-    const source = fs.readFileSync(componentPath, 'utf8');
-
-    expect(source).toContain('styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}');
-    expect(source).toContain('minHeight: 38');
+    expect(source).toContain("ru: 'Проверить себя'");
+    expect(source).toContain("uk: 'Перевірити себе'");
+    expect(source).toContain("es: 'Ponte a prueba'");
+    expect(source).toContain('{homeActionLabel}');
+    expect(source).not.toContain('{homeAdditionalMeaning}');
   });
 
   it('uses the phrases theme icon for Daily Phrase instead of a home-menu image from another topic', () => {

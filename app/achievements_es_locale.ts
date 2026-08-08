@@ -144,43 +144,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
       'Supera tu récord de puntos XP en una semana calendario.',
   },
 
-  quiz_first: {
-    nameEs: 'Primer cuestionario',
-    descEs: 'Termina cualquier cuestionario al menos una vez (cualquier nivel).',
-  },
-  quiz_medium: {
-    nameEs: 'Nivel medio',
-    descEs: 'Lleva hasta el final un cuestionario en nivel Medium.',
-  },
-  quiz_hard: {
-    nameEs: 'Reto aceptado',
-    descEs: 'Completa un cuestionario en nivel Hard de principio a fin.',
-  },
-  quiz_all_levels: {
-    nameEs: 'Todos los niveles',
-    descEs: 'Al menos una vez Easy, Medium y Hard (tres sesiones distintas).',
-  },
-  quiz_perfect_easy: {
-    nameEs: 'Fácil perfecto',
-    descEs: 'Cuestionario Easy: todas las respuestas de esa sesión correctas.',
-  },
-  quiz_perfect: {
-    nameEs: 'Nervios de acero',
-    descEs: 'Cuestionario Hard sin ningún error en esa sesión.',
-  },
-  quiz_perfect_medium: {
-    nameEs: 'Tiro certero',
-    descEs: 'Cuestionario Medium: todas las respuestas de la sesión correctas.',
-  },
-  quiz_triple_perfect: {
-    nameEs: 'Triple perfecto',
-    descEs: 'Easy, Medium y Hard perfectos: un cuestionario impecable por nivel.',
-  },
-  quiz_speed_demon: {
-    nameEs: 'A toda velocidad',
-    descEs: 'Cinco veces termina por completo un cuestionario Hard (contador en la app).',
-  },
-
   combo_3: {
     nameEs: 'En racha',
     descEs: '3 aciertos seguidos durante una lección.',
@@ -349,7 +312,7 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   },
   flashcards_sources_4: {
     nameEs: 'Cuatro fuentes',
-    descEs: 'Guarda tarjetas desde una lección o cuestionario, palabras, verbos y frase del día.',
+    descEs: 'Guarda tarjetas desde una lección, palabras, verbos y frase del día.',
   },
   recall_first: {
     nameEs: 'Lo recordé',
@@ -359,29 +322,21 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     nameEs: 'La memoria se fortalece',
     descEs: 'Consigue 50 respuestas correctas en el entrenador de repaso.',
   },
-  arena_first_win: {
-    nameEs: 'Primer duelo',
-    descEs: 'Gana tu primer combate en la Arena.',
-  },
-  arena_10_wins: {
-    nameEs: 'Diez victorias',
-    descEs: 'Gana 10 combates en la Arena.',
-  },
   shards_100: {
-    nameEs: 'Coleccionista de fragmentos',
-    descEs: 'Llega a un saldo de 100 fragmentos de conocimiento.',
+    nameEs: 'Coleccionista de perlas',
+    descEs: 'Llega a un saldo de 100 perlas.',
   },
   shards_spent_100: {
-    nameEs: 'Fragmentos en acción',
-    descEs: 'Gasta 100 fragmentos en total dentro de la app.',
+    nameEs: 'Perlas en acción',
+    descEs: 'Gasta 100 perlas en total dentro de la app.',
   },
   energy_refill_first: {
     nameEs: 'Segundo aire',
-    descEs: 'Recarga energía con fragmentos por primera vez.',
+    descEs: 'Recarga energía con perlas por primera vez.',
   },
   energy_refill_5: {
     nameEs: 'Carga completa',
-    descEs: 'Recarga energía con fragmentos 5 veces.',
+    descEs: 'Recarga energía con perlas 5 veces.',
   },
   league_result_first: {
     nameEs: 'Resultado semanal',
@@ -453,34 +408,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     nameEs: 'Cinco señales',
     descEs: 'Recibe 5 me gusta de amigos en tus logros.',
   },
-  league_chat_first: {
-    nameEs: 'Voz de liga',
-    descEs: 'Envía tu primer mensaje en el chat de liga.',
-  },
-  league_chat_10: {
-    nameEs: 'Canal del equipo',
-    descEs: 'Envía 10 mensajes en el chat de liga.',
-  },
-  arena_streak_5: {
-    nameEs: 'Máquina de victorias',
-    descEs: 'Gana 5 combates seguidos en la Arena.',
-  },
-  arena_streak_10: {
-    nameEs: 'Fenómeno',
-    descEs: 'Gana 10 combates seguidos en la Arena.',
-  },
-  arena_duel_friend: {
-    nameEs: 'Duelo amistoso',
-    descEs: 'Gana un duelo de Arena contra un amigo por invitación.',
-  },
-  arena_wager_win: {
-    nameEs: 'Riesgo premiado',
-    descEs: 'Apuesta fragmentos en un combate de Arena y gana.',
-  },
-  arena_wager_5: {
-    nameEs: 'Aventurero profesional',
-    descEs: 'Gana 5 apuestas en la Arena.',
-  },
   trainer_session: {
     nameEs: 'Primera práctica',
     descEs: 'Completa tu primera sesión en Mi práctica.',
@@ -529,17 +456,9 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     nameEs: '75K y subiendo',
     descEs: 'Acumula 75.000 XP en total.',
   },
-  quiz_10_completed: {
-    nameEs: 'Los primeros diez',
-    descEs: 'Completa 10 sesiones de cuestionario.',
-  },
-  arena_streak_freeze: {
-    nameEs: 'Plan astuto',
-    descEs: 'Usa una congelación para proteger tu racha.',
-  },
   wager_win_3: {
     nameEs: 'Tres apuestas ganadas',
-    descEs: 'Gana 3 apuestas en la Arena en total.',
+    descEs: 'Gana 3 apuestas de racha en total.',
   },
   streak_150: { nameEs: 'Ciento cincuenta', descEs: 'Consigue XP durante 150 días seguidos.' },
   streak_250: { nameEs: 'Un cuarto de mil', descEs: 'Mantén la racha de actividad durante 250 días seguidos.' },
@@ -564,16 +483,7 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   xp_2000000: { nameEs: 'Dos millones', descEs: 'Acumula 2.000.000 XP en total.' },
   weekly_xp_5000: { nameEs: 'Semana de 5K', descEs: 'Consigue 5.000 XP en una semana natural.' },
   weekly_xp_10000: { nameEs: 'Semana brutal', descEs: 'Consigue 10.000 XP en una semana natural.' },
-  wager_win_10: { nameEs: 'Mano fría', descEs: 'Gana 10 apuestas en la Arena en total.' },
-  quiz_25_completed: { nameEs: '25 cuestionarios', descEs: 'Completa 25 sesiones de cuestionario.' },
-  quiz_50_completed: { nameEs: '50 cuestionarios', descEs: 'Completa 50 sesiones de cuestionario.' },
-  quiz_100_completed: { nameEs: 'Cien cuestionarios', descEs: 'Completa 100 sesiones de cuestionario.' },
-  quiz_hard_10: { nameEs: 'Diez Hard', descEs: 'Completa 10 cuestionarios Hard.' },
-  quiz_hard_25: { nameEs: 'Habitante de Hard', descEs: 'Completa 25 cuestionarios Hard.' },
-  quiz_hard_perfect_3: { nameEs: 'Tres Hard perfectos', descEs: 'Completa 3 cuestionarios Hard sin errores.' },
-  quiz_hard_perfect_10: { nameEs: 'Diez sin fallo', descEs: 'Completa 10 cuestionarios Hard sin errores.' },
-  quiz_perfect_7_days: { nameEs: 'Semana perfecta de quiz', descEs: 'Completa un cuestionario sin errores durante 7 días seguidos.' },
-  quiz_all_levels_perfect_same_day: { nameEs: 'Tres coronas en un día', descEs: 'Completa Easy, Medium y Hard sin errores en un mismo día.' },
+  wager_win_10: { nameEs: 'Mano fría', descEs: 'Gana 10 apuestas de racha en total.' },
   combo_150: { nameEs: '150 seguidas', descEs: 'Consigue 150 respuestas correctas seguidas en una serie.' },
   combo_250: { nameEs: 'Ritmo inhumano', descEs: 'Consigue 250 respuestas correctas seguidas en una serie.' },
   combo_500: { nameEs: 'Error prohibido', descEs: 'Consigue 500 respuestas correctas seguidas en una serie.' },
@@ -594,20 +504,13 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   flashcards_flip_1000: { nameEs: 'Mil vueltas', descEs: 'Voltea tarjetas 1000 veces al repasar.' },
   flashcards_view_14_days: { nameEs: 'Dos semanas de tarjetas', descEs: 'Revisa tarjetas durante 14 días seguidos.' },
   flashcards_view_30_days: { nameEs: 'Mes de tarjetas', descEs: 'Revisa tarjetas durante 30 días seguidos.' },
-  arena_25_wins: { nameEs: '25 victorias de Arena', descEs: 'Gana 25 combates de Arena.' },
-  arena_50_wins: { nameEs: '50 victorias de Arena', descEs: 'Gana 50 combates de Arena.' },
-  arena_100_wins: { nameEs: '100 victorias de Arena', descEs: 'Gana 100 combates de Arena.' },
-  arena_streak_15: { nameEs: '15 victorias seguidas', descEs: 'Gana 15 combates seguidos en la Arena.' },
-  arena_streak_25: { nameEs: '25 victorias seguidas', descEs: 'Gana 25 combates seguidos en la Arena.' },
-  arena_wager_10: { nameEs: '10 apuestas de Arena', descEs: 'Gana 10 apuestas en la Arena.' },
-  arena_wager_25: { nameEs: '25 apuestas de Arena', descEs: 'Gana 25 apuestas en la Arena.' },
-  shards_250: { nameEs: '250 fragmentos', descEs: 'Lleva tu saldo a 250 fragmentos de conocimiento.' },
-  shards_500: { nameEs: '500 fragmentos', descEs: 'Lleva tu saldo a 500 fragmentos de conocimiento.' },
-  shards_1000: { nameEs: 'Mil fragmentos', descEs: 'Lleva tu saldo a 1000 fragmentos de conocimiento.' },
-  shards_spent_500: { nameEs: '500 fragmentos usados', descEs: 'Gasta 500 fragmentos en total.' },
-  shards_spent_1000: { nameEs: 'Gran circulación', descEs: 'Gasta 1000 fragmentos en total.' },
-  energy_refill_10: { nameEs: '10 recargas', descEs: 'Recarga energía con fragmentos 10 veces.' },
-  energy_refill_25: { nameEs: '25 recargas', descEs: 'Recarga energía con fragmentos 25 veces.' },
+  shards_250: { nameEs: '250 perlas', descEs: 'Lleva tu saldo a 250 perlas.' },
+  shards_500: { nameEs: '500 perlas', descEs: 'Lleva tu saldo a 500 perlas.' },
+  shards_1000: { nameEs: 'Mil perlas', descEs: 'Lleva tu saldo a 1000 perlas.' },
+  shards_spent_500: { nameEs: '500 perlas usados', descEs: 'Gasta 500 perlas en total.' },
+  shards_spent_1000: { nameEs: 'Gran circulación', descEs: 'Gasta 1000 perlas en total.' },
+  energy_refill_10: { nameEs: '10 recargas', descEs: 'Recarga energía con perlas 10 veces.' },
+  energy_refill_25: { nameEs: '25 recargas', descEs: 'Recarga energía con perlas 25 veces.' },
   league_top3_5: { nameEs: 'Cinco semanas en top 3', descEs: 'Termina 5 semanas en el top 3 de tu liga.' },
   league_champion_5: { nameEs: 'Cinco campeonatos', descEs: 'Termina 5 semanas primero en tu grupo de liga.' },
   league_champion_10: { nameEs: 'Diez campeonatos', descEs: 'Termina 10 semanas primero en tu grupo de liga.' },
@@ -618,8 +521,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   social_gift_100: { nameEs: '100 regalos', descEs: 'Envía 100 regalos a tus amigos.' },
   social_likes_25: { nameEs: '25 likes', descEs: 'Recibe 25 likes de amigos en tus logros.' },
   social_likes_100: { nameEs: '100 likes', descEs: 'Recibe 100 likes de amigos en tus logros.' },
-  league_chat_50: { nameEs: '50 mensajes de liga', descEs: 'Envía 50 mensajes en el chat de liga.' },
-  league_chat_100: { nameEs: '100 mensajes de liga', descEs: 'Envía 100 mensajes en el chat de liga.' },
   trainer_1000_correct: { nameEs: '1000 exactas', descEs: 'Consigue 1000 respuestas correctas en entrenamientos.' },
   trainer_2500_correct: { nameEs: '2500 exactas', descEs: 'Consigue 2500 respuestas correctas en entrenamientos.' },
   trainer_10000_correct: { nameEs: '10000 exactas', descEs: 'Consigue 10000 respuestas correctas en entrenamientos.' },

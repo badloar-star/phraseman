@@ -34,4 +34,13 @@ describe('boon activation modal contract', () => {
     expect(visibleEffectStart).toBeGreaterThanOrEqual(0);
     expect(visibleEffect).toContain('markShown()');
   });
+
+  it('persists the daily display guard before requesting the overlay', () => {
+    const src = hostSource();
+    const markShownIndex = src.indexOf('if (!await markShown()) return;');
+    const requestOverlayIndex = src.indexOf('setWantShow(true);');
+
+    expect(markShownIndex).toBeGreaterThanOrEqual(0);
+    expect(requestOverlayIndex).toBeGreaterThan(markShownIndex);
+  });
 });

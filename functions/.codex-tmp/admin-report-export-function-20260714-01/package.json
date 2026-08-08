@@ -1,0 +1,41 @@
+{
+  "name": "phraseman-admin-report-export-function",
+  "version": "1.0.0",
+  "engines": {
+    "node": "22"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "deploy": "node ../scripts/deploy_lock_guard.mjs && npm run build && firebase deploy --only functions",
+    "deploy:safe": "node ../scripts/deploy_lock_guard.mjs && npm run build && firebase deploy --only \"functions:onAnswerSubmitted,functions:onArenaSessionFinished,functions:onArenaSessionAborted,functions:onArenaRematchAccepted,functions:onMatchmakingWrite,functions:matchmakingCron,functions:onArenaRoomMatched,functions:onSessionCountdown,functions:onSessionGetReady,functions:onSessionPlayerLobby,functions:questionTimeout,functions:communitySubmitPackForReview,functions:communityModerateSubmission,functions:communityAdminModeratePack,functions:communityFetchPackCardsIfAccessible,functions:communityPurchasePack,functions:communityListSellerInbox,functions:communityMarkSellerInboxSeen,functions:syncFriendActivityMirrorCron,functions:friendSendGift,functions:friendEnsureMyCode,functions:friendLikeActivity,functions:adminGrantReward,functions:dailyPhraseSetSaved,functions:revenueCatShardsWebhook,functions:authEnsureStableLink,functions:authStampAnonOwnership,functions:authMergeStableAccounts,functions:accountDeleteMine,functions:leagueChatAuthorizeRoom,functions:leagueChatSendMessage,functions:leagueChatReportMessage,functions:leagueJoinOrUpdateGroup,functions:leagueUpdateMyMember,functions:leagueSyncMyBoost,functions:leagueActivateGroupBoost,functions:leaderboardUpdateDailyAnalytics,functions:nameCheckAvailability,functions:nameReserve,functions:nameReleaseMine,functions:leagueChestClaim,functions:collectiblesClaimDrop,functions:arenaClubWarContribute,functions:arenaHillRecordAttempt,functions:arenaHillGetDailyTop,functions:arenaBotMatchRecord,functions:arenaSeasonRolloverCron,functions:arenaSeasonGetTop,functions:arenaSeasonClaimReward,functions:arenaRoomCreate,functions:arenaRoomRecordRun,functions:arenaPulsePublish,functions:arenaRoomJoin,functions:arenaRoomLeave,functions:arenaRoomSetReady,functions:arenaRoomKick,functions:arenaRoomClose,functions:arenaRoomChatSend,functions:arenaGhostCreateChallenge,functions:arenaGhostRecordPlay,functions:onAppMessageReactionWritten,functions:onAppMessagePollVoteWritten,functions:submitVipSurvey,functions:recordVipSurveyReviewClick,functions:vipRevokeMine,functions:submitClientReport,functions:telegramPremiumWebhook,functions:referralEnsureMyCode,functions:referralApply,functions:referralClaimVipReward,functions:referralListMyInvites,functions:adminAlertOnUserReport,functions:adminAlertOnCriticalError,functions:adminAlertOnContentReport,functions:adminAlertContentReportDigest,functions:adminAlertOnCancelSurvey,functions:adminAlertOnUgcRefund,functions:adminAlertOnConfigWritten,functions:explainPhrase,functions:explainChoice,functions:explainQuiz,functions:helpBoardCreateTopic,functions:helpBoardAddComment,functions:helpBoardVote,functions:helpBoardReport,functions:helpBoardDeleteMyTopic,functions:helpBoardAdminModerate,functions:helpBoardGenerateCompassForTopic,functions:helpBoardCompassRetryCron,functions:explainMistake,functions:submitExplainReport,functions:premiumDialogSend,functions:weeklyReviewGenerate,functions:statsInsightsGenerate,functions:openAiBudgetDashboard,functions:openAiDialogModelConfig,functions:openAiDialogQuotaConfig,functions:openAiJobsConfig,functions:reEngagePushCron,functions:adminPushJobCreated,functions:adminPushJobsCron,functions:computeLeaderboardStatsCron,functions:premiumExpiryCron,functions:resetWeeklyXpCron,functions:cleanupExpiredAppMessagesCron,functions:arenaHillDailyRewardCron,functions:submitWebsiteContact,functions:telegramPremiumActivationNotifier,functions:siteStatsTrack,functions:progressSubmitEvent,functions:progressMigrateSnapshot,functions:friendLookupUser,functions:friendThankGift,functions:friendGetActiveQuest,functions:friendClaimQuestReward,functions:dailyTasksAllShardsClaim,functions:shardsApplyDelta,functions:submitUserIdea,functions:adminDecideUserIdea,functions:leagueFinalizeCron,functions:profileCardUpgrade\"",
+    "deploy:telegram-premium": "node ../scripts/deploy_lock_guard.mjs && npm run build && firebase deploy --only functions:telegramPremiumWebhook",
+    "test": "jest --no-coverage",
+    "test:content-factory-emulator": "jest --no-coverage --runInBand --detectOpenHandles src/content_factory/emulator",
+    "quality:prompt-regression": "npm run build && node ../scripts/run-content-prompt-regression.mjs"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^8.3.1",
+    "@js-temporal/polyfill": "^0.5.1",
+    "archiver": "^7.0.1",
+    "firebase-admin": "^13.10.0",
+    "firebase-functions": "^7.2.5",
+    "imapflow": "^1.4.3",
+    "mailparser": "^3.9.12",
+    "nodemailer": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.4",
+    "@types/jest": "^30.0.0",
+    "@types/mailparser": "^3.4.6",
+    "@types/node": "^22.0.0",
+    "@types/nodemailer": "^8.0.1",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9",
+    "typescript": "^5.0.0"
+  },
+  "overrides": {
+    "@tootallnate/once": "3.0.1"
+  }
+}

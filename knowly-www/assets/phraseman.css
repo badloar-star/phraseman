@@ -1168,6 +1168,12 @@ h2 {
   -webkit-mask-image: radial-gradient(135% 125% at 96% 0%, #000 38%, transparent 72%);
   mask-image: radial-gradient(135% 125% at 96% 0%, #000 38%, transparent 72%);
 }
+@media (min-width: 761px) {
+  .hero-rays {
+    right: calc(50% - 50vw);
+    width: calc(min(100%, 900px) + 50vw - 50%);
+  }
+}
 .hero-rays canvas {
   width: 100%;
   height: 100%;
@@ -1675,6 +1681,107 @@ h2 {
   }
 }
 
+/* Ensure the final Apple mobile surface wins over earlier legacy media rules. */
+@media (max-width: 760px) {
+  .hero .actions[aria-label*="Скачать"] { display: none !important; }
+  .mobile-hero-cta { display: inline-flex !important; align-items: center; justify-content: center; width: min(100%, 340px); min-height: 52px; margin: 0 auto 24px; padding: 14px 22px; border-radius: 999px; background: #1d1d1f; color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; box-shadow: 0 10px 24px rgba(29,29,31,.16); }
+  .mcta, .mcta.show { display: flex !important; visibility: visible !important; opacity: 1 !important; transform: none !important; z-index: 100; background: rgba(245,245,247,.97) !important; border-top: 1px solid rgba(29,29,31,.12); box-shadow: 0 -8px 24px rgba(29,29,31,.12); }
+  .mcta .mcta-dl { display: inline-flex !important; visibility: visible !important; opacity: 1 !important; align-items: center; justify-content: center; min-height: 48px; background: #1d1d1f !important; color: #fff !important; }
+}
+
+/* Last mobile overrides: keep the primary download CTA visible above the fold. */
+@media (max-width: 760px) {
+  .hero .actions[aria-label*="Скачать"] { display: none !important; }
+  .mobile-hero-cta {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 340px);
+    min-height: 52px;
+    margin: 0 auto 24px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: #1d1d1f;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(29,29,31,.16);
+  }
+  .mcta, .mcta.show {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    z-index: 100;
+    background: rgba(245,245,247,.97) !important;
+    border-top: 1px solid rgba(29,29,31,.12);
+    box-shadow: 0 -8px 24px rgba(29,29,31,.12);
+  }
+  .mcta .mcta-dl {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    background: #1d1d1f !important;
+    color: #fff !important;
+  }
+}
+
+/* Final mobile Apple surface: one clear download action, always reachable. */
+.mobile-hero-cta { display: none; }
+@media (max-width: 760px) {
+  .hero .actions[aria-label*="Скачать"] {
+    display: none;
+  }
+
+  .mobile-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 340px);
+    min-height: 52px;
+    margin: 0 auto 24px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: #1d1d1f;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(29, 29, 31, 0.16);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .mobile-hero-cta:active { transform: scale(.98); }
+
+  .mcta,
+  .mcta.show {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    z-index: 100;
+    background: rgba(245, 245, 247, .96);
+    border-top: 1px solid rgba(29, 29, 31, .12);
+    box-shadow: 0 -8px 24px rgba(29, 29, 31, .12);
+  }
+
+  .mcta .mcta-dl {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #1d1d1f !important;
+    color: #fff !important;
+    min-height: 48px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal .fcard,
@@ -1745,6 +1852,163 @@ h2 {
   }
   .final::before {
     animation: none;
+  }
+}
+
+/* Mobile landing polish: keep the install action in a quiet bottom tab bar.
+   The desktop composition above remains unchanged. */
+@media (max-width: 760px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    padding-bottom: 0;
+    overscroll-behavior-y: auto;
+  }
+
+  .shell {
+    padding: 0 18px;
+  }
+
+  .topbar {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0 12px;
+  }
+
+  .brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+  }
+
+  .brand b {
+    font-size: 14px;
+  }
+
+  .brand small,
+  .topbar .nav {
+    display: none;
+  }
+
+  .hero {
+    display: block;
+    min-height: auto;
+    padding: clamp(44px, 10vh, 78px) 0 42px;
+    text-align: center;
+  }
+
+  .hero > div:not(.hero-rays):not(.hero-dust) {
+    width: 100%;
+  }
+
+  .hero .kicker {
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .hero h1 {
+    max-width: 360px;
+    margin: 0 auto 18px;
+    font-size: clamp(2.35rem, 11vw, 3.35rem);
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+  }
+
+  .hero .lead {
+    max-width: 330px;
+    margin: 0 auto 22px;
+    font-size: 16px;
+    line-height: 1.48;
+  }
+
+  .hero .actions,
+  .hero .under-cta,
+  .hero .qr-hint,
+  .hero .trust-chips {
+    display: none;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  section.block {
+    padding-top: 48px;
+  }
+
+  section.block > h2,
+  section.block > .sub,
+  section.block > .eyebrow {
+    text-align: center;
+  }
+
+  section.block > .sub {
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .fcard,
+  .step,
+  .quote,
+  .gcard {
+    min-height: 0;
+    padding: 22px 20px;
+  }
+
+  .fcard h3,
+  .step h3,
+  .gcard h3 {
+    font-size: 1.04rem;
+  }
+
+  .fcard p,
+  .step p,
+  .gcard p,
+  .quote p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .mcta {
+    top: auto !important;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    min-height: 64px;
+    padding: 8px 14px calc(8px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(232, 197, 102, 0.22);
+    border-radius: 0;
+    transform: translateY(110%);
+  }
+
+  .mcta.show {
+    transform: translateY(0);
+  }
+
+  .mcta .mcta-dl {
+    width: 100%;
+    min-height: 48px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--gold-grad);
+    color: #0a0a0e;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 0 8px 24px rgba(227, 184, 75, 0.22);
+  }
+
+  body.mcta-on {
+    padding-bottom: 80px;
   }
 }
 
@@ -1843,4 +2107,133 @@ h2 {
 }
 .guide-cta .btn-gold {
   display: inline-block;
+}
+
+/* Approved Apple-style mobile surface. Desktop/legacy stays unchanged above. */
+@media (max-width: 760px) {
+  :root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-2: #f2f2f7;
+    --line: rgba(29, 29, 31, 0.1);
+    --line-strong: rgba(29, 29, 31, 0.16);
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --muted-2: #86868b;
+    --gold: #0071e3;
+    --gold-deep: #0066cc;
+    --gold-grad: linear-gradient(180deg, #0077ed 0%, #0071e3 100%);
+  }
+
+  html,
+  body {
+    background: #f5f5f7;
+    color: #1d1d1f;
+  }
+
+  .bg {
+    display: none;
+  }
+
+  .shell {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-inline: -20px;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(29, 29, 31, 0.08);
+    background: rgba(245, 245, 247, 0.88);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .hero {
+    min-height: min(720px, calc(100svh - 58px));
+    padding: clamp(72px, 16svh, 132px) 0 72px;
+  }
+
+  .hero h1 {
+    color: #1d1d1f;
+    font-weight: 750;
+    letter-spacing: -0.06em;
+  }
+
+  .hero .gold-accent {
+    color: #0071e3;
+  }
+
+  .mobile-hero-cta {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 340px);
+    min-height: 52px;
+    margin: 0 auto 24px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: #1d1d1f;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .hero .lead,
+  section.block > .sub,
+  .fcard p,
+  .step p,
+  .gcard p,
+  .quote p {
+    color: #6e6e73;
+  }
+
+  section.block {
+    padding-top: 64px;
+  }
+
+  .fcard,
+  .step,
+  .quote,
+  .gcard,
+  .demo-card,
+  .guide-cta {
+    border-color: rgba(29, 29, 31, 0.1);
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(29, 29, 31, 0.06);
+  }
+
+  .dock {
+    display: none;
+  }
+
+  .mcta,
+  .mcta.show {
+    display: flex !important;
+    visibility: visible;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    z-index: 100;
+    background: rgba(245, 245, 247, 0.9);
+    box-shadow: 0 -10px 30px rgba(29, 29, 31, 0.08);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .mcta .mcta-dl {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #1d1d1f;
+    color: #fff;
+    box-shadow: none;
+  }
+
+  body.mcta-on {
+    padding-bottom: 84px;
+  }
 }

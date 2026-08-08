@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { View, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -6,10 +6,10 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
   withSpring,
-  runOnJS,
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { useScreen } from '../hooks/use-screen';
 import { tabSwipeLocked } from './tabSwipeLock';
 
@@ -51,7 +51,7 @@ export default function TabSlider({
   const tabWidth    = useSharedValue(W);
   const tabCount    = useSharedValue(React.Children.count(children));
 
-  // JS-side refs for callbacks (worklets call runOnJS to reach them)
+  // JS-side refs for callbacks (worklets schedule them on the React Native thread).
   const onSwipeStartRef    = useRef(onSwipeStart);
   const onSwipeCompleteRef = useRef(onSwipeComplete);
   useEffect(() => { onSwipeStartRef.current = onSwipeStart; }, [onSwipeStart]);
@@ -75,10 +75,10 @@ export default function TabSlider({
     }
   }, [activeIndex, W, translateX, currentIdx, isAnimating]);
 
-  const fireSwipeStart    = (i: number) => { onSwipeStartRef.current?.(i); };
-  const fireSwipeComplete = (i: number) => { onSwipeCompleteRef.current?.(i); };
+  const fireSwipeStart = useCallback((i: number) => { onSwipeStartRef.current?.(i); }, []);
+  const fireSwipeComplete = useCallback((i: number) => { onSwipeCompleteRef.current?.(i); }, []);
 
-  const pan = Gesture.Pan()
+  const pan = useMemo(() => Gesture.Pan()
     .enabled(swipeEnabled)
     // Require a deliberate horizontal drag so child buttons keep normal tap priority.
     .activeOffsetX([-TAB_SWIPE_ACTIVE_OFFSET_X, TAB_SWIPE_ACTIVE_OFFSET_X])
@@ -114,28 +114,28 @@ export default function TabSlider({
         const toIdx = idx + 1;
         isAnimating.value = true;
         currentIdx.value  = toIdx;
-        runOnJS(fireSwipeStart)(toIdx);
+        scheduleOnRN(fireSwipeStart, toIdx);
         translateX.value = withTiming(
           -toIdx * w,
           { duration: 260, easing: Easing.out(Easing.cubic) },
           (finished) => {
             'worklet';
             isAnimating.value = false;
-            if (finished) runOnJS(fireSwipeComplete)(toIdx);
+            if (finished) scheduleOnRN(fireSwipeComplete, toIdx);
           }
         );
       } else if (shouldGoPrev) {
         const toIdx = idx - 1;
         isAnimating.value = true;
         currentIdx.value  = toIdx;
-        runOnJS(fireSwipeStart)(toIdx);
+        scheduleOnRN(fireSwipeStart, toIdx);
         translateX.value = withTiming(
           -toIdx * w,
           { duration: 260, easing: Easing.out(Easing.cubic) },
           (finished) => {
             'worklet';
             isAnimating.value = false;
-            if (finished) runOnJS(fireSwipeComplete)(toIdx);
+            if (finished) scheduleOnRN(fireSwipeComplete, toIdx);
           }
         );
       } else {
@@ -147,7 +147,7 @@ export default function TabSlider({
           velocity: vx,
         });
       }
-    });
+    }), [currentIdx, fireSwipeComplete, fireSwipeStart, isAnimating, swipeEnabled, tabCount, tabWidth, translateX]);
 
   const animStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],

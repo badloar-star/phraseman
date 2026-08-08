@@ -9,6 +9,22 @@ const ROOT = path.resolve(__dirname, '..');
 // inside identifiers like CLUB_DEFS_RU.
 const RUNTIME_FALLBACK_RE = /(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?<![A-Za-z0-9_'-])(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?<![A-Za-z0-9_'-])(?:RU|UK|ES)\b)/g;
 
+function extractBracedBlock(source: string, marker: string, fromIndex = 0): string {
+  const markerIndex = source.indexOf(marker, fromIndex);
+  if (markerIndex < 0) return '';
+  const openingBrace = source.indexOf('{', markerIndex);
+  if (openingBrace < 0) return '';
+
+  let depth = 0;
+  for (let index = openingBrace; index < source.length; index += 1) {
+    if (source[index] === '{') depth += 1;
+    if (source[index] !== '}') continue;
+    depth -= 1;
+    if (depth === 0) return source.slice(markerIndex, index + 1);
+  }
+  return '';
+}
+
 describe('web and admin runtime locale fallback audit', () => {
   it('keeps public web/admin bridge files free of legacy runtime fallback markers', () => {
     const files = [
@@ -26,7 +42,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('does not seed pt-BR/vi/id/tr/pl VIP survey copy from generic admin text', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     for (const id of [
       'vs-title-ptbr',
@@ -51,17 +67,23 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('keeps admin Google login persistent across page reloads', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(source).toContain('setPersistence(auth, browserLocalPersistence)');
     expect(source).toContain("setAdminSignInBusy(true, 'ПРОВЕРЯЕМ СЕССИЮ...')");
-    expect(source).not.toContain("prompt: 'select_account'");
+    expect(source).not.toContain('_googleProvider.setCustomParameters');
+    expect(source).toContain('function createInteractiveAdminGoogleProvider()');
 
     const cachedTokenCheck = source.indexOf('tr = await user.getIdTokenResult(false)');
     const forcedTokenRefresh = source.indexOf('tr = await user.getIdTokenResult(true)', cachedTokenCheck);
     const unexpectedSignOut = source.indexOf('await signOut(auth)', cachedTokenCheck);
+    const missingAdminClaimGuard = 'if (!tr.claims || tr.claims.admin !== true) {';
+    const refreshBranch = extractBracedBlock(source, missingAdminClaimGuard, cachedTokenCheck);
 
     expect(cachedTokenCheck).toBeGreaterThan(-1);
+    expect(refreshBranch).toContain('tr = await user.getIdTokenResult(true)');
+    expect(source.slice(cachedTokenCheck, source.indexOf(missingAdminClaimGuard, cachedTokenCheck)))
+      .not.toContain('getIdTokenResult(true)');
     expect(forcedTokenRefresh).toBeGreaterThan(cachedTokenCheck);
     expect(unexpectedSignOut).toBeGreaterThan(forcedTokenRefresh);
   });
@@ -78,7 +100,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('does not label Firebase-authenticated users as anonymous when provider metadata is missing', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(source).toContain('firebaseAuthUid: snap.data().firebaseAuthUid || null');
     expect(source).toContain('firebaseAuthUid: doc.data().firebaseAuthUid || null');

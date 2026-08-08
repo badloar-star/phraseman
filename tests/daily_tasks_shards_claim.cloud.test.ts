@@ -1,6 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, spendShards } from '../app/shards_system';
+import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance, SHARD_REWARDS, spendShards } from '../app/shards_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
+
+let mockDailyClaimGate: Promise<void> | null = null;
+let mockDailyClaimStarted: (() => void) | null = null;
+let mockDailyClaimDataOverride: Record<string, unknown> | null = null;
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/functions', () => ({
@@ -34,6 +44,13 @@ jest.mock('@react-native-firebase/functions', () => ({
       return jest.fn(async () => ({ data: {} }));
     }
     return jest.fn(async () => {
+      if (mockDailyClaimGate) {
+        mockDailyClaimStarted?.();
+        await mockDailyClaimGate;
+      }
+      if (mockDailyClaimDataOverride) {
+        return { data: mockDailyClaimDataOverride };
+      }
       const fs = require('@react-native-firebase/firestore').default as any;
       if (fs.__testState.rewardClaimExists) {
         return {
@@ -73,6 +90,17 @@ const flushAsync = async (turns = 6) => {
 beforeEach(() => {
   jest.clearAllMocks();
   (firestore as any).__resetTestState?.();
+  mockDailyClaimGate = null;
+  mockDailyClaimStarted = null;
+  mockDailyClaimDataOverride = null;
+  __resetAccountGenerationForTests();
+  // stableId поколения должен совпадать с моком getCanonicalUserId ('uid-1') —
+  // иначе applyShardDeltaToCloud резолвит 'stale-generation' и earn/spend дают 0.
+  beginAccountGeneration('uid-1');
+  // Экономика «Монеты и Звёзды» (docs/plans/2026-07-20) обнулила игровые начисления
+  // монет (в проде daily_tasks_all = 0). Тесты проверяют механику claim, а не каталог,
+  // поэтому поднимаем награду до 1, как было до миграции.
+  SHARD_REWARDS.daily_tasks_all = 1;
   Object.keys(mockStorage).forEach(k => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
     Promise.resolve(mockStorage[k] ?? null),
@@ -91,7 +119,133 @@ beforeEach(() => {
   });
 });
 
+afterEach(() => {
+  SHARD_REWARDS.daily_tasks_all = 0;
+});
+
 describe('claimDailyTasksAllShardsReward (optimistic claim + Cloud Function sync)', () => {
+  it.each([
+    ['missing', { alreadyClaimed: false }, '2026-08-17'],
+    ['non-finite', { alreadyClaimed: false, newBalance: Number.NaN }, '2026-08-18'],
+    ['negative', { alreadyClaimed: false, newBalance: -1 }, '2026-08-19'],
+  ] as const)(
+    'retains the pending journal for a %s authoritative balance',
+    async (_case, response, dayKey) => {
+      mockDailyClaimDataOverride = response;
+      mockStorage.shards_balance = '4';
+
+      await expect(claimDailyTasksAllShardsReward(dayKey)).resolves.toBe(true);
+      expect(mockStorage.shards_balance).toBe('5');
+      expect(mockStorage[`daily_tasks_all_shards_${dayKey}`]).toBe('1');
+      expect(mockStorage[pendingKey(dayKey)]).toBe('1');
+
+      await flushAsync();
+
+      expect(mockStorage.shards_balance).toBe('5');
+      expect(mockStorage[`daily_tasks_all_shards_${dayKey}`]).toBe('1');
+      expect(mockStorage[pendingKey(dayKey)]).toBe('1');
+    },
+  );
+
+  it('does not apply an account A callable receipt after account B is hydrated', async () => {
+    const fs = firestore as any;
+    fs.__testState.rewardClaimExists = false;
+    fs.__testState.userShards = 17;
+    mockStorage.shards_balance = '17';
+    let releaseCallable!: () => void;
+    let markCallableStarted!: () => void;
+    mockDailyClaimGate = new Promise<void>((resolve) => { releaseCallable = resolve; });
+    const callableStarted = new Promise<void>((resolve) => { markCallableStarted = resolve; });
+    mockDailyClaimStarted = markCallableStarted;
+
+    await expect(claimDailyTasksAllShardsReward('2026-08-15')).resolves.toBe(true);
+    await callableStarted;
+
+    invalidateAccountGeneration();
+    await withAccountTransitionLock(async () => {
+      delete mockStorage['daily_tasks_all_shards_2026-08-15'];
+      delete mockStorage[pendingKey('2026-08-15')];
+      mockStorage.shards_balance = '23';
+    });
+    beginAccountGeneration('uid-2');
+    await expect(getShardsBalance()).resolves.toBe(23);
+    releaseCallable();
+    await flushAsync();
+
+    expect(mockStorage.shards_balance).toBe('23');
+    expect(mockStorage['daily_tasks_all_shards_2026-08-15']).toBeUndefined();
+    expect(mockStorage[pendingKey('2026-08-15')]).toBeUndefined();
+    expect(peekLastKnownShardsBalance()).toBe(23);
+  });
+
+  it('holds the account transition lock across the optimistic multiSet commit', async () => {
+    mockStorage.shards_balance = '17';
+    const rewardKey = 'daily_tasks_all_shards_2026-08-16';
+    let releaseCommit!: () => void;
+    let markCommitStarted!: () => void;
+    const commitStarted = new Promise<void>((resolve) => { markCommitStarted = resolve; });
+    let pauseCommit = true;
+    (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: Array<[string, string]>) => {
+      if (pauseCommit && pairs.some(([key]) => key === rewardKey)) {
+        pauseCommit = false;
+        markCommitStarted();
+        await new Promise<void>((resolve) => { releaseCommit = resolve; });
+      }
+      for (const [key, value] of pairs) mockStorage[key] = value;
+    });
+
+    const pendingClaim = claimDailyTasksAllShardsReward('2026-08-16');
+    await commitStarted;
+    invalidateAccountGeneration();
+    let transitionCompleted = false;
+    const transition = withAccountTransitionLock(async () => {
+      delete mockStorage[rewardKey];
+      delete mockStorage[pendingKey('2026-08-16')];
+      mockStorage.shards_balance = '23';
+      transitionCompleted = true;
+    });
+    await Promise.resolve();
+    const transitionInterleaved = transitionCompleted;
+    releaseCommit();
+    await expect(pendingClaim).resolves.toBe(false);
+    await transition;
+    beginAccountGeneration('uid-2');
+
+    expect(transitionInterleaved).toBe(false);
+    expect(mockStorage.shards_balance).toBe('23');
+    expect(mockStorage[rewardKey]).toBeUndefined();
+    expect(mockStorage[pendingKey('2026-08-16')]).toBeUndefined();
+    await expect(getShardsBalance()).resolves.toBe(23);
+    expect(peekLastKnownShardsBalance()).toBe(23);
+  });
+
+  it('does not let a paused account A optimistic claim overwrite hydrated account B', async () => {
+    mockStorage.shards_balance = '17';
+    let releaseRead!: (value: string | null) => void;
+    let markReadStarted!: () => void;
+    const readStarted = new Promise<void>((resolve) => { markReadStarted = resolve; });
+    const defaultGetItem = AsyncStorage.getItem as jest.Mock;
+    defaultGetItem.mockImplementationOnce((key: string) => Promise.resolve(mockStorage[key] ?? null));
+    defaultGetItem.mockImplementationOnce(() => Promise.resolve(null));
+    defaultGetItem.mockImplementationOnce(() => {
+      markReadStarted();
+      return new Promise<string | null>((resolve) => { releaseRead = resolve; });
+    });
+
+    const pendingClaim = claimDailyTasksAllShardsReward('2026-08-14');
+    await readStarted;
+
+    invalidateAccountGeneration();
+    beginAccountGeneration('uid-2');
+    mockStorage.shards_balance = '23';
+    await expect(getShardsBalance()).resolves.toBe(23);
+    releaseRead('17');
+
+    await expect(pendingClaim).resolves.toBe(false);
+    expect(mockStorage.shards_balance).toBe('23');
+    expect(peekLastKnownShardsBalance()).toBe(23);
+  });
+
   it('marks claim locally at once, then reconciles balance with the server; second call is no-op', async () => {
     const fs = firestore as any;
     fs.__testState.rewardClaimExists = false;
@@ -157,6 +311,7 @@ describe('claimDailyTasksAllShardsReward (optimistic claim + Cloud Function sync
     await flushAsync();
     expect(mockStorage.shards_balance).toBe('81');
     expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBeGreaterThan(2_000);
+    expect(mockStorage[pendingKey('2026-08-12')]).toBeUndefined();
   });
 
   it('does not let an older granted server mirror lower a newer local wallet', async () => {
@@ -179,6 +334,7 @@ describe('claimDailyTasksAllShardsReward (optimistic claim + Cloud Function sync
     await flushAsync();
     expect(mockStorage.shards_balance).toBe('81');
     expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBeGreaterThan(9_000_000_000_000);
+    expect(mockStorage[pendingKey('2026-08-13')]).toBeUndefined();
   });
 });
 

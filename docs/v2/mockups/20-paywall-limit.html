@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2 Макет · Гейт лимита Free (Plus paywall)</title>
+<style>
+/* ============================================================
+   Витрина Learning V2 · Режим: Гейт лимита Free → Plus (owner decision)
+   Скопировано 1:1 из 02-phrase-builder.html: токены тем, телефон-рама,
+   fx-слой (зарезервирован, здесь не используется - только .animate() дыхания
+   закрытого узла карты), панель витрины, tf()/reduced().
+   Нижний лист и замок — язык 08-unit-map.html (scrim+spring sheet, i-lock).
+   Решение владельца (2026-07-26): Free = 3 сессии в день; Plus = вплетение
+   личного плана в уроки + безлимит сессий + скидка на буст + полный разбор
+   ошибок. БЕЗ дарк-паттернов: вторичная кнопка полноценная, не микротекст.
+   Закон G27-G30: без картинок/эмодзи, без обводок контейнеров, без подписей-
+   расшифровок мелким шрифтом под названием, типографика — герой.
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --text-on-gold:#1A1A1A;
+  /* зачем: карточка Plus получает СОБСТВЕННЫЙ премиальный градиент (champagne-акцент
+     в золотой теме), чтобы отличаться от обычных surface-карточек — это "самое сочное" место листа */
+  --plus-grad:linear-gradient(155deg, #2C4A38 0%, #16261C 55%, #0A140E 100%);
+  --plus-edge:rgba(255,255,255,0.08);
+  --plus-accent:#FFC800;
+}
+:root[data-theme="gold"] {
+  --bg-primary:#030303; --bg-card:#0A0A0A; --bg-surface:#111111; --bg-surface2:#171717;
+  --text-primary:#F7F1E4; --text-second:#E9CE7A; --text-muted:#B8AD92; --text-ghost:#6D6554;
+  --correct:#D6B35A; --correct-bg:rgba(214,179,90,0.16);
+  --wrong:#B65A4A; --wrong-bg:rgba(182,90,74,0.13);
+  --gold:#D6B35A; --gold-bg:rgba(214,179,90,0.14);
+  --accent:#B8903A; --accent-bg:rgba(184,144,58,0.12); --correct-text:#0A0702;
+  --btn-shadow:#3C2A0B; --card-shadow:rgba(0,0,0,0.78);
+  --chip-grad-a:#242012; --chip-grad-b:#0E0C07; --chip-edge:#060503;
+  --bg-grad-a:#0D0A04; --bg-grad-b:#010101;
+  --sheen:rgba(214,179,90,0.05);
+  --cta-grad:linear-gradient(180deg,#F6E3A1 0%,#D6B35A 52%,#A87F30 100%);
+  --cta-hi:rgba(255,255,255,0.5);
+  --ok-grad:linear-gradient(180deg,#EED592 0%,#C8A44C 100%);
+  --chip-hi:rgba(246,227,161,0.12);
+  --surface-grad:linear-gradient(160deg,#1B1710,#0A0906);
+  --hero-grad:linear-gradient(180deg,#FFF9E8 15%,#E9CE7A 100%);
+  --text-on-gold:#0A0702;
+  /* Золотая тема: champagne-акцент максимально к месту (владелец явно просил здесь) */
+  --plus-grad:linear-gradient(155deg, #3A2F16 0%, #1E170B 55%, #0D0A04 100%);
+  --plus-edge:rgba(246,227,161,0.14);
+  --plus-accent:#F6E3A1;
+}
+:root[data-theme="coral"] {
+  --bg-primary:#090405; --bg-card:#171013; --bg-surface:#22171B; --bg-surface2:#302126;
+  --text-primary:#FFFFFF; --text-second:#FF8A66; --text-muted:#B9A6AE; --text-ghost:#75656C;
+  --correct:#4A90FF; --correct-bg:rgba(74,144,255,0.14);
+  --wrong:#FF6464; --wrong-bg:rgba(255,100,100,0.14);
+  --gold:#FFD060; --gold-bg:rgba(255,208,96,0.14);
+  --accent:#FF7F50; --accent-bg:rgba(255,127,80,0.12); --correct-text:#FFFFFF;
+  --btn-shadow:#7A2E14; --card-shadow:rgba(0,0,0,0.6);
+  --chip-grad-a:#3A2630; --chip-grad-b:#180E12; --chip-edge:#0B0608;
+  --bg-grad-a:#140709; --bg-grad-b:#010101;
+  --sheen:rgba(255,127,80,0.05);
+  --cta-grad:linear-gradient(180deg,#FF9E76 0%,#FF7F50 50%,#E45E31 100%);
+  --cta-hi:rgba(255,255,255,0.42);
+  --ok-grad:linear-gradient(180deg,#6FA6FF 0%,#3F82F2 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#2B1C23,#130A0E);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#F3C9B8 100%);
+  --text-on-gold:#1A1208;
+  --plus-grad:linear-gradient(155deg, #3D2A32 0%, #1F151A 55%, #0D080A 100%);
+  --plus-edge:rgba(255,255,255,0.1);
+  --plus-accent:#FFD060;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh;
+  display:flex; gap:40px; align-items:flex-start; justify-content:center;
+  padding:36px 24px 80px; flex-wrap:wrap;
+}
+svg { display:block; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:800px; position:relative; overflow:hidden;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+
+/* ---------- Сцена позади листа: упрощённая карта юнита, приглушена скримом ---------- */
+.backdrop { flex:1; position:relative; z-index:0; padding:26px 20px 0; filter:saturate(0.9); }
+.bd-hdr { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted);
+  display:grid; place-items:center; flex:0 0 auto;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.icon-btn svg { width:17px; height:17px; }
+.bd-unit-label { flex:1; font-size:12.5px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-ghost); }
+.bd-hero { margin-top:18px; font-size:26px; line-height:1.18; font-weight:800; letter-spacing:0.1px;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.bd-candoo { margin-top:8px; font-size:14.5px; font-weight:600; color:var(--text-muted); }
+/* Пара узлов карты юнита: минимальный контекст "жизни за листом" */
+.bd-nodes { display:flex; gap:20px; margin-top:32px; padding-left:6px; }
+.bd-node {
+  width:60px; height:60px; border-radius:50%; display:grid; place-items:center; flex:0 0 auto;
+}
+.bd-node.done { background:var(--ok-grad); color:var(--correct-text); box-shadow:0 4px 0 var(--btn-shadow), 0 10px 20px var(--card-shadow); }
+.bd-node.done svg { width:22px; height:22px; }
+.bd-node.locked { background:var(--surface-grad); color:var(--text-ghost); box-shadow:0 4px 0 rgba(0,0,0,0.3), 0 8px 16px var(--card-shadow); margin-top:26px; }
+.bd-node.locked svg { width:19px; height:19px; }
+
+/* ---------- Скрим под листом: сцена приглушена, но не чёрный экран ---------- */
+.scrim {
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.42) 46%, rgba(0,0,0,0.72) 100%);
+  opacity:0; transition:opacity var(--t-slow) ease;
+}
+.scrim.show { opacity:1; }
+
+/* ================= Нижний лист-гейт ================= */
+.sheet {
+  position:absolute; left:0; right:0; bottom:0; z-index:3;
+  background:linear-gradient(170deg, var(--bg-card), var(--bg-primary));
+  border-radius:30px 30px 0 0; padding:16px 22px 26px;
+  box-shadow:0 -20px 56px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+  transform:translateY(100%); transition:transform var(--t-slow) var(--ease-spring);
+  max-height:92%; overflow-y:auto; scrollbar-width:none;
+}
+.sheet::-webkit-scrollbar { display:none; }
+.sheet.show { transform:translateY(0); }
+.sheet-grip { width:38px; height:4px; border-radius:999px; background:rgba(255,255,255,0.14); margin:0 auto 16px; }
+
+/* ---------- Заголовочная зона гейта ---------- */
+.gate-label { font-size:12.5px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-ghost); text-align:center; }
+/* Герой гейта: тот же премиальный градиент по тексту, что и в эталоне PB */
+.gate-hero {
+  margin-top:8px; text-align:center; font-size:28px; line-height:1.16; font-weight:800; letter-spacing:0.1px;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+/* Тёплая строка обычным кеглем — не подпись-расшифровка, а содержательная реплика (закон запрета мелких подписей) */
+.gate-warm { margin-top:10px; text-align:center; font-size:15.5px; font-weight:600; line-height:1.45; color:var(--text-muted); }
+
+/* ---------- Пилюля-таймер: тикает ---------- */
+.timer-pill {
+  margin:16px auto 0; width:max-content; display:flex; align-items:center; gap:8px;
+  border-radius:999px; padding:9px 16px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.22)), var(--accent-bg);
+  color:var(--text-second); font-weight:800; font-size:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.25);
+}
+.timer-pill svg { width:14px; height:14px; }
+.timer-pill b { font-variant-numeric:tabular-nums; letter-spacing:0.3px; }
+
+/* ---------- Карточка Plus: самый премиальный блок листа ---------- */
+.plus-card {
+  margin-top:22px; border-radius:24px; padding:22px;
+  background:var(--plus-grad);
+  box-shadow:0 4px 0 rgba(0,0,0,0.4), 0 18px 36px var(--card-shadow), inset 0 1px 0 var(--plus-edge);
+  position:relative; overflow:hidden;
+}
+/* Деликатный статичный блик по верхнему краю карточки — глубина без обводки */
+.plus-card::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(120% 60% at 18% -10%, rgba(255,255,255,0.10), transparent 55%);
+}
+.plus-title-row { display:flex; align-items:center; gap:10px; position:relative; }
+.plus-mark {
+  width:34px; height:34px; border-radius:11px; flex:0 0 auto; display:grid; place-items:center;
+  background:linear-gradient(155deg, var(--plus-accent), color-mix(in srgb, var(--plus-accent) 55%, #000));
+  color:var(--text-on-gold);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.plus-mark svg { width:17px; height:17px; }
+.plus-title { font-size:18px; font-weight:800; color:var(--text-primary); letter-spacing:0.1px; }
+
+.plus-benefits { margin-top:16px; display:flex; flex-direction:column; gap:12px; position:relative; }
+.plus-benefit { display:flex; align-items:center; gap:11px; }
+.pb-check {
+  width:24px; height:24px; border-radius:8px; flex:0 0 auto; display:grid; place-items:center;
+  background:linear-gradient(150deg, rgba(255,200,0,0.24), rgba(255,255,255,0.03));
+  color:var(--plus-accent);
+}
+.pb-check svg { width:13px; height:13px; }
+.plus-benefit .pb-text { font-size:15px; font-weight:700; color:var(--text-primary); line-height:1.3; }
+
+/* ---------- CTA Plus: самая сочная кнопка экрана, бегущий блик раз в 3с ---------- */
+.plus-cta {
+  margin-top:20px; width:100%; height:58px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17.5px; font-weight:800; letter-spacing:0.3px;
+  color:var(--text-on-gold);
+  background:linear-gradient(180deg, var(--plus-accent) 0%, color-mix(in srgb, var(--plus-accent) 78%, #A87F30) 100%);
+  box-shadow:0 5px 0 color-mix(in srgb, var(--plus-accent) 40%, #000), 0 16px 30px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.55);
+  position:relative; overflow:hidden;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint);
+}
+.plus-cta:active { transform:translateY(4px); box-shadow:0 1px 0 color-mix(in srgb, var(--plus-accent) 40%, #000), 0 8px 16px var(--card-shadow); }
+/* Бегущий блик-перелив: раз в 3 секунды, деликатный, глушится reduced */
+.plus-cta .cta-sheen {
+  position:absolute; top:-60%; bottom:-60%; width:34%; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform:translateX(-220%) skewX(-18deg);
+  animation:ctaSheen 3000ms ease-in-out infinite;
+}
+@keyframes ctaSheen { 0%,72%{transform:translateX(-220%) skewX(-18deg)} 92%,100%{transform:translateX(360%) skewX(-18deg)} }
+.plus-cta .cta-label { position:relative; }
+
+/* ---------- Вторичная: полноценная кнопка, НЕ микротекст-серый (закон: без дарк-паттернов) ---------- */
+.secondary-cta {
+  margin-top:12px; width:100%; height:50px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:15.5px; font-weight:700; color:var(--text-primary);
+  background:linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02)), var(--bg-surface2);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 6px 14px rgba(0,0,0,0.25);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.secondary-cta:active { transform:scale(0.98); }
+
+/* ================= Экран-заглушка подписки (после тапа CTA) ================= */
+.paywall-stub {
+  position:absolute; inset:0; z-index:4; border-radius:30px 30px 0 0;
+  background:linear-gradient(170deg, var(--bg-card), var(--bg-primary));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:32px 26px; text-align:center;
+  transform:translateY(100%); transition:transform var(--t-slow) var(--ease-spring);
+}
+.paywall-stub.show { transform:translateY(0); }
+.stub-mark {
+  width:64px; height:64px; border-radius:20px; display:grid; place-items:center;
+  background:linear-gradient(155deg, var(--plus-accent), color-mix(in srgb, var(--plus-accent) 55%, #000));
+  color:var(--text-on-gold); box-shadow:0 14px 30px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.stub-mark svg { width:30px; height:30px; }
+.stub-title { margin-top:20px; font-size:22px; font-weight:800; color:var(--text-primary);
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.stub-note { margin-top:10px; font-size:14.5px; font-weight:600; color:var(--text-muted); line-height:1.5; max-width:280px; }
+.stub-tag {
+  margin-top:18px; padding:7px 14px; border-radius:999px; font-size:12.5px; font-weight:800;
+  color:var(--text-ghost); background:var(--bg-surface2);
+}
+.stub-back {
+  margin-top:26px; width:100%; max-width:260px; height:50px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:15px; font-weight:700; color:var(--text-primary);
+  background:linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02)), var(--bg-surface2);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 6px 14px rgba(0,0,0,0.25);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.stub-back:active { transform:scale(0.97); }
+
+/* Слой полётов (карта оживает при возврате завтра) */
+.fx { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:6; }
+
+/* ================= ПАНЕЛЬ ================= */
+.panel { width:380px; max-width:92vw; display:flex; flex-direction:column; gap:18px; }
+.panel h1 { font-size:22px; font-weight:800; }
+.panel h1 span { color:#58CC89; }
+.pcard { background:#131A15; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,0.35); }
+.pcard h2 { font-size:13px; text-transform:uppercase; letter-spacing:1.4px; color:#8AB49A; margin-bottom:12px; font-weight:800; }
+.chiprow { display:flex; flex-wrap:wrap; gap:8px; }
+.pbtn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 14px;
+  background:#1D2921; color:#DDE8E0; font-size:13.5px; font-weight:700; font-family:inherit;
+  transition:transform 120ms cubic-bezier(0.23,1,0.32,1), background 150ms;
+}
+.pbtn:active { transform:scale(0.95); }
+.pbtn.on { background:#47C870; color:#042010; }
+.spec { font-size:13px; line-height:1.65; color:#B9C8BE; }
+.spec .row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; }
+.spec .row + .row { border-top:1px solid rgba(255,255,255,0.05); }
+.spec .val { color:#58CC89; font-weight:700; text-align:right; white-space:nowrap; }
+.note { font-size:12.5px; color:#8AA394; line-height:1.6; margin-top:10px; }
+
+:root[data-reduced="1"] .sheet, :root[data-reduced="1"] .scrim, :root[data-reduced="1"] .paywall-stub,
+:root[data-reduced="1"] .plus-cta, :root[data-reduced="1"] .secondary-cta, :root[data-reduced="1"] .stub-back {
+  transition-duration:80ms !important; animation-duration:1ms !important;
+}
+:root[data-reduced="1"] .plus-cta .cta-sheen { animation:none; opacity:0; }
+
+@media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><circle cx="15" cy="8" r="2.4" fill="currentColor"/><circle cx="9" cy="16" r="2.4" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 13l5 5L19.5 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M12 7.4V12l3.4 2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2.6" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.1-3.2 0.3-4.8 1.2-2.2 1.2-3.5 3.6-4.4 8-0.9-4.4-2.2-6.8-4.4-8-1.6-0.9-3.1-1.1-4.8-1.2 1.7-0.1 3.2-0.3 4.8-1.2 2.2-1.2 3.5-3.6 4.4-8z" fill="currentColor"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5.5" cy="6" r="2.4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="18.5" cy="18" r="2.4" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M5.5 8.4v3.4a3 3 0 0 0 3 3h6a3 3 0 0 1 3 3v0.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.9" fill="none"/><circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.9" fill="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M11.6 3.4 20 4l0.6 8.4-9 9-9-9 9-9z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><circle cx="15.4" cy="8.6" r="1.5" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <!-- Сцена карты юнита позади листа: упрощённая, приглушена скримом -->
+    <div class="backdrop">
+      <div class="bd-hdr">
+        <button class="icon-btn" title="Закрыть"><svg><use href="#i-x"/></svg></button>
+        <div class="bd-unit-label">Эпизод 3</div>
+        <button class="icon-btn" title="Настройки"><svg><use href="#i-sliders"/></svg></button>
+      </div>
+      <div class="bd-hero">Hello, I am</div>
+      <div class="bd-candoo">Могу поздороваться, представиться и попрощаться</div>
+      <div class="bd-nodes">
+        <div class="bd-node done"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></div>
+        <div class="bd-node locked" id="bdLocked"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg></div>
+      </div>
+    </div>
+
+    <div class="scrim" id="scrim"></div>
+
+    <!-- Нижний лист-гейт -->
+    <div class="sheet" id="sheet">
+      <div class="sheet-grip"></div>
+      <div class="gate-label">На сегодня всё</div>
+      <div class="gate-hero">3 сессии пройдены</div>
+      <div class="gate-warm">Отличный темп! Продолжение откроется завтра.</div>
+
+      <div class="timer-pill">
+        <svg><use href="#i-clock"/></svg>
+        <span>До новых сессий:</span>
+        <b id="timerVal">6:42:15</b>
+      </div>
+
+      <div class="plus-card">
+        <div class="plus-title-row">
+          <div class="plus-mark"><svg><use href="#i-spark"/></svg></div>
+          <div class="plus-title">Phraseman Plus</div>
+        </div>
+        <div class="plus-benefits">
+          <div class="plus-benefit"><div class="pb-check"><svg><use href="#i-check"/></svg></div><div class="pb-text">Сессии без лимита</div></div>
+          <div class="plus-benefit"><div class="pb-check"><svg><use href="#i-route"/></svg></div><div class="pb-text">Твой личный план вплетается в уроки</div></div>
+          <div class="plus-benefit"><div class="pb-check"><svg><use href="#i-target"/></svg></div><div class="pb-text">Полный разбор ошибок</div></div>
+          <div class="plus-benefit"><div class="pb-check"><svg><use href="#i-tag"/></svg></div><div class="pb-text">Скидка на открытие эпизодов</div></div>
+        </div>
+        <button class="plus-cta" id="ctaPlus">
+          <span class="cta-sheen"></span>
+          <span class="cta-label">Попробовать Plus</span>
+        </button>
+      </div>
+
+      <button class="secondary-cta" id="ctaLater">Вернуться завтра</button>
+    </div>
+
+    <!-- Заглушка внутреннего paywall-стека приложения -->
+    <div class="paywall-stub" id="paywallStub">
+      <div class="stub-mark"><svg><use href="#i-spark"/></svg></div>
+      <div class="stub-title">Экран подписки приложения</div>
+      <div class="stub-note">Здесь открывается существующий paywall-стек Phraseman с тарифами и оформлением.</div>
+      <div class="stub-tag">в RN: существующий paywall-стек</div>
+      <button class="stub-back" id="stubBack">Назад</button>
+    </div>
+
+    <div class="fx" id="fx"></div>
+  </div>
+</div>
+
+<div class="panel">
+  <h1>V2 · Волна М-Plus · <span>Гейт лимита Free</span></h1>
+
+  <div class="pcard">
+    <h2>Тема приложения</h2>
+    <div class="chiprow">
+      <button class="pbtn on" data-theme-btn="dark">Тёмная</button>
+      <button class="pbtn" data-theme-btn="gold">Золотая</button>
+      <button class="pbtn" data-theme-btn="coral">Коралловая</button>
+    </div>
+    <div class="chiprow" style="margin-top:10px">
+      <button class="pbtn" id="slowBtn">Замедлить ×4</button>
+      <button class="pbtn" id="rmBtn">Reduced motion</button>
+    </div>
+  </div>
+
+  <div class="pcard">
+    <h2>Прогон состояний</h2>
+    <div class="chiprow">
+      <button class="pbtn" id="runShow">Показать гейт</button>
+      <button class="pbtn" id="runOpenPlus">Открыть Plus</button>
+      <button class="pbtn" id="runLater">Вернуться завтра</button>
+      <button class="pbtn" id="runReset">Сброс</button>
+    </div>
+    <div class="note">«Показать гейт» — лист въезжает снизу (spring), сцена карты гаснет скримом. «Открыть Plus» — тап по CTA: лист сменяется заглушкой «Экран подписки приложения» (в реальном приложении — existing paywall stack). «Вернуться завтра» — лист уезжает вниз, скрим гаснет, карта оживает (лёгкое дыхание узла). Никакого дарк-паттерна: вторичная кнопка — полноценная плитка, а не серый микротекст «нет, спасибо».</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Спецификация для RN (Reanimated 4)</h2>
+    <div class="spec">
+      <div class="row"><span>Лист: въезд снизу</span><span class="val">320 мс · spring (d22 s280)</span></div>
+      <div class="row"><span>Скрим сцены под листом</span><span class="val">320 мс · opacity, вместе с листом</span></div>
+      <div class="row"><span>Таймер до сброса лимита</span><span class="val">тик раз/с · tabular-nums, без layout jump</span></div>
+      <div class="row"><span>CTA Plus: бегущий блик-перелив</span><span class="val">раз в 3с · 3D-кромка, глушится reduced</span></div>
+      <div class="row"><span>Пресс CTA/вторичной (3D-кромка)</span><span class="val">120 мс · вибро</span></div>
+      <div class="row"><span>Переход лист → заглушка paywall</span><span class="val">320 мс · slide-up spring, лист остаётся под ней</span></div>
+      <div class="row"><span>Возврат «Позже»: лист уезжает</span><span class="val">280 мс · slide-down outQuint</span></div>
+      <div class="row"><span>Карта оживает после закрытия</span><span class="val">дыхание текущего узла возобновляется</span></div>
+    </div>
+    <div class="note">Только transform / opacity (UI-тред). Лист использует нативный bottom sheet на RN (переиспользуемый компонент из 08-unit-map.html), здесь — DOM-эквивалент для витрины. Reduced motion: въезд/выезд листа и переход к заглушке заменяются мгновенной сменой состояния с коротким кроссфейдом; бегущий блик CTA выключен.</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Решение владельца (2026-07-26)</h2>
+    <div class="spec">
+      <div class="row"><span>Free</span><span class="val">3 сессии в день</span></div>
+      <div class="row"><span>Plus: сессии</span><span class="val">безлимит</span></div>
+      <div class="row"><span>Plus: план</span><span class="val">личный план вплетается в уроки</span></div>
+      <div class="row"><span>Plus: ошибки</span><span class="val">полный разбор, не только «верно/неверно»</span></div>
+      <div class="row"><span>Plus: буст</span><span class="val">скидка на открытие эпизодов</span></div>
+      <div class="row"><span>Дарк-паттерны</span><span class="val">запрещены — обе кнопки листа равноправны</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Состояние: таймер обратного отсчёта до сброса лимита сессий ===== */
+const $ = (id) => document.getElementById(id);
+const phone = $('phone'), scrim = $('scrim'), sheet = $('sheet'), fx = $('fx');
+const paywallStub = $('paywallStub'), bdLocked = $('bdLocked');
+
+const tf = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tf')) || 1;
+const reduced = () => document.documentElement.dataset.reduced === '1' ||
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let remainingSec = 6 * 3600 + 42 * 60 + 15; // 6:42:15 демо-снепшот
+let tickTimer = null;
+let sheetOpen = false;
+
+function fmtHMS(total) {
+  const h = Math.floor(total / 3600), m = Math.floor((total % 3600) / 60), s = total % 60;
+  return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+function startTicker() {
+  clearInterval(tickTimer);
+  tickTimer = setInterval(() => {
+    if (remainingSec > 0) remainingSec -= 1;
+    $('timerVal').textContent = fmtHMS(remainingSec);
+  }, 1000);
+}
+startTicker();
+
+/* ===== Открытие/закрытие гейта ===== */
+function openGate() {
+  sheetOpen = true;
+  scrim.classList.add('show');
+  sheet.classList.add('show');
+  paywallStub.classList.remove('show');
+}
+function closeGateToDaily() {
+  sheetOpen = false;
+  sheet.classList.remove('show');
+  paywallStub.classList.remove('show');
+  setTimeout(() => scrim.classList.remove('show'), reduced() ? 0 : 80 * tf());
+  // Карта "оживает": лёгкий вздох закрытого узла, чтобы сцена не выглядела мёртвой
+  if (!reduced()) {
+    bdLocked.animate([
+      { transform: 'scale(1)' },
+      { transform: 'scale(1.06)' },
+      { transform: 'scale(1)' },
+    ], { duration: 520 * tf(), delay: 240 * tf(), easing: 'cubic-bezier(0.38,0.70,0.125,1.0)' });
+  }
+}
+
+/* ===== Открыть Plus: лист сменяется заглушкой paywall-стека ===== */
+$('ctaPlus').addEventListener('click', () => {
+  paywallStub.classList.add('show');
+});
+$('stubBack').addEventListener('click', () => {
+  paywallStub.classList.remove('show');
+});
+$('ctaLater').addEventListener('click', () => closeGateToDaily());
+
+/* ===== Панель ===== */
+document.querySelectorAll('[data-theme-btn]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.themeBtn;
+    document.querySelectorAll('[data-theme-btn]').forEach((x) => x.classList.toggle('on', x === b));
+  });
+});
+$('slowBtn').addEventListener('click', () => {
+  const on = $('slowBtn').classList.toggle('on');
+  document.documentElement.style.setProperty('--tf', on ? 4 : 1);
+});
+$('rmBtn').addEventListener('click', () => {
+  const on = $('rmBtn').classList.toggle('on');
+  document.documentElement.dataset.reduced = on ? '1' : '';
+});
+
+$('runShow').addEventListener('click', () => openGate());
+$('runOpenPlus').addEventListener('click', () => { if (!sheetOpen) openGate(); setTimeout(() => paywallStub.classList.add('show'), reduced() ? 0 : 340 * tf()); });
+$('runLater').addEventListener('click', () => { if (sheetOpen) closeGateToDaily(); });
+$('runReset').addEventListener('click', () => {
+  remainingSec = 6 * 3600 + 42 * 60 + 15;
+  $('timerVal').textContent = fmtHMS(remainingSec);
+  sheet.classList.remove('show'); scrim.classList.remove('show'); paywallStub.classList.remove('show');
+  sheetOpen = false;
+});
+
+openGate();
+</script>
+</body>
+</html>

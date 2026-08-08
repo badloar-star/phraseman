@@ -24,6 +24,7 @@ interface Props {
    * крутит свой loop и греет телефон при скролле.
    */
   animateAura?: boolean;
+  ownerActive?: boolean;
 }
 
 function AvatarImageWithFallback({
@@ -66,12 +67,12 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, totalXP, level, size = 44, style, auraId, animateAura = true }: Props) {
+function AvatarView({ avatar, totalXP, level, size = 44, style, auraId, animateAura = true, ownerActive }: Props) {
   const resolvedLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : 1);
   const customAvatar = parseCustomAvatarValue(avatar);
   if (customAvatar) {
     return (
-      <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura}>
+      <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura} ownerActive={ownerActive}>
         <CustomAvatarBadge value={avatar} size={size} />
       </AvatarAura>
     );
@@ -83,7 +84,7 @@ function AvatarView({ avatar, totalXP, level, size = 44, style, auraId, animateA
   const material = getLevelAvatarMaterial(avatarIndex);
 
   return (
-    <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura}>
+    <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura} ownerActive={ownerActive}>
       {avatarImage
         ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} overlayLevel={avatarIndex} tint={avatarDef?.tint} material={material} />
         : <LevelBadge level={fallbackLevel} size={size} />

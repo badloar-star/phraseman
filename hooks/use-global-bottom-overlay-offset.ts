@@ -8,9 +8,9 @@ const OVERLAY_GAP = 8;
 const MIN_BOTTOM_INSET = 12;
 
 /** Короткие пути табов (синхрон с TAB_PATH_SUFFIXES в app/(tabs)/_layout). */
-const SHORT_TAB_PATHS = new Set(['/home', '/lessons', '/arena', '/settings']);
+const SHORT_TAB_PATHS = new Set(['/home', '/lessons', '/friends', '/settings']);
 
-const TAB_PATH_SUFFIXES = ['/home', '/lessons', '/arena', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/lessons', '/friends', '/settings'] as const;
 
 function normalizePathname(pathname: string | null | undefined): string {
   if (!pathname) return '';
@@ -41,18 +41,22 @@ export function isMainTabSurfacePath(pathname: string | null | undefined): boole
  * таб-бара, как в `paddingBottom: tabBarHeight + PB` в (tabs)/_layout.
  *
  * usePathname() в корне иногда отдаёт неочевидный путь; useSegments()[0] === '(tabs)' надёжно
- * для пяти основных табов. Без учёта таба тосты наезжали на навигацию.
+ * для четырёх основных табов. Без учёта таба тосты наезжали на навигацию.
  */
 export function useGlobalBottomOverlayOffset(): number {
   const pathname = usePathname();
-  const segments = useSegments();
+  // зачем: useSegments() в expo-router 6 типизирован union'ом ВСЕХ маршрутов
+  // проекта — в массиве зависимостей TS падает с TS2590 («union слишком
+  // сложный»). Нужен только первый сегмент, поэтому сразу сужаем до string:
+  // union исчезает, а сравнение с '(tabs)' работает как раньше.
+  const rootSegment: string = useSegments()[0] ?? '';
   const { tabBarHeight, bottomInset } = useScreen();
 
   return useMemo(() => {
     const nav = Math.max(bottomInset, MIN_BOTTOM_INSET);
-    const inTabsGroup = segments[0] === '(tabs)';
+    const inTabsGroup = rootSegment === '(tabs)';
     const onTabSurface = isMainTabSurfacePath(pathname) || inTabsGroup;
     const tab = onTabSurface ? tabBarHeight : 0;
     return nav + tab + OVERLAY_GAP;
-  }, [pathname, segments, tabBarHeight, bottomInset]);
+  }, [pathname, rootSegment, tabBarHeight, bottomInset]);
 }

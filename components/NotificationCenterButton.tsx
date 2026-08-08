@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -9,10 +9,11 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
-import { openCommunityHub } from '../app/community_hub_deeplink';
-import { claimReportReplyShardsOptimistically } from '../app/app_messages';
+import AppMessagesInbox from './AppMessagesInbox';
+import { claimReportReplyCoinsOptimistically } from '../app/app_messages';
 import {
   countUnreadNotifications,
+  isUserNotificationVisible,
   markUserNotificationsRead,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
@@ -20,6 +21,9 @@ import {
   type UserNotificationType,
 } from '../app/user_notifications';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import PressableScale from './PressableScale';
+import MotionModal from './MotionModal';
+import auth from '@react-native-firebase/auth';
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
@@ -28,7 +32,14 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
  * (чат — к конкретному сообщению с подсветкой).
  */
 
-const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000;
+// The header reads the server at app entry only when its 12-hour cache is stale.
+// Between refreshes it renders the cached unread count, without background polling.
+const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
+
+type NotificationCenterButtonProps = {
+  isHomeTabActive: boolean;
+  homeFocusTick: number;
+};
 
 function centerCopy(lang: Lang) {
   return {
@@ -52,14 +63,16 @@ function reportReplyCopy(lang: Lang) {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
     claimShards: (n: number) => triLang(lang, {
-      ru: `Забрать осколки (+${n})`,
-      uk: `Забрати уламки (+${n})`,
-      es: `Reclamar fragmentos (+${n})`,
-      'pt-BR': `Resgatar fragmentos (+${n})`,
-      vi: `Nhận mảnh (+${n})`,
-      id: `Ambil shard (+${n})`,
-      tr: `Parçaları al (+${n})`,
-      pl: `Odbierz odłamki (+${n})`,
+      ru: `Забрать жемчуг (+${n})`,
+      uk: `Забрати перлини (+${n})`,
+      es: `Reclamar perlas (+${n})`,
+      'pt-BR': `Resgatar pérolas (+${n})`,
+      // зачем: та же награда, что в инбоксе (AppMessagesInbox.claimCoins) — валюта
+      // называется жемчужинами; на vi/id/tr/pl тут оставалось legacy «монеты».
+      vi: `Nhận ngọc trai (+${n})`,
+      id: `Ambil mutiara (+${n})`,
+      tr: `İnci al (+${n})`,
+      pl: `Odbierz perły (+${n})`,
     }),
     claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
@@ -77,13 +90,6 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return triLang(lang, { ru: 'отправил(а) вам подарок', uk: 'надіслав(ла) вам подарунок', es: 'te envió un regalo', 'pt-BR': 'enviou um presente', vi: 'đã gửi quà cho bạn', id: 'mengirimimu hadiah', tr: 'sana hediye gönderdi', pl: 'wysłał(a) ci prezent' });
     case 'friend_gift_thanks':
       return triLang(lang, { ru: 'поблагодарил(а) за подарок', uk: 'подякував(ла) за подарунок', es: 'agradeció tu regalo', 'pt-BR': 'agradeceu o presente', vi: 'đã cảm ơn món quà', id: 'berterima kasih atas hadiah', tr: 'hediye için teşekkür etti', pl: 'podziękował(a) za prezent' });
-    case 'help_board_comment':
-      return triLang(lang, { ru: 'прокомментировал(а) вашу тему', uk: 'прокоментував(ла) вашу тему', es: 'comentó tu tema', 'pt-BR': 'comentou seu tema', vi: 'đã bình luận chủ đề của bạn', id: 'mengomentari topikmu', tr: 'konunu yorumladı', pl: 'skomentował(a) twój temat' });
-    case 'help_board_reply':
-    case 'league_chat_reply':
-      return triLang(lang, { ru: 'ответил(а) на ваше сообщение', uk: 'відповів(ла) на ваше повідомлення', es: 'respondió a tu mensaje', 'pt-BR': 'respondeu sua mensagem', vi: 'đã trả lời tin nhắn của bạn', id: 'membalas pesanmu', tr: 'mesajına yanıt verdi', pl: 'odpowiedział(a) na twoją wiadomość' });
-    case 'help_board_like':
-      return triLang(lang, { ru: 'оценил(а) ваше сообщение', uk: 'оцінив(ла) ваше повідомлення', es: 'valoró tu mensaje', 'pt-BR': 'avaliou sua mensagem', vi: 'đã đánh giá tin nhắn của bạn', id: 'menilai pesanmu', tr: 'mesajını beğendi', pl: 'ocenił(a) twoją wiadomość' });
     case 'report_reply':
       return reportReplyCopy(lang).reportReply;
     default:
@@ -98,10 +104,6 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'activity_like': return 'heart';
     case 'friend_gift_received': return 'gift-outline';
     case 'friend_gift_thanks': return 'happy-outline';
-    case 'help_board_comment': return 'chatbubble-ellipses-outline';
-    case 'help_board_reply': return 'arrow-undo-outline';
-    case 'help_board_like': return 'thumbs-up-outline';
-    case 'league_chat_reply': return 'arrow-undo-outline';
     case 'report_reply': return 'chatbox-ellipses-outline';
     default: return 'notifications-outline';
   }
@@ -125,7 +127,7 @@ function timeLabel(ms: number): string {
   return `${Math.floor(h / 24)}d`;
 }
 
-function NotificationCenterButton() {
+function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: NotificationCenterButtonProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
@@ -135,22 +137,52 @@ function NotificationCenterButton() {
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [items, setItems] = useState<UserNotification[]>([]);
+  const [teamUnreadCount, setTeamUnreadCount] = useState(0);
+  const [teamMessageCount, setTeamMessageCount] = useState(0);
+  const [teamDetailOpen, setTeamDetailOpen] = useState(false);
   const markedReadIdsRef = useRef<Set<string>>(new Set());
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
+  const notificationTargetRef = useRef<View>(null);
+  const requestGenerationRef = useRef(0);
+  const [identityRevision, setIdentityRevision] = useState(0);
 
   useEffect(() => {
-    if (!isScreenFocused) return;
+    try {
+      return auth().onAuthStateChanged(() => {
+        requestGenerationRef.current += 1;
+        setItems([]);
+        setSelectedId(null);
+        setTeamUnreadCount(0);
+        setTeamMessageCount(0);
+        setTeamDetailOpen(false);
+        markedReadIdsRef.current.clear();
+        optimisticReportClaimIdsRef.current.clear();
+        setIdentityRevision((current) => current + 1);
+      });
+    } catch {
+      return undefined;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isScreenFocused || !isHomeTabActive) return;
     let alive = true;
+    const generation = ++requestGenerationRef.current;
+    let authoritativeResultApplied = false;
     const refreshOnce = () => {
       void refreshUserNotificationsOnce({
-        force: true,
         minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
       }).then((list) => {
-        if (alive) setItems(list);
+        if (alive && requestGenerationRef.current === generation) {
+          authoritativeResultApplied = true;
+          setItems(list);
+        }
       });
     };
     void readCachedUserNotifications().then((cached) => {
-      if (alive && cached.length) setItems((cur) => (cur.length ? cur : cached));
+      if (alive && requestGenerationRef.current === generation && !authoritativeResultApplied && cached.length) {
+        setItems((cur) => (cur.length ? cur : cached));
+      }
     });
     refreshOnce();
     const appSub = AppState.addEventListener('change', (state) => {
@@ -162,18 +194,26 @@ function NotificationCenterButton() {
       alive = false;
       appSub.remove();
     };
-  }, [isScreenFocused]);
+  }, [homeFocusTick, identityRevision, isHomeTabActive, isScreenFocused]);
 
+  const visibleItems = useMemo(() => items.filter(isUserNotificationVisible), [items]);
   const unreadCount = countUnreadNotifications(
-    items.filter((row) => !markedReadIdsRef.current.has(row.id)),
+    visibleItems.filter((row) => !markedReadIdsRef.current.has(row.id)),
   );
-  const selected = useMemo(() => items.find((row) => row.id === selectedId) ?? null, [items, selectedId]);
+  const combinedUnreadCount = teamUnreadCount + unreadCount;
+  const selected = useMemo(() => visibleItems.find((row) => row.id === selectedId) ?? null, [visibleItems, selectedId]);
 
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
   const open = useCallback(() => {
-    hapticTap();
     setVisible(true);
-    const unreadIds = items
+    const generation = requestGenerationRef.current;
+    // The header can legitimately use a long-lived cache while it is idle. Once
+    // the user opens the center, reconcile it immediately so its badge and list
+    // cannot describe different server snapshots.
+    void refreshUserNotificationsOnce({ force: true }).then((list) => {
+      if (requestGenerationRef.current === generation) setItems(list);
+    });
+    const unreadIds = visibleItems
       .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
       .map((row) => row.id);
     if (unreadIds.length) {
@@ -183,7 +223,7 @@ function NotificationCenterButton() {
       )));
       void markUserNotificationsRead(unreadIds);
     }
-  }, [items]);
+  }, [visibleItems]);
 
   const close = useCallback(() => {
     hapticTap();
@@ -206,12 +246,12 @@ function NotificationCenterButton() {
 
   const claimReportReward = useCallback((row: UserNotification) => {
     const reward = row.reportReply;
-    if (!reward || reward.shards <= 0 || reward.claimed) return;
+    if (!reward || reward.coins <= 0 || reward.claimed) return;
     if (optimisticReportClaimIdsRef.current.has(reward.messageId)) return;
     optimisticReportClaimIdsRef.current.add(reward.messageId);
     hapticTap();
     markReportReplyClaimedLocally(row.id, reward.messageId);
-    void claimReportReplyShardsOptimistically(reward.messageId, reward.shards);
+    void claimReportReplyCoinsOptimistically(reward.messageId, reward.coins);
   }, [markReportReplyClaimedLocally]);
 
   const openNotification = useCallback((row: UserNotification) => {
@@ -223,14 +263,6 @@ function NotificationCenterButton() {
     setVisible(false);
     const nav = row.nav;
     if (!nav) return;
-    if (nav.kind === 'help_board' && nav.topicId) {
-      openCommunityHub({ tab: 'help', topicId: nav.topicId, commentId: nav.commentId || undefined });
-      return;
-    }
-    if (nav.kind === 'league_chat' && nav.messageId) {
-      openCommunityHub({ tab: 'league', messageId: nav.messageId });
-      return;
-    }
     router.push('/(tabs)/friends' as any);
   }, []);
 
@@ -240,18 +272,18 @@ function NotificationCenterButton() {
     const title = reward.title || row.text || copy.reportReply;
     const body = reward.body || row.text || '';
     return (
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
+      <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
-        {reward.shards > 0 ? (
+        {reward.coins > 0 ? (
           <View style={[styles.rewardCard, { backgroundColor: t.bgSurface, borderColor: 'rgba(99,217,143,0.35)' }]}>
             <View style={styles.rewardTop}>
               <View style={styles.rewardIcon}>
                 <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond-outline'} size={20} color="#2E9E63" />
               </View>
               <Text style={[styles.rewardTitle, { color: t.textPrimary }]}>
-                {reward.claimed ? copy.claimed : `+${reward.shards}`}
+                {reward.claimed ? copy.claimed : `+${reward.coins}`}
               </Text>
             </View>
             {!reward.claimed ? (
@@ -259,12 +291,12 @@ function NotificationCenterButton() {
                 testID="notification-report-reply-claim-cta"
                 activeOpacity={0.86}
                 accessibilityRole="button"
-                accessibilityLabel={copy.claimShards(reward.shards)}
+                accessibilityLabel={copy.claimShards(reward.coins)}
                 onPress={() => claimReportReward(row)}
                 style={styles.rewardButton}
               >
                 <Ionicons name="diamond-outline" size={17} color="#07110A" />
-                <Text style={styles.rewardButtonText}>{copy.claimShards(reward.shards)}</Text>
+                <Text style={styles.rewardButtonText}>{copy.claimShards(reward.coins)}</Text>
               </TouchableOpacity>
             ) : null}
           </View>
@@ -275,25 +307,28 @@ function NotificationCenterButton() {
 
   return (
     <>
-      <TouchableOpacity
+      <View ref={notificationTargetRef} collapsable={false}>
+      <PressableScale
         testID="home-notification-center-button"
-        activeOpacity={0.78}
+        variant="icon"
         accessibilityRole="button"
         accessibilityLabel={copy.title}
         onPress={open}
-        style={styles.headerButton}
+        style={styles.headerPressable}
+        contentStyle={styles.headerButton}
       >
         <View style={styles.headerIconWrap}>
           <Ionicons name="notifications-outline" size={30} color={t.accent} />
         </View>
-        {unreadCount > 0 ? (
+        {combinedUnreadCount > 0 ? (
           <View testID="home-notification-center-badge" style={styles.badge}>
-            <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
+            <Text style={styles.badgeText}>{combinedUnreadCount > 99 ? '99+' : String(combinedUnreadCount)}</Text>
           </View>
         ) : null}
-      </TouchableOpacity>
+      </PressableScale>
+      </View>
 
-      <Modal visible={visible} animationType="slide" presentationStyle="fullScreen" onRequestClose={close}>
+      <MotionModal visible={visible} onRequestClose={close} testID="notification-center-motion-modal">
         <View testID="notification-center-screen" style={{ flex: 1, backgroundColor: t.bgCard, paddingTop: topInset }}>
           <View style={styles.header}>
             {selected ? (
@@ -321,15 +356,25 @@ function NotificationCenterButton() {
             </TouchableOpacity>
           </View>
           {selected ? renderReportReplyDetail(selected) : (
-          <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24, gap: 8 }}>
-            {items.length === 0 ? (
+          <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24, gap: 8 }}>
+            <AppMessagesInbox
+              key={identityRevision}
+              mode="notification-center"
+              centerVisible={visible}
+              onUnreadCountChange={setTeamUnreadCount}
+              onMessageCountChange={setTeamMessageCount}
+              onDetailOpenChange={setTeamDetailOpen}
+              notificationTargetRef={notificationTargetRef}
+              ownerActive={isHomeTabActive}
+            />
+            {teamDetailOpen ? null : visibleItems.length === 0 && teamMessageCount === 0 ? (
               <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>
                 <Ionicons name="notifications-off-outline" size={40} color={t.textGhost} />
                 <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>
                   {copy.empty}
                 </Text>
               </View>
-            ) : items.map((row) => {
+            ) : visibleItems.map((row) => {
               const label = notificationLabel(row.type, lang as Lang);
               const rowTitle = row.type === 'report_reply'
                 ? (row.reportReply?.title || row.text || copy.reportReply)
@@ -388,12 +433,16 @@ function NotificationCenterButton() {
           </ScrollView>
           )}
         </View>
-      </Modal>
+      </MotionModal>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  headerPressable: {
+    width: 48,
+    height: 46,
+  },
   headerButton: {
     width: 48,
     height: 46,
@@ -470,7 +519,7 @@ const styles = StyleSheet.create({
   rewardCard: {
     marginTop: 18,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 14,
     gap: 14,
   },

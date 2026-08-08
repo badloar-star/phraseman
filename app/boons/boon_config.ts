@@ -27,7 +27,7 @@ function isModifierId(v: unknown): v is BoonModifierId {
 /**
  * Встроенный дефолт — применяется, когда «Пульт» пуст. Раскладка по умолчанию:
  *  вс → заморозка серии, пн → сундук, вт → турбо-энергия, ср → окно без энергии,
- *  чт → ×2 XP, пт → триал пака, сб → ЧЕРЕДОВАНИЕ Арена / Speaking по неделям.
+ *  чт → ×2 XP, пт → триал пака, сб → Speaking.
  * Always-on модификаторы (early_bird, perfect_week) включены.
  */
 export const DEFAULT_WEEKLY_BOONS_CONFIG: WeeklyBoonsConfig = {
@@ -38,7 +38,7 @@ export const DEFAULT_WEEKLY_BOONS_CONFIG: WeeklyBoonsConfig = {
     3: 'energy_free_window',
     4: 'double_xp',
     5: 'flashcard_friday',
-    6: ['arena_saturday', 'speaking_saturday'], // чётная суббота — арена, нечётная — speaking
+    6: 'speaking_saturday',
   },
   enabled: {},
   modifiersEnabled: {},

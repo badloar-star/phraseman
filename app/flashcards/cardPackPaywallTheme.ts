@@ -163,6 +163,26 @@ function shellBusinessLight(): CardPackPaywallTheme {
   };
 }
 
+function shellSagePorcelain(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(23,32,29,0.26)',
+    outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+    borderAccent: '#BDC8BD',
+    handleColorLight: '#D1D9D1',
+    handleColorDark: '#3C5A50',
+    iconBg: ['#FCFDF9', '#E1E5DC'],
+    iconBorder: '#BDC8BD',
+    priceBorder: '#BDC8BD',
+    priceGradient: ['#FCFDF9', '#E1E5DC'],
+    priceTextOnCard: { label: '#52605A', value: '#17201D', unit: '#3C5A50' },
+    ctaColors: ['#315F50', '#315F50'],
+    ctaForeground: '#FFFFFF',
+    ctaGlowTop: 'rgba(49,95,80,0)',
+    goShopCta: ['#315F50', '#315F50'],
+    goShopForeground: '#FFFFFF',
+  };
+}
+
 /** NEON: той самий «ідеальний» лайм, темний текст на CTA (як correctText у NEON) */
 function shellNeon(): CardPackPaywallTheme {
   return {
@@ -313,11 +333,15 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   minimalDark: shellDark(),
   business: shellBusiness(),
   businessLight: shellBusinessLight(),
+  sagePorcelain: shellSagePorcelain(),
   // «Чёрное кино»: переиспользуем графитовую оболочку — на чистом чёрном она садится без правок.
   midnight: shellOnboardingGraphite(),
   ember: shellOnboardingGraphite(),
   aurora: shellOnboardingGraphite(),
   volt: shellOnboardingGraphite(),
+  // Новые тёмные темы: графитовая оболочка.
+  candyBlue: shellOnboardingGraphite(),
+  indigo: shellOnboardingGraphite(),
 };
 
 // ─── Легкі «смаки» категорії (набір) поверх оболонки теми ────────────────────
@@ -426,6 +450,7 @@ export function getCardPackPaywallTheme(
   opts: { themeMode: ThemeMode; isLight?: boolean },
 ): CardPackPaywallTheme {
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
+  if (opts.themeMode === 'sagePorcelain') return shell;
   let t = categoryTweak(shell, pack.category);
   t = packOverride(t, pack.id, opts.themeMode);
   if (opts.isLight) return forLightShell(t, opts.themeMode);
@@ -495,6 +520,7 @@ export function getCommunityUgcPackPaywallTheme(
   opts: { themeMode: ThemeMode; isLight?: boolean },
 ): CardPackPaywallTheme {
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
+  if (opts.themeMode === 'sagePorcelain') return shell;
   const ids = UGC_CARD_THEME_IDS as readonly string[];
   const k = themeKey && ids.includes(String(themeKey)) ? String(themeKey) : UGC_CARD_THEME_DEFAULT_ID;
   const patch = UGC_SHELL_PATCH[k] ?? UGC_SHELL_PATCH[UGC_CARD_THEME_DEFAULT_ID];

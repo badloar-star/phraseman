@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman · Лига — концепции редизайна</title>
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   PHRASEMAN LEAGUE HUB — DESIGN PROPOSALS
+   Палитра взята из constants/theme.ts (тёмная тема приложения)
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --bg: #0B110C;
+  --bg-deep: #070C08;
+  --card: #17241A;
+  --surface: #101710;
+  --elevated: #1D2E22;
+  --accent: #47C870;
+  --accent-soft: rgba(71, 200, 112, .14);
+  --accent-text: #042010;
+  --text: #F0F7F2;
+  --muted: #8AB49A;
+  --ghost: #5B7A67;
+  --danger: #FF5B6C;
+  --danger-soft: rgba(255, 91, 108, .12);
+  --gold: #FFD43B;
+  --gold-deep: #B98A1B;
+  --silver: #C9D4DC;
+  --bronze: #D29A6A;
+  --line: rgba(138, 180, 154, .16);
+  --r-lg: 26px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  --font: -apple-system, 'SF Pro Rounded', 'Segoe UI', Inter, Roboto, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background:
+    radial-gradient(1200px 600px at 15% -5%, rgba(71,200,112,.08), transparent 60%),
+    radial-gradient(900px 500px at 85% 10%, rgba(255,212,59,.05), transparent 55%),
+    var(--bg-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 120px;
+}
+
+/* ── Каркас страницы ─────────────────────────────────────────────── */
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.doc-head { padding: 72px 0 40px; }
+.doc-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 800; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase;
+  border: 1px solid rgba(71,200,112,.35); border-radius: 999px;
+  padding: 7px 14px; margin-bottom: 20px;
+}
+.doc-title { font-size: 44px; line-height: 1.08; font-weight: 900; letter-spacing: -.02em; }
+.doc-title em { font-style: normal; color: var(--accent); }
+.doc-sub { margin-top: 16px; max-width: 760px; font-size: 16px; line-height: 1.6; color: var(--muted); font-weight: 600; }
+.palette { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.palette span {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 12px;
+}
+.palette i { width: 14px; height: 14px; border-radius: 5px; display: inline-block; }
+
+section { margin-top: 84px; }
+.sec-eyebrow { font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.sec-title { font-size: 30px; font-weight: 900; letter-spacing: -.01em; margin-top: 10px; }
+.sec-desc { margin-top: 10px; max-width: 720px; color: var(--muted); font-size: 15px; line-height: 1.65; font-weight: 600; }
+
+/* ── Аудит ───────────────────────────────────────────────────────── */
+.audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 32px; }
+.audit-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 22px 24px;
+}
+.audit-card h3 { font-size: 15px; font-weight: 900; margin-bottom: 12px; display: flex; align-items: center; gap: 9px; }
+.audit-card h3 .num {
+  width: 24px; height: 24px; border-radius: 8px; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 900;
+}
+.audit-card p { font-size: 13.5px; line-height: 1.6; color: var(--muted); font-weight: 600; }
+.audit-card p b { color: var(--text); font-weight: 800; }
+/* Решения по фидбэку владельца */
+.decision { display: inline-block; margin-top: 11px; font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(71,200,112,.3); border-radius: 8px; padding: 4px 9px; }
+.decision.keep { color: var(--muted); background: rgba(138,180,154,.09); border-color: var(--line); }
+/* Концепция A v2 — hero без мелких подписей */
+.a-rank-meta { display: flex; align-items: center; }
+.zone-badge { margin-top: 0; }
+/* Карточка «Общая цель недели» — текущая компоновка, минус 2 текста */
+.mf-card { padding: 17px; }
+.mf-head { display: flex; align-items: center; justify-content: space-between; min-height: 60px; }
+.mf-gift { font-size: 52px; line-height: 1; filter: drop-shadow(0 8px 18px rgba(255,212,59,.3)); animation: breathe 3.2s ease-in-out infinite; }
+.mf-track { height: 12px; border-radius: 6px; background: var(--elevated); overflow: hidden; margin-top: 4px; }
+.mf-track i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #2E9A55, var(--accent) 70%, #7CF0A4); position: relative; }
+.mf-track i::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); transform: translateX(-100%); animation: barshine 2.8s ease-in-out infinite; }
+.mf-meta { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; }
+.mf-meta b { font-size: 14px; font-weight: 900; }
+.mf-meta span { font-size: 12px; font-weight: 800; color: var(--muted); }
+.mf-team { display: flex; align-items: center; justify-content: space-between; margin-top: 13px; }
+.mf-avatars { display: flex; align-items: center; }
+.mf-contrib { text-align: right; }
+.mf-contrib span { display: block; font-size: 10px; font-weight: 700; color: var(--muted); }
+.mf-contrib b { font-size: 14.5px; font-weight: 900; }
+.mf-boost { margin-top: 13px; min-height: 46px; border-radius: 15px; background: var(--elevated); display: flex; align-items: center; gap: 9px; padding: 0 14px; font-size: 13px; font-weight: 800; }
+.mf-boost .bolt { color: var(--gold); animation: boltpulse 1.6s ease-in-out infinite; display: inline-block; }
+/* Список — текущий вид со стрелками зон */
+.list-head { margin: 16px 2px 9px; }
+.list-title { font-size: 15px; font-weight: 900; }
+.list-sub { font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.row .place { line-height: 1.15; }
+.row .place .arr { display: block; font-size: 8px; line-height: 1; margin-top: 2px; }
+.medal .arr { display: block; font-size: 8px; line-height: 1; margin-top: 1px; }
+
+/* ── Телефон ─────────────────────────────────────────────────────── */
+.concept-layout { display: grid; grid-template-columns: 400px 1fr; gap: 48px; margin-top: 40px; align-items: start; }
+.phone {
+  width: 375px; border-radius: 52px; padding: 11px;
+  background: linear-gradient(160deg, #2A3A2F, #0E1510 40%, #1C2B21);
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.06), inset 0 0 0 1px rgba(255,255,255,.05);
+  position: sticky; top: 32px;
+}
+.screen {
+  border-radius: 42px; overflow: hidden; position: relative;
+  background:
+    radial-gradient(700px 340px at 50% -8%, rgba(71,200,112,.14), transparent 62%),
+    linear-gradient(180deg, #0D140F 0%, var(--bg) 34%, #090F0B 100%);
+  min-height: 780px; padding: 14px 14px 20px;
+}
+.statusbar { display: flex; justify-content: space-between; align-items: center; padding: 4px 14px 10px; font-size: 12px; font-weight: 800; color: var(--text); }
+.statusbar .sicons { display: flex; gap: 5px; align-items: center; color: var(--text); }
+.notch { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 112px; height: 26px; background: #000; border-radius: 20px; z-index: 5; }
+
+/* Общие мелкие компоненты экрана */
+.topbar { display: flex; align-items: center; gap: 10px; padding: 6px 4px 12px; }
+.backbtn {
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); font-size: 19px; font-weight: 700;
+  background: rgba(255,255,255,.04); border: 1px solid var(--line);
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 800; border-radius: 999px; padding: 6px 11px;
+  background: var(--elevated); color: var(--text); border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.chip.warn { background: rgba(255,212,59,.12); color: var(--gold); border-color: rgba(255,212,59,.3); }
+.chip.accent { background: var(--accent-soft); color: var(--accent); border-color: rgba(71,200,112,.35); }
+.chip.danger { background: var(--danger-soft); color: var(--danger); border-color: rgba(255,91,108,.3); }
+.blink { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+
+.avatar {
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: var(--elevated); border: 2px solid var(--line); flex: none;
+  position: relative;
+}
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); }
+.eyebrow-mini { font-size: 9.5px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+
+/* ── КОНЦЕПЦИЯ A — «Пульт недели» (финал, внедрено) ─────────────────────── */
+.a-hero { padding: 22px 18px 18px; position: relative; overflow: hidden; text-align: center; }
+.a-emblem-free {
+  width: 110px; height: 110px; margin: 0 auto; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; font-size: 74px;
+  animation: popIn .55s cubic-bezier(.2,1.6,.4,1) .1s both, floaty 3.6s ease-in-out .7s infinite;
+}
+@keyframes popIn { from { transform: scale(.55); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.a-hero-name { font-size: 21px; font-weight: 900; letter-spacing: -.01em; margin-top: 6px; }
+.a-hero-sub { font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 3px; }
+.a-rank-num {
+  display: inline-block; font-size: 76px; line-height: 1.04; font-weight: 900; letter-spacing: -.03em;
+  color: var(--gold); margin-top: 10px;
+  animation: popIn .5s cubic-bezier(.2,1.6,.4,1) .22s both, rankglow 2.2s ease-in-out .8s infinite;
+}
+@keyframes rankglow {
+  0%, 100% { text-shadow: 0 0 16px rgba(255,212,59,.32), 0 6px 22px rgba(255,212,59,.18); }
+  50% { text-shadow: 0 0 36px rgba(255,212,59,.68), 0 6px 30px rgba(255,212,59,.4); }
+}
+.zone-badge { margin-top: 10px; }
+.emblem {
+  width: 66px; height: 66px; border-radius: 22px; flex: none;
+  display: flex; align-items: center; justify-content: center; font-size: 34px;
+  background: linear-gradient(150deg, #3E5C49, #1B2A20 70%);
+  border: 1px solid rgba(255,212,59,.35);
+  box-shadow: 0 10px 26px -8px rgba(255,212,59,.28), inset 0 1px 0 rgba(255,255,255,.12);
+  position: relative; overflow: hidden;
+}
+.sheen::after {
+  content: ''; position: absolute; inset: -40%;
+  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.34) 50%, transparent 58%);
+  transform: translateX(-120%);
+  animation: sheen 4.6s cubic-bezier(.4,0,.2,1) infinite;
+}
+@keyframes sheen { 0%, 62% { transform: translateX(-120%); } 82%, 100% { transform: translateX(120%); } }
+.a-rank-meta { flex: 1; padding-bottom: 4px; }
+.a-rank-of { font-size: 11.5px; font-weight: 800; color: var(--muted); }
+.zone-badge {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 7px;
+  font-size: 11px; font-weight: 900; color: var(--accent-text);
+  background: linear-gradient(135deg, #6EE79A, var(--accent));
+  border-radius: 999px; padding: 6px 12px;
+  box-shadow: 0 6px 16px -6px rgba(71,200,112,.55);
+}
+.a-gap { margin-top: 14px; }
+.a-gap-label { display: flex; justify-content: space-between; font-size: 10.5px; font-weight: 800; color: var(--muted); margin-bottom: 6px; }
+.a-gap-label b { color: var(--text); }
+.bar { height: 12px; border-radius: 6px; background: var(--elevated); overflow: hidden; position: relative; }
+.bar > i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #2E9A55, var(--accent) 70%, #7CF0A4); position: relative; }
+.bar > i::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: barshine 2.8s ease-in-out infinite;
+}
+@keyframes barshine { 0%, 55% { transform: translateX(-100%); } 90%, 100% { transform: translateX(100%); } }
+
+/* Миссия-полоса (A) */
+.a-mission { margin-top: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 13px; }
+.chest {
+  width: 46px; height: 46px; border-radius: 15px; flex: none; font-size: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,212,59,.1); border: 1px solid rgba(255,212,59,.3);
+  animation: breathe 3.2s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,212,59,0); transform: scale(1); }
+  50% { box-shadow: 0 0 24px 2px rgba(255,212,59,.28); transform: scale(1.045); }
+}
+.a-mission-body { flex: 1; min-width: 0; }
+.a-mission-title { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; font-weight: 900; }
+.a-mission-title span { color: var(--gold); font-size: 12.5px; }
+.a-mission .bar { margin-top: 8px; }
+.a-mission-sub { font-size: 10.5px; font-weight: 700; color: var(--muted); margin-top: 6px; }
+
+/* Буст-чип (A) */
+.a-boost {
+  margin-top: 12px; padding: 11px 14px; display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(90deg, rgba(255,212,59,.12), rgba(255,212,59,.04));
+  border: 1px solid rgba(255,212,59,.3); border-radius: var(--r-md);
+  font-size: 12px; font-weight: 800;
+}
+.a-boost .bolt { animation: boltpulse 1.6s ease-in-out infinite; display: inline-block; }
+@keyframes boltpulse { 0%,100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,212,59,0)); } 50% { transform: scale(1.22); filter: drop-shadow(0 0 7px rgba(255,212,59,.75)); } }
+.a-boost .heart { margin-left: auto; color: var(--danger); display: inline-flex; gap: 5px; align-items: center; }
+
+/* Секции зон + строки (A) */
+.zone-head {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+  margin: 16px 4px 8px; color: var(--muted);
+}
+.zone-head::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.zone-head.up { color: var(--accent); }
+.zone-head.down { color: var(--danger); }
+.row {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid transparent;
+  border-radius: var(--r-md); padding: 8px 10px; margin-bottom: 5px;
+  opacity: 0; transform: translateY(14px);
+  animation: rowIn .48s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes rowIn { to { opacity: 1; transform: translateY(0); } }
+.row .place { width: 24px; text-align: center; font-size: 14px; font-weight: 900; color: var(--muted); flex: none; }
+.row .place.up { color: var(--accent); }
+.row .place.down { color: var(--danger); }
+.row .nm { flex: 1; min-width: 0; font-size: 13.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .nm small { display: block; font-size: 10px; color: var(--ghost); font-weight: 700; }
+.row .xp { font-size: 13.5px; font-weight: 900; text-align: right; }
+.row .xp small { display: block; font-size: 9px; color: var(--ghost); font-weight: 800; letter-spacing: .06em; }
+.row.me {
+  background: linear-gradient(var(--elevated), var(--elevated)) padding-box,
+              linear-gradient(120deg, rgba(71,200,112,.9), rgba(255,212,59,.7), rgba(71,200,112,.9)) border-box;
+  background-size: 100% 100%, 220% 100%;
+  border: 1.5px solid transparent;
+  animation: rowIn .48s cubic-bezier(.22,1,.36,1) forwards, meflow 5s linear infinite;
+  animation-delay: var(--d, 0s), 0s;
+}
+@keyframes meflow { to { background-position: 0 0, 220% 0; } }
+.me-pill { font-size: 9px; font-weight: 900; color: var(--accent-text); background: var(--accent); border-radius: 8px; padding: 2px 7px; margin-left: 6px; vertical-align: 2px; }
+.medal { width: 24px; text-align: center; font-size: 15px; flex: none; }
+
+/* ── КОНЦЕПЦИЯ B — «Арена» ───────────────────────────────────────── */
+.b-arena { position: relative; padding: 8px 6px 0; }
+.b-beams { position: absolute; inset: -30px -40px auto; height: 300px; pointer-events: none; overflow: hidden; }
+.b-beams i {
+  position: absolute; top: -60px; width: 150px; height: 340px;
+  background: linear-gradient(180deg, rgba(255,244,200,.14), transparent 75%);
+  clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  transform-origin: top center;
+}
+.b-beams i:nth-child(1) { left: 6%; animation: beamL 7s ease-in-out infinite alternate; }
+.b-beams i:nth-child(2) { right: 6%; animation: beamR 8s ease-in-out infinite alternate; }
+@keyframes beamL { from { transform: rotate(-14deg); opacity: .5; } to { transform: rotate(10deg); opacity: .95; } }
+@keyframes beamR { from { transform: rotate(14deg); opacity: .95; } to { transform: rotate(-10deg); opacity: .5; } }
+.b-leaguemark { text-align: center; position: relative; padding-top: 4px; }
+.b-leaguemark .emblem { margin: 0 auto; width: 58px; height: 58px; font-size: 30px; border-radius: 19px; animation: floaty 5s ease-in-out infinite; }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.b-leaguename { font-size: 15px; font-weight: 900; margin-top: 8px; }
+.b-podium { display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin-top: 14px; position: relative; }
+.b-person { display: flex; flex-direction: column; align-items: center; width: 96px; position: relative; }
+.b-person .avatar { width: 56px; height: 56px; font-size: 27px; z-index: 2; }
+.b-person.winner .avatar { width: 68px; height: 68px; font-size: 33px; border-color: rgba(255,212,59,.65); box-shadow: 0 0 0 4px rgba(255,212,59,.14), 0 12px 30px -8px rgba(255,212,59,.4); }
+.b-crown { position: absolute; top: -19px; font-size: 21px; z-index: 3; animation: crownDrop .9s cubic-bezier(.2,1.7,.4,1) .55s both; }
+@keyframes crownDrop { from { transform: translateY(-34px) rotate(-24deg); opacity: 0; } to { transform: translateY(0) rotate(-8deg); opacity: 1; } }
+.b-person .nm { font-size: 11.5px; font-weight: 900; margin-top: 7px; max-width: 92px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.b-person .xp { font-size: 10px; font-weight: 800; color: var(--muted); margin-top: 1px; }
+.b-step { width: 100%; margin-top: 9px; border-radius: 12px 12px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 7px; font-weight: 900; font-size: 15px; }
+.b-step.s1 { height: 74px; background: linear-gradient(180deg, rgba(255,212,59,.4), rgba(255,212,59,.06)); color: var(--gold); border: 1px solid rgba(255,212,59,.3); border-bottom: 0; }
+.b-step.s2 { height: 54px; background: linear-gradient(180deg, rgba(201,212,220,.28), rgba(201,212,220,.05)); color: var(--silver); border: 1px solid rgba(201,212,220,.22); border-bottom: 0; }
+.b-step.s3 { height: 42px; background: linear-gradient(180deg, rgba(210,154,106,.3), rgba(210,154,106,.05)); color: var(--bronze); border: 1px solid rgba(210,154,106,.25); border-bottom: 0; }
+.b-person.winner { animation: floaty 4.4s ease-in-out infinite; }
+.confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.confetti i { position: absolute; top: -10px; width: 6px; height: 9px; border-radius: 2px; opacity: 0; animation: fall 6s linear infinite; }
+@keyframes fall { 0% { transform: translateY(-12px) rotate(0); opacity: 0; } 8% { opacity: .9; } 100% { transform: translateY(330px) rotate(560deg); opacity: 0; } }
+.b-countdown { display: flex; justify-content: center; margin-top: 14px; position: relative; }
+.b-ring-row { display: flex; gap: 12px; margin-top: 14px; }
+.b-ring-card { flex: 1; padding: 13px 14px; display: flex; align-items: center; gap: 12px; }
+.ring { width: 52px; height: 52px; flex: none; position: relative; }
+.ring svg { transform: rotate(-90deg); }
+.ring .pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: var(--gold); }
+.ring .fg { stroke-dasharray: 138.2; stroke-dashoffset: 138.2; animation: ringgo 1.6s cubic-bezier(.22,1,.36,1) .5s forwards; }
+@keyframes ringgo { to { stroke-dashoffset: 44.2; } }
+.b-ring-body { flex: 1; min-width: 0; }
+.b-ring-title { font-size: 12px; font-weight: 900; }
+.b-ring-sub { font-size: 10.5px; font-weight: 700; color: var(--muted); margin-top: 3px; line-height: 1.45; }
+.b-feed { margin-top: 14px; padding: 4px 0 0; }
+.b-feed-item {
+  display: flex; align-items: center; gap: 9px; font-size: 11.5px; font-weight: 700; color: var(--muted);
+  padding: 8px 12px; background: var(--surface); border-radius: var(--r-sm); margin-bottom: 5px;
+  opacity: 0; transform: translateX(-10px); animation: feedIn .5s cubic-bezier(.22,1,.36,1) forwards; animation-delay: var(--d, 0s);
+}
+@keyframes feedIn { to { opacity: 1; transform: translateX(0); } }
+.b-feed-item b { color: var(--text); }
+.b-feed-item .delta-up { color: var(--accent); font-weight: 900; }
+.b-feed-item .delta-down { color: var(--danger); font-weight: 900; }
+.b-myrank {
+  position: sticky; bottom: 12px; margin-top: 16px;
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+  background: linear-gradient(135deg, #57DD82, var(--accent));
+  border-radius: 20px; color: var(--accent-text);
+  box-shadow: 0 18px 36px -12px rgba(71,200,112,.6);
+}
+.b-myrank .pos { font-size: 26px; font-weight: 900; letter-spacing: -.02em; }
+.b-myrank .body { flex: 1; }
+.b-myrank .t1 { font-size: 12.5px; font-weight: 900; }
+.b-myrank .t2 { font-size: 10px; font-weight: 800; opacity: .8; margin-top: 2px; }
+.b-myrank .mini-bar { height: 6px; border-radius: 4px; background: rgba(4,32,16,.22); margin-top: 7px; overflow: hidden; }
+.b-myrank .mini-bar i { display: block; height: 100%; width: 72%; border-radius: 4px; background: var(--accent-text); }
+
+/* ── КОНЦЕПЦИЯ C — «Путь лиг» ────────────────────────────────────── */
+.c-ladder { display: flex; gap: 9px; overflow-x: auto; padding: 6px 2px 12px; scrollbar-width: none; }
+.c-ladder::-webkit-scrollbar { display: none; }
+.c-node { flex: none; width: 62px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.c-node .ball {
+  width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 23px; background: var(--elevated); border: 2px solid var(--line);
+  filter: grayscale(.9) brightness(.6);
+}
+.c-node.done .ball { filter: none; border-color: rgba(71,200,112,.5); background: linear-gradient(150deg, #2C4536, #16241B); }
+.c-node.now .ball {
+  filter: none; width: 58px; height: 58px; font-size: 27px;
+  border-color: rgba(255,212,59,.7); background: linear-gradient(150deg, #4A3D16, #241E0B);
+  box-shadow: 0 0 0 4px rgba(255,212,59,.13), 0 10px 24px -8px rgba(255,212,59,.45);
+  animation: nowPulse 2.6s ease-in-out infinite;
+}
+@keyframes nowPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(255,212,59,.12), 0 10px 24px -8px rgba(255,212,59,.4); } 50% { box-shadow: 0 0 0 7px rgba(255,212,59,.2), 0 10px 28px -6px rgba(255,212,59,.55); } }
+.c-node .lb { font-size: 9px; font-weight: 800; color: var(--ghost); text-align: center; line-height: 1.25; }
+.c-node.done .lb { color: var(--accent); }
+.c-node.now .lb { color: var(--gold); }
+.c-path-line { height: 2px; background: linear-gradient(90deg, var(--accent) 0 34%, var(--line) 34%); margin: -40px 20px 40px; position: relative; z-index: 0; border-radius: 2px; }
+.c-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.c-stat { padding: 13px 14px; }
+.c-stat .v { font-size: 21px; font-weight: 900; letter-spacing: -.01em; }
+.c-stat .v small { font-size: 11px; color: var(--muted); font-weight: 800; }
+.c-stat .k { font-size: 10px; font-weight: 800; color: var(--muted); margin-top: 3px; }
+.c-chest { margin-top: 10px; padding: 14px 16px; display: flex; gap: 14px; align-items: center; }
+.c-zone-rail { position: relative; margin-top: 14px; padding-left: 14px; }
+.c-zone-rail::before {
+  content: ''; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 3px; border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent) 0 26%, var(--ghost) 26% 78%, var(--danger) 78%);
+  opacity: .55;
+}
+.c-rewards { display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.c-rewards::-webkit-scrollbar { display: none; }
+.c-reward {
+  flex: none; width: 76px; padding: 10px 8px; text-align: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm);
+}
+.c-reward .ic { font-size: 22px; }
+.c-reward .tx { font-size: 8.5px; font-weight: 800; color: var(--muted); margin-top: 5px; line-height: 1.3; }
+.c-reward.rare { border-color: rgba(147,112,219,.4); }
+.c-reward.leg { border-color: rgba(255,212,59,.45); background: linear-gradient(180deg, rgba(255,212,59,.08), var(--surface)); }
+
+/* ── Аннотации справа от телефона ────────────────────────────────── */
+.notes { display: flex; flex-direction: column; gap: 13px; }
+.note {
+  display: flex; gap: 14px; padding: 16px 18px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.note .tag {
+  flex: none; width: 30px; height: 30px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; color: var(--accent-text);
+  background: linear-gradient(135deg, #6EE79A, var(--accent));
+}
+.note.gold .tag { background: linear-gradient(135deg, #FFE98A, var(--gold)); }
+.note h4 { font-size: 14px; font-weight: 900; margin-bottom: 4px; }
+.note p { font-size: 12.5px; line-height: 1.6; color: var(--muted); font-weight: 600; }
+.note p b { color: var(--text); }
+.note p .anim {
+  display: inline-block; font-size: 10px; font-weight: 900; letter-spacing: .06em;
+  color: var(--gold); background: rgba(255,212,59,.1); border: 1px solid rgba(255,212,59,.25);
+  border-radius: 6px; padding: 1px 6px; margin-right: 4px; text-transform: uppercase;
+}
+.verdict {
+  margin-top: 16px; padding: 18px 20px; border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(71,200,112,.12), rgba(255,212,59,.07));
+  border: 1px solid rgba(71,200,112,.3);
+}
+.verdict h4 { font-size: 14px; font-weight: 900; color: var(--accent); margin-bottom: 6px; }
+.verdict p { font-size: 13px; line-height: 1.65; color: var(--muted); font-weight: 600; }
+.verdict p b { color: var(--text); }
+
+/* ── Таблица моушн-системы ───────────────────────────────────────── */
+.motion-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 13px; }
+.motion-table th {
+  text-align: left; font-size: 10.5px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ghost); padding: 12px 14px; border-bottom: 1px solid var(--line);
+}
+.motion-table td { padding: 13px 14px; border-bottom: 1px solid rgba(138,180,154,.08); vertical-align: top; font-weight: 600; color: var(--muted); line-height: 1.55; }
+.motion-table td:first-child { color: var(--text); font-weight: 800; white-space: nowrap; }
+.motion-table td .anim { color: var(--gold); font-weight: 800; font-size: 11.5px; }
+.motion-table tr:hover td { background: rgba(71,200,112,.03); }
+
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+.principle { padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); }
+.principle .pi { font-size: 22px; }
+.principle h4 { font-size: 13.5px; font-weight: 900; margin: 9px 0 5px; }
+.principle p { font-size: 12px; line-height: 1.6; color: var(--muted); font-weight: 600; }
+
+@media (max-width: 980px) {
+  .concept-layout { grid-template-columns: 1fr; }
+  .phone { position: relative; top: 0; margin: 0 auto; }
+  .audit-grid, .principles { grid-template-columns: 1fr; }
+  .doc-title { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══════════ ШАПКА ДОКУМЕНТА ═══════════ -->
+  <header class="doc-head">
+    <div class="doc-eyebrow">◆ Phraseman · Design Proposal · Лига / Бонус-лига</div>
+    <h1 class="doc-title">Лига как <em>центр управления</em><br>социальной игрой</h1>
+    <p class="doc-sub">
+      Три концепции редизайна экрана Лиги. Каждая собирает разрозненные сущности
+      (подиум, сундук, буст, зоны, вклад, рейтинг) в единую систему с дорогой,
+      но производительной анимацией. Палитра и радиусы — из текущей темы приложения,
+      поэтому любой вариант внедряется без визуального разрыва с остальным продуктом.
+    </p>
+    <div class="palette">
+      <span><i style="background:#47C870"></i>accent #47C870</span>
+      <span><i style="background:#17241A"></i>card #17241A</span>
+      <span><i style="background:#101710"></i>surface #101710</span>
+      <span><i style="background:#FFD43B"></i>gold #FFD43B</span>
+      <span><i style="background:#FF5B6C"></i>danger #FF5B6C</span>
+      <span><i style="background:#8AB49A"></i>muted #8AB49A</span>
+    </div>
+  </header>
+
+  <!-- ═══════════ АУДИТ ТЕКУЩЕГО ЭКРАНА ═══════════ -->
+  <section id="audit">
+    <div class="sec-eyebrow">01 · Аудит</div>
+    <h2 class="sec-title">Что сейчас на экране и где теряется цельность</h2>
+    <p class="sec-desc">
+      Текущий экран (club_screen.tsx) — это пять независимых блоков в колонку:
+      заголовок, подиум «Гонка за корону», карточка «Бонус-лига» с прогрессом сундука,
+      строка буста и список из ~30 участников. Механика сильная, но экран читается
+      как набор виджетов, а не как пульт управления неделей.
+    </p>
+    <div class="audit-grid">
+      <div class="audit-card">
+        <h3><span class="num">1</span>Нет «моего статуса» в первом экране</h3>
+        <p>Место игрока, его зона и отрыв от соседей видны только если доскроллить до своей строки. <b>Первый экран не отвечает на главный вопрос: «как у меня дела?»</b> — а именно ради этого открывают Лигу.</p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">2</span>Нет таймера недели</h3>
+        <p>Лига — недельная гонка с финишем в воскресенье, но обратного отсчёта на экране нет. <b>Исчезает главный двигатель срочности</b>, который у Duolingo даёт +вовлечение в последние 48 часов.</p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">3</span>Дублирование сущностей</h3>
+        <p>Топ-3 подиума повторяет первые 3 строки списка. «30 · 145 232 XP» под заголовком «Участники клуба» повторяет прогресс сундука. <b>Одни и те же данные занимают место трижды.</b></p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">4</span>Зоны повышения/вылета почти невидимы</h3>
+        <p>Зона обозначена только цветом номера места и стрелкой 12px. Нет разделителей, нет легенды, нет драмы «вот граница вылета». <b>Новичок не понимает правил игры.</b></p>
+        <span class="decision keep">Решение: стрелки уже работают — не трогаем</span>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">5</span>Карточка Бонус-лиги перегружена</h3>
+        <p>До 14 текстовых сущностей в одной карточке: eyebrow, заголовок, прогресс, «123/260K XP», процент, сообщение, 3 аватара, «Ваш вклад», значение, буст-строка с 4 элементами, CTA. <b>Глазу не за что зацепиться.</b></p>
+        <span class="decision">Решение: компоновку не меняем, убираем 2 текста</span>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">6</span>Путь по 12 лигам скрыт</h3>
+        <p>От Медной до Высшей — 12 ярусов с растущим бонусом XP и целью сундука, но на экране видно только имя текущей. <b>Нет аспирации: игрок не видит, куда расти.</b></p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">7</span>Социальность сведена к лайку буста</h3>
+        <p>Лента активности («Мария обогнала тебя +340 XP»), реакции на соседей, поддержка друзей — отсутствуют. <b>«Центр социальных связей» пока не центр.</b></p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">8</span>Моушн почти отключён</h3>
+        <p>Пульс эмблемы выключен флагом, баннер смены ранга живёт 5 секунд, прогресс-бары статичны, числа не анимируются. <b>Экран самый успешный по механике — и самый статичный по ощущению.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ КОНЦЕПЦИЯ A ═══════════ -->
+  <section id="concept-a">
+    <div class="sec-eyebrow">02 · Концепция A</div>
+    <h2 class="sec-title">«Пульт недели» — статус игрока в роли героя</h2>
+    <span class="decision">✓ Внедрено в ветке codex/league-hub-redesign-20260719 — макет синхронизирован с кодом</span>
+    <p class="sec-desc">
+      Эволюция текущего экрана, v2 — обновлено по фидбэку. Первый экран отвечает
+      на главный вопрос: какое у меня место, в какой я зоне и сколько XP до следующего
+      места. Карточка подиума уступает место hero-блоку (топ-3 — первые строки списка),
+      карточка «Общая цель недели» и стрелки зон сохраняются как есть — уходят только
+      лишние тексты.
+    </p>
+
+    <div class="concept-layout">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span class="sicons">●●●◐ ⌁ ▮</span></div>
+
+          <div class="topbar">
+            <div class="backbtn">‹</div>
+            <span class="chip accent" style="margin-left:auto">⚡ +30% XP за лигу</span>
+            <span class="chip warn">⏳ 2д 14ч<span class="blink">:</span>09</span>
+          </div>
+
+          <!-- HERO: мой статус — финал, как в коде -->
+          <div class="card a-hero">
+            <div class="a-emblem-free sheen">🏆</div>
+            <div class="a-hero-name">Золотая лига</div>
+            <div class="a-hero-sub">30 участников</div>
+            <div class="a-rank-num" data-count="7">0</div>
+            <div><div class="zone-badge">▲ Зона повышения</div></div>
+            <div class="a-gap">
+              <div class="a-gap-label"><span>До 6-го места</span><span><b>240 XP</b></span></div>
+              <div class="bar"><i style="width:78%"></i></div>
+            </div>
+          </div>
+
+          <!-- «Общая цель недели» — текущая карточка, минус 2 текста -->
+          <div class="card mf-card" style="margin-top:12px">
+            <div class="mf-head">
+              <div class="eyebrow-mini" style="color:var(--text);font-size:12.5px">Общая цель недели</div>
+              <div class="mf-gift">🎁</div>
+            </div>
+            <div class="mf-track"><i style="width:68%"></i></div>
+            <div class="mf-meta"><b>176 800 / 260 000 XP</b><span>68%</span></div>
+            <div class="mf-team">
+              <div class="mf-avatars">
+                <div class="avatar" style="width:34px;height:34px;font-size:16px;z-index:3">🦊</div>
+                <div class="avatar" style="width:34px;height:34px;font-size:16px;margin-left:-9px;z-index:2">🐼</div>
+                <div class="avatar" style="width:34px;height:34px;font-size:16px;margin-left:-9px">🦉</div>
+              </div>
+              <div class="mf-contrib"><span>Ваш вклад</span><b>12 480 XP</b></div>
+            </div>
+            <div class="mf-boost"><span class="bolt">⚡</span>Ускорить весь клуб</div>
+          </div>
+
+          <!-- Участники: текущий вид, стрелки зон сохранены -->
+          <div class="list-head">
+            <div class="list-title">Участники клуба</div>
+          </div>
+          <div class="row" style="--d:.05s"><span class="place up">1<span class="arr">▲</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px">🦊</div><div class="nm">Fable9521<small>стрик 21 дн</small></div><div class="xp">24 150<small>XP</small></div></div>
+          <div class="row" style="--d:.1s"><span class="place up">2<span class="arr">▲</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px">🐼</div><div class="nm">Мария<small>стрик 12 дн</small></div><div class="xp">19 870<small>XP</small></div></div>
+          <div class="row" style="--d:.15s"><span class="place up">3<span class="arr">▲</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px">🦉</div><div class="nm">Дмитрий<small>стрик 8 дн</small></div><div class="xp">17 420<small>XP</small></div></div>
+          <div class="row" style="--d:.2s"><span class="place up">6<span class="arr">▲</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px">🐯</div><div class="nm">Олег</div><div class="xp">12 720<small>XP</small></div></div>
+          <div class="row me" style="--d:.25s"><span class="place up">7<span class="arr">▲</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px;border-color:rgba(71,200,112,.6)">🐣</div><div class="nm">Вы<span class="me-pill">ВЫ</span></div><div class="xp">12 480<small>XP</small></div></div>
+          <div class="row" style="--d:.3s"><span class="place up">8<span class="arr">▲</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px">🐸</div><div class="nm">Айгерим</div><div class="xp">12 170<small>XP</small></div></div>
+          <div class="row" style="--d:.35s"><span class="place">9</span><div class="avatar" style="width:38px;height:38px;font-size:18px">🦁</div><div class="nm">Сара</div><div class="xp">11 940<small>XP</small></div></div>
+          <div class="row" style="--d:.4s"><span class="place">10</span><div class="avatar" style="width:38px;height:38px;font-size:18px">🐨</div><div class="nm">Тимур</div><div class="xp">10 300<small>XP</small></div></div>
+          <div class="row" style="--d:.45s;opacity:.75"><span class="place down">25<span class="arr">▼</span></span><div class="avatar" style="width:38px;height:38px;font-size:18px">🐷</div><div class="nm">Игнат</div><div class="xp">1 240<small>XP</small></div></div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="note">
+          <div class="tag">1</div>
+          <div>
+            <h4>Hero-статус: «где я» за 0,5 секунды</h4>
+            <p>Крупная цифра места, зона-пилюля и микро-прогресс «до 6-го места 240 XP» заменяют поиск себя в списке — и ничего лишнего: мелкие «место из 30» и «XP за неделю» убраны, счёт участников остаётся рядом с именем лиги. Финал по фидбэку: эмблема 96px по центру <b>без рамки-контейнера</b>, с пружиной, бликом и левитацией; цифра 76px, сияющая. <span class="anim">anim</span>Count-up 620мс + пульс свечения цифры, циклы только в фокусе экрана.</p>
+          </div>
+        </div>
+        <div class="note gold">
+          <div class="tag">2</div>
+          <div>
+            <h4>Таймер недели в шапке — всегда на виду</h4>
+            <p>«⏳ 2д 14ч:09» — единственный элемент, создающий срочность. В последние 24 часа чип становится красным и пульсирует. <span class="anim">anim</span>Мигает только двоеточие, 1Гц, без перерисовки цифр каждую секунду.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">3</div>
+          <div>
+            <h4>Список без дублей — минус 154px</h4>
+            <p>Карточка «Гонка за корону» дублировала первые 3 строки списка, поэтому её место отдано hero-статусу. Строки — строго как сейчас: номер + стрелка зоны, никаких медалей и лишних украшений. Если подиум захочется вернуть — это отдельное решение, hero-блок при этом остаётся. <span class="anim">anim</span>Строки появляются каскадом: 8 видимых строк × 50мс задержки, spring.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">4</div>
+          <div>
+            <h4>Зоны не трогаем — стрелки уже работают</h4>
+            <p>Зелёные ▲ и красные ▼ рядом с номером места остаются как сейчас: они уже читаются и не требуют обучения. Новые заголовки секций и разделители не добавляем — список остаётся привычным.</p>
+          </div>
+        </div>
+        <div class="note gold">
+          <div class="tag">5</div>
+          <div>
+            <h4>Карточка «Общая цель недели» — как сейчас, минус 2 текста</h4>
+            <p>Компоновка сохраняется полностью: прогресс, «Ваш вклад», кнопка «Ускорить весь клуб». Убираем только заголовок «Бонус-лига» (остаётся «Общая цель недели») и строку «Осталось N XP до сундука» — цифры прогресса говорят это сами. <span class="anim">anim</span>Сундук «дышит» 3,2с только пока экран в фокусе.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">6</div>
+          <div>
+            <h4>Моя строка — живой якорь</h4>
+            <p>Текущий «вы» получает переливающуюся градиентную рамку (5с цикл, background-position — один слой, ноль layout). При смене ранга строка физически «перепрыгивает» через соседей — это уже есть в коде (myRowAnim), усиливаем вспышкой зелёного при посадке.</p>
+          </div>
+        </div>
+        <div class="verdict">
+          <h4>Кому подходит</h4>
+          <p><b>Самый безопасный и быстрый путь:</b> сохраняет все текущие механики и компоненты, меняет компоновку и иерархию. Реализуется рефакторингом club_screen + 2 новых подкомпонента, без новых зависимостей. Риск для retention — минимальный, прирост воспринимаемого качества — максимальный на вложенный день.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ КОНЦЕПЦИЯ B ═══════════ -->
+  <section id="concept-b">
+    <div class="sec-eyebrow">03 · Концепция B</div>
+    <h2 class="sec-title">«Арена» — недельный финал как спектакль</h2>
+    <p class="sec-desc">
+      Самая эмоциональная концепция. Верх экрана — сцена с прожекторами, где топ-3
+      стоят на ступенях, а корона буквально падает на голову лидеру. Список начинается
+      с 4-го места, лента активности делает гонку живой, а моя позиция закреплена
+      липкой зелёной карточкой внизу — она всегда на экране, куда бы я ни скроллил.
+    </p>
+
+    <div class="concept-layout">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span class="sicons">●●●◐ ⌁ ▮</span></div>
+
+          <div class="topbar">
+            <div class="backbtn">‹</div>
+            <span class="chip" style="margin-left:auto">Неделя 29</span>
+          </div>
+
+          <!-- Сцена -->
+          <div class="b-arena">
+            <div class="b-beams"><i></i><i></i></div>
+            <div class="confetti">
+              <i style="left:12%;background:#FFD43B;animation-delay:.4s"></i>
+              <i style="left:28%;background:#47C870;animation-delay:2.1s"></i>
+              <i style="left:47%;background:#FF8FA3;animation-delay:1.2s"></i>
+              <i style="left:63%;background:#7EC8FF;animation-delay:3.4s"></i>
+              <i style="left:79%;background:#FFD43B;animation-delay:4.6s"></i>
+              <i style="left:90%;background:#47C870;animation-delay:1.8s"></i>
+            </div>
+            <div class="b-leaguemark">
+              <div class="emblem sheen">🏆</div>
+              <div class="b-leaguename">Золотая лига</div>
+            </div>
+            <div class="b-podium">
+              <div class="b-person">
+                <div class="avatar" style="border-color:rgba(201,212,220,.5)">🐼</div>
+                <div class="nm">Мария</div><div class="xp">19 870 XP</div>
+                <div class="b-step s2">2</div>
+              </div>
+              <div class="b-person winner">
+                <div class="b-crown">👑</div>
+                <div class="avatar">🦊</div>
+                <div class="nm">Fable9521</div><div class="xp">24 150 XP</div>
+                <div class="b-step s1">1</div>
+              </div>
+              <div class="b-person">
+                <div class="avatar" style="border-color:rgba(210,154,106,.5)">🦉</div>
+                <div class="nm">Дмитрий</div><div class="xp">17 420 XP</div>
+                <div class="b-step s3">3</div>
+              </div>
+            </div>
+            <div class="b-countdown"><span class="chip warn">⏳ Финиш недели через 2д 14ч 09м</span></div>
+          </div>
+
+          <!-- Сундук-кольцо + вклад -->
+          <div class="b-ring-row">
+            <div class="card b-ring-card">
+              <div class="ring">
+                <svg width="52" height="52" viewBox="0 0 52 52">
+                  <circle cx="26" cy="26" r="22" fill="none" stroke="#1D2E22" stroke-width="5"/>
+                  <circle class="fg" cx="26" cy="26" r="22" fill="none" stroke="#FFD43B" stroke-width="5" stroke-linecap="round"/>
+                </svg>
+                <div class="pct">68%</div>
+              </div>
+              <div class="b-ring-body">
+                <div class="b-ring-title">🎁 Общий сундук</div>
+                <div class="b-ring-sub">осталось 83 200 XP — команда справится к субботе</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Лента активности -->
+          <div class="b-feed">
+            <div class="zone-head">Сейчас в гонке</div>
+            <div class="b-feed-item" style="--d:.1s">🐼 <span><b>Мария</b> +340 XP · отстаёт от лидера на 4 280</span><span class="delta-up" style="margin-left:auto">▲</span></div>
+            <div class="b-feed-item" style="--d:.22s">🐸 <span><b>Айгерим</b> дышит в спину — до вас 310 XP</span><span class="delta-down" style="margin-left:auto">▼</span></div>
+            <div class="b-feed-item" style="--d:.34s">⚡ <span><b>Fable9521</b> включил буст ×2 · 12 благодарностей</span><span style="margin-left:auto">♥</span></div>
+          </div>
+
+          <!-- Список с 4-го места -->
+          <div class="zone-head" style="margin-top:14px">Рейтинг · с 4-го места</div>
+          <div class="row" style="--d:.05s"><span class="place up">4</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🐯</div><div class="nm">Олег</div><div class="xp">12 720</div></div>
+          <div class="row" style="--d:.1s"><span class="place up">5</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🦁</div><div class="nm">Сара</div><div class="xp">12 655</div></div>
+          <div class="row" style="--d:.15s"><span class="place up">6</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🐨</div><div class="nm">Тимур</div><div class="xp">12 720</div></div>
+
+          <!-- Липкая моя карточка -->
+          <div class="b-myrank">
+            <div class="pos">7</div>
+            <div class="body">
+              <div class="t1">Вы · Зона повышения</div>
+              <div class="t2">до 6-го места 240 XP · отрыв снизу 310 XP</div>
+              <div class="mini-bar"><i></i></div>
+            </div>
+            <div style="font-size:22px">🐣</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="note gold">
+          <div class="tag">1</div>
+          <div>
+            <h4>Сцена с прожекторами и падающей короной</h4>
+            <p>Топ-3 на физических ступенях — эмоция подиума без дубля в списке. <span class="anim">anim</span>Корона падает на голову лидера spring-ом (overshoot 1.7, 900мс, один раз за открытие); прожекторы качаются 7–8с на чистом transform/opacity; конфетти — 6 частиц, 6с, только пока сцена на экране.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">2</div>
+          <div>
+            <h4>Липкая карточка «моя позиция» внизу</h4>
+            <p>Главная информация игрока не тонет в списке: место, зона, оба отрыва и микро-прогресс всегда видны. <span class="anim">anim</span>При входе в зону вылета карточка плавно перекрашивается в красный градиент (400мс) — состояние считывается мгновенно.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">3</div>
+          <div>
+            <h4>Лента «Сейчас в гонке» — социальное сердце</h4>
+            <p>3–4 живых события вместо сухих чисел: кто догоняет, от кого убегаю, кто включил буст. Это и есть «центр социальных связей». <span class="anim">anim</span>Новые события въезжают слева с пружиной; дельты ▲▼ мигают один раз.</p>
+          </div>
+        </div>
+        <div class="note gold">
+          <div class="tag">4</div>
+          <div>
+            <h4>Сундук как кольцо прогресса</h4>
+            <p>Круговой прогресс компактнее полосы и лучше читается рядом со сценой. <span class="anim">anim</span>Кольцо «наматывается» до 68% за 1,6с (stroke-dashoffset, один прогон), в момент готовности — золотая вспышка и переход в CTA «Забрать».</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">5</div>
+          <div>
+            <h4>Финиш недели — событие</h4>
+            <p>Чип-таймер под сценой ведёт к кульминации: в последние 2 часа сцена затемняется, прожекторы ускоряются, таймер краснеет. Воскресный финал — то, ради чего возвращаются в понедельник (LeagueResultModal уже есть — усиливаем вход в неё).</p>
+          </div>
+        </div>
+        <div class="verdict">
+          <h4>Кому подходит</h4>
+          <p><b>Максимум эмоции и отстройки от Duolingo</b> — там подиум статичная иллюстрация, здесь живая сцена. Цена: новый компонент сцены и липкий футер; лента активности требует источника событий (можно начать с локальных дельт из rank_change, который уже считается). Лучший кандидат, если Лига должна стать «витриной» приложения.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ КОНЦЕПЦИЯ C ═══════════ -->
+  <section id="concept-c">
+    <div class="sec-eyebrow">04 · Концепция C</div>
+    <h2 class="sec-title">«Путь лиг» — сезонная прогрессия как мета-игра</h2>
+    <p class="sec-desc">
+      Экран открывается не списком, а дорогой: 12 ярусов от Медной до Высшей лиги,
+      пройденные светятся зелёным, текущая пульсирует золотом, будущие — серые
+      с замком. Игрок видит, откуда пришёл и куда растёт. Неделя становится
+      «сезонной сводкой», а рейтинг обрамлён цветной рельсой зон слева.
+    </p>
+
+    <div class="concept-layout">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span class="sicons">●●●◐ ⌁ ▮</span></div>
+
+          <div class="topbar">
+            <div class="backbtn">‹</div>
+            <span class="chip warn" style="margin-left:auto">⏳ 2д 14ч</span>
+          </div>
+
+          <!-- Лестница лиг -->
+          <div class="c-ladder">
+            <div class="c-node done"><div class="ball">🥉</div><div class="lb">Медная</div></div>
+            <div class="c-node done"><div class="ball">🔥</div><div class="lb">Бронза</div></div>
+            <div class="c-node done"><div class="ball">🧭</div><div class="lb">Серебро</div></div>
+            <div class="c-node now"><div class="ball">🏆</div><div class="lb">Золотая</div></div>
+            <div class="c-node"><div class="ball">💠</div><div class="lb">Платина</div></div>
+            <div class="c-node"><div class="ball">💚</div><div class="lb">Изумруд</div></div>
+            <div class="c-node"><div class="ball">💙</div><div class="lb">Сапфир</div></div>
+            <div class="c-node"><div class="ball">❤️</div><div class="lb">Рубин</div></div>
+            <div class="c-node"><div class="ball">💎</div><div class="lb">Алмаз</div></div>
+            <div class="c-node"><div class="ball">🔒</div><div class="lb">Высшая</div></div>
+          </div>
+          <div class="c-path-line"></div>
+
+          <!-- Сводка недели -->
+          <div class="c-grid2">
+            <div class="card c-stat">
+              <div class="v">7<small> / 30</small></div>
+              <div class="k">место · ▲ зона повышения</div>
+            </div>
+            <div class="card c-stat">
+              <div class="v" data-count="12480">0</div>
+              <div class="k">ваш XP за неделю · +30% бонус лиги</div>
+            </div>
+          </div>
+
+          <!-- Сундук -->
+          <div class="card c-chest">
+            <div class="ring">
+              <svg width="52" height="52" viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="22" fill="none" stroke="#1D2E22" stroke-width="5"/>
+                <circle class="fg" cx="26" cy="26" r="22" fill="none" stroke="#FFD43B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <div class="pct">68%</div>
+            </div>
+            <div class="b-ring-body">
+              <div class="b-ring-title">🎁 Сундук Золотой лиги · 260 000 XP</div>
+              <div class="b-ring-sub">команда набрала 176 800 · ваш вклад 12 480 XP</div>
+            </div>
+            <span class="chip accent" style="flex:none">⚡ ×2</span>
+          </div>
+
+          <!-- Награды сундука -->
+          <div class="c-rewards">
+            <div class="c-reward"><div class="ic">🧩</div><div class="tx">24–42 осколка</div></div>
+            <div class="c-reward rare"><div class="ic">🔮</div><div class="tx">Аура аватара</div></div>
+            <div class="c-reward rare"><div class="ic">⚡</div><div class="tx">×2 XP · 3 урока</div></div>
+            <div class="c-reward leg"><div class="ic">👑</div><div class="tx">Gold-тема · легенд.</div></div>
+          </div>
+
+          <!-- Рейтинг с рельсой зон -->
+          <div class="zone-head" style="margin-top:16px">Рейтинг недели</div>
+          <div class="c-zone-rail">
+            <div class="row" style="--d:.05s"><span class="medal">🥇</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🦊</div><div class="nm">Fable9521<small>👑 корона недели</small></div><div class="xp">24 150</div></div>
+            <div class="row" style="--d:.1s"><span class="medal">🥈</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🐼</div><div class="nm">Мария</div><div class="xp">19 870</div></div>
+            <div class="row me" style="--d:.15s"><span class="place up">7</span><div class="avatar" style="width:36px;height:36px;font-size:17px;border-color:rgba(71,200,112,.6)">🐣</div><div class="nm">Вы<span class="me-pill">ВЫ</span></div><div class="xp">12 480</div></div>
+            <div class="row" style="--d:.2s"><span class="place">12</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🦁</div><div class="nm">Сара</div><div class="xp">9 410</div></div>
+            <div class="row" style="--d:.25s;opacity:.75"><span class="place down">25</span><div class="avatar" style="width:36px;height:36px;font-size:17px">🐷</div><div class="nm">Игнат</div><div class="xp">1 240</div></div>
+          </div>
+
+          <div class="a-boost" style="margin-top:14px">
+            <span class="bolt">⚡</span>
+            <span>Буст ×2 активен · 1:42:33 · спасибо, <b>&nbsp;Fable9521</b></span>
+            <span class="heart">♥ 12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="note gold">
+          <div class="tag">1</div>
+          <div>
+            <h4>Лестница 12 лиг — аспирация в один взгляд</h4>
+            <p>Пройденные ярусы зелёные, текущий пульсирует золотом, будущие закрыты. Скрытая сегодня прогрессия (12 лиг, растущие бонусы +10…+?% и цели сундука) превращается в причину возвращаться. <span class="anim">anim</span>При повышении лиги новый узел «разблокируется»: замок отскакивает, узел вспыхивает и прокручивается в центр (scroll-snap).</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">2</div>
+          <div>
+            <h4>Сезонная сводка вместо стены чисел</h4>
+            <p>Две стат-карточки (место/зона, недельный XP с бонусом лиги) отвечают на «как у меня дела» компактнее hero-блока концепции A. <span class="anim">anim</span>Числа count-up 600мс при появлении.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">3</div>
+          <div>
+            <h4>Витрина наград сундука</h4>
+            <p>Осколки, аура, ×2 XP, легендарная Gold-тема — содержимое сундука показано заранее мини-карточками с рамками редкости. Редкость продаёт цель лучше, чем абстрактные «260 000 XP».</p>
+          </div>
+        </div>
+        <div class="note gold">
+          <div class="tag">4</div>
+          <div>
+            <h4>Цветная рельса зон вдоль рейтинга</h4>
+            <p>Непрерывная вертикальная линия зелёный→серый→красный слева от строк: границы зон видны даже боковым зрением при быстром скролле. Дешевле разделителей-заголовков, работает как «карта глубины» списка.</p>
+          </div>
+        </div>
+        <div class="note">
+          <div class="tag">5</div>
+          <div>
+            <h4>Буст как строка благодарности</h4>
+            <p>«Спасибо, Fable9521» вместо сухого «×2 от Fable9521» — социальная механика названа социальной. Лайк остаётся одним тапом, счётчик благодарностей анимируется +1 с пружиной.</p>
+          </div>
+        </div>
+        <div class="verdict">
+          <h4>Кому подходит</h4>
+          <p><b>Лучший долгосрочный каркас:</b> мета-прогрессия удерживает сильнее недельной гонки. Но требует новых данных (история лиг игрока, конфиг наград на экране) и самый большой объём работы. Идеальна как фаза 2 после концепции A.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ МОУШН-СИСТЕМА ═══════════ -->
+  <section id="motion">
+    <div class="sec-eyebrow">05 · Моушн-система</div>
+    <h2 class="sec-title">Дороже Duolingo, легче Duolingo</h2>
+    <p class="sec-desc">
+      Duolingo полагается на Lottie-петли и постоянное движение. Наша система дороже
+      ощущается за счёт физики (пружины вместо линейных кривых) и дешевле по нагрузке:
+      каждая бесконечная анимация работает только на видимом экране в фокусе,
+      все циклы — на transform/opacity через Reanimated worklets (native thread),
+      reduce-motion отключает всё декоративное. Это уже закреплено в Performance Bible
+      проекта — моушн-спека ему полностью подчиняется.
+    </p>
+
+    <div class="principles">
+      <div class="principle"><div class="pi">🎯</div><h4>Один фокус — одно движение</h4><p>На экране в каждый момент «светится» один элемент: готовый сундук ИЛИ красный таймер ИЛИ моя строка. Одновременная анимация двух акцентов запрещена.</p></div>
+      <div class="principle"><div class="pi">🌀</div><h4>Пружины вместо кривых</h4><p>Все входы и смены состояний — spring (damping 14–18, stiffness 160–220). Пружина даёт «дорогую» физику без единого лишнего кадра.</p></div>
+      <div class="principle"><div class="pi">🔋</div><h4>Циклы только в фокусе</h4><p>Дыхание сундука, блик эмблемы, прожекторы — все loop-анимации гасятся useIsScreenFocused + AppState. Скрытый экран не рисует ни кадра.</p></div>
+      <div class="principle"><div class="pi">🧵</div><h4>Только UI-thread</h4><p>Transform, opacity, background-position. Никаких анимаций width/height/margin — ноль layout-пересчётов на 60fps.</p></div>
+      <div class="principle"><div class="pi">🎬</div><h4>Вход один раз</h4><p>Каскады, count-up и короны играют один раз за открытие экрана, не при каждом ре-рендере и не при возврате из профиля.</p></div>
+      <div class="principle"><div class="pi">♿</div><h4>Reduce motion = честное off</h4><p>При системном reduce-motion все декоративные циклы отключаются, остаются только функциональные смены состояния (150мс fade).</p></div>
+    </div>
+
+    <table class="motion-table">
+      <thead><tr><th>Элемент</th><th>Анимация</th><th>Параметры</th><th>Триггер</th><th>Нагрузка</th></tr></thead>
+      <tbody>
+        <tr><td>Эмблема лиги</td><td><span class="anim">sheen</span> — блик-змейка через градиент</td><td>4,6с цикл, sweep 20% цикла, translateX</td><td>пока экран в фокусе</td><td>1 слой, transform-only</td></tr>
+        <tr><td>Цифра места / XP</td><td><span class="anim">count-up</span> снизу вверх</td><td>600мс, easeOutCubic, один прогон</td><td>появление данных</td><td>одноразовая, текст</td></tr>
+        <tr><td>Строки рейтинга</td><td><span class="anim">stagger</span> каскад</td><td>8 × 50мс задержки, spring 18/180, translateY 14→0</td><td>первый рендер</td><td>одноразовая, transform</td></tr>
+        <tr><td>Моя строка</td><td><span class="anim">meflow</span> — бегущая градиентная рамка</td><td>5с linear, background-position 220%</td><td>пока видима</td><td>1 слой, paint-only</td></tr>
+        <tr><td>Смена ранга</td><td><span class="anim">jump</span> — строка перепрыгивает соседей</td><td>900мс, spring + зелёная вспышка на посадке</td><td>новые данные Firestore</td><td>одноразовая (уже есть myRowAnim)</td></tr>
+        <tr><td>Сундук</td><td><span class="anim">breathe</span> — дышащее золотое свечение</td><td>3,2с ease-in-out, scale 1→1.045 + glow</td><td>видим + фокус; 80%+ → ярче</td><td>transform + shadow, 1 слой</td></tr>
+        <tr><td>Прогресс-бары</td><td><span class="anim">barshine</span> — проблеск по заполнению</td><td>2,8с, блик проходит за 45% цикла</td><td>пока видим</td><td>transform-only</td></tr>
+        <tr><td>Кольцо сундука</td><td><span class="anim">ringgo</span> — намотка дуги</td><td>1,6с, stroke-dashoffset, один прогон</td><td>появление карточки</td><td>SVG/Reanimated stroke</td></tr>
+        <tr><td>Корона лидера</td><td><span class="anim">crownDrop</span> — падение с перелётом</td><td>900мс, spring overshoot 1.7, rotate −24°→−8°</td><td>открытие экрана / смена лидера</td><td>одноразовая, transform</td></tr>
+        <tr><td>Прожекторы (B)</td><td><span class="anim">beam</span> — покачивание лучей</td><td>7–8с alternate, rotate ±14°, opacity .5–.95</td><td>видимость сцены + фокус</td><td>2 слоя, transform/opacity</td></tr>
+        <tr><td>Конфетти (B)</td><td><span class="anim">fall</span> — 6 частиц</td><td>6с linear, разнесённые задержки, rotate 560°</td><td>готовность сундука / топ-зона</td><td>6 слоёв, transform-only</td></tr>
+        <tr><td>Таймер недели</td><td><span class="anim">blink</span> — двоеточие 1Гц</td><td>steps(1), без пересчёта цифр чаще 1/мин</td><td>всегда; &lt;24ч → красный + pulse</td><td>opacity, 1 символ</td></tr>
+        <tr><td>Молния буста</td><td><span class="anim">boltpulse</span></td><td>1,6с, scale 1→1.22 + drop-shadow</td><td>пока буст активен</td><td>transform, 1 иконка</td></tr>
+        <tr><td>Лайк буста</td><td><span class="anim">heartPop</span> — сердце + счётчик</td><td>spring 12/240, scale 1.5→1, счётчик count-up +1</td><td>тап</td><td>одноразовая</td></tr>
+        <tr><td>Лестница лиг (C)</td><td><span class="anim">unlock</span> — вспышка нового яруса</td><td>spring 10/200, scale .6→1.15→1 + scroll-snap в центр</td><td>повышение лиги</td><td>одноразовая</td></tr>
+        <tr><td>Лента активности (B)</td><td><span class="anim">feedIn</span> — въезд события слева</td><td>500мс spring, translateX −10→0, stagger 120мс</td><td>новое событие</td><td>одноразовая, transform</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════ РЕКОМЕНДАЦИЯ ═══════════ -->
+  <section id="verdict">
+    <div class="sec-eyebrow">06 · Рекомендация</div>
+    <h2 class="sec-title">Гибрид: A сейчас → элементы B и C поэтапно</h2>
+    <div class="audit-grid" style="margin-top:26px">
+      <div class="audit-card">
+        <h3><span class="num">Ф1</span>Неделя 1–2: Концепция A целиком</h3>
+        <p>Hero-статус (крупное место + зона + «до 6-го места 240 XP»), таймер недели, чип «+30% XP», бонус-карточка минус 2 текста, каскад строк, count-up. Зоны-стрелки и компоновку карточки миссии <b>не трогаем</b>. Ноль новых данных — всё уже считается в club_screen/league_engine.</p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">Ф2</span>Неделя 3–4: липкая карточка + лента из B</h3>
+        <p>Липкая «моя позиция» внизу и лента «Сейчас в гонке» на локальных дельтах (rank_change уже хранит имена соседей). Сцена с прожекторами — опционально, A/B-тестом.</p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">Ф3</span>Сезон: лестница лиг из C</h3>
+        <p>Когда появится история лиг игрока — добавить дорогу 12 ярусов и витрину наград сундука. Это превращает Лигу из недельной гонки в долгую мета-игру.</p>
+      </div>
+      <div class="audit-card">
+        <h3><span class="num">✂</span>Что режем при любом сценарии</h3>
+        <p>Дубль топ-3 (подиум-карточка против списка), заголовок «Бонус-лига», строку «Осталось N XP до сундука», «Неделя 29», мелкие подписи «место из 30» и «XP за неделю». Карточку миссии и стрелки зон не трогаем. Меньше сущностей — сильнее каждая.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* Count-up чисел: 600мс easeOutCubic, один прогон при загрузке */
+(function () {
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10) || 0;
+    const t0 = performance.now(), dur = 620;
+    const fmt = n => n.toLocaleString('ru-RU');
+    (function tick(now) {
+      const p = Math.min(1, (now - t0) / dur);
+      el.textContent = fmt(Math.round(target * ease(p)));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  });
+})();
+</script>
+</body>
+</html>

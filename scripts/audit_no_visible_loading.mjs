@@ -61,7 +61,7 @@ const STRING_RULES = [
 function isAllowedStringFinding(rel, ruleName, literal) {
   if (ruleName !== 'spinner/skeleton placeholder') return false;
   if (!/\bshimmer\b/i.test(literal) || /\b(?:spinner|loader|skeleton)\b/i.test(literal)) return false;
-  return rel === 'app/profile_card_system.ts' || rel === 'app/profile_card_upgrade.tsx';
+  return rel === 'app/profile_card_system.ts';
 }
 
 function stripComments(source) {

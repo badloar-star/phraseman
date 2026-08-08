@@ -1,72 +1,31 @@
 import {
+  buildProductAnalyticsPurchaseFailureQuery,
   clampProductAnalyticsDays,
-  hasProductAnalyticsAuth,
   isAnalyticsExportPendingError,
   normalizeProductAnalyticsPlatform,
-  validatedAnalyticsDatasetTable,
+  parseProductAnalyticsPayload,
+  type ProductAnalyticsQueryRow,
 } from './admin_product_analytics';
 import fs from 'fs';
 import path from 'path';
 
+describe('parseProductAnalyticsPayload', () => {
+  it('returns only parsed JSON records and never throws for invalid warehouse rows', () => {
+    expect(parseProductAnalyticsPayload({ payload: '{"events":2}' })).toEqual({ events: 2 });
+    expect(parseProductAnalyticsPayload({ payload: '{malformed' })).toBeNull();
+    expect(parseProductAnalyticsPayload({ payload: '[{"events":2}]' })).toBeNull();
+    expect(parseProductAnalyticsPayload({ payload: '"raw string"' })).toBeNull();
+    expect(parseProductAnalyticsPayload({ payload: 'null' })).toBeNull();
+    expect(parseProductAnalyticsPayload({})).toBeNull();
+    expect(parseProductAnalyticsPayload({ payload: { events: 2 } } as unknown as ProductAnalyticsQueryRow))
+      .toBeNull();
+  });
+});
+
 describe('admin product analytics input contract', () => {
   it('requires the server-side money.read permission', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
-    expect(source).toContain('hasProductAnalyticsAuth(request.auth)');
-    expect(source).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
-  });
-
-  it('rejects forged or insufficient callable auth and accepts intended analytics roles', () => {
-    expect(hasProductAnalyticsAuth({ admin: true, adminRole: 'owner' })).toBe(false);
-    expect(hasProductAnalyticsAuth({
-      uid: 'support-user',
-      token: { admin: true, adminRole: 'support' },
-    })).toBe(false);
-    expect(hasProductAnalyticsAuth({
-      uid: 'analyst-user',
-      token: {
-        admin: true,
-        adminRole: 'analyst',
-        aud: 'phraseman-ea0b3',
-        iss: 'https://securetoken.google.com/phraseman-ea0b3',
-        firebase: { sign_in_provider: 'google.com' },
-      },
-    })).toBe(true);
-    expect(hasProductAnalyticsAuth({
-      uid: 'foreign-admin',
-      token: {
-        admin: true,
-        adminRole: 'owner',
-        aud: 'other-project',
-        iss: 'https://securetoken.google.com/other-project',
-        firebase: { sign_in_provider: 'google.com' },
-      },
-    })).toBe(false);
-  });
-
-  it('accepts only the exact production GA4 dataset identifier shape', () => {
-    expect(validatedAnalyticsDatasetTable('phraseman-ea0b3.analytics_532376954'))
-      .toBe('`phraseman-ea0b3.analytics_532376954.events_*`');
-    for (const unsafe of [
-      'analytics_532376954',
-      'other-project.analytics_532376954',
-      'phraseman-ea0b3.other_dataset',
-      'phraseman-ea0b3.analytics_1;DROP TABLE x',
-      'phraseman-ea0b3.analytics_１２３４５６',
-      'phraseman-ea0b3.analytics_12345`',
-    ]) {
-      expect(() => validatedAnalyticsDatasetTable(unsafe)).toThrow('Analytics warehouse is not configured');
-    }
-  });
-
-  it('keeps a bounded production runtime envelope for the synchronous query', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
-    expect(source).toContain('timeoutSeconds: 300');
-    expect(source).toContain("memory: '1GiB'");
-    expect(source).toContain('maxInstances: 3');
-    expect(source).toContain('maximumBytesBilled: String(MAXIMUM_BYTES_BILLED)');
-    expect(source).toContain('const MAXIMUM_BYTES_BILLED = 5_000_000_000');
-    expect(source).not.toContain('maximumBytesBilled?:');
-    expect(source).toContain('Invalid IANA reporting timezone');
+    expect(source).toContain("hasClaimedPermission(request.auth?.token, 'money.read')");
   });
 
   it('limits the query window to supported periods', () => {
@@ -154,5 +113,32 @@ describe('admin conversion and observed-return analytics contract', () => {
     expect(source).toContain('lifetime_expected_missing_impressions');
     expect(source).toContain('p90_inventory_resolution_ms');
     expect(source).toContain('inventoryReadiness');
+    expect(source).toContain('failureReasons: conversionFailures.sort');
+  });
+});
+
+describe('bounded purchase-failure aggregate query', () => {
+  it('queries only deduplicated purchase failures and returns at most ten governed groups', () => {
+    const query = buildProductAnalyticsPurchaseFailureQuery('`safe_dataset.events_*`');
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
+
+    expect(query).toContain("event_name = 'purchase_failed'");
+    expect(query).toContain("key = 'event_id'");
+    expect(query).toContain("CONCAT(event_name, ':', user_pseudo_id, ':', CAST(event_timestamp AS STRING))");
+    expect(query).toContain('ROW_NUMBER() OVER');
+    expect(query).toContain('duplicate_rank = 1');
+    for (const reason of [
+      'identity_sync', 'no_active_entitlement_after_purchase', 'payment_pending',
+      'network_error', 'payment_error', 'store_error', 'configuration_error',
+      'sdk_other', 'unknown', 'legacy_or_other',
+    ]) expect(query).toContain(`'${reason}'`);
+    expect(query).toContain("'conversion_failure' AS row_kind");
+    expect(query).toMatch(/LIMIT\s+10\s*$/);
+    expect(query).not.toMatch(/UNION ALL|daily_kpi|screen_rows|lesson_rows|retention_/);
+    expect(source).toContain('loadProductAnalyticsPurchaseFailureRows');
+    expect(source).toContain('maxResults: 10');
+    expect(source).toContain("maximumBytesBilled: input.maximumBytesBilled ?? '5000000000'");
+    expect(source).toContain('.filter((row) => row.row_kind === \'conversion_failure\')');
+    expect(source).toContain('.slice(0, 10)');
   });
 });

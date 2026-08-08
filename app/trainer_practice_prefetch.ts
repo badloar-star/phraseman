@@ -1,10 +1,14 @@
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
-import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
+import { loadActivity365Analytics, type Activity365Day } from './activity_365_analytics';
 import { computePhraseAnalytics, type PhraseAnalyticsResult } from './phrase_analytics';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { getTrainerDashboard, type TrainerDashboard } from './trainer_store';
+import {
+  peekRestoredTrainerPracticeSnapshot,
+  rememberTrainerPracticeSnapshotOnDisk,
+} from './trainer_practice_persist';
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import {
   storageSourceLocale,
@@ -18,6 +22,7 @@ export interface TrainerPracticeSnapshot {
   hasPremium: boolean;
   analytics: PhraseAnalyticsResult | null;
   resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
+  activityDays: Activity365Day[];
   createdAt: number;
 }
 
@@ -43,10 +48,14 @@ export function getCachedTrainerPracticeSnapshot(
   sourceLocale?: RuntimeSourceLocale,
   maxAgeMs = TRAINER_PRACTICE_SNAPSHOT_TTL_MS,
 ): TrainerPracticeSnapshot | null {
-  const snapshot = snapshotCache.get(trainerPracticeSnapshotKey(studyTarget, sourceLocale));
-  if (!snapshot) return null;
-  if (Date.now() - snapshot.createdAt > maxAgeMs) return null;
-  return snapshot;
+  const key = trainerPracticeSnapshotKey(studyTarget, sourceLocale);
+  const snapshot = snapshotCache.get(key);
+  if (snapshot && Date.now() - snapshot.createdAt <= maxAgeMs) return snapshot;
+  // зачем: snapshotCache живёт только в памяти процесса и всего 2 минуты, поэтому раздел
+  // «Моя практика» открывался с нулями при холодном старте и даже при возврате через
+  // 3 минуты. Дисковый снапшот прошлой сессии поднят бутстрапом — отдаём его для первого
+  // кадра; loadData на фокусе всё равно вызывается с force и догонит свежие цифры.
+  return peekRestoredTrainerPracticeSnapshot(key);
 }
 
 async function loadTrainerPracticeAnalytics(
@@ -74,9 +83,6 @@ export async function prefetchTrainerPracticeSnapshot({
   }
 
   const normalizedSourceLocale = storageSourceLocale(sourceLocale);
-  if (storageStudyTarget(studyTarget) === 'fr') {
-    await ensureFrenchRemotePersonalPractice(normalizedSourceLocale).catch(() => {});
-  }
   const analyticsPromise = loadTrainerPracticeAnalytics(studyTarget, normalizedSourceLocale);
   const snapshotPromise = Promise.all([
     getTrainerDashboard(studyTarget, normalizedSourceLocale, analyticsPromise),
@@ -85,15 +91,20 @@ export async function prefetchTrainerPracticeSnapshot({
     personalPracticeCoachEnabledForTarget(studyTarget)
       ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale: normalizedSourceLocale }).catch(() => null)
       : Promise.resolve(null),
-  ]).then(([dashboard, hasPremium, analytics, resolvedPersonalTrainings]) => {
+    loadActivity365Analytics(studyTarget).then((activity) => activity.days).catch(() => []),
+  ]).then(([dashboard, hasPremium, analytics, resolvedPersonalTrainings, activityDays]) => {
     const snapshot: TrainerPracticeSnapshot = {
       dashboard,
       hasPremium,
       analytics,
       resolvedPersonalTrainings,
+      activityDays,
       createdAt: Date.now(),
     };
     snapshotCache.set(cacheKey, snapshot);
+    // зачем: зеркалим на диск, чтобы СЛЕДУЮЩЕЕ открытие «Моей практики» (в т.ч. первое
+    // после холодного старта) рисовало цифры сразу. Запись фоновая — UI её не ждёт.
+    rememberTrainerPracticeSnapshotOnDisk(cacheKey, snapshot);
     return snapshot;
   }).finally(() => {
     if (inFlightSnapshots.get(cacheKey) === snapshotPromise) {

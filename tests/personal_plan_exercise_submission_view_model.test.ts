@@ -4,6 +4,17 @@ import {
   startPlanExerciseSession,
   type PlanExerciseSession,
 } from '../app/personal_plan_exercise_session';
+// zachem: append/read attempt-events zashishcheny "pokoleniem akkaunta" (gard ot gonki
+// pri smene polzovatelya, throw 'stale_account_generation'). V teste realnogo akkaunta
+// net, poetomu gard sryval vse keysy, hotya logika ispravna. Mokaem pokolenie stabilnym
+// "tekushchim", kak v auth_clean_install_recovery_*.test.ts; sam gard pokryt otdelno.
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ generation: 1, phase: 'active', stableId: 'test_uid' }),
+  isCurrentAccountGeneration: () => true,
+  withAccountTransitionLock: async (fn: () => Promise<unknown>) => fn(),
+}));
+
+
 import { submitAndStorePlanExerciseAnswer } from '../app/personal_plan_exercise_submission_store';
 import { buildPlanExerciseSubmissionViewModel } from '../app/personal_plan_exercise_submission_view_model';
 import type { PlanExerciseBlock } from '../app/personal_plan_engine_contracts';

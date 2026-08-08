@@ -1,4 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// zachem: append/read attempt-events zashishcheny "pokoleniem akkaunta" (gard ot gonki
+// pri smene polzovatelya, throw 'stale_account_generation'). V teste realnogo akkaunta
+// net, poetomu gard sryval vse keysy, hotya logika ispravna. Mokaem pokolenie stabilnym
+// "tekushchim", kak v auth_clean_install_recovery_*.test.ts; sam gard pokryt otdelno.
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ generation: 1, phase: 'active', stableId: 'test_uid' }),
+  isCurrentAccountGeneration: () => true,
+  withAccountTransitionLock: async (fn: () => Promise<unknown>) => fn(),
+}));
+
+
 import { openPersonalPlanTask } from '../app/personal_plan_navigation';
 import {
   getPersonalPlanPhraseRecallItems,
@@ -108,5 +119,39 @@ describe('personal plan phrase-recall live route', () => {
         wrongRu: expect.stringContaining('не сравниваем'),
       }),
     }));
+  });
+
+  it('does not pull a wrong attempt from a different plan day into previous-day recall', async () => {
+    const currentDayBlock: PlanExerciseBlock = {
+      ...wrongBlock,
+      id: 'impuls_d002_missing_word',
+      planId: 'impuls',
+      dayIndex: 2,
+      contentUnitIds: ['impuls_d002_content_unit_phrase_5'],
+    };
+    await appendPersonalPlanAttemptEvent(createPlanAttemptEvent(currentDayBlock, {
+      id: 'wrong_current_day',
+      planInstanceId: 'instance_impuls_1',
+      result: 'wrong',
+      contentUnitId: 'impuls_d002_content_unit_phrase_5',
+      expectedAnswer: 'The reason is clear.',
+      selectedAnswer: 'The reason clear.',
+      occurredAt: '2026-07-30T13:40:00.000Z',
+    }));
+
+    const items = await getPersonalPlanPhraseRecallItems({
+      planInstanceId: 'instance_impuls_1',
+      lessonId: 'impuls_d001_content_unit',
+      contentUnitIds: [
+        'impuls_d001_content_unit_phrase_1',
+        'impuls_d001_content_unit_phrase_2',
+        'impuls_d001_content_unit_phrase_3',
+        'impuls_d001_content_unit_phrase_4',
+      ],
+    });
+
+    expect(items).toHaveLength(4);
+    expect(items.every((item) => item.contentUnitId?.startsWith('impuls_d001_content_unit_phrase_'))).toBe(true);
+    expect(items.map((item) => item.targetText)).not.toContain('The reason is clear.');
   });
 });

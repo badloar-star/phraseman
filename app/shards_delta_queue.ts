@@ -1,93 +1,446 @@
-// ════════════════════════════════════════════════════════════════════════════
-// shards_delta_queue.ts — офлайн-очередь атомарных дельт осколков (K3).
-//
-// Осколки применяются серверным callable shardsApplyDelta (runTransaction +
-// идемпотентность по opId). Если вызов не дошёл (офлайн / таймаут / регион с
-// заблокированным Firebase), дельта уже применена ЛОКАЛЬНО (оптимистично), а
-// серверная сверка кладётся сюда и повторяется при следующем старте / возврате
-// в сеть. opId стабилен между попытками → сервер не удвоит дельту (тот же
-// маркер reward_claims/shard_op_{opId}).
-//
-// Формат записи в AsyncStorage: один JSON-массив под SHARD_DELTA_QUEUE_KEY.
-// Осколков-операций в очереди единицы (только неотправленные) — массив дешевле
-// множества ключей.
-// ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { withStorageLock } from './storage_mutex';
 import { DebugLogger } from './debug-logger';
 
-const SHARD_DELTA_QUEUE_KEY = 'shards_delta_queue_v1';
-// Больше 50 неотправленных дельт — почти наверняка баг/бесконечный офлайн; режем
-// хвост, чтобы очередь не пухла бесконечно. Теряется лишь серверная сверка —
-// локальный баланс уже применён, а loadShardsFromCloud до-сверит при связи.
-const MAX_QUEUE_LEN = 50;
+const LEGACY_SHARD_DELTA_QUEUE_KEY = 'shards_delta_queue_v1';
+const LEGACY_SHARD_DELTA_QUARANTINE_KEY = 'shards_delta_queue_v1_quarantine:ownerless';
+const LEGACY_SHARD_DELTA_RESOLVED_PREFIX = 'shards_delta_queue_v1_resolved:';
+const SHARD_DELTA_QUEUE_V2_PREFIX = 'shards_delta_queue_v2:';
+const SHARD_DELTA_QUEUE_V2_QUARANTINE_PREFIX = 'shards_delta_queue_v2_quarantine:';
+const MAX_PENDING_SHARD_DELTAS_PER_OWNER = 1000;
+const SHARD_OP_ID_RE = /^[A-Za-z0-9_:-]{8,80}$/;
+const SHARD_REASON_MAX_LEN = 64;
 
 export type PendingShardDelta = {
   opId: string;
-  delta: number; // положительная величина
+  ownerStableId: string;
+  delta: number;
   type: 'earn' | 'spend';
   reason: string;
   createdAtMs: number;
+  /**
+   * True only when this row and its optimistic wallet mutation were persisted
+   * in the same AsyncStorage multiSet. Missing/false rows must never be sent.
+   */
+  localApplied: boolean;
 };
 
+export type LegacyShardDeltaRecoveryIdentity = {
+  opId: string;
+  delta: number;
+  type: 'earn' | 'spend';
+  reason: string;
+  createdAtMs?: number;
+};
+
+function cleanOwnerStableId(value: string): string {
+  return String(value ?? '').trim();
+}
+
+function isValidPendingShardDelta(
+  item: unknown,
+  ownerStableId: string,
+): item is PendingShardDelta {
+  if (item == null || typeof item !== 'object') return false;
+  const value = item as Partial<PendingShardDelta>;
+  return value.ownerStableId === ownerStableId
+    && cleanOwnerStableId(ownerStableId) === ownerStableId
+    && ownerStableId.length <= 200
+    && !/[\/\s]/.test(ownerStableId)
+    && typeof value.opId === 'string'
+    && SHARD_OP_ID_RE.test(value.opId)
+    && Number.isSafeInteger(value.delta)
+    && Number(value.delta) > 0
+    && (value.type === 'earn' || value.type === 'spend')
+    && typeof value.reason === 'string'
+    && value.reason.trim() === value.reason
+    && value.reason.length > 0
+    && value.reason.length <= SHARD_REASON_MAX_LEN
+    && Number.isSafeInteger(value.createdAtMs)
+    && Number(value.createdAtMs) > 0
+    && typeof value.localApplied === 'boolean';
+}
+
+export function shardDeltaQueueStorageKey(ownerStableId: string): string {
+  const owner = cleanOwnerStableId(ownerStableId);
+  if (!owner) throw new Error('shard_delta_owner_required');
+  return `${SHARD_DELTA_QUEUE_V2_PREFIX}${encodeURIComponent(owner)}`;
+}
+
 export function newShardOpId(): string {
-  // Совпадает с OP_ID_RE на сервере ([A-Za-z0-9_-]{8,80}); UUID подходит.
   return Crypto.randomUUID();
 }
 
-function parseQueue(raw: string | null): PendingShardDelta[] {
-  if (!raw) return [];
+function parseQueue(
+  raw: string | null,
+  ownerStableId: string,
+): { ok: true; items: PendingShardDelta[] } | { ok: false } {
+  if (!raw) return { ok: true, items: [] };
   try {
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter((item): item is PendingShardDelta =>
-      item != null &&
-      typeof item.opId === 'string' &&
-      Number.isFinite(item.delta) &&
-      (item.type === 'earn' || item.type === 'spend') &&
-      typeof item.reason === 'string',
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return { ok: false };
+    const allValid = parsed.every((item): item is PendingShardDelta =>
+      isValidPendingShardDelta(item, ownerStableId));
+    return allValid
+      ? { ok: true, items: parsed }
+      : { ok: false };
+  } catch {
+    return { ok: false };
+  }
+}
+
+async function readOwnerQueue(ownerStableId: string): Promise<PendingShardDelta[]> {
+  const key = shardDeltaQueueStorageKey(ownerStableId);
+  const raw = await AsyncStorage.getItem(key);
+  const parsed = parseQueue(raw, ownerStableId);
+  if (parsed.ok) return parsed.items;
+  if (raw === null) return [];
+  const quarantineKey = `${SHARD_DELTA_QUEUE_V2_QUARANTINE_PREFIX}${encodeURIComponent(ownerStableId)}`;
+  const existing = await AsyncStorage.getItem(quarantineKey);
+  if (existing !== null && existing !== raw) {
+    throw new Error('shard_delta_corrupt_quarantine_occupied');
+  }
+  if (existing === null) await AsyncStorage.setItem(quarantineKey, raw);
+  await AsyncStorage.removeItem(key);
+  return [];
+}
+
+/**
+ * Пустая очередь не несёт ни одной операции — карантинить её нечего и незачем.
+ * зачем: до этой проверки любой остаток v1-ключа (в т.ч. `[]`) навсегда включал
+ * карантин, а снять его мог только точный recovery-матч, который на пустом
+ * массиве не срабатывает никогда. Юзер получал вечный «Нужна проверка
+ * жемчужин» на выходе из аккаунта и заблокированный заработок осколков.
+ * Дословные байты повреждённого JSON по-прежнему сохраняются: их терять нельзя.
+ */
+function isEmptyShardQueueRaw(raw: string): boolean {
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) && parsed.length === 0;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Ownerless v1 operations cannot be safely attributed after an account switch.
+ * Preserve the raw bytes under a fixed quarantine key before removing v1 so a
+ * later recovery tool can inspect them without ever assigning them to a user.
+ */
+async function quarantineLegacyQueueIfPresent(): Promise<void> {
+  const legacyRaw = await AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUEUE_KEY);
+  if (legacyRaw === null) return;
+  if (isEmptyShardQueueRaw(legacyRaw)) {
+    // Нечего восстанавливать — просто убираем мёртвый ключ миграции.
+    await AsyncStorage.removeItem(LEGACY_SHARD_DELTA_QUEUE_KEY);
+    return;
+  }
+  const existingQuarantine = await AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY);
+  if (existingQuarantine !== null && existingQuarantine !== legacyRaw) {
+    throw new Error('legacy_shard_delta_quarantine_occupied');
+  }
+  if (existingQuarantine === null) {
+    await AsyncStorage.setItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY, legacyRaw);
+  }
+  await AsyncStorage.removeItem(LEGACY_SHARD_DELTA_QUEUE_KEY);
+}
+
+/**
+ * Карантин считается активным только если в нём лежит хотя бы одна операция.
+ * зачем: раньше блокировал сам факт существования ключа, поэтому пустой
+ * карантин (после того как все строки разобрал recovery, или после миграции
+ * пустой очереди) навечно запирал выход из аккаунта. Пустые ключи снимаем
+ * здесь же — тогда состояние самоисцеляется при следующей же проверке,
+ * без кнопок и без обращения в поддержку.
+ */
+async function isActiveQuarantineRaw(key: string, raw: string | null): Promise<boolean> {
+  if (raw === null) return false;
+  if (!isEmptyShardQueueRaw(raw)) return true;
+  await AsyncStorage.removeItem(key);
+  return false;
+}
+
+async function hasQuarantinedQueueUnlocked(ownerStableId: string): Promise<boolean> {
+  const ownerQuarantineKey =
+    `${SHARD_DELTA_QUEUE_V2_QUARANTINE_PREFIX}${encodeURIComponent(ownerStableId)}`;
+  const [ownerQuarantine, legacyQuarantine] = await Promise.all([
+    AsyncStorage.getItem(ownerQuarantineKey),
+    AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY),
+  ]);
+  const [ownerActive, legacyActive] = await Promise.all([
+    isActiveQuarantineRaw(ownerQuarantineKey, ownerQuarantine),
+    isActiveQuarantineRaw(LEGACY_SHARD_DELTA_QUARANTINE_KEY, legacyQuarantine),
+  ]);
+  return ownerActive || legacyActive;
+}
+
+type LegacyQuarantinedShardDelta = Required<LegacyShardDeltaRecoveryIdentity>;
+
+function parseLegacyQuarantinedRows(raw: string | null): LegacyQuarantinedShardDelta[] | null {
+  if (!raw) return null;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return null;
+    const rows = parsed as Partial<LegacyQuarantinedShardDelta>[];
+    if (!rows.every((row) =>
+      typeof row?.opId === 'string'
+      && SHARD_OP_ID_RE.test(row.opId)
+      && Number.isSafeInteger(row.delta)
+      && Number(row.delta) > 0
+      && (row.type === 'earn' || row.type === 'spend')
+      && typeof row.reason === 'string'
+      && row.reason.trim() === row.reason
+      && row.reason.length > 0
+      && row.reason.length <= SHARD_REASON_MAX_LEN
+      && Number.isSafeInteger(row.createdAtMs)
+      && Number(row.createdAtMs) > 0
+    )) return null;
+    return rows as LegacyQuarantinedShardDelta[];
+  } catch {
+    return null;
+  }
+}
+
+function matchesLegacyRecoveryIdentity(
+  row: LegacyQuarantinedShardDelta,
+  expected: LegacyShardDeltaRecoveryIdentity,
+): boolean {
+  return row.opId === expected.opId
+    && row.delta === expected.delta
+    && row.type === expected.type
+    && row.reason === expected.reason;
+}
+
+async function exactLegacyRecoveryRowsUnlocked(
+  ownerStableId: string,
+  expected: LegacyShardDeltaRecoveryIdentity,
+): Promise<
+  | { source: 'active'; rows: LegacyQuarantinedShardDelta[]; matchIndex: number }
+  | { source: 'resolved'; row: LegacyQuarantinedShardDelta }
+  | null
+> {
+  const ownerQuarantineKey =
+    `${SHARD_DELTA_QUEUE_V2_QUARANTINE_PREFIX}${encodeURIComponent(ownerStableId)}`;
+  if (await AsyncStorage.getItem(ownerQuarantineKey) !== null) return null;
+  const activeRaw = await AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY);
+  const rows = parseLegacyQuarantinedRows(activeRaw);
+  if (activeRaw !== null && !rows) return null;
+  if (rows) {
+    const matches = rows
+      .map((row, index) => ({ row, index }))
+      .filter(({ row }) => matchesLegacyRecoveryIdentity(row, expected));
+    if (matches.length === 1) {
+      return { source: 'active', rows, matchIndex: matches[0].index };
+    }
+    if (matches.length > 1) return null;
+  }
+  const resolvedRaw = await AsyncStorage.getItem(
+    `${LEGACY_SHARD_DELTA_RESOLVED_PREFIX}${encodeURIComponent(expected.opId)}`,
+  );
+  const resolvedRows = parseLegacyQuarantinedRows(
+    resolvedRaw ? `[${resolvedRaw}]` : null,
+  );
+  return resolvedRows?.length === 1
+    && matchesLegacyRecoveryIdentity(resolvedRows[0], expected)
+    ? { source: 'resolved', row: resolvedRows[0] }
+    : null;
+}
+
+export async function hasExactLegacyQuarantinedShardDelta(
+  ownerStableId: string,
+  expected: LegacyShardDeltaRecoveryIdentity,
+): Promise<boolean> {
+  const owner = cleanOwnerStableId(ownerStableId);
+  if (!owner) return false;
+  try {
+    return await withStorageLock(async () =>
+      (await exactLegacyRecoveryRowsUnlocked(owner, expected)) !== null);
+  } catch (error) {
+    DebugLogger.error(
+      'shards_delta_queue.ts:hasExactLegacyQuarantinedShardDelta',
+      error,
+      'warning',
     );
-  } catch {
+    return false;
+  }
+}
+
+export async function consumeExactLegacyQuarantinedShardDelta(
+  ownerStableId: string,
+  expected: LegacyShardDeltaRecoveryIdentity,
+): Promise<boolean> {
+  const owner = cleanOwnerStableId(ownerStableId);
+  if (!owner) return false;
+  try {
+    return await withStorageLock(async () => {
+      const recovery = await exactLegacyRecoveryRowsUnlocked(owner, expected);
+      if (!recovery) return false;
+      if (recovery.source === 'resolved') return true;
+      const matched = recovery.rows[recovery.matchIndex];
+      const remaining = recovery.rows.filter((_, index) => index !== recovery.matchIndex);
+      const resolvedKey =
+        `${LEGACY_SHARD_DELTA_RESOLVED_PREFIX}${encodeURIComponent(matched.opId)}`;
+      await AsyncStorage.setItem(resolvedKey, JSON.stringify(matched));
+      if (remaining.length === 0) {
+        await AsyncStorage.removeItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY);
+      } else {
+        await AsyncStorage.setItem(
+          LEGACY_SHARD_DELTA_QUARANTINE_KEY,
+          JSON.stringify(remaining),
+        );
+      }
+      return true;
+    });
+  } catch (error) {
+    DebugLogger.error(
+      'shards_delta_queue.ts:consumeExactLegacyQuarantinedShardDelta',
+      error,
+      'warning',
+    );
+    return false;
+  }
+}
+
+export async function readShardDeltaQueue(ownerStableId: string): Promise<PendingShardDelta[]> {
+  const owner = cleanOwnerStableId(ownerStableId);
+  if (!owner) return [];
+  try {
+    return await withStorageLock(async () => {
+      await quarantineLegacyQueueIfPresent();
+      return readOwnerQueue(owner);
+    });
+  } catch (error) {
+    DebugLogger.error('shards_delta_queue.ts:readShardDeltaQueue', error, 'warning');
     return [];
   }
 }
 
-export async function readShardDeltaQueue(): Promise<PendingShardDelta[]> {
+export async function hasQuarantinedShardDeltaQueue(ownerStableId: string): Promise<boolean> {
+  const owner = cleanOwnerStableId(ownerStableId);
+  if (!owner) return true;
   try {
-    return parseQueue(await AsyncStorage.getItem(SHARD_DELTA_QUEUE_KEY));
-  } catch {
-    return [];
+    return await withStorageLock(async () => {
+      await quarantineLegacyQueueIfPresent();
+      return hasQuarantinedQueueUnlocked(owner);
+    });
+  } catch (error) {
+    DebugLogger.error('shards_delta_queue.ts:hasQuarantinedShardDeltaQueue', error, 'warning');
+    return true;
   }
 }
 
-/** Поставить неотправленную дельту в очередь для последующей серверной сверки. */
-export async function enqueueShardDelta(entry: PendingShardDelta): Promise<void> {
+export async function enqueueShardDelta(entry: PendingShardDelta): Promise<boolean> {
+  const owner = cleanOwnerStableId(entry.ownerStableId);
+  if (!owner || !isValidPendingShardDelta(entry, owner)) return false;
   try {
-    await withStorageLock(async () => {
-      const queue = parseQueue(await AsyncStorage.getItem(SHARD_DELTA_QUEUE_KEY));
-      if (queue.some((q) => q.opId === entry.opId)) return; // идемпотентно
-      const next = [...queue, entry];
-      const trimmed = next.length > MAX_QUEUE_LEN ? next.slice(next.length - MAX_QUEUE_LEN) : next;
-      await AsyncStorage.setItem(SHARD_DELTA_QUEUE_KEY, JSON.stringify(trimmed));
+    return await withStorageLock(async () => {
+      await quarantineLegacyQueueIfPresent();
+      if (await hasQuarantinedQueueUnlocked(owner)) return false;
+      const key = shardDeltaQueueStorageKey(owner);
+      const queue = await readOwnerQueue(owner);
+      if (await hasQuarantinedQueueUnlocked(owner)) return false;
+      if (queue.some((item) => item.opId === entry.opId)) return true;
+      if (queue.length >= MAX_PENDING_SHARD_DELTAS_PER_OWNER) return false;
+      await AsyncStorage.setItem(key, JSON.stringify([...queue, entry]));
+      return true;
     });
   } catch (error) {
     DebugLogger.error('shards_delta_queue.ts:enqueueShardDelta', error, 'warning');
+    return false;
   }
 }
 
-/** Убрать успешно подтверждённые серверные дельты из очереди. */
-export async function removeShardDeltas(opIds: readonly string[]): Promise<void> {
-  if (opIds.length === 0) return;
+/**
+ * Persists a replayable queue row and its wallet/ledger mutation in one native
+ * storage batch. A queue row must not become replayable before the matching
+ * local balance is durable.
+ */
+export async function enqueueAppliedShardDeltaWithStorage<T>(
+  entry: PendingShardDelta,
+  buildWalletUpdate: () => Promise<
+    | {
+      commit: true;
+      value: T;
+      walletPairs: readonly (readonly [string, string])[];
+    }
+    | { commit: false; value: T }
+  >,
+): Promise<
+  | { ok: true; committed: boolean; value: T }
+  | { ok: true; duplicateExact: true }
+  | { ok: false }
+> {
+  const owner = cleanOwnerStableId(entry.ownerStableId);
+  if (
+    !owner
+    || entry.localApplied !== true
+    || !isValidPendingShardDelta(entry, owner)
+  ) return { ok: false };
+  try {
+    return await withStorageLock(async () => {
+      await quarantineLegacyQueueIfPresent();
+      if (await hasQuarantinedQueueUnlocked(owner)) return { ok: false as const };
+      const key = shardDeltaQueueStorageKey(owner);
+      const queue = await readOwnerQueue(owner);
+      if (await hasQuarantinedQueueUnlocked(owner)) return { ok: false as const };
+      const existing = queue.find((item) => item.opId === entry.opId);
+      if (existing) {
+        const exact = existing.ownerStableId === entry.ownerStableId
+          && existing.delta === entry.delta
+          && existing.type === entry.type
+          && existing.reason === entry.reason
+          && existing.localApplied === entry.localApplied;
+        return exact
+          ? { ok: true as const, duplicateExact: true as const }
+          : { ok: false as const };
+      }
+      if (queue.length >= MAX_PENDING_SHARD_DELTAS_PER_OWNER) return { ok: false as const };
+      const update = await buildWalletUpdate();
+      if (!update.commit) {
+        return { ok: true as const, committed: false, value: update.value };
+      }
+      if (update.walletPairs.length === 0) return { ok: false as const };
+      await AsyncStorage.multiSet([
+        [key, JSON.stringify([...queue, entry])],
+        ...update.walletPairs,
+      ]);
+      return { ok: true as const, committed: true, value: update.value };
+    });
+  } catch (error) {
+    DebugLogger.error(
+      'shards_delta_queue.ts:enqueueAppliedShardDeltaWithStorage',
+      error,
+      'warning',
+    );
+    return { ok: false };
+  }
+}
+
+export async function removeShardDeltas(
+  ownerStableId: string,
+  opIds: readonly string[],
+): Promise<boolean> {
+  const owner = cleanOwnerStableId(ownerStableId);
+  if (!owner) return false;
+  if (opIds.length === 0) return true;
   const drop = new Set(opIds);
   try {
-    await withStorageLock(async () => {
-      const queue = parseQueue(await AsyncStorage.getItem(SHARD_DELTA_QUEUE_KEY));
-      const next = queue.filter((q) => !drop.has(q.opId));
-      if (next.length === queue.length) return;
-      await AsyncStorage.setItem(SHARD_DELTA_QUEUE_KEY, JSON.stringify(next));
+    return await withStorageLock(async () => {
+      await quarantineLegacyQueueIfPresent();
+      if (await hasQuarantinedQueueUnlocked(owner)) return false;
+      const key = shardDeltaQueueStorageKey(owner);
+      const queue = await readOwnerQueue(owner);
+      if (await hasQuarantinedQueueUnlocked(owner)) return false;
+      const next = queue.filter((item) => !drop.has(item.opId));
+      if (next.length === queue.length) return true;
+      await AsyncStorage.setItem(key, JSON.stringify(next));
+      return true;
     });
   } catch (error) {
     DebugLogger.error('shards_delta_queue.ts:removeShardDeltas', error, 'warning');
+    return false;
   }
 }
+
+export default function __RouteShim() { return null; }

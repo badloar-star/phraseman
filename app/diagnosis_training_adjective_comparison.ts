@@ -22,7 +22,7 @@ const CONTRAST = ['adjective+er', 'more + adjective', 'than', 'better', 'worse',
 
 const MODEL = tri(
   'В сравнении английский выбирает готовый кусок. Короткие слова часто получают -er: cheap -> cheaper. Длинные часто идут с more: more expensive. После прямого сравнения обычно идет than. Для "такой же ... как" нужна рамка as ... as.',
-  'У порівнянні англійська обирає готовий шматок. Короткі слова часто отримують -er: cheap -> cheaper. Довгі часто йдуть із more: more expensive. Після прямого порівняння зазвичай іде than. Для "такий самий ... як" потрібна рамка as ... as.',
+  'У порівнянні англійська обирає готовий зворот. Короткі слова часто отримують -er: cheap -> cheaper. Довгі часто йдуть із more: more expensive. Після прямого порівняння зазвичай іде than. Для "такий самий ... як" потрібна рамка as ... as.',
   'Comparison uses ready chunks: cheaper, more expensive, better than, as good as.',
   {
     'pt-BR': 'A comparação em inglês usa blocos prontos: cheaper, more expensive, better than, as good as.',
@@ -317,7 +317,7 @@ function comparisonStep(input: {
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери нормальный кусок сравнения.',
-      'Обери нормальний шматок порівняння.',
+      'Обери нормальний зворот порівняння.',
       'Choose the comparison chunk.',
       {
         'pt-BR': 'Escolha o bloco comparativo correto.',
@@ -398,7 +398,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
   ),
   diagnosisText: tri(
     'Ошибка обычно не в смысле. Ты понимаешь "дешевле", "дороже", "лучше", "такой же хороший". Ломается английский кусок: more cheaper, expensiver, gooder, better / than вместо as good as.',
-    'Помилка зазвичай не в змісті. Ти розумієш "дешевше", "дорожче", "краще", "такий самий хороший". Ламається англійський шматок: more cheaper, expensiver, gooder, better / than замість as good as.',
+    'Помилка зазвичай не в змісті. Ти розумієш "дешевше", "дорожче", "краще", "такий самий хороший". Ламається англійський зворот: more cheaper, expensiver, gooder, better / than замість as good as.',
     'The meaning is usually clear, but the comparison chunk breaks.',
     {
       'pt-BR': 'O sentido geralmente está claro, mas o bloco comparativo quebra: more cheaper, expensiver, gooder ou better / than no lugar de as good as.',
@@ -624,7 +624,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       type: 'diagnosis',
       text: tri(
         'Похоже, смысл сравнения ты видишь, но английский кусок собирается не тем способом: more cheaper, expensiver, gooder.',
-        'Схоже, зміст порівняння ти бачиш, але англійський шматок збирається не тим способом: more cheaper, expensiver, gooder.',
+        'Схоже, зміст порівняння ти бачиш, але англійський зворот збирається не тим способом: more cheaper, expensiver, gooder.',
         'The comparison meaning is clear, but the chunk is broken.',
         {
           'pt-BR': 'O sentido da comparação está claro, mas o bloco em inglês é montado do jeito errado: more cheaper, expensiver, gooder.',
@@ -680,7 +680,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       correctAnswer: 'cheaper',
       correctFeedback: tri('Да. Cheap становится cheaper.', 'Так. Cheap стає cheaper.', 'Yes. Cheap becomes cheaper.'),
       wrong: {
-        cheap: tri('cheap не показывает сравнение. Нужен кусок cheaper than.', 'cheap не показує порівняння. Потрібен шматок cheaper than.', 'Use cheaper than.'),
+        cheap: tri('cheap не показывает сравнение. Нужен кусок cheaper than.', 'cheap не показує порівняння. Потрібен зворот cheaper than.', 'Use cheaper than.'),
         'more cheap': tri('Для cheap нормальнее cheaper, не more cheap.', 'Для cheap нормальніше cheaper, не more cheap.', 'Use cheaper.'),
         'more cheaper': tri('more cheaper смешивает more и -er. Нормально: cheaper.', 'more cheaper змішує more і -er. Нормально: cheaper.', 'Use cheaper.'),
       },
@@ -719,7 +719,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Expensive длинное, поэтому more expensive.', 'Так. Expensive довге, тому more expensive.', 'Yes. Use more expensive.'),
       wrong: {
         expensiver: tri('expensiver звучит как попытка поставить -er на длинное слово. Нормально: more expensive.', 'expensiver звучить як спроба поставити -er на довге слово. Нормально: more expensive.', 'Use more expensive.'),
-        expensive: tri('expensive само по себе не показывает "дороже". Нужен кусок more expensive.', 'expensive саме по собі не показує "дорожче". Потрібен шматок more expensive.', 'Use more expensive.'),
+        expensive: tri('expensive само по себе не показывает "дороже". Нужен кусок more expensive.', 'expensive саме по собі не показує "дорожче". Потрібен зворот more expensive.', 'Use more expensive.'),
         'more expensiver': tri('more expensiver смешивает more и -er. Нормально: more expensive.', 'more expensiver змішує more і -er. Нормально: more expensive.', 'Use more expensive.'),
       },
       clue: tri('Expensive длинное: more expensive.', 'Expensive довге: more expensive.', 'Expensive -> more expensive.'),
@@ -775,7 +775,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       correctAnswer: 'easier',
       correctFeedback: tri('Да. Easy меняет y на i: easier.', 'Так. Easy змінює y на i: easier.', 'Yes. Easy becomes easier.'),
       wrong: {
-        easy: tri('easy не показывает сравнение. Нужен кусок easier than.', 'easy не показує порівняння. Потрібен шматок easier than.', 'Use easier.'),
+        easy: tri('easy не показывает сравнение. Нужен кусок easier than.', 'easy не показує порівняння. Потрібен зворот easier than.', 'Use easier.'),
         easyer: tri('easyer написано неправильно. Easy меняет y на i: easier.', 'easyer написано неправильно. Easy змінює y на i: easier.', 'Use easier.'),
         'more easier': tri('more easier смешивает more и -er. Нормально: easier.', 'more easier змішує more і -er. Нормально: easier.', 'Use easier.'),
       },
@@ -815,7 +815,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       wrong: {
         usefuler: tri('usefuler звучит неестественно. Нормально: more useful.', 'usefuler звучить неприродно. Нормально: more useful.', 'Use more useful.'),
         'more usefuler': tri('more usefuler смешивает more и -er. Нормально: more useful.', 'more usefuler змішує more і -er. Нормально: more useful.', 'Use more useful.'),
-        useful: tri('useful само по себе не показывает "полезнее". Нужен кусок more useful.', 'useful саме по собі не показує "корисніший". Потрібен шматок more useful.', 'Use more useful.'),
+        useful: tri('useful само по себе не показывает "полезнее". Нужен кусок more useful.', 'useful саме по собі не показує "корисніший". Потрібен зворот more useful.', 'Use more useful.'),
       },
       clue: tri('Useful длиннее: more useful.', 'Useful довше: more useful.', 'Useful -> more useful.'),
       finalHint: tri('This tool is more useful than the old one.', 'This tool is more useful than the old one.', 'This tool is more useful than the old one.'),
@@ -981,10 +981,10 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показать, какой кусок сравнения нужен.', 'Звичайне пояснення: показати, який шматок порівняння потрібен.', 'Show the comparison chunk.', { 'pt-BR': 'Explicação normal: mostrar qual bloco comparativo é necessário.', vi: 'Giải thích bình thường: cho biết cần cụm so sánh nào.', id: 'Penjelasan biasa: tunjukkan potongan perbandingan yang diperlukan.', tr: 'Normal açıklama: hangi karşılaştırma parçasının gerektiğini göster.', pl: 'Zwykłe wyjaśnienie: pokaż, jaki kawałek porównania jest potrzebny.' }),
+    depth1: tri('Обычное объяснение: показать, какой кусок сравнения нужен.', 'Звичайне пояснення: показати, який зворот порівняння потрібен.', 'Show the comparison chunk.', { 'pt-BR': 'Explicação normal: mostrar qual bloco comparativo é necessário.', vi: 'Giải thích bình thường: cho biết cần cụm so sánh nào.', id: 'Penjelasan biasa: tunjukkan potongan perbandingan yang diperlukan.', tr: 'Normal açıklama: hangi karşılaştırma parçasının gerektiğini göster.', pl: 'Zwykłe wyjaśnienie: pokaż, jaki kawałek porównania jest potrzebny.' }),
     depth2: tri('Проще: выбери тип сравнения - короткая форма, длинная форма, исключение или "такой же как".', 'Простiше: обери тип порiвняння - коротка форма, довга форма, виняток або "такий самий як".', 'Choose between -er, more, better/worse, and as ... as.', { 'pt-BR': 'Mais simples: escolha o tipo de comparação: forma curta, forma longa, exceção ou "tão ... quanto".', vi: 'Đơn giản hơn: chọn loại so sánh: dạng ngắn, dạng dài, ngoại lệ hoặc "cũng ... như".', id: 'Lebih sederhana: pilih jenis perbandingan: bentuk pendek, bentuk panjang, pengecualian, atau "sama ... seperti".', tr: 'Daha basit: karşılaştırma türünü seç: kısa biçim, uzun biçim, istisna ya da "aynı ... gibi".', pl: 'Prościej: wybierz typ porównania: krótka forma, długa forma, wyjątek albo "tak samo ... jak".' }),
     depth3: tri('Еще проще: короткое слово часто меняется само, длинному часто нужен отдельный усилитель, а равное сравнение идет рамкой.', 'Ще простiше: коротке слово часто змiнюється саме, довгому часто потрiбен окремий пiдсилювач, а рiвне порiвняння йде рамкою.', 'Compare the key chunks.', { 'pt-BR': 'Ainda mais simples: palavra curta muda sozinha, palavra longa costuma precisar de more, e comparação igual usa uma moldura.', vi: 'Đơn giản hơn nữa: từ ngắn thường tự đổi, từ dài thường cần more, còn so sánh ngang bằng dùng một khung.', id: 'Lebih sederhana lagi: kata pendek sering berubah sendiri, kata panjang sering perlu more, dan perbandingan setara memakai pola bingkai.', tr: 'Daha da basit: kısa kelime çoğu zaman kendisi değişir, uzun kelimeye çoğu zaman more gerekir, eşit karşılaştırma ise kalıpla kurulur.', pl: 'Jeszcze prościej: krótkie słowo często zmienia się samo, długie często potrzebuje more, a porównanie równości idzie ramą.' }),
-    depth4: tri('Почти подсказка: показать правильный готовый кусок.', 'Майже підказка: показати правильний готовий шматок.', 'Point to the correct chunk.', { 'pt-BR': 'Quase uma dica: mostrar o bloco pronto correto.', vi: 'Gần như gợi ý: chỉ cụm đúng đã ghép sẵn.', id: 'Hampir petunjuk: tunjukkan potongan siap pakai yang benar.', tr: 'Neredeyse ipucu: doğru hazır parçayı göster.', pl: 'Prawie podpowiedź: pokaż poprawny gotowy kawałek.' }),
+    depth4: tri('Почти подсказка: показать правильный готовый кусок.', 'Майже підказка: показати правильний готовий зворот.', 'Point to the correct chunk.', { 'pt-BR': 'Quase uma dica: mostrar o bloco pronto correto.', vi: 'Gần như gợi ý: chỉ cụm đúng đã ghép sẵn.', id: 'Hampir petunjuk: tunjukkan potongan siap pakai yang benar.', tr: 'Neredeyse ipucu: doğru hazır parçayı göster.', pl: 'Prawie podpowiedź: pokaż poprawny gotowy kawałek.' }),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {

@@ -1,0 +1,9 @@
+{
+  "name": "league-hub-redesign",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Phraseman League hub redesign mockups (static preview)",
+  "scripts": {
+    "dev": "node server.mjs"
+  }
+}

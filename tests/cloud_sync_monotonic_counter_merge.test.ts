@@ -1,4 +1,8 @@
 import { __cloudSyncTestHooks, MONOTONIC_COUNTER_RESTORE_KEYS } from '../app/cloud_sync';
+import {
+  legacyFreeLessonCapKey,
+  legacyFreeLessonMigrationKey,
+} from '../app/target_storage_keys';
 
 const { mergeLessonRestoreValue, mergeCurrentWeekProgressRestoreValue } = __cloudSyncTestHooks;
 
@@ -37,6 +41,20 @@ describe('cloud_sync monotonic counter merge (#10 multi-device)', () => {
     // streak_count is not in the allowlist → falls through to default (cloud wins),
     // because a streak can legitimately drop and must not be maxed.
     expect(mergeLessonRestoreValue('streak_count', '3', '40')).toBe('3');
+  });
+  it('max-merges and clamps the immutable legacy lesson cap', () => {
+    const capKey = legacyFreeLessonCapKey('en');
+    expect(mergeLessonRestoreValue(capKey, '5', '7')).toBe('7');
+    expect(mergeLessonRestoreValue(capKey, '8', '4')).toBe('8');
+    expect(mergeLessonRestoreValue(capKey, '99', '2')).toBe('8');
+  });
+
+  it('keeps a completed legacy lesson migration marker sticky', () => {
+    expect(mergeLessonRestoreValue(
+      legacyFreeLessonMigrationKey('en'),
+      'complete',
+      null,
+    )).toBe('complete');
   });
 });
 

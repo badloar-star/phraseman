@@ -57,11 +57,18 @@ export const DEV_MODE = true;
 export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
 export const TESTFLIGHT_DEV_TOOLS = process.env.EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS === '1';
 
+/**
+ * Real App Attest / Play Integrity mode is independent from store UI/revenue gates.
+ * Store-installed QA builds can keep dev tools while still requiring real attestation.
+ */
+export const APP_CHECK_REAL_ATTESTATION_ENABLED =
+  IS_STORE_RELEASE || process.env.EXPO_PUBLIC_APP_CHECK_REAL_ATTESTATION === '1';
+
 /** true только в реальном dev-рантайме Metro (не preview, не стор). */
 const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 
-// true  = премиум включён для всех по умолчанию (тестовая сборка для тестеров)
-// false = обычный флоу RevenueCat
+// true  = явный локальный UI-preview Premium (серверные AI-функции его не принимают)
+// false = обычный флоу RevenueCat, в том числе в стандартной dev-сборке
 //
 // ⚠️ ПРЕДОХРАНИТЕЛЬ: даже если кто-то впишет здесь «голый» true, итог
 // принудительно гасится в стор-сборке (&& !IS_STORE_RELEASE). Поэтому Premium
@@ -69,7 +76,7 @@ const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 // История: 1d659478 (08.06) случайно увёз сюда `= true` («TEMP dev-check») в
 // большом cleanup-коммите. Тест tests/force_premium_prod_guard.test.ts держит
 // этот инвариант. Для локального теста премиума меняй ТОЛЬКО левый операнд.
-const FORCE_PREMIUM_DEV_INTENT = true;
+const FORCE_PREMIUM_DEV_INTENT = false;
 export const FORCE_PREMIUM = FORCE_PREMIUM_DEV_INTENT && IS_DEV_RUNTIME && !IS_STORE_RELEASE;
 
 // ── Синхронизация прогресса с Firebase ───────────────────────────────────────
@@ -92,17 +99,6 @@ export const ENABLE_DEV_TOOLS =
   ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE || TESTFLIGHT_DEV_TOOLS) && !IS_STORE_RELEASE;
 
 /**
- * Ставка осколками на следующий рейтинг-матч арены (очередь «Найти матч»).
- * Включено во всех сборках, включая стор.
- */
-export const ENABLE_ARENA_RANKED_WAGER = true;
-
-/**
- * One-shot Arena matchmaking control deadlines with foreground reconciliation.
- */
-export const ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK = true;
-
-/**
  * Карточка профиля — лестница из 5 уровней за осколки (публичный статус: бейдж уровня
  * у имени в списках, прокачанная карточка в профиле, новые блоки статистики по уровням).
  *
@@ -111,12 +107,14 @@ export const ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK = true;
  * живой эффект и свой новый блок информации (см. app/profile_card_system.ts).
  *
  * Выключать — только осознанным решением владельца: менять на false вместе с
- * tests/profile_card_upgrade_dev_gate.test.ts (контракт фиксирует `= true`).
+ * tests/profile_card_upgrade_dev_gate.test.ts (контракт фиксирует `= true`). Улучшение
+ * выполняется внутри PlayerProfileModal; отдельного маршрута для карточки больше нет.
  */
 export const ENABLE_PROFILE_CARD = true;
 
 /**
- * Мгновенный «премиум» / dev-осколки без Google Play (см. premium_modal, shards_shop).
+ * Dev-preview paywall / dev-осколки без Google Play (см. paywall_purchase, shards_shop).
+ * Для Premium этот флаг только отключает реальный магазин: entitlement он не выдаёт.
  * false в EAS production при EXPO_PUBLIC_STORE_RELEASE=1, даже если в коде DEV_MODE=true.
  */
 export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
@@ -164,6 +162,24 @@ export const ENABLE_SCREEN_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_TRANSITI
 export const SCREEN_FADE_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_FADE !== '0';
 
 /**
+ * «Шторки разделов» (стандарт владельца, ориентир — Bevel): разделы настроек и
+ * инфо-экраны открываются как модальная страница с выездом снизу и закрываются
+ * вниз (iOS — нативный pageSheet со скруглёнными углами и свайпом-вниз).
+ *
+ * Это анимация MODAL-презентации — тот же класс, что годами в проде у пейволов
+ * (components/paywall/paywallShared.tsx: presentation:'modal' +
+ * slide_from_bottom на ОБЕИХ платформах), а НЕ card-push slide, ронявший
+ * Android/Fabric (см. ENABLE_SCREEN_TRANSITIONS выше). Опции собраны в
+ * app/section_sheet_navigation.ts и закреплены контрактом
+ * tests/navigation_back_underlay_contract.test.ts.
+ *
+ * Kill-switch: EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS=0 → выезд отключается
+ * (fade на iOS / мгновенно на Android), сама modal-презентация сохраняется —
+ * это поведение manage_subscription до редизайна, тоже продовое.
+ */
+export const SECTION_SHEET_TRANSITIONS = process.env.EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS !== '0';
+
+/**
  * Spanish interface/explanation locale.
  *
  * This is a source/UI language for learning English. It is intentionally
@@ -193,11 +209,9 @@ export const KNOWLY_LEGAL_PRIVACY_URL = 'https://knowlyapps.com/legal/privacy/';
 export const KNOWLY_LEGAL_TERMS_URL = 'https://knowlyapps.com/legal/terms/';
 
 // ── Update check ──────────────────────────────────────────────────────────────
-// version.json: { "versionCode": N, "message": "…" }. Пустая строка = проверка отключена.
-// ОТКЛЮЧЕНО: модал «Это Компас. У меня кое-что новое» (UpdateModal) больше не показываем.
-// Пустой URL → checkForUpdate() сразу возвращает null, модал не рендерится (см. app/update_check.ts).
-// Чтобы вернуть проверку — впиши URL обратно и подними versionCode в репо phraseman-version.
-export const UPDATE_CHECK_URL = '';
+// version.json: { "versionCode": N, "message": "…" }.
+// This remote manifest lets already installed builds discover a newer store release.
+export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/phraseman-version/main/version.json';
 
 // ── Разовый бонус осколков за волну релиза — ОТКЛЮЧЁН (0 = никогда не показывать).
 // android.versionCode / ios.buildNumber для справки синхронизировали с волнами, когда фича была активна.
@@ -207,29 +221,6 @@ export const UPDATE_CHECK_URL = '';
 // или не покажется. Сначала верни хост, потом поднимай версию (аудит #11).
 export const RELEASE_WAVE_BONUS_VERSION = 0;
 export const RELEASE_WAVE_BONUS_SHARDS = 0;
-
-/** Окно принятия матча в лобби / тосте «соперник найден» (мс). Должно совпадать с Cloud Function `acceptDeadlineAt`. */
-export const ARENA_LOBBY_ACCEPT_MS = 15_000;
-// ── Арена: бот-фолбэк при пустой очереди (ранний этап, мало DAU) ─────────────
-// Если за окно [BOT_FALLBACK_MIN_MS, BOT_FALLBACK_MAX_MS] не нашёлся реальный
-// соперник — клиент создаёт локальную бот-сессию (sessionId="bot_..."). Бот
-// идёт в рейтинг как обычный матч (см. arena_results.tsx isMockSession ветка).
-// Серверные коллекции (arena_sessions, match_history) для бот-матчей не
-// создаются — только клиентский write в arena_profiles.
-// Живой соперник из CF всегда перебивает по подписке; пока в очереди есть другие
-// игроки — клиент может отложить бота (см. MatchmakingContext).
-// Чтобы выключить: BOT_FALLBACK_ENABLED = false (ребилд не нужен в дев-сборке,
-// но в production — релиз).
-export const BOT_FALLBACK_ENABLED = true;
-/** Случайная задержка до бота при «Найти матч» (не «Ещё раз»): в первые ~40 с; живой соперник и отложка при других в очереди — как раньше. */
-export const BOT_FALLBACK_MIN_MS = 8_000;
-export const BOT_FALLBACK_MAX_MS = 40_000;
-/**
- * «Ещё раз»: случайная задержка до бота от min до max (мс, включительно),
- * внутри этого окна живой соперник всё ещё может перебить. Не «ровно через 10 с».
- */
-export const ARENA_PLAY_AGAIN_BOT_MIN_MS = 1;
-export const ARENA_PLAY_AGAIN_BOT_MAX_MS = 10_000;
 
 // Минимальный балл для разблокировки следующего урока
 export const MIN_LESSON_SCORE = 4.5;

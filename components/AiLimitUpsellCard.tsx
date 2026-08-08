@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -16,6 +16,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
+import TonalSurface from './TonalSurface';
 
 type AiLimitUpsellCardProps = {
   lang: Lang;
@@ -128,9 +129,8 @@ export default function AiLimitUpsellCard({
     <Animated.View
       testID={testID}
       style={[
-        styles.card,
+        styles.animatedShell,
         {
-          backgroundColor: t.bgCard,
           borderColor: t.accent + '66',
           opacity,
           shadowColor: t.accent,
@@ -138,57 +138,61 @@ export default function AiLimitUpsellCard({
         },
       ]}
     >
-      <LinearGradient
-        colors={[t.accent, '#FFD66B', '#79D6FF']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={styles.topRule}
-        pointerEvents="none"
-      />
+      <TonalSurface radius={10} tone="raised" style={styles.card}>
+        <LinearGradient
+          colors={[t.accent, '#FFD66B', '#79D6FF']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.topRule}
+          pointerEvents="none"
+        />
 
-      <View style={styles.row}>
-        <View style={[styles.iconWrap, { backgroundColor: t.textPrimary }]}>
-          <Ionicons name="flash" size={18} color={t.bgCard} />
+        <View style={styles.row}>
+          <View style={[styles.iconWrap, { backgroundColor: t.textPrimary }]}>
+            <Ionicons name="flash" size={18} color={t.bgCard} />
+          </View>
+          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
+            {title}
+          </Text>
         </View>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
-          {title}
-        </Text>
-      </View>
 
-      <Pressable
-        testID={`${testID}-full-access-button`}
-        accessibilityRole="button"
-        accessibilityLabel={ctaLabel}
-        onPress={() => {
-          hapticTap();
-          router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as never);
-        }}
-        style={({ pressed }) => [
-          styles.cta,
-          { backgroundColor: t.accent },
-          pressed && styles.pressed,
-        ]}
-      >
-        <Ionicons name="lock-open-outline" size={17} color={t.correctText} />
-        <Text style={[styles.ctaLabel, { color: t.correctText, fontSize: f.label }]} numberOfLines={1}>
-          {ctaLabel}
-        </Text>
-      </Pressable>
+        <Pressable
+          testID={`${testID}-full-access-button`}
+          accessibilityRole="button"
+          accessibilityLabel={ctaLabel}
+          onPress={() => {
+            hapticTap();
+            router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as never);
+          }}
+          style={({ pressed }) => [
+            styles.cta,
+            { backgroundColor: t.accent },
+            pressed && styles.pressed,
+          ]}
+        >
+          <Ionicons name="lock-open-outline" size={17} color={t.correctText} />
+          <Text style={[styles.ctaLabel, { color: t.correctText, fontSize: f.label }]} numberOfLines={1}>
+            {ctaLabel}
+          </Text>
+        </Pressable>
+      </TonalSurface>
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: 10,
+  animatedShell: {
     borderWidth: 0,
     elevation: 6,
-    gap: 12,
-    overflow: 'hidden',
-    padding: 12,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.16,
     shadowRadius: 18,
+  },
+  card: {
+    borderRadius: 10,
+    gap: 12,
+    overflow: 'hidden',
+    padding: 12,
   },
   topRule: {
     height: 4,

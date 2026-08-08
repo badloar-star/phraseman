@@ -211,6 +211,44 @@ const canUseNotifications = async (requestIfNeeded: boolean): Promise<boolean> =
   }
 };
 
+/** Low-level bridge used only after the YouTube screen has completed its explicit opt-in flow. */
+export async function scheduleYoutubePremiereLocalNotification(input: {
+  type: 'youtube_premiere';
+  videoId: string;
+  channelId: string;
+  title: string;
+  triggerAtMs: number;
+}): Promise<string | null> {
+  try {
+    const N = await getNotifications();
+    if (!N || !Number.isFinite(input.triggerAtMs) || input.triggerAtMs <= Date.now()) return null;
+    return await N.scheduleNotificationAsync({
+      content: {
+        title: 'YouTube Premiere',
+        body: input.title,
+        sound: false,
+        data: {
+          type: 'youtube_premiere' as LocalNotificationType,
+          videoId: input.videoId,
+          channelId: input.channelId,
+        },
+      },
+      trigger: withAndroidChannel({ type: 'date' as const, date: new Date(input.triggerAtMs) }),
+    });
+  } catch {
+    return null;
+  }
+}
+
+export async function cancelYoutubePremiereLocalNotification(notificationId: string): Promise<void> {
+  try {
+    const N = await getNotifications();
+    if (N && notificationId.trim()) await N.cancelScheduledNotificationAsync(notificationId);
+  } catch {
+    // A stale native id is already effectively cancelled.
+  }
+}
+
 // ── Мотивационные сообщения ──────────────────────────────────────────────────
 const MESSAGES_RU = [
   { title: '🔥 Серия ждёт тебя!',          body: '5 минут в день — и серия растёт' },
@@ -361,7 +399,8 @@ type LocalNotificationType =
   | 'upsell_d7'
   | 'upsell_d14'
   | 'paywall_abandoned'
-  | 'gift_expiring';
+  | 'gift_expiring'
+  | 'youtube_premiere';
 
 const IMMEDIATE_NOTIFICATION_MIN_GAP_MS = 45 * 60 * 1000;
 const IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS: Partial<Record<LocalNotificationType, number>> = {
@@ -2545,6 +2584,14 @@ export const setupNotificationTapHandler = (
       const data = response?.notification?.request?.content?.data;
       if (!data?.type) return;
       switch (data.type) {
+        case 'youtube_premiere':
+          scheduleNav(() => {
+            router.push({
+              pathname: '/lingman_videos',
+              params: { videoId: String(data.videoId), channelId: String(data.channelId) },
+            } as any);
+          });
+          break;
         case 'arena_match':
           // Compatibility for notifications already queued before Arena was retired.
           navTabHome();

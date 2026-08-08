@@ -34,7 +34,8 @@ describe('local level Spin runtime', () => {
   test('mints the local credit at the device XP level crossing before background sync', () => {
     const xp = readFileSync(join(process.cwd(), 'app', 'xp_manager.ts'), 'utf8');
     expect(xp).toContain("import { enqueueLevelSpinLevelUps } from './level_spin_level_up_queue'");
-    expect(xp).toContain('await enqueueLevelSpinLevelUps(prevLvl, newLvl);');
+    expect(xp).toContain('enqueueLevelSpinLevelUps(prevLvl, newLvl, options.accountTransitionLockLease)');
+    expect(xp).toContain(': enqueueLevelSpinLevelUps(prevLvl, newLvl)');
   });
 
   test('keeps every account and every claim commit isolated and recoverable', () => {
@@ -45,7 +46,7 @@ describe('local level Spin runtime', () => {
     expect(source).toContain('activeReceipt');
     expect(source).toContain('AsyncStorage.multiSet');
     expect(queue).toContain('pendingLevelSpinQueueKey(owner)');
-    expect(queue).toContain('grantLocalLevelSpinsForAccount(crossed, token)');
+    expect(queue).toContain('grantLocalLevelSpinsForAccount(crossed, token, accountTransitionLockLease)');
     expect(queue).not.toContain('await grantLocalLevelSpins(crossed);');
   });
 });

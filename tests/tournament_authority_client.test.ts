@@ -14,6 +14,7 @@ import {
   useTournamentRoom,
   resolveTournamentIntroCountdownValue,
   resolveTournamentRoomIdParam,
+  submitSpeedMatchAttempt,
   shouldShowTournamentLocalIntro,
   type RoomPlayer,
   type RoomTaskTiming,
@@ -31,9 +32,11 @@ const mockOnRoomSnapshot = jest.fn((...args: unknown[]) => {
   return mockRoomUnsubscribe;
 });
 const mockDeadlineCallable = jest.fn();
+const mockSpeedMatchCallable = jest.fn();
 const mockGetFunctions = jest.fn((_app: unknown, region: string) => ({ region }));
 const mockHttpsCallableFactory = jest.fn((_functions: unknown, name: string) => {
   if (name === 'tournamentAdvanceRound') return mockDeadlineCallable;
+  if (name === 'tournamentSubmitSpeedMatchAttempt') return mockSpeedMatchCallable;
   return jest.fn().mockResolvedValue({ data: { ok: true } });
 });
 
@@ -253,6 +256,36 @@ describe('tournament client authority boundaries', () => {
       mockGetFunctions.mockClear();
       mockHttpsCallableFactory.mockClear();
       mockDeadlineCallable.mockReset();
+    }
+  });
+
+  test('replays one ambiguous pair tap before telling the board to roll it back', async () => {
+    mockSpeedMatchCallable.mockReset()
+      .mockRejectedValueOnce({ code: 'functions/unavailable' })
+      .mockResolvedValueOnce({
+        data: {
+          ok: true,
+          correct: true,
+          completed: false,
+          wrongAttempts: 0,
+          penaltyApplied: false,
+        },
+      });
+
+    try {
+      await expect(submitSpeedMatchAttempt('room-1', 2, 'task-3', 4, 1)).resolves.toMatchObject({
+        correct: true,
+        completed: false,
+      });
+      expect(mockSpeedMatchCallable).toHaveBeenCalledTimes(2);
+      expect(mockSpeedMatchCallable).toHaveBeenNthCalledWith(1, {
+        roomId: 'room-1', roundNo: 2, taskId: 'task-3', pairIndex: 4, selectedIndex: 1,
+      });
+      expect(mockSpeedMatchCallable).toHaveBeenNthCalledWith(2, {
+        roomId: 'room-1', roundNo: 2, taskId: 'task-3', pairIndex: 4, selectedIndex: 1,
+      });
+    } finally {
+      mockSpeedMatchCallable.mockReset();
     }
   });
 

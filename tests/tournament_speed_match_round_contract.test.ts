@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const source = readFileSync(path.resolve(__dirname, '..', 'app', 'tournament_round.tsx'), 'utf8');
+const clientSource = readFileSync(path.resolve(__dirname, '..', 'app', 'tournament_client.ts'), 'utf8');
 
 describe('tournament speed-match round', () => {
   it('renders one six-pair match board with server-authored timing and instant local feedback', () => {
@@ -24,6 +25,13 @@ describe('tournament speed-match round', () => {
     expect(answerMatch).toMatch(/const localCorrect = localAnswerVerdict\([\s\S]*setMatchStatus\([\s\S]*submitSpeedMatchAttempt/);
     expect(answerMatch.indexOf('setMatchStatus')).toBeLessThan(answerMatch.indexOf('submitSpeedMatchAttempt'));
     expect(answerMatch).toContain('return Promise.resolve(localVerdict);');
+
+    const submitAttempt = clientSource.slice(
+      clientSource.indexOf('export function submitSpeedMatchAttempt'),
+      clientSource.indexOf('/**\n * Точный переход'),
+    );
+    expect(submitAttempt).toContain('runTournamentMutationWithRetry');
+    expect(submitAttempt).toContain("'tournamentSubmitSpeedMatchAttempt'");
   });
 
   it('locks a correct pair after server confirmation but releases a wrong pair for retry', () => {

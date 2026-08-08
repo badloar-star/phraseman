@@ -1228,7 +1228,11 @@ export function submitSpeedMatchAttempt(
   pairIndex: number,
   selectedIndex: number,
 ) {
-  return callFunction<{
+  // A pair attempt is idempotent on the server: replaying the exact tuple
+  // returns the already-recorded result and cannot grant or deduct stars a
+  // second time. Retry one ambiguous transport failure before the board treats
+  // it as a rejected pair and rolls the two cards back.
+  return runTournamentMutationWithRetry(() => callFunction<{
     ok: boolean;
     correct: boolean;
     completed: boolean;
@@ -1237,7 +1241,7 @@ export function submitSpeedMatchAttempt(
   }>(
     'tournamentSubmitSpeedMatchAttempt',
     { roomId, roundNo, taskId, pairIndex, selectedIndex },
-  );
+  ));
 }
 
 /**

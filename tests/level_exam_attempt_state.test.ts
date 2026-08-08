@@ -1,5 +1,6 @@
 import {
   applyLevelExamAnswer,
+  beginLevelExamQuiz,
   completeLevelExamAttempt,
   createLevelExamAttempt,
   markLevelExamFinishing,
@@ -44,6 +45,15 @@ describe('level exam attempt state', () => {
     });
     expect(first.attemptId).toContain('start-token-1');
     expect(first.finishToken).toBe(`${first.attemptId}:finish`);
+  });
+
+  test('starts the full exam timer only after the intro countdown completes', () => {
+    const prepared = createLevelExamAttempt(BASE_INPUT);
+    const started = beginLevelExamQuiz(prepared, 2_800);
+
+    expect(started.startedAtMs).toBe(2_800);
+    expect(started.deadlineAtMs).toBe(782_800);
+    expect(remainingLevelExamMs(started, 2_800)).toBe(780_000);
   });
 
   test('persists answers by scored unit and rejects unknown units', () => {

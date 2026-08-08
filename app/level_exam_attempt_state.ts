@@ -183,6 +183,21 @@ export function remainingLevelExamMs(attempt: LevelExamAttemptSnapshot, nowMs: n
   return Math.max(0, attempt.deadlineAtMs - nowMs);
 }
 
+export function beginLevelExamQuiz(
+  attempt: LevelExamAttemptSnapshot,
+  startedAtMs: number,
+): LevelExamAttemptSnapshot {
+  if (attempt.status !== 'active' || !finiteInteger(startedAtMs) || startedAtMs < attempt.startedAtMs) {
+    throw new Error('level_exam_quiz_start_invalid');
+  }
+  const durationMs = attempt.deadlineAtMs - attempt.startedAtMs;
+  return {
+    ...attempt,
+    startedAtMs,
+    deadlineAtMs: startedAtMs + durationMs,
+  };
+}
+
 export function restoreLevelExamAttempt(
   raw: unknown,
   context: RestoreLevelExamAttemptContext,

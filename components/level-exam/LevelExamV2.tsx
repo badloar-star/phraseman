@@ -12,6 +12,7 @@ import { trackFeatureError, trackFeatureStart, trackFeatureSuccess } from '../..
 import { buildLevelExamBlueprint } from '../../app/level_exam_blueprint';
 import {
   applyLevelExamAnswer,
+  beginLevelExamQuiz,
   completeLevelExamAttempt,
   createLevelExamAttempt,
   markLevelExamFinishing,
@@ -363,6 +364,15 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     storeAttempt({ ...currentAttempt, currentTaskIndex: currentAttempt.currentTaskIndex + 1 });
   }, [finishExam, storeAttempt]);
 
+  const beginQuiz = useCallback(() => {
+    const current = attemptRef.current;
+    if (!current || current.status !== 'active') return;
+    const started = beginLevelExamQuiz(current, Date.now());
+    storeAttempt(started);
+    setRemainingMs(started.deadlineAtMs - started.startedAtMs);
+    setPhase('quiz');
+  }, [storeAttempt]);
+
   if (accessState !== 'allowed' || phase === 'loading' || identityUnavailable) {
     const checking = accessState === 'checking'
       || (accessState === 'allowed' && phase === 'loading' && !identityUnavailable);
@@ -415,7 +425,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   }
 
   if (phase === 'countdown' && attempt) {
-    return <LevelExamCountdown attemptId={attempt.attemptId} level={level} onComplete={() => setPhase('quiz')} />;
+    return <LevelExamCountdown attemptId={attempt.attemptId} level={level} onComplete={beginQuiz} />;
   }
 
   if (phase === 'result' && result && attempt) {

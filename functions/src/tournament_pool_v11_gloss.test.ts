@@ -24,11 +24,11 @@ describe('parseDisplayGloss', () => {
   });
 
   it('preserves nested balanced brackets and their internal separators', () => {
-    expect(parseDisplayGloss('вещь[редко:предмет(старое/новое;пример,случай)], объект')).toEqual({
+    expect(parseDisplayGloss('вещь (редко: предмет [старое/новое; пример, случай])')).toEqual({
       ok: true,
       value: {
-        displayTranslation: 'вещь[редко:предмет(старое/новое;пример,случай)]',
-        senseHint: 'объект',
+        displayTranslation: 'вещь',
+        senseHint: 'редко: предмет [старое/новое; пример, случай]',
       },
     });
   });
@@ -65,6 +65,10 @@ describe('parseDisplayGloss', () => {
     ['слово разг.', 'unsupported_editorial_fragment'],
     ['слово букв.', 'unsupported_editorial_fragment'],
     ['слово перен.', 'unsupported_editorial_fragment'],
+    ['слово (ирон.)', 'unsupported_editorial_fragment'],
+    ['слово (прост.)', 'unsupported_editorial_fragment'],
+    ['слово [поэт.]', 'unsupported_editorial_fragment'],
+    ['слово (диал.)', 'unsupported_editorial_fragment'],
   ] as const)('rejects malformed source text: %s', (raw, reason) => {
     expect(parseDisplayGloss(raw)).toEqual({ ok: false, reason });
   });
@@ -112,6 +116,20 @@ describe('parseDisplayGloss', () => {
     });
   });
 
+  it('rejects square and curly bracket structures retained in the display', () => {
+    expect(parseDisplayGloss('слово[вариант]')).toEqual({ ok: false, reason: 'unsupported_editorial_fragment' });
+    expect(parseDisplayGloss('слово{вариант}')).toEqual({ ok: false, reason: 'unsupported_editorial_fragment' });
+  });
+
+  it.each([
+    ['слово (---)', 'empty_sense'],
+    ['слово (;;;)', 'empty_sense'],
+    ['слово, ---', 'empty_sense'],
+    ['---', 'empty_primary_sense'],
+  ] as const)('rejects punctuation-only emitted values: %s', (raw, reason) => {
+    expect(parseDisplayGloss(raw)).toEqual({ ok: false, reason });
+  });
+
   it.each([
     'слово\u061C',
     'слово\u200E',
@@ -133,6 +151,11 @@ describe('parseDisplayGloss', () => {
   ])('rejects Unicode format controls: %s', (raw) => {
     expect(parseDisplayGloss(raw)).toEqual({ ok: false, reason: 'control_character' });
   });
+
+  it.each(['\nслово', '\tслово', 'слово\u2028значение', 'слово\u2029значение'])
+    ('rejects controls in nonempty input: %s', (raw) => {
+      expect(parseDisplayGloss(raw)).toEqual({ ok: false, reason: 'control_character' });
+    });
 
   it.each([String.fromCharCode(0xD800), String.fromCharCode(0xDC00)])('rejects unpaired surrogates', (raw) => {
     expect(parseDisplayGloss(`слово${raw}`)).toEqual({ ok: false, reason: 'invalid_unicode' });

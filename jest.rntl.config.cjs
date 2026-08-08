@@ -12,6 +12,7 @@ module.exports = {
     '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
     '<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts',
     '<rootDir>/tests/nickname_edit_modal_availability.test.tsx',
+    '<rootDir>/tests/level_exam_intro.test.tsx',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [

@@ -184,6 +184,28 @@ describe('buildFillGapCandidates', () => {
     expect(did?.reason).toContain('made a decision');
   });
 
+  it.each(['tree', 'table', 'support system'])('does not infer make-a-decision collocation beyond its exact complement boundary: %s', (suffix) => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      `made-decision-${suffix.replace(/\s+/gu, '-')}`, `She made a decision ${suffix}.`, 'made', 'verb', ['make', 'did', 'does'],
+    )).at(0);
+
+    expect(candidate).toBeDefined();
+    expect(candidate?.distractors.find((item) => item.value === 'did')).toEqual(expect.objectContaining({
+      value: 'did', trapType: 'lexical_meaning',
+    }));
+  });
+
+  it('promotes uncontracted be forms from both verb aliases and rejects contracted be forms', () => {
+    const pluralVerbAlias = buildFillGapCandidates(day, phrase(
+      'verbs-are', 'They are ready.', 'are', 'verbs', ['is', 'am', 'be'],
+    )).at(0);
+
+    expect(pluralVerbAlias).toEqual(expect.objectContaining({ category: 'to_be' }));
+    expect(buildFillGapCandidates(day, phrase(
+      'contracted-be', "He isn't ready.", "isn't", 'verb', ['is', 'are', 'be'],
+    ))).toEqual([]);
+  });
+
   it('rejects ambiguous bases, base, and basis noun surfaces instead of typing a false inflection trap', () => {
     expect(buildFillGapCandidates(day, phrase(
       'ambiguous-bases', 'The bases are useful.', 'bases', 'noun', ['base', 'basis', 'tools'],
@@ -245,7 +267,7 @@ describe('buildFillGapCandidates', () => {
     expect(buildFillGapCandidates(day, phrase('prompt-bytes', `${'word '.repeat(130)}sleep.`, 'sleep', 'verb', ['sleeps', 'slept', 'rests']))).toEqual([]);
   });
 
-  it('classifies conservative verb and noun lemma variants as morphology with token-specific reasons', () => {
+  it('classifies conservative verb lemma variants as morphology with token-specific reasons', () => {
     const running = buildFillGapCandidates(day, phrase(
       'running', 'They are running.', 'running', 'verb', ['run', 'runs', 'jogging'],
     )).at(0);
@@ -255,11 +277,7 @@ describe('buildFillGapCandidates', () => {
     const flies = buildFillGapCandidates(day, phrase(
       'flies', 'It flies high.', 'flies', 'verb', ['fly', 'soars', 'lands'],
     )).at(0);
-    const cat = buildFillGapCandidates(day, phrase(
-      'cat-form', 'A cat sleeps.', 'cat', 'noun', ['cats', 'dog', 'rat'],
-    )).at(0);
-
-    for (const [candidate, values] of [[running, ['run', 'runs']], [plays, ['play', 'playing', 'played']], [flies, ['fly']], [cat, ['cats']]] as const) {
+    for (const [candidate, values] of [[running, ['run', 'runs']], [plays, ['play', 'playing', 'played']], [flies, ['fly']]] as const) {
       for (const value of values) {
         const distractor = candidate?.distractors.find((item) => item.value === value);
         expect(distractor).toEqual(expect.objectContaining({ trapType: 'morphology' }));
@@ -268,6 +286,15 @@ describe('buildFillGapCandidates', () => {
         expect(distractor?.reason).toMatch(/form|inflection/i);
       }
     }
+  });
+
+  it('rejects potential noun inflections without authoritative lemma metadata', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'cat-form', 'A cat sleeps.', 'cat', 'noun', ['cats', 'dog', 'rat'],
+    ))).toEqual([]);
+    expect(buildFillGapCandidates(day, phrase(
+      'leaves-form', 'The leaves fall.', 'leaves', 'noun', ['leave', 'leaf', 'trees'],
+    ))).toEqual([]);
   });
 
   it('fills a regular verb only with authored then derived same-lemma morphology forms', () => {
@@ -304,7 +331,7 @@ describe('buildFillGapCandidates', () => {
     expect(are).toEqual(expect.objectContaining({ trapType: 'agreement' }));
   });
 
-  it('recognizes regular es morphology for verbs and nouns without short-stem lookalikes', () => {
+  it('recognizes regular es morphology for verbs while rejecting unproved noun inflections', () => {
     const watches = buildFillGapCandidates(day, phrase(
       'watches', 'He watches birds.', 'watches', 'verb', ['watch', 'watched', 'looks'],
     )).at(0);
@@ -313,7 +340,7 @@ describe('buildFillGapCandidates', () => {
     )).at(0);
 
     expect(watches?.distractors.find((item) => item.value === 'watch')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
-    expect(bus?.distractors.find((item) => item.value === 'buses')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
+    expect(bus).toBeUndefined();
   });
 
   it('classifies bounded irregular do and go paradigm forms as morphology with form-specific reasons', () => {

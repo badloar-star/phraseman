@@ -109,7 +109,6 @@ const IRREGULAR_LEMMA_FAMILIES = buildIrregularLemmaFamilies(IRREGULAR_FAMILIES)
 // syntactic/semantic proof, neither a morphology nor a lexical-meaning claim is safe.
 const AMBIGUOUS_INFLECTION_FAMILIES = [
   ['found'], ['saw'], ['left'], ['rose'], ['fell'], ['lay'], ['read'], ['lead'], ['bound'], ['wound'], ['bore'], ['rent'], ['ground'],
-  ['axes', 'axe', 'axis'], ['bases', 'base', 'basis'],
 ] as const;
 const AMBIGUOUS_IRREGULAR_SURFACES = new Set(AMBIGUOUS_INFLECTION_FAMILIES.flatMap((family) => family.map(normalized)));
 type GovernedCollocationRule = Readonly<{
@@ -128,9 +127,12 @@ function normalized(value: string): string {
 function categoryFor(word: SourceWord): FillGapCategory | null {
   const token = normalized(word.text);
   const pos = normalized(word.partOfSpeech).replace(/[_-]+/gu, ' ');
-  if (!pos || !CATEGORY_ALIASES.has(pos)) return null;
-  if (pos === 'verb' && /^(am|is|are|was|were|be|being|been)$/u.test(token)) return 'to_be';
-  return CATEGORY_ALIASES.get(pos) ?? null;
+  const category = pos ? CATEGORY_ALIASES.get(pos) : undefined;
+  if (!category) return null;
+  if (category !== 'verb') return category;
+  if (/^(isn't|isn’t|aren't|aren’t|wasn't|wasn’t|weren't|weren’t|ain't|ain’t)$/u.test(token)) return null;
+  if (/^(am|is|are|was|were|be|being|been)$/u.test(token)) return 'to_be';
+  return category;
 }
 
 function verbFamily(value: string): string {
@@ -143,8 +145,10 @@ function governedCollocationFor(correct: string, wrong: string, tokens: readonly
   const wrongFamily = verbFamily(wrong);
   for (const rule of GOVERNED_COLLOCATION_RULES) {
     if (correctFamily !== rule.correctFamily || wrongFamily !== rule.wrongFamily) continue;
-    const complement = tokens.slice(blankIndex + 1, blankIndex + 1 + rule.complement.length).map((token) => normalized(lexicalToken(token)));
-    if (rule.complement.every((token, index) => complement[index] === token)) return [normalized(correct), ...rule.complement].join(' ');
+    const complement = tokens.slice(blankIndex + 1).map((token) => normalized(lexicalToken(token)));
+    if (complement.length === rule.complement.length && rule.complement.every((token, index) => complement[index] === token)) {
+      return [normalized(correct), ...rule.complement].join(' ');
+    }
   }
   return null;
 }
@@ -157,13 +161,37 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string, toke
     || category === 'existential' || category === 'article') return 'function_choice';
   if (category === 'to_be') return toBeTrap(correct, wrong);
   if (category === 'lexical_other' || category === 'number_time') return 'lexical_meaning';
-  if ((category === 'verb' || category === 'noun') && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
+  if (category === 'verb' && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
     || AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(wrong)))) return null;
   if (category === 'verb' && sameVerbStem(correct, wrong, true)) return 'morphology';
-  if (category === 'noun' && sameVerbStem(correct, wrong, false)) return 'morphology';
+  if (category === 'noun' && potentialNounInflection(correct, wrong)) return null;
   if (category === 'verb') return 'lexical_meaning';
   if (category === 'noun' || category === 'adjective' || category === 'adverb') return 'lexical_meaning';
   return 'collocation';
+}
+
+function potentialNounInflectionKeys(value: string): ReadonlySet<string> {
+  const token = normalized(value);
+  const keys = new Set([token]);
+  const add = (candidate: string) => { if (candidate.length >= 2) keys.add(candidate); };
+  if (token.endsWith('ies')) add(`${token.slice(0, -3)}y`);
+  if (token.endsWith('ves')) {
+    add(`${token.slice(0, -3)}f`);
+    add(`${token.slice(0, -3)}fe`);
+  }
+  if (token.endsWith('es')) add(token.slice(0, -2));
+  if (token.endsWith('s') && !token.endsWith('ss')) add(token.slice(0, -1));
+  if (token.endsWith('f')) add(`${token.slice(0, -1)}ves`);
+  if (token.endsWith('fe')) add(`${token.slice(0, -2)}ves`);
+  if (token.endsWith('y')) add(`${token.slice(0, -1)}ies`);
+  if (/(?:s|x|z|ch|sh|o)$/u.test(token)) add(`${token}es`);
+  else add(`${token}s`);
+  return keys;
+}
+
+function potentialNounInflection(left: string, right: string): boolean {
+  const leftKeys = potentialNounInflectionKeys(left);
+  return [...potentialNounInflectionKeys(right)].some((key) => leftKeys.has(key));
 }
 
 function toBeTrap(correct: string, wrong: string): FillGapTrapType | null {

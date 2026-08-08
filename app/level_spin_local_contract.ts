@@ -27,6 +27,8 @@ export type LocalLevelSpinJournalEntry = {
   level: number;
   receivedAtMs: number;
   expiresAtMs: number;
+  /** Explicit authority marker. Missing/false entries must use server delivery. */
+  localOnly: true;
   occurrences: { occurrenceId: string; lane: 'base'; giftId: string; claimed: boolean }[];
 };
 
@@ -38,6 +40,7 @@ export function localJournalEntryForReceipt(receipt: LocalLevelSpinReceipt, owne
   return {
     owner, requestId: receipt.requestId, creditId: receipt.creditId, level: receipt.level,
     receivedAtMs: receipt.createdAtMs, expiresAtMs: receipt.expiresAtMs,
+    localOnly: true,
     occurrences: [{ occurrenceId: `level-spin:${receipt.requestId}:base`, lane: 'base', giftId: receipt.baseGiftId, claimed: false }],
   };
 }
@@ -45,7 +48,23 @@ export function localJournalEntryForReceipt(receipt: LocalLevelSpinReceipt, owne
 export function mergeLocalSpinJournal(
   entries: readonly LocalLevelSpinJournalEntry[], entry: LocalLevelSpinJournalEntry,
 ): LocalLevelSpinJournalEntry[] {
-  return entries.some((candidate) => candidate.requestId === entry.requestId) ? [...entries] : [...entries, entry].slice(-64);
+  const existing = entries.find((candidate) => (
+    candidate.owner === entry.owner && candidate.requestId === entry.requestId
+  ));
+  if (!existing) return [...entries, entry].slice(-64);
+  const priorOccurrences = Array.isArray(existing.occurrences) ? existing.occurrences : [];
+  return entries.map((candidate) => (
+    candidate.owner !== entry.owner || candidate.requestId !== entry.requestId
+      ? candidate
+      : {
+          ...entry,
+          occurrences: entry.occurrences.map((occurrence) => ({
+            ...occurrence,
+            claimed: occurrence.claimed === true
+              || priorOccurrences.find((prior) => prior.lane === occurrence.lane)?.claimed === true,
+          })),
+        }
+  ));
 }
 
 function giftById(giftId: string): GiftDef {
@@ -55,7 +74,7 @@ function giftById(giftId: string): GiftDef {
 }
 
 export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt): LocalLevelSpinInventory {
-  if (!receipt.localOnly || !Number.isInteger(receipt.level) || receipt.level < 2 || receipt.level > 60
+  if (receipt.localOnly !== true || !Number.isInteger(receipt.level) || receipt.level < 2 || receipt.level > 60
     || (!/^local_spin_(?:dev_[A-Za-z0-9_-]{1,96}|lesson_[A-Za-z0-9_-]{1,96})$/.test(receipt.creditId)
       && receipt.creditId !== `level_spin_v1_${String(receipt.level).padStart(3, '0')}`)
     || receipt.expiresAtMs !== receipt.createdAtMs + 259_200_000) throw new Error('local_spin_receipt_invalid');

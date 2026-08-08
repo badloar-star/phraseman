@@ -584,7 +584,6 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           studyTarget,
           accountToken,
           occurrenceId: `level:${level}:${which}`,
-          localOnly: true,
         })
           .catch(() => ({ success: false }));
         if (which === 'f2p') f2pApplyPromiseRef.current = applyResultP;
@@ -691,8 +690,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     void (async () => {
       try {
         const [f2pResult, premResult] = await Promise.all([
-          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken, occurrenceId: `level:${level}:f2p`, localOnly: true }).catch(() => ({ success: false })),
-          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken, occurrenceId: `level:${level}:premium`, localOnly: true }).catch(() => ({ success: false })),
+          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken, occurrenceId: `level:${level}:f2p` }).catch(() => ({ success: false })),
+          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken, occurrenceId: `level:${level}:premium` }).catch(() => ({ success: false })),
         ]);
         if (!isCurrentAccountGeneration(accountToken)) return;
         if (isCurrentOpening(accountToken)) {
@@ -727,14 +726,12 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       studyTarget,
       accountToken,
       occurrenceId: `level:${level}:f2p`,
-      localOnly: true,
     }).catch(() => ({ success: false }));
     const premResultP = applyGift(premGift, userName, energy, maxEnergy, setEnergyFn, {
       isPremium: true,
       studyTarget,
       accountToken,
       occurrenceId: `level:${level}:premium`,
-      localOnly: true,
     }).catch(() => ({ success: false }));
     f2pApplyPromiseRef.current = f2pResultP;
     premApplyPromiseRef.current = premResultP;

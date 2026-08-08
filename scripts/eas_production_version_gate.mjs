@@ -3,7 +3,7 @@
  * Runs only when EAS_BUILD_PROFILE=production (set by EAS for that profile).
  */
 import fs from 'node:fs';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 
 if (process.env.EAS_BUILD_PROFILE !== 'production') {
   process.exit(0);
@@ -67,7 +67,7 @@ function readAppSnapshot(raw) {
 const DEFAULT_BRANCH_CANDIDATES = ['origin/main', 'main', 'origin/master', 'master'];
 
 function gitShow(ref) {
-  return execSync(`git show ${ref}:app.json`, {
+  return execFileSync('git', ['show', `${ref}:app.json`], {
     encoding: 'utf8',
     stdio: ['pipe', 'pipe', 'pipe'],
     maxBuffer: 2 * 1024 * 1024,
@@ -75,10 +75,49 @@ function gitShow(ref) {
 }
 
 function revParse(ref) {
-  return execSync(`git rev-parse ${ref}`, {
+  return execFileSync('git', ['rev-parse', ref], {
     encoding: 'utf8',
     stdio: ['pipe', 'pipe', 'pipe'],
   }).trim();
+}
+
+function firstParentHistory(ref) {
+  return execFileSync('git', ['rev-list', '--first-parent', ref], {
+    encoding: 'utf8',
+    stdio: ['pipe', 'pipe', 'pipe'],
+    maxBuffer: 2 * 1024 * 1024,
+  })
+    .split(/\r?\n/u)
+    .map((commit) => commit.trim())
+    .filter(Boolean);
+}
+
+function sameReleaseSnapshot(left, right) {
+  return (
+    left.version === right.version &&
+    left.versionCode === right.versionCode &&
+    left.buildNumber === right.buildNumber
+  );
+}
+
+function resolvePreviousReleaseSnapshot(ref, currentSnapshot) {
+  const [, ...ancestors] = firstParentHistory(ref);
+
+  for (const commit of ancestors) {
+    let raw;
+    try {
+      raw = gitShow(commit);
+    } catch {
+      continue;
+    }
+
+    const snapshot = readAppSnapshot(raw);
+    if (!sameReleaseSnapshot(snapshot, currentSnapshot)) {
+      return { ref: commit, raw };
+    }
+  }
+
+  return null;
 }
 
 function resolveDefaultBranchRef() {
@@ -109,27 +148,40 @@ try {
   process.exit(0);
 }
 
+const current = readAppSnapshot(fs.readFileSync(new URL('../app.json', import.meta.url), 'utf8'));
+const mainSnapshot = readAppSnapshot(baselineRaw);
+
 let head;
-let mainTip;
+let headRaw;
 try {
   head = revParse('HEAD');
-  mainTip = revParse(mainRef);
-} catch {
-  console.warn('[eas-production-version-gate] git rev-parse failed — skip');
-  process.exit(0);
+  headRaw = gitShow(head);
+} catch (error) {
+  const detail = error instanceof Error ? error.message : String(error);
+  console.error('[eas-production-version-gate] cannot read HEAD release snapshot:', detail);
+  process.exit(1);
 }
 
-if (head === mainTip) {
+const headSnapshot = readAppSnapshot(headRaw);
+
+if (!sameReleaseSnapshot(current, headSnapshot)) {
+  baselineRef = head;
+  baselineRaw = headRaw;
+} else if (sameReleaseSnapshot(headSnapshot, mainSnapshot)) {
   try {
-    baselineRef = `${mainRef}~1`;
-    baselineRaw = gitShow(baselineRef);
-  } catch {
-    console.warn('[eas-production-version-gate] single commit repo — skip');
-    process.exit(0);
+    const previous = resolvePreviousReleaseSnapshot(head, headSnapshot);
+    if (!previous) {
+      throw new Error('no previous release snapshot in first-parent history');
+    }
+    baselineRef = previous.ref;
+    baselineRaw = previous.raw;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.error('[eas-production-version-gate] cannot resolve previous release snapshot:', detail);
+    process.exit(1);
   }
 }
 
-const current = readAppSnapshot(fs.readFileSync(new URL('../app.json', import.meta.url), 'utf8'));
 const baseline = readAppSnapshot(baselineRaw);
 
 const versionOk = current.version !== baseline.version;

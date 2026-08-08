@@ -725,6 +725,7 @@ export default function LevelGiftsInventoryScreen() {
             saveOnDismiss={false}
             applyAsPremium={selected.spinOccurrence?.lane === 'premium' || selected.dualPart ? true : undefined}
             occurrenceId={selected.spinOccurrence?.occurrenceId ?? `level:${selected.level}:${selected.dualPart ?? 'f2p'}`}
+            deviceLocalSpin={selected.spinOccurrence?.localOnly === true ? true : undefined}
             studyTarget={studyTarget}
           />
         )}

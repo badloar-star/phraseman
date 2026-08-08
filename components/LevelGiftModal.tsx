@@ -93,6 +93,8 @@ interface Props {
   applyAsPremium?: boolean;
   /** Stable entitlement occurrence used to make reward application idempotent. */
   occurrenceId?: string;
+  /** Explicitly validated device-owned Spin occurrence; absent means server-authoritative. */
+  deviceLocalSpin?: true;
   studyTarget?: RuntimeStudyTarget;
 }
 
@@ -180,6 +182,7 @@ function LevelGiftModal({
   saveOnDismiss = true,
   applyAsPremium,
   occurrenceId,
+  deviceLocalSpin,
   studyTarget,
 }: Props) {
   const router = useRouter();
@@ -341,7 +344,13 @@ function LevelGiftModal({
               energy,
               maxEnergy,
               setEnergyFn,
-              { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken, occurrenceId: giftOccurrenceId, localOnly: true },
+              {
+                ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }),
+                studyTarget,
+                accountToken,
+                occurrenceId: giftOccurrenceId,
+                ...(deviceLocalSpin === true ? { localOnly: true } : {}),
+              },
             );
             if (!isCurrentAccountGeneration(accountToken)) return { success: false };
             if (result.success) {
@@ -489,7 +498,13 @@ function LevelGiftModal({
           energy,
           maxEnergy,
           setEnergyFn,
-          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken, occurrenceId: giftOccurrenceId, localOnly: true },
+          {
+            ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }),
+            studyTarget,
+            accountToken,
+            occurrenceId: giftOccurrenceId,
+            ...(deviceLocalSpin === true ? { localOnly: true } : {}),
+          },
         );
         if (!isCurrentAccountGeneration(accountToken)) return;
         if (isCurrentOpening(accountToken)) {

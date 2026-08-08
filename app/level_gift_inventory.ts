@@ -71,6 +71,8 @@ export type PendingLevelGiftInventoryItem =
         requestId: string;
         lane: 'base' | 'premium';
         occurrenceId: string;
+        /** Present only for a validated device-owned spin journal entry. */
+        localOnly?: true;
       };
       /** Мс получения подарка (уровень взят). */
       receivedAtMs: number;
@@ -666,6 +668,7 @@ export const loadPendingLevelGiftInventory = async (
           level?: unknown;
           receivedAtMs?: unknown;
           expiresAtMs?: unknown;
+          localOnly?: unknown;
           occurrences?: unknown;
         };
         const requestId = String(entry.requestId ?? '');
@@ -708,6 +711,7 @@ export const loadPendingLevelGiftInventory = async (
               requestId,
               lane,
               occurrenceId: String(occurrence.occurrenceId ?? `level-spin:${requestId}:${lane}`),
+              ...(entry.localOnly === true ? { localOnly: true as const } : {}),
             },
           }];
         });

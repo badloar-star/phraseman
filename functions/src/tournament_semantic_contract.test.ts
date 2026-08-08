@@ -84,6 +84,50 @@ class NonCanonicalRecord {
   readonly detail = 'value';
 }
 
+type HiddenStateKind = 'non-enumerable' | 'symbol' | 'accessor';
+
+function recordWithHiddenState(
+  kind: HiddenStateKind,
+  nullPrototype = false,
+): Record<string, unknown> {
+  const record = (nullPrototype ? Object.create(null) : {}) as Record<string, unknown>;
+  Object.defineProperty(record, 'visible', {
+    value: 'value', enumerable: true, writable: true, configurable: true,
+  });
+  if (kind === 'non-enumerable') {
+    Object.defineProperty(record, 'hidden', {
+      value: 'secret', enumerable: false, writable: true, configurable: true,
+    });
+  } else if (kind === 'symbol') {
+    Object.defineProperty(record, Symbol('hidden'), {
+      value: 'secret', enumerable: true, writable: true, configurable: true,
+    });
+  } else {
+    Object.defineProperty(record, 'computed', {
+      get: () => 'secret', enumerable: true, configurable: true,
+    });
+  }
+  return record;
+}
+
+function arrayWithHiddenState(kind: HiddenStateKind): unknown[] {
+  if (kind === 'accessor') {
+    const values = Array<string>(1);
+    Object.defineProperty(values, '0', {
+      get: () => 'value', enumerable: true, configurable: true,
+    });
+    return values;
+  }
+  const values = ['value'];
+  Object.defineProperty(values, kind === 'symbol' ? Symbol('hidden') : 'hidden', {
+    value: 'secret',
+    enumerable: kind === 'symbol',
+    writable: true,
+    configurable: true,
+  });
+  return values;
+}
+
 function oddityInput(): TournamentSemanticCandidateInput {
   return {
     ...baseInput,
@@ -588,6 +632,78 @@ describe('tournament semantic candidate validation', () => {
     }
     expect(new Set(candidates.map((candidate) => candidate.contentSha256)).size).toBe(3);
     expect(new Set(candidates.map((candidate) => candidate.semanticSignature)).size).toBe(3);
+  });
+
+  test.each<HiddenStateKind>([
+    'non-enumerable',
+    'symbol',
+    'accessor',
+  ])('rejects arrays carrying %s own state', (kind) => {
+    expect(() => makeCandidate({ context: { values: arrayWithHiddenState(kind) } }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test.each([
+    ['plain', 'non-enumerable', false],
+    ['plain', 'symbol', false],
+    ['plain', 'accessor', false],
+    ['null-prototype', 'non-enumerable', true],
+    ['null-prototype', 'symbol', true],
+    ['null-prototype', 'accessor', true],
+  ] as const)('rejects %s context objects carrying %s own state', (
+    _prototype,
+    kind,
+    nullPrototype,
+  ) => {
+    expect(() => makeCandidate({ context: recordWithHiddenState(kind, nullPrototype) }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test.each<HiddenStateKind>([
+    'non-enumerable',
+    'symbol',
+    'accessor',
+  ])('rejects subject metadata carrying %s own state', (kind) => {
+    const metadata = recordWithHiddenState(kind) as Readonly<Record<string, string>>;
+    const reviewSubjects = baseInput.reviewSubjects.map((subject, index) => (
+      index === 0 ? { ...subject, metadata } : subject
+    ));
+
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+  });
+
+  test('rejects post-creation hidden state mutations without invoking accessors', () => {
+    const candidate = makeCandidate();
+    expectRejected(withCandidatePatch(candidate, {
+      context: recordWithHiddenState('non-enumerable'),
+    }), 'context_invalid');
+    expectRejected(withCandidatePatch(candidate, {
+      context: { values: arrayWithHiddenState('symbol') },
+    }), 'context_invalid');
+
+    const metadata = recordWithHiddenState('accessor') as Readonly<Record<string, string>>;
+    const reviewSubjects = candidate.reviewSubjects.map((subject, index) => (
+      index === 0 ? { ...subject, metadata } : subject
+    ));
+    expectRejected(withCandidatePatch(candidate, { reviewSubjects }), 'subject_metadata_invalid');
+  });
+
+  test('rejects accessor state without invoking its getter', () => {
+    let getterCalls = 0;
+    const context: Record<string, unknown> = {};
+    Object.defineProperty(context, 'computed', {
+      get: () => {
+        getterCalls += 1;
+        return 'value';
+      },
+      enumerable: true,
+      configurable: true,
+    });
+
+    expect(() => makeCandidate({ context }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+    expect(getterCalls).toBe(0);
   });
 
   test.each([

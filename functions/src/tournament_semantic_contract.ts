@@ -125,9 +125,24 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return prototype === Object.prototype || prototype === null;
 }
 
+function canonicalRecordEntries(
+  value: Record<string, unknown>,
+): Array<readonly [string, unknown]> | null {
+  const entries: Array<readonly [string, unknown]> = [];
+  for (const key of Reflect.ownKeys(value)) {
+    if (typeof key !== 'string') return null;
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+    if (!descriptor || !descriptor.enumerable || !('value' in descriptor)) return null;
+    entries.push([key, descriptor.value] as const);
+  }
+  return entries;
+}
+
 function hasOnlyKeys(value: Record<string, unknown>, allowed: readonly string[]): boolean {
+  const entries = canonicalRecordEntries(value);
+  if (!entries) return false;
   const allowlist = new Set(allowed);
-  return Object.keys(value).every((key) => allowlist.has(key));
+  return entries.every(([key]) => allowlist.has(key));
 }
 
 function boundedString(value: unknown, maxBytes: number): value is string {
@@ -139,10 +154,17 @@ function boundedString(value: unknown, maxBytes: number): value is string {
 }
 
 function hasCanonicalArrayShape(value: readonly unknown[]): boolean {
-  const keys = Object.keys(value);
-  if (keys.length !== value.length) return false;
+  const ownKeys = Reflect.ownKeys(value);
+  if (ownKeys.length !== value.length + 1) return false;
+  const lengthDescriptor = Object.getOwnPropertyDescriptor(value, 'length');
+  if (!lengthDescriptor
+    || !('value' in lengthDescriptor)
+    || lengthDescriptor.value !== value.length
+    || lengthDescriptor.enumerable
+    || lengthDescriptor.configurable) return false;
   for (let index = 0; index < value.length; index += 1) {
-    if (keys[index] !== String(index)) return false;
+    const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+    if (!descriptor || !descriptor.enumerable || !('value' in descriptor)) return false;
   }
   return true;
 }
@@ -159,11 +181,12 @@ function isJsonValue(value: unknown, depth = 0): boolean {
     return true;
   }
   if (!isRecord(value)) return false;
-  const entries = Object.entries(value);
-  return entries.length <= MAX_CONTEXT_ENTRIES
-    && entries.every(([key, item]) => (
-      boundedString(key, MAX_CONTEXT_KEY_BYTES) && isJsonValue(item, depth + 1)
-    ));
+  const entries = canonicalRecordEntries(value);
+  if (!entries || entries.length > MAX_CONTEXT_ENTRIES) return false;
+  for (const [key, item] of entries) {
+    if (!boundedString(key, MAX_CONTEXT_KEY_BYTES) || !isJsonValue(item, depth + 1)) return false;
+  }
+  return true;
 }
 
 function stableJson(value: unknown): string {
@@ -180,8 +203,11 @@ function stableJson(value: unknown): string {
     return `[${items.join(',')}]`;
   }
   if (isRecord(value)) {
-    return `{${Object.keys(value).sort().map((key) => (
-      `${JSON.stringify(key)}:${stableJson(value[key])}`
+    const entries = canonicalRecordEntries(value);
+    if (!entries) throw new Error('unsupported_canonical_json_record');
+    entries.sort(([left], [right]) => compareLexically(left, right));
+    return `{${entries.map(([key, item]) => (
+      `${JSON.stringify(key)}:${stableJson(item)}`
     )).join(',')}}`;
   }
   throw new Error('unsupported_canonical_json_value');
@@ -251,7 +277,8 @@ function validateContext(context: unknown): boolean {
 
 function validateMetadata(metadata: unknown): boolean {
   if (!isRecord(metadata)) return false;
-  const entries = Object.entries(metadata);
+  const entries = canonicalRecordEntries(metadata);
+  if (!entries) return false;
   return entries.length <= MAX_METADATA_ENTRIES
     && entries.every(([key, value]) => (
       boundedString(key, METADATA_KEY_BYTES)
@@ -408,14 +435,24 @@ function cloneJsonValue(value: unknown): unknown {
     return clone;
   }
   if (isRecord(value)) {
-    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cloneJsonValue(item)]));
+    const entries = canonicalRecordEntries(value);
+    if (!entries) throw new Error('invalid_tournament_semantic_candidate:context_invalid');
+    return Object.fromEntries(entries.map(([key, item]) => [key, cloneJsonValue(item)]));
   }
   return value;
 }
 
 function cloneSubject(subject: ReviewSubject): ReviewSubject {
-  if (subject.metadata !== undefined && !validateMetadata(subject.metadata)) {
-    throw new Error('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+  let clonedMetadata: Readonly<Record<string, string>> | undefined;
+  if (subject.metadata !== undefined) {
+    if (!validateMetadata(subject.metadata)) {
+      throw new Error('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+    }
+    const entries = canonicalRecordEntries(subject.metadata);
+    if (!entries) throw new Error('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+    clonedMetadata = Object.freeze(Object.fromEntries(
+      entries.map(([key, value]) => [key, value as string]),
+    ));
   }
   return Object.freeze({
     subjectId: subject.subjectId,
@@ -425,7 +462,9 @@ function cloneSubject(subject: ReviewSubject): ReviewSubject {
     ...(subject.completedText === undefined ? {} : { completedText: subject.completedText }),
     ...(subject.trapType === undefined ? {} : { trapType: subject.trapType }),
     ...(subject.reason === undefined ? {} : { reason: subject.reason }),
-    ...(subject.metadata === undefined ? {} : { metadata: Object.freeze({ ...subject.metadata }) }),
+    ...(clonedMetadata === undefined
+      ? {}
+      : { metadata: clonedMetadata }),
   });
 }
 

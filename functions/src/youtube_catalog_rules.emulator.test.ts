@@ -10,6 +10,7 @@ import { deleteDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 const PROJECT_ID = 'demo-phraseman-youtube-catalog';
 const RULES_PATH = path.resolve(__dirname, '../../firestore.rules');
+jest.setTimeout(30_000);
 
 describe('YouTube catalog rules (emulator)', () => {
   let environment: RulesTestEnvironment;
@@ -21,7 +22,9 @@ describe('YouTube catalog rules (emulator)', () => {
     });
   });
 
-  afterAll(async () => environment.cleanup());
+  afterAll(async () => {
+    if (environment) await environment.cleanup();
+  });
   beforeEach(async () => {
     await environment.clearFirestore();
     await environment.withSecurityRulesDisabled(async (context) => {

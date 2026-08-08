@@ -1094,6 +1094,36 @@
       }
     },
     {
+      "file": "app/_admin_tasks_lab.tsx",
+      "ownerName": "AdminTasksLab",
+      "ownerPath": "AdminTasksLab",
+      "ancestorPath": [
+        "View",
+        "ScrollView",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "1dadf1a6d58c6d724490384292ad4482ab15e9d9401844b39e10f66ba8e38063",
+      "count": 1,
+      "lineHints": [
+        288
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
       "file": "components/ReportErrorButton.tsx",
       "ownerName": "ReportErrorButton",
       "ownerPath": "ReportErrorButton",
@@ -1820,6 +1850,35 @@
       "count": 1,
       "lineHints": [
         833
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/admin_panel/sections/ConsentsSection.tsx",
+      "ownerName": "ConsentsSection",
+      "ownerPath": "ConsentsSection",
+      "ancestorPath": [
+        "AccordionSection",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "30b6d392abeaea16ec971825221d7ea2f67eb2b1cb701d7f74365cea06d67fe7",
+      "count": 1,
+      "lineHints": [
+        194
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3648,6 +3707,35 @@
       }
     },
     {
+      "file": "components/admin_panel/sections/GiftsCatalogSection.tsx",
+      "ownerName": "LevelGiftRow",
+      "ownerPath": "LevelGiftRow",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "6d1eb3757ccdaa99bee2551d7c9da06a12b3370dbb89e7891618f6d10d783288",
+      "count": 1,
+      "lineHints": [
+        87
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
       "file": "app/diagnostic_test.tsx",
       "ownerName": "DiagnosticTest",
       "ownerPath": "DiagnosticTest",
@@ -3904,6 +3992,34 @@
       "count": 1,
       "lineHints": [
         1246
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/_admin_settings_testers.tsx",
+      "ownerName": "renderCustomAvatarPreview",
+      "ownerPath": "AdminCosmeticsPreview>renderCustomAvatarPreview",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "7884f0349274d43dae1ecad95245969b41a3e35c2a009a3fcc40a2e2626764b6",
+      "count": 2,
+      "lineHints": [
+        517,
+        520
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6437,6 +6553,34 @@
         1466,
         1472,
         1498
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/admin_panel/sections/GiftsCatalogSection.tsx",
+      "ownerName": "GiftsCatalogSection",
+      "ownerPath": "GiftsCatalogSection",
+      "ancestorPath": [
+        "AccordionSection",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "c4e276146f6d3455ece7604d163d2324969ca9b2a3cbf811719258c0f12377c7",
+      "count": 1,
+      "lineHints": [
+        203
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

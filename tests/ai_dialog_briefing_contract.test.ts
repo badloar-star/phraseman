@@ -88,6 +88,8 @@ describe('AI dialog catalog scenario-feed contract', () => {
     expect(content).toContain('openScenarioDestination(scenario, forceBriefing)');
     expect(content).toContain('onLongPress: () => openCourseScenario(scenario, true)');
     expect(content).toContain('onLongPress: () => openChallengeScenario(scenario, true)');
+    expect(content.match(/onLongPress=\{vm\.onLongPress\}/g)).toHaveLength(2);
+    expect(content).toContain('delayLongPress={550}');
   });
 
   it('renders a concise borderless PressableScale tile with accessible long-press briefing and reduced-motion entrance', () => {
@@ -98,6 +100,10 @@ describe('AI dialog catalog scenario-feed contract', () => {
     expect(content).toContain('reduceMotion ? undefined : FadeInDown');
     expect(content).toContain('delayLongPress={550}');
     expect(content).toContain('accessibilityHint');
+    expect(content).toContain('statusLabel: string');
+    expect(content).toContain('{statusLabel}');
+    expect(catalog()).toContain('const accessibilityHint = locked');
+    expect(catalog()).toContain('`${title}. ${levelChip}. ${statusLabel}`');
     expect(content).not.toContain('dialogScenarioGoal(');
     expect(content).not.toContain('borderWidth');
     expect(content).not.toContain('withRepeat(');

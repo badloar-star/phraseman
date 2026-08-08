@@ -14,6 +14,7 @@ interface DialogScenarioTileProps {
   title: string;
   levelChip: string;
   status: ScenarioStatus;
+  statusLabel: string;
   lockedText: string;
   onPress: () => void;
   onLongPress: () => void;
@@ -37,6 +38,7 @@ export default function DialogScenarioTile({
   title,
   levelChip,
   status,
+  statusLabel,
   lockedText,
   onPress,
   onLongPress,
@@ -49,8 +51,6 @@ export default function DialogScenarioTile({
   const locked = status === 'locked';
   const done = status === 'done';
   const entering = reduceMotion ? undefined : FadeInDown.delay(Math.min(index, 10) * 40).duration(220);
-  const statusLabel = locked ? lockedText : done ? '✓' : '•';
-
   return (
     <Reanimated.View entering={entering}>
       <PressableScale

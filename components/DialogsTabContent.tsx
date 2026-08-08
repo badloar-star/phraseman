@@ -362,19 +362,55 @@ export default function DialogsTabContent({
     return available.find((vm) => vm.status === 'available') ?? available[0];
   }, [tab, courseGroupVMs, challengeVMs]);
 
+  const briefingLongPressHint = triLang(lang, {
+    ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
+    uk: 'Натисніть і утримуйте, щоб відкрити вступ до сценарію.',
+    es: 'Mantén pulsado para abrir la introducción del escenario.',
+    'pt-BR': 'Mantenha pressionado para abrir a introdução do cenário.',
+    vi: 'Nhấn giữ để mở phần giới thiệu kịch bản.',
+    id: 'Tekan dan tahan untuk membuka pengantar skenario.',
+    tr: 'Senaryo girişini açmak için basılı tutun.',
+    pl: 'Przytrzymaj, aby otworzyć wprowadzenie do scenariusza.',
+  });
+
   // ── Рендер карточки сценария по статусу ───────────────────────────────────
   const renderScenarioCard = (vm: ScenarioVM, index: number) => {
     const { scenario, status, levelChip, lockedText } = vm;
     const locked = status === 'locked';
+    const title = dialogScenarioTitle(scenario, lang);
+    const statusLabel = locked
+      ? lockedText
+      : status === 'done'
+        ? triLang(lang, {
+            ru: 'Пройдено', uk: 'Пройдено', es: 'Hecho', 'pt-BR': 'Concluído',
+            vi: 'Đã xong', id: 'Selesai', tr: 'Tamamlandı', pl: 'Ukończono',
+          })
+        : triLang(lang, {
+            ru: 'Новое', uk: 'Нове', es: 'Nuevo', 'pt-BR': 'Novo',
+            vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe',
+          });
+    const accessibilityHint = locked
+      ? triLang(lang, {
+          ru: 'Нажмите, чтобы узнать, как открыть сценарий.',
+          uk: 'Натисніть, щоб дізнатися, як відкрити сценарій.',
+          es: 'Pulsa para saber cómo desbloquear el escenario.',
+          'pt-BR': 'Toque para saber como desbloquear o cenário.',
+          vi: 'Nhấn để xem cách mở khóa kịch bản.',
+          id: 'Tekan untuk melihat cara membuka skenario.',
+          tr: 'Senaryonun kilidini nasıl açacağını görmek için dokun.',
+          pl: 'Naciśnij, aby sprawdzić, jak odblokować scenariusz.',
+        })
+      : briefingLongPressHint;
 
     return (
       <DialogScenarioTile
         key={scenario.id}
         index={index}
         icon={scenario.icon}
-        title={dialogScenarioTitle(scenario, lang)}
+        title={title}
         levelChip={levelChip}
         status={status}
+        statusLabel={statusLabel}
         lockedText={lockedText}
         onPress={vm.onPress}
         onLongPress={vm.onLongPress}
@@ -388,21 +424,8 @@ export default function DialogsTabContent({
           correctText: t.correctText,
         }}
         fontSizes={{ body: f.body, label: f.label }}
-        accessibilityLabel={
-          locked
-            ? `${dialogScenarioTitle(scenario, lang)} — ${lockedText}`
-            : dialogScenarioTitle(scenario, lang)
-        }
-        accessibilityHint={triLang(lang, {
-          ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
-          uk: 'Натисніть і утримуйте, щоб відкрити вступ до сценарію.',
-          es: 'Mantén pulsado para abrir la introducción del escenario.',
-          'pt-BR': 'Mantenha pressionado para abrir a introdução do cenário.',
-          vi: 'Nhấn giữ để mở phần giới thiệu kịch bản.',
-          id: 'Tekan dan tahan untuk membuka pengantar skenario.',
-          tr: 'Senaryo girişini açmak için basılı tutun.',
-          pl: 'Przytrzymaj, aby otworzyć wprowadzenie do scenariusza.',
-        })}
+        accessibilityLabel={`${title}. ${levelChip}. ${statusLabel}`}
+        accessibilityHint={accessibilityHint}
       />
     );
   };
@@ -465,8 +488,11 @@ export default function DialogsTabContent({
             tr: `Devam et: ${dialogScenarioTitle(scenario, lang)}`,
             pl: `Kontynuuj: ${dialogScenarioTitle(scenario, lang)}`,
           })}
+          accessibilityHint={briefingLongPressHint}
           activeOpacity={0.86}
           onPress={vm.onPress}
+          onLongPress={vm.onLongPress}
+          delayLongPress={550}
           style={{
             flexDirection: 'row',
             alignItems: 'center',

@@ -106,32 +106,37 @@ beforeEach(async () => {
   mockRegisterXP.mockResolvedValue({ finalDelta: 550, multiplier: 1, isBonus: false });
 });
 
-test('late friend-gift response from account A cannot mutate account B wallet or lifetime state', async () => {
+test('late committed friend-gift response from account A resolves authoritatively without mutating account B', async () => {
   beginAccountGeneration('account-a');
   const response = deferred<{ data: {
     ok: true;
-    giftId: 'arena_extra_5';
+    giftId: 'chain_shield_1';
     costShards: number;
     senderBalanceAfter: number;
     shardsUpdatedAtMs: number;
   } }>();
   mockCallableInvoker.mockReturnValueOnce(response.promise);
 
-  const request = sendFriendGiftWithShards({ friendStableId: 'friend-1', giftId: 'arena_extra_5' });
-  for (let i = 0; i < 8 && mockCallableInvoker.mock.calls.length === 0; i += 1) {
-    await Promise.resolve();
-  }
+  const request = sendFriendGiftWithShards({ friendStableId: 'friend-1', giftId: 'chain_shield_1' });
+  // Let the idempotency-key persistence and auth-link promise chain reach the
+  // deferred callable before switching accounts. A fixed microtask count is
+  // brittle whenever another guarded async step is added ahead of the request.
+  await new Promise<void>((resolve) => setImmediate(resolve));
   expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
   beginAccountGeneration('account-b');
   response.resolve({ data: {
     ok: true,
-    giftId: 'arena_extra_5',
+    giftId: 'chain_shield_1',
     costShards: 5,
     senderBalanceAfter: 95,
     shardsUpdatedAtMs: 3_000,
   } });
 
-  await expect(request).rejects.toThrow('friend_gift_identity_changed');
+  await expect(request).resolves.toMatchObject({
+    ok: true,
+    senderBalanceAfter: 95,
+  });
+  expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
   expect(mockReplaceShardsBalanceForAccountGeneration).not.toHaveBeenCalled();
   expect(mockReplaceShardsBalanceLocal).not.toHaveBeenCalled();
   expect(mockBumpLifetimeShardsSpent).not.toHaveBeenCalled();
@@ -145,7 +150,7 @@ test('uninitialized identity cannot hydrate or mutate account-owned stores', asy
   await expect(readCustomCards('fr')).resolves.toEqual([]);
   await expect(grantLessonFirstCompleteBonus({ lessonId: 99, studyTarget: 'fr', lang: 'ru' }))
     .resolves.toEqual({ status: 'failed' });
-  await expect(sendFriendGiftWithShards({ friendStableId: 'friend-boot', giftId: 'arena_extra_5' }))
+  await expect(sendFriendGiftWithShards({ friendStableId: 'friend-boot', giftId: 'chain_shield_1' }))
     .rejects.toThrow('friend_gift_identity_changed');
   logMistake('boot mistake', 1, 'lesson', 'wrong_pick', {}, 'fr');
   await flushMistakeLog();
@@ -378,13 +383,13 @@ test('same active account still completes friend gift and lesson bonus mutations
   beginAccountGeneration('account-a');
   mockCallableInvoker.mockResolvedValueOnce({ data: {
     ok: true,
-    giftId: 'arena_extra_5',
+    giftId: 'chain_shield_1',
     costShards: 5,
     senderBalanceAfter: 95,
     shardsUpdatedAtMs: 3_000,
   } });
 
-  await sendFriendGiftWithShards({ friendStableId: 'friend-2', giftId: 'arena_extra_5' });
+  await sendFriendGiftWithShards({ friendStableId: 'friend-2', giftId: 'chain_shield_1' });
   const lesson = await grantLessonFirstCompleteBonus({ lessonId: 42, studyTarget: 'fr', lang: 'ru' });
 
   expect(mockReplaceShardsBalanceForAccountGeneration).toHaveBeenCalledWith(

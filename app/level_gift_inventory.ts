@@ -2,13 +2,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
 import {
   rollF2pLevelGiftForUser,
   rollPremiumLevelGiftForUser,
+  isKnownLevelGiftId,
+  ALL_LEVEL_GIFT_DEFS,
+  sanitizeLevelGiftForPremium,
   sanitizeLevelGiftForStudyTarget,
   type GiftDef,
+  type GiftRarity,
 } from './level_gift_system';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { GIFT_TTL_MS } from './gift_expiry';
@@ -17,10 +22,12 @@ import {
   CLAIMED_GIFTS_KEY,
   PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
   PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
+  LEVEL_SPIN_GIFT_JOURNAL_KEY,
   UNCLAIMED_DUAL_GIFTS_KEY,
   UNCLAIMED_GIFTS_KEY,
   UNCLAIMED_GIFT_RECEIVED_AT_KEY,
 } from './level_up_storage_keys';
+import { getVerifiedPremiumStatus } from './premium_guard';
 
 export {
   CLAIMED_DUAL_LEVELS_KEY,
@@ -60,6 +67,11 @@ export type PendingLevelGiftInventoryItem =
       gift: GiftDef;
       giftCount: 1;
       dualPart?: DualGiftPart;
+      spinOccurrence?: {
+        requestId: string;
+        lane: 'base' | 'premium';
+        occurrenceId: string;
+      };
       /** Мс получения подарка (уровень взят). */
       receivedAtMs: number;
       /** Мс сгорания: receivedAtMs + 72ч; после — подарок исчезает из раздела. */
@@ -443,6 +455,49 @@ export const markDualGiftPartClaimed = async (
   }
 };
 
+export const restoreDualGiftPartAfterFailedClaim = async (
+  level: number,
+  failedPart: DualGiftPart,
+  failedGift: GiftDef,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  try {
+    await withInventoryMutationGuard(accountToken, async () => {
+      const [dualRaw, singleRaw, partialRaw, claimedRaw] = await AsyncStorage.multiGet([
+        UNCLAIMED_DUAL_GIFTS_KEY,
+        UNCLAIMED_GIFTS_KEY,
+        PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
+        CLAIMED_GIFTS_KEY,
+      ]);
+      if (!isAccountTokenCurrent(accountToken)) return;
+      const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
+      const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
+      const remainingGift = singleMap[level];
+      if (!remainingGift) {
+        singleMap[level] = failedGift;
+      } else {
+        dualMap[level] = failedPart === 'f2p'
+          ? { f2p: failedGift, prem: remainingGift }
+          : { f2p: remainingGift, prem: failedGift };
+        delete singleMap[level];
+      }
+      const partialLevels = parseJsonLevelArray(partialRaw[1]).filter(item => item !== level);
+      const claimedMap = parseJsonRecord<GiftRarity>(claimedRaw[1]);
+      delete claimedMap[level];
+      await AsyncStorage.multiSet([
+        [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
+        [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
+        [PARTIAL_DUAL_CLAIMED_LEVELS_KEY, JSON.stringify(partialLevels)],
+        [CLAIMED_GIFTS_KEY, JSON.stringify(claimedMap)],
+      ]);
+      await refreshPendingGiftCountCache(accountToken);
+      resyncGiftExpiryPushBestEffort();
+    });
+  } catch {
+    // The failed reward remains recoverable by the entitlement reconciler.
+  }
+};
+
 export const setLevelHadDualClaim = async (
   level: number,
   accountToken?: AccountGenerationToken,
@@ -476,14 +531,37 @@ export const loadPendingLevelGiftInventory = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<PendingLevelGiftInventoryItem[]> => {
   const account = captureAccountGeneration();
-  const [single, dual, receivedAtRaw] = await Promise.all([
+  const [single, dual, receivedAtRaw, isPremium, spinJournalRaw] = await Promise.all([
     loadUnclaimedGifts(),
     loadUnclaimedDualGifts(),
     AsyncStorage.getItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY).catch(() => null),
+    getVerifiedPremiumStatus().catch(() => false),
+    AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY).catch(() => null),
   ]);
   if (!isSameAccountGeneration(account, captureAccountGeneration())) return [];
   const target = storageStudyTarget(studyTarget);
-  const sanitizeGift = (gift: GiftDef): GiftDef => sanitizeLevelGiftForStudyTarget(gift, target);
+  const sanitizeGift = (gift: GiftDef): GiftDef => {
+    const targetSafe = sanitizeLevelGiftForStudyTarget(gift, target);
+    return isPremium ? sanitizeLevelGiftForPremium(targetSafe) : targetSafe;
+  };
+  let eligibilityChanged = false;
+  if (isPremium) {
+    Object.entries(single).forEach(([level, gift]) => {
+      const safe = sanitizeGift(gift);
+      if (safe.id !== gift.id) {
+        single[Number(level)] = safe;
+        eligibilityChanged = true;
+      }
+    });
+    Object.entries(dual).forEach(([level, pair]) => {
+      const f2p = sanitizeGift(pair.f2p);
+      const prem = sanitizeGift(pair.prem);
+      if (f2p.id !== pair.f2p.id || prem.id !== pair.prem.id) {
+        dual[Number(level)] = { f2p, prem };
+        eligibilityChanged = true;
+      }
+    });
+  }
 
   // зачем (2026-08-02, владелец): подарки живут 72ч с получения. Просроченные
   // сгорают прямо здесь (единственная точка чтения инвентаря), штампы без
@@ -517,7 +595,7 @@ export const loadPendingLevelGiftInventory = async (
   }
   if (isSameAccountGeneration(account, captureAccountGeneration())) {
     try {
-      if (expiredLevels.length > 0) {
+      if (expiredLevels.length > 0 || eligibilityChanged) {
         await AsyncStorage.multiSet([
           [UNCLAIMED_GIFTS_KEY, JSON.stringify(single)],
           [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dual)],
@@ -537,6 +615,7 @@ export const loadPendingLevelGiftInventory = async (
   };
 
   const singleItems: PendingLevelGiftInventoryItem[] = Object.entries(single)
+    .filter(([, gift]) => isKnownLevelGiftId(gift.id))
     .map(([level, gift]) => ({
       kind: 'single' as const,
       level: Number(level),
@@ -546,6 +625,9 @@ export const loadPendingLevelGiftInventory = async (
     }));
   const dualItems: PendingLevelGiftInventoryItem[] = Object.entries(dual)
     .flatMap(([level, pair]) => {
+      if (!pair.f2p || !pair.prem
+        || !isKnownLevelGiftId(pair.f2p.id)
+        || !isKnownLevelGiftId(pair.prem.id)) return [];
       const f2p = pair.f2p ? sanitizeGift(pair.f2p) : null;
       const prem = pair.prem ? sanitizeGift(pair.prem) : null;
       const items: PendingLevelGiftInventoryItem[] = [];
@@ -572,7 +654,70 @@ export const loadPendingLevelGiftInventory = async (
       return items;
     });
 
-  const items = [...singleItems, ...dualItems]
+  const spinItems: PendingLevelGiftInventoryItem[] = (() => {
+    try {
+      const parsed = spinJournalRaw ? JSON.parse(spinJournalRaw) as unknown : [];
+      if (!Array.isArray(parsed)) return [];
+      const owner = account.stableId;
+      return parsed.flatMap((rawEntry): PendingLevelGiftInventoryItem[] => {
+        const entry = rawEntry as {
+          owner?: unknown;
+          requestId?: unknown;
+          level?: unknown;
+          receivedAtMs?: unknown;
+          expiresAtMs?: unknown;
+          occurrences?: unknown;
+        };
+        const requestId = String(entry.requestId ?? '');
+        const level = Number(entry.level);
+        const receivedAtMs = Number(entry.receivedAtMs);
+        const expiresAtMs = Number(entry.expiresAtMs);
+        if (!owner || entry.owner !== owner || !/^[A-Za-z0-9_-]{16,96}$/.test(requestId)
+          || !Number.isInteger(level) || level < 1
+          || !Number.isFinite(receivedAtMs) || !Number.isFinite(expiresAtMs)
+          || expiresAtMs <= nowMs || !Array.isArray(entry.occurrences)) return [];
+        return entry.occurrences.flatMap((rawOccurrence): PendingLevelGiftInventoryItem[] => {
+          const occurrence = rawOccurrence as {
+            occurrenceId?: unknown;
+            lane?: unknown;
+            giftId?: unknown;
+            claimed?: unknown;
+          };
+          const lane = occurrence.lane === 'premium' ? 'premium' : occurrence.lane === 'base' ? 'base' : null;
+          const giftId = String(occurrence.giftId ?? '');
+          if (!lane || occurrence.claimed === true || !isKnownLevelGiftId(giftId)) return [];
+          const definition = ALL_LEVEL_GIFT_DEFS.find((gift) => gift.id === giftId);
+          if (!definition) return [];
+          const authority = { requestId, lane, giftId } as const;
+          const gift: GiftDef = {
+            ...definition,
+            spinRewardReceipt: authority,
+            choices: definition.choices?.map((choice) => ({
+              ...choice,
+              spinRewardReceipt: { requestId, lane, giftId: choice.id },
+            })),
+          };
+          return [{
+            kind: 'single',
+            level,
+            gift,
+            giftCount: 1,
+            receivedAtMs,
+            expiresAtMs,
+            spinOccurrence: {
+              requestId,
+              lane,
+              occurrenceId: String(occurrence.occurrenceId ?? `level-spin:${requestId}:${lane}`),
+            },
+          }];
+        });
+      });
+    } catch {
+      return [];
+    }
+  })();
+
+  const items = [...singleItems, ...dualItems, ...spinItems]
     .filter((item) => Number.isFinite(item.level))
     .sort((a, b) => {
       if (b.level !== a.level) return b.level - a.level;
@@ -590,6 +735,36 @@ export const loadPendingLevelGiftInventory = async (
     resyncGiftExpiryPushBestEffort();
   }
   return items;
+};
+
+export const markLevelSpinGiftOccurrenceClaimed = async (
+  requestId: string,
+  lane: 'base' | 'premium',
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const token = accountToken ?? captureAccountGeneration();
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token)) return;
+    const raw = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);
+    if (!isCurrentAccountGeneration(token)) return;
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(parsed)) return;
+    const next = parsed.map((rawEntry) => {
+      const entry = rawEntry as { owner?: unknown; requestId?: unknown; occurrences?: unknown };
+      if (entry.owner !== token.stableId || entry.requestId !== requestId || !Array.isArray(entry.occurrences)) {
+        return rawEntry;
+      }
+      return {
+        ...entry,
+        occurrences: entry.occurrences.map((rawOccurrence) => {
+          const occurrence = rawOccurrence as { lane?: unknown };
+          return occurrence.lane === lane ? { ...occurrence, claimed: true } : rawOccurrence;
+        }),
+      };
+    });
+    if (!isCurrentAccountGeneration(token)) return;
+    await AsyncStorage.setItem(LEVEL_SPIN_GIFT_JOURNAL_KEY, JSON.stringify(next));
+  });
 };
 
 export const loadPendingLevelGiftCount = async (

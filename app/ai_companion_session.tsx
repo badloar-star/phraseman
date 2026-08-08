@@ -287,7 +287,7 @@ function AiCompanionSession() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
+          <ScrollView ref={scrollRef} decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
             {messages.map((m, i) => {
               const isUser = m.role === 'user';
               return (

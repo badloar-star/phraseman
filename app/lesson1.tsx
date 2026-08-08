@@ -204,6 +204,28 @@ const stripMarkers = (word: string): string => {
 const safeProgressEventPart = (value: unknown, max = 40): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
+const MAX_LESSON_MULTIPLIER_PARAM_LENGTH = 512;
+const MAX_LESSON_MULTIPLIER_COUNT = 6;
+type ConfirmedLessonMultiplierEntry = { multiplier: number; xpDelta: number };
+
+const sanitizeConfirmedLessonMultiplier = (value: unknown): number => {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric <= 1 || numeric > 20) return 1;
+  return Math.round(numeric * 100) / 100;
+};
+
+const encodeConfirmedLessonMultipliers = (
+  entries: ReadonlyMap<string, ConfirmedLessonMultiplierEntry>,
+): string => {
+  const compact = [...entries.values()]
+    .filter((entry) => entry.multiplier > 1 && entry.xpDelta > 0)
+    .sort((left, right) => left.multiplier - right.multiplier)
+    .slice(0, MAX_LESSON_MULTIPLIER_COUNT)
+    .map((entry) => [entry.multiplier, Math.round(entry.xpDelta)]);
+  const encoded = JSON.stringify(compact);
+  return encoded.length <= MAX_LESSON_MULTIPLIER_PARAM_LENGTH ? encoded : '[]';
+};
+
 const makeLessonServerAttemptId = (): string =>
   `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
 
@@ -1159,7 +1181,7 @@ const LessonContent = React.memo(function LessonContent({
           paddingBottom: linkedSliceCompact ? 4 + bottomInset : (status === 'result' ? 100 + bottomInset : 8 + bottomInset),
           flexGrow: linkedSliceCompact ? 0 : undefined,
         }}
-        decelerationRate="fast"
+        decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!linkedSliceCompact}
         showsVerticalScrollIndicator={false}
@@ -2188,6 +2210,12 @@ export default function LessonScreen() {
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
   const lessonXpEstimateMultiplierRef = useRef(1);
+  // The completion screen reports only XP that registerXP actually committed.
+  // Keep its in-flight awards so navigation cannot race their final multipliers.
+  const lessonEarnedXpRef = useRef(0);
+  const lessonEarnedBaseXpRef = useRef(0);
+  const lessonEarnedMultipliersRef = useRef<Map<string, ConfirmedLessonMultiplierEntry>>(new Map());
+  const pendingLessonXpAwardsRef = useRef<Promise<void>[]>([]);
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
   const [passCount, setPassCount]   = useState(0);
@@ -2459,18 +2487,32 @@ export default function LessonScreen() {
     stopAudio();
   }, [lessonRuntimeActive, stopAudio]);
 
+  const resultAudioLine = useMemo(() => {
+    if (!phrase) return '';
+    const canonicalLine = phraseAnswerDisplayLine(phrase, studyTarget, lang);
+    if (status !== 'result' || wasWrong) return canonicalLine;
+    const acceptedLine = (settings.hardMode
+      ? typedText
+      : cleanPhraseForDisplay(selectedWords.join(' ')))
+      .replace(/\s+/g, ' ')
+      .trim();
+    return acceptedLine
+      ? answerDisplayLineWithCanonicalPunctuation(acceptedLine, canonicalLine)
+      : canonicalLine;
+  }, [lang, phrase, selectedWords, settings.hardMode, status, studyTarget, typedText, wasWrong]);
+
   useEffect(() => {
     if (!lessonRuntimeActive || status !== 'result' || !phrase || !settings.voiceOut) return;
-    const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
+    const line = resultAudioLine;
     const key = `${String(phrase.id ?? cellIndex)}:${line}`;
     if (!line || spokenResultKeyRef.current === key) return;
     spokenResultKeyRef.current = key;
     speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
-  }, [cellIndex, lang, lessonRuntimeActive, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
+  }, [cellIndex, lessonRuntimeActive, phrase, resultAudioLine, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
 
   const replayResultPhraseAudio = useCallback(() => {
     if (!lessonRuntimeActive || status !== 'result' || !phrase) return;
-    const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
+    const line = resultAudioLine;
     if (!line) return;
     stopAudio();
     if (replayAudioTimerRef.current) clearTimeout(replayAudioTimerRef.current);
@@ -2478,7 +2520,7 @@ export default function LessonScreen() {
       replayAudioTimerRef.current = null;
       speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
     }, Platform.OS === 'android' ? 90 : 30);
-  }, [lang, lessonRuntimeActive, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
+  }, [lessonRuntimeActive, phrase, resultAudioLine, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
   // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
   // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
@@ -3187,7 +3229,7 @@ export default function LessonScreen() {
       const answerOrdinal = sessionAnswerCount.current;
       const optimisticXpAmount = Math.max(1, Math.round(xpAmount * lessonXpEstimateMultiplierRef.current));
 
-      void registerXP(xpAmount, 'lesson_answer', userNameRef.current || '', lang, lessonId, {
+      const awardPromise = registerXP(xpAmount, 'lesson_answer', userNameRef.current || '', lang, lessonId, {
         eventId: [
           'lesson',
           safeProgressEventPart(lessonStorageId, 40),
@@ -3214,7 +3256,30 @@ export default function LessonScreen() {
           replay: overridePhraseCell !== null,
           lessonReplay: isReplayRef.current,
         },
-      }).catch(() => {});
+      }).then(({ finalDelta, multiplier }) => {
+        const confirmedFinalDelta = Number.isFinite(finalDelta)
+          ? Math.max(0, Math.round(finalDelta))
+          : 0;
+        if (confirmedFinalDelta <= 0) return;
+        const confirmedBaseXp = Math.max(0, Math.round(xpAmount));
+        lessonEarnedXpRef.current += confirmedFinalDelta;
+        lessonEarnedBaseXpRef.current += confirmedBaseXp;
+
+        const confirmedMultiplier = sanitizeConfirmedLessonMultiplier(multiplier);
+        const multiplierXpDelta = Math.max(0, confirmedFinalDelta - confirmedBaseXp);
+        if (confirmedMultiplier <= 1 || multiplierXpDelta <= 0) return;
+        const multiplierKey = String(confirmedMultiplier);
+        const current = lessonEarnedMultipliersRef.current.get(multiplierKey);
+        if (!current && lessonEarnedMultipliersRef.current.size >= MAX_LESSON_MULTIPLIER_COUNT) return;
+        lessonEarnedMultipliersRef.current.set(multiplierKey, {
+          multiplier: confirmedMultiplier,
+          xpDelta: (current?.xpDelta ?? 0) + multiplierXpDelta,
+        });
+      }).catch(() => {}).then(() => {});
+      pendingLessonXpAwardsRef.current.push(awardPromise);
+      void awardPromise.finally(() => {
+        pendingLessonXpAwardsRef.current = pendingLessonXpAwardsRef.current.filter((pending) => pending !== awardPromise);
+      });
 
       setXpToastAmount(optimisticXpAmount);
       setXpToastVisible(true);
@@ -3361,10 +3426,10 @@ export default function LessonScreen() {
             ERROR_REPLAY_OVERRIDE_KEY,
           ]).catch(() => {});
         };
-        try {
         // Получаем финальную оценку урока перед переходом на lesson_complete
         const correct = np.filter(x => x === 'correct' || x === 'replay_correct').length;
         let finalScore = parseFloat((correct / effectiveTotal * 5).toFixed(1));
+        try {
 
         // Если включен режим "Без ограничений", даём 5 баллов автоматически
         const noLimits = await isTesterNoLimitsActive();
@@ -3452,12 +3517,21 @@ export default function LessonScreen() {
           coachRouteParams = {};
         }
 
-        const navigate = () => {
+        const navigate = async () => {
+          await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
           router.replace({
             pathname: '/lesson_complete',
-            params: { id: String(lessonId), unlocked: didUnlock ? '1' : '0', ...coachRouteParams },
+            params: {
+              id: String(lessonId),
+              unlocked: didUnlock ? '1' : '0',
+              earnedXp: String(lessonEarnedXpRef.current),
+              earnedBaseXp: String(lessonEarnedBaseXpRef.current),
+              earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              passed: finalScore >= 2.5 ? '1' : '0',
+              ...coachRouteParams,
+            },
           });
         };
 
@@ -3468,9 +3542,20 @@ export default function LessonScreen() {
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
+          await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
-          router.replace({ pathname: '/lesson_complete', params: { id: String(lessonId), unlocked: '0' } });
+          router.replace({
+            pathname: '/lesson_complete',
+            params: {
+              id: String(lessonId),
+              unlocked: '0',
+              earnedXp: String(lessonEarnedXpRef.current),
+              earnedBaseXp: String(lessonEarnedBaseXpRef.current),
+              earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              passed: finalScore >= 2.5 ? '1' : '0',
+            },
+          });
         }
       }, 1500);
       return;

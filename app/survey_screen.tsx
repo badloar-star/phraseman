@@ -325,7 +325,7 @@ export default function SurveyScreen() {
             <View style={{ height: '100%', borderRadius: 3, backgroundColor: survey.accentColor || sx.second, width: `${((stepIndex + 1) / total) * 100}%` }} />
           </View>
 
-          <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, paddingBottom: 120 }} keyboardShouldPersistTaps="handled">
+          <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, paddingBottom: 120 }} keyboardShouldPersistTaps="handled">
             {currentQuestion && (
               <Animated.View style={{ opacity: stepAnim, transform: [{ translateX: stepAnim.interpolate({ inputRange: [0, 1], outputRange: [40, 0] }) }] }}>
               <QuestionBlock

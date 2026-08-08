@@ -1,10 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-// зачем: 2026-07-26 приложение падало на старте с «Screen names must be unique:
-// …settings_testers…» — параллельная сессия добавила экран явным <Stack.Screen>,
-// хотя это же имя уже регистрировалось динамически из DEV_UTILITY_ROUTE_NAMES.
-// Expo Router роняет весь рут-лейаут, то есть баг = белый экран у всех.
+// Expo Router роняет весь рут-лейаут при повторном имени экрана.
 // Тест ловит любое повторное имя в app/_layout.tsx до релиза.
 
 const ROOT = path.resolve(__dirname, '..');
@@ -51,7 +48,7 @@ function devUtilityScreenNames(layoutSource: string): string[] {
   });
 
   // Имена, которые лейаут намеренно выкидывает из дев-карты, потому что
-  // объявляет их явно (например settings_testers — «шторка раздела» в проде).
+  // объявляет их явно.
   const excluded = new Set(
     [...layoutSource.matchAll(/name\s*!==\s*(\w+_ROUTE_NAME)/g)]
       .map((m) => constByName.get(m[1]))
@@ -78,10 +75,4 @@ describe('root stack screen names', () => {
     expect(collisions).toEqual([]);
   });
 
-  it('settings_testers регистрируется ровно один раз', () => {
-    const layout = readLayout();
-    const all = [...explicitScreenNames(layout), ...devUtilityScreenNames(layout)];
-
-    expect(all.filter((name) => name === 'settings_testers')).toHaveLength(1);
-  });
 });

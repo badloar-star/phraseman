@@ -13,15 +13,12 @@ describe('profile card has one personal entry surface', () => {
   const layout = read('app/_layout.tsx');
   const controls = read('components/customization/CustomizationControls.tsx');
   const profileModal = read('components/PlayerProfileModal.tsx');
-  const qaSection = read('components/admin_panel/sections/RewardModalsExtraSection.tsx');
 
   it('does not ship or navigate to the retired standalone route', () => {
     expect(fs.existsSync(path.join(process.cwd(), 'app', 'profile_card_upgrade.tsx'))).toBe(false);
     expect(layout).not.toContain('Stack.Screen name="profile_card_upgrade"');
     expect(avatarScreen).not.toContain("router.push('/profile_card_upgrade'");
     expect(controls).not.toContain('onOpenProfileCard');
-    expect(qaSection).not.toContain('admin-extra-profile-card-upgrade');
-    expect(qaSection).not.toContain("router.push('/profile_card_upgrade'");
   });
 
   it('opens the preserved profile modal from the home header profile icon', () => {
@@ -32,7 +29,7 @@ describe('profile card has one personal entry surface', () => {
   });
 
   it('keeps profile upgrades inside the preserved modal', () => {
-    expect(profileModal).toContain('isMe && ENABLE_PROFILE_CARD && nextRealLevel !== null');
+    expect(profileModal).toContain('isMe && !hasDevProfileCardLevelOverride && ENABLE_PROFILE_CARD && nextRealLevel !== null');
     expect(profileModal).toContain('onPress={handleUpgradeButtonTap}');
     expect(profileModal).toContain('const result = await upgradeProfileCardLevel();');
     expect(profileModal).toContain('void syncToCloud({ forceNow: true });');

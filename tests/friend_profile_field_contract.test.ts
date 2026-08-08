@@ -49,7 +49,7 @@ const LEADERBOARD_DOC_AS_WRITTEN = {
 
 describe('friend public profile field contract', () => {
   it('reads real XP from the field the writer actually populates', () => {
-    const profile = buildFriendProfile('uid-1', LEADERBOARD_DOC_AS_WRITTEN, undefined);
+    const profile = buildFriendProfile('uid-1', LEADERBOARD_DOC_AS_WRITTEN);
 
     expect(profile).not.toBeNull();
     // Регрессия инцидента: раньше здесь было 0, потому что читали `totalXp`.
@@ -60,14 +60,14 @@ describe('friend public profile field contract', () => {
   });
 
   it('never mistakes weekly points for lifetime XP', () => {
-    const profile = buildFriendProfile('uid-1', LEADERBOARD_DOC_AS_WRITTEN, undefined);
+    const profile = buildFriendProfile('uid-1', LEADERBOARD_DOC_AS_WRITTEN);
     // weekPoints (320) — витринное недельное число. Если оно просочится в
     // totalXp, уровень станет враньём: 25 XP = 1 уровень.
     expect(profile!.totalXp).not.toBe(LEADERBOARD_DOC_AS_WRITTEN.weekPoints);
   });
 
   it('carries name, card level, streak and league from the written fields', () => {
-    const profile = buildFriendProfile('uid-1', LEADERBOARD_DOC_AS_WRITTEN, undefined);
+    const profile = buildFriendProfile('uid-1', LEADERBOARD_DOC_AS_WRITTEN);
 
     expect(profile!.displayName).toBe('Omega 89307');
     expect(profile!.profileCardLevel).toBe(2);
@@ -77,17 +77,17 @@ describe('friend public profile field contract', () => {
 
   it('distinguishes "no streak field" from an honest zero', () => {
     const { streak: _omitted, ...withoutStreak } = LEADERBOARD_DOC_AS_WRITTEN;
-    const unknown = buildFriendProfile('uid-1', withoutStreak, undefined);
+    const unknown = buildFriendProfile('uid-1', withoutStreak);
     // null → карточка прячет строку; 0 → карточка утверждает «цепочки нет».
     expect(unknown!.streak).toBeNull();
 
-    const honestZero = buildFriendProfile('uid-1', { ...LEADERBOARD_DOC_AS_WRITTEN, streak: 0 }, undefined);
+    const honestZero = buildFriendProfile('uid-1', { ...LEADERBOARD_DOC_AS_WRITTEN, streak: 0 });
     expect(honestZero!.streak).toBe(0);
   });
 
   it('still understands legacy documents written under the old key names', () => {
     // Старые документы (arena_profiles / прежние схемы) должны продолжать читаться.
-    const legacy = buildFriendProfile('uid-2', undefined, {
+    const legacy = buildFriendProfile('uid-2', {
       displayName: 'Legacy',
       totalXp: 900,
       courseProfileCardLevel: 1,
@@ -101,8 +101,8 @@ describe('friend public profile field contract', () => {
   });
 
   it('returns null for a genuinely empty profile instead of a zeroed lie', () => {
-    expect(buildFriendProfile('uid-3', undefined, undefined)).toBeNull();
-    expect(buildFriendProfile('uid-3', {}, {})).toBeNull();
+    expect(buildFriendProfile('uid-3', undefined)).toBeNull();
+    expect(buildFriendProfile('uid-3', {})).toBeNull();
   });
 
   /**

@@ -71,11 +71,11 @@ export async function resolveNextPlanTask(input: {
   const [completedTasks, duePracticeCount, trainerCounts, duePlanTrainerWeakSpotCount, dueFlashcardsCount] = await Promise.all([
     readCompletedPlanTasks(),
     countDueItemsToday(input.studyTarget).catch(() => 0),
-    getTrainerCounts(input.studyTarget).catch(() => ({ words: 0, phrases: 0, arena: 0 } as Record<string, number>)),
+    getTrainerCounts(input.studyTarget).catch(() => ({ words: 0, phrases: 0 } as Record<string, number>)),
     resolvePersonalPlanTrainerWeakSpotDueCount({ planInstanceId: state.planInstanceId, mode: 'weak', studyTarget: input.studyTarget }).catch(() => 0),
     resolvePersonalPlanFlashcardsReviewCount(input.studyTarget).catch(() => 0),
   ]);
-  const dueTrainerCount = (trainerCounts.words ?? 0) + (trainerCounts.phrases ?? 0) + (trainerCounts.arena ?? 0);
+  const dueTrainerCount = (trainerCounts.words ?? 0) + (trainerCounts.phrases ?? 0);
 
   const runtime = buildTodayPlanRuntime({
     plan,

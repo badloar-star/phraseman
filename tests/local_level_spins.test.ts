@@ -1,0 +1,51 @@
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
+
+describe('local level Spin runtime', () => {
+  const path = join(process.cwd(), 'app', 'local_level_spins.ts');
+
+  test('exists as an AsyncStorage-first reward path with no Firebase callable dependency', () => {
+    expect(existsSync(path)).toBe(true);
+    const source = readFileSync(path, 'utf8');
+    expect(source).toContain('LOCAL_LEVEL_SPIN_STATE_KEY');
+    expect(source).toContain('AsyncStorage');
+    expect(source).toContain('export async function claimLocalLevelSpin');
+    expect(source).toContain('export async function grantLocalLevelSpins');
+    expect(source).toContain('export async function grantLocalDevSpin');
+    expect(source).toContain('migrateCachedBalanceToLocalCredits');
+    expect(source).not.toContain('httpsCallable');
+    expect(source).not.toContain('getFunctions');
+    expect(source).not.toContain("from './level_reward_spins_client'");
+    expect(source).not.toContain("from './cloud_sync'");
+  });
+
+  test('runs the Spin screen through the local claim path, not a callable', () => {
+    const screen = readFileSync(join(process.cwd(), 'app', 'level_reward_spin.tsx'), 'utf8');
+    expect(screen).toContain("from './local_level_spins'");
+    expect(screen).toContain('claimLocalLevelSpin');
+    expect(screen).not.toContain('claimLevelSpin');
+    expect(screen).not.toContain('recoverLevelSpinClaim');
+    expect(screen).not.toContain('fetchLevelSpinStatus');
+    expect(screen).not.toContain("from './level_reward_spins_client'");
+    const presentation = readFileSync(join(process.cwd(), 'components', 'LevelSpinFinishLine.tsx'), 'utf8');
+    expect(presentation).not.toContain("from '../app/level_reward_spins_client'");
+  });
+
+  test('mints the local credit at the device XP level crossing before background sync', () => {
+    const xp = readFileSync(join(process.cwd(), 'app', 'xp_manager.ts'), 'utf8');
+    expect(xp).toContain("import { enqueueLevelSpinLevelUps } from './level_spin_level_up_queue'");
+    expect(xp).toContain('await enqueueLevelSpinLevelUps(prevLvl, newLvl);');
+  });
+
+  test('keeps every account and every claim commit isolated and recoverable', () => {
+    const source = readFileSync(path, 'utf8');
+    const queue = readFileSync(join(process.cwd(), 'app', 'level_spin_level_up_queue.ts'), 'utf8');
+    expect(source).toContain('localLevelSpinStateKey(owner)');
+    expect(source).toContain('issuedLevels');
+    expect(source).toContain('activeReceipt');
+    expect(source).toContain('AsyncStorage.multiSet');
+    expect(queue).toContain('pendingLevelSpinQueueKey(owner)');
+    expect(queue).toContain('grantLocalLevelSpinsForAccount(crossed, token)');
+    expect(queue).not.toContain('await grantLocalLevelSpins(crossed);');
+  });
+});

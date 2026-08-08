@@ -37,7 +37,7 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf('const handleContinueLesson = openLessonFromMenu'),
     );
     expect(startSlice).toContain('primeLessonScreenFromStorage(lessonId, studyTarget)');
-    expect(startSlice).toContain("router.replace({ pathname: '/lesson1'");
+    expect(startSlice).toContain("router.push({ pathname: '/lesson1'");
 
     const replayIntroSlice = source.slice(
       source.indexOf('const handleReplayIntroAndContinue = useCallback'),

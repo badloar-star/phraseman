@@ -99,8 +99,7 @@ describe('Gustav French daily phrase target gate', () => {
     const card = fs.readFileSync(path.join(ROOT, 'components', 'DailyPhraseCard.tsx'), 'utf8');
     const system = fs.readFileSync(path.join(ROOT, 'app', 'daily_phrase_system.ts'), 'utf8');
 
-    expect(home).toContain('<DailyPhraseCard variant="homeAdditional" />');
-    expect(home).toContain(': <DailyPhraseCard />}');
+    expect(home).toContain('<DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />');
     expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
     expect(home).not.toContain("studyTarget !== 'fr' ? <DailyPhraseCard");
     expect(card).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');

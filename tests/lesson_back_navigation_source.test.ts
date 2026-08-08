@@ -58,13 +58,13 @@ describe('lesson complete back loop guard', () => {
     expect(handlerSlice).not.toContain("'/lesson1'");
   });
 
-  it('header back and hardware back share one safe destination (lesson_menu)', () => {
+  it('header back and hardware back share one safe destination (lessons_list)', () => {
     const source = completeSource();
     expect(source).toContain('const goBackFromComplete = useCallback(');
     const backFn = source.slice(
       source.indexOf('const goBackFromComplete = useCallback('),
       source.indexOf('const goBackFromComplete = useCallback(') + 220,
     );
-    expect(backFn).toContain("pathname: '/lesson_menu'");
+    expect(backFn).toContain("pathname: '/lessons_list'");
   });
 });

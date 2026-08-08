@@ -276,18 +276,6 @@ const CONTRACT_CHECKS: Array<{
     blockerMessage: 'Quiz explanation prompt is not tied to the shared per-language prompt map.',
   },
   {
-    area: 'Quiz explanation client language forwarding',
-    file: 'app/(tabs)/quizzes.tsx',
-    mustContain: [
-      'const quizQuestionPrompt = current',
-      'quizSourceTextForPlanned(current, \'pt-BR\')',
-      '${quizCorrectEn}|${[...current.choices].sort().join(\'|\')}|${lang}',
-      'useQuizExplain({',
-      'lang,',
-    ],
-    blockerMessage: 'Thematic quiz explanation client is not forwarding the current UI language into prompt/cache isolation.',
-  },
-  {
     area: 'Mistake explanation language isolation',
     file: 'functions/src/mistake_explain.ts',
     mustContain: [

@@ -3,7 +3,7 @@
  *
  * Тип задания → слот активной темы (gold / accent / correct / textSecond),
  * никаких хардкодных hex: карточки и герой-кольцо перекрашиваются вместе с
- * темой (midnight/ember/aurora/volt/coral/…). Золотая тема по-прежнему
+ * темой (midnight/ember/aurora/volt/…). Золотая тема по-прежнему
  * перекрывает акценты на экране через goldTaskAccent (см. daily_tasks_screen).
  */
 import type { Theme } from '../../constants/theme';
@@ -53,7 +53,7 @@ const CORRECT_SLOT_TYPES: ReadonlySet<TaskType> = new Set([
 /**
  * Акцент задания из слотов активной темы.
  * Всё, что не в списках выше (утро/вечер, приглашение друга, диагностика,
- * энергия, streak-safety, а также устаревшие quiz/arena-типы, которые больше
+ * энергия и streak-safety, а также старые типы, которые больше
  * не попадают в набор), — приглушённый слот textSecond.
  */
 export function dailyTaskAccentHex(theme: Theme, taskType: TaskType): string {

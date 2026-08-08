@@ -1,6 +1,12 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser } from './cloud_sync';
 import { saveFriendGiftsToInventory } from './friend_gift_inventory';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 export type IncomingFriendGift = {
   id: string;
@@ -42,6 +48,9 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
   if (!db) return [];
   const uid = await ensureAnonUser();
   if (!uid) return [];
+  return withAccountTransitionLock(async () => {
+  const accountToken = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(accountToken, uid)) return [];
 
   const snap = await db
     .collection('users')
@@ -56,7 +65,6 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
   if (!snap || snap.empty) return [];
 
   const gifts: IncomingFriendGift[] = [];
-  const batch = db.batch();
   for (const doc of snap.docs as Array<{ id: string; ref: unknown; data: () => Record<string, unknown> }>) {
     const d = doc.data();
     // Записи, созданные клиентом (QA-симуляция), по rules обязаны нести qa == true —
@@ -80,13 +88,48 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
       fromName: String(d.fromName ?? ''),
       ts: parseTs(d.ts),
     });
-    batch.set(doc.ref, { seen: true, seenAt: Date.now() }, { merge: true });
   }
 
-  await batch.commit().catch(() => {});
   const sorted = gifts.sort((a, b) => b.ts - a.ts);
-  await saveFriendGiftsToInventory(sorted.map(gift => ({ ...gift, savedAt: Date.now() }))).catch(() => {});
+  const userSnap = await db.collection('users').doc(uid).get();
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
+  const userData = userSnap?.data?.() ?? {};
+  const progress = userData.progress && typeof userData.progress === 'object'
+    ? userData.progress as Record<string, unknown>
+    : {};
+  const effectPairs: Array<[string, string]> = [];
+  for (const key of ['chain_shield', 'gift_xp_multiplier'] as const) {
+    const value = userData[key] ?? progress[key];
+    if (typeof value === 'string' && value.trim()) effectPairs.push([key, value]);
+    else if (value && typeof value === 'object') effectPairs.push([key, JSON.stringify(value)]);
+  }
+  const effectKeys = ['chain_shield', 'gift_xp_multiplier'];
+  const previousEffects = await AsyncStorage.multiGet(effectKeys);
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
+  if (effectPairs.length) await AsyncStorage.multiSet(effectPairs);
+  const missingKeys = effectKeys.filter((key) => !effectPairs.some(([effectKey]) => effectKey === key));
+  if (missingKeys.length) await AsyncStorage.multiRemove(missingKeys);
+  if (!isCurrentAccountGeneration(accountToken, uid)) {
+    const restorePairs = previousEffects.filter((entry): entry is [string, string] => entry[1] !== null);
+    const removeKeys = previousEffects.filter((entry) => entry[1] === null).map(([key]) => key);
+    if (restorePairs.length) await AsyncStorage.multiSet(restorePairs);
+    if (removeKeys.length) await AsyncStorage.multiRemove(removeKeys);
+    throw new Error('friend_gift_identity_changed');
+  }
+  await saveFriendGiftsToInventory(
+    sorted.map(gift => ({ ...gift, savedAt: Date.now() })),
+    accountToken,
+  );
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
+
+  const batch = db.batch();
+  for (const doc of snap.docs as Array<{ ref: unknown }>) {
+    batch.set(doc.ref, { seen: true, seenAt: Date.now() }, { merge: true });
+  }
+  await batch.commit();
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
   return sorted;
+  });
 }
 
 /* expo-router route shim */

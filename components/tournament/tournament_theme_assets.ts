@@ -52,12 +52,6 @@ const SELECTABLE_KITS = {
     weeklyBank: require('../../assets/images/tournament/themes/dark/weekly-bank.webp'),
     seasonRewards: require('../../assets/images/tournament/themes/dark/season-rewards.webp'),
   },
-  coral: {
-    backdrop: require('../../assets/images/tournament/themes/coral/backdrop.webp'),
-    podium: require('../../assets/images/tournament/themes/coral/podium.webp'),
-    weeklyBank: require('../../assets/images/tournament/themes/coral/weekly-bank.webp'),
-    seasonRewards: require('../../assets/images/tournament/themes/coral/season-rewards.webp'),
-  },
   gold: {
     backdrop: require('../../assets/images/tournament/themes/gold/backdrop.webp'),
     podium: require('../../assets/images/tournament/themes/gold/podium.webp'),

@@ -9,23 +9,13 @@ const SOURCE_DIR = path.join(ROOT, 'asset_sources/cinema_dalle_sources');
 const CINEMA_THEMES = ['midnight', 'ember', 'aurora', 'volt'];
 
 const LEARNING_OBJECT_SUBJECTS = [
-  'level:easy',
-  'level:medium',
-  'level:hard',
-  'theme:kitchen-and-cooking',
-  'theme:home-and-rooms',
-  'theme:at-the-doctor',
-  'theme:body-and-health',
-  'theme:shopping-and-money',
   'trainer:phrases',
   'trainer:words',
   'trainer:analytics',
-  'medal',
 ];
 
 const HOME_OBJECT_SUBJECTS = [
   'home:lessons',
-  'home:quizzes',
   'home:cards',
   'home:daily-tasks',
   'home:league',
@@ -33,19 +23,12 @@ const HOME_OBJECT_SUBJECTS = [
   'home:practice',
   'home:exam',
   'home:shop',
-  'home:arena',
   'home:hero-map',
   'leagueChest',
 ];
 
 function outPathFor(theme, subject) {
   const [kind, value] = subject.split(':');
-  if (kind === 'level') {
-    return path.join(ROOT, 'assets/images/quizzes/level_logos', `quiz-logo-${value}-${theme}.webp`);
-  }
-  if (kind === 'theme') {
-    return path.join(ROOT, 'assets/images/quizzes/theme_logos', `quiz-theme-${value}-${theme}.webp`);
-  }
   if (kind === 'trainer') {
     return path.join(ROOT, 'assets/images/trainer_theme_icons', theme, `${value}.webp`);
   }
@@ -61,9 +44,6 @@ function outPathFor(theme, subject) {
   if (subject === 'streak:fire') {
     return path.join(ROOT, 'assets/images/streak_icons', theme, `streak-fire-${theme}-100.webp`);
   }
-  if (subject === 'medal') {
-    return path.join(ROOT, 'assets/images/quizzes/medals', `quiz-completion-medal-${theme}-cutout.webp`);
-  }
   if (subject === 'leagueChest') {
     return path.join(ROOT, 'assets/images/league_bonus', `${theme}-chest.webp`);
   }
@@ -72,7 +52,7 @@ function outPathFor(theme, subject) {
 
 function outputSizeFor(subject) {
   if (subject.startsWith('streak:')) return 80;
-  if (subject === 'medal' || subject === 'leagueChest') return 512;
+  if (subject === 'leagueChest') return 512;
   if (subject.startsWith('home:')) return 384;
   if (subject.startsWith('trainer:') || subject.startsWith('shard:')) return 256;
   return 260;

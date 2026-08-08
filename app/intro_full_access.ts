@@ -157,26 +157,3 @@ export async function markIntroFullAccessWelcomeSeen(): Promise<void> {
 export async function markIntroFullAccessEndedSeen(): Promise<void> {
   await AsyncStorage.setItem(INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'true');
 }
-
-export async function activateIntroFullAccessForAdmin(nowMs: number = Date.now()): Promise<void> {
-  await AsyncStorage.multiSet([
-    [INTRO_FULL_ACCESS_STARTED_AT_KEY, String(nowMs)],
-    [INTRO_FULL_ACCESS_ENDS_AT_KEY, String(nowMs + INTRO_FULL_ACCESS_DURATION_MS)],
-    [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'false'],
-    [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
-  ]);
-}
-
-export async function expireIntroFullAccessForAdmin(nowMs: number = Date.now()): Promise<void> {
-  const startedAt = nowMs - INTRO_FULL_ACCESS_DURATION_MS - 1000;
-  await AsyncStorage.multiSet([
-    [INTRO_FULL_ACCESS_STARTED_AT_KEY, String(startedAt)],
-    [INTRO_FULL_ACCESS_ENDS_AT_KEY, String(nowMs - 1000)],
-    [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true'],
-    [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
-  ]);
-}
-
-export async function resetIntroFullAccessForAdmin(): Promise<void> {
-  await AsyncStorage.multiRemove([...INTRO_FULL_ACCESS_STORAGE_KEYS]);
-}

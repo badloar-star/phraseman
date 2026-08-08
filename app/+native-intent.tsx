@@ -2,6 +2,8 @@
  * Normalizes incoming deep links before Expo Router attempts matching.
  * This prevents "Unmatched Route" on root custom-scheme launches.
  */
+import { IS_STORE_RELEASE } from './config';
+
 export function redirectSystemPath({
   path,
 }: {
@@ -37,6 +39,15 @@ export function redirectSystemPath({
     return '/home';
   }
 
+  // Personal-plan developer surfaces can modify local plan state. Store builds
+  // must fail closed even when an old/system deep link targets them directly.
+  if (
+    IS_STORE_RELEASE &&
+    /(?:^|\/)personal_plan_(?:runtime_)?dev(?:[/?#]|$)/i.test(raw)
+  ) {
+    return '/home';
+  }
+
   // Referral invite links should not route to a non-existent `/invite` screen.
   // The root layout captures the ref query from Linking.getInitialURL/listeners;
   // this redirect only keeps app launch/navigation on a valid screen.
@@ -54,8 +65,11 @@ export function redirectSystemPath({
     return `/home${query}`;
   }
 
-  // Retired Quiz/Arena links from older installs must land on a valid safe screen.
-  if (/(?:^|\/)(?:duel|arena(?:[_/-][a-z0-9_-]+)?|quizzes?(?:_screen)?)(?:[/?#]|$)/i.test(raw)) {
+  // Competitive Quiz/Arena surfaces were retired. Old notifications, widgets,
+  // and shared duel links can outlive the routes, so fail closed to Home
+  // instead of handing Expo Router a path that renders an unmatched screen.
+  if (/(?:^|\/)phraseman\/(?:duel|arena(?:_join)?|quizzes?|quiz)(?:[/?#]|$)/i.test(raw)
+    || /(?:^|\/)(?:duel|arena(?:_join)?|quizzes?|quiz)(?:[/?#]|$)/i.test(raw)) {
     return '/home';
   }
 

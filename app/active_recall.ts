@@ -16,7 +16,7 @@
  *   • interval начинается с 1 дня, потом 3, потом easeFactor × предыдущий
  *
  * Интеграция:
- *   1. recordMistake из урока, квиза, арены и т.д.
+ *   1. recordMistake из урока, диагностики или зачёта.
  *   2. Бейдж на главной: countDueItemsToday() — без записи в storage
  *   3. Сессия /review: getDueItems(limit, { commitSessionOverflow: true })
  *   4. markReviewed после ответа в сессии
@@ -45,7 +45,7 @@ import {
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
 /** Откуда запись попала в очередь (старые данные без поля = урок). */
-export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam';
+export type MistakeSource = 'lesson' | 'diagnostic' | 'exam';
 
 export interface RecallItem {
   /** Random local identifier used for privacy-safe longitudinal analytics. */
@@ -291,12 +291,17 @@ function applyCorrections(items: RecallItem[], studyTarget?: RuntimeStudyTarget)
   let changed = false;
   const applyEnglishCorrections = storageStudyTarget(studyTarget) !== 'fr';
 
-  const withoutArena = items.filter((i) => i.source !== 'arena');
-  if (withoutArena.length !== items.length) {
+  const activeItems = items.filter((item) => (
+    item.source == null
+    || item.source === 'lesson'
+    || item.source === 'diagnostic'
+    || item.source === 'exam'
+  ));
+  if (activeItems.length !== items.length) {
     changed = true;
   }
 
-  const afterTable = withoutArena.map(item => {
+  const afterTable = activeItems.map(item => {
     const correct = applyEnglishCorrections ? PHRASE_CORRECTIONS[item.phrase] : undefined;
     if (correct) {
       changed = true;
@@ -825,42 +830,7 @@ export async function getItemsByLesson(lessonId: number, studyTarget?: RuntimeSt
     .sort((a, b) => b.errorCount - a.errorCount);
 }
 
-// ── Запись из арены, зачёта, диагностики (агрегируется в той же очереди SRS) ─
-
-/** Английская цель для повторения по вопросу арены (часто вставка в пропуск). */
-export function buildArenaEnglishPhrase(q: {
-  question: string;
-  correct: string;
-  task?: string;
-}): string {
-  const qu = (q.question || '').trim();
-  if (/___+/.test(qu)) {
-    return qu.replace(/___+/, q.correct).replace(/\s+/g, ' ').trim();
-  }
-  return (q.correct || '').trim();
-}
-
-/** Подсказка на «лице» карточки: правило с кириллицей или формулировка задания. */
-export function buildArenaHintRU(q: {
-  rule?: string;
-  task?: string;
-  question: string;
-}): string {
-  const rule = (q.rule || '').trim();
-  if (/[а-яёіїєґА-ЯЁІЇЄґ]/.test(rule)) return rule;
-  const stem = (q.question || '').replace(/___+/, '…');
-  return [q.task, stem].filter(Boolean).join(' — ') || stem || (q.task ?? '');
-}
-
-export async function recordMistakeFromArena(q: {
-  question: string;
-  correct: string;
-  task?: string;
-  rule?: string;
-}): Promise<void> {
-  void q;
-  // Арена не пополняет очередь active recall — отдельный прогресс и награды.
-}
+// ── Запись из зачёта и диагностики ────────────────────────────────────────
 
 /** Собранное предложение для зачёта уровня (пропуск или целое MC). */
 export function buildLevelExamEnglish(q: {
@@ -932,52 +902,6 @@ export async function recordMistakeFromDiagnostic(
     tokenMeta,
     studyTarget,
   );
-}
-
-/**
- * Только для проверки UI (маршрут admin_review_test): записать 7 фраз, «срочно» в очереди повторения.
- * `lessonId` = 99 зарезервирован под такие сиды: старые тест-фразы с lessonId 99 удаляются.
- * С высоким errorCount записи попадают в сессию раньше обычных.
- */
-const ADMIN_BENCH_LESSON_ID = 99;
-const ADMIN_TEST_BENCH: { phrase: string; correctAnswer: string; correctAnswerUK: string; correctAnswerES: string }[] = [
-  { phrase: 'He is in the kitchen', correctAnswer: 'Он на кухне', correctAnswerUK: 'Він на кухні', correctAnswerES: 'Él está en la cocina' },
-  { phrase: 'She went to the store', correctAnswer: 'Она пошла в магазин', correctAnswerUK: 'Вона пішла в магазин', correctAnswerES: 'Ella fue a la tienda' },
-  { phrase: 'We will call you tomorrow', correctAnswer: 'Мы позвоним тебе завтра', correctAnswerUK: 'Ми подзвонимо тобі завтра', correctAnswerES: 'Te llamaremos mañana' },
-  { phrase: 'I have never been there', correctAnswer: 'Я никогда не был там', correctAnswerUK: 'Я ніколи не був там', correctAnswerES: 'Nunca he estado allí' },
-  { phrase: 'They are waiting for us', correctAnswer: 'Они ждут нас', correctAnswerUK: 'Вони чекають на нас', correctAnswerES: 'Nos están esperando' },
-  { phrase: 'Could you help me please', correctAnswer: 'Не могли бы вы мне помочь', correctAnswerUK: 'Не могли б ви мені допомогти', correctAnswerES: '¿Podrías ayudarme, por favor?' },
-  { phrase: 'The weather is nice today', correctAnswer: 'Сегодня хорошая погода', correctAnswerUK: 'Сьогодні гарна погода', correctAnswerES: 'Hoy hace buen tiempo' },
-];
-
-export async function seedAdminTestReviewSession(studyTarget?: RuntimeStudyTarget): Promise<boolean> {
-  if (storageStudyTarget(studyTarget) === 'fr') {
-    return false;
-  }
-
-  return withRecallStorageLock(studyTarget, async () => {
-  const { items: existing } = await loadItemsUnlocked(studyTarget);
-  const rest = existing.filter(i => i.lessonId !== ADMIN_BENCH_LESSON_ID);
-  const t0 = todayStart() - 1; // наступило «сегодня» для getDueItems
-  const now = Date.now();
-  const seeded: RecallItem[] = ADMIN_TEST_BENCH.map(t => ({
-    analyticsItemId: makeAnalyticsItemId(),
-    phrase: t.phrase,
-    correctAnswer: t.correctAnswer,
-    correctAnswerUK: t.correctAnswerUK,
-    correctAnswerES: t.correctAnswerES,
-    lessonId: ADMIN_BENCH_LESSON_ID,
-    errorCount: 9_000,
-    repetitions: 0,
-    interval: 1,
-    easeFactor: INITIAL_EASE_FACTOR,
-    createdAt: now,
-    lastReviewed: now - 1,
-    nextDue: t0,
-  }));
-  await saveItems([...rest, ...seeded], studyTarget);
-  return true;
-  });
 }
 
 // ─── Хелпер для интеграции с lesson1.tsx (вызывается при checkAnswer) ────────

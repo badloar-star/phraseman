@@ -33,7 +33,10 @@ describe('home social notification center', () => {
     expect(button).not.toContain('subscribeUserNotifications((list)');
     expect(button).toContain("AppState.addEventListener('change'");
     expect(button).toContain('if (state === \'active\')');
-    expect(button).not.toContain('force: true');
+    const openStart = button.indexOf('const open = useCallback');
+    const openEnd = button.indexOf('const select', openStart);
+    const openHandler = button.slice(openStart, openEnd);
+    expect(openHandler).toContain('refreshUserNotificationsOnce({ force: true })');
     expect(button).toContain('markedReadIdsRef.current.has(row.id)');
     expect(button).toContain('setItems((current) => current.map');
   });
@@ -70,14 +73,13 @@ describe('home social notification center', () => {
     expect(button).toContain('authoritativeResultApplied = true;');
     expect(button).toContain('!authoritativeResultApplied && cached.length');
     expect(button).toContain('[homeFocusTick, identityRevision, isHomeTabActive, isScreenFocused]');
-    expect(button).not.toContain('force: true');
-
     const refreshEffectStart = button.indexOf('if (!isScreenFocused || !isHomeTabActive) return;');
     const refreshEffectEnd = button.indexOf('[homeFocusTick, identityRevision, isHomeTabActive, isScreenFocused]', refreshEffectStart);
     const refreshEffect = button.slice(refreshEffectStart, refreshEffectEnd);
     expect(refreshEffect).not.toContain('setItems([]);');
     expect(refreshEffect).not.toContain('setInterval(');
     expect(refreshEffect).not.toContain('onSnapshot(');
+    expect(refreshEffect).not.toContain('force: true');
   });
 
   it('emits active likes through the shared notification model', () => {

@@ -643,48 +643,5 @@ export async function loadActivity365Analytics(studyTarget?: RuntimeStudyTarget)
   return request;
 }
 
-function rand(min: number, max: number): number {
-  return min + Math.floor(Math.random() * (max - min + 1));
-}
-
-export async function devSeedActivity365Scenario(
-  scenario: 'strong' | 'gaps' | 'restart' | 'random' = 'random',
-): Promise<Activity365Analytics> {
-  const todayKey = toDateKey(new Date());
-  const start = addDaysUtcKey(todayKey, -(WINDOW_DAYS - 1));
-  const stats: Record<string, { points: number }> = {};
-  const fg: Record<string, number> = {};
-  const breakdown: DailyBreakdownStore = {};
-  for (let i = 0; i < WINDOW_DAYS; i++) {
-    const date = addDaysUtcKey(start, i);
-    const dow = new Date(`${date}T12:00:00Z`).getUTCDay();
-    let activeChance = 0.52;
-    if (scenario === 'strong') activeChance = i > 40 ? 0.82 : 0.58;
-    if (scenario === 'gaps') activeChance = dow === 0 || dow === 6 ? 0.2 : 0.62;
-    if (scenario === 'restart') activeChance = i < 285 ? 0.3 : i < 340 ? 0.08 : 0.72;
-    const active = Math.random() < activeChance;
-    if (!active) continue;
-    const points = rand(8, scenario === 'strong' ? 160 : 90);
-    stats[date] = { points };
-    fg[date] = rand(3, 38) * 60_000;
-    breakdown[date] = {
-      words_learned: rand(0, 18),
-      phrases_learned: rand(0, 24),
-      flashcards_saved: rand(0, 8),
-      daily_tasks_claimed: rand(0, 3),
-    };
-  }
-  await AsyncStorage.multiSet([
-    ['daily_stats', JSON.stringify(stats)],
-    [FOREGROUND_DAILY_MS_KEY, JSON.stringify(fg)],
-    [STATS_DAILY_BREAKDOWN_KEY, JSON.stringify(breakdown)],
-    [ACTIVITY_365_GOAL_KEY, '180'],
-  ]);
-  // Сбрасываем in-memory кэш аналитики, иначе экран статистики/ИИ-разбор
-  // подтянут СТАРЫЕ числа (год), если analytics уже грузились до сида.
-  invalidateActivity365Cache();
-  return computeActivity365Analytics({ statsMap: stats, fgDaily: fg, breakdown, goal: 180 });
-}
-
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

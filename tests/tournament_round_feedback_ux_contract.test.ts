@@ -233,15 +233,13 @@ describe('tournament question feedback UX', () => {
     // выбор ветки теперь идёт через словарь, а не голый тернарник.
     expect(round).toMatch(/feedbackCorrect === true\s*\n?\s*\?\s*triLang\(lang,\s*\{\s*ru:\s*'Правильно!'/);
     expect(round).toContain("'Почти!'");
-    // зачем 2026-08-03 (владелец: «анимация начисления звёзд должна быть
-    // мгновенной сразу»): здесь сторожилась строка
-    // `setFeedbackEarnedStars(result.earnedStars);` — она фиксировала ровно то
-    // поведение, на которое пожаловался владелец: число звёзд появлялось ТОЛЬКО
-    // из ответа сервера. Скорость убрана из награды, поэтому звёзды считаются
-    // локально в момент тапа, а серверный ответ их лишь сверяет. Контракт стал
-    // строже: требуем и мгновенный расчёт, и тихую сверку без «дребезга».
+    // зачем 2026-08-08 (владелец: «очки звёзды разделяются на 2
+    // индикатора»): награда по-прежнему считается мгновенно, но идёт прямо
+    // в единый счётчик шапки. Отдельное `+N звёзд` в карточке вердикта
+    // запрещено: оно визуально создавало второй счёт.
     expect(round).toContain('starsForDifficulty(task.difficulty)');
-    expect(round).toMatch(/setFeedbackEarnedStars\(\(current\) => \([\s\S]*current === result\.earnedStars \? current : result\.earnedStars/);
+    expect(round).toContain('addPendingStars(optimisticStars)');
+    expect(round).not.toContain('setFeedbackEarnedStars');
     expect(round).toContain('setFeedbackCorrectIndex(typeof result.correctIndex');
     // зачем 2026-08-02: переменная переименована в optionIndex вместе с фиксом
     // подмены ответа из кэша. Контракт прежний: плитка красится СРАЗУ, до сети.

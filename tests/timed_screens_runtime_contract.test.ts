@@ -5,15 +5,6 @@ const root = path.join(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
 describe('timed screens own their runtime work', () => {
-  test('Arena pauses exact remaining time and locks answers synchronously', () => {
-    const source = read('app/flashcards_arena.tsx');
-    expect(source).toContain('const runtimeActive = useRuntimeActive();');
-    expect(source).toContain('const answerLockRef = useRef(false);');
-    expect(source).toContain('const questionRemainingMsRef = useRef');
-    expect(source).toContain('questionDeadlineRef.current - Date.now()');
-    expect(source).not.toMatch(/setSecondsLeft\(\(.*?[\s\S]*?answer\(-1\)/);
-  });
-
   test('Club listeners, clocks, and modal presentation sleep with the screen', () => {
     const source = read('app/club_screen.tsx');
     expect(source).toContain('const runtimeActive = useRuntimeActive();');

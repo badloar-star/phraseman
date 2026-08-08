@@ -145,44 +145,6 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: GOLD_RICH.metalGold,
   },
 
-  // ── CORAL (dark rose / finance) ───────────────────────────────────────────
-  coral: {
-    heroAccent: '#FF7F50',
-
-    selectedCardBorder: '#FF7F50',
-    selectedCardBg: 'rgba(255,127,80,0.12)',
-    unselectedCardBg: 'rgba(33,24,27,0.88)',
-    panelBg: 'rgba(38,24,29,0.78)',
-    panelBgStrong: 'rgba(62,32,38,0.88)',
-    selectedCardShadow: '#FF7F50',
-
-    savingsBadgeBg: '#FFD060',
-    savingsBadgeText: '#1A1208',
-
-    popularBadgeBg: '#FF7F50',
-    popularBadgeText: '#FFFFFF',
-
-    ctaBg: '#FF7F50',
-    ctaText: '#FFFFFF',
-    ctaShadow: '#FF7F50',
-
-    pillBg: 'rgba(255,127,80,0.12)',
-    pillText: '#FF7F50',
-    pillBorder: 'rgba(255,127,80,0.28)',
-
-    urgencyBg: 'rgba(255,208,96,0.10)',
-    urgencyTimerText: '#FFD060',
-    urgencyLabelText: '#B9A6AE',
-    urgencyStrikethroughColor: '#75656C',
-    urgencyCurrentPriceText: '#FF7F50',
-
-    expandBtnText: '#FF7F50',
-    expandBtnBorder: 'rgba(255,127,80,0.28)',
-
-    socialProofText: '#B9A6AE',
-    socialProofStarColor: '#FFD060',
-  },
-
   // ── MINIMAL LIGHT (warm parchment) ────────────────────────────────────────
 
   // ── MINIMAL DARK (clean dark / blue accent) ───────────────────────────────

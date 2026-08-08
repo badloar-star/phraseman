@@ -27,6 +27,24 @@ const validBalanceInput = {
   requestId: 'balance-request-1',
 };
 
+function applyFirestoreUpdateContract(
+  initial: Record<string, unknown>,
+  updates: Record<string, unknown>,
+): Record<string, unknown> {
+  const result = structuredClone(initial);
+  for (const [path, value] of Object.entries(updates)) {
+    const segments = path.split('.');
+    let target = result;
+    for (const segment of segments.slice(0, -1)) {
+      const current = target[segment];
+      if (!current || typeof current !== 'object' || Array.isArray(current)) target[segment] = {};
+      target = target[segment] as Record<string, unknown>;
+    }
+    target[segments[segments.length - 1]] = value;
+  }
+  return result;
+}
+
 describe('admin grant reward command contract', () => {
   it('normalizes a bounded command and fingerprints every material field', () => {
     const input = normalizeAdminGrantRewardInput(validInput);
@@ -113,6 +131,9 @@ describe('admin grant reward command contract', () => {
       multiplier: 2,
       expiresAt: nowMs + 24 * 3_600_000,
     });
+    expect(boost.updates['progress.gift_xp_multiplier']).toBe(
+      boost.updates.gift_xp_multiplier,
+    );
 
     const shield = buildAdminRewardMutation({
       chain_shield: JSON.stringify({ daysLeft: 2, grantedAt: '2026-07-16' }),
@@ -120,6 +141,59 @@ describe('admin grant reward command contract', () => {
     expect(JSON.parse(String(shield.updates.chain_shield))).toEqual({
       daysLeft: 5,
       grantedAt: '2026-07-17',
+    });
+    expect(shield.updates['progress.chain_shield']).toBe(
+      shield.updates.chain_shield,
+    );
+  });
+
+  it('restores from the strongest canonical perk copy before applying an admin grant', () => {
+    const nowMs = Date.parse('2026-07-17T12:00:00.000Z');
+    const shield = buildAdminRewardMutation({
+      chain_shield: JSON.stringify({ daysLeft: 1 }),
+      progress: { chain_shield: JSON.stringify({ daysLeft: 4 }) },
+    }, 'chain_shield_1', 0, nowMs);
+    expect(JSON.parse(String(shield.updates.chain_shield))).toMatchObject({ daysLeft: 5 });
+  });
+
+  it('extends x2 from the latest root/progress expiry and never shortens it', () => {
+    const nowMs = Date.parse('2026-07-17T12:00:00.000Z');
+    const rootExpiry = nowMs + 6 * 3_600_000;
+    const progressExpiry = nowMs + 12 * 3_600_000;
+    const boost = buildAdminRewardMutation({
+      gift_xp_multiplier: JSON.stringify({ multiplier: 2, expiresAt: rootExpiry }),
+      progress: {
+        gift_xp_multiplier: JSON.stringify({ multiplier: 2, expiresAt: progressExpiry }),
+      },
+    }, 'xp_boost_2x_24h', 0, nowMs);
+
+    expect(JSON.parse(String(boost.updates.gift_xp_multiplier))).toEqual({
+      multiplier: 2,
+      expiresAt: progressExpiry + 24 * 3_600_000,
+    });
+  });
+
+  it.each([
+    ['xp_boost_2x_24h', 'gift_xp_multiplier'],
+    ['chain_shield_1', 'chain_shield'],
+  ] as const)('updates %s through a dotted progress field without erasing unrelated progress', (type, field) => {
+    const initial = {
+      progress: {
+        user_total_xp: '9876',
+        streak: '42',
+        league: 'diamond',
+      },
+    };
+    const mutation = buildAdminRewardMutation(initial, type, 0, Date.parse('2026-07-17T12:00:00.000Z'));
+
+    expect(mutation.updates).not.toHaveProperty('progress');
+    expect(mutation.updates[`progress.${field}`]).toBe(mutation.updates[field]);
+    const persisted = applyFirestoreUpdateContract(initial, mutation.updates);
+    expect(persisted.progress).toMatchObject({
+      user_total_xp: '9876',
+      streak: '42',
+      league: 'diamond',
+      [field]: mutation.updates[field],
     });
   });
 });

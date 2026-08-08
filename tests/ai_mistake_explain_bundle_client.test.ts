@@ -74,9 +74,18 @@ describe('mistake explanation bundle client cache', () => {
     });
 
     const full = await callExplainMistake(fullRequest);
+    const warmFull = await callExplainMistake(fullRequest);
     const simple = await callExplainMistake({ ...fullRequest, variant: 'eli5' });
 
     expect(full).toMatchObject({ text: fullText, fullText, eli5Text });
+    expect(warmFull).toMatchObject({
+      text: fullText,
+      fullText,
+      eli5Text,
+      model: 'local-cache',
+      fromCache: true,
+      variant: 'full',
+    });
     expect(simple).toMatchObject({
       text: eli5Text,
       model: 'local-cache',
@@ -84,6 +93,34 @@ describe('mistake explanation bundle client cache', () => {
       variant: 'eli5',
     });
     expect(mockCallable).toHaveBeenCalledTimes(1);
+  });
+
+  it('treats omitted and explicit full variants as one local request identity', async () => {
+    mockCallable.mockResolvedValueOnce({
+      data: {
+        ok: true,
+        text: 'Full explanation',
+        remainingQuota: 999,
+        model: 'gpt-4.1',
+        fromCache: false,
+        variant: 'full',
+      },
+    });
+
+    const omittedVariant = { ...fullRequest };
+    delete omittedVariant.variant;
+
+    await callExplainMistake(omittedVariant);
+    const explicitFull = await callExplainMistake(fullRequest);
+
+    expect(explicitFull).toMatchObject({
+      text: 'Full explanation',
+      model: 'local-cache',
+      fromCache: true,
+      variant: 'full',
+    });
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+    expect(mockCallable).toHaveBeenCalledWith(expect.objectContaining({ variant: 'full' }));
   });
 
   it('keeps the legacy lazy ELI5 request when the server returns only full text', async () => {

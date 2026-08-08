@@ -18,6 +18,8 @@ import { claimUnseenFriendGifts } from '../app/friend_gift_inbox';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
+import { accountScopeKey } from '../app/account_scope_key';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 const LAST_POLL_KEY = 'global_friend_gift_last_poll';
@@ -44,13 +46,20 @@ export default function GlobalFriendGiftHost() {
     if (runningRef.current) return;
     runningRef.current = true;
     try {
-      const lastRaw = await AsyncStorage.getItem(LAST_POLL_KEY).catch(() => null);
+      const accountToken = captureAccountGeneration();
+      const scope = accountScopeKey(accountToken);
+      if (!scope || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
+      const pollKey = `${LAST_POLL_KEY}::${scope}`;
+      const lastRaw = await AsyncStorage.getItem(pollKey).catch(() => null);
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
       const last = lastRaw ? Number(lastRaw) : 0;
       const now = Date.now();
       if (now - last < POLL_INTERVAL_MS) return;
-      await AsyncStorage.setItem(LAST_POLL_KEY, String(now)).catch(() => {});
 
       const gifts = await claimUnseenFriendGifts();
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
+      await AsyncStorage.setItem(pollKey, String(now));
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
       if (!gifts.length) return;
 
       const l = langRef.current;

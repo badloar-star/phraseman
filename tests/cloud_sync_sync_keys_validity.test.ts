@@ -74,6 +74,13 @@ describe('cloud sync storage key lists', () => {
     expect(runtimeKeys).not.toContain('dev_study_target_lang');
   });
 
+  test('syncs the queued wager-use count alongside the legacy presence key', () => {
+    expect(SYNC_KEYS).toEqual(expect.arrayContaining([
+      'wager_discount',
+      'wager_discount_uses_v1',
+    ]));
+  });
+
   test('French target sync keys do not duplicate English legacy sync keys', () => {
     const legacyEnglishKeys = new Set(SYNC_KEYS.filter((key) => !String(key).includes('_v2::fr')));
     expect(FRENCH_TARGET_SYNC_KEYS.filter((key) => legacyEnglishKeys.has(key))).toEqual([]);

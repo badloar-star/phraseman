@@ -15,12 +15,4 @@ describe('legacy content factory worker concurrency contract', () => {
     expect(source).not.toContain('generationPersistenceError(');
   });
 
-  test('records Arena shadow parity from the accepted legacy payload without a second provider call', () => {
-    expect(source).toContain('buildArenaShadowComparison');
-    expect(source).toContain('persistArenaComparisonReceipt');
-    expect(source).toContain('candidate.providerRequestsAdded');
-    expect(source).toContain('engineResolved: currentRouting.engineResolved');
-    expect(source).toContain("shadowComparisonState = 'unavailable'");
-    expect(source.match(/generateSurfaceUnit\(/g)).toHaveLength(1);
-  });
 });

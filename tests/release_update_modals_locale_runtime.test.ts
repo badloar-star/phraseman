@@ -6,13 +6,6 @@ const source = (relativePath: string) => readFileSync(join(__dirname, '..', rela
 const plannedLocalePatterns = [/'pt-BR'\s*:/, /\bvi\s*:/, /'?id'?\s*:/, /\btr\s*:/, /\bpl\s*:/];
 
 describe('release and update modals planned locale runtime', () => {
-  it('uses full locale dictionaries for release wave bonus copy', () => {
-    const src = source('components/ReleaseWaveBonusModal.tsx');
-    for (const pattern of plannedLocalePatterns) expect(src).toMatch(pattern);
-    expect(src).toContain('const tx = pickReleaseWaveText(lang);');
-    expect(src).not.toContain("const tx = lang === 'es' ? TEXTS.es : TEXTS[lang === 'uk' ? 'uk' : 'ru'];");
-  });
-
   it('uses full locale dictionaries for update modal copy', () => {
     const src = source('components/UpdateModal.tsx');
     for (const pattern of plannedLocalePatterns) expect(src).toMatch(pattern);

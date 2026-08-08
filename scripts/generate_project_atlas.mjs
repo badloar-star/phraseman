@@ -574,16 +574,6 @@ function buildCriticalPaths(model) {
     "app/premium_modal.tsx",
   ]);
 
-  addPath("Arena full game flow", [
-    "app/arena_lobby.tsx",
-    "contexts/MatchmakingContext.tsx",
-    "app/services/arena_db.ts",
-    "hooks/use-arena-session.ts",
-    "app/arena_game.tsx",
-    "app/arena_results.tsx",
-    "app/arena_rating.tsx",
-  ]);
-
   addPath("Cloud sync user/progress", [
     "app/cloud_sync.ts",
     "app/stable_id.ts",

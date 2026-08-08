@@ -23,6 +23,7 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import type { SoundRequestOptions } from '../../modules/audio/sound_arbiter';
 
 export type MilestoneKind = 'star1' | 'star2' | 'star3' | 'medal' | 'chord';
+export type ResultsRewardSoundKind = 'activeRewardReveal' | 'activeGiftUnlock' | 'multiplierReveal' | 'multiplierUpgrade';
 export type FeedbackSurface = 'lesson' | 'practice';
 
 /**
@@ -95,29 +96,61 @@ export const fk = {
    * звёзд (star_1/2/3) на экране завершения; medal и chord — без звука, только
    * success-хаптика.
    */
-  milestone(kind: MilestoneKind): void {
+  milestone(kind: MilestoneKind, options?: SoundRequestOptions): void {
     switch (kind) {
       case 'star1':
-        soundDirector.request('pm.complete.star_1');
+        soundDirector.request('pm.complete.star_1', options);
         break;
       case 'star2':
-        soundDirector.request('pm.complete.star_2');
+        soundDirector.request('pm.complete.star_2', options);
         break;
       case 'star3':
-        soundDirector.request('pm.complete.star_3');
+        soundDirector.request('pm.complete.star_3_perfect', options);
         break;
       case 'medal':
-        soundDirector.request('pm.complete.micro');
         break;
       case 'chord':
-        soundDirector.request('pm.complete.session');
+        soundDirector.request('pm.complete.session', options);
         break;
     }
     haptics.success();
   },
 
+  successHaptic(): void {
+    haptics.success();
+  },
+
   /** Тик счётчика XP. Звук 'tick' убран — метод оставлен как no-op для хостов. */
-  tick(): void {
+  tick(options?: SoundRequestOptions): void {
+    soundDirector.request('pm.complete.xp_counter_tick', options);
+  },
+
+  xpCounterStart(options?: SoundRequestOptions): void {
+    soundDirector.request('pm.complete.xp_counter_start', options);
+  },
+
+  xpCounterComplete(options?: SoundRequestOptions): void {
+    soundDirector.request('pm.complete.xp_counter_complete', options);
+  },
+
+  resultsReward(kind: ResultsRewardSoundKind, options?: SoundRequestOptions): void {
+    const event = kind === 'activeRewardReveal'
+      ? 'pm.complete.active_reward_reveal'
+      : kind === 'activeGiftUnlock'
+        ? 'pm.complete.active_gift_unlock'
+        : kind === 'multiplierReveal'
+          ? 'pm.complete.multiplier_reveal'
+          : 'pm.complete.multiplier_upgrade';
+    soundDirector.request(event, options);
+  },
+
+  resultsFinale(options?: SoundRequestOptions): void {
+    soundDirector.request('pm.complete.rewards_finale', options);
+  },
+
+  cancelResultsSequenceAudio(): void {
+    soundDirector.stopActiveCompletion('results-sequence');
+    soundDirector.stopActiveEvent('pm.reward.small', 'results-sequence-spin');
   },
 } as const;
 

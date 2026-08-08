@@ -2,25 +2,20 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 const streakSource = readFileSync(join(__dirname, '..', 'components', 'StreakReviveModal.tsx'), 'utf8');
-const energySource = readFileSync(join(__dirname, '..', 'components', 'EnergyRefillShardModal.tsx'), 'utf8');
 
 describe('energy restore modals planned locale runtime copy', () => {
   it('does not route planned locales through legacy RU/UK/ES branches', () => {
-    for (const source of [streakSource, energySource]) {
-      expect(source).not.toMatch(/\b(lang === 'ru'|lang === 'uk'|lang === 'es'|isUK|isES)\b/u);
-    }
+    expect(streakSource).not.toMatch(/\b(lang === 'ru'|lang === 'uk'|lang === 'es'|isUK|isES)\b/u);
     expect(streakSource).not.toContain("function formatRemaining(ms: number, lang: 'ru' | 'uk' | 'es')");
   });
 
   it('uses full planned locale copy for visible labels and toasts', () => {
-    for (const source of [streakSource, energySource]) {
-      expect(source).toContain('triLang');
-      for (const marker of ["'pt-BR'", 'vi:', 'id:', 'tr:', 'pl:']) {
-        expect(source).toContain(marker);
-      }
-      for (const marker of ['messagePtBr', 'messageVi', 'messageId', 'messageTr', 'messagePl']) {
-        expect(source).toContain(marker);
-      }
+    expect(streakSource).toContain('triLang');
+    for (const marker of ["'pt-BR'", 'vi:', 'id:', 'tr:', 'pl:']) {
+      expect(streakSource).toContain(marker);
+    }
+    for (const marker of ['messagePtBr', 'messageVi', 'messageId', 'messageTr', 'messagePl']) {
+      expect(streakSource).toContain(marker);
     }
   });
 
@@ -52,11 +47,4 @@ describe('energy restore modals planned locale runtime copy', () => {
     expect(streakSource).toContain("pl: 'Twój rekord nadal jest Twój'");
   });
 
-  it('keeps planned energy copy explicit rather than generic fallback text', () => {
-    expect(energySource).toContain('Restaurar energia');
-    expect(energySource).toContain('Khôi phục năng lượng');
-    expect(energySource).toContain('Pulihkan energi');
-    expect(energySource).toContain('Enerjiyi yenile');
-    expect(energySource).toContain('Odnów energię');
-  });
 });

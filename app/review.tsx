@@ -183,7 +183,7 @@ function recallTranslationHint(item: RecallItem, lang: Lang, studyTarget: StudyT
   return item.correctAnswer;
 }
 
-/** Подпись источника фразы на экране повторения (урок / квиз / арена / …). */
+/** Подпись источника фразы на экране повторения. */
 function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
   if (!item) return triLang(lang, {
     ru: 'Повторение',
@@ -206,39 +206,6 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     id: "Ulangan",
     tr: "Tekrar",
     pl: "Powtórka",
-  });
-  if (s === 'quiz') {
-    return item.lessonId > 0
-      ? triLang(lang, {
-        ru: `Вызов · урок ${item.lessonId}`,
-        uk: `Квіз · урок ${item.lessonId}`,
-        es: `Cuestionario · lección ${item.lessonId}`,
-        'pt-BR': `Quiz · aula ${item.lessonId}`,
-        vi: `Quiz · bài ${item.lessonId}`,
-        id: `Kuis · pelajaran ${item.lessonId}`,
-        tr: `Quiz · ders ${item.lessonId}`,
-        pl: `Quiz · lekcja ${item.lessonId}`,
-      })
-      : triLang(lang, {
-        ru: 'Вызов',
-        uk: 'Квіз',
-        es: 'Cuestionario',
-        'pt-BR': "Quiz",
-        vi: "Quiz",
-        id: "Kuis",
-        tr: "Quiz",
-        pl: "Quiz",
-      });
-  }
-  if (s === 'arena') return triLang(lang, {
-    ru: 'Арена',
-    uk: 'Арена',
-    es: 'Arena',
-    'pt-BR': "Arena",
-    vi: "Đấu trường",
-    id: "Arena",
-    tr: "Arena",
-    pl: "Arena",
   });
   if (s === 'diagnostic') return triLang(lang, {
     ru: 'Диагностика',
@@ -1677,7 +1644,7 @@ export default function ReviewScreen() {
 
       <BouncyScrollView
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: (isPlanPracticeTask ? 6 : 32) + bottomInset }}
-        decelerationRate="fast"
+        decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!isPlanPracticeTask}
         showsVerticalScrollIndicator={false}

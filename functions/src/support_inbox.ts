@@ -30,7 +30,6 @@ import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from './admin_alerts';
 import { decideSpamAction, buildSpamTriagePrompt, parseSpamVerdict } from './jarvis/support_spam_triage';
-import { buildNewMailAlertText } from './jarvis/support_inbox_alert';
 import { checkAndReserveBudget, recordActualSpend } from './jarvis/llm_budget';
 import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './jarvis/llm_enricher_cost';
 import {
@@ -71,8 +70,26 @@ export const SUPPORT_IMAP_OVERLAP = 20;
 export const SUPPORT_IMAP_BACKFILL_LIMIT = 100;
 export const SUPPORT_IMAP_FAILED_UID_LIMIT = 500;
 export const SUPPORT_REPLY_BATCH_CONFIRMATION_TTL_MS = 60 * 60 * 1000;
+export const SUPPORT_OWNER_ALERT_MAX_ATTEMPTS = 8;
+export const SUPPORT_OWNER_ALERT_RETRY_LIMIT = 100;
+const SUPPORT_OWNER_ALERT_LEASE_MS = 5 * 60 * 1000;
+const SUPPORT_OWNER_ALERT_RETRY_BASE_MS = 5 * 60 * 1000;
+const SUPPORT_OWNER_ALERT_RETRY_MAX_MS = 6 * 60 * 60 * 1000;
 
 export type SupportStatus = 'new' | 'answered' | 'archived';
+export type SupportOwnerNotificationState = 'pending' | 'sending' | 'delivered' | 'failed' | 'exhausted' | 'suppressed';
+
+export interface SupportOwnerNotification {
+  state: SupportOwnerNotificationState;
+  attempts: number;
+  updatedAt: string;
+  lastAttemptAt?: string;
+  deliveredAt?: string;
+  nextAttemptAtMs?: number;
+  leaseId?: string;
+  leaseExpiresAtMs?: number;
+  lastErrorCode?: string;
+}
 
 export interface RawEmail {
   messageId: string;
@@ -112,6 +129,7 @@ export interface SupportInboxDoc {
   };
   mailCategory?: 'human' | 'automated' | 'unknown';
   mailCategoryReason?: string;
+  ownerNotification?: SupportOwnerNotification;
 }
 
 // ── Чистые утилиты ─────────────────────────────────────────────────────────────
@@ -1872,6 +1890,136 @@ export const adminSupportSetStatus = onCall(
  * потеряется навсегда, поэтому decideSpamAction архивирует только при
  * высокой уверенности модели (SPAM_ARCHIVE_MIN_CONFIDENCE).
  */
+interface SupportOwnerAlertClaim {
+  readonly leaseId: string;
+  readonly attempts: number;
+}
+
+function supportOwnerAlertRetryDelayMs(attempts: number): number {
+  return Math.min(SUPPORT_OWNER_ALERT_RETRY_BASE_MS * 2 ** Math.max(0, attempts - 1), SUPPORT_OWNER_ALERT_RETRY_MAX_MS);
+}
+
+async function queueSupportOwnerAlert(db: FirebaseFirestore.Firestore, messageDocId: string, nowMs: number): Promise<void> {
+  const ref = db.collection(INBOX_COLLECTION).doc(messageDocId);
+  await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    if (!snap.exists || snap.data()?.ownerNotification) return;
+    tx.set(ref, {
+      ownerNotification: { state: 'pending', attempts: 0, updatedAt: new Date(nowMs).toISOString() },
+    }, { merge: true });
+  });
+}
+
+function suppressSupportOwnerAlert(
+  tx: FirebaseFirestore.Transaction,
+  messageRef: FirebaseFirestore.DocumentReference,
+  nowMs: number,
+): void {
+  tx.set(messageRef, {
+    ownerNotification: {
+      state: 'suppressed', attempts: 0, updatedAt: new Date(nowMs).toISOString(), lastErrorCode: 'classified_spam',
+    },
+  }, { merge: true });
+}
+
+async function claimSupportOwnerAlert(
+  db: FirebaseFirestore.Firestore,
+  messageDocId: string,
+  nowMs: number,
+): Promise<SupportOwnerAlertClaim | null> {
+  const ref = db.collection(INBOX_COLLECTION).doc(messageDocId);
+  return db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    if (!snap.exists) return null;
+    const current = snap.data()?.ownerNotification as SupportOwnerNotification | undefined;
+    if (current?.state === 'delivered' || current?.state === 'exhausted' || current?.state === 'suppressed') return null;
+    const attempts = Math.max(0, Number(current?.attempts ?? 0));
+    if (attempts >= SUPPORT_OWNER_ALERT_MAX_ATTEMPTS) return null;
+    if (Number(current?.nextAttemptAtMs ?? 0) > nowMs) return null;
+    if (current?.state === 'sending' && Number(current.leaseExpiresAtMs ?? 0) > nowMs) return null;
+
+    const leaseId = randomUUID();
+    const nextAttempts = attempts + 1;
+    const nowIso = new Date(nowMs).toISOString();
+    tx.set(ref, {
+      ownerNotification: {
+        state: 'sending', attempts: nextAttempts, updatedAt: nowIso,
+        lastAttemptAt: nowIso, leaseId, leaseExpiresAtMs: nowMs + SUPPORT_OWNER_ALERT_LEASE_MS,
+      },
+    }, { merge: true });
+    return { leaseId, attempts: nextAttempts };
+  });
+}
+
+export async function deliverSupportOwnerAlert(input: {
+  db: FirebaseFirestore.Firestore;
+  messageDocId: string;
+  botToken: string;
+  text: string;
+  nowMs?: number;
+}): Promise<'delivered' | 'skipped'> {
+  const nowMs = input.nowMs ?? Date.now();
+  const claim = await claimSupportOwnerAlert(input.db, input.messageDocId, nowMs);
+  if (!claim) return 'skipped';
+  const ref = input.db.collection(INBOX_COLLECTION).doc(input.messageDocId);
+  const delivered = await sendTelegramAlert(input.botToken, input.text);
+  if (delivered) {
+    await input.db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      const current = snap.data()?.ownerNotification as SupportOwnerNotification | undefined;
+      if (!snap.exists || current?.leaseId !== claim.leaseId || current.state !== 'sending') return;
+      const nowIso = new Date(nowMs).toISOString();
+      tx.set(ref, {
+        ownerNotification: {
+          state: 'delivered', attempts: claim.attempts, updatedAt: nowIso,
+          lastAttemptAt: current.lastAttemptAt, deliveredAt: nowIso,
+        },
+      }, { merge: true });
+    });
+    return 'delivered';
+  }
+
+  await input.db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const current = snap.data()?.ownerNotification as SupportOwnerNotification | undefined;
+    if (!snap.exists || current?.leaseId !== claim.leaseId || current.state !== 'sending') return;
+    const exhausted = claim.attempts >= SUPPORT_OWNER_ALERT_MAX_ATTEMPTS;
+    tx.set(ref, {
+      ownerNotification: {
+        state: exhausted ? 'exhausted' : 'failed', attempts: claim.attempts, updatedAt: new Date(nowMs).toISOString(),
+        lastAttemptAt: current.lastAttemptAt,
+        ...(exhausted ? {} : { nextAttemptAtMs: nowMs + supportOwnerAlertRetryDelayMs(claim.attempts) }),
+        lastErrorCode: 'telegram_delivery_failed',
+      },
+    }, { merge: true });
+  });
+  throw new Error('support_owner_notification_failed');
+}
+
+const SUPPORT_OWNER_ALERT_RETRY_TEXT = '📬 <b>В поддержке ждёт новое письмо</b>\n\nОткройте админку → Gmail Support Inbox.';
+
+export async function runSupportOwnerAlertRetryCron(nowMs: number = Date.now()): Promise<{ scanned: number; delivered: number; failed: number }> {
+  const db = admin.firestore();
+  const snap = await db.collection(INBOX_COLLECTION)
+    .where('ownerNotification.state', 'in', ['pending', 'failed', 'sending'])
+    .limit(SUPPORT_OWNER_ALERT_RETRY_LIMIT)
+    .get();
+  let delivered = 0;
+  let failed = 0;
+  for (const doc of snap.docs) {
+    try {
+      const result = await deliverSupportOwnerAlert({
+        db, messageDocId: doc.id, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: SUPPORT_OWNER_ALERT_RETRY_TEXT, nowMs,
+      });
+      if (result === 'delivered') delivered += 1;
+    } catch {
+      failed += 1;
+      logger.error('support_owner_notification_retry_failed', { messageDocId: doc.id });
+    }
+  }
+  return { scanned: snap.size, delivered, failed };
+}
+
 export const supportInboxOnNewMail = onDocumentCreated(
   {
     document: `${INBOX_COLLECTION}/{messageDocId}`,
@@ -1890,6 +2038,7 @@ export const supportInboxOnNewMail = onDocumentCreated(
     const db = admin.firestore();
     const nowMs = Date.now();
     const systemActor: SupportAdminContext = { actorUid: 'jarvis_support_triage', role: 'admin' };
+    await queueSupportOwnerAlert(db, messageDocId, nowMs);
 
     let apiKey = '';
     try {
@@ -1898,6 +2047,9 @@ export const supportInboxOnNewMail = onDocumentCreated(
       // Ключ не настроен — письмо остаётся в обычной очереди без уведомления,
       // владелец увидит его в админке как раньше.
       logger.warn('support_inbox_triage: OPENAI_API_KEY not configured, skipping');
+      await deliverSupportOwnerAlert({
+        db, messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: SUPPORT_OWNER_ALERT_RETRY_TEXT, nowMs,
+      });
       return;
     }
 
@@ -1906,10 +2058,9 @@ export const supportInboxOnNewMail = onDocumentCreated(
       logger.warn('support_inbox_triage: budget exhausted, falling back to plain notify', { reason: budgetVerdict.reason });
       // Бюджет исчерпан — не значит «молчать»: письмо реального человека
       // всё равно не должно потеряться, просто без черновика и без спам-фильтра.
-      const text = buildNewMailAlertText({
-        fromEmail: doc.fromEmail, subject: doc.subject, bodyText: doc.bodyText, draftReply: null,
+      await deliverSupportOwnerAlert({
+        db, messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: SUPPORT_OWNER_ALERT_RETRY_TEXT, nowMs,
       });
-      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
       return;
     }
 
@@ -1932,6 +2083,7 @@ export const supportInboxOnNewMail = onDocumentCreated(
         const nowIso = new Date().toISOString();
         await db.runTransaction(async (tx) => {
           tx.set(messageRef, { status: 'archived' }, { merge: true });
+          suppressSupportOwnerAlert(tx, messageRef, nowMs);
           writeSupportAudit(tx, db, {
             action: 'support.inbox.status', actor: systemActor, entityId: messageDocId,
             requestId: `jarvis-spam-${messageDocId}`,
@@ -1957,18 +2109,17 @@ export const supportInboxOnNewMail = onDocumentCreated(
         }
       }
 
-      const text = buildNewMailAlertText({
-        fromEmail: doc.fromEmail, subject: doc.subject, bodyText: doc.bodyText, draftReply,
+      await deliverSupportOwnerAlert({
+        db, messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: SUPPORT_OWNER_ALERT_RETRY_TEXT, nowMs,
       });
-      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
     } catch (error) {
+      if (error instanceof Error && error.message === 'support_owner_notification_failed') throw error;
       // Триаж не должен молча проглотить письмо: любая непредвиденная ошибка —
       // отправляем как есть, без черновика, лучше лишнее уведомление, чем тишина.
       logger.error('support_inbox_triage: unexpected failure, notifying plainly', error);
-      const text = buildNewMailAlertText({
-        fromEmail: doc.fromEmail, subject: doc.subject, bodyText: doc.bodyText, draftReply: null,
+      await deliverSupportOwnerAlert({
+        db, messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: SUPPORT_OWNER_ALERT_RETRY_TEXT, nowMs,
       });
-      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text).catch(() => undefined);
     }
   },
 );

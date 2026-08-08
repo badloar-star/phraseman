@@ -5,7 +5,6 @@
 //  1. В ключевых точках приложения инкрементируем счётчики:
 //     - energy_zero_count_v1      (NoEnergyModal.tsx onShow)
 //     - streak_lost_count_v1      (hall_of_fame_utils.ts при streak reset)
-//     - hard_paywall_blocks_v1    legacy quiz-limit attempts counter
 //  2. Active paywall A/B/C screens call pickPaywallTags() and render the strongest tags.
 //  3. UI рендерит pill-карточки над hero-блоком.
 //
@@ -22,7 +21,6 @@ import { trackEvent } from './analytics';
 // ── Storage keys (атомарные счётчики) ────────────────────────────────────────
 export const ENERGY_ZERO_COUNT_KEY = 'energy_zero_count_v1';
 export const STREAK_LOST_COUNT_KEY = 'streak_lost_count_v1';
-export const HARD_PAYWALL_BLOCKS_KEY = 'hard_paywall_blocks_v1';
 
 // ── Инкрементаторы (fire-and-forget) ─────────────────────────────────────────
 async function bumpCounter(key: string): Promise<void> {
@@ -45,16 +43,10 @@ export function incrementStreakLostCount(): void {
   void bumpCounter(STREAK_LOST_COUNT_KEY);
 }
 
-/** Legacy counter retained for old callers; quiz access now uses the daily limit. */
-export function incrementHardPaywallBlock(): void {
-  void bumpCounter(HARD_PAYWALL_BLOCKS_KEY);
-}
-
 // ── Данные для пейволла ───────────────────────────────────────────────────────
 export interface PaywallStats {
   energyZeroCount: number;
   streakLostCount: number;
-  hardPaywallBlocks: number;
   /** Лучшее место в зале славы (#N). null = не попадал. */
   hofRank: number | null;
   /** Суммарное время в приложении в часах (округлено). */
@@ -63,23 +55,21 @@ export interface PaywallStats {
 
 export async function collectPaywallStats(): Promise<PaywallStats> {
   try {
-    const [energyRaw, streakRaw, hardRaw, hofRaw, foregroundMs] = await Promise.all([
+    const [energyRaw, streakRaw, hofRaw, foregroundMs] = await Promise.all([
       AsyncStorage.getItem(ENERGY_ZERO_COUNT_KEY),
       AsyncStorage.getItem(STREAK_LOST_COUNT_KEY),
-      AsyncStorage.getItem(HARD_PAYWALL_BLOCKS_KEY),
       AsyncStorage.getItem('lifetime_best_hall_rank_v1'),
       getForegroundUsageMs(),
     ]);
     return {
       energyZeroCount: parseInt(energyRaw ?? '0', 10) || 0,
       streakLostCount: parseInt(streakRaw ?? '0', 10) || 0,
-      hardPaywallBlocks: parseInt(hardRaw ?? '0', 10) || 0,
       hofRank: Number.isFinite(Number(hofRaw)) && Number(hofRaw) > 0 ? Number(hofRaw) : null,
       foregroundHours: Math.floor(foregroundMs / 3_600_000),
     };
   } catch (error) {
     DebugLogger.error('paywall_personalization:collectPaywallStats', error, 'warning');
-    return { energyZeroCount: 0, streakLostCount: 0, hardPaywallBlocks: 0, hofRank: null, foregroundHours: 0 };
+    return { energyZeroCount: 0, streakLostCount: 0, hofRank: null, foregroundHours: 0 };
   }
 }
 
@@ -153,19 +143,6 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     pl: 'Szczegółowa analityka i mapa 365 dni',
     weight: 14,
   },
-  {
-    key: 'generic_quizhard',
-    emoji: '🥇',
-    ru: 'Вызовы без дневного лимита и расширенная практика',
-    uk: 'Квізи без денного ліміту та розширена практика',
-    es: 'Cuestionarios sin límite diario y tareas avanzadas',
-    'pt-BR': 'Quizzes sem limite diário e tarefas avançadas',
-    vi: 'Quiz không giới hạn mỗi ngày và bài tập nâng cao',
-    id: 'Kuis tanpa batas harian dan latihan lanjutan',
-    tr: 'Günlük limitsiz quizler ve gelişmiş görevler',
-    pl: 'Quizy bez dziennego limitu i zadania zaawansowane',
-    weight: 12,
-  },
 ];
 
 /**
@@ -214,25 +191,6 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       id: `Streak putus ${n} kali — Plus membantu melindunginya`,
       tr: `Serin ${n} kez bozuldu — Plus korumaya yardım eder`,
       pl: `Seria przerwała się ${n} razy — Plus pomaga ją chronić`,
-      weight,
-    });
-  }
-
-  // 4. Дневной лимит квизов срабатывал N раз
-  if (stats.hardPaywallBlocks > 0) {
-    const n = stats.hardPaywallBlocks;
-    const weight = n >= 5 ? 80 : n >= 2 ? 70 : 45;
-    tags.push({
-      key: 'hard_blocks',
-      emoji: '💪',
-      ru: `Дневной лимит вызовов срабатывал — ты возвращался ${n} ${ru_times(n)}`,
-      uk: `Денний ліміт квізів спрацьовував — ти повертався ${n} ${uk_times(n)}`,
-      es: `El límite diario de cuestionarios se activó ${n} ${es_times(n)}`,
-      'pt-BR': `O limite diário de quizzes apareceu ${n}x`,
-      vi: `Giới hạn quiz hằng ngày đã xuất hiện ${n} lần`,
-      id: `Batas harian kuis muncul ${n} kali`,
-      tr: `Günlük quiz limiti ${n} kez devreye girdi`,
-      pl: `Dzienny limit quizów pojawił się ${n} razy`,
       weight,
     });
   }

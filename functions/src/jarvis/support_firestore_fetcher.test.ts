@@ -6,17 +6,36 @@ const HOUR = 60 * 60 * 1_000;
 interface FakeDoc { readonly [key: string]: unknown }
 
 function makeCollection(docs: readonly FakeDoc[], failing = false) {
+  let startIndex = 0;
+  let pageLimit = 500;
+  const selectedFields: string[][] = [];
+  let getCalls = 0;
   const query = {
     where: () => query,
     orderBy: () => query,
-    limit: () => query,
-    select: () => query,
+    limit: (value: number) => { pageLimit = value; return query; },
+    select: (...fields: string[]) => { selectedFields.push(fields); return query; },
+    startAfter: (last: { index: number }) => { startIndex = last.index + 1; return query; },
     get: async () => {
       if (failing) throw new Error('unavailable');
-      return { docs: docs.map((data) => ({ data: () => data })) };
+      getCalls += 1;
+      return {
+        docs: docs.slice(startIndex, startIndex + pageLimit).map((data, offset) => ({
+          index: startIndex + offset,
+          data: () => data,
+        })),
+      };
     },
   };
-  return query as unknown as FirebaseFirestore.Query;
+  return {
+    query: query as unknown as FirebaseFirestore.Query,
+    selectedFields,
+    get getCalls() { return getCalls; },
+  };
+}
+
+function queryOf(docs: readonly FakeDoc[], failing = false): FirebaseFirestore.Query {
+  return makeCollection(docs, failing).query;
 }
 
 function letter(over: Partial<Record<string, unknown>> = {}): FakeDoc {
@@ -26,7 +45,7 @@ function letter(over: Partial<Record<string, unknown>> = {}): FakeDoc {
 describe('Jarvis support fetcher — measures how long real people wait for an answer', () => {
   test('counts letters still waiting and how long the oldest has waited', async () => {
     const result = await fetchSupportSource({
-      collection: makeCollection([
+      collection: queryOf([
         letter({ receivedAtMs: NOW - 50 * HOUR }),
         letter({ receivedAtMs: NOW - 3 * HOUR }),
       ]),
@@ -40,7 +59,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
   test('automated mail never counts as an unanswered person', async () => {
     // Роботы не ждут ответа — иначе метрика ожидания врёт.
     const result = await fetchSupportSource({
-      collection: makeCollection([
+      collection: queryOf([
         letter({ mailCategory: 'automated', receivedAtMs: NOW - 90 * HOUR }),
         letter({ receivedAtMs: NOW - 1 * HOUR }),
       ]),
@@ -53,7 +72,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
   test('answered letters give the median reply time, not the average', async () => {
     // Медиана: один забытый месяц не должен красить всю картину.
     const result = await fetchSupportSource({
-      collection: makeCollection([
+      collection: queryOf([
         letter({ status: 'answered', receivedAtMs: NOW - 10 * HOUR, repliedAt: new Date(NOW - 9 * HOUR).toISOString() }),
         letter({ status: 'answered', receivedAtMs: NOW - 20 * HOUR, repliedAt: new Date(NOW - 18 * HOUR).toISOString() }),
         letter({ status: 'answered', receivedAtMs: NOW - 30 * HOUR, repliedAt: new Date(NOW - 20 * HOUR).toISOString() }),
@@ -66,7 +85,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
 
   test('an answered letter without a reply timestamp is not counted as instant', async () => {
     const result = await fetchSupportSource({
-      collection: makeCollection([
+      collection: queryOf([
         letter({ status: 'answered', receivedAtMs: NOW - 5 * HOUR, repliedAt: undefined }),
       ]),
       nowMs: NOW,
@@ -76,7 +95,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
 
   test('a reply dated before the letter arrived is discarded, not reported as negative', async () => {
     const result = await fetchSupportSource({
-      collection: makeCollection([
+      collection: queryOf([
         letter({ status: 'answered', receivedAtMs: NOW - 2 * HOUR, repliedAt: new Date(NOW - 9 * HOUR).toISOString() }),
       ]),
       nowMs: NOW,
@@ -86,7 +105,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
 
   test('archived letters are neither waiting nor answered', async () => {
     const result = await fetchSupportSource({
-      collection: makeCollection([letter({ status: 'archived', receivedAtMs: NOW - 80 * HOUR })]),
+      collection: queryOf([letter({ status: 'archived', receivedAtMs: NOW - 80 * HOUR })]),
       nowMs: NOW,
     });
     expect(result.waitingCount).toBe(0);
@@ -94,14 +113,14 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
   });
 
   test('an empty inbox is empty, and that is good news', async () => {
-    const result = await fetchSupportSource({ collection: makeCollection([]), nowMs: NOW });
+    const result = await fetchSupportSource({ collection: queryOf([]), nowMs: NOW });
     expect(result.state).toBe('empty');
     expect(result.waitingCount).toBe(0);
     expect(result.oldestWaitingMs).toBeNull();
   });
 
   test('an unreadable inbox reports nothing rather than a comforting zero', async () => {
-    const result = await fetchSupportSource({ collection: makeCollection([], true), nowMs: NOW });
+    const result = await fetchSupportSource({ collection: queryOf([], true), nowMs: NOW });
     expect(result.state).toBe('error');
     expect(result.waitingCount).toBeNull();
     expect(result.oldestWaitingMs).toBeNull();
@@ -110,5 +129,55 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
 
   test('the window covers at least a week of support history', () => {
     expect(SUPPORT_LOOKBACK_MS).toBeGreaterThanOrEqual(7 * 24 * HOUR);
+  });
+
+  test('paginates beyond 500 so a large inbox cannot hide an old waiting person', async () => {
+    const docs = Array.from({ length: 500 }, (_, index) => letter({
+      status: 'answered',
+      receivedAtMs: NOW - (index + 1) * 1_000,
+      repliedAt: new Date(NOW - index * 1_000).toISOString(),
+    }));
+    docs.push(letter({ receivedAtMs: NOW - 9 * 24 * HOUR }));
+    const collection = makeCollection(docs);
+
+    const result = await fetchSupportSource({ collection: collection.query, nowMs: NOW });
+
+    expect(result.waitingCount).toBe(1);
+    expect(result.oldestWaitingMs).toBe(9 * 24 * HOUR);
+    expect(collection.getCalls).toBe(2);
+  });
+
+  test('treats a legacy missing status as new, matching the admin inbox UI', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([letter({ status: undefined, receivedAtMs: NOW - 5 * HOUR })]),
+      nowMs: NOW,
+    });
+    expect(result.waitingCount).toBe(1);
+    expect(result.oldestWaitingMs).toBe(5 * HOUR);
+  });
+
+  test('excludes future-dated messages from all metrics', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([
+        letter({ receivedAtMs: NOW + HOUR }),
+        letter({ status: undefined, receivedAtMs: NOW + 2 * HOUR }),
+        letter({ status: 'answered', receivedAtMs: NOW + 3 * HOUR, repliedAt: new Date(NOW + 4 * HOUR).toISOString() }),
+      ]),
+      nowMs: NOW,
+    });
+    expect(result.state).toBe('empty');
+    expect(result.waitingCount).toBe(0);
+    expect(result.answeredCount).toBe(0);
+  });
+
+  test('reads only timing and classification fields, never correspondence PII', async () => {
+    const collection = makeCollection([letter()]);
+    await fetchSupportSource({ collection: collection.query, nowMs: NOW });
+    expect(collection.selectedFields[0]).toEqual([
+      'receivedAtMs', 'status', 'repliedAt', 'mailCategory',
+    ]);
+    expect(collection.selectedFields.flat()).not.toEqual(expect.arrayContaining([
+      'fromEmail', 'fromName', 'subject', 'bodyText',
+    ]));
   });
 });

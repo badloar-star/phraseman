@@ -3,14 +3,14 @@ import path from 'path';
 
 const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_complete.tsx'), 'utf8');
 const completionStart = source.lastIndexOf('if (sequenceShowing) {');
-const completionEnd = source.indexOf('return <ScreenGradient />;', completionStart);
+const completionEnd = source.indexOf('testID="lesson-complete-loading"', completionStart);
 const completionSurface = source.slice(completionStart, completionEnd);
 
 describe('lesson completion single finish surface', () => {
-  it('keeps the shared results sequence and always awards three visible stars', () => {
-    expect(completionSurface).toContain('<ProgressCompletionView');
-    expect(completionSurface).toContain('stars={3}');
-    expect(completionSurface).toContain('onAction={goNext}');
+  it('keeps the shared results sequence and renders the earned medal tier', () => {
+    expect(completionSurface).toContain('<ResultsSequence');
+    expect(completionSurface).toContain('stars={RESULTS_STARS_BY_TIER[medalTier]}');
+    expect(completionSurface).toContain('goNext();');
   });
 
   it('shows only the next-lesson unlock hint, without follow-up completion overlays', () => {
@@ -41,5 +41,10 @@ describe('lesson completion single finish surface', () => {
 
     expect(resultBackHandler).toContain('goBackFromComplete();');
     expect(resultBackHandler).not.toContain('setSeqDone(true);');
+  });
+
+  it('renders a cancellable loading surface instead of a blank screen', () => {
+    expect(source).toContain('testID="lesson-complete-loading"');
+    expect(source).not.toContain('return <ScreenGradient />;');
   });
 });

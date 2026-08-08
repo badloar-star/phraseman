@@ -94,4 +94,31 @@ describe('buildPlanFromDecision', () => {
   test('JARVIS_PLANS_COLLECTION is a stable, non-empty constant', () => {
     expect(JARVIS_PLANS_COLLECTION).toBe('jarvis_plans');
   });
+
+  test('does not attach an internal follow-up task unless the default-off flag is enabled', () => {
+    const plan = buildPlanFromDecision(makeDecision(), null, 2_000);
+    expect(plan.followUpTask).toBeUndefined();
+  });
+
+  test('attaches the eligible internal follow-up task to the owner-visible plan when enabled', () => {
+    const decision = makeDecision({ actionability: 'confirmed_action' });
+    const plan = buildPlanFromDecision(decision, null, 2_000, { followUpTasksEnabled: true });
+    expect(plan.followUpTask).toMatchObject({
+      id: `follow-up:${decision.contentHash}`,
+      attemptCount: 0,
+      maxAttempts: 3,
+      audit: { externalDelivery: 'disabled' },
+    });
+  });
+
+  test('never attaches a task for evidence_only or insufficient_evidence decisions', () => {
+    const evidenceOnly = buildPlanFromDecision(
+      makeDecision({ actionability: 'evidence_only' }), null, 2_000, { followUpTasksEnabled: true },
+    );
+    const insufficient = buildPlanFromDecision(
+      makeDecision({ evidence: [] }), null, 2_000, { followUpTasksEnabled: true },
+    );
+    expect(evidenceOnly.followUpTask).toBeUndefined();
+    expect(insufficient.followUpTask).toBeUndefined();
+  });
 });

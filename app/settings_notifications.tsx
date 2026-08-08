@@ -306,7 +306,7 @@ export default function SettingsNotifications() {
         ) : null}
       />
 
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom:40 }}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom:40 }}>
         {needsPermission && (
           <TapScale
             onPress={async () => {

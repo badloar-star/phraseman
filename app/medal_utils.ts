@@ -288,6 +288,7 @@ export const saveExamProgress = async (
   lvl: string,
   pct: number,
   studyTarget?: RuntimeStudyTarget,
+  finishToken?: string,
 ): Promise<{ newTier: MedalTier; prevTier: MedalTier; newPassCount: number }> => {
   try {
     const [bestRaw, passRaw] = await AsyncStorage.multiGet([
@@ -296,12 +297,19 @@ export const saveExamProgress = async (
     ]);
     const prevBest  = parseInt(bestRaw[1] ?? '0') || 0;
     const prevPass  = parseInt(passRaw[1] ?? '0') || 0;
+    const tokenKey = finishToken?.trim()
+      ? `level_exam_progress_v2::${encodeURIComponent(finishToken.trim())}`
+      : null;
+    if (tokenKey && await AsyncStorage.getItem(tokenKey) === '1') {
+      return { newTier: getExamMedalTier(prevBest), prevTier: getExamMedalTier(prevBest), newPassCount: prevPass };
+    }
     const newBest   = Math.max(prevBest, pct);
     // Рубин/изумруд/бриллиант на карточке зачёта — только за идеальные (100%) прохождения
     const newPass   = prevPass + (pct === 100 ? 1 : 0);
     await AsyncStorage.multiSet([
       [levelExamKey(lvl, 'best_pct', studyTarget), String(newBest)],
       [levelExamKey(lvl, 'pass_count', studyTarget), String(newPass)],
+      ...(tokenKey ? [[tokenKey, '1'] as [string, string]] : []),
     ]);
     return {
       newTier:      getExamMedalTier(newBest),

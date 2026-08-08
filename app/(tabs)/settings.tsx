@@ -62,7 +62,6 @@ import { getStoredStudyTarget } from '../study_target';
 import StudyLanguagePicker from '../../components/settings/StudyLanguagePicker';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { ThemeMode } from '../../constants/theme';
-import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
@@ -161,15 +160,6 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     notice: '#211C12',
     accent: '#D6BE8B',
     chipOn: '#2B2515',
-  },
-  coral: {
-    panel: '#24191D',
-    chip: '#24191D',
-    border: 'rgba(255,220,228,0.11)',
-    divider: 'rgba(255,220,228,0.07)',
-    notice: '#2A1C20',
-    accent: '#E39FAC',
-    chipOn: '#322028',
   },
   minimalDark: {
     panel: '#1C1C1E',
@@ -706,7 +696,6 @@ export default function SettingsMain() {
     const names: Record<string, Record<Lang, string>> = {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
       gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
-      coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
       business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Doanh nghiệp', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
       businessLight: { ru: 'Бизнес светлый', uk: 'Бізнес світлий', es: 'Negocios claro', 'pt-BR': 'Negócios claro', vi: 'Doanh nghiệp sáng', id: 'Bisnis terang', tr: 'İş açık', pl: 'Biznes jasny' },
       midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
@@ -905,25 +894,6 @@ export default function SettingsMain() {
     }
   }, []);
 
-  const syncArenaDisplayName = useCallback(async (displayName: string) => {
-    try {
-      const { CLOUD_SYNC_ENABLED, IS_EXPO_GO } = await import('../config');
-      if (CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
-        const { ensureArenaAuthUid } = await import('../user_id_policy');
-        const uid = await ensureArenaAuthUid();
-        if (uid) {
-          const firestore = (await import('@react-native-firebase/firestore')).default;
-          await firestore()
-            .collection('arena_profiles')
-            .doc(uid)
-            .set({ displayName, updatedAt: Date.now() }, { merge: true });
-        }
-      }
-    } catch (error) {
-      DebugLogger.error('settings.tsx:renameName:arenaProfile', error, 'warning');
-    }
-  }, []);
-
   const saveName = async () => {
     if (nameSavingRef.current) return;
     const trimmed = newName.trim();
@@ -1039,9 +1009,6 @@ export default function SettingsMain() {
       }
 
       // Бронь подтверждена сервером — оптимистично показанное имя остаётся.
-      void syncArenaDisplayName(trimmed).catch((error) => {
-        DebugLogger.error('settings.tsx:renameName:arenaSync', error, 'warning');
-      });
       void syncMyLeagueMemberProfileNow();
     } finally {
       nameSavingRef.current = false;
@@ -1250,7 +1217,7 @@ export default function SettingsMain() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
         keyboardShouldPersistTaps="handled"
-        decelerationRate="fast"
+        decelerationRate="normal"
         scrollEventThrottle={16}
         bounces
         alwaysBounceVertical
@@ -1697,8 +1664,6 @@ export default function SettingsMain() {
               onPress={resetHomeFeatureTips}
             />
           ) : null}
-          {/* «Все подарки» — только в админ-панели (Справочник подарков), не в проде.
-              Каталог живёт в components/admin_panel/sections/GiftsCatalogSection.tsx. */}
         </SettingsGroup>
 
         {/* «Сообщество» и «Ещё» слиты в одну секцию — раньше каждая держала по
@@ -1751,15 +1716,6 @@ export default function SettingsMain() {
               void openStoreReviewPage();
             }}
           />
-          {ENABLE_DEV_TOOLS ? (
-            <SettingsRow
-              icon="construct"
-              color="gray"
-              label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')}
-              onPress={() => router.push(SETTINGS_TESTERS_ROUTE as any)}
-              testID="settings-open-testers"
-            />
-          ) : null}
         </SettingsGroup>
 
         {/* Приватность и данные — всё, что касается данных пользователя, собрано в

@@ -10,7 +10,7 @@ describe('Home daily survey indicator', () => {
     expect(home).toContain("import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts } from '../survey_daily_challenge_model';");
     expect(home).toContain('const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });');
     expect(home).toContain('commitSurveyDailyTaskRequest(scope, requestId, survey);');
-    expect(home).toContain('const [dailyTaskBarCount, setDailyTaskBarCount] = useState(initialSurveyDailyTask ? 4 : 3);');
+    expect(home).toContain('() => hh?.tasksTotal ?? (initialSurveyDailyTask ? 4 : 3),');
     expect(home).toContain('setDailyTaskBarCount((previous) => previous === counts.total ? previous : counts.total);');
     expect(home).toContain('setTasksCompleted(counts.done);');
     expect(home).toContain('testID="home-daily-task-progress"');

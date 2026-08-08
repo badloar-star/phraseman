@@ -17,8 +17,8 @@ type Props = {
 };
 
 /**
- * Compact prestige pill shown next to a player's name in lists (friends, arena
- * leaderboard, club roster) and the arena/PvP versus screen. The label is the localized
+ * Compact prestige pill shown next to a player's name in lists (friends,
+ * leaderboard and club roster). The label is the localized
  * level name (Russian product names, or "Lv N" elsewhere) — no "CARD" prefix. This is the public payoff
  * of upgrading the profile card: previously the level was synced and stored but never
  * drawn in any list — so a higher card gave the owner no visible status anywhere except

@@ -82,6 +82,76 @@ describe('SoundDirector', () => {
     expect(backend.stopCount).toBe(2);
   });
 
+  test('cancels only an active completion sound and frees the arbiter slot', () => {
+    const backend = new FakeBackend();
+    const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
+
+    director.request('pm.complete.xp_counter_tick');
+    expect(director.stopActiveCompletion()).toBe(true);
+    expect(backend.stopCount).toBe(1);
+    expect(director.request('pm.system.info')).toMatchObject({ kind: 'play', preempt: false });
+
+    const nonCompletionBackend = new FakeBackend();
+    const nonCompletionDirector = new SoundDirector(
+      nonCompletionBackend,
+      new SoundArbiter(new FakeClock()),
+    );
+    nonCompletionDirector.request('pm.system.warning');
+    expect(nonCompletionDirector.stopActiveCompletion()).toBe(false);
+    expect(nonCompletionBackend.stopCount).toBe(0);
+  });
+
+  test('cancels the spin plaque sound only for its exact presentation scope', () => {
+    const backend = new FakeBackend();
+    const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
+
+    director.request('pm.reward.small', { scope: 'foreign-spin' });
+    expect(director.stopActiveEvent('pm.reward.small', 'results-sequence-spin')).toBe(false);
+    expect(backend.stopCount).toBe(0);
+
+    const resultsBackend = new FakeBackend();
+    const resultsDirector = new SoundDirector(resultsBackend, new SoundArbiter(new FakeClock()));
+    resultsDirector.request('pm.reward.small', { scope: 'results-sequence-spin' });
+    expect(resultsDirector.stopActiveEvent('pm.reward.small', 'results-sequence-spin')).toBe(true);
+    expect(resultsBackend.stopCount).toBe(1);
+  });
+
+  test('cancels only the active completion sound in its own scope', () => {
+    const backend = new FakeBackend();
+    const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
+    director.request('pm.complete.xp_counter_tick', { scope: 'foreign-results' });
+    expect(director.stopActiveCompletion('results-sequence')).toBe(false);
+    expect(backend.stopCount).toBe(0);
+
+    const resultsBackend = new FakeBackend();
+    const resultsDirector = new SoundDirector(resultsBackend, new SoundArbiter(new FakeClock()));
+    resultsDirector.request('pm.complete.xp_counter_tick', { scope: 'results-sequence' });
+    expect(resultsDirector.stopActiveCompletion('results-sequence')).toBe(true);
+    expect(resultsBackend.stopCount).toBe(1);
+  });
+
+  test('cancels a deferred result spin before it can start after voice playback', () => {
+    jest.useFakeTimers();
+    try {
+      const backend = new FakeBackend();
+      const clock = new FakeClock();
+      const director = new SoundDirector(backend, new SoundArbiter(clock));
+      director.setVoiceActive(true);
+      expect(director.request('pm.reward.small', {
+        scope: 'results-sequence-spin',
+        deferAfterVoice: true,
+      }).kind).toBe('defer');
+
+      expect(director.stopActiveEvent('pm.reward.small', 'results-sequence-spin')).toBe(true);
+      director.setVoiceActive(false);
+      clock.advance(250);
+      jest.advanceTimersByTime(250);
+      expect(backend.plays).toHaveLength(0);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   /**
    * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
    * раз», после того как rateLimit уже поднят): тик таймера (приоритет 62) и

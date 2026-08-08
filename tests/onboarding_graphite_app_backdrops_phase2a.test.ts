@@ -8,8 +8,6 @@ const PHASE_2A_ROUTES = [
   ['/home', 'home'],
   ['/lessons', 'lessons'],
   ['/trainer_plan_session', 'lessonPractice'],
-  ['/quizzes', 'quizzes'],
-  ['/arena', 'arena'],
   ['/settings', 'settings'],
 ] as const;
 
@@ -19,6 +17,8 @@ describe('Onboarding Graphite app backdrops Phase 2A', () => {
 
     expect(source).not.toContain('assets/images/app_backdrops');
     expect(source).not.toContain('assets/images/theme_backdrops');
+    expect(source).not.toContain("'quizzes'");
+    expect(source).not.toContain("'arena'");
 
     for (const [route, backdropName] of PHASE_2A_ROUTES) {
       expect(resolveAppArtBackdropName(route)).toBe(backdropName);

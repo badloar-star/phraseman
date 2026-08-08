@@ -66,7 +66,7 @@ export function useAccordionAnswerReveal(isOpen: boolean, options?: { enabled?: 
 }
 
 /**
- * Шеврон + ответ. Для «только шеврон» наружу: `useAccordionChevronStyle` + `AccordionChevronIonicons`.
+ * Шеврон + ответ. Для «только шеврон» наружу используйте `useAccordionChevronStyle`.
  */
 export function useAccordionFaqStyle(
   isOpen: boolean,

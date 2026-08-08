@@ -114,14 +114,15 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
         } as any) : null,
       ]}
     >
-      <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" />
-      <View style={styles.imageScrim} />
-      {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
-      <View style={styles.content}>
+      <View testID="youtube-premiere-thumbnail" style={styles.thumbnail}>
+        <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" />
+        {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
         <View style={[styles.badge, { backgroundColor: live ? '#A6FF4D' : t.accentBg }]}>
           <Ionicons name={live ? 'radio' : 'sparkles'} size={14} color={live ? '#071015' : t.accent} />
           <Text style={[styles.badgeText, { color: live ? '#071015' : t.accent }]}>{live ? copy.liveNow : copy.upcoming}</Text>
         </View>
+      </View>
+      <View testID="youtube-premiere-details" style={[styles.details, { backgroundColor: live ? '#101B18' : t.bgCard }]}>
         <Text style={styles.title}>{video.title}</Text>
         {!live && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={styles.countdown}>{countdown}</Text>}
         <View style={styles.actions}>
@@ -137,12 +138,12 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
 }
 
 const styles = StyleSheet.create({
-  hero: { minHeight: 330, borderRadius: 24, borderWidth: 1, overflow: 'hidden', marginBottom: 14, justifyContent: 'flex-end' },
+  hero: { borderRadius: 24, borderWidth: 1, overflow: 'hidden', marginBottom: 14 },
+  thumbnail: { aspectRatio: 16 / 9, position: 'relative' },
   image: { ...StyleSheet.absoluteFillObject },
-  imageScrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(3,8,12,0.54)' },
   sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' },
-  content: { padding: 17, paddingTop: 90 },
-  badge: { alignSelf: 'flex-start', minHeight: 30, borderRadius: 15, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  details: { padding: 17 },
+  badge: { position: 'absolute', top: 12, left: 12, minHeight: 30, borderRadius: 15, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 6 },
   badgeText: { fontSize: 11, fontWeight: '900', letterSpacing: 0.4 },
   title: { color: '#FFFFFF', marginTop: 11, fontSize: 21, lineHeight: 27, fontWeight: '900' },
   countdown: { color: '#FFFFFF', marginTop: 10, fontSize: 18, fontWeight: '900', letterSpacing: 0.5 },

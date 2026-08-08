@@ -10,7 +10,8 @@ import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
 import { getCurrentWeekStartIso } from './weekly_xp';
 import { getLevelFromXP } from '../constants/theme';
-import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
+import { enqueueAuthoritativeLevelSpinLevels } from './level_spin_level_up_queue';
+import { persistAuthoritativeLevelSpinBalance } from './level_reward_spins_client';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -20,7 +21,6 @@ import {
 export type ProgressEventType =
   | 'lesson_answer'
   | 'lesson_complete'
-  | 'quiz_answer'
   | 'dialog_complete'
   | 'exam_complete'
   | 'daily_task_reward'
@@ -60,6 +60,12 @@ export type ProgressEventResult = {
   activeDate: string;
   weekKey: string;
   weekXp: number;
+  levelSpinMintedCredits?: Array<{
+    id: string;
+    level: number;
+    kind: 'standard' | 'milestone';
+  }>;
+  levelSpinBalance?: number;
 };
 
 export type ProgressSubmitOptions = {
@@ -73,6 +79,7 @@ type QueuedProgressEvent = {
   clientCreatedAt: number;
   appVersion: string;
   platform: string;
+  levelSpinProtocol: 'v1';
   stableId: string;
   payload: Record<string, unknown>;
 };
@@ -213,7 +220,6 @@ function appVersion(): string {
 
 function eventPrefix(type: ProgressEventType): string {
   if (type.includes('exam')) return 'exam';
-  if (type.includes('quiz')) return 'quiz';
   if (type.includes('lesson') || type.includes('vocabulary') || type.includes('verb')) return 'lesson';
   if (type.includes('plan')) return 'plan';
   if (type.includes('club')) return 'club';
@@ -401,10 +407,6 @@ async function appendDeadLetter(stableId: string, event: QueuedProgressEvent, er
 function parseNonNegativeNumber(raw: unknown): number {
   const n = Number(raw);
   return Number.isFinite(n) ? Math.max(0, n) : 0;
-}
-
-function isNonNegativeSafeInteger(raw: unknown): raw is number {
-  return typeof raw === 'number' && Number.isSafeInteger(raw) && raw >= 0;
 }
 
 function sameWeekPoints(raw: unknown, weekKey: string): number | null {
@@ -612,21 +614,26 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
     ['last_active_date', mergedActiveDate],
     ['streak_last_date', mergedActiveDate],
   ]);
-  if (
-    result.duplicate === false
-    && isNonNegativeSafeInteger(result.xpDelta)
-    && result.xpDelta > 0
-    && isNonNegativeSafeInteger(result.totalXp)
-    && result.xpDelta <= result.totalXp
-    && mergedTotalXp > localTotalBeforeMirror
-  ) {
-    const freshBefore = Math.max(
-      localTotalBeforeMirror,
-      result.totalXp - result.xpDelta,
-    );
-    if (result.totalXp > freshBefore) {
-      await reconcileLevelUpRewards(freshBefore, result.totalXp);
-    }
+  const mintedCredits = result.levelSpinMintedCredits;
+  const spinBalance = result.levelSpinBalance;
+  if (!Array.isArray(mintedCredits)
+    || !Number.isSafeInteger(spinBalance)
+    || Number(spinBalance) < 0) return;
+  const milestoneLevels = new Set([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]);
+  const validCredits = mintedCredits.every((credit) => {
+    if (!Number.isInteger(credit.level) || credit.level < 2 || credit.level > 60) return false;
+    const expectedId = `level_spin_v1_${String(credit.level).padStart(3, '0')}`;
+    const expectedKind = milestoneLevels.has(credit.level) ? 'milestone' : 'standard';
+    const examCredit = /^level_exam_spin_v1_(A1|A2|B1|B2)$/.exec(credit.id);
+    const examDisplayLevel: Record<string, number> = { A1: 2, A2: 3, B1: 4, B2: 5 };
+    return (credit.id === expectedId && credit.kind === expectedKind)
+      || (examCredit !== null && examDisplayLevel[examCredit[1]] === credit.level && credit.kind === 'standard');
+  });
+  if (!validCredits) return;
+  await persistAuthoritativeLevelSpinBalance(result.stableUid, Number(spinBalance));
+  const mintedLevels = [...new Set(mintedCredits.map((credit) => credit.level))].sort((a, b) => a - b);
+  if (mintedLevels.length > 0) {
+    await enqueueAuthoritativeLevelSpinLevels(mintedLevels);
   }
 }
 
@@ -766,6 +773,7 @@ export async function submitProgressEvent(
     clientCreatedAt: Date.now(),
     appVersion: appVersion(),
     platform: Platform.OS,
+    levelSpinProtocol: 'v1',
     stableId,
     payload: {
       ...request.payload,

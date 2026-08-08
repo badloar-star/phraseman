@@ -35034,12 +35034,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "mitap_d004_content_unit_phrase_5"
     ],
-    "targetText": "We are waiting for the client.",
+    "targetText": "We wait for the client.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:mitap:runtime:mitap-d004-listen-audio:mitap-d004-content-unit-phrase-5",
     "uri": "assets/audio/personal-plans-runtime/mitap/runtime/mitap-d004-listen-audio/mitap-d004-content-unit-phrase-5.mp3",
-    "durationMs": 2520,
+    "durationMs": 1848,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true

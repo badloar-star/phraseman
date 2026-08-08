@@ -48,7 +48,7 @@ describe('app art backdrop registry', () => {
     const screenGradient = fs.readFileSync(path.join(__dirname, '..', 'components', 'ScreenGradient.tsx'), 'utf8');
     const screenBackground = fs.readFileSync(path.join(__dirname, '..', 'constants', 'screenBackground.ts'), 'utf8');
     const paywallShared = fs.readFileSync(path.join(__dirname, '..', 'components', 'paywall', 'paywallShared.tsx'), 'utf8');
-    const modes = ['dark', 'gold', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt'];
+    const modes = ['dark', 'gold', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt'];
     const bloomRenderIndex = screenGradient.indexOf('<CinemaBloom mode={layer.bloomMode} reduceMotion={reduceMotion} />');
     const goldFabricRenderIndex = screenGradient.indexOf('<GoldFabricFlow />');
 
@@ -83,17 +83,13 @@ describe('app art backdrop registry', () => {
       ['/(tabs)/home', 'home'],
       ['/(tabs)/lessons', 'lessons'],
       ['/lessons_list', 'lessons'],
-      ['/(tabs)/arena', 'arena'],
       ['/(tabs)/friends', 'friends'],
       ['/(tabs)/settings', 'settings'],
       ['/lesson_menu', 'lessons'],
       ['/lesson1', 'lessonPractice'],
       ['/lesson_intro_screens', 'lessonIntro'],
-      ['/arena_game', 'arenaMatch'],
       ['/achievements_screen', 'achievements'],
       ['/daily_tasks_screen', 'dailyTasks'],
-      ['/quizzes', 'quizzes'],
-      ['/quizzes_screen', 'quizzes'],
       ['/diagnostic_test', 'diagnosticTest'],
       ['/exam', 'exam'],
       ['/level_exam', 'exam'],

@@ -439,46 +439,6 @@ def recycling_rows() -> str:
     return head + body
 
 
-def arena_chunks() -> list[tuple[str, str]]:
-    return [
-        ("¡Buena racha!", "A2"),
-        ("¡Buen intento!", "A2"),
-        ("¡Casi lo tienes!", "B1"),
-        ("¡Buen trabajo!", "A2"),
-        ("¡Sigamos así!", "B1"),
-        ("¡Buena decisión!", "B1"),
-        ("¡Buena jugada!", "B1"),
-        ("¡Qué velocidad!", "B1"),
-        ("¡Excelente precisión!", "B2"),
-        ("¡Buena concentración!", "B1"),
-        ("¡Buena estrategia!", "B2"),
-        ("¡Lo lograste!", "A2"),
-        ("¡Muy bien resuelto!", "B1"),
-        ("¡Buena lectura del texto!", "B2"),
-        ("¡Buena memoria!", "B1"),
-        ("¡Buena intuición!", "B2"),
-        ("¡Buena observación!", "B1"),
-        ("¡Buena coordinación!", "B2"),
-        ("¡Buena puntería (mental)!", "B2"),
-        ("¡Buen ritmo!", "B1"),
-        ("¡Respuesta correcta!", "A2"),
-        ("¡Respuesta rápida!", "A2"),
-        ("¡Sigue practicando!", "A2"),
-        ("¡Un punto más!", "A2"),
-        ("¡Estás mejorando!", "B1"),
-        ("¡Buena racha de estudio!", "B1"),
-        ("¡Buena actitud!", "A2"),
-        ("¡Genial, así se aprende!", "B1"),
-        ("¡Perfecto para repasar!", "B2"),
-        ("¡Buena elección de palabra!", "B2"),
-        ("¡Buen uso del tiempo!", "B1"),
-        ("¡No te rindas!", "B1"),
-        ("¡Vamos con calma!", "B1"),
-        ("¡Buena claridad!", "B2"),
-        ("¡Buena síntesis!", "B2"),
-    ]
-
-
 def anti_calques() -> str:
     rows = [
         ("estar interesado en / me interesa", "интересоваться → me interesa / estoy interesado en", "інтересуватися → мене цікавить / estoy interesado en"),
@@ -536,9 +496,6 @@ def main() -> None:
         lines.append(md_table(lesson_rows(lid)))
     lines.append("\n---\n\n## Индекс повторяемости (spaced planned recycling)\n\n")
     lines.append(recycling_rows())
-    lines.append("\n---\n\n## ARENA_SAFE_CHUNKS\n\n")
-    for phrase, level in arena_chunks():
-        lines.append(f"- `{phrase}` · {level}\n")
     lines.append("\n---\n\n## Анти-кальки (30)\n\n")
     lines.append(anti_calques())
     lines.append("\n---\n\n## Самопроверка PROMPT-004 (итог)\n\n")
@@ -548,15 +505,13 @@ def main() -> None:
     lines.append("4. Ложные друзья только там, где реально (p.ej. profesor).\n")
     lines.append("5. Regional notes: NEUTRAL / маркеры ES-419 vs ES-ES где нужно.\n")
     lines.append("6. Recycling index покрывает ключевые CORE тем уроков 20–32 (артикли/ indef./ pasiva / perfecto / condicional / estilo indirecto / reflexivos / used to / relativas / objeto+infinitivo / repaso).\n")
-    lines.append("7. ARENA фразы без токсичности.\n")
-    lines.append("8. Дубликаты lemma внутри урока избеганы; синтез-урок использует разные опоры.\n")
-    lines.append("9. POS проверен поверхностно для ядерных строк.\n")
+    lines.append("7. Дубликаты lemma внутри урока избеганы; синтез-урок использует разные опоры.\n")
+    lines.append("8. POS проверен поверхностно для ядерных строк.\n")
     lines.append("\n---\n")
     lines.append("\n## Вложения\n\n")
     lines.append("- PROMPT-002: `docs/agents-spanish-locale/learn-spanish-L2/prompts/PROMPT-002-CURRICULUM-32-LESSONS.md` (шаблон; полосы CEFR заданы здесь до заполнения).\n")
     lines.append("- `constants/lessons.ts`\n")
-    n_arena = len(arena_chunks())
-    lines.append(f"\n`PROMPT-004 ЗАВЕРШЁН | Gate: FLAG | Уроков с таблицей: 32/32 | ARENA chunks: {n_arena}`\n")
+    lines.append("\n`PROMPT-004 ЗАВЕРШЁН | Gate: FLAG | Уроков с таблицей: 32/32`\n")
     lines.append("\n> Gate **FLAG**: заполненная PROMPT-002 таблица CEFR по урокам отсутствует в репозитории — использован ориентир по слотам; уроки 6–32 частично собраны генератором тем (`scripts/build_prompt004_deliverable.py`).\n")
 
     OUT_APPEND.write_text("".join(lines), encoding="utf-8")

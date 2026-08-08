@@ -21,11 +21,13 @@ export const MAX_EVIDENCE_AGE_MS = 36 * 60 * 60 * 1_000;
  * Департаменты Джарвиса. 'money' считает УСПЕШНУЮ выручку, 'payments' —
  * наоборот, поломки оплаты (человек заплатил, доступ не выдался).
  */
-export type Department = 'quality' | 'money' | 'growth' | 'content' | 'payments' | 'safety' | 'support' | 'factory' | 'retention';
+export type Department = 'quality' | 'money' | 'growth' | 'content' | 'payments' | 'safety' | 'support' | 'factory' | 'retention' | 'data_health';
 export type DecisionMode = 'off' | 'observe' | 'advise' | 'prepare' | 'execute';
 export type DecisionTrigger = 'scheduled' | 'owner_request';
 export type EvidenceState = 'ready' | 'empty' | 'partial' | 'error' | 'stale' | 'truncated';
 export type RiskLevel = 'low' | 'medium' | 'high';
+export type DecisionActionability = 'evidence_only' | 'confirmed_action';
+export type DecisionSeverityHint = 'P0' | 'P1' | 'P2' | 'P3';
 
 export type DecisionStatus =
   | 'draft'
@@ -77,6 +79,10 @@ export interface BuildDecisionInput {
   readonly successMetric: string;
   readonly rollback: string;
   readonly evidence: readonly EvidenceInput[];
+  /** Require every supplied source for decisions whose evidence is jointly mandatory. */
+  readonly evidencePolicy?: 'any_trustworthy' | 'all_trustworthy';
+  readonly actionability?: DecisionActionability;
+  readonly severityHint?: DecisionSeverityHint;
   readonly constraints?: readonly string[];
   readonly relatedDecisionIds?: readonly string[];
   readonly nowMs: number;
@@ -103,11 +109,15 @@ export interface Decision {
   readonly constraints: readonly string[];
   readonly relatedDecisionIds: readonly string[];
   readonly status: DecisionStatus;
+  readonly actionability: DecisionActionability;
+  readonly severityHint?: DecisionSeverityHint;
   readonly createdAtMs: number;
 }
 
 const EVIDENCE_STATES: readonly EvidenceState[] = ['ready', 'empty', 'partial', 'error', 'stale', 'truncated'];
 const RISK_LEVELS: readonly RiskLevel[] = ['low', 'medium', 'high'];
+const ACTIONABILITY_VALUES: readonly DecisionActionability[] = ['evidence_only', 'confirmed_action'];
+const SEVERITY_HINT_VALUES: readonly DecisionSeverityHint[] = ['P0', 'P1', 'P2', 'P3'];
 
 const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 3;
@@ -211,6 +221,13 @@ export function buildDecision(input: BuildDecisionInput): Decision {
   const evidence = Object.freeze((input.evidence ?? []).map(normalizeEvidence));
   const confidence = decisionConfidence(evidence);
   const options = assertOptions(input.options);
+  const actionability = input.actionability ?? 'confirmed_action';
+  if (!ACTIONABILITY_VALUES.includes(actionability)) {
+    throw new Error('Jarvis decision: actionability is invalid');
+  }
+  if (input.severityHint !== undefined && !SEVERITY_HINT_VALUES.includes(input.severityHint)) {
+    throw new Error('Jarvis decision: severityHint is invalid');
+  }
 
   const question = assertText(input.question, 'question');
   const finding = assertText(input.finding, 'finding');
@@ -223,7 +240,9 @@ export function buildDecision(input: BuildDecisionInput): Decision {
   // зачем: факт не может утверждать больше, чем доказано. Нет ни одного
   // источника, которому можно верить — решение честно помечается как
   // недостаточно доказанное, а не показывается владельцу как вывод.
-  const hasTrustworthyEvidence = evidence.some((item) => item.trustworthy);
+  const hasTrustworthyEvidence = input.evidencePolicy === 'all_trustworthy'
+    ? evidence.length > 0 && evidence.every((item) => item.trustworthy)
+    : evidence.some((item) => item.trustworthy);
   const status: DecisionStatus = hasTrustworthyEvidence ? 'awaiting_owner' : 'insufficient_evidence';
 
   const constraints = Object.freeze((input.constraints ?? []).map((item) => assertText(item, 'constraint')));
@@ -246,6 +265,9 @@ export function buildDecision(input: BuildDecisionInput): Decision {
       input.cost,
       successMetric,
       rollback,
+      input.evidencePolicy ?? 'any_trustworthy',
+      actionability,
+      input.severityHint ?? null,
       constraints,
       evidence.map((item) => [item.sourceId, item.state, item.count, item.droppedCount]),
     ]),
@@ -266,6 +288,8 @@ export function buildDecision(input: BuildDecisionInput): Decision {
     constraints,
     relatedDecisionIds,
     status,
+    actionability,
+    ...(input.severityHint ? { severityHint: input.severityHint } : {}),
     createdAtMs: isSafeCount(input.nowMs) ? input.nowMs : 0,
   });
 }

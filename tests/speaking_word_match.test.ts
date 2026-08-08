@@ -51,6 +51,16 @@ describe('speaking_word_match', () => {
       expect(speakingMatchedFlags(target, 'I BOUGHT a New phone!')).toEqual([true, true, true, true, true]);
     });
 
+    it('requires each repeated target occurrence to be heard', () => {
+      const repeatedTarget = 'The charger is near the phone';
+      expect(speakingMatchedFlags(repeatedTarget, 'The charger is near phone')).toEqual([
+        true, true, true, true, false, true,
+      ]);
+      expect(speakingMatchedFlags(repeatedTarget, 'The charger is near the phone')).toEqual([
+        true, true, true, true, true, true,
+      ]);
+    });
+
     it('treats punctuation-only target tokens as already matched', () => {
       // em-dash token normalizes to empty -> always matched
       expect(speakingMatchedFlags('Wait — go', 'wait')).toEqual([true, true, false]);
@@ -75,6 +85,14 @@ describe('speaking_word_match', () => {
       expect(flags.some(Boolean)).toBe(false);
 
       const scored = scorePlanPronunciationTranscript({ targetText: target, transcript: '' });
+      expect(scored.passed).toBe(false);
+    });
+
+    it('does not pass when one of two repeated words is omitted', () => {
+      const scored = scorePlanPronunciationTranscript({
+        targetText: 'The charger is near the phone',
+        transcript: 'The charger is near phone',
+      });
       expect(scored.passed).toBe(false);
     });
   });

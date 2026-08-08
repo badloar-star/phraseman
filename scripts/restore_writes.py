@@ -73,7 +73,7 @@ def apply_writes(writes):
 
 def main():
     print("=" * 60)
-    print("Restoring Write ops from arena sessions")
+    print("Restoring Write operations from archived sessions")
     print("=" * 60)
 
     all_writes = []

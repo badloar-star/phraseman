@@ -10,11 +10,6 @@ function read(...parts: string[]) {
 describe('profile card badge compact list layout', () => {
   const compactRows = [
     {
-      name: 'arena leaderboard',
-      source: read('app', 'arena_leaderboard.tsx'),
-      expectedBadge: '<ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} style={{ marginTop: 3 }} />',
-    },
-    {
       name: 'top helpers',
       source: read('app', 'top_helpers.tsx'),
       expectedBadge: '<ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} style={{ marginTop: 3 }} />',
@@ -30,6 +25,10 @@ describe('profile card badge compact list layout', () => {
       expectedBadge: '<ProfileCardBadge level={p.profileCardLevel} theme={p.profileCardTheme} style={{ marginTop: 3 }} />',
     },
   ];
+
+  it('does not retain the retired Arena leaderboard surface', () => {
+    expect(fs.existsSync(path.join(ROOT, 'app', 'arena_leaderboard.tsx'))).toBe(false);
+  });
 
   test.each(compactRows)('$name stacks profile card badge below a clipped name', ({ source, expectedBadge }) => {
     expect(source).toMatch(/style=\{\{ minWidth: 0,(?: maxWidth: '100%',)? overflow: 'hidden' \}\}/);

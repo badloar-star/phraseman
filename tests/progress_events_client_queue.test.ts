@@ -38,7 +38,8 @@ async function loadClient(
 ) {
   jest.resetModules();
   activeStableId = stableId;
-  const reconcileLevelUpRewards = jest.fn(async () => []);
+  const enqueueLevelSpinLevelUps = jest.fn(async () => []);
+  const persistAuthoritativeLevelSpinBalance = jest.fn(async () => undefined);
   const accountGeneration = { generation: 1, stableId };
 
   jest.doMock('../app/config', () => ({
@@ -54,8 +55,12 @@ async function loadClient(
   jest.doMock('../app/app_check_init', () => ({
     initFirebaseAppCheckIfAvailable: jest.fn(async () => appCheckReadiness.value),
   }));
-  jest.doMock('../app/level_up_reward_reconciler', () => ({
-    reconcileLevelUpRewards,
+  jest.doMock('../app/level_spin_level_up_queue', () => ({
+    enqueueLevelSpinLevelUps,
+    enqueueAuthoritativeLevelSpinLevels: enqueueLevelSpinLevelUps,
+  }));
+  jest.doMock('../app/level_reward_spins_client', () => ({
+    persistAuthoritativeLevelSpinBalance,
   }));
   jest.doMock('../app/account_generation', () => ({
     captureAccountGeneration: jest.fn(() => ({
@@ -95,7 +100,13 @@ async function loadClient(
   AsyncStorage.__reset?.();
 
   const client = await import('../app/progress_events_client');
-  return { AsyncStorage, client, reconcileLevelUpRewards, accountGeneration };
+  return {
+    AsyncStorage,
+    client,
+    enqueueLevelSpinLevelUps,
+    persistAuthoritativeLevelSpinBalance,
+    accountGeneration,
+  };
 }
 
 describe('progress events client durable queue', () => {
@@ -287,7 +298,7 @@ describe('progress events client durable queue', () => {
 
     await expect(client.submitProgressEvent({
       eventId: 'new-event',
-      type: 'quiz_answer',
+      type: 'dialog_complete',
       payload: { xp: 2 },
     })).rejects.toThrow('progress_event_pending');
 
@@ -339,31 +350,109 @@ describe('progress events client durable queue', () => {
     expect(await AsyncStorage.getItem('week_points_v2')).toBe(JSON.stringify({ weekKey: '2026-W24', points: 350 }));
   });
 
-  it('reconciles a positive non-duplicate server XP advance after the local mirror', async () => {
+  it('queues only exact authoritative spin levels returned by the server', async () => {
     const handlers: CallableHandlers = {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
       progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     await AsyncStorage.setItem('user_total_xp', '50');
 
-    await client.mirrorProgressResultToLocal(progressResult({ xpDelta: 100, totalXp: 150, duplicate: false }));
+    await client.mirrorProgressResultToLocal(progressResult({
+      xpDelta: 100,
+      totalXp: 5000,
+      duplicate: false,
+      levelSpinMintedCredits: [
+        { id: 'level_spin_v1_004', level: 4, kind: 'standard' },
+        { id: 'level_spin_v1_005', level: 5, kind: 'milestone' },
+      ],
+      levelSpinBalance: 2,
+    }));
 
-    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(50, 150);
-    expect(await AsyncStorage.getItem('user_total_xp')).toBe('150');
+    expect(enqueueLevelSpinLevelUps).toHaveBeenCalledWith([4, 5]);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('5000');
   });
 
-  it('reconciles only the fresh server event interval when local XP is missing history', async () => {
+  it('preserves sparse authoritative levels and stores balance before plaque enqueue', async () => {
     const handlers: CallableHandlers = {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
       progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const {
+      client,
+      enqueueLevelSpinLevelUps,
+      persistAuthoritativeLevelSpinBalance,
+    } = await loadClient(handlers);
+
+    await client.mirrorProgressResultToLocal(progressResult({
+      duplicate: true,
+      levelSpinMintedCredits: [
+        { id: 'level_spin_v1_002', level: 2, kind: 'standard' },
+        { id: 'level_spin_v1_004', level: 4, kind: 'standard' },
+      ],
+      levelSpinBalance: 7,
+    }));
+
+    expect(persistAuthoritativeLevelSpinBalance).toHaveBeenCalledWith('stable-1', 7);
+    expect(enqueueLevelSpinLevelUps).toHaveBeenCalledWith([2, 4]);
+    expect(persistAuthoritativeLevelSpinBalance.mock.invocationCallOrder[0])
+      .toBeLessThan(enqueueLevelSpinLevelUps.mock.invocationCallOrder[0]);
+  });
+
+  it('mirrors an authoritative exam spin credit', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { client, enqueueLevelSpinLevelUps, persistAuthoritativeLevelSpinBalance } = await loadClient(handlers);
+
+    await client.mirrorProgressResultToLocal(progressResult({
+      levelSpinMintedCredits: [{ id: 'level_exam_spin_v1_A1', level: 2, kind: 'standard' }],
+      levelSpinBalance: 1,
+    }));
+
+    expect(persistAuthoritativeLevelSpinBalance).toHaveBeenCalledWith('stable-1', 1);
+    expect(enqueueLevelSpinLevelUps).toHaveBeenCalledWith([2]);
+  });
+
+  it.each([
+    ['wrong credit id', [{ id: 'level_spin_v1_003', level: 2, kind: 'standard' }], 1],
+    ['wrong milestone kind', [{ id: 'level_spin_v1_005', level: 5, kind: 'standard' }], 1],
+    ['wrong standard kind', [{ id: 'level_spin_v1_004', level: 4, kind: 'milestone' }], 1],
+    ['out-of-range level', [{ id: 'level_spin_v1_061', level: 61, kind: 'standard' }], 1],
+    ['fractional balance', [{ id: 'level_spin_v1_002', level: 2, kind: 'standard' }], 1.5],
+    ['missing balance', [{ id: 'level_spin_v1_002', level: 2, kind: 'standard' }], undefined],
+  ])('fails closed for %s Spin metadata', async (_label, levelSpinMintedCredits, levelSpinBalance) => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
+
+    await client.mirrorProgressResultToLocal(progressResult({
+      levelSpinMintedCredits,
+      levelSpinBalance,
+    }));
+
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
+  });
+
+  it('does not infer spin levels from XP arithmetic when the server minted no credits', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     await AsyncStorage.setItem('user_total_xp', '50');
 
-    await client.mirrorProgressResultToLocal(progressResult({ xpDelta: 100, totalXp: 5000, duplicate: false }));
+    await client.mirrorProgressResultToLocal(progressResult({
+      xpDelta: 100,
+      totalXp: 5000,
+      duplicate: false,
+      levelSpinMintedCredits: [],
+    }));
 
-    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(4900, 5000);
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it.each([
@@ -372,17 +461,17 @@ describe('progress events client durable queue', () => {
     ['negative delta', { duplicate: false, xpDelta: -10, totalXp: 150 }],
     ['non-finite delta', { duplicate: false, xpDelta: Number.POSITIVE_INFINITY, totalXp: 150 }],
     ['stale server total', { duplicate: false, xpDelta: 100, totalXp: 40 }],
-  ])('does not reconcile level rewards for a %s', async (_label, overrides) => {
+  ])('does not queue spin levels for a %s', async (_label, overrides) => {
     const handlers: CallableHandlers = {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
       progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     await AsyncStorage.setItem('user_total_xp', '50');
 
     await client.mirrorProgressResultToLocal(progressResult(overrides));
 
-    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it.each([
@@ -397,17 +486,17 @@ describe('progress events client durable queue', () => {
     ['unsafe total', { xpDelta: 100, totalXp: Number.MAX_SAFE_INTEGER + 1 }],
     ['missing total', { xpDelta: 100, totalXp: undefined }],
     ['delta greater than total', { xpDelta: 151, totalXp: 150 }],
-  ])('does not reconcile rewards for a %s', async (_label, overrides) => {
+  ])('does not queue spins for a %s', async (_label, overrides) => {
     const handlers: CallableHandlers = {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
       progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     await AsyncStorage.setItem('user_total_xp', '50');
 
     await client.mirrorProgressResultToLocal(progressResult({ duplicate: false, ...overrides }));
 
-    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it('does not apply a queued response after the account generation changes', async () => {
@@ -416,7 +505,7 @@ describe('progress events client durable queue', () => {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
       progressSubmitEvent: callableMock(() => new Promise((resolve) => { resolveSubmit = resolve; })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards, accountGeneration } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps, accountGeneration } = await loadClient(handlers);
     await AsyncStorage.setItem('user_total_xp', '50');
 
     const submission = client.submitProgressEvent({
@@ -439,7 +528,7 @@ describe('progress events client durable queue', () => {
       pairs.some(([key]: [string, string]) => key === 'user_total_xp')
     ));
     expect(progressWrites).toHaveLength(0);
-    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it('dead-letters an owner mismatch and continues with the next queued event', async () => {
@@ -454,7 +543,7 @@ describe('progress events client durable queue', () => {
         };
       }),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     const queued = (eventId: string) => ({
       eventId,
       type: 'lesson_answer',
@@ -477,8 +566,7 @@ describe('progress events client durable queue', () => {
     const deadLetters = JSON.parse(String(await AsyncStorage.getItem(ownedKey(DEAD_LETTER_KEY))));
     expect(deadLetters).toHaveLength(1);
     expect(deadLetters[0]).toMatchObject({ event: { eventId: 'wrong-owner' } });
-    expect(reconcileLevelUpRewards).toHaveBeenCalledTimes(1);
-    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(150, 160);
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it('does not resurrect a direct-submit owner mismatch after dead-lettering it', async () => {
@@ -493,7 +581,7 @@ describe('progress events client durable queue', () => {
         }),
       })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
 
     await expect(client.submitProgressEvent({
       eventId: 'direct-wrong-owner',
@@ -505,7 +593,7 @@ describe('progress events client durable queue', () => {
     const deadLetters = JSON.parse(String(await AsyncStorage.getItem(ownedKey(DEAD_LETTER_KEY))));
     expect(deadLetters).toHaveLength(1);
     expect(deadLetters[0]).toMatchObject({ event: { eventId: 'direct-wrong-owner' } });
-    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it('does not resurrect a direct owner mismatch when dead-letter persistence fails', async () => {
@@ -520,7 +608,7 @@ describe('progress events client durable queue', () => {
         }),
       })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     const setItem = AsyncStorage.setItem as jest.Mock;
     const defaultSetItem = setItem.getMockImplementation()!;
     setItem.mockImplementation((key: string, value: string) => (
@@ -537,24 +625,24 @@ describe('progress events client durable queue', () => {
 
     expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
     expect(handlers.progressSubmitEvent).toHaveBeenCalledTimes(1);
-    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it.each([
     ['missing duplicate marker', { duplicate: undefined }],
     ['non-boolean duplicate marker', { duplicate: 'false' }],
-  ])('mirrors XP but does not reconcile when the response has a %s', async (_label, overrides) => {
+  ])('mirrors XP but does not queue spins when the response has a %s', async (_label, overrides) => {
     const handlers: CallableHandlers = {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
       progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
     };
-    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const { AsyncStorage, client, enqueueLevelSpinLevelUps } = await loadClient(handlers);
     await AsyncStorage.setItem('user_total_xp', '50');
 
     await client.mirrorProgressResultToLocal(progressResult({ xpDelta: 100, totalXp: 150, ...overrides }));
 
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('150');
-    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+    expect(enqueueLevelSpinLevelUps).not.toHaveBeenCalled();
   });
 
   it('does not carry stale previous-week local XP into a new server week', async () => {

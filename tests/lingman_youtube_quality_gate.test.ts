@@ -32,10 +32,11 @@ describe('lingman YouTube quality gate', () => {
 
   it('refreshes the home video badge on focus and app resume', () => {
     const source = buttonSource();
+    const home = readProjectFile('app/(tabs)/home.tsx');
 
-    expect(source).toContain('useIsFocused');
-    expect(source).toContain("AppState.addEventListener('change'");
-    expect(source).toContain("state !== 'active'");
+    expect(source).toContain('ownerActive?: boolean');
+    expect(source).toContain('if (!ownerActive || !enabled) return;');
+    expect(home).toContain('<LingmanVideosButton ownerActive={homeRuntimeActive} />');
     expect(source).toContain('remote_config_changed');
   });
 
@@ -96,8 +97,8 @@ describe('lingman YouTube quality gate', () => {
   it('uses the wired vector icon path without shipping dead per-theme YouTube art', () => {
     const assetDir = path.join(root, 'assets/images/lingman');
     const combined = [catalogSource(), playerSource(), buttonSource()].join('\n');
-    expect(combined).toContain("import { Ionicons } from '@expo/vector-icons'");
-    for (const assetName of ['youtube-dark.webp', 'youtube-gold.webp', 'youtube-coral.webp', 'youtube-minimalDark.webp']) {
+    expect(combined).toContain("import Ionicons from '@expo/vector-icons/Ionicons'");
+    for (const assetName of ['youtube-dark.webp', 'youtube-gold.webp', 'youtube-minimalDark.webp']) {
       expect(combined).not.toContain(assetName);
       expect(fs.existsSync(path.join(assetDir, assetName))).toBe(false);
     }

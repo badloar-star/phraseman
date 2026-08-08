@@ -3,6 +3,12 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { ensureStableLinkForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+import { getLevelFromXP } from './xp_levels';
+import {
+  commitPreparedLevelSpinMinting,
+  LEVEL_SPIN_PROTOCOL,
+  prepareLevelSpinMinting,
+} from './level_reward_spins';
 
 const REGION = 'us-central1';
 
@@ -11,22 +17,45 @@ const REGION = 'us-central1';
  * увидит подарок при следующем открытии приложения (через my_events / badge).
  * Тот же транспорт, что в matchmaking.ts (exp.host/--/api/v2/push/send).
  */
-async function sendExpoPush(
+export type FriendGiftPushTransport = 'sent' | 'failed' | 'timeout' | 'skipped';
+
+export async function sendExpoPush(
   token: string,
   title: string,
   body: string,
   data: Record<string, unknown>,
-): Promise<void> {
+): Promise<FriendGiftPushTransport> {
   const to = String(token ?? '').trim();
-  if (!to) return;
+  if (!to) return 'skipped';
+  const controller = new AbortController();
+  let timeout: ReturnType<typeof setTimeout> | null = null;
   try {
-    await fetch('https://exp.host/--/api/v2/push/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify([{ to, sound: 'default', title, body, data }]),
+    const request = fetch('https://exp.host/--/api/v2/push/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify([{ to, sound: 'default', title, body, data }]),
+        signal: controller.signal,
+      })
+      .then(async (response) => {
+        if (!response.ok) return 'failed' as const;
+        const body = await response.json().catch(() => null) as { data?: Array<{ status?: string }> } | null;
+        const tickets = Array.isArray(body?.data) ? body!.data! : [];
+        return tickets.length > 0 && tickets.every((ticket) => ticket?.status === 'ok')
+          ? 'sent' as const
+          : 'failed' as const;
+      })
+      .catch(() => controller.signal.aborted ? 'timeout' as const : 'failed' as const);
+    const deadline = new Promise<'timeout'>((resolve) => {
+      timeout = setTimeout(() => {
+        controller.abort();
+        resolve('timeout');
+      }, 2_000);
     });
+    return await Promise.race([request, deadline]);
   } catch {
-    // non-critical
+    return controller.signal.aborted ? 'timeout' : 'failed';
+  } finally {
+    if (timeout) clearTimeout(timeout);
   }
 }
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -250,6 +279,11 @@ function userMatchesAuth(
   data: FirebaseFirestore.DocumentData | undefined,
   authUid: string,
 ): boolean {
+  if (!data || data.identityHidden === true) return false;
+  const canonicalStableId = typeof data.canonicalStableId === 'string'
+    ? data.canonicalStableId.trim()
+    : '';
+  if (canonicalStableId && canonicalStableId !== stableId) return false;
   const linkedAuthUid = typeof data?.firebaseAuthUid === 'string' ? data.firebaseAuthUid : '';
   return (linkedAuthUid && linkedAuthUid === authUid) || stableId === authUid;
 }
@@ -286,10 +320,9 @@ function buildRecipientGiftPatch(
   const today = todayStrUtc();
 
   if (giftId === 'chain_shield_1') {
-    const cur = parseJsonObject(getExistingField(recipientData, 'chain_shield'));
-    const daysLeft = typeof cur.daysLeft === 'number' && Number.isFinite(cur.daysLeft)
-      ? Math.max(0, Math.floor(cur.daysLeft))
-      : 0;
+    const root = parseJsonObject(recipientData?.chain_shield);
+    const progress = parseJsonObject(getProgress(recipientData).chain_shield);
+    const daysLeft = Math.max(parseProgressInt(root.daysLeft), parseProgressInt(progress.daysLeft));
     const next = JSON.stringify({ daysLeft: daysLeft + 1, grantedAt: today });
     return {
       chain_shield: next,
@@ -298,10 +331,9 @@ function buildRecipientGiftPatch(
     };
   }
 
-  const cur = parseJsonObject(getExistingField(recipientData, 'gift_xp_multiplier'));
-  const existingExpiresAt = typeof cur.expiresAt === 'number' && Number.isFinite(cur.expiresAt)
-    ? cur.expiresAt
-    : 0;
+  const root = parseJsonObject(recipientData?.gift_xp_multiplier);
+  const progress = parseJsonObject(getProgress(recipientData).gift_xp_multiplier);
+  const existingExpiresAt = Math.max(parseProgressInt(root.expiresAt), parseProgressInt(progress.expiresAt));
   const base = Math.max(now, existingExpiresAt);
   const next = JSON.stringify({ multiplier: 2, expiresAt: base + DAY_MS });
   return {
@@ -310,6 +342,39 @@ function buildRecipientGiftPatch(
     updatedAt: now,
   };
 }
+
+export const friendConsumeChainShield = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const requestedStableId = cleanId(request.data?.stableId);
+  const occurrenceId = cleanIdempotencyKey(request.data?.occurrenceId);
+  if (!requestedStableId || !occurrenceId) throw new HttpsError('invalid-argument', 'stableId and occurrenceId required');
+  const db = admin.firestore();
+  const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
+  const linked = await ensureStableLinkForAuth(db, request.auth.uid, requestedStableId, signInProvider);
+  if (linked.stableUid !== requestedStableId) throw new HttpsError('permission-denied', 'stable_id_mismatch');
+  const userRef = db.collection('users').doc(requestedStableId);
+  const receiptRef = userRef.collection('gift_perk_consumptions').doc(`chain_shield_${occurrenceId}`);
+  return db.runTransaction(async (tx) => {
+    const [snap, receiptSnap] = await Promise.all([tx.get(userRef), tx.get(receiptRef)]);
+    if (!snap.exists) throw new HttpsError('not-found', 'user_not_found');
+    if (receiptSnap.exists) return receiptSnap.data()?.response ?? { ok: true, consumed: false, daysLeft: 0, chainShield: null };
+    const data = snap.data() ?? {};
+    const root = parseJsonObject(data.chain_shield);
+    const progress = parseJsonObject(getProgress(data).chain_shield);
+    const before = Math.max(parseProgressInt(root.daysLeft), parseProgressInt(progress.daysLeft));
+    if (before <= 0) {
+      const response = { ok: true, consumed: false, daysLeft: 0, chainShield: null };
+      tx.set(receiptRef, { occurrenceId, createdAt: Date.now(), response });
+      return response;
+    }
+    const daysLeft = before - 1;
+    const canonical = JSON.stringify({ daysLeft, consumedAt: todayStrUtc() });
+    tx.set(userRef, { chain_shield: canonical, progress: { chain_shield: canonical }, updatedAt: Date.now() }, { merge: true });
+    const response = { ok: true, consumed: true, daysLeft, chainShield: canonical };
+    tx.set(receiptRef, { occurrenceId, createdAt: Date.now(), response });
+    return response;
+  });
+});
 
 export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) {
@@ -321,6 +386,10 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
   const giftId = cleanId(request.data?.giftId) as FriendGiftId;
   const gift = GIFT_CATALOG[giftId];
   const idempotencyKey = cleanIdempotencyKey(request.data?.idempotencyKey);
+
+  if (!idempotencyKey) {
+    throw new HttpsError('invalid-argument', 'idempotencyKey required');
+  }
 
   if (!senderStableId || !friendStableId || senderStableId === friendStableId) {
     throw new HttpsError('invalid-argument', 'Valid sender and friend ids required');
@@ -674,12 +743,16 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
   if (!result.idempotentReplay && result._recipientPushToken) {
     const pushLang = result._recipientLang ?? 'ru';
     const senderName = result._senderName ?? 'Friend';
-    await sendExpoPush(
+    void sendExpoPush(
       result._recipientPushToken,
       GIFT_PUSH_TITLE[pushLang],
       giftPushBody(pushLang, senderName, giftLabelForPushLang(gift, pushLang)),
       { type: 'friend_gift_received', fromName: senderName, giftId: result.giftId },
-    );
+    ).then((transport) => {
+      if (transport !== 'sent' && transport !== 'skipped') {
+        console.warn('friend_gift_push_failed', { transport, giftId: result.giftId });
+      }
+    }).catch(() => {});
   }
 
   const response: Record<string, unknown> = {
@@ -840,6 +913,9 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
   }
   const stableId = cleanId(request.data?.stableId);
   const questId = cleanId(request.data?.questId);
+  const levelSpinProtocol = request.data?.levelSpinProtocol === LEVEL_SPIN_PROTOCOL
+    ? LEVEL_SPIN_PROTOCOL
+    : undefined;
   if (!stableId || !questId) {
     throw new HttpsError('invalid-argument', 'stableId and questId required');
   }
@@ -866,6 +942,9 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
     participantUids.forEach((uid, index) => {
       userDataByUid[uid] = userSnaps[index].data();
     });
+    if (participantUids.some((uid) => userDataByUid[uid]?.levelSpinMergePending === true)) {
+      throw new HttpsError('failed-precondition', 'level_spin_identity_transition_pending');
+    }
     if (!userMatchesAuth(stableId, userDataByUid[stableId], request.auth!.uid)) {
       throw new HttpsError('permission-denied', 'User does not match auth');
     }
@@ -893,11 +972,16 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
 
     const rewardClaimedByUid = parseJsonObject(quest.rewardClaimedByUid);
     const callerAlreadyClaimed = rewardClaimedByUid[stableId] === true;
-    if (participantUids.every((uid) => rewardClaimedByUid[uid] === true)) {
+    const rewardOutcomeByUid = parseJsonObject(quest.rewardOutcomeByUid);
+    if (callerAlreadyClaimed) {
       const callerData = userDataByUid[stableId] ?? {};
       const callerServerState = callerData.progressServerState && typeof callerData.progressServerState === 'object'
         ? callerData.progressServerState as Record<string, unknown>
         : {};
+      const callerSpinState = callerData.levelSpinServerState && typeof callerData.levelSpinServerState === 'object'
+        ? callerData.levelSpinServerState as Record<string, unknown>
+        : {};
+      const storedOutcome = parseJsonObject(rewardOutcomeByUid[stableId]);
       const callerXpBeforeReward = Math.max(
         getTotalXp(callerData),
         parseProgressInt(callerServerState.totalXp),
@@ -912,6 +996,10 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         callerXpBeforeReward,
         rewardXpApplied: 0,
         callerXp: getTotalXp(callerData),
+        levelSpinMintedCredits: Array.isArray(storedOutcome.levelSpinMintedCredits)
+          ? storedOutcome.levelSpinMintedCredits
+          : [],
+        levelSpinBalance: parseProgressInt(storedOutcome.levelSpinBalance ?? callerSpinState.balance),
       };
     }
 
@@ -924,8 +1012,41 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
     let callerXpBeforeReward: number | undefined = callerAlreadyClaimed
       ? Math.max(getTotalXp(initialCallerData), parseProgressInt(initialCallerServerState.totalXp))
       : undefined;
-    for (const uid of participantUids) {
-      if (nextClaimed[uid] === true) continue;
+    const participantsToReward = [stableId];
+    const preparedSpinMints = await Promise.all(participantsToReward.map(async (uid) => {
+      const data = userDataByUid[uid] ?? {};
+      const progressBefore = getProgress(data);
+      const existingServerState = data.progressServerState && typeof data.progressServerState === 'object'
+        ? data.progressServerState as Record<string, unknown>
+        : {};
+      const beforeXp = Math.max(getTotalXp(data), parseProgressInt(existingServerState.totalXp));
+      const afterXp = beforeXp + rewardXp;
+      const storedSpinState = data.levelSpinServerState && typeof data.levelSpinServerState === 'object'
+        ? data.levelSpinServerState as Record<string, unknown>
+        : {};
+      const participantProtocol = uid === stableId
+        ? levelSpinProtocol
+        : storedSpinState.protocol === LEVEL_SPIN_PROTOCOL ? LEVEL_SPIN_PROTOCOL : undefined;
+      const participantAuthUid = uid === stableId
+        ? request.auth!.uid
+        : cleanId(data.firebaseAuthUid);
+      const prepared = await prepareLevelSpinMinting({
+        db,
+        tx,
+        stableUid: uid,
+        authUid: participantAuthUid || undefined,
+        userRef: userRefs[uid],
+        userData: data as Record<string, unknown>,
+        progressBefore,
+        beforeLevel: getLevelFromXP(beforeXp),
+        afterLevel: getLevelFromXP(afterXp),
+        protocol: participantProtocol,
+        earnedAtMs: now,
+      });
+      return { uid, prepared };
+    }));
+    const preparedSpinMintByUid = new Map(preparedSpinMints.map(({ uid, prepared }) => [uid, prepared]));
+    for (const uid of participantsToReward) {
       const data = userDataByUid[uid] ?? {};
       const beforeShards = parseShards(data.shards);
       const existingServerState = data.progressServerState && typeof data.progressServerState === 'object'
@@ -935,18 +1056,25 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       if (uid === stableId) callerXpBeforeReward = beforeXp;
       const afterShards = beforeShards + rewardShards;
       const afterXp = beforeXp + rewardXp;
+      const preparedSpinMint = preparedSpinMintByUid.get(uid);
+      if (!preparedSpinMint) throw new HttpsError('internal', 'friend_quest_spin_mint_missing');
+      commitPreparedLevelSpinMinting(tx, preparedSpinMint);
       tx.set(userRefs[uid], {
         shards: afterShards,
         shards_updated_at_ms: now,
         shards_updated_op: 'earn',
         shards_updated_reason: 'friend_quest_reward',
-        progress: { user_total_xp: String(afterXp) },
+        progress: {
+          user_total_xp: String(afterXp),
+          level_reward_spin_balance: String(preparedSpinMint.balance),
+        },
         progressServerState: {
           ...existingServerState,
           totalXp: afterXp,
           updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         },
         progressServerAuthoritative: true,
+        levelSpinServerState: preparedSpinMint.state,
         updatedAt: now,
       }, { merge: true });
       tx.set(userRefs[uid].collection('shard_log').doc(), {
@@ -970,6 +1098,15 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         completedAtMs: now,
       }, { merge: true });
       nextClaimed[uid] = true;
+      rewardOutcomeByUid[uid] = {
+        callerXpBeforeReward: beforeXp,
+        rewardXpApplied: rewardXp,
+        callerXp: afterXp,
+        callerShards: afterShards,
+        shardsUpdatedAtMs: now,
+        levelSpinMintedCredits: preparedSpinMint.mintedCredits,
+        levelSpinBalance: preparedSpinMint.balance,
+      };
       userDataByUid[uid] = {
         ...data,
         shards: afterShards,
@@ -978,11 +1115,13 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       };
     }
 
+    const allParticipantsClaimed = participantUids.every((uid) => nextClaimed[uid] === true);
     tx.set(questRef, {
-      status: 'completed',
-      completedAtMs: now,
+      status: allParticipantsClaimed ? 'completed' : 'ready',
+      ...(allParticipantsClaimed ? { completedAtMs: now } : {}),
       progressByUid,
       rewardClaimedByUid: nextClaimed,
+      rewardOutcomeByUid,
     }, { merge: true });
 
     const callerData = userDataByUid[stableId] ?? {};
@@ -996,6 +1135,8 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       callerXpBeforeReward,
       rewardXpApplied: callerAlreadyClaimed ? 0 : rewardXp,
       callerXp: getTotalXp(callerData),
+      levelSpinMintedCredits: preparedSpinMintByUid.get(stableId)?.mintedCredits ?? [],
+      levelSpinBalance: preparedSpinMintByUid.get(stableId)?.balance ?? 0,
     };
   });
 });
@@ -1009,6 +1150,9 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
   const giftId = cleanId(request.data?.giftId) as FriendGiftId;
   const gift = GIFT_CATALOG[giftId];
   const idempotencyKey = cleanIdempotencyKey(request.data?.idempotencyKey);
+  if (!idempotencyKey) {
+    throw new HttpsError('invalid-argument', 'idempotencyKey required');
+  }
   if (!senderStableId || !friendStableId || senderStableId === friendStableId || !gift) {
     throw new HttpsError('invalid-argument', 'Valid sender, friend and gift required');
   }
@@ -1114,11 +1258,15 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
     const body = result._friendLang === 'ru'
       ? `${result._senderName} поблагодарил тебя за подарок`
       : `${result._senderName} thanked you for the gift`;
-    await sendExpoPush(result._friendPushToken, title, body, {
+    void sendExpoPush(result._friendPushToken, title, body, {
       type: 'friend_gift_thanks',
       fromName: result._senderName,
       giftId: gift.id,
-    });
+    }).then((transport) => {
+      if (transport !== 'sent' && transport !== 'skipped') {
+        console.warn('friend_gift_thanks_push_failed', { transport, giftId: gift.id });
+      }
+    }).catch(() => {});
   }
 
   const response: { ok: true; idempotencyKey?: string; idempotentReplay?: boolean } = { ok: true };

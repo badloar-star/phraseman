@@ -6,18 +6,21 @@ import {
   CLAIMED_GIFTS_KEY,
   loadPendingLevelGiftCount,
   loadPendingLevelGiftInventory,
+  markLevelSpinGiftOccurrenceClaimed,
   markDualGiftClaimed,
   markDualGiftPartClaimed,
   markGiftClaimed,
   PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
   PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
   readPendingLevelGiftCountCache,
+  restoreDualGiftPartAfterFailedClaim,
   saveRemainingGiftAfterPartialDualClaim,
   saveUnclaimedDualGift,
   saveUnclaimedGift,
   UNCLAIMED_DUAL_GIFTS_KEY,
   UNCLAIMED_GIFTS_KEY,
 } from '../app/level_gift_inventory';
+import { LEVEL_SPIN_GIFT_JOURNAL_KEY } from '../app/level_up_storage_keys';
 import {
   isFlashcardPackLevelGiftId,
   rollF2pLevelGiftForUser,
@@ -30,8 +33,10 @@ import {
   captureAccountGeneration,
   withAccountTransitionLock,
 } from '../app/account_generation';
+import { getVerifiedPremiumStatus } from '../app/premium_guard';
 
 jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn() }));
 jest.mock('../app/level_gift_system', () => {
   const actual = jest.requireActual('../app/level_gift_system');
   return {
@@ -88,9 +93,100 @@ beforeEach(() => {
   });
   (rollF2pLevelGiftForUser as jest.Mock).mockResolvedValue(makeGift('rolled_f2p'));
   (rollPremiumLevelGiftForUser as jest.Mock).mockResolvedValue(makeGift('rolled_premium', 'epic'));
+  (getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(false);
 });
 
 describe('level gift inventory', () => {
+  it('loads request-keyed spin rewards without colliding with the ordinary gift at the same level', async () => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    await saveUnclaimedGift(7, makeGift('xp_250'), token);
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      creditId: 'level_spin_v1_007',
+      level: 7,
+      receivedAtMs: Date.now(),
+      expiresAtMs: Date.now() + 259_200_000,
+      occurrences: [{
+        occurrenceId: 'level-spin:1234567890abcdef:base',
+        lane: 'base',
+        giftId: 'xp_100',
+        claimed: false,
+      }],
+    }]);
+
+    const items = await loadPendingLevelGiftInventory('en');
+    expect(pendingGiftIds(items).sort()).toEqual(['xp_100', 'xp_250']);
+    expect(items.find((item) => item.kind === 'single' && item.gift.id === 'xp_100'))
+      .toMatchObject({ spinOccurrence: { requestId: '1234567890abcdef', lane: 'base' } });
+
+    await markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token);
+    expect(pendingGiftIds(await loadPendingLevelGiftInventory('en'))).toEqual(['xp_250']);
+  });
+
+  it('quarantines an unknown legacy reward without deleting its recovery data', async () => {
+    await saveUnclaimedGift(6, makeGift('retired_unknown_reward'));
+
+    await expect(loadPendingLevelGiftInventory('en')).resolves.toEqual([]);
+    expect(JSON.parse(mockStorage[UNCLAIMED_GIFTS_KEY])[6].id).toBe('retired_unknown_reward');
+  });
+
+  it('replaces a stale useless energy gift before a Plus user can see it', async () => {
+    await saveUnclaimedGift(7, makeGift('energy_full'));
+    (getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(true);
+
+    const items = await loadPendingLevelGiftInventory('en');
+
+    expect(pendingGiftIds(items)).toEqual(['xp_250']);
+  });
+
+  it('preserves the exact immutable spin gift when Plus status later changes', async () => {
+    beginAccountGeneration('account-a');
+    (getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(true);
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      creditId: 'level_spin_v1_007',
+      level: 7,
+      receivedAtMs: Date.now(),
+      expiresAtMs: Date.now() + 259_200_000,
+      occurrences: [{
+        occurrenceId: 'level-spin:1234567890abcdef:base',
+        lane: 'base',
+        giftId: 'energy_full',
+        claimed: false,
+      }],
+    }]);
+
+    const items = await loadPendingLevelGiftInventory('en');
+
+    expect(pendingGiftIds(items)).toEqual(['energy_full']);
+    expect(items[0]).toMatchObject({
+      kind: 'single',
+      gift: {
+        id: 'energy_full',
+        spinRewardReceipt: {
+          requestId: '1234567890abcdef',
+          lane: 'base',
+          giftId: 'energy_full',
+        },
+      },
+    });
+  });
+
+  it('restores both dual gifts when applying the first selected part fails', async () => {
+    const pair = { f2p: makeGift('left'), prem: makeGift('right', 'epic') };
+    await saveUnclaimedDualGift(7, pair);
+    await markDualGiftPartClaimed(7, 'f2p');
+
+    await restoreDualGiftPartAfterFailedClaim(7, 'f2p', pair.f2p);
+
+    expect(JSON.parse(mockStorage[UNCLAIMED_DUAL_GIFTS_KEY])[7]).toEqual(pair);
+    expect(JSON.parse(mockStorage[UNCLAIMED_GIFTS_KEY] ?? '{}')[7]).toBeUndefined();
+    expect(JSON.parse(mockStorage[PARTIAL_DUAL_CLAIMED_LEVELS_KEY] ?? '[]')).not.toContain(7);
+  });
+
   it('does not let a delayed modal save from account A overwrite account B inventory', async () => {
     beginAccountGeneration('account-a');
     const accountAToken = captureAccountGeneration();

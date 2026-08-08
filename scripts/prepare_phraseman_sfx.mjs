@@ -64,15 +64,6 @@ export const ASSET_SPECS = Object.freeze([
   asset('pm.reward.vip_open', 'reward', 'pm_reward_vip_open_glass_a_v1.wav_Create_a_1.55-se_variation3.wav'),
   missing('pm.reward.vip_finale', 'reward'),
 
-  missing('pm.arena.match_found', 'arena'),
-  missing('pm.arena.countdown_3', 'arena'),
-  missing('pm.arena.countdown_2', 'arena'),
-  missing('pm.arena.countdown_1', 'arena'),
-  missing('pm.arena.round_start', 'arena'),
-  missing('pm.arena.victory', 'arena'),
-  missing('pm.arena.defeat', 'arena'),
-  missing('pm.arena.draw', 'arena'),
-
   asset('pm.league.promoted', 'league', 'pm_league_promoted_air_c_v1'),
   asset('pm.league.demoted', 'league', 'pm_league_demoted_air_c_v1'),
   asset('pm.social.gift_received', 'social', 'pm_social_gift_received_glass_a_v1'),

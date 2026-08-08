@@ -66,11 +66,7 @@ import {
   posMasteryKey,
   premiumCourseLevelKey,
   prepositionDrillPerfectKey,
-  quizAchievementCounterKey,
-  quizLifetimeCounterKey,
-  quizNavLevelKey,
-  quizPerfectLevelsTodayKey,
-  quizPerfectStreakKey,
+  retiredCompetitiveModeStorageKeysForWipe,
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
   sourceTargetKey,
@@ -224,20 +220,13 @@ describe('target storage key contract', () => {
     expect(shareAchievementCounterKey('fr')).toBe('achievements_v2::fr::achievement_share_count');
     expect(dailyTaskLessonVisitedKey('2026-05-20', 'en')).toBe('lesson_visited_2026-05-20');
     expect(dailyTaskLessonVisitedKey('2026-05-20', 'fr')).toBe('daily_tasks_v2::fr::lesson_visited_2026-05-20');
-    expect(quizNavLevelKey('en')).toBe('quiz_nav_level');
-    expect(quizNavLevelKey('fr')).toBe('quiz_session_v2::fr::quiz_nav_level');
-    expect(quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'en')).toBe('lifetime_quiz_easy_v1');
-    expect(quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr')).toBe('quiz_session_v2::fr::lifetime_quiz_easy_v1');
-    expect(quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr')).toBe('quiz_session_v2::fr::lifetime_quiz_medium_v1');
-    expect(quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr')).toBe('quiz_session_v2::fr::lifetime_quiz_hard_v1');
-    expect(quizAchievementCounterKey('achievement_quiz_total_count', 'en')).toBe('achievement_quiz_total_count');
-    expect(quizAchievementCounterKey('achievement_quiz_total_count', 'fr')).toBe('quiz_achievements_v2::fr::achievement_quiz_total_count');
-    expect(quizAchievementCounterKey('quiz_hard_count', 'fr')).toBe('quiz_achievements_v2::fr::quiz_hard_count');
-    expect(quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr')).toBe('quiz_achievements_v2::fr::achievement_quiz_hard_perfect_count');
-    expect(quizPerfectLevelsTodayKey('en')).toBe('achievement_quiz_perfect_levels_today_v1');
-    expect(quizPerfectLevelsTodayKey('fr')).toBe('quiz_achievements_v2::fr::achievement_quiz_perfect_levels_today_v1');
-    expect(quizPerfectStreakKey('en')).toBe('achievement_quiz_perfect_streak_v1');
-    expect(quizPerfectStreakKey('fr')).toBe('quiz_achievements_v2::fr::achievement_quiz_perfect_streak_v1');
+    expect(retiredCompetitiveModeStorageKeysForWipe('en')).toContain('quiz_nav_level');
+    expect(retiredCompetitiveModeStorageKeysForWipe('fr')).toEqual(expect.arrayContaining([
+      'quiz_session_v2::fr::quiz_nav_level',
+      'quiz_session_v2::fr::lifetime_quiz_easy_v1',
+      'quiz_achievements_v2::fr::achievement_quiz_total_count',
+      'quiz_achievements_v2::fr::achievement_quiz_perfect_streak_v1',
+    ]));
     expect(comboAchievementCounterKey('en')).toBe('achievement_combo_best_count');
     expect(comboAchievementCounterKey('fr')).toBe('achievements_v2::fr::achievement_combo_best_count');
     expect(userStatsKey('en')).toBe('user_stats_v1');

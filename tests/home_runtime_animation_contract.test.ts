@@ -6,8 +6,8 @@ const read = (file: string) => fs.readFileSync(path.resolve(__dirname, '..', fil
 describe('Home runtime animation ownership', () => {
   it('gates Home repeating motion by visible tab and foreground focus', () => {
     const source = read('app/(tabs)/home.tsx');
-    expect(source).toContain('const homeRuntimeActive = useRuntimeActive(activeIdx === 0)');
-    expect(source).toContain('if (!USE_ELITE_HOME_STATUS || !homeRuntimeActive)');
+    expect(source).toContain("const isHomeOwner = runtimeOwnerId === 'home';");
+    expect(source).toContain('const homeRuntimeActive = useRuntimeActive(isHomeOwner);');
     expect(source).toContain('if (!homeRuntimeActive || !shouldPulse)');
     expect(source).toContain('if (!homeStatsReady || !homeRuntimeActive)');
   });

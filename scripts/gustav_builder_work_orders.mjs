@@ -38,20 +38,6 @@ const WORK_ORDER_OVERRIDES = {
     gates: ['grammar_progression_gate', 'verb_form_gate', 'preposition_article_gate'],
     reasoningLevel: 'deep',
   },
-  quizzes: {
-    builderId: 'french_quiz_bank_builder',
-    requiredSources: ['coe_cefr_companion_2020', 'tv5monde_grammar', 'le_robert_dictionary'],
-    outputArtifacts: ['fr_quiz_banks.json', 'fr_quiz_distractor_rationale.json'],
-    gates: ['not_lesson_fanout_gate', 'distractor_quality_gate', 'level_fit_gate'],
-    reasoningLevel: 'deep',
-  },
-  quiz_explanations: {
-    builderId: 'french_quiz_explanation_prompt_builder',
-    requiredSources: ['tv5monde_grammar', 'le_robert_dictionary', 'phraseman_english_feature_atlas'],
-    outputArtifacts: ['fr_quiz_explanation_prompt_pack.json', 'fr_quiz_explanation_cache_contract.json'],
-    gates: ['prompt_output_language_gate', 'reject_before_return_gate', 'reject_before_cache_gate'],
-    reasoningLevel: 'deep',
-  },
   mistake_explanations: {
     builderId: 'french_mistake_explanation_prompt_builder',
     requiredSources: ['tv5monde_grammar', 'le_robert_conjugation', 'le_robert_dictionary'],
@@ -127,13 +113,6 @@ const WORK_ORDER_OVERRIDES = {
     requiredSources: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'alliance_francaise_normandie_levels'],
     outputArtifacts: ['fr_personal_plan_catalog.json', 'fr_plan_audio_manifest.json'],
     gates: ['plan_content_target_gate', 'plan_audio_gate', 'plan_progress_storage_gate'],
-    reasoningLevel: 'deep',
-  },
-  arena: {
-    builderId: 'french_arena_question_bank_builder',
-    requiredSources: ['coe_cefr_companion_2020', 'tv5monde_grammar', 'le_robert_dictionary'],
-    outputArtifacts: ['fr_arena_question_banks.json', 'fr_arena_count_parity_report.json'],
-    gates: ['arena_count_parity_gate', 'arena_target_language_gate', 'arena_session_storage_gate'],
     reasoningLevel: 'deep',
   },
   audio_tts: {

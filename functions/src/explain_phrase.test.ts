@@ -322,7 +322,7 @@ describe('explainPhrase — full miss path', () => {
     expect(billingDocs()[0].judgeWrongScriptRatio).toBeLessThan(0.4);
   });
 
-  it('judge ok:FALSE writes rejected evidence and returns only fallback to the live caller', async () => {
+  it('judge ok:FALSE writes rejected evidence without returning learner-facing error copy', async () => {
     mockOpenAiChat.mockResolvedValue(genReply('Сырой непроверенный текст объяснения фразы.'));
     mockJudge.mockResolvedValue(verdict(false, 'off_topic'));
 
@@ -331,7 +331,7 @@ describe('explainPhrase — full miss path', () => {
     expect(explanationDoc(PHRASE)).toMatchObject({ status: 'rejected', reason: 'off_topic' });
     expect(res.status).toBe('rejected');
     expect(res.fromCache).toBe(false);
-    expect(res.text).toBe(buildFallback(MEANING));
+    expect(res.text).toBe('');
     expect(res.text).not.toContain('Сырой');
     expect(billingDocs()[0]).toMatchObject({ verdict: 'off_topic', published: false });
   });
@@ -383,7 +383,7 @@ describe('explainPhrase — budget exhaustion degrades gracefully (no 500)', () 
 });
 
 describe('explainPhrase — concurrent generation (lost lock race)', () => {
-  it('a fresh pending lock held by someone else ⇒ fallback with status pending, no generate', async () => {
+  it('a fresh pending lock held by someone else ⇒ empty pending status, no generate', async () => {
     // Another request is actively generating: a fresh pending doc exists.
     docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
       status: 'pending',
@@ -394,7 +394,7 @@ describe('explainPhrase — concurrent generation (lost lock race)', () => {
     const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
 
     expect(res).toMatchObject({ ok: true, status: 'pending', fromCache: true });
-    expect(res.text).toBe(buildFallback(MEANING));
+    expect(res.text).toBe('');
     expect(mockOpenAiChat).not.toHaveBeenCalled();
   });
 });

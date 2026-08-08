@@ -14,7 +14,6 @@ REDO_DIR = REVIEW_DIR / "redo"
 ACCEPTED = {
     "midnight": [
         "lessons",
-        "quizzes",
         "cards",
         "daily-tasks",
         "league",
@@ -22,13 +21,11 @@ ACCEPTED = {
         "practice",
         "exam",
         "shop",
-        "arena",
         "hero-map",
         "league-chest",
     ],
     "ember": [
         "lessons",
-        "quizzes",
         "cards",
         "daily-tasks",
         "league",
@@ -36,13 +33,11 @@ ACCEPTED = {
         "practice",
         "exam",
         "shop",
-        "arena",
         "hero-map",
         "league-chest",
     ],
     "aurora": [
         "lessons",
-        "quizzes",
         "cards",
         "daily-tasks",
         "league",
@@ -50,13 +45,11 @@ ACCEPTED = {
         "practice",
         "exam",
         "shop",
-        "arena",
         "hero-map",
         "league-chest",
     ],
     "volt": [
         "lessons",
-        "quizzes",
         "cards",
         "daily-tasks",
         "league",
@@ -64,7 +57,6 @@ ACCEPTED = {
         "practice",
         "exam",
         "shop",
-        "arena",
         "hero-map",
         "league-chest",
     ],
@@ -73,7 +65,6 @@ ACCEPTED = {
 
 HOME_KEYS = [
     "lessons",
-    "quizzes",
     "cards",
     "daily-tasks",
     "league",
@@ -81,7 +72,6 @@ HOME_KEYS = [
     "practice",
     "exam",
     "shop",
-    "arena",
     "hero-map",
 ]
 THEMES = ["midnight", "ember", "aurora", "volt"]

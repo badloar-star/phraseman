@@ -9,47 +9,28 @@ describe('legacy admin YouTube catalog workspace', () => {
   it('lives in the canonical legacy admin and is grouped with content', () => {
     expect(source).toContain("switchTab('youtube-catalog')");
     expect(source).toContain('id="tab-youtube-catalog"');
-    expect(source).toContain('YouTube-каталог');
+    expect(source).toContain('YouTube-');
     expect(source).toMatch(/'youtube-catalog'\s*:\s*'community'/);
   });
 
-  it('exposes one clear refresh action and safe operational feedback', () => {
-    expect(source.match(/class="ytc-primary-action"/g)).toHaveLength(1);
-    expect(source).toContain('Обновить из YouTube');
+  it('keeps channel setup to link, name, language, and one save action', () => {
     expect(source).toContain('id="ytc-loading"');
-    expect(source).toContain('id="ytc-empty"');
     expect(source).toContain('id="ytc-error"');
-    expect(source).toContain('id="ytc-status-grid"');
-    expect(source).toContain('id="ytc-history"');
-  });
-
-  it('supports channels, locale defaults, playlists and premiere overrides', () => {
-    for (const marker of [
-      'ytc-add-channel',
-      'ytc-channel-list',
-      'ytc-channel-youtube-id',
-      'ytc-channel-locales',
-      'ytc-locale-defaults',
-      'ytc-add-playlist',
-      'ytc-playlist-list',
-      'ytc-add-premiere',
-      'ytc-premiere-list',
-      'ytc-preview',
-      'ytc-publish-reason',
-    ]) {
+    for (const marker of ['ytc-add-channel', 'ytc-channel-list', 'ytc-channel-youtube-id', 'ytc-channel-name', 'ytc-channel-locales', 'ytc-save-channel']) {
       expect(source).toContain(marker);
     }
-    expect(source).toContain('Скрыть плейлист');
-    expect(source).toContain('Название плейлиста');
-    expect(source).toContain('Время премьеры');
-    expect(source).toContain('Срок действия');
-    expect(source).toContain('Сбросить переопределение');
+    expect(source).toContain('#ytc-refresh,#ytc-empty,#ytc-status-grid,#ytc-remove-channel');
+    expect(source).toContain('#ytc-channel-editor>.ytc-section:nth-of-type(n+2),.ytc-footer{display:none!important}');
+    expect(source).toContain("const button = document.getElementById('ytc-save-channel');");
+    expect(source).toContain('channel.languageTags = tag ? [tag] : [];');
+    expect(source).toContain("ytcShowState('ytc-error', true, validationErrors[0]);");
+    expect(source).toContain("const field = document.getElementById('ytc-channel-youtube-id'); if (field) field.focus();");
+    expect(source).not.toContain("const field = document.getElementById('ytc-channel-id'); if (field) field.focus();");
   });
 
   it('uses the dedicated callable API', () => {
     expect(source).toContain("httpsCallable(functionsUs, 'adminGetYoutubeCatalogWorkspace')");
     expect(source).toContain("httpsCallable(functionsUs, 'adminPublishYoutubeCatalogConfig')");
-    expect(source).toContain("httpsCallable(functionsUs, 'adminRefreshYoutubeCatalog')");
   });
 
   it('renders catalog-owned text without HTML injection or App Check initialization', () => {

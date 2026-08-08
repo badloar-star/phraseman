@@ -136,8 +136,7 @@ export function goldTaskAccent(type: string, state?: { completed?: boolean; clai
   if (state?.claimed) return GOLD_RICH.agedGold;
   if (state?.completed) return GOLD_RICH.champagne;
   if (state?.bonus) return GOLD_RICH.paleGold;
-  if (type.includes('hard') || type.includes('arena') || type.includes('diagnostic')) return GOLD_RICH.antiqueGold;
-  if (type.includes('quiz')) return GOLD_RICH.paleGold;
+  if (type.includes('hard') || type.includes('diagnostic')) return GOLD_RICH.antiqueGold;
   if (type.includes('flashcard') || type.includes('words') || type.includes('verb')) return GOLD_RICH.metalGold;
   if (type.includes('theory') || type.includes('energy')) return GOLD_RICH.antiqueGold;
   if (type.includes('friend')) return GOLD_RICH.agedGold;

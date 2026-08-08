@@ -42,15 +42,6 @@ export const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     accent: '#D6BE8B',
     chipOn: '#2B2515',
   },
-  coral: {
-    panel: '#24191D',
-    chip: '#24191D',
-    border: 'rgba(255,220,228,0.11)',
-    divider: 'rgba(255,220,228,0.07)',
-    notice: '#2A1C20',
-    accent: '#E39FAC',
-    chipOn: '#322028',
-  },
   minimalDark: {
     panel: '#1C1C1E',
     chip: '#1C1C1E',

@@ -53,6 +53,24 @@ describe('reported user data integrity', () => {
     expect(trapStart).toBeGreaterThanOrEqual(0);
     expect(trapEnd).toBeGreaterThan(trapStart);
     expect(traps.slice(trapStart, trapEnd)).not.toContain('has a birthday');
+
+    const sourcePhraseStart = source.indexOf("id: 'lesson8_phrase_35'");
+    const sourcePhraseEnd = source.indexOf("id: 'lesson8_phrase_36'", sourcePhraseStart);
+    const sourcePhrase = source.slice(sourcePhraseStart, sourcePhraseEnd);
+    expect(sourcePhrase).toContain("{ text: 'His', correct: 'His'");
+    expect(sourcePhrase).toContain("{ text: 'birthday', correct: 'birthday'");
+    expect(sourcePhrase).toContain("{ text: 'is', correct: 'is'");
+    expect(sourcePhrase).not.toContain("{ text: 'He', correct: 'He'");
+    expect(sourcePhrase).not.toContain("{ text: 'has', correct: 'has'");
+
+    const generatedPhraseStart = generated.indexOf("id: 'lesson8_phrase_35'");
+    const generatedPhraseEnd = generated.indexOf("id: 'lesson8_phrase_36'", generatedPhraseStart);
+    const generatedPhrase = generated.slice(generatedPhraseStart, generatedPhraseEnd);
+    expect(generatedPhrase).toContain("{ text: 'His', correct: 'His'");
+    expect(generatedPhrase).toContain("{ text: 'birthday', correct: 'birthday'");
+    expect(generatedPhrase).toContain("{ text: 'is', correct: 'is'");
+    expect(generatedPhrase).not.toContain("{ text: 'He', correct: 'He'");
+    expect(generatedPhrase).not.toContain("{ text: 'has', correct: 'has'");
   });
 
   it('keeps every published public draft free of internal diagnostics', () => {

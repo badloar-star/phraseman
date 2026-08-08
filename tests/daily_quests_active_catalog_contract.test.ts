@@ -1,9 +1,9 @@
 import { getTodayTasks, getTodayTasksSafe } from '../app/daily_tasks';
 
 const BANNED_TYPES = new Set([
-  'total_answers', 'lesson_no_mistakes', 'open_theory', 'flashcard_view', 'flashcard_flip',
+  'lesson_no_mistakes', 'open_theory', 'flashcard_view', 'flashcard_flip',
   'daily_phrase_read', 'morning_session', 'evening_session', 'early_all_done', 'last_chance',
-  'energy_spend', 'diagnostic_complete', 'different_lessons', 'streak_freeze_use', 'correct_streak',
+  'energy_spend', 'diagnostic_complete', 'different_lessons', 'streak_freeze_use',
   'weekend_marathon', 'mentor_friend', 'polyglot_day', 'perfect_big_lesson',
 ]);
 

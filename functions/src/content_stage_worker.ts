@@ -21,17 +21,14 @@ import { ENGLISH_THEORY_EXEMPLAR_REGISTRY } from './content_factory/english_theo
 import { retrieveTheoryExemplars } from './content_factory/theory_generation';
 import { parseSourceRegistryReference, sourceRegistryDocId, type SourceRegistry } from './content_factory/source_registry';
 import { buildLessonOutlineGrounding } from './content_factory/outline_grounding';
-import { loadApprovedTopicGrounding, loadQuestionBatchForReview, type StudioGroundingBucketLike } from './content_factory/quiz_challenge_grounding';
+import { loadApprovedTopicGrounding, loadQuestionBatchForReview, type StudioGroundingBucketLike } from './content_factory/challenge_grounding';
 import { parseQuestionBatchLedger, previousQuestionKeys, questionLedgerDocumentId } from './content_factory/question_batch_ledger';
-import { questionSemanticKey } from './content_factory/quiz_challenge_artifacts';
+import { questionSemanticKey } from './content_factory/challenge_artifacts';
 import { loadApprovedFlashcardPackIdea, loadFlashcardBatchForReview, type FlashcardGroundingBucketLike } from './content_factory/flashcard_grounding';
 import { flashcardSemanticKey } from './content_factory/flashcard_artifacts';
 import { flashcardRegistryDocumentId } from './content_factory/flashcard_semantic_registry';
 import { flashcardLedgerDocumentId, parseFlashcardPackLedger, previousFlashcardKeys, type FlashcardPackLedger } from './content_factory/flashcard_pack_ledger';
 import { createFlashcardPartialCheckpoint, mergeFlashcardPartialCheckpoint, parseFlashcardPartialCheckpoint, type FlashcardPartialCheckpoint } from './content_factory/flashcard_partial_checkpoint';
-import { loadApprovedArenaTopic, loadArenaQuestionBatchForReview, type ArenaGroundingBucketLike } from './content_factory/arena_grounding';
-import { arenaLedgerDocumentId, parseArenaQuestionLedger, previousArenaQuestionKeys } from './content_factory/arena_question_ledger';
-import { arenaQuestionSemanticKey } from './content_factory/arena_artifacts';
 import { buildGenerationTerminalAudit } from './content_factory/generation_audit';
 import { runGuardedGenerationTransaction } from './content_factory/generation_execution';
 import { buildArtifactOrphanCandidate } from './content_factory/artifact_retention';
@@ -169,9 +166,8 @@ export function buildFlashcardReplacementWorkerGrounding(
 export function resolveContentStageCount(kind: GenerationStageKind, requestedCount: number, grounding: Readonly<Record<string, unknown>> | null = null): number {
   if (kind === 'lesson_outline' || kind === 'lesson_theory') return 1;
   if (kind === 'lesson_phrases') return 50;
-  if (kind === 'quiz_questions' || kind === 'challenge_questions') return 10;
-  if (kind === 'arena_questions') return 10;
-  if (kind === 'quiz_question_replacement' || kind === 'challenge_question_replacement' || kind === 'arena_question_replacement') return 1;
+  if (kind === 'challenge_questions') return 10;
+  if (kind === 'challenge_question_replacement') return 1;
   if (kind === 'flashcard_item_replacement') return 1;
   if (kind === 'flashcard_items' && (!Number.isSafeInteger(requestedCount) || requestedCount < 1 || requestedCount > 20)) throw new Error('flashcard_batch_count_must_be_1_to_20');
   if (kind === 'lesson_vocabulary' || kind === 'lesson_irregular_verbs' || kind === 'lesson_prepositions') return Array.isArray(grounding?.acceptedCandidates) ? grounding.acceptedCandidates.length : 0;
@@ -356,13 +352,13 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
       } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'flashcard_replacement_grounding_invalid'); }
       resolvedCount = resolveContentStageCount('flashcard_item_replacement', resolvedCount, grounding);
     }
-    if (stage.kind === 'quiz_questions' || stage.kind === 'challenge_questions') {
+    if (stage.kind === 'challenge_questions') {
       const prerequisiteStageIds = Array.isArray(stage.prerequisiteStageIds) ? stage.prerequisiteStageIds.map(String) : [];
       if (prerequisiteStageIds.length !== 1) throw new HttpsError('failed-precondition', 'studio_topic_prerequisite_required');
       const prerequisiteSnapshot = await db.collection('content_factory_stages').doc(prerequisiteStageIds[0]).get();
       if (!prerequisiteSnapshot.exists) throw new HttpsError('failed-precondition', 'studio_topic_prerequisite_missing');
       const prerequisite = prerequisiteSnapshot.data() ?? {};
-      const expectedKind = stage.kind === 'quiz_questions' ? 'quiz_topic' : 'challenge_topic';
+      const expectedKind = 'challenge_topic' as const;
       if (prerequisite.kind !== expectedKind) throw new HttpsError('failed-precondition', 'studio_topic_prerequisite_kind_invalid');
       try { grounding = await loadApprovedTopicGrounding(admin.storage().bucket() as unknown as StudioGroundingBucketLike, { stageId: prerequisiteSnapshot.id, artifactId: String(prerequisite.artifactId ?? ''), kind: expectedKind, state: String(prerequisite.state ?? ''), cefr: String(prerequisite.cefr ?? ''), objectPath: String(prerequisite.objectPath ?? ''), contentHash: String(prerequisite.contentHash ?? ''), objectGeneration: String(prerequisite.objectGeneration ?? '') }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'studio_topic_grounding_invalid'); }
       const ledgerSnapshot = await db.collection('content_factory_question_ledgers').doc(questionLedgerDocumentId(String(stage.requestId ?? ''), String(prerequisite.artifactId ?? ''))).get();
@@ -370,27 +366,12 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
       grounding = Object.freeze({ ...grounding, previousQuestionKeys: previousQuestionKeys(ledger) });
       resolvedCount = resolveContentStageCount(String(stage.kind) as GenerationStageKind, resolvedCount, grounding);
     }
-    if (stage.kind === 'arena_questions') {
-      const prerequisiteStageIds = Array.isArray(stage.prerequisiteStageIds) ? stage.prerequisiteStageIds.map(String) : [];
-      if (prerequisiteStageIds.length !== 1) throw new HttpsError('failed-precondition', 'arena_topic_prerequisite_required');
-      const prerequisiteSnapshot = await db.collection('content_factory_stages').doc(prerequisiteStageIds[0]).get();
-      if (!prerequisiteSnapshot.exists) throw new HttpsError('failed-precondition', 'arena_topic_prerequisite_missing');
-      const prerequisite = prerequisiteSnapshot.data() ?? {};
-      if (prerequisite.kind !== 'arena_topic') throw new HttpsError('failed-precondition', 'arena_topic_prerequisite_kind_invalid');
-      try {
-        const loaded = await loadApprovedArenaTopic(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(prerequisite.artifactId ?? ''), kind: 'arena_topic', state: String(prerequisite.state ?? ''), cefr: String(prerequisite.cefr ?? ''), studyTarget: String(prerequisite.studyTarget ?? ''), sourceLocale: String(prerequisite.sourceLocale ?? ''), objectPath: String(prerequisite.objectPath ?? ''), contentHash: String(prerequisite.contentHash ?? ''), objectGeneration: String(prerequisite.objectGeneration ?? '') });
-        const ledgerSnapshot = await db.collection('content_factory_arena_ledgers').doc(arenaLedgerDocumentId(String(stage.requestId ?? ''), loaded.artifactId)).get();
-        const ledger = parseArenaQuestionLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, loaded.artifactId);
-        grounding = Object.freeze({ ...loaded, previousQuestionKeys: previousArenaQuestionKeys(ledger) });
-      } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_topic_grounding_invalid'); }
-      resolvedCount = resolveContentStageCount('arena_questions', resolvedCount, grounding);
-    }
-    if (stage.kind === 'quiz_question_replacement' || stage.kind === 'challenge_question_replacement') {
+    if (stage.kind === 'challenge_question_replacement') {
       const prerequisiteStageIds = Array.isArray(stage.prerequisiteStageIds) ? stage.prerequisiteStageIds.map(String) : [];
       if (prerequisiteStageIds.length !== 1) throw new HttpsError('failed-precondition', 'question_replacement_batch_required');
       const batchSnapshot = await db.collection('content_factory_stages').doc(prerequisiteStageIds[0]).get();
       if (!batchSnapshot.exists) throw new HttpsError('failed-precondition', 'question_replacement_batch_missing');
-      const batchStage = batchSnapshot.data() ?? {}; const expectedBatchKind = stage.kind === 'quiz_question_replacement' ? 'quiz_questions' : 'challenge_questions';
+      const batchStage = batchSnapshot.data() ?? {}; const expectedBatchKind = 'challenge_questions' as const;
       if (batchStage.kind !== expectedBatchKind) throw new HttpsError('failed-precondition', 'question_replacement_batch_kind_invalid');
       const batch = await loadQuestionBatchForReview(admin.storage().bucket() as unknown as StudioGroundingBucketLike, { stageId: batchSnapshot.id, artifactId: String(batchStage.artifactId ?? ''), kind: expectedBatchKind, state: String(batchStage.state ?? ''), objectPath: String(batchStage.objectPath ?? ''), contentHash: String(batchStage.contentHash ?? ''), objectGeneration: String(batchStage.objectGeneration ?? ''), groundingReceipt: batchStage.groundingReceipt });
       const replacementForQuestionId = String(stage.replacementForQuestionId ?? ''); const originalQuestion = batch.items.find((value) => typeof value === 'object' && value !== null && String((value as Record<string, unknown>).id ?? '') === replacementForQuestionId);
@@ -399,25 +380,6 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
       const ledger = parseQuestionBatchLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, batch.topicArtifactId); const originalKey = questionSemanticKey(originalQuestion);
       grounding = Object.freeze({ batchArtifactId: batch.artifactId, topicArtifactId: batch.topicArtifactId, replacementForQuestionId, originalQuestion, topic: batch.topic, previousQuestionKeys: previousQuestionKeys(ledger).filter((key) => key !== originalKey) });
       resolvedCount = resolveContentStageCount(String(stage.kind) as GenerationStageKind, resolvedCount, grounding);
-    }
-    if (stage.kind === 'arena_question_replacement') {
-      const prerequisiteStageIds = Array.isArray(stage.prerequisiteStageIds) ? stage.prerequisiteStageIds.map(String) : [];
-      if (prerequisiteStageIds.length !== 1) throw new HttpsError('failed-precondition', 'arena_replacement_batch_required');
-      const batchSnapshot = await db.collection('content_factory_stages').doc(prerequisiteStageIds[0]).get();
-      if (!batchSnapshot.exists) throw new HttpsError('failed-precondition', 'arena_replacement_batch_missing');
-      const batchStage = batchSnapshot.data() ?? {};
-      if (batchStage.kind !== 'arena_questions') throw new HttpsError('failed-precondition', 'arena_replacement_batch_kind_invalid');
-      let batch: Awaited<ReturnType<typeof loadArenaQuestionBatchForReview>>;
-      try { batch = await loadArenaQuestionBatchForReview(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(batchStage.artifactId ?? ''), kind: 'arena_questions', state: String(batchStage.state ?? ''), count: Number(batchStage.resolvedCount ?? batchStage.count), objectPath: String(batchStage.objectPath ?? ''), contentHash: String(batchStage.contentHash ?? ''), objectGeneration: String(batchStage.objectGeneration ?? ''), groundingReceipt: batchStage.groundingReceipt }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_grounding_invalid'); }
-      const locale = typeof batch.topic.localeContract === 'object' && batch.topic.localeContract !== null ? batch.topic.localeContract as Record<string, unknown> : {};
-      if (String(stage.studyTarget ?? '') !== String(locale.studyTarget ?? '') || String(stage.sourceLocale ?? '') !== String(locale.learnerSourceLocale ?? '') || String(stage.cefr ?? '') !== String(batch.topic.level ?? '')) throw new HttpsError('failed-precondition', 'arena_replacement_identity_mismatch');
-      const replacementForQuestionId = String(stage.replacementForQuestionId ?? ''); const originalQuestion = batch.items.find((value) => typeof value === 'object' && value !== null && String((value as Record<string, unknown>).id ?? '') === replacementForQuestionId);
-      if (!originalQuestion) throw new HttpsError('failed-precondition', 'arena_replacement_original_missing');
-      const ledgerSnapshot = await db.collection('content_factory_arena_ledgers').doc(arenaLedgerDocumentId(String(stage.requestId ?? ''), batch.topicArtifactId)).get();
-      const ledger = parseArenaQuestionLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, batch.topicArtifactId);
-      const originalKey = arenaQuestionSemanticKey(originalQuestion);
-      grounding = Object.freeze({ batchArtifactId: batch.artifactId, topicArtifactId: batch.topicArtifactId, replacementForQuestionId, originalQuestion, topic: batch.topic, previousQuestionKeys: previousArenaQuestionKeys(ledger).filter((key) => key !== originalKey) });
-      resolvedCount = resolveContentStageCount('arena_question_replacement', resolvedCount, grounding);
     }
     const config = await resolveJobConfig(db, 'content_factory');
     assertJobEnabled(config, 'content_factory');

@@ -9,7 +9,6 @@ import type { ThemeMode } from './theme';
 const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   dark: ['#07120B', '#030805', '#010201'],
   gold: ['#151005', '#090704', '#010101'],
-  coral: ['#17090C', '#0C0406', '#010101'],
   // Sketch light paper tone
   // Graphite dark neutral tone
   minimalDark: ['#111318', '#08090D', '#010102'],

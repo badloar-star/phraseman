@@ -753,7 +753,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 {/* ── RANK + RESULT ZONE ─────────────────────────── */}
                 <ScrollView
                   style={{ flex: 1 }}
-                  decelerationRate="fast"
+                  decelerationRate="normal"
                   contentContainerStyle={{ paddingBottom: 4 }}
                   showsVerticalScrollIndicator={false}
                   nestedScrollEnabled

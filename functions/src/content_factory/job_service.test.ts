@@ -3,7 +3,7 @@ import { createGenerationJob, type FactorySurface } from './contracts';
 
 describe('resumable generation units', () => {
   it('splits a bounded job into stable surface/lesson units without duplicates', () => {
-    const units = splitGenerationJob({ jobId: 'job-1', studyTarget: 'fr', learnerSourceLocale: 'ru', lessonIds: [1, 2], surfaces: ['lessons', 'quizzes', 'cards', 'arena_questions'] });
+    const units = splitGenerationJob({ jobId: 'job-1', studyTarget: 'fr', learnerSourceLocale: 'ru', lessonIds: [1, 2], surfaces: ['lessons', 'cards'] });
     expect(units.map((unit) => unit.unitId)).toEqual([
       'job-1:lesson:1', 'job-1:lesson:2', 'job-1:flashcard:1', 'job-1:flashcard:2',
     ]);
@@ -24,8 +24,8 @@ describe('resumable generation units', () => {
     [['vocabulary']],
     [['drills']],
     [['lessons', 'vocabulary', 'drills']],
-    [['quizzes', 'cards', 'arena_questions']],
-    [['lessons', 'vocabulary', 'drills', 'quizzes', 'cards', 'arena_questions']],
+    [['cards']],
+    [['lessons', 'vocabulary', 'drills', 'cards']],
   ])('derives progress.total from the persisted canonical units for %j', (surfaces) => {
     const lessonIds = [1, 2];
     const job = createGenerationJob({

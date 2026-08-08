@@ -30,7 +30,6 @@ export function planTaskDestinationLabel(destination: PlanTaskDestination): stri
     if (destination.exerciseType === 'plan_listen_build') return `Собрать на слух · ${destination.requiredCorrect}`;
     return `Произношение · ${destination.requiredCorrect}`;
   }
-  if (destination.type === 'quiz') return `Вызов дня · ${destination.questionCount} вопросов`;
   if (destination.type === 'practice') {
     return `Моя практика · ${phraseLabel(destination.requiredPhrases ?? 3)}`;
   }
@@ -181,8 +180,7 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'quiz') {
-    // Compatibility for persisted plans created before quiz tasks were retired.
-    go('/home' as any);
+    go({ pathname: '/personal_plan_quiz', params: { planQuizId: destination.quizId, planTaskId: task.id, planId: plan.id, planDayIndex: String(day.dayIndex), planInstanceId: planInstanceId ?? '' } } as any);
     return;
   }
   if (destination.type === 'trainer') {

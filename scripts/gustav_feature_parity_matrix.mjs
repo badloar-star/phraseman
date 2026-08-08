@@ -68,20 +68,6 @@ const FEATURE_DEFINITIONS = [
     priority: 5,
   },
   {
-    id: 'quizzes',
-    label: 'Quiz banks, thematic quizzes and quiz runtime',
-    keywords: ['quiz', 'quizzes', 'quiz_thematic', 'skyler_quiz'],
-    missingFamily: 'french_quiz_banks_not_row_fanout',
-    priority: 6,
-  },
-  {
-    id: 'quiz_explanations',
-    label: 'Quiz/choice AI explanations and cache gates',
-    keywords: ['quiz_explain', 'choice_explain', 'explain_quiz', 'explain_choice'],
-    missingFamily: 'ai_prompt_packs',
-    priority: 7,
-  },
-  {
     id: 'mistake_explanations',
     label: 'Mistake explanation AI prompts and gates',
     keywords: ['mistake_explain', 'ai_mistake'],
@@ -143,13 +129,6 @@ const FEATURE_DEFINITIONS = [
     keywords: ['personal_plan', 'plan_content', 'plan_day', 'listening', 'speaking'],
     missingFamily: 'personal_plan_french_content',
     priority: 16,
-  },
-  {
-    id: 'arena',
-    label: 'Arena, rooms, ranks and competitive question banks',
-    keywords: ['arena', 'duel', 'matchmaking'],
-    missingFamily: 'arena_question_banks',
-    priority: 17,
   },
   {
     id: 'audio_tts',
@@ -233,7 +212,7 @@ function isFrenchEvidence(entry) {
 }
 
 function isEnglishEvidence(entry) {
-  return /\ben\b|english|lesson_data|quiz|arena|flashcard|personal_plan|course_pack/.test(entry.lower);
+  return /\ben\b|english|lesson_data|flashcard|personal_plan|course_pack/.test(entry.lower);
 }
 
 function sha256(value) {
@@ -255,7 +234,7 @@ function classify(feature, state, englishFiles, frenchFiles, adminAtlas) {
   if (feature.id === 'research_best_practices') {
     blockers.push('research_first_packets_required_before_generation_pass');
   }
-  if (feature.id === 'quizzes' || feature.id === 'flashcards' || feature.id === 'personal_practice') {
+  if (feature.id === 'flashcards' || feature.id === 'personal_practice') {
     blockers.push('current_french_seed_rows_may_be_lesson_fanout_only');
   }
   if (feature.id === 'audio_tts') {
@@ -339,7 +318,7 @@ function buildReport() {
       'Build target research packets before generating or promoting French content.',
       'Build French 32-lesson scope-and-sequence packet before accepting the current lesson order.',
       'Convert admin website atlas into English surface matrix and French equivalence matrix.',
-      'Replace seed row fan-out for quiz/flashcard/personal_practice with feature-specific French banks.',
+      'Replace seed row fan-out for flashcard/personal_practice with feature-specific French banks.',
     ],
   };
 }
@@ -351,8 +330,6 @@ function nextActionFor(featureId) {
     lesson_theory: 'Create French theory builder and evidence-backed theory rows per lesson.',
     vocabulary_bank: 'Create French vocabulary bank with gender/articles/elision/register metadata.',
     grammar_hubs: 'Create French grammar hubs in the order required by French acquisition.',
-    quizzes: 'Build French-specific quiz banks and distractors, not lesson-row fan-out.',
-    quiz_explanations: 'Port quiz explanation prompts and gates to French target contracts.',
     mistake_explanations: 'Port mistake explanation prompt pack and reject-before-return/cache gates.',
     compass_ai: 'Port Compass/dialog/situation prompts with French output contracts.',
     personal_practice: 'Build French practice queues from French mistake taxonomy and learning goals.',
@@ -362,7 +339,6 @@ function nextActionFor(featureId) {
     daily_phrase_tasks: 'Build French daily phrase bank and daily task target gates.',
     diagnostics_exams: 'Build French diagnostic, level-check and exam pools.',
     personal_plans: 'Build French personal plan content, audio metadata and target-scoped progress.',
-    arena: 'Build French arena question banks with English-count parity and target isolation.',
     audio_tts: 'Generate OpenAI TTS manifest and missing-audio gate for all voice-required French items.',
     server_course_packs: 'Verify pack manifests, hashes, loader paths, rollback and remote delivery for French.',
     storage_cloud_isolation: 'Run target storage/cloud/cache isolation gates across all French surfaces.',

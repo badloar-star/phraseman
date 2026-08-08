@@ -6,11 +6,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import type { Lang } from '../../constants/i18n';
 import { getLevelExamCopy } from '../../app/level_exam_copy';
 import type { LevelExamLevel } from '../../app/level_exam_types';
-import BouncyScrollView from '../BouncyScrollView';
 import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
+import EnergyIcon from '../EnergyIcon';
 
 type Props = {
   lang: Lang;
@@ -39,7 +39,7 @@ export default function LevelExamIntro({
   onBack,
   onStart,
 }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { theme: t, f, ds, themeMode } = useTheme();
   const [launching, setLaunching] = useState(false);
   const launchGuardRef = useRef(false);
   const hasEnergy = availableEnergy >= energyCost;
@@ -79,90 +79,81 @@ export default function LevelExamIntro({
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
           </TapScale>
           <View style={[styles.energyPill, { backgroundColor: t.bgSurface2 }]}> 
-            <Ionicons name="flash" size={16} color={t.accent} />
+            <EnergyIcon filled={availableEnergy > 0} themeColor={t.accent} themeMode={themeMode} size={20} animateChange={false} />
             <Text style={{ color: t.textPrimary, fontSize: f.caption, fontFamily: ds.fontFamily }}>
               {availableEnergy}
             </Text>
           </View>
         </View>
 
-        <BouncyScrollView
-          decelerationRate="normal"
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={[styles.scrollContent, { padding: ds.spacing.lg, gap: ds.spacing.lg }]}
-        >
-          <View style={{ gap: ds.spacing.sm }}>
-            <View style={[styles.eyebrow, { backgroundColor: t.accentBg }]}> 
-              <Ionicons name="school-outline" size={16} color={t.accent} />
-              <Text style={{ color: t.accent, fontSize: f.label, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-                {copy.lessonRange}
-              </Text>
+        <View style={styles.sheetWrap}>
+          <View style={[styles.sheet, { backgroundColor: t.bgCard, padding: ds.spacing.lg, gap: ds.spacing.md }]}> 
+            <View style={[styles.sheetHandle, { backgroundColor: t.bgSurface2 }]} />
+            <View style={styles.sheetTitleRow}>
+              <View style={{ flex: 1, gap: 3 }}>
+                <Text style={{ color: t.accent, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '800' }}>
+                  {copy.lessonRange}
+                </Text>
+                <Text
+                  accessibilityRole="header"
+                  style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '900' }}
+                >
+                  {copy.title}
+                </Text>
+              </View>
+              <Ionicons name="school-outline" size={28} color={t.accent} />
             </View>
-            <Text
-              accessibilityRole="header"
-              style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '900' }}
-            >
-              {copy.title}
-            </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.body, fontFamily: ds.fontFamily, lineHeight: f.body * 1.45 }}>
-              {copy.lead}
-            </Text>
-          </View>
 
-          <View style={[styles.metrics, { gap: ds.spacing.sm }]}> 
-            <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.metric, { padding: ds.spacing.md }]}> 
-              <Ionicons name="checkmark-circle-outline" size={22} color={t.correct} />
-              <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '800' }}>
+            <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.metrics, { padding: ds.spacing.md }]}> 
+            <View style={styles.metric}>
+              <Ionicons name="checkmark-circle-outline" size={20} color={t.correct} />
+              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                 {copy.passGoal}
               </Text>
-            </TonalSurface>
-            <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.metric, { padding: ds.spacing.md }]}> 
-              <Ionicons name="timer-outline" size={22} color={t.accent} />
-              <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '800' }}>
+            </View>
+            <View style={[styles.metric, styles.metricSecondary]}>
+              <Ionicons name="timer-outline" size={20} color={t.accent} />
+              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                 {copy.duration}
               </Text>
-            </TonalSurface>
-          </View>
-
-          {bestScore !== null ? (
-            <Text style={[styles.bestResult, { color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
-              {copy.bestResult}
-            </Text>
-          ) : null}
-
-          {!hasEnergy ? (
-            <Text accessibilityRole="alert" style={[styles.centerText, { color: t.wrong, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
-              {copy.energyMissing}
-            </Text>
-          ) : null}
-
-          <TapScale
-            testID="level-exam-start"
-            onPress={handleStart}
-            disabled={disabled}
-            accessibilityLabel={copy.startCta}
-            accessibilityHint={copy.lead}
-            accessibilityState={{ disabled }}
-            style={[
-              styles.startButton,
-              {
-                minHeight: ds.buttonHeight,
-                backgroundColor: disabled ? t.bgSurface2 : t.accent,
-                paddingHorizontal: ds.spacing.lg,
-              },
-            ]}
-          >
-            <View testID="level-exam-start-content" style={styles.startButtonContent}>
-              <Text
-                numberOfLines={1}
-                style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900', flexShrink: 1 }}
-              >
-                {copy.startCta}
-              </Text>
-              <Ionicons name="arrow-forward" size={20} color={disabled ? t.textMuted : t.correctText} />
             </View>
-          </TapScale>
-        </BouncyScrollView>
+            </TonalSurface>
+
+            {bestScore !== null ? (
+              <Text style={[styles.bestResult, { color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
+                {copy.bestResult}
+              </Text>
+            ) : null}
+
+            {!hasEnergy ? (
+              <Text accessibilityRole="alert" style={[styles.centerText, { color: t.wrong, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
+                {copy.energyMissing}
+              </Text>
+            ) : null}
+
+            <TapScale
+              testID="level-exam-start"
+              onPress={handleStart}
+              disabled={disabled}
+              accessibilityLabel={copy.startCta}
+              accessibilityHint={copy.lessonRange}
+              accessibilityState={{ disabled }}
+              style={[styles.startButton, { minHeight: ds.buttonHeight, backgroundColor: disabled ? t.bgSurface2 : t.accent, paddingHorizontal: ds.spacing.lg }]}
+            >
+              <View testID="level-exam-start-content" style={styles.startButtonContent}>
+                <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
+                  {copy.startCta}
+                </Text>
+                <View style={styles.costBadge}>
+                  <EnergyIcon filled={true} themeColor={disabled ? t.textMuted : t.correctText} themeMode={themeMode} size={18} animateChange={false} />
+                  <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
+                    {energyCost}
+                  </Text>
+                </View>
+              </View>
+            </TapScale>
+          </View>
+        </View>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -173,12 +164,16 @@ const styles = StyleSheet.create({
   header: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   backButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   energyPill: { minHeight: 36, minWidth: 54, borderRadius: 18, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
-  scrollContent: { paddingBottom: 36 },
-  eyebrow: { alignSelf: 'flex-start', minHeight: 32, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  metrics: { flexDirection: 'row', flexWrap: 'wrap' },
-  metric: { minWidth: 140, flex: 1, gap: 8 },
+  sheetWrap: { flex: 1, justifyContent: 'flex-end' },
+  sheet: { borderTopLeftRadius: 24, borderTopRightRadius: 24 },
+  sheetHandle: { alignSelf: 'center', width: 38, height: 4, borderRadius: 2 },
+  sheetTitleRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  metrics: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  metric: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 8, minWidth: 0 },
+  metricSecondary: { paddingLeft: 12 },
   bestResult: { textAlign: 'center' },
   centerText: { textAlign: 'center' },
   startButton: { borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   startButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  costBadge: { flexDirection: 'row', alignItems: 'center', gap: 2 },
 });

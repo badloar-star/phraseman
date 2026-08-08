@@ -21,6 +21,11 @@ import {
   MAX_OWNER_LINEAGES,
   type PremiumLineageState,
 } from './revenuecat_premium_lineage';
+import {
+  buildLevelSpinMergePlan,
+  type LevelSpinMergeDoc,
+  type LevelSpinMergeSnapshot,
+} from './level_spin_merge';
 
 const USERS = 'users';
 
@@ -513,6 +518,9 @@ async function mergeStableAccountsTransactionally(
     const bWins = xpB > xpA;
     const winner = bWins ? resolvedB : resolvedA;
     const loser = bWins ? resolvedA : resolvedB;
+    if (winner.data.levelSpinMergePending === true || loser.data.levelSpinMergePending === true) {
+      throw new HttpsError('failed-precondition', 'level_spin_merge_already_pending');
+    }
     if (!userDataOwnedByAuth(winner.data, authUid)) {
       throw new HttpsError('permission-denied', 'stable_id_mismatch');
     }
@@ -586,6 +594,7 @@ async function mergeStableAccountsTransactionally(
     const mergedShards = mergeShards(winner.data.shards, loser.data.shards);
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
+      levelSpinMergePending: true,
       firebaseAuthUid: authUid,
       updatedAt: now,
       identityMergedAt: now,
@@ -603,6 +612,7 @@ async function mergeStableAccountsTransactionally(
     }
     tx.set(winner.ref, winnerUpdate, { merge: true });
     const loserUpdate: Record<string, unknown> = {
+      levelSpinMergePending: true,
       identityHidden: true,
       canonicalStableId: winner.stableId,
       duplicateOfStableId: winner.stableId,
@@ -621,7 +631,7 @@ async function mergeStableAccountsTransactionally(
       winnerStableId: winner.stableId,
       loserStableId: loser.stableId,
       status: 'pending',
-      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup'],
+      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins'],
       createdAt: now,
       updatedAt: now,
     }, { merge: true });
@@ -712,6 +722,167 @@ const ACCOUNT_MERGE_RECEIPT_FIELDS: Array<{
   { collection: 'revenuecat_shard_refunds', field: 'sourceUid' },
 ];
 
+const LEVEL_SPIN_MERGE_COLLECTIONS = ['level_spin_credits', 'level_spin_results', 'level_up_bonus_claims'] as const;
+type LevelSpinMergeCollection = typeof LEVEL_SPIN_MERGE_COLLECTIONS[number];
+
+function levelSpinMergeCollection(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  name: LevelSpinMergeCollection,
+) {
+  return db.collection(`users/${stableUid}/${name}`);
+}
+
+function legacyBonusClaimDoc(
+  data: FirebaseFirestore.DocumentData | undefined,
+  level: number,
+): LevelSpinMergeDoc | null {
+  if (!data) return null;
+  const payload = data.payload && typeof data.payload === 'object'
+    ? data.payload as Record<string, unknown>
+    : {};
+  const result = data.result && typeof data.result === 'object'
+    ? data.result as Record<string, unknown>
+    : {};
+  if (data.eventId !== `level_up:${level}:bonus`
+    || data.type !== 'level_up_bonus'
+    || Number(payload.level) !== level
+    || Number(payload.xpDelta ?? payload.amount ?? payload.baseXp) !== 100
+    || Number(result.xpDelta) !== 100) {
+    throw new Error('level_up_bonus_legacy_ledger_corrupt');
+  }
+  return {
+    id: `level_bonus_v1_${String(level).padStart(3, '0')}`,
+    data: {
+      level,
+      eventId: `level_up:${level}:bonus`,
+      amount: 100,
+      grandfatheredLegacyLedger: true,
+    },
+  };
+}
+
+async function migrateLevelSpinAccountMerge(
+  db: FirebaseFirestore.Firestore,
+  winner: string,
+  loser: string,
+  outboxRef: FirebaseFirestore.DocumentReference,
+  leaseToken: string,
+  now: number,
+): Promise<number> {
+  const listedGroups = await Promise.all(
+    [winner, loser].flatMap((owner) => LEVEL_SPIN_MERGE_COLLECTIONS.map(async (kind) => {
+      const snapshot = await levelSpinMergeCollection(db, owner, kind).limit(60).get();
+      if (snapshot.size >= 60) throw new Error(`account_merge_spin_${kind}_overflow`);
+      return { owner, kind, docs: snapshot.docs };
+    })),
+  );
+  const listed = listedGroups.flatMap((group) => group.docs.map((doc) => ({
+    owner: group.owner,
+    kind: group.kind,
+    ref: doc.ref,
+  })));
+  const legacy = [winner, loser].flatMap((owner) => Array.from({ length: 59 }, (_, offset) => {
+    const level = offset + 2;
+    return {
+      owner,
+      level,
+      ref: db.collection(`users/${owner}/progress_events`).doc(`level_up:${level}:bonus`),
+    };
+  }));
+  const winnerRef = db.collection(USERS).doc(winner);
+  const loserRef = db.collection(USERS).doc(loser);
+
+  return db.runTransaction(async (tx) => {
+    const [
+      outboxSnap,
+      winnerSnap,
+      loserSnap,
+      winnerTombstone,
+      loserTombstone,
+      winnerDenial,
+      loserDenial,
+      ...current
+    ] = await Promise.all([
+      tx.get(outboxRef),
+      tx.get(winnerRef),
+      tx.get(loserRef),
+      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(winner)),
+      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(loser)),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(winner))),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(loser))),
+      ...listed.map((entry) => tx.get(entry.ref)),
+      ...legacy.map((entry) => tx.get(entry.ref)),
+    ]);
+    if (!outboxSnap.exists || outboxSnap.data()?.leaseToken !== leaseToken) {
+      throw new Error('account_merge_outbox_lease_lost');
+    }
+    if (winnerTombstone.exists || loserTombstone.exists || winnerDenial.exists || loserDenial.exists) {
+      throw new Error('account_merge_spin_delete_pending');
+    }
+    const winnerData = winnerSnap.data() ?? {};
+    const loserData = loserSnap.data() ?? {};
+    if (!winnerSnap.exists
+      || !loserSnap.exists
+      || winnerData.levelSpinMergePending !== true
+      || loserData.levelSpinMergePending !== true
+      || loserData.identityHidden !== true
+      || cleanStr(loserData.canonicalStableId) !== winner) {
+      throw new Error('account_merge_spin_identity_changed');
+    }
+
+    const currentListed = current.slice(0, listed.length);
+    const currentLegacy = current.slice(listed.length);
+    const snapshotFor = (owner: string): LevelSpinMergeSnapshot => {
+      const docs = (kind: LevelSpinMergeCollection): LevelSpinMergeDoc[] => listed.flatMap((entry, index) => (
+        entry.owner === owner && entry.kind === kind && currentListed[index]?.exists
+          ? [{ id: entry.ref.id, data: currentListed[index]!.data() ?? {} }]
+          : []
+      ));
+      const bonusClaims = docs('level_up_bonus_claims');
+      legacy.forEach((entry, index) => {
+        if (entry.owner !== owner || !currentLegacy[index]?.exists) return;
+        const grandfathered = legacyBonusClaimDoc(currentLegacy[index]!.data(), entry.level);
+        if (grandfathered && !bonusClaims.some((claim) => claim.id === grandfathered.id)) {
+          bonusClaims.push(grandfathered);
+        }
+      });
+      const userData = owner === winner ? winnerData : loserData;
+      return {
+        stableUid: owner,
+        state: userData.levelSpinServerState && typeof userData.levelSpinServerState === 'object'
+          ? userData.levelSpinServerState as Record<string, unknown>
+          : {},
+        credits: docs('level_spin_credits'),
+        results: docs('level_spin_results'),
+        bonusClaims,
+      };
+    };
+
+    const plan = buildLevelSpinMergePlan(snapshotFor(winner), snapshotFor(loser));
+    for (const doc of plan.credits) {
+      tx.set(levelSpinMergeCollection(db, winner, 'level_spin_credits').doc(doc.id), doc.data, { merge: false });
+    }
+    for (const doc of plan.results) {
+      tx.set(levelSpinMergeCollection(db, winner, 'level_spin_results').doc(doc.id), doc.data, { merge: false });
+    }
+    for (const doc of plan.bonusClaims) {
+      tx.set(levelSpinMergeCollection(db, winner, 'level_up_bonus_claims').doc(doc.id), doc.data, { merge: false });
+    }
+    listed.forEach((entry, index) => {
+      if (entry.owner === loser && currentListed[index]?.exists) tx.delete(entry.ref);
+    });
+    tx.update(winnerRef, {
+      levelSpinServerState: { ...plan.state, updatedAt: now },
+      'progress.level_reward_spin_balance': String(plan.state.balance),
+      levelSpinMergePending: false,
+      updatedAt: now,
+    });
+    tx.update(loserRef, { levelSpinMergePending: false, updatedAt: now });
+    return plan.credits.length + plan.results.length + plan.bonusClaims.length;
+  });
+}
+
 export async function processAccountMergeOutboxJob(
   db: FirebaseFirestore.Firestore,
   outboxId: string,
@@ -723,7 +894,12 @@ export async function processAccountMergeOutboxJob(
     const snap = await tx.get(ref);
     if (!snap.exists) return null;
     const data = snap.data() ?? {};
-    if (data.status === 'completed') return { alreadyCompleted: true as const, winner: '', loser: '' };
+    if (data.status === 'completed') return {
+      alreadyCompleted: true as const,
+      winner: '',
+      loser: '',
+      tasks: [] as string[],
+    };
     if (data.status === 'running' && Number(data.leaseUntilMs ?? 0) > now) {
       throw new Error('account_merge_outbox_lease_active');
     }
@@ -738,7 +914,7 @@ export async function processAccountMergeOutboxJob(
     ]);
     if (deletionGuards.some((guard) => guard.exists)) {
       tx.set(ref, { status: 'cancelled_by_deletion', leaseUntilMs: 0, updatedAt: now }, { merge: true });
-      return { cancelled: true as const, winner, loser };
+      return { cancelled: true as const, winner, loser, tasks: [] as string[] };
     }
     tx.set(ref, {
       status: 'running',
@@ -747,7 +923,13 @@ export async function processAccountMergeOutboxJob(
       attempts: Number(data.attempts ?? 0) + 1,
       updatedAt: now,
     }, { merge: true });
-    return { winner, loser };
+    return {
+      winner,
+      loser,
+      tasks: Array.isArray(data.tasks)
+        ? data.tasks.filter((task): task is string => typeof task === 'string')
+        : [],
+    };
   });
   if (!claim) return { status: 'already_completed', updated: 0 };
   if ('alreadyCompleted' in claim) return { status: 'already_completed', updated: 0 };
@@ -755,6 +937,16 @@ export async function processAccountMergeOutboxJob(
 
   let updated = 0;
   try {
+    if (claim.tasks.includes('level_spins')) {
+      updated += await migrateLevelSpinAccountMerge(
+        db,
+        claim.winner,
+        claim.loser,
+        ref,
+        leaseToken,
+        now,
+      );
+    }
     for (const spec of ACCOUNT_MERGE_RECEIPT_FIELDS) {
       for (;;) {
         const snapshot = await db.collection(spec.collection)

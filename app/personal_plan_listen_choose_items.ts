@@ -4,6 +4,7 @@ import {
   type PlanAudioAsset,
 } from './personal_plan_audio_asset_readiness';
 import { getPlanAudioAssetsForRuntime } from './personal_plan_audio_asset_registry';
+import { personalPlanAudioTargetMatches } from './personal_plan_audio_target_match';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
 import { stableShuffleAwayFromFirst } from './personal_plan_option_ordering';
 
@@ -65,12 +66,17 @@ function chooseExplanationForPhrase(correctAnswer: string, note?: LessonTeaching
   };
 }
 
-function approvedAudioForContentUnit(contentUnitId: string, assets: PlanAudioAsset[]): PlanAudioAsset | undefined {
+function approvedAudioForContentUnit(
+  contentUnitId: string,
+  phraseTarget: string,
+  assets: PlanAudioAsset[],
+): PlanAudioAsset | undefined {
   return assets.find((asset) => {
     const readiness = validatePlanAudioAsset(asset);
     return (
       readiness.productionReady
       && asset.contentUnitIds.includes(contentUnitId)
+      && personalPlanAudioTargetMatches(asset.targetText, phraseTarget)
       && typeof asset.uri === 'string'
       && asset.uri.trim().length > 0
     );
@@ -104,7 +110,7 @@ export function getPersonalPlanListenChooseItems(
     .filter((phrase) => requestedIds.has(String(phrase.id)))
     .map((phrase) => {
       const id = String(phrase.id);
-      const audioAsset = approvedAudioForContentUnit(id, audioAssets);
+      const audioAsset = approvedAudioForContentUnit(id, phrase.english, audioAssets);
       const meaningNote = [...phrase.words].reverse().find((word) => word.teachingNote)?.teachingNote;
 
       return {

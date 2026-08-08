@@ -83,6 +83,25 @@ describe('streak_wager effective stake', () => {
     }));
   });
 
+  it('consumes one queued gift discount per successful wager and accepts the legacy single-use key', async () => {
+    mockStorage.wager_discount = '0.25';
+    mockStorage.wager_discount_uses_v1 = '2';
+
+    await expect(placeWager(12, 3)).resolves.toBe(true);
+    expect(mockStorage.wager_discount).toBe('0.25');
+    expect(mockStorage.wager_discount_uses_v1).toBe('1');
+
+    delete mockStorage.streak_wager_v2;
+    await expect(placeWager(12, 3)).resolves.toBe(true);
+    expect(mockStorage.wager_discount).toBeUndefined();
+    expect(mockStorage.wager_discount_uses_v1).toBeUndefined();
+
+    delete mockStorage.streak_wager_v2;
+    mockStorage.wager_discount = '0.25';
+    await expect(placeWager(12, 3)).resolves.toBe(true);
+    expect(mockStorage.wager_discount).toBeUndefined();
+  });
+
   it('keeps the gift discount when shard spending fails', async () => {
     mockStorage.wager_discount = '0.25';
     (spendShards as jest.Mock).mockResolvedValue(false);

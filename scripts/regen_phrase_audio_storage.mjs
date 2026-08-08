@@ -24,6 +24,7 @@
  *     node scripts/regen_phrase_audio_storage.mjs --apply       # do it
  */
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync, execFile } from 'node:child_process';
@@ -74,6 +75,10 @@ const PREFIX = 'phrase-audio';
 
 function publicUrl(objName) {
   return `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${encodeURIComponent(objName)}?alt=media`;
+}
+function versionedPublicUrl(objName, text) {
+  const version = crypto.createHash('sha256').update(text).digest('hex').slice(0, 12);
+  return `${publicUrl(objName)}&v=${version}`;
 }
 function objectName(id, source) {
   const safe = String(id).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 80);
@@ -245,11 +250,15 @@ function normalizeRuntimeKey(value) {
 function patchRuntimeMapForPlan(items) {
   let source = fs.readFileSync(RUNTIME_MAP, 'utf8');
   for (const item of items) {
-    const url = publicUrl(objectName(item.mp3Id, item.source));
-    const oldLine = `  ${JSON.stringify(normalizeRuntimeKey(item.oldText))}: ${JSON.stringify(url)},`;
-    const newLine = `  ${JSON.stringify(normalizeRuntimeKey(item.newText))}: ${JSON.stringify(url)},`;
+    const objName = objectName(item.mp3Id, item.source);
+    const oldUrls = [publicUrl(objName), versionedPublicUrl(objName, item.oldText)];
+    const newUrl = versionedPublicUrl(objName, item.newText);
+    const oldLines = oldUrls.map((url) =>
+      `  ${JSON.stringify(normalizeRuntimeKey(item.oldText))}: ${JSON.stringify(url)},`);
+    const newLine = `  ${JSON.stringify(normalizeRuntimeKey(item.newText))}: ${JSON.stringify(newUrl)},`;
     if (source.includes(newLine)) continue;
-    if (!source.includes(oldLine)) {
+    const oldLine = oldLines.find((line) => source.includes(line));
+    if (!oldLine) {
       throw new Error(`Runtime audio map is missing the old key for ${item.mp3Id}`);
     }
     source = source.replace(oldLine, newLine);
@@ -286,7 +295,7 @@ for (const p of plan) {
     // patch the voiced text so future audits see the new wording
     const mapObj = loadMapObj(p.mapFile);
     const prev = mapObj[p.mp3Id] || {};
-    mapObj[p.mp3Id] = { ...prev, url: publicUrl(objName), source: p.source, text: p.newText };
+    mapObj[p.mp3Id] = { ...prev, url: versionedPublicUrl(objName, p.newText), source: p.source, text: p.newText };
     uploadedPlan.push(p);
     ok++;
   } catch (e) {

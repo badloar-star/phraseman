@@ -24,6 +24,7 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
     account_deletion_auth_markers: { ...(initial.account_deletion_auth_markers ?? {}) },
     account_deletion_tombstones: { ...(initial.account_deletion_tombstones ?? {}) },
+    jarvis_growth_daily: { ...(initial.jarvis_growth_daily ?? {}) },
   };
   const sets: { path: string; data: DocData; options: unknown }[] = [];
   const transactionCommits: string[][] = [];
@@ -1359,6 +1360,7 @@ describe('ensureStableLinkForAuth', () => {
     expectSingleTransactionPaths(transactionCommits, [
       'users/stable-new-1',
       'auth_links/anon-auth-1',
+      'jarvis_growth_daily/2026-04-24',
     ]);
   });
 
@@ -1410,6 +1412,7 @@ describe('ensureStableLinkForAuth', () => {
     expectSingleTransactionPaths(transactionCommits, [
       'users/stable-new-provider',
       'auth_links/google-auth-new',
+      'jarvis_growth_daily/2026-04-24',
     ]);
   });
 
@@ -1437,6 +1440,7 @@ describe('ensureStableLinkForAuth', () => {
     expectSingleTransactionPaths(transactionCommits, [
       'users/fresh-anonymous-same-id',
       'auth_links/fresh-anonymous-same-id',
+      'jarvis_growth_daily/2026-04-24',
     ]);
   });
 
@@ -1468,6 +1472,7 @@ describe('ensureStableLinkForAuth', () => {
     expectSingleTransactionPaths(transactionCommits, [
       'users/stable-new-apple',
       'auth_links/apple-auth-new',
+      'jarvis_growth_daily/2026-04-24',
     ]);
   });
 
@@ -1978,6 +1983,7 @@ describe('ensureStableLinkForAuth', () => {
     expectSingleTransactionPaths(transactionCommits, [
       'users/stable-provider-atomic',
       'auth_links/provider-auth-atomic',
+      'jarvis_growth_daily/2026-04-24',
     ]);
     const identitySets = sets.filter(({ path }) => (
       path === 'users/stable-provider-atomic' || path === 'auth_links/provider-auth-atomic'

@@ -36,6 +36,14 @@ export function activeLevelExamAttemptKey(
   return `level_exam_active_v2::${targetSegment(studyTarget)}::${ownerSegment(ownerStableUid)}::${level}`;
 }
 
+export function levelExamAttemptRecoveryKey(
+  ownerStableUid: string,
+  level: LevelExamLevel,
+  studyTarget: RuntimeStudyTarget = 'en',
+): string {
+  return `${activeLevelExamAttemptKey(ownerStableUid, level, studyTarget)}::recovery`;
+}
+
 export async function loadActiveLevelExamAttempt(
   ownerStableUid: string,
   level: LevelExamLevel,
@@ -46,7 +54,11 @@ export async function loadActiveLevelExamAttempt(
   const raw = await AsyncStorage.getItem(key);
   if (!raw) return null;
   try {
-    const attempt = parseLevelExamAttemptSnapshot(JSON.parse(raw));
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (parsed && parsed.blueprintVersion === 2) {
+      await AsyncStorage.setItem(levelExamAttemptRecoveryKey(ownerStableUid, level, studyTarget), raw);
+    }
+    const attempt = parseLevelExamAttemptSnapshot(parsed);
     if (!attempt
       || attempt.ownerStableUid !== ownerStableUid
       || attempt.level !== level

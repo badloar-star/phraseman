@@ -4,7 +4,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink, getCurrentUid } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { clearClubGiftFreeBoostFromLevel } from './club_boosts';
+import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
 import { replaceShardsBalanceLocal } from './shards_system';
 import { sendFriendActivityLike, fetchTodayActivityLikeState } from './friend_activity_likes';
 
@@ -47,6 +47,7 @@ type ActivateLeagueGroupBoostResponse = {
   shardsUpdatedAtMs?: number;
   /** true — сервер погасил подарочный ваучер «буст бесплатно» (club_boost_free). */
   usedGiftVoucher?: boolean;
+  clubGiftFreeBoostCountAfter?: number;
 };
 
 type BuyLeagueGroupBoostResult =
@@ -298,14 +299,19 @@ export async function buyLeagueGroupBoost(): Promise<BuyLeagueGroupBoostResult> 
       await cacheLeagueGroupBoost(boost);
       const balance = Math.max(0, Math.floor(Number(res.data?.shardsBalance) || 0));
       const usedGiftVoucher = res.data?.usedGiftVoucher === true;
+      const clubGiftFreeBoostCountAfter = Number(res.data?.clubGiftFreeBoostCountAfter);
+      if (!Number.isFinite(clubGiftFreeBoostCountAfter) || clubGiftFreeBoostCountAfter < 0) {
+        throw new Error('club_gift_receipt_missing');
+      }
       await replaceShardsBalanceLocal(balance, {
         updatedAtMs: res.data?.shardsUpdatedAtMs,
         op: 'spend',
         reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
       });
+      await setClubGiftFreeBoostCountFromAuthority(clubGiftFreeBoostCountAfter);
       if (usedGiftVoucher) {
       // Сервер погасил ваучер — убираем локальный флаг, чтобы cloud_sync не вернул его обратно.
-        await clearClubGiftFreeBoostFromLevel().catch(() => {});
+        void usedGiftVoucher;
       }
       return { ok: true, boost, shardsBalance: balance, usedGiftVoucher };
     } catch (e: any) {

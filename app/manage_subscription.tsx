@@ -73,20 +73,12 @@ type ManageSubscriptionCopy = {
 // гейтом в коде (аудит 2026-07-25, см. app/feature_gates.ts + app/energy_system.ts +
 // app/remote_flags.ts). Формулировки сжатые, по Библии Phraseman, без хардкода чисел/цен.
 //
-// зачем: два пункта убраны — «Квизы без дневного лимита» и «Арена без дневного лимита» —
-// потому что дневного лимита на квизы/арену в коде СЕЙЧАС НЕТ вообще (ни для платных,
-// ни для бесплатных). app/remote_flags.ts объявляет free_daily_quiz_limit/arena_daily_max/
-// gate_quizzes_premium/gate_arena_premium, но ни один из геттеров getFreeDailyQuizLimit()/
-// isQuizzesPremiumGated()/getArenaDailyMax()/isArenaPremiumGated() (remote_flags.ts:652-653,
-// 1006-1007) не вызывается нигде в app/ или functions/src — обещание было ложным для всех
-// пользователей. Энергия — единственный реально проверенный "безлимит для премиума" гейт
+// Энергия — единственный реально проверенный "безлимит для премиума" гейт
 // (см. spendEnergy → isFeatureFreeForEveryone('energy') / getVerifiedPremiumStatus(),
 // energy_system.ts:212-224), поэтому первый пункт остаётся про энергию.
 const INCLUDED: ManageSubscriptionCopy[] = [
   // — Доступ и лимиты —
-  // зачем: слово «квизы» убрано из всех локалей — раздела квизов в приложении нет
-  // (владелец удалил его), обещание было ложным. Уроки и экзамены — реальные
-  // потребители энергии (ENERGY_PER_LESSON, energy_system.ts), они и остаются.
+  // Уроки и экзамены — реальные потребители энергии.
   { ru: 'Безлимитная энергия — уроки и экзамены без ожидания', uk: 'Безлімітна енергія — уроки та іспити без очікування', es: 'Energía ilimitada: lecciones y exámenes sin esperas', 'pt-BR': 'Energia ilimitada: aulas e exames sem espera', vi: 'Năng lượng không giới hạn: bài học và bài kiểm tra không phải chờ', id: 'Energi tak terbatas: pelajaran dan ujian tanpa menunggu', tr: 'Sınırsız enerji: dersler ve sınavlar beklemeden', pl: 'Nielimitowana energia: lekcje i egzaminy bez czekania' },
   { ru: 'Все уроки текущего уровня открыты полностью', uk: 'Усі уроки поточного рівня відкриті повністю', es: 'Todas las lecciones del nivel actual abiertas', 'pt-BR': 'Todas as aulas do nível atual totalmente abertas', vi: 'Tất cả bài học của cấp hiện tại được mở đầy đủ', id: 'Semua pelajaran level saat ini terbuka penuh', tr: 'Mevcut seviyedeki tüm dersler tamamen açık', pl: 'Wszystkie lekcje bieżącego poziomu są w pełni otwarte' },
   // — Живая практика —
@@ -347,7 +339,7 @@ export default function ManageSubscription() {
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
       <SafeAreaView style={S.safe}>
-        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
+        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
           <PaywallCloseButton onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }} chrome={chrome} />
 
           <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A`, borderColor: `${chrome.tc.heroAccent}40` }]}>

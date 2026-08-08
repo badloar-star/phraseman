@@ -18,8 +18,6 @@ import { buildGenerationFailureRecord } from './content_factory/generation_error
 import { buildGenerationTerminalAudit } from './content_factory/generation_audit';
 import { runGuardedGenerationTransaction } from './content_factory/generation_execution';
 import { buildArtifactOrphanCandidate } from './content_factory/artifact_retention';
-import { buildArenaShadowComparison } from './content_factory/surface_convergence';
-import { persistArenaComparisonReceipt } from './content_factory/surface_convergence_repository';
 
 const REGION = 'us-central1';
 export const CONTENT_FACTORY_OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -155,7 +153,6 @@ export const adminRunContentGenerationUnit = onCall(
       const receipt = await writeImmutableArtifact(bucket as unknown as ArtifactBucketLike, { releaseId, surface: input.surface as CanonicalReleaseSurface, lessonId: input.lessonId, payload });
       const orphanCandidate = () => buildArtifactOrphanCandidate(receipt, { entityCollection: 'content_factory_job_units', entityId: unitId, attempt: checkpoint.attempt, detectedAtMs: Date.now() });
       const recordOrphan = async () => { const orphan = orphanCandidate(); await db.collection('content_factory_artifact_orphans').doc(orphan.candidateId).set(orphan, { merge: false }); };
-      let committedRouting: Record<string, unknown> | null = null;
       const committed = await runGuardedGenerationTransaction({
         lease: checkpoint, allowedStates: ['running', 'generated'],
         runTransaction: (handler: (transaction: admin.firestore.Transaction) => Promise<boolean>) => db.runTransaction(handler),
@@ -168,7 +165,6 @@ export const adminRunContentGenerationUnit = onCall(
         let transition;
         try { transition = applyUnitProgressTransition(readJobProgress(currentJob), { next: 'succeeded', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true }); } catch { throw new HttpsError('data-loss', 'content_factory_progress_invalid'); }
         const currentRouting = currentUnit as unknown as Record<string, unknown>;
-        committedRouting = { engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion };
         tx.set(unitRef, { unitId, state: 'succeeded', releaseId, objectPath: receipt.objectPath, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, artifactReferenceState: 'committed', artifactFinalizationKey: receipt.finalizationKey, qaReceipt, failureCounted: transition.failureCounted, engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion, generatedPayload: admin.firestore.FieldValue.delete(), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), completedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
         const nextJobState = transition.jobState === 'needs_review' && currentJob.releaseCandidate !== true ? 'partial' : transition.jobState;
         const audit = buildGenerationTerminalAudit({ actorUid, role, entity: { collection: 'content_factory_job_units', id: unitId }, attempt: checkpoint.attempt, leaseToken: checkpoint.leaseToken, outcome: 'succeeded', errorCategory: null, before: { state: currentUnit.state ?? null }, after: { state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash } });
@@ -180,26 +176,6 @@ export const adminRunContentGenerationUnit = onCall(
         await recordOrphan();
         return { ok: true, unitId, state: 'superseded', discarded: true };
       }
-      // зачем: коммит принял payload легаси-движка как есть (engineResolved === 'legacy' в shadow-режиме,
-      // см. resolveArenaEnginePolicy). Пишем лёгкую receipt-квитанцию о принятом решении роутинга без
-      // повторного вызова provider'а: candidate.providerRequestsAdded остаётся 0, а
-      // shadowComparisonState = 'unavailable', потому что полноценное semantic-сравнение
-      // (compareArenaSurfaceArtifacts) требует настоящего stage-кандидата, которого тут нет.
-      const currentRouting = committedRouting ?? { engineRequested: checkpoint.engineRequested, engineResolved: checkpoint.engineResolved, configRevision: checkpoint.configRevision, comparatorVersion: checkpoint.comparatorVersion };
-      const candidate = { providerRequestsAdded: 0 };
-      const shadowComparisonState = 'unavailable' as const;
-      const shadowComparison = buildArenaShadowComparison({
-        unitId,
-        comparatorVersion: String(currentRouting.comparatorVersion ?? ''),
-        engineRequested: currentRouting.engineRequested as string,
-        engineResolved: currentRouting.engineResolved as string,
-        configRevision: Number(currentRouting.configRevision ?? 0),
-        legacyArtifactHash: receipt.contentHash,
-        legacyQaOutcome: String((qaReceipt as Record<string, unknown>).status ?? ''),
-        providerRequestsAdded: candidate.providerRequestsAdded,
-      });
-      if (shadowComparison.shadowComparisonState !== shadowComparisonState) throw new HttpsError('data-loss', 'arena_shadow_comparison_state_invalid');
-      await persistArenaComparisonReceipt(db, shadowComparison, admin.firestore.FieldValue.serverTimestamp());
       return { ok: true, unitId, state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash };
     } catch (error) {
       const failure = buildGenerationFailureRecord(error, checkpoint.attempt);

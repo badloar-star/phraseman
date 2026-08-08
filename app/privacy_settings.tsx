@@ -102,7 +102,7 @@ export default function PrivacySettings() {
             onClose={() => safeRouterBack(router, '/(tabs)/settings' as never)}
           />
 
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
             {/* Согласие на сбор данных об использовании (тумблер = мгновенный выбор). */}
             <SettingsSectionTitle title={L({ ru: 'Данные об использовании', uk: 'Дані про використання', es: 'Datos de uso', 'pt-BR': 'Dados de uso', vi: 'Dữ liệu sử dụng', id: 'Data penggunaan', tr: 'Kullanım verileri', pl: 'Dane o użytkowaniu' })} />
             <SettingsGroup surfaceColor={t.bgCard} borderColor={t.border} dividerColor={t.border}>

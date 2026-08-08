@@ -8,6 +8,7 @@ import {
   dismissReviveOffer,
   REVIVE_WINDOW_MS,
 } from '../app/streak_revive';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -20,6 +21,8 @@ jest.mock('../app/lifetime_profile_stats', () => ({
 const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('streak-revive-test-account');
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>

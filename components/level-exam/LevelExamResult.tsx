@@ -30,10 +30,9 @@ type Props = {
   rewardState: LevelExamRewardState;
   energyCost: number;
   onPrimary: () => void;
-  onReview: () => void;
 };
 
-export default function LevelExamResult({ lang, attemptId, result, rewardState, energyCost, onPrimary, onReview }: Props) {
+export default function LevelExamResult({ lang, attemptId, result, rewardState, energyCost, onPrimary }: Props) {
   const { theme: t, f, ds } = useTheme();
   const reducedMotion = useReducedMotion();
   const entrance = useSharedValue(reducedMotion ? 1 : 0);
@@ -152,15 +151,6 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
               {copy.primaryAction}
             </Text>
           </TapScale>
-          <TapScale
-            onPress={onReview}
-            accessibilityLabel={copy.reviewAction}
-            style={[styles.reviewButton, { minHeight: ds.buttonHeight, backgroundColor: t.bgSurface2, paddingHorizontal: ds.spacing.lg }]}
-          >
-            <Text style={{ color: t.textSecond, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-              {copy.reviewAction}
-            </Text>
-          </TapScale>
         </BouncyScrollView>
       </SafeAreaView>
     </ScreenGradient>
@@ -178,5 +168,4 @@ const styles = StyleSheet.create({
   lessonRow: { minHeight: 42, flexDirection: 'row', alignItems: 'center', gap: 9 },
   reward: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   primaryButton: { borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  reviewButton: { borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });

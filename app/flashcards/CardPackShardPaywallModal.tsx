@@ -434,7 +434,7 @@ export default function CardPackShardPaywallModal({
 
                     <ScrollView
                       style={{ maxHeight: maxSheetH - 120 }}
-                      decelerationRate="fast"
+                      decelerationRate="normal"
                       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 16 }}
                       showsVerticalScrollIndicator
                       bounces

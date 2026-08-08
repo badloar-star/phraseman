@@ -2,7 +2,6 @@ import { readFileSync } from 'fs';
 import path from 'path';
 
 const repoRoot = process.cwd();
-
 function extractQuotedUnionValues(source: string, typeName: string): string[] {
   const match = source.match(new RegExp(`export type ${typeName} =[\\s\\S]*?;`));
   if (!match) throw new Error(`${typeName} union not found`);
@@ -20,9 +19,10 @@ describe('progress event type contract', () => {
     const client = readFileSync(path.join(repoRoot, 'app/progress_events_client.ts'), 'utf8');
     const server = readFileSync(path.join(repoRoot, 'functions/src/progress_events.ts'), 'utf8');
 
-    expect(extractQuotedUnionValues(client, 'ProgressEventType')).toEqual(
-      extractConstArrayValues(server, 'PROGRESS_EVENT_TYPES'),
-    );
+    const clientTypes = extractQuotedUnionValues(client, 'ProgressEventType');
+    const serverTypes = extractConstArrayValues(server, 'PROGRESS_EVENT_TYPES');
+
+    expect(clientTypes).toEqual(serverTypes);
   });
 
   it('keeps every positive XP source routed to a server progress event', () => {

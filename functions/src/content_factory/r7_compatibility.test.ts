@@ -12,22 +12,21 @@ import { assertReleaseActivationMetadata, courseCatalogId, parseActivateCourseRe
 const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 
 describe('R7 staged and legacy compatibility', () => {
-  it('keeps the committed legacy job, manifest, catalog, drafts and ledger readable', () => {
+  it('keeps the committed legacy job, manifest, catalog and drafts readable', () => {
     expect(legacy.job.state).toBe('published');
     expect(validatePackManifest(legacy.manifest as Parameters<typeof validatePackManifest>[0])).toEqual({ ok: true, errors: [] });
     expect(courseCatalogId(legacy.activeCatalog.studyTarget, legacy.activeCatalog.learnerSourceLocale)).toBe('en:ru');
     expect(legacy.drafts['legacy-draft-1'].state).toBe('approved');
-    expect(legacy.ledgers.arena.revision).toBe(1);
+    expect(legacy.ledgers).toEqual({});
   });
 
-  it('keeps the committed retired stage readable but rejects it from a new release preview', () => {
-    expect(() => createGenerationStageUnit(staged.stage as Parameters<typeof createGenerationStageUnit>[0])).toThrow();
+  it('keeps the committed supported stage readable in a new release preview', () => {
+    expect(createGenerationStageUnit(staged.stage as Parameters<typeof createGenerationStageUnit>[0])).toMatchObject({ kind: 'flashcard_items' });
     const review = validateReleaseReviewCandidate({
       jobId: 'r7-job-1', studyTarget: 'en', learnerSourceLocale: 'ru', releaseId: staged.release.releaseId,
       expectedLessonIds: [1], expectedBlueprintHash: staged.release.blueprintHash, expectedEvidenceIds: ['evidence-1'], units: staged.units,
     });
-    expect(review.ok).toBe(false);
-    expect(review.errors).toContain('unit_scope_invalid');
+    expect(review).toMatchObject({ ok: true, errors: [] });
   });
 
   it('approves without publication, seals immutably, activates, and rolls back without changing drafts or ledgers', () => {

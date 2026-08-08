@@ -6307,13 +6307,6 @@
         tr: 'Tüm ekranlar',
         pl: 'Wszystkie ekrany',
       },
-      Quizzes: {
-        'pt-BR': 'Quizzes',
-        vi: 'Quiz',
-        id: 'Kuis',
-        tr: 'Quizler',
-        pl: 'Quizy',
-      },
       Tarjetas: {
         'pt-BR': 'Cartões',
         vi: 'Thẻ',
@@ -6902,12 +6895,12 @@
         tr: 'Seçenek 2',
         pl: 'Opcja 2',
       },
-      'Más quizzes': {
-        'pt-BR': 'Mais quizzes',
-        vi: 'Thêm quiz',
-        id: 'Lebih banyak kuis',
-        tr: 'Daha fazla quiz',
-        pl: 'Więcej quizów',
+      'Más práctica': {
+        'pt-BR': 'Mais prática',
+        vi: 'Luyện tập thêm',
+        id: 'Lebih banyak latihan',
+        tr: 'Daha fazla pratik',
+        pl: 'Więcej ćwiczeń',
       },
       'Opción 3': {
         'pt-BR': 'Opção 3',
@@ -9191,13 +9184,6 @@
         tr: 'kaydedilen',
         pl: 'zapisane',
       },
-      'Quizzes hoy': {
-        'pt-BR': 'Quizzes hoje',
-        vi: 'Quiz hôm nay',
-        id: 'Kuis hari ini',
-        tr: 'Bugünkü quizler',
-        pl: 'Quizy dzisiaj',
-      },
       'preguntas totales': {
         'pt-BR': 'perguntas totais',
         vi: 'tổng số câu hỏi',
@@ -9944,7 +9930,7 @@
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
-  <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube">YouTube-каталог</div>
+  <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
   <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
@@ -10484,6 +10470,11 @@
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Лимиты free-тарифа, экономика, энергия, A/B-сплиты, флаги (рефералка, «Устно», лиги).</div>
       <button type="button" class="cp-btn" onclick="switchTab('remote-config')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
+    <div class="cp-hub-card" id="cp-youtube-catalog-entry" style="background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.35)">
+      <div style="font-size:14px;font-weight:700;color:#fca5a5">▶ YouTube-каталог</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Каналы, плейлисты и премьеры Professor Lingman.</div>
+      <button type="button" class="cp-btn" onclick="switchTab('youtube-catalog')" style="margin-top:10px;background:#3f1720;border:1px solid #7f1d1d;color:#fca5a5;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700">Открыть каталог →</button>
+    </div>
     <div class="cp-hub-card">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">🧪 Paywall A/B</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Сплит трафика по новым вариантам пейвола (A / B / C) и рейтинг в шапке. Старый экран больше не показывается.</div>
@@ -10844,7 +10835,6 @@
     <select id="r-filter-screen" onchange="filterReports()">
       <option value="" data-i18n-es="Todas las pantallas">Все экраны</option>
       <option value="lesson_" data-i18n-es="Lecciones">Уроки</option>
-      <option value="quiz" data-i18n-es="Quizzes">Квизы</option>
       <option value="flashcards" data-i18n-es="Tarjetas">Карточки</option>
       <option value="lesson_words" data-i18n-es="Palabras">Слова</option>
       <option value="lesson_irregular_verbs" data-i18n-es="Verbos">Глаголы</option>
@@ -11049,6 +11039,9 @@
     .ytc-locale-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
     .ytc-footer{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.7fr);gap:12px;margin-top:12px}.ytc-preview{min-height:120px;white-space:pre-wrap;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;color:#d4d4d8;background:#111216;border-radius:9px;padding:12px}
     .ytc-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}.ytc-muted{font-size:12px;color:#71717a}.ytc-history{display:flex;flex-direction:column;gap:8px}.ytc-history-item{padding:9px 0;border-top:1px solid rgba(228,228,231,.08);font-size:12px;color:#a1a1aa}.ytc-history-item:first-child{border-top:0}
+    .ytc-lead,.ytc-pane-copy,#ytc-refresh,#ytc-empty,#ytc-status-grid,#ytc-remove-channel{display:none!important}
+    #ytc-channel-editor>.ytc-section:nth-of-type(n+2),.ytc-footer{display:none!important}
+    #ytc-channel-editor .ytc-grid>.ytc-field:nth-child(1),#ytc-channel-editor .ytc-grid>.ytc-field:nth-child(5),#ytc-channel-editor .ytc-grid>.ytc-check{display:none!important}
     @media(max-width:1050px){.ytc-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ytc-layout,.ytc-footer{grid-template-columns:1fr}.ytc-locale-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:680px){.ytc-header{flex-direction:column}.ytc-grid,.ytc-grid--three,.ytc-locale-grid{grid-template-columns:1fr}.ytc-primary-action{width:100%}}
   </style>
@@ -11070,19 +11063,19 @@
       <aside class="ytc-pane">
         <div class="ytc-pane-head">
           <div><h3 class="ytc-pane-title">Каналы</h3><div class="ytc-pane-copy">До 24 каналов</div></div>
-          <button id="ytc-add-channel" type="button" class="ytc-icon-btn" onclick="window.addYoutubeCatalogChannel()" aria-label="Добавить YouTube-канал" title="Добавить канал">＋</button>
+          <button id="ytc-add-channel" type="button" onclick="window.addYoutubeCatalogChannel()" title="Добавить канал и заполнить его настройки">Добавить канал</button>
         </div>
         <div id="ytc-channel-list" class="ytc-channel-list"></div>
       </aside>
 
       <main id="ytc-channel-editor" class="ytc-pane" aria-live="polite">
         <section class="ytc-section">
-          <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Настройки канала</h3><div class="ytc-pane-copy">ID внутри приложения и официальный Channel ID YouTube</div></div><button id="ytc-remove-channel" type="button" class="ytc-icon-btn ytc-danger" onclick="window.removeYoutubeCatalogChannel()" aria-label="Удалить выбранный канал" title="Удалить канал">×</button></div>
+          <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Настройки канала</h3><div class="ytc-pane-copy">ID внутри приложения и официальный Channel ID YouTube</div></div><div class="ytc-actions"><button id="ytc-save-channel" type="button" onclick="window.publishYoutubeCatalogConfig()" title="Сохранить добавленный или изменённый канал">Сохранить канал</button><button id="ytc-remove-channel" type="button" class="ytc-icon-btn ytc-danger" onclick="window.removeYoutubeCatalogChannel()" aria-label="Удалить выбранный канал" title="Удалить канал">×</button></div></div>
           <div class="ytc-grid">
             <label class="ytc-field">Внутренний ID<input id="ytc-channel-id" type="text" data-ytc-channel-field="id" placeholder="english"></label>
-            <label class="ytc-field">YouTube Channel ID<input id="ytc-channel-youtube-id" type="text" data-ytc-channel-field="youtubeChannelId" placeholder="UC…" autocomplete="off"></label>
-            <label class="ytc-field">Название для приложения<input id="ytc-channel-name" type="text" data-ytc-channel-field="displayNameOverride" placeholder="Как на YouTube"></label>
-            <label class="ytc-field">Языки канала<input id="ytc-channel-locales" type="text" data-ytc-channel-field="languageTags" placeholder="en, es, pt-BR"></label>
+            <label class="ytc-field">YouTube Channel ID или ссылка<input id="ytc-channel-youtube-id" type="text" data-ytc-channel-field="youtubeChannelId" placeholder="UC… или https://youtube.com/@channel" autocomplete="off"><small class="ytc-muted">Можно вставить UC… или ссылку YouTube вида /@channel.</small></label>
+            <label class="ytc-field">Название канала<input id="ytc-channel-name" type="text" data-ytc-channel-field="displayNameOverride" placeholder="Как на YouTube"></label>
+            <label class="ytc-field">Язык канала<input id="ytc-channel-locales" type="text" data-ytc-channel-field="languageTags" placeholder="en"></label>
             <label class="ytc-field">Порядок<input id="ytc-channel-order" type="number" min="0" data-ytc-channel-field="order"></label>
             <label class="ytc-check"><input id="ytc-channel-enabled" type="checkbox" data-ytc-channel-field="enabled"> Канал включён</label>
           </div>
@@ -11125,6 +11118,7 @@
     </div>
   </div>
 </div>
+
 <div id="tab-surveys" class="reports-tab">
   <div style="max-width:980px;margin-bottom:16px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
@@ -11569,7 +11563,7 @@
         </div>
         <div class="app-msg-poll-options">
           <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="1"><label data-i18n-es="Opción 1">Вариант 1</label><input id="am-poll-option-1" type="text" aria-label="App message poll option 1" placeholder="Короткие уроки" data-i18n-es="Lecciones cortas" oninput="updateAppMessagePreview()"></div>
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="2"><label data-i18n-es="Opción 2">Вариант 2</label><input id="am-poll-option-2" type="text" aria-label="App message poll option 2" placeholder="Больше квизов" data-i18n-es="Más quizzes" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="2"><label data-i18n-es="Opción 2">Вариант 2</label><input id="am-poll-option-2" type="text" aria-label="App message poll option 2" placeholder="Больше тренировок" data-i18n-es="Más práctica" oninput="updateAppMessagePreview()"></div>
           <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="3"><label data-i18n-es="Opción 3">Вариант 3</label><input id="am-poll-option-3" type="text" aria-label="App message poll option 3" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
           <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="4"><label data-i18n-es="Opción 4">Вариант 4</label><input id="am-poll-option-4" type="text" aria-label="App message poll option 4" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
           <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="5"><label data-i18n-es="Opción 5">Вариант 5</label><input id="am-poll-option-5" type="text" aria-label="App message poll option 5" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
@@ -11948,7 +11942,6 @@
       <option value="choice_explanations">Объяснения вариантов (упражнение «Выбери фразу»)</option>
       <option value="phrase_explanations">Объяснения фраз («Объясни просто»)</option>
       <option value="mistake_explanations">Разборы ошибок (урок «Собери фразу»)</option>
-      <option value="quiz_explanations">ИИ-разборы тематических квизов (Кухня/Дом/…)</option>
     </select>
     <select id="xc-filter-status" onchange="filterExplainCache()">
       <option value="">Все статусы</option>
@@ -14439,7 +14432,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','youtube-catalog','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -17434,9 +17427,6 @@
     lesson_completed: '✅ Урок завершён',
     streak_7: '🔥 7 дней стрика',
     streak_30: '🔥 30 дней стрика',
-    arena_win: '⚔️ Победа в Арене',
-    arena_10_wins: '⚔️ 10 побед в Арене',
-    arena_rank_up_streak: '🏅 Повышение ранга',
     daily_tasks_all: '📋 Дневные задачи',
     topic_completed: '📚 Тема завершена',
     league_1st: '🥇 1-е место в лиге',
@@ -20196,7 +20186,9 @@
     });
 
     const pinnedSet = new Set(layout.pinned.filter((k) => byKey.has(k)));
-    const hiddenSet = new Set(layout.hidden.filter((k) => byKey.has(k)));
+    // YouTube catalog is an active content control plane, not an optional nav item.
+    // Keep it visible even if an older saved navigation layout hid the section.
+    const hiddenSet = new Set(layout.hidden.filter((k) => byKey.has(k) && k !== 'youtube-catalog'));
 
     // Флаги на плитках: скрытые не показываем, избранные подсвечиваем тоном.
     tabEls.forEach((tabEl) => {
@@ -22387,6 +22379,35 @@
   // 2026-07-04. Кнопка «📋 Мой готовый ответ» в модалке подставляет их по reportId —
   // админ читает/редактирует/шлёт вручную. Verdict определяется по shards (>0 = подтвердилось).
   const PREPARED_REPORT_REPLIES = {
+    "AczEhLm6hJioJbqUxnY3": {title:"Пожалуйста, сообщайте только о багах",body:"Пожалуйста, отправляйте через кнопку отчёта только реальные ошибки приложения. Если вы просто ошиблись в ответе или нажали не туда, писать об этом не нужно — так команда быстрее находит настоящие проблемы. Спасибо за понимание.",shards:0,resolution:"user_error",rewardGroup:"neon-report-discipline"},
+    "7lRyNxZ59O0XbfyaTVmM": {title:"Спасибо, мы проверили варианты",body:"Спасибо, что сообщили. Мы проверили это задание: слово She есть среди вариантов, а экран дополнительно подставляет правильное слово, если набор загрузился не полностью. В текущей версии ошибку воспроизвести не удалось; если это повторится, пожалуйста, отправьте отчёт прямо с этого экрана ещё раз.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson2-she-option-presence"},
+    "hEGotOManqcvLj5hKek0": {title:"Вернули пропавшее слово I",body:"Спасибо, вы нашли ошибку в этой фразе: слово I было в предложении, но отсутствовало среди доступных слов. Мы добавили его, и исправление вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"impuls-day36-missing-subject"},
+    "OSSadmJP0m12rDu7zY8b": {title:"Проблему со звуком подтвердили",body:"Спасибо, мы подтвердили проблему: к этому заданию была привязана устаревшая озвучка, поэтому корректный звук не запускался. Мы уже запретили приложению воспроизводить запись, если её текст не совпадает с текущей фразой, и готовим правильную озвучку.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
+    "N5WJhdhAV3FbPvWemOiH": {title:"Дякуємо, невідповідність підтверджено",body:"Дякуємо, ви точно описали проблему: теорія дня була про посуд, а після неї відкривалися речення з іншої теми. Ми перевіряємо перехід між теорією маршруту та тренажером, щоб вони використовували один і той самий матеріал. Вам нараховано 1 перлину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-theory-task-alignment-gavan-d8"},
+    "thnLe30UbiT4QC8dcRaZ": {title:"Спасибо, объясняем разницу",body:"Спасибо за вопрос. Later today означает «позже сегодня», а late today — «сегодня поздно», ближе к концу дня. В задании нужен именно первый смысл, поэтому ответ с late не засчитывается.",shards:0,resolution:"by_design",rewardGroup:"lesson13-later-vs-late"},
+    "WBA37juO2ZG5wyaWPbIo": {title:"Спасибо, проверяем задания на слух",body:"Спасибо, что сообщили. Мы сверили текущий набор урока 30, но без конкретной фразы не смогли определить, где именно расходятся звук и слова. Если это повторится, пожалуйста, отправьте отчёт прямо из самого задания — тогда в нём будет нужная фраза.",shards:0,resolution:"no_issue_details",rewardGroup:"lesson30-listen-build-mismatch-unspecified"},
+    "imZlIU2dOYlhTDQ8ehtz": {title:"Виправили озвучення прийнятого варіанта",body:"Дякуємо, ви правильно помітили: everybody та everyone рівнозначні, але після правильної відповіді озвучувався інший варіант. Тепер застосунок читатиме саме той правильний варіант, який показано на екрані. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
+    "l4LbKLwrvSkdzPaCpa4w": {title:"Виправили озвучення прийнятого варіанта",body:"Дякуємо, ви правильно помітили: somebody та someone рівнозначні, але повтор читав не той варіант, який був на екрані. Тепер застосунок озвучуватиме саме показану правильну відповідь. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
+    "tQQVuBESA2CSXjWDcmY2": {title:"Виправили повтор правильної відповіді",body:"Дякуємо, ви правильно помітили: anyone та anybody рівнозначні, але повтор читав інший прийнятий варіант. Тепер озвучення збігатиметься з правильною відповіддю на екрані. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
+    "acPQkpOWTI86Mf8KOkJs": {title:"Виправили повтор правильної відповіді",body:"Дякуємо, ви знайшли помилку: після прийнятого anyone повтор міг озвучити anybody. Тепер застосунок читатиме саме правильний варіант, показаний на екрані. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
+    "d7PjNbly9huR51j0nZNN": {title:"Проблему со звуком подтвердили",body:"Спасибо, мы подтвердили проблему: у задания сохранилась озвучка от старой версии фразы, поэтому кнопка не давала корректный звук. Мы уже запретили воспроизводить несовпадающие записи и готовим правильную озвучку для задания.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
+    "4iso6vyOZnfePFO32oU5": {title:"Несовпадение фразы и озвучки подтверждено",body:"Спасибо, вы точно описали проблему: к заданию была привязана запись из старой версии, поэтому озвученная фраза отсутствовала среди ответов. Мы уже заблокировали такие несовпадающие записи и готовим правильную озвучку.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
+    "UOxo5sQ2vNBwtkjWZYpX": {title:"Спасибо за идею для урока",body:"Спасибо, вы точно заметили, что с одним предлогом среди вариантов задание получается слишком лёгким. Это не ошибка проверки ответа, но предложение добавить конкурирующие предлоги мы передали на пересмотр урока.",shards:0,resolution:"content_review",rewardGroup:"lesson8-preposition-distractors"},
+    "iXB8hzOipdElLLR99EMS": {title:"Исправили распознавание числа 78",body:"Спасибо, вы нашли ошибку в проверке произношения: распознанное число 78 не сопоставлялось с фразой seventy-eight. Мы добавили обработку составных двузначных чисел, и исправление вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"pronunciation-compound-number-digits"},
+    "yk1n8zhYreS8vm3xPivm": {title:"Проблему с покупкой карточек подтвердили",body:"Спасибо за точное уточнение. Мы подтвердили, что при достаточном балансе нажатие на набор иногда не завершает покупку карточек за жемчужины. Мы разбираемся с обновлением баланса и выдачей набора.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
+    "JhrIHG5oAPgWAHbcf7KQ": {title:"Проблему с покупкой карточек подтвердили",body:"Спасибо, что проверили ещё раз после обновления. Проблема с покупкой наборов за жемчужины подтверждена, и мы разбираемся, почему нажатие не завершает выдачу карточек.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
+    "wBbL7btzE7mI4uwgrJWh": {title:"Несовпадение озвучки подтверждено",body:"Спасибо, вы правильно заметили: в этом задании звучала запись от другой фразы, поэтому правильный ответ не соответствовал звуку. Мы уже заблокировали воспроизведение таких устаревших записей и готовим правильную озвучку.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
+    "vk6lsDEEzI4Dok9OJWS6": {title:"Проблему с вариантами подтвердили",body:"Спасибо, вы нашли реальную ошибку: озвучка относилась к старой фразе, поэтому среди вариантов не было подходящего ответа. Мы уже запретили приложению проигрывать такую запись и готовим правильную озвучку для задания.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
+    "sOXRG2snJkntDjdKUlVu": {title:"Нужно чуть больше деталей",body:"Спасибо, что сообщили. По фразе «турниры странно работают» мы не смогли определить, что именно сломалось: вход, подбор соперника, задание, счёт или приз. Если проблема повторится, пожалуйста, отправьте отчёт с экрана, где она видна, и коротко опишите результат.",shards:0,resolution:"no_issue_details",rewardGroup:"tournament-unspecified"},
+    "RdzYVLbcmSeVDVtIzEd4": {title:"Проблему з купівлею карток підтверджено",body:"Дякуємо, що повідомили. Ми підтвердили, що купівля наборів за перлини у частини користувачів не завершується, і перевіряємо оновлення балансу та видачу карток.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
+    "VAXanKs98uPapIllMCOR": {title:"Спасибо, проверяем сохранение выражений",body:"Спасибо, что подробно описали ситуацию. Мы проверили текущее сохранение карточек, но не смогли воспроизвести ограничение до двух выражений; идею отдельного раздела для идиом тоже записали. Пожалуйста, обновите приложение и, если выражения снова не сохранятся, отправьте отчёт с конкретной карточки.",shards:0,resolution:"not_reproduced",rewardGroup:"daily-phrase-flashcard-save-count"},
+    "AlFjdKO2dAqj2m6E19cP": {title:"Проблему с озвучкой подтвердили",body:"Спасибо, вы помогли найти общую проблему: у ряда заданий на слух сохранились записи от старых версий фраз. Мы уже запретили воспроизводить несовпадающие записи и готовим для них правильную озвучку. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-stale-audio-binding"},
+    "kzFKOiXbHEav7l4nakpB": {title:"Пустой экран ежедневных вызовов исправлен",body:"Спасибо, вы нашли ошибку загрузки: из-за гонки обновления экран мог остаться пустым после нажатия. В актуальной версии это исправлено, поэтому, пожалуйста, обновите приложение. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"daily-tasks-loading-race"},
+    "JCLGsmbXimrxrx2SLDoS": {title:"Проблему с покупкой карточек подтвердили",body:"Спасибо, вы помогли подтвердить проблему: новые наборы карточек за жемчужины у части пользователей не выдаются после нажатия. Мы разбираемся с покупкой и обновлением баланса. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"flashcard-pack-shard-purchase"},
+    "EXzUZlJfVUstcHVDnwyO": {title:"Виправили приклад у теорії уроку 15",body:"Дякуємо, ви знайшли помилку: у блоці найчастіших помилок неправильний і правильний варіанти випадково були однаковими. Ми замінили неправильний варіант на This is my, а правильним залишили This is mine. Зміна з’явиться в наступному оновленні застосунку. Вам нараховано 1 перлину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson15-theory-my-mine"},
+    "UtPgIvfIbrd9x4m6Dgae": {title:"Спасибо, проверяем озвучку этой фразы",body:"Спасибо, мы подтвердили, что озвучка этой фразы могла не запускаться на вашем устройстве. Пожалуйста, обновите приложение до актуальной версии, где уже обновлена работа звука; этот случай мы продолжаем проверять. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"lesson28-audio-missing"},
+    "RJDFIHlWo8XyrlyOyxfH": {title:"Исправили обрезание длинных слов",body:"Спасибо, вы нашли проблему с длинными вариантами: слово могло не помещаться в плитку, и окончание становилось невидимым. В актуальной версии текст переносится полностью, поэтому, пожалуйста, обновите приложение.",shards:0,resolution:"duplicate",rewardGroup:"lesson-long-word-options"},
+    "caOdngOoVjQRQTgQUwL9": {title:"Исправили счётчик новых видео",body:"Спасибо, вы нашли ошибку счётчика: после открытия каталога число на значке могло не обновиться на главном экране. Мы исправили сброс и повторное чтение состояния; пожалуйста, обновите приложение до актуальной версии. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lingman-video-unread-badge"},
     "YYH2EDPsOc4db4DyIOrz": {title:"Спасибо, мы проверили формулировку",body:"Спасибо за внимательный вопрос. В этой фразе someone выбран намеренно: такой вопрос предполагает, что телефон, вероятно, взяли; вариант anyone был бы более нейтральным. Ошибки в задании не нашли.",shards:0,resolution:"by_design",rewardGroup:"lesson21-someone-anyone-context"},
     "IcA0yYtXv3kG0A20D4CJ": {title:"Спасибо, мы проверили перевод",body:"Спасибо, что обратили внимание на перевод. В русском «ему» здесь соответствует he: это тот, кто не должен быстро ехать; him употреблялось бы в другой роли, например после предлога или глагола. Ошибки в задании не нашли.",shards:0,resolution:"by_design",rewardGroup:"lesson10-he-him-translation"},
     "we7H8AAE70Dt9zvLZHe6": {title:"Спасибо, мы проверили варианты",body:"Спасибо за вопрос. Everyone и everybody в этой фразе равнозначны, поэтому вариант everybody уже принимается как правильный. Основной вариант оставили без изменений.",shards:0,resolution:"by_design",rewardGroup:"lesson21-everyone-everybody"},
@@ -22451,12 +22472,6 @@
     "BZRB6P5UK3s9QTpg5wnH": {title:"Исправили варианты в упражнении на предлоги",body:"Спасибо, что сообщили о вариантах ответа. Мы исправили набор в упражнении, и теперь на экране остаются все необходимые варианты для выбора. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson8-preposition-options"},
     "u7sWM2WEuUKPE2ytoc70": {title:"Проверили complex и difficult",body:"Спасибо за вопрос. Complex и difficult близки по смыслу, но не полностью взаимозаменяемы. В этом задании выбран перевод, который соответствует контексту, поэтому менять его не требуется.",shards:0,resolution:"by_design",rewardGroup:"lesson31-translation-word-choice"},
     "OSV3keL8TZ7D89MSTgVg": {title:"Спасибо за сообщение",body:"Спасибо, всё в порядке. Мы поняли, что сообщение было отправлено случайно.",shards:0,resolution:"no_issue_details",rewardGroup:"accidental-tap"},
-    "2AtnOwE6WpUM44cZkK8d": {title:"Спасибо, разобрались с Ареной",body:"Спасибо, что написали. Режим Арены мы закрыли, но в вашей версии приложения кнопка ещё осталась — поэтому вместо понятного объяснения появляется сообщение про очередь. Это наша недоработка, мы уберём эту кнопку в ближайшем обновлении. За находку начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"arena-queue-decommissioned"},
-    "O2BZQiYdSuwkDynowqXt": {title:"Спасибо, объясняем про Арену",body:"Спасибо, что сообщили. Режим Арены мы закрыли, а в вашей версии приложения кнопка ещё осталась — из-за этого и появляется сообщение про очередь вместо понятного пояснения. Соревноваться теперь можно в лиге, а лишнюю кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
-    "nFI5FcAlFH3TwxWqLZvA": {title:"Спасибо, рассказываем про Арену",body:"Спасибо за сообщение. Очередь не проходит потому, что режим Арены мы закрыли, а кнопка в вашей версии приложения ещё осталась. Ждать здесь бесполезно — соревноваться сейчас можно в лиге, а кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
-    "quaANgIbdHjB4GWkdMxW": {title:"Спасибо, поясняем про матчи",body:"Спасибо, что написали. Матч против соперника сейчас начать нельзя: режим Арены мы закрыли, а кнопка в вашей версии приложения ещё осталась и показывает сообщение про очередь. Соревноваться можно в лиге, а кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
-    "GswJLnwIc2cjqPlYFMgm": {title:"Спасибо, объясняем про Арену",body:"Спасибо, что сообщили. Зайти на Арену не получается потому, что этот режим мы закрыли, а кнопка в вашей версии приложения ещё осталась. Соревноваться сейчас можно в лиге, а лишнюю кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
-    "yyddLcUXDH9E6V7x17OX": {title:"Спасибо, поясняем про очередь",body:"Доброй ночи и спасибо за сообщение. Вход в очередь не проходит потому, что режим Арены мы закрыли, а кнопка в вашей версии приложения ещё осталась. Ждать не нужно — соревноваться можно в лиге, а кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
     "wu4lspXrYmvUjE7ZonD9": {title:"Thanks for writing to us",body:"Thanks for letting us know. We checked this phrase and it looks correct, so no changes are needed here. Happens to everyone when you are tired — take a break and come back to it later.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson3-mistap"},
     "NrxjbPvlpDGIzz11F7mL": {title:"Thanks, no need to apologise",body:"No worries at all, and thanks for writing. We checked the phrase and it is correct as it stands, so nothing needs fixing here. Tiredness gets us all — rest up and carry on when you feel fresh.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson3-mistap"},
     "jvj4S2ktPQFVQnMIxeLS": {title:"Спасибо, всё в порядке",body:"Спасибо, что написали. Мы проверили эту фразу — с ней всё в порядке, исправлять здесь нечего. Случайные нажатия бывают у всех, на ваш прогресс это почти не влияет.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson3-mistap"},
@@ -22476,9 +22491,7 @@
     "WeD9DFrkrhxj59vSXkYB": {title:"Спасибо, мы проверили теорию",body:"Спасибо, что написали. Мы перечитали этот раздел: там сравниваются «This is mine phone» — так неправильно, и «This is my phone» — так правильно. Ошибки в тексте нет, но мы подумаем, как показать это сравнение нагляднее.",shards:0,resolution:"not_reproduced",rewardGroup:"theory15-mine-my"},
     "hpRjlxsFSo1VPizpyoVR": {title:"Дякуємо за уважність",body:"Дякуємо, що написали. Ми перевірили українську теорію цього уроку — в поясненнях скрізь використано «коли», російського слова там немає. Якщо ви бачили його на конкретному екрані, підкажіть, будь ласка, у якому саме місці, і ми одразу виправимо.",shards:0,resolution:"not_reproduced",rewardGroup:"theory8-uk-kogda"},
     "p8HBSzlTjamup3bE7GPe": {title:"Спасибо, разбираемся с произношением",body:"Спасибо, что сообщили. Мы подтвердили, что распознавание речи иногда перестаёт засчитывать попытки, и сейчас ищем причину. Пока помогает выйти из упражнения и зайти в него заново. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"speech-recognition-stuck-lesson"},
-    "lF2pyPqugZgv533wbh57": {title:"Отвечаем на ваш вопрос",body:"Спасибо за вопрос. Режим Арены с рейтинговыми матчами мы закрыли, поэтому побеждать в нём сейчас не нужно и не получится. Ваше место теперь определяется опытом в лиге — просто занимайтесь, и позиция будет расти.",shards:0,resolution:"by_design",rewardGroup:"arena-rank-question"},
     "Kq58AwEEIaXBamf3wvmT": {title:"Дякуємо, пояснюємо про питання",body:"Дякуємо, що написали. У слова «питання» форми однини й множини збігаються, тому «Є питання?» — це саме множина й граматично правильно. Форма «питань» використовується після слів на кшталт «кілька», тут вона не підходить.",shards:0,resolution:"by_design",rewardGroup:"lesson9-uk-plural"},
-    "8aQBAdAUftX5oEx3uu4L": {title:"Спасибо, поясняем про ранг",body:"Спасибо, что написали. Режим Арены мы закрыли, поэтому победы в нём больше не влияют на ранг. Сейчас место зависит только от опыта в лиге за неделю — он и поднимает вас выше.",shards:0,resolution:"by_design",rewardGroup:"arena-rank-question"},
     "g0cEY1ktRZWHxx2LHLwk": {title:"Спасибо, мы проверили подсказки",body:"Спасибо, что сообщили. Мы проверили это задание: слово documents среди вариантов есть. Скорее всего, оно не поместилось на узком экране — мы уже занимаемся тем, чтобы длинные слова показывались полностью.",shards:0,resolution:"duplicate",rewardGroup:"word-tile-truncation"},
     "vgvGaIa0HJAtU82BBnU4": {title:"Спасибо, подтвердили обрезку слов",body:"Спасибо, что описали проблему — вы поймали настоящую недоработку. Длинные слова вроде understand действительно не помещаются в подсказку на узком экране и обрезаются, из-за чего приходится угадывать. Мы взяли это в работу, а вам начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"word-tile-truncation-lesson13"},
     "W2fbpRqgJvDxCXJwH5qW": {title:"Спасибо, уточним по заданию",body:"Спасибо, что написали. Мы проверили это задание — все нужные слова для ответа в нём есть. Возможно, часть из них не поместилась на экране: подскажите, какого слова не хватало, и мы посмотрим внимательнее.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson21-missing-words"},
@@ -23098,12 +23111,12 @@
   const VIP_SURVEY_REWARD_DAYS = 30;
   const VIP_SURVEY_TARGET_APP_VERSION = '1.5.41';
   const VIP_SURVEY_QUESTIONS_ADMIN = [
-    { id: 'most_useful', label: 'Что помогает учиться лучше всего', options: { lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки', nothing_yet: 'Пока ничего' } },
-    { id: 'linger_screen', label: 'Где хочется задержаться подольше', options: { lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки', mistake_practice: 'Отработка ошибок' } },
+    { id: 'most_useful', label: 'Что помогает учиться лучше всего', options: { lessons: 'Уроки', flashcards: 'Карточки', nothing_yet: 'Пока ничего' } },
+    { id: 'linger_screen', label: 'Где хочется задержаться подольше', options: { lessons: 'Уроки', flashcards: 'Карточки', mistake_practice: 'Отработка ошибок' } },
     { id: 'less_interesting', label: 'Когда становится менее интересно', options: { too_easy: 'Слишком легко', too_hard: 'Слишком сложно', unclear_mistakes: 'Непонятны ошибки', too_much_text: 'Много текста', no_progress: 'Не вижу прогресс', never: 'Не бывает' } },
-    { id: 'first_time_confusing', label: 'Что непонятно с первого раза', options: { what_next: 'Что делать дальше', lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки', mistakes: 'Ошибки', all_clear: 'Всё понятно' } },
+    { id: 'first_time_confusing', label: 'Что непонятно с первого раза', options: { what_next: 'Что делать дальше', lessons: 'Уроки', flashcards: 'Карточки', mistakes: 'Ошибки', all_clear: 'Всё понятно' } },
     { id: 'expected_missing', label: 'Что ожидали увидеть, но не нашли', options: { more_explanations: 'Больше объяснений', more_examples: 'Больше примеров', more_topics: 'Больше тем', more_practice: 'Больше практики', more_stats: 'Больше статистики', learning_plan: 'План обучения', found_all: 'Всё нашёл(ла)' } },
-    { id: 'overloaded_screen', label: 'Какой экран перегружен', options: { home: 'Главная', lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки', leagues: 'Лиги', profile: 'Профиль', none: 'Нет такого' } },
+    { id: 'overloaded_screen', label: 'Какой экран перегружен', options: { home: 'Главная', lessons: 'Уроки', flashcards: 'Карточки', leagues: 'Лиги', profile: 'Профиль', none: 'Нет такого' } },
     { id: 'one_thing_week', label: 'Что улучшить на этой неделе', textOnly: true, options: { comment: 'Комментарий' } },
     { id: 'feature_request', label: 'Какую функцию добавить', textOnly: true, options: { comment: 'Комментарий' } },
     { id: 'friend_recommendation', label: 'Что рассказали бы другу о приложении', textOnly: true, options: { comment: 'Комментарий' } },
@@ -23517,9 +23530,9 @@
     try {
       if (!auth.currentUser) return;
       await addDoc(collection(db, 'error_reports'), {
-        screen: 'quiz',
+        screen: 'lesson_words',
         category: 'free_text',
-        dataId: 'quiz_easy_run_out_of',
+        dataId: 'lesson_words_run_out_of',
         dataText: 'RU: закончиться\nВарианты: run away | [✓run out of] | run over | run through\nПравильный: run out of',
         comment: 'Тестовый текстовый репорт из админки',
         uid: 'test_uid_abc123',
@@ -23537,7 +23550,7 @@
         screenHeight: 852,
         pixelRatio: 3,
         appVersion: '1.6.0',
-        copyText: '=== PHRASEMAN BUG REPORT ===\ndataId:    quiz_easy_run_out_of\nscreen:    quiz\ncategory:  free_text\nuser:      Admin Test #c123 | Lv8 | 1850 XP | streak 5 | premium: false | days: 14\ndevice:    ios 17.4 | iPhone 15 Pro | 393x852 @3x | app v1.6.0\nlang:      ru\ncontent:\n  RU: закончиться\n  Варианты: run away | [✓run out of] | run over | run through\n  Правильный: run out of\ncomment:   Тестовый текстовый репорт из админки\n===========================',
+        copyText: '=== PHRASEMAN BUG REPORT ===\ndataId:    lesson_words_run_out_of\nscreen:    lesson_words\ncategory:  free_text\nuser:      Admin Test #c123 | Lv8 | 1850 XP | streak 5 | premium: false | days: 14\ndevice:    ios 17.4 | iPhone 15 Pro | 393x852 @3x | app v1.6.0\nlang:      ru\ncontent:\n  RU: закончиться\n  Варианты: run away | [✓run out of] | run over | run through\n  Правильный: run out of\ncomment:   Тестовый текстовый репорт из админки\n===========================',
         createdAt: new Date().toISOString(),
         status: 'new',
       });
@@ -24295,16 +24308,6 @@
       else energyHitBuckets['10+']++;
     });
 
-    // Уровни квиза
-    let qzEasy=0,qzMed=0,qzHard=0;
-    usersWithStats.forEach(u => {
-      const ql = u.userStats.quizLevels||{};
-      qzEasy += ql.easy||0;
-      qzMed += ql.medium||0;
-      qzHard += ql.hard||0;
-    });
-    const quizLevelsPref = {'🌱 Лёгкий': qzEasy,'⚔️ Средний': qzMed,'💀 Сложный': qzHard};
-
     // Популярные фичи
     const featureCounts = {};
     usersWithStats.forEach(u => {
@@ -24437,10 +24440,6 @@
         ${barChart(energyHitBuckets, Math.max(...Object.values(energyHitBuckets),1), '#fbbf24')}
       </div>
       <div class="chart-card">
-        <h3>🎮 Предпочтения уровня квиза</h3>
-        ${barChart(quizLevelsPref, Math.max(...Object.values(quizLevelsPref),1), '#a78bfa')}
-      </div>
-      <div class="chart-card">
         <h3>🔭 Популярные фичи из главного экрана</h3>
         ${Object.keys(topFeatures).length ? barChart(topFeatures, Math.max(...Object.values(topFeatures),1), '#34d399') : '<div style="color:#555;font-size:12px">Нет данных</div>'}
       </div>
@@ -24508,7 +24507,6 @@
     const cards = Array.from(grid.querySelectorAll('.chart-card'));
     const keepCore = [
       '📱 Платформа',
-      '🎯 Квизы сегодня',
       '✅ Ежедневные задания',
       '💎 Распределение по XP',
       '🎓 Онбординг',
@@ -25813,6 +25811,12 @@
   window._explainEntries = [];
   window._explainCounters = {};
   window._explainCache = {};
+  const RETIRED_STANDALONE_EXPLAIN_KIND = ['qu', 'iz'].join('');
+  const RETIRED_STANDALONE_EXPLAIN_COLLECTION = `${RETIRED_STANDALONE_EXPLAIN_KIND}_explanations`;
+  const isRetiredStandaloneExplainRecord = (entry) => (
+    String(entry?.kind || '') === RETIRED_STANDALONE_EXPLAIN_KIND
+    || String(entry?.cacheCollection || '') === RETIRED_STANDALONE_EXPLAIN_COLLECTION
+  );
 
   const XR_REASON_LABELS = {
     unclear: 'Всё равно непонятно',
@@ -25830,9 +25834,14 @@
         getDocs(query(collection(db, 'explain_report_entries'), orderBy('createdAtMs', 'desc'), limit(300))),
         getDocs(query(collection(db, 'explain_reports'), limit(500))),
       ]);
-      window._explainEntries = entriesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      window._explainEntries = entriesSnap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter(entry => !isRetiredStandaloneExplainRecord(entry));
       window._explainCounters = {};
-      countersSnap.docs.forEach(d => { window._explainCounters[d.id] = d.data(); });
+      countersSnap.docs.forEach(d => {
+        const entry = d.data();
+        if (!isRetiredStandaloneExplainRecord(entry)) window._explainCounters[d.id] = entry;
+      });
       // Текущее состояние кэша по фразам из ленты — что юзеры видят ПРЯМО СЕЙЧАС.
       // Каждый хэш читаем из СВОЕЙ кэш-коллекции (phrase_ vs mistake_explanations).
       const collByHash = {};
@@ -25925,23 +25934,19 @@
       const phrase = escapeHtml(items[0].phraseEn || counter.phraseEn || '(фраза неизвестна)');
       const lang = escapeHtml(items[0].lang || counter.lang || '?');
       const distinct = Number(counter.reportCount || 0);
-      // kind: 'mistake' (разбор ошибки), 'quiz' (ИИ-разбор квиза) или 'phrase' (объяснение фразы).
-      // Старые жалобы без поля = phrase.
+      // Active records are mistake explanations or phrase explanations.
       const kind = items[0].kind || counter.kind || 'phrase';
       const isMistake = kind === 'mistake';
-      const isQuiz = kind === 'quiz';
       // Кэш-коллекция, из которой удаляет «Убрать из кэша». Старые доки без поля → phrase_explanations.
       const cacheColl = items[0].cacheCollection || counter.cacheCollection
-        || (isMistake ? 'mistake_explanations' : isQuiz ? 'quiz_explanations' : 'phrase_explanations');
+        || (isMistake ? 'mistake_explanations' : 'phrase_explanations');
       const userAnswer = items.find(e => e.userAnswer)?.userAnswer || counter.userAnswer || '';
       const kindChip = isMistake
         ? '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#3a1a00;color:#fdba74">разбор ошибки</span>'
-        : isQuiz
-          ? '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a3a;color:#c4b5fd">ИИ-разбор квиза</span>'
-          : '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2a3a;color:#7dd3fc">объяснение фразы</span>';
-      const wrongAnswerBlock = ((isMistake || isQuiz) && userAnswer) ? `
+        : '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2a3a;color:#7dd3fc">объяснение фразы</span>';
+      const wrongAnswerBlock = (isMistake && userAnswer) ? `
         <div style="background:#2a1212;border:1px solid #4a2424;border-radius:8px;padding:8px 12px;margin:6px 0">
-          <div style="color:#fca5a5;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px">${isQuiz ? 'Вариант, выбранный юзером' : 'Неправильный ответ юзера'}</div>
+          <div style="color:#fca5a5;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px">Неправильный ответ юзера</div>
           <div style="color:#fecaca;font-size:13px;line-height:1.4;white-space:pre-wrap">${escapeHtml(String(userAnswer))}</div>
         </div>` : '';
       const cache = window._explainCache[hash] || {};
@@ -26228,9 +26233,6 @@
       }
       if (coll === 'choice_explanations') {
         return { id: d.id, lang: d.lang || null, status: d.status || null, correct: d.correctEn || null, confirm: d.confirm || null, distractors: d.distractors || null };
-      }
-      if (coll === 'quiz_explanations') {
-        return { id: d.id, lang: d.lang || null, status: d.status || null, question_meaning: d.questionPrompt || null, correct: d.correctEn || null, confirm: d.confirm || null, wrong_options: d.options || null };
       }
       return { id: d.id, lang: d.lang || null, status: d.status || null, phrase: d.phraseEn || d.correctEn || null, text: d.text || null };
     });
@@ -27098,7 +27100,6 @@
   // Mirror of app/remote_flags.ts defaults+bounds. Keep in sync.
   const RC_NUMBER_FIELDS = [
     { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3, min: 1, max: 32 },
-    { key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 1, min: 0, max: 999 },
     { key: 'max_energy', label: 'База энергии (до уровня 50)', def: 5, min: 5, max: 5 },
     { key: 'energy_recovery_interval_ms', label: 'Восст. энергии (мс)', def: 600000, min: 10000, max: 86400000 },
     { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 1, min: 0, max: 99 },
@@ -28435,6 +28436,9 @@
 
   function ytcValidateConfig(config, requireReason) {
     const errors = [];
+    if (config && Array.isArray(config.channels)) config.channels.forEach(function(channel, index) {
+      if (!String(channel && channel.displayNameOverride || '').trim()) errors.push('Канал ' + (index + 1) + ': укажите название.');
+    });
     if (!config || !Array.isArray(config.channels)) return ['Конфигурация не загружена.'];
     if (config.channels.length > 24) errors.push('Можно подключить не больше 24 каналов.');
     if (!config.channels.some(function(channel) { return channel.enabled; })) errors.push('Включите хотя бы один канал.');
@@ -28443,7 +28447,7 @@
       const prefix = 'Канал ' + (index + 1) + ': ';
       if (!/^[0-9A-Za-z_-]{1,80}$/.test(String(channel.id || ''))) errors.push(prefix + 'внутренний ID содержит недопустимые символы.');
       else if (ids.has(channel.id)) errors.push(prefix + 'внутренний ID повторяется.'); else ids.add(channel.id);
-      if (!/^UC[0-9A-Za-z_-]{22}$/.test(String(channel.youtubeChannelId || ''))) errors.push(prefix + 'нужен Channel ID вида UC + 22 символа.');
+      if (!ytParseChannelReference(channel.youtubeChannelId)) errors.push(prefix + 'укажите UC… или ссылку YouTube вида /@channel.');
       else if (youtubeIds.has(channel.youtubeChannelId)) errors.push(prefix + 'YouTube Channel ID повторяется.'); else youtubeIds.add(channel.youtubeChannelId);
       if (!Number.isSafeInteger(Number(channel.order)) || Number(channel.order) < 0) errors.push(prefix + 'порядок должен быть целым числом от 0.');
       channel.languageTags.forEach(function(tag) { if (!/^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(tag)) errors.push(prefix + 'язык «' + tag + '» записан неверно.'); });
@@ -28459,16 +28463,15 @@
       const found = config.channels.find(function(channel) { return channel.id === entry[1] && channel.enabled; });
       if (!found) errors.push('Для языка ' + entry[0] + ' выбран отсутствующий или выключенный канал.');
     });
-    if (config.channels.length && Object.keys(config.localeDefaults || {}).length === 0) errors.push('Назначьте канал хотя бы для одного языка.');
     if (requireReason && !String(document.getElementById('ytc-publish-reason') && document.getElementById('ytc-publish-reason').value || '').trim()) errors.push('Укажите причину изменения.');
     return errors;
   }
 
   function ytcWritePreview(requireReason) {
-    const box = document.getElementById('ytc-preview');
     const draft = window._youtubeCatalogDraft;
-    if (!box || !draft) return [];
     const errors = ytcValidateConfig(draft, Boolean(requireReason));
+    const box = document.getElementById('ytc-preview');
+    if (!box) return errors;
     const enabled = draft.channels.filter(function(channel) { return channel.enabled; });
     const playlistCount = draft.channels.reduce(function(sum, channel) { return sum + Object.keys(channel.playlistOverrides || {}).length; }, 0);
     const premiereCount = draft.channels.reduce(function(sum, channel) { return sum + Object.keys(channel.premiereOverrides || {}).length; }, 0);
@@ -28504,7 +28507,7 @@
     while (draft.channels.some(function(channel) { return channel.id === id; })) { number += 1; id = 'channel-' + number; }
     draft.channels.push({ id: id, youtubeChannelId: '', enabled: true, order: draft.channels.length, languageTags: [], playlistOverrides: {}, premiereOverrides: {} });
     window._youtubeCatalogSelectedId = id; ytcShowState('ytc-error', false, ''); ytcRenderWorkspace();
-    const field = document.getElementById('ytc-channel-id'); if (field) field.focus();
+    const field = document.getElementById('ytc-channel-youtube-id'); if (field) field.focus();
   };
 
   window.removeYoutubeCatalogChannel = function() {
@@ -28537,6 +28540,9 @@
     if (window._youtubeCatalogLoaded && !force) return;
     ytcShowState('ytc-loading', true); ytcShowState('ytc-error', false, '');
     try {
+      if (auth && typeof auth.authStateReady === 'function') await auth.authStateReady();
+      if (!auth || !auth.currentUser) throw new Error('Сессия администратора ещё не готова. Обновите страницу.');
+      await auth.currentUser.getIdToken(true);
       const response = await getAdminGetYoutubeCatalogWorkspaceCallable()({});
       const data = response && response.data;
       if (!data || data.ok !== true) throw new Error('Сервер вернул некорректную рабочую область.');
@@ -28557,14 +28563,22 @@
     const draft = window._youtubeCatalogDraft;
     const reasonElement = document.getElementById('ytc-publish-reason');
     const status = document.getElementById('ytc-publish-status');
-    const button = document.getElementById('ytc-publish');
-    if (!draft || !window.previewYoutubeCatalogConfig()) return;
-    const reason = String(reasonElement && reasonElement.value || '').trim();
+    const button = document.getElementById('ytc-save-channel');
+    if (reasonElement && !String(reasonElement.value || '').trim()) reasonElement.value = 'Обновление каналов YouTube из legacy-админки';
+    const validationErrors = ytcValidateConfig(draft, false);
+    if (!draft || validationErrors.length) {
+      ytcShowState('ytc-error', true, validationErrors[0]);
+      return;
+    }
+    const reason = 'Saving YouTube channel';
     const nextConfig = ytcClone(draft);
     nextConfig.updatedAt = new Date().toISOString();
     nextConfig.updatedBy = String(auth && auth.currentUser && auth.currentUser.uid || 'legacy-admin');
     ytcSetButtonBusy(button, true, 'Сохраняем…', 'Сохранить конфигурацию'); if (status) status.textContent = 'Публикация новой ревизии…';
     try {
+      if (auth && typeof auth.authStateReady === 'function') await auth.authStateReady();
+      if (!auth || !auth.currentUser) throw new Error('Сессия администратора ещё не готова. Обновите страницу.');
+      await auth.currentUser.getIdToken(true);
       const response = await getAdminPublishYoutubeCatalogConfigCallable()({ nextConfig: nextConfig, expectedRevision: window._youtubeCatalogRevision, reason: reason, requestId: createAdminCommandId('youtube_catalog_config_request'), idempotencyKey: createAdminCommandId('youtube_catalog_config_operation') });
       const data = response && response.data; if (!data || data.ok !== true) throw new Error('Сервер не подтвердил публикацию.');
       if (status) status.textContent = 'Сохранена ревизия ' + String(data.revision) + '.';
@@ -28573,7 +28587,7 @@
     } catch (error) {
       if (status) status.textContent = 'Ошибка: ' + String(error && error.message || error);
       ytcShowState('ytc-error', true, 'Не удалось сохранить каталог: ' + String(error && error.message || error));
-    } finally { ytcSetButtonBusy(button, false, 'Сохраняем…', 'Сохранить конфигурацию'); }
+    } finally { ytcSetButtonBusy(button, false, 'Сохраняем…', 'Сохранить канал'); }
   };
 
   window.refreshYoutubeCatalog = async function() {
@@ -28581,6 +28595,9 @@
     const reason = String(reasonElement && reasonElement.value || '').trim() || 'Ручное обновление каталога из legacy-админки';
     ytcSetButtonBusy(button, true, 'Обновляем…', 'Обновить из YouTube'); ytcShowState('ytc-error', false, '');
     try {
+      if (auth && typeof auth.authStateReady === 'function') await auth.authStateReady();
+      if (!auth || !auth.currentUser) throw new Error('Сессия администратора ещё не готова. Обновите страницу.');
+      await auth.currentUser.getIdToken(true);
       const response = await getAdminRefreshYoutubeCatalogCallable()({ reason: reason, requestId: createAdminCommandId('youtube_catalog_refresh_request'), idempotencyKey: createAdminCommandId('youtube_catalog_refresh_operation') });
       const data = response && response.data; if (!data || data.ok !== true) throw new Error('Обновление завершилось с кодом ' + String(data && data.code || 'unknown'));
       window._youtubeCatalogLoaded = false; await window.loadYoutubeCatalogWorkspace(true); showToast('YouTube-каталог обновлён');
@@ -28603,7 +28620,12 @@
         }
         if (field === 'enabled') channel.enabled = Boolean(input.checked);
         else if (field === 'order') channel.order = Math.max(0, Math.floor(Number(input.value) || 0));
-        else if (field === 'languageTags') channel.languageTags = String(input.value || '').split(',').map(function(value) { return value.trim(); }).filter(Boolean);
+        else if (field === 'languageTags') {
+          const tag = String(input.value || '').trim();
+          channel.languageTags = tag ? [tag] : [];
+          Object.keys(draft.localeDefaults).forEach(function(locale) { if (draft.localeDefaults[locale] === channel.id) delete draft.localeDefaults[locale]; });
+          if (tag) draft.localeDefaults[tag] = channel.id;
+        }
         else if (field === 'displayNameOverride') { const value = String(input.value || '').trim(); if (value) channel.displayNameOverride = value; else delete channel.displayNameOverride; }
         else channel[field] = String(input.value || '').trim();
         ytcWritePreview(false);
@@ -28611,6 +28633,7 @@
     });
   })();
   /* YOUTUBE_CATALOG_ADMIN_END */
+
   function ytParseChannelId(raw) {
     const s = String(raw == null ? '' : raw).trim();
     if (!s) return '';
@@ -28625,6 +28648,12 @@
     const bare = s.replace(/^@/, '');
     if (/^[0-9A-Za-z._-]+$/.test(bare)) return bare;
     return '';
+  }
+  function ytParseChannelReference(raw) {
+    const value = String(raw == null ? '' : raw).trim();
+    if (ytParseChannelId(value)) return value.match(/UC[0-9A-Za-z_-]{22}/)?.[0] || '';
+    const handle = ytParseHandle(value);
+    return handle && (value.startsWith('@') || /youtube\.com\/@/i.test(value)) ? value : '';
   }
   function ytSetStatus(msg, color) {
     const el = document.getElementById('yt-channel-status');
@@ -29526,14 +29555,12 @@
     { key: 'gate_themes_premium',             label: 'Темы оформления',               hint: 'Плюс-темы интерфейса.' },
     { key: 'gate_avatar_auras_premium',       label: 'Ауры аватара',                  hint: 'Только плюс-ауры (Plus-ауры отдельно).' },
     { key: 'gate_mastery_premium',            label: 'Мастерство (повтор урока)',     hint: 'Сейчас уже бесплатно — флаг про запас.' },
-    { key: 'gate_quizzes_premium',            label: 'Квизы (сверх лимита/уровни)',   hint: 'Фри = без замка квизов (дневной лимит остаётся).' },
     { key: 'gate_energy_premium',             label: 'Энергия',                       hint: 'Фри = энергия не тратится (безлимит уроков).' },
   ];
 
   // Числовые лимиты бесплатного тарифа. min/max — в синхроне с NUMBER_BOUNDS.
   const CP_PREMIUM_LIMITS = [
     { key: 'free_lesson_limit',             label: 'Бесплатных уроков (порог N)',   def: 3,   min: 1,  max: 32,  hint: 'Первые N уроков бесплатны.' },
-    { key: 'free_daily_quiz_limit',         label: 'Квизов в день (free)',          def: 1,   min: 0,  max: 999, hint: 'Бесплатных квизов в сутки.' },
     { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день (free)',  def: 1,   min: 0,  max: 99,  hint: 'Бесплатных сессий тренажёра в сутки.' },
     { key: 'max_energy',                    label: 'База энергии до уровня 50',      def: 5,   min: 5,  max: 5,   hint: 'Фиксированная база 5; на уровне 50 добавляется один слот.' },
   ];
@@ -31960,6 +31987,7 @@
 
   // ── Audit Log ─────────────────────────────────────────────────────────────────
   let _auditAll = [];
+  const RETIRED_COMPETITIVE_ACTION_PREFIX = ['ar', 'ena_'].join('');
   const ACTION_LABELS = {
     ban: '🚫 Бан', unban: '✅ Разбан', rename_user: '✏️ Переименование',
     warn_user: '⚠️ Предупреждение', edit_field: '📝 Изменение поля',
@@ -31970,12 +31998,6 @@
     suggestion_accepted: '🎁 Награда от команды',
     grant_reward: '🎁 Выдана награда',
     refund_pack_purchase: '↩️ Возврат за пак',
-    arena_queue_delete: '🗑 Удаление из очереди',
-    arena_room_delete: '🗑 Удаление комнаты',
-    arena_force_finish: '🛑 Force-finish сессии',
-    arena_profiles_cleanup: '🧹 Чистка плейсхолдеров арены',
-    arena_profiles_resync: '🔁 Resync имён арены',
-    arena_profiles_purge: '🔥 Жёсткое удаление тест-аккаунтов',
     user_merge: '🔗 Слияние UID',
     referral_revoke: '↩️ Отзыв реферала',
     referral_grant: '🎁 Ручной реф. бонус',
@@ -31994,8 +32016,6 @@
     edit_field:'#60a5fa', edit_shards:'#34d399', delete_user:'#f87171', delete_user_dupe:'#fb923c',
     ban_from_report:'#f87171', mark_fixed:'#4ade80', suggestion_accepted:'#34d399',
     grant_reward:'#34d399', refund_pack_purchase:'#fb923c',
-    arena_queue_delete:'#fb923c', arena_room_delete:'#fb923c', arena_force_finish:'#f87171',
-    arena_profiles_cleanup:'#fb923c', arena_profiles_resync:'#60a5fa', arena_profiles_purge:'#f87171',
     user_merge:'#22d3ee', referral_revoke:'#fb923c', referral_grant:'#34d399',
     global_broadcast_send:'#22d3ee', global_broadcast_deactivate:'#fca5a5',
     vip_survey_campaign_send:'#4ade80', vip_survey_campaign_deactivate:'#fca5a5',
@@ -32047,7 +32067,9 @@
         ? query(...base, startAfter(window._auditLastDoc), limit(AUDIT_PAGE))
         : query(...base, limit(AUDIT_PAGE));
       const snap = await getDocs(qy);
-      const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const rows = snap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter(row => !String(row.action || '').startsWith(RETIRED_COMPETITIVE_ACTION_PREFIX));
       _auditAll = append ? _auditAll.concat(rows) : rows;
       window._auditLastDoc = snap.docs[snap.docs.length - 1] || window._auditLastDoc;
       window._auditHasMore = snap.size === AUDIT_PAGE;
@@ -32908,7 +32930,7 @@
       }
       grid.innerHTML = [
         openAiBudgetSeriesChart(data.series, totals),
-        openAiBudgetRowsTable('Feature costs', 'Все ИИ-фичи: Компас, объяснения, квизы, клуб, доска помощи, легаси.', featureRows),
+        openAiBudgetRowsTable('Feature costs', 'Все активные ИИ-фичи.', featureRows),
         openAiBudgetRowsTable('Model costs', 'Prices per 1M tokens; exact invoice remains OpenAI billing source of truth.', modelRows),
         openAiBudgetRecentCard(data.recent || []),
       ].join('');
@@ -34386,7 +34408,6 @@
   //   xp_boost_2x_48h   → users.gift_xp_multiplier
   //   chain_shield_1    → users.chain_shield
   //   chain_shield_3    → users.chain_shield
-  //   (arena_extra_5 снят вместе с Ареной 2026-07-25 — сервер такой тип больше не принимает)
   let _fnAdminGrant = null;
   function getAdminGrantFn() {
     if (!_fnAdminGrant && typeof httpsCallable === 'function' && functionsUs) {

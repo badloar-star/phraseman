@@ -85,7 +85,7 @@ const NO_DROP_KINDS: ReadonlySet<string> = new Set(['pronounce', 'dialog']);
 // предлогов). Шанс/кап/pity у них ОБЩИЕ с уроком — отдельной экономики нет,
 // поэтому список правил дропа не меняется, только расширяется валидация.
 export const EVENT_ID_RE =
-  /^(lesson|plan|quiz|arena|exam|tournament|vocab|verbs|prep|pronounce|dialog):[A-Za-z0-9_.:-]{1,80}$/;
+  /^(lesson|plan|exam|tournament|vocab|verbs|prep|pronounce|dialog):[A-Za-z0-9_.:-]{1,80}$/;
 
 /**
  * Шанс дропа для типа активности с учётом конфига. pronounce/dialog → 0,

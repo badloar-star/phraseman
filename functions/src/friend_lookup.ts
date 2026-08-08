@@ -202,7 +202,7 @@ export const friendLookupUser = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     const userData = await loadVisibleTarget(db, idxUid);
     if (userData) {
       // Возвращаем ПОЛНЫЙ публичный профиль из users/{uid}.progress (первичный источник).
-      // Раньше клиент догружал профиль из leaderboard/arena — у юзеров без записи там
+      // Раньше клиент догружал профиль из нескольких коллекций — у юзеров без записи там
       // получался прочерк + уровень 1. Теперь имя/уровень/аватар приходят сразу.
       return { ok: true, user: buildUserResponse(idxUid, userData, idx?.name || name) };
     }

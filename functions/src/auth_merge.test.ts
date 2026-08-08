@@ -8,6 +8,8 @@ import {
 } from './auth_merge';
 import { createHash } from 'crypto';
 import { accountDeletePermanentDenialId } from './account_delete_job';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 const NOW = 1_777_000_000_000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d
@@ -250,6 +252,17 @@ describe('mergeShards', () => {
   });
 });
 
+describe('Level Spin merge integration contract', () => {
+  it('marks both identities pending, schedules Spin migration, and clears only after union', () => {
+    const source = readFileSync(join(__dirname, 'auth_merge.ts'), 'utf8');
+    expect(source).toContain("tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins']");
+    expect(source).toContain('levelSpinMergePending: true');
+    expect(source).toContain('migrateLevelSpinAccountMerge');
+    expect(source).toContain('levelSpinMergePending: false');
+    expect(source).toContain('buildLevelSpinMergePlan');
+  });
+});
+
 // ── Integration: mergeStableAccounts (Admin-SDK path) ─────────────────────────
 
 type DocData = Record<string, unknown>;
@@ -294,6 +307,9 @@ function makeDbStub(
     revenuecat_shard_transactions: { ...(initial.revenuecat_shard_transactions ?? {}) },
     revenuecat_shard_refunds: { ...(initial.revenuecat_shard_refunds ?? {}) },
   };
+  for (const [name, docs] of Object.entries(initial)) {
+    if (!(name in store)) store[name] = { ...docs };
+  }
   let docGetCount = 0;
   const queryLog: Array<{ collection: string; cursor: string; limit: number; ids: string[] }> = [];
   const versions = new Map<string, number>();
@@ -395,11 +411,31 @@ function makeDbStub(
     },
   });
 
+  const collectionApi = (
+    name: string,
+    pageLimit = Number.POSITIVE_INFINITY,
+  ): any => ({
+    doc: (id: string) => docApi(name, id),
+    where: (field: unknown, op: string, value: unknown) => queryApi(name, field, op, value),
+    limit: (nextLimit: number) => collectionApi(name, nextLimit),
+    get: async () => {
+      const docs = Object.entries(store[name] ?? {})
+        .sort(([left], [right]) => left.localeCompare(right))
+        .slice(0, pageLimit)
+        .map(([id, data]) => snapFor(name, id, data));
+      queryLog.push({ collection: name, cursor: '', limit: pageLimit, ids: docs.map((doc) => doc.id) });
+      options?.afterQueryGet?.(
+        name,
+        docs.map((doc) => doc.id),
+        (id, data) => mutate(name, id, data),
+      );
+      options?.afterQueryGetAny?.(name, docs.map((doc) => doc.id), mutate);
+      return { empty: docs.length === 0, docs, size: docs.length };
+    },
+  });
+
   const db: any = {
-    collection: (name: string) => ({
-      doc: (id: string) => docApi(name, id),
-      where: (field: unknown, op: string, value: unknown) => queryApi(name, field, op, value),
-    }),
+    collection: (name: string) => collectionApi(name),
     batch: () => {
       const ops: Array<() => Promise<void>> = [];
       return {
@@ -463,6 +499,138 @@ describe('mergeStableAccounts', () => {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
   });
   afterEach(() => jest.restoreAllMocks());
+
+  const levelSpinResult = (
+    requestId: string,
+    creditId: string,
+    level: number,
+    baseGiftId = 'xp_100',
+  ): DocData => ({
+    originStableUid: 'loser',
+    requestId,
+    creditId,
+    level,
+    kind: 'standard',
+    premiumAtEarn: false,
+    baseGiftId,
+    premiumGiftId: null,
+    rewardOccurrences: [`level-spin:${requestId}:base`],
+    catalogVersion: 1,
+    schemaVersion: 1,
+    createdAtMs: NOW - 1_000,
+    expiresAtMs: FUTURE,
+    revealState: 'acknowledged',
+    deliveries: { base: { state: 'unclaimed' } },
+  });
+
+  it('durably unions Spin ledgers and clears merge markers only after the outbox task succeeds', async () => {
+    const requestId = 'request0000000002';
+    const { db, store } = makeDbStub({
+      account_merge_outbox: {
+        mergeSpin: {
+          winnerStableId: 'winner',
+          loserStableId: 'loser',
+          status: 'pending',
+          tasks: ['level_spins'],
+        },
+      },
+      users: {
+        winner: {
+          levelSpinMergePending: true,
+          levelSpinServerState: { protocol: 'v1', levelBaseline: 2, balance: 1 },
+          progress: { level_reward_spin_balance: '1' },
+        },
+        loser: {
+          identityHidden: true,
+          canonicalStableId: 'winner',
+          levelSpinMergePending: true,
+          levelSpinServerState: { protocol: 'v1', levelBaseline: 3, balance: 2 },
+          progress: { level_reward_spin_balance: '2' },
+        },
+      },
+      'users/winner/level_spin_credits': {
+        level_spin_v1_002: { level: 2, status: 'available', earnedAtMs: 20 },
+      },
+      'users/loser/level_spin_credits': {
+        level_spin_v1_002: {
+          level: 2,
+          status: 'consumed',
+          earnedAtMs: 10,
+          claimRequestId: requestId,
+        },
+        level_spin_v1_003: { level: 3, status: 'available', earnedAtMs: 30 },
+      },
+      'users/loser/level_spin_results': {
+        [requestId]: levelSpinResult(requestId, 'level_spin_v1_002', 2),
+      },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeSpin', NOW)).resolves.toEqual({
+      status: 'completed',
+      updated: 3,
+    });
+    expect(store['users/winner/level_spin_credits']).toMatchObject({
+      level_spin_v1_002: { status: 'consumed', claimRequestId: requestId },
+      level_spin_v1_003: { status: 'available' },
+    });
+    expect(store['users/winner/level_spin_results']?.[requestId]).toMatchObject({
+      requestId,
+      creditId: 'level_spin_v1_002',
+      baseGiftId: 'xp_100',
+    });
+    expect(store['users/loser/level_spin_credits']).toEqual({});
+    expect(store['users/loser/level_spin_results']).toEqual({});
+    expect(store.users.winner).toMatchObject({
+      levelSpinMergePending: false,
+      levelSpinServerState: { protocol: 'v1', levelBaseline: 3, balance: 1, activeRequestId: null },
+      progress: { level_reward_spin_balance: '1' },
+    });
+    expect(store.users.loser).toMatchObject({ levelSpinMergePending: false });
+    expect(store.account_merge_outbox.mergeSpin).toMatchObject({
+      status: 'completed',
+      updatedDocs: 3,
+    });
+  });
+
+  it('retains both merge markers and a pending outbox when immutable Spin results collide', async () => {
+    const requestId = 'request0000000007';
+    const { db, store } = makeDbStub({
+      account_merge_outbox: {
+        mergeSpinCollision: {
+          winnerStableId: 'winner',
+          loserStableId: 'loser',
+          status: 'pending',
+          tasks: ['level_spins'],
+        },
+      },
+      users: {
+        winner: {
+          levelSpinMergePending: true,
+          levelSpinServerState: { protocol: 'v1', levelBaseline: 7, balance: 0 },
+        },
+        loser: {
+          identityHidden: true,
+          canonicalStableId: 'winner',
+          levelSpinMergePending: true,
+          levelSpinServerState: { protocol: 'v1', levelBaseline: 7, balance: 0 },
+        },
+      },
+      'users/winner/level_spin_results': {
+        [requestId]: levelSpinResult(requestId, 'level_spin_v1_007', 7, 'xp_100'),
+      },
+      'users/loser/level_spin_results': {
+        [requestId]: levelSpinResult(requestId, 'level_spin_v1_007', 7, 'xp_250'),
+      },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeSpinCollision', NOW))
+      .rejects.toThrow('level_spin_result_collision');
+    expect(store.users.winner).toMatchObject({ levelSpinMergePending: true });
+    expect(store.users.loser).toMatchObject({ levelSpinMergePending: true });
+    expect(store.account_merge_outbox.mergeSpinCollision).toMatchObject({ status: 'pending' });
+    expect(store['users/winner/level_spin_results']?.[requestId]).toMatchObject({ baseGiftId: 'xp_100' });
+    expect(store['users/loser/level_spin_results']?.[requestId]).toMatchObject({ baseGiftId: 'xp_250' });
+  });
 
   it('leases and idempotently completes merge outbox receipt repointing', async () => {
     const bulkReceipts = Object.fromEntries(Array.from({ length: 101 }, (_, index) => [

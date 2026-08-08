@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
 import { markCloudSyncPending } from './cloud_sync';
+import { enqueueLevelSpinLevelUps } from './level_spin_level_up_queue';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
@@ -38,11 +39,11 @@ import {
   XP_LEVEL_RESTORE_250_TO_400_KEY,
 } from './xp_level_restore';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
-import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
+  type AccountTransitionLockLease,
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
@@ -69,39 +70,12 @@ async function getCombinedClubMultiplier(): Promise<number> {
   return boostM + tierM - 1;
 }
 
-/** Старые arena_profiles: clubM только буст + отдельное поле leagueM — склеиваем в один clubM. */
-export function normalizeArenaMultipliersFirestore(raw: unknown): MultiplierBreakdown | null {
-  if (!raw || typeof raw !== 'object') return null;
-  const m = raw as Record<string, unknown>;
-  const boostOnly = typeof m.clubM === 'number' ? m.clubM : 1;
-  const legacyLeague = typeof m.leagueM === 'number' ? m.leagueM : 1;
-  const hasLegacyLeague = Object.prototype.hasOwnProperty.call(m, 'leagueM') && legacyLeague !== 1;
-  const clubM = hasLegacyLeague ? boostOnly + legacyLeague - 1 : boostOnly;
-  return {
-    clubM,
-    streakM: typeof m.streakM === 'number' ? m.streakM : 1,
-    comebackM: typeof m.comebackM === 'number' ? m.comebackM : 1,
-    giftM: typeof m.giftM === 'number' ? m.giftM : 1,
-    leagueBoostM: typeof m.leagueBoostM === 'number' ? m.leagueBoostM : 1,
-    leagueGroupBoostM: typeof m.leagueGroupBoostM === 'number' ? m.leagueGroupBoostM : 1,
-    // Старые arena_profiles этих полей не хранят — дефолтим к нейтральным.
-    leagueChestM: typeof m.leagueChestM === 'number' ? m.leagueChestM : 1,
-    boonXpContribution: typeof m.boonXpContribution === 'number' ? m.boonXpContribution : 0,
-    // Старые arena_profiles без cardM — бонус карточки нейтрален.
-    cardM: typeof m.cardM === 'number' ? m.cardM : 1,
-    // Старые arena_profiles без hotHoursM — горячие часы нейтральны.
-    hotHoursM: typeof m.hotHoursM === 'number' ? m.hotHoursM : 1,
-    total: typeof m.total === 'number' ? m.total : 1,
-  };
-}
-
 /**
  * Типы источников опыта
  */
 export type XPSource = 
   | 'lesson_complete' 
   | 'lesson_answer'
-  | 'quiz_answer' 
   | 'daily_task_reward' 
   | 'bonus_chest' 
   | 'wager_bet'    // Отрицательный (трата)
@@ -131,6 +105,8 @@ export type RegisterXPOptions = {
   payload?: Record<string, unknown>;
   skipLeagueChestMultiplier?: boolean;
   accountToken?: AccountGenerationToken;
+  /** Internal capability propagated only by withAccountTransitionLock. */
+  accountTransitionLockLease?: AccountTransitionLockLease;
 };
 
 function isXpAccountGenerationCurrent(token: AccountGenerationToken): boolean {
@@ -141,7 +117,6 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
   switch (source) {
     case 'lesson_complete':
     case 'lesson_answer':
-    case 'quiz_answer':
     case 'daily_task_reward':
     case 'bonus_chest':
     case 'dialog_complete':
@@ -215,6 +190,13 @@ function patchProfileXpSnapshot(totalXp: number): void {
   } catch {
     // Snapshot is a UI cache only; AsyncStorage remains the source of truth.
   }
+}
+
+function isStorageFullError(error: unknown): boolean {
+  const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
+  return message.includes('sqlite_full')
+    || message.includes('database or disk is full')
+    || message.includes('disk full');
 }
 
 async function reserveLocalProgressEvent(eventId?: string): Promise<boolean> {
@@ -396,6 +378,10 @@ export const registerXP = async (
   if (amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };
   const accountToken = options?.accountToken ?? captureAccountGeneration();
   const staleResult = (multiplier = 1): XPResult => ({ finalDelta: 0, multiplier, isBonus: false });
+  const withXpAccountCommitLock = <T>(work: () => Promise<T>): Promise<T> => withAccountTransitionLock(
+    work,
+    options?.accountTransitionLockLease,
+  );
   return enqueueXpOperation(accountToken, async () => {
   let resolvedName = userName;
   let appliedDelta = amount;
@@ -421,9 +407,9 @@ export const registerXP = async (
     let progressEventMigrationSnapshot: Promise<Record<string, string> | null> | null = null;
     let progressEventLogLabel = 'xp_manager.ts:registerXP:server_queued';
 
-    // 1. Множители применяются к заработку (уроки, квизы, сундуки, ежедневные задания)
+    // 1. Множители применяются к заработку (уроки, тренировки, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'daily_task_reward', 'plan_task_complete'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'daily_task_reward', 'plan_task_complete'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)
@@ -489,16 +475,6 @@ export const registerXP = async (
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
-      // зачем: здесь была запись множителей в arena_profiles/{uid} «для показа другим
-      // игрокам». Арена выведена из эксплуатации (tests/quiz_arena_decommission_contract):
-      // firestore.rules держит `allow read, write: if false`, сервер в эту коллекцию не
-      // пишет, поле multipliers не читает ни один экран. То есть на КАЖДЫЙ начисляемый XP
-      // (каждый правильный ответ, 16 источников) уходил сетевой запрос, который правила
-      // гарантированно отклоняли, а .catch(() => {}) делал отказ невидимым — чистый расход
-      // батареи и радио. Контракт декоммиссии искал клиентские файлы по слову «arena» в
-      // ИМЕНИ файла, поэтому xp_manager.ts под зачистку не попал. Публичный профиль
-      // синхронизируется правильным путём — syncPublicProfileSnapshot (TTL 24ч) ниже.
-
       const eventType = progressEventTypeForSource(source);
       if (progressServerRequired() && eventType && finalDelta > 0) {
         progressEventMigrationSnapshot = prepareProgressMigrationSnapshot().catch(() => null);
@@ -520,7 +496,7 @@ export const registerXP = async (
         };
       }
       if (giftState.consumeBank && finalDelta > 0) {
-        const giftBankCommitted = await withAccountTransitionLock(async () => {
+        const giftBankCommitted = await withXpAccountCommitLock(async () => {
           if (!isXpAccountGenerationCurrent(accountToken)) return false;
           await consumeGiftXpBank(amount).catch(() => 0);
           return isXpAccountGenerationCurrent(accountToken);
@@ -552,7 +528,7 @@ export const registerXP = async (
           payload: baseFallbackPayload,
         };
       }
-      const reservation = await withAccountTransitionLock(async () => {
+      const reservation = await withXpAccountCommitLock(async () => {
         if (!isXpAccountGenerationCurrent(accountToken)) return { stale: true, reserved: false };
         const reserved = finalDelta <= 0
           || await reserveLocalProgressEvent(progressEventRequest?.eventId);
@@ -571,7 +547,7 @@ export const registerXP = async (
     let currentTotal = 0;
     let newTotal = 0;
     let scoreAvatar: string | undefined;
-    const localCommit = await withAccountTransitionLock(async () => {
+    const localCommit = await withXpAccountCommitLock(async () => {
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
     currentTotal = await storageGetNumber('user_total_xp', 0);
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
@@ -635,13 +611,18 @@ export const registerXP = async (
       const prevLvl = getLevelFromXP(currentTotal);
       const newLvl  = getLevelFromXP(newTotal);
       if (newLvl > prevLvl) {
+        // Spins are device-owned: award the local credit before optional cloud work.
+        await (options?.accountTransitionLockLease
+          ? enqueueLevelSpinLevelUps(prevLvl, newLvl, options.accountTransitionLockLease)
+          : enqueueLevelSpinLevelUps(prevLvl, newLvl));
+        if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         // Обновляем аватар и рамку по финальному уровню
         const currentAvatar = await storageGetString('user_avatar');
         if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
         const newFr = getBestFrameForLevel(newLvl);
         scoreAvatar = newAv;
-        const profileCommitted = await withAccountTransitionLock(async () => {
+        const profileCommitted = await withXpAccountCommitLock(async () => {
           if (!isXpAccountGenerationCurrent(accountToken)) return false;
           await AsyncStorage.multiSet([
             ['user_avatar', newAv],
@@ -651,8 +632,6 @@ export const registerXP = async (
           return isXpAccountGenerationCurrent(accountToken);
         });
         if (!profileCommitted) return staleResult(totalMultiplier);
-        await reconcileLevelUpRewards(currentTotal, newTotal);
-        if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
         emitAppEvent('xp_changed');    // обновляем UI в home.tsx
         // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}
@@ -668,7 +647,7 @@ export const registerXP = async (
           checkAchievements({ type: 'level_reached', level: newLvl }, accountToken).catch(() => {});
         }
       } else {
-        await withAccountTransitionLock(async () => {
+        await withXpAccountCommitLock(async () => {
           if (!isXpAccountGenerationCurrent(accountToken)) return;
           await storageSetString('user_prev_xp', String(newTotal));
         });
@@ -692,7 +671,7 @@ export const registerXP = async (
 
     // 5. ТРИГГЕРЫ: Автоматизация прогресса
 
-    // А) lesson_answer/quiz_answer обновляются в экранах-источниках,
+    // А) lesson_answer обновляется в экране-источнике,
     // чтобы избежать дублей и расхождения с фактическими условиями задач.
 
     // Б) Проверка достижений по общему количеству XP (achievements.ts)
@@ -747,9 +726,16 @@ export const registerXP = async (
     };
   } catch (error) {
     if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
-    DebugLogger.error('xp_manager.ts:registerXP', error, 'critical');
+    // A full AsyncStorage database is an environmental persistence condition,
+    // not an XP-engine fault. The fallback below keeps the in-process award
+    // flow alive, while cloud restore remains the durable recovery path.
+    DebugLogger.error(
+      'xp_manager.ts:registerXP',
+      error,
+      isStorageFullError(error) ? 'warning' : 'critical',
+    );
     const fallbackDelta = Number.isFinite(appliedDelta) ? appliedDelta : amount;
-    const fallbackCommitted = await withAccountTransitionLock(async () => {
+    const fallbackCommitted = await withXpAccountCommitLock(async () => {
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
     // Fallback: the XP counter is the source of truth. Optional surfaces
     // (leaderboards, boosts, achievements, notifications) must not be able to

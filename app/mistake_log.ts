@@ -30,7 +30,14 @@ const MAX_LEGACY_ENTRIES_WHEN_FULL = 250;
 /** Окно аналитики (30 дней в мс). */
 const ANALYTICS_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 
-export type MistakeMode = 'lesson' | 'lesson_words' | 'quiz' | 'trainer' | 'diagnostic' | 'coach' | 'exam' | 'arena';
+export type MistakeMode = 'lesson' | 'lesson_words' | 'quiz' | 'trainer' | 'diagnostic' | 'coach' | 'exam';
+
+const ACTIVE_MISTAKE_MODES: ReadonlySet<string> = new Set<MistakeMode>([
+  'lesson', 'lesson_words', 'quiz', 'trainer', 'diagnostic', 'coach', 'exam',
+]);
+
+const isActiveMistakeMode = (value: unknown): value is MistakeMode =>
+  typeof value === 'string' && ACTIVE_MISTAKE_MODES.has(value);
 
 /** Классификация ошибки (грубая, без NLP). */
 export type MistakeWhat = 'wrong_pick' | 'wrong_order' | 'forgot';
@@ -126,7 +133,9 @@ const parseEntries = (raw: string | null): MistakeEntry[] => {
   if (!raw) return [];
   try {
     const arr = JSON.parse(raw);
-    return Array.isArray(arr) ? (arr as MistakeEntry[]) : [];
+    return Array.isArray(arr)
+      ? (arr as MistakeEntry[]).filter((entry) => isActiveMistakeMode(entry?.mode))
+      : [];
   } catch {
     return [];
   }
@@ -135,6 +144,7 @@ const parseEntries = (raw: string | null): MistakeEntry[] => {
 function isValidStoredEntry(entry: MistakeEntry): boolean {
   return Boolean(
     entry.phrase?.trim() &&
+    isActiveMistakeMode(entry.mode) &&
     Number.isFinite(entry.lessonId) &&
     entry.lessonId >= 0 &&
     !(entry.lessonId === 0 && entry.mode !== 'diagnostic' && entry.mode !== 'coach') &&
@@ -243,7 +253,6 @@ export const loadMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<
 
 /**
  * Записать ошибку в лог. Fire-and-forget (не блокирует UI).
- * Арена НЕ пишется в лог (по дизайн-решению — не учебный режим).
  */
 export const logMistake = (
   phrase: string,

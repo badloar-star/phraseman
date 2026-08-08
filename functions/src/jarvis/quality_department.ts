@@ -3,6 +3,7 @@ import { tierAbsoluteThresholdMultiplier } from './app_tier';
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchQualitySourceResult } from './quality_firestore_fetcher';
 import { aggregateQualityRows, buildQualityEvidence } from './quality_source_reader';
+import { qualityAffectedUserBucket, type QualityAffectedUserBucket } from '../quality_daily_aggregate';
 
 /**
  * Департамент «Качество» — первый департамент Джарвиса (решение владельца
@@ -36,7 +37,10 @@ export interface RunQualityDepartmentResult {
 interface Spike {
   readonly category: string;
   readonly screen: string;
+  readonly build: string;
+  readonly platform: string;
   readonly count: number;
+  readonly affectedUserBucket: QualityAffectedUserBucket | 'unknown';
   /** Откуда пришёл скачок — определяет ВСЕ формулировки решения. */
   readonly sourceId: FetchQualitySourceResult['sourceId'];
 }
@@ -51,7 +55,7 @@ interface Spike {
  * приложение при сбое. Это разные сигналы и требуют разных действий.
  */
 function isHumanComplaintSource(sourceId: FetchQualitySourceResult['sourceId']): boolean {
-  return sourceId === 'user_reports';
+  return sourceId === 'user_reports' || sourceId === 'error_reports';
 }
 
 /** Категория 'unknown' — это отсутствие категории, а не её название. */
@@ -68,18 +72,39 @@ function findTopSpike(fetches: readonly FetchQualitySourceResult[], appTier: App
   const threshold = CATEGORY_SCREEN_SPIKE_THRESHOLD * tierAbsoluteThresholdMultiplier(appTier);
   let best: Spike | null = null;
   for (const fetch of fetches) {
-    const counts = new Map<string, number>();
+    if (fetch.state !== 'ready' || fetch.evidenceMode === 'degraded_raw_fallback') continue;
+    const counts = new Map<string, { count: number; affectedUserCount: number | null }>();
     for (const row of fetch.rows) {
       const category = row.category ?? 'unknown';
       const screen = row.screen ?? 'unknown';
-      const key = `${category}::${screen}`;
-      counts.set(key, (counts.get(key) ?? 0) + 1);
+      const build = row.build ?? 'unknown';
+      const platform = row.platform ?? 'unknown';
+      const key = JSON.stringify([category, screen, build, platform]);
+      const eventCount = Number.isSafeInteger(row.eventCount) && Number(row.eventCount) > 0 ? Number(row.eventCount) : 1;
+      const affectedUserCount = Number.isSafeInteger(row.affectedUserCount) && Number(row.affectedUserCount) >= 0
+        ? Number(row.affectedUserCount)
+        : null;
+      const existing = counts.get(key);
+      counts.set(key, {
+        count: (existing?.count ?? 0) + eventCount,
+        affectedUserCount: existing?.affectedUserCount === null || affectedUserCount === null
+          ? null
+          : (existing?.affectedUserCount ?? 0) + affectedUserCount,
+      });
     }
-    for (const [key, count] of counts) {
-      if (count < threshold) continue;
-      if (best && count <= best.count) continue;
-      const [category, screen] = key.split('::');
-      best = { category, screen, count, sourceId: fetch.sourceId };
+    for (const [key, metric] of counts) {
+      if (metric.count < threshold) continue;
+      if (best && metric.count <= best.count) continue;
+      const [category, screen, build, platform] = JSON.parse(key) as [string, string, string, string];
+      best = {
+        category,
+        screen,
+        build,
+        platform,
+        count: metric.count,
+        affectedUserBucket: metric.affectedUserCount === null ? 'unknown' : qualityAffectedUserBucket(metric.affectedUserCount),
+        sourceId: fetch.sourceId,
+      };
     }
   }
   return best;
@@ -90,20 +115,41 @@ function screenSuffix(screen: string): string {
   return screen === 'unknown' ? '' : ` на экране "${screen}"`;
 }
 
+function releaseSuffix(spike: Spike): string {
+  const parts = [
+    spike.build === 'unknown' ? null : `сборка ${spike.build}`,
+    spike.platform === 'unknown' ? null : spike.platform,
+  ].filter((part): part is string => part !== null);
+  return parts.length > 0 ? ` (${parts.join(', ')})` : '';
+}
+
+function affectedUsersSuffix(spike: Spike): string {
+  return spike.affectedUserBucket === 'unknown'
+    ? '; число уникально затронутых пользователей неизвестно'
+    : `; уникально затронутых пользователей: ${spike.affectedUserBucket} (privacy bucket)`;
+}
+
 function buildFindingText(spike: Spike | null, fetches: readonly FetchQualitySourceResult[]): string {
   if (spike) {
     const where = screenSuffix(spike.screen);
+    const release = releaseSuffix(spike);
+    const affectedUsers = affectedUsersSuffix(spike);
     // зачем разные слова: «жалоба» подразумевает живого недовольного человека,
     // «сбой» — техническую запись от самого приложения. Смешивать нельзя:
     // владелец принимает по ним разные решения.
     if (isHumanComplaintSource(spike.sourceId)) {
       const what = hasMeaningfulCategory(spike.category) ? ` категории "${spike.category}"` : '';
-      return `За последние сутки поступило ${spike.count} жалоб${what}${where} — это выше обычного фона.`;
+      return `За текущий UTC-день поступило ${spike.count} событий-жалоб${what}${where}${release}${affectedUsers} — это выше обычного фона.`;
     }
     const what = hasMeaningfulCategory(spike.category) ? ` типа "${spike.category}"` : '';
-    return `За последние сутки приложение записало ${spike.count} технических ошибок${what}${where} — это выше обычного фона. Записал сам код при сбое, никто из людей об этом не сообщал.`;
+    return `За текущий UTC-день приложение записало ${spike.count} событий технических ошибок${what}${where}${release}${affectedUsers} — это выше обычного фона. Записал сам код при сбое, никто из людей об этом не сообщал.`;
   }
-  const total = fetches.reduce((sum, fetch) => sum + aggregateQualityRows(fetch.rows).totalCount, 0);
+  const exactFetches = fetches.filter((fetch) =>
+    (fetch.state === 'ready' || fetch.state === 'empty') && fetch.evidenceMode !== 'degraded_raw_fallback');
+  if (exactFetches.length === 0 && fetches.some((fetch) => fetch.evidenceMode === 'degraded_raw_fallback')) {
+    return 'Доступны только неполные деградированные данные: точное число событий и уникально затронутых пользователей пока нельзя утверждать.';
+  }
+  const total = exactFetches.reduce((sum, fetch) => sum + aggregateQualityRows(fetch.rows).totalCount, 0);
   return total > 0
     ? `За последние сутки поступило ${total} записей о качестве, без явного скачка по одной категории или экрану.`
     : 'За последние сутки новых записей о качестве не поступало.';

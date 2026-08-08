@@ -18,6 +18,7 @@ type DocData = Record<string, unknown>;
 
 const registeredDocumentCreates: Array<{ options: Record<string, unknown>; handler: (event: unknown) => Promise<void> }> = [];
 const store = new Map<string, DocData>();
+const secretValues = new Map<string, string>();
 
 const mockOpenAiChat = jest.fn<Promise<{ text: string; promptTokens: number; completionTokens: number }>, unknown[]>();
 const mockSendTelegramAlert = jest.fn<Promise<boolean>, unknown[]>(async () => true);
@@ -47,10 +48,14 @@ jest.mock('firebase-functions', () => ({
 }));
 
 jest.mock('firebase-functions/params', () => ({
-  defineSecret: (name: string) => ({ name, value: () => `${name}-test-secret` }),
+  defineSecret: (name: string) => ({ name, value: () => secretValues.get(name) ?? '' }),
 }));
 
-jest.mock('./callable_options', () => ({ ENFORCE_APP_CHECK: false }));
+jest.mock('./callable_options', () => ({
+  ENFORCE_APP_CHECK: false,
+  ADMIN_SENSITIVE_WRITE_OPTIONS: { region: 'us-central1', enforceAppCheck: false },
+  requireAdminAppCheck: jest.fn(),
+}));
 
 jest.mock('./explain/explain_provider', () => ({
   openAiChat: (...args: unknown[]) => mockOpenAiChat(...args),
@@ -103,6 +108,9 @@ function fakeDb() {
           const prev = opts?.merge ? (store.get(ref.path) ?? {}) : {};
           store.set(ref.path, { ...prev, ...data });
         },
+        update: (ref: { path: string }, data: DocData) => {
+          store.set(ref.path, { ...(store.get(ref.path) ?? {}), ...data });
+        },
         create: (ref: { path: string }, data: DocData) => {
           store.set(ref.path, data);
         },
@@ -130,18 +138,25 @@ function makeEvent(id: string, data: DocData) {
 
 describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts', () => {
   let supportInboxOnNewMail: (event: unknown) => Promise<void>;
+  let deliverSupportOwnerAlert: (input: {
+    db: ReturnType<typeof fakeDb>; messageDocId: string; botToken: string; text: string; nowMs: number;
+  }) => Promise<'delivered' | 'skipped'>;
 
   beforeAll(() => {
     // require, not import: modules must load AFTER jest.mock() calls above run.
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const mod = require('./support_inbox');
     supportInboxOnNewMail = mod.supportInboxOnNewMail;
+    deliverSupportOwnerAlert = mod.deliverSupportOwnerAlert;
   });
 
   beforeEach(() => {
     store.clear();
+    secretValues.set('OPENAI_API_KEY', 'openai-test-secret');
+    secretValues.set('GMAIL_SUPPORT_APP_PASSWORD', 'gmail-test-secret');
     mockOpenAiChat.mockReset();
-    mockSendTelegramAlert.mockClear();
+    mockSendTelegramAlert.mockReset();
+    mockSendTelegramAlert.mockResolvedValue(true);
     mockResolveJobConfig.mockClear();
     mockAssertJobEnabled.mockReset();
   });
@@ -184,7 +199,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(mockSendTelegramAlert).not.toHaveBeenCalled();
   });
 
-  test('a real question generates a draft and notifies Telegram with subject+body+draft', async () => {
+  test('a real question generates a draft and notifies Telegram without leaking correspondence PII', async () => {
     mockOpenAiChat
       .mockResolvedValueOnce({
         text: JSON.stringify({ isSpam: false, confidence: 0.95, reason: 'вопрос по оплате' }),
@@ -200,9 +215,11 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(store.get('support_inbox/m3')?.draftReply).toBe('Здравствуйте! Проверили — доступ уже открыт.');
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
     const [, text] = mockSendTelegramAlert.mock.calls[0];
-    expect(text).toContain('Не работает подписка');
-    expect(text).toContain('Оплатил Plus');
-    expect(text).toContain('Здравствуйте! Проверили');
+    expect(text).toContain('Gmail Support Inbox');
+    expect(text).not.toContain('client@example.com');
+    expect(text).not.toContain('Не работает подписка');
+    expect(text).not.toContain('Оплатил Plus');
+    expect(text).not.toContain('Здравствуйте! Проверили');
   });
 
   test('exhausted monthly budget still notifies — real mail must not be lost — but skips the LLM entirely', async () => {
@@ -216,7 +233,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(mockOpenAiChat).not.toHaveBeenCalled();
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
     const [, text] = mockSendTelegramAlert.mock.calls[0];
-    expect(text).toMatch(/черновик не подготовлен/i);
+    expect(text).toContain('Gmail Support Inbox');
     jest.spyOn(Date, 'now').mockRestore();
   });
 
@@ -227,7 +244,76 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     }));
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
     const [, text] = mockSendTelegramAlert.mock.calls[0];
-    expect(text).toContain('Помогите');
+    expect(text).toContain('Gmail Support Inbox');
+    expect(text).not.toContain('Помогите');
+  });
+
+  test('a missing OpenAI key still sends a plain owner notification and records delivery', async () => {
+    secretValues.set('OPENAI_API_KEY', '');
+    await supportInboxOnNewMail(makeEvent('m-no-ai', {
+      fromEmail: 'client@example.com', subject: 'Need help', bodyText: 'Cannot sign in', status: 'new',
+    }));
+
+    expect(mockOpenAiChat).not.toHaveBeenCalled();
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
+    expect(store.get('support_inbox/m-no-ai')?.ownerNotification).toMatchObject({
+      state: 'delivered',
+      attempts: 1,
+    });
+  });
+
+  test('persists a failed Telegram attempt and rejects so delivery failure is never silent', async () => {
+    secretValues.set('OPENAI_API_KEY', '');
+    mockSendTelegramAlert.mockResolvedValueOnce(false);
+
+    await expect(supportInboxOnNewMail(makeEvent('m-telegram-fail', {
+      fromEmail: 'client@example.com', subject: 'Need help', bodyText: 'Cannot sign in', status: 'new',
+    }))).rejects.toThrow('support_owner_notification_failed');
+
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
+    expect(store.get('support_inbox/m-telegram-fail')?.ownerNotification).toMatchObject({
+      state: 'failed',
+      attempts: 1,
+      lastErrorCode: 'telegram_delivery_failed',
+    });
+  });
+
+  test('backs off a failed alert and retries only the owner notification, never customer email', async () => {
+    const nowMs = 1_800_000_000_000;
+    store.set('support_inbox/m-retry', {
+      status: 'new', fromEmail: 'private@example.com', subject: 'Private', bodyText: 'Private body',
+      ownerNotification: { state: 'pending', attempts: 0, updatedAt: new Date(nowMs).toISOString() },
+    });
+    mockSendTelegramAlert.mockResolvedValueOnce(false).mockResolvedValueOnce(true);
+
+    await expect(deliverSupportOwnerAlert({
+      db: fakeDb(), messageDocId: 'm-retry', botToken: 'token', text: 'generic inbox notice', nowMs,
+    })).rejects.toThrow('support_owner_notification_failed');
+    await expect(deliverSupportOwnerAlert({
+      db: fakeDb(), messageDocId: 'm-retry', botToken: 'token', text: 'generic inbox notice', nowMs: nowMs + 1,
+    })).resolves.toBe('skipped');
+    await expect(deliverSupportOwnerAlert({
+      db: fakeDb(), messageDocId: 'm-retry', botToken: 'token', text: 'generic inbox notice', nowMs: nowMs + 5 * 60 * 1000,
+    })).resolves.toBe('delivered');
+
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(2);
+    expect(store.get('support_inbox/m-retry')?.ownerNotification).toMatchObject({ state: 'delivered', attempts: 2 });
+  });
+
+  test('stops automatic owner-alert retries after the bounded attempt cap', async () => {
+    store.set('support_inbox/m-terminal', {
+      status: 'new',
+      ownerNotification: { state: 'failed', attempts: 7, updatedAt: new Date().toISOString(), nextAttemptAtMs: 0 },
+    });
+    mockSendTelegramAlert.mockResolvedValueOnce(false);
+    await expect(deliverSupportOwnerAlert({
+      db: fakeDb(), messageDocId: 'm-terminal', botToken: 'token', text: 'generic inbox notice', nowMs: Date.now(),
+    })).rejects.toThrow('support_owner_notification_failed');
+    expect(store.get('support_inbox/m-terminal')?.ownerNotification).toMatchObject({ state: 'exhausted', attempts: 8 });
+    await expect(deliverSupportOwnerAlert({
+      db: fakeDb(), messageDocId: 'm-terminal', botToken: 'token', text: 'generic inbox notice', nowMs: Date.now() + 24 * 60 * 60 * 1000,
+    })).resolves.toBe('skipped');
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
   });
 
   test('a borderline spam verdict (below the confidence threshold) is kept, not archived', async () => {

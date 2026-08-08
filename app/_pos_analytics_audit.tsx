@@ -154,7 +154,7 @@ export default function PosAnalyticsAuditScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40, gap: 14 }} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40, gap: 14 }} showsVerticalScrollIndicator={false}>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
             <StatCard label="tokens" value={audit.totalTokens} accent={t.textPrimary} />
             <StatCard label="resolved" value={`${audit.resolvedPct}%`} accent={readyColor} />

@@ -77,14 +77,6 @@ export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskGlow: 'rgba(244,216,137,0.10)',
     taskBorder: 'rgba(244,216,137,0.32)',
   },
-  coral: {
-    accent: '#FF9D8D',
-    accentSoft: 'rgba(255,157,141,0.18)',
-    chipBg: 'rgba(255,157,141,0.15)',
-    chipText: '#FFE4DD',
-    taskGlow: 'rgba(255,157,141,0.10)',
-    taskBorder: 'rgba(255,157,141,0.30)',
-  },
   minimalDark: {
     accent: '#6EA8FF',
     accentSoft: 'rgba(110,168,255,0.17)',

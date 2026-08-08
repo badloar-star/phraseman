@@ -76,8 +76,6 @@ type Props = {
   hubAuthorStableId?: string | null;
   onTrainingPress: () => void;
   onAudioPress: () => void;
-  /** Третий режим отработки — арена-квиз (макет C4). */
-  onArenaPress: () => void;
   hasFlashcardsPlus?: boolean;
   /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
@@ -93,7 +91,7 @@ const ENTRANCE_DURATION = 400;
 const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
 const FLASHCARD_HUB_REPEATING_MOTION_ENABLED = false;
 
-type FlashcardsModeAction = 'saved' | 'custom' | 'training' | 'audio' | 'arena' | 'collection';
+type FlashcardsModeAction = 'saved' | 'custom' | 'training' | 'audio' | 'collection';
 
 /**
  * The action art is deliberately theme-specific instead of tinting one shared icon.
@@ -109,7 +107,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/midnight/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/midnight/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/midnight/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/midnight/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/midnight/collection.webp'),
   },
   ember: {
@@ -117,7 +114,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/ember/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/ember/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/ember/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/ember/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
   },
   aurora: {
@@ -125,7 +121,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/aurora/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/aurora/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/aurora/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/aurora/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/aurora/collection.webp'),
   },
   volt: {
@@ -133,7 +128,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/volt/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/volt/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/volt/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/volt/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/volt/collection.webp'),
   },
   minimalDark: {
@@ -141,7 +135,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
   },
   candyBlue: {
@@ -149,7 +142,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
   },
   indigo: {
@@ -157,7 +149,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
   },
   dark: {
@@ -165,23 +156,13 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/dark/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/dark/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/dark/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/dark/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/dark/collection.webp'),
-  },
-  coral: {
-    saved: require('../../assets/images/flashcards/mode_icons/coral/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/coral/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/coral/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/coral/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/coral/arena.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/coral/collection.webp'),
   },
   gold: {
     saved: require('../../assets/images/flashcards/mode_icons/gold/saved.webp'),
     custom: require('../../assets/images/flashcards/mode_icons/gold/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/gold/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/gold/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/gold/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/gold/collection.webp'),
   },
   business: {
@@ -189,7 +170,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/business/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/business/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/business/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/business/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/business/collection.webp'),
   },
   businessLight: {
@@ -197,7 +177,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/businessLight/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
   },
   sagePorcelain: {
@@ -205,7 +184,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     custom: require('../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp'),
     training: require('../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp'),
     audio: require('../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/sagePorcelain/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp'),
   },
 };
@@ -524,7 +502,6 @@ export default function FlashcardsCategoryHub({
   hubAuthorStableId = null,
   onTrainingPress,
   onAudioPress,
-  onArenaPress,
   hasFlashcardsPlus = false,
   themeMode,
 }: Props) {
@@ -1153,51 +1130,6 @@ export default function FlashcardsCategoryHub({
     );
   };
 
-  /**
-   * зачем: третий режим отработки из макета (C4 «Арена»). Раньше в разделе было
-   * два режима, и оба — самооценка: в свайпе можно честно жать «знаю» и не
-   * выучить ничего, в аудио проверки нет вовсе. Арена даёт объективный
-   * результат — 4 варианта, таймер, счёт и список слов, которые не даются.
-   */
-  const renderArenaTile = () => {
-    const i = tileAnimIndex++;
-    const label = triLang(lang, {
-      ru: 'Арена',
-      uk: 'Арена',
-      es: 'Arena',
-      'pt-BR': 'Arena',
-      vi: 'Đấu trường',
-      id: 'Arena',
-      tr: 'Arena',
-      pl: 'Arena',
-    });
-
-    return (
-      <Reanimated.View
-        key="arena"
-        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
-        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
-      >
-        <HubTileShell
-          testID="flashcards-hub-tile-arena"
-          a11y={label}
-          width={tileW}
-          reduceMotion={reduceMotion}
-          onPress={onArenaPress}
-        >
-          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].arena} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
-            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </View>
-        </HubTileShell>
-        {/* зачем: text-integrity — без усечения, как у соседних плиток хаба. */}
-        <Text style={labelStyle(true)}>
-          {label}
-        </Text>
-      </Reanimated.View>
-    );
-  };
-
   const renderCollectionTile = () => {
     const i = tileAnimIndex++;
     const label = triLang(lang, {
@@ -1291,7 +1223,6 @@ export default function FlashcardsCategoryHub({
             {renderHubCategoryTiles()}
             {renderTrainingTile()}
             {renderAudioTile()}
-            {renderArenaTile()}
             {isCollectiblesEnabled() && renderCollectionTile()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>

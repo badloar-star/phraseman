@@ -16,6 +16,7 @@ import {
   completeLevelExamAttempt,
   createLevelExamAttempt,
   markLevelExamFinishing,
+  pauseLevelExamAttempt,
   remainingLevelExamMs,
   restoreLevelExamAttempt,
   type LevelExamAttemptSnapshot,
@@ -25,6 +26,7 @@ import {
 import {
   clearActiveLevelExamAttempt,
   loadActiveLevelExamAttempt,
+  levelExamAttemptRecoveryKey,
   persistActiveLevelExamAttempt,
   recordCompletedLevelExamAttemptOnce,
 } from '../../app/level_exam_attempts';
@@ -39,6 +41,7 @@ import { addShards, awardOneTime } from '../../app/shards_system';
 import { registerXP } from '../../app/xp_manager';
 import { safeRouterBack } from '../../app/navigation_back';
 import { useEnergy } from '../EnergyContext';
+import { addEnergy } from '../../app/energy_system';
 import NoEnergyModal from '../NoEnergyModal';
 import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
@@ -175,13 +178,13 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         }
       }
       if (scored.pct >= 90) void awardOneTime('exam_excellent');
-      const progress = await saveExamProgress(level, scored.pct, 'en');
+      const progress = await saveExamProgress(level, scored.pct, 'en', finishing.finishToken);
       const gemMap: Record<number, 'ruby' | 'emerald' | 'diamond'> = { 2: 'ruby', 3: 'emerald', 4: 'diamond' };
       const gem = gemMap[progress.newPassCount];
       if (gem) void checkAchievements({ type: 'gem', level, gem, studyTarget: 'en' });
       void checkAchievements({ type: 'exam', pct: scored.pct, studyTarget: 'en' });
       const storedName = ((await AsyncStorage.getItem('user_name')) || '').trim();
-      void registerXP(scored.baseXp, 'exam_complete', storedName, lang, undefined, {
+      const progressEvent = registerXP(scored.baseXp, 'exam_complete', storedName, lang, undefined, {
         eventId: finishing.finishToken,
         payload: {
           level,
@@ -196,7 +199,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           finishReason: reason,
         },
       });
-      setRewardState(scored.passed ? (previousPassed === '1' ? 'already_claimed' : 'pending') : 'none');
+      const firstPass = previousPassed !== '1';
+      setRewardState(scored.passed ? (firstPass ? 'pending' : 'already_claimed') : 'none');
+      if (scored.passed && firstPass) {
+        void progressEvent.then(() => setRewardState('earned')).catch(() => setRewardState('pending'));
+      }
       void trackFeatureSuccess('level_exam', 'complete', {
         level,
         score: scored.score,
@@ -231,6 +238,12 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       if (!owner) {
         return;
       }
+      const recoveryKey = levelExamAttemptRecoveryKey(owner, level, 'en');
+      const recoveryRefundKey = `${recoveryKey}::refunded`;
+      if (await AsyncStorage.getItem(recoveryKey) && await AsyncStorage.getItem(recoveryRefundKey) !== '1') {
+        await addEnergy(ENERGY_COST).catch(() => {});
+        await AsyncStorage.setItem(recoveryRefundKey, '1').catch(() => {});
+      }
       const stored = await loadActiveLevelExamAttempt(owner, level, 'en');
       if (cancelled || !stored) {
         if (!cancelled) setPhase('intro');
@@ -248,6 +261,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         await clearActiveLevelExamAttempt(owner, level, 'en');
         if (!cancelled) setPhase('intro');
         return;
+      }
+      if (decision.kind === 'resume') {
+        await persistActiveLevelExamAttempt(decision.attempt).catch(() => {});
       }
       const restoredBlueprint = buildLevelExamBlueprint({ level, studyTarget: 'en', sourceLocale: lang, seed: decision.attempt.seed });
       blueprintRef.current = restoredBlueprint;
@@ -285,6 +301,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     if (starting) return;
     if (!ownerStableUid) return;
     setStarting(true);
+    let energySpent = false;
+    let attemptPersisted = false;
     try {
       const startedAtMs = Date.now();
       const startToken = `${startedAtMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
@@ -309,6 +327,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         setNoEnergy(true);
         return;
       }
+      energySpent = !isUnlimited;
       if (nextBlueprint.scoredUnitIds.length !== 30) throw new Error('level_exam_v2_score_units_invalid');
       const nextAttempt = createLevelExamAttempt({
         energySpent: true,
@@ -325,6 +344,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         durationMs: nextBlueprint.durationMs,
       });
       await persistActiveLevelExamAttempt(nextAttempt);
+      attemptPersisted = true;
       finishingRef.current = false;
       blueprintRef.current = nextBlueprint;
       attemptRef.current = nextAttempt;
@@ -336,6 +356,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       setPhase('countdown');
       void trackFeatureStart('level_exam', 'start', { level, total: 30, formatCount: 5 }, 'level_exam_v2');
     } catch (error) {
+      if (energySpent && !attemptPersisted) await addEnergy(ENERGY_COST).catch(() => {});
       void trackFeatureError('level_exam', 'start', error, { level }, 'level_exam_v2');
     } finally {
       setStarting(false);
@@ -378,6 +399,18 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     setRemainingMs(started.deadlineAtMs - started.startedAtMs);
     setPhase('quiz');
   }, [storeAttempt]);
+
+  const pauseAndExit = useCallback(() => {
+    const current = attemptRef.current;
+    if (current?.status === 'active') {
+      const paused = pauseLevelExamAttempt(current, Date.now());
+      attemptRef.current = paused;
+      setAttempt(paused);
+      void persistActiveLevelExamAttempt(paused);
+    }
+    setExitConfirm(false);
+    safeRouterBack(router, '/lessons_list' as never);
+  }, [router]);
 
   if (accessState === 'blocked' || identityUnavailable || contentUnavailable) {
     return (
@@ -439,8 +472,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         result={result}
         rewardState={rewardState}
         energyCost={ENERGY_COST}
-        onPrimary={() => result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}
-        onReview={() => router.push('/review' as never)}
+        onPrimary={() => result.passed && rewardState === 'earned'
+          ? router.replace('/level_reward_spin' as never)
+          : result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}
       />
     );
   }
@@ -501,15 +535,15 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         visible={exitConfirm}
         title={exitLabel}
         message={triLang(lang, {
-          ru: 'Ответы сохранятся, но таймер продолжит идти.', uk: 'Відповіді збережуться, але таймер продовжить іти.',
-          es: 'Tus respuestas se guardarán, pero el tiempo seguirá corriendo.', 'pt-BR': 'Suas respostas serão salvas, mas o tempo continuará correndo.',
-          vi: 'Câu trả lời sẽ được lưu nhưng thời gian vẫn tiếp tục.', id: 'Jawaban tersimpan, tetapi waktu tetap berjalan.',
-          tr: 'Cevapların kaydedilir ancak süre işlemeye devam eder.', pl: 'Odpowiedzi zostaną zapisane, ale czas będzie nadal płynął.',
+          ru: 'Ответы сохранятся, экзамен будет приостановлен.', uk: 'Відповіді збережуться, іспит буде призупинено.',
+          es: 'Tus respuestas se guardarán y el examen quedará pausado.', 'pt-BR': 'Suas respostas serão salvas e o exame será pausado.',
+          vi: 'Câu trả lời sẽ được lưu và bài thi sẽ tạm dừng.', id: 'Jawaban tersimpan dan ujian akan dijeda.',
+          tr: 'Cevapların kaydedilir ve sınav duraklatılır.', pl: 'Odpowiedzi zostaną zapisane, a egzamin wstrzymany.',
         })}
         cancelLabel={triLang(lang, { ru: 'Остаться', uk: 'Залишитися', es: 'Quedarme', 'pt-BR': 'Ficar', vi: 'Ở lại', id: 'Tetap', tr: 'Kal', pl: 'Zostań' })}
         confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}
         onCancel={() => setExitConfirm(false)}
-        onConfirm={() => safeRouterBack(router, '/lessons_list' as never)}
+        onConfirm={pauseAndExit}
         confirmVariant="accent"
       />
     </>

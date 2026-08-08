@@ -3,6 +3,7 @@ import {
   beginLevelExamQuiz,
   completeLevelExamAttempt,
   createLevelExamAttempt,
+  pauseLevelExamAttempt,
   markLevelExamFinishing,
   remainingLevelExamMs,
   restoreLevelExamAttempt,
@@ -114,6 +115,23 @@ describe('level exam attempt state', () => {
       .toEqual({ kind: 'quarantine', reason: 'blueprint_mismatch' });
     expect(restoreLevelExamAttempt({ ...attempt, blueprintVersion: 2 } as never, context))
       .toEqual({ kind: 'quarantine', reason: 'blueprint_mismatch' });
+  });
+
+  test('pauses an exam and resumes with the same remaining time', () => {
+    const attempt = createLevelExamAttempt({
+      energySpent: true, ownerStableUid: 'owner-a', startToken: 'start-pause', level: 'A1',
+      studyTarget: 'en', sourceLocale: 'ru', blueprintVersion: 3, seed: 'seed-pause',
+      orderedTaskIds: ['task-a'], scoredUnitIds: ['score-a'], startedAtMs: 1_000, durationMs: 780_000,
+    });
+    const paused = pauseLevelExamAttempt(attempt, 61_000);
+    expect(paused.status).toBe('paused');
+    const restored = restoreLevelExamAttempt(paused, {
+      ownerStableUid: 'owner-a', level: 'A1', studyTarget: 'en', sourceLocale: 'ru', blueprintVersion: 3, nowMs: 9_000_000,
+    });
+    expect(restored.kind).toBe('resume');
+    if (restored.kind === 'resume') {
+      expect(remainingLevelExamMs(restored.attempt, 9_000_000)).toBe(720_000);
+    }
   });
 
   test('manual submit and timeout share one idempotent finish token', () => {

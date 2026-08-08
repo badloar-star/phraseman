@@ -83,10 +83,16 @@ interface Props {
   presentationMode?: 'open' | 'apply';
   /** Override cleanup for gifts that are stored in a split source, such as one part of a premium pair. */
   onGiftClaimed?: (gift: GiftDef, accountToken: AccountGenerationToken) => Promise<void>;
+  /** Restores a split entitlement if its reward effect cannot be confirmed. */
+  onGiftApplyFailed?: (gift: GiftDef, accountToken: AccountGenerationToken) => Promise<void>;
+  /** Refreshes inventory only after the background effect and claim journal settle. */
+  onGiftApplySettled?: () => void | Promise<void>;
   /** Whether dismissing the unopened claim modal should save the gift back to inventory. */
   saveOnDismiss?: boolean;
   /** Force premium application semantics for gifts that came from a premium pair. */
   applyAsPremium?: boolean;
+  /** Stable entitlement occurrence used to make reward application idempotent. */
+  occurrenceId?: string;
   studyTarget?: RuntimeStudyTarget;
 }
 
@@ -107,6 +113,30 @@ const cosmeticLabelForLang = (result: ApplyGiftResult | null, lang: Lang): strin
   if (lang === 'uk') return unlocked.labelUk;
   if (lang === 'es') return unlocked.labelEs;
   return unlocked.labelRu;
+};
+
+const emitGiftApplyOutcome = (success: boolean): void => {
+  emitAppEvent('action_toast', success ? {
+    type: 'success',
+    messageRu: 'Подарок применён.',
+    messageUk: 'Подарунок застосовано.',
+    messageEs: 'Regalo aplicado.',
+    messagePtBr: 'Presente aplicado.',
+    messageVi: 'Đã áp dụng quà.',
+    messageId: 'Hadiah diterapkan.',
+    messageTr: 'Hediye uygulandı.',
+    messagePl: 'Prezent zastosowany.',
+  } : {
+    type: 'error',
+    messageRu: 'Подарок не применился и остался в инвентаре.',
+    messageUk: 'Подарунок не застосувався й залишився в інвентарі.',
+    messageEs: 'El regalo no se aplicó y sigue en el inventario.',
+    messagePtBr: 'O presente não foi aplicado e continua no inventário.',
+    messageVi: 'Quà chưa được áp dụng và vẫn còn trong kho.',
+    messageId: 'Hadiah belum diterapkan dan tetap ada di inventaris.',
+    messageTr: 'Hediye uygulanmadı ve envanterde kaldı.',
+    messagePl: 'Prezent nie został użyty i pozostał w ekwipunku.',
+  });
 };
 
 function CosmeticGiftPreview({ result, level }: { result: ApplyGiftResult | null; level: number }) {
@@ -145,8 +175,11 @@ function LevelGiftModal({
   deliveryMode = 'claim',
   presentationMode = 'open',
   onGiftClaimed,
+  onGiftApplyFailed,
+  onGiftApplySettled,
   saveOnDismiss = true,
   applyAsPremium,
+  occurrenceId,
   studyTarget,
 }: Props) {
   const router = useRouter();
@@ -297,29 +330,35 @@ function LevelGiftModal({
     // Reveal is driven by the chest animation; storage/application finishes in the background.
     const g = gift;
     const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
+    const giftOccurrenceId = occurrenceId ?? `level:${level}:${applyAsPremium ? 'premium' : 'f2p'}`;
     const applyP: Promise<ApplyGiftResult> = g.choices?.length || storesOnly
       ? Promise.resolve({ success: true })
       : (async () => {
-          const claimP = (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken))
-            .then(() => saveClaimedGiftRarity(level, g.rarity, accountToken))
-            .catch(() => {});
-          await claimP;
-          if (!isCurrentAccountGeneration(accountToken)) return { success: false };
-          const result = await applyGift(
-            g,
-            userName,
-            energy,
-            maxEnergy,
-            setEnergyFn,
-            { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken },
-          );
-          if (!isCurrentAccountGeneration(accountToken)) return { success: false };
-          if (result.success) {
-            // Already claimed optimistically before applying the reward effect.
-          } else if (!onGiftClaimed) {
-            await saveUnclaimedGift(level, g, accountToken);
+          try {
+            const result = await applyGift(
+              g,
+              userName,
+              energy,
+              maxEnergy,
+              setEnergyFn,
+              { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken, occurrenceId: giftOccurrenceId, localOnly: true },
+            );
+            if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+            if (result.success) {
+              await (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken));
+              await saveClaimedGiftRarity(level, g.rarity, accountToken);
+            } else if (result.alreadyClaimed) {
+              await (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken));
+            } else if (onGiftApplyFailed) {
+              await onGiftApplyFailed(g, accountToken);
+            }
+            if (presentationMode === 'apply') emitGiftApplyOutcome(result.success);
+            return result;
+          } finally {
+            if (presentationMode === 'apply') {
+              try { await onGiftApplySettled?.(); } catch {}
+            }
           }
-          return result;
         })();
     const applyResultP: Promise<ApplyGiftResult> = applyP.catch(() => ({ success: false }));
     const updateAppliedMeta = () => {
@@ -409,14 +448,22 @@ function LevelGiftModal({
     const accountToken = openingAccountTokenRef.current;
     if (!accountToken || !isCurrentOpening(accountToken)) return;
     setChoiceBusy(true);
-    setGift(chosen);
+    const chosenWithReservation = {
+      ...chosen,
+      ...(gift?.levelGiftReservation ? { levelGiftReservation: gift.levelGiftReservation } : {}),
+      ...(chosen.spinRewardReceipt
+        ? { spinRewardReceipt: chosen.spinRewardReceipt }
+        : gift?.spinRewardReceipt ? { spinRewardReceipt: gift.spinRewardReceipt } : {}),
+    };
+    const giftOccurrenceId = occurrenceId ?? `level:${level}:${applyAsPremium ? 'premium' : 'f2p'}`;
+    setGift(chosenWithReservation);
     void hapticSuccess();
     if (presentationMode === 'apply' && phase === 'box') {
       setChoiceBusy(false);
       return;
     }
     if (storesOnly) {
-      void saveUnclaimedGift(level, chosen, accountToken).catch(() => {});
+      void saveUnclaimedGift(level, chosenWithReservation, accountToken).catch(() => {});
       if (!isCurrentOpening(accountToken)) return;
       onClose(false);
       return;
@@ -435,19 +482,14 @@ function LevelGiftModal({
     }
     void (async () => {
       try {
-        const claimP = (onGiftClaimed ? onGiftClaimed(chosen, accountToken) : markGiftClaimed(level, accountToken))
-          .then(() => saveClaimedGiftRarity(level, chosen.rarity, accountToken))
-          .catch(() => {});
-        await claimP;
-        if (!isCurrentAccountGeneration(accountToken)) return;
         const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
         const result = await applyGift(
-          chosen,
+          chosenWithReservation,
           userName,
           energy,
           maxEnergy,
           setEnergyFn,
-          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken },
+          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken, occurrenceId: giftOccurrenceId, localOnly: true },
         );
         if (!isCurrentAccountGeneration(accountToken)) return;
         if (isCurrentOpening(accountToken)) {
@@ -456,13 +498,20 @@ function LevelGiftModal({
           setAppliedResult(result);
         }
         if (result.success) {
-          // Already claimed optimistically before applying the reward effect.
-        } else if (!onGiftClaimed) {
-          await saveUnclaimedGift(level, chosen, accountToken);
+          await (onGiftClaimed ? onGiftClaimed(chosenWithReservation, accountToken) : markGiftClaimed(level, accountToken));
+          await saveClaimedGiftRarity(level, chosenWithReservation.rarity, accountToken);
+        } else if (result.alreadyClaimed) {
+          await (onGiftClaimed ? onGiftClaimed(chosenWithReservation, accountToken) : markGiftClaimed(level, accountToken));
+        } else if (onGiftApplyFailed) {
+          await onGiftApplyFailed(chosenWithReservation, accountToken);
         }
+        if (presentationMode === 'apply') emitGiftApplyOutcome(result.success);
       } catch {
         // The user already saw the optimistic choice; keep retry paths/background logs quiet.
       } finally {
+        if (presentationMode === 'apply') {
+          try { await onGiftApplySettled?.(); } catch {}
+        }
         if (isCurrentOpening(accountToken)) {
           setChoiceBusy(false);
         }
@@ -926,23 +975,8 @@ function LevelGiftModal({
                 onPress={() => {
                   void hapticSuccess();
                   if (previewingStoredGift) {
-                    /**
-                     * зачем 2026-08-03 (владелец: «нажимаем применить — модалка
-                     * обновляется и показывает то же состояние, а должна по
-                     * моей логике закрыться»): здесь стоял голый handleTap(true)
-                     * — он применял подарок и переводил модалку в фазу reveal,
-                     * оставляя её открытой с ТОЙ ЖЕ кнопкой. Игрок видел почти
-                     * не изменившийся экран и был вынужден жать второй раз,
-                     * просто чтобы закрыть.
-                     *
-                     * Применение запускается внутри handleTap и продолжается
-                     * ФОНОМ (applyP не ждёт закрытия), поэтому закрыть модалку
-                     * сразу безопасно: эффект дойдёт до хранилища, а экран
-                     * подарков перезагрузит списки в closeGiftModal.
-                     *
-                     * claimed=true обязателен: он и убирает плитку из
-                     * инвентаря, и запускает перезагрузку вкладки «Активные».
-                     */
+                    // Apply starts first and continues in the background. claimed=true closes
+                    // immediately, hides the tile, and refreshes the Active gifts list.
                     handleTap(true);
                     closeForCurrentOpening(true);
                     return;

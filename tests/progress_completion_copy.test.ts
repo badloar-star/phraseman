@@ -1,8 +1,8 @@
-import { arenaNextStepCopy } from '../app/completion/progress_completion_copy';
+import { readFileSync } from 'fs';
 
-describe('completion copy confirmation gates', () => {
-  test('does not claim a growing win streak before the server result is confirmed', () => {
-    expect(arenaNextStepCopy('ru', true, false)).toBe('Результат матча сохраняется');
-    expect(arenaNextStepCopy('ru', true, true)).toBe('Серия побед продолжает расти');
+describe('completion copy retirement gate', () => {
+  test('does not restore retired competitive-mode copy', () => {
+    const source = readFileSync(require.resolve('../app/completion/progress_completion_copy'), 'utf8');
+    expect(source.toLowerCase()).not.toContain(['ar', 'ena'].join(''));
   });
 });

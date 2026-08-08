@@ -30,6 +30,7 @@ describe('personal plan task visuals', () => {
       'choice',
       'listening',
       'sentence_build',
+      'route_phrase',
     ]);
     expect(new Set(visuals.map((visual) => visual.icon)).size).toBe(day1Tasks.length);
     expect(new Set(visuals.map((visual) => visual.assetKey)).size).toBe(day1Tasks.length);
@@ -73,7 +74,6 @@ describe('personal plan task visuals', () => {
     const assetNames = [
       'core_lesson',
       'recall',
-      'quiz',
       'practice',
       'choice',
       'listening',

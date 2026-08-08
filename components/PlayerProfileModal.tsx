@@ -344,7 +344,7 @@ function PlayerProfileModalBody({
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   // зачем (владелец, обязательное требование сторов — report-abuse для UGC-ников,
   // Apple Guideline 1.2): жалоба на ник доступна с ЛЮБОЙ чужой карточки, не
-  // только с leaderboard/arena, откуда её раньше можно было вызвать только
+  // только с leaderboard, откуда её раньше можно было вызвать только
   // на бумаге — сам ReportUserModal существовал, но нигде не был подключён.
   const [reportUserOpen, setReportUserOpen] = useState(false);
   const [hasSeasonProfileFrame, setHasSeasonProfileFrame] = useState(

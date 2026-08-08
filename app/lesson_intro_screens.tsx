@@ -772,7 +772,7 @@ export default function LessonIntroScreens({
         >
           <BouncyScrollView
             ref={scrollRef}
-            decelerationRate="fast"
+            decelerationRate="normal"
             contentContainerStyle={[styles.scrollContent, { paddingTop: scrollTopPadding }]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"

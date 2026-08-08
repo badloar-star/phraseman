@@ -24,10 +24,6 @@ import type { SoftUpsellTrigger } from './soft_upsell_core';
 
 export type RemoteNumberKey =
   | 'free_lesson_limit'
-  | 'free_daily_quiz_limit'
-  | 'arena_daily_max'
-  | 'arena_shard_refill_cost'
-  | 'arena_shard_refill_slots'
   | 'max_energy'
   | 'energy_recovery_interval_ms'
   | 'free_trainer_sessions_per_day'
@@ -36,7 +32,6 @@ export type RemoteNumberKey =
   | 'trainer_ab_c_pct'
   | 'onboarding_ab_welcome_pct'
   | 'onboarding_ab_builder_pct'
-  | 'onboarding_ab_quiz_pct'
   | 'paywall_v2_pct'
   | 'league_xp_promotion_threshold'
   | 'league_sync_min_delta'
@@ -44,10 +39,6 @@ export type RemoteNumberKey =
   | 'league_sync_force_interval_ms'
   | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
-  | 'arena_sr_win'
-  | 'arena_sr_loss'
-  | 'arena_sr_bot_win'
-  | 'arena_season_rollback_steps'
   // Экономика (вынесено из хардкодов для крутки баланса без релиза):
   // стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10 в home.tsx).
   | 'streak_freeze_cost_shards';
@@ -89,7 +80,6 @@ export type RemoteBoolKey =
   // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
   // очереди соперник не подставляется. Включение возвращает ботов обратно.
-  | 'arena_bots_enabled'
   // Таймеры «срочности» (анонс повышения цены) на всех пейволах A/B/C. Дефолт
   // TRUE = kill-switch: блок urgency (обратный отсчёт + «Сейчас X / скоро ~2X»
   // и grace-плашка «цена сохранена») показывается как сейчас. Админ ставит false
@@ -136,8 +126,6 @@ export type RemoteBoolKey =
   | 'gate_themes_premium'
   | 'gate_avatar_auras_premium'
   | 'gate_mastery_premium'
-  | 'gate_quizzes_premium'
-  | 'gate_arena_premium'
   | 'gate_energy_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
@@ -245,10 +233,6 @@ export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 1;
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 3,
-  free_daily_quiz_limit: 1,
-  arena_daily_max: 1,
-  arena_shard_refill_cost: 5,
-  arena_shard_refill_slots: 5,
   max_energy: 5,
   energy_recovery_interval_ms: 10 * 60 * 1000,
   free_trainer_sessions_per_day: 1,
@@ -257,7 +241,6 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   trainer_ab_c_pct: 0,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
-  onboarding_ab_quiz_pct: 0,
   paywall_v2_pct: 100,
   league_xp_promotion_threshold: 1000,
   league_sync_min_delta: 75,
@@ -265,10 +248,6 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
   league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
-  arena_sr_win: 25,
-  arena_sr_loss: 20,
-  arena_sr_bot_win: 12,
-  arena_season_rollback_steps: 3,
   streak_freeze_cost_shards: 10,
 };
 
@@ -337,7 +316,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Боты в Арене: дефолт TRUE = kill-switch (боты включены как сейчас). Админ
   // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
   // остаётся только реальный матчмейкинг; true возвращает ботов.
-  arena_bots_enabled: true,
   // Таймеры срочности на пейволах: дефолт TRUE = kill-switch (показываются как
   // сейчас). Админ ставит false в «Пульте» → блок urgency прячется у всех живьём.
   paywall_timers_enabled: true,
@@ -371,8 +349,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_themes_premium: true,
   gate_avatar_auras_premium: true,
   gate_mastery_premium: true,
-  gate_quizzes_premium: true,
-  gate_arena_premium: true,
   gate_energy_premium: true,
   gate_extra_languages_premium: true,
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
@@ -432,10 +408,6 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
 const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   free_lesson_limit: { min: 1, max: 32 },
-  free_daily_quiz_limit: { min: 0, max: 999 },
-  arena_daily_max: { min: 0, max: 999 },
-  arena_shard_refill_cost: { min: 0, max: 9999 },
-  arena_shard_refill_slots: { min: 0, max: 999 },
   // Product invariant: base capacity is exactly 5; level 50 adds the sixth slot.
   max_energy: { min: 5, max: 5 },
   energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
@@ -445,7 +417,6 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   trainer_ab_c_pct: { min: 0, max: 100 },
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
   onboarding_ab_builder_pct: { min: 0, max: 100 },
-  onboarding_ab_quiz_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
   league_xp_promotion_threshold: { min: 1, max: 1000000 },
   league_sync_min_delta: { min: 0, max: 1000000 },
@@ -453,10 +424,6 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
-  arena_sr_win: { min: 0, max: 999 },
-  arena_sr_loss: { min: 0, max: 999 },
-  arena_sr_bot_win: { min: 0, max: 999 },
-  arena_season_rollback_steps: { min: 0, max: 23 },
   streak_freeze_cost_shards: { min: 0, max: 9999 },
 };
 
@@ -467,7 +434,6 @@ const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
   trainer_ab_c_pct: process.env.EXPO_PUBLIC_TRAINER_AB_C,
   onboarding_ab_welcome_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_WELCOME,
   onboarding_ab_builder_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_BUILDER,
-  onboarding_ab_quiz_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_QUIZ,
   paywall_v2_pct: process.env.EXPO_PUBLIC_PAYWALL_V2_PCT,
 };
 
@@ -640,10 +606,6 @@ export function hasRemoteConfigSnapshotApplied(): boolean {
 // ── Convenience accessors (typed, self-documenting call sites) ──────────────
 
 export const getFreeLessonLimit = () => getRemoteNumber('free_lesson_limit');
-export const getFreeDailyQuizLimit = () => getRemoteNumber('free_daily_quiz_limit');
-export const getArenaDailyMax = () => getRemoteNumber('arena_daily_max');
-export const getArenaShardRefillCost = () => getRemoteNumber('arena_shard_refill_cost');
-export const getArenaShardRefillSlots = () => getRemoteNumber('arena_shard_refill_slots');
 export const getMaxEnergy = () => getRemoteNumber('max_energy');
 export const getEnergyRecoveryIntervalMs = () => getRemoteNumber('energy_recovery_interval_ms');
 export const getFreeTrainerSessionsPerDay = () => getRemoteNumber('free_trainer_sessions_per_day');
@@ -654,10 +616,6 @@ export const getLeagueSyncMinIntervalMs = () => getRemoteNumber('league_sync_min
 export const getLeagueSyncForceIntervalMs = () => getRemoteNumber('league_sync_force_interval_ms');
 export const getLeagueStartupRegistrationIntervalMs = () => getRemoteNumber('league_startup_registration_interval_ms');
 export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_ms');
-export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
-export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
-export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
-export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_rollback_steps');
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
@@ -681,7 +639,6 @@ export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boole
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
-export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
 /**
  * Таймеры «срочности» (анонс повышения цены) на пейволах A/B/C. Дефолт true =
  * показываются как сейчас. false (из «Пульта») → блок urgency скрыт у всех живьём.
@@ -983,8 +940,6 @@ export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_pre
 export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');
 export const isAvatarAurasPremiumGated = () => getRemoteBool('gate_avatar_auras_premium');
 export const isMasteryPremiumGated = () => getRemoteBool('gate_mastery_premium');
-export const isQuizzesPremiumGated = () => getRemoteBool('gate_quizzes_premium');
-export const isArenaPremiumGated = () => getRemoteBool('gate_arena_premium');
 export const isEnergyPremiumGated = () => getRemoteBool('gate_energy_premium');
 
 /** Поурочные исключения: набор id уроков, открытых бесплатно сверх порога. */
@@ -1044,7 +999,7 @@ export function getTrainerAbGroup(userId: string): TrainerAbGroup {
 }
 
 /**
- * Deprecated onboarding A/B compatibility helper. The old welcome/builder/quiz
+ * Deprecated onboarding A/B compatibility helper. The old branches
  * branches are retired; all users enter the new plan-first onboarding.
  */
 export function getOnboardingAbVariant(_userId: string): OnboardingAbVariant {

@@ -14,7 +14,6 @@ interface UserStats {
   answersCorrect: number;
   energyHits: number;
   featuresOpened: Record<string, number>;
-  quizLevels: { easy: number; medium: number; hard: number };
   /** Визиты экрана «Магазин осколков» (каждый фокус). */
   shardsShopOpens: number;
   /** Нажатия «Купить» у пакетов осколков за деньги (ключ — id пакета: starter, popular, …). */
@@ -32,7 +31,6 @@ const DEFAULT: UserStats = {
   answersCorrect: 0,
   energyHits: 0,
   featuresOpened: {},
-  quizLevels: { easy: 0, medium: 0, hard: 0 },
   shardsShopOpens: 0,
   shardPackClicks: {},
   shardPackPurchases: {},
@@ -41,11 +39,11 @@ const DEFAULT: UserStats = {
 };
 
 function normalizeStats(parsed: Partial<UserStats> & Record<string, unknown>): UserStats {
+  const { quizLevels: _retiredQuizLevels, ...activeStats } = parsed;
   return {
     ...DEFAULT,
-    ...parsed,
+    ...activeStats,
     featuresOpened: { ...DEFAULT.featuresOpened, ...(parsed.featuresOpened as Record<string, number> | undefined) },
-    quizLevels: { ...DEFAULT.quizLevels, ...(parsed.quizLevels as UserStats['quizLevels'] | undefined) },
     shardPackClicks: { ...(parsed.shardPackClicks as Record<string, number> | undefined) },
     shardPackPurchases: { ...(parsed.shardPackPurchases as Record<string, number> | undefined) },
     cardPackClicks: { ...(parsed.cardPackClicks as Record<string, number> | undefined) },
@@ -97,15 +95,6 @@ export async function trackFeatureOpened(feature: string): Promise<void> {
   const s = await load();
   s.featuresOpened[feature] = (s.featuresOpened[feature] || 0) + 1;
   await save(s);
-}
-
-export async function trackQuizLevel(
-  level: 'easy' | 'medium' | 'hard',
-  studyTarget?: RuntimeStudyTarget,
-): Promise<void> {
-  const s = await load(studyTarget);
-  s.quizLevels[level] += 1;
-  await save(s, studyTarget);
 }
 
 function bumpKey(rec: Record<string, number>, id: string): void {

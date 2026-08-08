@@ -9,7 +9,6 @@ import {
   getTrainerItems,
   getTrainerModeCounts,
   recordMistake as recordRecallMistake,
-  seedAdminTestReviewSession,
 } from '../app/active_recall';
 import { activeRecallItemsKey } from '../app/target_storage_keys';
 
@@ -73,17 +72,6 @@ describe('Gustav SRS review target isolation', () => {
     expect(mockStorage[activeRecallItemsKey('fr')]).not.toContain('seven fifteen');
   });
 
-  it('blocks the English admin SRS bench from seeding the French recall container', async () => {
-    await expect(seedAdminTestReviewSession('fr')).resolves.toBe(false);
-
-    expect(mockStorage[activeRecallItemsKey('fr')]).toBeUndefined();
-    expect(mockStorage.active_recall_items).toBeUndefined();
-
-    await expect(seedAdminTestReviewSession('es')).resolves.toBe(true);
-
-    expect(mockStorage.active_recall_items).toContain('He is in the kitchen');
-    expect(mockStorage[activeRecallItemsKey('fr')]).toBeUndefined();
-  });
 
   it('opens French SRS UI/session reads from isolated storage', async () => {
     await recordRecallMistake('Je suis ici', 'Я здесь', 1, 'Я тут', 'lesson', undefined, undefined, 'fr');

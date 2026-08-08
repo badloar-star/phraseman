@@ -87,6 +87,23 @@ describe('level exam scoring', () => {
     });
   });
 
+  test('counts a recorded wrong speed-match pair as incorrect', () => {
+    const answers = correctAnswers();
+    const speedUnit = BLUEPRINT.tasks.find((task) => task.format === 'speed_match')!.pairs[0].scoreUnitId;
+    const wrongTarget = BLUEPRINT.tasks.find((task) => task.format === 'speed_match')!.pairs[1].scoreUnitId;
+    answers[speedUnit] = { kind: 'speed_match', targetScoreUnitId: wrongTarget };
+    expect(scoreLevelExam(BLUEPRINT, answers, 'submitted')).toMatchObject({ score: 29, total: 30 });
+  });
+
+  test('accepts every authored fill-gap option when the source item is semantically open', () => {
+    const task = BLUEPRINT.tasks.find((candidate) => candidate.format === 'fill_gap')!;
+    if (task.format !== 'fill_gap' || !task.acceptedOptionIds || task.acceptedOptionIds.length < 2) return;
+    const answers: LevelExamAnswers = {
+      [task.scoreUnitId]: { kind: 'choice', optionId: task.acceptedOptionIds[1] },
+    };
+    expect(scoreLevelExam(BLUEPRINT, answers, 'submitted').score).toBe(1);
+  });
+
   test('returns at most three weakest canonical lessons in deterministic order', () => {
     const result = scoreLevelExam(BLUEPRINT, answersWithCorrectCount(10), 'submitted');
 

@@ -28,7 +28,6 @@ const ANALYTICS_BOOKMARK_HASHES = new Set([
 
 export const RETIRED_CAPABILITY_IDS = Object.freeze([
   'daily-phrases', 'compass', 'mod-queue', 'audit', 'audit-log', 'ops-log', 'archive', 'changelog-0608',
-  'arena-ranks', 'arena-live', 'arena-bets', 'arena-rooms', 'arena-question-pool', 'arena-generator', 'arena-shadow', 'french-quizzes',
 ]);
 const BLOCKED_HASH_SEGMENTS = new Set(RETIRED_CAPABILITY_IDS);
 

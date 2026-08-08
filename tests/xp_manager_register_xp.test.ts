@@ -114,6 +114,10 @@ jest.mock('../app/level_up_reward_reconciler', () => ({
   reconcileLevelUpRewards: jest.fn(async () => []),
 }));
 
+jest.mock('../app/level_spin_level_up_queue', () => ({
+  enqueueLevelSpinLevelUps: jest.fn(async () => []),
+}));
+
 describe('registerXP', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -465,6 +469,26 @@ describe('registerXP', () => {
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('25100');
   });
 
+  it('treats SQLITE_FULL as a recoverable storage condition instead of a critical XP failure', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { DebugLogger } = await import('../app/debug-logger');
+    (AsyncStorage.multiSet as jest.Mock).mockRejectedValueOnce(
+      new Error('database or disk is full (code 13 SQLITE_FULL)'),
+    );
+
+    await expect(registerXP(10, 'achievement_reward', 'Learner')).resolves.toEqual({
+      finalDelta: 10,
+      multiplier: 1,
+      isBonus: false,
+    });
+
+    expect(DebugLogger.error).toHaveBeenCalledWith(
+      'xp_manager.ts:registerXP',
+      expect.any(Error),
+      'warning',
+    );
+  });
+
   it('clamps a corrupted league tier to the real ladder before applying its XP bonus', async () => {
     const { getCurrentMultiplier } = await import('../app/xp_manager');
     const { loadLeagueState } = await import('../app/league_engine');
@@ -473,30 +497,15 @@ describe('registerXP', () => {
     await expect(getCurrentMultiplier()).resolves.toBeCloseTo(2.1, 5);
   });
 
-  it('awaits level-up reward reconciliation and leaves the pending event to the reconciler', async () => {
+  it('creates the local Spin credit and plaque directly from a device level crossing', async () => {
     const { registerXP } = await import('../app/xp_manager');
-    const { reconcileLevelUpRewards } = await import('../app/level_up_reward_reconciler');
+    const { enqueueLevelSpinLevelUps } = await import('../app/level_spin_level_up_queue');
     const { emitAppEvent } = await import('../app/events');
-    let finishReconciliation!: () => void;
-    (reconcileLevelUpRewards as jest.Mock).mockImplementationOnce(() => new Promise<void>((resolve) => {
-      finishReconciliation = resolve;
-    }));
     await AsyncStorage.setItem('user_total_xp', '350');
 
-    let settled = false;
-    const registration = registerXP(100, 'lesson_complete', 'Learner').then(() => {
-      settled = true;
-    });
-    await new Promise((resolve) => setImmediate(resolve));
+    await registerXP(100, 'lesson_complete', 'Learner');
 
-    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(350, 450);
-    expect(settled).toBe(false);
-    expect(emitAppEvent).not.toHaveBeenCalledWith('level_up_pending');
-
-    finishReconciliation();
-    await registration;
-    expect(settled).toBe(true);
-    expect(emitAppEvent).not.toHaveBeenCalledWith('level_up_pending');
+    expect(enqueueLevelSpinLevelUps).toHaveBeenCalledWith(1, 2);
     expect(emitAppEvent).toHaveBeenCalledWith('energy_reload');
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
     const { writeFriendEvent } = await import('../app/firestore_friend_activity');

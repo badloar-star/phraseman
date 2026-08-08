@@ -1,10 +1,9 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // trainer_store.ts — хранилище Тренера
 //
-// Три очереди:
+// Две очереди:
 //   words   — слова из словаря и неправильные глаголы (порог: 2+ ошибки)
 //   phrases — фразы из уроков (порог: 1 ошибка)
-//   arena   — ошибки из арены (порог: 1 ошибка)
 //
 // Интервалы повторения: 1→3→7→14→30 дней
 // После 5 правильных подряд (с нарастающим интервалом) → архив
@@ -35,9 +34,8 @@ const GRADUATE_AT = INTERVALS.length; // 5
 
 // ── Типы ────────────────────────────────────────────────────────────────────
 
-export type TrainerQueue = 'words' | 'phrases' | 'arena';
+export type TrainerQueue = 'words' | 'phrases';
 export type TrainerPremiumMode = 'smart_mix' | 'weak' | 'hard';
-export type TrainerDevScenario = 'empty' | 'random' | 'weak' | 'hard' | 'overloaded';
 
 export interface TrainerItem {
   /** Уникальный ключ: для слов — английское слово/глагол, для фраз — английская фраза */
@@ -51,8 +49,6 @@ export interface TrainerItem {
   sourceLocales?: Partial<Record<PlannedInterfaceLang, string>>;
   /** Для фраз: слово на котором была ошибка (для режима fill-the-gap) */
   errorWord?: string;
-  /** Для арены: исходный вопрос в формате арены */
-  arenaQuestion?: ArenaQuestion;
   /** Урок из которого взято */
   lessonId: number;
   category?: WordCategory;
@@ -72,13 +68,6 @@ export interface TrainerItem {
   createdAt: number;
   /** Архивировано (выучено) */
   archived: boolean;
-}
-
-export interface ArenaQuestion {
-  question: string;
-  correct: string;
-  options: string[];
-  rule?: string;
 }
 
 // ── Утилиты ──────────────────────────────────────────────────────────────────
@@ -120,8 +109,8 @@ function trainerCategory(word?: string, rawCategory?: string): Pick<TrainerItem,
     : { category: resolved.category, grammarTag: resolved.grammarTag };
 }
 
-function trainerCategoryForItem(item: Pick<TrainerItem, 'queue' | 'key' | 'category' | 'errorWord' | 'arenaQuestion'>): Pick<TrainerItem, 'category' | 'grammarTag'> {
-  const word = item.errorWord || (item.queue === 'words' ? item.key : item.arenaQuestion?.correct);
+function trainerCategoryForItem(item: Pick<TrainerItem, 'queue' | 'key' | 'category' | 'errorWord'>): Pick<TrainerItem, 'category' | 'grammarTag'> {
+  const word = item.errorWord || (item.queue === 'words' ? item.key : undefined);
   return trainerCategory(word, item.category === 'other' ? undefined : item.category);
 }
 
@@ -168,20 +157,13 @@ function isTrainerPlannedLocale(lang: Lang): lang is PlannedInterfaceLang {
 }
 
 export function trainerTranslationForLang(
-  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>
-    & Partial<Pick<TrainerItem, 'key' | 'arenaQuestion'>>,
+  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>,
   lang: Lang,
 ): string {
-  // Old DEV arena rows were persisted with empty translations. Resolve their
-  // meaning from the canonical seed so an already-saved iPhone session is fixed
-  // immediately, without requiring the owner to clear or reseed AsyncStorage.
-  const arenaSeed = item.arenaQuestion
-    ? DEV_ARENA.find(candidate => candidate.question === (item.arenaQuestion?.question || item.key))
-    : undefined;
-  const translationRu = item.translationRu || arenaSeed?.translationRu || '';
-  const translationUk = item.translationUk || arenaSeed?.translationUk || '';
-  const translationEs = item.translationEs || arenaSeed?.translationEs || '';
-  const sourceLocales = item.sourceLocales || arenaSeed?.sourceLocales;
+  const translationRu = item.translationRu || '';
+  const translationUk = item.translationUk || '';
+  const translationEs = item.translationEs || '';
+  const sourceLocales = item.sourceLocales;
   if (isTrainerPlannedLocale(lang)) {
     const planned = sourceLocales?.[lang]?.trim();
     return planned || TRAINER_TRANSLATION_NEEDS_REVIEW[lang];
@@ -195,7 +177,17 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
   const key = trainerStoreKey(studyTarget);
   try {
     const raw = await AsyncStorage.getItem(key);
-    const items = raw ? (JSON.parse(raw) as TrainerItem[]).map(withTrainerCategory).map(withSanitizedTranslations) : [];
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    const items = Array.isArray(parsed)
+      ? parsed
+          .filter((item): item is TrainerItem => (
+            !!item
+            && typeof item === 'object'
+            && ((item as { queue?: unknown }).queue === 'words' || (item as { queue?: unknown }).queue === 'phrases')
+          ))
+          .map(withTrainerCategory)
+          .map(withSanitizedTranslations)
+      : [];
     trainerStoreCache.set(key, items);
     return items;
   } catch {
@@ -393,50 +385,6 @@ export async function recordPhraseMistake(
   await save(items, studyTarget);
 }
 
-/**
- * Записать ошибку на вопросе арены.
- * Сразу добавляется в очередь.
- */
-export async function recordArenaMistake(
-  question: ArenaQuestion,
-  lessonId: number,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<void> {
-  const key = question.question.trim();
-  const items = await load(studyTarget);
-  const existing = items.find(i => i.key === key && i.queue === 'arena');
-
-  if (existing) {
-    existing.mistakeCount += 1;
-    existing.arenaQuestion = question;
-    Object.assign(existing, trainerCategory(question.correct, question.rule));
-    if (existing.archived) {
-      existing.archived = false;
-      existing.correctStreak = 0;
-    }
-    existing.nextDue = tomorrowStart();
-    await save(items, studyTarget);
-    return;
-  }
-
-  const item: TrainerItem = {
-    key,
-    queue: 'arena',
-    translationRu: '',
-    translationUk: '',
-    arenaQuestion: question,
-    lessonId,
-    ...trainerCategory(question.correct, question.rule),
-    mistakeCount: 1,
-    correctStreak: 0,
-    nextDue: tomorrowStart(),
-    createdAt: Date.now(),
-    archived: false,
-  };
-  items.push(item);
-  await save(items, studyTarget);
-}
-
 // ── Отработка ─────────────────────────────────────────────────────────────────
 
 /**
@@ -476,7 +424,7 @@ export async function markTrainerResult(
 /** Кол-во элементов в каждой очереди которые ждут сегодня. */
 export async function getTrainerCounts(studyTarget?: RuntimeStudyTarget): Promise<Record<TrainerQueue, number>> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) {
-    return { words: 0, phrases: 0, arena: 0 };
+    return { words: 0, phrases: 0 };
   }
   const items = await loadTrainerItemsForSessions(studyTarget);
   const end = todayEnd();
@@ -484,14 +432,13 @@ export async function getTrainerCounts(studyTarget?: RuntimeStudyTarget): Promis
   return {
     words:   active.filter(i => i.queue === 'words').length,
     phrases: active.filter(i => i.queue === 'phrases').length,
-    arena:   active.filter(i => i.queue === 'arena').length,
   };
 }
 
 /** Суммарное кол-во элементов ожидающих сегодня (для бейджа). */
 export async function getTrainerTotalDue(studyTarget?: RuntimeStudyTarget): Promise<number> {
   const counts = await getTrainerCounts(studyTarget);
-  return counts.words + counts.phrases + counts.arena;
+  return counts.words + counts.phrases;
 }
 
 export interface TrainerDashboard {
@@ -534,10 +481,9 @@ export async function getTrainerDashboard(
   const due: Record<TrainerQueue, number> = {
     words: dueItems.filter(i => i.queue === 'words').length,
     phrases: dueItems.filter(i => i.queue === 'phrases').length,
-    arena: dueItems.filter(i => i.queue === 'arena').length,
   };
 
-  const queues: TrainerQueue[] = ['phrases', 'words', 'arena'];
+  const queues: TrainerQueue[] = ['phrases', 'words'];
   const queueStats = queues.map(queue => {
     const all = activeItems.filter(i => i.queue === queue);
     const dueCount = due[queue];
@@ -570,7 +516,7 @@ export async function getTrainerDashboard(
 
   return {
     due,
-    totalDue: due.words + due.phrases + due.arena,
+    totalDue: due.words + due.phrases,
     overdue: dueItems.filter((item) => item.nextDue < todayStart()).length,
     totalTracked,
     active: activeItems.length,
@@ -805,7 +751,6 @@ export async function getTrainerStoreDebug(studyTarget?: RuntimeStudyTarget): Pr
     byQueue: {
       words:   items.filter(i => i.queue === 'words').length,
       phrases: items.filter(i => i.queue === 'phrases').length,
-      arena:   items.filter(i => i.queue === 'arena').length,
     },
     posMasteryXp: posMastery.reduce((sum, entry) => sum + entry.xp, 0),
     posMasteryCount: posMastery.length,
@@ -858,34 +803,6 @@ const DEV_PHRASES_ES_ITEMS = [
 
 const DEV_WORDS_ES: Record<string, string> = Object.fromEntries(DEV_WORDS_ES_ITEMS.map(item => [item.key, item.es]));
 const DEV_PHRASES_ES: Record<string, string> = Object.fromEntries(DEV_PHRASES_ES_ITEMS.map(item => [item.key, item.es]));
-
-const DEV_ARENA = [
-  {
-    question: 'She ___ to the store yesterday', correct: 'went', options: ['go', 'went', 'gone', 'goes'], rule: 'Past Simple',
-    translationRu: 'Она ходила в магазин вчера', translationUk: 'Вона ходила до магазину вчора', translationEs: 'Ella fue a la tienda ayer',
-    sourceLocales: { 'pt-BR': 'Ela foi à loja ontem', vi: 'Hôm qua cô ấy đã đi đến cửa hàng', id: 'Dia pergi ke toko kemarin', tr: 'Dün mağazaya gitti', pl: 'Wczoraj poszła do sklepu' },
-  },
-  {
-    question: 'I ___ never seen this before', correct: 'have', options: ['have', 'had', 'has', 'having'], rule: 'Present Perfect',
-    translationRu: 'Я никогда раньше этого не видел', translationUk: 'Я ніколи раніше цього не бачив', translationEs: 'Nunca he visto esto antes',
-    sourceLocales: { 'pt-BR': 'Eu nunca vi isto antes', vi: 'Tôi chưa bao giờ thấy điều này trước đây', id: 'Saya belum pernah melihat ini sebelumnya', tr: 'Bunu daha önce hiç görmedim', pl: 'Nigdy wcześniej tego nie widziałem' },
-  },
-  {
-    question: 'They ___ waiting for an hour', correct: 'were', options: ['are', 'were', 'was', 'be'], rule: 'Past Continuous',
-    translationRu: 'Они ждали целый час', translationUk: 'Вони чекали цілу годину', translationEs: 'Llevaban una hora esperando',
-    sourceLocales: { 'pt-BR': 'Eles estavam esperando há uma hora', vi: 'Họ đã đợi suốt một giờ', id: 'Mereka sudah menunggu selama satu jam', tr: 'Bir saattir bekliyorlardı', pl: 'Czekali przez godzinę' },
-  },
-  {
-    question: 'He ___ his keys again', correct: 'lost', options: ['lose', 'lost', 'loses', 'loss'], rule: 'Past Simple',
-    translationRu: 'Он снова потерял ключи', translationUk: 'Він знову загубив ключі', translationEs: 'Volvió a perder las llaves',
-    sourceLocales: { 'pt-BR': 'Ele perdeu as chaves de novo', vi: 'Anh ấy lại làm mất chìa khóa', id: 'Dia kehilangan kuncinya lagi', tr: 'Anahtarlarını yine kaybetti', pl: 'Znowu zgubił klucze' },
-  },
-  {
-    question: 'We ___ finish by tomorrow', correct: 'must', options: ['must', 'can', 'may', 'might'], rule: 'Modals',
-    translationRu: 'Мы должны закончить к завтрашнему дню', translationUk: 'Ми маємо закінчити до завтра', translationEs: 'Debemos terminar para mañana',
-    sourceLocales: { 'pt-BR': 'Precisamos terminar até amanhã', vi: 'Chúng ta phải hoàn thành trước ngày mai', id: 'Kita harus selesai paling lambat besok', tr: 'Yarına kadar bitirmeliyiz', pl: 'Musimy skończyć do jutra' },
-  },
-];
 
 const DEV_ANALYTICS_PICKED = ['go', 'in', 'the', 'has', 'wait', 'must to', 'call to', 'a', 'never not'];
 
@@ -992,108 +909,8 @@ export async function devSeedTrainer(studyTarget?: RuntimeStudyTarget): Promise<
     }
   }
 
-  // Арена: от 2 до 5
-  const arenaCount = rnd(2, 5);
-  const shuffledArena = [...DEV_ARENA].sort(() => Math.random() - 0.5).slice(0, arenaCount);
-  for (const a of shuffledArena) {
-    const existing = items.find(i => i.key === a.question && i.queue === 'arena');
-    if (existing) {
-      existing.nextDue = todayMs;
-      existing.archived = false;
-      existing.translationRu = a.translationRu;
-      existing.translationUk = a.translationUk;
-      existing.translationEs = a.translationEs;
-      existing.sourceLocales = a.sourceLocales;
-    } else {
-      items.push({
-        key: a.question, queue: 'arena',
-        translationRu: a.translationRu, translationUk: a.translationUk,
-        translationEs: a.translationEs, sourceLocales: a.sourceLocales,
-        arenaQuestion: { question: a.question, correct: a.correct, options: a.options, rule: a.rule },
-        lessonId: 0, mistakeCount: 1, correctStreak: 0,
-        nextDue: todayMs, createdAt: now, archived: false,
-      });
-    }
-  }
-
   await save(items, studyTarget);
   await devSeedMistakeAnalytics(now, rnd, studyTarget);
-  return true;
-}
-
-function devItem(
-  item: Omit<TrainerItem, 'nextDue' | 'createdAt' | 'archived'> & Partial<Pick<TrainerItem, 'nextDue' | 'createdAt' | 'archived'>>,
-  now: number,
-): TrainerItem {
-  return {
-    nextDue: now,
-    createdAt: now,
-    archived: false,
-    ...item,
-  };
-}
-
-/** DEV ONLY — deterministic scenarios for admin/maestro visual QA. */
-export async function devSeedTrainerScenario(
-  scenario: TrainerDevScenario,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<boolean> {
-  if (scenario === 'empty') {
-    await clearTrainerStore(studyTarget);
-    return true;
-  }
-  if (!canSeedEnglishDevTrainer(studyTarget)) {
-    return false;
-  }
-  if (scenario === 'random') {
-    await clearTrainerStore(studyTarget);
-    await devSeedTrainer(studyTarget);
-    return true;
-  }
-
-  const now = Date.now();
-  const base: TrainerItem[] = [
-    ...DEV_PHRASES.map((p, i) => devItem({
-      key: p.key,
-      queue: 'phrases',
-      translationRu: p.ru,
-      translationUk: p.uk,
-      translationEs: DEV_PHRASES_ES[p.key],
-      errorWord: p.errorWord,
-      lessonId: 1 + i,
-      mistakeCount: scenario === 'hard' ? 4 + (i % 3) : 1 + (i % 2),
-      correctStreak: scenario === 'weak' ? 0 : 1,
-    }, now)),
-    ...DEV_WORDS.map((w, i) => devItem({
-      key: w.key,
-      queue: 'words',
-      translationRu: w.ru,
-      translationUk: w.uk,
-      translationEs: DEV_WORDS_ES[w.key],
-      lessonId: 1 + i,
-      mistakeCount: scenario === 'hard' ? 3 + (i % 4) : 2,
-      correctStreak: scenario === 'weak' ? (i % 2) : 2,
-    }, now)),
-    ...DEV_ARENA.map((a, i) => devItem({
-      key: a.question,
-      queue: 'arena',
-      translationRu: a.translationRu,
-      translationUk: a.translationUk,
-      translationEs: a.translationEs,
-      sourceLocales: a.sourceLocales,
-      arenaQuestion: a,
-      lessonId: 5 + i,
-      mistakeCount: scenario === 'hard' ? 5 : 1 + (i % 2),
-      correctStreak: scenario === 'weak' ? 0 : 1,
-    }, now)),
-  ];
-
-  const items = scenario === 'overloaded'
-    ? [...base, ...base.map((item, i) => ({ ...item, key: `${item.key} #${i + 1}`, mistakeCount: item.mistakeCount + 1, correctStreak: 0 }))]
-    : scenario === 'hard'
-      ? base.filter(item => item.mistakeCount >= 3)
-      : base;
-  await save(items, studyTarget);
   return true;
 }
 

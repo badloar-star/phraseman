@@ -29,11 +29,15 @@ export type SoundMotionProfile = Readonly<{
 }>;
 
 export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProfile>>> = Object.freeze({
+  'pm.app.welcome': { audibleMs: 1509, attackMs: 683, hits: [575, 683, 827], shape: 'triple', bright: 0.2204 },
   'pm.learn.correct': { audibleMs: 156, attackMs: 0, hits: [78], shape: 'perc', bright: 0.28 },
   'pm.learn.needs_work': { audibleMs: 438, attackMs: 188, hits: [16, 188, 359], shape: 'triple', bright: 0.03 },
   'pm.learn.hint_reveal': { audibleMs: 47, attackMs: 0, hits: [], shape: 'perc', bright: 0.91 },
+  'pm.learn.combo_up': { audibleMs: 406, attackMs: 94, hits: [94, 219], shape: 'double', bright: 0.809 },
   'pm.learn.timer_warning': { audibleMs: 63, attackMs: 47, hits: [16], shape: 'perc', bright: 0.73 },
   'pm.learn.timer_expired': { audibleMs: 563, attackMs: 47, hits: [47, 109, 266, 328], shape: 'multi', bright: 0.40 },
+  'pm.exam.begin': { audibleMs: 578, attackMs: 16, hits: [16, 109, 188, 250, 297, 359], shape: 'multi', bright: 0.0592 },
+  'pm.lesson.begin': { audibleMs: 1509, attackMs: 180, hits: [180, 288, 431, 575, 683, 755, 898, 1006], shape: 'multi', bright: 0.432 },
   'pm.voice.record_ready': { audibleMs: 125, attackMs: 109, hits: [109], shape: 'perc', bright: 0.89 },
   'pm.voice.turn_ready': { audibleMs: 219, attackMs: 0, hits: [203], shape: 'perc', bright: 0.71 },
   'pm.voice.no_speech': { audibleMs: 109, attackMs: 0, hits: [], shape: 'perc', bright: 0.41 },
@@ -61,11 +65,14 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.reward.premium_open': { audibleMs: 867, attackMs: 234, hits: [164, 234, 305, 375, 445, 516], shape: 'multi', bright: 0.01 },
   'pm.reward.premium_finale': { audibleMs: 398, attackMs: 23, hits: [23, 94], shape: 'double', bright: 0.01 },
   'pm.reward.vip_open': { audibleMs: 609, attackMs: 141, hits: [47, 141, 211, 281, 375], shape: 'multi', bright: 0.01 },
+  'pm.reward.pack_reveal_start': { audibleMs: 328, attackMs: 234, hits: [234], shape: 'sustain', bright: 0.9432 },
+  'pm.reward.pack_complete': { audibleMs: 891, attackMs: 875, hits: [875], shape: 'swell', bright: 0.6416 },
   'pm.league.promoted': { audibleMs: 1008, attackMs: 281, hits: [94, 141, 281, 328, 375, 469, 727], shape: 'multi', bright: 0.07 },
   'pm.league.demoted': { audibleMs: 656, attackMs: 422, hits: [23, 94, 422, 492], shape: 'multi', bright: 0.06 },
   'pm.social.gift_received': { audibleMs: 656, attackMs: 281, hits: [281, 352], shape: 'double', bright: 0.78 },
   'pm.social.friend_request': { audibleMs: 1008, attackMs: 94, hits: [47, 94, 398, 445], shape: 'multi', bright: 0.13 },
   'pm.social.quest_complete': { audibleMs: 234, attackMs: 164, hits: [23, 164], shape: 'double', bright: 0.95 },
+  'pm.social.friend_added': { audibleMs: 234, attackMs: 16, hits: [16], shape: 'perc', bright: 0.0803 },
 });
 
 /** Профиль движения события. `null`, если у события нет звукового файла (арена, vip_finale). */

@@ -1,6 +1,5 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
-import type { ThemeMode } from '../constants/theme';
 import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { SoundEventId } from '../modules/audio/sound_events';
@@ -14,6 +13,7 @@ let appFirstContentReadyFired = false;
 
 export type AppEventMap = {
   xp_changed: undefined;
+  level_spin_balance_changed: undefined;
   xp_updated: { total: number; delta: number };
   level_up_pending: undefined;
   energy_reload: undefined;
@@ -21,6 +21,7 @@ export type AppEventMap = {
   premium_deactivated: undefined;
   vip_activated: undefined;
   vip_deactivated: undefined;
+  dev_local_plus_override_changed: { stableId: string; mode: 'granted' | 'removed' };
   premium_access_changed: { active: boolean; source: 'premium' | 'vip' | 'none' };
   intro_full_access_changed: undefined;
   /** Приветствие-«знакомство» (компас-слайды) закрыто юзером — можно показывать подарок 3 дня. */
@@ -83,8 +84,6 @@ export type AppEventMap = {
   personal_plan_onboarding_nickname_ready: undefined;
   /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
   daily_task_reward_claimed: { taskId: string; studyTarget?: RuntimeStudyTarget };
-  /** Dev/admin preview only: показать reward-toast без storage/XP claim. */
-  daily_task_reward_toast_preview: { themeMode: ThemeMode; taskTitle?: string; xpBase?: number };
   /** Пользователь сменил дневное задание за осколки — UI обязан перечитать список и прогресс. */
   daily_task_rerolled: { oldTaskId: string; newTaskId: string };
   /** Пользователь сменил весь сегодняшний набор дневных заданий из утреннего модала. */
@@ -94,8 +93,6 @@ export type AppEventMap = {
   streak_revive_offer: { lostStreak: number; missedDays?: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
-  /** DEV/admin: вручную посеяно число дней streak — главная перечитывает локальное состояние. */
-  streak_seeded: { days: number };
   /** Активное пари аннулировано (например, после revive или потери цепочки). */
   wager_lost: { reason: 'revive' | 'streak_broken' };
   streak_freeze_updated: { active: boolean };

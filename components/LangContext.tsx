@@ -9,7 +9,7 @@ import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 export type { Lang };
 const RU = {
   tabs: {
-    home: 'Главная', lessons: 'Уроки', quizzes: 'Вызовы', flashcards: 'Карточки',
+    home: 'Главная', lessons: 'Уроки', flashcards: 'Карточки',
     settings: 'Настройки',
   },
   home: {
@@ -55,12 +55,6 @@ const RU = {
     repeatLesson: 'Повторить урок',
     shareResult: 'Поделиться результатом',
     backHome: 'На главную',
-  },
-  quizzes: {
-    selectLevel: 'Выбери уровень', easy: 'Легко', medium: 'Средне', hard: 'Сложно',
-    done: 'Вызов завершён!', again: 'Пройти снова',
-    back: 'Выбери уровень', fixErrors: 'Закрепи промахи', timeUp: 'Время вышло',
-    perAnswer: 'балл/ответ',
   },
   leagues: [
     { name: 'Искатель',    min: 0 },
@@ -136,18 +130,18 @@ const RU = {
     nameError: 'Введи имя, чтобы продолжить',
   },
   premium: {
-    locked: 'Plus открывает уроки после A1\nи снимает дневные лимиты',
+    locked: 'Plus открывает уроки после A1',
     freeCont: 'Продолжить бесплатно (Урок 1)',
     cta: 'Получить Plus',
     ctaSub: 'Оформить подписку',
     legal: 'Отмена в любое время в настройках App Store / Google Play.',
-    features: ['Уроки после A1','Вызовы без дневного лимита','Голосовой ввод','Подробная статистика'],
+    features: ['Уроки после A1','Голосовой ввод','Подробная статистика'],
   },
 };
 
 const UK: typeof RU = {
   tabs: {
-    home: 'Головна', lessons: 'Уроки', quizzes: 'Квізи', flashcards: 'Картки',
+    home: 'Головна', lessons: 'Уроки', flashcards: 'Картки',
     settings: 'Налаштування',
   },
   home: {
@@ -193,12 +187,6 @@ const UK: typeof RU = {
     repeatLesson: 'Пройти знову',
     shareResult: 'Поділитися результатом',
     backHome: 'На головну',
-  },
-  quizzes: {
-    selectLevel: 'Оберіть рівень', easy: 'Легко', medium: 'Середньо', hard: 'Складно',
-    done: 'Квіз завершено!', again: 'Пройти знову',
-    back: 'Обрати рівень', fixErrors: 'Виправ помилки', timeUp: 'Час вийшов',
-    perAnswer: 'бал/відповідь',
   },
   leagues: [
     { name: 'Шукач',       min: 0 },
@@ -274,18 +262,18 @@ const UK: typeof RU = {
     nameError: 'Введіть ім\'я щоб продовжити',
   },
   premium: {
-    locked: 'Plus відкриває уроки після перших 3\nі знімає денні ліміти',
+    locked: 'Plus відкриває уроки після перших 3',
     freeCont: 'Продовжити безкоштовно (Урок 1)',
     cta: 'Отримати Plus',
     ctaSub: 'Оформити підписку',
     legal: 'Скасування будь-коли в налаштуваннях App Store / Google Play.',
-    features: ['Уроки після перших 3','Квізи без денного ліміту','Голосове введення','Докладна статистика'],
+    features: ['Уроки після перших 3','Голосове введення','Докладна статистика'],
   },
 };
 
 const ES: typeof RU = {
   tabs: {
-    home: 'Inicio', lessons: 'Lecciones', quizzes: 'Cuestionarios', flashcards: 'Tarjetas',
+    home: 'Inicio', lessons: 'Lecciones', flashcards: 'Tarjetas',
     settings: 'Ajustes',
   },
   home: {
@@ -331,12 +319,6 @@ const ES: typeof RU = {
     repeatLesson: 'Repetir lección',
     shareResult: 'Compartir resultado',
     backHome: 'Volver al inicio',
-  },
-  quizzes: {
-    selectLevel: 'Elige el nivel', easy: 'Fácil', medium: 'Medio', hard: 'Difícil',
-    done: '¡Cuestionario terminado!', again: 'Intentar de nuevo',
-    back: 'Elegir otro nivel', fixErrors: 'Corrige los errores', timeUp: 'Se acabó el tiempo',
-    perAnswer: 'punto por respuesta',
   },
   leagues: [
     { name: 'Explorador',    min: 0 },
@@ -412,14 +394,13 @@ const ES: typeof RU = {
     nameError: 'Escribe tu nombre para continuar',
   },
   premium: {
-    locked: 'Plus abre las lecciones después de las 3 primeras\ny elimina los límites diarios',
+    locked: 'Plus abre las lecciones después de las 3 primeras',
     freeCont: 'Seguir gratis (Lección 1)',
     cta: 'Obtener Plus',
     ctaSub: 'Contratar suscripción',
     legal: 'Puedes cancelar cuando quieras desde los ajustes de App Store o Google Play.',
     features: [
       'Lecciones después de las 3 primeras',
-      'Cuestionarios sin límite diario',
       'Respuestas por voz',
       'Estadísticas detalladas',
     ],
@@ -428,7 +409,7 @@ const ES: typeof RU = {
 
 const PT_BR: typeof RU = {
   tabs: {
-    home: 'Início', lessons: 'Lições', quizzes: 'Quizzes', flashcards: 'Cartões',
+    home: 'Início', lessons: 'Lições', flashcards: 'Cartões',
     settings: 'Configurações',
   },
   home: {
@@ -474,12 +455,6 @@ const PT_BR: typeof RU = {
     repeatLesson: 'Repetir lição',
     shareResult: 'Compartilhar resultado',
     backHome: 'Voltar ao início',
-  },
-  quizzes: {
-    selectLevel: 'Escolha o nível', easy: 'Fácil', medium: 'Médio', hard: 'Difícil',
-    done: 'Quiz concluído!', again: 'Tentar de novo',
-    back: 'Escolher nível', fixErrors: 'Corrigir erros', timeUp: 'O tempo acabou',
-    perAnswer: 'ponto/resposta',
   },
   leagues: [
     { name: 'Explorador', min: 0 },
@@ -555,18 +530,18 @@ const PT_BR: typeof RU = {
     nameError: 'Digite um nome para continuar',
   },
   premium: {
-    locked: 'Plus abre as lições depois do A1\ne remove limites diários',
+    locked: 'Plus abre as lições depois do A1',
     freeCont: 'Continuar grátis (Lição 1)',
     cta: 'Obter Plus',
     ctaSub: 'Assinar',
     legal: 'Cancele quando quiser nas configurações da App Store / Google Play.',
-    features: ['Lições depois do A1','Quizzes sem limite diário','Entrada por voz','Estatísticas detalhadas'],
+    features: ['Lições depois do A1','Entrada por voz','Estatísticas detalhadas'],
   },
 };
 
 const VI: typeof RU = {
   tabs: {
-    home: 'Trang chủ', lessons: 'Bài học', quizzes: 'Quiz', flashcards: 'Thẻ',
+    home: 'Trang chủ', lessons: 'Bài học', flashcards: 'Thẻ',
     settings: 'Cài đặt',
   },
   home: {
@@ -612,12 +587,6 @@ const VI: typeof RU = {
     repeatLesson: 'Làm lại bài học',
     shareResult: 'Chia sẻ kết quả',
     backHome: 'Về trang chủ',
-  },
-  quizzes: {
-    selectLevel: 'Chọn cấp độ', easy: 'Dễ', medium: 'Trung bình', hard: 'Khó',
-    done: 'Đã hoàn thành quiz!', again: 'Làm lại',
-    back: 'Chọn cấp độ', fixErrors: 'Sửa lỗi', timeUp: 'Hết giờ',
-    perAnswer: 'điểm/câu',
   },
   leagues: [
     { name: 'Người khám phá', min: 0 },
@@ -693,18 +662,18 @@ const VI: typeof RU = {
     nameError: 'Nhập tên để tiếp tục',
   },
   premium: {
-    locked: 'Plus mở các bài sau A1\nvà bỏ giới hạn hằng ngày',
+    locked: 'Plus mở các bài sau A1',
     freeCont: 'Tiếp tục miễn phí (Bài 1)',
     cta: 'Nhận Plus',
     ctaSub: 'Đăng ký',
     legal: 'Có thể hủy bất cứ lúc nào trong cài đặt App Store / Google Play.',
-    features: ['Bài học sau A1','Quiz không giới hạn mỗi ngày','Nhập bằng giọng nói','Thống kê chi tiết'],
+    features: ['Bài học sau A1','Nhập bằng giọng nói','Thống kê chi tiết'],
   },
 };
 
 const ID: typeof RU = {
   tabs: {
-    home: 'Beranda', lessons: 'Pelajaran', quizzes: 'Kuis', flashcards: 'Kartu',
+    home: 'Beranda', lessons: 'Pelajaran', flashcards: 'Kartu',
     settings: 'Pengaturan',
   },
   home: {
@@ -750,12 +719,6 @@ const ID: typeof RU = {
     repeatLesson: 'Ulangi pelajaran',
     shareResult: 'Bagikan hasil',
     backHome: 'Ke beranda',
-  },
-  quizzes: {
-    selectLevel: 'Pilih level', easy: 'Mudah', medium: 'Sedang', hard: 'Sulit',
-    done: 'Kuis selesai!', again: 'Coba lagi',
-    back: 'Pilih level', fixErrors: 'Perbaiki kesalahan', timeUp: 'Waktu habis',
-    perAnswer: 'poin/jawaban',
   },
   leagues: [
     { name: 'Pencari', min: 0 },
@@ -831,18 +794,18 @@ const ID: typeof RU = {
     nameError: 'Masukkan nama untuk melanjutkan',
   },
   premium: {
-    locked: 'Plus membuka pelajaran setelah A1\ndan menghapus batas harian',
+    locked: 'Plus membuka pelajaran setelah A1',
     freeCont: 'Lanjut gratis (Pelajaran 1)',
     cta: 'Dapatkan Plus',
     ctaSub: 'Ambil langganan',
     legal: 'Batalkan kapan saja di pengaturan App Store / Google Play.',
-    features: ['Pelajaran setelah A1','Kuis tanpa batas harian','Input suara','Statistik detail'],
+    features: ['Pelajaran setelah A1','Input suara','Statistik detail'],
   },
 };
 
 const TR: typeof RU = {
   tabs: {
-    home: 'Ana sayfa', lessons: 'Dersler', quizzes: 'Quizler', flashcards: 'Kartlar',
+    home: 'Ana sayfa', lessons: 'Dersler', flashcards: 'Kartlar',
     settings: 'Ayarlar',
   },
   home: {
@@ -888,12 +851,6 @@ const TR: typeof RU = {
     repeatLesson: 'Dersi tekrar et',
     shareResult: 'Sonucu paylaş',
     backHome: 'Ana sayfaya dön',
-  },
-  quizzes: {
-    selectLevel: 'Seviye seç', easy: 'Kolay', medium: 'Orta', hard: 'Zor',
-    done: 'Quiz tamamlandı!', again: 'Tekrar dene',
-    back: 'Seviye seç', fixErrors: 'Hataları düzelt', timeUp: 'Süre doldu',
-    perAnswer: 'puan/cevap',
   },
   leagues: [
     { name: 'Arayıcı', min: 0 },
@@ -969,18 +926,18 @@ const TR: typeof RU = {
     nameError: 'Devam etmek için ad gir',
   },
   premium: {
-    locked: 'Plus A1 sonrasındaki dersleri açar\nve günlük limitleri kaldırır',
+    locked: 'Plus A1 sonrasındaki dersleri açar',
     freeCont: 'Ücretsiz devam et (Ders 1)',
     cta: 'Plus al',
     ctaSub: 'Abonelik başlat',
     legal: 'App Store / Google Play ayarlarından istediğin zaman iptal edebilirsin.',
-    features: ['A1 sonrası dersler','Günlük limitsiz quizler','Sesli giriş','Detaylı istatistikler'],
+    features: ['A1 sonrası dersler','Sesli giriş','Detaylı istatistikler'],
   },
 };
 
 const PL: typeof RU = {
   tabs: {
-    home: 'Główna', lessons: 'Lekcje', quizzes: 'Quizy', flashcards: 'Fiszki',
+    home: 'Główna', lessons: 'Lekcje', flashcards: 'Fiszki',
     settings: 'Ustawienia',
   },
   home: {
@@ -1026,12 +983,6 @@ const PL: typeof RU = {
     repeatLesson: 'Powtórz lekcję',
     shareResult: 'Udostępnij wynik',
     backHome: 'Na główną',
-  },
-  quizzes: {
-    selectLevel: 'Wybierz poziom', easy: 'Łatwy', medium: 'Średni', hard: 'Trudny',
-    done: 'Quiz zakończony!', again: 'Spróbuj ponownie',
-    back: 'Wybierz poziom', fixErrors: 'Popraw błędy', timeUp: 'Czas minął',
-    perAnswer: 'punkt/odpowiedź',
   },
   leagues: [
     { name: 'Poszukiwacz', min: 0 },
@@ -1107,12 +1058,12 @@ const PL: typeof RU = {
     nameError: 'Wpisz imię, aby kontynuować',
   },
   premium: {
-    locked: 'Plus otwiera lekcje po A1\ni usuwa dzienne limity',
+    locked: 'Plus otwiera lekcje po A1',
     freeCont: 'Kontynuuj za darmo (Lekcja 1)',
     cta: 'Pobierz Plus',
     ctaSub: 'Wykup subskrypcję',
     legal: 'Anuluj w dowolnym momencie w ustawieniach App Store / Google Play.',
-    features: ['Lekcje po A1','Quizy bez dziennego limitu','Wprowadzanie głosowe','Szczegółowe statystyki'],
+    features: ['Lekcje po A1','Wprowadzanie głosowe','Szczegółowe statystyki'],
   },
 };
 

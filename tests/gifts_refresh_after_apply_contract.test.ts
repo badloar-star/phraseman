@@ -24,6 +24,10 @@ const SCREEN = fs.readFileSync(
   path.join(__dirname, '..', 'app', 'level_gifts_inventory.tsx'),
   'utf8',
 );
+const MODAL = fs.readFileSync(
+  path.join(__dirname, '..', 'components', 'LevelGiftModal.tsx'),
+  'utf8',
+);
 
 /** Тело функции closeGiftModal — там и жил баг. */
 function closeGiftModalBody(): string {
@@ -35,20 +39,20 @@ function closeGiftModalBody(): string {
 }
 
 describe('перезагрузка после закрытия модалки', () => {
-  test('данные перезагружаются ВСЕГДА, а не только при отмене', () => {
+  test('успешное закрытие не перечитывает старый журнал до завершения применения', () => {
     const body = closeGiftModalBody();
-    expect(body).toContain('void loadData();');
-    // Ровно то условие, из-за которого раздел оставался пустым.
-    expect(body).not.toContain('if (!claimed) void loadData()');
+    expect(body).toContain('if (!claimed) void loadData();');
+    expect(SCREEN).toContain('onGiftApplySettled={loadData}');
   });
 
-  test('перезагрузка не спрятана ни под каким условием claimed', () => {
-    const body = closeGiftModalBody();
-    const reloadLine = body.split('\n').find((line) => line.includes('void loadData();'));
-    expect(reloadLine).toBeDefined();
-    // Вызов стоит отдельной строкой, а не под проверкой claimed.
-    expect(reloadLine!.includes('claimed')).toBe(false);
-    expect(reloadLine!.trim()).toBe('void loadData();');
+  test('инвентарь перечитывается только в finally после эффекта и записи claimed', () => {
+    expect(MODAL).toContain('onGiftApplySettled?: () => void | Promise<void>;');
+    const applyStart = MODAL.indexOf('const result = await applyGift(');
+    const claimedAt = MODAL.indexOf('await (onGiftClaimed ?', applyStart);
+    const settledAt = MODAL.indexOf('await onGiftApplySettled?.()', applyStart);
+    expect(applyStart).toBeGreaterThan(-1);
+    expect(claimedAt).toBeGreaterThan(applyStart);
+    expect(settledAt).toBeGreaterThan(claimedAt);
   });
 
   test('оптимистичное удаление плитки сохранено — сетка реагирует мгновенно', () => {
@@ -56,6 +60,13 @@ describe('перезагрузка после закрытия модалки', 
     // сразу, loadData лишь подтверждает и наполняет вкладку «Активные».
     const body = closeGiftModalBody();
     expect(body).toContain('setItems((current) => current.filter(');
+  });
+
+  test('удаляет только точный request/lane, не подарок того же уровня', () => {
+    const body = closeGiftModalBody();
+    expect(SCREEN).toContain('function pendingGiftItemKey');
+    expect(body).toContain('pendingGiftItemKey(selected)');
+    expect(body).toContain('pendingGiftItemKey(item)');
   });
 });
 

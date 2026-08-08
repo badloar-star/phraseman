@@ -197,7 +197,7 @@ export default function AccountDetailsScreen() {
             closeTestID="account-sheet-close"
           />
 
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
         {/* ── Герой: инициалы + крупное имя (тап — изменить имя) ── */}
         <TouchableOpacity
           activeOpacity={0.8}

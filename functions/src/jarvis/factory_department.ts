@@ -46,14 +46,14 @@ interface Cliff {
   readonly reachedHere: number;
 }
 
-interface Gap {
+interface CompletionGap {
   readonly target: ContentStudyTarget;
-  readonly missingLessonId: number;
+  readonly lessonId: number;
 }
 
-interface Wall {
+interface HighestCompletion {
   readonly target: ContentStudyTarget;
-  readonly lastLessonId: number;
+  readonly lessonId: number;
   readonly reached: number;
 }
 
@@ -94,25 +94,25 @@ function findWorstCliff(byTarget: Map<ContentStudyTarget, ContentLessonRow[]>): 
   return worst;
 }
 
-/** Дыра в нумерации: урок между соседями не выпущен. */
-function findGap(byTarget: Map<ContentStudyTarget, ContentLessonRow[]>): Gap | null {
+/** Промежуточный номер без агрегата завершений; это не доказательство отсутствия урока. */
+function findCompletionGap(byTarget: Map<ContentStudyTarget, ContentLessonRow[]>): CompletionGap | null {
   for (const [target, rows] of byTarget) {
     for (let i = 1; i < rows.length; i += 1) {
       const expected = rows[i - 1].lessonId + 1;
-      if (rows[i].lessonId > expected) return { target, missingLessonId: expected };
+      if (rows[i].lessonId > expected) return { target, lessonId: expected };
     }
   }
   return null;
 }
 
-/** Стена: последний урок курса, до которого дошли — контента дальше нет. */
-function findWall(byTarget: Map<ContentStudyTarget, ContentLessonRow[]>): Wall | null {
-  let best: Wall | null = null;
+/** Наивысший номер с достаточным числом завершений; конец каталога неизвестен. */
+function findHighestCompletion(byTarget: Map<ContentStudyTarget, ContentLessonRow[]>): HighestCompletion | null {
+  let best: HighestCompletion | null = null;
   for (const [target, rows] of byTarget) {
     const last = rows[rows.length - 1];
     if (!last || last.sampleCount < FACTORY_MIN_SAMPLES) continue;
     if (!best || last.sampleCount > best.reached) {
-      best = { target, lastLessonId: last.lessonId, reached: last.sampleCount };
+      best = { target, lessonId: last.lessonId, reached: last.sampleCount };
     }
   }
   return best;
@@ -137,8 +137,8 @@ export function runFactoryDepartment(input: RunFactoryDepartmentInput): RunFacto
 
   const byTarget = rowsByTarget(input.fetches);
   const cliff = trustworthy ? findWorstCliff(byTarget) : null;
-  const gap = trustworthy ? findGap(byTarget) : null;
-  const wall = trustworthy ? findWall(byTarget) : null;
+  const gap = trustworthy ? findCompletionGap(byTarget) : null;
+  const highestCompletion = trustworthy ? findHighestCompletion(byTarget) : null;
 
   const shouldDecide = input.trigger === 'owner_request' || Boolean(cliff) || Boolean(gap) || !trustworthy;
   if (!shouldDecide) return { decisions: [] };
@@ -148,17 +148,17 @@ export function runFactoryDepartment(input: RunFactoryDepartmentInput): RunFacto
     ? 'Не удалось прочитать статистику уроков — источник недоступен, полнота курса неизвестна.'
     : cliff
       ? `На уроке ${cliff.lessonId} (${TARGET_LABEL[cliff.target]}) путь обрывается: до предыдущего дошли ${cliff.reachedBefore} чел., до этого — только ${cliff.reachedHere}.`
-      : gap
-        ? `В курсе ${TARGET_LABEL[gap.target]} пропущен урок ${gap.missingLessonId} — между соседними номерами дыра.`
-        : wall
-          ? `${wall.reached} чел. дошли до урока ${wall.lastLessonId} (${TARGET_LABEL[wall.target]}) — это последний, дальше учить нечему.`
-          : 'Данных об уроках пока недостаточно, чтобы судить о полноте курса.';
+    : gap
+        ? `Для урока ${gap.lessonId} (${TARGET_LABEL[gap.target]}) нет записи о завершении между соседними уроками. Это не доказывает, что урока нет в курсе.`
+        : highestCompletion
+          ? `${highestCompletion.reached} чел. завершили урок ${highestCompletion.lessonId} (${TARGET_LABEL[highestCompletion.target]}). По lesson_stats нельзя определить, является ли он последним в каталоге.`
+          : 'Записей lesson_complete в lesson_stats пока нет. Это доказывает отсутствие записанных завершений, но не отсутствие уроков в курсе.';
 
   const question = input.question ?? (cliff
     ? `Почему на уроке ${cliff.lessonId} обрывается путь?`
     : gap
-      ? 'Какого урока не хватает в курсе?'
-      : 'Хватает ли ученикам контента?');
+      ? `Почему нет записей о завершении урока ${gap.lessonId}?`
+      : 'Что известно о завершениях уроков и чего нельзя заключить о каталоге?');
 
   const decision = buildDecision({
     department: 'factory',
@@ -169,40 +169,29 @@ export function runFactoryDepartment(input: RunFactoryDepartmentInput): RunFacto
     hypothesis: cliff
       ? 'Вероятная причина — урок заметно сложнее предыдущего либо в нём что-то мешает пройти до конца.'
       : gap
-        ? 'Вероятная причина — урок не выпущен, а нумерация уже пропустила его.'
-        : wall
-          ? 'Ученики исчерпали курс: следующий урок ещё не написан.'
-          : 'Недостаточно данных для гипотезы.',
+        ? 'Возможные причины: урок существует, но его не завершают; данные начали собирать позже; либо агрегат записан неполно. Нужна проверка каталога.'
+        : highestCompletion
+          ? 'Достигнутый номер показывает только завершения. Доступность следующих уроков и конец курса нужно сверить с каталогом, а не выводить из агрегата.'
+          : 'Нет записей о завершениях; доступность и полноту курса нужно проверять по каталогу уроков.',
     options: cliff
       ? [
         { title: `Пройти урок ${cliff.lessonId} самому и найти, где спотыкаются`, cost: 0, risk: 'low' },
         { title: 'Сравнить его сложность с соседними уроками', cost: 0, risk: 'low' },
       ]
-      : gap
-        ? [
-          { title: `Написать недостающий урок ${gap.missingLessonId}`, cost: 0, risk: 'low' },
-          { title: 'Перенумеровать курс, закрыв пропуск', cost: 0, risk: 'high' },
-        ]
-        : [
-          { title: 'Написать следующий урок курса', cost: 0, risk: 'low' },
-          { title: 'Продолжить наблюдение без вмешательства', cost: 0, risk: 'medium' },
-        ],
+      : [
+        { title: 'Сверить доступные уроки и их нумерацию с каталогом курса', cost: 0, risk: 'low' },
+        { title: 'Проверить, что lesson_complete продолжает записывать агрегат', cost: 0, risk: 'low' },
+      ],
     recommendation: cliff
       ? `Пройти урок ${cliff.lessonId} самому и найти, где спотыкаются`
-      : gap
-        ? `Написать недостающий урок ${gap.missingLessonId}`
-        : 'Написать следующий урок курса',
+      : 'Сверить каталог курса с доступными уроками и записью lesson_complete',
     risk: cliff
       ? 'Каждый день обрыва — это ученики, которые дошли до этого места и бросили'
-      : gap
-        ? 'Пропуск в нумерации выглядит как недоделка и подрывает доверие к курсу'
-        : 'Дошедшие до конца перестают возвращаться — учить их больше нечему',
+      : 'Статистика завершений без проверки каталога может ошибочно представить существующий урок как отсутствующий или конечный',
     cost: 0,
     successMetric: cliff
       ? `Доля дошедших до урока ${cliff.lessonId} перестаёт падать более чем вдвое`
-      : gap
-        ? `Урок ${gap.missingLessonId} появляется в статистике`
-        : 'Появляется следующий урок, и до него начинают доходить',
+      : 'Каталог и lesson_stats дают согласованную, проверяемую картину доступности и завершений уроков',
     rollback: 'Не применимо — департамент только наблюдает, уроки пишет владелец',
     evidence,
     nowMs: input.nowMs,

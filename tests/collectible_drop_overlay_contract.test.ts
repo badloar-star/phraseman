@@ -37,7 +37,6 @@ describe('collectible drop overlay contract', () => {
 
   it('slots collectibleDrop after completion/rating modals but before transient toasts', () => {
     expect(resolveNextOverlay(null, { lessonCompleteNotif: true, collectibleDrop: true })).toBe('lessonCompleteNotif');
-    expect(resolveNextOverlay(null, { arenaRoomConfirm: true, collectibleDrop: true })).toBe('arenaRoomConfirm');
     expect(resolveNextOverlay(null, { collectibleDrop: true, shardsEarned: true })).toBe('collectibleDrop');
     expect(resolveNextOverlay(null, { collectibleDrop: true, achievementToast: true })).toBe('collectibleDrop');
   });
@@ -78,8 +77,6 @@ describe('collectible drop overlay contract', () => {
       'app/lesson_words.tsx',
       'app/preposition_drill.tsx',
       'app/tournament_results.tsx',
-      'components/admin_panel/sections/CollectibleDropModalsSection.tsx',
-      'components/admin_panel/sections/UxOverhaulModalsSection.tsx',
     ].sort());
   });
 

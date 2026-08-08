@@ -2,19 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import { SAGE_PORCELAIN } from '../constants/theme';
 import { SAGE_PORCELAIN_CHROME, sagePorcelainShadow } from '../constants/sagePorcelainChrome';
+import { themeAccessTier } from '../app/theme_access_policy';
 
 describe('Sage Porcelain ThemeContext contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8');
 
   it('wires Sage Porcelain into the free runtime theme policy', () => {
     expect(source).toContain('sagePorcelain: SAGE_PORCELAIN');
-    expect(source).toMatch(/const CYCLE: ThemeMode\[\] = \['indigo', 'sagePorcelain',/);
-    expect(source).not.toMatch(/PREMIUM_ONLY_THEMES[^\n]*sagePorcelain/);
+    expect(source).toContain('const CYCLE: ThemeMode[] = [...SELECTABLE_THEME_MODES];');
+    expect(themeAccessTier('sagePorcelain')).toBe('free');
     expect(source).not.toMatch(/REMOVED_THEME_MODES[^\n]*sagePorcelain/);
-    expect(source).toContain("migrated === 'sagePorcelain'");
-    expect(source).toContain("const isDark = !isLightThemeMode(themeMode);");
+    expect(source).toContain('const valid = isSelectableThemeMode(migrated);');
+    expect(source).toContain('const isDark = !isLightThemeMode(effectiveThemeMode);');
     expect(source).toContain('const statusBarLight = isDark;');
-    expect(source).toContain("const isFlat = themeMode === 'business' || themeMode === 'businessLight';");
+    expect(source).toContain("const isFlat = effectiveThemeMode === 'business' || effectiveThemeMode === 'businessLight';");
   });
 
   it('uses the approved quiet shadow levels', () => {

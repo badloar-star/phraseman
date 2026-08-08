@@ -52,6 +52,7 @@ jest.mock('firebase-admin', () => {
 });
 
 import {
+  enforceFreeJobGenLimit,
   enforceUserGenLimit,
   enforceGlobalBudget,
   reserveExplainBudget,
@@ -159,6 +160,38 @@ describe('reserveExplainBudget / refundExplainBudgetReservation', () => {
 
     expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
     expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
+  });
+
+  it('never refunds an old-day free reservation from the new UTC day counter', async () => {
+    const beforeMidnight = Date.UTC(2026, 5, 9, 23, 59, 59);
+    const afterMidnight = Date.UTC(2026, 5, 10, 0, 0, 1);
+    const oldReservation = await enforceFreeJobGenLimit('mistake', AUTH, STABLE, 3, beforeMidnight);
+    await enforceFreeJobGenLimit('mistake', AUTH, STABLE, 3, afterMidnight);
+
+    await refundExplainBudgetReservation({
+      authUid: AUTH,
+      stableUid: STABLE,
+      globalCap: 0,
+      nowMs: beforeMidnight,
+      userReserved: false,
+      globalReserved: false,
+      freeCap: { job: 'mistake', cap: 3 },
+      freeReserved: true,
+      freeReservation: oldReservation,
+    }, 'old_day_failure');
+
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
+  });
+
+  it('never refunds an old-day general user reservation from the new UTC day counter', async () => {
+    const beforeMidnight = Date.UTC(2026, 5, 9, 23, 59, 59);
+    const afterMidnight = Date.UTC(2026, 5, 10, 0, 0, 1);
+    const oldReservation = await reserveExplainBudget(AUTH, STABLE, 0, beforeMidnight);
+    await enforceUserGenLimit(AUTH, STABLE, afterMidnight);
+
+    await refundExplainBudgetReservation(oldReservation, 'old_day_user_failure');
+
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
   });
 });
 

@@ -6,7 +6,7 @@ export type DailyTaskSpanishStrings = { title: string; desc: string };
 /**
  * Canonical Spanish copy for daily tasks (neutral Spanish, Phraseman terms:
  * Lección, Tarjetas, Guardar/Save mirroring UI, Teoría, Repaso,
- * Test de nivel, Cuestionarios, Arena, XP, energía).
+ * Test de nivel, XP y energía).
  */
 export const DAILY_TASK_STRINGS_ES: Record<string, DailyTaskSpanishStrings> = {
   cs1: { title: 'Primera racha', desc: 'Acierta 5 respuestas seguidas en una lección, sin errores.' },
@@ -41,8 +41,8 @@ export const DAILY_TASK_STRINGS_ES: Record<string, DailyTaskSpanishStrings> = {
   ead1: { title: 'Madrugador', desc: 'Completa el resto de tareas del día antes de las 12:00.' },
   ead2: { title: 'Antes que todos', desc: 'Termina el resto de tareas del día antes del mediodía.' },
   inv1: { title: 'Invita a un amigo', desc: 'En Ajustes abre «Invitar a un amigo» y envía la invitación con Compartir. Si cierras sin compartir, no cuenta.' },
-  es1: { title: 'Usar energía', desc: 'Gasta 3 puntos de energía (fallar en lecciones o jugar en Arena).' },
-  es2: { title: 'Todo el sprint', desc: 'Gasta 5 puntos de energía entre lecciones y Arena.' },
+  es1: { title: 'Usar energía', desc: 'Gasta 3 puntos de energía al cometer errores en lecciones.' },
+  es2: { title: 'Todo el sprint', desc: 'Gasta 5 puntos de energía al cometer errores en lecciones.' },
   es3: { title: 'Primeras pérdidas', desc: 'Gasta 2 puntos de energía y aprende de los errores.' },
   es4: { title: 'Día intenso', desc: 'Gasta 7 puntos de energía en el día con práctica intensa.' },
   evs1: { title: 'Estudiante nocturno', desc: 'Acierta 5 respuestas en una lección después de las 18:00.' },

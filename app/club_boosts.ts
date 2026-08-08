@@ -9,6 +9,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { activateGroupBoost, getCachedGroupBoosts, invalidateGroupBoostsCache } from './firestore_boosts';
 import { emitAppEvent } from './events';
 import { triLang, type Lang } from '../constants/i18n';
+import { withStorageLock } from './storage_mutex';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES & INTERFACES
@@ -463,24 +464,50 @@ export function getBoostNotification(
 
 const CLUB_GIFT_FREE_BOOST_KEY = 'club_gift_free_boost_v1';
 
+const clubGiftFreeBoostCount = (raw: string | null): number => {
+  const parsed = Number.parseInt(raw ?? '', 10);
+  return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+};
+
 export async function hasClubGiftFreeBoostFromLevel(): Promise<boolean> {
   try {
-    return (await AsyncStorage.getItem(CLUB_GIFT_FREE_BOOST_KEY)) === '1';
+    return clubGiftFreeBoostCount(await AsyncStorage.getItem(CLUB_GIFT_FREE_BOOST_KEY)) > 0;
   } catch {
     return false;
   }
 }
 
-export async function grantClubGiftFreeBoostFromLevel(): Promise<void> {
-  try {
-    await AsyncStorage.setItem(CLUB_GIFT_FREE_BOOST_KEY, '1');
-  } catch { /* empty */ }
+export async function grantClubGiftFreeBoostFromLevel(minimumCount?: number): Promise<void> {
+  await withStorageLock(async () => {
+    const current = clubGiftFreeBoostCount(await AsyncStorage.getItem(CLUB_GIFT_FREE_BOOST_KEY));
+    const next = minimumCount === undefined
+      ? current + 1
+      : Math.max(current, Math.max(1, Math.floor(minimumCount)));
+    // Storage errors must escape so the producer can release/retry its claim.
+    await AsyncStorage.setItem(CLUB_GIFT_FREE_BOOST_KEY, String(next));
+  });
+}
+
+export async function setClubGiftFreeBoostCountFromAuthority(count: number): Promise<void> {
+  const canonical = Math.max(0, Math.floor(Number(count) || 0));
+  await withStorageLock(async () => {
+    if (canonical > 0) {
+      await AsyncStorage.setItem(CLUB_GIFT_FREE_BOOST_KEY, String(canonical));
+    } else {
+      await AsyncStorage.removeItem(CLUB_GIFT_FREE_BOOST_KEY);
+    }
+  });
 }
 
 export async function clearClubGiftFreeBoostFromLevel(): Promise<void> {
-  try {
+  await withStorageLock(async () => {
+    const current = clubGiftFreeBoostCount(await AsyncStorage.getItem(CLUB_GIFT_FREE_BOOST_KEY));
+    if (current > 1) {
+      await AsyncStorage.setItem(CLUB_GIFT_FREE_BOOST_KEY, String(current - 1));
+      return;
+    }
     await AsyncStorage.removeItem(CLUB_GIFT_FREE_BOOST_KEY);
-  } catch { /* empty */ }
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

@@ -1,17 +1,19 @@
 import * as admin from 'firebase-admin';
+import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { getLevelFromXP } from './xp_levels';
 import { applyLessonScoreSample, type LessonScoreStats } from './jarvis/content_lesson_stats';
 import { extractLessonScoreSample, lessonStatsDocId, shouldRecordLessonScore } from './jarvis/content_lesson_stats_write';
+import { commitPreparedLearningMetrics, prepareLearningCompletionMetrics } from './jarvis/learning_metrics';
+import { applyLevelSpinMinting, LEVEL_SPIN_PROTOCOL, type LevelExamSpinLevel } from './level_reward_spins';
 
 export type ProgressMap = Record<string, unknown>;
 
 export const PROGRESS_EVENT_TYPES = [
   'lesson_answer',
   'lesson_complete',
-  'quiz_answer',
   'dialog_complete',
   'exam_complete',
   'daily_task_reward',
@@ -39,6 +41,7 @@ export type ProgressEventInput = {
   clientCreatedAt?: number;
   appVersion?: string;
   platform?: string;
+  levelSpinProtocol?: typeof LEVEL_SPIN_PROTOCOL;
   payload: Record<string, unknown>;
 };
 
@@ -55,7 +58,30 @@ export type ProgressEventResult = {
   activeDate: string;
   weekKey: string;
   weekXp: number;
+  levelSpinsMinted?: number;
+  levelSpinMintedCredits?: { id: string; level: number; kind: 'standard' | 'milestone' }[];
+  levelSpinBalance?: number;
 };
+
+export function examSpinCompletionForEvent(
+  event: ProgressEventInput,
+  progressBefore: ProgressMap,
+): { level: LevelExamSpinLevel; firstPass: boolean } | undefined {
+  const blueprintVersion = Number(event.payload.blueprintVersion);
+  if (event.type !== 'exam_complete' || ![2, 3].includes(blueprintVersion)) return undefined;
+  const level = String(event.payload.level ?? '').toUpperCase() as LevelExamSpinLevel;
+  const score = Number(event.payload.score);
+  const total = Number(event.payload.total);
+  const target = String(event.payload.studyTarget ?? 'en').toLowerCase();
+  if (!['A1', 'A2', 'B1', 'B2'].includes(level)
+    || target !== 'en'
+    || !Number.isInteger(score)
+    || total !== 30
+    || score < 21
+    || score > total) return undefined;
+  const alreadyPassed = boolish(progressBefore[`level_exam_${level}_passed`]);
+  return { level, firstPass: !alreadyPassed };
+}
 
 type ApplyResult = Omit<ProgressEventResult, 'stableUid' | 'duplicate'> & {
   progressPatch: ProgressMap;
@@ -108,12 +134,11 @@ const SERVER_OWNED_PROGRESS_KEYS = new Set([
 const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   lesson_answer: 100,
   lesson_complete: 8000,
-  quiz_answer: 120,
   dialog_complete: 1000,
   exam_complete: 12000,
   daily_task_reward: 1000,
   achievement_reward: 5000,
-  level_up_bonus: 1000,
+  level_up_bonus: 100,
   daily_login_bonus: 500,
   daily_phrase_quest: 500,
   bonus_chest: 5000,
@@ -427,6 +452,7 @@ export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
     clientCreatedAt: readInt(data.clientCreatedAt, 0) || undefined,
     appVersion: cleanString(data.appVersion, 32) || undefined,
     platform: cleanString(data.platform, 32) || undefined,
+    levelSpinProtocol: data.levelSpinProtocol === LEVEL_SPIN_PROTOCOL ? LEVEL_SPIN_PROTOCOL : undefined,
     payload: normalizePayload(data.payload),
   };
 }
@@ -465,9 +491,51 @@ function fingerprintableProgressEventPayload(event: ProgressEventInput): Record<
   }) as Record<string, unknown>;
 }
 
+export function canonicalProgressEventSemantics(event: ProgressEventInput): string {
+  return JSON.stringify(fingerprintableProgressEventPayload(event));
+}
+
+export function candidateHasSameProgressSemantics(
+  event: ProgressEventInput,
+  candidate: Record<string, unknown> | undefined,
+): boolean {
+  if (!candidate || !PROGRESS_EVENT_TYPES.includes(candidate.type as ProgressEventType)) return false;
+  try {
+    return canonicalProgressEventSemantics(event) === canonicalProgressEventSemantics({
+      eventId: 'stored-candidate',
+      type: candidate.type as ProgressEventType,
+      clientLocalDate: typeof candidate.clientLocalDate === 'string' ? candidate.clientLocalDate : undefined,
+      payload: candidate.payload && typeof candidate.payload === 'object' && !Array.isArray(candidate.payload)
+        ? candidate.payload as Record<string, unknown>
+        : {},
+    });
+  } catch {
+    return false;
+  }
+}
+
+export function readLegacyLevelUpBonusClaim(
+  candidate: Record<string, unknown> | undefined,
+  level: number,
+): 'unclaimed' | 'claimed' | 'corrupt' {
+  if (!candidate) return 'unclaimed';
+  const payload = candidate.payload && typeof candidate.payload === 'object' && !Array.isArray(candidate.payload)
+    ? candidate.payload as Record<string, unknown>
+    : {};
+  const result = candidate.result && typeof candidate.result === 'object' && !Array.isArray(candidate.result)
+    ? candidate.result as Record<string, unknown>
+    : {};
+  return candidate.eventId === `level_up:${level}:bonus`
+    && candidate.type === 'level_up_bonus'
+    && Number(payload.level) === level
+    && Number(payload.xpDelta ?? payload.amount ?? payload.baseXp) === 100
+    && Number(result.xpDelta) === 100
+    ? 'claimed'
+    : 'corrupt';
+}
+
 export function fingerprintProgressEvent(event: ProgressEventInput): string {
-  const payload = fingerprintableProgressEventPayload(event);
-  const serialized = JSON.stringify(payload);
+  const serialized = canonicalProgressEventSemantics(event);
   let hash = 0x811c9dc5;
   for (let i = 0; i < serialized.length; i += 1) {
     hash ^= serialized.charCodeAt(i);
@@ -475,6 +543,10 @@ export function fingerprintProgressEvent(event: ProgressEventInput): string {
     hash >>>= 0;
   }
   return hash.toString(16).padStart(8, '0');
+}
+
+export function fingerprintProgressEventV2(event: ProgressEventInput): string {
+  return createHash('sha256').update(canonicalProgressEventSemantics(event)).digest('hex');
 }
 
 function safeDocId(value: string): string {
@@ -574,13 +646,30 @@ export type ProgressDailyContext = {
   examAttemptsToday?: number;
   /** Суммарный XP за сегодня. Аналитика; на начисление не влияет. */
   totalXpToday?: number;
+  /** Server-only transaction evidence that this deterministic level bonus was already consumed. */
+  levelUpBonusAlreadyClaimed?: boolean;
 };
 
-function xpFromPayload(event: ProgressEventInput, daily?: ProgressDailyContext): number {
+function xpFromPayload(event: ProgressEventInput, daily: ProgressDailyContext | undefined, progress: ProgressMap): number {
   const payload = event.payload;
   let requested = 0;
 
-  if (event.type === 'exam_complete') {
+  if (event.type === 'level_up_bonus') {
+    if (daily?.levelUpBonusAlreadyClaimed) return 0;
+    const level = Number(payload.level);
+    const amount = Number(payload.xpDelta ?? payload.amount ?? payload.baseXp);
+    if (!Number.isInteger(level) || level < 2 || level > 60) {
+      throw new HttpsError('invalid-argument', 'level_up_bonus_level_invalid');
+    }
+    if (!Number.isInteger(amount) || amount !== 100) {
+      throw new HttpsError('invalid-argument', 'level_up_bonus_amount_invalid');
+    }
+    const authoritativeLevel = getLevelFromXP(Math.max(0, Number(progress.user_total_xp ?? 0) || 0));
+    if (authoritativeLevel < level) {
+      throw new HttpsError('failed-precondition', 'level_up_bonus_level_not_reached');
+    }
+    requested = 100;
+  } else if (event.type === 'exam_complete') {
     const level = cleanString(payload.level ?? payload.examLevel, 12).toLowerCase();
     const attemptsSoFar = Math.max(0, daily?.examAttemptsToday ?? 0);
     if (level === 'final') {
@@ -746,7 +835,7 @@ export function applyProgressEvent(
   const patch: ProgressMap = {};
 
   const previousTotal = Math.max(0, readInt(progress.user_total_xp, 0));
-  const xpDelta = xpFromPayload(event, daily);
+  const xpDelta = xpFromPayload(event, daily, progress);
   const totalXp = previousTotal + xpDelta;
   const level = getLevelFromXP(totalXp);
   const previousWeeklyStart = cleanString(progress.weekly_xp_period_start, 10);
@@ -868,12 +957,26 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const userRef = db.collection('users').doc(stableUid);
   const ledgerRef = userRef.collection('progress_events').doc(safeDocId(event.eventId));
   const eventFingerprint = fingerprintProgressEvent(event);
+  const eventFingerprintV2 = fingerprintProgressEventV2(event);
   const existingFingerprintRef = userRef.collection('progress_events')
     .where('fingerprint', '==', eventFingerprint)
+    .limit(16);
+  const existingFingerprintV2Ref = userRef.collection('progress_events')
+    .where('fingerprintSha256', '==', eventFingerprintV2)
     .limit(1);
   const now = new Date();
   const todayKey = isoDateUtc(now);
   const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
+  const bonusLevel = event.type === 'level_up_bonus' ? Number(event.payload.level) : 0;
+  const levelUpBonusClaimRef = event.type === 'level_up_bonus'
+    && Number.isInteger(bonusLevel)
+    && bonusLevel >= 2
+    && bonusLevel <= 60
+    ? userRef.collection('level_up_bonus_claims').doc(`level_bonus_v1_${String(bonusLevel).padStart(3, '0')}`)
+    : null;
+  const legacyLevelUpBonusRef = levelUpBonusClaimRef
+    ? userRef.collection('progress_events').doc(safeDocId(`level_up:${bonusLevel}:bonus`))
+    : null;
   // зачем: департамент «Контент» Джарвиса (владелец 2026-08-02) — дешёвый
   // агрегат среднего балла по уроку. Пишется в той же транзакции, что уже
   // начисляет XP — одна дополнительная запись документа на событие, без
@@ -885,22 +988,44 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     : null;
 
   const result = await db.runTransaction(async (tx) => {
-    const [userSnap, ledgerSnap, counterSnap, lessonStatsSnap] = await Promise.all([
+    const [userSnap, ledgerSnap, counterSnap, lessonStatsSnap, levelUpBonusClaimSnap, legacyLevelUpBonusSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(ledgerRef),
       tx.get(dailyCounterRef),
       lessonStatsRef ? tx.get(lessonStatsRef) : Promise.resolve(null),
+      levelUpBonusClaimRef ? tx.get(levelUpBonusClaimRef) : Promise.resolve(null),
+      legacyLevelUpBonusRef ? tx.get(legacyLevelUpBonusRef) : Promise.resolve(null),
     ]);
+    if (!userSnap.exists || userSnap.data()?.identityHidden === true || userSnap.data()?.levelSpinMergePending === true) {
+      throw new HttpsError('failed-precondition', 'level_spin_identity_transition_pending');
+    }
     if (ledgerSnap.exists) {
       const result = ledgerSnap.data()?.result as ProgressEventResult | undefined;
       if (result) return { ...result, duplicate: true };
       throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
     }
-    const fingerprintSnap = await tx.get(existingFingerprintRef);
-    if (!fingerprintSnap.empty) {
-      const result = fingerprintSnap.docs[0].data()?.result as ProgressEventResult | undefined;
+    const [fingerprintV2Snap, fingerprintSnap] = await Promise.all([
+      tx.get(existingFingerprintV2Ref),
+      tx.get(existingFingerprintRef),
+    ]);
+    if (!fingerprintV2Snap.empty) {
+      const result = fingerprintV2Snap.docs[0].data()?.result as ProgressEventResult | undefined;
       if (result) return { ...result, duplicate: true };
       throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
+    }
+    const semanticMatch = fingerprintSnap.docs.find((candidate) =>
+      candidateHasSameProgressSemantics(event, candidate.data()));
+    if (semanticMatch) {
+      const result = semanticMatch.data()?.result as ProgressEventResult | undefined;
+      if (result) return { ...result, duplicate: true };
+      throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
+    }
+    const legacyBonusClaimState = readLegacyLevelUpBonusClaim(
+      legacyLevelUpBonusSnap?.exists ? legacyLevelUpBonusSnap.data() : undefined,
+      bonusLevel,
+    );
+    if (legacyBonusClaimState === 'corrupt') {
+      throw new HttpsError('aborted', 'level_up_bonus_legacy_ledger_corrupt');
     }
     const counterData = counterSnap.data() ?? {};
     const dailyCount = (counterData.count as number | undefined) ?? 0;
@@ -916,8 +1041,44 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
 
     const rawProgress = getProgress(userSnap.data());
     const progress = buildProgressBaseline(rawProgress, userSnap.data()?.progressServerState, now);
-    const applied = applyProgressEvent(progress, event, now, { sourceXpToday, examAttemptsToday, totalXpToday });
-    const mergedProgress = { ...progress, ...applied.progressPatch };
+    const applied = applyProgressEvent(progress, event, now, {
+      sourceXpToday,
+      examAttemptsToday,
+      totalXpToday,
+      levelUpBonusAlreadyClaimed: levelUpBonusClaimSnap?.exists === true
+        || legacyBonusClaimState === 'claimed',
+    });
+    const learningMetrics = await prepareLearningCompletionMetrics({
+      db,
+      tx,
+      stableUid,
+      eventType: event.type,
+      occurredAt: now,
+      fields: {
+        increment: (value) => admin.firestore.FieldValue.increment(value),
+        serverTimestamp: () => admin.firestore.FieldValue.serverTimestamp(),
+      },
+    });
+    const levelSpinMint = await applyLevelSpinMinting({
+      db,
+      tx,
+      stableUid,
+      authUid,
+      userRef,
+      userData: (userSnap.data() ?? {}) as Record<string, unknown>,
+      progressBefore: progress,
+      beforeLevel: getLevelFromXP(Math.max(0, Number(progress.user_total_xp ?? 0) || 0)),
+      afterLevel: applied.level,
+      protocol: event.levelSpinProtocol,
+      earnedAtMs: now.getTime(),
+      examCompletion: examSpinCompletionForEvent(event, progress),
+    });
+    commitPreparedLearningMetrics(tx, learningMetrics);
+    const mergedProgress = {
+      ...progress,
+      ...applied.progressPatch,
+      level_reward_spin_balance: String(levelSpinMint.balance),
+    };
     const progressServerState = progressServerStateFromProgress(mergedProgress, now);
     const progressPatch = { ...applied.progressPatch, ...authoritativeProgressPatch(progressServerState) };
 
@@ -949,6 +1110,14 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
     }
+    if (levelUpBonusClaimRef && levelUpBonusClaimSnap?.exists !== true && applied.xpDelta === 100) {
+      tx.create(levelUpBonusClaimRef, {
+        level: bonusLevel,
+        eventId: event.eventId,
+        amount: 100,
+        claimedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    }
     const result: ProgressEventResult = {
       ok: true,
       stableUid,
@@ -962,6 +1131,9 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       activeDate: applied.activeDate,
       weekKey: applied.weekKey,
       weekXp: applied.weekXp,
+      levelSpinsMinted: levelSpinMint.minted,
+      levelSpinMintedCredits: levelSpinMint.mintedCredits,
+      levelSpinBalance: levelSpinMint.balance,
     };
 
     tx.set(userRef, {
@@ -970,6 +1142,7 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
         ...progressServerState,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       },
+      levelSpinServerState: levelSpinMint.state,
       firebaseAuthUid: authUid,
       progressServerAuthoritative: true,
       progressServerCutoverAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -980,10 +1153,14 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       type: event.type,
       payload: event.payload,
       fingerprint: eventFingerprint,
+      fingerprintSha256: eventFingerprintV2,
+      fingerprintCanonicalVersion: 1,
+      fingerprintCanonical: canonicalProgressEventSemantics(event),
       clientLocalDate: event.clientLocalDate ?? null,
       clientCreatedAt: event.clientCreatedAt ?? null,
       appVersion: event.appVersion ?? null,
       platform: event.platform ?? null,
+      levelSpinProtocol: event.levelSpinProtocol ?? null,
       result,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });

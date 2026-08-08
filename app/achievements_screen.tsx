@@ -625,35 +625,35 @@ const CAT_ICON_IMAGE: Record<string, any> = {
 };
 const CAT_LABEL_RU: Record<string, string> = {
   streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
-  quiz: 'Вызовы', combo: 'Серии', special: 'Особые', medal: 'Медали',
+  combo: 'Серии', special: 'Особые', medal: 'Медали',
 };
 const CAT_LABEL_UK: Record<string, string> = {
   streak: 'Ланцюжок', lessons: 'Уроки', xp: 'Досвід',
-  quiz: 'Квізи', combo: 'Серії', special: 'Особливі', medal: 'Медалі',
+  combo: 'Серії', special: 'Особливі', medal: 'Медалі',
 };
 const CAT_LABEL_ES: Record<string, string> = {
   streak: 'Racha', lessons: 'Lecciones', xp: 'Experiencia',
-  quiz: 'Cuestionarios', combo: 'Series', special: 'Especiales', medal: 'Medallas',
+  combo: 'Series', special: 'Especiales', medal: 'Medallas',
 };
 const CAT_LABEL_PTBR: Record<string, string> = {
   streak: 'Sequência', lessons: 'Lições', xp: 'Experiência',
-  quiz: 'Quizzes', combo: 'Séries', special: 'Especiais', medal: 'Medalhas',
+  combo: 'Séries', special: 'Especiais', medal: 'Medalhas',
 };
 const CAT_LABEL_VI: Record<string, string> = {
   streak: 'Chuỗi ngày', lessons: 'Bài học', xp: 'Kinh nghiệm',
-  quiz: 'Bài quiz', combo: 'Chuỗi', special: 'Đặc biệt', medal: 'Huy chương',
+  combo: 'Chuỗi', special: 'Đặc biệt', medal: 'Huy chương',
 };
 const CAT_LABEL_ID: Record<string, string> = {
   streak: 'Rangkaian', lessons: 'Pelajaran', xp: 'Pengalaman',
-  quiz: 'Kuis', combo: 'Seri', special: 'Spesial', medal: 'Medali',
+  combo: 'Seri', special: 'Spesial', medal: 'Medali',
 };
 const CAT_LABEL_TR: Record<string, string> = {
   streak: 'Seri', lessons: 'Dersler', xp: 'Deneyim',
-  quiz: 'Quizler', combo: 'Seriler', special: 'Özel', medal: 'Madalyalar',
+  combo: 'Seriler', special: 'Özel', medal: 'Madalyalar',
 };
 const CAT_LABEL_PL: Record<string, string> = {
   streak: 'Seria', lessons: 'Lekcje', xp: 'Doświadczenie',
-  quiz: 'Quizy', combo: 'Serie', special: 'Specjalne', medal: 'Medale',
+  combo: 'Serie', special: 'Specjalne', medal: 'Medale',
 };
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'combo', 'special', 'medal'] as const;
@@ -1084,7 +1084,7 @@ function AchievementModal({
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, width: '100%', maxHeight: modalMaxHeight, overflow: 'hidden', position: 'relative' }}>
             <ScrollView
               keyboardShouldPersistTaps="handled"
-              decelerationRate="fast"
+              decelerationRate="normal"
               showsVerticalScrollIndicator
               contentContainerStyle={{ padding: modalPad, alignItems: 'center', gap: 12 }}
             >

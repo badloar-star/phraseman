@@ -57,7 +57,6 @@ function hasDevSeedFingerprint(data: ProgressMap): boolean {
   let score = 0;
   if (parseIntSafe(data.user_total_xp) === 100000) score += 1;
   if (parseIntSafe(data.achievement_active_recall_correct_count) === 50) score += 1;
-  if (parseIntSafe(data.achievement_arena_win_count) === 10) score += 1;
   if (parseIntSafe(data.shards_balance) === 100) score += 1;
   try {
     const login = JSON.parse(String(data.login_bonus_v1 ?? '{}'));
@@ -132,7 +131,6 @@ export async function repairDevSeededStreakInStorage(): Promise<number | null> {
     'user_total_xp',
     'login_bonus_v1',
     'achievement_active_recall_correct_count',
-    'achievement_arena_win_count',
     'shards_balance',
     'daily_stats',
     'stats_daily_breakdown_v1',

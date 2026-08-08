@@ -1,14 +1,12 @@
 /**
  * Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента).
  *
- * Было (friends.tsx fetchFriendProfileFromFirestore): на КАЖДОГО друга до 4 последовательных
- * запросов (leaderboard/{uid} → leaderboard where firebaseAuthUid → arena_profiles where
- * mirrorStableId → arena_profiles/{uid}) с concurrency 6 — на 20 друзьях до 80 RTT.
- * Стало: один callable friendsGetProfiles({uids}) — цепочка выполняется server-to-server,
+ * Стало: один callable friendsGetProfiles({uids}) читает канонический leaderboard
+ * server-to-server,
  * ответ кэшируется на 60 c (как listMyInvitesServerCache).
  *
- * TODO(mapping): набор полей выровнен по клиентским profileFromLeaderboardDoc /
- * profileFromArenaDoc (friends.tsx). Если там появятся новые поля карточки профиля —
+ * TODO(mapping): набор полей выровнен по клиентскому profileFromLeaderboardDoc.
+ * Если там появятся новые поля карточки профиля —
  * дополнить FRIEND_PROFILE_FIELDS-маппинг здесь, не раздувая клиент.
  */
 import * as admin from 'firebase-admin';
@@ -82,9 +80,9 @@ function numOrNull(v: unknown): number | null {
 
 type DocData = Record<string, unknown> | undefined;
 
-/** Сборка публичного профиля из leaderboard + arena_profiles (приоритет leaderboard). */
-export function buildFriendProfile(uid: string, lb: DocData, arena: DocData): FriendPublicProfile | null {
-  if (!lb && !arena) return null;
+/** Сборка публичного профиля из канонического leaderboard. */
+export function buildFriendProfile(uid: string, lb: DocData): FriendPublicProfile | null {
+  if (!lb) return null;
   // зачем (2026-08-03): карточка чужого игрока всегда показывала 0 опыта и Lv.1.
   // Причина — рассинхрон имён полей: writer (functions/src/sync_leaderboard.ts +
   // firestore_leaderboard.ts) кладёт в leaderboard/{uid} общий XP в поле `points`,
@@ -93,27 +91,27 @@ export function buildFriendProfile(uid: string, lb: DocData, arena: DocData): Fr
   // документе нет вовсе → num(undefined) = 0. Молчаливая ложь: профиль
   // возвращался «валидным», но пустым. Канонические ключи теперь идут ПЕРВЫМИ,
   // а прежние оставлены как запасной вариант для документов старых схем.
-  const displayName = str(lb?.name) || str(lb?.displayName) || str(arena?.displayName) || str(arena?.name) || '';
+  const displayName = str(lb?.name) || str(lb?.displayName) || '';
   const totalXp = num(
-    lb?.points ?? lb?.totalXp ?? lb?.user_total_xp ?? arena?.points ?? arena?.totalXp ?? arena?.user_total_xp,
+    lb?.points ?? lb?.totalXp ?? lb?.user_total_xp,
   );
   const profileCardLevel = num(
-    lb?.profileCardLevel ?? lb?.courseProfileCardLevel ?? arena?.profileCardLevel ?? arena?.courseProfileCardLevel,
+    lb?.profileCardLevel ?? lb?.courseProfileCardLevel,
   );
   const profile: FriendPublicProfile = {
     uid,
     displayName,
     totalXp,
     level: getLevelFromXP(totalXp),
-    avatar: str(lb?.avatar ?? arena?.avatar),
-    frame: str(lb?.frame ?? lb?.courseProfileCardFrame ?? arena?.frame ?? arena?.courseProfileCardFrame),
-    aura: str(lb?.aura ?? lb?.courseProfileCardAura ?? arena?.aura ?? arena?.courseProfileCardAura),
+    avatar: str(lb?.avatar),
+    frame: str(lb?.frame ?? lb?.courseProfileCardFrame),
+    aura: str(lb?.aura ?? lb?.courseProfileCardAura),
     profileCardLevel,
-    streak: numOrNull(lb?.streak ?? arena?.streak),
-    leagueId: num(lb?.leagueId ?? arena?.leagueId),
-    isPremium: lb?.isPremium === true || lb?.courseIsPremium === true || arena?.isPremium === true || arena?.courseIsPremium === true,
-    isVip: lb?.isVip === true || lb?.courseIsVip === true || arena?.isVip === true || arena?.courseIsVip === true,
-    isLifetime: lb?.isLifetime === true || lb?.courseIsLifetime === true || arena?.isLifetime === true || arena?.courseIsLifetime === true,
+    streak: numOrNull(lb?.streak),
+    leagueId: num(lb?.leagueId),
+    isPremium: lb?.isPremium === true || lb?.courseIsPremium === true,
+    isVip: lb?.isVip === true || lb?.courseIsVip === true,
+    isLifetime: lb?.isLifetime === true || lb?.courseIsLifetime === true,
   };
   if (!profile.displayName && profile.totalXp <= 0 && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;
@@ -132,16 +130,7 @@ async function fetchOneProfile(db: admin.firestore.Firestore, uid: string): Prom
     lbData = byAuth.docs[0]?.data() as DocData;
   }
 
-  let arenaData: DocData;
-  const arenaByStable = await db.collection('arena_profiles').where('mirrorStableId', '==', uid).limit(1).get();
-  if (!arenaByStable.empty) {
-    arenaData = arenaByStable.docs[0]?.data() as DocData;
-  } else {
-    const arenaSnap = await db.collection('arena_profiles').doc(uid).get();
-    arenaData = arenaSnap.exists ? (arenaSnap.data() as DocData) : undefined;
-  }
-
-  return buildFriendProfile(uid, lbData, arenaData);
+  return buildFriendProfile(uid, lbData);
 }
 
 export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise<ProfilesResponse> => {

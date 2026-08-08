@@ -37,14 +37,10 @@ function listSourceFiles(dir: string): string[] {
 }
 
 describe('borderless top bevel contract', () => {
-  it('keeps arena and club section containers tonal instead of top-beveled', () => {
-    const arenaRoom = readSource('app/arena_room.tsx');
+  it('keeps club section containers tonal instead of top-beveled', () => {
     const clubScreen = readSource('app/club_screen.tsx');
 
-    expectNoDecorativeTopBevelAround(arenaRoom, 'testID="arena-room-code-input"');
-    expectNoDecorativeTopBevelAround(arenaRoom, 'name="people"');
-    expectNoDecorativeTopBevel(sliceBetween(arenaRoom, '{room && (', 'runs.length > 0'));
-    expectNoDecorativeTopBevel(sliceBetween(clubScreen, 'showEmptyParticipants ?', 'sortedGroup.map'));
+    expectNoDecorativeTopBevelAround(clubScreen, 'showEmptyParticipants ?');
   });
 
   it('keeps friend list cards tonal while preserving semantic activity signals', () => {
@@ -53,18 +49,8 @@ describe('borderless top bevel contract', () => {
     expectNoDecorativeTopBevel(sliceBetween(friends, 'function FriendRow', 'function RequestRow'));
     expectNoDecorativeTopBevel(sliceBetween(friends, 'function RequestRow', 'type ActivityFeedSection'));
     expectNoDecorativeTopBevel(sliceBetween(friends, 'testID="friends-activity-digest"', 'activityDigestText'));
-    expectNoDecorativeTopBevel(sliceBetween(friends, 'testID="friend-quest-card"', 'visible={friendQuestStarted !== null}'));
+    expectNoDecorativeTopBevel(sliceBetween(friends, 'testID="friend-quest-card"', '<FriendQuestStartedModal'));
     expect(friends).toContain("...(isMilestone ? { borderTopWidth: 1, borderTopColor: color + '55' } : null)");
-  });
-
-  it('keeps quiz informational containers tonal without removing locked or selected states', () => {
-    const quizzes = readSource('app/(tabs)/quizzes.tsx');
-
-    expectNoDecorativeTopBevel(sliceBetween(quizzes, '!DEV_CONTENT_UNLOCK && !isPremium', '</Reanimated.ScrollView>'));
-    expectNoDecorativeTopBevel(sliceBetween(quizzes, 'getXPProgress(totalXP + score)', 'wrongPhrases.length === 0'));
-    expectNoDecorativeTopBevel(sliceBetween(quizzes, 'showHardTip && settings.hardMode', 'setHardTipDismissed(true)'));
-    expectNoDecorativeTopBevel(sliceBetween(quizzes, 'function FrenchQuizUnavailable', 'copy.cta'));
-    expect(quizzes).toContain('borderWidth: 0');
   });
 
   it('keeps diagnostic, referral, drill, and plan-complete panels tonal', () => {
@@ -101,7 +87,10 @@ describe('borderless top bevel contract', () => {
   it('does not reintroduce the old accent top-bevel signature in app surfaces', () => {
     const files = ['app', 'components', 'constants', 'hooks', 'modules', 'lib']
       .flatMap((dir) => listSourceFiles(path.join(ROOT, dir)))
-      .filter((file) => !file.includes(`${path.sep}node_modules${path.sep}`));
+      .filter((file) => !file.includes(`${path.sep}node_modules${path.sep}`))
+      // GlassSurface owns the opt-in bevel primitive; this contract forbids
+      // reintroducing that signature directly in product surfaces.
+      .filter((file) => path.relative(ROOT, file) !== path.join('components', 'GlassSurface.tsx'));
     const offenders = files.filter((file) => readSource(path.relative(ROOT, file)).includes('borderTopColor: glassFill(t.accent, 0.14)'));
 
     expect(offenders.map((file) => path.relative(ROOT, file))).toEqual([]);

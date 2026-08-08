@@ -797,7 +797,7 @@ export default function FlashcardsAudioScreen() {
       {renderHeader(() => safeRouterBack(router, '/flashcards' as any))}
       <BouncyScrollView
         style={styles.scroll}
-        decelerationRate="fast"
+        decelerationRate="normal"
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(bottomInset, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >

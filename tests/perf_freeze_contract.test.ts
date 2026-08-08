@@ -83,8 +83,6 @@ describe('perf freeze contract', () => {
       'components/PremiumCelebrationModal.tsx', // модалка, unmount on close
       'components/premium_celebration/AuroraBackground.tsx', // внутри той же модалки
       'app/flashcards/CardPackShardPaywallModal.tsx', // модалка, unmount on close
-      'app/_anim_demo_lab.tsx', // dev-лаба
-      'app/_admin_celebration_lab.tsx', // dev-лаба
     ]);
     const dirs = ['app', 'components', 'hooks'];
     const files = dirs.flatMap((d) => walk(path.join(ROOT, d)));
@@ -117,6 +115,7 @@ describe('perf freeze contract', () => {
   // Список синхронизирован с LOGICAL_TAB_IDS.
   const TAB_SCREENS = [
     'app/(tabs)/home.tsx',
+    'app/(tabs)/lessons.tsx',
     'app/(tabs)/friends.tsx',
     'app/(tabs)/settings.tsx',
   ];
@@ -252,7 +251,8 @@ describe('perf freeze contract', () => {
     // (иначе первый кадр показывает состояние, замороженное в момент ухода —
     // прямое нарушение Performance Bible про первый кадр).
     const hub = read('app/(tabs)/tournaments.tsx');
-    expect(hub).toMatch(/if \(!runtimeActive\) return;[\s\S]{0,400}?setTick\(\(value\) => value \+ 1\);[\s\S]{0,80}?setInterval/);
+    expect(hub).toMatch(/if \(!runtimeActive\) return;[\s\S]{0,400}?const refreshClock = \(\) => \{[\s\S]{0,120}?setTick\(\(value\) => value \+ 1\);/);
+    expect(hub).toMatch(/refreshClock\(\);[\s\S]{0,80}?setInterval\(refreshClock, 1000\)/);
     // Тот же принцип в общем отсчёте: значение считается ДО setInterval.
     const countdown = read('components/tournament/TournamentCountdown.tsx');
     expect(countdown).toMatch(/if \(compute\(\) <= 0\) return;[\s\S]{0,120}?setInterval/);

@@ -25,8 +25,6 @@ export type FriendEventType =
   | 'lesson_complete'
   | 'achievement'
   | 'streak_milestone'
-  | 'arena_rank_up'
-  | 'arena_rank_down'
   | 'friend_gift_sent'
   | 'friend_gift_received';
 
@@ -36,9 +34,17 @@ export interface FriendEvent {
   type: FriendEventType;
   ts: number;
   activityLikeCount?: number;
-  /** Уровень (level_up); lesson_complete — не из квизов; achievement; streak_milestone; arena_rank_* */
+  /** Полезная нагрузка активного события. */
   payload: Record<string, string | number>;
 }
+
+const ACTIVE_FRIEND_EVENT_TYPES: ReadonlySet<string> = new Set<FriendEventType>([
+  'level_up', 'lesson_complete', 'achievement', 'streak_milestone',
+  'friend_gift_sent', 'friend_gift_received',
+]);
+
+const isActiveFriendEventType = (value: unknown): value is FriendEventType =>
+  typeof value === 'string' && ACTIVE_FRIEND_EVENT_TYPES.has(value);
 
 const CACHE_KEY = 'friends_activity_feed_v2';
 const LEGACY_CACHE_KEYS = ['friends_activity_feed_v1'];
@@ -170,11 +176,11 @@ function mapFeedDoc(
   uidFallback: string,
 ): FriendEvent | null {
   const d = doc.data();
-  if (!d.type || !d.ts) return null;
+  if (!isActiveFriendEventType(d.type) || !d.ts) return null;
   return {
     id: doc.id,
     uid: String(d.uid ?? uidFallback),
-    type: d.type as FriendEventType,
+    type: d.type,
     ts: Number(d.ts),
     activityLikeCount: Math.max(0, Math.floor(Number(d.activityLikeCount ?? 0) || 0)),
     payload: (d.payload as Record<string, string | number>) ?? {},
@@ -221,7 +227,15 @@ export async function fetchFriendsActivityFeed(
   let cached: FeedCache | null = null;
   try {
     const raw = await AsyncStorage.getItem(CACHE_KEY);
-    if (raw) cached = JSON.parse(raw) as FeedCache;
+    if (raw) {
+      const parsed = JSON.parse(raw) as FeedCache;
+      cached = {
+        ...parsed,
+        events: Array.isArray(parsed.events)
+          ? parsed.events.filter((event) => isActiveFriendEventType(event?.type))
+          : [],
+      };
+    }
   } catch { /* ignore */ }
 
   const now = Date.now();

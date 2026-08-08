@@ -45,10 +45,10 @@ describe('YouTube premiere reminders', () => {
     expect(buildYoutubePremiereReminderTrigger('invalid', nowMs)).toBeNull();
   });
 
-  it('requests permission only from the explicit tap flow and respects master off', async () => {
+  it('requests native permission first from the explicit tap flow and still respects master off', async () => {
     const off = dependencies({ isMasterEnabled: jest.fn(async () => false) });
     await expect(requestYoutubePremiereReminderFromTap(premiere, { nowMs, dependencies: off })).resolves.toEqual({ ok: false, reason: 'master_disabled' });
-    expect(off.requestPermission).not.toHaveBeenCalled();
+    expect(off.requestPermission).toHaveBeenCalledTimes(1);
     expect(off.schedule).not.toHaveBeenCalled();
 
     const allowed = dependencies();

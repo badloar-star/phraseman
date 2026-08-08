@@ -1,6 +1,6 @@
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchGrowthSourceResult } from './growth_firestore_fetcher';
-import { aggregateGrowthRows, buildGrowthEvidence } from './growth_source_reader';
+import { buildGrowthEvidence } from './growth_source_reader';
 
 /**
  * Департамент «Рост» — третий департамент Джарвиса (решение владельца
@@ -34,22 +34,25 @@ export function runGrowthDepartment(input: RunGrowthDepartmentInput): RunGrowthD
     truncated: fetch.truncated,
     droppedCount: fetch.droppedCount,
     rows: fetch.rows,
+    count: fetch.count,
+    provenance: fetch.provenance,
+    periodKey: fetch.periodKey,
     observedAtMs: fetch.observedAtMs,
   }));
 
   const usersFetch = input.fetches.find((fetch) => fetch.sourceId === 'users');
-  const aggregate = usersFetch ? aggregateGrowthRows(usersFetch.rows) : null;
+  const aggregateCount = usersFetch?.count ?? null;
   const anyTrustworthy = evidence.some((item) => item.trustworthy);
-  const zeroSignups = anyTrustworthy && aggregate !== null && aggregate.totalCount === 0;
+  const zeroSignups = anyTrustworthy && aggregateCount === 0;
 
   const shouldDecide = input.trigger === 'owner_request' || zeroSignups || !anyTrustworthy;
   if (!shouldDecide) return { decisions: [] };
 
   const finding = !anyTrustworthy
     ? 'Не удалось прочитать новых пользователей за последние сутки — источник недоступен.'
-    : aggregate!.totalCount === 0
-      ? 'За последние сутки нет новых пользователей — 0 регистраций.'
-      : `За последние сутки зарегистрировалось ${aggregate!.totalCount} новых пользователей.`;
+    : aggregateCount === 0
+      ? 'За текущие сутки UTC нет новых пользователей — 0 регистраций.'
+      : `За текущие сутки UTC зарегистрировалось ${aggregateCount} новых пользователей.`;
 
   const question = input.question ?? (zeroSignups ? 'Почему нет новых регистраций за сутки?' : 'Сколько новых пользователей за последние сутки?');
 

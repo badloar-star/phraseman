@@ -10,7 +10,6 @@ import {
   pickAppMessagePollOptionText,
   pickAppMessagePollQuestion,
   pickAppMessageText,
-  seedLocalVipSurveyTestMessage,
 } from '../app/app_messages';
 
 describe('app_messages', () => {
@@ -262,28 +261,4 @@ describe('app_messages', () => {
     expect(snapshot.unreadCount).toBe(1);
   });
 
-  it('seeds an admin VIP survey test as a local-only inbox message', async () => {
-    const id = await seedLocalVipSurveyTestMessage(now);
-    const keys = await AsyncStorage.getAllKeys();
-    const messageKey = keys.find((key) => key.startsWith('app_messages_local_preview_v2:'));
-    const stateKey = keys.find((key) => key.startsWith('app_message_local_preview_states_v2:'));
-    expect(messageKey).toBeDefined();
-    expect(stateKey).toBeDefined();
-    const rawMessages = await AsyncStorage.getItem(messageKey!);
-    const rawStates = await AsyncStorage.getItem(stateKey!);
-    const messages = JSON.parse(rawMessages || '[]');
-    const states = JSON.parse(rawStates || '[]');
-
-    expect(id).toBe(`admin_test_vip_survey_${now}`);
-    expect(messages).toHaveLength(1);
-    expect(messages[0]).toMatchObject({
-      id,
-      kind: 'vip_survey',
-      audience: 'free',
-      titleRu: 'Хотите получить месяц Plus?',
-      messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней Plus.',
-      vipSurvey: { surveyId: 'vip_feedback_v2', rewardDays: 30 },
-    });
-    expect(states).toEqual([]);
-  });
 });

@@ -15,9 +15,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
-import { emitAppEvent } from '../app/events';
+import { emitAppEvent, onAppEvent } from '../app/events';
 import { triLang, type Lang } from '../constants/i18n';
-import { getTodaysBoons } from '../app/boons/boon_engine';
+import { isPrimaryBoonActive } from '../app/boons/boon_engine';
 import {
   pickMysteryReward,
   currentWeekId,
@@ -76,8 +76,18 @@ export default function MysteryMondayHost() {
   // Подобрать награду на первый вход в активный день (раз в неделю).
   useEffect(() => {
     let alive = true;
-    (async () => {
-      if (getTodaysBoons().primary !== 'mystery_monday') return;
+    let generation = 0;
+
+    const clearPending = () => {
+      setWantShow(false);
+      setReward(null);
+    };
+
+    const evaluate = async (currentGeneration: number) => {
+      if (!isPrimaryBoonActive('mystery_monday')) {
+        if (alive && currentGeneration === generation) clearPending();
+        return;
+      }
       // Во время онбординга сундук не показываем (он на базе RN Modal — вылез бы поверх
       // полноэкранного онбординг-оверлея). Гейт стоит ДО setWantShow → слот арбитра не
       // занимается зря и не голодит тосты. onboarding_done пишется значением '1'.
@@ -85,23 +95,57 @@ export default function MysteryMondayHost() {
       if (onboardingDone !== '1') return;
       const week = currentWeekId();
       if (await isClaimed(CLAIM_KEY, week)) return;
-      if (alive) {
+      if (
+        alive
+        && currentGeneration === generation
+        && isPrimaryBoonActive('mystery_monday')
+      ) {
+        claimedRef.current = false;
         setReward(pickMysteryReward(rollFromWeek(week)));
         setWantShow(true);
+      } else if (alive && currentGeneration === generation) {
+        clearPending();
       }
-    })().catch(() => {});
+    };
+
+    const refresh = () => {
+      const currentGeneration = ++generation;
+      if (!isPrimaryBoonActive('mystery_monday')) clearPending();
+      void evaluate(currentGeneration).catch(() => {});
+    };
+
+    refresh();
+    const remoteConfigSub = onAppEvent('remote_config_changed', refresh);
     return () => {
       alive = false;
+      generation += 1;
+      remoteConfigSub.remove();
     };
   }, []);
 
   /** Начислить осколки строго один раз за неделю (анти-двойная-выдача). */
   const claim = async () => {
     if (claimedRef.current || !reward) return;
+    if (!isPrimaryBoonActive('mystery_monday')) {
+      setWantShow(false);
+      setReward(null);
+      return;
+    }
     claimedRef.current = true;
     const week = currentWeekId();
     if (await isClaimed(CLAIM_KEY, week)) return;
+    if (!isPrimaryBoonActive('mystery_monday')) {
+      claimedRef.current = false;
+      setWantShow(false);
+      setReward(null);
+      return;
+    }
     await markClaimed(CLAIM_KEY, week);
+    if (!isPrimaryBoonActive('mystery_monday')) {
+      setWantShow(false);
+      setReward(null);
+      return;
+    }
     await grantBoonReward(reward, 'boon_mystery_monday');
     // Плашка «Сундук недели» в статистике должна сразу сменить текст на «уже открыт».
     emitAppEvent('mystery_chest_claimed');

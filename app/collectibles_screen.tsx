@@ -21,6 +21,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CollectibleArtFrame, { type CollectibleArtTier } from '../components/CollectibleArtFrame';
+import CollectiblesEmptyStateMotion from '../components/collectibles/CollectiblesEmptyStateMotion';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import GlassSurface from '../components/GlassSurface';
@@ -402,7 +403,7 @@ function CardDetailModal({
             </TapScale>
           </View>
 
-          <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
             <CollectibleArtFrame
               cardId={card.id}
               svg={card.svg}
@@ -694,33 +695,31 @@ export default function CollectiblesScreen() {
             // чтобы не мелькало «здесь появятся карточки» до прихода данных.
             <View style={{ flex: 1 }} />
           ) : ownedCount === 0 ? (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32 }}>
-              <Ionicons name="sparkles-outline" size={48} color={t.textMuted} />
-              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', textAlign: 'center', marginTop: 14 }}>
-                {triLang(lang, {
-                  ru: 'Здесь появятся ваши карточки',
-                  uk: 'Тут зʼявляться ваші картки',
-                  es: 'Aquí aparecerán tus cartas',
-                  'pt-BR': 'Suas cartas aparecerão aqui',
-                  vi: 'Thẻ của bạn sẽ xuất hiện ở đây',
-                  id: 'Kartu Anda akan muncul di sini',
-                  tr: 'Kartların burada görünecek',
-                  pl: 'Tu pojawią się Twoje karty',
-                })}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', marginTop: 6 }}>
-                {triLang(lang, {
-                  ru: 'Проходите уроки и побеждайте в арене',
-                  uk: 'Проходьте уроки та перемагайте в арені',
-                  es: 'Completa lecciones y gana en la arena',
-                  'pt-BR': 'Complete lições e vença na arena',
-                  vi: 'Hoàn thành bài học và chiến thắng trong đấu trường',
-                  id: 'Selesaikan pelajaran dan menang di arena',
-                  tr: 'Dersleri tamamla ve arenada kazan',
-                  pl: 'Ukończ lekcje i wygrywaj na arenie',
-                })}
-              </Text>
-            </View>
+            <CollectiblesEmptyStateMotion
+              theme={t}
+              themeMode={themeMode}
+              fonts={f}
+              title={triLang(lang, {
+                ru: 'Здесь появятся ваши карточки',
+                uk: 'Тут зʼявляться ваші картки',
+                es: 'Aquí aparecerán tus cartas',
+                'pt-BR': 'Suas cartas aparecerão aqui',
+                vi: 'Thẻ của bạn sẽ xuất hiện ở đây',
+                id: 'Kartu Anda akan muncul di sini',
+                tr: 'Kartların burada görünecek',
+                pl: 'Tu pojawią się Twoje karty',
+              })}
+              subtitle={triLang(lang, {
+                ru: 'Проходите уроки и собирайте коллекцию',
+                uk: 'Проходьте уроки та збирайте колекцію',
+                es: 'Completa lecciones y amplía tu colección',
+                'pt-BR': 'Complete lições e amplie sua coleção',
+                vi: 'Hoàn thành bài học và mở rộng bộ sưu tập',
+                id: 'Selesaikan pelajaran dan perluas koleksimu',
+                tr: 'Dersleri tamamla ve koleksiyonunu büyüt',
+                pl: 'Ukończ lekcje i rozwijaj kolekcję',
+              })}
+            />
           ) : (
             // Сетов мало (≤30) → виртуализация не нужна. Обычный ScrollView
             // корректно работает с LayoutAnimation (FlatList оставлял «дыру»

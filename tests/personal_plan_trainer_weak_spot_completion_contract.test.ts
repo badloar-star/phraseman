@@ -18,7 +18,6 @@ describe('trainer_weak_spot plan trainer completion contract', () => {
     expect(navigationSource).toContain("pathname: '/trainer_plan_session'");
     expect(planRouterSource).toContain('getTrainerPremiumItemsForPlan(');
     expect(planRouterSource).toContain("if (queue === 'words') return '/trainer_words_session'");
-    // Арена обслуживается фразовой сессией — битого роута '/trainer_arena_session' нет.
     expect(planRouterSource).not.toContain("return '/trainer_arena_session'");
     expect(planRouterSource).toContain("return '/trainer_phrases_session'");
   });
@@ -36,10 +35,4 @@ describe('trainer_weak_spot plan trainer completion contract', () => {
     }
   });
 
-  it('serves plan arena items through the phrases session merged queue', () => {
-    // Однострочные якоря (CRLF-безопасно): plan-ветка грузит и арену плана,
-    // объединяя её с фразами тем же компаратором.
-    expect(phrasesSource).toContain("'arena',");
-    expect(phrasesSource).toContain('mergePhraseSessionItems(planPhrases, planArena, planTrainerContext.requiredItems)');
-  });
 });

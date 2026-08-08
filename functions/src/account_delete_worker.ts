@@ -55,7 +55,10 @@ export async function sweepAccountDeletionJobs(
     db.collection(ACCOUNT_DELETE_AUTH_MARKERS).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
   ]);
 
-  const expiredIds = new Set(expired.docs.map((doc) => doc.id));
+  // A failed deletion is a permanent deny/retry state, not disposable audit
+  // history. Keep legacy failed jobs that already carry retentionUntilMs too.
+  const deletableExpiredJobs = expired.docs.filter((doc) => doc.data().status === 'completed');
+  const expiredIds = new Set(deletableExpiredJobs.map((doc) => doc.id));
   const terminalStatuses = new Set(['completed', 'failed']);
   const recoverable = new Map<string, FirebaseFirestore.DocumentReference>();
   for (const doc of [...due.docs, ...stranded.docs]) {
@@ -71,10 +74,12 @@ export async function sweepAccountDeletionJobs(
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
   }
-  for (const doc of expired.docs) batch.delete(doc.ref);
+  for (const doc of deletableExpiredJobs) batch.delete(doc.ref);
   for (const doc of expiredTombstones.docs) batch.delete(doc.ref);
   for (const doc of expiredAuthMarkers.docs) batch.delete(doc.ref);
-  if (recoverable.size + expired.size + expiredTombstones.size + expiredAuthMarkers.size > 0) await batch.commit();
+  if (recoverable.size + deletableExpiredJobs.length + expiredTombstones.size + expiredAuthMarkers.size > 0) {
+    await batch.commit();
+  }
 }
 
 export const accountDeleteRetryCron = onSchedule(

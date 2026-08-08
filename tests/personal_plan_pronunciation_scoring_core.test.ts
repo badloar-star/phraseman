@@ -130,6 +130,14 @@ describe('local personal plan pronunciation scoring core', () => {
     expect(result.passed).toBe(true);
   });
 
+  it('never forgives one missing occurrence of a repeated target word', () => {
+    const result = scorePronunciationTranscript({
+      targetText: 'The charger is near the phone',
+      transcript: 'The charger is near phone',
+    });
+    expect(result.passed).toBe(false);
+  });
+
   it('still fails when two or more words are missing on a longer phrase', () => {
     const result = scorePronunciationTranscript({
       targetText: 'Where is the nearest bus stop please',

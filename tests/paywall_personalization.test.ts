@@ -4,10 +4,8 @@ import {
   pickPaywallTags,
   incrementEnergyZeroCount,
   incrementStreakLostCount,
-  incrementHardPaywallBlock,
   ENERGY_ZERO_COUNT_KEY,
   STREAK_LOST_COUNT_KEY,
-  HARD_PAYWALL_BLOCKS_KEY,
   type PaywallStats,
 } from '../app/paywall_personalization';
 
@@ -43,15 +41,9 @@ describe('paywall_personalization — counters', () => {
     await new Promise((r) => setTimeout(r, 10));
     incrementStreakLostCount();
     await new Promise((r) => setTimeout(r, 10));
-    incrementHardPaywallBlock();
-    await new Promise((r) => setTimeout(r, 10));
-    incrementHardPaywallBlock();
-    await new Promise((r) => setTimeout(r, 10));
-    incrementHardPaywallBlock();
     await new Promise((r) => setTimeout(r, 20));
     expect(mockStorage[ENERGY_ZERO_COUNT_KEY]).toBe('2');
     expect(mockStorage[STREAK_LOST_COUNT_KEY]).toBe('1');
-    expect(mockStorage[HARD_PAYWALL_BLOCKS_KEY]).toBe('3');
   });
 });
 
@@ -60,18 +52,15 @@ describe('paywall_personalization — collectPaywallStats', () => {
     const s = await collectPaywallStats();
     expect(s.energyZeroCount).toBe(0);
     expect(s.streakLostCount).toBe(0);
-    expect(s.hardPaywallBlocks).toBe(0);
   });
 
   it('reads stored counters correctly', async () => {
     mockStorage[ENERGY_ZERO_COUNT_KEY] = '14';
     mockStorage[STREAK_LOST_COUNT_KEY] = '3';
-    mockStorage[HARD_PAYWALL_BLOCKS_KEY] = '8';
     mockStorage['lifetime_best_hall_rank_v1'] = '143';
     const s = await collectPaywallStats();
     expect(s.energyZeroCount).toBe(14);
     expect(s.streakLostCount).toBe(3);
-    expect(s.hardPaywallBlocks).toBe(8);
     expect(s.hofRank).toBe(143);
     expect(s.foregroundHours).toBe(18);
   });
@@ -81,7 +70,6 @@ describe('paywall_personalization — pickPaywallTags', () => {
   const empty: PaywallStats = {
     energyZeroCount: 0,
     streakLostCount: 0,
-    hardPaywallBlocks: 0,
     hofRank: null,
     foregroundHours: 0,
   };
@@ -108,17 +96,15 @@ describe('paywall_personalization — pickPaywallTags', () => {
     const all: PaywallStats = {
       energyZeroCount: 15,
       streakLostCount: 4,
-      hardPaywallBlocks: 7,
       hofRank: 200,
       foregroundHours: 50,
     };
     const tags = pickPaywallTags(all, 3);
     expect(tags).toHaveLength(3);
     const keys = tags.map((t) => t.key);
-    // Top 3 should be energy_zero, streak_lost, hard_blocks (highest weights)
+    // The retired competitive-mode signal no longer participates in ranking.
     expect(keys).toContain('energy_zero');
     expect(keys).toContain('streak_lost');
-    expect(keys).toContain('hard_blocks');
   });
 
   it('pads with generic if fewer than max active personal tags', () => {
@@ -150,7 +136,6 @@ describe('paywall_personalization — pickPaywallTags', () => {
     const all: PaywallStats = {
       energyZeroCount: 5,
       streakLostCount: 2,
-      hardPaywallBlocks: 3,
       hofRank: 100,
       foregroundHours: 20,
     };

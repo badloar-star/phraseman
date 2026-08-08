@@ -55,7 +55,7 @@ import SeasonAuraRing from '../components/SeasonAuraRing';
 import SeasonGiftModal from '../components/SeasonGiftModal';
 import SeasonRewardInfoModal, { type SeasonRewardCardStatus } from '../components/SeasonRewardInfoModal';
 import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
-import { seasonBuyPassOnServer, seasonClaimRewardOnServer } from './season_pass_server';
+import { seasonBuyPassOnServer } from './season_pass_server';
 import { getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
 import { getSeasonPassThemeBackground } from './season_pass_theme_backgrounds';
@@ -381,14 +381,7 @@ export default function SeasonPassScreen() {
     const gift = await addSeasonPassGift(seasonId, level, side, reward.kind, reward.amount);
     refreshPendingGiftCount();
     setOpenReward({ reward, giftId: gift.id });
-    // Серверная фиксация клейма (идемпотентна): pearls/plus_days выдаёт сервер,
-    // статусы дублируются в облачный снапшот для переезда на новое устройство.
-    void seasonClaimRewardOnServer({
-      level, side, kind: reward.kind, amount: reward.amount, totalStars: progress.totalStars,
-    }).then((res) => {
-      if (res?.ok && reward.kind === 'pearls') void loadShardsFromCloud().catch(() => {});
-    });
-  }, [claimed, persistClaims, progress.totalStars, refreshPendingGiftCount, seasonId]);
+  }, [claimed, persistClaims, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
     // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,

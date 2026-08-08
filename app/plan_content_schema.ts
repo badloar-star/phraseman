@@ -169,6 +169,7 @@ export type PlanContentIssueCode =
   | 'phrase_missing_explanation'
   | 'explanation_too_long'
   | 'phrase_missing_words'
+  | 'phrase_words_misaligned'
   | 'word_not_in_phrase'
   | 'word_invalid_pos'
   | 'word_too_few_distractors'
@@ -191,6 +192,33 @@ export type PlanContentIssue = {
   phraseId?: string;
   word?: string;
 };
+
+/**
+ * Checks that every token the learner must assemble is represented by exactly one
+ * authored word entry, in phrase order. Kept separate from the legacy day schema
+ * validator so existing bundled content can be safely repaired by the runtime
+ * adapter while new generated content is rejected at the pipeline gate.
+ */
+export function validatePlanContentWordAlignment(day: PlanContentDay): PlanContentIssue[] {
+  const issues: PlanContentIssue[] = [];
+
+  for (const phrase of day.phrases ?? []) {
+    if (!phrase.english?.trim() || !phrase.words?.length) continue;
+
+    const canonical = phraseTokens(phrase.english).map((token) => token.toLowerCase());
+    const authored = phrase.words.map((word) => word.text.trim().toLowerCase()).filter(Boolean);
+    const matches = canonical.length === authored.length && canonical.every((token, index) => token === authored[index]);
+    if (!matches) {
+      issues.push({
+        code: 'phrase_words_misaligned',
+        detail: `Authored words must exactly match the English phrase token sequence for "${phrase.id}".`,
+        phraseId: phrase.id,
+      });
+    }
+  }
+
+  return issues;
+}
 
 function hasRu(text: LocalizedText | undefined): boolean {
   return Boolean(text && typeof text.ru === 'string' && text.ru.trim().length > 0);

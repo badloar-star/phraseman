@@ -178,7 +178,7 @@ export default function CoinExchangeScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top']}>
-      <ScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: Math.max(24, insets.bottom + 16) }}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: Math.max(24, insets.bottom + 16) }}>
         <ContentWrap>
           {/* Шапка */}
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, gap: 12 }}>

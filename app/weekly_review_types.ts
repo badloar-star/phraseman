@@ -51,9 +51,7 @@ export interface WeeklyReviewSnapshot {
   weekXp: number;
   weekMinutes: number;
   lessons7d: number;
-  quizzes7d: number;
   reviews7d: number;
-  arena7d: number;
   dueWords: number;
   duePhrases: number;
   overdue: number;
@@ -120,9 +118,7 @@ export interface WeeklyReviewBriefingV2 {
     weekXp: number;
     weekMinutes: number;
     lessons7d: number;
-    quizzes7d: number;
     reviews7d: number;
-    arena7d: number;
   };
   recommendations: WeeklyReviewRecommendation[];
   evidenceRegistry: Record<string, number | string | string[]>;

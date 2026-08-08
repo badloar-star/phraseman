@@ -128,14 +128,12 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     expect(source).toContain('sourceLocales={flashcardSourceLocales}');
   });
 
-  it('localizes the compact home plaque CTA without rendering a meaning', () => {
+  it('keeps the compact home plaque free of CTA and meaning copy', () => {
     const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
     const source = fs.readFileSync(componentPath, 'utf8');
 
-    expect(source).toContain("ru: 'Проверить себя'");
-    expect(source).toContain("uk: 'Перевірити себе'");
-    expect(source).toContain("es: 'Ponte a prueba'");
-    expect(source).toContain('{homeActionLabel}');
+    expect(source).not.toContain('homeActionLabel');
+    expect(source).not.toContain('homeAdditionalAction');
     expect(source).not.toContain('{homeAdditionalMeaning}');
   });
 

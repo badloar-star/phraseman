@@ -38,26 +38,22 @@ describe('Gustav trainer session target isolation', () => {
     });
   });
 
-  it('keeps English trainer session storage on legacy keys for compatibility', async () => {
-    // зачем: тренажёр стал бесплатным без дневного лимита — тест больше не про
-    // исчерпание сессий, а про то, что English продолжает писать в legacy-ключи
-    // (это и есть предмет изоляции таргетов). Счётчик пишется, но не запирает вход.
-    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(Number.POSITIVE_INFINITY);
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(true);
-    expect(storage.trainer_session_entry_v1).toContain('/trainer_words_session');
-    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'en')).resolves.toBe(true);
-    expect(storage.trainer_free_session_v1).toContain('"count":1');
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(true);
+  it('does not create legacy English free-session storage for the paid trainer', async () => {
+    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(0);
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(false);
+    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'en')).resolves.toBe(false);
+    expect(storage.trainer_session_entry_v1).toBeUndefined();
+    expect(storage.trainer_free_session_v1).toBeUndefined();
   });
 
-  it('uses scoped French trainer session storage when the French trainer gate is open', async () => {
-    await expect(getFreeSessionsLeftToday('fr')).resolves.toBe(Number.POSITIVE_INFINITY);
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'fr')).resolves.toBe(true);
-    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'fr')).resolves.toBe(true);
+  it('does not create scoped French free-session storage when its source gate is open', async () => {
+    await expect(getFreeSessionsLeftToday('fr')).resolves.toBe(0);
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'fr')).resolves.toBe(false);
+    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'fr')).resolves.toBe(false);
 
-    expect(AsyncStorage.getItem).not.toHaveBeenCalledWith('trainer_free_session_v1');
-    expect(AsyncStorage.setItem).not.toHaveBeenCalledWith('trainer_session_entry_v1', expect.any(String));
-    expect(storage[trainerFreeSessionKey('fr')]).toContain('"count":1');
+    expect(AsyncStorage.getItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(storage[trainerFreeSessionKey('fr')]).toBeUndefined();
     expect(storage[trainerSessionEntryKey('fr')]).toBeUndefined();
   });
 

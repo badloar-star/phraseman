@@ -71,8 +71,10 @@ export { resolveAppTier } from './app_tier_resolver';
 
 export { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 export type { AllDepartmentsSnapshot, BuildAllDepartmentsSnapshotInput, DepartmentSnapshotLike } from './all_departments_snapshot';
+export { buildDataHealthSnapshot } from './data_health_snapshot';
+export type { BuildDataHealthSnapshotInput, DataHealthSnapshot, DataHealthDegradedState } from './data_health_snapshot';
 
-export { jarvisGetAllDecisions, jarvisGetApprovalAudit } from './all_departments_callables';
+export { jarvisGetAllDecisions, jarvisGetApprovalAudit, jarvisGetCohortRetention } from './all_departments_callables';
 export { jarvisGetPlans, jarvisSetPlanStatus, jarvisDeletePlan } from './jarvis_plans_callables';
 
 // ── Департамент «Контент» (четвёртый, завершает Р5) ────────────────────────
@@ -108,6 +110,9 @@ export { runRetentionDepartment, RETENTION_WEAK_RATIO, RETENTION_MIN_BASE } from
 export { buildRetentionSnapshot } from './retention_snapshot';
 export { fetchRetentionSource, RETENTION_WEEK_MS, RETENTION_MONTH_MS } from './retention_firestore_fetcher';
 export type { FetchRetentionSourceResult } from './retention_firestore_fetcher';
+export { runCohortRetentionDepartment, COHORT_RETENTION_MIN_SAMPLE } from './cohort_retention_department';
+export { fetchCohortRetentionMetrics } from './learning_metrics';
+export type { CohortRetentionMetric } from './learning_metrics';
 
 // ── Approvals: кнопки подтверждения в Telegram ─────────────────────────────
 export { jarvisTelegramApprovalWebhook, JARVIS_TELEGRAM_CONFIG } from './approval_webhook';

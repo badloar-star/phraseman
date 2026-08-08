@@ -12,7 +12,9 @@ describe('visible result presentation', () => {
     expect(sequence).toContain('count={motionPlan.confettiCount}');
     expect(sequence).not.toContain('setInterval');
     expect(sequence).not.toContain('XP_FRAME_MS');
-    expect(sequence).toContain('setXpDisplay(xp > 0 ? xp : 0)');
+    expect(sequence).toContain('const xpProgress = useSharedValue(0)');
+    expect(sequence).toContain('useAnimatedProps');
+    expect(sequence).toContain('AnimatedTextInput');
     expect(sequence).toContain('setShowConfetti(false)');
     expect(sequence).toMatch(/\}, \[\s*badgeSV,[\s\S]*motionPlan,[\s\S]*xp,[\s\S]*\]\);/);
   });

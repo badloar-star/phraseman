@@ -528,9 +528,9 @@ describe('prizes / placements (§7)', () => {
     expect(finalized.playerEffects.map((effect) => [
       effect.playerId, effect.place, effect.reward.gems,
     ])).toEqual([['u1', 2, 5], ['u2', 4, 0], ['u3', 5, 0]]);
-    // Банк комнаты 5 живых × 5 = 25; единственный призёр-человек забирает 5,
-    // доли ботов и неразданные места оседают в недельном банке.
-    expect(finalized.weeklyBankGems).toBe(20);
+    // Банк комнаты 5 живых × 5 = 25; недельный банк получает ровно 20% (= 5).
+    // Доли ботов не выплачиваются и не раздувают недельный банк.
+    expect(finalized.weeklyBankGems).toBe(5);
   });
 });
 

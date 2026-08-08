@@ -77,6 +77,48 @@ const DUAL_UI = {
   secondChest: { ru: 'Бонус',             uk: 'Бонус',             es: 'Bono',              'pt-BR': 'Bônus',            vi: 'Thưởng',         id: 'Bonus',         tr: 'Bonus',           pl: 'Bonus' },
 } as const;
 
+const emitDualGiftApplyOutcome = (appliedCount: 0 | 1 | 2): void => {
+  if (appliedCount === 2) {
+    emitAppEvent('action_toast', {
+      type: 'success',
+      messageRu: 'Оба подарка применены.',
+      messageUk: 'Обидва подарунки застосовано.',
+      messageEs: 'Ambos regalos se aplicaron.',
+      messagePtBr: 'Os dois presentes foram aplicados.',
+      messageVi: 'Đã áp dụng cả hai quà.',
+      messageId: 'Kedua hadiah diterapkan.',
+      messageTr: 'İki hediye de uygulandı.',
+      messagePl: 'Oba prezenty zostały użyte.',
+    });
+    return;
+  }
+  if (appliedCount === 1) {
+    emitAppEvent('action_toast', {
+      type: 'warning',
+      messageRu: 'Один подарок применён, второй остался в инвентаре.',
+      messageUk: 'Один подарунок застосовано, другий залишився в інвентарі.',
+      messageEs: 'Se aplicó un regalo; el otro sigue en el inventario.',
+      messagePtBr: 'Um presente foi aplicado; o outro continua no inventário.',
+      messageVi: 'Đã áp dụng một quà; quà còn lại vẫn ở trong kho.',
+      messageId: 'Satu hadiah diterapkan; satu lagi tetap di inventaris.',
+      messageTr: 'Bir hediye uygulandı; diğeri envanterde kaldı.',
+      messagePl: 'Jeden prezent użyto; drugi pozostał w ekwipunku.',
+    });
+    return;
+  }
+  emitAppEvent('action_toast', {
+    type: 'error',
+    messageRu: 'Подарки не применились и остались в инвентаре.',
+    messageUk: 'Подарунки не застосувалися й залишилися в інвентарі.',
+    messageEs: 'Los regalos no se aplicaron y siguen en el inventario.',
+    messagePtBr: 'Os presentes não foram aplicados e continuam no inventário.',
+    messageVi: 'Quà chưa được áp dụng và vẫn còn trong kho.',
+    messageId: 'Hadiah belum diterapkan dan tetap ada di inventaris.',
+    messageTr: 'Hediyeler uygulanmadı ve envanterde kaldı.',
+    messagePl: 'Prezenty nie zostały użyte i pozostały w ekwipunku.',
+  });
+};
+
 const firstChestLabel = (lang: Lang) => triLang(lang, {
   ru: DUAL_UI.firstChest.ru,
   uk: DUAL_UI.firstChest.uk,
@@ -118,8 +160,6 @@ const dualGiftModalPanelBackground = (themeMode: ThemeMode, t: Theme): string =>
   switch (themeMode) {
     case 'gold':
       return '#140E06';
-    case 'coral':
-      return '#1E0C10';
     case 'minimalDark':
       return '#070B11';
     case 'sagePorcelain':
@@ -419,8 +459,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     premResult: ApplyGiftResult,
     accountToken: AccountGenerationToken,
   ) => {
-    const f2pOk = f2pResult.success === true;
-    const premOk = premResult.success === true;
+    const f2pOk = f2pResult.success === true || f2pResult.alreadyClaimed === true;
+    const premOk = premResult.success === true || premResult.alreadyClaimed === true;
     if (!isCurrentAccountGeneration(accountToken)) return;
     if (f2pOk && premOk) {
       await markDualGiftClaimed(level, accountToken);
@@ -432,21 +472,25 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       const best = f2p.rarity === 'epic' || prem.rarity === 'epic'
         ? 'epic' : f2p.rarity === 'rare' || prem.rarity === 'rare' ? 'rare' : 'common';
       await saveClaimedGiftRarity(level, best, accountToken);
+      emitDualGiftApplyOutcome(2);
       return;
     }
     if (f2pOk) {
       await saveRemainingGiftAfterPartialDualClaim(level, prem, accountToken);
       if (!isCurrentAccountGeneration(accountToken)) return;
       await saveClaimedGiftRarity(level, f2p.rarity, accountToken);
+      emitDualGiftApplyOutcome(1);
       return;
     }
     if (premOk) {
       await saveRemainingGiftAfterPartialDualClaim(level, f2p, accountToken);
       if (!isCurrentAccountGeneration(accountToken)) return;
       await saveClaimedGiftRarity(level, prem.rarity, accountToken);
+      emitDualGiftApplyOutcome(1);
       return;
     }
     await saveUnclaimedDualGift(level, { f2p, prem }, accountToken);
+    emitDualGiftApplyOutcome(0);
   };
 
   /**
@@ -539,6 +583,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           isPremium: true,
           studyTarget,
           accountToken,
+          occurrenceId: `level:${level}:${which}`,
+          localOnly: true,
         })
           .catch(() => ({ success: false }));
         if (which === 'f2p') f2pApplyPromiseRef.current = applyResultP;
@@ -645,8 +691,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     void (async () => {
       try {
         const [f2pResult, premResult] = await Promise.all([
-          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken }).catch(() => ({ success: false })),
-          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken }).catch(() => ({ success: false })),
+          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken, occurrenceId: `level:${level}:f2p`, localOnly: true }).catch(() => ({ success: false })),
+          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken, occurrenceId: `level:${level}:premium`, localOnly: true }).catch(() => ({ success: false })),
         ]);
         if (!isCurrentAccountGeneration(accountToken)) return;
         if (isCurrentOpening(accountToken)) {
@@ -680,11 +726,15 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       isPremium: true,
       studyTarget,
       accountToken,
+      occurrenceId: `level:${level}:f2p`,
+      localOnly: true,
     }).catch(() => ({ success: false }));
     const premResultP = applyGift(premGift, userName, energy, maxEnergy, setEnergyFn, {
       isPremium: true,
       studyTarget,
       accountToken,
+      occurrenceId: `level:${level}:premium`,
+      localOnly: true,
     }).catch(() => ({ success: false }));
     f2pApplyPromiseRef.current = f2pResultP;
     premApplyPromiseRef.current = premResultP;

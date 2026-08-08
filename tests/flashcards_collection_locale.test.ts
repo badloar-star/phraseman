@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { buildFilterGroups, buildFilterOptions } from '../app/flashcards/selectors';
+import { buildFilterGroups, buildFilterOptions, getCardsForCategory } from '../app/flashcards/selectors';
 import type { CardItem } from '../app/flashcards/types';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -54,5 +54,21 @@ describe('flashcards collection planned locale runtime labels', () => {
     expect(plGroups[0]).toEqual({ groupKey: 'lessons', groupLabel: 'Lekcje', items: [{ key: 'lesson:3', label: 'Lekcja 3' }] });
     expect(plGroups[1]).toEqual({ groupKey: 'other', groupLabel: 'Inne', items: [{ key: 'word', label: 'Słowa' }] });
     expect(buildFilterOptions(plGroups, 'pl')[0]).toEqual({ key: 'all', label: 'Wszystkie' });
+  });
+
+  it('never reloads retired standalone-quiz cards or source filters', () => {
+    const retiredQuizCard: CardItem = {
+      id: 'retired_quiz_card',
+      en: 'Legacy question',
+      ru: 'Старый вопрос',
+      uk: 'Старе питання',
+      categoryId: 'saved',
+      isSystem: false,
+      source: 'quiz',
+    };
+
+    expect(getCardsForCategory('saved', [...savedCards, retiredQuizCard], [], [])).not.toContainEqual(retiredQuizCard);
+    expect(buildFilterGroups([...savedCards, retiredQuizCard], 'saved', 'ru'))
+      .not.toEqual(expect.arrayContaining([expect.objectContaining({ items: expect.arrayContaining([expect.objectContaining({ key: 'quiz' })]) })]));
   });
 });

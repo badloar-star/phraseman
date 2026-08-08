@@ -21,6 +21,8 @@ export interface SfxPlaybackBackend {
 
 export class SoundDirector {
   private deferredTimer: ReturnType<typeof setTimeout> | null = null;
+  private deferredPlayback: { eventId: SoundEventId; options: SoundRequestOptions } | null = null;
+  private activePlayback: { eventId: SoundEventId; requestId: number; scope?: string } | null = null;
   // зачем 2026-08-04: отдельный от deferredTimer таймер — priority-конфликт
   // между двумя обычными эффектами не имеет отношения к голосовым паузам
   // (setVoiceActive), и делить с ними один таймер значило бы, что голосовое
@@ -34,7 +36,8 @@ export class SoundDirector {
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
     const decision = this.arbiter.request(eventId, options);
-    this.execute(decision);
+    this.rememberDeferredPlayback(decision, eventId, options);
+    this.execute(decision, options);
     if (decision.kind === 'drop' && decision.reason === 'priority' && decision.retryAtMs !== undefined) {
       this.schedulePriorityRetry(eventId, options, decision.retryAtMs);
     }
@@ -43,7 +46,7 @@ export class SoundDirector {
 
   requestLearningVerdict(request: LearningVerdictRequest): SoundDecision {
     const decision = this.arbiter.requestLearningVerdict(request);
-    this.execute(decision);
+    this.execute(decision, { scope: request.scope, dedupeKey: request.dedupeKey });
     return decision;
   }
 
@@ -51,8 +54,10 @@ export class SoundDirector {
     this.arbiter.setEffectsEnabled(enabled);
     if (!enabled) {
       this.clearDeferredTimer();
+      this.deferredPlayback = null;
       this.clearPriorityRetryTimer();
       this.backend.stop();
+      this.activePlayback = null;
     }
   }
 
@@ -62,6 +67,7 @@ export class SoundDirector {
       this.clearDeferredTimer();
       this.clearPriorityRetryTimer();
       this.backend.stop();
+      this.activePlayback = null;
     } else {
       this.scheduleDeferredFlush();
     }
@@ -71,19 +77,48 @@ export class SoundDirector {
     this.arbiter.setRecordingActive(active);
     if (active) {
       this.clearDeferredTimer();
+      this.deferredPlayback = null;
       this.clearPriorityRetryTimer();
       this.backend.stop();
+      this.activePlayback = null;
     }
+  }
+
+  /** Stops the result-sequence cue only; learning, voice, and system SFX stay intact. */
+  stopActiveCompletion(scope?: string): boolean {
+    const active = this.activePlayback;
+    if (!active
+      || SOUND_EVENTS[active.eventId].family !== 'completion'
+      || active.scope !== scope) return false;
+    this.clearPriorityRetryTimer();
+    this.backend.stop();
+    this.arbiter.finishActive(active.requestId);
+    this.activePlayback = null;
+    return true;
+  }
+
+  stopActiveEvent(eventId: SoundEventId, scope?: string): boolean {
+    const active = this.activePlayback;
+    const cancelledDeferred = this.arbiter.cancelDeferred(eventId, scope);
+    if (cancelledDeferred) this.deferredPlayback = null;
+    if (!active || active.eventId !== eventId || active.scope !== scope) return cancelledDeferred;
+    this.clearPriorityRetryTimer();
+    this.backend.stop();
+    this.arbiter.finishActive(active.requestId);
+    this.activePlayback = null;
+    return true;
   }
 
   dispose(): void {
     this.clearDeferredTimer();
+    this.deferredPlayback = null;
     this.clearPriorityRetryTimer();
     this.arbiter.setEffectsEnabled(false);
+    this.activePlayback = null;
     this.backend.dispose();
   }
 
-  private execute(decision: SoundDecision): void {
+  private execute(decision: SoundDecision, options: SoundRequestOptions = {}): void {
     if (decision.kind === 'defer') {
       this.scheduleDeferredFlush();
       return;
@@ -94,14 +129,30 @@ export class SoundDirector {
       this.arbiter.finishActive(decision.requestId);
       return;
     }
-    if (decision.preempt) this.backend.stop();
+    if (decision.preempt) {
+      this.backend.stop();
+      this.activePlayback = null;
+    }
     const started = this.backend.play(
       decision.eventId,
       definition.source,
       definition.volume,
-      () => this.arbiter.finishActive(decision.requestId),
+      () => {
+        this.arbiter.finishActive(decision.requestId);
+        if (this.activePlayback?.requestId === decision.requestId) {
+          this.activePlayback = null;
+        }
+      },
     );
-    if (!started) this.arbiter.finishActive(decision.requestId);
+    if (!started) {
+      this.arbiter.finishActive(decision.requestId);
+      return;
+    }
+    this.activePlayback = {
+      eventId: decision.eventId,
+      requestId: decision.requestId,
+      scope: options.scope,
+    };
   }
 
   private scheduleDeferredFlush(): void {
@@ -111,13 +162,32 @@ export class SoundDirector {
     this.deferredTimer = setTimeout(() => {
       this.deferredTimer = null;
       const decision = this.arbiter.flushDeferred();
-      if (decision) this.execute(decision);
+      const deferred = this.deferredPlayback;
+      this.deferredPlayback = null;
+      if (decision) {
+        const deferredOptions = decision.kind !== 'drop'
+          && deferred !== null
+          && deferred.eventId === decision.eventId
+          ? deferred.options
+          : undefined;
+        this.execute(decision, deferredOptions);
+      }
     }, Math.max(0, delay));
   }
 
   private clearDeferredTimer(): void {
     if (this.deferredTimer) clearTimeout(this.deferredTimer);
     this.deferredTimer = null;
+  }
+
+  private rememberDeferredPlayback(
+    decision: SoundDecision,
+    eventId: SoundEventId,
+    options: SoundRequestOptions,
+  ): void {
+    if (decision.kind === 'defer' && decision.eventId === eventId) {
+      this.deferredPlayback = { eventId, options };
+    }
   }
 
   /**
@@ -136,7 +206,7 @@ export class SoundDirector {
     this.priorityRetryTimer = setTimeout(() => {
       this.priorityRetryTimer = null;
       const decision = this.arbiter.request(eventId, { ...options, queueIfBusy: false });
-      this.execute(decision);
+      this.execute(decision, options);
     }, delay);
   }
 

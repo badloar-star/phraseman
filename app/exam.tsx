@@ -953,7 +953,7 @@ export default function ExamScreen() {
           {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
         </Text>
       </View>
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:20}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
         {certificate && (
           <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:0,borderColor:'#d4a017',marginBottom:16}}>
             <Ionicons name="information-circle" size={18} color={monoIcon(themeMode, '#FFD700')}/>
@@ -1132,7 +1132,7 @@ export default function ExamScreen() {
         </View>
       </View>
 
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{paddingBottom:120}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{paddingBottom:120}}>
         {questions.map((qItem, i) => {
           const isAnswered = choices[i] !== null;
           const isFlaggedItem = flagged[i];
@@ -1259,7 +1259,7 @@ export default function ExamScreen() {
           />
         </View>
       )}
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:24,alignItems:'center'}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
         <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
@@ -1467,7 +1467,7 @@ export default function ExamScreen() {
           {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2', 'Meu diploma B2', 'Phần thưởng B2 của tôi', 'Diploma B2 saya', 'B2 diplomam', 'Mój dyplom B2')}
         </Text>
       </View>
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:20,alignItems:'center'}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
         <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:8}}>
           <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
           <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
@@ -1665,7 +1665,7 @@ export default function ExamScreen() {
       />
 
       <BouncyScrollView
-        decelerationRate="fast"
+        decelerationRate="normal"
         contentContainerStyle={{paddingHorizontal:20,paddingTop:16,paddingBottom:160}}
         keyboardShouldPersistTaps="handled"
       >

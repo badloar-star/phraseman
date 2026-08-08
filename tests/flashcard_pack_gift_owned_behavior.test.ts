@@ -1,7 +1,8 @@
-import { redeemPackGiftVoucher } from '../app/flashcards/cardPackShardPurchase';
+import { purchaseCardPackWithShards, redeemPackGiftVoucher } from '../app/flashcards/cardPackShardPurchase';
 import { callFlashcardPackGiftRedeem } from '../app/community_packs/functionsClient';
 import { loadOwnedPackIds } from '../app/flashcards/marketplace';
 import { consumePackGiftTrial, getPackGiftTrial } from '../app/flashcards/pack_trial_gift';
+import { flashcardsOfficialPacksAvailableForTarget } from '../app/flashcards_target_gate';
 
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/firebase', () => ({ logCardPackPurchasedShards: jest.fn() }));
@@ -44,4 +45,11 @@ it('returns already_owned before reading or sending a voucher for a locally owne
   expect(getPackGiftTrial).not.toHaveBeenCalled();
   expect(callFlashcardPackGiftRedeem).not.toHaveBeenCalled();
   expect(consumePackGiftTrial).not.toHaveBeenCalled();
+});
+
+it('uses the visible source locale when rechecking an official French pack', async () => {
+  const pack = { id: 'official_prep_in_en', isCommunityUgc: false } as never;
+
+  await expect(purchaseCardPackWithShards(pack, 'fr', 'uk')).resolves.toBe('already_owned');
+  expect(flashcardsOfficialPacksAvailableForTarget).toHaveBeenCalledWith('fr', 'uk');
 });

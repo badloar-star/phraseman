@@ -82,10 +82,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const runContentStageCallable = httpsCallable(functionsUs, 'adminRunContentStage');
   const previewContentStageCallable = httpsCallable(functionsUs, 'adminPreviewContentStage');
   const reviewContentStageCallable = httpsCallable(functionsUs, 'adminReviewContentStage');
-  const listArenaQuestionPoolCallable = httpsCallable(functionsUs, 'adminListArenaQuestionPool');
-  const publishArenaQuestionBatchCallable = httpsCallable(functionsUs, 'adminPublishArenaQuestionBatch');
-  const removeArenaPoolQuestionCallable = httpsCallable(functionsUs, 'adminRemoveArenaPoolQuestion');
-  const restoreArenaPoolQuestionCallable = httpsCallable(functionsUs, 'adminRestoreArenaPoolQuestion');
   const supportListCallable = httpsCallable(functionsUs, 'adminSupportList');
   const supportPullCallable = httpsCallable(functionsUs, 'adminSupportPull');
   const supportGenerateReplyCallable = httpsCallable(functionsUs, 'adminSupportGenerateReply');
@@ -207,10 +203,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
     runContentStage: async (input) => unwrap(await runContentStageCallable(input)),
     previewContentStage: async (input) => unwrap(await previewContentStageCallable(input)),
     reviewContentStage: async (input) => unwrap(await reviewContentStageCallable(input)),
-    adminListArenaQuestionPool: async (input) => unwrap(await listArenaQuestionPoolCallable(input)),
-    adminPublishArenaQuestionBatch: async (input) => unwrap(await publishArenaQuestionBatchCallable(input)),
-    adminRemoveArenaPoolQuestion: async (input) => unwrap(await removeArenaPoolQuestionCallable(input)),
-    adminRestoreArenaPoolQuestion: async (input) => unwrap(await restoreArenaPoolQuestionCallable(input)),
     loadSupport: async (input) => unwrap(await supportListCallable(input)),
     pullSupport: async (input) => unwrap(await supportPullCallable(input)),
     generateSupportReply: async (input) => unwrap(await supportGenerateReplyCallable(input)),

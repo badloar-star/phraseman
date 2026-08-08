@@ -7,7 +7,6 @@ export type PersonalPlanTaskVisualSource =
   | 'core_lesson'
   | 'route_phrase'
   | 'recall'
-  | 'quiz'
   | 'practice'
   | 'choice'
   | 'listening'
@@ -20,7 +19,6 @@ export const PERSONAL_PLAN_TASK_VISUAL_SOURCES: PersonalPlanTaskVisualSource[] =
   'core_lesson',
   'route_phrase',
   'recall',
-  'quiz',
   'practice',
   'choice',
   'listening',
@@ -37,7 +35,7 @@ export type PersonalPlanTaskVisual = {
   icon: PlanArtIconName;
   assetKey: string;
   asset: ImageSourcePropType;
-  artStyle: 'bookGlow' | 'routeKey' | 'memoryLoop' | 'quizPulse' | 'practiceGrid' | 'coachSignal' | 'cardStack';
+  artStyle: 'bookGlow' | 'routeKey' | 'memoryLoop' | 'practiceGrid' | 'coachSignal' | 'cardStack';
 };
 
 export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
@@ -46,7 +44,6 @@ export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
   'aurora',
   'volt',
   'dark',
-  'coral',
   'gold',
 ];
 
@@ -56,7 +53,6 @@ const LEGACY_THEME_TASK_FALLBACK: Record<PersonalPlanTaskVisualSource, ImageSour
   core_lesson: require('../assets/images/personal_plan_tasks_fit/midnight/core_lesson.webp'),
   route_phrase: require('../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp'),
   recall: require('../assets/images/personal_plan_tasks_fit/midnight/recall.webp'),
-  quiz: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
   practice: require('../assets/images/personal_plan_tasks_fit/midnight/practice.webp'),
   choice: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
   listening: require('../assets/images/personal_plan_tasks_fit/midnight/listening.webp'),
@@ -71,7 +67,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/midnight/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/midnight/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/midnight/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/midnight/listening.webp'),
@@ -87,7 +82,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/business/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/business/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/business/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/business/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/business/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/business/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/business/listening.webp'),
@@ -100,7 +94,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/businessLight/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/businessLight/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/businessLight/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/businessLight/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/businessLight/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/businessLight/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/businessLight/listening.webp'),
@@ -113,7 +106,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/listening.webp'),
@@ -126,7 +118,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/ember/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/ember/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/ember/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/ember/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/ember/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/ember/listening.webp'),
@@ -139,7 +130,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/aurora/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/aurora/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/aurora/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/aurora/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/aurora/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/aurora/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/aurora/listening.webp'),
@@ -152,7 +142,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/volt/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/volt/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/volt/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/volt/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/volt/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/volt/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/volt/listening.webp'),
@@ -165,7 +154,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     core_lesson: require('../assets/images/personal_plan_tasks_fit/dark/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/dark/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/dark/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/dark/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/dark/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/dark/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/dark/listening.webp'),
@@ -174,24 +162,10 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     trainer: require('../assets/images/personal_plan_tasks_fit/dark/trainer.webp'),
     flashcards: require('../assets/images/personal_plan_tasks_fit/dark/flashcards.webp'),
   },
-  coral: {
-    core_lesson: require('../assets/images/personal_plan_tasks_fit/coral/core_lesson.webp'),
-    route_phrase: require('../assets/images/personal_plan_tasks_fit/coral/route_gavan.webp'),
-    recall: require('../assets/images/personal_plan_tasks_fit/coral/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/coral/choice.webp'),
-    practice: require('../assets/images/personal_plan_tasks_fit/coral/practice.webp'),
-    choice: require('../assets/images/personal_plan_tasks_fit/coral/choice.webp'),
-    listening: require('../assets/images/personal_plan_tasks_fit/coral/listening.webp'),
-    sentence_build: require('../assets/images/personal_plan_tasks_fit/coral/sentence_build.webp'),
-    speaking: require('../assets/images/personal_plan_tasks_fit/coral/speaking.webp'),
-    trainer: require('../assets/images/personal_plan_tasks_fit/coral/trainer.webp'),
-    flashcards: require('../assets/images/personal_plan_tasks_fit/coral/flashcards.webp'),
-  },
   gold: {
     core_lesson: require('../assets/images/personal_plan_tasks_fit/gold/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/gold/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/gold/recall.webp'),
-    quiz: require('../assets/images/personal_plan_tasks_fit/gold/choice.webp'),
     practice: require('../assets/images/personal_plan_tasks_fit/gold/practice.webp'),
     choice: require('../assets/images/personal_plan_tasks_fit/gold/choice.webp'),
     listening: require('../assets/images/personal_plan_tasks_fit/gold/listening.webp'),
@@ -269,13 +243,6 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
     mitap: require('../assets/images/personal_plan_tasks_fit/dark/route_mitap.webp'),
     impuls: require('../assets/images/personal_plan_tasks_fit/dark/route_impuls.webp'),
     echo: require('../assets/images/personal_plan_tasks_fit/dark/route_echo.webp'),
-  },
-  coral: {
-    gavan: require('../assets/images/personal_plan_tasks_fit/coral/route_gavan.webp'),
-    voyazh: require('../assets/images/personal_plan_tasks_fit/coral/route_voyazh.webp'),
-    mitap: require('../assets/images/personal_plan_tasks_fit/coral/route_mitap.webp'),
-    impuls: require('../assets/images/personal_plan_tasks_fit/coral/route_impuls.webp'),
-    echo: require('../assets/images/personal_plan_tasks_fit/coral/route_echo.webp'),
   },
   gold: {
     gavan: require('../assets/images/personal_plan_tasks_fit/gold/route_gavan.webp'),
@@ -412,13 +379,13 @@ export function getPersonalPlanTaskVisual(
       };
     case 'quiz':
       return {
-        source: 'quiz',
-        label: 'Вызов',
-        intent: '10 коротких проверок по фразам дня',
-        icon: 'help-circle-outline',
-        assetKey: getPersonalPlanTaskVisualAssetKey('quiz', planId),
-        asset: getPersonalPlanTaskVisualAsset('quiz', planId, themeMode),
-        artStyle: 'quizPulse',
+        source: 'route_phrase',
+        label: 'Проверка дня',
+        intent: 'Коротко закрепим фразы дня без отдельного Quiz-раздела',
+        icon: 'ribbon-outline',
+        assetKey: planId ? `${planId}_quiz` : 'gavan_quiz',
+        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId, themeMode),
+        artStyle: 'cardStack',
       };
     case 'practice':
       return {

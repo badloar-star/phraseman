@@ -3,9 +3,9 @@
  * Забыть про этот файл легко: сборка не падает, но таббар начинает открывать
  * соседние экраны, а последний просто вылетает (индекс выходит за границы
  * LogicalTabIndex).
- * 2026-08-02, владелец: таб «Уроки» убран из таббара — список уроков теперь
- * полноэкранный push-маршрут /lessons_list (вход: плитка «Уроки» на главной).
- * Все карты индексов сдвинулись: tournaments 1, friends 2, settings 3.
+ * 2026-08-08: таб «Все уроки» возвращён вторым. При этом плитка на главной
+ * сохраняет полноэкранный push-маршрут /lessons_list. Текущие индексы:
+ * lessons 1, tournaments 2, friends 3, settings 4.
  * 2026-08-03, владелец: экран «Сегодня» убран полностью. Он был нулевой
  * ФИЗИЧЕСКОЙ страницей слева от главной и жил на удалённой фиче «Компас»
  * (collectCompassSnapshot/buildCompassDay), без которой показывал бы пустую
@@ -14,13 +14,13 @@
  * оставлены (а не вырезаны по всему layout), чтобы не переписывать свайп-
  * логику и сохранить единую точку правды, если слева снова появится страница.
  */
-export const LOGICAL_TAB_IDS = ['home', 'tournaments', 'friends', 'settings'] as const;
+export const LOGICAL_TAB_IDS = ['home', 'lessons', 'tournaments', 'friends', 'settings'] as const;
 export const PHYSICAL_PAGE_IDS = [...LOGICAL_TAB_IDS] as const;
 
 export type LogicalTabId = (typeof LOGICAL_TAB_IDS)[number];
 export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
-export type LogicalTabIndex = 0 | 1 | 2 | 3;
-export type PhysicalPageIndex = 0 | 1 | 2 | 3;
+export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;
+export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
 export type TabRuntimeOwnerId = PhysicalPageId;
 
 function assertIntegerInRange(value: number, max: number, label: string): void {

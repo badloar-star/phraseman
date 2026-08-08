@@ -12,16 +12,17 @@ describe('Tab page model', () => {
   // а не расползтись по _layout.tsx.
   test('maps every logical tab onto the same physical page', () => {
     expect(logicalTabToPhysicalPage(0)).toBe(0);
-    expect(logicalTabToPhysicalPage(3)).toBe(3);
+    expect(logicalTabToPhysicalPage(4)).toBe(4);
     expect(physicalPageToLogicalTab(0)).toBe(0);
-    expect(physicalPageToLogicalTab(3)).toBe(3);
+    expect(physicalPageToLogicalTab(4)).toBe(4);
   });
 
   // зачем 2026-08-02: таб «Уроки» убран (список — push-маршрут /lessons_list),
   // владельца 'lessons' среди страниц слайдера больше нет.
   test('assigns one runtime owner to every physical page', () => {
-    expect([0, 1, 2, 3].map(physicalPageToRuntimeOwner)).toEqual([
+    expect([0, 1, 2, 3, 4].map(physicalPageToRuntimeOwner)).toEqual([
       'home',
+      'lessons',
       'tournaments',
       'friends',
       'settings',
@@ -30,8 +31,8 @@ describe('Tab page model', () => {
 
   test('rejects invalid indexes instead of silently clamping them', () => {
     expect(() => logicalTabToPhysicalPage(-1)).toThrow(RangeError);
-    expect(() => logicalTabToPhysicalPage(4)).toThrow(RangeError);
+    expect(() => logicalTabToPhysicalPage(5)).toThrow(RangeError);
     expect(() => physicalPageToLogicalTab(-1)).toThrow(RangeError);
-    expect(() => physicalPageToRuntimeOwner(4)).toThrow(RangeError);
+    expect(() => physicalPageToRuntimeOwner(5)).toThrow(RangeError);
   });
 });

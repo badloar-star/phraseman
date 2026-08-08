@@ -61,19 +61,6 @@ export default function LevelExamQuestionFrame({
           >
             <Ionicons name="close" size={24} color={t.textPrimary} />
           </TapScale>
-          <View style={styles.progressArea}>
-            <View style={styles.progressLabels}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-                {formatLabel}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                {progressLabel}
-              </Text>
-            </View>
-            <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}> 
-              <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: t.accent }]} />
-            </View>
-          </View>
           <LevelExamTimer remainingMs={remainingMs} totalMs={totalMs} />
         </View>
 
@@ -118,6 +105,19 @@ export default function LevelExamQuestionFrame({
               {continueLabel}
             </Text>
           </TapScale>
+          <View style={styles.footerProgress} accessibilityLabel={`${formatLabel}, ${progressLabel}`}>
+            <View style={styles.progressLabels}>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '800' }}>
+                {formatLabel}
+              </Text>
+              <Text style={{ color: t.textSecond, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
+                {progressLabel}
+              </Text>
+            </View>
+            <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}> 
+              <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: t.accent }]} />
+            </View>
+          </View>
         </View>
       </SafeAreaView>
     </ScreenGradient>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1 },
   topBar: { minHeight: 74, flexDirection: 'row', alignItems: 'center' },
   exitButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  progressArea: { flex: 1, gap: 5 },
+  footerProgress: { gap: 5, paddingTop: 10 },
   progressLabels: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
   progressTrack: { height: 7, borderRadius: 4, overflow: 'hidden' },
   progressFill: { height: '100%', borderRadius: 4 },

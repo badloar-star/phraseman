@@ -9,6 +9,9 @@ function fetchResult(overrides: Partial<FetchGrowthSourceResult> = {}): FetchGro
     truncated: false,
     droppedCount: 0,
     rows: [],
+    count: 1,
+    provenance: 'server_daily_aggregate',
+    periodKey: '1970-01-01',
     observedAtMs: 10_000,
     ...overrides,
   };

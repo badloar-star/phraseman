@@ -148,6 +148,7 @@ type ScheduleConfig = {
   testingEnabled?: boolean;
   allDayEnabled?: boolean;
 };
+type ResolvedScheduleSlot = ScheduleSlot & { startsAtMs: number; displayTime: string; dateKey: string };
 
 /**
  * Момент сегодняшнего старта слота — В ТАЙМЗОНЕ СЛОТА, а не устройства.
@@ -158,7 +159,7 @@ type ScheduleConfig = {
  * открывалась не тогда, и roomId (он собирается по дате в таймзоне слота) мог
  * указывать на чужой день. Считаем смещение таймзоны слота честно.
  */
-function slotStartMs(slot: ScheduleSlot): number {
+function slotStartMs(slot: ScheduleSlot, dateKeyOverride?: string): number {
   const match = /^(\d{2}):(\d{2})$/.exec(slot.localTime ?? '');
   if (!match) return 0;
   const timezone = slot.timezone || 'Europe/Moscow';
@@ -166,7 +167,7 @@ function slotStartMs(slot: ScheduleSlot): number {
   const minutes = Number(match[2]);
   try {
     // Сегодняшняя дата ГЛАЗАМИ таймзоны слота (там уже может быть другой день).
-    const dateKey = new Date().toLocaleDateString('en-CA', { timeZone: timezone });
+    const dateKey = dateKeyOverride ?? tournamentDateKey(timezone, new Date(tournamentNow()));
     const [year, month, day] = dateKey.split('-').map(Number);
     // Пробное UTC-время → смотрим, сколько показывают часы в таймзоне слота,
     // и сдвигаем на разницу. Так учитывается и переход на летнее время.
@@ -200,12 +201,20 @@ function slotDisplayTime(startsAtMs: number, fallback: string): string {
   }
 }
 
-function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string })[] {
+function addDaysToDateKey(dateKey: string, days: number): string {
+  const [year, month, day] = dateKey.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day + days));
+  return date.toISOString().slice(0, 10);
+}
+
+function enabledSlots(slots: ScheduleSlot[], dateKeyOverride?: string): ResolvedScheduleSlot[] {
   return slots
     .filter((slot) => slot.enabled === true && /^\d{2}:\d{2}$/.test(slot.localTime ?? ''))
     .map((slot) => {
-      const startsAtMs = slotStartMs(slot);
-      return { ...slot, startsAtMs, displayTime: slotDisplayTime(startsAtMs, slot.localTime) };
+      const timezone = slot.timezone || 'Europe/Moscow';
+      const dateKey = dateKeyOverride ?? tournamentDateKey(timezone, new Date(tournamentNow()));
+      const startsAtMs = slotStartMs(slot, dateKey);
+      return { ...slot, startsAtMs, displayTime: slotDisplayTime(startsAtMs, slot.localTime), dateKey };
     })
     .sort((a, b) => a.startsAtMs - b.startsAtMs);
 }
@@ -214,8 +223,8 @@ function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
  * Ближайший слот: ещё не прошедший. Если день отыгран — первый завтрашний,
  * чтобы отсчёт никогда не показывал ноль.
  */
-function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string }) | null {
-  const list = enabledSlots(slots);
+function pickNextSlot(slots: ScheduleSlot[], dateKeyOverride?: string): ResolvedScheduleSlot | null {
+  const list = enabledSlots(slots, dateKeyOverride);
   if (list.length === 0) return null;
   // зачем 2026-07-27: было `startsAtMs > Date.now() - 20 мин` — экран считал
   // ближайшим слот, который УЖЕ начался до 20 минут назад. Войти в него нельзя
@@ -226,7 +235,7 @@ function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
   // Date.now() выбрал бы не тот слот и открыл вход не в то время.
   const upcoming = list.find((slot) => slot.startsAtMs > tournamentNow());
   if (upcoming) return upcoming;
-  return { ...list[0], startsAtMs: list[0].startsAtMs + 24 * 60 * 60 * 1000 };
+  return { ...list[0], startsAtMs: list[0].startsAtMs + 24 * 60 * 60 * 1000, dateKey: addDaysToDateKey(list[0].dateKey, 1) };
 }
 
 /**
@@ -239,9 +248,9 @@ function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
  */
 const LIVE_SLOT_WINDOW_MS = 20 * 60 * 1000;
 
-function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string }) | null {
+function pickLiveSlot(slots: ScheduleSlot[], dateKeyOverride?: string): ResolvedScheduleSlot | null {
   const now = tournamentNow();
-  return enabledSlots(slots)
+  return enabledSlots(slots, dateKeyOverride)
     .filter((slot) => slot.startsAtMs <= now && now - slot.startsAtMs < LIVE_SLOT_WINDOW_MS)
     .pop() ?? null;
 }
@@ -398,13 +407,24 @@ export default function TournamentsScreen() {
       });
   }, [router]);
 
-  const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? []), [schedule]);
+  const scheduleTimezone = useMemo(
+    () => (schedule?.slots ?? []).find((slot) => slot.enabled === true)?.timezone || 'Europe/Moscow',
+    [schedule],
+  );
+  const [scheduleDayKey, setScheduleDayKey] = useState(() => (
+    tournamentDateKey('Europe/Moscow', new Date(tournamentNow()))
+  ));
+  useEffect(() => {
+    setScheduleDayKey(tournamentDateKey(scheduleTimezone, new Date(tournamentNow())));
+  }, [scheduleTimezone]);
+
+  const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? [], scheduleDayKey), [schedule, scheduleDayKey]);
   // зачем 2026-07-27: слот для ВХОДА и комната для ПРОСМОТРА — разные вещи.
   // nextSlot теперь строго будущий (иначе кнопка «Играть» вела в турнир с
   // закрытым входом), но зритель должен видеть идущий прямо сейчас турнир.
   // Поэтому слушаем комнату недавно стартовавшего слота, если он есть, и
   // только иначе — комнату ближайшего будущего.
-  const watchSlot = useMemo(() => pickLiveSlot(schedule?.slots ?? []) ?? nextSlot, [schedule, nextSlot]);
+  const watchSlot = useMemo(() => pickLiveSlot(schedule?.slots ?? [], scheduleDayKey) ?? nextSlot, [schedule, scheduleDayKey, nextSlot]);
   /**
    * зачем 2026-08-04 (аудит all-day режима): в обычном расписании roomId
    * зрителя честно предсказуем — tournamentRoomId(slotId, tz, dateKey) даёт
@@ -422,13 +442,13 @@ export default function TournamentsScreen() {
   const roomId = useMemo(() => {
     if (!watchSlot || schedule?.allDayEnabled === true) return null;
     const timezone = watchSlot.timezone || 'Europe/Moscow';
-    return tournamentRoomId(watchSlot.slotId, timezone, tournamentDateKey(timezone, new Date(tournamentNow())));
+    return tournamentRoomId(watchSlot.slotId, timezone, watchSlot.dateKey);
   }, [watchSlot, schedule?.allDayEnabled]);
   // Комната, в которую реально идёт вход (будущий слот) — она же для лобби.
   const joinRoomId = useMemo(() => {
     if (!nextSlot) return null;
     const timezone = nextSlot.timezone || 'Europe/Moscow';
-    return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone, new Date(tournamentNow())));
+    return tournamentRoomId(nextSlot.slotId, timezone, nextSlot.dateKey);
   }, [nextSlot]);
 
   /**
@@ -443,7 +463,6 @@ export default function TournamentsScreen() {
    * поднимается мгновенно и первым снимком догоняет актуальное состояние.
    */
   const screenFocused = useIsFocused();
-  const runtimeActive = useRuntimeActive(screenFocused);
   // зачем 2026-08-04 (инцидент: модал приветствия вылезал на ГЛАВНОЙ и глушил
   // экран): турниры давно вернули в таббар (TABS в (tabs)/_layout.tsx), а
   // соседние табы ФОНОВО ПРЕМАУНТЯТСЯ через ~160-500мс после открытия главной
@@ -458,6 +477,7 @@ export default function TournamentsScreen() {
   // отличают «мой таб реально на экране» от «весь (tabs)-стек в фокусе».
   const { runtimeOwnerId } = useTabNav();
   const tournamentsTabVisible = runtimeOwnerId === 'tournaments';
+  const runtimeActive = useRuntimeActive(screenFocused && tournamentsTabVisible);
 
   // зачем 2026-08-04 (фикс после аудита — было инвертировано, см. комментарий
   // у welcomeVisible выше): модал стартует СКРЫТЫМ и включается только этим
@@ -504,21 +524,20 @@ export default function TournamentsScreen() {
   // всё ещё "сейчас турниров нет"»): loadSchedule() кэширует снимок на 6 часов
   // в памяти модуля (SCHEDULE_TTL_MS) — экономия чтений оправдана, расписание
   // почти не меняется, НО именно поэтому владелец не видит свой тумблер сразу.
-  // Первый показ экрана уже грузит расписание эффектом выше (с таймаутом и
-  // офлайн-заглушкой) — здесь только ВОЗВРАТЫ на экран: пропускаем фокус при
-  // маунте (isFirstFocusRef) и на каждый повторный форсируем force=true.
-  // 1 лишнее чтение раз в фокус, не за кадр — цена ничтожна рядом с честным
-  // статусом турнира.
-  const isFirstFocusRef = useRef(true);
+  // Фоновый premount retained-tab уже даёт screenFocused=true, поэтому первым
+  // реальным входом считаем только runtimeOwnerId === 'tournaments'. На каждый
+  // такой вход форсируем свежий снимок: stale/timeout-кэш не должен держать
+  // кнопку в состоянии «сейчас турниров нет».
+  // 1 лишнее чтение раз в видимый вход, не за кадр — цена ничтожна рядом с
+  // честным статусом турнира.
   useEffect(() => {
-    if (!screenFocused) return;
-    if (isFirstFocusRef.current) { isFirstFocusRef.current = false; return; }
+    if (!tournamentsTabVisible) return;
     let alive = true;
     void loadSchedule(true)
       .then((value) => { if (alive) setSchedule((value as ScheduleConfig | null) ?? { slots: [] }); })
       .catch(() => {});
     return () => { alive = false; };
-  }, [screenFocused]);
+  }, [tournamentsTabVisible]);
 
   const { room } = useTournamentRoom(roomId, runtimeActive);
 
@@ -560,7 +579,7 @@ export default function TournamentsScreen() {
   // require-источники на каждом секундном тике экрана турниров.
   const tournamentThemeAssets = useMemo(() => getTournamentThemeAssets(themeMode), [themeMode]);
 
-  const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
+  const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? [], scheduleDayKey), [schedule, scheduleDayKey]);
 
   /**
    * Секундный тик — только чтобы состояние окна пересчитывалось по ходу
@@ -575,10 +594,15 @@ export default function TournamentsScreen() {
     // кадр иначе показал бы состояние окна, «замороженное» в момент ухода
     // (окно могло за это время открыться или закончиться). Пересчитываем сразу,
     // до первого интервала — Performance Bible: первый кадр = финальные данные.
-    setTick((value) => value + 1);
-    const id = setInterval(() => setTick((value) => value + 1), 1000);
+    const refreshClock = () => {
+      setTick((value) => value + 1);
+      const nextDayKey = tournamentDateKey(scheduleTimezone, new Date(tournamentNow()));
+      setScheduleDayKey((current) => (current === nextDayKey ? current : nextDayKey));
+    };
+    refreshClock();
+    const id = setInterval(refreshClock, 1000);
     return () => clearInterval(id);
-  }, [runtimeActive]);
+  }, [runtimeActive, scheduleTimezone]);
 
   const windowStartsMs = useMemo(
     () => daySlotList.map((slot) => slot.startsAtMs),
@@ -860,12 +884,13 @@ export default function TournamentsScreen() {
   // Рейтинг сезона: первый кадр — из кэша, сеть догоняет фоном (без прыжка нуля).
   const [standings, setStandings] = useState<SeasonStandings | null>(() => peekSeasonStandings());
   useEffect(() => {
+    if (!tournamentsTabVisible) return;
     let alive = true;
-    void loadSeasonStandings().then((value) => {
+    void loadSeasonStandings(true).then((value) => {
       if (alive && value) setStandings(value);
     }).catch(() => {});
     return () => { alive = false; };
-  }, []);
+  }, [tournamentsTabVisible]);
 
   const seasonTop = useMemo(
     () => (standings?.top ?? []).slice(0, SEASON_HUB_TOP),
@@ -878,7 +903,7 @@ export default function TournamentsScreen() {
   // зачем: в лобби показываем ЧЕСТНЫЙ счёт звёзд (starsTotal), а не очки места
   // (points) — они остаются только для сортировки таблицы/расчёта призов.
   const myStars = me?.starsTotal ?? 0;
-  const topStars = Math.max(1, seasonTop[0]?.points ?? 1);
+  const topStars = Math.max(1, ...seasonTop.map((entry) => entry.starsTotal));
 
   /**
    * Доли банка в ЖЕМЧУЖИНАХ. Проценты 60/25/15 повторяют серверный
@@ -920,7 +945,7 @@ export default function TournamentsScreen() {
         scrollEventThrottle={16}
         // зачем: владелец убрал сворачивание таббара на «Турнирах» — скролл кормит
         // только верхнюю маску (onScrollMaskOnly), таббар остаётся развёрнутым.
-        onScroll={topFadeScroll?.onScrollMaskOnly}
+        onScroll={topFadeScroll?.onScroll}
       >
         {/* Шапка главного таба: назад · название · звёзды сезона · жемчужины. */}
         <View style={styles.header}>
@@ -1214,7 +1239,7 @@ export default function TournamentsScreen() {
               return (
                 <V2RatingRow
                   key={leader.uid}
-                  ratio={leader.points / topStars}
+                  ratio={leader.starsTotal / topStars}
                   mix={0.46 - index * 0.07}
                   highlighted={isMe}
                 >
@@ -1235,7 +1260,7 @@ export default function TournamentsScreen() {
             })}
             {/* Своя строка ниже тройки — игрок видит себя без перехода в таблицу. */}
             {myRowSeparate ? (
-              <V2RatingRow ratio={myRowSeparate.points / topStars} mix={0.2} highlighted>
+              <V2RatingRow ratio={myRowSeparate.starsTotal / topStars} mix={0.2} highlighted>
                 <FlowText testID="tournaments-my-place" provenance="authored" style={[styles.place, { color: P.accent }]}>
                   {myPlace > 0 ? myPlace : '—'}
                 </FlowText>

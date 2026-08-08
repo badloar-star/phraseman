@@ -1,5 +1,6 @@
 import { lessonGateForDay } from './plan_lesson_gate';
 import { requiredMinutesForKind, tailOrderForPlanDay } from './personal_plan_mode_profiles';
+import { isKindUnlockedForWeek } from './plan_week_mode_progression';
 
 export type PersonalPlanId = 'voyazh' | 'mitap' | 'gavan' | 'impuls' | 'echo';
 const PERSONAL_PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
@@ -37,7 +38,7 @@ export type PlanTaskDestination =
       contentUnitIds: string[];
       requiredCorrect: number;
     }
-  | { type: 'quiz'; quizId: string; questionCount: 10; level: 'easy' | 'medium' | 'hard'; thematicCategoryId?: string }
+  | { type: 'quiz'; quizId: string; questionCount: 10; level: 'easy' | 'medium' | 'hard' }
   | {
       type: 'practice';
       trainingId: string;
@@ -126,8 +127,12 @@ function initialVisibleTaskCount(day: PlanDay, minutes: PlanMinutesChoice): numb
 }
 
 export function tasksForMinutes(day: PlanDay, minutes: PlanMinutesChoice): PlanDailyTask[] {
-  const tasks = allTasksForDay(day);
-  return tasks.slice(0, Math.min(tasks.length, initialVisibleTaskCount(day, minutes)));
+  const tasks = allTasksForDay(day).filter((task) => (
+    task.requiredFor.includes(minutes) && isKindUnlockedForWeek(task.kind, day.weekIndex)
+  ));
+  const visible = tasks.slice(0, Math.min(tasks.length, initialVisibleTaskCount(day, minutes)));
+  const quiz = minutes === 20 ? tasks.find((task) => task.kind === 'plan_quiz') : undefined;
+  return quiz && !visible.includes(quiz) ? [...visible, quiz] : visible;
 }
 
 export type PlanAddMoreTaskOptions = {
@@ -160,7 +165,9 @@ function addMoreTasksAfterVisibleSlice(
   minutes: PlanMinutesChoice,
   options: PlanAddMoreTaskOptions = {},
 ): PlanDailyTask[] {
-  const tasks = allTasksForDay(day);
+  const tasks = allTasksForDay(day).filter((task) => (
+    task.requiredFor.includes(minutes) && isKindUnlockedForWeek(task.kind, day.weekIndex)
+  ));
   const firstAddMoreIndex = Math.min(tasks.length, initialVisibleTaskCount(day, minutes));
   const queue = tasks.slice(firstAddMoreIndex);
   if (!options.planTrainerWeakSpotAvailable || queue.some((task) => task.kind === 'trainer_weak_spot')) {
@@ -784,6 +791,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
           sourceDayIndex: recallSourceDayIndex,
         },
       ),
+      buildTask(planId, dayIndex, 'plan_quiz', 'quiz', 'Daily check', 'Plan-only phrase check.', 5, [20], { type: 'quiz', quizId: `${planId}_day_${dayIndex}_quiz`, questionCount: 10, level: quizLevel }),
     ],
   };
 }
@@ -1343,7 +1351,8 @@ const gavanDay1: PlanDay = {
 };
 
 const gavanDay1Generated: PlanDay = {
-  ...makeGeneratedDay('gavan', 1, 'Короткие ответы'),
+  ...gavanDay1,
+  tasks: [...gavanDay1.tasks, buildTask('gavan', 1, 'plan_quiz', 'quiz', 'Daily check', 'Plan-only phrase check.', 5, [20], { type: 'quiz', quizId: 'gavan_day1_short_replies_quiz', questionCount: 10, level: 'easy' })],
   status: 'certified',
   title: 'Короткие ответы',
   focus: 'Научиться отвечать спокойно и коротко, когда нужно подтвердить, не спорить и не зависнуть.',
@@ -1448,17 +1457,17 @@ const gavanDay7Generated: PlanDay = {
 };
 
 const gavanDay8Generated: PlanDay = {
-  ...makeGeneratedDay('gavan', 8, 'Неделя 2: документы без лишних подсказок'),
+  ...makeGeneratedDay('gavan', 8, 'Посуда на кухне'),
   status: 'certified',
-  title: 'Неделя 2: документы без лишних подсказок',
-  focus: 'Начать вторую неделю Gavan с самостоятельных document-service фраз: отправить форму онлайн, загрузить копию, спросить место подписи, принести оригинал, получить reference number и сохранить receipt.',
-  phraseGoal: 'Шесть коротких autonomy-фраз для офиса или сервиса: submit form online, upload copy, where to sign, bring original tomorrow, reference number, keep receipt.',
-  theory: 'День держится на практичных конструкциях Can I, I need to, Where should I, I can, Please tell me, I will. Подсказок меньше: ученик выбирает полный смысл и собирает фразу без прямой опоры на перевод.',
-  lifeOutcome: 'После дня можно самостоятельно пройти следующий шаг с документами: отправить форму, загрузить копию, уточнить подпись, пообещать оригинал, записать номер обращения и сохранить чек.',
+  title: 'Посуда на кухне',
+  focus: 'Назвать основную посуду и уверенно попросить нужный предмет за столом: cup, plate, knife, spoon.',
+  phraseGoal: 'Шесть коротких фраз про посуду: назвать предметы, спросить о чистой ложке, найти свою ложку и попросить чистую тарелку.',
+  theory: 'День закрепляет have/has, вопрос Do you have, конструкцию Where is и вежливую просьбу с please на бытовой теме кухни.',
+  lifeOutcome: 'После дня можно назвать основную посуду по-английски и попросить передать или найти нужный предмет за столом.',
   curriculum: {
-    lessonPrerequisites: [1, 3, 4, 5, 7],
-    allowedGrammarTags: ['week-2-autonomy', 'document-service', 'online-form', 'upload-copy', 'signature', 'original-document', 'reference-number', 'receipt'],
-    blockedGrammarTags: ['legal-advice', 'tax-advice', 'medical-diagnosis', 'sensitive-id-number'],
+    lessonPrerequisites: [3, 7],
+    allowedGrammarTags: ['to-have', 'present-simple-questions', 'wh-questions', 'to-be', 'polite-request', 'tableware'],
+    blockedGrammarTags: ['legal-advice', 'tax-advice', 'medical-diagnosis'],
   },
 };
 

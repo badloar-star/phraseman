@@ -3470,7 +3470,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
             <View style={{ borderBottomWidth: 0.5, borderBottomColor: t.border }}>
               <ScrollView
                 horizontal
-                decelerationRate="fast"
+                decelerationRate="normal"
                 nestedScrollEnabled
                 keyboardShouldPersistTaps="handled"
                 showsHorizontalScrollIndicator={false}

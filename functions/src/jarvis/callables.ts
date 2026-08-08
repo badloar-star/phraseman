@@ -54,9 +54,9 @@ function firestoreFetchers(): QualityFetcherMap {
   const db = admin.firestore();
   const nowMs = Date.now();
   return {
-    error_reports: () => fetchQualitySource({ sourceId: 'error_reports', collection: db.collection('error_reports'), nowMs }),
-    user_reports: () => fetchQualitySource({ sourceId: 'user_reports', collection: db.collection('user_reports'), nowMs }),
-    app_errors: () => fetchQualitySource({ sourceId: 'app_errors', collection: db.collection('app_errors'), nowMs }),
+    error_reports: () => fetchQualitySource({ db, sourceId: 'error_reports', collection: db.collection('error_reports'), nowMs }),
+    user_reports: () => fetchQualitySource({ db, sourceId: 'user_reports', collection: db.collection('user_reports'), nowMs }),
+    app_errors: () => fetchQualitySource({ db, sourceId: 'app_errors', collection: db.collection('app_errors'), nowMs }),
   };
 }
 

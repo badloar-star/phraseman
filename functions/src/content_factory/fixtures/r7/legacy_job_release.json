@@ -4,14 +4,14 @@
     "studyTarget": "en",
     "sourceLocale": "ru",
     "lessonIds": [1],
-    "surfaces": ["lessons", "quizzes", "cards", "arena_questions"],
-    "plannedSurfaces": ["lesson", "quiz", "flashcard", "arena"],
+    "surfaces": ["lessons", "cards"],
+    "plannedSurfaces": ["lesson", "flashcard"],
     "planFingerprint": "legacy-plan-1",
     "idempotencyKey": "legacy-job-1",
     "requestedBy": "admin-sanitized",
     "blueprintVersion": "english-core-32-v1",
     "state": "published",
-    "progress": { "total": 4, "completed": 4, "failed": 0 },
+    "progress": { "total": 2, "completed": 2, "failed": 0 },
     "createdAt": "2026-01-01T00:00:00.000Z"
   },
   "manifest": {
@@ -35,5 +35,5 @@
     "activeRelease": { "releaseId": "legacy-en-ru-release-1", "studyTarget": "en", "learnerSourceLocale": "ru", "blueprintId": "english-core-32", "blueprintHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
   },
   "drafts": { "legacy-draft-1": { "state": "approved", "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" } },
-  "ledgers": { "arena": { "topicArtifactId": "legacy-topic-1", "revision": 1, "batches": {} } }
+  "ledgers": {}
 }

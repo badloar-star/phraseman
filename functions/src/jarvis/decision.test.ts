@@ -132,6 +132,22 @@ describe('Jarvis decision core — a finding may not outrun its evidence', () =>
     expect(a.contentHash).not.toBe(b.contentHash);
   });
 
+  test('carries explicit typed actionability and severity without inferring them from status text', () => {
+    const decision = buildDecision({
+      ...base,
+      evidence: [{ ...READY, state: 'error', count: 0 }],
+      actionability: 'confirmed_action',
+      severityHint: 'P0',
+      nowMs: 2_000,
+    } as Parameters<typeof buildDecision>[0]);
+
+    expect(decision).toMatchObject({
+      status: 'insufficient_evidence',
+      actionability: 'confirmed_action',
+      severityHint: 'P0',
+    });
+  });
+
   test('owner constraints are carried on the decision', () => {
     const decision = buildDecision({
       ...base,

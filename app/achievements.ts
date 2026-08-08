@@ -14,7 +14,6 @@ import {
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { writeFriendEvent } from './firestore_friend_activity';
-import { DEV_MODE, IS_STORE_RELEASE } from './config';
 import {
   achievementStateKey,
   achievementLessonMarathonDayKey,
@@ -35,9 +34,6 @@ import {
   flashcardsSavedKey,
   lessonPassCountKey,
   lessonProgressKey,
-  quizAchievementCounterKey,
-  quizPerfectLevelsTodayKey,
-  quizPerfectStreakKey,
   shareAchievementCounterKey,
   storageStudyTarget,
   trainerAchievementCorrectCountKey,
@@ -68,7 +64,7 @@ const safeAchievementEventPart = (value: unknown, max = 60): string =>
 export interface Achievement {
   id:       string;
   icon:     string;           // emoji (резерв / шаринг)
-  category: 'streak' | 'lessons' | 'xp' | 'quiz' | 'combo' | 'special' | 'medal';
+  category: 'streak' | 'lessons' | 'xp' | 'combo' | 'special' | 'medal';
   nameRu:   string;
   nameUk:   string;
   nameEs?:  string;
@@ -516,139 +512,6 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     tr: { name: '50. seviye', description: '50. seviyeye ulaş. Artık yeni başlayan değil, efsanesin.' },
     pl: { name: 'Poziom 50', description: 'Osiągnij poziom 50. Nie jesteś już nowicjuszem; jesteś legendą.' },
   },
-  quiz_first: {
-    'pt-BR': { name: 'Primeiro quiz', description: 'Conclua qualquer quiz uma vez, em qualquer dificuldade.' },
-    vi: { name: 'Quiz đầu tiên', description: 'Hoàn thành bất kỳ quiz nào một lần, ở mọi độ khó.' },
-    id: { name: 'Kuis pertama', description: 'Selesaikan kuis apa pun satu kali, di tingkat kesulitan apa pun.' },
-    tr: { name: 'İlk quiz', description: 'Herhangi bir zorlukta bir quiz’i bir kez tamamla.' },
-    pl: { name: 'Pierwszy quiz', description: 'Ukończ dowolny quiz raz, na dowolnym poziomie trudności.' },
-  },
-  quiz_medium: {
-    'pt-BR': { name: 'Nível médio', description: 'Conclua um quiz no nível Medium.' },
-    vi: { name: 'Cấp trung bình', description: 'Hoàn thành một quiz cấp Medium.' },
-    id: { name: 'Level menengah', description: 'Selesaikan kuis level Medium.' },
-    tr: { name: 'Orta seviye', description: 'Medium seviyesinde bir quiz’i tamamla.' },
-    pl: { name: 'Poziom średni', description: 'Ukończ quiz na poziomie Medium.' },
-  },
-  quiz_hard: {
-    'pt-BR': { name: 'Aceitou o desafio', description: 'Conclua totalmente um quiz no nível Hard.' },
-    vi: { name: 'Nhận thử thách', description: 'Hoàn thành trọn vẹn một quiz cấp Hard.' },
-    id: { name: 'Menerima tantangan', description: 'Selesaikan sepenuhnya kuis level Hard.' },
-    tr: { name: 'Meydan okumayı kabul ettin', description: 'Hard seviyesinde bir quiz’i tamamen bitir.' },
-    pl: { name: 'Wyzwanie przyjęte', description: 'Ukończ w całości quiz na poziomie Hard.' },
-  },
-  quiz_all_levels: {
-    'pt-BR': { name: 'Conjunto completo', description: 'Passe por Easy, Medium e Hard pelo menos uma vez, em três sessões separadas.' },
-    vi: { name: 'Đủ bộ', description: 'Hoàn thành Easy, Medium và Hard ít nhất một lần, trong ba phiên riêng.' },
-    id: { name: 'Set lengkap', description: 'Selesaikan Easy, Medium, dan Hard setidaknya sekali dalam tiga sesi terpisah.' },
-    tr: { name: 'Tam set', description: 'Easy, Medium ve Hard seviyelerini en az bir kez, üç ayrı oturumda tamamla.' },
-    pl: { name: 'Pełny zestaw', description: 'Przejdź Easy, Medium i Hard co najmniej raz, w trzech osobnych sesjach.' },
-  },
-  quiz_perfect_easy: {
-    'pt-BR': { name: 'Ideal no Easy', description: 'Quiz Easy: todas as respostas desta tentativa estão corretas.' },
-    vi: { name: 'Hoàn hảo ở Easy', description: 'Quiz Easy: tất cả câu trả lời trong lượt này đều đúng.' },
-    id: { name: 'Easy sempurna', description: 'Kuis Easy: semua jawaban dalam sesi ini benar.' },
-    tr: { name: 'Easy kusursuz', description: 'Easy quiz: bu denemedeki tüm cevaplar doğru.' },
-    pl: { name: 'Idealny Easy', description: 'Quiz Easy: wszystkie odpowiedzi w tym podejściu są poprawne.' },
-  },
-  quiz_perfect: {
-    'pt-BR': { name: 'Nervos de aço', description: 'Conclua um quiz Hard sem nenhum erro.' },
-    vi: { name: 'Thần kinh thép', description: 'Hoàn thành quiz Hard không mắc lỗi nào.' },
-    id: { name: 'Saraf baja', description: 'Selesaikan kuis Hard tanpa satu pun kesalahan.' },
-    tr: { name: 'Çelik sinirler', description: 'Hard quiz’i tek hata yapmadan tamamla.' },
-    pl: { name: 'Stalowe nerwy', description: 'Ukończ quiz Hard bez ani jednego błędu.' },
-  },
-  quiz_perfect_medium: {
-    'pt-BR': { name: 'Mira certeira', description: 'Quiz Medium sem erros: todas as respostas da tentativa estão corretas.' },
-    vi: { name: 'Bắn chuẩn', description: 'Quiz Medium không lỗi: tất cả câu trả lời trong lượt này đều đúng.' },
-    id: { name: 'Tembakan tepat', description: 'Kuis Medium tanpa kesalahan: semua jawaban dalam sesi ini benar.' },
-    tr: { name: 'Keskin nişancı', description: 'Hatasız Medium quiz: bu denemedeki tüm cevaplar doğru.' },
-    pl: { name: 'Celny strzał', description: 'Quiz Medium bez błędów: wszystkie odpowiedzi w podejściu są poprawne.' },
-  },
-  quiz_triple_perfect: {
-    'pt-BR': { name: 'Três vezes ideal', description: 'Easy, Medium e Hard perfeitos: um quiz separado para cada nível.' },
-    vi: { name: 'Ba lần hoàn hảo', description: 'Hoàn hảo Easy, Medium và Hard: mỗi cấp một quiz riêng.' },
-    id: { name: 'Tiga kali sempurna', description: 'Easy, Medium, dan Hard sempurna: satu kuis terpisah untuk tiap level.' },
-    tr: { name: 'Üç kez kusursuz', description: 'Kusursuz Easy, Medium ve Hard: her seviye için ayrı bir quiz.' },
-    pl: { name: 'Trzykrotny ideał', description: 'Idealny Easy, Medium i Hard: osobny quiz na każdy poziom.' },
-  },
-  quiz_speed_demon: {
-    'pt-BR': { name: 'Na velocidade', description: 'Conclua totalmente um quiz Hard 5 vezes; o contador fica no app.' },
-    vi: { name: 'Tốc độ cao', description: 'Hoàn thành trọn vẹn quiz Hard 5 lần; bộ đếm được lưu trong ứng dụng.' },
-    id: { name: 'Dengan kecepatan', description: 'Selesaikan kuis Hard sepenuhnya 5 kali; penghitung disimpan di aplikasi.' },
-    tr: { name: 'Hız modunda', description: 'Hard quiz’i 5 kez tamamen bitir; sayaç uygulamada tutulur.' },
-    pl: { name: 'Na szybkości', description: 'Ukończ w całości quiz Hard 5 razy; licznik jest zapisany w aplikacji.' },
-  },
-  quiz_10_completed: {
-    'pt-BR': { name: 'Primeiros dez', description: '10 sessões de quiz concluídas. Siga em frente.' },
-    vi: { name: 'Mười lần đầu', description: 'Hoàn thành 10 phiên quiz. Cứ tiến lên.' },
-    id: { name: 'Sepuluh pertama', description: '10 sesi kuis selesai. Terus maju.' },
-    tr: { name: 'İlk on', description: '10 quiz oturumu tamamlandı. Devam et.' },
-    pl: { name: 'Pierwsze dziesięć', description: '10 sesji quizu ukończone. Naprzód.' },
-  },
-  quiz_25_completed: {
-    'pt-BR': { name: '25 quizzes', description: '25 sessões de quiz concluídas.' },
-    vi: { name: '25 quiz', description: 'Hoàn thành 25 phiên quiz.' },
-    id: { name: '25 kuis', description: '25 sesi kuis selesai.' },
-    tr: { name: '25 quiz', description: '25 quiz oturumu tamamlandı.' },
-    pl: { name: '25 quizów', description: '25 sesji quizu ukończone.' },
-  },
-  quiz_50_completed: {
-    'pt-BR': { name: '50 quizzes', description: '50 sessões de quiz concluídas.' },
-    vi: { name: '50 quiz', description: 'Hoàn thành 50 phiên quiz.' },
-    id: { name: '50 kuis', description: '50 sesi kuis selesai.' },
-    tr: { name: '50 quiz', description: '50 quiz oturumu tamamlandı.' },
-    pl: { name: '50 quizów', description: '50 sesji quizu ukończone.' },
-  },
-  quiz_100_completed: {
-    'pt-BR': { name: 'Cem quizzes', description: '100 sessões de quiz concluídas.' },
-    vi: { name: 'Một trăm quiz', description: 'Hoàn thành 100 phiên quiz.' },
-    id: { name: 'Seratus kuis', description: '100 sesi kuis selesai.' },
-    tr: { name: 'Yüz quiz', description: '100 quiz oturumu tamamlandı.' },
-    pl: { name: 'Sto quizów', description: '100 sesji quizu ukończone.' },
-  },
-  quiz_hard_10: {
-    'pt-BR': { name: 'Dez Hard', description: 'Conclua um quiz Hard 10 vezes.' },
-    vi: { name: 'Mười Hard', description: 'Hoàn thành quiz cấp Hard 10 lần.' },
-    id: { name: 'Sepuluh Hard', description: 'Selesaikan kuis level Hard 10 kali.' },
-    tr: { name: 'On Hard', description: 'Hard seviyesinde quiz’i 10 kez tamamla.' },
-    pl: { name: 'Dziesięć Hard', description: 'Ukończ quiz na poziomie Hard 10 razy.' },
-  },
-  quiz_hard_25: {
-    'pt-BR': { name: 'Morador do Hard', description: 'Conclua um quiz Hard 25 vezes.' },
-    vi: { name: 'Cư dân Hard', description: 'Hoàn thành quiz cấp Hard 25 lần.' },
-    id: { name: 'Penghuni Hard', description: 'Selesaikan kuis level Hard 25 kali.' },
-    tr: { name: 'Hard sakini', description: 'Hard seviyesinde quiz’i 25 kez tamamla.' },
-    pl: { name: 'Bywalec Hard', description: 'Ukończ quiz na poziomie Hard 25 razy.' },
-  },
-  quiz_hard_perfect_3: {
-    'pt-BR': { name: 'Três Hard sem erro', description: 'Passe 3 vezes por um quiz Hard sem nenhum erro.' },
-    vi: { name: 'Ba Hard không lỗi', description: 'Hoàn thành quiz Hard 3 lần không mắc lỗi nào.' },
-    id: { name: 'Tiga Hard tanpa salah', description: 'Selesaikan kuis Hard 3 kali tanpa satu pun kesalahan.' },
-    tr: { name: 'Üç hatasız Hard', description: 'Hard quiz’i 3 kez tek hata yapmadan tamamla.' },
-    pl: { name: 'Trzy Hard bez błędu', description: 'Przejdź quiz Hard 3 razy bez ani jednego błędu.' },
-  },
-  quiz_hard_perfect_10: {
-    'pt-BR': { name: 'Dez sem errar', description: 'Passe 10 vezes por um quiz Hard sem nenhum erro.' },
-    vi: { name: 'Mười lần không trượt', description: 'Hoàn thành quiz Hard 10 lần không mắc lỗi nào.' },
-    id: { name: 'Sepuluh tanpa meleset', description: 'Selesaikan kuis Hard 10 kali tanpa satu pun kesalahan.' },
-    tr: { name: 'On hatasız', description: 'Hard quiz’i 10 kez tek hata yapmadan tamamla.' },
-    pl: { name: 'Dziesięć bez pudła', description: 'Przejdź quiz Hard 10 razy bez ani jednego błędu.' },
-  },
-  quiz_perfect_7_days: {
-    'pt-BR': { name: 'Semana perfeita de quizzes', description: 'Por 7 dias seguidos, conclua pelo menos um quiz sem erro.' },
-    vi: { name: 'Tuần quiz hoàn hảo', description: '7 ngày liên tiếp hoàn thành ít nhất một quiz không lỗi.' },
-    id: { name: 'Minggu kuis sempurna', description: '7 hari berturut-turut selesaikan setidaknya satu kuis tanpa kesalahan.' },
-    tr: { name: 'Kusursuz quiz haftası', description: '7 gün üst üste en az bir quiz’i hatasız tamamla.' },
-    pl: { name: 'Idealny tydzień quizów', description: 'Przez 7 dni z rzędu ukończ co najmniej jeden quiz bez błędu.' },
-  },
-  quiz_all_levels_perfect_same_day: {
-    'pt-BR': { name: 'Três coroas em um dia', description: 'No mesmo dia, passe por Easy, Medium e Hard sem erros.' },
-    vi: { name: 'Ba vương miện trong ngày', description: 'Trong một ngày, hoàn thành Easy, Medium và Hard không lỗi.' },
-    id: { name: 'Tiga mahkota sehari', description: 'Dalam satu hari, selesaikan Easy, Medium, dan Hard tanpa kesalahan.' },
-    tr: { name: 'Bir günde üç taç', description: 'Bir günde Easy, Medium ve Hard seviyelerini hatasız tamamla.' },
-    pl: { name: 'Trzy korony w dzień', description: 'W jeden dzień przejdź Easy, Medium i Hard bez błędów.' },
-  },
   combo_3: {
     'pt-BR': { name: 'No fluxo', description: '3 respostas certas seguidas durante uma lição.' },
     vi: { name: 'Đang vào guồng', description: '3 câu trả lời đúng liên tiếp trong bài học.' },
@@ -986,11 +849,11 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Miesiąc kart', description: 'Przeglądaj karty w kolekcji przez 30 dni z rzędu.' },
   },
   flashcards_sources_4: {
-    'pt-BR': { name: 'Quatro fontes', description: 'Salve cartões de uma lição ou quiz, palavras, verbos e frase do dia.' },
-    vi: { name: 'Bốn nguồn', description: 'Lưu thẻ từ bài học hoặc quiz, từ vựng, động từ và cụm từ trong ngày.' },
+    'pt-BR': { name: 'Quatro fontes', description: 'Salve cartões de uma lição, palavras, verbos e frase do dia.' },
+    vi: { name: 'Bốn nguồn', description: 'Lưu thẻ từ bài học, từ vựng, động từ và cụm từ trong ngày.' },
     id: { name: 'Empat sumber', description: 'Simpan kartu dari pelajaran atau kuis, kata, verba, dan frasa harian.' },
-    tr: { name: 'Dört kaynak', description: 'Ders veya quiz, kelimeler, fiiller ve günün ifadesinden kart kaydet.' },
-    pl: { name: 'Cztery źródła', description: 'Zapisz karty z lekcji lub quizu, słów, czasowników i frazy dnia.' },
+    tr: { name: 'Dört kaynak', description: 'Ders, kelimeler, fiiller ve günün ifadesinden kart kaydet.' },
+    pl: { name: 'Cztery źródła', description: 'Zapisz karty z lekcji, słów, czasowników i frazy dnia.' },
   },
 };
 
@@ -1129,7 +992,7 @@ export function achievementDescForLang(a: Achievement, lang: Lang): string {
 
 // Список достижений пополняется без миграции: новые id подхватываются loadAchievementStates().
 
-const ACHIEVEMENTS_WITH_RETIRED_FEATURES: Achievement[] = [
+export const ALL_ACHIEVEMENTS: Achievement[] = [
   // Серии (streak) — streak_count: дни подряд с начислением XP (см. updateStreakOnActivity)
   {
     id: 'streak_3', icon:'🔥', category:'streak', xp:30,
@@ -1773,13 +1636,6 @@ const ACHIEVEMENTS_WITH_RETIRED_FEATURES: Achievement[] = [
   { id: 'gem_all_mythic', icon:'👑', category:'medal', xp:4000, nameRu:'Все мифики', nameUk:'Усі міфіки', descRu:'Собери мифическую медаль по A1, A2, B1 и B2.', descUk:'Збери міфічну медаль за A1, A2, B1 і B2.', secret:true },
 ];
 
-export const isRetiredQuizArenaAchievement = (achievement: Pick<Achievement, 'id'>): boolean =>
-  achievement.id.startsWith('quiz_') || achievement.id.startsWith('arena_');
-
-export const ALL_ACHIEVEMENTS: Achievement[] = ACHIEVEMENTS_WITH_RETIRED_FEATURES.filter(
-  (achievement) => !isRetiredQuizArenaAchievement(achievement),
-);
-
 // AsyncStorage
 
 const STORAGE_KEY = 'achievements_v1';
@@ -1791,11 +1647,10 @@ const ACHIEVEMENT_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
 const isTargetAchievement = (id: string): boolean => {
   const achievement = ALL_ACHIEVEMENTS.find(a => a.id === id);
   if (!achievement) return false;
-  if (achievement.category === 'lessons' || achievement.category === 'quiz' || achievement.category === 'medal') return true;
+  if (achievement.category === 'lessons' || achievement.category === 'medal') return true;
   return (
     id.startsWith('lesson_') ||
     id.startsWith('gem_') ||
-    id.startsWith('quiz_') ||
     id.startsWith('combo_') ||
     id.startsWith('exam_') ||
     id.startsWith('flashcards_') ||
@@ -2169,18 +2024,11 @@ const addStoredSetValue = async (
 
 const ACHIEVEMENT_BACKFILL_KEY = 'achievements_progress_backfill_v3';
 
-// зачем: ставки на свою серию живы (xp_manager.ts), а Арена удалена — счётчик
-// побед по ставкам копится на живом событии 'wager_win' под этим ключом
-// (см. case 'wager_win'); старый achievement_arena_wager_win_count остаётся
-// только для обратной совместимости при восстановлении.
+// Победы по ставкам на свою серию копятся на живом событии wager_win.
 const WAGER_WIN_COUNT_KEY = 'achievement_wager_win_count';
 
 const readStoredCounter = async (key: string): Promise<number> =>
   parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
-
-// зачем: readQuizAchievementCounterAcrossTargets и bumpQuizAchievementCounter
-// удалены вместе с достижениями викторин — счётчики achievement_quiz_* больше
-// никто не читает и не увеличивает.
 
 const setStoredCounterAtLeast = async (
   key: string,
@@ -2494,9 +2342,7 @@ const backfillAchievementsFromLocalState = async (
   if (!isCurrentAccountGeneration(accountToken)) return;
   if (perfectPasses.filter(count => count >= 2).length >= 32) unlock('lesson_all_perfect_2x');
 
-  // зачем: достижения арены и викторин удалены вместе с самими фичами, поэтому
-  // счётчики achievement_quiz_* / achievement_arena_win_count больше никем не
-  // читаются — убраны 4 лишних обращения к AsyncStorage на каждый пересчёт.
+  // Читаем только счётчики активных достижений.
   const comboBest = await readStoredCounter(comboAchievementCounterKey(studyTarget));
   if (!isCurrentAccountGeneration(accountToken)) return;
   if (comboBest >= 150) unlock('combo_150');
@@ -2583,7 +2429,6 @@ export type AchievementEvent =
   | { type: 'xp';             totalXP:   number }
   | { type: 'lesson_complete'; lessonCount: number; wasPerfect?: boolean; perfectCount?: number; lessonId?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'lesson_perfect_pass'; lessonId: number; passCount: number; studyTarget?: RuntimeStudyTarget }
-  | { type: 'quiz';           level: string; perfect?: boolean; studyTarget?: RuntimeStudyTarget }
   | { type: 'combo';          count: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'daily_task';     allDone?: boolean; noReroll?: boolean; studyTarget?: RuntimeStudyTarget }
   | { type: 'login';          consecutiveDays: number }
@@ -2602,7 +2447,6 @@ export type AchievementEvent =
   | { type: 'flashcard_viewed'; count?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'daily_phrase'; action: 'read' | 'save'; studyTarget?: RuntimeStudyTarget }
   | { type: 'active_recall'; correct?: number; studyTarget?: RuntimeStudyTarget }
-  | { type: 'arena_win' }
   | { type: 'shards'; balance: number }
   | { type: 'shards_spent'; amount: number }
   | { type: 'energy_refill' }
@@ -2613,7 +2457,6 @@ export type AchievementEvent =
   | { type: 'friend_added';   totalFriends: number }
   | { type: 'gift_sent' }
   | { type: 'achievement_liked'; likeTotal?: number }
-  | { type: 'arena_wager_win'; count?: number }
   | { type: 'trainer_correct'; correct: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'trainer_session_result'; correct: number; wrong: number; total: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'avatar_custom_set' }
@@ -2621,7 +2464,6 @@ export type AchievementEvent =
   | { type: 'pack_purchased';  totalPacks: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'achievement_shared'; studyTarget?: RuntimeStudyTarget }
   | { type: 'level_reached';  level: number }
-  | { type: 'quiz_session_count'; count: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'streak_freeze_used' }
   | { type: 'wager_win_streak'; count: number };
 
@@ -2800,14 +2642,6 @@ export const checkAchievements = async (
         }
         break;
       }
-      case 'quiz': {
-        // зачем: викторины удалены из приложения (см. RETIRED_QUIZ_ARENA_TASK_TYPES
-        // в daily_tasks.ts), вместе с ними удалены и их достижения. Обработчик
-        // остаётся заглушкой ради совместимости типа события, но больше не пишет
-        // счётчики в AsyncStorage — их всё равно никто не читал, а каждая запись
-        // раздувала achievements_state, который целиком уезжает в Firestore.
-        break;
-      }
       case 'combo': {
         await setStoredCounterAtLeast(comboAchievementCounterKey(event.studyTarget), event.count, operationToken);
         if (event.count >= 3)  u('combo_3');
@@ -2851,9 +2685,6 @@ export const checkAchievements = async (
       }
       case 'comeback':      u('comeback');      break;
       case 'wager_win': {
-        // зачем: ставки живы (пари на свою серию, xp_manager.ts), а вот Арена удалена.
-        // Раньше счётчик 3/10 висел на мёртвом событии arena_wager_win и достижения
-        // были недостижимы — теперь копим на живом событии, ключ один.
         u('wager_win');
         const wagerTotal = await bumpStoredCounter(WAGER_WIN_COUNT_KEY, 1, operationToken);
         if (wagerTotal >= 3)  u('wager_win_3');
@@ -2945,12 +2776,6 @@ export const checkAchievements = async (
         if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1) u('recall_first');
         if (next >= 50) u('recall_50');
-        break;
-      }
-      case 'arena_win': {
-        // зачем: Арена удалена — достижения арены выпилены, счётчик
-        // achievement_arena_win_count никто не читал. Заглушка ради совместимости
-        // типа события; каждая запись зря раздувала achievements_state в Firestore.
         break;
       }
       case 'shards': {
@@ -3048,12 +2873,6 @@ export const checkAchievements = async (
         if ((event.likeTotal ?? 0) >= 100) u('social_likes_100');
         break;
       }
-      case 'arena_wager_win': {
-        // зачем: Арена удалена — событие больше никто не шлёт. Заглушка ради
-        // совместимости типа; счёт ставок теперь ведёт case 'wager_win' выше,
-        // и лишняя запись в AsyncStorage не раздувает achievements_state.
-        break;
-      }
       case 'trainer_correct': {
         const trainerKey = trainerAchievementCorrectCountKey(event.studyTarget);
         const add = Math.max(1, Math.floor(event.correct));
@@ -3108,11 +2927,6 @@ export const checkAchievements = async (
       }
       case 'level_reached': {
         if (event.level >= 50) u('level_50');
-        break;
-      }
-      case 'quiz_session_count': {
-        // зачем: заглушка — достижения викторин удалены вместе с самой фичей,
-        // читать счётчик больше незачем (см. case 'quiz' выше).
         break;
       }
       case 'streak_freeze_used': {
@@ -3343,105 +3157,6 @@ export const getPendingNotifications = async (
       .filter(Boolean) as Achievement[];
   } catch { return []; }
   }, []);
-};
-
-export const unlockAllAchievements = async (
-  accountToken?: AccountGenerationToken,
-): Promise<void> => {
-  const operationToken = accountToken ?? captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
-  await enqueueAchievementOperation(operationToken, async () => {
-  try {
-    const states = await loadAchievementStatesInternal(operationToken, true);
-    if (!isCurrentAccountGeneration(operationToken)) return;
-    const now = new Date().toISOString();
-    const existingIds = new Set(states.map(s => s.id));
-
-    states.forEach(state => {
-      if (state.unlockedAt === null) {
-        state.unlockedAt = now;
-        state.notified = true;
-        state.shardClaimed = true;
-      }
-    });
-
-    ALL_ACHIEVEMENTS.forEach(achievement => {
-      if (!existingIds.has(achievement.id)) {
-        states.push({ id: achievement.id, unlockedAt: now, notified: true, shardClaimed: true });
-      }
-    });
-
-    await saveStates(states, undefined, operationToken);
-    if (!isCurrentAccountGeneration(operationToken)) return;
-  } catch (e) {
-    if (__DEV__) console.warn('[achievements]', e);
-  }
-  }, undefined);
-};
-
-export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unlocked: number; missing: string[] }> => {
-  const isDevRuntime = typeof __DEV__ !== 'undefined' && __DEV__;
-  const isTestRuntime = typeof process !== 'undefined' && process.env.NODE_ENV === 'test';
-  if ((!isDevRuntime && !DEV_MODE && !isTestRuntime) || IS_STORE_RELEASE) {
-    throw new Error('devSeedAchievementsSmoke is not available in production builds');
-  }
-  const operationToken = captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) {
-    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
-  }
-
-  await unlockAllAchievements(operationToken);
-  if (!isCurrentAccountGeneration(operationToken)) {
-    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
-  }
-
-  const now = new Date().toISOString();
-  const fullLessonProgress = JSON.stringify(Array.from({ length: 50 }, () => 'correct'));
-  const lessonPairs: Array<[string, string]> = Array.from({ length: 32 }, (_, i) => [
-    `lesson${i + 1}_progress`,
-    fullLessonProgress,
-  ]);
-
-  const seeded = await commitAchievementStoragePairs([
-    ['streak_count', '500'],
-    ['user_total_xp', '100000'],
-    ['login_bonus_v1', JSON.stringify({ consecutiveDays: 365, lastClaimDate: now })],
-    ['achievement_active_recall_correct_count', '50'],
-    ['shards_balance', '100'],
-    // Новые счётчики для новых достижений
-    ['achievement_all_daily_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
-    ['achievement_gift_sent_count', '10'],
-    ['achievement_league_boost_count', '5'],
-    ['achievement_energy_refill_count', '5'],
-    ['achievement_shards_spent_total', '100'],
-    ['achievement_flashcards_saved_count', '50'],
-    ['achievement_flashcards_flip_count', '100'],
-    ['achievement_flashcards_view_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
-    ['achievement_flashcards_source_set_v1', JSON.stringify(['lesson', 'word', 'verb', 'daily_phrase'])],
-    ['achievement_trainer_correct_count', '500'],
-    ['achievement_trainer_correct_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
-    // зачем: 10 — порог верхнего достижения wager_win_10, чтобы QA-сид открывал
-    // оба живых достижения по ставкам (wager_win_3 и wager_win_10).
-    ['achievement_wager_win_count', '10'],
-    ['pack_purchased_count', '5'],
-    ...lessonPairs,
-  ], operationToken);
-  if (!seeded || !isCurrentAccountGeneration(operationToken)) {
-    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
-  }
-
-  const states = await loadAchievementStates(operationToken);
-  if (!isCurrentAccountGeneration(operationToken)) {
-    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
-  }
-  const unlockedIds = new Set(states.filter(s => s.unlockedAt !== null).map(s => s.id));
-  const missing = ALL_ACHIEVEMENTS.map(a => a.id).filter(id => !unlockedIds.has(id));
-
-  return {
-    total: ALL_ACHIEVEMENTS.length,
-    unlocked: ALL_ACHIEVEMENTS.length - missing.length,
-    missing,
-  };
 };
 
 export default {};

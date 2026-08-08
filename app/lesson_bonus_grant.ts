@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
+import { grantLocalLessonCompletionSpin } from './local_level_spins';
 import { addShards } from './shards_system';
 import { lessonBonusGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { logAppWarning } from './app_health';
@@ -51,7 +52,15 @@ export type LessonBonusGrantParams = {
 
 export type LessonBonusGrantOutcome =
   | { status: 'already_granted' }
-  | { status: 'granted'; hasBonusWon: boolean; bonusXP: number; shardsGranted: boolean }
+  | {
+      status: 'granted';
+      hasBonusWon: boolean;
+      bonusXP: number;
+      baseXp: number;
+      finalDelta: number;
+      multiplier: number;
+      shardsGranted: boolean;
+    }
   | { status: 'failed' };
 
 type PendingEntry = {
@@ -193,9 +202,12 @@ async function doGrantLessonFirstCompleteBonus(
       accountToken,
     });
     if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
-    if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
+    const finalDelta = Math.max(0, Math.round(xpResult.finalDelta || 0));
+    if (finalDelta <= 0) {
       throw new Error('lesson_bonus_xp_not_confirmed');
     }
+    await grantLocalLessonCompletionSpin(lessonId, studyTarget, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
 
     // Осколки за первое прохождение: на живом пути earn-событие подавляется
     // (экран агрегирует batch-тост сам), на retry — стандартное событие.
@@ -212,7 +224,15 @@ async function doGrantLessonFirstCompleteBonus(
     });
     if (!guardCommitted) return { status: 'failed' };
     await clearPending(lessonId, studyTarget, accountToken).catch(() => {});
-    return { status: 'granted', hasBonusWon: reward.hasBonusWon, bonusXP: reward.bonusXP, shardsGranted: nFirst > 0 };
+    return {
+      status: 'granted',
+      hasBonusWon: reward.hasBonusWon,
+      bonusXP: reward.bonusXP,
+      baseXp: reward.totalXP,
+      finalDelta,
+      multiplier: xpResult.multiplier,
+      shardsGranted: nFirst > 0,
+    };
   } catch (e) {
     logAppWarning('lesson_bonus:grant_failed', e, {
       tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy'), silent: !!silent },

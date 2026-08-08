@@ -125,9 +125,6 @@ const AGENTS = [
 
   { id: 6, slug: 'lesson-intro-screens-tsx', title: '`defaultTitleES` и ES в `app/lesson_intro_screens.tsx`', role: 'Методист урока и редактор испанского.', mission: 'Вычитать **`KIND_MAP.*.defaultTitleES`** и любые **`es`** в этом файле; заголовки блоков интро должны звучать естественно для ученика.', scope: '- Файл: `app/lesson_intro_screens.tsx` — только строковые литералы испанского.', inputs: 'Фрагмент `KIND_MAP` и связанные `triLang`.', output: 'Обновлённые значения `defaultTitleES` и прочие ES; при необходимости целиком текстовая часть `KIND_MAP`.', forbidden: 'Не менять `defaultTitleRU`/`UK` без отдельного заказа.', verify: 'Педагогика заголовков; язык; единый подход к блоку trap/tip.', finalLine: 'Проверено три раза: педагогика, язык, единообразие блоков.' },
 
-  { id: 7, slug: 'quizzes-tsx', title: 'Испанские строки в `app/(tabs)/quizzes.tsx`', role: 'Редактор геймифицированного образовательного UI.', mission: 'Вычитать `labelES`, `tagES`, все `triLang→es`, сообщения об ошибках.', scope: '- Файл: `app/(tabs)/quizzes.tsx`.', inputs: 'Файл целиком.', output: 'Таблица + замены ES.', forbidden: 'Не менять `ru`/`uk`.', verify: 'Геймификация; язык; термины.', finalLine: 'Проверено три раза: смысл, язык, терминология.' },
-
-  { id: 8, slug: 'quiz-result-view-tsx', title: 'Испанские строки в `app/quizzes/result_view.tsx`', role: 'Редактор испанского UI.', mission: 'Вычитать все испанские строки экрана результата квиза.', scope: '- Файл: `app/quizzes/result_view.tsx`.', inputs: 'Файл целиком.', output: 'Таблица + замены ES.', forbidden: 'Не менять логику языка кроме текстов ES.', verify: 'Смысл; язык; термины.', finalLine: 'Проверено три раза: смысл, язык, терминология.' },
 
   { id: 9, slug: 'settings-tsx', title: 'Испанские строки в `app/(tabs)/settings.tsx`', role: 'Редактор испанского UI.', mission: 'Вычитать испанские строки настроек.', scope: '- Файл: `app/(tabs)/settings.tsx`.', inputs: 'Файл целиком.', output: 'Таблица + замены ES.', forbidden: 'Не менять логику сохранения.', verify: 'Смысл; язык; термины.', finalLine: 'Проверено три раза: смысл, язык, терминология.' },
 
@@ -175,21 +172,16 @@ const AGENTS = [
 
   { id: 32, slug: 'level-exam-tsx', title: '`app/level_exam.tsx`', role: 'Редактор UI.', mission: 'Испанские строки экзамена/уровня.', scope: '- Файл: `app/level_exam.tsx`.', inputs: 'Файл.', output: 'Таблица RU | UK | ES + патчи.', forbidden: 'Не менять критерии оценки без задачи.', verify: 'Полнота; язык.', finalLine: 'Проверено три раза: полнота, испанский, термины.' },
 
-  { id: 33, slug: 'arena-rating-tsx', title: '`app/arena_rating.tsx`', role: 'Редактор UI.', mission: 'Испанские строки арены.', scope: '- Файл: `app/arena_rating.tsx`.', inputs: 'Файл.', output: 'Таблица + ES.', forbidden: 'Не менять рейтинговую логику.', verify: 'Полнота; язык.', finalLine: 'Проверено три раза: полнота, испанский, термины.' },
 
-  { id: 34, slug: 'MatchFoundToast-tsx', title: '`components/MatchFoundToast.tsx`', role: 'Редактор UI.', mission: 'Испанский текст тоста матча.', scope: '- Файл: `components/MatchFoundToast.tsx`.', inputs: 'Файл.', output: 'Строки ES + схема ветвления.', forbidden: 'Не менять тайминги.', verify: 'Язык; краткость.', finalLine: 'Проверено три раза: язык, контекст, термины.' },
 
   { id: 35, slug: 'ActionToast-tsx', title: '`components/ActionToast.tsx`', role: 'Редактор UI.', mission: 'Испанские варианты сообщений.', scope: '- Файл: `components/ActionToast.tsx`.', inputs: 'Файл.', output: 'Таблица + патчи.', forbidden: '—', verify: 'Полнота веток; язык.', finalLine: 'Проверено три раза: полнота, испанский.' },
 
   { id: 36, slug: 'NoEnergyModal-tsx', title: '`components/NoEnergyModal.tsx`', role: 'Редактор UI.', mission: 'Испанские тексты модалки энергии.', scope: '- Файл: `components/NoEnergyModal.tsx`.', inputs: 'Файл.', output: 'Таблица RU | UK | ES.', forbidden: 'Не менять экономику энергии.', verify: 'Термин «энергия» как в `T.es`; язык.', finalLine: 'Проверено три раза: терминология, испанский, полнота.' },
 
-  { id: 37, slug: 'ShardRewardModal-tsx', title: '`components/ShardRewardModal.tsx` — объект `TEXTS.es`', role: 'Редактор UI.', mission: 'Добавить полный объект **`es`** в `TEXTS` (зеркально `ru`/`uk`), включая функции `subtitle`, `multiple`.', scope: '- Файл: `components/ShardRewardModal.tsx`.', inputs: 'Файл.', output: 'Готовый объект `es` TypeScript.', forbidden: 'Не менять логику модалки.', verify: 'Полнота ключей; язык; термин осколков как в приложении.', finalLine: 'Проверено три раза: полнота ключей, испанский, терминология.' },
-
   { id: 38, slug: 'settings-invite-friend-tsx', title: '`app/settings_invite_friend.tsx`', role: 'Редактор UI.', mission: 'Испанский текст приглашений.', scope: '- Файл: `app/settings_invite_friend.tsx`.', inputs: 'Файл.', output: 'Таблица + ES.', forbidden: '—', verify: 'Язык; уместность share-текста.', finalLine: 'Проверено три раза: язык, UX, термины.' },
 
   { id: 40, slug: 'lesson-share-ts', title: '`app/lesson_share.ts`', role: 'Редактор UI.', mission: 'Испанские строки шаринга урока.', scope: '- Файл: `app/lesson_share.ts`.', inputs: 'Файл.', output: 'Патчи ES.', forbidden: '—', verify: 'Язык; полнота.', finalLine: 'Проверено три раза: язык, полнота.' },
 
-  { id: 41, slug: 'quizzes-results-ts', title: '`app/quizzes/results.ts` — `labelES`', role: 'Редактор мотивационных фраз.', mission: 'Вычитать все **`labelES`** и испанские шаблоны рангов.', scope: '- Файл: `app/quizzes/results.ts`.', inputs: 'Файл.', output: 'Исправленный фрагмент только с изменёнными `labelES`.', forbidden: 'Не менять логику выбора случайной строки.', verify: 'Грамматика; тон; единый стиль.', finalLine: 'Проверено три раза: язык, тон, консистентность.' },
 
   { id: 42, slug: 'bot-names-ts', title: '`app/constants/bot_names.ts`', role: 'Редактор продуктовых имён.', mission: 'Если имена ботов показываются пользователю на языке интерфейса — добавить испанские варианты или схему; если нейтральные ники — обосновать «без изменений».', scope: '- Файл: `app/constants/bot_names.ts`.', inputs: 'Файл + скрин/описание где показываются имена.', output: 'Решение + при необходимости код.', forbidden: 'Не менять игровую логику матчей.', verify: 'Соответствие UX; культурная уместность.', finalLine: 'Проверено три раза: UX, уместность, полнота.' },
 

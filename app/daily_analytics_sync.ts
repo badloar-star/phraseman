@@ -120,9 +120,8 @@ export type { AllPercentiles as PercentileResult };
  * Загружает личные данные и считает ВСЕ перцентили через глобальные пороги.
  * Работает для любого пользователя независимо от его места в рейтинге.
  *
- * myArenaXp передаётся опционально — если 0, arena percentile = null.
  */
-export async function loadPercentileData(myArenaXp = 0): Promise<{
+export async function loadPercentileData(): Promise<{
   myXp7: number;
   myTime7ms: number;
   percentiles: AllPercentiles;
@@ -144,7 +143,6 @@ export async function loadPercentileData(myArenaXp = 0): Promise<{
     myWeekXp,
     myDaily7xp: myXp7,
     myDaily7timeMs: myTime7ms,
-    myArenaXp,
   });
 
   return { myXp7, myTime7ms, percentiles };

@@ -203,7 +203,7 @@ export const LESSON15_THEORY: {
           kind: 'fix',
           fixes: [
             { wrong: "It's mine bag", right: "It's my bag" },
-            { wrong: 'This is mine', right: 'This is mine' },
+            { wrong: 'This is my', right: 'This is mine' },
             { wrong: 'The keys are their', right: 'The keys are theirs' },
             { wrong: "it's food", right: 'its food' },
             { wrong: "That's her", right: "That's hers" },

@@ -17,12 +17,12 @@ const MAX_COUNT = 4;
 const RUN_LEASE_MS = 5 * 60 * 1000;
 
 type Row = Record<string, unknown>;
-type AssetKind = 'onboarding_icon' | 'quiz_level_card' | 'background' | 'generic';
+type AssetKind = 'onboarding_icon' | 'background' | 'generic';
 type AssetStatus = 'draft' | 'running' | 'generated' | 'failed';
 type AssetSize = '1024x1024';
 type AssetQuality = 'low' | 'medium' | 'high';
 
-const ASSET_KINDS = new Set<AssetKind>(['onboarding_icon', 'quiz_level_card', 'background', 'generic']);
+const ASSET_KINDS = new Set<AssetKind>(['onboarding_icon', 'background', 'generic']);
 const ASSET_SIZES = new Set<AssetSize>(['1024x1024']);
 const ASSET_QUALITIES = new Set<AssetQuality>(['low', 'medium', 'high']);
 const SAFE_TARGET_RE = /^(assets\/images\/|admin-asset-studio\/)[A-Za-z0-9._/() -]{1,220}\.(png|webp|jpg|jpeg)$/i;

@@ -40,8 +40,6 @@ describe('EVENT_ID_RE', () => {
     const valid = [
       'lesson:5:2026-06-11',
       'plan:task7',
-      'quiz:q1',
-      'arena:room9',
       'exam:level3',
       'tournament:room_abc123',
       'vocab:en:12',
@@ -256,7 +254,7 @@ describe('rollCollectibleDrop', () => {
   test('единый шанс 15%: урок/квиз/экзамен/арена/план дают одинаковый исход на одних сидах', () => {
     // После первой карточки за всё время (total > 0) шанс одинаков для всех видов.
     const state = freshState({ drops: 1, attempts: 1, total: 3 });
-    const kinds = ['lesson', 'quiz', 'exam', 'arena', 'plan'];
+    const kinds = ['lesson', 'exam', 'plan', 'tournament', 'vocab'];
     const n = 200;
     for (let i = 0; i < n; i += 1) {
       const seedBase = `flat${i}`;

@@ -1,5 +1,5 @@
 import { BigQuery } from '@google-cloud/bigquery';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { HttpsError, onCall, type CallableRequest } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasClaimedPermission } from './admin/permissions';
 import { parseProductAnalyticsPayloadValue } from './admin_analytics_trends_core';
@@ -372,7 +372,7 @@ conversion_events AS (
     *,
     CASE
       WHEN paywall_context IN (
-        'personal_plan', 'generic', 'settings', 'manage', 'level_up', 'quiz_limit',
+        'personal_plan', 'generic', 'settings', 'manage', 'level_up',
         'streak', 'lesson', 'intro_ended', 'onboarding_plan', 'onboarding',
         'automatic', 'afterwin', 'direct', 'winback', 'referral', 'home'
       ) THEN paywall_context
@@ -1282,12 +1282,9 @@ export function isAnalyticsExportPendingError(error: unknown): boolean {
     || message.includes('not found: table');
 }
 
-export const adminProductAnalytics = onCall({
-  region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
-  timeoutSeconds: 60,
-  memory: '512MiB',
-}, async (request) => {
+export async function handleAdminProductAnalytics(
+  request: CallableRequest<Record<string, unknown>>,
+): Promise<unknown> {
   if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
@@ -1479,4 +1476,11 @@ export const adminProductAnalytics = onCall({
   };
   cache.set(cacheKey, { expiresAtMs: Date.now() + CACHE_TTL_MS, value });
   return value;
-});
+}
+
+export const adminProductAnalytics = onCall({
+  region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK,
+  timeoutSeconds: 60,
+  memory: '512MiB',
+}, handleAdminProductAnalytics);

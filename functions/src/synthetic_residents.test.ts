@@ -62,15 +62,16 @@ describe('synthetic residents — правила владельца', () => {
     expect(new Set(levels).size).toBeGreaterThanOrEqual(10);
   });
 
-  it('опыт только растёт и меняется ступеньками по 6 часов', () => {
+  it('опыт только растёт и меняется ступеньками по часу', () => {
     const index = 7;
+    const signup = residentSignupMs(index, RESIDENT_EPOCH_MS);
     let previous = 0;
     for (let tick = 0; tick < 40; tick++) {
-      const atTickStart = residentTotalXpAt(index, RESIDENT_EPOCH_MS + tick * RESIDENT_TICK_MS);
+      const atTickStart = residentTotalXpAt(index, signup + tick * RESIDENT_TICK_MS);
       // Внутри тика значение не меняется — документ честно статичен между кронами.
       const midTick = residentTotalXpAt(
         index,
-        RESIDENT_EPOCH_MS + tick * RESIDENT_TICK_MS + RESIDENT_TICK_MS / 2,
+        signup + tick * RESIDENT_TICK_MS + RESIDENT_TICK_MS / 2,
       );
       expect(midTick).toBe(atTickStart);
       expect(atTickStart).toBeGreaterThanOrEqual(previous);
@@ -78,14 +79,14 @@ describe('synthetic residents — правила владельца', () => {
     }
   });
 
-  it('прибавка за тик либо ноль, либо в границах 10..800 с учётом темпа', () => {
+  it('прибавка за час либо ноль, либо в границах 2..134 с учётом темпа', () => {
     for (let index = 0; index < 20; index++) {
       const pace = residentPace(index);
       for (let tick = 0; tick < 60; tick++) {
         const gain = residentTickGain(index, tick);
         if (gain === 0) continue;
         expect(gain).toBeGreaterThanOrEqual(1);
-        expect(gain).toBeLessThanOrEqual(Math.round(800 * pace));
+        expect(gain).toBeLessThanOrEqual(Math.round(134 * pace));
       }
     }
   });

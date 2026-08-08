@@ -47,6 +47,30 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
     expect(snapshot.decisions[0].status).toBe('insufficient_evidence');
   });
 
+  test.each([
+    ['revenuecat_premium_events', 'paywall_funnel'],
+    ['paywall_funnel', 'revenuecat_premium_events'],
+  ] as const)(
+    'scheduled snapshot preserves %s error plus %s empty as insufficient_evidence',
+    async (failedSource, emptySource) => {
+      const fetchers = {
+        revenuecat_premium_events: jest.fn(async () => fetchResult({
+          sourceId: 'revenuecat_premium_events',
+          state: failedSource === 'revenuecat_premium_events' ? 'error' : 'empty',
+        })),
+        paywall_funnel: jest.fn(async () => fetchResult({
+          sourceId: 'paywall_funnel',
+          state: failedSource === 'paywall_funnel' ? 'error' : 'empty',
+        })),
+      };
+
+      const snapshot = await buildMoneySnapshot({ fetchers, trigger: 'scheduled', nowMs: 20_000 });
+      expect(snapshot.decisions).toHaveLength(1);
+      expect(snapshot.decisions[0]).toMatchObject({ department: 'money', status: 'insufficient_evidence' });
+      expect(snapshot.decisions[0].evidence.find((item) => item.sourceId === emptySource)?.state).toBe('empty');
+    },
+  );
+
   test('owner_request is forwarded with the given question', async () => {
     const fetchers = {
       revenuecat_premium_events: jest.fn(async () => fetchResult()),

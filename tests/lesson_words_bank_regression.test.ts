@@ -1,4 +1,5 @@
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
+jest.mock('@expo/vector-icons/Ionicons', () => () => null);
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ id: '11' }),
   useRouter: () => ({ back: jest.fn(), replace: jest.fn() }),
@@ -8,6 +9,7 @@ jest.mock('../components/AddToFlashcard', () => () => null);
 jest.mock('../components/ContentWrap', () => ({ children }: any) => children);
 jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
 jest.mock('../components/feedback/VictoryBurst', () => () => null);
+jest.mock('../components/CollectibleDropModal', () => () => null);
 jest.mock('../components/LangContext', () => ({
   useLang: () => ({ lang: 'ru', s: { words: {} } }),
 }));

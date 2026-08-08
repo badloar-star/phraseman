@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import fs from 'fs';
 import path from 'path';
 import {
-  devSeedTrainerScenario,
   getDueItems,
   getTrainerCounts,
   getTrainerDashboard,
@@ -43,7 +42,7 @@ describe('Gustav French trainer target gate', () => {
     expect(trainerSessionContentAvailableForTarget('fr')).toBe(true);
     await expect(getDueItems('phrases', 15, 'fr')).resolves.toEqual([]);
     await expect(getTrainerPremiumItems('smart_mix', 12, 'fr')).resolves.toHaveLength(1);
-    await expect(getTrainerCounts('fr')).resolves.toEqual({ words: 0, phrases: 0, arena: 0 });
+    await expect(getTrainerCounts('fr')).resolves.toEqual({ words: 0, phrases: 0 });
 
     const dashboard = await getTrainerDashboard('fr', 'ru');
     expect(dashboard.totalTracked).toBe(1);
@@ -51,12 +50,10 @@ describe('Gustav French trainer target gate', () => {
     expect(dashboard.nextQueue).toBeNull();
   });
 
-  it('keeps English trainer sessions available and blocks English dev seeds for French', async () => {
+  it('keeps English trainer sessions available', async () => {
     await recordPhraseMistake('I am here', 'Я здесь', 'Я тут', 1);
 
     await expect(getTrainerPremiumItems('smart_mix', 12)).resolves.toHaveLength(1);
-    await expect(devSeedTrainerScenario('weak', 'fr')).resolves.toBe(false);
-    expect(mockStorage[trainerStoreKey('fr')]).toBeUndefined();
   });
 
   it('wires trainer screens through the French source gate instead of empty English sessions', () => {

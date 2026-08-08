@@ -420,7 +420,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
 
           <ScrollView
             ref={scrollRef}
-            decelerationRate="fast"
+            decelerationRate="normal"
             style={styles.scroll}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="always"

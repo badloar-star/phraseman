@@ -7,6 +7,7 @@ import type {
   PlanTaskDestination,
 } from './personal_plan_catalog';
 import type { PersonalPlanDayPassport } from './personal_plan_quality';
+import { getPersonalPlanQuiz } from './personal_plan_quizzes';
 
 export type PlanContentUnitKind =
   | 'universal_phrase'
@@ -190,6 +191,7 @@ export const PLAN_EXERCISE_TYPES: PlanExerciseType[] = [
   'plan_listen_build',
   'plan_phrase_recall',
   'plan_pronunciation_repeat',
+  'plan_quiz',
   'personal_practice_seeded',
   'trainer_weak_spot',
   'flashcards_plan_review',
@@ -460,9 +462,6 @@ function contentUnitIdsForDestination(destination: PlanTaskDestination): string[
   if (destination.type === 'plan_exercise') {
     return destination.contentUnitIds;
   }
-  if (destination.type === 'quiz') {
-    return [`quiz:${destination.quizId}`];
-  }
   if (destination.type === 'practice') {
     return [`practice:${destination.trainingId}`];
   }
@@ -480,6 +479,7 @@ function contentUnitIdsForDestination(destination: PlanTaskDestination): string[
 
 function contentUnitIdsForTask(day: PlanDay, task: PlanDailyTask): string[] {
   const destination = task.destination;
+  if (destination.type === 'quiz') return getPersonalPlanQuiz(destination.quizId)?.questions.map((question) => question.sourcePhraseId).filter((id): id is string => Boolean(id)) ?? [];
   if (destination.type !== 'plan_phrase_recall') {
     return contentUnitIdsForDestination(destination);
   }
@@ -529,6 +529,7 @@ function progressPolicyForTask(task: PlanDailyTask): PlanExerciseProgressPolicy 
 }
 
 function recoveryPolicyForTask(task: PlanDailyTask): PlanExerciseRecoveryPolicy {
+  if (task.kind === 'plan_quiz') return 'return_wrong_to_recall_and_trainer';
   if (task.kind === 'trainer_weak_spot') return 'return_wrong_to_trainer';
   if (task.kind === 'plan_phrase_lesson') return 'return_wrong_to_recall_and_trainer';
   if (task.kind === 'plan_pronunciation_repeat') return 'none';
@@ -539,8 +540,7 @@ function recoveryPolicyForTask(task: PlanDailyTask): PlanExerciseRecoveryPolicy 
     task.kind === 'plan_missing_word' ||
     task.kind === 'plan_choose_natural_phrase' ||
     task.kind === 'plan_listen_choose' ||
-    task.kind === 'plan_listen_build' ||
-    task.kind === 'plan_quiz'
+    task.kind === 'plan_listen_build'
   ) {
     return 'return_wrong_to_recall';
   }

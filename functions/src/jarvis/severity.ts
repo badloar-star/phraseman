@@ -44,6 +44,7 @@ const SEVERITY_BY_DEPARTMENT: Partial<Record<Department, Severity>> = {
 };
 
 export function classifySeverity(decision: Decision): Severity {
+  if (decision.severityHint && SEVERITY_ORDER.includes(decision.severityHint)) return decision.severityHint;
   return SEVERITY_BY_DEPARTMENT[decision.department as Department] ?? 'P2';
 }
 

@@ -3,6 +3,7 @@ import {
   applyGift,
   getMilestoneLevelGift,
   isFlashcardPackLevelGiftId,
+  premiumSafeLevelGiftId,
   rollF2pLevelGiftForUser,
   rollPremiumLevelGiftForUser,
 } from '../app/level_gift_system';
@@ -13,6 +14,7 @@ import {
   isCustomAvatarGiftOnly,
   isCustomAvatarShardShop,
 } from '../constants/custom_avatars';
+import { AVATAR_AURAS } from '../constants/avatar_auras';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -155,6 +157,62 @@ describe('level gift milestone rewards', () => {
     expect(isFlashcardPackLevelGiftId(premium.id)).toBe(false);
   });
 
+  it('never falls back to an energy or retired Arena reward for a Plus user while offline', async () => {
+    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0);
+    try {
+      const gift = await rollF2pLevelGiftForUser(17, { premiumSafe: true });
+      expect([
+        'energy_full',
+        'energy_plus1',
+        'energy_plus2',
+        'energy_plus3',
+        'arena_extra_5',
+        'choice_3_level',
+      ]).not.toContain(gift.id);
+    } finally {
+      randomSpy.mockRestore();
+    }
+  });
+
+  it.each(['energy_full', 'energy_plus1', 'energy_plus2', 'energy_plus3', 'choice_3_level'])(
+    'canonicalizes blocked Plus reward %s for replay and offline display',
+    (giftId) => {
+      expect(premiumSafeLevelGiftId(giftId)).not.toBe(giftId);
+    },
+  );
+
+  it('sanitizes a replayed obsolete Plus reservation before it reaches the UI', async () => {
+    const functionsClient = jest.requireMock('../app/community_packs/functionsClient') as {
+      callLevelGiftReserve: jest.Mock;
+    };
+    const userIdPolicy = jest.requireMock('../app/user_id_policy') as {
+      getCanonicalUserId: jest.Mock;
+    };
+    userIdPolicy.getCanonicalUserId.mockResolvedValueOnce('account-a');
+    functionsClient.callLevelGiftReserve.mockResolvedValueOnce({
+      reservationId: 'account-a_17_f2p_en',
+      giftId: 'energy_full',
+      replayed: true,
+    });
+
+    const gift = await rollF2pLevelGiftForUser(17, { premiumSafe: true, studyTarget: 'en' });
+
+    expect(gift.id).not.toBe('energy_full');
+    expect(gift.id).not.toBe('arena_extra_5');
+  });
+
+  it('does not roll the retired Arena reward for any user during an offline fallback', async () => {
+    const randomSpy = jest.spyOn(Math, 'random')
+      .mockReturnValueOnce(0.1)
+      .mockReturnValueOnce(0.999);
+    try {
+      const gift = await rollF2pLevelGiftForUser(17);
+      expect(gift.id).not.toBe('arena_extra_5');
+    } finally {
+      randomSpy.mockRestore();
+    }
+  });
+
   it('does not roll English flashcard pack gifts from the French premium level chest', async () => {
     const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.01);
     try {
@@ -223,6 +281,29 @@ describe('level gift milestone rewards', () => {
       id: activeAura,
     });
     expect(result.cosmeticUnlocked?.labelRu).toBeTruthy();
+  });
+
+  it('converts an aura gift to XP when every gift aura is already owned', async () => {
+    const { registerXP } = jest.requireMock('../app/xp_manager') as { registerXP: jest.Mock };
+    mockStorage.avatar_aura_owned_v1 = JSON.stringify(Object.fromEntries(
+      AVATAR_AURAS
+        .filter(aura => !aura.premiumOnly && aura.unlockLevel === undefined)
+        .map(aura => [aura.id, true]),
+    ));
+
+    const result = await applyGift(getMilestoneLevelGift(35)!, 'TestUser', 3, 5, jest.fn(), {
+      occurrenceId: 'level:35:f2p',
+    });
+
+    expect(result).toEqual({ success: true });
+    expect(registerXP).toHaveBeenCalledWith(
+      350,
+      'achievement_reward',
+      'TestUser',
+      'ru',
+      undefined,
+      expect.objectContaining({ payload: expect.objectContaining({ giftId: 'cosmetic_avatar_aura' }) }),
+    );
   });
 
   it('unlocks a paid custom avatar gift when the catalog is populated', async () => {

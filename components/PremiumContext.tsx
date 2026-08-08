@@ -35,6 +35,11 @@ import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates
 import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
+import {
+  projectDevLocalPlusOverride,
+  readDevLocalPlusOverride,
+  type DevLocalPlusOverride,
+} from '../app/dev_plus_controls';
 import { readVipSnapshotForAccount, writeVipSnapshotForAccount } from '../app/premium_vip_storage';
 import {
   capturePremiumActivationEventGuard,
@@ -47,6 +52,7 @@ interface PremiumContextValue {
   /** True only for the verified lifetime (Phraseman Pro) store plan. */
   isPro: boolean;
   hasPremiumAccess: boolean;
+  devLocalPlusOverride: DevLocalPlusOverride;
   /** True after the first local/cloud entitlement check has completed. */
   accessResolved: boolean;
   isIntroFullAccess: boolean;
@@ -72,6 +78,7 @@ const PremiumContext = createContext<PremiumContextValue>({
   isVip: false,
   isPro: false,
   hasPremiumAccess: false,
+  devLocalPlusOverride: 'inherit',
   accessResolved: false,
   isIntroFullAccess: false,
   introFullAccessEndsAt: null,
@@ -169,6 +176,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [hasPremiumAccess, setHasPremiumAccess] = useState(
     () => FORCE_PREMIUM || snapshotPremiumActive() || snapshotVipActive(),
   );
+  const [devLocalPlusOverride, setDevLocalPlusOverrideState] = useState<DevLocalPlusOverride>('inherit');
   const [accessResolved, setAccessResolved] = useState(false);
   const [isIntroFullAccess, setIsIntroFullAccess] = useState(false);
   const [introFullAccessEndsAt, setIntroFullAccessEndsAt] = useState<number | null>(null);
@@ -200,6 +208,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     setIsVip(false);
     setIsPro(false);
     setHasPremiumAccess(false);
+    setDevLocalPlusOverrideState('inherit');
     setAccessResolved(false);
     setIsIntroFullAccess(false);
     setIntroFullAccessEndsAt(null);
@@ -220,16 +229,36 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       if (!identityReady || !isReloadCurrent()) return;
       premiumIdentityRequiredRef.current = false;
     }
+    const devAccountGeneration = captureAccountGeneration();
+    const devStableId = devAccountGeneration.phase === 'active'
+      ? devAccountGeneration.stableId
+      : null;
+    const devOverride = devStableId
+      ? await readDevLocalPlusOverride(devStableId).catch(() => 'inherit' as const)
+      : 'inherit';
+    if (
+      !isReloadCurrent()
+      || (devStableId && !isCurrentAccountGeneration(devAccountGeneration, devStableId))
+    ) return;
+    setDevLocalPlusOverrideState(devOverride);
     // FORCE_PREMIUM раздаёт Premium в dev, НО тестерский «Снять премиум»
     // (tester_no_premium) должен побеждать — иначе не проверить не-премиум UI.
     if (await forcePremiumActive()) {
       if (!isReloadCurrent()) return;
-      setIsPremium(true);
-      setIsVip(false);
-      setIsPro(false);
-      setHasPremiumAccess(true);
-      setIsIntroFullAccess(false);
-      setIntroFullAccessEndsAt(null);
+      const projectedEntitlement = projectDevLocalPlusOverride({
+        isPremium: true,
+        isVip: false,
+        isPro: false,
+        hasPremiumAccess: true,
+        isIntroFullAccess: false,
+        introFullAccessEndsAt: null,
+      }, devOverride);
+      setIsPremium(projectedEntitlement.isPremium);
+      setIsVip(projectedEntitlement.isVip);
+      setIsPro(projectedEntitlement.isPro);
+      setHasPremiumAccess(projectedEntitlement.hasPremiumAccess);
+      setIsIntroFullAccess(projectedEntitlement.isIntroFullAccess);
+      setIntroFullAccessEndsAt(projectedEntitlement.introFullAccessEndsAt);
       // Активный премиум — копия про триал нерелевантна
       setTrialEligible(false);
       resolvedReloadEpochRef.current = reloadEpoch;
@@ -277,13 +306,23 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     // isLifetimePlanLocal уже требует активный источник (стор ИЛИ активный VIP).
     const effectivePro = !noPremiumTester && (realPremium || effectiveVip) && lifetimePlan;
     const effectiveVerifiedAccess = !noPremiumTester && verifiedAccess;
-    setIsPremium(effectivePremium);
-    setIsVip(effectiveVip);
-    setIsPro(effectivePro);
-    setIsIntroFullAccess(introState.active);
-    setIntroFullAccessEndsAt(introState.endsAt);
-    setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || effectiveVerifiedAccess);
-    if (effectivePremium) {
+    const hasAuthoritativeAccess = effectivePremium || effectiveVip || introState.active || effectiveVerifiedAccess;
+    const hasDevGrant = devOverride === 'granted';
+    const projectedEntitlement = projectDevLocalPlusOverride({
+      isPremium: effectivePremium,
+      isVip: effectiveVip,
+      isPro: effectivePro,
+      hasPremiumAccess: hasAuthoritativeAccess,
+      isIntroFullAccess: introState.active,
+      introFullAccessEndsAt: introState.endsAt,
+    }, devOverride);
+    setIsPremium(projectedEntitlement.isPremium);
+    setIsVip(projectedEntitlement.isVip);
+    setIsPro(projectedEntitlement.isPro);
+    setIsIntroFullAccess(projectedEntitlement.isIntroFullAccess);
+    setIntroFullAccessEndsAt(projectedEntitlement.introFullAccessEndsAt);
+    setHasPremiumAccess(projectedEntitlement.hasPremiumAccess);
+    if (effectivePremium || hasDevGrant) {
       setTrialEligible(false);
     } else {
       void reloadTrialEligible(isReloadCurrent);
@@ -304,6 +343,41 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setAccessResolved(true);
     }
   }, [runReload]);
+
+  useEffect(() => {
+    const sub = onAppEvent('dev_local_plus_override_changed', ({ stableId, mode }) => {
+      const account = captureAccountGeneration();
+      if (
+        account.phase !== 'active'
+        || account.stableId !== stableId
+        || !isCurrentAccountGeneration(account, stableId)
+      ) return;
+
+      // A local DEV toggle must win over an in-flight authoritative reload. Bump
+      // the epoch first so the old result cannot restore paid access afterward.
+      premiumReloadEpochRef.current += 1;
+      resolvedReloadEpochRef.current = null;
+      reloadRunnerRef.current = null;
+      cloudRefreshRunnerRef.current = null;
+      invalidatePremiumCache();
+
+      const active = mode === 'granted';
+      setDevLocalPlusOverrideState(mode);
+      setIsPremium(active);
+      setIsVip(false);
+      setIsPro(false);
+      setHasPremiumAccess(active);
+      setIsIntroFullAccess(false);
+      setIntroFullAccessEndsAt(null);
+      setTrialEligible(false);
+      emitAppEvent('premium_access_changed', {
+        active,
+        source: active ? 'premium' : 'none',
+      });
+      void reload();
+    });
+    return () => sub.remove();
+  }, [reload]);
 
   const runReloadAfterCloudRefresh = useCallback(async () => {
     const refreshEpoch = premiumReloadEpochRef.current;
@@ -696,8 +770,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // во все usePremium()-потребители по всему приложению (home, inbox, friends…),
   // умножая работу на каждом тике premium/VIP.
   const contextValue = useMemo<PremiumContextValue>(
-    () => ({ isPremium, isVip, isPro, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
-    [isPremium, isVip, isPro, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
+    () => ({ isPremium, isVip, isPro, hasPremiumAccess, devLocalPlusOverride, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
+    [isPremium, isVip, isPro, hasPremiumAccess, devLocalPlusOverride, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
   );
 
   return (

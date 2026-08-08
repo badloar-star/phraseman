@@ -19,7 +19,9 @@ export function reducePurchaseConfirmation(
 export async function confirmPendingPurchase<T>(
   state: PurchaseConfirmationState,
   execute: (input: PurchaseCustomizationInput) => Promise<T>,
+  onAccepted?: () => void,
 ): Promise<T | undefined> {
   if (!state.pending) return undefined;
+  onAccepted?.();
   return execute(state.pending);
 }

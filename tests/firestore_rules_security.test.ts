@@ -944,14 +944,40 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toContain('match /auth_links/{providerUid} {');
   });
 
-  test('shard operation receipts are server-only without changing legitimate reward_claim writes', () => {
+  test('shard operation and global reward claim receipts are server-only', () => {
     const receiptBlock = rules.match(/match \/shard_operation_receipts\/\{opId\} \{[\s\S]*?\n      \}/);
     expect(receiptBlock).not.toBeNull();
     expect(receiptBlock![0]).toContain('allow read, write: if false;');
 
     const rewardClaimsBlock = rules.match(/match \/reward_claims\/\{claimId\} \{[\s\S]*?\n      \}/);
     expect(rewardClaimsBlock).not.toBeNull();
-    expect(rewardClaimsBlock![0]).toContain('allow read, create: if userDocOwnerMatchesAuth(userId);');
+    expect(rewardClaimsBlock![0]).toContain('allow read: if userDocOwnerMatchesAuth(userId);');
+    expect(rewardClaimsBlock![0]).toContain('allow create: if false;');
+  });
+
+  test('gift perks reject client forge while shard inbox only permits seen fields', () => {
+    expect(rules).toContain('function hasNoServerGiftPerkWrites()');
+    expect(rules).toContain('&& hasNoServerGiftPerkWrites()');
+    const perkGuard = rules.slice(
+      rules.indexOf('function hasNoServerGiftPerkWrites()'),
+      rules.indexOf('function newDocHasNoServerGiftPerkWrites()'),
+    );
+    const newPerkGuard = rules.slice(
+      rules.indexOf('function newDocHasNoServerGiftPerkWrites()'),
+      rules.indexOf('function hasNoProgressAuthorityMarkerWrites()'),
+    );
+    expect(perkGuard).not.toContain('isAdmin()');
+    expect(newPerkGuard).not.toContain('isAdmin()');
+    for (const key of ['chain_shield', 'gift_xp_multiplier', 'club_gift_free_boost_v1']) {
+      expect(perkGuard).toContain(`'${key}'`);
+      expect(newPerkGuard).toContain(`'${key}'`);
+    }
+    const inbox = rules.match(/match \/shard_rewards\/\{rewardId\} \{[\s\S]*?\n      \}/);
+    expect(inbox).not.toBeNull();
+    expect(inbox![0]).toContain("affectedKeys().hasOnly(['seen', 'seenAt'])");
+    expect(inbox![0]).toContain('allow create: if false;');
+    expect(inbox![0]).not.toContain('request.resource.data.qa');
+    expect(rules).toContain('match /gift_perk_consumptions/{receiptId} {');
   });
 
   test('shard earn daily counters are server-only', () => {

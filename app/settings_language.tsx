@@ -31,7 +31,7 @@ export default function SettingsLanguage() {
             onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
           />
 
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
             {getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE).map((item) => {
               const interfaceCode = coerceInterfaceLang(item.code);
               const enabled = interfaceCode === item.code;

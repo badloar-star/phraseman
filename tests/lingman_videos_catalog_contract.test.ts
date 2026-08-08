@@ -24,19 +24,35 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).not.toContain('onSnapshot(');
   });
 
-  it('replaces the old channel strip with all-channels picker and three stable tabs', () => {
+  it('selects the automatic channel by the language being studied, not the interface language', () => {
+    const source = screen();
+    expect(source).toContain('const { studyTarget } = useStudyTarget();');
+    expect(source).toContain('resolvePreferredYoutubeChannel(manifest, studyTarget, currentPreference)');
+    expect(source).toContain('resolvePreferredYoutubeChannel(manifest, studyTarget, nextPreference)');
+    expect(source).not.toContain('resolvePreferredYoutubeChannel(manifest, lang,');
+  });
+
+  it('replaces the old channel strip with all-channels picker and two stable tabs', () => {
     const source = `${screen()}\n${components()}`;
     expect(source).toContain('testID="youtube-all-channels"');
-    expect(source).toContain('testID="youtube-channel-auto"');
     expect(source).toContain('testID={`youtube-channel-${channel.id}`}');
     expect(source).toContain("testID={`youtube-tab-${tab}`}");
-    expect(source).toContain("(['home', 'playlists', 'all'] as const)");
+    expect(source).toContain("(['home', 'playlists'] as const)");
+  });
+
+  it('keeps playlist rows exclusively on the playlists tab', () => {
+    const source = screen();
+    expect(source).toContain("tab === 'playlists' ?");
+    expect(source).not.toContain("catalog?.playlists.length ? <><Text style={[styles.sectionTitle");
+    expect(source).not.toContain('featuredPlaylists: triLang');
   });
 
   it('exposes upcoming/live heroes, countdown, reminder and watch actions accessibly', () => {
     const source = components();
     expect(source).toContain('testID="youtube-premiere-upcoming"');
     expect(source).toContain('testID="youtube-premiere-live"');
+    expect(source).toContain('testID="youtube-premiere-thumbnail"');
+    expect(source).toContain('testID="youtube-premiere-details"');
     expect(source).toContain('testID="youtube-premiere-countdown"');
     expect(source).toContain('testID="youtube-premiere-remind"');
     expect(source).toContain('testID="youtube-premiere-watch"');
@@ -60,12 +76,13 @@ describe('multichannel YouTube catalog UI contract', () => {
     for (const id of ['youtube-catalog-loading', 'youtube-catalog-empty', 'youtube-catalog-stale', 'youtube-catalog-offline', 'youtube-catalog-error']) {
       expect(source).toContain(`testID="${id}"`);
     }
+    expect(source).toContain('testID="youtube-catalog-retry"');
+    expect(source).toContain('onPress={() => void loadCatalog(undefined, true)}');
   });
 
   it('keeps the redesigned shell visible while the catalog is still on RSS fallback', () => {
     const source = screen();
     expect(source).toContain('{(catalog || snapshot) && <YoutubeChannelTabs');
-    expect(source).toContain("tab === 'all' ?");
     expect(source).toContain("tab === 'playlists' ?");
     expect(source).not.toContain("tab === 'all' || !catalog ?");
   });

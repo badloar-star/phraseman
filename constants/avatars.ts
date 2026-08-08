@@ -303,18 +303,6 @@ export const FRAMES: FrameDef[] = [
     unlockAchievementNameUK: 'Легенда',
     unlockAchievementNameES: 'Leyenda',
   },
-  {
-    id: 'ach_quiz_god',
-    nameRU: 'Мастер вызовов',    nameUK: 'Майстер викликів', nameES: 'As del cuestionario',
-    color: '#A855F7',           color2: '#E879F9',
-    animation: 'neural',        unlockLevel: 0,
-    unlockType: 'achievement',
-    unlockAchievementId: 'quiz_triple_perfect',
-    unlockAchievementNameRU: 'Трижды идеал',
-    unlockAchievementNameUK: 'Тричі ідеал',
-    unlockAchievementNameES: 'Triple perfecto',
-  },
-
   // ── Клубные рамки ─────────────────────────────────────────────────────────
   {
     id: 'club_initiator',
@@ -449,7 +437,6 @@ const FRAME_NAMES_PT_BR: Record<string, string> = {
   ach_lesson_absolute: 'Perfeição',
   ach_combo100: 'Invencível',
   ach_xp100k: 'Lenda de XP',
-  ach_quiz_god: 'Ás dos quizzes',
   club_initiator: 'Iniciador',
   club_adept: 'Adepto',
   club_seeker: 'Buscador',
@@ -487,7 +474,6 @@ const FRAME_NAMES_VI: Record<string, string> = {
   ach_lesson_absolute: 'Hoàn hảo',
   ach_combo100: 'Bất bại',
   ach_xp100k: 'Huyền thoại XP',
-  ach_quiz_god: 'Cao thủ quiz',
   club_initiator: 'Người khởi xướng',
   club_adept: 'Thành thạo',
   club_seeker: 'Người tìm kiếm',
@@ -525,7 +511,6 @@ const FRAME_NAMES_ID: Record<string, string> = {
   ach_lesson_absolute: 'Kesempurnaan',
   ach_combo100: 'Tak terkalahkan',
   ach_xp100k: 'Legenda XP',
-  ach_quiz_god: 'Jago kuis',
   club_initiator: 'Inisiator',
   club_adept: 'Adept',
   club_seeker: 'Pencari',
@@ -563,7 +548,6 @@ const FRAME_NAMES_TR: Record<string, string> = {
   ach_lesson_absolute: 'Mükemmellik',
   ach_combo100: 'Yenilmez',
   ach_xp100k: 'XP efsanesi',
-  ach_quiz_god: 'Quiz ustası',
   club_initiator: 'Başlatan',
   club_adept: 'Usta aday',
   club_seeker: 'Arayıcı',
@@ -601,7 +585,6 @@ const FRAME_NAMES_PL: Record<string, string> = {
   ach_lesson_absolute: 'Perfekcja',
   ach_combo100: 'Niezwyciężony',
   ach_xp100k: 'Legenda XP',
-  ach_quiz_god: 'As quizów',
   club_initiator: 'Inicjator',
   club_adept: 'Adept',
   club_seeker: 'Poszukiwacz',
@@ -701,24 +684,4 @@ export const getBotAvatarData = (botName: string, weekBase: number): BotAvatarDa
   const level = getBotCurrentLevel(weekBase, botName);
   const frame = getBestFrameForLevel(level);
   return { emoji: getBestAvatarForLevel(level), frameId: frame.id, level };
-};
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-export const unlockAllFrames = async (): Promise<void> => {
-  try {
-    const unlockedFrameIds = FRAMES.map(f => f.id);
-    await AsyncStorage.setItem('unlocked_frames', JSON.stringify(unlockedFrameIds));
-  } catch (err) {
-    console.error('Error unlocking all frames:', err);
-  }
-};
-
-export const getUnlockedFrames = async (): Promise<string[]> => {
-  try {
-    const data = await AsyncStorage.getItem('unlocked_frames');
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return [];
-  }
 };

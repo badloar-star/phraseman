@@ -63,7 +63,6 @@ import {
   getCachedPhraseSessionItems,
   getPhraseSessionItems,
   getWarmPhraseSessionDeck,
-  mergePhraseSessionItems,
   normalizeGapToken,
   PHRASE_SESSION_LIMIT,
   sessionMeaningfulTokens,
@@ -77,8 +76,6 @@ import { checkAchievements } from './achievements';
 import { type WordBankTile } from './review_evaluator';
 import { getLessonData } from './lesson_data_all';
 import { consumeTrainerSessionEntry } from './trainer_session';
-import { isFeatureFreeForEveryone } from './feature_gates';
-// зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
@@ -127,8 +124,6 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
-  // Фраза для сессии: у арены key — вопрос с маркером пропуска, полная фраза
-  // собирается подстановкой arenaQuestion.correct (trainerSessionPhrase).
   const { phrase } = trainerSessionPhrase(item);
   // Банк неизменен: взятые плитки не исчезают, а гаснут (opacity .18) — видно, что уже в ответе.
   // Пунктуационные токены («—», «/») отфильтрованы; слоты переупорядочены 0..n-1,
@@ -160,8 +155,8 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
   // If iOS turns the touch into a ScrollView gesture, onPressOut removes the preview
   // and onPress never mutates the answer.
   const visibleSelected = useMemo(
-    () => previewTile ? [...selected, previewTile] : selected,
-    [previewTile, selected],
+    () => previewTile && !usedSlots.has(previewTile.slot) ? [...selected, previewTile] : selected,
+    [previewTile, selected, usedSlots],
   );
   // Перевод-задание: у арены перевода нет — честно показываем нейтральную формулировку.
   const promptText = useMemo(() => {
@@ -339,6 +334,10 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
                   ]}
               onPress={() => {
                 flash(tileKey);
+                // onPress may be delivered before onPressOut on native platforms.
+                // Clear the reversible preview before committing so the same slot is
+                // never rendered twice with one React key during that event boundary.
+                setPreviewTile(null);
                 tapBank(tile);
               }}
             >
@@ -464,9 +463,6 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { flashKey, flash } = useWordFlash();
-  // У арены errorWord = arenaQuestion.correct, phrase — с подставленным словом;
-  // дистракторы — авторские arenaQuestion.options (buildTrainerFillGapOptions сам
-  // убирает correct, дедуплицирует и шафлит).
   const { phrase, errorWord } = trainerSessionPhrase(item);
   // Без исходного смысла She/He/You suggested... и can/could/will start
   // одновременно подходят. Перевод превращает угадывание в честное восстановление.
@@ -476,9 +472,7 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
     phrase,
     category: item.category,
     grammarTag: item.grammarTag,
-    sourceDistractors: item.queue === 'arena' && item.arenaQuestion
-      ? item.arenaQuestion.options
-      : lessonSourceDistractorsForItem(item, errorWord),
+    sourceDistractors: lessonSourceDistractorsForItem(item, errorWord),
   }));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
@@ -683,17 +677,14 @@ export default function TrainerPhrasesSession() {
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(() => warmDeck === null);
-  // Тёплый старт показывает карточку сразу, не дожидаясь проверки лимита. Сама проверка
-  // никуда не делась: эффект ниже её отрабатывает и при отказе уводит на пейвол через
-  // router.replace — экран просто не висит скелетом на время двух чтений AsyncStorage.
-  const [accessReady, setAccessReady] = useState(() => warmDeck !== null);
+  // Кэш ускоряет подготовку колоды, но платные карточки остаются скрыты до live-проверки Plus.
+  const [accessReady, setAccessReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
-  // Тёплый старт: сессия реально начинается в первом кадре, а не когда добежит фоновая
-  // сверка — иначе длительность сессии в статистике занижалась бы на время гейта.
-  const sessionStartRef = useRef(warmDeck ? Date.now() : 0);
+  // Время ожидания entitlement не входит в длительность оплаченной практики.
+  const sessionStartRef = useRef(0);
   const pendingResultRef = useRef<Promise<void>>(Promise.resolve());
   const advancingRef = useRef(false);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
@@ -731,9 +722,7 @@ export default function TrainerPhrasesSession() {
 
   useEffect(() => {
     let cancelled = false;
-    // Тёплый старт: колода уже отрисована из кэша — не откатываем экран обратно в скелет,
-    // пока фоном идёт гейт и точная загрузка. Иначе первый кадр был бы карточкой, а второй —
-    // «Загружаем…», что хуже, чем просто загрузка.
+    // Тёплая колода уже подготовлена, но render gate не показывает её до live-проверки Plus.
     const startedWarm = warmDeckRef.current !== null;
     setLoadError(false);
     if (!startedWarm) setLoading(true);
@@ -745,48 +734,24 @@ export default function TrainerPhrasesSession() {
           setLoading(false);
           return;
         }
-        // зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
-        // премиум-гейт smart_trainer снят и для задач персонального плана тоже.
-        // Ветку planTrainerContext.taskId оставляем: она не про доступ, а про то,
-        // что дневной лимит к плановым задачам не применяется (см. else ниже).
-        if (planTrainerContext.taskId) {
-          if (cancelled) return;
-        } else {
-          const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session', studyTarget);
-          if (cancelled) return;
-          // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
-          if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
-            logTrainerDirectGateBlocked('/trainer_phrases_session');
-            // см. коммент выше: убираем тренажёр из стека, чтобы «назад» с пейвола
-            // не вернулось на исчерпанный лимит и не открыло пейвол снова.
-            markNextNavigationAsReplace();
-            router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-            return;
-          }
+        const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session', studyTarget);
+        if (cancelled) return;
+        if (!allowed) {
+          logTrainerDirectGateBlocked('/trainer_phrases_session');
+          markNextNavigationAsReplace();
+          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+          return;
         }
+        if (startedWarm) sessionStartRef.current = Date.now();
         setAccessReady(true);
-        // Plan-контекст: фразовая сессия обслуживает и арену плана — грузим обе
-        // plan-очереди и объединяем тем же компаратором, что и свободную практику.
         const items = planTrainerContext.taskId
-          ? await (async () => {
-              const [planPhrases, planArena] = await Promise.all([
-                getTrainerPremiumItemsForPlanQueue(
-                  planTrainerContext.planInstanceId,
-                  planTrainerContext.mode,
-                  'phrases',
-                  planTrainerContext.requiredItems,
-                  studyTarget,
-                ),
-                getTrainerPremiumItemsForPlanQueue(
-                  planTrainerContext.planInstanceId,
-                  planTrainerContext.mode,
-                  'arena',
-                  planTrainerContext.requiredItems,
-                  studyTarget,
-                ),
-              ]);
-              return mergePhraseSessionItems(planPhrases, planArena, planTrainerContext.requiredItems);
-            })()
+          ? await getTrainerPremiumItemsForPlanQueue(
+              planTrainerContext.planInstanceId,
+              planTrainerContext.mode,
+              'phrases',
+              planTrainerContext.requiredItems,
+              studyTarget,
+            )
           : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
@@ -825,7 +790,7 @@ export default function TrainerPhrasesSession() {
       }
       if (answeredCorrectly) {
         updates.push({ type: 'recall_answers', increment: 1 });
-        updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
+        updates.push({ type: 'trainer_phrases', increment: 1 });
         checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
       } else if (!energyRef.current.energyUnlimited) {
         // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
@@ -1027,7 +992,7 @@ export default function TrainerPhrasesSession() {
           </View>
 
           <BouncyScrollView
-            decelerationRate="fast"
+            decelerationRate="normal"
             contentContainerStyle={{ padding: 16, paddingTop: 8, flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}

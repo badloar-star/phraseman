@@ -12,7 +12,6 @@ const blockedTerms = [
   'timeline',
   'UGC',
   'community packs',
-  'Arena live',
   'Marketplace',
   'Marketplace health',
   'tasks',

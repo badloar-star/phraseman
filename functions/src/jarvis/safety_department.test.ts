@@ -4,7 +4,17 @@ import type { FetchSafetySourceResult } from './safety_firestore_fetcher';
 const NOW = 1_800_000_000_000;
 
 function source(over: Partial<FetchSafetySourceResult> = {}): FetchSafetySourceResult {
-  return { state: 'ready', openFlags: 0, openMinorFlags: 0, recentFlags: 0, observedAtMs: NOW, ...over };
+  return {
+    state: 'ready',
+    openFlags: 0,
+    openMinorFlags: 0,
+    openAgeUnverifiedFlags: 0,
+    openAgeUnavailableFlags: 0,
+    ageEvidence: 'confirmed_adult',
+    recentFlags: 0,
+    observedAtMs: NOW,
+    ...over,
+  };
 }
 
 function run(over: Partial<FetchSafetySourceResult> = {}, trigger: 'scheduled' | 'owner_request' = 'scheduled') {
@@ -20,6 +30,26 @@ describe('Jarvis safety department — children first, silence only when genuine
     const { decisions } = run({}, 'owner_request');
     expect(decisions).toHaveLength(1);
     expect(decisions[0].department).toBe('safety');
+    expect(decisions[0]).toMatchObject({ actionability: 'evidence_only', severityHint: 'P3' });
+  });
+
+  test('an open flag without server-authoritative age evidence is never reported as a proven zero minors', () => {
+    const { decisions } = run({
+      openFlags: 1,
+      openMinorFlags: null,
+      openAgeUnverifiedFlags: 1,
+      openAgeUnavailableFlags: 0,
+      ageEvidence: 'age_unverified',
+    } as Partial<FetchSafetySourceResult>);
+
+    expect(decisions).toHaveLength(1);
+    expect(decisions[0]).toMatchObject({
+      status: 'insufficient_evidence',
+      actionability: 'confirmed_action',
+      severityHint: 'P0',
+    });
+    expect(decisions[0].finding).toMatch(/age|возраст/i);
+    expect(decisions[0].finding).not.toMatch(/0[^.]*minor|0[^.]*несовершеннолет/i);
   });
 
   test('a single unhandled flag on a child account breaks the silence', () => {
@@ -40,8 +70,19 @@ describe('Jarvis safety department — children first, silence only when genuine
     expect(decisions[0].finding).toContain(String(SAFETY_BACKLOG_THRESHOLD));
   });
 
-  test('a backlog below the threshold does not wake the owner at night', () => {
-    expect(run({ openFlags: SAFETY_BACKLOG_THRESHOLD - 1 }).decisions).toHaveLength(0);
+  test('a confirmed open safety incident remains owner-actionable below the backlog threshold', () => {
+    const { decisions } = run({
+      openFlags: 1,
+      openAgeUnverifiedFlags: 0,
+      openAgeUnavailableFlags: 0,
+      ageEvidence: 'confirmed_adult',
+    });
+    expect(decisions).toHaveLength(1);
+    expect(decisions[0]).toMatchObject({
+      status: 'awaiting_owner',
+      actionability: 'confirmed_action',
+      severityHint: 'P0',
+    });
   });
 
   test('a spike of new flags in one day is reported even with an empty backlog', () => {
@@ -51,7 +92,15 @@ describe('Jarvis safety department — children first, silence only when genuine
   });
 
   test('an unreadable source is reported as unreadable, never as safe', () => {
-    const { decisions } = run({ state: 'error', openFlags: null, openMinorFlags: null, recentFlags: null });
+    const { decisions } = run({
+      state: 'error',
+      openFlags: null,
+      openMinorFlags: null,
+      openAgeUnverifiedFlags: null,
+      openAgeUnavailableFlags: null,
+      ageEvidence: 'unavailable',
+      recentFlags: null,
+    });
     expect(decisions).toHaveLength(1);
     expect(decisions[0].finding).toMatch(/не удалось|недоступ/i);
     expect(decisions[0].evidence.every((item) => !item.trustworthy)).toBe(true);

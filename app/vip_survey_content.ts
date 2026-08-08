@@ -42,10 +42,9 @@ function loc(t: Loc8): Record<Lang, string> {
   };
 }
 
-/** Повторяющиеся пункты опроса (Уроки/Вызовы/Карточки и т.п.) — один источник перевода. */
+/** Повторяющиеся пункты опроса (Уроки/Карточки и т.п.) — один источник перевода. */
 const COMMON = {
   lessons: loc({ ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', ptBR: 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }),
-  quizzes: loc({ ru: 'Вызовы', uk: 'Виклики', es: 'Retos', ptBR: 'Desafios', vi: 'Thử thách', id: 'Tantangan', tr: 'Görevler', pl: 'Wyzwania' }),
   flashcards: loc({ ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', ptBR: 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' }),
 };
 
@@ -64,7 +63,6 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     }),
     options: [
       { id: 'lessons', text: COMMON.lessons },
-      { id: 'quizzes', text: COMMON.quizzes },
       { id: 'flashcards', text: COMMON.flashcards },
       { id: 'nothing_yet', text: loc({ ru: 'Пока ничего', uk: 'Поки нічого', es: 'Nada por ahora', ptBR: 'Nada por enquanto', vi: 'Chưa có gì', id: 'Belum ada', tr: 'Henüz yok', pl: 'Na razie nic' }) },
     ],
@@ -83,7 +81,6 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     }),
     options: [
       { id: 'lessons', text: COMMON.lessons },
-      { id: 'quizzes', text: COMMON.quizzes },
       { id: 'flashcards', text: COMMON.flashcards },
       { id: 'mistake_practice', text: loc({ ru: 'Отработка ошибок', uk: 'Відпрацювання помилок', es: 'Práctica de errores', ptBR: 'Prática de erros', vi: 'Luyện tập lỗi sai', id: 'Latihan kesalahan', tr: 'Hata çalışması', pl: 'Praca nad błędami' }) },
     ],
@@ -124,7 +121,6 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     options: [
       { id: 'what_next', text: loc({ ru: 'Что делать дальше', uk: 'Що робити далі', es: 'Qué hacer después', ptBR: 'O que fazer depois', vi: 'Làm gì tiếp theo', id: 'Apa selanjutnya', tr: 'Sonra ne yapmalı', pl: 'Co robić dalej' }) },
       { id: 'lessons', text: COMMON.lessons },
-      { id: 'quizzes', text: COMMON.quizzes },
       { id: 'flashcards', text: COMMON.flashcards },
       { id: 'mistakes', text: loc({ ru: 'Ошибки', uk: 'Помилки', es: 'Errores', ptBR: 'Erros', vi: 'Lỗi sai', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' }) },
       { id: 'all_clear', text: loc({ ru: 'Всё понятно', uk: 'Усе зрозуміло', es: 'Todo está claro', ptBR: 'Tudo está claro', vi: 'Mọi thứ đều rõ', id: 'Semua jelas', tr: 'Her şey açık', pl: 'Wszystko jasne' }) },
@@ -167,7 +163,6 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     options: [
       { id: 'home', text: loc({ ru: 'Главная', uk: 'Головна', es: 'Inicio', ptBR: 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }) },
       { id: 'lessons', text: COMMON.lessons },
-      { id: 'quizzes', text: COMMON.quizzes },
       { id: 'flashcards', text: COMMON.flashcards },
       { id: 'leagues', text: loc({ ru: 'Лиги', uk: 'Ліги', es: 'Ligas', ptBR: 'Ligas', vi: 'Giải đấu', id: 'Liga', tr: 'Ligler', pl: 'Ligi' }) },
       { id: 'profile', text: loc({ ru: 'Профиль', uk: 'Профіль', es: 'Perfil', ptBR: 'Perfil', vi: 'Hồ sơ', id: 'Profil', tr: 'Profil', pl: 'Profil' }) },

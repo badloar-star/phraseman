@@ -445,7 +445,7 @@ export const GENERATED_RUNTIME_AUDIO_GROUPS: readonly RuntimeAudioDayGroup[] = [
   ["mitap",1,[["Hi, I am Anna.",3360],["I am here now.",1944],["Hello, are you here?",2640],["Yes, I am ready.",4272],["You are Max, right?",2472]]],
   ["mitap",2,[["Is my mic on?",1944],["Am I too quiet?",2304],["Is the video on?",1896],["Are you there?",2088],["The sound is fine.",2088]]],
   ["mitap",3,[["Sorry, I can't hear you.",2160],["You're on mute.",1680],["I think you're on mute.",2304],["The sound is bad today.",2424],["My microphone is not working.",2520]]],
-  ["mitap",4,[["Who joins the call today?",2352],["My manager joins us today.",2208],["She is not joining the call today.",2568],["Who knows the topic today?",1896],["We are waiting for the client.",2520]]],
+  ["mitap",4,[["Who joins the call today?",2352],["My manager joins us today.",2208],["She is not joining the call today.",2568],["Who knows the topic today?",1896],["We wait for the client.",1848]]],
   ["mitap",5,[["Sorry, I'm late.",2472],["I'm here now.",2208],["I have a quick meeting.",2208],["I'm so sorry.",2040],["We start now.",1728]]],
   ["mitap",6,[["Are we all here?",1416],["I wait for the others.",4152],["Tom is not here yet.",2160],["We wait two minutes for him.",2208],["Where is the last person?",2472]]],
   ["mitap",7,[["Hi, I'm here.",1776],["Can you hear me?",2568],["Who is on the call?",1848],["Sorry, I'm late.",2520],["Are we all here?",1992]]],

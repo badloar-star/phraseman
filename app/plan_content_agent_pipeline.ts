@@ -1,5 +1,5 @@
 import type { PlanContentDay } from './plan_content_schema';
-import { validatePlanContentDay } from './plan_content_schema';
+import { validatePlanContentDay, validatePlanContentWordAlignment } from './plan_content_schema';
 import { checkPlanContentGate } from './plan_content_gate_check';
 import { auditPlanContentLocaleIsolation } from './plan_content_locale_gate';
 import type { PlanContentGenerationJob } from './plan_content_generation_job';
@@ -89,6 +89,11 @@ export function evaluatePipelineRun(run: PipelineRun): PipelineGateResult {
   const schemaIssues = validatePlanContentDay(run.judged);
   for (const issue of schemaIssues) {
     blockers.push(`schema:${issue.code}${issue.phraseId ? `:${issue.phraseId}` : ''}`);
+  }
+
+  const wordAlignmentIssues = validatePlanContentWordAlignment(run.judged);
+  for (const issue of wordAlignmentIssues) {
+    blockers.push(`word_alignment:${issue.code}${issue.phraseId ? `:${issue.phraseId}` : ''}`);
   }
 
   const gate = checkPlanContentGate(run.judged);

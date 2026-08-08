@@ -13,7 +13,7 @@
  *
  * Использование:
  *   trackEvent('paywall_shown', { context: 'streak', source: 'automatic' });
- *   trackEvent('purchase_started', { context: 'quiz_limit', plan: 'yearly' });
+ *   trackEvent('purchase_started', { context: 'lesson_complete', plan: 'yearly' });
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -58,8 +58,6 @@ export type AnalyticsEvent =
   | 'lesson_start'
   | 'lesson_complete'
   | 'lesson_abandon'
-  | 'quiz_start'
-  | 'quiz_complete'
   | 'dialog_complete'
   // ИИ-диалоги (Фаза 0 — воронка спроса)
   | 'ai_dialog_card_shown'

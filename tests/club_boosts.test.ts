@@ -20,6 +20,9 @@ import {
   boostDescriptionForLang,
   boostNameForLang,
   getBoostNotification,
+  clearClubGiftFreeBoostFromLevel,
+  grantClubGiftFreeBoostFromLevel,
+  hasClubGiftFreeBoostFromLevel,
 } from '../app/club_boosts';
 
 // Mock AsyncStorage
@@ -521,6 +524,36 @@ describe('Club Boosts System', () => {
       const history = await getBoostsHistory();
       expect(history.length).toBe(1);
       expect(history[0].activatedBy).toBe('TestPlayer');
+    });
+  });
+
+  describe('level-gift club vouchers', () => {
+    test('propagates a durable storage failure so the level claim can be retried', async () => {
+      mockAsyncStorage.setItem.mockRejectedValueOnce(new Error('disk full'));
+
+      await expect(grantClubGiftFreeBoostFromLevel()).rejects.toThrow('disk full');
+    });
+
+    test('preserves two distinct grants as two consumable activations', async () => {
+      const stored: Record<string, string> = {};
+      mockAsyncStorage.getItem.mockImplementation(async (key: string) => stored[key] ?? null);
+      mockAsyncStorage.setItem.mockImplementation(async (key: string, value: string) => {
+        stored[key] = value;
+      });
+      mockAsyncStorage.removeItem.mockImplementation(async (key: string) => {
+        delete stored[key];
+      });
+
+      await grantClubGiftFreeBoostFromLevel();
+      await grantClubGiftFreeBoostFromLevel();
+      expect(stored.club_gift_free_boost_v1).toBe('2');
+
+      await clearClubGiftFreeBoostFromLevel();
+      await expect(hasClubGiftFreeBoostFromLevel()).resolves.toBe(true);
+      expect(stored.club_gift_free_boost_v1).toBe('1');
+
+      await clearClubGiftFreeBoostFromLevel();
+      await expect(hasClubGiftFreeBoostFromLevel()).resolves.toBe(false);
     });
   });
 });

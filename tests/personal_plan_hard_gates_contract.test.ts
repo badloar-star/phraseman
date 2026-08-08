@@ -5,6 +5,8 @@ import {
   buildPersonalPlanDayPassport,
   validatePersonalPlanDay,
 } from '../app/personal_plan_quality';
+import fs from 'fs';
+import path from 'path';
 
 describe('personal plan hard gates contract', () => {
   const gavan = PERSONAL_PLAN_CATALOG.find((plan) => plan.id === 'gavan')!;
@@ -21,11 +23,13 @@ describe('personal plan hard gates contract', () => {
   it('keeps selected daily time as the initial slice while the full plan task list stays available', () => {
     const expectedTaskIds = allTasksForDay(day1).map((task) => task.id);
 
-    expect(expectedTaskIds).toHaveLength(7);
-    expect(tasksForMinutes(day1, 5).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 3));
-    expect(tasksForMinutes(day1, 10).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 4));
-    expect(tasksForMinutes(day1, 15).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 5));
-    expect(tasksForMinutes(day1, 20).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 6));
+    expect(expectedTaskIds).toHaveLength(8);
+    ([5, 10, 15, 20] as const).forEach((minutes) => {
+      const visible = tasksForMinutes(day1, minutes);
+      expect(visible.every((task) => task.requiredFor.includes(minutes))).toBe(true);
+      expect(visible.some((task) => task.kind === 'plan_quiz')).toBe(false);
+    });
+    expect(tasksForMinutes(day1, 5)).toEqual([]);
   });
 
   it('opens linked lesson slices with exact plan scope instead of a generic lesson', () => {
@@ -74,10 +78,9 @@ describe('personal plan hard gates contract', () => {
     openPersonalPlanTask(router, gavan, day1, task, 'plan-instance-1');
 
     expect(router.push).toHaveBeenCalledWith(expect.objectContaining({
-      pathname: '/quizzes_screen',
+      pathname: '/personal_plan_quiz',
       params: expect.objectContaining({
         planQuizId: 'gavan_day1_short_replies_quiz',
-        planQuizLevel: 'easy',
         planTaskId: 'gavan-d1-quiz',
         planInstanceId: 'plan-instance-1',
         planId: 'gavan',
@@ -86,8 +89,9 @@ describe('personal plan hard gates contract', () => {
     }));
   });
 
-  it('does not require certified days to provide quiz content', () => {
-    expect(day1.tasks.some((task) => task.destination.type === 'quiz')).toBe(false);
+  it('keeps the historical quiz plan-only and leaves the retired standalone route absent', () => {
+    expect(day1.tasks.some((task) => task.destination.type === 'quiz')).toBe(true);
+    expect(fs.existsSync(path.join(process.cwd(), 'app', 'quizzes_screen.tsx'))).toBe(false);
 
     const issues = validatePersonalPlanDay(gavan as PersonalPlanDefinition, {
       ...day1,

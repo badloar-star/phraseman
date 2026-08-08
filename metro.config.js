@@ -130,6 +130,8 @@ const storeReleaseDevModules = new Set([
   './_admin_sound_lab',
   './_pos_analytics_audit',
   './flashcards_market_dev',
+  './personal_plan_dev',
+  './personal_plan_runtime_dev',
 ]);
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {

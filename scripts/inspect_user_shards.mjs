@@ -122,7 +122,6 @@ async function main() {
     console.log(`  shards_lifetime_spent_v1: ${p.shards_lifetime_spent_v1 ?? '—'}`);
     console.log(`  shards_balance (progress):${p.shards_balance ?? '—'}`);
     console.log(`  achievement_shards_spent_total: ${p.achievement_shards_spent_total ?? '—'}`);
-    console.log(`  shards_arena_wins_total:  ${p.shards_arena_wins_total ?? '—'}`);
     // Консистентность: earned - spent должно ≈ balance
     const earned = Number(p.shards_lifetime_earned_v1);
     const spent = Number(p.shards_lifetime_spent_v1);

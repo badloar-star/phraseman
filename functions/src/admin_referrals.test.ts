@@ -2,6 +2,7 @@ import { referralCreditId } from './referral_spin_ledger';
 import {
   displayNameFromUser,
   projectReferralDashboardRow,
+  reconcilePendingReferralPurchases,
   referralDashboardCursorFromAttribution,
   summarizeReferralDashboardPurchases,
 } from './admin_referrals';
@@ -181,5 +182,44 @@ describe('referral admin dashboard projection', () => {
     });
 
     expect(row.roulette).toEqual({ state: 'not_spun' });
+  });
+});
+
+describe('admin referral dashboard pending purchase repair', () => {
+  it('bounds the scan, prefilters active store Premium, and reports per-row failures', async () => {
+    const pendingDocs = Array.from({ length: 102 }, (_, index) => ({ id: `user-${index}` }));
+    const limit = jest.fn(() => ({ get: async () => ({ docs: pendingDocs }) }));
+    const where = jest.fn(() => ({ limit }));
+    const db = {
+      collection: jest.fn(),
+      getAll: jest.fn(async (...refs: Array<{ id: string }>) => refs.map((ref) => ({
+        id: ref.id,
+        exists: true,
+        data: () => ({
+          progress: ref.id === 'user-0' || ref.id === 'user-1'
+            ? { premium_plan: 'yearly', premium_expiry: String(NOW_MS + 100_000) }
+            : {},
+        }),
+      }))),
+    } as unknown as FirebaseFirestore.Firestore;
+    (db.collection as jest.Mock).mockImplementation((collection: string) => (
+      collection === 'referral_attributions'
+        ? { where }
+        : { doc: (id: string) => ({ id }) }
+    ));
+    const qualify = jest.fn(async (_db: FirebaseFirestore.Firestore, uid: string) => {
+      if (uid === 'user-1') throw new Error('transient');
+    });
+
+    await expect(reconcilePendingReferralPurchases(db, NOW_MS, qualify)).resolves.toEqual({
+      scanned: 100,
+      eligible: 2,
+      repaired: 1,
+      failed: 1,
+      truncated: true,
+    });
+    expect(where).toHaveBeenCalledWith('status', '==', 'pending');
+    expect(limit).toHaveBeenCalledWith(101);
+    expect(qualify.mock.calls.map((call) => call[1])).toEqual(['user-0', 'user-1']);
   });
 });

@@ -23,7 +23,6 @@ THEME_BACKGROUND = {
 
 HOME_TARGETS = [
     ("lessons", 384, {"width": 326, "height": 326, "centerX": 192, "centerY": 192}),
-    ("quizzes", 384, {"width": 266, "height": 326, "centerX": 192, "centerY": 192}),
     ("cards", 384, {"width": 298, "height": 326, "centerX": 192, "centerY": 192}),
     ("daily-tasks", 384, {"width": 302, "height": 326, "centerX": 192, "centerY": 192}),
     ("league", 384, {"width": 240, "height": 326, "centerX": 191, "centerY": 192}),
@@ -32,7 +31,6 @@ HOME_TARGETS = [
     ("dialogs", 384, {"width": 304, "height": 326, "centerX": 192, "centerY": 192}),
     ("exam", 384, {"width": 302, "height": 326, "centerX": 192, "centerY": 192}),
     ("shop", 384, {"width": 302, "height": 326, "centerX": 192, "centerY": 192}),
-    ("arena", 384, {"width": 240, "height": 326, "centerX": 192, "centerY": 192}),
     ("hero-map", 384, {"width": 302, "height": 326, "centerX": 192, "centerY": 192}),
 ]
 
@@ -41,18 +39,9 @@ EXTRA_TARGETS = [
 ]
 
 SECONDARY_TARGETS = [
-    ("quiz-logo-easy", "quiz-logo-easy.png", "assets/images/quizzes/level_logos/quiz-logo-easy-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-logo-medium", "quiz-logo-medium.png", "assets/images/quizzes/level_logos/quiz-logo-medium-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-logo-hard", "quiz-logo-hard.png", "assets/images/quizzes/level_logos/quiz-logo-hard-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-theme-kitchen-and-cooking", "quiz-theme-kitchen-and-cooking.png", "assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-theme-home-and-rooms", "quiz-theme-home-and-rooms.png", "assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-theme-at-the-doctor", "quiz-theme-at-the-doctor.png", "assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-theme-body-and-health", "quiz-theme-body-and-health.png", "assets/images/quizzes/theme_logos/quiz-theme-body-and-health-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
-    ("quiz-theme-shopping-and-money", "quiz-theme-shopping-and-money.png", "assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-{theme}.webp", 260, {"width": 210, "height": 210, "centerX": 130, "centerY": 130}),
     ("trainer-phrases", "trainer-phrases.png", "assets/images/trainer_theme_icons/{theme}/phrases.webp", 256, {"width": 210, "height": 210, "centerX": 128, "centerY": 128}),
     ("trainer-words", "trainer-words.png", "assets/images/trainer_theme_icons/{theme}/words.webp", 256, {"width": 210, "height": 210, "centerX": 128, "centerY": 128}),
     ("trainer-analytics", "trainer-analytics.png", "assets/images/trainer_theme_icons/{theme}/analytics.webp", 256, {"width": 210, "height": 210, "centerX": 128, "centerY": 128}),
-    ("medal", "medal.png", "assets/images/quizzes/medals/quiz-completion-medal-{theme}-cutout.webp", 512, {"width": 380, "height": 380, "centerX": 256, "centerY": 256}),
 ]
 
 

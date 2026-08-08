@@ -33,4 +33,15 @@ describe('immutable artifact edit contract', () => {
   test('rejects no-op edits', () => {
     expect(() => prepareArtifactEdit(stage, baseArtifact, structuredClone(baseArtifact), 'edit-1')).toThrow('artifact_edit_no_changes');
   });
+
+  test('fails closed for a stage kind outside the active catalog', () => {
+    const retiredStage = {
+      ...stage,
+      kind: 'retired_surface',
+      stageId: 'req:retired_surface:topic-1:r1',
+    } as any;
+    const retiredArtifact = { stage: 'retired_surface', items: [] };
+    expect(() => prepareArtifactEdit(retiredStage, retiredArtifact, { ...retiredArtifact, note: 'changed' }, 'edit-1'))
+      .toThrow('artifact_edit_kind_unsupported');
+  });
 });

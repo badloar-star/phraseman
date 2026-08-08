@@ -42,6 +42,36 @@ function replaceUniqueWord(sentence: string, word: string, replacement: string):
   return sentence.replace(matcher, (_whole, prefix: string) => `${prefix}${replacement}`);
 }
 
+function grammarCompatibleGapOptions(sentence: string, word: LessonWord, options: readonly string[]): string[] {
+  const category = String(word.category ?? '').trim().toLocaleLowerCase();
+  const tokens = sentence.match(/[A-Za-z']+/g) || [];
+  const answerIndex = tokens.findIndex((token) => normalized(token) === normalized(word.text));
+  if (answerIndex < 0) return [];
+  const previous = normalized(tokens[answerIndex - 1] || '');
+  const next = normalized(tokens[answerIndex + 1] || '');
+  const isSingular = ['he', 'she', 'it'].includes(previous);
+  const isPlural = ['i', 'you', 'we', 'they'].includes(previous);
+  return options.filter((option) => {
+    const value = normalized(option);
+    if (['article', 'articulo'].includes(category)) {
+      return value === (/^[aeiou]/u.test(next) ? 'an' : 'a');
+    }
+    if (['to-be', 'verbo_ser', 'verbo_estar'].includes(category)) {
+      return value === (previous === 'i' ? 'am' : isPlural ? 'are' : isSingular ? 'is' : '');
+    }
+    if (['pronoun', 'pronombre'].includes(category)) {
+      const be = next;
+      return be === 'am' ? value === 'i'
+        : be === 'is' ? ['he', 'she', 'it'].includes(value)
+          : be === 'are' ? ['you', 'we', 'they'].includes(value) : false;
+    }
+    if (['verb', 'verbo', 'verbs'].includes(category)) {
+      return isSingular ? /(?:s|es)$/u.test(value) : isPlural ? !/(?:s|es)$/u.test(value) : false;
+    }
+    return false;
+  });
+}
+
 function safeGapCandidate(reference: PhraseReference): GapCandidate | null {
   for (const word of targetWords(reference.phrase)) {
     const answer = word.text.trim();
@@ -51,8 +81,16 @@ function safeGapCandidate(reference: PhraseReference): GapCandidate | null {
       .filter((value) => /^[A-Za-z']+$/u.test(value));
     const unique = [...new Map(options.map((value) => [normalized(value), value])).values()];
     if (unique.length < 4) continue;
+    const category = String(word.category ?? '').trim().toLocaleLowerCase();
+    const grammarCategory = ['article', 'articulo', 'to-be', 'verbo_ser', 'verbo_estar', 'pronoun', 'pronombre', 'verb', 'verbo', 'verbs'].includes(category);
+    if (grammarCategory) {
+      const valid = grammarCompatibleGapOptions(reference.phrase.english.trim(), word, unique);
+      if (valid.length !== 1 || normalized(valid[0]) !== normalized(answer)) continue;
+    }
     const gap = replaceUniqueWord(reference.phrase.english.trim(), answer, '___');
-    if (gap) return { reference, word, gap, options: unique.slice(0, 4) };
+    if (gap) {
+      return { reference, word, gap, options: unique.slice(0, 4) };
+    }
   }
   return null;
 }
@@ -217,11 +255,17 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     const reference = next((item) => safeGapCandidate(item) !== null);
     const candidate = safeGapCandidate(reference)!;
     const id = `${input.level}:fill_gap:${reference.lessonId}:${reference.phraseId}`;
+    const choices = choiceOptions(id, candidate.word.text.trim(), candidate.options.slice(1), input.seed);
+    const category = String(candidate.word.category ?? '').trim().toLocaleLowerCase();
+    const grammarCategory = ['article', 'articulo', 'to-be', 'verbo_ser', 'verbo_estar', 'pronoun', 'pronombre', 'verb', 'verbo', 'verbs'].includes(category);
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
       format: 'fill_gap', prompt: candidate.gap,
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
-      ...choiceOptions(id, candidate.word.text.trim(), candidate.options.slice(1), input.seed),
+      ...choices,
+      acceptedOptionIds: grammarCategory
+        ? [choices.correctOptionId]
+        : choices.options.map((option) => option.id),
     } satisfies LevelExamChoiceTask);
   }
 

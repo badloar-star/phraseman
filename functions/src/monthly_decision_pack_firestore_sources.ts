@@ -30,7 +30,6 @@ type AggregateSpec = {
 const SPECS: readonly AggregateSpec[] = [
   { source: 'notifications_referrals', metricId: 'referral_attributions_created', collection: 'referral_attributions', timeField: 'createdAt', timeKind: 'timestamp' },
   { source: 'social_features', metricId: 'community_pack_purchases', collection: 'community_pack_purchases', timeField: 'createdAt', timeKind: 'number' },
-  { source: 'social_features', metricId: 'arena_rooms_created', collection: 'arena_rooms_live', timeField: 'createdAt', timeKind: 'number' },
   { source: 'feedback_support', metricId: 'error_reports_created', collection: 'error_reports', timeField: 'createdAtMs', timeKind: 'number' },
   { source: 'feedback_support', metricId: 'user_reports_created', collection: 'user_reports', timeField: 'createdAtMs', timeKind: 'number' },
   { source: 'feedback_support', metricId: 'support_messages_received', collection: 'support_inbox', timeField: 'receivedAtMs', timeKind: 'number' },
@@ -77,7 +76,7 @@ export function buildOperationalAggregateProjection(
     }])),
     socialFeatures: both.flatMap((scope) => scope.socialFeatures.flatMap((result) => result.count == null ? [] : [{
       scope: scope.scope,
-      feature: result.metricId.startsWith('arena_') ? 'arena' : 'community_packs',
+      feature: 'community_packs',
       metric_id: result.metricId,
       value: result.count,
       denominator: result.count,

@@ -2,9 +2,7 @@ export type FactorySurface =
   | 'lessons'
   | 'vocabulary'
   | 'drills'
-  | 'quizzes'
-  | 'cards'
-  | 'arena_questions';
+  | 'cards';
 
 import { canonicalizeFactorySurfaces, countLegacyGenerationUnits, generationPlanFingerprint } from './generation_plan';
 import type { CanonicalReleaseSurface } from './course_release_contract';

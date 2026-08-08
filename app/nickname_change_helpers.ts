@@ -73,21 +73,3 @@ export async function updateLocalNameReferences(fromName: string, toName: string
 }
 
 /** Фоновая синхронизация ника в профиле арены (best-effort, ошибки только в лог). */
-export async function syncArenaDisplayName(displayName: string): Promise<void> {
-  try {
-    const { CLOUD_SYNC_ENABLED, IS_EXPO_GO } = await import('./config');
-    if (CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
-      const { ensureArenaAuthUid } = await import('./user_id_policy');
-      const uid = await ensureArenaAuthUid();
-      if (uid) {
-        const firestore = (await import('@react-native-firebase/firestore')).default;
-        await firestore()
-          .collection('arena_profiles')
-          .doc(uid)
-          .set({ displayName, updatedAt: Date.now() }, { merge: true });
-      }
-    }
-  } catch (error) {
-    DebugLogger.error('nickname_change_helpers:arenaProfile', error, 'warning');
-  }
-}

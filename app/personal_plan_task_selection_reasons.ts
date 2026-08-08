@@ -9,11 +9,11 @@ export type PlanTaskSelectionReasonCode =
   | 'new_phrase_practice'
   | 'natural_choice_practice'
   | 'listening_practice'
-  | 'quiz_check'
   | 'recall_due'
   | 'trainer_due'
   | 'mistake_review_due'
-  | 'weak_spot_recovery';
+  | 'weak_spot_recovery'
+  | 'quiz_check';
 
 export type PlanTaskSelectionReasonSource = 'plan_structure' | 'weak_spot_summary';
 
@@ -103,10 +103,6 @@ function baseReasonForBlock(block: PlanExerciseBlock): PlanTaskSelectionReason {
     return reason(block, 'lesson_foundation', 'plan_structure', 100, 'foundation');
   }
 
-  if (block.type === 'plan_quiz') {
-    return reason(block, 'quiz_check', 'plan_structure', 70, 'check');
-  }
-
   if (block.type === 'plan_phrase_recall') {
     return reason(block, 'new_phrase_practice', 'plan_structure', 60, 'practice');
   }
@@ -125,6 +121,10 @@ function baseReasonForBlock(block: PlanExerciseBlock): PlanTaskSelectionReason {
 
   if (block.type === 'plan_listen_choose' || block.type === 'plan_listen_build') {
     return reason(block, 'listening_practice', 'plan_structure', 80, 'practice');
+  }
+
+  if (block.type === 'plan_quiz') {
+    return reason(block, 'quiz_check', 'plan_structure', 70, 'check');
   }
 
   return reason(block, 'new_phrase_practice', 'plan_structure', 90, 'practice');

@@ -19,7 +19,7 @@
 // при необходимости, передаёт управление наружу (onClaim/onNeedPass).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useMemo } from 'react';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -83,7 +83,11 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onDismiss}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
+      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)' }}>
+        <ScrollView
+          style={{ width: '100%' }}
+          contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 24 }}
+        >
         <View style={{ width: '100%', maxWidth: 370, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
 
           <View style={{ minHeight: 116, alignItems: 'center', justifyContent: 'center' }}>
@@ -193,6 +197,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
           )}
 
         </View>
+        </ScrollView>
       </View>
     </Modal>
   );

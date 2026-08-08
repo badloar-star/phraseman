@@ -215,8 +215,8 @@ export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/
 
 // ── Разовый бонус осколков за волну релиза — ОТКЛЮЧЁН (0 = никогда не показывать).
 // android.versionCode / ios.buildNumber для справки синхронизировали с волнами, когда фича была активна.
-// ВНИМАНИЕ перед повторным включением (VERSION>0, SHARDS>0): ReleaseWaveBonusModal сейчас
-// смонтирован ТОЛЬКО в admin-превью, в проде хоста на cold-start НЕТ. Без подключения
+// ВНИМАНИЕ перед повторным включением (VERSION>0, SHARDS>0): production-хоста
+// на cold-start сейчас НЕТ. Без подключения
 // модалки к арбитру (слот в OVERLAY_PRIORITY + useOverlayVisible) бонус начислится «втихую»
 // или не покажется. Сначала верни хост, потом поднимай версию (аудит #11).
 export const RELEASE_WAVE_BONUS_VERSION = 0;

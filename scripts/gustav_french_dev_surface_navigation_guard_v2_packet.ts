@@ -38,7 +38,6 @@ type Report = {
     dailyTaskNavigationGuardsReady: boolean;
     personalPlanNavigationGuardsReady: boolean;
     trainerSessionSelfGatesReady: boolean;
-    adminShortcutGuardsReady: boolean;
     aiDialogSourceGatesReady: boolean;
     destinationSelfGatesReady: boolean;
     challengeSurfaceGuardsReady: boolean;
@@ -168,7 +167,6 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- Daily task navigation guards ready: ${report.summary.dailyTaskNavigationGuardsReady}`,
     `- Personal Plan navigation guards ready: ${report.summary.personalPlanNavigationGuardsReady}`,
     `- Trainer session self gates ready: ${report.summary.trainerSessionSelfGatesReady}`,
-    `- Admin shortcut guards ready: ${report.summary.adminShortcutGuardsReady}`,
     `- AI dialog source gates ready: ${report.summary.aiDialogSourceGatesReady}`,
     `- Destination self gates ready: ${report.summary.destinationSelfGatesReady}`,
     `- Challenge surface guards ready/probes: ${report.summary.challengeSurfaceGuardsReady}/${report.summary.challengeSurfaceProbes}`,
@@ -218,7 +216,6 @@ function main(): void {
     trainerWordsSession: path.join(repoRoot, 'app/trainer_words_session.tsx'),
     trainerPhrasesSession: path.join(repoRoot, 'app/trainer_phrases_session.tsx'),
     trainerArenaSession: path.join(repoRoot, 'app/trainer_arena_session.tsx'),
-    adminSettingsTesters: path.join(repoRoot, 'app/_admin_settings_testers.tsx'),
     aiDialogTargetGate: path.join(repoRoot, 'app/ai_dialog_target_gate.ts'),
     aiDialogHome: path.join(repoRoot, 'app/ai_dialog_home.tsx'),
     aiDialogSession: path.join(repoRoot, 'app/ai_dialog_session.tsx'),
@@ -273,14 +270,6 @@ function main(): void {
     probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_gate_copy`, expected: `${fileKey} must show French trainer gate copy when blocked.`, pattern: 'frenchTrainerGateCopy(lang)' });
     probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_gate_branch`, expected: `${fileKey} must branch on !trainerGateOpen.`, pattern: 'if (!trainerGateOpen)' });
   }
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_trainer_shortcut_gate', expected: 'Admin trainer shortcuts must check trainer source gate for active studyTarget.', pattern: 'trainerQaRouteGateOpen = trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_trainer_shortcut_helper', expected: 'Admin trainer shortcuts must use a single guarded route helper.', pattern: 'const openTrainerQaRoute =' });
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_trainer_words_shortcut_wrapped', expected: 'Admin words trainer shortcut must use guarded helper.', pattern: "openTrainerQaRoute('/trainer_words_session')" });
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_trainer_phrases_shortcut_wrapped', expected: 'Admin phrases trainer shortcut must use guarded helper.', pattern: "openTrainerQaRoute('/trainer_phrases_session')" });
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_trainer_arena_shortcut_wrapped', expected: 'Admin arena trainer shortcut must use guarded helper.', pattern: "openTrainerQaRoute('/trainer_arena_session')" });
-  probeAbsent({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_no_direct_words_session_push', expected: 'Admin must not directly push /trainer_words_session from QA buttons.', pattern: "onPress={() => router.push('/trainer_words_session' as any)}" });
-  probeAbsent({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_no_direct_phrases_session_push', expected: 'Admin must not directly push /trainer_phrases_session from QA buttons.', pattern: "onPress={() => router.push('/trainer_phrases_session' as any)}" });
-  probeAbsent({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_no_direct_arena_session_push', expected: 'Admin must not directly push /trainer_arena_session from QA buttons.', pattern: "onPress={() => router.push('/trainer_arena_session' as any)}" });
   probeContains({ probes, findings, repoRoot, filePath: files.aiDialogTargetGate, id: 'ai_dialog_target_gate_exists', expected: 'AI dialog domain must have an explicit French source gate.', pattern: 'french_ai_dialog_source_gate' });
   probeContains({ probes, findings, repoRoot, filePath: files.aiDialogTargetGate, id: 'ai_dialog_required_prompt_contract', expected: 'AI dialog French gate must require a prompt contract before activation.', pattern: 'french_ai_dialog_prompt_contract' });
   probeContains({ probes, findings, repoRoot, filePath: files.aiDialogTargetGate, id: 'ai_dialog_blocked_routes', expected: 'AI dialog gate must enumerate direct blocked routes.', pattern: "blockedRoutes: ['/ai_dialog_home', '/ai_dialog_session', '/ai_companion_session']" });
@@ -299,9 +288,6 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.dialogsTabContent, id: 'dialogs_tab_content_challenges_visible', expected: 'DialogsTabContent must still build challenge scenario cards while French AI content is source-gated.', pattern: 'getChallengeDialogScenarios().map' });
   probeContains({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_thematic_challenges_visible_while_source_gated', expected: 'French dev quiz themes/challenge categories must remain visible while their starts are blocked by the source gate.', pattern: '() => getAvailableThematicQuizCategories(studyTarget)' });
   probeAbsent({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_no_source_gate_category_hide', expected: 'French source gate must not hide thematic quiz/challenge categories.', pattern: 'sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_ai_dialog_shortcut_helper', expected: 'Admin AI dialog shortcut must use a guarded helper.', pattern: 'const openAiDialogQaRoute =' });
-  probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_ai_dialog_shortcut_wrapped', expected: 'Admin AI dialog shortcut button must use guarded helper.', pattern: 'onPress={openAiDialogQaRoute}' });
-  probeAbsent({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_no_direct_ai_dialog_home_push', expected: 'Admin must not directly push /ai_dialog_home from QA button.', pattern: "onPress={() => router.push('/ai_dialog_home' as any)}" });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'parity_test_guarded', expected: 'A narrow Jest contract covers French dev surface visibility and gated daily-task destinations.', pattern: 'keeps French daily-task sections visible but source-gates non-French task destinations before navigation' });
   probeContains({ probes, findings, repoRoot, filePath: files.dailyTasksTargetFilterTests, id: 'daily_quiz_challenge_visibility_test_guarded', expected: 'A narrow Jest contract proves French keeps every quiz/challenge daily task type visible while source-gating quiz content.', pattern: 'keeps every quiz/challenge daily task type visible for French while quiz content stays source-gated' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'personal_plan_test_guarded', expected: 'A narrow Jest contract covers Personal Plan trainer redirect gates.', pattern: 'source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions' });
@@ -320,9 +306,6 @@ function main(): void {
     .every((probe) => probe.passed);
   const trainerSessionSelfGatesReady = probes
     .filter((probe) => probe.id.startsWith('trainer_'))
-    .every((probe) => probe.passed);
-  const adminShortcutGuardsReady = probes
-    .filter((probe) => probe.id.startsWith('admin_'))
     .every((probe) => probe.passed);
   const aiDialogSourceGatesReady = probes
     .filter((probe) => probe.id.startsWith('ai_dialog_') || probe.id.startsWith('ai_companion_') || probe.id.startsWith('dialogs_tab_content_'))
@@ -413,7 +396,6 @@ function main(): void {
       dailyTaskNavigationGuardsReady,
       personalPlanNavigationGuardsReady,
       trainerSessionSelfGatesReady,
-      adminShortcutGuardsReady,
       aiDialogSourceGatesReady,
       destinationSelfGatesReady,
       challengeSurfaceGuardsReady,

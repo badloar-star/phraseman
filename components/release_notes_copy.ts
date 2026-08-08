@@ -3,7 +3,7 @@
 //
 // зачем: владелец попросил отдельное окно для СТАРЫХ пользователей — тех, кто
 // помнит приложение до билда 103. За релиз переименовалась валюта («осколки» →
-// «жемчужины») и раздел («Арена» → «Турнир»), исчез экран «Друзья», а тренажёр
+// «жемчужины»), исчез экран «Друзья», а тренажёр
 // и вход в турнир стали бесплатными. Без объяснения старый пользователь решит,
 // что у него отобрали валюту и разделы. Тон — тёплая самоирония: шутим над
 // собой, никогда над пользователем.
@@ -57,11 +57,6 @@ const RU: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'trophy-outline',
-      title: 'Арена теперь называется Турнир',
-      body: 'Мы сами путались, где арена, а где лига. Оказалось, проще переименовать раздел, чем каждый раз объяснять.',
-    },
-    {
       icon: 'ticket-outline',
       title: 'Вход в турнир — бесплатный',
       body: 'Раньше он стоил жемчужины. Мы посчитали и решили, что брать плату за желание посоревноваться — так себе идея.',
@@ -100,11 +95,6 @@ const UK: ReleaseNotesTexts = {
       title: 'Уламки стали перлинами',
       body: 'Просто нове ім’я: було 1000 уламків — стало 1000 перлин. Один до одного, без обмінників і дрібного шрифту.',
       reassuring: true,
-    },
-    {
-      icon: 'trophy-outline',
-      title: 'Арена тепер зветься Турнір',
-      body: 'Ми самі плуталися, де арена, а де ліга. Виявилося, простіше перейменувати розділ, ніж щоразу пояснювати.',
     },
     {
       icon: 'ticket-outline',
@@ -147,11 +137,6 @@ const ES: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'trophy-outline',
-      title: 'La Arena ahora se llama Torneo',
-      body: 'Nosotros mismos confundíamos la arena con la liga. Resultó más fácil cambiarle el nombre que explicarlo cada vez.',
-    },
-    {
       icon: 'ticket-outline',
       title: 'Entrar al torneo es gratis',
       body: 'Antes costaba perlas. Echamos cuentas y decidimos que cobrar por querer competir no era una gran idea.',
@@ -190,11 +175,6 @@ const PT_BR: ReleaseNotesTexts = {
       title: 'Fragmentos agora são pérolas',
       body: 'É só um nome novo: você tinha 1000 fragmentos e agora tem 1000 pérolas. Um por um, sem troca e sem letra miúda.',
       reassuring: true,
-    },
-    {
-      icon: 'trophy-outline',
-      title: 'A Arena agora se chama Torneio',
-      body: 'Nós mesmos confundíamos arena com liga. Foi mais fácil renomear a seção do que explicar toda vez.',
     },
     {
       icon: 'ticket-outline',
@@ -237,11 +217,6 @@ const VI: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'trophy-outline',
-      title: 'Đấu trường nay gọi là Giải đấu',
-      body: 'Chính chúng tôi cũng nhầm giữa đấu trường và giải hạng. Đổi tên hoá ra dễ hơn là giải thích mỗi lần.',
-    },
-    {
       icon: 'ticket-outline',
       title: 'Vào giải đấu miễn phí',
       body: 'Trước đây tốn ngọc trai. Tính đi tính lại, thu phí cho việc muốn thi đấu nghe không ổn lắm.',
@@ -280,11 +255,6 @@ const ID: ReleaseNotesTexts = {
       title: 'Serpihan kini jadi mutiara',
       body: 'Hanya nama baru: punya 1000 serpihan berarti kini punya 1000 mutiara. Satu banding satu, tanpa penukaran dan tanpa tulisan kecil.',
       reassuring: true,
-    },
-    {
-      icon: 'trophy-outline',
-      title: 'Arena sekarang bernama Turnamen',
-      body: 'Kami sendiri tertukar antara arena dan liga. Ternyata lebih mudah mengganti namanya daripada menjelaskan tiap kali.',
     },
     {
       icon: 'ticket-outline',
@@ -327,11 +297,6 @@ const TR: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'trophy-outline',
-      title: 'Arena artık Turnuva',
-      body: 'Arenayla ligi biz bile karıştırıyorduk. Bölümün adını değiştirmek her seferinde açıklamaktan kolay çıktı.',
-    },
-    {
       icon: 'ticket-outline',
       title: 'Turnuvaya giriş ücretsiz',
       body: 'Eskiden inci gerekiyordu. Hesapladık ve yarışmak istemenin bedeli olmaması gerektiğine karar verdik.',
@@ -370,11 +335,6 @@ const PL: ReleaseNotesTexts = {
       title: 'Okruchy zmieniły się w perły',
       body: 'To tylko nowa nazwa: było 1000 okruchów, jest 1000 pereł. Jeden do jednego, bez wymiany i bez drobnego druku.',
       reassuring: true,
-    },
-    {
-      icon: 'trophy-outline',
-      title: 'Arena nazywa się teraz Turniej',
-      body: 'Sami myliliśmy arenę z ligą. Okazało się, że łatwiej zmienić nazwę sekcji, niż tłumaczyć za każdym razem.',
     },
     {
       icon: 'ticket-outline',

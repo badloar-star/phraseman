@@ -1982,7 +1982,7 @@ export default function ShardsShopScreen() {
           <View style={{ flex: 1, display: shopTab === 'catalog' ? 'flex' : 'none' }}>
           <BouncyScrollView
             style={{ zIndex: 0 }}
-            decelerationRate="fast"
+            decelerationRate="normal"
             contentContainerStyle={{
               paddingHorizontal: 16,
               paddingBottom: 40,

@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { Lang } from '../constants/i18n';
 
 const STORAGE_KEY_LAST = 'trial_last_consumed_at';
 const LEGACY_KEY_BOOLEAN = 'trial_used';
@@ -68,43 +67,6 @@ export async function getTrialReofferBlockedByCooldown(): Promise<boolean> {
 export async function markSubscriptionOrTrialFlowConsumedNow(): Promise<void> {
   await AsyncStorage.setItem(STORAGE_KEY_LAST, String(Date.now()));
   await AsyncStorage.removeItem(LEGACY_KEY_BOOLEAN);
-}
-
-/**
- * Сброс для тест-экрана: снова можно смотреть, как рисуется CTA с триалом
- * (если продукт в магазине отдаёт free phase).
- */
-export async function resetTrialCooldownForTesting(): Promise<void> {
-  await AsyncStorage.multiRemove([STORAGE_KEY_LAST, LEGACY_KEY_BOOLEAN]);
-  migrationDone = false;
-}
-
-export async function getTrialStatusLineForTesters(lang: Lang): Promise<string> {
-  const last = await getLastTrialOrPurchaseMarker();
-  const locale =
-    lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU';
-  if (last == null) {
-    return lang === 'uk'
-      ? 'Немає запису: пейвол покаже 3 дні (якщо магазин віддає триал)'
-      : lang === 'es'
-        ? 'Sin registro: el paywall puede mostrar 3 días (si la tienda da prueba gratuita)'
-        : 'Нет записи: пейволл покажет 3 дня (если магазин отдаёт триал)';
-  }
-  if (Date.now() - last >= TRIAL_REOFFER_COOLDOWN_MS) {
-    return lang === 'uk'
-      ? '≥90 дн. з моменту запису — копія триалу знову дозволена (локально)'
-      : lang === 'es'
-        ? '≥90 días desde el registro: copia del trial permitida de nuevo (local)'
-        : '≥90 д. с момента записи — копия триала снова разрешена (локально)';
-  }
-  const next = new Date(last + TRIAL_REOFFER_COOLDOWN_MS);
-  const prefix =
-    lang === 'uk'
-      ? 'Кулдаун триал-UI: до '
-      : lang === 'es'
-        ? 'Cooldown UI del trial: hasta '
-        : 'Кулдаун триал-UI: до ';
-  return `${prefix}${next.toLocaleString(locale)}`;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

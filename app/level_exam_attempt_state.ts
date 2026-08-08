@@ -25,7 +25,8 @@ export type LevelExamAttemptSnapshot = {
   currentTaskIndex: number;
   startedAtMs: number;
   deadlineAtMs: number;
-  status: 'active' | 'finishing' | 'completed';
+  status: 'active' | 'paused' | 'finishing' | 'completed';
+  pausedRemainingMs?: number;
   finishReason?: LevelExamFinishReason;
   finishedAtMs?: number;
 };
@@ -103,15 +104,16 @@ function isAttemptSnapshot(value: unknown): value is LevelExamAttemptSnapshot {
     || !finiteInteger(attempt.startedAtMs)
     || !finiteInteger(attempt.deadlineAtMs)
     || attempt.deadlineAtMs <= attempt.startedAtMs
-    || !['active', 'finishing', 'completed'].includes(String(attempt.status))
+    || !['active', 'paused', 'finishing', 'completed'].includes(String(attempt.status))
     || !attempt.answers || typeof attempt.answers !== 'object' || Array.isArray(attempt.answers)) return false;
   const scored = new Set(attempt.scoredUnitIds);
   if (!Object.entries(attempt.answers).every(([scoreUnitId, answer]) => scored.has(scoreUnitId) && isPersistedAnswer(answer))) {
     return false;
   }
-  if (attempt.status !== 'active' && attempt.finishReason !== 'submitted' && attempt.finishReason !== 'timeout') {
+  if (attempt.status !== 'active' && attempt.status !== 'paused' && attempt.finishReason !== 'submitted' && attempt.finishReason !== 'timeout') {
     return false;
   }
+  if (attempt.status === 'paused' && !finiteInteger(attempt.pausedRemainingMs)) return false;
   if (attempt.status === 'completed' && !finiteInteger(attempt.finishedAtMs)) return false;
   return true;
 }
@@ -177,8 +179,18 @@ export function applyLevelExamAnswer(
 }
 
 export function remainingLevelExamMs(attempt: LevelExamAttemptSnapshot, nowMs: number): number {
+  if (attempt.status === 'paused') return Math.max(0, attempt.pausedRemainingMs ?? 0);
   if (!Number.isFinite(nowMs)) return 0;
   return Math.max(0, attempt.deadlineAtMs - nowMs);
+}
+
+export function pauseLevelExamAttempt(attempt: LevelExamAttemptSnapshot, nowMs: number): LevelExamAttemptSnapshot {
+  if (attempt.status !== 'active' || !finiteInteger(nowMs)) throw new Error('level_exam_attempt_pause_invalid');
+  return {
+    ...attempt,
+    status: 'paused',
+    pausedRemainingMs: remainingLevelExamMs(attempt, nowMs),
+  };
 }
 
 export function beginLevelExamQuiz(
@@ -213,6 +225,15 @@ export function restoreLevelExamAttempt(
   }
   if (!isAttemptSnapshot(raw)) return { kind: 'quarantine', reason: 'invalid_snapshot' };
   if (raw.status === 'completed') return { kind: 'completed', attempt: raw };
+  if (raw.status === 'paused') {
+    const resumed = {
+      ...raw,
+      status: 'active' as const,
+      deadlineAtMs: context.nowMs + (raw.pausedRemainingMs ?? 0),
+      pausedRemainingMs: undefined,
+    };
+    return { kind: 'resume', attempt: resumed };
+  }
   if (raw.status === 'finishing') return { kind: 'finish_pending', attempt: raw };
   if (remainingLevelExamMs(raw, context.nowMs) === 0) return { kind: 'finish_timeout', attempt: raw };
   return { kind: 'resume', attempt: raw };

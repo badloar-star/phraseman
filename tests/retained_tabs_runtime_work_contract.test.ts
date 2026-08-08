@@ -31,17 +31,16 @@ describe('retained tabs runtime work contract', () => {
     expect(source).toContain('if (!statsRuntimeActive || !statsRefreshDirtyRef.current) return;');
   });
 
-  it('gates lesson energy and dialogs work by honest push-screen focus', () => {
-    // зачем 2026-08-02: таб «Уроки» убран — экран стал push-маршрутом /lessons_list
-    // и различим честным фокусом; сигнал runtimeOwnerId ему больше не нужен,
-    // useRuntimeActive() сам берёт useIsScreenFocused + AppState.
+  it('gates lesson energy and dialogs work for both retained-tab and push presentations', () => {
     const energy = read('components/EnergyBar.tsx');
     const lessons = read('app/(tabs)/lessons.tsx');
     const dialogs = read('components/DialogsTabContent.tsx');
 
     expect(energy).toContain('ownerActive?: boolean;');
     expect(energy).toContain('useEnergyCountdown({ visible: screenFocused && ownerActive })');
-    expect(lessons).toContain('const lessonsRuntimeActive = useRuntimeActive();');
+    expect(lessons).toContain("const lessonsTabVisible = isRetainedTab && runtimeOwnerId === 'lessons';");
+    expect(lessons).toContain('const lessonsRuntimeActive = useRuntimeActive(');
+    expect(lessons).toContain('isRetainedTab ? lessonsTabVisible : true');
     expect(lessons).toContain('<EnergyBar size={30} ownerActive={lessonsRuntimeActive}/>');
     expect(lessons).toContain('active={lessonsRuntimeActive && page === \'dialogs\'}');
     expect(dialogs).toContain('active?: boolean;');

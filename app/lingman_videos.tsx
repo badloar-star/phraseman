@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Linking, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Linking, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -13,6 +13,7 @@ import YoutubePlaylistRow from '../components/youtube/YoutubePlaylistRow';
 import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -25,6 +26,8 @@ import {
   getActiveYoutubeChannel,
   getLingmanYoutubeSnapshot,
   getTrustedLingmanYoutubeUrl,
+  LINGMAN_CHANNEL_DISPLAY_NAME,
+  LINGMAN_CHANNEL_ID,
   markLingmanYoutubeCatalogSeen,
   type LingmanYoutubeSnapshot,
   type LingmanYoutubeVideo,
@@ -73,6 +76,7 @@ export default function LingmanVideosScreen() {
   const router = useRouter();
   const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId } = useLocalSearchParams<{ videoId?: string; channelId?: string }>();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { theme: t } = useTheme();
   const screenRuntimeActive = useRuntimeActive(true);
   const screenRuntimeActiveRef = useRef(screenRuntimeActive);
@@ -103,11 +107,11 @@ export default function LingmanVideosScreen() {
 
   const copy = useMemo(() => ({
     recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', es: 'New videos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
-    featuredPlaylists: triLang(lang, { ru: 'Плейлисты канала', uk: 'Плейлисти каналу', es: 'Channel playlists', 'pt-BR': 'Playlists do canal', vi: 'Danh sách của kênh', id: 'Playlist kanal', tr: 'Kanal oynatma listeleri', pl: 'Playlisty kanału' }),
     empty: triLang(lang, { ru: 'Здесь пока нет опубликованных видео.', uk: 'Тут поки немає опублікованих відео.', es: 'No published videos here yet.', 'pt-BR': 'Ainda não há vídeos publicados.', vi: 'Chưa có video được đăng.', id: 'Belum ada video.', tr: 'Henüz video yok.', pl: 'Nie ma jeszcze filmów.' }),
     offline: triLang(lang, { ru: 'Показываем сохранённый каталог. Обновим, когда появится связь.', uk: 'Показуємо збережений каталог. Оновимо після відновлення зв’язку.', es: 'Showing the saved catalog. We will refresh when online.', 'pt-BR': 'Mostrando o catálogo salvo.', vi: 'Đang hiển thị danh mục đã lưu.', id: 'Menampilkan katalog tersimpan.', tr: 'Kaydedilmiş katalog gösteriliyor.', pl: 'Wyświetlamy zapisany katalog.' }),
     stale: triLang(lang, { ru: 'Каталог давно не обновлялся', uk: 'Каталог давно не оновлювався', es: 'Catalog update is delayed', 'pt-BR': 'Atualização do catálogo atrasada', vi: 'Danh mục chưa được cập nhật', id: 'Pembaruan katalog tertunda', tr: 'Katalog güncellemesi gecikti', pl: 'Aktualizacja katalogu jest opóźniona' }),
     error: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', es: 'Could not load the catalog. Pull to retry.', 'pt-BR': 'Não foi possível carregar.', vi: 'Không thể tải danh mục.', id: 'Katalog tidak dapat dimuat.', tr: 'Katalog yüklenemedi.', pl: 'Nie udało się wczytać katalogu.' }),
+    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Retry', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
     reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', es: 'Reminder set', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
@@ -152,7 +156,7 @@ export default function LingmanVideosScreen() {
     try {
       const manifest = catalogRef.current?.manifest ?? await fetchYoutubeCatalogManifest();
       const currentPreference = getYoutubeChannelPreference(token);
-      const resolution = resolvePreferredYoutubeChannel(manifest, lang, currentPreference);
+      const resolution = resolvePreferredYoutubeChannel(manifest, studyTarget, currentPreference);
       if (resolution.clearedInvalidManual) {
         await setYoutubeChannelPreference({ mode: 'auto' }, token);
         setPreference({ mode: 'auto' });
@@ -173,7 +177,7 @@ export default function LingmanVideosScreen() {
         setLoading(false); setRefreshing(false);
       }
     }
-  }, [deepLinkedChannelId, lang, loadLegacyFallback, renderAccountScope]);
+  }, [deepLinkedChannelId, loadLegacyFallback, renderAccountScope, studyTarget]);
 
   useEffect(() => {
     if (!screenRuntimeActive) return;
@@ -187,7 +191,7 @@ export default function LingmanVideosScreen() {
     setPickerVisible(false);
     const manifest = catalogRef.current?.manifest;
     if (!manifest) return;
-    const channelId = resolvePreferredYoutubeChannel(manifest, lang, nextPreference).channelId;
+    const channelId = resolvePreferredYoutubeChannel(manifest, studyTarget, nextPreference).channelId;
     setTab('home');
     await loadCatalog(channelId, true);
   };
@@ -224,9 +228,28 @@ export default function LingmanVideosScreen() {
     }
   };
 
-  const activeChannel = catalog?.channel ?? legacyChannelSnapshot();
+  const activeChannel = catalog
+    ? catalog.channel.youtubeChannelId === LINGMAN_CHANNEL_ID
+      ? { ...catalog.channel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME }
+      : catalog.channel
+    : legacyChannelSnapshot();
   const stale = !!catalog && Date.now() - Date.parse(catalog.manifest.sourceRefreshedAt) > 26 * 60 * 60_000;
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
+  const pickerManifest = catalog?.manifest ?? {
+    schemaVersion: 1 as const,
+    activeVersion: 'fallback',
+    generatedAt: new Date(0).toISOString(),
+    sourceRefreshedAt: new Date(0).toISOString(),
+    defaultChannelId: activeChannel.id,
+    localeDefaults: {},
+    channels: [{
+      id: activeChannel.id,
+      displayName: activeChannel.displayName,
+      avatarUrl: activeChannel.avatarUrl,
+      languageTags: activeChannel.languageTags,
+      order: activeChannel.order,
+    }],
+  };
 
   const videosList = (videos: YoutubeVideoSnapshot[]) => videos.map((video) => (
     <YoutubeVideoCard key={video.id} video={video} highlighted={video.id === deepLinkedVideoId} onWatch={() => openVideo(video)} onOpenYoutube={() => openExternalUrl(video.watchUrl, video.id)} />
@@ -235,11 +258,11 @@ export default function LingmanVideosScreen() {
   return (
     <ScreenGradient artBackdrop="home">
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
-        <YoutubeChannelHeader channel={activeChannel} onBack={() => safeRouterBack(router, '/(tabs)/home' as any)} onOpenChannels={() => catalog && setPickerVisible(true)} onOpenYoutube={() => openExternalUrl(activeChannel.url)} />
+        <YoutubeChannelHeader channel={activeChannel} onBack={() => safeRouterBack(router, '/(tabs)/home' as any)} onOpenChannels={() => setPickerVisible(true)} onOpenYoutube={() => openExternalUrl(activeChannel.url)} />
         {(catalog || snapshot) && <YoutubeChannelTabs value={tab} onChange={setTab} />}
         {stale && <View testID="youtube-catalog-stale" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="time-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.stale}</Text></View>}
         {issue === 'offline' && <View testID="youtube-catalog-offline" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="cloud-offline-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.offline}</Text></View>}
-        {issue === 'error' && !catalog && !snapshot && <View testID="youtube-catalog-error" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="alert-circle-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.error}</Text></View>}
+        {issue === 'error' && !catalog && !snapshot && <View testID="youtube-catalog-error" style={[styles.notice, styles.errorNotice, { backgroundColor: t.accentBg }]}><View style={styles.errorCopy}><Ionicons name="alert-circle-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.error}</Text></View><TouchableOpacity testID="youtube-catalog-retry" accessibilityRole="button" accessibilityLabel={copy.retry} disabled={refreshing} onPress={() => void loadCatalog(undefined, true)} style={[styles.retryButton, { backgroundColor: t.accent }, refreshing && styles.retryButtonDisabled]}><Text style={styles.retryButtonText}>{copy.retry}</Text></TouchableOpacity></View>}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
         {visibleLoading && !catalog && !snapshot ? (
@@ -255,18 +278,16 @@ export default function LingmanVideosScreen() {
         ) : tab === 'playlists' ? (
           catalog ? <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
             : <ScrollView testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
-        ) : tab === 'all' ? (
-          <FlashList testID="lingman-videos-list" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubeVideoCard video={item} highlighted={item.id === deepLinkedVideoId} onWatch={() => openVideo(item)} onOpenYoutube={() => openExternalUrl(item.watchUrl, item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<View testID="lingman-videos-empty" />} />
         ) : (
           <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
             {hero && <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} />}
-            {catalog?.playlists.length ? <><Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.featuredPlaylists}</Text>{catalog.playlists.slice(0, 6).map((playlist) => <YoutubePlaylistRow key={playlist.id} playlist={playlist} onPress={() => openPlaylist(playlist.id)} />)}</> : null}
             <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.recent}</Text>
             {videosList(allVideos.filter((video) => video.id !== hero?.id))}
+            {!hero && !allVideos.length && <View testID="lingman-videos-empty" />}
           </ScrollView>
         )}
 
-        {catalog && <YoutubeChannelPickerSheet visible={pickerVisible} manifest={catalog.manifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} />}
+        <YoutubeChannelPickerSheet visible={pickerVisible} manifest={pickerManifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} />
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -277,7 +298,12 @@ const styles = StyleSheet.create({
   list: { paddingBottom: 32 },
   sectionTitle: { marginTop: 7, marginBottom: 11, fontSize: 18, fontWeight: '900' },
   notice: { minHeight: 44, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 9, flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 },
+  errorNotice: { alignItems: 'stretch', gap: 10 },
+  errorCopy: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   noticeText: { flex: 1, fontSize: 12, lineHeight: 17, fontWeight: '800' },
+  retryButton: { minHeight: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
+  retryButtonDisabled: { opacity: 0.55 },
+  retryButtonText: { color: '#071015', fontSize: 13, fontWeight: '900' },
   skeletons: { gap: 12 },
   empty: { minHeight: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, gap: 12 },
   emptyText: { fontSize: 14, lineHeight: 20, textAlign: 'center', fontWeight: '800' },

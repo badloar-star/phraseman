@@ -263,30 +263,6 @@ const sounds = [
     addWarmChord(b, 0.62, [48, 55, 60, 64], 0.11, 1.35);
     addShimmer(b, 0.55, 1.5, 0.04, 72);
   }],
-  ['assets/sounds/arena/rank_up.wav', 2.24, b => {
-    addLowPulse(b, 0.02, 0.16, 0.3);
-    addHorn(b, 0.18, 55, 0.15, 0.9);
-    addHorn(b, 0.48, 62, 0.13, 1.1);
-    motif(b, 0.7, 0.16, [74, 81, 86]);
-    addWarmChord(b, 0.72, [50, 57, 62, 66], 0.11, 1.2);
-  }],
-  ['assets/sounds/arena/arena_match_found.wav', 1.14, b => {
-    addLowPulse(b, 0.02, 0.24, 0.28);
-    addHorn(b, 0.12, 50, 0.15, 0.55);
-    addHorn(b, 0.36, 57, 0.12, 0.48);
-    addBell(b, 0.62, 86, 0.12, 0.38);
-  }],
-  ['assets/sounds/arena/arena_result_win.wav', 1.68, b => {
-    addLowPulse(b, 0.02, 0.16, 0.22);
-    motif(b, 0.12, 0.19, [74, 81, 86]);
-    addWarmChord(b, 0.44, [50, 57, 62, 66], 0.12, 0.95);
-    addHorn(b, 0.74, 57, 0.12, 0.7);
-  }],
-  ['assets/sounds/arena/arena_result_loss.wav', 1.08, b => {
-    addString(b, 0.04, 57, 0.11, 0.86);
-    addString(b, 0.16, 53, 0.1, 0.72);
-    addTone(b, { start: 0.25, duration: 0.62, freq: midi(48), amp: 0.08, harmonics: [1, 2], harmonicAmps: [1, 0.2], attack: 0.08, release: 0.25 });
-  }],
 ];
 
 for (const [relativePath, duration, build] of sounds) {
@@ -296,4 +272,3 @@ for (const [relativePath, duration, build] of sounds) {
   writeWav(out, buffer);
   console.log(`generated ${relativePath}`);
 }
-

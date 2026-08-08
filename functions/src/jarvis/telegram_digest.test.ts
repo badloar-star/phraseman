@@ -22,6 +22,18 @@ describe('Jarvis telegram digest — short, honest, safe to render as HTML', () 
     expect(text).toContain('заплатили');
   });
 
+  test('does not offer a recommendation or narrative for insufficient evidence', () => {
+    const text = buildTelegramDigest({
+      decisions: [decision({
+        status: 'insufficient_evidence', actionability: 'evidence_only', recommendation: 'DO_NOT_SHOW', contentHash: 'h1',
+      } as Partial<Decision>)],
+      appTier: 'growth', departmentErrors: [], narrativeByHash: new Map([['h1', 'NARRATIVE_MUST_NOT_SHOW']]),
+    });
+    expect(text).not.toContain('DO_NOT_SHOW');
+    expect(text).not.toContain('NARRATIVE_MUST_NOT_SHOW');
+    expect(text).toMatch(/неполны|evidence/i);
+  });
+
   test('escapes HTML so a stray angle bracket cannot break the message', () => {
     const text = buildTelegramDigest({
       decisions: [decision({ finding: 'Ошибка в <b>уроке</b> & сбой' } as Partial<Decision>)],

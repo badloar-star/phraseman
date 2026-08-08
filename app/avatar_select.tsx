@@ -658,8 +658,7 @@ export default function AvatarSelect() {
       const outcome = await confirmPendingPurchase(purchaseState, async (input) => {
         const prepared = await prepareCustomizationPurchase(input, purchaseDeps);
         return resumeCustomizationPurchase(prepared, purchaseDeps);
-      });
-      dispatchPurchase({ type: 'cancel' });
+      }, () => dispatchPurchase({ type: 'cancel' }));
       const shards = await getShardsBalance();
       const current = confirmedRef.current;
       const next = { ...current, shards };

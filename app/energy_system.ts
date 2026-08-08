@@ -6,6 +6,8 @@ import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
 import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
+import { captureAccountGeneration } from './account_generation';
+import { readGiftAccountValue, removeGiftAccountValue } from './gift_account_storage';
 
 export interface EnergyState {
   current: number;
@@ -28,12 +30,13 @@ const BONUS_ENERGY_KEY = 'energy_gift_bonus';
 /** Активный доп-запас слотов от подарка (0, если бонуса нет или он истёк). Чистит протухший. */
 async function readBonusEnergyExtra(): Promise<number> {
   try {
-    const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
+    const accountToken = captureAccountGeneration();
+    const raw = await readGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
     if (!raw) return 0;
     const b = JSON.parse(raw) as { amount?: number; expiresAt?: number };
     const expiresAt = Number(b?.expiresAt) || 0;
     if (Date.now() >= expiresAt) {
-      await AsyncStorage.removeItem(BONUS_ENERGY_KEY).catch(() => {});
+      await removeGiftAccountValue(BONUS_ENERGY_KEY, accountToken).catch(() => {});
       return 0;
     }
     return Math.max(0, Math.floor(Number(b?.amount) || 0));

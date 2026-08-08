@@ -40,6 +40,14 @@ import os from 'os';
 import { spawnSync, spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
+import {
+  mergePlanAudioUrlEntries,
+  readExistingDownloadToken,
+  reuseExistingVersionedMapUrl,
+  setUploadFailureExitCode,
+  uploadObjectMultipart,
+  versionedDownloadUrl,
+} from './plan_audio_storage_upload_core.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -190,8 +198,8 @@ async function main() {
   // service-account. scripts/_mint_fb_token.mjs exchanges the stored refresh
   // token for a short-lived access token (same proven path as the phrase-audio
   // bucket creation script). Tokens expire ~1h, so we re-mint periodically.
-  let accessToken = null;
-  let tokenMintedAt = 0;
+  let accessToken = String(process.env.FB_TOKEN ?? '').trim() || null;
+  let tokenMintedAt = accessToken ? Date.now() : 0;
   async function getToken() {
     const now = Date.now();
     if (accessToken && now - tokenMintedAt < 45 * 60 * 1000) return accessToken;
@@ -224,74 +232,62 @@ async function main() {
 
   async function objectExists(objectPath) {
     const tok = await getToken();
-    const r = await fetch(
-      `https://storage.googleapis.com/storage/v1/b/${BUCKET}/o/${encodeURIComponent(objectPath)}?fields=metadata`,
-      { headers: { Authorization: `Bearer ${tok}` } },
-    );
-    if (r.status === 404) return null;
-    if (!r.ok) return null;
-    const j = await r.json();
-    return j?.metadata?.firebaseStorageDownloadTokens?.split(',')[0] || true;
-  }
-
-  async function uploadObject(objectPath, srcPath, downloadToken) {
-    const tok = await getToken();
-    const data = fs.readFileSync(srcPath);
-    // GCS multipart-less simple upload + set custom metadata via name+predefined.
-    // We use the upload endpoint then patch metadata (download token + cache).
-    const upUrl =
-      `https://storage.googleapis.com/upload/storage/v1/b/${BUCKET}/o` +
-      `?uploadType=media&name=${encodeURIComponent(objectPath)}`;
-    const up = await fetch(upUrl, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'audio/mpeg' },
-      body: data,
+    return readExistingDownloadToken({
+      objectPath,
+      bucket: BUCKET,
+      accessToken: tok,
     });
-    if (!up.ok) throw new Error(`upload ${up.status}: ${(await up.text()).slice(0, 200)}`);
-    // Patch object metadata: download token (for the tokenized public URL) + cache.
-    const patch = await fetch(
-      `https://storage.googleapis.com/storage/v1/b/${BUCKET}/o/${encodeURIComponent(objectPath)}`,
-      {
-        method: 'PATCH',
-        headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contentType: 'audio/mpeg',
-          cacheControl: 'public, max-age=31536000, immutable',
-          metadata: { firebaseStorageDownloadTokens: downloadToken },
-        }),
-      },
-    );
-    if (!patch.ok) throw new Error(`patch ${patch.status}: ${(await patch.text()).slice(0, 200)}`);
   }
 
+  async function uploadObject(objectPath, data, downloadToken) {
+    const tok = await getToken();
+    await uploadObjectMultipart({
+      objectPath,
+      bucket: BUCKET,
+      accessToken: tok,
+      downloadToken,
+      data,
+    });
+  }
+
+  const existingUrlMap = loadExistingUrlMap();
   const mapEntries = []; // [localUri, url]
+  const failedLocalUris = new Set();
   let done = 0, uploaded = 0, skipped = 0, failed = 0;
 
   async function processClip(clip) {
     const objectPath = storageObjectPath(clip);
-    const token = crypto.randomUUID();
     let srcPath = clip.absPath;
     let tmpPath = null;
     try {
-      if (!FORCE) {
-        const existingToken = await objectExists(objectPath);
-        if (existingToken) {
-          const tk = typeof existingToken === 'string' ? existingToken : token;
-          mapEntries.push([clip.localUri, downloadUrl(objectPath, tk)]);
-          skipped++;
-          return;
-        }
+      const existingToken = await objectExists(objectPath);
+      if (!FORCE && existingToken) {
+        const token = typeof existingToken === 'string' ? existingToken : crypto.randomUUID();
+        const baseUrl = downloadUrl(objectPath, token);
+        const existingVersionedUrl = reuseExistingVersionedMapUrl(
+          existingUrlMap.get(clip.localUri),
+          baseUrl,
+        );
+        mapEntries.push([clip.localUri, existingVersionedUrl ?? baseUrl]);
+        skipped++;
+        return;
       }
+      const token = typeof existingToken === 'string' ? existingToken : crypto.randomUUID();
       if (!NO_REENCODE) {
         tmpPath = path.join(tmpDir, `${crypto.randomBytes(8).toString('hex')}.mp3`);
         await reencode(clip.absPath, tmpPath);
         srcPath = tmpPath;
       }
-      await uploadObject(objectPath, srcPath, token);
-      mapEntries.push([clip.localUri, downloadUrl(objectPath, token)]);
+      const uploadedData = fs.readFileSync(srcPath);
+      await uploadObject(objectPath, uploadedData, token);
+      mapEntries.push([
+        clip.localUri,
+        versionedDownloadUrl(downloadUrl(objectPath, token), uploadedData),
+      ]);
       uploaded++;
     } catch (e) {
       console.error(`FAIL ${clip.localUri}: ${e.message}`);
+      failedLocalUris.add(clip.localUri);
       failed++;
     } finally {
       if (tmpPath) fs.rmSync(tmpPath, { force: true });
@@ -319,8 +315,12 @@ async function main() {
   }
 
   // ── write the generated TS map ─────────────────────────────────────────────
-  const mergedEntries = PARTIAL_UPLOAD ? loadExistingUrlMap() : new Map();
-  for (const [localUri, url] of mapEntries) mergedEntries.set(localUri, url);
+  const mergedEntries = mergePlanAudioUrlEntries({
+    existingEntries: existingUrlMap,
+    completedEntries: mapEntries,
+    failedLocalUris,
+    partialUpload: PARTIAL_UPLOAD,
+  });
   const sortedEntries = [...mergedEntries.entries()].sort((a, b) => a[0].localeCompare(b[0]));
   const body = sortedEntries
     .map(([k, v]) => `  ${JSON.stringify(k)}: ${JSON.stringify(v)},`)
@@ -348,6 +348,7 @@ export function getPlanAudioUrl(localUri: string): string | undefined {
   }
   console.log(`\nWrote ${OUT_MAP_TS} with ${sortedEntries.length} entries.`);
   console.log(`Done. uploaded=${uploaded} skipped=${skipped} failed=${failed}`);
+  setUploadFailureExitCode(failed, process);
 }
 
 main().catch((e) => {

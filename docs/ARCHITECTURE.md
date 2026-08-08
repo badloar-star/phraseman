@@ -38,12 +38,6 @@ This document tracks module responsibilities and dependencies for recently split
   - Uses a priority-based modal queue to avoid overlay collisions.
   - Priority: user warning -> league result -> shard reward -> onboarding -> bug hunt -> tooltips.
 
-## Arena Contracts
-
-- `docs/ARENA_FIRESTORE_CONTRACT.md`
-  - Canonical field contract for `arena_rooms` and `arena_invites`.
-  - Use this file as the single source of truth for client/functions/rules updates.
-
 ## Why This Split
 
 - Reduces cognitive load in large screen files.

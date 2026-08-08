@@ -1,5 +1,4 @@
 export const LEVEL_GIFT_IMAGE_THEMES = [
-  'coral',
   'dark',
   'gold',
   'minimalDark',
@@ -28,7 +27,6 @@ const DEFAULT_THEME: LevelGiftImageTheme = 'minimalDark';
 const DEFAULT_VARIANT: LevelGiftImageVariant = 'common';
 
 const THEME_BASE: Record<LevelGiftImageTheme, [string, string]> = {
-  coral: ['#3B161B', '#130609'],
   dark: ['#12301C', '#041008'],
   gold: ['#3A260C', '#100904'],
   minimalDark: ['#152033', '#04070C'],

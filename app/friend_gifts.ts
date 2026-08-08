@@ -15,21 +15,51 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FUNCTIONS_REGION = 'us-central1';
 const friendGiftSendInFlight = new Map<string, Promise<FriendGiftSendResponse>>();
+const friendGiftSendRetryKeys = new Map<string, {
+  accountScope: string;
+  ambiguous: boolean;
+  idempotencyKey: string;
+}>();
 const friendGiftThanksInFlight = new Map<string, Promise<{ ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }>>();
+const friendGiftThanksRetryKeys = new Map<string, { accountScope: string; idempotencyKey: string }>();
 const FRIEND_GIFT_IN_FLIGHT_MAX = 32;
+const FRIEND_GIFT_PENDING_SEND_KEY_PREFIX = 'friend_gift_pending_send_v1';
+const FRIEND_GIFT_PENDING_THANKS_KEY_PREFIX = 'friend_gift_pending_thanks_v1';
 
 function accountOperationKey(token: AccountGenerationToken): string | null {
   return accountScopeKey(token);
+}
+
+function retryAccountScope(token: AccountGenerationToken): string | null {
+  if (token.phase !== 'active' || !token.stableId) return null;
+  return `uid:${token.stableId}`;
+}
+
+function pendingRetryCountForAccount(accountScope: string): number {
+  let count = 0;
+  friendGiftSendRetryKeys.forEach((entry) => {
+    if (entry.accountScope === accountScope) count += 1;
+  });
+  return count;
+}
+
+function pendingThanksRetryCountForAccount(accountScope: string): number {
+  let count = 0;
+  friendGiftThanksRetryKeys.forEach((entry) => {
+    if (entry.accountScope === accountScope) count += 1;
+  });
+  return count;
 }
 
 function isAccountOperationCurrent(token: AccountGenerationToken, expectedStableId?: string): boolean {
   return isCurrentAccountGeneration(token, expectedStableId);
 }
 
-export type FriendGiftId = 'arena_extra_5' | 'chain_shield_1' | 'xp_boost_2x_24h';
+export type FriendGiftId = 'chain_shield_1' | 'xp_boost_2x_24h';
 
 export type FriendGiftCatalogItem = {
   id: FriendGiftId;
@@ -54,27 +84,6 @@ export type FriendGiftCatalogItem = {
 };
 
 export const FRIEND_GIFT_CATALOG: FriendGiftCatalogItem[] = [
-  {
-    id: 'arena_extra_5',
-    costShards: 5,
-    icon: 'ticket-outline',
-    labelRu: '+5 рейтинг-игр',
-    labelUk: '+5 рейтинг-ігор',
-    labelEs: '+5 partidas Arena',
-    labelPtBr: '+5 partidas ranqueadas',
-    labelVi: '+5 trận xếp hạng',
-    labelId: '+5 game peringkat',
-    labelTr: '+5 sıralama oyunu',
-    labelPl: '+5 gier rankingowych',
-    descRu: 'Дополнительные рейтинговые матчи сегодня',
-    descUk: 'Додаткові рейтингові матчі сьогодні',
-    descEs: 'Partidas clasificadas extra para hoy',
-    descPtBr: 'Partidas ranqueadas extras para hoje',
-    descVi: 'Thêm lượt chơi xếp hạng cho hôm nay',
-    descId: 'Pertandingan peringkat ekstra untuk hari ini',
-    descTr: 'Bugün için ek sıralama maçları',
-    descPl: 'Dodatkowe mecze rankingowe na dziś',
-  },
   {
     id: 'chain_shield_1',
     costShards: 8,
@@ -165,6 +174,23 @@ export type FriendGiftErrorKind =
   | 'network'
   | 'unknown';
 
+export async function consumeFriendChainShield(
+  occurrenceId: string,
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<{ consumed: boolean; daysLeft: number; chainShield: string | null }> {
+  if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) {
+    throw new Error('friend_gift_identity_changed');
+  }
+  const stableId = await prepareFriendGiftSender(accountToken);
+  const fn = callable<
+    { stableId: string; occurrenceId: string },
+    { ok: boolean; consumed: boolean; daysLeft: number; chainShield: string | null }
+  >('friendConsumeChainShield');
+  const response = await withCallableTimeout(fn({ stableId, occurrenceId }), 'friendConsumeChainShield');
+  if (!isAccountOperationCurrent(accountToken, stableId)) throw new Error('friend_gift_identity_changed');
+  return response.data;
+}
+
 function errorText(error: unknown): string {
   const err = error as { code?: unknown; message?: unknown };
   return `${String(err?.code ?? '')} ${String(err?.message ?? error ?? '')}`.toLowerCase();
@@ -196,6 +222,24 @@ export function classifyFriendGiftError(error: unknown): FriendGiftErrorKind {
   return 'unknown';
 }
 
+function isDefinitiveFriendGiftCallableError(error: unknown): boolean {
+  const kind = classifyFriendGiftError(error);
+  if (kind === 'auth'
+    || kind === 'identity_changed'
+    || kind === 'limit'
+    || kind === 'not_enough_shards'
+    || kind === 'not_friends'
+    || kind === 'user_missing'
+    || kind === 'unsupported') return true;
+  const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
+  return code.includes('invalid-argument')
+    || code.includes('failed-precondition')
+    || code.includes('permission-denied')
+    || code.includes('unauthenticated')
+    || code.includes('not-found')
+    || code.includes('resource-exhausted');
+}
+
 function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
   const now = Date.now().toString(36);
   const a = Math.random().toString(36).slice(2, 10);
@@ -210,6 +254,19 @@ function friendGiftSendRequestKey(data: {
 }, accountToken: AccountGenerationToken): string {
   return JSON.stringify({
     account: accountOperationKey(accountToken),
+    friendStableId: data.friendStableId,
+    giftId: data.giftId,
+    senderDisplayName: data.senderDisplayName ?? '',
+  });
+}
+
+function friendGiftSendRetryRequestKey(data: {
+  friendStableId: string;
+  giftId: FriendGiftId;
+  senderDisplayName?: string;
+}, accountScope: string): string {
+  return JSON.stringify({
+    account: accountScope,
     friendStableId: data.friendStableId,
     giftId: data.giftId,
     senderDisplayName: data.senderDisplayName ?? '',
@@ -260,39 +317,74 @@ export async function sendFriendGiftWithShards(data: {
   if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) {
     throw new Error('friend_gift_identity_changed');
   }
+  const retryScope = retryAccountScope(accountToken);
+  if (!retryScope) throw new Error('friend_gift_identity_changed');
   const key = friendGiftSendRequestKey(data, accountToken);
+  const retryKey = friendGiftSendRetryRequestKey(data, retryScope);
   const existing = friendGiftSendInFlight.get(key);
   if (existing) return existing;
   if (friendGiftSendInFlight.size >= FRIEND_GIFT_IN_FLIGHT_MAX) {
     throw new Error('friend_gift_too_many_pending');
   }
+  const persistedKey = `${FRIEND_GIFT_PENDING_SEND_KEY_PREFIX}::${retryKey}`;
+  let authoritativeResponse: FriendGiftSendResponse | null = null;
+  let idempotencyStorageReady = friendGiftSendRetryKeys.has(retryKey);
+  let callableInvoked = false;
 
-  const request = (async () => {
+  const request = Promise.resolve().then(async () => {
+    const retryEntry = friendGiftSendRetryKeys.get(retryKey);
+    let idempotencyKey = retryEntry?.idempotencyKey;
+    if (!idempotencyKey) {
+      idempotencyKey = await AsyncStorage.getItem(persistedKey) ?? undefined;
+      idempotencyStorageReady = true;
+    }
+    if (!isAccountOperationCurrent(accountToken, accountToken.stableId ?? undefined)) {
+      throw new Error('friend_gift_identity_changed');
+    }
+    if (!idempotencyKey) {
+      if (pendingRetryCountForAccount(retryScope) >= FRIEND_GIFT_IN_FLIGHT_MAX) {
+        throw new Error('friend_gift_too_many_pending');
+      }
+      idempotencyKey = makeFriendGiftIdempotencyKey();
+      await AsyncStorage.setItem(persistedKey, idempotencyKey);
+      if (!isAccountOperationCurrent(accountToken, accountToken.stableId ?? undefined)) {
+        throw new Error('friend_gift_identity_changed');
+      }
+      friendGiftSendRetryKeys.set(retryKey, { accountScope: retryScope, ambiguous: false, idempotencyKey });
+    } else if (!retryEntry) {
+      friendGiftSendRetryKeys.set(retryKey, { accountScope: retryScope, ambiguous: true, idempotencyKey });
+    }
+    const stableIdempotencyKey = idempotencyKey;
+
     const senderStableId = await prepareFriendGiftSender(accountToken);
     if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
       throw new Error('friend_gift_identity_changed');
     }
-    const idempotencyKey = makeFriendGiftIdempotencyKey();
     const fn = callable<
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
       FriendGiftSendResponse
     >('friendSendGift');
     // 30с вместо ~70с дефолта; повтор после таймаута безопасен — сервер
     // дедуплицирует по idempotencyKey.
+    callableInvoked = true;
     const res = await withCallableTimeout(
       fn({
         senderStableId,
         friendStableId: data.friendStableId,
         giftId: data.giftId,
         senderDisplayName: data.senderDisplayName ?? '',
-        idempotencyKey,
+        idempotencyKey: stableIdempotencyKey,
       }),
       'friendSendGift',
     );
-    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
-      throw new Error('friend_gift_identity_changed');
-    }
-    if (Number.isFinite(res.data.senderBalanceAfter)) {
+    // From this point the server has authoritatively answered the spend + grant.
+    // Local projections are ancillary: they must neither mutate a newly active
+    // account nor turn this committed operation into a caller-visible failure.
+    authoritativeResponse = res.data;
+    if (
+      isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)
+      && Number.isFinite(res.data.senderBalanceAfter)
+    ) {
       const options = {
         updatedAtMs: res.data.shardsUpdatedAtMs,
         op: 'spend' as const,
@@ -304,29 +396,52 @@ export async function sendFriendGiftWithShards(data: {
           accountToken,
           senderStableId,
           options,
-        );
+        ).catch(() => {});
       } else {
-        await replaceShardsBalanceLocal(res.data.senderBalanceAfter, options);
+        await replaceShardsBalanceLocal(res.data.senderBalanceAfter, options).catch(() => {});
       }
     }
-    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
-      throw new Error('friend_gift_identity_changed');
-    }
-    if (Number.isFinite(res.data.costShards) && res.data.costShards > 0) {
+    if (
+      isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)
+      && Number.isFinite(res.data.costShards)
+      && res.data.costShards > 0
+    ) {
       // The server gift is already authoritative at this point. Local counters are
       // ancillary and must never turn that success into a UI rollback.
       await bumpLifetimeShardsSpent(res.data.costShards, accountToken).catch(() => {});
     }
-    const { checkAchievements } = await import('./achievements');
-    if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
-      throw new Error('friend_gift_identity_changed');
+    if (isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
+      const achievements = await import('./achievements').catch(() => null);
+      if (
+        achievements
+        && isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)
+      ) {
+        await achievements.checkAchievements({ type: 'gift_sent' }, accountToken).catch(() => []);
+      }
     }
-    await checkAchievements({ type: 'gift_sent' }, accountToken).catch(() => []);
-    if (!isAccountOperationCurrent(accountToken, senderStableId)) {
-      throw new Error('friend_gift_identity_changed');
-    }
+    friendGiftSendRetryKeys.delete(retryKey);
+    await AsyncStorage.removeItem(persistedKey).catch(() => {});
     return res.data;
-  })().finally(() => {
+  }).catch(async (error) => {
+    if (authoritativeResponse) {
+      // The callable response is the commit boundary. A stale generation or a
+      // failed local projection must not make callers retry an already charged
+      // send. Surface the receipt and retire its durable retry key instead.
+      friendGiftSendRetryKeys.delete(retryKey);
+      await AsyncStorage.removeItem(persistedKey).catch(() => {});
+      return authoritativeResponse;
+    }
+    const errorKind = classifyFriendGiftError(error);
+    const retryEntry = friendGiftSendRetryKeys.get(retryKey);
+    const ambiguousCallableOutcome = callableInvoked && (errorKind === 'network' || errorKind === 'unknown');
+    if (ambiguousCallableOutcome && retryEntry) retryEntry.ambiguous = true;
+    const preserveAmbiguousKey = ambiguousCallableOutcome || (!callableInvoked && retryEntry?.ambiguous === true);
+    if (idempotencyStorageReady && !preserveAmbiguousKey) {
+      friendGiftSendRetryKeys.delete(retryKey);
+      await AsyncStorage.removeItem(persistedKey).catch(() => {});
+    }
+    throw error;
+  }).finally(() => {
     friendGiftSendInFlight.delete(key);
   });
 
@@ -347,6 +462,19 @@ function friendGiftThanksRequestKey(data: {
   });
 }
 
+function friendGiftThanksRetryRequestKey(data: {
+  friendStableId: string;
+  giftId: FriendGiftId;
+  senderDisplayName?: string;
+}, accountScope: string): string {
+  return JSON.stringify({
+    account: accountScope,
+    friendStableId: data.friendStableId,
+    giftId: data.giftId,
+    senderDisplayName: data.senderDisplayName ?? '',
+  });
+}
+
 export async function sendFriendGiftThanks(data: {
   friendStableId: string;
   giftId: FriendGiftId;
@@ -359,23 +487,52 @@ export async function sendFriendGiftThanks(data: {
   if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) {
     throw new Error('friend_gift_identity_changed');
   }
+  const retryScope = retryAccountScope(accountToken);
+  if (!retryScope) throw new Error('friend_gift_identity_changed');
   const key = friendGiftThanksRequestKey(data, accountToken);
+  const retryKey = friendGiftThanksRetryRequestKey(data, retryScope);
   const existing = friendGiftThanksInFlight.get(key);
   if (existing) return existing;
   if (friendGiftThanksInFlight.size >= FRIEND_GIFT_IN_FLIGHT_MAX) {
     throw new Error('friend_gift_too_many_pending');
   }
 
+  const persistedKey = `${FRIEND_GIFT_PENDING_THANKS_KEY_PREFIX}::${retryKey}`;
+  let idempotencyStorageReady = friendGiftThanksRetryKeys.has(retryKey);
+  let callableInvoked = false;
   const request = (async () => {
+    const retryEntry = friendGiftThanksRetryKeys.get(retryKey);
+    let idempotencyKey = retryEntry?.idempotencyKey;
+    if (!idempotencyKey) {
+      idempotencyKey = await AsyncStorage.getItem(persistedKey) ?? undefined;
+      idempotencyStorageReady = true;
+    }
+    if (!isAccountOperationCurrent(accountToken, accountToken.stableId ?? undefined)) {
+      throw new Error('friend_gift_identity_changed');
+    }
+    if (!idempotencyKey) {
+      if (pendingThanksRetryCountForAccount(retryScope) >= FRIEND_GIFT_IN_FLIGHT_MAX) {
+        throw new Error('friend_gift_too_many_pending');
+      }
+      idempotencyKey = makeFriendGiftIdempotencyKey('fgt');
+      await AsyncStorage.setItem(persistedKey, idempotencyKey);
+      idempotencyStorageReady = true;
+      if (!isAccountOperationCurrent(accountToken, accountToken.stableId ?? undefined)) {
+        throw new Error('friend_gift_identity_changed');
+      }
+      friendGiftThanksRetryKeys.set(retryKey, { accountScope: retryScope, idempotencyKey });
+    } else if (!retryEntry) {
+      friendGiftThanksRetryKeys.set(retryKey, { accountScope: retryScope, idempotencyKey });
+    }
     const senderStableId = await prepareFriendGiftSender(accountToken);
     if (!isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
       throw new Error('friend_gift_identity_changed');
     }
-    const idempotencyKey = makeFriendGiftIdempotencyKey('fgt');
     const fn = callable<
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
       { ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }
     >('friendThankGift');
+    callableInvoked = true;
     const res = await withCallableTimeout(
       fn({
         senderStableId,
@@ -386,11 +543,17 @@ export async function sendFriendGiftThanks(data: {
       }),
       'friendThankGift',
     );
-    if (!isAccountOperationCurrent(accountToken, senderStableId)) {
-      throw new Error('friend_gift_identity_changed');
-    }
+    friendGiftThanksRetryKeys.delete(retryKey);
+    await AsyncStorage.removeItem(persistedKey).catch(() => {});
     return res.data;
-  })().finally(() => {
+  })().catch(async (error) => {
+    const preserveAmbiguousKey = callableInvoked && !isDefinitiveFriendGiftCallableError(error);
+    if (idempotencyStorageReady && !preserveAmbiguousKey) {
+      friendGiftThanksRetryKeys.delete(retryKey);
+      await AsyncStorage.removeItem(persistedKey).catch(() => {});
+    }
+    throw error;
+  }).finally(() => {
     friendGiftThanksInFlight.delete(key);
   });
 

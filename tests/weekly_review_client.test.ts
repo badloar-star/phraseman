@@ -11,7 +11,7 @@ const snapshot: WeeklyReviewSnapshot = {
   status: 'ready', signalCount: 8, progressCurrent: 8, progressRequired: 5,
   mistakeCount7d: 8, mistakeCount30d: 12, uniqueMistakePhrases: 6,
   activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5,
-  weekXp: 120, weekMinutes: 40, lessons7d: 2, quizzes7d: 1, reviews7d: 3, arena7d: 0,
+  weekXp: 120, weekMinutes: 40, lessons7d: 2, reviews7d: 3,
   dueWords: 4, duePhrases: 2, overdue: 1, totalDue: 6, totalTracked: 20,
   sourceCoverage: { ready: 3, failed: 0, total: 3, readySources: ['mistakes', 'activity', 'trainer'], failedSources: [] },
 };
@@ -26,7 +26,7 @@ const briefing: WeeklyReviewBriefingV2 = {
     strongCategories: [], recoveredCategories: [], weakLessons: [], topMistakePhrases: [],
   },
   practice: { dueWords: 4, duePhrases: 2, overdue: 1, totalTracked: 20, completed7d: 5, accuracy7d: null, accuracyDelta: null },
-  effort: { activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5, weekXp: 120, weekMinutes: 40, lessons7d: 2, quizzes7d: 1, reviews7d: 3, arena7d: 0 },
+  effort: { activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5, weekXp: 120, weekMinutes: 40, lessons7d: 2, reviews7d: 3 },
   recommendations: [{ recommendationId: 'due:words', actionKind: 'repeat_due_words', label: 'Повторить слова', routePayload: { queue: 'words' } }],
   evidenceRegistry: { 'practice.dueWords': 4 },
   coverage: snapshot.sourceCoverage,

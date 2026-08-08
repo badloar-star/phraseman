@@ -22,6 +22,10 @@ const MODAL = fs.readFileSync(
   path.join(__dirname, '..', 'components', 'LevelGiftModal.tsx'),
   'utf8',
 );
+const DUAL_MODAL = fs.readFileSync(
+  path.join(__dirname, '..', 'components', 'LevelGiftDualModal.tsx'),
+  'utf8',
+);
 
 /** Тело обработчика главной кнопки модалки (testID level-gift-claim). */
 function claimButtonHandler(): string {
@@ -87,6 +91,16 @@ describe('применение переживает закрытие модал�
     const at = MODAL.indexOf('openingAccountTokenRef.current = ');
     // Присваивание живёт в ветке «модалка только что открылась».
     expect(MODAL.slice(Math.max(0, at - 400), at)).toContain('if (!justOpened) return;');
+  });
+
+  test('после фонового результата пользователь получает явный success или error', () => {
+    expect(MODAL).toContain("messageRu: 'Подарок применён.'");
+    expect(MODAL).toContain("messageRu: 'Подарок не применился и остался в инвентаре.'");
+  });
+
+  test('двойной подарок также подтверждает полный или частичный результат', () => {
+    expect(DUAL_MODAL).toContain("messageRu: 'Оба подарка применены.'");
+    expect(DUAL_MODAL).toContain("messageRu: 'Один подарок применён, второй остался в инвентаре.'");
   });
 });
 

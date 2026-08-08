@@ -669,7 +669,7 @@ export default function PackOpeningScreen() {
 
       {/* Сітка карточок */}
       <BouncyScrollView
-        decelerationRate="fast"
+        decelerationRate="normal"
         contentContainerStyle={{
           paddingHorizontal: H_PADDING,
           paddingTop: 12,

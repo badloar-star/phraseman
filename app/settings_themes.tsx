@@ -27,11 +27,11 @@ import {
   AURORA,
   VOLT,
   DARK,
-  CORAL,
   GOLD,
 } from '../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
+import { isThemePlusOnly, isThemeRewardOnly } from './theme_access_policy';
 
 // зачем: «Примерочная» (решение владельца 2026-08-02) — каждая плашка рисуется
 // НАСТОЯЩИМИ токенами своей темы (никаких ручных дублей цветов: они уже
@@ -48,8 +48,6 @@ type ThemeOption = {
   labelId: string;
   labelTr: string;
   labelPl: string;
-  premiumOnly?: boolean;
-  rewardOnly?: boolean;
 };
 
 // ENABLE_DEV_TOOLS уже гасится `!IS_STORE_RELEASE` — в стор-сборке премиум/наградные
@@ -61,13 +59,12 @@ const THEME_OPTIONS: ThemeOption[] = [
   // но у «дедушек» (жили на ней бесплатно) остаётся открытой.
   { mode: 'indigo', labelRU: 'Индиго', labelUK: 'Індиго', labelES: 'Índigo', labelPtBr: 'Índigo', labelVi: 'Chàm', labelId: 'Indigo', labelTr: 'İndigo', labelPl: 'Indygo' },
   { mode: 'sagePorcelain', labelRU: 'Нефрит', labelUK: 'Нефрит', labelES: 'Jade', labelPtBr: 'Jade', labelVi: 'Ngọc bích', labelId: 'Giok', labelTr: 'Yeşim', labelPl: 'Jadeit' },
-  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', premiumOnly: true },
-  { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', premiumOnly: true },
-  { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', premiumOnly: true },
-  { mode: 'volt', labelRU: 'Лайм', labelUK: 'Лайм', labelES: 'Lima', labelPtBr: 'Lima', labelVi: 'Chanh', labelId: 'Lime', labelTr: 'Limon', labelPl: 'Limetka', premiumOnly: true },
-  { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', premiumOnly: true },
-  { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', premiumOnly: true },
-  { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto', rewardOnly: true },
+  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ' },
+  { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn' },
+  { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza' },
+  { mode: 'volt', labelRU: 'Лайм', labelUK: 'Лайм', labelES: 'Lima', labelPtBr: 'Lima', labelVi: 'Chanh', labelId: 'Lime', labelTr: 'Limon', labelPl: 'Limetka' },
+  { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las' },
+  { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto' },
 ];
 
 // Единственный источник цветов плашек — реальные палитры тем.
@@ -79,7 +76,6 @@ const PALETTES = {
   aurora: AURORA,
   volt: VOLT,
   dark: DARK,
-  coral: CORAL,
   gold: GOLD,
 } as const;
 
@@ -95,7 +91,6 @@ const THEME_ICONS: Record<PickerThemeMode, number> = {
   aurora: require('../assets/theme-icons/aurora.png'),
   volt: require('../assets/theme-icons/volt.png'),
   dark: require('../assets/theme-icons/dark.png'),
-  coral: require('../assets/theme-icons/coral.png'),
   gold: require('../assets/theme-icons/gold.png'),
 };
 
@@ -205,9 +200,8 @@ export default function SettingsThemes() {
 
   const candidate: PickerThemeMode = (previewThemeMode ?? appliedThemeMode) as PickerThemeMode;
   const candidatePalette: Theme = PALETTES[candidate] ?? PALETTES.indigo;
-  const candidateOption = THEME_OPTIONS.find(o => o.mode === candidate);
   const candidateLocked =
-    !!candidateOption?.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS &&
+    isThemePlusOnly(candidate) && !isPremium && !DEV_THEME_UNLOCKS &&
     !(candidate === 'midnight' && isMidnightGrandfathered);
   const candidateApplied = candidate === appliedThemeMode;
 
@@ -264,10 +258,10 @@ export default function SettingsThemes() {
           {/* зачем: владелец попросил КРУПНЫЕ квадраты — боковой паддинг экрана
               уменьшен (GRID_SCREEN_PAD), чтобы отдать эту ширину самим плиткам,
               а не воздуху по краям (3 в ряд остаются, но каждая заметно больше). */}
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
             <View style={styles.grid}>
-              {THEME_OPTIONS.filter(item => !item.rewardOnly || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map(item => {
-                const locked = !!item.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS
+              {THEME_OPTIONS.filter(item => !isThemeRewardOnly(item.mode) || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map(item => {
+                const locked = isThemePlusOnly(item.mode) && !isPremium && !DEV_THEME_UNLOCKS
                   && !(item.mode === 'midnight' && isMidnightGrandfathered);
                 return (
                   <ThemeTile

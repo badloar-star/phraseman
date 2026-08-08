@@ -19,7 +19,6 @@ const THEME_BACKGROUND = {
 
 const HOME_TARGETS = [
   ['lessons', 384, { width: 326, height: 326, centerX: 192, centerY: 192 }],
-  ['quizzes', 384, { width: 266, height: 326, centerX: 192, centerY: 192 }],
   ['cards', 384, { width: 298, height: 326, centerX: 192, centerY: 192 }],
   ['daily-tasks', 384, { width: 302, height: 326, centerX: 192, centerY: 192 }],
   ['league', 384, { width: 240, height: 326, centerX: 191, centerY: 192 }],
@@ -27,22 +26,7 @@ const HOME_TARGETS = [
   ['practice', 384, { width: 304, height: 326, centerX: 192, centerY: 192 }],
   ['exam', 384, { width: 302, height: 326, centerX: 192, centerY: 192 }],
   ['shop', 384, { width: 302, height: 326, centerX: 192, centerY: 192 }],
-  ['arena', 384, { width: 240, height: 326, centerX: 192, centerY: 192 }],
   ['hero-map', 384, { width: 302, height: 326, centerX: 192, centerY: 192 }],
-];
-
-const QUIZ_LEVEL_TARGETS = [
-  ['quiz-logo-easy', 'assets/images/quizzes/level_logos/quiz-logo-easy-{theme}.webp', 260, 0.78],
-  ['quiz-logo-medium', 'assets/images/quizzes/level_logos/quiz-logo-medium-{theme}.webp', 260, 0.78],
-  ['quiz-logo-hard', 'assets/images/quizzes/level_logos/quiz-logo-hard-{theme}.webp', 260, 0.78],
-];
-
-const QUIZ_THEME_TARGETS = [
-  ['quiz-theme-kitchen-and-cooking', 'assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-{theme}.webp', 260, 0.78],
-  ['quiz-theme-home-and-rooms', 'assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-{theme}.webp', 260, 0.78],
-  ['quiz-theme-at-the-doctor', 'assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-{theme}.webp', 260, 0.78],
-  ['quiz-theme-body-and-health', 'assets/images/quizzes/theme_logos/quiz-theme-body-and-health-{theme}.webp', 260, 0.78],
-  ['quiz-theme-shopping-and-money', 'assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-{theme}.webp', 260, 0.78],
 ];
 
 const TRAINER_TARGETS = [
@@ -53,7 +37,6 @@ const TRAINER_TARGETS = [
 
 const REWARD_TARGETS = [
   ['league-chest', 'assets/images/league_bonus/{theme}-chest.webp', 512, 0.72],
-  ['medal', 'assets/images/quizzes/medals/quiz-completion-medal-{theme}-cutout.webp', 512, 0.72],
   ['streak-fire', 'assets/images/streak_icons/{theme}/streak-fire-{theme}-100.webp', 80, 0.84],
   ['streak-freeze', 'assets/images/streak_icons/{theme}/streak-freeze-{theme}.webp', 80, 0.84],
   ['shard-single', 'assets/images/shards/{theme}-single.webp', 256, 0.72],
@@ -82,8 +65,6 @@ function buildTargets() {
     }
 
     for (const [key, output, size, fill] of [
-      ...QUIZ_LEVEL_TARGETS,
-      ...QUIZ_THEME_TARGETS,
       ...TRAINER_TARGETS,
       ...REWARD_TARGETS,
     ]) {

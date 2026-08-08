@@ -147,7 +147,7 @@ export default function PaywallA() {
               прижимает CTA вниз); на маленьких — мягко скроллится. */}
           <ScrollView
             showsVerticalScrollIndicator={false}
-            decelerationRate="fast"
+            decelerationRate="normal"
             contentContainerStyle={[S.scroll, isOnboarding && S.scrollOnboardingStickyPad]}
             onLayout={isOnboarding ? sticky.onViewportLayout : undefined}
             onScroll={isOnboarding ? sticky.onScroll : undefined}

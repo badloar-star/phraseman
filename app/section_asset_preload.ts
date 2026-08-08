@@ -35,7 +35,7 @@ function sectionAssetsForTheme(themeMode: ThemeMode): ImageSourcePropType[] {
     menu.lesson, menu.cards, menu.dayTasks, menu.league, menu.test,
     menu.practice, menu.dialogs, menu.exam, menu.shop, menu.heroMap,
     // Плитки внутри раздела «Карточки».
-    ...(hub ? [hub.saved, hub.custom, hub.training, hub.audio, hub.arena, hub.collection] : []),
+    ...(hub ? [hub.saved, hub.custom, hub.training, hub.audio, hub.collection] : []),
   ];
 }
 

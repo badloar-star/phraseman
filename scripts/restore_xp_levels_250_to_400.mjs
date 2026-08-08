@@ -123,7 +123,6 @@ async function main() {
 
   let userWrites = 0;
   let leaderboardWrites = 0;
-  let arenaWrites = 0;
   let leagueGroupWrites = 0;
 
   for (const batchItems of chunk([...affected.values()], 400)) {
@@ -152,15 +151,6 @@ async function main() {
       batch.set(lbRef, lbPatch, { merge: true });
       leaderboardWrites += 1;
 
-      const arenaIds = [...new Set([item.uid, item.firebaseAuthUid].filter(Boolean))];
-      for (const arenaId of arenaIds) {
-        batch.set(db.collection('arena_profiles').doc(arenaId), {
-          courseTotalXp: item.targetXP,
-          updatedAt: FieldValue.serverTimestamp(),
-          xpLevelRestore250To400At: FieldValue.serverTimestamp(),
-        }, { merge: true });
-        arenaWrites += 1;
-      }
     }
     await batch.commit();
   }
@@ -205,7 +195,7 @@ async function main() {
     if (count > 0) await batch.commit();
   }
 
-  console.log(`[xp-restore] wrote users=${userWrites}, leaderboard=${leaderboardWrites}, arenaProfiles=${arenaWrites}, leagueGroups=${leagueGroupWrites}`);
+  console.log(`[xp-restore] wrote users=${userWrites}, leaderboard=${leaderboardWrites}, leagueGroups=${leagueGroupWrites}`);
 }
 
 main().catch((error) => {

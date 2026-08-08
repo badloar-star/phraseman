@@ -15,6 +15,7 @@ import {
   LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
   LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY,
   LEVEL_UP_REWARD_RETRY_KEY,
+  LEVEL_UP_SHOWN_LEVELS_KEY,
   PENDING_LEVEL_UP_QUEUE_KEY,
   reconcileLevelUpRewards,
   repairPendingLevelUpRewards,
@@ -269,6 +270,24 @@ test('acknowledge and reconcile share one lock without losing or resurrecting le
   ]);
 
   expect(readLevels(PENDING_LEVEL_UP_QUEUE_KEY)).toEqual([6]);
+});
+
+test('never queues a level again after that level modal was acknowledged', async () => {
+  entitlement.mockResolvedValue(result('already_pending', 2));
+
+  await reconcileLevelUpRewards(50, 150);
+  expect(readLevels(PENDING_LEVEL_UP_QUEUE_KEY)).toEqual([2]);
+
+  await acknowledgePendingLevelUpShown(2);
+  expect(readLevels(PENDING_LEVEL_UP_QUEUE_KEY)).toEqual([]);
+  expect(readLevels(LEVEL_UP_SHOWN_LEVELS_KEY)).toEqual([2]);
+  __levelUpRewardReconcilerTestHooks.reset();
+
+  // Models an app restart, then a temporary XP rollback followed by the same crossing again.
+  await reconcileLevelUpRewards(50, 150);
+
+  expect(readLevels(PENDING_LEVEL_UP_QUEUE_KEY)).toEqual([]);
+  expect(emitAppEvent).toHaveBeenCalledTimes(1);
 });
 
 test('does nothing when XP does not cross a level or moves backwards', async () => {

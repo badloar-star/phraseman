@@ -101,8 +101,8 @@ export function useCardPackShardPaywall(args: {
     try {
       const r =
         pw.mode === 'voucher'
-          ? await redeemPackGiftVoucher(pw.pack, studyTarget)
-          : await purchaseCardPackWithShards(pw.pack, studyTarget);
+          ? await redeemPackGiftVoucher(pw.pack, studyTarget, lang)
+          : await purchaseCardPackWithShards(pw.pack, studyTarget, lang);
       if (r === 'ok') {
         /** Не await: `shards_shop` тягне Firestore у `loadCardMarket` — зависший `.get()` вічно тримає «Подождите…». */
         await Promise.race([
@@ -119,11 +119,24 @@ export function useCardPackShardPaywall(args: {
         } else {
           setPaywall(null);
         }
+      } else if (r === 'already_owned') {
+        // Ownership can change while this modal is open (another screen/device or
+        // the initial AsyncStorage hydration). Refresh and close instead of making
+        // the confirmed tap look like a no-op.
+        await Promise.race([
+          Promise.resolve(onAfterPurchase()).catch(() => {}),
+          new Promise<void>((resolve) => setTimeout(resolve, 900)),
+        ]);
+        setPaywall(null);
       } else if (r === 'insufficient') {
         // Локальный баланс был завышен (рассинхрон с облаком). spendShards уже
         // выровнял его — переключаем модалку в режим «не хватает» вместо тихого
         // отказа, чтобы юзер не жал «Купить» по кругу.
         setPaywall((prev) => (prev ? { ...prev, mode: 'insufficient' } : prev));
+      } else if (r === 'spend_failed' || r === 'source_gated') {
+        // Both helpers already emit the visible failure. Close the stale modal so
+        // the same confirm button cannot silently repeat a terminal result.
+        setPaywall(null);
       } else if (r === 'no_voucher' || r === 'redeem_failed') {
         // The voucher expired or the server could not confirm it. The redeem helper
         // emits the visible error; close the stale confirmation instead of leaving a
@@ -135,7 +148,7 @@ export function useCardPackShardPaywall(args: {
       setPurchasing(false);
       onPurchaseEnd?.();
     }
-  }, [onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
+  }, [lang, onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
 
   const onGoToShards = useCallback(() => {
     navigateAfterModalClose(

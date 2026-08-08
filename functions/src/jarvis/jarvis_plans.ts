@@ -1,4 +1,8 @@
 import type { Decision, Department } from './decision';
+import {
+  buildInternalFollowUpTask,
+  type JarvisInternalFollowUpTask,
+} from './jarvis_follow_up_tasks';
 
 /**
  * Раздел «Планы» — постоянный архив всех находок Джарвиса.
@@ -36,6 +40,8 @@ export interface JarvisPlan {
   readonly confidence: number;
   /** Развёрнутое, понятное описание от LLM-обогатителя. null — ещё не сгенерировано. */
   readonly narrative: string | null;
+  /** Optional for backward compatibility with plans written before safe follow-ups existed. */
+  readonly followUpTask?: JarvisInternalFollowUpTask;
   readonly status: JarvisPlanLifecycleStatus;
   readonly createdAtMs: number;
   readonly updatedAtMs: number;
@@ -53,7 +59,14 @@ export function buildPlanFromDecision(
   decision: Decision,
   existing: JarvisPlan | null,
   nowMs: number,
+  options: { readonly followUpTasksEnabled?: boolean } = {},
 ): JarvisPlan {
+  const followUpTask = buildInternalFollowUpTask({
+    decision,
+    existing: existing?.followUpTask ?? null,
+    nowMs,
+    enabled: options.followUpTasksEnabled === true,
+  });
   return Object.freeze({
     id: decision.contentHash,
     contentHash: decision.contentHash,
@@ -69,6 +82,7 @@ export function buildPlanFromDecision(
     rollback: decision.rollback,
     confidence: decision.confidence,
     narrative: existing?.narrative ?? null,
+    ...(followUpTask ? { followUpTask } : {}),
     // зачем сохранять статус существующего плана: владелец уже мог отметить
     // его решённым/архивным — повторный прогон крона с идентичной находкой
     // не должен тихо вернуть план в открытые.

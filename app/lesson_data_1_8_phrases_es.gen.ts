@@ -7561,10 +7561,9 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: '.', correct: '.', distractors: ['Él', 'cumple', 'años', 'en', 'octubre'], category: 'puntuacion' },
     ],
     wordsEn: [
-      { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'the'] },
-      { text: 'has', correct: 'has', distractors: ['have', 'had', 'is', 'does', 'was'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'his', 'one', 'any'] },
+      { text: 'His', correct: 'His', distractors: ['Her', 'Their', 'Our', 'The', 'He'] },
       { text: 'birthday', correct: 'birthday', distractors: ['birthdays', 'holiday', 'party', 'birdsong', 'birth'] },
+      { text: 'is', correct: 'is', distractors: ['are', 'was', 'has', 'does', 'be'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'October', correct: 'October', distractors: ['November', 'September', 'December', 'octopus', 'January'] },
     ],

@@ -15,7 +15,7 @@ import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, AppState, Easing, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Easing, InteractionManager, LogBox, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -25,15 +25,29 @@ import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
-import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
-import { loadUnclaimedDualGifts, loadUnclaimedGifts, type PremPair } from './level_gift_inventory';
+import LevelUpThresholdModal from '../components/LevelUpThresholdModal';
+import {
+  loadUnclaimedDualGifts,
+  loadUnclaimedGifts,
+  saveUnclaimedDualGift,
+  saveUnclaimedGift,
+  type PremPair,
+} from './level_gift_inventory';
 import {
   acknowledgePendingLevelUpShown,
   repairPendingLevelUpRewards,
   retryPendingLevelUpRewards,
 } from './level_up_reward_reconciler';
+import {
+  acknowledgePendingLevelSpinLevelUp,
+  loadPendingLevelSpinLevelUps,
+} from './level_spin_level_up_queue';
+import {
+  drainPendingLevelUpBonusIntents,
+  persistLevelUpBonusIntent,
+} from './level_up_bonus_outbox';
 import {
   captureAccountGeneration,
   subscribeAccountGeneration,
@@ -46,7 +60,7 @@ import {
 } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
 import { getStableId } from './stable_id';
-import type { GiftDef } from './level_gift_system';
+import { acquireLevelGiftDisplay, reserveLevelGiftForDisplay, type GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
 import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from './personal_plan_activation';
@@ -63,7 +77,7 @@ import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
-import { getLevelFromXP, getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
+import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { getInstalledAppVersion } from './app_version';
@@ -171,15 +185,6 @@ import {
   scheduleTrackedAnimatedStateUpdate,
   type ScheduledAnimatedStateUpdate,
 } from '../components/animationScheduling';
-import { GOLD_GRADIENTS, GOLD_RICH, goldShadow } from '../constants/goldTheme';
-import GoldBevel from '../components/GoldBevel';
-import {
-  RewardModalPanelBackdrop,
-  rewardModalAccentColor,
-  rewardModalPanelBorder,
-  rewardModalPanelColors,
-  rewardModalSoftSurface,
-} from '../components/RewardModalBackdrop';
 import {
   checkLeagueBonusAvailability,
   buildLeagueBonusSeenKey,
@@ -189,7 +194,7 @@ import {
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
 import { scheduleCoalescedForegroundTask } from './app_resume_policy';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE, SETTINGS_TESTERS_ROUTE_NAME } from '../constants/devRoutes';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
@@ -603,8 +608,6 @@ const LEVELUP_CONGRATS_UK = [
   'Рівень отримано заслужено — ти працював!',
   'Прогрес видно неозброєним оком! 💪',
 ];
-const LEVELUP_BTN_RU = ['Отлично!', 'Вперёд!', 'Продолжаем!', 'Жму!', 'Понял, спасибо!', 'Ура! 🎉'];
-const LEVELUP_BTN_UK = ['Чудово!', 'Вперед!', 'Продовжуємо!', 'Тисну!', 'Зрозумів, дякую!', 'Ура! 🎉'];
 const LEVELUP_CONGRATS_ES = [
   '¡Enhorabuena! ¡Tu progreso impresiona!',
   '¡No paras! Sigue así.',
@@ -615,7 +618,10 @@ const LEVELUP_CONGRATS_ES = [
   'Te lo has ganado con la práctica.',
   '¡El progreso se nota a simple vista! 💪',
 ];
-const LEVELUP_BTN_ES = ['¡Genial!', '¡Vamos!', '¡Continuamos!', '¡Listo!', '¡Entendido, gracias!', '¡Hurra! 🎉'];
+
+function levelSpinCreditId(level: number): string {
+  return `level_spin_v1_${String(level).padStart(3, '0')}`;
+}
 
 async function preloadVectorIconFonts() {
   await Promise.all([
@@ -778,15 +784,15 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
 
 // ── Глобальная очередь повышений уровня — показывает модалки независимо от экрана ──
 function GlobalLevelUpHandler() {
-  const { theme: t, isDark, f, themeMode } = useTheme();
+  const { isDark, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
+  const wasLevelSpinRouteRef = useRef(pathname === '/level_reward_spin');
   const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
-  const isGoldTheme = themeMode === 'gold';
 
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [showGiftModal, setShowGiftModal] = useState(false);
@@ -798,6 +804,7 @@ function GlobalLevelUpHandler() {
   const [levelUpTransitioning, setLevelUpTransitioning] = useState(false);
   /** Премиум: два сундука (F2P + premium) вместо одного */
   const [levelGiftDualMode, setLevelGiftDualMode] = useState(false);
+  const [currentIsSpin, setCurrentIsSpin] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
   const [userName, setUserName] = useState('');
@@ -812,6 +819,7 @@ function GlobalLevelUpHandler() {
   const queueRef    = useRef<number[]>([]);
   const singleGiftsRef = useRef<Record<number, GiftDef>>({});
   const dualGiftsRef = useRef<Record<number, PremPair>>({});
+  const spinLevelsRef = useRef<Set<number>>(new Set());
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
   const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -849,6 +857,7 @@ function GlobalLevelUpHandler() {
     queueRef.current = [];
     singleGiftsRef.current = {};
     dualGiftsRef.current = {};
+    spinLevelsRef.current = new Set();
     queuedAccountTokenRef.current = null;
     modalAccountTokenRef.current = null;
     modalLevelRef.current = 0;
@@ -858,6 +867,7 @@ function GlobalLevelUpHandler() {
     setShowGiftModal(false);
     setLevelUpTransitioning(false);
     setLevelGiftDualMode(false);
+    setCurrentIsSpin(false);
     setGiftPreRolled(undefined);
     setGiftPreRolledPair(undefined);
     setCurrentLevel(0);
@@ -865,18 +875,104 @@ function GlobalLevelUpHandler() {
     setUserName('');
   }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
 
-  const showNext = useCallback(() => {
+  const showNext = useCallback(async () => {
     const accountToken = queuedAccountTokenRef.current;
     if (!isLevelUpAccountTokenCurrent(accountToken)) {
       resetLevelUpChainForAccountChange();
       return;
     }
     if (queueRef.current.length === 0) { isShowingRef.current = false; return; }
+    if (pathnameRef.current === '/level_reward_spin') { isShowingRef.current = false; return; }
     dismissingLevelUpRef.current = false;
     setLevelUpTransitioning(false);
     const lvl = queueRef.current[0];
-    const savedPair = dualGiftsRef.current[lvl];
-    const savedGift = singleGiftsRef.current[lvl];
+    if (spinLevelsRef.current.has(lvl)) {
+      setGiftPreRolledPair(undefined);
+      setGiftPreRolled(undefined);
+      setLevelGiftDualMode(false);
+      setCurrentIsSpin(true);
+      modalAccountTokenRef.current = accountToken;
+      modalLevelRef.current = lvl;
+      setCurrentLevel(lvl);
+      setShowLevelUp(true);
+      levelUpOpacity.setValue(0);
+      levelUpTranslateY.setValue(40);
+      levelUpGlow.setValue(0);
+      Animated.parallel([
+        Animated.spring(levelUpOpacity, { toValue: 1, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
+        Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
+        Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
+      ]).start();
+      return;
+    }
+    setCurrentIsSpin(false);
+    let savedPair = dualGiftsRef.current[lvl];
+    let savedGift = singleGiftsRef.current[lvl];
+    // Refresh every receipt before display. Besides reconnecting offline rolls, this
+    // lets the server migrate stale/retired rewards to the canonical safe gift.
+    if (savedPair) {
+      try {
+        savedPair = {
+          f2p: await reserveLevelGiftForDisplay(lvl, 'f2p', { premiumSafe: true, studyTarget }),
+          prem: await reserveLevelGiftForDisplay(lvl, 'premium', { studyTarget }),
+        };
+        if (!isLevelUpAccountTokenCurrent(accountToken)) {
+          resetLevelUpChainForAccountChange();
+          return;
+        }
+        await saveUnclaimedDualGift(lvl, savedPair, accountToken);
+        const persistedPair = (await loadUnclaimedDualGifts())[lvl];
+        if (persistedPair?.f2p.id !== savedPair.f2p.id
+          || persistedPair?.prem.id !== savedPair.prem.id
+          || persistedPair?.f2p.levelGiftReservation?.reservationId !== savedPair.f2p.levelGiftReservation?.reservationId
+          || persistedPair?.prem.levelGiftReservation?.reservationId !== savedPair.prem.levelGiftReservation?.reservationId) {
+          isShowingRef.current = false;
+          return;
+        }
+        dualGiftsRef.current[lvl] = savedPair;
+      } catch {
+        isShowingRef.current = false;
+        return;
+      }
+    } else if (savedGift) {
+      try {
+        savedGift = await reserveLevelGiftForDisplay(lvl, 'f2p', { studyTarget });
+        if (!isLevelUpAccountTokenCurrent(accountToken)) {
+          resetLevelUpChainForAccountChange();
+          return;
+        }
+        await saveUnclaimedGift(lvl, savedGift, accountToken);
+        const persistedGift = (await loadUnclaimedGifts())[lvl];
+        if (persistedGift?.id !== savedGift.id
+          || persistedGift?.levelGiftReservation?.reservationId !== savedGift.levelGiftReservation?.reservationId) {
+          isShowingRef.current = false;
+          return;
+        }
+        singleGiftsRef.current[lvl] = savedGift;
+      } catch {
+        isShowingRef.current = false;
+        return;
+      }
+    }
+    const displayGift = savedPair?.f2p ?? savedGift;
+    if (!displayGift) { isShowingRef.current = false; return; }
+    const displayStatus = await acquireLevelGiftDisplay(lvl, displayGift, studyTarget);
+    if (!isLevelUpAccountTokenCurrent(accountToken)) {
+      resetLevelUpChainForAccountChange();
+      return;
+    }
+    if (displayStatus === 'unavailable') {
+      // Offline/server failure: retain the durable queue and inventory for a truthful retry.
+      isShowingRef.current = false;
+      return;
+    }
+    if (displayStatus === 'already_displayed') {
+      queueRef.current.shift();
+      await acknowledgePendingLevelUpShown(lvl);
+      isShowingRef.current = false;
+      if (queueRef.current.length > 0) queueMicrotask(() => { void showNext(); });
+      return;
+    }
     setGiftPreRolledPair(savedPair ?? undefined);
     setGiftPreRolled(savedPair ? undefined : savedGift ?? undefined);
     setLevelGiftDualMode(!!savedPair);
@@ -892,7 +988,35 @@ function GlobalLevelUpHandler() {
       Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
       Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
     ]).start();
-  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY, resetLevelUpChainForAccountChange]);
+  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY, resetLevelUpChainForAccountChange, studyTarget]);
+
+  const drainLevelUpBonusOutbox = useCallback(async () => {
+    try {
+      await drainPendingLevelUpBonusIntents(async (intent, accountToken) => {
+        const name = (await AsyncStorage.getItem('user_name')) || userName;
+        if (!isCurrentAccountGeneration(accountToken, intent.ownerStableId)) {
+          throw new Error('level_up_bonus_account_changed');
+        }
+        await registerXP(100, 'level_up_bonus', name, intent.lang, undefined, {
+          eventId: intent.eventId,
+          payload: { level: intent.level },
+          accountToken,
+        });
+        if (!isCurrentAccountGeneration(accountToken, intent.ownerStableId)) {
+          throw new Error('level_up_bonus_account_changed');
+        }
+        await withAccountTransitionLock(async () => {
+          if (!isCurrentAccountGeneration(accountToken, intent.ownerStableId)) {
+            throw new Error('level_up_bonus_account_changed');
+          }
+          await tryGrantPremiumMonthlyWagerFromLevelUp();
+        });
+      });
+    } catch (error) {
+      // The intent stays durable and is retried at the next boot/foreground.
+      if (__DEV__) console.warn('[_layout] level-up bonus retry pending', error);
+    }
+  }, [userName]);
 
   const flushQueue = useCallback(async () => {
     if (flushQueueBusyRef.current) {
@@ -913,20 +1037,24 @@ function GlobalLevelUpHandler() {
         let arr: number[] = [];
         try { arr = raw ? JSON.parse(raw) : []; } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
         if (!Array.isArray(arr)) arr = [];
-        const [singleMap, dualMap, [[, name], [, xpRaw]]] = await Promise.all([
+        const [spinLevels, singleMap, dualMap, [[, name], [, xpRaw]]] = await Promise.all([
+          loadPendingLevelSpinLevelUps(),
           loadUnclaimedGifts(),
           loadUnclaimedDualGifts(),
           AsyncStorage.multiGet(['user_name', 'user_total_xp']),
         ]);
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
 
-        const durableLevels = arr
+        const durableLegacyLevels = [...new Set(arr)]
           .filter((level) => Number.isInteger(level) && level > 0)
           .filter((lvl) => {
             const savedPair = dualMap[lvl];
             const savedGift = singleMap[lvl];
             return (!!savedPair || !!savedGift) && !(savedPair && savedGift);
           });
+        // PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY is loaded through the account-scoped queue module.
+        spinLevelsRef.current = new Set(spinLevels);
+        const durableLevels = [...new Set([...durableLegacyLevels, ...spinLevels])].sort((a, b) => a - b);
         const activeLevel = isShowingRef.current ? queueRef.current[0] : undefined;
         queueRef.current = activeLevel
           ? [activeLevel, ...durableLevels.filter((level) => level !== activeLevel)]
@@ -956,14 +1084,20 @@ function GlobalLevelUpHandler() {
   useEffect(() => {
     const sub = subscribeAccountGeneration((token) => {
       resetLevelUpChainForAccountChange();
-      if (token.phase === 'active') queueMicrotask(() => { void flushQueue(); });
+      if (token.phase === 'active') queueMicrotask(() => {
+        void drainLevelUpBonusOutbox();
+        void flushQueue();
+      });
     });
     return () => sub.remove();
-  }, [flushQueue, resetLevelUpChainForAccountChange]);
+  }, [drainLevelUpBonusOutbox, flushQueue, resetLevelUpChainForAccountChange]);
 
   useEffect(() => {
     // Проверяем очередь при старте (с задержкой, чтобы onboarding не перекрывал)
-    const t = setTimeout(flushQueue, 500);
+    const t = setTimeout(() => {
+      void drainLevelUpBonusOutbox();
+      void flushQueue();
+    }, 500);
     const sub = onAppEvent('level_up_pending', flushQueue);
     return () => {
       clearTimeout(t);
@@ -971,7 +1105,15 @@ function GlobalLevelUpHandler() {
       if (giftOpenTimerRef.current) clearTimeout(giftOpenTimerRef.current);
       giftOpenInteractionRef.current?.cancel();
     };
-  }, [flushQueue]);
+  }, [drainLevelUpBonusOutbox, flushQueue]);
+
+  useEffect(() => {
+    const wasLevelSpinRoute = wasLevelSpinRouteRef.current;
+    wasLevelSpinRouteRef.current = pathname === '/level_reward_spin';
+    if (wasLevelSpinRoute && pathname !== '/level_reward_spin') {
+      queueMicrotask(() => { void flushQueue(); });
+    }
+  }, [flushQueue, pathname]);
 
   const lastForegroundFlushAtRef = useRef(0);
   useEffect(() => {
@@ -985,6 +1127,7 @@ function GlobalLevelUpHandler() {
       lastForegroundFlushAtRef.current = now;
       scheduledFlush?.cancel();
       scheduledFlush = scheduleCoalescedForegroundTask('root_level_up_queue_flush', async () => {
+        await drainLevelUpBonusOutbox();
         await flushQueue();
       });
     });
@@ -992,7 +1135,7 @@ function GlobalLevelUpHandler() {
       sub.remove();
       scheduledFlush?.cancel();
     };
-  }, [flushQueue]);
+  }, [drainLevelUpBonusOutbox, flushQueue]);
 
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
@@ -1041,6 +1184,55 @@ function GlobalLevelUpHandler() {
     });
     return () => task.cancel();
   }, [themeMode]);
+
+  const finalizeSpinLevelUp = () => {
+    const accountToken = modalAccountTokenRef.current;
+    const level = modalLevelRef.current;
+    if (!currentIsSpin || !accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+    if (!Number.isInteger(level) || level <= 0 || dismissingLevelUpRef.current) return;
+    dismissingLevelUpRef.current = true;
+    setLevelUpTransitioning(true);
+    Animated.timing(levelUpOpacity, { toValue: 0, duration: 220, useNativeDriver: true }).start(({ finished }) => {
+      if (!finished || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) {
+        dismissingLevelUpRef.current = false;
+        setLevelUpTransitioning(false);
+        return;
+      }
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
+        void (async () => {
+          const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+          try {
+            const persisted = await persistLevelUpBonusIntent(level, l);
+            if (!persisted) throw new Error('level_up_bonus_intent_not_persisted');
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+            await acknowledgePendingLevelSpinLevelUp(level);
+          } catch {
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+            dismissingLevelUpRef.current = false;
+            setLevelUpTransitioning(false);
+            levelUpOpacity.setValue(1);
+            setShowLevelUp(true);
+            return;
+          }
+          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+          spinLevelsRef.current.delete(level);
+          queueRef.current = queueRef.current.filter((queuedLevel) => queuedLevel !== level);
+          modalAccountTokenRef.current = null;
+          modalLevelRef.current = 0;
+          dismissingLevelUpRef.current = false;
+          setCurrentIsSpin(false);
+          void drainLevelUpBonusOutbox();
+          setShowLevelUp(false);
+          setLevelUpTransitioning(false);
+          if (queueRef.current.length > 0) {
+            queueMicrotask(() => { void showNext(); });
+          } else {
+            isShowingRef.current = false;
+          }
+        })();
+      });
+    });
+  };
 
   const dismissLevelUp = () => {
     const accountToken = modalAccountTokenRef.current;
@@ -1146,17 +1338,22 @@ function GlobalLevelUpHandler() {
     'levelUp',
     !tournamentInterruptionProtected && (showLevelUp || showGiftModal || levelUpTransitioning),
   );
-  const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
-  const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
-  const levelUpAccent = rewardModalAccentColor(themeMode, t);
-  const levelUpScreenDim = USE_ELITE_LEVEL_UP_MODAL
-    ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.46)')
-    : 'rgba(0,0,0,0.6)';
   const isCatchUpLevelReward = currentAccountLevel > currentLevel;
   const levelUpKickerText = isCatchUpLevelReward
     ? (lang === 'uk' ? 'Нагорода за рівень' : lang === 'es' ? 'Recompensa de nivel' : 'Награда за уровень')
     : (lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень');
-  const levelUpMessageText = isCatchUpLevelReward
+  const levelUpMessageText = currentIsSpin
+    ? triLang(lang, {
+      ru: 'Спин уже добавлен. Испытай удачу сейчас или забери его позже в Подарках.',
+      uk: 'Спін уже додано. Випробуй удачу зараз або забери його пізніше в Подарунках.',
+      es: 'Tu giro ya está listo. Pruébalo ahora o úsalo después en Regalos.',
+      'pt-BR': 'Seu giro está pronto. Tente agora ou use depois em Presentes.',
+      vi: 'Lượt quay đã sẵn sàng. Thử ngay hoặc dùng sau trong Quà tặng.',
+      id: 'Putaranmu sudah siap. Coba sekarang atau gunakan nanti di Hadiah.',
+      tr: 'Çevirmen hazır. Şimdi dene veya daha sonra Hediyeler’de kullan.',
+      pl: 'Twój spin jest gotowy. Spróbuj teraz albo użyj go później w Prezentach.',
+    })
+    : isCatchUpLevelReward
     ? (lang === 'uk'
       ? `Це твоя нагорода за рівень ${currentLevel}. Забирай подарунок.`
       : lang === 'es'
@@ -1212,182 +1409,92 @@ function GlobalLevelUpHandler() {
 
   return (
     <>
-      {/* Level-up congratulation - wrapped in Modal so it renders above ALL screens */}
-      <Modal
-        transparent
+      {/* Variant B — Threshold. Reward state and queue lifecycle stay owned by GlobalLevelUpHandler. */}
+      <LevelUpThresholdModal
+        variant={currentLevel % 5 === 0 ? 'milestone' : 'standard'}
         visible={levelUpOverlayVisible && showLevelUp}
-        animationType="none"
-        statusBarTranslucent
+        level={currentLevel}
+        themeMode={themeMode}
+        kicker={levelUpKickerText}
+        headline={triLang(lang, {
+          ru: 'УРОВЕНЬ ' + currentLevel,
+          uk: 'РІВЕНЬ ' + currentLevel,
+          es: 'NIVEL ' + currentLevel,
+          'pt-BR': 'NÍVEL ' + currentLevel,
+          vi: 'CẤP ' + currentLevel,
+          id: 'LEVEL ' + currentLevel,
+          tr: 'SEVİYE ' + currentLevel,
+          pl: 'POZIOM ' + currentLevel,
+        })}
+        message={levelUpMessageText}
+        xpLabel={triLang(lang, {
+          ru: 'Бонус уровня',
+          uk: 'Бонус рівня',
+          es: 'Bono de nivel',
+          'pt-BR': 'Bônus de nível',
+          vi: 'Thưởng cấp độ',
+          id: 'Bonus level',
+          tr: 'Seviye bonusu',
+          pl: 'Bonus poziomu',
+        })}
+        xpValue={'+100 XP'}
+        titleLabel={triLang(lang, {
+          ru: 'Новый титул',
+          uk: 'Новий титул',
+          es: 'Nuevo título',
+          'pt-BR': 'Novo título',
+          vi: 'Danh hiệu mới',
+          id: 'Gelar baru',
+          tr: 'Yeni unvan',
+          pl: 'Nowy tytuł',
+        })}
+        titleReward={isNewTitle ? newTitleDef.titleEN : undefined}
+        titleColor={titleColor}
+        energyLabel={triLang(lang, {
+          ru: 'Энергия',
+          uk: 'Енергія',
+          es: 'Energía',
+          'pt-BR': 'Energia',
+          vi: 'Năng lượng',
+          id: 'Energi',
+          tr: 'Enerji',
+          pl: 'Energia',
+        })}
+        energyReward={currentLevel === 50 ? getMaxEnergyForLevel(currentLevel) : undefined}
+        energyValue={(amount) => triLang(lang, {
+          ru: 'Теперь ' + amount + ' энергии в день',
+          uk: 'Тепер ' + amount + ' енергії на день',
+          es: 'Ahora tienes ' + amount + ' de energía diaria',
+          'pt-BR': 'Agora você tem ' + amount + ' de energia por dia',
+          vi: 'Giờ bạn có ' + amount + ' năng lượng mỗi ngày',
+          id: 'Sekarang ' + amount + ' energi per hari',
+          tr: 'Artık günde ' + amount + ' enerji',
+          pl: 'Teraz masz ' + amount + ' energii dziennie',
+        })}
+        spinReward={currentIsSpin}
+        spinReceiptId={currentIsSpin ? levelSpinCreditId(currentLevel) : ''}
+        continueLabel={triLang(lang, {
+          ru: 'Готово',
+          uk: 'Готово',
+          es: 'Listo',
+          'pt-BR': 'Pronto',
+          vi: 'Xong',
+          id: 'Selesai',
+          tr: 'Tamam',
+          pl: 'Gotowe',
+        })}
+        opacity={levelUpOpacity}
+        translateY={levelUpTranslateY}
+        glow={levelUpGlow}
         onShow={() => {
-          acknowledgeNativeLevelUpShown();
+          if (!currentIsSpin) acknowledgeNativeLevelUpShown();
           soundDirector.request('pm.reward.level_up', {
             scope: 'level-up-modal',
             dedupeKey: String(currentLevel),
           });
         }}
-        onRequestClose={() => {}}
-      >
-        <View style={{ flex: 1, backgroundColor: levelUpScreenDim, justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
-          <Animated.View testID="level-up-modal" style={{
-            transform: [
-              { translateY: levelUpTranslateY },
-              { scale: levelUpModalScale },
-            ],
-            opacity: levelUpOpacity,
-            borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
-            width: '100%', maxWidth: USE_ELITE_LEVEL_UP_MODAL ? 368 : 360,
-            shadowColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? '#000000' : '#F6C85F') : '#000',
-            shadowOpacity: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 0.78 : 0.28) : 0.4,
-            shadowRadius: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 38 : 34) : 24,
-            elevation: 20,
-            overflow: 'hidden',
-            ...(USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? goldShadow(3) : {}),
-          }}>
-            <LinearGradient
-              colors={USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelColors(themeMode, t) : t.cardGradient}
-              locations={undefined}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{
-                borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
-                padding: USE_ELITE_LEVEL_UP_MODAL ? 26 : 28,
-                alignItems: 'center',
-                borderWidth: 0,
-                borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : t.textSecond + '44',
-              }}>
-              {USE_ELITE_LEVEL_UP_MODAL && <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />}
-              {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
-              {/* Тёплое золотое свечение сверху панели — СТАТИЧНОЕ. Внутри глобального
-                  Modal анимированные (Reanimated) лупы = риск freeze/краша на Android
-                  (как и автоплей webp у LevelBadge), поэтому никакого движения тут. */}
-              {USE_ELITE_LEVEL_UP_MODAL && (
-                <LinearGradient
-                  pointerEvents="none"
-                  colors={[`${levelUpAccent}40`, `${levelUpAccent}12`, 'transparent']}
-                  start={{ x: 0.5, y: 0 }}
-                  end={{ x: 0.5, y: 1 }}
-                  style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 200 }}
-                />
-              )}
-              {USE_ELITE_LEVEL_UP_MODAL && (
-                <>
-                  <Animated.View
-                    pointerEvents="none"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 34,
-                      right: 34,
-                      height: 1,
-                      backgroundColor: levelUpAccent,
-                      opacity: levelUpGlowOpacity,
-                    }}
-                  />
-                  <View
-                    pointerEvents="none"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 82,
-                      backgroundColor: rewardModalSoftSurface(themeMode, t),
-                    }}
-                  />
-                  <Text style={{ color: levelUpAccent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
-                    {levelUpKickerText}
-                  </Text>
-                </>
-              )}
-              {/* Static first frame: animated webp inside a global Modal was a freeze risk on Android. */}
-              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                {USE_ELITE_LEVEL_UP_MODAL && (
-                  <LinearGradient
-                    pointerEvents="none"
-                    colors={[`${levelUpAccent}33`, 'transparent']}
-                    start={{ x: 0.5, y: 0.5 }}
-                    end={{ x: 1, y: 1 }}
-                    style={{ position: 'absolute', width: 150, height: 150, borderRadius: 75, alignSelf: 'center' }}
-                  />
-                )}
-                <LevelBadge level={currentLevel} size={USE_ELITE_LEVEL_UP_MODAL ? 108 : 100} autoplay={false} />
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.numLg + 2 : f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 10 }}>
-                {lang === 'uk' ? `РІВЕНЬ ${currentLevel}!` : lang === 'es' ? `¡NIVEL ${currentLevel}!` : `УРОВЕНЬ ${currentLevel}!`}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.body : f.bodyLg, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '600' : '500', marginTop: 6, textAlign: 'center', lineHeight: USE_ELITE_LEVEL_UP_MODAL ? f.body + 6 : undefined }}>
-                {levelUpMessageText}
-              </Text>
-              {isNewTitle && (
-                <View style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 12 : 10, alignItems: 'center', gap: 2, width: '100%', borderWidth: 0, borderColor: titleColor + (USE_ELITE_LEVEL_UP_MODAL ? '44' : '55') }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                    <Ionicons name="ribbon" size={12} color={titleColor} />
-                    <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '800' : '700', textTransform: 'uppercase', letterSpacing: 0.7 }}>
-                      {lang === 'uk' ? 'Новий титул' : lang === 'es' ? 'Nuevo título' : 'Новый титул'}
-                    </Text>
-                  </View>
-                  <Text style={{ color: titleColor, fontSize: f.bodyLg, fontWeight: '800', marginTop: 2 }}>
-                    {newTitleDef.titleEN}
-                  </Text>
-                </View>
-              )}
-
-              <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent' }}>
-                <Text style={{ color: levelUpAccent, fontWeight: '800', fontSize: f.caption }}>
-                  {lang === 'uk'
-                    ? `+100 XP — бонус за ${currentLevel} рівень`
-                    : lang === 'es'
-                      ? `+100 XP — bonificación por el nivel ${currentLevel}`
-                      : `+100 XP — бонус за ${currentLevel} уровень`}
-                </Text>
-              </View>
-
-              {currentLevel === 50 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : '#1A3A2A', borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', borderWidth: 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : '#34D399' }}>
-                  <Ionicons name="flash" size={15} color={USE_ELITE_LEVEL_UP_MODAL ? '#F6C85F' : '#34D399'} />
-                  <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.textSecond : '#34D399', fontWeight: '800', fontSize: f.body, textAlign: 'center', flexShrink: 1 }}>
-                    {lang === 'uk'
-                      ? `Тепер у тебе ${getMaxEnergyForLevel(currentLevel)} енергії на день!`
-                      : lang === 'es'
-                        ? `¡Tu energía diaria máxima es ${getMaxEnergyForLevel(currentLevel)}!`
-                        : `Теперь у тебя ${getMaxEnergyForLevel(currentLevel)} энергии в день!`}
-                  </Text>
-                </View>
-              )}
-
-              <TouchableOpacity
-                testID="level-up-dismiss"
-                accessibilityRole="button"
-                accessibilityLabel={lang === 'uk' ? 'Продовжити' : lang === 'es' ? 'Continuar' : 'Продолжить'}
-                onPress={dismissLevelUp}
-                style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 22 : 20, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'transparent' : t.textPrimary) : t.accent, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 46 : 40, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 14 : 12, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairlineStrong : 'rgba(255,255,255,0.18)') : 'transparent', overflow: 'hidden' }}
-              >
-                {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && (
-                  <>
-                    <LinearGradient
-                      colors={GOLD_GRADIENTS.primaryButton}
-                      locations={[0, 0.36, 1]}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={StyleSheet.absoluteFill}
-                    />
-                    <GoldBevel radius={18} intensity="strong" />
-                  </>
-                )}
-                <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? t.textOnGold : t.bgPrimary) : t.correctText, fontWeight: '900', fontSize: f.bodyLg }}>
-                  {USE_ELITE_LEVEL_UP_MODAL
-                    ? (lang === 'uk' ? 'Продовжити' : lang === 'es' ? 'Continuar' : 'Продолжить')
-                    : (() => {
-                      const pool = lang === 'uk' ? LEVELUP_BTN_UK : lang === 'es' ? LEVELUP_BTN_ES : LEVELUP_BTN_RU;
-                      return pool[currentLevel % pool.length];
-                    })()}
-                </Text>
-              </TouchableOpacity>
-            </LinearGradient>
-          </Animated.View>
-        </View>
-      </Modal>
-
+        onContinue={currentIsSpin ? finalizeSpinLevelUp : dismissLevelUp}
+      />
       {levelGiftDualMode ? (
         <LevelGiftDualModal
           visible={levelUpOverlayVisible && showGiftModal}
@@ -3088,7 +3195,6 @@ function AppContent() {
       <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="settings_testers" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
@@ -3098,10 +3204,15 @@ function AppContent() {
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="daily_tasks_screen" />
-      <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
+       <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
+       <Stack.Screen name="personal_plan_quiz" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
-      <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
-      <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
+      {ENABLE_DEV_TOOLS && (
+        <>
+          <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
+          <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
+        </>
+      )}
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, ...bottomModalAnimationOptions, presentation: 'modal', gestureEnabled: true }} />
       <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
@@ -3135,17 +3246,12 @@ function AppContent() {
       <Stack.Screen name="shards_shop" />
       <Stack.Screen name="coin_exchange" />
       <Stack.Screen name="level_gifts_inventory" />
+      <Stack.Screen name="level_reward_spin" />
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
-      {/* зачем: settings_testers объявлен выше как «шторка раздела» и живёт в
-          проде, а не только под дев-тулзами. Повторная регистрация тем же именем
-          здесь роняла приложение («Screen names must be unique»), поэтому имя
-          исключаем из дев-карты — единственный источник правды выше. */}
-      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES
-        .filter((name) => name !== SETTINGS_TESTERS_ROUTE_NAME)
-        .map((name) => (
+      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
           <Stack.Screen key={name} name={name} />
         ))}
       <Stack.Screen name="privacy_screen" options={SECTION_SHEET_STACK_OPTIONS} />

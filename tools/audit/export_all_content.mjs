@@ -1,4 +1,4 @@
-// Exports quizzes, vocabulary words, and intro examples to JSON for the
+// Exports vocabulary words and intro examples to JSON for the
 // full-content semantic audit. Read-only; uses bracket-balanced literal slicing.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -21,26 +21,6 @@ function sliceArrayLiteral(src, declRe) {
     else if (c === ']') { depth--; if (depth === 0) { i++; break; } }
   }
   return src.slice(start, i);
-}
-
-// ---------- QUIZZES ----------
-const quizSrc = readFileSync(resolve(APP, 'quiz_data.ts'), 'utf8');
-const quizzes = [];
-for (const pool of ['EASY', 'MEDIUM', 'HARD']) {
-  const lit = sliceArrayLiteral(quizSrc, new RegExp('const ' + pool + '_POOL\\s*:\\s*QuizPoolEntry\\[\\]\\s*='));
-  if (!lit) { console.error('quiz pool not found:', pool); continue; }
-  const arr = eval('(' + lit + ')');
-  arr.forEach((q, idx) => {
-    const correctIdx = Array.isArray(q.correct) ? q.correct : [q.correct];
-    quizzes.push({
-      src: 'quiz', pool, idx,
-      ru: q.ru, uk: q.uk, choices: q.choices,
-      correct: q.correct,
-      correctText: correctIdx.map(i => q.choices[i]),
-      lessonNum: q.lessonNum, level: q.level,
-      explanations: q.explanations,
-    });
-  });
 }
 
 // ---------- VOCAB WORDS ----------
@@ -75,7 +55,6 @@ for (const f of introFiles) {
   }
 }
 
-writeFileSync(resolve(__dirname, 'CONTENT_QUIZZES.json'), JSON.stringify(quizzes), 'utf8');
 writeFileSync(resolve(__dirname, 'CONTENT_WORDS.json'), JSON.stringify(words), 'utf8');
 writeFileSync(resolve(__dirname, 'CONTENT_INTROS.json'), JSON.stringify(intros), 'utf8');
-console.log('quizzes:', quizzes.length, '| words:', words.length, '| intro examples:', intros.length);
+console.log('words:', words.length, '| intro examples:', intros.length);

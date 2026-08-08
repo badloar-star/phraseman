@@ -30,7 +30,9 @@ describe('gift inventory apply presentation', () => {
     expect(source).toContain('if (!justOpened) return;');
     expect(source).toContain("const previewingStoredGift = presentationMode === 'apply' && phase === 'box';");
     expect(source).not.toContain("if (!visible || presentationMode !== 'apply' || !gift || phase !== 'box') return;");
-    expect(source).toContain("if (previewingStoredGift) {\n                    handleTap(true);");
+    const previewBranchStart = source.indexOf('if (previewingStoredGift)');
+    expect(previewBranchStart).toBeGreaterThanOrEqual(0);
+    expect(source.slice(previewBranchStart, previewBranchStart + 900)).toContain('handleTap(true);');
     expect(source).toContain("onClose(phase === 'reveal');");
     expect(source).toContain("presentationMode === 'apply' && phase === 'box'");
   });
@@ -52,7 +54,18 @@ describe('gift inventory apply presentation', () => {
     expect(choiceConditional!.whenTrue.getText(sourceFile)).toContain('gift.choices.map');
     expect(choiceConditional!.whenTrue.getText(sourceFile)).not.toContain('testID="level-gift-claim"');
     expect(choiceConditional!.whenFalse.getText(sourceFile)).toContain('testID="level-gift-claim"');
-    expect(choiceConditional!.whenFalse.getText(sourceFile).match(/handleTap\(true\)/g)).toHaveLength(1);
+    const claimCalls: ts.CallExpression[] = [];
+    const findClaimCalls = (node: ts.Node): void => {
+      if (
+        ts.isCallExpression(node)
+        && node.expression.getText(sourceFile) === 'handleTap'
+        && node.arguments.length === 1
+        && node.arguments[0]?.kind === ts.SyntaxKind.TrueKeyword
+      ) claimCalls.push(node);
+      ts.forEachChild(node, findClaimCalls);
+    };
+    findClaimCalls(choiceConditional!.whenFalse);
+    expect(claimCalls).toHaveLength(1);
     expect(source).toContain("if (presentationMode === 'apply' && phase === 'box') {\n      setChoiceBusy(false);\n      return;");
   });
 

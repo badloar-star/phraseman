@@ -39,8 +39,6 @@ type DailyTaskRewardToastItem = {
   xpBase: number;
   studyTarget?: RuntimeStudyTarget;
   tasksSnapshot: DailyTask[];
-  previewOnly?: boolean;
-  previewThemeMode?: ThemeMode;
 };
 
 type GradientColors = React.ComponentProps<typeof LinearGradient>['colors'];
@@ -107,26 +105,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimText: '#0A0702',
     claimBorderColor: '#FFE8A6',
     buttonIconName: 'diamond-outline',
-  },
-  coral: {
-    cardColors: ['#3B2024', '#100809'],
-    sheenColors: ['rgba(255,112,104,0.28)', 'rgba(255,190,122,0.08)', 'rgba(255,112,104,0)'],
-    accentRailColor: '#FF7F50',
-    auraColor: 'rgba(255,127,80,0.26)',
-    borderColor: 'rgba(255,124,116,0.52)',
-    radius: 18,
-    shadowColor: 'rgba(60,8,14,0.82)',
-    iconName: 'flame-outline',
-    iconBg: 'rgba(255,127,80,0.18)',
-    iconBorderColor: 'rgba(255,136,128,0.55)',
-    iconColor: '#FF8A80',
-    titleColor: '#FFF7F5',
-    taskColor: '#E0BBC1',
-    xpColor: '#FFD060',
-    claimBg: '#FF7F50',
-    claimText: '#FFFFFF',
-    claimBorderColor: 'rgba(255,218,210,0.62)',
-    buttonIconName: 'flame-outline',
   },
   minimalDark: {
     cardColors: ['#151A24', '#080A0F'],
@@ -508,21 +486,6 @@ function DailyTaskRewardToast() {
     setOverlayWanted(true);
   }, []);
 
-  const showPreview = useCallback((item: DailyTaskRewardToastItem) => {
-    queueRef.current = queueRef.current.filter((queued) => !queued.previewOnly);
-
-    if (activeRef.current?.previewOnly || !activeRef.current) {
-      activeRef.current = item;
-      activeKeyRef.current = itemKey(item);
-      claimingRef.current = false;
-      setToast(item);
-      setOverlayWanted(true);
-      return;
-    }
-
-    enqueue(item);
-  }, [enqueue]);
-
   const showForCompletedTask = useCallback(async (
     taskId: string,
     eventStudyTarget?: RuntimeStudyTarget,
@@ -556,17 +519,6 @@ function DailyTaskRewardToast() {
     const completedSub = onAppEvent('daily_task_completed', (payload) => {
       void showForCompletedTask(payload.taskId, payload.studyTarget);
     });
-    const previewSub = onAppEvent('daily_task_reward_toast_preview', (payload) => {
-      showPreview({
-        taskId: `admin-preview-${payload.themeMode}-${Date.now()}`,
-        taskTitle: payload.taskTitle ?? `Admin preview: ${payload.themeMode}`,
-        xpBase: payload.xpBase ?? 50,
-        studyTarget,
-        tasksSnapshot: [],
-        previewOnly: true,
-        previewThemeMode: payload.themeMode,
-      });
-    });
     const claimedSub = onAppEvent('daily_task_reward_claimed', (payload) => {
       queueRef.current = queueRef.current.filter(
         (queued) => !matchesTask(queued, payload.taskId, payload.studyTarget),
@@ -580,10 +532,9 @@ function DailyTaskRewardToast() {
 
     return () => {
       completedSub.remove();
-      previewSub.remove();
       claimedSub.remove();
     };
-  }, [dismissCurrent, showForCompletedTask, showPreview, studyTarget]);
+  }, [dismissCurrent, showForCompletedTask, studyTarget]);
 
   useEffect(() => {
     if (!toast || !overlayVisible) return;
@@ -666,11 +617,6 @@ function DailyTaskRewardToast() {
     inFlightClaimKeysRef.current.add(claimKey);
 
     try {
-      if (current.previewOnly) {
-        hapticSuccess();
-        return;
-      }
-
       const freshTasks = await getTodayTasksSafe(current.studyTarget);
       const tasksForClaim = freshTasks.length > 0 ? freshTasks : current.tasksSnapshot;
       const taskForXp = tasksForClaim.find((task) => task.id === current.taskId)
@@ -751,10 +697,10 @@ function DailyTaskRewardToast() {
   // зачем: автоначисление вместо кнопки. Запускаем ровно один раз на каждый
   // показанный тост — ключ задания в зависимостях, а claimingRef/
   // inFlightClaimKeysRef внутри claimReward гасят повторный вход, если эффект
-  // переиграется. previewOnly (админский предпросмотр) ничего не начисляет.
+  // переиграется.
   const activeToastKey = toast ? itemKey(toast) : null;
   useEffect(() => {
-    if (!activeToastKey || !toast || toast.previewOnly) return;
+    if (!activeToastKey || !toast) return;
     void claimReward();
   }, [activeToastKey, claimReward, toast]);
 
@@ -780,8 +726,7 @@ function DailyTaskRewardToast() {
     tr: `Ödül: +${toast.xpBase} XP`,
     pl: `Nagroda: +${toast.xpBase} XP`,
   });
-  const visualThemeMode = toast.previewThemeMode ?? themeMode;
-  const themeStyle = DAILY_TASK_REWARD_TOAST_THEME_STYLES[visualThemeMode];
+  const themeStyle = DAILY_TASK_REWARD_TOAST_THEME_STYLES[themeMode];
   return (
     <Animated.View
       {...swipeResponder.panHandlers}

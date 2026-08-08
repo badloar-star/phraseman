@@ -335,14 +335,16 @@ describe('экраны режима «Турниры»', () => {
     expect(layout).toContain("key: 'tournaments'");
     expect(layout).toContain('loadTournamentsScreen');
     expect(model).toContain("'tournaments'");
-    expect(layout).toContain("'/tournaments': 1");
+    expect(layout).toContain("'/lessons': 1");
+    expect(layout).toContain("'/tournaments': 2");
     expect(layout).toContain("'/(tabs)/tournaments'");
-    expect(layout).toMatch(/tournaments:\s*1/);
-    expect(layout).toMatch(/friends:\s*2/);
-    expect(layout).toMatch(/settings:\s*3/);
-    expect(home).toMatch(/'\/\(tabs\)\/tournaments':\s*1/);
-    expect(home).toMatch(/'\/\(tabs\)\/friends':\s*2/);
-    expect(home).toMatch(/'\/\(tabs\)\/settings':\s*3/);
+    expect(layout).toMatch(/lessons:\s*1/);
+    expect(layout).toMatch(/tournaments:\s*2/);
+    expect(layout).toMatch(/friends:\s*3/);
+    expect(layout).toMatch(/settings:\s*4/);
+    expect(home).toMatch(/'\/\(tabs\)\/tournaments':\s*2/);
+    expect(home).toMatch(/'\/\(tabs\)\/friends':\s*3/);
+    expect(home).toMatch(/'\/\(tabs\)\/settings':\s*4/);
     expect(home).not.toContain('HomeDevTournamentsButton');
   });
 
@@ -364,20 +366,22 @@ describe('экраны режима «Турниры»', () => {
     // слева от главной больше нет, страниц ровно столько же, сколько табов
     // (четыре). Legacy-суффиксы /journal и /lessons остаются в
     // TAB_PATH_SUFFIXES и ведут на главную (старые диплинки).
-    expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'tournaments', 'friends', 'settings'\]/);
-    expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3;');
-    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3;');
+    expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'lessons', 'tournaments', 'friends', 'settings'\]/);
+    expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;');
+    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;');
     expect(layout).toContain('loadTournamentsScreen');
     expect(layout).toMatch(/TAB_PATH_SUFFIXES\s*=\s*\['\/home', '\/journal', '\/lessons', '\/tournaments', '\/friends', '\/settings'\]/);
     expect(layout).toMatch(/const TABS:[\s\S]*?=\s*\[[\s\S]*?\];/);
     expect(layout).toMatch(/const TABS:[\s\S]{0,900}tournaments/);
     expect(layout).toContain('key="tournaments"');
+    expect(layout).toContain('key="lessons"');
     expect(layout).toMatch(/key="tournaments"[\s\S]{0,160}loadScreen=\{loadTournamentsScreen\}/);
-    expect(layout).toMatch(/shouldLoad\(2\)\} loadScreen=\{loadFriendsScreen\}/);
-    expect(layout).toMatch(/shouldLoad\(3\)\} loadScreen=\{loadSettingsScreen\}/);
-    expect(layout).toContain('case 1: return loadTournamentsScreen();');
-    expect(layout).toContain('case 2: return loadFriendsScreen();');
-    expect(layout).toContain('case 3: return loadSettingsScreen();');
+    expect(layout).toMatch(/shouldLoad\(3\)\} loadScreen=\{loadFriendsScreen\}/);
+    expect(layout).toMatch(/shouldLoad\(4\)\} loadScreen=\{loadSettingsScreen\}/);
+    expect(layout).toContain('case 1: return loadLessonsScreen();');
+    expect(layout).toContain('case 2: return loadTournamentsScreen();');
+    expect(layout).toContain('case 3: return loadFriendsScreen();');
+    expect(layout).toContain('case 4: return loadSettingsScreen();');
   });
 
   it('главный экран берёт данные с сервера, а не из заглушки', () => {

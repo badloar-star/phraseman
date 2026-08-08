@@ -56,46 +56,49 @@ function median(values: readonly number[]): number | null {
 
 export async function fetchSupportSource(input: FetchSupportSourceInput): Promise<FetchSupportSourceResult> {
   try {
-    const snap = await input.collection
-      .where('receivedAtMs', '>=', input.nowMs - SUPPORT_LOOKBACK_MS)
+    const baseQuery = input.collection
       .orderBy('receivedAtMs', 'desc')
       // Только время и статус. Ни fromEmail, ни fromName, ни bodyText.
       .select('receivedAtMs', 'status', 'repliedAt', 'mailCategory')
-      .limit(MAX_SUPPORT_DOCS)
-      .get();
+      .limit(MAX_SUPPORT_DOCS);
 
     let waitingCount = 0;
     let oldestWaitingMs: number | null = null;
     let answeredCount = 0;
     const replyDurations: number[] = [];
 
-    // guard-ok: один .get() выше вернул страницу разом; цикл идёт по уже
-    // полученным документам, без чтений Firestore внутри.
-    for (const doc of snap.docs) {
-      const data = doc.data() as Record<string, unknown>;
-      // зачем отсекать роботов: автописьма никого не заставляют ждать, но
-      // раздули бы очередь ожидания и сделали бы метрику бессмысленной.
-      if (data.mailCategory === 'automated') continue;
+    let pageQuery = baseQuery;
+    while (true) {
+      const snap = await pageQuery.get();
+      // guard-ok: each get reads one bounded page; startAfter prevents repeats.
+      for (const doc of snap.docs) {
+        const data = doc.data() as Record<string, unknown>;
+        if (data.mailCategory === 'automated') continue;
 
-      const receivedAtMs = toMs(data.receivedAtMs);
-      if (receivedAtMs === null) continue;
+        const receivedAtMs = toMs(data.receivedAtMs);
+        if (receivedAtMs === null || receivedAtMs > input.nowMs) continue;
 
-      if (data.status === 'new') {
-        waitingCount += 1;
-        const waited = input.nowMs - receivedAtMs;
-        if (waited >= 0 && (oldestWaitingMs === null || waited > oldestWaitingMs)) oldestWaitingMs = waited;
-        continue;
-      }
+        // The admin UI historically renders a missing legacy status as new.
+        const status = data.status ?? 'new';
+        if (status === 'new') {
+          waitingCount += 1;
+          const waited = input.nowMs - receivedAtMs;
+          if (oldestWaitingMs === null || waited > oldestWaitingMs) oldestWaitingMs = waited;
+          continue;
+        }
 
-      if (data.status === 'answered') {
-        answeredCount += 1;
-        const repliedAtMs = toMs(data.repliedAt);
-        // зачем отбрасывать: ответ раньше письма — испорченная запись, а не
-        // мгновенный ответ. Считать её нулём значило бы приукрасить метрику.
-        if (repliedAtMs !== null && repliedAtMs >= receivedAtMs) {
-          replyDurations.push(repliedAtMs - receivedAtMs);
+        // All waiting mail is scanned, while response-speed history remains bounded.
+        if (status === 'answered' && receivedAtMs >= input.nowMs - SUPPORT_LOOKBACK_MS) {
+          answeredCount += 1;
+          const repliedAtMs = toMs(data.repliedAt);
+          if (repliedAtMs !== null && repliedAtMs >= receivedAtMs && repliedAtMs <= input.nowMs) {
+            replyDurations.push(repliedAtMs - receivedAtMs);
+          }
         }
       }
+
+      if (snap.docs.length < MAX_SUPPORT_DOCS) break;
+      pageQuery = baseQuery.startAfter(snap.docs[snap.docs.length - 1]);
     }
 
     const nothingRelevant = waitingCount === 0 && answeredCount === 0;

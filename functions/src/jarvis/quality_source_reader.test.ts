@@ -43,6 +43,20 @@ describe('Jarvis quality source reader — aggregation never leaks report conten
     expect(aggregate.totalCount).toBe(0);
     expect(aggregate.byCategory).toEqual({});
   });
+
+  test('counts aggregate events by release dimensions and buckets distinct affected users', () => {
+    const aggregate = aggregateQualityRows([row({
+      category: 'auth', screen: 'sign_in', build: '319', platform: 'ios', eventCount: 7, affectedUserCount: 3,
+    })]);
+    expect(aggregate.totalCount).toBe(7);
+    expect(aggregate.byCategory).toEqual({ auth: 7 });
+    expect(aggregate.byBuild).toEqual({ '319': 7 });
+    expect(aggregate.byPlatform).toEqual({ ios: 7 });
+    expect(aggregate.releaseBuckets).toEqual([{
+      build: '319', platform: 'ios', category: 'auth', screen: 'sign_in', eventCount: 7, affectedUserBucket: '2-4',
+    }]);
+    expect(JSON.stringify(aggregate)).not.toContain('affectedUserCount');
+  });
 });
 
 describe('Jarvis quality source reader — evidence honestly reflects fetch state', () => {
@@ -110,7 +124,25 @@ describe('Jarvis quality source reader — evidence honestly reflects fetch stat
       observedAtMs: 5_000,
     });
     const digest = JSON.parse(evidence.digest);
-    expect(digest).toEqual({ totalCount: 1, byCategory: { crash: 1 }, byScreen: { lesson: 1 } });
+    expect(digest).toMatchObject({
+      totalCount: 1, byCategory: { crash: 1 }, byScreen: { lesson: 1 },
+      byBuild: { unknown: 1 }, byPlatform: { unknown: 1 },
+    });
+    expect(digest.releaseBuckets).toEqual([{
+      build: 'unknown', platform: 'unknown', category: 'crash', screen: 'lesson', eventCount: 1, affectedUserBucket: 'unknown',
+    }]);
+  });
+
+  test('degraded raw fallback keeps observed event detail but refuses an exact evidence count', () => {
+    const evidence = buildQualityEvidence({
+      sourceId: 'app_errors', state: 'partial', truncated: false, droppedCount: 0,
+      rows: [row({ build: '319', platform: 'ios', eventCount: 1, affectedUserCount: null })],
+      observedAtMs: 5_000, evidenceMode: 'degraded_raw_fallback',
+    });
+    expect(evidence.state).toBe('partial');
+    expect(evidence.count).toBeNull();
+    expect(evidence.trustworthy).toBe(false);
+    expect(JSON.parse(evidence.digest)).toMatchObject({ evidenceMode: 'degraded_raw_fallback' });
   });
 });
 

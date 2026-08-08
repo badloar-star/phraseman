@@ -6,8 +6,6 @@ const ROOT = path.join(__dirname, '..');
 
 const PHASE_2B_ROUTES = [
   ['/lesson_intro_screens', 'lessonIntro'],
-  ['/arena_join', 'arena'],
-  ['/arena_room', 'arenaMatch'],
   ['/achievements_screen', 'achievements'],
   ['/daily_tasks_screen', 'dailyTasks'],
 ] as const;

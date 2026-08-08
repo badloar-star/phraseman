@@ -21,8 +21,7 @@ export function revenueCatCustomerInfoHasPremiumAccess(
 
 /**
  * A completed store dialog is not enough to unlock Premium: CustomerInfo must
- * confirm the exact package selected by the user. The exact active-subscription
- * fallback is intentionally limited to this purchase-confirmation path.
+ * confirm the exact package selected by the user on the canonical entitlement.
  */
 export function customerInfoConfirmsProductAccess(
   info: CustomerInfo | null | undefined,
@@ -32,12 +31,7 @@ export function customerInfoConfirmsProductAccess(
   if (!expected) return false;
 
   const premium = activeRevenueCatPremiumEntitlement(info);
-  if (clean(premium?.productIdentifier) === expected) return true;
-
-  const activeSubscriptions = Array.isArray(info?.activeSubscriptions)
-    ? info.activeSubscriptions
-    : [];
-  return activeSubscriptions.some(productId => clean(productId) === expected);
+  return clean(premium?.productIdentifier) === expected;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

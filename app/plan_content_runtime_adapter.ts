@@ -1,10 +1,12 @@
-import type { LessonIntroScreen, LessonPhrase, LessonTeachingNote } from './lesson_data_types';
+import { WORD_POOLS_L1 } from './constants/word_pools';
+import type { LessonIntroScreen, LessonPhrase, LessonTeachingNote, LessonWord } from './lesson_data_types';
 import { normalizeWordCategory } from './pos_taxonomy';
 import type {
   LocalizedText,
   PhraseExplanation,
   PlanContentDay,
   PlanContentPhrase,
+  PlanContentWord,
   PlanIntroScreen,
   PlanVocabularyWord,
 } from './plan_content_schema';
@@ -20,7 +22,7 @@ import type {
  * Pure module — no runtime deps.
  */
 
-function joinLocalized(parts: Array<LocalizedText | undefined>, lang: 'ru' | 'uk' | 'es'): string {
+function joinLocalized(parts: (LocalizedText | undefined)[], lang: 'ru' | 'uk' | 'es'): string {
   return parts
     .map((part) => (part ? (part[lang] ?? part.ru) : ''))
     .map((text) => text.trim())
@@ -32,7 +34,7 @@ function localizedPart(part: LocalizedText | undefined, lang: keyof LocalizedTex
   return part ? (part[lang] ?? part.ru).trim() : '';
 }
 
-function joinPlannedLocalized(parts: Array<LocalizedText | undefined>, lang: Exclude<keyof LocalizedText, 'ru' | 'uk' | 'es'>): string {
+function joinPlannedLocalized(parts: (LocalizedText | undefined)[], lang: Exclude<keyof LocalizedText, 'ru' | 'uk' | 'es'>): string {
   return parts
     .map((part) => localizedPart(part, lang))
     .filter(Boolean)
@@ -92,18 +94,82 @@ export function explanationToTeachingNote(
   };
 }
 
+function phraseTokens(english: string): string[] {
+  return english
+    .replace(/[.?!,;]+/g, ' ')
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(Boolean);
+}
+
+function normalizedToken(token: string): string {
+  return token.toLowerCase();
+}
+
+function fallbackDistractors(correct: string, category: string): string[] {
+  const poolsByCategory: Record<string, readonly string[]> = {
+    pronoun: WORD_POOLS_L1.pronouns,
+    article: WORD_POOLS_L1.articles,
+    determiner: WORD_POOLS_L1.articles,
+    'to-be': WORD_POOLS_L1.toBe,
+    modal: WORD_POOLS_L1.modals,
+    preposition: WORD_POOLS_L1.prepositions,
+    conjunction: WORD_POOLS_L1.conjunctions,
+    verb: WORD_POOLS_L1.verbs,
+    noun: WORD_POOLS_L1.nouns,
+    adjective: WORD_POOLS_L1.adjectives,
+    adverb: WORD_POOLS_L1.adverbs,
+    modifier: WORD_POOLS_L1.adverbs,
+    phrasal_particle: WORD_POOLS_L1.phrasal,
+  };
+  const broadFallback = [
+    ...WORD_POOLS_L1.misc,
+    ...WORD_POOLS_L1.pronouns,
+    ...WORD_POOLS_L1.verbs,
+  ];
+  const correctKey = normalizedToken(correct);
+  const unique = new Set<string>();
+
+  for (const candidate of [...(poolsByCategory[category] ?? []), ...broadFallback]) {
+    if (normalizedToken(candidate) !== correctKey) unique.add(candidate);
+    if (unique.size === 5) break;
+  }
+
+  return [...unique];
+}
+
+function authoredWordsByToken(words: PlanContentWord[]): Map<string, PlanContentWord[]> {
+  const byToken = new Map<string, PlanContentWord[]>();
+  for (const word of words) {
+    const key = normalizedToken(word.text);
+    const matches = byToken.get(key) ?? [];
+    matches.push(word);
+    byToken.set(key, matches);
+  }
+  return byToken;
+}
+
 function wordsForPhrase(phrase: PlanContentPhrase): LessonPhrase['words'] {
   const teachingNote = explanationToTeachingNote(`${phrase.id}_note`, phrase.explanation);
+  const authoredByToken = authoredWordsByToken(phrase.words);
 
-  // Use the agent-authored words: exact POS + curated distractors (no guessing).
-  return phrase.words.map((word, index) => ({
-    text: word.text,
-    correct: word.text,
-    distractors: word.distractors,
-    category: word.partOfSpeech,
-    // Attach the explanation to the first word — shown as the exercise opens.
-    ...(index === 0 ? { teachingNote } : {}),
-  }));
+  // English is canonical. Some legacy authored arrays contain only "important"
+  // words, which made the runtime display grammatically truncated phrases. Keep
+  // every canonical token and reuse curated metadata wherever it exists.
+  return phraseTokens(phrase.english).map((token, index): LessonWord => {
+    const authoredMatches = authoredByToken.get(normalizedToken(token));
+    const authored = authoredMatches?.shift();
+    const category = authored?.partOfSpeech ?? normalizeWordCategory(undefined, token).category;
+
+    return {
+      text: token,
+      correct: token,
+      distractors: authored?.distractors ?? fallbackDistractors(token, category),
+      category,
+      // Attach the explanation to the first word — shown as the exercise opens.
+      ...(index === 0 ? { teachingNote } : {}),
+    };
+  });
 }
 
 /** One content phrase -> one runtime LessonPhrase. */

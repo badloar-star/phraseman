@@ -13,6 +13,7 @@ export interface UpsertPlanInput {
   readonly db: FirebaseFirestore.Firestore;
   readonly decision: Decision;
   readonly nowMs: number;
+  readonly followUpTasksEnabled?: boolean;
 }
 
 /**
@@ -25,7 +26,9 @@ export async function upsertPlan(input: UpsertPlanInput): Promise<JarvisPlan> {
   const ref = input.db.collection(JARVIS_PLANS_COLLECTION).doc(input.decision.contentHash);
   const snap = await ref.get();
   const existing = snap.exists ? (snap.data() as JarvisPlan) : null;
-  const plan = buildPlanFromDecision(input.decision, existing, input.nowMs);
+  const plan = buildPlanFromDecision(input.decision, existing, input.nowMs, {
+    followUpTasksEnabled: input.followUpTasksEnabled,
+  });
   // guard-ok (merge): план пишется ЦЕЛИКОМ — buildPlanFromDecision уже
   // перенёс всё нужное из existing (status/createdAtMs/narrative), merge
   // здесь означал бы риск оставить устаревшее поле от предыдущей схемы.

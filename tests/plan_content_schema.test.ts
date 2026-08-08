@@ -1,4 +1,5 @@
 import {
+  validatePlanContentWordAlignment,
   validatePlanContentDay,
   planContentDayIsReady,
   type PlanContentDay,
@@ -108,6 +109,22 @@ describe('plan content schema', () => {
     const day = makeDay();
     day.phrases[0] = phrase({ constructions: [] });
     expect(validatePlanContentDay(day).map((i) => i.code)).toContain('phrase_missing_constructions');
+  });
+
+  it('detects an authored words array that omits a canonical phrase token', () => {
+    const day = makeDay();
+    day.phrases[1] = phrase({
+      id: 'p2',
+      english: 'I need help.',
+      words: [
+        { text: 'need', partOfSpeech: 'verb', distractors: ['want', 'have', 'see', 'zz4', 'zz5'] },
+        { text: 'help', partOfSpeech: 'noun', distractors: ['water', 'time', 'food', 'zz4', 'zz5'] },
+      ],
+    });
+
+    expect(validatePlanContentWordAlignment(day)).toEqual([
+      expect.objectContaining({ code: 'phrase_words_misaligned', phraseId: 'p2' }),
+    ]);
   });
 
   it('rejects an incomplete explanation (missing the common mistake)', () => {

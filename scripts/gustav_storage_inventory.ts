@@ -110,7 +110,7 @@ const TARGET_STORAGE_HELPERS = new Set([
   'comboAchievementCounterKey',
   'customFlashcardsKey',
   'dailyTaskLessonVisitedKey',
-  'dailyTasksAdminOverrideKey',
+
   'dailyTasksProgressKey',
   'dailyTasksRerollKey',
   'dailyPhraseKey',

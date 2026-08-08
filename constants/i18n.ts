@@ -106,7 +106,6 @@ export const T = {
   ru: {
     // Табы
     tabLessons:   'Учёба',
-    tabQuizzes:   'Вызовы',
     tabSettings:  'Настройки',
 
     // Список уроков
@@ -134,7 +133,6 @@ export const T = {
     easy:         'Лёгкий',
     medium:       'Средний',
     hard:         'Сложный',
-    quizDone:     'Готово!',
     playAgain:    'Ещё раз',
     selectLevel2: 'Сменить уровень',
     fixErrors:    'Разбери промахи',
@@ -216,7 +214,6 @@ export const T = {
   },
   uk: {
     tabLessons:   'Уроки',
-    tabQuizzes:   'Квізи',
     tabSettings:  'Налаштування',
 
     lessonN:      (n: number) => `Урок ${n}`,
@@ -240,7 +237,6 @@ export const T = {
     easy:         'Легко',
     medium:       'Середньо',
     hard:         'Складно',
-    quizDone:     'Квіз завершено!',
     playAgain:    'Пройти знову',
     selectLevel2: 'Обрати рівень',
     fixErrors:    'Виправ помилки',
@@ -319,7 +315,6 @@ export const T = {
   },
   es: {
     tabLessons:   'Lecciones',
-    tabQuizzes:   'Cuestionarios',
     tabSettings:  'Ajustes',
 
     lessonN:      (n: number) => `Lección ${n}`,
@@ -343,7 +338,6 @@ export const T = {
     easy:         'Fácil',
     medium:       'Medio',
     hard:         'Difícil',
-    quizDone:     '¡Cuestionario terminado!',
     playAgain:    'Intentar de nuevo',
     selectLevel2: 'Elegir otro nivel',
     fixErrors:    'Corrige los errores',
@@ -416,7 +410,6 @@ export const T = {
   },
   'pt-BR': {
     tabLessons:   'Lições',
-    tabQuizzes:   'Quizzes',
     tabSettings:  'Configurações',
 
     lessonN:      (n: number) => `Lição ${n}`,
@@ -440,7 +433,6 @@ export const T = {
     easy:         'Fácil',
     medium:       'Médio',
     hard:         'Difícil',
-    quizDone:     'Quiz concluído!',
     playAgain:    'Tentar de novo',
     selectLevel2: 'Escolher outro nível',
     fixErrors:    'Corrigir erros',
@@ -513,7 +505,6 @@ export const T = {
   },
   vi: {
     tabLessons:   'Bài học',
-    tabQuizzes:   'Quiz',
     tabSettings:  'Cài đặt',
 
     lessonN:      (n: number) => `Bài ${n}`,
@@ -537,7 +528,6 @@ export const T = {
     easy:         'Dễ',
     medium:       'Trung bình',
     hard:         'Khó',
-    quizDone:     'Đã hoàn thành quiz!',
     playAgain:    'Làm lại',
     selectLevel2: 'Chọn cấp độ khác',
     fixErrors:    'Sửa lỗi',
@@ -610,7 +600,6 @@ export const T = {
   },
   id: {
     tabLessons:   'Pelajaran',
-    tabQuizzes:   'Kuis',
     tabSettings:  'Pengaturan',
 
     lessonN:      (n: number) => `Pelajaran ${n}`,
@@ -634,7 +623,6 @@ export const T = {
     easy:         'Mudah',
     medium:       'Sedang',
     hard:         'Sulit',
-    quizDone:     'Kuis selesai!',
     playAgain:    'Coba lagi',
     selectLevel2: 'Pilih level lain',
     fixErrors:    'Perbaiki kesalahan',
@@ -707,7 +695,6 @@ export const T = {
   },
   tr: {
     tabLessons:   'Dersler',
-    tabQuizzes:   'Quizler',
     tabSettings:  'Ayarlar',
 
     lessonN:      (n: number) => `Ders ${n}`,
@@ -731,7 +718,6 @@ export const T = {
     easy:         'Kolay',
     medium:       'Orta',
     hard:         'Zor',
-    quizDone:     'Quiz tamamlandı!',
     playAgain:    'Tekrar dene',
     selectLevel2: 'Başka seviye seç',
     fixErrors:    'Hataları düzelt',
@@ -804,7 +790,6 @@ export const T = {
   },
   pl: {
     tabLessons:   'Lekcje',
-    tabQuizzes:   'Quizy',
     tabSettings:  'Ustawienia',
 
     lessonN:      (n: number) => `Lekcja ${n}`,
@@ -828,7 +813,6 @@ export const T = {
     easy:         'Łatwy',
     medium:       'Średni',
     hard:         'Trudny',
-    quizDone:     'Quiz zakończony!',
     playAgain:    'Spróbuj ponownie',
     selectLevel2: 'Wybierz inny poziom',
     fixErrors:    'Popraw błędy',

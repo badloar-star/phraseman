@@ -9,7 +9,6 @@ const ROOT = path.join(__dirname, '..');
 const THEME_MODES = [
   'dark',
   'gold',
-  'coral',
   'minimalDark',
   'business',
   'businessLight',

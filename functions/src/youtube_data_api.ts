@@ -152,8 +152,10 @@ export function createYoutubeDataGateway(options: {
 
   return {
     async getChannel(channelId) {
+      const rawReference = channelId.trim();
+      const channelHandle = rawReference.match(/(?:youtube\.com\/)@([0-9A-Za-z._-]+)/i)?.[1] || (rawReference.startsWith('@') ? rawReference.slice(1) : '');
       const response = await request('channels', {
-        part: 'snippet,contentDetails', id: channelId, maxResults: '1',
+        part: 'snippet,contentDetails', maxResults: '1', ...(channelHandle ? { forHandle: `@${channelHandle}` } : { id: rawReference }),
         fields: 'items(id,snippet(title,customUrl,thumbnails),contentDetails(relatedPlaylists(uploads)))',
       });
       const source = items(response)[0];
@@ -163,7 +165,7 @@ export function createYoutubeDataGateway(options: {
       if (!uploadsPlaylistId) throw new YoutubeDataApiError('uploads_playlist_missing', false);
       const avatarUrl = thumbnailUrl(snippet);
       return {
-        id: stringValue(source.id) || channelId,
+        id: stringValue(source.id) || rawReference,
         displayName: stringValue(snippet.title) || channelId,
         handle: stringValue(snippet.customUrl),
         ...(avatarUrl ? { avatarUrl } : {}),

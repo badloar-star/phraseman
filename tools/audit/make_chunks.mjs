@@ -22,7 +22,6 @@ function emit(track, file, size) {
   });
 }
 
-emit('quiz', 'CONTENT_QUIZZES.json', 25);
 emit('phrase', 'PHRASES_FOR_SEMANTIC.json', 25);
 emit('word', 'CONTENT_WORDS.json', 60);
 emit('intro', 'CONTENT_INTROS.json', 40);

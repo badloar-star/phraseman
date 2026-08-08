@@ -18,7 +18,7 @@ function briefing(): WeeklyReviewBriefing {
       topMistakePhrases: [{ phrase: 'I have a dog', count: 5, trend: 'down' }],
     },
     practice: { dueWords: 4, duePhrases: 2, overdue: 1, totalTracked: 20, completed7d: 5, accuracy7d: null, accuracyDelta: null },
-    effort: { activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5, weekXp: 120, weekMinutes: 40, lessons7d: 2, quizzes7d: 1, reviews7d: 3, arena7d: 0 },
+    effort: { activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5, weekXp: 120, weekMinutes: 40, lessons7d: 2, reviews7d: 3 },
     recommendations: [{ recommendationId: 'due:words', actionKind: 'repeat_due_words', label: 'Повторить слова' }],
     evidenceRegistry: { 'mistakes.last7': 8, 'mistakes.recovered': 3, 'practice.overdue': 1, 'practice.dueWords': 4 },
     coverage: { ready: 3, failed: 0, total: 3, readySources: ['mistakes', 'activity', 'trainer'], failedSources: [] },

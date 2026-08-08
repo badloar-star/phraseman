@@ -77,6 +77,29 @@ describe('Jarvis money department — a decision only when the signal is real', 
     expect(result.decisions[0].status).toBe('insufficient_evidence');
   });
 
+  test.each([
+    ['scheduled', 'revenuecat_premium_events', 'paywall_funnel'],
+    ['scheduled', 'paywall_funnel', 'revenuecat_premium_events'],
+    ['owner_request', 'revenuecat_premium_events', 'paywall_funnel'],
+    ['owner_request', 'paywall_funnel', 'revenuecat_premium_events'],
+  ] as const)(
+    '%s run reports insufficient_evidence when %s errors and %s is empty',
+    (trigger, failedSource, emptySource) => {
+      const result = runMoneyDepartment({
+        fetches: [
+          fetchResult({ sourceId: failedSource, state: 'error' }),
+          fetchResult({ sourceId: emptySource, state: 'empty' }),
+        ],
+        trigger,
+        nowMs: 10_000,
+      });
+
+      expect(result.decisions).toHaveLength(1);
+      expect(result.decisions[0].status).toBe('insufficient_evidence');
+      expect(result.decisions[0].evidence.find((item) => item.sourceId === failedSource)?.count).toBeNull();
+    },
+  );
+
   test('owner_request always answers even without a spike', () => {
     const result = runMoneyDepartment({
       fetches: [fetchResult({ rows: NEW_PAYING_ROWS }), fetchResult({ sourceId: 'paywall_funnel', rows: [] })],

@@ -29,8 +29,6 @@ type PersistedRow = Readonly<{
   current: number;
   completed: boolean;
   claimed: boolean;
-  comboPlays?: number;
-  comboWins?: number;
 }>;
 
 type PersistedEntry = Readonly<{
@@ -55,15 +53,11 @@ function parseRow(raw: unknown): PersistedRow | null {
   if (!raw || typeof raw !== 'object') return null;
   const row = raw as Record<string, unknown>;
   if (typeof row.taskId !== 'string' || !row.taskId) return null;
-  const comboPlays = row.comboPlays == null ? undefined : readNumber(row.comboPlays);
-  const comboWins = row.comboWins == null ? undefined : readNumber(row.comboWins);
   return {
     taskId: row.taskId,
     current: readNumber(row.current),
     completed: row.completed === true,
     claimed: row.claimed === true,
-    ...(comboPlays == null ? {} : { comboPlays }),
-    ...(comboWins == null ? {} : { comboWins }),
   };
 }
 
@@ -125,8 +119,6 @@ function serializeEntry(
       current: readNumber(row.current),
       completed: row.completed === true,
       claimed: row.claimed === true,
-      ...(row.comboPlays == null ? {} : { comboPlays: readNumber(row.comboPlays) }),
-      ...(row.comboWins == null ? {} : { comboWins: readNumber(row.comboWins) }),
     })),
     trioShardsClaimed: value.trioShardsClaimed,
     rerollsLeft: readNumber(value.rerollsLeft),

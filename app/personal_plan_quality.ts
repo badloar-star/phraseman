@@ -9,13 +9,13 @@ import type { LessonPhrase } from './lesson_data_types';
 import { getLessonData } from './lesson_data_all';
 import { tasksForMinutes } from './personal_plan_catalog';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+import { getPersonalPlanQuiz } from './personal_plan_quizzes';
 import {
   getPersonalPlanMissingWordItems,
   validatePersonalPlanMissingWordItemQuality,
 } from './personal_plan_missing_word_items';
 
 export const PERSONAL_PLAN_GENERATION_STANDARDS_VERSION = '2026-05-31.after-answer-recall-v1';
-export const PERSONAL_PLAN_QUIZ_ES_FIELD_MARKERS = ['es', 'explanationsES'] as const;
 
 export type PersonalPlanDayQualityCode =
   | 'missing_day_copy'
@@ -25,11 +25,6 @@ export type PersonalPlanDayQualityCode =
   | 'missing_phrase_lesson'
   | 'empty_phrase_lesson'
   | 'missing_teaching_notes'
-  | 'missing_quiz'
-  | 'quiz_question_count'
-  | 'quiz_explanations_count'
-  | 'missing_quiz_coverage'
-  | 'uncovered_quiz_item'
   | 'forbidden_question_grammar'
   | 'blocked_grammar_tag'
   | 'missing_word_option_count'
@@ -37,11 +32,11 @@ export type PersonalPlanDayQualityCode =
   | 'missing_word_option_reuses_phrase_token'
   | 'unsafe_missing_word_slot'
   | 'unsafe_missing_word_option'
-  | 'plan_quiz_disabled'
   | 'scaffold_day'
   | 'missing_required_phrase_ids'
   | 'missing_life_outcome'
-  | 'missing_curriculum';
+  | 'missing_curriculum'
+  | 'missing_quiz';
 
 export type PersonalPlanDayQualityIssue = {
   code: PersonalPlanDayQualityCode;
@@ -71,12 +66,7 @@ export type PersonalPlanDayPassport = {
     planPhraseLessonIds: string[];
     recallPhraseLessonIds: string[];
     quizIds: string[];
-    quizQuestionSources: Array<{
-      quizId: string;
-      questionId: string;
-      sourceIds: string[];
-      covered: boolean;
-    }>;
+    quizQuestionSources: Array<{ quizId: string; questionId: string; sourceIds: string[]; covered: boolean }>;
   };
   load: {
     byMinutes: Record<PlanMinutesChoice, {
@@ -196,12 +186,6 @@ function phraseGrammarTagsForDay(day: PlanDay): string[] {
     for (const tag of inferPhraseGrammarTags(phrase)) tags.add(tag);
   }
   return [...tags];
-}
-
-function buildQuizQuestionSources(_day: PlanDay): PersonalPlanDayPassport['coverage']['quizQuestionSources'] {
-  // Retired quiz tasks remain visible in the passport's quizIds compatibility list,
-  // but no deleted runtime content is loaded to manufacture question-level coverage.
-  return [];
 }
 
 function validateTaskOrder(
@@ -365,11 +349,11 @@ export function validatePersonalPlanDay(
     if (task.destination.type === 'plan_phrase_lesson' || task.destination.type === 'plan_phrase_recall') {
       validatePhraseDestination(issues, plan, day, task, task.destination);
     }
-    if (task.destination.type === 'quiz') {
-      addIssue(issues, plan, day, 'plan_quiz_disabled', 'Personal plan days must not include quiz tasks', task);
-    }
     if (task.destination.type === 'plan_exercise') {
       validatePlanExerciseDestination(issues, plan, day, task, task.destination);
+    }
+    if (task.destination.type === 'quiz' && !getPersonalPlanQuiz(task.destination.quizId)) {
+      addIssue(issues, plan, day, 'missing_quiz', 'Plan quiz task must resolve to a dedicated plan-only quiz', task);
     }
   }
 
@@ -381,6 +365,7 @@ function buildCoverage(day: PlanDay): PersonalPlanDayPassport['coverage'] {
   const planPhraseLessonIds = new Set<string>();
   const recallPhraseLessonIds = new Set<string>();
   const quizIds = new Set<string>();
+  const quizQuestionSources: PersonalPlanDayPassport['coverage']['quizQuestionSources'] = [];
 
   for (const task of day.tasks) {
     if (task.destination.type === 'lesson') {
@@ -394,6 +379,8 @@ function buildCoverage(day: PlanDay): PersonalPlanDayPassport['coverage'] {
     }
     if (task.destination.type === 'quiz') {
       quizIds.add(task.destination.quizId);
+      const quiz = getPersonalPlanQuiz(task.destination.quizId);
+      for (const question of quiz?.questions ?? []) quizQuestionSources.push({ quizId: task.destination.quizId, questionId: question.id, sourceIds: question.sourcePhraseId ? [question.sourcePhraseId] : [], covered: Boolean(question.sourcePhraseId) });
     }
   }
 
@@ -402,7 +389,7 @@ function buildCoverage(day: PlanDay): PersonalPlanDayPassport['coverage'] {
     planPhraseLessonIds: [...planPhraseLessonIds],
     recallPhraseLessonIds: [...recallPhraseLessonIds],
     quizIds: [...quizIds],
-    quizQuestionSources: buildQuizQuestionSources(day),
+    quizQuestionSources,
   };
 }
 

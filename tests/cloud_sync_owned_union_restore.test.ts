@@ -1,10 +1,17 @@
-import { __cloudSyncTestHooks, SYNC_KEYS } from '../app/cloud_sync';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  __cloudSyncTestHooks,
+  isServerOwnedProgressKey,
+  SERVER_OWNED_PROGRESS_KEYS,
+  SYNC_KEYS,
+} from '../app/cloud_sync';
 
 const {
   mergeOwnedRestoreValue,
   mergeSeasonCosmeticsRestoreValue,
   isOwnedUnionRestoreKey,
   mergeLessonRestoreValue,
+  buildGiftEntitlementStickyPairs,
 } = __cloudSyncTestHooks;
 
 // K2 (UX_PROBLEMS_AUDIT_2026-07-04): в ветке restore «облако победило» (арбитр — XP)
@@ -13,6 +20,105 @@ const {
 // Фикс: владение строго аддитивно → union вместо перезаписи.
 
 describe('K2 owned/purchased union restore (offline purchases survive cloud-wins)', () => {
+  describe('server-owned gift perks restore', () => {
+    it('keeps gift perks restoreable while excluding them from every outbound progress patch', () => {
+      const localProgress = {
+        user_name: 'Ada',
+        chain_shield: JSON.stringify({ daysLeft: 2 }),
+        gift_xp_multiplier: JSON.stringify({ multiplier: 2, expiresAt: Date.now() + 60_000 }),
+        club_gift_free_boost_v1: '9',
+      };
+      const outboundPatch = Object.fromEntries(
+        Object.entries(localProgress).filter(([key]) => !isServerOwnedProgressKey(key)),
+      );
+
+      expect(SERVER_OWNED_PROGRESS_KEYS.has('chain_shield')).toBe(true);
+      expect(SERVER_OWNED_PROGRESS_KEYS.has('gift_xp_multiplier')).toBe(true);
+      expect(SERVER_OWNED_PROGRESS_KEYS.has('club_gift_free_boost_v1')).toBe(true);
+      expect(outboundPatch).toEqual({ user_name: 'Ada' });
+      expect(SYNC_KEYS).toEqual(expect.arrayContaining(['chain_shield', 'gift_xp_multiplier', 'club_gift_free_boost_v1']));
+    });
+
+    it('restores root-only legacy perks from a full user document instead of deleting them', async () => {
+      const shield = JSON.stringify({ daysLeft: 2, grantedAt: '2026-08-01' });
+      const boost = JSON.stringify({ multiplier: 1.5, expiresAt: Date.now() + 15 * 60_000 });
+      await AsyncStorage.multiSet([
+        ['chain_shield', JSON.stringify({ daysLeft: 5 })],
+        ['gift_xp_multiplier', JSON.stringify({ multiplier: 2, expiresAt: Date.now() + 120_000 })],
+      ]);
+
+      await expect(__cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({
+          chain_shield: shield,
+          gift_xp_multiplier: boost,
+          progress: { user_total_xp: '0', streak_count: '0' },
+        }),
+      })).resolves.toBe(true);
+
+      await expect(AsyncStorage.getItem('chain_shield')).resolves.toBe(shield);
+      await expect(AsyncStorage.getItem('gift_xp_multiplier')).resolves.toBe(boost);
+    });
+
+    it('applies the exact canonical cloud value even when it is lower than local state', async () => {
+      const shield = JSON.stringify({ daysLeft: 2 });
+      const boost = JSON.stringify({ multiplier: 2, expiresAt: Date.now() + 60_000 });
+      await expect(buildGiftEntitlementStickyPairs({
+        chain_shield: shield,
+        gift_xp_multiplier: boost,
+      })).resolves.toEqual({
+        pairs: [['chain_shield', shield], ['gift_xp_multiplier', boost]],
+        removeKeys: ['club_gift_free_boost_v1'],
+      });
+    });
+
+    it('removes stale local perks when canonical cloud state is absent, zero or expired', async () => {
+      await expect(buildGiftEntitlementStickyPairs({
+        chain_shield: JSON.stringify({ daysLeft: 0 }),
+        gift_xp_multiplier: JSON.stringify({ multiplier: 2, expiresAt: Date.now() - 1 }),
+      })).resolves.toEqual({
+        pairs: [],
+        removeKeys: ['chain_shield', 'gift_xp_multiplier', 'club_gift_free_boost_v1'],
+      });
+    });
+
+    it('removes a stale local club voucher after another device consumes canonical 1 to 0', async () => {
+      await AsyncStorage.setItem('club_gift_free_boost_v1', '1');
+
+      await expect(__cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({
+          club_gift_free_boost_v1: '0',
+          progress: {
+            user_total_xp: '0',
+            streak_count: '0',
+            club_gift_free_boost_v1: '0',
+          },
+        }),
+      })).resolves.toBe(true);
+
+      await expect(AsyncStorage.getItem('club_gift_free_boost_v1')).resolves.toBeNull();
+    });
+
+    it('hydrates the exact canonical max(root, progress) club voucher count over stale local zero', async () => {
+      await AsyncStorage.setItem('club_gift_free_boost_v1', '0');
+
+      await expect(__cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({
+          club_gift_free_boost_v1: '2',
+          progress: {
+            user_total_xp: '0',
+            streak_count: '0',
+            club_gift_free_boost_v1: '4',
+          },
+        }),
+      })).resolves.toBe(true);
+
+      await expect(AsyncStorage.getItem('club_gift_free_boost_v1')).resolves.toBe('4');
+    });
+  });
+
   describe('season cosmetics restore', () => {
     it('includes permanent season cosmetics in cloud sync', () => {
       expect(SYNC_KEYS).toContain('season_cosmetics_v1');
@@ -68,6 +174,7 @@ describe('K2 owned/purchased union restore (offline purchases survive cloud-wins
       expect(isOwnedUnionRestoreKey('flashcards_owned_packs_v1')).toBe(true);
       expect(isOwnedUnionRestoreKey('community_owned_pack_ids_v1')).toBe(true);
       expect(isOwnedUnionRestoreKey('flashcards_market_dev_owned_v1')).toBe(true);
+      expect(isOwnedUnionRestoreKey('level_up_shown_levels_v1')).toBe(true);
     });
 
     it('recognizes fr-scoped (target-scoped) owned keys', () => {
@@ -84,6 +191,10 @@ describe('K2 owned/purchased union restore (offline purchases survive cloud-wins
   });
 
   describe('mergeOwnedRestoreValue — array-shaped owned (flashcard/community packs)', () => {
+    it('unions level-up modal history from local and cloud devices', () => {
+      const merged = JSON.parse(mergeOwnedRestoreValue('[2,3]', '[3,4]'));
+      expect(new Set(merged)).toEqual(new Set([2, 3, 4]));
+    });
     it('keeps a locally-owned pack the cloud lacks (offline purchase survives)', () => {
       const cloud = JSON.stringify(['pack-a', 'pack-b']);
       const local = JSON.stringify(['pack-a', 'pack-offline']);

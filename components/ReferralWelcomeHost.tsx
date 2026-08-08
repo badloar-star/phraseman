@@ -6,7 +6,7 @@
  * пригласившему откроется один прокрут рулетки с призом Plus от 1 до 365 дней».
  *
  * Монтируется из app/_layout.tsx внутри OverlayArbiterProvider (рядом с
- * ArenaFriendInviteHost), поэтому НЕ требует правок home.tsx. Видимостью управляет
+ * другие глобальные hosts), поэтому НЕ требует правок home.tsx. Видимостью управляет
  * OverlayArbiter через useOverlayVisible('referralWelcome', …) — как требует правило
  * «любая авто-модалка главной идёт через арбитр, не через свой visible» (иначе риск
  * двойного statusBarTranslucent-Modal и фриза, см. components/OverlayArbiter.tsx).

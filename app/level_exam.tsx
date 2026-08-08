@@ -1151,7 +1151,7 @@ export default function LevelExam() {
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TapScale>
           </View>
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
             <View
               style={{
                 backgroundColor: LX.card,
@@ -1314,7 +1314,7 @@ export default function LevelExam() {
             </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
           </View>
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
             {/* Итог */}
             <View style={{ alignItems: 'center', gap: 8, paddingVertical: 12 }}>
               {examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
@@ -1650,7 +1650,7 @@ export default function LevelExam() {
           </Text>
         </View>
 
-        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
           {/* Топик */}
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
             {triLang(lang, {

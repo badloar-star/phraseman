@@ -28,6 +28,7 @@ describe('personal plan day quality gate', () => {
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
+      'plan_quiz',
     ]);
   });
 
@@ -60,7 +61,7 @@ describe('personal plan day quality gate', () => {
     expect(codes).toEqual(expect.arrayContaining([
       'bad_copy',
       'invalid_task_order',
-      'plan_quiz_disabled',
+      'missing_quiz',
     ]));
   });
 

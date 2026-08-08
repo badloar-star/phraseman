@@ -12,7 +12,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
-import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId } from './user_id_policy';
+import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
@@ -88,7 +88,6 @@ import {
   dailyPhraseAchievementSaveCountKey,
   dailyTasksAchievementAllDoneStreakKey,
   dailyTasksAchievementNoRerollStreakKey,
-  dailyTasksAdminOverrideKey,
   customFlashcardsKey,
   dailyTaskLessonVisitedKey,
   dailyTasksProgressKey,
@@ -146,11 +145,7 @@ import {
   posMasteryKey,
   premiumCourseLevelKey,
   prepositionDrillPerfectKey,
-  quizAchievementCounterKey,
-  quizLifetimeCounterKey,
-  quizNavLevelKey,
-  quizPerfectLevelsTodayKey,
-  quizPerfectStreakKey,
+  retiredCompetitiveModeStorageKeysForWipe,
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
   targetKey,
@@ -176,8 +171,6 @@ type DailyTaskProgressRow = {
   current?: number;
   completed?: boolean;
   claimed?: boolean;
-  comboPlays?: number;
-  comboWins?: number;
 };
 
 const taskProgressNum = (v: unknown): number =>
@@ -244,15 +237,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
   FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
   dailyTasksRerollKey('fr'),
-  quizNavLevelKey('fr'),
-  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'),
-  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'),
-  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'),
-  quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
-  quizAchievementCounterKey('quiz_hard_count', 'fr'),
-  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
-  quizPerfectLevelsTodayKey('fr'),
-  quizPerfectStreakKey('fr'),
   ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
     lessonBestScoreKey(lessonId, 'fr'),
     lessonPassCountKey(lessonId, 'fr'),
@@ -330,14 +314,24 @@ export function mergeDailyTasksProgressForRestore(localRaw: string | null | unde
   const byId = new Map<string, DailyTaskProgressRow>();
   for (const row of cloudArr) {
     if (row && typeof row.taskId === 'string' && row.taskId) {
-      byId.set(row.taskId, { ...row });
+      byId.set(row.taskId, {
+        taskId: row.taskId,
+        current: taskProgressNum(row.current),
+        completed: row.completed === true,
+        claimed: row.claimed === true,
+      });
     }
   }
   for (const row of localArr) {
     if (!row || typeof row.taskId !== 'string' || !row.taskId) continue;
     const cloud = byId.get(row.taskId);
     if (!cloud) {
-      byId.set(row.taskId, { ...row });
+      byId.set(row.taskId, {
+        taskId: row.taskId,
+        current: taskProgressNum(row.current),
+        completed: row.completed === true,
+        claimed: row.claimed === true,
+      });
       continue;
     }
     byId.set(row.taskId, {
@@ -346,8 +340,6 @@ export function mergeDailyTasksProgressForRestore(localRaw: string | null | unde
       current: Math.max(taskProgressNum(cloud.current), taskProgressNum(row.current)),
       completed: !!(cloud.completed || row.completed),
       claimed: !!(cloud.claimed || row.claimed),
-      comboPlays: Math.max(taskProgressNum(cloud.comboPlays), taskProgressNum(row.comboPlays)),
-      comboWins: Math.max(taskProgressNum(cloud.comboWins), taskProgressNum(row.comboWins)),
     });
   }
   return JSON.stringify([...byId.values()]);
@@ -406,14 +398,6 @@ export const SYNC_KEYS = [
   'achievement_trainer_correct_count',
   'achievement_trainer_correct_streak_v1',
   'achievement_trainer_perfect_session_count',
-  quizAchievementCounterKey('achievement_quiz_total_count', 'en'),
-  quizAchievementCounterKey('quiz_hard_count', 'en'),
-  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'en'),
-  quizPerfectLevelsTodayKey('en'),
-  quizPerfectStreakKey('en'),
-  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'en'),
-  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'en'),
-  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'en'),
   'achievement_all_daily_streak_v1',
   'helpful_error_reports_confirmed_v1',
   'achievement_daily_phrase_read_count',
@@ -480,7 +464,9 @@ export const SYNC_KEYS = [
   // Анти-повтор премиум pack-unlock подарков уровня: без синка при смене
   // устройства один и тот же набор мог выпасть повторно.
   'level_premium_pack_unlock_gifts_v1',
+  'level_up_shown_levels_v1',
   'wager_discount',
+  'wager_discount_uses_v1',
   'league_chest_energy_override_v1',
   'league_chest_xp_override_v1',
   'league_gold_theme_unlocked_v1',
@@ -655,19 +641,10 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
     dailyTasksProgressKey(todayKey, target),
     dailyTaskLessonVisitedKey(todayKey, target),
-    dailyTasksAdminOverrideKey(target),
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
     diagnosticOpenFlagKey(target),
-    quizNavLevelKey(target),
-    quizLifetimeCounterKey('lifetime_quiz_easy_v1', target),
-    quizLifetimeCounterKey('lifetime_quiz_medium_v1', target),
-    quizLifetimeCounterKey('lifetime_quiz_hard_v1', target),
-    quizAchievementCounterKey('achievement_quiz_total_count', target),
-    quizAchievementCounterKey('quiz_hard_count', target),
-    quizAchievementCounterKey('achievement_quiz_hard_perfect_count', target),
-    quizPerfectLevelsTodayKey(target),
-    quizPerfectStreakKey(target),
+    ...retiredCompetitiveModeStorageKeysForWipe(target),
     irregularVerbsGlobalKey(target),
     lingmanCertificateKey(target),
     flashcardsMarketplaceBuiltCardsCacheKey(target),
@@ -1060,6 +1037,9 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'streak_last_date',
   'collectibles_owned_v1',
   'collectibles_state_v1',
+  'chain_shield',
+  'gift_xp_multiplier',
+  'club_gift_free_boost_v1',
   // profile_card_level — публичный престиж-бейдж, поднимает только CF profileCardUpgrade
   // (Admin SDK). В blocklist firestore.rules (стр.94). Без исключения здесь клиент слал бы
   // его в исходящий patch после апгрейда → rules отклонят весь set (PERMISSION_DENIED) →
@@ -1205,9 +1185,6 @@ const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
 // can reset to 0), dates (streak_last_date, *_period_start), and current-state
 // values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
 export const MONOTONIC_COUNTER_RESTORE_KEYS = [
-  'achievement_quiz_total_count',
-  'quiz_hard_count',
-  'achievement_quiz_hard_perfect_count',
   'achievement_trainer_correct_count',
   'achievement_trainer_perfect_session_count',
   'achievement_active_recall_correct_count',
@@ -1316,6 +1293,7 @@ const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
   'flashcards_owned_packs_v1',     // ["packId", ...]
   'community_owned_pack_ids_v1',   // ["packId", ...]
   'flashcards_market_dev_owned_v1',// ["packId", ...]
+  'level_up_shown_levels_v1',      // [2, 3, ...] — acknowledged modals are strictly additive
 ]);
 
 function isOwnedUnionRestoreKey(key: string): boolean {
@@ -1344,8 +1322,10 @@ function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | 
   if (local === null) return cloudValue;
   const cloud = parseOwnedRestoreJson(cloudValue);
   if (Array.isArray(local) || Array.isArray(cloud)) {
-    const cloudIds = Array.isArray(cloud) ? cloud.filter((x): x is string => typeof x === 'string') : [];
-    const localIds = Array.isArray(local) ? local.filter((x): x is string => typeof x === 'string') : [];
+    const isUnionScalar = (value: unknown): value is string | number =>
+      typeof value === 'string' || (typeof value === 'number' && Number.isFinite(value));
+    const cloudIds = Array.isArray(cloud) ? cloud.filter(isUnionScalar) : [];
+    const localIds = Array.isArray(local) ? local.filter(isUnionScalar) : [];
     return JSON.stringify([...new Set([...cloudIds, ...localIds])]);
   }
   // Сначала валидируем ЛОКАЛЬ по форме: если она не object-мапа (мусорный примитив
@@ -2089,7 +2069,6 @@ export function resetAnonAuthCacheForSignOut(): void {
   stableAuthLinkPromise = null;
   stableAuthLinkKey = '';
   AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(() => {});
-  clearArenaAuthUidCache();
 }
 
 // ── Получить uid текущего пользователя ───────────────────────────────────────
@@ -2234,34 +2213,64 @@ function mergeOwnedFlagMap(localRaw: string | null, cloudRaw: string | null | un
   return changed ? JSON.stringify(merged) : null;
 }
 
-async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string | null>): Promise<[string, string][]> {
+function canonicalGiftPerkStorageValue(
+  rootValue: unknown,
+  progressValue: unknown,
+  metric: 'daysLeft' | 'expiresAt',
+): string | null | undefined {
+  const candidates = [rootValue, progressValue].filter((value) => value !== undefined) as unknown[];
+  if (candidates.length === 0) return undefined;
+  let selected = candidates[0];
+  let selectedMetric = numField(safeParseObject(selected), metric);
+  for (const candidate of candidates.slice(1)) {
+    const candidateMetric = numField(safeParseObject(candidate), metric);
+    if (candidateMetric > selectedMetric) {
+      selected = candidate;
+      selectedMetric = candidateMetric;
+    }
+  }
+  if (selected === null) return null;
+  return typeof selected === 'string' ? selected : JSON.stringify(selected);
+}
+
+function canonicalGiftCountStorageValue(
+  rootValue: unknown,
+  progressValue: unknown,
+): string | null | undefined {
+  const candidates = [rootValue, progressValue].filter((value) => value !== undefined);
+  if (candidates.length === 0) return undefined;
+  const count = candidates.reduce<number>((highest, value) => {
+    const parsed = Number.parseInt(String(value ?? ''), 10);
+    return Number.isFinite(parsed) ? Math.max(highest, Math.max(0, parsed)) : highest;
+  }, 0);
+  return count > 0 ? String(count) : null;
+}
+
+async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string | null>): Promise<{
+  pairs: [string, string][];
+  removeKeys: string[];
+}> {
   const pairs: [string, string][] = [];
+  const removeKeys: string[] = [];
 
   const cloudShield = cloudData['chain_shield'];
-  if (cloudShield) {
-    const [localRaw, cloud] = await Promise.all([
-      AsyncStorage.getItem('chain_shield'),
-      Promise.resolve(safeParseObject(cloudShield)),
-    ]);
-    const local = safeParseObject(localRaw);
-    if (numField(cloud, 'daysLeft') > numField(local, 'daysLeft')) {
-      pairs.push(['chain_shield', String(cloudShield)]);
-    }
-  }
+  const cloudShieldState = safeParseObject(cloudShield);
+  if (cloudShield && numField(cloudShieldState, 'daysLeft') > 0) pairs.push(['chain_shield', String(cloudShield)]);
+  else removeKeys.push('chain_shield');
 
   const cloudXpBoost = cloudData['gift_xp_multiplier'];
-  if (cloudXpBoost) {
-    const [localRaw, cloud] = await Promise.all([
-      AsyncStorage.getItem('gift_xp_multiplier'),
-      Promise.resolve(safeParseObject(cloudXpBoost)),
-    ]);
-    const local = safeParseObject(localRaw);
-    if (numField(cloud, 'expiresAt') > numField(local, 'expiresAt')) {
-      pairs.push(['gift_xp_multiplier', String(cloudXpBoost)]);
-    }
+  const cloudXpState = safeParseObject(cloudXpBoost);
+  if (cloudXpBoost && numField(cloudXpState, 'expiresAt') > Date.now()) pairs.push(['gift_xp_multiplier', String(cloudXpBoost)]);
+  else removeKeys.push('gift_xp_multiplier');
+
+  const clubGiftFreeBoostCount = Number.parseInt(String(cloudData['club_gift_free_boost_v1'] ?? ''), 10);
+  if (Number.isFinite(clubGiftFreeBoostCount) && clubGiftFreeBoostCount > 0) {
+    pairs.push(['club_gift_free_boost_v1', String(clubGiftFreeBoostCount)]);
+  } else {
+    removeKeys.push('club_gift_free_boost_v1');
   }
 
-  return pairs;
+  return { pairs, removeKeys };
 }
 
 async function doSyncToCloud(): Promise<void> {
@@ -2408,7 +2417,29 @@ async function applyRestoreFromUserDoc(
     assertCurrent();
     AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
   }
-  const cloudData: Record<string, string | null> = (root.progress ?? {}) as Record<string, string | null>;
+  const progressData = root.progress && typeof root.progress === 'object' && !Array.isArray(root.progress)
+    ? root.progress as Record<string, unknown>
+    : {};
+  const cloudData: Record<string, string | null> = { ...progressData } as Record<string, string | null>;
+  const canonicalShield = canonicalGiftPerkStorageValue(
+    root.chain_shield,
+    progressData.chain_shield,
+    'daysLeft',
+  );
+  const canonicalXpBoost = canonicalGiftPerkStorageValue(
+    root.gift_xp_multiplier,
+    progressData.gift_xp_multiplier,
+    'expiresAt',
+  );
+  const canonicalClubGiftFreeBoostCount = canonicalGiftCountStorageValue(
+    root.club_gift_free_boost_v1,
+    progressData.club_gift_free_boost_v1,
+  );
+  if (canonicalShield !== undefined) cloudData.chain_shield = canonicalShield;
+  if (canonicalXpBoost !== undefined) cloudData.gift_xp_multiplier = canonicalXpBoost;
+  if (canonicalClubGiftFreeBoostCount !== undefined) {
+    cloudData.club_gift_free_boost_v1 = canonicalClubGiftFreeBoostCount;
+  }
   const restoredLastActiveDate = deriveLastActiveDateForRestore(cloudData);
   if (restoredLastActiveDate && !isDateKey(cloudData['last_active_date'])) {
     cloudData['last_active_date'] = restoredLastActiveDate;
@@ -2742,11 +2773,18 @@ async function applyRestoreFromUserDoc(
         stickyPairs.push(['league_state_v3', String(cloudLeagueState)]);
       }
     }
-    stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
+    const authoritativeGiftPerks = await buildGiftEntitlementStickyPairs(cloudData);
+    stickyPairs.push(...authoritativeGiftPerks.pairs);
     let appliedStickyState = false;
     if (stickyPairs.length > 0) {
       assertCurrent();
       await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
+      assertCurrent();
+      appliedStickyState = true;
+    }
+    if (authoritativeGiftPerks.removeKeys.length > 0) {
+      assertCurrent();
+      await AsyncStorage.multiRemove(authoritativeGiftPerks.removeKeys);
       assertCurrent();
       appliedStickyState = true;
     }
@@ -3073,6 +3111,7 @@ export const __cloudSyncTestHooks = {
   getUtcWeekStartIso,
   getUtcIsoWeekId,
   buildStickyServerProgressPairs,
+  buildGiftEntitlementStickyPairs,
   mergeCurrentWeekProgressRestoreValue,
 };
 

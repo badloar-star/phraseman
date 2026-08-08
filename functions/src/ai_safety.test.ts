@@ -5,16 +5,21 @@
  * показывала «Опасных сообщений нет».
  */
 
-jest.mock('firebase-admin', () => ({
-  firestore: jest.fn(),
-}));
+jest.mock('firebase-admin', () => {
+  const firestore = jest.fn();
+  Object.assign(firestore, {
+    FieldValue: { serverTimestamp: jest.fn(() => 'server_timestamp') },
+  });
+  return { firestore };
+});
 
 jest.mock('./admin_alerts', () => ({
   sendTelegramAlert: jest.fn(),
   ADMIN_ALERT_BOT_TOKEN: { value: () => '' },
 }));
 
-import { evaluateSafety, moderateUserText } from './ai_safety';
+import * as admin from 'firebase-admin';
+import { evaluateSafety, moderateUserText, recordSafetyFlag } from './ai_safety';
 
 describe('evaluateSafety — keyword layer', () => {
   it('flags suicide phrases (existing behaviour intact)', () => {
@@ -39,6 +44,99 @@ describe('evaluateSafety — keyword layer', () => {
   it('does not flag ordinary rude roleplay (rudeness is handled in-game, not alerted)', () => {
     expect(evaluateSafety('you are fat').flagged).toBe(false);
     expect(evaluateSafety('I want a latte').flagged).toBe(false);
+  });
+});
+
+describe('recordSafetyFlag — server-authoritative age evidence', () => {
+  const firestoreMock = admin.firestore as unknown as jest.Mock;
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  function configureFirestore(consentAgeBracket: unknown, consentReadError = false) {
+    const setSafetyFlag = jest.fn().mockResolvedValue(undefined);
+    const getConsent = consentReadError
+      ? jest.fn().mockRejectedValue(new Error('consent unavailable'))
+      : jest.fn().mockResolvedValue({
+        exists: true,
+        data: () => ({ ageBracket: consentAgeBracket }),
+      });
+    const collection = jest.fn((name: string) => {
+      if (name === 'user_consents') {
+        return { doc: jest.fn(() => ({ get: getConsent })) };
+      }
+      if (name === 'safety_flags') {
+        return { doc: jest.fn(() => ({ set: setSafetyFlag })) };
+      }
+      throw new Error(`Unexpected collection ${name}`);
+    });
+    firestoreMock.mockReturnValue({
+      collection,
+      doc: jest.fn(() => ({
+        get: jest.fn().mockResolvedValue({ exists: false, data: () => ({}) }),
+      })),
+    });
+    return { setSafetyFlag };
+  }
+
+  const verdict = Object.freeze({
+    flagged: true,
+    category: 'self_harm' as const,
+    matched: 'keyword:self_harm',
+  });
+
+  test('ignores a forged client minor string and uses the server consent row', async () => {
+    const { setSafetyFlag } = configureFirestore('adult');
+
+    await recordSafetyFlag(verdict, {
+      authUid: 'auth-1',
+      stableUid: 'stable-1',
+      ageBracket: 'under13',
+      mode: 'companion',
+      userText: 'unsafe text',
+    } as Parameters<typeof recordSafetyFlag>[1] & { ageBracket: string });
+
+    expect(setSafetyFlag).toHaveBeenCalledWith(expect.objectContaining({
+      ageEvidence: 'confirmed_adult',
+      ageBracket: 'adult',
+    }));
+  });
+
+  test('stores age_unverified for unknown consent and never invents a minor state', async () => {
+    const { setSafetyFlag } = configureFirestore('unknown');
+
+    await recordSafetyFlag(verdict, {
+      authUid: 'auth-1',
+      stableUid: 'stable-1',
+      ageBracket: 'teen_safe',
+      mode: 'companion',
+      userText: 'unsafe text',
+    } as Parameters<typeof recordSafetyFlag>[1] & { ageBracket: string });
+
+    const written = setSafetyFlag.mock.calls[0]?.[0];
+    expect(written).toEqual(expect.objectContaining({
+      ageEvidence: 'age_unverified',
+      ageBracket: null,
+    }));
+    expect(JSON.stringify(written)).not.toMatch(/minor|under13|teen_safe/i);
+  });
+
+  test('stores unavailable when the server consent source cannot be read', async () => {
+    const { setSafetyFlag } = configureFirestore(undefined, true);
+
+    await recordSafetyFlag(verdict, {
+      authUid: 'auth-1',
+      stableUid: 'stable-1',
+      ageBracket: 'adult',
+      mode: 'companion',
+      userText: 'unsafe text',
+    } as Parameters<typeof recordSafetyFlag>[1] & { ageBracket: string });
+
+    expect(setSafetyFlag).toHaveBeenCalledWith(expect.objectContaining({
+      ageEvidence: 'unavailable',
+      ageBracket: null,
+    }));
   });
 });
 

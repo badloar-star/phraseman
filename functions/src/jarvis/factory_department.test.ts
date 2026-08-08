@@ -38,11 +38,12 @@ describe('Jarvis content factory — where the path runs out, not where a lesson
     expect(decisions[0].finding).toContain('3');
   });
 
-  test('reports the last lesson as a wall when everyone reaches it', () => {
-    // Все дошли до конца и упёрлись: контента больше нет — это заказ на новый.
+  test('reports the highest completed lesson without claiming the course ends there', () => {
+    // lesson_stats is written only by lesson_complete, so the highest row cannot prove the catalog ends there.
     const rows = [row(1, 100), row(2, 99), row(3, 98)];
     const { decisions } = run(rows, 'owner_request');
-    expect(decisions[0].finding).toMatch(/последн|конц|закончил/i);
+    expect(decisions[0].finding).toMatch(/заверш|прошёл|completion/i);
+    expect(JSON.stringify(decisions[0])).not.toMatch(/написать следующий урок/i);
   });
 
   test('ignores a drop on lessons too small to judge', () => {
@@ -62,11 +63,18 @@ describe('Jarvis content factory — where the path runs out, not where a lesson
     expect(decisions[0].finding).toMatch(/фр|fr/i);
   });
 
-  test('a gap in lesson numbers is reported as a hole in the course', () => {
-    // Урок 3 отсутствует между 2 и 4 — контент не выпущен.
+  test('reports a gap as no completion record, not a missing course lesson', () => {
+    // A learner may not have completed lesson 3 even when it exists.
     const rows = [row(1, 100), row(2, 95), row(4, 90)];
     const { decisions } = run(rows, 'owner_request');
-    expect(decisions[0].finding).toMatch(/проп|отсутств|дыр/i);
+    expect(decisions[0].finding).toMatch(/заверш|прохожд|completion/i);
+    expect(JSON.stringify(decisions[0])).not.toMatch(/недостающий урок/i);
+  });
+
+  test('no completion stats are insufficient to infer a missing lesson or request a new one', () => {
+    const { decisions } = run([], 'owner_request');
+    expect(decisions[0].finding).toMatch(/заверш|прохожд|completion/i);
+    expect(JSON.stringify(decisions[0])).not.toMatch(/написать следующий урок|недостающий урок/i);
   });
 
   test('an unreadable source is reported as unreadable, never as complete', () => {
@@ -74,6 +82,12 @@ describe('Jarvis content factory — where the path runs out, not where a lesson
     expect(decisions).toHaveLength(1);
     expect(decisions[0].finding).toMatch(/не удалось|недоступ/i);
     expect(decisions[0].evidence.every((e) => !e.trustworthy)).toBe(true);
+  });
+
+  test('stale completion statistics cannot support a current factory conclusion', () => {
+    const { decisions } = run([row(1, 100), row(2, 10)], 'scheduled', { state: 'stale', observedAtMs: 1 });
+    expect(decisions).toHaveLength(1);
+    expect(decisions[0].status).toBe('insufficient_evidence');
   });
 
   test('only observes — it must never propose generating lessons automatically', () => {

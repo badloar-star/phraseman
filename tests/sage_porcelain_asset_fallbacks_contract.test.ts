@@ -53,8 +53,8 @@ describe('sage porcelain static asset coverage', () => {
   it('keeps every static asset slot wired while dedicated Celadon art replaces fallbacks', () => {
     [
       { file: 'app/coin_icons.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'app/flashcards/FlashcardsCategoryHub.tsx', businessLightBlocks: 1, slots: 6 },
-      { file: 'app/personal_plan_task_visuals.ts', businessLightBlocks: 2, slots: 16 },
+      { file: 'app/flashcards/FlashcardsCategoryHub.tsx', businessLightBlocks: 1, slots: 5 },
+      { file: 'app/personal_plan_task_visuals.ts', businessLightBlocks: 2, slots: 15 },
       { file: 'components/EnergyIcon.tsx', businessLightBlocks: 1, slots: 1 },
       { file: 'constants/generatedThemeIconAssets.ts', businessLightBlocks: 1, slots: 1 },
       { file: 'constants/socialIconAssets.ts', businessLightBlocks: 2, slots: 2 },
@@ -108,13 +108,12 @@ describe('sage porcelain static asset coverage', () => {
 
   it('uses generated Celadon artwork for migrated flashcard modes', () => {
     const paths = requires(themeBlocks(source('app/flashcards/FlashcardsCategoryHub.tsx'), 'sagePorcelain')[0]);
-    expect(paths).toHaveLength(6);
+    expect(paths).toHaveLength(5);
     expect(paths).toEqual([
       '../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp',
       '../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp',
       '../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp',
       '../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp',
-      '../../assets/images/flashcards/mode_icons/sagePorcelain/arena.webp',
       '../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp',
     ]);
     for (const relativePath of paths) {
@@ -126,19 +125,18 @@ describe('sage porcelain static asset coverage', () => {
     const blocks = themeBlocks(source('app/personal_plan_task_visuals.ts'), 'sagePorcelain');
     const taskPaths = requires(blocks[0]);
     const routePaths = requires(blocks[1]);
-    expect(taskPaths.slice(0, 5)).toEqual([
+    expect(taskPaths).toEqual([
       '../assets/images/personal_plan_tasks_fit/sagePorcelain/core_lesson.webp',
       '../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp',
       '../assets/images/personal_plan_tasks_fit/sagePorcelain/recall.webp',
-      '../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp',
       '../assets/images/personal_plan_tasks_fit/sagePorcelain/practice.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/listening.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/sentence_build.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/speaking.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/trainer.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/flashcards.webp',
     ]);
-    expect(taskPaths[5]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp');
-    expect(taskPaths[6]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/listening.webp');
-    expect(taskPaths[7]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/sentence_build.webp');
-    expect(taskPaths[8]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/speaking.webp');
-    expect(taskPaths[9]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/trainer.webp');
-    expect(taskPaths[10]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/flashcards.webp');
     expect(routePaths[0]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp');
     expect(routePaths[1]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_voyazh.webp');
     expect(routePaths[2]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_mitap.webp');

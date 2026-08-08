@@ -64,16 +64,16 @@ describe('league bonus themed gift images', () => {
     expect(mission).toContain('name="gift"');
   });
 
-  it('keeps the home league bonus plate background visible and uncropped', () => {
+  it('keeps the home league bonus plate background visible inside the rounded card', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'home.tsx'), 'utf8');
     const cardStart = source.indexOf('testID="home-league-open"');
-    const cardEnd = source.indexOf('{/* ── ФРАЗА ДНЯ + ПОДВАЛ ── */}', cardStart);
+    const cardEnd = source.indexOf('<DailyPhraseCard variant="homeAdditional"', cardStart);
     const cardBlock = source.slice(cardStart, cardEnd);
 
     expect(cardStart).toBeGreaterThanOrEqual(0);
     expect(cardEnd).toBeGreaterThan(cardStart);
     expect(cardBlock).toContain('backgroundColor: leagueBonusPalette.innerBg');
-    expect(cardBlock).toContain('right: -8');
-    expect(cardBlock).toContain("overflow: 'visible'");
+    expect(cardBlock).toContain('right: -2');
+    expect(cardBlock).toContain("overflow: 'hidden'");
   });
 });

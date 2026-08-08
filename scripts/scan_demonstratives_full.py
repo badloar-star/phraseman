@@ -1,6 +1,6 @@
 """
 Скан EN↔RU на несовпадение указательных (эти/те vs this/that и наоборот).
-Источники: lesson_data*.ts, arena JSON, quizzes JSON, lesson_help.tsx.
+Источники: lesson_data*.ts и lesson_help.tsx.
 """
 from __future__ import annotations
 
@@ -111,43 +111,6 @@ def scan_json_examples(path: Path, key_en: str, key_ru: str, label: str) -> None
     _print_unique(findings, prefix=label)
 
 
-def scan_arena_json() -> None:
-    findings: list[tuple] = []
-    for fp in (ROOT / "assets").glob("arena_questions_*.json"):
-        try:
-            data = json.loads(fp.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-        for i, item in enumerate(data if isinstance(data, list) else []):
-            if not isinstance(item, dict):
-                continue
-            en = item.get("questionEn") or item.get("english") or item.get("en")
-            ru = item.get("questionRu") or item.get("russian") or item.get("ru")
-            if isinstance(en, str) and isinstance(ru, str):
-                check_pair(en, ru, f"{fp.name}[{i}]", findings)
-        _print_unique(findings, prefix=fp.name)
-
-
-def scan_quizzes() -> None:
-    qdir = ROOT / "app" / "quizzes"
-    if not qdir.is_dir():
-        return
-    findings: list[tuple] = []
-    for fp in qdir.rglob("*.ts"):
-        text = fp.read_text(encoding="utf-8", errors="ignore")
-        # english: '...' russian: '...' in objects
-        for m in re.finditer(
-            r"english:\s*'([^'\\]*(?:\\.[^'\\]*)*)'[^}]{0,2000}?russian:\s*'([^'\\]*(?:\\.[^'\\]*)*)'",
-            text,
-            re.DOTALL,
-        ):
-            en, ru = m.group(1).replace("\\'", "'"), m.group(2).replace("\\'", "'")
-            if "\n" in en:
-                continue
-            check_pair(en, ru, f"{fp.relative_to(ROOT)}", findings)
-    _print_unique(findings, prefix="quizzes")
-
-
 def scan_lesson_help_ts() -> None:
     fp = ROOT / "app" / "lesson_help.tsx"
     if not fp.is_file():
@@ -196,10 +159,6 @@ def main() -> None:
         print(f"# skip {theory_fp}: not found (npm run dump:lesson-content)")
     print("--- lesson_help.tsx ---")
     scan_lesson_help_ts()
-    print("--- arena JSON ---")
-    scan_arena_json()
-    print("--- quizzes ts ---")
-    scan_quizzes()
 
 
 if __name__ == "__main__":

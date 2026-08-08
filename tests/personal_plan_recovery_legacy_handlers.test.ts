@@ -11,6 +11,7 @@ import {
   createPlanAttemptEvent,
   type PlanExerciseBlock,
 } from '../app/personal_plan_engine_contracts';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 const block: PlanExerciseBlock = {
   id: 'gavan_day1_block',
@@ -46,6 +47,8 @@ function actionsForAttempt(input?: Partial<Parameters<typeof createPlanAttemptEv
 
 describe('personal plan recovery legacy handlers', () => {
   beforeEach(async () => {
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('personal-plan-legacy-test-account');
     await AsyncStorage.clear();
     await clearAppliedPlanRecoveryActionIds('instance_1');
   });

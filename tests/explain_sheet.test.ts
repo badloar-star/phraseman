@@ -57,16 +57,18 @@ const baseState: ExplainRequestState = {
 };
 
 describe('useExplainRequest: resolveExplainDisplay (чистая логика тела шторки)', () => {
-  it('keeps callable failures as retryable errors instead of successful explanations', () => {
+  it('keeps callable failures in background loading instead of exposing an error', () => {
     const src = read(path.join(APP_DIR, 'explain_phrase_request.ts'));
-    const catchStart = src.indexOf('} catch (error) {');
+    const catchStart = src.search(/}\s*catch(?:\s*\([^)]*\))?\s*{/);
     const catchEnd = src.indexOf('// req раскладываем', catchStart);
     const catchBlock = src.slice(catchStart, catchEnd);
 
     expect(catchStart).toBeGreaterThan(-1);
     expect(catchEnd).toBeGreaterThan(catchStart);
-    expect(catchBlock).toContain("status: 'error'");
-    expect(catchBlock).toContain('error: true');
+    expect(catchBlock).toContain('scheduleExplainRetry');
+    expect(catchBlock).toContain('...INITIAL_STATE');
+    expect(catchBlock).not.toContain("status: 'error'");
+    expect(catchBlock).not.toContain('error: true');
     expect(catchBlock).not.toContain("status: 'ok'");
     expect(catchBlock).not.toContain('aiErrorToast');
   });
@@ -110,28 +112,28 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(out.text).toBe(serverText);
   });
 
-  it('на серверный fallback (rejected/exhausted/pending) тоже рендерит text как есть', () => {
+  it('keeps rejected/exhausted/pending hidden behind the loading skeleton', () => {
     for (const status of ['rejected', 'exhausted', 'pending'] as const) {
       const fallback = `server-fallback-${status}`;
       const out = resolveExplainDisplay({ ...baseState, status, text: fallback }, 'ru', 'значение');
-      expect(out.showSkeleton).toBe(false);
-      expect(out.text).toBe(fallback);
+      expect(out.showSkeleton).toBe(true);
+      expect(out.text).toBe('');
     }
   });
 
-  it('на сетевой ошибке показывает НЕЙТРАЛЬНЫЙ fallback, НЕ родной перевод и не сырой стек', () => {
+  it('never renders a network error or fallback as explanation content', () => {
     const out = resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru', 'быть в ударе');
-    expect(out.showSkeleton).toBe(false);
+    expect(out.showSkeleton).toBe(true);
     // КРИТИЧНО: перевод/смысл фразы НЕ должен попадать в текст (объяснялка грамматики, не словарь).
     expect(out.text).not.toContain('быть в ударе');
     expect(out.text).not.toMatch(/error|stack|undefined|null/i);
-    expect(out.text.length).toBeGreaterThan(0);
+    expect(out.text).toBe('');
   });
 
-  it('на ошибке без перевода всё равно даёт осмысленный локализованный текст', () => {
+  it('keeps a language-independent network failure hidden', () => {
     const out = resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'es', '');
-    expect(out.showSkeleton).toBe(false);
-    expect(out.text.length).toBeGreaterThan(0);
+    expect(out.showSkeleton).toBe(true);
+    expect(out.text).toBe('');
     expect(out.text).not.toMatch(/error|stack/i);
   });
 
@@ -143,19 +145,19 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(loadingLineForLang('es')).toBeTruthy();
   });
 
-  it('degraded=false на настоящем объяснении (ok), true на fallback-статусах', () => {
+  it('never marks hidden waiting states as degraded visible content', () => {
     // ok — настоящий текст.
     expect(resolveExplainDisplay({ ...baseState, status: 'ok', text: 'т' }, 'ru').degraded).toBe(false);
     expect(
       resolveExplainDisplay({ ...baseState, status: 'rejected', fromCache: false, text: 'т' }, 'ru').degraded,
-    ).toBe(true);
+    ).toBe(false);
     // Фолбэк-пути: rejected / exhausted / pending / сетевая ошибка.
     expect(
       resolveExplainDisplay({ ...baseState, status: 'rejected', fromCache: true, text: 'fb' }, 'ru').degraded,
-    ).toBe(true);
-    expect(resolveExplainDisplay({ ...baseState, status: 'exhausted', text: 'fb' }, 'ru').degraded).toBe(true);
-    expect(resolveExplainDisplay({ ...baseState, status: 'pending', text: 'fb' }, 'ru').degraded).toBe(true);
-    expect(resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru').degraded).toBe(true);
+    ).toBe(false);
+    expect(resolveExplainDisplay({ ...baseState, status: 'exhausted', text: 'fb' }, 'ru').degraded).toBe(false);
+    expect(resolveExplainDisplay({ ...baseState, status: 'pending', text: 'fb' }, 'ru').degraded).toBe(false);
+    expect(resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru').degraded).toBe(false);
   });
 });
 
@@ -292,17 +294,14 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('bodyEn');
   });
 
-  it('на degraded-пути есть кнопка «Попробовать ещё раз» → state.retry()', () => {
-    expect(src).toContain('display.degraded');
-    expect(src).toContain('state.retry()');
-    expect(src).toContain('Попробовать ещё раз');
+  it('does not expose a manual error/retry branch', () => {
+    expect(src).not.toContain('display.degraded');
+    expect(src).not.toContain('state.retry()');
   });
 
-  it('на exhausted-пути показывает лимитную upsell-плашку вместо fallback/retry', () => {
-    expect(src).toContain('explainFreeLimitReached');
-    expect(src).toContain('AiLimitUpsellCard');
-    expect(src).toContain('testID="explain-free-limit-card"');
-    expect(src).toContain('Бесплатные объяснения закончились');
+  it('does not turn backend exhaustion into visible explanation content', () => {
+    expect(src).not.toContain('explainFreeLimitReached');
+    expect(src).not.toContain('testID="explain-free-limit-card"');
   });
 });
 

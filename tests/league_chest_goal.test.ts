@@ -17,31 +17,25 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/league_race_visibility', () => ({ LEAGUE_RACE_MIN_PARTICIPANTS: 10 }));
 
 describe('league chest goal', () => {
-  it('builds one current progress snapshot from matching league and arena documents', () => {
+  it('builds one current progress snapshot from the matching league document', () => {
     const snapshot = buildLeagueBonusProgressSnapshot({
       meta: { weekId: '2026-W28', groupId: 'group-1', leagueId: 1 },
       groupData: {
         weekId: '2026-W28', groupId: 'group-1', leagueId: 1,
         members: { a: { name: 'A', points: 205_000 } },
       },
-      arenaData: {
-        weekId: '2026-W28', groupId: 'group-1', leagueId: 1, totalPoints: 10_000,
-      },
     });
 
     // goal = 400k база + 20k за лигу 1 (владелец поднял базу 2026-08-04).
-    expect(snapshot).toMatchObject({ leaguePoints: 205_000, arenaBonus: 10_000, progress: 215_000, goal: 420_000, ready: false });
+    expect(snapshot).toMatchObject({ leaguePoints: 205_000, progress: 205_000, goal: 420_000, ready: false });
   });
 
-  it('rejects an arena document from another league context instead of mixing snapshots', () => {
+  it('rejects a league document from another week instead of mixing snapshots', () => {
     const snapshot = buildLeagueBonusProgressSnapshot({
       meta: { weekId: '2026-W28', groupId: 'group-1', leagueId: 1 },
       groupData: {
-        weekId: '2026-W28', groupId: 'group-1', leagueId: 1,
+        weekId: '2026-W27', groupId: 'group-1', leagueId: 1,
         members: { a: { name: 'A', points: 215_000 } },
-      },
-      arenaData: {
-        weekId: '2026-W27', groupId: 'group-1', leagueId: 1, totalPoints: 10_000,
       },
     });
 

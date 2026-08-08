@@ -346,7 +346,6 @@ export default function TournamentRoundScreen() {
   const [phase, setPhase] = useState<Phase>('intro');
   const [picked, setPicked] = useState<number | null>(null);
   const [feedbackCorrect, setFeedbackCorrect] = useState<boolean | null>(null);
-  const [feedbackEarnedStars, setFeedbackEarnedStars] = useState<number | null>(null);
   const [feedbackZeroScoreReason, setFeedbackZeroScoreReason] = useState<null | 'incorrect_answer' | 'speed_match_penalty'>(null);
   const [feedbackExplanation, setFeedbackExplanation] = useState<{ ruleNote: string; example: string } | null>(null);
   const [feedbackCorrectIndex, setFeedbackCorrectIndex] = useState<number | null>(null);
@@ -665,7 +664,6 @@ export default function TournamentRoundScreen() {
       if (!scheduledTaskHandled) {
         setPicked(null);
         setFeedbackCorrect(null);
-        setFeedbackEarnedStars(null);
         setFeedbackZeroScoreReason(null);
         setFeedbackExplanation(null);
         setFeedbackCorrectIndex(null);
@@ -703,7 +701,6 @@ export default function TournamentRoundScreen() {
     scrollRef.current?.scrollTo({ y: 0, animated: false });
     setPicked(null);
     setFeedbackCorrect(null);
-    setFeedbackEarnedStars(null);
     setFeedbackZeroScoreReason(null);
     setFeedbackExplanation(null);
     setFeedbackCorrectIndex(null);
@@ -935,17 +932,13 @@ export default function TournamentRoundScreen() {
     // абсолютной границе фидбэка; отправка ответа его больше не трогает.
     setPhase('feedback');
     setFeedbackCorrect(optimisticCorrect);
-    // зачем 2026-08-03 (владелец: «когда отвечаешь, анимация начисления звёзд
-    // должна быть мгновенной сразу»): здесь стоял setFeedbackEarnedStars(null) —
-    // число звёзд появлялось только после ответа сервера, то есть награда
-    // «догоняла» тап на задержке сети. Теперь она детерминирована (скорость из
-    // формулы убрана), поэтому считаем её локально по той же шкале, что и
-    // сервер, и рисуем в том же кадре. Серверный ответ ниже её лишь
-    // подтверждает — при совпадении игрок не увидит никакого скачка.
+    // Награда детерминирована (скорость из формулы убрана), поэтому
+    // считаем её локально в момент тапа. зачем 2026-08-08 (владелец: «они должны
+    // идти в один счёт»): прирост попадает только в общий счётчик шапки;
+    // карточка вердикта не рисует второе `+N звёзд`.
     const optimisticStars = optimisticCorrect === true
       ? starsForDifficulty(task.difficulty)
       : optimisticCorrect === false ? 0 : null;
-    setFeedbackEarnedStars(optimisticStars);
     if (optimisticStars && optimisticStars > 0) {
       // Счётчик в шапке растёт в этом же кадре; снапшот потом подтвердит.
       //
@@ -980,16 +973,12 @@ export default function TournamentRoundScreen() {
       }
       if (!screenMountedRef.current || activeTaskSubmissionRef.current !== submissionToken) return;
       setFeedbackCorrect(result.correct);
-      // зачем 2026-08-03: локальный прогноз уже нарисован в момент тапа и в
-      // норме совпадает с сервером (формула одна и та же). Обновляем только
-      // при реальном расхождении, иначе повторный setState на том же числе
-      // перезапускал бы анимацию счётчика и давал видимый «дребезг».
-      setFeedbackEarnedStars((current) => (
-        current === result.earnedStars ? current : result.earnedStars
-      ));
-      // Прогноз разошёлся с сервером — снимаем надбавку, авторитет у снапшота.
-      if (optimisticStars !== null && optimisticStars !== result.earnedStars) {
-        setPendingStars(null);
+      // Прогноз разошёлся с сервером — корректируем только дельту ЭТОГО
+      // ответа. Остальные неподтверждённые ответы продолжают ждать серверный
+      // snapshot и не должны исчезнуть из общего счёта.
+      const optimisticStarAmount = optimisticStars ?? 0;
+      if (optimisticStarAmount !== result.earnedStars) {
+        addPendingStars(result.earnedStars - optimisticStarAmount);
       }
       setFeedbackZeroScoreReason(result.zeroScoreReason);
       setFeedbackExplanation(result.explanation);
@@ -1371,7 +1360,7 @@ export default function TournamentRoundScreen() {
           дышать на больших экранах и скроллиться на маленьких. */}
       <ScrollView
         ref={scrollRef}
-        decelerationRate="fast"
+        decelerationRate="normal"
         contentContainerStyle={[
           styles.content,
           { paddingTop: insets.top + 8, paddingBottom: 12 },
@@ -1415,7 +1404,21 @@ export default function TournamentRoundScreen() {
               игрок видел «0» вместо накопленных звёзд. Счётчик в шапке всегда
               показывает ОБЩИЙ счёт (серверный + неподтверждённые локальные через
               addPendingStars); прогресс внутри поля пар виден по самим карточкам. */}
-          <V2Counter ref={starCounterRef} value={stars} tone="stars" />
+          <V2Counter ref={starCounterRef}
+            value={stars}
+            tone="stars"
+            accessibilityLabel={triLang(lang, {
+              ru: `Общий счёт турнира: ${stars} звёзд`,
+              uk: `Загальний рахунок турніру: ${stars} зірок`,
+              es: `Puntuación total del torneo: ${stars} estrellas`,
+              'pt-BR': `Pontuação total do torneio: ${stars} estrelas`,
+              vi: `Tổng điểm giải đấu: ${stars} sao`,
+              id: `Skor total turnamen: ${stars} bintang`,
+              tr: `Toplam turnuva skoru: ${stars} yıldız`,
+              pl: `Łączny wynik turnieju: ${stars} gwiazdek`,
+            })}
+            accessibilityLiveRegion="polite"
+          />
         </View>
 
         {/* Вопрос.
@@ -1549,13 +1552,6 @@ export default function TournamentRoundScreen() {
                       ? triLang(lang, { ru: 'Правильно!', uk: 'Правильно!', es: '¡Correcto!', 'pt-BR': 'Correto!', vi: 'Đúng rồi!', id: 'Benar!', tr: 'Doğru!', pl: 'Poprawnie!' })
                       : triLang(lang, { ru: 'Почти!', uk: 'Майже!', es: '¡Casi!', 'pt-BR': 'Quase!', vi: 'Gần đúng!', id: 'Hampir!', tr: 'Neredeyse!', pl: 'Prawie!' })}
                 </TournamentTwoLineText>
-                {feedbackEarnedStars !== null ? (
-                  <Text style={styles.feedbackSub}>
-                    {feedbackEarnedStars > 0
-                        ? triLang(lang, { ru: `+${feedbackEarnedStars} звёзд`, uk: `+${feedbackEarnedStars} зірок`, es: `+${feedbackEarnedStars} estrellas`, 'pt-BR': `+${feedbackEarnedStars} estrelas`, vi: `+${feedbackEarnedStars} sao`, id: `+${feedbackEarnedStars} bintang`, tr: `+${feedbackEarnedStars} yıldız`, pl: `+${feedbackEarnedStars} gwiazdek` })
-                        : triLang(lang, { ru: '0 звёзд', uk: '0 зірок', es: '0 estrellas', 'pt-BR': '0 estrelas', vi: '0 sao', id: '0 bintang', tr: '0 yıldız', pl: '0 gwiazdek' })}
-                  </Text>
-                ) : null}
                 {/* зачем 2026-08-02 (владелец: «убери блок с объяснением ошибки
                     на экране во время турнира»): здесь показывался разбор
                     правила и пример прямо под вердиктом. Турнир — соревнование
@@ -2288,7 +2284,6 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   // Высота под фидбек зарезервирована заранее — иначе список вариантов
   // дёргался бы вверх при каждом ответе.
   feedbackTitle: { fontSize: 20, fontWeight: '900' },
-  feedbackSub: { ...type.body, color: P.muted, marginTop: 6 },
   feedbackExplanation: { gap: 3, marginTop: 8 },
   feedbackExplanationText: { color: P.text, fontSize: 14, lineHeight: 19, fontWeight: '700' },
   feedbackExplanationExample: { color: P.muted, fontSize: 13, lineHeight: 18, fontStyle: 'italic' },

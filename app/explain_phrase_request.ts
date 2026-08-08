@@ -114,31 +114,12 @@ export function resolveExplainDisplay(
   lang: string,
   _fallbackMeaning?: string,
 ): { showSkeleton: boolean; text: string; degraded: boolean } {
-  if (state.loading) {
-    return { showSkeleton: true, text: '', degraded: false };
+  if (!state.loading && !state.error && state.status === 'ok' && state.text.trim()) {
+    return { showSkeleton: false, text: state.text, degraded: false };
   }
-  if (state.error) {
-    // Сеть упала — сервер ничего не отдал. Показываем НЕЙТРАЛЬНЫЙ запасной текст:
-    // ни перевода, ни смысла фразы (это объяснялка грамматики, не словарь).
-    const text = triLang(asLang(lang), {
-      ru: 'Не получилось загрузить объяснение. Попробуй ещё раз позже.',
-      uk: 'Не вдалося завантажити пояснення. Спробуй ще раз пізніше.',
-      es: 'No se pudo cargar la explicación. Inténtalo de nuevo más tarde.',
-      'pt-BR': 'Não foi possível carregar a explicação. Tente de novo mais tarde.',
-      vi: 'Không tải được phần giải thích. Hãy thử lại sau.',
-      id: 'Penjelasan gagal dimuat. Coba lagi nanti.',
-      tr: 'Açıklama yüklenemedi. Daha sonra tekrar dene.',
-      pl: 'Nie udało się wczytać wyjaśnienia. Spróbuj ponownie później.',
-    });
-    return { showSkeleton: false, text, degraded: true };
-  }
-  // status 'ok' | 'rejected' | 'exhausted' | 'pending' — сервер ВСЕГДА положил text
-  // (для не-ok это его собственный нейтральный fallback). Рендерим как есть.
-  const degraded =
-    state.status === 'exhausted' ||
-    state.status === 'pending' ||
-    state.status === 'rejected';
-  return { showSkeleton: false, text: state.text, degraded };
+  // Rejected validation, an occupied generation lock, quota/budget pause and
+  // transport failures are implementation states, not learner-facing content.
+  return { showSkeleton: true, text: '', degraded: false };
 }
 
 /** Сегмент текста объяснения: английский фрагмент (подсветить) или обычная проза. */
@@ -214,12 +195,34 @@ export function useExplainRequest(
   const mountedRef = useRef(true);
   const activeRequestKeyRef = useRef<string | null>(null);
   const runIdRef = useRef(0);
+  const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const retryAttemptRef = useRef(0);
+  const runRef = useRef<(force?: boolean) => void>(() => {});
   useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
+      if (retryTimerRef.current) clearTimeout(retryTimerRef.current);
     };
   }, []);
+
+  const scheduleExplainRetry = useCallback((status: ExplainRequestStatus) => {
+    if (!enabled || !mountedRef.current || activeRequestKeyRef.current !== key) return;
+    if (retryTimerRef.current) clearTimeout(retryTimerRef.current);
+    const attempt = retryAttemptRef.current + 1;
+    retryAttemptRef.current = attempt;
+    const delayMs = status === 'pending'
+      ? Math.min(5_000, 1_000 + attempt * 500)
+      : status === 'rejected'
+        ? 30_000
+        : status === 'exhausted'
+          ? 60_000
+          : Math.min(30_000, 1_000 * (2 ** Math.min(attempt, 5)));
+    retryTimerRef.current = setTimeout(() => {
+      retryTimerRef.current = null;
+      if (mountedRef.current && activeRequestKeyRef.current === key) runRef.current(true);
+    }, delayMs);
+  }, [enabled, key]);
 
   const run = useCallback(async (force = false) => {
     if (!force) {
@@ -238,31 +241,42 @@ export function useExplainRequest(
     try {
       const res = await callExplainPhrase(req);
       const nextState: ExplainRequestState = {
-        loading: false,
-        text: res.text,
+        loading: res.status !== 'ok' || !res.text.trim(),
+        text: res.status === 'ok' ? res.text : '',
         status: res.status,
         fromCache: res.fromCache,
         error: false,
       };
-      rememberExplainResult(key, nextState);
       if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
-      setState(nextState);
-    } catch (error) {
+      if (canReuseExplainRequestState(nextState)) {
+        retryAttemptRef.current = 0;
+        rememberExplainResult(key, nextState);
+        setState(nextState);
+        return;
+      }
+      setState({ ...INITIAL_STATE, status: res.status });
+      scheduleExplainRetry(res.status);
+    } catch {
       if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
-      // Сервер не вернул объяснение. Не выдаём аварийный текст за учебный ответ:
-      // resolveExplainDisplay покажет честное локализованное состояние и retry.
-      setState({
-        loading: false,
-        text: '',
-        status: 'error',
-        fromCache: false,
-        error: true,
-      });
+      setState({ ...INITIAL_STATE, status: 'pending' });
+      scheduleExplainRetry('error');
     }
     // req раскладываем по полям: иначе новый объект-литерал на каждый рендер
     // дёргал бы эффект бесконечно.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, req.phraseEn, req.phraseMeaning, req.lang, req.studyTarget]);
+  }, [key, req.phraseEn, req.phraseMeaning, req.lang, req.studyTarget, scheduleExplainRetry]);
+
+  runRef.current = (force = false) => { void run(force); };
+
+  useEffect(() => {
+    if (retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+    retryAttemptRef.current = 0;
+    runIdRef.current += 1;
+    activeRequestKeyRef.current = enabled ? key : null;
+  }, [enabled, key]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -270,6 +284,8 @@ export function useExplainRequest(
   }, [enabled, run]);
 
   const retry = useCallback(() => {
+    retryAttemptRef.current = 0;
+    if (retryTimerRef.current) clearTimeout(retryTimerRef.current);
     void run(true);
   }, [run]);
 

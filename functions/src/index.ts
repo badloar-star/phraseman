@@ -2,22 +2,6 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
 import { getLevelFromXP } from './xp_levels';
 import {
-  QUIZ_ARENA_DECOMMISSIONED_EXPORTS,
-  arenaHillDailyRewardCronDisabled,
-  arenaSeasonRolloverCronDisabled,
-  matchmakingCronDisabled,
-  onAnswerSubmittedDisabled,
-  onArenaRematchAcceptedDisabled,
-  onArenaRoomMatchedDisabled,
-  onArenaSessionAbortedDisabled,
-  onArenaSessionFinishedDisabled,
-  onMatchmakingWriteDisabled,
-  onSessionCountdownDisabled,
-  onSessionGetReadyDisabled,
-  onSessionPlayerLobbyDisabled,
-  questionTimeoutDisabled,
-} from './quiz_arena_decommission';
-import {
   HELP_BOARD_DECOMMISSIONED_EXPORTS,
   compassChatDailyCronDisabled,
   helpBoardCompassRetryCronDisabled,
@@ -40,8 +24,15 @@ const { runPremiumExpiryReminder } = require('./premium_expiry_reminder') as {
   runPremiumExpiryReminder: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failed: number }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox') as {
+const {
+  runSupportInboxPullCron,
+  runSupportOwnerAlertRetryCron,
+  runSupportReplyDispatchSweeper,
+  GMAIL_SUPPORT_APP_PASSWORD,
+} = require('./support_inbox') as {
   runSupportInboxPullCron: () => Promise<unknown>;
+  runSupportOwnerAlertRetryCron: () => Promise<unknown>;
+  runSupportReplyDispatchSweeper: () => Promise<unknown>;
   GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -88,6 +79,7 @@ const { friendLikeActivity, friendUnlikeActivity } = require('./friend_activity_
 const {
   friendSendGift,
   friendThankGift,
+  friendConsumeChainShield,
   friendGetActiveQuest,
   friendClaimQuestReward,
 } = require('./friend_gifts');
@@ -165,6 +157,7 @@ const {
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
+  ADMIN_ALERT_BOT_TOKEN,
   adminAlertOnUserReport,
   adminAlertOnCriticalError,
   adminAlertOnAuthFailureSpike,
@@ -202,20 +195,6 @@ exports.nameGenerateAndReserve = nameGenerateAndReserve;
 exports.nameReserve = nameReserve;
 exports.nameReleaseMine = nameReleaseMine;
 exports.leagueChestClaim = leagueChestClaim;
-Object.assign(exports, QUIZ_ARENA_DECOMMISSIONED_EXPORTS);
-exports.arenaSeasonRolloverCron = arenaSeasonRolloverCronDisabled;
-exports.arenaHillDailyRewardCron = arenaHillDailyRewardCronDisabled;
-exports.onMatchmakingWrite = onMatchmakingWriteDisabled;
-exports.matchmakingCron = matchmakingCronDisabled;
-exports.onArenaRoomMatched = onArenaRoomMatchedDisabled;
-exports.onSessionGetReady = onSessionGetReadyDisabled;
-exports.onSessionPlayerLobby = onSessionPlayerLobbyDisabled;
-exports.onSessionCountdown = onSessionCountdownDisabled;
-exports.onAnswerSubmitted = onAnswerSubmittedDisabled;
-exports.onArenaSessionFinished = onArenaSessionFinishedDisabled;
-exports.onArenaSessionAborted = onArenaSessionAbortedDisabled;
-exports.onArenaRematchAccepted = onArenaRematchAcceptedDisabled;
-exports.questionTimeout = questionTimeoutDisabled;
 // зачем: Help Board и Compass-чат удалены владельцем (9af87817d), но живут в
 // проде — гасим надгробиями, чтобы старые клиенты получали внятный отказ,
 // а не ошибку соединения. Подробности — в help_board_decommission.ts.
@@ -229,6 +208,7 @@ exports.friendLikeActivity = friendLikeActivity;
 exports.friendUnlikeActivity = friendUnlikeActivity;
 exports.friendSendGift = friendSendGift;
 exports.friendThankGift = friendThankGift;
+exports.friendConsumeChainShield = friendConsumeChainShield;
 exports.friendGetActiveQuest = friendGetActiveQuest;
 exports.friendClaimQuestReward = friendClaimQuestReward;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
@@ -357,13 +337,27 @@ export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
   }
 );
 
-// Runs daily at 08:00 UTC. Pulls unread support emails from support.phraseman@gmail.com
-// via IMAP into support_inbox (first run backfills ~50). Cheap: one run/day. Needs the
+// Runs daily at 05:30 UTC, before Jarvis reads the support snapshot at 06:00 UTC.
+// Pulls support emails via IMAP into support_inbox. Needs the
 // GMAIL_SUPPORT_APP_PASSWORD secret; if missing, logs and no-ops (never throws).
 export const gmailSupportPullCron = functions.scheduler.onSchedule(
-  { schedule: '0 8 * * *', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
+  { schedule: '30 5 * * *', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
   async () => {
     await runSupportInboxPullCron();
+  }
+);
+
+export const supportOwnerAlertRetryCron = functions.scheduler.onSchedule(
+  { schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  async () => {
+    await runSupportOwnerAlertRetryCron();
+  }
+);
+
+export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
+  { schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120 },
+  async () => {
+    await runSupportReplyDispatchSweeper();
   }
 );
 
@@ -381,6 +375,7 @@ export {
   flashcardPackGiftSyncState,
   levelGiftReserve,
   levelGiftActivatePackGift,
+  levelSpinActivatePackGift,
   communityListSellerInbox,
   communityMarkSellerInboxSeen,
 } from './community_packs';
@@ -463,7 +458,7 @@ export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
 // «Качество» по требованию владельца через панель admin/v2/legacy.html.
 // Старые agent_office/agent_manager выше не тронуты и сносятся отдельным
 // шагом позже, когда у нового Джарвиса будет диалог и approvals.
-export { jarvisGetQualitySnapshot, jarvisGetMoneySnapshot, jarvisGetGrowthSnapshot, jarvisGetAllDecisions, jarvisGetApprovalAudit, jarvisGetPlans, jarvisSetPlanStatus, jarvisDeletePlan } from './jarvis';
+export { jarvisGetQualitySnapshot, jarvisGetMoneySnapshot, jarvisGetGrowthSnapshot, jarvisGetAllDecisions, jarvisGetApprovalAudit, jarvisGetCohortRetention, jarvisGetPlans, jarvisSetPlanStatus, jarvisDeletePlan } from './jarvis';
 // зачем отдельно: owner-facing раздел «Стадия роста бизнеса» — своя пара
 // callable (чтение панели + продолжаемый бэкфилл истории под строгим гейтом).
 export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './jarvis';
@@ -613,12 +608,6 @@ export {
   tournamentWeeklyBankInfo,
 } from './tournament_weekly_payout';
 
-// ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──
-export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemoveArenaPoolQuestion, adminRestoreArenaPoolQuestion } from './admin_arena_question_pool';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { explainQuiz } = require('./explain_quiz');
-exports.explainQuiz = explainQuiz;
 // Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
 export { finalizeLearningV2DelayedCandidate } from './learning_v2_delayed_callable';
 export { finalizeLearningV2AccessPurchase } from './learning_v2_access_production_callable';
@@ -637,6 +626,14 @@ export { friendsGetProfiles } from './friends_profiles';
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from './gift_access';
+export { globalBroadcastClaim } from './global_broadcast_claim';
+export {
+  levelRewardSpinStatus,
+  levelRewardSpinClaim,
+  levelRewardSpinAcknowledge,
+  levelRewardSpinDelivery,
+} from './level_reward_spins';
+export { levelRewardSpinEnrollV1 } from './level_spin_enrollment';
 
 // ── Season Pass: клеймы, расходники, щит другу, покупка платной дорожки ──
 export { seasonClaimReward, seasonRedeemConsumable, seasonSendFriendShield, seasonBuyPass } from './season_pass';

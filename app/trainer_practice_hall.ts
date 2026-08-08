@@ -12,7 +12,7 @@ import { shuffleWordBankTiles, tokenizeRecallPhrase, type WordBankTile } from '.
 import { getLessonData } from './lesson_data_all';
 import type { Lang } from '../constants/i18n';
 
-const PRACTICE_HALL_FALLBACK_ORDER: readonly TrainerQueue[] = ['phrases', 'words', 'arena'];
+const PRACTICE_HALL_FALLBACK_ORDER: readonly TrainerQueue[] = ['phrases', 'words'];
 
 /**
  * The hall exposes one start action, but never merges or mutates the underlying
@@ -61,35 +61,16 @@ export function visiblePracticeHallTrendWindow(
   return points.slice(start, start + rangeDays);
 }
 
-/**
- * Сессия фраз обслуживает обе фразовые очереди: уроковые «phrases» и быстрые
- * «arena» (их ключ — тоже фраза, режимы word_bank/fill_gap одинаковы). Это же
- * объединение показывает счётчик «Фразы · n» на экране практики.
- */
+/** Сессия фраз использует только активную очередь уроковых фраз. */
 export const PHRASE_SESSION_LIMIT = 15;
 export const WORD_SESSION_LIMIT = 20;
-
-/** Объединяет фразовые очереди в одну колоду по компаратору getDueItems. */
-export function mergePhraseSessionItems(
-  phraseItems: readonly TrainerItem[],
-  arenaItems: readonly TrainerItem[],
-  limit = PHRASE_SESSION_LIMIT,
-): TrainerItem[] {
-  return [...phraseItems, ...arenaItems]
-    .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
-    .slice(0, limit);
-}
 
 export async function getPhraseSessionItems(
   limit = PHRASE_SESSION_LIMIT,
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
-  const [phraseItems, arenaItems] = await Promise.all([
-    getDueItems('phrases', limit, studyTarget, sourceLocale),
-    getDueItems('arena', limit, studyTarget, sourceLocale),
-  ]);
-  return mergePhraseSessionItems(phraseItems, arenaItems, limit);
+  return getDueItems('phrases', limit, studyTarget, sourceLocale);
 }
 
 export function getCachedPhraseSessionItems(
@@ -97,23 +78,13 @@ export function getCachedPhraseSessionItems(
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
 ): TrainerItem[] {
-  return mergePhraseSessionItems(
-    getCachedDueItems('phrases', limit, studyTarget, sourceLocale),
-    getCachedDueItems('arena', limit, studyTarget, sourceLocale),
-    limit,
-  );
+  return getCachedDueItems('phrases', limit, studyTarget, sourceLocale);
 }
 
 // ── Фраза айтема для сессии ──────────────────────────────────────────────────
-// У арены key — текст вопроса С МАРКЕРОМ пропуска («___», «—», «–», «…», «__»),
-// а правильное слово лежит в arenaQuestion.correct. Для слово-банка и fill_gap
-// нужна полная естественная фраза — собираем её заменой первого маркера.
-
-/** Маркер пропуска — отдельный токен из подчёркиваний, тире или многоточия. */
-const ARENA_GAP_TOKEN = /^(?:_{2,}|[—–]{1,2}|…|\.{3})$/;
 
 export interface TrainerSessionPhrase {
-  /** Полная естественная фраза (для арены — с подставленным правильным словом). */
+  /** Полная естественная фраза. */
   phrase: string;
   /** Слово-пропуск для fill_gap; '' — режим недоступен (честный word_bank). */
   errorWord: string;
@@ -131,19 +102,8 @@ function restoreCanonicalTerminalPunctuation(item: Pick<TrainerItem, 'key' | 'qu
 }
 
 export function trainerSessionPhrase(
-  item: Pick<TrainerItem, 'key' | 'queue' | 'errorWord' | 'arenaQuestion' | 'lessonId'>,
+  item: Pick<TrainerItem, 'key' | 'queue' | 'errorWord' | 'lessonId'>,
 ): TrainerSessionPhrase {
-  if (item.queue === 'arena' && item.arenaQuestion) {
-    const correct = item.arenaQuestion.correct.trim();
-    const tokens = item.key.split(/\s+/).filter(Boolean);
-    const markerIndex = tokens.findIndex((token) => ARENA_GAP_TOKEN.test(token));
-    if (correct && markerIndex >= 0) {
-      const phrase = [...tokens.slice(0, markerIndex), correct, ...tokens.slice(markerIndex + 1)].join(' ');
-      return { phrase, errorWord: correct };
-    }
-    // Маркер не найден — не додумываем: фраза как есть, fill_gap не назначается.
-    return { phrase: item.key, errorWord: '' };
-  }
   return { phrase: restoreCanonicalTerminalPunctuation(item), errorWord: item.errorWord ?? '' };
 }
 

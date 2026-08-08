@@ -20,6 +20,7 @@ import { useEnergy } from '../components/EnergyContext';
 import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
+import { noAndroidOutline } from '../constants/androidGlow';
 import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
@@ -1213,7 +1214,7 @@ export default function LessonMenu() {
             borderWidth: 0,borderColor:isGoldTheme ? GOLD_RICH.hairline : t.border,
             justifyContent:'center',alignItems:'center',
             marginBottom:24,
-            shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6,
+            shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,...noAndroidOutline,
             overflow:'hidden',
             ...(isGoldTheme ? goldShadow(2) : {}),
           }}>
@@ -1319,7 +1320,7 @@ export default function LessonMenu() {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}

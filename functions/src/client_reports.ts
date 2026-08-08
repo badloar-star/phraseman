@@ -3,6 +3,11 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import {
+  commitPreparedQualityDailyAggregate,
+  isQualityReportKind,
+  prepareQualityDailyAggregate,
+} from './quality_daily_aggregate';
 
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'client_report_rate_limits';
@@ -106,9 +111,9 @@ function buildReportDoc(
       reportedName: text(payload.reportedName, 120),
       reason: enumText(payload.reason, ['offensive_nickname'] as const, 'offensive_nickname'),
       // зачем: карточка игрока открывается из >5 экранов (друзья, клуб, турнир,
-      // главная) — 'profile' покрывает всё, что не leaderboard/arena, вместо
+      // главная) — 'profile' покрывает всё, что не leaderboard, вместо
       // молчаливого fallback на 'leaderboard' в админской статистике жалоб.
-      screen: enumText(payload.screen, ['leaderboard', 'arena', 'profile'] as const, 'leaderboard'),
+      screen: enumText(payload.screen, ['leaderboard', 'profile'] as const, 'leaderboard'),
       reporterUid: stableUid,
       reporterAuthUid: authUid,
       reporterName: text(payload.reporterName, 120) || 'unknown',
@@ -250,6 +255,18 @@ export const submitClientReport = onCall({
       throw new HttpsError('resource-exhausted', 'rate_limited');
     }
 
+    const qualityAggregate = isQualityReportKind(kind)
+      ? await prepareQualityDailyAggregate({
+        db,
+        tx,
+        kind,
+        reportDoc: doc,
+        stableUid,
+        nowMs: now,
+        fields: admin.firestore.FieldValue,
+      })
+      : null;
+
     tx.set(rateRef, {
       kind,
       stableUid,
@@ -260,6 +277,7 @@ export const submitClientReport = onCall({
       updatedAtMs: now,
     }, { merge: true });
     tx.create(reportRef, doc);
+    if (qualityAggregate) commitPreparedQualityDailyAggregate(tx, qualityAggregate);
     // Осколок за баг-репорт начисляет АДМИН вручную при подтверждении («пофикшено»)
     // в admin/index.html → applyReportStatusFix (shards += 1, reason 'bug_fixed',
     // helpful_error_reports_confirmed_v1). Автоначисления при отправке НЕТ намеренно —

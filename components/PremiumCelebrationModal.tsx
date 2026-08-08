@@ -428,7 +428,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
         <View style={[styles.reelMask, { top: reelTop, bottom: reelBottom }]} pointerEvents={skipped ? 'box-none' : 'none'}>
           <ScrollView
             ref={scrollRef}
-            decelerationRate="fast"
+            decelerationRate="normal"
             style={StyleSheet.absoluteFill}
             contentContainerStyle={styles.reelContent}
             showsVerticalScrollIndicator={false}

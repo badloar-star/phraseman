@@ -19,6 +19,8 @@ export interface SeasonClaimResponse {
   shardsBalance?: number;
   /** До какого момента действует Plus (plus_days). */
   vipUntilMs?: number;
+  /** Canonical remaining server-owned club gift vouchers. */
+  clubGiftFreeBoostCount?: number;
   error?: string;
 }
 

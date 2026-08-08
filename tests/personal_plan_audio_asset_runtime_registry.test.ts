@@ -72,4 +72,30 @@ describe('personal plan runtime audio asset registry', () => {
     expect(chooseItem.audioUri).toBeUndefined();
     expect(chooseItem.blockedReason).toBe('missing_approved_audio');
   });
+
+  it('blocks approved audio whose spoken target no longer matches the current phrase', () => {
+    registerPlanAudioAssetsForRuntime([
+      approvedAsset({ targetText: 'This sentence belonged to an older lesson version.' }),
+    ]);
+
+    const [chooseItem] = getPersonalPlanListenChooseItems({
+      lessonId: 'gavan_week1_day2_canonical_media',
+      contentUnitIds: ['gavan-week1-day2:phrase-1'],
+    });
+    const [buildItem] = getPersonalPlanListenBuildItems({
+      lessonId: 'gavan_week1_day2_canonical_media',
+      contentUnitIds: ['gavan-week1-day2:phrase-1'],
+    });
+
+    expect(chooseItem).toEqual(expect.objectContaining({
+      audioReady: false,
+      audioUri: undefined,
+      blockedReason: 'missing_approved_audio',
+    }));
+    expect(buildItem).toEqual(expect.objectContaining({
+      audioReady: false,
+      audioUri: undefined,
+      blockedReason: 'missing_approved_audio',
+    }));
+  });
 });

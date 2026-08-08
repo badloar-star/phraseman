@@ -1,3 +1,5 @@
+export {};
+
 class FakeHttpsError extends Error {
   readonly code: string;
   constructor(code: string, message: string) {
@@ -17,6 +19,9 @@ jest.mock('firebase-functions/v2/https', () => ({
 jest.mock('firebase-admin', () => ({
   firestore: jest.fn(() => ({
     doc: () => ({ get: async () => ({ data: () => undefined }) }),
+    collection: () => ({
+      doc: () => ({ get: async () => ({ exists: false, data: () => undefined }) }),
+    }),
   })),
 }));
 
@@ -56,5 +61,21 @@ describe('jarvisGetAllDecisions — needs quality + money + growth access all at
   test('analyst also has all three and is allowed', async () => {
     const { jarvisGetAllDecisions } = require('./all_departments_callables');
     await expect(jarvisGetAllDecisions(request({ admin: true, adminRole: 'analyst' }))).resolves.toBeDefined();
+  });
+});
+
+describe('jarvisGetCohortRetention — aggregate-only owner view', () => {
+  test('rejects analyst even though analyst can read the combined Jarvis view', async () => {
+    const { jarvisGetCohortRetention } = require('./all_departments_callables');
+    await expect(jarvisGetCohortRetention(request({ admin: true, adminRole: 'analyst' }))).rejects.toThrow('Owner only');
+  });
+
+  test('allows owner and never returns a raw member identifier', async () => {
+    const { jarvisGetCohortRetention } = require('./all_departments_callables');
+    const result = await jarvisGetCohortRetention(request({ admin: true, adminRole: 'owner' }));
+
+    expect(result).toMatchObject({ ok: true });
+    expect(result.metrics).toHaveLength(2);
+    expect(JSON.stringify(result)).not.toMatch(/uid|memberKey|stable-user/i);
   });
 });

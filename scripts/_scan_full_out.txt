@@ -1,5 +1,0 @@
-﻿--- lesson_data*.ts ---
---- lesson_intro_all_texts.json (examples en/trRU) ---
---- lesson_help.tsx ---
---- arena JSON ---
---- quizzes ts ---

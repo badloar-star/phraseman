@@ -30,8 +30,6 @@ describe('deferred redirect route contract', () => {
     'app/league_screen.tsx',
     'app/lesson_verbs.tsx',
     'app/pos_analytics_audit.tsx',
-    'app/admin_review_test.tsx',
-    'app/settings_testers.tsx',
   ])('%s avoids calling router.replace in render', (relativePath) => {
     const source = read(relativePath);
     const isPureRouteAlias = /^export \{ default \} from ['"].+['"];?$/.test(source.trim());

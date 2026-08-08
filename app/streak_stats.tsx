@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
+import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, withRepeat, withSequence, cancelAnimation, Easing } from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Animated, View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Platform, Share, PanResponder, StyleSheet, } from 'react-native';
@@ -72,6 +72,8 @@ import { statsPrimaryMetricKey } from './target_storage_keys';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
+import { readLocalLevelSpinBalance } from './local_level_spins';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
@@ -785,7 +787,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
             marginBottom: 4,
             paddingTop: 4,
         }}>
-      <ScrollView ref={scrollRef ?? undefined} decelerationRate="fast" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
+      <ScrollView ref={scrollRef ?? undefined} decelerationRate="normal" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
         <View>
           <Svg width={chartW} height={LIFETIME_LINE_PLOT_H}>
             {[0, 1, 2, 3, 4].map((g) => {
@@ -1467,7 +1469,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 <View style={{ width: 42, height: 5, backgroundColor: statsHairline(themeMode, 'wager'), borderRadius: 3 }}/>
               </View>
 
-              <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: bottomInset + 36 }}>
+              <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: bottomInset + 36 }}>
               {/* Header */}
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', flex: 1 }}>
@@ -3216,6 +3218,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         () => journalMemorySnapshotPeek ?? { totalTracked: 0, masteredCount: 0, masteredPhraseCount: 0, dueToday: 0 },
     );
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
+    const [spinBalance, setSpinBalance] = useState(0);
+    const spinButtonPulse = useSharedValue(1);
+    const spinButtonPulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: spinButtonPulse.value }] }));
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
@@ -3289,7 +3294,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // зачем: MemoryGauge/CefrLine (журнал) — getTrainerDashboard читает только
     // локальный AsyncStorage тренажёра (уже используется на других экранах:
     // signal_bus, trainer_practice_prefetch, weekly_review_briefing), НИКАКИХ
-    // новых чтений Firestore. words+phrases (без arena) — та же выборка, что
+    // новых чтений Firestore. words+phrases — та же выборка, что
     // и trainerPracticeDue в statsCache, для согласованности «фраз под риском».
     useFocusEffect(useCallback(() => {
         let cancelled = false;
@@ -3337,22 +3342,48 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, [studyTarget]);
     useFocusEffect(useCallback(() => {
         let cancelled = false;
-        void readPendingLevelGiftCountCache()
-            .then(count => {
-            if (!cancelled && count > 0)
-                setPendingGiftCount(count);
+        const spinAccountToken = captureAccountGeneration();
+        const spinOwner = spinAccountToken.stableId;
+        const readSpinBalance = () => spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
+            ? readLocalLevelSpinBalance()
+            : Promise.resolve(null);
+        void Promise.all([readPendingLevelGiftCountCache(), readSpinBalance()])
+            .then(([legacyPendingGiftCount, cachedSpinBalance]) => {
+            const spinBalance = spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
+                ? Math.max(0, Math.floor(cachedSpinBalance ?? 0))
+                : 0;
+            if (!cancelled) setSpinBalance(spinBalance);
+            if (!cancelled && isCurrentAccountGeneration(spinAccountToken, spinOwner) && legacyPendingGiftCount + spinBalance > 0)
+                setPendingGiftCount(legacyPendingGiftCount + spinBalance);
         })
             .catch(() => { });
-        void loadPendingLevelGiftCount()
-            .then(count => {
-            if (!cancelled)
-                setPendingGiftCount(count);
+        void Promise.all([loadPendingLevelGiftCount(), readSpinBalance()])
+            .then(([legacyPendingGiftCount, cachedSpinBalance]) => {
+            const spinBalance = spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
+                ? Math.max(0, Math.floor(cachedSpinBalance ?? 0))
+                : 0;
+            if (!cancelled) setSpinBalance(spinBalance);
+            if (!cancelled && isCurrentAccountGeneration(spinAccountToken, spinOwner))
+                setPendingGiftCount(legacyPendingGiftCount + spinBalance);
         })
             .catch(() => {
             // Keep the last known value on transient storage errors to avoid a visible zero flash.
         });
         return () => { cancelled = true; };
     }, []));
+    useEffect(() => {
+        const subscription = onAppEvent('level_spin_balance_changed', () => {
+            void readLocalLevelSpinBalance().then(setSpinBalance).catch(() => {});
+        });
+        return () => subscription.remove();
+    }, []);
+    useEffect(() => {
+        cancelAnimation(spinButtonPulse);
+        spinButtonPulse.value = spinBalance > 0
+            ? withRepeat(withSequence(withTiming(1.07, { duration: 650 }), withTiming(1, { duration: 650 })), -1, true)
+            : 1;
+        return () => cancelAnimation(spinButtonPulse);
+    }, [spinBalance, spinButtonPulse]);
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -3362,7 +3393,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [detailsOpen, setDetailsOpen] = useState(false);
     const today = toDateStr(new Date());
     const [lifetimeStats, setLifetimeStats] = useState<LifetimeProfileStats | null>(null);
-    const [percentiles, setPercentiles] = useState<AllPercentiles>({ xp: null, streak: null, weekXp: null, daily7xp: null, daily7timeMs: null, arenaXp: null, totalUsers: 0 });
+    const [percentiles, setPercentiles] = useState<AllPercentiles>({ xp: null, streak: null, weekXp: null, daily7xp: null, daily7timeMs: null, totalUsers: 0 });
     const [myXp7, setMyXp7] = useState(0);
     const [myTime7ms, setMyTime7ms] = useState(0);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
@@ -3913,6 +3944,24 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             pl: "Twoje wyniki",
         })}
         </FlowText>
+        <Reanimated.View style={spinButtonPulseStyle}>
+        <TouchableOpacity
+          testID="stats-header-spins"
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, { ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, es: `Giros: ${spinBalance}`, 'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt: ${spinBalance}`, id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}` })}
+          activeOpacity={0.82}
+          onPress={() => { hapticTap(); router.push('/level_reward_spin' as any); }}
+          style={[{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginLeft: 8, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'streak')]}
+        >
+          <LinearGradient colors={statsCardGradient(t)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
+          <Ionicons name="sync-outline" size={20} color={spinBalance > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode)) : t.textMuted}/>
+          {spinBalance > 0 ? (
+            <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode) }}>
+              <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{spinBalance}</Text>
+            </View>
+          ) : null}
+        </TouchableOpacity>
+        </Reanimated.View>
         <TouchableOpacity
           testID="stats-header-gifts"
           accessibilityHint={triLang(lang, {
@@ -3958,7 +4007,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         </View>
       ) : null}
       <BouncyWrap>
-      <Reanimated.ScrollView ref={scrollRef} decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>
         <Reanimated.View entering={FadeInDown.duration(420).delay(0)}>
           <StatsCardArtSurface
@@ -4585,7 +4634,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   </Text>
                 </TouchableOpacity>
               </View>
-              <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="fast" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
+              <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="normal" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
                 {dailyChartTab === 'xp'
                         ? chartDays.map((d, i) => {
                             const barH = d.points > 0 ? Math.max((d.points / maxAllPts) * CHART_H, 8) : 5;

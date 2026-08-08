@@ -7,7 +7,6 @@ import type { ThemeMode } from '../constants/theme';
 const THEME_MODES: ThemeMode[] = [
   'dark',
   'gold',
-  'coral',
   'minimalDark',
   'business',
   'businessLight',
@@ -18,7 +17,6 @@ const THEME_MODES: ThemeMode[] = [
   'volt',
   'candyBlue',
   'indigo',
-  'sagePorcelain',
 ];
 
 function rgbFromHex(color: string): [number, number, number] {

@@ -3,7 +3,6 @@ import fs from 'fs';
 import { getAllItems, getTrainerItems, getTrainerModeCounts, markReviewed as markRecallReviewed, recordMistake as recordRecallMistake, SESSION_LIMIT } from '../app/active_recall';
 import {
   activateWordForTrainer,
-  devSeedTrainerScenario,
   getTrainerDashboard,
   getTrainerPremiumItems,
   markTrainerResult,
@@ -60,6 +59,7 @@ import {
   USER_FACING_POS_CATEGORIES,
 } from '../app/pos_workout_engine';
 import { shuffle as shufflePracticeOptions } from '../app/utils_shuffle';
+import { beginAccountGeneration } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -71,6 +71,7 @@ const mockStorage: Record<string, string> = {};
 const PLANNED_DIAGNOSIS_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 
 beforeEach(() => {
+  beginAccountGeneration('trainer-modes-test');
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
@@ -130,7 +131,6 @@ const makeTrainerStoreItem = (override: Partial<TrainerItem>): TrainerItem => ({
   createdAt: override.createdAt ?? NOW - MS_DAY,
   archived: override.archived ?? false,
   errorWord: override.errorWord,
-  arenaQuestion: override.arenaQuestion,
   category: override.category,
   grammarTag: override.grammarTag,
   sourceLocales: override.sourceLocales,
@@ -209,34 +209,6 @@ describe('trainerTranslationForLang', () => {
     }
   });
 
-  it('restores the meaning for a legacy arena card whose stored translations are empty', () => {
-    const item = makeTrainerStoreItem({
-      key: 'I ___ never seen this before',
-      queue: 'arena',
-      translationRu: '',
-      translationUk: '',
-      arenaQuestion: {
-        question: 'I ___ never seen this before',
-        correct: 'have',
-        options: ['have', 'had', 'has', 'having'],
-        rule: 'Present Perfect',
-      },
-    });
-
-    expect(trainerTranslationForLang(item, 'ru')).toBe('Я никогда раньше этого не видел');
-  });
-
-  it('stores meanings on newly seeded arena cards', async () => {
-    await devSeedTrainerScenario('weak');
-
-    const stored = JSON.parse(mockStorage.trainer_store_v1) as TrainerItem[];
-    const arena = stored.find(item => item.key === 'I ___ never seen this before');
-    expect(arena).toEqual(expect.objectContaining({
-      translationRu: 'Я никогда раньше этого не видел',
-      translationUk: 'Я ніколи раніше цього не бачив',
-      translationEs: 'Nunca he visto esto antes',
-    }));
-  });
 });
 
 describe('getTrainerItems — due mode', () => {
@@ -328,19 +300,15 @@ describe('getTrainerModeCounts', () => {
   });
 });
 
-describe('trainer — free session limit', () => {
-  // зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
-  // дневного лимита сессий больше нет ни у кого (trainer_session.ts →
-  // dailyFreeSessionCap() = Infinity). Тесты ниже фиксируют именно это:
-  // вход в тренажёр не может быть заблокирован исчерпанным лимитом.
-  it('never runs out of free sessions', async () => {
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(Number.POSITIVE_INFINITY);
+describe('trainer — full Plus access', () => {
+  it('offers zero free sessions', async () => {
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
   });
 
-  it('stays unlimited after sessions were used today', async () => {
+  it('does not restore free access from historical usage storage', async () => {
     const today = new Date().toISOString().split('T')[0];
     mockStorage.trainer_free_session_v1 = JSON.stringify({ date: today, count: 99 });
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(Number.POSITIVE_INFINITY);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
   });
 
   it('requires a reserved entry for non-premium direct session access', async () => {
@@ -348,23 +316,21 @@ describe('trainer — free session limit', () => {
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(false);
   });
 
-  it('reserves navigation without spending anything', async () => {
+  it('refuses a non-Plus navigation reservation', async () => {
     mockStorage.tester_no_premium = 'true';
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(Number.POSITIVE_INFINITY);
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(false);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
   });
 
-  it('allows reserving again right after consuming an entry', async () => {
+  it('does not consume a historical non-Plus reservation', async () => {
     mockStorage.tester_no_premium = 'true';
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(true);
-    // Раньше здесь лимит исчерпывался и вторая резервация падала в пейвол.
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(false);
+    await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(false);
   });
 
   it('rejects a reserved entry for a different trainer route', async () => {
     mockStorage.tester_no_premium = 'true';
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(false);
     // Защита от подмены маршрута остаётся: она не про лимит, а про целостность входа.
     await expect(consumeTrainerSessionEntry('/trainer_phrases_session')).resolves.toBe(false);
   });
@@ -417,14 +383,14 @@ describe('trainer_store premium modes', () => {
     seedTrainerStore([
       makeTrainerStoreItem({ key: 'due_phrase', queue: 'phrases', nextDue: NOW - 1000, mistakeCount: 1 }),
       makeTrainerStoreItem({ key: 'weak_word', queue: 'words', nextDue: NOW + MS_DAY, mistakeCount: 2, correctStreak: 0 }),
-      makeTrainerStoreItem({ key: 'fresh_arena', queue: 'arena', nextDue: NOW + MS_DAY, createdAt: NOW - 1000, arenaQuestion: { question: 'Q', correct: 'A', options: ['A', 'B', 'C', 'D'] } }),
+      makeTrainerStoreItem({ key: 'fresh_phrase', queue: 'phrases', nextDue: NOW + MS_DAY, createdAt: NOW - 1000 }),
     ]);
 
     const items = await getTrainerPremiumItems('smart_mix', 10);
     const ids = items.map((i) => `${i.queue}:${i.key}`);
     expect(ids).toContain('phrases:due_phrase');
     expect(ids).toContain('words:weak_word');
-    expect(ids).toContain('arena:fresh_arena');
+    expect(ids).toContain('phrases:fresh_phrase');
     expect(new Set(ids).size).toBe(ids.length);
   });
 
@@ -445,16 +411,15 @@ describe('trainer_store premium modes', () => {
     }));
   });
 
-  it('dashboard counts retained phrases separately from words and arena items', async () => {
+  it('dashboard counts retained phrases separately from words', async () => {
     seedTrainerStore([
       makeTrainerStoreItem({ key: 'saved phrase', queue: 'phrases', archived: true }),
       makeTrainerStoreItem({ key: 'saved word', queue: 'words', archived: true }),
-      makeTrainerStoreItem({ key: 'saved arena', queue: 'arena', archived: true }),
     ]);
 
     const dashboard = await getTrainerDashboard();
 
-    expect(dashboard.archived).toBe(3);
+    expect(dashboard.archived).toBe(2);
     expect(dashboard.archivedPhrases).toBe(1);
   });
 

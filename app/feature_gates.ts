@@ -12,7 +12,7 @@
 // Гейт-сайты в приложении больше НЕ проверяют `isPremium` напрямую для решения
 // «показать пейвол?»: они спрашивают isFeaturePremiumGated(feature). Если фича
 // переведена в «Фри», функция вернёт false → пейвол не показывается, фича
-// доступна бесплатно. Числовые лимиты (диалоги/квизы/тренер) при этом продолжают
+// доступна бесплатно. Числовые лимиты (диалоги/тренер) при этом продолжают
 // действовать — их значения настраиваются отдельно (Remote Config numbers).
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -33,8 +33,6 @@ export type FeatureGate =
   | 'themes'
   | 'avatar_auras'
   | 'mastery'
-  | 'quizzes'
-  | 'arena'
   | 'energy'
   | 'extra_languages';
 
@@ -52,8 +50,6 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   themes: 'gate_themes_premium',
   avatar_auras: 'gate_avatar_auras_premium',
   mastery: 'gate_mastery_premium',
-  quizzes: 'gate_quizzes_premium',
-  arena: 'gate_arena_premium',
   energy: 'gate_energy_premium',
   extra_languages: 'gate_extra_languages_premium',
 };

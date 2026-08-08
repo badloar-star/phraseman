@@ -35,8 +35,9 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain('getIntroFullAccessState');
     // Доступ собирается из real/vip/intro.
     expect(source).toContain(
-      'setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || effectiveVerifiedAccess)',
+      'const hasAuthoritativeAccess = effectivePremium || effectiveVip || introState.active || effectiveVerifiedAccess;',
     );
+    expect(source).toContain('projectDevLocalPlusOverride');
     expect(source).toContain("onAppEvent('intro_full_access_changed'");
   });
 
@@ -45,7 +46,7 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain("noLimitsRaw === 'true' && !IS_STORE_RELEASE");
     expect(source).toContain('const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);');
     expect(source).toContain('const effectiveVip = !noPremiumTester && vip;');
-    expect(source).toContain('setIsPremium(effectivePremium)');
+    expect(source).toContain('setIsPremium(projectedEntitlement.isPremium)');
   });
 
   it('does not let the optimistic premium event bypass tester precedence or the store fuse', () => {

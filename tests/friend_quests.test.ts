@@ -22,7 +22,8 @@ const mockReplaceShardsBalanceForAccountGeneration = jest.fn(async (_next, token
 ));
 const mockStorageSetItem = jest.fn(async () => undefined);
 const mockStorageGetItem: jest.Mock<Promise<string | null>, [string]> = jest.fn(async (_key: string) => null);
-const mockReconcileLevelUpRewards = jest.fn(async () => []);
+const mockEnqueueAuthoritativeLevelSpinLevels = jest.fn(async () => undefined);
+const mockPersistAuthoritativeLevelSpinBalance = jest.fn(async () => undefined);
 const mockAccountGeneration = { generation: 1, stableId: 'stable-from-auth' };
 
 jest.mock('@react-native-firebase/app', () => ({
@@ -57,8 +58,12 @@ jest.mock('../app/shards_system', () => ({
   replaceShardsBalanceForAccountGeneration: mockReplaceShardsBalanceForAccountGeneration,
 }));
 
-jest.mock('../app/level_up_reward_reconciler', () => ({
-  reconcileLevelUpRewards: mockReconcileLevelUpRewards,
+jest.mock('../app/level_spin_level_up_queue', () => ({
+  enqueueAuthoritativeLevelSpinLevels: mockEnqueueAuthoritativeLevelSpinLevels,
+}));
+
+jest.mock('../app/level_reward_spins_client', () => ({
+  persistAuthoritativeLevelSpinBalance: mockPersistAuthoritativeLevelSpinBalance,
 }));
 
 jest.mock('../app/account_generation', () => ({
@@ -111,6 +116,7 @@ test('claimFriendQuestReward syncs returned shards and XP locally', async () => 
   expect(mockCallableInvoker).toHaveBeenCalledWith({
     stableId: 'stable-from-auth',
     questId: 'quest_2026-W24_sender_recipient',
+    levelSpinProtocol: 'v1',
   });
   expect(mockReplaceShardsBalanceForAccountGeneration).toHaveBeenCalledWith(
     24,
@@ -145,7 +151,7 @@ test('claimFriendQuestReward does not lower a higher local XP mirror', async () 
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '9000');
 });
 
-test('claimFriendQuestReward reconciles a newly applied XP reward after mirroring it', async () => {
+test('claimFriendQuestReward persists exact server Spin metadata before sparse plaque enqueue', async () => {
   mockStorageGetItem.mockResolvedValueOnce('50');
   mockCallableInvoker.mockResolvedValueOnce({
     data: {
@@ -155,6 +161,11 @@ test('claimFriendQuestReward reconciles a newly applied XP reward after mirrorin
       callerXpBeforeReward: 50,
       rewardXpApplied: 100,
       callerXp: 150,
+      levelSpinMintedCredits: [
+        { id: 'level_spin_v1_002', level: 2, kind: 'standard' },
+        { id: 'level_spin_v1_004', level: 4, kind: 'standard' },
+      ],
+      levelSpinBalance: 7,
     },
   });
   const { claimFriendQuestReward } = require('../app/friend_quests');
@@ -162,19 +173,24 @@ test('claimFriendQuestReward reconciles a newly applied XP reward after mirrorin
   await claimFriendQuestReward('quest_2026-W24_sender_recipient');
 
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '150');
-  expect(mockReconcileLevelUpRewards).toHaveBeenCalledWith(50, 150);
+  expect(mockPersistAuthoritativeLevelSpinBalance).toHaveBeenCalledWith('stable-from-auth', 7);
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).toHaveBeenCalledWith([2, 4]);
+  expect(mockPersistAuthoritativeLevelSpinBalance.mock.invocationCallOrder[0])
+    .toBeLessThan(mockEnqueueAuthoritativeLevelSpinLevels.mock.invocationCallOrder[0]);
 });
 
-test('claimFriendQuestReward reconciles only the authoritative fresh reward interval over historical XP', async () => {
+test('claimFriendQuestReward replays exact server Spin metadata even when rewardApplied is false', async () => {
   mockStorageGetItem.mockResolvedValueOnce('50');
   mockCallableInvoker.mockResolvedValueOnce({
     data: {
       ok: true,
       questId: 'quest_2026-W24_sender_recipient',
-      rewardApplied: true,
+      rewardApplied: false,
       callerXpBeforeReward: 4100,
-      rewardXpApplied: 1000,
+      rewardXpApplied: 0,
       callerXp: 5100,
+      levelSpinMintedCredits: [{ id: 'level_spin_v1_005', level: 5, kind: 'milestone' }],
+      levelSpinBalance: 1,
     },
   });
   const { claimFriendQuestReward } = require('../app/friend_quests');
@@ -182,7 +198,7 @@ test('claimFriendQuestReward reconciles only the authoritative fresh reward inte
   await claimFriendQuestReward('quest_2026-W24_sender_recipient');
 
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '5100');
-  expect(mockReconcileLevelUpRewards).toHaveBeenCalledWith(4100, 5100);
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).toHaveBeenCalledWith([5]);
 });
 
 test('claimFriendQuestReward mirrors XP but does not reconcile when an old backend omits pre-reward XP', async () => {
@@ -200,7 +216,7 @@ test('claimFriendQuestReward mirrors XP but does not reconcile when an old backe
   await claimFriendQuestReward('quest_2026-W24_sender_recipient');
 
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '5100');
-  expect(mockReconcileLevelUpRewards).not.toHaveBeenCalled();
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).not.toHaveBeenCalled();
 });
 
 test('claimFriendQuestReward mirrors repeated server XP without creating historical rewards', async () => {
@@ -218,7 +234,7 @@ test('claimFriendQuestReward mirrors repeated server XP without creating histori
   await claimFriendQuestReward('quest_2026-W24_sender_recipient');
 
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '150');
-  expect(mockReconcileLevelUpRewards).not.toHaveBeenCalled();
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).not.toHaveBeenCalled();
 });
 
 test.each([
@@ -246,7 +262,7 @@ test.each([
   await claimFriendQuestReward('quest_2026-W24_sender_recipient');
 
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '150');
-  expect(mockReconcileLevelUpRewards).not.toHaveBeenCalled();
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).not.toHaveBeenCalled();
 });
 
 test.each([
@@ -270,7 +286,7 @@ test.each([
 
   await claimFriendQuestReward('quest_2026-W24_sender_recipient');
 
-  expect(mockReconcileLevelUpRewards).not.toHaveBeenCalled();
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).not.toHaveBeenCalled();
 });
 
 test('claimFriendQuestReward skips all local writes after an account transition', async () => {
@@ -297,5 +313,5 @@ test('claimFriendQuestReward skips all local writes after an account transition'
   await expect(claim).resolves.toMatchObject({ rewardApplied: true });
   expect(mockReplaceShardsBalanceForAccountGeneration).not.toHaveBeenCalled();
   expect(mockStorageSetItem).not.toHaveBeenCalled();
-  expect(mockReconcileLevelUpRewards).not.toHaveBeenCalled();
+  expect(mockEnqueueAuthoritativeLevelSpinLevels).not.toHaveBeenCalled();
 });

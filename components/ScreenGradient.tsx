@@ -26,7 +26,6 @@ const CINEMA_PARTICLE_MOTION_PX = 10;
 const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   dark: 1,
   gold: 1,
-  coral: 1,
   minimalDark: 1,
   business: 1,
   businessLight: 1,
@@ -55,7 +54,6 @@ type ScreenBgLayer = {
 const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   dark: { bloomA: '#2F8A42', bloomB: '#47C870' },
   gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' },
-  coral: { bloomA: '#FF6E6E', bloomB: '#D13D72' },
   minimalDark: { bloomA: '#6EA8FF', bloomB: '#9CA3AF' },
   // «Бизнес»: строгая моно-тема — нейтральный серый блум без цвета.
   // «Бизнес» (плоский IG-режим): блум невидим — совпадает с чёрным фоном.
@@ -83,12 +81,6 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.08, y: H * 0.40, r: 150, color: GOLD_RICH.bronze, opacity: 0.045 },
     { x: W * 0.63, y: H * 0.82, r: 135, color: GOLD_RICH.agedGold, opacity: 0.030 },
     { x: W * 0.28, y: H * 0.19, r: 72, color: GOLD_RICH.metalGold, opacity: 0.025 },
-  ],
-  coral: [
-    { x: W * 0.82, y: 74,       r: 190, color: '#D88C82', opacity: 0.10 },
-    { x: W * 0.08, y: H * 0.44, r: 160, color: '#8C5751', opacity: 0.10 },
-    { x: W * 0.58, y: H * 0.80, r: 140, color: '#B86A62', opacity: 0.07 },
-    { x: W * 0.30, y: H * 0.20, r:  82, color: '#6E3F3F', opacity: 0.07 },
   ],
   // Graphite (minimalDark): monochrome cool-dark shading with blue accents.
   minimalDark: [
@@ -226,7 +218,6 @@ const FABRIC_THREADS = [0.10, 0.18, 0.28, 0.39, 0.52, 0.66, 0.78, 0.90];
 const EXPLICIT_ART_BACKDROP_COMPONENT_NAMES = new Set([
   'AppArtBackdrop',
   'AppRouteArtBackdrop',
-  'ArenaMatchBackdrop',
   'LessonArtBackdrop',
   'StatsArtBackdrop',
 ]);

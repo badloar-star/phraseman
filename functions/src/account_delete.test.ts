@@ -96,6 +96,7 @@ describe('accountDelete query plan', () => {
     expect(keys.has('community_packs.authorStableId.==.stable-123')).toBe(true);
     expect(keys.has('community_pack_purchases.buyerStableId.==.stable-123')).toBe(true);
     expect(keys.has('community_pack_gift_claims.buyerStableId.==.stable-123')).toBe(true);
+    expect(keys.has('friend_quests.participantUids.array-contains.stable-123')).toBe(true);
     expect(keys.has('user_reports.reporterUid.==.stable-123')).toBe(true);
     expect(keys.has('revenuecat_premium_events.candidates.array-contains.stable-123')).toBe(true);
   });
@@ -157,6 +158,9 @@ describe('accountDelete query plan', () => {
     expect(keys.has('friend_gifts_received.fromUid.==.stable-123')).toBe(true);
     expect(keys.has('friend_gifts_sent.toUid.==.stable-123')).toBe(true);
     expect(keys.has('friend_gift_history.peerUid.==.stable-123')).toBe(true);
+    expect(keys.has('friend_quest_meta.peerUid.==.stable-123')).toBe(true);
+    expect(keys.has('friend_quest_weekly.peerUid.==.stable-123')).toBe(true);
+    expect(keys.has('notifications.fromUid.==.stable-123')).toBe(true);
     expect(keys.has('shard_rewards.fromUid.==.stable-123')).toBe(true);
     expect(keys.has('shard_log.targetUid.==.stable-123')).toBe(true);
     expect(keys.has('my_events.payload.fromUid.==.stable-123')).toBe(true);

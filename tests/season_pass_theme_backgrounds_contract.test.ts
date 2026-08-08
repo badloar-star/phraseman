@@ -9,7 +9,6 @@ const REGISTRY = path.join(ROOT, 'app/season_pass_theme_backgrounds.ts');
 const THEME_MODES = [
   'dark',
   'gold',
-  'coral',
   'minimalDark',
   'midnight',
   'ember',

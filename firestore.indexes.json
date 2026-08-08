@@ -1,6 +1,34 @@
 {
   "indexes": [
     {
+      "collectionGroup": "level_spin_credits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "level_spin_results",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "hasPendingDelivery",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "jarvis_approval_audit",
       "queryScope": "COLLECTION",
       "fields": [
@@ -507,6 +535,36 @@
     {
       "collectionGroup": "notifications",
       "fieldPath": "createdAt",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notifications",
+      "fieldPath": "fromUid",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "friend_quest_meta",
+      "fieldPath": "peerUid",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "friend_quest_weekly",
+      "fieldPath": "peerUid",
       "indexes": [
         {
           "order": "ASCENDING",

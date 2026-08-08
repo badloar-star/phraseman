@@ -6,7 +6,7 @@ describe('Jarvis content lesson stats write — decides when a lesson_complete e
   });
 
   test('other event types never touch the aggregate', () => {
-    expect(shouldRecordLessonScore({ type: 'quiz_answer', payload: { lessonId: 3, score: 4.2 } })).toBe(false);
+    expect(shouldRecordLessonScore({ type: 'dialog_complete', payload: { lessonId: 3, score: 4.2 } })).toBe(false);
   });
 
   test('missing or invalid lessonId is rejected', () => {

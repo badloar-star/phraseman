@@ -71,7 +71,8 @@ export function scoreLevelExam(
         scoreUnitId: task.scoreUnitId,
         format: task.format,
         lessonId: task.lessonId,
-        correct: answer?.kind === 'choice' && answer.optionId === task.correctOptionId,
+        correct: answer?.kind === 'choice'
+          && (task.acceptedOptionIds || [task.correctOptionId]).includes(answer.optionId),
       });
     } else if (task.format === 'translate_build') {
       const answer = answers[task.scoreUnitId];

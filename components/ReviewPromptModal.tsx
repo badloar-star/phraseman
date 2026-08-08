@@ -13,7 +13,6 @@ type Props = {
   context: ReviewContext;
   lang: Lang;
   onClose: () => void;
-  previewOnly?: boolean;
   streakDays?: 7 | 14 | 30;
 };
 
@@ -29,7 +28,7 @@ const labelForContext: Record<ReviewContext, string> = {
   streak_milestone: 'СЕРИЯ',
 };
 
-function ReviewPromptModal({ visible, context, lang, onClose, previewOnly = false, streakDays }: Props) {
+function ReviewPromptModal({ visible, context, lang, onClose, streakDays }: Props) {
   const { theme: t, f } = useTheme();
   const { bottom: bottomInset } = useStableSafeAreaInsets();
   const [variant, setVariant] = useState<ReviewVariant | null>(null);
@@ -47,17 +46,13 @@ function ReviewPromptModal({ visible, context, lang, onClose, previewOnly = fals
   }, [context, lang, visible]);
 
   useEffect(() => {
-    if (!overlayVisible || !variant || previewOnly || promptedForRequestRef.current) return;
+    if (!overlayVisible || !variant || promptedForRequestRef.current) return;
     promptedForRequestRef.current = true;
     void markReviewPrompted();
-  }, [overlayVisible, previewOnly, variant]);
+  }, [overlayVisible, variant]);
 
   const close = () => onClose();
   const rate = async () => {
-    if (previewOnly) {
-      close();
-      return;
-    }
     close();
     await openStoreReviewPage();
     await markReviewRated();

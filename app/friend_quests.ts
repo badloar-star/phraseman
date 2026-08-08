@@ -5,7 +5,8 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { replaceShardsBalanceForAccountGeneration } from './shards_system';
-import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
+import { enqueueAuthoritativeLevelSpinLevels } from './level_spin_level_up_queue';
+import { persistAuthoritativeLevelSpinBalance } from './level_reward_spins_client';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -55,6 +56,12 @@ export type FriendQuestClaimResponse = {
   callerXpBeforeReward?: number;
   rewardXpApplied?: number;
   callerXp?: number;
+  levelSpinMintedCredits?: Array<{
+    id: string;
+    level: number;
+    kind: 'standard' | 'milestone';
+  }>;
+  levelSpinBalance?: number;
 };
 
 function isFriendQuestsCloudEnabled(): boolean {
@@ -67,9 +74,6 @@ function callable<TReq, TRes>(name: string) {
 
 async function mirrorCallerXpWithoutRollback(
   callerXp: number,
-  rewardApplied: boolean,
-  callerXpBeforeReward?: number,
-  rewardXpApplied?: number,
 ): Promise<void> {
   if (!Number.isFinite(callerXp)) return;
   const serverXp = Math.max(0, Math.floor(callerXp));
@@ -77,24 +81,21 @@ async function mirrorCallerXpWithoutRollback(
   const localXp = Math.max(0, parseInt(localRaw ?? '0', 10) || 0);
   const nextXp = Math.max(localXp, serverXp);
   await AsyncStorage.setItem('user_total_xp', String(nextXp));
-  const validRewardInterval = (
-    rewardApplied === true
-    && typeof callerXpBeforeReward === 'number'
-    && Number.isSafeInteger(callerXpBeforeReward)
-    && callerXpBeforeReward >= 0
-    && typeof rewardXpApplied === 'number'
-    && Number.isSafeInteger(rewardXpApplied)
-    && rewardXpApplied > 0
-    && Number.isSafeInteger(callerXp)
-    && callerXp >= 0
-    && callerXpBeforeReward + rewardXpApplied === callerXp
-  );
-  if (validRewardInterval) {
-    const freshBefore = Math.max(localXp, callerXpBeforeReward);
-    if (serverXp > freshBefore) {
-      await reconcileLevelUpRewards(freshBefore, serverXp);
-    }
-  }
+}
+
+function exactSpinLevels(result: FriendQuestClaimResponse): number[] | null {
+  if (!Array.isArray(result.levelSpinMintedCredits)
+    || !Number.isSafeInteger(result.levelSpinBalance)
+    || Number(result.levelSpinBalance) < 0) return null;
+  const milestoneLevels = new Set([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]);
+  const valid = result.levelSpinMintedCredits.every((credit) => {
+    if (!Number.isInteger(credit.level) || credit.level < 2 || credit.level > 60) return false;
+    return credit.id === `level_spin_v1_${String(credit.level).padStart(3, '0')}`
+      && credit.kind === (milestoneLevels.has(credit.level) ? 'milestone' : 'standard');
+  });
+  if (!valid) return null;
+  return [...new Set(result.levelSpinMintedCredits.map((credit) => credit.level))]
+    .sort((a, b) => a - b);
 }
 
 async function getStableIdForQuest(): Promise<string> {
@@ -154,8 +155,12 @@ export async function claimFriendQuestReward(questId: string): Promise<FriendQue
   if (existing) return existing;
 
   const request = (async () => {
-    const fn = callable<{ stableId: string; questId: string }, FriendQuestClaimResponse>('friendClaimQuestReward');
-    const res = await fn({ stableId, questId });
+    const fn = callable<{
+      stableId: string;
+      questId: string;
+      levelSpinProtocol: 'v1';
+    }, FriendQuestClaimResponse>('friendClaimQuestReward');
+    const res = await fn({ stableId, questId, levelSpinProtocol: 'v1' });
     if (!isCurrentAccountGeneration(accountGeneration, stableId)) return res.data;
     if (Number.isFinite(res.data.callerShards)) {
       const shardOutcome = await replaceShardsBalanceForAccountGeneration(
@@ -170,17 +175,17 @@ export async function claimFriendQuestReward(questId: string): Promise<FriendQue
       );
       if (shardOutcome === 'stale-generation') return res.data;
     }
-    await withAccountTransitionLock(async () => {
+    await withAccountTransitionLock(async (): Promise<void> => {
       if (!isCurrentAccountGeneration(accountGeneration, stableId)) return;
       if (Number.isFinite(res.data.callerXp)) {
-        await mirrorCallerXpWithoutRollback(
-          res.data.callerXp as number,
-          res.data.rewardApplied === true,
-          res.data.callerXpBeforeReward,
-          res.data.rewardXpApplied,
-        );
+        await mirrorCallerXpWithoutRollback(res.data.callerXp as number);
       }
       invalidateActiveFriendQuestCache(stableId);
+      const levels = exactSpinLevels(res.data);
+      if (!levels || !isCurrentAccountGeneration(accountGeneration, stableId)) return;
+      await persistAuthoritativeLevelSpinBalance(stableId, res.data.levelSpinBalance as number);
+      if (!isCurrentAccountGeneration(accountGeneration, stableId)) return;
+      if (levels.length > 0) await enqueueAuthoritativeLevelSpinLevels(levels);
     });
     return res.data;
   })().finally(() => {

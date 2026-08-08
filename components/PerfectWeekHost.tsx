@@ -10,6 +10,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
+import { onAppEvent } from '../app/events';
+import { isBoonModifierActive } from '../app/boons/boon_engine';
 import { triLang, type Lang } from '../constants/i18n';
 import { grantBoonReward } from '../app/boons/boon_rewards';
 import {
@@ -41,29 +43,61 @@ export default function PerfectWeekHost() {
   // Начислить награду и ПОМЕТИТЬ неделю забранной — единожды (in-memory гард). Порядок
   // важен: сначала фиксируем claimed (анти-повтор), потом начисляем осколки (best-effort).
   // Если grant упадёт — повторного показа всё равно не будет, награда не задвоится.
-  const claim = useCallback(async () => {
+  const claim = useCallback(async (): Promise<void> => {
+    if (!isBoonModifierActive('perfect_week')) {
+      setWantShow(false);
+      return;
+    }
     if (grantedRef.current) return;
     grantedRef.current = true;
     await markPerfectWeekClaimed();
+    if (!isBoonModifierActive('perfect_week')) {
+      setWantShow(false);
+      return;
+    }
     await grantBoonReward(PERFECT_WEEK_REWARD, 'boon_perfect_week');
   }, []);
 
   useEffect(() => {
     let alive = true;
-    checkPerfectWeekEligible()
-      .then(async (eligible) => {
-        if (!alive || !eligible) return;
+    let generation = 0;
+
+    const refresh = () => {
+      const currentGeneration = ++generation;
+      if (!isBoonModifierActive('perfect_week')) setWantShow(false);
+      checkPerfectWeekEligible()
+        .then(async (eligible) => {
+          if (
+            !alive
+            || currentGeneration !== generation
+            || !eligible
+            || !isBoonModifierActive('perfect_week')
+          ) return;
         // КРИТИЧНО: фиксируем claim СРАЗУ при решении показать сундук, ДО рендера модалки.
         // Раньше отметка «забрано» писалась только по тапу/закрытию — если юзер быстро
         // сворачивал/выгружал приложение, запись не успевала, и на холодном старте тот же
         // (уже фактически полученный) сундук всплывал снова, путая юзера «есть ещё награда».
         // Награда идемпотентна (grantedRef), повторный onClaim из модалки её не задвоит.
-        await claim();
-        if (alive) setWantShow(true);
-      })
-      .catch(() => {});
+          await claim();
+          if (
+            alive
+            && currentGeneration === generation
+            && isBoonModifierActive('perfect_week')
+          ) {
+            setWantShow(true);
+          } else if (alive && currentGeneration === generation) {
+            setWantShow(false);
+          }
+        })
+        .catch(() => {});
+    };
+
+    refresh();
+    const remoteConfigSub = onAppEvent('remote_config_changed', refresh);
     return () => {
       alive = false;
+      generation += 1;
+      remoteConfigSub.remove();
     };
   }, [claim]);
 

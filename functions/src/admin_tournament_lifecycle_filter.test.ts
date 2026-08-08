@@ -1,3 +1,5 @@
+export {};
+
 type DocData = Record<string, unknown>;
 
 type FakeDoc = {

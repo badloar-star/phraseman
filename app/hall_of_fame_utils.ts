@@ -14,6 +14,7 @@ import { repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
 import { getCardStreakShieldStatus, tryConsumeCardStreakShield } from './profile_card_streak_shield';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
+import { consumeFriendChainShield } from './friend_gifts';
 import {
   getLocalDayKey,
   isDayBeforeYesterdayFlexible,
@@ -25,6 +26,7 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getCurrentWeekStartIso } from './weekly_xp';
 import {
+  captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
@@ -233,6 +235,8 @@ export const updateStreakOnActivity = async (
   accountToken?: AccountGenerationToken,
 ): Promise<number> => {
   try {
+    const capturedToken = accountToken ?? captureAccountGeneration();
+    const effectiveAccountToken = capturedToken.phase === 'active' ? capturedToken : undefined;
     await repairDevSeededStreakInStorage();
 
     // Ключ дня — ЛОКАЛЬНАЯ дата устройства: пользователь, занимающийся каждый
@@ -302,12 +306,29 @@ export const updateStreakOnActivity = async (
           const cs = JSON.parse(csRaw) as { daysLeft: number; grantedAt: string };
           const daysLeft = Math.max(0, Math.floor(Number(cs.daysLeft) || 0));
           if (daysLeft > 0) {
-            const newDaysLeft = daysLeft - 1;
-            if (newDaysLeft <= 0) {
+            if (!effectiveAccountToken) return streak;
+            const serverConsume = await consumeFriendChainShield(
+              `${lastActive}_${today}`,
+              effectiveAccountToken,
+            ).catch(() => null);
+            // If the authoritative consume cannot be confirmed, preserve the
+            // streak and retry on the next synchronized activity.
+            if (!serverConsume) return streak;
+            if (!serverConsume.consumed) {
+              await AsyncStorage.removeItem('chain_shield');
+              const prevStreak = streak;
+              logStreakLost(prevStreak);
+              AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
+              void markStreakLost(prevStreak, missedDays);
+              incrementStreakLostCount();
+              streak = 1;
+            } else {
+            const newDaysLeft = serverConsume.daysLeft;
+            if (newDaysLeft <= 0 || !serverConsume.chainShield) {
               // Щит исчерпан — удаляем, не храним нулевое состояние
               await AsyncStorage.removeItem('chain_shield');
             } else {
-              await AsyncStorage.setItem('chain_shield', JSON.stringify({ ...cs, daysLeft: newDaysLeft }));
+              await AsyncStorage.setItem('chain_shield', serverConsume.chainShield);
             }
             // streak не меняем — щит спас. Социальный момент благодарности — не молчим
             // (аудит «немых мест» 2026-06-11, находка №7).
@@ -323,6 +344,7 @@ export const updateStreakOnActivity = async (
                 ? `El escudo de tu amigo salvó la racha 🛡️ Días restantes: ${newDaysLeft}`
                 : 'El escudo de tu amigo salvó la racha 🛡️ Era el último día',
             });
+            }
           } else {
             // daysLeft === 0: испорченное состояние — чистим и теряем цепочку
             await AsyncStorage.removeItem('chain_shield');

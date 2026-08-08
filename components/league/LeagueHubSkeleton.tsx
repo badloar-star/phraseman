@@ -13,7 +13,7 @@ import type { LeagueHubPalette } from './leagueHubPalette';
  * той же геометрии, что и настоящий контент, чтобы приход данных не двигал
  * вёрстку ни на пиксель (Performance Bible → layout stability).
  *
- * Геометрия зеркалит LeagueArenaScene (подиум) и LeagueLeaderboardRow (строки):
+ * Геометрия зеркалит LeagueCompetitionScene (подиум) и LeagueLeaderboardRow (строки):
  * при правке размеров там — поправить и здесь, иначе появится прыжок.
  * Никаких вымышленных цифр: заглушка не показывает ни очков, ни мест.
  */
@@ -24,7 +24,7 @@ interface LeagueHubSkeletonProps {
   rows?: number;
 }
 
-// Синхронизировано с LeagueArenaScene.STEP_HEIGHT — иначе подиум подпрыгнет.
+// Синхронизировано с LeagueCompetitionScene.STEP_HEIGHT — иначе подиум подпрыгнет.
 const STEP_HEIGHT: Record<number, number> = { 1: 74, 2: 54, 3: 42 };
 // Порядок ступеней на экране: 2-е место слева, 1-е в центре, 3-е справа.
 const PODIUM_PLACES = [2, 1, 3] as const;
@@ -96,7 +96,7 @@ function LeagueHubSkeletonComponent({ palette, rows = 5 }: LeagueHubSkeletonProp
 export const LeagueHubSkeleton = memo(LeagueHubSkeletonComponent);
 
 const styles = StyleSheet.create({
-  // paddingTop/Bottom как в LeagueArenaScene.stage
+  // paddingTop/Bottom как в LeagueCompetitionScene.stage
   stage: { paddingTop: 6, paddingBottom: 4 },
   emblem: { alignSelf: 'center' },
   leagueName: { alignSelf: 'center', marginTop: 8 },

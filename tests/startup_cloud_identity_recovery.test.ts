@@ -12,7 +12,6 @@ describe('startup cloud identity recovery regression', () => {
   const layout = read('app/_layout.tsx');
   const premiumContext = read('components/PremiumContext.tsx');
   const vipSurvey = read('app/vip_survey.ts');
-  const adminTesters = read('app/_admin_settings_testers.tsx');
   const firestoreRules = read('firestore.rules');
 
   it('tries the authenticated stable-link callable even when local App Check is unavailable', () => {
@@ -115,7 +114,6 @@ describe('startup cloud identity recovery regression', () => {
   it.each([
     ['components/PremiumContext.tsx', premiumContext, 4],
     ['app/vip_survey.ts', vipSurvey, 1],
-    ['app/_admin_settings_testers.tsx', adminTesters, 2],
   ])('handles every fire-and-forget public-profile sync in %s', (_path, source, expectedCount) => {
     const calls = source.match(/void syncPublicProfileSnapshot\(/g) ?? [];
     const handled = source.match(/void syncPublicProfileSnapshot\([\s\S]*?\)\.catch\(\(\) => \{\}\);/g) ?? [];

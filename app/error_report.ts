@@ -34,7 +34,7 @@ async function isErrorReportThrottled(now: number): Promise<boolean> {
  *   "lesson_5_phrase_42"         → grep lesson 5 data, index 42
  *   "irregular_verb_go"          → grep "go" в irregular_verbs_data.ts
  *   "word_take_off"              → grep "take_off" в words data
- *   "quiz_easy_run_out_of"       → grep "run out of" в quiz_data.ts
+ *   "lesson_words_run_out_of"    → grep "run out of" в lesson content
  *   "flashcard_give_up"          → grep "give up" в flashcards
  *   "exam_lesson_3_q5"           → exam lesson 3, вопрос 5
  *   "theory_lesson_7"            → lesson_help.tsx, lessonId=7

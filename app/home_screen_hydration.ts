@@ -12,6 +12,7 @@ import type { StudyTargetLang } from './study_target_lang_dev';
 import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { storageStudyTarget } from './target_storage_keys';
 import type { StreakWeekDayMarkerKind } from './streak_week_markers';
+import type { AppSnapshotSource } from './app_snapshot_store';
 
 export type HomeScreenHydration = {
   userName: string;
@@ -50,6 +51,7 @@ export type HomeScreenHydration = {
   // правду, а не 0.
   dueCount?: number;
   tasksCompleted?: number;
+  tasksTotal?: number;
 };
 
 let snapshotByTarget: Partial<Record<string, HomeScreenHydration>> = {};
@@ -70,6 +72,19 @@ export function patchHomeScreenHydration(
 
 export function peekHomeScreenHydration(studyTarget?: StudyTargetLang): HomeScreenHydration | null {
   return snapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
+}
+
+/**
+ * A completed local Home load normally wins over later warm-cache updates.
+ * The server-authoritative projection is the exception: it must replace a
+ * stale or zero local SQLite value when persistence is unavailable.
+ */
+export function shouldApplyHomeSnapshotToStats(
+  homeStatsAlreadyLoaded: boolean,
+  profileSource?: AppSnapshotSource,
+  progressSource?: AppSnapshotSource,
+): boolean {
+  return !homeStatsAlreadyLoaded || profileSource === 'live' || progressSource === 'live';
 }
 
 export function resolveHomeProfileVisuals(params: {

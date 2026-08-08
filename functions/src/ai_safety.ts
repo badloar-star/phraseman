@@ -21,6 +21,13 @@
 
 import * as admin from 'firebase-admin';
 import { sendTelegramAlert, ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
+import {
+  SAFETY_FLAG_AGE_CONTRACT,
+  readServerSafetyAgeEvidence,
+  safetyFlagAgeBracket,
+} from './safety_flag_age_contract';
+
+export const SAFETY_FLAG_WRITER_AGE_CONTRACT = SAFETY_FLAG_AGE_CONTRACT;
 
 export type SafetyCategory =
   | 'self_harm'
@@ -254,7 +261,6 @@ export async function moderateUserText(apiKey: string, userText: string): Promis
 interface SafetyFlagContext {
   authUid: string;
   stableUid: string;
-  ageBracket?: string | null;
   mode: string;
   userText: string;
   history?: ReadonlyArray<{ role: string; content: string }>;
@@ -282,6 +288,8 @@ export async function recordSafetyFlag(
 ): Promise<void> {
   if (!verdict.flagged || !verdict.category) return;
   const db = admin.firestore();
+  const ageEvidence = await readServerSafetyAgeEvidence(db, ctx.stableUid);
+  const ageBracket = safetyFlagAgeBracket(ageEvidence);
 
   // Последние реплики для контекста оператора (обрезаем длину).
   const historyContext = (ctx.history ?? [])
@@ -292,7 +300,8 @@ export async function recordSafetyFlag(
     await db.collection('safety_flags').doc().set({
       uid: ctx.stableUid,
       authUid: ctx.authUid,
-      ageBracket: ctx.ageBracket ?? null,
+      ageBracket,
+      ageEvidence,
       category: verdict.category,
       matched: verdict.matched,
       mode: ctx.mode,
@@ -321,7 +330,7 @@ export async function recordSafetyFlag(
       const msg =
         `🆘 <b>Safety flag</b> — ${escapeHtml(verdict.category)}\n` +
         `<b>User:</b> ${escapeHtml(ctx.stableUid)}` +
-        (ctx.ageBracket ? ` (${escapeHtml(ctx.ageBracket)})` : '') +
+        (ageBracket ? ` (${escapeHtml(ageBracket)})` : '') +
         `\n<b>Mode:</b> ${escapeHtml(ctx.mode)}\n` +
         `<b>Matched:</b> ${escapeHtml(verdict.matched)}\n` +
         `<b>Message:</b> ${escapeHtml(clip(ctx.userText, 400))}`;

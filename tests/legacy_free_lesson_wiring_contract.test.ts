@@ -12,13 +12,13 @@ describe('legacy free lesson cap wiring', () => {
   const lessonCompleteSource = readAppFile('lesson_complete.tsx');
   const levelExamSource = readAppFile('level_exam.tsx');
 
-  test('hydrates and passes the cap through every lessons-tab entitlement decision', () => {
+  test('hydrates and projects the cap through every lessons-tab entitlement decision', () => {
     expect(lessonsSource).toContain('const [legacyFreeLessonCap, setLegacyFreeLessonCap]');
     expect(lessonsSource).toContain('setLegacyFreeLessonCap(snapshot.legacyFreeLessonCap)');
-    expect(lessonsSource).toContain('legacyFreeLessonCap,');
-    expect(lessonsSource).toContain('requiresPremiumForLesson(to, legacyFreeLessonCap)');
-    expect(lessonsSource).toContain('requiresPremiumForLesson(num, legacyFreeLessonCap)');
-    expect(lessonsSource).toContain('lessonPaywallContext(lessonNum, legacyFreeLessonCap)');
+    expect(lessonsSource).toContain('legacyFreeLessonCap: effectiveLegacyFreeLessonCap');
+    expect(lessonsSource).toContain('requiresPremiumForLesson(to, effectiveLegacyFreeLessonCap)');
+    expect(lessonsSource).toContain('requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap)');
+    expect(lessonsSource).toContain('lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap)');
   });
 
   test('direct lesson routes read the target cap before premium and progress gates', () => {

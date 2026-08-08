@@ -19,6 +19,10 @@ const ROUND_SOURCE = fs.readFileSync(
   path.join(__dirname, '..', 'app', 'tournament_round.tsx'),
   'utf8',
 );
+const UI_SOURCE = fs.readFileSync(
+  path.join(__dirname, '..', 'components', 'tournament', 'tournament_v2_ui.tsx'),
+  'utf8',
+);
 
 /** Вырезает участок исходника между двумя якорями. */
 function section(source: string, from: string, to: string): string {
@@ -30,12 +34,44 @@ function section(source: string, from: string, to: string): string {
 }
 
 describe('счётчик звёзд в шапке раунда', () => {
+  test('прирост звёзд вливается в общий счёт, а не рисуется вторым счётчиком', () => {
+    const renderedRound = section(
+      ROUND_SOURCE,
+      '<View style={styles.statsRow}>',
+      '{/* «Время вышло»',
+    );
+    const choiceFeedback = section(
+      ROUND_SOURCE,
+      "{question.kind === 'choice' ? (",
+      '{/* «Время вышло»',
+    );
+
+    expect(renderedRound.match(/<V2Counter\b[^>]*tone="stars"/g) ?? []).toHaveLength(1);
+    expect(choiceFeedback).not.toMatch(
+      /(?:\+?\$\{[^}]+\}|\b\d+)\s+(?:зв[её]зд|зірок|estrellas|estrelas|sao|bintang|yıldız|gwiazdek)/i,
+    );
+    expect(renderedRound).not.toContain('feedbackEarnedStars');
+    expect(ROUND_SOURCE).not.toContain('setFeedbackEarnedStars');
+  });
+
   test('показывает ОБЩИЙ счёт даже в режиме пар', () => {
     // Баг владельца «счёт всегда начинается с нуля»: в парах счётчик показывал
     // matchStars — локальный счётчик пар этого задания, стартующий с нуля.
     const counter = section(ROUND_SOURCE, '<V2Counter ref={starCounterRef}', '/>');
     expect(counter).toContain('value={stars}');
     expect(counter).not.toContain('matchStars');
+  });
+
+  test('общий счёт звёзд объявляется screen reader-ам и не дублируется наградой', () => {
+    const counter = section(ROUND_SOURCE, '<V2Counter ref={starCounterRef}', '/>');
+    const v2Counter = section(UI_SOURCE, 'export const V2Counter', 'export const V2StreakPill');
+
+    expect(counter).toContain('accessibilityLabel={triLang(lang');
+    expect(counter).toContain('Общий счёт турнира');
+    expect(counter).toContain('accessibilityLiveRegion="polite"');
+    expect(v2Counter).toContain('accessibilityLabel');
+    expect(v2Counter).toContain('accessibilityLiveRegion');
+    expect(v2Counter).toContain('accessible={Boolean(accessibilityLabel)}');
   });
 
   test('счёт складывается из серверного и неподтверждённых локальных звёзд', () => {
@@ -68,6 +104,19 @@ describe('счётчик звёзд в шапке раунда', () => {
   test('надбавка гасится, когда сервер её подтвердил', () => {
     expect(ROUND_SOURCE).toContain('serverStars >= target');
     expect(ROUND_SOURCE).toContain('serverStars <= target');
+  });
+
+  test('сверка одного ответа меняет только его pending-дельту', () => {
+    const submission = section(
+      ROUND_SOURCE,
+      'const submitCurrentTaskAnswer = useCallback',
+      '  /**\r\n   * зачем 2026-08-02',
+    );
+
+    expect(submission).toContain('const optimisticStarAmount = optimisticStars ?? 0');
+    expect(submission).toContain('addPendingStars(result.earnedStars - optimisticStarAmount)');
+    expect(submission).not.toContain('optimisticStars !== null && optimisticStars !== result.earnedStars');
+    expect(submission).not.toContain('setPendingStars(null)');
   });
 });
 

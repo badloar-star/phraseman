@@ -24,15 +24,17 @@ export function speakingTargetTokens(target: string): string[] {
  * are treated as already matched so they never block "all matched".
  */
 export function speakingMatchedFlags(target: string, transcript: string): boolean[] {
-  const heard = new Set(
-    transcript
-      .split(/\s+/)
-      .map(normalizeSpokenWord)
-      .filter((w) => w.length > 0),
-  );
+  const heardCounts = new Map<string, number>();
+  for (const word of transcript.split(/\s+/).map(normalizeSpokenWord).filter(Boolean)) {
+    heardCounts.set(word, (heardCounts.get(word) ?? 0) + 1);
+  }
   return speakingTargetTokens(target).map((tok) => {
     const n = normalizeSpokenWord(tok);
-    return n.length === 0 ? true : heard.has(n);
+    if (n.length === 0) return true;
+    const remaining = heardCounts.get(n) ?? 0;
+    if (remaining <= 0) return false;
+    heardCounts.set(n, remaining - 1);
+    return true;
   });
 }
 

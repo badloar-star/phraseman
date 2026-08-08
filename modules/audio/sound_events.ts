@@ -7,7 +7,6 @@ export type SoundFamily =
   | 'energy'
   | 'streak'
   | 'reward'
-  | 'arena'
   | 'league'
   | 'social';
 
@@ -85,6 +84,15 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.complete.star_1': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_1_v1.wav'), 0.38, 74, 180, 340, 'completion'),
   'pm.complete.star_2': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_2_v1.wav'), 0.40, 75, 180, 380, 'completion'),
   'pm.complete.star_3': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_3_v1.wav'), 0.44, 78, 220, 480, 'completion'),
+  'pm.complete.star_3_perfect': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_3_perfect_v1.wav'), 0.46, 80, 500, 800, 'completion'),
+  'pm.complete.xp_counter_start': event(require('../../assets/audio/sfx/v1/completion/pm_complete_xp_counter_start_v1.wav'), 0.30, 62, 900, 450, 'completion'),
+  'pm.complete.xp_counter_tick': event(require('../../assets/audio/sfx/v1/completion/pm_complete_xp_counter_tick_v1.wav'), 0.20, 48, 140, 1000, 'completion'),
+  'pm.complete.xp_counter_complete': event(require('../../assets/audio/sfx/v1/completion/pm_complete_xp_counter_complete_v1.wav'), 0.42, 82, 900, 900, 'completion'),
+  'pm.complete.active_reward_reveal': event(require('../../assets/audio/sfx/v1/completion/pm_complete_active_reward_reveal_v1.wav'), 0.38, 76, 1200, 1100, 'completion'),
+  'pm.complete.active_gift_unlock': event(require('../../assets/audio/sfx/v1/completion/pm_complete_active_gift_unlock_v1.wav'), 0.42, 80, 1200, 1300, 'completion'),
+  'pm.complete.multiplier_reveal': event(require('../../assets/audio/sfx/v1/completion/pm_complete_multiplier_reveal_v1.wav'), 0.40, 78, 1200, 1500, 'completion'),
+  'pm.complete.multiplier_upgrade': event(require('../../assets/audio/sfx/v1/completion/pm_complete_multiplier_upgrade_v1.wav'), 0.44, 82, 1200, 1500, 'completion'),
+  'pm.complete.rewards_finale': event(require('../../assets/audio/sfx/v1/completion/pm_complete_rewards_finale_v1.wav'), 0.46, 84, 1500, 1800, 'completion'),
 
   'pm.system.success': event(require('../../assets/audio/sfx/v1/system/pm_system_success_v1.wav'), 0.34, 58, 1600, 520, 'system', { deferAfterVoice: true }),
   'pm.system.info': event(require('../../assets/audio/sfx/v1/system/pm_system_info_v1.wav'), 0.28, 44, 1800, 420, 'system', { deferAfterVoice: true }),
@@ -114,14 +122,16 @@ export const SOUND_EVENTS = Object.freeze({
   // конфетти уже есть визуально, звука к нему не было.
   'pm.reward.pack_complete': event(require('../../assets/audio/sfx/v1/reward/pm_reward_pack_complete_v1.wav'), 0.50, 80, 3000, 1000, 'reward'),
 
-  'pm.arena.match_found': event(null, 0.55, 92, 5000, 920, 'arena'),
-  'pm.arena.countdown_3': event(null, 0.38, 78, 400, 220, 'arena'),
-  'pm.arena.countdown_2': event(null, 0.39, 79, 400, 220, 'arena'),
-  'pm.arena.countdown_1': event(null, 0.42, 80, 400, 240, 'arena'),
-  'pm.arena.round_start': event(null, 0.50, 88, 1200, 460, 'arena'),
-  'pm.arena.victory': event(null, 0.62, 90, 5500, 1380, 'arena'),
-  'pm.arena.defeat': event(null, 0.34, 76, 3500, 880, 'arena'),
-  'pm.arena.draw': event(null, 0.36, 72, 3000, 760, 'arena'),
+  // Level Spin is a short, authored sequence. Each cue has a separate asset so
+  // visual phase changes can trigger it exactly instead of relying on timers.
+  'pm.spin.button_press': event(require('../../assets/audio/sfx/v1/spin/pm_spin_button_press_v1.wav'), 0.32, 42, 0, 1000, 'reward'),
+  'pm.spin.reel_start': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_start_v1.wav'), 0.44, 70, 0, 1000, 'reward'),
+  'pm.spin.reel_loop': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_loop_v1.wav'), 0.28, 74, 0, 2000, 'reward'),
+  'pm.spin.reel_stop_rollback': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_stop_rollback_v1.wav'), 0.52, 90, 0, 1200, 'reward'),
+  'pm.spin.reward_lock': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_lock_v1.wav'), 0.48, 92, 0, 2000, 'reward'),
+  'pm.spin.reward_win': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_win_v1.wav'), 0.54, 94, 0, 2000, 'reward'),
+  'pm.spin.reward_rare': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_rare_v1.wav'), 0.58, 95, 0, 2000, 'reward'),
+  'pm.spin.reward_premium': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_premium_v1.wav'), 0.62, 96, 0, 2000, 'reward'),
 
   'pm.league.promoted': event(require('../../assets/audio/sfx/v1/league/pm_league_promoted_v1.wav'), 0.64, 94, 8000, 1620, 'league'),
   'pm.league.demoted': event(require('../../assets/audio/sfx/v1/league/pm_league_demoted_v1.wav'), 0.36, 80, 6000, 980, 'league'),

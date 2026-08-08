@@ -272,7 +272,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     const title = reward.title || row.text || copy.reportReply;
     const body = reward.body || row.text || '';
     return (
-      <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
+      <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
@@ -356,7 +356,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
             </TouchableOpacity>
           </View>
           {selected ? renderReportReplyDetail(selected) : (
-          <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24, gap: 8 }}>
+          <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24, gap: 8 }}>
             <AppMessagesInbox
               key={identityRevision}
               mode="notification-center"

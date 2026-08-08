@@ -123,6 +123,27 @@ describe('plan content runtime adapter', () => {
     expect(contentDayToLessonPhrases(day)).toHaveLength(1);
   });
 
+  it('restores canonical tokens omitted by a legacy authored words array', () => {
+    const runtime = contentPhraseToLessonPhrase({
+      ...phrase,
+      english: 'If I had more time, I would travel more.',
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['unless', 'when', 'because', 'although', 'while'] },
+        { text: 'had', partOfSpeech: 'verb', distractors: ['have', 'has', 'would', 'could', 'were'] },
+        { text: 'more', partOfSpeech: 'adverb', distractors: ['less', 'most', 'much', 'many', 'very'] },
+        { text: 'time', partOfSpeech: 'noun', distractors: ['day', 'week', 'hour', 'year', 'moment'] },
+        { text: 'would', partOfSpeech: 'modal', distractors: ['could', 'should', 'will', 'might', 'can'] },
+        { text: 'travel', partOfSpeech: 'verb', distractors: ['work', 'stay', 'move', 'visit', 'live'] },
+      ],
+    });
+
+    expect(runtime.words.map((word) => word.correct)).toEqual([
+      'If', 'I', 'had', 'more', 'time', 'I', 'would', 'travel', 'more',
+    ]);
+    expect(runtime.words[1]).toMatchObject({ category: 'pronoun' });
+    expect(runtime.words[1].distractors).toHaveLength(5);
+  });
+
   it('maps planned locale intro text and examples to lesson intro fields', () => {
     const screens = contentDayToLessonIntroScreens(day);
     expect(screens[0]).toMatchObject({

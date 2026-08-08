@@ -90,7 +90,7 @@ const REVIEW_ACTIONS = {
 } satisfies Record<'btnYes' | 'btnNo', LocalizedCopy>;
 
 /** Контекстные варианты для спокойной просьбы о честном отзыве. */
-const CONTEXTUAL: Record<'perfect_lesson' | 'arena_win', ReviewVariantDefinition> = {
+const CONTEXTUAL: Record<'perfect_lesson', ReviewVariantDefinition> = {
   perfect_lesson: {
     emoji: '🎯',
     title: {
@@ -112,31 +112,6 @@ const CONTEXTUAL: Record<'perfect_lesson' | 'arena_win', ReviewVariantDefinition
       id: 'Hasil yang luar biasa! Jika Phraseman membantumu belajar, bagikan ulasan jujurmu, ya.',
       tr: 'Harika bir sonuç! Phraseman öğrenmene yardımcı oluyorsa lütfen dürüst bir yorum paylaş.',
       pl: 'Świetny wynik! Jeśli Phraseman pomaga Ci w nauce, podziel się proszę szczerą recenzją.',
-    },
-    btnYes: REVIEW_ACTIONS.btnYes,
-    btnNo: REVIEW_ACTIONS.btnNo,
-  },
-  arena_win: {
-    emoji: '⚔️',
-    title: {
-      ru: 'Победа! Отличная игра.',
-      uk: 'Переможець! Чудова гра.',
-      es: '¡Victoria! Gran partida.',
-      'pt-BR': 'Vitória! Ótima partida.',
-      vi: 'Chiến thắng! Một trận tuyệt vời.',
-      id: 'Menang! Pertandingan yang hebat.',
-      tr: 'Zafer! Harika maç.',
-      pl: 'Zwycięstwo! Świetny mecz.',
-    },
-    subtitle: {
-      ru: 'Если есть минутка, поделись, пожалуйста, честным отзывом о Phraseman.',
-      uk: 'Якщо маєш хвилинку, поділися, будь ласка, чесним відгуком про Phraseman.',
-      es: 'Si tienes un minuto, comparte por favor una reseña sincera sobre Phraseman.',
-      'pt-BR': 'Se tiver um minuto, compartilhe por favor uma avaliação honesta sobre o Phraseman.',
-      vi: 'Nếu bạn có một phút, hãy chia sẻ đánh giá chân thật về Phraseman nhé.',
-      id: 'Jika punya waktu sebentar, bagikan ulasan jujur tentang Phraseman, ya.',
-      tr: 'Bir dakikan varsa Phraseman hakkında dürüst bir yorum paylaşır mısın?',
-      pl: 'Jeśli masz chwilę, podziel się proszę szczerą recenzją Phraseman.',
     },
     btnYes: REVIEW_ACTIONS.btnYes,
     btnNo: REVIEW_ACTIONS.btnNo,

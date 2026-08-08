@@ -4,11 +4,17 @@ export type AccountGenerationToken = Readonly<{
   phase: 'uninitialized' | 'active' | 'transitioning';
 }>;
 
+declare const ACCOUNT_TRANSITION_LOCK_LEASE: unique symbol;
+export type AccountTransitionLockLease = Readonly<{
+  [ACCOUNT_TRANSITION_LOCK_LEASE]: true;
+}>;
+
 let currentGeneration = 0;
 let currentStableId: string | null = null;
 let currentPhase: AccountGenerationToken['phase'] = 'uninitialized';
 let restoreLockTail: Promise<void> = Promise.resolve();
 let accountTransitionLockTail: Promise<void> = Promise.resolve();
+const activeAccountTransitionLockLeases = new WeakSet<object>();
 const generationListeners = new Set<(token: AccountGenerationToken) => void>();
 
 const normalizedStableId = (value: string | null): string | null => value?.trim() || null;
@@ -85,14 +91,23 @@ export async function withRestoreApplicationLock<T>(work: () => Promise<T>): Pro
 }
 
 /** Serializes account-level storage commits with wipe/hydration boundaries. */
-export async function withAccountTransitionLock<T>(work: () => Promise<T>): Promise<T> {
+export async function withAccountTransitionLock<T>(
+  work: (lease: AccountTransitionLockLease) => Promise<T>,
+  inheritedLease?: AccountTransitionLockLease,
+): Promise<T> {
+  if (inheritedLease && activeAccountTransitionLockLeases.has(inheritedLease)) {
+    return work(inheritedLease);
+  }
   const previous = accountTransitionLockTail;
   let release!: () => void;
   accountTransitionLockTail = new Promise<void>((resolve) => { release = resolve; });
   await previous;
+  const lease = Object.freeze({}) as AccountTransitionLockLease;
+  activeAccountTransitionLockLeases.add(lease);
   try {
-    return await work();
+    return await work(lease);
   } finally {
+    activeAccountTransitionLockLeases.delete(lease);
     release();
   }
 }

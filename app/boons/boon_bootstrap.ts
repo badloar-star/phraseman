@@ -13,8 +13,13 @@ import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../streak_freeze';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
-import { getTodaysBoons } from './boon_engine';
+import { getTodaysBoons, isPrimaryBoonActive } from './boon_engine';
 import { applyTurboRegenOverride } from './boon_effects_energy';
+import type { BoonId } from './boon_types';
+
+function isCurrentPrimary(expectedPrimary: BoonId, todayKey: string): boolean {
+  return isPrimaryBoonActive(expectedPrimary, todayKey);
+}
 
 /** Date-guard: ключ «эффект X уже выдан в этот UTC-день». */
 function dayGuardKey(boon: string): string {
@@ -53,6 +58,7 @@ async function applyStreakSaver(todayKey: string): Promise<void> {
   try {
     if (!(await notGrantedToday('streak_saver', todayKey))) return; // уже выдавали сегодня
     const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
+    if (!isCurrentPrimary('streak_saver', todayKey)) return;
     if (isStreakFreezeActiveToday(existing, todayKey)) {
       // Уже защищён сегодня (платная/премиум заморозка) — не трогаем, но фиксируем день,
       // чтобы бонус не пытался выдать после расхода этой заморозки в тот же день.
@@ -70,6 +76,7 @@ async function applyStreakSaver(todayKey: string): Promise<void> {
 /** Flashcard-Friday is one global occurrence; unrelated vouchers may coexist. */
 async function applyFlashcardFriday(todayKey: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
   if (!(await notGrantedToday('flashcard_friday', todayKey))) return;
+  if (!isCurrentPrimary('flashcard_friday', todayKey)) return;
   const occurrenceId = `weekly_boon_${todayKey}`;
   await setPackGiftTrial48hOnce(studyTarget, occurrenceId, undefined, undefined, occurrenceId, 'weekly_boon');
   await markGrantedToday('flashcard_friday', todayKey);
@@ -78,6 +85,7 @@ async function applyFlashcardFriday(todayKey: string, studyTarget?: RuntimeStudy
 /** Турбо-регенерация: override интервала восстановления на остаток дня. */
 async function applyTurboRegen(todayKey: string): Promise<void> {
   if (!(await notGrantedToday('turbo_regen', todayKey))) return;
+  if (!isCurrentPrimary('turbo_regen', todayKey)) return;
   await applyTurboRegenOverride();
   await markGrantedToday('turbo_regen', todayKey);
 }
@@ -95,6 +103,7 @@ export async function applyTodaysBoonsOnAppOpen(
   await applyMonthlyPremiumFreezeAllowance().catch(() => {});
   const { primary } = getTodaysBoons(todayKey);
   if (!primary) return;
+  if (!isCurrentPrimary(primary, todayKey)) return;
   try {
     switch (primary) {
       case 'streak_saver':

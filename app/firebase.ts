@@ -95,12 +95,6 @@ export function logLessonStart(lessonId: number, totalPhrases: number, attemptId
   logEvent('lesson_start', { lesson_id: lessonId, total_phrases: totalPhrases, lesson_attempt_id: attemptId });
 }
 
-// ── Quiz events ───────────────────────────────────────────────────────────────
-
-export function logQuizComplete(level: string, score: number) {
-  logEvent('quiz_complete', { level, score });
-}
-
 // ── Streak events ─────────────────────────────────────────────────────────────
 
 export function logStreakExtended(streakDays: number) {
@@ -207,10 +201,6 @@ export function logTrainerDirectGateBlocked(route: string) {
   logEvent('trainer_direct_gate_blocked', { route });
 }
 
-export function logArenaDirectGateBlocked(sessionId: string) {
-  logEvent('arena_direct_gate_blocked', { session_id: sessionId.slice(0, 80) });
-}
-
 // ── Flashcard events ──────────────────────────────────────────────────────────
 
 export function logFlashcardAdded() {
@@ -276,12 +266,6 @@ export function logLessonAnswer(lessonId: number, isCorrect: boolean, phraseInde
 
 export function logEnergyLimitHit(screen: string) {
   logEvent('energy_limit_hit', { screen });
-}
-
-// ── Quiz level chosen ─────────────────────────────────────────────────────────
-
-export function logQuizLevelSelected(level: string) {
-  logEvent('quiz_level_selected', { level });
 }
 
 // ── Feature opened ────────────────────────────────────────────────────────────

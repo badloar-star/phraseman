@@ -15,6 +15,7 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { bgCard: '#fff', bgSurface: '#eee', cardGradient: ['#fff', '#ddd'], border: '#ddd', textPrimary: '#111', textMuted: '#555', accent: '#b7ff00', correctText: '#07110A' }, f: { body: 16, caption: 13, label: 15 }, isFlat: false }) }));
 
 const opportunity = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const, context: 'first_lesson_success' as const, destination: 'personal_plan' as const, milestoneId: 'first_lesson:1:en' };

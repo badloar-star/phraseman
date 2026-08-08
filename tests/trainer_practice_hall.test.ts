@@ -8,7 +8,7 @@ import {
 } from '../app/trainer_practice_hall';
 
 const dashboard = (due: Partial<TrainerDashboard['due']>, nextQueue: TrainerDashboard['nextQueue']): TrainerDashboard => ({
-  due: { words: 0, phrases: 0, arena: 0, ...due },
+  due: { words: 0, phrases: 0, ...due },
   totalDue: Object.values(due).reduce((sum, value) => sum + (value ?? 0), 0),
   overdue: 0,
   totalTracked: 0,
@@ -33,9 +33,9 @@ describe('practice hall selection policy', () => {
     expect(selectPracticeHallQueue(dashboard({ words: 4, phrases: 2 }, 'words'))).toBe('words');
   });
 
-  it('falls back in a stable phrase, word, arena order when the recommendation is unavailable', () => {
-    expect(selectPracticeHallQueue(dashboard({ words: 4, arena: 2 }, 'phrases'))).toBe('words');
-    expect(selectPracticeHallQueue(dashboard({ phrases: 2, arena: 2 }, null))).toBe('phrases');
+  it('falls back in a stable phrase, word order when the recommendation is unavailable', () => {
+    expect(selectPracticeHallQueue(dashboard({ words: 4 }, 'phrases'))).toBe('words');
+    expect(selectPracticeHallQueue(dashboard({ phrases: 2 }, null))).toBe('phrases');
   });
 
   it('returns no route for an empty queue and gives a bounded realistic duration', () => {

@@ -113,12 +113,13 @@ export function residentGeneration(
   return { generation: 63, signupMs };
 }
 
-/** Шаг начисления: раз в 6 часов, как просил владелец. */
-export const RESIDENT_TICK_MS = 6 * 60 * 60 * 1000;
+/** Hourly scoring keeps sparse league rooms visibly alive between user sessions. */
+export const RESIDENT_TICK_MS = 60 * 60 * 1000;
 
 /** Границы прибавки за один тик — при условии, что персонаж в этот тик «заходил». */
-export const RESIDENT_TICK_MIN_XP = 10;
-export const RESIDENT_TICK_MAX_XP = 800;
+// One-sixth of the former six-hour range keeps the expected daily pace stable.
+export const RESIDENT_TICK_MIN_XP = 2;
+export const RESIDENT_TICK_MAX_XP = 134;
 
 /**
  * Доля тиков, в которые персонаж не занимался вовсе. Владелец: «рандомно с

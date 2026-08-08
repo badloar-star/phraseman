@@ -131,7 +131,7 @@ function auraAvailability(
     || unlockedByLevel;
   if (isOwned) return { isOwned: true, availability: { kind: 'owned' } };
   // зачем: rewardOnly остался только у ручных наград админки («Нимб») — арена-ауры
-  // владелец перевёл на уровни 52-55, деление source arena/gift стало мёртвым.
+  // владелец перевёл на уровни 52-55, старое деление по источнику стало мёртвым.
   if (aura.rewardOnly) {
     return { isOwned: false, availability: { kind: 'reward' } };
   }

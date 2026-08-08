@@ -82,7 +82,16 @@ const NUMBER_WORDS: Readonly<Record<string, string>> = {
 function normalizeNumbers(value: string): string {
   return value
     .split(' ')
-    .map((tok) => NUMBER_WORDS[tok] ?? tok)
+    .map((tok) => {
+      const exact = NUMBER_WORDS[tok];
+      if (exact) return exact;
+      if (!/^\d{2}$/.test(tok)) return tok;
+      const value = Number(tok);
+      if (value < 21 || value > 99) return tok;
+      const tens = NUMBER_WORDS[String(Math.floor(value / 10) * 10)];
+      const ones = NUMBER_WORDS[String(value % 10)];
+      return tens && ones ? `${tens} ${ones}` : tok;
+    })
     .join(' ');
 }
 
@@ -349,9 +358,20 @@ function computeScore(
   const completeness = pct(Math.min(1, transcriptWords.length / completenessDenom));
   const score = Math.round((wordAccuracy * 0.62) + (orderAccuracy * 0.28) + (completeness * 0.10));
 
+  // Relaxed scoring may forgive one recognizer omission on a long phrase, but it
+  // must never let a single occurrence satisfy two identical target positions.
+  // This is the exact "the ... the" false pass reported by testers.
+  const targetCounts = new Map<string, number>();
+  const transcriptCounts = new Map<string, number>();
+  for (const word of targetWords) targetCounts.set(word, (targetCounts.get(word) ?? 0) + 1);
+  for (const word of transcriptWords) transcriptCounts.set(word, (transcriptCounts.get(word) ?? 0) + 1);
+  const repeatedOccurrencesCovered = [...targetCounts.entries()].every(
+    ([word, count]) => count < 2 || (transcriptCounts.get(word) ?? 0) >= count,
+  );
+
   return {
     score,
-    passed: score >= threshold,
+    passed: score >= threshold && repeatedOccurrencesCovered,
     threshold,
     normalizedTarget,
     normalizedTranscript,

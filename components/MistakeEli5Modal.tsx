@@ -40,7 +40,7 @@ import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import TonalSurface from './TonalSurface';
 import AiBadge from './AiBadge';
 
-export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error';
+export type MistakeEli5State = 'idle' | 'loading' | 'ready';
 
 interface Props {
   visible: boolean;
@@ -53,7 +53,7 @@ interface Props {
 
 const SHEET_HIDDEN = 320; // стартовая позиция листа под экраном (выезд/уезд)
 
-function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Props) {
+function MistakeEli5Modal({ visible, onClose, lang, state, text }: Props) {
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -170,29 +170,7 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
     pl: 'Tłumaczę prostymi słowami…',
   });
 
-  const errorLine = triLang(lang, {
-    ru: 'Не получилось. Попробуй ещё раз.',
-    uk: 'Не вдалося. Спробуй ще раз.',
-    es: 'No funcionó. Inténtalo de nuevo.',
-    'pt-BR': 'Não deu. Tente de novo.',
-    vi: 'Chưa được. Thử lại nhé.',
-    id: 'Gagal. Coba lagi.',
-    tr: 'Olmadı. Tekrar dene.',
-    pl: 'Nie wyszło. Spróbuj ponownie.',
-  });
-
-  const retryLabel = triLang(lang, {
-    ru: 'Попробовать ещё раз',
-    uk: 'Спробувати ще раз',
-    es: 'Intentar de nuevo',
-    'pt-BR': 'Tentar de novo',
-    vi: 'Thử lại',
-    id: 'Coba lagi',
-    tr: 'Tekrar dene',
-    pl: 'Spróbuj ponownie',
-  });
-
-  const showSkeleton = state === 'loading' || state === 'idle';
+  const showSkeleton = state !== 'ready' || !text;
   const readyBlocks = React.useMemo(
     () => buildMistakeExplanationBlocks({ lang, explanation: text }),
     [lang, text],
@@ -262,26 +240,6 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
                 <SkeletonBlock width="78%" height={14} borderRadius={7} />
                 <SkeletonBlock width="85%" height={14} borderRadius={7} />
                 <SkeletonBlock width="64%" height={14} borderRadius={7} />
-              </View>
-            ) : state === 'error' ? (
-              <View style={styles.skeleton}>
-                <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
-                  {errorLine}
-                </Text>
-                <Pressable
-                  onPress={() => { hapticTap(); onRetry(); }}
-                  accessibilityRole="button"
-                  style={({ pressed }) => [
-                    styles.retryBtn,
-                    { backgroundColor: t.bgSurface2, borderColor: t.border },
-                    pressed && styles.pressed,
-                  ]}
-                >
-                  <Ionicons name="refresh" size={16} color={t.accent} />
-                  <Text style={[styles.retryLabel, { color: t.textPrimary, fontSize: f.sub || f.body }]}>
-                    {retryLabel}
-                  </Text>
-                </Pressable>
               </View>
             ) : (
               <View style={styles.semanticBlocks}>

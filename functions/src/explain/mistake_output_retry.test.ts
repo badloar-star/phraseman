@@ -1,4 +1,6 @@
 import {
+  GeneratedOutputRejected,
+  OutputValidationRetryAborted,
   OutputValidationRetriesExhausted,
   generateWithOutputValidationRetry,
 } from './mistake_output_retry';
@@ -43,6 +45,70 @@ describe('generateWithOutputValidationRetry', () => {
     })).rejects.toThrow('provider_failed');
 
     expect(generate).toHaveBeenCalledTimes(1);
+  });
+
+  it('preserves paid usage when a provider failure interrupts validator retries', async () => {
+    const generate = jest.fn(async (attempt: number) => {
+      if (attempt === 1) {
+        return {
+          answer: 'bad',
+          usage: { prompt_tokens: 10, completion_tokens: 4, total_tokens: 14 },
+        };
+      }
+      throw new Error('provider_failed');
+    });
+
+    try {
+      await generateWithOutputValidationRetry({
+        maxAttempts: 3,
+        generate,
+        validate: () => { throw new Error('validator_rejected'); },
+        isValidationError: (error) => String((error as Error).message) === 'validator_rejected',
+      });
+      throw new Error('expected interrupted output validation');
+    } catch (error) {
+      expect(error).toBeInstanceOf(OutputValidationRetryAborted);
+      expect(error).toMatchObject({
+        attempts: 2,
+        validatorRejects: 1,
+        usage: { prompt_tokens: 10, completion_tokens: 4, total_tokens: 14 },
+      });
+      expect((error as OutputValidationRetryAborted).generationError).toMatchObject({
+        message: 'provider_failed',
+      });
+    }
+
+    expect(generate).toHaveBeenCalledTimes(2);
+  });
+
+  it('counts a paid truncated output as one validator attempt', async () => {
+    const generate = jest.fn(async (attempt: number) => {
+      if (attempt === 1) {
+        throw new GeneratedOutputRejected(
+          new Error('output_truncated'),
+          { prompt_tokens: 8, completion_tokens: 5, total_tokens: 13 },
+        );
+      }
+      return {
+        answer: 'good',
+        usage: { prompt_tokens: 7, completion_tokens: 3, total_tokens: 10 },
+      };
+    });
+
+    const result = await generateWithOutputValidationRetry({
+      maxAttempts: 3,
+      generate,
+      validate: (answer) => answer.toUpperCase(),
+      isValidationError: (error) => String((error as Error).message) === 'output_truncated',
+    });
+
+    expect(result).toEqual({
+      value: 'GOOD',
+      attempts: 2,
+      validatorRejects: 1,
+      usage: { prompt_tokens: 15, completion_tokens: 8, total_tokens: 23 },
+    });
+    expect(generate).toHaveBeenCalledTimes(2);
   });
 
   it('does not retry validation errors excluded by the caller', async () => {

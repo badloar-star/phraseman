@@ -28,7 +28,7 @@ export const SHARD_EARN_DAILY_COUNTERS_COLLECTION = 'shard_earn_daily_counters';
  * - up to 128 first lesson completions,
  * - their perfect/quiz/completion bonuses,
  * - a large one-day achievement backlog,
- * - bounded arena/gift compatibility rewards.
+ * - bounded gift compatibility rewards.
  *
  * Per-source caps below are normally reached first. This total is the final
  * backstop until B2 replaces client-verifiable rewards with server evidence.
@@ -67,9 +67,6 @@ const FIXED_REASON_CATALOG: Readonly<Record<string, CatalogEntry>> = Object.free
   lesson_completed: { amounts: [0], perSourceDailyMax: 128 },
   streak_7: { amounts: [0], perSourceDailyMax: 3 },
   streak_30: { amounts: [0], perSourceDailyMax: 5 },
-  arena_win: { amounts: [0], perSourceDailyMax: 100 },
-  arena_10_wins: { amounts: [0], perSourceDailyMax: 10 },
-  arena_rank_up_streak: { amounts: [0], perSourceDailyMax: 20 },
   daily_tasks_all: { amounts: [0], perSourceDailyMax: 1 },
   topic_completed: { amounts: [0], perSourceDailyMax: 96 },
   exam_excellent: { amounts: [0], perSourceDailyMax: 3 },

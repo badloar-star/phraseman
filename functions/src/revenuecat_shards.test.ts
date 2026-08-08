@@ -15,6 +15,7 @@ const {
   transferSourceIds,
   revenueCatLifecycleReasonFields,
   handlePremiumSubscriptionEvent,
+  qualifyReferralFromVerifiedPremiumOutcome,
 } = __revenueCatWebhookTestHooks;
 
 describe('RevenueCat webhook premium matching', () => {
@@ -337,6 +338,41 @@ describe('RevenueCat premium lineage transaction contract', () => {
     expect(handler).toContain('res.status(outcome.statusCode).json(outcome.body)');
     expect(handler).toContain("res.status(500).send('Internal error')");
     expect(handler).not.toContain("tx.set(userRef");
+  });
+
+  it('retries referral qualification for both applied and duplicate verified Premium outcomes', async () => {
+    const db = {} as FirebaseFirestore.Firestore;
+    const qualify = jest.fn(async () => undefined);
+
+    await expect(qualifyReferralFromVerifiedPremiumOutcome(
+      db,
+      { uid: 'stable-paid', active: true, updated: true },
+      qualify,
+    )).resolves.toBe(true);
+    await expect(qualifyReferralFromVerifiedPremiumOutcome(
+      db,
+      { uid: 'stable-paid', reason: 'duplicate', updated: false },
+      qualify,
+    )).resolves.toBe(true);
+    await expect(qualifyReferralFromVerifiedPremiumOutcome(
+      db,
+      { reason: 'missing_user_candidate', updated: false },
+      qualify,
+    )).resolves.toBe(false);
+
+    expect(qualify).toHaveBeenCalledTimes(2);
+    expect(qualify).toHaveBeenNthCalledWith(1, db, 'stable-paid');
+    expect(qualify).toHaveBeenNthCalledWith(2, db, 'stable-paid');
+  });
+
+  it('keeps the original owner on duplicate receipts and qualifies only after the Premium transaction', () => {
+    const premiumHandler = source.slice(
+      source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
+      source.indexOf('async function handleShardPurchaseEvent'),
+    );
+    expect(premiumHandler).toContain("uid: cleanId(processedSnap.data()?.uid)");
+    expect(premiumHandler.indexOf('await qualifyReferralFromVerifiedPremiumOutcome(db, out)'))
+      .toBeGreaterThan(premiumHandler.indexOf('const out = await db.runTransaction'));
   });
 
   it('denies an auth-uid-only pending deletion marker before any user or lineage write', async () => {

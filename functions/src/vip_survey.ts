@@ -22,12 +22,12 @@ type SurveyAnswer = {
 };
 
 const SURVEY_QUESTIONS: SurveyQuestion[] = [
-  { id: 'most_useful', options: ['lessons', 'quizzes', 'flashcards', 'nothing_yet'] },
-  { id: 'linger_screen', options: ['lessons', 'quizzes', 'flashcards', 'mistake_practice'] },
+  { id: 'most_useful', options: ['lessons', 'flashcards', 'nothing_yet'] },
+  { id: 'linger_screen', options: ['lessons', 'flashcards', 'mistake_practice'] },
   { id: 'less_interesting', options: ['too_easy', 'too_hard', 'unclear_mistakes', 'too_much_text', 'no_progress', 'never'] },
-  { id: 'first_time_confusing', options: ['what_next', 'lessons', 'quizzes', 'flashcards', 'mistakes', 'all_clear'] },
+  { id: 'first_time_confusing', options: ['what_next', 'lessons', 'flashcards', 'mistakes', 'all_clear'] },
   { id: 'expected_missing', options: ['more_explanations', 'more_examples', 'more_topics', 'more_practice', 'more_stats', 'learning_plan', 'found_all'] },
-  { id: 'overloaded_screen', options: ['home', 'lessons', 'quizzes', 'flashcards', 'leagues', 'profile', 'none'] },
+  { id: 'overloaded_screen', options: ['home', 'lessons', 'flashcards', 'leagues', 'profile', 'none'] },
   { id: 'one_thing_week', options: [], textOnly: true },
   { id: 'feature_request', options: [], textOnly: true },
   { id: 'friend_recommendation', options: [], textOnly: true },

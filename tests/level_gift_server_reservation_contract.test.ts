@@ -20,7 +20,7 @@ describe('level gift server reservation contract', () => {
     );
     const premium = levelGifts.slice(
       levelGifts.indexOf('export async function rollPremiumLevelGiftForUser'),
-      levelGifts.indexOf('/**\n * Один сундук'),
+      levelGifts.indexOf('export async function rollLevelGiftForUser'),
     );
     expect(f2p).toContain("reserveServerLevelGift(level, 'f2p'");
     expect(premium).toContain("reserveServerLevelGift(level, 'premium'");
@@ -29,12 +29,42 @@ describe('level gift server reservation contract', () => {
     expect(client).toContain("'levelGiftReserve'");
   });
 
+  test('the root host acquires a server display receipt before showing a queued level gift', () => {
+    const rootLayout = read('app/_layout.tsx');
+    const showNext = rootLayout.slice(
+      rootLayout.indexOf('const showNext = useCallback'),
+      rootLayout.indexOf('const flushQueue = useCallback'),
+    );
+    expect(showNext).toContain('await acquireLevelGiftDisplay');
+    expect(showNext).toContain('await reserveLevelGiftForDisplay');
+    expect(showNext).toContain('await saveUnclaimedGift');
+    expect(showNext).toContain('await saveUnclaimedDualGift');
+    expect(showNext).toContain('persistedGift?.levelGiftReservation?.reservationId');
+    expect(showNext).toContain('persistedPair?.f2p.levelGiftReservation?.reservationId');
+    expect(showNext).toContain("displayStatus === 'already_displayed'");
+    expect(showNext).toContain("displayStatus === 'unavailable'");
+    const displayReceipt = showNext.indexOf('await acquireLevelGiftDisplay');
+    const giftModalOpen = showNext.indexOf('setShowLevelUp(true)', displayReceipt);
+    expect(displayReceipt).toBeGreaterThanOrEqual(0);
+    expect(giftModalOpen).toBeGreaterThan(displayReceipt);
+  });
+
   test('pack access activates a server grant and carries its voucher into local state/redemption', () => {
     expect(levelGifts).toContain('levelGiftReservation?:');
     expect(levelGifts).toContain('callLevelGiftActivatePackGift');
     expect(levelGifts).toContain('grant.voucherId');
     expect(levelGifts).toContain('callFlashcardPackGiftRedeem');
     expect(client).toContain("'levelGiftActivatePackGift'");
+  });
+
+  test('server perk receipts replace local mirrors exactly after complete_claim', () => {
+    expect(levelGifts).toContain("AsyncStorage.setItem(CHAIN_SHIELD_KEY, completed.chainShield)");
+    expect(levelGifts).toContain("AsyncStorage.setItem(GIFT_MULT_KEY, completed.giftXpMultiplier)");
+    const completion = levelGifts.slice(
+      levelGifts.indexOf("action: 'complete_claim'"),
+      levelGifts.indexOf('removeLevelGiftApplyJournalEntry', levelGifts.indexOf("action: 'complete_claim'")),
+    );
+    expect(completion).not.toContain('Math.max');
   });
 
   test('callables are export/deploy/delete covered', () => {

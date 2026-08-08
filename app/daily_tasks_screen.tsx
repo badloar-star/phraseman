@@ -32,9 +32,11 @@ import PlusBadge from '../components/PlusBadge';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
 import DailyHeroRing from '../components/daily-tasks/DailyHeroRing';
 import { dailyTaskAccentAlpha, dailyTaskAccentHex } from '../components/daily-tasks/daily_task_theme_accents';
+import { dailyTaskProgressCurrent, dailyTaskProgressFraction } from './daily_task_progress_ui';
+import { resolveDailyTaskLessonId } from './daily_task_lesson_destination';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, } from './shards_system';
@@ -44,7 +46,7 @@ import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { getDailyTaskAchievementIcon } from './daily_task_achievement_icons';
 import { dailyTaskBackgroundArt } from './daily_task_background_art';
-import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
+import { dailyTasksAchievementAllDoneStreakKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
@@ -90,20 +92,6 @@ const safeDailyTaskEventPart = (value: unknown): string =>
 
 const markTaskClaimedForUi = (rows: TaskProgress[], taskId: string): TaskProgress[] =>
     rows.map((row) => (row.taskId === taskId ? { ...row, completed: true, claimed: true } : row));
-
-/** Доля выполнения задания 0..1 (комбо-Арена — по играм+победам, как в карточке). */
-const taskProgressFraction = (task: DailyTask, row: TaskProgress | undefined): number => {
-    const current = row?.current ?? 0;
-    if (task.type === 'arena_plays_wins_combo') {
-        const req = getArenaComboRequirement(task);
-        if (req) {
-            const plays = Math.min(req.minPlays, row?.comboPlays ?? current);
-            const wins = row?.comboWins ?? 0;
-            return Math.max(0, Math.min(1, (plays / req.minPlays) * 0.5 + (wins >= req.minWins ? 0.5 : 0)));
-        }
-    }
-    return Math.max(0, Math.min(1, current / task.target));
-};
 
 /** HH:MM:SS для обратного отсчёта до новых вызовов. */
 const formatHms = (totalSeconds: number): string => {
@@ -151,7 +139,7 @@ function slavicPlural(count: number, one: string, few: string, many: string): st
 }
 
 const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
-    const byType: Record<TaskType, DailyTaskUiMeta> = {
+    const byType: Partial<Record<TaskType, DailyTaskUiMeta>> = {
         daily_active: {
             stage: triLang(lang, {
                 ru: 'Старт',
@@ -332,276 +320,6 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             icon: 'sparkles',
             tone: '#34D399',
         },
-        quiz_easy: {
-            stage: triLang(lang, {
-                ru: 'Проверка',
-                uk: 'Перевірка',
-                es: 'Prueba',
-                'pt-BR': "Teste",
-                vi: "Kiểm tra",
-                id: "Tes",
-                tr: "Kontrol",
-                pl: "Test",
-            }),
-            label: triLang(lang, {
-                ru: 'Вызов',
-                uk: 'Квіз',
-                es: 'Quiz',
-                'pt-BR': "Quiz",
-                vi: "Quiz",
-                id: "Kuis",
-                tr: "Quiz",
-                pl: "Quiz",
-            }),
-            reason: triLang(lang, {
-                ru: 'Быстрая проверка того, что уже держится в памяти.',
-                uk: 'Швидка перевірка того, що вже тримається в пам\'яті.',
-                es: 'Una prueba rápida de lo que ya recuerdas.',
-                'pt-BR': "Uma verificação rápida do que você já lembra.",
-                vi: "Một bài kiểm tra nhanh những gì bạn đã nhớ.",
-                id: "Tes cepat untuk hal yang sudah kamu ingat.",
-                tr: "Zaten hatırladıkların için hızlı bir kontrol.",
-                pl: "Szybki test tego, co już pamiętasz.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Открыть вызовы',
-                uk: 'Відкрити квізи',
-                es: 'Abrir quizzes',
-                'pt-BR': "Abrir quizzes",
-                vi: "Mở quiz",
-                id: "Buka kuis",
-                tr: "Quizleri aç",
-                pl: "Otwórz quizy",
-            }),
-            minutes: '2-5 мин',
-            icon: 'help-buoy',
-            tone: '#A78BFA',
-        },
-        quiz_medium: {
-            stage: triLang(lang, {
-                ru: 'Проверка',
-                uk: 'Перевірка',
-                es: 'Prueba',
-                'pt-BR': "Teste",
-                vi: "Kiểm tra",
-                id: "Tes",
-                tr: "Kontrol",
-                pl: "Test",
-            }),
-            label: triLang(lang, {
-                ru: 'Вызов+',
-                uk: 'Квіз+',
-                es: 'Quiz+',
-                'pt-BR': "Quiz+",
-                vi: "Quiz+",
-                id: "Kuis+",
-                tr: "Quiz+",
-                pl: "Quiz+",
-            }),
-            reason: triLang(lang, {
-                ru: 'Чуть сложнее обычного: покажет, что стоит повторить.',
-                uk: 'Трохи складніше звичайного: покаже, що варто повторити.',
-                es: 'Un poco más difícil: muestra qué conviene repasar.',
-                'pt-BR': "Um pouco mais difícil: mostra o que vale revisar.",
-                vi: "Khó hơn một chút: cho thấy phần nào nên ôn lại.",
-                id: "Sedikit lebih sulit: menunjukkan apa yang perlu diulang.",
-                tr: "Biraz daha zor: neyi tekrar etmen gerektiğini gösterir.",
-                pl: "Trochę trudniejsze: pokazuje, co warto powtórzyć.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Принять вызов',
-                uk: 'Пройти квіз',
-                es: 'Hacer quiz',
-                'pt-BR': "Fazer quiz",
-                vi: "Làm quiz",
-                id: "Kerjakan kuis",
-                tr: "Quiz yap",
-                pl: "Zrób quiz",
-            }),
-            minutes: '3-6 мин',
-            icon: 'school',
-            tone: '#A78BFA',
-        },
-        quiz_hard: {
-            stage: triLang(lang, {
-                ru: 'Вызов',
-                uk: 'Виклик',
-                es: 'Reto',
-                'pt-BR': "Desafio",
-                vi: "Thử thách",
-                id: "Tantangan",
-                tr: "Meydan okuma",
-                pl: "Wyzwanie",
-            }),
-            label: triLang(lang, {
-                ru: 'Сложный вызов',
-                uk: 'Складний квіз',
-                es: 'Quiz difícil',
-                'pt-BR': "Quiz difícil",
-                vi: "Quiz khó",
-                id: "Kuis sulit",
-                tr: "Zor quiz",
-                pl: "Trudny quiz",
-            }),
-            reason: triLang(lang, {
-                ru: 'Сложная проверка для тех, кто хочет нагрузку посерьёзнее.',
-                uk: 'Складна перевірка для тих, хто хоче серйозніше навантаження.',
-                es: 'Una prueba difícil para practicar con más intensidad.',
-                'pt-BR': "Uma prova difícil para praticar com mais intensidade.",
-                vi: "Một bài kiểm tra khó để luyện tập với cường độ cao hơn.",
-                id: "Tes sulit untuk berlatih dengan intensitas lebih tinggi.",
-                tr: "Daha yoğun pratik yapmak için zor bir kontrol.",
-                pl: "Trudny test do intensywniejszego ćwiczenia.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Открыть вызов',
-                uk: 'Відкрити виклик',
-                es: 'Abrir reto',
-                'pt-BR': "Abrir desafio",
-                vi: "Mở thử thách",
-                id: "Buka tantangan",
-                tr: "Meydan okumayı aç",
-                pl: "Otwórz wyzwanie",
-            }),
-            minutes: '4-8 мин',
-            icon: 'flame',
-            tone: '#FB7185',
-        },
-        quiz_score: {
-            stage: triLang(lang, {
-                ru: 'Проверка',
-                uk: 'Перевірка',
-                es: 'Prueba',
-                'pt-BR': "Teste",
-                vi: "Kiểm tra",
-                id: "Tes",
-                tr: "Kontrol",
-                pl: "Test",
-            }),
-            label: triLang(lang, {
-                ru: 'XP в вызовах',
-                uk: 'XP у квізах',
-                es: 'XP en quiz',
-                'pt-BR': "XP no quiz",
-                vi: "XP trong quiz",
-                id: "XP di kuis",
-                tr: "Quiz XP",
-                pl: "XP w quizie",
-            }),
-            reason: triLang(lang, {
-                ru: 'Вызовы тренируют скорость и точность одновременно.',
-                uk: 'Квізи тренують швидкість і точність одночасно.',
-                es: 'Los quizzes entrenan velocidad y precisión a la vez.',
-                'pt-BR': "Os quizzes treinam velocidade e precisão ao mesmo tempo.",
-                vi: "Quiz luyện tốc độ và độ chính xác cùng lúc.",
-                id: "Kuis melatih kecepatan dan akurasi sekaligus.",
-                tr: "Quizler aynı anda hız ve doğruluk çalıştırır.",
-                pl: "Quizy ćwiczą szybkość i dokładność jednocześnie.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Набрать XP',
-                uk: 'Набрати XP',
-                es: 'Ganar XP',
-                'pt-BR': "Ganhar XP",
-                vi: "Kiếm XP",
-                id: "Dapatkan XP",
-                tr: "XP kazan",
-                pl: "Zdobądź XP",
-            }),
-            minutes: '3-7 мин',
-            icon: 'analytics',
-            tone: '#A78BFA',
-        },
-        quiz_perfect: {
-            stage: triLang(lang, {
-                ru: 'Мастерство',
-                uk: 'Майстерність',
-                es: 'Maestría',
-                'pt-BR': "Maestria",
-                vi: "Thành thạo",
-                id: "Kemahiran",
-                tr: "Ustalık",
-                pl: "Mistrzostwo",
-            }),
-            label: triLang(lang, {
-                ru: 'Идеальный вызов',
-                uk: 'Ідеальний квіз',
-                es: 'Quiz perfecto',
-                'pt-BR': "Quiz perfeito",
-                vi: "Quiz hoàn hảo",
-                id: "Kuis sempurna",
-                tr: "Kusursuz quiz",
-                pl: "Quiz perfekcyjny",
-            }),
-            reason: triLang(lang, {
-                ru: 'Цель на аккуратность: меньше угадывания, больше уверенности.',
-                uk: 'Ціль на уважність: менше вгадування, більше впевненості.',
-                es: 'Meta de precisión: menos adivinar, más confianza.',
-                'pt-BR': "Meta de precisão: menos chute, mais confiança.",
-                vi: "Mục tiêu chính xác: ít đoán hơn, tự tin hơn.",
-                id: "Target akurasi: lebih sedikit menebak, lebih percaya diri.",
-                tr: "Doğruluk hedefi: daha az tahmin, daha çok güven.",
-                pl: "Cel dokładności: mniej zgadywania, więcej pewności.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Сделать идеально',
-                uk: 'Зробити ідеально',
-                es: 'Hacer perfecto',
-                'pt-BR': "Fazer perfeito",
-                vi: "Làm hoàn hảo",
-                id: "Buat sempurna",
-                tr: "Kusursuz yap",
-                pl: "Zrób perfekcyjnie",
-            }),
-            minutes: '4-8 мин',
-            icon: 'diamond',
-            tone: '#A78BFA',
-        },
-        quiz_hard_perfect: {
-            stage: triLang(lang, {
-                ru: 'Мастерство',
-                uk: 'Майстерність',
-                es: 'Maestría',
-                'pt-BR': "Maestria",
-                vi: "Thành thạo",
-                id: "Kemahiran",
-                tr: "Ustalık",
-                pl: "Mistrzostwo",
-            }),
-            label: triLang(lang, {
-                ru: 'Идеальный hard',
-                uk: 'Ідеальний hard',
-                es: 'Hard perfecto',
-                'pt-BR': "Hard perfeito",
-                vi: "Hard hoàn hảo",
-                id: "Hard sempurna",
-                tr: "Kusursuz hard",
-                pl: "Hard perfekcyjny",
-            }),
-            reason: triLang(lang, {
-                ru: 'Сложная цель на чистое прохождение без случайных ответов.',
-                uk: 'Складна ціль на чисте проходження без випадкових відповідей.',
-                es: 'Un reto difícil para pasar sin respuestas al azar.',
-                'pt-BR': "Um desafio difícil para passar sem respostas aleatórias.",
-                vi: "Một thử thách khó để vượt qua mà không trả lời ngẫu nhiên.",
-                id: "Tantangan sulit untuk diselesaikan tanpa jawaban acak.",
-                tr: "Rastgele cevap vermeden geçmek için zor bir meydan okuma.",
-                pl: "Trudne wyzwanie do przejścia bez przypadkowych odpowiedzi.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Принять вызов',
-                uk: 'Прийняти виклик',
-                es: 'Aceptar reto',
-                'pt-BR': "Aceitar desafio",
-                vi: "Nhận thử thách",
-                id: "Terima tantangan",
-                tr: "Meydan okumayı kabul et",
-                pl: "Przyjmij wyzwanie",
-            }),
-            minutes: '5-10 мин',
-            icon: 'trophy',
-            tone: '#FB7185',
-        },
         words_learned: {
             stage: triLang(lang, {
                 ru: 'Словарь',
@@ -624,14 +342,14 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Słowa",
             }),
             reason: triLang(lang, {
-                ru: 'Расширяет базу слов, чтобы уроки и вызовы становились легче.',
-                uk: 'Розширює базу слів, щоб уроки й квізи ставали легшими.',
-                es: 'Amplía tu base para que lecciones y quizzes sean más fáciles.',
-                'pt-BR': "Amplia sua base para que lições e quizzes fiquem mais fáceis.",
-                vi: "Mở rộng nền tảng để bài học và quiz dễ hơn.",
-                id: "Perluas dasar agar pelajaran dan kuis jadi lebih mudah.",
-                tr: "Derslerin ve quizlerin kolaylaşması için temelini genişletir.",
-                pl: "Rozszerza bazę, aby lekcje i quizy były łatwiejsze.",
+                ru: 'Расширяет базу слов, чтобы уроки становились легче.',
+                uk: 'Розширює базу слів, щоб уроки ставали легшими.',
+                es: 'Amplía tu base para que las lecciones sean más fáciles.',
+                'pt-BR': "Amplia sua base para facilitar as lições.",
+                vi: "Mở rộng nền tảng để bài học dễ hơn.",
+                id: "Perluas dasar agar pelajaran jadi lebih mudah.",
+                tr: "Derslerin kolaylaşması için temelini genişletir.",
+                pl: "Rozszerza bazę, aby lekcje były łatwiejsze.",
             }),
             cta: triLang(lang, {
                 ru: 'Учить слова',
@@ -1097,51 +815,6 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             icon: 'chatbubbles',
             tone: '#2DD4BF',
         },
-        trainer_arena: {
-            stage: triLang(lang, {
-                ru: 'Моя практика',
-                uk: 'Моя практика',
-                es: 'Mi práctica',
-                'pt-BR': "Minha prática",
-                vi: "Luyện tập của tôi",
-                id: "Latihan saya",
-                tr: "Pratiğim",
-                pl: "Moje ćwiczenie",
-            }),
-            label: triLang(lang, {
-                ru: 'Быстрые промахи',
-                uk: 'Швидкі промахи',
-                es: "Errores rápidos",
-                'pt-BR': "Erros rápidos",
-                vi: "Lỗi nhanh",
-                id: "Kesalahan cepat",
-                tr: "Hızlı hatalar",
-                pl: "Szybkie błędy",
-            }),
-            reason: triLang(lang, {
-                ru: 'Разбирает быстрые промахи без давления, чтобы следующий ответ был увереннее.',
-                uk: 'Розбирає швидкі промахи без тиску, щоб наступна відповідь була впевненішою.',
-                es: "Revisa errores rápidos sin presión.",
-                'pt-BR': "Revisa erros rápidos sem pressão.",
-                vi: "Ôn các lỗi nhanh mà không bị áp lực.",
-                id: "Meninjau kesalahan cepat tanpa tekanan.",
-                tr: "Hızlı hataları baskı olmadan tekrar eder.",
-                pl: "Powtarza szybkie błędy bez presji.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Разобрать промахи',
-                uk: 'Розібрати промахи',
-                es: "Revisar errores",
-                'pt-BR': "Revisar erros",
-                vi: "Ôn lỗi sai",
-                id: "Tinjau kesalahan",
-                tr: "Hataları incele",
-                pl: "Powtórz błędy",
-            }),
-            minutes: '3-6 мин',
-            icon: 'shield-checkmark',
-            tone: '#FB7185',
-        },
         daily_phrase_read: {
             stage: triLang(lang, {
                 ru: 'Микро-шаг',
@@ -1501,186 +1174,6 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             minutes: '3-8 мин',
             icon: 'battery-charging',
             tone: '#FBBF24',
-        },
-        arena_play: {
-            stage: triLang(lang, {
-                ru: 'Арена',
-                uk: 'Арена',
-                es: 'Arena',
-                'pt-BR': "Arena",
-                vi: "Đấu trường",
-                id: "Arena",
-                tr: "Arena",
-                pl: "Arena",
-            }),
-            label: triLang(lang, {
-                ru: 'Живой матч',
-                uk: 'Живий матч',
-                es: 'Partida real',
-                'pt-BR': "Partida real",
-                vi: "Trận thật",
-                id: "Pertandingan nyata",
-                tr: "Gerçek maç",
-                pl: "Prawdziwy mecz",
-            }),
-            reason: triLang(lang, {
-                ru: 'Добавляет давление времени и проверяет, вспоминаются ли фразы в бою.',
-                uk: 'Додає тиск часу й перевіряє, чи згадуються фрази в бою.',
-                es: 'Añade presión de tiempo y prueba memoria en acción.',
-                'pt-BR': "Adiciona pressão de tempo e testa a memória em ação.",
-                vi: "Thêm áp lực thời gian và kiểm tra trí nhớ khi hành động.",
-                id: "Menambahkan tekanan waktu dan menguji memori dalam aksi.",
-                tr: "Zaman baskısı ekler ve hafızayı eylem içinde test eder.",
-                pl: "Dodaje presję czasu i sprawdza pamięć w działaniu.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Играть арену',
-                uk: 'Грати арену',
-                es: 'Jugar arena',
-                'pt-BR': "Jogar arena",
-                vi: "Chơi đấu trường",
-                id: "Main arena",
-                tr: "Arenada oyna",
-                pl: "Graj na arenie",
-            }),
-            minutes: '2-5 мин',
-            icon: 'game-controller',
-            tone: '#FB7185',
-        },
-        arena_win: {
-            stage: triLang(lang, {
-                ru: 'Арена',
-                uk: 'Арена',
-                es: 'Arena',
-                'pt-BR': "Arena",
-                vi: "Đấu trường",
-                id: "Arena",
-                tr: "Arena",
-                pl: "Arena",
-            }),
-            label: triLang(lang, {
-                ru: 'Победа',
-                uk: 'Перемога',
-                es: 'Victoria',
-                'pt-BR': "Vitória",
-                vi: "Chiến thắng",
-                id: "Kemenangan",
-                tr: "Zafer",
-                pl: "Zwycięstwo",
-            }),
-            reason: triLang(lang, {
-                ru: 'Проверяет не только участие, но и качество ответов под давлением.',
-                uk: 'Перевіряє не лише участь, а й якість відповідей під тиском.',
-                es: 'Prueba calidad de respuestas bajo presión.',
-                'pt-BR': "Testa a qualidade das respostas sob pressão.",
-                vi: "Kiểm tra chất lượng câu trả lời dưới áp lực.",
-                id: "Menguji kualitas jawaban di bawah tekanan.",
-                tr: "Baskı altında cevap kalitesini test eder.",
-                pl: "Sprawdza jakość odpowiedzi pod presją.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Искать матч',
-                uk: 'Шукати матч',
-                es: 'Buscar partida',
-                'pt-BR': "Buscar partida",
-                vi: "Tìm trận",
-                id: "Cari pertandingan",
-                tr: "Maç ara",
-                pl: "Szukaj meczu",
-            }),
-            minutes: '3-8 мин',
-            icon: 'shield-checkmark',
-            tone: '#FB7185',
-        },
-        arena_plays_wins_combo: {
-            stage: triLang(lang, {
-                ru: 'Арена',
-                uk: 'Арена',
-                es: 'Arena',
-                'pt-BR': "Arena",
-                vi: "Đấu trường",
-                id: "Arena",
-                tr: "Arena",
-                pl: "Arena",
-            }),
-            label: triLang(lang, {
-                ru: 'Матчи + победа',
-                uk: 'Матчі + перемога',
-                es: 'Partidas + victoria',
-                'pt-BR': "Partidas + vitória",
-                vi: "Trận + thắng",
-                id: "Pertandingan + menang",
-                tr: "Maçlar + zafer",
-                pl: "Mecze + zwycięstwo",
-            }),
-            reason: triLang(lang, {
-                ru: 'Балансирует смелость играть и умение выигрывать за счет знаний.',
-                uk: 'Балансує сміливість грати й уміння вигравати завдяки знанням.',
-                es: 'Equilibra jugar y ganar con conocimiento.',
-                'pt-BR': "Equilibra jogar e ganhar com conhecimento.",
-                vi: "Cân bằng giữa chơi, thắng và kiến thức.",
-                id: "Menyeimbangkan bermain dan menang dengan pengetahuan.",
-                tr: "Oynamayı ve kazanmayı bilgiyle dengeler.",
-                pl: "Równoważy granie i wygrywanie z wiedzą.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Выйти на арену',
-                uk: 'Вийти на арену',
-                es: 'Ir a arena',
-                'pt-BR': "Ir para a arena",
-                vi: "Vào đấu trường",
-                id: "Ke arena",
-                tr: "Arenaya git",
-                pl: "Idź na arenę",
-            }),
-            minutes: '5-10 мин',
-            icon: 'medal',
-            tone: '#FB7185',
-        },
-        arena_rank_promoted: {
-            stage: triLang(lang, {
-                ru: 'Арена',
-                uk: 'Арена',
-                es: 'Arena',
-                'pt-BR': "Arena",
-                vi: "Đấu trường",
-                id: "Arena",
-                tr: "Arena",
-                pl: "Arena",
-            }),
-            label: triLang(lang, {
-                ru: 'Рост ранга',
-                uk: 'Зростання рангу',
-                es: 'Subir rango',
-                'pt-BR': "Subir de rank",
-                vi: "Tăng hạng",
-                id: "Naik peringkat",
-                tr: "Rütbe yükselt",
-                pl: "Awansuj w rankingu",
-            }),
-            reason: triLang(lang, {
-                ru: 'Длинная цель дня: мотивирует играть качественно, а не просто нажимать.',
-                uk: 'Довга ціль дня: мотивує грати якісно, а не просто натискати.',
-                es: 'Meta larga: motiva calidad, no solo actividad.',
-                'pt-BR': "Meta longa: motiva qualidade, não só atividade.",
-                vi: "Mục tiêu dài hạn: khuyến khích chất lượng, không chỉ hoạt động.",
-                id: "Target panjang: memotivasi kualitas, bukan hanya aktivitas.",
-                tr: "Uzun hedef: sadece aktiviteyi değil kaliteyi de motive eder.",
-                pl: "Długi cel: motywuje jakość, nie tylko aktywność.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Поднять ранг',
-                uk: 'Підняти ранг',
-                es: 'Subir rango',
-                'pt-BR': "Subir de rank",
-                vi: "Tăng hạng",
-                id: "Naik peringkat",
-                tr: "Rütbe yükselt",
-                pl: "Awansuj w rankingu",
-            }),
-            minutes: '8-15 мин',
-            icon: 'trending-up',
-            tone: '#FB7185',
         },
         invite_friend: {
             stage: triLang(lang, {
@@ -2833,8 +2326,7 @@ export default function DailyTasksScreen() {
             router.replace('/lessons_list' as any);
             return;
         }
-        const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
-        const lessonId = parseInt(lastLesson || '1', 10);
+        const lessonId = await resolveDailyTaskLessonId(studyTarget);
         const openLessonOrFrenchGate = async () => {
             if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {
                 emitAppEvent('action_toast', {
@@ -3051,7 +2543,7 @@ export default function DailyTasksScreen() {
     const heroArcs = useMemo(() => tasks.map((task) => ({
         key: task.id,
         color: isGoldTheme ? goldTaskAccent(task.type) : dailyTaskAccentHex(t, task.type),
-        progress: taskProgressFraction(task, progress.find((p) => p.taskId === task.id)),
+        progress: dailyTaskProgressFraction(task, progress.find((p) => p.taskId === task.id)),
     })), [tasks, progress, isGoldTheme, t]);
     const heroDonePct = dailyCounts.total > 0 ? Math.round((dailyCounts.done / dailyCounts.total) * 100) : 0;
     // Отсчёт до новых вызовов: сброс в UTC-полночь (как getTodayKey()).
@@ -3173,7 +2665,7 @@ export default function DailyTasksScreen() {
         </Animated.View>)}
 
       <BouncyWrap>
-      <Reanimated.ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
@@ -3269,18 +2761,10 @@ export default function DailyTasksScreen() {
 
         {sortedTasks.map((task) => {
             const p = progress.find(pr => pr.taskId === task.id);
-            const current = p?.current ?? 0;
             const completed = p?.completed ?? false;
             const claimed = p?.claimed ?? false;
-            const isArenaCombo = task.type === 'arena_plays_wins_combo';
-            const comboReq = isArenaCombo ? getArenaComboRequirement(task) : null;
-            const comboPlaysDisp = isArenaCombo && comboReq
-                ? Math.min(comboReq.minPlays, p?.comboPlays ?? current)
-                : 0;
-            const comboWinsDisp = isArenaCombo && comboReq ? (p?.comboWins ?? 0) : 0;
-            const pct = isArenaCombo && comboReq
-                ? Math.min(100, (comboPlaysDisp / comboReq.minPlays) * 50 + (comboWinsDisp >= comboReq.minWins ? 50 : 0))
-                : Math.min((current / task.target) * 100, 100);
+            const displayCurrent = dailyTaskProgressCurrent(task, p);
+            const pct = dailyTaskProgressFraction(task, p) * 100;
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
@@ -3300,7 +2784,6 @@ export default function DailyTasksScreen() {
                 : `${taskAccent}${completed || claimed ? '34' : '18'}`;
             const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : isSagePorcelainTheme ? 'rgba(247,250,246,0.94)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)';
             const taskHairline = isGoldTheme ? goldHairline : `${taskAccent}${completed || claimed ? '8A' : '70'}`;
-            const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
             const claimLabel = triLang(lang, {
                 ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar',
                 vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
@@ -3326,7 +2809,7 @@ export default function DailyTasksScreen() {
                 borderColor={taskHairline}
                 accentColor={taskAccent}
                 outerStyle={dailyTaskStyles.taskCapsuleCard}
-                iconStyle={[dailyTaskStyles.taskPortalIcon, { backgroundColor: dailyTaskAccentAlpha(taskAccent, 0.10) }]}
+                iconStyle={dailyTaskStyles.taskPortalIcon}
                 titleTextProps={{ style: [dailyTaskStyles.taskCapsuleTitle, { fontSize: f.body + 2 }] }}
                 descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
@@ -3336,16 +2819,15 @@ export default function DailyTasksScreen() {
                     : <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" accessible={false} />}
                 background={<>
                   {isSagePorcelainTheme && taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="cover" contentPosition="right center" accessible={false} /> : null}
-                  <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
-                  <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
                   {!isSagePorcelainTheme && taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="contain" contentPosition="right center" accessible={false} /> : null}
+                  <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
                   {/* зачем: п.2 — «done/total» переехал с отдельного мета-ряда под карточкой
                       прямо на карточку (бейдж в правом верхнем углу), т.к. заливка карточки
                       (taskCapsuleFill выше) уже сама показывает прогресс — числа рядом читаются
                       как единая карточка, а не как две дублирующие друг друга подписи. */}
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCornerProgressBadge, { backgroundColor: dailyTaskAccentAlpha(taskAccent, 0.22) }]}>
-                    <Text style={{ color: taskAccent, fontSize: f.label - 1, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>{Math.min(current, task.target)}/{task.target}</Text>
+                    <Text style={{ color: taskAccent, fontSize: f.label - 1, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>{displayCurrent}/{task.target}</Text>
                   </View>
                 </>}
                 // зачем: кнопки «Забрать» на карточке больше нет — XP за вызов дня
@@ -3613,14 +3095,6 @@ const dailyTaskStyles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderTopRightRadius: 10,
         borderBottomRightRadius: 22,
-    },
-    taskCapsuleGlow: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        opacity: 1,
     },
     // Generated task artwork lives only in the right half, preserving the horizontal
     // reading path: icon → title → progress → reroll.

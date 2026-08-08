@@ -1,9 +1,14 @@
 // Weekly Boons — движок резолва «бонус дня». Чистые функции, тестируем без Remote Config.
 import {
+  getTodaysBoons,
   resolveTodaysBoons,
   utcWeekdayFromTodayKey,
   utcWeekNumberFromTodayKey,
 } from '../app/boons/boon_engine';
+import {
+  __resetRemoteFlagsForTest,
+  applyRemoteConfigSnapshot,
+} from '../app/remote_flags';
 import type { WeeklyBoonsConfig } from '../app/boons/boon_types';
 
 // Известные ключи дней (UTC). 2026-06-21 — воскресенье (getUTCDay()===0).
@@ -102,5 +107,41 @@ describe('resolveTodaysBoons — always-on modifiers', () => {
 describe('week number monotonicity', () => {
   it('advances by exactly 1 between consecutive Saturdays', () => {
     expect(utcWeekNumberFromTodayKey(SAT_B) - utcWeekNumberFromTodayKey(SAT_A)).toBe(1);
+  });
+});
+
+describe('getTodaysBoons — runtime Remote Config gate', () => {
+  beforeEach(() => {
+    __resetRemoteFlagsForTest();
+  });
+
+  afterEach(() => {
+    __resetRemoteFlagsForTest();
+  });
+
+  it('fails closed until a cached or live Remote Config snapshot has been applied', () => {
+    expect(getTodaysBoons(MON)).toMatchObject({ primary: null, modifiers: [] });
+  });
+
+  it('immediately reflects an admin disable after a snapshot change', () => {
+    applyRemoteConfigSnapshot({
+      texts: {
+        weekly_boons_config: JSON.stringify(cfg({
+          schedule: { 1: 'mystery_monday' },
+          enabled: { mystery_monday: true },
+        })),
+      },
+    });
+    expect(getTodaysBoons(MON).primary).toBe('mystery_monday');
+
+    applyRemoteConfigSnapshot({
+      texts: {
+        weekly_boons_config: JSON.stringify(cfg({
+          schedule: { 1: 'mystery_monday' },
+          enabled: { mystery_monday: false },
+        })),
+      },
+    });
+    expect(getTodaysBoons(MON).primary).toBeNull();
   });
 });

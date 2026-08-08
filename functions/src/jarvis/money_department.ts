@@ -52,10 +52,17 @@ function findRefundSpike(fetches: readonly FetchMoneySourceResult[], appTier: Ap
   return { refunds: aggregate.refunds, newPaying: aggregate.newPaying, rate };
 }
 
-function buildFindingText(spike: RefundSpike | null, fetches: readonly FetchMoneySourceResult[]): string {
+function buildFindingText(
+  spike: RefundSpike | null,
+  fetches: readonly FetchMoneySourceResult[],
+  completeEvidence: boolean,
+): string {
   if (spike) {
     const pct = Math.round(spike.rate * 100);
     return `За последние сутки ${spike.refunds} возвратов на ${spike.newPaying} новых платящих (${pct}%) — заметно выше обычного.`;
+  }
+  if (!completeEvidence) {
+    return 'Один из обязательных денежных источников недоступен — доступный источник не показал событий, но полная картина не доказана.';
   }
   const revenuecat = fetches.find((fetch) => fetch.sourceId === 'revenuecat_premium_events');
   const aggregate = revenuecat ? aggregateMoneyRows(revenuecat.rows) : null;
@@ -76,12 +83,12 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
 
   const appTier: AppTier = input.appTier ?? 'seed';
   const spike = findRefundSpike(input.fetches, appTier);
-  const anyTrustworthy = evidence.some((item) => item.trustworthy);
+  const completeEvidence = evidence.length > 0 && evidence.every((item) => item.trustworthy);
 
-  const shouldDecide = input.trigger === 'owner_request' || Boolean(spike) || !anyTrustworthy;
+  const shouldDecide = input.trigger === 'owner_request' || Boolean(spike) || !completeEvidence;
   if (!shouldDecide) return { decisions: [] };
 
-  const finding = buildFindingText(spike, input.fetches);
+  const finding = buildFindingText(spike, input.fetches, completeEvidence);
   const question = input.question ?? (spike ? 'Растут ли возвраты относительно новых платящих?' : 'Есть ли аномалии в деньгах за последние сутки?');
 
   const decision = buildDecision({
@@ -108,6 +115,7 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
     successMetric: spike ? 'Доля возвратов возвращается ниже порога в следующем суточном снапшоте' : 'Отсутствие новых скачков в следующем суточном снапшоте',
     rollback: 'Вернуть предыдущую цену/конфигурацию paywall',
     evidence,
+    evidencePolicy: 'all_trustworthy',
     nowMs: input.nowMs,
   });
 

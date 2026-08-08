@@ -39,12 +39,10 @@ const MIN_SAVING_BYTES = 1024;
 //   league-v6-icons — tests/league_icon_assets.test.ts (384x384)
 //   weekly_boon_icons                 — tests/boon_icon_assets.test.ts (256x256)
 //   weekly_compass_icons              — tests/weekly_bonus_theme_assets.test.ts
-//   quizzes                           — tests/quiz_level_theme_assets.test.ts (512, 640x260, 236)
 const FIXED_GEOMETRY_DIRS = [
   'assets/images/levels/league-v6-icons/',
   'assets/images/weekly_boon_icons/',
   'assets/images/weekly_compass_icons/',
-  'assets/images/quizzes/',
 ];
 const hasFixedGeometry = (rel) => FIXED_GEOMETRY_DIRS.some((d) => rel.startsWith(d));
 

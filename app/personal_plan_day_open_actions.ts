@@ -42,7 +42,6 @@ export type PlanDayOpenPlanQuizParams = {
   planDayIndex: string;
   level: 'easy' | 'medium' | 'hard';
   questionCount: 10;
-  thematicCategoryId?: string;
 };
 
 export type PlanDayOpenPlanQuizAction = PlanDayOpenActionBase & {
@@ -103,10 +102,10 @@ export type PlanDayBlockedAction = PlanDayOpenActionBase & {
 
 export type PlanDayOpenActionIssue =
   | PlanExerciseRendererParamsIssue
-  | 'missing_plan_quiz_destination'
-  | 'invalid_plan_quiz_question_count'
-  | 'missing_plan_quiz_id'
   | 'missing_plan_instance_id'
+  | 'missing_plan_quiz_destination'
+  | 'missing_plan_quiz_id'
+  | 'invalid_plan_quiz_question_count'
   | 'missing_practice_destination'
   | 'missing_practice_training_id'
   | 'missing_practice_required_material'
@@ -183,40 +182,26 @@ function buildPlanQuizAction(
   };
   const destination = block.destination;
   const issues: PlanDayOpenActionIssue[] = [];
-
-  if (!hasText(planInstanceId)) {
-    issues.push('missing_plan_instance_id');
-  }
-  if (destination?.type !== 'quiz') {
-    issues.push('missing_plan_quiz_destination');
-  }
-  if (destination?.type === 'quiz' && !hasText(destination.quizId)) {
-    issues.push('missing_plan_quiz_id');
-  }
+  if (!hasText(planInstanceId)) issues.push('missing_plan_instance_id');
+  if (destination?.type !== 'quiz') issues.push('missing_plan_quiz_destination');
+  if (destination?.type === 'quiz' && !hasText(destination.quizId)) issues.push('missing_plan_quiz_id');
   if (destination?.type === 'quiz' && destination.questionCount !== 10) {
     issues.push('invalid_plan_quiz_question_count');
   }
-
   if (issues.length > 0 || destination?.type !== 'quiz') {
-    return {
-      ...baseAction,
-      kind: 'blocked',
-      issues,
-    };
+    return { ...baseAction, kind: 'blocked', issues };
   }
-
   return {
     ...baseAction,
     kind: 'open_plan_quiz',
     params: {
-      planQuizId: destination.quizId,
+      planQuizId: destination.quizId.trim(),
       planTaskId: block.id,
       planInstanceId: planInstanceId.trim(),
       planId: block.planId,
       planDayIndex: String(block.dayIndex),
       level: destination.level,
-      questionCount: destination.questionCount,
-      ...(destination.thematicCategoryId ? { thematicCategoryId: destination.thematicCategoryId } : {}),
+      questionCount: 10,
     },
   };
 }

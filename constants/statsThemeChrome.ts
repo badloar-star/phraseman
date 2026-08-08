@@ -4,7 +4,6 @@ import {
   BUSINESS,
   BUSINESS_LIGHT,
   CANDY_BLUE,
-  CORAL,
   DARK,
   EMBER,
   GOLD,
@@ -31,7 +30,6 @@ type StatsAccentPalette = Record<StatsChromeTone, string>;
 const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   dark: DARK.accent,
   gold: GOLD.accent,
-  coral: CORAL.accent,
   minimalDark: '#6EA8FF',
   business: BUSINESS.accent,
   businessLight: BUSINESS_LIGHT.accent,
@@ -49,7 +47,6 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
 const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
   dark: '#202B22',
   gold: '#272114',
-  coral: '#38252A',
   minimalDark: '#34373D',
   business: '#1C1C1C',
   businessLight: '#F0F0F0',
@@ -84,17 +81,6 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     percentiles: GOLD_RICH.metalGold,
     archiveMap: GOLD_RICH.antiqueGold,
     wager: GOLD_RICH.champagne,
-  },
-  coral: {
-    streak: '#FF6B6B',
-    freeze: '#55B7FF',
-    multipliers: '#FFD166',
-    practiceBalance: '#37D68A',
-    weekRhythm: '#45D6C8',
-    activity: '#6BE27C',
-    percentiles: '#FF8BD1',
-    archiveMap: '#FF7A7A',
-    wager: '#FFAA6B',
   },
   minimalDark: {
     streak: '#6EA8FF',

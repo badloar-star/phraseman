@@ -20,6 +20,7 @@ import {
   reserveBundledMarketPacks,
   loadMarketplacePacks,
   loadAccessiblePackIds,
+  peekWarmOwnedPackIds,
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
@@ -65,7 +66,7 @@ export default function FlashcardsHubScreen() {
     () => peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang),
   );
   const [communityPacks, setCommunityPacks] = useState<FlashcardMarketPack[]>([]);
-  const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
+  const [ownedPackIds, setOwnedPackIds] = useState<string[]>(() => peekWarmOwnedPackIds(studyTarget) ?? []);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
   const [shardBalance, setShardBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
@@ -86,13 +87,9 @@ export default function FlashcardsHubScreen() {
   }, [lang]);
 
   const openFlashcardsPlusPaywall = useCallback((source: string) => {
-    // зачем: арена — такой же режим отработки, как свайп, поэтому переиспользуем
-    // готовый контекст flashcard_training (копия и цена там уже про тренировку).
-    // Без этой ветки арена падала бы в flashcard_limit — текст «лимит карточек»,
-    // который к режиму отношения не имеет.
     const context = source.includes('audio')
       ? 'flashcard_autoplay'
-      : source.includes('training') || source.includes('arena')
+      : source.includes('training')
         ? 'flashcard_training'
         : 'flashcard_limit';
     router.push({
@@ -105,7 +102,7 @@ export default function FlashcardsHubScreen() {
   const lastHubLoadAtRef = useRef<number>(0);
   /** Стабильность ссылок: setState только при реальной смене содержимого. */
   const marketFpRef = useRef<string>('');
-  const ownedFpRef = useRef<string>('');
+  const ownedFpRef = useRef<string>([...ownedPackIds].sort().join('|'));
   const commFpRef = useRef<string>('');
   const commOwnedFpRef = useRef<string>('');
 
@@ -263,22 +260,6 @@ export default function FlashcardsHubScreen() {
     );
   }, [flashcardsAccess, flashcardsHubGateOpen, officialPacksEnabled, openFlashcardsPlusPaywall, ownedPackIds, router, showFrenchFlashcardsGate]);
 
-  // зачем: третий режим отработки (макет C4). Гейты доступа — те же, что у
-  // свайпа и аудио: французский гейт и Plus-пейвол, чтобы режим не стал
-  // случайной дырой в платном доступе.
-  const openArena = useCallback(() => {
-    void hapticTap();
-    if (!flashcardsHubGateOpen) {
-      showFrenchFlashcardsGate();
-      return;
-    }
-    if (!flashcardsAccess) {
-      openFlashcardsPlusPaywall('flashcards_arena');
-      return;
-    }
-    router.push('/flashcards_arena' as any);
-  }, [flashcardsAccess, flashcardsHubGateOpen, openFlashcardsPlusPaywall, router, showFrenchFlashcardsGate]);
-
   useFocusEffect(
     useCallback(() => {
       primeCustomFlashcardsCache(studyTarget);
@@ -354,7 +335,7 @@ export default function FlashcardsHubScreen() {
         <View style={styles.scrollRegion}>
           <BouncyScrollView
             style={styles.scrollView}
-            decelerationRate="fast"
+            decelerationRate="normal"
             contentContainerStyle={[
               styles.scrollContent,
               { paddingBottom: scrollBottomPadding },
@@ -379,7 +360,6 @@ export default function FlashcardsHubScreen() {
               hubAuthorStableId={communityPacksEnabled ? hubAuthorStableId : null}
               onTrainingPress={openTraining}
               onAudioPress={openAudioMode}
-              onArenaPress={openArena}
               hasFlashcardsPlus={flashcardsAccess}
             />
           </BouncyScrollView>

@@ -391,7 +391,6 @@ type LocalNotificationType =
   | 'weekly_recap'
   | 'monthly_recap'
   | 'league_overtake'
-  | 'arena_match'
   | 'd1_reminder'
   | 'premium'
   | 'intro_expiring'
@@ -822,49 +821,49 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
     }));
     const _premBody = pickNotif(lang, notificationCopy({
       ru: _pp([
-        'Все 32 урока, вызовы и диалоги теперь открыты для тебя!',
+        'Все 32 урока и диалоги теперь открыты для тебя!',
         'Никаких ограничений — учись сколько хочешь! 🔥',
         'Весь контент в твоём распоряжении. Время покорять English! 💪',
-        '32 урока, все вызовы и диалоги — твои! Поехали! 🚀',
+        '32 урока и все диалоги — твои! Поехали! 🚀',
       ]),
       uk: _pp([
-        'Усі 32 уроки, квізи та діалоги відкриті для вас!',
+        'Усі 32 уроки та діалоги відкриті для вас!',
         'Жодних обмежень — вчи скільки хочеш! 🔥',
         'Весь контент у твоєму розпорядженні. Час завойовувати English! 💪',
-        '32 уроки, всі квізи та діалоги — твої! Поїхали! 🚀',
+        '32 уроки та всі діалоги — твої! Поїхали! 🚀',
       ]),
       es: _pp([
-        'Tienes abiertas las 32 lecciones, los cuestionarios y los diálogos.',
+        'Tienes abiertas las 32 lecciones y los diálogos.',
         'Sin límites rigurosos: practica al ritmo que necesites 🔥',
         'Todo el contenido listo para llevar tu inglés al siguiente nivel 💪',
         '32 lecciones y retos avanzados te esperan: ¡vamos! 🚀',
       ]),
       'pt-BR': _pp([
-        'As 32 lições, quizzes e diálogos estão liberados.',
+        'As 32 lições e os diálogos estão liberados.',
         'Sem limites: pratique no seu ritmo 🔥',
         'Todo o conteúdo pronto para levar seu inglês adiante 💪',
         '32 lições e desafios avançados esperam por você. Vamos! 🚀',
       ]),
       vi: _pp([
-        'Toàn bộ 32 bài học, quiz và hội thoại đã mở.',
+        'Toàn bộ 32 bài học và hội thoại đã mở.',
         'Không giới hạn: học theo nhịp của bạn 🔥',
         'Tất cả nội dung đã sẵn sàng để nâng tiếng Anh của bạn 💪',
         '32 bài học và thử thách nâng cao đang chờ. Bắt đầu thôi! 🚀',
       ]),
       id: _pp([
-        'Semua 32 pelajaran, kuis, dan dialog sudah terbuka.',
+        'Semua 32 pelajaran dan dialog sudah terbuka.',
         'Tanpa batas: belajar sesuai ritmemu 🔥',
         'Semua konten siap membawa bahasa Inggrismu lebih jauh 💪',
         '32 pelajaran dan tantangan lanjutan menantimu. Ayo! 🚀',
       ]),
       tr: _pp([
-        '32 dersin, quizlerin ve diyalogların tamamı açıldı.',
+        '32 dersin ve diyalogların tamamı açıldı.',
         'Sınır yok: kendi ritminde çalış 🔥',
         'Tüm içerik İngilizceni ileri taşımaya hazır 💪',
         '32 ders ve ileri seviye alıştırmalar seni bekliyor. Hadi! 🚀',
       ]),
       pl: _pp([
-        'Wszystkie 32 lekcje, quizy i dialogi są odblokowane.',
+        'Wszystkie 32 lekcje i dialogi są odblokowane.',
         'Bez limitów: ćwicz we własnym tempie 🔥',
         'Cała zawartość jest gotowa, by podnieść twój angielski 💪',
         '32 lekcje i zaawansowane wyzwania czekają. Start! 🚀',
@@ -2592,10 +2591,6 @@ export const setupNotificationTapHandler = (
             } as any);
           });
           break;
-        case 'arena_match':
-          // Compatibility for notifications already queued before Arena was retired.
-          navTabHome();
-          break;
         case 'streak_warning':
         case 'reminder':
         case 'd1_reminder':
@@ -2640,6 +2635,7 @@ export const setupNotificationTapHandler = (
           });
           break;
         default:
+          // Unknown notifications from older builds always land on a safe screen.
           navTabHome();
       }
     });

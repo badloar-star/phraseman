@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { HttpsError } from 'firebase-functions/v2/https';
 
 const read = (name: string): string => fs.readFileSync(path.join(__dirname, name), 'utf8');
 
@@ -134,7 +133,15 @@ describe('critical admin write boundaries', () => {
       { ...valid, requestId: '' },
       { ...valid, idempotencyKey: '' },
     ]) {
-      expect(() => referrals.normalizeReferralConfigCommand!(invalid)).toThrow(HttpsError);
+      // Earlier tests reload firebase-functions with jest.resetModules(), so
+      // constructor identity is not stable across the two module instances.
+      // The callable error code is the authoritative boundary contract.
+      try {
+        referrals.normalizeReferralConfigCommand!(invalid);
+        throw new Error('expected normalizeReferralConfigCommand to reject invalid metadata');
+      } catch (error) {
+        expect(error).toMatchObject({ code: 'invalid-argument' });
+      }
     }
   });
 

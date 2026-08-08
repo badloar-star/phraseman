@@ -14,6 +14,20 @@ function auraDrop(auraId: string): RewardDrop {
 }
 
 describe('league chest aura rewards', () => {
+  it('uses the strongest root/progress shield copy and dual-writes one canonical value', () => {
+    const patch = buildRewardProgressPatch({
+      drops: [{ id: 'shield', kind: 'streak_shield', rarity: 'rare', amount: 1 }],
+      user: {
+        chain_shield: JSON.stringify({ daysLeft: 1 }),
+        progress: { chain_shield: JSON.stringify({ daysLeft: 3 }) },
+      },
+      now: 100,
+      expiresAt: 200,
+    });
+    expect(JSON.parse(String(patch.chain_shield))).toMatchObject({ daysLeft: 4 });
+    expect((patch.progress as Record<string, unknown>).chain_shield).toBe(patch.chain_shield);
+  });
+
   it('uses a stable uid tie-break when equal XP must produce one crown winner', () => {
     expect(source).toContain("b.points - a.points || a.uid.localeCompare(b.uid)");
   });

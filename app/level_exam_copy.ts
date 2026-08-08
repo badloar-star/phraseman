@@ -102,14 +102,14 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     }),
     formats,
     startCta: triLang(lang, {
-      ru: `Начать проверку −${energyCost} ⚡`,
-      uk: `Почати перевірку −${energyCost} ⚡`,
-      es: `Empezar prueba −${energyCost} ⚡`,
-      'pt-BR': `Começar desafio −${energyCost} ⚡`,
-      vi: `Bắt đầu −${energyCost} ⚡`,
-      id: `Mulai ujian −${energyCost} ⚡`,
-      tr: `Kontrolü başlat −${energyCost} ⚡`,
-      pl: `Rozpocznij −${energyCost} ⚡`,
+      ru: 'Начать проверку',
+      uk: 'Почати перевірку',
+      es: 'Empezar prueba',
+      'pt-BR': 'Começar desafio',
+      vi: 'Bắt đầu',
+      id: 'Mulai ujian',
+      tr: 'Kontrolü başlat',
+      pl: 'Rozpocznij',
     }),
     bestResult: bestScore === null
       ? triLang(lang, {

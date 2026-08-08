@@ -33,6 +33,40 @@ describe('live admin retired Quiz/Arena surface boundary', () => {
     expect(liveAdmin).not.toMatch(/adminApplyTabBadge\('arena-/);
   });
 
+  test('removes residual standalone Quiz controls and Arena support/reward copy', () => {
+    expect(liveAdmin).not.toContain('<option value="quiz_explanations">');
+    expect(liveAdmin).not.toContain('<option value="quiz"');
+    expect(liveAdmin).not.toContain("screen: 'quiz'");
+    expect(liveAdmin).not.toContain('quiz_easy_run_out_of');
+    expect(liveAdmin).not.toContain('Больше квизов');
+    expect(liveAdmin).not.toContain('Más quizzes');
+    expect(liveAdmin).not.toContain("{ key: 'free_daily_quiz_limit'");
+    expect(liveAdmin).not.toContain("{ key: 'gate_quizzes_premium'");
+    expect(liveAdmin).not.toContain('rewardGroup:"arena-');
+    expect(liveAdmin).not.toMatch(/\barena_(?:win|10_wins|rank_up_streak):/);
+    expect(liveAdmin).not.toContain('arena_extra_5');
+    expect(liveAdmin).not.toContain('userStats.quizLevels');
+    expect(liveAdmin).not.toContain('quizLevelsPref');
+    expect(liveAdmin).not.toMatch(/^\s*Quizzes:\s*\{/m);
+    expect(liveAdmin).not.toContain('arena_queue_delete');
+    expect(liveAdmin).not.toContain('arena_room_delete');
+    expect(liveAdmin).not.toContain('arena_force_finish');
+    expect(liveAdmin).not.toContain('arena_profiles_cleanup');
+    expect(liveAdmin).not.toContain('arena_profiles_resync');
+    expect(liveAdmin).not.toContain('arena_profiles_purge');
+    expect(liveAdmin).not.toContain('ÐºÐ²Ð¸Ð·Ñ‹, ÐºÐ»ÑƒÐ±');
+    expect(liveAdmin).not.toContain("kind === 'quiz'");
+    expect(liveAdmin).not.toContain("coll === 'quiz_explanations'");
+    expect(liveAdmin).not.toContain("'quiz_explanations'");
+    expect(liveAdmin).toContain("const RETIRED_STANDALONE_EXPLAIN_KIND = ['qu', 'iz'].join('');");
+    expect(liveAdmin).toContain('!isRetiredStandaloneExplainRecord(entry)');
+  });
+
+  test('does not surface historical audit entries from the retired competitive mode', () => {
+    expect(liveAdmin).toContain("const RETIRED_COMPETITIVE_ACTION_PREFIX = ['ar', 'ena_'].join('');");
+    expect(liveAdmin).toContain('!String(row.action || \'\').startsWith(RETIRED_COMPETITIVE_ACTION_PREFIX)');
+  });
+
   test('keeps French daily phrases separate from the removed French Quizzes tab', () => {
     expect(liveAdmin).toContain('french-daily-phrases-workflow.js');
     expect(liveAdmin).toContain('renderFrenchDailyPhrasesAdmin');

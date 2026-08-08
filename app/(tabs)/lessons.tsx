@@ -22,6 +22,8 @@ import { openPremiumPaywall } from '../paywall_navigation';
 import { lessonPurchaseContinuationParams } from '../paywall_lesson_continuation';
 import { HOME_BACK_FALLBACK, safeRouterBack } from '../navigation_back';
 import { captureAccountGeneration } from '../account_generation';
+import { projectDevLessonAccess } from '../dev_plus_controls';
+import { useTabNav } from '../TabContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -37,6 +39,7 @@ import type { ThemeMode } from '../../constants/theme';
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { getExamMedalTier, getEarnedDots } from '../medal_utils';
 import { prefetchLessonMenuCache } from '../lesson_menu';
@@ -65,10 +68,9 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LearningV2ModesLab from '../../components/learning-v2-lab/LearningV2ModesLab';
 import { peekCurrentExamBestPct } from '../exam_best_pct_overlay';
 import { noAndroidOutline } from '../../constants/androidGlow';
-/** Снимок UI списка уроков: переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
- *  зачем: privacy-крышку убранной панели (LessonsPaneBoundary в старом таббаре)
- *  заменяет штамп поколения аккаунта — кэш прежнего аккаунта не должен мигнуть
- *  на первом кадре после смены (инцидент exam best pct). */
+/** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
+ *  Штамп поколения дополняет LessonsPaneBoundary retained-вкладки: кэш прежнего
+ *  аккаунта не должен мигнуть ни в одном из двух presentation-режимов. */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 let lessonsUiSessionCacheGeneration = -1;
 
@@ -99,12 +101,6 @@ const PALETTE_SKETCH: Record<string, string> = {
     B1: '#B4AA9A',
     B2: '#A19D95',
 };
-const PALETTE_CORAL: Record<string, string> = {
-    A1: '#F1B2A9',
-    A2: '#EAA08F',
-    B1: '#E0AE83',
-    B2: '#D98B99',
-};
 const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
     dark: {
         A1: '#B8D6B8',
@@ -118,7 +114,6 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
         B1: '#D0A95B',
         B2: '#B88A45',
     },
-    coral: PALETTE_CORAL,
     minimalDark: {
         A1: '#D7E7FF',
         A2: '#6EA8FF',
@@ -129,7 +124,7 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
     // Обложки уроков в тон спектру каждой темы (см. constants/cinemaThemes.ts):
     // 4 «голоса» спектра на A1→B2, светлые и насыщенные (далее darkenHex красит
     // фон карточки, lessonAccent=bg — обводку/текст/прогресс). Та же логика, что
-    // у dark (Форест) / coral (Корал) / minimalDark (Графит).
+    // у dark (Форест) / minimalDark (Графит).
     midnight: {
         A1: '#8FA0FF', // accent — электрик-синий
         A2: '#B79CFF', // second — сине-фиолетовый
@@ -164,15 +159,6 @@ const EXAM_META_SKETCH: Record<string, {
     B1: { bg: '#2C3035', accent: '#E5E9EF' },
     B2: { bg: '#242932', accent: '#EEF2F8' },
 };
-const EXAM_META_CORAL: Record<string, {
-    bg: string;
-    accent: string;
-}> = {
-    A1: { bg: '#4B3432', accent: '#F8E1DC' },
-    A2: { bg: '#4A352E', accent: '#F6DDD2' },
-    B1: { bg: '#4A3B2E', accent: '#F6E6D3' },
-    B2: { bg: '#432C34', accent: '#F6DDE5' },
-};
 const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
     minimalDark: {
         A1: { bg: '#1D2636', accent: '#D7E7FF' },
@@ -186,7 +172,6 @@ const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
         B1: { bg: '#41472D', accent: '#F0F7D7' },
         B2: { bg: '#2F3F34', accent: '#D9EFDF' },
     },
-    coral: EXAM_META_CORAL,
     // ─── «Чёрное кино» — плашки зачётов в тон спектру (см. cinemaThemes.ts) ───
     // bg: тёмная подложка с подтоном спектра; accent: светлый голос спектра.
     midnight: {
@@ -418,7 +403,6 @@ interface LessonCardProps {
     lessonMetaColor: string;
     // внешние props из замыкания
     isGoldTheme: boolean;
-    isCoralTheme: boolean;
     themeMode: ThemeMode;
     goldSurface: string;
     goldHairline: string;
@@ -432,7 +416,7 @@ interface LessonCardProps {
     router: ReturnType<typeof import('expo-router').useRouter>;
     studyTarget: string;
     isPremium: boolean;
-    DEV_CONTENT_UNLOCK: boolean;
+    effectiveDevContentUnlock: boolean;
     noLimits: boolean;
     legacyFreeLessonCap: number;
     textPrimary: string;
@@ -445,11 +429,11 @@ const LessonCard = React.memo(function LessonCard({
     levelLockedByExam, premiumRequired, showLessonProgressFill,
     cardRadius, lockedCardBaseColor, cardLayerStyle,
     lessonTextColor, lessonMetaColor,
-    isGoldTheme, isCoralTheme, themeMode: _themeMode,
+    isGoldTheme, themeMode: _themeMode,
     goldSurface: _gs, goldHairline, goldAntique, goldBright,
     scaleAnim, lang, f,
     openLessonPaywall, setGateModal, router, studyTarget,
-    isPremium, DEV_CONTENT_UNLOCK, noLimits, legacyFreeLessonCap,
+    isPremium, effectiveDevContentUnlock, noLimits, legacyFreeLessonCap,
     textPrimary: _tp, textMuted,
 }: LessonCardProps) {
     const isSagePorcelainCard = _themeMode === 'sagePorcelain';
@@ -468,9 +452,9 @@ const LessonCard = React.memo(function LessonCard({
         return 0.2126 * ch(r) + 0.7152 * ch(g) + 0.0722 * ch(b2);
     })();
     const useFilledMetaText = isComplete && showLessonProgressFill && bgLuminance > 0.45;
-    // зачем (аудит-фикс): было `!isGoldTheme && !isCoralTheme && isUnlocked` —
+    // зачем (аудит-фикс): было `!isGoldTheme && isUnlocked` —
     // включало тёмный текст (#07110A, без тени) на ЛЮБОЙ разблокированной не-gold/
-    // coral теме, включая indigo/dark/midnight и т.п. Но базовый градиент карточки
+    // теме, включая indigo/dark/midnight и т.п. Но базовый градиент карточки
     // там ВСЕГДА тёмный (см. cardLayerStyle ниже) — тёмный текст без тени на нём
     // давал контраст ~1.0-1.3:1 (норма 4.5). Только sagePorcelain реально светлая;
     // остальные темы получают тёмный текст лишь когда прогресс-фон под ним
@@ -481,7 +465,7 @@ const LessonCard = React.memo(function LessonCard({
             marginHorizontal: 14,
             borderRadius: cardRadius,
             transform: [{ scale: scaleAnim ?? 1 }],
-            shadowColor: isGoldTheme ? '#000' : darkenHexCached(bg, isCoralTheme ? 0.18 : 0.28),
+            shadowColor: isGoldTheme ? '#000' : darkenHexCached(bg, 0.28),
             shadowOffset: { width: 0, height: isCurrent ? 7 : isUnlocked ? 4 : 2 },
             shadowOpacity: USE_ELITE_LESSONS_MAP
                 ? (isCurrent ? 0.20 : isUnlocked ? 0.11 : 0.05)
@@ -499,7 +483,7 @@ const LessonCard = React.memo(function LessonCard({
                 lessonId: num,
                 unlocked: isUnlocked,
                 isPremium,
-                devMode: DEV_CONTENT_UNLOCK,
+                devMode: effectiveDevContentUnlock,
                 noLimits,
                 legacyFreeLessonCap,
             });
@@ -536,17 +520,11 @@ const LessonCard = React.memo(function LessonCard({
                   ? (isCurrent ? goldCardGradient('selected') : lessonGoldLevel.card)
                   : isSagePorcelainCard
                       ? [bg, lightenHex(bg, 1.08), lightenHex(bg, 1.14)]
-                  :
-                      isCoralTheme
-                          ? [darkenHexCached(bg, 0.62), darkenHexCached(bg, 0.43), darkenHexCached(bg, 0.30)]
-                          : [darkenHexCached(bg, 0.52), darkBg, darkenHexCached(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
+                  : [darkenHexCached(bg, 0.52), darkBg, darkenHexCached(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
                   ? goldCardGradient('muted')
                   : isSagePorcelainCard
                       ? [lightenHex(bg, 1.04), bg, lightenHex(bg, 1.1)]
-                  :
-                      isCoralTheme
-                          ? [darkenHexCached(bg, 0.34), darkenHexCached(bg, 0.28), darkenHexCached(bg, 0.23)]
-                          : [darkenHexCached(bg, 0.36), darkenHexCached(bg, 0.31), darkenHexCached(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isSagePorcelainCard ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)] : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : [darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
+                  : [darkenHexCached(bg, 0.36), darkenHexCached(bg, 0.31), darkenHexCached(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isSagePorcelainCard ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)] : [darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
           {isGoldTheme && (<LinearGradient colors={[
                   rgbaHexCached(lessonAccent, isUnlocked ? 0.22 : 0.08),
                   'rgba(0,0,0,0)',
@@ -556,10 +534,7 @@ const LessonCard = React.memo(function LessonCard({
           {/* Progress fill */}
           {showLessonProgressFill && (<LinearGradient colors={isGoldTheme
                   ? [goldAntique, goldBright, lessonAccent] as [string, string, string]
-                  :
-                      isCoralTheme
-                          ? [darkenHexCached(bg, 0.84), bg]
-                          : [bg, lightenHex(bg, 1.28)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
+                  : [bg, lightenHex(bg, 1.28)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
                   position: 'absolute',
                   left: 0, top: 0, bottom: 0,
                   width: `${progPct}%`,
@@ -575,7 +550,7 @@ const LessonCard = React.memo(function LessonCard({
                   width: `${progPct}%`, height: 1.5,
                   // зачем: на светлой sagePorcelain белая кромка прогресса невидима —
                   // тонируем акцентом урока, как границу карточки выше.
-                  backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isSagePorcelainCard ? rgbaHexCached(lessonAccent, 0.38) : isCoralTheme ? 'rgba(255,230,222,0.52)' : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
+                  backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isSagePorcelainCard ? rgbaHexCached(lessonAccent, 0.38) : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
                   opacity: levelLockedByExam ? 0.24 : 1,
                   borderTopLeftRadius: cardRadius,
                   borderTopRightRadius: cardRadius,
@@ -605,9 +580,9 @@ const LessonCard = React.memo(function LessonCard({
                 {premiumRequired
                     ? <PlusBadge themeMode={_themeMode} label={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}/>
                     : !isUnlocked
-                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHexCached(lessonAccent, 0.64) : isCoralTheme ? rgbaHexCached(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHexCached(bg, 0.40) : 'rgba(255,255,255,0.55)'} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
+                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHexCached(lessonAccent, 0.64) : lockedCardHasLightFill ? darkenHexCached(bg, 0.40) : 'rgba(255,255,255,0.55)'} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
-                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
+                        ? <Ionicons name="checkmark-circle" size={18} color={lessonAccent} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
                         : progPct > 0
                             ? (<Text style={{
                                     // зачем: процент красился в rgbaHex(lessonAccent) — а lessonAccent === bg
@@ -640,7 +615,10 @@ const LessonCard = React.memo(function LessonCard({
 });
 
 // ── Главный компонент ─────────────────────────────────────────────────────────
-type LessonsTabProps = { overlayIdentityEpoch?: number };
+type LessonsTabProps = {
+    overlayIdentityEpoch?: number;
+    presentation?: 'tab' | 'push';
+};
 
 // ── Глава-аккордеон ──────────────────────────────────────────────────────────
 const AnimatedChapterCircle = Reanimated.createAnimatedComponent(Circle);
@@ -824,18 +802,23 @@ const ChapterCard = React.memo(function ChapterCard({ title, statusLine, pct, lo
     );
 });
 
-export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch = 0 }: LessonsTabProps = {}) {
+export default function LessonsTab({
+    overlayIdentityEpoch: _overlayIdentityEpoch = 0,
+    presentation = 'push',
+}: LessonsTabProps = {}) {
     void _overlayIdentityEpoch;
+    const isRetainedTab = presentation === 'tab';
+    const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     const topFadeScroll = useTopFadeScroll();
+    const { goHome, focusTick, runtimeOwnerId } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
     const insets = useStableSafeAreaInsets();
-    // зачем: владелец (2026-08-02) убрал таб «Уроки» — экран стал push-маршрутом
-    // /lessons_list. Плавающей капсулы таббара под ним больше нет, поэтому паддинг
-    // низа списка считаем от системного отступа, а не от высоты таббара.
-    const listBottomPad = Math.max(insets.bottom, 12) + 20;
+    const listBottomPad = isRetainedTab
+        ? tabContentBottomPad
+        : Math.max(insets.bottom, 12) + 20;
+    const headerTopPad = isRetainedTab ? 12 : insets.top + 12;
     const isGoldTheme = themeMode === 'gold';
-    const isCoralTheme = themeMode === 'coral';
     const isSagePorcelainTheme = themeMode === 'sagePorcelain';
     const goldBright = GOLD_RICH.champagne;
     const goldAntique = GOLD_RICH.agedGold;
@@ -853,7 +836,17 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const [legacyFreeLessonCap, setLegacyFreeLessonCap] = useState(
         () => boot?.legacyFreeLessonCap ?? FREE_LESSON_LIMIT,
     );
-    const { hasPremiumAccess: isPremium } = usePremium();
+    const { hasPremiumAccess: isPremium, devLocalPlusOverride } = usePremium();
+    const {
+        devContentUnlock: effectiveDevContentUnlock,
+        noLimits: effectiveNoLimits,
+        legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
+    } = projectDevLessonAccess({
+        devContentUnlock: DEV_CONTENT_UNLOCK,
+        noLimits,
+        legacyFreeLessonCap,
+        freeLessonLimit: FREE_LESSON_LIMIT,
+    }, devLocalPlusOverride);
     const dialogAccess = useFeatureAccess('ai_dialog');
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
@@ -874,10 +867,10 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
-    // зачем: экран больше не живёт внутри общего роутного экрана `(tabs)`, где
-    // useIsFocused() истинен для всех табов сразу. Push-маршрут гейтится честным
-    // фокусом — useRuntimeActive() сам берёт useIsScreenFocused + AppState.
-    const lessonsRuntimeActive = useRuntimeActive();
+    const lessonsTabVisible = isRetainedTab && runtimeOwnerId === 'lessons';
+    const lessonsRuntimeActive = useRuntimeActive(
+        isRetainedTab ? lessonsTabVisible : true,
+    );
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
     const [page, setPage] = useState<'lessons' | 'dialogs' | 'v2'>('lessons');
@@ -886,10 +879,12 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             setPage('lessons');
             return;
         }
-        // Push-экран: «назад» честно возвращает туда, откуда пришли (обычно главная);
-        // при пустом стеке (диплинк) — фолбэк на главную.
+        if (isRetainedTab) {
+            goHome();
+            return;
+        }
         safeRouterBack(router, HOME_BACK_FALLBACK as any);
-    }, [page, router]);
+    }, [goHome, isRetainedTab, page, router]);
     const openLearningRoute = useCallback(() => {
         hapticTap();
         void readPersonalPlanState()
@@ -968,12 +963,15 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             /* ignore */
         }
     }, [lessonCacheTarget, studyTarget]);
-    /** Push-экран: перечитываем прогресс на каждом фокусе — маунт, возврат из
-     *  урока/экзамена, смена studyTarget (loadScores меняет identity). Дубли
-     *  гасит scoresLoadRef: параллельные вызовы делят один in-flight promise. */
     useFocusEffect(useCallback(() => {
+        if (isRetainedTab) return;
         void loadScores();
-    }, [loadScores]));
+    }, [isRetainedTab, loadScores]));
+    useEffect(() => {
+        if (!lessonsTabVisible) return;
+        scrollRef.current?.scrollToOffset?.({ offset: 0, animated: false });
+        void loadScores();
+    }, [focusTick, isRetainedTab, lessonsTabVisible, loadScores]);
     const lessons = useMemo(() => lessonNamesForStudyTarget(lang, studyTarget), [lang, studyTarget]);
     const premiumReachableLevelIndex = useMemo(() => {
         let idx = getCourseLevelIndex('A1');
@@ -995,7 +993,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         return idx;
     }, [examResults, passCounts, persistedUnlocked, progCounts, scores]);
     const unlockedLessons = useMemo(() => {
-        if (DEV_CONTENT_UNLOCK || noLimits)
+        if (effectiveDevContentUnlock || effectiveNoLimits)
             return new Array(32).fill(true);
         const u = new Array(32).fill(false);
         if (isPremium) {
@@ -1009,54 +1007,42 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             scores,
             persistedUnlocked,
             lessonCount: u.length,
-            legacyFreeLessonCap,
+            legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
         });
-    }, [legacyFreeLessonCap, noLimits, isPremium, persistedUnlocked, premiumReachableLevelIndex, scores]);
+    }, [effectiveDevContentUnlock, effectiveLegacyFreeLessonCap, effectiveNoLimits, isPremium, persistedUnlocked, premiumReachableLevelIndex, scores]);
     type ListItem = {
-        kind: 'chapter';
+        kind: 'header';
+        label: CourseLevel;
+        color: string;
+    } | {
+        kind: 'lesson';
+        index: number;
+        name: string;
+    } | {
+        kind: 'exam';
         level: CourseLevel;
-        from: number;
-        to: number;
     } | {
         kind: 'attestation';
     };
-    // Список сгруппирован в главы-аккордеоны (A1/A2/B1/B2 по COURSE_LEVEL_RANGES);
-    // аттестация — вне глав, внизу списка, как раньше.
     const listData: ListItem[] = useMemo(() => {
-        const chapters: ListItem[] = (Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]).map((level) => {
-            const [from, to] = COURSE_LEVEL_RANGES[level];
-            return { kind: 'chapter', level, from, to };
+        const data: ListItem[] = [];
+        const headers: Array<[number, CourseLevel]> = [[1, 'A1'], [9, 'A2'], [19, 'B1'], [29, 'B2']];
+        lessons.forEach((name, index) => {
+            const num = index + 1;
+            const header = headers.find(([firstLesson]) => firstLesson === num);
+            if (header) data.push({ kind: 'header', label: header[1], color: bookPalette(num, themeMode) });
+            data.push({ kind: 'lesson', index, name });
+            if (num === 8 || num === 18 || num === 28) {
+                data.push({ kind: 'exam', level: num <= 8 ? 'A1' : num <= 18 ? 'A2' : 'B1' });
+            }
+            if (num === 32) data.push({ kind: 'attestation' });
         });
-        return [...chapters, { kind: 'attestation' }];
-    }, []);
+        return data;
+    }, [lessons, themeMode]);
     const currentLessonNum = useMemo(() => {
         const idx = unlockedLessons.findIndex((unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50);
         return idx >= 0 ? idx + 1 : null;
     }, [progCounts, unlockedLessons]);
-    // Текущая глава раскрыта по умолчанию; остальные — по тапу, независимо друг от друга.
-    const currentChapterLevel = currentLessonNum != null ? getCourseLevelForLesson(currentLessonNum) : null;
-    const [openChapters, setOpenChapters] = useState<ReadonlySet<string>>(() => new Set<string>([currentChapterLevel ?? 'A1']));
-    useEffect(() => {
-        if (!currentChapterLevel) return;
-        setOpenChapters((prev) => (prev.has(currentChapterLevel) ? prev : new Set([...prev, currentChapterLevel])));
-    }, [currentChapterLevel]);
-    const toggleChapter = useCallback((level: string) => {
-        setOpenChapters((prev) => {
-            const next = new Set(prev);
-            if (next.has(level)) next.delete(level);
-            else next.add(level);
-            return next;
-        });
-    }, []);
-    // Стабильные per-chapter колбэки: без них React.memo(ChapterCard) ломался бы
-    // новой лямбдой onToggle на каждом рендере.
-    const chapterToggles = useMemo(() => {
-        const map: Record<string, () => void> = {};
-        for (const level of Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]) {
-            map[level] = () => toggleChapter(level);
-        }
-        return map;
-    }, [toggleChapter]);
     // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
     const itemAnims = useMemo(() => listData.map(() => null), [listData]);
     const handleLessonsScroll = useCallback((e: any) => {
@@ -1076,11 +1062,11 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const openLessonPaywall = useCallback((lessonNum: number) => {
         const doneSoFar = scores.filter(score => score > 0).length;
         openPremiumPaywall(router, {
-            context: lessonPaywallContext(lessonNum, legacyFreeLessonCap),
+            context: lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap),
             lessons_done: doneSoFar,
             ...lessonPurchaseContinuationParams(lessonNum),
         });
-    }, [legacyFreeLessonCap, router, scores]);
+    }, [effectiveLegacyFreeLessonCap, router, scores]);
     // ── Exam card: рендерится внутри своей главы, визуал без изменений ──
     const renderExamCard = (lvl: string): React.ReactNode => {
     const themeExamMeta = EXAM_META_BY_THEME[themeMode] ?? EXAM_META_SKETCH;
@@ -1095,9 +1081,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const examLevel = lvl as CourseLevel;
     const examLevelIdx = getCourseLevelIndex(examLevel);
     const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
-    const examPremiumRequired = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && requiresPremiumForLesson(to, legacyFreeLessonCap);
+    const examPremiumRequired = !isPremium && !effectiveDevContentUnlock && !effectiveNoLimits && requiresPremiumForLesson(to, effectiveLegacyFreeLessonCap);
     const examSourceAvailable = examContentAvailableForTarget(studyTarget);
-    const allDone = examSourceAvailable && !examPremiumRequired && (DEV_CONTENT_UNLOCK || noLimits || premiumExamAvailable || scoreReady);
+    const allDone = examSourceAvailable && !examPremiumRequired && (effectiveDevContentUnlock || effectiveNoLimits || premiumExamAvailable || scoreReady);
     const prevExamLevel = getPreviousCourseLevel(examLevel);
     const result = examResults[lvl];
     const isB2 = lvl === 'B2';
@@ -1183,7 +1169,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             hapticTap();
             const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
             if (examPremiumRequired) {
-                openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel, legacyFreeLessonCap) ? firstLessonByLevel : to);
+                openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel, effectiveLegacyFreeLessonCap) ? firstLessonByLevel : to);
             }
             else if (!examSourceAvailable) {
                 setGateModal({ kind: 'frenchExam', level: lvl });
@@ -1253,15 +1239,13 @@ const lessonLevel = getCourseLevelForLesson(num);
 const lessonGoldLevel = goldCefrAccent(lessonLevel);
 const lessonAccent = bg;
 const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
-const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
-const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num, legacyFreeLessonCap);
+const levelLockedByExam = isPremium && !isUnlocked && !effectiveDevContentUnlock && !effectiveNoLimits;
+const premiumRequired = !isPremium && !effectiveNoLimits && requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap);
 const showLessonProgressFill = isUnlocked && progPct > 0;
 const cardRadius = isGoldTheme ? 14 : 16;
 const lockedCardBaseColor = isGoldTheme
     ? goldSurface
-    : isCoralTheme
-        ? darkenHexCached(bg, 0.23)
-        : darkenHexCached(bg, 0.28);
+    : darkenHexCached(bg, 0.28);
 const cardLayerStyle = {
     position: 'absolute' as const,
     left: 0,
@@ -1277,32 +1261,24 @@ const lessonTextColor = isSagePorcelainTheme
     ? (isUnlocked ? t.textPrimary : 'rgba(247,241,228,0.44)')
     :
         !isUnlocked
-            ? isCoralTheme
-                ? 'rgba(255,248,244,0.44)'
-                : levelLockedByExam
+            ? levelLockedByExam
                 ? 'rgba(255,255,255,0.42)'
                 : 'rgba(255,255,255,0.35)'
-            : isCoralTheme
-                ? '#FFF8F4'
-                : 'rgba(255,255,255,0.97)';
+            : 'rgba(255,255,255,0.97)';
 const lessonMetaColor = isSagePorcelainTheme
     ? t.textPrimary
     : isGoldTheme
     ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
     :
         !isUnlocked
-            ? isCoralTheme
-                ? 'rgba(255,214,204,0.34)'
-                : levelLockedByExam
+            ? levelLockedByExam
                 ? 'rgba(255,255,255,0.30)'
                 : 'rgba(255,255,255,0.30)'
-            : isCoralTheme
-                ? 'rgba(255,214,204,0.72)'
-                // зачем (аудит-фикс): было LESSON_CARD_OPEN_META_TEXT (#07110A, тёмный) —
+            // зачем (аудит-фикс): было LESSON_CARD_OPEN_META_TEXT (#07110A, тёмный) —
                 // на разблокированной незалитой карточке фон здесь ВСЕГДА тёмный градиент
                 // (см. lessonTextColor выше, тот же случай даёт rgba(255,255,255,0.97)).
                 // Тёмный текст без тени на тёмном фоне давал контраст ~1:1.
-                : 'rgba(255,255,255,0.97)';
+            : 'rgba(255,255,255,0.97)';
 return (<LessonCard key={`l-${num}`}
     num={num} name={name} isUnlocked={isUnlocked} bg={bg} darkBg={darkBg}
     progPct={progPct} isComplete={isComplete} isCurrent={isCurrent}
@@ -1313,14 +1289,14 @@ return (<LessonCard key={`l-${num}`}
     cardRadius={cardRadius} lockedCardBaseColor={lockedCardBaseColor}
     cardLayerStyle={cardLayerStyle}
     lessonTextColor={lessonTextColor} lessonMetaColor={lessonMetaColor}
-    isGoldTheme={isGoldTheme} isCoralTheme={isCoralTheme} themeMode={themeMode}
+    isGoldTheme={isGoldTheme} themeMode={themeMode}
     goldSurface={goldSurface} goldHairline={goldHairline}
     goldAntique={goldAntique} goldBright={goldBright}
     scaleAnim={null} lang={lang} f={f}
     openLessonPaywall={openLessonPaywall} setGateModal={setGateModal}
     router={router} studyTarget={studyTarget}
-    isPremium={isPremium} DEV_CONTENT_UNLOCK={DEV_CONTENT_UNLOCK} noLimits={noLimits}
-    legacyFreeLessonCap={legacyFreeLessonCap}
+    isPremium={isPremium} effectiveDevContentUnlock={effectiveDevContentUnlock} noLimits={effectiveNoLimits}
+    legacyFreeLessonCap={effectiveLegacyFreeLessonCap}
     textPrimary={t.textPrimary} textMuted={t.textMuted}
 />);
     };
@@ -1330,29 +1306,13 @@ return (<LessonCard key={`l-${num}`}
     // перерендеривал все ~32 тяжёлые карточки уроков (градиенты/тени/SVG) —
     // отсюда подтормаживание раскрытия. Одинаковые ссылки на элементы дают
     // React bail-out, и раскрытие анимируется без JS-шторма.
-    const chapterBodies = useMemo(() => {
-        const bodies: Record<string, React.ReactNode> = {};
-        for (const level of Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]) {
-            const [from, to] = COURSE_LEVEL_RANGES[level];
-            bodies[level] = (<>
-                {lessons.slice(from - 1, to).map((name, offset) => renderLessonCard({ index: from - 1 + offset, name }))}
-                {level !== 'B2' ? renderExamCard(level) : null}
-            </>);
-        }
-        return bodies;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lessons, unlockedLessons, progCounts, currentLessonNum, scores, examResults,
-        examBestPcts, examPassCounts, premiumReachableLevelIndex, isPremium, noLimits,
-        legacyFreeLessonCap, themeMode, isGoldTheme, isCoralTheme, t, f, lang,
-        openLessonPaywall, router, studyTarget, goldSurface, goldHairline, goldAntique, goldBright]);
-
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient forceFullBleed>
       {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия.
           Push-экран сам держит верхний safe-area отступ (insets.top ниже). */}
       <View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: insets.top + 12, paddingBottom: 8 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: headerTopPad, paddingBottom: 8 }}>
           <TapScale
             onPress={handleLessonsBack}
             withHaptic={true}
@@ -1447,12 +1407,18 @@ return (<LessonCard key={`l-${num}`}
         onScrollEndDrag={handleLessonsScrollEnd}
         onMomentumScrollEnd={handleLessonsScrollEnd}
         contentContainerStyle={{ paddingBottom: listBottomPad }}
-        decelerationRate="fast"
+        decelerationRate="normal"
         bounces
         alwaysBounceVertical
         overScrollMode="always"
         data={listData}
-        keyExtractor={(item) => item.kind === 'chapter' ? `chap-${item.level}` : 'attestation'}
+        keyExtractor={(item, index) => item.kind === 'lesson'
+          ? `l-${item.index + 1}`
+          : item.kind === 'header'
+            ? `h-${item.label}-${index}`
+            : item.kind === 'exam'
+              ? `e-${item.level}`
+              : 'attestation'}
         initialNumToRender={12}
         windowSize={5}
         maxToRenderPerBatch={8}
@@ -1553,10 +1519,25 @@ return (<LessonCard key={`l-${num}`}
                 </TouchableOpacity>
               </Animated.View>);
             }
+            if (item.kind === 'header') {
+              const premiumLocked = !isPremium && !effectiveDevContentUnlock && !effectiveNoLimits && item.label !== 'A1';
+              const accent = isGoldTheme ? goldCefrAccent(item.label).accent : item.color;
+              return (<View style={{ paddingLeft: 22, paddingTop: 14, paddingBottom: 4, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: accent }}/>
+                <Text style={{ color: accent, fontSize: f.label, fontWeight: '800', letterSpacing: 1.4 }}>{item.label}</Text>
+                {premiumLocked ? <Ionicons name="lock-closed" size={12} color={accent} style={{ opacity: 0.7 }}/> : null}
+                <View style={{ flex: 1, height: 0.5, backgroundColor: `${accent}30` }}/>
+              </View>);
+            }
+            if (item.kind === 'exam') return renderExamCard(item.level) as React.ReactElement;
+            if (item.kind === 'lesson') return renderLessonCard(item) as React.ReactElement;
+            return null;
+            /* Legacy accordion renderer retained below only until the next general cleanup.
+               It is unreachable: every item in the flat list returns above.
             // ── Глава-аккордеон ──────────────────────────────────────────────
             const { level: chapterLevel, from: chapFrom, to: chapTo } = item;
             const chapterAccent = isGoldTheme ? goldCefrAccent(chapterLevel).accent : t.accent;
-            const chapterPremiumLocked = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && chapterLevel !== 'A1';
+            const chapterPremiumLocked = !isPremium && !effectiveDevContentUnlock && !effectiveNoLimits && chapterLevel !== 'A1';
             const chapterCounts = progCounts.slice(chapFrom - 1, chapTo);
             const chapterDone = chapterCounts.filter((count) => (count ?? 0) >= 50).length;
             const chapterPct = chapterCounts.length > 0 ? chapterDone / chapterCounts.length : 0;
@@ -1588,6 +1569,7 @@ return (<LessonCard key={`l-${num}`}
                 {chapterBodies[chapterLevel]}
               </ChapterCard>
             </View>);
+            */
         }}
       />
       </BouncyWrap>
@@ -1688,7 +1670,7 @@ return (<LessonCard key={`l-${num}`}
                         setGateModal(null);
                         const doneSoFar = scores.filter(score => score > 0).length;
                         openPremiumPaywall(router, {
-                            context: lessonPaywallContext(gateModal.lessonNum, legacyFreeLessonCap),
+                            context: lessonPaywallContext(gateModal.lessonNum, effectiveLegacyFreeLessonCap),
                             lessons_done: doneSoFar,
                             ...lessonPurchaseContinuationParams(gateModal.lessonNum),
                         });

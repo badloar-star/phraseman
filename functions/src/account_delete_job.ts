@@ -199,7 +199,7 @@ export async function processAccountDeletionJob(
       tx.update(ref, {
         status: 'failed',
         leaseUntilMs: admin.firestore.FieldValue.delete(),
-        retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,
+        retentionUntilMs: admin.firestore.FieldValue.delete(),
         updatedAtMs: nowMs,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });

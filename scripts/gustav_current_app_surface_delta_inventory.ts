@@ -493,12 +493,12 @@ function classifyDomain(sourcePath: string, text: string, category?: DirtyCatego
       reason: 'premium, loyalty, or speaking component path',
     };
   }
-  if (low.includes('arena') || low.includes('leaderboard')) {
+  if (low.includes('leaderboard')) {
     if (hasAnyMarker(counts, ['AsyncStorage', 'studyTarget'])) secondary.add('target_storage_and_cloud_sync');
     return {
       primaryDomain: 'club_rewards_stats_weekly',
       secondaryDomains: Array.from(secondary),
-      reason: 'arena or leaderboard surface path',
+      reason: 'leaderboard surface path',
     };
   }
   if (low.includes('admin') || low.includes('_admin') || low.includes('_lab') || low.includes('lab.tsx') || low.includes('dev_module_stub')) {

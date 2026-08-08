@@ -3,8 +3,6 @@ import path from 'path';
 
 /**
  * «Конверсионные пуши» (Premium-истекает + upsell D+4/D+7/D+14) — это ЛОКАЛЬНЫЕ
- * уведомления, планируемые на устройстве (app/notifications.ts), с QA-кнопками в
- * админке (app/_admin_settings_testers.tsx).
  *
  * Баг: планировщики молча глотали любую ошибку (return void, только console.warn в
  * DEV), а QA-кнопки ВСЕГДА показывали «запланирован». Тестер видел «пуш не пришёл»
@@ -51,25 +49,5 @@ describe('conversion push schedulers return a structured result', () => {
     expect(slice).toContain('scheduled++');
     expect(slice).toContain('return scheduled > 0 ? { ok: true, scheduled }');
     expect(slice).toContain("reason: 'schedule_failed'");
-  });
-});
-
-describe('admin QA buttons report the real scheduling outcome', () => {
-  const admin = () => readSource(path.join('app', '_admin_settings_testers.tsx'));
-
-  it('has a failure describer mapping every reason to a human message', () => {
-    const source = admin();
-    expect(source).toContain('function describeConversionPushFailure');
-    expect(source).toContain("case 'no_permission'");
-    expect(source).toContain("case 'too_soon'");
-    expect(source).toContain("case 'schedule_failed'");
-  });
-
-  it('no longer claims success unconditionally — branches on res.ok', () => {
-    const source = admin();
-    // The four schedule buttons must check the result before alerting success.
-    expect(source).toContain('if (res.ok) {');
-    expect(source).toContain('НЕ запланирован');
-    expect(source).toContain('describeConversionPushFailure(res)');
   });
 });

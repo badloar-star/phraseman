@@ -962,7 +962,7 @@ function PlanPronunciationRecorder({
       // Накопить объединение слов из ТОП-гипотезы и тоже скорить — иначе быструю
       // сегментированную речь нейтива засчитывает «только последнее слово».
       const top = (alternatives[0]?.transcript ?? '').trim();
-      accRef.current.add(top);
+      accRef.current.add(top, event?.isFinal === true);
       const union = accRef.current.union();
       if (union) considerAlternatives([{ transcript: union }]);
       // Живая подсветка по union: загоревшееся слово не гаснет на хвостовом interim.
@@ -2612,7 +2612,7 @@ export default function PersonalPlanExerciseScreen() {
           trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
         />
 
-        <BouncyScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"

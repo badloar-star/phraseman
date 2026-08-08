@@ -14,7 +14,6 @@ const themes = [
   { id: 'dark', play: '#47C870', message: '#58CC89', shadow: '#021006' },
   { id: 'neon', play: '#C8FF00', message: '#FFE600', shadow: '#101400' },
   { id: 'gold', play: '#D6B35A', message: '#F7DA92', shadow: '#120C02' },
-  { id: 'coral', play: '#FF6464', message: '#FFD060', shadow: '#20080D' },
   { id: 'minimalDark', play: '#6EA8FF', message: '#D7DCE6', shadow: '#03070F' },
   { id: 'compass', play: '#F2C48D', message: '#D78C58', shadow: '#0F0904' },
   { id: 'midnight', play: '#8FA0FF', message: '#B79CFF', shadow: '#030515' },

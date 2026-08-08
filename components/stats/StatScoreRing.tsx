@@ -46,7 +46,7 @@ type StatScoreRingProps = {
 /**
  * Killer-кольцо оценки: анимированная SVG-дуга, заполняющаяся от 0 до `progress`
  * при появлении, с count-up числом в центре. Идиома проекта —
- * Reanimated `useAnimatedProps` + `strokeDashoffset` (см. _anim_demo_lab.tsx).
+ * Reanimated `useAnimatedProps` + `strokeDashoffset`.
  */
 export function StatScoreRing({
   progress,

@@ -7149,6 +7149,7 @@ export const IMPULS_DAY_36: PlanContentDay = {
         commonMistake: { ru: 'Не говори «do coffee» — с едой и напитками используют make, а не do.', uk: 'Не кажи «do coffee» — з їжею та напоями використовують make, а не do.', es: 'No digas «do coffee» — con comidas y bebidas se usa make, no do.' , 'pt-BR': 'Não diga “do coffee” – com alimentos e bebidas use make, não do.', vi: 'Không nói “do coffee” — khi sử dụng đồ ăn và đồ uống make chứ không phải do.', id: 'Jangan ucapkan “do coffee” — pada makanan dan minuman gunakan make, bukan do.', tr: '“do coffee” demeyin; yiyecek ve içeceklerde do değil, make kullanın.', pl: 'Nie mów „do coffee” — w przypadku jedzenia i napojów używaj make, a nie do.'},
       },
       words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
         { text: 'make', partOfSpeech: 'verb', distractors: ['drink', 'buy', 'bring', 'skip', 'take'] },
         { text: 'coffee', partOfSpeech: 'noun', distractors: ['tea', 'juice', 'lunch', 'dinner', 'bread'] },
         { text: 'every', partOfSpeech: 'determiner', distractors: ['some', 'any', 'no', 'this', 'those'] },

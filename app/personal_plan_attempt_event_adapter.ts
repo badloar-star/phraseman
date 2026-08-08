@@ -5,27 +5,13 @@ import {
   type PlanExerciseBlock,
   type PlanRecoveryCandidate,
 } from './personal_plan_engine_contracts';
-type PlanQuizChoiceDraft = {
-  id: string;
-  text: string;
-  isCorrect: boolean;
-  explanationRequirement?: {
-    target: string;
-  };
-};
-
-type PlanQuizItemDraft = {
-  id: string;
-  sourcePhraseId: string;
-  skill: string;
-  choices: PlanQuizChoiceDraft[];
-};
+import type { PersonalPlanQuizQuestion } from './personal_plan_quiz_types';
 
 export type PlanAttemptEventAdapterIssueCode =
+  | 'content_unit_mismatch'
   | 'block_type_mismatch'
   | 'unknown_choice_id'
-  | 'missing_correct_choice'
-  | 'content_unit_mismatch';
+  | 'missing_correct_choice';
 
 export type PlanAttemptEventAdapterIssue = {
   code: PlanAttemptEventAdapterIssueCode;
@@ -43,15 +29,6 @@ export type PlanAttemptEventAdapterResult =
     issue: PlanAttemptEventAdapterIssue;
   };
 
-export type PlanQuizAttemptEventInput = {
-  block: PlanExerciseBlock;
-  item: PlanQuizItemDraft;
-  choiceId: string;
-  planInstanceId: string;
-  occurredAt?: string;
-  payload?: Record<string, string | number | boolean | null | undefined>;
-};
-
 export type PlanPhraseAttemptEventInput = {
   block: PlanExerciseBlock;
   planInstanceId: string;
@@ -64,6 +41,14 @@ export type PlanPhraseAttemptEventInput = {
   mistakeTags?: string[];
   occurredAt?: string;
   payload?: Record<string, string | number | boolean | null | undefined>;
+};
+
+export type PlanQuizAttemptEventInput = {
+  block: PlanExerciseBlock;
+  planInstanceId: string;
+  question: PersonalPlanQuizQuestion;
+  choiceId: string;
+  attemptId: string;
 };
 
 function blocked(
@@ -79,70 +64,8 @@ function blocked(
   };
 }
 
-function compactTags(values: Array<string | undefined>): string[] {
-  return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))];
-}
-
-function correctChoiceFor(item: PlanQuizItemDraft): PlanQuizChoiceDraft | undefined {
-  return item.choices.find((choice) => choice.isCorrect);
-}
-
 function recoveryFor(block: PlanExerciseBlock, event: PlanAttemptEvent): PlanRecoveryCandidate[] {
   return planRecoveryCandidatesForAttempt(block, event);
-}
-
-export function buildPlanQuizAttemptEvent(
-  input: PlanQuizAttemptEventInput,
-): PlanAttemptEventAdapterResult {
-  const { block, item } = input;
-
-  if (block.type !== 'plan_quiz') {
-    return blocked('block_type_mismatch', 'Quiz attempts require a plan_quiz block.');
-  }
-
-  if (!block.contentUnitIds.includes(item.sourcePhraseId)) {
-    return blocked('content_unit_mismatch', 'Quiz item source phrase is not part of the exercise block.');
-  }
-
-  const chosenChoice = item.choices.find((choice) => choice.id === input.choiceId);
-  if (!chosenChoice) {
-    return blocked('unknown_choice_id', 'Quiz attempt choiceId does not belong to the quiz item.');
-  }
-
-  const correctChoice = correctChoiceFor(item);
-  if (!correctChoice) {
-    return blocked('missing_correct_choice', 'Quiz item needs one correct choice before attempt events can be created.');
-  }
-
-  const target = chosenChoice.explanationRequirement?.target;
-  const event = createPlanAttemptEvent(block, {
-    id: `attempt:${input.planInstanceId}:${item.id}:${chosenChoice.id}`,
-    planInstanceId: input.planInstanceId,
-    result: chosenChoice.isCorrect ? 'correct' : 'wrong',
-    contentUnitId: item.sourcePhraseId,
-    expectedAnswer: correctChoice.text,
-    selectedAnswer: chosenChoice.text,
-    occurredAt: input.occurredAt,
-    grammarTags: compactTags([`quiz_skill:${item.skill}`]),
-    vocabularyTags: compactTags([
-      `source_phrase:${item.sourcePhraseId}`,
-      target ? `target:${target}` : undefined,
-    ]),
-    mistakeTags: chosenChoice.isCorrect
-      ? []
-      : compactTags([
-        'quiz_wrong_choice',
-        `skill:${item.skill}`,
-        target ? `target:${target}` : undefined,
-      ]),
-    payload: input.payload,
-  });
-
-  return {
-    status: 'ready',
-    event,
-    recoveryCandidates: recoveryFor(block, event),
-  };
 }
 
 export function buildPlanPhraseAttemptEvent(
@@ -173,4 +96,31 @@ export function buildPlanPhraseAttemptEvent(
     event,
     recoveryCandidates: recoveryFor(block, event),
   };
+}
+
+/** Builds the canonical plan-attempt event for the dedicated plan-only quiz. */
+export function buildPlanQuizAttemptEvent(
+  input: PlanQuizAttemptEventInput,
+): PlanAttemptEventAdapterResult {
+  const { block, question } = input;
+  if (block.type !== 'plan_quiz') return blocked('block_type_mismatch', 'Quiz attempts require a plan_quiz block.');
+  if (!question.sourcePhraseId || !block.contentUnitIds.includes(question.sourcePhraseId)) {
+    return blocked('content_unit_mismatch', 'Quiz question source phrase is not part of the exercise block.');
+  }
+  const choice = question.choices.find((item) => item.id === input.choiceId);
+  if (!choice) return blocked('unknown_choice_id', 'Quiz answer choice is not part of the question.');
+  const correct = question.choices.find((item) => item.isCorrect);
+  if (!correct) return blocked('missing_correct_choice', 'Quiz question must have one correct choice.');
+  const event = createPlanAttemptEvent(block, {
+    id: input.attemptId,
+    planInstanceId: input.planInstanceId,
+    result: choice.isCorrect ? 'correct' : 'wrong',
+    contentUnitId: question.sourcePhraseId,
+    expectedAnswer: correct.text,
+    selectedAnswer: choice.text,
+    vocabularyTags: [question.skill],
+    mistakeTags: choice.isCorrect ? [] : ['plan_quiz_wrong_answer'],
+    payload: { quizQuestionId: question.id, selectedChoiceId: choice.id },
+  });
+  return { status: 'ready', event, recoveryCandidates: recoveryFor(block, event) };
 }

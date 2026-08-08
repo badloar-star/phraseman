@@ -19,7 +19,7 @@ const db = getFirestore(app);
 const protectedCollections = [
   'content_factory_stages', 'content_factory_job_units', 'content_factory_releases',
   'content_factory_lesson_ledgers', 'content_factory_question_ledgers',
-  'content_factory_flashcard_ledgers', 'content_factory_arena_ledgers',
+  'content_factory_flashcard_ledgers',
   'content_factory_job_reviews', 'admin_log',
 ];
 

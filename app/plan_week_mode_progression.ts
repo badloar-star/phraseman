@@ -26,9 +26,11 @@ const WEEK_UNLOCKS: Record<number, readonly PlanTaskKind[]> = {
   2: ['plan_listen_choose', 'plan_listen_build'],
   // Week 3 — add real production: speaking and free recall.
   3: ['plan_pronunciation_repeat', 'plan_phrase_recall'],
+  // Week 4 — finish the 20-minute route with its dedicated plan-only check.
+  4: ['plan_quiz'],
 };
 
-const MAX_PROGRESSION_WEEK = 3;
+const MAX_PROGRESSION_WEEK = 4;
 
 /**
  * Ordered set of task kinds unlocked by the given (1-based) week.

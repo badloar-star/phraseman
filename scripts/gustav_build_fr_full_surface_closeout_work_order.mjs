@@ -24,8 +24,6 @@ const INPUTS = {
   correctionCandidateDecisionSchemaGate: 'docs/gustav/generated/fr/reviewer/work_orders/fr_lesson_correction_candidate_review_decision_schema_gate_audit_v1.json',
   correctionCandidateImportDryRun: 'docs/gustav/generated/fr/reviewer/work_orders/fr_lesson_correction_candidate_review_import_dry_run_audit_v1.json',
   theory: 'docs/gustav/generated/fr/theory/fr_theory_vocab_intro_parity_gate_v1.json',
-  quiz: 'docs/gustav/generated/fr/quizzes/fr_standard_quiz_global_readiness_bridge_gate_v1.json',
-  arena: 'docs/gustav/generated/fr/arena/fr_arena_question_parity_gate_v1.json',
   grammar: 'docs/gustav/generated/fr/grammar/fr_grammar_drill_global_readiness_bridge_gate_v1.json',
   personalPractice: 'docs/gustav/generated/fr/personal_practice/fr_personal_practice_active_recall_global_readiness_bridge_gate_v1.json',
   flashcards: 'docs/gustav/generated/fr/flashcards/fr_flashcard_global_readiness_bridge_gate_v1.json',
@@ -111,8 +109,6 @@ function main() {
   const correctionCandidateDecisionSchemaGate = readJson(INPUTS.correctionCandidateDecisionSchemaGate);
   const correctionCandidateImportDryRun = readJson(INPUTS.correctionCandidateImportDryRun);
   const theory = readJson(INPUTS.theory);
-  const quiz = readJson(INPUTS.quiz);
-  const arena = readJson(INPUTS.arena);
   const grammar = readJson(INPUTS.grammar);
   const personalPractice = readJson(INPUTS.personalPractice);
   const flashcards = readJson(INPUTS.flashcards);
@@ -213,36 +209,6 @@ function main() {
       nextWork: theory.nextRequiredGlobalSteps,
       blockers: ['THEORY_VOCAB_INTRO_RUNTIME_DELIVERY_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD'],
       commands: ['node scripts/gustav_build_fr_theory_vocab_intro_parity_gate.mjs'],
-    }),
-    makeSurface({
-      id: 'standard_quizzes',
-      name: 'Standard quizzes',
-      priority: 3,
-      gate: quiz,
-      evidence: [INPUTS.quiz],
-      counts: pickSummary(quiz.summary, ['quizRowsPerLocale', 'totalRuntimeRows', 'acceptedContentRows', 'ruOverlapWithCoreLessons', 'ukOverlapWithCoreLessons', 'ruIssueCount', 'ukIssueCount']),
-      doneMeans: [
-        'French-native quiz banks exist for RU and UK source locales.',
-        'Questions are not simple lesson-row fanout and have one correct answer with explanations/distractors.',
-      ],
-      nextWork: quiz.nextRequiredGlobalSteps,
-      blockers: ['GLOBAL_FRENCH_ACTIVATION_STILL_HOLD'],
-      commands: ['node scripts/gustav_build_fr_standard_quiz_global_readiness_bridge_gate.mjs'],
-    }),
-    makeSurface({
-      id: 'arena_questions',
-      name: 'Arena questions',
-      priority: 4,
-      gate: arena,
-      evidence: [INPUTS.arena],
-      counts: pickSummary(arena.summary, ['ruRuntimeRows', 'ukRuntimeRows', 'totalRuntimeRows', 'ruIssueCount', 'ukIssueCount']),
-      doneMeans: [
-        'French arena bank matches English level counts and uses French-native question types.',
-        'Runtime loader does not fall back to bundled English arena assets.',
-      ],
-      nextWork: arena.nextRequiredGlobalSteps,
-      blockers: ['FRENCH_ARENA_RUNTIME_LOADER_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD'],
-      commands: ['node scripts/gustav_build_fr_arena_question_parity_gate.mjs'],
     }),
     makeSurface({
       id: 'prepositions_conjugation',
@@ -426,8 +392,6 @@ function main() {
       correctionCandidateMissingDecisionRows: correctionCandidateDecisionSchemaGate.summary.missingDecisionRows,
       theorySectionsTotal: theory.summary.theorySectionsTotal,
       vocabularyItemsTotal: theory.summary.vocabularyItemsTotal,
-      standardQuizRowsTotal: quiz.summary.totalRuntimeRows,
-      arenaRowsTotal: arena.summary.totalRuntimeRows,
       grammarRuntimeItems: grammar.summary.totalRuntimeItems,
       flashcardCards: flashcards.summary.cardCount,
       collectibleRows: collectibles.summary.rows,

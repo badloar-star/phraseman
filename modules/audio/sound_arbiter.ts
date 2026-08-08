@@ -145,6 +145,14 @@ export class SoundArbiter {
     return this.decide(deferred.eventId, deferred.options, true);
   }
 
+  cancelDeferred(eventId: SoundEventId, scope?: string): boolean {
+    if (!this.deferred
+      || this.deferred.eventId !== eventId
+      || this.deferred.options.scope !== scope) return false;
+    this.deferred = null;
+    return true;
+  }
+
   finishActive(requestId?: number): void {
     if (requestId !== undefined && this.active?.requestId !== requestId) return;
     this.active = null;

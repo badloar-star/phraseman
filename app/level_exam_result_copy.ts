@@ -17,7 +17,6 @@ export type LevelExamResultCopy = {
   rewardAlreadyClaimed: string;
   retryCoach: string;
   primaryAction: string;
-  reviewAction: string;
   formatLabels: Record<LevelExamFormat, string>;
 };
 
@@ -85,10 +84,6 @@ export function getLevelExamResultCopy(lang: Lang, { passed, neededForPass, ener
         vi: `Thi lại −${energyCost} ⚡`, id: `Ulangi ujian −${energyCost} ⚡`,
         tr: `Sınavı tekrarla −${energyCost} ⚡`, pl: `Powtórz egzamin −${energyCost} ⚡`,
       }),
-    reviewAction: triLang(lang, {
-      ru: 'Разобрать результат', uk: 'Розібрати результат', es: 'Revisar resultado', 'pt-BR': 'Revisar resultado',
-      vi: 'Xem lại kết quả', id: 'Tinjau hasil', tr: 'Sonucu incele', pl: 'Przejrzyj wynik',
-    }),
     formatLabels: {
       guess_phrase: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
       fill_gap: triLang(lang, { ru: 'Пропуски', uk: 'Пропуски', es: 'Huecos', 'pt-BR': 'Lacunas', vi: 'Điền từ', id: 'Kata hilang', tr: 'Boşluklar', pl: 'Luki' }),

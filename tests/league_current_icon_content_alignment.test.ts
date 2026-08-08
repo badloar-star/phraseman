@@ -19,7 +19,7 @@ describe('current league icon content alignment', () => {
 
   it('renders the active league heraldry in the arena emblem slot', () => {
     const screenSource = fs.readFileSync(path.join(process.cwd(), 'app', 'club_screen.tsx'), 'utf8');
-    const sceneSource = fs.readFileSync(path.join(process.cwd(), 'components', 'league', 'LeagueArenaScene.tsx'), 'utf8');
+    const sceneSource = fs.readFileSync(path.join(process.cwd(), 'components', 'league', 'LeagueCompetitionScene.tsx'), 'utf8');
 
     expect(screenSource).toContain('leagueIcon={<LeagueIcon');
     expect(screenSource).toContain('league={myLeague}');

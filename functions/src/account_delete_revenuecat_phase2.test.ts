@@ -25,7 +25,9 @@ describe('account deletion RevenueCat permanent denial Phase 2 (RED)', () => {
   });
 
   it.each([
-    ['premium', 'async function handlePremiumSubscriptionEvent'],
+    // Premium processing was intentionally extracted from the HTTP adapter so
+    // the verified event reducer can be tested without an Express response.
+    ['premium', 'export async function applyVerifiedPremiumSubscriptionEvent'],
     ['transfer', 'async function handleTransferEvent'],
     ['shard purchase', 'async function handleShardPurchaseEvent'],
     ['shard refund', 'async function handleShardRefundEvent'],

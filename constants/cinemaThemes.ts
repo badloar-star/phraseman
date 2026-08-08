@@ -24,8 +24,6 @@ export function cinemaAlpha(hex: string, alpha: number): string {
   return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
 }
 
-export type CinemaQuizLevel = { gradA: string; gradB: string; accent: string };
-
 export type CinemaPalette = {
   /** Основной акцент (CTA, активные элементы). Всегда чистый hex — код делает `${accent}18`. */
   accent: string;
@@ -55,7 +53,6 @@ export type CinemaPalette = {
   cardGradient: [string, string];
   /** Вертикальный градиент фона экрана (блум добавляется поверх отдельным слоем). */
   bgGradient3: [string, string, string];
-  quiz: { easy: CinemaQuizLevel; medium: CinemaQuizLevel; hard: CinemaQuizLevel };
 };
 
 export const CINEMA: Record<CinemaMode, CinemaPalette> = {
@@ -69,11 +66,6 @@ export const CINEMA: Record<CinemaMode, CinemaPalette> = {
     textMuted: '#A9AECB', textGhost: '#6E7390', btnShadow: '#39448F',
     cardGradient: ['#293463', '#06070D'],
     bgGradient3: ['#080B17', '#03040A', '#010102'],
-    quiz: {
-      easy: { gradA: '#08221A', gradB: '#020D0A', accent: '#5FE0B0' },
-      medium: { gradA: '#0E1430', gradB: '#040714', accent: '#8FA0FF' },
-      hard: { gradA: '#1C0E30', gradB: '#0A0414', accent: '#B070FF' },
-    },
   },
   ember: {
     accent: '#FFCC55', second: '#FFD9A0', onAccent: '#2A1A02',
@@ -85,11 +77,6 @@ export const CINEMA: Record<CinemaMode, CinemaPalette> = {
     textMuted: '#C9B4A4', textGhost: '#8A7464', btnShadow: '#9A6E0E',
     cardGradient: ['#3A2814', '#070302'],
     bgGradient3: ['#0F0804', '#060302', '#010101'],
-    quiz: {
-      easy: { gradA: '#082218', gradB: '#020D09', accent: '#5FE8A8' },
-      medium: { gradA: '#2A1606', gradB: '#100802', accent: '#FFCC55' },
-      hard: { gradA: '#2A0814', gradB: '#10030A', accent: '#FF4D6E' },
-    },
   },
   aurora: {
     accent: '#3DE8A6', second: '#9FF2D4', onAccent: '#052A1C',
@@ -101,11 +88,6 @@ export const CINEMA: Record<CinemaMode, CinemaPalette> = {
     textMuted: '#A7C0B5', textGhost: '#6F837A', btnShadow: '#0E7A57',
     cardGradient: ['#244635', '#040806'],
     bgGradient3: ['#06100B', '#030705', '#010201'],
-    quiz: {
-      easy: { gradA: '#08241B', gradB: '#02100B', accent: '#3DE8A6' },
-      medium: { gradA: '#08182B', gradB: '#020A12', accent: '#3FA9FF' },
-      hard: { gradA: '#260C10', gradB: '#100406', accent: '#FF6470' },
-    },
   },
   volt: {
     accent: '#C6FF34', second: '#E2FF7A', onAccent: '#182002',
@@ -117,11 +99,6 @@ export const CINEMA: Record<CinemaMode, CinemaPalette> = {
     textMuted: '#BFC6A3', textGhost: '#7E8563', btnShadow: '#5F7A0A',
     cardGradient: ['#374513', '#050700'],
     bgGradient3: ['#0B0E03', '#040502', '#010200'],
-    quiz: {
-      easy: { gradA: '#08241B', gradB: '#02100B', accent: '#4FE8AC' },
-      medium: { gradA: '#1C2406', gradB: '#0B0F02', accent: '#C6FF34' },
-      hard: { gradA: '#2A1606', gradB: '#100802', accent: '#FF8A3D' },
-    },
   },
 };
 

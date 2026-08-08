@@ -5,20 +5,40 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
-import { enforceFreeJobGenLimit } from './explain/explain_budget';
+import {
+  enforceFreeJobGenLimit,
+  refundFreeJobGenLimit,
+  type FreeJobGenReservation,
+} from './explain/explain_budget';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
 import { resolvePromptLangKey, PROMPT_LANGUAGES } from './explain/explain_prompts';
 import {
   mistakeHashFor,
   readCachedMistakeExplanation,
   claimMistakePendingLock,
-  writeReadyMistakeExplanation,
+  claimMistakeEli5PendingLock,
+  releaseMistakePendingLock,
+  releaseMistakeEli5PendingLock,
+  invalidateMistakeCachedVariant,
+  writeReadyMistakeExplanationBundle,
   writeEli5MistakeExplanation,
   writeRejectedMistakeExplanation,
   isRetryableRejectedMistake,
   type MistakeExplainVariant,
 } from './explain/mistake_explain_cache';
 import { assertAiOutputLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
+import {
+  buildMistakeBundleMessages,
+  parseMistakeExplanationBundle,
+  type MistakeExplanationBundle,
+} from './explain/mistake_explain_bundle';
+import {
+  GeneratedOutputRejected,
+  generateWithOutputValidationRetry,
+  OutputValidationRetryAborted,
+  OutputValidationRetriesExhausted,
+  type MistakeOpenAiUsage,
+} from './explain/mistake_output_retry';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -26,19 +46,28 @@ const REGION = 'us-central1';
 const RATE_COLLECTION = 'mistake_explain_rate_limits';
 const BILLING_COLLECTION = 'mistake_explain_billing';
 
-// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
-// владельца 2026-07-02), проверяется ДО чтения кэша. Клиентский AsyncStorage-счётчик
-// обходится переустановкой — сервер источник правды. Premium — без капа.
+// Free learners get three paid cache misses per UTC day. Warm-cache reads are
+// free and unlimited; premium bypasses this miss cap. Firestore is authoritative.
 const FREE_DAILY_CAP = 3;
+const PENDING_POLL_ATTEMPTS = 4;
+const PENDING_POLL_DELAY_MS = 200;
 
-async function enforceFreeDailyGenCap(
+type MistakeFreeCapReservation = FreeJobGenReservation;
+
+async function reserveFreeDailyGenCap(
   db: admin.firestore.Firestore,
   authUid: string,
   stableUid: string,
-): Promise<void> {
+): Promise<MistakeFreeCapReservation | null> {
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-  if (isPremium) return;
-  await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP);
+  if (isPremium) return null;
+  const nowMs = Date.now();
+  return enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP, nowMs);
+}
+
+async function refundFreeDailyGenCap(reservation: MistakeFreeCapReservation | null): Promise<void> {
+  if (!reservation) return;
+  await refundFreeJobGenLimit(reservation);
 }
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
@@ -70,6 +99,10 @@ const MAX_OUTPUT_TOKENS = 340;
 // Один повтор с увеличенным лимитом, когда провайдер обрубил ответ по длине.
 // Дороже только на редких длинных разборах: обычный путь по-прежнему один вызов.
 const RETRY_OUTPUT_TOKENS = 520;
+const BUNDLE_MAX_OUTPUT_TOKENS = 520;
+const BUNDLE_RETRY_OUTPUT_TOKENS = 760;
+const MAX_PROVIDER_ANSWER = 4_000;
+const VALIDATION_MAX_ATTEMPTS = 3;
 
 interface DiffPair {
   expected: string;
@@ -115,12 +148,23 @@ interface OpenAIChatResponse {
   usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
 }
 
-type OpenAIUsage = { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
+type OpenAIUsage = MistakeOpenAiUsage;
 type GenerateResult = { answer: string; usage: OpenAIUsage };
+type CheckedGenerateResult = GenerateResult & { attempts: number; validatorRejects: number };
+type CheckedBundleResult = {
+  bundle: MistakeExplanationBundle;
+  usage: OpenAIUsage;
+  attempts: number;
+  validatorRejects: number;
+};
 
 export interface ExplainMistakeResponse {
   ok: true;
   text: string;
+  /** Present on FULL bundle responses so the client can prime both local variants. */
+  fullText?: string;
+  /** Present on FULL bundle responses so "explain simply" needs no second request. */
+  eli5Text?: string;
   /** Kept for client back-compat. No daily cap anymore → always a large sentinel. */
   remainingQuota: number;
   model: string;
@@ -464,14 +508,18 @@ async function requestGeneration(
   });
 
   if (!response.ok) {
-    const detail = await response.text().catch(() => '');
-    console.error('mistake_explain chat failed', response.status, detail.slice(0, 500));
+    console.error('mistake_explain chat failed', { status: response.status });
     throw new HttpsError('unavailable', 'mistake_explain_provider_failed');
   }
 
   const json = (await response.json()) as OpenAIChatResponse;
-  const answer = text(json.choices?.[0]?.message?.content, 1400);
-  if (!answer) throw new HttpsError('unavailable', 'mistake_explain_empty_reply');
+  const answer = text(json.choices?.[0]?.message?.content, MAX_PROVIDER_ANSWER);
+  if (!answer) {
+    throw new GeneratedOutputRejected(
+      new HttpsError('unavailable', 'mistake_explain_empty_reply'),
+      json.usage ?? {},
+    );
+  }
   return {
     answer,
     usage: json.usage ?? {},
@@ -483,33 +531,18 @@ async function generate(
   apiKey: string,
   model: string,
   messages: Array<{ role: 'system' | 'user'; content: string }>,
+  maxTokens: number,
 ): Promise<GenerateResult> {
-  const first = await requestGeneration(apiKey, model, messages, MAX_OUTPUT_TOKENS);
-  if (!first.truncated) return { answer: first.answer, usage: first.usage };
-
-  // зачем: обрубленный по длине разбор нельзя ни показывать, ни кэшировать — он
-  // испортит контент для всех, кто повторит ту же ошибку. Один повтор с большим
-  // лимитом; если и он обрублен — лучше честная ошибка, чем вечный обрубок в кэше.
-  console.warn('mistake_explain truncated by length, retrying', {
-    model,
-    firstAttemptTokens: MAX_OUTPUT_TOKENS,
-  });
-  const retry = await requestGeneration(apiKey, model, messages, RETRY_OUTPUT_TOKENS);
-  if (retry.truncated) {
-    console.error('mistake_explain still truncated after retry', { model });
-    throw new HttpsError('unavailable', 'mistake_explain_truncated');
+  const generated = await requestGeneration(apiKey, model, messages, maxTokens);
+  if (generated.truncated) {
+    // A truncated response is paid output, but it is not safe to show/cache. Let the shared
+    // validator budget count it as one attempt so the callable never exceeds three calls.
+    throw new GeneratedOutputRejected(
+      new HttpsError('unavailable', 'mistake_explain_truncated'),
+      generated.usage,
+    );
   }
-  // зачем: в биллинг должны попасть ОБА вызова, иначе учёт расхода OpenAI занижен —
-  // первый (обрубленный) тоже оплачен провайдеру.
-  return {
-    answer: retry.answer,
-    usage: {
-      prompt_tokens: Number(first.usage.prompt_tokens ?? 0) + Number(retry.usage.prompt_tokens ?? 0),
-      completion_tokens:
-        Number(first.usage.completion_tokens ?? 0) + Number(retry.usage.completion_tokens ?? 0),
-      total_tokens: Number(first.usage.total_tokens ?? 0) + Number(retry.usage.total_tokens ?? 0),
-    },
-  };
+  return { answer: generated.answer, usage: generated.usage };
 }
 
 function assertMistakeGeneratedText(answer: string, payload: ExplainMistakePayload): void {
@@ -540,37 +573,139 @@ async function generateCheckedMistakeText(
   model: string,
   payload: ExplainMistakePayload,
   messages: Array<{ role: 'system' | 'user'; content: string }>,
-): Promise<GenerateResult> {
-  const gen = await generate(apiKey, model, messages);
-  assertMistakeGeneratedText(gen.answer, payload);
-  return gen;
+): Promise<CheckedGenerateResult> {
+  const checked = await generateWithOutputValidationRetry({
+    maxAttempts: VALIDATION_MAX_ATTEMPTS,
+    generate: (attempt) => generate(
+      apiKey,
+      model,
+      messages,
+      attempt === 1 ? MAX_OUTPUT_TOKENS : RETRY_OUTPUT_TOKENS,
+    ),
+    validate: (answer) => {
+      assertMistakeGeneratedText(answer, payload);
+      return answer;
+    },
+    isValidationError: isOutputValidationRejection,
+    onValidationReject: (attempt) => {
+      console.warn('mistake_explain validator rejected output', {
+        variant: payload.variant,
+        attempt,
+      });
+    },
+  });
+  return {
+    answer: checked.value,
+    usage: checked.usage,
+    attempts: checked.attempts,
+    validatorRejects: checked.validatorRejects,
+  };
 }
 
-/**
- * Пометку 'rejected' в кэше ставим ТОЛЬКО когда модель реально выдала не тот язык
- * (assertAiOutputLanguage → HttpsError с '..._wrong_language'). Провайдерские/сетевые
- * сбои (`mistake_explain_provider_failed`, таймауты, 5xx) — временные: если писать их как
- * rejected, юзер видит «Не получилось получить разбор» и после рефреша тоже (кэш отдаёт
- * протухшую пометку). Такие ошибки НЕ кэшируем — пусть следующий заход попробует заново.
- */
+function validateMistakeBundle(
+  answer: string,
+  payload: ExplainMistakePayload,
+): MistakeExplanationBundle {
+  let bundle: MistakeExplanationBundle;
+  try {
+    bundle = parseMistakeExplanationBundle(answer);
+  } catch {
+    throw new HttpsError('unavailable', 'mistake_explain_invalid_bundle');
+  }
+  assertMistakeGeneratedText(bundle.full, payload);
+  assertMistakeGeneratedText(bundle.eli5, payload);
+  return bundle;
+}
+
+async function generateCheckedMistakeBundle(
+  apiKey: string,
+  model: string,
+  payload: ExplainMistakePayload,
+): Promise<CheckedBundleResult> {
+  const messages = buildMistakeBundleMessages(buildFullMessages(payload));
+  const checked = await generateWithOutputValidationRetry({
+    maxAttempts: VALIDATION_MAX_ATTEMPTS,
+    generate: (attempt) => generate(
+      apiKey,
+      model,
+      messages,
+      attempt === 1 ? BUNDLE_MAX_OUTPUT_TOKENS : BUNDLE_RETRY_OUTPUT_TOKENS,
+    ),
+    validate: (answer) => validateMistakeBundle(answer, payload),
+    isValidationError: isOutputValidationRejection,
+    onValidationReject: (attempt) => {
+      console.warn('mistake_explain validator rejected output', {
+        variant: 'full_bundle',
+        attempt,
+      });
+    },
+  });
+  return {
+    bundle: checked.value,
+    usage: checked.usage,
+    attempts: checked.attempts,
+    validatorRejects: checked.validatorRejects,
+  };
+}
+
+/** Classify the wrong-language subtype so rejected cache records retain a useful reason. */
 function isLanguageRejection(error: unknown): boolean {
   const message = String((error as { message?: unknown })?.message ?? '');
   return message.includes('wrong_language');
 }
 
+function isOutputValidationRejection(error: unknown): boolean {
+  const message = String((error as { message?: unknown })?.message ?? '');
+  return message.includes('wrong_language')
+    || message.includes('mistake_explain_invalid_bundle')
+    || message.includes('mistake_explain_truncated')
+    || message.includes('mistake_explain_empty_reply');
+}
+
+function paidOutputFailure(error: unknown): {
+  originalError: unknown;
+  usage: MistakeOpenAiUsage;
+  exhausted: boolean;
+} | null {
+  if (error instanceof OutputValidationRetriesExhausted) {
+    return { originalError: error.validationError, usage: error.usage, exhausted: true };
+  }
+  if (error instanceof OutputValidationRetryAborted) {
+    return { originalError: error.generationError, usage: error.usage, exhausted: false };
+  }
+  return null;
+}
+
 /** Persist a checked FULL breakdown as the global ready doc (merge:true → idempotent under races). */
-async function persistReadyMistake(
+async function persistReadyMistakeBundle(
   mistakeHash: string,
-  full: string,
+  bundle: MistakeExplanationBundle,
   payload: ExplainMistakePayload,
   model: string,
-): Promise<void> {
-  await writeReadyMistakeExplanation(mistakeHash, full, {
+  claimedAtMs: number,
+): Promise<boolean> {
+  return writeReadyMistakeExplanationBundle(mistakeHash, bundle, {
     lang: payload.interfaceLang,
     targetEn: payload.targetAnswer,
     userAnswer: payload.userAnswer,
     model,
-  });
+  }, claimedAtMs);
+}
+
+async function recordPaidUsageOrHold(
+  db: FirebaseFirestore.Firestore,
+  params: Parameters<typeof recordBilling>[1],
+  variant: 'eli5' | 'full_bundle',
+): Promise<void> {
+  try {
+    await recordBilling(db, params);
+  } catch (billingError) {
+    console.error('mistake_explain paid-usage billing failed; lease held', {
+      variant,
+      errorName: String((billingError as Error)?.name ?? 'unknown').slice(0, 80),
+    });
+    throw new HttpsError('internal', 'mistake_explain_billing_unrecorded');
+  }
 }
 
 async function recordBilling(
@@ -603,7 +738,7 @@ async function recordBilling(
 export const explainMistake = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
-  timeoutSeconds: 30,
+  timeoutSeconds: 120,
   memory: '512MiB',
   minInstances: 0,
   maxInstances: 20,
@@ -631,110 +766,265 @@ export const explainMistake = onCall({
   const data = (request.data ?? {}) as ExplainMistakeRequest;
   const payload = sanitizePayload(data);
 
-  const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
-  if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
-
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
-  const model = await resolveConfiguredDialogModel(
-    db,
-    process.env.OPENAI_MISTAKE_EXPLAIN_MODEL || process.env.OPENAI_DIALOG_MODEL || MODEL_DEFAULT,
-  );
 
   const langKey = resolvePromptLangKey(payload.interfaceLang);
   const mistakeHash = mistakeHashFor(payload.targetAnswer, payload.userAnswer, langKey, payload.studyTarget);
-  const RQ = 999; // remainingQuota sentinel — no daily cap.
-
-  // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
-  // считаются. Ошибка 'explain_free_daily_limit' → клиент показывает состояние
-  // 'limit' с CTA в Plus (AiMistakeCard).
-  await enforceFreeDailyGenCap(db, authUid, stableUid);
+  const RQ = 999; // Legacy response sentinel; miss-only free cap is enforced server-side.
 
   // 1. Cache FIRST — the ≥99% path, $0.
   const cached = await readCachedMistakeExplanation(mistakeHash);
+  const cachedModel = text(cached?.model, 100) || MODEL_DEFAULT;
+  const resolveProvider = async (): Promise<{ apiKey: string; model: string }> => {
+    const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
+    if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
+    const model = await resolveConfiguredDialogModel(
+      db,
+      process.env.OPENAI_MISTAKE_EXPLAIN_MODEL || process.env.OPENAI_DIALOG_MODEL || MODEL_DEFAULT,
+    );
+    return { apiKey, model };
+  };
 
   if (payload.variant === 'eli5') {
     // Cached ELI5 → $0.
-    if (cached?.status === 'ready' && cached.eli5 && isMistakeGeneratedTextSafe(cached.eli5, payload)) {
-      return { ok: true, text: cached.eli5, remainingQuota: RQ, model, fromCache: true, variant: 'eli5' };
+    if (cached?.eli5 && isMistakeGeneratedTextSafe(cached.eli5, payload)) {
+      return { ok: true, text: cached.eli5, remainingQuota: RQ, model: cachedModel, fromCache: true, variant: 'eli5' };
     }
-    await enforceRateLimit(db, authUid, stableUid);
-    const gen = await generateCheckedMistakeText(apiKey, model, payload, buildEli5Messages(payload));
-
-    if (cached?.status === 'ready') {
-      // FULL doc exists — just attach ELI5 to it.
-      await writeEli5MistakeExplanation(mistakeHash, gen.answer);
-    } else {
-      // ELI5 requested BEFORE the full breakdown was ever cached. Without this the ELI5 text would
-      // never persist and every repeat of the same mistake would re-pay (money leak). Materialize
-      // the ready doc once (full + eli5) so all later readers are free. The lock only de-dupes the
-      // generation; persistence must NOT be gated on winning it, or a breakdown the user already
-      // saw would read as «нет в кэше» in admin (audit 2026-06-22). On a lost lock, finalize only
-      // if there is still no ready doc (don't clobber the winner). Writes are merge:true → idempotent.
-      const claimed = await claimMistakePendingLock(mistakeHash, Date.now());
-      let fullGen: GenerateResult;
-      try {
-        fullGen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
-      } catch (error) {
-        // Кэшируем rejected только для реального «не тот язык», не для временных сбоев провайдера.
-        if (claimed && isLanguageRejection(error)) {
-          await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+    if (cached?.eli5) await invalidateMistakeCachedVariant(mistakeHash, 'eli5');
+    const eli5ClaimedAtMs = Date.now();
+    const claimedEli5 = await claimMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs);
+    if (!claimedEli5) {
+      for (let poll = 0; poll < PENDING_POLL_ATTEMPTS; poll += 1) {
+        await new Promise((resolve) => setTimeout(resolve, PENDING_POLL_DELAY_MS));
+        const latest = await readCachedMistakeExplanation(mistakeHash);
+        if (latest?.eli5 && isMistakeGeneratedTextSafe(latest.eli5, payload)) {
+          return {
+            ok: true,
+            text: latest.eli5,
+            remainingQuota: RQ,
+            model: text(latest.model, 100) || MODEL_DEFAULT,
+            fromCache: true,
+            variant: 'eli5',
+          };
         }
-        throw error;
       }
-      const latest = claimed ? null : await readCachedMistakeExplanation(mistakeHash);
-      if (claimed || !(latest?.status === 'ready' && latest.full && isMistakeGeneratedTextSafe(latest.full, payload))) {
-        await persistReadyMistake(mistakeHash, fullGen.answer, payload, model);
-      }
-      await writeEli5MistakeExplanation(mistakeHash, gen.answer);
-      await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: fullGen.usage });
+      throw new HttpsError('unavailable', 'mistake_explanation_pending');
     }
-    await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage });
-    return { ok: true, text: gen.answer, remainingQuota: RQ, model, fromCache: false, variant: 'eli5' };
+    let freeCapReservation: MistakeFreeCapReservation | null = null;
+    let gen: CheckedGenerateResult;
+    let model = MODEL_DEFAULT;
+    let generationStartedAtMs = 0;
+    try {
+      const provider = await resolveProvider();
+      model = provider.model;
+      freeCapReservation = await reserveFreeDailyGenCap(db, authUid, stableUid);
+      await enforceRateLimit(db, authUid, stableUid);
+      generationStartedAtMs = Date.now();
+      gen = await generateCheckedMistakeText(provider.apiKey, model, payload, buildEli5Messages(payload));
+    } catch (error) {
+      let finalError = error;
+      const paidFailure = paidOutputFailure(error);
+      if (paidFailure) {
+        await recordPaidUsageOrHold(db, {
+          stableUid,
+          authUid,
+          payload,
+          model,
+          mistakeHash,
+          usage: paidFailure.usage,
+        }, 'eli5');
+        finalError = paidFailure.originalError;
+      }
+      await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
+      await releaseMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs).catch(() => {});
+      throw finalError;
+    }
+    let eli5ResultText = gen.answer;
+    // A paid response without durable accounting is held behind its lease. Do not
+    // refund/release here: that would allow a blind paid regeneration.
+    await recordPaidUsageOrHold(
+      db,
+      { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage },
+      'eli5',
+    );
+    try {
+      const published = await writeEli5MistakeExplanation(mistakeHash, gen.answer, eli5ClaimedAtMs);
+      if (!published) {
+        const latest = await readCachedMistakeExplanation(mistakeHash);
+        if (latest?.eli5 && isMistakeGeneratedTextSafe(latest.eli5, payload)) {
+          eli5ResultText = latest.eli5;
+        } else {
+          throw new HttpsError('unavailable', 'mistake_explanation_pending');
+        }
+      }
+    } catch (error) {
+      await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
+      await releaseMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs).catch(() => {});
+      throw error;
+    }
+    console.info('mistake_explain generated', {
+      variant: 'eli5',
+      generationAttempts: gen.attempts,
+      validatorRejects: gen.validatorRejects,
+      fromCache: false,
+      bundleGenerated: false,
+      durationMs: Math.max(0, Date.now() - generationStartedAtMs),
+    });
+    return { ok: true, text: eli5ResultText, remainingQuota: RQ, model, fromCache: false, variant: 'eli5' };
   }
 
   // FULL breakdown path.
   if (cached?.status === 'ready' && cached.full && isMistakeGeneratedTextSafe(cached.full, payload)) {
-    return { ok: true, text: cached.full, remainingQuota: RQ, model, fromCache: true, variant: 'full' };
+    let cachedEli5 = cached.eli5;
+    if (cachedEli5 && !isMistakeGeneratedTextSafe(cachedEli5, { ...payload, variant: 'eli5' })) {
+      await invalidateMistakeCachedVariant(mistakeHash, 'eli5');
+      cachedEli5 = undefined;
+    }
+    return {
+      ok: true,
+      text: cached.full,
+      fullText: cached.full,
+      eli5Text: cachedEli5,
+      remainingQuota: RQ,
+      model: cachedModel,
+      fromCache: true,
+      variant: 'full',
+    };
+  }
+  if (cached?.status === 'ready' && cached.full) {
+    await invalidateMistakeCachedVariant(mistakeHash, 'full');
   }
   if (cached?.status === 'rejected' && !isRetryableRejectedMistake(cached, Date.now())) {
     // Serve a live generation rather than a stale rejection for the user in front of us,
     // but don't touch the cache (the lock claim below handles regeneration timing).
   }
 
-  // Anti-abuse rate-limit (cache miss only).
-  await enforceRateLimit(db, authUid, stableUid);
-
-  // Claim the generation lock (anti-duplicate). If someone else is generating, still serve the
-  // user a live answer; we persist it below too (only the duplicate generation is avoided).
-  const claimed = await claimMistakePendingLock(mistakeHash, Date.now());
-
-  let gen: GenerateResult;
-  try {
-    gen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
-  } catch (error) {
-    // Кэшируем rejected только для реального «не тот язык», не для временных сбоев провайдера —
-    // иначе юзер получает залипшую ошибку «Не получилось получить разбор» даже после рефреша.
-    if (claimed && isLanguageRejection(error)) {
-      await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+  // Claim before charging/generating. A concurrent caller waits briefly for the
+  // winner, then returns a retryable pending signal instead of paying twice.
+  const fullClaimedAtMs = Date.now();
+  const claimed = await claimMistakePendingLock(mistakeHash, fullClaimedAtMs);
+  if (!claimed) {
+    for (let poll = 0; poll < PENDING_POLL_ATTEMPTS; poll += 1) {
+      await new Promise((resolve) => setTimeout(resolve, PENDING_POLL_DELAY_MS));
+      const latest = await readCachedMistakeExplanation(mistakeHash);
+      if (latest?.status === 'ready' && latest.full && isMistakeGeneratedTextSafe(latest.full, payload)) {
+        let latestEli5 = latest.eli5;
+        if (latestEli5 && !isMistakeGeneratedTextSafe(latestEli5, { ...payload, variant: 'eli5' })) {
+          await invalidateMistakeCachedVariant(mistakeHash, 'eli5');
+          latestEli5 = undefined;
+        }
+        return {
+          ok: true,
+          text: latest.full,
+          fullText: latest.full,
+          eli5Text: latestEli5,
+          remainingQuota: RQ,
+          model: text(latest.model, 100) || MODEL_DEFAULT,
+          fromCache: true,
+          variant: 'full',
+        };
+      }
     }
+    throw new HttpsError('unavailable', 'mistake_explanation_pending');
+  }
+
+  let gen: CheckedBundleResult;
+  let freeCapReservation: MistakeFreeCapReservation | null = null;
+  let model = MODEL_DEFAULT;
+  let generationStartedAtMs = 0;
+  try {
+    const provider = await resolveProvider();
+    model = provider.model;
+    freeCapReservation = await reserveFreeDailyGenCap(db, authUid, stableUid);
+    await enforceRateLimit(db, authUid, stableUid);
+    generationStartedAtMs = Date.now();
+    gen = await generateCheckedMistakeBundle(provider.apiKey, model, payload);
+  } catch (error) {
+    let finalError = error;
+    const paidFailure = paidOutputFailure(error);
+    if (paidFailure) {
+      await recordPaidUsageOrHold(db, {
+        stableUid,
+        authUid,
+        payload,
+        model,
+        mistakeHash,
+        usage: paidFailure.usage,
+      }, 'full_bundle');
+      finalError = paidFailure.originalError;
+    }
+    // Only deterministic output-validation exhaustion becomes rejected. Provider/network
+    // failures remain transient and are handled by the existing client transport retry.
+    if (claimed && paidFailure?.exhausted && isOutputValidationRejection(finalError)) {
+      await writeRejectedMistakeExplanation(
+        mistakeHash,
+        isLanguageRejection(finalError) ? 'non_target_language' : 'invalid_output_bundle',
+        fullClaimedAtMs,
+      ).catch((cacheError) => {
+        console.error('mistake_explain rejected-cache write failed', {
+          errorName: String((cacheError as Error)?.name ?? 'unknown').slice(0, 80),
+        });
+      });
+    }
+    await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
+    await releaseMistakePendingLock(mistakeHash, fullClaimedAtMs).catch(() => {});
+    throw finalError;
+  }
+
+  // Publish the two validated sections together: a reader can never observe a ready full
+  // explanation without the ELI5 text generated in the same provider response.
+  await recordPaidUsageOrHold(
+    db,
+    { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage },
+    'full_bundle',
+  );
+  let resultBundle = gen.bundle;
+  try {
+    const published = await persistReadyMistakeBundle(
+      mistakeHash,
+      gen.bundle,
+      payload,
+      model,
+      fullClaimedAtMs,
+    );
+    if (!published) {
+      const latest = await readCachedMistakeExplanation(mistakeHash);
+      if (
+        latest?.status === 'ready'
+        && latest.full
+        && latest.eli5
+        && isMistakeGeneratedTextSafe(latest.full, payload)
+        && isMistakeGeneratedTextSafe(latest.eli5, { ...payload, variant: 'eli5' })
+      ) {
+        resultBundle = { full: latest.full, eli5: latest.eli5 };
+      } else {
+        throw new HttpsError('unavailable', 'mistake_explanation_pending');
+      }
+    }
+  } catch (error) {
+    await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
+    await releaseMistakePendingLock(mistakeHash, fullClaimedAtMs).catch(() => {});
     throw error;
   }
+  console.info('mistake_explain generated', {
+    variant: 'full_bundle',
+    generationAttempts: gen.attempts,
+    validatorRejects: gen.validatorRejects,
+    fromCache: false,
+    bundleGenerated: true,
+    durationMs: Math.max(0, Date.now() - generationStartedAtMs),
+  });
 
-  // The user is shown gen.answer regardless — so it MUST end up cached, else a phrase the user
-  // already saw explained reads as «нет в кэше» in admin (audit 2026-06-22). The lock only avoids
-  // a DUPLICATE generation; it must not gate persistence. If we lost the lock, finalize only when
-  // there is still no ready doc (don't clobber the winner's text); writes are merge:true → idempotent.
-  if (claimed) {
-    await persistReadyMistake(mistakeHash, gen.answer, payload, model);
-  } else {
-    const latest = await readCachedMistakeExplanation(mistakeHash);
-    if (!(latest?.status === 'ready' && latest.full && isMistakeGeneratedTextSafe(latest.full, payload))) {
-      await persistReadyMistake(mistakeHash, gen.answer, payload, model);
-    }
-  }
-  await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage });
-
-  return { ok: true, text: gen.answer, remainingQuota: RQ, model, fromCache: false, variant: 'full' };
+  return {
+    ok: true,
+    text: resultBundle.full,
+    fullText: resultBundle.full,
+    eli5Text: resultBundle.eli5,
+    remainingQuota: RQ,
+    model,
+    fromCache: false,
+    variant: 'full',
+  };
 });

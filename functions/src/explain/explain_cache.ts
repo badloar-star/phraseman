@@ -17,9 +17,9 @@ import { createHash } from 'crypto';
 
 export const EXPLAIN_COLLECTION = 'phrase_explanations';
 
-/** Generation lock TTL. Slightly above the 30s CF timeout so a crashed generation's lock
- *  becomes re-claimable right after the request that held it dies. */
-export const LOCK_TTL_MS = 30_000;
+/** Generation lock TTL. Slightly above explainPhrase's 150s CF timeout so a
+ *  client watchdog retry can never overlap the still-running lease owner. */
+export const LOCK_TTL_MS = 165_000;
 
 /** Cache doc schema version — also used to invalidate stale cached explanations on read.
  *  v2 (2026-06-10): prompt rewritten to explain ENGLISH grammar instead of restating the meaning.
@@ -45,7 +45,7 @@ export const REPORT_REJECT_REASON = 'report_threshold';
 
 /** How long a JUDGE-rejected phrase serves the fallback before one request may retry generation.
  *  Bounded cost: one retry per TTL per phrase, still inside user/global budgets. */
-export const REJECTED_RETRY_TTL_MS = 10 * 60_000;
+export const REJECTED_RETRY_TTL_MS = 15_000;
 
 /** True iff a cached doc was written by the CURRENT prompt/schema. Older docs are stale and
  *  must be ignored on read + re-claimable for regeneration. */
@@ -173,6 +173,22 @@ export async function claimPendingLock(phraseHash: string, nowMs: number): Promi
       updatedAtMs: nowMs,
     }, { merge: true });
     return true;
+  });
+}
+
+/** Release only the generation lease owned by this request; never clear a newer winner's lease. */
+export async function releasePendingLock(phraseHash: string, claimedAtMs: number): Promise<void> {
+  const ref = docRef(phraseHash);
+  const db = admin.firestore();
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedExplanation | undefined;
+    if (data?.status !== 'pending' || Number(data.createdAtMs ?? 0) !== claimedAtMs) return;
+    tx.set(ref, {
+      status: admin.firestore.FieldValue.delete(),
+      createdAtMs: admin.firestore.FieldValue.delete(),
+      reason: admin.firestore.FieldValue.delete(),
+      updatedAtMs: Date.now(),
+    }, { merge: true });
   });
 }
 

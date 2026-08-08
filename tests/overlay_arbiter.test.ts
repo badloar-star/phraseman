@@ -32,10 +32,6 @@ describe('OverlayArbiter queue resolution', () => {
     expect(resolveNextOverlay('achievementToast', wants('actionToast', 'themedAlert'))).toBe('themedAlert');
   });
 
-  it('can route match-found toast through the screen host without sharing root state', () => {
-    expect(resolveNextOverlay(null, wants('matchFoundToast', 'matchFoundToastScreen'))).toBe('matchFoundToastScreen');
-  });
-
   it('returns null when nothing is waiting', () => {
     expect(resolveNextOverlay('achievementToast', {})).toBeNull();
     expect(resolveNextOverlay(null, {})).toBeNull();
@@ -157,8 +153,8 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'introFullAccess', 'dailyPlan', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-      'perfectWeekReward', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
-      'collectibleDrop', 'reviewPrompt', 'arenaInvite', 'coinsMigration',
+      'perfectWeekReward', 'lessonResultsSequence', 'lessonCompleteNotif',
+      'collectibleDrop', 'reviewPrompt', 'coinsMigration',
     ];
     for (const k of protectedKeys) {
       expect(isForceEvictable(k)).toBe(false);
@@ -167,7 +163,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
 
   it('транзиентные тосты/уведомления подлежат выселению (защита нижних от залипшего тоста)', () => {
     const evictable: OverlayKey[] = [
-      'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast',
+      'shardsEarned',
       'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
       // boonActivated — информационная плашка «бонус дня» (награды по тапу нет),
       // её можно выселять: иначе незакрытая плашка душит все тосты до перезапуска.
@@ -185,11 +181,11 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
   // защищён: сторож его не трогает, окно держится все 60с до принятия/отклонения, а
   // залипания нет — его собственный авто-decline освободит слот.
   it('arenaInvite НЕ выселяется сторожем (его 60с авто-decline > 15с окна сторожа)', () => {
-    expect(isForceEvictable('arenaInvite')).toBe(false);
-    expect(FORCE_EVICTABLE_KEYS.has('arenaInvite')).toBe(false);
+    expect(isForceEvictable('lessonCompleteNotif')).toBe(false);
+    expect(FORCE_EVICTABLE_KEYS.has('lessonCompleteNotif')).toBe(false);
     // Предусловие сторожа есть (waiter ниже), но т.к. arenaInvite не force-evictable —
     // сторож не запускается, приглашение остаётся на экране.
-    expect(hasOtherWaiters('arenaInvite', wants('arenaInvite', 'achievementToast'))).toBe(true);
+    expect(hasOtherWaiters('lessonCompleteNotif', wants('lessonCompleteNotif', 'achievementToast'))).toBe(true);
   });
 
   it('lessonCompleteNotif (закрывает юзер тапом) НЕ выселяется', () => {
@@ -243,7 +239,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
 describe('OverlayArbiter: исчерпывающая классификация ключей (страж от рецидива)', () => {
   // Выселяемые сторожем: транзиентные авто-тосты + информационные плашки без награды-по-тапу.
   const EVICTABLE_REGISTRY: readonly OverlayKey[] = [
-    'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast',
+    'shardsEarned',
     'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
     'boonActivated',
   ];
@@ -263,8 +259,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
     // тапом юзера по CTA (доступна ≤3с, спек FeedbackKit §2.1) — выселять нельзя,
     // иначе празднование обрывается на середине, пока юзер его смотрит.
     'lessonResultsSequence',
-    'lessonCompleteNotif', 'arenaRoomConfirm',
-    'collectibleDrop', 'reviewPrompt', 'arenaInvite',
+    'lessonCompleteNotif',
+    'collectibleDrop', 'reviewPrompt',
     // coinsMigration — одноразовый информ-модал: закрывает юзер по CTA, выселять нельзя.
     'coinsMigration',
   ];

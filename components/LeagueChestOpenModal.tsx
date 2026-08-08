@@ -4,7 +4,7 @@ import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import type { ImageSourcePropType } from 'react-native';
-import type { LeagueChestRewardDrop } from '../app/services/league_chest_rewards';
+import { isActiveLeagueChestReward, type LeagueChestRewardDrop } from '../app/services/league_chest_rewards';
 import { getAvatarAuraById } from '../constants/avatar_auras';
 import {
   CUSTOM_AVATAR_GRADIENTS,
@@ -239,8 +239,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
       };
   }
 
-  // Запасной вариант для видов вне switch (legacy 'arena_plays' и будущие).
-  // До рантайма не доходит: arena-дропы отфильтрованы из visibleRewards.
+  // Запасной вариант для будущих видов.
   return {
     title: triLang(lang, { ru: 'Награда', uk: 'Нагорода', es: 'Recompensa', 'pt-BR': 'Recompensa', vi: 'Phần thưởng', id: 'Hadiah', tr: 'Ödül', pl: 'Nagroda' }),
     accent: '#9FDBFF',
@@ -318,11 +317,8 @@ function LeagueChestOpenModal({
   const crownFloat = useRef(new Animated.Value(0)).current;
   const shine = useRef(new Animated.Value(0)).current;
 
-  // Арена удалена из проекта: старые дропы «+N боёв» не показываем, даже если
-  // они придут из кэша или старого бэкенда. Пустого списка наград не подменяем
-  // фейковыми — честно пишем «Награды подгружаются…».
   const visibleRewards = useMemo(
-    () => (Array.isArray(rewards) ? rewards : []).filter((drop) => drop.kind !== 'arena_plays'),
+    () => (Array.isArray(rewards) ? rewards : []).filter(isActiveLeagueChestReward),
     [rewards],
   );
   const rewardCards = useMemo(() => visibleRewards.map((drop) => ({ drop, card: formatReward(drop, lang, themeMode) })), [visibleRewards, lang, themeMode]);

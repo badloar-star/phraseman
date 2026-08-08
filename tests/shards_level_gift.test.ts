@@ -87,6 +87,20 @@ describe('level_gift_system — shards_3', () => {
     await expect(getShardsBalance()).resolves.toBe(0);
   });
 
+  it('uses the gift occurrence in the XP event id so equal gifts from two levels both apply', async () => {
+    const { registerXP } = jest.requireMock('../app/xp_manager') as { registerXP: jest.Mock };
+    const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'shards_3')!;
+
+    await applyGift(gift, 'TestUser', 3, 5, jest.fn(), { occurrenceId: 'level:7:f2p' });
+    await applyGift(gift, 'TestUser', 3, 5, jest.fn(), { occurrenceId: 'level:8:f2p' });
+
+    const firstEventId = registerXP.mock.calls[0]?.[5]?.eventId;
+    const secondEventId = registerXP.mock.calls[1]?.[5]?.eventId;
+    expect(firstEventId).toContain('level:7:f2p');
+    expect(secondEventId).toContain('level:8:f2p');
+    expect(secondEventId).not.toBe(firstEventId);
+  });
+
   it('бывшие жемчужные подарки не пишут в хранилище баланса жемчуга', async () => {
     const { registerXP } = jest.requireMock('../app/xp_manager') as { registerXP: jest.Mock };
     mockStorage['shards_balance'] = '5';

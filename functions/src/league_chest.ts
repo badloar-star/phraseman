@@ -367,8 +367,11 @@ export function buildRewardProgressPatch(params: {
     .filter((drop) => drop.kind === 'streak_shield')
     .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 1)), 0);
   if (shieldCount > 0) {
-    const shield = parseShield(getExistingField(user, STREAK_SHIELD_KEY));
-    const next = JSON.stringify({ daysLeft: shield.daysLeft + shieldCount, grantedAt: today });
+    const rootDays = parseShield(user?.[STREAK_SHIELD_KEY]).daysLeft;
+    const progressDays = parseShield(getProgress(user)[STREAK_SHIELD_KEY]).daysLeft;
+    const dottedDays = parseShield(user?.[`progress.${STREAK_SHIELD_KEY}`]).daysLeft;
+    const daysLeft = Math.max(rootDays, progressDays, dottedDays);
+    const next = JSON.stringify({ daysLeft: daysLeft + shieldCount, grantedAt: today });
     patch[STREAK_SHIELD_KEY] = next;
     progressPatch[STREAK_SHIELD_KEY] = next;
   }

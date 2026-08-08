@@ -18,21 +18,32 @@ import type { EvidenceState } from './decision';
  */
 
 import { parseMixedTimestampMs } from './business_tier_history';
+import {
+  GROWTH_DAILY_SCHEMA_VERSION,
+  GROWTH_DAILY_SOURCE,
+  utcDayKey,
+} from '../growth_daily_aggregate';
 
+/** @deprecated Kept for callers; growth no longer caps recent rows at this value. */
 export const MAX_GROWTH_ROWS_PER_SOURCE = 500;
+export const GROWTH_PAGE_SIZE = 500;
 export const GROWTH_LOOKBACK_MS = 24 * 60 * 60 * 1_000;
 
 /** Верхняя граница страницы, которую сканируем в поисках недавних регистраций.
  *  Больше MAX_GROWTH_ROWS_PER_SOURCE: часть просканированных документов
  *  окажется старше окна и будет отброшена, поэтому запас нужен, чтобы
  *  реальных недавних пользователей не срезало вместе со старыми. */
-const SCAN_PAGE_SIZE = 2_000;
 
 export interface FetchGrowthSourceInput {
   readonly sourceId: GrowthReportCollection;
   readonly collection: FirebaseFirestore.CollectionReference;
+  readonly dailyCollection?: FirebaseFirestore.CollectionReference;
   readonly nowMs: number;
 }
+
+export type GrowthEvidenceProvenance =
+  | 'server_daily_aggregate'
+  | 'degraded_legacy_users_sample';
 
 export interface FetchGrowthSourceResult {
   readonly sourceId: GrowthReportCollection;
@@ -40,6 +51,9 @@ export interface FetchGrowthSourceResult {
   readonly truncated: boolean;
   readonly droppedCount: number;
   readonly rows: readonly GrowthRawRow[];
+  readonly count: number | null;
+  readonly provenance: GrowthEvidenceProvenance;
+  readonly periodKey: string;
   readonly observedAtMs: number;
 }
 
@@ -49,46 +63,73 @@ function text(value: unknown): string | null {
 
 export async function fetchGrowthSource(input: FetchGrowthSourceInput): Promise<FetchGrowthSourceResult> {
   const sinceMs = input.nowMs - GROWTH_LOOKBACK_MS;
+  const periodKey = utcDayKey(input.nowMs);
+
+  if (input.dailyCollection) {
+    try {
+      const dailySnap = await input.dailyCollection.doc(periodKey).get();
+      if (dailySnap.exists) {
+        const data = dailySnap.data() as Record<string, unknown> | undefined;
+        const count = Number(data?.newUsers);
+        const valid =
+          data?.schemaVersion === GROWTH_DAILY_SCHEMA_VERSION &&
+          data?.dayKey === periodKey &&
+          data?.source === GROWTH_DAILY_SOURCE &&
+          Number.isSafeInteger(count) &&
+          count >= 0;
+        if (valid) {
+          return Object.freeze({
+            sourceId: input.sourceId,
+            state: count === 0 ? ('empty' as const) : ('ready' as const),
+            truncated: false,
+            droppedCount: 0,
+            rows: Object.freeze([]),
+            count,
+            provenance: 'server_daily_aggregate' as const,
+            periodKey,
+            observedAtMs: input.nowMs,
+          });
+        }
+      }
+    } catch {
+      // Fall through to bounded degraded evidence. Aggregate availability must
+      // not turn into an unbounded users scan or a fabricated exact zero.
+    }
+  }
+
   try {
-    // orderBy('__name__', 'desc'): последняя страница по ID документа —
-    // не идеальный прокси хронологии, но новые документы Firestore почти
-    // всегда получают лексикографически больший auto-id, так что недавние
-    // регистрации оказываются в начале этой страницы. limit(+1) — узнать,
-    // упёрлись ли в потолок сканирования.
+    // created_at is client-written and mixed-type. This single page is only a
+    // degraded diagnostic sample while the server aggregate is absent; it is
+    // never promoted to an exact count and never paginates across all users.
     const snapshot = await input.collection
       .orderBy('__name__', 'desc')
-      .limit(SCAN_PAGE_SIZE + 1)
+      .limit(GROWTH_PAGE_SIZE)
       .select('created_at', 'platform')
       .get();
-    const docs = snapshot.docs;
-    const scanTruncated = docs.length > SCAN_PAGE_SIZE;
-    const scanned = scanTruncated ? docs.slice(0, SCAN_PAGE_SIZE) : docs;
-
-    const recent = scanned.flatMap((snap) => {
+    const rows: GrowthRawRow[] = [];
+    for (const snap of snapshot.docs) {
       const data = snap.data() as Record<string, unknown>;
       const createdAtMs = parseMixedTimestampMs(data.created_at);
-      if (createdAtMs === null || createdAtMs < sinceMs) return [];
-      return [Object.freeze({ platform: text(data.platform) })];
-    });
-
-    const rowsTruncated = recent.length > MAX_GROWTH_ROWS_PER_SOURCE;
-    const rows = rowsTruncated ? recent.slice(0, MAX_GROWTH_ROWS_PER_SOURCE) : recent;
+      if (createdAtMs === null || createdAtMs < sinceMs || createdAtMs > input.nowMs) continue;
+      rows.push(Object.freeze({ platform: text(data.platform) }));
+    }
 
     return Object.freeze({
       sourceId: input.sourceId,
-      state: rows.length === 0 ? ('empty' as const) : ('ready' as const),
-      // зачем truncated от ДВУХ причин: скан мог упереться в потолок страницы
-      // ДО того, как увидел все недавние регистрации (scanTruncated) — тогда
-      // честное число может быть занижено, даже если rowsTruncated=false.
-      truncated: scanTruncated || rowsTruncated,
-      droppedCount: rowsTruncated ? recent.length - MAX_GROWTH_ROWS_PER_SOURCE : 0,
+      state: 'truncated' as const,
+      truncated: true,
+      droppedCount: 0,
       rows: Object.freeze(rows),
+      count: null,
+      provenance: 'degraded_legacy_users_sample' as const,
+      periodKey,
       observedAtMs: input.nowMs,
     });
   } catch {
     return Object.freeze({
       sourceId: input.sourceId, state: 'error' as const, truncated: false, droppedCount: 0,
-      rows: Object.freeze([]), observedAtMs: input.nowMs,
+      rows: Object.freeze([]), count: null, provenance: 'degraded_legacy_users_sample' as const,
+      periodKey, observedAtMs: input.nowMs,
     });
   }
 }

@@ -21,10 +21,6 @@ const REQUIRED_MARKERS = [
     file: 'components/CustomAvatarBadge.tsx',
     markers: ['CustomAvatarImageWithFallback'],
   },
-  {
-    file: 'app/(tabs)/quizzes.tsx',
-    markers: ['QuizCardBackgroundImageWithFallback', 'QuizCardLogoImageWithFallback'],
-  },
 ];
 
 const missing = [];

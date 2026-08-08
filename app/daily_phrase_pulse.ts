@@ -27,9 +27,13 @@ export async function claimDailyPhrasePulseForDay(
   localDay: string,
   storage: PulseStorage = AsyncStorage,
 ): Promise<boolean> {
-  const previousDay = await storage.getItem(DAILY_PHRASE_PULSE_DAY_KEY);
-  if (previousDay === localDay) return false;
+  try {
+    const previousDay = await storage.getItem(DAILY_PHRASE_PULSE_DAY_KEY);
+    if (previousDay === localDay) return false;
 
-  await storage.setItem(DAILY_PHRASE_PULSE_DAY_KEY, localDay);
-  return true;
+    await storage.setItem(DAILY_PHRASE_PULSE_DAY_KEY, localDay);
+    return true;
+  } catch {
+    return false;
+  }
 }

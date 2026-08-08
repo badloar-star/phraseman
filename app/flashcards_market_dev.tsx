@@ -244,7 +244,7 @@ export default function FlashcardsMarketDevScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }}>
           <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>

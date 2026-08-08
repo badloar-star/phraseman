@@ -13,9 +13,9 @@ const KEY = 'en::ru';
 function makeSnapshot(overrides: Partial<TrainerPracticeSnapshot> = {}): TrainerPracticeSnapshot {
   return {
     dashboard: {
-      due: { words: 4, phrases: 7, arena: 2 },
-      totalDue: 13,
-    } as TrainerPracticeSnapshot['dashboard'],
+      due: { words: 4, phrases: 7 },
+      totalDue: 11,
+    } as unknown as TrainerPracticeSnapshot['dashboard'],
     hasPremium: true,
     analytics: {
       categoryStats: [], lessonStats: [], topMistakePhrases: [], insights: [],
@@ -46,7 +46,7 @@ describe('trainer practice disk snapshot (мгновенное открытие 
     await simulateColdStart(6_000);
 
     const restored = peekRestoredTrainerPracticeSnapshot(KEY, 6_000);
-    expect(restored?.dashboard.totalDue).toBe(13);
+    expect(restored?.dashboard.totalDue).toBe(11);
     expect(restored?.dashboard.due.phrases).toBe(7);
     expect(restored?.hasPremium).toBe(true);
     expect(restored?.analytics?.totalMistakes).toBe(9);
@@ -58,7 +58,7 @@ describe('trainer practice disk snapshot (мгновенное открытие 
 
     await simulateColdStart(1_000 + 3 * 60_000);
 
-    expect(peekRestoredTrainerPracticeSnapshot(KEY, 1_000 + 3 * 60_000)?.dashboard.totalDue).toBe(13);
+    expect(peekRestoredTrainerPracticeSnapshot(KEY, 1_000 + 3 * 60_000)?.dashboard.totalDue).toBe(11);
   });
 
   it('не отдаёт снапшот другого target/языка', async () => {

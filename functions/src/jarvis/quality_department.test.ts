@@ -115,6 +115,19 @@ describe('Jarvis quality department — a decision per fetch round', () => {
  * автоматические краши/логи, не жалобы» — источники обязаны звучать по-разному.
  */
 describe('Jarvis quality department — жалобы людей и автоматические краши это РАЗНЫЕ находки', () => {
+  test('error_reports are user-submitted reports, not automatic telemetry', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', rows: CRASH_ROWS }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', state: 'empty' }),
+      ],
+      trigger: 'scheduled', nowMs: 10_000,
+    });
+    expect(result.decisions[0].finding).toMatch(/жалоб|сообщен/i);
+    expect(result.decisions[0].finding).not.toMatch(/приложение записало/i);
+  });
+
   const SPIKE = (category: string, screen: string) =>
     Array.from({ length: 20 }, () => ({ category, screen, createdAtMs: 5_000 }));
 
@@ -228,5 +241,48 @@ describe('Jarvis quality department — app tier scales the absolute spike thres
       nowMs: 10_000,
     });
     expect(result.decisions).toHaveLength(1);
+  });
+});
+describe('Jarvis quality department — release-aware exact vs degraded evidence', () => {
+  test('an exact aggregate spike distinguishes event volume from the affected-user bucket', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({
+          sourceId: 'app_errors', evidenceMode: 'exact_daily_aggregate',
+          rows: [{
+            category: 'auth', screen: 'sign_in', build: '319', platform: 'ios', createdAtMs: 10_000,
+            eventCount: 20, affectedUserCount: 6,
+          }],
+        }),
+        fetchResult({ sourceId: 'error_reports', state: 'empty', evidenceMode: 'exact_daily_aggregate' }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty', evidenceMode: 'exact_daily_aggregate' }),
+      ],
+      trigger: 'scheduled', nowMs: 10_000,
+    });
+
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0].finding).toMatch(/20/);
+    expect(result.decisions[0].finding).toMatch(/5-9/);
+    expect(result.decisions[0].finding).toMatch(/319/);
+    expect(result.decisions[0].finding).toMatch(/ios/i);
+  });
+
+  test('a degraded raw fallback is visible but cannot assert an exact event count', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({
+          sourceId: 'app_errors', state: 'partial', evidenceMode: 'degraded_raw_fallback',
+          rows: [{ category: 'auth', screen: 'sign_in', build: '319', platform: 'ios', createdAtMs: 10_000, eventCount: 20, affectedUserCount: null }],
+        }),
+        fetchResult({ sourceId: 'error_reports', state: 'partial', evidenceMode: 'degraded_raw_fallback' }),
+        fetchResult({ sourceId: 'user_reports', state: 'partial', evidenceMode: 'degraded_raw_fallback' }),
+      ],
+      trigger: 'owner_request', nowMs: 10_000,
+    });
+
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0].status).toBe('insufficient_evidence');
+    expect(result.decisions[0].finding).toMatch(/неполн|деград|точн/i);
+    expect(result.decisions[0].finding).not.toMatch(/20/);
   });
 });

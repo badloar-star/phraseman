@@ -145,20 +145,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/home_menu/gold/home-gold-hero-map.webp'),
     };
   }
-  if (themeMode === 'coral') {
-    return {
-      lesson: require('../assets/images/home_menu/home-coral-lessons.webp'),
-      cards: require('../assets/images/home_menu/home-coral-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/home-coral-daily-tasks.webp'),
-      league: require('../assets/images/home_menu/home-coral-league.webp'),
-      test: require('../assets/images/home_menu/home-coral-diagnostic-test.webp'),
-      practice: require('../assets/images/home_menu/home-coral-practice.webp'),
-      dialogs: require('../assets/images/home_menu/home-coral-dialogs.webp'),
-      exam: require('../assets/images/levels/exam-coral.webp'),
-      shop: require('../assets/images/levels/SHOP CORAL.webp'),
-      heroMap: require('../assets/images/levels/hero map ocean.webp'),
-    };
-  }
   return {
     lesson: require('../assets/images/home_menu/home-forest-lessons.webp'),
     cards: require('../assets/images/home_menu/home-forest-cards.webp'),

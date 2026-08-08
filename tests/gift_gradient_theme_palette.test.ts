@@ -61,8 +61,8 @@ describe('цвет берётся из темы, а не из хардкода',
   test('смена темы меняет цвет подарка', () => {
     // Ядро требования: два разных акцента обязаны дать разный цвет.
     const indigo = giftGradientBaseColor('indigo', 'rare', '#6EA8FF', '#E9B949');
-    const coral = giftGradientBaseColor('coral', 'rare', '#FF7F50', '#FFD060');
-    expect(indigo).not.toBe(coral);
+    const ember = giftGradientBaseColor('ember', 'rare', '#FF7A3D', '#FFD060');
+    expect(indigo).not.toBe(ember);
   });
 
   test('цвет — это РОВНО токен темы, ничего не выдумано', () => {

@@ -21,7 +21,8 @@ describe('Jarvis growth source reader — counts new signups by platform, nothin
   test('digest never leaks any field beyond platform counts (no uid, no name)', () => {
     const evidence = buildGrowthEvidence({
       sourceId: 'users', state: 'ready', truncated: false, droppedCount: 0,
-      rows: [{ platform: 'ios' }], observedAtMs: 1_000,
+      rows: [{ platform: 'ios' }], count: 1, provenance: 'server_daily_aggregate',
+      periodKey: '1970-01-01', observedAtMs: 1_000,
     });
     expect(evidence.digest).not.toMatch(/uid|name|email/i);
   });
@@ -31,7 +32,8 @@ describe('Jarvis growth source reader — honest evidence state', () => {
   test('truncated fetch refuses to assert a count', () => {
     const evidence = buildGrowthEvidence({
       sourceId: 'users', state: 'ready', truncated: true, droppedCount: 5,
-      rows: [{ platform: 'ios' }], observedAtMs: 1_000,
+      rows: [{ platform: 'ios' }], count: null, provenance: 'degraded_legacy_users_sample',
+      periodKey: '1970-01-01', observedAtMs: 1_000,
     });
     expect(evidence.state).toBe('truncated');
     expect(evidence.count).toBeNull();
@@ -39,7 +41,8 @@ describe('Jarvis growth source reader — honest evidence state', () => {
 
   test('failed source is error, not zero', () => {
     const evidence = buildGrowthEvidence({
-      sourceId: 'users', state: 'error', truncated: false, droppedCount: 0, rows: [], observedAtMs: 1_000,
+      sourceId: 'users', state: 'error', truncated: false, droppedCount: 0, rows: [],
+      count: null, provenance: 'degraded_legacy_users_sample', periodKey: '1970-01-01', observedAtMs: 1_000,
     });
     expect(evidence.state).toBe('error');
     expect(evidence.count).toBeNull();

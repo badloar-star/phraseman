@@ -2,7 +2,7 @@ import { canonicalizeFactorySurfaces, generationPlanFingerprint } from './genera
 
 describe('legacy content generation plan identity', () => {
   it('canonicalizes related legacy checkboxes once in stable release order', () => {
-    expect(canonicalizeFactorySurfaces(['vocabulary', 'lessons', 'drills', 'arena_questions', 'quizzes', 'cards'])).toEqual([
+    expect(canonicalizeFactorySurfaces(['vocabulary', 'lessons', 'drills', 'cards'])).toEqual([
       'lesson', 'flashcard',
     ]);
   });

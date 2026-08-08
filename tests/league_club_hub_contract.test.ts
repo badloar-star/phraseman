@@ -28,11 +28,11 @@ describe('league club hub composition', () => {
     expect(mission).not.toContain('Ускорить весь клуб');
   });
 
-  it('keeps the arena scene and participant rows without the floating my-position overlay', () => {
+  it('keeps the league competition scene and participant rows without the floating my-position overlay', () => {
     const screen = read('app/club_screen.tsx');
-    const scene = read('components/league/LeagueArenaScene.tsx');
+    const scene = read('components/league/LeagueCompetitionScene.tsx');
     const row = read('components/league/LeagueLeaderboardRow.tsx');
-    expect(scene).toContain('testID="league-arena-scene"');
+    expect(scene).toContain('testID="league-competition-scene"');
     expect(screen).not.toContain('LeagueMyPositionBar');
     expect(screen).not.toContain('league-my-position-bar');
     expect(row).toContain('GroupMember');
@@ -55,22 +55,21 @@ describe('league club hub composition', () => {
     expect(files).toContain('accentText');
   });
 
-  it('keeps the compact quick-stats strip on the responsive fast deceleration, not the sluggish RN default', () => {
-    // зачем: аудит скорости скролла (2026-08-04) заменил decelerationRate="normal"
-    // на "fast" по всему приложению, включая эту горизонтальную ленту статистики
-    // лиги. Тест ловит регрессию, если кто-то добавит "normal" сюда заново.
+  it('keeps native inertia on the unsnapped compact quick-stats strip', () => {
+    // Горизонтальная лента не использует snap/paging, поэтому fast лишь сокращает
+    // свободный пробег после свайпа и заставляет повторять жест.
     const stats = read('components/league/LeagueQuickStats.tsx');
-    expect(stats).toContain('decelerationRate="fast"');
-    expect(stats).not.toContain('decelerationRate="normal"');
+    expect(stats).toContain('decelerationRate="normal"');
+    expect(stats).not.toContain('decelerationRate="fast"');
   });
 
   it('composes the hub from cached league state and virtualizes the member list', () => {
     const screen = read('app/club_screen.tsx');
     expect(screen).toContain('leaguePublicName');
     expect(screen).toContain('<LeagueBonusMission');
-    expect(screen).toContain('<LeagueArenaScene');
+    expect(screen).toContain('<LeagueCompetitionScene');
     expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeGreaterThan(-1);
-    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeagueArenaScene'));
+    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeagueCompetitionScene'));
     expect(screen).not.toContain('<LeagueActivityPreview');
     expect(screen).not.toContain('leaguePreviewPanResponder');
     expect(screen).not.toContain('league-current-icon');
@@ -78,9 +77,9 @@ describe('league club hub composition', () => {
     expect(screen).toContain('keyExtractor={leagueMemberKeyExtractor}');
   });
 
-  it('shows active league identity in the header and arena art', () => {
+  it('shows active league identity in the header and competition art', () => {
     const screen = read('app/club_screen.tsx');
-    const scene = read('components/league/LeagueArenaScene.tsx');
+    const scene = read('components/league/LeagueCompetitionScene.tsx');
 
     expect(screen).toContain('{leagueNameForLang(myLeague, lang)}');
     expect(screen).not.toContain('Liga de la semana');
@@ -88,7 +87,7 @@ describe('league club hub composition', () => {
     expect(screen).toContain('league={myLeague}');
     expect(screen).toContain('alignContent={false}');
     expect(scene).toContain('leagueIcon: React.ReactNode');
-    expect(scene).toContain('testID="league-arena-scene"');
+    expect(scene).toContain('testID="league-competition-scene"');
   });
 
   it('keeps promotion direction without the textual transition pill', () => {
@@ -115,7 +114,7 @@ describe('league club hub composition', () => {
     const screen = read('app/club_screen.tsx');
 
     // The FlatList receives every member, including the first three already
-    // shown in the arena. Its index is therefore the member's real rank index.
+    // shown in the competition scene. Its index is therefore the member's real rank index.
     // Adding the old podium offset falsely puts safe members into relegation.
     expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);');
     expect(screen).toContain('const absIndex = index;');

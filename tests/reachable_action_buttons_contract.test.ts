@@ -30,7 +30,6 @@ const CENTERING = /justifyContent:\s*'center'/;
  * нельзя, для этого и существует тест.
  */
 const KNOWN_DEBT: readonly string[] = [
-  'app/_admin_celebration_lab.tsx',
   'app/_layout.tsx',
   'app/flashcards/FlashcardsCategoryHub.tsx',
   'app/personal_plan_exercise_transition.tsx',

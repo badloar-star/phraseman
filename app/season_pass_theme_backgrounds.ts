@@ -7,7 +7,6 @@ import type { ThemeMode } from '../constants/theme';
 const SEASON_PASS_THEME_BACKGROUNDS = {
   dark: require('../assets/images/season/backgrounds/dark/background.webp'),
   gold: require('../assets/images/season/backgrounds/gold/background.webp'),
-  coral: require('../assets/images/season/backgrounds/coral/background.webp'),
   minimalDark: require('../assets/images/season/backgrounds/minimalDark/background.webp'),
   midnight: require('../assets/images/season/backgrounds/midnight/background.webp'),
   ember: require('../assets/images/season/backgrounds/ember/background.webp'),

@@ -337,7 +337,7 @@ export default function LanguageWelcomeScreen() {
         <View style={styles.backButton} />
       </View>
 
-      <ScrollView decelerationRate="fast" contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {step === 'welcome' ? (
           <View style={styles.welcomeBlock}>
             <View style={styles.flagHalo}>

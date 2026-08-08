@@ -7,6 +7,7 @@ type FakeRef = {
   path: string;
   get: () => Promise<FakeSnap>;
   set: (data: DocData, opts?: { merge?: boolean }) => Promise<void>;
+  collection: (name: string) => { doc: (id: string) => FakeRef };
 };
 
 type FakeSnap = {
@@ -47,6 +48,7 @@ function refFor(path: string): FakeRef {
     set: async (data: DocData, opts?: { merge?: boolean }) => {
       docs.set(path, opts?.merge ? deepMerge(docs.get(path) ?? {}, data) : { ...data });
     },
+    collection: (name: string) => ({ doc: (id: string) => refFor(`${path}/${name}/${id}`) }),
   };
 }
 
@@ -134,6 +136,7 @@ jest.mock('firebase-admin', () => {
   const firestore = jest.fn(() => fakeDb());
   (firestore as unknown as { FieldValue: Record<string, unknown> }).FieldValue = {
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
+    increment: (value: number) => ({ __op: 'increment', value }),
   };
   return { firestore };
 });
@@ -204,5 +207,27 @@ describe('submitClientReport', () => {
       message: 'rate_limited',
     });
     expect(reportDocs('user_reports')).toHaveLength(5);
+  });
+
+  test('atomically records a release-aware server aggregate without uid or report text', async () => {
+    await callSubmitClientReport({
+      kind: 'app_error',
+      payload: {
+        platform: 'ios', appVersion: '2.4.1', buildNumber: '319', feature: 'auth', screen: 'sign_in',
+        message: 'person@example.com could not sign in', stack: 'private stack text',
+      },
+    });
+
+    const aggregates = collectionDocs('jarvis_quality_daily/2026-05-24/sources/app_errors/buckets');
+    expect(aggregates).toHaveLength(1);
+    expect(aggregates[0].data).toMatchObject({
+      dayKey: '2026-05-24', sourceId: 'app_errors', build: '319', platform: 'ios', category: 'auth', screen: 'sign_in',
+      eventCount: { __op: 'increment', value: 1 }, affectedUserCount: { __op: 'increment', value: 1 },
+    });
+    expect(JSON.stringify(aggregates[0])).not.toMatch(/auth-reporter|stable-reporter|person@example|private stack/i);
+    const markers = Array.from(docs.entries()).filter(([path]) => path.includes('/affected_users/'));
+    expect(markers).toHaveLength(1);
+    expect(markers[0][0]).toMatch(/\/affected_users\/[a-f0-9]{64}$/);
+    expect(JSON.stringify(markers[0])).not.toMatch(/auth-reporter|stable-reporter/i);
   });
 });

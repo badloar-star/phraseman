@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { HttpsError, onCall, type CallableRequest } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasClaimedPermission } from './admin/permissions';
 import {
@@ -39,12 +39,9 @@ function firestoreTimestampMs(value: unknown): number | null {
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : null;
 }
 
-export const adminSubscriptionAnalytics = onCall({
-  region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
-  timeoutSeconds: 60,
-  memory: '512MiB',
-}, async (request) => {
+export async function handleAdminSubscriptionAnalytics(
+  request: CallableRequest<Record<string, unknown>>,
+): Promise<unknown> {
   if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
@@ -111,4 +108,11 @@ export const adminSubscriptionAnalytics = onCall({
     generatedAtMs: Date.now(),
     dataThroughMs: metrics.dataThroughMs,
   };
-});
+}
+
+export const adminSubscriptionAnalytics = onCall({
+  region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK,
+  timeoutSeconds: 60,
+  memory: '512MiB',
+}, handleAdminSubscriptionAnalytics);

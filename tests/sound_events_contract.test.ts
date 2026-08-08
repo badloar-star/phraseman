@@ -7,14 +7,6 @@ import {
 
 const MISSING_EVENTS: SoundEventId[] = [
   'pm.reward.vip_finale',
-  'pm.arena.match_found',
-  'pm.arena.countdown_3',
-  'pm.arena.countdown_2',
-  'pm.arena.countdown_1',
-  'pm.arena.round_start',
-  'pm.arena.victory',
-  'pm.arena.defeat',
-  'pm.arena.draw',
 ];
 
 describe('semantic sound event catalog', () => {
@@ -23,8 +15,8 @@ describe('semantic sound event catalog', () => {
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(53);
-    expect(enabled).toHaveLength(44);
+    expect(ids).toHaveLength(54);
+    expect(enabled).toHaveLength(53);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

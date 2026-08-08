@@ -93,16 +93,31 @@ export async function callExplainMistake(
   req: ExplainMistakeRequest,
   options?: CallExplainMistakeOptions,
 ): Promise<ExplainMistakeResponse> {
-  const key = explainMistakeRequestKey(req);
-  const localCached = await readExplainLocalCache({ kind: 'mistake', key });
+  const normalizedReq: ExplainMistakeRequest = { ...req, variant: req.variant ?? 'full' };
+  const variant = normalizedReq.variant!;
+  const key = explainMistakeRequestKey(normalizedReq);
+  const pairedEli5Key = variant === 'full'
+    ? explainMistakeRequestKey({ ...normalizedReq, variant: 'eli5' })
+    : null;
+  const [localCached, pairedEli5Cached] = await Promise.all([
+    readExplainLocalCache({ kind: 'mistake', key }),
+    pairedEli5Key
+      ? readExplainLocalCache({ kind: 'mistake', key: pairedEli5Key })
+      : Promise.resolve(null),
+  ]);
   if (localCached?.status === 'ok') {
+    const pairedEli5Text = pairedEli5Cached?.status === 'ok'
+      ? pairedEli5Cached.text.trim() || undefined
+      : undefined;
     return {
       ok: true,
       text: localCached.text,
+      fullText: variant === 'full' ? localCached.text : undefined,
+      eli5Text: pairedEli5Text,
       remainingQuota: 0,
       model: 'local-cache',
       fromCache: true,
-      variant: req.variant ?? 'full',
+      variant,
     };
   }
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
@@ -123,7 +138,7 @@ export async function callExplainMistake(
     // Вторая попытка ждёт вдвое меньше — см. aiAttemptTimeoutMs.
     const res = await withAiCallableRetry(
       (attempt) => withExplainCallableTimeout(
-        fn(req),
+        fn(normalizedReq),
         'explainMistake',
         aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
       ),
@@ -136,9 +151,9 @@ export async function callExplainMistake(
           status: 'ok',
         }),
       ];
-      const bundledEli5 = req.variant !== 'eli5' ? res.data.eli5Text?.trim() : '';
+      const bundledEli5 = variant !== 'eli5' ? res.data.eli5Text?.trim() : '';
       if (bundledEli5) {
-        const eli5Key = explainMistakeRequestKey({ ...req, variant: 'eli5' });
+        const eli5Key = explainMistakeRequestKey({ ...normalizedReq, variant: 'eli5' });
         cacheWrites.push(writeExplainLocalCache({ kind: 'mistake', key: eli5Key }, {
           text: bundledEli5,
           status: 'ok',

@@ -79,9 +79,45 @@ function applyData(path: string, data: DocData, opts?: { merge?: boolean }) {
   const base = opts?.merge ? { ...(mockDocs.get(path) ?? {}) } : {};
   const next = { ...base };
   for (const [key, value] of Object.entries(data)) {
-    next[key] = resolveFieldValue(next[key], value);
+    if (key.includes('.')) {
+      const parts = key.split('.');
+      let cursor = next;
+      for (const part of parts.slice(0, -1)) {
+        const existing = cursor[part];
+        cursor[part] = existing && typeof existing === 'object' && !Array.isArray(existing)
+          ? { ...(existing as DocData) }
+          : {};
+        cursor = cursor[part] as DocData;
+      }
+      const leaf = parts[parts.length - 1];
+      const resolved = resolveFieldValue(cursor[leaf], value);
+      if (resolved === undefined) delete cursor[leaf];
+      else cursor[leaf] = resolved;
+    } else {
+      next[key] = resolveFieldValue(next[key], value);
+    }
   }
   mockDocs.set(path, opts?.merge ? deepMerge(mockDocs.get(path) ?? {}, next) : next);
+}
+
+function applyUpdateData(path: string, data: DocData) {
+  const next = deepMerge({}, mockDocs.get(path) ?? {});
+  for (const [fieldPath, value] of Object.entries(data)) {
+    const parts = fieldPath.split('.');
+    let cursor = next;
+    for (const part of parts.slice(0, -1)) {
+      const existing = cursor[part];
+      cursor[part] = existing && typeof existing === 'object' && !Array.isArray(existing)
+        ? { ...(existing as DocData) }
+        : {};
+      cursor = cursor[part] as DocData;
+    }
+    const leaf = parts[parts.length - 1];
+    const resolved = resolveFieldValue(cursor[leaf], value);
+    if (resolved === undefined) delete cursor[leaf];
+    else cursor[leaf] = resolved;
+  }
+  mockDocs.set(path, next);
 }
 
 function snapFor(ref: FakeRef): FakeSnap {
@@ -105,7 +141,7 @@ function makeRef(path: string): FakeRef {
       return snapFor(makeRef(path));
     },
     set: async (data: DocData, opts?: { merge?: boolean }) => applyData(path, data, opts),
-    update: async (data: DocData) => applyData(path, data, { merge: true }),
+    update: async (data: DocData) => applyUpdateData(path, data),
   };
 }
 
@@ -204,7 +240,7 @@ function buildDb() {
           writes.push(() => applyData(ref.path, data, opts));
         },
         update: (ref: FakeRef, data: DocData) => {
-          writes.push(() => applyData(ref.path, data, { merge: true }));
+          writes.push(() => applyUpdateData(ref.path, data));
         },
         delete: (ref: FakeRef) => { writes.push(() => mockDocs.delete(ref.path)); },
       };
@@ -985,6 +1021,364 @@ describe('community pack callable ownership', () => {
     });
   });
 
+  test('creates a deterministic Spin-native pack grant without a legacy reservation', async () => {
+    const requestId = 'spinpackrequest0001';
+    mockDocs.set(`users/victim/level_spin_results/${requestId}`, {
+      baseGiftId: 'pack_voucher_48h',
+      premiumGiftId: 'prem_level_unlock_negotiator',
+      expiresAtMs: Date.now() + 72 * 60 * 60 * 1000,
+      deliveries: {
+        base: { state: 'delivering', deliveryToken: 'deliverytokenbase01', deliveryLeaseUntilMs: Date.now() + 60_000, selectedGiftId: 'pack_voucher_48h' },
+        premium: { state: 'delivering', deliveryToken: 'deliverytokenprem01', deliveryLeaseUntilMs: Date.now() + 60_000, selectedGiftId: 'prem_level_unlock_negotiator' },
+      },
+    });
+
+    const base = await callCommunity<{ voucherId: string; allowedPackId?: string }>('levelSpinActivatePackGift', {
+      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'deliverytokenbase01',
+    }, 'auth-victim');
+    expect(base).toMatchObject({ voucherId: `level_spin_${requestId}_base` });
+    expect(base.allowedPackId).toBeUndefined();
+    expect(mockDocs.get(`flashcard_pack_gift_grants/${base.voucherId}`)).toMatchObject({
+      ownerStableUid: 'victim',
+      source: 'level_spin_v1',
+      sourceId: requestId,
+      occurrenceId: `level-spin:${requestId}:base`,
+    });
+    expect(mockDocs.has(`level_gift_reservations/${requestId}`)).toBe(false);
+
+    await expect(callCommunity('levelSpinActivatePackGift', {
+      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'deliverytokenbase01',
+    }, 'auth-victim')).resolves.toMatchObject({ voucherId: base.voucherId, replayed: true });
+
+    await expect(callCommunity('levelSpinActivatePackGift', {
+      stableId: 'victim', requestId, lane: 'premium', deliveryToken: 'deliverytokenprem01',
+    }, 'auth-victim')).resolves.toMatchObject({
+      voucherId: `level_spin_${requestId}_premium`,
+      allowedPackId: 'official_negotiator_en',
+    });
+  });
+
+  test('Spin-native pack grant fails closed for a forged lane lease or identity transition', async () => {
+    const requestId = 'spinpackrequest0002';
+    mockDocs.set(`users/victim/level_spin_results/${requestId}`, {
+      baseGiftId: 'pack_voucher_48h',
+      expiresAtMs: Date.now() + 72 * 60 * 60 * 1000,
+      deliveries: {
+        base: { state: 'delivering', deliveryToken: 'deliverytokenbase02', deliveryLeaseUntilMs: Date.now() + 60_000, selectedGiftId: 'pack_voucher_48h' },
+      },
+    });
+    await expect(callCommunity('levelSpinActivatePackGift', {
+      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'forgeddeliverytoken',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+
+    mockDocs.set('users/victim', { ...(mockDocs.get('users/victim') ?? {}), levelSpinMergePending: true });
+    await expect(callCommunity('levelSpinActivatePackGift', {
+      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'deliverytokenbase02',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(mockDocs.get(`flashcard_pack_gift_grants/level_spin_${requestId}_base`)).toBeUndefined();
+  });
+
+  test('repoints an immutable Spin pack grant after the source account merges', async () => {
+    const requestId = 'spinpackrequest0005';
+    const deliveryToken = 'deliverytokenbase05';
+    mockDocs.set(`users/victim/level_spin_results/${requestId}`, {
+      baseGiftId: 'pack_voucher_48h',
+      expiresAtMs: Date.now() + 72 * 60 * 60 * 1000,
+      deliveries: {
+        base: {
+          state: 'delivering',
+          deliveryToken,
+          deliveryLeaseUntilMs: Date.now() + 60_000,
+          selectedGiftId: 'pack_voucher_48h',
+        },
+      },
+    });
+    mockDocs.set('users/retired-loser', {
+      identityHidden: true,
+      canonicalStableId: 'victim',
+    });
+    mockDocs.set('account_identity_owner_map/retired-loser', { canonicalStableId: 'victim' });
+    const voucherId = `level_spin_${requestId}_base`;
+    mockDocs.set(`flashcard_pack_gift_grants/${voucherId}`, {
+      ownerStableUid: 'retired-loser',
+      source: 'level_spin_v1',
+      sourceId: requestId,
+      occurrenceId: `level-spin:${requestId}:base`,
+      allowedPackId: null,
+      expiresAt: Date.now() + 48 * 60 * 60 * 1000,
+    });
+
+    await expect(callCommunity('levelSpinActivatePackGift', {
+      stableId: 'victim', requestId, lane: 'base', deliveryToken,
+    }, 'auth-victim')).resolves.toMatchObject({ voucherId, replayed: true });
+    expect(mockDocs.get(`flashcard_pack_gift_grants/${voucherId}`)).toMatchObject({
+      ownerStableUid: 'victim',
+      source: 'level_spin_v1',
+      sourceId: requestId,
+    });
+  });
+
+  test('blocks new legacy reservations after sticky Spin v1 enrollment but replays grandfathered ones', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+      levelSpinServerState: { protocol: 'v1', levelBaseline: 25, balance: 1, activeRequestId: null },
+    });
+
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim')).rejects.toMatchObject({
+      code: 'failed-precondition', message: 'legacy_level_gift_cutover',
+    });
+
+    mockDocs.set('level_gift_reservations/victim_25_f2p_en', {
+      ownerStableUid: 'victim', level: 25, lane: 'f2p', studyTarget: 'en', giftId: 'pack_voucher_48h',
+    });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({
+      reservationId: 'victim_25_f2p_en', giftId: 'pack_voucher_48h', replayed: true,
+    });
+  });
+
+  test('acquires level-gift display once across devices', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+    });
+    const reserved = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'display', reservationId: reserved.reservationId,
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'acquired' });
+    expect(mockDocs.get(`level_gift_reservations/${reserved.reservationId}`)?.displayedAt).toEqual(expect.any(Number));
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'display', reservationId: reserved.reservationId,
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'already_displayed' });
+  });
+
+  test('deduplicates level-gift display across different study targets', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 18 },
+    });
+    const en = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
+      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+    const fr = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
+      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'fr',
+    }, 'auth-victim');
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'en',
+      action: 'display', reservationId: en.reservationId,
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'acquired' });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'fr',
+      action: 'display', reservationId: fr.reservationId,
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'already_displayed' });
+  });
+
+  test('migrates stale blocked or retired reservations to a canonical useful reward', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 17 },
+      progress: { premium_plan: 'monthly', premium_rc_expiry_ms: '1800000100000' },
+    });
+    mockDocs.set('level_gift_reservations/victim_17_f2p_en', {
+      ownerStableUid: 'victim', level: 17, lane: 'f2p', studyTarget: 'en', giftId: 'energy_full',
+    });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 17, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ giftId: 'xp_250', replayed: true });
+    expect(mockDocs.get('level_gift_reservations/victim_17_f2p_en')?.giftId).toBe('xp_250');
+
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 18 },
+    });
+    mockDocs.set('level_gift_reservations/victim_18_f2p_en', {
+      ownerStableUid: 'victim', level: 18, lane: 'f2p', studyTarget: 'en', giftId: 'arena_extra_5',
+    });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({ giftId: 'xp_250', replayed: true });
+    expect(mockDocs.get('level_gift_reservations/victim_18_f2p_en')?.giftId).toBe('xp_250');
+  });
+
+  test('leases and completes a level-gift claim exactly once', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+    });
+    const reserved = await callCommunity<{ reservationId: string; giftId: string }>('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: reserved.reservationId,
+      giftId: reserved.giftId, claimToken: 'device-a-attempt',
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'acquired' });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: reserved.reservationId,
+      giftId: reserved.giftId, claimToken: 'device-b-attempt',
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'busy' });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'complete_claim', reservationId: reserved.reservationId,
+      giftId: reserved.giftId, claimToken: 'wrong-attempt',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'complete_claim', reservationId: reserved.reservationId,
+      giftId: reserved.giftId, claimToken: 'device-a-attempt',
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'claimed' });
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: reserved.reservationId,
+      giftId: reserved.giftId, claimToken: 'device-b-attempt',
+    }, 'auth-victim')).resolves.toMatchObject({ status: 'already_claimed' });
+  });
+
+  test('level-gift perk completion updates nested progress fields without replacing the progress map', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
+    expect(source).toContain("'progress.chain_shield': chainShield");
+    expect(source).toContain("'progress.gift_xp_multiplier': giftXpMultiplier");
+    expect(source).not.toContain('progress: { chain_shield: chainShield }');
+    expect(source).not.toContain('progress: { gift_xp_multiplier: giftXpMultiplier }');
+  });
+
+  test('level-gift shield completion is server-owned and replays its canonical receipt', async () => {
+    const now = 1_800_000_000_000;
+    jest.spyOn(Date, 'now').mockReturnValue(now);
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 55 },
+      chain_shield: JSON.stringify({ daysLeft: 1 }),
+      progress: { chain_shield: JSON.stringify({ daysLeft: 2 }), unrelated: 'keep' },
+    });
+    const reserved = await callCommunity<{ reservationId: string; giftId: string }>('levelGiftReserve', {
+      stableId: 'victim', level: 55, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+    expect(reserved.giftId).toBe('chain_shield_3');
+    const input = {
+      stableId: 'victim', level: 55, lane: 'f2p', studyTarget: 'en',
+      reservationId: reserved.reservationId, giftId: reserved.giftId, claimToken: 'shield-attempt',
+    };
+    await expect(callCommunity('levelGiftReserve', { ...input, action: 'begin_claim' }, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'acquired' });
+    const completed = await callCommunity<{ status: string; chainShield: string }>(
+      'levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim',
+    );
+    expect(completed.status).toBe('claimed');
+    expect(JSON.parse(completed.chainShield)).toMatchObject({ daysLeft: 5 });
+    expect(mockDocs.get('users/victim')?.chain_shield).toBe(completed.chainShield);
+    await expect(callCommunity('levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'already_claimed', chainShield: completed.chainShield });
+  });
+
+  test('focus level gifts extend canonical multiplier by their full duration and replay exactly', async () => {
+    const now = 1_800_000_000_000;
+    jest.spyOn(Date, 'now').mockReturnValue(now);
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      gift_xp_multiplier: JSON.stringify({ multiplier: 2, expiresAt: now + 60_000 }),
+      progress: {
+        gift_xp_multiplier: JSON.stringify({ multiplier: 1.5, expiresAt: now + 120_000 }),
+        unrelated: 'keep',
+      },
+    });
+    mockDocs.set('level_gift_reservations/victim_7_f2p_en', {
+      ownerStableUid: 'victim', level: 7, lane: 'f2p', studyTarget: 'en', giftId: 'focus_10m_25',
+    });
+    mockDocs.set('level_gift_reservations/victim_8_f2p_en', {
+      ownerStableUid: 'victim', level: 8, lane: 'f2p', studyTarget: 'en', giftId: 'focus_15m_50',
+    });
+
+    const first = {
+      stableId: 'victim', level: 7, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: 'victim_7_f2p_en', giftId: 'focus_10m_25', claimToken: 'focus-ten',
+    };
+    await expect(callCommunity('levelGiftReserve', first, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'acquired' });
+    const firstReceipt = await callCommunity<{ status: string; giftXpMultiplier: string }>(
+      'levelGiftReserve', { ...first, action: 'complete_claim' }, 'auth-victim',
+    );
+    expect(JSON.parse(firstReceipt.giftXpMultiplier)).toEqual({
+      multiplier: 2,
+      expiresAt: now + 120_000 + 10 * 60_000,
+    });
+    await expect(callCommunity('levelGiftReserve', { ...first, action: 'complete_claim' }, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'already_claimed', giftXpMultiplier: firstReceipt.giftXpMultiplier });
+
+    const second = {
+      stableId: 'victim', level: 8, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: 'victim_8_f2p_en', giftId: 'focus_15m_50', claimToken: 'focus-fifteen',
+    };
+    await expect(callCommunity('levelGiftReserve', second, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'acquired' });
+    const secondReceipt = await callCommunity<{ status: string; giftXpMultiplier: string }>(
+      'levelGiftReserve', { ...second, action: 'complete_claim' }, 'auth-victim',
+    );
+    expect(JSON.parse(secondReceipt.giftXpMultiplier)).toEqual({
+      multiplier: 2,
+      expiresAt: now + 120_000 + 25 * 60_000,
+    });
+    expect(mockDocs.get('users/victim')?.gift_xp_multiplier).toBe(secondReceipt.giftXpMultiplier);
+    expect((mockDocs.get('users/victim')?.progress as Record<string, unknown>).gift_xp_multiplier)
+      .toBe(secondReceipt.giftXpMultiplier);
+    expect((mockDocs.get('users/victim')?.progress as Record<string, unknown>).unrelated).toBe('keep');
+  });
+
+  test('club level gift increments the canonical server count and replays its exact receipt', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      club_gift_free_boost_v1: '1',
+      progress: { club_gift_free_boost_v1: '2', unrelated: 'keep' },
+    });
+    mockDocs.set('level_gift_reservations/victim_9_f2p_en', {
+      ownerStableUid: 'victim', level: 9, lane: 'f2p', studyTarget: 'en', giftId: 'club_boost_free',
+    });
+    const input = {
+      stableId: 'victim', level: 9, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: 'victim_9_f2p_en', giftId: 'club_boost_free', claimToken: 'club-one',
+    };
+    await expect(callCommunity('levelGiftReserve', input, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'acquired' });
+    const completed = await callCommunity<{ status: string; clubGiftFreeBoostCount: number }>(
+      'levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim',
+    );
+    expect(completed).toMatchObject({ status: 'claimed', clubGiftFreeBoostCount: 3 });
+    expect(mockDocs.get('users/victim')).toMatchObject({
+      club_gift_free_boost_v1: '3',
+      progress: { club_gift_free_boost_v1: '3', unrelated: 'keep' },
+    });
+    await expect(callCommunity('levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim'))
+      .resolves.toMatchObject({ status: 'already_claimed', clubGiftFreeBoostCount: 3 });
+  });
+
+  test('choice milestone rejects a selected gift outside its three concrete choices', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 30 },
+    });
+    const reserved = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
+      stableId: 'victim', level: 30, lane: 'f2p', studyTarget: 'en',
+    }, 'auth-victim');
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 30, lane: 'f2p', studyTarget: 'en',
+      action: 'begin_claim', reservationId: reserved.reservationId,
+      giftId: 'chain_shield_3', claimToken: 'forged-choice',
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+  });
+
   test('rejects level gift reservation above server progress and forged activation', async () => {
     mockDocs.set('users/victim', {
       ...(mockDocs.get('users/victim') ?? {}),
@@ -1115,6 +1509,11 @@ describe('community pack callable ownership', () => {
     expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('if (grantSnap.exists)'));
     expect(broadcastResolver).toBeLessThan(broadcastBody.indexOf('tx.set('));
     expect(broadcastBody.slice(0, transactionStart)).not.toContain('resolvePremiumAccess(');
+  });
+
+  test('keeps the retired Arena reward outside every server level-gift catalog', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
+    expect(source).not.toContain('arena_extra_5');
   });
 
   test('replays a pre-merge level reservation through the canonical identity', async () => {

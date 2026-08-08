@@ -23,9 +23,8 @@ const TabContext = createContext<TabCtx>({
 
 export const useTabNav = () => useContext(TabContext);
 
-// зачем: владелец (2026-08-02) убрал таб «Уроки» — порядок синхронизирован
-// с LOGICAL_TAB_IDS в app/tab_page_model.ts.
-export const TAB_KEYS = ['home', 'tournaments', 'friends', 'settings'] as const;
+// Порядок синхронизирован с LOGICAL_TAB_IDS в app/tab_page_model.ts.
+export const TAB_KEYS = ['home', 'lessons', 'tournaments', 'friends', 'settings'] as const;
 
 export function TabProvider({
   children,

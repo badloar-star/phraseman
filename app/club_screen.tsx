@@ -108,7 +108,7 @@ import {
 } from './league_club_hub_model';
 import { leaguePublicName } from './league_public_name';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
-import { LeagueArenaScene } from '../components/league/LeagueArenaScene';
+import { LeagueCompetitionScene } from '../components/league/LeagueCompetitionScene';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
 import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
 import { LeagueHotHoursChip } from '../components/league/LeagueHotHoursChip';
@@ -420,14 +420,12 @@ export default function ClubScreen() {
   const deferredLeagueResultRef = useRef<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
   const contentScrollRef = useRef<FlatList<GroupMember> | null>(null);
-  /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
+  /** Совпадает с production-модалкой смены ранга — не менять без синхронизации. */
   const ROW_HEIGHT_CLUB = 72;
   const myRowAnim = useRef(new Animated.Value(0)).current;
 
   /** Подсказка про зону повышения: только первый раз за календарный день при открытии вкладки лиги. */
   const [leaguePromoHintVisible, setLeaguePromoHintVisible] = useState(false);
-  const [arenaClubEvent, setArenaClubEvent] = useState<any | null>(null);
-  const [arenaClubStableUid, setArenaClubStableUid] = useState('');
   const [leagueGroupMeta, setLeagueGroupMeta] = useState<{ weekId: string; groupId: string; leagueId: number } | null>(null);
   const [leagueChestClaimed, setLeagueChestClaimed] = useState(false);
   const [chestTeaserVisible, setChestTeaserVisible] = useState(false);
@@ -473,23 +471,6 @@ export default function ClubScreen() {
     });
     return () => sub.remove();
   }, []);
-  // Arena is optional while its feature set is being retired. The league screen
-  // keeps its local data and rewards available without the live arena listener.
-  useEffect(() => {
-    setArenaClubEvent(null);
-  }, []);
-
-  useEffect(() => {
-    const groupId = String(arenaClubEvent?.groupId ?? '').trim();
-    const weekId = String(arenaClubEvent?.weekId ?? '').trim();
-    if (!groupId || !weekId) return;
-    setLeagueGroupMeta({
-      weekId,
-      groupId,
-      leagueId: Math.max(0, Math.floor(Number(arenaClubEvent?.leagueId) || myLeagueId)),
-    });
-  }, [arenaClubEvent, myLeagueId]);
-
   useEffect(() => {
     const uids = group.map((m) => m.uid).filter((uid): uid is string => !!uid);
     if (uids.length === 0) {
@@ -795,11 +776,22 @@ export default function ClubScreen() {
 
   useEffect(() => {
     isMountedRef.current = true;
-    loadData();
     return () => {
       isMountedRef.current = false;
     };
-  }, [loadData]);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      // A mounted tab is retained between visits, so a mount-only load leaves
+      // every peer row frozen. Re-read on focus and while the league is visible.
+      void loadData({ forceRemote: true });
+      const intervalId = setInterval(() => {
+        void loadData({ forceRemote: true });
+      }, CLUB_REMOTE_REFRESH_MS);
+      return () => clearInterval(intervalId);
+    }, [loadData]),
+  );
 
   useEffect(() => {
     activeGroupBoostRef.current = activeGroupBoost;
@@ -876,6 +868,7 @@ export default function ClubScreen() {
     () => (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points),
     [group],
   );
+  const myLeagueMemberUid = sortedGroup.find((member) => member.isMe)?.uid ?? '';
   const publicSortedGroup = useMemo(
     () => sortedGroup.map((member) => ({
       ...member,
@@ -905,19 +898,15 @@ export default function ClubScreen() {
   const leagueRaceVisible = localLeagueHydrated && (
     leagueBonusAdminActive || shouldShowLeagueRace(sortedGroup.length, userName)
   );
-  const myArenaClubPoints = arenaClubStableUid
-    ? Math.max(0, Math.floor(Number((arenaClubEvent?.members ?? {})[arenaClubStableUid]?.points) || 0))
-    : 0;
   const leagueRoomXp = sortedGroup.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
-  const arenaChestBonus = Math.max(0, Math.floor(Number(arenaClubEvent?.totalPoints) || 0));
   const leagueChestGoal = getLeagueChestGoal(myLeagueId);
-  const leagueChestProgress = leagueRaceVisible ? Math.min(leagueChestGoal, leagueBonusAdminActive ? leagueChestGoal : leagueRoomXp + arenaChestBonus) : 0;
+  const leagueChestProgress = leagueRaceVisible ? Math.min(leagueChestGoal, leagueBonusAdminActive ? leagueChestGoal : leagueRoomXp) : 0;
   const myLeagueRoomXp = Math.max(0, Math.floor(Number(sortedGroup.find((p) => p.isMe)?.points) || 0));
-  const myLeagueChestContribution = myLeagueRoomXp + myArenaClubPoints;
+  const myLeagueChestContribution = myLeagueRoomXp;
   const leagueChestReady = leagueRaceVisible && (leagueBonusAdminActive || leagueChestProgress >= leagueChestGoal);
   const leagueCrownWinnerUid = leagueRaceVisible && leagueChestReady
     ? leagueBonusAdminActive && leagueBonusAdminPreview?.crownWinner
-      ? arenaClubStableUid || sortedGroup.find((p) => p.isMe)?.uid
+      ? myLeagueMemberUid
       : sortedGroup[0]?.uid
     : undefined;
   const rawLeagueCrownWinnerName = leagueRaceVisible && leagueChestReady
@@ -982,7 +971,7 @@ export default function ClubScreen() {
         const hasGoldDuplicate = drops.some((drop) => drop.kind === 'gold_theme_duplicate');
         setLeagueChestOpenModal({
           crownName: res.crown?.name,
-          isCrownWinner: !!res.crown?.uid && res.crown.uid === arenaClubStableUid,
+          isCrownWinner: !!res.crown?.uid && res.crown.uid === myLeagueMemberUid,
           rewards: drops,
         });
         emitAppEvent('action_toast', actionToastTri('success', {
@@ -1056,7 +1045,7 @@ export default function ClubScreen() {
     } finally {
       if (isMountedRef.current) setLeagueChestClaiming(false);
     }
-  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, leagueChestClaiming, leagueBonusAdminActive, leagueBonusAdminPreview?.crownWinner, leagueCrownWinnerName, userName, sortedGroup, arenaClubStableUid, studyTarget]);
+  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, leagueChestClaiming, leagueBonusAdminActive, leagueBonusAdminPreview?.crownWinner, leagueCrownWinnerName, userName, sortedGroup, myLeagueMemberUid, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -1089,7 +1078,7 @@ export default function ClubScreen() {
             leagueChestReplayModalKeyRef.current = replayKey;
             setLeagueChestOpenModal({
               crownName: res.crown?.name,
-              isCrownWinner: !!res.crown?.uid && res.crown.uid === arenaClubStableUid,
+              isCrownWinner: !!res.crown?.uid && res.crown.uid === myLeagueMemberUid,
               rewards: res.rewards.drops ?? [],
             });
           }
@@ -1100,7 +1089,7 @@ export default function ClubScreen() {
       return () => {
         cancelled = true;
       };
-    }, [arenaClubStableUid, leagueBonusAdminActive, leagueChestReady, leagueGroupMeta, leagueRaceVisible, sortedGroup, studyTarget]),
+    }, [myLeagueMemberUid, leagueBonusAdminActive, leagueChestReady, leagueGroupMeta, leagueRaceVisible, sortedGroup, studyTarget]),
   );
 
   const showLeagueToast = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
@@ -1125,7 +1114,7 @@ export default function ClubScreen() {
   const makeOptimisticGroupBoost = useCallback((): LeagueGroupBoostState => {
     const now = Date.now();
     const me = sortedGroup.find((p) => p.isMe);
-    const buyerUid = arenaClubStableUid || me?.uid || `local_${now}`;
+    const buyerUid = myLeagueMemberUid || me?.uid || `local_${now}`;
     const groupId = leagueGroupMeta?.groupId || '';
     const weekId = leagueGroupMeta?.weekId || getWeekId();
     return {
@@ -1136,7 +1125,7 @@ export default function ClubScreen() {
       startedAt: now,
       expiresAt: now + LEAGUE_GROUP_BOOST_DURATION_MS,
       buyerUid,
-      buyerName: leaguePublicName(userName || me?.name, arenaClubStableUid || me?.uid || me?.botId || userName),
+      buyerName: leaguePublicName(userName || me?.name, myLeagueMemberUid || me?.uid || me?.botId || userName),
       buyerAvatar: myAvatarEmoji || me?.avatar || null,
       buyerFrame: myFrameId || me?.frame || null,
       buyerAura: myAuraId || me?.aura || null,
@@ -1148,7 +1137,7 @@ export default function ClubScreen() {
       likeEventId: `league_group_boost_${weekId}_${groupId || buyerUid}_${now}`,
       likeCount: 0,
     };
-  }, [arenaClubStableUid, leagueGroupMeta?.groupId, leagueGroupMeta?.leagueId, leagueGroupMeta?.weekId, myAuraId, myAvatarEmoji, myFrameId, myLeagueId, playerXP, sortedGroup, userName]);
+  }, [myLeagueMemberUid, leagueGroupMeta?.groupId, leagueGroupMeta?.leagueId, leagueGroupMeta?.weekId, myAuraId, myAvatarEmoji, myFrameId, myLeagueId, playerXP, sortedGroup, userName]);
 
   const performBuyGroupBoost = useCallback(async () => {
     if (activeGroupBoost || groupBoostBuying) return;
@@ -1207,7 +1196,7 @@ export default function ClubScreen() {
 
   const handleLikeGroupBoostBuyer = useCallback(async () => {
     if (!activeGroupBoost || groupBoostLikedToday || groupBoostLikeBusy) return;
-    if (activeGroupBoost.buyerUid === arenaClubStableUid) {
+    if (activeGroupBoost.buyerUid === myLeagueMemberUid) {
       showLeagueToast('Это твой буст. Лайки оставим другим игрокам.', 'info');
       return;
     }
@@ -1221,7 +1210,7 @@ export default function ClubScreen() {
     void cacheLeagueGroupBoost(optimisticBoost);
     setGroupBoostLikeBusy(true);
     try {
-      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, leaguePublicName(userName, arenaClubStableUid || userName));
+      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, leaguePublicName(userName, myLeagueMemberUid || userName));
       setGroupBoostLikeTotal(total);
       const confirmedBoost = { ...activeGroupBoost, likeCount: total };
       setActiveGroupBoost(confirmedBoost);
@@ -1235,7 +1224,7 @@ export default function ClubScreen() {
     } finally {
       if (isMountedRef.current) setGroupBoostLikeBusy(false);
     }
-  }, [activeGroupBoost, arenaClubStableUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
+  }, [activeGroupBoost, myLeagueMemberUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
 
   // зачем: владелец не смог разобрать экран Лиги в светлой теме — вся сцена
   // была рассчитана на тёмный фон. На светлой теме меняем три вещи:
@@ -1382,7 +1371,7 @@ export default function ClubScreen() {
       name: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
       points: activeGroupBoost.buyerTotalXp ?? 0,
       totalXp: activeGroupBoost.buyerTotalXp ?? undefined,
-      isMe: activeGroupBoost.buyerUid === arenaClubStableUid,
+      isMe: activeGroupBoost.buyerUid === myLeagueMemberUid,
       leagueId: activeGroupBoost.leagueId || myLeague.id,
       uid: activeGroupBoost.buyerUid,
       avatar: activeGroupBoost.buyerAvatar ?? undefined,
@@ -1393,7 +1382,7 @@ export default function ClubScreen() {
       profileCardMotion: activeGroupBoost.buyerProfileCardMotion,
       profileCardPublicFocus: activeGroupBoost.buyerProfileCardPublicFocus,
     });
-  }, [activeGroupBoost, arenaClubStableUid, myLeague.id]);
+  }, [activeGroupBoost, myLeagueMemberUid, myLeague.id]);
 
   const renderLeagueMemberAvatar = useCallback((member: GroupMember, size: number) => {
     const rowXp = member.isMe ? playerXP : (member.totalXp ?? 0);
@@ -1521,7 +1510,7 @@ export default function ClubScreen() {
         maxToRenderPerBatch={10}
         windowSize={7}
         scrollEnabled
-        decelerationRate="fast"
+        decelerationRate="normal"
         bounces
         alwaysBounceVertical
         overScrollMode="always"
@@ -1561,7 +1550,7 @@ export default function ClubScreen() {
             геометрии вместо пустоты (владелец видел ~10 с пустого экрана и
             принял это за поломку). Приход данных не двигает вёрстку. */}
         {localLeagueHydrated ? (
-          <LeagueArenaScene
+          <LeagueCompetitionScene
             lang={lang}
             palette={hubPalette}
             leagueName={leagueNameForLang(myLeague, lang)}
@@ -1599,7 +1588,7 @@ export default function ClubScreen() {
               onBoost={handleBuyGroupBoost}
               onOpenBoostBuyer={openActiveBoostBuyerProfile}
               onLikeBoost={() => { void handleLikeGroupBoostBuyer(); }}
-              boostLiked={groupBoostLikedToday || activeGroupBoost?.buyerUid === arenaClubStableUid}
+              boostLiked={groupBoostLikedToday || activeGroupBoost?.buyerUid === myLeagueMemberUid}
               boostLikeBusy={groupBoostLikeBusy}
               boostTimeLeft={groupBoostTimeLeft}
               onOpenRank={scrollToLeagueRank}
@@ -1676,7 +1665,7 @@ export default function ClubScreen() {
       <UnifiedPlayerModal
         player={profilePlayer}
         myInfo={{
-          name: leaguePublicName(userName, arenaClubStableUid || userName),
+          name: leaguePublicName(userName, myLeagueMemberUid || userName),
           avatar: myAvatarEmoji,
           frame: myFrameId,
           aura: myAuraId,

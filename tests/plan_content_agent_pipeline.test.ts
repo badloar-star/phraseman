@@ -4,8 +4,7 @@ import {
   type PipelineRun,
 } from '../app/plan_content_agent_pipeline';
 import { buildPlanContentGenerationJob, describeJobBrief } from '../app/plan_content_generation_job';
-import type { LocalizedText } from '../app/plan_content_schema';
-import type { PlanContentDay, PlanContentPhrase } from '../app/plan_content_schema';
+import type { LocalizedText, PlanContentDay, PlanContentPhrase } from '../app/plan_content_schema';
 
 function localized(label: string): LocalizedText {
   return {
@@ -109,6 +108,17 @@ describe('plan content agent pipeline gate', () => {
     const result = evaluatePipelineRun(fullRun({ judged: day }));
     expect(result.accepted).toBe(false);
     expect(result.blockers.some((b) => b.startsWith('schema:too_few_phrases'))).toBe(true);
+  });
+
+  it('blocks a generated day whose authored words omit a phrase token', () => {
+    const day = goodDay();
+    day.phrases[1] = phrase('p2', ['present-simple']);
+    day.phrases[1].words = day.phrases[1].words.slice(1);
+
+    const result = evaluatePipelineRun(fullRun({ judged: day }));
+
+    expect(result.accepted).toBe(false);
+    expect(result.blockers).toContain('word_alignment:phrase_words_misaligned:p2');
   });
 
   it('blocks when a generated day does not isolate every source locale', () => {

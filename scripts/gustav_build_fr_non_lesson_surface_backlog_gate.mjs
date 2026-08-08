@@ -11,9 +11,7 @@ const OUT_PATH = path.join(OUT_DIR, 'fr_non_lesson_surface_backlog_gate_v1.json'
 const PARITY_PLAN_PATH = path.join(OUT_DIR, 'fr_blueprint_surface_parity_plan_v1.json');
 const INVENTORY_PATH = path.join(OUT_DIR, 'english_blueprint_inventory_v1.json');
 const LESSON32_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'review', 'lesson32_blueprint_rebuild_candidate_v1.json');
-const QUIZ_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'quizzes', 'fr_standard_quiz_global_readiness_bridge_gate_v1.json');
 const THEORY_VOCAB_INTRO_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'theory', 'fr_theory_vocab_intro_parity_gate_v1.json');
-const ARENA_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'arena', 'fr_arena_question_parity_gate_v1.json');
 const FLASHCARD_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'flashcards', 'fr_flashcard_global_readiness_bridge_gate_v1.json');
 const COLLECTIBLE_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'collectibles', 'fr_collectible_candidate_bridge_gate_v1.json');
 const DAILY_PHRASE_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'daily_phrases', 'fr_daily_phrase_global_readiness_bridge_gate_v1.json');
@@ -84,32 +82,6 @@ const BACKLOG = [
       'tests/gustav_fr_vocab_drill_parity_gate.test.ts',
     ],
     productionBlockers: ['FRENCH_THEORY_32_NOT_PROVEN', 'FRENCH_INTROS_32_NOT_PROVEN', 'FRENCH_VOCAB_NATIVE_BANK_NOT_PROVEN'],
-  },
-  {
-    id: 'standard_quiz_banks',
-    relatedParitySurfaces: ['quiz_surfaces'],
-    priority: 3,
-    why: 'Quizzes must be French-native banks with explanations and distractors, not a fanout of lesson rows.',
-    exactFiles: ['app/french_quiz_remote_runtime.ts', 'admin/french-quizzes-workflow.js', 'docs/gustav/generated/fr/quizzes'],
-    exactScripts: ['scripts/gustav_build_fr_standard_quiz_global_readiness_bridge_gate.mjs'],
-    exactTests: [
-      'tests/gustav_fr_standard_quiz_global_readiness_bridge_gate.test.ts',
-      'tests/gustav_fr_standard_quiz_runtime_full_sentence_adapter.test.ts',
-      'tests/gustav_fr_standard_quiz_admin_surface_wiring.test.ts',
-      'tests/gustav_fr_standard_quiz_admin_workflow_handlers.test.ts',
-      'tests/gustav_fr_standard_quiz_activation_rollback_gate.test.ts',
-    ],
-    productionBlockers: ['FRENCH_STANDARD_QUIZ_NATIVE_BANK_NOT_MATERIALIZED', 'QUIZ_SERVER_PAYLOAD_UPLOAD_CLOSED'],
-  },
-  {
-    id: 'arena_question_banks',
-    relatedParitySurfaces: ['arena_questions'],
-    priority: 4,
-    why: 'Arena needs its own French questions by app level, because duel questions cannot leak English grammar or English explanations.',
-    exactFiles: ['app/arena_game.tsx', 'app/arena_lobby.tsx', 'assets/arena_questions_a1.json', 'assets/arena_questions_a2.json', 'assets/arena_questions_b1.json', 'assets/arena_questions_b2.json'],
-    exactScripts: ['scripts/gustav_build_fr_arena_question_parity_gate.mjs'],
-    exactTests: ['tests/gustav_fr_arena_question_parity_gate.test.ts'],
-    productionBlockers: ['FRENCH_ARENA_BANK_NOT_MATERIALIZED', 'ARENA_LEVEL_DISTRIBUTION_NOT_PROVEN'],
   },
   {
     id: 'personal_practice_active_recall',
@@ -284,9 +256,7 @@ function main() {
   const parityPlan = readJson(PARITY_PLAN_PATH);
   const inventory = readJson(INVENTORY_PATH);
   const lesson32 = readJson(LESSON32_PATH);
-  const quizBridgeGate = readJsonIfExists(QUIZ_BRIDGE_GATE_PATH);
   const theoryVocabIntroBridgeGate = readJsonIfExists(THEORY_VOCAB_INTRO_BRIDGE_GATE_PATH);
-  const arenaBridgeGate = readJsonIfExists(ARENA_BRIDGE_GATE_PATH);
   const flashcardBridgeGate = readJsonIfExists(FLASHCARD_BRIDGE_GATE_PATH);
   const collectibleBridgeGate = readJsonIfExists(COLLECTIBLE_BRIDGE_GATE_PATH);
   const dailyPhraseBridgeGate = readJsonIfExists(DAILY_PHRASE_BRIDGE_GATE_PATH);
@@ -296,9 +266,7 @@ function main() {
   const personalPracticeBridgeGate = readJsonIfExists(PERSONAL_PRACTICE_BRIDGE_GATE_PATH);
   const coreLessonDeliveryBridgeGate = readJsonIfExists(CORE_LESSON_DELIVERY_BRIDGE_GATE_PATH);
   const adminBridgeGate = readJsonIfExists(ADMIN_BRIDGE_GATE_PATH);
-  const quizBridgeReady = quizBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
   const theoryVocabIntroBridgeReady = theoryVocabIntroBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
-  const arenaBridgeReady = arenaBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
   const flashcardBridgeReady = flashcardBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
   const collectibleBridgeReady = collectibleBridgeGate?.status === 'PASS_SURFACE_CANDIDATE_READY_GLOBAL_FRENCH_HOLD';
   const dailyPhraseBridgeReady = dailyPhraseBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
@@ -314,9 +282,7 @@ function main() {
   if (lesson32?.lessonId !== 32 || lesson32?.summary?.rows !== 50) blockers.push('CORE_LESSON_32_EVIDENCE_NOT_READY');
 
   const queue = BACKLOG.map((item) => {
-    const isClosedQuizBridge = item.id === 'standard_quiz_banks' && quizBridgeReady;
     const isClosedTheoryVocabIntroBridge = item.id === 'lesson_theory_intro_vocab' && theoryVocabIntroBridgeReady;
-    const isClosedArenaBridge = item.id === 'arena_question_banks' && arenaBridgeReady;
     const isClosedFlashcardBridge = item.id === 'flashcards_and_marketplace_cards' && flashcardBridgeReady;
     const isClosedCollectibleBridge = item.id === 'collectible_cards' && collectibleBridgeReady;
     const isClosedGrammarDrillBridge = item.id === 'prepositions_and_conjugation_drills' && grammarDrillBridgeReady;
@@ -327,12 +293,8 @@ function main() {
     const isClosedAdminBridge = item.id === 'admin_surfaces' &&
       (adminBridgeGate?.status === 'PASS_ADMIN_SURFACES_READY_GLOBAL_FRENCH_HOLD' ||
         adminBridgeGate?.status === 'PASS_ADMIN_SURFACES_READY_FOR_FINAL_ACTIVATION');
-    const itemProductionBlockers = isClosedQuizBridge
-      ? ['GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
-      : isClosedTheoryVocabIntroBridge
+    const itemProductionBlockers = isClosedTheoryVocabIntroBridge
         ? ['THEORY_VOCAB_INTRO_RUNTIME_DELIVERY_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
-      : isClosedArenaBridge
-        ? ['FRENCH_ARENA_RUNTIME_LOADER_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
       : isClosedFlashcardBridge
         ? ['FRENCH_FLASHCARD_RUNTIME_LOADER_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
       : isClosedCollectibleBridge
@@ -380,15 +342,6 @@ function main() {
             closedLocalBlockers: [],
             remainingBlockers: coreLessonDeliveryBridgeGate?.blockers ?? [],
           }
-        : item.id === 'standard_quiz_banks'
-        ? {
-            artifact: rel(QUIZ_BRIDGE_GATE_PATH),
-            status: quizBridgeGate?.status ?? 'MISSING',
-            localSurfaceReady: quizBridgeReady,
-            closedLocalBlockers: quizBridgeReady
-              ? ['FRENCH_STANDARD_QUIZ_NATIVE_BANK_NOT_MATERIALIZED', 'QUIZ_SERVER_PAYLOAD_UPLOAD_CLOSED']
-              : [],
-          }
         : item.id === 'lesson_theory_intro_vocab'
           ? {
               artifact: rel(THEORY_VOCAB_INTRO_BRIDGE_GATE_PATH),
@@ -399,18 +352,6 @@ function main() {
                     'FRENCH_THEORY_32_NOT_PROVEN',
                     'FRENCH_INTROS_32_NOT_PROVEN',
                     'FRENCH_VOCAB_NATIVE_BANK_NOT_PROVEN',
-                  ]
-                : [],
-            }
-        : item.id === 'arena_question_banks'
-          ? {
-              artifact: rel(ARENA_BRIDGE_GATE_PATH),
-              status: arenaBridgeGate?.status ?? 'MISSING',
-              localSurfaceReady: arenaBridgeReady,
-              closedLocalBlockers: arenaBridgeReady
-                ? [
-                    'FRENCH_ARENA_BANK_NOT_MATERIALIZED',
-                    'ARENA_LEVEL_DISTRIBUTION_NOT_PROVEN',
                   ]
                 : [],
             }
@@ -549,9 +490,7 @@ function main() {
       mojibakeHitFiles: mojibakeHits.length,
       placeholderHitFiles: placeholderHits.length,
       surfaceBridgeGatesPassed: [
-        quizBridgeReady,
         theoryVocabIntroBridgeReady,
-        arenaBridgeReady,
         flashcardBridgeReady,
         collectibleBridgeReady,
         grammarDrillBridgeReady,

@@ -9,7 +9,6 @@ export type StudyTarget = 'en' | 'fr';
 export type AiLanguageFeature =
   | 'explain'
   | 'choice'
-  | 'quiz'
   | 'compass'
   | 'mistake_explain'
   | 'weekly_review'

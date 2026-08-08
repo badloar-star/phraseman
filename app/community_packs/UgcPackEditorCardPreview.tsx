@@ -172,7 +172,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollFront ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                decelerationRate="fast"
+                decelerationRate="normal"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,
@@ -236,7 +236,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollBack ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                decelerationRate="fast"
+                decelerationRate="normal"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,

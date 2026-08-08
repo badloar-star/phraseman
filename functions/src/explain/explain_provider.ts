@@ -30,6 +30,8 @@ export interface OpenAiChatParams {
   /** Optional response_format passthrough (gpt-4o-mini supports json_object). */
   responseFormat?: { type: 'json_object' | 'text' } | { type: 'json_schema'; json_schema: { name: string; strict: boolean; schema: Readonly<Record<string, unknown>> } };
   beforeRequest?: (attempt: number) => Promise<void>;
+  /** Bound nested retries when an outer orchestration already owns retry/backoff. */
+  maxAttempts?: number;
 }
 
 export interface OpenAiChatResult {
@@ -74,6 +76,7 @@ function isRetryableFetchError(error: unknown): boolean {
  */
 export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatResult> {
   const { apiKey, model, messages, maxTokens, temperature, responseFormat, beforeRequest } = params;
+  const maxAttempts = Math.max(1, Math.min(OPENAI_CHAT_MAX_ATTEMPTS, Math.floor(params.maxAttempts ?? OPENAI_CHAT_MAX_ATTEMPTS)));
 
   const body: Record<string, unknown> = {
     model,
@@ -85,7 +88,7 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
 
   let response: Response | null = null;
   let lastError: unknown = null;
-  for (let attempt = 1; attempt <= OPENAI_CHAT_MAX_ATTEMPTS; attempt += 1) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     await beforeRequest?.(attempt);
     try {
       response = await fetch(OPENAI_CHAT_URL, {
@@ -97,12 +100,12 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(OPENAI_CHAT_TIMEOUT_MS),
       });
-      if (response.ok || !isRetryableStatus(response.status) || attempt === OPENAI_CHAT_MAX_ATTEMPTS) break;
+      if (response.ok || !isRetryableStatus(response.status) || attempt === maxAttempts) break;
       const detail = await response.text().catch(() => '');
       console.warn('explain_provider retryable chat status', response.status, detail.slice(0, 240), { attempt });
     } catch (error) {
       lastError = error;
-      if (!isRetryableFetchError(error) || attempt === OPENAI_CHAT_MAX_ATTEMPTS) {
+      if (!isRetryableFetchError(error) || attempt === maxAttempts) {
         console.error('explain_provider chat fetch failed', error);
         throw new HttpsError('unavailable', 'explain_provider_failed');
       }

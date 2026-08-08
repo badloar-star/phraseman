@@ -146,7 +146,9 @@ describe('счёт наращивается, а не перезаписывае�
   test('запись счёта идёт от предыдущего значения', () => {
     // score: entry.score + ... — если кто-то заменит на присваивание, накопленное
     // за прошлые раунды пропадёт.
-    expect(CORE_SOURCE).toMatch(/score: entry\.score/);
+    expect(CORE_SOURCE).toMatch(
+      /score: Math\.max\(0, entry\.score - \(replacingTimedOut \? existing\.roundScore : 0\) \+ scored\.roundScore\)/,
+    );
     expect(CORE_SOURCE).toMatch(/score: player\.score \+ scored\.roundScore/);
   });
 

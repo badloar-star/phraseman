@@ -27,14 +27,14 @@ export interface FactorySnapshot {
 }
 
 /** Упавший читатель — «неизвестно», а не «курс полон». */
-function failClosedFetch(observedAtMs: number): FetchContentSourceResult {
+function failClosedFetch(): FetchContentSourceResult {
   return Object.freeze({
     sourceId: 'lesson_stats' as const,
     state: 'error' as const,
     truncated: false,
     droppedCount: 0,
     rows: Object.freeze([]),
-    observedAtMs,
+    observedAtMs: 0,
   });
 }
 
@@ -43,7 +43,7 @@ export async function buildFactorySnapshot(input: BuildFactorySnapshotInput): Pr
   try {
     fetch = await input.fetchFactory();
   } catch {
-    fetch = failClosedFetch(input.nowMs);
+    fetch = failClosedFetch();
   }
 
   const { decisions } = runFactoryDepartment({

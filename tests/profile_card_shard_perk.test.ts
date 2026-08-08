@@ -56,13 +56,13 @@ describe('shards_system — точка применения и округлен�
     for (const reason of [
       'shards_store_purchase',
       'streak_wager_win',
-      'arena_match_wager_win',
       'club_boost_refund',
       'release_wave_bonus',
       'global_broadcast_modal',
     ]) {
       expect(source).toContain(`'${reason}',`);
     }
+    expect(source).not.toContain('arena_match_wager_win');
     expect(source).toContain('PROFILE_CARD_PERK_EXCLUDED_REASONS.has(logReason)');
   });
 

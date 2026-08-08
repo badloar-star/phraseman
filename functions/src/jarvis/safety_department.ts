@@ -49,40 +49,78 @@ function buildSafetyEvidence(fetch: FetchSafetySourceResult): Evidence {
     digest: JSON.stringify({
       open: fetch.openFlags,
       openMinor: fetch.openMinorFlags,
+      openAgeUnverified: fetch.openAgeUnverifiedFlags,
+      openAgeUnavailable: fetch.openAgeUnavailableFlags,
+      ageEvidence: fetch.ageEvidence,
       recent: fetch.recentFlags,
     }),
   });
 }
 
+function buildSafetyAgeEvidence(fetch: FetchSafetySourceResult): Evidence {
+  const state = fetch.ageEvidence === 'unavailable'
+    ? 'error'
+    : fetch.ageEvidence === 'age_unverified'
+      ? 'partial'
+      : fetch.openFlags === 0
+        ? 'empty'
+        : 'ready';
+  return normalizeEvidence({
+    sourceId: 'safety_flags_age_verification',
+    state,
+    count: fetch.ageEvidence === 'age_unverified' ? null : 0,
+    truncated: false,
+    droppedCount: 0,
+    observedAtMs: fetch.observedAtMs,
+    digest: JSON.stringify({
+      openAgeUnverified: fetch.openAgeUnverifiedFlags,
+      openAgeUnavailable: fetch.openAgeUnavailableFlags,
+      ageEvidence: fetch.ageEvidence,
+    }),
+  });
+}
+
 export function runSafetyDepartment(input: RunSafetyDepartmentInput): RunSafetyDepartmentResult {
-  const evidence = [buildSafetyEvidence(input.fetch)];
-  const trustworthy = evidence.some((item) => item.trustworthy);
+  const evidence = [buildSafetyEvidence(input.fetch), buildSafetyAgeEvidence(input.fetch)];
+  const trustworthy = evidence[0].trustworthy;
 
   const openMinor = input.fetch.openMinorFlags ?? 0;
   const open = input.fetch.openFlags ?? 0;
   const recent = input.fetch.recentFlags ?? 0;
+  const openAgeUnverified = input.fetch.openAgeUnverifiedFlags ?? 0;
+  const openAgeUnavailable = input.fetch.openAgeUnavailableFlags ?? 0;
 
   const minorRisk = openMinor > 0;
+  const ageUnverified = input.fetch.ageEvidence === 'age_unverified' && openAgeUnverified > 0;
+  const ageUnavailable = input.fetch.ageEvidence === 'unavailable' && openAgeUnavailable > 0;
   const backlog = open >= SAFETY_BACKLOG_THRESHOLD;
   const spike = recent >= SAFETY_SPIKE_THRESHOLD;
 
-  const shouldDecide = input.trigger === 'owner_request' || minorRisk || backlog || spike || !trustworthy;
+  const shouldDecide = input.trigger === 'owner_request' || open > 0 || minorRisk || spike || !trustworthy;
   if (!shouldDecide) return { decisions: [] };
 
   // Порядок важен: дети перекрывают любую очередь взрослых обращений.
-  const finding = !trustworthy
+  const baseFinding = !trustworthy
     ? 'Не удалось прочитать журнал модерации — источник недоступен, состояние безопасности неизвестно.'
     : minorRisk
       ? `${openMinor} необработанных сигналов на детских аккаунтах — это юридический риск, а не очередь.`
       : backlog
         ? `${open} сигналов модерации ждут разбора — очередь копится быстрее, чем разбирается.`
+        : open > 0
+          ? `${open} подтверждённых сигналов безопасности ждут ручного разбора владельцем.`
         : spike
           ? `${recent} новых сигналов за сутки — заметно больше обычного.`
           : 'Очередь модерации разобрана, необработанных сигналов на детских аккаунтах нет.';
 
+  const finding = ageUnverified
+    ? `${baseFinding} Для ${openAgeUnverified} открытых сигналов возраст сервером не подтверждён; это не доказательство отсутствия несовершеннолетних.`
+    : ageUnavailable
+      ? `${baseFinding} Для ${openAgeUnavailable} открытых сигналов серверный источник возраста недоступен.`
+      : baseFinding;
+
   const question = input.question ?? (minorRisk
     ? 'Что с необработанными сигналами на детских аккаунтах?'
-    : backlog || spike
+    : open > 0 || spike
       ? 'Почему копится очередь модерации?'
       : 'Всё ли в порядке с безопасностью?');
 
@@ -94,7 +132,7 @@ export function runSafetyDepartment(input: RunSafetyDepartmentInput): RunSafetyD
     finding,
     hypothesis: minorRisk
       ? 'Детские аккаунты требуют разбора вручную, а очередь не отделяет их от общей.'
-      : backlog
+      : open > 0
         ? 'Вероятная причина — поток сигналов вырос, а разбор остался ручным.'
         : spike
           ? 'Вероятная причина — приток новых пользователей либо ложные срабатывания фильтра.'
@@ -104,7 +142,7 @@ export function runSafetyDepartment(input: RunSafetyDepartmentInput): RunSafetyD
         { title: 'Разобрать сигналы на детских аккаунтах в первую очередь', cost: 0, risk: 'low' },
         { title: 'Разбирать очередь общим порядком', cost: 0, risk: 'high' },
       ]
-      : backlog || spike
+      : open > 0 || spike
         ? [
           { title: 'Разобрать накопившуюся очередь модерации', cost: 0, risk: 'low' },
           { title: 'Посмотреть, не ложные ли это срабатывания фильтра', cost: 0, risk: 'low' },
@@ -115,12 +153,12 @@ export function runSafetyDepartment(input: RunSafetyDepartmentInput): RunSafetyD
         ],
     recommendation: minorRisk
       ? 'Разобрать сигналы на детских аккаунтах в первую очередь'
-      : backlog || spike
+      : open > 0 || spike
         ? 'Разобрать накопившуюся очередь модерации'
         : 'Продолжить наблюдение без вмешательства',
     risk: minorRisk
       ? 'Необработанный сигнал на детском аккаунте — это и вред живому ребёнку, и претензия при проверке магазина приложений'
-      : backlog
+      : open > 0
         ? 'Очередь продолжит расти, и в ней потеряется действительно срочный случай'
         : spike
           ? 'За всплеском может стоять реальная проблема, которую видно только вручную'
@@ -128,10 +166,13 @@ export function runSafetyDepartment(input: RunSafetyDepartmentInput): RunSafetyD
     cost: 0,
     successMetric: minorRisk
       ? 'Ноль необработанных сигналов на детских аккаунтах в следующем суточном снимке'
-      : backlog || spike
-        ? `Очередь модерации ниже ${SAFETY_BACKLOG_THRESHOLD} в следующем снимке`
+      : open > 0 || spike
+        ? 'Ноль необработанных сигналов безопасности в следующем снимке'
         : 'Очередь модерации остаётся разобранной',
     rollback: 'Не применимо — департамент только наблюдает, разбор и блокировки выполняет владелец вручную',
+    evidencePolicy: 'all_trustworthy',
+    actionability: open > 0 || spike || minorRisk ? 'confirmed_action' : 'evidence_only',
+    severityHint: open > 0 || minorRisk ? 'P0' : spike || !trustworthy ? 'P1' : 'P3',
     evidence,
     nowMs: input.nowMs,
   });

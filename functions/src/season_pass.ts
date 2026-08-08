@@ -149,7 +149,7 @@ export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (reques
   const { seasonId, giftId, kind } = request.data ?? {};
   if (!isValidSeasonId(seasonId)) throw new HttpsError('invalid-argument', 'seasonId invalid');
   if (typeof giftId !== 'string' || giftId.length < 3) throw new HttpsError('invalid-argument', 'giftId invalid');
-  if (kind !== 'collection_magnet' && kind !== 'tournament_ticket') {
+  if (kind !== 'collection_magnet' && kind !== 'tournament_ticket' && kind !== 'club_totem') {
     throw new HttpsError('invalid-argument', 'unsupported kind');
   }
 
@@ -157,18 +157,52 @@ export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (reques
   const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`season_consumable_${giftId}`);
 
   return db.runTransaction(async (tx) => {
-    const claimSnap = await tx.get(claimRef);
-    if (claimSnap.exists) return { ok: true, alreadyClaimed: true };
+    const [claimSnap, userSnap] = await Promise.all([tx.get(claimRef), tx.get(userRef)]);
+    if (claimSnap.exists) {
+      const claim = claimSnap.data() ?? {};
+      return {
+        ok: true,
+        alreadyClaimed: true,
+        ...(Number.isFinite(Number(claim.clubGiftFreeBoostCount))
+          ? { clubGiftFreeBoostCount: Math.max(0, Math.trunc(Number(claim.clubGiftFreeBoostCount))) }
+          : {}),
+      };
+    }
 
     const now = Date.now();
+    let clubGiftFreeBoostCount: number | undefined;
     const patch: Record<string, unknown> =
       kind === 'collection_magnet'
         ? { 'progress.season_collection_magnet_v1': JSON.stringify({ multiplier: 2, expiresAt: now + 24 * 60 * 60 * 1000 }) }
-        : { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: now + 72 * 60 * 60 * 1000 }) };
+        : kind === 'tournament_ticket'
+          ? { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: now + 72 * 60 * 60 * 1000 }) }
+          : (() => {
+            const user = userSnap.data() ?? {};
+            const progress = user.progress && typeof user.progress === 'object'
+              ? user.progress as Record<string, unknown>
+              : {};
+            const parseCount = (value: unknown): number => {
+              const parsed = Number.parseInt(String(value ?? ''), 10);
+              return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+            };
+            clubGiftFreeBoostCount = Math.max(
+              parseCount(user.club_gift_free_boost_v1),
+              parseCount(progress.club_gift_free_boost_v1),
+            ) + 1;
+            return {
+              club_gift_free_boost_v1: String(clubGiftFreeBoostCount),
+              'progress.club_gift_free_boost_v1': String(clubGiftFreeBoostCount),
+            };
+          })();
 
-    tx.set(claimRef, { giftId, kind, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+    tx.set(claimRef, {
+      giftId,
+      kind,
+      ...(clubGiftFreeBoostCount !== undefined ? { clubGiftFreeBoostCount } : {}),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
     tx.set(userRef, patch, { merge: true });
-    return { ok: true, alreadyClaimed: false };
+    return { ok: true, alreadyClaimed: false, ...(clubGiftFreeBoostCount !== undefined ? { clubGiftFreeBoostCount } : {}) };
   });
 });
 
@@ -199,16 +233,27 @@ export const seasonSendFriendShield = onCall(HOT_CALLABLE_OPTIONS, async (reques
     if (claimSnap.exists) return { ok: true, alreadyClaimed: true };
     if (!friendSnap.exists) throw new HttpsError('not-found', 'friend_not_found');
 
-    const progress = (friendSnap.data()?.progress ?? {}) as Record<string, unknown>;
+    const friendData = friendSnap.data() ?? {};
+    const progress = (friendData.progress ?? {}) as Record<string, unknown>;
     let daysLeft = 0;
     try {
-      const raw = progress.chain_shield;
-      const parsed = raw && typeof raw === 'object' ? raw as { daysLeft?: unknown } : JSON.parse(String(raw || '{}'));
-      daysLeft = Math.max(0, Math.trunc(Number(parsed?.daysLeft) || 0));
+      const parseDays = (raw: unknown): number => {
+        try {
+          const parsed = raw && typeof raw === 'object' ? raw as { daysLeft?: unknown } : JSON.parse(String(raw || '{}'));
+          return Math.max(0, Math.trunc(Number(parsed?.daysLeft) || 0));
+        } catch {
+          return 0;
+        }
+      };
+      daysLeft = Math.max(parseDays(friendData.chain_shield), parseDays(progress.chain_shield));
     } catch { /* повреждённое поле трактуем как 0 дней, не роняем перевод */ }
 
+    const canonicalShield = JSON.stringify({ daysLeft: daysLeft + 1 });
     tx.set(claimRef, { giftId, friendStableId, createdAt: admin.firestore.FieldValue.serverTimestamp() });
-    tx.set(friendRef, { progress: { chain_shield: { daysLeft: daysLeft + 1 } } }, { merge: true });
+    tx.set(friendRef, {
+      chain_shield: canonicalShield,
+      progress: { chain_shield: canonicalShield },
+    }, { merge: true });
     return { ok: true, alreadyClaimed: false };
   });
 });

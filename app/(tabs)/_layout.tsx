@@ -1,16 +1,7 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, AppState } from 'react-native';
-import Reanimated, {
-  useSharedValue,
-  useAnimatedStyle,
-  interpolate,
-  withSpring,
-  withTiming,
-  Extrapolation,
-  type SharedValue,
-} from 'react-native-reanimated';
+import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing, AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -24,8 +15,12 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import { tabIconOpacity } from '../tab_icon_visibility';
 import HomeScreen       from './home';
+import {
+  captureAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
 import {
   setExamBestPctTabActivity,
 } from '../exam_best_pct_overlay';
@@ -55,17 +50,23 @@ function withAlpha(color: string, alpha: number): string {
   return `rgba(${r},${g},${b},${a})`;
 }
 
-type TabScreenProps = { overlayIdentityEpoch?: number };
+type TabScreenProps = {
+  overlayIdentityEpoch?: number;
+  presentation?: 'tab' | 'push';
+};
 type TabScreenComponent = React.ComponentType<TabScreenProps>;
 type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
-// зачем: владелец (2026-08-02) убрал таб «Уроки» — список уроков стал
-// push-маршрутом /lessons_list (вход: плитка «Уроки» на главной). Лоадер и
-// privacy-boundary панели уроков удалены вместе с самой панелью.
+let deferredLessonsScreen: TabScreenComponent | null = null;
 let deferredTournamentsScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
+
+function loadLessonsScreen(): TabScreenComponent {
+  deferredLessonsScreen ??= (require('./lessons') as DeferredTabModule).default;
+  return deferredLessonsScreen;
+}
 
 function loadFriendsScreen(): TabScreenComponent {
   deferredFriendsScreen ??= (require('./friends') as DeferredTabModule).default;
@@ -84,9 +85,10 @@ function loadSettingsScreen(): TabScreenComponent {
 
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
-    case 1: return loadTournamentsScreen();
-    case 2: return loadFriendsScreen();
-    case 3: return loadSettingsScreen();
+    case 1: return loadLessonsScreen();
+    case 2: return loadTournamentsScreen();
+    case 3: return loadFriendsScreen();
+    case 4: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -133,6 +135,106 @@ function TabPane({ freezeWanted, children }: { freezeWanted: boolean; children: 
   return <Freeze freeze={freezeActive}>{children}</Freeze>;
 }
 
+type LessonsPrivacyState = Readonly<{
+  epoch: number;
+  phase: AccountGenerationToken['phase'];
+  failClosed: boolean;
+}>;
+
+function LessonsPaneBoundary({
+  freezeWanted,
+  shouldLoad,
+  isActive,
+}: {
+  freezeWanted: boolean;
+  shouldLoad: boolean;
+  isActive: boolean;
+}) {
+  const { theme: t } = useTheme();
+  const renderToken = useRef(captureAccountGeneration()).current;
+  const previousTokenRef = useRef(renderToken);
+  const activatedEpochRef = useRef(0);
+  const [privacy, setPrivacy] = useState<LessonsPrivacyState>({
+    epoch: 0,
+    phase: renderToken.phase,
+    failClosed: false,
+  });
+
+  useLayoutEffect(() => {
+    const failClosed = () => setPrivacy((previous) => ({
+      epoch: previous.epoch + 1,
+      phase: 'transitioning',
+      failClosed: true,
+    }));
+    const reconcile = (next: AccountGenerationToken) => {
+      try {
+        const previous = previousTokenRef.current;
+        previousTokenRef.current = next;
+        const initialAdoption = previous.phase === 'uninitialized' && next.phase === 'active';
+        const sameActiveOwner = previous.phase === 'active'
+          && next.phase === 'active'
+          && previous.stableId === next.stableId;
+        if (initialAdoption || sameActiveOwner) return;
+        if (
+          previous.generation === next.generation
+          && previous.phase === next.phase
+          && previous.stableId === next.stableId
+        ) return;
+        setPrivacy((current) => ({
+          epoch: current.epoch + 1,
+          phase: next.phase,
+          failClosed: current.failClosed,
+        }));
+      } catch {
+        failClosed();
+      }
+    };
+
+    try {
+      const subscription = subscribeAccountGeneration(reconcile);
+      reconcile(captureAccountGeneration());
+      return () => subscription.remove();
+    } catch {
+      failClosed();
+      return undefined;
+    }
+  }, [renderToken]);
+
+  if (isActive && privacy.phase === 'active' && !privacy.failClosed) {
+    activatedEpochRef.current = privacy.epoch;
+  }
+  const coverLessons = privacy.failClosed
+    || privacy.phase === 'transitioning'
+    || activatedEpochRef.current < privacy.epoch;
+
+  return (
+    <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary }]} collapsable={false}>
+      <View
+        style={s.lessonsPaneContent}
+        accessibilityElementsHidden={coverLessons}
+        importantForAccessibility={coverLessons ? 'no-hide-descendants' : 'auto'}
+        pointerEvents={coverLessons ? 'none' : 'auto'}
+      >
+        <TabPane freezeWanted={freezeWanted}>
+          <DeferredTabScreen
+            key={`lessons-${privacy.epoch}`}
+            shouldLoad={shouldLoad}
+            loadScreen={loadLessonsScreen}
+            screenProps={{ overlayIdentityEpoch: privacy.epoch, presentation: 'tab' }}
+          />
+        </TabPane>
+      </View>
+      {coverLessons ? (
+        <View
+          style={[StyleSheet.absoluteFillObject, { backgroundColor: t.bgPrimary }]}
+          pointerEvents="auto"
+          accessible={false}
+        />
+      ) : null}
+    </View>
+  );
+}
+
 function markExamBestPctTabActivity(idx: number): void {
   setExamBestPctTabActivity(idx === 0 ? 'safe_home' : 'unsafe');
 }
@@ -143,24 +245,23 @@ type TabDef = {
   active: IconName;
 };
 
-/** Суффиксы путей четырёх основных табов. Legacy-суффиксы `/journal` и `/lessons`
- *  оставлены в маппинге и ведут на главную: сам таб «Уроки» убран (2026-08-02),
- *  список уроков — push-маршрут /lessons_list, а старый диплинк не должен падать. */
+/** Суффиксы основных табов. `/journal` остаётся legacy-якорем вкладки уроков. */
 const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/tournaments', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
-  '/journal': 0,
-  '/lessons': 0,
-  '/tournaments': 1,
-  '/friends': 2,
-  '/settings': 3,
+  '/journal': 1,
+  '/lessons': 1,
+  '/tournaments': 2,
+  '/friends': 3,
+  '/settings': 4,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
-  1: '/(tabs)/tournaments',
-  2: '/(tabs)/friends',
-  3: '/(tabs)/settings',
+  1: '/(tabs)/lessons',
+  2: '/(tabs)/tournaments',
+  3: '/(tabs)/friends',
+  4: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -172,7 +273,10 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
 
 /** Доп. зазор между плавающей капсулой и зоной системных жестов снизу. */
 const FLOATING_PILL_BOTTOM_GAP = 6;
+const ENABLE_TAB_HIGHLIGHT_TRAVEL = true;
 const ENABLE_TAB_PRESS_LIFT = true;
+const TAB_ACTIVE_PILL_WIDTH = 48;
+const TAB_ACTIVE_PILL_HEIGHT = 36;
 /** Фоновый премаунт соседних табов в idle: первое открытие любого таба — мгновенное,
  *  без «плейсхолдер → полный маунт на глазах». Дёшев в связке с ENABLE_TAB_FREEZE:
  *  премаунченный таб делает первый коммит (модуль + первый рендер + старт загрузок)
@@ -190,62 +294,31 @@ const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const;
-// Guarded by tests/tabbar_scroll_chrome_contract.test.ts.
-//
-// зачем: владелец попросил таббар РОВНО как у Bevel — прогресс схлопывания привязан
-// к пальцу, капсула сжимается в круглую кнопку («орб») активной вкладки СЛЕВА, а
-// разворот происходит только когда страница вернулась наверх. Тап по орбу ТОЛЬКО
-// разворачивает.
-//
-// 2026-07-26, вторая итерация. Первая версия сжимала капсулу через scaleX с контр-
-// масштабом иконок — владелец забраковал: иконки заметно растягивало, и кубическая
-// кривая читалась как «клюющая». Ресёрч боевых реализаций (expo-glass-tabs,
-// SwiftUI Liquid Glass tab bars) показал единый приём, который здесь и применён:
-//   • анимируется НАСТОЯЩАЯ ширина капсулы, а не scaleX — поэтому геометрия иконок
-//     не искажается вообще, ни на одном кадре;
-//   • иконки фиксированного размера, их никто не масштабирует: неактивные ГАСНУТ
-//     заметно раньше, чем капсула дожимается, а лишнее обрезает overflow:hidden;
-//   • движение — ПРУЖИНА с критическим затуханием (без отскока): при развороте
-//     жеста пружина плавно перецеливается с текущей скорости, тогда как временная
-//     кривая рестартовала бы с нуля и давала тот самый «клевок».
-// Layout-анимация здесь безопасна: она идёт worklet'ом на UI-потоке (Reanimated),
-// а не через JS-поток — именно JS-поток был причиной перегрева, а не сам факт
-// изменения ширины.
-/** Орб Ø=tabBarHeight (~58): hitSlop добирает цель до комфортных ≥44dp с запасом по краям. */
-const TAB_ORB_HIT_SLOP = { top: 10, bottom: 10, left: 10, right: 10 } as const;
-/** Путь пальца, за который капсула проходит весь путь от развёрнутой до орба. */
-const TAB_SCROLL_COLLAPSE_DISTANCE = 92;
-/** Ниже этого офсета страница считается «в верхнем положении» — только тут возможен
- *  разворот. Владелец: «как только страница возвращается в верхнее положение, только
- *  тогда таббар разворачивается». */
-const TAB_SCROLL_TOP_ZONE_Y = 10;
-/** Порог довода после отпускания пальца: за половиной пути — дожимаем в орб, иначе
- *  возвращаем в капсулу. */
-const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;
-/** Глубина ВЕРХНЕГО overscroll, начиная с которой подъём страницы на «Друзьях»
- *  считается осознанным. Отскок резинки сам по себе нуля не переходит, так что
- *  14 px — просто запас против дребезга на самой границе. */
-/** Пауза без единого кадра скролла, после которой жест считается завершённым. */
-const TAB_SCROLL_SETTLE_IDLE_MS = 90;
-/** Пружина довода. dampingRatio=1 — критическое затухание: доезжает плавно и
- *  останавливается без отскока. Отскок на изменении РАЗМЕРА читается как дефект
- *  (на трансформах он уместен, на геометрии — нет). 380 мс вместо прежних 260/300:
- *  владелец просил медленнее и мягче. */
-const TAB_CHROME_SPRING = { duration: 380, dampingRatio: 1 } as const;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
+// The entire capsule stays visible and only compacts slightly on downward scroll.
+const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
+const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
+const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;
+const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
+const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
+const TAB_SCROLL_DIRECTION_EPSILON = 5;
+const TAB_SCROLL_COLLAPSE_MS = 220;
+const TAB_SCROLL_EXPAND_MS = 260;
+const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
 const TAB_UNDERLAY_DIM_ALPHA = 0.95;
 const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
+const TAB_DARK_ACTIVE_BG_ALPHA = 0.18;
 const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп).
- *  journal/lessons — legacy-якоря убранного таба «Уроки», ведут на главную. */
+ *  journal — legacy-якорь вкладки «Все уроки». */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
-  journal: 0,
-  lessons: 0,
-  tournaments: 1,
-  friends: 2,
-  settings: 3,
+  journal: 1,
+  lessons: 1,
+  tournaments: 2,
+  friends: 3,
+  settings: 4,
 };
 
 /**
@@ -293,45 +366,23 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 }
 
 // Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов.
-// зачем: владелец (2026-08-02) убрал вкладку-книжку «Уроки» — список уроков
-// открывается плиткой «Уроки» на главной (/lessons_list), пятая иконка лишняя.
 const TABS: TabDef[] = [
   { key: 'home',        icon: 'home-outline',        active: 'home' },
+  { key: 'lessons',     icon: 'book-outline',        active: 'book' },
   { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
 ];
 
+// Турниры временно скрыты только из клиентской навигации. Логический индекс и
+// маршрут сохраняем: это не сдвигает существующие вкладки и не ломает deeplink.
+const TAB_BAR_TABS = TABS.filter((tab) => tab.key !== 'tournaments').map((tab) => ({
+  ...tab,
+  logicalIdx: TABS.indexOf(tab),
+}));
+
 
 type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean; visualIdx: number; physicalPageIdx: PhysicalPageIndex };
-
-function TabBarIcon({
-  focused,
-  progress,
-  icon,
-  activeIcon,
-  color,
-  pressScale,
-}: {
-  focused: boolean;
-  progress: SharedValue<number>;
-  icon: IconName;
-  activeIcon: IconName;
-  color: string;
-  pressScale: number | Animated.AnimatedInterpolation<number>;
-}) {
-  const tabIconVisibilityStyle = useAnimatedStyle(() => ({
-    opacity: tabIconOpacity(focused, progress.value),
-  }), [focused]);
-
-  return (
-    <Reanimated.View style={tabIconVisibilityStyle}>
-      <Animated.View style={{ transform: [{ scale: pressScale }] }}>
-        <Ionicons name={focused ? activeIcon : icon} size={26} color={color} />
-      </Animated.View>
-    </Reanimated.View>
-  );
-}
 
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
@@ -344,44 +395,42 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
   /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
-   * Белые состояния иконок держат контраст и в полном таббаре, и в свёрнутом орбе. */
+   * Тёмные состояния иконок держат контраст и в полном, и в компактном таббаре. */
   const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
   const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;
   const tabIconActive = isSagePorcelainTabChrome ? t.correctText : t.accent;
   const tabIconMuted = isSagePorcelainTabChrome
     ? withAlpha(t.correctText, 0.72)
     : withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
+  const tabActiveBg = withAlpha(tabIconActive, TAB_DARK_ACTIVE_BG_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
   const [tabPillWidth, setTabPillWidth] = useState(0);
+  const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
   const tabPressAnim = useRef(new Animated.Value(0)).current;
-  /** 0 = развёрнутая капсула, 1 = круглый орб. Reanimated shared value: пишется и
-   *  читается на UI-потоке, поэтому анимация ширины не трогает JS-поток. */
-  const tabScrollProgress = useSharedValue(0);
+  const tabScrollProgress = useRef(new Animated.Value(0)).current;
   const tabScrollCollapsedRef = useRef(false);
   const tabScrollLastYRef = useRef(0);
-  /** Верхняя точка, достигнутая с начала текущего движения вниз: от неё считается
-   *  путь пальца, а значит и прогресс сжатия. */
-  const tabScrollAnchorYRef = useRef(0);
-  /** true, пока прогресс ведёт палец: в этот момент довод по таймеру ещё уместен,
-   *  а после довода/фиксации — уже нет. */
-  const tabScrollDrivenRef = useRef(false);
-  /** Бар свернулся на «Друзьях» — такой бар НЕ разворачивается сам: владелец просил,
-   *  чтобы там подъём страницы вверх работал как кнопка «верни таббар». */
-  const tabScrollCollapsedFromBounceRef = useRef(false);
-  /** Активный таб для скролл-слушателя. Через реф, а не через замыкание: эффект не
-   *  пересоздаётся при смене таба (иначе терялся бы накопленный якорь), поэтому
-   *  захваченное значение устарело бы. */
-  const activeTabIdxRef = useRef(activeIdx);
-  activeTabIdxRef.current = activeIdx;
+  const tabScrollLastToggleAtRef = useRef(0);
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
-  /** Зеркало tabScrollCollapsedRef в state: pointerEvents и доступность слоёв капсула/орб. */
-  const [tabChromeCollapsed, setTabChromeCollapsed] = useState(false);
-  const orbPressAnim = useRef(new Animated.Value(0)).current;
   const firstContentReadyEmittedRef = useRef(false);
-  // Press feedback must not drive selection; otherwise release can restart the highlight spring.
   const visualTabIdx = visualIdx;
+  const activeBarTabIdx = TAB_BAR_TABS.findIndex((tab) => tab.logicalIdx === visualTabIdx);
   const previousVisualTabIdxRef = useRef(visualIdx);
+
+  useEffect(() => {
+    if (activeBarTabIdx < 0) return;
+    if (!ENABLE_TAB_HIGHLIGHT_TRAVEL) {
+      tabHighlightAnim.setValue(activeBarTabIdx);
+      return;
+    }
+    Animated.spring(tabHighlightAnim, {
+      toValue: activeBarTabIdx,
+      speed: 18,
+      bounciness: 4,
+      useNativeDriver: true,
+    }).start();
+  }, [activeBarTabIdx, tabHighlightAnim]);
 
   const endTabPress = useCallback(() => {
     if (!ENABLE_TAB_PRESS_LIFT) {
@@ -419,186 +468,92 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     outputRange: [1, 0.992],
   });
 
-  /** Довод до одного из двух устойчивых состояний (капсула ↔ орб). Используется,
-   *  когда прогресс перестал управляться пальцем: отпускание, тап по орбу, свайп,
-   *  программная смена таба. */
+  const tabActivePillPressScale = tabPressAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 1.1],
+  });
+
+  const tabActivePillPressOpacity = tabPressAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 0.92],
+  });
+
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
+    if (!immediate && tabScrollCollapsedRef.current === collapsed) return;
+    const now = Date.now();
+    if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) return;
+    tabScrollLastToggleAtRef.current = now;
     tabScrollCollapsedRef.current = collapsed;
-    // Любой разворот снимает «ждём тяги вверх»: признак касается только текущего
-    // свёрнутого состояния и не должен пережить его (иначе залипнет навсегда).
-    if (!collapsed) tabScrollCollapsedFromBounceRef.current = false;
-    setTabChromeCollapsed(collapsed);
-    const target = collapsed ? 1 : 0;
-    // Пружина, а не timing: при развороте жеста на полпути она перецеливается с
-    // ТЕКУЩЕЙ скорости, тогда как временная кривая стартовала бы заново — это и
-    // читалось владельцем как «клюющее» движение.
-    tabScrollProgress.value = immediate ? target : withSpring(target, TAB_CHROME_SPRING);
+    tabScrollProgress.stopAnimation();
+    if (immediate) {
+      tabScrollProgress.setValue(collapsed ? 1 : 0);
+      return;
+    }
+    Animated.timing(tabScrollProgress, {
+      toValue: collapsed ? 1 : 0,
+      duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
   }, [tabScrollProgress]);
 
   useLayoutEffect(() => {
     if (previousVisualTabIdxRef.current === visualIdx) return;
     previousVisualTabIdxRef.current = visualIdx;
     tabScrollLastYRef.current = 0;
-    tabScrollAnchorYRef.current = 0;
-    tabScrollDrivenRef.current = false;
     animateTabChrome(false, true);
   }, [animateTabChrome, visualIdx]);
 
-  /**
-   * Скролл ведёт таббар ЗА ПАЛЬЦЕМ (модель Bevel).
-   *
-   * `dragged` — сколько пальцем утянуто вниз от той точки, где движение вниз началось
-   * (`tabScrollAnchorYRef`). Прогресс = dragged / TAB_SCROLL_COLLAPSE_DISTANCE, поэтому
-   * медленная тяга даёт частичное, видимое глазом сжатие, а не мгновенный переброс.
-   *
-   * Разворот НЕ привязан к пальцу намеренно: владелец просил, чтобы бар возвращался
-   * только когда страница вернулась наверх — иначе любое микро-движение вверх посреди
-   * длинной ленты дёргало бы бар туда-сюда.
-   *
-   * Экраны без скролла покрыты тем же кодом: там `bounces`/`alwaysBounceVertical`
-   * (BouncyScrollView и FlashList) дают ОТРИЦАТЕЛЬНЫЙ contentOffset при тяге вниз,
-   * что здесь читается как обычная тяга вниз. Отдельный жест-слой поверх контента
-   * не нужен — он бы конкурировал с нативным скроллом (см. историю BouncyScrollView).
-   */
   useEffect(() => {
     const scrollY = topFadeScroll?.tabBarScrollY;
     if (!scrollY) return undefined;
 
-    let settleTimer: ReturnType<typeof setTimeout> | null = null;
-    const armSettle = (progress: number, fromBounce: boolean) => {
-      if (settleTimer) clearTimeout(settleTimer);
-      settleTimer = setTimeout(() => {
-        settleTimer = null;
-        if (!tabScrollDrivenRef.current) return;
-        tabScrollDrivenRef.current = false;
-        const collapsed = progress >= TAB_SCROLL_SETTLE_THRESHOLD;
-        tabScrollCollapsedFromBounceRef.current = collapsed && fromBounce;
-        animateTabChrome(collapsed);
-      }, TAB_SCROLL_SETTLE_IDLE_MS);
-    };
-
     const id = scrollY.addListener(({ value }) => {
-      const y = value;
-      const previousY = tabScrollLastYRef.current;
+      const y = Math.max(0, value);
+      const delta = y - tabScrollLastYRef.current;
       tabScrollLastYRef.current = y;
-      if (y <= TAB_SCROLL_TOP_ZONE_Y) {
-        tabScrollAnchorYRef.current = y;
-        if (tabScrollCollapsedRef.current || tabScrollDrivenRef.current) {
-          if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
-          tabScrollDrivenRef.current = false;
-          animateTabChrome(false);
-        }
-        return;
-      }
-      if (y < previousY) {
-        tabScrollAnchorYRef.current = Math.min(tabScrollAnchorYRef.current, y);
-        return;
-      }
-      if (tabScrollCollapsedRef.current) return;
 
-      const dragged = y - tabScrollAnchorYRef.current;
-      if (dragged <= 0) return;
-      const progress = Math.min(1, dragged / TAB_SCROLL_COLLAPSE_DISTANCE);
-      tabScrollDrivenRef.current = true;
-      tabScrollProgress.value = progress;
-      if (progress >= 1) {
-        if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
-        tabScrollDrivenRef.current = false;
-        tabScrollCollapsedRef.current = true;
-        tabScrollCollapsedFromBounceRef.current = false;
-        setTabChromeCollapsed(true);
+      if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {
+        animateTabChrome(false, true);
         return;
       }
-      armSettle(progress, false);
+
+      if (delta >= TAB_SCROLL_DIRECTION_EPSILON && y >= TAB_SCROLL_COLLAPSE_TRIGGER_Y) {
+        animateTabChrome(true);
+        return;
+      }
+
+      if (delta <= -TAB_SCROLL_DIRECTION_EPSILON) {
+        animateTabChrome(false);
+      }
     });
 
     return () => {
       scrollY.removeListener(id);
-      if (settleTimer) clearTimeout(settleTimer);
+      tabScrollProgress.stopAnimation();
     };
   }, [animateTabChrome, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
 
-
-  // contract: collapsed-tap-expands-only — тап по орбу лишь разворачивает капсулу,
-  // навигации нет: видна одна активная вкладка, тап по ней значит «покажи остальные».
-  // Разворот идёт той же анимацией, что и схлопывание (владелец: «точно с такой же
-  // анимацией разворачивается»), поэтому immediate здесь НЕ используется.
-  // Якорь переносим на текущий офсет: иначе первый же кадр скролла увидел бы
-  // «утянуто на пол-ленты вниз» и мгновенно схлопнул бар обратно.
-  const handleOrbPress = useCallback(() => {
-    hapticTap();
-    tabScrollAnchorYRef.current = tabScrollLastYRef.current;
-    animateTabChrome(false);
-  }, [animateTabChrome]);
-
-  /** Свайп между табами — смена контекста, а не продолжение жеста скролла: бар должен
-   *  быть развёрнут сразу, поэтому здесь immediate. Якорь переносим на офсет нового
-   *  таба, чтобы его первый scroll-кадр не прочитался как «утянуто вниз». */
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
-    tabScrollAnchorYRef.current = tabScrollLastYRef.current;
-    tabScrollDrivenRef.current = false;
+    tabScrollLastYRef.current = 0;
     animateTabChrome(false, true);
     onSwipeStart(physicalIdx);
   }, [animateTabChrome, onSwipeStart]);
 
-  /** Программная смена таба: новый таб открывается наверху — таббар всегда развёрнут,
-   *  lastY/якорь сбрасываем, чтобы первый scroll-кадр нового таба не дал ложную тягу. */
-  const goToTabExpanded = useCallback((idx: number) => {
-    tabScrollLastYRef.current = 0;
-    tabScrollAnchorYRef.current = 0;
-    tabScrollDrivenRef.current = false;
-    animateTabChrome(false, true);
-    goToTab(idx);
-  }, [animateTabChrome, goToTab]);
-
-  /* Схлопывание НАСТОЯЩЕЙ шириной — ключевое отличие от первой версии.
-   *
-   * scaleX деформировал бы содержимое, и никакой контр-масштаб этого до конца не
-   * лечит (владелец увидел растягивание иконок). Здесь капсула меняет реальную
-   * ширину: иконки внутри вообще не трогаются трансформами, сохраняют свою
-   * геометрию покадрово, а лишнее срезает overflow:hidden на капсуле.
-   *
-   * Это layout-свойство, но анимация идёт worklet'ом на UI-потоке (Reanimated),
-   * то есть JS-поток не участвует — запрет проекта касался именно JS-потока.
-   *
-   * Ширина берётся из измеренной: до первого onLayout (tabPillWidth=0) держим
-   * развёрнутое состояние, иначе первый кадр показал бы неверную геометрию. */
-  const tabCapsuleStyle = useAnimatedStyle(() => {
-    if (tabPillWidth <= 0) return { width: undefined as unknown as number };
-    return {
-      width: interpolate(
-        tabScrollProgress.value,
-        [0, 1],
-        [tabPillWidth, tabBarHeight],
-        Extrapolation.CLAMP,
-      ),
-    };
-  }, [tabPillWidth, tabBarHeight]);
-
-  /* Ряд иконок держит ИСХОДНУЮ ширину капсулы (width зафиксирована в px) и прижат
-   * влево. Поэтому при сужении капсулы ячейки не пересчитываются: иконки стоят на
-   * своих местах, а правые просто уходят за край и срезаются overflow:hidden —
-   * ровно так это сделано в боевых реализациях. */
-  const tabIconsRowStyle = useAnimatedStyle(() => {
-    if (tabPillWidth <= 0) return {};
-    const cell = tabPillWidth / TABS.length;
-    // Активная иконка доезжает в центр круга: её ячейка встаёт под центр орба.
-    const activeCellCenter = visualTabIdx * cell + cell / 2;
-    return {
-      transform: [{
-        translateX: interpolate(
-          tabScrollProgress.value,
-          [0, 1],
-          [0, tabBarHeight / 2 - activeCellCenter],
-          Extrapolation.CLAMP,
-        ),
-      }],
-    };
-  }, [tabPillWidth, tabBarHeight, visualTabIdx]);
-
-  const orbPressScale = orbPressAnim.interpolate({
+  const tabScrollScale = tabScrollProgress.interpolate({
     inputRange: [0, 1],
-    outputRange: [1, 0.94],
+    outputRange: [1, TAB_SCROLL_COLLAPSED_SCALE],
+    extrapolate: 'clamp',
+  });
+  const tabScrollTranslateY = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y],
+    extrapolate: 'clamp',
+  });
+  const tabScrollOpacity = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, TAB_SCROLL_COLLAPSED_OPACITY],
+    extrapolate: 'clamp',
   });
 
   const notifyFirstContentReady = useCallback(() => {
@@ -629,7 +584,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
           над «ТУРНИРЫ» — эта плашка его прятала). Теперь styles.root в
           tournaments.tsx прозрачный, экран показывает тот же общий градиент/
           орбы/блум, что и остальные табы — отдельная плашка над сейф-зоной
-          только для индекса 1 создавала бы НОВЫЙ шов на фоне, который иначе
+          только для индекса 2 создавала бы НОВЫЙ шов на фоне, который иначе
           везде однородный. */}
       <View
         onLayout={notifyFirstContentReady}
@@ -638,7 +593,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           <View style={s.tabContent}>
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTabExpanded} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
+              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTab} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
                 {tabScreens}
               </TabSlider>
             </GestureHandlerRootView>
@@ -648,56 +603,49 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
             style={[s.tabBarWrap, { height: tabOverlayHeight }]}
             pointerEvents="box-none"
           >
-            {/* Измеритель ПОЛНОЙ ширины развёрнутой капсулы. Лежит СНАРУЖИ капсулы:
-                та анимирует width и клипует содержимое, поэтому её собственный
-                onLayout выдавал бы промежуточные значения. Нулевая высота, невидим. */}
-            <View
-              pointerEvents="none"
-              style={[s.tabPillMeasure, { left: ds.spacing.lg, right: ds.spacing.lg }]}
+            <Animated.View
               onLayout={(event) => setTabPillWidth(event.nativeEvent.layout.width)}
-            />
-
-            {/* Одна капсула на оба состояния: она САМА сужается до круга. Отдельного
-                слоя-орба больше нет — кроссфейд двух слоёв и был источником «шва»,
-                а морфинг одного элемента честнее и дешевле. */}
-            <Reanimated.View
-              pointerEvents="box-none"
               style={[
                 s.tabPill,
-                tabCapsuleStyle,
                 {
                   bottom: tabPillBottom,
-                  left: ds.spacing.lg,
+                  marginHorizontal: ds.spacing.lg,
                   height: tabBarHeight,
                   borderRadius: tabBarHeight / 2,
                   shadowColor: t.shadowDark,
-                  borderWidth: isSagePorcelainTabChrome ? 1 : 0,
-                  borderColor: isSagePorcelainTabChrome ? t.btnShadow : 'transparent',
+                  opacity: tabScrollOpacity,
+                  transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }, { scale: tabPillPressScale }],
                 },
               ]}
             >
               <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: tabPillBackground }]} />
 
-              {/* Ряд фиксированной ширины: при сужении капсулы ячейки НЕ пересчитываются,
-                  иконки сохраняют геометрию, правые уходят под overflow:hidden. */}
-              <Reanimated.View
-                pointerEvents={tabChromeCollapsed ? 'none' : 'auto'}
-                accessibilityElementsHidden={tabChromeCollapsed}
-                importantForAccessibility={tabChromeCollapsed ? 'no-hide-descendants' : 'auto'}
-                style={[
-                  s.tabPillRow,
-                  tabIconsRowStyle,
-                  tabPillWidth > 0 ? { width: tabPillWidth } : null,
-                ]}
-              >
-              {/* зачем: владелец убрал подложку-«пилюлю» под активной иконкой —
-                  на тёмном фоне её верхний край читался как полукруг под иконкой.
-                  Активная вкладка теперь обозначается ТОЛЬКО самой иконкой: залитый
-                  вариант (tab.active) + контрастный цвет вместо приглушённого. */}
-              {TABS.map((tab, i) => {
-                const visuallyFocused = visualTabIdx === i;
+              {ENABLE_TAB_HIGHLIGHT_TRAVEL && tabPillWidth > 0 && activeBarTabIdx >= 0 ? (
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    s.tabActivePill,
+                    {
+                      top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                      left: (tabPillWidth / TAB_BAR_TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
+                      backgroundColor: tabActiveBg,
+                      opacity: tabActivePillPressOpacity,
+                      transform: [{
+                        translateX: tabHighlightAnim.interpolate({
+                          inputRange: TAB_BAR_TABS.map((_, index) => index),
+                          outputRange: TAB_BAR_TABS.map((_, index) => index * (tabPillWidth / TAB_BAR_TABS.length)),
+                          extrapolate: 'clamp',
+                        }),
+                      }, { scale: tabActivePillPressScale }],
+                    },
+                  ]}
+                />
+              ) : null}
+
+              {TAB_BAR_TABS.map((tab, barIndex) => {
+                const visuallyFocused = activeBarTabIdx === barIndex;
                 const color = visuallyFocused ? tabIconActive : tabIconMuted;
-                const iconScale = pressedTabIdx === i
+                const iconScale = pressedTabIdx === barIndex
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;
                 return (
@@ -708,54 +656,22 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                     accessible={true}
                     accessibilityRole="tab"
                     accessibilityState={{ selected: visuallyFocused }}
-                    style={[s.tabBtn, tabPillWidth > 0 ? { width: tabPillWidth / TABS.length } : null]}
-                    onPressIn={() => beginTabPress(i)}
+                    style={s.tabBtn}
+                    onPressIn={() => beginTabPress(barIndex)}
                     onPressOut={endTabPress}
-                    onPress={() => { goToTabExpanded(i); }}
+                    onPress={() => goToTab(tab.logicalIdx)}
                     activeOpacity={1}
                   >
-                    <TabBarIcon
-                      focused={visuallyFocused}
-                      progress={tabScrollProgress}
-                      icon={tab.icon}
-                      activeIcon={tab.active}
-                      color={color}
-                      pressScale={iconScale}
-                    />
+                    {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused ? (
+                      <View style={[s.tabActivePill, { backgroundColor: tabActiveBg }]} />
+                    ) : null}
+                    <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+                      <Ionicons name={visuallyFocused ? tab.active : tab.icon} size={26} color={color} />
+                    </Animated.View>
                   </TouchableOpacity>
                 );
               })}
-              </Reanimated.View>
-
-              {/* Кнопка свёрнутого состояния лежит поверх круга: та же геометрия,
-                  что и у капсулы, поэтому «шва» между состояниями нет вовсе. */}
-              <Animated.View
-                pointerEvents={tabChromeCollapsed ? 'auto' : 'none'}
-                accessibilityElementsHidden={!tabChromeCollapsed}
-                importantForAccessibility={tabChromeCollapsed ? 'auto' : 'no-hide-descendants'}
-                style={[
-                  s.tabOrbHit,
-                  { width: tabBarHeight, height: tabBarHeight, transform: [{ scale: orbPressScale }] },
-                ]}
-              >
-                <TouchableOpacity
-                  testID="tab-collapsed-orb"
-                  accessibilityLabel="qa-tab-collapsed-orb"
-                  accessible={true}
-                  accessibilityRole="button"
-                  style={s.tabOrbBtn}
-                  hitSlop={TAB_ORB_HIT_SLOP}
-                  onPressIn={() => {
-                    Animated.spring(orbPressAnim, { toValue: 1, speed: 34, bounciness: 6, useNativeDriver: true }).start();
-                  }}
-                  onPressOut={() => {
-                    Animated.spring(orbPressAnim, { toValue: 0, speed: 28, bounciness: 4, useNativeDriver: true }).start();
-                  }}
-                  onPress={handleOrbPress}
-                  activeOpacity={1}
-                />
-              </Animated.View>
-            </Reanimated.View>
+            </Animated.View>
           </View>
         </View>
       </View>
@@ -1020,9 +936,17 @@ export default function TabLayout() {
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
       show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
-      show(1) ? <TabPane key="tournaments" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
-      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(1) ? (
+        <LessonsPaneBoundary
+          key="lessons"
+          freezeWanted={freezeWanted(1)}
+          shouldLoad={shouldLoad(1)}
+          isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
+        />
+      ) : placeholder('ph-lessons'),
+      show(2) ? <TabPane key="tournaments" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
+      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
   }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
@@ -1043,6 +967,14 @@ const s = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
+  lessonsPaneBoundary: {
+    flex: 1,
+    minHeight: 0,
+  },
+  lessonsPaneContent: {
+    flex: 1,
+    minHeight: 0,
+  },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },
   /** Нижний overlay не резервирует место: контент уходит под него без отдельной safe-area полосы. */
@@ -1056,12 +988,12 @@ const s = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
-  /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со статичным фоном.
-   *  Привязана к ЛЕВОМУ краю (не left+right): ширина анимируется, и правый край
-   *  должен уезжать влево, пока левый стоит на месте. overflow:hidden срезает иконки,
-   *  которые не поместились — благодаря этому их не нужно масштабировать. */
+  /** Плавающая капсула остаётся целой и слегка уменьшается при скролле. */
   tabPill: {
     position: 'absolute',
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
     borderWidth: 0,
@@ -1072,38 +1004,19 @@ const s = StyleSheet.create({
     elevation: 12,
   },
   tabPillFill: { ...StyleSheet.absoluteFillObject },
-  /** Нулевой по высоте измеритель полной ширины развёрнутой капсулы: сама капсула
-   *  анимирует width и клипует содержимое, поэтому её onLayout давал бы промежуточные
-   *  значения. Прижат к низу — tabBarWrap клипует по своей высоте. */
-  tabPillMeasure: {
-    position: 'absolute',
-    bottom: 0,
-    height: 0,
-  },
-  /** Ряд иконок внутри капсулы: фиксированной ширины (ячейки не пересчитываются при
-   *  сужении), едет одним слоем, чтобы активная вкладка приехала в центр круга. */
-  tabPillRow: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  /** Прозрачная кнопка поверх круга в свёрнутом состоянии. */
-  tabOrbHit: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-  },
-  /** Ширина ячейки задаётся явно (tabPillWidth / TABS.length), а не flex:1 — иначе
-   *  при сужении капсулы ячейки пересчитывались бы и иконки «съезжались». */
-  tabBtn:     { alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch', position: 'relative', zIndex: 10 },
-  tabOrbBtn: {
+  tabBtn: {
     flex: 1,
-    alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'stretch',
+    position: 'relative',
+    zIndex: 10,
+  },
+  tabActivePill: {
+    position: 'absolute',
+    width: TAB_ACTIVE_PILL_WIDTH,
+    height: TAB_ACTIVE_PILL_HEIGHT,
+    borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
   },
 
 });

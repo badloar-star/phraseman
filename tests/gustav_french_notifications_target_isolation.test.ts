@@ -63,7 +63,7 @@ describe('Gustav French notification target isolation', () => {
 
     expect(settingsSource).toContain("import { useStudyTarget } from '../components/StudyTargetContext'");
     expect(settingsSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(settingsSource).toContain('await scheduleNotifications(next, lang as Lang, 0, { studyTarget })');
+    expect(settingsSource).toContain('await scheduleNotifications(next, lang as Lang, 0, { requestPermission: false, studyTarget })');
     expect(mainSettingsSource).toContain('await scheduleDailyReminder(notifHour, 0, lang, { studyTarget })');
   });
 });

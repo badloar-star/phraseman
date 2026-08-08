@@ -21,6 +21,61 @@ function Say($text)  { Write-Host "  $text" -ForegroundColor Cyan }
 function Ok($text)   { Write-Host "  $text" -ForegroundColor Green }
 function Warn($text) { Write-Host "  $text" -ForegroundColor Yellow }
 
+function Get-ConnectedEmulatorSerials {
+  $result = @()
+  foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
+    if ($line -match '^(emulator-\d+)\s+device\s*$') { $result += $Matches[1] }
+  }
+  return @($result | Select-Object -Unique)
+}
+
+function Test-EmulatorReady([string]$Serial) {
+  # sys.boot_completed alone flips too early after Quick Boot. The first app
+  # launch used to happen while Android was still unlocking the user and
+  # finishing Package Manager work, which sent Expo Dev Client to its error UI.
+  $sysBoot = "$(& $adb -s $Serial shell getprop sys.boot_completed 2>$null | Select-Object -First 1)".Trim()
+  $devBoot = "$(& $adb -s $Serial shell getprop dev.bootcomplete 2>$null | Select-Object -First 1)".Trim()
+  $bootAnim = "$(& $adb -s $Serial shell getprop init.svc.bootanim 2>$null | Select-Object -First 1)".Trim()
+  $provisioned = "$(& $adb -s $Serial shell settings get global device_provisioned 2>$null | Select-Object -First 1)".Trim()
+  $setupComplete = "$(& $adb -s $Serial shell settings get secure user_setup_complete 2>$null | Select-Object -First 1)".Trim()
+  $userState = @(& $adb -s $Serial shell dumpsys user 2>$null | ForEach-Object { "$_" }) -join "`n"
+  $packagePath = "$(& $adb -s $Serial shell pm path app.phraseman 2>$null | Select-Object -First 1)".Trim()
+
+  return (
+    $sysBoot -eq "1" -and
+    $devBoot -eq "1" -and
+    $bootAnim -eq "stopped" -and
+    $provisioned -eq "1" -and
+    $setupComplete -eq "1" -and
+    $userState -match 'State: RUNNING_UNLOCKED' -and
+    $packagePath -match '^package:'
+  )
+}
+
+function Wait-ForReadyEmulators([int]$TimeoutSeconds = 240) {
+  $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+  $stableChecks = @{}
+
+  while ((Get-Date) -lt $deadline) {
+    $ready = @()
+    foreach ($serial in @(Get-ConnectedEmulatorSerials)) {
+      if (Test-EmulatorReady $serial) {
+        $stableChecks[$serial] = 1 + [int]$stableChecks[$serial]
+        # Require three consecutive complete checks. This is a condition-based
+        # settle window, not a guessed fixed delay, and filters transient ADB
+        # readiness during Quick Boot restore.
+        if ($stableChecks[$serial] -ge 3) { $ready += $serial }
+      } else {
+        $stableChecks[$serial] = 0
+      }
+    }
+    if ($ready.Count -gt 0) { return @($ready | Select-Object -Unique) }
+    Start-Sleep -Seconds 2
+  }
+
+  return @()
+}
+
 Write-Host ""
 Write-Host "==========================================" -ForegroundColor Magenta
 Write-Host " Phraseman Metro - Android-эмулятор ($Port)" -ForegroundColor Magenta
@@ -54,10 +109,7 @@ foreach ($processId in $owners) {
 }
 
 # ── 2. Эмулятор ─────────────────────────────────────────────────────────────
-$serials = @()
-foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
-  if ($line -match '^(emulator-\d+)\s+device\s*$') { $serials += $Matches[1] }
-}
+$serials = @(Get-ConnectedEmulatorSerials)
 
 if ($serials.Count -lt 1) {
   $emulatorExe = Join-Path $env:LOCALAPPDATA "Android\Sdk\emulator\emulator.exe"
@@ -88,29 +140,19 @@ if ($serials.Count -lt 1) {
         "-netdelay", "none",
         "-netspeed", "full"
       ) | Out-Null
-      # зачем: `adb shell getprop` БЕЗ -s падает с «more than one device», как
-      # только запущено два эмулятора — цикл ждал бы впустую. Опрашиваем каждый
-      # серийник поимённо и ждём, пока хоть один догрузится.
-      for ($i = 0; $i -lt 120; $i++) {
-        Start-Sleep -Seconds 2
-        $found = @()
-        foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
-          if ($line -match '^(emulator-\d+)\s+device\s*$') { $found += $Matches[1] }
-        }
-        $ready = $false
-        foreach ($cand in $found) {
-          $booted = (& $adb -s $cand shell getprop sys.boot_completed 2>$null | Select-Object -First 1)
-          if ("$booted".Trim() -eq "1") { $ready = $true }
-        }
-        if ($ready) { break }
-      }
-      $serials = @()
-      foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
-        if ($line -match '^(emulator-\d+)\s+device\s*$') { $serials += $Matches[1] }
-      }
-      if ($serials.Count -ge 1) { Ok "Эмулятор загружен." } else { Warn "Эмулятор не поднялся." }
     }
   }
+}
+
+# Всегда проверяем полную готовность — в том числе если adb уже успел показать
+# `device` до запуска этого скрипта. Раньше этот путь пропускал ожидание целиком.
+Say "Жду полной готовности Android и установленного Phraseman..."
+$readySerials = Wait-ForReadyEmulators
+$serials = @($readySerials)
+if ($serials.Count -ge 1) {
+  Ok "Android полностью готов."
+} else {
+  Warn "Android не сообщил полную готовность за 4 минуты. Приложение автоматически не открываю."
 }
 
 # ── 3. adb reverse на КАЖДЫЙ эмулятор ───────────────────────────────────────
@@ -133,5 +175,5 @@ if ($serials.Count -lt 1) {
 }
 
 Write-Host ""
-Say "Запускаю Metro. Приложение откроется само через ~20 секунд."
+Say "Запускаю Metro. Сначала соберу Android-бандл, затем открою приложение."
 Write-Host ""

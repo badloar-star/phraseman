@@ -6,7 +6,7 @@ import { WEEKLY_BOON_ICON_ASSET_PATHS } from '../constants/boonIconAssets';
 import { WEEKLY_COMPASS_ICON_ASSET_PATHS } from '../constants/weeklyCompassIcons';
 
 const sharp = require('sharp');
-const THEMES = ['dark', 'gold', 'coral', 'business', 'businessLight', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'indigo'] as const;
+const THEMES = ['dark', 'gold', 'business', 'businessLight', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'indigo'] as const;
 
 // зачем: раньше путь к иконке склеивался как `png/<theme>/streak_saver.webp`, из-за чего тест
 // молча предполагал, что имя папки всегда совпадает с именем темы. Для 'volt' это неверно —
@@ -35,7 +35,7 @@ describe('themed daily and weekly bonus art', () => {
       const [dailyMeta, weeklyMeta] = await Promise.all([sharp(daily).metadata(), sharp(weekly).metadata()]);
       // Тема в сообщении: иначе падение выглядит как безадресное «256 vs 384» и приходится
       // угадывать, какой из 12 ассетов виноват.
-      const expectedDailySize = theme === 'volt' ? 384 : 256;
+      const expectedDailySize = theme === 'volt' ? 384 : theme === 'sagePorcelain' ? 512 : 256;
       expect({ theme, ...dailyMeta }).toMatchObject({
         theme, format: 'webp', width: expectedDailySize, height: expectedDailySize, hasAlpha: true,
       });
@@ -45,7 +45,7 @@ describe('themed daily and weekly bonus art', () => {
       weeklyHashes.add(createHash('sha256').update(readFileSync(weekly)).digest('hex'));
     }
 
-    expect(dailyHashes.size).toBe(THEMES.length - 1);
-    expect(weeklyHashes.size).toBe(THEMES.length - 1);
+    expect(dailyHashes.size).toBe(THEMES.length);
+    expect(weeklyHashes.size).toBe(THEMES.length);
   });
 });

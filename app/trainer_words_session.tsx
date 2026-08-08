@@ -51,7 +51,6 @@ import {
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
-import { isFeatureFreeForEveryone } from './feature_gates';
 // зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
@@ -280,13 +279,13 @@ export default function TrainerWordsSession() {
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(() => warmDeck === null);
-  const [accessReady, setAccessReady] = useState(() => warmDeck !== null);
+  const [accessReady, setAccessReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const allItemsRef = useRef<TrainerItem[]>(warmDeck?.map((card) => card.item) ?? []);
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
-  const sessionStartRef = useRef(warmDeck ? Date.now() : 0);
+  const sessionStartRef = useRef(0);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
     mode: params.mode,
     planDayIndex: params.planDayIndex,
@@ -335,25 +334,15 @@ export default function TrainerWordsSession() {
           setLoading(false);
           return;
         }
-        // зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
-        // премиум-гейт smart_trainer снят и для задач персонального плана тоже.
-        // Ветку planTrainerContext.taskId оставляем: она не про доступ, а про то,
-        // что дневной лимит к плановым задачам не применяется (см. else ниже).
-        if (planTrainerContext.taskId) {
-          if (cancelled) return;
-        } else {
-          const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
-          if (cancelled) return;
-          // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
-          if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
-            logTrainerDirectGateBlocked('/trainer_words_session');
-            // см. коммент выше: убираем тренажёр из стека, чтобы «назад» с пейвола
-            // не вернулось на исчерпанный лимит и не открыло пейвол снова.
-            markNextNavigationAsReplace();
-            router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-            return;
-          }
+        const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
+        if (cancelled) return;
+        if (!allowed) {
+          logTrainerDirectGateBlocked('/trainer_words_session');
+          markNextNavigationAsReplace();
+          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+          return;
         }
+        if (startedWarm) sessionStartRef.current = Date.now();
         setAccessReady(true);
         const items = planTrainerContext.taskId
           ? await getTrainerPremiumItemsForPlanQueue(

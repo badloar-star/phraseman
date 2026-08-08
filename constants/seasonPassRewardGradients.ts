@@ -28,7 +28,6 @@ const SEASON_REWARD_GRADIENTS: Record<ThemeMode, SeasonRewardGradient> = {
   // Тёмные темы — насыщенный акцент по диагонали, ощутимо ярче bgSurface.
   dark:          ['#1E4A2E', '#0A140D'],
   gold:          ['#4A3712', '#141005'],
-  coral:         ['#5C2A24', '#1A0A08'],
   minimalDark:   ['#2A4A78', '#0E1420'],
   midnight:      ['#2A2E6E', '#0C0E22'],
   ember:         ['#5A3410', '#1C0E04'],
@@ -45,7 +44,7 @@ const SEASON_REWARD_GRADIENTS: Record<ThemeMode, SeasonRewardGradient> = {
 
 /** Текст/иконки поверх градиента карточки подарка — тёмный на светлых темах, светлый на тёмных. */
 const SEASON_REWARD_ON_GRADIENT: Record<ThemeMode, string> = {
-  dark: '#F0F7F2', gold: '#F7F1E4', coral: '#FFFFFF', minimalDark: '#F5F5F5',
+  dark: '#F0F7F2', gold: '#F7F1E4', minimalDark: '#F5F5F5',
   midnight: '#FFFFFF', ember: '#FFFFFF', aurora: '#FFFFFF', volt: '#FFFFFF',
   business: '#F5F5F5', candyBlue: '#EAF4F8', indigo: '#F1EFFF',
   businessLight: '#0A2540', sagePorcelain: '#17201D',

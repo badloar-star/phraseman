@@ -21,10 +21,9 @@ type Props = {
   payload: GlobalBroadcastModalPayload | null;
   visible: boolean;
   onClose: () => void;
-  previewOnly?: boolean;
 };
 
-function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }: Props) {
+function GlobalBroadcastModal({ payload, visible, onClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -70,15 +69,12 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
   const closeOnce = async () => {
     if (!payload || busy) return;
     hapticTap();
-    if (previewOnly) {
-      onClose();
-      return;
-    }
     setBusy(true);
-    onClose();
-    void claimAndDismissGlobalBroadcastModal(payload, studyTarget).then(() => {
+    void (async () => {
+      await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
       if (reward) hapticSuccess();
-    }).catch(() => {}).finally(() => {
+      onClose();
+    })().catch(() => {}).finally(() => {
       setBusy(false);
     });
   };
@@ -86,17 +82,13 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
   const openReview = async () => {
     if (!payload || busy) return;
     hapticTap();
-    if (previewOnly) {
-      onClose();
-      return;
-    }
     setBusy(true);
-    onClose();
     const url = getReviewPromoUrl(payload);
     if (url) void Linking.openURL(url).catch(() => {});
     void (async () => {
       await recordReviewPromoClick(payload);
       await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
+      onClose();
     })().catch(() => {}).finally(() => {
       setBusy(false);
     });

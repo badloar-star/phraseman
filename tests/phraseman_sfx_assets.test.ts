@@ -47,14 +47,6 @@ describe('Phraseman canonical SFX assets', () => {
 
     expect(disabledIds).toEqual([
       'pm.reward.vip_finale',
-      'pm.arena.match_found',
-      'pm.arena.countdown_3',
-      'pm.arena.countdown_2',
-      'pm.arena.countdown_1',
-      'pm.arena.round_start',
-      'pm.arena.victory',
-      'pm.arena.defeat',
-      'pm.arena.draw',
     ]);
   });
 

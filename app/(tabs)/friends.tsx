@@ -121,7 +121,6 @@ import { trackActivity } from '../app_activity';
 import {
   getShardsBalance,
   peekLastKnownShardsBalance,
-  replaceShardsBalanceForAccountGeneration,
 } from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
 import { claimUnseenFriendGifts, type IncomingFriendGift } from '../friend_gift_inbox';
@@ -327,7 +326,7 @@ function placeholderFriendProfile(uid: string, candidateName?: string): FriendPr
 /**
  * Строит FriendProfile из серверного профиля поиска (users.progress). Это ПЕРВИЧНЫЙ
  * источник: сервер вернул имя/уровень/XP/аватар сразу, поэтому карточка друга не
- * зависит от leaderboard/arena (у многих юзеров записи там нет → раньше был прочерк
+ * зависит от leaderboard (у многих юзеров записи там нет → раньше был прочерк
  * и уровень 1). Уровень считается из totalXp самой аватаркой.
  */
 function friendProfileFromLookup(uid: string, lp: LookupUserProfile | undefined): FriendProfile | null {
@@ -488,35 +487,6 @@ function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): 
   });
 }
 
-function profileFromArenaDoc(uid: string, data: Record<string, unknown>): FriendProfile | null {
-  const stableUid = readPublicString(data.mirrorStableId) || uid;
-  const totalXp = readPublicNumber(data.courseTotalXp);
-  const avatar = readPublicString(data.courseAvatar);
-  const frame = readPublicString(data.courseFrame);
-  const aura = normalizeAvatarAuraId(readPublicString(data.courseAura));
-  const name = readPublicString(data.displayName) || readPublicString(data.name);
-  const profileCardLevel = normalizeProfileCardLevel(data.courseProfileCardLevel);
-  if (!name && totalXp <= 0 && !avatar && !frame && !aura && profileCardLevel <= 0) return null;
-
-  return normalizePublicFriendProfile({
-    uid: stableUid,
-    name,
-    totalXp,
-    weeklyXp: 0,
-    streak: 0,
-    isPremium: data.courseIsPremium === true || data.isPremium === true,
-    isVip: data.courseIsVip === true || data.isVip === true,
-    isLifetime: data.courseIsLifetime === true || data.isLifetime === true,
-    avatar,
-    frame,
-    aura,
-    profileCardLevel,
-    profileCardTheme: normalizeProfileCardTheme(data.courseProfileCardTheme),
-    profileCardMotion: normalizeProfileCardMotion(data.courseProfileCardMotion),
-    profileCardPublicFocus: normalizeProfileCardPublicFocus(data.courseProfileCardPublicFocus),
-  });
-}
-
 /** Конвертация batch-ответа сервера в локальный FriendProfile (поля normalizePublicFriendProfile). */
 function profileFromBatchRecord(rec: FriendProfileBatchRecord): FriendProfile {
   return normalizePublicFriendProfile({
@@ -540,8 +510,7 @@ function profileFromBatchRecord(rec: FriendProfileBatchRecord): FriendProfile {
 
 async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfile | null> {
   try {
-    // Пачечный серверный путь (1 callable вместо 4-RTT цепочки); legacy-цепочка
-    // (leaderboard → arena_profiles) теперь выполняется внутри friendsGetProfiles.
+    // Пачечный серверный путь читает канонический leaderboard одним callable.
     // TODO(legacy-compat): для IS_EXPO_GO/CLOUD_SYNC_ENABLED=false старая цепочка
     // видна в git-истории при необходимости.
     const map = await fetchFriendProfilesBatch([uid]);
@@ -1187,10 +1156,6 @@ function eventText(event: FriendEvent, friendName: string, lang: string): string
       return L(`${n} получил достижение ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} отримав досягнення ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueó logro ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueou uma conquista ${p.icon ?? '🏆'}`, `${n} đã mở khóa một thành tích ${p.icon ?? '🏆'}`, `${n} membuka pencapaian ${p.icon ?? '🏆'}`, `${n} bir başarı açtı ${p.icon ?? '🏆'}`, `${n} odblokował osiągnięcie ${p.icon ?? '🏆'}`);
     case 'streak_milestone':
       return L(`${n} держит серию ${p.days} дней подряд 🔥`, `${n} тримає серію ${p.days} днів поспіль 🔥`, `${n} lleva ${p.days} días seguidos 🔥`, `${n} mantém uma sequência de ${p.days} dias 🔥`, `${n} giữ chuỗi ${p.days} ngày liên tiếp 🔥`, `${n} menjaga rangkaian ${p.days} hari berturut-turut 🔥`, `${n} ${p.days} günlük seriyi sürdürüyor 🔥`, `${n} utrzymuje serię ${p.days} dni z rzędu 🔥`);
-    case 'arena_rank_up':
-      return L(`${n} поднялся до ранга «${p.rank}» на арене ⚔️`, `${n} піднявся до рангу «${p.rank}» на арені ⚔️`, `${n} subió al rango «${p.rank}» en la arena ⚔️`, `${n} subiu para o rank «${p.rank}» na arena ⚔️`, `${n} lên hạng «${p.rank}» trong đấu trường ⚔️`, `${n} naik ke peringkat «${p.rank}» di arena ⚔️`, `${n} arenada «${p.rank}» rütbesine yükseldi ⚔️`, `${n} awansował do rangi „${p.rank}” na arenie ⚔️`);
-    case 'arena_rank_down':
-      return L(`${n} потерял ранг на арене`, `${n} втратив ранг на арені`, `${n} bajó de rango en la arena`, `${n} caiu de rank na arena`, `${n} bị tụt hạng trong đấu trường`, `${n} turun peringkat di arena`, `${n} arenada rütbe kaybetti`, `${n} stracił rangę na arenie`);
     default:
       return `${n} — ${event.type}`;
   }
@@ -1267,8 +1232,6 @@ function eventIcon(type: FriendEvent['type']): string {
     case 'lesson_complete': return 'book-outline';
     case 'achievement': return 'trophy-outline';
     case 'streak_milestone': return 'flame-outline';
-    case 'arena_rank_up': return 'arrow-up-circle-outline';
-    case 'arena_rank_down': return 'arrow-down-circle-outline';
     default: return 'ellipse-outline';
   }
 }
@@ -1281,8 +1244,6 @@ function eventIconColor(type: FriendEvent['type'], accent: string): string {
     case 'lesson_complete': return accent;
     case 'achievement': return '#FFD700';
     case 'streak_milestone': return '#FF9500';
-    case 'arena_rank_up': return '#34C759';
-    case 'arena_rank_down': return '#FF6B6B';
     default: return accent;
   }
 }
@@ -1492,14 +1453,12 @@ function ActivityTab({
 
   // Merge friends' events and incoming likes into one time-sorted feed ("X liked you" rows
   // are interleaved with achievements/level-ups by timestamp, newest first).
-  // Ценность вместо шума: arena_rank_down скрыт (негатив без действия), одинаковые
-  // lesson_complete одного друга за день схлопнуты в одну карточку «N уроков за день»
+  // Одинаковые lesson_complete одного друга за день схлопнуты в одну карточку «N уроков за день»
   // (лайк вешается на самое свежее событие группы), лента размечена секциями по дням.
   const feedItems = useMemo<ActivityFeedItem[]>(() => {
     const merged: ActivityFeedItem[] = [];
     const lessonGroups = new Map<string, { event: FriendEvent; count: number }>();
     for (const event of events) {
-      if (event.type === 'arena_rank_down') continue;
       if (event.type === 'lesson_complete') {
         const groupKey = `${event.uid}:${activityDayKey(event.ts)}`;
         const group = lessonGroups.get(groupKey);
@@ -1544,7 +1503,7 @@ function ActivityTab({
   const todayDigest = useMemo(() => {
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
-    const todays = events.filter(e => e.ts >= todayStart.getTime() && e.type !== 'arena_rank_down');
+    const todays = events.filter(e => e.ts >= todayStart.getTime());
     if (todays.length === 0) return null;
     const lessons = todays.filter(e => e.type === 'lesson_complete').length;
     const counts = new Map<string, number>();
@@ -1610,7 +1569,7 @@ function ActivityTab({
         const likedToday = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
         // Вехи (уровень/серия/достижение/ранг) подсвечены цветом события — их видно в потоке.
         const isMilestone = event.type === 'level_up' || event.type === 'streak_milestone'
-          || event.type === 'achievement' || event.type === 'arena_rank_up';
+          || event.type === 'achievement';
         const rowText = item.lessonsCount && item.lessonsCount > 1
           ? lessonsDayText(name, item.lessonsCount, lang)
           : eventText(event, name, lang);
@@ -2260,10 +2219,11 @@ export default function FriendsTabScreen() {
   const [giftBalance, setGiftBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [giftBusyId, setGiftBusyId] = useState<FriendGiftId | null>(null);
   const [sentGiftReceipt, setSentGiftReceipt] = useState<{
+    status: 'pending' | 'confirmed' | 'uncertain';
     targetName: string;
     giftName: string;
     costShards: number;
-    balanceAfter: number;
+    balanceAfter?: number;
     dailyRemaining?: number;
   } | null>(null);
   const sentGiftReceiptNativeVisibleRef = useRef(false);
@@ -2685,7 +2645,7 @@ export default function FriendsTabScreen() {
       }
       const fetched = await fetchFriendProfileFromFirestore(result.uid);
       // Серверный профиль (из users.progress) — ПЕРВИЧНЫЙ источник имени/уровня/аватара.
-      // Объединяем с leaderboard/arena: серверный имеет приоритет (mergePublicFriendProfiles
+      // Объединяем с leaderboard: серверный имеет приоритет (mergePublicFriendProfiles
       // берёт запись с бОльшим totalXp как primary). Так карточка не показывает прочерк/ур.1.
       const lookupProfile = friendProfileFromLookup(result.uid, result.profile);
       const merged = mergePublicFriendProfiles(fetched, lookupProfile) ?? lookupProfile ?? fetched;
@@ -2960,37 +2920,14 @@ export default function FriendsTabScreen() {
     setGiftBusyId(giftId);
     const target = explicitTarget;
     const sentGiftName = giftLabel(gift);
-    const optimisticBalance = Math.max(0, balanceOverride - gift.costShards);
-    setGiftBalance(optimisticBalance);
     setGiftTarget(null);
     sentGiftReceiptNativeVisibleRef.current = true;
     setSentGiftReceipt({
+      status: 'pending',
       targetName: target.name,
       giftName: sentGiftName,
       costShards: gift.costShards,
-      balanceAfter: optimisticBalance,
       dailyRemaining: undefined,
-    });
-    void replaceShardsBalanceForAccountGeneration(
-      optimisticBalance,
-      giftAccountToken,
-      giftAccountToken.stableId,
-      {
-        op: 'spend',
-        reason: 'friend_gift_optimistic',
-      },
-    );
-    showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
-    emitAppEvent('action_toast', {
-      type: 'success',
-      messageRu: `Подарок отправлен: ${sentGiftName}`,
-      messageUk: `Подарунок надіслано: ${sentGiftName}`,
-      messageEs: `Regalo enviado: ${sentGiftName}`,
-      messagePtBr: `Presente enviado: ${sentGiftName}`,
-      messageVi: `Đã gửi quà: ${sentGiftName}`,
-      messageId: `Hadiah terkirim: ${sentGiftName}`,
-      messageTr: `Hediye gönderildi: ${sentGiftName}`,
-      messagePl: `Prezent wysłany: ${sentGiftName}`,
     });
     try {
       const res = await sendFriendGiftWithShards({
@@ -2999,10 +2936,23 @@ export default function FriendsTabScreen() {
         senderDisplayName: myProfile?.name ?? '',
       });
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: `Подарок отправлен: ${sentGiftName}`,
+        messageUk: `Подарунок надіслано: ${sentGiftName}`,
+        messageEs: `Regalo enviado: ${sentGiftName}`,
+        messagePtBr: `Presente enviado: ${sentGiftName}`,
+        messageVi: `Đã gửi quà: ${sentGiftName}`,
+        messageId: `Hadiah terkirim: ${sentGiftName}`,
+        messageTr: `Hediye gönderildi: ${sentGiftName}`,
+        messagePl: `Prezent wysłany: ${sentGiftName}`,
+      });
       const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
       setGiftBalance(guardedBalance);
       setSentGiftReceipt({
+        status: 'confirmed',
         targetName: target.name,
         giftName: sentGiftName,
         costShards: gift.costShards,
@@ -3030,17 +2980,16 @@ export default function FriendsTabScreen() {
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
       const msg = e instanceof Error ? e.message : String(e);
       const kind = classifyFriendGiftError(e);
-      setGiftBalance(balanceOverride);
-      void replaceShardsBalanceForAccountGeneration(
-        balanceOverride,
-        giftAccountToken,
-        giftAccountToken.stableId,
-        {
-          op: 'replace',
-          reason: 'friend_gift_rollback',
-        },
-      );
-      setSentGiftReceipt(null);
+      if (kind === 'network') {
+        setSentGiftReceipt({
+          status: 'uncertain',
+          targetName: target.name,
+          giftName: sentGiftName,
+          costShards: gift.costShards,
+        });
+      } else {
+        setSentGiftReceipt(null);
+      }
       if (kind !== 'unknown') {
         const feedback =
           kind === 'limit'
@@ -3052,7 +3001,7 @@ export default function FriendsTabScreen() {
             : kind === 'auth' || kind === 'identity_changed'
             ? L('Подарок не дошёл. Жемчуг вернулся.', 'Подарунок не дійшов. Перлини повернулися.', 'No se pudo enviar el regalo. Recuperaste las perlas.', 'O presente não foi enviado. As pérolas voltaram.', 'Không gửi được quà. Ngọc trai đã hoàn lại.', 'Hadiah tidak terkirim. Mutiara dikembalikan.', 'Hediye ulaşmadı. İnciler geri geldi.', 'Prezent nie dotarł. Perły wróciły.')
             : kind === 'network'
-            ? L('Сеть не ответила. Подарок не списан, попробуй ещё раз.', 'Мережа не відповіла. Подарунок не списано, спробуй ще раз.', 'La red no respondio. No se cobro el regalo; intentalo de nuevo.', 'A rede não respondeu. O presente não foi cobrado; tente de novo.', 'Mạng chưa phản hồi. Quà chưa bị trừ, hãy thử lại.', 'Jaringan tidak merespons. Hadiah belum ditagih; coba lagi.', 'Ağ yanıt vermedi. Hediye ücretlendirilmedi, tekrar dene.', 'Sieć nie odpowiedziała. Prezent nie został pobrany, spróbuj ponownie.')
+            ? L('Сеть не ответила. Статус отправки пока неизвестен — безопасно повтори попытку позже.', 'Мережа не відповіла. Статус надсилання поки невідомий — безпечно повтори спробу пізніше.', 'The network did not respond. The send status is unknown; retry safely later.', 'A rede não respondeu. O status do envio é desconhecido; tente novamente mais tarde.', 'Mạng chưa phản hồi. Chưa rõ trạng thái gửi; hãy thử lại sau.', 'Jaringan tidak merespons. Status pengiriman belum diketahui; coba lagi nanti.', 'Ağ yanıt vermedi. Gönderim durumu bilinmiyor; daha sonra güvenle tekrar dene.', 'Sieć nie odpowiedziała. Status wysłania jest nieznany; spróbuj bezpiecznie później.')
             : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');
         showFeedback(feedback);
         emitFriendGiftErrorToast(feedback);
@@ -3176,8 +3125,6 @@ export default function FriendsTabScreen() {
     const previousModal = incomingGiftModal;
     hapticTap();
     setGiftBusyId(first.giftId as FriendGiftId);
-    setIncomingGiftModal(null);
-    showFeedback(L('Спасибо отправлено', 'Подяку надіслано', 'Thanks sent', 'Agradecimento enviado', 'Đã gửi lời cảm ơn', 'Ucapan terima kasih terkirim', 'Teşekkür gönderildi', 'Podziękowanie wysłane'));
     try {
       await sendFriendGiftThanks({
         friendStableId: first.fromUid,
@@ -3321,7 +3268,7 @@ export default function FriendsTabScreen() {
     showsVerticalScrollIndicator: false,
     keyboardShouldPersistTaps: 'handled' as const,
     contentContainerStyle: { paddingBottom: tabContentBottomPad, paddingHorizontal: PX, paddingTop: insets.top },
-    decelerationRate: 'fast' as const,
+    decelerationRate: 'normal' as const,
     scrollEventThrottle: 16,
     bounces: true,
     alwaysBounceVertical: true,
@@ -3877,29 +3824,49 @@ export default function FriendsTabScreen() {
                     end={{ x: 0.95, y: 1 }}
                     style={{ width: 72, height: 72, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: 'rgba(255,255,255,0.22)' }}
                   >
-                    <Ionicons name="checkmark" size={38} color={sentGiftChrome.buttonText} />
+                    <Ionicons
+                      name={sentGiftReceipt?.status === 'pending' ? 'time-outline' : sentGiftReceipt?.status === 'uncertain' ? 'help-outline' : 'checkmark'}
+                      size={38}
+                      color={sentGiftChrome.buttonText}
+                    />
                   </LinearGradient>
                 </View>
                 <Text style={{ color: sentGiftChrome.labelColor, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
                   {L('Подарок другу', 'Подарунок другу', 'Friend gift', 'Presente para amigo', 'Quà cho bạn bè', 'Hadiah untuk teman', 'Arkadaşına hediye', 'Prezent dla znajomego')}
                 </Text>
                 <Text style={{ color: sentGiftChrome.titleColor, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
-                  {L('Подарок отправлен', 'Подарунок надіслано', 'Gift sent', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany')}
+                  {sentGiftReceipt?.status === 'pending'
+                    ? L('Отправляем подарок…', 'Надсилаємо подарунок…', 'Sending gift…', 'Enviando presente…', 'Đang gửi quà…', 'Mengirim hadiah…', 'Hediye gönderiliyor…', 'Wysyłanie prezentu…')
+                    : sentGiftReceipt?.status === 'uncertain'
+                    ? L('Проверяем отправку', 'Перевіряємо надсилання', 'Checking send status', 'Verificando o envio', 'Đang kiểm tra trạng thái gửi', 'Memeriksa status pengiriman', 'Gönderim durumu kontrol ediliyor', 'Sprawdzanie statusu wysłania')
+                    : L('Подарок отправлен', 'Подарунок надіслано', 'Gift sent', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany')}
                 </Text>
                 {sentGiftReceipt ? (
                   <View style={{ borderRadius: 18, padding: 14, gap: 10, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 0, borderColor: 'rgba(255,255,255,0.12)' }}>
                     <Text style={{ color: sentGiftChrome.bodyColor, fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
-                      {L(
-                        `${sentGiftReceipt.targetName} получит: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} отримає: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} recibirá: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} receberá: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} sẽ nhận: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} akan menerima: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} alacak: ${sentGiftReceipt.giftName}`,
-                        `${sentGiftReceipt.targetName} otrzyma: ${sentGiftReceipt.giftName}`,
-                      )}
+                      {sentGiftReceipt.status === 'uncertain'
+                        ? L(
+                          'Сервер мог принять отправку. Повтор с тем же подарком не спишет его дважды.',
+                          'Сервер міг прийняти надсилання. Повтор із тим самим подарунком не спише його двічі.',
+                          'The server may have accepted it. Retrying the same gift will not charge twice.',
+                          'O servidor pode ter aceitado. Repetir o mesmo presente não cobrará duas vezes.',
+                          'Máy chủ có thể đã nhận. Thử lại cùng món quà sẽ không bị trừ hai lần.',
+                          'Server mungkin telah menerimanya. Mengulang hadiah yang sama tidak akan menagih dua kali.',
+                          'Sunucu kabul etmiş olabilir. Aynı hediyeyi yeniden denemek iki kez ücretlendirmez.',
+                          'Serwer mógł przyjąć wysyłkę. Ponowienie tego samego prezentu nie pobierze opłaty dwa razy.',
+                        )
+                        : L(
+                          `${sentGiftReceipt.targetName} получит: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} отримає: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} recibirá: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} receberá: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} sẽ nhận: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} akan menerima: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} alacak: ${sentGiftReceipt.giftName}`,
+                          `${sentGiftReceipt.targetName} otrzyma: ${sentGiftReceipt.giftName}`,
+                        )}
                     </Text>
+                    {sentGiftReceipt.status === 'confirmed' ? (
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
                         <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>
@@ -3913,6 +3880,7 @@ export default function FriendsTabScreen() {
                         {L(`Осталось ${sentGiftReceipt.balanceAfter}`, `Залишилось ${sentGiftReceipt.balanceAfter}`, `${sentGiftReceipt.balanceAfter} left`, `Restam ${sentGiftReceipt.balanceAfter}`, `Còn ${sentGiftReceipt.balanceAfter}`, `Sisa ${sentGiftReceipt.balanceAfter}`, `${sentGiftReceipt.balanceAfter} kaldı`, `Zostało ${sentGiftReceipt.balanceAfter}`)}
                       </Text>
                     </View>
+                    ) : null}
                     {sentGiftReceipt.dailyRemaining === 0 && (
                       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
                         <Ionicons name="information-circle-outline" size={15} color={sentGiftChrome.infoColor} />

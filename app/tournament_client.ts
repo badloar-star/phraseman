@@ -14,6 +14,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
+import { getStableId, peekStableId } from './stable_id';
 
 /** Публичное задание: ключи ответов сервер вырезает до отправки клиенту. */
 export type PublicTask = {
@@ -1444,12 +1445,14 @@ const SEASON_TOP_LIMIT = 20;
  * (~7 минут), чаще дёргать сервер незачем. Сразу после своего турнира кэш
  * сбрасывается явно — см. invalidateSeasonStandingsCache().
  */
-let seasonCache: { at: number; weekId: string; value: SeasonStandings | null } | null = null;
+let seasonCache: { at: number; weekId: string; stableUid: string; value: SeasonStandings | null } | null = null;
 const SEASON_TTL_MS = 15 * 60 * 1000;
 
 /** Последний известный рейтинг — для синхронной гидрации первого кадра. */
 export function peekSeasonStandings(): SeasonStandings | null {
   if (!seasonCache) return null;
+  const stableUid = peekStableId();
+  if (!stableUid || seasonCache.stableUid !== stableUid) return null;
   // Неделя сменилась — прошлый снимок больше не про эту таблицу.
   return seasonCache.weekId === tournamentSeasonWeekId() ? seasonCache.value : null;
 }
@@ -1472,14 +1475,12 @@ export function invalidateSeasonStandingsCache(): void {
 export async function loadSeasonStandings(force = false): Promise<SeasonStandings | null> {
   const now = Date.now();
   const weekId = tournamentSeasonWeekId(now);
-  if (!force && seasonCache && seasonCache.weekId === weekId && now - seasonCache.at < SEASON_TTL_MS) {
+  const myUid = await getStableId().catch(() => '');
+  if (!force && seasonCache && seasonCache.weekId === weekId && seasonCache.stableUid === myUid && now - seasonCache.at < SEASON_TTL_MS) {
     return seasonCache.value;
   }
   try {
-    const { getApp } = await import('@react-native-firebase/app');
-    const { getAuth } = await import('@react-native-firebase/auth');
     const firestore = (await import('@react-native-firebase/firestore')).default;
-    const myUid = getAuth(getApp()).currentUser?.uid ?? '';
     const entries = firestore()
       .collection('tournamentSeasons').doc(weekId)
       .collection('entries');
@@ -1520,11 +1521,11 @@ export async function loadSeasonStandings(force = false): Promise<SeasonStanding
     }
 
     const value: SeasonStandings = { weekId, top, me, myPlace };
-    seasonCache = { at: now, weekId, value };
+    seasonCache = { at: now, weekId, stableUid: myUid, value };
     return value;
   } catch {
     // Рейтинг недоступен — экран обязан остаться рабочим (правило владельца).
-    seasonCache = { at: now, weekId, value: null };
+    seasonCache = { at: now, weekId, stableUid: myUid, value: null };
     return null;
   }
 }

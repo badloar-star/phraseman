@@ -91,43 +91,6 @@ export const GOLD = {
   bgGradient: ['#0D0A04', '#010101'] as [string, string],
 };
 
-export const CORAL = {
-  // Coral / Finance Dark: soft rose screen background with warm cocoa surfaces.
-  bgPrimary:   '#090405',
-  bgCard:      '#171013',
-  bgSurface:   '#22171B',
-  bgSurface2:  '#302126',
-  textPrimary: '#FFFFFF',
-  textOnCard:  '#FFFFFF',
-  textSecond:  '#FF8A66',
-  textMuted:   '#B9A6AE',
-  textGhost:   '#75656C',
-  heroTextPrimary: '#FFFFFF',
-  heroTextMuted:   '#D8C2C5',
-  border:      'rgba(255,127,80,0.15)',
-  borderLight: '#2D2024',
-  correct:     '#4A90FF',
-  correctBg:   'rgba(74,144,255,0.14)',
-  wrong:       '#FF6464',
-  wrongBg:     'rgba(255,100,100,0.14)',
-  gold:        '#FFD060',
-  goldBg:      'rgba(255,208,96,0.14)',
-  textOnGold:  '#1A1208',
-  accent:      '#FF7F50',
-  accentBg:    'rgba(255,127,80,0.12)',
-  correctText: '#FFFFFF',
-  shadowDark:       '#050510',
-  shadowLight:      'rgba(255,127,80,0.26)',
-  borderHighlight:  'rgba(255,140,100,0.16)',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   '#8A3A1E',
-  cardShadow:  'rgba(0,0,0,0.60)',
-  glow:        'rgba(255,127,80,0.22)',
-  cardGradient: ['#3A242B', '#070304'] as [string, string],
-  bgGradient: ['#0E0507', '#010101'] as [string, string],
-};
-
 // ─── LIGHT OCEAN ─────────────────────────────────────────────────────────────
 // Тёмная глубина + яркий циан; светлые карточки; как у «Сакуры» по структуре
 export const LIGHT_OCEAN = {
@@ -494,7 +457,7 @@ export const SAGE_PORCELAIN = {
   bgPrimary:'#DCE1D8', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#4E5D55', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#E7EAE2','#D2D9CC'] as [string,string]
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
+export type ThemeMode = 'dark' | 'gold' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
 export type Theme = typeof DARK;
 
 export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }
@@ -515,7 +478,6 @@ export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
 
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
 const _checkGOLD:   Theme = GOLD         as any;
-const _checkCORAL:  Theme = CORAL        as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
 const _checkMIDNIGHT: Theme = MIDNIGHT as any;
 const _checkEMBER:    Theme = EMBER    as any;
@@ -538,7 +500,6 @@ export const STRINGS = {
   tabs: {
     home:      'Главная',
     lessons:   'Уроки',
-    quizzes:   'Вызовы',
     settings:  'Настройки',
   },
   home: {
@@ -565,17 +526,6 @@ export const STRINGS = {
     oral:    'Устно',
     next:    'Далее',
     typeHere: 'Введи ответ...',
-  },
-  quizzes: {
-    selectLevel: 'Выбери уровень',
-    easy:        'Легко',
-    medium:      'Средне',
-    hard:        'Сложно',
-    done:        'Вызов завершён!',
-    again:       'Пройти снова',
-    back:        'Выбери уровень',
-    fixErrors:   'Исправь ошибки',
-    timeUp:      'Время вышло',
   },
   eduSettings: {
     title:          'Настройки обучения',

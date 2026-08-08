@@ -47,4 +47,14 @@ describe('daily phrase pulse policy', () => {
       viewportHeight: 0,
     })).toBe(false);
   });
+
+  it('fails closed when the daily marker cannot be read', async () => {
+    const storage = {
+      getItem: jest.fn(async () => { throw new Error('storage unavailable'); }),
+      setItem: jest.fn(async () => {}),
+    };
+
+    await expect(claimDailyPhrasePulseForDay('2026-08-08', storage)).resolves.toBe(false);
+    expect(storage.setItem).not.toHaveBeenCalled();
+  });
 });

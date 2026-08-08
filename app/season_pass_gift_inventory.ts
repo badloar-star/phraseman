@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GIFT_TTL_MS } from './gift_expiry';
 import { emitAppEvent } from './events';
+import { withStorageLock } from './storage_mutex';
 import type { SeasonRewardKind } from './season_pass_track_config';
 
 const STORAGE_KEY = 'season_pass_gift_inventory_v1';
@@ -44,7 +45,8 @@ async function readAll(): Promise<SeasonPassGiftItem[]> {
     if (!Array.isArray(parsed)) return [];
     return parsed.filter((it): it is SeasonPassGiftItem =>
       it && typeof it === 'object' && typeof it.id === 'string' && typeof it.expiresAtMs === 'number');
-  } catch {
+  } catch (error) {
+    throw error;
     return [];
   }
 }
@@ -88,18 +90,22 @@ export async function addSeasonPassGift(
   amount?: number,
   nowMs: number = Date.now(),
 ): Promise<SeasonPassGiftItem> {
-  const id = `${seasonId}:${level}:${side}`;
-  const items = await readAll();
-  const existing = items.find((it) => it.id === id);
-  if (existing) return existing;
-  const item: SeasonPassGiftItem = { id, kind, amount, level, receivedAtMs: nowMs, expiresAtMs: nowMs + GIFT_TTL_MS };
-  await writeAll([...items, item]);
-  return item;
+  return withStorageLock(async () => {
+    const id = `${seasonId}:${level}:${side}`;
+    const items = await readAll();
+    const existing = items.find((it) => it.id === id);
+    if (existing) return existing;
+    const item: SeasonPassGiftItem = { id, kind, amount, level, receivedAtMs: nowMs, expiresAtMs: nowMs + GIFT_TTL_MS };
+    await writeAll([...items, item]);
+    return item;
+  });
 }
 
 /** Помечает предмет использованным (кнопка «Применить») — эффект применяет вызывающий код. */
 export async function markSeasonPassGiftUsed(id: string, nowMs: number = Date.now()): Promise<void> {
-  const items = await readAll();
-  const next = items.map((it) => (it.id === id ? { ...it, usedAtMs: nowMs } : it));
-  await writeAll(next);
+  await withStorageLock(async () => {
+    const items = await readAll();
+    const next = items.filter((it) => it.id !== id);
+    await writeAll(next);
+  });
 }

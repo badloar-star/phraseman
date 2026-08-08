@@ -3,7 +3,7 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 const THEME_MODES = [
-  'dark', 'gold', 'coral', 'minimalDark', 'business',
+  'dark', 'gold', 'minimalDark', 'business',
   'businessLight', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt',
 ];
 

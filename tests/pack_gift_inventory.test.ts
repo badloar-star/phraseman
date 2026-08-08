@@ -9,6 +9,7 @@ import {
   setRandomPackGiftTrial48h,
 } from '../app/flashcards/pack_trial_gift';
 import { flashcardsPackTrialGiftKey } from '../app/target_storage_keys';
+import { beginAccountGeneration, __resetAccountGenerationForTests } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
@@ -19,6 +20,8 @@ beforeEach(() => {
   data.clear();
   jest.clearAllMocks();
   jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('account-a');
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => data.get(key) ?? null);
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => { data.set(key, value); });
   (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => { data.delete(key); });
@@ -133,5 +136,48 @@ describe('global flashcard pack gift inventory', () => {
     await expect(getPackGiftTrial('en', {
       packId: 'official_prep_in_en', packType: 'official', studyTarget: 'en',
     })).resolves.toMatchObject({ localVoucherId: recovery!.localVoucherId });
+  });
+
+  it('keeps persistent vouchers and once markers with stable UID across A to B to A', async () => {
+    const firstA = await setPackGiftTrial48hOnce(
+      'en', 'shared-occurrence', 1_800_100_000_000, 'grant-a', 'shared-occurrence', 'level_gift',
+    );
+    expect(firstA).not.toBeNull();
+
+    beginAccountGeneration('account-b');
+    await expect(getPackGiftTrials()).resolves.toEqual([]);
+    const firstB = await setPackGiftTrial48hOnce(
+      'en', 'shared-occurrence', 1_800_100_000_000, 'grant-b', 'shared-occurrence', 'level_gift',
+    );
+    expect(firstB?.voucherId).toBe('grant-b');
+
+    beginAccountGeneration('account-a');
+    await expect(getPackGiftTrials()).resolves.toEqual([
+      expect.objectContaining({ voucherId: 'grant-a', localVoucherId: firstA!.localVoucherId }),
+    ]);
+    const persistentKeys = [...data.keys()].filter((key) => key.includes('flashcard_pack_'));
+    expect(persistentKeys).toEqual(expect.arrayContaining([
+      expect.stringContaining('uid:account-a'),
+      expect.stringContaining('uid:account-b'),
+    ]));
+    expect(persistentKeys.every((key) => !key.includes('generation:'))).toBe(true);
+  });
+
+  it('migrates global inventory only into the currently active UID and can recover after a clean wipe', async () => {
+    data.set('flashcard_pack_gift_inventory_v2', JSON.stringify([{
+      localVoucherId: 'server_legacy-a', packId: 'legacy-pack', voucherId: 'legacy-a', expiresAt: 1_800_100_000_000,
+    }]));
+
+    await expect(getPackGiftTrials()).resolves.toEqual([expect.objectContaining({ voucherId: 'legacy-a' })]);
+    beginAccountGeneration('account-b');
+    await expect(getPackGiftTrials()).resolves.toEqual([]);
+
+    data.clear();
+    beginAccountGeneration('account-a');
+    await expect(getPackGiftTrials()).resolves.toEqual([]);
+    await reconcilePackGiftTrials([{
+      voucherId: 'server-restored', occurrenceId: 'restore-a', expiresAt: 1_800_200_000_000, source: 'level_gift',
+    }]);
+    await expect(getPackGiftTrials()).resolves.toEqual([expect.objectContaining({ voucherId: 'server-restored' })]);
   });
 });

@@ -22,7 +22,7 @@ import {
  * и docs/reports/modal_redesign_mockups_2026-06-10.html.
  *
  * RewardCardBody — презентационное тело без Modal/бэкдропа: его использует
- * RewardStackV2 (очередь наград) и любые будущие встроенные сценарии.
+ * Используется очередями наград и будущими встроенными сценариями.
  */
 export type RewardCardSemantic = 'gold' | 'shards' | 'danger' | 'warning' | 'social' | 'neutral' | 'fire';
 

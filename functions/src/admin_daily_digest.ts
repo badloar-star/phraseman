@@ -147,12 +147,8 @@ const DIGEST_HUMAN_NAMES: Readonly<Record<string, string>> = Object.freeze({
   lesson: 'Экран урока',
   lesson_words: 'Экран урока',
   lesson_complete: 'Завершение урока',
-  quizzes: 'Раздел квизов',
-  quiz: 'Квиз',
   friends: 'Раздел друзей',
   friend_profile: 'Профиль друга',
-  arena_game: 'Матч Арены',
-  arena_room: 'Комната Арены',
   manage_subscription: 'Управление подпиской',
   premium_modal: 'Экран Plus',
   paywall: 'Экран предложения Plus',
@@ -174,9 +170,7 @@ export function humanizeDigestName(value: string | undefined): string {
     .toLowerCase();
   if (DIGEST_HUMAN_NAMES[normalized]) return DIGEST_HUMAN_NAMES[normalized];
   if (/^lesson(?:_words|_menu|_screen|\d+)?$/.test(normalized)) return 'Экран урока';
-  if (/^(?:quiz|quizzes)(?:_|$)/.test(normalized)) return 'Квиз';
   if (/^(?:premium|paywall|subscription)(?:_|$)/.test(normalized)) return 'Plus и подписка';
-  if (/^(?:arena)(?:_|$)/.test(normalized)) return 'Арена';
   if (/[/.]/.test(raw) || /\.(?:tsx?|jsx?|mjs|cjs)$/i.test(raw)) return 'Неизвестный экран приложения';
   if (/^[a-z0-9]+(?:_[a-z0-9]+)+$/i.test(raw)) {
     return raw.split('_').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');

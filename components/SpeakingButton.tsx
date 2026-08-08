@@ -13,7 +13,7 @@ import { hapticTap } from '../hooks/use-haptics';
 /**
  * Drop-in "Устно" (speaking) control + paywall gate + panel overlay.
  *
- * One component for every surface (lessons use the panel directly; quizzes /
+ * One component for every active surface (lessons use the panel directly;
  * trainer / personal-plan use this wrapper). Free users are routed to the
  * paywall with context 'speaking'; premium users open the SpeakingPanel.
  *

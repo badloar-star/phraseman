@@ -2,7 +2,15 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
-import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
+import {
+  ACCOUNT_DELETE_AUTH_MARKERS,
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
+  ACCOUNT_DELETE_TOMBSTONES,
+  accountDeletePermanentDenialId,
+} from './account_delete_job';
+import {
+  writeFirstAuthLinkGrowthAggregate,
+} from './growth_daily_aggregate';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -79,10 +87,15 @@ async function assertAccountDeletionNotPending(
   db: admin.firestore.Firestore,
   authUid: string,
 ): Promise<void> {
-  const marker = await readIdentityOrThrow(
-    db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get(),
-  );
-  if (marker.exists) {
+  const [marker, permanentDenial] = await Promise.all([
+    readIdentityOrThrow(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get()),
+    readIdentityOrThrow(
+      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+        .doc(accountDeletePermanentDenialId(authUid))
+        .get(),
+    ),
+  ]);
+  if (marker.exists || permanentDenial.exists) {
     throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
 }
@@ -91,10 +104,15 @@ async function assertStableDeletionNotPending(
   db: admin.firestore.Firestore,
   stableId: string,
 ): Promise<void> {
-  const tombstone = await readIdentityOrThrow(
-    db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId).get(),
-  );
-  if (tombstone.exists) {
+  const [tombstone, permanentDenial] = await Promise.all([
+    readIdentityOrThrow(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId).get()),
+    readIdentityOrThrow(
+      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+        .doc(accountDeletePermanentDenialId(stableId))
+        .get(),
+    ),
+  ]);
+  if (tombstone.exists || permanentDenial.exists) {
     throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
 }
@@ -318,6 +336,13 @@ async function findStableUidForProviderAuth(
       canonicalIdsToCheck.add(canonicalStableId);
     }
   }
+  const candidateStableIds = new Set<string>(docs.map((doc) => doc.id));
+  for (const canonicalStableId of canonicalIdsToCheck) candidateStableIds.add(canonicalStableId);
+  await Promise.all(
+    [...candidateStableIds].map((candidateStableId) => (
+      assertStableDeletionNotPending(db, candidateStableId)
+    )),
+  );
   await Promise.all([...canonicalIdsToCheck].map(async (canonicalStableId) => {
     const snap = await readIdentityOrThrow(db.collection(USERS).doc(canonicalStableId).get());
     if (snap.exists) liveCanonicalIds.add(canonicalStableId);
@@ -328,7 +353,13 @@ async function findStableUidForProviderAuth(
   if (!selected) return null;
   return {
     stableUid: selected.id,
-    sourceStableIds: [...new Set([...selected.sourceStableIds, selected.id])],
+    // Carry every provider-owned candidate into the final repair transaction so
+    // a concurrent permanent denial on any alias invalidates the whole relink.
+    sourceStableIds: [...new Set([
+      ...candidateStableIds,
+      ...selected.sourceStableIds,
+      selected.id,
+    ])],
   };
 }
 
@@ -339,6 +370,7 @@ async function findLiveAuthLinkAnchor(
   const linkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
   const anchoredStableId = normalizeStableId(linkSnap?.data()?.stable_id);
   if (!anchoredStableId) return null;
+  await assertStableDeletionNotPending(db, anchoredStableId);
   const anchoredUserSnap = await readIdentityOrThrow(db.collection(USERS).doc(anchoredStableId).get());
   if (!anchoredUserSnap.exists) {
     return { anchorStableId: anchoredStableId, selection: null };
@@ -346,6 +378,7 @@ async function findLiveAuthLinkAnchor(
   const anchoredUserData = anchoredUserSnap.data() ?? {};
   const canonicalStableId = normalizeStableId(anchoredUserData.canonicalStableId);
   if (anchoredUserData.identityHidden === true && canonicalStableId && canonicalStableId !== anchoredStableId) {
+    await assertStableDeletionNotPending(db, canonicalStableId);
     const canonicalSnap = await readIdentityOrThrow(db.collection(USERS).doc(canonicalStableId).get());
     const canonicalAuthUid = normalizeStableId(canonicalSnap?.data()?.firebaseAuthUid);
     if (canonicalSnap?.exists && canonicalAuthUid === authUid) {
@@ -430,6 +463,9 @@ async function assertStableOwner(
   const userData = userSnap?.data() ?? {};
   const userAuthUid = String(userData.firebaseAuthUid ?? '').trim();
   const linkedStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
+  if (linkedStableId && linkedStableId !== stableId) {
+    await assertStableDeletionNotPending(db, linkedStableId);
+  }
   const allowedAuthLinkStableIds = new Set([
     stableId,
     ...(options?.allowedAuthLinkStableIds ?? []),
@@ -546,6 +582,8 @@ async function repairIdentityDocumentsAtomically(
   const userRef = db.collection(USERS).doc(stableId);
   const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);
   const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+  const authPermanentDenialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+    .doc(accountDeletePermanentDenialId(authUid));
   const existingOwnerQuery = db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(2);
   const protectedStableIds = [...new Set([
     ...(options.sourceStableIds ?? []),
@@ -554,19 +592,37 @@ async function repairIdentityDocumentsAtomically(
   const tombstoneRefs = protectedStableIds.map((id) => (
     db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(id)
   ));
+  const permanentDenialRefs = protectedStableIds.map((id) => (
+    db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(id))
+  ));
   let transactionBaseline: StableOwnerProof | null = null;
 
   try {
     return await db.runTransaction(async (transaction) => {
-      const [authMarkerSnap, tombstoneSnaps, userSnap, authLinkSnap, existingOwnerSnap] = await Promise.all([
+      const [
+        authMarkerSnap,
+        authPermanentDenialSnap,
+        tombstoneSnaps,
+        permanentDenialSnaps,
+        userSnap,
+        authLinkSnap,
+        existingOwnerSnap,
+      ] = await Promise.all([
         transaction.get(authMarkerRef),
+        transaction.get(authPermanentDenialRef),
         Promise.all(tombstoneRefs.map((ref) => transaction.get(ref))),
+        Promise.all(permanentDenialRefs.map((ref) => transaction.get(ref))),
         transaction.get(userRef),
         transaction.get(authLinkRef),
         options.writeUser ? transaction.get(existingOwnerQuery) : Promise.resolve(null),
       ]);
 
-      if (authMarkerSnap.exists || tombstoneSnaps.some((snap) => snap.exists)) {
+      if (
+        authMarkerSnap.exists
+        || authPermanentDenialSnap.exists
+        || tombstoneSnaps.some((snap) => snap.exists)
+        || permanentDenialSnaps.some((snap) => snap.exists)
+      ) {
         throw new HttpsError('failed-precondition', 'account_delete_pending');
       }
 
@@ -576,6 +632,18 @@ async function repairIdentityDocumentsAtomically(
         (currentUserData.linkedAuth as { providerUid?: unknown } | undefined)?.providerUid,
       );
       const currentLinkStableId = normalizeStableId(authLinkSnap?.data()?.stable_id);
+      if (currentLinkStableId && !protectedStableIds.includes(currentLinkStableId)) {
+        const [currentLinkTombstone, currentLinkPermanentDenial] = await Promise.all([
+          transaction.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(currentLinkStableId)),
+          transaction.get(
+            db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+              .doc(accountDeletePermanentDenialId(currentLinkStableId)),
+          ),
+        ]);
+        if (currentLinkTombstone.exists || currentLinkPermanentDenial.exists) {
+          throw new HttpsError('failed-precondition', 'account_delete_pending');
+        }
+      }
       const currentOwnerIds = (existingOwnerSnap?.docs ?? []).map((doc) => doc.id).sort();
       const userAlreadyTarget = Boolean(
         userSnap.exists &&
@@ -704,6 +772,9 @@ async function repairIdentityDocumentsAtomically(
           metadataNeedsRefresh
         ) {
           transaction.set(authLinkRef, linkPatch, { merge: true });
+          if (!authLinkSnap.exists) {
+            writeFirstAuthLinkGrowthAggregate(db, transaction, now);
+          }
         }
       }
 
@@ -1299,19 +1370,38 @@ async function bootstrapMissingStableIdentity(
   const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);
   const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
   const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
+  const authPermanentDenialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+    .doc(accountDeletePermanentDenialId(authUid));
+  const stablePermanentDenialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+    .doc(accountDeletePermanentDenialId(stableId));
   const existingIdentityQuery = db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(2);
 
   try {
     return await db.runTransaction(async (transaction) => {
-      const [userSnap, authLinkSnap, authMarkerSnap, tombstoneSnap, existingIdentitySnap] = await Promise.all([
+      const [
+        userSnap,
+        authLinkSnap,
+        authMarkerSnap,
+        tombstoneSnap,
+        authPermanentDenialSnap,
+        stablePermanentDenialSnap,
+        existingIdentitySnap,
+      ] = await Promise.all([
         transaction.get(userRef),
         transaction.get(authLinkRef),
         transaction.get(authMarkerRef),
         transaction.get(tombstoneRef),
+        transaction.get(authPermanentDenialRef),
+        transaction.get(stablePermanentDenialRef),
         transaction.get(existingIdentityQuery),
       ]);
 
-      if (authMarkerSnap.exists || tombstoneSnap.exists) {
+      if (
+        authMarkerSnap.exists
+        || tombstoneSnap.exists
+        || authPermanentDenialSnap.exists
+        || stablePermanentDenialSnap.exists
+      ) {
         throw new HttpsError('failed-precondition', 'account_delete_pending');
       }
 
@@ -1320,13 +1410,17 @@ async function bootstrapMissingStableIdentity(
         if (!linkedStableId) {
           throw new HttpsError('permission-denied', 'stable_id_mismatch');
         }
-        const [linkedUserSnap, linkedTombstoneSnap] = linkedStableId === stableId
-          ? [userSnap, tombstoneSnap]
+        const [linkedUserSnap, linkedTombstoneSnap, linkedPermanentDenialSnap] = linkedStableId === stableId
+          ? [userSnap, tombstoneSnap, stablePermanentDenialSnap]
           : await Promise.all([
             transaction.get(db.collection(USERS).doc(linkedStableId)),
             transaction.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(linkedStableId)),
+            transaction.get(
+              db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+                .doc(accountDeletePermanentDenialId(linkedStableId)),
+            ),
           ]);
-        if (linkedTombstoneSnap.exists) {
+        if (linkedTombstoneSnap.exists || linkedPermanentDenialSnap.exists) {
           throw new HttpsError('failed-precondition', 'account_delete_pending');
         }
         if (!linkedUserSnap.exists) {
@@ -1348,10 +1442,16 @@ async function bootstrapMissingStableIdentity(
       }
       if (existingIdentityDocs.length === 1) {
         const authoritativeStableId = existingIdentityDocs[0].id;
-        const authoritativeTombstoneSnap = authoritativeStableId === stableId
-          ? tombstoneSnap
-          : await transaction.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(authoritativeStableId));
-        if (authoritativeTombstoneSnap.exists) {
+        const [authoritativeTombstoneSnap, authoritativePermanentDenialSnap] = authoritativeStableId === stableId
+          ? [tombstoneSnap, stablePermanentDenialSnap]
+          : await Promise.all([
+            transaction.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(authoritativeStableId)),
+            transaction.get(
+              db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+                .doc(accountDeletePermanentDenialId(authoritativeStableId)),
+            ),
+          ]);
+        if (authoritativeTombstoneSnap.exists || authoritativePermanentDenialSnap.exists) {
           throw new HttpsError('failed-precondition', 'account_delete_pending');
         }
         return { status: 'authoritative', stableUid: authoritativeStableId };
@@ -1393,6 +1493,7 @@ async function bootstrapMissingStableIdentity(
 
       transaction.create(userRef, userData);
       transaction.create(authLinkRef, authLinkData);
+      writeFirstAuthLinkGrowthAggregate(db, transaction, now);
       return { status: 'bootstrapped', stableUid: stableId };
     });
   } catch (error) {
@@ -1421,6 +1522,9 @@ export async function ensureStableLinkForAuth(
     throw new HttpsError('invalid-argument', 'stable_id_required');
   }
 
+  await assertAccountDeletionNotPending(db, authUid);
+  if (stableId) await assertStableDeletionNotPending(db, stableId);
+
   // Добираем email/displayName из Firebase Auth, если клиент их не прислал —
   // иначе linkedAuth.email пишется null и юзера не найти по почте в админке.
   metadata = await enrichMetadataFromAuth(authUid, provider, metadata);
@@ -1428,6 +1532,7 @@ export async function ensureStableLinkForAuth(
   if (provider) {
     const existingLinkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
     const linkedStableId = normalizeStableId(existingLinkSnap?.data()?.stable_id);
+    if (linkedStableId) await assertStableDeletionNotPending(db, linkedStableId);
     // Хвост E: auth_links может указывать на УДАЛЁННЫЙ users-док (осиротевшая
     // привязка после deleteAccountAndWipe — серверная чистка fire-and-forget могла
     // снести users/{stableId}, но не auth_links). Повторный вход тем же Google/Apple

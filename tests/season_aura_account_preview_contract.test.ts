@@ -36,22 +36,4 @@ describe('season aura account preview', () => {
     expect(aura).not.toMatch(/\b(?:220|240|280)\b/);
   });
 
-  it('applies a selected aura to the account from the existing cosmetics section and opens the real profile card', () => {
-    const admin = read('app/_admin_settings_testers.tsx');
-
-    expect(admin).toContain('id="cosmetics_preview"');
-    expect(admin).toContain('applyAuraToCurrentAccount');
-    expect(admin).toContain('AsyncStorage.setItem(USER_AVATAR_AURA_KEY, auraId)');
-    expect(admin).toContain("syncPublicProfileSnapshot({ reason: 'display_change', aura: auraId })");
-    expect(admin).toContain('await openCurrentAccountProfilePreview(false)');
-    expect(admin).toContain('testID={`admin-apply-aura-${aura.id}`}');
-    expect(admin).toContain('<AvatarView');
-  });
-
-  it('removes the oversized standalone Season Pass Lab route and menu row', () => {
-    expect(fs.existsSync(path.join(ROOT, 'app/_admin_season_pass_lab.tsx'))).toBe(false);
-    expect(fs.existsSync(path.join(ROOT, 'app/admin_season_pass_lab.tsx'))).toBe(false);
-    expect(read('constants/devRoutes.ts')).not.toContain('ADMIN_SEASON_PASS_LAB');
-    expect(read('components/admin_panel/sections/LabsSection.tsx')).not.toContain('admin-lab-season-pass');
-  });
 });

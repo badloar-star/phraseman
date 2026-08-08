@@ -34,6 +34,7 @@ export type LevelExamChoiceTask = LevelExamSingleScoreTaskBase & {
   format: 'guess_phrase' | 'fill_gap' | 'find_oddity';
   options: readonly LevelExamOption[];
   correctOptionId: string;
+  acceptedOptionIds?: readonly string[];
 };
 
 export type LevelExamPhraseBuilderTask = LevelExamSingleScoreTaskBase & {

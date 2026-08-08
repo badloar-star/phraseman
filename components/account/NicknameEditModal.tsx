@@ -45,7 +45,6 @@ import { syncMyLeagueMemberProfileNow } from '../../app/firestore_leagues';
 import { patchAppSnapshot } from '../../app/app_snapshot_store';
 import {
   containsBadWord,
-  syncArenaDisplayName,
   updateLocalNameReferences,
 } from '../../app/nickname_change_helpers';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
@@ -272,7 +271,6 @@ export default function NicknameEditModal({
       }
 
       // Бронь подтверждена — оптимистично показанное имя остаётся.
-      void syncArenaDisplayName(trimmed);
       void syncMyLeagueMemberProfileNow();
     } finally {
       savingRef.current = false;

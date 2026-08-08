@@ -21,7 +21,12 @@ jest.mock('./premium_status', () => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { getLeagueWeekPoints, leagueJoinOrUpdateGroup, leagueUpdateMyMember } = require('./league_groups');
+const {
+  getLeagueWeekPoints,
+  leagueActivateGroupBoost,
+  leagueJoinOrUpdateGroup,
+  leagueUpdateMyMember,
+} = require('./league_groups');
 
 function currentWeekId(): string {
   const d = new Date();
@@ -139,6 +144,7 @@ function makeDb(initial: Store) {
     runTransaction: async (callback: (tx: any) => Promise<unknown>) => callback({
       get: (ref: any) => ref.get(),
       set: (ref: any, data: Record<string, unknown>, options?: { merge?: boolean }) => ref.set(data, options),
+      update: (ref: any, data: Record<string, unknown>) => ref.set(data, { merge: true }),
       create: (ref: any, data: Record<string, unknown>) => ref.set(data),
     }),
   };
@@ -153,6 +159,55 @@ function callableRun(fn: any, data: Record<string, unknown>, authUid: string) {
 }
 
 describe('league member display name ownership', () => {
+  it('consumes exactly one numeric club gift voucher and preserves unrelated progress', async () => {
+    const weekId = currentWeekId();
+    const store = makeDb({
+      users: {
+        'stable-self': {
+          firebaseAuthUid: 'auth-self',
+          shards: 0,
+          club_gift_free_boost_v1: '1',
+          progress: { club_gift_free_boost_v1: '2', user_total_xp: '900' },
+        },
+      },
+      leaderboard: {
+        'stable-self': { groupId: 'group-1', groupWeekId: weekId, leagueId: 2 },
+      },
+      league_groups: {
+        'group-1': {
+          weekId,
+          leagueId: 2,
+          members: { 'stable-self': { uid: 'stable-self', name: 'Self' } },
+        },
+      },
+    });
+
+    const result = await callableRun(leagueActivateGroupBoost, { stableId: 'stable-self' }, 'auth-self');
+
+    expect(result).toMatchObject({
+      ok: true,
+      usedGiftVoucher: true,
+      clubGiftFreeBoostCountAfter: 1,
+      shardsBalance: 0,
+    });
+    expect(store.users['stable-self']).toMatchObject({
+      club_gift_free_boost_v1: '1',
+      progress: { club_gift_free_boost_v1: '1', user_total_xp: '900' },
+    });
+
+    const replay = await callableRun(leagueActivateGroupBoost, { stableId: 'stable-self' }, 'auth-self');
+    expect(replay).toMatchObject({
+      ok: true,
+      usedGiftVoucher: true,
+      clubGiftFreeBoostCountAfter: 1,
+      shardsBalance: 0,
+    });
+    expect(store.users['stable-self']).toMatchObject({
+      club_gift_free_boost_v1: '1',
+      progress: { club_gift_free_boost_v1: '1', user_total_xp: '900' },
+    });
+  });
+
   it('does not let leagueUpdateMyMember publish a nickname reserved by another live account', async () => {
     const weekId = currentWeekId();
     const store = makeDb({

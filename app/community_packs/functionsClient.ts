@@ -110,6 +110,8 @@ export type LevelGiftReservationResponse = {
   reservationId: string;
   giftId: string;
   allowedPackId?: string;
+  displayed?: boolean;
+  claimed?: boolean;
   replayed?: boolean;
 };
 
@@ -120,6 +122,58 @@ export async function callLevelGiftReserve(data: {
   studyTarget?: 'en' | 'fr';
 }): Promise<LevelGiftReservationResponse> {
   return callFunction<typeof data, LevelGiftReservationResponse>('levelGiftReserve', data);
+}
+
+export type LevelGiftReservationActionStatus =
+  | 'acquired'
+  | 'already_displayed'
+  | 'busy'
+  | 'claimed'
+  | 'already_claimed'
+  | 'released';
+
+export async function callLevelGiftReservationAction(data: {
+  stableId: string;
+  level: number;
+  lane: 'f2p' | 'premium';
+  studyTarget?: 'en' | 'fr';
+  reservationId: string;
+  action: 'display' | 'begin_claim' | 'complete_claim' | 'release_claim';
+  giftId?: string;
+  claimToken?: string;
+}): Promise<{ status: LevelGiftReservationActionStatus; leaseUntil?: number; chainShield?: string; giftXpMultiplier?: string; clubGiftFreeBoostCount?: number }> {
+  return callFunction<typeof data, { status: LevelGiftReservationActionStatus; leaseUntil?: number; chainShield?: string; giftXpMultiplier?: string; clubGiftFreeBoostCount?: number }>(
+    'levelGiftReserve',
+    data,
+  );
+}
+
+export type LevelSpinDeliveryActionStatus = 'acquired' | 'claimed' | 'already_claimed' | 'busy' | 'released' | 'expired';
+
+export async function callLevelSpinDeliveryAction(data: {
+  stableId: string;
+  requestId: string;
+  lane: 'base' | 'premium';
+  action: 'begin_delivery' | 'complete_delivery' | 'release_delivery';
+  deliveryToken: string;
+  selectedGiftId?: string;
+}): Promise<{ status: LevelSpinDeliveryActionStatus; giftId?: string; leaseUntil?: number }> {
+  return callFunction<typeof data, { status: LevelSpinDeliveryActionStatus; giftId?: string; leaseUntil?: number }>(
+    'levelRewardSpinDelivery',
+    data,
+  );
+}
+
+export async function callLevelSpinActivatePackGift(data: {
+  stableId: string;
+  requestId: string;
+  lane: 'base' | 'premium';
+  deliveryToken: string;
+}): Promise<{ voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }> {
+  return callFunction<
+    typeof data,
+    { voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }
+  >('levelSpinActivatePackGift', data);
 }
 
 export async function callLevelGiftActivatePackGift(data: {

@@ -57,6 +57,25 @@ jobs:
         env:
           NODE_OPTIONS: --max-old-space-size=8192
 
+  removed-theme-guard:
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prevent removed themes from returning
+        run: npm run test:removed-themes -- --ci
+
   functions-tests:
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest

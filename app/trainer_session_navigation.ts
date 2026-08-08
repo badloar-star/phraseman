@@ -1,6 +1,5 @@
-import { reserveTrainerSessionEntry, type TrainerSessionRoute } from './trainer_session';
+import type { TrainerSessionRoute } from './trainer_session';
 import type { RuntimeStudyTarget } from './target_storage_keys';
-import { isFeatureFreeForEveryone } from './feature_gates';
 
 type TrainerSessionRouter = {
   push: (route: any) => void;
@@ -24,24 +23,25 @@ export async function startReservedTrainerSession({
   if (lock.current) return 'busy';
   lock.current = true;
   try {
-    if (isFeatureFreeForEveryone('trainer_modes')) {
-      router.push(route);
-      return 'started';
+    let hasPremium = false;
+    try {
+      hasPremium = typeof premiumAccess === 'function'
+        ? await premiumAccess()
+        : premiumAccess;
+    } catch {
+      // Entitlement verification is fail-closed. The learner still gets the
+      // actionable paywall instead of an unhandled rejection or free access.
+      hasPremium = false;
     }
-    const hasPremium = typeof premiumAccess === 'function'
-      ? await premiumAccess()
-      : premiumAccess;
     if (hasPremium) {
       router.push(route);
       return 'started';
     }
-    const reserved = await reserveTrainerSessionEntry(route, false, studyTarget);
-    if (!reserved) {
-      router.push({ pathname: '/premium_modal', params: { context: 'trainer_limit' } });
-      return 'limit';
-    }
-    router.push(route);
-    return 'started';
+    // Practice is a full Plus section. Historical free reservations and the
+    // remote trainer_modes override cannot create an entitlement bypass.
+    void studyTarget;
+    router.push({ pathname: '/premium_modal', params: { context: 'trainer_limit' } });
+    return 'limit';
   } finally {
     lock.current = false;
   }

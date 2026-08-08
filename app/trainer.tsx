@@ -38,6 +38,7 @@ import { safeRouterBack } from './navigation_back';
 import { startReservedTrainerSession } from './trainer_session_navigation';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import ErrorBoundary from '../components/ErrorBoundary';
+import PlusBadge from '../components/PlusBadge';
 
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session';
 
@@ -45,17 +46,12 @@ function withThemeAlpha(color: string, alphaHex: string): string {
     return /^#[0-9a-f]{6}$/i.test(color) ? `${color}${alphaHex}` : color;
 }
 
-/**
- * Очередь «арены» — это фразовые ошибки из быстрых тренировок; отдельного
- * экрана арены больше нет, поэтому честно ведём её в фразовую сессию
- * (раньше роут '/trainer_arena_session' указывал в никуда).
- */
 function routeForQueue(queue: TrainerQueue): RoutePath {
     return queue === 'words' ? '/trainer_words_session' : '/trainer_phrases_session';
 }
 
 const EMPTY_TRAINER_DASHBOARD: TrainerDashboard = {
-    due: { words: 0, phrases: 0, arena: 0 },
+    due: { words: 0, phrases: 0 },
     totalDue: 0,
     overdue: 0,
     totalTracked: 0,
@@ -175,12 +171,12 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
 }
 
 /**
- * «Слабое место» — главная слабая тема бесплатно и сразу: название категории
- * одной строкой, вся карточка — тап в тренировку.
+ * «Слабое место» — Plus-витрина: название категории одной строкой, вся карточка
+ * проходит live entitlement-проверку перед переходом в тренировку.
  * Если персональные тренировки доступны и для категории есть диагноз — ведёт
  * в /problem_coach, иначе — на полный экран аналитики.
  */
-function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg }: {
+function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, themeMode, showPlusBadge, onPlusPress }: {
     stat: WordCategoryStat;
     lang: Lang;
     t: ReturnType<typeof useTheme>['theme'];
@@ -190,10 +186,12 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
     personalTrainingEnabled?: boolean;
     accent: string;
     softBg: string;
+    themeMode: string;
+    showPlusBadge: boolean;
+    onPlusPress: (destination: () => void) => void;
 }) {
     const diagnosisId = personalTrainingEnabled ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
-    const openWeakSpot = () => {
-        hapticTap();
+    const openWeakSpotDestination = () => {
         if (diagnosisId) {
             router.push({
                 pathname: '/problem_coach',
@@ -202,6 +200,10 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
             return;
         }
         router.push('/phrase_analytics_screen' as any);
+    };
+    const openWeakSpot = () => {
+        hapticTap();
+        onPlusPress(openWeakSpotDestination);
     };
     return (
       <TouchableOpacity
@@ -226,6 +228,11 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
           {trainerCategoryLabel(stat.category, lang)}
         </Text>
         <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
+        {showPlusBadge ? (
+          <View pointerEvents="none" style={styles.weakPlusBadge}>
+            <PlusBadge themeMode={themeMode} size="xs" testID="trainer-weak-spot-plus-badge" />
+          </View>
+        ) : null}
       </TouchableOpacity>
     );
 }
@@ -259,7 +266,14 @@ function TrainerScreenInner() {
     const [initialDataReady, setInitialDataReady] = useState(() => initialDataReadyRef.current);
     const [loadError, setLoadError] = useState(false);
     const [seeding, setSeeding] = useState(false);
-    const [hasPremium, setHasPremium] = useState(() => prefetchedPractice?.hasPremium ?? false);
+    const [verifiedPremiumAccess, setVerifiedPremiumAccess] = useState<{
+        studyTarget: string;
+        hasPremium: boolean;
+    } | null>(null);
+    const hasPremium = verifiedPremiumAccess?.studyTarget === studyTarget
+        && verifiedPremiumAccess.hasPremium === true;
+    const showPlusBadges = verifiedPremiumAccess?.studyTarget === studyTarget
+        && verifiedPremiumAccess.hasPremium === false;
     const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(() => prefetchedPractice?.analytics ?? null);
     const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(() => prefetchedPractice?.resolvedPersonalTrainings ?? null);
     const [activityDays, setActivityDays] = useState(() => prefetchedPractice?.activityDays ?? []);
@@ -269,13 +283,15 @@ function TrainerScreenInner() {
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const loadData = useCallback(async () => {
+        // Cached dashboard data may paint immediately, but cached entitlement never unlocks paid UI.
+        setVerifiedPremiumAccess(null);
         try {
             const snapshot = await prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale, force: true });
             // Тихая ревалидация: snapshot.* приходит новыми ссылками на каждый фокус даже
             // когда содержимое не изменилось — сравниваем перед setState, чтобы не мигать
             // аналитикой/карточками на повторном фокусе экрана.
             setDashboard(prev => (jsonEqualQuiet(prev, snapshot.dashboard) ? prev : snapshot.dashboard));
-            setHasPremium(snapshot.hasPremium);
+            setVerifiedPremiumAccess({ studyTarget, hasPremium: snapshot.hasPremium });
             setAnalytics(prev => (jsonEqualQuiet(prev, snapshot.analytics) ? prev : snapshot.analytics));
             setResolvedPersonalTrainings(prev => (jsonEqualQuiet(prev, snapshot.resolvedPersonalTrainings) ? prev : snapshot.resolvedPersonalTrainings));
             setActivityDays(prev => (jsonEqualQuiet(prev, snapshot.activityDays) ? prev : snapshot.activityDays));
@@ -284,6 +300,7 @@ function TrainerScreenInner() {
             setLoadError(false);
         }
         catch {
+            setVerifiedPremiumAccess(null);
             // Keep the previous dashboard on refresh failure so the scroll layout does not collapse.
             // Surface a retry affordance only when we never managed an initial load — otherwise the
             // stale-but-valid dashboard stays on screen and a transient refresh hiccup is invisible.
@@ -330,12 +347,12 @@ function TrainerScreenInner() {
             };
         });
     }, [activityDays, lang]);
-    // Разбивка очереди по типам: «арена» — это фразовые ошибки, поэтому показываем её вместе с фразами.
+    // Разбивка очереди по активным типам.
     const queueRows = useMemo(() => ([
         {
             key: 'phrases' as const,
             icon: 'chatbubbles' as const,
-            count: (dashboard.due.phrases ?? 0) + (dashboard.due.arena ?? 0),
+            count: dashboard.due.phrases ?? 0,
             route: '/trainer_phrases_session' as RoutePath,
             title: triLang(lang, { ru: 'Фразы', uk: 'Фрази', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy' }),
             accessibility: triLang(lang, { ru: 'Начать практику фраз', uk: 'Почати практику фраз', es: 'Empezar práctica de frases', 'pt-BR': 'Começar prática de frases', vi: 'Bắt đầu luyện cụm từ', id: 'Mulai latihan frasa', tr: 'İfade pratiğine başla', pl: 'Rozpocznij praktykę fraz' }),
@@ -349,27 +366,48 @@ function TrainerScreenInner() {
             accessibility: triLang(lang, { ru: 'Начать практику слов', uk: 'Почати практику слів', es: 'Empezar práctica de palabras', 'pt-BR': 'Começar prática de palavras', vi: 'Bắt đầu luyện từ vựng', id: 'Mulai latihan kata', tr: 'Kelime pratiğine başla', pl: 'Rozpocznij praktykę słów' }),
         },
     ]), [dashboard, lang]);
+    const openTrainerPaywall = useCallback(() => {
+        router.push({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+    }, [router]);
+    const openTrainerPlusDestination = useCallback(async (destination: () => void) => {
+        let access = false;
+        try {
+            access = await getVerifiedPremiumStatus();
+        } catch {
+            openTrainerPaywall();
+            return;
+        }
+        if (!access) {
+            openTrainerPaywall();
+            return;
+        }
+        destination();
+    }, [openTrainerPaywall]);
     const openTrainerSession = useCallback(async (route: RoutePath) => {
         await startReservedTrainerSession({
             route,
             router,
             studyTarget,
-            premiumAccess: () => hasPremium ? Promise.resolve(true) : getVerifiedPremiumStatus(),
+            premiumAccess: getVerifiedPremiumStatus,
             lock: trainerSessionStartLockRef,
         });
-    }, [hasPremium, router, studyTarget]);
+    }, [router, studyTarget]);
     const startSmartMix = useCallback(async () => {
         hapticTap();
-        if (total <= 0 || !practiceHallRoute)
+        if (total <= 0 || !practiceHallRoute) {
+            await openTrainerPlusDestination(() => {});
             return;
-        await openTrainerSession(practiceHallRoute);
-    }, [openTrainerSession, practiceHallRoute, total]);
+        }
+        await openTrainerSession(practiceHallRoute ?? '/trainer_phrases_session');
+    }, [openTrainerPlusDestination, openTrainerSession, practiceHallRoute, total]);
     const startQueueRow = useCallback(async (row: { count: number; route: RoutePath }) => {
         hapticTap();
-        if (row.count <= 0)
+        if (row.count <= 0) {
+            await openTrainerPlusDestination(() => {});
             return;
+        }
         await openTrainerSession(row.route);
-    }, [openTrainerSession]);
+    }, [openTrainerPlusDestination, openTrainerSession]);
     const minuteWord = triLang(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min' });
     if (loadError && !initialDataReady) {
         return (<ScreenGradient>
@@ -456,7 +494,7 @@ function TrainerScreenInner() {
           </View>
 
           <BouncyWrap>
-          <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+          <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
             {!trainerSessionEnabled && (<View style={[styles.card, { backgroundColor: t.bgCard, borderWidth: 0, borderRadius: 18 }]}>
                 <View style={styles.queueIcon}>
                   <Ionicons name="lock-closed-outline" size={22} color={isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
@@ -476,6 +514,7 @@ function TrainerScreenInner() {
                 каскад съезжал снизу вверх на КАЖДОМ открытии раздела, даже когда данные
                 уже готовы (экран «шевелился»). Владелец просил, чтобы при входе всё было
                 сразу на местах и статично, поэтому анимации входа убраны полностью. */}
+            <View style={styles.heroShell}>
             <View style={[styles.hero, { backgroundColor: t.bgCard, borderWidth: 0 }]}>
               <LinearGradient colors={total > 0 ? [`${accent}42`, t.bgCard, t.bgCard] : [t.bgSurface, t.bgCard]} locations={[0, 0.42, 1]} style={StyleSheet.absoluteFillObject} />
               <View style={[styles.heroGlow, { backgroundColor: `${accent}18` }]} />
@@ -503,21 +542,34 @@ function TrainerScreenInner() {
                 </Text>
               </>)}
             </View>
+            {showPlusBadges ? (
+              <View pointerEvents="none" style={styles.heroPlusBadge}>
+                <PlusBadge themeMode={themeMode} size="sm" testID="trainer-hero-plus-badge" />
+              </View>
+            ) : null}
+            </View>
 
             {/* Из чего состоит практика: тап по строке запускает сессию только этого типа. */}
             <View style={{ gap: 8 }}>
               {queueRows.map((row) => (
-                <TouchableOpacity key={row.key} accessibilityRole="button" accessibilityLabel={row.accessibility} onPress={() => { void startQueueRow(row); }} activeOpacity={0.86} style={[styles.queueRow, { backgroundColor: quietSoftBg }]}>
+                <View key={row.key} style={styles.queueRowShell}>
+                <TouchableOpacity accessibilityRole="button" accessibilityLabel={row.accessibility} onPress={() => { void startQueueRow(row); }} activeOpacity={0.86} style={[styles.queueRow, { backgroundColor: quietSoftBg }]}>
                   <View style={[styles.queueIcon, { backgroundColor: accentSoftBg }]}>
                     <Ionicons name={row.icon} size={18} color={accent}/>
                   </View>
                   <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{row.title}</Text>
                   <Text style={{ color: row.count > 0 ? accent : t.textMuted, fontSize: f.bodyLg, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{row.count}</Text>
                 </TouchableOpacity>
+                {showPlusBadges ? (
+                  <View pointerEvents="none" style={styles.queuePlusBadge}>
+                    <PlusBadge themeMode={themeMode} size="xs" testID={`trainer-${row.key}-plus-badge`} />
+                  </View>
+                ) : null}
+                </View>
               ))}
             </View>
 
-            {/* Слабые места — бесплатно и сразу, без премиум-стены. */}
+            {/* Слабые места видны как Plus-витрина; открытие защищено тем же entitlement gate. */}
             {showWeakSpots ? (
               <View style={{ gap: 8 }}>
                 <Text style={[styles.weakLabel, { color: t.textGhost, fontSize: f.label - 1 }]}>
@@ -537,6 +589,9 @@ function TrainerScreenInner() {
                     personalTrainingEnabled={personalPracticeCoachEnabled}
                     accent={accent}
                     softBg={accentSoftBg}
+                    themeMode={themeMode}
+                    showPlusBadge={showPlusBadges}
+                    onPlusPress={openTrainerPlusDestination}
                   />
                 ))}
               </View>
@@ -557,7 +612,7 @@ function TrainerScreenInner() {
                   topLabelMutedColor={t.textGhost}
                   bottomLabelColor={t.textPrimary}
                   bottomLabelMutedColor={t.textMuted}
-                  scrubEnabled
+                  scrubEnabled={hasPremium}
                   scrubHighlightColor={accent}
                   scrubBubbleBg={t.bgCard}
                   scrubBubbleBorder={isGoldTheme ? GOLD_RICH.hairlineQuiet : withThemeAlpha(accent, '3D')}
@@ -608,12 +663,14 @@ export default function TrainerScreen() {
 const styles = StyleSheet.create({
     headerRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 },
     headerTitle: { fontWeight: '900' },
+    heroShell: { position: 'relative' },
     hero: {
         borderRadius: 22,
         padding: 16,
         overflow: 'hidden',
     },
     heroGlow: { position: 'absolute', width: 210, height: 210, right: -92, top: -128, borderRadius: 105 },
+    heroPlusBadge: { position: 'absolute', top: -8, right: -6, zIndex: 3 },
     heroTag: { fontWeight: '800', letterSpacing: 0.8, textTransform: 'uppercase' },
     heroBigRow: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginTop: 10 },
     heroBig: { fontWeight: '900', letterSpacing: 0 },
@@ -627,6 +684,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 8,
     },
+    queueRowShell: { position: 'relative' },
     queueRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -635,6 +693,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         borderRadius: 16,
     },
+    queuePlusBadge: { position: 'absolute', top: -7, right: -6, zIndex: 3 },
     queueIcon: {
         width: 36,
         height: 36,
@@ -643,12 +702,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     weakCard: {
+        position: 'relative',
         flexDirection: 'row',
         alignItems: 'center',
         gap: 13,
         borderRadius: 18,
         padding: 14,
     },
+    weakPlusBadge: { position: 'absolute', top: -7, right: -6, zIndex: 3 },
     weakLabel: { fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' },
     rhythmCard: {
         borderRadius: 18,

@@ -14,9 +14,7 @@ const READY_SOURCES: WeeklyReviewSnapshotSources = {
     weekXp: 460,
     weekMinutes: 72,
     lessons7d: 3,
-    quizzes7d: 2,
     reviews7d: 4,
-    arena7d: 1,
   },
   trainer: {
     status: 'ready',

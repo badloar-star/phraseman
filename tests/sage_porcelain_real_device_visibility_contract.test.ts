@@ -5,7 +5,7 @@ import { SAGE_PORCELAIN } from '../constants/theme';
 import { tournamentV2FromTheme } from '../components/tournament/tournament_theme';
 
 const ROOT = path.join(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 function rgb(hex: string): [number, number, number] {
   return [1, 3, 5].map((offset) => parseInt(hex.slice(offset, offset + 2), 16)) as [number, number, number];

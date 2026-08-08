@@ -12,7 +12,7 @@ import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import AiBadge from './AiBadge';
 import { FlowText } from './text-integrity/FlowText';
 
-export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
+export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'limit';
 
 type AiMistakeCardProps = {
   lang: Lang;
@@ -73,18 +73,6 @@ export default function AiMistakeCard({
   const body = (() => {
     if (state === 'ready' && explanation) return explanation;
     if (state === 'limit') return '';
-    if (state === 'error') {
-      return triLang(lang, {
-        ru: 'Не удалось загрузить разбор. Это не готовое объяснение — попробуй ещё раз.',
-        uk: 'Не вдалося завантажити розбір. Це не готове пояснення — спробуй ще раз.',
-        es: 'No se pudo cargar el análisis. Esto no es una explicación completa; inténtalo de nuevo.',
-        'pt-BR': 'Não foi possível carregar a análise. Isto não é uma explicação pronta; tente novamente.',
-        vi: 'Không thể tải phần phân tích. Đây chưa phải lời giải thích hoàn chỉnh — hãy thử lại.',
-        id: 'Analisis tidak dapat dimuat. Ini bukan penjelasan lengkap — coba lagi.',
-        tr: 'Analiz yüklenemedi. Bu tamamlanmış bir açıklama değil — tekrar dene.',
-        pl: 'Nie udało się wczytać analizy. To nie jest gotowe wyjaśnienie — spróbuj ponownie.',
-      });
-    }
     return triLang(lang, {
       ru: 'Разбираю именно твой ответ: где сбилось и как сказать правильно.',
       uk: 'Розбираю саме твою відповідь: де збилося і як сказати правильно.',
@@ -197,24 +185,24 @@ export default function AiMistakeCard({
         </Pressable>
       ) : null}
 
-      {state === 'error' ? (
+      {state === 'idle' ? (
         <Pressable
           testID="ai-mistake-explain-button"
           accessibilityRole="button"
           onPress={onExplain}
           style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
         >
-          <Ionicons name="refresh" size={16} color={t.accent} />
+            <Ionicons name="sparkles-outline" size={16} color={t.accent} />
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
             {triLang(lang, {
-              ru: 'Попробовать снова',
-              uk: 'Спробувати знову',
-              es: 'Reintentar',
-              'pt-BR': 'Tentar de novo',
-              vi: 'Thử lại',
-              id: 'Coba lagi',
-              tr: 'Tekrar dene',
-              pl: 'Spróbuj ponownie',
+                ru: 'Разобрать мой ответ',
+                uk: 'Розібрати мою відповідь',
+                es: 'Analizar mi respuesta',
+                'pt-BR': 'Analisar minha resposta',
+                vi: 'Phân tích câu trả lời',
+                id: 'Analisis jawaban saya',
+                tr: 'Cevabımı analiz et',
+                pl: 'Przeanalizuj odpowiedź',
             })}
           </Text>
         </Pressable>

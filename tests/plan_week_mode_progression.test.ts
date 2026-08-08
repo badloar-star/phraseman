@@ -30,11 +30,9 @@ describe('plan week mode progression', () => {
     expect(kinds).not.toContain('plan_quiz');
   });
 
-  it('week 4+ keeps the full non-quiz plan set', () => {
+  it('unlocks the plan-only quiz in week 4 and keeps it thereafter', () => {
     const kinds = unlockedKindsForWeek(4);
-    expect(kinds).toEqual(unlockedKindsForWeek(3));
-    expect(kinds).not.toContain('plan_quiz');
-    // weeks beyond 4 keep the same full non-quiz set
+    expect(kinds).toContain('plan_quiz');
     expect(unlockedKindsForWeek(10)).toEqual(unlockedKindsForWeek(4));
   });
 
@@ -55,7 +53,7 @@ describe('plan week mode progression', () => {
   it('does not gate non-progression kinds', () => {
     expect(isKindUnlockedForWeek('trainer_weak_spot', 1)).toBe(true);
     expect(isKindUnlockedForWeek('plan_quiz', 1)).toBe(false);
-    expect(isKindUnlockedForWeek('plan_quiz', 4)).toBe(false);
+    expect(isKindUnlockedForWeek('plan_quiz', 4)).toBe(true);
   });
 
   it('handles invalid week indexes as week 1', () => {

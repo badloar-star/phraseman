@@ -52,8 +52,6 @@ describe('remote_flags', () => {
   describe('defaults', () => {
     it('returns hardcoded defaults before any snapshot', () => {
       expect(getFreeLessonLimit()).toBe(3);
-      expect(getRemoteNumber('free_daily_quiz_limit')).toBe(1);
-      expect(getRemoteNumber('arena_daily_max')).toBe(1);
       expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(10 * 60 * 1000);
       expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
@@ -63,7 +61,6 @@ describe('remote_flags', () => {
       expect(getRemoteNumber('trainer_ab_c_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
-      expect(getRemoteNumber('onboarding_ab_quiz_pct')).toBe(0);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(true);
@@ -94,10 +91,8 @@ describe('remote_flags', () => {
     });
 
     it('applies numeric overrides', () => {
-      applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12, free_daily_quiz_limit: 10 } });
+      applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12 } });
       expect(getFreeLessonLimit()).toBe(12);
-      expect(getRemoteNumber('free_daily_quiz_limit')).toBe(10);
-      expect(getRemoteNumber('arena_daily_max')).toBe(1);
     });
 
     it('applies boolean overrides', () => {
@@ -152,9 +147,9 @@ describe('remote_flags', () => {
     it('a later snapshot fully replaces an earlier one', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12 } });
       expect(getFreeLessonLimit()).toBe(12);
-      applyRemoteConfigSnapshot({ numbers: { arena_daily_max: 9 } });
+      applyRemoteConfigSnapshot({ numbers: { free_trainer_sessions_per_day: 9 } });
       expect(getFreeLessonLimit()).toBe(3);
-      expect(getRemoteNumber('arena_daily_max')).toBe(9);
+      expect(getRemoteNumber('free_trainer_sessions_per_day')).toBe(9);
     });
   });
 
@@ -273,12 +268,10 @@ describe('remote_flags', () => {
       expect(v1).toBe('current');
     });
 
-    it('ignores the retired welcome/builder/quiz split', () => {
-      applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 100, onboarding_ab_builder_pct: 0, onboarding_ab_quiz_pct: 0 } });
+    it('ignores the retired welcome/builder split', () => {
+      applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 100, onboarding_ab_builder_pct: 0 } });
       expect(getOnboardingAbVariant('x')).toBe('current');
-      applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 0, onboarding_ab_builder_pct: 100, onboarding_ab_quiz_pct: 0 } });
-      expect(getOnboardingAbVariant('x')).toBe('current');
-      applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 0, onboarding_ab_builder_pct: 0, onboarding_ab_quiz_pct: 100 } });
+      applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 0, onboarding_ab_builder_pct: 100 } });
       expect(getOnboardingAbVariant('x')).toBe('current');
     });
   });

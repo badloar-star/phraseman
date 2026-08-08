@@ -48,11 +48,19 @@ describe('level exam question UI contract', () => {
     expect(route).toContain("'translate_build'");
   });
 
+  it('records an incorrect speed-match choice instead of allowing unlimited retries', () => {
+    const source = read('SpeedMatchQuestion.tsx');
+    expect(source).toMatch(/if \(activeSourceId !== targetId\)\s*\{[\s\S]*?onChange\(next\);[\s\S]*?\n\s*return;/);
+  });
+
   it('keeps progress, timer, and one stable continuation action in the frame', () => {
     const frame = read('LevelExamQuestionFrame.tsx');
     expect(frame).toContain('<LevelExamTimer');
     expect(frame).toContain('progressStart');
     expect(frame).toContain('progressEnd');
+    expect(frame).toContain('footerProgress');
+    expect(frame.indexOf('footerProgress')).toBeGreaterThan(frame.indexOf('onContinue'));
+    expect(frame).not.toContain('progressArea');
     expect(frame).toContain('accessibilityState={{ disabled: !canContinue }}');
     expect(frame).toContain('decelerationRate="normal"');
     expect(frame).toContain('SlideInRight');
@@ -63,6 +71,13 @@ describe('level exam question UI contract', () => {
     expect(frame).not.toMatch(/#[0-9a-f]{3,8}\b/i);
     expect(frame).not.toMatch(/rgba?\(/i);
     expect(frame).not.toMatch(/borderWidth\s*:/);
+  });
+
+  it('keeps the exam intro metrics in one quiet surface', () => {
+    const intro = read('LevelExamIntro.tsx');
+    expect((intro.match(/<TonalSurface\b/g) || []).length).toBe(1);
+    expect(intro).toContain('copy.passGoal');
+    expect(intro).toContain('copy.duration');
   });
 
   it('updates the visible seconds without a high-frequency background loop', () => {

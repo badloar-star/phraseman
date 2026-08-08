@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { hasPermission, type AdminPermission } from '../admin/permissions';
 import { hasAdminRole, type AdminRole } from '../admin/roles';
 import { ENFORCE_APP_CHECK } from '../callable_options';
+import { GROWTH_DAILY_COLLECTION } from '../growth_daily_aggregate';
 import { fetchGrowthSource } from './growth_firestore_fetcher';
 import { buildGrowthSnapshot, type GrowthFetcherMap } from './growth_snapshot';
 
@@ -49,7 +50,12 @@ function firestoreFetchers(): GrowthFetcherMap {
   const db = admin.firestore();
   const nowMs = Date.now();
   return {
-    users: () => fetchGrowthSource({ sourceId: 'users', collection: db.collection('users'), nowMs }),
+    users: () => fetchGrowthSource({
+      sourceId: 'users',
+      collection: db.collection('users'),
+      dailyCollection: db.collection(GROWTH_DAILY_COLLECTION),
+      nowMs,
+    }),
   };
 }
 

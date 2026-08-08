@@ -24,7 +24,17 @@ export interface GrowthSnapshot {
 }
 
 function failClosedFetch(sourceId: GrowthReportCollection, observedAtMs: number): FetchGrowthSourceResult {
-  return Object.freeze({ sourceId, state: 'error' as const, truncated: false, droppedCount: 0, rows: Object.freeze([]), observedAtMs });
+  return Object.freeze({
+    sourceId,
+    state: 'error' as const,
+    truncated: false,
+    droppedCount: 0,
+    rows: Object.freeze([]),
+    count: null,
+    provenance: 'degraded_legacy_users_sample' as const,
+    periodKey: new Date(observedAtMs).toISOString().slice(0, 10),
+    observedAtMs,
+  });
 }
 
 export async function buildGrowthSnapshot(input: BuildGrowthSnapshotInput): Promise<GrowthSnapshot> {

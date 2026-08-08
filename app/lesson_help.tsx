@@ -511,7 +511,7 @@ export default function LessonHelp() {
 
       {/* Content */}
       <ScrollView
-        decelerationRate="fast"
+        decelerationRate="normal"
         contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
         showsVerticalScrollIndicator={true}
       >

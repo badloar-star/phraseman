@@ -24,8 +24,6 @@ describe('startup image preload contract', () => {
 
     expect(primarySource).toContain('CLUB_IMAGES');
     expect(primarySource).toContain('MEDAL_IMAGES');
-    expect(primarySource).toContain('ARENA_RANK_IMAGES');
-    expect(primarySource).toContain('ARENA_ACTION_IMAGES');
     expect(primarySource).toContain('FIRST_LESSON_SHEET_IMAGES');
     expect(primarySource).toContain('LESSON_INTRO_CTA_IMAGES');
     expect(primarySource).not.toContain('LEVEL_GIFT_IMAGE_SOURCES');
@@ -38,9 +36,9 @@ describe('startup image preload contract', () => {
 
     expect(deferredSource).not.toContain('CLUB_IMAGES');
     expect(deferredSource).not.toContain('MEDAL_IMAGES');
-    expect(deferredSource).not.toContain('ARENA_RANK_IMAGES');
-    expect(deferredSource).not.toContain('ARENA_ACTION_IMAGES');
     expect(deferredSource).not.toContain('FIRST_LESSON_SHEET_IMAGES');
     expect(deferredSource).not.toContain('LESSON_INTRO_CTA_IMAGES');
+    expect(imagePreloadSource).not.toContain('ARENA_RANK_IMAGES');
+    expect(imagePreloadSource).not.toContain('ARENA_ACTION_IMAGES');
   });
 });

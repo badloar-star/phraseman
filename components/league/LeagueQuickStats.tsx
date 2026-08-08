@@ -41,7 +41,7 @@ function LeagueQuickStatsComponent({ items, palette }: LeagueQuickStatsProps) {
   return (
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(40).duration(220)} testID="league-quick-stats">
       {compact ? (
-        <ScrollView horizontal decelerationRate="fast" showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>{cards}</ScrollView>
+        <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>{cards}</ScrollView>
       ) : (
         <View style={styles.row}>{cards}</View>
       )}

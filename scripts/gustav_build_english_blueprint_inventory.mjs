@@ -81,30 +81,6 @@ const FEATURE_SURFACES = [
     frenchBuildRule: 'preserve drill intent; implement French verb/conjugation practice instead of English irregular-verb copying',
   },
   {
-    id: 'quiz_surfaces',
-    sourcePaths: [
-      path.join(ROOT, 'app', 'quiz_data.ts'),
-      path.join(ROOT, 'app', 'quiz_thematic_packs.ts'),
-      path.join(ROOT, 'app', 'quiz_thematic_registry.ts'),
-      path.join(ROOT, 'app', 'quiz_phrases_loader.ts'),
-      path.join(ROOT, 'app', 'quizzes_screen.tsx'),
-    ],
-    requiredMarkers: ['quiz', 'question'],
-    frenchBuildRule: 'copy quiz contracts and counts; create French-native question banks, not lesson-row fanout',
-  },
-  {
-    id: 'arena_questions',
-    sourcePaths: [
-      path.join(ROOT, 'app', 'arena_game.tsx'),
-      path.join(ROOT, 'app', 'arena_lobby.tsx'),
-      path.join(ROOT, 'scripts', 'build_arena_a2.mjs'),
-      path.join(ROOT, 'scripts', 'build_arena_b1.mjs'),
-      path.join(ROOT, 'scripts', 'build_arena_b2.mjs'),
-    ],
-    requiredMarkers: ['arena'],
-    frenchBuildRule: 'copy arena game/question contracts; create French-native arena banks at matching or greater count',
-  },
-  {
     id: 'personal_practice_active_recall',
     sourcePaths: [
       path.join(ROOT, 'app', 'personal_practice_lesson_router.ts'),

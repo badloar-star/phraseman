@@ -54,10 +54,10 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
   },
   {
     department: 'safety',
-    writtenIn: 'record_age_consent_snapshot.ts',
+    writtenIn: 'ai_safety.ts',
     readIn: 'jarvis/safety_firestore_fetcher.ts',
-    field: 'ageBracket',
-    breaks: 'жалобы на детских аккаунтах перестали бы выделяться из общей очереди',
+    field: 'ageEvidence',
+    breaks: 'неподтверждённый возраст стал бы выглядеть как доказанный взрослый возраст',
   },
   {
     department: 'support',
@@ -101,9 +101,49 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     field: 'last_active_at',
     breaks: 'удержание показало бы нули, а тир приложения занизился бы до seed',
   },
+  {
+    department: 'growth',
+    writtenIn: 'growth_daily_aggregate.ts',
+    readIn: 'jarvis/growth_firestore_fetcher.ts',
+    field: 'newUsers',
+    breaks: 'серверный суточный приток стал бы неизвестен, а legacy sample нельзя выдавать за точное число',
+  },
+  {
+    department: 'cohort retention',
+    writtenIn: 'jarvis/learning_metrics.ts',
+    readIn: 'jarvis/learning_metrics.ts',
+    field: 'cohortSize',
+    breaks: 'размер D1/D7 когорты стал бы неизвестен',
+  },
+  {
+    department: 'cohort retention',
+    writtenIn: 'jarvis/learning_metrics.ts',
+    readIn: 'jarvis/learning_metrics.ts',
+    field: 'd1ReturningUsers',
+    breaks: 'D1 retention стал бы ложным нулём',
+  },
+  {
+    department: 'cohort retention',
+    writtenIn: 'jarvis/learning_metrics.ts',
+    readIn: 'jarvis/learning_metrics.ts',
+    field: 'd7ReturningUsers',
+    breaks: 'D7 retention стал бы ложным нулём',
+  },
 ];
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {
+  test('the real safety_flags writer and Jarvis share one explicit age taxonomy contract', () => {
+    const { SAFETY_FLAG_WRITER_AGE_CONTRACT } = require('../ai_safety') as typeof import('../ai_safety');
+    const { JARVIS_SAFETY_FLAG_AGE_CONTRACT } = require('./safety_firestore_fetcher') as typeof import('./safety_firestore_fetcher');
+
+    expect(SAFETY_FLAG_WRITER_AGE_CONTRACT).toBeDefined();
+    expect(JARVIS_SAFETY_FLAG_AGE_CONTRACT).toBe(SAFETY_FLAG_WRITER_AGE_CONTRACT);
+    expect(SAFETY_FLAG_WRITER_AGE_CONTRACT).toEqual({
+      consentAgeValues: ['adult', 'unknown'],
+      evidenceStates: ['confirmed_adult', 'age_unverified', 'unavailable'],
+    });
+  });
+
   test.each(FIELD_CONTRACTS)(
     '[$department] поле "$field" живо и там, где пишется, и там, где Джарвис его читает',
     ({ writtenIn, readIn, field, breaks }) => {
@@ -135,12 +175,18 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     for (const file of fs.readdirSync(jarvisDir)) {
       if (!file.endsWith('.ts') || file.includes('.test.')) continue;
       const source = fs.readFileSync(path.join(jarvisDir, file), 'utf8');
-      for (const match of source.matchAll(/collection\('([a-z_]+)'\)/g)) {
+      // Only Firestore roots need a top-level rule. A chained `.collection()` is a
+      // subcollection and inherits the rule match of its root; treating it as a
+      // root makes legitimate nested schemas fail this guard.
+      for (const match of source.matchAll(/(?:\bdb|\.db)\.collection\('([a-z_]+)'\)/g)) {
         collections.add(match[1]);
       }
     }
 
     expect(collections.size).toBeGreaterThan(0);
+    expect(collections).not.toContain('sources');
+    expect(collections).not.toContain('buckets');
+    expect(collections).not.toContain('affected_users');
     for (const name of collections) {
       const verdict = rules.includes(`/${name}/`)
         ? 'ok'
@@ -188,5 +234,23 @@ describe('Jarvis data contract — silence must never replace a broken source', 
         : `ПАНЕЛЬ НЕ ЗНАЕТ ДЕПАРТАМЕНТ: "${department}" отсутствует в JF_DEPARTMENT_META (admin/v2/legacy.html)`;
       expect(verdict).toBe('ok');
     }
+  });
+});
+
+describe('level reward spin Jarvis impact', () => {
+  test('records the new server schema as intentionally unread by Jarvis until a metric is approved', () => {
+    const writer = readSource('level_reward_spins.ts');
+    expect(writer).toContain("collection('level_spin_credits')");
+    expect(writer).toContain("collection('level_spin_results')");
+    expect(writer).toContain('level_reward_spin_balance');
+
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const readers = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('.ts') && !file.includes('.test.'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+    expect(readers).not.toContain('level_spin_credits');
+    expect(readers).not.toContain('level_spin_results');
+    expect(readers).not.toContain('level_reward_spin_balance');
   });
 });

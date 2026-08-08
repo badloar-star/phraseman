@@ -14,8 +14,12 @@
 /** Окно для поиска всплеска. Сутки — минимальная единица, в которой всплеск виден. */
 export const SAFETY_LOOKBACK_MS = 24 * 60 * 60 * 1_000;
 
-/** Возрастные корзины несовершеннолетних. Флаг на ребёнке — юридический риск, не статистика. */
-const MINOR_BRACKETS = ['under13', 'teen_safe'] as const;
+import {
+  SAFETY_FLAG_AGE_CONTRACT,
+  type SafetyAgeEvidence,
+} from '../safety_flag_age_contract';
+
+export const JARVIS_SAFETY_FLAG_AGE_CONTRACT = SAFETY_FLAG_AGE_CONTRACT;
 
 export type SafetySourceState = 'ready' | 'empty' | 'error';
 
@@ -25,6 +29,9 @@ export interface FetchSafetySourceResult {
   readonly openFlags: number | null;
   /** Необработанные флаги на детских аккаунтах. Отдельно: это другой класс риска. */
   readonly openMinorFlags: number | null;
+  readonly openAgeUnverifiedFlags: number | null;
+  readonly openAgeUnavailableFlags: number | null;
+  readonly ageEvidence: SafetyAgeEvidence;
   /** Флаги за последние сутки — база для «всплеска». */
   readonly recentFlags: number | null;
   /** Момент замера. Счётчики не носят собственных дат — свежесть задаёт сам замер. */
@@ -57,28 +64,50 @@ export async function fetchSafetySource(input: FetchSafetySourceInput): Promise<
   const flags = input.db.collection('safety_flags') as unknown as CountableQuery;
 
   try {
-    const minorQueries = MINOR_BRACKETS.flatMap((bracket) => {
-      const scoped = flags.where('ageBracket', '==', bracket);
-      return [countOf(scoped), countOf(scoped.where('handled', '==', true))];
-    });
-
-    const [total, handled, recent, ...minorCounts] = await Promise.all([
+    const confirmedAdultFlags = flags.where('ageEvidence', '==', 'confirmed_adult');
+    const unavailableAgeFlags = flags.where('ageEvidence', '==', 'unavailable');
+    const [
+      total,
+      handled,
+      recent,
+      confirmedAdultTotal,
+      confirmedAdultHandled,
+      unavailableAgeTotal,
+      unavailableAgeHandled,
+    ] = await Promise.all([
       countOf(flags),
       countOf(flags.where('handled', '==', true)),
       countOf(flags.where('createdAtMs', '>=', input.nowMs - SAFETY_LOOKBACK_MS)),
-      ...minorQueries,
+      countOf(confirmedAdultFlags),
+      countOf(confirmedAdultFlags.where('handled', '==', true)),
+      countOf(unavailableAgeFlags),
+      countOf(unavailableAgeFlags.where('handled', '==', true)),
     ]);
 
-    let openMinorFlags = 0;
-    for (let i = 0; i < minorCounts.length; i += 2) {
-      openMinorFlags += openOf(minorCounts[i], minorCounts[i + 1]);
-    }
-
     const openFlags = openOf(total, handled);
+    const openConfirmedAdultFlags = Math.min(
+      openFlags,
+      openOf(confirmedAdultTotal, confirmedAdultHandled),
+    );
+    const openAgeUnavailableFlags = Math.min(
+      openFlags - openConfirmedAdultFlags,
+      openOf(unavailableAgeTotal, unavailableAgeHandled),
+    );
+    const openAgeUnverifiedFlags = Math.max(
+      0,
+      openFlags - openConfirmedAdultFlags - openAgeUnavailableFlags,
+    );
     return Object.freeze({
       state: total === 0 ? ('empty' as const) : ('ready' as const),
       openFlags,
-      openMinorFlags,
+      openMinorFlags: null,
+      openAgeUnverifiedFlags,
+      openAgeUnavailableFlags,
+      ageEvidence: openAgeUnverifiedFlags > 0
+        ? ('age_unverified' as const)
+        : openAgeUnavailableFlags > 0
+          ? ('unavailable' as const)
+          : ('confirmed_adult' as const),
       recentFlags: recent,
       observedAtMs: input.nowMs,
     });
@@ -89,6 +118,9 @@ export async function fetchSafetySource(input: FetchSafetySourceInput): Promise<
       state: 'error' as const,
       openFlags: null,
       openMinorFlags: null,
+      openAgeUnverifiedFlags: null,
+      openAgeUnavailableFlags: null,
+      ageEvidence: 'unavailable' as const,
       recentFlags: null,
       observedAtMs: input.nowMs,
     });

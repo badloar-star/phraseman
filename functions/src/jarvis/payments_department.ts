@@ -58,17 +58,17 @@ function buildPaymentsEvidence(fetch: FetchPaymentsSourceResult): Evidence {
 
 export function runPaymentsDepartment(input: RunPaymentsDepartmentInput): RunPaymentsDepartmentResult {
   const evidence = input.fetches.map(buildPaymentsEvidence);
-  const anyTrustworthy = evidence.some((item) => item.trustworthy);
+  const completeEvidence = evidence.length > 0 && evidence.every((item) => item.trustworthy);
 
   const lostPayments = countPaidUnfulfilled(input.fetches);
   const openDenials = countOpenDenials(input.fetches);
   const denialSpike = openDenials >= DENIAL_SPIKE_THRESHOLD;
 
-  const shouldDecide = input.trigger === 'owner_request' || lostPayments > 0 || denialSpike || !anyTrustworthy;
+  const shouldDecide = input.trigger === 'owner_request' || lostPayments > 0 || denialSpike || !completeEvidence;
   if (!shouldDecide) return { decisions: [] };
 
   // Порядок важен: потерянные деньги перекрывают всё остальное.
-  const finding = !anyTrustworthy
+  const finding = !completeEvidence && lostPayments === 0
     ? 'Не удалось прочитать журналы платёжных сбоев — источники недоступны.'
     : lostPayments > 0
       ? `${lostPayments} чел. заплатили, но доступ не выдался — деньги списаны, услуга не оказана.`
@@ -127,6 +127,9 @@ export function runPaymentsDepartment(input: RunPaymentsDepartmentInput): RunPay
         : 'Платёжные сбои не появляются в следующем снапшоте',
     rollback: 'Не применимо — департамент только наблюдает, выдача Plus выполняется владельцем вручную',
     evidence,
+    evidencePolicy: 'all_trustworthy',
+    actionability: lostPayments > 0 || denialSpike ? 'confirmed_action' : 'evidence_only',
+    severityHint: lostPayments > 0 ? 'P0' : denialSpike || !completeEvidence ? 'P1' : 'P3',
     nowMs: input.nowMs,
   });
 

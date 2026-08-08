@@ -133,8 +133,6 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
   switch (themeMode) {
     case 'gold':
       return ['#160F07', '#22190D', '#060503'];
-    case 'coral':
-      return ['#361E22', '#241619', '#0F080A'];
     case 'business':
       return ['#101820', '#182536', '#070A0F'];
     case 'midnight':
@@ -163,8 +161,6 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
   switch (themeMode) {
     case 'gold':
       return '#E8C36C';
-    case 'coral':
-      return '#FF8A78';
     case 'business':
       return '#7DD3FC';
     case 'midnight':
@@ -194,8 +190,6 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
   switch (themeMode) {
     case 'gold':
       return 'rgba(232,195,108,0.48)';
-    case 'coral':
-      return 'rgba(255,138,120,0.36)';
     case 'business':
       return 'rgba(125,211,252,0.34)';
     case 'midnight':
@@ -224,8 +218,6 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
   switch (themeMode) {
     case 'gold':
       return 'rgba(232,195,108,0.10)';
-    case 'coral':
-      return 'rgba(255,138,120,0.09)';
     case 'business':
       return 'rgba(125,211,252,0.09)';
     case 'midnight':
@@ -254,8 +246,6 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
   switch (themeMode) {
     case 'gold':
       return ['#F4D889', '#B9852E'];
-    case 'coral':
-      return ['#FFE1D7', '#FF8A78'];
     case 'business':
       return ['#DDF7FF', '#38BDF8'];
     case 'midnight':
@@ -337,8 +327,6 @@ export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string
   switch (themeMode) {
     case 'gold':
       return ['#2A1707', '#171006', '#050302'];
-    case 'coral':
-      return ['#3A141A', '#1B0A10', '#070305'];
     case 'business':
       return ['#102A3D', '#0E1624', '#05070B'];
     case 'midnight':
@@ -367,8 +355,6 @@ export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, s
   switch (themeMode) {
     case 'gold':
       return ['#3A260C', '#1C1307', '#070402'];
-    case 'coral':
-      return ['#421B22', '#251016', '#080304'];
     case 'business':
       return ['#12314A', '#132235', '#070A10'];
     case 'midnight':
@@ -420,10 +406,6 @@ export function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 're
       return strong
         ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)']
         : ['rgba(12,8,2,0.24)', 'rgba(7,5,2,0.42)', 'rgba(0,0,0,0.66)'];
-    case 'coral':
-      return strong
-        ? ['rgba(48,14,18,0.22)', 'rgba(30,8,11,0.48)', 'rgba(0,0,0,0.72)']
-        : ['rgba(48,14,18,0.14)', 'rgba(30,8,11,0.36)', 'rgba(0,0,0,0.62)'];
     case 'minimalDark':
       return strong
         ? ['rgba(8,12,20,0.20)', 'rgba(5,8,13,0.48)', 'rgba(0,0,0,0.76)']

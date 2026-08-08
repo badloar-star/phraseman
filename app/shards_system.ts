@@ -34,9 +34,7 @@ export type ShardSpendReason =
   | 'streak_freeze'  // -X Заморозка цепочки
   | 'streak_revive'  // -X Восстановление потерянной цепочки (≤24ч после обнуления)
   | 'wager_bet'      // -X Ставка в турнире
-  | 'arena_match_wager_loss' // -X Проигрыш ставки на рейтинг-матч арены
   | 'card_pack'      // -X Набор карточек за осколки
-  | 'arena_plays_refill' // -5 Восстановление дневных слотов рейтинг-матчей арены
   | 'league_boost'   // -X Персональный буст лиги
   | 'daily_task_reroll' // -3 Замена дневного задания (1 раз в сутки)
   | 'custom_avatar'
@@ -52,9 +50,6 @@ export type ShardSource =
   | 'lesson_completed'      // +1 Урок полностью завершён
   | 'streak_7'              // +3 Каждые 7 дней цепочки
   | 'streak_30'             // +5 Каждые 30 дней цепочки
-  | 'arena_win'             // +1 Победа в Арене
-  | 'arena_10_wins'         // +1 Каждые 10 побед в Арене
-  | 'arena_rank_up_streak'  // +1 Повышение ранга при серии 3+ побед (только новый пик)
   | 'daily_tasks_all'       // +1 ВСЕ задания дня закрыты (кнопка «Забрать» на экране заданий)
   | 'topic_completed'       // +3 Все уроки темы (разово)
   | 'exam_excellent'        // +3 Экзамен 90%+ (единоразово)
@@ -97,9 +92,6 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   lesson_completed: 0,
   streak_7: 0,
   streak_30: 0,
-  arena_win: 0,
-  arena_10_wins: 0,
-  arena_rank_up_streak: 0,
   daily_tasks_all: 1,
   topic_completed: 0,
   exam_excellent: 0,
@@ -116,7 +108,6 @@ const STORAGE_KEY = 'shards_balance';
 const BALANCE_META_KEY = 'shards_balance_meta_v1';
 const STORE_PURCHASED_SHARDS_KEY = 'shards_store_purchased_total_v1';
 const ONE_TIME_KEY = 'shards_one_time_events';
-const ARENA_WINS_KEY = 'shards_arena_wins_total';
 const ADMIN_OVERRIDE_APPLIED_KEY = 'shards_admin_override_applied_at';
 
 type ShardBalanceMeta = {
@@ -228,7 +219,6 @@ const profileCardShardBonus = (baseAmount: number, perkM: number): number =>
 const PROFILE_CARD_PERK_EXCLUDED_REASONS: ReadonlySet<string> = new Set([
   'shards_store_purchase',
   'streak_wager_win',
-  'arena_match_wager_win',
   'club_boost_refund',
   // зачем: возврат за несостоявшуюся покупку пака — НЕ заработок. Без этой
   // строки бонус карточки IV+ начислил бы при откате +5% сверх возвращённой
@@ -1935,38 +1925,6 @@ export const claimReferralSpinPearls = async (
     if (__DEV__) console.warn('[shards_system] claimReferralSpinPearls', e);
     return 0;
   }
-};
-
-export type OnArenaWinOpts = {
-  /**
-   * Вместо стандартного +1 за победу в арене — начислить это число (ставка на матч: выплата S×2).
-   * Бонус «каждые 10 побед» и счётчик побед считаются как раньше.
-   */
-  baseWinShardsOverride?: number;
-};
-
-// ── Арена: каждые 10 побед (модалку показывает arena_results одним событием) ─
-export const onArenaWin = async (opts?: OnArenaWinOpts): Promise<{ shards: number; milestoneBonus: number }> => {
-  const override = opts?.baseWinShardsOverride;
-  let winShards = 0;
-  if (override != null && Number.isFinite(override) && override > 0) {
-    winShards = await addShardsRaw(Math.floor(override), 'arena_match_wager_win');
-  } else {
-    winShards = await addShards('arena_win', { suppressEarnEvent: true });
-  }
-  try {
-    const raw = await AsyncStorage.getItem(ARENA_WINS_KEY);
-    const wins = (raw ? parseInt(raw, 10) : 0) + 1;
-    await AsyncStorage.setItem(ARENA_WINS_KEY, String(wins));
-    // Бонус «каждые 10 побед» только без ставки на матч (при ставке — одна выплата по коэффициенту).
-    if (override == null && wins % 10 === 0) {
-      const bonus = await addShards('arena_10_wins', { suppressEarnEvent: true });
-      return { shards: winShards, milestoneBonus: bonus };
-    }
-  } catch (e) {
-    if (__DEV__) console.warn('[shards_system]', e);
-  }
-  return { shards: winShards, milestoneBonus: 0 };
 };
 
 // ── Цепочка: кратность 7 / 30 (модалку шлёт home после этого) ───────────────

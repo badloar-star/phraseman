@@ -6,12 +6,6 @@ describe('admin premium delivery contract', () => {
   const cloudSync = fs.readFileSync(path.join(process.cwd(), 'app', 'cloud_sync.ts'), 'utf8');
   const authProvider = fs.readFileSync(path.join(process.cwd(), 'app', 'auth_provider.ts'), 'utf8');
   const premiumGuard = fs.readFileSync(path.join(process.cwd(), 'app', 'premium_guard.ts'), 'utf8');
-  const e2eScreen = fs.readFileSync(path.join(process.cwd(), 'app', '_admin_premium_delivery_test.tsx'), 'utf8');
-  const maestroFlow = fs.readFileSync(path.join(process.cwd(), 'maestro', 'flows', 'dev_only', 'admin_premium_delivery_e2e.yaml'), 'utf8');
-  const externalGrantFlow = fs.readFileSync(
-    path.join(process.cwd(), 'maestro', 'flows', 'dev_only', 'admin_premium_delivery_external_grant.yaml'),
-    'utf8',
-  );
   const authIdentityFn = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'auth_identity.ts'), 'utf8');
 
   it('links stable users to Firebase auth before reading admin premium from Firestore', () => {
@@ -83,35 +77,6 @@ describe('admin premium delivery contract', () => {
     expect(vipBranch).toBeGreaterThan(-1);
     expect(realBranch).toBeGreaterThan(-1);
     expect(noPremiumBranch).toBeGreaterThan(-1);
-  });
-
-  it('keeps a Maestro E2E that writes the admin/index VIP payload and waits for app delivery', () => {
-    expect(e2eScreen).toContain("'progress.vip_active': 'true'");
-    expect(e2eScreen).toContain("'progress.vip_plan': 'admin_vip'");
-    expect(e2eScreen).toContain("'progress.vip_until': expiry");
-    expect(e2eScreen).toContain("'progress.vip_admin_grant_at': grantAt");
-    expect(e2eScreen).toContain("linkedAuth");
-    expect(e2eScreen).toContain("switchToFreshE2EIdentity");
-    expect(e2eScreen).toContain("setStoredStableId");
-    expect(e2eScreen).toContain("after-signout-new-account");
-    expect(e2eScreen).toContain("'progress.vip_active': 'false'");
-    expect(e2eScreen).toContain('admin-premium-e2e-auth-matrix');
-    expect(e2eScreen).toContain('PASS auth matrix');
-    expect(e2eScreen).toContain('admin-premium-e2e-pass');
-    expect(e2eScreen).toContain('admin-premium-e2e-reset');
-    expect(e2eScreen).toContain('admin-premium-e2e-ready');
-    expect(maestroFlow).toContain('phraseman:///admin_premium_delivery_test');
-    expect(maestroFlow).toContain('admin-premium-e2e-auth-matrix');
-    expect(maestroFlow).toContain('admin-premium-e2e-pass');
-    expect(maestroFlow).toContain('admin-premium-e2e-auth-matrix-pass');
-  });
-
-  it('keeps a Maestro E2E for real Admin Panel VIP delivery without client self-grant', () => {
-    expect(externalGrantFlow).toContain('Admin Panel VIP tab');
-    expect(externalGrantFlow).toContain('admin-premium-e2e-ready');
-    expect(externalGrantFlow).toContain('admin-premium-e2e-pass');
-    expect(externalGrantFlow).not.toContain('admin-premium-e2e-auth-matrix');
-    expect(externalGrantFlow).not.toContain('tapOn');
   });
 
   it('preserves provider-linked ownership without allowing unknown auth mismatches', () => {

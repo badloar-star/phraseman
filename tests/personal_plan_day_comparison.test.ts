@@ -13,7 +13,7 @@ function withDaily7xp(daily7xp: number | null, totalUsers = 1000) {
     myTime7ms: 0,
     percentiles: {
       xp: null, streak: null, weekXp: null,
-      daily7xp, daily7timeMs: null, arenaXp: null, totalUsers,
+      daily7xp, daily7timeMs: null, totalUsers,
     } as any,
   });
 }

@@ -4,7 +4,7 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 
-export type YoutubeChannelTab = 'home' | 'playlists' | 'all';
+export type YoutubeChannelTab = 'home' | 'playlists';
 
 export default function YoutubeChannelTabs({ value, onChange }: {
   value: YoutubeChannelTab;
@@ -19,7 +19,7 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   };
   return (
     <View style={[styles.wrap, { backgroundColor: t.bgCard }]}>
-      {(['home', 'playlists', 'all'] as const).map((tab) => {
+      {(['home', 'playlists'] as const).map((tab) => {
         const active = value === tab;
         return (
           <TouchableOpacity

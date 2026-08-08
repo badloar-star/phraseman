@@ -31,15 +31,6 @@ const WEEK_DOTS: Record<ThemeMode, Omit<WeekDotTheme, 'freezeBg' | 'freezeBorder
     todayBorder: 'rgba(246,227,161,0.62)',
     checkColor: '#0A0702',
   },
-  coral: {
-    completeBg: '#FF7F50',
-    completeBorder: 'rgba(255,180,150,0.76)',
-    emptyBg: 'rgba(255,127,80,0.08)',
-    todayBg: 'rgba(255,127,80,0.18)',
-    emptyBorder: 'rgba(255,127,80,0.24)',
-    todayBorder: 'rgba(255,127,80,0.58)',
-    checkColor: '#FFFFFF',
-  },
   minimalDark: {
     completeBg: '#6EA8FF',
     completeBorder: 'rgba(167,199,255,0.72)',

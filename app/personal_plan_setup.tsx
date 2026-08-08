@@ -750,7 +750,7 @@ export default function PersonalPlanSetupScreen() {
           )}
         </View>
 
-        <BouncyScrollView decelerationRate="fast" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleSetupScroll}>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleSetupScroll}>
           {content}
         </BouncyScrollView>
       </LinearGradient>

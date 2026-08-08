@@ -263,7 +263,7 @@ function sanitizeRef(ref: string): string {
 // Шанс, дневной кап и pity — общие с уроком (серверный collectibles.ts), своей
 // экономики у новых мест нет: карточек в день по-прежнему максимум 3 (4 premium).
 export type CollectibleDropKind =
-  | 'lesson' | 'plan' | 'quiz' | 'arena' | 'exam'
+  | 'lesson' | 'plan' | 'exam'
   | 'tournament' | 'vocab' | 'verbs' | 'prep'
   | 'pronounce' | 'dialog';
 

@@ -43,8 +43,20 @@ it('does not treat bootstrap avatar 1 as a real first-frame profile choice for h
   expect(visuals.avatar).not.toBe('1');
 });
 
+it('applies authoritative cloud stats after local Home hydration has already finished', () => {
+  const { shouldApplyHomeSnapshotToStats } = require('../app/home_screen_hydration') as {
+    shouldApplyHomeSnapshotToStats?: (loaded: boolean, profileSource?: string, progressSource?: string) => boolean;
+  };
+  expect(shouldApplyHomeSnapshotToStats).toEqual(expect.any(Function));
+  expect(shouldApplyHomeSnapshotToStats!(true, 'live', 'live')).toBe(true);
+  expect(shouldApplyHomeSnapshotToStats!(true, 'storage', 'storage')).toBe(false);
+});
+
 it('keeps delayed app snapshot hydration wired to home profile visuals', () => {
   const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app/(tabs)/home.tsx'), 'utf8');
+  expect(source).toContain('shouldApplyHomeSnapshotToStats(homeStatsLoadedOnce, profile?.source, progress?.source)');
+  expect(source).toContain("profile.source === 'live' || (totalXP === 0 && profile.totalXp > 0)");
+  expect(source).toContain("progress.source === 'live' || (streak === 0 && progress.streak > 0)");
   expect(source).toContain('const visuals = resolveHomeProfileVisuals({ snapshot: profile });');
   expect(source).toContain('setUserAvatar((current) => current === visuals.avatar ? current : visuals.avatar);');
   expect(source).toContain('setUserFrame((current) => current === visuals.frame ? current : visuals.frame);');

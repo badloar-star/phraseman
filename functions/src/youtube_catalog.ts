@@ -194,9 +194,9 @@ async function buildYoutubeSnapshot(input: {
     const channelSource = await input.gateway.getChannel(configChannel.youtubeChannelId);
     const [uploadIds, playlistSources, upcomingIds, liveIds] = await Promise.all([
       input.gateway.getUploadVideoIds(channelSource.uploadsPlaylistId, YOUTUBE_CATALOG_LIMITS.videosPerChannel),
-      input.gateway.getPlaylists(configChannel.youtubeChannelId, YOUTUBE_CATALOG_LIMITS.playlistsPerChannel),
-      discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(configChannel.youtubeChannelId, 'upcoming') : Promise.resolve([]),
-      discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(configChannel.youtubeChannelId, 'live') : Promise.resolve([]),
+      input.gateway.getPlaylists(channelSource.id, YOUTUBE_CATALOG_LIMITS.playlistsPerChannel),
+      discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(channelSource.id, 'upcoming') : Promise.resolve([]),
+      discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(channelSource.id, 'live') : Promise.resolve([]),
     ]);
     const pinnedIds = configChannel.pinnedVideos?.map((video) => video.id) ?? [];
     const videoIds = [...new Set([...liveIds, ...upcomingIds, ...pinnedIds, ...uploadIds])]
@@ -244,12 +244,12 @@ async function buildYoutubeSnapshot(input: {
     const activeEvent = videos.find((video) => video.state === 'live') ?? videos.find((video) => video.state === 'upcoming');
     const channel: YoutubeChannelSnapshot = {
       id: configChannel.id,
-      youtubeChannelId: configChannel.youtubeChannelId,
+      youtubeChannelId: channelSource.id,
       displayName: configChannel.displayNameOverride ?? channelSource.displayName,
       handle: channelSource.handle || configChannel.youtubeChannelId,
       url: channelSource.handle
         ? `https://www.youtube.com/${encodeURIComponent(channelSource.handle)}/videos`
-        : `https://www.youtube.com/channel/${encodeURIComponent(configChannel.youtubeChannelId)}/videos`,
+        : `https://www.youtube.com/channel/${encodeURIComponent(channelSource.id)}/videos`,
       ...(channelSource.avatarUrl ? { avatarUrl: channelSource.avatarUrl } : {}),
       languageTags: [...configChannel.languageTags],
       order: configChannel.order,
@@ -403,7 +403,7 @@ export const youtubeCatalogSyncCron = onSchedule({
 });
 
 export const adminGetYoutubeCatalogWorkspace = onCall(
-  ADMIN_SENSITIVE_WRITE_OPTIONS,
+  { ...ADMIN_SENSITIVE_WRITE_OPTIONS, invoker: 'public' },
   async (request) => {
     requireAdminAppCheck(request);
     assertYoutubeCatalogAdminAccess(request.auth?.token);

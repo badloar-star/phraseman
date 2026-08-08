@@ -290,9 +290,14 @@ describe('Firebase cost controls', () => {
   it('keeps referral qualification tied to verified premium purchase instead of lesson progress', () => {
     const referralSource = read('functions/src/referral.ts');
     const progressSource = read('functions/src/progress_events.ts');
+    const revenueCatSource = read('functions/src/revenuecat_shards.ts');
+    const adminReferralsSource = read('functions/src/admin_referrals.ts');
 
     expect(referralSource).toContain('export async function markRefereeQualified');
     expect(referralSource).toContain("qualifiedBy: 'premium_purchase'");
+    expect(referralSource).not.toContain('export const referralOnUserProgressUpdated');
+    expect(revenueCatSource).toContain('await qualifyReferralFromVerifiedPremiumOutcome(db, out)');
+    expect(adminReferralsSource).toContain('await reconcilePendingReferralPurchases(db, nowMs)');
     expect(progressSource).not.toContain("import { markRefereeQualified } from './referral'");
     expect(progressSource).not.toContain('shouldQualifyReferralFromProgressEvent(event)');
     expect(progressSource).not.toContain('await markRefereeQualified(db, stableUid)');

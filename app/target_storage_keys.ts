@@ -20,8 +20,6 @@ export const TARGET_KEY_DOMAINS = [
   'cloud_sync',
   'daily_phrase',
   'flashcards',
-  'quiz_session',
-  'quiz_achievements',
   'target_stats',
   'achievements',
 ] as const;
@@ -119,7 +117,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^resolved_personal_trainings_v1$/,
   /^pos_mastery_v1$/,
 ];
-const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|daily_tasks|cloud_sync|daily_phrase|flashcards|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
+const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|daily_tasks|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
 
 function assertMember<T extends string>(value: string, allowed: readonly T[], label: string): T {
   if ((allowed as readonly string[]).includes(value)) return value as T;
@@ -279,10 +277,6 @@ export function dailyTasksRerollKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('daily_tasks_reroll_v1', 'daily_tasks', studyTarget);
 }
 
-export function dailyTasksAdminOverrideKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('daily_tasks_admin_override_v1', 'daily_tasks', studyTarget);
-}
-
 export function dailyTasksAchievementAllDoneStreakKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('achievement_all_daily_streak_v1', 'daily_tasks', studyTarget);
 }
@@ -316,30 +310,27 @@ export function dailyPhraseAchievementSaveCountKey(studyTarget?: RuntimeStudyTar
   return scopedOrLegacyKey('achievement_daily_phrase_save_count', 'daily_phrase', studyTarget);
 }
 
-export function quizNavLevelKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('quiz_nav_level', 'quiz_session', studyTarget);
-}
-
-export function quizLifetimeCounterKey(
-  rawEnglishKey: 'lifetime_quiz_easy_v1' | 'lifetime_quiz_medium_v1' | 'lifetime_quiz_hard_v1',
-  studyTarget?: RuntimeStudyTarget,
-): string {
-  return scopedOrLegacyKey(rawEnglishKey, 'quiz_session', studyTarget);
-}
-
-export function quizAchievementCounterKey(
-  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
-  studyTarget?: RuntimeStudyTarget,
-): string {
-  return scopedOrLegacyKey(rawEnglishKey, 'quiz_achievements', studyTarget);
-}
-
-export function quizPerfectLevelsTodayKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_quiz_perfect_levels_today_v1', 'quiz_achievements', studyTarget);
-}
-
-export function quizPerfectStreakKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_quiz_perfect_streak_v1', 'quiz_achievements', studyTarget);
+/**
+ * Historical keys retained only so account switching/deletion can wipe data
+ * written by retired competitive-mode builds. They are never synced or read as
+ * current product state.
+ */
+export function retiredCompetitiveModeStorageKeysForWipe(studyTarget?: RuntimeStudyTarget): string[] {
+  const target = storageStudyTarget(studyTarget);
+  const historicalKeys = [
+    ['quiz_session', 'quiz_nav_level'],
+    ['quiz_session', 'lifetime_quiz_easy_v1'],
+    ['quiz_session', 'lifetime_quiz_medium_v1'],
+    ['quiz_session', 'lifetime_quiz_hard_v1'],
+    ['quiz_achievements', 'achievement_quiz_total_count'],
+    ['quiz_achievements', 'quiz_hard_count'],
+    ['quiz_achievements', 'achievement_quiz_hard_perfect_count'],
+    ['quiz_achievements', 'achievement_quiz_perfect_levels_today_v1'],
+    ['quiz_achievements', 'achievement_quiz_perfect_streak_v1'],
+  ] as const;
+  return historicalKeys.map(([domain, rawKey]) => (
+    target === 'en' ? rawKey : `${domain}_v2${SEP}${target}${SEP}${rawKey}`
+  ));
 }
 
 export function comboAchievementCounterKey(studyTarget?: RuntimeStudyTarget): string {

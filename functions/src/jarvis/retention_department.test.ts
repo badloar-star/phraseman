@@ -29,13 +29,21 @@ describe('Jarvis retention department — do people come back', () => {
   test('reports weak retention when few of the monthly users return', () => {
     const { decisions } = run({ activeWeek: 100, activeMonth: 1000 });
     expect(decisions).toHaveLength(1);
-    expect(decisions[0].finding).toMatch(/возвра|верну/i);
+    expect(decisions[0].finding).toMatch(/WAU\/MAU|активн/i);
   });
 
   test('a tiny base is never judged — percentages there are noise, not signal', () => {
     // 1 из 10 это 10%, но на такой базе это один человек, а не тренд.
     const { decisions } = run({ activeWeek: 1, activeMonth: RETENTION_MIN_BASE - 1 });
     expect(decisions).toHaveLength(0);
+  });
+
+  test('labels the observed WAU/MAU activity ratio honestly and does not invent a lesson-drop cause', () => {
+    const { decisions } = run({ activeWeek: 100, activeMonth: 1000 });
+    expect(decisions).toHaveLength(1);
+    expect(decisions[0].finding).toMatch(/WAU\/MAU|активн/i);
+    expect(decisions[0].hypothesis).not.toMatch(/первых урок/i);
+    expect(decisions[0].hypothesis).toMatch(/не доказывает|недостаточно/i);
   });
 
   test('a young app gets a softer threshold than a mature one on the same numbers', () => {

@@ -71,6 +71,6 @@ describe('premium modal dispatcher contract', () => {
     expect(manageSubscription).toContain('getStoreManageUrl');
     expect(manageSubscription).toContain('apps.apple.com/account/subscriptions');
     expect(manageSubscription).toContain('play.google.com/store/account/subscriptions');
-    expect(manageSubscription).toContain('safeRouterBack(router)');
+    expect(manageSubscription).toContain('safeRouterBack(router, closeFallback)');
   });
 });

@@ -23,6 +23,8 @@ import { triLang } from '../constants/i18n';
 import { softShadow, noAndroidOutline } from '../constants/androidGlow';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
+import { claimDailyPhrasePulseForDay } from '../app/daily_phrase_pulse';
+import { getLocalDayKey } from '../app/local_date';
 import {
   dailyPhraseContentAvailableForTarget,
   frenchDailyPhraseGateCopy,
@@ -49,6 +51,7 @@ import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
+import { FlowText } from './text-integrity';
 import TonalSurface from './TonalSurface';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
@@ -60,9 +63,14 @@ const SHEET_SLIDE_DISTANCE = 420;
 interface Props {
   userLevel?: number;
   variant?: 'default' | 'homeAdditional';
+  homeCardVisible?: boolean;
 }
 
-function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) {
+function DailyPhraseCard({
+  userLevel: _userLevel,
+  variant = 'default',
+  homeCardVisible = false,
+}: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -79,7 +87,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget, lang)
   ));
-  const [homeQuestAnswered, setHomeQuestAnswered] = useState(false);
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [questAnswered, setQuestAnswered] = useState(false);
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
@@ -90,6 +97,8 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
   const modalEntranceAnim = useRef(new Animated.Value(0)).current;
+  const homePulseScale = useRef(new Animated.Value(1)).current;
+  const homePulseAttemptedDayRef = useRef<string | null>(null);
   const wasDetailsVisibleRef = useRef(false);
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
   const phraseLang: DailyPhraseInterfaceLang = lang;
@@ -164,19 +173,55 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     successAnim.setValue(0);
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
 
-  // зачем: владелец — кнопка "Проверить себя" на плашке хоума должна пропадать
-  // сразу после ответа на квиз дня, не дожидаясь повторного открытия шторки.
   useEffect(() => {
-    setHomeQuestAnswered(false);
-    if (!dailyPhraseGateOpen || !phrase) return;
+    if (!homeAdditional || !homeCardVisible || reduceMotion) return;
+
+    const localDay = getLocalDayKey();
+    if (homePulseAttemptedDayRef.current === localDay) return;
+    homePulseAttemptedDayRef.current = localDay;
+
     let cancelled = false;
-    const phraseId = phrase.id || phrase.date;
-    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
-    hasDailyPhraseQuestAnswered({ phraseId, date })
-      .then((answered) => { if (!cancelled && answered) setHomeQuestAnswered(true); })
+    void claimDailyPhrasePulseForDay(localDay)
+      .then((claimed) => {
+        if (!claimed || cancelled) return;
+        const pulse = Animated.sequence([
+          Animated.timing(homePulseScale, {
+            toValue: 1.025,
+            duration: 180,
+            easing: Easing.out(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.timing(homePulseScale, {
+            toValue: 1,
+            duration: 180,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.timing(homePulseScale, {
+            toValue: 1.025,
+            duration: 180,
+            easing: Easing.out(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.timing(homePulseScale, {
+            toValue: 1,
+            duration: 180,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true,
+          }),
+        ]);
+        pulse.start(({ finished }) => {
+          if (!finished) homePulseScale.setValue(1);
+        });
+      })
       .catch(() => {});
-    return () => { cancelled = true; };
-  }, [dailyPhraseGateOpen, phrase?.id, phrase?.date, phrase?.scheduledDate]);
+
+    return () => {
+      cancelled = true;
+      homePulseScale.stopAnimation();
+      homePulseScale.setValue(1);
+    };
+  }, [homeAdditional, homeCardVisible, homePulseScale, reduceMotion]);
 
   useEffect(() => {
     const opened = detailsVisible && !wasDetailsVisibleRef.current;
@@ -349,16 +394,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     tr: 'Günün ifadesi',
     pl: 'Fraza dnia',
   });
-  const homeActionLabel = triLang(lang, {
-    uk: 'Перевірити себе',
-    ru: 'Проверить себя',
-    es: 'Ponte a prueba',
-    'pt-BR': 'Teste-se',
-    vi: 'Tự kiểm tra',
-    id: 'Uji diri',
-    tr: 'Kendini dene',
-    pl: 'Sprawdź się',
-  });
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
@@ -512,7 +547,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
-    setHomeQuestAnswered(true);
     revealQuestExplanation();
     markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
 
@@ -536,26 +570,29 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   return (
     <>
-      <Pressable
-        onPress={openDetails}
-        accessibilityRole="button"
-        accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}.${homeQuestAnswered ? '' : ` ${homeActionLabel}`}` : title}
-        style={({ pressed }) => [
-          homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
+      <Animated.View
+        style={homeAdditional ? { transform: [{ scale: homePulseScale }] } : undefined}
+      >
+        <Pressable
+          onPress={openDetails}
+          accessibilityRole="button"
+          accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}.` : title}
+          style={({ pressed }) => [
+            homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
           // зачем: владелец (2026-08-03) — «Фраза дня» на главной должна
           // читаться как свой отдельный контейнер, а не голый текст на фоне
           // экрана. Заливка — тот же тихий тон иконки-чипа (rgba ~0.13-0.15
           // на тему), никакой рамки: подложка едва заметна и скруглена, без
           // borderWidth (запрет владельца на контуры вокруг блоков).
-          homeAdditional && { backgroundColor: chrome.iconBg },
-          !homeAdditional && {
-            backgroundColor: chrome.colors[1] || t.bgCard,
-            borderColor: chrome.border,
-            shadowColor: chrome.shadow,
-          },
-          pressed && styles.pressed,
-        ]}
-      >
+            homeAdditional && { backgroundColor: chrome.iconBg },
+            !homeAdditional && {
+              backgroundColor: chrome.colors[1] || t.bgCard,
+              borderColor: chrome.border,
+              shadowColor: chrome.shadow,
+            },
+            pressed && styles.pressed,
+          ]}
+        >
         {!homeAdditional && (
           <>
             <LinearGradient
@@ -588,29 +625,31 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]}>
                   {phrase.english}
                 </Text>
-                {!homeQuestAnswered && (
-                  <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>
-                    <Text style={[styles.homeAdditionalActionText, { color: chrome.actionText, fontSize: Math.max(13, f.label) }]}>
-                      {homeActionLabel}
-                    </Text>
-                  </View>
-                )}
               </>
             ) : (
               <>
                 <View style={styles.titleRow}>
-                  <Text style={[styles.plaqueTitle, { color: chrome.title, fontSize: f.caption }]} numberOfLines={1}>
+                  <FlowText
+                    testID="daily-phrase-title"
+                    provenance="authored"
+                    style={[styles.plaqueTitle, { color: chrome.title, fontSize: f.caption }]}
+                  >
                     {title}
-                  </Text>
+                  </FlowText>
                 </View>
-                <Text style={[styles.plaquePhrase, { color: chrome.phrase, fontSize: f.body }]} numberOfLines={2}>
+                <FlowText
+                  testID="daily-phrase-english"
+                  provenance="authored"
+                  style={[styles.plaquePhrase, { color: chrome.phrase, fontSize: f.body }]}
+                >
                   {phrase.english}
-                </Text>
+                </FlowText>
               </>
             )}
           </View>
         </View>
-      </Pressable>
+        </Pressable>
+      </Animated.View>
 
       <Modal
         visible={detailsVisible}
@@ -912,8 +951,8 @@ const styles = StyleSheet.create({
     ...noAndroidOutline,
   },
   homeAdditionalEditorial: {
-    alignSelf: 'center',
-    maxWidth: '90%',
+    alignSelf: 'stretch',
+    marginHorizontal: 8,
     marginTop: 10,
     marginBottom: 16,
     borderRadius: 20,
@@ -997,20 +1036,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     flexShrink: 1,
     textAlign: 'center',
-  },
-  homeAdditionalAction: {
-    minHeight: 44,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 22,
-    marginTop: 11,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-  },
-  homeAdditionalActionText: {
-    fontWeight: '900',
-    lineHeight: 18,
   },
   homeAdditionalSub: {
     fontWeight: '800',

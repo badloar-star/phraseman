@@ -1,13 +1,18 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
+import { DARK, GOLD, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
 import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import {
+  isSelectableThemeMode,
+  isThemePlusOnly,
+  SELECTABLE_THEME_MODES,
+} from '../app/theme_access_policy';
 import { onAppEvent } from '../app/events';
 import { hasLeagueGoldThemeReward } from '../app/services/league_chest_rewards';
 import { setOskolokThemeMode } from '../app/oskolok';
@@ -215,7 +220,6 @@ const ThemeContext = createContext<ThemeCtx>({
 const THEME_MAP: Record<ThemeMode, Theme> = {
   dark: DARK,
   gold: GOLD,
-  coral: CORAL,
   minimalDark: MINIMAL_DARK,
   midnight: MIDNIGHT,
   ember: EMBER,
@@ -227,18 +231,17 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   indigo: INDIGO,
   sagePorcelain: SAGE_PORCELAIN,
 };
-const CYCLE: ThemeMode[] = ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
-/** Premium themes. Free theme: `indigo`; `gold` is unlocked only by reward. */
-// зачем: с 2026-07-27 бесплатная тема-витрина — «Индиго» (выбор владельца);
+const CYCLE: ThemeMode[] = [...SELECTABLE_THEME_MODES];
+/** Standard access comes from theme_access_policy; `gold` is unlocked only by reward. */
+// зачем: бесплатные темы-витрины — «Индиго» и «Нефрит» (выбор владельца);
 // «Полночь» ушла в премиум, но у старых бесплатных юзеров не отбирается —
 // см. флаг-«дедушка» MIDNIGHT_GRANDFATHER_KEY.
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'midnight', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'indigo';
 const MIDNIGHT_GRANDFATHER_KEY = 'app_theme_midnight_grandfather';
 // business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.
 // vanilla удалена полностью (2026-07-25): владелец решил снять светлую тему из выбора.
-const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla', 'minimalDark', 'candyBlue']);
+const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla', 'minimalDark', 'candyBlue', 'coral']);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
@@ -299,15 +302,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         migrated = DEFAULT_THEME_MODE;
         void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
       }
-      const valid =
-        false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false ||
-        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' ||
-        migrated === 'indigo' || migrated === 'sagePorcelain';
+      const valid = isSelectableThemeMode(migrated);
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
         // «Полночь» у «дедушки» премиум-замком не считается.
-        const premiumLocked = PREMIUM_ONLY_THEMES.includes(t) && !(t === 'midnight' && grandfathered);
+        const premiumLocked = isThemePlusOnly(t) && !(t === 'midnight' && grandfathered);
         if ((!isPremium && !DEV_THEME_UNLOCKS && premiumLocked) || goldLocked) {
           setThemeModeState(DEFAULT_THEME_MODE);
           void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
@@ -346,7 +346,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       void AsyncStorage.setItem('app_theme', m);
       return;
     }
-    if (!DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(m) && !premiumThemeAccess) {
+    if (!DEV_THEME_UNLOCKS && isThemePlusOnly(m) && !premiumThemeAccess) {
       void getVerifiedPremiumStatus()
         .then((isPremium) => {
           setPremiumThemeAccess(isPremium);
@@ -369,7 +369,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const cycle = CYCLE.filter((mode) => {
         if (mode === 'gold') return goldThemeUnlocked || DEV_THEME_UNLOCKS;
         if (mode === 'midnight' && midnightGrandfathered) return true;
-        if (PREMIUM_ONLY_THEMES.includes(mode)) return premiumThemeAccess || DEV_THEME_UNLOCKS;
+        if (isThemePlusOnly(mode)) return premiumThemeAccess || DEV_THEME_UNLOCKS;
         return true;
       });
       const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? DEFAULT_THEME_MODE;

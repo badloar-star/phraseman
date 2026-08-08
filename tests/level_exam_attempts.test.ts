@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   activeLevelExamAttemptKey,
   clearActiveLevelExamAttempt,
+  levelExamAttemptRecoveryKey,
   loadActiveLevelExamAttempt,
   normalizeLevelExamAttemptCount,
   persistActiveLevelExamAttempt,
@@ -81,6 +82,17 @@ describe('level exam attempt counter', () => {
 
     await expect(loadActiveLevelExamAttempt('owner-a', 'A1', 'en')).resolves.toBeNull();
     await expect(AsyncStorage.getItem(key)).resolves.toBeNull();
+  });
+
+  it('quarantines a legacy V2 snapshot for recovery instead of losing it', async () => {
+    const key = activeLevelExamAttemptKey('owner-a', 'A1', 'en');
+    const legacy = { blueprintVersion: 2, ownerStableUid: 'owner-a', level: 'A1', status: 'active' };
+    await AsyncStorage.setItem(key, JSON.stringify(legacy));
+
+    await expect(loadActiveLevelExamAttempt('owner-a', 'A1', 'en')).resolves.toBeNull();
+    await expect(AsyncStorage.getItem(key)).resolves.toBeNull();
+    await expect(AsyncStorage.getItem(levelExamAttemptRecoveryKey('owner-a', 'A1', 'en')))
+      .resolves.toBe(JSON.stringify(legacy));
   });
 
   it('records a completed finish token exactly once under concurrent calls', async () => {

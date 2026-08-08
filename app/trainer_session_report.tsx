@@ -17,7 +17,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { buttonForegroundForBackground } from '../constants/color_contrast';
 import { lightenHex } from '../components/GradientProgressBar';
 
-type TrainerReportQueue = 'words' | 'phrases' | 'arena';
+type TrainerReportQueue = 'words' | 'phrases';
 
 interface TrainerSessionReportProps {
   queue: TrainerReportQueue;

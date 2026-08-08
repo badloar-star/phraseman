@@ -22,10 +22,10 @@ describe('level gift claim success contract', () => {
     expect(single).toContain('markGiftClaimed(level, accountToken)');
     expect(single).toContain('saveClaimedGiftRarity(level, g.rarity, accountToken)');
     expect(single).toContain('saveUnclaimedGift(level, g, accountToken)');
-    expect(single).toContain('onGiftClaimed(chosen, accountToken)');
+    expect(single).toContain('onGiftClaimed(chosenWithReservation, accountToken)');
     expect(single).toContain('markGiftClaimed(level, accountToken)');
-    expect(single).toContain('saveClaimedGiftRarity(level, chosen.rarity, accountToken)');
-    expect(single).toContain('saveUnclaimedGift(level, chosen, accountToken)');
+    expect(single).toContain('saveClaimedGiftRarity(level, chosenWithReservation.rarity, accountToken)');
+    expect(single).toContain('saveUnclaimedGift(level, chosenWithReservation, accountToken)');
     expect(single.match(/studyTarget, accountToken/g)?.length).toBeGreaterThanOrEqual(2);
     expect(single).not.toContain('if (!isVisibleRef.current)');
     expect(single).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
@@ -54,7 +54,7 @@ describe('level gift claim success contract', () => {
     expect(dual).toContain('isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken)');
   });
 
-  it('claims single gifts locally before applying reward effects', () => {
+  it('applies single-gift effects before removing the recoverable inventory entitlement', () => {
     const source = readSource(path.join('components', 'LevelGiftModal.tsx'));
     const tapApplyBlock = source.slice(
       source.indexOf('const applyP: Promise<ApplyGiftResult>'),
@@ -65,16 +65,18 @@ describe('level gift claim success contract', () => {
       source.indexOf('if (!visible || !gift) return null'),
     );
 
-    expect(tapApplyBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken))');
-    expect(tapApplyBlock.indexOf('await claimP;')).toBeLessThan(tapApplyBlock.indexOf('const result = await applyGift('));
+    expect(tapApplyBlock.indexOf('const result = await applyGift(')).toBeLessThan(
+      tapApplyBlock.indexOf('await (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken));'),
+    );
     expect(tapApplyBlock).toContain('if (result.success) {');
-    expect(tapApplyBlock).toContain('} else if (!onGiftClaimed) {\n            await saveUnclaimedGift(level, g, accountToken);');
+    expect(tapApplyBlock).toMatch(/} else if \(onGiftApplyFailed\) {\s+await onGiftApplyFailed\(g, accountToken\);/);
 
-    expect(choiceBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(chosen, accountToken) : markGiftClaimed(level, accountToken))');
-    expect(choiceBlock.indexOf('await claimP;')).toBeLessThan(choiceBlock.indexOf('const setEnergyFn = async'));
     expect(choiceBlock.indexOf('const setEnergyFn = async')).toBeLessThan(choiceBlock.indexOf('const result = await applyGift('));
+    expect(choiceBlock.indexOf('const result = await applyGift(')).toBeLessThan(
+      choiceBlock.indexOf('await (onGiftClaimed ? onGiftClaimed(chosenWithReservation, accountToken) : markGiftClaimed(level, accountToken));'),
+    );
     expect(choiceBlock).toContain('if (result.success) {');
-    expect(choiceBlock).toContain('} else if (!onGiftClaimed) {\n          await saveUnclaimedGift(level, chosen, accountToken);');
+    expect(choiceBlock).toContain('} else if (onGiftApplyFailed) {\n          await onGiftApplyFailed(chosenWithReservation, accountToken);');
   });
 
   it('closes dual gifts immediately and persists reward effects in the background', () => {
@@ -100,6 +102,8 @@ describe('level gift claim success contract', () => {
     expect(outcomeBlock).not.toContain('await saveUnclaimedGift(level, prem);');
     expect(outcomeBlock).not.toContain('await saveUnclaimedGift(level, f2p);');
     expect(outcomeBlock).toContain('await saveUnclaimedDualGift(level, { f2p, prem }, accountToken);');
+    expect(outcomeBlock).toContain('const f2pOk = f2pResult.success === true || f2pResult.alreadyClaimed === true;');
+    expect(outcomeBlock).toContain('const premOk = premResult.success === true || premResult.alreadyClaimed === true;');
     expect(outcomeBlock).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
     expect(outcomeBlock).not.toContain('isCurrentOpening(accountToken)');
 

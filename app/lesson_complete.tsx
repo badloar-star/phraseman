@@ -22,6 +22,7 @@ import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { noAndroidOutline } from '../constants/androidGlow';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
 import { checkAchievements } from './achievements';
@@ -70,9 +71,7 @@ import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
-import ProgressCompletionView from '../components/feedback/ProgressCompletionView';
-import { buildProgressCompletionModel } from './completion/progress_completion_model';
-import { lessonSavedResultCopy } from './completion/progress_completion_copy';
+import ResultsSequence from '../components/feedback/ResultsSequence';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
@@ -98,6 +97,86 @@ const RESULTS_STARS_BY_TIER: Record<MedalTier, number> = {
 };
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+const MAX_LESSON_MULTIPLIER_PARAM_LENGTH = 512;
+const MAX_LESSON_MULTIPLIER_COUNT = 6;
+type ConfirmedLessonMultiplier = { multiplier: number; xpDelta: number };
+
+const firstRouteParam = (value: unknown): unknown => Array.isArray(value) && typeof value[0] === 'string'
+  ? value[0]
+  : value;
+
+export const parseConfirmedLessonXp = (value: unknown): number => {
+  const numeric = Number(firstRouteParam(value));
+  if (!Number.isFinite(numeric) || numeric <= 0 || numeric > Number.MAX_SAFE_INTEGER) return 0;
+  return Math.floor(numeric);
+};
+
+const normalizeConfirmedLessonMultiplier = (value: unknown): number => {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric <= 1 || numeric > 20) return 1;
+  return Math.round(numeric * 100) / 100;
+};
+
+export const parseConfirmedLessonMultipliers = (value: unknown): ConfirmedLessonMultiplier[] => {
+  const raw = firstRouteParam(value);
+  if (typeof raw === 'string' && raw.length > MAX_LESSON_MULTIPLIER_PARAM_LENGTH) return [];
+  let parsed: unknown = raw;
+  if (typeof raw === 'string') {
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  }
+  if (!Array.isArray(parsed)) return [];
+
+  const consolidated = new Map<number, number>();
+  for (const candidate of parsed) {
+    const multiplierValue = Array.isArray(candidate)
+      ? candidate[0]
+      : (candidate as { multiplier?: unknown } | null)?.multiplier;
+    const deltaValue = Array.isArray(candidate)
+      ? candidate[1]
+      : (candidate as { xpDelta?: unknown } | null)?.xpDelta;
+    const multiplier = normalizeConfirmedLessonMultiplier(multiplierValue);
+    const xpDelta = parseConfirmedLessonXp(deltaValue);
+    if (multiplier <= 1 || xpDelta <= 0) continue;
+    const nextDelta = (consolidated.get(multiplier) ?? 0) + xpDelta;
+    if (nextDelta <= Number.MAX_SAFE_INTEGER) consolidated.set(multiplier, nextDelta);
+  }
+  return [...consolidated.entries()]
+    .sort(([left], [right]) => left - right)
+    .slice(0, MAX_LESSON_MULTIPLIER_COUNT)
+    .map(([multiplier, xpDelta]) => ({ multiplier, xpDelta }));
+};
+
+const formatConfirmedLessonMultiplier = (multiplier: number): string =>
+  Number.isInteger(multiplier)
+    ? String(multiplier)
+    : multiplier.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+
+export const deriveConfirmedLessonResults = (input: {
+  finalXp: number;
+  baseXp: number;
+  multipliers: ConfirmedLessonMultiplier[];
+}): { xp: number; rewards?: { multipliers: { label: string; xpDelta: number }[] } } => {
+  const finalXp = parseConfirmedLessonXp(input.finalXp);
+  const baseXp = parseConfirmedLessonXp(input.baseXp);
+  const multipliers = parseConfirmedLessonMultipliers(input.multipliers);
+  const multiplierXp = multipliers.reduce((total, reward) => total + reward.xpDelta, 0);
+  if (baseXp + multiplierXp !== finalXp) return { xp: finalXp };
+  if (multipliers.length === 0) return { xp: baseXp };
+  return {
+    xp: baseXp,
+    rewards: {
+      multipliers: multipliers.map((reward) => ({
+        label: `XP ×${formatConfirmedLessonMultiplier(reward.multiplier)}`,
+        xpDelta: reward.xpDelta,
+      })),
+    },
+  };
+};
 
 type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
 
@@ -408,7 +487,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
         alignItems: 'center', width: '100%', maxWidth: 360,
         borderWidth: 0, borderColor: t.textSecond + '44',
         overflow: 'hidden',
-        shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20,
+        shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, ...noAndroidOutline,
       }}>
         {/* Icon / Image */}
         {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
@@ -524,6 +603,10 @@ export default function LessonComplete() {
     coachMicroLabelTr?: string;
     coachMicroLabelPl?: string;
     coachDiagnosisEvidenceCount?: string;
+    earnedXp?: string | string[];
+    earnedBaseXp?: string | string[];
+    earnedMultipliers?: string | string[];
+    passed?: string | string[];
   }>();
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
@@ -575,6 +658,33 @@ export default function LessonComplete() {
   const [medalImproved, setMedalImproved] = useState(false);
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
+  const [firstCompletionAward, setFirstCompletionAward] = useState<{
+    baseXp: number;
+    finalXp: number;
+    multiplier: number;
+  } | null>(null);
+  const lessonAnswerXp = parseConfirmedLessonXp(params.earnedXp);
+  const lessonAnswerBaseXp = parseConfirmedLessonXp(params.earnedBaseXp);
+  const earnedMultipliersParam = firstRouteParam(params.earnedMultipliers);
+  const lessonAnswerMultipliers = useMemo(
+    () => parseConfirmedLessonMultipliers(earnedMultipliersParam),
+    [earnedMultipliersParam],
+  );
+  const lessonResults = useMemo(() => {
+    const firstCompletionMultipliers = firstCompletionAward
+      ? [{
+          multiplier: firstCompletionAward.multiplier,
+          xpDelta: Math.max(0, firstCompletionAward.finalXp - firstCompletionAward.baseXp),
+        }]
+      : [];
+    return deriveConfirmedLessonResults({
+      finalXp: lessonAnswerXp + (firstCompletionAward?.finalXp ?? 0),
+      baseXp: lessonAnswerBaseXp + (firstCompletionAward?.baseXp ?? 0),
+      multipliers: [...lessonAnswerMultipliers, ...firstCompletionMultipliers],
+    });
+  }, [firstCompletionAward, lessonAnswerBaseXp, lessonAnswerMultipliers, lessonAnswerXp]);
+  const isQualifyingLessonPass = params.passed === '1';
+  const [completionXpReady, setCompletionXpReady] = useState(false);
   const [showPremiumBanner, setShowPremiumBanner] = useState(false);
   const [repeatOpening, setRepeatOpening] = useState(false);
   const [softUpsellCandidates, setSoftUpsellCandidates] = useState<SoftUpsellCandidate[]>([]);
@@ -655,7 +765,7 @@ export default function LessonComplete() {
   const [resultsReady, setResultsReady] = useState(false);
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
-  const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady;
+  const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
 
   // ReviewModal показывается только когда очередь нотификаций опустела — без конфликта.
   // pendingReview хранит намерение «показать ревью», а useEffect ждёт тишины.
@@ -768,6 +878,7 @@ export default function LessonComplete() {
   }, [scheduleActiveNotif]);
 
   const grantBonus = useCallback(async () => {
+      if (!isQualifyingLessonPass) return;
       const grantAccountToken = captureAccountGeneration();
       const capturedSoftUpsellIdentity: LessonSoftUpsellIdentity = {
         accountScope: studyTarget === 'es' ? '' : lessonSoftUpsellPersistenceScope(grantAccountToken),
@@ -792,6 +903,11 @@ export default function LessonComplete() {
       });
       if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
       if (firstBonus.status === 'granted') {
+        setFirstCompletionAward({
+          baseXp: firstBonus.baseXp,
+          finalXp: firstBonus.finalDelta,
+          multiplier: firstBonus.multiplier,
+        });
         if (firstBonus.hasBonusWon) {
           setBonusXP(firstBonus.bonusXP);
           setShowBonus(true);
@@ -919,7 +1035,7 @@ export default function LessonComplete() {
         tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy') },
       });
     }
-  }, [lang, lessonId, softUpsellStudyTarget, studyTarget]);
+  }, [isQualifyingLessonPass, lang, lessonId, softUpsellStudyTarget, studyTarget]);
 
   useEffect(() => {
     // Доначисляем бонусы, зависшие из-за прошлых сбоев (сеть/лимит XP).
@@ -966,7 +1082,9 @@ export default function LessonComplete() {
         if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lessons_list' as any);
         return;
       }
-      grantBonus();
+      void grantBonus().finally(() => {
+        if (!cancelled) setCompletionXpReady(true);
+      });
       void markLessonFinishedOnce(lessonId, studyTarget);
       // Qualifying-активность для Сокровищницы. eventId детерминирован
       // (lesson:id:день) — повтор того же урока в тот же день не дропает.
@@ -1207,22 +1325,19 @@ export default function LessonComplete() {
       return (
         <ScreenGradient>
           <SafeAreaView style={{ flex: 1 }}>
-            <ProgressCompletionView
-              model={buildProgressCompletionModel({
-                fact: c.title,
-                accumulated: nextLessonUnlockHint,
-                nextStep: nextLessonUnlockHint,
-                primaryAction: {
-                  id: 'continue',
-                  label: completionRequiresPremium
-                    ? triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
-                    : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
-                },
-              })}
-              stars={3}
-              xp={0}
+            <ResultsSequence
+              stars={RESULTS_STARS_BY_TIER[medalTier]}
+              xp={lessonResults.xp}
+              rewards={lessonResults.rewards}
+              title={c.title}
               subtitle={nextLessonUnlockHint}
-              onAction={() => {
+              badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
+                <Image source={MEDAL_IMAGES_COMPLETE[medalTier]} style={{ width: 110, height: 110 }} contentFit="contain" />
+              ) : undefined}
+              ctaPrimaryLabel={completionRequiresPremium
+                ? triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
+                : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
+              onCtaPrimary={() => {
                 if (pendingReview.current) {
                   pendingReview.current = false;
                   setShowReview(true);
@@ -1242,9 +1357,47 @@ export default function LessonComplete() {
       );
     }
 
-    // Пока сохраняется результат урока, никакие старые поверхности завершения не
-    // монтируются. Сразу после готовности появляется экран со звёздами выше.
-    return <ScreenGradient />;
+    // Saving must never become an unescapable black frame. Keep a deterministic
+    // route back to the lesson list while the completion model is materializing.
+    return (
+      <ScreenGradient>
+        <SafeAreaView testID="lesson-complete-loading" style={{ flex: 1 }}>
+          <TapScale
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            onPress={goBackFromComplete}
+            style={{
+              position: 'absolute',
+              top: Math.max(16, insets.top + 8),
+              left: 20,
+              zIndex: 10,
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: t.bgSurface,
+            }}
+          >
+            <Ionicons name="arrow-back" size={22} color={t.textPrimary} />
+          </TapScale>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 }}>
+            <Text style={{ color: t.textSecond, fontSize: 16, textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'Сохраняю результат…',
+                uk: 'Зберігаю результат…',
+                es: 'Guardando el resultado…',
+                'pt-BR': 'Salvando o resultado…',
+                vi: 'Đang lưu kết quả…',
+                id: 'Menyimpan hasil…',
+                tr: 'Sonuç kaydediliyor…',
+                pl: 'Zapisywanie wyniku…',
+              })}
+            </Text>
+          </View>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
   }
 
   return (
@@ -1276,7 +1429,7 @@ export default function LessonComplete() {
       </TapScale>
       )}
       <ContentWrap>
-      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -1519,21 +1672,12 @@ export default function LessonComplete() {
           тап по экрану пропускает анимацию (внутри компонента), CTA закрывает. */}
       {sequenceShowing && (
         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }}>
-          <ProgressCompletionView
-            model={buildProgressCompletionModel({
-              fact: c.title,
-              accumulated: c.subtitle(lessonId),
-              nextStep: lessonSavedResultCopy(lang),
-              primaryAction: {
-                id: 'continue',
-                label: triLang(lang, { ru: 'Продолжить путь', uk: 'Продовжити шлях', es: 'Continuar el camino', 'pt-BR': 'Continuar o caminho', vi: 'Tiếp tục hành trình', id: 'Lanjutkan perjalanan', tr: 'Yola devam et', pl: 'Kontynuuj drogę' }),
-              },
-              confirmed: {
-                perfect: medalTier === 'gold',
-              },
-            })}
+          <ResultsSequence
             stars={RESULTS_STARS_BY_TIER[medalTier]}
-            xp={bonusXP}
+            xp={lessonResults.xp}
+            rewards={lessonResults.rewards}
+            title={c.title}
+            subtitle={c.subtitle(lessonId)}
             badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
               <Image
                 source={MEDAL_IMAGES_COMPLETE[medalTier]}
@@ -1541,7 +1685,8 @@ export default function LessonComplete() {
                 contentFit="contain"
               />
             ) : undefined}
-            onAction={() => setSeqDone(true)}
+            ctaPrimaryLabel={triLang(lang, { ru: 'Продолжить путь', uk: 'Продовжити шлях', es: 'Continuar el camino', 'pt-BR': 'Continuar o caminho', vi: 'Tiếp tục hành trình', id: 'Lanjutkan perjalanan', tr: 'Yola devam et', pl: 'Kontynuuj drogę' })}
+            onCtaPrimary={() => setSeqDone(true)}
           />
         </View>
       )}

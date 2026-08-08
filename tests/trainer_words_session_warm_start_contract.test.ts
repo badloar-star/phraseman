@@ -37,11 +37,13 @@ describe('trainer words session warm start', () => {
     jest.clearAllMocks();
   });
 
-  it('hydrates its first frame from the warm trainer cache', () => {
+  it('hydrates from the warm cache but keeps cards hidden until Plus verification', () => {
     expect(source).toContain('getWarmWordSessionDeck');
     expect(source).toContain('useState<WordSessionCard[]>(() => warmDeck ?? [])');
     expect(source).toContain('useState(() => warmDeck === null)');
-    expect(source).toContain('useState(() => warmDeck !== null)');
+    expect(source).toContain('const [accessReady, setAccessReady] = useState(false);');
+    expect(source).toContain('const sessionStartRef = useRef(0);');
+    expect(source).not.toContain('useState(() => warmDeck !== null)');
     expect(source).toContain('const startedWarm = warmDeckRef.current !== null');
   });
 

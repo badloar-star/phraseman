@@ -8,7 +8,7 @@ const COMPONENT_PATH = path.join(process.cwd(), 'components', 'ReferralInviteBan
 const SAGE_THEME = 'sagePorcelain';
 const SAGE_FILE = `invite-${SAGE_THEME}-v2.webp`;
 const SAGE_ASSET_PATH = path.join(BANNER_DIR, SAGE_FILE);
-const RETAINED_BANNER_THEMES = ['dark', 'gold', 'coral', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt', 'indigo', SAGE_THEME] as const;
+const RETAINED_BANNER_THEMES = ['dark', 'gold', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt', 'indigo', SAGE_THEME] as const;
 
 describe('referral invite banner themed art', () => {
   it('keeps canonical retained banner assets wired into the runtime map', () => {

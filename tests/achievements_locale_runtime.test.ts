@@ -67,7 +67,6 @@ describe('achievements planned locale runtime copy', () => {
       achievement.category === 'streak' ||
         achievement.category === 'lessons' ||
         achievement.category === 'xp' ||
-        achievement.category === 'quiz' ||
         achievement.category === 'combo' ||
         achievement.category === 'medal' ||
         TRANSLATED_SPECIAL_ACHIEVEMENT_IDS.has(achievement.id),

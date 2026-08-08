@@ -301,23 +301,6 @@ export async function claimReleaseWaveBonus(): Promise<boolean> {
   }
 }
 
-export async function resetReleaseWaveBonusLocalClaimForTesting(wave: number): Promise<void> {
-  if (wave <= 0) return;
-  try {
-    await AsyncStorage.multiRemove([claimKey(wave), flowClosedKey(wave)]);
-  } catch (e) {
-    if (__DEV__) console.warn('[release_wave_bonus]', e);
-  }
-}
-
-export async function resetLastPersistedNativeBuildForTesting(): Promise<void> {
-  try {
-    await AsyncStorage.removeItem(APP_LAST_RECORDED_NATIVE_BUILD_ID_KEY);
-  } catch (e) {
-    if (__DEV__) console.warn('[release_wave_bonus]', e);
-  }
-}
-
 export function getReleaseWaveBonusLabelAmount(): number {
   return RELEASE_WAVE_BONUS_SHARDS;
 }

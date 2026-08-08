@@ -1,4 +1,4 @@
-import type { EvidenceState } from './decision';
+import { MAX_EVIDENCE_AGE_MS, type EvidenceState } from './decision';
 import type { ContentStudyTarget } from './content_lesson_stats_write';
 
 /**
@@ -46,6 +46,14 @@ function safeNumber(value: unknown): number | null {
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
 }
 
+function timestampMs(value: unknown): number | null {
+  if (!value || typeof value !== 'object' || !('toMillis' in value)) return null;
+  const toMillis = (value as { toMillis?: unknown }).toMillis;
+  if (typeof toMillis !== 'function') return null;
+  const ms = toMillis.call(value);
+  return typeof ms === 'number' && Number.isSafeInteger(ms) && ms >= 0 ? ms : null;
+}
+
 function safeTarget(value: unknown): ContentStudyTarget {
   return value === 'fr' ? 'fr' : 'en';
 }
@@ -79,19 +87,33 @@ export async function fetchContentSource(input: FetchContentSourceInput): Promis
 
     const rows: ContentLessonRow[] = [];
     let malformed = 0;
+    let missingFreshness = false;
+    let observedAtMs = 0;
     for (const doc of kept) {
-      const row = parseRow(doc.data() as Record<string, unknown>);
+      const data = doc.data() as Record<string, unknown>;
+      const row = parseRow(data);
       if (row) rows.push(row);
       else malformed += 1;
+      const updatedAtMs = timestampMs(data.updatedAt);
+      if (updatedAtMs === null) missingFreshness = true;
+      else observedAtMs = Math.max(observedAtMs, updatedAtMs);
     }
+
+    const baseState: EvidenceState = kept.length === 0
+      ? 'empty'
+      : missingFreshness
+        ? 'partial'
+        : observedAtMs + MAX_EVIDENCE_AGE_MS < input.nowMs
+          ? 'stale'
+          : 'ready';
 
     return Object.freeze({
       sourceId: 'lesson_stats' as const,
-      state: kept.length === 0 ? ('empty' as const) : ('ready' as const),
+      state: baseState,
       truncated,
       droppedCount: malformed + (truncated ? docs.length - MAX_LESSON_STATS_DOCS : 0),
       rows: Object.freeze(rows),
-      observedAtMs: input.nowMs,
+      observedAtMs,
     });
   } catch {
     return Object.freeze({
@@ -100,7 +122,7 @@ export async function fetchContentSource(input: FetchContentSourceInput): Promis
       truncated: false,
       droppedCount: 0,
       rows: Object.freeze([]),
-      observedAtMs: input.nowMs,
+      observedAtMs: 0,
     });
   }
 }

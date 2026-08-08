@@ -20,11 +20,6 @@ const SHARDS_MIN = 1;
 const SHARDS_MAX = 10_000;
 const SHARD_BALANCE_MAX = 1_000_000;
 
-// зачем: Арена/квизы сняты (контракт tests/quiz_arena_decommission_contract.test.ts).
-// Клиент вычищен, а серверная награда 'arena_extra_5' осталась хвостом: админка
-// могла выдать «+5 рейтинговых игр» в режим, которого больше нет. Убираем тип —
-// попытка выдать его теперь отвергается валидацией (см. тест «rejects the retired
-// Arena reward type»).
 export const ADMIN_GRANT_REWARD_TYPES = [
   'shards',
   'xp_boost_2x_24h',
@@ -82,6 +77,15 @@ function text(value: unknown, max: number): string {
 function finiteNumber(value: unknown, fallback = 0): number {
   const parsed = typeof value === 'number' ? value : Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function parsePerkObject(value: unknown): Row {
+  try {
+    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
+    return isRecord(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
 }
 
 function rewardType(value: unknown): AdminGrantRewardType {
@@ -188,9 +192,18 @@ export function buildAdminRewardMutation(
 
   if (type === 'xp_boost_2x_24h' || type === 'xp_boost_2x_48h') {
     const hours = type === 'xp_boost_2x_24h' ? 24 : 48;
-    const previous = text(user.gift_xp_multiplier, 2_000) || null;
-    const next = JSON.stringify({ multiplier: 2, expiresAt: nowMs + hours * 3_600_000 });
+    const progress = isRecord(user.progress) ? user.progress : {};
+    const previous = text(user.gift_xp_multiplier, 2_000)
+      || text(progress.gift_xp_multiplier, 2_000)
+      || null;
+    const rootExpiry = finiteNumber(parsePerkObject(user.gift_xp_multiplier).expiresAt, 0);
+    const progressExpiry = finiteNumber(parsePerkObject(progress.gift_xp_multiplier).expiresAt, 0);
+    const next = JSON.stringify({
+      multiplier: 2,
+      expiresAt: Math.max(nowMs, rootExpiry, progressExpiry) + hours * 3_600_000,
+    });
     updates.gift_xp_multiplier = next;
+    updates['progress.gift_xp_multiplier'] = next;
     label = `x2 XP на ${hours} часов`;
     before = { gift_xp_multiplier: previous };
     after = { gift_xp_multiplier: next };
@@ -198,16 +211,20 @@ export function buildAdminRewardMutation(
 
   if (type === 'chain_shield_1' || type === 'chain_shield_3') {
     const days = type === 'chain_shield_1' ? 1 : 3;
-    let existingDays = 0;
-    try {
-      const parsed = JSON.parse(text(user.chain_shield, 2_000)) as { daysLeft?: unknown };
-      existingDays = Math.max(0, Math.floor(finiteNumber(parsed?.daysLeft, 0)));
-    } catch {
-      existingDays = 0;
-    }
-    const previous = text(user.chain_shield, 2_000) || null;
+    const progress = isRecord(user.progress) ? user.progress : {};
+    const rootShield = parsePerkObject(user.chain_shield);
+    const progressShield = parsePerkObject(progress.chain_shield);
+    const existingDays = Math.max(
+      0,
+      Math.floor(finiteNumber(rootShield.daysLeft, 0)),
+      Math.floor(finiteNumber(progressShield.daysLeft, 0)),
+    );
+    const previous = text(user.chain_shield, 2_000)
+      || text(progress.chain_shield, 2_000)
+      || null;
     const next = JSON.stringify({ daysLeft: existingDays + days, grantedAt: utcDate(nowMs) });
     updates.chain_shield = next;
+    updates['progress.chain_shield'] = next;
     label = `Щит серии на ${days} ${days === 1 ? 'день' : 'дня'}`;
     before = { chain_shield: previous };
     after = { chain_shield: next };

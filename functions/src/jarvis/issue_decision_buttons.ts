@@ -46,7 +46,9 @@ export async function issueDecisionButtons(
   input: IssueDecisionButtonsInput,
 ): Promise<InlineKeyboard | null> {
   // Столько же, сколько строк в клавиатуре: лишние токены были бы мусором.
-  const shown = input.decisions.slice(0, MAX_BUTTON_ROWS);
+  const shown = input.decisions
+    .filter((decision) => decision.actionability === 'confirmed_action')
+    .slice(0, MAX_BUTTON_ROWS);
   if (shown.length === 0) return null;
 
   try {

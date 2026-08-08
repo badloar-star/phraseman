@@ -3,6 +3,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
+import { GROWTH_DAILY_COLLECTION } from '../growth_daily_aggregate';
 import { openAiChat } from '../explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from '../openai_jobs_config';
 import { enrichDecisionsWithNarrative, type EnricherDependencies } from './llm_enricher';
@@ -10,8 +11,9 @@ import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './llm_enrich
 import { checkAndReserveBudget, recordActualSpend } from './llm_budget';
 import { reserveEnrichmentSlot, recordEnrichmentResult } from './llm_enrichment_cache';
 import { upsertPlan } from './jarvis_plans_store';
+import { parseJarvisFollowUpTasksFlag } from './jarvis_follow_up_tasks';
 import type { Decision } from './decision';
-import { buildTelegramDigest } from './telegram_digest';
+import { buildTelegramDigest, selectTelegramDecisions } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
 import { hashDecision } from './issue_decision_buttons';
@@ -60,6 +62,9 @@ import { readPeakTier } from './business_tier_history_store';
 const REGION = 'us-central1';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+const FOLLOW_UP_TASKS_ENABLED = parseJarvisFollowUpTasksFlag(
+  process.env.JARVIS_FOLLOW_UP_TASKS_ENABLED,
+);
 
 const DEPARTMENTS_SCHEDULE_OPTIONS = {
   schedule: 'every day 06:00',
@@ -212,9 +217,9 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),
     runQuality: (appTier) => buildQualitySnapshot({
       fetchers: {
-        error_reports: () => fetchQualitySource({ sourceId: 'error_reports', collection: db.collection('error_reports'), nowMs }),
-        user_reports: () => fetchQualitySource({ sourceId: 'user_reports', collection: db.collection('user_reports'), nowMs }),
-        app_errors: () => fetchQualitySource({ sourceId: 'app_errors', collection: db.collection('app_errors'), nowMs }),
+        error_reports: () => fetchQualitySource({ db, sourceId: 'error_reports', collection: db.collection('error_reports'), nowMs }),
+        user_reports: () => fetchQualitySource({ db, sourceId: 'user_reports', collection: db.collection('user_reports'), nowMs }),
+        app_errors: () => fetchQualitySource({ db, sourceId: 'app_errors', collection: db.collection('app_errors'), nowMs }),
       },
       trigger: 'scheduled',
       nowMs,
@@ -230,7 +235,12 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       appTier,
     }),
     runGrowth: () => buildGrowthSnapshot({
-      fetchers: { users: () => fetchGrowthSource({ sourceId: 'users', collection: db.collection('users'), nowMs }) },
+      fetchers: { users: () => fetchGrowthSource({
+        sourceId: 'users',
+        collection: db.collection('users'),
+        dailyCollection: db.collection(GROWTH_DAILY_COLLECTION),
+        nowMs,
+      }) },
       trigger: 'scheduled',
       nowMs,
     }),
@@ -293,7 +303,12 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // того, дошло ли сообщение в Telegram. Владелец 2026-08-04: находки видны
   // только секунду во всплывающем сообщении, негде читать их полностью —
   // здесь они сохраняются навсегда, независимо от уведомления.
-  await Promise.all(decisions.map((decision) => upsertPlan({ db, decision, nowMs }).catch((error: unknown) => {
+  await Promise.all(decisions.map((decision) => upsertPlan({
+    db,
+    decision,
+    nowMs,
+    followUpTasksEnabled: FOLLOW_UP_TASKS_ENABLED,
+  }).catch((error: unknown) => {
     logger.warn('jarvis_daily_departments: plan upsert failed', { department: decision.department, error });
   })));
 
@@ -333,7 +348,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // не задан, сводка обязана приходить всё равно — просто без кнопок.
     const ownerConfig = parseOwnerConfig(JARVIS_TELEGRAM_CONFIG.value());
     const keyboard = ownerConfig ? await issueDecisionButtons({
-      db, decisions, config: ownerConfig, nowMs,
+      db, decisions: selectTelegramDecisions(decisions), config: ownerConfig, nowMs,
     }) : null;
 
     telegramSent = keyboard && ownerConfig

@@ -15,6 +15,8 @@ import { getShardsBalance } from './shards_system';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { getTrainerCounts } from './trainer_store';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
+import { readCachedLevelSpinBalance } from './level_reward_spins_client';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
@@ -64,7 +66,7 @@ export interface StatsPreloadData {
   engineLeagueId: number | null;
   myName: string;
   streakAtRisk: boolean;
-  /** Только слова + фразы, без arena. CTA в тренажер показываем с 5+. */
+  /** Только слова + фразы. CTA в тренажер показываем с 5+. */
   trainerPracticeDue: number;
   /** Scope for trainerPracticeDue only; XP, streak, daily stats and achievements stay shared. */
   studyTarget: StatsCacheStudyTarget;
@@ -372,7 +374,9 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   }
 
   const target = storageStudyTarget(studyTarget);
-  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, trainerCounts, pendingGiftCount] = await Promise.all([
+  const spinAccountToken = captureAccountGeneration();
+  const spinOwner = spinAccountToken.stableId;
+  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, trainerCounts, legacyPendingGiftCount, cachedSpinBalance] = await Promise.all([
     getXPMultiplier(),
     readGiftMultiplier(),
     readGiftXpBank(),
@@ -382,7 +386,13 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     loadLeagueState(),
     getTrainerCounts(target),
     loadPendingLevelGiftCount().catch(() => readPendingLevelGiftCountCache()),
+    spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
+      ? readCachedLevelSpinBalance(spinOwner)
+      : Promise.resolve(null),
   ]);
+  const spinBalance = spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
+    ? Math.max(0, Math.floor(cachedSpinBalance ?? 0))
+    : 0;
 
   let clubBoostExpiresAt = 0;
   if (clubM > 1) {
@@ -422,7 +432,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     streakAtRisk: willLose && !freezeIsActive,
     trainerPracticeDue: trainerCounts.words + trainerCounts.phrases,
     studyTarget: target,
-    pendingGiftCount,
+    pendingGiftCount: legacyPendingGiftCount + spinBalance,
     loaded: true,
     updatedAt: Date.now(),
   });

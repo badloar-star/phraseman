@@ -175,9 +175,6 @@ describe('owner runtime direction contract', () => {
       'app/exam.tsx': 1,
       // Minute-level voucher expiry refresh, gated by focus and active AppState.
       'app/flashcards/FlashcardsCategoryHub.tsx': 1,
-      // Таймер вопроса арены: живёт только в активной игре, останавливается на
-      // последней секунде и чистится при unmount.
-      'app/flashcards_arena.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
       'app/shards_shop.tsx': 1,
       // Секундный отсчёт до серверного дедлайна фазы — под гвардом active,

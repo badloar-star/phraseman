@@ -48,7 +48,7 @@ describe('daily tasks trainer queue availability', () => {
 
     const tasks = await getTodayTasksSafe('en');
 
-    expect(tasks.some((task) => task.type === 'trainer_arena')).toBe(false);
+    expect(tasks.some((task) => String(task.type) === 'trainer_arena')).toBe(false);
     expect(tasks).toHaveLength(3);
   });
 

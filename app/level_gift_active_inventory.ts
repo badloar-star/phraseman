@@ -1,8 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { triLang, type Lang } from '../constants/i18n';
 import type { LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
-import { flashcardsPackTrialGiftKey, lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
+import { captureAccountGeneration } from './account_generation';
+import { readGiftAccountValue } from './gift_account_storage';
+import { getPackGiftTrial } from './flashcards/pack_trial_gift';
 import {
   friendGiftExpiresAtMs,
   loadStoredFriendGiftInventory,
@@ -11,7 +14,6 @@ import {
 import {
   GIFT_TTL_MS,
   loadGiftFirstSeenMap,
-  localMidnightAfterDaysMs,
   nextLocalMidnightMs,
   persistGiftFirstSeenMap,
   type GiftFirstSeenKind,
@@ -57,16 +59,6 @@ interface BonusEnergyStorage {
   expiresAt?: number;
 }
 
-interface PackTrialStorage {
-  packId?: string;
-  expiresAt?: number;
-}
-
-interface ArenaGiftBonusStorage {
-  date?: string;
-  extra?: number;
-}
-
 interface ChainShieldStorage {
   daysLeft?: number;
   grantedAt?: string;
@@ -75,9 +67,9 @@ interface ChainShieldStorage {
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const GIFT_MULTIPLIER_KEY = 'gift_xp_multiplier';
 const BONUS_ENERGY_KEY = 'energy_gift_bonus';
-const ARENA_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
+const WAGER_DISCOUNT_USES_KEY = 'wager_discount_uses_v1';
 const CLUB_GIFT_BOOST_KEY = 'club_gift_free_boost_v1';
 /**
  * Ключи СЕЗОННЫХ наград.
@@ -152,7 +144,6 @@ const energyRewardIconForAmount = (amount: number): LevelGiftRewardIconId => {
 };
 
 const friendGiftIconForGiftId = (giftId: string): LevelGiftRewardIconId => {
-  if (giftId === 'arena_extra_5') return 'arena_extra_5';
   if (giftId === 'chain_shield_1') return 'chain_shield_1';
   if (giftId === 'xp_boost_2x_24h') return 'xp_2x_24h';
   return 'choice_3_level';
@@ -174,12 +165,18 @@ export const loadActiveLevelGiftInventory = async (
   nowMs: number = Date.now(),
   studyTarget?: RuntimeStudyTarget,
 ): Promise<ActiveLevelGiftInventoryItem[]> => {
+  const accountToken = captureAccountGeneration();
+  // The active-gifts screen is allowed to render before account bootstrap has
+  // finished. Account-scoped energy is optional here; an unavailable identity
+  // must not reject the whole inventory collection.
+  const bonusEnergyRead = accountToken.phase === 'active' && accountToken.stableId
+    ? readGiftAccountValue(BONUS_ENERGY_KEY, accountToken).catch(() => null)
+    : Promise.resolve(null);
   const [
     xpBankRaw,
     giftMultiplierRaw,
     bonusEnergyRaw,
-    packTrialRaw,
-    arenaBonusRaw,
+    packTrial,
     hintsRaw,
     chainShieldRaw,
     wagerDiscountRaw,
@@ -189,14 +186,13 @@ export const loadActiveLevelGiftInventory = async (
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
-    AsyncStorage.getItem(BONUS_ENERGY_KEY),
-    AsyncStorage.getItem(flashcardsPackTrialGiftKey(studyTarget)),
-    AsyncStorage.getItem(ARENA_GIFT_BONUS_KEY),
+    bonusEnergyRead,
+    getPackGiftTrial(studyTarget).catch(() => null),
     AsyncStorage.getItem(lessonBonusHintsKey(todayIso(nowMs), studyTarget)),
     AsyncStorage.getItem(CHAIN_SHIELD_KEY),
     AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
-    loadStoredFriendGiftInventory(nowMs),
+    loadStoredFriendGiftInventory(nowMs).catch(() => []),
     loadGiftFirstSeenMap(),
   ]);
 
@@ -313,7 +309,6 @@ export const loadActiveLevelGiftInventory = async (
     });
   }
 
-  const packTrial = parseJson<PackTrialStorage>(packTrialRaw);
   if (flashcardsOfficialPacksAvailableForTarget(studyTarget) && packTrial?.packId && Number(packTrial.expiresAt || 0) > nowMs) {
     active.push({
       key: 'pack_trial',
@@ -329,34 +324,6 @@ export const loadActiveLevelGiftInventory = async (
       desc: formatPackHoursLeft(Number(packTrial.expiresAt), nowMs, lang),
       accent: '#A78BFA',
       actionRoute: '/flashcards',
-    });
-  }
-
-  const arenaBonus = parseJson<ArenaGiftBonusStorage>(arenaBonusRaw);
-  const arenaExtra = arenaBonus?.date === todayIso(nowMs) ? parsePositiveInt(arenaBonus.extra) : 0;
-  if (arenaExtra > 0) {
-    active.push({
-      key: 'arena_extra',
-      expiresAtMs: nextLocalMidnightMs(nowMs),
-      iconGiftId: 'arena_extra_5',
-      title: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena',
-    'pt-BR': 'Arena',
-    vi: 'Arena',
-    id: 'Arena',
-    tr: 'Arena',
-    pl: 'Arena',
-  }),
-      desc: triLang(lang, {
-        ru: `+${arenaExtra} матчей сегодня`,
-        uk: `+${arenaExtra} матчів сьогодні`,
-        es: `+${arenaExtra} duelos hoy`,
-    'pt-BR': `+${arenaExtra} duelos hoje`,
-    vi: `+${arenaExtra} trận hôm nay`,
-    id: `+${arenaExtra} duel hari ini`,
-    tr: `Bugün +${arenaExtra} düello`,
-    pl: `+${arenaExtra} pojedynków dziś`,
-  }),
-      accent: '#FB923C',
     });
   }
 
@@ -388,22 +355,11 @@ export const loadActiveLevelGiftInventory = async (
   }
 
   const chainShield = parseJson<ChainShieldStorage>(chainShieldRaw);
-  const totalShieldDays = parsePositiveInt(chainShield?.daysLeft);
-  // Считаем дни через дату-строки в локальном времени устройства, а не через мс,
-  // чтобы пользователи в UTC-N не теряли день щита из-за смещения UTC vs local.
-  const grantedAtStr = chainShield?.grantedAt ?? null;
-  // Локальная дата устройства в формате YYYY-MM-DD — без toLocaleDateString (ненадёжен на Hermes без ICU)
-  const d = new Date(nowMs);
-  const todayLocalStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  const daysPassed = (grantedAtStr && /^\d{4}-\d{2}-\d{2}$/.test(grantedAtStr))
-    ? Math.max(0, Math.floor((new Date(todayLocalStr).getTime() - new Date(grantedAtStr).getTime()) / 86400000))
-    : 0;
-  const remainingShieldDays = Math.max(0, totalShieldDays - daysPassed);
+  // Authoritative daysLeft counts saves/consumes; elapsed calendar time does not decrement it.
+  const remainingShieldDays = parsePositiveInt(chainShield?.daysLeft);
   if (remainingShieldDays > 0) {
     active.push({
       key: 'chain_shield',
-      // Щит кончается в полночь последнего покрытого дня (локальные сутки).
-      expiresAtMs: localMidnightAfterDaysMs(nowMs, remainingShieldDays),
       iconGiftId: remainingShieldDays >= 3 ? 'chain_shield_3' : 'chain_shield_1',
       title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha',
     'pt-BR': 'Proteção de sequência',
@@ -428,6 +384,7 @@ export const loadActiveLevelGiftInventory = async (
 
   const wagerDiscount = Math.max(0, Number(wagerDiscountRaw) || 0);
   const wagerLifetime = resolveFirstSeenLifetime('wager_discount', wagerDiscount > 0, WAGER_DISCOUNT_KEY);
+  if (wagerLifetime?.expired) burnKeys.push(WAGER_DISCOUNT_USES_KEY);
   if (wagerDiscount > 0 && wagerLifetime && !wagerLifetime.expired) {
     active.push({
       key: 'wager_discount',
@@ -445,8 +402,9 @@ export const loadActiveLevelGiftInventory = async (
     });
   }
 
-  const clubBoostLifetime = resolveFirstSeenLifetime('club_boost', clubGiftBoost === '1', CLUB_GIFT_BOOST_KEY);
-  if (clubGiftBoost === '1' && clubBoostLifetime && !clubBoostLifetime.expired) {
+  const clubGiftBoostCount = Math.max(0, Number.parseInt(clubGiftBoost ?? '', 10) || 0);
+  const clubBoostLifetime = resolveFirstSeenLifetime('club_boost', clubGiftBoostCount > 0, CLUB_GIFT_BOOST_KEY);
+  if (clubGiftBoostCount > 0 && clubBoostLifetime && !clubBoostLifetime.expired) {
     active.push({
       key: 'club_boost',
       expiresAtMs: clubBoostLifetime.expiresAtMs,

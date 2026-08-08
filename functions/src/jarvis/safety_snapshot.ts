@@ -30,6 +30,9 @@ function failClosedFetch(observedAtMs: number): FetchSafetySourceResult {
     state: 'error' as const,
     openFlags: null,
     openMinorFlags: null,
+    openAgeUnverifiedFlags: null,
+    openAgeUnavailableFlags: null,
+    ageEvidence: 'unavailable' as const,
     recentFlags: null,
     observedAtMs,
   });

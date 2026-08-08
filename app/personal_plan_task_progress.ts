@@ -16,6 +16,8 @@ export type PersonalPlanTaskProgress = {
   index: number;
   /** id вопросов, уже отвеченных верно (чтобы не переспрашивать). */
   correctIds: string[];
+  /** Monotonic answer journal sequence for resumable tasks that record each attempt. */
+  attemptSequence?: number;
   updatedAt: string;
 };
 
@@ -47,6 +49,7 @@ export async function readPlanTaskProgress(
   return {
     index: Math.max(0, Math.floor(entry.index)),
     correctIds: Array.isArray(entry.correctIds) ? entry.correctIds.filter((id): id is string => typeof id === 'string') : [],
+    attemptSequence: typeof entry.attemptSequence === 'number' ? Math.max(0, Math.floor(entry.attemptSequence)) : 0,
     updatedAt: typeof entry.updatedAt === 'string' ? entry.updatedAt : '',
   };
 }
@@ -55,13 +58,14 @@ export async function readPlanTaskProgress(
 export async function savePlanTaskProgress(
   planInstanceId: string | null | undefined,
   taskId: string,
-  progress: Pick<PersonalPlanTaskProgress, 'index' | 'correctIds'>,
+  progress: Pick<PersonalPlanTaskProgress, 'index' | 'correctIds' | 'attemptSequence'>,
 ): Promise<void> {
   if (!taskId) return;
   const map = await readAll();
   map[planTaskCompletionKey(planInstanceId, taskId)] = {
     index: Math.max(0, Math.floor(progress.index)),
     correctIds: [...new Set(progress.correctIds)],
+    attemptSequence: typeof progress.attemptSequence === 'number' ? Math.max(0, Math.floor(progress.attemptSequence)) : 0,
     updatedAt: new Date().toISOString(),
   };
   await writeAll(map);

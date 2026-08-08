@@ -25,11 +25,10 @@ describe('manage subscription repeat purchase guard', () => {
     expect(purchaseCall).toBeGreaterThan(alreadyActiveGuard);
   });
 
-  it('keeps the screen scroll on the responsive fast deceleration, not the sluggish RN default', () => {
-    // зачем: аудит скорости скролла (2026-08-04) заменил decelerationRate="normal"
-    // на "fast" по всему приложению, включая этот экран. Тест ловит регрессию,
-    // если кто-то добавит "normal" сюда заново.
-    expect(screenSource).toContain('decelerationRate="fast"');
-    expect(screenSource).not.toContain('decelerationRate="normal"');
+  it('keeps native scroll inertia instead of the short fast deceleration', () => {
+    // React Native 0.81: normal = 0.998 iOS / 0.985 Android; fast = 0.99 / 0.9.
+    // The lower fast values stop a fling much sooner, especially on Android.
+    expect(screenSource).toContain('decelerationRate="normal"');
+    expect(screenSource).not.toContain('decelerationRate="fast"');
   });
 });

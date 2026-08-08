@@ -18,7 +18,6 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
   const { lang } = useLang();
   const { theme: t } = useTheme();
   const title = triLang(lang, { ru: 'Наши каналы', uk: 'Наші канали', es: 'Our channels', 'pt-BR': 'Nossos canais', vi: 'Kênh của chúng tôi', id: 'Kanal kami', tr: 'Kanallarımız', pl: 'Nasze kanały' });
-  const auto = triLang(lang, { ru: 'Автоматически по языку', uk: 'Автоматично за мовою', es: 'Automatic by language', 'pt-BR': 'Automático pelo idioma', vi: 'Tự động theo ngôn ngữ', id: 'Otomatis sesuai bahasa', tr: 'Dile göre otomatik', pl: 'Automatycznie wg języka' });
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.scrim} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close channel picker" />
@@ -26,11 +25,6 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
         <View style={styles.handle} />
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
-          <TouchableOpacity testID="youtube-channel-auto" accessibilityRole="radio" accessibilityState={{ checked: preference.mode === 'auto' }} onPress={() => onSelect({ mode: 'auto' })} style={[styles.row, { backgroundColor: t.bgCard }]}>
-            <View style={[styles.icon, { backgroundColor: t.accentBg }]}><Ionicons name="language" size={21} color={t.accent} /></View>
-            <Text style={[styles.rowText, { color: t.textPrimary }]}>{auto}</Text>
-            {preference.mode === 'auto' && <Ionicons name="checkmark-circle" size={23} color={t.accent} />}
-          </TouchableOpacity>
           {manifest.channels.slice().sort((a, b) => a.order - b.order).map((channel) => {
             const checked = preference.mode === 'manual' && preference.channelId === channel.id;
             return (

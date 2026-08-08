@@ -33,18 +33,44 @@ describe('Jarvis safety fetcher — server-side counts only, no document downloa
     expect(calls.length).toBeGreaterThan(0);
   });
 
-  test('counts open flags on MINOR accounts separately — the real legal risk', async () => {
+  test('uses only server-authored evidence fields and treats legacy/missing evidence as unverified', async () => {
     const { db } = makeCountingDb({
       'safety_flags': 20,
       'safety_flags|handled=true': 15,
-      'safety_flags|ageBracket=under13': 4,
-      'safety_flags|ageBracket=under13|handled=true': 1,
-      'safety_flags|ageBracket=teen_safe': 3,
-      'safety_flags|ageBracket=teen_safe|handled=true': 3,
+      'safety_flags|ageEvidence=confirmed_adult': 12,
+      'safety_flags|ageEvidence=confirmed_adult|handled=true': 10,
+      'safety_flags|ageEvidence=unavailable': 2,
+      'safety_flags|ageEvidence=unavailable|handled=true': 1,
     });
     const result = await fetchSafetySource({ db, nowMs: NOW });
-    // under13: 4-1=3 открытых, teen_safe: 3-3=0 → всего 3
-    expect(result.openMinorFlags).toBe(3);
+    expect(result).toMatchObject({
+      openFlags: 5,
+      openMinorFlags: null,
+      openAgeUnverifiedFlags: 2,
+      openAgeUnavailableFlags: 1,
+      ageEvidence: 'age_unverified',
+    });
+  });
+
+  test('never queries client-controlled ageBracket values', async () => {
+    const { db, calls } = makeCountingDb({ 'safety_flags': 1 });
+    await fetchSafetySource({ db, nowMs: NOW });
+    expect(calls.some((key) => key.includes('ageBracket'))).toBe(false);
+  });
+
+  test('reports confirmed_adult when every open incident carries server confirmation', async () => {
+    const { db } = makeCountingDb({
+      'safety_flags': 4,
+      'safety_flags|handled=true': 1,
+      'safety_flags|ageEvidence=confirmed_adult': 4,
+      'safety_flags|ageEvidence=confirmed_adult|handled=true': 1,
+    });
+    await expect(fetchSafetySource({ db, nowMs: NOW })).resolves.toMatchObject({
+      openFlags: 3,
+      openAgeUnverifiedFlags: 0,
+      openAgeUnavailableFlags: 0,
+      ageEvidence: 'confirmed_adult',
+    });
   });
 
   test('handled never exceeds total — a broken counter cannot produce negative open flags', async () => {
@@ -71,6 +97,7 @@ describe('Jarvis safety fetcher — server-side counts only, no document downloa
     const result = await fetchSafetySource({ db, nowMs: NOW });
     expect(result.state).toBe('empty');
     expect(result.openFlags).toBe(0);
+    expect(result.ageEvidence).toBe('confirmed_adult');
   });
 
   test('a failed count fails closed — never reports a fake zero as safety', async () => {
@@ -79,6 +106,11 @@ describe('Jarvis safety fetcher — server-side counts only, no document downloa
     expect(result.state).toBe('error');
     expect(result.openFlags).toBeNull();
     expect(result.openMinorFlags).toBeNull();
+    expect(result).toMatchObject({
+      openAgeUnverifiedFlags: null,
+      openAgeUnavailableFlags: null,
+      ageEvidence: 'unavailable',
+    });
   });
 
   test('the lookback window covers at least a day', () => {

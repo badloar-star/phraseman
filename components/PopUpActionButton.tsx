@@ -40,7 +40,7 @@ const DEFAULT_EDGE = '#15803D';
  * без декоративной обводки.
  *
  * Точки внедрения (см. BUTTON_AUDIT): review.tsx, personal_plan_exercise.tsx,
- * diagnostic_test.tsx, quizzes.tsx (hard mode).
+ * diagnostic_test.tsx.
  *
  * При visible=false монтируется, но уезжает за нижний край (pointerEvents none),
  * чтобы анимация ухода тоже играла. Рендерь его всегда, управляй через visible.

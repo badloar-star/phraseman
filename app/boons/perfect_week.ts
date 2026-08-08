@@ -111,7 +111,7 @@ export async function checkPerfectWeekEligible(nowMs: number = Date.now()): Prom
       await AsyncStorage.setItem(PERFECT_WEEK_ONBOARDING_DAY_KEY, onboardingDayKey).catch(() => {});
     }
 
-    return decidePerfectWeekEligible({
+    const eligible = decidePerfectWeekEligible({
       onboardingDoneRaw: onboardingDone,
       onboardingDayKey,
       todayKey,
@@ -119,6 +119,9 @@ export async function checkPerfectWeekEligible(nowMs: number = Date.now()): Prom
       claimedWeek,
       weekDoneRaw: doneRaw,
     });
+    // AsyncStorage reads above can overlap a live admin disable. Re-check the
+    // modifier immediately before returning a positive eligibility decision.
+    return eligible && getTodaysBoons().modifiers.includes('perfect_week');
   } catch {
     return false;
   }

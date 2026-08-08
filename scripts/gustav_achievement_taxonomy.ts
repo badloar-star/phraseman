@@ -276,7 +276,6 @@ function classify(id: string, category: string): Omit<AchievementEntry, 'id' | '
   if (
     id.startsWith('login_') ||
     id === 'comeback' ||
-    id.startsWith('arena_') ||
     id.startsWith('league_') ||
     id.startsWith('social_') ||
     id.startsWith('shards_') ||
@@ -285,7 +284,7 @@ function classify(id: string, category: string): Omit<AchievementEntry, 'id' | '
     id.startsWith('profile_') ||
     id.startsWith('wager_win')
   ) {
-    return global('Achievement is account/product/social/economy/arena state rather than target-language learning content.');
+    return global('Achievement is account/product/social/economy state rather than target-language learning content.');
   }
 
   return unknown('No taxonomy rule matched this achievement id.');

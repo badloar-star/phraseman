@@ -104,10 +104,24 @@ function cacheDir(): Directory {
   return new Directory(Paths.cache, CACHE_DIR_NAME);
 }
 
+function phraseAudioCacheIdentity(textKey: string, url: string): string {
+  return `${textKey}\n${url}`;
+}
+
+function phraseAudioCacheHash(value: string): string {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i += 1) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
 function cacheFileFor(key: string): File {
-  // Stable filename derived from the normalized text key.
-  const safe = key.replace(/[^a-z0-9]+/g, '_').slice(0, 80) || 'phrase';
-  return new File(cacheDir(), `${safe}.mp3`);
+  // Include a hash of the full text+URL identity. A regenerated asset gets a new
+  // versioned URL and therefore cannot reuse a stale on-disk clip.
+  const safe = key.replace(/[^a-z0-9]+/g, '_').slice(0, 64) || 'phrase';
+  return new File(cacheDir(), `${safe}_${phraseAudioCacheHash(key)}.mp3`);
 }
 
 type CachedAudioFile = {
@@ -199,7 +213,8 @@ async function ensureAudioMode(): Promise<void> {
   }
 }
 
-async function getCachedOrDownload(key: string, url: string): Promise<string | null> {
+async function getCachedOrDownload(textKey: string, url: string): Promise<string | null> {
+  const key = phraseAudioCacheIdentity(textKey, url);
   const file = cacheFileFor(key);
   try {
     if (file.exists) {

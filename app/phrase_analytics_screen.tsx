@@ -488,7 +488,7 @@ export default function PhraseAnalyticsScreen() {
 
         {/* ── Premium gate ── */}
         {!isPremium ? (
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.gateScroll}>
+          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.gateScroll}>
             <ContentWrap>
               <View
                 style={[
@@ -606,7 +606,7 @@ export default function PhraseAnalyticsScreen() {
           </View>
 
         ) : (
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
+          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
             <ContentWrap>
 
               {/* ── Сводка ── */}

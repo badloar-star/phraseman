@@ -431,12 +431,12 @@ const GENERATED_DAY1_PHRASE_TEMPLATES: Partial<Record<string, GeneratedPhraseTem
     { english: 'Please check the new copy.', russian: 'Пожалуйста, проверьте новую копию.', ukrainian: 'Будь ласка, перевірте нову копію.', spanish: 'Por favor, revise la nueva copia.' },
   ],
   gavan_d008_content_unit: [
-    { english: 'Can I submit this form online?', russian: 'Могу я отправить эту форму онлайн?', ukrainian: 'Можу я подати цю форму онлайн?', spanish: '¿Puedo enviar este formulario por internet?' },
-    { english: 'I need to upload a copy.', russian: 'Мне нужно загрузить копию.', ukrainian: 'Мені потрібно завантажити копію.', spanish: 'Necesito subir una copia.' },
-    { english: 'Where should I sign?', russian: 'Где мне подписать?', ukrainian: 'Де мені підписати?', spanish: '¿Dónde debo firmar?' },
-    { english: 'I can bring the original tomorrow.', russian: 'Я могу принести оригинал завтра.', ukrainian: 'Я можу принести оригінал завтра.', spanish: 'Puedo traer el original mañana.' },
-    { english: 'Please tell me the reference number.', russian: 'Пожалуйста, скажите мне номер обращения.', ukrainian: 'Будь ласка, скажіть мені номер звернення.', spanish: 'Por favor, dígame el número de referencia.' },
-    { english: 'I will keep this receipt.', russian: 'Я сохраню этот чек.', ukrainian: 'Я збережу цей чек.', spanish: 'Guardaré este recibo.' },
+    { english: 'I have a cup and a plate.', russian: 'У меня есть кружка и тарелка.', ukrainian: 'У мене є кружка і тарілка.', spanish: 'Tengo una taza y un plato.' },
+    { english: 'Do you have a clean spoon?', russian: 'У тебя есть чистая ложка?', ukrainian: 'У тебе є чиста ложка?', spanish: '¿Tienes una cuchara limpia?' },
+    { english: 'She has a knife here.', russian: 'У неё здесь есть нож.', ukrainian: 'У неї тут є ніж.', spanish: 'Ella tiene un cuchillo aquí.' },
+    { english: 'Where is my spoon?', russian: 'Где моя ложка?', ukrainian: 'Де моя ложка?', spanish: '¿Dónde está mi cuchara?' },
+    { english: 'I want a clean plate, please.', russian: 'Я хочу чистую тарелку, пожалуйста.', ukrainian: 'Я хочу чисту тарілку, будь ласка.', spanish: 'Quiero un plato limpio, por favor.' },
+    { english: 'What do you have on the table?', russian: 'Что у тебя есть на столе?', ukrainian: 'Що у тебе є на столі?', spanish: '¿Qué tienes en la mesa?' },
   ],
   gavan_d009_content_unit: [
     { english: 'What is the next step?', russian: 'Какой следующий шаг?', ukrainian: 'Який наступний крок?', spanish: '¿Cuál es el siguiente paso?' },

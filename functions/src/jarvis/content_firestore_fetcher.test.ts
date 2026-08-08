@@ -20,6 +20,7 @@ function statsDoc(id: string, averageScore: number, sampleCount: number, extra: 
       lessonId: Number(id.split('lesson')[1]),
       target: id.startsWith('fr') ? 'fr' : 'en',
       stats: { averageScore, sampleCount, recentScores: [] },
+      updatedAt: { toMillis: () => 900 },
       ...extra,
     }),
   };
@@ -37,6 +38,32 @@ describe('Jarvis content fetcher — reads the lesson_stats aggregate written by
     const result = await fetchContentSource({ collection: collection as unknown as FirebaseFirestore.CollectionReference, nowMs: 1_000 });
     expect(result.state).toBe('ready');
     expect(result.rows).toEqual([{ lessonId: 3, target: 'en', averageScore: 4.2, sampleCount: 60 }]);
+    expect(result.observedAtMs).toBe(900);
+  });
+
+  test('uses the persisted latest stats update as the observation time', async () => {
+    const collection = makeFakeCollection([
+      statsDoc('en_lesson3', 4.2, 60, { updatedAt: { toMillis: () => 700 } }),
+      statsDoc('en_lesson4', 4.1, 55, { updatedAt: { toMillis: () => 950 } }),
+    ]);
+    const result = await fetchContentSource({ collection: collection as unknown as FirebaseFirestore.CollectionReference, nowMs: 1_000 });
+    expect(result.state).toBe('ready');
+    expect(result.observedAtMs).toBe(950);
+  });
+
+  test('fails partially instead of treating request time as freshness when stats lack updatedAt', async () => {
+    const collection = makeFakeCollection([statsDoc('en_lesson3', 4.2, 60, { updatedAt: undefined })]);
+    const result = await fetchContentSource({ collection: collection as unknown as FirebaseFirestore.CollectionReference, nowMs: 1_000 });
+    expect(result.state).toBe('partial');
+    expect(result.observedAtMs).not.toBe(1_000);
+  });
+
+  test('marks old persisted stats stale rather than supporting a fresh conclusion', async () => {
+    const nowMs = 2_000_000_000_000;
+    const collection = makeFakeCollection([statsDoc('en_lesson3', 4.2, 60, { updatedAt: { toMillis: () => 1 } })]);
+    const result = await fetchContentSource({ collection: collection as unknown as FirebaseFirestore.CollectionReference, nowMs });
+    expect(result.state).toBe('stale');
+    expect(result.observedAtMs).toBe(1);
   });
 
   test('a lesson with too few samples is kept but marked — small samples must not drive a verdict', async () => {

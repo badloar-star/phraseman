@@ -15,7 +15,6 @@ type FourStop = [string, string, string, string];
 const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
   dark: ['rgba(0,0,0,0.36)', 'rgba(0,0,0,0.20)', 'rgba(0,0,0,0.68)'],
   gold: ['rgba(0,0,0,0.46)', 'rgba(0,0,0,0.30)', 'rgba(0,0,0,0.78)'],
-  coral: ['rgba(0,0,0,0.38)', 'rgba(0,0,0,0.24)', 'rgba(0,0,0,0.68)'],
   minimalDark: ['rgba(8,10,14,0.30)', 'rgba(12,14,20,0.16)', 'rgba(6,7,10,0.56)'],
   business: ['rgba(0,0,0,0.34)', 'rgba(0,0,0,0.18)', 'rgba(0,0,0,0.60)'],
   businessLight: ['rgba(255,255,255,0.42)', 'rgba(255,255,255,0.22)', 'rgba(255,255,255,0.66)'],
@@ -31,7 +30,6 @@ const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
 const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
   dark: ['rgba(0,0,0,0.36)', 'rgba(0,0,0,0.10)', 'rgba(0,0,0,0.10)', 'rgba(0,0,0,0.30)'],
   gold: ['rgba(0,0,0,0.50)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.42)'],
-  coral: ['rgba(0,0,0,0.40)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.34)'],
   minimalDark: ['rgba(8,10,14,0.36)', 'rgba(110,168,255,0.04)', 'rgba(110,168,255,0.03)', 'rgba(6,7,10,0.34)'],
   business: ['rgba(0,0,0,0.40)', 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0.02)', 'rgba(0,0,0,0.36)'],
   businessLight: ['rgba(255,255,255,0.46)', 'rgba(0,0,0,0.03)', 'rgba(0,0,0,0.02)', 'rgba(255,255,255,0.40)'],

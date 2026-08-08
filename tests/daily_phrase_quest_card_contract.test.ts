@@ -69,24 +69,24 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('radius={16} tone="subtle"');
   });
 
-  it('renders a stable compact action below the editorial home phrase', () => {
+  it('keeps the whole home phrase card tappable without a separate CTA', () => {
     const liveHomeBranchStart = source.indexOf('{homeAdditional ? (');
     const liveHomeBranch = source.slice(
       liveHomeBranchStart,
       source.indexOf('            ) : (', liveHomeBranchStart),
     );
 
-    expect(source).toContain('const homeActionLabel = triLang(lang, {');
-    expect(source).toContain('{homeActionLabel}');
-    expect(source).toContain('backgroundColor: chrome.actionBg');
-    expect(source).toContain('styles.homeAdditionalActionText, { color: chrome.actionText');
+    expect(liveHomeBranch).not.toContain('homeAdditionalAction');
+    expect(source).not.toContain('homeActionLabel');
+    expect(source).not.toContain('homeAdditionalActionText');
+    expect(source).toContain('accessibilityRole="button"');
     expect(liveHomeBranch).not.toContain('name="arrow-forward"');
     expect(source).not.toContain('cardQuestAnswered');
     expect(source).not.toContain('questTeaser');
     expect(source).not.toContain('homeAdditionalMeaning');
   });
 
-  it('uses a centered content-sized editorial accent instead of a home plaque', () => {
+  it('uses a full-width editorial accent with content-driven height', () => {
     const editorialStyleStart = source.indexOf('homeAdditionalEditorial: {');
     const editorialStyle = source.slice(
       editorialStyleStart,
@@ -109,9 +109,9 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toMatch(/homeAdditionalCopy:\s*\{[\s\S]*?alignItems:\s*'center'/);
     expect(source).toMatch(/homeAdditionalKicker:\s*\{[\s\S]*?textAlign:\s*'center'/);
     expect(source).toMatch(/homeAdditionalPhrase:\s*\{[\s\S]*?textAlign:\s*'center'/);
-    expect(source).toMatch(/homeAdditionalAction:\s*\{[\s\S]*?alignSelf:\s*'center'/);
-    expect(editorialStyle).toContain("alignSelf: 'center'");
-    expect(editorialStyle).toContain("maxWidth: '90%'");
+    expect(editorialStyle).toContain("alignSelf: 'stretch'");
+    expect(editorialStyle).toContain('marginHorizontal: 8');
+    expect(editorialStyle).not.toContain('maxWidth:');
     expect(source).not.toContain('homeAdditionalGhostWrap');
     expect(editorialStyle).not.toContain('minHeight:');
     expect(editorialStyle).not.toContain('backgroundColor:');
@@ -183,6 +183,17 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).not.toContain('Animated.loop');
     expect(source).not.toContain('setInterval');
     expect(source).not.toContain('setTimeout');
+  });
+
+  it('uses a finite two-pulse native-driver cue for the complete home card', () => {
+    expect(source).toContain('claimDailyPhrasePulseForDay');
+    expect(source).toContain('const homePulseScale = useRef(new Animated.Value(1)).current;');
+    expect(source).toContain('const homePulseAttemptedDayRef = useRef<string | null>(null);');
+    expect(source.match(/toValue: 1\.025/g)).toHaveLength(2);
+    expect(source).toContain('transform: [{ scale: homePulseScale }]');
+    expect(source).toContain('useNativeDriver: true');
+    expect(source).not.toContain('Animated.loop');
+    expect(source).not.toContain('setInterval');
   });
 
   it('starts the entrance only for a closed-to-open modal transition', () => {

@@ -147,6 +147,7 @@ export async function judgeExplanation(params: JudgeParams): Promise<JudgeVerdic
       maxTokens: JUDGE_MAX_TOKENS,
       temperature: JUDGE_TEMPERATURE,
       responseFormat: { type: 'json_object' }, // double-defense; fail-closed parsing is the real guard
+      maxAttempts: 1,
     });
   } catch {
     // Provider failure on the JUDGE call must NOT publish unvalidated text → fail closed.

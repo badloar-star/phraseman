@@ -7,7 +7,7 @@
  *   - app/widget_bridge.ts            (the home/lock-screen widget snapshot)
  *
  * Keeping one definition means the native widget renders the exact same palette
- * as the in-app card for every theme (dark / neon / gold / coral / minimal* /
+ * as the in-app card for every theme (dark / gold / minimal* /
  * compass), so the widget reads as a true extension of the app — not a stranger.
  */
 
@@ -68,20 +68,6 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     actionBg: '#D6B35A',
     actionText: '#1B1205',
     shadow: '#D6B35A',
-  },
-  coral: {
-    colors: ['#302026', '#1D171A', '#0D0A0B'],
-    border: 'rgba(255,128,128,0.34)',
-    glow: 'rgba(255,127,80,0.24)',
-    title: '#FFE0E0',
-    phrase: '#FFFFFF',
-    sub: '#E5B9C2',
-    iconBg: 'rgba(255,128,128,0.14)',
-    iconBorder: 'rgba(255,128,128,0.25)',
-    ornament: '#FF7F50',
-    actionBg: '#FF7F50',
-    actionText: '#2A100A',
-    shadow: '#FF7F50',
   },
   minimalDark: {
     colors: ['#26303E', '#20242C', '#121419'],

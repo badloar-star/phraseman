@@ -22,6 +22,8 @@ import {
   LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
   LEVEL_UP_REWARD_RETRY_KEY,
   LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY,
+  LEVEL_UP_SHOWN_LEVELS_KEY,
+  LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY,
   PENDING_LEVEL_UP_QUEUE_KEY,
 } from './level_up_storage_keys';
 
@@ -34,6 +36,8 @@ export {
   LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
   LEVEL_UP_REWARD_RETRY_KEY,
   LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY,
+  LEVEL_UP_SHOWN_LEVELS_KEY,
+  LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY,
   PENDING_LEVEL_UP_QUEUE_KEY,
 } from './level_up_storage_keys';
 
@@ -56,6 +60,7 @@ type LoadedState = {
   retry: StoredArray<number>;
   context: StoredArray<RetryEntry>;
   fallback: StoredArray<RetryEntry>;
+  shown: StoredArray<number>;
 };
 
 type OwnerState = { owner: string; changed: boolean } | { owner: null; changed: false };
@@ -64,6 +69,7 @@ type AccountScope = AccountGenerationToken | null;
 
 let operationLock: Promise<void> = Promise.resolve();
 const inMemoryRetryEntries = new Map<number, RetryEntry>();
+const inMemoryShownLevels = new Map<string, Set<number>>();
 // If every durable write fails, crash recovery is impossible. This process-local map still preserves
 // retryability for the lifetime of the current process.
 
@@ -133,11 +139,12 @@ const readStoredArray = async <T>(
 };
 
 const loadState = async (scope: AccountScope): Promise<LoadedState> => {
-  const [queue, retry, context, fallback] = await Promise.all([
+  const [queue, retry, context, fallback, shown] = await Promise.all([
     readStoredArray(PENDING_LEVEL_UP_QUEUE_KEY, LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY, normalizeLevels, scope),
     readStoredArray(LEVEL_UP_REWARD_RETRY_KEY, LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY, normalizeLevels, scope),
     readStoredArray(LEVEL_UP_REWARD_CONTEXT_KEY, LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY, normalizeRetryEntries, scope),
     readStoredArray(LEVEL_UP_REWARD_FALLBACK_KEY, LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY, normalizeRetryEntries, scope),
+    readStoredArray(LEVEL_UP_SHOWN_LEVELS_KEY, LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY, normalizeLevels, scope),
   ]);
   if (retry.values.length > 0 && context.values.length === 0 && !context.wasCorrupt) {
     try {
@@ -146,7 +153,7 @@ const loadState = async (scope: AccountScope): Promise<LoadedState> => {
       context.state = 'unavailable';
     }
   }
-  return { queue, retry, context, fallback };
+  return { queue, retry, context, fallback, shown };
 };
 
 const serializeEntries = (entries: Iterable<RetryEntry>): string =>
@@ -180,10 +187,12 @@ const clearForOwnerSwitch = async (owner: string, scope: AccountScope): Promise<
       [LEVEL_UP_REWARD_RETRY_KEY, '[]'],
       [LEVEL_UP_REWARD_CONTEXT_KEY, '[]'],
       [LEVEL_UP_REWARD_FALLBACK_KEY, '[]'],
+      [LEVEL_UP_SHOWN_LEVELS_KEY, '[]'],
       [LEVEL_UP_REWARD_OWNER_KEY, owner],
     ]);
     if (!isAccountScopeCurrent(scope, owner)) return false;
     inMemoryRetryEntries.clear();
+    inMemoryShownLevels.clear();
     return true;
   } catch {
     return false;
@@ -197,6 +206,9 @@ const prepareOwnerUnlocked = async (scope: AccountScope): Promise<OwnerState> =>
   inMemoryRetryEntries.forEach((entry, level) => {
     if (entry.owner !== owner) inMemoryRetryEntries.delete(level);
   });
+  for (const savedOwner of inMemoryShownLevels.keys()) {
+    if (savedOwner !== owner) inMemoryShownLevels.delete(savedOwner);
+  }
   let storedOwner: string | null;
   try {
     storedOwner = normalizeOwner(await AsyncStorage.getItem(LEVEL_UP_REWARD_OWNER_KEY));
@@ -396,6 +408,10 @@ const processEntriesUnlocked = async (
   if (!isAccountScopeCurrent(scope, owner)) return { results: [], showableLevels: [] };
 
   const queue = new Set(state.queue.values);
+  const shown = new Set([
+    ...state.shown.values,
+    ...(inMemoryShownLevels.get(owner) ?? new Set<number>()),
+  ]);
   const results: LevelGiftEntitlementResult[] = [];
   const successful = new Set<number>();
   const claimed = new Set<number>();
@@ -405,8 +421,13 @@ const processEntriesUnlocked = async (
     if (!isAccountScopeCurrent(scope, owner)) return { results: [], showableLevels: [] };
     results.push(result);
     if (result.status === 'persisted' || result.status === 'already_pending') {
-      queue.add(entry.level);
-      successful.add(entry.level);
+      if (shown.has(entry.level)) {
+        queue.delete(entry.level);
+        claimed.add(entry.level);
+      } else {
+        queue.add(entry.level);
+        successful.add(entry.level);
+      }
     } else if (result.status === 'already_claimed') {
       queue.delete(entry.level);
       claimed.add(entry.level);
@@ -518,14 +539,34 @@ const acknowledgeUnlocked = async (level: number, scope: AccountScope): Promise<
   if (!Number.isInteger(level) || level <= 0) return;
   const ownerState = await prepareOwnerUnlocked(scope);
   if (!ownerState.owner || ownerState.changed) return;
-  const queue = await readStoredArray(
-    PENDING_LEVEL_UP_QUEUE_KEY,
-    LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
-    normalizeLevels,
-    scope,
-  );
-  if (queue.state === 'unavailable') return;
-  await writeLevels(PENDING_LEVEL_UP_QUEUE_KEY, queue.values.filter((item) => item !== level), scope);
+  const memoryShown = inMemoryShownLevels.get(ownerState.owner) ?? new Set<number>();
+  memoryShown.add(level);
+  inMemoryShownLevels.set(ownerState.owner, memoryShown);
+  const [queue, shown] = await Promise.all([
+    readStoredArray(PENDING_LEVEL_UP_QUEUE_KEY, LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY, normalizeLevels, scope),
+    readStoredArray(LEVEL_UP_SHOWN_LEVELS_KEY, LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY, normalizeLevels, scope),
+  ]);
+  if (!isAccountScopeCurrent(scope, ownerState.owner)) return;
+  const nextShown = [...new Set([...shown.values, level])].sort((a, b) => a - b);
+  try {
+    if (queue.state === 'available' && shown.state === 'available') {
+      await AsyncStorage.multiSet([
+        [PENDING_LEVEL_UP_QUEUE_KEY, JSON.stringify(queue.values.filter((item) => item !== level))],
+        [LEVEL_UP_SHOWN_LEVELS_KEY, JSON.stringify(nextShown)],
+      ]);
+      return;
+    }
+  } catch {
+    // The process-local shown set still prevents a duplicate in this session.
+  }
+  await Promise.all([
+    queue.state === 'available'
+      ? writeLevels(PENDING_LEVEL_UP_QUEUE_KEY, queue.values.filter((item) => item !== level), scope)
+      : Promise.resolve(false),
+    shown.state === 'available'
+      ? writeLevels(LEVEL_UP_SHOWN_LEVELS_KEY, nextShown, scope)
+      : Promise.resolve(false),
+  ]);
 };
 
 export const acknowledgePendingLevelUpShown = (level: number): Promise<void> => {
@@ -537,5 +578,6 @@ export const __levelUpRewardReconcilerTestHooks = {
   reset: (): void => {
     operationLock = Promise.resolve();
     inMemoryRetryEntries.clear();
+    inMemoryShownLevels.clear();
   },
 };

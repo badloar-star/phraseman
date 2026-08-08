@@ -74,6 +74,13 @@ function clean(value: unknown): string {
   return escapeHtml(stripContacts(String(value ?? '').trim()));
 }
 
+/** The keyboard must receive this same ordered, capped set as the rendered digest. */
+export function selectTelegramDecisions(decisions: readonly Decision[]): readonly Decision[] {
+  return Object.freeze([...decisions]
+    .sort((a, b) => SEVERITY_ORDER.indexOf(classifySeverity(a)) - SEVERITY_ORDER.indexOf(classifySeverity(b)))
+    .slice(0, JARVIS_MAX_DECISIONS_IN_DIGEST));
+}
+
 export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
   const lines: string[] = [];
   const failed = input.departmentErrors.length > 0;
@@ -88,20 +95,21 @@ export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
 
   // зачем сортировать перед обрезкой: при пяти показанных находках важная
   // P0 не должна потеряться из-за того, что департамент её вернул позже.
-  const sorted = [...input.decisions].sort(
-    (a, b) => SEVERITY_ORDER.indexOf(classifySeverity(a)) - SEVERITY_ORDER.indexOf(classifySeverity(b)),
-  );
-  const shown = sorted.slice(0, JARVIS_MAX_DECISIONS_IN_DIGEST);
-  const hidden = sorted.length - shown.length;
+  const shown = selectTelegramDecisions(input.decisions);
+  const hidden = input.decisions.length - shown.length;
 
   for (const decision of shown) {
     const label = DEPARTMENT_LABEL[decision.department] ?? decision.department;
     lines.push(`<b>${escapeHtml(label)}</b>`);
     lines.push(clean(decision.finding));
-    const recommendation = clean(decision.recommendation);
-    if (recommendation) lines.push(`→ ${recommendation}`);
-    const narrative = input.narrativeByHash?.get(decision.contentHash);
-    if (narrative) lines.push(clean(narrative));
+    if (decision.status === 'insufficient_evidence' || decision.actionability === 'evidence_only') {
+      lines.push('→ Данные неполны: автоматически ничего не утверждаю и не предлагаю действие.');
+    } else {
+      const recommendation = clean(decision.recommendation);
+      if (recommendation) lines.push(`→ ${recommendation}`);
+      const narrative = input.narrativeByHash?.get(decision.contentHash);
+      if (narrative) lines.push(clean(narrative));
+    }
     lines.push('');
   }
 

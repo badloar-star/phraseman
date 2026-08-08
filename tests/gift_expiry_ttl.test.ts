@@ -15,9 +15,11 @@ import {
 } from '../app/level_gift_inventory';
 import type { GiftDef } from '../app/level_gift_system';
 import {
-  FRIEND_GIFT_INVENTORY_KEY,
+  friendGiftExpiresAtMs,
+  friendGiftInventoryKey,
   loadStoredFriendGiftInventory,
 } from '../app/friend_gift_inventory';
+import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 import { loadActiveLevelGiftInventory } from '../app/level_gift_active_inventory';
 import {
   GIFT_FIRST_SEEN_KEY,
@@ -48,6 +50,7 @@ const makeGift = (id: string): GiftDef => ({
 
 beforeEach(() => {
   __resetAccountGenerationForTests();
+  beginAccountGeneration('account-a');
   jest.clearAllMocks();
   now = T0;
   jest.spyOn(Date, 'now').mockImplementation(() => now);
@@ -67,6 +70,13 @@ beforeEach(() => {
     Promise.resolve(keys.map((key) => [key, mockStorage[key] ?? null])),
   );
   (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => { mockStorage[key] = value; });
+    return Promise.resolve();
+  });
+  (AsyncStorage.multiGet as jest.Mock).mockImplementation((keys: string[]) =>
+    Promise.resolve(keys.map((key) => [key, mockStorage[key] ?? null])),
+  );
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: [string, string][]) => {
     pairs.forEach(([key, value]) => {
       mockStorage[key] = value;
     });
@@ -80,7 +90,7 @@ afterEach(() => {
 
 describe('pending level gift TTL', () => {
   it('stamps receipt on save and exposes a 72h expiry on load', async () => {
-    await saveUnclaimedGift(5, makeGift('gift_a'));
+    await saveUnclaimedGift(5, makeGift('xp_50'));
 
     const items = await loadPendingLevelGiftInventory('en');
     expect(items).toHaveLength(1);
@@ -92,7 +102,7 @@ describe('pending level gift TTL', () => {
   });
 
   it('burns a gift older than 72h: gone from the list, storage and badge cache', async () => {
-    await saveUnclaimedGift(5, makeGift('gift_a'));
+    await saveUnclaimedGift(5, makeGift('xp_50'));
     now = T0 + GIFT_TTL_MS + 1000;
 
     await expect(loadPendingLevelGiftInventory('en')).resolves.toEqual([]);
@@ -102,7 +112,7 @@ describe('pending level gift TTL', () => {
   });
 
   it('keeps a gift alive strictly inside the 72h window', async () => {
-    await saveUnclaimedGift(5, makeGift('gift_a'));
+    await saveUnclaimedGift(5, makeGift('xp_50'));
     now = T0 + GIFT_TTL_MS - 1000;
 
     const items = await loadPendingLevelGiftInventory('en');
@@ -110,7 +120,7 @@ describe('pending level gift TTL', () => {
   });
 
   it('grandfathers pre-timer gifts: countdown starts at first load, not in the past', async () => {
-    mockStorage[UNCLAIMED_GIFTS_KEY] = JSON.stringify({ 9: makeGift('legacy') });
+    mockStorage[UNCLAIMED_GIFTS_KEY] = JSON.stringify({ 9: makeGift('xp_50') });
 
     const items = await loadPendingLevelGiftInventory('en');
     expect(items).toHaveLength(1);
@@ -119,7 +129,7 @@ describe('pending level gift TTL', () => {
   });
 
   it('burns an expired dual gift as a whole', async () => {
-    await saveUnclaimedDualGift(7, { f2p: makeGift('f2p'), prem: makeGift('prem') });
+    await saveUnclaimedDualGift(7, { f2p: makeGift('xp_50'), prem: makeGift('xp_100') });
     now = T0 + GIFT_TTL_MS + 1;
 
     await expect(loadPendingLevelGiftInventory('en')).resolves.toEqual([]);
@@ -127,7 +137,7 @@ describe('pending level gift TTL', () => {
   });
 
   it('clears the receipt stamp when a gift is claimed', async () => {
-    await saveUnclaimedGift(5, makeGift('gift_a'));
+    await saveUnclaimedGift(5, makeGift('xp_50'));
     await markGiftClaimed(5);
 
     expect(JSON.parse(mockStorage[UNCLAIMED_GIFT_RECEIVED_AT_KEY])).toEqual({});
@@ -135,6 +145,7 @@ describe('pending level gift TTL', () => {
 });
 
 describe('friend gift TTL', () => {
+  const inventoryKey = () => friendGiftInventoryKey(captureAccountGeneration())!;
   const friendGift = (id: string, savedAt: number) => ({
     id,
     giftId: 'xp_boost_2x_24h',
@@ -146,14 +157,19 @@ describe('friend gift TTL', () => {
   });
 
   it('drops friend gifts older than 72h and rewrites storage', async () => {
-    mockStorage[FRIEND_GIFT_INVENTORY_KEY] = JSON.stringify([
+    beginAccountGeneration('gift-ttl-user');
+    mockStorage[inventoryKey()] = JSON.stringify([
       friendGift('fresh', T0 - 1000),
       friendGift('stale', T0 - GIFT_TTL_MS - 1000),
     ]);
 
     const alive = await loadStoredFriendGiftInventory(T0);
     expect(alive.map((gift) => gift.id)).toEqual(['fresh']);
-    expect(JSON.parse(mockStorage[FRIEND_GIFT_INVENTORY_KEY]).map((g: { id: string }) => g.id)).toEqual(['fresh']);
+    expect(JSON.parse(mockStorage[inventoryKey()]).map((g: { id: string }) => g.id)).toEqual(['fresh']);
+  });
+
+  it('expires from authoritative server timestamp rather than delayed local save time', () => {
+    expect(friendGiftExpiresAtMs({ ts: T0 - GIFT_TTL_MS - 1, savedAt: T0 })).toBe(T0 - 1);
   });
 });
 
@@ -169,11 +185,13 @@ describe('active bonuses without an own lifetime', () => {
 
   it('burns the bonus for real once the 72h window is over', async () => {
     mockStorage.wager_discount = '0.25';
+    mockStorage.wager_discount_uses_v1 = '2';
     mockStorage[GIFT_FIRST_SEEN_KEY] = JSON.stringify({ wager_discount: T0 - GIFT_TTL_MS - 1000 });
 
     const items = await loadActiveLevelGiftInventory('ru', T0, 'en');
     expect(items.find((item) => item.key === 'wager_discount')).toBeUndefined();
     expect(mockStorage.wager_discount).toBeUndefined();
+    expect(mockStorage.wager_discount_uses_v1).toBeUndefined();
     expect(JSON.parse(mockStorage[GIFT_FIRST_SEEN_KEY])).toEqual({});
   });
 

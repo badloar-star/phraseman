@@ -21,7 +21,7 @@ describe('level exam copy', () => {
     expect(copy.passGoal).toMatch(/30/);
     expect(copy.duration).toMatch(/13/);
     expect(copy.formats).toHaveLength(5);
-    expect(copy.startCta).toMatch(/5/);
+    expect(copy.startCta).not.toMatch(/−5|⚡/);
     expect(copy.bestResult).toMatch(/24/);
     expect(copy.firstPassReward.length).toBeGreaterThan(6);
   });
@@ -40,7 +40,7 @@ describe('level exam copy', () => {
       title: 'Финальная проверка A2',
       lead: 'Покажи, как уверенно ты используешь темы этого уровня в живых фразах.',
       passGoal: '21 правильный ответ из 30',
-      startCta: 'Начать проверку −5 ⚡',
+      startCta: 'Начать проверку',
       bestResult: 'Лучший результат сохранится',
     });
     expect(copy.formats.join(' · ')).toBe(

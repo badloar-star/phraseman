@@ -16,7 +16,6 @@ function read(relativePath: string): string {
 describe('Season profile-card frame integration', () => {
   const frameComponent = read('components/SeasonProfileCardFrame.tsx');
   const profileModal = read('components/PlayerProfileModal.tsx');
-  const admin = read('app/_admin_settings_testers.tsx');
   const cosmetics = read('app/season_cosmetics.ts');
   const seasonConfig = read('app/season_pass_track_config.ts');
   const publicProfileSnapshot = read('app/public_profile_snapshot.ts');
@@ -36,15 +35,6 @@ describe('Season profile-card frame integration', () => {
     expect(profileModal).not.toContain("require('../assets/images/season/rewards/light/frame.webp')");
     expect(publicProfileSnapshot).toContain('seasonProfileFrameId');
     expect(publicProfileSnapshot).toContain('loadSeasonCosmetics');
-  });
-
-  it('lets DEV preview the real framed card at every profile-card level', () => {
-    expect(admin).toContain('const SEASON_FRAME_PREVIEW_LEVELS: readonly ProfileCardLevel[] = [0, 1, 2, 3, 4, 5]');
-    expect(admin).toContain('testID={`admin-preview-season-frame-level-${level}`}');
-    expect(admin).toContain('openCurrentAccountProfilePreview(false, level, true)');
-    expect(admin).toContain('admin-preview-season-frame-disabled');
-    expect(admin).toContain('openCurrentAccountProfilePreview(false, undefined, false)');
-    expect(admin).not.toContain('devSetSeasonFrameEnabled');
   });
 
   it('keeps DEV level/frame overrides stable without mutating earned ownership', () => {

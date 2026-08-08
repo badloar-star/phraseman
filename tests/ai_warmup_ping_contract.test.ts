@@ -64,7 +64,9 @@ describe('warmupPing остаётся бесплатным', () => {
   it('explainPhrase не списывает дневной free-кап на ping', () => {
     const body = handlerBody(read('functions/src/explain_phrase.ts'), 'explainPhrase');
     const ping = body.indexOf('warmupPing');
-    const cap = body.indexOf('enforceFreeJobGenLimit');
+    // The free-cap reservation is now atomic with the general explain budget;
+    // warmup must still return before that combined reservation starts.
+    const cap = body.indexOf('reserveExplainBudget');
     expect(ping).toBeGreaterThan(-1);
     expect(cap).toBeGreaterThan(-1);
     expect(ping).toBeLessThan(cap);

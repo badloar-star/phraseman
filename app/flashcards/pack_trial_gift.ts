@@ -2,6 +2,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import bundledManifest from './bundles/bundled_marketplace_manifest.json';
 import { emitAppEvent } from '../events';
 import { flashcardsPackTrialGiftKey, type RuntimeStudyTarget } from '../target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
+import {
+  finalizeClaimedGiftLegacyValues,
+  readGiftAccountValue,
+  readClaimedGiftLegacyValues,
+  requireGiftAccountStorageKey,
+  writeGiftAccountValue,
+} from '../gift_account_storage';
 
 export type PackGiftClaimBinding = {
   packId: string;
@@ -83,8 +95,8 @@ function dedupeInventory(items: readonly PackTrialState[]): PackTrialState[] {
   return [...byId.values()].sort((a, b) => a.expiresAt - b.expiresAt || a.localVoucherId.localeCompare(b.localVoucherId));
 }
 
-async function readRawInventory(): Promise<PackTrialState[]> {
-  const raw = await AsyncStorage.getItem(PACK_GIFT_INVENTORY_KEY).catch(() => null);
+async function readRawInventory(token: AccountGenerationToken): Promise<PackTrialState[]> {
+  const raw = await readGiftAccountValue(PACK_GIFT_INVENTORY_KEY, token).catch(() => null);
   if (!raw) return [];
   try {
     const parsed = JSON.parse(raw) as unknown;
@@ -95,10 +107,9 @@ async function readRawInventory(): Promise<PackTrialState[]> {
   }
 }
 
-async function readLegacyEntries(): Promise<PackTrialState[]> {
-  const pairs = typeof AsyncStorage.multiGet === 'function'
-    ? await AsyncStorage.multiGet([...LEGACY_KEYS]).catch(() => LEGACY_KEYS.map((key) => [key, null] as [string, string | null]))
-    : await Promise.all(LEGACY_KEYS.map(async (key) => [key, await AsyncStorage.getItem(key).catch(() => null)] as [string, string | null]));
+async function readLegacyEntries(token: AccountGenerationToken): Promise<PackTrialState[]> {
+  if (!isCurrentAccountGeneration(token, token.stableId)) throw new Error('pack_gift_account_changed');
+  const pairs = await readClaimedGiftLegacyValues(PACK_GIFT_INVENTORY_KEY, LEGACY_KEYS, token);
   const result: PackTrialState[] = [];
   for (const [key, raw] of pairs) {
     if (!raw) continue;
@@ -111,23 +122,27 @@ async function readLegacyEntries(): Promise<PackTrialState[]> {
       // Invalid legacy state is ignored; it never grants access by itself.
     }
   }
+  if (!isCurrentAccountGeneration(token, token.stableId)) throw new Error('pack_gift_account_changed');
   return result;
 }
 
-async function persistInventory(items: readonly PackTrialState[], removeLegacy = false): Promise<void> {
-  await AsyncStorage.setItem(PACK_GIFT_INVENTORY_KEY, JSON.stringify(dedupeInventory(items)));
+async function persistInventory(
+  items: readonly PackTrialState[],
+  token: AccountGenerationToken,
+  removeLegacy = false,
+): Promise<void> {
+  await writeGiftAccountValue(PACK_GIFT_INVENTORY_KEY, JSON.stringify(dedupeInventory(items)), token);
   if (removeLegacy) {
-    if (typeof AsyncStorage.multiRemove === 'function') await AsyncStorage.multiRemove([...LEGACY_KEYS]);
-    else await Promise.all(LEGACY_KEYS.map((key) => AsyncStorage.removeItem(key)));
+    await finalizeClaimedGiftLegacyValues(PACK_GIFT_INVENTORY_KEY, LEGACY_KEYS, token);
   }
 }
 
-async function loadInventory(): Promise<PackTrialState[]> {
-  const current = await readRawInventory();
-  const legacy = await readLegacyEntries();
+async function loadInventory(token: AccountGenerationToken): Promise<PackTrialState[]> {
+  const current = await readRawInventory(token);
+  const legacy = await readLegacyEntries(token);
   if (!legacy.length) return current;
   const merged = dedupeInventory([...current, ...legacy]);
-  await persistInventory(merged, true);
+  await persistInventory(merged, token, true);
   return merged;
 }
 
@@ -136,10 +151,11 @@ function isUsable(item: PackTrialState, now = Date.now()): boolean {
 }
 
 export async function getPackGiftTrials(): Promise<PackTrialState[]> {
+  const token = captureAccountGeneration();
   return serialize(async () => {
-    const items = await loadInventory();
+    const items = await loadInventory(token);
     const usable = items.filter((item) => isUsable(item));
-    if (usable.length !== items.length) await persistInventory(usable);
+    if (usable.length !== items.length) await persistInventory(usable, token);
     return usable;
   });
 }
@@ -176,12 +192,12 @@ function localIdFor(voucherId?: string, occurrenceId?: string): string {
   return `local_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 }
 
-async function upsertVoucher(item: PackTrialState): Promise<PackTrialState> {
+async function upsertVoucher(item: PackTrialState, token: AccountGenerationToken): Promise<PackTrialState> {
   return serialize(async () => {
-    const items = await loadInventory();
+    const items = await loadInventory(token);
     const previous = items.find((candidate) => candidate.localVoucherId === item.localVoucherId);
     const merged = previous ? { ...previous, ...item, claimBinding: item.claimBinding ?? previous.claimBinding } : item;
-    await persistInventory([...items.filter((candidate) => candidate.localVoucherId !== item.localVoucherId), merged]);
+    await persistInventory([...items.filter((candidate) => candidate.localVoucherId !== item.localVoucherId), merged], token);
     emitAppEvent('pack_trial_gift_set');
     return merged;
   });
@@ -194,6 +210,7 @@ export async function setRandomPackGiftTrial48h(
   occurrenceId?: string,
   source?: string,
 ): Promise<PackTrialState | null> {
+  const token = captureAccountGeneration();
   const expiresAt = Math.max(0, Math.floor(Number(expiresAtOverride) || 0)) || Date.now() + 48 * 60 * 60 * 1000;
   if (Date.now() >= expiresAt) return null;
   return upsertVoucher({
@@ -203,7 +220,7 @@ export async function setRandomPackGiftTrial48h(
     ...(voucherId ? { voucherId } : {}),
     ...(occurrenceId ? { occurrenceId } : {}),
     ...(source ? { source } : {}),
-  });
+  }, token);
 }
 
 function hash32(seed: string): number {
@@ -223,12 +240,13 @@ export async function setPackGiftTrial48hOnce(
   occurrenceId?: string,
   source?: string,
 ): Promise<PackTrialState | null> {
+  const token = captureAccountGeneration();
   const safeKey = safePart(idempotencyKey);
   if (!safeKey) return setRandomPackGiftTrial48h(undefined, voucherId, expiresAtOverride, occurrenceId, source);
-  const markerKey = `${PACK_TRIAL_ONCE_KEY_PREFIX}${safeKey}`;
+  const markerBaseKey = `${PACK_TRIAL_ONCE_KEY_PREFIX}${safeKey}`;
   return serialize(async () => {
-    const items = await loadInventory();
-    const marker = await AsyncStorage.getItem(markerKey).catch(() => null);
+    const items = await loadInventory(token);
+    const marker = await readGiftAccountValue(markerBaseKey, token).catch(() => null);
     if (marker) {
       const markerId = marker === '1' ? '' : marker;
       const exact = items.find((item) => item.localVoucherId === markerId)
@@ -248,7 +266,10 @@ export async function setPackGiftTrial48hOnce(
       ...(source ? { source } : {}),
     };
     const next = dedupeInventory([...items.filter((candidate) => candidate.localVoucherId !== item.localVoucherId), item]);
-    await AsyncStorage.multiSet([[PACK_GIFT_INVENTORY_KEY, JSON.stringify(next)], [markerKey, item.localVoucherId]]);
+    const inventoryKey = requireGiftAccountStorageKey(PACK_GIFT_INVENTORY_KEY, token);
+    const markerKey = requireGiftAccountStorageKey(markerBaseKey, token);
+    await AsyncStorage.multiSet([[inventoryKey, JSON.stringify(next)], [markerKey, item.localVoucherId]]);
+    if (!isCurrentAccountGeneration(token, token.stableId)) throw new Error('pack_gift_account_changed');
     emitAppEvent('pack_trial_gift_set');
     return item;
   });
@@ -275,8 +296,9 @@ export async function reconcilePackGiftTrials(
   items: readonly Omit<PackTrialState, 'localVoucherId' | 'packId'>[],
   materializedEntitlements: readonly PackGiftMaterializedEntitlement[] = [],
 ): Promise<void> {
+  const token = captureAccountGeneration();
   await serialize(async () => {
-    const current = await loadInventory();
+    const current = await loadInventory(token);
     const incoming = items
       .filter((item) => Number.isFinite(item.expiresAt) && item.expiresAt > Date.now())
       .map((item) => ({
@@ -293,7 +315,7 @@ export async function reconcilePackGiftTrials(
     });
     const next = dedupeInventory([...retained, ...incoming]);
     const changed = JSON.stringify(next) !== JSON.stringify(dedupeInventory(current));
-    await persistInventory(next);
+    await persistInventory(next, token);
     if (changed) emitAppEvent('pack_trial_gift_set');
   });
 }
@@ -304,13 +326,14 @@ export async function mergePackGiftTrials(items: readonly Omit<PackTrialState, '
 }
 
 export async function bindPackGiftVoucherSelection(localVoucherId: string, binding: PackGiftClaimBinding): Promise<void> {
+  const token = captureAccountGeneration();
   await serialize(async () => {
-    const items = await loadInventory();
+    const items = await loadInventory(token);
     const index = items.findIndex((item) => item.localVoucherId === localVoucherId);
     if (index < 0) throw new Error('pack_gift_voucher_missing');
     const next = [...items];
     next[index] = { ...next[index], claimBinding: binding };
-    await persistInventory(next);
+    await persistInventory(next, token);
   });
 }
 
@@ -323,14 +346,15 @@ export async function hasActiveCommunityPackGiftVoucher(_studyTarget?: RuntimeSt
 }
 
 export async function consumePackGiftTrial(voucher: string | PackTrialState | undefined): Promise<void> {
+  const token = captureAccountGeneration();
   await serialize(async () => {
-    const items = await loadInventory();
+    const items = await loadInventory(token);
     const requested = typeof voucher === 'string' ? voucher : voucher?.localVoucherId;
     const localVoucherId = requested === 'en' || requested === 'fr' || !requested
       ? items.find((item) => item.expiresAt > Date.now())?.localVoucherId
       : requested;
     if (!localVoucherId) return;
-    await persistInventory(items.filter((item) => item.localVoucherId !== localVoucherId));
+    await persistInventory(items.filter((item) => item.localVoucherId !== localVoucherId), token);
     emitAppEvent('pack_trial_gift_consumed');
   });
 }

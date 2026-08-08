@@ -93,6 +93,7 @@ service cloud.firestore {
         'identityMergedAt',
         'identityCleanupAt',
         'identityCleanupReason',
+        'levelSpinMergePending',
       ];
     }
 
@@ -166,6 +167,31 @@ service cloud.firestore {
         ]);
     }
 
+    // Gift perk grants and consumes are server-authoritative. Legitimate
+    // consumption goes through friendConsumeChainShield; level, league,
+    // season, friend, broadcast and admin producers all commit via Admin SDK.
+    function hasNoServerGiftPerkWrites() {
+      return (
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'chain_shield',
+          'gift_xp_multiplier',
+          'club_gift_free_boost_v1'
+        ])
+        && !request.resource.data.get('progress', {}).diff(resource.data.get('progress', {})).affectedKeys().hasAny([
+          'chain_shield',
+          'gift_xp_multiplier',
+          'club_gift_free_boost_v1'
+        ])
+      );
+    }
+
+    function newDocHasNoServerGiftPerkWrites() {
+      return (
+        !request.resource.data.keys().hasAny(['chain_shield', 'gift_xp_multiplier', 'club_gift_free_boost_v1'])
+        && !request.resource.data.get('progress', {}).keys().hasAny(['chain_shield', 'gift_xp_multiplier', 'club_gift_free_boost_v1'])
+      );
+    }
+
     // Server progress shadow/cutover markers are never client-owned. Allowing an
     // owner to write them would let a modified client manufacture an authoritative
     // baseline and permanently inflate XP on the next progress event.
@@ -176,6 +202,7 @@ service cloud.firestore {
           'progressServerAuthoritative',
           'progressServerCutoverAt',
           'progressMigratedAt',
+          'levelSpinServerState',
         ]);
     }
 
@@ -186,7 +213,28 @@ service cloud.firestore {
           'progressServerAuthoritative',
           'progressServerCutoverAt',
           'progressMigratedAt',
+          'levelSpinServerState',
         ]);
+    }
+
+    // Level Spin accounting is callable-only, including for browser admins.
+    // Admin SDK bypasses Rules, so legitimate server writes are unaffected.
+    function hasNoLevelRewardSpinWrites() {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'levelSpinServerState',
+          'levelSpinMergePending'
+        ])
+        && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['progress'])
+          || !request.resource.data.get('progress', {})
+            .diff(resource.data.get('progress', {}))
+            .affectedKeys().hasAny(['level_reward_spin_balance'])
+        );
+    }
+
+    function newDocHasNoLevelRewardSpinWrites() {
+      return !request.resource.data.keys().hasAny(['levelSpinServerState', 'levelSpinMergePending'])
+        && !request.resource.data.get('progress', {}).keys().hasAny(['level_reward_spin_balance']);
     }
 
     function newDocHasNoServerScoreWrites() {
@@ -268,6 +316,7 @@ service cloud.firestore {
         // Прокруты рулетки Plus: начисляет/списывает ТОЛЬКО сервер
         // (referralClaimSpin / referralSpin, Admin SDK) — клиент не должен себе их рисовать.
         'referral_spin_credits',
+        'level_reward_spin_balance',
         'referral_spins_total',
         'referral_spin_ledger_version',
         'referral_spin_ledger_migrated_at_ms',
@@ -1188,14 +1237,18 @@ service cloud.firestore {
         && hasNoServerIdentityWrites()
         && progressHasNoPremiumWrites()
         && hasNoShardWrites()
-        && hasNoProgressAuthorityMarkerWrites();
+        && hasNoServerGiftPerkWrites()
+        && hasNoProgressAuthorityMarkerWrites()
+        && hasNoLevelRewardSpinWrites();
       allow create: if newUserDocOwnerMatchesAuth(userId)
         && accountDeletionNotPending(userId)
         && newDocHasNoServerIdentityWrites()
         && newDocHasNoPremiumWrites()
         && newDocHasNoShardWrites()
+        && newDocHasNoServerGiftPerkWrites()
         && newDocHasNoServerScoreWrites()
-        && newDocHasNoProgressAuthorityMarkerWrites();
+        && newDocHasNoProgressAuthorityMarkerWrites()
+        && newDocHasNoLevelRewardSpinWrites();
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;
@@ -1207,6 +1260,14 @@ service cloud.firestore {
       match /referral_spin_credit_ledger/{creditId} {
         allow read: if false;
         allow create, update, delete: if false;
+      }
+
+      match /level_spin_credits/{creditId} {
+        allow read, write: if false;
+      }
+
+      match /level_spin_results/{requestId} {
+        allow read, write: if false;
       }
 
       // Инбокс решений по идеям. Создаёт только сервер (adminDecideUserIdea, Admin SDK).
@@ -1225,8 +1286,14 @@ service cloud.firestore {
       }
 
       match /reward_claims/{claimId} {
-        allow read, create: if userDocOwnerMatchesAuth(userId);
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create: if false;
         allow update, delete: if false;
+      }
+
+      match /gift_perk_consumptions/{receiptId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
       }
 
       match /tournament_receipts/{receiptId} {
@@ -1272,11 +1339,12 @@ service cloud.firestore {
 
       match /shard_rewards/{rewardId} {
         allow read:   if userDocOwnerMatchesAuth(userId);
-        allow update: if userDocOwnerMatchesAuth(userId) && request.resource.data.seen == true;
-        // Реальные награды (friend_gift и пр.) пишет только Admin SDK из CF в обход rules.
-        // Клиенту разрешена лишь QA-симуляция с обязательной меткой qa == true —
-        // UI помечает такие записи «(QA)», подделать «настоящий» подарок себе нельзя.
-        allow create: if userDocOwnerMatchesAuth(userId) && request.resource.data.qa == true;
+        allow update: if userDocOwnerMatchesAuth(userId)
+          && request.resource.data.seen == true
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['seen', 'seenAt']);
+        // Награды (включая QA) пишет только сервер через Admin SDK в обход rules.
+        // Клиент может только отметить существующую награду как просмотренную.
+        allow create: if false;
         allow delete: if false;
       }
 
@@ -2000,11 +2068,10 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Разбор ошибки урока: тёплый кэш. Публичное чтение прогретого кэша ($0),
-    // запись только сервер (Admin SDK), удаление — админ (удаление дока ⇒
-    // разбор сгенерится заново). Биллинг — только сервер.
+    // Разбор ошибки урока содержит ответ ученика в сгенерированном тексте.
+    // Все чтения/записи идут через callable/Admin SDK; админский reset остаётся delete-only.
     match /mistake_explanations/{mistakeHash} {
-      allow read: if true;
+      allow read: if false;
       allow create, update: if false;
       allow delete: if isAdmin();
     }
@@ -2208,6 +2275,25 @@ service cloud.firestore {
     match /lesson_stats/{document=**} {
       allow read, write: if false;
     }
+    // Learning retention markers and aggregates are written/read only through
+    // role-checked Cloud Functions. Browser clients, including admins, never
+    // receive member hashes or mutate aggregate counters directly.
+    match /jarvis_learning_cohort_members/{document=**} {
+      allow read, write: if false;
+    }
+    match /jarvis_learning_cohorts/{document=**} {
+      allow read, write: if false;
+    }
+    // Daily signup totals contain no UID/PII, but remain server-only so a
+    // modified client cannot inflate Jarvis growth evidence.
+    match /jarvis_growth_daily/{document=**} {
+      allow read, write: if false;
+    }
+    // Release-aware quality counters and hashed distinct-user markers are
+    // server-owned. Jarvis receives only aggregate event counts and buckets.
+    match /jarvis_quality_daily/{document=**} {
+      allow read, write: if false;
+    }
 
     // Биржа «монеты → звёзды»: курс, история и журнал сделок — строго серверные.
     match /economy/{document=**} {
@@ -2268,6 +2354,10 @@ service cloud.firestore {
         && collection != 'business_tier_peak'
         && collection != 'business_tier_backfill_state'
         && collection != 'lesson_stats'
+        && collection != 'jarvis_learning_cohort_members'
+        && collection != 'jarvis_learning_cohorts'
+        && collection != 'jarvis_growth_daily'
+        && collection != 'jarvis_quality_daily'
         && collection != 'economy'
         && collection != 'youtube_catalog'
         && collection != 'youtube_catalog_snapshots'
@@ -2309,6 +2399,11 @@ service cloud.firestore {
         && collection != 'arena_room_runs'
         && collection != 'arena_room_members'
         && collection != 'arena_pulse_events'
+        // Mistake explanation content and billing remain callable/Admin-SDK only.
+        // Overlapping Firestore matches are OR-combined, so the legacy browser-admin
+        // catch-all must explicitly exclude both roots.
+        && collection != 'mistake_explanations'
+        && collection != 'mistake_explain_billing'
         && collection != 'quiz_explanations'
         && collection != 'quiz_explain_billing';
     }

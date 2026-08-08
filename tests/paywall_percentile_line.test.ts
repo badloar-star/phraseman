@@ -8,7 +8,6 @@ function makePercentiles(over: Partial<AllPercentiles> = {}): AllPercentiles {
     weekXp: null,
     daily7xp: null,
     daily7timeMs: null,
-    arenaXp: null,
     totalUsers: 1000,
     ...over,
   };

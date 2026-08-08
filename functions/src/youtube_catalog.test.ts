@@ -45,6 +45,7 @@ describe('youtube catalog runtime', () => {
       expect(body).toContain('ADMIN_SENSITIVE_WRITE_OPTIONS');
       expect(body).toContain('requireAdminAppCheck(request);');
     }
+    expect(source).toContain("export const adminGetYoutubeCatalogWorkspace = onCall(\n  { ...ADMIN_SENSITIVE_WRITE_OPTIONS, invoker: 'public' },");
     expect(indexSource).toContain('adminGetYoutubeCatalogWorkspace');
     expect(indexSource).toContain("from './youtube_catalog'");
     expect(packageJson.scripts['deploy:youtube-catalog']).toContain('functions:youtubeCatalogSyncCron');

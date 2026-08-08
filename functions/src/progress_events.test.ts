@@ -1,10 +1,16 @@
 import {
   applyProgressEvent,
   buildMigrationPatch,
+  canonicalProgressEventSemantics,
+  candidateHasSameProgressSemantics,
+  fingerprintProgressEvent,
+  fingerprintProgressEventV2,
+  examSpinCompletionForEvent,
   getWeekKey,
   getWeekStartIso,
   isServerOwnedProgressKey,
   normalizeProgressEvent,
+  readLegacyLevelUpBonusClaim,
   resolveClientDateKey,
   shouldQualifyReferralFromProgressEvent,
 } from './progress_events';
@@ -13,6 +19,94 @@ import { join } from 'path';
 
 describe('progress_events engine', () => {
   const now = new Date('2026-06-13T12:00:00.000Z');
+
+  it('authorizes one exam spin only for a valid first V2 pass', () => {
+    const event = {
+      eventId: 'exam:A1:attempt-1',
+      type: 'exam_complete' as const,
+      payload: { level: 'A1', studyTarget: 'en', blueprintVersion: 2, score: 21, total: 30 },
+    };
+    expect(examSpinCompletionForEvent(event, {})).toEqual({ level: 'A1', firstPass: true });
+    expect(examSpinCompletionForEvent(event, { level_exam_A1_passed: 'true' }))
+      .toEqual({ level: 'A1', firstPass: false });
+    expect(examSpinCompletionForEvent({ ...event, payload: { ...event.payload, score: 20 } }, {}))
+      .toBeUndefined();
+  });
+
+  it('authorizes a spin for the current V3 exam blueprint', () => {
+    const event = {
+      eventId: 'exam:A1:attempt-v3',
+      type: 'exam_complete' as const,
+      payload: { level: 'A1', studyTarget: 'en', blueprintVersion: 3, score: 21, total: 30 },
+    };
+    expect(examSpinCompletionForEvent(event, {})).toEqual({ level: 'A1', firstPass: true });
+  });
+
+  it('normalizes v1 without letting the transport marker bypass semantic dedupe', () => {
+    const legacy = normalizeProgressEvent({
+      eventId: 'lesson:1:answer:legacy',
+      type: 'lesson_answer',
+      payload: { xpDelta: 10 },
+    });
+    const v1 = normalizeProgressEvent({
+      eventId: 'lesson:1:answer:v1',
+      type: 'lesson_answer',
+      levelSpinProtocol: 'v1',
+      payload: { xpDelta: 10 },
+    });
+    expect(legacy.levelSpinProtocol).toBeUndefined();
+    expect(v1.levelSpinProtocol).toBe('v1');
+    expect(fingerprintProgressEvent(legacy)).toBe(fingerprintProgressEvent(v1));
+    expect(canonicalProgressEventSemantics(legacy)).toBe(canonicalProgressEventSemantics(v1));
+  });
+
+  it('rejects a deliberate FNV collision when canonical event semantics differ', () => {
+    const first = normalizeProgressEvent({
+      eventId: 'lesson:collision-a', type: 'lesson_answer', clientLocalDate: '2026-06-13', payload: { nonce: 99_999 },
+    });
+    const second = normalizeProgressEvent({
+      eventId: 'lesson:collision-b', type: 'lesson_answer', clientLocalDate: '2026-06-13', payload: { nonce: 160_606 },
+    });
+    expect(fingerprintProgressEvent(first)).toBe(fingerprintProgressEvent(second));
+    expect(fingerprintProgressEventV2(first)).not.toBe(fingerprintProgressEventV2(second));
+    expect(canonicalProgressEventSemantics(first)).not.toBe(canonicalProgressEventSemantics(second));
+    expect(candidateHasSameProgressSemantics(first, {
+      type: second.type,
+      clientLocalDate: second.clientLocalDate,
+      payload: second.payload,
+    })).toBe(false);
+    expect(candidateHasSameProgressSemantics(first, {
+      type: first.type,
+      clientLocalDate: first.clientLocalDate,
+      payload: first.payload,
+    })).toBe(true);
+  });
+
+  it('grandfathers only a valid canonical legacy +100 ledger', () => {
+    expect(readLegacyLevelUpBonusClaim({
+      eventId: 'level_up:5:bonus',
+      type: 'level_up_bonus',
+      payload: { level: 5, xpDelta: 100 },
+      result: { xpDelta: 100 },
+    }, 5)).toBe('claimed');
+    expect(readLegacyLevelUpBonusClaim(undefined, 5)).toBe('unclaimed');
+    expect(readLegacyLevelUpBonusClaim({
+      eventId: 'level_up:5:bonus',
+      type: 'level_up_bonus',
+      payload: { level: 5, xpDelta: 1000 },
+      result: { xpDelta: 100 },
+    }, 5)).toBe('corrupt');
+  });
+
+  it('compares bounded FNV candidates canonically and reads the legacy bonus ledger before writes', () => {
+    const source = readFileSync(join(__dirname, 'progress_events.ts'), 'utf8');
+    expect(source).toContain(".where('fingerprint', '==', eventFingerprint)\n    .limit(16)");
+    expect(source).toContain('candidateHasSameProgressSemantics(event, candidate.data())');
+    expect(source).toContain('legacyLevelUpBonusRef ? tx.get(legacyLevelUpBonusRef)');
+    expect(source).toContain("legacyBonusClaimState === 'corrupt'");
+    expect(source).toContain('fingerprintCanonicalVersion: 1');
+    expect(source).toContain('fingerprintCanonical: canonicalProgressEventSemantics(event)');
+  });
 
   it('applies XP, weekly counters, level and first-day streak on the server', () => {
     const event = normalizeProgressEvent({
@@ -220,6 +314,33 @@ describe('progress_events engine', () => {
     });
 
     expect(applyProgressEvent({}, event, now).xpDelta).toBe(100);
+  });
+
+  it('accepts level_up_bonus only as the canonical +100 XP for an authoritative reached level', () => {
+    const valid = normalizeProgressEvent({
+      eventId: 'level_up:5:bonus',
+      type: 'level_up_bonus',
+      clientLocalDate: '2026-06-13',
+      payload: { level: 5, xpDelta: 100 },
+    });
+    const inflated = normalizeProgressEvent({
+      eventId: 'level_up:5:bonus-inflated',
+      type: 'level_up_bonus',
+      clientLocalDate: '2026-06-13',
+      payload: { level: 5, xpDelta: 1000 },
+    });
+    const unreached = normalizeProgressEvent({
+      eventId: 'level_up:6:bonus-early',
+      type: 'level_up_bonus',
+      clientLocalDate: '2026-06-13',
+      payload: { level: 6, xpDelta: 100 },
+    });
+
+    expect(applyProgressEvent({ user_total_xp: '6000' }, valid, now).xpDelta).toBe(100);
+    expect(() => applyProgressEvent({ user_total_xp: '6000' }, inflated, now))
+      .toThrow('level_up_bonus_amount_invalid');
+    expect(() => applyProgressEvent({ user_total_xp: '6000' }, unreached, now))
+      .toThrow('level_up_bonus_level_not_reached');
   });
 
   it('preserves high-tier wager rewards', () => {

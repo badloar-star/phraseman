@@ -53,8 +53,8 @@
       "fingerprint": "00b04bfa3e1c3ab3626a7186c07c62b0060aaf26102b8dcdd807635ddb29dec9",
       "count": 2,
       "lineHints": [
-        2017,
-        2259
+        2034,
+        2276
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -112,7 +112,7 @@
       "fingerprint": "0126404ba860c4f6967c11ddb12f7e6d1c67ff95ba4dd96627fa5b7919b77fdd",
       "count": 1,
       "lineHints": [
-        170
+        395
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -167,7 +167,7 @@
       "fingerprint": "02d88a293a0d66cefe79e1d98849b704063ac0196d9b88ce16f69f02df1baeeb",
       "count": 1,
       "lineHints": [
-        1111
+        1088
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -197,7 +197,7 @@
       "fingerprint": "030b45b2e6d5430739d09f8e57bfa7c84c9618a1d80dddb57f31823a65742220",
       "count": 1,
       "lineHints": [
-        1605
+        1609
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -253,7 +253,7 @@
       "fingerprint": "06e7f8f72f0d184712c69d07bea6e43d81f43942d7a3818ab055645724288e0c",
       "count": 1,
       "lineHints": [
-        3186
+        3220
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -342,7 +342,7 @@
       "fingerprint": "086e0bffd55cbda98a9c13e46db801b42529ba506643feff0c2a907502c6eea7",
       "count": 1,
       "lineHints": [
-        461
+        457
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -376,7 +376,7 @@
       "fingerprint": "08952a87127fe0a72c2a72d530902f0350fd84d7909dadbcde8dfdaef839d185",
       "count": 1,
       "lineHints": [
-        707
+        729
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -504,8 +504,8 @@
       "fingerprint": "09849a6450f5f32265802f9c10c2268f94c853e6cd42b7c75ac4485b9681a57c",
       "count": 2,
       "lineHints": [
-        1516,
-        1522
+        1505,
+        1511
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -565,8 +565,8 @@
       "fingerprint": "0b728fc8975efcb0f4462103a0a34aaada78f1020770d5e913d46d46ba35d9af",
       "count": 2,
       "lineHints": [
-        736,
-        740
+        737,
+        741
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -597,8 +597,8 @@
       "fingerprint": "0c998d830a1f215c747b656ac896181770def78ebc4ca33621703fd5081835be",
       "count": 2,
       "lineHints": [
-        548,
-        550
+        547,
+        549
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -660,7 +660,7 @@
       "fingerprint": "0e1533cb8529eb13ec3b54e5c3319481758e74160b2e7a7d4e1b3a0895a48fff",
       "count": 1,
       "lineHints": [
-        1741
+        1708
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -816,7 +816,7 @@
       "fingerprint": "1417a8c92a8e1f24c0e5055ce2833e564217453aceb73fdcfbe710215136964b",
       "count": 1,
       "lineHints": [
-        703
+        725
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -934,8 +934,8 @@
       "fingerprint": "193529c8c1e67a808755613037a9afbcd44f87faae9ea4e7748dbaa7b4a98ca3",
       "count": 2,
       "lineHints": [
-        417,
-        420
+        442,
+        445
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -967,7 +967,7 @@
       "fingerprint": "1a35b07d763b1c1e3405644b4a2517ff03a9d58d163a2b63661c453ee8d5d27d",
       "count": 1,
       "lineHints": [
-        2227
+        2244
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1024,8 +1024,8 @@
       "fingerprint": "1b63282fdc296a3e589af7ad40266d6e09644ef43f5de809bf8701e9fb982fa6",
       "count": 2,
       "lineHints": [
-        833,
-        839
+        795,
+        801
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1054,7 +1054,7 @@
       "fingerprint": "1c7e3dc5d11fb28ef3d2497190d78665bed2ae7be36b77e9606e551f32b40a7f",
       "count": 1,
       "lineHints": [
-        1089
+        1114
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1083,36 +1083,6 @@
       "count": 1,
       "lineHints": [
         220
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/_admin_tasks_lab.tsx",
-      "ownerName": "AdminTasksLab",
-      "ownerPath": "AdminTasksLab",
-      "ancestorPath": [
-        "View",
-        "ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "1dadf1a6d58c6d724490384292ad4482ab15e9d9401844b39e10f66ba8e38063",
-      "count": 1,
-      "lineHints": [
-        288
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1230,7 +1200,7 @@
       "fingerprint": "216ef362d45d51c198797bdc72cfc8c761f0069a7954f18475f5d3129c98a7bb",
       "count": 1,
       "lineHints": [
-        2767
+        2784
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1464,7 +1434,7 @@
       "fingerprint": "2565b9ea70c6f45621d94670625c81828dc306934a3d995983ab63ac755aebff",
       "count": 1,
       "lineHints": [
-        3345
+        3356
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1491,7 +1461,7 @@
       "fingerprint": "26306cf928a8d31111bb693d2fb505a9321a43d557f808c95ae22f5a639fe87a",
       "count": 1,
       "lineHints": [
-        79
+        91
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1520,7 +1490,7 @@
       "fingerprint": "277ae0e2db43711c589057ce7a012de22887aaf754517dd1be1324537ab3a894",
       "count": 1,
       "lineHints": [
-        731
+        622
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1583,9 +1553,9 @@
       "fingerprint": "28da584573ea28455bb8b3477829a1cc4e8d5ab6777894e043c95a5287873e00",
       "count": 3,
       "lineHints": [
-        4025,
-        4065,
-        4075
+        3997,
+        4037,
+        4047
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1614,7 +1584,7 @@
       "fingerprint": "2932e29e7918728daca8509c3d051557e48f7bf35aed8e067cdcf3b5ab2b308a",
       "count": 1,
       "lineHints": [
-        3532
+        3483
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1671,7 +1641,7 @@
       "fingerprint": "2b065b62b7e592c7441eda6686ea9d6609984649d1fb038af01de321192b3467",
       "count": 1,
       "lineHints": [
-        298
+        299
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1700,7 +1670,7 @@
       "fingerprint": "2b5c6f9ccb4248cdc5a075f88f35dabbce57ca3bbc9aa0143ce2493bb6d94630",
       "count": 1,
       "lineHints": [
-        286
+        298
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1729,7 +1699,7 @@
       "fingerprint": "2c9f5694ce14229bbd7325ddec499e10da3970d670bdc01e842f93e74289a54a",
       "count": 1,
       "lineHints": [
-        2456
+        2461
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1819,7 +1789,7 @@
       "fingerprint": "2ef4c0266e23d647e5b595b2c2a1faced82634318bc952a7b7d901ab0ac89642",
       "count": 1,
       "lineHints": [
-        1472
+        1724
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1850,35 +1820,6 @@
       "count": 1,
       "lineHints": [
         833
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/admin_panel/sections/ConsentsSection.tsx",
-      "ownerName": "ConsentsSection",
-      "ownerPath": "ConsentsSection",
-      "ancestorPath": [
-        "AccordionSection",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "30b6d392abeaea16ec971825221d7ea2f67eb2b1cb701d7f74365cea06d67fe7",
-      "count": 1,
-      "lineHints": [
-        194
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1936,7 +1877,7 @@
       "fingerprint": "3144ce3b20b621f6bf0a4ba9f99855270f289337c8742ce3addaa14bb69a071f",
       "count": 1,
       "lineHints": [
-        233
+        303
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1969,7 +1910,7 @@
       "fingerprint": "3464fc45f2affca9355afb5be0d715dd0b7c7c1e4319dbd64d11c4af4ce38dd8",
       "count": 1,
       "lineHints": [
-        2274
+        2288
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2027,7 +1968,7 @@
       "fingerprint": "3628a94f668a5f89468778ff223759a2f1062e5de7b6d337aa5c24d77d47d5a7",
       "count": 1,
       "lineHints": [
-        857
+        904
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2056,7 +1997,7 @@
       "fingerprint": "36999e5cbfd7312688c3a1f9e737ff522cdb41aa2186ae399bb508fd53c26633",
       "count": 1,
       "lineHints": [
-        610
+        604
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2120,7 +2061,7 @@
       "fingerprint": "3754194ff3311d8fad264e0456b78697c4cc0f65e93b84b395597f94dc07b1a4",
       "count": 1,
       "lineHints": [
-        3552
+        3587
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2149,7 +2090,7 @@
       "fingerprint": "3d16528d2101e8438f9bdf3742fa2302bd8547425cfe4c2964b7b68f7c5f55b7",
       "count": 1,
       "lineHints": [
-        788
+        900
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -2177,7 +2118,7 @@
       "fingerprint": "3e6f884ab488d6cdfa28fffd5e3bb0e088eb79ad97ef06d71a0ce756e270ad50",
       "count": 1,
       "lineHints": [
-        769
+        885
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -2208,7 +2149,7 @@
       "fingerprint": "382bb84b82612cc49f90462b90d2870398c783acdbc457d1036b5ce59d547cea",
       "count": 1,
       "lineHints": [
-        1671
+        1678
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2330,7 +2271,7 @@
       "fingerprint": "3c8cd995da3cc6bcee0da46e8539e93b18548253bc1d18db79908087d7a20b6f",
       "count": 1,
       "lineHints": [
-        3539
+        3574
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2361,7 +2302,7 @@
       "fingerprint": "3ef8c8915b5b93e24683e9dd8f548fff66164a334532e639502e83bb95315fd9",
       "count": 1,
       "lineHints": [
-        1496
+        1503
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2419,7 +2360,7 @@
       "fingerprint": "44075a71e9cb7be19cab31a2c4ca12bd1e8f85f3f6f65449da45668e924781ca",
       "count": 1,
       "lineHints": [
-        728
+        619
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2454,8 +2395,8 @@
       "fingerprint": "4601beb3ca45cc889727a503011fc42ae9d8bbb5c4e30087969bfde12caed554",
       "count": 2,
       "lineHints": [
-        3552,
-        3555
+        3587,
+        3590
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2488,7 +2429,7 @@
       "fingerprint": "46ffabb5fa7dd1b469b07b3691b20f2238ae8e39c1e5754bf4d65fbd59c8e78c",
       "count": 1,
       "lineHints": [
-        1177
+        1205
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2549,7 +2490,7 @@
       "fingerprint": "47c5936b83d17f12e0820de686bc51c8c7fa8d112ff3605f3edda91bf96fc588",
       "count": 1,
       "lineHints": [
-        133
+        149
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2578,8 +2519,8 @@
       "fingerprint": "48968e7e9dc00df77e6fc954b8cd783abf7ccf4b5513942f8bd3bf9c498a9a91",
       "count": 2,
       "lineHints": [
-        2412,
-        2453
+        2417,
+        2458
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2611,7 +2552,7 @@
       "fingerprint": "493afd31675964637da78506504be546013941459b8c1f1eace84978c47a0917",
       "count": 1,
       "lineHints": [
-        1797
+        1764
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2673,7 +2614,7 @@
       "fingerprint": "4b30856dab2a6ae91e21e8da558ada9aa9075b7e5453e58590726146b7b4a404",
       "count": 1,
       "lineHints": [
-        643
+        726
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2765,7 +2706,7 @@
       "fingerprint": "4d13963d472af4a08afbd5027ed4e51d8577556e294c7350c265cefdcc3a7d46",
       "count": 1,
       "lineHints": [
-        281
+        350
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2794,7 +2735,7 @@
       "fingerprint": "4d78d7ad3e538abab17a7818d327eade6b44f73e41de6b7ff1fd9b4f3314f39c",
       "count": 1,
       "lineHints": [
-        107
+        104
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2824,7 +2765,7 @@
       "fingerprint": "4f271fa7f78e9dc1bec9235d7d571c0b855776272f12f2285670a4bc5cda8809",
       "count": 1,
       "lineHints": [
-        892
+        894
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2853,7 +2794,7 @@
       "fingerprint": "509d65efe2c0edfa90cd02ca4ad8ecd62cb676a2dda0b54cd55176a366ea85e6",
       "count": 1,
       "lineHints": [
-        3452
+        3403
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2965,7 +2906,7 @@
       "fingerprint": "55ee3c6be943936e154c93eaf5850f9d22a2a1c70eb6f31124083b73814079c4",
       "count": 1,
       "lineHints": [
-        251
+        246
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2996,7 +2937,7 @@
       "fingerprint": "576b4b80295cdbf825559a7bd412b380aa71fa97675b75ccaf932f474b852a05",
       "count": 1,
       "lineHints": [
-        386
+        364
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3026,7 +2967,7 @@
       "fingerprint": "5b521f62f3352014038d0f56fe07a8cca9de1469cc3033bfaa26cf50f00674db",
       "count": 1,
       "lineHints": [
-        1660
+        1667
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3053,7 +2994,7 @@
       "fingerprint": "5ba735d7af965f0ee51b52937979b9edf30c78bf4f0806ed93d7dc91c7a9d2ed",
       "count": 1,
       "lineHints": [
-        64
+        81
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3084,7 +3025,7 @@
       "fingerprint": "5c2d1bc4a3a66a465f5501bf18bc99946bed197d457a5135b6fbde0f2b326e8b",
       "count": 1,
       "lineHints": [
-        825
+        795
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3170,7 +3111,7 @@
       "fingerprint": "5eb813c69c615ab1d4470a3b323a2cb112e9d958a7326fdab82588b657137a7b",
       "count": 1,
       "lineHints": [
-        442
+        463
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3274,8 +3215,8 @@
       "fingerprint": "6274c9827c136bb388508d2f99b54f6f7a332430652ebb98160caf7e5bb2084d",
       "count": 2,
       "lineHints": [
-        2917,
-        2921
+        2958,
+        2962
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3332,7 +3273,7 @@
       "fingerprint": "64c0fac2e17a084f6ce629e0872e57a3a29224a346847ce9eda420a63d34d66f",
       "count": 1,
       "lineHints": [
-        1200
+        1223
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3362,10 +3303,10 @@
       "fingerprint": "654e2eaa43059b861a94e95ad72f4f458c1417fdfa252e216ce8a2d230577de4",
       "count": 4,
       "lineHints": [
-        1113,
-        1119,
-        1125,
-        1637
+        1117,
+        1123,
+        1129,
+        1641
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3396,7 +3337,7 @@
       "fingerprint": "65d982040ea9349692fade35ee9273ce5342995ba10163086ca6bfccd44572b3",
       "count": 1,
       "lineHints": [
-        1266
+        1263
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3426,7 +3367,7 @@
       "fingerprint": "6641ed9079d049c18011c148df9cacdab75f8c470065e5741dfcea5b4656cd7d",
       "count": 1,
       "lineHints": [
-        909
+        879
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3454,9 +3395,9 @@
       "fingerprint": "66be378825ebbb1d81bebf607233f632a11897c333c918f4e55dec74ed14f888",
       "count": 3,
       "lineHints": [
-        2442,
-        2466,
-        2509
+        2447,
+        2471,
+        2514
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3486,7 +3427,7 @@
       "fingerprint": "697a3d8fee2a8c1ac3dedb5d2b214bb07eae62f2f12312682d44276833c26a3d",
       "count": 1,
       "lineHints": [
-        3702
+        3717
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3546,7 +3487,7 @@
       "fingerprint": "6ac378f3f9035b74ea0e892b597eed608d75e55ed2eb1699e960a7fecd70d918",
       "count": 1,
       "lineHints": [
-        617
+        648
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3603,7 +3544,7 @@
       "fingerprint": "6b84119c40060a9a6a53301118205149e0b7d51344f60cb5d94d3766a47d1027",
       "count": 1,
       "lineHints": [
-        682
+        573
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3634,7 +3575,7 @@
       "fingerprint": "6bf10e0d7106c8c26fa9ff112d3c6692d1be611e85cc2dff3b1432d42439ae79",
       "count": 1,
       "lineHints": [
-        1155
+        1159
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3707,35 +3648,6 @@
       }
     },
     {
-      "file": "components/admin_panel/sections/GiftsCatalogSection.tsx",
-      "ownerName": "LevelGiftRow",
-      "ownerPath": "LevelGiftRow",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "6d1eb3757ccdaa99bee2551d7c9da06a12b3370dbb89e7891618f6d10d783288",
-      "count": 1,
-      "lineHints": [
-        87
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/diagnostic_test.tsx",
       "ownerName": "DiagnosticTest",
       "ownerPath": "DiagnosticTest",
@@ -3755,7 +3667,7 @@
       "fingerprint": "6d7f0bb70424c2a532163d7dce416e79a6b2dd85383db4c2d2c953564b06a9e8",
       "count": 1,
       "lineHints": [
-        1593
+        1600
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3786,35 +3698,6 @@
       "count": 1,
       "lineHints": [
         874
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/DailyPhraseCard.tsx",
-      "ownerName": "DailyPhraseCard",
-      "ownerPath": "DailyPhraseCard",
-      "ancestorPath": [
-        "Pressable",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "70ef98eafd01e8c49622ef383fec64f8300ebb92b7b29de931ba2a1649ce3313",
-      "count": 1,
-      "lineHints": [
-        558
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3960,7 +3843,7 @@
       "fingerprint": "76f67d819c0e0a99b4aef7538849cc8d0d7fb2bf468770274405b296dab35a2c",
       "count": 1,
       "lineHints": [
-        3928
+        3900
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3991,35 +3874,7 @@
       "fingerprint": "7833fa12f28a86fc1892bed709510df52773ab129e92d8488c9aac2141f32fe2",
       "count": 1,
       "lineHints": [
-        1246
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/_admin_settings_testers.tsx",
-      "ownerName": "renderCustomAvatarPreview",
-      "ownerPath": "AdminCosmeticsPreview>renderCustomAvatarPreview",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "7884f0349274d43dae1ecad95245969b41a3e35c2a009a3fcc40a2e2626764b6",
-      "count": 2,
-      "lineHints": [
-        517,
-        520
+        1271
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4049,7 +3904,7 @@
       "fingerprint": "798f893279ed287f463a493ee729ffd1dae44f5a060c746a513b12e37284c8c3",
       "count": 1,
       "lineHints": [
-        611
+        620
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4081,7 +3936,7 @@
       "fingerprint": "79b7ee8c366a44317e88263d84566a741fde53782f96831ecc53951fce8b09b9",
       "count": 1,
       "lineHints": [
-        1829
+        1796
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4110,38 +3965,8 @@
       "fingerprint": "7af15834fab032189a69b8d2d41a4ebfda1e83ef0c41685e3fddfef9d6ef044f",
       "count": 2,
       "lineHints": [
-        638,
-        644
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/league/LeagueArenaScene.tsx",
-      "ownerName": "LeagueArenaSceneComponent",
-      "ownerPath": "LeagueArenaSceneComponent",
-      "ancestorPath": [
-        "Reanimated.View",
-        "View",
-        "Reanimated.View",
-        "Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "7b6cab93d56de1d73c3d8516d57ae20b9d455ccf518e482246b569932fb74d41",
-      "count": 1,
-      "lineHints": [
-        231
+        529,
+        535
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4176,7 +4001,7 @@
       "fingerprint": "7bf56a382c7665f0c65237068990c46d484890453c2e28222b69c23b836612bd",
       "count": 1,
       "lineHints": [
-        1738
+        1705
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4272,7 +4097,7 @@
       "fingerprint": "7ddc326b84b6e810e2c179c605056ac921ae79c1a098817f05b2a353a077959d",
       "count": 1,
       "lineHints": [
-        3555
+        3590
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4413,7 +4238,7 @@
       "fingerprint": "810d2ad00aafcb42731ffc0950f20ba42c4ba5bb189cc619924f76d969f1bc63",
       "count": 1,
       "lineHints": [
-        1034
+        1011
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4442,7 +4267,7 @@
       "fingerprint": "82195d2bed649eb8f53c8d63a7817b3e25124142c2639311b07742c912547d5d",
       "count": 1,
       "lineHints": [
-        1704
+        1708
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4500,7 +4325,7 @@
       "fingerprint": "837ed56a6bf7b6e5514f81441464c175e61f15399f9651b605e4c5c694661ec3",
       "count": 1,
       "lineHints": [
-        126
+        142
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4563,8 +4388,8 @@
       "fingerprint": "85d63e0d9941f75f817b25a7ebc5995f1b486d86028591a51f42c44081f1c46d",
       "count": 2,
       "lineHints": [
-        926,
-        938
+        817,
+        829
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4620,7 +4445,7 @@
       "fingerprint": "88e142b4a26343a628e6674a07fa3881b5d67a8e87f2beaab0b5166c3c3dd897",
       "count": 1,
       "lineHints": [
-        1686
+        1653
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4680,7 +4505,7 @@
       "fingerprint": "891acc92baf0de29892ccde2154700d91332230771dda14c29a412178c81c76d",
       "count": 1,
       "lineHints": [
-        377
+        362
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4739,9 +4564,9 @@
       "fingerprint": "8c94e1e2d4aad6a346c5bf819e9d3b880a243cfb9ea9926e69ea912d8e8d05f8",
       "count": 3,
       "lineHints": [
-        1089,
-        1697,
-        1736
+        1114,
+        1723,
+        1762
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4772,7 +4597,7 @@
       "fingerprint": "8cb7a42facf084d6face900e02ed9e690ab814c3be56b933f51c89661ec2accd",
       "count": 1,
       "lineHints": [
-        369
+        368
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4806,8 +4631,8 @@
       "fingerprint": "8d090a97e1ac1673f03195cc774ab9f3726231c34e07682315ea291c5bf46e34",
       "count": 2,
       "lineHints": [
-        1820,
-        1875
+        1797,
+        1852
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4930,7 +4755,7 @@
       "fingerprint": "929028cb588fd1769134d676bcb8907b4e1caade851ad92dc30cbca01ca5b99d",
       "count": 1,
       "lineHints": [
-        784
+        675
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4963,7 +4788,7 @@
       "fingerprint": "942c443a069ad92490bc3192fc62e5adfa1f580dddf8c88f97ebcff6f6252771",
       "count": 1,
       "lineHints": [
-        804
+        841
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5078,7 +4903,7 @@
       "fingerprint": "98323a7569aa962e6c7352b065e36f665d09b789b06ad17769573bb1bcaf3cea",
       "count": 1,
       "lineHints": [
-        1729
+        1689
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5135,7 +4960,7 @@
       "fingerprint": "99a9f4db1d8c10392fd9d6b6ac25286b0757d568e4017fce1e7c42fed2000cc5",
       "count": 1,
       "lineHints": [
-        3300
+        3311
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5166,8 +4991,8 @@
       "fingerprint": "99fa231b40db9105659c01361b9d7d0f0eb50c29777bd811d3f846b91da07654",
       "count": 2,
       "lineHints": [
-        853,
-        892
+        900,
+        939
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5196,7 +5021,7 @@
       "fingerprint": "9a7e3c7f3e6121111c37e8fd13d8fd44135cb4218e8c73422ecb8e91abcd1cdf",
       "count": 1,
       "lineHints": [
-        885
+        887
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5226,7 +5051,7 @@
       "fingerprint": "9b9341f453f0e32928dd872a6d192a5b9f45af6536e46825f7454b96c51aef63",
       "count": 1,
       "lineHints": [
-        1653
+        1631
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5282,7 +5107,7 @@
       "fingerprint": "9ef175cc840d18609bb64cde96ebeeb2bc4d2b30372956fec2d04be1c803a3b1",
       "count": 1,
       "lineHints": [
-        384
+        385
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5312,8 +5137,8 @@
       "fingerprint": "a0ddadc33915263301bf862712e9d1c8bc41bec030d3686c6dd74eeb04f7f93d",
       "count": 2,
       "lineHints": [
-        1327,
-        1641
+        1294,
+        1608
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5347,8 +5172,8 @@
       "fingerprint": "a174e77fdb41aea9214309f5fb949bf9b714016a3df235e3ff68221a404f384b",
       "count": 2,
       "lineHints": [
-        1950,
-        2015
+        1954,
+        2019
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5405,7 +5230,7 @@
       "fingerprint": "a2c0b01780b65c28e6fdd5f348d97552c757e0bcb1af4526c381df334a14dd2e",
       "count": 1,
       "lineHints": [
-        1358
+        1384
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5435,7 +5260,7 @@
       "fingerprint": "a34e470944637eb666b80bf11e0e9af72fad7c5b63f35d98d924c8aa27d3f39f",
       "count": 1,
       "lineHints": [
-        1903
+        2155
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5495,7 +5320,7 @@
       "fingerprint": "a62f69a7c604fdbfff4dc07bba755320b23551985014b16c2cefc3901af18bd6",
       "count": 1,
       "lineHints": [
-        1457
+        1708
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5527,7 +5352,7 @@
       "fingerprint": "a8f024150dfee801bfa107998993066fd09b694cd9b493c40441a7736b061a06",
       "count": 1,
       "lineHints": [
-        1708
+        1689
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5616,7 +5441,7 @@
       "fingerprint": "aa2f99ae8febb312d4692782f4b5afcc57e91d1480cc3e45b32643565ae26b35",
       "count": 1,
       "lineHints": [
-        2018
+        2023
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5646,7 +5471,7 @@
       "fingerprint": "aa3611a3a6cc16667b1ac99ff31ef5b7ae6fd0862d85bb2e1c10f8fa278f4e42",
       "count": 1,
       "lineHints": [
-        314
+        292
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5676,7 +5501,7 @@
       "fingerprint": "aadea2107270a910a8dfc10010c92587a5fbb304ab2f540626576815ebb9c472",
       "count": 1,
       "lineHints": [
-        890
+        892
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5735,8 +5560,8 @@
       "fingerprint": "acfa7ee2583afd907712f8b933fe3d7ce521d4363f11cbe24507e21d38f15d01",
       "count": 2,
       "lineHints": [
-        1527,
-        1550
+        1779,
+        1802
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5766,37 +5591,7 @@
       "fingerprint": "ae878c5868481566e5c4b10673ea20f06da8ee813de15c2c32a2c47489ad8018",
       "count": 1,
       "lineHints": [
-        307
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/DailyPhraseCard.tsx",
-      "ownerName": "DailyPhraseCard",
-      "ownerPath": "DailyPhraseCard",
-      "ancestorPath": [
-        "Pressable",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "aef6b81f8d39cba6b25180fc74b4bd0724fc1dd23c4d787f4e45a60c66fed175",
-      "count": 1,
-      "lineHints": [
-        554
+        308
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5891,12 +5686,12 @@
       "fingerprint": "b35e71407853a9cdd16ac81a8f8709ae076bd89d5c5fc6abb97492692b942a9d",
       "count": 6,
       "lineHints": [
-        721,
-        725,
-        731,
-        732,
-        736,
-        739
+        743,
+        747,
+        755,
+        756,
+        760,
+        763
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5923,7 +5718,7 @@
       "fingerprint": "b5062bac551261554847009b3ba62252ed5b8820c54271f4905c44026dc7b1a6",
       "count": 1,
       "lineHints": [
-        1073
+        1050
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6040,7 +5835,7 @@
       "fingerprint": "b91745a0c2b2ecde79cdb54eb7c3e48d432c513d9d6f01d3ced8d91d0e90d2e7",
       "count": 1,
       "lineHints": [
-        1638
+        1616
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6104,7 +5899,7 @@
       "fingerprint": "bb2040475a42b81bbacbc78bb34e190d09210c3310682d529a61388cfc8411a2",
       "count": 1,
       "lineHints": [
-        241
+        230
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6159,7 +5954,7 @@
       "fingerprint": "bbfc709a6aa7a1c884049f20809b3584bda5b8f1ba5960559e70dcfc1cacae32",
       "count": 1,
       "lineHints": [
-        1149
+        1126
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6280,8 +6075,8 @@
       "fingerprint": "bdc800f316fe42e53c9641fe8a0a12884e70311305a78196cba993b5fdfb2895",
       "count": 2,
       "lineHints": [
-        3526,
-        3529
+        3561,
+        3564
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6313,7 +6108,7 @@
       "fingerprint": "be6d60a310c6935b2e5835dda7f7a5f4b1ed10e85dfdbd360fac0cf941c2f3e8",
       "count": 1,
       "lineHints": [
-        1610
+        1590
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6368,7 +6163,7 @@
       "fingerprint": "bfc06b47b0e81d515c932024e7fa27dfe84f33ca3b04d97f44ca61243e4b2a6b",
       "count": 1,
       "lineHints": [
-        1910
+        1915
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6399,7 +6194,7 @@
       "fingerprint": "c1b00bda0c34ef1221b2f67657f41b208cc4760fb8bb3a54e2f03604c6ad460e",
       "count": 1,
       "lineHints": [
-        807
+        809
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6489,7 +6284,7 @@
       "fingerprint": "c2e19e62b11afa546aa5b795d932568edbc86a569d36bb9595df07350a9e45d0",
       "count": 1,
       "lineHints": [
-        285
+        354
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6564,34 +6359,6 @@
       }
     },
     {
-      "file": "components/admin_panel/sections/GiftsCatalogSection.tsx",
-      "ownerName": "GiftsCatalogSection",
-      "ownerPath": "GiftsCatalogSection",
-      "ancestorPath": [
-        "AccordionSection",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "c4e276146f6d3455ece7604d163d2324969ca9b2a3cbf811719258c0f12377c7",
-      "count": 1,
-      "lineHints": [
-        203
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/ai_dialog_session.tsx",
       "ownerName": "AiDialogSession",
       "ownerPath": "AiDialogSession",
@@ -6612,7 +6379,7 @@
       "fingerprint": "c51130af1219cb94df836b5fdb0b241478b3cc5ee3db3c9dd0e6f4d738cf23c4",
       "count": 1,
       "lineHints": [
-        2176
+        2193
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6670,7 +6437,7 @@
       "fingerprint": "c6d47c89e2cf684c0a024652edede749ef254c8aeeccfa4e4e62e4beb93346b5",
       "count": 1,
       "lineHints": [
-        1629
+        1636
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6697,7 +6464,7 @@
       "fingerprint": "c8b7aa6b73906955e84faf162f3e44452a8f287177518ed4358d1623201659cc",
       "count": 1,
       "lineHints": [
-        1231
+        1163
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6818,7 +6585,7 @@
       "fingerprint": "ce270859a69d7059071eb2b6de65a22d9d5ba7765e92a52fc7ae03a72636ac9c",
       "count": 1,
       "lineHints": [
-        1601
+        1603
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6873,7 +6640,7 @@
       "fingerprint": "cf9a7e9a6abea157379ffcfc1368258c6447c5018b0ad8528c729e0163ed32bd",
       "count": 1,
       "lineHints": [
-        828
+        805
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6902,8 +6669,8 @@
       "fingerprint": "d07ceb50047d3007a2ca8ce385076c047086c789f025e90213d0839dc0d1adfd",
       "count": 2,
       "lineHints": [
-        2408,
-        2427
+        2422,
+        2441
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6932,7 +6699,7 @@
       "fingerprint": "d11099ff3a7a6ea67db51e68fadea3f47a63172450fa8b11419839c527768f26",
       "count": 1,
       "lineHints": [
-        283
+        295
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6992,7 +6759,7 @@
       "fingerprint": "d2db29b3db570437949b2f9028778e62938153fe9a3b6f28ad4af6e4df7fe9e1",
       "count": 1,
       "lineHints": [
-        897
+        944
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7019,7 +6786,7 @@
       "fingerprint": "d81d6fda51d9378dd4e95718663c7c7d98fdc755465ef0cfab14bc5f2a3febee",
       "count": 1,
       "lineHints": [
-        164
+        165
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7052,7 +6819,7 @@
       "fingerprint": "d89366c4855e07b5dbccdca9f35ed3824e5fff6a2817fbcc222f473d50213a23",
       "count": 1,
       "lineHints": [
-        1749
+        1729
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7081,7 +6848,7 @@
       "fingerprint": "d9fdc6531d1b78f67e609244c6daae42321c35ee0a13a7fac1ff457d011df921",
       "count": 1,
       "lineHints": [
-        227
+        243
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7111,7 +6878,7 @@
       "fingerprint": "da56ebd8420d11ffa06429cd6685661f7946131b620d19167a11a993fd9ee0f7",
       "count": 1,
       "lineHints": [
-        841
+        840
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7141,7 +6908,7 @@
       "fingerprint": "da755734fcc00fbaeb6db130f5a990c48738bc12afc969cda4dd39c84680ec29",
       "count": 1,
       "lineHints": [
-        640
+        641
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7229,7 +6996,7 @@
       "fingerprint": "df28ee77557cbf0ced878fc98bbfdf6f28fc0109796bb725da94afb2c15c1d5f",
       "count": 1,
       "lineHints": [
-        2505
+        2594
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7261,7 +7028,7 @@
       "fingerprint": "e05e7fbfdec4f3cfb1492cd1813fb863890593a161b8e31b5f1a0bfbdb0302c8",
       "count": 1,
       "lineHints": [
-        363
+        341
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7383,8 +7150,8 @@
       "fingerprint": "e2b3c6202d2bb3bed9868fe46900b1df9d27bfe544aa1927bba3eddc99fed6b8",
       "count": 2,
       "lineHints": [
-        3552,
-        3560
+        3587,
+        3595
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7414,7 +7181,7 @@
       "fingerprint": "e33870c6d2bc552e0fb25b931dab6714bcac96a51af75dea0b106c2e8243b68e",
       "count": 1,
       "lineHints": [
-        1341
+        1324
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7445,7 +7212,7 @@
       "fingerprint": "e33ec814e5d36979b7963aada4b728f642b05e4f7f3123d2c340e6fe869c8762",
       "count": 1,
       "lineHints": [
-        1461
+        1478
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7472,8 +7239,8 @@
       "fingerprint": "e35817bda6b443cf7a7695f6d69784f5d768d3b4082b02f5e3c2d617621fb49c",
       "count": 2,
       "lineHints": [
-        549,
-        597
+        570,
+        628
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7560,7 +7327,7 @@
       "fingerprint": "e559806d62b42a3a9637600ad5960654cbbf2dcd9bba2904bd58f922de63436c",
       "count": 1,
       "lineHints": [
-        253
+        254
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7705,7 +7472,7 @@
       "fingerprint": "efedd4b63aa3a1691e89332fe7461d698fe7f1abe17ba2db166b874b970ed350",
       "count": 1,
       "lineHints": [
-        3345
+        3356
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7739,7 +7506,7 @@
       "fingerprint": "f174019ad7f6d34f210e63fb0055f70b68e4a2b91a183ef9809cc2933d8c411c",
       "count": 1,
       "lineHints": [
-        2306
+        2318
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7797,8 +7564,8 @@
       "fingerprint": "f67f74c20d73b82c58dfcca3ebde5a48a61817e85f074620e9405c560a67b515",
       "count": 2,
       "lineHints": [
-        182,
-        189
+        183,
+        190
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7867,8 +7634,8 @@
       "fingerprint": "f9dcdd3d54dea091cce44cf27a77840350cb6e5aaaf3184427049af3f5ab169f",
       "count": 2,
       "lineHints": [
-        4037,
-        4048
+        4009,
+        4020
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7895,7 +7662,7 @@
       "fingerprint": "fb6f78546918980cec2089f8572d77e9a874727c006a129785b03c60c8f90f09",
       "count": 1,
       "lineHints": [
-        113
+        114
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7954,7 +7721,7 @@
       "fingerprint": "fc1fba1aa8a426cf68627bdec772fcbf839d71fd372c2b33381da00791650205",
       "count": 1,
       "lineHints": [
-        374
+        362
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8040,7 +7807,7 @@
       "fingerprint": "2108dae3582b1087fa444728ceb3df65808b71ab8820514bf4720b26067c7192",
       "count": 1,
       "lineHints": [
-        540
+        778
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8067,7 +7834,7 @@
       "fingerprint": "4c74a7a524657cd144b37461fbbcb1ffc67fd85b9a8727be243a510f7158b637",
       "count": 1,
       "lineHints": [
-        282
+        301
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8097,7 +7864,7 @@
       "fingerprint": "5ef113f49d3127e5269806296f90bedb56db61cdfc7e4c2e87b3fc7c09dd8847",
       "count": 1,
       "lineHints": [
-        1012
+        1343
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8124,7 +7891,7 @@
       "fingerprint": "785703ef23725fc88d8196bb10953d883a90e1e2ea9c2de61967a8f4dc3d7d8d",
       "count": 1,
       "lineHints": [
-        341
+        382
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8150,7 +7917,7 @@
       "fingerprint": "7c43218e4fc4b574113bb6f04791e6e9fe8c6ecc3f077fe99de41286f4bdfa6d",
       "count": 1,
       "lineHints": [
-        120
+        149
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8178,7 +7945,7 @@
       "fingerprint": "93efaed53011b053eef78853c6df2e750cfbfa67205d8de04da959ca743b7375",
       "count": 1,
       "lineHints": [
-        360
+        401
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8206,7 +7973,7 @@
       "fingerprint": "a0dcaff870596168e3474abb938174f6e7c3ec90b915e2864a75c0a77af1ba2c",
       "count": 1,
       "lineHints": [
-        330
+        371
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8237,7 +8004,7 @@
       "fingerprint": "a8797ff6db51c464d64bc8c028bb0c9efa8c7684d4567eaf1b92b4e90498f937",
       "count": 1,
       "lineHints": [
-        825
+        824
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8267,8 +8034,8 @@
       "fingerprint": "aa2da6acbdef77cc6c94b13a20a179a78ca96b05b415d857f0d8f0366b8884bb",
       "count": 2,
       "lineHints": [
-        932,
-        950
+        1251,
+        1269
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8326,7 +8093,7 @@
       "fingerprint": "cc1b522fcc97ae1aa6875f7d4492747f04ab3c682d202ad0cf2c273505139dd7",
       "count": 1,
       "lineHints": [
-        1845
+        1854
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8353,7 +8120,7 @@
       "fingerprint": "d9f5594e9f0307eaffa7f8bf1768a430aea6d432dc6e2a4abf720a5e5e9aa964",
       "count": 1,
       "lineHints": [
-        222
+        224
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8383,7 +8150,7 @@
       "fingerprint": "e522dce87662a4af1f0755c403aefd41769542e1ba3318c6c0d73ec739b4fd30",
       "count": 1,
       "lineHints": [
-        819
+        818
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
@@ -8411,7 +8178,7 @@
       "fingerprint": "f8bc33c285f838716508f2fb63d1b55b199a1635c224dd8b56b61d788df4c5c6",
       "count": 1,
       "lineHints": [
-        1161
+        1500
       ],
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",

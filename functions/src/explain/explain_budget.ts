@@ -52,8 +52,20 @@ function utcDateKey(nowMs: number): string {
  * Per-user daily generation limiter. Atomic check+increment. Throws resource-exhausted when the
  * user has already consumed USER_DAILY_GEN_CAP generations this UTC day.
  */
-export async function enforceUserGenLimit(authUid: string, stableUid: string, nowMs: number = Date.now()): Promise<void> {
+export interface UserGenReservation {
+  authUid: string;
+  stableUid: string;
+  reservedDayKey: string;
+  reservedResetAtMs: number;
+}
+
+export async function enforceUserGenLimit(
+  authUid: string,
+  stableUid: string,
+  nowMs: number = Date.now(),
+): Promise<UserGenReservation> {
   const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId('gen', authUid, stableUid));
+  let reservedResetAtMs = 0;
   await admin.firestore().runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const resetAtMs = Number(data.resetAtMs ?? 0);
@@ -62,14 +74,22 @@ export async function enforceUserGenLimit(authUid: string, stableUid: string, no
     if (used >= USER_DAILY_GEN_CAP) {
       throw new HttpsError('resource-exhausted', 'explain_user_daily_limit');
     }
+    reservedResetAtMs = fresh ? startOfNextUtcDay(nowMs) : resetAtMs;
     tx.set(ref, {
       authUid,
       stableUid,
       dailyCount: used + 1,
-      resetAtMs: fresh ? startOfNextUtcDay(nowMs) : resetAtMs,
+      resetAtMs: reservedResetAtMs,
       updatedAtMs: nowMs,
     }, { merge: true });
   });
+
+  return {
+    authUid,
+    stableUid,
+    reservedDayKey: utcDateKey(nowMs),
+    reservedResetAtMs,
+  };
 }
 
 /**
@@ -106,9 +126,10 @@ export async function enforceFreeJobGenLimit(
   stableUid: string,
   cap: number,
   nowMs: number = Date.now(),
-): Promise<void> {
-  if (cap <= 0) return;
+): Promise<FreeJobGenReservation | null> {
+  if (cap <= 0) return null;
   const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
+  let reservedResetAtMs = 0;
   await admin.firestore().runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const resetAtMs = Number(data.resetAtMs ?? 0);
@@ -117,27 +138,62 @@ export async function enforceFreeJobGenLimit(
     if (used >= cap) {
       throw new HttpsError('resource-exhausted', 'explain_free_daily_limit');
     }
+    reservedResetAtMs = fresh ? startOfNextUtcDay(nowMs) : resetAtMs;
     tx.set(ref, {
       authUid,
       stableUid,
       job,
       dailyCount: used + 1,
-      resetAtMs: fresh ? startOfNextUtcDay(nowMs) : resetAtMs,
+      resetAtMs: reservedResetAtMs,
       updatedAtMs: nowMs,
     }, { merge: true });
   });
+  return {
+    job,
+    authUid,
+    stableUid,
+    reservedDayKey: utcDateKey(nowMs),
+    reservedResetAtMs,
+  };
 }
 
-async function refundFreeJobGenLimit(job: string, authUid: string, stableUid: string, nowMs: number): Promise<void> {
+export interface FreeJobGenReservation {
+  job: string;
+  authUid: string;
+  stableUid: string;
+  reservedDayKey: string;
+  reservedResetAtMs: number;
+}
+
+export async function refundFreeJobGenLimit(reservation: FreeJobGenReservation): Promise<void>;
+export async function refundFreeJobGenLimit(job: string, authUid: string, stableUid: string, nowMs: number): Promise<void>;
+export async function refundFreeJobGenLimit(
+  reservationOrJob: FreeJobGenReservation | string,
+  legacyAuthUid?: string,
+  legacyStableUid?: string,
+  legacyNowMs?: number,
+): Promise<void> {
+  const reservation: FreeJobGenReservation = typeof reservationOrJob === 'string'
+    ? {
+        job: reservationOrJob,
+        authUid: String(legacyAuthUid ?? ''),
+        stableUid: String(legacyStableUid ?? ''),
+        reservedDayKey: utcDateKey(Number(legacyNowMs ?? 0)),
+        reservedResetAtMs: startOfNextUtcDay(Number(legacyNowMs ?? 0)),
+      }
+    : reservationOrJob;
+  const { job, authUid, stableUid, reservedResetAtMs } = reservation;
   const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
   await admin.firestore().runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const resetAtMs = Number(data.resetAtMs ?? 0);
-    const fresh = nowMs >= resetAtMs;
-    const current = fresh ? 0 : Number(data.dailyCount ?? 0);
+    // The reusable doc may already represent the next UTC day. An old reservation
+    // must never decrement a newer day's learner credit.
+    if (resetAtMs !== reservedResetAtMs) return;
+    const current = Number(data.dailyCount ?? 0);
     tx.set(ref, {
       dailyCount: Math.max(0, current - 1),
-      updatedAtMs: nowMs,
+      updatedAtMs: Date.now(),
     }, { merge: true });
   });
 }
@@ -154,21 +210,24 @@ export interface ExplainBudgetReservation {
   globalCap: number;
   nowMs: number;
   userReserved: boolean;
+  userReservation?: UserGenReservation | null;
   globalReserved: boolean;
   freeCap?: ExplainFreeCap | null;
   freeReserved?: boolean;
+  freeReservation?: FreeJobGenReservation | null;
 }
 
-async function refundUserGenLimit(authUid: string, stableUid: string, nowMs: number): Promise<void> {
+async function refundUserGenLimit(reservation: UserGenReservation): Promise<void> {
+  const { authUid, stableUid, reservedResetAtMs } = reservation;
   const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId('gen', authUid, stableUid));
   await admin.firestore().runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const resetAtMs = Number(data.resetAtMs ?? 0);
-    const fresh = nowMs >= resetAtMs;
-    const current = fresh ? 0 : Number(data.dailyCount ?? 0);
+    if (resetAtMs !== reservedResetAtMs) return;
+    const current = Number(data.dailyCount ?? 0);
     tx.set(ref, {
       dailyCount: Math.max(0, current - 1),
-      updatedAtMs: nowMs,
+      updatedAtMs: Date.now(),
     }, { merge: true });
   });
 }
@@ -212,22 +271,22 @@ export async function reserveExplainBudget(
   try {
     // Free-кап джоба ПЕРВЫМ: он самый узкий, и не должен тратить общие счётчики.
     if (freeCap) {
-      await enforceFreeJobGenLimit(freeCap.job, authUid, stableUid, freeCap.cap, nowMs);
+      reservation.freeReservation = await enforceFreeJobGenLimit(freeCap.job, authUid, stableUid, freeCap.cap, nowMs);
       reservation.freeReserved = freeCap.cap > 0;
     }
-    await enforceUserGenLimit(authUid, stableUid, nowMs);
+    reservation.userReservation = await enforceUserGenLimit(authUid, stableUid, nowMs);
     reservation.userReserved = true;
     await enforceGlobalBudget(globalCap, nowMs);
     reservation.globalReserved = globalCap > 0;
     return reservation;
   } catch (err) {
     if (reservation.userReserved && !reservation.globalReserved) {
-      await refundUserGenLimit(authUid, stableUid, nowMs)
+      await refundUserGenLimit(reservation.userReservation!)
         .catch((refundErr) => console.error('explain budget user refund failed', refundErr));
       reservation.userReserved = false;
     }
     if (reservation.freeReserved && !reservation.userReserved) {
-      await refundFreeJobGenLimit(freeCap!.job, authUid, stableUid, nowMs)
+      await refundFreeJobGenLimit(reservation.freeReservation!)
         .catch((refundErr) => console.error('explain budget free refund failed', refundErr));
       reservation.freeReserved = false;
     }
@@ -250,11 +309,22 @@ export async function refundExplainBudgetReservation(
       .catch((err) => failures.push(err));
   }
   if (reservation.userReserved) {
-    await refundUserGenLimit(reservation.authUid, reservation.stableUid, reservation.nowMs)
+    await refundUserGenLimit(reservation.userReservation ?? {
+      authUid: reservation.authUid,
+      stableUid: reservation.stableUid,
+      reservedDayKey: utcDateKey(reservation.nowMs),
+      reservedResetAtMs: startOfNextUtcDay(reservation.nowMs),
+    })
       .catch((err) => failures.push(err));
   }
   if (reservation.freeReserved && reservation.freeCap) {
-    await refundFreeJobGenLimit(reservation.freeCap.job, reservation.authUid, reservation.stableUid, reservation.nowMs)
+    await refundFreeJobGenLimit(reservation.freeReservation ?? {
+      job: reservation.freeCap.job,
+      authUid: reservation.authUid,
+      stableUid: reservation.stableUid,
+      reservedDayKey: utcDateKey(reservation.nowMs),
+      reservedResetAtMs: startOfNextUtcDay(reservation.nowMs),
+    })
       .catch((err) => failures.push(err));
   }
   if (failures.length > 0) {

@@ -75,6 +75,46 @@ describe('Jarvis payments department — a single lost payment is already urgent
     expect(result.decisions[0].status).toBe('insufficient_evidence');
   });
 
+  test.each([
+    ['scheduled', 'telegram_premium_dead_letter', 'revenuecat_premium_denials'],
+    ['scheduled', 'revenuecat_premium_denials', 'telegram_premium_dead_letter'],
+    ['owner_request', 'telegram_premium_dead_letter', 'revenuecat_premium_denials'],
+    ['owner_request', 'revenuecat_premium_denials', 'telegram_premium_dead_letter'],
+  ] as const)(
+    '%s run reports insufficient_evidence when %s errors and %s is empty',
+    (trigger, failedSource, emptySource) => {
+      const result = runPaymentsDepartment({
+        fetches: [
+          fetchResult({ sourceId: failedSource, state: 'error' }),
+          fetchResult({ sourceId: emptySource, state: 'empty' }),
+        ],
+        trigger,
+        nowMs: 10_000,
+      });
+
+      expect(result.decisions).toHaveLength(1);
+      expect(result.decisions[0].status).toBe('insufficient_evidence');
+      expect(result.decisions[0]).toMatchObject({ actionability: 'evidence_only', severityHint: 'P1' });
+      expect(result.decisions[0].evidence.find((item) => item.sourceId === failedSource)?.count).toBeNull();
+    },
+  );
+
+  test('a found lost payment remains the finding when the other mandatory source errors', () => {
+    const result = runPaymentsDepartment({
+      fetches: [
+        fetchResult({ rows: [PAID_UNFULFILLED] }),
+        fetchResult({ sourceId: 'revenuecat_premium_denials', state: 'error' }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0].status).toBe('insufficient_evidence');
+    expect(result.decisions[0]).toMatchObject({ actionability: 'confirmed_action', severityHint: 'P0' });
+    expect(result.decisions[0].finding).toMatch(/\u0437\u0430\u043f\u043b\u0430\u0442/i);
+  });
+
   test('owner_request always answers even when payments are healthy', () => {
     const result = runPaymentsDepartment({
       fetches: [fetchResult({ state: 'empty' })],
@@ -84,6 +124,18 @@ describe('Jarvis payments department — a single lost payment is already urgent
     });
     expect(result.decisions).toHaveLength(1);
     expect(result.decisions[0].question).toBe('Есть ли проблемы с оплатами?');
+  });
+
+  test('healthy owner response is informational, not a P0 incident', () => {
+    const result = runPaymentsDepartment({
+      fetches: [
+        fetchResult({ state: 'empty' }),
+        fetchResult({ sourceId: 'revenuecat_premium_denials', state: 'empty' }),
+      ],
+      trigger: 'owner_request',
+      nowMs: 10_000,
+    });
+    expect(result.decisions[0]).toMatchObject({ actionability: 'evidence_only', severityHint: 'P3' });
   });
 
   test('the recommendation names a concrete first action, not a vague suggestion', () => {

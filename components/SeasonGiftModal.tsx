@@ -23,10 +23,6 @@ import {
   type ApplySeasonRewardResult,
 } from '../app/season_reward_apply';
 import {
-  seasonRedeemConsumableOnServer,
-  seasonSendFriendShieldOnServer,
-} from '../app/season_pass_server';
-import {
   SEASON_AURA_STAGE_NAMES,
   getSeasonAuraStageAsset,
   getSeasonRewardIcon,
@@ -40,11 +36,7 @@ import { leaguePublicName } from '../app/league_public_name';
 import SeasonAuraRing from './SeasonAuraRing';
 
 const STATUS_KINDS: ReadonlySet<SeasonReward['kind']> = new Set([
-  'frame', 'aura_stage', 'aura_secret', 'nick_color', 'custom_avatar', 'card_pack', 'season_finale',
-]);
-/** Серверные расходники: активация подтверждается callable перед пометкой used. */
-const SERVER_CONSUMABLE_KINDS: ReadonlySet<SeasonReward['kind']> = new Set([
-  'collection_magnet', 'tournament_ticket',
+  'frame', 'aura_stage', 'aura_secret', 'nick_color', 'custom_avatar', 'card_pack', 'season_finale', 'plus_days',
 ]);
 
 export type Tri = Record<Lang, string>;
@@ -302,12 +294,6 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
       })();
       return () => { cancelled = true; };
     }
-    if (reward.kind === 'plus_days') {
-      // Дни Plus выдаёт сервер при клейме уровня (season_pass.ts) — модалка
-      // празднует; vip_activated долетит событием, доступ включится сам.
-      setPhase('done');
-      return;
-    }
     setPhase(reward.kind === 'choice_3' ? 'choice' : 'offer');
     return () => { cancelled = true; };
   }, [visible, reward, giftId]);
@@ -332,24 +318,8 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     const target = chosen ?? reward;
     if (!target || !giftId || phase === 'applying') return;
     hapticTap();
-    if (target.kind === 'friend_shield') { setPhase('friendPick'); return; }
     setPhase('applying');
     try {
-      if (SERVER_CONSUMABLE_KINDS.has(target.kind)) {
-        const res = await seasonRedeemConsumableOnServer({ giftId, kind: target.kind });
-        if (!res?.ok) { setPhase('serverError'); return; }
-        await markSeasonPassGiftUsed(giftId);
-        // зачем 2026-08-04 (владелец: билет турнира — «появится ассет в
-        // разделе турнир в правом углу»): loadWeeklyBankInfo кэширует ответ
-        // на 30 минут (см. tournament_client.ts) — без форс-рефреша игрок не
-        // увидел бы бейдж билета до следующего естественного протухания
-        // кэша. Best-effort фоном: экран турниров подхватит при следующем
-        // визите, модалка не ждёт лишний round-trip перед закрытием.
-        if (target.kind === 'tournament_ticket') {
-          void import('../app/tournament_client').then(({ loadWeeklyBankInfo }) => loadWeeklyBankInfo(true)).catch(() => {});
-        }
-        setPhase('done'); finishApplied(); return;
-      }
       const res: ApplySeasonRewardResult = await applySeasonRewardLocal(target, giftId);
       if (!res.ok && res.failReason === 'no_streak_gap') { setPhase('noGap'); return; }
       if (!res.ok) { setPhase('serverError'); return; }
@@ -366,8 +336,8 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     hapticTap();
     setPhase('applying');
     try {
-      const res = await seasonSendFriendShieldOnServer({ giftId, friendStableId: friend.uid });
-      if (!res?.ok) { setPhase('serverError'); return; }
+      const res = await applySeasonRewardLocal({ kind: 'friend_shield' }, giftId);
+      if (!res.ok) { setPhase('serverError'); return; }
       await markSeasonPassGiftUsed(giftId);
       setSentToName(leaguePublicName(friend.displayName, friend.uid));
       setPhase('done');

@@ -8,7 +8,7 @@ export interface GeneratedSurfaceItem {
   readonly sourceLocale: string;
   readonly studyTarget: string;
   readonly lessonId: number;
-  readonly surface: Extract<FactorySurface, 'quizzes' | 'cards' | 'arena_questions'>;
+  readonly surface: Extract<FactorySurface, 'cards'>;
   readonly difficulty: 'beginner' | 'elementary' | 'intermediate' | 'advanced';
 }
 
@@ -16,7 +16,7 @@ export function validateGeneratedSurfaceItem(item: GeneratedSurfaceItem): void {
   if (!item.id.trim() || !item.packId.trim() || !item.studyTarget.trim() || !item.sourceLocale.trim() || !item.contentHash.trim() || !Number.isInteger(item.revision) || item.revision < 1 || !Number.isInteger(item.lessonId) || item.lessonId < 1) {
     throw new Error('validation_failed');
   }
-  if (!['quizzes', 'cards', 'arena_questions'].includes(item.surface)) throw new Error('surface_not_publishable');
+  if (item.surface !== 'cards') throw new Error('surface_not_publishable');
 }
 
 export function assertSurfaceMatchesPack(item: GeneratedSurfaceItem, activePack: { packId: string; studyTarget: string; revision: number; contentHash: string; sourceLocale: string }): void {

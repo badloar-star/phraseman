@@ -81,6 +81,7 @@ describe('New Jarvis collections are equally closed to direct client access', ()
 
   const JARVIS_COLLECTIONS = [
     'business_tier_history', 'business_tier_peak', 'lesson_stats',
+    'jarvis_growth_daily', 'jarvis_quality_daily',
     // Журнал подтверждений: admin читает, пишет только сервер.
     'jarvis_approval_audit',
     // Выключатель Джарвиса: то же — admin читает режим, пишет только сервер.

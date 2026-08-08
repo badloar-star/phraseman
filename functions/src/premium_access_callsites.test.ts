@@ -6,7 +6,6 @@ describe('canonical premium resolver call sites', () => {
     for (const file of [
       'explain_phrase.ts',
       'explain_choice.ts',
-      'explain_quiz.ts',
       'mistake_explain.ts',
       'stats_insights.ts',
       'weekly_review.ts',

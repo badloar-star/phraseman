@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { hasPermission, type AdminPermission } from '../admin/permissions';
 import { hasAdminRole, type AdminRole } from '../admin/roles';
 import { ENFORCE_APP_CHECK } from '../callable_options';
+import { GROWTH_DAILY_COLLECTION } from '../growth_daily_aggregate';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 import { fetchContentSource } from './content_firestore_fetcher';
 import { buildContentSnapshot } from './content_snapshot';
@@ -26,6 +27,8 @@ import { buildSupportSnapshot } from './support_snapshot';
 import { JARVIS_CONTROL_DOC, parseControl } from './control';
 import { classifySeverity } from './severity';
 import { fetchRecentApprovalAudit } from './approval_audit_reader';
+import { runCohortRetentionDepartment } from './cohort_retention_department';
+import { fetchCohortRetentionMetrics } from './learning_metrics';
 
 /**
  * Одна кнопка «Проверить сейчас», один вызов, все три департамента разом.
@@ -64,6 +67,15 @@ function requireAllDepartmentsAccess(request: CallableRequest): void {
   if (missing) throw new HttpsError('permission-denied', `Role cannot use ${missing}`);
 }
 
+function requireCohortOwnerAccess(request: CallableRequest): void {
+  if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) {
+    throw new HttpsError('permission-denied', 'Owner only');
+  }
+  if (request.auth.token.adminRole !== 'owner') {
+    throw new HttpsError('permission-denied', 'Owner only');
+  }
+}
+
 function parseQuestion(data: unknown): string | undefined {
   if (!data || typeof data !== 'object') return undefined;
   const question = (data as Record<string, unknown>).question;
@@ -93,9 +105,9 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),
     runQuality: (appTier) => buildQualitySnapshot({
       fetchers: {
-        error_reports: () => fetchQualitySource({ sourceId: 'error_reports', collection: db.collection('error_reports'), nowMs }),
-        user_reports: () => fetchQualitySource({ sourceId: 'user_reports', collection: db.collection('user_reports'), nowMs }),
-        app_errors: () => fetchQualitySource({ sourceId: 'app_errors', collection: db.collection('app_errors'), nowMs }),
+        error_reports: () => fetchQualitySource({ db, sourceId: 'error_reports', collection: db.collection('error_reports'), nowMs }),
+        user_reports: () => fetchQualitySource({ db, sourceId: 'user_reports', collection: db.collection('user_reports'), nowMs }),
+        app_errors: () => fetchQualitySource({ db, sourceId: 'app_errors', collection: db.collection('app_errors'), nowMs }),
       },
       trigger: 'owner_request',
       question,
@@ -113,7 +125,12 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
       appTier,
     }),
     runGrowth: () => buildGrowthSnapshot({
-      fetchers: { users: () => fetchGrowthSource({ sourceId: 'users', collection: db.collection('users'), nowMs }) },
+      fetchers: { users: () => fetchGrowthSource({
+        sourceId: 'users',
+        collection: db.collection('users'),
+        dailyCollection: db.collection(GROWTH_DAILY_COLLECTION),
+        nowMs,
+      }) },
       trigger: 'owner_request',
       question,
       nowMs,
@@ -178,6 +195,25 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     // и панель не должна знать департаменты наизусть.
     decisions: snapshot.decisions.map((decision) => ({ ...decision, severity: classifySeverity(decision) })),
     departmentErrors: snapshot.departmentErrors,
+  };
+});
+
+/** Owner-only cohort view. It reads aggregate documents and never member markers. */
+export const jarvisGetCohortRetention = onCall(OPTIONS, async (request: CallableRequest) => {
+  requireCohortOwnerAccess(request);
+  const now = new Date();
+  const metrics = await fetchCohortRetentionMetrics({ db: admin.firestore(), now });
+  const result = runCohortRetentionDepartment({
+    metrics,
+    trigger: 'owner_request',
+    question: parseQuestion(request.data),
+    nowMs: now.getTime(),
+  });
+  return {
+    ok: true,
+    generatedAtMs: now.getTime(),
+    metrics,
+    decisions: result.decisions,
   };
 });
 

@@ -20,10 +20,26 @@ describe('lesson result phrase audio replay', () => {
     expect(start).toBeGreaterThan(-1);
     expect(end).toBeGreaterThan(start);
     expect(replayBlock).toContain("status !== 'result'");
-    expect(replayBlock).toContain('phraseAnswerDisplayLine(phrase, studyTarget, lang)');
+    expect(replayBlock).toContain('const line = resultAudioLine;');
     expect(replayBlock).toContain('stopAudio();');
     expect(replayBlock).toContain('speakAudio(line, settings.speechRate');
     expect(audioSource).toContain('voicePlaybackPolicy.captureStart()');
     expect(audioSource).toContain('voicePlaybackPolicy.canStart(voicePolicyToken)');
+  });
+
+  it('auto-play and manual replay read the accepted visible synonym on a correct result', () => {
+    const autoStart = lessonSource.indexOf("if (!lessonRuntimeActive || status !== 'result' || !phrase || !settings.voiceOut) return;");
+    const replayStart = lessonSource.indexOf('const replayResultPhraseAudio = useCallback');
+    const autoBlock = lessonSource.slice(autoStart, replayStart);
+    const replayEnd = lessonSource.indexOf('// Pulsing animation for to-be hint', replayStart);
+    const replayBlock = lessonSource.slice(replayStart, replayEnd);
+
+    expect(autoStart).toBeGreaterThan(-1);
+    expect(replayStart).toBeGreaterThan(autoStart);
+    expect(lessonSource).toContain('const resultAudioLine = useMemo(() => {');
+    expect(lessonSource).toContain("cleanPhraseForDisplay(selectedWords.join(' '))");
+    expect(lessonSource).toContain('answerDisplayLineWithCanonicalPunctuation(acceptedLine, canonicalLine)');
+    expect(autoBlock).toContain('const line = resultAudioLine;');
+    expect(replayBlock).toContain('const line = resultAudioLine;');
   });
 });

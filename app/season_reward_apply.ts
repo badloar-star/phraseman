@@ -18,8 +18,10 @@ import { reviveStreak } from './streak_revive';
 import { addOwnedPackId } from './flashcards/marketplace';
 import { unlockRandomCustomAvatarGift, type GiftCosmeticUnlock } from './level_gift_system';
 import { addShardsLocalOnlyForPendingServerClaim } from './shards_system';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { getCanonicalUserId } from './user_id_policy';
+import { readVipSnapshotForAccount, writeVipSnapshotForAccount } from './premium_vip_storage';
+import { emitAppEvent } from './events';
 import {
   grantSeasonAuraStage,
   grantSeasonFinale,
@@ -40,6 +42,64 @@ export const SEASON_GOLDEN_LESSON_KEY = 'season_golden_lesson_v1';
 export interface SeasonGoldenLessonState { multiplier: number; remaining: number; grantedAtMs: number }
 
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
+export const SEASON_COLLECTION_MAGNET_KEY = 'season_collection_magnet_v1';
+export const SEASON_TOURNAMENT_TICKET_KEY = 'season_tournament_ticket_v1';
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+async function activateCollectionMagnet(nowMs: number = Date.now()): Promise<void> {
+  const raw = await AsyncStorage.getItem(SEASON_COLLECTION_MAGNET_KEY);
+  let existingExpiry = 0;
+  try {
+    existingExpiry = Math.max(0, Number((JSON.parse(raw ?? '{}') as { expiresAt?: unknown }).expiresAt) || 0);
+  } catch {
+    // A corrupt old value must not prevent a newly earned gift from working.
+  }
+  await AsyncStorage.setItem(SEASON_COLLECTION_MAGNET_KEY, JSON.stringify({
+    multiplier: 2,
+    activatedAt: nowMs,
+    expiresAt: Math.max(nowMs, existingExpiry) + DAY_MS,
+  }));
+}
+
+async function grantTournamentTicket(nowMs: number = Date.now()): Promise<void> {
+  const raw = await AsyncStorage.getItem(SEASON_TOURNAMENT_TICKET_KEY);
+  let usesLeft = 0;
+  let existingExpiry = 0;
+  try {
+    const parsed = JSON.parse(raw ?? '{}') as { usesLeft?: unknown; expiresAt?: unknown };
+    usesLeft = Math.max(0, Math.floor(Number(parsed.usesLeft) || 0));
+    existingExpiry = Math.max(0, Number(parsed.expiresAt) || 0);
+  } catch {
+    // Replace corrupt storage with a valid local ticket.
+  }
+  await AsyncStorage.setItem(SEASON_TOURNAMENT_TICKET_KEY, JSON.stringify({
+    usesLeft: usesLeft + 1,
+    expiresAt: Math.max(nowMs, existingExpiry) + 3 * DAY_MS,
+  }));
+}
+
+async function grantSeasonPlusDays(days: number, nowMs: number = Date.now()): Promise<void> {
+  const token = captureAccountGeneration();
+  const stableId = token.stableId;
+  if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
+    throw new Error('season_plus_identity_not_ready');
+  }
+  const existing = await readVipSnapshotForAccount(stableId);
+  if (!isCurrentAccountGeneration(token, stableId)) throw new Error('season_plus_identity_changed');
+  const previousUntil = Math.max(0, Number(existing?.vip_until) || 0);
+  const untilMs = Math.max(nowMs, previousUntil) + Math.max(1, Math.floor(days)) * DAY_MS;
+  await writeVipSnapshotForAccount(stableId, {
+    vip_active: 'true',
+    vip_plan: 'season_pass',
+    vip_from: String(nowMs),
+    vip_until: String(untilMs),
+    vip_admin_override: 'true',
+    vip_admin_grant_at: String(nowMs),
+  });
+  if (!isCurrentAccountGeneration(token, stableId)) throw new Error('season_plus_identity_changed');
+  emitAppEvent('vip_activated');
+  emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+}
 
 const syncSeasonCosmeticsBestEffort = (publicDisplayChanged = false): void => {
   if (publicDisplayChanged) void syncPublicProfileSnapshot({ reason: 'display_change' }).catch(() => {});
@@ -65,7 +125,7 @@ async function creditXpBank(amount: number): Promise<void> {
     const parsed = raw ? JSON.parse(raw) as { remaining?: number; grantedTotal?: number } : {};
     const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0)) + amount;
     const grantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || 0)) + amount;
-    await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({ remaining, grantedTotal, updatedAt: Date.now() }));
+    await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({ ...parsed, remaining, grantedTotal, updatedAt: Date.now() }));
   } catch { /* best effort: следующий грант доложит */ }
 }
 
@@ -137,11 +197,10 @@ export async function applySeasonRewardLocal(
     case 'league_boost':
       await activateLeagueBoost('x2_eod_pass');
       return { ok: true };
-    case 'club_totem':
-      // Ваучер бесплатного группового буста — существующий канал level-gift
-      // (club_boosts.ts), гасится штатной транзакцией активации в клубе.
+    case 'club_totem': {
       await grantClubGiftFreeBoostFromLevel();
       return { ok: true };
+    }
     case 'golden_lesson':
       await grantGoldenLesson();
       return { ok: true };
@@ -189,12 +248,29 @@ export async function applySeasonRewardLocal(
       await grantSeasonFinale();
       syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
-    // Серверные: довершает callable (см. season_pass_server.ts) — здесь только маркер.
-    case 'plus_days':
     case 'collection_magnet':
+      await activateCollectionMagnet();
+      return { ok: true };
     case 'tournament_ticket':
-    case 'friend_shield':
-      return { ok: true, pendingServer: true };
+      await grantTournamentTicket();
+      return { ok: true };
+    case 'plus_days':
+      await grantSeasonPlusDays(reward.amount ?? 1);
+      return { ok: true };
+    case 'friend_shield': {
+      const raw = await AsyncStorage.getItem('chain_shield');
+      let daysLeft = 0;
+      try {
+        daysLeft = Math.max(0, Math.floor(Number((JSON.parse(raw ?? '{}') as { daysLeft?: unknown }).daysLeft) || 0));
+      } catch {
+        // A new local shield replaces a corrupt legacy value.
+      }
+      await AsyncStorage.setItem('chain_shield', JSON.stringify({
+        daysLeft: daysLeft + 1,
+        grantedAt: new Date().toISOString().slice(0, 10),
+      }));
+      return { ok: true };
+    }
     case 'choice_3':
       // Выбор делает модалка: выбранный вариант применяется отдельным вызовом.
       return { ok: true };

@@ -15,7 +15,6 @@ import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
 import { countDueItemsToday } from './active_recall';
 import { getTrainerCounts, type TrainerQueue } from './trainer_store';
 import {
-  dailyTasksAdminOverrideKey,
   dailyTasksProgressKey,
   dailyTasksRerollKey,
   irregularVerbsGlobalKey,
@@ -49,8 +48,6 @@ function emitDailyTaskRewardClaimed(taskId: string, studyTarget?: RuntimeStudyTa
 export type LegacyTaskType =
   | 'correct_streak'      // N правильных подряд в уроке
   | 'lesson_no_mistakes'  // урок без ошибок (N подряд)
-  | 'quiz_hard'           // N правильных ответов на сложном квизе
-  | 'quiz_score'          // набрать N XP в квизах за день
   | 'words_learned'       // выучить N слов в разделе Слова
   | 'total_answers'       // собрать N фраз в уроках за день
   | 'open_theory'         // открыть теорию урока N раз
@@ -64,23 +61,14 @@ export type LegacyTaskType =
   | 'recall_perfect'      // сессия Повторения без ошибок (минимум 5 карточек)
   | 'trainer_words'       // N правильных карточек слов в новом Тренере ошибок
   | 'trainer_phrases'     // N правильных карточек фраз в новом Тренере ошибок
-  | 'trainer_arena'       // N правильных карточек арены в новом Тренере ошибок
   | 'daily_phrase_read'   // прочитать фразу дня на главном экране
   | 'daily_phrase_save'   // сохранить фразу дня в карточки
   | 'diagnostic_complete' // пройти диагностический тест целиком (20 вопросов)
-  | 'quiz_easy'           // N правильных ответов на лёгком квизе
-  | 'quiz_medium'         // N правильных ответов на среднем квизе
-  | 'quiz_perfect'        // раунд квиза без ошибок
-  | 'quiz_hard_perfect'   // раунд сложного квиза без ошибок
   | 'different_lessons'   // заниматься в N разных уроках за день
   | 'lesson_complete'     // завершить урок полностью до экрана финиша
   | 'morning_session'     // N фраз в уроке до 12:00
   | 'evening_session'     // N фраз в уроке после 18:00
   | 'energy_spend'        // потратить N единиц энергии (только для Free-аккаунта)
-  | 'arena_play'              // сыграть N рейтинг-матчей за день (только PvP, не бот)
-  | 'arena_win'               // выиграть N рейтинг-матчей за день (только PvP)
-  | 'arena_plays_wins_combo' // N рейтинг-матчей + ≥M побед (arenaCombo, comboPlays/comboWins)
-  | 'arena_rank_promoted'   // повысить ранг (уровень/лигу вверх) в рейтинговой Арене за день
   | 'invite_friend';        // отправить приглашение другу (экран «Пригласить друга», Share без отмены)
 
 // ── Ежедневные челленджи второго поколения (meta/время/возвращение/социум) ──
@@ -97,21 +85,20 @@ export type MetaTaskType =
 
 export type TaskType = LegacyTaskType | MetaTaskType;
 
-const RETIRED_QUIZ_ARENA_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'quiz_hard', 'quiz_score', 'quiz_easy', 'quiz_medium', 'quiz_perfect', 'quiz_hard_perfect',
-  'trainer_arena', 'arena_play', 'arena_win', 'arena_plays_wins_combo', 'arena_rank_promoted',
+const ACTIVE_DAILY_TASK_TYPES: ReadonlySet<string> = new Set<TaskType>([
+  'correct_streak', 'lesson_no_mistakes', 'words_learned', 'total_answers',
+  'open_theory', 'daily_active', 'verb_learned', 'flashcard_view', 'flashcard_save',
+  'flashcard_flip', 'recall_session', 'recall_answers', 'recall_perfect',
+  'trainer_words', 'trainer_phrases', 'daily_phrase_read', 'daily_phrase_save',
+  'diagnostic_complete', 'different_lessons', 'lesson_complete', 'morning_session',
+  'evening_session', 'energy_spend', 'invite_friend', 'early_all_done', 'last_chance',
+  'comeback_lesson', 'revision_lesson', 'polyglot_day', 'perfect_big_lesson',
+  'streak_freeze_use', 'weekend_marathon', 'mentor_friend',
 ]);
 
-export const isRetiredQuizArenaTaskType = (type: TaskType): boolean =>
-  RETIRED_QUIZ_ARENA_TASK_TYPES.has(type);
-
-// зачем: ArenaComboRequirement и comboPlays/comboWins ниже НЕ удаляем — их поля
-// живут в облачном снимке прогресса (cloud_sync.ts), и старые устройства ещё
-// присылают их при слиянии. Тип-хелпер isArenaDailyTaskType удалён: он обслуживал
-// политику «одна Арена в день», которой больше нет.
-
-/** Пороги для type arena_plays_wins_combo (PvP, не бот). */
-export type ArenaComboRequirement = { minPlays: number; minWins: number };
+/** Rejects unknown task kinds from remote config and old local snapshots. */
+export const isActiveDailyTaskType = (value: unknown): value is TaskType =>
+  typeof value === 'string' && ACTIVE_DAILY_TASK_TYPES.has(value);
 
 export interface DailyTask {
   id: string;
@@ -139,8 +126,6 @@ export interface DailyTask {
   minPlayerLevel?: number;
   /** Только для Free-аккаунта. Premium-пользователи не могут выполнить (напр. energy_spend при безлимитной энергии). */
   freeOnly?: boolean;
-  /** Для arena_plays_wins_combo: сколько матчей сыграть и сколько выиграть за день. */
-  arenaCombo?: ArenaComboRequirement;
 }
 
 export interface TaskProgress {
@@ -148,14 +133,7 @@ export interface TaskProgress {
   current: number;
   completed: boolean;
   claimed: boolean;
-  /** Только arena_plays_wins_combo: сыграно PvP-матчей за день по этому заданию */
-  comboPlays?: number;
-  /** Только arena_plays_wins_combo: число побед за день по этому заданию */
-  comboWins?: number;
 }
-
-export const getArenaComboRequirement = (task: DailyTask): ArenaComboRequirement =>
-  task.arenaCombo ?? { minPlays: 2, minWins: 1 };
 
 // ── 90 заданий (30 дней × 3) ─────────────────────────────────────────────
 const ALL_TASKS: DailyTask[] = [
@@ -326,10 +304,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'Arka arkaya 20 ifadeyi tek hata yapmadan kur.',
     descPl:'Ułóż 20 fraz z rzędu bez ani jednego błędu.',
     descUK:'Збери 20 фраз поспіль без жодної помилки.' },
-
-  // quiz_hard — правильные ответы в квизе уровня «Сложно»
-
-  // quiz_score — XP заработанный в квизах за день
 
   // words_learned — правильные ответы в разделе Слова (каждое выученное слово = +1)
   { id:'wl1', type:'words_learned', icon:'📖', target:3, xp:30,
@@ -595,14 +569,6 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Ukończ cały test diagnostyczny: wszystkie 20 pytań do końca.',
     descUK:'Пройди діагностичний тест повністю — усі 20 питань до кінця.' },
 
-  // quiz_easy — правильные ответы в квизе уровня «Легко» (бесплатно)
-
-  // quiz_medium — правильные ответы в квизе уровня «Средне»
-
-  // quiz_perfect — раунд квиза без ошибок, любой уровень
-
-  // quiz_hard_perfect — раунд сложного квиза без ошибок
-
   // different_lessons — позаниматься в N разных уроках за день
   { id:'dl1', type:'different_lessons', icon:'📚', target:2, xp:48,
     titleRU:'Два урока за день', titleUK:'Два уроки за день',
@@ -828,18 +794,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'Bir derste arka arkaya 8 ifadeyi kur: iyi bir seri.',
     descPl:'Ułóż 8 fraz z rzędu w lekcji: dobra seria.',
     descUK:'Збери 8 фраз поспіль в уроці — гарна серія.' },
-
-  // Дополнительные quiz_easy
-
-  // Дополнительные quiz_medium
-
-  // Дополнительные quiz_hard
-
-  // Дополнительные quiz_score
-
-  // Дополнительные quiz_perfect
-
-  // Дополнительный quiz_hard_perfect
 
   // Дополнительные flashcard_view
   { id:'fv4', type:'flashcard_view', icon:'🃏', target:3, xp:14,
@@ -1363,7 +1317,7 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Ukończ sesję Powtórki bez ani jednego błędu; potrzeba co najmniej 5 fiszek.',
     descUK:'Пройди сесію Повторення без жодної помилки (потрібно мінімум 5 карток).' },
 
-  // Новый Тренер ошибок: отдельные задания для words / phrases / arena.
+  // Новый Тренер ошибок: отдельные задания для слов и фраз.
   { id:'tw1', type:'trainer_words', icon:'📚', target:3, xp:30,
     titleRU:'Разобрать слова', titleUK:'Розібрати слова',
     titlePtBr:'Revisar palavras', titleVi:'Rà soát từ', titleId:'Bedah kata', titleTr:'Kelimeleri çözümle', titlePl:'Przejrzyj słowa',
@@ -1409,23 +1363,23 @@ const ALL_TASKS: DailyTask[] = [
   { id:'es1', type:'energy_spend', icon:'⚡', target:3, xp:30, freeOnly:true,
     titleRU:'Трата энергии', titleUK:'Витрата енергії',
     titlePtBr:'Gasto de energia', titleVi:'Tiêu hao năng lượng', titleId:'Pemakaian energi', titleTr:'Enerji harcama', titlePl:'Zużycie energii',
-    descRU:'Потрать 3 единицы энергии в уроках или Арене.',
-    descPtBr:'Gaste 3 unidades de energia: erre nas lições ou jogue nas Arenas.',
-    descVi:'Tiêu 3 đơn vị năng lượng: mắc lỗi trong bài học hoặc chơi Arena.',
-    descId:'Habiskan 3 unit energi: buat kesalahan di pelajaran atau mainkan Arena.',
-    descTr:'3 enerji birimi harca: derslerde hata yap veya Arenalarda oyna.',
-    descPl:'Zużyj 3 jednostki energii: popełniaj błędy w lekcjach albo graj na Arenach.',
-    descUK:'Витрать 3 одиниці енергії — роби помилки на уроках або грай у дуелі.' },
+    descRU:'Потрать 3 единицы энергии, ошибаясь в уроках.',
+    descPtBr:'Gaste 3 unidades de energia cometendo erros nas lições.',
+    descVi:'Tiêu 3 đơn vị năng lượng khi mắc lỗi trong bài học.',
+    descId:'Habiskan 3 unit energi dengan membuat kesalahan di pelajaran.',
+    descTr:'Derslerde hata yaparak 3 enerji birimi harca.',
+    descPl:'Zużyj 3 jednostki energii, popełniając błędy w lekcjach.',
+    descUK:'Витрать 3 одиниці енергії, помиляючись на уроках.' },
   { id:'es2', type:'energy_spend', icon:'⚡', target:5, xp:48, freeOnly:true,
     titleRU:'Полная отдача', titleUK:'Повна віддача',
     titlePtBr:'Entrega total', titleVi:'Dốc toàn lực', titleId:'Usaha penuh', titleTr:'Tam verim', titlePl:'Pełne zaangażowanie',
     descRU:'Потрать 5 единиц энергии — учись интенсивно.',
-    descPtBr:'Gaste 5 unidades de energia: erre nas lições ou jogue nas Arenas.',
-    descVi:'Tiêu 5 đơn vị năng lượng: mắc lỗi trong bài học hoặc chơi Arena.',
-    descId:'Habiskan 5 unit energi: buat kesalahan di pelajaran atau mainkan Arena.',
-    descTr:'5 enerji birimi harca: derslerde hata yap veya Arenalarda oyna.',
-    descPl:'Zużyj 5 jednostek energii: popełniaj błędy w lekcjach albo graj na Arenach.',
-    descUK:'Витрать 5 одиниць енергії — роби помилки на уроках або грай у дуелі.' },
+    descPtBr:'Gaste 5 unidades de energia cometendo erros nas lições.',
+    descVi:'Tiêu 5 đơn vị năng lượng khi mắc lỗi trong bài học.',
+    descId:'Habiskan 5 unit energi dengan membuat kesalahan di pelajaran.',
+    descTr:'Derslerde hata yaparak 5 enerji birimi harca.',
+    descPl:'Zużyj 5 jednostek energii, popełniając błędy w lekcjach.',
+    descUK:'Витрать 5 одиниць енергії, помиляючись на уроках.' },
   { id:'es3', type:'energy_spend', icon:'⚡', target:2, xp:22, freeOnly:true,
     titleRU:'Первые потери', titleUK:'Перші втрати',
     titlePtBr:'Primeiras perdas', titleVi:'Mất mát đầu tiên', titleId:'Kehilangan pertama', titleTr:'İlk kayıplar', titlePl:'Pierwsze straty',
@@ -1446,11 +1400,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'Gün içinde 7 enerji birimi harca: derslerde yoğun çalışma.',
     descPl:'Zużyj 7 jednostek energii w ciągu dnia: intensywne treningi w lekcjach.',
     descUK:'Витрать 7 одиниць енергії за день — інтенсивні тренування на уроках.' },
-
-  // arena_play — N рейтинг-матчей в день против другого игрока (см. arena_results: не bot_)
-
-  // arena_win — N побед в рейтинге за день
-
 
   { id:'inv1', type:'invite_friend', icon:'👥', target:1, xp:42,
     titleRU:'Пригласи друга', titleUK:'Запроси друга',
@@ -1715,12 +1664,12 @@ const getSetsForPlayerLevel = (playerLevel: number): string[][] => {
 };
 
 // ── Утилиты ───────────────────────────────────────────────────────────────
-// Ключ дня в UTC — единый источник истины с arena_daily_limit (todayStr) и
-// streak_safety (todayKey), которые тоже считают по UTC через toISOString.
+// Ключ дня в UTC — единый источник истины со streak_safety (todayKey),
+// который тоже считает по UTC через toISOString.
 // Ранее здесь было локальное время (getFullYear/getMonth/getDate): около полуночи
 // у пользователей с UTC±N ключи расходились → двойной сбор дневных наград,
 // потеря прогресса задач (записано на один ключ, читается с другого) и
-// несправедливый сброс серии. Теперь все три модуля используют один формат.
+// несправедливый сброс серии. Теперь оба модуля используют один формат.
 export const getTodayKey = (): string => {
   return new Date().toISOString().slice(0, 10);
 };
@@ -1785,7 +1734,7 @@ export async function pruneDatedDailyTasksStorageKeys(retainKeys: readonly strin
   }
 }
 
-// ── Замена «выведенных» (retired) заданий ───────────────────────────────
+// ── Защита дневного набора от неизвестных старых типов ─────────────────
 // Раньше пул замены состоял из 12 id в фиксированном порядке и первый свободный
 // всегда был da1/ta1 — поэтому 30/30 дней пользователь видел одни и те же карточки,
 // а в 26/30 дней на экране было два почти одинаковых lesson_complete.
@@ -1809,7 +1758,7 @@ const getReplacementPool = (): readonly DailyTask[] => {
   if (_replacementPoolCache) return _replacementPoolCache;
   _replacementPoolCache = ALL_TASKS.filter((task) => (
     REPLACEMENT_POOL_TYPES.has(task.type)
-    && !isRetiredQuizArenaTaskType(task.type)
+    && isActiveDailyTaskType(task.type)
     && !task.freeOnly
     && (task.minPlayerLevel ?? 1) <= 1
   ));
@@ -1828,18 +1777,18 @@ const hashDaySeed = (key: string): number => {
 };
 
 /**
- * Заменяет retired-задания и убирает дубли типов внутри дневной тройки.
+ * Заменяет неизвестные старые задания и убирает дубли типов внутри дневной тройки.
  * Кандидат ищется от точки вращения (хеш UTC-дня + слот): сначала свободный
  * по id и типу, затем только по id, затем любой (страховка от исчерпания).
  */
-function replaceRetiredQuizArenaTasks(tasks: readonly DailyTask[]): DailyTask[] {
+function sanitizeDailyTasks(tasks: readonly DailyTask[]): DailyTask[] {
   const pool = getReplacementPool();
   if (pool.length === 0) throw new Error('daily_task_decommission_replacement_exhausted');
   const seed = hashDaySeed(getTodayKey());
   const usedIds = new Set<string>();
   const usedTypes = new Set<string>();
   tasks.forEach((task) => {
-    if (!isRetiredQuizArenaTaskType(task.type)) {
+    if (isActiveDailyTaskType(task.type)) {
       usedIds.add(task.id);
       usedTypes.add(task.type);
     }
@@ -1859,7 +1808,7 @@ function replaceRetiredQuizArenaTasks(tasks: readonly DailyTask[]): DailyTask[] 
   };
 
   const result = tasks.map((task, idx) => {
-    if (!isRetiredQuizArenaTaskType(task.type)) return task;
+    if (isActiveDailyTaskType(task.type)) return task;
     const replacement = takeFromPool(idx);
     usedIds.add(replacement.id);
     usedTypes.add(replacement.type);
@@ -1892,7 +1841,11 @@ const ACTIVE_DAILY_TASK_ROTATION: readonly (readonly string[])[] = [
 const ACTIVE_DAILY_TASK_IDS = new Set(ACTIVE_DAILY_TASK_ROTATION.flat());
 // Replacement-only variants are never dealt as daily cards. They exist so the free reroll
 // can always offer a real, tracked alternative instead of an invalid legacy task.
-const ACTIVE_DAILY_REROLL_TASK_IDS = new Set([...ACTIVE_DAILY_TASK_IDS, 'tw2', 'tp2', 'ra2']);
+const ACTIVE_DAILY_REROLL_TASK_IDS = new Set([
+  ...ACTIVE_DAILY_TASK_IDS,
+  'tw2', 'tp2', 'ra2',
+  'ta1', 'cs1', 'ot1',
+]);
 
 const getTodayTasksByLevel = (_playerLevel: number): DailyTask[] => {
   const dayIndex = (new Date().getUTCDate() - 1) % ACTIVE_DAILY_TASK_ROTATION.length;
@@ -1912,25 +1865,21 @@ export const findDailyTaskById = (id: string): DailyTask | undefined =>
   ACTIVE_DAILY_REROLL_TASK_IDS.has(id) ? ALL_TASKS.find((task) => task.id === id) : undefined;
 
 // Резервные задания на случай если verb_learned недоступно (все глаголы выучены)
-const VERB_FALLBACKS: Record<string, string> = {
-  vl1: 'ra1',  vl2: 'ra1',  vl3: 'ra1',
-  vl4: 'ra1',  vl5: 'ra1',  vl6: 'ra1',  vl7: 'ra1',
+const VERB_FALLBACKS: Record<string, readonly string[]> = {
+  vl1: ['ta1', 'cs1', 'ot1'], vl2: ['ta1', 'cs1', 'ot1'], vl3: ['ta1', 'cs1', 'ot1'],
+  vl4: ['ta1', 'cs1', 'ot1'], vl5: ['ta1', 'cs1', 'ot1'], vl6: ['ta1', 'cs1', 'ot1'],
+  vl7: ['ta1', 'cs1', 'ot1'],
 };
 
 // A fully completed vocabulary has no possible progress for words_learned.
 // Resolve it to an answer task instead of showing an impossible card.
-const WORDS_FALLBACKS: Record<string, string> = {
-  wl1: 'ra1', wl2: 'ra1', wl3: 'ra1',
-  wl4: 'ra1', wl5: 'ra1', wl6: 'ra1', wl7: 'ra1',
+const WORDS_FALLBACKS: Record<string, readonly string[]> = {
+  wl1: ['ta1', 'cs1', 'ot1'], wl2: ['ta1', 'cs1', 'ot1'], wl3: ['ta1', 'cs1', 'ot1'],
+  wl4: ['ta1', 'cs1', 'ot1'], wl5: ['ta1', 'cs1', 'ot1'], wl6: ['ta1', 'cs1', 'ot1'],
+  wl7: ['ta1', 'cs1', 'ot1'],
 };
 
 export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'quiz_hard',
-  'quiz_score',
-  'quiz_easy',
-  'quiz_medium',
-  'quiz_perfect',
-  'quiz_hard_perfect',
   'words_learned',
   'verb_learned',
   'daily_phrase_read',
@@ -1962,7 +1911,6 @@ export const FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new
   'recall_perfect',
   'trainer_words',
   'trainer_phrases',
-  'trainer_arena',
   'revision_lesson',
   'perfect_big_lesson',
 ]);
@@ -1993,39 +1941,33 @@ const RECALL_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
   'recall_perfect',
 ]);
 
+const requiredRecallCardsForTask = (task: DailyTask): number => (
+  task.type === 'recall_perfect' ? 5 : Math.max(1, task.target)
+);
+
 const TRAINER_QUEUE_BY_TASK_TYPE: Readonly<Partial<Record<TaskType, TrainerQueue>>> = {
   trainer_words: 'words',
   trainer_phrases: 'phrases',
 };
 
 const TRAINER_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
-  tw1: ['wl1', 'vl1', 'ra1'],
-  tw2: ['wl1', 'vl1', 'ra1'],
-  tp1: ['vl1', 'wl1', 'ra1'],
-  tp2: ['vl1', 'wl1', 'ra1'],
+  tw1: ['ta1', 'cs1', 'ot1'],
+  tw2: ['ta1', 'cs1', 'ot1'],
+  tp1: ['ta1', 'cs1', 'ot1'],
+  tp2: ['ta1', 'cs1', 'ot1'],
 };
 
-const RECALL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
-  rs1: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  rs2: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  rs3: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  ra1: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  ra2: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  ra3: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  ra4: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  ra5: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  ra6: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  rp1: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  rp2: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-  rp3: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
-};
+const RECALL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = Object.fromEntries(
+  ['rs1', 'rs2', 'rs3', 'ra1', 'ra2', 'ra3', 'ra4', 'ra5', 'ra6', 'rp1', 'rp2', 'rp3']
+    .map((id) => [id, ['ta1', 'cs1', 'ot1'] as const]),
+);
 
 const pickRecallUnavailableFallback = (
   task: DailyTask,
   usedIds: Set<string>,
   studyTarget?: RuntimeStudyTarget,
 ): DailyTask => {
-  const fallbackIds = RECALL_TASK_FALLBACK_IDS[task.id] ?? ['da1', 'wl1', 'vl1', 'tw1', 'tp1'];
+  const fallbackIds = RECALL_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'cs1', 'ot1'];
   for (const id of fallbackIds) {
     if (usedIds.has(id)) continue;
     const fallback = ALL_TASKS.find((t) => t.id === id);
@@ -2043,11 +1985,30 @@ const replaceRecallTasksWhenNoDueItems = async (
 ): Promise<DailyTask[]> => {
   if (!tasks.some((task) => RECALL_DAILY_TASK_TYPES.has(task.type))) return tasks;
   const dueCount = await countDueItemsToday(studyTarget);
-  if (dueCount > 0) return tasks;
+
+  let savedProgress: TaskProgress[] = [];
+  try {
+    const raw = await AsyncStorage.getItem(dailyTasksProgressKey(getTodayKey(), studyTarget));
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    if (Array.isArray(parsed)) savedProgress = parsed as TaskProgress[];
+  } catch {
+    savedProgress = [];
+  }
+  const progressByTaskId = new Map(savedProgress.map((row) => [row.taskId, row]));
 
   const usedIds = new Set(tasks.filter((task) => !RECALL_DAILY_TASK_TYPES.has(task.type)).map((task) => task.id));
   return tasks.map((task) => {
     if (!RECALL_DAILY_TASK_TYPES.has(task.type)) return task;
+    const row = progressByTaskId.get(task.id);
+    if (row?.completed || row?.claimed) {
+      usedIds.add(task.id);
+      return task;
+    }
+    const current = task.type === 'recall_answers' ? Math.max(0, row?.current ?? 0) : 0;
+    if (current + dueCount >= requiredRecallCardsForTask(task)) {
+      usedIds.add(task.id);
+      return task;
+    }
     return pickRecallUnavailableFallback(task, usedIds, studyTarget);
   });
 };
@@ -2086,109 +2047,10 @@ export const DAILY_TASK_REROLL_COST_SHARDS = 0;
 /** Сколько замен в сутки разрешено. Изменение требует обновления UI-подсказки на экране задач. */
 export const DAILY_TASK_REROLL_MAX_PER_DAY = 1;
 
-const ADMIN_TASK_OVERRIDE_STORAGE_KEY = 'daily_tasks_admin_override_v1';
-
 interface RerollState {
   dayKey: string;
-  /** origTaskId → newTaskId. Применяется в getTodayTasksSafe поверх дневного набора. */
   replacements: Record<string, string>;
 }
-
-type AdminTaskOverrideState = {
-  dayKey: string;
-  taskIds: string[];
-};
-
-export type DailyTaskSeedMode = 'empty' | 'ready' | 'claimed';
-
-export type DailyTaskAdminPack = {
-  id: string;
-  label: string;
-  taskIds: string[];
-  types: TaskType[];
-};
-
-const loadAdminTaskOverride = async (studyTarget?: RuntimeStudyTarget): Promise<AdminTaskOverrideState | null> => {
-  try {
-    const raw = await AsyncStorage.getItem(dailyTasksAdminOverrideKey(studyTarget));
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as AdminTaskOverrideState;
-    if (!parsed || parsed.dayKey !== getTodayKey() || !Array.isArray(parsed.taskIds)) return null;
-    const taskIds = parsed.taskIds.filter((id) => ACTIVE_DAILY_TASK_IDS.has(id));
-    return taskIds.length > 0 ? { dayKey: parsed.dayKey, taskIds } : null;
-  } catch {
-    return null;
-  }
-};
-
-export const clearDailyTasksAdminOverride = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
-  try {
-    await AsyncStorage.removeItem(dailyTasksAdminOverrideKey(studyTarget));
-  } catch (e) {
-    if (__DEV__) console.warn('[daily_tasks]', e);
-  }
-};
-
-export const getDailyTaskAdminPacks = (packSize = 3): DailyTaskAdminPack[] => {
-  const safeSize = Math.max(1, Math.min(6, Math.floor(packSize) || 3));
-  const packs: DailyTaskAdminPack[] = [];
-  const activeTasks = ALL_TASKS.filter((task) => ACTIVE_DAILY_TASK_IDS.has(task.id));
-  for (let i = 0; i < activeTasks.length; i += safeSize) {
-    const tasks = activeTasks.slice(i, i + safeSize);
-    packs.push({
-      id: `daily_tasks_admin_pack_${Math.floor(i / safeSize) + 1}`,
-      label: `${i + 1}-${i + tasks.length} / ${activeTasks.length}`,
-      taskIds: tasks.map((t) => t.id),
-      types: tasks.map((t) => t.type),
-    });
-  }
-  return packs;
-};
-
-export const getDailyTaskAdminPreviewTasks = (studyTarget?: RuntimeStudyTarget): DailyTask[] => (
-  filterDailyTasksForStudyTarget(ALL_TASKS.filter((task) => ACTIVE_DAILY_TASK_IDS.has(task.id)), studyTarget)
-);
-
-const makeAdminProgressRow = (task: DailyTask, mode: DailyTaskSeedMode): TaskProgress => {
-  const done = mode === 'ready' || mode === 'claimed';
-  if (task.type === 'arena_plays_wins_combo') {
-    const req = getArenaComboRequirement(task);
-    return {
-      taskId: task.id,
-      current: done ? req.minPlays : 0,
-      comboPlays: done ? req.minPlays : 0,
-      comboWins: done ? req.minWins : 0,
-      completed: done,
-      claimed: mode === 'claimed',
-    };
-  }
-  return {
-    taskId: task.id,
-    current: done ? task.target : 0,
-    completed: done,
-    claimed: mode === 'claimed',
-  };
-};
-
-export const seedDailyTasksAdminPack = async (
-  taskIds: string[],
-  mode: DailyTaskSeedMode = 'empty',
-  studyTarget?: RuntimeStudyTarget,
-): Promise<DailyTask[]> => {
-  const requestedTasks = taskIds
-    .filter((id) => ACTIVE_DAILY_TASK_IDS.has(id))
-    .map((id) => ALL_TASKS.find((t) => t.id === id))
-    .filter((t): t is DailyTask => Boolean(t));
-  const tasks = filterDailyTasksForStudyTarget(requestedTasks, studyTarget);
-  if (tasks.length === 0) return [];
-
-  await AsyncStorage.setItem(dailyTasksAdminOverrideKey(studyTarget), JSON.stringify({
-    dayKey: getTodayKey(),
-    taskIds: tasks.map((t) => t.id),
-  }));
-  await saveTodayProgress(tasks.map((task) => makeAdminProgressRow(task, mode)), studyTarget);
-  return tasks;
-};
 
 const emptyRerollState = (): RerollState => ({ dayKey: getTodayKey(), replacements: {} });
 
@@ -2251,7 +2113,7 @@ const replaceTrainerTasksWhenQueueIsInsufficient = async (
       return task;
     }
 
-    const fallbackIds = TRAINER_TASK_FALLBACK_IDS[task.id] ?? ['wl1', 'vl1', 'ra1'];
+    const fallbackIds = TRAINER_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'cs1', 'ot1'];
     for (const id of fallbackIds) {
       if (usedIds.has(id)) continue;
       const fallback = ALL_TASKS.find((candidate) => candidate.id === id);
@@ -2296,7 +2158,7 @@ export const countAvailableVocabularyWords = async (studyTarget?: RuntimeStudyTa
 };
 
 /** Категории заданий — реролл подбирает кандидата из той же категории, чтобы сохранить баланс. */
-type DailyTaskCategory = 'engage' | 'perfect' | 'quiz' | 'words' | 'flashcard' | 'recall' | 'trainer' | 'arena' | 'social';
+type DailyTaskCategory = 'engage' | 'perfect' | 'words' | 'flashcard' | 'recall' | 'trainer' | 'social';
 
 const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   daily_active: 'engage',
@@ -2311,12 +2173,6 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   open_theory: 'engage',
   correct_streak: 'perfect',
   lesson_no_mistakes: 'perfect',
-  quiz_easy: 'quiz',
-  quiz_medium: 'quiz',
-  quiz_hard: 'quiz',
-  quiz_score: 'quiz',
-  quiz_perfect: 'quiz',
-  quiz_hard_perfect: 'quiz',
   words_learned: 'words',
   verb_learned: 'words',
   flashcard_view: 'flashcard',
@@ -2327,11 +2183,6 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   recall_perfect: 'recall',
   trainer_words: 'trainer',
   trainer_phrases: 'trainer',
-  trainer_arena: 'trainer',
-  arena_play: 'arena',
-  arena_win: 'arena',
-  arena_plays_wins_combo: 'arena',
-  arena_rank_promoted: 'arena',
   invite_friend: 'social',
   diagnostic_complete: 'social',
   early_all_done: 'engage',
@@ -2400,7 +2251,7 @@ const REROLL_INELIGIBLE_CONDITIONAL_TYPES: ReadonlySet<TaskType> = new Set([
 
 /**
  * Подобрать кандидата на замену для taskId среди ALL_TASKS:
- * - в той же категории (engage/quiz/...),
+ * - в той же категории,
  * - не уже в текущей тройке (учитывает уже применённые reroll-замены),
  * - проходит уровневую/премиумную проверки,
  * - для verb_learned — есть ещё не выученные глаголы.
@@ -2436,7 +2287,7 @@ const pickRerollCandidate = async (
 
   const candidates = ALL_TASKS.filter((t) => {
     if (!ACTIVE_DAILY_REROLL_TASK_IDS.has(t.id)) return false;
-    if (isRetiredQuizArenaTaskType(t.type)) return false;
+    if (!isActiveDailyTaskType(t.type)) return false;
     if (REROLL_INELIGIBLE_CONDITIONAL_TYPES.has(t.type)) return false;
     if (t.type === 'weekend_marathon' && !isWeekendToday()) return false;
     if (usedIds.has(t.id)) return false;
@@ -2453,7 +2304,7 @@ const pickRerollCandidate = async (
     ? await countDueItemsToday(studyTarget)
     : Number.POSITIVE_INFINITY;
   const runtimeAvailableCandidates = candidates.filter((t) => (
-    !RECALL_DAILY_TASK_TYPES.has(t.type) || recallDueCount > 0
+    !RECALL_DAILY_TASK_TYPES.has(t.type) || recallDueCount >= requiredRecallCardsForTask(t)
   ));
 
   if (runtimeAvailableCandidates.length === 0) return null;
@@ -2521,10 +2372,12 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
       const raw = await AsyncStorage.getItem(key);
       const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
       const filtered = Array.isArray(arr) ? arr.filter((p) => p.taskId !== taskId) : [];
-      const seed: TaskProgress =
-        candidate.type === 'arena_plays_wins_combo'
-          ? reconcileArenaComboRow(candidate, undefined)
-          : { taskId: candidate.id, current: 0, completed: false, claimed: false };
+      const seed: TaskProgress = {
+        taskId: candidate.id,
+        current: 0,
+        completed: false,
+        claimed: false,
+      };
       filtered.push(seed);
       await AsyncStorage.setItem(key, JSON.stringify(filtered));
       void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
@@ -2681,7 +2534,7 @@ const replaceConditionallyUnavailableDailyTasks = async (
 const DAILY_TASK_BASE_COUNT = 3;
 const DAILY_TASK_BASE_FILLER_IDS = ['da1', 'wl1', 'vl1', 'tw1', 'tp1', 'ra1'] as const;
 
-/** Ensures the daily surface has four real objectives; a weekend task keeps its slot. */
+/** Ensures the daily surface has its three real base objectives. */
 export function ensureDailyTaskBaseCount(
   tasks: DailyTask[],
   studyTarget?: RuntimeStudyTarget,
@@ -2711,16 +2564,6 @@ export function ensureDailyTaskBaseCount(
  */
 export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promise<DailyTask[]> => {
   const [playerLevel, isPremium] = await Promise.all([getUserPlayerLevel(), getUserIsPremium()]);
-  const adminOverride = await loadAdminTaskOverride(studyTarget);
-  if (adminOverride) {
-    const adminTasks = adminOverride.taskIds
-      .filter((id) => ACTIVE_DAILY_TASK_IDS.has(id))
-      .map((id) => ALL_TASKS.find((t) => t.id === id))
-      .filter((t): t is DailyTask => Boolean(t));
-    // Admin QA override показываем ДОСЛОВНО: ротация retired-типов здесь не применяется,
-    // иначе seed-пак (da2/da3 и т.п.) молча подменялся и QA проверял не те задания.
-    return filterDailyTasksForStudyTarget(adminTasks, studyTarget);
-  }
   // Выбираем набор заданий по тиру уровня игрока
   const baseTasks = getTodayTasksByLevel(playerLevel);
 
@@ -2758,11 +2601,14 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
     const usedIds = new Set(result.map((task) => task.id));
     result = result.map((task) => {
       if (task.type !== 'words_learned' || remainingWords >= task.target) return task;
-      const fallbackId = WORDS_FALLBACKS[task.id];
-      const fallback = fallbackId ? ALL_TASKS.find((candidate) => candidate.id === fallbackId) : undefined;
-      if (!fallback || usedIds.has(fallback.id)) return task;
-      usedIds.add(fallback.id);
-      return fallback;
+      const fallbackIds = WORDS_FALLBACKS[task.id] ?? ['ta1', 'cs1', 'ot1'];
+      for (const fallbackId of fallbackIds) {
+        const fallback = ALL_TASKS.find((candidate) => candidate.id === fallbackId);
+        if (!fallback || usedIds.has(fallback.id)) continue;
+        usedIds.add(fallback.id);
+        return fallback;
+      }
+      return task;
     });
   }
 
@@ -2771,7 +2617,7 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   if (!hasVerbTask) {
     result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
     return ensureDailyTaskBaseCount(
-      filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
+      filterDailyTasksForStudyTarget(sanitizeDailyTasks(result), studyTarget),
       studyTarget,
     );
   }
@@ -2784,16 +2630,23 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   const totalVerbs = Object.values(IRREGULAR_VERBS_BY_LESSON).reduce((s, arr) => s + arr.length, 0);
   const remaining = totalVerbs - learnedCount;
 
+  const usedIds = new Set(result.map((task) => task.id));
   result = result.map(task => {
     if (task.type !== 'verb_learned') return task;
     if (remaining >= task.target) return task;
-    const fallbackId = VERB_FALLBACKS[task.id];
-    return (fallbackId ? ALL_TASKS.find(t => t.id === fallbackId) : undefined) ?? task;
+    const fallbackIds = VERB_FALLBACKS[task.id] ?? ['ta1', 'cs1', 'ot1'];
+    for (const fallbackId of fallbackIds) {
+      const fallback = ALL_TASKS.find((candidate) => candidate.id === fallbackId);
+      if (!fallback || usedIds.has(fallback.id)) continue;
+      usedIds.add(fallback.id);
+      return fallback;
+    }
+    return task;
   });
 
   result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
   return ensureDailyTaskBaseCount(
-    filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
+    filterDailyTasksForStudyTarget(sanitizeDailyTasks(result), studyTarget),
     studyTarget,
   );
 };
@@ -2854,11 +2707,12 @@ export const rerollTodayDailyTaskSet = async (
       const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
       const oldIds = new Set(tasks.map((task) => task.id));
       const filtered = Array.isArray(arr) ? arr.filter((p) => !oldIds.has(p.taskId)) : [];
-      const seeded = replacementTasks.map((task) => (
-        task.type === 'arena_plays_wins_combo'
-          ? reconcileArenaComboRow(task, undefined)
-          : { taskId: task.id, current: 0, completed: false, claimed: false }
-      ));
+      const seeded = replacementTasks.map((task) => ({
+        taskId: task.id,
+        current: 0,
+        completed: false,
+        claimed: false,
+      }));
       await AsyncStorage.setItem(key, JSON.stringify([...filtered, ...seeded]));
       void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
     });
@@ -2933,29 +2787,11 @@ const applyClaimForTaskToProgress = (
   });
 };
 
-/** Составное задание arena_plays_wins_combo: выполнено при plays≥minPlays и wins≥minWins. */
-const reconcileArenaComboRow = (task: DailyTask, p?: TaskProgress): TaskProgress => {
-  const req = getArenaComboRequirement(task);
-  const claimed = p?.claimed ?? false;
-  const playsRaw = p?.comboPlays ?? p?.current ?? 0;
-  const cap = req.minPlays + 15;
-  const plays = Math.min(cap, Math.max(0, Math.round(playsRaw)));
-  const wins = Math.min(cap, Math.max(0, Math.round(p?.comboWins ?? 0)));
-  const currentDisplay = Math.min(plays, req.minPlays);
-  const completed = claimed || (plays >= req.minPlays && wins >= req.minWins);
-  return { taskId: task.id, current: currentDisplay, comboPlays: plays, comboWins: wins, completed, claimed };
-};
-
 const reconcileProgressToTasks = (stored: TaskProgress[], tasks: DailyTask[]): TaskProgress[] => {
   const mainRaw = tasks.map(t => {
     const p = stored.find(s => s.taskId === t.id);
     if (!p) {
-      return t.type === 'arena_plays_wins_combo'
-        ? reconcileArenaComboRow(t, undefined)
-        : { taskId: t.id, current: 0, completed: false, claimed: false };
-    }
-    if (t.type === 'arena_plays_wins_combo') {
-      return reconcileArenaComboRow(t, p);
+      return { taskId: t.id, current: 0, completed: false, claimed: false };
     }
     const current = Math.min(Math.max(0, p.current), t.target);
     const claimed = p.claimed;
@@ -2984,10 +2820,6 @@ const reconcileProgressToTasks = (stored: TaskProgress[], tasks: DailyTask[]): T
     if (inCurrent.has(s.taskId)) continue;
     const def = ALL_TASKS.find(t => t.id === s.taskId);
     if (!def) continue;
-    if (def.type === 'arena_plays_wins_combo') {
-      extras.push(reconcileArenaComboRow(def, s));
-      continue;
-    }
     const current = Math.min(Math.max(0, s.current), def.target);
     const claimed = s.claimed;
     const completed = claimed || current >= def.target;
@@ -3218,9 +3050,6 @@ export const resetTaskProgress = async (
   const updated = progress.map(p => {
     const task = tasks.find(t => t.id === p.taskId);
     if (!task || task.type !== type || p.completed || p.claimed) return p;
-    if (task.type === 'arena_plays_wins_combo') {
-      return { ...p, current: 0, comboPlays: 0, comboWins: 0, completed: false };
-    }
     return { ...p, current: 0 };
   });
 
@@ -3242,9 +3071,6 @@ export const resetAndUpdateTaskProgress = async (
     progress = progress.map(p => {
       const task = tasks.find(t => t.id === p.taskId);
       if (!task || task.type !== type || p.completed || p.claimed) return p;
-      if (task.type === 'arena_plays_wins_combo') {
-        return { ...p, current: 0, comboPlays: 0, comboWins: 0, completed: false };
-      }
       return { ...p, current: 0 };
     });
   }
@@ -3358,7 +3184,7 @@ export const claimTaskWithReward = async (
 // Используй вместо нескольких updateTaskProgress подряд — иначе race condition
 export const updateMultipleTaskProgress = async (
   updates: { type: TaskType; increment?: number }[],
-  opts?: { pvpArenaMatchFinished?: { won: boolean }; studyTarget?: RuntimeStudyTarget },
+  opts?: { studyTarget?: RuntimeStudyTarget },
 ): Promise<void> => {
   const completedTaskIds = new Set<string>();
   try {
@@ -3368,11 +3194,12 @@ export const updateMultipleTaskProgress = async (
 
       // Safety: if progress is empty but tasks exist, reinitialize rather than overwrite with empty
       if (progress.length === 0 && tasks.length > 0) {
-        progress = tasks.map(t =>
-          t.type === 'arena_plays_wins_combo'
-            ? reconcileArenaComboRow(t, undefined)
-            : { taskId: t.id, current: 0, completed: false, claimed: false },
-        );
+        progress = tasks.map((task) => ({
+          taskId: task.id,
+          current: 0,
+          completed: false,
+          claimed: false,
+        }));
       }
 
       for (const { type, increment = 1 } of updates) {
@@ -3385,22 +3212,6 @@ export const updateMultipleTaskProgress = async (
             completedTaskIds.add(task.id);
           }
           return { ...p, current: newCurrent, completed: nowCompleted };
-        });
-      }
-
-      if (opts?.pvpArenaMatchFinished) {
-        const { won } = opts.pvpArenaMatchFinished;
-        progress = progress.map(p => {
-          const task = tasks.find(t => t.id === p.taskId);
-          if (!task || task.type !== 'arena_plays_wins_combo' || p.completed) return p;
-          const req = getArenaComboRequirement(task);
-          const plays = Math.min(30, (p.comboPlays ?? p.current ?? 0) + 1);
-          const wins = (p.comboWins ?? 0) + (won ? 1 : 0);
-          const completed = plays >= req.minPlays && wins >= req.minWins;
-          if (completed && !p.completed) {
-            completedTaskIds.add(task.id);
-          }
-          return { ...p, comboPlays: plays, comboWins: wins, current: Math.min(plays, req.minPlays), completed };
         });
       }
 

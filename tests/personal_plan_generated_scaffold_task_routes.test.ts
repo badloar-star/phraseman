@@ -20,14 +20,23 @@ describe('generated personal plan scaffold task routes', () => {
       'plan_choose_natural_phrase',
       'plan_listen_build',
       'plan_phrase_recall',
+      'plan_quiz',
     ];
 
     expect(allTasksForDay(day).map((task) => task.kind)).toEqual(expectedKinds);
-    expect(tasksForMinutes(day, 5).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 3));
-    expect(tasksForMinutes(day, 10).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 4));
-    expect(tasksForMinutes(day, 15).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 5));
-    expect(tasksForMinutes(day, 20).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 6));
+    for (const minutes of [5, 10, 15, 20] as const) {
+      expect(tasksForMinutes(day, minutes).every((task) => task.requiredFor.includes(minutes))).toBe(true);
+    }
     expect(tasksForMinutes(day, 20).some((task) => task.destination.type === 'lesson')).toBe(false);
+  });
+
+  it('keeps quizzes out of week-one slices and shows the plan quiz in the week-four 20-minute slice', () => {
+    expect(tasksForMinutes(day, 20).some((task) => task.kind === 'plan_quiz')).toBe(false);
+    const weekFourDay = plan.days.find((item) => item.weekIndex === 4)!;
+    expect(tasksForMinutes(weekFourDay, 5).some((task) => task.kind === 'plan_quiz')).toBe(false);
+    expect(tasksForMinutes(weekFourDay, 10).some((task) => task.kind === 'plan_quiz')).toBe(false);
+    expect(tasksForMinutes(weekFourDay, 15).some((task) => task.kind === 'plan_quiz')).toBe(false);
+    expect(tasksForMinutes(weekFourDay, 20).some((task) => task.kind === 'plan_quiz')).toBe(true);
   });
 
   it('keeps the main phrase-introduction task first while varying the remaining daily order', () => {
@@ -46,10 +55,7 @@ describe('generated personal plan scaffold task routes', () => {
 
     expect(exerciseTasks.map((task) => task.destination.type === 'plan_exercise' ? task.destination.exerciseType : null)).toEqual([
       'plan_missing_word',
-      'plan_listen_choose',
-      'plan_pronunciation_repeat',
       'plan_choose_natural_phrase',
-      'plan_listen_build',
     ]);
 
     for (const task of exerciseTasks) {

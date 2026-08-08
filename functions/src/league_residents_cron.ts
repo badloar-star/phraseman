@@ -50,10 +50,8 @@ export function currentWeekStartMs(nowMs: number): number {
 
 export const leagueResidentsTickCron = onSchedule(
   {
-    // Ровно тот ритм, который назвал владелец: «каждые 6 часов пусть у них
-    // рандомно прибавляется опыт». Совпадает с шагом реестра (RESIDENT_TICK_MS),
-    // поэтому каждый запуск материализует ровно один новый тик.
-    schedule: 'every 6 hours',
+    // Keep materialized participant rows aligned with the hourly resident tick.
+    schedule: 'every 1 hours',
     timeZone: 'UTC',
     timeoutSeconds: 300,
     memory: '256MiB',

@@ -9,11 +9,11 @@
  *
  * Each doc holds TWO texts:
  *   - full: the careful breakdown (every wrong word + the mini-rule + why).
- *   - eli5: the "explain like I'm five" version shown in the modal (optional,
- *     generated lazily on first tap of «Объяснить»).
+ *   - eli5: the "explain like I'm five" version shown in the modal. New full
+ *     generations publish it together; legacy full-only entries fill it lazily.
  *
- * SECURITY: only the Cloud Function (Admin SDK) writes here. firestore.rules makes
- * the collection read-only for clients (read: if true; write: if false; delete: if isAdmin()).
+ * SECURITY: only callable/Admin SDK code reads or writes this cache. firestore.rules denies
+ * direct client reads and writes; authenticated admin clients retain delete-only reset access.
  * Never trust a client hash — the server derives mistakeHash from the inputs.
  *
  * Sibling of choice_explain_cache.ts — same lock/schema discipline.
@@ -24,8 +24,8 @@ import { normalizePhrase } from './explain_cache';
 
 export const MISTAKE_COLLECTION = 'mistake_explanations';
 
-/** Generation lock TTL — slightly above the CF timeout so a crashed generation is re-claimable. */
-export const MISTAKE_LOCK_TTL_MS = 35_000;
+/** Generation lock TTL — above the 120s callable timeout so a live retry cannot be reclaimed. */
+export const MISTAKE_LOCK_TTL_MS = 135_000;
 
 /** Bump to invalidate stale cached mistake explanations on read.
  *  v1 (2026-06-20): full breakdown + lazy ELI5 variant.
@@ -45,17 +45,18 @@ export const MISTAKE_LOCK_TTL_MS = 35_000;
 export const MISTAKE_SCHEMA_VERSION = 6;
 
 /** How long a judge-rejected breakdown serves nothing before one request may retry generation. */
-export const MISTAKE_REJECTED_RETRY_TTL_MS = 10 * 60_000;
+export const MISTAKE_REJECTED_RETRY_TTL_MS = 15_000;
 
 export type MistakeExplanationStatus = 'pending' | 'ready' | 'rejected';
 export type MistakeExplainVariant = 'full' | 'eli5';
 
 export interface CachedMistakeExplanation {
-  status: MistakeExplanationStatus;
+  /** Absent on a valid ELI5-first partial document until the full variant is generated. */
+  status?: MistakeExplanationStatus;
   schemaVersion: number;
   /** The careful breakdown shown inline under the exercise. */
   full?: string;
-  /** The "explain like I'm five" text shown in the modal. Generated lazily. */
+  /** The "explain like I'm five" text shown in the modal. */
   eli5?: string;
   lang?: string;
   /** Canonical target answer (the correct phrase). */
@@ -66,6 +67,7 @@ export interface CachedMistakeExplanation {
   model?: string;
   createdAtMs?: number;
   updatedAtMs?: number;
+  eli5PendingAtMs?: number | null;
 }
 
 export interface MistakeReadyMeta {
@@ -146,39 +148,189 @@ export async function claimMistakePendingLock(mistakeHash: string, nowMs: number
   });
 }
 
+/** Claim lazy ELI5 only when no full bundle generation is live. */
+export async function claimMistakeEli5PendingLock(mistakeHash: string, nowMs: number): Promise<boolean> {
+  const ref = docRef(mistakeHash);
+  const db = admin.firestore();
+  return db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (data && isCurrentSchema(data)) {
+      if (data.eli5) return false;
+      if (data.status === 'pending') {
+        const fullPendingAtMs = Number(data.createdAtMs ?? 0);
+        if (fullPendingAtMs > 0 && nowMs - fullPendingAtMs <= MISTAKE_LOCK_TTL_MS) return false;
+      }
+      const pendingAt = Number(data.eli5PendingAtMs ?? 0);
+      if (pendingAt > 0 && nowMs - pendingAt <= MISTAKE_LOCK_TTL_MS) return false;
+    }
+    tx.set(ref, {
+      schemaVersion: MISTAKE_SCHEMA_VERSION,
+      eli5PendingAtMs: nowMs,
+      updatedAtMs: nowMs,
+    }, { merge: true });
+    return true;
+  });
+}
+
+/** Release only the FULL lease owned by this request; never clear a newer winner's lease. */
+export async function releaseMistakePendingLock(mistakeHash: string, claimedAtMs: number): Promise<void> {
+  const ref = docRef(mistakeHash);
+  const db = admin.firestore();
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (data?.status !== 'pending' || Number(data.createdAtMs ?? 0) !== claimedAtMs) return;
+    tx.set(ref, {
+      status: admin.firestore.FieldValue.delete(),
+      createdAtMs: admin.firestore.FieldValue.delete(),
+      reason: admin.firestore.FieldValue.delete(),
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+  });
+}
+
+/** Release only the ELI5 lease owned by this request; never clear a newer winner's lease. */
+export async function releaseMistakeEli5PendingLock(mistakeHash: string, claimedAtMs: number): Promise<void> {
+  const ref = docRef(mistakeHash);
+  const db = admin.firestore();
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (Number(data?.eli5PendingAtMs ?? 0) !== claimedAtMs) return;
+    tx.set(ref, {
+      eli5PendingAtMs: admin.firestore.FieldValue.delete(),
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+  });
+}
+
+/** Remove only a cached variant that failed the current language/safety contract. */
+export async function invalidateMistakeCachedVariant(
+  mistakeHash: string,
+  variant: MistakeExplainVariant,
+): Promise<void> {
+  const ref = docRef(mistakeHash);
+  const db = admin.firestore();
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (!data || !isCurrentSchema(data)) return;
+    if (variant === 'eli5') {
+      if (!data.eli5) return;
+      tx.set(ref, {
+        eli5: admin.firestore.FieldValue.delete(),
+        eli5PendingAtMs: admin.firestore.FieldValue.delete(),
+        updatedAtMs: Date.now(),
+      }, { merge: true });
+      return;
+    }
+    if (data.status !== 'ready' || !data.full) return;
+    tx.set(ref, {
+      status: admin.firestore.FieldValue.delete(),
+      full: admin.firestore.FieldValue.delete(),
+      createdAtMs: admin.firestore.FieldValue.delete(),
+      reason: admin.firestore.FieldValue.delete(),
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+  });
+}
+
 /** Publish a validated full breakdown to the global cache (status=ready). */
 export async function writeReadyMistakeExplanation(
   mistakeHash: string,
   full: string,
   meta: MistakeReadyMeta,
-): Promise<void> {
-  await docRef(mistakeHash).set({
-    status: 'ready',
-    schemaVersion: MISTAKE_SCHEMA_VERSION,
-    full,
-    lang: meta.lang,
-    targetEn: meta.targetEn,
-    userAnswer: meta.userAnswer,
-    model: meta.model ?? null,
-    reason: null,
-    updatedAtMs: Date.now(),
-  }, { merge: true });
+  claimedAtMs: number,
+): Promise<boolean> {
+  const ref = docRef(mistakeHash);
+  return admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (data?.status !== 'pending' || Number(data.createdAtMs ?? 0) !== claimedAtMs) return false;
+    tx.set(ref, {
+      status: 'ready',
+      schemaVersion: MISTAKE_SCHEMA_VERSION,
+      full,
+      createdAtMs: admin.firestore.FieldValue.delete(),
+      lang: meta.lang,
+      targetEn: admin.firestore.FieldValue.delete(),
+      userAnswer: admin.firestore.FieldValue.delete(),
+      model: meta.model ?? null,
+      reason: null,
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+    return true;
+  });
 }
 
-/** Attach a lazily-generated ELI5 variant to an existing ready doc. */
-export async function writeEli5MistakeExplanation(mistakeHash: string, eli5: string): Promise<void> {
-  await docRef(mistakeHash).set({
-    eli5,
-    updatedAtMs: Date.now(),
-  }, { merge: true });
+/** Publish both validated variants atomically so readers never observe a partial bundle. */
+export async function writeReadyMistakeExplanationBundle(
+  mistakeHash: string,
+  bundle: { full: string; eli5: string },
+  meta: MistakeReadyMeta,
+  claimedAtMs: number,
+): Promise<boolean> {
+  const ref = docRef(mistakeHash);
+  return admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (data?.status !== 'pending' || Number(data.createdAtMs ?? 0) !== claimedAtMs) return false;
+    tx.set(ref, {
+      status: 'ready',
+      schemaVersion: MISTAKE_SCHEMA_VERSION,
+      full: bundle.full,
+      eli5: bundle.eli5,
+      eli5PendingAtMs: null,
+      createdAtMs: admin.firestore.FieldValue.delete(),
+      lang: meta.lang,
+      targetEn: admin.firestore.FieldValue.delete(),
+      userAnswer: admin.firestore.FieldValue.delete(),
+      model: meta.model ?? null,
+      reason: null,
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+    return true;
+  });
+}
+
+/** Publish lazy ELI5 only while this request still owns the lease. */
+export async function writeEli5MistakeExplanation(
+  mistakeHash: string,
+  eli5: string,
+  claimedAtMs: number,
+): Promise<boolean> {
+  const ref = docRef(mistakeHash);
+  const db = admin.firestore();
+  return db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (Number(data?.eli5PendingAtMs ?? 0) !== claimedAtMs) return false;
+    tx.set(ref, {
+      eli5,
+      eli5PendingAtMs: null,
+      targetEn: admin.firestore.FieldValue.delete(),
+      userAnswer: admin.firestore.FieldValue.delete(),
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+    return true;
+  });
 }
 
 /** Mark a breakdown rejected (judge). Serves nothing; regenerates after the retry TTL. */
-export async function writeRejectedMistakeExplanation(mistakeHash: string, reason: string): Promise<void> {
-  await docRef(mistakeHash).set({
-    status: 'rejected',
-    schemaVersion: MISTAKE_SCHEMA_VERSION,
-    reason,
-    updatedAtMs: Date.now(),
-  }, { merge: true });
+export async function writeRejectedMistakeExplanation(
+  mistakeHash: string,
+  reason: string,
+  claimedAtMs: number,
+): Promise<boolean> {
+  const ref = docRef(mistakeHash);
+  return admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() as CachedMistakeExplanation | undefined;
+    if (data?.status !== 'pending' || Number(data.createdAtMs ?? 0) !== claimedAtMs) return false;
+    tx.set(ref, {
+      status: 'rejected',
+      schemaVersion: MISTAKE_SCHEMA_VERSION,
+      full: admin.firestore.FieldValue.delete(),
+      eli5: admin.firestore.FieldValue.delete(),
+      createdAtMs: admin.firestore.FieldValue.delete(),
+      targetEn: admin.firestore.FieldValue.delete(),
+      userAnswer: admin.firestore.FieldValue.delete(),
+      reason,
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+    return true;
+  });
 }

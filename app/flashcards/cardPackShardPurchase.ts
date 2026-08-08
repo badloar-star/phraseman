@@ -40,11 +40,12 @@ function emitSourceGatedPackToast(): void {
 export async function purchaseCardPackWithShards(
   pack: FlashcardMarketPack,
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: unknown,
 ): Promise<CardPackShardPurchaseResult> {
   if (pack.isCommunityUgc) {
     return purchaseCommunityPackWithShards(pack, studyTarget);
   }
-  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) {
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)) {
     emitSourceGatedPackToast();
     return 'source_gated';
   }
@@ -122,6 +123,7 @@ export async function purchaseCardPackWithShards(
 export async function redeemPackGiftVoucher(
   pack: FlashcardMarketPack,
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: unknown,
 ): Promise<CardPackVoucherRedeemResult> {
   if (pack.isCommunityUgc) {
     return redeemCommunityPackGiftVoucher(pack, studyTarget);
@@ -145,7 +147,7 @@ export async function redeemPackGiftVoucher(
     || trial.claimBinding.packType !== 'official'
     || trial.claimBinding.studyTarget !== storageStudyTarget(studyTarget)
   )) return 'redeem_failed';
-  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) {
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)) {
     emitSourceGatedPackToast();
     return 'source_gated';
   }

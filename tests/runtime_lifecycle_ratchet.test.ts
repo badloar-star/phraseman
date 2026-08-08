@@ -69,8 +69,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // фокуса, чтобы возврат к голому useRuntimeActive() ронял тест.
   'app/(tabs)/tournaments.tsx': runtime('Live dot pulse is active only while the Tournaments screen is focused.', ['useRuntimeActive(screenFocused)', 'cancelAnimation(pulse)']),
   'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility, including child sparkles and halo.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
-  'app/_admin_celebration_lab.tsx': { owner: 'dev_only', reason: 'Administrator animation laboratory.' },
-  'app/_anim_demo_lab.tsx': { owner: 'dev_only', reason: 'Development-only animation laboratory.' },
   'app/_layout.tsx': owned('Root overlay motion runs only while its overlay is visible.', ['if (!visible) return', 'pulseLoop.stop()']),
   'app/club_screen.tsx': {
     owner: 'owner_prop',
@@ -120,7 +118,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // стал строже — пауза/фон/чужой экран/reduce-motion глушат цикл, а active
   // владельца входит в useRuntimeActive(active). Токены обновлены, не ослаблены.
   'components/flashcards/AudioWaveform.tsx': runtime('Waveform bars run only while audio actually plays on focused foreground runtime with reduced motion off; every loop is stopped on cleanup.', ['if (!playing || !runtimeActive || reduceMotion)', 'loop.stop()']),
-  'components/league/LeagueArenaScene.tsx': guarded('Arena beams, emblem float and confetti loops use screen focus and AppState.'),
+  'components/league/LeagueCompetitionScene.tsx': guarded('League beams, emblem float and confetti loops use screen focus and AppState.'),
   'components/league/LeagueMyPositionBar.tsx': guarded('My-position rank glow loop uses screen focus and AppState.'),
   'components/league/LeagueChestTeaserModal.tsx': owned('Chest teaser rays and bob run only while the modal is visible and stop on cleanup.', ['if (!visible) return null', 'if (!visible) return']),
   'components/league/LeagueHotHoursChip.tsx': guarded('Hot-hours chip pulse uses screen focus and AppState.'),

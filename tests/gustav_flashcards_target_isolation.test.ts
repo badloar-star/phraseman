@@ -539,8 +539,8 @@ describe('Gustav flashcards target isolation', () => {
 
     expect(paywallHookSource).toContain('studyTarget?: RuntimeStudyTarget');
     expect(paywallHookSource).toContain('isPackCeremoniallyOpened(pw.pack.id, studyTarget)');
-    expect(paywallHookSource).toContain('redeemPackGiftVoucher(pw.pack, studyTarget)');
-    expect(paywallHookSource).toContain('purchaseCardPackWithShards(pw.pack, studyTarget)');
+    expect(paywallHookSource).toContain('redeemPackGiftVoucher(pw.pack, studyTarget, lang)');
+    expect(paywallHookSource).toContain('purchaseCardPackWithShards(pw.pack, studyTarget, lang)');
 
     const categoryHubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'FlashcardsCategoryHub.tsx'), 'utf8');
     const shardPurchaseSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'cardPackShardPurchase.ts'), 'utf8');
@@ -553,7 +553,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(categoryHubSource).toContain('stageOwnedPackCardsForNavigation(pack.id, studyTarget)');
     expect(categoryHubSource).toContain("frenchFlashcardsGateCopy('ru').body");
     expect(shardPurchaseSource).toContain('purchaseCommunityPackWithShards(pack, studyTarget)');
-    expect(shardPurchaseSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(shardPurchaseSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)');
     expect(shardPurchaseSource).toContain('getPackGiftTrial(studyTarget, {');
     expect(shardPurchaseSource).toContain('consumePackGiftTrial(trial.localVoucherId)');
     expect(paywallModalSource).toContain('studyTarget?: RuntimeStudyTarget');
@@ -588,7 +588,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(levelGiftSource).toContain('callFlashcardPackGiftRedeem({');
     expect(levelGiftSource).toContain('isFlashcardPackLevelGiftId(id)');
     expect(leagueChestSource).toContain('rewardPack.packGiftVoucherId');
-    expect(globalBroadcastSource).toContain('setRandomPackGiftTrial48h(studyTarget, grant.voucherId, grant.expiresAt)');
+    expect(globalBroadcastSource).toContain('setRandomPackGiftTrial48h(studyTarget, claim.voucherId, claim.expiresAt)');
     expect(globalBroadcastModalSource).toContain('claimAndDismissGlobalBroadcastModal(payload, studyTarget)');
     expect(clubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(levelGiftModalSource).toContain('rollF2pLevelGiftForUser(level, { studyTarget })');

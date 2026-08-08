@@ -42,7 +42,7 @@ describe('personal plan engine contracts', () => {
       'plan_choose_natural_phrase',
       'plan_phrase_recall',
     ]));
-    expect(PLAN_EXERCISE_TYPES).not.toContain('plan_quiz');
+    expect(PLAN_EXERCISE_TYPES).toContain('plan_quiz');
   });
 
   it('allows progress only from correct or completed eligible attempts', () => {
@@ -140,6 +140,7 @@ describe('personal plan engine contracts', () => {
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
+      'plan_quiz',
     ]);
     expect(blocks.filter((block) => block.type !== 'plan_pronunciation_repeat').every((block) => block.progressPolicy === 'correct_only')).toBe(true);
     expect(blocks.find((block) => block.type === 'plan_pronunciation_repeat')?.progressPolicy).toBe('completion_only');

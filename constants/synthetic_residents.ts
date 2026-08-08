@@ -28,10 +28,10 @@ const RESIDENT_LIFESPAN_MIN_MS = 400 * 24 * 60 * 60 * 1000;
 const RESIDENT_LIFESPAN_MAX_MS = 1100 * 24 * 60 * 60 * 1000;
 
 /** Шаг начисления — раз в 6 часов. */
-export const RESIDENT_TICK_MS = 6 * 60 * 60 * 1000;
+export const RESIDENT_TICK_MS = 60 * 60 * 1000;
 
-export const RESIDENT_TICK_MIN_XP = 10;
-export const RESIDENT_TICK_MAX_XP = 800;
+export const RESIDENT_TICK_MIN_XP = 2;
+export const RESIDENT_TICK_MAX_XP = 134;
 
 /** Доля тиков, в которые персонаж «не заходил». */
 export const RESIDENT_IDLE_CHANCE = 0.5;

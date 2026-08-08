@@ -30,12 +30,6 @@ describe('legacy monetization copy contract', () => {
     }
   });
 
-  it('keeps the admin preview aligned with the third-lesson boundary', () => {
-    const source = read('components', 'admin_panel', 'soft_upsell_preview_catalog.ts');
-    expect(source).toContain("adminLabel: 'После третьего бесплатного урока'");
-    expect(source).toContain("milestoneId: 'free_lessons_complete:3:en'");
-  });
-
   it('keeps legacy admin defaults aligned with runtime guardrails', () => {
     const source = read('admin', 'v2', 'legacy.html');
     expect(source).toContain("{ key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3");

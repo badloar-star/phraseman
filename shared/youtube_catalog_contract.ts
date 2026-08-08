@@ -237,6 +237,15 @@ export function parseYoutubeHandle(raw: string | null | undefined): string {
   return /^[0-9A-Za-z._-]+$/.test(bare) ? bare : '';
 }
 
+export function parseYoutubeChannelReference(raw: string | null | undefined): string {
+  const value = String(raw ?? '').trim();
+  if (!value) return '';
+  const channelId = parseYoutubeChannelId(value);
+  if (channelId) return channelId;
+  const handle = parseYoutubeHandle(value);
+  return handle && (/@[0-9A-Za-z._-]+/.test(value) || value.startsWith('@')) ? `@${handle}` : '';
+}
+
 function normalizedLocale(value: string): string {
   return value.replace(/_/g, '-').trim().toLowerCase();
 }
@@ -262,8 +271,8 @@ export function resolveYoutubeChannelId(
 function parseChannelConfig(value: unknown): YoutubeChannelConfig {
   const source = record(value, 'channel_config_invalid');
   const id = internalId(source.id, 'channel_id_invalid');
-  const youtubeChannelId = text(source.youtubeChannelId, 'youtube_channel_id_invalid', 24);
-  if (!CHANNEL_ID_RE.test(youtubeChannelId)) fail('youtube_channel_id_invalid');
+  const youtubeChannelId = text(source.youtubeChannelId, 'youtube_channel_id_invalid', 300);
+  if (!parseYoutubeChannelReference(youtubeChannelId)) fail('youtube_channel_id_invalid');
   const enabled = booleanValue(source.enabled, 'channel_enabled_invalid');
   const order = integer(source.order, 'channel_order_invalid');
   const languageTags = stringArray(source.languageTags, 'language_tags', 20, languageTag);

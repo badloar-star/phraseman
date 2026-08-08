@@ -40,9 +40,13 @@ function writeHandoffFixtureRun(preflightSummary: Record<string, unknown>): stri
 
 describe('Gustav French server remote credential handoff V2 packet', () => {
   it('turns the current missing-credential remote verify blocker into a safe next command handoff', () => {
+    const runDir = writeHandoffFixtureRun({
+      credentialSource: 'missing',
+      readyForRemoteObjectVerifyCommand: false,
+    });
     const report = buildFrenchServerRemoteCredentialHandoff({
       repoRoot: ROOT,
-      runDir: RUN_DIR,
+      runDir,
       generatedAt: '2026-06-29T00:00:00.000Z',
     });
 

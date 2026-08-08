@@ -1,6 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
-
 import type { Lang } from '../constants/i18n';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { dailyTaskAvailableForStudyTarget, type DailyTask } from './daily_tasks';
@@ -16,8 +13,9 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import type { TrainerSessionRoute } from './trainer_session';
 import { startReservedTrainerSession } from './trainer_session_navigation';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
-import { lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
+import { storageStudyTarget } from './target_storage_keys';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
+import { resolveDailyTaskLessonId } from './daily_task_lesson_destination';
 
 type DailyTaskRouter = {
   push: (route: any) => void;
@@ -39,8 +37,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     return;
   }
 
-  const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
-  const lessonId = parseInt(lastLesson || '1', 10);
+  const lessonId = await resolveDailyTaskLessonId(studyTarget);
 
   const openLessonOrFrenchGate = async () => {
     if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {

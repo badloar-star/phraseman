@@ -11,13 +11,12 @@ interface Props {
   visible: boolean;
   reportedUid: string;
   reportedName: string;
-  screen: 'leaderboard' | 'arena' | 'profile';
+  screen: 'leaderboard' | 'profile';
   lang: Lang;
   onClose: () => void;
-  previewOnly?: boolean;
 }
 
-function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
+function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -38,16 +37,6 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     onClose();
   };
   const tx = {
-    preview: triLang(lang, {
-      ru: '✅ Превью: без отправки в Firestore',
-      uk: '✅ Прев\'ю: без відправки у Firestore',
-      es: '✅ Vista previa: sin enviar a Firestore',
-      'pt-BR': '✅ Prévia: sem enviar ao Firestore',
-      vi: '✅ Bản xem trước: không gửi lên Firestore',
-      id: '✅ Pratinjau: tidak dikirim ke Firestore',
-      tr: '✅ Önizleme: Firestore’a gönderilmedi',
-      pl: '✅ Podgląd: bez wysyłania do Firestore',
-    }),
     sent: triLang(lang, {
       ru: '✅ Жалоба отправлена',
       uk: '✅ Скаргу надіслано',
@@ -101,10 +90,8 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         setDone(false);
         handleClose();
       }, 1400);
-      if (!previewOnly) {
-        const result = await submitUserReport({ reportedUid, reportedName, reason: 'offensive_nickname', screen });
-        if (result === 'failed') throw new Error('report_failed');
-      }
+      const result = await submitUserReport({ reportedUid, reportedName, reason: 'offensive_nickname', screen });
+      if (result === 'failed') throw new Error('report_failed');
     } catch {
       setLoading(false);
       setDone(false);
@@ -168,9 +155,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
 
             {done ? (
               <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '700' }}>
-                {previewOnly
-                  ? tx.preview
-                  : tx.sent}
+                {tx.sent}
               </Text>
             ) : (
               <>

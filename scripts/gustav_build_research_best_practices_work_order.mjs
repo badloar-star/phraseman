@@ -28,7 +28,6 @@ const FEATURE_SOURCE_MAP = {
   daily_phrase_tasks: ['tv5monde_apprendre', 'le_robert_dictionary'],
   diagnostics_exams: ['coe_cefr_companion_2020', 'tv5monde_a1', 'tv5monde_a2'],
   personal_plans: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'alliance_francaise_normandie_levels'],
-  arena: ['coe_cefr_companion_2020', 'tv5monde_grammar', 'le_robert_dictionary'],
   audio_tts: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
   server_course_packs: ['phraseman_english_feature_atlas'],
   storage_cloud_isolation: ['phraseman_english_feature_atlas'],
@@ -87,9 +86,6 @@ const FEATURE_CLAIMS = {
   personal_plans: [
     'Personal plans must use French plan content, listening/speaking tasks, audio metadata and target-scoped progress.',
   ],
-  arena: [
-    'Arena needs French question banks with count parity to English comparable modes and no English fallback.',
-  ],
   audio_tts: [
     'Every voice-required French phrase, dialogue, question or explanation needs an audio manifest row, checksum and server path.',
   ],
@@ -125,8 +121,8 @@ const UNIVERSAL_ANTI_CALQUE_RULES = [
   },
   {
     id: 'fr_verb_source_check',
-    rule: 'Conjugated verb forms must be source-checked before feeding lessons, quizzes, practice, arena or AI explanations.',
-    appliesTo: ['grammar_hubs', 'quizzes', 'personal_practice', 'arena', 'mistake_explanations'],
+    rule: 'Conjugated verb forms must be source-checked before feeding lessons, quizzes, practice or AI explanations.',
+    appliesTo: ['grammar_hubs', 'quizzes', 'personal_practice', 'mistake_explanations'],
   },
   {
     id: 'fr_not_source_locale',
@@ -135,8 +131,8 @@ const UNIVERSAL_ANTI_CALQUE_RULES = [
   },
   {
     id: 'fr_seed_not_parity',
-    rule: 'Lesson row fan-out can be seed material only; quiz, flashcard, personal practice and arena require feature-specific French banks.',
-    appliesTo: ['quizzes', 'flashcards', 'personal_practice', 'arena'],
+    rule: 'Lesson row fan-out can be seed material only; quiz, flashcard and personal practice require feature-specific French banks.',
+    appliesTo: ['quizzes', 'flashcards', 'personal_practice'],
   },
 ];
 
@@ -234,7 +230,7 @@ function claimForSource(sourceId, featureId) {
 
 function constraintsFor(featureId) {
   const constraints = [...UNIVERSAL_CONSTRAINTS];
-  if (['quizzes', 'flashcards', 'personal_practice', 'arena'].includes(featureId)) {
+  if (['quizzes', 'flashcards', 'personal_practice'].includes(featureId)) {
     constraints.push('Do not accept row reuse from lessons as final parity content for this feature.');
   }
   if (featureId.includes('explanations') || featureId === 'compass_ai') {

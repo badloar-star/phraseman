@@ -6,7 +6,7 @@
 // energy-window) проверяют локальный час отдельно — это не задача резолвера.
 
 import { getTodayKey } from '../daily_tasks';
-import { getWeeklyBoonsConfigRaw } from '../remote_flags';
+import { getWeeklyBoonsConfigRaw, hasRemoteConfigSnapshotApplied } from '../remote_flags';
 import { parseWeeklyBoonsConfig } from './boon_config';
 import {
   ALL_BOON_MODIFIER_IDS,
@@ -107,6 +107,17 @@ let _cachedBoons: TodaysBoons | null = null;
  * бонусы. Мемоизировано по (сырой конфиг + день) — дёшево даже в hot-path (XP, энергия).
  */
 export function getTodaysBoons(todayKey: string = getTodayKey()): TodaysBoons {
+  // Fail closed during cold start. The bundled defaults intentionally enable
+  // weekly boons, but they must never win a race against a persisted/live
+  // admin kill-switch that has not been applied yet.
+  if (!hasRemoteConfigSnapshotApplied()) {
+    return {
+      primary: null,
+      modifiers: [],
+      utcWeekday: utcWeekdayFromTodayKey(todayKey),
+      weekNumber: utcWeekNumberFromTodayKey(todayKey),
+    };
+  }
   const raw = getWeeklyBoonsConfigRaw();
   if (_cachedBoons && _cachedRaw === raw && _cachedKey === todayKey) {
     return _cachedBoons;

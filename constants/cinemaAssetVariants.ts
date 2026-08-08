@@ -28,7 +28,7 @@ export const CINEMA_ASSET_VARIANTS: readonly CinemaAssetVariant[] = [
     id: 'signalCrest',
     label: 'Signal Crest',
     shortLabel: 'Crest',
-    description: 'Sharper competitive crests for quiz and reward energy.',
+    description: 'Sharper competitive crests and reward energy.',
   },
 ] as const;
 

@@ -18,9 +18,6 @@ import {
   flashcardsAchievementSourceSetKey,
   flashcardsAchievementViewStreakKey,
   lessonProgressKey,
-  quizPerfectLevelsTodayKey,
-  quizPerfectStreakKey,
-  quizAchievementCounterKey,
   shareAchievementCounterKey,
   trainerAchievementCorrectCountKey,
   trainerAchievementCorrectStreakKey,
@@ -118,29 +115,6 @@ describe('Gustav achievement state target isolation', () => {
   // Викторины удалены из приложения вместе со своими достижениями, поэтому
   // контракт перевёрнут: quiz-событие обязано быть НО-ОП и не плодить записи
   // в хранилище — иначе мёртвые счётчики снова начнут уезжать в Firestore.
-  it('quiz events are inert: no achievement rows and no counter writes', async () => {
-    await checkAchievements({ type: 'quiz', level: 'easy', perfect: true, studyTarget: 'fr' });
-    await checkAchievements({ type: 'quiz_session_count', count: 42, studyTarget: 'fr' });
-
-    // Ни один quiz-счётчик не должен появиться в хранилище — именно эти записи
-    // раньше раздували achievements_state, который целиком уезжает в Firestore.
-    expect(await AsyncStorage.getItem(quizPerfectLevelsTodayKey('fr'))).toBeNull();
-    expect(await AsyncStorage.getItem(quizPerfectStreakKey('fr'))).toBeNull();
-    expect(await AsyncStorage.getItem('achievement_quiz_perfect_streak_v1')).toBeNull();
-    expect(await AsyncStorage.getItem('achievement_quiz_perfect_levels_today_v1')).toBeNull();
-    expect(await AsyncStorage.getItem(quizAchievementCounterKey('quiz_hard_count', 'fr'))).toBeNull();
-
-    // И ни одной записи достижения викторин/арены — их определений больше нет.
-    // (Само хранилище checkAchievements инициализирует живыми достижениями —
-    //  это ожидаемо, проверяем именно отсутствие мёртвых.)
-    const legacy = JSON.parse(await AsyncStorage.getItem('achievements_v1') ?? '[]');
-    const french = JSON.parse(await AsyncStorage.getItem(achievementStateKey('fr')) ?? '[]');
-    const deadRows = [...legacy, ...french].filter(
-      (s: { id: string }) => s.id.startsWith('quiz_') || s.id.startsWith('arena_'),
-    );
-    expect(deadRows).toEqual([]);
-  });
-
   it('stores French exam and gem achievements in the scoped target bucket', async () => {
     await checkAchievements({ type: 'exam', pct: 95, studyTarget: 'fr' });
     await checkAchievements({ type: 'gem', level: 'A1', gem: 'ruby', studyTarget: 'fr' });

@@ -1,15 +1,13 @@
 {
   "stage": {
-    "requestId": "r7-request-1", "kind": "arena_questions", "studyTarget": "en", "sourceLocale": "ru", "scopeId": "lesson-1", "schemaVersion": 3, "promptVersion": "v3", "count": 10, "qaPolicy": "arena-studio-quality-v3", "revision": 1, "prerequisiteArtifactIds": ["artifact:r7-topic-1"]
+    "requestId": "r7-request-1", "kind": "flashcard_items", "studyTarget": "en", "sourceLocale": "ru", "scopeId": "lesson-1", "schemaVersion": 3, "promptVersion": "v3", "count": 10, "qaPolicy": "flashcard-studio-quality-v3", "revision": 1, "prerequisiteArtifactIds": ["artifact:r7-pack-1"]
   },
   "review": { "reviewStatus": "approved", "reviewerId": "reviewer-sanitized", "sealedBy": "admin-sanitized" },
   "release": { "releaseId": "staged-en-ru-r7-1", "studyTarget": "en", "learnerSourceLocale": "ru", "blueprintId": "english-core-32", "blueprintHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "contentVersion": "r7-1", "minAppVersion": "1.0.0" },
   "units": [
     { "unitId": "lesson-1", "jobId": "r7-job-1", "studyTarget": "en", "learnerSourceLocale": "ru", "releaseId": "staged-en-ru-r7-1", "surface": "lesson", "lessonId": 1, "state": "succeeded", "contentHash": "1111111111111111111111111111111111111111111111111111111111111111", "objectGeneration": "101", "byteSize": 100, "qaReceipt": { "status": "passed", "blueprintHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "sourceEvidenceIds": ["evidence-1"] } },
-    { "unitId": "quiz-1", "jobId": "r7-job-1", "studyTarget": "en", "learnerSourceLocale": "ru", "releaseId": "staged-en-ru-r7-1", "surface": "quiz", "lessonId": 1, "state": "succeeded", "contentHash": "2222222222222222222222222222222222222222222222222222222222222222", "objectGeneration": "102", "byteSize": 100, "qaReceipt": { "status": "passed", "blueprintHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "sourceEvidenceIds": ["evidence-1"] } },
-    { "unitId": "flashcard-1", "jobId": "r7-job-1", "studyTarget": "en", "learnerSourceLocale": "ru", "releaseId": "staged-en-ru-r7-1", "surface": "flashcard", "lessonId": 1, "state": "succeeded", "contentHash": "3333333333333333333333333333333333333333333333333333333333333333", "objectGeneration": "103", "byteSize": 100, "qaReceipt": { "status": "passed", "blueprintHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "sourceEvidenceIds": ["evidence-1"] } },
-    { "unitId": "arena-1", "jobId": "r7-job-1", "studyTarget": "en", "learnerSourceLocale": "ru", "releaseId": "staged-en-ru-r7-1", "surface": "arena", "lessonId": 1, "state": "succeeded", "contentHash": "4444444444444444444444444444444444444444444444444444444444444444", "objectGeneration": "104", "byteSize": 100, "qaReceipt": { "status": "passed", "blueprintHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "sourceEvidenceIds": ["evidence-1"] } }
+    { "unitId": "flashcard-1", "jobId": "r7-job-1", "studyTarget": "en", "learnerSourceLocale": "ru", "releaseId": "staged-en-ru-r7-1", "surface": "flashcard", "lessonId": 1, "state": "succeeded", "contentHash": "3333333333333333333333333333333333333333333333333333333333333333", "objectGeneration": "103", "byteSize": 100, "qaReceipt": { "status": "passed", "blueprintHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "sourceEvidenceIds": ["evidence-1"] } }
   ],
-  "drafts": { "stage-draft-1": { "state": "approved", "artifactId": "artifact:r7-request-1:arena_questions:lesson-1:r1" } },
-  "ledgers": { "arena": { "topicArtifactId": "artifact:r7-topic-1", "revision": 2, "batches": { "batch-1": { "contentHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" } } } }
+  "drafts": { "stage-draft-1": { "state": "approved", "artifactId": "artifact:r7-request-1:flashcard_items:lesson-1:r1" } },
+  "ledgers": {}
 }

@@ -119,7 +119,7 @@ function deleteRecordingFile(uri: string | null): void {
  *
  * Self-contained: owns mic permission, on-device speech recognition, the live
  * waveform, word-by-word highlighting and scoring. Drop it anywhere (lesson /
- * quiz / trainer / personal plan) and it manages its own lifecycle. The host
+ * trainer / personal plan) and it manages its own lifecycle. The host
  * only supplies the target phrase and is told when the attempt passes.
  *
  * Оценка честная и конкретная (всё локально, без платных серверов):
@@ -199,7 +199,7 @@ export interface SpeakingPanelThemeSource {
 
 /**
  * Canonical mapping from the app theme to a SpeakingPanelTheme.
- * Single source of truth so every host (lessons / quizzes / trainer / QA lab)
+ * Single source of truth so every host (lessons / trainer / QA lab)
  * builds the panel theme identically instead of duplicating the object.
  */
 export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPanelTheme {
@@ -238,23 +238,6 @@ export interface SpeakingPanelProps {
   onFillAnswer?: (text: string) => void;
   /** Called when the user closes the panel. */
   onClose: () => void;
-  /**
-   * DEV/QA only. When set, the panel mounts in this status and the mic is
-   * inert (no permission request, no native speech module) so every visual
-   * state can be inspected from the in-app admin lab. Has no effect in normal
-   * use — production hosts never pass it.
-   */
-  previewStatus?: SpeakingPanelStatus;
-  /** DEV/QA only. Fixed score shown for the passed/failed preview states. */
-  previewScore?: number;
-  /**
-   * DEV/QA only. Force the Android "press-and-hold" LOOK while previewing from
-   * any platform (so the admin lab can show the hold button / hold status texts
-   * from an iPhone). Visual only — the mic and whisper stay inert in preview;
-   * this never arms recording. `'preparing'` shows the one-time model-download
-   * state. Ignored outside preview (production hosts never pass it).
-   */
-  previewHoldMode?: boolean | 'preparing';
   /** Embedded in an exercise's fixed reserved slot; never opens a Modal. */
   presentation?: 'modal' | 'inline';
   /** Controlled by the host's existing press-and-hold voice button. */
@@ -300,17 +283,11 @@ export function SpeakingPanel({
   onScore,
   onFillAnswer,
   onClose,
-  previewStatus,
-  previewScore,
-  previewHoldMode,
   presentation = 'modal',
   holdActive = false,
 }: SpeakingPanelProps) {
   const inlineMetrics = useSpeakingInlineMetrics();
-  const isPreview = previewStatus != null;
-  // In preview mode the native speech module is never touched, so permission
-  // prompts and recognition stay inert while the visual state is inspected.
-  const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
+  const speech = useMemo(() => loadSpeechModule(), []);
   // зачем: панель живёт внутри упражнения и при сворачивании приложения НЕ размонтируется —
   // нужен явный сигнал «приложение ушло в фон», чтобы отпустить микрофон (см. эффект ниже).
   const runtimeActive = useRuntimeActive();
@@ -318,8 +295,8 @@ export function SpeakingPanel({
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
   const { playNoSpeech } = useNoSpeechCue();
-  const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
-  const statusRef = useRef<SpeakingPanelStatus>(previewStatus ?? 'idle');
+  const [status, setStatus] = useState<SpeakingPanelStatus>('idle');
+  const statusRef = useRef<SpeakingPanelStatus>('idle');
   statusRef.current = status;
   const [transcript, setTranscript] = useState('');
   // Пословная карта попытки (чисто/нечётко/пропущено) — показывается после
@@ -390,11 +367,7 @@ export function SpeakingPanel({
   // volumechange sample does NOT re-render the whole modal — that re-render storm
   // was the source of the equalizer lag. Mirrors personal_plan_exercise.
   const equalizerRef = useRef<VoiceEqualizerRef>(null);
-  const [score, setScore] = useState<number | null>(
-    isPreview && (previewStatus === 'passed' || previewStatus === 'failed')
-      ? previewScore ?? (previewStatus === 'passed' ? 97 : 45)
-      : null,
-  );
+  const [score, setScore] = useState<number | null>(null);
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const audioEndSubRef = useRef<{ remove?: () => void } | null>(null);
   const mountedRef = useRef(true);
@@ -900,15 +873,13 @@ export function SpeakingPanel({
       // Честность: тот же звук — нейтральному движку без подсказки. Балл не
       // может превышать его вердикт больше, чем на допуск (speaking_honesty_check).
       let control: number | null = null;
-      if (!isPreview) {
-        const uri = await waitForRecordingUri(700);
-        if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
-        if (uri) control = await runControlPass(uri, captureGeneration);
-      }
+      const uri = await waitForRecordingUri(700);
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      if (uri) control = await runControlPass(uri, captureGeneration);
       if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       applyScoredResult(text, segments, control, captureGeneration);
     },
-    [clearWatchdog, cleanupListeners, isPreview, waitForRecordingUri, runControlPass, applyScoredResult],
+    [clearWatchdog, cleanupListeners, waitForRecordingUri, runControlPass, applyScoredResult],
   );
 
   const stopListening = useCallback(() => {
@@ -937,7 +908,6 @@ export function SpeakingPanel({
 
   const startListening = useCallback(async () => {
     if (!runtimeActiveRef.current) return;
-    if (isPreview) return; // mic is inert while previewing a fixed status
     if (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring') return;
     if (!speech) {
       setStatus('unavailable');
@@ -1058,7 +1028,7 @@ export function SpeakingPanel({
       // иначе притащим слова из неверных вариантов). Union — ещё один кандидат
       // на скоринг (порядок слов сохраняется, поэтому orderAccuracy не страдает,
       // и перемешанная речь НЕ получит ложный проход).
-      acc.add(String(alternatives[0]?.transcript ?? ''));
+      acc.add(String(alternatives[0]?.transcript ?? ''), event?.isFinal === true);
       const union = acc.union();
       if (union) considerBest(union);
       // Живая подсветка по union: слово, раз загоревшись, больше не гаснет, когда
@@ -1207,15 +1177,15 @@ export function SpeakingPanel({
       restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playRecordStart, clearWatchdog]);
+  }, [speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playRecordStart, clearWatchdog]);
 
   // ===== Android: «зажми и говори» → запись → whisper (в обход системного
   // распознавателя). На iOS системный движок надёжен и whisper выключен, поэтому
   // весь этот путь — только Android И только когда нативный рекордер И модель
   // whisper на месте; иначе откатываемся на системный путь (startListening). =====
   const holdSupported = useMemo(
-    () => !isPreview && Platform.OS === 'android' && isHoldRecordingSupported() && isNeuralJudgeSupported(),
-    [isPreview],
+    () => Platform.OS === 'android' && isHoldRecordingSupported() && isNeuralJudgeSupported(),
+    [],
   );
   // Готовность модели проверяем в рантайме (могла ещё качаться): держим в стейте,
   // чтобы кнопка честно показывала «идёт подготовка», а не молча падала в фолбэк.
@@ -1239,16 +1209,12 @@ export function SpeakingPanel({
   }, [speech]);
   // Единый speaking-контракт: на iOS push-to-talk использует системный
   // recognizer, на Android — PCM/whisper, когда модель готова.
-  // ПОВЕДЕНЧЕСКИЙ флаг: реальная запись/распознавание. В превью всегда false
-  // (holdSupported требует !isPreview) — микрофон не трогается.
+  // ПОВЕДЕНЧЕСКИЙ флаг: реальная запись/распознавание.
   const pcmHoldMode = holdSupported && holdModelReady;
   const pcmHoldModeRef = useRef(false);
   pcmHoldModeRef.current = pcmHoldMode;
-  const holdMode = !isPreview && !!speech;
-  // ДИСПЛЕЙНЫЙ флаг: как ВЫГЛЯДИТ панель. В превью отражает previewHoldMode (dev-
-  // проп админ-лаборатории), чтобы android-вид «Зажми и говори» был виден с iPhone
-  // БЕЗ реального микрофона. Вне превью совпадает с holdMode.
-  const holdModeView = isPreview ? previewHoldMode === true : holdMode;
+  const holdMode = !!speech;
+  const holdModeView = holdMode;
 
   const startHold = useCallback(() => {
     if (!runtimeActiveRef.current) return;
@@ -1662,7 +1628,6 @@ export function SpeakingPanel({
   // Speech capture lifecycle invariant: blur/background cancels every capture path,
   // invalidates async starts, stops capture playback, and never auto-resumes.
   useEffect(() => {
-    if (isPreview) return;
     if (runtimeActive) return;
     const phraseCaptureWasActive = statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring';
     const wordCaptureWasActive = wordPhaseRef.current === 'requesting' || wordPhaseRef.current === 'listening' || wordPhaseRef.current === 'scoring';
@@ -1718,7 +1683,7 @@ export function SpeakingPanel({
     equalizerRef.current?.setSample(0);
     if (mountedRef.current && phraseCaptureWasActive) setStatus('idle');
     if (mountedRef.current && wordCaptureWasActive) setWordPhase('idle');
-  }, [runtimeActive, isPreview, speech, clearWatchdog, clearWordWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners]);
+  }, [runtimeActive, speech, clearWatchdog, clearWordWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».
@@ -1743,7 +1708,6 @@ export function SpeakingPanel({
   // (качается один раз, в documentDirectory). Без пакета whisper.rn в бинаре или
   // без сети — тихий no-op. Когда модель готова, включаем hold-режим на Android.
   useEffect(() => {
-    if (isPreview) return;
     if (!isNeuralJudgeSupported()) return;
     let alive = true;
     // Уже на диске? — сразу готовы (частый путь после первого раза).
@@ -1760,7 +1724,7 @@ export function SpeakingPanel({
     return () => {
       alive = false;
     };
-  }, [isPreview, recognitionLocale]);
+  }, [recognitionLocale]);
 
   const handleClose = useCallback(() => {
     stopListening();
@@ -1870,7 +1834,7 @@ export function SpeakingPanel({
   const hintLine = hint && !effectivePassed ? speakingHintText(hint, lang) : null;
   // Подготовка Android PCM/whisper идёт в фоне и никогда не блокирует микрофон:
   // до готовности работает системный recognizer с тем же hold-жестом.
-  const preparingModelView = isPreview && previewHoldMode === 'preparing';
+  const preparingModelView = false;
 
   const statusLine = (() => {
     if (preparingModelView && (status === 'idle' || status === 'requesting')) {
@@ -2203,12 +2167,10 @@ export function SpeakingPanel({
               // При showResult фразовый микрофон уже не слушает — блокировки не нужно.
               micBusy={false}
               onHoldStart={() => {
-                if (isPreview) return;
                 if (pcmHoldMode) startWordHold(openWordIndex);
                 else startWordAttempt(openWordIndex);
               }}
               onHoldEnd={() => {
-                if (isPreview) return;
                 if (pcmHoldMode) void endWordHold(openWordIndex);
                 else endWordSystemAttempt();
               }}
@@ -2258,12 +2220,12 @@ export function SpeakingPanel({
                   passThreshold={passThreshold}
                   color={theme.accent}
                   emptyColor={theme.border}
-                  animate={!isPreview}
+                  animate
                 />
               </View>
             ) : (
               <VoiceEqualizer
-                {...(isPreview ? {} : { ref: equalizerRef })}
+                ref={equalizerRef}
                 active={listening}
                 color={theme.accent}
                 idleColor={theme.border}
@@ -2319,10 +2281,6 @@ export function SpeakingPanel({
               press-in starts, press-out finishes. */}
           {!isBlocked && !passed && (
             <Pressable
-              // Дисплейный флаг: КАК выглядит кнопка (push-to-talk vs tap). В превью
-              // он отражает previewHoldMode, но обработчики инертны — startHold сам
-              // перепроверяет ПОВЕДЕНЧЕСКИЙ holdMode (false в превью) и выходит,
-              // startListening выходит по isPreview. Микрофон в превью не трогается.
               {...(holdModeView
                 ? {
                     onPressIn: () => {

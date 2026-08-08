@@ -13,7 +13,6 @@ const SELECTABLE_THEMES = [
   'aurora',
   'volt',
   'dark',
-  'coral',
   'gold',
 ] as const;
 

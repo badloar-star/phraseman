@@ -695,7 +695,13 @@ export async function resumePendingAccountDeleteLocalExit(): Promise<boolean> {
     const enqueueOperation = startCloudDeletionEnqueue(pendingDelete.stableId);
     completionAcknowledgment = enqueueOperation.acknowledgment;
     void completionAcknowledgment.catch(() => {});
-    await enqueueOperation.dispatchSettled;
+    try {
+      await completionAcknowledgment;
+    } catch (e) {
+      if (__DEV__) console.warn('[auth_provider] pending account delete: durable enqueue retry failed', e);
+      logAuthEvent('auth_account_delete_enqueue_retry_failed', { provider: 'resume' });
+      return false;
+    }
   }
   if (auth?.currentUser) {
     try {
@@ -2191,6 +2197,7 @@ export type DeleteAccountHandoff =
  * повторные попытки удаления.
  */
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
+  const isProvablyAnonymousAccount = getAuth()?.currentUser?.isAnonymous === true;
   beginLocalAccountDeletionAttempt();
   let releaseTransitionReservation: () => void;
   try {
@@ -2217,6 +2224,14 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   }
 
   if (!prepared) {
+    // Local-only deletion is sound only when Firebase has positively identified
+    // this as an anonymous account. Linked/unknown accounts retain their auth
+    // session and data when the durable pending guard cannot be written.
+    if (!isProvablyAnonymousAccount) {
+      releaseTransitionReservation();
+      endLocalAccountDeletionAttempt();
+      return { ok: false, reason: 'pending_guard_persist_failed' };
+    }
     // зачем: сюда попадаем, только если сама быстрая фаза БРОСИЛА (её штатный
     // путь отказать уже не может). Раньше здесь жил отказ
     // pending_guard_persist_failed — тот самый алерт «Не удалось безопасно
@@ -2275,6 +2290,7 @@ type PreparedAccountDeletion = {
    */
   pendingDeleteLock: AccountDeletePendingAuthLock | null;
   pendingDeleteStableId: string | null;
+  requiresDurableServerDeletion: boolean;
   cloudDeleteEnqueueOperation: AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck>;
 };
 
@@ -2316,7 +2332,10 @@ async function withLocalStepDeadline<T>(run: () => Promise<T>, onTimeout: T): Pr
 }
 
 async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null> {
-  const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
+  const currentUser = getAuth()?.currentUser ?? null;
+  const pendingDeleteProviderUid = currentUser?.uid ?? null;
+  const isProvablyAnonymousAccount = currentUser?.isAnonymous === true;
+  if (!currentUser) return null;
   const pendingDeleteStableId = await withLocalStepDeadline(() => getStableId(), null);
   // Замок — best-effort и строго под таймаутом: он блокирует повторный вход по
   // почте/Apple ID, но НЕ имеет права задерживать выход пользователя на онбординг.
@@ -2324,6 +2343,7 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
     () => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),
     null,
   );
+  if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;
   // зачем: владелец (2026-07-27) — «даже анонимный пользователь должен иметь
   // возможность удалить всё; локальные данные стираются сразу и мгновенный
   // переход на первый экран онбординга». Поэтому локальная очистка живёт ЗДЕСЬ,
@@ -2348,14 +2368,24 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
     await restoreAccountDeletePendingAuthMirror(pendingDeleteLock).catch(() => {});
   }
   const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId);
-  return { pendingDeleteLock, pendingDeleteStableId, cloudDeleteEnqueueOperation };
+  return {
+    pendingDeleteLock,
+    pendingDeleteStableId,
+    requiresDurableServerDeletion: !isProvablyAnonymousAccount,
+    cloudDeleteEnqueueOperation,
+  };
 }
 
 /** Фоновая фаза: сеть, выход и локальная очистка. UI её НЕ ждёт. */
 async function finishAccountDeletion(
   prepared: PreparedAccountDeletion,
 ): Promise<DeleteAccountResult> {
-  const { pendingDeleteLock, pendingDeleteStableId, cloudDeleteEnqueueOperation } = prepared;
+  const {
+    pendingDeleteLock,
+    pendingDeleteStableId,
+    requiresDurableServerDeletion,
+    cloudDeleteEnqueueOperation,
+  } = prepared;
     if (pendingDeleteStableId) {
       await import('./shards_pending_grants')
         .then(({ removePendingShardGrantsForAccount }) => (
@@ -2410,10 +2440,20 @@ async function finishAccountDeletion(
       waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
       quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
     ]);
-    await cloudDeleteEnqueueOperation.dispatchSettled;
+    if (requiresDurableServerDeletion) {
+      try {
+        await cloudDeleteEnqueueOperation.acknowledgment;
+      } catch (e) {
+        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: durable enqueue failed', e);
+        logAuthEvent('auth_account_delete_quarantined', { reason: 'enqueue_not_acknowledged' });
+        return { ok: false, reason: 'account_delete_enqueue_failed' };
+      }
+    } else {
+      await cloudDeleteEnqueueOperation.dispatchSettled;
+    }
 
-    // Start the durable server request while provider auth is still current, but
-    // never let its network acknowledgement block sign-out and local exit.
+    // Linked accounts keep provider auth until the server has durably accepted
+    // the job. Anonymous accounts may continue locally without that guarantee.
     let firebaseSignedOut = true;
     try {
       await signOutCurrentProvider();

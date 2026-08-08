@@ -255,30 +255,6 @@ function shellOnboardingGraphite(): CardPackPaywallTheme {
   };
 }
 
-/** CORAL: warm cocoa shell matching the standalone Coral theme surfaces. */
-function shellCoral(): CardPackPaywallTheme {
-  return {
-    backdropBase: 'rgba(20,12,14,0.9)',
-    outerGlow: [
-      'rgba(255,100,100,0.3)',
-      'rgba(216,140,130,0.16)',
-      'rgba(31,24,26,0.5)',
-    ],
-    borderAccent: 'rgba(255,100,100,0.2)',
-    handleColorLight: 'rgba(80,40,40,0.3)',
-    handleColorDark: 'rgba(255,100,100,0.4)',
-    iconBg: ['#3A2A2E', '#21181B'],
-    iconBorder: 'rgba(255,100,100,0.2)',
-    priceBorder: 'rgba(255,100,100,0.15)',
-    priceGradient: ['rgba(74,144,255,0.1)', 'rgba(0,0,0,0)'],
-    ctaColors: ['#FF6464', '#4A0A1A'],
-    ctaForeground: '#FFFFFF',
-    ctaGlowTop: 'rgba(255,100,100,0.3)',
-    goShopCta: ['#4A90FF', '#15204A'],
-    goShopForeground: '#FFFFFF',
-  };
-}
-
 /** OCEAN: електричний циан + глибока вода, не «сіро-блакитна смуга» */
 function shellOcean(): CardPackPaywallTheme {
   return {
@@ -329,7 +305,6 @@ function shellSakura(): CardPackPaywallTheme {
 const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   dark: shellDark(),
   gold: shellGold(),
-  coral: shellCoral(),
   minimalDark: shellDark(),
   business: shellBusiness(),
   businessLight: shellBusinessLight(),

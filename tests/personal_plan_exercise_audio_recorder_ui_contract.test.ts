@@ -23,9 +23,14 @@ describe('personal plan exercise audio and recorder UI contract', () => {
 
     expect(SOURCE).not.toMatch(MOJIBAKE_RE);
     expect(SOURCE).toContain("accessibilityRole=\"button\"");
-    expect(SOURCE).toContain("accessibilityLabel={disabled ? 'Аудио готовится' : 'Слушать фразу'}");
+    expect(SOURCE).toContain('accessibilityLabel={disabled');
+    expect(SOURCE).toContain("ru: 'Аудио готовится'");
+    expect(SOURCE).toContain("ru: 'Слушать фразу'");
     expect(SOURCE).toContain("shadowColor: disabled ? '#000000' : accent");
-    expect(SOURCE).toContain("label = disabled ? 'Аудио готовится' : isBuffering ? 'Загрузка' : isPlaying ? 'Слушаю' : 'Слушать'");
+    expect(listeningButtonSource).toContain('const label = disabled');
+    expect(listeningButtonSource).toContain(': isBuffering');
+    expect(listeningButtonSource).toContain(': isPlaying');
+    expect(listeningButtonSource.match(/triLang\(lang,/g)).toHaveLength(6);
     expect(listeningButtonSource).toContain('No TTS fallback here: this control must remain MP3-only.');
     expect(listeningButtonSource).not.toContain('speakFallback');
   });
@@ -75,7 +80,7 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     // Прослушивание фразы НЕ обязательно — юзер может произнести сразу (если сам хочет).
     // Во время hold кнопка остаётся активной на requesting/listening, иначе RN
     // может потерять onPressOut. Блокируем её только при настоящем scoring.
-    expect(SOURCE).toContain('enabled={!pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}');
+    expect(SOURCE).toContain('enabled={!energyBlocked && !pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}');
     expect(SOURCE).toContain('preparing={pronunciationPreparing}');
     expect(SOURCE).toContain('(pronunciationBlocked != null || pronunciationScore?.passed === true)');
     expect(SOURCE).toContain('disabled={saving || pronunciationScoring}');

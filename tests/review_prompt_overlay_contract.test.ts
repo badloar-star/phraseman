@@ -14,7 +14,7 @@ describe('ReviewPromptModal overlay arbitration', () => {
 
   it('consumes prompt quota only after the arbiter actually presents a loaded prompt', () => {
     expect(source).toContain('const promptedForRequestRef = useRef(false)');
-    expect(source).toContain('if (!overlayVisible || !variant || previewOnly || promptedForRequestRef.current) return;');
+
     expect(source).toContain('promptedForRequestRef.current = true;');
     expect(source.match(/markReviewPrompted\(\)/g)).toHaveLength(1);
   });

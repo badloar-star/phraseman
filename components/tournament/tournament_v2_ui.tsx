@@ -274,7 +274,11 @@ export const V2Counter = memo(React.forwardRef<View, {
   icon?: React.ReactNode;
   dimmed?: boolean;
   style?: StyleProp<ViewStyle>;
-}>(function V2Counter({ value, tone = 'plain', icon, dimmed, style }, ref) {
+  accessibilityLabel?: string;
+  accessibilityLiveRegion?: 'none' | 'polite' | 'assertive';
+}>(function V2Counter({
+  value, tone = 'plain', icon, dimmed, style, accessibilityLabel, accessibilityLiveRegion,
+}, ref) {
   const P = useTournamentPalette();
   const scale = useSharedValue(1);
   const prev = React.useRef(value);
@@ -293,7 +297,13 @@ export const V2Counter = memo(React.forwardRef<View, {
   const fg = tone === 'stars' ? P.gold : tone === 'gems' ? P.accent : tone === 'miss' ? P.danger : P.text;
 
   return (
-    <View ref={ref} style={[styles.pill, { backgroundColor: bg, opacity: dimmed ? 0.4 : 1 }, style]}>
+    <View
+      ref={ref}
+      style={[styles.pill, { backgroundColor: bg, opacity: dimmed ? 0.4 : 1 }, style]}
+      accessible={Boolean(accessibilityLabel)}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityLiveRegion={accessibilityLiveRegion}
+    >
       <View style={[styles.topHi, { backgroundColor: P.chipHi }]} pointerEvents="none" />
       <Animated.View style={[styles.pillRow, inner]}>
         {icon ?? (tone === 'stars' ? <StarGlyph size={14} color={fg} /> : null)}

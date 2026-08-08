@@ -20,7 +20,6 @@ import {
   saveDiagnosisTrainingProgress,
 } from '../app/diagnosis_training_progress';
 import {
-  devSeedTrainerScenario,
   getTrainerDashboard,
   recordPhraseMistake,
 } from '../app/trainer_store';
@@ -96,7 +95,6 @@ describe('Gustav personal practice target isolation', () => {
     expect(frenchPersonalPracticeGateCopy('uk').body).toContain('Англійські персональні тренування приховано');
     expect(JSON.stringify(frenchPersonalPracticeGateCopy('ru'))).not.toMatch(/Français|Commencer|Entraîneur/);
 
-    const adminSource = fs.readFileSync(path.join(ROOT, 'app', '_admin_settings_testers.tsx'), 'utf8');
     const trainerSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer.tsx'), 'utf8');
     const analyticsScreenSource = fs.readFileSync(path.join(ROOT, 'app', 'phrase_analytics_screen.tsx'), 'utf8');
     // зачем: строки про app/(tabs)/quizzes.tsx убраны — экран удалён вместе с квизами.
@@ -105,12 +103,6 @@ describe('Gustav personal practice target isolation', () => {
     const lessonWordsSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_words.tsx'), 'utf8');
     const coachToastSource = fs.readFileSync(path.join(ROOT, 'app', 'coach_toast_trigger.ts'), 'utf8');
     const progressSource = fs.readFileSync(path.join(ROOT, 'app', 'diagnosis_training_progress.ts'), 'utf8');
-    expect(adminSource).toContain('personalPracticeCoachEnabledForTarget(studyTarget)');
-    expect(adminSource).toContain('frenchPersonalPracticeGateCopy(lang)');
-    expect(adminSource).toContain('const diagnosisDevBlocked = !personalPracticeCoachEnabled');
-    // зачем: ассерт убран — проверял код, снятый вместе с квизами/Ареной (в репо его нет).
-    expect(adminSource).toContain('if (diagnosisDevBlocked) {');
-    expect(adminSource).toContain('/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}');
     expect(trainerSource).toContain('personalPracticeCoachEnabledForTarget(studyTarget)');
     expect(trainerSource).toContain('devSeedTrainer(studyTarget)');
     expect(trainerSource).toContain('personalTrainingEnabled={personalPracticeCoachEnabled}');
@@ -288,15 +280,4 @@ describe('Gustav personal practice target isolation', () => {
     expect((await getTrainerDashboard('fr', 'uk')).hardestCategory).toBe('to-be');
   });
 
-  it('blocks English dev trainer seeds from populating French personal practice', async () => {
-    await expect(devSeedTrainerScenario('weak', 'fr')).resolves.toBe(false);
-
-    expect(mockStorage[trainerStoreKey('fr')]).toBeUndefined();
-    expect(mockStorage.trainer_store_v1).toBeUndefined();
-
-    await expect(devSeedTrainerScenario('weak', 'es')).resolves.toBe(true);
-
-    expect(mockStorage.trainer_store_v1).toContain('She went to the store');
-    expect(mockStorage[trainerStoreKey('fr')]).toBeUndefined();
-  });
 });

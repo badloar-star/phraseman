@@ -10,7 +10,6 @@ const blocked = [
   'Team v2',
   'UGC moderation',
   'Marketplace не загружен',
-  'Arena live',
   'New explain reports',
   'Cache health',
   'Published packs',

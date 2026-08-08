@@ -239,7 +239,7 @@ export async function buildWeeklyReviewBriefing(
         status: 'ready', activeDays7d: activity7.activeDays, activeDays30d: activity30.activeDays,
         currentStreak: activity.currentStreak, longestStreak: activity.longestStreak,
         weekXp: activity7.xp, weekMinutes: activity7.minutes, lessons7d: activity7.lessons,
-        quizzes7d: 0, reviews7d: activity7.reviews, arena7d: 0,
+        reviews7d: activity7.reviews,
       }
       : { status: 'error', errorCode: 'activity_unavailable' },
     trainer: trainer
@@ -330,9 +330,7 @@ export async function buildWeeklyReviewBriefing(
       weekXp: activityWeek.xp,
       weekMinutes: activityWeek.minutes,
       lessons7d: activityWeek.lessons,
-      quizzes7d: 0,
       reviews7d: activityWeek.reviews,
-      arena7d: 0,
     },
     recommendations,
     evidenceRegistry,

@@ -273,14 +273,14 @@ const SeasonRowItem = memo(function SeasonRowItem({
   const accessibilityLabel =
     // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
     triLang(lang, {
-        ru: `${place > 0 ? `Место ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} очков${onPress ? '. Открыть карточку' : ''}`,
-        uk: `${place > 0 ? `Місце ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} очок${onPress ? '. Відкрити картку' : ''}`,
-        es: `${place > 0 ? `Puesto ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} puntos${onPress ? '. Abrir tarjeta' : ''}`,
-        'pt-BR': `${place > 0 ? `Posição ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} pontos${onPress ? '. Abrir cartão' : ''}`,
-        vi: `${place > 0 ? `Hạng ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} điểm${onPress ? '. Mở hồ sơ' : ''}`,
-        id: `${place > 0 ? `Peringkat ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} poin${onPress ? '. Buka kartu' : ''}`,
-        tr: `${place > 0 ? `${place}. sıra. ` : ''}${isYou ? youWord : row.name}, ${row.points} puan${onPress ? '. Kartı aç' : ''}`,
-        pl: `${place > 0 ? `Miejsce ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} punktów${onPress ? '. Otwórz kartę' : ''}`,
+        ru: `${place > 0 ? `Место ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} звёзд${onPress ? '. Открыть карточку' : ''}`,
+        uk: `${place > 0 ? `Місце ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} зірок${onPress ? '. Відкрити картку' : ''}`,
+        es: `${place > 0 ? `Puesto ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} estrellas${onPress ? '. Abrir tarjeta' : ''}`,
+        'pt-BR': `${place > 0 ? `Posição ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} estrelas${onPress ? '. Abrir cartão' : ''}`,
+        vi: `${place > 0 ? `Hạng ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} sao${onPress ? '. Mở hồ sơ' : ''}`,
+        id: `${place > 0 ? `Peringkat ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} bintang${onPress ? '. Buka kartu' : ''}`,
+        tr: `${place > 0 ? `${place}. sıra. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} yıldız${onPress ? '. Kartı aç' : ''}`,
+        pl: `${place > 0 ? `Miejsce ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} gwiazdek${onPress ? '. Otwórz kartę' : ''}`,
     });
 
   // зачем 2026-07-27: строка РИСУЕТСЯ этим View, а не самим TapScale. TapScale
@@ -301,7 +301,7 @@ const SeasonRowItem = memo(function SeasonRowItem({
       <Text style={[styles.name, isYou && { color: P.accent }]} numberOfLines={1}>
         {isYou ? youWord : row.name}
       </Text>
-      <FlowText testID="season-row-points" provenance="authored" style={styles.points}>{row.points}</FlowText>
+      <FlowText testID="season-row-stars" provenance="authored" style={styles.points}>{row.starsTotal}</FlowText>
     </View>
   );
 

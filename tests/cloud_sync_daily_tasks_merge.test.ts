@@ -30,7 +30,6 @@ import {
   dailyPhraseAchievementSaveCountKey,
   dailyTasksAchievementAllDoneStreakKey,
   dailyTasksAchievementNoRerollStreakKey,
-  dailyTasksAdminOverrideKey,
   dailyTaskLessonVisitedKey,
   dailyTasksProgressKey,
   dailyTasksRerollKey,
@@ -70,11 +69,7 @@ import {
   personalPracticeFreeAccessKey,
   personalPracticeTrainingProgressKey,
   posMasteryKey,
-  quizAchievementCounterKey,
-  quizLifetimeCounterKey,
-  quizNavLevelKey,
-  quizPerfectLevelsTodayKey,
-  quizPerfectStreakKey,
+  retiredCompetitiveModeStorageKeysForWipe,
   shareAchievementCounterKey,
   targetKey,
   resolvedPersonalTrainingsKey,
@@ -343,11 +338,6 @@ describe('streak cloud restore safety', () => {
       'achievement_trainer_correct_count',
       'achievement_active_recall_correct_count',
       'achievement_trainer_perfect_session_count',
-      'achievement_quiz_total_count',
-      'quiz_hard_count',
-      'achievement_quiz_hard_perfect_count',
-      'achievement_quiz_perfect_levels_today_v1',
-      'achievement_quiz_perfect_streak_v1',
       'achievement_daily_phrase_read_count',
       'achievement_daily_phrase_save_count',
       'achievement_flashcards_saved_count',
@@ -370,11 +360,6 @@ describe('streak cloud restore safety', () => {
       levelExamKey('A1', 'medal_tier', 'fr'),
       lingmanCertificateKey('fr'),
       diagnosticLastKey('fr'),
-      quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
-      quizAchievementCounterKey('quiz_hard_count', 'fr'),
-      quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
-      quizPerfectLevelsTodayKey('fr'),
-      quizPerfectStreakKey('fr'),
       dailyPhraseAchievementReadCountKey('fr'),
       dailyPhraseAchievementSaveCountKey('fr'),
       dailyTasksAchievementAllDoneStreakKey('fr'),
@@ -407,9 +392,6 @@ describe('streak cloud restore safety', () => {
       resolvedPersonalTrainingsKey('fr', 'uk'),
       personalPracticeTrainingProgressKey('article_a_an', 'fr', 'ru'),
       personalPracticeTrainingProgressKey('article_a_an', 'fr', 'uk'),
-      quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'),
-      quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'),
-      quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'),
       lastOpenedLessonKey('fr'),
       irregularVerbsGlobalKey('fr'),
       lessonIrregularShardsGrantedKey(1, 'fr'),
@@ -419,7 +401,9 @@ describe('streak cloud restore safety', () => {
     ]));
     expect(FRENCH_TARGET_SYNC_KEYS.every((key) => key.includes('_v2::fr::') || key.endsWith('_v2::fr'))).toBe(true);
     expect(FRENCH_TARGET_SYNC_KEYS.some((key) => key.includes('::es'))).toBe(false);
-    expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(quizAchievementCounterKey('achievement_quiz_total_count', 'en'));
+    for (const retiredKey of retiredCompetitiveModeStorageKeysForWipe('fr')) {
+      expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(retiredKey);
+    }
   });
 
   it('wipes today lesson-visited daily task state per study target on account switch', async () => {
@@ -427,8 +411,6 @@ describe('streak cloud restore safety', () => {
     try {
       const englishVisitedKey = dailyTaskLessonVisitedKey('2026-05-20', 'en');
       const frenchVisitedKey = dailyTaskLessonVisitedKey('2026-05-20', 'fr');
-      const englishAdminOverrideKey = dailyTasksAdminOverrideKey('en');
-      const frenchAdminOverrideKey = dailyTasksAdminOverrideKey('fr');
       const englishGrammarHintKey = grammarHintSeenKey('grammar_hint_articles', 'en');
       const frenchGrammarHintKey = grammarHintSeenKey('grammar_hint_articles', 'fr');
       const englishLessonCellKey = lessonSessionKey(7, 'cellIndex', 'en');
@@ -460,20 +442,14 @@ describe('streak cloud restore safety', () => {
       const frenchDeleteHintKey = flashcardsDeleteHintSeenKey('fr');
       const englishPerfectPassEvidenceKey = achievementLessonPerfectPassesKey(1, 'en');
       const frenchPerfectPassEvidenceKey = achievementLessonPerfectPassesKey(1, 'fr');
-      const englishQuizTotalCountKey = quizAchievementCounterKey('achievement_quiz_total_count', 'en');
-      const frenchQuizTotalCountKey = quizAchievementCounterKey('achievement_quiz_total_count', 'fr');
-      const englishQuizHardCountKey = quizAchievementCounterKey('quiz_hard_count', 'en');
-      const frenchQuizHardCountKey = quizAchievementCounterKey('quiz_hard_count', 'fr');
-      const englishQuizHardPerfectCountKey = quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'en');
-      const frenchQuizHardPerfectCountKey = quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr');
+      const retiredEnglishKeys = retiredCompetitiveModeStorageKeysForWipe('en');
+      const retiredFrenchKeys = retiredCompetitiveModeStorageKeysForWipe('fr');
 
       expect(accountLocalDataKeysForToday('2026-05-20')).toEqual(expect.arrayContaining([
         englishLessonCellKey,
         frenchLessonCellKey,
         englishReplayQueueKey,
         frenchReplayQueueKey,
-        englishAdminOverrideKey,
-        frenchAdminOverrideKey,
         englishDeleteHintKey,
         frenchDeleteHintKey,
       ]));
@@ -481,8 +457,6 @@ describe('streak cloud restore safety', () => {
       await AsyncStorage.multiSet([
         [englishVisitedKey, '1'],
         [frenchVisitedKey, '1'],
-        [englishAdminOverrideKey, '{"mode":"qa"}'],
-        [frenchAdminOverrideKey, '{"mode":"qa_fr"}'],
         [englishGrammarHintKey, '1'],
         [frenchGrammarHintKey, '1'],
         [englishLessonCellKey, '8'],
@@ -514,16 +488,10 @@ describe('streak cloud restore safety', () => {
         [frenchDeleteHintKey, '1'],
         [englishPerfectPassEvidenceKey, '[1,2]'],
         [frenchPerfectPassEvidenceKey, '[1,2]'],
-        [englishQuizTotalCountKey, '2'],
-        [frenchQuizTotalCountKey, '3'],
-        [englishQuizHardCountKey, '4'],
-        [frenchQuizHardCountKey, '5'],
-        [englishQuizHardPerfectCountKey, '6'],
-        [frenchQuizHardPerfectCountKey, '7'],
+        ...retiredEnglishKeys.map((key, index) => [key, String(index + 1)] as [string, string]),
+        ...retiredFrenchKeys.map((key, index) => [key, String(index + 11)] as [string, string]),
         [dailyTasksProgressKey('2026-05-20', 'en'), '[]'],
         [dailyTasksProgressKey('2026-05-20', 'fr'), '[]'],
-        [quizNavLevelKey('en'), 'hard'],
-        [quizNavLevelKey('fr'), 'medium'],
         [diagnosticOpenFlagKey('en'), '1'],
         [diagnosticOpenFlagKey('fr'), '1'],
         ['shard_survey_done_daykey_v1', '2026-05-20'],
@@ -535,8 +503,6 @@ describe('streak cloud restore safety', () => {
 
       await expect(AsyncStorage.getItem(englishVisitedKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(frenchVisitedKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(englishAdminOverrideKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(frenchAdminOverrideKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(englishGrammarHintKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(frenchGrammarHintKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(englishLessonCellKey)).resolves.toBeNull();
@@ -568,16 +534,11 @@ describe('streak cloud restore safety', () => {
       await expect(AsyncStorage.getItem(frenchDeleteHintKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(englishPerfectPassEvidenceKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(frenchPerfectPassEvidenceKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(englishQuizTotalCountKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(frenchQuizTotalCountKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(englishQuizHardCountKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(frenchQuizHardCountKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(englishQuizHardPerfectCountKey)).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(frenchQuizHardPerfectCountKey)).resolves.toBeNull();
+      for (const retiredKey of [...retiredEnglishKeys, ...retiredFrenchKeys]) {
+        await expect(AsyncStorage.getItem(retiredKey)).resolves.toBeNull();
+      }
       await expect(AsyncStorage.getItem(dailyTasksProgressKey('2026-05-20', 'en'))).resolves.toBeNull();
       await expect(AsyncStorage.getItem(dailyTasksProgressKey('2026-05-20', 'fr'))).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(quizNavLevelKey('en'))).resolves.toBeNull();
-      await expect(AsyncStorage.getItem(quizNavLevelKey('fr'))).resolves.toBeNull();
       await expect(AsyncStorage.getItem(diagnosticOpenFlagKey('en'))).resolves.toBeNull();
       await expect(AsyncStorage.getItem(diagnosticOpenFlagKey('fr'))).resolves.toBeNull();
     } finally {
@@ -615,24 +576,15 @@ describe('streak cloud restore safety', () => {
     expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(lessonTheoryXpClaimedKey(1, 'en'));
   });
 
-  it('syncs English legacy and French scoped quiz achievement counters', () => {
-    expect(SYNC_KEYS).toContain(quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'en'));
-    expect(SYNC_KEYS).toContain(quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'en'));
-    expect(SYNC_KEYS).toContain(quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'en'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'en'));
-    expect(SYNC_KEYS).toContain(quizAchievementCounterKey('achievement_quiz_total_count', 'en'));
-    expect(SYNC_KEYS).toContain(quizAchievementCounterKey('quiz_hard_count', 'en'));
-    expect(SYNC_KEYS).toContain(quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'en'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizAchievementCounterKey('achievement_quiz_total_count', 'fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizAchievementCounterKey('quiz_hard_count', 'fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizPerfectLevelsTodayKey('fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).toContain(quizPerfectStreakKey('fr'));
-    expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(quizAchievementCounterKey('achievement_quiz_total_count', 'en'));
-    expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(quizPerfectStreakKey('en'));
+  it('keeps retired competitive state out of active sync while retaining wipe coverage', () => {
+    for (const retiredKey of retiredCompetitiveModeStorageKeysForWipe('en')) {
+      expect(SYNC_KEYS).not.toContain(retiredKey);
+      expect(accountLocalDataKeysForToday()).toContain(retiredKey);
+    }
+    for (const retiredKey of retiredCompetitiveModeStorageKeysForWipe('fr')) {
+      expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(retiredKey);
+      expect(accountLocalDataKeysForToday()).toContain(retiredKey);
+    }
   });
 
   it('restores daily login bonus state with cloud progress', async () => {

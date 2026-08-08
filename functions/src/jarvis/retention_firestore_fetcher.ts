@@ -32,11 +32,19 @@ export interface FetchRetentionSourceInput {
 async function countSince(
   collection: FirebaseFirestore.CollectionReference,
   sinceMs: number,
+  nowMs: number,
 ): Promise<number> {
   // guard-ok: .count() — серверная агрегация, документы не выкачиваются.
-  const snap = await collection.where('last_active_at', '>=', sinceMs).count().get();
+  const snap = await collection
+    .where('last_active_at', '>=', sinceMs)
+    .where('last_active_at', '<=', nowMs)
+    .count()
+    .get();
   const value = snap.data().count;
-  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.trunc(value) : 0;
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
+    throw new Error('Jarvis retention: aggregate count is invalid');
+  }
+  return Math.trunc(value);
 }
 
 export async function fetchRetentionSource(
@@ -44,18 +52,20 @@ export async function fetchRetentionSource(
 ): Promise<FetchRetentionSourceResult> {
   try {
     const [week, month] = await Promise.all([
-      countSince(input.collection, input.nowMs - RETENTION_WEEK_MS),
-      countSince(input.collection, input.nowMs - RETENTION_MONTH_MS),
+      countSince(input.collection, input.nowMs - RETENTION_WEEK_MS, input.nowMs),
+      countSince(input.collection, input.nowMs - RETENTION_MONTH_MS, input.nowMs),
     ]);
 
     // зачем зажимать: неделя входит в месяц по определению. Если счётчик
     // выдал недельных больше месячных, данные противоречивы — доля вышла бы
     // больше единицы и департамент отрапортовал бы небывалую лояльность.
-    const activeWeek = Math.min(week, month);
+    if (week > month) {
+      throw new Error('Jarvis retention: weekly active count exceeds monthly active count');
+    }
 
     return Object.freeze({
       state: month === 0 ? ('empty' as const) : ('ready' as const),
-      activeWeek,
+      activeWeek: week,
       activeMonth: month,
       observedAtMs: input.nowMs,
     });

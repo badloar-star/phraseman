@@ -6,12 +6,12 @@ import {
 import type { ThemeMode } from '../constants/theme';
 
 const ALL_THEMES: ThemeMode[] = [
-  'dark', 'gold', 'coral', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
+  'dark', 'gold', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
   'candyBlue', 'indigo', 'sagePorcelain',
 ];
 
 const DISTINCT_ACCENT_THEMES: ThemeMode[] = [
-  'dark', 'gold', 'coral', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
+  'dark', 'gold', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
   'candyBlue', 'indigo', 'sagePorcelain',
 ];
 
@@ -116,13 +116,6 @@ describe('PAYWALL_THEME_CONFIG — тематическая корректнос
     const { ctaBg } = PAYWALL_THEME_CONFIG.gold;
     // paleGold = #E9CE7A
     expect(ctaBg.toLowerCase()).toContain('e9ce7a');
-  });
-
-  it('coral: CTA красно-коралловый', () => {
-    const { ctaBg, ctaText } = PAYWALL_THEME_CONFIG.coral;
-    expect(ctaBg.toLowerCase()).toContain('ff7f50');
-    // На красном фоне — белый текст
-    expect(ctaText.toLowerCase()).toContain('ffffff');
   });
 
   

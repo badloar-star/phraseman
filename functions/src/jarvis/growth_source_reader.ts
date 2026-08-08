@@ -31,6 +31,9 @@ export interface GrowthSourceFetchResult {
   readonly truncated: boolean;
   readonly droppedCount: number;
   readonly rows: readonly GrowthRawRow[];
+  readonly count: number | null;
+  readonly provenance: 'server_daily_aggregate' | 'degraded_legacy_users_sample';
+  readonly periodKey: string;
   readonly observedAtMs: number;
 }
 
@@ -52,10 +55,15 @@ export function buildGrowthEvidence(fetch: GrowthSourceFetchResult): Evidence {
   return normalizeEvidence({
     sourceId: fetch.sourceId,
     state: fetch.state,
-    count: aggregate.totalCount,
+    count: fetch.count,
     truncated: fetch.truncated,
     droppedCount: fetch.droppedCount,
     observedAtMs: fetch.observedAtMs,
-    digest: JSON.stringify(aggregate),
+    digest: JSON.stringify({
+      count: fetch.count,
+      provenance: fetch.provenance,
+      periodKey: fetch.periodKey,
+      legacySample: aggregate,
+    }),
   });
 }

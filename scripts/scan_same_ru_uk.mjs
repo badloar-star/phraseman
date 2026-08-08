@@ -42,14 +42,3 @@ for (const [name, rel] of [
   const rows = JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
   scan(rows, name);
 }
-
-const a1 = JSON.parse(fs.readFileSync(path.join(root, 'assets', 'arena_questions_a1.json'), 'utf8'));
-scan(
-  a1.map((q) => ({
-    type: q.type,
-    question: q.question,
-    options: q.options,
-    correct: q.correct,
-  })),
-  'A1',
-);

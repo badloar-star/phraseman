@@ -97,9 +97,7 @@ interface WeeklyReviewBriefing {
     weekXp: number;
     weekMinutes: number;
     lessons7d: number;
-    quizzes7d: number;
     reviews7d: number;
-    arena7d: number;
   };
   recommendations: BriefingRecommendation[];
   evidenceRegistry: Record<string, number | string | string[]>;
@@ -259,9 +257,7 @@ function sanitizeBriefing(raw: unknown): WeeklyReviewBriefing {
       weekXp: clampInt(effortRaw.weekXp, 0, 100000000),
       weekMinutes: clampInt(effortRaw.weekMinutes, 0, 1000000),
       lessons7d: clampInt(effortRaw.lessons7d, 0, 100000),
-      quizzes7d: clampInt(effortRaw.quizzes7d, 0, 100000),
       reviews7d: clampInt(effortRaw.reviews7d, 0, 100000),
-      arena7d: clampInt(effortRaw.arena7d, 0, 100000),
     },
     recommendations,
     evidenceRegistry,

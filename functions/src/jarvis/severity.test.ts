@@ -32,6 +32,13 @@ describe('Jarvis severity — P0 to P3, and the same finding does not repeat', (
     expect(classifySeverity(decision({ department: 'retention' }))).toBe('P3');
   });
 
+  test('an explicit severity hint outranks the department default', () => {
+    expect(classifySeverity(decision({
+      department: 'payments',
+      severityHint: 'P3',
+    } as unknown as Partial<Decision>))).toBe('P3');
+  });
+
   test('every severity has a plain-language label', () => {
     expect(SEVERITY_LABEL.P0).toMatch(/критич/i);
     expect(SEVERITY_LABEL.P3).toMatch(/подожда/i);

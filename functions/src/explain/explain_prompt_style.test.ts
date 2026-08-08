@@ -1,6 +1,5 @@
 import { buildChoicePrompt } from './choice_explain_prompts';
 import { buildExplainPrompt } from './explain_prompts';
-import { buildQuizPrompt } from './quiz_explain_prompts';
 
 describe('AI explanation prompt style contracts', () => {
   it('keeps explain-like-I-am-five compact and human, not essay-shaped', () => {
@@ -36,13 +35,4 @@ describe('AI explanation prompt style contracts', () => {
     expect(prompt).not.toContain('идём дальше');
   });
 
-  it('keeps quiz breakdowns short enough for option feedback', () => {
-    const prompt = buildQuizPrompt('Knife', 'Как сказать "нож"?', ['Cup', 'Bowl', 'Chair'], 'ru');
-
-    expect(prompt).toContain('Phone-tooltip length');
-    expect(prompt).toContain('ONE sentence');
-    expect(prompt).toContain('<=160 chars');
-    expect(prompt).toContain('word-origin clue');
-    expect(prompt).not.toContain('one or two short sentences');
-  });
 });

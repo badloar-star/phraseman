@@ -61,7 +61,7 @@ function HomeTheoAdvisorCard({ advice, onAction, embedded = false, label }: Prop
 
   // Главная смонтирована постоянно (freeze не глушит уже запущенные лупы):
   // без focus/AppState-гарда «плавание» карточки крутилось всегда — вклад в
-  // нагрев. Тот же паттерн, что у пульса карточек квизов (quizzes.tsx).
+  // нагрев. Используем тот же мягкий паттерн пульса карточки.
   const focused = useIsScreenFocused();
 
   useEffect(() => {

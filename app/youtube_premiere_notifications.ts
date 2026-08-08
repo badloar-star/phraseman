@@ -136,12 +136,11 @@ export async function requestYoutubePremiereReminderFromTap(
   const channelId = validText(input.channelId, 80);
   const title = validText(input.title, 300);
   if (!trigger || !videoId || !channelId || !title) return { ok: false, reason: 'invalid_or_past' };
-  if (!(await dependencies.isMasterEnabled())) return { ok: false, reason: 'master_disabled' };
-
   const permission = await dependencies.requestPermission();
   if (!permission.granted) {
     return { ok: false, reason: permission.blocked ? 'permission_blocked' : 'permission_denied' };
   }
+  if (!(await dependencies.isMasterEnabled())) return { ok: false, reason: 'master_disabled' };
 
   const reminders = await readStoredReminders();
   const previous = reminders.find((item) => item.videoId === videoId);

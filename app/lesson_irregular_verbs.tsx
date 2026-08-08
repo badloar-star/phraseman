@@ -932,7 +932,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
       <Animated.ScrollView
         horizontal
-        decelerationRate="fast"
+        decelerationRate="normal"
         nestedScrollEnabled
         showsHorizontalScrollIndicator={true}
         scrollEventThrottle={16}
@@ -1037,7 +1037,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const { theme: t, f } = useTheme();
   const pack = stringsForLang(lang);
   return (
-    <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
+    <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
       <TouchableOpacity
         onPress={onStartLearn}
         style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}

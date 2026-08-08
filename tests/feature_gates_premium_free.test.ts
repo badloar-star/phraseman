@@ -63,7 +63,6 @@ describe('feature_gates', () => {
     mockBools['gate_ai_dialog_premium'] = false;
     expect(isFeatureFreeForEveryone('ai_dialog')).toBe(true);
     expect(isFeatureBlockedForAge('ai_dialog')).toBe(false);
-    expect(isFeatureBlockedForAge('arena')).toBe(false);
     expect(isFeatureBlockedForAge('lessons')).toBe(false);
   });
 });

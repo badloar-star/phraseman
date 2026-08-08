@@ -2,15 +2,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
-import { addShardsRaw, loadShardsFromCloud } from './shards_system';
-import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
+import { replaceShardsBalanceLocalWithOutcomeWhileAccountTransitionLocked } from './shards_system';
+import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
-import { callFlashcardPackGiftGrantGlobalBroadcast } from './community_packs/functionsClient';
 import { WAGER_DISCOUNT_KEY } from './level_gift_system';
 import { isPremiumAccessProgressActive } from './premium_progress';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { submitClientReport } from './client_reports';
+import { getApp } from '@react-native-firebase/app';
+import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withCallableTimeout } from './callable_timeout';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken, withAccountTransitionLock } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 import {
   ruKnowledgeShardsAfterNumber,
   ukKnowledgeShardsAfterNumber,
@@ -66,12 +72,11 @@ export type GlobalBroadcastRewardType =
   | 'chain_shield_1'
   | 'chain_shield_3'
   | 'club_boost_free'
-  | 'arena_extra_5'
   | 'wager_discount_25'
   | 'pack_trial_48h';
 
-function dismissKey(id: string): string {
-  return `global_broadcast_modal_dismissed_${id}`;
+function dismissKey(id: string, token: AccountGenerationToken = captureAccountGeneration()): string {
+  return `global_broadcast_modal_dismissed_${id}::${accountScopeKey(token) ?? 'inactive'}`;
 }
 
 function toSafePositiveInt(value: unknown, defaultValue = 0): number {
@@ -90,7 +95,6 @@ function normalizeRewardType(value: unknown): GlobalBroadcastRewardType {
     'chain_shield_1',
     'chain_shield_3',
     'club_boost_free',
-    'arena_extra_5',
     'wager_discount_25',
     'pack_trial_48h',
   ];
@@ -256,18 +260,6 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
         labelTr: 'Ücretsiz lig güçlendirmesi',
         labelPl: 'Darmowy boost ligi',
       };
-    case 'arena_extra_5':
-      return {
-        icon: '🎟️',
-        labelRu: '+5 рейтинг-игр сегодня',
-        labelUk: '+5 рейтинг-ігор сьогодні',
-        labelEs: '+5 partidas extra en la Arena hoy',
-        labelPtBr: '+5 partidas ranqueadas hoje',
-        labelVi: '+5 trận xếp hạng hôm nay',
-        labelId: '+5 game peringkat hari ini',
-        labelTr: 'Bugün +5 sıralama oyunu',
-        labelPl: '+5 gier rankingowych dziś',
-      };
     case 'wager_discount_25':
       return {
         icon: '🎲',
@@ -297,53 +289,91 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
   }
 }
 
+type GlobalBroadcastClaimResponse = {
+  ok: boolean;
+  rewardType: GlobalBroadcastRewardType;
+  rewardAmount?: number;
+  senderBalanceAfter?: number;
+  shardsUpdatedAtMs?: number;
+  chainShield?: string;
+  giftXpMultiplier?: string;
+  voucherId?: string;
+  expiresAt?: number;
+  clubGiftFreeBoostCount?: number;
+  wagerDiscountUses?: number;
+};
+
+async function claimGlobalBroadcastReward(
+  payload: GlobalBroadcastModalPayload,
+  stableId: string,
+): Promise<GlobalBroadcastClaimResponse> {
+  const link = await ensureStableAuthLinkForStableIdDetailed(stableId);
+  if (!link.ok || link.stableUid !== stableId) throw new Error('broadcast_identity_changed');
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = httpsCallable<{ stableId: string; broadcastId: string }, GlobalBroadcastClaimResponse>(
+    getFunctions(getApp(), 'us-central1'),
+    'globalBroadcastClaim',
+  );
+  const result = await withCallableTimeout(fn({ stableId, broadcastId: payload.id }), 'globalBroadcastClaim');
+  return result.data;
+}
+
 async function applyBroadcastReward(
   payload: GlobalBroadcastModalPayload,
+  claim: GlobalBroadcastClaimResponse,
   studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
   stableId?: string,
 ): Promise<void> {
-  const amount = toSafePositiveInt(payload.rewardAmount, 0);
-  const today = new Date().toISOString().split('T')[0];
-  switch (payload.rewardType) {
+  switch (claim.rewardType) {
     case 'none':
       return;
     case 'shards':
-      if (amount > 0) {
-        await addShardsRaw(amount, 'global_broadcast_modal');
-        await loadShardsFromCloud().catch(() => {});
+      if (!Number.isFinite(claim.senderBalanceAfter) || !Number.isFinite(claim.shardsUpdatedAtMs)) {
+        throw new Error('broadcast_shard_receipt_missing');
+      }
+      if (!accountToken || !stableId) throw new Error('broadcast_identity_missing');
+      {
+        const applied = await replaceShardsBalanceLocalWithOutcomeWhileAccountTransitionLocked(claim.senderBalanceAfter!, accountToken, {
+          updatedAtMs: claim.shardsUpdatedAtMs,
+          op: 'earn',
+          reason: 'global_broadcast_modal',
+        });
+        if (applied !== 'applied' && applied !== 'already-newer') throw new Error('broadcast_identity_changed');
       }
       return;
     case 'xp_boost_2x_24h':
-    case 'xp_boost_2x_48h': {
-      const hours = payload.rewardType === 'xp_boost_2x_24h' ? 24 : 48;
-      await AsyncStorage.setItem('gift_xp_multiplier', JSON.stringify({ multiplier: 2, expiresAt: Date.now() + hours * 3600 * 1000 }));
+    case 'xp_boost_2x_48h':
+      if (!claim.giftXpMultiplier) throw new Error('broadcast_xp_receipt_missing');
+      await AsyncStorage.setItem('gift_xp_multiplier', claim.giftXpMultiplier);
       return;
-    }
     case 'chain_shield_1':
-    case 'chain_shield_3': {
-      const days = payload.rewardType === 'chain_shield_1' ? 1 : 3;
-      const raw = await AsyncStorage.getItem('chain_shield');
-      const ex = raw ? (JSON.parse(raw) as { daysLeft?: number }) : null;
-      const daysLeft = (typeof ex?.daysLeft === 'number' ? ex.daysLeft : 0) + days;
-      await AsyncStorage.setItem('chain_shield', JSON.stringify({ daysLeft, grantedAt: today }));
+    case 'chain_shield_3':
+      if (!claim.chainShield) throw new Error('broadcast_shield_receipt_missing');
+      await AsyncStorage.setItem('chain_shield', claim.chainShield);
       return;
-    }
     case 'club_boost_free':
-      await grantClubGiftFreeBoostFromLevel();
-      return;
-    case 'arena_extra_5':
-      // Preserve queued legacy broadcasts with an equal-size neutral reward.
-      // §7: выплата монет обнулена — легаси-рассылка приходит без монетной части.
-      await addShardsRaw(0, 'global_broadcast_modal');
-      await loadShardsFromCloud().catch(() => {});
+      if (!Number.isFinite(claim.clubGiftFreeBoostCount) || claim.clubGiftFreeBoostCount! < 0) {
+        throw new Error('broadcast_club_boost_receipt_missing');
+      }
+      await setClubGiftFreeBoostCountFromAuthority(claim.clubGiftFreeBoostCount!);
       return;
     case 'wager_discount_25':
-      await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');
+      if (!Number.isFinite(claim.wagerDiscountUses) || claim.wagerDiscountUses! < 0) {
+        throw new Error('broadcast_wager_receipt_missing');
+      }
+      if (claim.wagerDiscountUses! > 0) {
+        await AsyncStorage.multiSet([
+          [WAGER_DISCOUNT_KEY, '0.25'],
+          ['wager_discount_uses_v1', String(Math.floor(claim.wagerDiscountUses!))],
+        ]);
+      } else {
+        await AsyncStorage.multiRemove([WAGER_DISCOUNT_KEY, 'wager_discount_uses_v1']);
+      }
       return;
     case 'pack_trial_48h':
-      if (!stableId) throw new Error('pack_gift_stable_id_required');
-      const grant = await callFlashcardPackGiftGrantGlobalBroadcast({ stableId, broadcastId: payload.id });
-      if (await setRandomPackGiftTrial48h(studyTarget, grant.voucherId, grant.expiresAt)) {
+      if (!claim.voucherId || !claim.expiresAt) throw new Error('pack_gift_receipt_missing');
+      if (await setRandomPackGiftTrial48h(studyTarget, claim.voucherId, claim.expiresAt)) {
         await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
       }
       return;
@@ -397,11 +427,14 @@ export async function fetchPendingGlobalBroadcastModal(
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   const uid = await getCanonicalUserId().catch(() => null);
   if (!uid) return null;
+  const accountToken = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(accountToken, uid)) return null;
 
   try {
     const firestoreModule = await import('@react-native-firebase/firestore');
     const db = firestoreModule.default();
     const activeSnap = await db.collection(COLLECTION).where('active', '==', true).limit(20).get();
+    if (!isCurrentAccountGeneration(accountToken, uid)) return null;
     if (activeSnap.empty) return null;
 
     const activeDocs = activeSnap.docs.map((d: any) => ({
@@ -411,18 +444,18 @@ export async function fetchPendingGlobalBroadcastModal(
     for (const doc of activeDocs) {
       const payload = normalizePayload(doc.id, doc.data);
       if (isRetiredLeagueSystemBroadcast(payload)) {
-        await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+        await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
       }
     }
 
     const payload = pickLatest(activeDocs);
     if (!payload) return null;
     if (isRetiredLeagueSystemBroadcast(payload)) {
-      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
       return null;
     }
     if (payload.kind === 'review_promo') {
-      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
       return null;
     }
 
@@ -434,22 +467,30 @@ export async function fetchPendingGlobalBroadcastModal(
       if (payload.premiumAudience === 'premium' && !isPremium) return null;
     }
 
-    const dismissed = await AsyncStorage.getItem(dismissKey(payload.id));
+    const dismissed = await AsyncStorage.getItem(dismissKey(payload.id, accountToken));
+    if (!isCurrentAccountGeneration(accountToken, uid)) return null;
     if (dismissed === '1') return null;
 
     const claimId = `global_broadcast_${payload.id}`;
     const claimSnap = await db.collection('users').doc(uid).collection('reward_claims').doc(claimId).get();
     if (claimSnap.exists) {
-      if (payload.rewardType === 'pack_trial_48h') {
+      let receipt = claimSnap.data()?.response as GlobalBroadcastClaimResponse | undefined;
+      if (receipt?.rewardType === 'club_boost_free' && !Number.isFinite(receipt.clubGiftFreeBoostCount)
+        || receipt?.rewardType === 'wager_discount_25' && !Number.isFinite(receipt.wagerDiscountUses)) {
+        receipt = await claimGlobalBroadcastReward(payload, uid).catch(() => undefined);
+      }
+      if (receipt?.rewardType) {
         try {
-          // Another device may have written the claim before this installation
-          // persisted its local voucher. Replay the same server grant first.
-          await applyBroadcastReward(payload, studyTarget, uid);
+          await withAccountTransitionLock(async () => {
+            if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
+            await applyBroadcastReward(payload, receipt, studyTarget, accountToken, uid);
+          });
         } catch {
           return payload;
         }
       }
-      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      if (!isCurrentAccountGeneration(accountToken, uid)) return null;
+      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
       return null;
     }
 
@@ -488,45 +529,19 @@ export async function claimAndDismissGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   if (!payload?.id) return;
-  const requiresServerGrant = payload.rewardType === 'pack_trial_48h';
-  if (!requiresServerGrant) {
-    await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
-  }
-
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('broadcast_claim_unavailable');
   const uid = await getCanonicalUserId().catch(() => null);
-  if (!uid) return;
-
-  if (requiresServerGrant) {
-    // Access rewards are never materialized from the client broadcast flag alone.
-    // Keep the modal eligible for replay until the server has issued its receipt.
-    await applyBroadcastReward(payload, studyTarget, uid);
-    await AsyncStorage.setItem(dismissKey(payload.id), '1');
-  } else {
-    // Preserve best-effort behavior for ordinary, reversible local rewards.
-    await applyBroadcastReward(payload, studyTarget, uid).catch(() => {});
-  }
-
-  try {
-    const firestoreModule = await import('@react-native-firebase/firestore');
-    const db = firestoreModule.default();
-    const claimRef = db.collection('users').doc(uid).collection('reward_claims').doc(`global_broadcast_${payload.id}`);
-    const nowIso = new Date().toISOString();
-
-    await db.runTransaction(async (tx: any) => {
-      const claimSnap = await tx.get(claimRef);
-      if (claimSnap.exists) return;
-      tx.set(claimRef, {
-        source: 'global_broadcast_modal',
-        broadcastId: payload.id,
-        rewardType: payload.rewardType,
-        rewardAmount: payload.rewardAmount,
-        createdAt: nowIso,
-      });
-    });
-  } catch {
-    // Best-effort: modal stays one-time even if network failed.
-  }
+  if (!uid) throw new Error('broadcast_identity_unavailable');
+  const accountToken = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
+  const receipt = await claimGlobalBroadcastReward(payload, uid);
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
+    await applyBroadcastReward(payload, receipt, studyTarget, accountToken, uid);
+    if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
+    await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1');
+  });
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

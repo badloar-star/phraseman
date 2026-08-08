@@ -23,9 +23,7 @@ export type WeeklyReviewActivitySnapshotSource = SourceError | {
   weekXp: number;
   weekMinutes: number;
   lessons7d: number;
-  quizzes7d: number;
   reviews7d: number;
-  arena7d: number;
 };
 
 export type WeeklyReviewTrainerSnapshotSource = SourceError | {
@@ -105,9 +103,7 @@ export function buildWeeklyReviewSnapshot(
     weekXp: count(activity?.weekXp),
     weekMinutes: count(activity?.weekMinutes),
     lessons7d: count(activity?.lessons7d),
-    quizzes7d: count(activity?.quizzes7d),
     reviews7d: count(activity?.reviews7d),
-    arena7d: count(activity?.arena7d),
     dueWords,
     duePhrases,
     overdue: count(trainer?.overdue),

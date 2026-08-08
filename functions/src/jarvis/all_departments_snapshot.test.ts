@@ -1,5 +1,6 @@
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 import type { Decision } from './decision';
+import { buildPaymentsSnapshot } from './payments_snapshot';
 
 // зачем: тест проверяет только маршрутизацию (какой департамент дал какое
 // решение), не поля самого Decision — упрощённый мок с явным приведением типа.
@@ -93,6 +94,35 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
       resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments: ok, runSafety: ok, runSupport, runFactory: ok, runRetention: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['support']);
+  });
+
+  test('an insufficient payments decision survives the combined all-departments snapshot', async () => {
+    const resolveAppTier = jest.fn(async () => 'seed' as const);
+    const empty = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
+    const runPayments = jest.fn(async () => buildPaymentsSnapshot({
+      fetchers: {
+        telegram_premium_dead_letter: async () => ({
+          sourceId: 'telegram_premium_dead_letter', state: 'error', truncated: false,
+          droppedCount: 0, rows: [], observedAtMs: 5_000,
+        }),
+        revenuecat_premium_denials: async () => ({
+          sourceId: 'revenuecat_premium_denials', state: 'empty', truncated: false,
+          droppedCount: 0, rows: [], observedAtMs: 5_000,
+        }),
+      },
+      trigger: 'scheduled',
+      nowMs: 5_000,
+    }));
+
+    const result = await buildAllDepartmentsSnapshot({
+      resolveAppTier, runQuality: empty, runMoney: empty, runGrowth: empty, runContent: empty,
+      runPayments, runSafety: empty, runSupport: empty, runFactory: empty, runRetention: empty,
+      nowMs: 5_000,
+    });
+
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0]).toMatchObject({ department: 'payments', status: 'insufficient_evidence' });
+    expect(result.departmentErrors).toEqual([]);
   });
 
   test('all departments empty yields an empty decisions array, not an error', async () => {

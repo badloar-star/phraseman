@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament' | 'jarvis';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets', 'tournament', 'jarvis'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament' | 'jarvis';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'digest', 'support', 'content_factory', 'image_assets', 'tournament', 'jarvis'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -54,9 +54,6 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   choice: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   // Непрерывающий пост Компаса в лиговом чате; не связан с удалённой Home-модалкой.
   compass: { model: 'gpt-4.1-nano', globalDailyCap: 5000 },
-  // Тематические квизы: батч-«разбор» 1-на-вопрос (вопросов мало, повторяются между учениками) →
-  // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
-  quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   // Дайджест для владельца: раз в сутки, один вызов на весь проект. Кап символический
   // (несколько ручных перегенераций в день максимум). Модель поумнее — сводка должна
   // осмысленно расставлять приоритеты, а не просто пересчитывать.

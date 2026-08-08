@@ -37,12 +37,11 @@ describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, wit
     expect(block).toContain('[darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]');
   });
 
-  it('gold and coral keep their dedicated locked treatments', () => {
+  it('gold keeps its dedicated locked treatment', () => {
     const source = lessonsSource();
     const start = source.indexOf('{/* Card background */}');
     const block = source.slice(start, start + 1600);
     expect(block).toContain('GOLD_GRADIENTS.mutedPanel');
-    expect(block).toContain("['#1A1113', '#24191C', '#130D0F']");
   });
 
   it('locked tile is DARKER than the unlocked tile (clear "not yet earned" read)', () => {
@@ -62,7 +61,7 @@ describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, wit
 
   it('the lock icon is painted with a visible light color (not the dark bg tint)', () => {
     const source = lessonsSource();
-    // The non-gold/non-coral locked lock must NOT use rgbaHex(lessonAccent, 0.46)
+    // The non-gold locked lock must NOT use rgbaHex(lessonAccent, 0.46)
     // (that equals the dark bg and disappears). It must be a light/white tone.
     // The lesson-tile lock line is the unique one that also references
     // lockedCardHasLightFill (the chapter-header lock does not).

@@ -28,7 +28,6 @@ import {
   ALL_ACHIEVEMENTS,
   checkAchievements,
   claimAchievementShardReward,
-  devSeedAchievementsSmoke,
   loadAchievementStates,
   loadAchievementStatesForTarget,
   markAchievementsNotified,
@@ -433,18 +432,6 @@ describe('achievements', () => {
     ]);
     await checkAchievements({ type: 'backfill' });
 
-    await checkAchievements({ type: 'quiz', level: 'easy', perfect: true });
-    await checkAchievements({ type: 'quiz', level: 'medium', perfect: true });
-    for (let i = 0; i < 25; i += 1) {
-      await checkAchievements({ type: 'quiz', level: 'hard', perfect: true });
-    }
-    jest.useFakeTimers().setSystemTime(new Date(2026, 6, 1, 12, 0, 0));
-    for (let i = 0; i < 7; i += 1) {
-      jest.setSystemTime(new Date(2026, 6, 1 + i, 12, 0, 0));
-      await checkAchievements({ type: 'quiz', level: 'easy', perfect: true });
-    }
-    jest.useRealTimers();
-
     await checkAchievements({ type: 'combo', count: 500 });
     jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
     for (let i = 0; i < 30; i += 1) {
@@ -497,12 +484,6 @@ describe('achievements', () => {
     jest.useRealTimers();
     await checkAchievements({ type: 'active_recall', correct: 50 });
 
-    for (let i = 0; i < 100; i += 1) {
-      await checkAchievements({ type: 'arena_win' });
-    }
-    for (let i = 0; i < 25; i += 1) {
-      await checkAchievements({ type: 'arena_wager_win', count: i + 1 });
-    }
     await checkAchievements({ type: 'wager_win_streak', count: 10 });
     await checkAchievements({ type: 'streak_freeze_used' });
     await checkAchievements({ type: 'shards', balance: 1000 });
@@ -533,7 +514,6 @@ describe('achievements', () => {
     await checkAchievements({ type: 'avatar_custom_set' });
     await checkAchievements({ type: 'profile_theme_set' });
     await checkAchievements({ type: 'pack_purchased', totalPacks: 25 });
-    await checkAchievements({ type: 'quiz_session_count', count: 100 });
 
     for (const level of ['A1', 'A2', 'B1', 'B2']) {
       await checkAchievements({ type: 'gem', level, gem: 'ruby' });
@@ -665,30 +645,6 @@ describe('achievements', () => {
     expect(source).not.toContain('`lesson${i + 1}_progress`');
     expect(source).not.toContain('`lesson${i + 1}_pass_count`');
     expect(source).not.toContain('`achievement_lesson_${i + 1}_perfect_passes_v1`');
-  });
-
-  it('dev smoke seed opens all achievements and fills progress counters', async () => {
-    const report = await devSeedAchievementsSmoke();
-    const total = ALL_ACHIEVEMENTS.length;
-
-    expect(report).toEqual({
-      total,
-      unlocked: total,
-      missing: [],
-    });
-    expect(await AsyncStorage.getItem('streak_count')).toBe('500');
-    expect(await AsyncStorage.getItem('user_total_xp')).toBe('100000');
-    expect(await AsyncStorage.getItem('achievement_active_recall_correct_count')).toBe('50');
-    // зачем: Арена удалена — achievement_arena_win_count больше не сеется.
-    // Проверяем живой счётчик ставок на серию (открывает wager_win_3 и _10).
-    expect(await AsyncStorage.getItem('achievement_wager_win_count')).toBe('10');
-    expect(await AsyncStorage.getItem('shards_balance')).toBe('100');
-
-    const loginRaw = await AsyncStorage.getItem('login_bonus_v1');
-    expect(JSON.parse(loginRaw ?? '{}').consecutiveDays).toBe(365);
-
-    const lessonProgress = await AsyncStorage.getItem('lesson32_progress');
-    expect(JSON.parse(lessonProgress ?? '[]').filter((x: string) => x === 'correct')).toHaveLength(50);
   });
 
   it('lets account B and the transition lock proceed when account A achievement storage never resolves', async () => {

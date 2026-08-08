@@ -31,15 +31,6 @@ const CHROME_BY_THEME: Record<ThemeMode, Omit<ThemedToastChrome, 'title' | 'body
     shadowColor: 'rgba(0,0,0,0.90)',
     radius: 20,
   },
-  coral: {
-    cardColors: ['rgba(58,31,35,0.97)', 'rgba(28,14,17,0.95)', 'rgba(9,5,6,0.94)'],
-    accent: '#FF7F50',
-    accentSoft: 'rgba(255,127,80,0.16)',
-    border: 'rgba(255,127,80,0.46)',
-    closeBg: 'rgba(255,127,80,0.10)',
-    shadowColor: 'rgba(55,8,14,0.82)',
-    radius: 18,
-  },
   minimalDark: {
     cardColors: ['rgba(31,35,45,0.98)', 'rgba(19,22,30,0.97)', 'rgba(8,10,15,0.95)'],
     accent: '#6EA8FF',

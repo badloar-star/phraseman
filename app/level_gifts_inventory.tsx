@@ -5,8 +5,17 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { memo, useCallback, useMemo, useState } from 'react';
-import { Dimensions, Platform, Text, View } from 'react-native';
+import { AppState, Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
+import Animated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import GiftExpiryCountdown from '../components/GiftExpiryCountdown';
@@ -31,9 +40,10 @@ import { oskolokImageForPackShards } from './oskolok';
 import { safeRouterBack } from './navigation_back';
 import { animateNextLayoutTransition } from './smooth_layout';
 import {
-  getPendingLevelGiftInventoryCache,
   loadPendingLevelGiftInventory,
   markDualGiftPartClaimed,
+  markLevelSpinGiftOccurrenceClaimed,
+  restoreDualGiftPartAfterFailedClaim,
   type PendingLevelGiftInventoryItem,
 } from './level_gift_inventory';
 import {
@@ -41,6 +51,13 @@ import {
   type ActiveLevelGiftInventoryItem,
 } from './level_gift_active_inventory';
 import { getCurrentMultiplierBreakdown, type MultiplierBreakdown } from './xp_manager';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { onAppEvent } from './events';
+import {
+  fetchLevelSpinStatus,
+  peekLevelSpinBalance,
+  readCachedLevelSpinBalance,
+} from './level_reward_spins_client';
 import {
   giftGradientAlpha,
   giftGradientBaseColor,
@@ -63,6 +80,16 @@ import type { ThemeMode } from '../constants/theme';
 const TILE_GRID_GAP = 10;
 const GRID_SCREEN_PAD = 16;
 const TILES_PER_ROW = 3;
+
+function pendingGiftItemKey(item: PendingLevelGiftInventoryItem): string {
+  if (item.kind === 'single' && item.spinOccurrence) {
+    return `single-spin-${item.spinOccurrence.requestId}-${item.spinOccurrence.lane}`;
+  }
+  if (item.kind === 'single' && item.dualPart) {
+    return `single-${item.level}-${item.dualPart}`;
+  }
+  return `${item.kind}-${item.level}`;
+}
 
 const giftTone = (accent: string, alpha: string): string =>
   /^#[0-9a-f]{6}$/i.test(accent) ? `${accent}${alpha}` : accent;
@@ -128,7 +155,9 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
   const gradientAlpha = giftGradientAlpha(strongestRarity as GiftRarity, isLight);
   const gradientShape = giftGradientShape(strongestRarity as GiftRarity);
   const shardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
-  const rowKey = item.kind === 'single' && item.dualPart
+  const rowKey = item.kind === 'single' && item.spinOccurrence
+    ? `${item.kind}-spin-${item.spinOccurrence.requestId}-${item.spinOccurrence.lane}`
+    : item.kind === 'single' && item.dualPart
     ? `${item.kind}-${item.level}-${item.dualPart}`
     : `${item.kind}-${item.level}`;
   const title = item.kind === 'dual'
@@ -198,9 +227,57 @@ export default function LevelGiftsInventoryScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, themeMode } = useTheme();
-  const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>(() => getPendingLevelGiftInventoryCache(studyTarget));
+  const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>([]);
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
+  const [spinBalance, setSpinBalance] = useState<number | null>(() => {
+    const token = captureAccountGeneration();
+    return peekLevelSpinBalance(token.stableId) ?? null;
+  });
+  const reducedMotion = useReducedMotion();
+  const spinPulse = useSharedValue(1);
+  const spinPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: spinPulse.value }, { rotate: '-1deg' }, { translateY: 2 }],
+  }));
+  const startSpinPulse = useCallback((appIsActive: boolean) => {
+    cancelAnimation(spinPulse);
+    spinPulse.value = 1;
+    if (appIsActive && (spinBalance ?? 0) > 0 && !reducedMotion) {
+      spinPulse.value = withRepeat(
+        withSequence(
+          withTiming(1.06, { duration: 720 }),
+          withTiming(1, { duration: 720 }),
+        ),
+        -1,
+        false,
+      );
+    }
+  }, [reducedMotion, spinBalance, spinPulse]);
+
+  useFocusEffect(useCallback(() => {
+    startSpinPulse(AppState.currentState === 'active');
+    const appStateSubscription = AppState.addEventListener('change', (state) => {
+      startSpinPulse(state === 'active');
+    });
+    return () => {
+      appStateSubscription.remove();
+      cancelAnimation(spinPulse);
+      spinPulse.value = 1;
+    };
+  }, [spinPulse, startSpinPulse]));
+
+  const spinBalanceA11yLabel = spinBalance === null
+    ? triLang(lang, {
+      ru: 'Спины: количество загружается', uk: 'Спіни: кількість завантажується',
+      es: 'Giros: cantidad cargando', 'pt-BR': 'Giros: quantidade carregando',
+      vi: 'Lượt quay: đang tải số lượng', id: 'Putaran: jumlah sedang dimuat',
+      tr: 'Çevirmeler: sayı yükleniyor', pl: 'Spiny: wczytywanie liczby',
+    })
+    : triLang(lang, {
+      ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, es: `Giros: ${spinBalance}`,
+      'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt quay: ${spinBalance}`,
+      id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}`,
+    });
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
   /**
@@ -237,10 +314,44 @@ export default function LevelGiftsInventoryScreen() {
     setUserName(nameRaw || '');
   }, [lang, studyTarget]);
 
+  const loadSpinBalance = useCallback(async () => {
+    const accountToken = captureAccountGeneration();
+    const stableId = accountToken.stableId;
+    if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+
+    const cached = await readCachedLevelSpinBalance(stableId);
+    if (cached !== null && isCurrentAccountGeneration(accountToken, stableId)) {
+      setSpinBalance(cached);
+    }
+
+    try {
+      const status = await fetchLevelSpinStatus();
+      if (isCurrentAccountGeneration(accountToken, stableId)) {
+        setSpinBalance(status.balance);
+      }
+    } catch {
+      // Offline/error: keep the account-scoped cached count without blocking legacy gifts.
+    }
+  }, []);
+
   useFocusEffect(useCallback(() => {
+    let active = true;
     void loadData();
-    return undefined;
-  }, [loadData]));
+    void loadSpinBalance();
+    const subscription = onAppEvent('level_spin_balance_changed', () => {
+      if (!active) return;
+      void loadData();
+      const accountToken = captureAccountGeneration();
+      const stableId = accountToken.stableId;
+      if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+      const cached = peekLevelSpinBalance(stableId);
+      if (cached !== null) setSpinBalance(cached);
+    });
+    return () => {
+      active = false;
+      subscription.remove();
+    };
+  }, [loadData, loadSpinBalance]));
 
   // зачем: таймер дошёл до нуля — подарок сгорел; ряд уходит плавным
   // layout-переходом, а перезагрузка данных заодно вычищает его из хранилища.
@@ -251,33 +362,14 @@ export default function LevelGiftsInventoryScreen() {
 
   const closeGiftModal = (claimed = false) => {
     if (claimed && selected) {
-      const selectedKey = selected.kind === 'single' && selected.dualPart
-        ? `${selected.kind}-${selected.level}-${selected.dualPart}`
-        : `${selected.kind}-${selected.level}`;
-      setItems((current) => current.filter((item) => {
-        const itemKey = item.kind === 'single' && item.dualPart
-          ? `${item.kind}-${item.level}-${item.dualPart}`
-          : `${item.kind}-${item.level}`;
-        return itemKey !== selectedKey;
-      }));
+      const selectedKey = pendingGiftItemKey(selected);
+      setItems((current) => current.filter((item) => pendingGiftItemKey(item) !== selectedKey));
     }
     setSelected(null);
-    /**
-     * зачем 2026-08-03 (владелец: «подарки я применил, а они в разделе активные
-     * не появились… в разделе активные вообще ничего нет»): здесь перезагрузка
-     * стояла под условием «модалку закрыли, ничего не применив» — то есть
-     * данные обновлялись только при ОТМЕНЕ. После УСПЕШНОГО применения
-     * (claimed = true) подарок оптимистично убирался из сетки инвентаря выше, а
-     * loadData не вызывался вовсе — значит activeItems оставался тем же, каким
-     * был на момент открытия экрана. Бонус записан в хранилище и уже действует,
-     * но вкладка «Активные» о нём не знает и выглядит пустой.
-     *
-     * Перезагружаем ВСЕГДА: при отмене — чтобы вернуть нетронутый список, при
-     * применении — чтобы свежий бонус появился в «Активных» со своим таймером.
-     * Оптимистичное удаление плитки выше остаётся: сетка реагирует мгновенно, а
-     * загрузка лишь подтверждает её и наполняет вторую вкладку.
-     */
-    void loadData();
+    // A claimed close is optimistic: reloading here races the background
+    // journal commit and can reinsert the stale tile. The modal refreshes after
+    // application settles; cancelled closes still refresh immediately.
+    if (!claimed) void loadData();
   };
 
   return (
@@ -300,9 +392,40 @@ export default function LevelGiftsInventoryScreen() {
                 pl: 'Prezenty',
               })}
             </Text>
+            <Animated.View style={spinPulseStyle}>
+              <TapScale
+                testID="level-gifts-spins-button"
+                accessibilityRole="button"
+                accessibilityLiveRegion="polite"
+                accessibilityLabel={spinBalanceA11yLabel}
+                onPress={() => {
+                  hapticTap();
+                  router.push('/level_reward_spin' as any);
+                }}
+                scaleTo={0.97}
+                style={styles.spinHeaderButton}
+              >
+                <LinearGradient
+                  colors={[t.gold, '#F4C95D', '#D99D18']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.spinHeaderGradient}
+                >
+                  <Text style={styles.spinHeaderLabel}>
+                    {triLang(lang, {
+                      ru: 'Спин', uk: 'Спін', es: 'Giro', 'pt-BR': 'Giro',
+                      vi: 'Quay', id: 'Putar', tr: 'Çevir', pl: 'Spin',
+                    })}
+                  </Text>
+                  <View testID="level-gifts-spin-count" style={styles.spinCountBadge}>
+                    <Text style={styles.spinCountText}>{spinBalance ?? '…'}</Text>
+                  </View>
+                </LinearGradient>
+              </TapScale>
+            </Animated.View>
           </View>
 
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <View testID="level-gifts-bonus-of-day" style={{ gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
                 {triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}
@@ -555,9 +678,7 @@ export default function LevelGiftsInventoryScreen() {
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: TILE_GRID_GAP }}>
                 {items.map((item) => (
                   <GiftTile
-                    key={item.kind === 'single' && item.dualPart
-                      ? `${item.kind}-${item.level}-${item.dualPart}`
-                      : `${item.kind}-${item.level}`}
+                    key={pendingGiftItemKey(item)}
                     item={item}
                     size={tileSize}
                     lang={lang}
@@ -588,11 +709,22 @@ export default function LevelGiftsInventoryScreen() {
             preRolledGift={selected.gift}
             deliveryMode="claim"
             presentationMode="apply"
-            onGiftClaimed={selected.dualPart
-              ? (_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)
+            onGiftClaimed={selected.spinOccurrence
+              ? (_gift, accountToken) => markLevelSpinGiftOccurrenceClaimed(
+                selected.spinOccurrence!.requestId,
+                selected.spinOccurrence!.lane,
+                accountToken,
+              )
+              : selected.dualPart
+                ? (_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)
+                : undefined}
+            onGiftApplyFailed={selected.dualPart
+              ? (gift, accountToken) => restoreDualGiftPartAfterFailedClaim(selected.level, selected.dualPart!, gift, accountToken)
               : undefined}
+            onGiftApplySettled={loadData}
             saveOnDismiss={false}
-            applyAsPremium={selected.dualPart ? true : undefined}
+            applyAsPremium={selected.spinOccurrence?.lane === 'premium' || selected.dualPart ? true : undefined}
+            occurrenceId={selected.spinOccurrence?.occurrenceId ?? `level:${selected.level}:${selected.dualPart ?? 'f2p'}`}
             studyTarget={studyTarget}
           />
         )}
@@ -613,3 +745,31 @@ export default function LevelGiftsInventoryScreen() {
     </ScreenGradient>
   );
 }
+
+const styles = StyleSheet.create({
+  spinHeaderButton: { borderRadius: 16 },
+  spinHeaderGradient: {
+    minWidth: 104,
+    minHeight: 44,
+    borderRadius: 16,
+    paddingLeft: 15,
+    paddingRight: 7,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 9,
+    borderBottomWidth: 4,
+    borderBottomColor: '#A96F06',
+  },
+  spinHeaderLabel: { color: '#211500', fontSize: 15, fontWeight: '900', letterSpacing: 0.15 },
+  spinCountBadge: {
+    minWidth: 30,
+    height: 30,
+    borderRadius: 10,
+    paddingHorizontal: 7,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(33,21,0,0.14)',
+  },
+  spinCountText: { color: '#211500', fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
+});

@@ -47,21 +47,6 @@ export async function hydratePlatformUiPreviewFromStorage(): Promise<void> {
   }
 }
 
-export async function setPlatformUiPreviewMode(next: PlatformUiPreviewMode): Promise<void> {
-  mode = next;
-  try {
-    if (next === 'real') await AsyncStorage.removeItem(PLATFORM_UI_PREVIEW_STORAGE_KEY);
-    else await AsyncStorage.setItem(PLATFORM_UI_PREVIEW_STORAGE_KEY, next);
-  } catch {
-    /* ignore */
-  }
-  notify();
-}
-
 export function useEffectivePlatformOS(): PlatformOSType {
   return useSyncExternalStore(subscribePlatformUiPreview, getEffectivePlatformOS, getEffectivePlatformOS);
-}
-
-export function usePlatformUiPreviewMode(): PlatformUiPreviewMode {
-  return useSyncExternalStore(subscribePlatformUiPreview, getPlatformUiPreviewMode, getPlatformUiPreviewMode);
 }

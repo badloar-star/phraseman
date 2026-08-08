@@ -5,6 +5,7 @@ import {
   invalidatePremiumCache,
 } from '../../app/premium_guard';
 import { isIntroFullAccessActive } from '../../app/intro_full_access';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('react-native-purchases', () => ({
@@ -21,6 +22,8 @@ const mockSetItem = AsyncStorage.setItem as jest.Mock;
 const mockIntroActive = isIntroFullAccessActive as jest.Mock;
 
 beforeEach(() => {
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('premium-guard-test-account');
   jest.clearAllMocks();
   invalidatePremiumCache();
   mockSetItem.mockResolvedValue(undefined);

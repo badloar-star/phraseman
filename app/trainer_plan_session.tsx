@@ -19,7 +19,7 @@ import {
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 
 // Арена обслуживается фразовой сессией (trainerSessionPhrase подставляет
-// correct в маркер пропуска) — отдельного роута '/trainer_arena_session' нет.
+// correct в маркер пропуска).
 function routeForQueue(queue: TrainerQueue): '/trainer_words_session' | '/trainer_phrases_session' {
   if (queue === 'words') return '/trainer_words_session';
   return '/trainer_phrases_session';

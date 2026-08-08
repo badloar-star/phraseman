@@ -122,11 +122,16 @@ function resolvePromptLang(lang: string): { name: string; writeIn: string } {
  * Voice: warm "Компас", dead-simple, concrete, for a 50+ beginner. Written in the learner's UI
  * language `lang`, ~70 words max (working-memory limit), plain text only.
  */
+export interface BuildExplainPromptOptions {
+  strictOutputLanguage?: boolean;
+}
+
 export function buildExplainPrompt(
   phraseEn: string,
   phraseMeaning: string,
   lang: string,
   studyTarget: StudyTarget = 'en',
+  options: BuildExplainPromptOptions = {},
 ): string {
   const target = resolvePromptLang(lang);
   const targetName = studyTargetName(studyTarget);
@@ -172,6 +177,9 @@ export function buildExplainPrompt(
       : `You MAY use ONE light grammar-flavoured phrase only if it genuinely sharpens the point — and immediately put it in plain words. Avoid "verb", "subject", "auxiliary", "pronoun", "article", "preposition".`,
     `Avoid filler words in your prose: never use the ${target.name} equivalents of "просто/just", "также/also", "в принципе", "на самом деле", "кстати". State the point directly.`,
     `If you ever refer to studying, use the ${target.name} for "осваивать/прокачивать", not "учить/изучать". Never call anything an "ошибка" here: this button explains a phrase, not a learner's answer.`,
+    options.strictOutputLanguage
+      ? `LANGUAGE REPAIR: the previous draft was rejected. Write every explanatory sentence strictly in ${target.name}. Study-language fragments are allowed only inside quotes.`
+      : null,
     `${target.writeIn}`,
     `Length: hard cap ~${MAX_WORDS} words; shorter is better. Never pad, never cram in two angles, never sound like a generated lesson. Output ONLY plain text — no markdown, no bullet points, no numbered lists, no headings, no quotes around the whole answer.`,
     ``,

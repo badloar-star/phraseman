@@ -96,4 +96,20 @@ describe('jarvis_plans_store', () => {
     const plan = await readPlan({ db, id: 'never-existed' });
     expect(plan).toBeNull();
   });
+
+  test('persists exactly one idempotent internal follow-up record inside the plan when enabled', async () => {
+    const { db, store } = makeFakeDb();
+    const decision = makeDecision();
+    await upsertPlan({ db, decision, nowMs: 2_000, followUpTasksEnabled: true });
+    await upsertPlan({ db, decision, nowMs: 3_000, followUpTasksEnabled: true });
+
+    const plan = await readPlan({ db, id: decision.contentHash });
+    expect(plan?.followUpTask).toMatchObject({
+      id: `follow-up:${decision.contentHash}`,
+      createdAtMs: 2_000,
+      attemptCount: 0,
+      maxAttempts: 3,
+    });
+    expect(Array.from(store.keys()).filter((key) => key.startsWith(`${JARVIS_PLANS_COLLECTION}/`))).toHaveLength(1);
+  });
 });

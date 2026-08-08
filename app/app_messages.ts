@@ -1172,60 +1172,6 @@ async function updateLocalPreviewState(
   return true;
 }
 
-function isLocalVipSurveyTestMessageId(id: string): boolean {
-  return id.startsWith('admin_test_vip_survey_') || id.startsWith('admin_preview_vip_survey_');
-}
-
-export async function seedLocalVipSurveyTestMessage(nowMs = Date.now()): Promise<string> {
-  const ownerUid = await getAppMessagesOwnerUid();
-  if (!ownerUid) throw new Error('app_messages_owner_required');
-  const id = `admin_test_vip_survey_${nowMs}`;
-  const createdAt = new Date(nowMs).toISOString();
-  const expiresAtMs = nowMs + APP_MESSAGE_TTL_MS;
-  const preview = normalizeAppMessage(id, {
-    id,
-    active: true,
-    kind: 'vip_survey',
-    audience: 'free',
-    priority: 80,
-    titleRu: 'Хотите получить месяц Plus?',
-    titleUk: 'Хочете отримати місяць Plus?',
-    titleEs: 'Want one month of Plus?',
-    titlePtBr: 'Want one month of Plus?',
-    titleVi: 'Want one month of Plus?',
-    titleId: 'Want one month of Plus?',
-    titleTr: 'Want one month of Plus?',
-    titlePl: 'Want one month of Plus?',
-    messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней Plus.',
-    messageUk: 'Пройдіть коротке опитування про застосунок і активуйте 30 днів Plus.',
-    messageEs: 'Take a short in-app survey and activate 30 days of Plus.',
-    messagePtBr: 'Take a short in-app survey and activate 30 days of Plus.',
-    messageVi: 'Take a short in-app survey and activate 30 days of Plus.',
-    messageId: 'Take a short in-app survey and activate 30 days of Plus.',
-    messageTr: 'Take a short in-app survey and activate 30 days of Plus.',
-    messagePl: 'Take a short in-app survey and activate 30 days of Plus.',
-    vipSurvey: {
-      surveyId: VIP_SURVEY_ID,
-      rewardDays: 30,
-    },
-    createdAt,
-    createdAtMs: nowMs,
-    updatedAt: createdAt,
-    updatedAtMs: nowMs,
-    expiresAt: new Date(expiresAtMs).toISOString(),
-    expiresAtMs,
-  }, nowMs);
-  const existing = await readLocalPreviewMessages(ownerUid);
-  await writeLocalPreviewMessages([
-    preview,
-    ...existing.filter((message) => !isLocalVipSurveyTestMessageId(message.id)),
-  ], ownerUid);
-  const states = await readLocalPreviewStates(ownerUid);
-  await writeLocalPreviewStates(states.filter((state) => !isLocalVipSurveyTestMessageId(state.messageId)), ownerUid);
-  emitAppEvent('app_messages_local_changed');
-  return id;
-}
-
 async function getFirestoreModule(): Promise<FirestoreFactory | null> {
   if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {

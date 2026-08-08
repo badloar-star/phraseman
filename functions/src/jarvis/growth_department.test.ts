@@ -2,12 +2,16 @@ import { runGrowthDepartment } from './growth_department';
 import type { FetchGrowthSourceResult } from './growth_firestore_fetcher';
 
 function fetchResult(overrides: Partial<FetchGrowthSourceResult> = {}): FetchGrowthSourceResult {
+  const rows = overrides.rows ?? [];
   return {
     sourceId: 'users',
     state: 'ready',
     truncated: false,
     droppedCount: 0,
-    rows: [],
+    rows,
+    count: Object.prototype.hasOwnProperty.call(overrides, 'count') ? overrides.count! : rows.length,
+    provenance: 'server_daily_aggregate',
+    periodKey: '2026-08-08',
     observedAtMs: 10_000,
     ...overrides,
   };
@@ -55,6 +59,40 @@ describe('Jarvis growth department — no fabricated trend without a baseline', 
     expect(result.decisions).toHaveLength(1);
     expect(result.decisions[0].question).toBe('Сколько новых пользователей за сутки?');
     expect(result.decisions[0].finding).toMatch(/1/);
+  });
+
+  test('uses the server aggregate count without materializing one row per signup', () => {
+    const result = runGrowthDepartment({
+      fetches: [fetchResult({
+        rows: [],
+        count: 4,
+        provenance: 'server_daily_aggregate',
+        periodKey: '2026-08-08',
+      })],
+      trigger: 'owner_request',
+      nowMs: 10_000,
+    });
+
+    expect(result.decisions[0].finding).toMatch(/4/);
+    expect(result.decisions[0].status).toBe('awaiting_owner');
+  });
+
+  test('does not turn a bounded legacy sample into an exact signup count', () => {
+    const result = runGrowthDepartment({
+      fetches: [fetchResult({
+        state: 'truncated',
+        truncated: true,
+        rows: [{ platform: 'ios' }],
+        count: null,
+        provenance: 'degraded_legacy_users_sample',
+        periodKey: '2026-08-08',
+      })],
+      trigger: 'owner_request',
+      nowMs: 10_000,
+    });
+
+    expect(result.decisions[0].status).toBe('insufficient_evidence');
+    expect(result.decisions[0].finding).not.toMatch(/1 new|1 нов/i);
   });
 
   test('a truncated fetch does not silently claim a full count', () => {

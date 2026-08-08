@@ -30,7 +30,7 @@ describe('home learning CTA contract', () => {
     const assetSource = fs.readFileSync(assetPath, 'utf8');
 
     let totalAssetBytes = 0;
-    for (const theme of ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'forest', 'coral', 'gold']) {
+    for (const theme of ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'forest', 'gold']) {
       const fileName = `home-last-lesson-${theme}.webp`;
       const filePath = path.join(process.cwd(), 'assets', 'images', 'home_last_lesson', fileName);
       expect(assetSource).toContain(fileName);

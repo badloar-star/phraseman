@@ -30,9 +30,10 @@ describe('прогрев ассетов разделов и стабильная
 
   it('прогрев покрывает плитки хаба карточек', () => {
     const source = read('app/section_asset_preload.ts');
-    for (const slot of ['hub.saved', 'hub.custom', 'hub.training', 'hub.audio', 'hub.arena', 'hub.collection']) {
+    for (const slot of ['hub.saved', 'hub.custom', 'hub.training', 'hub.audio', 'hub.collection']) {
       expect(source).toContain(slot);
     }
+    expect(source).not.toContain('hub.arena');
   });
 
   it('греет только активную тему, а не все 12 сразу', () => {

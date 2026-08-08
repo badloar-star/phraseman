@@ -9,6 +9,8 @@ type FakeRef = {
 
 const docs = new Map<string, DocData>();
 let autoId = 0;
+const originalFetch = global.fetch;
+let requestSequence = 0;
 
 function makeRef(path: string): FakeRef {
   return {
@@ -80,6 +82,7 @@ function buildDb() {
     runTransaction: async <T>(fn: (tx: {
       get: (ref: FakeRef) => Promise<{ exists: boolean; data: () => DocData | undefined }>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
+      create: (ref: FakeRef, data: DocData) => void;
     }) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const tx = {
@@ -91,6 +94,12 @@ function buildDb() {
           writes.push(() => {
             const existing = docs.get(ref.path) ?? {};
             docs.set(ref.path, opts?.merge ? deepMerge(existing, data) : { ...data });
+          });
+        },
+        create: (ref: FakeRef, data: DocData) => {
+          writes.push(() => {
+            if (docs.has(ref.path)) throw new Error(`already-exists:${ref.path}`);
+            docs.set(ref.path, { ...data });
           });
         },
       };
@@ -119,6 +128,7 @@ jest.mock('firebase-admin', () => {
   const firestore = Object.assign(jest.fn(() => buildDb()), {
     FieldValue: {
       serverTimestamp: jest.fn(() => new Date('2026-06-12T10:00:00.000Z')),
+      increment: jest.fn((value: number) => ({ __op: 'increment', value })),
     },
   });
   return { firestore };
@@ -136,6 +146,7 @@ function seedGiftUsers() {
     displayName: 'Recipient',
     shards: 40,
     progress: { user_total_xp: '900', user_name: 'Recipient' },
+    expoPushToken: 'ExponentPushToken[recipient]',
   });
   docs.set('users/sender/friends/recipient', { since: 1 });
   docs.set('users/recipient/friends/sender', { since: 1 });
@@ -150,6 +161,7 @@ async function sendGift(overrides: Record<string, unknown> = {}) {
       friendStableId: 'recipient',
       giftId: 'chain_shield_1',
       senderDisplayName: 'Sender',
+      idempotencyKey: `fg_fixture_${String(++requestSequence).padStart(4, '0')}`,
       ...overrides,
     },
   });
@@ -164,6 +176,7 @@ async function thankGift(overrides: Record<string, unknown> = {}) {
       friendStableId: 'recipient',
       giftId: 'chain_shield_1',
       senderDisplayName: 'Sender',
+      idempotencyKey: `fgt_fixture_${String(++requestSequence).padStart(4, '0')}`,
       ...overrides,
     },
   });
@@ -174,11 +187,34 @@ beforeEach(() => {
   jest.resetModules();
   docs.clear();
   autoId = 0;
+  requestSequence = 0;
   seedGiftUsers();
+  global.fetch = jest.fn(async () => ({
+    ok: true,
+    status: 200,
+    text: async () => JSON.stringify({ data: { status: 'ok' } }),
+  })) as unknown as typeof fetch;
 });
 
-afterEach(() => {
+afterEach(async () => {
+  await Promise.resolve();
+  await Promise.resolve();
+  global.fetch = originalFetch;
   jest.useRealTimers();
+});
+
+test('friendSendGift returns immediately after commit without awaiting Expo transport', async () => {
+  const fetchMock = jest.fn(() => new Promise<Response>(() => {}));
+  const previousFetch = global.fetch;
+  global.fetch = fetchMock as typeof fetch;
+  try {
+    const result = await sendGift();
+    expect(result).toMatchObject({ ok: true, senderBalanceAfter: 92 });
+    expect(result).not.toHaveProperty('notificationTransport');
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  } finally {
+    global.fetch = previousFetch;
+  }
 });
 
 test('friendSendGift starts one weekly friend quest after a successful gift', async () => {
@@ -300,6 +336,19 @@ test('friendThankGift rejects reusing an idempotency key for another thanks gift
   });
 });
 
+test.each([
+  ['friendSendGift missing', () => sendGift({ idempotencyKey: undefined })],
+  ['friendSendGift malformed', () => sendGift({ idempotencyKey: 'short' })],
+  ['friendThankGift missing', () => thankGift({ idempotencyKey: undefined })],
+  ['friendThankGift malformed', () => thankGift({ idempotencyKey: 'short' })],
+])('%s idempotency key is rejected before any transaction mutation', async (_label, invoke) => {
+  await expect(invoke()).rejects.toMatchObject({
+    code: 'invalid-argument',
+  });
+  expect(docs.get('users/sender')).toMatchObject({ shards: 100 });
+  expect(Array.from(docs.keys()).filter((path) => path.includes('friend_gift'))).toEqual([]);
+});
+
 test('friend gift callables reject the retired Arena gift before any mutation', async () => {
   await expect(sendGift({ giftId: 'arena_extra_5' })).rejects.toMatchObject({
     code: 'invalid-argument',
@@ -311,6 +360,47 @@ test('friend gift callables reject the retired Arena gift before any mutation', 
   });
   expect(docs.get('users/sender')).toMatchObject({ shards: 100 });
   expect(docs.get('users/recipient')).not.toHaveProperty('arena_extra_plays_today');
+});
+
+test('friendConsumeChainShield decrements one canonical day once per missed-day occurrence', async () => {
+  docs.set('users/sender', {
+    ...docs.get('users/sender'),
+    chain_shield: JSON.stringify({ daysLeft: 1 }),
+    progress: { user_total_xp: '1000', chain_shield: JSON.stringify({ daysLeft: 3 }) },
+  });
+  const { friendConsumeChainShield } = require('./friend_gifts');
+  const request = {
+    auth: { uid: 'auth-sender' },
+    data: { stableId: 'sender', occurrenceId: '2026-06-11_2026-06-12' },
+  };
+
+  const first = await friendConsumeChainShield(request);
+  const replay = await friendConsumeChainShield(request);
+
+  expect(first).toEqual(replay);
+  expect(first).toMatchObject({ ok: true, consumed: true, daysLeft: 2 });
+  const canonical = docs.get('users/sender')?.chain_shield;
+  expect(JSON.parse(String(canonical))).toMatchObject({ daysLeft: 2 });
+  expect(docs.get('users/sender')?.progress).toMatchObject({ chain_shield: canonical });
+  expect(docs.get('users/sender/gift_perk_consumptions/chain_shield_2026-06-11_2026-06-12')).toMatchObject({
+    occurrenceId: '2026-06-11_2026-06-12',
+    response: first,
+  });
+});
+
+test('friendConsumeChainShield records and replays a definitive no-shield response', async () => {
+  const { friendConsumeChainShield } = require('./friend_gifts');
+  const request = {
+    auth: { uid: 'auth-sender' },
+    data: { stableId: 'sender', occurrenceId: '2026-06-10_2026-06-11' },
+  };
+  await expect(friendConsumeChainShield(request)).resolves.toMatchObject({ consumed: false, daysLeft: 0 });
+  docs.set('users/sender', {
+    ...docs.get('users/sender'),
+    chain_shield: JSON.stringify({ daysLeft: 5 }),
+  });
+  await expect(friendConsumeChainShield(request)).resolves.toMatchObject({ consumed: false, daysLeft: 0 });
+  expect(JSON.parse(String(docs.get('users/sender')?.chain_shield))).toMatchObject({ daysLeft: 5 });
 });
 
 test('friendSendGift does not start another quest while either user has an active quest', async () => {
@@ -326,7 +416,7 @@ test('friendSendGift does not start another quest while either user has an activ
   expect(Array.from(docs.keys()).filter(path => path.startsWith('friend_quests/'))).toEqual([]);
 });
 
-test('friendClaimQuestReward grants both users once when both reached the XP target', async () => {
+test('friendClaimQuestReward grants only the authenticated participant and replays exact Spin metadata', async () => {
   const questId = 'quest_sender_recipient_2026-W24';
   docs.set(`friend_quests/${questId}`, {
     questId,
@@ -344,16 +434,16 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
   docs.set('users/sender/friend_quest_meta/current', { questId, status: 'active', expiresAtMs: Date.now() + 3600000 });
   docs.set('users/recipient/friend_quest_meta/current', { questId, status: 'active', expiresAtMs: Date.now() + 3600000 });
   docs.set('users/sender', { ...docs.get('users/sender'), shards: 4, progress: { user_total_xp: '4100' } });
-  docs.set('users/recipient', { ...docs.get('users/recipient'), shards: 9, progress: { user_total_xp: '3900' } });
+  docs.set('users/recipient', { ...docs.get('users/recipient'), shards: 9, progress: { user_total_xp: '4100' } });
 
   const { friendClaimQuestReward } = require('./friend_gifts');
   const first = await friendClaimQuestReward({
     auth: { uid: 'auth-sender' },
-    data: { stableId: 'sender', questId },
+    data: { stableId: 'sender', questId, levelSpinProtocol: 'v1' },
   });
   const second = await friendClaimQuestReward({
     auth: { uid: 'auth-sender' },
-    data: { stableId: 'sender', questId },
+    data: { stableId: 'sender', questId, levelSpinProtocol: 'v1' },
   });
 
   expect(first).toMatchObject({
@@ -365,6 +455,8 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
     callerXpBeforeReward: 4100,
     rewardXpApplied: 1000,
     callerXp: 5100,
+    levelSpinMintedCredits: [{ id: 'level_spin_v1_005', level: 5, kind: 'milestone' }],
+    levelSpinBalance: 1,
   });
   expect(second).toMatchObject({
     ok: true,
@@ -374,16 +466,51 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
     shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
     rewardXpApplied: 0,
     callerXp: 5100,
+    levelSpinMintedCredits: [{ id: 'level_spin_v1_005', level: 5, kind: 'milestone' }],
+    levelSpinBalance: 1,
   });
   expect(docs.get('users/sender')).toMatchObject({ shards: 14, progress: { user_total_xp: '5100' } });
-  expect(docs.get('users/recipient')).toMatchObject({ shards: 19, progress: { user_total_xp: '4900' } });
+  expect(docs.get('users/recipient')).toMatchObject({ shards: 9, progress: { user_total_xp: '4100' } });
+  expect(docs.get('users/sender/level_spin_credits/level_spin_v1_005')).toMatchObject({
+    level: 5,
+    kind: 'milestone',
+    status: 'available',
+  });
+  expect(docs.get('users/sender')).toMatchObject({
+    levelSpinServerState: { levelBaseline: 5, balance: 1, activeRequestId: null },
+    progress: { level_reward_spin_balance: '1' },
+  });
+  expect(docs.get('users/recipient')?.levelSpinServerState).toBeUndefined();
+  expect(docs.get('users/recipient/level_spin_credits/level_spin_v1_005')).toBeUndefined();
+  expect(docs.get(`friend_quests/${questId}`)).toMatchObject({
+    status: 'ready',
+    rewardClaimedByUid: { sender: true },
+    rewardOutcomeByUid: {
+      sender: {
+        levelSpinMintedCredits: [{ id: 'level_spin_v1_005', level: 5, kind: 'milestone' }],
+        levelSpinBalance: 1,
+      },
+    },
+  });
+
+  const recipient = await friendClaimQuestReward({
+    auth: { uid: 'auth-recipient' },
+    data: { stableId: 'recipient', questId },
+  });
+  expect(recipient).toMatchObject({
+    rewardApplied: true,
+    callerShards: 19,
+    callerXp: 5100,
+    levelSpinMintedCredits: [],
+    levelSpinBalance: 0,
+  });
   expect(docs.get(`friend_quests/${questId}`)).toMatchObject({
     status: 'completed',
     rewardClaimedByUid: { sender: true, recipient: true },
   });
 });
 
-test('friendClaimQuestReward does not reapply the caller reward while completing an unclaimed partner', async () => {
+test('friendClaimQuestReward does not let one participant claim an unclaimed partner reward', async () => {
   const questId = 'quest_sender_recipient_partial_2026-W24';
   docs.set(`friend_quests/${questId}`, {
     questId,
@@ -414,7 +541,42 @@ test('friendClaimQuestReward does not reapply the caller reward while completing
     callerXp: 5100,
   });
   expect(docs.get('users/sender')).toMatchObject({ shards: 14, progress: { user_total_xp: '5100' } });
-  expect(docs.get('users/recipient')).toMatchObject({ shards: 19, progress: { user_total_xp: '4900' } });
+  expect(docs.get('users/recipient')).toMatchObject({ shards: 9, progress: { user_total_xp: '3900' } });
+  expect(docs.get(`friend_quests/${questId}`)).toMatchObject({
+    status: 'ready',
+    rewardClaimedByUid: { sender: true },
+  });
+});
+
+test('friendClaimQuestReward rejects a hidden account after it was merged into a canonical winner', async () => {
+  const questId = 'quest_hidden_loser_2026-W24';
+  docs.set(`friend_quests/${questId}`, {
+    questId,
+    participantUids: ['sender', 'recipient'],
+    status: 'ready',
+    expiresAtMs: Date.now() + 3600000,
+    targetXp: 1,
+    rewardShards: 10,
+    rewardXp: 1000,
+    startXpByUid: { sender: 0, recipient: 0 },
+    rewardClaimedByUid: {},
+  });
+  docs.set('users/sender', { ...docs.get('users/sender'), progress: { user_total_xp: '10' } });
+  docs.set('users/recipient', {
+    ...docs.get('users/recipient'),
+    progress: { user_total_xp: '10' },
+    identityHidden: true,
+    canonicalStableId: 'sender',
+    levelSpinMergePending: false,
+  });
+  const shardsBefore = docs.get('users/recipient')?.shards;
+
+  const { friendClaimQuestReward } = require('./friend_gifts');
+  await expect(friendClaimQuestReward({
+    auth: { uid: 'auth-recipient' },
+    data: { stableId: 'recipient', questId, levelSpinProtocol: 'v1' },
+  })).rejects.toMatchObject({ code: 'permission-denied' });
+  expect(docs.get('users/recipient')).toMatchObject({ shards: shardsBefore, identityHidden: true });
 });
 
 export {};

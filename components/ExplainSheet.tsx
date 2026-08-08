@@ -52,7 +52,6 @@ import {
   type ExplainRequestStatus,
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
-import AiLimitUpsellCard from './AiLimitUpsellCard';
 import { useStudyTarget } from './StudyTargetContext';
 import TonalSurface from './TonalSurface';
 
@@ -87,7 +86,6 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
   // Запрос стартует только когда шторка видима (cache-read бесплатен и быстр).
   const state = useExplainRequest({ phraseEn, phraseMeaning, lang: effLang, studyTarget }, visible);
   const display = resolveExplainDisplay(state, effLang, phraseMeaning);
-  const explainFreeLimitReached = !state.loading && state.status === 'exhausted';
 
   // ── Интерактивная шторка (reanimated, паттерн RegistrationPromptModal) ────
   const backdropO = useSharedValue(0);
@@ -107,14 +105,12 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
 
   // Открытие шторки трекает ExplainButton (on tap). Здесь — досылаем cache-флаг,
   // как только пришёл ответ: это и есть health-check кэш-хитов (fromCache).
-  const loggedResultRef = useRef(false);
+  const loggedResultKeyRef = useRef('');
   useEffect(() => {
-    if (!visible || state.loading) {
-      if (!visible) loggedResultRef.current = false;
-      return;
-    }
-    if (loggedResultRef.current) return;
-    loggedResultRef.current = true;
+    if (!visible || state.loading || state.status !== 'ok' || !state.text.trim()) return;
+    const resultKey = `${phraseEn}\u0000${effLang}\u0000${state.text}`;
+    if (loggedResultKeyRef.current === resultKey) return;
+    loggedResultKeyRef.current = resultKey;
     void trackEvent('explain_sheet_opened', {
       lang: effLang,
       fromCache: state.fromCache,
@@ -124,7 +120,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
     // Сообщаем вызывающему результат РОВНО раз — он решает, списывать ли дневной кредит
     // (только реальная генерация: cache MISS, без ошибки).
     onResolved?.({ fromCache: state.fromCache, status: state.status, error: state.error });
-  }, [visible, state.loading, state.fromCache, state.status, state.error, effLang, onResolved]);
+  }, [visible, phraseEn, state.loading, state.text, state.fromCache, state.status, state.error, effLang, onResolved]);
 
   const handleClose = () => {
     hapticTap();
@@ -272,23 +268,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {explainFreeLimitReached ? (
-              <AiLimitUpsellCard
-                lang={asLang(effLang)}
-                title={triLang(asLang(effLang), {
-                  ru: 'Бесплатные объяснения закончились',
-                  uk: 'Безкоштовні пояснення закінчилися',
-                  es: 'Las explicaciones gratis se agotaron',
-                  'pt-BR': 'As explicações grátis acabaram',
-                  vi: 'Phần giải thích miễn phí đã hết',
-                  id: 'Penjelasan gratis sudah habis',
-                  tr: 'Ücretsiz açıklamalar bitti',
-                  pl: 'Darmowe wyjaśnienia się skończyły',
-                })}
-                paywallContext="ai_explain"
-                testID="explain-free-limit-card"
-              />
-            ) : display.showSkeleton ? (
+            {display.showSkeleton ? (
               <View style={styles.skeleton}>
                 <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
                   {loadingLineForLang(effLang)}
@@ -316,43 +296,15 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
                     ))}
                   </Text>
                 ))}
-                {display.degraded ? (
-                  <Pressable
-                    onPress={() => {
-                      hapticTap();
-                      state.retry();
-                    }}
-                    accessibilityRole="button"
-                    style={({ pressed }) => [
-                      styles.retryBtn,
-                      { backgroundColor: t.bgSurface2, borderColor: t.border },
-                      pressed && styles.pressed,
-                    ]}
-                  >
-                    <Ionicons name="refresh" size={16} color={t.accent} />
-                    <Text style={[styles.retryLabel, { color: t.textPrimary, fontSize: f.sub }]}>
-                      {triLang(asLang(effLang), {
-                        ru: 'Попробовать ещё раз',
-                        uk: 'Спробувати ще раз',
-                        es: 'Intentar de nuevo',
-                        'pt-BR': 'Tentar de novo',
-                        vi: 'Thử lại',
-                        id: 'Coba lagi',
-                        tr: 'Tekrar dene',
-                        pl: 'Spróbuj ponownie',
-                      })}
-                    </Text>
-                  </Pressable>
-                ) : null}
               </>
             )}
           </ScrollView>
 
           {/* Футер: «Непонятно объяснили» */}
-          {!explainFreeLimitReached ? (
-            <View style={[styles.footer, { borderTopColor: t.border }]}>
-              <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
-            </View>
+          {!display.showSkeleton ? (
+          <View style={[styles.footer, { borderTopColor: t.border }]}>
+            <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
+          </View>
           ) : null}
           </Animated.View>
         </GestureDetector>

@@ -19,7 +19,11 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
   const [wrongPair, setWrongPair] = useState<{ sourceId: string; targetId: string } | null>(null);
   const wrongTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (wrongTimer.current) clearTimeout(wrongTimer.current); }, []);
-  const matchedTargets = useMemo(() => new Set(Object.values(matches)), [matches]);
+  const matchedTargets = useMemo(() => new Set(
+    Object.entries(matches)
+      .filter(([sourceId, targetId]) => sourceId === targetId)
+      .map(([, targetId]) => targetId),
+  ), [matches]);
   const sourcePairs = useMemo(() => (
     task.pairs.length > 1 ? [...task.pairs.slice(1), task.pairs[0]] : [...task.pairs]
   ), [task.pairs]);
@@ -30,6 +34,10 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
       setWrongPair(failed);
       if (wrongTimer.current) clearTimeout(wrongTimer.current);
       wrongTimer.current = setTimeout(() => setWrongPair(null), reduceMotion ? 0 : 240);
+      const next = { ...matches };
+      next[activeSourceId] = targetId;
+      onChange(next);
+      setActiveSourceId(null);
       return;
     }
     const next = { ...matches };
@@ -43,14 +51,15 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
       <View style={[styles.column, { gap: ds.spacing.sm }]}> 
         {sourcePairs.map((pair) => {
           const active = activeSourceId === pair.scoreUnitId;
-          const matched = Boolean(matches[pair.scoreUnitId]);
+          const answered = Object.prototype.hasOwnProperty.call(matches, pair.scoreUnitId);
+          const matched = matches[pair.scoreUnitId] === pair.scoreUnitId;
           return (
             <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(sourcePairs.indexOf(pair) * 40).duration(260)}>
               <V2Chip
-                selected={active || matched}
-                verdict={wrongPair?.sourceId === pair.scoreUnitId ? 'bad' : matched ? 'ok' : 'idle'}
-                disabled={matched}
-                onPress={() => setActiveSourceId(pair.scoreUnitId)}
+                    selected={active || answered}
+                    verdict={wrongPair?.sourceId === pair.scoreUnitId ? 'bad' : matched ? 'ok' : answered ? 'bad' : 'idle'}
+                    disabled={answered}
+                    onPress={() => setActiveSourceId(pair.scoreUnitId)}
                 accessibilityLabel={pair.target}
               >
                 {pair.target}

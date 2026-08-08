@@ -9,6 +9,9 @@ jest.mock('../app/shards_system', () => ({
 jest.mock('../app/app_health', () => ({
   logAppWarning: jest.fn(),
 }));
+jest.mock('../app/local_level_spins', () => ({
+  grantLocalLessonCompletionSpin: jest.fn(),
+}));
 
 import {
   grantLessonFirstCompleteBonus,
@@ -24,6 +27,8 @@ import {
 const { registerXP } = require('../app/xp_manager');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { addShards } = require('../app/shards_system');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { grantLocalLessonCompletionSpin } = require('../app/local_level_spins');
 
 const PENDING_KEY = 'lesson_bonus_pending_v1';
 
@@ -34,9 +39,26 @@ beforeEach(() => {
   beginAccountGeneration('lesson-test-account');
   (registerXP as jest.Mock).mockResolvedValue({ finalDelta: 550, multiplier: 1, isBonus: false });
   (addShards as jest.Mock).mockResolvedValue(25);
+  (grantLocalLessonCompletionSpin as jest.Mock).mockResolvedValue(true);
 });
 
 describe('grantLessonFirstCompleteBonus', () => {
+  it('returns the confirmed base XP and multiplier without changing the grant', async () => {
+    (registerXP as jest.Mock).mockResolvedValue({ finalDelta: 1238, multiplier: 2.25, isBonus: true });
+
+    const res = await grantLessonFirstCompleteBonus({ lessonId: 2, studyTarget: 'fr', lang: 'ru' });
+    const confirmedBaseXp = (registerXP as jest.Mock).mock.calls[0][0];
+
+    expect(res).toMatchObject({
+      status: 'granted',
+      baseXp: confirmedBaseXp,
+      finalDelta: 1238,
+      multiplier: 2.25,
+    });
+    expect(registerXP).toHaveBeenCalledTimes(1);
+    expect(grantLocalLessonCompletionSpin).toHaveBeenCalledWith(2, 'fr', expect.any(Object));
+  });
+
   it('успешная выдача ставит guard-ключ и не оставляет pending', async () => {
     const res = await grantLessonFirstCompleteBonus({ lessonId: 3, studyTarget: 'fr', lang: 'ru' });
 

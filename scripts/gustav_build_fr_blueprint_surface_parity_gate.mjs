@@ -54,20 +54,6 @@ const SURFACE_PLANS = {
     nextBuildScripts: ['new scripts/gustav_build_fr_conjugation_drill_gate.mjs'],
     productionBlockers: ['FRENCH_CONJUGATION_DRILL_NOT_MATERIALIZED'],
   },
-  quiz_surfaces: {
-    copyProductContract: ['quiz session shape', 'theme/level packs', 'answer/explanation contract', 'source-locale UI'],
-    rebuildNatively: ['French-native quiz banks', 'French explanations', 'French distractors', 'French thematic packs'],
-    currentFrenchArtifacts: ['app/french_quiz_remote_runtime.ts'],
-    nextBuildScripts: ['new scripts/gustav_build_fr_quiz_bank_parity_gate.mjs'],
-    productionBlockers: ['FRENCH_QUIZZES_NOT_PROVEN_AS_NATIVE_BANKS'],
-  },
-  arena_questions: {
-    copyProductContract: ['arena question object shape', 'level buckets', 'duel/runtime result flow'],
-    rebuildNatively: ['French-native arena questions', 'French level distribution', 'French explanations where shown'],
-    currentFrenchArtifacts: [],
-    nextBuildScripts: ['new scripts/gustav_build_fr_arena_question_parity_gate.mjs'],
-    productionBlockers: ['FRENCH_ARENA_QUESTION_BANK_NOT_MATERIALIZED'],
-  },
   personal_practice_active_recall: {
     copyProductContract: ['practice routing', 'active recall session shape', 'mistake adapter isolation'],
     rebuildNatively: ['French practice banks', 'French mistake patterns', 'French spaced review prompts'],

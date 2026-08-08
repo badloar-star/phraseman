@@ -14,6 +14,12 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
+import {
+  readGiftAccountValue,
+  removeGiftAccountValue,
+  writeGiftAccountValue,
+} from './gift_account_storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import {
@@ -21,7 +27,9 @@ import {
   CUSTOM_AVATAR_GIFT_REPLAY_KEY,
 } from '../constants/customization_storage_keys';
 import { addEnergy } from './energy_system';
-import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
+import {
+  setClubGiftFreeBoostCountFromAuthority,
+} from './club_boosts';
 import {
   OFFICIAL_DARK_LOGIC_EN_ID,
   OFFICIAL_NEGOTIATOR_EN_ID,
@@ -35,6 +43,9 @@ import {
   callFlashcardPackGiftRedeem,
   callLevelGiftActivatePackGift,
   callLevelGiftReserve,
+  callLevelGiftReservationAction,
+  callLevelSpinActivatePackGift,
+  callLevelSpinDeliveryAction,
 } from './community_packs/functionsClient';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
@@ -62,9 +73,11 @@ import {
 } from '../constants/avatar_auras';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import {
+  captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import { withStorageLock } from './storage_mutex';
 
@@ -91,6 +104,12 @@ export interface GiftDef {
     reservationId: string;
     lane: 'f2p' | 'premium';
     allowedPackId?: string;
+  };
+  /** Immutable authority for a reward produced by the server level-spin protocol. */
+  spinRewardReceipt?: {
+    requestId: string;
+    lane: 'base' | 'premium';
+    giftId: string;
   };
 }
 
@@ -140,10 +159,6 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
   focus_10m_25: {
     title: { 'pt-BR': 'Foco 10 min', vi: 'Tập trung 10 phút', id: 'Fokus 10 menit', tr: '10 dk odak', pl: 'Fokus 10 min' },
     desc: { 'pt-BR': '10 minutos de multiplicador de XP ×1,25', vi: '10 phút nhân XP ×1,25', id: '10 menit pengali XP ×1,25', tr: '10 dakika XP çarpanı ×1,25', pl: '10 minut mnożnika XP ×1,25' },
-  },
-  arena_extra_5: {
-    title: { 'pt-BR': '+5 partidas ranqueadas hoje', vi: '+5 trận xếp hạng hôm nay', id: '+5 game peringkat hari ini', tr: 'Bugün +5 sıralama oyunu', pl: '+5 gier rankingowych dziś' },
-    desc: { 'pt-BR': 'Hoje até 10 partidas ranqueadas (em vez de 5). Reinicia à meia-noite', vi: 'Hôm nay tối đa 10 trận xếp hạng (thay vì 5). Đặt lại lúc nửa đêm', id: 'Hari ini hingga 10 match peringkat (bukan 5). Direset tengah malam', tr: 'Bugün 5 yerine en fazla 10 sıralama maçı. Gece yarısı sıfırlanır', pl: 'Dziś do 10 meczów rankingowych zamiast 5. Reset o północy' },
   },
   xp_2x_24h: {
     title: { 'pt-BR': '+100% XP por 24 horas', vi: '+100% XP trong 24 giờ', id: '+100% XP selama 24 jam', tr: '24 saat +%100 XP', pl: '+100% XP przez 24 godz.' },
@@ -452,13 +467,6 @@ const GIFT_F2P: GiftDef[] = [
     descES: '10 minutos con multiplicador de XP ×1.25',
   },
   {
-    id: 'arena_extra_5', rarity: 'common', icon: '🎟️', weight: 5,
-    titleRU: '+5 рейтинг-игр сегодня', titleUK: '+5 рейтинг-ігор сьогодні', titleES: '+5 partidas Arena hoy',
-    descRU: 'Сегодня до 10 рейтинг-матчей (вместо 5). Обновится в полночь',
-    descUK: 'Сьогодні до 10 рейтинг-матчів (замість 5). Оновиться о півночі',
-    descES: 'Hoy hasta 10 partidas clasificadas (en lugar de 5). Se restablece a medianoche',
-  },
-  {
     id: 'xp_2x_24h', rarity: 'rare', icon: '🔥', weight: 9,
     titleRU: '+100% опыта на 24 часа', titleUK: '+100% досвіду на 24 години', titleES: '+100 % XP en 24 h',
     descRU: 'Все занятия приносят +100% опыта 1 день',
@@ -760,14 +768,12 @@ async function pushPremiumPackUnlockGiftReceivedPackId(packId: string): Promise<
 const ROUND_LEVELS = new Set([10, 20, 30, 40, 50]);
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const PREMIUM_BLOCKED_F2P_IDS = new Set<GiftId>([
-  'arena_extra_5',
   'energy_full',
   'energy_plus1',
   'energy_plus2',
   'energy_plus3',
   'choice_3_level',
 ]);
-
 const FLASHCARD_PACK_LEVEL_GIFT_IDS = new Set<GiftId>([
   'pack_voucher_48h',
   'prem_pack_48h',
@@ -850,6 +856,18 @@ async function reserveServerLevelGift(
   };
 }
 
+/** Replaces an offline/legacy roll with its canonical server-owned receipt before presentation. */
+export async function reserveLevelGiftForDisplay(
+  level: number,
+  lane: 'f2p' | 'premium',
+  opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget },
+): Promise<GiftDef> {
+  const reserved = await reserveServerLevelGift(level, lane, opts?.studyTarget);
+  return lane === 'f2p'
+    ? sanitizeRollableLevelGift(reserved, opts?.premiumSafe === true)
+    : sanitizeLevelGiftForStudyTarget(reserved, opts?.studyTarget);
+}
+
 function sourceGatedFallbackGiftId(id: GiftId): GiftId {
   return id === 'pack_voucher_48h' ? 'shards_10' : 'prem_shards_20';
 }
@@ -858,6 +876,29 @@ function sourceGatedFallbackGiftDef(gift: GiftDef): GiftDef {
   const fallbackId = sourceGatedFallbackGiftId(gift.id);
   const fallbackPool = fallbackId === 'shards_10' ? GIFT_F2P : GIFT_PREMIUM;
   return cloneGiftDef(fallbackPool.find(g => g.id === fallbackId) ?? gift);
+}
+
+const usefulFallbackGiftId = (rarity: GiftRarity): GiftId => {
+  if (rarity === 'epic') return 'xp_bank_600';
+  if (rarity === 'rare') return 'xp_bank_300';
+  return 'xp_250';
+};
+
+export function sanitizeLevelGiftForPremium(gift: GiftDef): GiftDef {
+  if (!PREMIUM_BLOCKED_F2P_IDS.has(gift.id)) {
+    return cloneGiftDef(gift);
+  }
+  const fallbackId = usefulFallbackGiftId(gift.rarity);
+  return cloneGiftDef(GIFT_F2P.find(candidate => candidate.id === fallbackId) ?? gift);
+}
+
+export function premiumSafeLevelGiftId(giftId: string): string {
+  const definition = ALL_LEVEL_GIFT_DEFS.find((gift) => gift.id === giftId);
+  return definition ? sanitizeLevelGiftForPremium(definition).id : giftId;
+}
+
+function sanitizeRollableLevelGift(gift: GiftDef, premiumSafe: boolean): GiftDef {
+  return premiumSafe ? sanitizeLevelGiftForPremium(gift) : cloneGiftDef(gift);
 }
 
 export function sanitizeLevelGiftForStudyTarget(gift: GiftDef, studyTarget?: RuntimeStudyTarget): GiftDef {
@@ -899,20 +940,25 @@ const LEVEL_GIFT_MILESTONE_IDS: Record<number, GiftId> = {
 export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): GiftDef | null {
   let id = LEVEL_GIFT_MILESTONE_IDS[level];
   if (!id) return null;
-  if (opts?.premiumSafe && id === 'choice_3_level') id = 'xp_bank_600';
   const gift = GIFT_F2P.find(g => g.id === id);
-  return gift ? sanitizeLevelGiftForStudyTarget(gift, opts?.studyTarget) : null;
+  if (!gift) return null;
+  const premiumSafeGift = opts?.premiumSafe ? sanitizeLevelGiftForPremium(gift) : gift;
+  return sanitizeLevelGiftForStudyTarget(premiumSafeGift, opts?.studyTarget);
 }
 
 /** F2P-пул: анти-triple-hint_1 на круглых уровнях; premiumSafe исключает бесполезные для премиум награды. */
 export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
   const milestone = getMilestoneLevelGift(level, opts);
-  if (milestone && !isFlashcardPackLevelGiftId(milestone.id)) return milestone;
   try {
-    return await reserveServerLevelGift(level, 'f2p', opts?.studyTarget);
+    const reserved = await reserveServerLevelGift(level, 'f2p', opts?.studyTarget);
+    return sanitizeRollableLevelGift(reserved, opts?.premiumSafe === true);
   } catch (error) {
     if (milestone && isFlashcardPackLevelGiftId(milestone.id)) throw error;
-    const safePool = GIFT_F2P.filter((gift) => !isFlashcardPackLevelGiftId(gift.id));
+    if (milestone) return milestone;
+    const safePool = GIFT_F2P.filter((gift) =>
+      !isFlashcardPackLevelGiftId(gift.id)
+      && (!opts?.premiumSafe || !PREMIUM_BLOCKED_F2P_IDS.has(gift.id))
+    );
     return sanitizeLevelGiftForStudyTarget(weightedPick(safePool, level), opts?.studyTarget);
   }
 }
@@ -958,13 +1004,15 @@ function getTomorrowMidnightMs(): number {
   return d.getTime();
 }
 
-export const readBonusEnergy = async (): Promise<BonusEnergyState | null> => {
+export const readBonusEnergy = async (
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<BonusEnergyState | null> => {
   try {
-    const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
+    const raw = await readGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
     if (!raw) return null;
     const b = JSON.parse(raw) as BonusEnergyState;
     if (Date.now() >= b.expiresAt) {
-      await AsyncStorage.removeItem(BONUS_ENERGY_KEY);
+      await removeGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
       return null;
     }
     return b;
@@ -973,6 +1021,60 @@ export const readBonusEnergy = async (): Promise<BonusEnergyState | null> => {
 
 export interface GiftMultiplierState { multiplier: number; expiresAt: number }
 export interface GiftXpBankState { remaining: number; grantedTotal: number; updatedAt: number }
+
+type GiftXpBankOccurrence = {
+  amount: number;
+  overflow: number;
+  status: 'overflow_pending' | 'applied';
+};
+
+type GiftXpBankStoredState = GiftXpBankState & {
+  appliedOccurrences?: Record<string, GiftXpBankOccurrence>;
+};
+
+let giftXpBankMutationLock: Promise<void> = Promise.resolve();
+let localLevelGiftApplyLock: Promise<void> = Promise.resolve();
+
+const withGiftXpBankMutationLock = async <T>(work: () => Promise<T>): Promise<T> => {
+  const previous = giftXpBankMutationLock;
+  let release!: () => void;
+  giftXpBankMutationLock = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
+  try {
+    return await work();
+  } finally {
+    release();
+  }
+};
+
+const withLocalLevelGiftApplyLock = async <T>(work: () => Promise<T>): Promise<T> => {
+  const previous = localLevelGiftApplyLock;
+  let release!: () => void;
+  localLevelGiftApplyLock = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
+  try {
+    return await work();
+  } finally {
+    release();
+  }
+};
+
+const readGiftXpBankStoredState = async (): Promise<GiftXpBankStoredState> => {
+  const raw = await AsyncStorage.getItem(GIFT_XP_BANK_KEY);
+  if (!raw) return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
+  const parsed = JSON.parse(raw) as Partial<GiftXpBankStoredState>;
+  const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0));
+  const rawGrantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || 0));
+  const appliedOccurrences = parsed.appliedOccurrences && typeof parsed.appliedOccurrences === 'object'
+    ? parsed.appliedOccurrences
+    : undefined;
+  return {
+    remaining,
+    grantedTotal: Math.max(remaining, rawGrantedTotal),
+    updatedAt: Math.max(0, Number(parsed.updatedAt) || 0),
+    ...(appliedOccurrences ? { appliedOccurrences } : {}),
+  };
+};
 
 export const readGiftMultiplier = async (): Promise<number> => {
   try {
@@ -990,45 +1092,99 @@ export const readGiftMultiplier = async (): Promise<number> => {
 
 export const readGiftXpBank = async (): Promise<GiftXpBankState> => {
   try {
-    const raw = await AsyncStorage.getItem(GIFT_XP_BANK_KEY);
-    if (!raw) return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
-    const parsed = JSON.parse(raw) as Partial<GiftXpBankState>;
-    const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0));
-    const rawGrantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || 0));
-    // Целостность: grantedTotal не может быть меньше remaining (remaining — остаток банка)
-    const grantedTotal = Math.max(remaining, rawGrantedTotal);
-    return { remaining, grantedTotal, updatedAt: Math.max(0, Number(parsed.updatedAt) || 0) };
+    const { remaining, grantedTotal, updatedAt } = await readGiftXpBankStoredState();
+    return { remaining, grantedTotal, updatedAt };
   } catch {
     return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
   }
 };
 
-export const grantGiftXpBank = async (amount: number): Promise<void> => {
+export const grantGiftXpBank = async (amount: number): Promise<number> => {
+  const safe = Math.max(0, Math.floor(amount));
+  if (safe <= 0) return 0;
+  return withGiftXpBankMutationLock(async () => {
+    const cur = await readGiftXpBankStoredState();
+    const nextRemaining = Math.min(GIFT_XP_BANK_CAP, cur.remaining + safe);
+    const accepted = Math.max(0, nextRemaining - cur.remaining);
+    const overflow = Math.max(0, safe - accepted);
+    await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({
+      ...cur,
+      remaining: nextRemaining,
+      grantedTotal: cur.grantedTotal + accepted,
+      updatedAt: Date.now(),
+    }));
+    return overflow;
+  });
+};
+
+const grantGiftXpBankForOccurrence = async (
+  amount: number,
+  accountId: string,
+  occurrenceId: string,
+  grantOverflow: (overflow: number) => Promise<void>,
+): Promise<void> => withGiftXpBankMutationLock(async () => {
   const safe = Math.max(0, Math.floor(amount));
   if (safe <= 0) return;
-  const cur = await readGiftXpBank();
-  const nextRemaining = Math.min(GIFT_XP_BANK_CAP, cur.remaining + safe);
-  // grantedTotal — исторический итог выданных XP (не текущий остаток)
-  const nextGrantedTotal = cur.grantedTotal + safe;
-  await AsyncStorage.setItem(
-    GIFT_XP_BANK_KEY,
-    JSON.stringify({ remaining: nextRemaining, grantedTotal: nextGrantedTotal, updatedAt: Date.now() }),
-  );
-};
+  const occurrenceKey = `${safeLevelGiftEventPart(accountId, 80)}:${safeLevelGiftEventPart(occurrenceId, 120)}`;
+  const current = await readGiftXpBankStoredState();
+  const prior = current.appliedOccurrences?.[occurrenceKey];
+  if (prior?.status === 'applied') return;
+  if (prior?.status === 'overflow_pending') {
+    await grantOverflow(prior.overflow);
+    await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({
+      ...current,
+      updatedAt: Date.now(),
+      appliedOccurrences: {
+        ...(current.appliedOccurrences ?? {}),
+        [occurrenceKey]: { ...prior, status: 'applied' },
+      },
+    }));
+    return;
+  }
+
+  const nextRemaining = Math.min(GIFT_XP_BANK_CAP, current.remaining + safe);
+  const accepted = Math.max(0, nextRemaining - current.remaining);
+  const overflow = Math.max(0, safe - accepted);
+  const occurrence: GiftXpBankOccurrence = {
+    amount: safe,
+    overflow,
+    status: overflow > 0 ? 'overflow_pending' : 'applied',
+  };
+  const staged: GiftXpBankStoredState = {
+    ...current,
+    remaining: nextRemaining,
+    grantedTotal: current.grantedTotal + accepted,
+    updatedAt: Date.now(),
+    appliedOccurrences: { ...(current.appliedOccurrences ?? {}), [occurrenceKey]: occurrence },
+  };
+  // Bank mutation and its occurrence journal share one durable value.
+  await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify(staged));
+  if (overflow <= 0) return;
+  await grantOverflow(overflow);
+  await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({
+    ...staged,
+    updatedAt: Date.now(),
+    appliedOccurrences: {
+      ...(staged.appliedOccurrences ?? {}),
+      [occurrenceKey]: { ...occurrence, status: 'applied' },
+    },
+  }));
+});
 
 export const consumeGiftXpBank = async (baseXp: number): Promise<number> => {
   const safe = Math.max(0, Math.floor(baseXp));
   if (safe <= 0) return 0;
-  const cur = await readGiftXpBank();
-  const used = Math.min(cur.remaining, safe);
-  if (used <= 0) return 0;
-  const remaining = cur.remaining - used;
-  // Всегда сохраняем — grantedTotal (исторический счётчик) нельзя уничтожать removeItem
-  await AsyncStorage.setItem(
-    GIFT_XP_BANK_KEY,
-    JSON.stringify({ remaining: Math.max(0, remaining), grantedTotal: cur.grantedTotal, updatedAt: Date.now() }),
-  );
-  return used;
+  return withGiftXpBankMutationLock(async () => {
+    const cur = await readGiftXpBankStoredState();
+    const used = Math.min(cur.remaining, safe);
+    if (used <= 0) return 0;
+    await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({
+      ...cur,
+      remaining: Math.max(0, cur.remaining - used),
+      updatedAt: Date.now(),
+    }));
+    return used;
+  });
 };
 
 export const readGiftMultiplierForBaseXp = async (baseXp: number): Promise<{ multiplier: number; consumeBank: boolean }> => {
@@ -1123,6 +1279,8 @@ type CustomAvatarGiftIdempotencyOptions = Readonly<{
   idempotencyKey: string;
   /** Optional additive counter object persisted in the same multiSet as ownership. */
   counterStorageKey?: string;
+  /** The level-claim flow already holds the non-reentrant account transition lock. */
+  accountTransitionLocked?: boolean;
 }>;
 
 const parseCustomAvatarGiftReplays = (raw: string | null): Record<string, GiftCosmeticUnlock> => {
@@ -1231,7 +1389,9 @@ export const unlockRandomCustomAvatarGift = async (
   };
 
   if (normalizedIdempotencyKey) {
-    return withAccountTransitionLock(() => withStorageLock(apply));
+    return idempotency?.accountTransitionLocked
+      ? withStorageLock(apply)
+      : withAccountTransitionLock(() => withStorageLock(apply));
   }
   try { return await apply(); } catch { return null; }
 };
@@ -1264,10 +1424,549 @@ export const getBonusHintsToday = async (studyTarget?: RuntimeStudyTarget): Prom
 
 export interface ApplyGiftResult {
   success: boolean;
+  alreadyClaimed?: boolean;
   xpBoostAlreadyActive?: boolean;
   energyBoostAlreadyActive?: boolean;
   cosmeticUnlocked?: GiftCosmeticUnlock;
 }
+
+const LEVEL_GIFT_EFFECT_RECEIPTS_KEY = 'level_gift_effect_receipts_v1';
+const LEVEL_GIFT_EFFECT_RECEIPT_LIMIT = 128;
+
+type LevelGiftEffectReceipt = {
+  giftId: GiftId;
+  status: 'prepared' | 'applied_unconfirmed' | 'applied';
+  hint?: { key: string; target: number };
+  energyBonus?: {
+    amount: number;
+    expiresAt: number;
+    energyTarget: number;
+    energyBoostAlreadyActive: boolean;
+  };
+  energyFull?: {
+    target: number;
+  };
+  multiplier?: {
+    multiplier: number;
+    expiresAt: number;
+    xpBoostAlreadyActive: boolean;
+  };
+  chainShield?: {
+    daysLeft: number;
+    grantedAt: string;
+  };
+  singleUse?: {
+    kind: 'club_boost' | 'wager_discount';
+    target: number;
+  };
+  aura?: GiftCosmeticUnlock | null;
+  customAvatar?: GiftCosmeticUnlock | null;
+};
+
+const levelGiftEffectOccurrenceKey = (
+  id: GiftId,
+  opts?: ApplyGiftOptions,
+  slot = 'primary',
+): string | null => {
+  const stableId = opts?.accountToken?.stableId?.trim();
+  const occurrenceId = opts?.occurrenceId?.trim();
+  if (!stableId || !occurrenceId) return null;
+  return `${safeLevelGiftEventPart(stableId, 80)}:${safeLevelGiftEventPart(occurrenceId, 120)}:${safeLevelGiftEventPart(id, 60)}:${safeLevelGiftEventPart(slot, 40)}`;
+};
+
+const readLevelGiftEffectReceipts = async (): Promise<Record<string, LevelGiftEffectReceipt>> => {
+  const raw = await AsyncStorage.getItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY);
+  if (!raw) return {};
+  const parsed: unknown = JSON.parse(raw);
+  return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+    ? parsed as Record<string, LevelGiftEffectReceipt>
+    : {};
+};
+
+const saveLevelGiftEffectReceipt = async (
+  occurrenceKey: string,
+  receipt: LevelGiftEffectReceipt,
+): Promise<void> => {
+  const current = await readLevelGiftEffectReceipts();
+  const otherEntries = Object.entries(current).filter(([key]) => key !== occurrenceKey);
+  // A prepared intent is recovery state, so it must never be evicted merely because
+  // newer level gifts completed. Only terminal receipts are bounded.
+  const preparedEntries = otherEntries.filter(([, value]) => value.status !== 'applied');
+  const appliedEntries = otherEntries.filter(([, value]) => value.status === 'applied');
+  const appliedBudget = Math.max(0, LEVEL_GIFT_EFFECT_RECEIPT_LIMIT - preparedEntries.length - 1);
+  const bounded = Object.fromEntries([
+    ...preparedEntries,
+    ...(appliedBudget > 0 ? appliedEntries.slice(-appliedBudget) : []),
+  ]) as Record<string, LevelGiftEffectReceipt>;
+  bounded[occurrenceKey] = receipt;
+  await AsyncStorage.setItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY, JSON.stringify(bounded));
+  const verified = (await readLevelGiftEffectReceipts())[occurrenceKey];
+  if (!verified || verified.giftId !== receipt.giftId || verified.status !== receipt.status) {
+    throw new Error('level_gift_effect_receipt_not_durable');
+  }
+};
+
+const prepareLevelGiftEffectReceipt = async (
+  id: GiftId,
+  opts: ApplyGiftOptions | undefined,
+  create: () => Promise<LevelGiftEffectReceipt>,
+  slot = 'primary',
+): Promise<{ occurrenceKey: string; receipt: LevelGiftEffectReceipt } | null> => {
+  const occurrenceKey = levelGiftEffectOccurrenceKey(id, opts, slot);
+  if (!occurrenceKey) return null;
+  if (opts?.accountToken && !isCurrentAccountGeneration(opts.accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  const existing = (await readLevelGiftEffectReceipts())[occurrenceKey];
+  if (existing) {
+    if (existing.giftId !== id) throw new Error('level_gift_effect_occurrence_mismatch');
+    return { occurrenceKey, receipt: existing };
+  }
+  const receipt = await create();
+  if (receipt.giftId !== id || receipt.status !== 'prepared') {
+    throw new Error('level_gift_effect_receipt_invalid');
+  }
+  await saveLevelGiftEffectReceipt(occurrenceKey, receipt);
+  return { occurrenceKey, receipt };
+};
+
+const markLevelGiftEffectApplied = async (
+  staged: { occurrenceKey: string; receipt: LevelGiftEffectReceipt },
+  opts?: ApplyGiftOptions,
+): Promise<void> => {
+  if (opts?.accountToken && !isCurrentAccountGeneration(opts.accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  if (staged.receipt.status !== 'prepared') return;
+  // Remains pinned until the outer claim journal is durably effect_applied or
+  // a terminal server receipt is observed.
+  staged.receipt = { ...staged.receipt, status: 'applied_unconfirmed' };
+  await saveLevelGiftEffectReceipt(staged.occurrenceKey, staged.receipt);
+};
+
+const confirmLevelGiftEffectReceipts = async (
+  accountToken: AccountGenerationToken,
+  occurrenceId: string,
+): Promise<void> => {
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  const prefix = `${safeLevelGiftEventPart(accountToken.stableId, 80)}:${safeLevelGiftEventPart(occurrenceId, 120)}:`;
+  const entries = Object.entries(await readLevelGiftEffectReceipts())
+    .filter(([key, receipt]) => key.startsWith(prefix) && receipt.status === 'applied_unconfirmed');
+  for (const [key, receipt] of entries) {
+    await saveLevelGiftEffectReceipt(key, { ...receipt, status: 'applied' });
+  }
+};
+
+const applyHintGiftForOccurrence = async (
+  id: GiftId,
+  count: number,
+  key: string,
+  opts?: ApplyGiftOptions,
+): Promise<boolean> => {
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const current = Math.max(0, parseInt((await AsyncStorage.getItem(key)) || '0', 10) || 0);
+    return { giftId: id, status: 'prepared', hint: { key, target: current + count } };
+  });
+  if (!staged) return false;
+  const hint = staged.receipt.hint;
+  if (!hint || hint.key !== key) throw new Error('level_gift_hint_receipt_invalid');
+  if (staged.receipt.status !== 'prepared') return true;
+  const current = Math.max(0, parseInt((await AsyncStorage.getItem(key)) || '0', 10) || 0);
+  await AsyncStorage.setItem(key, String(Math.max(current, hint.target)));
+  await markLevelGiftEffectApplied(staged, opts);
+  return true;
+};
+
+const applyEnergyBonusForOccurrence = async (
+  id: GiftId,
+  n: 1 | 2 | 3,
+  currentEnergy: number,
+  setEnergy: (n: number) => void,
+  opts?: ApplyGiftOptions,
+): Promise<ApplyGiftResult | null> => {
+  const accountToken = opts?.accountToken ?? captureAccountGeneration();
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    if (!isCurrentAccountGeneration(accountToken)) {
+      throw new Error('level_gift_effect_account_changed');
+    }
+    const existing = await readBonusEnergy(accountToken);
+    const energyRaw = await AsyncStorage.getItem('energy_state');
+    if (!isCurrentAccountGeneration(accountToken)) {
+      throw new Error('level_gift_effect_account_changed');
+    }
+    const energyState = energyRaw
+      ? JSON.parse(energyRaw) as { current?: number }
+      : {};
+    const persistedEnergy = Number(energyState.current);
+    const energyBase = Number.isFinite(persistedEnergy)
+      ? Math.max(0, persistedEnergy)
+      : Math.max(0, currentEnergy);
+    return {
+      giftId: id,
+      status: 'prepared',
+      energyBonus: {
+        amount: (existing?.amount ?? 0) + n,
+        expiresAt: getTomorrowMidnightMs(),
+        energyTarget: energyBase + n,
+        energyBoostAlreadyActive: existing !== null && (existing.amount ?? 0) > 0,
+      },
+    };
+  });
+  if (!staged) return null;
+  const planned = staged.receipt.energyBonus;
+  if (!planned) throw new Error('level_gift_energy_receipt_invalid');
+  if (staged.receipt.status !== 'prepared') {
+    return { success: true, energyBoostAlreadyActive: planned.energyBoostAlreadyActive };
+  }
+  if (!isCurrentAccountGeneration(accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  const existing = await readBonusEnergy(accountToken);
+  const bonus: BonusEnergyState = {
+    amount: Math.max(existing?.amount ?? 0, planned.amount),
+    expiresAt: Math.max(existing?.expiresAt ?? 0, planned.expiresAt),
+  };
+  await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
+  const energyRaw = await AsyncStorage.getItem('energy_state');
+  if (!isCurrentAccountGeneration(accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  const energyState = energyRaw
+    ? JSON.parse(energyRaw) as { current?: number; lastRecoveryTime?: number }
+    : {};
+  const nextEnergy = Math.max(Math.max(0, Number(energyState.current) || 0), planned.energyTarget);
+  await AsyncStorage.setItem('energy_state', JSON.stringify({
+    current: nextEnergy,
+    lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || Date.now()),
+  }));
+  if (!isCurrentAccountGeneration(accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  await setEnergy(nextEnergy);
+  await markLevelGiftEffectApplied(staged, opts);
+  return { success: true, energyBoostAlreadyActive: planned.energyBoostAlreadyActive };
+};
+
+const applyEnergyFullForOccurrence = async (
+  id: 'energy_full',
+  maxEnergy: number,
+  setEnergy: (n: number) => void,
+  opts?: ApplyGiftOptions,
+): Promise<boolean> => {
+  const accountToken = opts?.accountToken ?? captureAccountGeneration();
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => ({
+    giftId: id,
+    status: 'prepared',
+    energyFull: { target: Math.max(0, maxEnergy) },
+  }));
+  if (!staged) return false;
+  const planned = staged.receipt.energyFull;
+  if (!planned) throw new Error('level_gift_energy_full_receipt_invalid');
+  if (staged.receipt.status !== 'prepared') return true;
+  if (!isCurrentAccountGeneration(accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  const energyRaw = await AsyncStorage.getItem('energy_state');
+  if (!isCurrentAccountGeneration(accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  const energyState = energyRaw
+    ? JSON.parse(energyRaw) as { lastRecoveryTime?: number }
+    : {};
+  await AsyncStorage.setItem('energy_state', JSON.stringify({
+    current: planned.target,
+    lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || Date.now()),
+  }));
+  if (!isCurrentAccountGeneration(accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  await setEnergy(planned.target);
+  await markLevelGiftEffectApplied(staged, opts);
+  return true;
+};
+
+const WAGER_DISCOUNT_USES_KEY = 'wager_discount_uses_v1';
+
+const parseSingleUseCount = (raw: string | null): number => {
+  const parsed = Number.parseInt(raw ?? '', 10);
+  return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+};
+
+const applySingleUseGiftForOccurrence = async (
+  id: 'wager_discount_25',
+  opts?: ApplyGiftOptions,
+): Promise<boolean> => {
+  const kind = 'wager_discount';
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const [discountRaw, usesRaw] = await AsyncStorage.multiGet([WAGER_DISCOUNT_KEY, WAGER_DISCOUNT_USES_KEY]);
+    const current = Math.max(
+      parseSingleUseCount(usesRaw?.[1] ?? null),
+      discountRaw?.[1] === '0.25' ? 1 : 0,
+    );
+    return { giftId: id, status: 'prepared', singleUse: { kind, target: current + 1 } };
+  });
+  if (!staged) return false;
+  const planned = staged.receipt.singleUse;
+  if (!planned || planned.kind !== kind || planned.target < 1) {
+    throw new Error('level_gift_single_use_receipt_invalid');
+  }
+  if (staged.receipt.status !== 'prepared') return true;
+  const [discountRaw, usesRaw] = await AsyncStorage.multiGet([WAGER_DISCOUNT_KEY, WAGER_DISCOUNT_USES_KEY]);
+  const current = Math.max(
+    parseSingleUseCount(usesRaw?.[1] ?? null),
+    discountRaw?.[1] === '0.25' ? 1 : 0,
+  );
+  await AsyncStorage.multiSet([
+    [WAGER_DISCOUNT_KEY, '0.25'],
+    [WAGER_DISCOUNT_USES_KEY, String(Math.max(current, planned.target))],
+  ]);
+  await markLevelGiftEffectApplied(staged, opts);
+  return true;
+};
+
+const applyTimedGiftMultiplierForOccurrence = async (
+  id: GiftId,
+  multiplier: number,
+  durationMs: number,
+  opts?: ApplyGiftOptions,
+): Promise<ApplyGiftResult | null> => {
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const now = Date.now();
+    let existing: GiftMultiplierState | null = null;
+    try {
+      const raw = await AsyncStorage.getItem(GIFT_MULT_KEY);
+      existing = raw ? JSON.parse(raw) as GiftMultiplierState : null;
+    } catch {}
+    const active = !!existing && now < existing.expiresAt && existing.multiplier > 1;
+    const safeMultiplier = Math.max(1, Number(multiplier) || 1);
+    return {
+      giftId: id,
+      status: 'prepared',
+      multiplier: {
+        multiplier: active && existing!.multiplier >= safeMultiplier ? existing!.multiplier : safeMultiplier,
+        expiresAt: active && existing!.multiplier >= safeMultiplier
+          ? Math.max(existing!.expiresAt, now + durationMs)
+          : now + durationMs,
+        xpBoostAlreadyActive: active,
+      },
+    };
+  });
+  if (!staged) return null;
+  const planned = staged.receipt.multiplier;
+  if (!planned) throw new Error('level_gift_multiplier_receipt_invalid');
+  if (staged.receipt.status !== 'prepared') {
+    return { success: true, xpBoostAlreadyActive: planned.xpBoostAlreadyActive };
+  }
+  let existing: GiftMultiplierState | null = null;
+  try {
+    const raw = await AsyncStorage.getItem(GIFT_MULT_KEY);
+    existing = raw ? JSON.parse(raw) as GiftMultiplierState : null;
+  } catch {}
+  const projected = existing && existing.multiplier > planned.multiplier
+    ? existing
+    : {
+      multiplier: planned.multiplier,
+      expiresAt: existing?.multiplier === planned.multiplier
+        ? Math.max(existing.expiresAt, planned.expiresAt)
+        : planned.expiresAt,
+    };
+  await AsyncStorage.setItem(GIFT_MULT_KEY, JSON.stringify(projected));
+  await markLevelGiftEffectApplied(staged, opts);
+  return { success: true, xpBoostAlreadyActive: planned.xpBoostAlreadyActive };
+};
+
+const applyChainShieldForOccurrence = async (
+  id: 'chain_shield_1' | 'chain_shield_3',
+  days: 1 | 3,
+  grantedAt: string,
+  opts?: ApplyGiftOptions,
+): Promise<boolean | null> => {
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    let currentDays = 0;
+    try {
+      const raw = await AsyncStorage.getItem(CHAIN_SHIELD_KEY);
+      const parsed = raw ? JSON.parse(raw) as { daysLeft?: unknown } : null;
+      currentDays = Math.max(0, Math.floor(Number(parsed?.daysLeft) || 0));
+    } catch {}
+    return {
+      giftId: id,
+      status: 'prepared',
+      chainShield: { daysLeft: currentDays + days, grantedAt },
+    };
+  });
+  if (!staged) return null;
+  const planned = staged.receipt.chainShield;
+  if (!planned || planned.daysLeft < days) throw new Error('level_gift_chain_shield_receipt_invalid');
+  if (staged.receipt.status !== 'prepared') return true;
+  let currentDays = 0;
+  try {
+    const raw = await AsyncStorage.getItem(CHAIN_SHIELD_KEY);
+    const parsed = raw ? JSON.parse(raw) as { daysLeft?: unknown } : null;
+    currentDays = Math.max(0, Math.floor(Number(parsed?.daysLeft) || 0));
+  } catch {}
+  await AsyncStorage.setItem(CHAIN_SHIELD_KEY, JSON.stringify({
+    daysLeft: Math.max(currentDays, planned.daysLeft),
+    grantedAt: planned.grantedAt,
+  }));
+  await markLevelGiftEffectApplied(staged, opts);
+  return true;
+};
+
+const applyAuraGiftForOccurrence = async (
+  id: GiftId,
+  opts?: ApplyGiftOptions,
+): Promise<{ handled: boolean; cosmeticUnlocked: GiftCosmeticUnlock | null }> => {
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
+    const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
+    const candidates = AVATAR_AURAS.filter(aura => !aura.premiumOnly && aura.unlockLevel === undefined && !owned[aura.id]);
+    const aura = candidates[Math.floor(Math.random() * candidates.length)];
+    return {
+      giftId: id,
+      status: 'prepared',
+      aura: aura ? {
+        kind: 'aura',
+        id: aura.id,
+        labelRu: aura.nameRu,
+        labelUk: aura.nameUk,
+        labelEs: aura.nameEs,
+      } : null,
+    };
+  }, 'aura');
+  if (!staged) return { handled: false, cosmeticUnlocked: null };
+  const result = staged.receipt.aura ?? null;
+  if (staged.receipt.status !== 'prepared') {
+    return { handled: true, cosmeticUnlocked: result };
+  }
+  if (result) {
+    const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
+    const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
+    await AsyncStorage.multiSet([
+      [AVATAR_AURA_OWNED_KEY, JSON.stringify({ ...owned, [result.id]: true })],
+      [AVATAR_AURA_GIFT_OWNED_KEY, result.id],
+      [USER_AVATAR_AURA_KEY, result.id],
+    ]);
+  }
+  await markLevelGiftEffectApplied(staged, opts);
+  return { handled: true, cosmeticUnlocked: result };
+};
+
+const applyCustomAvatarGiftForOccurrence = async (
+  id: GiftId,
+  opts?: ApplyGiftOptions,
+): Promise<{ handled: boolean; cosmeticUnlocked: GiftCosmeticUnlock | null }> => {
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
+    const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
+    const candidates = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) => !owned[avatar.id]);
+    if (candidates.length === 0) {
+      return { giftId: id, status: 'prepared', customAvatar: null };
+    }
+    const totalWeight = candidates.reduce((sum, candidate) => sum + getCustomAvatarGiftWeight(candidate.id), 0);
+    let roll = Math.random() * (totalWeight || 1);
+    const avatar = candidates.find((candidate) => {
+      roll -= getCustomAvatarGiftWeight(candidate.id);
+      return roll <= 0;
+    }) ?? candidates[candidates.length - 1]!;
+    const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
+    const logoColor: CustomAvatarLogoColor = Math.random() < 0.5 ? 'black' : 'white';
+    return {
+      giftId: id,
+      status: 'prepared',
+      customAvatar: {
+        kind: 'avatar',
+        id: avatar.id,
+        gradientId: gradient.id,
+        logoColor,
+        labelRu: customAvatarGiftLabelForLang(avatar, gradient, 'ru'),
+        labelUk: customAvatarGiftLabelForLang(avatar, gradient, 'uk'),
+        labelEs: customAvatarGiftLabelForLang(avatar, gradient, 'es'),
+      },
+    };
+  }, 'custom_avatar');
+  if (!staged) return { handled: false, cosmeticUnlocked: null };
+  const result = staged.receipt.customAvatar ?? null;
+  if (staged.receipt.status !== 'prepared') {
+    return { handled: true, cosmeticUnlocked: result };
+  }
+  if (result) {
+    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
+    const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
+    await AsyncStorage.multiSet([
+      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify({
+        ...owned,
+        [result.id]: encodeOwnedStyle(result.gradientId!, result.logoColor!),
+      })],
+      [COSMETIC_GIFT_OWNED_AVATAR_KEY, result.id],
+    ]);
+  }
+  await markLevelGiftEffectApplied(staged, opts);
+  return { handled: true, cosmeticUnlocked: result };
+};
+
+export const acquireLevelGiftDisplay = async (
+  level: number,
+  gift: GiftDef,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<'acquired' | 'already_displayed' | 'unavailable'> => {
+  try {
+    const stableId = await getCanonicalUserId();
+    const reservation = gift.levelGiftReservation;
+    if (!stableId || !reservation || reservation.lane !== 'f2p') return 'unavailable';
+    const result = await callLevelGiftReservationAction({
+      stableId,
+      level,
+      lane: 'f2p',
+      studyTarget: storageStudyTarget(studyTarget),
+      reservationId: reservation.reservationId,
+      action: 'display',
+    });
+    return result.status === 'acquired' || result.status === 'already_displayed'
+      ? result.status
+      : 'unavailable';
+  } catch {
+    return 'unavailable';
+  }
+};
+
+const LEVEL_GIFT_APPLY_JOURNAL_KEY = 'level_gift_apply_journal_v1';
+type LevelGiftApplyJournalEntry = {
+  reservationId: string;
+  giftId: string;
+  claimToken: string;
+  status: 'prepared' | 'effect_applied';
+};
+
+const readLevelGiftApplyJournal = async (): Promise<Record<string, LevelGiftApplyJournalEntry>> => {
+  const raw = await AsyncStorage.getItem(LEVEL_GIFT_APPLY_JOURNAL_KEY);
+  if (!raw) return {};
+  const parsed: unknown = JSON.parse(raw);
+  return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+    ? parsed as Record<string, LevelGiftApplyJournalEntry>
+    : {};
+};
+
+const saveVerifiedLevelGiftApplyJournal = async (
+  journal: Record<string, LevelGiftApplyJournalEntry>,
+  occurrenceKey: string,
+): Promise<boolean> => {
+  await AsyncStorage.setItem(LEVEL_GIFT_APPLY_JOURNAL_KEY, JSON.stringify(journal));
+  const verified = await readLevelGiftApplyJournal();
+  const expected = journal[occurrenceKey];
+  const actual = verified[occurrenceKey];
+  return !!expected && actual?.reservationId === expected.reservationId
+    && actual.giftId === expected.giftId
+    && actual.claimToken === expected.claimToken
+    && actual.status === expected.status;
+};
+
+const removeLevelGiftApplyJournalEntry = async (occurrenceKey: string): Promise<void> => {
+  const journal = await readLevelGiftApplyJournal();
+  delete journal[occurrenceKey];
+  await AsyncStorage.setItem(LEVEL_GIFT_APPLY_JOURNAL_KEY, JSON.stringify(journal));
+};
 
 const MARKETPLACE_CACHE_PRIME_DELAY_MS = 1400;
 const scheduledMarketplaceCachePrimeTargets = new Set<string>();
@@ -1280,7 +1979,9 @@ const scheduleMarketplaceCachePrime = (studyTarget?: RuntimeStudyTarget): void =
   const schedule = () => {
     const timer = setTimeout(() => {
       scheduledMarketplaceCachePrimeTargets.delete(target);
-      void primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget).catch(() => {});
+      try {
+        void Promise.resolve(primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget)).catch(() => {});
+      } catch {}
     }, MARKETPLACE_CACHE_PRIME_DELAY_MS);
     (timer as any)?.unref?.();
   };
@@ -1297,11 +1998,12 @@ const applyEnergyBonusN = async (
   currentEnergy: number,
   setEnergy: (n: number) => void,
 ): Promise<ApplyGiftResult> => {
-  const existing = await readBonusEnergy();
+  const accountToken = captureAccountGeneration();
+  const existing = await readBonusEnergy(accountToken);
   const energyBoostAlreadyActive = existing !== null && (existing.amount ?? 0) > 0;
   const accumulatedAmount = (existing?.amount ?? 0) + n;
   const bonus: BonusEnergyState = { amount: accumulatedAmount, expiresAt: getTomorrowMidnightMs() };
-  await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify(bonus));
+  await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
   // Бонус поднял эффективный потолок энергии (см. energy_system.getEffectiveMaxEnergyValue) —
   // сразу заполняем новые слоты, иначе потолок вырос, а энергия осталась прежней (слоты пустые).
   let nextEnergy = currentEnergy;
@@ -1318,12 +2020,35 @@ const applyEnergyBonusN = async (
 const safeLevelGiftEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
-async function activateReservedLevelPackGift(gift: GiftDef, studyTarget?: RuntimeStudyTarget): Promise<{
+async function activateLevelPackGift(gift: GiftDef, opts?: ApplyGiftOptions): Promise<{
   stableId: string;
   voucherId: string;
   expiresAt: number;
   allowedPackId?: string;
 } | null> {
+  const spinReceipt = gift.spinRewardReceipt;
+  if (spinReceipt) {
+    const accountToken = opts?.accountToken;
+    const stableId = accountToken?.stableId;
+    const deliveryToken = opts?.spinDeliveryToken;
+    if (!stableId || !deliveryToken || !isCurrentAccountGeneration(accountToken, stableId)) return null;
+    const grant = await callLevelSpinActivatePackGift({
+      stableId,
+      requestId: spinReceipt.requestId,
+      lane: spinReceipt.lane,
+      deliveryToken,
+    });
+    if (!isCurrentAccountGeneration(accountToken, stableId)
+      || !grant.voucherId
+      || !Number.isFinite(grant.expiresAt)
+      || grant.expiresAt <= Date.now()) return null;
+    return {
+      stableId,
+      voucherId: grant.voucherId,
+      expiresAt: grant.expiresAt,
+      ...(grant.allowedPackId ? { allowedPackId: grant.allowedPackId } : {}),
+    };
+  }
   const reservationId = gift.levelGiftReservation?.reservationId;
   if (!reservationId) return null;
   const stableId = await getCanonicalUserId();
@@ -1342,6 +2067,13 @@ export interface ApplyGiftOptions {
   isPremium?: boolean;
   studyTarget?: RuntimeStudyTarget;
   accountToken?: AccountGenerationToken;
+  occurrenceId?: string;
+  preserveGiftId?: boolean;
+  spinDeliveryToken?: string;
+  /** Apply the already-issued local gift without the server reservation protocol. */
+  localOnly?: boolean;
+  /** Internal capability propagated only by withAccountTransitionLock. */
+  accountTransitionLockLease?: AccountTransitionLockLease;
 }
 
 const applyGiftUnlocked = async (
@@ -1353,14 +2085,18 @@ const applyGiftUnlocked = async (
   opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult> => {
   try {
-    const isPremium = opts?.isPremium ?? await getVerifiedPremiumStatus();
+    const preserveGiftId = opts?.preserveGiftId === true;
+    const isPremium = preserveGiftId ? false : opts?.isPremium ?? await getVerifiedPremiumStatus();
     const today = new Date().toISOString().split('T')[0];
     let id = gift.id;
     // Safety-net: если старый/ручной подарок всё же попал премиуму, заменяем на осколки.
-    if (isPremium && PREMIUM_BLOCKED_F2P_IDS.has(id)) {
+    if (!preserveGiftId && isPremium && PREMIUM_BLOCKED_F2P_IDS.has(id)) {
       id = 'prem_shards_10';
     }
-    if (!flashcardPackLevelGiftsAllowed(opts?.studyTarget) && isFlashcardPackLevelGiftId(id) && !isTrialPackLevelGiftId(id)) {
+    if (!preserveGiftId
+      && !flashcardPackLevelGiftsAllowed(opts?.studyTarget)
+      && isFlashcardPackLevelGiftId(id)
+      && !isTrialPackLevelGiftId(id)) {
       id = sourceGatedFallbackGiftId(id);
     }
 
@@ -1368,18 +2104,39 @@ const applyGiftUnlocked = async (
     // Все мгновенные XP-подарки (включая бывшие жемчужные) идут одним каналом с дневной
     // идемпотентностью — как это всегда делали xp_50/100/250.
     const grantInstantGiftXp = async (amount: number): Promise<void> => {
+      const occurrence = opts?.occurrenceId
+        ? safeLevelGiftEventPart(opts.occurrenceId)
+        : safeLevelGiftEventPart(today, 20);
       await registerXP(amount, 'achievement_reward', userName, 'ru', undefined, {
-        eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-        payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
+        eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), occurrence, safeLevelGiftEventPart(id)].join(':'),
+        payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null, occurrenceId: opts?.occurrenceId ?? null },
+        accountToken: opts?.accountToken,
+        accountTransitionLockLease: opts?.accountTransitionLockLease,
       });
+    };
+    const grantXpBankWithoutLoss = async (amount: number): Promise<void> => {
+      const owner = opts?.accountToken?.stableId ?? await getCanonicalUserId() ?? 'unscoped';
+      const occurrence = opts?.occurrenceId ?? `${today}:${id}`;
+      await grantGiftXpBankForOccurrence(amount, owner, occurrence, grantInstantGiftXp);
     };
 
     switch (id) {
       case 'energy_full': {
-        setEnergy(maxEnergy);
+        if (await applyEnergyFullForOccurrence(id, maxEnergy, setEnergy, opts)) break;
+        const accountToken = opts?.accountToken ?? captureAccountGeneration();
+        if (!isCurrentAccountGeneration(accountToken)) {
+          throw new Error('level_gift_effect_account_changed');
+        }
         const esRaw = await AsyncStorage.getItem('energy_state');
+        if (!isCurrentAccountGeneration(accountToken)) {
+          throw new Error('level_gift_effect_account_changed');
+        }
         const es = esRaw ? (JSON.parse(esRaw) as { current: number; lastRecoveryTime: number }) : { lastRecoveryTime: Date.now() };
         await AsyncStorage.setItem('energy_state', JSON.stringify({ current: maxEnergy, lastRecoveryTime: es.lastRecoveryTime }));
+        if (!isCurrentAccountGeneration(accountToken)) {
+          throw new Error('level_gift_effect_account_changed');
+        }
+        await setEnergy(maxEnergy);
         break;
       }
       case 'xp_50':
@@ -1395,19 +2152,28 @@ const applyGiftUnlocked = async (
       case 'hint_3': {
         const count = id === 'hint_1' ? 1 : 3;
         const key = lessonBonusHintsKey(today, opts?.studyTarget);
+        if (await applyHintGiftForOccurrence(id, count, key, opts)) break;
         const cur = parseInt((await AsyncStorage.getItem(key)) || '0', 10) || 0;
         await AsyncStorage.setItem(key, String(cur + count));
         break;
       }
-      case 'energy_plus1':
-        return await applyEnergyBonusN(1, currentEnergy, setEnergy);
-      case 'energy_plus2':
-        return await applyEnergyBonusN(2, currentEnergy, setEnergy);
-      case 'energy_plus3':
-        return await applyEnergyBonusN(3, currentEnergy, setEnergy);
+      case 'energy_plus1': {
+        const applied = await applyEnergyBonusForOccurrence(id, 1, currentEnergy, setEnergy, opts);
+        return applied ?? await applyEnergyBonusN(1, currentEnergy, setEnergy);
+      }
+      case 'energy_plus2': {
+        const applied = await applyEnergyBonusForOccurrence(id, 2, currentEnergy, setEnergy, opts);
+        return applied ?? await applyEnergyBonusN(2, currentEnergy, setEnergy);
+      }
+      case 'energy_plus3': {
+        const applied = await applyEnergyBonusForOccurrence(id, 3, currentEnergy, setEnergy, opts);
+        return applied ?? await applyEnergyBonusN(3, currentEnergy, setEnergy);
+      }
       case 'chain_shield_1':
       case 'chain_shield_3': {
         const days = id === 'chain_shield_1' ? 1 : 3;
+        const applied = await applyChainShieldForOccurrence(id, days, today, opts);
+        if (applied !== null) break;
         const raw = await AsyncStorage.getItem(CHAIN_SHIELD_KEY);
         const ex = raw ? (JSON.parse(raw) as { daysLeft: number }) : null;
         const daysLeft = (ex?.daysLeft ?? 0) + days;
@@ -1417,34 +2183,49 @@ const applyGiftUnlocked = async (
       case 'xp_2x_24h':
       case 'xp_2x_48h': {
         const hours = id === 'xp_2x_24h' ? 24 : 48;
-        return await setTimedGiftMultiplier(2, hours * 3600000);
+        const applied = await applyTimedGiftMultiplierForOccurrence(id, 2, hours * 3600000, opts);
+        return applied ?? await setTimedGiftMultiplier(2, hours * 3600000);
       }
       case 'xp_bank_150': {
-        await grantGiftXpBank(150);
+        await grantXpBankWithoutLoss(150);
         break;
       }
       case 'xp_bank_300': {
-        await grantGiftXpBank(300);
+        await grantXpBankWithoutLoss(300);
         break;
       }
       case 'xp_bank_600': {
-        await grantGiftXpBank(600);
+        await grantXpBankWithoutLoss(600);
         break;
       }
       case 'premium_xp_bank_1000': {
-        await grantGiftXpBank(1000);
+        await grantXpBankWithoutLoss(1000);
         break;
       }
       case 'focus_10m_25': {
-        return await setTimedGiftMultiplier(1.25, 10 * 60 * 1000);
+        const applied = await applyTimedGiftMultiplierForOccurrence(id, 1.25, 10 * 60 * 1000, opts);
+        return applied ?? await setTimedGiftMultiplier(1.25, 10 * 60 * 1000);
       }
       case 'focus_15m_50': {
-        return await setTimedGiftMultiplier(1.5, 15 * 60 * 1000);
+        const applied = await applyTimedGiftMultiplierForOccurrence(id, 1.5, 15 * 60 * 1000, opts);
+        return applied ?? await setTimedGiftMultiplier(1.5, 15 * 60 * 1000);
       }
       case 'cosmetic_avatar_common':
       case 'premium_cosmetic_avatar': {
-        const cosmeticUnlocked = await unlockRandomCustomAvatarGift(opts?.accountToken);
+        const occurrenceAvatar = await applyCustomAvatarGiftForOccurrence(id, opts);
+        if (occurrenceAvatar.handled && occurrenceAvatar.cosmeticUnlocked) {
+          return { success: true, cosmeticUnlocked: occurrenceAvatar.cosmeticUnlocked };
+        }
+        const cosmeticUnlocked = occurrenceAvatar.handled
+          ? null
+          : await unlockRandomCustomAvatarGift(opts?.accountToken);
         if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
+        const occurrenceAura = await applyAuraGiftForOccurrence(id, opts);
+        if (occurrenceAura.handled) {
+          if (occurrenceAura.cosmeticUnlocked) return { success: true, cosmeticUnlocked: occurrenceAura.cosmeticUnlocked };
+          await grantInstantGiftXp(350);
+          return { success: true };
+        }
         const fallbackAura = await unlockRandomAvatarAuraGift();
         if (fallbackAura) return { success: true, cosmeticUnlocked: fallbackAura };
         // Вся косметика уже открыта — честная XP-компенсация вместо прежнего нулевого жемчуга.
@@ -1453,8 +2234,16 @@ const applyGiftUnlocked = async (
       }
       case 'cosmetic_avatar_aura':
       case 'premium_cosmetic_aura': {
+        const occurrenceAura = await applyAuraGiftForOccurrence(id, opts);
+        if (occurrenceAura.handled) {
+          if (occurrenceAura.cosmeticUnlocked) return { success: true, cosmeticUnlocked: occurrenceAura.cosmeticUnlocked };
+          await grantInstantGiftXp(350);
+          return { success: true };
+        }
         const cosmeticUnlocked = await unlockRandomAvatarAuraGift();
-        return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
+        if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
+        await grantInstantGiftXp(350);
+        return { success: true };
       }
       // зачем (2026-08-02, владелец): бывшие жемчужные подарки — теперь честный мгновенный XP
       // (карточки в пулах переименованы; выплата жемчуга была занулена §7 и обманывала игрока).
@@ -1470,17 +2259,12 @@ const applyGiftUnlocked = async (
         await grantInstantGiftXp(700);
         break;
       }
-      case 'arena_extra_5': {
-        // Режим арены удалён; старые инвентари догоняем честной XP-компенсацией
-        // вместо прежнего нулевого начисления жемчуга.
-        await grantInstantGiftXp(150);
-        break;
-      }
       case 'club_boost_free': {
-        await grantClubGiftFreeBoostFromLevel();
-        break;
+        // Canonical count is granted only by levelGiftReserve complete_claim.
+        return { success: false };
       }
       case 'wager_discount_25': {
+        if (await applySingleUseGiftForOccurrence(id, opts)) break;
         await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');
         break;
       }
@@ -1497,24 +2281,28 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'prem_pack_48h': {
-        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        const grant = await activateLevelPackGift(gift, opts);
         if (!grant) return { success: false };
         const trial = await setRandomPackGiftTrial48h(
           opts?.studyTarget,
           grant.voucherId,
           grant.expiresAt,
+          opts?.occurrenceId,
+          'level_gift',
         );
         if (!trial) return { success: false };
         scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
       }
       case 'pack_voucher_48h': {
-        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        const grant = await activateLevelPackGift(gift, opts);
         if (!grant) return { success: false };
         const trial = await setRandomPackGiftTrial48h(
           opts?.studyTarget,
           grant.voucherId,
           grant.expiresAt,
+          opts?.occurrenceId,
+          'level_gift',
         );
         if (!trial) return { success: false };
         scheduleMarketplaceCachePrime(opts?.studyTarget);
@@ -1527,7 +2315,7 @@ const applyGiftUnlocked = async (
       case 'prem_level_unlock_peaky_blinders': {
         const packIdGift = PREMIUM_LEVEL_GIFT_ID_TO_PACK[id];
         if (!packIdGift) break;
-        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        const grant = await activateLevelPackGift(gift, opts);
         if (!grant || grant.allowedPackId !== packIdGift) return { success: false };
         const redemption = await callFlashcardPackGiftRedeem({
           buyerStableId: grant.stableId,
@@ -1549,6 +2337,103 @@ const applyGiftUnlocked = async (
   } catch { return { success: false }; }
 };
 
+function levelGiftDefinitionById(giftId: string): GiftDef | null {
+  for (const gift of [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS]) {
+    if (gift.id === giftId) return cloneGiftDef(gift);
+    const choice = gift.choices?.find((candidate) => candidate.id === giftId);
+    if (choice) return cloneGiftDef(choice);
+  }
+  return null;
+}
+
+async function applySpinRewardGift(
+  gift: GiftDef,
+  userName: string,
+  currentEnergy: number,
+  maxEnergy: number,
+  setEnergy: (n: number) => void,
+  opts?: ApplyGiftOptions,
+): Promise<ApplyGiftResult> {
+  const authority = gift.spinRewardReceipt;
+  const accountToken = opts?.accountToken;
+  if (!authority || !accountToken?.stableId || !isCurrentAccountGeneration(accountToken)) {
+    return { success: false };
+  }
+  const stableId: string = accountToken.stableId;
+  return withAccountTransitionLock(async () => {
+  if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+  const occurrenceId = `level-spin:${authority.requestId}:${authority.lane}`;
+  const occurrenceKey = `${safeLevelGiftEventPart(stableId, 80)}:${safeLevelGiftEventPart(occurrenceId, 120)}`;
+  const reservationId = occurrenceId;
+  try {
+    const journal = await readLevelGiftApplyJournal();
+    const prior = journal[occurrenceKey];
+    const entry: LevelGiftApplyJournalEntry = prior?.reservationId === reservationId
+      ? prior
+      : {
+        reservationId,
+        giftId: gift.id,
+        claimToken: Crypto.randomUUID(),
+        status: 'prepared',
+      };
+    journal[occurrenceKey] = entry;
+    if (!await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey)) return { success: false };
+    if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+    const actionBase = {
+      stableId,
+      requestId: authority.requestId,
+      lane: authority.lane,
+      deliveryToken: entry.claimToken,
+      selectedGiftId: authority.giftId,
+    } as const;
+    const begun = await callLevelSpinDeliveryAction({ ...actionBase, action: 'begin_delivery' });
+    if (begun.status === 'already_claimed') {
+      await removeLevelGiftApplyJournalEntry(occurrenceKey).catch(() => {});
+      return { success: false, alreadyClaimed: true };
+    }
+    if (begun.status !== 'acquired' || !begun.giftId) return { success: false };
+    const serverDefinition = levelGiftDefinitionById(begun.giftId);
+    if (!serverDefinition) {
+      await callLevelSpinDeliveryAction({ ...actionBase, action: 'release_delivery' }).catch(() => null);
+      return { success: false };
+    }
+    const definition = serverDefinition;
+    const effectiveGift: GiftDef = {
+      ...definition,
+      // Keep the immutable raw receipt as authority; begun.giftId is the server's
+      // current-entitlement canonical gift used only for this delivery's effect.
+      spinRewardReceipt: { ...authority, giftId: authority.giftId },
+    };
+    let result: ApplyGiftResult = { success: true };
+    if (entry.status !== 'effect_applied') {
+      result = await applyGiftUnlocked(effectiveGift, userName, currentEnergy, maxEnergy, setEnergy, {
+        ...opts,
+        occurrenceId,
+        preserveGiftId: true,
+        spinDeliveryToken: entry.claimToken,
+      });
+      if (!result.success) {
+        await callLevelSpinDeliveryAction({ ...actionBase, action: 'release_delivery' }).catch(() => null);
+        return result;
+      }
+      entry.status = 'effect_applied';
+      journal[occurrenceKey] = entry;
+      const persisted = await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey).catch(() => false);
+      if (!persisted) return { success: false };
+      await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+    } else {
+      await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+    }
+    const completed = await callLevelSpinDeliveryAction({ ...actionBase, action: 'complete_delivery' });
+    if (completed.status !== 'claimed' && completed.status !== 'already_claimed') return { success: false };
+    await removeLevelGiftApplyJournalEntry(occurrenceKey).catch(() => {});
+    return result;
+  } catch {
+    return { success: false };
+  }
+  });
+}
+
 export const applyGift = async (
   gift: GiftDef,
   userName: string,
@@ -1557,13 +2442,152 @@ export const applyGift = async (
   setEnergy: (n: number) => void,
   opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult> => {
+  // Gifts kept in the device inventory must remain usable offline. Their
+  // occurrence receipt below is the local exactly-once boundary; do not turn a
+  // transient reservation outage into a permanently unusable present.
+  if (opts?.localOnly) {
+    const accountToken = opts.accountToken;
+    const occurrenceId = opts.occurrenceId?.trim();
+    if (!accountToken?.stableId || !occurrenceId) return { success: false };
+    return withLocalLevelGiftApplyLock(() => withAccountTransitionLock(async (lease) => {
+      try {
+        if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
+        const result = await applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, {
+          ...opts,
+          preserveGiftId: true,
+          accountTransitionLockLease: lease,
+        });
+        if (!result.success || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return result.success
+          ? { success: false }
+          : result;
+        await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+        return result;
+      } catch {
+        return { success: false };
+      }
+    }));
+  }
   const accountToken = opts?.accountToken;
+  if (gift.spinRewardReceipt) {
+    return applySpinRewardGift(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+  }
   if (!accountToken) {
     return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
   }
   return withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(accountToken)) return { success: false };
-    return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+    const occurrenceId = opts?.occurrenceId ?? '';
+    if (!occurrenceId) {
+      return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+    }
+    const occurrenceMatch = /^level:(\d+):(f2p|premium)$/.exec(occurrenceId);
+    if (!occurrenceMatch || !accountToken.stableId) return { success: false };
+    const level = Number(occurrenceMatch[1]);
+    const lane = occurrenceMatch[2] as 'f2p' | 'premium';
+    let effectiveGift: GiftDef;
+    try {
+      const refreshed = await reserveLevelGiftForDisplay(level, lane, {
+        premiumSafe: lane === 'f2p' && opts?.isPremium === true,
+        studyTarget: opts?.studyTarget,
+      });
+      effectiveGift = refreshed.id === 'choice_3_level'
+        && refreshed.choices?.some((choice) => choice.id === gift.id)
+        ? { ...gift, levelGiftReservation: refreshed.levelGiftReservation }
+        : refreshed;
+    } catch {
+      return { success: false };
+    }
+    const reservation = effectiveGift.levelGiftReservation;
+    if (!reservation) return { success: false };
+    if (reservation.lane !== lane) return { success: false };
+    const occurrenceKey = `${safeLevelGiftEventPart(accountToken.stableId, 80)}:${safeLevelGiftEventPart(occurrenceId, 120)}`;
+    try {
+      const journal = await readLevelGiftApplyJournal();
+      const prior = journal[occurrenceKey];
+      const entry: LevelGiftApplyJournalEntry = prior
+        && prior.reservationId === reservation.reservationId
+        && prior.giftId === effectiveGift.id
+        ? prior
+        : {
+          reservationId: reservation.reservationId,
+          giftId: effectiveGift.id,
+          claimToken: `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 12)}`,
+          status: 'prepared',
+        };
+      journal[occurrenceKey] = entry;
+      if (!await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey)) return { success: false };
+      if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+      const actionBase = {
+        stableId: accountToken.stableId,
+        level,
+        lane,
+        studyTarget: storageStudyTarget(opts?.studyTarget),
+        reservationId: reservation.reservationId,
+        giftId: effectiveGift.id,
+        claimToken: entry.claimToken,
+      } as const;
+      const begun = await callLevelGiftReservationAction({ ...actionBase, action: 'begin_claim' });
+      if (begun.status === 'already_claimed') {
+        if (begun.chainShield) {
+          await AsyncStorage.setItem(CHAIN_SHIELD_KEY, begun.chainShield);
+        }
+        if (begun.giftXpMultiplier) {
+          await AsyncStorage.setItem(GIFT_MULT_KEY, begun.giftXpMultiplier);
+        }
+        if (Number.isFinite(begun.clubGiftFreeBoostCount)) {
+          await setClubGiftFreeBoostCountFromAuthority(Number(begun.clubGiftFreeBoostCount));
+        }
+        await confirmLevelGiftEffectReceipts(accountToken, occurrenceId).catch(() => {});
+        await removeLevelGiftApplyJournalEntry(occurrenceKey).catch(() => {});
+        return { success: false, alreadyClaimed: true };
+      }
+      if (begun.status !== 'acquired') return { success: false };
+      let result: ApplyGiftResult = { success: true };
+      if (entry.status !== 'effect_applied') {
+        const serverOwnedPerk = effectiveGift.id === 'chain_shield_1'
+          || effectiveGift.id === 'chain_shield_3'
+          || effectiveGift.id === 'xp_2x_24h'
+          || effectiveGift.id === 'xp_2x_48h'
+          || effectiveGift.id === 'focus_10m_25'
+          || effectiveGift.id === 'focus_15m_50'
+          || effectiveGift.id === 'club_boost_free';
+        // These mirrors are materialized only from the terminal server receipt.
+        // Other level gifts retain their existing local application behavior.
+        result = serverOwnedPerk
+          ? { success: true }
+          : await applyGiftUnlocked(effectiveGift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+        if (!result.success) {
+          await callLevelGiftReservationAction({ ...actionBase, action: 'release_claim' }).catch(() => null);
+          return result;
+        }
+        entry.status = 'effect_applied';
+        journal[occurrenceKey] = entry;
+        // If this write fails, completion still makes the server terminal, preventing re-claim.
+        const effectStatusDurable = await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey).catch(() => false);
+        if (effectStatusDurable) {
+          await confirmLevelGiftEffectReceipts(accountToken, occurrenceId).catch(() => {});
+        }
+      } else {
+        // A journal entry read back as effect_applied is already a durable outer boundary.
+        await confirmLevelGiftEffectReceipts(accountToken, occurrenceId).catch(() => {});
+      }
+      const completed = await callLevelGiftReservationAction({ ...actionBase, action: 'complete_claim' });
+      if (completed.status !== 'claimed' && completed.status !== 'already_claimed') return { success: false };
+      if (completed.chainShield) {
+        await AsyncStorage.setItem(CHAIN_SHIELD_KEY, completed.chainShield);
+      }
+      if (completed.giftXpMultiplier) {
+        await AsyncStorage.setItem(GIFT_MULT_KEY, completed.giftXpMultiplier);
+      }
+      if (Number.isFinite(completed.clubGiftFreeBoostCount)) {
+        await setClubGiftFreeBoostCountFromAuthority(Number(completed.clubGiftFreeBoostCount));
+      }
+      await confirmLevelGiftEffectReceipts(accountToken, occurrenceId).catch(() => {});
+      await removeLevelGiftApplyJournalEntry(occurrenceKey).catch(() => {});
+      return result;
+    } catch {
+      return { success: false };
+    }
   });
 };
 
@@ -1583,6 +2607,11 @@ export function giftShardAmount(gid: string | undefined): number {
 }
 
 export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS];
+
+export function isKnownLevelGiftId(giftId: string): boolean {
+  return ALL_LEVEL_GIFT_DEFS.some((gift) =>
+    gift.id === giftId || gift.choices?.some((choice) => choice.id === giftId) === true);
+}
 
 export { GIFT_F2P as GIFT_POOL, WAGER_DISCOUNT_KEY };
 export default {};

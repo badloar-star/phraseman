@@ -97,23 +97,6 @@ describe('Gustav French daily task target filter', () => {
     expect(filtered.map((task) => task.type)).toEqual(original.map((task) => task.type));
   });
 
-  it('does not resurrect retired quiz/challenge daily task types for French', () => {
-    const quizChallengeTypes: TaskType[] = [
-      'quiz_easy',
-      'quiz_medium',
-      'quiz_hard',
-      'quiz_score',
-      'quiz_perfect',
-      'quiz_hard_perfect',
-    ];
-    const challengeTasks = existingTasksByType(quizChallengeTypes);
-    const filtered = filterDailyTasksForStudyTarget(challengeTasks, 'fr');
-
-    expect(challengeTasks).toEqual([]);
-    expect(filtered).toEqual([]);
-    expect(ALL_TASKS.every((task) => !quizChallengeTypes.includes(task.type))).toBe(true);
-  });
-
   it('wires home and the daily task screen to the active study target', () => {
     const home = fs.readFileSync(path.join(repoRoot, 'app', '(tabs)', 'home.tsx'), 'utf8');
     const dailyScreen = fs.readFileSync(path.join(repoRoot, 'app', 'daily_tasks_screen.tsx'), 'utf8');
@@ -130,7 +113,7 @@ describe('Gustav French daily task target filter', () => {
     expect(home).toContain('testID="home-activity-daily"');
     expect(home).not.toContain("key: 'attest'");
     expect(home).not.toContain("activityQuickItems.filter((item) => item.key !== 'attest')");
-    expect(home).toContain('<DailyPhraseCard variant="homeAdditional" />');
+    expect(home).toContain('<DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />');
     expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
     expect(home).not.toContain("studyTarget !== 'fr' ? <DailyPhraseCard");
 
@@ -194,16 +177,8 @@ describe('Gustav French daily task target filter', () => {
     expect(dailyTasks).toContain('getTodayTasksSafe(studyTarget)');
     expect(dailyTasks).toContain('dailyTasksProgressKey(getTodayKey(), studyTarget)');
     expect(dailyTasks).toContain('dailyTasksRerollKey(studyTarget)');
-    expect(dailyTasks).toContain('dailyTasksAdminOverrideKey(studyTarget)');
     expect(dailyTasks).toContain('loadRerollStateRaw(studyTarget)');
-    expect(dailyTasks).toContain('loadAdminTaskOverride(studyTarget)');
-    expect(dailyTasks).toContain('filterDailyTasksForStudyTarget(requestedTasks, studyTarget)');
-    expect(dailyTasks).toContain('saveTodayProgress(tasks.map((task) => makeAdminProgressRow(task, mode)), studyTarget)');
     expect(dailyTasks).toContain('studyTarget?: RuntimeStudyTarget');
-
-    const adminSettings = fs.readFileSync(path.join(repoRoot, 'app', '_admin_settings_testers.tsx'), 'utf8');
-    expect(adminSettings).toContain('seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode, studyTarget)');
-    expect(adminSettings).toContain('clearDailyTasksAdminOverride(studyTarget)');
 
     expect(lesson).toContain('{ studyTarget: studyTargetRef.current }');
     expect(lesson).toContain('dailyTaskLessonVisitedKey(');

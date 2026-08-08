@@ -38,6 +38,7 @@ function logWagerHealth(
 }
 
 const WAGER_DISCOUNT_KEY = 'wager_discount';
+const WAGER_DISCOUNT_USES_KEY = 'wager_discount_uses_v1';
 const PREM_WAGER_TOKEN_KEY = 'premium_wager_free_after_levelup_v1';
 const PREM_WAGER_MONTH_KEY = 'premium_wager_free_month_issued_v1';
 
@@ -188,8 +189,9 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       return false;
     }
 
-    const [discRaw, legacyPremiumFreeToken, isPremium] = await Promise.all([
+    const [discRaw, discountUsesRaw, legacyPremiumFreeToken, isPremium] = await Promise.all([
       AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
+      AsyncStorage.getItem(WAGER_DISCOUNT_USES_KEY),
       AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
       getVerifiedPremiumStatus().catch(() => false),
     ]);
@@ -225,7 +227,16 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
     if (hasGiftDisc && !isPremium) {
       // Подарочную скидку расходуем только когда она реально понадобилась:
       // у Plus скидка постоянная — подарок остаётся до конца подписки.
-      await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
+      const parsedUses = Number.parseInt(discountUsesRaw ?? '', 10);
+      const remainingUses = Math.max(Number.isFinite(parsedUses) ? parsedUses : 0, 1) - 1;
+      if (remainingUses > 0) {
+        await AsyncStorage.setItem(WAGER_DISCOUNT_USES_KEY, String(remainingUses));
+      } else {
+        await Promise.all([
+          AsyncStorage.removeItem(WAGER_DISCOUNT_KEY),
+          AsyncStorage.removeItem(WAGER_DISCOUNT_USES_KEY),
+        ]);
+      }
     }
 
     const wager: WagerState = {

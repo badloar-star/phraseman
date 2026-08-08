@@ -14,9 +14,9 @@ export function getCardsForCategory(
   customCards: CardItem[],
   systemCards: CardItem[],
 ): CardItem[] {
-  if (activeCat === 'saved') return savedCards ?? [];
-  if (activeCat === 'custom') return customCards ?? [];
-  return (systemCards ?? []).filter(c => c.categoryId === activeCat);
+  if (activeCat === 'saved') return (savedCards ?? []).filter((card) => card.source !== 'quiz');
+  if (activeCat === 'custom') return (customCards ?? []).filter((card) => card.source !== 'quiz');
+  return (systemCards ?? []).filter((card) => card.categoryId === activeCat && card.source !== 'quiz');
 }
 
 export function applyCardFilter(
@@ -30,7 +30,7 @@ export function applyCardFilter(
    */
   statuses?: Record<string, string>,
 ): CardItem[] {
-  const list = cards ?? [];
+  const list = (cards ?? []).filter((card) => card.source !== 'quiz');
   if (activeFilter === 'all') return list;
   if (activeFilter.startsWith('status:')) {
     // Статусы ещё не загрузились — не прячем список, показываем как есть.
@@ -53,12 +53,11 @@ export function buildFilterGroups(
   lang: Lang,
 ): FilterGroup[] {
   if (activeCat !== 'saved' && activeCat !== 'custom') return [];
-  const list = cards ?? [];
+  const list = (cards ?? []).filter((card) => card.source !== 'quiz');
   const sourceLabels: Record<string, string> = {
     word: FILTER_SOURCE_LABELS[lang].word,
     verb: FILTER_SOURCE_LABELS[lang].verb,
     dialog: FILTER_SOURCE_LABELS[lang].dialog,
-    quiz: FILTER_SOURCE_LABELS[lang].quiz,
     daily_phrase: FILTER_SOURCE_LABELS[lang].daily_phrase,
   };
 
@@ -109,15 +108,15 @@ export function buildFilterOptions(
   return [all, ...filterGroups.flatMap(g => g.items)];
 }
 
-const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'quiz' | 'daily_phrase', string>> = {
-  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', quiz: 'Вызовы', daily_phrase: 'Фраза дня' },
-  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', quiz: 'Квізи', daily_phrase: 'Фраза дня' },
-  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', quiz: 'Cuestionarios', daily_phrase: 'Frase del día' },
-  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', quiz: 'Quizzes', daily_phrase: 'Frase do dia' },
-  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', quiz: 'Quiz', daily_phrase: 'Cụm từ hôm nay' },
-  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', quiz: 'Kuis', daily_phrase: 'Frasa harian' },
-  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', quiz: 'Quizler', daily_phrase: 'Günün ifadesi' },
-  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', quiz: 'Quizy', daily_phrase: 'Fraza dnia' },
+const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'daily_phrase', string>> = {
+  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня' },
+  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня' },
+  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día' },
+  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia' },
+  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', daily_phrase: 'Cụm từ hôm nay' },
+  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', daily_phrase: 'Frasa harian' },
+  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', daily_phrase: 'Günün ifadesi' },
+  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', daily_phrase: 'Fraza dnia' },
 };
 
 const FILTER_LESSON_LABELS: Record<Lang, string> = {

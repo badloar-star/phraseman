@@ -24,13 +24,18 @@ describe('trainer word-bank instant touch feedback', () => {
     expect(wordBankSource).toContain('onPressOut={() => setPreviewTile(null)}');
     expect(wordBankSource).toContain('const visibleSelected');
     expect(wordBankSource).toContain('visibleSelected.map');
+    expect(wordBankSource).toContain('!usedSlots.has(previewTile.slot)');
 
     // A scroll-cancelled touch may animate a preview, but must never mutate the answer.
     const tileStart = wordBankSource.indexOf('<DuoPressable');
     const tileEnd = wordBankSource.indexOf('</DuoPressable>', tileStart);
     const tileBlock = wordBankSource.slice(tileStart, tileEnd);
     const pressHandler = tileBlock.slice(tileBlock.indexOf('onPress={() =>'));
+    expect(pressHandler).toContain('setPreviewTile(null);');
     expect(pressHandler).toContain('tapBank(tile)');
+    expect(pressHandler.indexOf('setPreviewTile(null);')).toBeLessThan(
+      pressHandler.indexOf('tapBank(tile)'),
+    );
     expect(tileBlock.slice(0, tileBlock.indexOf('onPress={() =>'))).not.toContain('tapBank(tile)');
   });
 });

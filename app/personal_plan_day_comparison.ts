@@ -26,7 +26,7 @@ export type PlanDayComparison = {
  */
 export async function loadPlanDayComparison(): Promise<PlanDayComparison | null> {
   try {
-    const { percentiles } = await loadPercentileData(0);
+    const { percentiles } = await loadPercentileData();
     const aheadOf = percentiles.daily7xp;
     if (aheadOf === null || aheadOf === undefined) return null;
 

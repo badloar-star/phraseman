@@ -15,8 +15,8 @@ function makeCollection(counts: Record<string, number>, failing = false) {
   return make('users') as unknown as FirebaseFirestore.CollectionReference;
 }
 
-const WEEK_KEY = `users|last_active_at>=${NOW - RETENTION_WEEK_MS}`;
-const MONTH_KEY = `users|last_active_at>=${NOW - RETENTION_MONTH_MS}`;
+const WEEK_KEY = `users|last_active_at>=${NOW - RETENTION_WEEK_MS}|last_active_at<=${NOW}`;
+const MONTH_KEY = `users|last_active_at>=${NOW - RETENTION_MONTH_MS}|last_active_at<=${NOW}`;
 
 describe('Jarvis retention fetcher — who came back, counted on the server', () => {
   test('counts weekly and monthly actives without downloading users', async () => {
@@ -29,13 +29,12 @@ describe('Jarvis retention fetcher — who came back, counted on the server', ()
     expect(result.activeMonth).toBe(1000);
   });
 
-  test('weekly actives can never exceed monthly — a broken counter cannot invent loyalty', async () => {
+  test('contradictory counters fail closed instead of inventing loyalty', async () => {
     const result = await fetchRetentionSource({
       collection: makeCollection({ [WEEK_KEY]: 900, [MONTH_KEY]: 100 }),
       nowMs: NOW,
     });
-    // Неделя входит в месяц: 900 из 100 невозможно, значит счётчику веры нет.
-    expect(result.activeWeek).toBeLessThanOrEqual(result.activeMonth ?? 0);
+    expect(result).toMatchObject({ state: 'error', activeWeek: null, activeMonth: null });
   });
 
   test('an empty base is empty, not a retention crisis', async () => {

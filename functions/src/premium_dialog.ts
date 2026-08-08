@@ -701,7 +701,6 @@ export const premiumDialogSend = onCall({
   const safetyCtx = {
     authUid,
     stableUid,
-    ageBracket: text((data as { ageBracket?: unknown }).ageBracket, 16) || null,
     mode,
     userText,
     history,

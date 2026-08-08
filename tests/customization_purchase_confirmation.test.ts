@@ -21,3 +21,20 @@ it('does not execute on request and executes only after explicit confirm', async
   expect(execute).toHaveBeenCalledTimes(1);
   expect(execute).toHaveBeenCalledWith(purchaseInput);
 });
+
+it('closes the confirmation synchronously before a slow purchase finishes', async () => {
+  const pending = reducePurchaseConfirmation(
+    { pending: null },
+    { type: 'request', input: purchaseInput },
+  );
+  let finishPurchase!: () => void;
+  const execute = jest.fn(() => new Promise<void>((resolve) => { finishPurchase = resolve; }));
+  const onAccepted = jest.fn();
+
+  const purchase = confirmPendingPurchase(pending, execute, onAccepted);
+
+  expect(onAccepted).toHaveBeenCalledTimes(1);
+  expect(execute).toHaveBeenCalledTimes(1);
+  finishPurchase();
+  await purchase;
+});

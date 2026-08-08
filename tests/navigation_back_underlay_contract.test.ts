@@ -37,7 +37,6 @@ describe('navigation back underlay', () => {
       'settings_language',
       'privacy_settings',
       'ideas_submit',
-      'settings_testers',
       'top_helpers',
       'tournament_tickets',
       'account_details',

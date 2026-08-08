@@ -3,7 +3,6 @@ import type { ThemeMode } from './theme';
 import { PEARL_ICONS } from '../app/coin_icons';
 
 const LEVEL_GIFT_REWARD_ICON_KEYS = [
-  'arena_extra_5',
   'chain_shield_1',
   'chain_shield_3',
   'choice_3_level',
@@ -65,7 +64,6 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = PEARL_IC
 
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {
-  arena_extra_5: require('../assets/images/level_gift_reward_icons/shards_6.webp'),
   chain_shield_1: require('../assets/images/level_gift_reward_icons/chain_shield_1.webp'),
   chain_shield_3: require('../assets/images/level_gift_reward_icons/chain_shield_3.webp'),
   choice_3_level: require('../assets/images/level_gift_reward_icons/choice_3_level.webp'),

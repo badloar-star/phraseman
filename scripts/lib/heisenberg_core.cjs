@@ -25,32 +25,8 @@ const {
 } = heisenbergLocales;
 const REGISTERED_INTERFACE_SOURCE_LOCALES = [...ACTIVE_APP_LOCALES, ...PLANNED_APP_LOCALES];
 const KNOWN_APP_LOCALES = ACTIVE_APP_LOCALES;
-const STRUCTURED_BATCH_QUIZ_FIELDS = [
-  'prompt',
-  'explanations[0]',
-  'explanations[1]',
-  'explanations[2]',
-  'explanations[3]',
-];
 const DAILY_PHRASE_BATCH_FIELDS = ['literal', 'meaning', 'text'];
-const STRUCTURED_BATCH_COVERAGE_CONTRACTS = [
-  ...rangeInclusive(111, 231).flatMap((ordinal) =>
-    STRUCTURED_BATCH_QUIZ_FIELDS.map((field) => ({
-      file: 'app/quiz_source_locale_payloads.ts',
-      surface: 'quizzes',
-      keyPath: `medium.${ordinal}.<locale>.${field}`,
-      locales: STRUCTURED_BATCH_SOURCE_LOCALES,
-    })),
-  ),
-  ...rangeInclusive(1, 100).flatMap((ordinal) =>
-    STRUCTURED_BATCH_QUIZ_FIELDS.map((field) => ({
-      file: 'app/quiz_source_locale_payloads.ts',
-      surface: 'quizzes',
-      keyPath: `hard.${ordinal}.<locale>.${field}`,
-      locales: STRUCTURED_BATCH_SOURCE_LOCALES,
-    })),
-  ),
-];
+const STRUCTURED_BATCH_COVERAGE_CONTRACTS = [];
 const DAILY_PHRASE_SOURCE_LOCALE_COVERAGE_CONTRACTS = rangeInclusive(11, 186).flatMap((id) =>
   DAILY_PHRASE_BATCH_FIELDS.map((field) => ({
     file: 'app/idioms_data.ts',
@@ -180,8 +156,6 @@ const VERIFIED_EXISTING_LOCALE_FALLBACK_FILES = {
       'Exam screen uses bundleLang/triLang with explicit ES copy; textFallback is a native share/export fallback, not a language fallback.',
     'components/ExamResultPreviewAdminModal.tsx':
       'Admin preview uses localized share-message builders; textFallback is a native share/export fallback, not a language fallback.',
-    'components/ShardRewardModal.tsx':
-      'Shard reward modal has an explicit ES text bundle and uses bundleLang only to choose the active UI bundle.',
     'app/flashcards_market_dev.tsx':
       'DEV marketplace screen uses triLang/bundleLang with explicit ES copy; it is not part of production locale activation.',
     'app/lesson_irregular_verbs.tsx':
@@ -245,8 +219,7 @@ const SKIP_PATH_PARTS = [
   'scripts/out',
   'docs/heisenberg',
   'docs/reports',
-  // Generated Gustav study-target packs (fr) are not source-locale product
-  // input; the fr arena bank alone holds 200k+ items and drowns the scan.
+  // Generated Gustav study-target packs (fr) are not source-locale product input.
   'docs/gustav/generated',
   // Bundled image trees are large binary assets. Locale text references are in
   // app source maps, not image bytes or generated thumbnails.
@@ -380,14 +353,12 @@ const HEISENBERG_AGENT_REVIEW_BOARD = [
 const PRODUCT_SURFACES = new Set([
   'admin-site',
   'app-other',
-  'arena',
   'daily-phrase',
   'legal',
   'lessons',
   'personal-training',
   'progression-daily-rewards',
   'public-web',
-  'quizzes',
   'ui-locale',
 ]);
 
@@ -432,17 +403,14 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   // workflows. Their RU/UK fields are source-locale explanations of FRENCH course
   // content for learners, never Spanish-UI copy: triple isolation confirmed
   // (ENABLE_DEV_STUDY_TARGET_LANG excludes fr from store builds, Spanish UI flag
-  // is off, and quiz_phrases_loader dispatch never mixes fr rows into the es UI
-  // path). Same class as app/french_lesson_curriculum.ts above.
+  // is off). Same class as app/french_lesson_curriculum.ts above.
   'admin/french-daily-phrases-admin.js',
   'admin/french-daily-phrases-workflow.js',
   'admin/french-flashcard-packs-workflow.js',
-  'admin/french-quizzes-workflow.js',
   'app/french_daily_phrase_remote_runtime.ts',
   'app/french_flashcard_remote_runtime.ts',
   'app/french_lesson_remote_runtime.ts',
   'app/french_lesson_words_remote_runtime.ts',
-  'app/french_quiz_remote_runtime.ts',
   'app/french_target_remote_registration.ts',
 ]);
 
@@ -622,7 +590,6 @@ function classifySurface(rel) {
   if (/^app\/lesson_data|^app\/lesson_intro|^app\/lesson_help|^constants\/lessons\.ts/.test(file)) {
     return 'lessons';
   }
-  if (/^app\/quiz|^app\/quizzes|^assets\/arena_questions_/.test(file)) return 'quizzes';
   if (/^app\/diagnosis_training|^app\/personal_training|^admin\/personal-trainings|^tools\/personal_training_agent_room/.test(file)) {
     return 'personal-training';
   }
@@ -632,7 +599,6 @@ function classifySurface(rel) {
   if (/^app\/daily_tasks|^constants\/streak_stats_i18n|^app\/streak_stats|^app\/level_gift|^components\/LevelGift/.test(file)) {
     return 'progression-daily-rewards';
   }
-  if (/^app\/arena|^constants\/arena|^components\/Arena/.test(file)) return 'arena';
   if (/^admin\//.test(file)) return 'admin-site';
   if (/^knowly-www\/|^invite\//.test(file)) return 'public-web';
   if (/^legal\//.test(file)) return 'legal';

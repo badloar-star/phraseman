@@ -36,7 +36,7 @@ export type LingmanYoutubeSnapshot = {
 // обратной совместимости импортов; реальный «текущий» канал берётся через
 // getActiveYoutubeChannel() ниже (учитывает remote_config override).
 export const LINGMAN_CHANNEL_ID = 'UCNNVZbMkh4jrW6uluaaJTwA';
-export const LINGMAN_CHANNEL_DISPLAY_NAME = 'PHRASEMAN';
+export const LINGMAN_CHANNEL_DISPLAY_NAME = 'Professor Lingman';
 export const LINGMAN_CHANNEL_HANDLE = '@PhrasemanENGLISH';
 export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@PhrasemanENGLISH/videos';
 const LINGMAN_FEED_TIMEOUT_MS = 10000;

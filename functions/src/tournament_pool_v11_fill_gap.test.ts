@@ -427,6 +427,24 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual([]);
   });
 
+  it.each([
+    ['panicked', 'They panicked today.', 'panic'], ['picnicking', 'They are picnicking.', 'picnic'],
+    ['tying', 'They are tying.', 'tie'], ['dying', 'They are dying.', 'die'], ['quizzes', 'She quizzes us.', 'quiz'],
+  ])('rejects productive but unproved regular verb pair %s/%s', (token, english, neighbor) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `productive-${token}`, english, token, 'verb', [neighbor, 'walk', 'talk'],
+    ))).toEqual([]);
+  });
+
+  it('keeps unrelated locks as a lexical candidate against closes', () => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      'closes-locks', 'She closes the door.', 'closes', 'verb', ['locks', 'opens', 'shuts'],
+    )).at(0);
+    expect(candidate?.distractors.find((item) => item.value === 'locks')).toEqual(expect.objectContaining({
+      value: 'locks', trapType: 'lexical_meaning',
+    }));
+  });
+
   it('classifies bounded irregular do and go paradigm forms as morphology with form-specific reasons', () => {
     const does = buildFillGapCandidates(day, phrase(
       'does', 'He does work.', 'does', 'verb', ['do', 'did', 'done'],

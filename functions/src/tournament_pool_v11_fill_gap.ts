@@ -269,7 +269,16 @@ function sameIrregularVerbFamily(left: string, right: string): boolean {
 
 function potentialRegularVerbInflection(left: string, right: string): boolean {
   const leftKeys = lemmaKeys(left, false);
-  return [...lemmaKeys(right, false)].some((form) => leftKeys.has(form));
+  if ([...lemmaKeys(right, false)].some((form) => leftKeys.has(form))) return true;
+  const leftToken = normalized(left);
+  const rightToken = normalized(right);
+  if (leftToken.endsWith('ie') && rightToken === `${leftToken.slice(0, -2)}ying`) return true;
+  if (rightToken.endsWith('ie') && leftToken === `${rightToken.slice(0, -2)}ying`) return true;
+  const canTakeCkSuffix = (base: string, form: string) => form === `${base}ked` || form === `${base}king`;
+  if (leftToken.endsWith('c') && canTakeCkSuffix(leftToken, rightToken)) return true;
+  if (rightToken.endsWith('c') && canTakeCkSuffix(rightToken, leftToken)) return true;
+  const [shorter, longer] = leftToken.length <= rightToken.length ? [leftToken, rightToken] : [rightToken, leftToken];
+  return shorter.length >= 3 && longer.startsWith(shorter) && longer.length - shorter.length <= 6;
 }
 
 function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string> {

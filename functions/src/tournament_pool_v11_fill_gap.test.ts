@@ -204,4 +204,28 @@ describe('buildFillGapCandidates', () => {
     expect(candidate?.prompt.replace('___', candidate.correctToken ?? '')).toBe(source.english);
     expect(buildFillGapCandidates(day, phrase('combining-duplicate', `An ${decomposed}.`, decomposed, 'noun', ['élan', 'plan', 'clan']))).toEqual([]);
   });
+
+  it('uses morphology, not agreement, for cross-tense to_be alternatives', () => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      'he-is', 'He is ready.', 'is', 'to be', ['was', 'are', 'be'],
+    )).at(0);
+    const was = candidate?.distractors.find((item) => item.value === 'was');
+    const are = candidate?.distractors.find((item) => item.value === 'are');
+
+    expect(was).toEqual(expect.objectContaining({ trapType: 'morphology' }));
+    expect(was?.reason).toMatch(/was.*is.*form|inflection/i);
+    expect(are).toEqual(expect.objectContaining({ trapType: 'agreement' }));
+  });
+
+  it('recognizes regular es morphology for verbs and nouns without short-stem lookalikes', () => {
+    const watches = buildFillGapCandidates(day, phrase(
+      'watches', 'He watches birds.', 'watches', 'verb', ['watch', 'watched', 'looks'],
+    )).at(0);
+    const bus = buildFillGapCandidates(day, phrase(
+      'bus', 'A bus stops.', 'bus', 'noun', ['buses', 'car', 'van'],
+    )).at(0);
+
+    expect(watches?.distractors.find((item) => item.value === 'watch')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
+    expect(bus?.distractors.find((item) => item.value === 'buses')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
+  });
 });

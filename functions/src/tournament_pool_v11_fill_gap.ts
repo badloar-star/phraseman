@@ -59,16 +59,34 @@ function categoryFor(word: SourceWord): FillGapCategory | null {
   return CATEGORY_ALIASES[pos];
 }
 
-function trapFor(category: FillGapCategory, correct: string, wrong: string): FillGapTrapType {
+function trapFor(category: FillGapCategory, correct: string, wrong: string, subject?: string): FillGapTrapType {
   if (category === 'preposition' || category === 'phrasal_particle') return 'government';
   if (category === 'pronoun') return 'reference';
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
     || category === 'existential' || category === 'article') return 'function_choice';
-  if (category === 'to_be') return 'agreement';
+  if (category === 'to_be') return toBeTrap(correct, wrong, subject);
   if ((category === 'verb' || category === 'noun') && sameVerbStem(correct, wrong)) return 'morphology';
   if (category === 'verb') return 'lexical_meaning';
   if (category === 'noun' || category === 'adjective' || category === 'adverb') return 'lexical_meaning';
   return 'collocation';
+}
+
+function toBeTrap(correct: string, wrong: string, subject?: string): FillGapTrapType {
+  const present = new Set(['am', 'is', 'are']);
+  const past = new Set(['was', 'were']);
+  const expected: Record<string, { readonly present: string; readonly past: string }> = {
+    i: { present: 'am', past: 'was' }, he: { present: 'is', past: 'was' }, she: { present: 'is', past: 'was' },
+    it: { present: 'is', past: 'was' }, you: { present: 'are', past: 'were' }, we: { present: 'are', past: 'were' },
+    they: { present: 'are', past: 'were' },
+  };
+  const key = subject ? normalized(subject) : '';
+  const paradigm = expected[key];
+  const correctKey = normalized(correct);
+  const wrongKey = normalized(wrong);
+  if (!paradigm) return 'morphology';
+  if (present.has(correctKey) && present.has(wrongKey) && correctKey === paradigm.present) return 'agreement';
+  if (past.has(correctKey) && past.has(wrongKey) && correctKey === paradigm.past) return 'agreement';
+  return 'morphology';
 }
 
 function sameVerbStem(left: string, right: string): boolean {
@@ -82,6 +100,7 @@ function lemmaKeys(value: string): ReadonlySet<string> {
   const add = (form: string) => { if (form.length >= 3) keys.add(form); };
   if (token.endsWith('ies')) add(`${token.slice(0, -3)}y`);
   if (token.endsWith('s') && !token.endsWith('ss')) add(token.slice(0, -1));
+  if (token.endsWith('es')) add(token.slice(0, -2));
   if (token.endsWith('ing')) {
     const root = token.slice(0, -3);
     add(root);
@@ -177,13 +196,15 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
     if (!category) continue;
     const selected: FillGapDistractor[] = [];
     const seen = new Set([normalized(correct)]);
+    const subjectIndex = lexicalIndices.find((tokenIndex) => tokenIndex < index);
+    const subject = subjectIndex === undefined ? undefined : lexicalToken(tokens[subjectIndex]);
     const deterministicFallbacks = category === 'verb'
       ? derivedVerbForms(correct)
       : (FUNCTION_FALLBACKS[category] ?? []);
     for (const raw of [...word.distractors, ...deterministicFallbacks]) {
       const value = raw;
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
-      const trapType = trapFor(category, correct, value);
+      const trapType = trapFor(category, correct, value, subject);
       const completedSentence = sentenceWith(tokens, index, replacementFor(tokens[index], value));
       if (completedSentence === authoredSentence) continue;
       const reason = reasonFor(value, correct, translation, trapType);

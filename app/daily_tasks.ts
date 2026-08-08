@@ -1678,7 +1678,9 @@ function datedDailyTasksStorageDateFromKey(key: string): string | null {
   const legacy = key.match(/^(?:daily_tasks_|lesson_visited_|daily_tasks_all_shards_)(\d{4}-\d{2}-\d{2})$/);
   if (legacy) return legacy[1];
   const scoped = key.match(/^daily_tasks_v2::[^:]+::(?:daily_tasks_|lesson_visited_)(\d{4}-\d{2}-\d{2})$/);
-  return scoped ? scoped[1] : null;
+  if (scoped) return scoped[1];
+  const delivery = key.match(/^(?:daily_tasks_(\d{4}-\d{2}-\d{2})::delivery_v1|daily_tasks_v2::[^:]+::daily_tasks_(\d{4}-\d{2}-\d{2})::delivery_v1)$/);
+  return delivery?.[1] ?? delivery?.[2] ?? null;
 }
 
 export function selectDatedDailyTasksStorageKeysToRemove(
@@ -2828,6 +2830,159 @@ const reconcileProgressToTasks = (stored: TaskProgress[], tasks: DailyTask[]): T
   return extras.length > 0 ? [...main, ...extras] : main;
 };
 
+const DAILY_TASK_PROGRESS_DELIVERY_MAX_EVENTS = 64;
+
+type DailyTaskProgressDeliveryEntry = {
+  eventId: string;
+  status: 'prepared' | 'delivered';
+  targetRows: TaskProgress[];
+  completedTaskIds: string[];
+  createdAtMs: number;
+};
+
+type DailyTaskProgressDeliveryJournal = {
+  dayKey: string;
+  entries: DailyTaskProgressDeliveryEntry[];
+};
+
+const dailyTaskProgressDeliveryKey = (
+  dayKey: string,
+  studyTarget?: RuntimeStudyTarget,
+): string => `${dailyTasksProgressKey(dayKey, studyTarget)}::delivery_v1`;
+
+const emptyDailyTaskProgressDeliveryJournal = (dayKey: string): DailyTaskProgressDeliveryJournal => ({
+  dayKey,
+  entries: [],
+});
+
+function normalizeTaskProgressRows(value: unknown): TaskProgress[] {
+  if (!Array.isArray(value)) throw new Error('invalid_daily_task_progress_rows');
+  return value.map((candidate) => {
+    if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) {
+      throw new Error('invalid_daily_task_progress_row');
+    }
+    const row = candidate as Partial<TaskProgress>;
+    const current = Number(row.current);
+    if (
+      typeof row.taskId !== 'string'
+      || row.taskId.trim().length === 0
+      || !Number.isFinite(current)
+      || current < 0
+      || typeof row.completed !== 'boolean'
+      || typeof row.claimed !== 'boolean'
+    ) {
+      throw new Error('invalid_daily_task_progress_row');
+    }
+    return {
+      taskId: row.taskId,
+      current,
+      completed: row.completed,
+      claimed: row.claimed,
+    };
+  });
+}
+
+function parseStoredTaskProgressStrict(raw: string | null): TaskProgress[] {
+  if (!raw) return [];
+  return normalizeTaskProgressRows(JSON.parse(raw));
+}
+
+function parseDailyTaskProgressDeliveryJournalStrict(
+  raw: string | null,
+  dayKey: string,
+): DailyTaskProgressDeliveryJournal {
+  if (!raw) return emptyDailyTaskProgressDeliveryJournal(dayKey);
+  const parsed: unknown = JSON.parse(raw);
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new Error('invalid_daily_task_delivery_journal');
+  }
+  const candidate = parsed as Partial<DailyTaskProgressDeliveryJournal>;
+  if (candidate.dayKey !== dayKey) return emptyDailyTaskProgressDeliveryJournal(dayKey);
+  if (!Array.isArray(candidate.entries)) {
+    throw new Error('invalid_daily_task_delivery_entries');
+  }
+  const byEventId = new Map<string, DailyTaskProgressDeliveryEntry>();
+  for (const value of candidate.entries) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      throw new Error('invalid_daily_task_delivery_entry');
+    }
+    const entry = value as Partial<DailyTaskProgressDeliveryEntry>;
+    if (
+      typeof entry.eventId !== 'string'
+      || !/^[A-Za-z0-9_.:-]{8,180}$/.test(entry.eventId)
+      || (entry.status !== 'prepared' && entry.status !== 'delivered')
+      || !Array.isArray(entry.completedTaskIds)
+      || !entry.completedTaskIds.every((id) => typeof id === 'string' && id.length > 0)
+      || !Number.isFinite(Number(entry.createdAtMs))
+    ) {
+      throw new Error('invalid_daily_task_delivery_entry');
+    }
+    byEventId.set(entry.eventId, {
+      eventId: entry.eventId,
+      status: entry.status,
+      targetRows: normalizeTaskProgressRows(entry.targetRows),
+      completedTaskIds: [...new Set(entry.completedTaskIds)],
+      createdAtMs: Math.floor(Number(entry.createdAtMs)),
+    });
+  }
+  return { dayKey, entries: [...byEventId.values()] };
+}
+
+function compactDailyTaskProgressDeliveryEntries(
+  entries: readonly DailyTaskProgressDeliveryEntry[],
+): DailyTaskProgressDeliveryEntry[] {
+  const prepared = entries.filter((entry) => entry.status === 'prepared');
+  const delivered = entries
+    .filter((entry) => entry.status === 'delivered')
+    .sort((a, b) => a.createdAtMs - b.createdAtMs)
+    .slice(-DAILY_TASK_PROGRESS_DELIVERY_MAX_EVENTS);
+  return [...prepared, ...delivered].sort((a, b) => a.createdAtMs - b.createdAtMs);
+}
+
+async function writeVerifiedStorageValue(
+  key: string,
+  value: string,
+  errorCode: string,
+): Promise<void> {
+  await AsyncStorage.setItem(key, value);
+  const verified = await AsyncStorage.getItem(key);
+  if (verified !== value) throw new Error(errorCode);
+}
+
+function mergeProgressAtLeast(
+  progress: readonly TaskProgress[],
+  targetRows: readonly TaskProgress[],
+): TaskProgress[] {
+  const result = progress.map((row) => ({ ...row }));
+  const indexByTaskId = new Map(result.map((row, index) => [row.taskId, index]));
+  for (const target of targetRows) {
+    const index = indexByTaskId.get(target.taskId);
+    if (index === undefined) {
+      indexByTaskId.set(target.taskId, result.length);
+      result.push({ ...target });
+      continue;
+    }
+    const current = result[index];
+    result[index] = {
+      ...current,
+      current: Math.max(current.current, target.current),
+      completed: current.completed || target.completed,
+      claimed: current.claimed || target.claimed,
+    };
+  }
+  return result;
+}
+
+function mergeProgressDeliveryJournalTargets(
+  progress: readonly TaskProgress[],
+  journal: DailyTaskProgressDeliveryJournal,
+): TaskProgress[] {
+  return journal.entries.reduce(
+    (current, entry) => mergeProgressAtLeast(current, entry.targetRows),
+    [...progress],
+  );
+}
+
 /**
  * @param tasksForReconcile — if provided, must be the same list the UI used from getTodayTasksSafe()
  *   so progress rows align with visible cards (avoids two async getToday calls diverging).
@@ -2838,30 +2993,52 @@ export const loadTodayProgress = async (
 ): Promise<TaskProgress[]> => {
   try {
     const tasks = tasksForReconcile ?? (await getTodayTasksSafe(studyTarget));
-    if (tasks.length === 0) {
-      return [];
-    }
+    if (tasks.length === 0) return [];
 
-    const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
-    const raw = await AsyncStorage.getItem(key);
+    const dayKey = getTodayKey();
+    const key = dailyTasksProgressKey(dayKey, studyTarget);
+    const deliveryKey = dailyTaskProgressDeliveryKey(dayKey, studyTarget);
+    const [raw, deliveryRaw] = await Promise.all([
+      AsyncStorage.getItem(key),
+      AsyncStorage.getItem(deliveryKey),
+    ]);
     let stored: TaskProgress[] = [];
     if (raw) {
       try {
         const parsed: unknown = JSON.parse(raw);
         if (Array.isArray(parsed)) stored = parsed as TaskProgress[];
-      } catch { stored = []; }
+      } catch {
+        stored = [];
+      }
+    }
+    let deliveryJournal = emptyDailyTaskProgressDeliveryJournal(dayKey);
+    try {
+      deliveryJournal = parseDailyTaskProgressDeliveryJournalStrict(deliveryRaw, dayKey);
+    } catch {
+      // A malformed recovery journal must not erase otherwise valid visible progress.
     }
 
     const reconciled = reconcileProgressToTasks(stored, tasks);
-    const newJson = JSON.stringify(reconciled);
+    const recovered = mergeProgressDeliveryJournalTargets(reconciled, deliveryJournal);
+    const newJson = JSON.stringify(recovered);
     if (newJson !== raw) {
       await AsyncStorage.setItem(key, newJson);
-      void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
+      void pruneDatedDailyTasksStorageKeys([key, deliveryKey]).catch(() => {});
     }
-    return reconciled;
+    return recovered;
   } catch {
     return [];
   }
+};
+
+const saveTodayProgressStrict = async (
+  progress: TaskProgress[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
+  const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
+  const serialized = JSON.stringify(progress);
+  await writeVerifiedStorageValue(key, serialized, 'daily_task_progress_not_persisted');
+  void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
 };
 
 export const saveTodayProgress = async (
@@ -3004,6 +3181,148 @@ const evaluateMetaDailyTasks = async (
 };
 
 // ── Главная функция — обновить прогресс задания ───────────────────────────
+type MultipleTaskProgressUpdate = { type: TaskType; increment?: number };
+type MultipleTaskProgressUpdateOptions = { studyTarget?: RuntimeStudyTarget };
+
+const applyMultipleTaskProgressUpdatesToSnapshot = async (
+  tasks: DailyTask[],
+  initialProgress: TaskProgress[],
+  updates: MultipleTaskProgressUpdate[],
+  opts?: MultipleTaskProgressUpdateOptions,
+): Promise<{ progress: TaskProgress[]; completedTaskIds: string[] }> => {
+  const completedTaskIds = new Set<string>();
+  let progress = initialProgress;
+  if (progress.length === 0 && tasks.length > 0) {
+    progress = tasks.map((task) => ({
+      taskId: task.id,
+      current: 0,
+      completed: false,
+      claimed: false,
+    }));
+  }
+
+  for (const { type, increment = 1 } of updates) {
+    progress = progress.map((row) => {
+      const task = tasks.find((candidate) => candidate.id === row.taskId);
+      if (!task || task.type !== type || row.completed) return row;
+      const current = Math.round(Math.min(row.current + increment, task.target) * 10) / 10;
+      const completed = current >= task.target;
+      if (completed) completedTaskIds.add(task.id);
+      return { ...row, current, completed };
+    });
+  }
+
+  const meta = await evaluateMetaDailyTasks(
+    tasks,
+    progress,
+    updates,
+    [...completedTaskIds],
+    opts?.studyTarget,
+  );
+  meta.newlyCompletedTaskIds.forEach((taskId) => completedTaskIds.add(taskId));
+  return { progress: meta.progress, completedTaskIds: [...completedTaskIds] };
+};
+
+export type DailyTaskProgressDeliveryResult = 'applied' | 'already-applied';
+
+/**
+ * Exactly-once local delivery for boundary events such as a completed lesson.
+ * A prepared journal entry stores the target rows before the progress write;
+ * replay therefore uses max/OR merging and cannot increment the same event twice.
+ */
+export const deliverDailyTaskProgressEvent = async (
+  eventId: string,
+  updates: MultipleTaskProgressUpdate[],
+  opts?: MultipleTaskProgressUpdateOptions,
+): Promise<DailyTaskProgressDeliveryResult> => {
+  const normalizedEventId = eventId.trim();
+  if (!/^[A-Za-z0-9_.:-]{8,180}$/.test(normalizedEventId)) {
+    throw new Error('invalid_daily_task_progress_event_id');
+  }
+  const dayKey = getTodayKey();
+  let completedTaskIdsToEmit: string[] = [];
+
+  const outcome = await withStorageLock(async (): Promise<DailyTaskProgressDeliveryResult> => {
+    const tasks = await getTodayTasksSafe(opts?.studyTarget);
+    if (tasks.length === 0) throw new Error('daily_task_progress_event_tasks_unavailable');
+
+    const progressKey = dailyTasksProgressKey(dayKey, opts?.studyTarget);
+    const deliveryKey = dailyTaskProgressDeliveryKey(dayKey, opts?.studyTarget);
+    const [progressRaw, deliveryRaw] = await Promise.all([
+      AsyncStorage.getItem(progressKey),
+      AsyncStorage.getItem(deliveryKey),
+    ]);
+    const stored = parseStoredTaskProgressStrict(progressRaw);
+    let journal = parseDailyTaskProgressDeliveryJournalStrict(deliveryRaw, dayKey);
+    let current = mergeProgressDeliveryJournalTargets(
+      reconcileProgressToTasks(stored, tasks),
+      journal,
+    );
+    let entry = journal.entries.find((candidate) => candidate.eventId === normalizedEventId);
+    const wasDelivered = entry?.status === 'delivered';
+
+    if (!entry) {
+      const applied = await applyMultipleTaskProgressUpdatesToSnapshot(
+        tasks,
+        current,
+        updates,
+        opts,
+      );
+      const beforeByTaskId = new Map(current.map((row) => [row.taskId, JSON.stringify(row)]));
+      const targetRows = applied.progress.filter(
+        (row) => beforeByTaskId.get(row.taskId) !== JSON.stringify(row),
+      );
+      entry = {
+        eventId: normalizedEventId,
+        status: 'prepared',
+        targetRows,
+        completedTaskIds: applied.completedTaskIds,
+        createdAtMs: Date.now(),
+      };
+      journal = {
+        dayKey,
+        entries: compactDailyTaskProgressDeliveryEntries([
+          ...journal.entries.filter((candidate) => candidate.eventId !== normalizedEventId),
+          entry,
+        ]),
+      };
+      await writeVerifiedStorageValue(
+        deliveryKey,
+        JSON.stringify(journal),
+        'daily_task_progress_event_not_prepared',
+      );
+    }
+
+    current = mergeProgressAtLeast(current, entry.targetRows);
+    await saveTodayProgressStrict(current, opts?.studyTarget);
+
+    if (entry.status !== 'delivered') {
+      const deliveredEntry: DailyTaskProgressDeliveryEntry = {
+        ...entry,
+        status: 'delivered',
+      };
+      journal = {
+        dayKey,
+        entries: compactDailyTaskProgressDeliveryEntries([
+          ...journal.entries.filter((candidate) => candidate.eventId !== normalizedEventId),
+          deliveredEntry,
+        ]),
+      };
+      await writeVerifiedStorageValue(
+        deliveryKey,
+        JSON.stringify(journal),
+        'daily_task_progress_event_not_finalized',
+      );
+      completedTaskIdsToEmit = deliveredEntry.completedTaskIds;
+    }
+    void pruneDatedDailyTasksStorageKeys([progressKey, deliveryKey]).catch(() => {});
+    return wasDelivered ? 'already-applied' : 'applied';
+  });
+
+  completedTaskIdsToEmit.forEach((taskId) => emitDailyTaskCompleted(taskId, opts?.studyTarget));
+  return outcome;
+};
+
 export const updateTaskProgress = async (
   type: TaskType,
   increment: number = 1,

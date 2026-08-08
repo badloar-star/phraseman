@@ -5,7 +5,7 @@ import {
   getTodayTasksSafe,
   loadTodayProgress,
 } from '../app/daily_tasks';
-import { dailyTasksAdminOverrideKey, dailyTasksProgressKey } from '../app/target_storage_keys';
+import { dailyTasksProgressKey } from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -47,20 +47,23 @@ function installStorageMocks(): void {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  jest.useFakeTimers();
+  jest.setSystemTime(new Date('2026-05-02T12:00:00Z'));
   Object.keys(storage).forEach((key) => delete storage[key]);
   installStorageMocks();
   storage.user_total_xp = '0';
-  storage[dailyTasksAdminOverrideKey()] = JSON.stringify({
-    dayKey: getTodayKey(),
-    taskIds: ['da1'],
-  });
+});
+
+afterEach(() => {
+  jest.useRealTimers();
 });
 
 async function lessonCompleteProgress(): Promise<number> {
   const tasks = await getTodayTasksSafe();
-  expect(tasks.map((task) => task.id)).toEqual(['da1']);
+  const lessonTask = tasks.find((task) => task.type === 'lesson_complete');
+  expect(lessonTask).toBeDefined();
   const progress = await loadTodayProgress(tasks);
-  return progress.find((row) => row.taskId === 'da1')?.current ?? -1;
+  return progress.find((row) => row.taskId === lessonTask?.id)?.current ?? -1;
 }
 
 describe('durable Daily Challenge progress events', () => {

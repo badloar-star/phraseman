@@ -11,7 +11,13 @@ jest.mock('../app/community_packs/functionsClient', () => ({
   callLevelGiftActivatePackGift: jest.fn(),
   callFlashcardPackGiftRedeem: jest.fn(),
 }));
-jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 250 }) }));
+jest.mock('../app/xp_manager', () => ({
+  registerXP: jest.fn().mockResolvedValue({ finalDelta: 250 }),
+  withXpAccountOperationQueue: jest.fn(async (
+    _token: unknown,
+    operation: (lease: object) => Promise<unknown>,
+  ) => operation({})),
+}));
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn().mockResolvedValue(false) }));
 jest.mock('../app/club_boosts', () => ({
   grantClubGiftFreeBoostFromLevel: jest.fn(),

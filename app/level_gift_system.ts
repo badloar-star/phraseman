@@ -55,7 +55,11 @@ import {
   replaceShardsBalanceLocal,
   replaceShardsBalanceLocalWhileAccountTransitionLocked,
 } from './shards_system';
-import { registerXP } from './xp_manager';
+import {
+  registerXP,
+  withXpAccountOperationQueue,
+  type XpOperationLease,
+} from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import {
   CUSTOM_AVATAR_GRADIENTS,
@@ -2074,6 +2078,8 @@ export interface ApplyGiftOptions {
   localOnly?: boolean;
   /** Internal capability propagated only by withAccountTransitionLock. */
   accountTransitionLockLease?: AccountTransitionLockLease;
+  /** Internal capability propagated only by withXpAccountOperationQueue. */
+  xpOperationLease?: XpOperationLease;
 }
 
 const applyGiftUnlocked = async (
@@ -2112,6 +2118,7 @@ const applyGiftUnlocked = async (
         payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null, occurrenceId: opts?.occurrenceId ?? null },
         accountToken: opts?.accountToken,
         accountTransitionLockLease: opts?.accountTransitionLockLease,
+        xpOperationLease: opts?.xpOperationLease,
       });
     };
     const grantXpBankWithoutLoss = async (amount: number): Promise<void> => {
@@ -2449,23 +2456,28 @@ export const applyGift = async (
     const accountToken = opts.accountToken;
     const occurrenceId = opts.occurrenceId?.trim();
     if (!accountToken?.stableId || !occurrenceId) return { success: false };
-    return withLocalLevelGiftApplyLock(() => withAccountTransitionLock(async (lease) => {
-      try {
-        if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
-        const result = await applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, {
-          ...opts,
-          preserveGiftId: true,
-          accountTransitionLockLease: lease,
-        });
-        if (!result.success || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return result.success
-          ? { success: false }
-          : result;
-        await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
-        return result;
-      } catch {
-        return { success: false };
-      }
-    }));
+    return withLocalLevelGiftApplyLock(() => withXpAccountOperationQueue(
+      accountToken,
+      (xpLease) => withAccountTransitionLock(async (lease) => {
+        try {
+          if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
+          const result = await applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, {
+            ...opts,
+            preserveGiftId: true,
+            accountTransitionLockLease: lease,
+            xpOperationLease: xpLease,
+          });
+          if (!result.success || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return result.success
+            ? { success: false }
+            : result;
+          await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+          return result;
+        } catch {
+          return { success: false };
+        }
+      }),
+      { success: false },
+    ));
   }
   const accountToken = opts?.accountToken;
   if (gift.spinRewardReceipt) {

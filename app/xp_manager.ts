@@ -107,6 +107,8 @@ export type RegisterXPOptions = {
   accountToken?: AccountGenerationToken;
   /** Internal capability propagated only by withAccountTransitionLock. */
   accountTransitionLockLease?: AccountTransitionLockLease;
+  /** Internal capability propagated only by withXpAccountOperationQueue. */
+  xpOperationLease?: XpOperationLease;
 };
 
 function isXpAccountGenerationCurrent(token: AccountGenerationToken): boolean {
@@ -282,6 +284,11 @@ type XpQueueEntry = {
   tail: Promise<void>;
 };
 
+declare const XP_OPERATION_LEASE: unique symbol;
+export type XpOperationLease = Readonly<{
+  [XP_OPERATION_LEASE]: true;
+}>;
+
 type XpMultiplierSnapshot = {
   token: AccountGenerationToken;
   club: number;
@@ -291,6 +298,7 @@ type XpMultiplierSnapshot = {
 
 const xpQueueByAccount = new Map<string, XpQueueEntry>();
 const xpMultiplierByAccount = new Map<string, XpMultiplierSnapshot>();
+let activeXpOperationLeases = new WeakMap<object, string>();
 
 function pruneStaleXpRuntimeState(): void {
   for (const [key, entry] of xpQueueByAccount) {
@@ -303,11 +311,15 @@ function pruneStaleXpRuntimeState(): void {
 
 function enqueueXpOperation<T>(
   token: AccountGenerationToken,
-  operation: () => Promise<T>,
+  operation: (lease: XpOperationLease) => Promise<T>,
   staleValue: T,
+  inheritedLease?: XpOperationLease,
 ): Promise<T> {
   const key = accountScopeKey(token);
   if (!key || !isXpAccountGenerationCurrent(token)) return Promise.resolve(staleValue);
+  if (inheritedLease && activeXpOperationLeases.get(inheritedLease) === key) {
+    return operation(inheritedLease);
+  }
   pruneStaleXpRuntimeState();
   const previous = xpQueueByAccount.get(key)?.tail ?? Promise.resolve();
   const result = previous.then(async () => {
@@ -319,9 +331,12 @@ function enqueueXpOperation<T>(
       );
     }, XP_LOCK_WAIT_TIMEOUT_MS);
     (watchdog as any)?.unref?.();
+    const lease = Object.freeze({}) as XpOperationLease;
+    activeXpOperationLeases.set(lease, key);
     try {
-      return await operation();
+      return await operation(lease);
     } finally {
+      activeXpOperationLeases.delete(lease);
       if (watchdog) clearTimeout(watchdog);
       watchdog = null;
     }
@@ -332,6 +347,14 @@ function enqueueXpOperation<T>(
   xpQueueByAccount.set(key, { token, tail });
   if (xpQueueByAccount.size > XP_QUEUE_MAX_ACCOUNTS) pruneStaleXpRuntimeState();
   return result;
+}
+
+export function withXpAccountOperationQueue<T>(
+  token: AccountGenerationToken,
+  operation: (lease: XpOperationLease) => Promise<T>,
+  staleValue: T,
+): Promise<T> {
+  return enqueueXpOperation(token, operation, staleValue);
 }
 
 function getXpMultiplierSnapshot(token: AccountGenerationToken): XpMultiplierSnapshot {
@@ -775,7 +798,7 @@ export const registerXP = async (
     }
     return { finalDelta: fallbackDelta, multiplier: 1, isBonus: false };
   }
-  }, staleResult());
+  }, staleResult(), options?.xpOperationLease);
 };
 
 const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
@@ -816,6 +839,7 @@ export const __xpManagerTestHooks = {
   resetXpRuntimeState: () => {
     xpQueueByAccount.clear();
     xpMultiplierByAccount.clear();
+    activeXpOperationLeases = new WeakMap<object, string>();
   },
   setXpMultiplierSnapshot: (club: number, leagueGroup: number) => {
     const token = captureAccountGeneration();

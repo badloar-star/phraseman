@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
+  captureAccountGeneration,
+  withAccountTransitionLock,
 } from '../app/account_generation';
 
 jest.mock('../app/config', () => ({
@@ -143,6 +145,40 @@ describe('registerXP', () => {
 
     expect(results.reduce((sum, result) => sum + result.finalDelta, 0)).toBe(50);
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('50');
+  });
+
+  it('queues a gift transaction behind existing XP before it acquires the account lock', async () => {
+    const { registerXP, withXpAccountOperationQueue } = await import('../app/xp_manager');
+    const token = captureAccountGeneration();
+    await AsyncStorage.setItem('user_total_xp', '0');
+    let firstAward!: Promise<Awaited<ReturnType<typeof registerXP>>>;
+    let giftAward!: Promise<Awaited<ReturnType<typeof registerXP>>>;
+
+    await withAccountTransitionLock(async () => {
+      firstAward = registerXP(1, 'achievement_reward', 'Learner', 'ru', undefined, {
+        accountToken: token,
+        eventId: 'achievement:queue-order:first',
+      });
+      giftAward = withXpAccountOperationQueue(
+        token,
+        (xpLease) => withAccountTransitionLock(
+          (accountLease) => registerXP(1, 'achievement_reward', 'Learner', 'ru', undefined, {
+            accountToken: token,
+            accountTransitionLockLease: accountLease,
+            xpOperationLease: xpLease,
+            eventId: 'achievement:queue-order:gift',
+          }),
+        ),
+        { finalDelta: 0, multiplier: 1, isBonus: false },
+      );
+    });
+
+    const outcome = await Promise.race([
+      Promise.all([firstAward, giftAward]),
+      new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 150)),
+    ]);
+    expect(outcome).not.toBe('timeout');
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('2');
   });
 
   it('lets account B commit while account A is stalled before its local commit', async () => {

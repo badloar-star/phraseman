@@ -273,7 +273,7 @@ describe('buildFillGapCandidates', () => {
 
   it.each([
     ['given', 'They have given help.', ['give', 'gave', 'giving']],
-    ['found', 'She found it.', ['find', 'finds', 'finding']],
+    ['brought', 'She brought it.', ['bring', 'brings', 'bringing']],
     ['told', 'They told us.', ['tell', 'tells', 'telling']],
     ['heard', 'We heard music.', ['hear', 'hears', 'hearing']],
   ])('classifies governed irregular family forms for %s as morphology', (token, english, distractors) => {
@@ -298,14 +298,57 @@ describe('buildFillGapCandidates', () => {
     }));
   });
 
-  it('fails closed to morphology when no provable to_be pronoun subject precedes the blank', () => {
+  it('classifies same-tense to_be substitutions as agreement without a pronoun subject', () => {
     const candidate = buildFillGapCandidates(day, phrase(
       'no-subject', 'Today is ready.', 'is', 'to be', ['are', 'was', 'be'],
     )).at(0);
 
     expect(candidate).toBeDefined();
     expect(candidate?.distractors.find((item) => item.value === 'are')).toEqual(expect.objectContaining({
-      value: 'are', trapType: 'morphology',
+      value: 'are', trapType: 'agreement',
     }));
+  });
+
+  it.each([
+    ['I think the books are ready.', 'are', 'is'],
+    ['The message for you is ready.', 'is', 'are'],
+    ['You and I are ready.', 'are', 'is'],
+  ])('classifies same-tense to_be substitutions as agreement without subject inference: %s', (english, token, wrong) => {
+    const candidate = buildFillGapCandidates(day, phrase(`to-be-${token}-${wrong}`, english, token, 'to be', [wrong, 'was', 'be'])).at(0);
+
+    expect(candidate).toBeDefined();
+    expect(candidate?.distractors.find((item) => item.value === wrong)).toEqual(expect.objectContaining({
+      value: wrong, trapType: 'agreement',
+    }));
+    expect(candidate?.distractors.find((item) => item.value === 'was')).toEqual(expect.objectContaining({
+      value: 'was', trapType: 'morphology',
+    }));
+  });
+
+  it('rejects candidates with ambiguous found and saw irregular surfaces instead of typing them', () => {
+    const found = buildFillGapCandidates(day, phrase(
+      'ambiguous-found', 'Workers found companies.', 'found', 'verb', ['find', 'founding', 'founder'],
+    ));
+    const saw = buildFillGapCandidates(day, phrase(
+      'ambiguous-saw', 'They saw timber.', 'saw', 'verb', ['see', 'saws', 'sawing'],
+    ));
+
+    expect(found).toEqual([]);
+    expect(saw).toEqual([]);
+  });
+
+  it.each([
+    ['became', 'They became ready.', ['become', 'becomes', 'becoming']],
+    ['began', 'They began work.', ['begin', 'begins', 'begun']],
+    ['broken', 'She has broken it.', ['break', 'broke', 'breaking']],
+  ])('classifies expanded governed irregular family forms for %s as morphology', (token, english, distractors) => {
+    const candidate = buildFillGapCandidates(day, phrase(`expanded-irregular-${token}`, english, token, 'verb', distractors)).at(0);
+
+    expect(candidate).toBeDefined();
+    for (const value of distractors) {
+      expect(candidate?.distractors.find((item) => item.value === value)).toEqual(expect.objectContaining({
+        value, trapType: 'morphology',
+      }));
+    }
   });
 });

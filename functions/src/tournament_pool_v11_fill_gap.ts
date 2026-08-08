@@ -82,12 +82,23 @@ const IRREGULAR_FAMILIES: readonly IrregularFamily[] = [
   ['teach', 'teaches', 'taught', 'taught', 'teaching'], ['think', 'thinks', 'thought', 'thought', 'thinking'], ['throw', 'throws', 'threw', 'thrown', 'throwing'],
   ['understand', 'understands', 'understood', 'understood', 'understanding'], ['wake', 'wakes', 'woke', 'woken', 'waking'],
   ['wear', 'wears', 'wore', 'worn', 'wearing'], ['win', 'wins', 'won', 'won', 'winning'], ['write', 'writes', 'wrote', 'written', 'writing'],
+  ['become', 'becomes', 'became', 'become', 'becoming'], ['begin', 'begins', 'began', 'begun', 'beginning'],
+  ['break', 'breaks', 'broke', 'broken', 'breaking'], ['beat', 'beats', 'beat', 'beaten', 'beating'], ['bend', 'bends', 'bent', 'bent', 'bending'],
+  ['bite', 'bites', 'bit', 'bitten', 'biting'], ['bleed', 'bleeds', 'bled', 'bled', 'bleeding'], ['blow', 'blows', 'blew', 'blown', 'blowing'],
+  ['burn', 'burns', 'burned', 'burned', 'burning'], ['burst', 'bursts', 'burst', 'burst', 'bursting'], ['hide', 'hides', 'hid', 'hidden', 'hiding'],
+  ['hit', 'hits', 'hit', 'hit', 'hitting'], ['hurt', 'hurts', 'hurt', 'hurt', 'hurting'], ['let', 'lets', 'let', 'let', 'letting'],
+  ['put', 'puts', 'put', 'put', 'putting'], ['shut', 'shuts', 'shut', 'shut', 'shutting'], ['stick', 'sticks', 'stuck', 'stuck', 'sticking'],
+  ['tear', 'tears', 'tore', 'torn', 'tearing'],
 ].map(([base, thirdPerson, past, participle, gerund]) => ({ base, thirdPerson, past, participle, gerund }));
 const IRREGULAR_LEMMA_FAMILIES: Readonly<Record<string, string>> = Object.fromEntries(
   IRREGULAR_FAMILIES.flatMap(({ base, thirdPerson, past, participle, gerund }) =>
     [...new Set([base, thirdPerson, past, participle, gerund])].map((form) => [form, base])),
 );
-const SUBJECT_PRONOUNS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they']);
+// These strings are common non-verb words as well as irregular surfaces. Without
+// syntactic/semantic proof, neither a morphology nor a lexical-meaning claim is safe.
+const AMBIGUOUS_IRREGULAR_SURFACES = new Set([
+  'found', 'saw', 'left', 'rose', 'fell', 'lay', 'read', 'lead', 'bound', 'wound', 'bore', 'rent', 'ground',
+]);
 
 function normalized(value: string): string {
   return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
@@ -101,12 +112,14 @@ function categoryFor(word: SourceWord): FillGapCategory | null {
   return CATEGORY_ALIASES[pos];
 }
 
-function trapFor(category: FillGapCategory, correct: string, wrong: string, subject?: string): FillGapTrapType {
+function trapFor(category: FillGapCategory, correct: string, wrong: string): FillGapTrapType | null {
   if (category === 'preposition' || category === 'phrasal_particle') return 'government';
   if (category === 'pronoun') return 'reference';
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
     || category === 'existential' || category === 'article') return 'function_choice';
-  if (category === 'to_be') return toBeTrap(correct, wrong, subject);
+  if (category === 'to_be') return toBeTrap(correct, wrong);
+  if (category === 'verb' && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
+    || AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(wrong)))) return null;
   if (category === 'verb' && sameVerbStem(correct, wrong, true)) return 'morphology';
   if (category === 'noun' && sameVerbStem(correct, wrong, false)) return 'morphology';
   if (category === 'verb') return 'lexical_meaning';
@@ -114,32 +127,13 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string, subj
   return 'collocation';
 }
 
-function toBeTrap(correct: string, wrong: string, subject?: string): FillGapTrapType {
+function toBeTrap(correct: string, wrong: string): FillGapTrapType {
   const present = new Set(['am', 'is', 'are']);
   const past = new Set(['was', 'were']);
-  const expected: Record<string, { readonly present: string; readonly past: string }> = {
-    i: { present: 'am', past: 'was' }, he: { present: 'is', past: 'was' }, she: { present: 'is', past: 'was' },
-    it: { present: 'is', past: 'was' }, you: { present: 'are', past: 'were' }, we: { present: 'are', past: 'were' },
-    they: { present: 'are', past: 'were' },
-  };
-  const key = subject ? normalized(subject) : '';
-  const paradigm = expected[key];
   const correctKey = normalized(correct);
   const wrongKey = normalized(wrong);
-  if (!paradigm) return 'morphology';
-  if (present.has(correctKey) && present.has(wrongKey) && correctKey === paradigm.present) return 'agreement';
-  if (past.has(correctKey) && past.has(wrongKey) && correctKey === paradigm.past) return 'agreement';
+  if ((present.has(correctKey) && present.has(wrongKey)) || (past.has(correctKey) && past.has(wrongKey))) return 'agreement';
   return 'morphology';
-}
-
-function nearestSubjectPronoun(tokens: readonly string[], lexicalIndices: readonly number[], blankIndex: number): string | undefined {
-  for (let position = lexicalIndices.length - 1; position >= 0; position -= 1) {
-    const tokenIndex = lexicalIndices[position];
-    if (tokenIndex >= blankIndex) continue;
-    const token = lexicalToken(tokens[tokenIndex]);
-    if (SUBJECT_PRONOUNS.has(normalized(token))) return token;
-  }
-  return undefined;
 }
 
 function sameVerbStem(left: string, right: string, includeIrregular: boolean): boolean {
@@ -255,14 +249,14 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
     if (!category) continue;
     const selected: FillGapDistractor[] = [];
     const seen = new Set([normalized(correct)]);
-    const subject = nearestSubjectPronoun(tokens, lexicalIndices, index);
     const deterministicFallbacks = category === 'verb'
       ? derivedVerbForms(correct)
       : (FUNCTION_FALLBACKS[category] ?? []);
     for (const raw of [...word.distractors, ...deterministicFallbacks]) {
       const value = raw;
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
-      const trapType = trapFor(category, correct, value, subject);
+      const trapType = trapFor(category, correct, value);
+      if (!trapType) continue;
       const completedSentence = sentenceWith(tokens, index, replacementFor(tokens[index], value));
       if (completedSentence === authoredSentence) continue;
       const reason = reasonFor(value, correct, translation, trapType);

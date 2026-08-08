@@ -15,6 +15,18 @@ service cloud.firestore {
         && request.auth.token.admin == true;
     }
 
+    function isActiveYoutubeSnapshot(version) {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/youtube_catalog/public)
+        && get(/databases/$(database)/documents/youtube_catalog/public).data.activeVersion == version;
+    }
+
+    function isReadyYoutubeSnapshot(version) {
+      return isActiveYoutubeSnapshot(version)
+        && exists(/databases/$(database)/documents/youtube_catalog_snapshots/$(version))
+        && get(/databases/$(database)/documents/youtube_catalog_snapshots/$(version)).data.status == 'ready';
+    }
+
     function stableUserMatchesAuth(stableUid) {
       return request.auth != null
         && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
@@ -1517,6 +1529,29 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Server-published YouTube catalog. Clients follow one public pointer and
+    // can never inspect a building/old version or mutate server-owned state.
+    match /youtube_catalog/{docId} {
+      allow read: if (docId == 'public' && request.auth != null)
+        || (docId in ['config', 'sync_state'] && isAdmin());
+      allow create, update, delete: if false;
+    }
+
+    match /youtube_catalog_snapshots/{version} {
+      allow read: if isActiveYoutubeSnapshot(version)
+        && resource.data.status == 'ready';
+      allow create, update, delete: if false;
+
+      match /{document=**} {
+        allow read: if isReadyYoutubeSnapshot(version);
+        allow create, update, delete: if false;
+      }
+    }
+
+    match /youtube_catalog_history/{document=**} {
+      allow read, write: if false;
+    }
+
     // Воронка пейвол-эксперимента (app/paywall_funnel.ts → admin/paywall_ab.html).
     // Клиент только создаёт компактные события фиксированной формы; читает админ.
     match /paywall_funnel/{docId} {
@@ -2234,6 +2269,9 @@ service cloud.firestore {
         && collection != 'business_tier_backfill_state'
         && collection != 'lesson_stats'
         && collection != 'economy'
+        && collection != 'youtube_catalog'
+        && collection != 'youtube_catalog_snapshots'
+        && collection != 'youtube_catalog_history'
         && collection != 'economy_exchange_history'
         && collection != 'coin_exchange_trades'
         && collection != 'coin_migrations'

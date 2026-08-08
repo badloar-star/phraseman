@@ -1174,3 +1174,27 @@ describe('firestore.rules friends bidirectional create/delete (Plan 02-01)', () 
     );
   });
 });
+
+describe('firestore.rules YouTube catalog access contract', () => {
+  const rules = readFileSync(rulesPath, 'utf8');
+
+  test('signed-in clients read only the public pointer and active ready snapshot', () => {
+    expect(rules).toContain('function isActiveYoutubeSnapshot(version)');
+    expect(rules).toMatch(/match \/youtube_catalog\/\{docId\} \{[\s\S]*?docId == 'public'[\s\S]*?request\.auth != null/);
+    expect(rules).toMatch(/docId in \['config', 'sync_state'\][\s\S]*?isAdmin\(\)/);
+    expect(rules).toMatch(/match \/youtube_catalog_snapshots\/\{version\} \{[\s\S]*?isActiveYoutubeSnapshot\(version\)[\s\S]*?resource\.data\.status == 'ready'/);
+    expect(rules).toMatch(/match \/\{document=\*\*\} \{[\s\S]*?isReadyYoutubeSnapshot\(version\)/);
+  });
+
+  test('all browser writes and history access are denied, including browser admins', () => {
+    const catalogBlock = rules.match(/match \/youtube_catalog\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(catalogBlock).not.toBeNull();
+    expect(catalogBlock![0]).toContain('allow create, update, delete: if false;');
+    expect(rules).toMatch(/match \/youtube_catalog_history\/\{document=\*\*\} \{\s*allow read, write: if false;\s*\}/);
+    const catchAll = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+    expect(catchAll).not.toBeNull();
+    for (const root of ['youtube_catalog', 'youtube_catalog_snapshots', 'youtube_catalog_history']) {
+      expect(catchAll![0]).toContain(`collection != '${root}'`);
+    }
+  });
+});

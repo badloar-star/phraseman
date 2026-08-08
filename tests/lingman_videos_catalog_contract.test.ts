@@ -61,4 +61,12 @@ describe('multichannel YouTube catalog UI contract', () => {
       expect(source).toContain(`testID="${id}"`);
     }
   });
+
+  it('keeps the redesigned shell visible while the catalog is still on RSS fallback', () => {
+    const source = screen();
+    expect(source).toContain('{(catalog || snapshot) && <YoutubeChannelTabs');
+    expect(source).toContain("tab === 'all' ?");
+    expect(source).toContain("tab === 'playlists' ?");
+    expect(source).not.toContain("tab === 'all' || !catalog ?");
+  });
 });

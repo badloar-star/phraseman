@@ -236,7 +236,7 @@ export default function LingmanVideosScreen() {
     <ScreenGradient artBackdrop="home">
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader channel={activeChannel} onBack={() => safeRouterBack(router, '/(tabs)/home' as any)} onOpenChannels={() => catalog && setPickerVisible(true)} onOpenYoutube={() => openExternalUrl(activeChannel.url)} />
-        {catalog && <YoutubeChannelTabs value={tab} onChange={setTab} />}
+        {(catalog || snapshot) && <YoutubeChannelTabs value={tab} onChange={setTab} />}
         {stale && <View testID="youtube-catalog-stale" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="time-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.stale}</Text></View>}
         {issue === 'offline' && <View testID="youtube-catalog-offline" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="cloud-offline-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.offline}</Text></View>}
         {issue === 'error' && !catalog && !snapshot && <View testID="youtube-catalog-error" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="alert-circle-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.error}</Text></View>}
@@ -252,16 +252,17 @@ export default function LingmanVideosScreen() {
           <ScrollView testID="youtube-catalog-empty" refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
             <Ionicons name="videocam-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text>
           </ScrollView>
-        ) : tab === 'playlists' && catalog ? (
-          <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
-        ) : tab === 'all' || !catalog ? (
+        ) : tab === 'playlists' ? (
+          catalog ? <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+            : <ScrollView testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
+        ) : tab === 'all' ? (
           <FlashList testID="lingman-videos-list" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubeVideoCard video={item} highlighted={item.id === deepLinkedVideoId} onWatch={() => openVideo(item)} onOpenYoutube={() => openExternalUrl(item.watchUrl, item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<View testID="lingman-videos-empty" />} />
         ) : (
           <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
             {hero && <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} />}
-            {catalog.playlists.length > 0 && <><Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.featuredPlaylists}</Text>{catalog.playlists.slice(0, 6).map((playlist) => <YoutubePlaylistRow key={playlist.id} playlist={playlist} onPress={() => openPlaylist(playlist.id)} />)}</>}
+            {catalog?.playlists.length ? <><Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.featuredPlaylists}</Text>{catalog.playlists.slice(0, 6).map((playlist) => <YoutubePlaylistRow key={playlist.id} playlist={playlist} onPress={() => openPlaylist(playlist.id)} />)}</> : null}
             <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.recent}</Text>
-            {videosList(catalog.videos.filter((video) => video.id !== hero?.id))}
+            {videosList(allVideos.filter((video) => video.id !== hero?.id))}
           </ScrollView>
         )}
 

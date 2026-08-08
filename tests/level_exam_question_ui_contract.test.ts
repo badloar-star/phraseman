@@ -53,4 +53,10 @@ describe('level exam question UI contract', () => {
     expect(frame).not.toMatch(/rgba?\(/i);
     expect(frame).not.toMatch(/borderWidth\s*:/);
   });
+
+  it('updates the visible seconds without a high-frequency background loop', () => {
+    const screen = read('LevelExamV2.tsx');
+    expect(screen).toContain('setInterval(update, 1_000)');
+    expect(screen).not.toContain('setInterval(update, 250)');
+  });
 });

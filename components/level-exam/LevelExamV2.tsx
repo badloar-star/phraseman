@@ -277,7 +277,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       if (nextRemaining === 0) void finishExam('timeout');
     };
     update();
-    const timer = setInterval(update, 250);
+    const timer = setInterval(update, 1_000);
     return () => clearInterval(timer);
   }, [attempt, finishExam, phase]);
 

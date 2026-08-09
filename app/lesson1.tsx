@@ -27,7 +27,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
-import LessonLoadingSkeleton from '../components/LessonLoadingSkeleton';
+import LessonFirstFrame from '../modules/lesson_first_frame';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
@@ -1065,7 +1065,7 @@ const LessonContent = React.memo(function LessonContent({
   // финальным контентом (Performance Bible: instant first frame).
   if (!introGateReady) {
     return (
-      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
+      <LessonFirstFrame theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
     );
   }
 
@@ -1076,7 +1076,7 @@ const LessonContent = React.memo(function LessonContent({
   // прогресс-бар), см. эталон app/review.tsx ~1297-1345.
   if (!phrase) {
     return (
-      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
+      <LessonFirstFrame theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
     );
   }
 
@@ -4036,7 +4036,7 @@ setShowCycleEndModal(true);
         {/* зачем: этот гейт живёт в LessonScreen — переменные linkedSliceCompact/
             lessonHorizontalPadding из внутреннего компонента тут не видны,
             выводим ту же геометрию из локального isLinkedLessonSliceTask. */}
-        <LessonLoadingSkeleton
+        <LessonFirstFrame
           theme={t}
           compact={isLinkedLessonSliceTask}
           horizontalPadding={isLinkedLessonSliceTask ? 14 : 20}

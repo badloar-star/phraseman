@@ -96,6 +96,7 @@ import {
 import {
   getAppSnapshot,
   patchAppSnapshot,
+  patchAppSnapshotCustomizationSelection,
   useAppSnapshotSelector,
 } from './app_snapshot_store';
 import { getShardsBalance, spendShardsIdempotent } from './shards_system';
@@ -393,7 +394,7 @@ export default function AvatarSelect() {
     setConfirmed(snapshot);
     setPreviewAvatarValue(snapshot.activeAvatar);
     setPreviewStoredAuraSelection(snapshot.storedAuraSelection);
-    patchAppSnapshot({ customization: snapshot });
+    patchAppSnapshotCustomizationSelection(snapshot);
   }, []);
 
   useEffect(() => {

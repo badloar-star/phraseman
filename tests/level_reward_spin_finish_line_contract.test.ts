@@ -70,6 +70,8 @@ describe('Finish Line level spin screen contract', () => {
     expect(code).toContain('withDecay');
     expect(manualGesture).toContain('Gesture.Pan()');
     expect(manualGesture).toContain('.enabled(manualReelEnabled)');
+    expect(code).toContain('const manualReelEnabled = manualReelEligible && isFocused && appActive;');
+    expect(code).toContain("phase !== 'spinning' && !manualReelEligible");
     expect(manualGesture).toContain('manualDragStartOffset.value + event.translationY');
     expect(manualGesture).toContain('const velocity = Math.max(');
     expect(manualGesture).toContain('withDecay({\n        velocity,');

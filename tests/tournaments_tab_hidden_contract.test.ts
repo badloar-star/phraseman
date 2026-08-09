@@ -7,6 +7,8 @@ describe('tournaments tab visibility contract', () => {
   it('removes tournaments from both the tab bar and the swipe pager', () => {
     const layout = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8');
     const pageModel = fs.readFileSync(path.join(root, 'app', 'tab_page_model.ts'), 'utf8');
+    const tabContext = fs.readFileSync(path.join(root, 'app', 'TabContext.tsx'), 'utf8');
+    const tournaments = fs.readFileSync(path.join(root, 'app', '(tabs)', 'tournaments.tsx'), 'utf8');
 
     expect(layout).not.toContain("require('./tournaments')");
     expect(layout).not.toMatch(/key:\s*'tournaments'/);
@@ -20,6 +22,14 @@ describe('tournaments tab visibility contract', () => {
     expect(layout).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const;');
     expect(pageModel).toContain("['home', 'lessons', 'friends', 'settings'] as const");
     expect(pageModel).not.toContain("'home', 'lessons', 'tournaments'");
+    expect(tabContext).toContain('export const TAB_KEYS = LOGICAL_TAB_IDS;');
+    expect(tabContext).not.toContain("['home', 'lessons', 'tournaments'");
+    expect(tournaments).toContain('const tournamentsTabVisible = ENABLE_TOURNAMENTS;');
+    expect(tournaments).toContain('if (!ENABLE_TOURNAMENTS) {');
+    expect(tournaments).toContain('<DeferredRedirect href="/(tabs)/home" />');
+    expect(tournaments).toContain('return <TournamentsScreen />;');
+    expect(tournaments).toContain('export default TournamentsRoute;');
+    expect(tournaments).not.toContain("runtimeOwnerId === 'tournaments'");
     expect(layout).toMatch(/const TAB_BAR_TABS = TABS\.map\(\(tab, logicalIdx\) =>/);
     expect(layout).toContain('TAB_BAR_TABS.map((tab, barIndex) => {');
     expect(layout).toContain('onPress={() => goToTab(tab.logicalIdx)}');
@@ -35,6 +45,8 @@ describe('tournaments tab visibility contract', () => {
     expect(layout).toContain("pathname === '/tournaments'");
     expect(layout).toContain('<DeferredRedirect href="/(tabs)/home" />');
     expect(rootLayout).toContain('<Stack.Protected guard={ENABLE_TOURNAMENTS}>');
+    expect(rootLayout).toContain('<Stack.Protected guard={ENABLE_DEV_TOOLS}>');
+    expect(rootLayout).not.toMatch(/ENABLE_DEV_TOOLS\s*&&\s*\(\s*<>/);
     for (const route of [
       'tournament_lobby',
       'tournament_round',

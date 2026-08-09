@@ -168,10 +168,11 @@ export default function LevelSpinFinishLine({
 
   // Ручная прокрутка — только предпросмотр. Она не вызывает onSpin, не создаёт
   // receipt и не касается баланса. Реальный spin по-прежнему принадлежит CTA.
-  const manualReelEnabled = machineHeight !== null
+  const manualReelEligible = machineHeight !== null
     && (phase === 'idle' || phase === 'error')
     && !receipt
     && (balance ?? 0) > 0;
+  const manualReelEnabled = manualReelEligible && isFocused && appActive;
   const manualReelMaxOffset = 0;
   const manualReelMinOffset = machineHeight === null
     ? 0
@@ -360,10 +361,10 @@ export default function LevelSpinFinishLine({
   }, [appActive, isFocused, onRevealed, receipt, resultGift, resultVisible, settledRequestId]);
 
   useEffect(() => {
-    if (!isFocused || phase !== 'spinning') return undefined;
+    if (!isFocused || (phase !== 'spinning' && !manualReelEligible)) return undefined;
     const subscription = AppState.addEventListener('change', (state) => setAppActive(state === 'active'));
     return () => subscription.remove();
-  }, [isFocused, phase]);
+  }, [isFocused, manualReelEligible, phase]);
 
   const startReelMotion = useCallback(() => {
     if (machineHeight === null) return;

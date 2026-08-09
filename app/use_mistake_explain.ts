@@ -220,9 +220,15 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     setConsentGateVisible(false);
   }, [clearRetryTimers, invalidateRequests]);
 
-  useEffect(() => subscribeNetStatus((online) => {
-    setNetStatus(online ? 'online' : 'offline');
-  }), []);
+  useEffect(() => {
+    // Без активного промаха AI не должен сам держать сетевой probe и заставлять
+    // весь экран урока перерисовываться на сменах online/offline.
+    if (!active) return undefined;
+    setNetStatus(getNetStatus());
+    return subscribeNetStatus((online) => {
+      setNetStatus(online ? 'online' : 'offline');
+    });
+  }, [active]);
 
   // Любое состояние без подтверждённого online немедленно снимает сетевые
   // запросы/повторы из владения UI.

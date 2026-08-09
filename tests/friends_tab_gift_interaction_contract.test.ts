@@ -30,12 +30,15 @@ describe('friends tab gift interaction contract', () => {
 
   it('sends gifts from the sheet without opening a second confirm modal', () => {
     const source = read('app/(tabs)/friends.tsx');
-    const requestSendGift = extract(source, 'const requestSendGift = async (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
+    const requestSendGift = extract(source, 'const requestSendGift = (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
 
     expect(source).not.toContain('giftConfirm');
     expect(source).not.toContain('friends-gift-confirm');
     expect(requestSendGift).toContain('const target = giftTarget;');
-    expect(requestSendGift).toContain('await handleSendGift(giftId, target, freshBalance);');
+    expect(requestSendGift).not.toContain('await getShardsBalance()');
+    expect(requestSendGift).toContain('const knownBalance = peekLastKnownShardsBalance();');
+    expect(requestSendGift).toContain('knownBalance !== null && warmBalance < gift.costShards');
+    expect(requestSendGift).toContain('void handleSendGift(giftId, target, knownBalance ?? Number.MAX_SAFE_INTEGER).finally');
   });
 
   it('closes the sheet and confirms the tap immediately while the callable continues in the background', () => {
@@ -61,7 +64,7 @@ describe('friends tab gift interaction contract', () => {
   it('stops known-offline sends before closing the sheet, showing success, or calling the server', () => {
     const source = read('app/(tabs)/friends.tsx');
     const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
-    const requestSendGift = extract(source, 'const requestSendGift = async (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
+    const requestSendGift = extract(source, 'const requestSendGift = (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
     const handleOffline = handleSendGift.indexOf("if (getNetStatus() === 'offline')");
     const requestOffline = requestSendGift.indexOf("if (getNetStatus() === 'offline')");
 
@@ -70,7 +73,7 @@ describe('friends tab gift interaction contract', () => {
     expect(handleOffline).toBeLessThan(handleSendGift.indexOf("type: 'success'"));
     expect(handleOffline).toBeLessThan(handleSendGift.indexOf('sendFriendGiftWithShards({'));
     expect(requestOffline).toBeGreaterThanOrEqual(0);
-    expect(requestOffline).toBeLessThan(requestSendGift.indexOf('const freshBalance = await getShardsBalance();'));
+    expect(requestOffline).toBeLessThan(requestSendGift.indexOf('const warmBalance ='));
     expect(source).toContain('Нет интернета. Подключись к сети и попробуй ещё раз.');
   });
 
@@ -82,6 +85,22 @@ describe('friends tab gift interaction contract', () => {
     expect(networkBranch).not.toContain('не списан');
     expect(networkBranch).not.toContain('No se cobro');
     expect(networkBranch).not.toContain('not charged');
+  });
+
+  it('sends an incoming reply gift with the same non-blocking, offline-safe flow', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const handler = extract(
+      source,
+      'const handleIncomingGiftReply = useCallback',
+      'const handleClaimFriendQuest = useCallback',
+    );
+
+    expect(handler).not.toContain('await getShardsBalance()');
+    expect(handler).toContain("if (getNetStatus() === 'offline')");
+    expect(handler.indexOf("if (getNetStatus() === 'offline')")).toBeLessThan(handler.indexOf('setIncomingGiftModal(null);'));
+    expect(handler).toContain('const knownBalance = peekLastKnownShardsBalance();');
+    expect(handler).toContain('setIncomingGiftModal(null);');
+    expect(handler).toContain('void handleSendGift(giftId, target, knownBalance ?? Number.MAX_SAFE_INTEGER).finally');
   });
 
   it('has no sending spinner or blocking sent-gift receipt modal', () => {

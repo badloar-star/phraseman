@@ -74,7 +74,8 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain("storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'");
     expect(route).toContain('const firstPass = !storedProgressFlagIsTrue(previousPassed)');
     expect(route).not.toContain("previousPassed !== '1'");
-    expect(legacyRoute).toContain("passed ? '1' : '0'");
+    expect(legacyRoute).toContain("persistedPassed ? '1' : '0'");
+    expect(legacyRoute).toContain('storedProgressFlagIsTrue(previousPassedRaw) || passed');
   });
 
   it('reads lesson boundaries from the canonical course map', () => {

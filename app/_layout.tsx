@@ -3222,12 +3222,12 @@ function AppContent() {
        <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
        <Stack.Screen name="personal_plan_quiz" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
-      {ENABLE_DEV_TOOLS && (
-        <>
-          <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
-          <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
-        </>
-      )}
+      {/* Expo Router принимает внутри Stack только Screen/Protected. Обычный Fragment
+          здесь игнорировался и на каждом запуске печатал предупреждение layout. */}
+      <Stack.Protected guard={ENABLE_DEV_TOOLS}>
+        <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
+        <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
+      </Stack.Protected>
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, ...bottomModalAnimationOptions, presentation: 'modal', gestureEnabled: true }} />
       <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />

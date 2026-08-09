@@ -92,6 +92,28 @@ describe('customization service', () => {
     await background;
   });
 
+  it('never rolls an old snapshot or starts mirrors after the account scope changes', async () => {
+    const deps = makeDeps();
+    let current = true;
+    let finishWrite!: () => void;
+    (deps.storage.multiSet as jest.Mock).mockReturnValueOnce(new Promise<void>((resolve) => { finishWrite = resolve; }));
+    deps.createAccountScope = () => ({
+      isCurrent: () => current,
+      runExclusive: async (work) => work(),
+    });
+
+    const pending = applyCustomizationDraft(availableInput, deps);
+    expect(deps.publishSnapshot).toHaveBeenCalledTimes(1);
+    current = false;
+    finishWrite();
+    await expect(pending).rejects.toThrow('customization_account_changed');
+
+    expect(deps.publishSnapshot).toHaveBeenCalledTimes(1);
+    expect(deps.invalidateCaches).not.toHaveBeenCalled();
+    expect(deps.syncCloud).not.toHaveBeenCalled();
+    expect(deps.syncPublicProfile).not.toHaveBeenCalled();
+  });
+
   it('resets to computed level avatar and frame while preserving stored aura', async () => {
     const deps = makeDeps();
     await resetToLevelAvatar({ level: 18, storedAuraSelection: 'none' }, deps);

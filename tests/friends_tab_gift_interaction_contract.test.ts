@@ -38,23 +38,40 @@ describe('friends tab gift interaction contract', () => {
     expect(requestSendGift).toContain('await handleSendGift(giftId, target, freshBalance);');
   });
 
-  it('shows only a pending receipt before the callable resolves without spending or replacing balance', () => {
+  it('closes the sheet and confirms the tap immediately while the callable continues in the background', () => {
     const source = read('app/(tabs)/friends.tsx');
     const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
-    const sendCall = handleSendGift.indexOf('sendFriendGiftWithShards({');
+    const sendCall = handleSendGift.indexOf('const res = await sendFriendGiftWithShards');
     const closeSheet = handleSendGift.indexOf('setGiftTarget(null);');
-    const receipt = handleSendGift.indexOf('setSentGiftReceipt({');
-    const pendingReceipt = handleSendGift.indexOf("status: 'pending'");
+    const successToast = handleSendGift.indexOf("type: 'success'");
+    const successFeedback = handleSendGift.lastIndexOf('showFeedback(', successToast);
 
     expect(closeSheet).toBeGreaterThanOrEqual(0);
-    expect(receipt).toBeGreaterThanOrEqual(0);
-    expect(pendingReceipt).toBeGreaterThanOrEqual(0);
+    expect(successFeedback).toBeGreaterThan(closeSheet);
+    expect(successToast).toBeGreaterThan(successFeedback);
     expect(closeSheet).toBeLessThan(sendCall);
-    expect(receipt).toBeLessThan(sendCall);
-    expect(pendingReceipt).toBeLessThan(sendCall);
+    expect(successFeedback).toBeLessThan(sendCall);
+    expect(successToast).toBeLessThan(sendCall);
     expect(handleSendGift.slice(0, sendCall)).not.toContain('setGiftBalance(');
     expect(handleSendGift.slice(0, sendCall)).not.toContain('replaceShardsBalanceForAccountGeneration(');
+    expect(handleSendGift).not.toContain('setSentGiftReceipt');
     expect(handleSendGift).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
+  });
+
+  it('stops known-offline sends before closing the sheet, showing success, or calling the server', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
+    const requestSendGift = extract(source, 'const requestSendGift = async (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
+    const handleOffline = handleSendGift.indexOf("if (getNetStatus() === 'offline')");
+    const requestOffline = requestSendGift.indexOf("if (getNetStatus() === 'offline')");
+
+    expect(handleOffline).toBeGreaterThanOrEqual(0);
+    expect(handleOffline).toBeLessThan(handleSendGift.indexOf('setGiftTarget(null);'));
+    expect(handleOffline).toBeLessThan(handleSendGift.indexOf("type: 'success'"));
+    expect(handleOffline).toBeLessThan(handleSendGift.indexOf('sendFriendGiftWithShards({'));
+    expect(requestOffline).toBeGreaterThanOrEqual(0);
+    expect(requestOffline).toBeLessThan(requestSendGift.indexOf('const freshBalance = await getShardsBalance();'));
+    expect(source).toContain('Нет интернета. Подключись к сети и попробуй ещё раз.');
   });
 
   it('does not claim an ambiguous network failure was uncharged', () => {
@@ -67,25 +84,13 @@ describe('friends tab gift interaction contract', () => {
     expect(networkBranch).not.toContain('not charged');
   });
 
-  it('renders pending copy without a success checkmark or spent semantics until confirmation', () => {
+  it('has no sending spinner or blocking sent-gift receipt modal', () => {
     const source = read('app/(tabs)/friends.tsx');
-    const sentGiftModal = extract(source, 'visible={sentGiftReceipt !== null}', 'visible={incomingGiftModal !== null}');
 
-    expect(sentGiftModal).toContain("sentGiftReceipt?.status === 'pending'");
-    expect(sentGiftModal).toContain("sentGiftReceipt?.status === 'pending' ? 'time-outline'");
-    expect(sentGiftModal).toContain("sentGiftReceipt.status === 'confirmed'");
-  });
-
-  it('confirms gift success only after the callable resolves', () => {
-    const source = read('app/(tabs)/friends.tsx');
-    const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
-    const response = handleSendGift.indexOf('const res = await sendFriendGiftWithShards');
-    const successToast = handleSendGift.indexOf("type: 'success'");
-    const successFeedback = handleSendGift.lastIndexOf('showFeedback(', successToast);
-
-    expect(response).toBeGreaterThanOrEqual(0);
-    expect(successFeedback).toBeGreaterThan(response);
-    expect(successToast).toBeGreaterThan(response);
+    expect(source).not.toContain('ActivityIndicator');
+    expect(source).not.toContain('friend-gift-sent-modal');
+    expect(source).not.toContain('sentGiftReceipt');
+    expect(source).not.toContain('Отправляем подарок…');
   });
 
   it('awaits thanks RPC before one success and restores the modal on failure', () => {
@@ -110,20 +115,12 @@ describe('friends tab gift interaction contract', () => {
     );
   });
 
-  it('queues a started friend quest until the sent-gift modal has fully dismissed', () => {
+  it('shows a started friend quest directly after the background send resolves', () => {
     const source = read('app/(tabs)/friends.tsx');
     const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
-    const sentGiftModal = extract(source, 'visible={sentGiftReceipt !== null}', 'visible={incomingGiftModal !== null}');
 
-    expect(source).toContain('const [pendingFriendQuestStarted, setPendingFriendQuestStarted]');
-    expect(source).toContain('const sentGiftReceiptNativeVisibleRef = useRef(false);');
-    expect(handleSendGift).toContain('sentGiftReceiptNativeVisibleRef.current = true;');
-    expect(handleSendGift).toContain('if (sentGiftReceiptNativeVisibleRef.current) {');
-    expect(handleSendGift).toContain('setPendingFriendQuestStarted(quest);');
     expect(handleSendGift).toContain('setFriendQuestStarted(quest);');
-    expect(sentGiftModal).toContain('onDismiss={handleSentGiftReceiptDismissed}');
-    expect(source).toContain('sentGiftReceiptNativeVisibleRef.current = false;');
-    expect(source).toContain('visible={friendQuestStarted !== null && sentGiftReceipt === null}');
-    expect(source).toContain('|| sentGiftReceipt !== null || pendingFriendQuestStarted !== null');
+    expect(source).toContain('visible={friendQuestStarted !== null}');
+    expect(source).not.toContain('pendingFriendQuestStarted');
   });
 });

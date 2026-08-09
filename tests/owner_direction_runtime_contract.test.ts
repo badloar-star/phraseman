@@ -954,22 +954,24 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('false && purchasing');
   });
 
-  it('keeps friend gift sends server-first, visibly pending, and account-owned', () => {
+  it('keeps friend gift sends non-blocking, offline-aware, server-authoritative, and account-owned', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
+    const sendResponse = friendsTab.indexOf('const res = await sendFriendGiftWithShards');
 
     expect(friendsTab).toContain('sendFriendGiftWithShards');
     expect(friendsTab).toContain('setGiftBusyId(giftId)');
-    expect(friendsTab.indexOf("status: 'pending'")).toBeLessThan(
-      friendsTab.indexOf('const res = await sendFriendGiftWithShards'),
-    );
+    expect(friendsTab).toContain("if (getNetStatus() === 'offline')");
+    expect(friendsTab.indexOf('setGiftTarget(null);')).toBeLessThan(sendResponse);
+    expect(friendsTab.indexOf("type: 'success'")).toBeLessThan(sendResponse);
     expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
     expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
     expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');
     expect(friendsTab).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
     expect(friendsTab).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
-
-    expect(friendsTab).toContain('setSentGiftReceipt({');
-    expect(friendsTab).toContain('balanceAfter: guardedBalance');
+    expect(friendsTab).not.toContain('ActivityIndicator');
+    expect(friendsTab).not.toContain('setSentGiftReceipt');
+    expect(friendsTab).not.toContain("status: 'pending'");
+    expect(friendsTab).not.toContain('Отправляем подарок…');
   });
 
   it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {

@@ -128,6 +128,12 @@ type FeedbackState = {
   prompt: Prompt;
 };
 
+type CorrectTranslationReminder = {
+  id: string;
+  english: string;
+  translation: string;
+};
+
 type CardMemory = {
   correct: number;
   wrong: number;
@@ -867,6 +873,7 @@ export default function FlashcardsSwipeScreen() {
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
   const [queue, setQueue] = useState<Prompt[]>([]);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
+  const [correctTranslationReminder, setCorrectTranslationReminder] = useState<CorrectTranslationReminder | null>(null);
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
@@ -876,6 +883,8 @@ export default function FlashcardsSwipeScreen() {
   const [showSwipeHint, setShowSwipeHint] = useState(false);
   const swipeHintAnim = useRef(new Animated.Value(0)).current;
   const swipeHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const correctTranslationReminderAnim = useRef(new Animated.Value(0)).current;
+  const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const swipeHintCheckedRef = useRef(false);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
@@ -2041,6 +2050,63 @@ export default function FlashcardsSwipeScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSwipeHint]);
 
+  const clearCorrectTranslationReminder = useCallback(() => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    correctTranslationReminderAnim.stopAnimation();
+    correctTranslationReminderAnim.setValue(0);
+    setCorrectTranslationReminder(null);
+  }, [correctTranslationReminderAnim]);
+
+  const showCorrectTranslationReminder = useCallback((prompt: Prompt) => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+    }
+    const reminder: CorrectTranslationReminder = {
+      id: `${prompt.id}:${Date.now()}`,
+      english: s(prompt.card.en),
+      translation: prompt.trueTranslation,
+    };
+    setCorrectTranslationReminder(reminder);
+    correctTranslationReminderAnim.stopAnimation();
+    correctTranslationReminderAnim.setValue(0);
+    Animated.timing(correctTranslationReminderAnim, {
+      toValue: 1,
+      duration: 180,
+      useNativeDriver: true,
+    }).start();
+    // зачем: когда пользователь правильно нажал «Неверно», сама карточка уже
+    // улетает дальше, но верный перевод раньше вообще не показывался. Короткий
+    // неблокирующий toast даёт напоминание и не добавляет кнопку/паузу в сессию.
+    correctTranslationReminderTimer.current = setTimeout(() => {
+      correctTranslationReminderTimer.current = null;
+      Animated.timing(correctTranslationReminderAnim, {
+        toValue: 0,
+        duration: 180,
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (!finished) return;
+        setCorrectTranslationReminder((current) => current?.id === reminder.id ? null : current);
+      });
+    }, 3200);
+  }, [correctTranslationReminderAnim]);
+
+  useEffect(() => () => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    correctTranslationReminderAnim.stopAnimation();
+  }, [correctTranslationReminderAnim]);
+
+  useEffect(() => {
+    if (phase !== 'play' && correctTranslationReminder) {
+      clearCorrectTranslationReminder();
+    }
+  }, [clearCorrectTranslationReminder, correctTranslationReminder, phase]);
+
   // зачем: репорт «свайп срабатывает мгновенно, аудио послушать не успеваю» —
   // на быстром свайпе onPanResponderRelease мог сработать раньше, чем звук карточки
   // вообще стартовал (речь запускается тапом по карточке, а не автоматически).
@@ -2170,6 +2236,9 @@ export default function FlashcardsSwipeScreen() {
           score: cur.score + scoreAward,
         };
       });
+      if (!saysMatch) {
+        showCorrectTranslationReminder(prompt);
+      }
       if (mastered) {
         setQueue(rest);
       } else {
@@ -2180,21 +2249,24 @@ export default function FlashcardsSwipeScreen() {
         );
       }
     },
-    [makePrompt, queue, trainingCards, updateCardMemory],
+    [makePrompt, queue, showCorrectTranslationReminder, trainingCards, updateCardMemory],
   );
 
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
       if (!currentPrompt || feedback || settling || settlingRef.current) return;
+      clearCorrectTranslationReminder();
+      if (showSwipeHint) dismissSwipeHint();
       // NB: не выставляем settlingRef здесь — settleCard делает `if (settlingRef.current) return`,
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, currentPrompt, feedback, settleCard, settling],
+    [applyAnswer, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
     if (!currentPrompt || feedback || settling || settlingRef.current) return;
+    clearCorrectTranslationReminder();
     void hapticTap();
     // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
     // сброс серии), поэтому у него свой звук, а не общий «тап». Ставим после
@@ -2212,7 +2284,7 @@ export default function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
+  }, [clearCorrectTranslationReminder, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!feedback) return;
@@ -3039,7 +3111,47 @@ export default function FlashcardsSwipeScreen() {
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       <SafeAreaView style={[styles.safe, { paddingTop: topSafeInset }]} edges={['left', 'right', 'bottom']}>
         <ContentWrap>
-          <View style={styles.screen}>{renderScreen()}</View>
+          <View style={styles.screen}>
+            {renderScreen()}
+            {correctTranslationReminder ? (
+              <Animated.View
+                pointerEvents="none"
+                testID="flashcards-correct-translation-reminder"
+                accessibilityRole="alert"
+                accessibilityLiveRegion="polite"
+                accessibilityLabel={`${text.correctTranslation}: ${correctTranslationReminder.english} — ${correctTranslationReminder.translation}`}
+                style={[
+                  styles.correctTranslationReminderToast,
+                  {
+                    top: isPlanFlashcardsTask ? 54 : 70,
+                    backgroundColor: t.correctBg,
+                    shadowColor: t.correct,
+                    opacity: correctTranslationReminderAnim,
+                    transform: [{
+                      translateY: correctTranslationReminderAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-8, 0],
+                      }),
+                    }],
+                  },
+                ]}
+              >
+                <Ionicons name="checkmark-circle" size={20} color={t.correct} />
+                <View style={styles.correctTranslationReminderCopy}>
+                  <Text style={[styles.correctTranslationReminderLabel, { color: t.correct, fontSize: f.caption }]}>
+                    {text.correctTranslation}
+                  </Text>
+                  <FlowText
+                    testID="flashcards-correct-translation-reminder-copy"
+                    provenance="authored"
+                    style={[styles.correctTranslationReminderText, { color: t.textPrimary, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.3) }]}
+                  >
+                    {correctTranslationReminder.english} — {correctTranslationReminder.translation}
+                  </FlowText>
+                </View>
+              </Animated.View>
+            ) : null}
+          </View>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -3329,6 +3441,35 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     borderRadius: 999,
+  },
+  correctTranslationReminderToast: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    zIndex: 60,
+    elevation: 60,
+    minHeight: 58,
+    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    ...noAndroidOutline,
+  },
+  correctTranslationReminderCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  correctTranslationReminderLabel: {
+    fontWeight: '900',
+  },
+  correctTranslationReminderText: {
+    marginTop: 2,
+    fontWeight: '800',
   },
   // зачем: одноразовая подсказка-баннер над карточкой — без обводки (запрещена),
   // разделяется тоном подложки (glassFill) + мягкой тенью, как остальные карточки проекта.

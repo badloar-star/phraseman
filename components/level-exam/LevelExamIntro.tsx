@@ -20,6 +20,7 @@ type Props = {
   durationMinutes: number;
   energyCost: number;
   availableEnergy: number;
+  unlimitedEnergy?: boolean;
   bestScore: number | null;
   starting: boolean;
   onBack: () => void;
@@ -34,6 +35,7 @@ export default function LevelExamIntro({
   durationMinutes,
   energyCost,
   availableEnergy,
+  unlimitedEnergy = false,
   bestScore,
   starting,
   onBack,
@@ -42,7 +44,7 @@ export default function LevelExamIntro({
   const { theme: t, f, ds, themeMode } = useTheme();
   const [launching, setLaunching] = useState(false);
   const launchGuardRef = useRef(false);
-  const hasEnergy = availableEnergy >= energyCost;
+  const hasEnergy = unlimitedEnergy || availableEnergy >= energyCost;
   const disabled = starting || launching || !hasEnergy;
   const copy = useMemo(() => getLevelExamCopy(lang, {
     level,
@@ -52,6 +54,9 @@ export default function LevelExamIntro({
     energyCost,
     bestScore,
   }), [bestScore, durationMinutes, energyCost, firstLesson, lang, lastLesson, level]);
+  const startAccessibilityLabel = unlimitedEnergy
+    ? copy.startCta
+    : `${copy.startCta} −${energyCost} ⚡`;
 
   useEffect(() => {
     if (!starting && !launching) launchGuardRef.current = false;
@@ -78,12 +83,12 @@ export default function LevelExamIntro({
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
           </TapScale>
-          <View style={[styles.energyPill, { backgroundColor: t.bgSurface2 }]}> 
+          {!unlimitedEnergy ? <View style={[styles.energyPill, { backgroundColor: t.bgSurface2 }]}>
             <EnergyIcon filled={availableEnergy > 0} themeColor={t.accent} themeMode={themeMode} size={20} animateChange={false} />
             <Text style={{ color: t.textPrimary, fontSize: f.caption, fontFamily: ds.fontFamily }}>
               {availableEnergy}
             </Text>
-          </View>
+          </View> : null}
         </View>
 
         <View style={styles.sheetWrap}>
@@ -125,7 +130,7 @@ export default function LevelExamIntro({
               </Text>
             ) : null}
 
-            {!hasEnergy ? (
+            {!unlimitedEnergy && !hasEnergy ? (
               <Text accessibilityRole="alert" style={[styles.centerText, { color: t.wrong, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
                 {copy.energyMissing}
               </Text>
@@ -135,7 +140,7 @@ export default function LevelExamIntro({
               testID="level-exam-start"
               onPress={handleStart}
               disabled={disabled}
-              accessibilityLabel={copy.startCta}
+              accessibilityLabel={startAccessibilityLabel}
               accessibilityHint={copy.lessonRange}
               accessibilityState={{ disabled }}
               style={[styles.startButton, { minHeight: ds.buttonHeight, backgroundColor: disabled ? t.bgSurface2 : t.accent, paddingHorizontal: ds.spacing.lg }]}
@@ -144,12 +149,12 @@ export default function LevelExamIntro({
                 <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
                   {copy.startCta}
                 </Text>
-                <View style={styles.costBadge}>
+                {!unlimitedEnergy ? <View style={styles.costBadge}>
                   <EnergyIcon filled={true} themeColor={disabled ? t.textMuted : t.correctText} themeMode={themeMode} size={18} animateChange={false} />
                   <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
                     {energyCost}
                   </Text>
-                </View>
+                </View> : null}
               </View>
             </TapScale>
           </View>

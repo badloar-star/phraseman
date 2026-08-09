@@ -6,6 +6,7 @@ import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
 import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
 import { EXPLAIN_CALLABLE_TIMEOUT_MS } from './explain_callable_timeout';
+import { getNetStatus } from './net_status';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
@@ -82,6 +83,7 @@ export interface CallExplainMistakeOptions {
  * Никогда не бросает — вызывать через `void`.
  */
 export function warmExplainMistake(): void {
+  if (getNetStatus() === 'offline') return;
   void warmAiFunction('explainMistake', async () => {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainMistake');
@@ -120,6 +122,9 @@ export async function callExplainMistake(
       variant,
     };
   }
+  // Локальный кэш уже проверен выше. При подтверждённом offline нельзя ни
+  // будить Cloud Function, ни входить в её retry-цепочку.
+  if (getNetStatus() === 'offline') throw new Error('mistake_explain_offline');
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();

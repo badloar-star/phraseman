@@ -103,6 +103,12 @@ describe('useAudio TTS resiliency', () => {
     expect(phraseAudioSource).toContain("cb?.onError?.(new Error('phrase clip failed to start'))");
   });
 
+  it('skips remote phrase audio immediately when the cache misses offline', () => {
+    expect(phraseAudioSource).toContain("import { getNetStatus } from '../app/net_status'");
+    expect(phraseAudioSource).toContain("if (getNetStatus() === 'offline') return null");
+    expect(phraseAudioSource).toContain("if (!cachedUri && getNetStatus() === 'offline') return false");
+  });
+
   it('frees a failed native player immediately on the ExoPlayer idle-error signal', () => {
     // expo-audio emits no explicit player-error event; a native decode failure /
     // exhausted player slot surfaces only as playbackState 'idle' AFTER the first

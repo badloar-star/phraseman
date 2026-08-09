@@ -1079,7 +1079,10 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) {
-        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lessons_list' as any);
+        if (!cancelled && frenchStudyActive(studyTarget)) {
+          markNextNavigationAsReplace();
+          router.replace('/lessons_list' as any);
+        }
         return;
       }
       void grantBonus().finally(() => {
@@ -1237,15 +1240,18 @@ export default function LessonComplete() {
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
+        markNextNavigationAsReplace();
         router.replace({ pathname: '/lessons_list', params: { id: next } });
       })();
     } else {
+      markNextNavigationAsReplace();
       router.replace('/(tabs)/home' as any);
     }
   };
 
   const goBackFromComplete = useCallback(() => {
     hapticTap();
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
@@ -1255,6 +1261,7 @@ export default function LessonComplete() {
     setRepeatOpening(true);
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
     try {
+      markNextNavigationAsReplace();
       router.replace({ pathname: '/lesson1', params: { id: lessonId } });
     } catch {
       repeatOpeningRef.current = false;
@@ -1658,7 +1665,7 @@ export default function LessonComplete() {
               borderColor: 'transparent',
               overflow: 'hidden',
             }}
-            onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}
+            onPress={() => { hapticTap(); markNextNavigationAsReplace(); router.replace('/(tabs)/home' as any); }}
           >
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>

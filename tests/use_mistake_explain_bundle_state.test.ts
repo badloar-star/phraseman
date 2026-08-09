@@ -11,6 +11,8 @@ let consentGranted = true;
 let consentHydrated = true;
 let consentDecision = true;
 let consentSubscriber: (() => void) | null = null;
+let netOnline = true;
+let netSubscriber: ((online: boolean) => void) | null = null;
 const markLimitShown = jest.fn(async () => undefined);
 
 jest.mock('../app/ai_mistake_explain_client', () => ({
@@ -42,6 +44,14 @@ jest.mock('../app/ai_mistake_explain_limit_session', () => ({
 
 jest.mock('../hooks/use-haptics', () => ({
   hapticTap: jest.fn(),
+}));
+
+jest.mock('../app/net_status', () => ({
+  getNetStatus: () => netOnline ? 'online' : 'offline',
+  subscribeNetStatus: (listener: (online: boolean) => void) => {
+    netSubscriber = listener;
+    return () => { netSubscriber = null; };
+  },
 }));
 
 jest.mock('../app/mistake_token_resolver', () => ({
@@ -78,6 +88,8 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     consentHydrated = true;
     consentDecision = true;
     consentSubscriber = null;
+    netOnline = true;
+    netSubscriber = null;
     __resetAccountGenerationForTests();
     beginAccountGeneration('account-a');
   });
@@ -126,6 +138,21 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(hook.result.current.eli5.state).toBe('ready');
     expect(hook.result.current.eli5.text).toBe('Simple explanation');
     expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not warm, request, or retry an explanation while offline', async () => {
+    netOnline = false;
+    jest.useFakeTimers();
+    const { warmExplainMistake } = await import('../app/ai_mistake_explain_client');
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { hook.result.current.explain(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
+
+    expect(warmExplainMistake).not.toHaveBeenCalled();
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+    expect(hook.result.current.aiMistakeState).not.toBe('loading');
   });
 
   it('keeps transient failures silent and retries them in the background', async () => {

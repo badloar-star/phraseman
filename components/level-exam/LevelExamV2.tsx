@@ -32,7 +32,7 @@ import {
 } from '../../app/level_exam_attempts';
 import { scoreLevelExam, type LevelExamScoreResult } from '../../app/level_exam_scoring';
 import type { LevelExamBlueprint, LevelExamLevel, LevelExamTask } from '../../app/level_exam_types';
-import { levelExamKey } from '../../app/target_storage_keys';
+import { levelExamKey, storedProgressFlagIsTrue } from '../../app/target_storage_keys';
 import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
 import { getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
@@ -41,6 +41,8 @@ import { addShards, awardOneTime } from '../../app/shards_system';
 import { registerXP } from '../../app/xp_manager';
 import { safeRouterBack } from '../../app/navigation_back';
 import { useEnergy } from '../EnergyContext';
+import { usePremium } from '../PremiumContext';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { addEnergy } from '../../app/energy_system';
 import NoEnergyModal from '../NoEnergyModal';
 import ScreenGradient from '../ScreenGradient';
@@ -110,7 +112,10 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
 export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
-  const { isUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  const { isUnlimited, spendAmount, energy, bonusEnergy, energyReady } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
+  const unlimitedEnergy = isUnlimited || hasPremiumAccess;
+  const examRuntimeActive = useRuntimeActive();
   const [phase, setPhase] = useState<Phase>('loading');
   const [ownerStableUid, setOwnerStableUid] = useState<string | null>(null);
   const [identityUnavailable, setIdentityUnavailable] = useState(false);
@@ -163,7 +168,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       );
       await AsyncStorage.multiSet([
         [levelExamKey(level, 'pct', 'en'), String(Math.max(previousPct, scored.pct))],
-        [levelExamKey(level, 'passed', 'en'), previousPassed === '1' || scored.passed ? '1' : '0'],
+        [levelExamKey(level, 'passed', 'en'), storedProgressFlagIsTrue(previousPassed) || scored.passed ? 'true' : 'false'],
       ]);
       if (scored.passed) {
         const nextLevel = getNextCourseLevel(level);
@@ -286,7 +291,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   }, [accessState, finishExam, lang, level]);
 
   useEffect(() => {
-    if (phase !== 'quiz' || !attempt || attempt.status !== 'active') return undefined;
+    if (!examRuntimeActive || phase !== 'quiz' || !attempt || attempt.status !== 'active') return undefined;
     const update = () => {
       const nextRemaining = remainingLevelExamMs(attempt, Date.now());
       setRemainingMs(nextRemaining);
@@ -295,10 +300,10 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     update();
     const timer = setInterval(update, 1_000);
     return () => clearInterval(timer);
-  }, [attempt, finishExam, phase]);
+  }, [attempt, examRuntimeActive, finishExam, phase]);
 
   const startExam = useCallback(async () => {
-    if (starting) return;
+    if (starting || (!hasPremiumAccess && !energyReady)) return;
     if (!ownerStableUid) return;
     setStarting(true);
     let energySpent = false;
@@ -319,15 +324,15 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         void trackFeatureError('level_exam', 'content_unavailable', error, { level, lang }, 'level_exam_v3');
         return;
       }
-      if (!isUnlimited && energy + bonusEnergy < ENERGY_COST) {
+      if (!unlimitedEnergy && energy + bonusEnergy < ENERGY_COST) {
         setNoEnergy(true);
         return;
       }
-      if (!isUnlimited && !await spendAmount(ENERGY_COST)) {
+      if (!unlimitedEnergy && !await spendAmount(ENERGY_COST)) {
         setNoEnergy(true);
         return;
       }
-      energySpent = !isUnlimited;
+      energySpent = !unlimitedEnergy;
       if (nextBlueprint.scoredUnitIds.length !== 30) throw new Error('level_exam_v2_score_units_invalid');
       const nextAttempt = createLevelExamAttempt({
         energySpent: true,
@@ -361,7 +366,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     } finally {
       setStarting(false);
     }
-  }, [bonusEnergy, energy, isUnlimited, lang, level, ownerStableUid, spendAmount, starting]);
+  }, [bonusEnergy, energy, energyReady, hasPremiumAccess, lang, level, ownerStableUid, spendAmount, starting, unlimitedEnergy]);
 
   const updateAnswer = useCallback((scoreUnitId: string, answerValue: PersistedLevelExamAnswer) => {
     const current = attemptRef.current;
@@ -449,9 +454,10 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           lastLesson={getLastLessonForLevel(level)}
           durationMinutes={level === 'A1' ? 12 : level === 'A2' ? 13 : level === 'B1' ? 14 : 15}
           energyCost={ENERGY_COST}
-          availableEnergy={isUnlimited ? ENERGY_COST : energy + bonusEnergy}
+          availableEnergy={energy + bonusEnergy}
+          unlimitedEnergy={unlimitedEnergy}
           bestScore={bestScore === null ? null : Math.round(bestScore * 0.3)}
-          starting={starting || accessState === 'checking' || phase === 'loading'}
+          starting={starting || (!hasPremiumAccess && !energyReady) || accessState === 'checking' || phase === 'loading'}
           onBack={() => safeRouterBack(router, '/lessons_list' as never)}
           onStart={startExam}
         />

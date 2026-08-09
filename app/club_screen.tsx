@@ -781,17 +781,16 @@ export default function ClubScreen() {
     };
   }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      // A mounted tab is retained between visits, so a mount-only load leaves
-      // every peer row frozen. Re-read on focus and while the league is visible.
+  useEffect(() => {
+    if (!runtimeActive) return undefined;
+    // Re-read on focus/foreground and refresh only while both conditions stay
+    // true. useFocusEffect alone remains active when the app is backgrounded.
+    void loadData({ forceRemote: true });
+    const intervalId = setInterval(() => {
       void loadData({ forceRemote: true });
-      const intervalId = setInterval(() => {
-        void loadData({ forceRemote: true });
-      }, CLUB_REMOTE_REFRESH_MS);
-      return () => clearInterval(intervalId);
-    }, [loadData]),
-  );
+    }, CLUB_REMOTE_REFRESH_MS);
+    return () => clearInterval(intervalId);
+  }, [loadData, runtimeActive]);
 
   useEffect(() => {
     activeGroupBoostRef.current = activeGroupBoost;

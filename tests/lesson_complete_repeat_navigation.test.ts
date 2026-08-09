@@ -13,6 +13,7 @@ describe('lesson_complete repeat navigation', () => {
     expect(handlerStart).toBeGreaterThanOrEqual(0);
     expect(handler).toContain('void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});');
     expect(handler).toContain("router.replace({ pathname: '/lesson1', params: { id: lessonId } });");
+    expect(handler.indexOf('markNextNavigationAsReplace()')).toBeLessThan(handler.indexOf('router.replace'));
     expect(handler).not.toContain('await primeLessonScreenFromStorage');
   });
 

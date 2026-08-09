@@ -136,7 +136,7 @@ import { MOTION_DURATION } from '../constants/motion';
 import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { emitAppEvent } from './events';
 import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -310,6 +310,7 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const LESSON_ENTER_MS = MOTION_DURATION.normal;
 const PRESS_IN_MS = 70;
 const ERROR_REPLAY_DELAY_ANSWERS = 2;
+const COMBO_ACHIEVEMENT_THRESHOLDS = new Set([3, 10, 20, 50, 100, 150, 250, 500]);
 
 function isValidLessonPhraseOrder(order: unknown, phraseCount: number): order is number[] {
   const count = Math.min(phraseCount, TOTAL);
@@ -2193,6 +2194,10 @@ export default function LessonScreen() {
   const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
   const [lessonTeachingNote, setLessonTeachingNote] = useState<ResolvedLessonTeachingNote | null>(null);
+  // Снимок заметок загружается вместе с остальным состоянием урока. Нельзя
+  // ходить в AsyncStorage перед показом результата каждого правильного ответа:
+  // нативный мост задерживает кадр, а через несколько фраз очередь растёт.
+  const teachingNoteSeenIdsRef = useRef<string[]>([]);
   const [typedText,    setTypedText]    = useState('');
   const [showTapHint,  setShowTapHint]  = useState(false);
   // CHANGE v5: contraction branching state
@@ -2209,6 +2214,11 @@ export default function LessonScreen() {
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
+  const xpToastSequenceRef = useRef<Animated.CompositeAnimation | null>(null);
+  useEffect(() => () => {
+    xpToastSequenceRef.current?.stop();
+    xpToastAnim.stopAnimation();
+  }, [xpToastAnim]);
   const lessonXpEstimateMultiplierRef = useRef(1);
   // The completion screen reports only XP that registerXP actually committed.
   // Keep its in-flight awards so navigation cannot race their final multipliers.
@@ -2767,6 +2777,7 @@ export default function LessonScreen() {
         setShuffled([]);
         setSelectedWords([]);
         setTypedText('');
+        teachingNoteSeenIdsRef.current = [];
         setPhraseWordIdx(0);
         setContrExpanded(null);
         touchLessonScreenPrimed(lessonStorageId, {
@@ -2798,7 +2809,8 @@ export default function LessonScreen() {
       // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw] = await Promise.all([
+      const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, studyTargetRef.current);
+      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw, teachingNoteSeenRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),
         AsyncStorage.getItem(CELL_KEY),
@@ -2807,7 +2819,9 @@ export default function LessonScreen() {
         AsyncStorage.getItem(ERROR_REPLAY_SINCE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
         AsyncStorage.getItem(SERVER_ATTEMPT_KEY),
+        AsyncStorage.getItem(teachingNoteMemoryKey),
       ]);
+      teachingNoteSeenIdsRef.current = parseLessonTeachingNoteSeenIds(teachingNoteSeenRaw);
       const serverAttemptId = serverAttemptRaw || makeLessonServerAttemptId();
       serverAttemptIdRef.current = serverAttemptId;
       if (!serverAttemptRaw) {
@@ -3025,9 +3039,7 @@ export default function LessonScreen() {
       : resolvePhraseMistakeToken(expected, answer)?.tokenIndex;
     const shouldResolveTeachingNote = shouldShowLessonTeachingNote({ isPlanPhraseRecallTask, isRight });
     const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, st);
-    const seenTeachingNoteIds = isRight
-      ? parseLessonTeachingNoteSeenIds(await AsyncStorage.getItem(teachingNoteMemoryKey))
-      : [];
+    const seenTeachingNoteIds = isRight ? teachingNoteSeenIdsRef.current : [];
     const nextTeachingNote = shouldResolveTeachingNote
       ? resolvePhraseTeachingNote(
         phrase,
@@ -3040,9 +3052,11 @@ export default function LessonScreen() {
       : null;
     setLessonTeachingNote(nextTeachingNote);
     if (isRight && nextTeachingNote) {
+      const nextSeenTeachingNoteIds = [...seenTeachingNoteIds, nextTeachingNote.id];
+      teachingNoteSeenIdsRef.current = nextSeenTeachingNoteIds;
       void AsyncStorage.setItem(
         teachingNoteMemoryKey,
-        serializeLessonTeachingNoteSeenIds([...seenTeachingNoteIds, nextTeachingNote.id]),
+        serializeLessonTeachingNoteSeenIds(nextSeenTeachingNoteIds),
       ).catch(() => {});
     }
     logLessonAnswer(lessonId, isRight, cellIndex, effectiveTotal, lessonAnalyticsAttemptRef.current!.id);
@@ -3284,17 +3298,22 @@ export default function LessonScreen() {
 
       setXpToastAmount(optimisticXpAmount);
       setXpToastVisible(true);
+      xpToastSequenceRef.current?.stop();
+      xpToastAnim.stopAnimation();
       xpToastAnim.setValue(0);
-      Animated.sequence([
+      const xpToastSequence = Animated.sequence([
         Animated.timing(xpToastAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
         Animated.delay(900),
         Animated.timing(xpToastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-      ]).start(() => setXpToastVisible(false));
-      // [COMBO] Ачивки за серию правильных ответов
-      checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
-      // [TIME] Ачивки за ночное/утреннее обучение
-      if (correctStreakRef.current === 1) {
-        checkAchievements({ type: 'time_of_day' }).catch(() => {});
+      ]);
+      xpToastSequenceRef.current = xpToastSequence;
+      xpToastSequence.start(({ finished }) => {
+        if (finished) setXpToastVisible(false);
+      });
+      // Проверка combo читает/пишет состояние всех достижений. Она нужна только
+      // на реальных порогах, а не после каждого правильного ответа.
+      if (COMBO_ACHIEVEMENT_THRESHOLDS.has(correctStreakRef.current)) {
+        checkAchievements({ type: 'combo', count: correctStreakRef.current, studyTarget: st }).catch(() => {});
       }
     } else {
       correctStreakRef.current = 0;
@@ -3537,6 +3556,7 @@ void lessonFinishDeliveryPromise.catch((deliveryError) => {
           await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
+          markNextNavigationAsReplace();
           router.replace({
             pathname: '/lesson_complete',
             params: {
@@ -3590,6 +3610,7 @@ setShowCycleEndModal(true);
           await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
+          markNextNavigationAsReplace();
           router.replace({
             pathname: '/lesson_complete',
             params: {
@@ -3910,15 +3931,35 @@ setShowCycleEndModal(true);
   const medalToastInitializedRef = useRef(false);
   const [medalToast, setMedalToast] = useState<{ tier: MedalTier; promoted: boolean } | null>(null);
   const medalToastAnim = useRef(new Animated.Value(0)).current;
+  const medalToastSequenceRef = useRef<Animated.CompositeAnimation | null>(null);
+
+  const dismissMedalToast = useCallback(() => {
+    medalToastSequenceRef.current?.stop();
+    medalToastSequenceRef.current = null;
+    medalToastAnim.stopAnimation();
+    medalToastAnim.setValue(0);
+    setMedalToast(null);
+  }, [medalToastAnim]);
 
   const showMedalToast = useCallback((tier: MedalTier, promoted: boolean) => {
+    medalToastSequenceRef.current?.stop();
+    medalToastAnim.stopAnimation();
     setMedalToast({ tier, promoted });
     medalToastAnim.setValue(0);
-    Animated.sequence([
+    const sequence = Animated.sequence([
       Animated.spring(medalToastAnim, { toValue: 1, useNativeDriver: true, friction: 6 }),
       Animated.delay(2200),
       Animated.timing(medalToastAnim, { toValue: 0, duration: 350, useNativeDriver: true }),
-    ]).start(() => setMedalToast(null));
+    ]);
+    medalToastSequenceRef.current = sequence;
+    sequence.start(({ finished }) => {
+      if (finished) setMedalToast(null);
+    });
+  }, [medalToastAnim]);
+
+  useEffect(() => () => {
+    medalToastSequenceRef.current?.stop();
+    medalToastAnim.stopAnimation();
   }, [medalToastAnim]);
 
   useEffect(() => {
@@ -4070,7 +4111,7 @@ setShowCycleEndModal(true);
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/lessons_list' as any)}
+              onPress={() => { markNextNavigationAsReplace(); router.replace('/lessons_list' as any); }}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >
@@ -4193,6 +4234,7 @@ setShowCycleEndModal(true);
             isLightTheme={false}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}
+            onDismiss={dismissMedalToast}
           />
         )}
         {/* ────────────────────────────── */}

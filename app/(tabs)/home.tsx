@@ -541,8 +541,12 @@ export default function HomeScreen() {
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
+    const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const isHomeOwner = runtimeOwnerId === 'home';
-    const homeRuntimeActive = useRuntimeActive(isHomeOwner);
+    // Root Stack монтирует Home под полноэкранным CleanOnboarding. Владение табом
+    // само по себе ещё не означает, что экран видим: до onboarding_done запрещаем
+    // тяжёлые загрузки, Firestore, префетчи и циклы анимаций.
+    const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work. Mark its
     // first handoff dirty so the daily-task summary never remains at the
@@ -571,6 +575,7 @@ export default function HomeScreen() {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
     useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
         const task = InteractionManager.runAfterInteractions(() => {
             void prefetchTrainerPracticeSnapshot({
                 studyTarget,
@@ -580,7 +585,7 @@ export default function HomeScreen() {
         return () => {
             task.cancel();
         };
-    }, [studyTarget, trainerPracticeSourceLocale]);
+    }, [homeRuntimeActive, studyTarget, trainerPracticeSourceLocale]);
     const appSnapshot = useAppSnapshotSelector((snapshot) => ({
         profile: snapshot.profile,
         progress: snapshot.progress,
@@ -656,7 +661,6 @@ export default function HomeScreen() {
     const [homeFeatureTipIndex, setHomeFeatureTipIndex] = useState(0);
     const [homeFeatureTipsDone, setHomeFeatureTipsDone] = useState(false);
     const [homeFeatureTipsHydrated, setHomeFeatureTipsHydrated] = useState(false);
-    const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const homeFeatureTipTouchStartRef = useRef<{ x: number; y: number } | null>(null);
     const homeFeatureTipSwipeHandledRef = useRef(false);
     const homeFeatureTipHintPulse = useRef(new Animated.Value(0)).current;
@@ -1044,9 +1048,12 @@ export default function HomeScreen() {
         transform: [{ translateY: sectionSlide[i] }],
     });
     useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
         fadeAnim.setValue(0);
-        Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
-    }, [lang, studyTarget]);
+        const animation = Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER });
+        animation.start();
+        return () => animation.stop();
+    }, [fadeAnim, homeRuntimeActive, lang, studyTarget]);
     useEffect(() => {
         if (!homeRuntimeActive)
             return;
@@ -1070,13 +1077,14 @@ export default function HomeScreen() {
     // маунту в сессии (бюджет холодного старта): дальше отдаём готовую страницу сразу.
     const [belowFoldReady, setBelowFoldReady] = useState(homeBelowFoldReadyOnce);
     useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
         if (homeBelowFoldReadyOnce) return undefined;
         const task = InteractionManager.runAfterInteractions(() => {
             homeBelowFoldReadyOnce = true;
             setBelowFoldReady(true);
         });
         return () => { task?.cancel?.(); };
-    }, []);
+    }, [homeRuntimeActive]);
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
@@ -1237,6 +1245,9 @@ export default function HomeScreen() {
             if (!name) return;
             setLastLesson({ id: payload.lessonId, name, progress: payload.progress, score: payload.score });
         });
+        const onboardingCompletedSub = onAppEvent('onboarding_completed', () => {
+            setHomeOnboardingDone(true);
+        });
         return () => {
             mountedRef.current = false;
             sub.remove();
@@ -1256,6 +1267,7 @@ export default function HomeScreen() {
             freezeUpdatedSub.remove();
             revivedSub.remove();
             lastOpenedLessonSub.remove();
+            onboardingCompletedSub.remove();
             deferredReadyTaskRef.current?.cancel?.();
             deferredReadyTaskRef.current = null;
             deferredReloadTaskRef.current?.cancel?.();
@@ -1548,7 +1560,7 @@ export default function HomeScreen() {
         };
     }, [homeRuntimeActive, studyTarget, lang]);
     useEffect(() => {
-        if (!isHomeOwner || homeLeagueCrownLoadedRef.current) return;
+        if (!homeRuntimeActive || homeLeagueCrownLoadedRef.current) return;
         homeLeagueCrownLoadedRef.current = true;
         let cancelled = false;
         void ensureAnonUser()
@@ -1573,7 +1585,7 @@ export default function HomeScreen() {
         return () => {
             cancelled = true;
         };
-    }, [isHomeOwner]);
+    }, [homeRuntimeActive]);
     /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
     useEffect(() => {
         if (!homeStatsReady || !homeRuntimeActive)

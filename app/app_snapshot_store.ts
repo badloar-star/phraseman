@@ -166,6 +166,29 @@ export function patchAppSnapshot(patchOrFn: Patch): void {
   emitSnapshotChanged();
 }
 
+/**
+ * Publishes an avatar/aura choice to both customization state and the shared
+ * visible profile in one notification. The profile timestamp always advances,
+ * including on a local-storage rollback, so an older hydration cannot restore
+ * the avatar the user just replaced and a failed write can still restore the
+ * previous choice correctly.
+ */
+export function patchAppSnapshotCustomizationSelection(customization: CustomizationSnapshot): void {
+  patchAppSnapshot((current) => {
+    if (!current.profile) return { customization };
+    return {
+      customization,
+      profile: {
+        ...current.profile,
+        source: 'local',
+        updatedAt: Math.max(Date.now(), customization.updatedAt, current.profile.updatedAt + 1),
+        avatar: customization.activeAvatar,
+        aura: customization.storedAuraSelection || undefined,
+      },
+    };
+  });
+}
+
 const AUTHORITATIVE_TOTAL_XP_MAX = 1_000_000_000;
 const AUTHORITATIVE_STREAK_MAX = 100_000;
 

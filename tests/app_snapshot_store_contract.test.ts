@@ -3,6 +3,7 @@ import {
   getAppSnapshot,
   patchAppSnapshotFromAuthoritativeCloudProgress,
   patchAppSnapshot,
+  patchAppSnapshotCustomizationSelection,
   pruneBoundedRecord,
   resolveHydratedProfileName,
   resetAppSnapshotForAccountSwitch,
@@ -238,5 +239,60 @@ describe('app snapshot store contract', () => {
     resetAppSnapshotForAccountSwitch();
 
     expect(getAppSnapshot().customization).toBeUndefined();
+  });
+
+  it('publishes avatar and aura choices to the visible profile immediately and can roll them back', () => {
+    patchAppSnapshot({
+      profile: {
+        source: 'storage',
+        updatedAt: 100,
+        name: 'Ada',
+        avatar: '18',
+        frame: 'frame-18',
+        aura: 'aura-ember',
+        totalXp: 1250,
+        level: 18,
+        premiumActive: false,
+        vipActive: false,
+      },
+    });
+    const previous = {
+      source: 'storage' as const,
+      updatedAt: 100,
+      activeAvatar: '18',
+      storedAuraSelection: 'aura-ember',
+      totalXp: 1250,
+      level: 18,
+      shards: 77,
+      ownedAvatars: {},
+      ownedAuras: {},
+      giftedAvatarId: null,
+      giftedAuraId: null,
+    };
+
+    patchAppSnapshotCustomizationSelection({
+      ...previous,
+      source: 'local',
+      updatedAt: 200,
+      activeAvatar: 'custom:custom-gen-41:aurora:white',
+      storedAuraSelection: 'aura-aurora',
+    });
+    expect(getAppSnapshot()).toMatchObject({
+      profile: {
+        source: 'local',
+        avatar: 'custom:custom-gen-41:aurora:white',
+        aura: 'aura-aurora',
+      },
+      customization: {
+        activeAvatar: 'custom:custom-gen-41:aurora:white',
+        storedAuraSelection: 'aura-aurora',
+      },
+    });
+
+    patchAppSnapshotCustomizationSelection(previous);
+    expect(getAppSnapshot()).toMatchObject({
+      profile: { source: 'local', avatar: '18', aura: 'aura-ember' },
+      customization: { activeAvatar: '18', storedAuraSelection: 'aura-ember' },
+    });
   });
 });

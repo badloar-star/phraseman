@@ -73,6 +73,25 @@ describe('customization service', () => {
     expect(deps.syncPublicProfile).not.toHaveBeenCalled();
   });
 
+  it('resolves after local persistence without waiting for cache or server mirrors', async () => {
+    const deps = makeDeps();
+    let finishBackground!: () => void;
+    const background = new Promise<void>((resolve) => { finishBackground = resolve; });
+    deps.invalidateCaches = jest.fn(() => background);
+    deps.syncCloud = jest.fn(() => background);
+    deps.syncPublicProfile = jest.fn(() => background);
+
+    await expect(applyCustomizationDraft(availableInput, deps)).resolves.toMatchObject({
+      activeAvatar: availableInput.avatarValue,
+      storedAuraSelection: availableInput.storedAuraSelection,
+    });
+    expect(deps.invalidateCaches).toHaveBeenCalledTimes(1);
+    expect(deps.syncCloud).toHaveBeenCalledTimes(1);
+    expect(deps.syncPublicProfile).toHaveBeenCalledTimes(1);
+    finishBackground();
+    await background;
+  });
+
   it('resets to computed level avatar and frame while preserving stored aura', async () => {
     const deps = makeDeps();
     await resetToLevelAvatar({ level: 18, storedAuraSelection: 'none' }, deps);

@@ -44,6 +44,14 @@ function alreadyApplied(previous: CustomizationSnapshot, input: ApplyCustomizati
     && previous.level === Math.max(1, Math.floor(input.level));
 }
 
+function settleCustomizationBackgroundWork(work: () => void | Promise<void>): Promise<void> {
+  try {
+    return Promise.resolve(work()).then(() => undefined, () => undefined);
+  } catch {
+    return Promise.resolve();
+  }
+}
+
 async function applyCustomizationDraftInternal(
   input: ApplyCustomizationInput,
   deps: CustomizationServiceDeps,
@@ -65,9 +73,13 @@ async function applyCustomizationDraftInternal(
     throw error;
   }
 
-  await deps.invalidateCaches(input.avatarValue, input.storedAuraSelection);
-  await deps.syncCloud(input.cloudSyncMode ?? 'deferred');
-  await deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection);
+  // Local state is already visible and durable. Cache cleanup and both remote
+  // mirrors must never hold the Apply button or the rest of the UI hostage.
+  void Promise.all([
+    settleCustomizationBackgroundWork(() => deps.invalidateCaches(input.avatarValue, input.storedAuraSelection)),
+    settleCustomizationBackgroundWork(() => deps.syncCloud(input.cloudSyncMode ?? 'deferred')),
+    settleCustomizationBackgroundWork(() => deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection)),
+  ]);
   return optimistic;
 }
 

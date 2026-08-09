@@ -50,6 +50,7 @@ it('applies authoritative cloud stats after local Home hydration has already fin
   expect(shouldApplyHomeSnapshotToStats).toEqual(expect.any(Function));
   expect(shouldApplyHomeSnapshotToStats!(true, 'live', 'live')).toBe(true);
   expect(shouldApplyHomeSnapshotToStats!(true, 'storage', 'storage')).toBe(false);
+  expect(shouldApplyHomeSnapshotToStats!(true, 'local', 'storage')).toBe(true);
 });
 
 it('keeps delayed app snapshot hydration wired to home profile visuals', () => {

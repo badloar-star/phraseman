@@ -364,6 +364,32 @@ describe('ExpoSfxBackend', () => {
     }
   });
 
+  test('an obsolete rewind cannot start a newer play of the same cached sound', async () => {
+    const seekResolvers: Array<() => void> = [];
+    const calls: string[] = [];
+    const player: SfxPlayerLike = {
+      volume: 1,
+      play: () => calls.push('play'),
+      pause: () => calls.push('pause'),
+      seekTo: () => new Promise<void>((resolve) => { seekResolvers.push(resolve); }),
+      remove: () => calls.push('remove'),
+      addListener: () => ({ remove: () => {} }),
+    };
+    const backend = new ExpoSfxBackend(() => player, 2);
+
+    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(seekResolvers).toHaveLength(3); // first play, stop rewind, second play
+
+    seekResolvers[0]();
+    await Promise.resolve();
+    expect(calls).not.toContain('play');
+
+    seekResolvers[2]();
+    await Promise.resolve();
+    expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+  });
+
   // зачем 2026-08-03 (владелец: «звук таймера был только в первом раунде
   // турнира, дальше вообще ни разу»): корень — expo-audio на Android читает
   // didJustFinish напрямую из playbackState (см. AudioPlayer.kt, currentStatus:

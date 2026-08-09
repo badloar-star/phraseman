@@ -119,7 +119,8 @@ import {
 import { closeTournamentFlow } from '../tournament_navigation';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { getStableId } from '../stable_id';
-import { useTabNav } from '../TabContext';
+import { ENABLE_TOURNAMENTS } from '../config';
+import { DeferredRedirect } from '../../components/DeferredRedirect';
 
 // зачем 2026-07-27: хаб турниров стал push-экраном (релиз без турниров), и
 // гвардом видимости работает честный фокус экрана — контекст табов ему больше
@@ -282,7 +283,7 @@ function hubAvatar(entry: SeasonEntry): string {
   return String((hash % 8) + 1);
 }
 
-export default function TournamentsScreen() {
+function TournamentsScreen() {
   const { themeMode } = useTheme();
   const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
@@ -452,31 +453,13 @@ export default function TournamentsScreen() {
   }, [nextSlot]);
 
   /**
-   * зачем 2026-07-27 (владелец: «релиз без турниров»): хаб перестал быть табом
-   * и стал обычным push-экраном поверх группы `(tabs)` — попасть сюда можно
-   * только дев-кнопкой из хедера главной. Поэтому гвардом видимости снова
-   * работает useIsFocused(): у push-экрана он честный (внутри `(tabs)` он был
-   * истинен для всех табов сразу, из-за чего гвард и держали на runtimeOwnerId).
-   *
-   * Это гейт для ВСЕЙ живой части хаба: подписки на комнату и секундных
-   * таймеров. Функционал сохраняется полностью — при возврате на экран подписка
-   * поднимается мгновенно и первым снимком догоняет актуальное состояние.
+   * Релизный layout перенаправляет /tournaments на главную и не включает хаб
+   * ни в список вкладок, ни в свайп-пейджер. Держим живую часть fail-closed
+   * даже на коротком монтировании до redirect: без подписок, секундных таймеров,
+   * модалей и сетевого обновления. Исходник сохранён для будущего возврата фичи.
    */
   const screenFocused = useIsFocused();
-  // зачем 2026-08-04 (инцидент: модал приветствия вылезал на ГЛАВНОЙ и глушил
-  // экран): турниры давно вернули в таббар (TABS в (tabs)/_layout.tsx), а
-  // соседние табы ФОНОВО ПРЕМАУНТЯТСЯ через ~160-500мс после открытия главной
-  // (ENABLE_BACKGROUND_TAB_PREMOUNT, BACKGROUND_TAB_PREMOUNT_ORDER=[1,2,3]) —
-  // ради мгновенного первого открытия таба. useIsFocused() в expo-router
-  // считает сфокусированным весь route-стек `(tabs)`, а не конкретный таб
-  // внутри свайпера, поэтому screenFocused=true уже во время премаунта, пока
-  // пользователь физически смотрит на главную. Комментарий выше про
-  // «useIsFocused честный, потому что это push-экран» устарел ещё когда
-  // турниры вернули в таббар — сам он неверный, но чинить весь файл вне
-  // рамок этой задачи. runtimeOwnerId — то, чем friends.tsx/settings.tsx уже
-  // отличают «мой таб реально на экране» от «весь (tabs)-стек в фокусе».
-  const { runtimeOwnerId } = useTabNav();
-  const tournamentsTabVisible = runtimeOwnerId === 'tournaments';
+  const tournamentsTabVisible = ENABLE_TOURNAMENTS;
   const runtimeActive = useRuntimeActive(screenFocused && tournamentsTabVisible);
 
   // зачем 2026-08-04 (фикс после аудита — было инвертировано, см. комментарий
@@ -524,9 +507,10 @@ export default function TournamentsScreen() {
   // всё ещё "сейчас турниров нет"»): loadSchedule() кэширует снимок на 6 часов
   // в памяти модуля (SCHEDULE_TTL_MS) — экономия чтений оправдана, расписание
   // почти не меняется, НО именно поэтому владелец не видит свой тумблер сразу.
-  // Фоновый premount retained-tab уже даёт screenFocused=true, поэтому первым
-  // реальным входом считаем только runtimeOwnerId === 'tournaments'. На каждый
-  // такой вход форсируем свежий снимок: stale/timeout-кэш не должен держать
+  // Фоновый premount раньше уже давал screenFocused=true, поэтому обновление
+  // разрешено только при реальной видимости фичи. После вывода из релиза флаг
+  // всегда false; при будущем возврате его надо подключить к новой навигации.
+  // На каждый разрешённый вход форсируем свежий снимок: stale/timeout-кэш не должен держать
   // кнопку в состоянии «сейчас турниров нет».
   // 1 лишнее чтение раз в видимый вход, не за кадр — цена ничтожна рядом с
   // честным статусом турнира.
@@ -1422,6 +1406,23 @@ export default function TournamentsScreen() {
     </View>
   );
 }
+
+/**
+ * Release gate at the route boundary.
+ *
+ * The tabs layout also redirects the retired route, but it is not safe to rely
+ * on parent/child mount ordering for a deep link. Keeping the full hub behind
+ * this wrapper guarantees that its balance, bank, schedule and event effects
+ * are never mounted while tournaments are excluded from the release.
+ */
+function TournamentsRoute() {
+  if (!ENABLE_TOURNAMENTS) {
+    return <DeferredRedirect href="/(tabs)/home" />;
+  }
+  return <TournamentsScreen />;
+}
+
+export default TournamentsRoute;
 
 // ── Пульс «в эфире» ─────────────────────────────────────────────────────────
 

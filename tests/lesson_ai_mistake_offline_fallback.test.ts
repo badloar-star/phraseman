@@ -7,6 +7,16 @@ const cardSource = fs.readFileSync(path.join(ROOT, 'components', 'AiMistakeCard.
 const clientSource = fs.readFileSync(path.join(ROOT, 'app', 'ai_mistake_explain_client.ts'), 'utf8');
 
 describe('lesson AI mistake background recovery', () => {
+  it('subscribes to connectivity only while a mistake explanation is active', () => {
+    const subscription = hookSource.slice(
+      hookSource.indexOf('// Без активного промаха AI'),
+      hookSource.indexOf('// Любое состояние без подтверждённого online'),
+    );
+    expect(subscription).toContain('if (!active) return undefined;');
+    expect(subscription).toContain('return subscribeNetStatus');
+    expect(subscription).toContain('}, [active]);');
+  });
+
   it('keeps an inline request loading and retries without exposing an error', () => {
     const explainStart = hookSource.indexOf('const explain = useCallback');
     const catchStart = hookSource.indexOf('} catch (error) {', explainStart);

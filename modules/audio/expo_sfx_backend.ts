@@ -38,11 +38,13 @@ const SEEK_SETTLE_TIMEOUT_MS = 200;
 export class ExpoSfxBackend {
   private readonly cache = new Map<SoundEventId, CacheEntry>();
   private current: {
+    token: number;
     eventId: SoundEventId;
     player: SfxPlayerLike;
     subscription: SubscriptionLike | null;
   } | null = null;
   private useSequence = 0;
+  private playbackSequence = 0;
 
   constructor(
     private readonly createPlayer: PlayerFactory = (source) => createAudioPlayer(source) as unknown as SfxPlayerLike,
@@ -58,6 +60,7 @@ export class ExpoSfxBackend {
     try {
       this.stop();
       const player = this.ensure(eventId, source);
+      const playbackToken = ++this.playbackSequence;
       player.volume = Math.max(0, Math.min(1, volume));
       const seekResult = player.seekTo(0);
       const seekPromise = seekResult && typeof (seekResult as Promise<void>).then === 'function'
@@ -100,7 +103,7 @@ export class ExpoSfxBackend {
       let startAttempted = false;
       const RETRY_WINDOW_MS = 400;
       const subscription = player.addListener('playbackStatusUpdate', (status) => {
-        if (this.current?.player !== player) return;
+        if (this.current?.token !== playbackToken || this.current.player !== player) return;
 
         if (status.playing === true) sawPlaying = true;
         const withinRetryWindow = !startAttempted || Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
@@ -126,7 +129,7 @@ export class ExpoSfxBackend {
           try { player.play(); } catch {}
         }
       });
-      this.current = { eventId, player, subscription };
+      this.current = { token: playbackToken, eventId, player, subscription };
 
       let seekFallbackTimer: ReturnType<typeof setTimeout> | null = null;
       let startReleased = false;
@@ -138,7 +141,10 @@ export class ExpoSfxBackend {
           seekFallbackTimer = null;
         }
         seekSettled = true;
-        if (this.current?.player !== player) return;
+        // Сравнения только player недостаточно: повтор того же eventId повторно
+        // использует тот же объект. Поздний timeout/Promise прошлого seek тогда
+        // мог запустить уже новый сеанс раньше завершения его собственной перемотки.
+        if (this.current?.token !== playbackToken || this.current.player !== player) return;
         startAttempted = true;
         playStartedAtMs = Date.now();
         try {

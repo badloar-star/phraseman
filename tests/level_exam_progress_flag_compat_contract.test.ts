@@ -31,13 +31,16 @@ describe('level exam progress flag compatibility', () => {
     expect(progressEvents).toContain("return s === 'true' || s === '1' || s === 'yes'");
   });
 
-  it('preserves legacy local writes while cloud restore remains monotonic', () => {
+  it('keeps both local exam routes and cloud restore monotonic', () => {
     const examV2 = read('components/level-exam/LevelExamV2.tsx');
     const legacyExam = read('app/level_exam.tsx');
     const cloudSync = read('app/cloud_sync.ts');
 
     expect(examV2).toContain("scored.passed ? '1' : '0'");
-    expect(legacyExam).toContain("passed ? '1' : '0'");
+    expect(legacyExam).toContain('const persistedPassed = storedProgressFlagIsTrue(previousPassedRaw) || passed');
+    expect(legacyExam).toContain('const persistedPct = Math.max(Number.isFinite(previousPct) ? previousPct : 0, pct)');
+    expect(legacyExam).toContain("persistedPassed ? '1' : '0'");
+    expect(legacyExam).not.toContain("levelExamKey(lvl, 'passed', studyTarget), passed ? '1' : '0'");
     expect(cloudSync).toContain("parseProgressBool(cloudValue) || parseProgressBool(localValue) ? 'true' : 'false'");
   });
 });

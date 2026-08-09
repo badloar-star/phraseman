@@ -41,7 +41,7 @@ import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_p
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { levelExamKey, storageStudyTarget } from './target_storage_keys';
+import { levelExamKey, storageStudyTarget, storedProgressFlagIsTrue } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime';
 import { recordLevelExamAttempt } from './level_exam_attempts';
@@ -848,10 +848,21 @@ export default function LevelExam() {
     try {
       const attemptNumber = await recordLevelExamAttempt(lvl, studyTarget);
       setExamAttemptNumber(attemptNumber);
-      await AsyncStorage.setItem(levelExamKey(lvl, 'pct', studyTarget), String(pct));
+      const [[, previousPctRaw], [, previousPassedRaw]] = await AsyncStorage.multiGet([
+        levelExamKey(lvl, 'pct', studyTarget),
+        levelExamKey(lvl, 'passed', studyTarget),
+      ]);
+      const previousPct = Number(previousPctRaw ?? 0);
+      const persistedPct = Math.max(Number.isFinite(previousPct) ? previousPct : 0, pct);
+      const persistedPassed = storedProgressFlagIsTrue(previousPassedRaw) || passed;
       // Локальный формат 1/0 сохраняет совместимость со старыми клиентами;
-      // читатели понимают и его, и канонические cloud-значения true/false.
-      await AsyncStorage.setItem(levelExamKey(lvl, 'passed', studyTarget), passed ? '1' : '0');
+      // читатели понимают и его, и канонические cloud-значения true/false. Результат
+      // монотонный: пересдача не может понизить лучший процент или снова закрыть
+      // уже открытый уровень.
+      await AsyncStorage.multiSet([
+        [levelExamKey(lvl, 'pct', studyTarget), String(persistedPct)],
+        [levelExamKey(lvl, 'passed', studyTarget), persistedPassed ? '1' : '0'],
+      ]);
       // При сдаче зачёта открываем следующий уровень.
       if (passed) {
         const nextLevel = getNextCourseLevel(lvl as CourseLevel);

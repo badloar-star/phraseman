@@ -358,19 +358,16 @@ function MedalToast({
         <View style={styles.textWrap}>
           <Text
             style={[styles.tierLabel, { color: accent }]}
-            numberOfLines={1}
           >
             {tierBadgeText(tier, promoted, lang, spanishUiActive)}
           </Text>
           <Text
             style={[styles.title, { color: visualTheme.titleColor }]}
-            numberOfLines={1}
           >
             {labels.title}
           </Text>
           <Text
             style={[styles.subtitle, { color: visualTheme.subtitleColor }]}
-            numberOfLines={2}
           >
             {labels.subtitle}
           </Text>

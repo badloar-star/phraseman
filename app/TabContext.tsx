@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useCallback, useMemo } from 'react';
-import type { TabRuntimeOwnerId } from './tab_page_model';
+import { LOGICAL_TAB_IDS, type TabRuntimeOwnerId } from './tab_page_model';
 
 interface TabCtx {
   activeIdx: number;
@@ -23,8 +23,10 @@ const TabContext = createContext<TabCtx>({
 
 export const useTabNav = () => useContext(TabContext);
 
-// Порядок синхронизирован с LOGICAL_TAB_IDS в app/tab_page_model.ts.
-export const TAB_KEYS = ['home', 'lessons', 'tournaments', 'friends', 'settings'] as const;
+// Один источник правды: запасной runtime-владелец обязан иметь тот же индекс,
+// что и физическая релизная страница. Иначе после удаления/перестановки таба
+// fallback незаметно отдаёт владельца соседнего экрана.
+export const TAB_KEYS = LOGICAL_TAB_IDS;
 
 export function TabProvider({
   children,

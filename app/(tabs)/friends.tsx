@@ -3011,7 +3011,7 @@ export default function FriendsTabScreen() {
     }
   };
 
-  const requestSendGift = async (giftId: FriendGiftId) => {
+  const requestSendGift = (giftId: FriendGiftId) => {
     if (!giftTarget || giftBusyId || giftRequestInFlightRef.current) return;
     if (getNetStatus() === 'offline') {
       notifyFriendGiftOffline();
@@ -3026,36 +3026,37 @@ export default function FriendsTabScreen() {
       || !requestAccountToken.stableId
       || !isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)
     ) return;
-    giftRequestInFlightRef.current = true;
-    try {
-      const freshBalance = await getShardsBalance();
-      if (!isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)) return;
-      if (giftTargetRef.current?.uid !== target.uid) return;
-      setGiftBalance((prev) => (prev === freshBalance ? prev : freshBalance));
-      if (freshBalance < gift.costShards) {
-        const missing = gift.costShards - freshBalance;
-        setGiftTarget(null);
-        showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
-        emitAppEvent('action_toast', {
-          type: 'info',
-          messageRu: `Нужно ещё жемчуга: ${missing}`,
-          messageUk: `Потрібно ще перлин: ${missing}`,
-          messageEs: `Necesitas más perlas: ${missing}`,
-          messagePtBr: `Você precisa de mais pérolas: ${missing}`,
-          messageVi: `Cần thêm ngọc trai: ${missing}`,
-          messageId: `Butuh mutiara lagi: ${missing}`,
-          messageTr: `Daha fazla inci gerekiyor: ${missing}`,
-          messagePl: `Potrzeba więcej monet: ${missing}`,
-        });
-        router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
-        return;
-      }
-      await handleSendGift(giftId, target, freshBalance);
-    } catch {
+    // Баланс уже прогревается при открытии picker. Не ждём здесь AsyncStorage:
+    // тап должен закрыть шторку и показать результат в том же кадре, а серверная
+    // проверка и списание догонят в фоне.
+    const knownBalance = peekLastKnownShardsBalance();
+    const warmBalance = knownBalance ?? giftBalance;
+    setGiftBalance((prev) => (prev === warmBalance ? prev : warmBalance));
+    if (knownBalance !== null && warmBalance < gift.costShards) {
+      const missing = gift.costShards - warmBalance;
+      setGiftTarget(null);
+      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: `Нужно ещё жемчуга: ${missing}`,
+        messageUk: `Потрібно ще перлин: ${missing}`,
+        messageEs: `Necesitas más perlas: ${missing}`,
+        messagePtBr: `Você precisa de mais pérolas: ${missing}`,
+        messageVi: `Cần thêm ngọc trai: ${missing}`,
+        messageId: `Butuh mutiara lagi: ${missing}`,
+        messageTr: `Daha fazla inci gerekiyor: ${missing}`,
+        messagePl: `Potrzeba więcej monet: ${missing}`,
+      });
+      router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
       return;
-    } finally {
-      giftRequestInFlightRef.current = false;
     }
+    giftRequestInFlightRef.current = true;
+    // Если диск ещё не прогрет, не объявляем нулевой placeholder реальным
+    // балансом. Сервер всё равно атомарно проверит стоимость и вернёт точную
+    // ошибку; UI при этом остаётся мгновенным.
+    void handleSendGift(giftId, target, knownBalance ?? Number.MAX_SAFE_INTEGER).finally(() => {
+      giftRequestInFlightRef.current = false;
+    });
   };
 
   const incomingReplyTarget = useCallback((gift: IncomingFriendGift): FriendProfile => {
@@ -3096,21 +3097,28 @@ export default function FriendsTabScreen() {
     }
   }, [L, giftBusyId, incomingGiftModal, myProfile?.name, showFeedback]);
 
-  const handleIncomingGiftReply = useCallback(async (giftId: FriendGiftId) => {
+  const handleIncomingGiftReply = useCallback((giftId: FriendGiftId) => {
     const first = incomingGiftModal?.gifts[0];
-    if (!first || giftBusyId) return;
+    if (!first || giftBusyId || giftRequestInFlightRef.current) return;
+    if (getNetStatus() === 'offline') {
+      notifyFriendGiftOffline();
+      return;
+    }
     const target = incomingReplyTarget(first);
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
-    const balance = await getShardsBalance().catch(() => 0);
-    if (balance < gift.costShards) {
+    const knownBalance = peekLastKnownShardsBalance();
+    if (knownBalance !== null && knownBalance < gift.costShards) {
       setIncomingGiftModal(null);
-      router.push({ pathname: '/shards_shop', params: { need: String(gift.costShards - balance), source: 'friend_gift_reply' } } as any);
+      router.push({ pathname: '/shards_shop', params: { need: String(gift.costShards - knownBalance), source: 'friend_gift_reply' } } as any);
       return;
     }
     setIncomingGiftModal(null);
-    await handleSendGift(giftId, target, balance);
-  }, [giftBusyId, handleSendGift, incomingGiftModal, incomingReplyTarget, router]);
+    giftRequestInFlightRef.current = true;
+    void handleSendGift(giftId, target, knownBalance ?? Number.MAX_SAFE_INTEGER).finally(() => {
+      giftRequestInFlightRef.current = false;
+    });
+  }, [giftBusyId, handleSendGift, incomingGiftModal, incomingReplyTarget, notifyFriendGiftOffline, router]);
 
   const handleClaimFriendQuest = useCallback(async () => {
     if (!activeFriendQuest || friendQuestBusy) return;

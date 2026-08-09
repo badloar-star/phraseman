@@ -151,7 +151,7 @@ describe('owner runtime direction contract', () => {
     // Явное действие пользователя (применить/купить) — немедленный sync.
     expect(avatarSource).toContain("cloudSyncMode: 'immediate'");
     // Режим по умолчанию и сброс к уровневому аватару остаются отложенными (deferred).
-    expect(customizationService).toContain("settleCustomizationBackgroundWork(() => deps.syncCloud(input.cloudSyncMode ?? 'deferred'))");
+    expect(customizationService).toContain("return deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
     expect(customizationService).not.toContain("await deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
     expect(customizationService).not.toContain('await deps.syncPublicProfile(');
     expect(customizationService).toContain("cloudSyncMode: 'deferred'");

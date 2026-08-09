@@ -22,6 +22,10 @@ export interface CustomizationServiceDeps {
     level: number,
     storedAuraSelection: string | null,
   ) => void | Promise<void>;
+  createAccountScope?: () => {
+    isCurrent: () => boolean;
+    runExclusive: <T>(work: () => Promise<T>) => Promise<T | undefined>;
+  };
 }
 
 function snapshotForInput(
@@ -57,28 +61,50 @@ async function applyCustomizationDraftInternal(
   deps: CustomizationServiceDeps,
   force: boolean,
 ): Promise<CustomizationSnapshot> {
+  const accountScope = deps.createAccountScope?.();
+  if (accountScope && !accountScope.isCurrent()) {
+    throw new Error('customization_account_changed');
+  }
   const previous = deps.getCurrentSnapshot();
   if (!force && alreadyApplied(previous, input)) return previous;
 
   const optimistic = snapshotForInput(previous, input);
   deps.publishSnapshot(optimistic);
   try {
-    await deps.storage.multiSet([
-      ['user_avatar', input.avatarValue],
-      ['user_frame', input.frameId],
-      [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
-    ]);
+    const persist = async (): Promise<boolean> => {
+      if (accountScope && !accountScope.isCurrent()) return false;
+      await deps.storage.multiSet([
+        ['user_avatar', input.avatarValue],
+        ['user_frame', input.frameId],
+        [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
+      ]);
+      return !accountScope || accountScope.isCurrent();
+    };
+    const persisted = accountScope ? await accountScope.runExclusive(persist) : await persist();
+    if (persisted !== true) throw new Error('customization_account_changed');
   } catch (error) {
-    deps.publishSnapshot(previous);
+    // При обычной ошибке диска откатываем оптимистичный кадр. После смены
+    // аккаунта старый snapshot публиковать уже нельзя: он перетрёт состояние
+    // нового владельца.
+    if (!accountScope || accountScope.isCurrent()) deps.publishSnapshot(previous);
     throw error;
   }
 
   // Local state is already visible and durable. Cache cleanup and both remote
   // mirrors must never hold the Apply button or the rest of the UI hostage.
   void Promise.all([
-    settleCustomizationBackgroundWork(() => deps.invalidateCaches(input.avatarValue, input.storedAuraSelection)),
-    settleCustomizationBackgroundWork(() => deps.syncCloud(input.cloudSyncMode ?? 'deferred')),
-    settleCustomizationBackgroundWork(() => deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection)),
+    settleCustomizationBackgroundWork(() => {
+      if (accountScope && !accountScope.isCurrent()) return;
+      return deps.invalidateCaches(input.avatarValue, input.storedAuraSelection);
+    }),
+    settleCustomizationBackgroundWork(() => {
+      if (accountScope && !accountScope.isCurrent()) return;
+      return deps.syncCloud(input.cloudSyncMode ?? 'deferred');
+    }),
+    settleCustomizationBackgroundWork(() => {
+      if (accountScope && !accountScope.isCurrent()) return;
+      return deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection);
+    }),
   ]);
   return optimistic;
 }

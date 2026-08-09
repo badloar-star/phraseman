@@ -9,6 +9,7 @@ import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -59,7 +60,6 @@ type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
 let deferredLessonsScreen: TabScreenComponent | null = null;
-let deferredTournamentsScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
 
@@ -73,11 +73,6 @@ function loadFriendsScreen(): TabScreenComponent {
   return deferredFriendsScreen;
 }
 
-function loadTournamentsScreen(): TabScreenComponent {
-  deferredTournamentsScreen ??= (require('./tournaments') as DeferredTabModule).default;
-  return deferredTournamentsScreen;
-}
-
 function loadSettingsScreen(): TabScreenComponent {
   deferredSettingsScreen ??= (require('./settings') as DeferredTabModule).default;
   return deferredSettingsScreen;
@@ -86,9 +81,8 @@ function loadSettingsScreen(): TabScreenComponent {
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
     case 1: return loadLessonsScreen();
-    case 2: return loadTournamentsScreen();
-    case 3: return loadFriendsScreen();
-    case 4: return loadSettingsScreen();
+    case 2: return loadFriendsScreen();
+    case 3: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -246,22 +240,20 @@ type TabDef = {
 };
 
 /** Суффиксы основных табов. `/journal` остаётся legacy-якорем вкладки уроков. */
-const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/tournaments', '/friends', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
   '/journal': 1,
   '/lessons': 1,
-  '/tournaments': 2,
-  '/friends': 3,
-  '/settings': 4,
+  '/friends': 2,
+  '/settings': 3,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
   1: '/(tabs)/lessons',
-  2: '/(tabs)/tournaments',
-  3: '/(tabs)/friends',
-  4: '/(tabs)/settings',
+  2: '/(tabs)/friends',
+  3: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -294,7 +286,7 @@ const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const;
 // The entire capsule stays visible and only compacts slightly on downward scroll.
 const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
 const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
@@ -316,9 +308,8 @@ const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
   journal: 1,
   lessons: 1,
-  tournaments: 2,
-  friends: 3,
-  settings: 4,
+  friends: 2,
+  settings: 3,
 };
 
 /**
@@ -369,16 +360,15 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 const TABS: TabDef[] = [
   { key: 'home',        icon: 'home-outline',        active: 'home' },
   { key: 'lessons',     icon: 'book-outline',        active: 'book' },
-  { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
 ];
 
-// Турниры временно скрыты только из клиентской навигации. Логический индекс и
-// маршрут сохраняем: это не сдвигает существующие вкладки и не ломает deeplink.
-const TAB_BAR_TABS = TABS.filter((tab) => tab.key !== 'tournaments').map((tab) => ({
+// Видимый таббар и свайп-пейджер используют один и тот же список страниц.
+// Скрытых физических страниц здесь быть не должно: иначе в них можно попасть свайпом.
+const TAB_BAR_TABS = TABS.map((tab, logicalIdx) => ({
   ...tab,
-  logicalIdx: TABS.indexOf(tab),
+  logicalIdx,
 }));
 
 
@@ -577,15 +567,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
-      {/* зачем 2026-08-04 (владелец: «фон турниров привести к единому стандарту
-          как у друзей/настроек/главной»): убрана опаковая плашка сейф-зоны,
-          которая была костылём под старый ОПАКОВЫЙ фон tournaments.tsx (тот
-          красил экран плоским P.bg поверх общего ScreenGradient, отсюда и шов
-          над «ТУРНИРЫ» — эта плашка его прятала). Теперь styles.root в
-          tournaments.tsx прозрачный, экран показывает тот же общий градиент/
-          орбы/блум, что и остальные табы — отдельная плашка над сейф-зоной
-          только для индекса 2 создавала бы НОВЫЙ шов на фоне, который иначе
-          везде однородный. */}
       <View
         onLayout={notifyFirstContentReady}
         style={{ flex: 1, paddingTop: insets.top }}
@@ -705,7 +686,7 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
   };
 }
 
-export default function TabLayout() {
+function ReleasedTabLayout() {
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();
   const pathname = usePathname();
@@ -944,9 +925,8 @@ export default function TabLayout() {
           isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
         />
       ) : placeholder('ph-lessons'),
-      show(2) ? <TabPane key="tournaments" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
-      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
   }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
@@ -959,6 +939,19 @@ export default function TabLayout() {
       </TopFadeScrollProvider>
     </TabProvider>
   );
+}
+
+function isDisabledTournamentTabPath(pathnameRaw: string): boolean {
+  const pathname = pathnameRaw.replace(/\/$/, '');
+  return pathname === '/tournaments' || pathname.endsWith('/(tabs)/tournaments');
+}
+
+export default function TabLayout() {
+  const pathname = usePathname();
+  if (isDisabledTournamentTabPath(pathname)) {
+    return <DeferredRedirect href="/(tabs)/home" />;
+  }
+  return <ReleasedTabLayout />;
 }
 
 const s = StyleSheet.create({

@@ -3,11 +3,11 @@ export type TournamentFlowRouter = {
   replace: (target: any) => void;
 };
 
-/** Pop stale lobby/round/table routes instead of replacing only the top one. */
+/** Закрыть старый турнирный стек на безопасную релизную главную. */
 export function closeTournamentFlow(router: TournamentFlowRouter): void {
   if (typeof router.dismissTo === 'function') {
-    router.dismissTo('/tournaments');
+    router.dismissTo('/(tabs)/home');
     return;
   }
-  router.replace('/tournaments');
+  router.replace('/(tabs)/home');
 }

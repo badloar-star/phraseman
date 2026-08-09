@@ -55,7 +55,7 @@ export default function TournamentTicketsScreen() {
   const freeEntryAvailable = bank?.freeEntryAvailable ?? false;
   const tickets = Math.floor(gems / entryGems) + (freeEntryAvailable ? 1 : 0);
 
-  const close = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
+  const close = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
   const visualTickets = useMemo(
     () => Array.from({ length: Math.min(tickets, 5) }, (_, index) => index),

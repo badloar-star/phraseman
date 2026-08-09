@@ -54,11 +54,11 @@ describe('DailyPhraseCard quest contract', () => {
     );
   });
 
-  it('shows AI explain only after the daily phrase quest explanation is revealed', () => {
-    const explanationIdx = source.indexOf('{showQuestExplanation && (');
-    const explainButtonIdx = source.indexOf('<ExplainButton');
-    expect(explanationIdx).toBeGreaterThan(-1);
-    expect(explainButtonIdx).toBeGreaterThan(explanationIdx);
+  it('permanently keeps the oversized AI explain action out of the daily phrase', () => {
+    expect(source).not.toContain("import ExplainButton from './ExplainButton'");
+    expect(source).not.toContain('<ExplainButton');
+    expect(source).not.toContain('styles.explainButton');
+    expect(source).not.toContain('explainButton: {');
   });
 
   it('uses tonal surfaces for the modal sheet internals without replacing the themed daily plaque chrome', () => {

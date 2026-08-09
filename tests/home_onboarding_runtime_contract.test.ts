@@ -11,6 +11,9 @@ describe('hidden Home runtime behind onboarding', () => {
     expect(home).toContain('const [homeOnboardingDone, setHomeOnboardingDone] = useState(false)');
     expect(home).toContain('useRuntimeActive(isHomeOwner && homeOnboardingDone)');
     expect(home).not.toContain('useRuntimeActive(isHomeOwner);');
+    expect(home).toContain('HOME_ONBOARDING_DONE_KEY');
+    expect(home).toContain('AsyncStorage.multiGet([HOME_FEATURE_TIPS_INDEX_KEY, HOME_FEATURE_TIPS_DONE_KEY, HOME_FEATURE_TIPS_REPLAY_COUNT_KEY, HOME_ONBOARDING_DONE_KEY])');
+    expect(home).toContain("setHomeOnboardingDone(stored.get(HOME_ONBOARDING_DONE_KEY) === '1')");
   });
 
   it('gates hidden prefetch, below-fold mounting, animations and the crown request', () => {

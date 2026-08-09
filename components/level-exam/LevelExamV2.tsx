@@ -206,7 +206,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           finishReason: reason,
         },
       });
-      const firstPass = previousPassed !== '1';
+      const firstPass = !storedProgressFlagIsTrue(previousPassed);
       setRewardState(scored.passed ? (firstPass ? 'pending' : 'already_claimed') : 'none');
       if (scored.passed && firstPass) {
         void progressEvent.then(() => setRewardState('earned')).catch(() => setRewardState('pending'));

@@ -72,6 +72,8 @@ describe('level exam v2 route contract', () => {
     const route = read('components/level-exam/LevelExamV2.tsx');
     const legacyRoute = read('app/level_exam.tsx');
     expect(route).toContain("storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'");
+    expect(route).toContain('const firstPass = !storedProgressFlagIsTrue(previousPassed)');
+    expect(route).not.toContain("previousPassed !== '1'");
     expect(legacyRoute).toContain("passed ? '1' : '0'");
   });
 

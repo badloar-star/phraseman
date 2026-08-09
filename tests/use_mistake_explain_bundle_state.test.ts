@@ -11,7 +11,7 @@ let consentGranted = true;
 let consentHydrated = true;
 let consentDecision = true;
 let consentSubscriber: (() => void) | null = null;
-let netOnline = true;
+let netStatus: 'online' | 'offline' | 'unknown' = 'online';
 let netSubscriber: ((online: boolean) => void) | null = null;
 const markLimitShown = jest.fn(async () => undefined);
 
@@ -47,7 +47,7 @@ jest.mock('../hooks/use-haptics', () => ({
 }));
 
 jest.mock('../app/net_status', () => ({
-  getNetStatus: () => netOnline ? 'online' : 'offline',
+  getNetStatus: () => netStatus,
   subscribeNetStatus: (listener: (online: boolean) => void) => {
     netSubscriber = listener;
     return () => { netSubscriber = null; };
@@ -88,7 +88,7 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     consentHydrated = true;
     consentDecision = true;
     consentSubscriber = null;
-    netOnline = true;
+    netStatus = 'online';
     netSubscriber = null;
     __resetAccountGenerationForTests();
     beginAccountGeneration('account-a');
@@ -141,7 +141,7 @@ describe('useMistakeExplain bundled ELI5 state', () => {
   });
 
   it('does not warm, request, or retry an explanation while offline', async () => {
-    netOnline = false;
+    netStatus = 'offline';
     jest.useFakeTimers();
     const { warmExplainMistake } = await import('../app/ai_mistake_explain_client');
     const hook = await renderHook(() => useMistakeExplain(baseInput()));
@@ -156,7 +156,7 @@ describe('useMistakeExplain bundled ELI5 state', () => {
   });
 
   it('starts the active explanation when connectivity returns', async () => {
-    netOnline = false;
+    netStatus = 'offline';
     callExplainMistakeMock.mockResolvedValue(fullResponse('Back online explanation'));
     const hook = await renderHook(() => useMistakeExplain(baseInput()));
 
@@ -164,13 +164,26 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(callExplainMistakeMock).not.toHaveBeenCalled();
 
     await act(async () => {
-      netOnline = true;
+      netStatus = 'online';
       netSubscriber?.(true);
       await Promise.resolve();
     });
 
     await waitFor(() => expect(hook.result.current.aiMistakeState).toBe('ready'));
     expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not start optional AI work while connectivity is still unknown', async () => {
+    netStatus = 'unknown';
+    const { warmExplainMistake } = await import('../app/ai_mistake_explain_client');
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { hook.result.current.explain(); });
+
+    expect(warmExplainMistake).not.toHaveBeenCalled();
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+    expect(hook.result.current.aiMistakeState).not.toBe('loading');
   });
 
   it('keeps transient failures silent and retries them in the background', async () => {

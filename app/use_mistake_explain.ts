@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { callExplainMistake, warmExplainMistake } from './ai_mistake_explain_client';
+import {
+  callExplainMistake,
+  isMistakeExplainOfflineError,
+  warmExplainMistake,
+} from './ai_mistake_explain_client';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -459,7 +463,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
           setAiMistakeState('limit');
           return;
         }
-        if (getNetStatus() !== 'online') {
+        if (isMistakeExplainOfflineError(error) || getNetStatus() !== 'online') {
           setAiMistakeState('idle');
           return;
         }
@@ -530,7 +534,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         setAiMistakeState('limit');
         return;
       }
-      if (getNetStatus() !== 'online') {
+      if (isMistakeExplainOfflineError(error) || getNetStatus() !== 'online') {
         setEli5State('idle');
         return;
       }

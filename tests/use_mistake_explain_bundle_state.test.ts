@@ -17,6 +17,8 @@ const markLimitShown = jest.fn(async () => undefined);
 
 jest.mock('../app/ai_mistake_explain_client', () => ({
   callExplainMistake: jest.fn(),
+  isMistakeExplainOfflineError: (error: unknown) =>
+    String((error as { message?: unknown })?.message ?? error ?? '').includes('mistake_explain_offline'),
   warmExplainMistake: jest.fn(),
 }));
 

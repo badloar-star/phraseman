@@ -10,6 +10,22 @@ import { getNetStatus } from './net_status';
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
 
+export const MISTAKE_EXPLAIN_OFFLINE_ERROR_CODE = 'mistake_explain_offline';
+
+/** Expected cache-miss result while connectivity is not confirmed online. */
+export class MistakeExplainOfflineError extends Error {
+  constructor() {
+    super(MISTAKE_EXPLAIN_OFFLINE_ERROR_CODE);
+    this.name = 'MistakeExplainOfflineError';
+  }
+}
+
+export function isMistakeExplainOfflineError(error: unknown): error is MistakeExplainOfflineError {
+  if (error instanceof MistakeExplainOfflineError) return true;
+  const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
+  return message.includes(MISTAKE_EXPLAIN_OFFLINE_ERROR_CODE);
+}
+
 export type MistakeExplainVariant = 'full' | 'eli5';
 
 export interface MistakeDiffPair {
@@ -90,6 +106,11 @@ export function warmExplainMistake(): void {
   });
 }
 
+/**
+ * Reads the local cache first. On a cache miss, rejects with the typed
+ * MistakeExplainOfflineError until connectivity is confirmed online. Callable
+ * failures may also reject and must be handled by UI orchestration.
+ */
 export async function callExplainMistake(
   req: ExplainMistakeRequest,
   options?: CallExplainMistakeOptions,
@@ -123,7 +144,7 @@ export async function callExplainMistake(
   }
   // Локальный кэш уже проверен выше. Пока сеть не подтверждена как online,
   // нельзя ни будить Cloud Function, ни входить в её retry-цепочку.
-  if (getNetStatus() !== 'online') throw new Error('mistake_explain_offline');
+  if (getNetStatus() !== 'online') throw new MistakeExplainOfflineError();
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();

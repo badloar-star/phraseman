@@ -19,6 +19,7 @@ describe('lesson AI mistake background recovery', () => {
     expect(inlineFailureBlock).toContain("setAiMistakeState('loading')");
     expect(inlineFailureBlock).toContain('scheduleMistakeRetry');
     expect(inlineFailureBlock).not.toContain("setAiMistakeState('error')");
+    expect(inlineFailureBlock).toContain('isMistakeExplainOfflineError(error)');
     expect(inlineFailureBlock).toContain("getNetStatus() !== 'online'");
     expect(inlineFailureBlock.indexOf("setAiMistakeState('idle')")).toBeLessThan(
       inlineFailureBlock.indexOf('scheduleMistakeRetry'),
@@ -42,6 +43,7 @@ describe('lesson AI mistake background recovery', () => {
     expect(eli5FailureBlock).not.toContain("setEli5State('error')");
     expect(eli5FailureBlock).not.toContain("setEli5State('ready')");
     expect(eli5FailureBlock).not.toContain('aiErrorToast');
+    expect(eli5FailureBlock).toContain('isMistakeExplainOfflineError(error)');
     expect(eli5FailureBlock).toContain("getNetStatus() !== 'online'");
   });
 

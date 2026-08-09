@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   callExplainMistake,
+  MistakeExplainOfflineError,
   type ExplainMistakeRequest,
 } from '../app/ai_mistake_explain_client';
 
@@ -65,7 +66,7 @@ describe('mistake explanation bundle client cache', () => {
   it('does not call the remote function until connectivity is confirmed online', async () => {
     mockNetStatus = 'unknown';
 
-    await expect(callExplainMistake(fullRequest)).rejects.toThrow('mistake_explain_offline');
+    await expect(callExplainMistake(fullRequest)).rejects.toBeInstanceOf(MistakeExplainOfflineError);
     expect(mockCallable).not.toHaveBeenCalled();
   });
 

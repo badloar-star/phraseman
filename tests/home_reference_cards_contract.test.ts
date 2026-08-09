@@ -15,6 +15,27 @@ describe('Home reference cards contract', () => {
     expect(home).toContain('width: `${homeLeagueChestPct}%`');
   });
 
+  it('honors the selected font size on routine home actions', () => {
+    const dailyStart = home.indexOf('testID="home-daily-tasks-title"');
+    const dailyEnd = home.indexOf('</FlowText>', dailyStart);
+    const dailyTitle = home.slice(dailyStart, dailyEnd);
+    expect(dailyTitle).toContain('fontSize: f.bodyLg');
+    expect(dailyTitle).toContain('lineHeight: f.bodyLg + 5');
+    expect(dailyTitle).not.toContain('Math.max(22');
+
+    const leagueStart = home.indexOf('testID="home-league-goal-title"');
+    const leagueEnd = home.indexOf('testID="home-league-progress"', leagueStart);
+    const leagueCopy = home.slice(leagueStart, leagueEnd);
+    expect(leagueCopy).toContain('fontSize: f.bodyLg');
+    expect(leagueCopy).toContain('fontSize: f.label');
+    expect(leagueCopy).toContain('fontSize: f.h2 + 2');
+    expect(leagueCopy).not.toContain('Math.max(22');
+    expect(leagueCopy).not.toContain('Math.max(27');
+
+    // Фраза дня остаётся единственным крупным редакционным акцентом на главной.
+    expect(phraseCard).toContain('fontSize: Math.max(22, f.bodyLg)');
+  });
+
   it('keeps the phrase card full width with content-driven height', () => {
     const styleStart = phraseCard.indexOf('homeAdditionalEditorial: {');
     const styleEnd = phraseCard.indexOf('\n  },', styleStart);

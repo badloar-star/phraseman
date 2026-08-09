@@ -2878,6 +2878,10 @@ function AppContent() {
       firstContentReadyTimerRef.current = null;
     }
     setFirstContentReady(true);
+    // Home уже смонтирован под полноэкранным онбордингом, но до этого события
+    // намеренно не запускает тяжёлые storage/Firestore-загрузки и анимации.
+    // Будим его после сохранения onboarding_done и прямо перед снятием оверлея.
+    emitAppEvent('onboarding_completed');
     router.replace('/(tabs)/home' as any);
     setTimeout(() => router.replace('/(tabs)/home' as any), 120);
     // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не

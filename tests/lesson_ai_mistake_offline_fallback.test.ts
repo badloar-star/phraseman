@@ -19,6 +19,10 @@ describe('lesson AI mistake background recovery', () => {
     expect(inlineFailureBlock).toContain("setAiMistakeState('loading')");
     expect(inlineFailureBlock).toContain('scheduleMistakeRetry');
     expect(inlineFailureBlock).not.toContain("setAiMistakeState('error')");
+    expect(inlineFailureBlock).toContain("getNetStatus() === 'offline'");
+    expect(inlineFailureBlock.indexOf("setAiMistakeState('idle')")).toBeLessThan(
+      inlineFailureBlock.indexOf('scheduleMistakeRetry'),
+    );
     expect(cardSource).not.toContain('buildLocalMistakeFallback');
     expect(cardSource).not.toContain('Не вдалося завантажити розбір');
     expect(cardSource).not.toContain("state === 'error'");
@@ -38,6 +42,7 @@ describe('lesson AI mistake background recovery', () => {
     expect(eli5FailureBlock).not.toContain("setEli5State('error')");
     expect(eli5FailureBlock).not.toContain("setEli5State('ready')");
     expect(eli5FailureBlock).not.toContain('aiErrorToast');
+    expect(eli5FailureBlock).toContain("getNetStatus() === 'offline'");
   });
 
   it('primes the simple explanation cache from a successful full bundle', () => {

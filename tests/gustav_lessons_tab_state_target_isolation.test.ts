@@ -81,4 +81,13 @@ describe('Gustav lessons tab state target isolation', () => {
     expect(getLessonsTabInitialState('en')).toEqual(english);
     expect(getLessonsTabInitialState('fr')).toEqual(french);
   });
+
+  it('keeps a cloud-restored true exam pass unlocked', async () => {
+    mockStorage[levelExamKey('B1', 'pct', 'en')] = '93';
+    mockStorage[levelExamKey('B1', 'passed', 'en')] = 'true';
+
+    const english = await loadLessonsTabStateFromStorage('en');
+
+    expect(english.examResults.B1).toEqual({ pct: 93, passed: true });
+  });
 });

@@ -55,7 +55,11 @@ export class ExpoSfxBackend {
       this.stop();
       const player = this.ensure(eventId, source);
       player.volume = Math.max(0, Math.min(1, volume));
-      void player.seekTo(0);
+      const seekResult = player.seekTo(0);
+      const seekPromise = seekResult && typeof (seekResult as Promise<void>).then === 'function'
+        ? seekResult as Promise<void>
+        : null;
+      let seekSettled = seekPromise === null;
 
       // зачем: play() по ещё не загруженному плееру уходит в тишину — на Android
       // ExoPlayer после createAudioPlayer какое-то время в состоянии загрузки, и
@@ -88,13 +92,14 @@ export class ExpoSfxBackend {
       // повторной попытке play() шанс реально стартовать. Если оно истекло,
       // ENDED принимается как есть, будто предохранителя не было вовсе.
       let sawPlaying = false;
-      const playStartedAtMs = Date.now();
+      let playStartedAtMs = Date.now();
+      let startAttempted = false;
       const RETRY_WINDOW_MS = 400;
       const subscription = player.addListener('playbackStatusUpdate', (status) => {
         if (this.current?.player !== player) return;
 
         if (status.playing === true) sawPlaying = true;
-        const withinRetryWindow = Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
+        const withinRetryWindow = !startAttempted || Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
 
         // Завершение обрабатываем ВСЕГДА и первым делом: рантайм может не
         // присылать `playing`, и привязка finish к «мы видели старт» подвесила бы
@@ -112,16 +117,28 @@ export class ExpoSfxBackend {
         // ExoPlayer ещё декодировал файл, либо это тот самый ложный ENDED на
         // переиспользуемом плеере). Повторяем ровно один раз по готовности:
         // без этого первый запрос каждого звука всегда немой.
-        if (!retriedAfterLoad && status.isLoaded && status.playing === false) {
+        if (seekSettled && !retriedAfterLoad && status.isLoaded && status.playing === false) {
           retriedAfterLoad = true;
           try { player.play(); } catch {}
         }
       });
       this.current = { eventId, player, subscription };
 
-      // Пробуем сразу: на прогретом плеере (звук уже в кэше) это даёт мгновенный
-      // отклик без ожидания первого статуса.
-      player.play();
+      const startAfterSeek = () => {
+        seekSettled = true;
+        if (this.current?.player !== player) return;
+        startAttempted = true;
+        playStartedAtMs = Date.now();
+        player.play();
+      };
+      // На переиспользуемом Android-плеере seekTo(0) асинхронно выводит
+      // ExoPlayer из STATE_ENDED. Запуск до завершения seek — точная причина
+      // эффекта «тот же системный звук играет через раз».
+      if (seekPromise) {
+        void seekPromise.then(startAfterSeek, startAfterSeek);
+      } else {
+        startAfterSeek();
+      }
       return true;
     } catch {
       this.stop();
@@ -174,4 +191,3 @@ export class ExpoSfxBackend {
     this.cache.delete(oldest[0]);
   }
 }
-

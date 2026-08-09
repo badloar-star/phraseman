@@ -169,7 +169,8 @@ describe('owner runtime direction contract', () => {
       // Один тик хаба под гвардом видимости таба (runtimeOwnerId), пересчёт
       // состояния окна; на невидимом табе спит.
       'app/(tabs)/tournaments.tsx': 1,
-      'app/club_screen.tsx': 1,
+      // Remote refresh and boost countdown both stop on blur/background through runtimeActive.
+      'app/club_screen.tsx': 2,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
@@ -200,12 +201,16 @@ describe('owner runtime direction contract', () => {
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,
+      // Wall-clock exam deadline remains honest; only the visible UI tick sleeps off-screen/background.
+      'components/level-exam/LevelExamV2.tsx': 1,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/HomeTheoAdvisorCard.tsx': 1,
       // Отсчёт жизни кода восстановления — уже под `screenFocused &&
       // recoveryAppActive`, вне модалки не тикает.
       'components/RegistrationPromptModal.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
+      // Premiere countdown is owned by useRuntimeActive and self-stops at the scheduled boundary.
+      'components/youtube/YoutubePremiereHero.tsx': 1,
       // Общий секундный отсчёт турнира: считает от целевого момента, поэтому
       // гвард видимости не ломает точность (при возврате догоняет сразу).
       'components/tournament/TournamentCountdown.tsx': 1,
@@ -687,7 +692,7 @@ describe('owner runtime direction contract', () => {
     expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
     expect(friendQuests).toContain('const nextXp = Math.max(localXp, serverXp)');
     expect(friendQuests).toContain("AsyncStorage.setItem('user_total_xp', String(nextXp))");
-    expect(friendQuests).toContain('await withAccountTransitionLock(async () => {');
+    expect(friendQuests).toContain('await withAccountTransitionLock(async (): Promise<void> => {');
     expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
 
     expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
@@ -837,9 +842,14 @@ describe('owner runtime direction contract', () => {
     for (const source of [explainPhrase, explainChoice]) {
       expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
       expect(source).toContain('budgetReservation = await reserveExplainBudget(');
-      expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'provider_failed');");
     }
+    // explainPhrase claims the cache lock before charging, so a lost lock race
+    // has nothing to refund. explainChoice still charges first and must refund.
+    expect(explainPhrase.indexOf('const claimed = await claimPendingLock')).toBeLessThan(
+      explainPhrase.indexOf('budgetReservation = await reserveExplainBudget('),
+    );
+    expect(explainChoice).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
 
     expect(statsInsights).toContain('const budgetReservedAtMs = Date.now();');
     expect(statsInsights).toContain('await enforceGlobalBudget(jobCfg.globalDailyCap);');
@@ -944,13 +954,14 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('false && purchasing');
   });
 
-  it('keeps friend gift sends optimistic without exposing auth-link internals', () => {
+  it('keeps friend gift sends server-first, visibly pending, and account-owned', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
 
     expect(friendsTab).toContain('sendFriendGiftWithShards');
     expect(friendsTab).toContain('setGiftBusyId(giftId)');
-    expect(friendsTab).toContain("reason: 'friend_gift_optimistic'");
-    expect(friendsTab).toContain("reason: 'friend_gift_rollback'");
+    expect(friendsTab.indexOf("status: 'pending'")).toBeLessThan(
+      friendsTab.indexOf('const res = await sendFriendGiftWithShards'),
+    );
     expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
     expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
     expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');

@@ -21,6 +21,7 @@ jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
 jest.mock('../components/ScreenGradient', () => ({ children }: any) => mockReact.createElement('ScreenGradient', null, children));
 jest.mock('../components/BouncyScrollView', () => ({ children }: any) => mockReact.createElement('ScrollView', null, children));
 jest.mock('../components/TonalSurface', () => ({ children, ...props }: any) => mockReact.createElement('View', props, children));
+jest.mock('../components/EnergyIcon', () => 'EnergyIcon');
 jest.mock('../components/TapScale', () => ({ children, onPress, disabled, ...props }: any) => (
   mockReact.createElement('Pressable', { ...props, onPress, disabled }, children)
 ));
@@ -53,6 +54,18 @@ const baseProps = {
   onBack: jest.fn(),
   onStart: jest.fn(),
 };
+
+it('hides every energy surface for Plus and keeps the exam start available', async () => {
+  const view = await render(React.createElement(LevelExamIntro, {
+    ...baseProps,
+    availableEnergy: 0,
+    unlimitedEnergy: true,
+  }));
+
+  expect(view.queryByText('Не хватает энергии для начала')).toBeNull();
+  expect(view.queryByText('5')).toBeNull();
+  expect(view.getByLabelText('Начать проверку').props.accessibilityState).toEqual({ disabled: false });
+});
 
 it('shows useful preparation details and guards the start action', async () => {
   const onStart = jest.fn(() => new Promise<void>(() => {}));

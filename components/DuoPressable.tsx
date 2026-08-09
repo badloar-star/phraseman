@@ -55,11 +55,9 @@ interface Props extends PassthroughPressableProps {
    */
   pressedExternally?: boolean;
   /**
-   * Задержка перед показом press-фидбэка (хаптик + «клевок»), мс. Внутри скролла
-   * касание кнопки для старта прокрутки раньше мгновенно давало хаптик и анимацию
-   * нажатия («кнопки сами нажимаются при скролле»). С задержкой Pressable успевает
-   * отменить press, если палец за это время ушёл в скролл — на настоящем тапе
-   * задержка визуально незаметна. Default 90.
+   * Необязательная задержка press-фидбэка для отдельных элементов внутри
+   * конфликтующего скролла. Обычные кнопки обязаны отвечать в тот же кадр,
+   * поэтому глобальное значение по умолчанию равно 0.
    */
   delayPressIn?: number;
 }
@@ -85,7 +83,7 @@ function DuoPressable({
   gradientEnd = { x: 1, y: 1 },
   withHaptic = true,
   pressedExternally = false,
-  delayPressIn = 90,
+  delayPressIn = 0,
   ...rest
 }: Props) {
   const press = useSharedValue(0);
@@ -94,8 +92,8 @@ function DuoPressable({
   const held = useSharedValue(0);
 
   const pressIn = useCallback((event: GestureResponderEvent) => {
-    if (withHaptic && !disabled) hapticTap();
     press.value = withSpring(1, MOTION_SPRING.micro);
+    if (withHaptic && !disabled) hapticTap();
     onPressIn?.(event);
   }, [press, withHaptic, disabled, onPressIn]);
 

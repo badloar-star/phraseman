@@ -17,6 +17,7 @@ type MotionReview = {
   owner: MotionOwner;
   reason: string;
   requiredTokens?: string[];
+  appStateGateToken?: string;
 };
 
 function read(relativePath: string): string {
@@ -45,10 +46,11 @@ function discoverRepeatingMotionFiles(): string[] {
     .sort();
 }
 
-const guarded = (reason: string): MotionReview => ({
+const guarded = (reason: string, appStateGateToken?: string): MotionReview => ({
   owner: 'explicit_focus_appstate',
   reason,
   requiredTokens: ['AppState.currentState', 'AppState.addEventListener'],
+  appStateGateToken,
 });
 const owned = (reason: string, requiredTokens: string[]): MotionReview => ({ owner: 'owner_prop', reason, requiredTokens });
 const runtime = (reason: string, requiredTokens: string[] = []): MotionReview => ({
@@ -62,7 +64,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // аудит 2026-07-25) и мимо этого реестра. Фиксируем файл здесь, чтобы гард
   // useRuntimeActive нельзя было потерять снова незаметно.
   'app/(tabs)/friends.tsx': runtime('Gift pulse and search skeleton loops require focused foreground runtime.', ['if (active && runtimeActive)']),
-  'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab.', ['useRuntimeActive(isHomeOwner)', '!homeRuntimeActive']),
+  'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab after onboarding.', ['useRuntimeActive(isHomeOwner && homeOnboardingDone)', '!homeRuntimeActive']),
   // зачем 2026-07-27 (владелец: «приложение стало греть телефон»): пульс LiveDot
   // крутился без гварда видимости. Хаб турниров с 27.07 — push-экран (релиз без
   // турниров), поэтому фокус экрана здесь честный; требуем явную передачу этого
@@ -84,9 +86,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/lesson1.tsx': runtime('Lesson cursor and hint loops require focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0', 'lessonRuntimeActive && showToBeHint']),
   'app/lesson_complete.tsx': runtime('Completion decoration requires focused foreground runtime.', ['!lessonCompleteRuntimeActive || !seqDone', 'bounce.stop()']),
   'app/lesson_intro_screens.tsx': runtime('Intro hint and CTA loops require focused foreground runtime.', ['!lessonIntroRuntimeActive || allRevealed', '!lessonIntroRuntimeActive || !ctaReady']),
+  'app/level_gifts_inventory.tsx': guarded('Spin pulse runs only on the focused foreground inventory and cancels on blur.'),
   'app/pack_opening.tsx': runtime('Card pulse receives runtime activity from the screen owner.', ['active={packOpeningRuntimeActive}', 'if (!active || flipped)', 'loop.stop()']),
   'app/review.tsx': { owner: 'transient_mount', reason: 'Particle and burn loops exist only inside bounded feedback components that unmount when the effect ends.', requiredTokens: ['i === index && burning &&', '<BurnCardEffect', 'cancelAnimation(rotate)'] },
   'app/shards_shop.tsx': guarded('Shop loops already use screen focus plus AppState and explicit cancellation.'),
+  'app/streak_stats.tsx': runtime('Stats spin pulse runs only while the stats screen is focused in the foreground.', ['statsRuntimeActive && spinBalance > 0', 'cancelAnimation(spinButtonPulse)']),
   'app/voice_equalizer.tsx': {
     owner: 'owner_prop',
     reason: 'Equalizer loop is controlled by its active recording prop.',
@@ -105,6 +109,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LeagueChestOpenModal.tsx': owned('League chest motion is visible-only and unmounts while hidden.', ['if (!visible) return null', 'if (!visible) return']),
   'components/LevelGiftDualModal.tsx': owned('Dual gift loops are guarded by visible phase and stopped on cleanup.', ['if (!visible', 'idleAll.current?.stop()']),
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
+  'components/LevelSpinFinishLine.tsx': guarded(
+    'Spin reel runs only during the focused foreground spin phase and cancels on every exit.',
+    'appActive',
+  ),
+  'components/LevelSpinRewardModal.tsx': owned('Reward glow exists only while the visible modal is mounted and stops on cleanup.', ['if (!visible || !requestId) return', 'glowLoopRef.current?.stop()']),
   'components/LingmanVideosButton.tsx': owned('Unread pulse follows the explicit retained-tab runtime owner.', ['ownerActive?: boolean', '!ownerActive', 'stop()']),
   'components/SeasonAuraRing.tsx': guarded('Season aura layers run only on the focused foreground screen and respect Reduced Motion.'),
   'components/SeasonGiftModal.tsx': owned('Finale nickname shimmer is mounted only while the gift modal is visible and stops on cleanup.', ["visible && reward.kind === 'season_finale'", 'return () => loop.stop()']),
@@ -114,6 +123,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // дословными токенами, чтобы следующий мерж не потерял гард незаметно.
   // AuraRenderer пока не подключён ни одним экраном (графт aura-native-lab).
   'components/avatar-aura/AuraRenderer.tsx': runtime('Aura ambient loop runs only on focused foreground runtime granted by its owner and respects reduced motion; inactive auras freeze at their static phase.', ['useRuntimeActive(ownerVisible)', 'if (!ambientActive)', 'cancelAnimation(phase)']),
+  'components/collectibles/CollectiblesEmptyStateMotion.tsx': runtime('Empty-collection drift sleeps off-screen/background and cancels every shared value.', ['if (reduceMotion || !runtimeActive)', 'values.forEach((value) => cancelAnimation(value))']),
   // Волна переписана мержем (AudioWaveformBase): вместо старого if (!active) гард
   // стал строже — пауза/фон/чужой экран/reduce-motion глушат цикл, а active
   // владельца входит в useRuntimeActive(active). Токены обновлены, не ослаблены.
@@ -172,14 +182,19 @@ describe('runtime lifecycle ratchet', () => {
         expect(source).toContain(token);
       }
       if (review.owner === 'explicit_focus_appstate') {
-        expect(source).toMatch(/useIs(?:Screen)?Focused\s*\(/);
+        // Both supported navigation-focus ownership patterns are valid:
+        // a boolean focus hook consumed by an effect, or an effect that is
+        // itself mounted only while the screen is focused.
+        expect(source).toMatch(/(?:useIs(?:Screen)?Focused|useFocusEffect)\s*\(/);
         const motionPattern = /Animated\.loop\s*\(|withRepeat\([\s\S]{0,220}?,\s*-1/g;
         const motionCalls = [...source.matchAll(motionPattern)];
         expect(motionCalls.length).toBeGreaterThan(0);
         for (const motionCall of motionCalls) {
           const callIndex = motionCall.index ?? 0;
           const effectWindow = source.slice(Math.max(0, callIndex - 1200), callIndex + 2500);
-          if (!/AppState\.currentState/.test(effectWindow)) {
+          const hasLocalAppStateGate = /AppState\.currentState/.test(effectWindow)
+            || (!!review.appStateGateToken && effectWindow.includes(review.appStateGateToken));
+          if (!hasLocalAppStateGate) {
             throw new Error(`${file}:${callIndex}: repeating call is not locally gated by AppState`);
           }
           if (!/(?:\.stop\s*\(\s*\)|cancelAnimation\s*\()/.test(effectWindow)) {

@@ -120,6 +120,12 @@ export type AppEventMap = {
    * См. energyOnboardingGate + home.tsx
    */
   energy_onboarding_may_show: undefined;
+  /**
+   * CleanOnboarding уже сохранил onboarding_done и корневой оверлей готов закрыться.
+   * Скрытые под оверлеем табы используют событие, чтобы только теперь включить
+   * тяжёлые загрузки, подписки и анимации.
+   */
+  onboarding_completed: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
   /**

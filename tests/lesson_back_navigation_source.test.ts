@@ -66,5 +66,11 @@ describe('lesson complete back loop guard', () => {
       source.indexOf('const goBackFromComplete = useCallback(') + 220,
     );
     expect(backFn).toContain("pathname: '/lessons_list'");
+    expect(backFn.indexOf('markNextNavigationAsReplace()')).toBeLessThan(backFn.indexOf('router.replace'));
+  });
+
+  it('marks both lesson-to-result replacements so the abandoned lesson leaves custom history', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+    expect(source.match(/markNextNavigationAsReplace\(\);\s*router\.replace\(\{\s*pathname: '\/lesson_complete'/g)).toHaveLength(2);
   });
 });

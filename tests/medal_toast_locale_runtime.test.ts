@@ -28,4 +28,11 @@ describe('MedalToast planned locale runtime copy', () => {
     expect(source).toContain('YENİ RÜTBE');
     expect(source).toContain('NOWA RANGA');
   });
+
+  it('owns a real swipe gesture and exposes an immediate dismiss callback', () => {
+    expect(source).toContain('PanResponder.create');
+    expect(source).toContain('onDismiss?: () => void');
+    expect(source).toContain("pointerEvents={onDismiss ? 'auto' : 'none'}");
+    expect(source).toContain('if (finished) onDismiss()');
+  });
 });

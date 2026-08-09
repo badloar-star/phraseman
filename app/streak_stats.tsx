@@ -3382,11 +3382,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, []);
     useEffect(() => {
         cancelAnimation(spinButtonPulse);
-        spinButtonPulse.value = spinBalance > 0
+        spinButtonPulse.value = statsRuntimeActive && spinBalance > 0
             ? withRepeat(withSequence(withTiming(1.07, { duration: 650 }), withTiming(1, { duration: 650 })), -1, true)
             : 1;
         return () => cancelAnimation(spinButtonPulse);
-    }, [spinBalance, spinButtonPulse]);
+    }, [spinBalance, spinButtonPulse, statsRuntimeActive]);
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);

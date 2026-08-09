@@ -53,6 +53,17 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain('Энергия не списана');
   });
 
+  it('never shows or debits exam energy for a verified Plus account', () => {
+    const route = read('components/level-exam/LevelExamV2.tsx');
+    const intro = read('components/level-exam/LevelExamIntro.tsx');
+    expect(route).toContain('const unlimitedEnergy = isUnlimited || hasPremiumAccess');
+    expect(route).toContain('if (!unlimitedEnergy && !await spendAmount(ENERGY_COST))');
+    expect(route).toContain('unlimitedEnergy={unlimitedEnergy}');
+    expect(intro).toContain('{!unlimitedEnergy ? <View style={[styles.energyPill');
+    expect(intro).toContain('{!unlimitedEnergy ? <View style={styles.costBadge}>');
+    expect(intro).toContain("? copy.startCta");
+  });
+
   it('reads lesson boundaries from the canonical course map', () => {
     const route = read('components/level-exam/LevelExamV2.tsx');
     expect(route).toContain('getFirstLessonForLevel(level)');

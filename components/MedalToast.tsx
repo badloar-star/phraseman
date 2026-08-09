@@ -1,5 +1,5 @@
-import React, { memo, useMemo } from 'react';
-import { Animated, Text, View, StyleSheet } from 'react-native';
+import React, { memo, useMemo, useRef } from 'react';
+import { Animated, PanResponder, Text, View, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from './SafeLinearGradient';
 import type { MedalTier } from '../app/medal_utils';
@@ -50,6 +50,8 @@ interface MedalToastProps {
   lang: Lang;
   /** Whether spanish UI is active (lang==='es' & study target spanish) */
   spanishUiActive: boolean;
+  /** Swipe left/right or upward to dismiss immediately. */
+  onDismiss?: () => void;
 }
 
 interface Labels {
@@ -209,11 +211,49 @@ function MedalToast({
   bottom = 120,
   lang,
   spanishUiActive,
+  onDismiss,
 }: MedalToastProps) {
   const labels = useMemo(
     () => pickLabels(tier, promoted, lang, spanishUiActive),
     [tier, promoted, lang, spanishUiActive],
   );
+  const drag = useRef(new Animated.ValueXY()).current;
+  const panResponder = useMemo(() => PanResponder.create({
+    onMoveShouldSetPanResponder: (_event, gesture) => (
+      Boolean(onDismiss)
+      && (Math.abs(gesture.dx) > 7 || gesture.dy < -7)
+    ),
+    onPanResponderMove: Animated.event([null, { dx: drag.x, dy: drag.y }], {
+      useNativeDriver: false,
+    }),
+    onPanResponderRelease: (_event, gesture) => {
+      const shouldDismiss = Math.abs(gesture.dx) >= 50
+        || gesture.dy <= -38
+        || Math.abs(gesture.vx) >= 0.65
+        || gesture.vy <= -0.65;
+      if (!shouldDismiss || !onDismiss) {
+        Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: true }).start();
+        return;
+      }
+      Animated.parallel([
+        Animated.timing(drag.x, {
+          toValue: Math.abs(gesture.dx) >= 20 ? (gesture.dx < 0 ? -420 : 420) : 0,
+          duration: 170,
+          useNativeDriver: true,
+        }),
+        Animated.timing(drag.y, {
+          toValue: gesture.dy < 0 ? -140 : gesture.dy,
+          duration: 170,
+          useNativeDriver: true,
+        }),
+      ]).start(({ finished }) => {
+        if (finished) onDismiss();
+      });
+    },
+    onPanResponderTerminate: () => {
+      Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: true }).start();
+    },
+  }), [drag, onDismiss]);
 
   if (tier === 'none') return null;
 
@@ -227,14 +267,16 @@ function MedalToast({
 
   return (
     <Animated.View
-      pointerEvents="none"
+      pointerEvents={onDismiss ? 'auto' : 'none'}
+      {...(onDismiss ? panResponder.panHandlers : {})}
       style={[
         styles.wrap,
         {
           bottom,
           opacity: anim,
           transform: [
-            { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }) },
+            { translateX: drag.x },
+            { translateY: Animated.add(anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }), drag.y) },
             { scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) },
           ],
         },

@@ -866,6 +866,7 @@ export default function LessonsTab({
         legacyFreeLessonCap,
         freeLessonLimit: FREE_LESSON_LIMIT,
     }, devLocalPlusOverride);
+    const planAccess = useFeatureAccess('personal_plan');
     const dialogAccess = useFeatureAccess('ai_dialog');
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
@@ -906,6 +907,10 @@ export default function LessonsTab({
     }, [goHome, isRetainedTab, page, router]);
     const openLearningRoute = useCallback(() => {
         hapticTap();
+        if (!planAccess) {
+            openPremiumPaywall(router, { context: 'personal_plan' });
+            return;
+        }
         void readPersonalPlanState()
             .then((state) => {
                 router.push((state ? '/personal_plan' : '/personal_plan_setup') as any);
@@ -913,7 +918,16 @@ export default function LessonsTab({
             .catch(() => {
                 router.push('/personal_plan_setup' as any);
             });
-    }, [router]);
+    }, [planAccess, router]);
+    const openDialogs = useCallback(() => {
+        if (page === 'dialogs') return;
+        hapticTap();
+        if (!dialogAccess) {
+            openPremiumPaywall(router, { context: 'ai_dialog' });
+            return;
+        }
+        setPage('dialogs');
+    }, [dialogAccess, page, router]);
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
         level: string;
@@ -1369,7 +1383,7 @@ return (<LessonCard key={`l-${num}`}
               accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               fontSize={f.body}
               themeMode={themeMode}
-              plusBadge={!isPremium}
+              plusBadge={!planAccess}
               plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
               onPress={openLearningRoute}
             />
@@ -1384,7 +1398,7 @@ return (<LessonCard key={`l-${num}`}
               themeMode={themeMode}
               plusBadge={!dialogAccess}
               plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
-              onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
+              onPress={openDialogs}
             />
             ) : null}
             {ENABLE_DEV_TOOLS ? (

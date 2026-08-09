@@ -151,6 +151,27 @@ const LOCAL_PROGRESS_EVENT_LEDGER_KEY = 'progress_local_event_applied_v1';
 const LOCAL_PROGRESS_EVENT_LEDGER_MAX = 1_000;
 const MAX_LOCAL_XP_MULTIPLIER = 20;
 const MAX_LOCAL_XP_DELTA = 25_000;
+const TIME_OF_DAY_CHECK_CACHE_MAX = 8;
+const timeOfDayAchievementCheckByAccount = new Map<string, string>();
+
+function shouldCheckTimeOfDayAchievements(
+  accountToken: AccountGenerationToken,
+  now = new Date(),
+): boolean {
+  const hour = now.getHours();
+  const bucket = hour >= 23 || hour < 5 ? 'night' : hour >= 5 && hour < 7 ? 'early' : null;
+  if (!bucket) return false;
+  const accountKey = `${accountToken.generation}:${accountToken.stableId ?? 'anon'}`;
+  const periodKey = `${getLocalDayKey(now)}:${bucket}`;
+  if (timeOfDayAchievementCheckByAccount.get(accountKey) === periodKey) return false;
+  timeOfDayAchievementCheckByAccount.set(accountKey, periodKey);
+  while (timeOfDayAchievementCheckByAccount.size > TIME_OF_DAY_CHECK_CACHE_MAX) {
+    const oldest = timeOfDayAchievementCheckByAccount.keys().next().value as string | undefined;
+    if (!oldest) break;
+    timeOfDayAchievementCheckByAccount.delete(oldest);
+  }
+  return true;
+}
 
 function localProgressEventLedgerKey(stableUid: string): string {
   return `${LOCAL_PROGRESS_EVENT_LEDGER_KEY}:${encodeURIComponent(stableUid)}`;
@@ -703,7 +724,9 @@ export const registerXP = async (
     if (finalDelta > 0 && source !== 'achievement_reward' && source !== 'level_up_bonus') {
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
       checkAchievements({ type: 'xp', totalXP: newTotal }, accountToken).catch(() => {});
-      checkAchievements({ type: 'time_of_day' }, accountToken).catch(() => {});
+      if (shouldCheckTimeOfDayAchievements(accountToken)) {
+        checkAchievements({ type: 'time_of_day' }, accountToken).catch(() => {});
+      }
     }
     if (finalDelta > 0 && source === 'wager_win') {
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
@@ -839,6 +862,7 @@ export const __xpManagerTestHooks = {
   resetXpRuntimeState: () => {
     xpQueueByAccount.clear();
     xpMultiplierByAccount.clear();
+    timeOfDayAchievementCheckByAccount.clear();
     activeXpOperationLeases = new WeakMap<object, string>();
   },
   setXpMultiplierSnapshot: (club: number, leagueGroup: number) => {
@@ -851,6 +875,7 @@ export const __xpManagerTestHooks = {
   sanitizeLocalXpMultiplier,
   localProgressEventLedgerKey,
   progressEventTypeForSource,
+  shouldCheckTimeOfDayAchievements,
   LOCAL_PROGRESS_EVENT_LEDGER_MAX,
   MAX_LOCAL_XP_MULTIPLIER,
   MAX_LOCAL_XP_DELTA,

@@ -217,6 +217,19 @@ describe('tryUnlockLingmanExam', () => {
     expect(await tryUnlockLingmanExam()).toBe(true);
     expect(mockSetItem).toHaveBeenCalledWith('lingman_exam_available', '1');
   });
+
+  it('accepts canonical cloud true values for passed level exams', async () => {
+    mockGetItem.mockResolvedValueOnce(null);
+    mockMultiGet
+      .mockResolvedValueOnce(Array.from({ length: 32 }, (_, i) => [`lesson${i + 1}_best_score`, '5.0']))
+      .mockResolvedValueOnce([
+        ['level_exam_A1_passed', 'true'],
+        ['level_exam_A2_passed', 'true'],
+        ['level_exam_B1_passed', 'true'],
+        ['level_exam_B2_passed', 'true'],
+      ]);
+    expect(await tryUnlockLingmanExam()).toBe(true);
+  });
 });
 
 describe('isLingmanExamAvailable', () => {

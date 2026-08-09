@@ -335,6 +335,35 @@ describe('ExpoSfxBackend', () => {
     expect(calls.filter((call) => call === 'play')).toHaveLength(1);
   });
 
+  test('falls back once when an asynchronous rewind never settles', () => {
+    jest.useFakeTimers();
+    try {
+      const calls: string[] = [];
+      const player: SfxPlayerLike = {
+        volume: 1,
+        play: () => calls.push('play'),
+        pause: () => calls.push('pause'),
+        seekTo: () => new Promise<void>(() => {}),
+        remove: () => calls.push('remove'),
+        addListener: () => ({ remove: () => {} }),
+      };
+      const backend = new ExpoSfxBackend(() => player, 2);
+
+      expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+      expect(calls).not.toContain('play');
+
+      jest.advanceTimersByTime(199);
+      expect(calls).not.toContain('play');
+      jest.advanceTimersByTime(1);
+      expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+
+      jest.advanceTimersByTime(1_000);
+      expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   // зачем 2026-08-03 (владелец: «звук таймера был только в первом раунде
   // турнира, дальше вообще ни разу»): корень — expo-audio на Android читает
   // didJustFinish напрямую из playbackState (см. AudioPlayer.kt, currentStatus:

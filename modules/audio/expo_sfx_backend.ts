@@ -30,6 +30,10 @@ type CacheEntry = {
 };
 
 const DEFAULT_CACHE_SIZE = 6;
+// A broken/native-stalled rewind must never keep the global sound slot busy.
+// Normal rewinds settle well before this; the fallback is only for a Promise
+// that never resolves or rejects on a problematic ExoPlayer instance.
+const SEEK_SETTLE_TIMEOUT_MS = 200;
 
 export class ExpoSfxBackend {
   private readonly cache = new Map<SoundEventId, CacheEntry>();
@@ -124,17 +128,33 @@ export class ExpoSfxBackend {
       });
       this.current = { eventId, player, subscription };
 
+      let seekFallbackTimer: ReturnType<typeof setTimeout> | null = null;
+      let startReleased = false;
       const startAfterSeek = () => {
+        if (startReleased) return;
+        startReleased = true;
+        if (seekFallbackTimer) {
+          clearTimeout(seekFallbackTimer);
+          seekFallbackTimer = null;
+        }
         seekSettled = true;
         if (this.current?.player !== player) return;
         startAttempted = true;
         playStartedAtMs = Date.now();
-        player.play();
+        try {
+          player.play();
+        } catch {
+          // Async seek completion runs outside the outer play() try/catch.
+          // Release the director slot instead of leaving all later sounds queued.
+          this.stop();
+          onEnded();
+        }
       };
       // На переиспользуемом Android-плеере seekTo(0) асинхронно выводит
       // ExoPlayer из STATE_ENDED. Запуск до завершения seek — точная причина
       // эффекта «тот же системный звук играет через раз».
       if (seekPromise) {
+        seekFallbackTimer = setTimeout(startAfterSeek, SEEK_SETTLE_TIMEOUT_MS);
         void seekPromise.then(startAfterSeek, startAfterSeek);
       } else {
         startAfterSeek();

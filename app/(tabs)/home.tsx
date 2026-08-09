@@ -3271,7 +3271,10 @@ export default function HomeScreen() {
                   <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }}>
+                  {/* зачем: это обычный вход в раздел, а не редакционный акцент.
+                      Жёсткий минимум 22px делал small/medium/large одинаковыми;
+                      размер должен следовать пользовательской шкале f. */}
+                  <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
                     {triLang(lang, {
                       ru: 'Вызовы дня', uk: 'Виклики дня', es: 'Tareas del día', 'pt-BR': 'Tarefas do dia',
                       vi: 'Nhiệm vụ hôm nay', id: 'Tugas harian', tr: 'Günün görevleri', pl: 'Zadania dnia',
@@ -3309,14 +3312,14 @@ export default function HomeScreen() {
                       <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
-                      <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }}>
+                      <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
                         {triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
                       </FlowText>
-                      <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }}>
+                      <Text style={{ color: leagueBonusPalette.textMuted, fontSize: f.label, fontWeight: '800', lineHeight: f.label + 4, marginTop: 2 }}>
                         {homeLeagueChest.leagueName}
                       </Text>
                     </View>
-                    <Text style={{ color: homeLeagueChestAccent, fontSize: Math.max(27, f.h2 + 2), fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                    <Text style={{ color: homeLeagueChestAccent, fontSize: f.h2 + 2, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
                       {homeLeagueChestPct}%
                     </Text>
                   </View>

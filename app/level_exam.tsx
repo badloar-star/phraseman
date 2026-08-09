@@ -550,7 +550,6 @@ export default function LevelExam() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { hasPremiumAccess } = usePremium();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
   const isFrenchExam = storageStudyTarget(studyTarget) === 'fr';
   const frenchExamSourceLocale = lang === 'uk' ? 'uk' : 'ru';
@@ -575,6 +574,7 @@ export default function LevelExam() {
   // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
   // Премиум/тестер обходят списание внутри spendAmount (isUnlimited).
   const { isUnlimited: energyUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
   const examEnergyUnlimited = energyUnlimited || hasPremiumAccess;
   const [noEnergy, setNoEnergy] = useState(false);
 
@@ -854,7 +854,9 @@ export default function LevelExam() {
       const attemptNumber = await recordLevelExamAttempt(lvl, studyTarget);
       setExamAttemptNumber(attemptNumber);
       await AsyncStorage.setItem(levelExamKey(lvl, 'pct', studyTarget), String(pct));
-      await AsyncStorage.setItem(levelExamKey(lvl, 'passed', studyTarget), passed ? 'true' : 'false');
+      // Локальный формат 1/0 сохраняет совместимость со старыми клиентами;
+      // читатели понимают и его, и канонические cloud-значения true/false.
+      await AsyncStorage.setItem(levelExamKey(lvl, 'passed', studyTarget), passed ? '1' : '0');
       // При сдаче зачёта открываем следующий уровень.
       if (passed) {
         const nextLevel = getNextCourseLevel(lvl as CourseLevel);

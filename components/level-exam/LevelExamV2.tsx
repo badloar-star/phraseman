@@ -168,7 +168,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       );
       await AsyncStorage.multiSet([
         [levelExamKey(level, 'pct', 'en'), String(Math.max(previousPct, scored.pct))],
-        [levelExamKey(level, 'passed', 'en'), storedProgressFlagIsTrue(previousPassed) || scored.passed ? 'true' : 'false'],
+        // Keep local 1/0 for older clients. Compatible readers also accept the
+        // canonical true/false strings restored from cloud progress events.
+        [levelExamKey(level, 'passed', 'en'), storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'],
       ]);
       if (scored.passed) {
         const nextLevel = getNextCourseLevel(level);

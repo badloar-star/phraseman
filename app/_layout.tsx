@@ -2878,10 +2878,6 @@ function AppContent() {
       firstContentReadyTimerRef.current = null;
     }
     setFirstContentReady(true);
-    // Home уже смонтирован под полноэкранным онбордингом, но до этого события
-    // намеренно не запускает тяжёлые storage/Firestore-загрузки и анимации.
-    // Будим его после сохранения onboarding_done и прямо перед снятием оверлея.
-    emitAppEvent('onboarding_completed');
     router.replace('/(tabs)/home' as any);
     setTimeout(() => router.replace('/(tabs)/home' as any), 120);
     // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не
@@ -2898,7 +2894,14 @@ function AppContent() {
     // делает router.replace('/paywall_*')), при мгновенном setShow(false) пейвол мелькает один
     // кадр до перехода на главную. Небольшая отсрочка убирает мелькание (оверлей держит экран,
     // пока навигация не встала на /home).
-    setTimeout(() => setShow(false), 60);
+    setTimeout(() => {
+      setShow(false);
+      // Home уже смонтирован под полноэкранным онбордингом, но до этого события
+      // намеренно не запускает тяжёлые storage/Firestore-загрузки и анимации.
+      // CleanOnboarding дождался записи onboarding_done до onDone; будим Home
+      // только после снятия корневого оверлея, когда экран действительно видим.
+      emitAppEvent('onboarding_completed');
+    }, 60);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // UX-003: Запрашиваем пуш-разрешение в конце онбординга (не раньше — иначе система не даст

@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
-import { cleanup, fireEvent, render } from '@testing-library/react-native';
+import { act, cleanup, fireEvent, render } from '@testing-library/react-native';
+
+// Файл намеренно `.test.ts`: корневой Jest запускает только исполняемые TS-guards.
 
 import LevelExamIntro from '../components/level-exam/LevelExamIntro';
 
@@ -81,6 +83,23 @@ it('shows useful preparation details and guards the start action', async () => {
   await fireEvent.press(start);
   await fireEvent.press(start);
   expect(onStart).toHaveBeenCalledTimes(1);
+});
+
+it('releases the launch guard when start resolves without leaving the intro', async () => {
+  const onStart = jest.fn(async () => undefined);
+  const view = await render(React.createElement(LevelExamIntro, { ...baseProps, onStart }));
+  const start = view.getByLabelText('Начать проверку −5 ⚡');
+
+  await act(async () => {
+    fireEvent.press(start);
+    await Promise.resolve();
+  });
+  await act(async () => {
+    fireEvent.press(start);
+    await Promise.resolve();
+  });
+
+  expect(onStart).toHaveBeenCalledTimes(2);
 });
 
 it('keeps the start action disabled when energy is insufficient', async () => {

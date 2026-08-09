@@ -30,6 +30,17 @@ describe('phrase widget responsive text layout', () => {
     expect(ios).not.toContain('.fixedSize(horizontal: false, vertical: true)');
     expect(ios).toContain('.layoutPriority(2)');
     expect(ios).toContain('.layoutPriority(1)');
-    expect(ios.match(/\.lineLimit\(2\)/g)?.length).toBeGreaterThanOrEqual(5);
+    expect(ios.match(/\.lineLimit\(2\)/g)?.length).toBeGreaterThanOrEqual(4);
+  });
+
+  it('does not reintroduce two-line truncation for long phrases in the small iOS widget', () => {
+    const smallStart = ios.indexOf('private var small: some View');
+    const smallEnd = ios.indexOf('private var medium: some View', smallStart);
+    const small = ios.slice(smallStart, smallEnd);
+
+    expect(small).toContain('Text(entry.payload.english)');
+    expect(small).toContain('.lineLimit(3)');
+    expect(small).toContain('.minimumScaleFactor(0.55)');
+    expect(small).toContain('.layoutPriority(2)');
   });
 });

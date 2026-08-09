@@ -159,7 +159,12 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
 
     try {
       const previousPassed = await AsyncStorage.getItem(levelExamKey(level, 'passed', 'en'));
-      const previousPct = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', 'en')) ?? 0);
+      const previousPctRaw = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', 'en')) ?? 0);
+      // Повреждённое/устаревшее значение не должно превращать новый честный
+      // результат в строку `NaN` и визуально снова закрывать уровень.
+      const previousPct = Number.isFinite(previousPctRaw)
+        ? Math.max(0, Math.min(100, Math.round(previousPctRaw)))
+        : 0;
       const attemptNumber = await recordCompletedLevelExamAttemptOnce(
         ownerStableUid,
         level,

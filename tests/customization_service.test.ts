@@ -114,6 +114,32 @@ describe('customization service', () => {
     expect(deps.syncPublicProfile).not.toHaveBeenCalled();
   });
 
+  it('does not publish an old selection when an account transition wins the lock', async () => {
+    const deps = makeDeps();
+    let current = true;
+    let releaseLock!: () => void;
+    const lockBlocked = new Promise<void>((resolve) => { releaseLock = resolve; });
+    deps.createAccountScope = () => ({
+      isCurrent: () => current,
+      runExclusive: async (work) => {
+        await lockBlocked;
+        return current ? work() : undefined;
+      },
+    });
+
+    const pending = applyCustomizationDraft(availableInput, deps);
+    current = false;
+    releaseLock();
+
+    await expect(pending).rejects.toThrow('customization_account_changed');
+    expect(deps.getCurrentSnapshot).not.toHaveBeenCalled();
+    expect(deps.publishSnapshot).not.toHaveBeenCalled();
+    expect(deps.storage.multiSet).not.toHaveBeenCalled();
+    expect(deps.invalidateCaches).not.toHaveBeenCalled();
+    expect(deps.syncCloud).not.toHaveBeenCalled();
+    expect(deps.syncPublicProfile).not.toHaveBeenCalled();
+  });
+
   it('resets to computed level avatar and frame while preserving stored aura', async () => {
     const deps = makeDeps();
     await resetToLevelAvatar({ level: 18, storedAuraSelection: 'none' }, deps);

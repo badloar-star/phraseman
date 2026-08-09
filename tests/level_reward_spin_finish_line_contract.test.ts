@@ -60,6 +60,53 @@ describe('Finish Line level spin screen contract', () => {
     expect(receiptEffect).toContain('pendingLandingRef.current');
   });
 
+  test('lets the idle reel follow a finger and coast with bounded native inertia', () => {
+    const code = presentation();
+    const manualGesture = code.slice(
+      code.indexOf('const manualReelGesture'),
+      code.indexOf('const adjustManualReel'),
+    );
+    expect(code).toContain("import { Gesture, GestureDetector } from 'react-native-gesture-handler'");
+    expect(code).toContain('withDecay');
+    expect(manualGesture).toContain('Gesture.Pan()');
+    expect(manualGesture).toContain('.enabled(manualReelEnabled)');
+    expect(manualGesture).toContain('manualDragStartOffset.value + event.translationY');
+    expect(manualGesture).toContain('const velocity = Math.max(');
+    expect(manualGesture).toContain('withDecay({\n        velocity,');
+    expect(manualGesture).toContain('deceleration: MANUAL_REEL_DECELERATION');
+    expect(manualGesture).toContain('clamp: [manualReelMinOffset, manualReelMaxOffset]');
+    expect(manualGesture).toContain('nearestManualReelRowOffset');
+    expect(manualGesture).toContain('if (reducedMotion)');
+    expect(code).toContain('<GestureDetector gesture={manualReelGesture}>');
+  });
+
+  test('keeps manual reel play presentation-only and reserves claims for the Spin button', () => {
+    const finishLine = presentation();
+    const screen = source();
+    const manualGesture = finishLine.slice(
+      finishLine.indexOf('const manualReelGesture'),
+      finishLine.indexOf('const adjustManualReel'),
+    );
+    expect(finishLine).toContain("(phase === 'idle' || phase === 'error')");
+    expect(finishLine).toContain('&& (balance ?? 0) > 0');
+    expect(manualGesture).not.toContain('onSpin');
+    expect(manualGesture).not.toContain('claimLocalLevelSpin');
+    expect(manualGesture).not.toContain('soundDirector');
+    expect(manualGesture).not.toContain('haptic');
+    expect(finishLine).toContain(': onSpin;');
+    expect(finishLine).toContain('onPress={handleCtaPress}');
+    expect(screen).toContain(': await claimLocalLevelSpin()');
+  });
+
+  test('explains the no-cost preview gesture to touch and accessibility users', () => {
+    const code = presentation();
+    expect(code).toContain('accessibilityRole="adjustable"');
+    expect(code).toContain("{ name: 'increment' }");
+    expect(code).toContain("{ name: 'decrement' }");
+    expect(code).toContain('Крути пальцем для просмотра · спин запускает кнопка');
+    expect(code).toContain('без расхода спина');
+  });
+
   test('cancels motion off-screen and invalidates stale receipt callbacks', () => {
     const code = presentation();
     expect(code).toContain('useIsScreenFocused');

@@ -10,12 +10,14 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
   cancelAnimation,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
+  withDecay,
   withRepeat,
   withSequence,
   withTiming,
@@ -56,7 +58,12 @@ const REWARD_STREAM_IDS = [
   'xp_2x_24h', 'energy_plus2', 'chain_shield_1', 'hint_3', 'xp_bank_300',
   'cosmetic_avatar_common', 'xp_2x_48h', 'energy_plus3', 'xp_bank_600', 'choice_3_level',
 ] as const;
+const REWARD_STREAM_REPEATS = 3;
+const REWARD_STREAM_LENGTH = REWARD_STREAM_IDS.length * REWARD_STREAM_REPEATS;
 const SPIN_ROLLBACK_MS = 160;
+const MANUAL_REEL_MAX_VELOCITY = 5_200;
+const MANUAL_REEL_DECELERATION = 0.992;
+const MANUAL_REEL_SNAP_MS = 180;
 const DEFAULT_REWARD_GRADIENT: [string, string, string] = ['#15473C', '#0E2B28', '#081918'];
 export type LevelSpinFinishLinePhase = 'recovering' | 'idle' | 'spinning' | 'revealed' | 'error' | 'empty';
 
@@ -79,6 +86,23 @@ function rarityColor(gift: GiftDef): string {
   if (gift.rarity === 'epic') return '#F3C85C';
   if (gift.rarity === 'rare') return '#79B8FF';
   return '#7BD9CB';
+}
+
+function clampManualReelOffset(value: number, min: number, max: number): number {
+  'worklet';
+  return Math.max(min, Math.min(max, value));
+}
+
+function nearestManualReelRowOffset(
+  offset: number,
+  selectorTop: number,
+  rowPitch: number,
+  min: number,
+  max: number,
+): number {
+  'worklet';
+  const row = Math.round((selectorTop - offset) / rowPitch);
+  return clampManualReelOffset(selectorTop - row * rowPitch, min, max);
 }
 
 const HIGH_VALUE_COMMON_GIFT_IDS = new Set([
@@ -115,6 +139,8 @@ export default function LevelSpinFinishLine({
   const isFocused = useIsScreenFocused();
   const [appActive, setAppActive] = useState(AppState.currentState === 'active');
   const reelOffset = useSharedValue(0);
+  const manualDragStartOffset = useSharedValue(0);
+  const manualGestureEnded = useSharedValue(0);
   const resultOpacity = useSharedValue(0);
   const [resultVisible, setResultVisible] = useState(false);
   const [settledRequestId, setSettledRequestId] = useState<string | null>(null);
@@ -126,14 +152,27 @@ export default function LevelSpinFinishLine({
   const revealedRequestRef = useRef<string | null>(null);
   const announcedRequestRef = useRef<string | null>(null);
   const spinStartedAtRef = useRef<number | null>(null);
+  const manualReelSeededRef = useRef(false);
   const decelerationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingLandingRef = useRef<(LevelSpinLandingPlan & { requestId: string; liveOffset: number }) | null>(null);
   activeReceiptRef.current = receipt?.requestId ?? null;
   const resultGift = giftForId(receipt?.baseGiftId);
   const premiumGift = giftForId(receipt?.premiumGiftId);
 
+  // Ручная прокрутка — только предпросмотр. Она не вызывает onSpin, не создаёт
+  // receipt и не касается баланса. Реальный spin по-прежнему принадлежит CTA.
+  const manualReelEnabled = machineHeight !== null
+    && (phase === 'idle' || phase === 'error')
+    && !receipt
+    && (balance ?? 0) > 0;
+  const manualReelMaxOffset = 0;
+  const manualReelMinOffset = machineHeight === null
+    ? 0
+    : Math.min(0, machineHeight - (REWARD_STREAM_LENGTH * rowPitch - cardGap));
+  const selectorTop = selectorCenterY - cardHeight / 2;
+
   const streamIds = useMemo(() => {
-    const ids = Array.from({ length: 3 }, () => [...REWARD_STREAM_IDS]).flat();
+    const ids = Array.from({ length: REWARD_STREAM_REPEATS }, () => [...REWARD_STREAM_IDS]).flat();
     if (receipt?.baseGiftId && landingIndex !== null) {
       ids[landingIndex] = receipt.baseGiftId as typeof REWARD_STREAM_IDS[number];
     }
@@ -142,6 +181,122 @@ export default function LevelSpinFinishLine({
 
   const reelStyle = useAnimatedStyle(() => ({ transform: [{ translateY: reelOffset.value }] }));
   const finalStyle = useAnimatedStyle(() => ({ opacity: resultOpacity.value }));
+
+  useEffect(() => {
+    if (phase === 'recovering') manualReelSeededRef.current = false;
+  }, [phase]);
+
+  // Ставим idle-барабан в средний повтор той же ленты: сверху и снизу есть
+  // запас для пальца, а центральная карточка совпадает с каноническим стартом
+  // настоящего спина (разницы при первом нажатии не видно).
+  useEffect(() => {
+    if (!manualReelEnabled || manualReelSeededRef.current) return;
+    manualReelSeededRef.current = true;
+    cancelAnimation(reelOffset);
+    const middleStartIndex = REWARD_STREAM_IDS.length + 4;
+    reelOffset.value = clampManualReelOffset(
+      selectorTop - middleStartIndex * rowPitch,
+      manualReelMinOffset,
+      manualReelMaxOffset,
+    );
+  }, [manualReelEnabled, manualReelMaxOffset, manualReelMinOffset, reelOffset, rowPitch, selectorTop]);
+
+  const manualReelGesture = useMemo(() => Gesture.Pan()
+    .enabled(manualReelEnabled)
+    .minPointers(1)
+    .maxPointers(1)
+    .activeOffsetY([-6, 6])
+    .failOffsetX([-24, 24])
+    .shouldCancelWhenOutside(false)
+    .onBegin(() => {
+      'worklet';
+      cancelAnimation(reelOffset);
+      manualDragStartOffset.value = reelOffset.value;
+      manualGestureEnded.value = 0;
+    })
+    .onUpdate((event) => {
+      'worklet';
+      reelOffset.value = clampManualReelOffset(
+        manualDragStartOffset.value + event.translationY,
+        manualReelMinOffset,
+        manualReelMaxOffset,
+      );
+    })
+    .onEnd((event) => {
+      'worklet';
+      manualGestureEnded.value = 1;
+      if (reducedMotion) {
+        reelOffset.value = nearestManualReelRowOffset(
+          reelOffset.value,
+          selectorTop,
+          rowPitch,
+          manualReelMinOffset,
+          manualReelMaxOffset,
+        );
+        return;
+      }
+      const velocity = Math.max(
+        -MANUAL_REEL_MAX_VELOCITY,
+        Math.min(MANUAL_REEL_MAX_VELOCITY, event.velocityY),
+      );
+      reelOffset.value = withDecay({
+        velocity,
+        deceleration: MANUAL_REEL_DECELERATION,
+        clamp: [manualReelMinOffset, manualReelMaxOffset],
+      }, (finished) => {
+        if (!finished) return;
+        const target = nearestManualReelRowOffset(
+          reelOffset.value,
+          selectorTop,
+          rowPitch,
+          manualReelMinOffset,
+          manualReelMaxOffset,
+        );
+        reelOffset.value = withTiming(target, {
+          duration: MANUAL_REEL_SNAP_MS,
+          easing: Easing.out(Easing.cubic),
+        });
+      });
+    })
+    .onFinalize(() => {
+      'worklet';
+      if (manualGestureEnded.value === 1) return;
+      const target = nearestManualReelRowOffset(
+        reelOffset.value,
+        selectorTop,
+        rowPitch,
+        manualReelMinOffset,
+        manualReelMaxOffset,
+      );
+      reelOffset.value = reducedMotion
+        ? target
+        : withTiming(target, { duration: MANUAL_REEL_SNAP_MS, easing: Easing.out(Easing.cubic) });
+    }), [
+    manualDragStartOffset,
+    manualGestureEnded,
+    manualReelEnabled,
+    manualReelMaxOffset,
+    manualReelMinOffset,
+    reducedMotion,
+    reelOffset,
+    rowPitch,
+    selectorTop,
+  ]);
+
+  const adjustManualReel = useCallback((rows: number) => {
+    if (!manualReelEnabled) return;
+    cancelAnimation(reelOffset);
+    const target = nearestManualReelRowOffset(
+      reelOffset.value - rows * rowPitch,
+      selectorTop,
+      rowPitch,
+      manualReelMinOffset,
+      manualReelMaxOffset,
+    );
+    reelOffset.value = reducedMotion
+      ? target
+      : withTiming(target, { duration: MANUAL_REEL_SNAP_MS, easing: Easing.out(Easing.cubic) });
+  }, [manualReelEnabled, manualReelMaxOffset, manualReelMinOffset, reducedMotion, reelOffset, rowPitch, selectorTop]);
 
   const resultAccessibilityLabel = resultGift
     ? [
@@ -373,7 +528,18 @@ export default function LevelSpinFinishLine({
     ? ''
     : phase === 'empty'
       ? triLang(lang, { ru: 'Спины закончились', uk: 'Спіни закінчилися', es: 'No quedan giros', 'pt-BR': 'Sem giros', vi: 'Đã hết lượt', id: 'Putaran habis', tr: 'Çevirme kalmadı', pl: 'Brak spinów' })
-      : '';
+      : manualReelEnabled
+        ? triLang(lang, {
+          ru: 'Крути пальцем для просмотра · спин запускает кнопка',
+          uk: 'Крути пальцем для перегляду · спін запускає кнопка',
+          es: 'Desliza para mirar · el botón inicia el giro',
+          'pt-BR': 'Deslize para ver · o botão inicia o giro',
+          vi: 'Vuốt để xem · nút mới bắt đầu lượt quay',
+          id: 'Geser untuk melihat · tombol memulai putaran',
+          tr: 'Bakmak için kaydır · dönüşü düğme başlatır',
+          pl: 'Przesuń, aby obejrzeć · losowanie uruchamia przycisk',
+        })
+        : '';
 
   const handleCtaPress = resultVisible
     ? onAgain
@@ -383,14 +549,40 @@ export default function LevelSpinFinishLine({
 
   return (
     <View style={[styles.content, compact && styles.contentCompact]}>
-      <View
-        testID="level-spin-reel-stage"
-        style={[styles.reelStage, { backgroundColor: t.bgPrimary }]}
-        onLayout={(event) => {
-          const nextHeight = Math.round(event.nativeEvent.layout.height);
-          if (nextHeight > 0 && nextHeight !== machineHeight) setMachineHeight(nextHeight);
-        }}
-      >
+      <GestureDetector gesture={manualReelGesture}>
+        <View
+          testID="level-spin-reel-stage"
+          collapsable={false}
+          accessible={manualReelEnabled}
+          accessibilityRole="adjustable"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Барабан наград', uk: 'Барабан нагород', es: 'Carrete de recompensas',
+            'pt-BR': 'Carretel de recompensas', vi: 'Vòng phần thưởng', id: 'Gulungan hadiah',
+            tr: 'Ödül makarası', pl: 'Bęben nagród',
+          })}
+          accessibilityHint={manualReelEnabled ? triLang(lang, {
+            ru: 'Проведи пальцем, чтобы покрутить без расхода спина. Настоящий спин запускает только кнопка.',
+            uk: 'Проведи пальцем, щоб покрутити без витрати спіну. Справжній спін запускає лише кнопка.',
+            es: 'Desliza para moverlo sin gastar un giro. Solo el botón inicia el giro real.',
+            'pt-BR': 'Deslize sem gastar um giro. Só o botão inicia o giro real.',
+            vi: 'Vuốt để xem mà không tốn lượt. Chỉ nút mới bắt đầu lượt quay thật.',
+            id: 'Geser tanpa memakai putaran. Hanya tombol yang memulai putaran sebenarnya.',
+            tr: 'Spin harcamadan kaydır. Gerçek dönüşü yalnızca düğme başlatır.',
+            pl: 'Przesuwaj bez zużycia losowania. Prawdziwe losowanie uruchamia tylko przycisk.',
+          }) : undefined}
+          accessibilityActions={manualReelEnabled
+            ? [{ name: 'increment' }, { name: 'decrement' }]
+            : undefined}
+          onAccessibilityAction={(event) => {
+            if (event.nativeEvent.actionName === 'increment') adjustManualReel(1);
+            if (event.nativeEvent.actionName === 'decrement') adjustManualReel(-1);
+          }}
+          style={[styles.reelStage, { backgroundColor: t.bgPrimary }]}
+          onLayout={(event) => {
+            const nextHeight = Math.round(event.nativeEvent.layout.height);
+            if (nextHeight > 0 && nextHeight !== machineHeight) setMachineHeight(nextHeight);
+          }}
+        >
         {machineHeight !== null ? (
           <>
             <Animated.View
@@ -462,7 +654,8 @@ export default function LevelSpinFinishLine({
           locations={[0, 0.82, 1]}
           style={[styles.stageFade, styles.stageFadeBottom]}
         />
-      </View>
+        </View>
+      </GestureDetector>
 
       {resultVisible && resultGift ? (
         <Animated.View

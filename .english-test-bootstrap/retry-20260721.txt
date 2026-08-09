@@ -1,0 +1,3 @@
+Retry requested after verified 404 on production.
+Exporting the complete git history of all transport chunks to recover the original valid archive.
+Required success criteria: live public test, live admin analytics page, and Firebase deployment completed without skipped steps.

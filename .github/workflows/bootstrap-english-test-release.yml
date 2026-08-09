@@ -1,0 +1,211 @@
+name: Bootstrap and deploy audited English level test
+
+on:
+  push:
+    branches:
+      - agent/english-level-test-20260721
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: english-level-test-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3 }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    steps:
+      - name: Check out release branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Materialise audited release payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          if compgen -G '.english-test-bootstrap/payload.part*' > /dev/null; then
+            cat .english-test-bootstrap/payload.part* | base64 --decode > "$RUNNER_TEMP/english-test-release.tar.gz"
+            echo 'eea07f5efba6bfbc4ffdd919ddc4e448129e9907ac21aaf2b01f3b4964be38a5  '"$RUNNER_TEMP/english-test-release.tar.gz" | sha256sum --check --strict
+            tar -xzf "$RUNNER_TEMP/english-test-release.tar.gz" -C .
+          elif [[ ! -f functions-english-test/index.js || ! -f knowly-www/english-level-test/index.html ]]; then
+            echo 'Neither bootstrap payload nor materialised English-test source exists.' >&2
+            exit 1
+          fi
+
+      - name: Integrate isolated test into Firebase Hosting and admin
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          function read(file) { return fs.readFileSync(file, 'utf8'); }
+          function write(file, value) { fs.writeFileSync(file, value, 'utf8'); }
+          function writeJson(file, value) { write(file, `${JSON.stringify(value, null, 2)}\n`); }
+          function insertOnce(file, marker, insertion, sentinel) {
+            let text = read(file);
+            if (text.includes(sentinel)) return;
+            const index = text.indexOf(marker);
+            if (index < 0) throw new Error(`Integration marker not found in ${file}: ${marker}`);
+            if (text.indexOf(marker, index + marker.length) >= 0) throw new Error(`Ambiguous integration marker in ${file}: ${marker}`);
+            text = text.slice(0, index) + insertion + text.slice(index);
+            write(file, text);
+          }
+
+          const firebase = JSON.parse(read('firebase.json'));
+          const currentFunctions = Array.isArray(firebase.functions)
+            ? firebase.functions
+            : firebase.functions ? [firebase.functions] : [];
+          const functions = currentFunctions.map((entry, index) => ({
+            ...entry,
+            ...(entry.codebase ? {} : { codebase: index === 0 ? 'default' : `codebase-${index}` }),
+          }));
+          if (!functions.some((entry) => entry.codebase === 'english-test')) {
+            functions.push({
+              source: 'functions-english-test',
+              codebase: 'english-test',
+              runtime: 'nodejs22',
+              ignore: ['node_modules', '.git', 'firebase-debug.log', 'firebase-debug.*.log'],
+            });
+          }
+          firebase.functions = functions;
+          const publicHosting = Array.isArray(firebase.hosting)
+            ? firebase.hosting.find((entry) => entry && entry.target === 'knowlywww')
+            : null;
+          if (!publicHosting) throw new Error('Firebase hosting target knowlywww is missing');
+          publicHosting.rewrites ||= [];
+          if (!publicHosting.rewrites.some((entry) => entry && entry.source === '/api/english-test')) {
+            publicHosting.rewrites.unshift({
+              source: '/api/english-test',
+              function: { functionId: 'englishTestApi', region: 'us-central1' },
+            });
+          }
+          writeJson('firebase.json', firebase);
+
+          const pkg = JSON.parse(read('package.json'));
+          pkg.scripts ||= {};
+          Object.assign(pkg.scripts, {
+            'english-test:generate': 'node scripts/generate_english_test_assets.mjs',
+            'english-test:audit-bank': 'python3 scripts/audit_english_test_bank.py content/english-test/questions.en.json',
+            'english-test:check': 'node scripts/generate_english_test_assets.mjs --check && python3 scripts/audit_english_test_bank.py content/english-test/questions.en.json && node --test tests/english_test_release.test.mjs',
+            'english-test:functions:install': 'npm install --prefix functions-english-test',
+            'english-test:deploy:functions': 'npx firebase-tools deploy --project phraseman-ea0b3 --only functions:english-test --non-interactive',
+            'english-test:deploy:hosting': 'npx firebase-tools deploy --project phraseman-ea0b3 --only hosting:knowlywww,hosting:admin --non-interactive',
+            'english-test:deploy': 'npx firebase-tools deploy --project phraseman-ea0b3 --only functions:english-test,hosting:knowlywww,hosting:admin --non-interactive',
+          });
+          writeJson('package.json', pkg);
+
+          insertOnce(
+            'admin/v2/index.html',
+            '        <a href="#monthly" title="Ежемесячный пакет решений">Пакет решений</a>\n',
+            '        <a href="/v2/english-test.html" title="Аналитика веб‑теста английского">Веб‑тест</a>\n',
+            'href="/v2/english-test.html"',
+          );
+          insertOnce(
+            'knowly-www/index.html',
+            '        <a href="/guides/">Гайды</a>\n',
+            '        <a href="/english-level-test/">Тест уровня</a>\n',
+            'href="/english-level-test/"',
+          );
+          insertOnce(
+            'knowly-www/sitemap.xml',
+            '  <url>\n    <loc>https://knowlyapps.com/guides/</loc>',
+            '  <url>\n    <loc>https://knowlyapps.com/english-level-test/</loc>\n    <lastmod>2026-07-21</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>\n',
+            'https://knowlyapps.com/english-level-test/',
+          );
+
+          const privacyFile = 'knowly-www/legal/privacy/index.html';
+          let privacy = read(privacyFile).replaceAll('July 1, 2026', 'July 21, 2026');
+          const privacySentinel = '<h2>10A. Website English Level Check</h2>';
+          if (!privacy.includes(privacySentinel)) {
+            const marker = '        <h2>11. AI features and OpenAI processing</h2>';
+            if (!privacy.includes(marker)) throw new Error('Privacy policy section 11 marker not found');
+            const section = `        <h2>10A. Website English Level Check</h2>\n        <p>The optional English Level Check on Knowly website pages can run entirely in the browser. If you leave anonymous analytics disabled, answers, the estimated level, and the certificate name are not sent to Knowly.</p>\n        <p>If you expressly enable anonymous test analytics, we process a random browser identifier, an anonymous attempt identifier, coarse campaign/referrer and device categories, question identifiers, selected option numbers, correctness calculated by the server, response-time ranges, progress and abandonment position, estimated CEFR level, certificate actions without the certificate name, and share-button channels. We do not link this website test to the Phraseman App account.</p>\n        <p>Detailed anonymous attempts are scheduled for deletion after 180 days. Hashed random-browser counters and daily aggregates are scheduled for deletion after 400 days. Rate-limit records based on a one-way truncated IP hash are short-lived. The name typed onto a certificate is rendered locally and is not included in analytics or the admin response.</p>\n\n`;
+            privacy = privacy.replace(marker, section + marker);
+          }
+          write(privacyFile, privacy);
+          NODE
+
+      - name: Generate, audit and test release
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/generate_english_test_assets.mjs
+          node scripts/generate_english_test_assets.mjs --check
+          python3 scripts/audit_english_test_bank.py content/english-test/questions.en.json
+          npm install --prefix functions-english-test --package-lock-only --ignore-scripts
+          npm ci --prefix functions-english-test --omit=dev --ignore-scripts
+          node --check functions-english-test/index.js
+          node --check functions-english-test/engine.js
+          node --check functions-english-test/analytics.js
+          node --check knowly-www/english-level-test/app.js
+          node --check knowly-www/english-level-test/engine.js
+          node --check knowly-www/english-level-test/certificate.js
+          node --test tests/english_test_release.test.mjs
+          npm audit --prefix functions-english-test --omit=dev
+
+      - name: Commit audited source before deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .english-test-bootstrap functions-english-test/node_modules
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat: add audited English level test [skip ci]'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Configure Firebase authentication
+        id: firebase-auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${FIREBASE_SERVICE_ACCOUNT:-}" ]]; then
+            credentials="$RUNNER_TEMP/firebase-service-account.json"
+            printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$credentials"
+            chmod 600 "$credentials"
+            echo "google_application_credentials=$credentials" >> "$GITHUB_OUTPUT"
+            echo 'mode=service-account' >> "$GITHUB_OUTPUT"
+          elif [[ -n "${FIREBASE_TOKEN:-}" ]]; then
+            echo 'mode=token' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Firebase deployment credentials are missing. Configure FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3 or FIREBASE_TOKEN in repository secrets.' >&2
+            exit 78
+          fi
+
+      - name: Deploy isolated Functions codebase and both Hosting targets
+        shell: bash
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.firebase-auth.outputs.google_application_credentials }}
+        run: |
+          set -euo pipefail
+          args=(deploy --project phraseman-ea0b3 --only 'functions:english-test,hosting:knowlywww,hosting:admin' --non-interactive)
+          if [[ "${{ steps.firebase-auth.outputs.mode }}" == 'token' ]]; then
+            args+=(--token "$FIREBASE_TOKEN")
+          fi
+          npx --yes firebase-tools@15.24.0 "${args[@]}"
+
+      - name: Remove one-time bootstrap workflow after successful deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/bootstrap-english-test-release.yml
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: remove English test deployment bootstrap [skip ci]'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

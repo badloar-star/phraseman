@@ -11,8 +11,9 @@ import AppIntents
 ///   - systemMedium:         + transcription, with a play affordance
 ///   - accessoryRectangular: branded compact lock-screen line (iOS 16+)
 ///
-/// Text never truncates with an ellipsis: the phrase wraps to as many lines as
-/// fit and shrinks via minimumScaleFactor rather than cutting the meaning off.
+/// Text stays inside the family height: line budgets plus minimumScaleFactor
+/// win over an unconstrained intrinsic height, so larger Dynamic Type cannot
+/// push the last line below the widget crop.
 struct PhraseWidgetView: View {
   @Environment(\.widgetFamily) private var family
   let entry: PhraseEntry
@@ -79,15 +80,15 @@ struct PhraseWidgetView: View {
       Text(entry.payload.english)
         .font(.title3.weight(.bold))
         .foregroundStyle(phraseColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.6)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(2)
       Text(entry.payload.meaning)
         .font(.footnote)
         .foregroundStyle(subColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.8)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(1)
       Spacer(minLength: 0)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -120,15 +121,15 @@ struct PhraseWidgetView: View {
       Text(entry.payload.english)
         .font(.title2.weight(.bold))
         .foregroundStyle(phraseColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.6)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(2)
       Text(entry.payload.meaning)
         .font(.subheadline)
         .foregroundStyle(subColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.8)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(1)
       if !entry.payload.transcription.isEmpty {
         Text(entry.payload.transcription)
           .font(.caption)
@@ -157,7 +158,7 @@ struct PhraseWidgetView: View {
           .font(.headline)
           .lineLimit(2)
           .minimumScaleFactor(0.7)
-          .fixedSize(horizontal: false, vertical: true)
+          .layoutPriority(1)
       }
     }
     .frame(maxWidth: .infinity, alignment: .leading)

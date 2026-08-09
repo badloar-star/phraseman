@@ -17,4 +17,13 @@ describe('flashcard training feedback layout', () => {
     expect(source).toContain('maxHeight: feedback ? cardMaxHeight : undefined');
     expect(source).toContain("overflow: feedback ? 'hidden' : 'visible'");
   });
+
+  it('briefly reminds the correct translation after a correct “Неверно” answer', () => {
+    expect(source).toContain('if (!saysMatch) {');
+    expect(source).toContain('showCorrectTranslationReminder(prompt);');
+    expect(source).toContain('testID="flashcards-correct-translation-reminder"');
+    expect(source).toContain('pointerEvents="none"');
+    expect(source).toContain('accessibilityLiveRegion="polite"');
+    expect(source).toContain('}, 3200);');
+  });
 });

@@ -217,6 +217,16 @@ function MedalToast({
     () => pickLabels(tier, promoted, lang, spanishUiActive),
     [tier, promoted, lang, spanishUiActive],
   );
+  const dismissActionLabel = useMemo(() => triLang(spanishUiActive ? 'es' : lang, {
+    ru: 'Закрыть уведомление',
+    uk: 'Закрити сповіщення',
+    es: 'Cerrar aviso',
+    'pt-BR': 'Fechar aviso',
+    vi: 'Đóng thông báo',
+    id: 'Tutup pemberitahuan',
+    tr: 'Bildirimi kapat',
+    pl: 'Zamknij powiadomienie',
+  }), [lang, spanishUiActive]);
   const drag = useRef(new Animated.ValueXY()).current;
   const panResponder = useMemo(() => PanResponder.create({
     onMoveShouldSetPanResponder: (_event, gesture) => (
@@ -232,26 +242,26 @@ function MedalToast({
         || Math.abs(gesture.vx) >= 0.65
         || gesture.vy <= -0.65;
       if (!shouldDismiss || !onDismiss) {
-        Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: true }).start();
+        Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
         return;
       }
       Animated.parallel([
         Animated.timing(drag.x, {
           toValue: Math.abs(gesture.dx) >= 20 ? (gesture.dx < 0 ? -420 : 420) : 0,
           duration: 170,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }),
         Animated.timing(drag.y, {
           toValue: gesture.dy < 0 ? -140 : gesture.dy,
           duration: 170,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }),
       ]).start(({ finished }) => {
         if (finished) onDismiss();
       });
     },
     onPanResponderTerminate: () => {
-      Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: true }).start();
+      Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
     },
   }), [drag, onDismiss]);
 
@@ -267,21 +277,31 @@ function MedalToast({
 
   return (
     <Animated.View
-      pointerEvents={onDismiss ? 'auto' : 'none'}
-      {...(onDismiss ? panResponder.panHandlers : {})}
+      pointerEvents={onDismiss ? 'box-none' : 'none'}
       style={[
         styles.wrap,
         {
           bottom,
           opacity: anim,
           transform: [
-            { translateX: drag.x },
-            { translateY: Animated.add(anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }), drag.y) },
+            { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }) },
             { scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) },
           ],
         },
       ]}
     >
+      <Animated.View
+        pointerEvents={onDismiss ? 'auto' : 'none'}
+        {...(onDismiss ? panResponder.panHandlers : {})}
+        accessible={Boolean(onDismiss)}
+        accessibilityRole="alert"
+        accessibilityLabel={`${labels.title}. ${labels.subtitle}`}
+        accessibilityActions={onDismiss ? [{ name: 'dismiss', label: dismissActionLabel }] : undefined}
+        onAccessibilityAction={onDismiss ? (event) => {
+          if (event.nativeEvent.actionName === 'dismiss') onDismiss();
+        } : undefined}
+        style={{ transform: [{ translateX: drag.x }, { translateY: drag.y }] }}
+      >
       {/* зачем: свечение вокруг тоста (halo + aura + цветная тень по акценту медали)
           выбивалось из дизайна — убрано. Плашка отделяется от фона тоном градиента
           и мягкой нейтральной тенью, без цветного ореола. */}
@@ -356,6 +376,7 @@ function MedalToast({
           </Text>
         </View>
       </LinearGradient>
+      </Animated.View>
     </Animated.View>
   );
 }

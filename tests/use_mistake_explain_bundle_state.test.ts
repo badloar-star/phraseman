@@ -155,6 +155,24 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(hook.result.current.aiMistakeState).not.toBe('loading');
   });
 
+  it('starts the active explanation when connectivity returns', async () => {
+    netOnline = false;
+    callExplainMistakeMock.mockResolvedValue(fullResponse('Back online explanation'));
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+
+    await act(async () => { await Promise.resolve(); });
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+
+    await act(async () => {
+      netOnline = true;
+      netSubscriber?.(true);
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(hook.result.current.aiMistakeState).toBe('ready'));
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+  });
+
   it('keeps transient failures silent and retries them in the background', async () => {
     jest.useFakeTimers();
     callExplainMistakeMock

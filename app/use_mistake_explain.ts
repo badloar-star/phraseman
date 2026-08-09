@@ -246,7 +246,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     if (generationMatchesRender) accountGenerationRef.current = renderedGeneration;
     accountScopeBlockedRef.current = (
       !active
-      || netStatusRef.current === 'offline'
       || !generationMatchesRender
       || !isCurrentAccountGeneration(renderedGeneration)
     );
@@ -270,6 +269,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   useEffect(() => {
     if (
       !active
+      || netStatus === 'offline'
       || accountScopeBlockedRef.current
       || !isCurrentAccountGeneration(accountGenerationRef.current)
     ) return;

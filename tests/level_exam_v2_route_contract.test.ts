@@ -55,6 +55,7 @@ describe('level exam v2 route contract', () => {
 
   it('never shows or debits exam energy for a verified Plus account', () => {
     const route = read('components/level-exam/LevelExamV2.tsx');
+    const legacyRoute = read('app/level_exam.tsx');
     const intro = read('components/level-exam/LevelExamIntro.tsx');
     expect(route).toContain('const unlimitedEnergy = isUnlimited || hasPremiumAccess');
     expect(route).toContain('if (!unlimitedEnergy && !await spendAmount(ENERGY_COST))');
@@ -62,6 +63,16 @@ describe('level exam v2 route contract', () => {
     expect(intro).toContain('{!unlimitedEnergy ? <View style={[styles.energyPill');
     expect(intro).toContain('{!unlimitedEnergy ? <View style={styles.costBadge}>');
     expect(intro).toContain("? copy.startCta");
+    expect(legacyRoute).toContain("import { usePremium } from '../components/PremiumContext'");
+    expect(legacyRoute).toContain('const { hasPremiumAccess } = usePremium()');
+    expect(legacyRoute).toContain('const examEnergyUnlimited = energyUnlimited || hasPremiumAccess');
+  });
+
+  it('keeps local 1/0 writers compatible while accepting cloud true flags', () => {
+    const route = read('components/level-exam/LevelExamV2.tsx');
+    const legacyRoute = read('app/level_exam.tsx');
+    expect(route).toContain("storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'");
+    expect(legacyRoute).toContain("passed ? '1' : '0'");
   });
 
   it('reads lesson boundaries from the canonical course map', () => {

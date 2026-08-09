@@ -144,6 +144,26 @@ describe('safeRouterBack', () => {
     expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=9');
   });
 
+  it('does not leave duplicate lesson menus after completing and exiting a lesson', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/lessons');
+    navigation.rememberNavigationPath('/lesson_menu?id=6');
+    navigation.rememberNavigationPath('/lesson1?id=6');
+
+    // lesson1 → lesson_complete and lesson_complete → lesson_menu are both swaps,
+    // never additional history entries. Otherwise the first back press appears to
+    // do nothing because it lands on a duplicate lesson menu.
+    navigation.markNextNavigationAsReplace();
+    navigation.rememberNavigationPath('/lesson_complete?id=6');
+    navigation.markNextNavigationAsReplace();
+    navigation.rememberNavigationPath('/lesson_menu?id=6');
+    navigation.safeRouterBack(router, '/(tabs)/lessons' as any);
+
+    expect(router.replace).toHaveBeenCalledWith('/(tabs)/lessons');
+  });
+
   it('dismisses a paywall modal natively when the stack supports it', () => {
     const navigation = loadNavigationBack();
     const router = makeDismissableRouter();

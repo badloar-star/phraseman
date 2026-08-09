@@ -56,6 +56,10 @@ import {
   enforceGlobalBudget,
   reserveExplainBudget,
   refundExplainBudgetReservation,
+  reserveFreeJobUsage,
+  refundFreeJobUsageReservation,
+  reserveGlobalExplainBudget,
+  refundGlobalExplainBudgetReservation,
   GLOBAL_DAILY_CAP,
   GLOBAL_BUDGET_COLLECTION,
   USER_DAILY_GEN_CAP,
@@ -159,6 +163,53 @@ describe('reserveExplainBudget / refundExplainBudgetReservation', () => {
 
     expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
     expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
+  });
+});
+
+describe('refundable user-visible Free usage', () => {
+  it('refunds a failed explanation and does not consume the product allowance', async () => {
+    const reservation = await reserveFreeJobUsage('mistake', AUTH, STABLE, 3, NOW, 'mistake-action-1');
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
+
+    await refundFreeJobUsageReservation(reservation, 'validator_rejected');
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.usageIds).toEqual([]);
+
+    // Idempotent: a second finalizer cannot decrement somebody else's use.
+    await refundFreeJobUsageReservation(reservation, 'duplicate_finalizer');
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
+  });
+
+  it('counts one logical action once when a client retries after a lost response', async () => {
+    const first = await reserveFreeJobUsage('mistake', AUTH, STABLE, 3, NOW, 'same-action');
+    const retry = await reserveFreeJobUsage('mistake', AUTH, STABLE, 3, NOW, 'same-action');
+
+    expect(first.reserved).toBe(true);
+    expect(retry).toMatchObject({ reserved: false, alreadyCounted: true });
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
+  });
+
+  it('never lets a late previous-day refund decrement the next UTC day', async () => {
+    const previousDay = await reserveFreeJobUsage('mistake', AUTH, STABLE, 3, NOW, 'old-action');
+    const nextDay = NOW + 24 * 60 * 60 * 1000;
+    await reserveFreeJobUsage('mistake', AUTH, STABLE, 3, nextDay, 'new-action');
+
+    await refundFreeJobUsageReservation(previousDay, 'late_old_day_failure');
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.usageIds).toEqual(['new-action']);
+  });
+});
+
+describe('refundable global wallet reservation', () => {
+  it('returns global budget when no provider generation happened', async () => {
+    const reservation = await reserveGlobalExplainBudget(10, NOW);
+    expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
+
+    await refundGlobalExplainBudgetReservation(reservation, 'provider_unavailable');
+    expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(0);
+
+    await refundGlobalExplainBudgetReservation(reservation, 'duplicate_finalizer');
+    expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(0);
   });
 });
 

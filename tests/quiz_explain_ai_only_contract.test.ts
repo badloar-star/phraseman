@@ -28,17 +28,16 @@ describe('thematic quiz AI-only explanation contract', () => {
     expect(quizSource).toContain('const explanation = explanationsArr[explanationIdx]');
   });
 
-  it('keeps bounded AI retries for pending or transient callable failures', () => {
+  it('keeps silent safe retries until a real AI explanation is available', () => {
     const hookSource = read('app/use_quiz_explain.ts');
 
-    expect(hookSource).toContain('const PENDING_RETRY_DELAY_MS');
-    expect(hookSource).toContain('const TRANSIENT_RETRY_DELAY_MS');
-    expect(hookSource).toContain('const MAX_PENDING_RETRIES');
-    expect(hookSource).toContain('const MAX_TRANSIENT_RETRIES');
-    expect(hookSource).toContain("if (res.status === 'pending') {");
-    expect(hookSource).toContain('scheduleRetry(PENDING_RETRY_DELAY_MS)');
-    expect(hookSource).toContain('scheduleRetry(TRANSIENT_RETRY_DELAY_MS)');
+    expect(hookSource).toContain('explainRetryDelayMs');
+    expect(hookSource).toContain('retryFailureCountRef.current += 1');
+    expect(hookSource).toContain('scheduleRetry(explainRetryDelayMs');
+    expect(hookSource).not.toContain('MAX_PENDING_RETRIES');
+    expect(hookSource).not.toContain('MAX_TRANSIENT_RETRIES');
     expect(hookSource).toContain("setState('unavailable')");
+    expect(hookSource).toContain("res.reason === 'free_limit'");
     expect(hookSource).toContain('!activeRef.current');
   });
 

@@ -52,6 +52,15 @@ function fakeDb() {
   return {
     collection: (name: string) => ({
       doc: (id?: string) => refFor(`${name}/${id || `auto-${++autoId}`}`),
+      where: (field: string, _op: string, value: unknown) => ({
+        limit: (_count: number) => ({
+          get: async () => ({
+            docs: collectionDocs(name)
+              .filter((doc) => doc.data[field] === value)
+              .map((doc) => ({ id: doc.id, exists: true, data: () => doc.data })),
+          }),
+        }),
+      }),
     }),
     runTransaction: async <T>(fn: (tx: {
       get: (ref: FakeRef) => Promise<FakeSnap>;
@@ -183,13 +192,60 @@ describe('explainMistake', () => {
     await callExplain({ ...validPayload, userAnswer: 'I has table' });
     await callExplain({ ...validPayload, userAnswer: 'I has booking' });
 
-    // Cap is 3/day for free users — the 4th distinct mistake is blocked.
     await expect(callExplain({ ...validPayload, userAnswer: 'I has seat' })).rejects.toMatchObject({
       code: 'resource-exhausted',
       message: 'explain_free_daily_limit',
     });
     expect(global.fetch).toHaveBeenCalledTimes(3);
     expect(billingDocs()).toHaveLength(3);
+  });
+
+  it('does not consume one of the 3 Free breakdowns when validation rejects the text', async () => {
+    mockOkProvider('Today you keep a good small practice step with your phrases.');
+    await expect(callExplain({ ...validPayload, usageId: 'failed-validator' })).rejects.toMatchObject({
+      code: 'unavailable',
+      message: 'mistake_explain_wrong_language',
+    });
+
+    mockOkProvider('После "I" здесь нужно "have": скажи "I have a reservation."');
+    await callExplain({ ...validPayload, usageId: 'ok-1' });
+    await callExplain({ ...validPayload, usageId: 'ok-2', userAnswer: 'I has table' });
+    await callExplain({ ...validPayload, usageId: 'ok-3', userAnswer: 'I has booking' });
+
+    await expect(callExplain({ ...validPayload, usageId: 'ok-4', userAnswer: 'I has seat' }))
+      .rejects.toMatchObject({ code: 'resource-exhausted', message: 'explain_free_daily_limit' });
+    expect(global.fetch).toHaveBeenCalledTimes(4); // rejected generation + 3 usable generations
+  });
+
+  it('counts full + «explain simpler» for the same mistake as one Free breakdown', async () => {
+    const usageId = 'same-visible-mistake';
+    await callExplain({ ...validPayload, usageId });
+    mockOkProvider('Почти: после "I" скажи "have", не "has".');
+    await callExplain({ ...validPayload, usageId, variant: 'eli5' });
+
+    const counter = collectionDocs('explain_user_limits').find((doc) => doc.data.job === 'mistake');
+    expect(counter?.data.dailyCount).toBe(1);
+    expect(counter?.data.usageIds).toEqual([usageId]);
+  });
+
+  it('does not apply the 3/day product cap to an active Plus user', async () => {
+    docs.set('users/stable-auth-1', {
+      progress: {
+        premium_plan: 'monthly',
+        premium_expiry: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      },
+    });
+
+    for (let i = 0; i < 5; i += 1) {
+      await callExplain({
+        ...validPayload,
+        usageId: `plus-${i}`,
+        userAnswer: `I has reservation ${i}`,
+      });
+    }
+
+    expect(global.fetch).toHaveBeenCalledTimes(5);
+    expect(collectionDocs('explain_user_limits').some((doc) => doc.data.job === 'mistake')).toBe(false);
   });
 
   it('serves the SAME mistake from the warm cache on the second call ($0, no provider hit)', async () => {

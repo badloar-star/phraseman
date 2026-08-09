@@ -236,7 +236,9 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 // Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов (home..settings).
 const TABS: TabDef[] = [
   { key: 'home',     icon: 'home-outline',     active: 'home' },
-  { key: 'index',    icon: 'book-outline',     active: 'book' },
+  // «Все уроки» остаётся второй, самостоятельной вкладкой. `index` здесь был
+  // старым именем файла, а не именем пользовательского раздела.
+  { key: 'lessons',  icon: 'book-outline',     active: 'book' },
   { key: 'arena',    icon: 'flash-outline',    active: 'flash' },
   { key: 'friends',  icon: 'people-outline',   active: 'people' },
   { key: 'settings', icon: 'settings-outline', active: 'settings' },
@@ -750,7 +752,7 @@ export default function TabLayout() {
     const freezeWanted = (i: number) => Math.abs(i - activeIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
       show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
-      show(1) ? <TabPane key="index" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadLessonsScreen} /></TabPane> : placeholder('ph-index'),
+      show(1) ? <TabPane key="lessons" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadLessonsScreen} /></TabPane> : placeholder('ph-lessons'),
       show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabPane> : placeholder('ph-arena'),
       show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
       show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),

@@ -32,6 +32,17 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;');
   });
 
+  it('keeps All Lessons as the second tab and never replaces the bar with an orb', () => {
+    const source = readLayout();
+
+    expect(source).toMatch(/const TABS: TabDef\[\] = \[\s*\{ key: 'home'[\s\S]*?\{ key: 'lessons',\s+icon: 'book-outline'/);
+    expect(source).toContain("1: '/(tabs)/lessons'");
+    expect(source).toContain('key="lessons"');
+    expect(source).toContain("placeholder('ph-lessons')");
+    expect(source).not.toContain('tab-collapsed-orb');
+    expect(source).not.toContain('TAB_ORB_HIT_SLOP');
+  });
+
   it('keeps swipe tab chrome responsive without moving route state early', () => {
     const source = readLayout();
 

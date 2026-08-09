@@ -774,6 +774,9 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   homeAdditionalPlaque: {
+    // Keep the home card aligned with the other full-width panels. Only its
+    // height should respond to the localized phrase and translation length.
+    alignSelf: 'stretch',
     minHeight: 134,
     marginHorizontal: 8,
     marginTop: 10,

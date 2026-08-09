@@ -17,6 +17,7 @@ const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
 
 function explainPhraseRequestKey(req: ExplainPhraseRequest): string {
   return JSON.stringify({
+    usageId: req.usageId,
     phraseEn: req.phraseEn,
     phraseMeaning: req.phraseMeaning,
     lang: req.lang,
@@ -25,6 +26,8 @@ function explainPhraseRequestKey(req: ExplainPhraseRequest): string {
 }
 
 export interface ExplainPhraseRequest {
+  /** Stable across silent retries of one sheet opening; protects Free quota from double charge. */
+  usageId?: string;
   /** Фраза на изучаемом языке, как показана пользователю (сервер её нормализует и хэширует). */
   phraseEn: string;
   /** Перевод/смысл на родном языке — сервер использует его для fallback-текста. */
@@ -49,12 +52,12 @@ export interface ExplainPhraseResponse {
   text: string;
   status: 'ok' | 'rejected' | 'exhausted' | 'pending';
   fromCache: boolean;
+  reason?: 'free_limit' | 'system' | 'pending' | 'rejected';
 }
 
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
 export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
-  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
-  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  // Глобальный рубильник ИИ: вызывающий хук молча повторит запрос с backoff.
   if (aiOffline()) throw new AiOfflineError();
   const key = explainPhraseRequestKey(req);
   const existing = explainPhraseInFlight.get(key);

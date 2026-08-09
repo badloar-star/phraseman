@@ -142,6 +142,10 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(resolveExplainDisplay({ ...baseState, status: 'exhausted', text: 'fb' }, 'ru').degraded).toBe(true);
     expect(resolveExplainDisplay({ ...baseState, status: 'pending', text: 'fb' }, 'ru').degraded).toBe(true);
     expect(resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru').degraded).toBe(true);
+    // Free-лимит — отдельная продуктовая карточка, не технический fallback/retry.
+    expect(
+      resolveExplainDisplay({ ...baseState, status: 'exhausted', reason: 'free_limit', text: '' }, 'ru').degraded,
+    ).toBe(false);
   });
 });
 
@@ -284,6 +288,7 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('AiLimitUpsellCard');
     expect(src).toContain('testID="explain-free-limit-card"');
     expect(src).toContain('Бесплатные объяснения закончились');
+    expect(src).toContain("state.reason === 'free_limit'");
   });
 });
 

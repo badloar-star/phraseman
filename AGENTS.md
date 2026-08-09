@@ -5,6 +5,13 @@
 - Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
 - Admin UI must stay simple, categorized, icon-supported, tooltip-rich, accessible, and free of visual clutter. Do not add admin buttons, colors, overlays, menus, or text patterns that violate the Bible.
 
+## Permanent Admin v2 Ban
+
+- `admin/v2` is permanently blocked. Do not read, edit, link, test, preview, or deploy it.
+- Firebase Hosting target `admin` must publish the root `admin` directory only. The working entry is `admin/index.html`, which may route only to the root admin workflow and never to `/v2`.
+- Prepared error-report replies belong in the root admin workflow (`admin/legacy.html` until it is folded into `admin/index.html`), never in `admin/v2`.
+- `scripts/deploy_lock_guard.mjs` enforces this rule before every deploy. Do not weaken or bypass that guard.
+
 ## Error Report Reply Preview Publishing
 
 - After Codex prepares and dry-runs a valid `replies.json`, it must immediately and idempotently add those drafts to `PREPARED_REPORT_REPLIES` in `admin/index.html`, run the focused preview contracts, and deploy only Firebase Hosting target `admin` via `npm run hosting:admin`. Do not ask for another confirmation before publishing this preview.

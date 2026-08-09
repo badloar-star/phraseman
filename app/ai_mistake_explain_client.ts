@@ -15,6 +15,8 @@ export interface MistakeDiffPair {
 }
 
 export interface ExplainMistakeRequest {
+  /** Stable across silent retries of one shown mistake; server uses it for quota idempotency. */
+  usageId?: string;
   lessonId: number;
   phraseId: string;
   studyTarget: string;
@@ -42,6 +44,7 @@ export interface ExplainMistakeResponse {
 
 function explainMistakeRequestKey(req: ExplainMistakeRequest): string {
   return JSON.stringify({
+    usageId: req.usageId,
     lessonId: req.lessonId,
     phraseId: req.phraseId,
     studyTarget: req.studyTarget,
@@ -58,8 +61,8 @@ function explainMistakeRequestKey(req: ExplainMistakeRequest): string {
 }
 
 export async function callExplainMistake(req: ExplainMistakeRequest): Promise<ExplainMistakeResponse> {
-  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
-  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем. Вызывающий хук
+  // оставляет загрузку и повторяет запрос молча с безопасной задержкой.
   if (aiOffline()) throw new AiOfflineError();
   const key = explainMistakeRequestKey(req);
   const existing = explainMistakeInFlight.get(key);

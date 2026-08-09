@@ -191,11 +191,18 @@ export async function writeReadyExplanation(phraseHash: string, text: string, me
 
 /** Mark a phrase rejected (judge or report threshold). Serves fallback; never regenerated
  *  automatically (prevents mass-report → expensive regen abuse). */
-export async function writeRejectedExplanation(phraseHash: string, reason: string): Promise<void> {
+export async function writeRejectedExplanation(
+  phraseHash: string,
+  reason: string,
+  retryImmediately = false,
+): Promise<void> {
   await docRef(phraseHash).set({
     status: 'rejected',
     schemaVersion: EXPLAIN_SCHEMA_VERSION,
     reason,
-    updatedAtMs: Date.now(),
+    // A validator/judge reject must not strand the learner behind the historical
+    // 10-minute moderation TTL. The interactive callable opts into immediate
+    // regeneration; report-threshold rejects remain sticky and admin-controlled.
+    updatedAtMs: retryImmediately ? 0 : Date.now(),
   }, { merge: true });
 }

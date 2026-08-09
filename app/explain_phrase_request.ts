@@ -2,14 +2,13 @@
  * Хук запроса объяснения для шторки «Объясни как для 5-летнего» (план 04).
  *
  * v1 НЕ стримит (см. CONTEXT «Streaming: explicit status»): httpsCallable отдаёт
- * один ответ, поэтому хук просто вызывает callExplainPhrase на открытии и держит
+ * один ответ, поэтому хук вызывает callExplainPhrase на открытии и держит
  * {loading, text, status, fromCache, error}. Cache HIT → текст приходит сразу;
- * cache MISS → пока промис не зарезолвился, loading=true и UI показывает скелетон.
+ * cache MISS → пока нет валидного ответа, loading=true и UI показывает скелетон.
  *
- * ИНВАРИАНТ: клиент НЕ решает «годен/не годен». Хук рендерит то, что вернул сервер
- * (включая серверный fallback при status 'rejected'/'exhausted'/'pending'). На сетевой
- * ошибке (промис упал) сервер ничего не вернул — выставляем error, а UI показывает
- * собственный мягкий fallback-текст (никогда сырой стек).
+ * ИНВАРИАНТ: пользователь видит либо настоящее объяснение, либо продуктовый Free-лимит.
+ * Pending/rejected/validator/provider/network/kill-switch состояния ретраятся молча в фоне
+ * с безопасной задержкой; технического «готового» состояния без объяснения здесь нет.
  *
  * Чистые хелперы (resolveExplainDisplay / loadingLineForLang) вынесены наружу, чтобы
  * их можно было покрыть unit-тестами без рендера RN-дерева (jest здесь node-окружение).
@@ -22,14 +21,8 @@ import {
 } from './explain_phrase_client';
 import { triLang, type Lang } from '../constants/i18n';
 import { SOURCE_LOCALES } from './source_locales';
-import {
-  aiOffline,
-  isAiOfflineError,
-  aiOfflineToast,
-  aiErrorToast,
-  aiGlobalBudgetToast,
-  isAiGlobalBudgetError,
-} from './ai_kill_switch_copy';
+import { explainRetryDelayMs, isFreeExplainLimitError } from '../lib/explain_retry_policy';
+import { createExplainUsageId } from '../lib/explain_usage_id';
 
 /**
  * Сузить произвольную строку языка до Lang для triLang (контракт клиента — string,
@@ -55,6 +48,8 @@ export interface ExplainRequestState {
   fromCache: boolean;
   /** true, если сетевой вызов упал (сервер ничего не вернул). */
   error: boolean;
+  /** Машиночитаемая причина не-ok ответа. Free-лимит — единственное финальное состояние. */
+  reason?: ExplainPhraseResponse['reason'];
 }
 
 const INITIAL_STATE: ExplainRequestState = {
@@ -63,6 +58,7 @@ const INITIAL_STATE: ExplainRequestState = {
   status: 'pending',
   fromCache: false,
   error: false,
+  reason: undefined,
 };
 
 const EXPLAIN_RESULT_CACHE_LIMIT = 80;
@@ -143,9 +139,8 @@ export function resolveExplainDisplay(
   // status 'ok' | 'rejected' | 'exhausted' | 'pending' — сервер ВСЕГДА положил text
   // (для не-ok это его собственный нейтральный fallback). Рендерим как есть.
   const degraded =
-    state.status === 'exhausted' ||
-    state.status === 'pending' ||
-    state.status === 'rejected';
+    state.reason !== 'free_limit' &&
+    (state.status === 'exhausted' || state.status === 'pending' || state.status === 'rejected');
   return { showSkeleton: false, text: state.text, degraded };
 }
 
@@ -210,7 +205,8 @@ export interface ExplainRequestHandle extends ExplainRequestState {
 /**
  * Запросить объяснение фразы. Вызывается на открытии шторки (enabled=true).
  * Повторный вызов при той же фразе не дёргает сеть, если уже есть результат.
- * retry() форсит новый сетевой вызов (после ошибки/фолбэка) — кэш-хит бесплатен.
+ * retry() форсит новый сетевой вызов. Технические сбои и отказы валидатора сам хук
+ * повторяет молча, пока шторка открыта; Free-лимит остаётся финальным состоянием.
  */
 export function useExplainRequest(
   req: ExplainPhraseRequest,
@@ -222,12 +218,42 @@ export function useExplainRequest(
   const mountedRef = useRef(true);
   const activeRequestKeyRef = useRef<string | null>(null);
   const runIdRef = useRef(0);
+  const usageRef = useRef({ key, id: createExplainUsageId('phrase') });
+  if (usageRef.current.key !== key) {
+    usageRef.current = { key, id: createExplainUsageId('phrase') };
+  }
+  const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const retryResolveRef = useRef<(() => void) | null>(null);
+
+  const cancelRetryWait = useCallback(() => {
+    if (retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+    const resolve = retryResolveRef.current;
+    retryResolveRef.current = null;
+    resolve?.();
+  }, []);
+
+  const waitForRetry = useCallback((delayMs: number) => new Promise<void>((resolve) => {
+    cancelRetryWait();
+    retryResolveRef.current = resolve;
+    retryTimerRef.current = setTimeout(() => {
+      retryTimerRef.current = null;
+      retryResolveRef.current = null;
+      resolve();
+    }, delayMs);
+  }), [cancelRetryWait]);
+
   useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
+      runIdRef.current += 1;
+      activeRequestKeyRef.current = null;
+      cancelRetryWait();
     };
-  }, []);
+  }, [cancelRetryWait]);
 
   const run = useCallback(async (force = false) => {
     if (!force) {
@@ -243,50 +269,80 @@ export function useExplainRequest(
     runIdRef.current = runId;
     activeRequestKeyRef.current = key;
     setState({ ...INITIAL_STATE, loading: true });
-    try {
-      const res = await callExplainPhrase(req);
-      const nextState: ExplainRequestState = {
-        loading: false,
-        text: res.text,
-        status: res.status,
-        fromCache: res.fromCache,
-        error: false,
-      };
-      rememberExplainResult(key, nextState);
-      if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
-      setState(nextState);
-    } catch (error) {
-      if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
-      // Ручной вызов — вместо сухой ошибки показываем забавную плашку прямо в
-      // листе разбора (статус 'ok', чтобы UI отрисовал текст как обычный ответ).
-      // Рубильник, исчерпание глобального бюджета ИИ и прочие сбои — свои наборы.
-      const copy =
-        aiOffline() || isAiOfflineError(error)
-          ? aiOfflineToast(req.lang, 'explain')
-          : isAiGlobalBudgetError(error)
-            ? aiGlobalBudgetToast(req.lang)
-            : aiErrorToast(req.lang);
-      setState({
-        loading: false,
-        text: `${copy.title}\n\n${copy.message}`,
-        status: 'ok',
-        fromCache: false,
-        error: false,
-      });
+    let consecutiveFailures = 0;
+    while (mountedRef.current && activeRequestKeyRef.current === key && runIdRef.current === runId) {
+      try {
+        const res = await callExplainPhrase({ ...req, usageId: usageRef.current.id });
+        if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
+        if (res.status === 'ok' && res.text.trim()) {
+          const nextState: ExplainRequestState = {
+            loading: false,
+            text: res.text,
+            status: res.status,
+            fromCache: res.fromCache,
+            error: false,
+            reason: res.reason,
+          };
+          rememberExplainResult(key, nextState);
+          setState(nextState);
+          return;
+        }
+        if (res.reason === 'free_limit') {
+          setState({
+            loading: false,
+            text: res.text,
+            status: 'exhausted',
+            fromCache: res.fromCache,
+            error: false,
+            reason: 'free_limit',
+          });
+          return;
+        }
+        consecutiveFailures += 1;
+        await waitForRetry(
+          explainRetryDelayMs({ status: res.reason ?? res.status }, consecutiveFailures),
+        );
+      } catch (error) {
+        if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
+        if (isFreeExplainLimitError(error)) {
+          setState({
+            loading: false,
+            text: '',
+            status: 'exhausted',
+            fromCache: false,
+            error: false,
+            reason: 'free_limit',
+          });
+          return;
+        }
+        consecutiveFailures += 1;
+        await waitForRetry(explainRetryDelayMs(error, consecutiveFailures));
+      }
     }
     // req раскладываем по полям: иначе новый объект-литерал на каждый рендер
     // дёргал бы эффект бесконечно.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, req.phraseEn, req.phraseMeaning, req.lang, req.studyTarget]);
+  }, [key, req.phraseEn, req.phraseMeaning, req.lang, req.studyTarget, waitForRetry]);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) {
+      runIdRef.current += 1;
+      activeRequestKeyRef.current = null;
+      cancelRetryWait();
+      return;
+    }
     void run();
-  }, [enabled, run]);
+    return () => {
+      runIdRef.current += 1;
+      activeRequestKeyRef.current = null;
+      cancelRetryWait();
+    };
+  }, [enabled, run, cancelRetryWait]);
 
   const retry = useCallback(() => {
+    cancelRetryWait();
     void run(true);
-  }, [run]);
+  }, [run, cancelRetryWait]);
 
   return { ...state, retry };
 }

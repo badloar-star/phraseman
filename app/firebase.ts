@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
+import { getProductAnalyticsSessionId } from './product_analytics_session_context';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -18,7 +19,11 @@ export function logEvent(name: string, params?: Record<string, string | number>)
   // согласия (GDPR/ePrivacy). Crashlytics/recordError ниже НЕ гейтятся — это
   // строго необходимая диагностика.
   if (!isAnalyticsConsentGranted()) return;
-  getAnalytics()?.logEvent(name, params).catch(() => {});
+  const productSessionId = getProductAnalyticsSessionId();
+  getAnalytics()?.logEvent(name, {
+    ...(params ?? {}),
+    ...(productSessionId ? { product_session_id: productSessionId } : {}),
+  }).catch(() => {});
 }
 
 /**

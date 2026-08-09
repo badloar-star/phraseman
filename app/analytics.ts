@@ -28,6 +28,11 @@ import {
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  | 'product_session_start'
+  | 'product_session_resume'
+  | 'product_session_background'
+  | 'product_screen_view'
+  | 'product_screen_leave'
   // обучение
   | 'app_open'
   | 'lesson_start'

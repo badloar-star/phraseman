@@ -333,6 +333,33 @@ describe('explainPhrase — full miss path', () => {
     expect(billingDocs()[0]).toMatchObject({ verdict: 'off_topic', published: false });
   });
 
+  it('lets the next silent retry regenerate immediately after a judge rejection', async () => {
+    mockOpenAiChat
+      .mockResolvedValueOnce(genReply('Первый текст отклонит валидатор.'))
+      .mockResolvedValueOnce(genReply('Слово "break" здесь часть устойчивого пожелания перед важным делом.'));
+    mockJudge
+      .mockResolvedValueOnce(verdict(false, 'off_topic'))
+      .mockResolvedValueOnce(verdict(true, 'ok'));
+
+    const request = {
+      usageId: 'same-sheet-action',
+      phraseEn: PHRASE,
+      phraseMeaning: MEANING,
+      lang: 'ru',
+    };
+    const rejected = await callExplain(request);
+    const approved = await callExplain(request);
+
+    expect(rejected).toMatchObject({ status: 'rejected', reason: 'rejected' });
+    expect(approved).toMatchObject({ status: 'ok', fromCache: false });
+    expect(mockOpenAiChat).toHaveBeenCalledTimes(2);
+    expect(explanationDoc(PHRASE)).toMatchObject({ status: 'ready' });
+
+    const freeCounter = collectionDocs('explain_user_limits').find((doc) => doc.data.job === 'phrase');
+    expect(freeCounter?.data.dailyCount).toBe(1);
+    expect(freeCounter?.data.usageIds).toEqual(['same-sheet-action']);
+  });
+
   it('sanitizes markdown out of the generated text before judging and caching', async () => {
     mockOpenAiChat.mockResolvedValue(genReply('**Это** значит `удачи`. Например: перед делом.'));
     mockJudge.mockResolvedValue(verdict(true, 'ok'));

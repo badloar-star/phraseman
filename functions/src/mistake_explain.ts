@@ -5,7 +5,16 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
-import { enforceFreeJobGenLimit } from './explain/explain_budget';
+import { aiGloballyDisabled } from './remote_gates';
+import { resolveJobConfig } from './openai_jobs_config';
+import {
+  reserveFreeJobUsage,
+  refundFreeJobUsageReservation,
+  reserveGlobalExplainBudget,
+  refundGlobalExplainBudgetReservation,
+  type FreeJobUsageReservation,
+  type GlobalExplainBudgetReservation,
+} from './explain/explain_budget';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
 import { resolvePromptLangKey, PROMPT_LANGUAGES } from './explain/explain_prompts';
 import {
@@ -26,19 +35,19 @@ const REGION = 'us-central1';
 const RATE_COLLECTION = 'mistake_explain_rate_limits';
 const BILLING_COLLECTION = 'mistake_explain_billing';
 
-// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
-// владельца 2026-07-02), проверяется ДО чтения кэша. Клиентский AsyncStorage-счётчик
-// обходится переустановкой — сервер источник правды. Premium — без капа.
+// У Free — ровно 3 разбора в день, у Plus — безлимит. Гейт стоит до чтения
+// кэша намеренно: лимит измеряет ценность функции, а не стоимость генерации.
 const FREE_DAILY_CAP = 3;
 
 async function enforceFreeDailyGenCap(
   db: admin.firestore.Firestore,
   authUid: string,
   stableUid: string,
-): Promise<void> {
-  const isPremium = await resolvePremiumAccess(db, stableUid);
-  if (isPremium) return;
-  await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP);
+  usageId?: string,
+): Promise<FreeJobUsageReservation | null> {
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  if (isPremium) return null;
+  return reserveFreeJobUsage('mistake', authUid, stableUid, FREE_DAILY_CAP, Date.now(), usageId);
 }
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
@@ -49,9 +58,8 @@ const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 // per unique mistake — every later reader of the same mistake is $0.
 const MODEL_DEFAULT = 'gpt-4.1';
 
-// Anti-abuse only — NOT an access gate. The breakdown itself is free for everyone
-// (cache-warm model): the FIRST learner to make a given mistake pays for generation,
-// every later learner reading the same cached breakdown costs $0.
+// Separate anti-abuse guard. Product access is enforced above: Free gets three
+// successful mistake breakdowns per UTC day; Plus bypasses that product cap.
 const MAX_PER_WINDOW = 40;
 const WINDOW_MS = 60 * 60 * 1000;
 
@@ -70,6 +78,7 @@ interface DiffPair {
 }
 
 interface ExplainMistakeRequest {
+  usageId?: unknown;
   lessonId?: unknown;
   phraseId?: unknown;
   studyTarget?: unknown;
@@ -112,7 +121,7 @@ type GenerateResult = { answer: string; usage: OpenAIUsage };
 export interface ExplainMistakeResponse {
   ok: true;
   text: string;
-  /** Kept for client back-compat. No daily cap anymore → always a large sentinel. */
+  /** Kept for client back-compat. The UI does not expose a numeric remainder. */
   remainingQuota: number;
   model: string;
   fromCache: boolean;
@@ -563,6 +572,7 @@ export const explainMistake = onCall({
 
   const data = (request.data ?? {}) as ExplainMistakeRequest;
   const payload = sanitizePayload(data);
+  const usageId = text(data.usageId, 96) || undefined;
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
@@ -570,6 +580,15 @@ export const explainMistake = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  if (await aiGloballyDisabled(db)) {
+    throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+  }
+  // Mistake explanations share the admin `explain` wallet breaker and kill switch,
+  // while retaining their stronger dedicated model below.
+  const jobCfg = await resolveJobConfig(db, 'explain');
+  if (!jobCfg.enabled) {
+    throw new HttpsError('failed-precondition', 'mistake_explain_disabled_by_admin');
+  }
   const model = await resolveConfiguredDialogModel(
     db,
     process.env.OPENAI_MISTAKE_EXPLAIN_MODEL || process.env.OPENAI_DIALOG_MODEL || MODEL_DEFAULT,
@@ -577,12 +596,17 @@ export const explainMistake = onCall({
 
   const langKey = resolvePromptLangKey(payload.interfaceLang);
   const mistakeHash = mistakeHashFor(payload.targetAnswer, payload.userAnswer, langKey, payload.studyTarget);
-  const RQ = 999; // remainingQuota sentinel — no daily cap.
+  // Legacy response field: the client deliberately does not expose a numeric
+  // remainder; the server-side Free/Plus gate above is authoritative.
+  const RQ = 999;
 
-  // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
-  // считаются. Ошибка 'explain_free_daily_limit' → клиент показывает состояние
-  // 'limit' с CTA в Plus (AiMistakeCard).
-  await enforceFreeDailyGenCap(db, authUid, stableUid);
+  // У Free лимит из трёх разборов в день, Plus безлимитен. Проверка до кэша
+  // намеренна: кэш-хит тоже является использованием функции разбора.
+  const freeUsage = await enforceFreeDailyGenCap(db, authUid, stableUid, usageId);
+  let freeUsageCommitted = false;
+  let globalBudget: GlobalExplainBudgetReservation | null = null;
+
+  try {
 
   // 1. Cache FIRST — the ≥99% path, $0.
   const cached = await readCachedMistakeExplanation(mistakeHash);
@@ -590,10 +614,26 @@ export const explainMistake = onCall({
   if (payload.variant === 'eli5') {
     // Cached ELI5 → $0.
     if (cached?.status === 'ready' && cached.eli5 && isMistakeGeneratedTextSafe(cached.eli5, payload)) {
+      freeUsageCommitted = true;
       return { ok: true, text: cached.eli5, remainingQuota: RQ, model, fromCache: true, variant: 'eli5' };
     }
     await enforceRateLimit(db, authUid, stableUid);
-    const gen = await generateCheckedMistakeText(apiKey, model, payload, buildEli5Messages(payload));
+    globalBudget = await reserveGlobalExplainBudget(jobCfg.globalDailyCap);
+    let gen: GenerateResult;
+    try {
+      gen = await generateCheckedMistakeText(apiKey, model, payload, buildEli5Messages(payload));
+      // A provider generation happened, so the wallet reservation remains consumed
+      // even if later cache/billing persistence fails.
+      globalBudget = null;
+    } catch (error) {
+      if (isLanguageRejection(error)) {
+        globalBudget = null;
+      } else {
+        await refundGlobalExplainBudgetReservation(globalBudget, 'mistake_eli5_provider_failed');
+        globalBudget = null;
+      }
+      throw error;
+    }
 
     if (cached?.status === 'ready') {
       // FULL doc exists — just attach ELI5 to it.
@@ -612,7 +652,7 @@ export const explainMistake = onCall({
       } catch (error) {
         // Кэшируем rejected только для реального «не тот язык», не для временных сбоев провайдера.
         if (claimed && isLanguageRejection(error)) {
-          await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+          await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language', true);
         }
         throw error;
       }
@@ -624,11 +664,13 @@ export const explainMistake = onCall({
       await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: fullGen.usage });
     }
     await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage });
+    freeUsageCommitted = true;
     return { ok: true, text: gen.answer, remainingQuota: RQ, model, fromCache: false, variant: 'eli5' };
   }
 
   // FULL breakdown path.
   if (cached?.status === 'ready' && cached.full && isMistakeGeneratedTextSafe(cached.full, payload)) {
+    freeUsageCommitted = true;
     return { ok: true, text: cached.full, remainingQuota: RQ, model, fromCache: true, variant: 'full' };
   }
   if (cached?.status === 'rejected' && !isRetryableRejectedMistake(cached, Date.now())) {
@@ -638,6 +680,7 @@ export const explainMistake = onCall({
 
   // Anti-abuse rate-limit (cache miss only).
   await enforceRateLimit(db, authUid, stableUid);
+  globalBudget = await reserveGlobalExplainBudget(jobCfg.globalDailyCap);
 
   // Claim the generation lock (anti-duplicate). If someone else is generating, still serve the
   // user a live answer; we persist it below too (only the duplicate generation is avoided).
@@ -646,11 +689,18 @@ export const explainMistake = onCall({
   let gen: GenerateResult;
   try {
     gen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
+    globalBudget = null;
   } catch (error) {
     // Кэшируем rejected только для реального «не тот язык», не для временных сбоев провайдера —
     // иначе юзер получает залипшую ошибку «Не получилось получить разбор» даже после рефреша.
     if (claimed && isLanguageRejection(error)) {
-      await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+      await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language', true);
+    }
+    if (isLanguageRejection(error)) {
+      globalBudget = null;
+    } else {
+      await refundGlobalExplainBudgetReservation(globalBudget, 'mistake_full_provider_failed');
+      globalBudget = null;
     }
     throw error;
   }
@@ -669,5 +719,12 @@ export const explainMistake = onCall({
   }
   await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage });
 
+  freeUsageCommitted = true;
   return { ok: true, text: gen.answer, remainingQuota: RQ, model, fromCache: false, variant: 'full' };
+  } finally {
+    await refundGlobalExplainBudgetReservation(globalBudget, 'mistake_no_generation');
+    if (!freeUsageCommitted) {
+      await refundFreeJobUsageReservation(freeUsage, 'mistake_without_usable_explanation');
+    }
+  }
 });

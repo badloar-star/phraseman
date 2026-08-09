@@ -17,6 +17,7 @@ const explainChoiceInFlight = new Map<string, Promise<ExplainChoiceResponse>>();
 
 function explainChoiceRequestKey(req: ExplainChoiceRequest): string {
   return JSON.stringify({
+    usageId: req.usageId,
     correctEn: req.correctEn,
     phraseMeaning: req.phraseMeaning,
     distractors: req.distractors,
@@ -26,6 +27,8 @@ function explainChoiceRequestKey(req: ExplainChoiceRequest): string {
 }
 
 export interface ExplainChoiceRequest {
+  /** Stable across retries of one logical answer action; quota idempotency key. */
+  usageId?: string;
   /** Правильный вариант на изучаемом языке (как показан пользователю). */
   correctEn: string;
   /** Смысл фразы на родном языке (для понимания моделью; не пересказывается в ответе). */
@@ -53,6 +56,7 @@ export interface ExplainChoiceResponse {
   distractors: Record<string, string>;
   status: 'ok' | 'rejected' | 'exhausted' | 'pending';
   fromCache: boolean;
+  reason?: 'free_limit' | 'system' | 'pending' | 'rejected';
 }
 
 /**

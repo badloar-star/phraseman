@@ -77,12 +77,25 @@ const NUMBER_WORDS: Readonly<Record<string, string>> = {
   '9th': 'ninth', '10th': 'tenth', '11th': 'eleventh', '12th': 'twelfth',
 };
 
+// Числа 21–99 распознаватель обычно отдаёт одним токеном ("78"), тогда как
+// цель после разбора дефиса состоит из двух слов ("seventy eight"). Одна
+// таблица одиночных чисел здесь недостаточна: такая фраза раньше набирала 74%
+// и не проходила при пороге 75%.
+function expandTwoDigitNumber(token: string): string | null {
+  if (!/^\d{2}$/.test(token)) return null;
+  const value = Number(token);
+  if (value < 21 || value > 99 || value % 10 === 0) return null;
+  const tens = NUMBER_WORDS[String(Math.floor(value / 10) * 10)];
+  const units = NUMBER_WORDS[String(value % 10)];
+  return tens && units ? `${tens} ${units}` : null;
+}
+
 // Канонизируем числовые токены к словам. Применяется ПОСЛЕ стрипа пунктуации,
 // когда токены уже разделены пробелами.
 function normalizeNumbers(value: string): string {
   return value
     .split(' ')
-    .map((tok) => NUMBER_WORDS[tok] ?? tok)
+    .map((tok) => NUMBER_WORDS[tok] ?? expandTwoDigitNumber(tok) ?? tok)
     .join(' ');
 }
 

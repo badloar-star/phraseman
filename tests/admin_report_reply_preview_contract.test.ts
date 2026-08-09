@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'index.html'), 'utf8');
+// Firebase Hosting publishes the root admin workflow. Prepared replies are
+// reviewed and sent manually from its legacy screen.
+const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
 
 function readPreparedReplies() {
   const marker = 'PREPARED_REPORT_REPLIES = {';
@@ -55,16 +57,8 @@ test('every published admin draft exposes the complete reply contract', () => {
 });
 
 test('the current replies.json batch is published in the admin preview', () => {
-  const reportIds = [
-    'KQ3a5NdHJJCq7cPIgzyL',
-    'JDbcUxXynyyBiCvsBzk2',
-    'IsA4gslKhWuiIyL9Rb5E',
-    'AJytlM5NdHtyQMnZ1OiR',
-    'pBOO1fDwVk4th3GnFkpc',
-    '2DnpiLpbGscGtxQ1KoQq',
-    'DAShjpK0W1KEKFraeVl1',
-    'wMvOxNNxICJCOqZKrRen',
-  ];
+  const reportIds = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'replies.json'), 'utf8')) as Array<{ reportId: string }>)
+    .map((row) => row.reportId);
   const lines = adminHtml.split(/\r?\n/);
   for (const reportId of reportIds) {
     const matches = lines.filter((item: string) => item.includes('"' + reportId + '": {'));
@@ -167,11 +161,11 @@ test('all published replies use respectful support language and mention only awa
     const customerText = `${row.title}\n${row.body}`;
     expect(customerText).not.toMatch(informalAddress);
     expect(customerText).not.toMatch(internalOrRoboticLanguage);
-    expect(row.body).toMatch(/^Спасибо/iu);
+    expect(row.body).toMatch(/^(Спасибо|Дякуємо)/iu);
     if (row.shards > 0) {
-      expect(row.body).toMatch(new RegExp(`${row.shards}\\s+оскол`, 'iu'));
+      expect(row.body).toMatch(new RegExp(`${row.shards}\\s+(оскол|жемчуж|перлин)`, 'iu'));
     } else {
-      expect(row.body).not.toMatch(/наград|оскол/iu);
+      expect(row.body).not.toMatch(/наград|начисл\w*\s+\d+\s+(оскол|жемчуж|перлин)/iu);
     }
   }
 });

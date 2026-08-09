@@ -128,18 +128,143 @@ export async function enforceFreeJobGenLimit(
   });
 }
 
-async function refundFreeJobGenLimit(job: string, authUid: string, stableUid: string, nowMs: number): Promise<void> {
+function normalizeUsageId(value: unknown): string {
+  return String(value ?? '').trim().slice(0, 96);
+}
+
+async function refundFreeJobGenLimit(
+  job: string,
+  authUid: string,
+  stableUid: string,
+  nowMs: number,
+  usageId?: string,
+): Promise<void> {
   const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
   await admin.firestore().runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const resetAtMs = Number(data.resetAtMs ?? 0);
-    const fresh = nowMs >= resetAtMs;
-    const current = fresh ? 0 : Number(data.dailyCount ?? 0);
+    // A late provider response may finish after UTC midnight. Never decrement the
+    // next day's counter while refunding a reservation made on the previous day.
+    if (resetAtMs !== startOfNextUtcDay(nowMs)) return;
+    const current = Number(data.dailyCount ?? 0);
+    const normalizedId = normalizeUsageId(usageId);
+    const usageIds = Array.isArray(data.usageIds)
+      ? data.usageIds.map((value: unknown) => normalizeUsageId(value)).filter(Boolean)
+      : [];
     tx.set(ref, {
       dailyCount: Math.max(0, current - 1),
-      updatedAtMs: nowMs,
+      ...(normalizedId ? { usageIds: usageIds.filter((id: string) => id !== normalizedId) } : {}),
+      updatedAtMs: Date.now(),
     }, { merge: true });
   });
+}
+
+/**
+ * A refundable reservation of one user-visible Free use.
+ *
+ * The product cap measures explanations the learner actually receives. Callers
+ * reserve atomically before cache/generation work, commit by simply keeping the
+ * reservation after a successful response, and refund every path that produces
+ * no usable explanation (provider/validator failure, pending lock, kill switch,
+ * budget breaker, persistence failure, etc.).
+ */
+export interface FreeJobUsageReservation {
+  job: string;
+  authUid: string;
+  stableUid: string;
+  nowMs: number;
+  reserved: boolean;
+  /** Stable across retries of one UI action; prevents timeout-after-success double charging. */
+  usageId?: string;
+  /** true when this logical action had already been committed by an earlier server attempt. */
+  alreadyCounted: boolean;
+}
+
+export async function reserveFreeJobUsage(
+  job: string,
+  authUid: string,
+  stableUid: string,
+  cap: number,
+  nowMs: number = Date.now(),
+  usageId?: string,
+): Promise<FreeJobUsageReservation> {
+  const normalizedId = normalizeUsageId(usageId);
+  if (cap <= 0) {
+    return { job, authUid, stableUid, nowMs, reserved: false, usageId: normalizedId || undefined, alreadyCounted: false };
+  }
+
+  const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
+  let reserved = false;
+  let alreadyCounted = false;
+  await admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const resetAtMs = Number(data.resetAtMs ?? 0);
+    const fresh = nowMs >= resetAtMs;
+    const used = fresh ? 0 : Number(data.dailyCount ?? 0);
+    const usageIds = fresh || !Array.isArray(data.usageIds)
+      ? []
+      : data.usageIds.map((value: unknown) => normalizeUsageId(value)).filter(Boolean);
+
+    // Same UI action may reach the callable again after a client timeout even
+    // though the first invocation already produced a usable answer. It is one
+    // explanation, not another daily use.
+    if (normalizedId && usageIds.includes(normalizedId)) {
+      alreadyCounted = true;
+      return;
+    }
+    if (used >= cap) {
+      throw new HttpsError('resource-exhausted', 'explain_free_daily_limit');
+    }
+
+    const nextUsageIds = normalizedId
+      ? [...usageIds.filter((id: string) => id !== normalizedId), normalizedId].slice(-100)
+      : usageIds;
+    tx.set(ref, {
+      authUid,
+      stableUid,
+      job,
+      dailyCount: used + 1,
+      usageIds: nextUsageIds,
+      resetAtMs: fresh ? startOfNextUtcDay(nowMs) : resetAtMs,
+      updatedAtMs: nowMs,
+    }, { merge: true });
+    reserved = true;
+  });
+
+  return {
+    job,
+    authUid,
+    stableUid,
+    nowMs,
+    reserved,
+    usageId: normalizedId || undefined,
+    alreadyCounted,
+  };
+}
+
+/** Idempotently returns a reserved Free use. Refund failures are logged, never surfaced to users. */
+export async function refundFreeJobUsageReservation(
+  reservation: FreeJobUsageReservation | null | undefined,
+  reason: string,
+): Promise<void> {
+  if (!reservation?.reserved) return;
+  let lastError: unknown = null;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      await refundFreeJobGenLimit(
+        reservation.job,
+        reservation.authUid,
+        reservation.stableUid,
+        reservation.nowMs,
+        reservation.usageId,
+      );
+      reservation.reserved = false;
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  console.error('explain free usage refund failed', reason, lastError);
 }
 
 /** Free-кап генераций для одного джоба: null → кап не применяется (premium). */
@@ -184,6 +309,40 @@ async function refundGlobalBudget(cap: number, nowMs: number): Promise<void> {
       updatedAtMs: nowMs,
     }, { merge: true });
   });
+}
+
+/** Global-only wallet reservation for surfaces whose paid entitlement is unlimited per user. */
+export interface GlobalExplainBudgetReservation {
+  cap: number;
+  nowMs: number;
+  reserved: boolean;
+}
+
+export async function reserveGlobalExplainBudget(
+  cap: number = GLOBAL_DAILY_CAP,
+  nowMs: number = Date.now(),
+): Promise<GlobalExplainBudgetReservation> {
+  await enforceGlobalBudget(cap, nowMs);
+  return { cap, nowMs, reserved: cap > 0 };
+}
+
+/** Idempotently returns a global-only reservation when no provider generation happened. */
+export async function refundGlobalExplainBudgetReservation(
+  reservation: GlobalExplainBudgetReservation | null | undefined,
+  reason: string,
+): Promise<void> {
+  if (!reservation?.reserved) return;
+  let lastError: unknown = null;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      await refundGlobalBudget(reservation.cap, reservation.nowMs);
+      reservation.reserved = false;
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  console.error('explain global budget refund failed', reason, lastError);
 }
 
 /**

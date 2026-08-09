@@ -5,7 +5,8 @@
  * mistake_explanations/{mistakeHash} = one AI generation for the WHOLE product.
  * The first learner who makes a given mistake generates it; every later learner
  * who repeats the SAME mistake on the SAME phrase reads it free ($0). This is the
- * "warm the cache, give it to everyone" model — no per-user daily cap on reads.
+ * "warm the cache, give it to everyone" cost model. Product access is still
+ * enforced by explainMistake (Free: 3 successful breakdowns/day; Plus: unlimited).
  *
  * Each doc holds TWO texts:
  *   - full: the careful breakdown (every wrong word + the mini-rule + why).
@@ -174,11 +175,15 @@ export async function writeEli5MistakeExplanation(mistakeHash: string, eli5: str
 }
 
 /** Mark a breakdown rejected (judge). Serves nothing; regenerates after the retry TTL. */
-export async function writeRejectedMistakeExplanation(mistakeHash: string, reason: string): Promise<void> {
+export async function writeRejectedMistakeExplanation(
+  mistakeHash: string,
+  reason: string,
+  retryImmediately = false,
+): Promise<void> {
   await docRef(mistakeHash).set({
     status: 'rejected',
     schemaVersion: MISTAKE_SCHEMA_VERSION,
     reason,
-    updatedAtMs: Date.now(),
+    updatedAtMs: retryImmediately ? 0 : Date.now(),
   }, { merge: true });
 }

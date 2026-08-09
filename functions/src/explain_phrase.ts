@@ -26,7 +26,14 @@ import {
   writeRejectedExplanation,
   isRetryableRejected,
 } from './explain/explain_cache';
-import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
+import {
+  reserveExplainBudget,
+  refundExplainBudgetReservation,
+  reserveFreeJobUsage,
+  refundFreeJobUsageReservation,
+  type ExplainBudgetReservation,
+  type FreeJobUsageReservation,
+} from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { aiGloballyDisabled } from './remote_gates';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
@@ -56,9 +63,11 @@ export interface ExplainResponse {
   text: string;
   status: ExplainStatus;
   fromCache: boolean;
+  reason?: 'free_limit' | 'system' | 'pending' | 'rejected';
 }
 
 interface ExplainRequestData {
+  usageId?: unknown;
   phraseEn?: unknown;
   phraseMeaning?: unknown;
   lang?: unknown;
@@ -122,6 +131,7 @@ export const explainPhrase = onCall({
   const phraseMeaning = asText(data.phraseMeaning, 2000);
   const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'explain');
   const studyTarget = resolveStudyTarget(data.studyTarget);
+  const usageId = asText(data.usageId, 96) || undefined;
 
   const db = admin.firestore();
   // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
@@ -140,17 +150,21 @@ export const explainPhrase = onCall({
 
   // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
   // считаются (гейт ценности фичи). При исчерпании — бесплатный fallback-текст.
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  let freeUsage: FreeJobUsageReservation | null = null;
   if (!isPremium) {
     try {
-      await enforceFreeJobGenLimit('phrase', authUid, stableUid, FREE_DAILY_CAP);
+      freeUsage = await reserveFreeJobUsage('phrase', authUid, stableUid, FREE_DAILY_CAP, Date.now(), usageId);
     } catch (err) {
       if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-        return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
+        return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false, reason: 'free_limit' };
       }
       throw err;
     }
   }
+
+  let freeUsageCommitted = false;
+  try {
 
   // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
   // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
@@ -160,6 +174,7 @@ export const explainPhrase = onCall({
   // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
   const cached = await readCachedExplanation(phraseHash);
   if (cached?.status === 'ready' && cached.text) {
+    freeUsageCommitted = true;
     return { ok: true, text: cached.text, status: 'ok', fromCache: true };
   }
   if (cached?.status === 'rejected' && !isRetryableRejected(cached, Date.now())) {
@@ -167,13 +182,13 @@ export const explainPhrase = onCall({
     // judge rejects stay sticky only until REJECTED_RETRY_TTL_MS — then ONE request falls through
     // to the generation path below (claimPendingLock flips rejected→pending atomically), because
     // the judge has false positives and must not poison a phrase forever.
-    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'rejected', fromCache: true };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'rejected', fromCache: true, reason: 'rejected' };
   }
 
   // Kill-switch: если explain выключен админом — НЕ генерируем (экономим OpenAI),
   // отдаём бесплатный fallback (как при exhausted). Кэш выше уже обслужен бесплатно.
   if (!jobCfg.enabled) {
-    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false, reason: 'system' };
   }
 
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
@@ -184,7 +199,7 @@ export const explainPhrase = onCall({
     budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-      return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
+      return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false, reason: 'system' };
     }
     throw err;
   }
@@ -195,7 +210,7 @@ export const explainPhrase = onCall({
   if (!claimed) {
     await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
     budgetReservation = null;
-    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'pending', fromCache: true };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'pending', fromCache: true, reason: 'pending' };
   }
 
   // 6. Generate the full explanation (v1: no streaming — see CONTEXT "Streaming: explicit status").
@@ -234,7 +249,7 @@ export const explainPhrase = onCall({
         .catch((retryErr) => console.error('explain writeReady retry failed', phraseHash, retryErr));
     }
   } else {
-    await writeRejectedExplanation(phraseHash, verdict.reason)
+    await writeRejectedExplanation(phraseHash, verdict.reason, true)
       .catch((rejErr) => console.error('explain writeRejected failed', phraseHash, rejErr));
   }
 
@@ -256,9 +271,15 @@ export const explainPhrase = onCall({
   });
 
   if (!verdict.ok) {
-    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'rejected', fromCache: false };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'rejected', fromCache: false, reason: 'rejected' };
   }
 
   const approvedText = sanitized;
+  freeUsageCommitted = true;
   return { ok: true, text: approvedText, status: 'ok', fromCache: false };
+  } finally {
+    if (!freeUsageCommitted) {
+      await refundFreeJobUsageReservation(freeUsage, 'phrase_without_usable_explanation');
+    }
+  }
 });

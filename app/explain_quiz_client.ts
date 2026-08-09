@@ -20,6 +20,7 @@ const explainQuizInFlight = new Map<string, Promise<ExplainQuizResponse>>();
 
 function explainQuizRequestKey(req: ExplainQuizRequest): string {
   return JSON.stringify({
+    usageId: req.usageId,
     correctEn: req.correctEn,
     questionPrompt: req.questionPrompt,
     wrongOptions: req.wrongOptions,
@@ -29,6 +30,8 @@ function explainQuizRequestKey(req: ExplainQuizRequest): string {
 }
 
 export interface ExplainQuizRequest {
+  /** Stable across silent retries of one answered question; quota idempotency key. */
+  usageId?: string;
   /** Правильный вариант на изучаемом языке (как показан пользователю). */
   correctEn: string;
   /** Смысл вопроса на родном языке (для понимания моделью; не пересказывается в ответе). */
@@ -56,6 +59,7 @@ export interface ExplainQuizResponse {
   options: Record<string, string>;
   status: 'ok' | 'rejected' | 'exhausted' | 'pending';
   fromCache: boolean;
+  reason?: 'free_limit' | 'system' | 'pending' | 'rejected';
 }
 
 /**
@@ -64,8 +68,7 @@ export interface ExplainQuizResponse {
  * вопрос, видит готовый текст мгновенно ($0).
  */
 export async function callExplainQuiz(req: ExplainQuizRequest): Promise<ExplainQuizResponse> {
-  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
-  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  // Глобальный рубильник ИИ: вызывающий хук молча повторит запрос с backoff.
   if (aiOffline()) throw new AiOfflineError();
   const key = explainQuizRequestKey(req);
   const existing = explainQuizInFlight.get(key);

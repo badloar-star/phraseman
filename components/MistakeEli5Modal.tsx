@@ -28,8 +28,9 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import BilingualMistakeText from './BilingualMistakeText';
+import AiLimitUpsellCard from './AiLimitUpsellCard';
 
-export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error';
+export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
 interface Props {
   visible: boolean;
@@ -170,7 +171,23 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {showSkeleton ? (
+            {state === 'limit' ? (
+              <AiLimitUpsellCard
+                lang={lang}
+                title={triLang(lang, {
+                  ru: 'Бесплатные разборы на сегодня закончились',
+                  uk: 'Безкоштовні розбори на сьогодні завершилися',
+                  es: 'Los análisis gratuitos de hoy se agotaron',
+                  'pt-BR': 'As análises gratuitas de hoje acabaram',
+                  vi: 'Bạn đã dùng hết lượt phân tích miễn phí hôm nay',
+                  id: 'Analisis gratis hari ini sudah habis',
+                  tr: 'Bugünkü ücretsiz açıklamalar bitti',
+                  pl: 'Dzisiejsze bezpłatne wyjaśnienia się skończyły',
+                })}
+                paywallContext="ai_explain"
+                testID="mistake-eli5-limit-card"
+              />
+            ) : showSkeleton ? (
               <View style={styles.skeleton}>
                 <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
                   {loadingLine}
@@ -183,7 +200,7 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
             ) : state === 'error' ? (
               <View style={styles.skeleton}>
                 <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
-                  {errorLine}
+                  {text ?? errorLine}
                 </Text>
                 <Pressable
                   onPress={() => { hapticTap(); onRetry(); }}

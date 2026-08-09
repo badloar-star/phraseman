@@ -8,9 +8,9 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 // всплывающих модалов для разбора ответа быть НЕ должно: модал = «двойной контейнер»
 // и закрывает экран. Любой НОВЫЙ режим упражнения с вариантами на экране обязан
 // добавить себя в `usesOptionFeedback` и рендерить разбор инлайн, а НЕ модалом.
-// Единственный оставшийся модал — это «Задание закрыто» (конец задания), он НЕ про
-// разбор ответа. Старый PlanExerciseFeedbackModal оставлен только как fallback для
-// режимов без места на экране и постепенно выпиливается — не использовать в новом коде.
+// Автоматический фидбэк всегда остаётся инлайн. Единственное пользовательское
+// исключение — отдельная кнопка «Объяснить проще»: она открывает тот же ELI5-sheet,
+// что и обычный урок, только после явного тапа пользователя.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
@@ -29,6 +29,7 @@ import { personalPlanPromptForLang } from './personal_plan_prompt_locale';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
 import AiMistakeCard from '../components/AiMistakeCard';
+import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
 import {
@@ -2025,6 +2026,7 @@ export default function PersonalPlanExerciseScreen() {
           explanation={mistakeExplain.aiMistakeText}
           remaining={mistakeExplain.aiMistakeRemaining}
           onExplain={mistakeExplain.explain}
+          onOpenSimple={mistakeExplain.eli5.onOpen}
           targetAnswer={mistakeTargetAnswer}
           userAnswer={mistakeUserAnswer}
         />
@@ -2624,6 +2626,7 @@ export default function PersonalPlanExerciseScreen() {
                     explanation={mistakeExplain.aiMistakeText}
                     remaining={mistakeExplain.aiMistakeRemaining}
                     onExplain={mistakeExplain.explain}
+                    onOpenSimple={mistakeExplain.eli5.onOpen}
                     targetAnswer={mistakeTargetAnswer}
                     userAnswer={mistakeUserAnswer}
                   />
@@ -2707,6 +2710,14 @@ export default function PersonalPlanExerciseScreen() {
           actionText={actionText}
           mutedText={t.textMuted}
           surfaceColor={t.bgCard}
+        />
+        <MistakeEli5Modal
+          visible={mistakeExplain.eli5.open}
+          onClose={mistakeExplain.eli5.onClose}
+          lang={lang}
+          state={mistakeExplain.eli5.state}
+          text={mistakeExplain.eli5.text}
+          onRetry={mistakeExplain.eli5.onRetry}
         />
       </LinearGradient>
     </View>

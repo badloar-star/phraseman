@@ -29,7 +29,14 @@ import {
   writeRejectedQuizExplanation,
   isRetryableRejectedQuiz,
 } from './explain/quiz_explain_cache';
-import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
+import {
+  reserveExplainBudget,
+  refundExplainBudgetReservation,
+  reserveFreeJobUsage,
+  refundFreeJobUsageReservation,
+  type ExplainBudgetReservation,
+  type FreeJobUsageReservation,
+} from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { validateQuizInput, parseQuizBatch } from './explain/quiz_explain_gates';
 import { buildQuizPrompt, quizBatchToJudgeText } from './explain/quiz_explain_prompts';
@@ -58,9 +65,11 @@ export interface QuizResponse {
   options: Record<string, string>;
   status: QuizStatus;
   fromCache: boolean;
+  reason?: 'free_limit' | 'system' | 'pending' | 'rejected';
 }
 
 interface QuizRequestData {
+  usageId?: unknown;
   correctEn?: unknown;
   /** Native-language meaning of the question (for the model only; never echoed back). */
   questionPrompt?: unknown;
@@ -75,8 +84,8 @@ function asText(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
-function emptyBatch(status: QuizStatus, fromCache: boolean): QuizResponse {
-  return { ok: true, confirm: '', options: {}, status, fromCache };
+function emptyBatch(status: QuizStatus, fromCache: boolean, reason?: QuizResponse['reason']): QuizResponse {
+  return { ok: true, confirm: '', options: {}, status, fromCache, reason };
 }
 
 export const explainQuiz = onCall({
@@ -99,6 +108,7 @@ export const explainQuiz = onCall({
   const rawWrongOptions = Array.isArray(data.wrongOptions) ? data.wrongOptions : [];
   const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'quiz');
   const studyTarget = resolveStudyTarget(data.studyTarget);
+  const usageId = asText(data.usageId, 96) || undefined;
 
   const db = admin.firestore();
   // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
@@ -118,17 +128,21 @@ export const explainQuiz = onCall({
 
   // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
   // считаются (это гейт ценности фичи, а не только защита кошелька OpenAI).
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  let freeUsage: FreeJobUsageReservation | null = null;
   if (!isPremium) {
     try {
-      await enforceFreeJobGenLimit('quiz', authUid, stableUid, FREE_DAILY_CAP);
+      freeUsage = await reserveFreeJobUsage('quiz', authUid, stableUid, FREE_DAILY_CAP, Date.now(), usageId);
     } catch (err) {
       if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-        return emptyBatch('exhausted', false);
+        return emptyBatch('exhausted', false, 'free_limit');
       }
       throw err;
     }
   }
+
+  let freeUsageCommitted = false;
+  try {
 
   // Cache key = (correct phrase, sorted FULL option-set, CANONICAL language).
   const langKey = resolvePromptLangKey(lang);
@@ -137,6 +151,7 @@ export const explainQuiz = onCall({
   // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
   const cached = await readCachedQuizExplanation(quizHash);
   if (cached?.status === 'ready' && cached.confirm) {
+    freeUsageCommitted = true;
     return {
       ok: true,
       confirm: cached.confirm,
@@ -146,11 +161,11 @@ export const explainQuiz = onCall({
     };
   }
   if (cached?.status === 'rejected' && !isRetryableRejectedQuiz(cached, Date.now())) {
-    return emptyBatch('rejected', true);
+    return emptyBatch('rejected', true, 'rejected');
   }
 
   // Kill-switch: quiz выключен админом → не жжём OpenAI.
-  if (!jobCfg.enabled) return emptyBatch('exhausted', false);
+  if (!jobCfg.enabled) return emptyBatch('exhausted', false, 'system');
 
   // 4. Cost guards (cache MISS only). Shares the explain budget collections.
   // Free-кап уже списан выше (до кэша) — здесь только общие счётчики.
@@ -159,7 +174,7 @@ export const explainQuiz = onCall({
     budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-      return emptyBatch('exhausted', false);
+      return emptyBatch('exhausted', false, 'system');
     }
     throw err;
   }
@@ -169,7 +184,7 @@ export const explainQuiz = onCall({
   if (!claimed) {
     await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
     budgetReservation = null;
-    return emptyBatch('pending', true);
+    return emptyBatch('pending', true, 'pending');
   }
 
   // 6. Generate the whole batch as STRICT JSON.
@@ -214,7 +229,7 @@ export const explainQuiz = onCall({
       );
     }
   } else {
-    await writeRejectedQuizExplanation(quizHash, verdict.reason);
+    await writeRejectedQuizExplanation(quizHash, verdict.reason, true);
   }
 
   // 9. Billing doc on EVERY miss.
@@ -234,8 +249,9 @@ export const explainQuiz = onCall({
     createdAtMs: Date.now(),
   });
 
-  if (!verdict.ok) return emptyBatch('rejected', false);
+  if (!verdict.ok) return emptyBatch('rejected', false, 'rejected');
 
+  freeUsageCommitted = true;
   return {
     ok: true,
     confirm: parsed.confirm,
@@ -243,4 +259,9 @@ export const explainQuiz = onCall({
     status: 'ok',
     fromCache: false,
   };
+  } finally {
+    if (!freeUsageCommitted) {
+      await refundFreeJobUsageReservation(freeUsage, 'quiz_without_usable_explanation');
+    }
+  }
 });

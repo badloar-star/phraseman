@@ -20,4 +20,13 @@ describe('TabSlider container width contract', () => {
     expect(source).toContain('{ width: W }');
     expect(source).not.toContain('const { width: W } = useScreen();');
   });
+
+  it('lets the native iOS vertical scroll win before tab swipe can trim fling velocity', () => {
+    const source = readSlider();
+
+    expect(source).toContain("import { Platform, View, StyleSheet, type LayoutChangeEvent } from 'react-native';");
+    expect(source).toContain("const TAB_SWIPE_FAIL_OFFSET_Y = Platform.OS === 'ios' ? 4 : 12;");
+    expect(source).toContain('.activeOffsetX([-TAB_SWIPE_ACTIVE_OFFSET_X, TAB_SWIPE_ACTIVE_OFFSET_X])');
+    expect(source).toContain('.failOffsetY([-TAB_SWIPE_FAIL_OFFSET_Y, TAB_SWIPE_FAIL_OFFSET_Y])');
+  });
 });

@@ -27,7 +27,14 @@ import {
   writeRejectedChoiceExplanation,
   isRetryableRejectedChoice,
 } from './explain/choice_explain_cache';
-import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
+import {
+  reserveExplainBudget,
+  refundExplainBudgetReservation,
+  reserveFreeJobUsage,
+  refundFreeJobUsageReservation,
+  type ExplainBudgetReservation,
+  type FreeJobUsageReservation,
+} from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { validateChoiceInput, parseChoiceBatch } from './explain/choice_explain_gates';
 import { buildChoicePrompt, choiceBatchToJudgeText } from './explain/choice_explain_prompts';
@@ -54,9 +61,11 @@ export interface ChoiceResponse {
   distractors: Record<string, string>;
   status: ChoiceStatus;
   fromCache: boolean;
+  reason?: 'free_limit' | 'system' | 'pending' | 'rejected';
 }
 
 interface ChoiceRequestData {
+  usageId?: unknown;
   correctEn?: unknown;
   phraseMeaning?: unknown;
   distractors?: unknown;
@@ -69,8 +78,8 @@ function asText(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
-function emptyBatch(status: ChoiceStatus, fromCache: boolean): ChoiceResponse {
-  return { ok: true, confirm: '', distractors: {}, status, fromCache };
+function emptyBatch(status: ChoiceStatus, fromCache: boolean, reason?: ChoiceResponse['reason']): ChoiceResponse {
+  return { ok: true, confirm: '', distractors: {}, status, fromCache, reason };
 }
 
 export const explainChoice = onCall({
@@ -93,6 +102,7 @@ export const explainChoice = onCall({
   const rawDistractors = Array.isArray(data.distractors) ? data.distractors : [];
   const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'choice');
   const studyTarget = resolveStudyTarget(data.studyTarget);
+  const usageId = asText(data.usageId, 96) || undefined;
 
   const db = admin.firestore();
   // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
@@ -112,17 +122,21 @@ export const explainChoice = onCall({
 
   // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
   // считаются (это гейт ценности фичи, а не только защита кошелька OpenAI).
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  let freeUsage: FreeJobUsageReservation | null = null;
   if (!isPremium) {
     try {
-      await enforceFreeJobGenLimit('choice', authUid, stableUid, FREE_DAILY_CAP);
+      freeUsage = await reserveFreeJobUsage('choice', authUid, stableUid, FREE_DAILY_CAP, Date.now(), usageId);
     } catch (err) {
       if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-        return emptyBatch('exhausted', false);
+        return emptyBatch('exhausted', false, 'free_limit');
       }
       throw err;
     }
   }
+
+  let freeUsageCommitted = false;
+  try {
 
   // Cache key = (correct phrase, sorted option-set, CANONICAL language).
   const langKey = resolvePromptLangKey(lang);
@@ -131,6 +145,7 @@ export const explainChoice = onCall({
   // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
   const cached = await readCachedChoiceExplanation(choiceHash);
   if (cached?.status === 'ready' && cached.confirm) {
+    freeUsageCommitted = true;
     return {
       ok: true,
       confirm: cached.confirm,
@@ -140,11 +155,11 @@ export const explainChoice = onCall({
     };
   }
   if (cached?.status === 'rejected' && !isRetryableRejectedChoice(cached, Date.now())) {
-    return emptyBatch('rejected', true);
+    return emptyBatch('rejected', true, 'rejected');
   }
 
   // Kill-switch: choice выключен админом → не жжём OpenAI.
-  if (!jobCfg.enabled) return emptyBatch('exhausted', false);
+  if (!jobCfg.enabled) return emptyBatch('exhausted', false, 'system');
 
   // 4. Cost guards (cache MISS only). Shares the explain budget collections.
   // Free-кап уже списан выше (до кэша) — здесь только общие счётчики.
@@ -153,7 +168,7 @@ export const explainChoice = onCall({
     budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-      return emptyBatch('exhausted', false);
+      return emptyBatch('exhausted', false, 'system');
     }
     throw err;
   }
@@ -163,7 +178,7 @@ export const explainChoice = onCall({
   if (!claimed) {
     await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
     budgetReservation = null;
-    return emptyBatch('pending', true);
+    return emptyBatch('pending', true, 'pending');
   }
 
   // 6. Generate the whole batch as STRICT JSON.
@@ -199,7 +214,7 @@ export const explainChoice = onCall({
       { lang, correctEn, model: jobCfg.model },
     );
   } else {
-    await writeRejectedChoiceExplanation(choiceHash, verdict.reason);
+    await writeRejectedChoiceExplanation(choiceHash, verdict.reason, true);
   }
 
   // 9. Billing doc on EVERY miss.
@@ -219,8 +234,9 @@ export const explainChoice = onCall({
     createdAtMs: Date.now(),
   });
 
-  if (!verdict.ok) return emptyBatch('rejected', false);
+  if (!verdict.ok) return emptyBatch('rejected', false, 'rejected');
 
+  freeUsageCommitted = true;
   return {
     ok: true,
     confirm: parsed.confirm,
@@ -228,4 +244,9 @@ export const explainChoice = onCall({
     status: 'ok',
     fromCache: false,
   };
+  } finally {
+    if (!freeUsageCommitted) {
+      await refundFreeJobUsageReservation(freeUsage, 'choice_without_usable_explanation');
+    }
+  }
 });

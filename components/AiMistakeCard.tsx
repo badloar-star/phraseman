@@ -15,7 +15,7 @@ type AiMistakeCardProps = {
   lang: Lang;
   state: AiMistakeCardState;
   explanation?: string | null;
-  /** Kept for back-compat; no longer rendered (no daily cap). */
+  /** Kept for back-compat; numeric remainder is intentionally not rendered. */
   remaining?: number | null;
   onExplain: () => void;
   onOpenSimple?: () => void;

@@ -67,4 +67,26 @@ describe('lesson complete back loop guard', () => {
     );
     expect(backFn).toContain("pathname: '/lesson_menu'");
   });
+
+  it('marks completion exits as replacements so the lesson menu is not duplicated in history', () => {
+    const source = completeSource();
+    const backStart = source.indexOf('const goBackFromComplete = useCallback(');
+    const backFn = source.slice(backStart, source.indexOf('const handleRepeatLesson', backStart));
+
+    expect(backFn).toContain('markNextNavigationAsReplace();');
+    expect(backFn).toContain("router.replace({ pathname: '/lesson_menu'");
+  });
+});
+
+describe('lesson completion navigation source audit', () => {
+  it('replaces the lesson engine with the completion screen in both success and fallback paths', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+    const firstReplace = source.indexOf("pathname: '/lesson_complete'");
+    const fallbackReplace = source.indexOf("pathname: '/lesson_complete', params: { id: String(lessonId), unlocked: '0' }");
+
+    expect(firstReplace).toBeGreaterThan(-1);
+    expect(source.slice(Math.max(0, firstReplace - 220), firstReplace)).toContain('markNextNavigationAsReplace();');
+    expect(fallbackReplace).toBeGreaterThan(-1);
+    expect(source.slice(Math.max(0, fallbackReplace - 220), fallbackReplace)).toContain('markNextNavigationAsReplace();');
+  });
 });

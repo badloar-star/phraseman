@@ -150,11 +150,15 @@ export async function writeReadyChoiceExplanation(
 }
 
 /** Mark a batch rejected (judge). Serves nothing; regenerates after the retry TTL. */
-export async function writeRejectedChoiceExplanation(choiceHash: string, reason: string): Promise<void> {
+export async function writeRejectedChoiceExplanation(
+  choiceHash: string,
+  reason: string,
+  retryImmediately = false,
+): Promise<void> {
   await docRef(choiceHash).set({
     status: 'rejected',
     schemaVersion: CHOICE_SCHEMA_VERSION,
     reason,
-    updatedAtMs: Date.now(),
+    updatedAtMs: retryImmediately ? 0 : Date.now(),
   }, { merge: true });
 }

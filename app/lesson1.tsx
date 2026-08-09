@@ -117,7 +117,7 @@ import { MOTION_DURATION } from '../constants/motion';
 import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
@@ -3217,6 +3217,7 @@ export default function LessonScreen() {
         const navigate = () => {
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
+          markNextNavigationAsReplace();
           router.replace({
             pathname: '/lesson_complete',
             params: { id: String(lessonId), unlocked: didUnlock ? '1' : '0', ...coachRouteParams },
@@ -3232,6 +3233,7 @@ export default function LessonScreen() {
           // Fallback: navigate to lesson_complete even if tracking fails
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
+          markNextNavigationAsReplace();
           router.replace({ pathname: '/lesson_complete', params: { id: String(lessonId), unlocked: '0' } });
         }
       }, 1500);
@@ -3672,7 +3674,10 @@ export default function LessonScreen() {
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/(tabs)/lessons' as any)}
+              onPress={() => {
+                markNextNavigationAsReplace();
+                router.replace('/(tabs)/lessons' as any);
+              }}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >

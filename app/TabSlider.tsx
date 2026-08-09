@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { View, StyleSheet, type LayoutChangeEvent } from 'react-native';
+import { Platform, View, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
@@ -14,7 +14,12 @@ import { useScreen } from '../hooks/use-screen';
 import { tabSwipeLocked } from './tabSwipeLock';
 
 const TAB_SWIPE_ACTIVE_OFFSET_X = 22;
-const TAB_SWIPE_FAIL_OFFSET_Y = 12;
+// На iOS родной UIScrollView и родительский Pan вкладок соревнуются за начало
+// одного касания. Ожидание прежних 12 px задерживало вертикальный скролл и
+// обрезало стартовую скорость fling, поэтому один свайп прокручивал слишком мало.
+// 4 px достаточно, чтобы сразу уступить явно вертикальному движению, при этом
+// горизонтальный свайп вкладок по-прежнему требует осознанных 22 px по X.
+const TAB_SWIPE_FAIL_OFFSET_Y = Platform.OS === 'ios' ? 4 : 12;
 
 interface Props {
   activeIndex: number;

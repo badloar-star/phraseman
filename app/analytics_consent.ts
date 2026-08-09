@@ -28,6 +28,13 @@ const CONSENT_KEY = 'analytics_consent_v1';
 /** Снапшот в памяти. До гидрации — 'unset' (безопасный дефолт: ничего не шлём). */
 let consentMemory: AnalyticsConsentState = 'unset';
 let hydrated = false;
+const consentListeners = new Set<(state: AnalyticsConsentState) => void>();
+
+function notifyConsentListeners(): void {
+  consentListeners.forEach((listener) => {
+    try { listener(consentMemory); } catch { /* analytics listeners must not break consent updates */ }
+  });
+}
 
 function normalize(raw: string | null): AnalyticsConsentState {
   if (raw === 'granted' || raw === 'denied' || raw === 'unset') return raw;
@@ -59,6 +66,13 @@ export function getAnalyticsConsentState(): AnalyticsConsentState {
   return consentMemory;
 }
 
+export function subscribeAnalyticsConsent(
+  listener: (state: AnalyticsConsentState) => void,
+): () => void {
+  consentListeners.add(listener);
+  return () => { consentListeners.delete(listener); };
+}
+
 /** Сделан ли уже выбор (нужно ли показывать запрос согласия). */
 export function hasAnalyticsConsentDecision(): boolean {
   return consentMemory === 'granted' || consentMemory === 'denied';
@@ -69,6 +83,7 @@ export function hasAnalyticsConsentDecision(): boolean {
  * hydrateNotifSettingsFromStorage), чтобы гейт работал с первого кадра.
  */
 export async function hydrateAnalyticsConsentFromStorage(): Promise<void> {
+  const previous = consentMemory;
   try {
     const raw = await AsyncStorage.getItem(CONSENT_KEY);
     consentMemory = normalize(raw);
@@ -77,6 +92,7 @@ export async function hydrateAnalyticsConsentFromStorage(): Promise<void> {
   } finally {
     hydrated = true;
     syncNativeCollection();
+    if (consentMemory !== previous) notifyConsentListeners();
   }
 }
 
@@ -86,8 +102,10 @@ export function isAnalyticsConsentHydrated(): boolean {
 
 /** Записать выбор пользователя (онбординг, модал, настройки). */
 export async function setAnalyticsConsent(state: AnalyticsConsentState): Promise<void> {
+  const previous = consentMemory;
   consentMemory = state;
   syncNativeCollection();
+  if (consentMemory !== previous) notifyConsentListeners();
   try {
     await AsyncStorage.setItem(CONSENT_KEY, state);
   } catch {

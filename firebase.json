@@ -16,6 +16,8 @@
         "**/node_modules/**"
       ],
       "redirects": [
+        { "source": "/v2", "destination": "/legacy.html", "type": 302 },
+        { "source": "/v2/**", "destination": "/legacy.html", "type": 302 },
         { "source": "/admin", "destination": "/", "type": 302 },
         { "source": "/admin/", "destination": "/", "type": 302 },
         { "source": "/admin/index.html", "destination": "/index.html", "type": 302 },

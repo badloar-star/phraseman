@@ -158,11 +158,15 @@ export async function writeReadyQuizExplanation(
 }
 
 /** Mark a batch rejected (judge). Serves nothing; regenerates after the retry TTL. */
-export async function writeRejectedQuizExplanation(quizHash: string, reason: string): Promise<void> {
+export async function writeRejectedQuizExplanation(
+  quizHash: string,
+  reason: string,
+  retryImmediately = false,
+): Promise<void> {
   await docRef(quizHash).set({
     status: 'rejected',
     schemaVersion: QUIZ_SCHEMA_VERSION,
     reason,
-    updatedAtMs: Date.now(),
+    updatedAtMs: retryImmediately ? 0 : Date.now(),
   }, { merge: true });
 }

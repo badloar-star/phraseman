@@ -7,16 +7,16 @@ import {
   peekAiMistakeLimitNoticeShownToday,
 } from './ai_mistake_explain_limit_session';
 import { resolveAllMistakeTokens, resolvePhraseMistakeToken } from './mistake_token_resolver';
-import {
-  aiOffline,
-  isAiOfflineError,
-  aiOfflineToast,
-  aiErrorToast,
-  aiGlobalBudgetToast,
-  isAiGlobalBudgetError,
-} from './ai_kill_switch_copy';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
 import { hapticTap } from '../hooks/use-haptics';
+import { explainRetryDelayMs, isFreeExplainLimitError } from '../lib/explain_retry_policy';
+import { createExplainUsageId } from '../lib/explain_usage_id';
+import { usePremium } from '../components/PremiumContext';
+
+interface PendingRetryWait {
+  timer: ReturnType<typeof setTimeout>;
+  resolve: () => void;
+}
 
 /**
  * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`) and
@@ -60,18 +60,12 @@ export interface UseMistakeExplainResult {
   /** Props for <MistakeEli5Modal> + the card's onOpenSimple. */
   eli5: {
     open: boolean;
-    state: 'idle' | 'loading' | 'ready' | 'error';
+    state: 'idle' | 'loading' | 'ready' | 'error' | 'limit';
     text: string | null;
     onOpen: () => void;
     onClose: () => void;
     onRetry: () => void;
   };
-}
-
-/** Серверный дневной free-кап ИИ-разборов ('explain_free_daily_limit'). */
-function isFreeDailyLimitError(error: unknown): boolean {
-  const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
-  return message.includes('explain_free_daily_limit');
 }
 
 export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExplainResult {
@@ -86,17 +80,44 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     userAnswer,
     targetAnswer,
   } = input;
+  const { hasPremiumAccess } = usePremium();
 
   const [aiMistakeState, setAiMistakeState] = useState<AiMistakeCardState>(() =>
-    peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle',
+    !hasPremiumAccess && peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle',
   );
   const [aiMistakeText, setAiMistakeText] = useState<string | null>(null);
   const [aiMistakeRemaining, setAiMistakeRemaining] = useState<number | null>(null);
 
   const [eli5Open, setEli5Open] = useState(false);
-  const [eli5State, setEli5State] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
+  const [eli5State, setEli5State] = useState<'idle' | 'loading' | 'ready' | 'error' | 'limit'>('idle');
   const [eli5Text, setEli5Text] = useState<string | null>(null);
   const eli5InFlightRef = useRef(false);
+  const retryWaitsRef = useRef<Set<PendingRetryWait>>(new Set());
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  const eli5OpenRef = useRef(false);
+  // One wrong answer = one Free use. The full text and its ELI5 variant share
+  // this id, and all silent retries reuse it as well.
+  const usageIdRef = useRef(createExplainUsageId('mistake'));
+
+  const cancelRetryWait = useCallback(() => {
+    const waits = [...retryWaitsRef.current];
+    retryWaitsRef.current.clear();
+    waits.forEach((wait) => {
+      clearTimeout(wait.timer);
+      wait.resolve();
+    });
+  }, []);
+
+  const waitForRetry = useCallback((delayMs: number) => new Promise<void>((resolve) => {
+    const wait = {} as PendingRetryWait;
+    wait.resolve = resolve;
+    wait.timer = setTimeout(() => {
+      retryWaitsRef.current.delete(wait);
+      resolve();
+    }, delayMs);
+    retryWaitsRef.current.add(wait);
+  }), []);
 
   // Mirror of phraseKey, read inside async callbacks to drop stale responses
   // (user moved to another phrase before the answer arrived).
@@ -105,20 +126,30 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
 
   // Reset everything when the phrase or result changes.
   useEffect(() => {
-    setAiMistakeState(peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle');
+    usageIdRef.current = createExplainUsageId('mistake');
+    setAiMistakeState(!hasPremiumAccess && peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle');
     setAiMistakeText(null);
     setAiMistakeRemaining(null);
     setEli5Open(false);
+    eli5OpenRef.current = false;
     setEli5State('idle');
     setEli5Text(null);
     eli5InFlightRef.current = false;
-  }, [phraseKey, active]);
+    cancelRetryWait();
+  }, [phraseKey, active, hasPremiumAccess, cancelRetryWait]);
+
+  useEffect(() => () => {
+    activeRef.current = false;
+    eli5OpenRef.current = false;
+    cancelRetryWait();
+  }, [cancelRetryWait]);
 
   const buildArgs = useCallback(
     (variant: 'full' | 'eli5') => {
       const diffPairs = resolveAllMistakeTokens(targetAnswer, userAnswer);
       const mismatch = resolvePhraseMistakeToken(targetAnswer, userAnswer);
       return {
+        usageId: usageIdRef.current,
         lessonId,
         phraseId,
         studyTarget,
@@ -141,7 +172,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       if (!active || aiMistakeState === 'loading') return;
       if (withHaptic) hapticTap();
       const requestKey = phraseKey;
-      if (await hasShownAiMistakeLimitNoticeToday()) {
+      if (!hasPremiumAccess && await hasShownAiMistakeLimitNoticeToday()) {
         if (phraseKeyRef.current !== requestKey) return;
         setAiMistakeState('hidden');
         setAiMistakeText(null);
@@ -149,83 +180,71 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       }
       setAiMistakeState('loading');
       setAiMistakeText(null);
-      try {
-        const res = await callExplainMistake(buildArgs('full'));
-        if (phraseKeyRef.current !== requestKey) return; // phrase changed — discard.
-        setAiMistakeText(res.text);
-        setAiMistakeRemaining(typeof res.remainingQuota === 'number' ? res.remainingQuota : null);
-        setAiMistakeState('ready');
-      } catch (error) {
-        if (phraseKeyRef.current !== requestKey) return;
-        // Offline failures stay quiet, but the card remains visible with its
-        // deterministic local comparison and retry action.
-        if (aiOffline() || isAiOfflineError(error)) {
-          setAiMistakeState('error');
-          setAiMistakeText(null);
+      let consecutiveFailures = 0;
+      while (activeRef.current && phraseKeyRef.current === requestKey) {
+        try {
+          const res = await callExplainMistake(buildArgs('full'));
+          if (!activeRef.current || phraseKeyRef.current !== requestKey) return;
+          setAiMistakeText(res.text);
+          setAiMistakeRemaining(typeof res.remainingQuota === 'number' ? res.remainingQuota : null);
+          setAiMistakeState('ready');
           return;
+        } catch (error) {
+          if (!activeRef.current || phraseKeyRef.current !== requestKey) return;
+          // Лимит Free — осмысленное финальное состояние: три разбора в день,
+          // Plus безлимитен. Все технические/валидаторные сбои ретраим молча.
+          if (isFreeExplainLimitError(error)) {
+            await markAiMistakeLimitNoticeShownToday();
+            if (!activeRef.current || phraseKeyRef.current !== requestKey) return;
+            setAiMistakeState('limit');
+            return;
+          }
+          consecutiveFailures += 1;
+          await waitForRetry(explainRetryDelayMs(error, consecutiveFailures));
         }
-        // Дневной free-кап генераций (сервер — источник правды): не «ошибка»,
-        // а мягкое состояние с приглашением в Plus (забавный текст + кнопка Plus).
-        if (isFreeDailyLimitError(error)) {
-          await markAiMistakeLimitNoticeShownToday();
-          if (phraseKeyRef.current !== requestKey) return;
-          setAiMistakeState('limit');
-          return;
-        }
-        // Automatic failures also stay quiet, but never hide the local fallback.
-        if (!withHaptic) {
-          setAiMistakeState('error');
-          setAiMistakeText(null);
-          return;
-        }
-        // Глобальный бюджет иссяк — свой набор текстов («Свет мигнул на весь
-        // квартал»). Кладём готовый текст, карточка в state='error' его покажет.
-        // Прочие ошибки — карточка сама возьмёт aiErrorToast (aiMistakeText=null).
-        if (isAiGlobalBudgetError(error)) {
-          const budget = aiGlobalBudgetToast(interfaceLang);
-          setAiMistakeText(`${budget.title}\n${budget.message}`);
-        } else {
-          setAiMistakeText(null);
-        }
-        setAiMistakeState('error');
       }
     },
-    [active, aiMistakeState, phraseKey, buildArgs],
+    [active, aiMistakeState, phraseKey, buildArgs, waitForRetry, hasPremiumAccess],
   );
 
   const openEli5 = useCallback(async () => {
     if (!active) return;
     hapticTap();
     setEli5Open(true);
+    eli5OpenRef.current = true;
     if (eli5State === 'ready' && eli5Text) return;
     if (eli5InFlightRef.current) return;
     eli5InFlightRef.current = true;
     const requestKey = phraseKey;
     setEli5State('loading');
     setEli5Text(null);
+    let consecutiveFailures = 0;
     try {
-      const res = await callExplainMistake(buildArgs('eli5'));
-      if (phraseKeyRef.current !== requestKey) return;
-      setEli5Text(res.text);
-      setEli5State('ready');
-    } catch (error) {
-      if (phraseKeyRef.current !== requestKey) return;
-      // ELI5 открывается по нажатию (ручной вызов) — вместо сухой «ошибки»
-      // показываем забавную заглушку прямо в модалке. Рубильник, глобальный
-      // бюджет ИИ и прочие ошибки дают разные наборы текстов.
-      const copy =
-        aiOffline() || isAiOfflineError(error)
-          ? aiOfflineToast(interfaceLang, 'explain')
-          : isAiGlobalBudgetError(error)
-            ? aiGlobalBudgetToast(interfaceLang)
-            : aiErrorToast(interfaceLang);
-      setEli5Text(`${copy.title}\n\n${copy.message}`);
-      setEli5State('ready');
-      return;
+      while (activeRef.current && eli5OpenRef.current && phraseKeyRef.current === requestKey) {
+        try {
+          const res = await callExplainMistake(buildArgs('eli5'));
+          if (!activeRef.current || !eli5OpenRef.current || phraseKeyRef.current !== requestKey) return;
+          setEli5Text(res.text);
+          setEli5State('ready');
+          return;
+        } catch (error) {
+          if (!activeRef.current || !eli5OpenRef.current || phraseKeyRef.current !== requestKey) return;
+          // Лимит — не техническая ошибка и не должен обходиться автоматическими
+          // повторами. Всё остальное (включая отклонение валидатором) повторяем
+          // скрыто, пока пользователь остаётся на этой фразе.
+          if (isFreeExplainLimitError(error)) {
+            setEli5Text(null);
+            setEli5State('limit');
+            return;
+          }
+          consecutiveFailures += 1;
+          await waitForRetry(explainRetryDelayMs(error, consecutiveFailures));
+        }
+      }
     } finally {
       eli5InFlightRef.current = false;
     }
-  }, [active, eli5State, eli5Text, phraseKey, buildArgs]);
+  }, [active, eli5State, eli5Text, phraseKey, buildArgs, waitForRetry]);
 
   // Auto-load the inline breakdown once when it becomes relevant.
   useEffect(() => {
@@ -235,7 +254,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
 
   return {
     aiMistakeState:
-      active && aiMistakeState === 'idle' && peekAiMistakeLimitNoticeShownToday()
+      active && !hasPremiumAccess && aiMistakeState === 'idle' && peekAiMistakeLimitNoticeShownToday()
         ? 'hidden'
         : aiMistakeState,
     aiMistakeText,
@@ -246,7 +265,11 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       state: eli5State,
       text: eli5Text,
       onOpen: () => void openEli5(),
-      onClose: () => setEli5Open(false),
+      onClose: () => {
+        eli5OpenRef.current = false;
+        setEli5Open(false);
+        cancelRetryWait();
+      },
       onRetry: () => void openEli5(),
     },
   };

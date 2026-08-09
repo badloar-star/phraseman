@@ -65,6 +65,15 @@ describe('local personal plan pronunciation scoring core', () => {
     expect(result.passed).toBe(true);
   });
 
+  it('treats a two-digit number token as its spoken form (seventy-eight ~ 78)', () => {
+    const result = scorePronunciationTranscript({
+      targetText: 'My grandmother is seventy-eight years old.',
+      transcript: 'My grandmother is 78 years old',
+    });
+    expect(result.score).toBe(100);
+    expect(result.passed).toBe(true);
+  });
+
   it('treats ordinals written as digits as equal (first ~ 1st)', () => {
     const result = scorePronunciationTranscript({
       targetText: 'She is first in line',

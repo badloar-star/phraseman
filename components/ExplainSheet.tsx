@@ -9,8 +9,8 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
  *
  * v1 НЕ стримит: cache MISS → скелетон «готовлю объяснение…», по приходу — полный
  * текст; cache HIT → текст сразу. Текст приходит с сервера и рендерится КАК ЕСТЬ
- * (никакой клиентской валидации качества). На сетевой ошибке — мягкий fallback из
- * resolveExplainDisplay, не сырой стек.
+ * (никакой клиентской валидации качества). Технические/валидаторные сбои молча
+ * ретраятся под скелетоном; отдельное финальное состояние есть только у Free-лимита.
  *
  * Внизу — тонкая кнопка-репорт (ExplainReportButton), шлёт phraseEn (сервер хэширует).
  */
@@ -78,7 +78,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
   // Запрос стартует только когда шторка видима (cache-read бесплатен и быстр).
   const state = useExplainRequest({ phraseEn, phraseMeaning, lang: effLang, studyTarget }, visible);
   const display = resolveExplainDisplay(state, effLang, phraseMeaning);
-  const explainFreeLimitReached = !state.loading && state.status === 'exhausted';
+  const explainFreeLimitReached = !state.loading && state.reason === 'free_limit';
 
   // ── Слайд снизу + fade бэкдропа (legacy Animated, как в NoEnergyModal) ─────
   const translateY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;

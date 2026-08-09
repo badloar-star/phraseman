@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  callExplainMistake,
+  type ExplainMistakeRequest,
+} from '../app/ai_mistake_explain_client';
 
 const mockCallable = jest.fn();
+let mockNetStatus: 'online' | 'offline' | 'unknown' = 'online';
 
 jest.mock('@react-native-firebase/app', () => ({
   getApp: jest.fn(() => ({ name: '[DEFAULT]' })),
@@ -31,10 +36,9 @@ jest.mock('../app/ai_callable_resilience', () => ({
   aiAttemptTimeoutMs: (baseMs: number) => baseMs,
 }));
 
-import {
-  callExplainMistake,
-  type ExplainMistakeRequest,
-} from '../app/ai_mistake_explain_client';
+jest.mock('../app/net_status', () => ({
+  getNetStatus: () => mockNetStatus,
+}));
 
 const fullRequest: ExplainMistakeRequest = {
   lessonId: 18,
@@ -54,7 +58,15 @@ const fullRequest: ExplainMistakeRequest = {
 describe('mistake explanation bundle client cache', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
+    mockNetStatus = 'online';
     await AsyncStorage.clear();
+  });
+
+  it('does not call the remote function until connectivity is confirmed online', async () => {
+    mockNetStatus = 'unknown';
+
+    await expect(callExplainMistake(fullRequest)).rejects.toThrow('mistake_explain_offline');
+    expect(mockCallable).not.toHaveBeenCalled();
   });
 
   it('primes the ELI5 local cache from one full callable response', async () => {
@@ -74,6 +86,7 @@ describe('mistake explanation bundle client cache', () => {
     });
 
     const full = await callExplainMistake(fullRequest);
+    mockNetStatus = 'unknown';
     const warmFull = await callExplainMistake(fullRequest);
     const simple = await callExplainMistake({ ...fullRequest, variant: 'eli5' });
 

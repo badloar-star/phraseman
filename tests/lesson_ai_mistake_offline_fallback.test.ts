@@ -19,7 +19,7 @@ describe('lesson AI mistake background recovery', () => {
     expect(inlineFailureBlock).toContain("setAiMistakeState('loading')");
     expect(inlineFailureBlock).toContain('scheduleMistakeRetry');
     expect(inlineFailureBlock).not.toContain("setAiMistakeState('error')");
-    expect(inlineFailureBlock).toContain("getNetStatus() === 'offline'");
+    expect(inlineFailureBlock).toContain("getNetStatus() !== 'online'");
     expect(inlineFailureBlock.indexOf("setAiMistakeState('idle')")).toBeLessThan(
       inlineFailureBlock.indexOf('scheduleMistakeRetry'),
     );
@@ -42,7 +42,7 @@ describe('lesson AI mistake background recovery', () => {
     expect(eli5FailureBlock).not.toContain("setEli5State('error')");
     expect(eli5FailureBlock).not.toContain("setEli5State('ready')");
     expect(eli5FailureBlock).not.toContain('aiErrorToast');
-    expect(eli5FailureBlock).toContain("getNetStatus() === 'offline'");
+    expect(eli5FailureBlock).toContain("getNetStatus() !== 'online'");
   });
 
   it('primes the simple explanation cache from a successful full bundle', () => {

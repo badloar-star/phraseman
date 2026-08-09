@@ -220,11 +220,12 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     setNetStatus(online ? 'online' : 'offline');
   }), []);
 
-  // Потеря сети немедленно снимает сетевые запросы/повторы из владения UI.
+  // Любое состояние без подтверждённого online немедленно снимает сетевые
+  // запросы/повторы из владения UI.
   // Готовый локально закэшированный ответ сохраняем, но вечный skeleton не
   // оставляем и новые запросы до возвращения сети не запускаем.
   useEffect(() => {
-    if (netStatus !== 'offline') return;
+    if (netStatus === 'online') return;
     clearRetryTimers();
     invalidateRequests();
     mistakeRetryAttemptRef.current = 0;
@@ -269,7 +270,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   useEffect(() => {
     if (
       !active
-      || netStatus === 'offline'
+      || netStatus !== 'online'
       || accountScopeBlockedRef.current
       || !isCurrentAccountGeneration(accountGenerationRef.current)
     ) return;
@@ -317,28 +318,28 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   }), [cancelPendingExplanationWork]);
 
   const scheduleMistakeRetry = useCallback((scope: ExplanationRequestScope) => {
-    if (netStatusRef.current === 'offline') return;
+    if (netStatusRef.current !== 'online') return;
     if (mistakeRetryTimerRef.current) clearTimeout(mistakeRetryTimerRef.current);
     const attempt = mistakeRetryAttemptRef.current + 1;
     mistakeRetryAttemptRef.current = attempt;
     const delayMs = Math.min(30_000, 1_000 * (2 ** Math.min(attempt, 5)));
     mistakeRetryTimerRef.current = setTimeout(() => {
       mistakeRetryTimerRef.current = null;
-      if (netStatusRef.current !== 'offline' && isExplanationScopeCurrent(scope)) {
+      if (netStatusRef.current === 'online' && isExplanationScopeCurrent(scope)) {
         explainRef.current(false, true);
       }
     }, delayMs);
   }, [isExplanationScopeCurrent]);
 
   const scheduleEli5Retry = useCallback((scope: ExplanationRequestScope) => {
-    if (netStatusRef.current === 'offline') return;
+    if (netStatusRef.current !== 'online') return;
     if (eli5RetryTimerRef.current) clearTimeout(eli5RetryTimerRef.current);
     const attempt = eli5RetryAttemptRef.current + 1;
     eli5RetryAttemptRef.current = attempt;
     const delayMs = Math.min(30_000, 1_000 * (2 ** Math.min(attempt, 5)));
     eli5RetryTimerRef.current = setTimeout(() => {
       eli5RetryTimerRef.current = null;
-      if (netStatusRef.current !== 'offline' && isExplanationScopeCurrent(scope)) {
+      if (netStatusRef.current === 'online' && isExplanationScopeCurrent(scope)) {
         openEli5Ref.current(true);
       }
     }, delayMs);
@@ -386,7 +387,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       // отозванным consent) всё равно ушло бы в сеть с текстом ответа юзера.
       if (
         !activeRef.current
-        || netStatusRef.current === 'offline'
+        || netStatusRef.current !== 'online'
         || (aiMistakeState === 'loading' && !backgroundRetry)
         || !isAiExplainConsentGranted()
         || accountScopeBlockedRef.current
@@ -458,7 +459,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
           setAiMistakeState('limit');
           return;
         }
-        if (getNetStatus() === 'offline') {
+        if (getNetStatus() !== 'online') {
           setAiMistakeState('idle');
           return;
         }
@@ -478,7 +479,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   const openEli5 = useCallback(async (backgroundRetry = false) => {
     if (
       !activeRef.current
-      || netStatusRef.current === 'offline'
+      || netStatusRef.current !== 'online'
       || !isAiExplainConsentGranted()
       || accountScopeBlockedRef.current
       || !isCurrentAccountGeneration(accountGenerationRef.current)
@@ -529,7 +530,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         setAiMistakeState('limit');
         return;
       }
-      if (getNetStatus() === 'offline') {
+      if (getNetStatus() !== 'online') {
         setEli5State('idle');
         return;
       }
@@ -544,7 +545,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   openEli5Ref.current = (backgroundRetry = false) => { void openEli5(backgroundRetry); };
 
   useEffect(() => {
-    if (!active || netStatus === 'offline' || aiMistakeState !== 'idle') return;
+    if (!active || netStatus !== 'online' || aiMistakeState !== 'idle') return;
     if (!isAiExplainConsentHydrated()) return;
     if (!hasAiExplainConsentDecision()) {
       setConsentGateVisible(true);
@@ -555,7 +556,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick]);
 
   const requestMistakeExplanation = useCallback(() => {
-    if (!active || netStatusRef.current === 'offline') return;
+    if (!active || netStatusRef.current !== 'online') return;
     if (!isAiExplainConsentGranted()) {
       setConsentGateVisible(true);
       return;

@@ -229,9 +229,10 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
     // fall through to download
   }
 
-  // При подтверждённом offline отсутствие файла в кэше окончательно: удалённый
-  // URL не открываем и сразу отдаём управление системному TTS.
-  if (getNetStatus() === 'offline') return null;
+  // Пока сеть не подтверждена как online, отсутствие файла в кэше окончательно:
+  // удалённый URL не открываем и сразу отдаём управление системному TTS. Это
+  // убирает многосекундную паузу при холодном старте без интернета.
+  if (getNetStatus() !== 'online') return null;
 
   let nativeDownload = inFlightDownloads.get(key);
   if (!nativeDownload) {
@@ -310,7 +311,7 @@ export async function playPhraseByText(
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
   if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) return true;
-  if (!cachedUri && getNetStatus() === 'offline') return false;
+  if (!cachedUri && getNetStatus() !== 'online') return false;
   const source: string = cachedUri ?? url;
 
   const voiceLease = acquireAudioActivity('spoken');

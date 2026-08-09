@@ -80,8 +80,13 @@ struct PhraseWidgetView: View {
       Text(entry.payload.english)
         .font(.title3.weight(.bold))
         .foregroundStyle(phraseColor)
-        .lineLimit(2)
-        .minimumScaleFactor(0.6)
+        // Daily phrases include long idioms (for example, “Put your money
+        // where your mouth is”). Two lines still ellipsized those phrases in
+        // systemSmall even after the old fixed-height overflow was removed.
+        // Give the phrase the third line and the highest layout priority; the
+        // secondary meaning yields first when Dynamic Type needs more room.
+        .lineLimit(3)
+        .minimumScaleFactor(0.55)
         .layoutPriority(2)
       Text(entry.payload.meaning)
         .font(.footnote)

@@ -37,6 +37,8 @@ describe('level exam progress flag compatibility', () => {
     const cloudSync = read('app/cloud_sync.ts');
 
     expect(examV2).toContain("scored.passed ? '1' : '0'");
+    expect(examV2).toContain('const previousPct = Number.isFinite(previousPctRaw)');
+    expect(examV2).toContain('Math.max(0, Math.min(100, Math.round(previousPctRaw)))');
     expect(legacyExam).toContain('const persistedPassed = storedProgressFlagIsTrue(previousPassedRaw) || passed');
     expect(legacyExam).toContain('const persistedPct = Math.max(Number.isFinite(previousPct) ? previousPct : 0, pct)');
     expect(legacyExam).toContain("persistedPassed ? '1' : '0'");

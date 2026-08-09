@@ -62,33 +62,48 @@ async function applyCustomizationDraftInternal(
   force: boolean,
 ): Promise<CustomizationSnapshot> {
   const accountScope = deps.createAccountScope?.();
-  if (accountScope && !accountScope.isCurrent()) {
-    throw new Error('customization_account_changed');
-  }
-  const previous = deps.getCurrentSnapshot();
-  if (!force && alreadyApplied(previous, input)) return previous;
+  const persistOptimisticSelection = async (): Promise<{
+    snapshot: CustomizationSnapshot;
+    changed: boolean;
+  }> => {
+    if (accountScope && !accountScope.isCurrent()) {
+      throw new Error('customization_account_changed');
+    }
+    const previous = deps.getCurrentSnapshot();
+    if (!force && alreadyApplied(previous, input)) {
+      return { snapshot: previous, changed: false };
+    }
 
-  const optimistic = snapshotForInput(previous, input);
-  deps.publishSnapshot(optimistic);
-  try {
-    const persist = async (): Promise<boolean> => {
-      if (accountScope && !accountScope.isCurrent()) return false;
+    const optimistic = snapshotForInput(previous, input);
+    deps.publishSnapshot(optimistic);
+    try {
       await deps.storage.multiSet([
         ['user_avatar', input.avatarValue],
         ['user_frame', input.frameId],
         [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
       ]);
-      return !accountScope || accountScope.isCurrent();
-    };
-    const persisted = accountScope ? await accountScope.runExclusive(persist) : await persist();
-    if (persisted !== true) throw new Error('customization_account_changed');
-  } catch (error) {
-    // При обычной ошибке диска откатываем оптимистичный кадр. После смены
-    // аккаунта старый snapshot публиковать уже нельзя: он перетрёт состояние
-    // нового владельца.
-    if (!accountScope || accountScope.isCurrent()) deps.publishSnapshot(previous);
-    throw error;
-  }
+      if (accountScope && !accountScope.isCurrent()) {
+        throw new Error('customization_account_changed');
+      }
+    } catch (error) {
+      // При обычной ошибке диска откатываем оптимистичный кадр. После смены
+      // аккаунта старый snapshot публиковать уже нельзя: он перетрёт состояние
+      // нового владельца.
+      if (!accountScope || accountScope.isCurrent()) deps.publishSnapshot(previous);
+      throw error;
+    }
+    return { snapshot: optimistic, changed: true };
+  };
+
+  // Проверка поколения, чтение текущего снимка, оптимистичная публикация и
+  // локальный commit образуют одну account-транзакцию. Без этой границы смена
+  // аккаунта могла успеть очистить общий snapshot после первой проверки, а
+  // старый экран затем повторно публиковал в него аватар предыдущего владельца.
+  const localResult = accountScope
+    ? await accountScope.runExclusive(persistOptimisticSelection)
+    : await persistOptimisticSelection();
+  if (!localResult) throw new Error('customization_account_changed');
+  if (!localResult.changed) return localResult.snapshot;
 
   // Local state is already visible and durable. Cache cleanup and both remote
   // mirrors must never hold the Apply button or the rest of the UI hostage.
@@ -106,7 +121,7 @@ async function applyCustomizationDraftInternal(
       return deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection);
     }),
   ]);
-  return optimistic;
+  return localResult.snapshot;
 }
 
 export async function applyCustomizationDraft(

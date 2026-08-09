@@ -44,6 +44,7 @@ export default function LevelExamIntro({
   const { theme: t, f, ds, themeMode } = useTheme();
   const [launching, setLaunching] = useState(false);
   const launchGuardRef = useRef(false);
+  const mountedRef = useRef(true);
   const hasEnergy = unlimitedEnergy || availableEnergy >= energyCost;
   const disabled = starting || launching || !hasEnergy;
   const copy = useMemo(() => getLevelExamCopy(lang, {
@@ -62,14 +63,31 @@ export default function LevelExamIntro({
     if (!starting && !launching) launchGuardRef.current = false;
   }, [launching, starting]);
 
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
   const handleStart = useCallback(() => {
     if (disabled || launchGuardRef.current) return;
     launchGuardRef.current = true;
     setLaunching(true);
-    Promise.resolve(onStart()).catch(() => {
-      launchGuardRef.current = false;
-      setLaunching(false);
-    });
+    // `onStart` may resolve without leaving the intro (for example, the
+    // atomic energy spend lost a race after this frame had shown enough
+    // energy). Release the local guard on every settled outcome; on a real
+    // start the intro unmounts as the countdown replaces it.
+    void Promise.resolve()
+      .then(() => onStart())
+      // A rejected or synchronously thrown start is an expected UI outcome;
+      // the owner screen reports the concrete error and this component only
+      // owns releasing its press guard.
+      .catch(() => undefined)
+      .finally(() => {
+        launchGuardRef.current = false;
+        if (mountedRef.current) setLaunching(false);
+      });
   }, [disabled, onStart]);
 
   return (

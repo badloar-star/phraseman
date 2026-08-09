@@ -81,7 +81,7 @@ import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { getInstalledAppVersion } from './app_version';
-import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
+import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
@@ -3206,7 +3206,15 @@ function AppContent() {
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Protected guard={ENABLE_TOURNAMENTS}>
+        <Stack.Screen name="tournament_lobby" />
+        <Stack.Screen name="tournament_round" />
+        <Stack.Screen name="tournament_table" />
+        <Stack.Screen name="tournament_results" />
+        <Stack.Screen name="tournament_review" />
+        <Stack.Screen name="tournament_season" />
+        <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
+      </Stack.Protected>
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />

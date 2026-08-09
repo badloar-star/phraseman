@@ -64,7 +64,7 @@ export default function TournamentSeasonScreen() {
   const tournamentSeasonRuntimeActive = useRuntimeActive();
   // зачем: экран пушится из tournaments.tsx («Сезон» card), но своей кнопки
   // «назад» не было — трапит пользователя. Паттерн 1:1 как на tournaments.tsx.
-  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
+  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
   // Первый кадр — из общего кэша рейтинга (его же читает хаб), без «пусто → прыжок».
   const [standings, setStandings] = useState<SeasonStandings | null>(() => peekSeasonStandings());

@@ -2627,12 +2627,9 @@ export const setupNotificationTapHandler = (
           });
           break;
         case 'tournament_starting':
-          // зачем: ведём на вкладку турниров, а НЕ прямо в лобби по roomId —
-          // вход требует билета и проверок, которые живут на вкладке. Прыжок в
-          // лобби мимо них упёрся бы в ошибку вместо игры.
-          scheduleNav(() => {
-            router.push('/(tabs)/tournaments' as any);
-          });
+          // Турниры не входят в текущий релиз. Старые/уже доставленные push-и
+          // не должны оставлять пользователя на закрытом или пустом маршруте.
+          navTabHome();
           break;
         default:
           // Unknown notifications from older builds always land on a safe screen.

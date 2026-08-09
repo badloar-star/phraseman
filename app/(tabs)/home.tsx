@@ -2348,19 +2348,17 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 lessons, 2 tournaments, 3 friends, 4 settings —
+    /** Индексы табов: 0 home, 1 lessons, 2 friends, 3 settings —
      *  см. app/(tabs)/_layout.tsx. Плитка «Уроки» по-прежнему открывает push-маршрут
      *  /lessons_list, чтобы сохранить привычную историю возврата с главной.
      *  зачем: карта дублирует _layout.tsx, поэтому при любом изменении набора
      *  вкладок её обязательно править вместе с ним — иначе переходы отсюда
      *  уводят не на тот экран. */
     const TAB_IDX: Record<string, number> = {
-        '/(tabs)/tournaments': 2,
-        tournaments: 2,
-        '/(tabs)/friends': 3,
-        friends: 3,
-        '/(tabs)/settings': 4,
-        settings: 4,
+        '/(tabs)/friends': 2,
+        friends: 2,
+        '/(tabs)/settings': 3,
+        settings: 3,
     };
     const go = (path: string) => {
         hapticTap();

@@ -411,121 +411,6 @@ const DEFAULT_SETTINGS: Settings = {
 // ── Гексагональный прогресс-индикатор ────────────────────────────────────────
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
 
-// ── Модалка "Конец цикла урока" ───────────────────────────────────────────────
-export const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
-
-function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onClose }: {
-  visible: boolean;
-  hasErrors: boolean;
-  lang: Lang;
-  studyTarget: StudyTargetLang;
-  t: any;
-  f: any;
-  onClose: () => void;
-}) {
-  const scaleAnim = useRef(new Animated.Value(0.85)).current;
-  const opacityAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    if (visible) {
-      Animated.parallel([
-        Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, tension: 60, friction: 8 }),
-        Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
-      ]).start();
-    } else {
-      scaleAnim.setValue(0.85);
-      opacityAnim.setValue(0);
-    }
-  }, [visible]);
-
-  if (!visible) return null;
-
-  const title = triLang(lang, {
-    ru: '🎉 Ты прошёл весь урок!',
-    uk: '🎉 Ти пройшов увесь урок!',
-    es: '🎉 ¡Has cerrado todo el ciclo!',
-    'pt-BR': '🎉 Você concluiu toda a lição!',
-    vi: '🎉 Bạn đã hoàn thành toàn bộ bài học!',
-    id: '🎉 Kamu telah menyelesaikan semua pelajaran!',
-    tr: '🎉 Tüm dersi tamamladın!',
-    pl: '🎉 Ukończyłeś całą lekcję!',
-  });
-  const subtitle = triLang(lang, {
-    ru: 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.',
-    uk: 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.',
-    es: 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.',
-    'pt-BR': 'Você pode repetir quantas vezes quiser — cada nova rodada melhora seu resultado.',
-    vi: 'Bạn có thể luyện tập bao nhiêu lần tùy thích — mỗi vòng mới đều cải thiện kết quả.',
-    id: 'Kamu bisa mengulang sebanyak yang kamu mau — setiap putaran baru meningkatkan hasilmu.',
-    tr: 'İstediğin kadar tekrar edebilirsin — her yeni tur sonucunu iyileştirir.',
-    pl: 'Możesz powtarzać ile chcesz — każda nowa runda poprawia twój wynik.',
-  });
-  const errorText = triLang(lang, {
-    ru: 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.',
-    uk: 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.',
-    es: 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.',
-    'pt-BR': 'Você teve erros — repita para corrigi-los e fixar o aprendizado.',
-    vi: 'Bạn có lỗi — hãy làm lại để sửa và củng cố kiến thức.',
-    id: 'Kamu punya kesalahan — ulangi untuk memperbaikinya dan memperkuat pemahaman.',
-    tr: 'Hatalar yaptın — düzeltmek ve öğrendiklerini pekiştirmek için tekrar et.',
-    pl: 'Miałeś błędy — powtórz, żeby je poprawić i utrwalić wiedzę.',
-  });
-  const btnLabel = triLang(lang, {
-    ru: 'Продолжить',
-    uk: 'Продовжити',
-    es: 'Continuar',
-    'pt-BR': 'Continuar',
-    vi: 'Tiếp tục',
-    id: 'Lanjutkan',
-    tr: 'Devam et',
-    pl: 'Kontynuuj',
-  });
-
-  return (
-    <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
-        <Animated.View testID="lesson-cycle-end-modal" style={{
-          backgroundColor: t.bgCard,
-          borderRadius: 24,
-          padding: 28,
-          width: '100%',
-          maxWidth: 360,
-          alignItems: 'center',
-          opacity: opacityAnim,
-          transform: [{ scale: scaleAnim }],
-          shadowColor: '#000',
-          shadowOpacity: 0.25,
-          shadowRadius: 20,
-          ...noAndroidOutline,
-        }}>
-          <Text style={{ fontSize: 48, marginBottom: 12 }}>🏆</Text>
-          <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary, textAlign: 'center', marginBottom: 10 }}>
-            {title}
-          </Text>
-          <Text style={{ fontSize: f.body, color: t.textSecond, textAlign: 'center', lineHeight: 22, marginBottom: hasErrors ? 12 : 24 }}>
-            {subtitle}
-          </Text>
-          {hasErrors && (
-            <View style={{ backgroundColor: t.accentBg, borderRadius: 12, padding: 12, marginBottom: 24, width: '100%' }}>
-              <Text style={{ fontSize: f.body, color: t.accent, textAlign: 'center', lineHeight: 20 }}>
-                {errorText}
-              </Text>
-            </View>
-          )}
-          <TapScale
-            testID="lesson-cycle-end-continue"
-            onPress={onClose}
-            scaleTo={0.96}
-            style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 40, width: '100%', alignItems: 'center' }}
-          >
-            <Text style={{ fontSize: f.bodyLg, fontWeight: '700', color: t.correctText }}>{btnLabel}</Text>
-          </TapScale>
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-}
-
 /**
  * [REVIEW] Одна пройденная фраза для режима «Назад к фразам» (просмотр/сравнение, read-only).
  */
@@ -2253,8 +2138,6 @@ export default function LessonScreen() {
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
   const [failedTapCount, setFailedTapCount] = useState(0);
   const [recoveryTimeText, setRecoveryTimeText] = useState('');
-  const [showCycleEndModal, setShowCycleEndModal] = useState(false);
-  const [cycleEndHasErrors, setCycleEndHasErrors] = useState(false);
   /**
    * false until loadData finishes, unless we primed from AsyncStorage before navigation
    * (see lesson_menu / primeLessonScreenFromStorage) — then first paint is already at saved cell.
@@ -2262,10 +2145,6 @@ export default function LessonScreen() {
   const [lessonHydrated, setLessonHydrated] = useState(
     () => isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)
   );
-  // Ref для хранения колбека после закрытия модалки (навигация на lesson_complete)
-  const cycleEndCallbackRef = useRef<(() => void | Promise<void>) | null>(null);
-  const cycleEndContinueInFlightRef = useRef(false);
-
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const toastAnim   = useRef(new Animated.Value(0)).current;
   const cursorAnim  = useRef(new Animated.Value(1)).current;
@@ -3554,13 +3433,35 @@ const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
   lessonFinishUpdates,
   { studyTarget: studyTargetRef.current },
 );
-let lessonFinishDeliveryPromise = startLessonFinishDelivery();
-void lessonFinishDeliveryPromise.catch((deliveryError) => {
-  void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
-    lessonId,
-    finishDailyTaskEventId,
-  }, 'lesson1');
-});
+const firstLessonFinishDelivery = startLessonFinishDelivery();
+const finishLessonDeliveryInBackground = async () => {
+  try {
+    await firstLessonFinishDelivery;
+    return;
+  } catch (deliveryError) {
+    void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
+      lessonId,
+      finishDailyTaskEventId,
+    }, 'lesson1');
+  }
+
+  try {
+    // Exactly-once journal semantics make retrying the same event id safe.
+    await startLessonFinishDelivery();
+  } catch (deliveryError) {
+    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
+      lessonId,
+      finishDailyTaskEventId,
+    }, 'lesson1');
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Урок сохранён, но прогресс вызовов сейчас не обновился.',
+      messageUk: 'Урок збережено, але прогрес викликів зараз не оновився.',
+      messageEs: 'La lección se guardó, pero el progreso de los desafíos no se actualizó.',
+    });
+  }
+};
+void finishLessonDeliveryInBackground();
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
@@ -3595,39 +3496,10 @@ void lessonFinishDeliveryPromise.catch((deliveryError) => {
           });
         };
 
-        const finalizeLessonCompletion = async () => {
-  try {
-    try {
-      await lessonFinishDeliveryPromise;
-    } catch {
-      // The first attempt starts while the learner reads the completion modal.
-      // A failed Continue performs one explicit retry with the same event id.
-      lessonFinishDeliveryPromise = startLessonFinishDelivery();
-      await lessonFinishDeliveryPromise;
-    }
-  } catch (deliveryError) {
-    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
-      lessonId,
-      finishDailyTaskEventId,
-    }, 'lesson1');
-    emitAppEvent('action_toast', {
-      type: 'error',
-      messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
-      messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
-      messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
-    });
-    return;
-  }
-  setShowCycleEndModal(false);
-  cycleEndCallbackRef.current = null;
-  navigate();
-};
-
-const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-cycleEndContinueInFlightRef.current = false;
-cycleEndCallbackRef.current = finalizeLessonCompletion;
-setCycleEndHasErrors(hasErrors);
-setShowCycleEndModal(true);
+        // There is one completion surface: go straight to lesson_complete.
+        // Daily Challenge delivery continues independently and retries once,
+        // so storage/network trouble can never strand the learner here.
+        await navigate();
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
@@ -4313,22 +4185,6 @@ setShowCycleEndModal(true);
       onClose={resetNoEnergyModal}
       onGotIt={dismissEnergyModal}
       paywallContext="no_energy"
-    />
-    <LessonCycleEndModal
-      visible={showCycleEndModal}
-      hasErrors={cycleEndHasErrors}
-      lang={lang}
-      studyTarget={studyTarget}
-      t={t}
-      f={f}
-      onClose={() => {
-  const callback = cycleEndCallbackRef.current;
-  if (!callback || cycleEndContinueInFlightRef.current) return;
-  cycleEndContinueInFlightRef.current = true;
-  void Promise.resolve(callback()).finally(() => {
-    cycleEndContinueInFlightRef.current = false;
-  });
-}}
     />
     </>
   );

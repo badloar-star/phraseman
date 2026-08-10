@@ -1968,15 +1968,15 @@ export default function FlashcardsSwipeScreen() {
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
 
-  // зачем: СТРАХОВКА от невидимой карточки. flyOpacity гасится при улёте и
-  // раньше возвращался в 1 ТОЛЬКО внутри finish(). Любой другой путь смены
-  // карточки (смена набора, перезапуск сессии, возврат на экран, обрыв
-  // анимации при уходе в фон) оставлял значение 0 — и следующая карточка
-  // рисовалась ПУСТОЙ. Привязываем сброс к самой карточке: новая карточка в
-  // кадре — всегда видима, независимо от того, как она там оказалась.
+  // зачем: СТРАХОВКА от невидимой карточки. На Android страховочный таймер мог
+  // завершить settle раньше нативного fade; запоздавший fade после этого снова
+  // записывал opacity=0 уже новой карточке. Поэтому на каждом стабильном кадре
+  // сначала физически останавливаем прежнюю native-анимацию, затем возвращаем 1.
   useEffect(() => {
-    flyOpacity.stopAnimation(() => flyOpacity.setValue(1));
-  }, [currentPrompt?.id, flyOpacity]);
+    if (settling) return;
+    flyOpacity.stopAnimation();
+    flyOpacity.setValue(1);
+  }, [currentPrompt?.id, flyOpacity, settling]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
   useEffect(() => {
@@ -2139,8 +2139,9 @@ export default function FlashcardsSwipeScreen() {
           settleGuardRef.current = null;
         }
         position.setValue({ x: 0, y: 0 });
-        // зачем: вернуть непрозрачность ДО показа следующей карты — иначе
-        // она въедет в кадр невидимой (значение осталось бы 0 после улёта).
+        // Остановить native fade ДО setValue критично: если guard-таймер выиграл
+        // гонку, ещё живая анимация иначе позже снова перезапишет 1 обратно в 0.
+        flyOpacity.stopAnimation();
         flyOpacity.setValue(1);
         after();
         settlingRef.current = false;
@@ -2178,7 +2179,7 @@ export default function FlashcardsSwipeScreen() {
         });
       });
     },
-    [position, width],
+    [flyOpacity, position, width],
   );
 
   // Гасим страховочный таймер settleCard при размонтировании, чтобы не дёргать

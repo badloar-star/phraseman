@@ -111,7 +111,7 @@ import {
     type StreakWeekDayMarkerKind,
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
-import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
+import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey, storageStudyTarget } from '../target_storage_keys';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
@@ -121,6 +121,7 @@ import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, 
 import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
 import { getCanonicalUserId } from '../user_id_policy';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { invalidateDailyTasksScreenSnapshot } from '../daily_tasks_screen_cache';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
 import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
@@ -1140,6 +1141,13 @@ export default function HomeScreen() {
         });
         // Слушаем событие изменения XP (от тестеров и других экранов)
         const xpSub = DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh);
+        const dailyTaskProgressChangedSub = onAppEvent('daily_task_progress_changed', (payload) => {
+            const eventTarget = storageStudyTarget(payload.studyTarget);
+            invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), eventTarget);
+            if (eventTarget === storageStudyTarget(studyTargetRef.current)) {
+                requestDailyTaskSummaryRefresh();
+            }
+        });
         const dailyTaskCompletedSub = onAppEvent('daily_task_completed', requestDailyTaskSummaryRefresh);
         const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', requestDailyTaskSummaryRefresh);
         const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', requestDailyTaskSummaryRefresh);
@@ -1255,6 +1263,7 @@ export default function HomeScreen() {
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
             xpSub.remove();
+            dailyTaskProgressChangedSub.remove();
             dailyTaskCompletedSub.remove();
             dailyTaskClaimedSub.remove();
             dailyTaskRerolledSub.remove();

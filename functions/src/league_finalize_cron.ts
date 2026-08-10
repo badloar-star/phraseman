@@ -20,7 +20,7 @@
 
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
-import { withoutResidents } from './league_residents';
+import { isResidentMember } from './league_residents';
 
 const CLUBS_MAX_ID = 11;
 const LEAGUE_RESULT_ZONE_RATIO = 0.15;
@@ -93,21 +93,25 @@ type MemberResult = {
 };
 
 export function computeGroupResults(
-  members: Record<string, { points?: unknown; uid?: unknown }>,
+  members: Record<string, {
+    points?: unknown;
+    uid?: unknown;
+    isResident?: unknown;
+    identityHidden?: unknown;
+  }>,
   leagueId: number,
   xpPromotion: XpPromotionConfig,
 ): Record<string, MemberResult> {
-  // зачем (владелец 2026-08-04): жители дозаполняют комнату визуально, но в
-  // НАГРАДАХ их быть не должно — ни итогов недели, ни повышения/понижения.
-  // Отсекаем их до подсчёта, иначе они бы ещё и раздували total, сдвигая зоны
-  // топ-15%/низ-15% для живых игроков (живой мог бы вылететь из-за соседства
-  // с ботами). Ранг живого считается только среди живых.
-  const liveMembers = withoutResidents(members as Record<string, Record<string, unknown>>);
-  const entries = Object.entries(liveMembers)
+  // Жители — реальные соперники в таблице: они входят в total, ранг и зоны
+  // повышения/понижения. Но самим жителям не создаём итоговые документы,
+  // не меняем лигу и не выдаём награды. Это разделяет «участвует в соревновании»
+  // и «является получателем награды».
+  const entries = Object.entries(members)
     .filter(([, m]) => (m as Record<string, unknown>)?.identityHidden !== true)
     .map(([uid, m]) => ({
       uid,
       points: Math.max(0, Math.trunc(Number((m as Record<string, unknown>).points ?? 0)) || 0),
+      isResident: isResidentMember(uid, m as Record<string, unknown>),
     }))
     .sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
 
@@ -116,6 +120,8 @@ export function computeGroupResults(
   const results: Record<string, MemberResult> = {};
 
   entries.forEach((e) => {
+    // Бот участвует в местах, но не является получателем итога/награды.
+    if (e.isResident) return;
     const rank = 1 + entries.filter((candidate) => candidate.points > e.points).length;
     const bottomRank = 1 + entries.filter((candidate) => candidate.points < e.points).length;
     // XP-режим (зеркало app/league_engine.ts:710-717): повышение по набранным

@@ -329,10 +329,8 @@ export interface GroupMember {
   isBot?:    boolean;
   /**
    * Синтетический «житель», дозаполняющий комнату (владелец 2026-08-04).
-   * В таблице виден как обычный игрок, но в НАГРАДАХ не участвует: сервер
-   * (league_finalize_cron) считает ранги и зоны перехода только среди живых,
-   * и клиент обязан считать так же — иначе покажет один результат, а сервер
-   * запишет другой.
+   * В таблице виден как обычный соперник: входит в total, места и зоны перехода.
+   * Но сам не получает награду и не имеет серверного итого недели.
    */
   isResident?: boolean;
   isPremium?: boolean;
@@ -783,12 +781,8 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   const normalizedGroup = ensureCurrentUserInGroup(state.group, '', myWeekPoints, null);
   const updated = normalizedGroup
     .map(m => m.isMe ? { ...m, points: myWeekPoints } : m)
-    // зачем (аудит 2026-08-04): жители дозаполняют комнату визуально, но в
-    // наградах не участвуют. Сервер (computeGroupResults) считает ранг и зоны
-    // перехода ТОЛЬКО среди живых — клиент обязан считать так же, иначе
-    // покажет «Переход», а сервер запишет другое место. Плюс жители раздували
-    // бы total, сдвигая границы топ-15%/низ-15% для живых.
-    .filter(m => !isResidentGroupMember(m))
+    // Жители входят в реальный размер группы и места. Награды им не выдаются
+    // сервером, но исключать их из ranking нельзя: экран должен показывать 1/28, а не 1/4.
     .sort((a, b) => b.points - a.points);
 
   const total        = updated.length;

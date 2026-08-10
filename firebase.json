@@ -9,18 +9,20 @@
   "hosting": [
     {
       "target": "admin",
-      "public": "admin/v2",
+      "public": "admin",
       "ignore": [
         "firebase.json",
         "**/.*",
         "**/node_modules/**",
-        "migration.html"
+        "v2/**"
       ],
       "redirects": [
-        { "source": "/", "destination": "/legacy.html", "type": 302 },
-        { "source": "/index.html", "destination": "/legacy.html", "type": 302 },
-        { "source": "/v2", "destination": "/v2.html", "type": 302 },
-        { "source": "/v2/", "destination": "/v2.html", "type": 302 }
+        { "source": "/v2", "destination": "/legacy.html", "type": 302 },
+        { "source": "/v2/**", "destination": "/legacy.html", "type": 302 },
+        { "source": "/admin", "destination": "/", "type": 302 },
+        { "source": "/admin/", "destination": "/", "type": 302 },
+        { "source": "/admin/index.html", "destination": "/index.html", "type": 302 },
+        { "source": "/admin/**", "destination": "/", "type": 302 }
       ],
       "headers": [
         {

@@ -314,6 +314,40 @@ describe('ExpoSfxBackend', () => {
     expect(ended).toHaveBeenCalledTimes(1);
   });
 
+  test('releases the sound slot when the readiness retry throws', () => {
+    type Status = { isLoaded?: boolean; playing?: boolean };
+    let listener: (status: Status) => void = () => {};
+    let playCalls = 0;
+    const player: SfxPlayerLike = {
+      volume: 1,
+      play: () => {
+        playCalls += 1;
+        if (playCalls === 2) throw new Error('native retry failed');
+      },
+      pause: jest.fn(),
+      seekTo: jest.fn(),
+      remove: jest.fn(),
+      addListener: (_event, callback) => {
+        listener = callback;
+        return { remove: () => { listener = () => {}; } };
+      },
+    };
+
+    const backend = new ExpoSfxBackend(() => player, 2);
+    const ended = jest.fn();
+    expect(backend.play('pm.learn.correct', 1, 0.42, ended)).toBe(true);
+    expect(playCalls).toBe(1);
+
+    listener({ isLoaded: true, playing: false });
+    expect(playCalls).toBe(2);
+    expect(ended).toHaveBeenCalledTimes(1);
+    expect(player.pause).toHaveBeenCalledTimes(1);
+
+    // The failed generation is fully released; the same backend can serve the
+    // next sound instead of retaining an invisible global audio lock.
+    expect(backend.play('pm.system.info', 2, 0.28, jest.fn())).toBe(true);
+  });
+
   test('waits for an asynchronous rewind before replaying a cached sound', async () => {
     let finishSeek!: () => void;
     const calls: string[] = [];

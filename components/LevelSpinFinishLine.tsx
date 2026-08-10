@@ -366,6 +366,11 @@ export default function LevelSpinFinishLine({
     setLandingIndex(null);
     resultOpacity.value = 0;
     if (reducedMotion) return;
+    soundDirector.request('pm.spin.reel_start', {
+      scope: 'level-spin-reel',
+      dedupeKey: 'reel-start',
+      rateLimit: { maxStarts: 6, windowMs: 4_000 },
+    });
     const startOffset = selectorCenterY - cardHeight / 2 - rowPitch * 4;
     const accelerationTarget = startOffset - rowPitch * 4;
     const loopDistance = REWARD_STREAM_IDS.length * rowPitch;

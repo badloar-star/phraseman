@@ -12,6 +12,8 @@ describe('lesson word press accuracy', () => {
     expect(optionsBlock).toContain('setWordDispatchPending(true)');
     expect(optionsBlock).toContain('setWordDispatchPending(false)');
     expect(optionsBlock).toContain('disabled={wordDispatchPending}');
+    expect(optionsBlock.indexOf('setWordDispatchPending(false)'))
+      .toBeLessThan(optionsBlock.indexOf('handleWordPress(word)'));
   });
 
   it('keeps delayed flash feedback attached to the exact option and phrase step', () => {

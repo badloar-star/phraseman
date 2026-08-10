@@ -2056,9 +2056,24 @@ export default function DailyTasksScreen() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [accountGenerationBumpTick]);
     useEffect(() => {
-        const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); reloadAllDoneStreak(); });
-        return () => sub.remove();
-    }, [refreshTasksAndProgress, reloadAllDoneStreak]);
+        const progressSub = onAppEvent('daily_task_progress_changed', (payload) => {
+            const eventTarget = storageStudyTarget(payload.studyTarget);
+            if (eventTarget !== storageStudyTarget(studyTarget)) return;
+            // Прогресс мог измениться, пока экран был заморожен или вовсе размонтирован.
+            // Сбрасываем и память, и дисковый снимок: иначе свежий TTL ещё 30 секунд
+            // возвращал старые 0/3 или 1/3 даже после подтверждённой записи в storage.
+            invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), eventTarget);
+            if (screenFocused) refreshTasksAndProgress(true);
+        });
+        const claimedSub = onAppEvent('daily_task_reward_claimed', () => {
+            refreshTasksAndProgress(true);
+            reloadAllDoneStreak();
+        });
+        return () => {
+            progressSub.remove();
+            claimedSub.remove();
+        };
+    }, [refreshTasksAndProgress, reloadAllDoneStreak, screenFocused, studyTarget]);
     // Опрос-как-4-е-задание: при входе/возврате проверяем, активен ли опрос
     // сегодня и пройден ли он. «present» = есть активный ИЛИ уже пройден (тогда
     // плашка остаётся выполненной до конца дня — сервер пройденный не отдаёт).

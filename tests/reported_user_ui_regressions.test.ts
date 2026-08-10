@@ -17,6 +17,10 @@ const lessonSource = fs.readFileSync(
   path.join(__dirname, '..', 'app', 'lesson1.tsx'),
   'utf8',
 );
+const flashcardsSwipeSource = fs.readFileSync(
+  path.join(__dirname, '..', 'app', 'flashcards_swipe.tsx'),
+  'utf8',
+);
 
 describe('reported user UI regressions', () => {
   it('does not make the phrase check button look active before the word bank is complete', () => {
@@ -84,5 +88,20 @@ describe('reported user UI regressions', () => {
       expect(item.options.length).toBeGreaterThanOrEqual(2);
       expect(item.options).toContain(item.correct);
     }
+  });
+
+  it('cannot leave the next swipe card transparent after the Android settle watchdog wins', () => {
+    const finishStart = flashcardsSwipeSource.indexOf('const finish = () => {');
+    const finishEnd = flashcardsSwipeSource.indexOf('// зачем: A-39', finishStart);
+    const finish = flashcardsSwipeSource.slice(finishStart, finishEnd);
+    const stop = finish.indexOf('flyOpacity.stopAnimation();');
+    const restore = finish.indexOf('flyOpacity.setValue(1);');
+    const advance = finish.indexOf('after();');
+
+    expect(finishStart).toBeGreaterThanOrEqual(0);
+    expect(stop).toBeGreaterThanOrEqual(0);
+    expect(restore).toBeGreaterThan(stop);
+    expect(advance).toBeGreaterThan(restore);
+    expect(flashcardsSwipeSource).toContain('if (settling) return;\n    flyOpacity.stopAnimation();\n    flyOpacity.setValue(1);');
   });
 });

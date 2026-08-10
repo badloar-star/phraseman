@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { emitAppEvent } from '../app/events';
 import {
   deliverDailyTaskProgressEvent,
   getTodayKey,
@@ -76,6 +77,7 @@ describe('durable Daily Challenge progress events', () => {
       { type: 'lesson_complete', increment: 1 },
     ])).resolves.toBe('already-applied');
     await expect(lessonCompleteProgress()).resolves.toBe(1);
+    expect(emitAppEvent).toHaveBeenCalledWith('daily_task_progress_changed', {});
   });
 
   it('replays a prepared event without double increment after the progress write failed', async () => {

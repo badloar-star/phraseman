@@ -4,6 +4,8 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 const daily = fs.readFileSync(path.join(ROOT, 'app/daily_tasks.ts'), 'utf8').replace(/\r\n/g, '\n');
 const lesson = fs.readFileSync(path.join(ROOT, 'app/lesson1.tsx'), 'utf8').replace(/\r\n/g, '\n');
+const dailyScreen = fs.readFileSync(path.join(ROOT, 'app/daily_tasks_screen.tsx'), 'utf8').replace(/\r\n/g, '\n');
+const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
 describe('lesson completion Daily Challenge delivery', () => {
   it('prepares an idempotent target journal before writing progress', () => {
@@ -49,5 +51,13 @@ describe('lesson completion Daily Challenge delivery', () => {
     expect(lesson).not.toContain('lesson-cycle-end-modal');
     expect(lesson).not.toContain('lesson-cycle-end-continue');
     expect(lesson).not.toContain('cycleEndContinueInFlightRef');
+  });
+
+  it('invalidates cached challenge progress after every saved lesson-finish increment', () => {
+    expect(daily).toContain("emitAppEvent('daily_task_progress_changed'");
+    expect(dailyScreen).toContain("onAppEvent('daily_task_progress_changed'");
+    expect(dailyScreen).toContain('invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), eventTarget);');
+    expect(home).toContain("onAppEvent('daily_task_progress_changed'");
+    expect(home).toContain('requestDailyTaskSummaryRefresh();');
   });
 });

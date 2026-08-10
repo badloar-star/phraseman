@@ -14,13 +14,17 @@ league promoted/demoted, social gift/friend_request/quest_complete.
 
 ## ✅ Статус внедрения (2026-08-04, вторая итерация)
 
-7 из 8 предложенных звуков сгенерированы владельцем и **подключены в код**:
+6 из 8 предложенных звуков остаются **подключены в код**:
+
+> Решение владельца от 2026-08-10: сигнал повышения серии
+> `pm.learn.combo_up` и файл `pm_learn_combo_up_v1.wav` отклонены и удалены.
+> Не генерировать и не подключать их повторно; серия остаётся визуальной через
+> `ComboRing`, а её счётчик и XP-множитель продолжают работать без этого звука.
 
 | Событие | Файл события | Подключено в |
 |---|---|---|
 | `pm.app.welcome` | `assets/audio/sfx/v1/app/pm_app_welcome_v1.wav` | `app/_layout.tsx`, `handleOnboardingDone` — играет один раз за жизнь аккаунта (флаг `pm_app_welcome_played_v1`) |
 | `pm.lesson.begin` | `assets/audio/sfx/v1/learning/pm_lesson_begin_v1.wav` | `app/lesson_intro_screens.tsx`, mount, dedupe по `lessonId` |
-| `pm.learn.combo_up` | `assets/audio/sfx/v1/learning/pm_learn_combo_up_v1.wav` | `app/lesson1.tsx` — только на пересечение порога 3/5/10 (`comboLevelRef`), не на каждый верный ответ |
 | `pm.exam.begin` | `assets/audio/sfx/v1/learning/pm_exam_begin_v1.wav` | `app/exam.tsx` (конец countdown → `quiz`) и `app/diagnostic_test.tsx` (start/restart) |
 | `pm.reward.pack_reveal_start` | `assets/audio/sfx/v1/reward/pm_reward_pack_reveal_start_v1.wav` | `app/pack_opening.tsx`, до первого флипа |
 | `pm.reward.pack_complete` | `assets/audio/sfx/v1/reward/pm_reward_pack_complete_v1.wav` | `app/pack_opening.tsx`, все карточки открыты (рядом с уже существующим конфетти) |
@@ -49,11 +53,10 @@ league promoted/demoted, social gift/friend_request/quest_complete.
 | 6 | `app/flashcards_swipe.tsx:2173` — карточка ушла в «выучено» навсегда | звучит тот же `pm.learn.correct`, что и обычный верный свайп — разницы на слух нет | заменить на `pm.complete.micro` именно в ветке `mastered` | 🟡 средний |
 | 7 | `app/flashcards_swipe.tsx` — вся колода пройдена, экран статистики | без звука | `pm.complete.session` (переиспользовать) | 🟢 низкий |
 | 8 | `app/diagnostic_test.tsx:1267` — диагностика уровня завершена (часто первое впечатление новичка) | без звука | `pm.complete.session` | 🟡 средний |
-| 9 | `app/lesson1.tsx` — серия правильных ответов пересекает порог (кольцо ComboRing визуально вспыхивает) | физически нет звука: `pm.learn.combo_5/10` удалены из каталога | НОВОЕ `pm.learn.combo_up` (см. промпты ниже) | 🟡 средний |
-| 10 | `app/pack_opening.tsx` — последняя карточка пака перевёрнута, весь пак открыт (конфетти уже есть) | конфетти в тишине | `pm.complete.session` либо НОВОЕ `pm.reward.pack_complete` | 🟢 низкий |
-| 11 | `app/season_pass.tsx` — успешная покупка сезон-пасса / клейм награды сезона | без звука, только тап | `pm.system.success` (покупка) / `pm.reward.collectible` (клейм) | 🟢 низкий |
-| 12 | `app/shards_shop.tsx` — сервер подтвердил зачисление жемчуга после оплаты | без звука | `pm.system.success` | 🟢 низкий |
-| 13 | `app/(tabs)/friends.tsx:2832` — заявка в друзья принята, новый друг в списке | `hapticTap`, как обычный тап | НОВОЕ, лёгкое `pm.social.friend_added` | 🟢 низкий |
+| 9 | `app/pack_opening.tsx` — последняя карточка пака перевёрнута, весь пак открыт (конфетти уже есть) | конфетти в тишине | `pm.complete.session` либо НОВОЕ `pm.reward.pack_complete` | 🟢 низкий |
+| 10 | `app/season_pass.tsx` — успешная покупка сезон-пасса / клейм награды сезона | без звука, только тап | `pm.system.success` (покупка) / `pm.reward.collectible` (клейм) | 🟢 низкий |
+| 11 | `app/shards_shop.tsx` — сервер подтвердил зачисление жемчуга после оплаты | без звука | `pm.system.success` | 🟢 низкий |
+| 12 | `app/(tabs)/friends.tsx:2832` — заявка в друзья принята, новый друг в списке | `hapticTap`, как обычный тап | НОВОЕ, лёгкое `pm.social.friend_added` | 🟢 низкий |
 
 ### Особый случай — НЕ трогать без владельца
 `components/tournament/TournamentRoundIntro.tsx:90-96` — отсчёт 3-2-1 перед раундом
@@ -74,41 +77,12 @@ achievement, small, collectible, success, match_found — промпты для 
 `phraseman_sound_design_master_v1.md`**, ничего нового генерировать не нужно, только
 подключить вызов в коде.
 
-Ниже — промпты ТОЛЬКО для реально отсутствующих в каталоге событий: `pm.learn.combo_up`,
+Ниже — промпты ТОЛЬКО для реально отсутствующих в каталоге событий:
 `pm.reward.pack_complete`, `pm.social.friend_added`. Формат — короче делать для
 копирования: 3 варианта (A/Б/В), каждый в своём блоке. Длина промптов сознательно
 неровная — короче для простых one-shot, длиннее там, где нужно больше деталей тембра.
 
 Все — 48kHz WAV, non-looping, model `eleven_text_to_sound_v2`, English.
-
----
-
-### 🆕 `pm.learn.combo_up` — Серия ответов перешла на новый уровень
-
-**Смысл:** Один тихий stinger, короче обычного correct, на пересечение порога серии
-(3/5/10). НЕ на каждый верный ответ — только когда ComboRing реально повышает уровень.
-Заменяет обычный correct в этот момент, не звучит поверх него.
-
-**Параметры:** duration `0.5s`; priority `76`; cooldown `2000ms`; volume `0.44`.
-
-**Куда пойдёт:** `app/lesson1.tsx` — момент, когда серия правильных ответов
-пересекает порог 3/5/10 и `ComboRing` визуально повышает уровень (сейчас звука
-физически нет, `pm.learn.combo_5/10` были удалены из каталога).
-
-#### Вариант A — короткий, кристальный
-```text
-pm.learn.combo_up — app/lesson1.tsx, ComboRing crosses a streak threshold (3/5/10 correct answers in a row). Create a 0.5-second premium mobile UI one-shot for a correct-answer streak leveling up in a language-learning app. A quick bright felted-glass upward flick, brief crystalline energy tick, elegant and compact. Mood: energized, earned, light. Fast attack, dry mix, clean tail, mono-compatible. No voice, harsh highs, distortion, alarm, casino, sub-bass, long reverb.
-```
-
-#### Вариант Б — тактильный, чуть длиннее
-```text
-pm.learn.combo_up — app/lesson1.tsx, ComboRing crosses a streak threshold (3/5/10 correct answers in a row). Create a 0.5-second premium mobile UI one-shot for a correct-answer streak leveling up in a supportive language-learning app. Two quick maple taps rising in pitch, closing on one small warm ceramic ring; rhythmic, confident, not arcade-like. Mood: energized, earned, momentum. Fast attack, dry close mix, clean short tail, mono-compatible. No voice, music, harsh highs, distortion, alarm, casino, sub-bass, or long reverb.
-```
-
-#### Вариант В — воздушный, самый длинный
-```text
-pm.learn.combo_up — app/lesson1.tsx, ComboRing crosses a streak threshold (3/5/10 correct answers in a row). Create a 0.5-second premium mobile UI one-shot for a correct-answer streak crossing into a higher level in a premium language-learning app. A soft nylon-pluck flourish with a single restrained airy shimmer at the very end, suggesting rising momentum without fireworks or a big celebration. Mood: energized, elegant, quietly proud. Fast attack, dry close mix, clean short tail, mono-compatible. No voice, music, harsh highs, distortion, alarm, casino, sub-bass, or long reverb.
-```
 
 ---
 
@@ -398,9 +372,6 @@ pm.exam.begin — app/exam.tsx and app/diagnostic_test.tsx, transition into the 
 
 - `pm.reward.pack_complete` — только на закрытие ВСЕГО пака, ни в коем случае не на
   каждый флип карточки внутри (это уже осознанно тихо).
-- `pm.learn.combo_up` — один и тот же звук на всех порогах (3/5/10), не делать три
-  разных файла как раньше (combo_5/combo_10) — визуал (ComboRing) уже различает
-  уровни, звуку различать не нужно.
 - Dual-подарки (`level_gifts_inventory.tsx`, season pass) — один звук на применение,
   даже если начислений технически два.
 - `pm.social.friend_added` — не путать с уже существующим `friend_request`; не

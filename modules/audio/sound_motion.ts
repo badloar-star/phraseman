@@ -33,7 +33,6 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.learn.correct': { audibleMs: 156, attackMs: 0, hits: [78], shape: 'perc', bright: 0.28 },
   'pm.learn.needs_work': { audibleMs: 438, attackMs: 188, hits: [16, 188, 359], shape: 'triple', bright: 0.03 },
   'pm.learn.hint_reveal': { audibleMs: 47, attackMs: 0, hits: [], shape: 'perc', bright: 0.91 },
-  'pm.learn.combo_up': { audibleMs: 406, attackMs: 94, hits: [94, 219], shape: 'double', bright: 0.809 },
   'pm.learn.timer_warning': { audibleMs: 63, attackMs: 47, hits: [16], shape: 'perc', bright: 0.73 },
   'pm.learn.timer_expired': { audibleMs: 563, attackMs: 47, hits: [47, 109, 266, 328], shape: 'multi', bright: 0.40 },
   'pm.exam.begin': { audibleMs: 578, attackMs: 16, hits: [16, 109, 188, 250, 297, 359], shape: 'multi', bright: 0.0592 },

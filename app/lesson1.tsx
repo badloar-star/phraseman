@@ -1137,7 +1137,7 @@ const LessonContent = React.memo(function LessonContent({
               <TextInput
                 testID="lesson1-typed-input"
                 ref={textInputRef}
-                style={{ color: sx.second, fontSize: interactiveAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
+                style={{ color: sx.primary, fontSize: interactiveAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
                 value={typedText}
                 onChangeText={setTypedText}
                 onSubmitEditing={handleTypedSubmit}
@@ -1153,7 +1153,8 @@ const LessonContent = React.memo(function LessonContent({
               />
             ) : (
               <Text
-                style={{ color: sx.second, fontSize: interactiveAnswerFont, width: '100%', textAlign: 'center' }}
+                testID="lesson1-selected-answer"
+                style={{ color: sx.primary, fontSize: interactiveAnswerFont, fontWeight: '600', width: '100%', textAlign: 'center' }}
                 numberOfLines={linkedSliceCompact ? 2 : undefined}
               >
                 {selectedWords.length > 0
@@ -1172,7 +1173,10 @@ const LessonContent = React.memo(function LessonContent({
                       return first + (rest ? ' ' + rest : '');
                     })()
                   : ''
-                }<Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>
+                }{selectedWords.length > 0 && phraseWordIdx < phraseTokens.length ? '\u00A0' : ''}
+                <Animated.Text style={{ color: t.accent, opacity: selectedWords.length > 0 ? 1 : cursorAnim }}>
+                  {selectedWords.length > 0 ? (phraseWordIdx < phraseTokens.length ? '…' : '') : '|'}
+                </Animated.Text>
               </Text>
             )}
           </View>
@@ -1398,8 +1402,11 @@ const LessonContent = React.memo(function LessonContent({
                           triggerWordFlash(optionKey, isCorrectOption);
                           wordDispatchTimerRef.current = setTimeout(() => {
                             wordDispatchTimerRef.current = null;
-                            handleWordPress(word);
+                            // Снимаем блокировку ДО выполнения обработчика: если в данных
+                            // конкретной фразы внезапно возникнет исключение, банк слов не
+                            // останется навсегда disabled на Android.
                             setWordDispatchPending(false);
+                            handleWordPress(word);
                           }, 170);
                         }
                         // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука

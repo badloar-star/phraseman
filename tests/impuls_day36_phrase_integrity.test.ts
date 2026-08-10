@@ -1,5 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import { getPersonalPlanPhraseLesson } from '../app/personal_plan_phrase_lessons';
 import { phraseCanonicalAnswer } from '../app/phrase_target_utils';
+import { getPerWordDistracts } from '../app/lesson1_smart_options';
 
 describe('Impuls day 36 phrase integrity', () => {
   it('offers every word required by "I make coffee every morning"', () => {
@@ -10,5 +13,17 @@ describe('Impuls day 36 phrase integrity', () => {
       'I', 'make', 'coffee', 'every', 'morning',
     ]);
     expect(phraseCanonicalAnswer(phrase!, 'en')).toBe('I make coffee every morning');
+    expect(getPerWordDistracts(phrase!, 0, 'en')).toContain('I');
+    expect(getPerWordDistracts(phrase!, 1, 'en')).toContain('make');
+  });
+
+  it('keeps the first selected I visually distinct from the Android cursor', () => {
+    const lessonSource = fs.readFileSync(
+      path.join(__dirname, '..', 'app', 'lesson1.tsx'),
+      'utf8',
+    );
+    expect(lessonSource).toContain('testID="lesson1-selected-answer"');
+    expect(lessonSource).toContain("phraseWordIdx < phraseTokens.length ? '…' : ''");
+    expect(lessonSource).toContain("style={{ color: sx.primary, fontSize: interactiveAnswerFont, fontWeight: '600'");
   });
 });

@@ -35,11 +35,28 @@ describe('Spin sound event contract', () => {
       'pm.spin.reward_premium',
     ].forEach((eventId) => expect(eventSource).toContain(`'${eventId}'`));
     expect(finishLine).toContain("soundDirector.request('pm.spin.button_press'");
-    expect(spinScreen).toContain("soundDirector.request('pm.spin.reel_start'");
+    expect(finishLine).toContain("soundDirector.request('pm.spin.reel_start'");
+    expect(spinScreen).not.toContain("soundDirector.request('pm.spin.reel_start'");
     expect(finishLine).toContain("soundDirector.request('pm.spin.reel_loop'");
     expect(finishLine).toContain("soundDirector.request('pm.spin.reel_stop_rollback'");
     expect(rewardModal).toContain("soundDirector.request('pm.spin.reward_lock'");
     expect(rewardModal).toContain("'pm.spin.reward_win'");
+  });
+
+  test('starts reel audio only with real motion, never with the manual preview', () => {
+    const startMotion = finishLine.slice(
+      finishLine.indexOf('const startReelMotion'),
+      finishLine.indexOf("if (phase !== 'spinning'"),
+    );
+    const manualGesture = finishLine.slice(
+      finishLine.indexOf('const manualReelGesture'),
+      finishLine.indexOf('const adjustManualReel'),
+    );
+
+    expect(startMotion.indexOf('if (reducedMotion) return;')).toBeLessThan(
+      startMotion.indexOf("soundDirector.request('pm.spin.reel_start'"),
+    );
+    expect(manualGesture).not.toContain("soundDirector.request('pm.spin.reel_start'");
   });
 
   test('keeps the rollback cue within the physical braking window', () => {

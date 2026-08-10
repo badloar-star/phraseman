@@ -126,7 +126,18 @@ export class ExpoSfxBackend {
         // без этого первый запрос каждого звука всегда немой.
         if (seekSettled && !retriedAfterLoad && status.isLoaded && status.playing === false) {
           retriedAfterLoad = true;
-          try { player.play(); } catch {}
+          try {
+            player.play();
+          } catch {
+            // Android may fail only on the readiness-triggered retry. Swallowing
+            // that exception leaves SoundDirector believing this effect still
+            // owns the global slot, so the next lower-priority sounds appear to
+            // work "through once". Release exactly this playback generation.
+            if (this.current?.token === playbackToken && this.current.player === player) {
+              this.stop();
+              onEnded();
+            }
+          }
         }
       });
       this.current = { token: playbackToken, eventId, player, subscription };

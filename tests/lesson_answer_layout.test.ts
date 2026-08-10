@@ -25,7 +25,7 @@ describe('lesson answer layout on narrow screens', () => {
   it('uses the adaptive size for typed, assembled, and accepted result answers without changing submit', () => {
     expect(lessonSource).toContain('resolveLessonAnswerFontSize');
     expect(lessonSource).toContain('fontSize: interactiveAnswerFont');
-    expect(lessonSource).toContain('fontSize: resultAnswerFont');
+    expect(lessonSource).toContain("fontSize: status === 'result' ? resultAnswerFont : interactiveAnswerFont");
     expect(lessonSource).toContain('onSubmitEditing={handleTypedSubmit}');
   });
 });

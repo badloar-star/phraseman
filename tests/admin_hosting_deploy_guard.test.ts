@@ -49,7 +49,7 @@ describe('admin hosting deploy guard', () => {
       root,
       gitTopLevel: root,
       gitCommonDir: path.join(root, '.git'),
-      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin', ignore: ['v2/**'] }] },
       liveAdminExists: true,
     });
 
@@ -63,7 +63,7 @@ describe('admin hosting deploy guard', () => {
       root: linkedRoot,
       gitTopLevel: linkedRoot,
       gitCommonDir: path.join(primaryRoot, '.git'),
-      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin', ignore: ['v2/**'] }] },
       liveAdminExists: true,
     });
 
@@ -78,7 +78,7 @@ describe('admin hosting deploy guard', () => {
       root: linkedRoot,
       gitTopLevel: linkedRoot,
       gitCommonDir: path.join(primaryRoot, '.git'),
-      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin', ignore: ['v2/**'] }] },
       liveAdminExists: true,
       linkedReleaseOverride: '1',
       branch: 'codex/admin-analytics-current',
@@ -91,7 +91,7 @@ describe('admin hosting deploy guard', () => {
   test.each([
     ['wrong env', { linkedReleaseOverride: 'true' }],
     ['wrong branch', { branch: 'main' }],
-    ['dirty worktree', { statusPorcelain: ' M admin/v2/legacy.html' }],
+    ['dirty worktree', { statusPorcelain: ' M admin/legacy.html' }],
     ['wrong linked root', { root: path.resolve('C:/Users/badlo/.codex/worktrees/other/phraseman'), gitTopLevel: path.resolve('C:/Users/badlo/.codex/worktrees/other/phraseman') }],
   ])('rejects linked release override with %s', (_label, overrides) => {
     const primaryRoot = path.resolve('C:/appsprojects/phraseman');
@@ -100,7 +100,7 @@ describe('admin hosting deploy guard', () => {
       root: linkedRoot,
       gitTopLevel: linkedRoot,
       gitCommonDir: path.join(primaryRoot, '.git'),
-      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin', ignore: ['v2/**'] }] },
       liveAdminExists: true,
       linkedReleaseOverride: '1',
       branch: 'codex/admin-analytics-current',
@@ -118,11 +118,25 @@ describe('admin hosting deploy guard', () => {
       root,
       gitTopLevel: root,
       gitCommonDir: path.join(root, '.git'),
-      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin' }] },
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2', ignore: ['v2/**'] }] },
       liveAdminExists: true,
     });
 
     expect(result.ok).toBe(false);
-    expect(result.errors.join('\n')).toContain('admin/v2');
+    expect(result.errors.join('\n')).toContain('admin');
+  });
+
+  test('fails closed when the blocked v2 subtree would be published', () => {
+    const root = path.resolve('C:/repo');
+    const result = evaluateGuard({
+      root,
+      gitTopLevel: root,
+      gitCommonDir: path.join(root, '.git'),
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin', ignore: [] }] },
+      liveAdminExists: true,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.errors.join('\n')).toContain('v2/**');
   });
 });

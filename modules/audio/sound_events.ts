@@ -52,9 +52,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.wav'), 0.42, 70, 160, 380, 'learning'),
   'pm.learn.needs_work': event(require('../../assets/audio/sfx/v1/learning/pm_learn_needs_work_v1.wav'), 0.28, 68, 220, 320, 'learning'),
   'pm.learn.hint_reveal': event(require('../../assets/audio/sfx/v1/learning/pm_learn_hint_reveal_v1.wav'), 0.30, 38, 500, 340, 'learning'),
-  // зачем: тихий stinger на пересечение порога серии (3/5/10) — заменяет
-  // обычный correct в этот момент, ComboRing уже различает уровни визуально.
-  'pm.learn.combo_up': event(require('../../assets/audio/sfx/v1/learning/pm_learn_combo_up_v1.wav'), 0.44, 76, 2000, 1000, 'learning'),
   // зачем 2026-08-03 (владелец: «тики звучат непонятно как — то в середине
   // раунда, то в конце»): кулдаун 1200 мс был ДЛИННЕЕ секундного шага отсчёта
   // и глотал каждый второй тик — 5-3-1 вместо 5-4-3-2-1 в турнире, «3…1» без
@@ -144,4 +141,3 @@ export const SOUND_EVENTS = Object.freeze({
 });
 
 export type SoundEventId = keyof typeof SOUND_EVENTS;
-

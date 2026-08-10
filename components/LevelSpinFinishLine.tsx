@@ -167,11 +167,12 @@ export default function LevelSpinFinishLine({
   const premiumGift = giftForId(receipt?.premiumGiftId);
 
   // Ручная прокрутка — только предпросмотр. Она не вызывает onSpin, не создаёт
-  // receipt и не касается баланса. Реальный spin по-прежнему принадлежит CTA.
+  // receipt и не касается баланса. Поэтому она доступна даже при нуле спинов
+  // и пока баланс загружается. Реальная игра по-прежнему запускается только CTA-кнопкой.
   const manualReelEligible = machineHeight !== null
-    && (phase === 'idle' || phase === 'error')
-    && !receipt
-    && (balance ?? 0) > 0;
+    && phase !== 'spinning'
+    && phase !== 'revealed'
+    && !receipt;
   const manualReelEnabled = manualReelEligible && isFocused && appActive;
   const manualReelMaxOffset = 0;
   const manualReelMinOffset = machineHeight === null
@@ -213,8 +214,9 @@ export default function LevelSpinFinishLine({
     .enabled(manualReelEnabled)
     .minPointers(1)
     .maxPointers(1)
-    .activeOffsetY([-6, 6])
-    .failOffsetX([-24, 24])
+    // Не отменяем вертикальную прокрутку из-за естественного диагонального
+    // движения пальца: на этом экране барабан не конкурирует со ScrollView.
+    .activeOffsetY([-4, 4])
     .shouldCancelWhenOutside(false)
     .onBegin(() => {
       'worklet';

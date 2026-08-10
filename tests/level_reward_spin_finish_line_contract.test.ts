@@ -72,6 +72,8 @@ describe('Finish Line level spin screen contract', () => {
     expect(manualGesture).toContain('.enabled(manualReelEnabled)');
     expect(code).toContain('const manualReelEnabled = manualReelEligible && isFocused && appActive;');
     expect(code).toContain("phase !== 'spinning' && !manualReelEligible");
+    expect(manualGesture).toContain('.activeOffsetY([-4, 4])');
+    expect(manualGesture).not.toContain('.failOffsetX(');
     expect(manualGesture).toContain('manualDragStartOffset.value + event.translationY');
     expect(manualGesture).toContain('const velocity = Math.max(');
     expect(manualGesture).toContain('withDecay({\n        velocity,');
@@ -89,8 +91,13 @@ describe('Finish Line level spin screen contract', () => {
       finishLine.indexOf('const manualReelGesture'),
       finishLine.indexOf('const adjustManualReel'),
     );
-    expect(finishLine).toContain("(phase === 'idle' || phase === 'error')");
-    expect(finishLine).toContain('&& (balance ?? 0) > 0');
+    const eligibility = finishLine.slice(
+      finishLine.indexOf('const manualReelEligible'),
+      finishLine.indexOf('const manualReelEnabled'),
+    );
+    expect(eligibility).toContain("phase !== 'spinning'");
+    expect(eligibility).toContain("phase !== 'revealed'");
+    expect(eligibility).not.toContain('balance');
     expect(manualGesture).not.toContain('onSpin');
     expect(manualGesture).not.toContain('claimLocalLevelSpin');
     expect(manualGesture).not.toContain('soundDirector');

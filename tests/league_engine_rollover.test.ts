@@ -241,6 +241,30 @@ describe('league weekly rollover', () => {
     expect(result).toMatchObject({ myRank: 3, promoted: false, demoted: true });
   });
 
+  it('shows 1/28 for a real four-player room filled with 24 residents', () => {
+    const residents = Array.from({ length: 24 }, (_, slot) => ({
+      uid: `res_${String(slot).padStart(2, '0')}`,
+      name: `Resident ${slot}`,
+      points: 5_000 - slot,
+      isMe: false,
+      isResident: true,
+    }));
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W31',
+      group: [
+        { uid: 'me', name: 'QA Monday', points: 10_000, isMe: true },
+        { uid: 'live', name: 'Live Bottom', points: 0, isMe: false },
+        { uid: 'live_2', name: 'Live 2', points: 0, isMe: false },
+        { uid: 'live_3', name: 'Live 3', points: 0, isMe: false },
+        ...residents,
+      ],
+    }, 10_000);
+
+    expect(result).toMatchObject({ myRank: 1, totalInGroup: 28 });
+    expect(result.group).toHaveLength(28);
+  });
+
   it('keeps the current percentage promotion logic when XP promotion mode is off', () => {
     applyRemoteConfigSnapshot({
       bools: { league_xp_promotion_enabled: false },

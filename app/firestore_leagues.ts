@@ -1234,11 +1234,10 @@ function mapLeagueMembersToGroupList(
         profileCardPublicFocus: normalizeProfileCardPublicFocus(m.profileCardPublicFocus),
         streak: m.streak ?? undefined,
         totalXp: m.totalXp ?? undefined,
-        // зачем (аудит 2026-08-04): метка синтетического жителя обязана
-        // доезжать до движка лиг — по ней calculateResult исключает его из
-        // подсчёта ранга и зон перехода, как это делает сервер. Без метки
-        // остаётся только префикс uid, а он мог бы не совпасть при смене
-        // формата и клиент молча разошёлся бы с сервером в итогах недели.
+        // Метка синтетического жителя обязана доезжать до движка лиг:
+        // житель участвует в total, ранге и зонах как видимый соперник, но не
+        // должен становиться получателем награды. Явная метка сохраняет этот
+        // контракт даже при будущей смене формата uid.
         isResident: m.isResident === true || String(key).startsWith('res_'),
         leagueBoostMultiplier: boostLive ? mult : undefined,
         leagueBoostExpiresAt: boostLive ? until : undefined,

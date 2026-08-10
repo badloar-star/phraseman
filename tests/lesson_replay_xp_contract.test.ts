@@ -7,10 +7,10 @@ describe('lesson replay XP contract', () => {
   const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson1.tsx'), 'utf8');
 
   it('awards lesson XP immediately on each correct answer', () => {
-    const xpStart = source.indexOf('const xpAmount = Math.round(5 * comboM);');
+    const xpStart = source.indexOf('const normalBaseXp = Math.round(5 * comboM);');
     expect(xpStart).toBeGreaterThanOrEqual(0);
     const xpEnd = source.indexOf('// [COMBO]', xpStart);
-    const xpBlock = source.slice(xpStart, xpEnd > xpStart ? xpEnd : xpStart + 2600);
+    const xpBlock = source.slice(xpStart, xpEnd > xpStart ? xpEnd : xpStart + 4200);
 
     expect(xpBlock).toContain('setXpToastAmount(optimisticXpAmount)');
     expect(xpBlock).not.toContain('if (userNameRef.current) {');
@@ -20,6 +20,28 @@ describe('lesson replay XP contract', () => {
     expect(xpBlock).toContain('skipLeagueChestMultiplier: true');
     expect(xpBlock).toContain("surface: 'lesson1_answer'");
     expect(xpBlock).not.toContain('!isReplayRef.current');
+    expect(xpBlock).toContain('resolveLessonAnswerBaseXp(normalBaseXp, isReplayRef.current');
+    expect(xpBlock).toContain('replayRewardRate: isReplayRef.current ? LESSON_REPLAY_XP_RATE : 1');
+  });
+
+  it('applies global multipliers after reducing replay base XP', () => {
+    const resolution = source.indexOf('const answerBaseXp = resolveLessonAnswerBaseXp');
+    const registration = source.indexOf("registerXP(xpAmount, 'lesson_answer'", resolution);
+
+    expect(resolution).toBeGreaterThanOrEqual(0);
+    expect(registration).toBeGreaterThan(resolution);
+    expect(source.slice(resolution, registration)).toContain('const xpAmount = answerBaseXp.baseXp;');
+  });
+
+  it('does not reset replay rounding state during deferred hydration', () => {
+    const loadStart = source.indexOf('const loadData = async () => {');
+    const loadEnd = source.indexOf('const shuffleWords', loadStart);
+    const loadBlock = source.slice(loadStart, loadEnd);
+
+    expect(loadStart).toBeGreaterThanOrEqual(0);
+    expect(loadBlock).not.toContain('replayNormalBaseXpRef.current = 0');
+    expect(loadBlock).not.toContain('replayAwardedBaseXpRef.current = 0');
+    expect(source).toContain("const replayXpScope = `${lessonStorageId}:${studyTarget}:${routeServerAttemptId ?? 'stored'}`;");
   });
 
   it('does not hold answer XP until lesson completion', () => {

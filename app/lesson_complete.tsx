@@ -57,6 +57,7 @@ import {
   type LessonSoftUpsellIdentity,
 } from './lesson_complete_soft_upsell';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
+import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
@@ -77,6 +78,7 @@ import { frenchStudyActive } from './spanish_content_gate';
 import {
   lessonPerfectMilestoneKey,
   lessonProgressKey,
+  lessonSessionKey,
   lessonTopicShardGrantedKey,
 } from './target_storage_keys';
 
@@ -606,6 +608,7 @@ export default function LessonComplete() {
     earnedXp?: string | string[];
     earnedBaseXp?: string | string[];
     earnedMultipliers?: string | string[];
+    repeatAttemptId?: string | string[];
     passed?: string | string[];
   }>();
   const { id } = params;
@@ -1259,15 +1262,24 @@ export default function LessonComplete() {
     if (repeatOpeningRef.current) return;
     repeatOpeningRef.current = true;
     setRepeatOpening(true);
+    const repeatAttemptId = normalizeLessonServerAttemptId(params.repeatAttemptId)
+      ?? makeLessonServerAttemptId();
+    // The route is the synchronous source of truth for the next screen. Storage
+    // remains the durable fallback, but navigation never waits for the native
+    // write and therefore stays instant on Android.
+    void AsyncStorage.setItem(
+      lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
+      repeatAttemptId,
+    ).catch(() => {});
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
     try {
       markNextNavigationAsReplace();
-      router.replace({ pathname: '/lesson1', params: { id: lessonId } });
+      router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });
     } catch {
       repeatOpeningRef.current = false;
       setRepeatOpening(false);
     }
-  }, [lessonId, router, studyTarget]);
+  }, [lessonId, params.repeatAttemptId, router, studyTarget]);
 
   // Android: системный «Назад» НЕ должен попадать на сам пройденный урок.
   // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на

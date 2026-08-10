@@ -143,6 +143,8 @@ import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
+import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
+import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_replay_reward';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const GRAMMAR_HINTS = [
@@ -225,9 +227,6 @@ const encodeConfirmedLessonMultipliers = (
   const encoded = JSON.stringify(compact);
   return encoded.length <= MAX_LESSON_MULTIPLIER_PARAM_LENGTH ? encoded : '[]';
 };
-
-const makeLessonServerAttemptId = (): string =>
-  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
 
 // Clean phrase.english for display: strip article markers, remove empty tokens
 // e.g. 'I bought a new - phone.' → 'I bought a new phone.'
@@ -2038,6 +2037,7 @@ export default function LessonScreen() {
     planDayIndex: planDayIndexParam,
     planPhraseLessonId: planPhraseLessonIdParam,
     planPhraseMode: planPhraseModeParam,
+    serverAttemptId: serverAttemptIdParam,
   } = useLocalSearchParams<{
     id?: string | string[];
     from?: string | string[];
@@ -2055,6 +2055,7 @@ export default function LessonScreen() {
     planDayIndex?: string | string[];
     planPhraseLessonId?: string | string[];
     planPhraseMode?: string | string[];
+    serverAttemptId?: string | string[];
   }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
   const from = Array.isArray(fromParam) ? fromParam[0] : fromParam;
@@ -2072,6 +2073,7 @@ export default function LessonScreen() {
   const planDayIndexRaw = Array.isArray(planDayIndexParam) ? planDayIndexParam[0] : planDayIndexParam;
   const planPhraseLessonId = Array.isArray(planPhraseLessonIdParam) ? planPhraseLessonIdParam[0] : planPhraseLessonIdParam;
   const planPhraseMode = Array.isArray(planPhraseModeParam) ? planPhraseModeParam[0] : planPhraseModeParam;
+  const routeServerAttemptId = normalizeLessonServerAttemptId(serverAttemptIdParam);
   const isPlanPhraseRecallTask = planPhraseMode === 'recall';
   const [planUserName, setPlanUserName] = useState('Phraseman');
   const [planUserNameReady, setPlanUserNameReady] = useState(false);
@@ -2226,6 +2228,15 @@ export default function LessonScreen() {
   const lessonEarnedBaseXpRef = useRef(0);
   const lessonEarnedMultipliersRef = useRef<Map<string, ConfirmedLessonMultiplierEntry>>(new Map());
   const pendingLessonXpAwardsRef = useRef<Promise<void>[]>([]);
+  const replayNormalBaseXpRef = useRef(0);
+  const replayAwardedBaseXpRef = useRef(0);
+  const replayXpScope = `${lessonStorageId}:${studyTarget}:${routeServerAttemptId ?? 'stored'}`;
+  const replayXpScopeRef = useRef(replayXpScope);
+  if (replayXpScopeRef.current !== replayXpScope) {
+    replayXpScopeRef.current = replayXpScope;
+    replayNormalBaseXpRef.current = 0;
+    replayAwardedBaseXpRef.current = 0;
+  }
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
   const [passCount, setPassCount]   = useState(0);
@@ -2277,7 +2288,10 @@ export default function LessonScreen() {
   const replayAudioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const sessionAnswerCount = useRef(0);   // кол-во ответов в текущей сессии
-  const serverAttemptIdRef = useRef<string>('');
+  // A repeat opened from lesson_complete receives its fresh attempt id in the
+  // route, so Android cannot race the asynchronous AsyncStorage write and reuse
+  // the previous pass id (which made every reward look like a duplicate).
+  const serverAttemptIdRef = useRef<string>(routeServerAttemptId ?? '');
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
@@ -2822,9 +2836,9 @@ export default function LessonScreen() {
         AsyncStorage.getItem(teachingNoteMemoryKey),
       ]);
       teachingNoteSeenIdsRef.current = parseLessonTeachingNoteSeenIds(teachingNoteSeenRaw);
-      const serverAttemptId = serverAttemptRaw || makeLessonServerAttemptId();
+      const serverAttemptId = routeServerAttemptId || serverAttemptRaw || makeLessonServerAttemptId();
       serverAttemptIdRef.current = serverAttemptId;
-      if (!serverAttemptRaw) {
+      if (serverAttemptRaw !== serverAttemptId) {
         AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(() => {});
       }
 
@@ -3237,7 +3251,14 @@ export default function LessonScreen() {
         : correctStreakRef.current >= 10 ? 2.0
         : correctStreakRef.current >= 5  ? 1.5
         : 1.0;
-      const xpAmount = Math.round(5 * comboM);
+      const normalBaseXp = Math.round(5 * comboM);
+      const answerBaseXp = resolveLessonAnswerBaseXp(normalBaseXp, isReplayRef.current, {
+        normalBaseXpTotal: replayNormalBaseXpRef.current,
+        awardedBaseXpTotal: replayAwardedBaseXpRef.current,
+      });
+      replayNormalBaseXpRef.current = answerBaseXp.normalBaseXpTotal;
+      replayAwardedBaseXpRef.current = answerBaseXp.awardedBaseXpTotal;
+      const xpAmount = answerBaseXp.baseXp;
 
       // Local-first XP: show the toast now and write the answer XP immediately.
       const answerCell = overridePhraseCell ?? cellIndex;
@@ -3266,6 +3287,8 @@ export default function LessonScreen() {
           cellIndex: answerCell,
           phraseId: phrase.id ?? null,
           baseAnswerXp: xpAmount,
+          normalBaseAnswerXp: answerBaseXp.normalBaseXp,
+          replayRewardRate: isReplayRef.current ? LESSON_REPLAY_XP_RATE : 1,
           optimisticAnswerXp: optimisticXpAmount,
           combo: correctStreakRef.current,
           replay: overridePhraseCell !== null,
@@ -3565,6 +3588,7 @@ void lessonFinishDeliveryPromise.catch((deliveryError) => {
               earnedXp: String(lessonEarnedXpRef.current),
               earnedBaseXp: String(lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
               ...coachRouteParams,
             },
@@ -3619,6 +3643,7 @@ setShowCycleEndModal(true);
               earnedXp: String(lessonEarnedXpRef.current),
               earnedBaseXp: String(lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
             },
           });

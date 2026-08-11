@@ -105,6 +105,14 @@ const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require('./premium_dialog_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { maxVoiceConfigAdmin } = require('./max_voice_config');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { maxVoicePreflight, maxVoiceMint } = require('./max_voice_mint');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { maxVoiceHeartbeat, maxVoiceSessionEnd } = require('./max_voice_session_end');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { maxVoiceWatchdog } = require('./max_voice_watchdog');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require('./stats_insights');
@@ -140,6 +148,16 @@ const {
   adminGetCoinExchangeCenter,
 } = require('./coin_exchange');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  getLearningV2AccountBinding,
+  resolveLearningV2WalletRewardReceipt,
+} = require('./learning_v2_wallet_reward_callable');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  authorizeLearningV2CourseUnlock,
+  resolveLearningV2CourseUnlockReceipt,
+} = require('./learning_v2_course_unlock');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminListUserIdeas, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
@@ -155,6 +173,11 @@ const {
 } = require('./user_notifications');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
+// Learning V2 uploads one immutable completion packet only after the local
+// session is over. The active lesson never calls this endpoint.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { createRequiredSessionCompletionProductionCallable } = require('./learning_v2/required_session_completion_callable');
+const submitLearningV2RequiredSessionCompletion = createRequiredSessionCompletionProductionCallable();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   ADMIN_ALERT_BOT_TOKEN,
@@ -226,6 +249,12 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
+exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
+exports.maxVoicePreflight = maxVoicePreflight;
+exports.maxVoiceMint = maxVoiceMint;
+exports.maxVoiceHeartbeat = maxVoiceHeartbeat;
+exports.maxVoiceSessionEnd = maxVoiceSessionEnd;
+exports.maxVoiceWatchdog = maxVoiceWatchdog;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -241,6 +270,7 @@ exports.vipRevokeMine = vipRevokeMine;
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
+exports.submitLearningV2RequiredSessionCompletion = submitLearningV2RequiredSessionCompletion;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnAuthFailureSpike = adminAlertOnAuthFailureSpike;
@@ -262,6 +292,10 @@ exports.exchangeCoinsForStars = exchangeCoinsForStars;
 exports.adminSetCoinExchangeRate = adminSetCoinExchangeRate;
 exports.recalcCoinExchangeRate = recalcCoinExchangeRate;
 exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
+exports.resolveLearningV2WalletRewardReceipt = resolveLearningV2WalletRewardReceipt;
+exports.getLearningV2AccountBinding = getLearningV2AccountBinding;
+exports.authorizeLearningV2CourseUnlock = authorizeLearningV2CourseUnlock;
+exports.resolveLearningV2CourseUnlockReceipt = resolveLearningV2CourseUnlockReceipt;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminListUserIdeas = adminListUserIdeas;
@@ -497,10 +531,17 @@ export {
   adminDeactivateGlobalBroadcasts,
 } from './admin_global_broadcast';
 export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
-export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
+export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminGetLearningV2CourseWorkspaceProjection, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
 export { adminCreateContentStageBulkPlan } from './admin_content_stage_bulk';
 export { adminEditContentStageArtifact } from './admin_content_stage_edits';
 export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
+export {
+  learningV2LocalizedCourseShardBackgroundWorker,
+  adminPreviewLearningV2CourseWave,
+  adminApproveLearningV2CourseWave,
+  adminRejectLearningV2CourseWave,
+  LEARNING_V2_COURSE_SHARD_OPENAI_API_KEY,
+} from './content_factory/learning_v2_course_shard_background';
 export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
 export { adminSaveV2EpisodeDraft, adminSaveV2SeasonDraft } from './admin_content_studio_callables';

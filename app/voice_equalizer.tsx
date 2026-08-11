@@ -30,10 +30,29 @@ type VoiceEqualizerProps = {
   rawSample?: number;
   /** Bar count override (defaults to the model's EQ_BAR_COUNT). */
   barCount?: number;
+  /**
+   * Чей сейчас ход в дуплексном звонке MAX (turn-taking читается периферийным
+   * зрением по цвету баров): 'user'/'ai' красят бары в `color` (хост подставляет
+   * t.accent для юзера и тёплый тон для ИИ), 'idle' — в `idleColor` даже при
+   * active=true (пауза между ходами ≠ конец записи). Влияет ТОЛЬКО на выбор
+   * цвета/прозрачности; без owner поведение прежнее — обратная совместимость
+   * со всеми текущими хостами (SpeakingPanel и др.).
+   */
+  owner?: 'user' | 'ai' | 'idle';
 };
 
 const MIN_BAR_H = 5; // resting height so the row never collapses to nothing
 const MAX_BAR_H = 44; // tallest a bar can grow
+
+/**
+ * Императивный setSample-путь: без свежих сэмплов дольше этого окна эквалайзер
+ * возвращается к organic idle pulse (спека §1: fallback «никогда в ноль»).
+ * 1.5с — заметно длиннее тика поллинга статов (100мс), чтобы idle не мигал
+ * на обычном джиттере, но короче любой человеческой паузы восприятия сцены.
+ */
+export const EQ_IDLE_FALLBACK_MS = 1500;
+/** Шаг watchdog-проверки свежести сэмплов (дёшево: одна разность времени). */
+const EQ_IDLE_WATCHDOG_MS = 500;
 
 /**
  * Rich, tone-reactive voice equalizer shown while recording.
@@ -54,6 +73,7 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   idleColor,
   rawSample,
   barCount = EQ_BAR_COUNT,
+  owner,
 }, ref) {
   const count = Math.max(3, barCount);
   // scaleY покоя = MIN_BAR_H / MAX_BAR_H (бар не схлопывается в ноль).
@@ -63,7 +83,13 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   const stateRef = useRef<EqualizerState>(EQ_INITIAL_STATE);
   const activeRef = useRef(active);
   activeRef.current = active;
+  // Prop-путь (legacy, SpeakingPanel и др.): rawSample приходит пропом, idle-луп
+  // не включается никогда — поведение как раньше. Императивный путь (setSample
+  // через ref, экран MAX-звонка): idle-луп живёт как fallback и уступает место
+  // level-driven режиму, пока сэмплы свежие (см. EQ_IDLE_FALLBACK_MS ниже).
   const levelDriven = typeof rawSample === 'number';
+  const propDrivenRef = useRef(levelDriven);
+  propDrivenRef.current = levelDriven;
 
   // Минимальная доля высоты, до которой «сжата» полоска в покое. Бар рисуется
   // на полную MAX_BAR_H и масштабируется по Y (scaleY), поэтому анимация идёт
@@ -79,8 +105,57 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   const lastScaleRef = useRef<number[]>(Array.from({ length: count }, () => MIN_BAR_H / MAX_BAR_H));
   const SKIP_DELTA = 0.03; // ignore sub-3% moves (invisible, not worth a frame)
 
+  // --- Idle-луп как управляемый ресурс (ref + функции, ноль setState/рендеров).
+  // Зачем: в императивном setSample-пути idle-fallback должен включаться и
+  // выключаться от СВЕЖЕСТИ сэмплов, а не от рендер-пропов — пауза статов
+  // (реконнект, тишина getStats) не имеет права оставить эквалайзер мёртвым.
+  const lastSampleAtRef = useRef(0);
+  const idleLoopsRef = useRef<Animated.CompositeAnimation[] | null>(null);
+
+  const startIdle = useRef(() => {
+    if (idleLoopsRef.current) return; // уже пульсируем
+    const centre = (count - 1) / 2;
+    const loops = bars.map((bar, i) => {
+      const dist = Math.abs(i - centre) / Math.max(1, centre);
+      const peak = 0.45 + 0.55 * (1 - dist); // taller toward the centre
+      return Animated.loop(
+        Animated.sequence([
+          Animated.timing(bar, {
+            toValue: scaleFor(peak),
+            duration: 340 + (i % 4) * 70,
+            delay: (i % 5) * 45,
+            easing: Easing.inOut(Easing.ease),
+            useNativeDriver: true,
+          }),
+          Animated.timing(bar, {
+            toValue: scaleFor(peak * 0.3),
+            duration: 320 + (i % 3) * 80,
+            easing: Easing.inOut(Easing.ease),
+            useNativeDriver: true,
+          }),
+        ]),
+      );
+    });
+    idleLoopsRef.current = loops;
+    loops.forEach((loop) => loop.start());
+  }).current;
+
+  const stopIdle = useRef(() => {
+    const loops = idleLoopsRef.current;
+    if (!loops) return;
+    idleLoopsRef.current = null;
+    loops.forEach((loop) => loop.stop());
+    // Idle-луп двигал бары мимо skip-кэша — сбрасываем, чтобы первый же
+    // level-driven сэмпл гарантированно долетел до каждого бара.
+    for (let i = 0; i < lastScaleRef.current.length; i += 1) lastScaleRef.current[i] = -1;
+  }).current;
+
   const applyRawSample = useRef((value: number) => {
     if (!activeRef.current) return;
+    // Свежий сэмпл в императивном пути вытесняет idle-fallback; вернётся он
+    // через watchdog, когда сэмплы протухнут (>EQ_IDLE_FALLBACK_MS).
+    lastSampleAtRef.current = Date.now();
+    if (!propDrivenRef.current) stopIdle();
     stateRef.current = advanceEqualizer(stateRef.current, value);
     const heights = equalizerBarHeights(stateRef.current);
     for (let i = 0; i < bars.length; i += 1) {
@@ -123,34 +198,30 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
     applyRawSample(rawSample as number);
   }, [levelDriven, active, rawSample, applyRawSample]);
 
-  // Idle / preview mode: organic staggered pulse (no real mic level).
+  // Императивный путь (rawSample-проп не задан): organic idle pulse — базовый
+  // режим, level-driven — пока setSample кормит свежие сэмплы. Watchdog раз в
+  // 500мс возвращает idle, если сэмплы протухли (>1.5с тишины статов) — иначе
+  // после первого setSample idle-луп был бы убит навсегда и эквалайзер
+  // замирал бы «в ноль» при любой паузе данных. Всё на ref'ах и таймере,
+  // ни одного setState — рендеров этот механизм не порождает.
   useEffect(() => {
-    if (levelDriven || !active) return;
-    const centre = (count - 1) / 2;
-    const loops = bars.map((bar, i) => {
-      const dist = Math.abs(i - centre) / Math.max(1, centre);
-      const peak = 0.45 + 0.55 * (1 - dist); // taller toward the centre
-      return Animated.loop(
-        Animated.sequence([
-          Animated.timing(bar, {
-            toValue: scaleFor(peak),
-            duration: 340 + (i % 4) * 70,
-            delay: (i % 5) * 45,
-            easing: Easing.inOut(Easing.ease),
-            useNativeDriver: true,
-          }),
-          Animated.timing(bar, {
-            toValue: scaleFor(peak * 0.3),
-            duration: 320 + (i % 3) * 80,
-            easing: Easing.inOut(Easing.ease),
-            useNativeDriver: true,
-          }),
-        ]),
-      );
-    });
-    loops.forEach((loop) => loop.start());
-    return () => loops.forEach((loop) => loop.stop());
-  }, [levelDriven, active, bars, count]);
+    if (levelDriven || !active) return; // prop-путь: как раньше, без idle-лупа
+    startIdle();
+    const watchdogId = setInterval(() => {
+      if (idleLoopsRef.current) return; // уже в idle
+      if (Date.now() - lastSampleAtRef.current > EQ_IDLE_FALLBACK_MS) startIdle();
+    }, EQ_IDLE_WATCHDOG_MS);
+    return () => {
+      clearInterval(watchdogId);
+      stopIdle();
+    };
+  }, [levelDriven, active, startIdle, stopIdle]);
+
+  // Выбор цвета: legacy-режим (owner не задан) — как раньше, от active;
+  // duplex-режим — от владельца хода, чтобы смена цвета не требовала гасить
+  // active (бары продолжают двигаться, меняется только «чей голос»).
+  const barColor = owner === undefined ? (active ? color : idleColor) : owner === 'idle' ? idleColor : color;
+  const barOpacity = owner === undefined ? (active ? 1 : 0.4) : owner === 'idle' ? 0.4 : 1;
 
   return (
     <View
@@ -164,8 +235,8 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
           style={[
             styles.bar,
             {
-              backgroundColor: active ? color : idleColor,
-              opacity: active ? 1 : 0.4,
+              backgroundColor: barColor,
+              opacity: barOpacity,
               transform: [{ scaleY: bar }],
             },
           ]}

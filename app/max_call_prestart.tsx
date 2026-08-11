@@ -210,7 +210,7 @@ export default function MaxCallPrestart() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView testID="max-call-prestart-screen" style={{ flex: 1 }}>
         {/* Шапка */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14 }}>
           <TouchableOpacity
@@ -342,6 +342,7 @@ export default function MaxCallPrestart() {
 
           {/* Кнопка «Позвонить» (пре-пермишн микрофона по нажатию) */}
           <TouchableOpacity
+            testID="max-call-start-button"
             accessibilityRole="button"
             disabled={requesting || noMinutesLeft}
             onPress={() => void startCall()}

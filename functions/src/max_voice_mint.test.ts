@@ -1,0 +1,560 @@
+// Тест №11 спеки: порядок гейтов минта, rate limit без reconnect-минтов,
+// ветвление пробника, бюджетная лестница, полный session-конфиг сервера.
+import fs from 'fs';
+import path from 'path';
+
+type DocData = Record<string, any>;
+
+// ── in-memory Firestore fake (хаус-паттерн explain_phrase.test.ts) ──────────
+const docs = new Map<string, DocData>();
+
+function deepMerge(target: DocData, source: DocData): DocData {
+  const result = { ...target };
+  for (const [key, value] of Object.entries(source)) {
+    const existing = target[key];
+    if (value && typeof value === 'object' && !Array.isArray(value)
+      && existing && typeof existing === 'object' && !Array.isArray(existing)) {
+      result[key] = deepMerge(existing as DocData, value as DocData);
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+function refFor(pathKey: string) {
+  return {
+    path: pathKey,
+    get: async () => ({ exists: docs.has(pathKey), data: () => docs.get(pathKey) }),
+    set: async (data: DocData, opts?: { merge?: boolean }) => {
+      docs.set(pathKey, opts?.merge ? deepMerge(docs.get(pathKey) ?? {}, data) : { ...data });
+    },
+  };
+}
+
+function fakeDb() {
+  return {
+    collection: (name: string) => ({
+      doc: (id: string) => refFor(`${name}/${id}`),
+    }),
+    runTransaction: async <T>(fn: (tx: any) => Promise<T>): Promise<T> => {
+      const writes: Array<() => void> = [];
+      const tx = {
+        get: (ref: any) => ref.get(),
+        set: (ref: any, data: DocData, opts?: { merge?: boolean }) => {
+          writes.push(() => {
+            docs.set(ref.path, opts?.merge ? deepMerge(docs.get(ref.path) ?? {}, data) : { ...data });
+          });
+        },
+      };
+      const result = await fn(tx);
+      writes.forEach((w) => w());
+      return result;
+    },
+  };
+}
+
+class FakeHttpsError extends Error {
+  readonly code: string;
+  constructor(code: string, message: string) {
+    super(message);
+    this.code = code;
+  }
+}
+
+jest.mock('firebase-functions/v2/https', () => ({
+  HttpsError: FakeHttpsError,
+  onCall: (optsOrHandler: unknown, maybeHandler?: unknown) =>
+    typeof optsOrHandler === 'function' ? optsOrHandler : maybeHandler,
+}));
+
+jest.mock('firebase-functions/params', () => ({
+  defineSecret: () => ({ value: () => 'sk-test-key' }),
+}));
+
+jest.mock('firebase-admin', () => {
+  const firestore = jest.fn(() => fakeDb());
+  (firestore as any).FieldValue = { serverTimestamp: () => ({ __op: 'serverTimestamp' }) };
+  return { apps: [{}], initializeApp: jest.fn(), firestore };
+});
+
+const mockResolveStableUid = jest.fn(async () => 'stable-1');
+jest.mock('./auth_identity', () => ({
+  resolveStableUidForAuth: (...args: unknown[]) => mockResolveStableUid(...(args as [])),
+}));
+
+const mockResolvePremium = jest.fn(async () => false);
+jest.mock('./premium_status', () => ({
+  resolvePremiumAccess: (...args: unknown[]) => mockResolvePremium(...(args as [])),
+}));
+
+const mockAiDisabled = jest.fn(async () => false);
+jest.mock('./remote_gates', () => ({
+  aiGloballyDisabled: (...args: unknown[]) => mockAiDisabled(...(args as [])),
+}));
+
+jest.mock('./max_voice_config', () => {
+  const actual = jest.requireActual('./max_voice_config');
+  return { ...actual, resolveMaxVoiceConfig: jest.fn(async () => currentConfig) };
+});
+
+import { clampMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
+import { voiceQuotaDocId } from './max_voice_quota';
+import {
+  TRIAL_PERSONA_NAME,
+  TRIAL_SCENARIO_BLOCK,
+  VOICE_EST_COST_USD_PER_MIN,
+  maxVoiceMint as mintRaw,
+  maxVoicePreflight as preflightRaw,
+  utcDayKey,
+  voiceMintRateDocId,
+  voiceSafetyIdentifier,
+} from './max_voice_mint';
+
+let currentConfig: MaxVoiceConfig = clampMaxVoiceConfig({ gate_ai_voice_call: true });
+
+type CallableRequest = { auth?: { uid: string }; data: DocData };
+const mint = mintRaw as unknown as (request: CallableRequest) => Promise<DocData>;
+const preflight = preflightRaw as unknown as (request: CallableRequest) => Promise<DocData>;
+
+const NOW = 1_800_000_000_000;
+const AUTH = 'auth-1';
+const STABLE = 'stable-1';
+const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(AUTH, STABLE)}`;
+const RATE_PATH = `voice_mint_rate_limits/${voiceMintRateDocId(AUTH, STABLE)}`;
+const BUDGET_PATH = 'voice_cost_daily/current';
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const fetchMock = jest.fn();
+
+function setConfig(patch: DocData = {}) {
+  currentConfig = clampMaxVoiceConfig({ gate_ai_voice_call: true, ...patch });
+}
+
+function okProvider() {
+  fetchMock.mockResolvedValue({
+    ok: true,
+    json: async () => ({ value: 'ek_test_123', expires_at: 1_800_000_060 }),
+  });
+}
+
+async function callMint(data: DocData = {}, auth: string | null = AUTH) {
+  return mint({ auth: auth ? { uid: auth } : undefined, data });
+}
+
+function liveSession(overrides: DocData = {}) {
+  docs.set(QUOTA_PATH, {
+    authUid: AUTH,
+    stableUid: STABLE,
+    activeSessionId: 's1',
+    sessionStartedAtMs: NOW - 100_000,
+    lastHeartbeatMs: NOW - 10_000,
+    reservedSec: 320,
+    expiresAtMs: NOW + 300_000,
+    dailyUsedSec: 320,
+    monthlyUsedSec: 320,
+    resetAtMs: NOW + 3_600_000,
+    monthResetAtMs: NOW + DAY_MS,
+    reconnectChain: { rootId: 's1', count: 0, gapSecTotal: 0 },
+    ...overrides,
+  });
+}
+
+function lastFetchBody(): DocData {
+  const [, init] = fetchMock.mock.calls[fetchMock.mock.calls.length - 1];
+  return JSON.parse(init.body);
+}
+
+beforeEach(() => {
+  jest.useFakeTimers().setSystemTime(NOW);
+  docs.clear();
+  setConfig();
+  mockResolvePremium.mockReset().mockResolvedValue(false as never);
+  mockAiDisabled.mockReset().mockResolvedValue(false as never);
+  mockResolveStableUid.mockClear();
+  fetchMock.mockReset();
+  okProvider();
+  (global as any).fetch = fetchMock;
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+  jest.restoreAllMocks();
+});
+
+describe('gate order (App Check → kill switch → subscription → quota → mint)', () => {
+  it('enforces App Check via the OPENAI group option (source contract)', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'max_voice_mint.ts'), 'utf8');
+    expect(source).toContain('enforceAppCheck: ENFORCE_APP_CHECK_OPENAI');
+  });
+
+  it('warmupPing exits before any gate (even with AI globally disabled)', async () => {
+    mockAiDisabled.mockResolvedValue(true as never);
+    await expect(callMint({ warmupPing: true })).resolves.toMatchObject({ ok: true, warmup: true });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('rejects unauthenticated callers', async () => {
+    await expect(callMint({}, null)).rejects.toMatchObject({ code: 'unauthenticated', message: 'auth_required' });
+  });
+
+  it('fires gates strictly in order: kill switches → subscription → quota → mint', async () => {
+    // Всё закрыто сразу — побеждает самый ранний гейт.
+    mockAiDisabled.mockResolvedValue(true as never);
+    setConfig({ gate_ai_voice_call: false });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник тоже недоступен
+    await expect(callMint()).rejects.toMatchObject({ message: 'ai_globally_disabled' });
+
+    mockAiDisabled.mockResolvedValue(false as never);
+    await expect(callMint()).rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_disabled' });
+
+    setConfig();
+    await expect(callMint()).rejects.toMatchObject({ code: 'permission-denied', message: 'voice_max_required' });
+
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, { // день полностью выбран
+      trialUsedAtMs: NOW - DAY_MS,
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + DAY_MS,
+      dailyUsedSec: 900,
+    });
+    await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
+    expect(fetchMock).not.toHaveBeenCalled(); // до минта ни разу не дошли
+
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    await expect(callMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('premium without the beta flag has no MAX access', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    setConfig({ voiceForPremiumBeta: false });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    await expect(callMint()).rejects.toMatchObject({ message: 'voice_max_required' });
+  });
+});
+
+describe('rate limit — 8 fresh mints/hour, reconnects excluded', () => {
+  beforeEach(() => {
+    mockResolvePremium.mockResolvedValue(true as never);
+  });
+
+  it('rejects the 9th fresh mint inside the hour window', async () => {
+    docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 8 });
+    await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_mint_rate_limited' });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('counts a fresh mint into the window', async () => {
+    await callMint();
+    expect(docs.get(RATE_PATH)).toMatchObject({ count: 1, windowStartMs: NOW });
+  });
+
+  it('a reconnect mint bypasses the rate limit and transfers the remainder', async () => {
+    docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 8 }); // лимит выбран
+    liveSession();
+
+    const res = await callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80, reconnectSummary: 'we ordered a latte' });
+
+    // consumed = max(80, 100) − бесплатный gap 10 = 90 → остаток 230.
+    expect(res).toMatchObject({ ok: true, maxSeconds: 230 - 20 });
+    expect(res.limits.reservedSec).toBe(230);
+    expect(docs.get(RATE_PATH)!.count).toBe(8); // reconnect лимит не тронул
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ reservedSec: 230, reconnectChain: { rootId: 's1', count: 1 } });
+    // Summary долетело в хвост инструкций.
+    expect(lastFetchBody().session.instructions).toContain('we ordered a latte');
+  });
+
+  it('validates reconnectOf against the live session owner', async () => {
+    liveSession();
+    await expect(callMint({ reconnectOf: 'ghost' }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_mismatch' });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('trial branching (SRS ≥ 15 & level ≥ A2 → companion)', () => {
+  it('routes a practiced learner to the companion variant', async () => {
+    const res = await callMint({ srsCount: 20, cefr: 'B1' });
+    expect(res.trialVariant).toBe('companion');
+    expect(lastFetchBody().session.instructions).toContain('COMPANION CALL');
+  });
+
+  it('routes a beginner to the coffee scenario with Mia and stamps trialUsedAtMs', async () => {
+    const res = await callMint({ srsCount: 3, cefr: 'A1' });
+    expect(res.trialVariant).toBe('scenario');
+    const instructions = lastFetchBody().session.instructions as string;
+    expect(instructions).toContain(TRIAL_SCENARIO_BLOCK);
+    expect(instructions).toContain(TRIAL_PERSONA_NAME);
+    // Резерв по капу пробника: 180 + 20 хвоста.
+    expect(res.limits.reservedSec).toBe(200);
+    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBe(NOW);
+  });
+
+  it('a recently used trial refuses access, an expired one re-opens after trialRefreshDays', async () => {
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    await expect(callMint({ srsCount: 3 })).rejects.toMatchObject({ message: 'voice_max_required' });
+
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 31 * DAY_MS });
+    await expect(callMint({ srsCount: 3 })).resolves.toMatchObject({ ok: true, trialVariant: 'scenario' });
+  });
+});
+
+describe('budget ladder', () => {
+  beforeEach(() => {
+    setConfig({ globalDailyBudgetUsd: 25, budgetSoftPct: 0.8 });
+  });
+
+  it('≥100%: refuses new sessions entirely (client degrades to half-duplex)', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 25 });
+    await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_budget_exhausted' });
+  });
+
+  it('80–100%: trials are cut first, premium sessions get capped at 300s', async () => {
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
+    await expect(callMint({ srsCount: 3 }))
+      .rejects.toMatchObject({ message: 'voice_trial_paused' });
+
+    mockResolvePremium.mockResolvedValue(true as never);
+    const res = await callMint({ format: 'companion' }); // кап формата 480 → soft-кап 300
+    expect(res.limits.reservedSec).toBe(320); // 300 + 20 хвоста
+    expect(res.maxSeconds).toBe(300);
+  });
+
+  it("yesterday's counter does not throttle today", async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW - DAY_MS), estUsd: 999 });
+    await expect(callMint()).resolves.toMatchObject({ ok: true });
+  });
+
+  it('a successful mint reserves the session cost estimate in the daily counter', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    await callMint(); // scenario: резерв 320с
+    const budget = docs.get(BUDGET_PATH)!;
+    expect(budget.dayKey).toBe(utcDayKey(NOW));
+    expect(budget.estUsd).toBeCloseTo((320 / 60) * VOICE_EST_COST_USD_PER_MIN, 10);
+  });
+});
+
+describe('reconnect vs gates & budget — live sessions are never dropped', () => {
+  it('trial user with a spent trial can still reconnect a live trial call', async () => {
+    // Free-юзер: первый пробный минт уже проштамповал trialUsedAtMs=NOW.
+    liveSession({ trialUsedAtMs: NOW });
+
+    const res = await callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80 });
+
+    expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ reconnectChain: { rootId: 's1', count: 1 } });
+    // Штамп пробника НЕ перезаписан реконнектом.
+    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBe(NOW);
+  });
+
+  it('a fake reconnectOf does not become a free trial bypass', async () => {
+    liveSession({ trialUsedAtMs: NOW });
+    await expect(callMint({ reconnectOf: 'ghost' }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_mismatch' });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('exhausted budget tier still lets a live session reconnect', async () => {
+    setConfig({ globalDailyBudgetUsd: 25, budgetSoftPct: 0.8 });
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 25 }); // ≥100%
+    liveSession();
+
+    await expect(callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80 }))
+      .resolves.toMatchObject({ ok: true });
+  });
+
+  it('soft tier still lets a live TRIAL call reconnect', async () => {
+    setConfig({ globalDailyBudgetUsd: 25, budgetSoftPct: 0.8 });
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 }); // 80–100%
+    liveSession({ trialUsedAtMs: NOW });
+
+    await expect(callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80 }))
+      .resolves.toMatchObject({ ok: true });
+  });
+
+  it('a reconnect mint does not move the daily budget counter', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 1.5 });
+    liveSession();
+
+    await callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80 });
+
+    // Перенесённые секунды уже забюджетированы исходным минтом.
+    expect(docs.get(BUDGET_PATH)!.estUsd).toBe(1.5);
+  });
+
+  it('a failed reconnect mint refunds the transferred remainder to the budget', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 1.5 });
+    liveSession();
+    fetchMock.mockResolvedValue({ ok: false, status: 500, text: async () => 'boom' });
+
+    await expect(callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80 }))
+      .rejects.toMatchObject({ message: 'voice_provider_failed' });
+
+    // Остаток 230с был забюджетирован исходным минтом; сессия закрыта, settle
+    // не наступит — сторно по released.refundedSec, не по estUsd (=0).
+    expect(docs.get(BUDGET_PATH)!.estUsd).toBeCloseTo(1.5 - (230 / 60) * VOICE_EST_COST_USD_PER_MIN, 10);
+  });
+
+  it('a fresh mint over a stale silent session refunds its tail to the budget', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 1 });
+    // Мёртвая сессия: прожито 100с из 320 по heartbeat → хвост 220с.
+    liveSession({
+      activeSessionId: 'dead',
+      expiresAtMs: NOW - 1_000,
+      sessionStartedAtMs: NOW - 600_000,
+      lastHeartbeatMs: NOW - 500_000,
+    });
+
+    await callMint();
+
+    // 1 − сторно хвоста (220с) + резерв новой сессии (320с).
+    const expected = 1
+      - (220 / 60) * VOICE_EST_COST_USD_PER_MIN
+      + (320 / 60) * VOICE_EST_COST_USD_PER_MIN;
+    expect(docs.get(BUDGET_PATH)!.estUsd).toBeCloseTo(expected, 10);
+  });
+});
+
+describe('mint response contract — both key spellings + limits', () => {
+  it('returns camelCase and snake_case duplicates of expiresAt/sessionId/maxSeconds', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    const res = await callMint({ cefr: 'B1' });
+
+    expect(res.expires_at).toBe(res.expiresAt);
+    expect(res.session_id).toBe(res.sessionId);
+    expect(res.max_seconds).toBe(res.maxSeconds);
+    expect(res).toMatchObject({ ok: true, expiresAt: 1_800_000_060, maxSeconds: 300 });
+    expect(typeof res.session_id).toBe('string');
+  });
+
+  it('limits carry the per-session cap, per-CEFR hint delay and the daily max', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    const res = await callMint({ cefr: 'B1' });
+
+    expect(res.limits).toMatchObject({
+      dayRemainingSec: 580,
+      sessionCapSec: 300, // число секунд ЭТОЙ сессии, не карта форматов
+      dailyVoiceSecMax: 900,
+      heartbeatSec: 30,
+      wrapUpLeadSec: 75,
+      graceTailSec: 20,
+      hintDelaySec: 9, // число для B1, не карта уровней
+      hintMaxPerSession: 4,
+      reconnectChainMax: { auto: 2, manual: 1 },
+    });
+  });
+});
+
+describe('server-pinned session config (section 4)', () => {
+  it('sends the full realtime session config; the client controls none of it', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    const res = await callMint({
+      cefr: 'A1',
+      format: 'scenario',
+      personaName: 'Mia',
+      personaRole: 'a friendly barista',
+      scenarioBlock: 'SCENARIO: COFFEE SHOP practice',
+      // Попытки клиента переопределить серверные параметры игнорируются:
+      model: 'gpt-4o',
+      voice: 'onyx',
+      maxSeconds: 99_999,
+    });
+
+    const [url, init] = fetchMock.mock.calls[0];
+    expect(url).toBe('https://api.openai.com/v1/realtime/client_secrets');
+    expect(init.headers.Authorization).toBe('Bearer sk-test-key');
+    expect(init.headers['OpenAI-Safety-Identifier']).toBe(voiceSafetyIdentifier(STABLE));
+    expect(init.headers['OpenAI-Safety-Identifier']).toMatch(/^[0-9a-f]{16}$/);
+
+    const body = lastFetchBody();
+    expect(body.expires_after).toEqual({ anchor: 'created_at', seconds: 60 });
+    expect(body.session).toMatchObject({
+      type: 'realtime',
+      model: 'gpt-realtime-mini',
+      // GA-имя поля (client_secrets, session type 'realtime') — max_output_tokens;
+      // max_response_output_tokens было в deprecated-бете.
+      max_output_tokens: 120, // A1
+      truncation: { type: 'retention_ratio', retention_ratio: 0.8 },
+    });
+    expect(body.session.max_response_output_tokens).toBeUndefined();
+    expect(body.session.audio.input.transcription).toEqual({ model: 'gpt-4o-mini-transcribe' });
+    expect(body.session.audio.input.turn_detection).toEqual({
+      type: 'semantic_vad',
+      eagerness: 'low', // A1
+      create_response: true,
+      interrupt_response: true,
+    });
+    expect(body.session.audio.output).toEqual({ voice: 'marin' });
+
+    // Контракт ответа клиенту.
+    expect(res).toMatchObject({
+      ok: true,
+      value: 'ek_test_123',
+      expiresAt: 1_800_000_060,
+      maxSeconds: 300, // резерв 320 − хвост 20
+      trialVariant: null,
+    });
+    expect(typeof res.sessionId).toBe('string');
+    expect(res.sessionId.length).toBeGreaterThan(8);
+    expect(res.wrapUpText).toContain('[WRAP_UP]');
+    expect(res.limits).toMatchObject({ reservedSec: 320, wrapUpLeadSec: 75, graceTailSec: 20, heartbeatSec: 30 });
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ activeSessionId: res.sessionId, reservedSec: 320 });
+  });
+
+  it('releases the reservation, the budget estimate and the rate slot when OpenAI fails', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    fetchMock.mockResolvedValue({ ok: false, status: 500, text: async () => 'boom' });
+
+    await expect(callMint()).rejects.toMatchObject({ code: 'unavailable', message: 'voice_provider_failed' });
+
+    expect(docs.get(QUOTA_PATH)).toMatchObject({
+      activeSessionId: null,
+      reservedSec: 0,
+      dailyUsedSec: 0, // полный возврат
+      lastReleaseReason: 'mint_failed',
+    });
+    expect(docs.get(BUDGET_PATH)!.estUsd).toBe(0); // сторно оценки
+    // F9: сбой провайдера возвращает rate-слот (декремент до floor 0) —
+    // пользователь не платит попыткой за чужую аварию.
+    expect(docs.get(RATE_PATH)!.count).toBe(0);
+  });
+});
+
+describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
+  it('supports warmupPing before auth', async () => {
+    await expect(preflight({ auth: undefined, data: { warmupPing: true } }))
+      .resolves.toMatchObject({ ok: true, warmup: true });
+  });
+
+  it('reports access and remaining quota without touching tokens or reserves', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    const res = await preflight({ auth: { uid: AUTH }, data: {} });
+
+    expect(res).toMatchObject({ ok: true, allowed: true, access: 'max', trialVariant: null });
+    expect(res.limits).toMatchObject({ dayRemainingSec: 900, monthRemainingSec: 14_400, dailyVoiceSecMax: 900 });
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(docs.get(QUOTA_PATH)).toBeUndefined(); // резервов не создаёт
+  });
+
+  it('rejects when the day quota is exhausted', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, { resetAtMs: NOW + 3_600_000, monthResetAtMs: NOW + DAY_MS, dailyUsedSec: 870 });
+    await expect(preflight({ auth: { uid: AUTH }, data: {} }))
+      .rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
+  });
+
+  it('honours the kill switch', async () => {
+    setConfig({ gate_ai_voice_call: false });
+    await expect(preflight({ auth: { uid: AUTH }, data: {} }))
+      .rejects.toMatchObject({ message: 'voice_disabled' });
+  });
+});

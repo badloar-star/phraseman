@@ -5,7 +5,7 @@
 // free-tier limits, energy economy, trainer A/B split, and the paywall variant
 // split. Resolution order (highest priority first):
 //
-//   1. Firestore override   (admin/index.html → remote_config/* → onSnapshot)
+//   1. Firestore override   (admin/v2/legacy.html → remote_config/* → cached foreground polling)
 //   2. Build-time env        (EXPO_PUBLIC_* — useful for QA builds)
 //   3. Hardcoded default     (DEFAULT_NUMBERS / DEFAULT_FLAGS below)
 //
@@ -117,6 +117,7 @@ export type RemoteBoolKey =
   | 'gate_lessons_premium'
   | 'gate_speaking_premium'
   | 'gate_ai_dialog_premium'
+  | 'gate_ai_voice_call'
   | 'gate_smart_trainer_premium'
   | 'gate_trainer_modes_premium'
   | 'gate_diagnosis_training_premium'
@@ -340,6 +341,10 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_lessons_premium: true,
   gate_speaking_premium: true,
   gate_ai_dialog_premium: true,
+  // MAX voice: здесь семантика не «премиум-замок», а kill switch фичи целиком.
+  // Дефолт FALSE = звонки выключены до запуска; включает только явный true из
+  // «Пульта» (remote_config/app.bools). Потребитель: app/max_voice_flags.ts.
+  gate_ai_voice_call: false,
   gate_smart_trainer_premium: true,
   gate_trainer_modes_premium: true,
   gate_diagnosis_training_premium: true,

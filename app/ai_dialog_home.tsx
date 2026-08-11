@@ -89,6 +89,7 @@ export default function AiDialogHome() {
       </View>
       {maxVoiceVisible && (
         <TouchableOpacity
+          testID="max-voice-entry-card"
           accessibilityRole="button"
           onPress={() => {
             hapticTap();

@@ -252,7 +252,7 @@ export default function MaxVoiceReview() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView testID="max-voice-review-screen" style={{ flex: 1 }}>
         {/* Шапка */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14 }}>
           <TouchableOpacity
@@ -399,6 +399,10 @@ export default function MaxVoiceReview() {
 
           {/* Разбор фраз — premiumDialogReview(mode:'voice'), МАКС ПЛАН §6.2 */}
           <View
+            // Состояние в testID: смоук-тест (и скриншот) должны однозначно
+            // отличать «сервер ответил» от «ещё грузится»/«отвалился», а не
+            // угадывать по тексту, который переведён на 8 языков.
+            testID={`max-voice-review-corrections-${reviewState}`}
             style={{
               backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 16,

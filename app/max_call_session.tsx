@@ -842,7 +842,7 @@ export default function MaxCallSession() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView testID="max-call-session-screen" style={{ flex: 1 }}>
         {/* Шапка: аватар + имя + чип сценария + пилюля минут */}
         <View
           style={{
@@ -984,6 +984,7 @@ export default function MaxCallSession() {
           }}
         >
           <TouchableOpacity
+            testID="max-call-mute-button"
             accessibilityRole="button"
             accessibilityLabel="Mute"
             onPress={onMutePress}
@@ -999,6 +1000,7 @@ export default function MaxCallSession() {
             <Ionicons name={muted ? 'mic-off' : 'mic'} size={20} color={muted ? t.wrong : t.textPrimary} />
           </TouchableOpacity>
           <TouchableOpacity
+            testID="max-call-end-button"
             accessibilityRole="button"
             accessibilityLabel="End call"
             onPress={onEndPress}
@@ -1014,6 +1016,7 @@ export default function MaxCallSession() {
             <Ionicons name="call" size={24} color="#FFFFFF" style={{ transform: [{ rotate: '135deg' }] }} />
           </TouchableOpacity>
           <TouchableOpacity
+            testID="max-call-captions-button"
             accessibilityRole="button"
             accessibilityLabel="Captions"
             onPress={() => {

@@ -31,7 +31,7 @@ jest.mock('./callable_options', () => ({
   ENFORCE_APP_CHECK_OPENAI: false,
 }));
 
-import { parseReviewEnvelope } from './premium_dialog_review';
+import { parseReviewEnvelope, asReviewMode, buildReviewSystemPrompt } from './premium_dialog_review';
 
 describe('parseReviewEnvelope', () => {
   it('parses a clean review envelope', () => {
@@ -88,5 +88,40 @@ describe('parseReviewEnvelope', () => {
     );
     expect(out).not.toBeNull();
     expect(out!.corrections).toHaveLength(1);
+  });
+});
+
+// MAX Voice (МАКС ПЛАН §6.2): 'mode' param routes the review through a
+// speech-aware prompt without changing the text-mode contract or output shape.
+describe('asReviewMode', () => {
+  it('defaults unknown/absent values to text (backward compatible)', () => {
+    expect(asReviewMode(undefined)).toBe('text');
+    expect(asReviewMode(null)).toBe('text');
+    expect(asReviewMode('')).toBe('text');
+    expect(asReviewMode('bogus')).toBe('text');
+    expect(asReviewMode(42)).toBe('text');
+  });
+
+  it('recognizes voice', () => {
+    expect(asReviewMode('voice')).toBe('voice');
+  });
+});
+
+describe('buildReviewSystemPrompt mode awareness', () => {
+  it('text mode (default) has no spoken-transcript caveat', () => {
+    const prompt = buildReviewSystemPrompt('B1', 'Russian', '', 'en', 'text');
+    expect(prompt).not.toContain('SPOKEN phone call');
+  });
+
+  it('voice mode tells the model to ignore filler words and speech artifacts', () => {
+    const prompt = buildReviewSystemPrompt('B1', 'Russian', '', 'en', 'voice');
+    expect(prompt).toContain('SPOKEN phone call');
+    expect(prompt).toContain('filler words');
+    expect(prompt).toMatch(/grammar.*word choice.*word order/i);
+  });
+
+  it('voice mode still returns the identical JSON contract instructions', () => {
+    const prompt = buildReviewSystemPrompt('B1', 'Russian', '', 'en', 'voice');
+    expect(prompt).toContain('"praise": "...", "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."');
   });
 });

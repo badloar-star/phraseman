@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,15 +14,20 @@ import { safeRouterBack } from './navigation_back';
 import type { TranscriptTurn } from './max_call_transcript';
 import { computeVoiceCallMetrics } from './max_voice_metrics';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
+import {
+  callPremiumDialogReview,
+  type PremiumDialogReviewCorrection,
+} from './ai_dialog_client';
 
 /**
- * Экран пост-разбора MAX-звонка (спека, раздел 8).
+ * Экран пост-разбора MAX-звонка (спека, раздел 8; МАКС ПЛАН §6.2).
  *
- * Пока серверная voice-ветка ревью (`premium_dialog_review` mode:'voice')
- * пишется параллельной сессией, разбор собирается ЦЕЛИКОМ из локальных данных:
- * транскрипт звонка, метрики computeVoiceCallMetrics, длительность и остаток
- * минут. Секция коррекций — заглушка с TODO ниже: подключение серверного ревью
- * не потребует менять композицию экрана, только заполнить секцию данными.
+ * Композиция: транскрипт звонка, метрики computeVoiceCallMetrics, длительность
+ * и остаток минут — считаются ЦЕЛИКОМ локально, мгновенно, без сети. Секция
+ * «Разбор твоих фраз» — единственная часть, которая зовёт сервер
+ * (premiumDialogReview, mode:'voice'): один вызов на звонок, при провале тихо
+ * остаётся в состоянии «скоро появится» — отсутствие разбора не должно ронять
+ * экран или пугать ошибкой посреди практики.
  */
 
 /** Итог звонка, который экран сессии передаёт разбору. */
@@ -76,12 +81,20 @@ function minutesLeftLabel(lang: Lang, minutes: number): string {
   });
 }
 
+type ReviewFetchState = 'idle' | 'loading' | 'loaded' | 'error';
+
 export default function MaxVoiceReview() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
   const result = getLastMaxCallResult();
   const [transcriptOpen, setTranscriptOpen] = useState(false);
+  const [reviewState, setReviewState] = useState<ReviewFetchState>('idle');
+  const [praise, setPraise] = useState('');
+  const [corrections, setCorrections] = useState<PremiumDialogReviewCorrection[]>([]);
+  // Один запрос на результат звонка: смена звонка (новый result) отпускает
+  // защёлку, но StrictMode/ре-рендер того же result не должны дублировать вызов.
+  const requestedForRef = useRef<TranscriptTurn[] | null>(null);
 
   const scenarioTitle = useMemo(() => {
     if (!result?.scenarioId) return '';
@@ -99,6 +112,47 @@ export default function MaxVoiceReview() {
       durationSec: result.durationSec,
     });
   }, [result]);
+
+  // Разбор фраз (premiumDialogReview, mode:'voice') — один вызов на звонок.
+  // Молчаливые/однословные звонки (0 реплик юзера) не шлём: сервер всё равно
+  // отклонит history_required, а тратить попытку незачем.
+  useEffect(() => {
+    if (!result) return;
+    const userTurns = result.history.filter((turn) => turn.role === 'user');
+    if (userTurns.length === 0) return;
+    if (requestedForRef.current === result.history) return;
+    requestedForRef.current = result.history;
+
+    let cancelled = false;
+    setReviewState('loading');
+    const scenario = result.scenarioId ? getScenarioById(result.scenarioId) : undefined;
+
+    callPremiumDialogReview({
+      history: result.history.map((turn) => ({
+        role: turn.role,
+        content: turn.text,
+      })),
+      cefr: result.cefr,
+      interfaceLang: lang,
+      scenarioId: result.scenarioId,
+      goalEn: scenario?.goalEn,
+      mode: 'voice',
+    })
+      .then((res) => {
+        if (cancelled) return;
+        setPraise(res.praise);
+        setCorrections(res.corrections);
+        setReviewState('loaded');
+      })
+      .catch(() => {
+        // Тихий фолбэк: секция остаётся в состоянии «скоро появится» ниже.
+        if (!cancelled) setReviewState('error');
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [result, lang]);
 
   const goBack = () => {
     hapticTap();
@@ -343,13 +397,7 @@ export default function MaxVoiceReview() {
             )}
           </View>
 
-          {/*
-            TODO(max-voice): секция коррекций — заглушка. Когда параллельная
-            серверная ветка premium_dialog_review (mode:'voice', спека §8)
-            доедет до прода, сюда встают 2–4 приоритетные коррекции
-            «ты сказал → лучше сказать» + phrasesForSrs с кнопкой «добавить
-            в повторение». Композиция экрана под это уже готова.
-          */}
+          {/* Разбор фраз — premiumDialogReview(mode:'voice'), МАКС ПЛАН §6.2 */}
           <View
             style={{
               backgroundColor: glassFill(t.bgSurface, 0.46),
@@ -372,22 +420,99 @@ export default function MaxVoiceReview() {
                   pl: 'Analiza twoich zdań',
                 })}
               </Text>
+              {reviewState === 'loading' && (
+                <ActivityIndicator size="small" color={t.accent} style={{ marginLeft: 4 }} />
+              )}
             </View>
-            <Text
-              style={{ color: t.textMuted, fontSize: f.sub, marginTop: 8, lineHeight: Math.round(f.sub * 1.4) }}
-              maxFontSizeMultiplier={1.2}
-            >
-              {triLang(lang, {
-                ru: 'Подробный разбор фраз с исправлениями скоро появится здесь — после следующего обновления.',
-                uk: 'Докладний розбір фраз із виправленнями скоро з’явиться тут — після наступного оновлення.',
-                es: 'El análisis detallado con correcciones aparecerá aquí pronto, tras la próxima actualización.',
-                'pt-BR': 'A análise detalhada com correções aparecerá aqui em breve, após a próxima atualização.',
-                vi: 'Phân tích chi tiết kèm sửa lỗi sẽ sớm xuất hiện tại đây sau bản cập nhật tới.',
-                id: 'Ulasan terperinci dengan koreksi akan segera muncul di sini setelah pembaruan berikutnya.',
-                tr: 'Düzeltmelerle ayrıntılı analiz bir sonraki güncellemeden sonra burada olacak.',
-                pl: 'Szczegółowa analiza z poprawkami pojawi się tu wkrótce, po następnej aktualizacji.',
-              })}
-            </Text>
+
+            {reviewState === 'loaded' ? (
+              <View style={{ marginTop: 8 }}>
+                {praise !== '' && (
+                  <Text
+                    style={{ color: t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {praise}
+                  </Text>
+                )}
+                {corrections.map((c, i) => (
+                  <View
+                    key={`corr-${i}`}
+                    style={{
+                      marginTop: 10,
+                      paddingTop: i === 0 && praise === '' ? 0 : 10,
+                      borderTopWidth: i === 0 ? 0 : 1,
+                      borderTopColor: t.border,
+                    }}
+                  >
+                    <Text
+                      style={{ color: t.textMuted, fontSize: f.sub, textDecorationLine: 'line-through' }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {c.original}
+                    </Text>
+                    <Text
+                      style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {c.corrected}
+                    </Text>
+                    {c.note !== '' && (
+                      <Text
+                        style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}
+                        maxFontSizeMultiplier={1.2}
+                      >
+                        {c.note}
+                      </Text>
+                    )}
+                  </View>
+                ))}
+                {corrections.length === 0 && praise === '' && (
+                  <Text
+                    style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4, lineHeight: Math.round(f.sub * 1.4) }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {triLang(lang, {
+                      ru: 'Ошибок не найдено — отличная речь!',
+                      uk: 'Помилок не знайдено — чудова мова!',
+                      es: '¡No se encontraron errores — muy bien!',
+                      'pt-BR': 'Nenhum erro encontrado — muito bem!',
+                      vi: 'Không tìm thấy lỗi — nói rất tốt!',
+                      id: 'Tidak ada kesalahan ditemukan — bagus sekali!',
+                      tr: 'Hata bulunamadı — harika konuştun!',
+                      pl: 'Nie znaleziono błędów — świetna mowa!',
+                    })}
+                  </Text>
+                )}
+              </View>
+            ) : (
+              <Text
+                style={{ color: t.textMuted, fontSize: f.sub, marginTop: 8, lineHeight: Math.round(f.sub * 1.4) }}
+                maxFontSizeMultiplier={1.2}
+              >
+                {reviewState === 'loading'
+                  ? triLang(lang, {
+                      ru: 'Разбираем твою речь…',
+                      uk: 'Розбираємо твою мову…',
+                      es: 'Analizando tu conversación…',
+                      'pt-BR': 'Analisando sua conversa…',
+                      vi: 'Đang phân tích cuộc trò chuyện của bạn…',
+                      id: 'Menganalisis percakapanmu…',
+                      tr: 'Konuşman analiz ediliyor…',
+                      pl: 'Analizujemy twoją rozmowę…',
+                    })
+                  : triLang(lang, {
+                      ru: 'Подробный разбор фраз с исправлениями скоро появится здесь — после следующего обновления.',
+                      uk: 'Докладний розбір фраз із виправленнями скоро з’явиться тут — після наступного оновлення.',
+                      es: 'El análisis detallado con correcciones aparecerá aquí pronto, tras la próxima actualización.',
+                      'pt-BR': 'A análise detalhada com correções aparecerá aqui em breve, após a próxima atualização.',
+                      vi: 'Phân tích chi tiết kèm sửa lỗi sẽ sớm xuất hiện tại đây sau bản cập nhật tới.',
+                      id: 'Ulasan terperinci dengan koreksi akan segera muncul di sini setelah pembaruan berikutnya.',
+                      tr: 'Düzeltmelerle ayrıntılı analiz bir sonraki güncellemeden sonra burada olacak.',
+                      pl: 'Szczegółowa analiza z poprawkami pojawi się tu wkrótce, po następnej aktualizacji.',
+                    })}
+              </Text>
+            )}
           </View>
 
           {/* Полный транскрипт — раскрываемый */}

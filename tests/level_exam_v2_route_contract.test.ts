@@ -58,7 +58,8 @@ describe('level exam v2 route contract', () => {
     const legacyRoute = read('app/level_exam.tsx');
     const intro = read('components/level-exam/LevelExamIntro.tsx');
     expect(route).toContain('const unlimitedEnergy = isUnlimited || hasPremiumAccess');
-    expect(route).toContain('if (!unlimitedEnergy && !await spendAmount(ENERGY_COST))');
+    expect(route).toContain('if (!unlimitedEnergy)');
+    expect(route).toContain('!await spendAmount(ENERGY_COST)');
     expect(route).toContain('unlimitedEnergy={unlimitedEnergy}');
     expect(intro).toContain('{!unlimitedEnergy ? <View style={[styles.energyPill');
     expect(intro).toContain('{!unlimitedEnergy ? <View style={styles.costBadge}>');

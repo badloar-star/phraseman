@@ -41,7 +41,7 @@ describe('tournaments tab visibility contract', () => {
     const config = fs.readFileSync(path.join(root, 'app', 'config.ts'), 'utf8');
     const notifications = fs.readFileSync(path.join(root, 'app', 'notifications.ts'), 'utf8');
 
-    expect(config).toContain('export const ENABLE_TOURNAMENTS = false;');
+    expect(config).toContain('export const ENABLE_TOURNAMENTS: false = false;');
     expect(layout).toContain("pathname === '/tournaments'");
     expect(layout).toContain('<DeferredRedirect href="/(tabs)/home" />');
     expect(rootLayout).toContain('<Stack.Protected guard={ENABLE_TOURNAMENTS}>');
@@ -62,7 +62,8 @@ describe('tournaments tab visibility contract', () => {
       notifications.indexOf("case 'tournament_starting':"),
       notifications.indexOf('default:', notifications.indexOf("case 'tournament_starting':")),
     );
-    expect(notificationCase).toContain('navTabHome();');
+    expect(notificationCase).not.toContain('navTabHome();');
+    expect(notificationCase).not.toContain('router.');
     expect(notificationCase).not.toContain('tournaments');
   });
 });

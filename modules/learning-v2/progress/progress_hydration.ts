@@ -3,21 +3,22 @@ import type { ProgressAccountScope, ProgressGenerationGuard } from "./progress_s
 import { createProgressStore, type ProgressStorage } from "./progress_store";
 import { createProgressOutbox } from "./progress_outbox";
 
-export const hydrateProgress = async (scope: ProgressAccountScope, storage: ProgressStorage, isCurrentGeneration: ProgressGenerationGuard): Promise<{ readonly snapshot?: ProgressSnapshot; readonly pendingMutations: readonly unknown[] }> => {
+export const hydrateProgress = async (scope: ProgressAccountScope, storage: ProgressStorage, isCurrentGeneration: ProgressGenerationGuard): Promise<{ readonly snapshot?: ProgressSnapshot; readonly snapshotRevision?: number; readonly pendingMutations: readonly unknown[] }> => {
   if (!isCurrentGeneration(scope)) throw new Error("progress_generation_stale");
   const store = createProgressStore(storage, isCurrentGeneration);
   const outbox = createProgressOutbox(storage, isCurrentGeneration);
-  const snapshot = await store.load(scope);
+  const stored = await store.loadRecord(scope);
   const pendingMutations = (await outbox.list(scope)).filter((item) => item.status === "pending" && item.accountGeneration === scope.generation);
-  return { snapshot, pendingMutations };
+  if (!isCurrentGeneration(scope)) throw new Error("progress_generation_stale");
+  return { snapshot: stored?.snapshot, snapshotRevision: stored?.revision, pendingMutations };
 };
 
 export const persistProgressFirst = async (scope: ProgressAccountScope, snapshot: ProgressSnapshot, storage: ProgressStorage, isCurrentGeneration: ProgressGenerationGuard): Promise<void> => {
-  await createProgressStore(storage, isCurrentGeneration).save(scope, snapshot);
+  await createProgressStore(storage, isCurrentGeneration).save(scope, snapshot, null);
 };
 
-export const persistProgressMutation = async (scope: ProgressAccountScope, snapshot: ProgressSnapshot, mutationId: string, payload: unknown, storage: ProgressStorage, isCurrentGeneration: ProgressGenerationGuard): Promise<void> => {
+export const persistProgressMutation = async (scope: ProgressAccountScope, snapshot: ProgressSnapshot, mutationId: string, payload: unknown, storage: ProgressStorage, isCurrentGeneration: ProgressGenerationGuard, expectedRevision: number | null): Promise<void> => {
   const outbox = createProgressOutbox(storage, isCurrentGeneration);
   await outbox.enqueue(scope, mutationId, payload);
-  await createProgressStore(storage, isCurrentGeneration).save(scope, snapshot);
+  await createProgressStore(storage, isCurrentGeneration).save(scope, snapshot, expectedRevision);
 };

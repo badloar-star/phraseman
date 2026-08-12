@@ -70,6 +70,7 @@ import { buildLessonShareMessage } from './lesson_share';
 import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
+import { finalizeLessonXpMultipliers } from './xp_manager';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
@@ -608,11 +609,16 @@ export default function LessonComplete() {
     earnedXp?: string | string[];
     earnedBaseXp?: string | string[];
     earnedMultipliers?: string | string[];
+    completedAttemptId?: string | string[];
     repeatAttemptId?: string | string[];
     passed?: string | string[];
   }>();
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
+  const completionAttemptId = useMemo(
+    () => normalizeLessonServerAttemptId(params.completedAttemptId) ?? makeLessonServerAttemptId(),
+    [lessonId, params.completedAttemptId, studyTarget],
+  );
   const c = s.lessonComplete;
   const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);
   const [completionAccessReady, setCompletionAccessReady] = useState(() => lessonId >= 32);
@@ -1088,6 +1094,9 @@ export default function LessonComplete() {
         }
         return;
       }
+      // Ответы уже получили XP со всеми активными lesson-scoped множителями.
+      // Здесь один раз закрываем их расходные заряды по identity этой попытки.
+      void finalizeLessonXpMultipliers(completionAttemptId).catch(() => {});
       void grantBonus().finally(() => {
         if (!cancelled) setCompletionXpReady(true);
       });
@@ -1128,7 +1137,7 @@ export default function LessonComplete() {
             safeLessonCompleteEventPart(studyTarget),
             String(lessonId),
             'complete',
-            String(Math.max(1, newPassCount)),
+            safeLessonCompleteEventPart(completionAttemptId),
           ].join(':'),
           type: 'lesson_complete',
           payload: {
@@ -1139,6 +1148,7 @@ export default function LessonComplete() {
             progress: p,
             cellIndex: p.length,
             xpDelta: 0,
+            attemptId: completionAttemptId,
           },
         }).catch(() => {});
         void syncToCloud({ forceNow: true }).catch(() => {});
@@ -1192,7 +1202,7 @@ export default function LessonComplete() {
       cancelled = true;
       clearLessonCompleteNotifTimer();
     };
-  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
+  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен

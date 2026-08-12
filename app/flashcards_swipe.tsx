@@ -2868,7 +2868,7 @@ export default function FlashcardsSwipeScreen() {
                   dataId={`flashcard_${currentPrompt.card.id ?? 'unknown'}`}
                   dataText={reportDataText}
                   variant="icon-flag"
-                  accessibilityLabel="Сообщить об ошибке в карточке"
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
                   testID="flashcards-swipe-report"
                 />
               </View>

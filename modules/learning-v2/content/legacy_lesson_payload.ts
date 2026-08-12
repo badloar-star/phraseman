@@ -7,6 +7,7 @@ import { LESSON1_THEORY, type L1Theory } from '../../../app/theory_content_lesso
 import type { LessonIntroScreen } from '../../../app/lesson_data_types';
 import type { V2ContentItem } from './content_item';
 import { adaptLegacyLessonPhrasesToV2Content } from './legacy_lesson_adapter';
+import type { V2SessionActivityBinding } from './session_compiler';
 
 export interface V2LegacyLessonVocabularyItem {
   readonly surface: string;
@@ -72,4 +73,15 @@ export function buildLesson1LegacyV2SourcePayload(): Readonly<V2LegacyLessonSour
     theory: LESSON1_THEORY,
     vocabulary: buildVocabulary(),
   } satisfies V2LegacyLessonSourcePayload);
+}
+
+/** Canonical authoring identities used by the real Lesson 1 session compiler. */
+export function buildLesson1LegacyActivityBindings(
+  contentItems: readonly V2ContentItem[],
+): readonly V2SessionActivityBinding[] {
+  return deepFreeze(contentItems.flatMap((item) => item.compatibleFamilies.map((family) => ({
+    activityId: `lesson1-${family}-${item.contentItemId}`,
+    family,
+    contentUnitIds: [item.contentItemId],
+  }))));
 }

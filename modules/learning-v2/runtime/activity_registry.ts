@@ -47,8 +47,6 @@ export interface ActivityRegistration<Payload = unknown> {
   readonly policies: V2RuntimePolicyRefs;
   readonly capabilities: V2ActivityCapabilities;
   readonly accessibilityFallback: ActivityAccessibilityFallback;
-  /** Import boundary only; never called during registration/sealing. */
-  readonly resolveRenderer: () => unknown;
 }
 
 export interface RuntimeCapabilities {
@@ -114,7 +112,6 @@ const assertCapabilities = (
 
 export interface ActivityRegistry {
   readonly get: (activityTypeKey: string) => ActivityRegistration;
-  readonly resolveRenderer: (activityTypeKey: string) => unknown;
   readonly list: () => readonly ActivityRegistration[];
 }
 
@@ -142,8 +139,7 @@ export const createActivityRegistry = (options: ActivityRegistryOptions): Activi
     }
     if (!Number.isSafeInteger(registration.kernelVersion) || registration.kernelVersion < 1 ||
         !Number.isSafeInteger(registration.payloadSchemaVersion) || registration.payloadSchemaVersion < 1 ||
-        !registration.rendererKey || typeof registration.validatePayload !== "function" ||
-        typeof registration.resolveRenderer !== "function") {
+        !registration.rendererKey || typeof registration.validatePayload !== "function") {
       throw new Error("v2_activity_registration_invalid");
     }
     if (!registration.capabilities || !registration.accessibilityFallback) {
@@ -170,9 +166,6 @@ export const createActivityRegistry = (options: ActivityRegistryOptions): Activi
       if (!registration) throw new UnsupportedActivityError(activityTypeKey);
       return registration;
     },
-    resolveRenderer: (activityTypeKey: string): unknown => byType.get(activityTypeKey)
-      ? (byType.get(activityTypeKey) as ActivityRegistration).resolveRenderer()
-      : (() => { throw new UnsupportedActivityError(activityTypeKey); })(),
     list: (): readonly ActivityRegistration[] => Object.freeze([...byType.values()]),
   });
 };

@@ -15,6 +15,7 @@ import {
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
 import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';
 import { isScenarioLevelUnlocked, reachedCourseLevel } from '../app/ai_dialog_level_lock';
+import { isMaxVoiceEntryVisible } from '../app/max_voice_flags';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
   DIALOG_SCENARIO_GROUPS,
@@ -86,6 +87,10 @@ export default function DialogsTabContent({
   activeRef.current = active;
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
+  // MAX должен жить в реальном разделе «Диалоги», а не только в историческом
+  // standalone-роуте ai_dialog_home. Гейт вычисляем один раз на время экрана:
+  // remote/env-флаг и наличие нативного WebRTC не меняются внутри сессии.
+  const maxVoiceVisible = useMemo(() => isMaxVoiceEntryVisible(), []);
 
   // Две вкладки внутри Диалогов: «Уроки» (сценарии по уровню курса A1→B2) и
   // «Ситуации» (сложные сцены по уровню аккаунта). По запросу пользователя они
@@ -587,6 +592,61 @@ export default function DialogsTabContent({
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
     >
       {headerSlot}
+
+      {maxVoiceVisible && (
+        <TouchableOpacity
+          testID="max-voice-entry-card"
+          accessibilityRole="button"
+          onPress={() => {
+            hapticTap();
+            router.push('/max_call_prestart' as never);
+          }}
+          style={{
+            marginHorizontal: 14,
+            marginTop: headerSlot ? 0 : 12,
+            marginBottom: 10,
+            borderRadius: 16,
+            backgroundColor: t.bgCard,
+            padding: 14,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 12,
+          }}
+        >
+          <View
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 22,
+              backgroundColor: t.accentBg,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Ionicons name="call" size={20} color={t.accent} />
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }} numberOfLines={1}>
+              {triLang(lang, {
+                ru: 'Позвонить собеседнику', uk: 'Подзвонити співрозмовнику', es: 'Llamar a tu compañero',
+                'pt-BR': 'Ligar para seu parceiro', vi: 'Gọi cho bạn đồng hành', id: 'Telepon teman bicara',
+                tr: 'Konuşma arkadaşını ara', pl: 'Zadzwoń do partnera',
+              })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+              {triLang(lang, {
+                ru: 'Живой разговор голосом в реальном времени', uk: 'Жива розмова голосом у реальному часі',
+                es: 'Conversación de voz en tiempo real', 'pt-BR': 'Conversa de voz em tempo real',
+                vi: 'Trò chuyện bằng giọng nói theo thời gian thực', id: 'Percakapan suara secara real-time',
+                tr: 'Gerçek zamanlı sesli konuşma', pl: 'Rozmowa głosowa w czasie rzeczywistym',
+              })}
+            </Text>
+          </View>
+          <View style={{ backgroundColor: t.gold, borderRadius: 7, paddingHorizontal: 7, paddingVertical: 2 }}>
+            <Text style={{ color: t.textOnGold, fontSize: f.label, fontWeight: '900' }}>MAX</Text>
+          </View>
+        </TouchableOpacity>
+      )}
 
       {!aiDialogGateOpen && (
         <View

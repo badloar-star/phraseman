@@ -22,8 +22,12 @@ const secretValues = new Map<string, string>();
 
 const mockOpenAiChat = jest.fn<Promise<{ text: string; promptTokens: number; completionTokens: number }>, unknown[]>();
 const mockSendTelegramAlert = jest.fn<Promise<boolean>, unknown[]>(async () => true);
+const mockSendJarvisDigest = jest.fn<Promise<boolean>, unknown[]>(async () => true);
 const mockResolveJobConfig = jest.fn<Promise<{ model: string; enabled: boolean }>, unknown[]>(async () => ({ model: 'gpt-4.1-nano', enabled: true }));
 const mockAssertJobEnabled = jest.fn<void, unknown[]>();
+const mockSmtpVerify = jest.fn<Promise<unknown>, unknown[]>(async () => true);
+const mockSmtpSendMail = jest.fn<Promise<{ messageId: string }>, unknown[]>(async () => ({ messageId: '<smtp-accepted@example.test>' }));
+const mockSmtpClose = jest.fn();
 
 jest.mock('firebase-functions/v2/firestore', () => ({
   onDocumentCreated: (options: Record<string, unknown>, handler: (event: unknown) => Promise<void>) => {
@@ -83,6 +87,14 @@ jest.mock('./admin_alerts', () => ({
   sendTelegramAlert: (...args: unknown[]) => mockSendTelegramAlert(...args),
 }));
 
+jest.mock('./jarvis/telegram_send', () => ({
+  sendJarvisDigest: (...args: unknown[]) => mockSendJarvisDigest(...args),
+}));
+
+jest.mock('nodemailer', () => ({
+  createTransport: () => ({ verify: mockSmtpVerify, sendMail: mockSmtpSendMail, close: mockSmtpClose }),
+}));
+
 function refFor(path: string) {
   return {
     id: path.split('/').pop() || path,
@@ -120,9 +132,15 @@ function fakeDb() {
   };
 }
 
-jest.mock('firebase-admin', () => ({
-  firestore: jest.fn(() => fakeDb()),
-}));
+jest.mock('firebase-admin', () => {
+  const firestore = Object.assign(jest.fn(() => fakeDb()), {
+    FieldValue: {
+      serverTimestamp: () => '__server_timestamp__',
+      delete: () => '__delete_field__',
+    },
+  });
+  return { firestore };
+});
 
 /**
  * зачем писать в store: onDocumentCreated получает событие ПОСЛЕ того, как
@@ -152,13 +170,24 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
 
   beforeEach(() => {
     store.clear();
+    // Trigger wiring tests run in shadow mode: council/draft behavior is real,
+    // while SMTP dispatch is covered independently by the durable delivery tests.
+    store.set('admin_config/support_inbox', { autoReplyMode: 'shadow', autoReplyRevision: 1 });
     secretValues.set('OPENAI_API_KEY', 'openai-test-secret');
     secretValues.set('GMAIL_SUPPORT_APP_PASSWORD', 'gmail-test-secret');
+    secretValues.set('JARVIS_TELEGRAM_CONFIG', JSON.stringify({
+      webhookSecret: 's'.repeat(32), ownerTelegramUserId: '1', ownerTelegramChatId: '1', selftestEnabled: false,
+    }));
     mockOpenAiChat.mockReset();
     mockSendTelegramAlert.mockReset();
     mockSendTelegramAlert.mockResolvedValue(true);
+    mockSendJarvisDigest.mockReset();
+    mockSendJarvisDigest.mockResolvedValue(true);
     mockResolveJobConfig.mockClear();
     mockAssertJobEnabled.mockReset();
+    mockSmtpVerify.mockClear();
+    mockSmtpSendMail.mockClear();
+    mockSmtpClose.mockClear();
   });
 
   test('registers on support_inbox document creation', () => {
@@ -187,7 +216,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(mockSendTelegramAlert).not.toHaveBeenCalled();
   });
 
-  test('archives an obvious spam verdict and never notifies Telegram', async () => {
+  test('quarantines an obvious spam verdict but still alerts visibly against classifier injection', async () => {
     mockOpenAiChat.mockResolvedValueOnce({
       text: JSON.stringify({ isSpam: true, confidence: 0.99, reason: 'массовая реклама' }),
       promptTokens: 50, completionTokens: 20,
@@ -196,10 +225,11 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
       fromEmail: 'seo@spam-shop.example', subject: 'Купите ссылки', bodyText: 'дёшево', status: 'new',
     }));
     expect(store.get('support_inbox/m2')?.status).toBe('archived');
-    expect(mockSendTelegramAlert).not.toHaveBeenCalled();
+    expect(store.get('support_inbox/m2')?.triageState).toBe('quarantined');
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
   });
 
-  test('a real question generates a draft and notifies Telegram without leaking correspondence PII', async () => {
+  test('a real question generates a guarded draft and notifies Telegram without leaking correspondence PII', async () => {
     mockOpenAiChat
       .mockResolvedValueOnce({
         text: JSON.stringify({ isSpam: false, confidence: 0.95, reason: 'вопрос по оплате' }),
@@ -212,7 +242,9 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     }));
 
     expect(store.get('support_inbox/m3')?.status).not.toBe('archived');
-    expect(store.get('support_inbox/m3')?.draftReply).toBe('Здравствуйте! Проверили — доступ уже открыт.');
+    const storedDraft = String(store.get('support_inbox/m3')?.draftReply ?? '');
+    expect(storedDraft).toContain('получили ваше сообщение');
+    expect(storedDraft).not.toContain('доступ уже открыт');
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
     const [, text] = mockSendTelegramAlert.mock.calls[0];
     expect(text).toContain('Gmail Support Inbox');
@@ -220,6 +252,83 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(text).not.toContain('Не работает подписка');
     expect(text).not.toContain('Оплатил Plus');
     expect(text).not.toContain('Здравствуйте! Проверили');
+  });
+
+  test('live guarded mode seals one council-reviewed reply and asks in Telegram before SMTP', async () => {
+    store.set('admin_config/support_inbox', {
+      autoReplyMode: 'live_guarded', autoReplyRevision: 2, autoReplyDailyCap: 20,
+      autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
+    });
+    mockOpenAiChat
+      .mockResolvedValueOnce({
+        text: JSON.stringify({ isSpam: false, confidence: 0.99, reason: 'product question' }),
+        promptTokens: 40, completionTokens: 10,
+      })
+      .mockImplementationOnce(async (request: unknown) => {
+        const messages = (request as { messages?: Array<{ content?: string }> }).messages ?? [];
+        const system = String(messages[0]?.content ?? '');
+        const rawIds = system.match(/Allowed evidence IDs:\s*([^\n.]+)/)?.[1] ?? '';
+        const evidenceId = rawIds.split(',').map((value) => value.trim()).find(Boolean) ?? '';
+        return {
+          text: JSON.stringify({
+            reply: 'Hello! Open the practice section in Phraseman and choose a learning activity.',
+            evidenceIds: evidenceId ? [evidenceId] : [], confidence: 0.94, needsHuman: false,
+          }),
+          promptTokens: 120, completionTokens: 35,
+        };
+      })
+      .mockResolvedValueOnce({
+        text: JSON.stringify({ approved: true, correctedReply: '', reasons: [] }),
+        promptTokens: 80, completionTokens: 15,
+      });
+
+    await supportInboxOnNewMail(makeEvent('m-live', {
+      messageId: '<incoming-live@example.test>', fromEmail: 'learner@example.com',
+      subject: 'How can I practise?', bodyText: 'Which learning activities are available in the app?',
+      receivedAtMs: Date.now(), status: 'new', mailCategory: 'human',
+    }));
+
+    expect(mockSmtpVerify).not.toHaveBeenCalled();
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+    const telegram = mockSendJarvisDigest.mock.calls[0][0] as Record<string, unknown>;
+    expect(String(telegram.text)).toContain('Полный текст письма');
+    expect(telegram.keyboard).toBeTruthy();
+    expect(store.get('support_inbox/m-live')).toMatchObject({
+      status: 'new',
+      autoReply: { state: 'awaiting_approval', grounded: true, reason: 'grounded_and_reviewed' },
+    });
+    const operations = [...store.entries()].filter(([path]) => path.startsWith('support_reply_operations/'));
+    expect(operations).toHaveLength(1);
+    expect(operations[0][1]).toMatchObject({ state: 'prepared', messageDocId: 'm-live' });
+  });
+
+  test('Premium payment alternatives are deterministically routed to the owner-approved Telegram bot', async () => {
+    store.set('admin_config/support_inbox', {
+      autoReplyMode: 'live_guarded', autoReplyRevision: 3, autoReplyDailyCap: 20,
+      autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
+    });
+    mockOpenAiChat.mockResolvedValueOnce({
+      text: JSON.stringify({ isSpam: false, confidence: 0.99, reason: 'payment question' }),
+      promptTokens: 30, completionTokens: 10,
+    });
+
+    await supportInboxOnNewMail(makeEvent('m-premium-russia', {
+      messageId: '<premium-russia@example.test>', fromEmail: 'learner@example.com',
+      subject: 'Не могу купить Premium в России', bodyText: 'Какие ещё есть способы оплаты?',
+      receivedAtMs: Date.now(), status: 'new', mailCategory: 'human',
+    }));
+
+    expect(mockOpenAiChat).toHaveBeenCalledTimes(1); // deterministic route needs no writer/reviewer calls
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+    const telegram = mockSendJarvisDigest.mock.calls[0][0] as Record<string, unknown>;
+    expect(String(telegram.text)).toContain('@PhrasemanPremiumBot');
+    expect(String(telegram.text)).toContain('https://t.me/PhrasemanPremiumBot');
+    expect(store.get('support_inbox/m-premium-russia')).toMatchObject({
+      status: 'new',
+      autoReply: { state: 'awaiting_approval', grounded: true, reason: 'authoritative_premium_payment_route' },
+    });
   });
 
   test('exhausted monthly budget still notifies — real mail must not be lost — but skips the LLM entirely', async () => {

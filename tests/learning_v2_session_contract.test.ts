@@ -59,6 +59,25 @@ test("requires exactly twelve ordered required sessions in three zones", () => {
   });
 });
 
+test("accepts activity-pinned v2 bytes without changing readable v1 bytes", () => {
+  const v1 = clone(buildValidSessionSet()) as unknown as Record<string, unknown>;
+  const sessions = v1.sessions as Array<{ cards: Array<Record<string, unknown>> }>;
+  for (const session of sessions) {
+    for (const card of session.cards) {
+      card.activityId = `activity-${String(card.family)}-${String(card.contentItemId)}`;
+    }
+  }
+  v1.schemaVersion = "v2-session-set.v2";
+  expect(validateV2SessionSet(v1)).toMatchObject({ ok: true });
+
+  delete sessions[0].cards[0].activityId;
+  expect(validateV2SessionSet(v1)).toMatchObject({
+    ok: false,
+    issues: expect.arrayContaining(["session_card_invalid"]),
+  });
+  expect(validateV2SessionSet(buildValidSessionSet())).toMatchObject({ ok: true });
+});
+
 test("uses the shared identity grammar for the new session identity without mutating legacy codes", () => {
   expect(parseSessionId("episode-01.session-01")).toBe("episode-01.session-01");
   expect(() => parseSessionId("episode-01/session-01")).toThrow(

@@ -5,9 +5,8 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
-const LIVE_ADMIN = path.join('admin', 'legacy.html');
-const ADMIN_PUBLIC_DIR = 'admin';
-const BANNED_ADMIN_SUBTREE = 'v2/**';
+const LIVE_ADMIN = path.join('admin', 'v2', 'legacy.html');
+const ADMIN_PUBLIC_DIR = 'admin/v2';
 const LINKED_RELEASE_OVERRIDE = '1';
 const LINKED_RELEASE_BRANCH = 'codex/admin-analytics-current';
 const LINKED_RELEASE_ROOT = 'C:/Users/badlo/.codex/worktrees/d920/phraseman';
@@ -46,9 +45,6 @@ export function evaluateAdminHostingWorkspace(input) {
   if (adminTarget?.public !== ADMIN_PUBLIC_DIR) {
     errors.push(`Firebase hosting target admin must publish ${ADMIN_PUBLIC_DIR}.`);
   }
-  if (!Array.isArray(adminTarget?.ignore) || !adminTarget.ignore.includes(BANNED_ADMIN_SUBTREE)) {
-    errors.push(`Firebase hosting target admin must exclude ${BANNED_ADMIN_SUBTREE}.`);
-  }
   if (!input.liveAdminExists) {
     errors.push(`Live admin source is missing: ${LIVE_ADMIN}.`);
   }
@@ -84,7 +80,7 @@ function runCli() {
     process.exitCode = 1;
     return;
   }
-  console.log(`[admin-hosting-guard] OK: primary worktree, ${ADMIN_PUBLIC_DIR} -> ${LIVE_ADMIN}; ${BANNED_ADMIN_SUBTREE} excluded`);
+  console.log(`[admin-hosting-guard] OK: primary worktree, ${ADMIN_PUBLIC_DIR} -> ${LIVE_ADMIN}`);
 }
 
 if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) {

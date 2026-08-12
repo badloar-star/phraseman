@@ -24,6 +24,7 @@ const heisenbergCore = require('./lib/heisenberg_core.cjs') as {
   isExplicitLocaleKey: (name: string) => boolean;
 };
 const { isExplicitLocaleKey } = heisenbergCore;
+const DIRECT_LOCALE_OBJECT_KEYS = new Set(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'en']);
 
 // ---------------------------------------------------------------------------------------
 // Allowlist: files that are already triaged/known and should not be re-flagged.
@@ -46,7 +47,7 @@ type Finding = {
   kind: 'raw-cyrillic-literal' | 'latin-sentence-literal';
   severity: 'blocker-candidate' | 'warning';
   sample: string;
-  context: 'jsx-text' | 'jsx-expression-child' | 'alert-arg' | 'toast-arg';
+  context: 'jsx-text' | 'jsx-expression-child' | 'jsx-attribute' | 'object-copy' | 'alert-arg' | 'toast-arg';
 };
 
 type CliOptions = {
@@ -215,7 +216,7 @@ function isInsideLocaleContainerObject(node: ts.Node): boolean {
       for (const prop of current.properties) {
         if (!ts.isPropertyAssignment(prop) && !ts.isShorthandPropertyAssignment(prop)) continue;
         const name = propertyKeyName(prop.name);
-        if (name && isExplicitLocaleKey(name)) localeKeySiblings += 1;
+        if (name && (isExplicitLocaleKey(name) || DIRECT_LOCALE_OBJECT_KEYS.has(name))) localeKeySiblings += 1;
       }
       if (localeKeySiblings >= 1) return true;
     }
@@ -240,6 +241,30 @@ const TEXT_LIKE_JSX_TAGS = new Set([
   'Subtitle',
   'Label',
   'Heading',
+]);
+
+/** JSX properties whose literal value is presented to the user or a screen reader. */
+const USER_VISIBLE_JSX_ATTRIBUTES = new Set([
+  'accessibilityHint',
+  'accessibilityLabel',
+  'buttonText',
+  'cancelText',
+  'confirmText',
+  'headerTitle',
+  'label',
+  'placeholder',
+  'title',
+]);
+
+/** Object keys conventionally rendered as UI copy in static screen configuration. */
+const USER_VISIBLE_OBJECT_KEYS = new Set([
+  'body',
+  'description',
+  'label',
+  'placeholder',
+  'subtitle',
+  'title',
+  'tone',
 ]);
 
 function jsxTagName(node: ts.JsxElement | ts.JsxSelfClosingElement | ts.JsxOpeningElement): string {
@@ -312,6 +337,39 @@ export function analyzeSourceText(rel: string, text: string): Finding[] {
     addFinding(expr, expr.text, 'jsx-expression-child');
   }
 
+  function visitJsxAttribute(node: ts.JsxAttribute): void {
+    const attributeName = node.name.getText(sourceFile);
+    if (!USER_VISIBLE_JSX_ATTRIBUTES.has(attributeName)) return;
+    const initializer = node.initializer;
+    if (!initializer) return;
+    if (ts.isStringLiteral(initializer)) {
+      addFinding(initializer, initializer.text, 'jsx-attribute');
+      return;
+    }
+    if (!ts.isJsxExpression(initializer) || !initializer.expression) return;
+    if (isInsideLocalizationCall(initializer, sourceFile)) return;
+    if (isInsideLocaleContainerObject(initializer)) return;
+    if (ts.isStringLiteralLike(initializer.expression)) {
+      addFinding(initializer.expression, initializer.expression.text, 'jsx-attribute');
+      return;
+    }
+    if (ts.isTemplateExpression(initializer.expression)) {
+      const literalText = [
+        initializer.expression.head.text,
+        ...initializer.expression.templateSpans.map((span) => span.literal.text),
+      ].join('');
+      addFinding(initializer.expression, literalText, 'jsx-attribute');
+    }
+  }
+
+  function visitObjectCopyProperty(node: ts.PropertyAssignment): void {
+    const key = propertyKeyName(node.name);
+    if (!USER_VISIBLE_OBJECT_KEYS.has(key) || !ts.isStringLiteralLike(node.initializer)) return;
+    if (isInsideLocalizationCall(node, sourceFile)) return;
+    if (isInsideLocaleContainerObject(node)) return;
+    addFinding(node.initializer, node.initializer.text, 'object-copy');
+  }
+
   function visitCallExpression(node: ts.CallExpression): void {
     const callee = calleeText(node, sourceFile);
     const isAlertCall = ALERT_CALLEE_RE.test(callee);
@@ -330,6 +388,10 @@ export function analyzeSourceText(rel: string, text: string): Finding[] {
       visitJsxText(node);
     } else if (ts.isJsxExpression(node)) {
       visitJsxExpressionStringChild(node);
+    } else if (ts.isJsxAttribute(node)) {
+      visitJsxAttribute(node);
+    } else if (ts.isPropertyAssignment(node)) {
+      visitObjectCopyProperty(node);
     } else if (ts.isCallExpression(node)) {
       visitCallExpression(node);
     }

@@ -325,7 +325,24 @@ const AUTHORING_BODY_KEYS = [
   "reviewLinks",
   "minAppVersion",
 ] as const;
-const OPTIONAL_AUTHORING_BODY_KEYS = ["checkpointContract"] as const;
+// These fields were added to the authoring projection after the original
+// envelope shipped. They stay optional at the Storage-integrity layer so old
+// immutable revisions remain readable; approval/release semantics require the
+// complete canonical projection. sessionSetRef is consumed by release
+// publication, so its shape is validated here whenever it is present.
+const OPTIONAL_AUTHORING_BODY_KEYS = [
+  "checkpointContract",
+  "episodeKind",
+  "estimatedMinutes",
+  "objectiveIds",
+  "skillIds",
+  "criticalConstraints",
+  "grammarDistinctionIds",
+  "soundFocusIds",
+  "assetIds",
+  "accessibilityRoutes",
+  "sessionSetRef",
+] as const;
 
 export function validateEpisodeLearningDesignShape(
   input: unknown,
@@ -428,6 +445,19 @@ export function validateEpisodeRevisionArtifactBody(body: unknown): boolean {
     (value.ordinal as number) < 1
   )
     return false;
+  if (Object.prototype.hasOwnProperty.call(value, "sessionSetRef")) {
+    const ref = value.sessionSetRef;
+    if (
+      !isRecord(ref) ||
+      !hasExactKeys(ref, ["episodeId", "version", "contentHash"]) ||
+      ref.episodeId !== value.episodeId ||
+      !Number.isSafeInteger(ref.version) ||
+      Number(ref.version) < 1 ||
+      typeof ref.contentHash !== "string" ||
+      !/^[a-f0-9]{64}$/.test(ref.contentHash)
+    )
+      return false;
+  }
   for (const key of [
     "title",
     "canDoOutcome",
@@ -799,6 +829,8 @@ export interface ImmutableEpisodeRevisionResolver {
   ) => Promise<{
     readonly templateRef: Record<string, unknown>;
     readonly allowedOverridePaths: readonly string[];
+    /** Exact immutable body; runtime scoring may consume it after this resolver's hash/lifecycle checks. */
+    readonly body?: unknown;
   } | undefined>;
 }
 

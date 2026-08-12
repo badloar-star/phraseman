@@ -1,9 +1,9 @@
 import * as admin from 'firebase-admin';
 import { createHash } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasPermission } from './admin/permissions';
-import { hasAdminRole, type AdminRole } from './admin/roles';
+import { ENFORCE_APP_CHECK_ADMIN } from './callable_options';
+import { explicitAdminRoleFromToken, hasPermission, type AdminPermission } from './admin/permissions';
+import { type AdminRole } from './admin/roles';
 import { buildGenerationStagePlan, type ApprovedStagePrerequisite, type GenerationStagePlan } from './content_factory/stage_service';
 import type { StageControlAction } from './content_factory/stage_runner';
 import type { GenerationStageKind } from './content_factory/stage_contracts';
@@ -23,14 +23,29 @@ import { flashcardRegistryDocumentId } from './content_factory/flashcard_semanti
 import { assertStageCapabilityRequest, generationStageCapabilities, stageCapability, stageLanguagePolicy } from './content_factory/stage_capabilities';
 import { dependencyCatalogItems, parseDependencyCatalogRequest } from './content_factory/dependency_catalog';
 import { contentStageReviewFingerprint } from './content_factory/review_fingerprint';
+import { LEARNING_V2_GENERATION_STAGE_KINDS, type LearningV2GenerationStageKind } from './content_factory/learning_v2_generation_artifacts';
+import { buildLearningV2OwnerApprovalTrail } from './content_factory/learning_v2_prerequisite_grounding';
+import { buildLearningV2CourseWorkspaceProjectionV1 } from './content_factory/learning_v2_course_workspace_projection';
 
 const REGION = 'us-central1';
+const CONTENT_STUDIO_CALLABLE_OPTIONS = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN } as const;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const STAGE_ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
-const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement'];
+const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'learning_v2_research', 'learning_v2_curriculum', 'learning_v2_lesson_outline', 'learning_v2_localized_course', 'learning_v2_audio', 'learning_v2_quality_assurance', 'learning_v2_release'];
 const CREATE_FIELDS = new Set(['requestId', 'kind', 'studyTarget', 'sourceLocale', 'cefr', 'objective', 'scopeId', 'count', 'revision', 'prerequisiteStageIds', 'replacementForQuestionId', 'replacementForCardId']);
 const DERIVED_LESSON_KINDS = new Set<GenerationStageKind>(['lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory']);
+
+export function learningV2DownstreamStageIdsToSupersede(changed: Readonly<Record<string, unknown>>, related: readonly Readonly<{ id: string; data: Record<string, unknown> }>[]): readonly string[] {
+  if (related.length > 100) throw new Error('learning_v2_review_chain_too_many_stages');
+  const changedKind = String(changed.kind ?? '') as LearningV2GenerationStageKind;
+  const changedIndex = LEARNING_V2_GENERATION_STAGE_KINDS.indexOf(changedKind);
+  if (changedIndex < 0) return Object.freeze([]);
+  return Object.freeze(related.filter(({ id, data }) => {
+    const relatedIndex = LEARNING_V2_GENERATION_STAGE_KINDS.indexOf(String(data.kind ?? '') as LearningV2GenerationStageKind);
+    return id !== changed.id && relatedIndex > changedIndex && data.requestId === changed.requestId && data.scopeId === changed.scopeId && data.studyTarget === changed.studyTarget && data.sourceLocale === changed.sourceLocale && ['queued', 'running', 'paused', 'failed', 'needs_review', 'approved', 'rejected'].includes(String(data.state));
+  }).map(({ id }) => id));
+}
 
 function stageIdFromArtifactId(artifactId: string): string {
   const stageId = artifactId.startsWith('artifact:') ? artifactId.slice('artifact:'.length) : '';
@@ -68,15 +83,18 @@ async function resolvePublishedFlashcardKeysForReview(tx: FirebaseFirestore.Tran
   return Object.freeze({ authority: 'legacy' as const, keys: legacyKeys, comparison: null });
 }
 
-function roleFromToken(token: Record<string, unknown>): AdminRole | null {
-  return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
-}
-
-function requirePermission(request: { auth?: { token?: Record<string, unknown> } }, permission: 'content.read' | 'content.draft.write' | 'content.publish'): AdminRole {
-  if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-  const role = roleFromToken(request.auth.token);
+export function requireContentStagePermission(request: { auth?: { uid?: string; token?: Record<string, unknown> } }, permission: AdminPermission): AdminRole {
+  if (!request.auth?.uid || request.auth.token?.admin !== true) throw new HttpsError('permission-denied', 'Admin only');
+  const role = explicitAdminRoleFromToken(request.auth.token);
   if (!role || !hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   return role;
+}
+
+export function assertContentStageReviewerDifferentFromCreator(createdBy: unknown, reviewerUid: unknown): void {
+  if (typeof createdBy !== 'string' || !createdBy || typeof reviewerUid !== 'string' || !reviewerUid) {
+    throw new HttpsError('failed-precondition', 'content_stage_creator_identity_missing');
+  }
+  if (createdBy === reviewerUid) throw new HttpsError('permission-denied', 'content_stage_maker_checker_self_review');
 }
 
 export interface ContentStageCreateRequest {
@@ -84,7 +102,7 @@ export interface ContentStageCreateRequest {
   readonly kind: GenerationStageKind;
   readonly studyTarget: string;
   readonly sourceLocale: string;
-  readonly cefr: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+  readonly cefr: 'PRE_A1' | 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
   readonly objective: string;
   readonly scopeId: string;
   readonly count: number;
@@ -108,7 +126,7 @@ export function parseContentStageCreateRequest(data: unknown): ContentStageCreat
   const prerequisiteStageIds = Array.isArray(data.prerequisiteStageIds) ? data.prerequisiteStageIds.map(String) : [];
   const replacementForQuestionId = String(data.replacementForQuestionId ?? '').trim();
   const replacementForCardId = String(data.replacementForCardId ?? '').trim();
-  if (!TOKEN_RE.test(requestId) || !KINDS.includes(kind) || !LOCALE_RE.test(studyTarget) || !LOCALE_RE.test(sourceLocale) || !['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(cefr) || !objective || objective.length > 1000 || !TOKEN_RE.test(scopeId) || !Number.isSafeInteger(count) || (count < 1 && kind !== 'flashcard_items') || count > 1000 || !Number.isSafeInteger(revision) || revision < 1 || revision > 10_000 || prerequisiteStageIds.some((id) => !STAGE_ID_RE.test(id)) || new Set(prerequisiteStageIds).size !== prerequisiteStageIds.length) {
+  if (!TOKEN_RE.test(requestId) || !KINDS.includes(kind) || !LOCALE_RE.test(studyTarget) || !LOCALE_RE.test(sourceLocale) || !['PRE_A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(cefr) || !objective || objective.length > 1000 || !TOKEN_RE.test(scopeId) || !Number.isSafeInteger(count) || (count < 1 && kind !== 'flashcard_items') || count > 1000 || !Number.isSafeInteger(revision) || revision < 1 || revision > 10_000 || prerequisiteStageIds.some((id) => !STAGE_ID_RE.test(id)) || new Set(prerequisiteStageIds).size !== prerequisiteStageIds.length) {
     throw new HttpsError('invalid-argument', 'content_stage_create_invalid');
   }
   try {
@@ -219,8 +237,8 @@ export function parseContentStageReviewRequest(data: unknown): { stageId: string
   return Object.freeze({ stageId, status, reason, expectedReviewFingerprint });
 }
 
-export const adminCreateContentStage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  const role = requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.draft.write');
+export const adminCreateContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  const role = requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.draft.write');
   const input = parseContentStageCreateRequest(request.data);
   const db = admin.firestore();
   const expectedStageId = `${input.requestId}:${input.kind}:${input.scopeId}:r${input.revision}`;
@@ -229,20 +247,31 @@ export const adminCreateContentStage = onCall({ region: REGION, enforceAppCheck:
     const existing = await tx.get(stageRef);
     const prerequisiteSnapshots = await Promise.all(input.prerequisiteStageIds.map((stageId) => tx.get(db.collection('content_factory_stages').doc(stageId))));
     const plan = stagePlanFromStoredPrerequisites(input, prerequisiteSnapshots.filter((snapshot) => snapshot.exists).map((snapshot) => ({ stageId: snapshot.id, ...(snapshot.data() ?? {}) })));
+    let ownerApprovalTrail: readonly unknown[] | undefined;
+    if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(input.kind as LearningV2GenerationStageKind)) {
+      const prerequisiteSnapshot = prerequisiteSnapshots[0];
+      const prerequisiteData = prerequisiteSnapshot?.exists ? prerequisiteSnapshot.data() ?? {} : null;
+      ownerApprovalTrail = buildLearningV2OwnerApprovalTrail(input.kind as LearningV2GenerationStageKind, prerequisiteData ? {
+        stageId: prerequisiteSnapshot.id, artifactId: String(prerequisiteData.artifactId ?? ''), kind: String(prerequisiteData.kind ?? ''), state: String(prerequisiteData.state ?? ''),
+        requestId: String(prerequisiteData.requestId ?? ''), studyTarget: String(prerequisiteData.studyTarget ?? ''), sourceLocale: String(prerequisiteData.sourceLocale ?? ''), scopeId: String(prerequisiteData.scopeId ?? ''),
+        objectPath: String(prerequisiteData.objectPath ?? ''), contentHash: String(prerequisiteData.contentHash ?? ''), objectGeneration: String(prerequisiteData.objectGeneration ?? ''),
+        ownerApprovalTrail: prerequisiteData.ownerApprovalTrail, reviewedBy: prerequisiteData.reviewedBy, reviewReason: prerequisiteData.reviewReason,
+      } : null);
+    }
     const planFingerprint = contentStagePlanFingerprint(input, plan.unit.prerequisiteArtifactIds);
     if (existing.exists) {
       const current = existing.data() ?? {};
       if (current.planFingerprint !== planFingerprint) throw new HttpsError('already-exists', 'content_stage_idempotency_conflict');
       return { ok: true, stageId: expectedStageId, state: current.state ?? 'queued', replayed: true };
     }
-    tx.create(stageRef, { ...plan.unit, cefr: input.cefr, objective: input.objective, prerequisiteStageIds: input.prerequisiteStageIds, ...(input.replacementForQuestionId ? { replacementForQuestionId: input.replacementForQuestionId } : {}), ...(input.replacementForCardId ? { replacementForCardId: input.replacementForCardId } : {}), ...(input.kind.startsWith('lesson_') ? { blueprintVersion: 'english-core-32:v1' } : {}), ...(input.kind.startsWith('challenge_') || input.kind === 'flashcard_pack_idea' ? { publicationPolicy: 'draft_only_no_consumer' } : {}), ...(input.kind === 'flashcard_items' || input.kind === 'flashcard_item_replacement' ? { publicationPolicy: 'standard' } : {}), planFingerprint, createdBy: request.auth!.uid, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+    tx.create(stageRef, { ...plan.unit, cefr: input.cefr, objective: input.objective, prerequisiteStageIds: input.prerequisiteStageIds, ...(ownerApprovalTrail ? { ownerApprovalTrail } : {}), ...(input.replacementForQuestionId ? { replacementForQuestionId: input.replacementForQuestionId } : {}), ...(input.replacementForCardId ? { replacementForCardId: input.replacementForCardId } : {}), ...(input.kind.startsWith('lesson_') ? { blueprintVersion: 'english-core-32:v1' } : {}), ...(input.kind.startsWith('challenge_') || input.kind === 'flashcard_pack_idea' ? { publicationPolicy: 'draft_only_no_consumer' } : {}), ...(input.kind === 'flashcard_items' || input.kind === 'flashcard_item_replacement' ? { publicationPolicy: 'standard' } : {}), planFingerprint, createdBy: request.auth!.uid, createdAt: admin.firestore.FieldValue.serverTimestamp() });
     tx.create(db.collection('admin_log').doc(), { action: 'content_factory.stage.create', actorUid: request.auth!.uid, role, entity: { collection: 'content_factory_stages', id: plan.unit.stageId }, operationId: plan.unit.idempotencyKey, reason: 'Content generation stage created', before: null, after: { state: plan.unit.state, artifactId: plan.unit.artifactId }, timestamp: new Date().toISOString() });
     return { ok: true, stageId: plan.unit.stageId, state: plan.unit.state, replayed: false };
   });
 });
 
-export const adminControlContentStage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  const role = requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.draft.write');
+export const adminControlContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  const role = requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.draft.write');
   const input = parseContentStageControlRequest(request.data);
   try { return await controlContentStage(admin.firestore(), { stageId: input.stageId, action: input.action, actorUid: request.auth!.uid, role, nowIso: new Date().toISOString(), serverTimestamp: admin.firestore.FieldValue.serverTimestamp(), deleteValue: admin.firestore.FieldValue.delete() }); }
   catch (error) {
@@ -253,8 +282,8 @@ export const adminControlContentStage = onCall({ region: REGION, enforceAppCheck
   }
 });
 
-export const adminListContentStages = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.read');
+export const adminListContentStages = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
   const input = parseContentStageListRequest(request.data);
   const db = admin.firestore();
   const snapshot = await buildContentStageListQuery(db, input).get();
@@ -262,8 +291,30 @@ export const adminListContentStages = onCall({ region: REGION, enforceAppCheck: 
   return { ok: true, stages: docs.map((doc) => ({ id: doc.id, ...doc.data() })), nextCursor: snapshot.size > input.limit ? docs.at(-1)?.id ?? null : null, isPartial: snapshot.size > input.limit };
 });
 
-export const adminListContentStageDependencies = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.read');
+export const adminGetLearningV2CourseWorkspaceProjection = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
+  const record = isRecord(request.data) ? request.data : {};
+  const expectedKeys = ['requestId', 'studyTarget', 'sourceLocale', 'scopeId'];
+  if (Object.keys(record).length !== expectedKeys.length || expectedKeys.some((key) => !Object.prototype.hasOwnProperty.call(record, key))) {
+    throw new HttpsError('invalid-argument', 'learning_v2_workspace_projection_request_invalid');
+  }
+  const input = parseContentStageListRequest({ ...record, limit: 100 });
+  const snapshot = await buildContentStageListQuery(admin.firestore(), input).get();
+  const docs = snapshot.docs.slice(0, input.limit);
+  const stages = docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const projection = buildLearningV2CourseWorkspaceProjectionV1({
+    requestId: input.requestId,
+    studyTarget: input.studyTarget,
+    sourceLocale: input.sourceLocale,
+    scopeId: input.scopeId,
+    stageDocuments: stages,
+    historyIncomplete: snapshot.size > input.limit,
+  });
+  return { ok: true, stages, projection };
+});
+
+export const adminListContentStageDependencies = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
   let input: ReturnType<typeof parseDependencyCatalogRequest>;
   try { input = parseDependencyCatalogRequest(request.data); } catch { throw new HttpsError('invalid-argument', 'dependency_catalog_invalid'); }
   const snapshot = await buildContentStageDependencyQuery(admin.firestore(), input).get();
@@ -271,13 +322,13 @@ export const adminListContentStageDependencies = onCall({ region: REGION, enforc
   return { ok: true, ...result };
 });
 
-export const adminGetContentStageCapabilities = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.read');
+export const adminGetContentStageCapabilities = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
   return { ok: true, version: 'content-stage-capabilities-r10a-v1', languagePolicy: stageLanguagePolicy, capabilities: generationStageCapabilities };
 });
 
-export const adminPreviewContentStage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.read');
+export const adminPreviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
   const { stageId } = parseContentStagePreviewRequest(request.data);
   const snapshot = await admin.firestore().collection('content_factory_stages').doc(stageId).get();
   if (!snapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
@@ -298,14 +349,15 @@ export const adminPreviewContentStage = onCall({ region: REGION, enforceAppCheck
   return { ok: true, stage: { id: snapshot.id, ...stage }, payload, qaReceipt: isRecord(stage.qaReceipt) ? stage.qaReceipt : null, judgeReceipt: isRecord(stage.judgeReceipt) ? stage.judgeReceipt : null, reviewFingerprint: contentStageReviewFingerprint(snapshot.id, stage) };
 });
 
-export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  const role = requirePermission(request as { auth?: { token?: Record<string, unknown> } }, 'content.publish');
+export const adminReviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
+  const role = requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.review');
   const input = parseContentStageReviewRequest(request.data);
   const db = admin.firestore();
   const stageRef = db.collection('content_factory_stages').doc(input.stageId);
   const preliminarySnapshot = await stageRef.get();
   if (!preliminarySnapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
   const preliminary = preliminarySnapshot.data() ?? {};
+  assertContentStageReviewerDifferentFromCreator(preliminary.createdBy, request.auth!.uid);
   let phraseGrounding: Awaited<ReturnType<typeof loadApprovedLessonGrounding>> | null = null;
   let questionBatch: Awaited<ReturnType<typeof loadQuestionBatchForReview>> | null = null;
   let questionReplacement: Awaited<ReturnType<typeof loadQuestionReplacementForReview>> | null = null;
@@ -335,6 +387,7 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
     const snapshot = await tx.get(stageRef);
     if (!snapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
     const stage = snapshot.data() ?? {};
+    assertContentStageReviewerDifferentFromCreator(stage.createdBy, request.auth!.uid);
     if (contentStageReviewFingerprint(snapshot.id, stage) !== input.expectedReviewFingerprint) throw new HttpsError('aborted', 'content_stage_review_fingerprint_stale');
     if (stage.state === input.status) return { ok: true, stageId: input.stageId, state: input.status, replayed: true };
     if (stage.state !== 'needs_review' && !(stage.state === 'approved' && input.status === 'rejected')) throw new HttpsError('failed-precondition', 'content_stage_review_state_invalid');
@@ -474,6 +527,12 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
           updates.flashcardLedgerRevision = restored.ledger.revision; updates.activeReplacementArtifactId = restored.restoredReplacementArtifactId;
         } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'flashcard_replacement_rollback_invalid'); }
       }
+    }
+    if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(stage.kind as LearningV2GenerationStageKind)) {
+      const related = await tx.get(db.collection('content_factory_stages').where('requestId', '==', stage.requestId).limit(101));
+      const byId = new Map(related.docs.map((doc) => [doc.id, doc]));
+      const staleIds = learningV2DownstreamStageIdsToSupersede({ id: input.stageId, ...stage }, related.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
+      for (const staleId of staleIds) tx.update(byId.get(staleId)!.ref, { state: 'superseded', staleReason: 'learning_v2_owner_review_chain_changed', staleAt: admin.firestore.FieldValue.serverTimestamp(), updatedAt: admin.firestore.FieldValue.serverTimestamp() });
     }
     tx.update(stageRef, updates);
     if (correctionEventRef) tx.update(correctionEventRef, { status: input.status === 'approved' ? 'accepted' : 'rejected', reviewedBy: request.auth!.uid, reviewReason: input.reason, reviewedAt: admin.firestore.FieldValue.serverTimestamp() });

@@ -57,6 +57,12 @@ jest.mock('../hooks/use-haptics', () => ({
   hapticWarning: jest.fn(),
 }));
 jest.mock('../app/audio_session_coordinator', () => ({ setManagedAudioMode: jest.fn(async () => undefined) }));
+jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
+  claimSpokenAudio: jest.fn(() => ({ isCurrent: () => true, release: jest.fn() })),
+  claimRecordingAudio: jest.fn(() => ({ isCurrent: () => true, release: jest.fn() })),
+  whenSpokenAudioReady: jest.fn(async () => true),
+  whenRecordingAudioReady: jest.fn(async () => true),
+}));
 jest.mock('../app/remote_flags', () => ({ isSpeakingEnabled: () => true }));
 jest.mock('../app/personal_plan_speech_module', () => ({
   isSpeechRecognitionAvailable: () => true,
@@ -96,7 +102,6 @@ describe('SpeechBeat audioend session ownership', () => {
 
   afterEach(async () => {
     await cleanup();
-    await Promise.resolve();
     jest.useRealTimers();
   });
 
@@ -109,8 +114,8 @@ describe('SpeechBeat audioend session ownership', () => {
     };
     await render(React.createElement(SpeechBeat, props));
 
+    await fireEvent(screen.getByLabelText(AHA_STRINGS.speakHoldIdle.ru), 'pressIn');
     await act(async () => {
-      fireEvent(screen.getByLabelText(AHA_STRINGS.speakHoldIdle.ru), 'pressIn');
       await Promise.resolve();
       latest('start')();
       latest('result')({ results: [{ transcript: props.scenario.say.text }] });
@@ -119,13 +124,10 @@ describe('SpeechBeat audioend session ownership', () => {
     });
     const oldAudioEnd = latest('audioend');
 
-    await act(async () => {
-      fireEvent.press(screen.getByText(AHA_STRINGS.retry.ru));
-      await Promise.resolve();
-    });
+    await fireEvent.press(screen.getByText(AHA_STRINGS.retry.ru));
 
+    await fireEvent(screen.getByLabelText(AHA_STRINGS.speakHoldIdle.ru), 'pressIn');
     await act(async () => {
-      fireEvent(screen.getByLabelText(AHA_STRINGS.speakHoldIdle.ru), 'pressIn');
       await Promise.resolve();
       latest('start')();
       oldAudioEnd({ uri: 'file:///stale-attempt.wav' });
@@ -147,11 +149,13 @@ describe('SpeechBeat audioend session ownership', () => {
     await render(React.createElement(SpeechBeat, props));
 
     const hold = screen.getByLabelText(AHA_STRINGS.speakHoldIdle.ru);
+    await fireEvent(hold, 'pressIn');
     await act(async () => {
-      fireEvent(hold, 'pressIn');
       await Promise.resolve();
       latest('start')();
-      fireEvent(hold, 'pressOut');
+    });
+    await fireEvent(hold, 'pressOut');
+    await act(async () => {
       latest('result')({ results: [{ transcript: props.scenario.say.text }], isFinal: true });
       latest('end')();
       await Promise.resolve();

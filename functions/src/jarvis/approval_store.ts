@@ -29,6 +29,7 @@ export interface IssueApprovalTokenInput {
   readonly ownerTelegramUserId: string;
   readonly ownerTelegramChatId: string;
   readonly nowMs: number;
+  readonly ttlMs?: number;
 }
 
 export interface IssuedApprovalToken {
@@ -45,6 +46,7 @@ export async function issueApprovalToken(input: IssueApprovalTokenInput): Promis
     ownerTelegramUserId: input.ownerTelegramUserId,
     ownerTelegramChatId: input.ownerTelegramChatId,
     nowMs: input.nowMs,
+    ttlMs: input.ttlMs,
   });
 
   // guard-ok (limit): .doc() адресует ОДИН документ по хешу, это не запрос
@@ -67,6 +69,8 @@ export interface ConsumeApprovalTokenInput {
   readonly fromTelegramUserId: string;
   readonly fromTelegramChatId: string;
   readonly nowMs: number;
+  /** Действие из callback_data обязано совпасть с действием запечатанного токена. */
+  readonly requestedAction?: ApprovalAction;
 }
 
 export type ConsumeApprovalTokenResult =
@@ -100,6 +104,9 @@ export async function consumeApprovalToken(
         nowMs: input.nowMs,
       });
       if (!verdict.ok) return { ok: false, reason: verdict.reason };
+      if (input.requestedAction && verdict.doc.action !== input.requestedAction) {
+        return { ok: false, reason: 'unknown_nonce' };
+      }
 
       tx.update(ref, { usedAtMs: input.nowMs });
       return { ok: true, doc: verdict.doc };

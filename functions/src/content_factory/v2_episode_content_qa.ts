@@ -5,6 +5,7 @@
 import type { V2ActivityFamily } from '../../../modules/learning-v2/contracts/activity';
 import type { V2OptionalPracticeSlot } from '../../../modules/learning-v2/contracts/session';
 import type { V2CompiledEpisodeContent } from '../../../modules/learning-v2/content/session_compiler';
+import type { V2SessionActivityBinding } from '../../../modules/learning-v2/content/session_compiler';
 import type { V2ContentItem } from '../../../modules/learning-v2/content/content_item';
 import type {
   V2LanguageProfileBody,
@@ -38,6 +39,7 @@ export function qaV2EpisodeContent(
   compiled: V2CompiledEpisodeContent,
   contentItems: readonly V2ContentItem[],
   profile: V2LanguageProfileBody,
+  activityBindings: readonly V2SessionActivityBinding[],
   optionalPracticeTemplates: readonly V2OptionalPracticeSlot[] = [],
   languageProfileRef: V2LanguageProfileRef | null = null,
 ): V2EpisodeContentQualityReport {
@@ -48,6 +50,11 @@ export function qaV2EpisodeContent(
   const usedContentItemIds = new Set<string>();
   const promptIds = new Set<string>();
   const cardIds = new Set<string>();
+  const approvedActivityCoordinates = new Set(
+    activityBindings.flatMap((binding) => binding.contentUnitIds.map(
+      (contentUnitId) => `${binding.activityId}\u0000${binding.family}\u0000${contentUnitId}`,
+    )),
+  );
 
   if (compiled.episodeId !== contentItems[0]?.episodeId) blocking.push('compiled_episode_mismatch');
   if (compiled.sessions.length !== REQUIRED_SESSION_COUNT) blocking.push('compiled_session_count_invalid');
@@ -73,6 +80,9 @@ export function qaV2EpisodeContent(
         if (!item.compatibleFamilies.includes(card.family)) blocking.push('compiled_card_family_untraceable');
       }
       if (!supportedFamilies.has(card.family)) blocking.push('compiled_family_unsupported');
+      if (!approvedActivityCoordinates.has(`${card.activityId}\u0000${card.family}\u0000${card.contentItemId}`)) {
+        blocking.push('compiled_card_activity_untraceable');
+      }
       if (promptIds.has(card.promptId)) blocking.push('compiled_prompt_duplicate');
       promptIds.add(card.promptId);
       // Независимая проверка = карточка без поддержки; натренированная формулировка

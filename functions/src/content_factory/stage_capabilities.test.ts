@@ -5,6 +5,8 @@ const kinds: readonly GenerationStageKind[] = [
   'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
   'challenge_topic', 'challenge_questions', 'challenge_question_replacement',
   'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
+  'learning_v2_research', 'learning_v2_curriculum', 'learning_v2_lesson_outline', 'learning_v2_localized_course',
+  'learning_v2_audio', 'learning_v2_quality_assurance', 'learning_v2_release',
 ];
 
 describe('server-authoritative stage capability matrix', () => {
@@ -41,7 +43,13 @@ describe('server-authoritative stage capability matrix', () => {
   });
 
   test('exposes language and exact prerequisite cardinality to Admin', () => {
-    expect(stageLanguagePolicy).toMatchObject({ studyTargets: expect.arrayContaining(['en', 'fr', 'de']), sourceLocales: expect.arrayContaining(['ru', 'en']), sameLanguageAllowed: false });
+    expect(stageLanguagePolicy).toMatchObject({ studyTargets: expect.arrayContaining(['en', 'fr', 'de']), sourceLocales: expect.arrayContaining(['ru', 'en', 'multi']), sameLanguageAllowed: false });
     expect(stageCapability('challenge_questions').prerequisiteCardinality).toEqual({ min: 1, max: 1 });
+  });
+
+  test('keeps Learning V2 in the same queue while requiring the atomic all-interface-locale source policy', () => {
+    expect(() => assertStageCapabilityRequest({ kind: 'learning_v2_research', count: 1, cefr: 'PRE_A1', studyTarget: 'en', sourceLocale: 'multi', prerequisiteKinds: [] })).not.toThrow();
+    expect(() => assertStageCapabilityRequest({ kind: 'learning_v2_research', count: 1, cefr: 'PRE_A1', studyTarget: 'en', sourceLocale: 'ru', prerequisiteKinds: [] })).toThrow('stage_capability_locale_pair_unsupported');
+    expect(stageCapability('learning_v2_release')).toMatchObject({ publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false, scopeType: 'course' });
   });
 });

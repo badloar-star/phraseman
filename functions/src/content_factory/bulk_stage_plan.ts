@@ -10,6 +10,8 @@ const KINDS = new Set<GenerationStageKind>([
   'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
   'challenge_topic', 'challenge_questions', 'challenge_question_replacement',
   'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
+  'learning_v2_research', 'learning_v2_curriculum', 'learning_v2_lesson_outline', 'learning_v2_localized_course',
+  'learning_v2_audio', 'learning_v2_quality_assurance', 'learning_v2_release',
 ]);
 
 function record(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }

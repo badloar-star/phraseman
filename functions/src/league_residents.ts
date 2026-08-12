@@ -166,16 +166,23 @@ export function fillRoomWithResidents(
   const current: MembersMap = { ...(members || {}) };
   const live = countLiveMembers(current);
 
-  // Порог владельца: где живых 15+, жителей не добавляем вовсе.
-  if (live >= RESIDENT_FILL_THRESHOLD) return current;
+  // Сначала убираем прежний синтетический слой, затем строим его заново под
+  // ТЕКУЩЕЕ число живых. Иначе комната, созданная как 1+27, после входа ещё
+  // двух людей становилась 30 видимых, а затем могла расти выше лимита: старые
+  // жители не уступали людям места. Правило владельца точное: при <15 живых —
+  // ровно 28 видимых; при >=15 — только живые, без жителей.
+  const result: MembersMap = {};
+  for (const [uid, member] of Object.entries(current)) {
+    if (isResidentMember(uid, member)) continue;
+    result[uid] = member;
+  }
 
-  const result: MembersMap = { ...current };
-  // Комната не может стать больше жёсткого лимита даже при всплеске живых.
+  if (live >= RESIDENT_FILL_THRESHOLD) return result;
+
   const target = Math.min(RESIDENT_TARGET_VISIBLE, LEAGUE_GROUP_SIZE);
-  for (let slot = 0; slot < target; slot++) {
-    if (countVisibleMembers(result) >= target) break;
+  const residentsNeeded = Math.max(0, target - countVisibleMembers(result));
+  for (let slot = 0; slot < residentsNeeded; slot++) {
     const uid = residentUid(groupId, slot);
-    if (result[uid]) continue;
     result[uid] = buildResidentMember(groupId, slot, weekStartMs, nowMs);
   }
   return result;

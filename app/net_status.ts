@@ -1,4 +1,9 @@
 import { runtimeAppStateStore } from './runtime_app_state_store';
+import {
+  isInteractiveNetworkDeferredError,
+  registerInteractiveNetworkQuietParticipant,
+  withBackgroundNetworkLease,
+} from './interactive_network_quiet';
 
 // Первым — Google captive-portal probe (быстрый), дальше фолбэки вне
 // инфраструктуры Google: в некоторых регионах Google-хосты фильтруются или
@@ -18,6 +23,7 @@ export type NetStatus = 'online' | 'offline' | 'unknown';
 type TimerId = unknown;
 export type NetStatusCoordinatorDeps = {
   fetch(input: string, init: RequestInit): Promise<unknown>;
+  withNetworkLease?<T>(work: (signal: AbortSignal) => Promise<T>): Promise<T>;
   now(): number;
   setTimeout(listener: () => void, delayMs: number): TimerId;
   clearTimeout(id: TimerId): void;
@@ -35,6 +41,7 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
   let offlineAttempt = 0;
   let nextProbeAt = 0;
   let foregroundProbePending = false;
+  let pausedForInteractiveQuiet = false;
   let disposed = false;
 
   const clearProbeTimer = () => {
@@ -60,7 +67,7 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
   const scheduleAt = (at: number) => {
     clearProbeTimer();
     nextProbeAt = at;
-    if (disposed || listeners.size === 0 || !deps.isAppActive()) return;
+    if (disposed || pausedForInteractiveQuiet || listeners.size === 0 || !deps.isAppActive()) return;
     const delay = Math.max(0, at - deps.now());
     probeTimer = deps.setTimeout(() => {
       probeTimer = null;
@@ -69,12 +76,18 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
   };
   const scheduleNext = () => scheduleAt(deps.now() + delayForNextProbe());
 
-  const probeOnce = async (): Promise<boolean> => {
+  const probeOnce = async (networkSignal?: AbortSignal): Promise<{
+    online: boolean;
+    measured: boolean;
+  }> => {
     // Опрос хостов по очереди: online при первом отклике, offline — только
     // когда недоступны ВСЕ (иначе блокировка одного хоста = ложный офлайн).
     for (const url of PROBE_URLS) {
       const controller = new AbortController();
       abortController = controller;
+      const abortForInteractiveSession = () => controller.abort(networkSignal?.reason);
+      if (networkSignal?.aborted) abortForInteractiveSession();
+      else networkSignal?.addEventListener('abort', abortForInteractiveSession, { once: true });
       let timedOut = false;
       timeoutTimer = deps.setTimeout(() => {
         timedOut = true;
@@ -82,35 +95,55 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
       }, PROBE_TIMEOUT_MS);
       try {
         await deps.fetch(url, { method: 'GET', cache: 'no-store', signal: controller.signal });
-        if (disposed || !deps.isAppActive()) return status === 'online';
+        if (disposed || pausedForInteractiveQuiet || !deps.isAppActive()) {
+          return { online: status === 'online', measured: false };
+        }
         offlineAttempt = 0;
         setStatus('online');
-        return true;
+        return { online: true, measured: true };
       } catch {
         // Таймаут или обычная сетевая ошибка — пробуем следующий хост.
         // Внешний abort (background/dispose) — прекращаем весь probe.
-        if (!timedOut && controller.signal.aborted) return status === 'online';
+        if (!timedOut && controller.signal.aborted) {
+          return { online: status === 'online', measured: false };
+        }
       } finally {
+        networkSignal?.removeEventListener('abort', abortForInteractiveSession);
         clearTimeoutTimer();
         if (abortController === controller) abortController = null;
       }
-      if (disposed || !deps.isAppActive()) return status === 'online';
+      if (disposed || pausedForInteractiveQuiet || !deps.isAppActive()) {
+        return { online: status === 'online', measured: false };
+      }
     }
     setStatus('offline');
-    return false;
+    return { online: false, measured: true };
   };
 
   const runProbe = (origin: 'manual' | 'scheduled' | 'foreground' | 'subscriber'): Promise<boolean> => {
     if (probePromise) return probePromise;
-    if (disposed || !deps.isAppActive()) return Promise.resolve(status === 'online');
+    if (disposed || pausedForInteractiveQuiet || !deps.isAppActive()) {
+      return Promise.resolve(status === 'online');
+    }
     clearProbeTimer();
-    probePromise = probeOnce().then((online) => {
-      if (origin === 'scheduled' && !online) {
+    const attempt = deps.withNetworkLease
+      ? deps.withNetworkLease((signal) => probeOnce(signal))
+      : probeOnce();
+    probePromise = attempt.catch((error) => {
+      // A protected learning session is not an offline signal. Keep the last
+      // known state and retry only after the global quiet coordinator resumes.
+      if (isInteractiveNetworkDeferredError(error)) {
+        return { online: status === 'online', measured: false };
+      }
+      throw error;
+    }).then((outcome) => {
+      if (origin === 'scheduled' && outcome.measured && !outcome.online) {
         offlineAttempt = Math.min(offlineAttempt + 1, OFFLINE_BACKOFF_MS.length - 1);
       }
-      return online;
+      return outcome.online;
     }).finally(() => {
       probePromise = null;
+      if (pausedForInteractiveQuiet) return;
       if (foregroundProbePending && !disposed && deps.isAppActive() && listeners.size > 0) {
         foregroundProbePending = false;
         void runProbe('foreground');
@@ -122,7 +155,7 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
   };
 
   const appStateOff = deps.subscribeAppActive((active) => {
-    if (!active) {
+    if (!active || pausedForInteractiveQuiet) {
       clearProbeTimer();
       clearTimeoutTimer();
       abortController?.abort();
@@ -140,26 +173,46 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
     subscribe(listener: (online: boolean) => void) {
       if (disposed) return () => {};
       const wasEmpty = listeners.size === 0;
-      listeners.add(listener);
-      if (wasEmpty && deps.isAppActive()) {
-        if (nextProbeAt > deps.now()) scheduleAt(nextProbeAt);
+      const subscriptionListener = (online: boolean) => listener(online);
+      listeners.add(subscriptionListener);
+      if (wasEmpty && deps.isAppActive() && !pausedForInteractiveQuiet) {
+        if (probePromise) foregroundProbePending = true;
+        else if (nextProbeAt > deps.now()) scheduleAt(nextProbeAt);
         else void runProbe('subscriber');
       }
       return () => {
-        listeners.delete(listener);
-        if (listeners.size === 0) clearProbeTimer();
+        listeners.delete(subscriptionListener);
+        if (listeners.size === 0) {
+          clearProbeTimer();
+          foregroundProbePending = false;
+          abortController?.abort();
+        }
       };
     },
-    checkOnlineNow: () => runProbe('manual'),
+    checkOnlineNow: (): Promise<boolean> => runProbe('manual'),
     reportSuccess() {
       offlineAttempt = 0;
       setStatus('online');
-      if (listeners.size > 0 && deps.isAppActive()) scheduleNext();
+      if (listeners.size > 0 && deps.isAppActive() && !pausedForInteractiveQuiet) scheduleNext();
       else clearProbeTimer();
     },
     reportFailure() {
       setStatus('offline');
-      if (listeners.size > 0 && deps.isAppActive() && !probePromise && probeTimer === null) scheduleNext();
+      if (listeners.size > 0 && deps.isAppActive() && !pausedForInteractiveQuiet &&
+        !probePromise && probeTimer === null) scheduleNext();
+    },
+    pauseForInteractiveQuiet() {
+      pausedForInteractiveQuiet = true;
+      foregroundProbePending = false;
+      clearProbeTimer();
+      abortController?.abort();
+    },
+    resumeAfterInteractiveQuiet() {
+      pausedForInteractiveQuiet = false;
+      if (disposed || !deps.isAppActive() || listeners.size === 0) return;
+      clearProbeTimer();
+      if (probePromise) foregroundProbePending = true;
+      else void runProbe('foreground');
     },
     reset() {
       clearProbeTimer();
@@ -170,6 +223,7 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
       offlineAttempt = 0;
       nextProbeAt = 0;
       foregroundProbePending = false;
+      pausedForInteractiveQuiet = false;
     },
     dispose() {
       disposed = true;
@@ -191,17 +245,29 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
       hasInFlightProbe: probePromise !== null,
       hasAbortController: abortController !== null,
       foregroundProbePending,
+      pausedForInteractiveQuiet,
     }),
   };
 }
 
 const coordinator = createNetStatusCoordinator({
   fetch: (input, init) => fetch(input, init),
+  withNetworkLease: (work) => withBackgroundNetworkLease(
+    'net_status.probe',
+    (lease) => work(lease.signal),
+  ),
   now: Date.now,
   setTimeout: (listener, delayMs) => setTimeout(listener, delayMs),
   clearTimeout: (id) => clearTimeout(id as ReturnType<typeof setTimeout>),
   isAppActive: runtimeAppStateStore.getSnapshot,
   subscribeAppActive: (listener) => runtimeAppStateStore.subscribe(() => listener(runtimeAppStateStore.getSnapshot())),
+});
+
+registerInteractiveNetworkQuietParticipant('net_status.probe', {
+  // Active probes are already abortable leases. The global coordinator waits
+  // for their real fetch settlement before declaring the session quiet.
+  quiesce: () => coordinator.pauseForInteractiveQuiet(),
+  resume: () => coordinator.resumeAfterInteractiveQuiet(),
 });
 
 export function getNetStatus(): NetStatus { return coordinator.getStatus(); }

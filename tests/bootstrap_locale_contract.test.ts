@@ -3,7 +3,7 @@ import path from 'path';
 
 jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
-  SPANISH_UI_LOCALE_ENABLED: false,
+  SPANISH_UI_LOCALE_ENABLED: true,
 }));
 
 import {
@@ -14,16 +14,21 @@ import {
 const ROOT = path.resolve(__dirname, '..');
 
 describe('bootstrap locale contract', () => {
-  it('resolves only enabled startup interface languages', () => {
+  it('resolves every enabled startup interface language', () => {
     expect(resolveBootstrapLocaleFromDeviceLocale('ru-RU')).toBe('ru');
     expect(resolveBootstrapLocaleFromDeviceLocale('uk-UA')).toBe('uk');
+    expect(resolveBootstrapLocaleFromDeviceLocale('es-MX')).toBe('es');
+    expect(resolveBootstrapLocaleFromDeviceLocale('pt_BR')).toBe('pt-BR');
+    expect(resolveBootstrapLocaleFromDeviceLocale('vi-VN')).toBe('vi');
+    expect(resolveBootstrapLocaleFromDeviceLocale('id-ID')).toBe('id');
+    expect(resolveBootstrapLocaleFromDeviceLocale('tr-TR')).toBe('tr');
+    expect(resolveBootstrapLocaleFromDeviceLocale('pl-PL')).toBe('pl');
   });
 
-  it('normalizes known aliases but falls back when a locale is not enabled', () => {
-    expect(coerceInterfaceLang('pt_BR')).toBeNull();
-    expect(resolveBootstrapLocaleFromDeviceLocale('pt_BR')).toBe('ru');
-    expect(resolveBootstrapLocaleFromDeviceLocale('pt')).toBe('ru');
-    expect(resolveBootstrapLocaleFromDeviceLocale('es-MX')).toBe('ru');
+  it('normalizes known aliases', () => {
+    expect(coerceInterfaceLang('pt_BR')).toBe('pt-BR');
+    expect(resolveBootstrapLocaleFromDeviceLocale('pt_BR')).toBe('pt-BR');
+    expect(resolveBootstrapLocaleFromDeviceLocale('pt')).toBe('pt-BR');
   });
 
   it('falls back safely for unknown or malformed device locales', () => {
@@ -35,7 +40,8 @@ describe('bootstrap locale contract', () => {
   it('does not add language or pack readiness to the native splash gate', () => {
     const layout = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
     const match = layout.match(/const nativeSplashCanHide = ([^;]+);/);
-    expect(match?.[1]).toBe('ready && (effectiveShowOnboarding || isBanned || firstContentReady)');
+    expect(match?.[1]).toContain('startupSecurityBlocked');
+    expect(match?.[1]).toContain('ready && (effectiveShowOnboarding || isBanned || firstContentReady)');
     expect(match?.[1]).not.toMatch(/lang|pack|manifest|download|network|hydrate/i);
   });
 

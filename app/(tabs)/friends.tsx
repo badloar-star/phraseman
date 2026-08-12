@@ -105,12 +105,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTabNav } from '../TabContext';
 import { fetchFriendsActivityFeed, invalidateFriendsActivityCache, type FriendEvent } from '../firestore_friend_activity';
+import { friendActivityGiftCopy } from '../friend_activity_gift_copy';
 import {
-  fetchTodayActivityLikeState,
+  activityLikeStateKey,
+  fetchActivityLikeState,
+  fetchActivityLikeStates,
   fetchActivityLikeTotal,
   sendFriendActivityLike,
-  todayActivityLikeDateKeyUtc,
-  type FriendActivityLikeTodayState,
 } from '../friend_activity_likes';
 import {
   bumpActivityLikeCount,
@@ -128,12 +129,11 @@ import { emitAppEvent } from '../events';
 import { getNetStatus } from '../net_status';
 import {
   FRIEND_GIFT_CATALOG,
-  classifyFriendGiftError,
   isFriendGiftsCloudEnabled,
-  sendFriendGiftWithShards,
   sendFriendGiftThanks,
   type FriendGiftId,
 } from '../friend_gifts';
+import { enqueueFriendGiftSend } from '../friend_gift_outbox';
 import {
   claimFriendQuestReward,
   getActiveFriendQuest,
@@ -1128,7 +1128,7 @@ function giftEventLabel(payload: Record<string, string | number>, lang: string):
   return typeof rawGiftId === 'string' ? rawGiftId : '';
 }
 
-function eventText(event: FriendEvent, friendName: string, lang: string): string {
+function eventText(event: FriendEvent, friendName: string, lang: string, viewerUid: string): string {
   const n = friendName;
   const p = event.payload;
   const L = (
@@ -1143,11 +1143,11 @@ function eventText(event: FriendEvent, friendName: string, lang: string): string
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   if (event.type === 'friend_gift_sent') {
     const gift = giftEventLabel(p, lang);
-    return L(`${n} отправил подарок: ${gift}`, `${n} надіслав подарунок: ${gift}`, `${n} envió un regalo: ${gift}`, `${n} enviou um presente: ${gift}`, `${n} đã gửi quà: ${gift}`, `${n} mengirim hadiah: ${gift}`, `${n} hediye gönderdi: ${gift}`, `${n} wysłał prezent: ${gift}`);
+    return friendActivityGiftCopy({ type: event.type, friendName: n, giftLabel: gift, viewerUid, payload: p, lang });
   }
   if (event.type === 'friend_gift_received') {
     const gift = giftEventLabel(p, lang);
-    return L(`${n} получил подарок: ${gift}`, `${n} отримав подарунок: ${gift}`, `${n} recibió un regalo: ${gift}`, `${n} recebeu um presente: ${gift}`, `${n} đã nhận quà: ${gift}`, `${n} menerima hadiah: ${gift}`, `${n} hediye aldı: ${gift}`, `${n} otrzymał prezent: ${gift}`);
+    return friendActivityGiftCopy({ type: event.type, friendName: n, giftLabel: gift, viewerUid, payload: p, lang });
   }
   switch (event.type) {
     case 'level_up':
@@ -1365,8 +1365,9 @@ function ActivityTab({
   const [events, setEvents] = useState<FriendEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
-  const likeInFlightRef = useRef<string | null>(null);
+  const [likedActivityKeys, setLikedActivityKeys] = useState<Set<string>>(() => new Set());
+  const [viewerUid, setViewerUid] = useState('');
+  const likeInFlightRef = useRef<Set<string>>(new Set());
   const L = (
     ru: string,
     uk: string,
@@ -1381,17 +1382,19 @@ function ActivityTab({
   const load = useCallback(async (force = false) => {
     if (friendUids.length === 0) {
       setEvents([]);
-      setTodayLike(null);
+      setLikedActivityKeys(new Set());
       return;
     }
     if (force) setRefreshing(true); else setLoading(true);
     try {
-      const [result, likeState] = await Promise.all([
+      const [result, likeStates, currentUid] = await Promise.all([
         fetchFriendsActivityFeed(friendUids, force),
-        fetchTodayActivityLikeState(),
+        fetchActivityLikeStates(),
+        getCanonicalUserId().catch(() => null),
       ]);
       setEvents(result);
-      setTodayLike(likeState);
+      setLikedActivityKeys(new Set(likeStates.map(state => activityLikeStateKey(state.targetUid, state.eventId))));
+      setViewerUid(currentUid ?? '');
     } catch {
       // Сеть/бэкенд упали — оставляем прежнюю ленту, спиннер гасим в finally.
     } finally {
@@ -1412,53 +1415,44 @@ function ActivityTab({
   }, [friendUids]);
 
   const handleActivityLike = useCallback((event: FriendEvent) => {
-    const sameLike = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
-    if (sameLike || todayLike || likeInFlightRef.current) return;
+    const eventKey = activityLikeStateKey(event.uid, event.id);
+    if (likedActivityKeys.has(eventKey) || likeInFlightRef.current.has(eventKey)) return;
     hapticTap();
-    const eventKey = `${event.uid}:${event.id}`;
-    const optimisticCreatedAt = Date.now();
-    likeInFlightRef.current = eventKey;
-    setTodayLike({
-      date: todayActivityLikeDateKeyUtc(),
-      targetUid: event.uid,
-      eventId: event.id,
-      createdAt: optimisticCreatedAt,
-    });
+    likeInFlightRef.current.add(eventKey);
+    setLikedActivityKeys(current => new Set(current).add(eventKey));
     setEvents(prev => bumpActivityLikeCount(prev, event.uid, event.id));
 
     void sendFriendActivityLike({ targetUid: event.uid, eventId: event.id }).then(res => {
-      setTodayLike({
-        date: res.date,
-        targetUid: res.targetUid,
-        eventId: res.eventId,
-        createdAt: Date.now(),
-      });
+      setLikedActivityKeys(current => new Set(current).add(eventKey));
       setEvents(prev => setActivityLikeCount(prev, event.uid, event.id, res.activityLikeCount));
       void invalidateFriendsActivityCache();
     }).catch(async () => {
-      const freshState = await fetchTodayActivityLikeState().catch(() => null);
-      const freshMatchesEvent = freshState?.targetUid === event.uid && freshState?.eventId === event.id;
-      setTodayLike(current => {
-        if (freshState) return freshState;
-        if (
-          current?.targetUid === event.uid
-          && current?.eventId === event.id
-          && current?.createdAt === optimisticCreatedAt
-        ) {
-          return null;
-        }
-        return current;
+      const freshState = await fetchActivityLikeState(event.uid, event.id).catch(() => null);
+      const freshMatchesEvent = !!freshState;
+      setLikedActivityKeys(current => {
+        const next = new Set(current);
+        if (freshMatchesEvent) next.add(eventKey); else next.delete(eventKey);
+        return next;
       });
       if (!freshMatchesEvent) {
         setEvents(prev => rollbackActivityLikeCount(prev, event.uid, event.id));
       }
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Лайк не отправлен. Проверь интернет и попробуй ещё раз.',
+        messageUk: 'Лайк не надіслано. Перевір інтернет і спробуй ще раз.',
+        messageEs: 'No se envió el like. Comprueba Internet e inténtalo de nuevo.',
+        messagePtBr: 'A curtida não foi enviada. Verifique a internet e tente novamente.',
+        messageVi: 'Chưa gửi được lượt thích. Hãy kiểm tra mạng rồi thử lại.',
+        messageId: 'Like belum terkirim. Periksa internet lalu coba lagi.',
+        messageTr: 'Beğeni gönderilmedi. İnterneti kontrol edip tekrar dene.',
+        messagePl: 'Nie wysłano polubienia. Sprawdź internet i spróbuj ponownie.',
+      });
       void invalidateFriendsActivityCache();
     }).finally(() => {
-      if (likeInFlightRef.current === eventKey) {
-        likeInFlightRef.current = null;
-      }
+      likeInFlightRef.current.delete(eventKey);
     });
-  }, [todayLike]);
+  }, [likedActivityKeys]);
 
   // Без force кэш ленты (30 мин) долго показывает пустоту после событий у друзей.
   useEffect(() => { void load(false); }, [load]);
@@ -1578,13 +1572,13 @@ function ActivityTab({
         const color = eventIconColor(event.type, t.accent, themeMode);
         const likeColor = '#FF2D55';
         const likeCount = Math.max(0, Math.floor(Number(event.activityLikeCount ?? 0) || 0));
-        const likedToday = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
+        const liked = likedActivityKeys.has(activityLikeStateKey(event.uid, event.id));
         // Вехи (уровень/серия/достижение/ранг) подсвечены цветом события — их видно в потоке.
         const isMilestone = event.type === 'level_up' || event.type === 'streak_milestone'
           || event.type === 'achievement';
         const rowText = item.lessonsCount && item.lessonsCount > 1
           ? lessonsDayText(name, item.lessonsCount, lang)
-          : eventText(event, name, lang);
+          : eventText(event, name, lang, viewerUid);
         return (
           <Reanimated.View entering={FadeInDown.delay(Math.min(index, 10) * 40).duration(320)}>
           <View
@@ -1640,7 +1634,7 @@ function ActivityTab({
             </TouchableOpacity>
             <ActivityLikeButton
               testID={`friends-activity-like-${event.uid}-${event.id}`}
-              liked={likedToday}
+              liked={liked}
               count={likeCount}
               likeColor={likeColor}
               chrome={chrome}
@@ -2826,20 +2820,6 @@ export default function FriendsTabScreen() {
       pl: gift.descPl,
     });
 
-  const emitFriendGiftErrorToast = (message: string) => {
-    emitAppEvent('action_toast', {
-      type: 'error',
-      messageRu: message,
-      messageUk: message,
-      messageEs: message,
-      messagePtBr: message,
-      messageVi: message,
-      messageId: message,
-      messageTr: message,
-      messagePl: message,
-    });
-  };
-
   const notifyFriendGiftOffline = () => {
     const message = L(
       'Нет интернета. Подключись к сети и попробуй ещё раз.',
@@ -2910,117 +2890,74 @@ export default function FriendsTabScreen() {
       || !isCurrentAccountGeneration(giftAccountToken)
     ) return;
     hapticTap();
-    setGiftBusyId(giftId);
     const target = explicitTarget;
     const sentGiftName = giftLabel(gift);
-    setGiftTarget(null);
-    showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
-    emitAppEvent('action_toast', {
-      type: 'success',
-      messageRu: `Подарок отправлен: ${sentGiftName}`,
-      messageUk: `Подарунок надіслано: ${sentGiftName}`,
-      messageEs: `Regalo enviado: ${sentGiftName}`,
-      messagePtBr: `Presente enviado: ${sentGiftName}`,
-      messageVi: `Đã gửi quà: ${sentGiftName}`,
-      messageId: `Hadiah terkirim: ${sentGiftName}`,
-      messageTr: `Hediye gönderildi: ${sentGiftName}`,
-      messagePl: `Prezent wysłany: ${sentGiftName}`,
-    });
     try {
-      const res = await sendFriendGiftWithShards({
+      // Сначала фиксируем полную операцию на диске, затем мгновенно закрываем UI.
+      // Сервер, баланс и friend quest догоняют через crash-safe outbox без спиннера.
+      const queued = await enqueueFriendGiftSend({
         friendStableId: target.uid,
         giftId,
         senderDisplayName: myProfile?.name ?? '',
+      }, {
+        accountToken: giftAccountToken,
       });
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
-      const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
-      if (!isCurrentAccountGeneration(giftAccountToken)) return;
-      setGiftBalance(guardedBalance);
-      if (res.questStarted && res.quest) {
-        const quest = res.quest as FriendQuest;
-        setActiveFriendQuest(quest);
-        setFriendQuestStarted(quest);
-      } else {
-        void refreshFriendQuest(undefined, { force: true });
-      }
-      await trackActivity('friends:send_gift', {
-        feature: 'friends',
-        screen: 'friends',
-        result: 'success',
-        tags: { giftId, targetUid: target.uid, cost: gift.costShards },
+      setGiftTarget(null);
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: `Подарок отправлен: ${sentGiftName}`,
+        messageUk: `Подарунок надіслано: ${sentGiftName}`,
+        messageEs: `Regalo enviado: ${sentGiftName}`,
+        messagePtBr: `Presente enviado: ${sentGiftName}`,
+        messageVi: `Đã gửi quà: ${sentGiftName}`,
+        messageId: `Hadiah terkirim: ${sentGiftName}`,
+        messageTr: `Hediye gönderildi: ${sentGiftName}`,
+        messagePl: `Prezent wysłany: ${sentGiftName}`,
+      });
+      void queued.completion.then(async (res) => {
+        if (!isCurrentAccountGeneration(giftAccountToken)) return;
+        const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
+        if (!isCurrentAccountGeneration(giftAccountToken)) return;
+        setGiftBalance(guardedBalance);
+        if (res.questStarted && res.quest) {
+          const quest = res.quest as FriendQuest;
+          setActiveFriendQuest(quest);
+          setFriendQuestStarted(quest);
+        } else {
+          void refreshFriendQuest(undefined, { force: true });
+        }
+        await trackActivity('friends:send_gift', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'success',
+          tags: { giftId, targetUid: target.uid, cost: gift.costShards },
+        });
+      }).catch(async (error) => {
+        if (!isCurrentAccountGeneration(giftAccountToken)) return;
+        await trackActivity('friends:send_gift', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'error',
+          tags: { giftId, targetUid: target.uid, error: String(error) },
+        });
       });
     } catch (e) {
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
-      const msg = e instanceof Error ? e.message : String(e);
-      const kind = classifyFriendGiftError(e);
-      if (kind !== 'unknown') {
-        const feedback =
-          kind === 'limit'
-            ? L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany')
-            : kind === 'not_enough_shards'
-            ? L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł')
-            : kind === 'not_friends' || kind === 'user_missing'
-            ? L('Дружба уже не активна. Обнови список друзей.', 'Дружба вже не активна. Онови список друзів.', 'La amistad ya no esta activa. Actualiza la lista.', 'A amizade não está mais ativa. Atualize a lista.', 'Tình bạn không còn hoạt động. Hãy làm mới danh sách.', 'Pertemanan sudah tidak aktif. Segarkan daftar.', 'Arkadaşlık artık aktif değil. Listeyi yenile.', 'Znajomość nie jest już aktywna. Odśwież listę.')
-            : kind === 'auth' || kind === 'identity_changed'
-            ? L('Подарок не дошёл. Жемчуг вернулся.', 'Подарунок не дійшов. Перлини повернулися.', 'No se pudo enviar el regalo. Recuperaste las perlas.', 'O presente não foi enviado. As pérolas voltaram.', 'Không gửi được quà. Ngọc trai đã hoàn lại.', 'Hadiah tidak terkirim. Mutiara dikembalikan.', 'Hediye ulaşmadı. İnciler geri geldi.', 'Prezent nie dotarł. Perły wróciły.')
-            : kind === 'network'
-            ? L('Сеть не ответила. Статус отправки пока неизвестен — безопасно повтори попытку позже.', 'Мережа не відповіла. Статус надсилання поки невідомий — безпечно повтори спробу пізніше.', 'The network did not respond. The send status is unknown; retry safely later.', 'A rede não respondeu. O status do envio é desconhecido; tente novamente mais tarde.', 'Mạng chưa phản hồi. Chưa rõ trạng thái gửi; hãy thử lại sau.', 'Jaringan tidak merespons. Status pengiriman belum diketahui; coba lagi nanti.', 'Ağ yanıt vermedi. Gönderim durumu bilinmiyor; daha sonra güvenle tekrar dene.', 'Sieć nie odpowiedziała. Status wysłania jest nieznany; spróbuj bezpiecznie później.')
-            : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');
-        showFeedback(feedback);
-        emitFriendGiftErrorToast(feedback);
-        await trackActivity('friends:send_gift', {
-          feature: 'friends',
-          screen: 'friends',
-          result: 'error',
-          tags: { giftId, targetUid: target.uid, error: msg, kind },
-        });
-        return;
-      }
-      if (msg.includes('resource-exhausted') || msg.includes('limit')) {
-        showFeedback(L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany'));
-        emitAppEvent('action_toast', {
-          type: 'error',
-          messageRu: 'Лимит подарков на сегодня уже исчерпан',
-          messageUk: 'Ліміт подарунків на сьогодні вже вичерпано',
-          messageEs: 'Ya alcanzaste el limite de regalos de hoy',
-          messagePtBr: 'Você atingiu o limite de presentes de hoje',
-          messageVi: 'Bạn đã hết lượt tặng quà hôm nay',
-          messageId: 'Batas hadiah hari ini sudah tercapai',
-          messageTr: 'Bugünkü hediye sınırına ulaştın',
-          messagePl: 'Dzisiejszy limit prezentów został już wykorzystany',
-        });
-        await trackActivity('friends:send_gift', {
-          feature: 'friends',
-          screen: 'friends',
-          result: 'error',
-          tags: { giftId, targetUid: target.uid, error: msg },
-        });
-        return;
-      }
-      showFeedback(
-        msg.includes('precondition') || msg.includes('Not enough')
-          ? L('Не хватает жемчуга или дружба уже не активна', 'Не вистачає перлин або дружба вже не активна', 'Faltan perlas o la amistad ya no esta activa', 'Pérolas insuficientes ou amizade não está mais ativa', 'Không đủ ngọc trai hoặc tình bạn không còn hoạt động', 'Mutiara tidak cukup atau pertemanan sudah tidak aktif', 'İnci yetersiz veya arkadaşlık artık aktif değil', 'Za mało pereł albo znajomość nie jest już aktywna')
-          : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
-      );
+      const feedback = L('Не удалось поставить подарок в очередь. Попробуй ещё раз.', 'Не вдалося поставити подарунок у чергу. Спробуй ще раз.', 'Could not queue the gift. Try again.', 'Não foi possível colocar o presente na fila. Tente novamente.', 'Không thể xếp quà vào hàng đợi. Hãy thử lại.', 'Hadiah tidak dapat dimasukkan ke antrean. Coba lagi.', 'Hediye sıraya alınamadı. Tekrar dene.', 'Nie udało się dodać prezentu do kolejki. Spróbuj ponownie.');
+      showFeedback(feedback);
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Подарок не отправлен. Попробуй ещё раз.',
-        messageUk: 'Подарунок не надіслано. Спробуй ще раз.',
-        messageEs: 'No se pudo enviar el regalo. Inténtalo de nuevo.',
-        messagePtBr: 'Não foi possível enviar o presente. Tente novamente.',
-        messageVi: 'Không gửi được quà. Hãy thử lại.',
-        messageId: 'Hadiah tidak dapat dikirim. Coba lagi.',
-        messageTr: 'Hediye gönderilemedi. Tekrar dene.',
-        messagePl: 'Nie udało się wysłać prezentu. Spróbuj ponownie.',
+        messageRu: 'Не удалось поставить подарок в очередь. Попробуй ещё раз.',
+        messageUk: 'Не вдалося поставити подарунок у чергу. Спробуй ще раз.',
+        messageEs: 'No se pudo poner el regalo en cola. Inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível colocar o presente na fila. Tente novamente.',
+        messageVi: 'Không thể xếp quà vào hàng đợi. Hãy thử lại.',
+        messageId: 'Hadiah tidak dapat dimasukkan ke antrean. Coba lagi.',
+        messageTr: 'Hediye sıraya alınamadı. Tekrar dene.',
+        messagePl: 'Nie udało się dodać prezentu do kolejki. Spróbuj ponownie.',
       });
-      await trackActivity('friends:send_gift', {
-        feature: 'friends',
-        screen: 'friends',
-        result: 'error',
-        tags: { giftId, targetUid: target.uid, error: msg },
-      });
-    } finally {
-      if (isCurrentAccountGeneration(giftAccountToken)) setGiftBusyId(null);
     }
   };
 
@@ -3039,9 +2976,8 @@ export default function FriendsTabScreen() {
       || !requestAccountToken.stableId
       || !isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)
     ) return;
-    // Баланс уже прогревается при открытии picker. Не ждём здесь AsyncStorage:
-    // тап должен закрыть шторку и показать результат в том же кадре, а серверная
-    // проверка и списание догонят в фоне.
+    // Баланс уже прогревается при открытии picker. На тапе ждём только короткую
+    // локальную запись outbox; серверная проверка и списание идут уже в фоне.
     const knownBalance = peekLastKnownShardsBalance();
     const warmBalance = knownBalance ?? giftBalance;
     setGiftBalance((prev) => (prev === warmBalance ? prev : warmBalance));
@@ -3627,7 +3563,7 @@ export default function FriendsTabScreen() {
                 source={oskolokImageForPackShards(giftBalance)}
                 style={{ width: 20, height: 20 }}
                 contentFit="contain"
-                accessibilityLabel="Жемчуг"
+                accessibilityLabel={triLang(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
               />
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
             </LinearGradient>
@@ -3732,7 +3668,7 @@ export default function FriendsTabScreen() {
                       source={oskolokImageForPackShards(displayCost)}
                       style={{ width: 22, height: 22 }}
                       contentFit="contain"
-                      accessibilityLabel="Жемчуг"
+                      accessibilityLabel={triLang(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
                     />
                   </View>
                 </TouchableOpacity>
@@ -3790,7 +3726,7 @@ export default function FriendsTabScreen() {
                       style={{ width: 76, height: 76, borderRadius: 26, alignItems: 'center', justifyContent: 'center', borderWidth: isOliveTheme ? 0 : 1, borderColor: isOliveTheme ? 'transparent' : 'rgba(109,76,24,0.24)' }}
                     >
                       {iconGiftId ? (
-                        <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} contentFit="contain" accessibilityLabel="Иконка подарка" />
+                        <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Иконка подарка', uk: 'Іконка подарунка', es: 'Icono de regalo', 'pt-BR': 'Ícone de presente', vi: 'Biểu tượng quà tặng', id: 'Ikon hadiah', tr: 'Hediye simgesi', pl: 'Ikona prezentu' })} />
                       ) : (
                         <Ionicons name="gift-outline" size={34} color={monoIcon(themeMode, '#4C3412', MONO_ICON.onLight)} />
                       )}

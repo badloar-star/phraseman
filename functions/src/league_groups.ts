@@ -663,7 +663,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       // Вместимость — по живым: жители мест не занимают и уступают человеку.
       if (!members[stableUid] && countLiveMembers(members) >= GROUP_SIZE) return;
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      // зачем (владелец 2026-08-04): крон жителей ходит раз в 6 часов, а комната
+      // зачем (владелец 2026-08-04): даже часовой крон не заменяет мгновенное
       // нужна полной ПРЯМО СЕЙЧАС — иначе вошедший увидит «Упс, ты здесь один»
       // до следующего запуска. Подселяем в той же транзакции.
       const withResidents = fillRoomWithResidents(members, candidate, weekStartMs(), Date.now());

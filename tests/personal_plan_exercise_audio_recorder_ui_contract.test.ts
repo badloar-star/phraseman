@@ -64,7 +64,7 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     expect(SOURCE).toContain('listenPronunciationTarget');
     expect(SOURCE).toContain('speakFallbackAudio(targetText, 0.86');
     expect(SOURCE).toContain("if (Platform.OS === 'android') playFallbackAudio();");
-    expect(SOURCE).toContain('await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(SOURCE).toContain('await managedTargetAudio.playFromStart()');
     expect(SOURCE).toContain('targetPlaybackFallbackTimerRef.current = setTimeout');
     expect(SOURCE).toContain('const currentTime = Math.max');
     expect(SOURCE).toContain('currentTime > 0.05');

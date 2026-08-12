@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import type Ionicons from '@expo/vector-icons/Ionicons';
+import { ENABLE_TOURNAMENTS } from '../app/config';
 
 export type ReleaseNotesLocale =
   | 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
@@ -375,7 +376,17 @@ const RELEASE_NOTES_BY_LOCALE: LocaleMap<ReleaseNotesTexts> = {
   pl: PL,
 };
 
+// The copy is intentionally kept for the eventual owner-approved relaunch,
+// but no historical "What's new" card may advertise a retired entry point.
+const RETIRED_TOURNAMENT_COPY_RE = /турн(?:ир|ір)|torne|turn(?:amen|uva|iej)|giải đấu/iu;
+
 /** Тексты окна для языка интерфейса. Неизвестный язык → русский. */
 export function pickReleaseNotesTexts(lang: string): ReleaseNotesTexts {
-  return RELEASE_NOTES_BY_LOCALE[lang as ReleaseNotesLocale] ?? RU;
+  const selected = RELEASE_NOTES_BY_LOCALE[lang as ReleaseNotesLocale] ?? RU;
+  if (ENABLE_TOURNAMENTS) return selected;
+  return {
+    ...selected,
+    items: selected.items.filter((item) =>
+      !RETIRED_TOURNAMENT_COPY_RE.test(`${item.title}\n${item.body}`)),
+  };
 }

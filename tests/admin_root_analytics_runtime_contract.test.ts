@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = path.resolve(__dirname, '..');
-const adminRoot = path.join(root, 'admin');
+const adminRoot = path.join(root, 'admin', 'v2');
 const scripts = [
   'scripts/components/analytics-language.js',
   'scripts/pages/product-sessions.js',
@@ -47,6 +47,7 @@ function createRuntime() {
     },
     createElement: () => ({ id: '', textContent: '' }),
     getElementById: (id: string) => elements.get(id) || (styles.has(id) ? {} : null),
+    querySelector: (selector: string) => elements.get(selector) || null,
   };
   const context: Record<string, unknown> = {
     console,
@@ -68,13 +69,12 @@ function runScript(context: vm.Context, relativePath: string) {
   vm.runInContext(source, context, { filename: relativePath });
 }
 
-describe('root admin analytics runtime', () => {
-  test('every script referenced by the root admin exists outside the blocked surface', () => {
+describe('live admin analytics runtime', () => {
+  test('every script referenced by the live admin exists inside the published surface', () => {
     const html = fs.readFileSync(path.join(adminRoot, 'legacy.html'), 'utf8');
     for (const script of scripts) {
       expect(html).toContain(`<script src="${script}"></script>`);
       expect(fs.existsSync(path.join(adminRoot, script))).toBe(true);
-      expect(script).not.toContain('v2/');
     }
     const allLocalScripts = [...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/giu)]
       .map((match) => match[1])
@@ -83,14 +83,14 @@ describe('root admin analytics runtime', () => {
       const cleanPath = source.split(/[?#]/u)[0].replace(/^\//u, '');
       expect(fs.existsSync(path.join(adminRoot, cleanPath))).toBe(true);
     }
-    expect(html).not.toMatch(/<script[^>]+src=["'][^"']*v2\//u);
   });
 
   test('renderers are defined, escape untrusted values, and retain useful empty states', () => {
-    const { context } = createRuntime();
-    scripts.slice(0, 5).forEach((script) => runScript(context, script));
+    const { context, elements } = createRuntime();
+    scripts.slice(0, 6).forEach((script) => runScript(context, script));
     const runtime = context as any;
-    expect(typeof runtime.AdminAnalyticsLanguage.table).toBe('function');
+    expect(typeof runtime.AdminAnalyticsLanguage.esc).toBe('function');
+    expect(typeof runtime.AdminAnalyticsLanguage.header).toBe('function');
     expect(typeof runtime.renderProductSessions).toBe('function');
     expect(typeof runtime.renderLearningDiagnostics).toBe('function');
     expect(typeof runtime.renderLearningOutcomes).toBe('function');
@@ -98,27 +98,27 @@ describe('root admin analytics runtime', () => {
     expect(typeof runtime.renderRetentionDiagnostics).toBe('function');
     expect(typeof runtime.renderExperimentsAndReliability).toBe('function');
 
-    const rendered = runtime.AdminAnalyticsLanguage.table(
-      [{ key: 'name', label: 'Экран' }],
-      [{ name: '<img src=x onerror=alert(1)>' }],
+    const rendered = runtime.AdminAnalyticsLanguage.header(
+      '<img src=x onerror=alert(1)>',
+      'Проверка безопасного текста',
     );
     expect(rendered).toContain('&lt;img src=x onerror=alert(1)&gt;');
     expect(rendered).not.toContain('<img');
-    expect(runtime.renderProductSessions({})).toContain('Сессий за выбранный период пока нет');
+    const sessionsHost = makeElement();
+    elements.set('product-analytics-sessions', sessionsHost);
+    runtime.renderProductSessions({});
+    expect(sessionsHost.innerHTML).toContain('Подходящих сессий нет');
   });
 
   test('product loader calls the bridge, renders all panels, and updates its live status', async () => {
     const { context, elements } = createRuntime();
     scripts.slice(0, 6).forEach((script) => runScript(context, script));
-    const button = makeElement();
     const summaryNodes = new Map(['instances', 'sessions', 'views', 'unknown'].map((key) => [key, makeElement()]));
     const panel = makeElement();
-    panel.querySelector = jest.fn(() => button);
-    panel.querySelectorAll = jest.fn((selector: string) => {
-      const key = selector.match(/data-pa="([^"]+)"/)?.[1];
-      return key && summaryNodes.has(key) ? [summaryNodes.get(key)] : [];
-    });
     elements.set('product-analytics-panel', panel);
+    for (const [key, node] of summaryNodes) {
+      elements.set(`#product-analytics-summary [data-pa="${key}"]`, node);
+    }
     elements.set('product-analytics-range', makeElement('28'));
     elements.set('product-analytics-platform', makeElement('android'));
     ['product-analytics-status', 'product-analytics-sessions', 'product-analytics-screens',
@@ -132,7 +132,7 @@ describe('root admin analytics runtime', () => {
       platform: 'android',
       dataThroughMs: 1_800_000_000_000,
       dataLagMs: 1000,
-      quality: { consented_app_instances: 10, sessions: 12, screen_views: 30, unknown_screen_views: 1 },
+      quality: { consented_app_instances: 10, sessions: 12, screen_views: 30, unknown_screen_views: 1, unknown_screen_rate: 1 / 30 },
       sessions: { observed: 12, buckets: [], entryScreens: [], lastObservedScreens: [] },
       screens: [{ screen_id: 'home', views: 30 }],
       lessons: [{ lesson_id: 1, starts: 5, completes: 4 }],
@@ -150,22 +150,18 @@ describe('root admin analytics runtime', () => {
 
     await (context as any).loadProductAnalytics(true);
     expect(call).toHaveBeenCalledWith({ rangeDays: 28, platform: 'android' });
-    expect(elements.get('product-analytics-screens')?.innerHTML).toContain('Home');
-    expect(elements.get('product-analytics-status')?.textContent).toContain('Готово');
+    expect(elements.get('product-analytics-screens')?.innerHTML).toContain('Главная');
+    expect(elements.get('product-analytics-status')?.textContent).toContain('период 28 дней');
     expect(summaryNodes.get('instances')?.textContent).toBe('10');
-    expect(button.disabled).toBe(false);
 
     await (context as any).loadProductAnalytics(false);
     expect(call).toHaveBeenCalledTimes(1);
   });
 
-  test('product loader preserves visible data and releases the button after a network error', async () => {
+  test('product loader preserves visible data and releases the request lock after a network error', async () => {
     const { context, elements } = createRuntime();
     scripts.slice(0, 6).forEach((script) => runScript(context, script));
-    const button = makeElement();
     const panel = makeElement();
-    panel.querySelector = jest.fn(() => button);
-    panel.querySelectorAll = jest.fn(() => []);
     elements.set('product-analytics-panel', panel);
     elements.set('product-analytics-range', makeElement('28'));
     elements.set('product-analytics-platform', makeElement('all'));
@@ -173,21 +169,21 @@ describe('root admin analytics runtime', () => {
     const existing = makeElement();
     existing.innerHTML = '<p>Старые данные</p>';
     elements.set('product-analytics-screens', existing);
+    elements.set('product-analytics-lessons', makeElement());
+    elements.set('product-analytics-quality', makeElement());
     (context as any).callAdminProductAnalytics = jest.fn().mockRejectedValue(new Error('network unavailable'));
 
-    await expect((context as any).loadProductAnalytics(true)).resolves.toBeNull();
+    await expect((context as any).loadProductAnalytics(true)).resolves.toBeUndefined();
     expect(existing.innerHTML).toBe('<p>Старые данные</p>');
-    expect(elements.get('product-analytics-status')?.textContent).toContain('Не удалось обновить');
-    expect(button.disabled).toBe(false);
+    expect(elements.get('product-analytics-status')?.textContent).toContain('Не удалось загрузить');
+    expect((context as any)._productAnalyticsLoading).toBe(false);
   });
 
   test('subscription loader renders RevenueCat metrics and decision-grade warnings', async () => {
     const { context, elements } = createRuntime();
     runScript(context, scripts[0]);
     runScript(context, scripts[6]);
-    const button = makeElement();
     const panel = makeElement();
-    panel.querySelector = jest.fn(() => button);
     elements.set('subscription-analytics-panel', panel);
     elements.set('subscription-analytics-range', makeElement('90'));
     elements.set('subscription-analytics-store', makeElement('PLAY_STORE'));
@@ -201,8 +197,8 @@ describe('root admin analytics runtime', () => {
         purchases: 2,
         renewals: 3,
         truncated: true,
-        byEventType: [{ id: '<bad>', events: 5 }],
-        byProduct: [], byStore: [], byCancellationReason: [],
+        byEventType: [],
+        byProduct: [{ id: '<bad>', events: 5 }], byStore: [], byCancellationReason: [],
       },
       revenue: {
         status: 'truncated_not_decision_grade',
@@ -215,10 +211,10 @@ describe('root admin analytics runtime', () => {
     await (context as any).loadSubscriptionAnalytics(true);
     expect(call).toHaveBeenCalledWith({ rangeDays: 90, store: 'PLAY_STORE' });
     const html = elements.get('subscription-analytics-content')?.innerHTML || '';
-    expect(html).toContain('Достигнут лимит чтения');
-    expect(html).toContain('&lt;bad&gt;');
+    expect(html).toContain('Финансовая выборка обрезана');
+    expect(html).toContain('Другой тариф');
     expect(html).not.toContain('<bad>');
-    expect(elements.get('subscription-analytics-status')?.textContent).toContain('Готово');
-    expect(button.disabled).toBe(false);
+    expect(elements.get('subscription-analytics-status')?.textContent).toContain('частичные данные');
+    expect((context as any)._subscriptionAnalyticsLoading).toBe(false);
   });
 });

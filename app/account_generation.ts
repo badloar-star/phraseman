@@ -16,6 +16,7 @@ let restoreLockTail: Promise<void> = Promise.resolve();
 let accountTransitionLockTail: Promise<void> = Promise.resolve();
 let activeAccountTransitionLockLeases = new WeakSet<object>();
 const generationListeners = new Set<(token: AccountGenerationToken) => void>();
+const capturedAccountGenerationTokens = new WeakSet<object>();
 
 const normalizedStableId = (value: string | null): string | null => value?.trim() || null;
 
@@ -65,7 +66,20 @@ export function subscribeAccountGeneration(
 }
 
 export function captureAccountGeneration(): AccountGenerationToken {
-  return { generation: currentGeneration, stableId: currentStableId, phase: currentPhase };
+  const token = Object.freeze({
+    generation: currentGeneration,
+    stableId: currentStableId,
+    phase: currentPhase,
+  });
+  capturedAccountGenerationTokens.add(token);
+  return token;
+}
+
+export function isCapturedAccountGenerationToken(
+  value: unknown,
+): value is AccountGenerationToken {
+  return typeof value === 'object' && value !== null &&
+    capturedAccountGenerationTokens.has(value);
 }
 
 export function isCurrentAccountGeneration(

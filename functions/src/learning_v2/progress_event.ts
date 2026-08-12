@@ -1,11 +1,21 @@
 import { buildCanonicalAttemptRef, sanitizeAttemptBody, validateCanonicalAttemptRef, type CanonicalAttemptRef, type V2AttemptEventBody } from "../../../modules/learning-v2/contracts/attempt";
 import { hashCanonicalBody } from "../../../modules/learning-v2/policies/decision_registry";
+import {
+  parseRequiredSessionTaskSlotRef,
+  type RequiredSessionTaskSlotRefV1,
+} from "../../../modules/learning-v2/contracts/required_session_progress";
 import type { ApprovedEpisodeRevision } from "../../../modules/learning-v2/authoring/season_draft";
 import type { SeasonRevisionEnvelope } from "../../../modules/learning-v2/authoring/season_revision";
 import type { ImmutableEpisodeRevisionArtifact } from "../content_studio/episode_revision_resolver";
 import { materializeProgressEvidenceBundle, type ProgressEvidenceBundle, type MaterializedProgressEvidence } from "./progress_event_evidence";
 import { deriveProgressProjection, type ProgressProjection, type ProgressProjectionInput } from "./progress_event_projection";
 import type { ServerScoreResolution } from "./server_score_resolver";
+import {
+  parseRequiredSessionTaskAnswerResponse,
+  requiredSessionTaskAnswerResponseFingerprint,
+  type RequiredSessionTaskAnswerResponseV1,
+} from "./required_session_answer_verifier";
+export { deriveProgressAccountScopeHash } from "../../../modules/learning-v2/progress/progress_account_scope";
 
 export interface DelayedTerminalReference {
   readonly schemaVersion: "v2-delayed-terminal-ref.v1";
@@ -24,24 +34,35 @@ export interface ProgressEventRequest {
   readonly attemptRef: CanonicalAttemptRef;
   readonly evidenceBundle: ProgressEvidenceBundle;
   readonly projection: ProgressProjectionInput;
+  readonly requiredSessionTaskRef?: RequiredSessionTaskSlotRefV1;
+  /** Ephemeral scorer input; never copied into an attempt/evidence document. */
+  /**
+   * Ephemeral member of a post-session completion envelope. Mobile gameplay
+   * must never submit this synchronously from an answer button.
+   */
+  readonly requiredSessionAnswerResponse?: RequiredSessionTaskAnswerResponseV1;
   /** Immutable lookup key only; the receipt and evidence remain server-owned. */
   readonly terminalRef?: DelayedTerminalReference;
 }
 
 export interface ProgressEventOperation {
-  readonly schemaVersion: "v2-progress-event-operation.v1";
+  readonly schemaVersion: "v2-progress-event-operation.v2";
   readonly requestFingerprint: string;
   readonly attemptBodyHash: string;
   readonly componentFingerprint: string;
+  readonly requiredSessionTaskFingerprint: string | null;
+  readonly requiredSessionResponseFingerprint: string | null;
   readonly effectiveProjectionFingerprint: string;
   readonly projection: ProgressProjection;
   readonly result: { readonly accepted: true; readonly duplicate: boolean; readonly canonicalAttemptRef: CanonicalAttemptRef };
 }
 
 export interface ProgressAttemptRecord {
-  readonly schemaVersion: "v2-progress-attempt.v2";
+  readonly schemaVersion: "v2-progress-attempt.v3";
   readonly attemptBodyHash: string;
   readonly componentFingerprint: string;
+  readonly requiredSessionTaskFingerprint: string | null;
+  readonly requiredSessionResponseFingerprint: string | null;
   readonly effectiveProjectionFingerprint: string;
   readonly projection: ProgressProjection;
 }
@@ -104,11 +125,6 @@ export const assertProgressAccountScope = (requestScopeHash: string, serverScope
   if (!/^[a-f0-9]{16,128}$/.test(serverScopeHash) || requestScopeHash !== serverScopeHash) throw new Error("v2_progress_account_scope_mismatch");
 };
 
-export const deriveProgressAccountScopeHash = (stableUid: string, generation: number): string => {
-  if (!stableUid.trim() || !Number.isSafeInteger(generation) || generation < 1) throw new Error("v2_progress_account_identity_invalid");
-  return hashCanonicalBody({ schemaVersion: "v2-progress-account-scope.v1", stableUid, generation });
-};
-
 export const assertResolvedProgressPins = (request: ProgressEventRequest, season: SeasonRevisionEnvelope, episode: ImmutableEpisodeRevisionArtifact): void => {
   if (season.lifecycle.status !== "approved" || season.record.seasonId !== request.seasonId) throw new Error("v2_progress_season_not_approved_or_stale");
   const refs = (season.body as { episodeRevisionRefs?: unknown }).episodeRevisionRefs;
@@ -119,7 +135,7 @@ export const assertResolvedProgressPins = (request: ProgressEventRequest, season
 
 export const parseProgressEventRequest = (value: unknown): ProgressEventRequest => {
   const requiredKeys = ["accountScopeHash", "seasonId", "studyTarget", "learnerSourceLocale", "seasonRevisionId", "episodeRevisionRef", "idempotencyKey", "attemptBody", "attemptRef", "evidenceBundle", "projection"] as const;
-  if (!isRecord(value) || requiredKeys.some((key) => !Object.prototype.hasOwnProperty.call(value, key)) || Object.keys(value).some((key) => ![...requiredKeys, "terminalRef"].includes(key as typeof requiredKeys[number] | "terminalRef")) || typeof value.accountScopeHash !== "string" || !/^[a-f0-9]{16,128}$/.test(value.accountScopeHash) || !isSafeId(value.seasonId) || typeof value.studyTarget !== "string" || !value.studyTarget.trim() || typeof value.learnerSourceLocale !== "string" || !value.learnerSourceLocale.trim() || !isSafeId(value.seasonRevisionId) || !isApprovedEpisodeRevision(value.episodeRevisionRef) || typeof value.idempotencyKey !== "string" || !/^[A-Za-z0-9._:-]{8,160}$/.test(value.idempotencyKey) || !isRecord(value.projection)) throw new Error("v2_progress_event_request_invalid");
+  if (!isRecord(value) || requiredKeys.some((key) => !Object.prototype.hasOwnProperty.call(value, key)) || Object.keys(value).some((key) => ![...requiredKeys, "terminalRef", "requiredSessionTaskRef", "requiredSessionAnswerResponse"].includes(key as typeof requiredKeys[number] | "terminalRef" | "requiredSessionTaskRef" | "requiredSessionAnswerResponse")) || typeof value.accountScopeHash !== "string" || !/^[a-f0-9]{16,128}$/.test(value.accountScopeHash) || !isSafeId(value.seasonId) || typeof value.studyTarget !== "string" || !value.studyTarget.trim() || typeof value.learnerSourceLocale !== "string" || !value.learnerSourceLocale.trim() || !isSafeId(value.seasonRevisionId) || !isApprovedEpisodeRevision(value.episodeRevisionRef) || typeof value.idempotencyKey !== "string" || !/^[A-Za-z0-9._:-]{8,160}$/.test(value.idempotencyKey) || !isRecord(value.projection)) throw new Error("v2_progress_event_request_invalid");
   assertAttemptBounds(value.attemptBody);
   const attemptBody = sanitizeAttemptBody(value.attemptBody);
   const attemptRef = value.attemptRef as CanonicalAttemptRef;
@@ -137,7 +153,28 @@ export const parseProgressEventRequest = (value: unknown): ProgressEventRequest 
   const projection = value.projection as unknown as ProgressProjectionInput;
   const derivedProjection = deriveProgressProjection(projection);
   void derivedProjection;
-  return Object.freeze({ accountScopeHash: value.accountScopeHash, seasonId: value.seasonId, studyTarget: value.studyTarget, learnerSourceLocale: value.learnerSourceLocale, seasonRevisionId: value.seasonRevisionId, episodeRevisionRef: Object.freeze({ ...(value.episodeRevisionRef as ApprovedEpisodeRevision) }), idempotencyKey: value.idempotencyKey, attemptBody, attemptRef, evidenceBundle, projection: Object.freeze(projection), ...(parsedTerminalRef ? { terminalRef: Object.freeze({ ...parsedTerminalRef }) } : {}) });
+  let requiredSessionTaskRef: RequiredSessionTaskSlotRefV1 | undefined;
+  let requiredSessionAnswerResponse: RequiredSessionTaskAnswerResponseV1 | undefined;
+  if (Object.prototype.hasOwnProperty.call(value, "requiredSessionTaskRef")) {
+    if (delayed) throw new Error("required_session_task_slot_ref_unexpected");
+    requiredSessionTaskRef = parseRequiredSessionTaskSlotRef(value.requiredSessionTaskRef);
+    if (
+      requiredSessionTaskRef.activityId !== projection.activityId ||
+      requiredSessionTaskRef.taskId !== projection.starSlotId
+    ) throw new Error("required_session_task_slot_projection_mismatch");
+    if (Object.prototype.hasOwnProperty.call(value, "requiredSessionAnswerResponse")) {
+      requiredSessionAnswerResponse = parseRequiredSessionTaskAnswerResponse(
+        value.requiredSessionAnswerResponse,
+      );
+      if (requiredSessionAnswerResponse.taskId !== requiredSessionTaskRef.taskId ||
+        requiredSessionAnswerResponse.activityId !== requiredSessionTaskRef.activityId) {
+        throw new Error("required_session_answer_response_mismatch");
+      }
+    }
+  } else if (Object.prototype.hasOwnProperty.call(value, "requiredSessionAnswerResponse")) {
+    throw new Error("required_session_answer_response_unexpected");
+  }
+  return Object.freeze({ accountScopeHash: value.accountScopeHash, seasonId: value.seasonId, studyTarget: value.studyTarget, learnerSourceLocale: value.learnerSourceLocale, seasonRevisionId: value.seasonRevisionId, episodeRevisionRef: Object.freeze({ ...(value.episodeRevisionRef as ApprovedEpisodeRevision) }), idempotencyKey: value.idempotencyKey, attemptBody, attemptRef, evidenceBundle, projection: Object.freeze(projection), ...(requiredSessionTaskRef ? { requiredSessionTaskRef } : {}), ...(requiredSessionAnswerResponse ? { requiredSessionAnswerResponse } : {}), ...(parsedTerminalRef ? { terminalRef: Object.freeze({ ...parsedTerminalRef }) } : {}) });
 };
 
 /** Builds the only legal second phase request: immutable reference, no client evidence. */
@@ -154,6 +191,11 @@ export interface ProgressEventStore {
   validatePinnedScope(request: ProgressEventRequest): Promise<void>;
   reconcileReplay(request: ProgressEventRequest, materialized: MaterializedProgressEvidence, operation: ProgressEventOperation): Promise<void>;
   resolveServerProjection?: (request: ProgressEventRequest, materialized: MaterializedProgressEvidence) => Promise<{ readonly projection: ProgressProjection; readonly resolution: ServerScoreResolution } | undefined>;
+  applyRequiredSessionAttempt?: (
+    request: ProgressEventRequest,
+    resolution: ServerScoreResolution,
+  ) => Promise<void>;
+  writeRequiredSessionProgress?: () => Promise<void>;
   prepareTransactionPlan(request: ProgressEventRequest, materialized: MaterializedProgressEvidence, projection: ProgressProjection, trustedScoreResolution?: ServerScoreResolution): Promise<void>;
   writeEvidenceMaterialization(request: ProgressEventRequest, materialized: MaterializedProgressEvidence): Promise<void>;
   writeProgressProjection(request: ProgressEventRequest, projection: ProgressProjection): Promise<void>;
@@ -164,7 +206,7 @@ export interface ProgressEventStore {
 }
 
 const isValidOperationEnvelope = (value: unknown): value is ProgressEventOperation => {
-  if (!isRecord(value) || !exact(value, ["schemaVersion", "requestFingerprint", "attemptBodyHash", "componentFingerprint", "effectiveProjectionFingerprint", "projection", "result"]) || value.schemaVersion !== "v2-progress-event-operation.v1" || typeof value.requestFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.requestFingerprint) || typeof value.attemptBodyHash !== "string" || !/^[a-f0-9]{64}$/.test(value.attemptBodyHash) || typeof value.componentFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.componentFingerprint) || typeof value.effectiveProjectionFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.effectiveProjectionFingerprint) || !isValidProgressProjection(value.projection) || value.effectiveProjectionFingerprint !== deriveEffectiveProjectionFingerprint(value.attemptBodyHash, value.componentFingerprint, value.projection) || !isRecord(value.result) || !exact(value.result, ["accepted", "duplicate", "canonicalAttemptRef"]) || value.result.accepted !== true || typeof value.result.duplicate !== "boolean" || !isRecord(value.result.canonicalAttemptRef)) return false;
+  if (!isRecord(value) || !exact(value, ["schemaVersion", "requestFingerprint", "attemptBodyHash", "componentFingerprint", "requiredSessionTaskFingerprint", "requiredSessionResponseFingerprint", "effectiveProjectionFingerprint", "projection", "result"]) || value.schemaVersion !== "v2-progress-event-operation.v2" || typeof value.requestFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.requestFingerprint) || typeof value.attemptBodyHash !== "string" || !/^[a-f0-9]{64}$/.test(value.attemptBodyHash) || typeof value.componentFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.componentFingerprint) || (value.requiredSessionTaskFingerprint !== null && (typeof value.requiredSessionTaskFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.requiredSessionTaskFingerprint))) || (value.requiredSessionResponseFingerprint !== null && (typeof value.requiredSessionResponseFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.requiredSessionResponseFingerprint))) || typeof value.effectiveProjectionFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(value.effectiveProjectionFingerprint) || !isValidProgressProjection(value.projection) || value.effectiveProjectionFingerprint !== deriveEffectiveProjectionFingerprint(value.attemptBodyHash, value.componentFingerprint, value.projection) || !isRecord(value.result) || !exact(value.result, ["accepted", "duplicate", "canonicalAttemptRef"]) || value.result.accepted !== true || typeof value.result.duplicate !== "boolean" || !isRecord(value.result.canonicalAttemptRef)) return false;
   const ref = value.result.canonicalAttemptRef;
   return exact(ref, ["schemaVersion", "opId", "attemptBodyHash"]) && ref.schemaVersion === "v2-attempt-ref.v1" && typeof ref.opId === "string" && ref.opId.length > 0 && ref.attemptBodyHash === value.attemptBodyHash;
 };
@@ -179,22 +221,30 @@ export const applyProgressEvent = async (store: ProgressEventStore, request: Pro
   const effectiveEvidenceBundle = delayedEvidence ?? canonical.evidenceBundle;
   const materialized = materializeProgressEvidenceBundle(effectiveEvidenceBundle);
   const projection = deriveProgressProjection(canonical.projection);
-  const requestFingerprint = hashCanonicalBody({ accountScopeHash: canonical.accountScopeHash, seasonId: canonical.seasonId, studyTarget: canonical.studyTarget, learnerSourceLocale: canonical.learnerSourceLocale, seasonRevisionId: canonical.seasonRevisionId, episodeRevisionRef: canonical.episodeRevisionRef, idempotencyKey: canonical.idempotencyKey, attemptBodyHash: canonical.attemptRef.attemptBodyHash, componentFingerprint: materialized.componentFingerprint, projection, ...(canonical.terminalRef ? { terminalRef: canonical.terminalRef } : {}) });
+  const requiredSessionTaskFingerprint = canonical.requiredSessionTaskRef
+    ? hashCanonicalBody(canonical.requiredSessionTaskRef)
+    : null;
+  const requiredSessionResponseFingerprint = canonical.requiredSessionAnswerResponse
+    ? requiredSessionTaskAnswerResponseFingerprint(canonical.requiredSessionAnswerResponse)
+    : null;
+  const requestFingerprint = hashCanonicalBody({ accountScopeHash: canonical.accountScopeHash, seasonId: canonical.seasonId, studyTarget: canonical.studyTarget, learnerSourceLocale: canonical.learnerSourceLocale, seasonRevisionId: canonical.seasonRevisionId, episodeRevisionRef: canonical.episodeRevisionRef, idempotencyKey: canonical.idempotencyKey, attemptBodyHash: canonical.attemptRef.attemptBodyHash, componentFingerprint: materialized.componentFingerprint, requiredSessionResponseFingerprint, projection, ...(canonical.requiredSessionTaskRef ? { requiredSessionTaskRef: canonical.requiredSessionTaskRef } : {}), ...(canonical.terminalRef ? { terminalRef: canonical.terminalRef } : {}) });
   await tx.validatePinnedScope(canonical);
   const replay = await tx.readOperation(canonical.idempotencyKey, canonical.seasonRevisionId);
   if (replay) {
     if (!isValidOperationEnvelope(replay)) throw new Error("v2_progress_operation_invalid");
     if (replay.requestFingerprint !== requestFingerprint) throw new Error("v2_progress_idempotency_key_reused");
-    if (replay.attemptBodyHash !== canonical.attemptRef.attemptBodyHash || replay.componentFingerprint !== materialized.componentFingerprint || !sameAttemptRef(replay.result.canonicalAttemptRef, canonical.attemptRef)) throw new Error("v2_progress_operation_invalid");
+    if (replay.attemptBodyHash !== canonical.attemptRef.attemptBodyHash || replay.componentFingerprint !== materialized.componentFingerprint || replay.requiredSessionTaskFingerprint !== requiredSessionTaskFingerprint || replay.requiredSessionResponseFingerprint !== requiredSessionResponseFingerprint || !sameAttemptRef(replay.result.canonicalAttemptRef, canonical.attemptRef)) throw new Error("v2_progress_operation_invalid");
     await tx.reconcileReplay(canonical, materialized, replay);
     return { ...replay.result, duplicate: true };
   }
   const priorAttempt = await tx.readAttempt(canonical.accountScopeHash, canonical.attemptRef.opId);
   if (priorAttempt) {
     if (
-      priorAttempt.schemaVersion !== "v2-progress-attempt.v2" ||
+      priorAttempt.schemaVersion !== "v2-progress-attempt.v3" ||
       priorAttempt.attemptBodyHash !== canonical.attemptRef.attemptBodyHash ||
       priorAttempt.componentFingerprint !== materialized.componentFingerprint ||
+      priorAttempt.requiredSessionTaskFingerprint !== requiredSessionTaskFingerprint ||
+      priorAttempt.requiredSessionResponseFingerprint !== requiredSessionResponseFingerprint ||
       !isValidProgressProjection(priorAttempt.projection) ||
       priorAttempt.effectiveProjectionFingerprint !== deriveEffectiveProjectionFingerprint(
         priorAttempt.attemptBodyHash,
@@ -211,10 +261,12 @@ export const applyProgressEvent = async (store: ProgressEventStore, request: Pro
     }
     const result = { accepted: true as const, duplicate: true, canonicalAttemptRef: buildCanonicalAttemptRef(canonical.attemptBody) };
     const operation: ProgressEventOperation = {
-      schemaVersion: "v2-progress-event-operation.v1",
+      schemaVersion: "v2-progress-event-operation.v2",
       requestFingerprint,
       attemptBodyHash: canonical.attemptRef.attemptBodyHash,
       componentFingerprint: materialized.componentFingerprint,
+      requiredSessionTaskFingerprint,
+      requiredSessionResponseFingerprint,
       effectiveProjectionFingerprint: priorAttempt.effectiveProjectionFingerprint,
       projection: priorAttempt.projection,
       result,
@@ -224,6 +276,12 @@ export const applyProgressEvent = async (store: ProgressEventStore, request: Pro
     return result;
   }
   const serverProjection = tx.resolveServerProjection ? await tx.resolveServerProjection(canonical, materialized) : undefined;
+  if (canonical.requiredSessionTaskRef) {
+    if (!serverProjection?.resolution || !tx.applyRequiredSessionAttempt) {
+      throw new Error("required_session_server_resolution_required");
+    }
+    await tx.applyRequiredSessionAttempt(canonical, serverProjection.resolution);
+  }
   const effectiveProjection = serverProjection?.projection ?? projection;
   const effectiveProjectionFingerprint = deriveEffectiveProjectionFingerprint(
     canonical.attemptRef.attemptBodyHash,
@@ -231,16 +289,24 @@ export const applyProgressEvent = async (store: ProgressEventStore, request: Pro
     effectiveProjection,
   );
   await tx.prepareTransactionPlan(canonical, materialized, effectiveProjection, serverProjection?.resolution);
+  if (canonical.requiredSessionTaskRef) {
+    if (!tx.writeRequiredSessionProgress) {
+      throw new Error("required_session_server_resolution_required");
+    }
+    await tx.writeRequiredSessionProgress();
+  }
   await tx.writeProgressProjection(canonical, effectiveProjection);
   await tx.writeAttempt(canonical.accountScopeHash, canonical.attemptRef.opId, {
-    schemaVersion: "v2-progress-attempt.v2",
+    schemaVersion: "v2-progress-attempt.v3",
     attemptBodyHash: canonical.attemptRef.attemptBodyHash,
     componentFingerprint: materialized.componentFingerprint,
+    requiredSessionTaskFingerprint,
+    requiredSessionResponseFingerprint,
     effectiveProjectionFingerprint,
     projection: effectiveProjection,
   });
   await tx.writeEvidenceMaterialization(canonical, materialized);
   const result = { accepted: true as const, duplicate: false, canonicalAttemptRef: buildCanonicalAttemptRef(canonical.attemptBody) };
-  await tx.createOperation(canonical.idempotencyKey, { schemaVersion: "v2-progress-event-operation.v1", requestFingerprint, attemptBodyHash: canonical.attemptRef.attemptBodyHash, componentFingerprint: materialized.componentFingerprint, effectiveProjectionFingerprint, projection: effectiveProjection, result });
+  await tx.createOperation(canonical.idempotencyKey, { schemaVersion: "v2-progress-event-operation.v2", requestFingerprint, attemptBodyHash: canonical.attemptRef.attemptBodyHash, componentFingerprint: materialized.componentFingerprint, requiredSessionTaskFingerprint, requiredSessionResponseFingerprint, effectiveProjectionFingerprint, projection: effectiveProjection, result });
   return result;
 });

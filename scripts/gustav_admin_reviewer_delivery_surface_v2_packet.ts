@@ -222,6 +222,7 @@ const SOURCE_LOCALES = ['ru', 'uk'] as const;
 const SOURCE_FILES = {
   adminUiBible: 'docs/design/ADMIN_UI_BIBLE.md',
   adminIndex: 'admin/index.html',
+  liveAdmin: 'admin/v2/legacy.html',
   adminV2Dir: 'admin/v2',
   adminPersonalTrainings: 'admin/personal-trainings.js',
   adminExtraSurfaceFiles: [
@@ -800,6 +801,7 @@ function buildContract(repoRoot: string, runDir: string): Contract {
     sourceArtifacts: {
       adminUiBible: SOURCE_FILES.adminUiBible,
       adminIndex: SOURCE_FILES.adminIndex,
+      liveAdmin: SOURCE_FILES.liveAdmin,
       adminV2Dir: SOURCE_FILES.adminV2Dir,
       adminPersonalTrainings: SOURCE_FILES.adminPersonalTrainings,
       storageCloudTargetMapV2Packet: rel(repoRoot, storagePacketPath),
@@ -1298,8 +1300,7 @@ function main(): void {
     artifactHashes: {
       adminUiBible: sha256(path.join(repoRoot, SOURCE_FILES.adminUiBible)),
       adminIndex: sha256(path.join(repoRoot, SOURCE_FILES.adminIndex)),
-      adminV2Index: sha256(path.join(repoRoot, SOURCE_FILES.adminV2Dir, 'index.html')),
-      adminV2Firebase: sha256(path.join(repoRoot, SOURCE_FILES.adminV2Dir, 'scripts', 'admin-firebase.js')),
+      liveAdmin: sha256(path.join(repoRoot, SOURCE_FILES.liveAdmin)),
       reviewDecisionImportDryRunScript: sha256(path.join(repoRoot, SOURCE_FILES.reviewDecisionImportDryRunScript)),
       reviewerWorkflowV2Schema: sha256(runPath(runDir, SOURCE_FILES.reviewerWorkflowV2Schema)),
       targetPackManifestV2Draft: contract.packArtifactInventory.targetPackManifestSha256,

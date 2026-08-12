@@ -268,7 +268,7 @@ function AiCompanionSession() {
                 pl: 'Swobodna rozmowa z towarzyszem AI',
               })}
               variant="icon-flag"
-              accessibilityLabel="Сообщить об ошибке в диалоге"
+              accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
               style={{
                 width: 38,
                 height: 38,

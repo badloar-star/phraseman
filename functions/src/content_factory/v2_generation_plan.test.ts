@@ -3,8 +3,8 @@ import {
   buildV2SeasonPlan,
 } from './v2_generation_plan';
 
-describe('V2 generation stage plan', () => {
-  it('creates the exact pilot cardinality and terminal season QA', () => {
+describe('legacy V2 generation stage plan', () => {
+  it('preserves the existing full-season cardinality and terminal season QA', () => {
     const plan = buildV2SeasonPlan({
       scope: 'full_season',
       seasonId: 'season-01',
@@ -16,7 +16,7 @@ describe('V2 generation stage plan', () => {
     expect(plan.at(-1)?.dependsOn).toHaveLength(32);
   });
 
-  it('keeps the optional dialogue branch recipe-aware', () => {
+  it('keeps the existing optional dialogue branch unchanged', () => {
     const withBranches = buildV2EpisodeSubgraph({ episodeId: 'e1', dialogue: true }, 's1');
     const withoutBranches = buildV2EpisodeSubgraph({ episodeId: 'e2' }, 's1');
     expect(withBranches.filter((stage) => stage.kind === 'v2_dialogue_script')).toHaveLength(1);
@@ -32,29 +32,30 @@ describe('V2 generation stage plan', () => {
     expect(() => buildV2SeasonPlan({ scope: 'vertical_slice', seasonId: 's', episodeIds: ['e1'], recipes: [{ episodeId: 'e1' }, { episodeId: 'e1' }] })).toThrow('v2_recipe_episode_ids_must_be_unique');
   });
 
-  // зачем: пакет E1 не имеет права добавить 14-ю стадию — профиль языка это ref,
-  // а не стадия; фиксируем полный набор видов стадий как ровно 13 существующих.
-  it('keeps the stage-kind universe at exactly the thirteen pre-existing kinds', () => {
+  it('remains the historical twelve-kind aggregate-localization graph', () => {
     const plan = buildV2SeasonPlan({
-      seasonId: 'season-13',
+      seasonId: 'season-legacy',
       scope: 'full_season',
       episodeIds: Array.from({ length: 32 }, (_, index) => `episode-${String(index + 1).padStart(2, '0')}`),
       recipes: [{ episodeId: 'episode-01', dialogue: true }],
     });
-    const kinds = new Set(plan.map((stage) => stage.kind));
-    expect([...kinds].sort()).toEqual([
-      'v2_activity_graph',
-      'v2_activity_instances',
-      'v2_asset_manifest',
-      'v2_dialogue_script',
-      'v2_episode_bundle',
-      'v2_episode_outline',
-      'v2_localization',
-      'v2_preview_receipt',
-      'v2_scene_set',
-      'v2_season_outline',
-      'v2_season_qa',
-      'v2_voice_targets',
-    ]);
+    expect(new Set(plan.map((stage) => stage.kind))).toEqual(new Set([
+      'v2_season_outline', 'v2_episode_outline', 'v2_scene_set', 'v2_dialogue_script',
+      'v2_voice_targets', 'v2_activity_instances', 'v2_activity_graph', 'v2_asset_manifest',
+      'v2_localization', 'v2_preview_receipt', 'v2_episode_bundle', 'v2_season_qa',
+    ]));
+    expect(plan.filter((stage) => stage.kind === 'v2_localization')).toHaveLength(32);
+  });
+
+  it('freezes legacy 1/8/32 totals in both recipe modes', () => {
+    const count = (scope: 'vertical_slice' | 'chapter_internal' | 'full_season', episodes: number, dialogue: boolean) => buildV2SeasonPlan({
+      scope,
+      seasonId: `legacy-${episodes}-${dialogue}`,
+      episodeIds: Array.from({ length: episodes }, (_, index) => `e${index + 1}`),
+      recipes: dialogue ? Array.from({ length: episodes }, (_, index) => ({ episodeId: `e${index + 1}`, dialogue: true })) : [],
+    }).length;
+    expect([count('vertical_slice', 1, false), count('vertical_slice', 1, true)]).toEqual([11, 12]);
+    expect([count('chapter_internal', 8, false), count('chapter_internal', 8, true)]).toEqual([74, 82]);
+    expect([count('full_season', 32, false), count('full_season', 32, true)]).toEqual([290, 322]);
   });
 });

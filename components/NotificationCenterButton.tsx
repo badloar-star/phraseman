@@ -90,6 +90,10 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return triLang(lang, { ru: 'отправил(а) вам подарок', uk: 'надіслав(ла) вам подарунок', es: 'te envió un regalo', 'pt-BR': 'enviou um presente', vi: 'đã gửi quà cho bạn', id: 'mengirimimu hadiah', tr: 'sana hediye gönderdi', pl: 'wysłał(a) ci prezent' });
     case 'friend_gift_thanks':
       return triLang(lang, { ru: 'поблагодарил(а) за подарок', uk: 'подякував(ла) за подарунок', es: 'agradeció tu regalo', 'pt-BR': 'agradeceu o presente', vi: 'đã cảm ơn món quà', id: 'berterima kasih atas hadiah', tr: 'hediye için teşekkür etti', pl: 'podziękował(a) za prezent' });
+    case 'arena_partner_invite':
+      return triLang(lang, { ru: 'приглашает стать Арена-парой', uk: 'запрошує стати Арена-парою', es: 'te invita a formar una Pareja de Arena', 'pt-BR': 'convida você para uma Dupla da Arena', vi: 'mời bạn lập Cặp đôi Arena', id: 'mengundangmu menjadi Partner Arena', tr: 'seni Arena Eşleşmesine davet ediyor', pl: 'zaprasza cię do Pary Areny' });
+    case 'arena_partner_nudge':
+      return triLang(lang, { ru: 'ждёт вас в Арена-паре', uk: 'чекає на вас в Арена-парі', es: 'te espera en Pareja de Arena', 'pt-BR': 'espera por você na Dupla da Arena', vi: 'đang chờ bạn trong Cặp đôi Arena', id: 'menunggumu di Partner Arena', tr: 'Arena Eşleşmesinde seni bekliyor', pl: 'czeka na ciebie w Parze Areny' });
     case 'report_reply':
       return reportReplyCopy(lang).reportReply;
     default:
@@ -104,6 +108,8 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'activity_like': return 'heart';
     case 'friend_gift_received': return 'gift-outline';
     case 'friend_gift_thanks': return 'happy-outline';
+    case 'arena_partner_invite': return 'people-circle-outline';
+    case 'arena_partner_nudge': return 'flash-outline';
     case 'report_reply': return 'chatbox-ellipses-outline';
     default: return 'notifications-outline';
   }
@@ -263,6 +269,10 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     setVisible(false);
     const nav = row.nav;
     if (!nav) return;
+    if (nav.kind === 'arena_partner') {
+      router.push('/arena_partner' as any);
+      return;
+    }
     router.push('/(tabs)/friends' as any);
   }, []);
 

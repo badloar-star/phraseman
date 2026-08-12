@@ -22,6 +22,7 @@
  * от I/O, поэтому покрывается тестами без сети и Firestore.
  */
 import * as admin from 'firebase-admin';
+import { TOURNAMENTS_RELEASED } from './tournament_release_gate';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
@@ -31,7 +32,7 @@ const HOUR_MS = 60 * 60 * 1000;
  * рекламировать закрытый раздел даже старым клиентам с сохранённым push-токеном.
  * Вернуть true только вместе с осознанным возвратом клиентских маршрутов.
  */
-export const TOURNAMENT_START_PUSH_ENABLED = false;
+export const TOURNAMENT_START_PUSH_ENABLED = TOURNAMENTS_RELEASED;
 
 /** Один турнирный пуш в сутки на юзера — прямое требование владельца. */
 export const TOURNAMENT_PUSH_COOLDOWN_MS = 20 * HOUR_MS;

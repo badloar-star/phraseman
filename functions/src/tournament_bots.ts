@@ -15,11 +15,13 @@ import {
   TOURNAMENT_REDDIT_BOT_PROFILE_COUNT,
   TOURNAMENT_REDDIT_BOT_SEED_VERSION,
 } from './tournament_reddit_bot_names';
+import { assertTournamentsReleased } from './tournament_release_gate';
 
 export const adminSeedBotProfiles = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (request.auth?.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
+  assertTournamentsReleased();
   const requestedCount = request.data?.count;
   if (requestedCount !== undefined
     && Math.trunc(Number(requestedCount)) !== TOURNAMENT_REDDIT_BOT_PROFILE_COUNT) {

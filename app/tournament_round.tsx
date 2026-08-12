@@ -1337,7 +1337,7 @@ export default function TournamentRoundScreen() {
     return (
       <View style={[styles.root, styles.introRoot]}>
         <TournamentBackdrop variant="play" />
-        <Text style={styles.introMode}>Готовим вопросы…</Text>
+        <Text style={styles.introMode}>{triLang(lang, { ru: 'Готовим вопросы…', uk: 'Готуємо запитання…', es: 'Preparando preguntas…', 'pt-BR': 'Preparando perguntas…', vi: 'Đang chuẩn bị câu hỏi…', id: 'Menyiapkan pertanyaan…', tr: 'Sorular hazırlanıyor…', pl: 'Przygotowujemy pytania…' })}</Text>
       </View>
     );
   }
@@ -1384,7 +1384,7 @@ export default function TournamentRoundScreen() {
             <Text style={styles.forfeitButtonText}>{triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Rời đi', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}</Text>
           </Pressable>
           <Text style={styles.progressLabel}>
-            Вопрос {index + 1} <Text style={styles.progressLabelDim}>из {total}</Text>
+            {triLang(lang, { ru: `Вопрос ${index + 1}`, uk: `Запитання ${index + 1}`, es: `Pregunta ${index + 1}`, 'pt-BR': `Pergunta ${index + 1}`, vi: `Câu hỏi ${index + 1}`, id: `Pertanyaan ${index + 1}`, tr: `Soru ${index + 1}`, pl: `Pytanie ${index + 1}` })} <Text style={styles.progressLabelDim}>{triLang(lang, { ru: `из ${total}`, uk: `з ${total}`, es: `de ${total}`, 'pt-BR': `de ${total}`, vi: `trên ${total}`, id: `dari ${total}`, tr: `${total} soru`, pl: `z ${total}` })}</Text>
           </Text>
           <V2Segments total={total} done={index + 1} />
           <TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />
@@ -2101,7 +2101,7 @@ const WordBank = memo(function WordBank({
             onPress={submit}
             disabled={disabled || revealed}
           >
-            Готово
+            {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Hazır', pl: 'Gotowe' })}
           </V2Cta>
         ) : null}
       </View>

@@ -27,6 +27,7 @@ const CARD_KEYS = [
     "promptId",
     "promptNovelty",
 ];
+const CARD_KEYS_V2 = [...CARD_KEYS, "activityId"];
 const OPTIONAL_KEYS = [
     "slotId",
     "episodeId",
@@ -198,7 +199,8 @@ const validateV2SessionSet = (input) => {
     if (!hasExactKeys(input, BODY_KEYS))
         return fail(["session_set_field_unknown"]);
     const issues = [];
-    if (input.schemaVersion !== "v2-session-set.v1")
+    const isV2 = input.schemaVersion === "v2-session-set.v2";
+    if (input.schemaVersion !== "v2-session-set.v1" && !isV2)
         issues.push("session_set_schema_version");
     if (!isIdentity(input.episodeId) ||
         !Number.isSafeInteger(input.version) ||
@@ -233,7 +235,7 @@ const validateV2SessionSet = (input) => {
         }
         const families = new Set();
         for (const card of candidate.cards) {
-            if (!isRecord(card) || !hasExactKeys(card, CARD_KEYS)) {
+            if (!isRecord(card) || !hasExactKeys(card, isV2 ? CARD_KEYS_V2 : CARD_KEYS)) {
                 issues.push("session_card_invalid");
                 continue;
             }
@@ -254,6 +256,9 @@ const validateV2SessionSet = (input) => {
                 !SUPPORT_LEVELS.has(card.support) ||
                 !["trained", "varied", "novel"].includes(String(card.promptNovelty)))
                 issues.push("session_card_invalid");
+            if (isV2 && !isIdentity(card.activityId)) {
+                issues.push("session_card_activity_invalid");
+            }
             if (typeof card.family !== "string" ||
                 !REQUIRED_SESSION_ALLOWED_FAMILIES.has(card.family)) {
                 issues.push("session_card_family_unapproved");

@@ -25,12 +25,12 @@ describe('season-pass rewards apply locally', () => {
     expect(JSON.parse(stored!)).toEqual(expect.objectContaining({ multiplier: 2 }));
   });
 
-  test('tournament ticket is stored locally without a callable response', async () => {
+  test('retired tournament ticket cannot recreate ticket state', async () => {
     const result = await applySeasonRewardLocal({ kind: 'tournament_ticket' });
 
     expect(result).toEqual({ ok: true });
     const stored = await AsyncStorage.getItem('season_tournament_ticket_v1');
-    expect(JSON.parse(stored!)).toEqual(expect.objectContaining({ usesLeft: 1 }));
+    expect(stored).toBeNull();
   });
 
   test('Plus days create a local entitlement without a callable response', async () => {
@@ -64,6 +64,9 @@ describe('season-pass rewards apply locally', () => {
       'season_1:11:pass',
       'season_1:12:pass',
     ]);
+    expect(inventory.find((item) => item.id === 'season_1:12:pass')).toEqual(
+      expect.objectContaining({ kind: 'pearls', amount: 5 }),
+    );
   });
 });
 

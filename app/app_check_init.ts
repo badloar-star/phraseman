@@ -8,23 +8,18 @@ import {
   CLOUD_SYNC_ENABLED,
   IS_EXPO_GO,
 } from './config';
+import {
+  isInteractiveNetworkDeferredError,
+  registerInteractiveNetworkQuietParticipant,
+  withBackgroundNetworkLease,
+  type BackgroundNetworkLease,
+} from './interactive_network_quiet';
 
 let appCheckInitPromise: Promise<boolean> | null = null;
 let appCheckReady = false;
 let appCheckLastFailureAtMs = 0;
 
-const APP_CHECK_TOKEN_TIMEOUT_MS = 3500;
 const APP_CHECK_FAILURE_COOLDOWN_MS = 5 * 60 * 1000;
-
-function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
-  let timeoutId: ReturnType<typeof setTimeout> | undefined;
-  const timeout = new Promise<never>((_, reject) => {
-    timeoutId = setTimeout(() => reject(new Error('app_check_token_timeout')), ms);
-  });
-  return Promise.race([promise, timeout]).finally(() => {
-    if (timeoutId !== undefined) clearTimeout(timeoutId);
-  });
-}
 
 function isJwtLikeToken(value: unknown): boolean {
   return typeof value === 'string' && value.split('.').length === 3 && value.length > 80;
@@ -36,23 +31,47 @@ function tokenStringFromResult(value: unknown): string | null {
   return typeof token === 'string' ? token : null;
 }
 
-function setAppCheckAutoRefreshEnabled(enabled: boolean): void {
+async function setAppCheckAutoRefreshEnabled(enabled: boolean): Promise<void> {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const appCheck = require('@react-native-firebase/app-check').default;
-    appCheck().setTokenAutoRefreshEnabled(enabled);
+    await Promise.resolve(appCheck().setTokenAutoRefreshEnabled(enabled));
   } catch {
     // Native module may be unavailable before prebuild / pod install.
   }
 }
 
-async function verifyAppCheckCanMintJwt(appCheck: any): Promise<boolean> {
+registerInteractiveNetworkQuietParticipant('firebase.app_check_refresh', {
+  quiesce: async () => {
+    await setAppCheckAutoRefreshEnabled(false);
+    // A mint admitted before SESSION_INTENT remains part of the fence until its
+    // raw native promise settles. A caller timeout must never hide it.
+    if (appCheckInitPromise) await appCheckInitPromise;
+  },
+  // Proactive native refresh stays disabled for the lifetime of the app.
+  // On-demand token acquisition belongs to a tracked network operation.
+  resume: () => undefined,
+});
+
+export function isFirebaseAppCheckReady(): boolean {
+  return appCheckReady;
+}
+
+async function verifyAppCheckCanMintJwt(
+  appCheck: any,
+  lease: BackgroundNetworkLease,
+): Promise<boolean> {
   try {
-    const first = await withTimeout(appCheck().getToken(false), APP_CHECK_TOKEN_TIMEOUT_MS);
+    lease.assertCurrent();
+    const first = await appCheck().getToken(false);
+    lease.assertCurrent();
     if (isJwtLikeToken(tokenStringFromResult(first))) return true;
-    const refreshed = await withTimeout(appCheck().getToken(true), APP_CHECK_TOKEN_TIMEOUT_MS);
+    lease.assertCurrent();
+    const refreshed = await appCheck().getToken(true);
+    lease.assertCurrent();
     return isJwtLikeToken(tokenStringFromResult(refreshed));
-  } catch {
+  } catch (error) {
+    if (isInteractiveNetworkDeferredError(error)) throw error;
     return false;
   }
 }
@@ -63,7 +82,7 @@ export async function initFirebaseAppCheckIfAvailable(
   if (appCheckReady) return true;
   if (appCheckInitPromise) return appCheckInitPromise;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-    setAppCheckAutoRefreshEnabled(false);
+    void setAppCheckAutoRefreshEnabled(false);
     return false;
   }
 
@@ -75,7 +94,7 @@ export async function initFirebaseAppCheckIfAvailable(
   // Internal/preview builds use debug only when explicitly configured. Builds
   // explicitly marked for real attestation use Play Integrity / App Attest.
   if (!APP_CHECK_REAL_ATTESTATION_ENABLED && !useDebugProvider) {
-    setAppCheckAutoRefreshEnabled(false);
+    void setAppCheckAutoRefreshEnabled(false);
     return false;
   }
   if (
@@ -86,8 +105,9 @@ export async function initFirebaseAppCheckIfAvailable(
     return false;
   }
 
-  appCheckInitPromise = (async () => {
+  const initAttempt = withBackgroundNetworkLease('firebase.app_check_init', async (lease) => {
     try {
+      lease.assertCurrent();
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const appCheck = require('@react-native-firebase/app-check').default;
       const provider = appCheck().newReactNativeFirebaseAppCheckProvider();
@@ -102,29 +122,42 @@ export async function initFirebaseAppCheckIfAvailable(
           apple: { provider: 'appAttestWithDeviceCheckFallback' },
         });
       }
+      lease.assertCurrent();
       await appCheck().initializeAppCheck({
         provider,
         isTokenAutoRefreshEnabled: false,
       });
-      const hasJwt = await verifyAppCheckCanMintJwt(appCheck);
+      lease.assertCurrent();
+      const hasJwt = await verifyAppCheckCanMintJwt(appCheck, lease);
       if (!hasJwt) {
         appCheckLastFailureAtMs = Date.now();
         appCheckInitPromise = null;
-        setAppCheckAutoRefreshEnabled(false);
+        await setAppCheckAutoRefreshEnabled(false);
         return false;
       }
+      lease.assertCurrent();
       appCheckReady = true;
       appCheckLastFailureAtMs = 0;
-      setAppCheckAutoRefreshEnabled(true);
+      await setAppCheckAutoRefreshEnabled(false);
       return true;
-    } catch {
-      appCheckLastFailureAtMs = Date.now();
+    } catch (error) {
+      if (!isInteractiveNetworkDeferredError(error)) {
+        appCheckLastFailureAtMs = Date.now();
+      }
       appCheckInitPromise = null;
-      setAppCheckAutoRefreshEnabled(false);
+      await setAppCheckAutoRefreshEnabled(false);
       // Native module may be unavailable before prebuild / pod install.
       return false;
     }
-  })();
+  });
+  appCheckInitPromise = initAttempt.catch(async (error) => {
+    if (!isInteractiveNetworkDeferredError(error)) {
+      appCheckLastFailureAtMs = Date.now();
+    }
+    appCheckInitPromise = null;
+    await setAppCheckAutoRefreshEnabled(false);
+    return false;
+  });
 
   return appCheckInitPromise;
 }

@@ -7,6 +7,7 @@ import { TOURNAMENT_MODES } from './tournament_pool_plan';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { assertTournamentsReleased, TOURNAMENTS_RELEASED } from './tournament_release_gate';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isLobbyOpeningNow, runTournamentStartPush } from './tournament_start_push';
 import {
@@ -1459,6 +1460,7 @@ export function planTournamentStartNowJoinedRoom(input: {
 export const tournamentCreateRooms = onSchedule(
   { schedule: '*/5 * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     const [config, resources, economySnap] = await Promise.all([
       loadScheduleConfig(db),
@@ -2325,6 +2327,7 @@ async function ensureRoomPlayable(db: FirebaseFirestore.Firestore, roomId: strin
 }
 
 export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck: false }, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -2431,6 +2434,7 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
 });
 
 export const tournamentLeave = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
@@ -2442,6 +2446,7 @@ export const tournamentLeave = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
 });
 
 export const tournamentForfeit = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
@@ -2876,6 +2881,7 @@ export async function processTournamentFillRooms(
 export const tournamentFillBots = onSchedule(
   { schedule: '* * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     await processTournamentFillRooms({ db, nowMs: Date.now() });
   },
@@ -3527,6 +3533,7 @@ export async function tournamentSubmitTransaction(
 }
 
 export const tournamentSubmitSpeedMatchAttempt = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
@@ -3549,6 +3556,7 @@ export const tournamentSubmitSpeedMatchAttempt = onCall(HOT_CALLABLE_OPTIONS, as
 });
 
 export const tournamentSubmitTaskAnswer = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString(request.data?.roomId, 160);
   const taskId = sanitizeString(request.data?.taskId, 160);
@@ -3579,6 +3587,7 @@ export const tournamentSubmitTaskAnswer = onCall(HOT_CALLABLE_OPTIONS, async (re
 });
 
 export const tournamentSubmitAnswers = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
@@ -3766,6 +3775,7 @@ export async function tournamentFinalizeTransaction(
 }
 
 export const tournamentFinalize = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (request.auth?.token?.admin !== true) throw new HttpsError('permission-denied', 'Admin only');
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
@@ -4291,6 +4301,7 @@ export async function cleanupExpiredTournamentReviewEvidence(
 export const tournamentAdvanceRooms = onSchedule(
   { schedule: '* * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     const nowMs = Date.now();
     await processDueTournamentRooms({ db, nowMs });
@@ -4361,8 +4372,9 @@ export const tournamentAdvanceRound = onCall(
   // rechecked transactionally below. App Check cannot be a hard dependency
   // here: an otherwise valid Android participant would be stranded until the
   // minute scheduler whenever attestation is unavailable or rejected.
-  { ...HOT_CALLABLE_OPTIONS, enforceAppCheck: false, minInstances: 1 },
+  { ...HOT_CALLABLE_OPTIONS, enforceAppCheck: false, minInstances: TOURNAMENTS_RELEASED ? 1 : 0 },
   async (request) => {
+    assertTournamentsReleased();
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const roomId = sanitizeString(request.data?.roomId, 160);
     const expectedState = sanitizeString(request.data?.expectedState, 20);
@@ -4464,6 +4476,7 @@ export async function tournamentClaimTransaction(
 }
 
 export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
@@ -4517,10 +4530,11 @@ export const tournamentStartNow = onCall(
     region: 'europe-west1',
     enforceAppCheck: false,
     timeoutSeconds: 60,
-    minInstances: 1,
+    minInstances: TOURNAMENTS_RELEASED ? 1 : 0,
     maxInstances: 10,
   },
   async (request) => {
+    assertTournamentsReleased();
     try {
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const authUid = request.auth.uid;
@@ -4709,6 +4723,7 @@ export const tournamentStartNow = onCall(
  * свои: во время игры это был бы чит, а чужие ответы не нужны никому.
  */
 export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   const uid = request.auth?.uid;
   if (!uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString((request.data as { roomId?: unknown })?.roomId, 140);

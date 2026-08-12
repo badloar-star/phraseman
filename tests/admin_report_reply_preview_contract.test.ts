@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
+const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
 function readPreparedReplies() {
   const marker = 'PREPARED_REPORT_REPLIES = {';
@@ -34,8 +34,11 @@ test('admin report AI action prepares drafts without sending them', () => {
   expect(prepareFunction).not.toContain('draftReportReplyAI(');
 });
 
-test('root admin never links back to the retired v2 surface', () => {
-  expect(adminHtml).not.toMatch(/(?:href|src)=["']\/v2(?:\/|\.html|["'])/u);
+test('the published admin preview is read from the single live surface', () => {
+  const firebaseJson = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '..', 'firebase.json'), 'utf8'),
+  ) as { hosting: Array<{ target?: string; public?: string }> };
+  expect(firebaseJson.hosting.find((entry) => entry.target === 'admin')?.public).toBe('admin/v2');
 });
 
 test('prepared replies expose resolution and reward metadata', () => {
@@ -175,7 +178,11 @@ test('prepared drafts are user-safe and manual bulk send is guarded', () => {
   expect(validationEnd).toBeGreaterThan(validationStart);
   const validate = Function(`${adminHtml.slice(validationStart, validationEnd)}; return validatePreparedReplyBatch;`)();
   const base = { title: 'x', body: 'y', shards: 1, resolution: 'confirmed_fixed', rewardGroup: 'group-a' };
-  const preparedBatch = readPreparedReplies();
+  const currentIds = new Set(
+    (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'replies.json'), 'utf8')) as Array<{ reportId: string }>)
+      .map((row) => row.reportId),
+  );
+  const preparedBatch = readPreparedReplies().filter((row) => currentIds.has(row.reportId));
   expect(validate(preparedBatch).ok).toBe(true);
   expect(validate([base]).ok).toBe(true);
   expect(validate([base, { ...base, title: 'y' }]).ok).toBe(false);

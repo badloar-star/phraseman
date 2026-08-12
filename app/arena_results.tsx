@@ -1,0 +1,147 @@
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLang } from '../components/LangContext';
+import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
+import { ArenaPlayers } from '../components/arena/ArenaPlayers';
+import { ArenaRewards } from '../components/arena/ArenaRewards';
+import { ArenaDisclosureBadge } from '../components/arena/ArenaExpansionUI';
+import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
+import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
+import { arenaText } from '../modules/arena/copy';
+import { arenaExpansionText } from '../modules/arena/expansion_copy';
+import type { ArenaPlayer } from '../modules/arena/contract';
+import type { ArenaMatchReward } from '../modules/arena/contract';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import type { TournamentFxApi } from '../components/tournament/TournamentFx';
+import { arenaExpansionHome, arenaRivalAccept, arenaV2Home, arenaV2SyncMatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
+import { arenaResultTheme } from '../modules/arena/arena_cosmetics';
+import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
+import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
+
+export default function ArenaResultsScreen() {
+  const router = useRouter();
+  const { lang } = useLang();
+  const P = useTournamentPalette();
+  const window = useWindowDimensions();
+  const params = useLocalSearchParams<{ matchId?: string; viewerSeat?: string }>();
+  const matchId = typeof params.matchId === 'string' ? params.matchId : null;
+  const active = useRuntimeActive();
+  const reduceMotion = useReduceMotion();
+  const fxRef = useRef<TournamentFxApi>(null);
+  const celebratedRef = useRef<string | null>(null);
+  const live = useArenaMatch(matchId, active);
+  const routeSeat = params.viewerSeat === 'a' || params.viewerSeat === 'b' ? params.viewerSeat : null;
+  const [viewerSeat, setViewerSeat] = useState<'a' | 'b' | null>(() => routeSeat ?? peekArenaViewerSeat(matchId));
+  const [privateReward, setPrivateReward] = useState<ArenaMatchReward | undefined>();
+  const [equipped, setEquipped] = useState<Readonly<Record<string, string>>>({});
+  const [reactionChosen, setReactionChosen] = useState<string | null>(null);
+  const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
+  const [baseEnabled, setBaseEnabled] = useState(false);
+  const [rivalBusy, setRivalBusy] = useState(false);
+  const rivalAcceptRequestId = useRef<string | null>(null);
+  useEffect(() => {
+    if (active && matchId) void arenaV2SyncMatch(matchId).then((response) => {
+      if (response.viewerSeat) { rememberArenaViewerSeat(matchId, response.viewerSeat); setViewerSeat(response.viewerSeat); }
+      if (response.viewerReward) setPrivateReward(response.viewerReward);
+    }).catch(() => {});
+  }, [active, matchId]);
+  useEffect(() => { if (active) void Promise.all([arenaExpansionHome(), arenaV2Home()]).then(([home, base]) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); setBaseEnabled(base.availability.enabled); }).catch(() => { setExpansion(null); setBaseEnabled(false); }); }, [active]);
+  const match = live.value;
+  const reward = privateReward ?? (viewerSeat ? match?.result?.rewards?.[viewerSeat] : undefined);
+  const players: readonly ArenaPlayer[] = useMemo(() => {
+    if (!match) return [];
+    if (match.result?.players?.length) return match.result.players;
+    return match.players.map((player) => ({
+      ...player,
+      name: player.uid === viewerSeat ? arenaText(lang, 'you') : player.isBot ? arenaText(lang, 'bot') : player.name,
+    }));
+  }, [lang, match, viewerSeat]);
+  const winner = match?.result?.winnerUid;
+  const title = match?.state === 'aborted'
+    ? arenaText(lang, 'cancelledMatch')
+    : winner && viewerSeat
+      ? (winner === viewerSeat ? arenaText(lang, 'victory') : arenaText(lang, 'defeat'))
+      : arenaText(lang, 'draw');
+  const resultTheme = arenaResultTheme(equipped.result_theme);
+  const titleCosmetic = arenaStoreItemTitle(lang, equipped.title);
+  const victoryStamp = winner === viewerSeat ? arenaStoreItemTitle(lang, equipped.victory_stamp) : null;
+  const reactionPack = arenaStoreItemTitle(lang, equipped.reaction_pack);
+  const series = match?.seriesId
+    ? expansion?.rivalries.find((item) => item.rivalryId === match.seriesId)
+    : undefined;
+  const seriesYou = series?.viewerWins ?? (viewerSeat === 'b'
+    ? match?.result?.seriesSummary?.winsB
+    : match?.result?.seriesSummary?.winsA) ?? 0;
+  const seriesThem = series?.opponentWins ?? (viewerSeat === 'b'
+    ? match?.result?.seriesSummary?.winsA
+    : match?.result?.seriesSummary?.winsB) ?? 0;
+  const incomingRivalOffer = Boolean(match?.rivalOffer && viewerSeat
+    && match.rivalOffer.fromSeat !== viewerSeat && match.rivalOffer.expiresAtMs > Date.now());
+  const openRivalry = () => {
+    if (!incomingRivalOffer || !match?.rivalOffer) {
+      router.push({ pathname: '/arena_rivalries', params: { sourceMatchId: matchId } } as never);
+      return;
+    }
+    const requestId = rivalAcceptRequestId.current ?? createArenaRequestId('rival_accept');
+    rivalAcceptRequestId.current = requestId;
+    setRivalBusy(true);
+    void arenaRivalAccept(match.rivalOffer.seriesId, requestId).then((response) => {
+      rivalAcceptRequestId.current = null;
+      if (response.activeMatchId) {
+        router.replace({ pathname: '/arena_match', params: { matchId: response.activeMatchId, viewerSeat: response.viewerSeat } } as never);
+      } else {
+        router.replace('/arena_rivalries' as never);
+      }
+    }).catch(() => router.push({ pathname: '/arena_rivalries', params: { sourceMatchId: matchId } } as never))
+      .finally(() => setRivalBusy(false));
+  };
+
+  useEffect(() => {
+    if (!active || reduceMotion || !match || winner !== viewerSeat || celebratedRef.current === match.matchId) return;
+    celebratedRef.current = match.matchId;
+    fxRef.current?.confetti({ x: window.width / 2, y: Math.min(260, window.height * 0.3) }, [P.accent, P.gold, P.text]);
+  }, [active, match, P.accent, P.gold, P.text, reduceMotion, viewerSeat, winner, window.height, window.width]);
+
+  return (
+    <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)}>
+      {players.length ? <ArenaPlayers players={players} active={active} botLabel={arenaText(lang, 'bot')} animateScore /> : null}
+      {titleCosmetic ? <Text style={[styles.cosmeticTitle, { color: P.gold }]}>{titleCosmetic}</Text> : null}
+      <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
+        {victoryStamp ? <Text style={[styles.stamp, { color: resultTheme?.foreground ?? P.text }]}>{victoryStamp}</Text> : null}
+        <View style={styles.stats}>{players.map((player) => <ArenaStat key={player.uid} label={player.name} value={player.score} />)}</View>
+        <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} />
+      </V2Card>
+      {reactionPack ? <View style={styles.reactions}><Text style={[styles.reactionHint, { color: P.muted }]}>{arenaExpansionText(lang, 'localReaction')}</Text>{(equipped.reaction_pack === 'reactions_respect' ? ['reactionRespect', 'reactionWellPlayed'] as const : ['reactionComeback', 'reactionAgain'] as const).map((key) => <V2Cta key={key} tone="ghost" disabled={reactionChosen !== null} onPress={() => setReactionChosen(key)}>{arenaExpansionText(lang, reactionChosen === key ? 'ready' : key)}</V2Cta>)}</View> : null}
+      {reward?.spinAwarded && reward.spinReceiptId ? (
+        <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
+      ) : null}
+      {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
+      <V2Cta onPress={() => match?.mode === 'series'
+        ? router.replace('/arena_rivalries' as never)
+        : match?.mode === 'friend'
+        ? router.replace('/arena_friend_duel' as never)
+        : router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick' } } as never)}>{match?.mode === 'series' ? arenaExpansionText(lang, 'rivalryContinue') : arenaText(lang, 'playAgain')}</V2Cta>
+      <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+      {baseEnabled && expansion?.availability.lab && matchId ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_match_lab', params: { matchId } } as never)}>{arenaExpansionText(lang, 'review')}</V2Cta> : null}
+      {baseEnabled && expansion?.availability.ghost && matchId && (match?.mode === 'quick' || match?.mode === 'ranked') ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_ghost_duel', params: { sourceRunId: matchId, sourceKind: 'arena_match' } } as never)}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta> : null}
+      {incomingRivalOffer ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'rivalryIncoming')} /> : null}
+      {baseEnabled && expansion?.availability.rival && matchId && match?.opponentKind === 'human' && (match.mode === 'quick' || match.mode === 'ranked') ? <V2Cta tone="ghost" disabled={rivalBusy} onPress={openRivalry}>{incomingRivalOffer ? arenaText(lang, 'accept') : arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}
+      {live.error ? <Text style={[styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')}</Text> : null}
+    </ArenaScreen>
+  );
+}
+
+const styles = StyleSheet.create({
+  stats: { flexDirection: 'row', gap: 10 },
+  resultSurface: { gap: 12 },
+  cosmeticTitle: { textAlign: 'center', fontSize: 13, fontWeight: '900' },
+  stamp: { textAlign: 'center', fontSize: 15, fontWeight: '900' },
+  reactions: { minHeight: 44, gap: 8 },
+  reactionHint: { fontSize: 12, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
+  seriesCard: { gap: 6, alignItems: 'center' },
+  seriesScore: { fontSize: 20, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  error: { textAlign: 'center', fontWeight: '700' },
+});

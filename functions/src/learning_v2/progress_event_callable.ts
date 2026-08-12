@@ -8,8 +8,8 @@ import { deriveProgressAccountScopeHash, parseProgressEventRequest, ProgressEven
 import { applyProgressEvent } from './progress_event';
 import { createFirestoreProgressEventStore, type FirestoreProgressEventStoreOptions } from './firestore_progress_event_store';
 import type { ProgressEventStore } from './progress_event';
-import { PILOT_SCORING_POLICY_CATALOG } from './server_score_policy_catalog';
 import type { ModeTemplateArtifactReader, ScoringPolicyCatalog } from './server_score_policy_evaluator';
+import { createFirestoreModeTemplateResolver } from '../content_studio/firestore_authoring_store';
 
 const ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
 const AUTH_LINKS = 'auth_links';
@@ -72,7 +72,13 @@ export interface ProgressEventProductionDependencies {
   readonly db?: admin.firestore.Firestore;
   /** The immutable template reader is intentionally required to award stars. */
   readonly scoringTemplates?: ModeTemplateArtifactReader;
+  /**
+   * Result-to-stars policy after an activity-specific trusted evaluator has
+   * derived the result. Presence here is explicit; production never installs
+   * the client-result pilot catalog implicitly.
+   */
   readonly scoringPolicies?: ScoringPolicyCatalog;
+  /** Preferred production seam: derive the score from trusted server evidence. */
   readonly resolveServerScore?: FirestoreProgressEventStoreOptions['resolveServerScore'];
   /** Test seam; production defaults to the Firestore transactional store. */
   readonly createStore?: (options: FirestoreProgressEventStoreOptions) => ProgressEventStore;
@@ -81,14 +87,31 @@ export interface ProgressEventProductionDependencies {
 /**
  * Server-only executor. Identity and account generation come from the
  * authorization result; request projection/candidate stars are never trusted.
- * Without an immutable template reader (or an explicitly code-owned scorer)
- * the store remains fail-closed and cannot award positive stars.
+ * Without an immutable template reader plus an explicitly injected trusted
+ * scorer the store remains fail-closed and cannot award positive stars.
  */
 export function createProgressEventProductionHandler(
   dependencies: ProgressEventProductionDependencies = {},
 ): ProgressEventHandler {
   const db = dependencies.db ?? admin.firestore();
   const createStore = dependencies.createStore ?? createFirestoreProgressEventStore;
+  const resolveModeTemplate = createFirestoreModeTemplateResolver(
+    db,
+    undefined,
+    // Historical approved Episodes may still pin a deprecated immutable
+    // template. Its exact body/hash remains valid for deterministic replay.
+    { allowDeprecated: true },
+  );
+  const scoringTemplates: ModeTemplateArtifactReader = dependencies.scoringTemplates ?? {
+    read: async (ref) => {
+      const resolved = await resolveModeTemplate({
+        templateId: ref.templateId,
+        version: ref.version,
+        contentHash: ref.contentHash,
+      });
+      return resolved?.body === undefined ? undefined : { body: resolved.body };
+    },
+  };
   return async ({ authUid, stableUid, accountGeneration, input }) => {
     if (!accountGeneration) throw new HttpsError('failed-precondition', 'account_generation_unavailable');
     const store = createStore({
@@ -97,8 +120,13 @@ export function createProgressEventProductionHandler(
       stableUid,
       accountGeneration,
       accountScopeHash: input.accountScopeHash,
-      scoringTemplates: dependencies.scoringTemplates,
-      scoringPolicies: dependencies.scoringPolicies ?? PILOT_SCORING_POLICY_CATALOG,
+      scoringTemplates,
+      // A code-owned score table is not, by itself, proof of the learner's
+      // answer. Production must inject a scorer/catalog only after the
+      // activity outcome has been derived from trusted server evidence.
+      // With no such dependency the store deliberately accepts only the
+      // existing zero-star fail-closed path.
+      scoringPolicies: dependencies.scoringPolicies,
       resolveServerScore: dependencies.resolveServerScore,
     });
     return applyProgressEvent(store, input);
@@ -221,9 +249,11 @@ export function createProgressEventHandler(
 }
 
 /**
- * Callable factory kept out of index.ts until the transactional store is wired.
- * This prevents an unconfigured endpoint from being deployed accidentally while
- * allowing emulator and contract tests to exercise the real App Check options.
+ * Callable factory kept out of index.ts until trusted activity outcome
+ * verification and the account-scoped mobile outbox are both wired. This
+ * prevents an endpoint that merely trusts client resultCode from being
+ * deployed accidentally while emulator/contract tests exercise the real
+ * App Check and transaction boundaries.
  */
 export function createProgressEventCallable(
   execute: ProgressEventHandler,

@@ -60,7 +60,7 @@ import {
   rememberSyntheticFriendRequest,
 } from '../app/synthetic_friend_requests';
 import {
-  hasLikedSyntheticToday,
+  hasLikedSynthetic,
   loadSyntheticActivityLikes,
   syntheticLikesAddedByMe,
   toggleSyntheticLike,
@@ -71,12 +71,11 @@ import { fetchFriendProfilesBatch } from '../app/friends_profiles_batch';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
   fetchActivityLikeTotal,
-  fetchTodayActivityLikeState,
+  fetchActivityLikeState,
   sendFriendActivityLike,
   removeFriendActivityLike,
-  todayActivityLikeDateKeyUtc,
   PROFILE_LIKE_EVENT_ID,
-  type FriendActivityLikeTodayState,
+  type FriendActivityLikeState,
 } from '../app/friend_activity_likes';
 import { getCanonicalUserId } from '../app/user_id_policy';
 import { isLifetimePlanLocal } from '../app/premium_guard';
@@ -368,8 +367,8 @@ function PlayerProfileModalBody({
   // Выезд панели превью снизу (0 = спрятана под краем, 1 = на месте).
   const previewPanelAnim = useRef(new Animated.Value(0)).current;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
-  // Profile-level activity like the current user has already placed today (toggle state).
-  const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
+  // Persistent profile-level like for this exact user card (toggle state).
+  const [profileLike, setProfileLike] = useState<FriendActivityLikeState | null>(null);
   const [likeBusy, setLikeBusy] = useState(false);
   const likeInFlightRef = useRef(false);
   const profileCardLevel = profileCardSnapshot.level;
@@ -494,7 +493,7 @@ function PlayerProfileModalBody({
   useEffect(() => {
     let cancelled = false;
     setActivityLikeTotal(0);
-    setTodayLike(null);
+    setProfileLike(null);
     void (async () => {
       const uid = player.friendUid || player.uid || (isMe ? await getCanonicalUserId() : '');
       if (!uid || cancelled) return;
@@ -509,18 +508,18 @@ function PlayerProfileModalBody({
         if (cancelled) return;
         const base = residentBaseLikes(player.totalXp ?? player.points ?? 0);
         setActivityLikeTotal(base + syntheticLikesAddedByMe(uid));
-        setTodayLike(hasLikedSyntheticToday(uid)
-          ? { date: todayActivityLikeDateKeyUtc(), targetUid: uid, eventId: PROFILE_LIKE_EVENT_ID }
+        setProfileLike(hasLikedSynthetic(uid)
+          ? { date: '', targetUid: uid, eventId: PROFILE_LIKE_EVENT_ID }
           : null);
         return;
       }
       const [total, likeState] = await Promise.all([
         fetchActivityLikeTotal(uid),
-        isMe ? Promise.resolve(null) : fetchTodayActivityLikeState().catch(() => null),
+        isMe ? Promise.resolve(null) : fetchActivityLikeState(uid).catch(() => null),
       ]);
       if (cancelled) return;
       setActivityLikeTotal(total);
-      setTodayLike(likeState);
+      setProfileLike(likeState);
     })();
     return () => {
       cancelled = true;
@@ -571,13 +570,13 @@ function PlayerProfileModalBody({
   const isFriendRequestSent = !!friendRequestTargetUid && friendRequestSentUids.has(friendRequestTargetUid);
 
   // Profile-level activity like: tappable on ANY user's card (friend or not), just not your
-  // own. The like is bound to the person (not an event), one per day across everyone, toggleable.
+  // own. The like is bound persistently to this person (not an event) and is toggleable.
   const likeTargetUid = player.friendUid || player.uid || '';
   const canLike = !isMe && !!likeTargetUid && CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const likedThisProfile =
-    !!todayLike &&
-    todayLike.targetUid === likeTargetUid &&
-    todayLike.eventId === PROFILE_LIKE_EVENT_ID;
+    !!profileLike &&
+    profileLike.targetUid === likeTargetUid &&
+    profileLike.eventId === PROFILE_LIKE_EVENT_ID;
 
   // Открытие уровневых блоков карточки: II «Выучено» и IV «Путь» собираются
   // ниже в ОДНУ glass-панель (iOS-список); V «Легенда» — отдельная строка.
@@ -1131,11 +1130,11 @@ function PlayerProfileModalBody({
     // Optimistic toggle.
     if (wasLiked) {
       setActivityLikeTotal((n) => Math.max(0, n - 1));
-      setTodayLike(null);
+      setProfileLike(null);
     } else {
       setActivityLikeTotal((n) => n + 1);
-      setTodayLike({
-        date: todayActivityLikeDateKeyUtc(),
+      setProfileLike({
+        date: '',
         targetUid: likeTargetUid,
         eventId: PROFILE_LIKE_EVENT_ID,
         createdAt: Date.now(),
@@ -1164,9 +1163,9 @@ function PlayerProfileModalBody({
         // Reconcile with the authoritative server total.
         setActivityLikeTotal(Math.max(0, Math.floor(Number(res.targetActivityLikeTotal) || 0)));
         if (wasLiked) {
-          setTodayLike(null);
+          setProfileLike(null);
         } else {
-          setTodayLike({
+          setProfileLike({
             date: res.date,
             targetUid: res.targetUid,
             eventId: res.eventId,
@@ -1175,43 +1174,25 @@ function PlayerProfileModalBody({
         }
         void invalidateFriendsActivityCache();
       })
-      .catch(async (err: unknown) => {
-        const code = String((err as { code?: string })?.code ?? '');
-        const limitReached = code.includes('resource-exhausted');
+      .catch(async () => {
         // Roll back the optimistic change to the truth on the server.
-        const freshState = await fetchTodayActivityLikeState().catch(() => null);
+        const freshState = await fetchActivityLikeState(likeTargetUid).catch(() => null);
         const freshTotal = await fetchActivityLikeTotal(likeTargetUid).catch(() => null);
-        setTodayLike(freshState);
+        setProfileLike(freshState);
         if (typeof freshTotal === 'number') setActivityLikeTotal(Math.max(0, freshTotal));
-        if (limitReached) {
-          onFriendRequestToast(
-            triLang(lang as Lang, {
-              ru: 'Сегодня лайк уже поставлен. Можно один в день.',
-              uk: 'Сьогодні лайк уже поставлено. Можна один на день.',
-              es: 'Ya diste un like hoy. Solo uno por día.',
-              'pt-BR': 'Você já curtiu hoje. Apenas um por dia.',
-              vi: 'Hôm nay bạn đã thích rồi. Mỗi ngày một lượt.',
-              id: 'Kamu sudah suka hari ini. Hanya satu per hari.',
-              tr: 'Bugün zaten beğendin. Günde bir tane.',
-              pl: 'Już dziś polubiłeś. Tylko jeden dziennie.',
-            }),
-            'info',
-          );
-        } else {
-          onFriendRequestToast(
-            triLang(lang as Lang, {
-              ru: 'Не получилось. Попробуй позже',
-              uk: 'Не вдалося. Спробуй пізніше',
-              es: 'No funcionó. Inténtalo más tarde',
-              'pt-BR': 'Não deu certo. Tente mais tarde',
-              vi: 'Không thành công. Hãy thử lại sau',
-              id: 'Gagal. Coba lagi nanti',
-              tr: 'Olmadı. Daha sonra dene',
-              pl: 'Nie udało się. Spróbuj później',
-            }),
-            'error',
-          );
-        }
+        onFriendRequestToast(
+          triLang(lang as Lang, {
+            ru: 'Не получилось. Проверь интернет и попробуй ещё раз',
+            uk: 'Не вдалося. Перевір інтернет і спробуй ще раз',
+            es: 'No funcionó. Comprueba Internet e inténtalo de nuevo',
+            'pt-BR': 'Não deu certo. Verifique a internet e tente novamente',
+            vi: 'Không thành công. Hãy kiểm tra mạng rồi thử lại',
+            id: 'Gagal. Periksa internet lalu coba lagi',
+            tr: 'Olmadı. İnterneti kontrol edip tekrar dene',
+            pl: 'Nie udało się. Sprawdź internet i spróbuj ponownie',
+          }),
+          'error',
+        );
         void invalidateFriendsActivityCache();
       })
       .finally(() => {
@@ -1731,8 +1712,8 @@ function PlayerProfileModalBody({
           ))}
         </View>
         {/* AURORA мета-ряд: компактная пилюля лайка (сердце + число, ширина по
-            содержимому) + чип лиги на остаток ширины. Ряд — это кнопка лайка
-            (вся логика: тап, оптимизм, дневной лимит, тосты — без изменений);
+            содержимому) + чип лиги на остаток ширины. Ряд — это кнопка постоянного
+            лайка карточки (тап, оптимизм, повторный тап снимает лайк);
             чип лиги глушит responder, чтобы тап по нему не ставил лайк. */}
         <Pressable
           testID="player-profile-activity-like"
@@ -1796,7 +1777,7 @@ function PlayerProfileModalBody({
             }}
           >
             {club.imageUri
-              ? <Image source={club.imageUri} style={{ width: 28, height: 28, borderRadius: 6 }} contentFit="contain" accessibilityLabel="Иконка лиги" />
+              ? <Image source={club.imageUri} style={{ width: 28, height: 28, borderRadius: 6 }} contentFit="contain" accessibilityLabel={triLang(lang as Lang, { ru: 'Иконка лиги', uk: 'Іконка ліги', es: 'Icono de liga', 'pt-BR': 'Ícone da liga', vi: 'Biểu tượng giải đấu', id: 'Ikon liga', tr: 'Lig simgesi', pl: 'Ikona ligi' })} />
               : <Ionicons name={club.ionIcon as any} size={26} color={monoIcon(themeMode, club.color)} />
             }
             <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '700', flex: 1, minWidth: 0 }} numberOfLines={1}>

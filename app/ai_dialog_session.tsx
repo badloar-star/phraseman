@@ -25,8 +25,7 @@ import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
-import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from './audio_playback_mode';
-import { setManagedAudioMode } from './audio_session_coordinator';
+import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import {
   dialogScenarioNextStepHint,
@@ -112,13 +111,6 @@ type VoiceInputStatus =
 // fallback for OEM recognizers that stop the engine without a terminal event.
 const CONVERSATION_SEND_GRACE_MS = 1200;
 
-// Вернуть аудио-сессию в «громкое воспроизведение» после голосового ввода:
-// без сброса озвучка ответов Компаса и любые mp3 после микрофона играют тихо
-// через разговорный динамик или не играют вовсе.
-function restoreLoudPlaybackMode(): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
-}
-
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
  * «Your name is Mia. …» → «Mia», «Your name is Mr. Patel. …» → «Mr. Patel».
@@ -200,6 +192,10 @@ function AiDialogSession() {
   const router = useRouter();
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  const recordingAudio = useManagedRecordingAudio(() => {
+    try { speechModule?.abort(); } catch { /* native capture already gone */ }
+  });
+  const restoreLoudPlaybackMode = recordingAudio.release;
   // зачем: экран диалога не размонтируется при сворачивании приложения, поэтому нужен явный
   // сигнал «ушли в фон» — иначе распознавание речи продолжает слушать микрофон (см. эффект ниже).
   const runtimeActive = useRuntimeActive();
@@ -566,11 +562,7 @@ function AiDialogSession() {
     if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
 
     try {
-      try {
-        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE);
-      } catch {
-        // expo-speech-recognition may own the native session on some devices.
-      }
+      if (!await recordingAudio.begin()) return;
       if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
       if (!holdPressActiveRef.current) {
         cleanupVoiceInputListeners();
@@ -631,6 +623,8 @@ function AiDialogSession() {
     lang,
     lastErrorMessage,
     playRecordStart,
+    recordingAudio,
+    restoreLoudPlaybackMode,
     router,
     scenario,
     sending,
@@ -660,7 +654,7 @@ function AiDialogSession() {
       }
       restoreLoudPlaybackMode();
     };
-  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
+  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode, speechModule]);
 
   // зачем: сворачивание приложения НЕ размонтирует экран, поэтому cleanup выше не срабатывает
   // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
@@ -692,7 +686,7 @@ function AiDialogSession() {
     }
     restoreLoudPlaybackMode();
     if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
-  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, stopSpeaking]);
+  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, restoreLoudPlaybackMode, stopSpeaking]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -947,6 +941,7 @@ function AiDialogSession() {
     speechModule,
     clearConversationSendTimer,
     cleanupVoiceInputListeners,
+    restoreLoudPlaybackMode,
   ]);
 
   useEffect(() => {
@@ -1581,7 +1576,7 @@ function AiDialogSession() {
             dataId={`ai_dialog_${scenario.id ?? 'unknown'}`}
             dataText={dialogScenarioTitle(scenario, lang)}
             variant="icon-flag"
-            accessibilityLabel="Сообщить об ошибке в диалоге"
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
             style={{
               width: 36,
               height: 36,

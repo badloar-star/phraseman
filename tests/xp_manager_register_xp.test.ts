@@ -258,6 +258,46 @@ describe('registerXP', () => {
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('40');
   });
 
+  it('applies a league chest boost to lesson answers without consuming it per answer', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const {
+      consumeLeagueChestXpOverrideMultiplier,
+      peekLeagueChestXpOverrideMultiplier,
+    } = await import('../app/services/league_chest_rewards');
+    (peekLeagueChestXpOverrideMultiplier as jest.Mock).mockResolvedValueOnce(2);
+    await AsyncStorage.setItem('user_total_xp', '0');
+
+    const award = await registerXP(2, 'lesson_answer', 'Learner', 'ru', 1, {
+      eventId: 'lesson:attempt-a:answer:1',
+    });
+
+    expect(award.finalDelta).toBe(4);
+    expect(peekLeagueChestXpOverrideMultiplier).toHaveBeenCalledTimes(1);
+    expect(consumeLeagueChestXpOverrideMultiplier).not.toHaveBeenCalled();
+  });
+
+  it('finalizes lesson-scoped boosts at most once for an attempt', async () => {
+    const { finalizeLessonXpMultipliers } = await import('../app/xp_manager');
+    const { consumeLeagueChestXpOverrideMultiplier } = await import('../app/services/league_chest_rewards');
+
+    await expect(finalizeLessonXpMultipliers('attempt-a')).resolves.toBe(true);
+    await expect(finalizeLessonXpMultipliers('attempt-a')).resolves.toBe(false);
+
+    expect(consumeLeagueChestXpOverrideMultiplier).toHaveBeenCalledTimes(1);
+  });
+
+  it('serializes concurrent finalization of the same lesson attempt', async () => {
+    const { finalizeLessonXpMultipliers } = await import('../app/xp_manager');
+    const { consumeLeagueChestXpOverrideMultiplier } = await import('../app/services/league_chest_rewards');
+
+    await expect(Promise.all([
+      finalizeLessonXpMultipliers('attempt-concurrent'),
+      finalizeLessonXpMultipliers('attempt-concurrent'),
+    ])).resolves.toEqual([true, false]);
+
+    expect(consumeLeagueChestXpOverrideMultiplier).toHaveBeenCalledTimes(1);
+  });
+
   it('refuses XP mutation before boot resolves an active account identity', async () => {
     const { registerXP } = await import('../app/xp_manager');
     __resetAccountGenerationForTests();

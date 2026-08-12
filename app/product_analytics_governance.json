@@ -71,7 +71,14 @@
     "assignment_quality": { "valueClass": "enum_code", "description": "Frozen or excluded fallback assignment quality." },
     "operation": { "valueClass": "enum_code", "description": "Allowlisted product operation code." },
     "failure_code": { "valueClass": "enum_code", "description": "Normalized bounded failure code without raw error text." },
-    "retryable": { "valueClass": "boolean", "description": "Whether the bounded operation may be retried." }
+    "retryable": { "valueClass": "boolean", "description": "Whether the bounded operation may be retried." },
+    "mode": { "valueClass": "enum_code", "description": "Allowlisted Arena interaction mode; never task or answer content." },
+    "outcome": { "valueClass": "enum_code", "description": "Allowlisted Arena terminal outcome." },
+    "correct_count": { "valueClass": "integer", "description": "Bounded Arena correct-answer count from zero to ten." },
+    "duration_bucket": { "valueClass": "enum_code", "description": "Coarse Arena duration bucket; never an exact player timeline." },
+    "item_id": { "valueClass": "enum_code", "description": "Allowlisted shipped Arena cosmetic catalog identifier." },
+    "slot": { "valueClass": "enum_code", "description": "Allowlisted Arena cosmetic equipment slot." },
+    "price_bucket": { "valueClass": "enum_code", "description": "Coarse Arena cosmetic price bucket; never wallet balance." }
   },
   "fieldSets": {
     "session": ["schema_version", "event_id", "session_id", "screen_id", "platform", "app_version", "build_number", "study_target", "occurred_at_ms", "duration_ms", "leave_reason"],
@@ -81,7 +88,11 @@
     "reviewAnswer": ["schema_version", "event_id", "session_id", "review_session_id", "review_attempt_id", "analytics_item_id", "lesson_id", "study_target", "source", "review_mode", "content_version", "correct", "response_time_ms", "actual_delay_bucket", "due_status", "previous_repetitions", "next_repetitions", "previous_interval_days", "next_interval_days", "previous_mastery_state", "next_mastery_state", "mastery_transition", "occurred_at_ms"],
     "reviewSession": ["schema_version", "event_id", "session_id", "review_session_id", "study_target", "review_mode", "planned_item_count", "answered_item_count", "correct_item_count", "duration_ms", "completion_reason", "abandon_reason", "occurred_at_ms"],
     "experimentExposure": ["schema_version", "event_id", "session_id", "experiment_id", "definition_version", "variant_id", "control_variant_id", "exposure_id", "surface", "config_revision", "assignment_quality", "app_version", "build_number", "occurred_at_ms"],
-    "operationFailure": ["schema_version", "event_id", "session_id", "feature", "operation", "failure_code", "retryable", "app_version", "build_number", "occurred_at_ms"]
+    "operationFailure": ["schema_version", "event_id", "session_id", "feature", "operation", "failure_code", "retryable", "app_version", "build_number", "occurred_at_ms"],
+    "arenaFeature": ["feature", "source"],
+    "arenaAction": ["feature", "operation", "mode"],
+    "arenaRun": ["feature", "mode", "outcome", "correct_count", "duration_bucket"],
+    "arenaStore": ["operation", "item_id", "slot", "price_bucket"]
   },
   "events": [
     { "name": "product_session_start", "entity": "session", "warehouse": "product", "fieldSet": "session" },
@@ -118,7 +129,11 @@
     { "name": "paywall_exit_offer_declined", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
     { "name": "exit_trial_offer_shown", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
     { "name": "exit_trial_offer_accepted", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
-    { "name": "exit_trial_offer_declined", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" }
+    { "name": "exit_trial_offer_declined", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
+    { "name": "arena_feature_open", "entity": "event", "warehouse": "product", "fieldSet": "arenaFeature" },
+    { "name": "arena_action", "entity": "event", "warehouse": "product", "fieldSet": "arenaAction" },
+    { "name": "arena_run_complete", "entity": "attempt", "warehouse": "product", "fieldSet": "arenaRun" },
+    { "name": "arena_store_action", "entity": "event", "warehouse": "product", "fieldSet": "arenaStore" }
   ],
   "metrics": [
     { "id": "sessions.lifecycle.v1", "events": ["product_session_start", "product_session_resume", "product_session_background"], "rowKinds": ["session_summary"] },
@@ -132,6 +147,7 @@
     { "id": "retention.firebase_first_touch.v1", "events": ["product_session_start"], "rowKinds": ["true_retention_day", "true_retention_summary", "active_day_bucket"] },
     { "id": "learning.review_outcomes.v1", "events": ["learning_review_session_start", "learning_review_answer", "learning_review_session_complete", "learning_review_session_abandoned"], "rowKinds": ["review_summary", "review_delay", "mastery_transition", "review_content", "review_session_summary", "weekly_effective_learner"] },
     { "id": "experiments.exposure.v1", "events": ["experiment_exposure"], "rowKinds": ["experiment_exposure"] },
-    { "id": "reliability.operation_failure.v1", "events": ["product_operation_failure"], "rowKinds": ["operation_failure", "release_adoption"] }
+    { "id": "reliability.operation_failure.v1", "events": ["product_operation_failure"], "rowKinds": ["operation_failure", "release_adoption"] },
+    { "id": "arena.engagement.v1", "events": ["arena_feature_open", "arena_action", "arena_run_complete", "arena_store_action"], "rowKinds": ["arena_funnel", "arena_run", "arena_store"] }
   ]
 }

@@ -2,7 +2,9 @@ import { createHash } from 'crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
 
 export const SUPPORT_REPLY_SCHEMA_VERSION = 2;
-export const SUPPORT_REPLY_CONFIRMATION_TTL_MS = 15 * 60 * 1000;
+// Telegram review gives the owner three hours. The immutable prepared payload
+// remains valid for one extra hour so the bounded deadline worker can claim it.
+export const SUPPORT_REPLY_CONFIRMATION_TTL_MS = 4 * 60 * 60 * 1000;
 export const SUPPORT_REPLY_TEXT_MAX_CHARS = 20_000;
 
 export type SupportReplyState =

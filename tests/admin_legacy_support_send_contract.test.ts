@@ -59,4 +59,25 @@ describe('Legacy admin support mail delivery contract', () => {
 
     expect(block).not.toContain("supportCallable('adminSupportSendReply')");
   });
+
+  test('guarded automation has a visible kill switch, limits, CAS revision and audit callable', () => {
+    expect(legacy).toContain('id="gsi-auto-mode"');
+    expect(legacy).toContain('<option value="live_guarded">Автоотправка через 3 часа</option>');
+    expect(legacy).toContain('<option value="shadow">Только подтверждение вручную</option>');
+    expect(legacy).toContain('<option value="off">Выключено</option>');
+    const block = functionBlock('window.supportSaveAutomation = async function()', 'window.loadUserReports = async function()');
+    expect(block).toContain("supportCallable('adminSupportSaveAutomation')");
+    expect(block).toContain('expectedRevision: _supportAutomationRevision');
+    expect(block).toContain('dailyCap');
+    expect(block).toContain('perSenderDailyCap');
+  });
+
+  test('prepared queue persists manual edits and explains the Telegram re-review', () => {
+    expect(legacy).toContain('id="gsi-prepared-list"');
+    expect(legacy).toContain('💾 Сохранить правки');
+    const block = functionBlock('window.supportSaveDraft = async function(id)', 'window.supportSendOne = async function(id)');
+    expect(block).toContain("supportCallable('adminSupportSaveDraft')");
+    expect(block).toContain('expectedDraftRevision');
+    expect(block).toContain('Новая версия отправлена вам в Telegram');
+  });
 });

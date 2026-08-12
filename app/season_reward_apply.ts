@@ -34,6 +34,7 @@ import {
 } from './season_cosmetics';
 import type { SeasonReward } from './season_pass_track_config';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
+import { ENABLE_TOURNAMENTS } from './config';
 
 /** Пак сезона 1 — фирменный набор, открывается навсегда (каталог §6, ур. 45). */
 export const SEASON1_CARD_PACK_ID = 'official_peaky_blinders_en';
@@ -252,6 +253,11 @@ export async function applySeasonRewardLocal(
       await activateCollectionMagnet();
       return { ok: true };
     case 'tournament_ticket':
+      if (!ENABLE_TOURNAMENTS) {
+        // Legacy/offline ticket claims keep their value but cannot resurrect a
+        // retired tournament entry point or create active ticket state.
+        return applySeasonRewardLocal({ kind: 'pearls', amount: 5 }, idempotencyKey);
+      }
       await grantTournamentTicket();
       return { ok: true };
     case 'plus_days':

@@ -13,8 +13,8 @@
 //
 // Число лайков растущее: базовая часть — функция от опыта персонажа
 // (residentBaseLikes, растёт вместе с его прогрессом каждые 6 часов), поверх
-// нею — лайки, поставленные ЭТИМ устройством, которые хранятся навсегда и не
-// сбрасываются. Один лайк персонажу в сутки, как у живых.
+// неё — один лайк, поставленный ЭТИМ устройством, который хранится навсегда.
+// Один активный лайк на одну карточку персонажа — без суточного лимита.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -50,11 +50,6 @@ function persist(next: StoredLikes): void {
   });
 }
 
-/** Сегодняшняя UTC-дата — та же граница суток, что у серверного лайка живым. */
-function todayDateKeyUtc(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
 /** Прогревает кэш заранее — вызывать при открытии карточки, до первого рендера. */
 export async function loadSyntheticActivityLikes(): Promise<void> {
   await load();
@@ -62,30 +57,28 @@ export async function loadSyntheticActivityLikes(): Promise<void> {
 
 /** Сколько лайков ЭТО устройство поставило персонажу (сверх базового числа). */
 export function syntheticLikesAddedByMe(uid: string): number {
-  return peek()[uid]?.count ?? 0;
+  return (peek()[uid]?.count ?? 0) > 0 ? 1 : 0;
 }
 
-/** Лайкнул ли этот персонаж сегодня — свой лимит на каждого, не общий на всех. */
-export function hasLikedSyntheticToday(uid: string): boolean {
-  const entry = peek()[uid];
-  return !!entry && entry.lastLikedDateKey === todayDateKeyUtc();
+/** Активен ли постоянный лайк этого устройства на карточке персонажа. */
+export function hasLikedSynthetic(uid: string): boolean {
+  return syntheticLikesAddedByMe(uid) === 1;
 }
+
+/** @deprecated Likes no longer reset daily. */
+export const hasLikedSyntheticToday = hasLikedSynthetic;
 
 /**
- * Ставит/снимает лайк персонажу. Хранится навсегда — count никогда не падает
- * ниже уже поставленного максимума при повторных отметках, а сам факт «лайкал
- * ли я его» переживает закрытие приложения (владелец: «сохранялся навсегда»).
+ * Ставит/снимает единственный лайк карточки. Факт переживает закрытие приложения;
+ * старые накопленные суточные значения автоматически схлопываются до 0/1.
  */
 export function toggleSyntheticLike(uid: string, liked: boolean): void {
   const current = peek();
-  const existing = current[uid] ?? { count: 0, lastLikedDateKey: '' };
   const next: StoredLikes = {
     ...current,
     [uid]: liked
-      ? { count: existing.count + 1, lastLikedDateKey: todayDateKeyUtc() }
-      // Отмена лайка убирает только СЕГОДНЯШНЮЮ отметку — сумма прошлых
-      // лайков остаётся, ровно как «навсегда» и просил владелец.
-      : { count: Math.max(0, existing.count - 1), lastLikedDateKey: '' },
+      ? { count: 1, lastLikedDateKey: 'persistent' }
+      : { count: 0, lastLikedDateKey: '' },
   };
   persist(next);
 }

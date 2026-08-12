@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 import { getStableId, peekStableId } from './stable_id';
+import { ENABLE_TOURNAMENTS } from './config';
 
 /** Публичное задание: ключи ответов сервер вырезает до отправки клиенту. */
 export type PublicTask = {
@@ -432,16 +433,16 @@ export function scopeTournamentSecondsLeft(
  * первым же снимком догоняет актуальное состояние.
  */
 export function useTournamentRoom(roomId: string | null, active = true): RoomHook {
-  const initialRoom = roomId ? roomCache.get(roomId) ?? null : null;
+  const initialRoom = ENABLE_TOURNAMENTS && roomId ? roomCache.get(roomId) ?? null : null;
   const [room, setRoom] = useState<Room | null>(initialRoom);
-  const [status, setStatus] = useState<RoomStatus>(roomId ? (initialRoom ? 'ready' : 'loading') : 'idle');
-  const [statusRoomId, setStatusRoomId] = useState<string | null>(roomId);
+  const [status, setStatus] = useState<RoomStatus>(ENABLE_TOURNAMENTS && roomId ? (initialRoom ? 'ready' : 'loading') : 'idle');
+  const [statusRoomId, setStatusRoomId] = useState<string | null>(ENABLE_TOURNAMENTS ? roomId : null);
   const [freshSnapshot, setFreshSnapshot] = useState(false);
   const [freshSnapshotRoomId, setFreshSnapshotRoomId] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
   const unsubscribeRef = useRef<null | (() => void)>(null);
   const roomRef = useRef<Room | null>(initialRoom);
-  const roomForRequestedId = roomId
+  const roomForRequestedId = ENABLE_TOURNAMENTS && roomId
     ? (room?.roomId === roomId ? room : roomCache.get(roomId) ?? null)
     : null;
   const freshForRequestedRoom = scopeTournamentFreshSnapshot(
@@ -458,7 +459,7 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
   );
 
   useEffect(() => {
-    if (!roomId) {
+    if (!ENABLE_TOURNAMENTS || !roomId) {
       setStatusRoomId(null);
       setStatus('idle');
       setRoom(null);
@@ -712,7 +713,7 @@ export const REACTION_COOLDOWN_MS = 900;
  * не сыплется история чужих тапов.
  */
 export function useTournamentReactions(roomId: string | null, active = true) {
-  const reactionsActive = active && TOURNAMENT_REACTIONS_ENABLED;
+  const reactionsActive = ENABLE_TOURNAMENTS && active && TOURNAMENT_REACTIONS_ENABLED;
   const [incoming, setIncoming] = useState<LiveReaction[]>([]);
   const lastSentAtRef = useRef(0);
   const seenRef = useRef<Map<string, number>>(new Map());
@@ -853,6 +854,7 @@ async function callFunction<T>(
   // новые функции туда не деплоятся. Прод-callable остаются в us-central1.
   region: string = FUNCTIONS_REGION,
 ): Promise<T> {
+  if (!ENABLE_TOURNAMENTS) throw new Error('tournaments_disabled_by_owner');
   // Every installation already owns an automatic Firebase-anonymous/stable
   // account. Wait for that bootstrap here so tournament entry never depends on
   // a Google/Apple sign-in screen and the server can still bind charges,
@@ -896,6 +898,7 @@ async function callFunction<T>(
  * expected state, and the exact server deadline before changing anything.
  */
 async function callTournamentDeadlineAdvance<T>(payload: Record<string, unknown>): Promise<T> {
+  if (!ENABLE_TOURNAMENTS) throw new Error('tournaments_disabled_by_owner');
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
   const call = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'tournamentAdvanceRound');
@@ -971,6 +974,9 @@ export async function resolveTournamentExitStatus(
   roomId: string,
   playerId: string | null,
 ): Promise<TournamentExitStatus> {
+  // A retired route must close locally without a network recovery read or the
+  // old "exit was not synchronized" loop reopening the tournament screen.
+  if (!ENABLE_TOURNAMENTS) return 'left';
   if (!roomId || !playerId) return 'unknown';
   try {
     const firestore = (await import('@react-native-firebase/firestore')).default;
@@ -1081,11 +1087,13 @@ const roundReviewCache = new Map<string, ReviewItem[]>();
 
 /** Готовый разбор для синхронной гидрации первого кадра. */
 export function peekRoundReview(roomId: string | null): ReviewItem[] | null {
+  if (!ENABLE_TOURNAMENTS) return null;
   if (!roomId) return null;
   return roundReviewCache.get(roomId) ?? null;
 }
 
 export async function loadRoundReview(roomId: string) {
+  if (!ENABLE_TOURNAMENTS) throw new Error('tournaments_disabled_by_owner');
   const cached = roundReviewCache.get(roomId);
   if (cached) return { ok: true, items: cached };
   const response = await callFunction<{ ok: boolean; items: ReviewItem[] }>(
@@ -1346,6 +1354,10 @@ let weeklyBankCache: { at: number; value: WeeklyBankInfo | null } | null = null;
 const WEEKLY_BANK_TTL_MS = 30 * 60 * 1000;
 
 export async function loadWeeklyBankInfo(force = false): Promise<WeeklyBankInfo | null> {
+  if (!ENABLE_TOURNAMENTS) {
+    weeklyBankCache = null;
+    return null;
+  }
   const now = Date.now();
   if (!force && weeklyBankCache && now - weeklyBankCache.at < WEEKLY_BANK_TTL_MS) {
     return weeklyBankCache.value;
@@ -1450,6 +1462,7 @@ const SEASON_TTL_MS = 15 * 60 * 1000;
 
 /** Последний известный рейтинг — для синхронной гидрации первого кадра. */
 export function peekSeasonStandings(): SeasonStandings | null {
+  if (!ENABLE_TOURNAMENTS) return null;
   if (!seasonCache) return null;
   const stableUid = peekStableId();
   if (!stableUid || seasonCache.stableUid !== stableUid) return null;
@@ -1473,6 +1486,10 @@ export function invalidateSeasonStandingsCache(): void {
  * недели целиком нельзя — она растёт с аудиторией.
  */
 export async function loadSeasonStandings(force = false): Promise<SeasonStandings | null> {
+  if (!ENABLE_TOURNAMENTS) {
+    seasonCache = null;
+    return null;
+  }
   const now = Date.now();
   const weekId = tournamentSeasonWeekId(now);
   const myUid = await getStableId().catch(() => '');
@@ -1535,6 +1552,10 @@ export async function loadSeasonStandings(force = false): Promise<SeasonStanding
  * дёргать сервер на каждом открытии экрана — пустая трата чтений.
  */
 export async function loadSchedule(force = false): Promise<unknown> {
+  if (!ENABLE_TOURNAMENTS) {
+    scheduleCache = null;
+    return null;
+  }
   const now = Date.now();
   if (!force && scheduleCache && now - scheduleCache.at < SCHEDULE_TTL_MS) {
     return scheduleCache.value;

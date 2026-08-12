@@ -278,7 +278,11 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       appTier,
     }),
     runSupport: (appTier) => buildSupportSnapshot({
-      fetchSupport: () => fetchSupportSource({ collection: db.collection('support_inbox'), nowMs }),
+      fetchSupport: () => fetchSupportSource({
+        collection: db.collection('support_inbox'),
+        syncDocument: db.doc('admin_config/support_inbox'),
+        nowMs,
+      }),
       trigger: 'scheduled',
       nowMs,
       appTier,

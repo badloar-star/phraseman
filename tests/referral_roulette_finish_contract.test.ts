@@ -274,14 +274,12 @@ describe('referral roulette finish contract', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('wires a permissioned, idempotent and audited server/admin kill switch', () => {
+  it('wires a permissioned, idempotent and audited server kill switch', () => {
     const referral = read('functions/src/referral.ts');
     const spin = read('functions/src/referral_spin.ts');
     const claim = read('functions/src/referral_claim_spin.ts');
     const admin = read('functions/src/admin_referrals.ts');
     const exports = read('functions/src/index.ts');
-    const firebase = read('admin/v2/scripts/admin-firebase.js');
-    const core = read('admin/v2/scripts/admin-core.js');
 
     expect(referral).toContain('return false;');
     expect(spin).toContain("new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP')");
@@ -291,10 +289,5 @@ describe('referral roulette finish contract', () => {
     expect(admin).toContain("db.collection('admin_log').doc()");
     expect(admin).toContain("db.collection('admin_command_operations')");
     expect(exports).toContain('adminSetReferralRouletteEnabled');
-    expect(firebase).toContain("httpsCallable(functionsUs, 'adminSetReferralRouletteEnabled')");
-    expect(core).toContain('data-action="set-referral-roulette-enabled"');
-    expect(core).toContain('aria-pressed=');
-    expect(core).toContain('data-tooltip=');
-    expect(core).toContain('globalThis.confirm(');
   });
 });

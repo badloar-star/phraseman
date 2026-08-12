@@ -346,8 +346,10 @@ export function clampHomeFeatureTipIndex(value: number, total: number): number {
 /** Собрать карточки для текущего показа: replayCount 0..5 → наборы №1..№6. */
 export function buildHomeFeatureTips(lang: Lang, replayCount: number): HomeFeatureTip[] {
     const setIndex = clampHomeFeatureTipReplayCount(replayCount);
-    // Spanish is not a production-ready interface locale yet, so it keeps the
-    // established Russian fallback. Ukrainian must never fall through to RU.
+    // These guided-tour cards are separately maintained content and are outside
+    // the release-interface localization scope. Until their own content pass,
+    // every non-Ukrainian locale deliberately keeps the established Russian set.
+    // Ukrainian must never fall through to RU.
     const seeds = lang === 'uk' ? HOME_FEATURE_TIP_SEEDS_UK : HOME_FEATURE_TIP_SEEDS;
     return seeds.map((seed) => ({
         title: seed.title,

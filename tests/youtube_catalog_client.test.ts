@@ -2,6 +2,7 @@ import {
   buildYoutubeScreenSnapshot,
   catalogSnapshotsEqual,
   fetchYoutubeChannelCatalogWithReader,
+  fetchYoutubeHomeFeatureWithReader,
   peekYoutubeCatalogScreenSnapshot,
   rememberYoutubeCatalogScreenSnapshot,
   revalidateYoutubeChannelCatalog,
@@ -48,6 +49,8 @@ function reader(overrides: Partial<YoutubeCatalogReader> = {}): YoutubeCatalogRe
       if (path === 'youtube_catalog/public') return manifest;
       if (path === `youtube_catalog_snapshots/${version}`) return { status: 'ready', manifest };
       if (path.endsWith('/channels/english')) return channel;
+      const videoId = path.match(/\/videos\/([^/]+)$/)?.[1];
+      if (videoId) return videos.find((item) => item.id === videoId) ?? null;
       return null;
     }),
     list: jest.fn(async (path: string) => path.endsWith('/videos') ? videos : playlists),
@@ -78,6 +81,16 @@ describe('YouTube catalog mobile client', () => {
     await expect(fetchYoutubeChannelCatalogWithReader('english', reader({
       get: jest.fn(async (path: string) => path === 'youtube_catalog/public' ? manifest : { status: 'building', manifest }),
     }))).rejects.toThrow('youtube_catalog_snapshot_not_ready');
+  });
+
+  it('loads one Home feature without listing full video or playlist collections', async () => {
+    const source = reader();
+    const result = await fetchYoutubeHomeFeatureWithReader('english', source, manifest);
+
+    expect(result.video?.id).toBe('abcdefghijk');
+    expect(result.video?.state).toBe('upcoming');
+    expect(source.get).toHaveBeenCalledTimes(3);
+    expect(source.list).not.toHaveBeenCalled();
   });
 
   it('does not commit a late response after account generation changes', async () => {

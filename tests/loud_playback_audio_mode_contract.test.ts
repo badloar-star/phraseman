@@ -40,8 +40,8 @@ describe('purpose-specific playback audio modes', () => {
 
     expect(layoutSource).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
     expect(layoutSource).not.toContain('setAudioModeAsync(');
-    expect(planExerciseSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
-    expect(phraseAudioSource).toContain("acquireAudioActivity('spoken')");
+    expect(planExerciseSource).toContain('useManagedSpokenAudioPlayer(');
+    expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio)');
   });
 
   it('restores loud playback after every speech-recognition surface settles', () => {
@@ -52,18 +52,19 @@ describe('purpose-specific playback audio modes', () => {
     // Распознавание переводит аудио-сессию в запись (playAndRecord). Каждый
     // экран с микрофоном обязан вернуть «громкое воспроизведение», иначе весь
     // звук после — тихий/через разговорный динамик или не играет вовсе.
-    for (const source of [speakingPanel, aiDialog]) {
-      expect(source).toContain('restoreLoudPlaybackMode');
-      expect(source).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
-    }
-    expect(planExercise).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(speakingPanel).toContain('useManagedRecordingAudio(');
+    expect(speakingPanel).toContain('const restoreLoudPlaybackMode = recordingAudio.release');
+    expect(aiDialog).toContain('useManagedRecordingAudio(');
+    expect(aiDialog).toContain('const restoreLoudPlaybackMode = recordingAudio.release');
+    expect(planExercise).toContain('useManagedRecordingAudio(');
+    expect(planExercise).toContain('const restoreLoudPlaybackMode = recordingAudio.release');
   });
 
   it('switches speaking surfaces into a record-capable session before start()', () => {
     const speakingPanel = fs.readFileSync(path.join(ROOT, 'components', 'SpeakingPanel.tsx'), 'utf8');
     const aiDialog = fs.readFileSync(path.join(ROOT, 'app', 'ai_dialog_session.tsx'), 'utf8');
-    expect(speakingPanel).toContain('setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE)');
-    expect(aiDialog).toContain('setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE)');
+    expect(speakingPanel).toContain('await recordingAudio.begin()');
+    expect(aiDialog).toContain('await recordingAudio.begin()');
   });
 
   it('rolls capture mode back when native start throws', () => {
@@ -76,22 +77,23 @@ describe('purpose-specific playback audio modes', () => {
   it('speaking panel plays replay and reference loud and stops them on done/retry', () => {
     const speakingPanel = fs.readFileSync(path.join(ROOT, 'components', 'SpeakingPanel.tsx'), 'utf8');
 
-    // Громкий режим ставится ПЕРЕД воспроизведением «Моей записи» и эталона.
+    // Эксклюзивный spoken-claim ставится ПЕРЕД «Моей записью», а эталон идёт
+    // через useAudio, который использует тот же процесс-wide арбитр.
     const playMyRecording = speakingPanel.slice(speakingPanel.indexOf('const playMyRecording'));
-    expect(playMyRecording.slice(0, playMyRecording.indexOf('player.play()'))).toContain('LOUD_PLAYBACK_AUDIO_MODE');
+    expect(playMyRecording.slice(0, playMyRecording.indexOf('player.play()'))).toContain('claimSpokenAudio(');
     const playReference = speakingPanel.slice(speakingPanel.indexOf('const speakWord'));
-    expect(playReference.slice(0, playReference.indexOf('Speech.speak('))).toContain('LOUD_PLAYBACK_AUDIO_MODE');
+    expect(playReference.slice(0, playReference.indexOf('const applyWordResult'))).toContain('speakReferenceAudio(');
 
     // «Сказать ещё раз» (startListening) глушит эталон и «Мою запись», чтобы
     // микрофон не ловил их хвост; «Готово»/закрытие панели — тоже.
     const startListening = speakingPanel.slice(speakingPanel.indexOf('const startListening'));
     const beforeStart = startListening.slice(0, startListening.indexOf('speech.start('));
-    expect(beforeStart).toContain('replayPlayerRef.current?.pause()');
+    expect(beforeStart).toContain('stopReplayPlayback()');
     expect(beforeStart).toContain('Speech.stop()');
     const handleClose = speakingPanel.slice(speakingPanel.indexOf('const handleClose'));
     const closeBody = handleClose.slice(0, handleClose.indexOf('onClose()'));
     expect(closeBody).toContain('Speech.stop()');
-    expect(closeBody).toContain('replayPlayerRef.current?.pause()');
+    expect(closeBody).toContain('stopReplayPlayback()');
   });
 
   it('keeps only the current attempt recording on disk (no voice-file hoarding)', () => {

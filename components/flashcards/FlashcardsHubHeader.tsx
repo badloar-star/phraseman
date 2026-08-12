@@ -4,6 +4,8 @@ import { Image } from 'expo-image';
 import { FlowText } from '../text-integrity/FlowText';
 import type { Theme, ThemeMode } from '../../constants/theme';
 import { pearlIconForTheme } from '../../app/coin_icons';
+import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 
 /**
  * Шапка раздела «Карточки» — заголовок + баланс монет (макет
@@ -27,6 +29,7 @@ interface FlashcardsHubHeaderProps {
 }
 
 function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHubHeaderProps) {
+  const { lang } = useLang();
   return (
     <View
       style={{
@@ -54,7 +57,16 @@ function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHub
       </FlowText>
       <View
         accessible
-        accessibilityLabel={`Баланс: ${balance}`}
+        accessibilityLabel={triLang(lang, {
+          ru: `Баланс: ${balance}`,
+          uk: `Баланс: ${balance}`,
+          es: `Saldo: ${balance}`,
+          'pt-BR': `Saldo: ${balance}`,
+          vi: `Số dư: ${balance}`,
+          id: `Saldo: ${balance}`,
+          tr: `Bakiye: ${balance}`,
+          pl: `Saldo: ${balance}`,
+        })}
         style={{
           flexDirection: 'row',
           alignItems: 'center',

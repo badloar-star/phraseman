@@ -10,7 +10,7 @@ describe('onboarding notification skip interaction', () => {
   it('defers the native Alert action until the dialog dismissal interaction is finished', () => {
     expect(source).toContain('const continueAfterNotificationDialog = useCallback(() => {');
     expect(source).toContain("InteractionManager.runAfterInteractions(() => go('plusBenefits'))");
-    expect(source).toContain("{ text: 'Позже', style: 'cancel', onPress: continueAfterNotificationDialog }");
+    expect(source).toContain("style: 'cancel', onPress: continueAfterNotificationDialog");
   });
 
   it('keeps the visible notification skip button directly interactive', () => {

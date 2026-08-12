@@ -35,7 +35,7 @@ export default function TermsScreen() {
             документ выезжает снизу как модал, шапка — центрированный заголовок
             + крестик; «открыть на сайте» — аксессуар рядом с крестиком. */}
         <SectionSheetHeader
-          title="Terms of Use"
+          title={triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}
           onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
           accessory={(
           <TouchableOpacity

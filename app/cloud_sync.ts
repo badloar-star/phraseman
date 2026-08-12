@@ -73,6 +73,11 @@ import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
 import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+import {
+  canonicalJsonV1,
+  hashCanonicalBody,
+  utf8ByteLengthV1,
+} from '../modules/learning-v2/policies/decision_registry';
 // зачем: экран «Сегодня» удалён (2026-08-03) вместе с lib/today, но ключ его
 // истории остаётся на устройствах прежних версий. Держим его в списке очистки
 // при смене аккаунта — иначе чужие данные переживут выход из аккаунта (тот же
@@ -597,6 +602,18 @@ const LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS = [
 
 const LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES = [
   'personal_plan_day_runtime_v1:',
+  'learning_v2_lesson1_progress:',
+  'learning_v2_progress:',
+  'v2:outbox:v1:',
+  'v2:outbox:v2:',
+  'v2:required-session-local-commit:v1:',
+  'v2:required-session-local-commit:v2:',
+  'v2:required-session-local-commit:v3:',
+  'v2:required-session-local-commit-index:v1:',
+  'v2:required-session-completion-receipt:v1:',
+  'v2:required-session-completion-scheduler:v1:',
+  'learning_v2_owner_repository:v1:',
+  'learning_v2_coin_exchange_outbox:v1:',
 ] as const;
 
 function isLearningV2AccountLocalKey(key: string): boolean {
@@ -742,6 +759,70 @@ function buildRestoreSnapshot(
 }
 const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';
 const ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
+const ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
+const ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS = 64;
+const ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES = 512 * 1024;
+const ACCOUNT_SWITCH_BACKUP_MAX_PAGES = 512;
+const ACCOUNT_SWITCH_BACKUP_MAX_PAIRS =
+  ACCOUNT_SWITCH_BACKUP_MAX_PAGES * ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS;
+const ACCOUNT_SWITCH_BACKUP_MAX_TOTAL_UTF8_BYTES = 128 * 1024 * 1024;
+
+type PreviousAccountSwitchBackupIdentity = Readonly<{
+  stableId: string;
+  backupId: string | null;
+}>;
+
+function parsePreviousAccountSwitchBackupIdentity(
+  raw: string,
+): PreviousAccountSwitchBackupIdentity | null {
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if ((parsed.version === 1 || parsed.version === 2) &&
+      typeof parsed.stableId === 'string' && parsed.stableId.length > 0 &&
+      Array.isArray(parsed.pairs)) {
+      return Object.freeze({ stableId: parsed.stableId, backupId: null });
+    }
+    if (parsed.version !== 3 ||
+      parsed.schemaVersion !== 'account-switch-emergency-backup.v3' ||
+      typeof parsed.backupId !== 'string' || !/^[a-z0-9-]{3,80}$/.test(parsed.backupId) ||
+      typeof parsed.stableId !== 'string' || parsed.stableId.length === 0 ||
+      !Number.isSafeInteger(parsed.createdAt) || Number(parsed.createdAt) < 0 ||
+      typeof parsed.reason !== 'string' || parsed.reason.length > 80 ||
+      !Number.isSafeInteger(parsed.pageCount) || Number(parsed.pageCount) < 0 ||
+      Number(parsed.pageCount) > ACCOUNT_SWITCH_BACKUP_MAX_PAGES ||
+      !Number.isSafeInteger(parsed.pairCount) || Number(parsed.pairCount) < 0 ||
+      Number(parsed.pairCount) > ACCOUNT_SWITCH_BACKUP_MAX_PAIRS ||
+      !Number.isSafeInteger(parsed.totalUtf8Bytes) || Number(parsed.totalUtf8Bytes) < 0 ||
+      Number(parsed.totalUtf8Bytes) > ACCOUNT_SWITCH_BACKUP_MAX_TOTAL_UTF8_BYTES ||
+      (parsed.lastPageFingerprint !== null &&
+        (typeof parsed.lastPageFingerprint !== 'string' ||
+          !/^[a-f0-9]{64}$/.test(parsed.lastPageFingerprint))) ||
+      !Number.isSafeInteger(parsed.requiredSessionReceiptCount) ||
+      Number(parsed.requiredSessionReceiptCount) < 0 ||
+      typeof parsed.manifestFingerprint !== 'string' ||
+      !/^[a-f0-9]{64}$/.test(parsed.manifestFingerprint) ||
+      Reflect.ownKeys(parsed).length !== 12) return null;
+    const { manifestFingerprint, ...body } = parsed;
+    if (hashCanonicalBody(body) !== manifestFingerprint || canonicalJsonV1(parsed) !== raw ||
+      (Number(parsed.pageCount) === 0) !== (parsed.lastPageFingerprint === null)) return null;
+    return Object.freeze({ stableId: parsed.stableId, backupId: parsed.backupId });
+  } catch {
+    return null;
+  }
+}
+
+async function readAccountSwitchBackupRowsExactly(
+  keys: readonly string[],
+  errorCode: string,
+): Promise<readonly (readonly [string, string | null])[]> {
+  const rows = await AsyncStorage.multiGet([...keys]);
+  if (rows.length !== keys.length || rows.some((row, index) =>
+    !Array.isArray(row) || row.length !== 2 || row[0] !== keys[index] ||
+    (row[1] !== null && typeof row[1] !== 'string'))) {
+    throw new Error(errorCode);
+  }
+  return rows;
+}
 const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
@@ -1035,6 +1116,10 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'streak_count',
   'last_active_date',
   'streak_last_date',
+  // Exact EN unlock key is protected by Firestore Rules and mutated only by
+  // progress_events. Keep it restoreable via SYNC_KEYS, but never include it in
+  // an outbound client patch or the rules reject the whole progress update.
+  'unlocked_lessons',
   'collectibles_owned_v1',
   'collectibles_state_v1',
   'chain_shield',
@@ -1730,11 +1815,14 @@ export async function waitForAnonAuth(timeoutMs = 20_000): Promise<boolean> {
   return false;
 }
 
-export async function ensureAnonUser(): Promise<string | null> {
+export async function ensureAnonUser(
+  options: { cacheOnly?: boolean } = {},
+): Promise<string | null> {
   if (!CLOUD_SYNC_ENABLED) return null;
   if (await isAccountDeleteIdentityQuarantined()) return null;
   // Всегда используем canonical stable ID как ключ users/*
   const stableId = await getCanonicalUserId();
+  if (options.cacheOnly) return getAuth()?.currentUser ? stableId : null;
   await ensureAnonAuthReady();
   return stableId;
 }
@@ -3276,37 +3364,215 @@ export async function saveAccountSwitchEmergencyBackup(
   if (!stableId || (expectedStableId && stableId !== expectedStableId)) {
     throw new Error('account_switch_backup_identity_unavailable');
   }
+  const previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  // A historical monolithic backup above the V3 parser budget cannot be
+  // silently replaced: it may contain the only copy of offline work. Account
+  // switch remains blocked until an explicit upgrader can preserve it.
+  if (previousBackupRaw !== null &&
+    previousBackupRaw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+    throw new Error('account_switch_backup_history_upgrade_required');
+  }
+  const previousBackupIdentity = previousBackupRaw === null
+    ? null
+    : parsePreviousAccountSwitchBackupIdentity(previousBackupRaw);
+  if (previousBackupRaw !== null && previousBackupIdentity === null) {
+    throw new Error('account_switch_backup_history_upgrade_required');
+  }
+  if (previousBackupIdentity !== null && previousBackupIdentity.stableId !== stableId) {
+    throw new Error('account_switch_backup_other_owner_pending');
+  }
   const shardQueueKey = shardDeltaQueueStorageKey(stableId);
-  const keys = Array.from(new Set([
+  const keySet = new Set([
     ...await collectAccountLocalDataKeys(),
     shardQueueKey,
-  ]));
-  const pairs = (await AsyncStorage.multiGet(keys)).filter(([, value]) => value != null) as Array<[string, string]>;
-  const queueRaw = pairs.find(([key]) => key === shardQueueKey)?.[1] ?? null;
-  const payload = {
-    version: 2,
-    createdAt: Date.now(),
-    reason: String(reason || 'unknown').slice(0, 80),
-    stableId,
-    pairs,
+  ]);
+  // Reject before the potentially expensive sort. The underlying native
+  // getAllKeys allocation remains a platform boundary, but this function never
+  // creates another unbounded sorted copy or starts a partial backup.
+  if (keySet.size > ACCOUNT_SWITCH_BACKUP_MAX_PAIRS) {
+    throw new Error('account_switch_backup_capacity');
+  }
+  const keys = Array.from(keySet).sort();
+  const createdAt = Date.now();
+  const previousBackupId = previousBackupIdentity?.backupId ?? null;
+  const backupIdBase = `${createdAt.toString(36)}-${Math.random().toString(36).slice(2, 14)}`;
+  let backupId: string | null = null;
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    const candidate = attempt === 0 ? backupIdBase : `${backupIdBase}-${attempt.toString(36)}`;
+    if (candidate === previousBackupId) continue;
+    if (await AsyncStorage.getItem(`${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${candidate}:0`) !== null) {
+      continue;
+    }
+    backupId = candidate;
+    break;
+  }
+  if (backupId === null) throw new Error('account_switch_backup_namespace_conflict');
+  let pageCount = 0;
+  let pairCount = 0;
+  let totalUtf8Bytes = 0;
+  let lastPageFingerprint: string | null = null;
+  let requiredSessionReceiptCount = 0;
+  let queueRaw: string | null = null;
+  const writePage = async (pairs: readonly (readonly [string, string])[]): Promise<void> => {
+    if (pageCount >= ACCOUNT_SWITCH_BACKUP_MAX_PAGES) {
+      throw new Error('account_switch_backup_capacity');
+    }
+    const body = {
+      schemaVersion: 'account-switch-emergency-backup-page.v1' as const,
+      backupId,
+      stableId,
+      pageIndex: pageCount,
+      previousPageFingerprint: lastPageFingerprint,
+      pairs,
+    };
+    const pageFingerprint = hashCanonicalBody(body);
+    const raw = canonicalJsonV1({ ...body, pageFingerprint });
+    if (raw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+      utf8ByteLengthV1(raw) > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+      throw new Error('account_switch_backup_value_upgrade_required');
+    }
+    const key = `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${backupId}:${pageCount}`;
+    if (await AsyncStorage.getItem(key) !== null) {
+      throw new Error('account_switch_backup_namespace_conflict');
+    }
+    // Count the attempted page before native I/O so rollback also removes a
+    // silently corrupted/partially written page whose readback fails.
+    pageCount += 1;
+    await AsyncStorage.setItem(key, raw);
+    if (await AsyncStorage.getItem(key) !== raw) {
+      throw new Error('account_switch_backup_verification_failed');
+    }
+    pairCount += pairs.length;
+    lastPageFingerprint = pageFingerprint;
   };
-  const raw = JSON.stringify(payload);
-  const previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
   try {
+    for (let offset = 0; offset < keys.length; offset += ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS) {
+      const requestedKeys = keys.slice(offset, offset + ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS);
+      const rows = await readAccountSwitchBackupRowsExactly(
+        requestedKeys,
+        'account_switch_backup_verification_failed',
+      );
+      let pagePairs: [string, string][] = [];
+      for (const [key, value] of rows) {
+        if (value == null) continue;
+        if (key.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+          value.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+          throw new Error('account_switch_backup_value_upgrade_required');
+        }
+        const pairBytes = utf8ByteLengthV1(key) + utf8ByteLengthV1(value);
+        if (pairBytes > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+          throw new Error('account_switch_backup_value_upgrade_required');
+        }
+        const candidate = [...pagePairs, [key, value] as [string, string]];
+        const candidateBody = {
+          schemaVersion: 'account-switch-emergency-backup-page.v1' as const,
+          backupId,
+          stableId,
+          pageIndex: pageCount,
+          previousPageFingerprint: lastPageFingerprint,
+          pairs: candidate,
+        };
+        const candidateRaw = canonicalJsonV1({
+          ...candidateBody,
+          pageFingerprint: hashCanonicalBody(candidateBody),
+        });
+        if (candidateRaw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+          utf8ByteLengthV1(candidateRaw) > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+          if (pagePairs.length === 0) {
+            throw new Error('account_switch_backup_value_upgrade_required');
+          }
+          await writePage(pagePairs);
+          pagePairs = [[key, value]];
+        } else {
+          pagePairs = candidate;
+        }
+        totalUtf8Bytes += pairBytes;
+        if (!Number.isSafeInteger(totalUtf8Bytes) ||
+          totalUtf8Bytes > ACCOUNT_SWITCH_BACKUP_MAX_TOTAL_UTF8_BYTES) {
+          throw new Error('account_switch_backup_capacity');
+        }
+        if (key === shardQueueKey) queueRaw = value;
+        if (key.startsWith('v2:required-session-completion-receipt:v1:')) {
+          requiredSessionReceiptCount += 1;
+        }
+      }
+      if (pagePairs.length > 0) await writePage(pagePairs);
+    }
+    const body = {
+      version: 3 as const,
+      schemaVersion: 'account-switch-emergency-backup.v3' as const,
+      backupId,
+      stableId,
+      createdAt,
+      reason: String(reason || 'unknown').slice(0, 80),
+      pageCount,
+      pairCount,
+      totalUtf8Bytes,
+      lastPageFingerprint,
+      requiredSessionReceiptCount,
+    };
+    const raw = canonicalJsonV1({ ...body, manifestFingerprint: hashCanonicalBody(body) });
     await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, raw);
     const verifiedRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
     if (verifiedRaw !== raw) throw new Error('account_switch_backup_verification_failed');
-    const verified = JSON.parse(verifiedRaw) as typeof payload;
-    const verifiedQueueRaw = verified.pairs.find(([key]) => key === shardQueueKey)?.[1] ?? null;
-    if (verified.stableId !== stableId || verifiedQueueRaw !== queueRaw) {
+    const verified = JSON.parse(verifiedRaw) as typeof body & { manifestFingerprint: string };
+    if (verified.stableId !== stableId || verified.pageCount !== pageCount ||
+      verified.pairCount !== pairCount || verified.lastPageFingerprint !== lastPageFingerprint ||
+      hashCanonicalBody(body) !== verified.manifestFingerprint) {
       throw new Error('account_switch_backup_verification_failed');
+    }
+    // The owner-bound shard queue is included in the same verified page set;
+    // retaining the local observation here prevents accidental omission.
+    if (queueRaw !== null && pairCount === 0) {
+      throw new Error('account_switch_backup_verification_failed');
+    }
+    // Root-last publication makes prior pages unreachable. Reclaim them in
+    // bounded chunks after the new root is verified; a cleanup failure never
+    // invalidates the new snapshot and can be retried by later storage GC.
+    if (previousBackupRaw !== null) {
+      try {
+        const previous = JSON.parse(previousBackupRaw) as Record<string, unknown>;
+        if (previous.version === 3 && typeof previous.backupId === 'string' &&
+          /^[a-z0-9-]{3,80}$/.test(previous.backupId) &&
+          Number.isSafeInteger(previous.pageCount) && Number(previous.pageCount) >= 0 &&
+          Number(previous.pageCount) <= ACCOUNT_SWITCH_BACKUP_MAX_PAGES &&
+          previous.backupId !== backupId) {
+          for (let offset = 0; offset < Number(previous.pageCount); offset += 128) {
+            await AsyncStorage.multiRemove(Array.from(
+              { length: Math.min(128, Number(previous.pageCount) - offset) },
+              (_, index) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${previous.backupId}:${offset + index}`,
+            ));
+          }
+        }
+      } catch {
+        // New root remains the only authority; orphan cleanup is best-effort.
+      }
     }
   } catch (e) {
     try {
       if (previousBackupRaw == null) {
         await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+        if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) !== null) {
+          throw new Error('account_switch_backup_rollback_failed');
+        }
       } else {
         await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, previousBackupRaw);
+        if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) !== previousBackupRaw) {
+          throw new Error('account_switch_backup_rollback_failed');
+        }
+      }
+      for (let offset = 0; offset < pageCount; offset += 64) {
+        const chunk = Array.from(
+          { length: Math.min(64, pageCount - offset) },
+          (_, index) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${backupId}:${offset + index}`,
+        );
+        await AsyncStorage.multiRemove(chunk);
+        if ((await readAccountSwitchBackupRowsExactly(
+          chunk,
+          'account_switch_backup_rollback_failed',
+        )).some(([, value]) => value != null)) {
+          throw new Error('account_switch_backup_rollback_failed');
+        }
       }
     } catch {
       throw new Error('account_switch_backup_rollback_failed');
@@ -3322,13 +3588,31 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   const accountKeys = await collectAccountLocalDataKeys();
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
+  const removeExactly = async (keys: readonly string[]): Promise<void> => {
+    const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
+    const chunkSize = 128;
+    for (let offset = 0; offset < unique.length; offset += chunkSize) {
+      const chunk = unique.slice(offset, offset + chunkSize);
+      await AsyncStorage.multiRemove(chunk);
+      const residue = (await AsyncStorage.multiGet(chunk))
+        .filter(([, value]) => value != null)
+        .map(([key]) => key);
+      if (residue.length > 0) throw new Error('account_wipe_incomplete');
+    }
+  };
   const toRemove = accountKeys.filter((key) => !KEEP.has(key));
-  await AsyncStorage.multiRemove(toRemove);
+  await removeExactly(toRemove);
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
     .filter((key) => !KEEP.has(key));
-  await AsyncStorage.multiRemove(lateLearningV2Keys);
+  await removeExactly(lateLearningV2Keys);
+  const knownAccountKeys = new Set(accountLocalDataKeysForToday());
+  const finalResidue = (await listAllAccountLocalStorageKeys()).filter((key) =>
+    !KEEP.has(key) && (
+      knownAccountKeys.has(key) || isLearningV2AccountLocalKey(key) || isVipSnapshotStorageKey(key)
+    ));
+  if (finalResidue.length > 0) throw new Error('account_wipe_incomplete');
   // Сбрасываем in-memory bookkeeping синка
   lastSuccessfulSyncAt = 0;
   lastActivityStampAt = 0;

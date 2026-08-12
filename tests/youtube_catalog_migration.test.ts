@@ -25,8 +25,8 @@ describe('YouTube catalog migration and rollback bridge', () => {
 
   it('keeps the canonical legacy admin as the only YouTube catalog editor', () => {
     expect(legacyAdmin).toContain('YOUTUBE_CATALOG_ADMIN_START');
-    expect(fs.existsSync(path.join(root, 'admin', 'legacy.html'))).toBe(false);
-    expect(read('admin/v2/index.html')).not.toContain('YOUTUBE_CATALOG_ADMIN_START');
+    expect(fs.existsSync(path.join(root, 'admin', 'v2', 'index.html'))).toBe(false);
+    expect(fs.existsSync(path.join(root, 'admin', 'v2', 'english-test.html'))).toBe(false);
   });
 
   it('retains the pre-catalog RSS and pinned-video entry path', () => {

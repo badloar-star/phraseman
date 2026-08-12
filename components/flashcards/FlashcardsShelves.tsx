@@ -43,7 +43,7 @@ interface Props {
   continuePacks: ShelfPack[];
   cinemaPacks: ShelfPack[];
   themes: ShelfTheme[];
-  labels: { continue: string; cinema: string; themes: string; opened: string };
+  labels: { continue: string; cinema: string; themes: string; opened: string; new: string };
   onPackPress: (id: string) => void;
   onThemePress: (id: string) => void;
   t: Theme;
@@ -113,7 +113,7 @@ function FlashcardsShelvesBase({
                   )}
                   {p.isNew && (
                     <View style={{ position: 'absolute', top: 7, left: 7, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 999, backgroundColor: t.accent }}>
-                      <Text style={{ fontSize: 10, fontWeight: '900', color: t.correctText }}>новый</Text>
+                      <Text style={{ fontSize: 10, fontWeight: '900', color: t.correctText }}>{labels.new}</Text>
                     </View>
                   )}
                 </LinearGradient>

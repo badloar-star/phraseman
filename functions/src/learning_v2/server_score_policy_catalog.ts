@@ -73,8 +73,12 @@ export const createCodeOwnedScoringPolicyCatalog = (
   });
 };
 
-/** Pilot v1 policy: confident success earns three, practice feedback earns one,
- * and non-assessment/system outcomes are forced to zero by the resolver. */
+/**
+ * Pilot v1 result-to-stars table. This catalog does not authenticate an
+ * attempt outcome: it is safe only after a trusted activity evaluator has
+ * derived resultCode, or for explicitly local personal-progress evaluation.
+ * It must never be installed as the production callable's default scorer.
+ */
 export const PILOT_SCORING_POLICY_BODY: ScoringPolicyDefinitionBody = Object.freeze({
   schemaVersion: "v2-scoring-policy-body.v1",
   key: "policy.scoring.pilot",

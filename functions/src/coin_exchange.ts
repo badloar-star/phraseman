@@ -57,6 +57,12 @@ import {
   validateExchangeIdempotencyKey,
   type CoinExchangeConfig,
 } from './coin_exchange_core';
+import { deriveLearningV2EconomicAccountScopeHash } from '../../modules/learning-v2/progress/economic_account_scope';
+import {
+  V2_WALLET_REWARD_RECEIPTS_SUBCOLLECTION,
+  materializeCoinExchangeWalletReward,
+  parseCoinExchangeWalletRewardRequest,
+} from './coin_exchange_wallet_reward';
 
 const REGION = 'us-central1';
 
@@ -189,7 +195,14 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
     });
 
     if (outcome.kind === 'replay') {
-      return { starsGranted: outcome.starsGranted, rateUsed: outcome.rateUsed };
+      const walletRewardRequest = parseCoinExchangeWalletRewardRequest(
+        tradeSnap.data()?.walletRewardRequest,
+      );
+      return {
+        starsGranted: outcome.starsGranted,
+        rateUsed: outcome.rateUsed,
+        ...(walletRewardRequest ? { walletRewardRequest } : {}),
+      };
     }
     if (outcome.kind === 'insufficient') {
       throw new HttpsError('failed-precondition', 'insufficient_coins');
@@ -205,6 +218,17 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       });
     }
 
+    const storedGeneration = userSnap.data()?.accountGeneration ?? userSnap.data()?.generation;
+    const accountGeneration = Number.isSafeInteger(storedGeneration) && Number(storedGeneration) >= 1
+      ? Number(storedGeneration)
+      : null;
+    const walletReward = accountGeneration === null ? null : materializeCoinExchangeWalletReward({
+      accountScopeHash: deriveLearningV2EconomicAccountScopeHash(uid),
+      accountGeneration,
+      idempotencyKey,
+      starsGranted: outcome.starsGranted,
+    });
+
     tx.set(userRef, {
       shards: outcome.nextCoinBalance,
       shards_updated_at_ms: Date.now(),
@@ -219,6 +243,7 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       delta: outcome.starsGranted,
       balanceAfter: outcome.nextStarBalance,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      ...(walletReward ? { walletRewardRequest: walletReward.request } : {}),
     });
     tx.set(tradeRef, {
       uid,
@@ -227,7 +252,15 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       rate: outcome.rateUsed,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       idempotencyKey,
+      ...(walletReward ? { walletRewardRequest: walletReward.request } : {}),
     });
+    if (walletReward) {
+      tx.create(
+        userRef.collection(V2_WALLET_REWARD_RECEIPTS_SUBCOLLECTION)
+          .doc(walletReward.request.rewardId),
+        walletReward.protectedReceipt,
+      );
+    }
     tx.set(historyRef, {
       date: todayKey,
       volumeCoins: admin.firestore.FieldValue.increment(outcome.coins),
@@ -235,7 +268,11 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       trades: admin.firestore.FieldValue.increment(1),
     }, { merge: true });
 
-    return { starsGranted: outcome.starsGranted, rateUsed: outcome.rateUsed };
+    return {
+      starsGranted: outcome.starsGranted,
+      rateUsed: outcome.rateUsed,
+      ...(walletReward ? { walletRewardRequest: walletReward.request } : {}),
+    };
   });
 });
 

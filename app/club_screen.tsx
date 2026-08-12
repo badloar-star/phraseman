@@ -1166,9 +1166,9 @@ export default function ClubScreen() {
         setGroupBoostLikeTotal(res.boost.likeCount);
         if (res.usedGiftVoucher) {
           setFreeBoostGiftReady(false);
-          showLeagueToast(`Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен на 3 часа — бесплатно, подарок использован 🎁`, 'success');
+          showLeagueToast(triLang(lang, { ru: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен на 3 часа — бесплатно, подарок использован 🎁`, uk: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} увімкнено на 3 години — безкоштовно, подарунок використано 🎁`, es: `El impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está activo durante 3 horas: gratis, regalo usado 🎁`, 'pt-BR': `O impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está ativo por 3 horas: grátis, presente usado 🎁`, vi: `Tăng cường ×${LEAGUE_GROUP_BOOST_MULTIPLIER} đã bật trong 3 giờ — miễn phí, quà đã dùng 🎁`, id: `Boost ×${LEAGUE_GROUP_BOOST_MULTIPLIER} aktif selama 3 jam — gratis, hadiah telah digunakan 🎁`, tr: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} güçlendirmesi 3 saat etkin — ücretsiz, hediye kullanıldı 🎁`, pl: `Wzmocnienie ×${LEAGUE_GROUP_BOOST_MULTIPLIER} działa przez 3 godziny — za darmo, prezent wykorzystany 🎁` }), 'success');
         } else {
-          showLeagueToast(`Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, 'success');
+          showLeagueToast(triLang(lang, { ru: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, uk: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} увімкнено для всієї ліги на 3 години`, es: `El impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está activo para toda la liga durante 3 horas`, 'pt-BR': `O impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está ativo para toda a liga por 3 horas`, vi: `Tăng cường ×${LEAGUE_GROUP_BOOST_MULTIPLIER} đã bật cho cả giải trong 3 giờ`, id: `Boost ×${LEAGUE_GROUP_BOOST_MULTIPLIER} aktif untuk seluruh liga selama 3 jam`, tr: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} güçlendirmesi tüm lig için 3 saat etkin`, pl: `Wzmocnienie ×${LEAGUE_GROUP_BOOST_MULTIPLIER} działa dla całej ligi przez 3 godziny` }), 'success');
         }
         return;
       }
@@ -1180,23 +1180,23 @@ export default function ClubScreen() {
         if (!giftVoucher && previousBalance !== null) void replaceShardsBalanceLocal(previousBalance);
       }
       if (res.reason === 'active') {
-        showLeagueToast('Буст уже активен. Новый можно купить после таймера.', 'info');
+        showLeagueToast(triLang(lang, { ru: 'Буст уже активен. Новый можно купить после таймера.', uk: 'Буст уже активний. Новий можна придбати після завершення таймера.', es: 'El impulso ya está activo. Podrás comprar otro cuando termine el temporizador.', 'pt-BR': 'O impulso já está ativo. Você poderá comprar outro quando o cronômetro terminar.', vi: 'Tăng cường đã hoạt động. Bạn có thể mua lượt mới sau khi hết giờ.', id: 'Boost sudah aktif. Kamu dapat membeli yang baru setelah pengatur waktu berakhir.', tr: 'Güçlendirme zaten etkin. Süre dolduğunda yenisini alabilirsiniz.', pl: 'Wzmocnienie jest już aktywne. Nowe będzie można kupić po zakończeniu odliczania.' }), 'info');
       } else if (res.reason === 'not_enough_shards') {
-        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, 'error');
+        showLeagueToast(triLang(lang, { ru: `Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, uk: `Потрібно ${LEAGUE_GROUP_BOOST_COST_SHARDS} перлин`, es: `Necesitas ${LEAGUE_GROUP_BOOST_COST_SHARDS} perlas`, 'pt-BR': `Você precisa de ${LEAGUE_GROUP_BOOST_COST_SHARDS} pérolas`, vi: `Bạn cần ${LEAGUE_GROUP_BOOST_COST_SHARDS} ngọc trai`, id: `Kamu membutuhkan ${LEAGUE_GROUP_BOOST_COST_SHARDS} mutiara`, tr: `${LEAGUE_GROUP_BOOST_COST_SHARDS} inci gerekiyor`, pl: `Potrzebujesz ${LEAGUE_GROUP_BOOST_COST_SHARDS} pereł` }), 'error');
       } else if (res.reason === 'no_current_group') {
-        showLeagueToast('Сначала обнови лигу недели и попробуй снова.', 'info');
+        showLeagueToast(triLang(lang, { ru: 'Сначала обнови лигу недели и попробуй снова.', uk: 'Спочатку оновіть лігу тижня та спробуйте ще раз.', es: 'Primero actualiza la liga semanal e inténtalo de nuevo.', 'pt-BR': 'Primeiro atualize a liga da semana e tente novamente.', vi: 'Hãy cập nhật giải tuần trước rồi thử lại.', id: 'Perbarui liga mingguan terlebih dahulu, lalu coba lagi.', tr: 'Önce haftalık ligi güncelleyin ve tekrar deneyin.', pl: 'Najpierw odśwież ligę tygodnia, a potem spróbuj ponownie.' }), 'info');
       } else {
-        showLeagueToast('Буст включен. Сервер обновит лигу в фоне.', 'info');
+        showLeagueToast(triLang(lang, { ru: 'Буст включен. Сервер обновит лигу в фоне.', uk: 'Буст увімкнено. Сервер оновить лігу у фоновому режимі.', es: 'El impulso está activo. El servidor actualizará la liga en segundo plano.', 'pt-BR': 'O impulso está ativo. O servidor atualizará a liga em segundo plano.', vi: 'Tăng cường đã bật. Máy chủ sẽ cập nhật giải đấu ở chế độ nền.', id: 'Boost aktif. Server akan memperbarui liga di latar belakang.', tr: 'Güçlendirme etkin. Sunucu ligi arka planda güncelleyecek.', pl: 'Wzmocnienie działa. Serwer zaktualizuje ligę w tle.' }), 'info');
       }
     } finally {
       if (isMountedRef.current) setGroupBoostBuying(false);
     }
-  }, [activeGroupBoost, groupBoostBuying, makeOptimisticGroupBoost, showLeagueToast]);
+  }, [activeGroupBoost, groupBoostBuying, makeOptimisticGroupBoost, showLeagueToast, lang]);
 
   const handleLikeGroupBoostBuyer = useCallback(async () => {
     if (!activeGroupBoost || groupBoostLikedToday || groupBoostLikeBusy) return;
     if (activeGroupBoost.buyerUid === myLeagueMemberUid) {
-      showLeagueToast('Это твой буст. Лайки оставим другим игрокам.', 'info');
+      showLeagueToast(triLang(lang, { ru: 'Это твой буст. Лайки оставим другим игрокам.', uk: 'Це ваш буст. Лайки залишимо іншим гравцям.', es: 'Este es tu impulso. Dejemos los me gusta para otros jugadores.', 'pt-BR': 'Este é o seu impulso. Vamos deixar as curtidas para outros jogadores.', vi: 'Đây là tăng cường của bạn. Hãy để lượt thích cho người chơi khác.', id: 'Ini boost milikmu. Biarkan suka untuk pemain lain.', tr: 'Bu sizin güçlendirmeniz. Beğenileri diğer oyunculara bırakalım.', pl: 'To Twoje wzmocnienie. Zostawmy polubienia innym graczom.' }), 'info');
       return;
     }
     const previousBoost = activeGroupBoost;
@@ -1219,11 +1219,11 @@ export default function ClubScreen() {
       setGroupBoostLikeTotal(previousTotal);
       setActiveGroupBoost(previousBoost);
       void cacheLeagueGroupBoost(previousBoost);
-      showLeagueToast('Сегодня лайк уже использован или связь недоступна', 'info');
+      showLeagueToast(triLang(lang, { ru: 'Сегодня лайк уже использован или связь недоступна', uk: 'Сьогодні лайк уже використано або немає з’єднання', es: 'Ya usaste el me gusta de hoy o no hay conexión', 'pt-BR': 'Você já usou a curtida de hoje ou não há conexão', vi: 'Bạn đã dùng lượt thích hôm nay hoặc không có kết nối', id: 'Suka hari ini sudah digunakan atau koneksi tidak tersedia', tr: 'Bugünkü beğeniyi zaten kullandınız ya da bağlantı yok', pl: 'Dzisiejsze polubienie zostało już wykorzystane lub brak połączenia' }), 'info');
     } finally {
       if (isMountedRef.current) setGroupBoostLikeBusy(false);
     }
-  }, [activeGroupBoost, myLeagueMemberUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
+  }, [activeGroupBoost, myLeagueMemberUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName, lang]);
 
   // зачем: владелец не смог разобрать экран Лиги в светлой теме — вся сцена
   // была рассчитана на тёмный фон. На светлой теме меняем три вещи:

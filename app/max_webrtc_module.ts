@@ -4,10 +4,10 @@
 // Зачем guard: оба пакета — нативные модули, и в бинарнике без них (OTA-апдейт
 // поверх старого билда, dev-клиент без prebuild, jest) require обязан не
 // уронить приложение. Пакеты сейчас ОТСУТСТВУЮТ в package.json — поэтому
-// require зовётся с ИМЕНЕМ В ПЕРЕМЕННОЙ: metro не может статически резолвить
-// такой вызов и не пытается включить несуществующий пакет в бандл на этапе
-// сборки; в рантайме отсутствие модуля даёт catch → null. После добавления
-// зависимостей поведение не меняется — require просто начнёт их находить.
+// Оба пакета теперь входят в package.json и нативную сборку. Metro обязан
+// видеть строковые литералы: dynamic require(packageName) падает в рантайме
+// как «unknown module», даже когда pod уже встроен в приложение. try/catch
+// остаётся защитой для Jest и старого OTA-бинарника.
 //
 // Ноль React / нативных top-level импортов: `null` из loadMaxVoiceNative()
 // означает «MAX-звонок на этом бинарнике невозможен» — вход скрывается
@@ -73,16 +73,21 @@ export interface MaxVoiceNativeModule {
   InCallManager: InCallManagerLike;
 }
 
-// Имена пакетов держим в константах-строках и передаём в require через
-// переменную — это и есть приём «metro не резолвит статически» (см. шапку).
-const WEBRTC_PACKAGE = 'react-native-webrtc';
-const INCALL_PACKAGE = 'react-native-incall-manager';
-
-function guardedRequire(packageName: string): Record<string, unknown> | null {
+function guardedRequireWebRtc(): Record<string, unknown> | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const dynamicRequire = require as unknown as (name: string) => unknown;
-    const mod = dynamicRequire(packageName);
+    const mod: unknown = require('react-native-webrtc');
+    if (mod === null || typeof mod !== 'object') return null;
+    return mod as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
+function guardedRequireInCall(): Record<string, unknown> | null {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const mod: unknown = require('react-native-incall-manager');
     if (mod === null || typeof mod !== 'object') return null;
     return mod as Record<string, unknown>;
   } catch {
@@ -96,7 +101,7 @@ function guardedRequire(packageName: string): Record<string, unknown> | null {
  * невозможен» и прятать вход — никогда не предполагать наличие.
  */
 export function loadMaxVoiceNative(): MaxVoiceNativeModule | null {
-  const webrtc = guardedRequire(WEBRTC_PACKAGE);
+  const webrtc = guardedRequireWebRtc();
   if (!webrtc) return null;
   const RTCPeerConnection = webrtc.RTCPeerConnection;
   const mediaDevices = webrtc.mediaDevices as
@@ -106,7 +111,7 @@ export function loadMaxVoiceNative(): MaxVoiceNativeModule | null {
   if (typeof RTCPeerConnection !== 'function') return null;
   if (!mediaDevices || typeof mediaDevices.getUserMedia !== 'function') return null;
 
-  const incall = guardedRequire(INCALL_PACKAGE);
+  const incall = guardedRequireInCall();
   if (!incall) return null;
   // incall-manager экспортирует инстанс дефолтом; старые сборки — напрямую.
   const InCallManager = (incall.default ?? incall) as InCallManagerLike | null;

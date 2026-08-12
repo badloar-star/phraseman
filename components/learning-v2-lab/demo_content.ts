@@ -9,6 +9,7 @@ import {
   type V2CompiledEpisodeContent,
 } from '../../modules/learning-v2/content/session_compiler';
 import {
+  buildE1DemoActivityBindings,
   buildE1DemoItems,
   buildE1DemoProfile,
   E1_DEMO_CAN_DO_OUTCOME_ID,
@@ -64,6 +65,7 @@ export function getDemoUnit(): V2CompiledEpisodeContent {
     canDoOutcomeId: E1_DEMO_CAN_DO_OUTCOME_ID,
     profile: buildE1DemoProfile(),
     items: buildE1DemoItems(),
+    activityBindings: buildE1DemoActivityBindings(),
   });
   return cachedUnit;
 }

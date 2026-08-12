@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { getLevelExamCopy } from '../../app/level_exam_copy';
 import type { LevelExamLevel } from '../../app/level_exam_types';
 import ScreenGradient from '../ScreenGradient';
@@ -96,7 +96,10 @@ export default function LevelExamIntro({
         <View style={[styles.header, { paddingHorizontal: ds.spacing.lg }]}> 
           <TapScale
             onPress={onBack}
-            accessibilityLabel={lang === 'ru' ? 'Вернуться назад' : 'Back'}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Вернуться назад', uk: 'Повернутися назад', es: 'Volver',
+              'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dön', pl: 'Wróć',
+            })}
             style={[styles.backButton, { backgroundColor: t.bgSurface }]}
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />

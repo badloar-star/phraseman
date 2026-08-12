@@ -85,6 +85,7 @@ import { openAiChat } from './explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 import { loadEligibleTournamentCellCounts } from './tournament_task_eligibility';
 import { isOwnerApprovedTournamentMode } from './tournament_mode_contract';
+import { assertTournamentsReleased } from './tournament_release_gate';
 
 const REGION = 'us-central1';
 const ID_RE = /^[A-Za-z0-9._:-]{1,160}$/;
@@ -109,6 +110,10 @@ export function requirePermission(
   if (!role || !hasPermission(role, permission)) {
     throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   }
+  // Owner lock covers the internal control plane too: an old admin page,
+  // schedule editor or AI generator cannot mutate/cost money for a feature
+  // that has been explicitly conserved out of release.
+  assertTournamentsReleased();
   return role;
 }
 

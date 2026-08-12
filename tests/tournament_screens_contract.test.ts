@@ -713,7 +713,7 @@ describe('экраны режима «Турниры»', () => {
   it('прогресс-подпись раунда показывает реальное число вопросов', () => {
     // Подпись должна следовать фактически активированному сервером набору.
     const round = read('app/tournament_round.tsx');
-    expect(round).toMatch(/из \{total\}/);
+    expect(round).toContain("ru: `из ${total}`");
   });
 
   it('translate («собери фразу») рисуется, а не пустует', () => {
@@ -769,7 +769,7 @@ describe('экраны режима «Турниры»', () => {
     expect(home).toContain("router.replace('/(tabs)/home'");
     // Кнопка выхода есть, но она ведёт на главную осознанно.
     expect(home).toContain('testID="tournaments-back"');
-    expect(home).toContain('accessibilityLabel="На главную"');
+    expect(home).toContain("accessibilityLabel={L({ ru: 'На главную'");
   });
 
   it('интерактивные элементы доступны для скринридера', () => {

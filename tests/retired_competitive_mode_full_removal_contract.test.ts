@@ -201,10 +201,8 @@ describe('retired competitive mode full removal', () => {
       expect(read(fixture)).not.toMatch(retiredProductToken);
     }
 
-    const adminFirebase = read('admin/v2/scripts/admin-firebase.js');
-    const adminCapabilities = read('admin/v2/scripts/admin-capabilities.js');
-    expect(adminFirebase).not.toMatch(/ArenaQuestionPool|ArenaPoolQuestion/);
-    expect(adminCapabilities).not.toMatch(/arena-|french-quizzes/);
+    expect(fs.existsSync(path.join(ROOT, 'admin/v2/index.html'))).toBe(false);
+    expect(fs.existsSync(path.join(ROOT, 'admin/v2/scripts/admin-capabilities.js'))).toBe(false);
 
     const scripts = JSON.parse(read('package.json')).scripts as Record<string, string>;
     expect(Object.keys(scripts).filter((key) => retiredProductToken.test(key))).toEqual([]);

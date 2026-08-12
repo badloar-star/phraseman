@@ -30,6 +30,7 @@ const {
   runSupportReplyDispatchSweeper,
   runSupportAutoReplyRetryCron,
   runSupportTelegramAutoSendDeadline,
+  runSupportTelegramReplyJobRecovery,
   GMAIL_SUPPORT_APP_PASSWORD,
   SUPPORT_OPENAI_API_KEY,
 } = require('./support_inbox') as {
@@ -38,6 +39,7 @@ const {
   runSupportReplyDispatchSweeper: () => Promise<unknown>;
   runSupportAutoReplyRetryCron: () => Promise<unknown>;
   runSupportTelegramAutoSendDeadline: () => Promise<unknown>;
+  runSupportTelegramReplyJobRecovery: () => Promise<unknown>;
   GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
   SUPPORT_OPENAI_API_KEY: import('firebase-functions/params').SecretParam;
 };
@@ -423,6 +425,19 @@ export const supportTelegramAutoSendDeadlineCron = functions.scheduler.onSchedul
   },
   async () => {
     await runSupportTelegramAutoSendDeadline();
+  },
+);
+
+// Recovers only pending or abandoned pre-delivery jobs. The durable SMTP
+// operation remains the authority: delivery_unknown is terminal and is never
+// blindly retried here.
+export const supportTelegramReplyJobRecoveryCron = functions.scheduler.onSchedule(
+  {
+    schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300,
+    secrets: [GMAIL_SUPPORT_APP_PASSWORD, SUPPORT_OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
+  },
+  async () => {
+    await runSupportTelegramReplyJobRecovery();
   },
 );
 

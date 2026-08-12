@@ -863,7 +863,17 @@ ${indent}}`,
     expect(blocks).toHaveLength(1);
     expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
     const catchAll = exactRootMatchBlocks('{collection}/{document=**}')[0];
-    expect(catchAll).toContain(`&& collection != '${collection}'`);
+    expect(catchAll).toContain('&& !isServerOwnedSupportRoot(collection)');
+  });
+
+  test('support catch-all helper covers every sealed support namespace without an oversized expression', () => {
+    const helper = rules.match(/function isServerOwnedSupportRoot\(collection\) \{[\s\S]*?\n    \}/)?.[0] ?? '';
+    expect(helper).toContain("support_auto_reply_(reservations|counters)");
+    expect(helper).toContain("support_telegram_(reviews|edit_sessions|reply_jobs)");
+    expect(helper).toContain("support_reply_(operations|batches)");
+    expect(helper).toContain("collection == 'support_inbox'");
+    expect(helper).toContain("collection == 'admin_command_operations'");
+    expect(helper).toContain("collection == 'admin_config'");
   });
 
   test('support auto-reply config is readable by admins but writable only through Admin SDK callables', () => {
@@ -871,14 +881,16 @@ ${indent}}`,
     expect(blocks).toHaveLength(1);
     expect(blocks[0]).toContain('allow read: if isAdmin();');
     expect(blocks[0]).toContain("allow write: if isAdmin() && docId != 'support_inbox';");
-    expect(exactRootMatchBlocks('{collection}/{document=**}')[0]).toContain("&& collection != 'admin_config'");
+    expect(exactRootMatchBlocks('{collection}/{document=**}')[0]).toContain('&& !isServerOwnedSupportRoot(collection)');
+    expect(rules).toMatch(/function isServerOwnedSupportRoot\(collection\)[\s\S]*?collection == 'admin_config'/);
   });
 
   test('support inbox correspondence is returned only by the permission-checked callable', () => {
     const blocks = exactRootMatchBlocks('support_inbox/{messageId}');
     expect(blocks).toHaveLength(1);
     expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
-    expect(exactRootMatchBlocks('{collection}/{document=**}')[0]).toContain("&& collection != 'support_inbox'");
+    expect(exactRootMatchBlocks('{collection}/{document=**}')[0]).toContain('&& !isServerOwnedSupportRoot(collection)');
+    expect(rules).toMatch(/function isServerOwnedSupportRoot\(collection\)[\s\S]*?collection == 'support_inbox'/);
   });
 
   test('identity deletion and recovery roots are excluded from the browser-admin catch-all', () => {

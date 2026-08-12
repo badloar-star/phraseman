@@ -5,6 +5,7 @@ import {
   parseSupportReviewApprovalToken,
   supportDraftHash,
   supportEditSessionId,
+  supportTelegramJobLeaseOwns,
   supportReviewTokenDepartment,
 } from './support_telegram_review';
 
@@ -47,5 +48,17 @@ describe('support Telegram review contract', () => {
   test('never puts an approval button behind hidden or sensitive bytes', () => {
     expect(buildSupportTelegramReviewPreview({ finalText: `${'A'.repeat(3000)}\npassword: secret`, draftRevision: 4 })).toMatchObject({ approvable: false });
     expect(buildSupportTelegramReviewPreview({ finalText: 'Write to learner@example.com', draftRevision: 4 })).toMatchObject({ approvable: false });
+  });
+
+  test('a stale worker cannot settle a job after a newer lease reclaims it', () => {
+    const reclaimed = {
+      action: 'send' as const,
+      state: 'processing' as const,
+      reviewId: 'review', messageDocId: 'message', draftRevision: 1,
+      createdAtMs: 1, updatedAtMs: 2, leaseId: 'worker-b', leaseExpiresAtMs: 3,
+    };
+    expect(supportTelegramJobLeaseOwns(reclaimed, 'worker-a')).toBe(false);
+    expect(supportTelegramJobLeaseOwns(reclaimed, 'worker-b')).toBe(true);
+    expect(supportTelegramJobLeaseOwns({ ...reclaimed, state: 'accepted' }, 'worker-b')).toBe(false);
   });
 });

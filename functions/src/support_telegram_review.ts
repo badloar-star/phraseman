@@ -7,6 +7,7 @@ export const SUPPORT_TELEGRAM_JOB_COLLECTION = 'support_telegram_reply_jobs';
 export const SUPPORT_TELEGRAM_EDIT_TTL_MS = 30 * 60 * 1_000;
 export const SUPPORT_TELEGRAM_AUTO_SEND_DELAY_MS = 3 * 60 * 60 * 1_000;
 export const SUPPORT_TELEGRAM_APPROVAL_TTL_MS = SUPPORT_TELEGRAM_AUTO_SEND_DELAY_MS;
+export const SUPPORT_TELEGRAM_JOB_LEASE_MS = 10 * 60 * 1_000;
 const TOKEN_DEPARTMENT_PREFIX = 'support_email';
 
 export type SupportTelegramReviewState =
@@ -47,8 +48,17 @@ export interface SupportTelegramJobDoc {
   readonly draftRevision: number;
   readonly createdAtMs: number;
   readonly updatedAtMs: number;
+  readonly leaseId?: string;
+  readonly leaseExpiresAtMs?: number;
   readonly feedback?: string;
   readonly source?: 'telegram' | 'auto_deadline';
+}
+
+export function supportTelegramJobLeaseOwns(
+  job: Pick<SupportTelegramJobDoc, 'state' | 'leaseId'> | null | undefined,
+  leaseId: string,
+): boolean {
+  return Boolean(job && job.state === 'processing' && job.leaseId === leaseId);
 }
 
 export function supportDraftHash(text: unknown): string {

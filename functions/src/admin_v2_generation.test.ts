@@ -65,4 +65,3 @@ describe('admin V2 generation callable seam', () => {
     await expect(handleAdminCreateV2GenerationPlan({ auth, data: { ...data, targetLocales: ['fr'] } }, deps)).rejects.toThrow('idempotencyKey belongs to another V2 generation plan');
   });
 });
-

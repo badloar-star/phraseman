@@ -108,6 +108,18 @@ describe('Jarvis approval store — one press, one effect, even under a double t
     expect(second.reason).toBe('already_used');
   });
 
+  test('callback action cannot be flipped while reusing a valid nonce', async () => {
+    const { db, store, path } = seeded();
+    const result = await consumeApprovalToken({
+      db, nonce: 'n'.repeat(32), requestedAction: 'reject',
+      fromTelegramUserId: OWNER.telegramUserId,
+      fromTelegramChatId: OWNER.telegramChatId,
+      nowMs: NOW + 1_000,
+    });
+    expect(result).toEqual({ ok: false, reason: 'unknown_nonce' });
+    expect(store.get(path)?.usedAtMs).toBeUndefined();
+  });
+
   test('a press by a stranger is refused and does NOT burn the token', async () => {
     // зачем: иначе чужой мог бы «сжечь» вашу кнопку, просто нажав её.
     const { db } = seeded();

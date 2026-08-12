@@ -145,6 +145,13 @@ describe('isHumanEmail — только письма от живых людей'
     expect(isHumanEmail({ fromEmail: 'notifications@x.com' })).toBe(false);
   });
 
+  test('никогда не отвечает самому support-ящику (защита от mail loop)', () => {
+    expect(classifyEmail({ fromEmail: 'support.phraseman@gmail.com' })).toEqual({
+      category: 'automated',
+      reason: 'own_mailbox',
+    });
+  });
+
   test('Precedence: bulk / Auto-Submitted → false', () => {
     expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { precedence: 'bulk' } })).toBe(false);
     expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { autoSubmitted: 'auto-generated' } })).toBe(false);
@@ -281,7 +288,10 @@ describe('buildReplyPrompt', () => {
   test('содержит тему и тело, обрезает', () => {
     const p = buildReplyPrompt({ subject: 'Тема X', bodyText: 'z'.repeat(BODY_MAX_CHARS + 50) });
     expect(p).toContain('Тема X');
-    expect(p).toContain('Текст письма:');
+    expect(p).toContain('UNTRUSTED CUSTOMER EMAIL');
+    expect(p).toContain('<body>');
+    expect(p).toContain('END UNTRUSTED CUSTOMER EMAIL');
+    expect(p).toContain('[REDACTED_TOKEN]');
     // тело в промпте не длиннее лимита (+ шапка)
     expect(p.length).toBeLessThanOrEqual(BODY_MAX_CHARS + 60);
   });

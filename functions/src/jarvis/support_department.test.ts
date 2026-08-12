@@ -68,9 +68,9 @@ describe('Jarvis support department — a person waiting is not a statistic', ()
     expect(serialized).not.toMatch(/bodyText|fromEmail/i);
   });
 
-  test('only observes — it must never propose sending replies automatically', () => {
+  test('only observes automation — the department itself never sends mail', () => {
     const { decisions } = run({ waitingCount: 12, oldestWaitingMs: 100 * HOUR }, 'owner_request');
     expect(decisions[0].mode).toBe('observe');
-    expect(JSON.stringify(decisions[0].options)).not.toMatch(/автоматическ|сам отправ/i);
+    expect(JSON.stringify(decisions[0].options)).not.toMatch(/сам отправ|отправить письмо/i);
   });
 });

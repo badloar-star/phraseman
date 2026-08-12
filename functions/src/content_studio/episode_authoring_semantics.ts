@@ -46,8 +46,14 @@ export const normalizeAuthoringEpisodeForSemantics = (
       issues,
     };
   }
+  const hasSessionSetRef = Object.prototype.hasOwnProperty.call(
+    authoring,
+    "sessionSetRef",
+  );
   const canonical: Record<string, unknown> = {
-    schemaVersion: "v2-episode-contract.v1",
+    schemaVersion: hasSessionSetRef
+      ? "v2-episode-contract.v2"
+      : "v2-episode-contract.v1",
     episodeId: authoring.episodeId,
     seasonId: authoring.seasonId,
     episodeKind: authoring.episodeKind,
@@ -77,6 +83,7 @@ export const normalizeAuthoringEpisodeForSemantics = (
     reviewLinks: authoring.reviewLinks,
     accessibilityRoutes: authoring.accessibilityRoutes,
   };
+  if (hasSessionSetRef) canonical.sessionSetRef = authoring.sessionSetRef;
   if (Object.prototype.hasOwnProperty.call(authoring, "checkpointContract"))
     canonical.checkpointContract = authoring.checkpointContract;
   return validateV2EpisodeContract(canonical);

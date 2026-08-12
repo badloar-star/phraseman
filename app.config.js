@@ -5,6 +5,7 @@ const { expo: appJsonExpo } = require('./app.json');
 
 const GLOB_SPECIAL_CHARS = new Set(['?', '+', '.', '^', '$', '(', ')', '{', '}', '|', '[', ']']);
 const MINIMAL_OTA_ASSET_PATTERNS = [
+  'assets/audio/learning-v2/lesson1/*.m4a',
   'assets/images/avatars/*',
   'assets/images/flashcard_backs/*',
   'assets/images/theo/*',

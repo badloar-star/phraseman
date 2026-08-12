@@ -1,12 +1,12 @@
 import { closeTournamentFlow } from '../app/tournament_navigation';
 
 describe('tournament flow navigation', () => {
-  it('pops the native stack to the existing tournament menu', () => {
+  it('pops the native stack to the release-safe home screen', () => {
     const dismissTo = jest.fn();
     const replace = jest.fn();
     closeTournamentFlow({ dismissTo, replace });
 
-    expect(dismissTo).toHaveBeenCalledWith('/tournaments');
+    expect(dismissTo).toHaveBeenCalledWith('/(tabs)/home');
     expect(replace).not.toHaveBeenCalled();
   });
 
@@ -14,6 +14,6 @@ describe('tournament flow navigation', () => {
     const replace = jest.fn();
     closeTournamentFlow({ replace });
 
-    expect(replace).toHaveBeenCalledWith('/tournaments');
+    expect(replace).toHaveBeenCalledWith('/(tabs)/home');
   });
 });

@@ -36,6 +36,13 @@ const STAGE_TASKS: Readonly<Record<GenerationStageKind, string>> = Object.freeze
   flashcard_pack_idea: 'Create one editable flashcard pack idea with audience, promise and exclusions.',
   flashcard_items: 'Create the requested number of flashcards grounded in the accepted pack idea.',
   flashcard_item_replacement: 'Replace exactly one flashcard without changing accepted cards.',
+  learning_v2_research: 'Create the evidence-backed research packet for one complete Learning V2 course in every required interface locale.',
+  learning_v2_curriculum: 'Create the PRE_A1 through C2 curriculum from the approved Learning V2 research packet in every required interface locale.',
+  learning_v2_lesson_outline: 'Create the complete sector, episode, session, review and exam outline from the approved Learning V2 curriculum in every required interface locale.',
+  learning_v2_localized_course: 'Create the complete Learning V2 map, intros, explanations, tasks, hints, feedback, review, exam, accessibility and audio-script content in every required interface locale.',
+  learning_v2_audio: 'Create the four-voice OpenAI TTS manifest and regeneration dependencies from the approved complete localized Learning V2 course.',
+  learning_v2_quality_assurance: 'Audit the approved Learning V2 localized course and audio manifest without weakening language, pedagogy, accessibility or provenance gates.',
+  learning_v2_release: 'Create one immutable release candidate reference from the approved Learning V2 QA artifact; never publish it automatically.',
 });
 
 const ITEM_STAGES = new Set<GenerationStageKind>(['lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'challenge_questions', 'flashcard_items']);
@@ -50,6 +57,82 @@ const DEFINITIONS = new Map<string, PromptDefinition>(Object.entries(STAGE_TASKS
   const definition = Object.freeze({ kind: stageKind, version: 'v1', task, outputSchema: schemaFor(stageKind) });
   return [`${stageKind}:v1`, definition];
 }));
+
+const LEARNING_V2_LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+const LEARNING_V2_STAGE_TO_APPROVAL = Object.freeze({
+  learning_v2_research: 'research',
+  learning_v2_curriculum: 'curriculum',
+  learning_v2_lesson_outline: 'lesson_outline',
+  learning_v2_localized_course: 'localized_content',
+  learning_v2_audio: 'audio',
+  learning_v2_quality_assurance: 'quality_assurance',
+  learning_v2_release: 'owner_release',
+} as const);
+for (const [kind, approvalStage] of Object.entries(LEARNING_V2_STAGE_TO_APPROVAL) as Array<[keyof typeof LEARNING_V2_STAGE_TO_APPROVAL, string]>) {
+  const base = DEFINITIONS.get(`${kind}:v1`);
+  if (!base) throw new Error(`learning_v2_prompt_missing:${kind}`);
+  const localizedContentProperties = Object.fromEntries(LEARNING_V2_LOCALES.map((locale) => [locale, { type: ['object', 'array', 'string'] }]));
+  const resultProperties: Record<string, unknown> = {
+    packageId: { type: 'string' }, targetLanguage: { type: 'string' }, approvalStage: { const: approvalStage },
+    interfaceLocales: { type: 'array', minItems: 8, maxItems: 8, prefixItems: LEARNING_V2_LOCALES.map((locale) => ({ const: locale })) },
+    localizedContent: { type: 'object', additionalProperties: false, required: [...LEARNING_V2_LOCALES], properties: localizedContentProperties },
+  };
+  if (kind === 'learning_v2_research') Object.assign(resultProperties, { evidence: { type: 'array', minItems: 1 } });
+  if (kind === 'learning_v2_curriculum') Object.assign(resultProperties, {
+    entryBand: { const: 'PRE_A1' }, exitBand: { const: 'C2' },
+    learningCycle: { const: ['explain', 'model', 'supported_practice', 'guided_practice', 'retrieval', 'near_transfer', 'independent_check', 'delayed_review', 'exam'] },
+    objectives: { type: 'array', minItems: 1 },
+  });
+  if (kind === 'learning_v2_lesson_outline') Object.assign(resultProperties, {
+    sectors: { type: 'array', minItems: 4, maxItems: 4, items: { type: 'object', required: ['ordinal'] } },
+    episodes: { type: 'array', minItems: 32, maxItems: 32, items: {
+      type: 'object', additionalProperties: false,
+      required: ['ordinal', 'episodeId', 'sectorOrdinal', 'cefrBand', 'canDoOutcomeId', 'title', 'sessions', 'sectorExamAfter'],
+      properties: {
+        ordinal: { type: 'integer', minimum: 1, maximum: 32 }, episodeId: { type: 'string' },
+        sectorOrdinal: { type: 'integer', minimum: 1, maximum: 4 }, cefrBand: { enum: ['PRE_A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
+        canDoOutcomeId: { type: 'string' }, title: { type: 'string' }, sectorExamAfter: { type: 'boolean' },
+        sessions: { type: 'array', minItems: 12, maxItems: 12, items: {
+          type: 'object', additionalProperties: false,
+          required: ['ordinal', 'sessionTemplateId', 'canDoOutcomeId', 'focusConceptIds', 'prerequisiteConceptIds', 'teachingBrief', 'practiceBrief', 'assessmentBrief'],
+          properties: {
+            ordinal: { type: 'integer', minimum: 1, maximum: 12 }, sessionTemplateId: { type: 'string' },
+            canDoOutcomeId: { type: 'string' }, focusConceptIds: { type: 'array', minItems: 1, maxItems: 12, items: { type: 'string' } },
+            prerequisiteConceptIds: { type: 'array', maxItems: 64, items: { type: 'string' } },
+            teachingBrief: { type: 'string' }, practiceBrief: { type: 'string' }, assessmentBrief: { type: 'string' },
+          },
+        } },
+      },
+    } },
+    exams: { type: 'array', minItems: 4, maxItems: 4, items: { type: 'object', required: ['afterEpisodeOrdinal'] } },
+  });
+  if (kind === 'learning_v2_localized_course') Object.assign(resultProperties, {
+    requiredContentKinds: { const: ['course_map', 'section_intro', 'lesson_intro', 'explanation', 'model', 'supported_practice', 'guided_practice', 'retrieval_practice', 'near_transfer', 'independent_check', 'delayed_review', 'sector_exam', 'hint', 'error_explanation', 'accessibility_copy', 'audio_script'] },
+    artifacts: { type: 'array', minItems: 16 },
+  });
+  if (kind === 'learning_v2_audio') Object.assign(resultProperties, {
+    voices: { const: ['ash', 'onyx', 'nova', 'coral'] }, provider: { const: 'openai' }, endpoint: { const: '/v1/audio/speech' }, variantsPerItem: { const: 4 },
+    audioManifest: { type: 'array', minItems: 1 },
+  });
+  if (kind === 'learning_v2_quality_assurance') Object.assign(resultProperties, {
+    auditedPackageFingerprint: { type: 'string' }, qaReceipts: { type: 'array', minItems: 1 },
+  });
+  if (kind === 'learning_v2_release') Object.assign(resultProperties, {
+    releaseCandidateFingerprint: { type: 'string' }, approvalReceipts: { type: 'array', minItems: 6, maxItems: 6 },
+  });
+  const outputSchema = Object.freeze({
+    type: 'object', additionalProperties: false, required: ['stage', 'result'],
+    properties: {
+      stage: { const: kind },
+      result: { type: 'object', additionalProperties: false, required: Object.keys(resultProperties), properties: resultProperties },
+    },
+  });
+  DEFINITIONS.set(`${kind}:v2`, Object.freeze({
+    kind, version: 'v2',
+    task: `${base.task} This is one stage in the existing Generation Queue. sourceLocale=multi means the exact atomic interface-locale set ru, uk, es, pt-BR, vi, id, tr, pl. Missing one locale is a hard failure. Use the approved prerequisite only; never publish or self-approve. For the release candidate, copy the six server-supplied grounding.ownerApprovalTrail receipts exactly; the seventh and final owner approval happens only after generation.`,
+    outputSchema,
+  }));
+}
 
 DEFINITIONS.set('lesson_outline:v2', Object.freeze({
   kind: 'lesson_outline', version: 'v2',

@@ -91,9 +91,6 @@ jobs:
           PY
           node --check knowly-www/english-level-test/assets/test-core.js
           node --check knowly-www/english-level-test/assets/test.js
-          node --check admin/v2/scripts/pages/english-test-analytics.js
-          node --check admin/v2/scripts/admin-analytics-app.js
-          node --check admin/v2/scripts/admin-analytics-firebase.js
           node --check scripts/apply_english_test_release.mjs
           node --check scripts/validate_english_level_test_release.mjs
 
@@ -220,7 +217,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          only="functions:siteStatsTrack,functions:finalizeStaleEnglishTests,functions:cleanupEnglishTestAnalytics,firestore:indexes,hosting:knowlywww,hosting:admin"
+          only="functions:siteStatsTrack,functions:finalizeStaleEnglishTests,functions:cleanupEnglishTestAnalytics,firestore:indexes,hosting:knowlywww"
           if [ "${{ steps.firebase-auth.outputs.mode }}" = "token" ]; then
             npx --yes firebase-tools@15.24.0 deploy --project "$FIREBASE_PROJECT_ID" --only "$only" --non-interactive --token "$FIREBASE_DEPLOY_TOKEN"
           else
@@ -246,4 +243,3 @@ jobs:
           }
           verify_page "https://knowlyapps.web.app/english-level-test/" "Насколько <em>естественно</em> звучит ваш английский?"
           verify_page "https://knowlyapps.com/english-level-test/" "Насколько <em>естественно</em> звучит ваш английский?"
-          verify_page "https://phraseman-ea0b3.web.app/v2/" "Аналитика Phraseman"

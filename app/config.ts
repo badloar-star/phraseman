@@ -99,6 +99,20 @@ export const ENABLE_DEV_TOOLS =
   ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE || TESTFLIGHT_DEV_TOOLS) && !IS_STORE_RELEASE;
 
 /**
+ * OWNER LOCK (2026-08-10): турниры законсервированы и не являются частью
+ * приложения. Ни Remote Config, ни dev-сборка, ни админское расписание не могут
+ * включить их. Возврат требует прямого решения владельца и изменения исходника.
+ */
+export const ENABLE_TOURNAMENTS: false = false;
+
+/**
+ * OWNER DECISION (2026-08-11): Arena V2 is a new server-authoritative duel
+ * product. It deliberately does not unlock the retired Tournament routes or
+ * any legacy Arena collection.
+ */
+export const ENABLE_ARENA = true;
+
+/**
  * Карточка профиля — лестница из 5 уровней за осколки (публичный статус: бейдж уровня
  * у имени в списках, прокачанная карточка в профиле, новые блоки статистики по уровням).
  *
@@ -185,11 +199,12 @@ export const SECTION_SHEET_TRANSITIONS = process.env.EXPO_PUBLIC_SECTION_SHEET_T
  * This is a source/UI language for learning English. It is intentionally
  * separate from the dev-only "study Spanish" experiment below.
  *
- * Выключено: ES (как и весь Heisenberg batch) пока недопереведён и падает в
- * русский фолбэк. В проде показываем только готовые ru/uk. Включить обратно
- * вместе с переносом 'es' в ACTIVE_INTERFACE_SOURCE_LOCALES, когда перевод готов.
+ * Включено: испанский интерфейс прошёл релизный аудит вместе с остальными
+ * зарегистрированными языками интерфейса. Флаг сохранён для обратной
+ * совместимости старых импортов; готовность всех языков задаётся единым
+ * списком в constants/i18n.ts.
  */
-export const SPANISH_UI_LOCALE_ENABLED = false;
+export const SPANISH_UI_LOCALE_ENABLED = true;
 
 /**
  * DEV-only: в настройках RU/UK можно выбрать язык, который учишь.

@@ -1,0 +1,166 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLang } from '../components/LangContext';
+import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
+import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { ArenaScreen } from '../components/arena/ArenaScreen';
+import {
+  ArenaFeatureRow,
+  ArenaProgress,
+  ArenaSectionTabs,
+  ArenaSectionTitle,
+  ArenaStateCard,
+  ArenaWalletButton,
+} from '../components/arena/ArenaExpansionUI';
+import { arenaText } from '../modules/arena/copy';
+import { arenaExpansionText } from '../modules/arena/expansion_copy';
+import { coerceArenaHubSection, type ArenaExpansionHome } from '../modules/arena/expansion_contract';
+import { arenaExpansionHome, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaHomeResponse } from './arena_client';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
+import { trackArenaTelemetry } from './arena_telemetry';
+
+export default function ArenaHubScreen() {
+  const router = useRouter();
+  const params = useLocalSearchParams<{ section?: string }>();
+  const { lang } = useLang();
+  const P = useTournamentPalette();
+  const active = useRuntimeActive();
+  const section = coerceArenaHubSection(params.section);
+  const [home, setHome] = useState<ArenaHomeResponse | null>(null);
+  const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
+  const [baseError, setBaseError] = useState(false);
+  const [expansionError, setExpansionError] = useState(false);
+  const spinRequestIdRef = useRef(createArenaRequestId('spin'));
+  const [spinBusy, setSpinBusy] = useState(false);
+
+  const load = useCallback(() => {
+    setBaseError(false);
+    setExpansionError(false);
+    void arenaV2Home().then(setHome).catch(() => setBaseError(true));
+    void arenaExpansionHome().then(setExpansion).catch(() => setExpansionError(true));
+  }, []);
+
+  useEffect(() => { if (active) load(); }, [active, load]);
+  useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('hub', 'direct')); }, []);
+
+  const labels = useMemo(() => ({
+    today: arenaExpansionText(lang, 'today'),
+    play: arenaExpansionText(lang, 'play'),
+    growth: arenaExpansionText(lang, 'growth'),
+    together: arenaExpansionText(lang, 'together'),
+  }), [lang]);
+
+  const activeQueue = home?.activeQueue?.status === 'waiting' ? home.activeQueue : null;
+  const activeRun = expansion?.activeRun;
+  const baseEnabled = home?.availability.enabled === true && !baseError;
+  const today = expansion?.today;
+  const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
+
+  const todayContent = (
+    <>
+      {activeRun ? (
+        <ArenaFeatureRow
+          accent
+          icon="flash"
+          title={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'ghost') : arenaExpansionText(lang, 'todayContinue')}
+          body={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'recordingBadge') : arenaExpansionText(lang, 'todayBody')}
+          onPress={() => router.push({ pathname: '/arena_today', params: { runId: activeRun.runId, runKind: activeRun.runKind } } as never)}
+        />
+      ) : home?.activeMatch?.matchId ? (
+        <ArenaFeatureRow
+          accent
+          icon="flash"
+          title={arenaExpansionText(lang, 'activeMatch')}
+          body={arenaText(lang, 'subtitle')}
+          onPress={() => router.push({ pathname: '/arena_match', params: { matchId: home.activeMatch?.matchId } } as never)}
+        />
+      ) : activeQueue ? (
+        <ArenaFeatureRow
+          accent
+          icon="search"
+          title={arenaExpansionText(lang, 'activeQueue')}
+          body={activeQueue.mode === 'ranked' ? arenaText(lang, 'rankedHint') : arenaText(lang, 'quickHint')}
+          onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid } } as never)}
+        />
+      ) : null}
+      {!expansion && !expansionError ? <ArenaStateCard state="loading" title={arenaExpansionText(lang, 'loading')} /> : null}
+      {expansionError ? <ArenaStateCard state="unavailable" title={arenaExpansionText(lang, 'unavailable')} actionLabel={arenaExpansionText(lang, 'retry')} onAction={load} /> : null}
+      {today ? (
+        <V2Card style={styles.todayCard}>
+          <View style={styles.todayHead}>
+            <View style={styles.todayCopy}>
+              <Text style={[styles.todayTitle, { color: P.text }]}>{arenaExpansionText(lang, 'todayTitle')}</Text>
+              <Text style={[styles.todayBody, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text>
+            </View>
+            <View style={[styles.todayNumber, { backgroundColor: P.elev2 }]}>
+              <Text style={[styles.todayNumberText, { color: P.text }]}>10</Text>
+            </View>
+          </View>
+          <ArenaProgress value={today.completedTasks} max={10} label={arenaExpansionText(lang, 'todayTitle')} />
+          {today.state === 'complete' ? (
+            <Text accessibilityLiveRegion="polite" style={[styles.complete, { color: P.accent }]}>{arenaExpansionText(lang, 'todayComplete')}</Text>
+          ) : (
+            <V2Cta disabled={!baseEnabled || !expansion.availability.today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
+          )}
+        </V2Card>
+      ) : null}
+      <ArenaSectionTitle>{arenaExpansionText(lang, 'play')}</ArenaSectionTitle>
+      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick' } } as never)} />
+      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
+    </>
+  );
+
+  const playContent = (
+    <>
+      <ArenaSectionTitle>{arenaExpansionText(lang, 'playTitle')}</ArenaSectionTitle>
+      <ArenaFeatureRow accent icon="flash" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick' } } as never)} />
+      <ArenaFeatureRow icon="trophy" title={arenaText(lang, 'ranked')} body={arenaText(lang, 'rankedHint')} disabled={!baseEnabled || !home?.availability.rankedEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'ranked' } } as never)} />
+      <ArenaFeatureRow icon="people" title={arenaText(lang, 'friend')} body={arenaText(lang, 'friendHint')} disabled={!baseEnabled || !home?.availability.friendEnabled} onPress={() => router.push('/arena_friend_duel' as never)} />
+      <ArenaFeatureRow icon="flask" title={arenaExpansionText(lang, 'lab')} body={arenaExpansionText(lang, 'labBody')} disabled={!baseEnabled || !expansion?.availability.lab} onPress={() => router.push('/arena_match_lab' as never)} />
+      <ArenaFeatureRow icon="recording" title={arenaExpansionText(lang, 'ghost')} body={arenaExpansionText(lang, 'ghostDisclosure')} disabled={!baseEnabled || !expansion?.availability.ghost} badge={arenaExpansionText(lang, 'recordingBadge')} onPress={() => router.push('/arena_ghost_duel' as never)} />
+    </>
+  );
+
+  const growthContent = (
+    <>
+      <ArenaFeatureRow accent icon="map" title={arenaExpansionText(lang, 'mastery')} body={expansion?.mastery.length ? `${expansion.mastery.length} / 5` : arenaExpansionText(lang, 'masteryLow')} disabled={!baseEnabled || !expansion?.availability.mastery} onPress={() => router.push('/arena_mastery_map' as never)} />
+      <ArenaFeatureRow icon="podium" title={arenaText(lang, 'ranks')} body={home?.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home?.profile.rank ?? 0) + 1}`} disabled={!baseEnabled} onPress={() => router.push('/arena_ranks' as never)} />
+      <ArenaFeatureRow icon="star" title={arenaText(lang, 'season')} body={`${home?.season.stars ?? 0}`} disabled={!baseEnabled} onPress={() => router.push('/arena_season_pass' as never)} />
+    </>
+  );
+
+  const togetherContent = (
+    <>
+      <ArenaFeatureRow accent icon="ribbon" title={arenaExpansionText(lang, 'rivalry')} body={arenaExpansionText(lang, 'rivalryBody')} disabled={!baseEnabled || !expansion?.availability.rival} badge={expansion?.rivalries.length ? `${expansion.rivalries.length}` : undefined} onPress={() => router.push('/arena_rivalries' as never)} />
+      <ArenaFeatureRow icon="people-circle" title={arenaExpansionText(lang, 'partner')} body={arenaExpansionText(lang, 'partnerBody')} disabled={!baseEnabled || !expansion?.availability.partner} onPress={() => router.push('/arena_partner' as never)} />
+      <ArenaFeatureRow icon="person-add" title={arenaText(lang, 'friend')} body={arenaText(lang, 'friendHint')} disabled={!baseEnabled || !home?.availability.friendEnabled} onPress={() => router.push('/arena_friend_duel' as never)} />
+    </>
+  );
+
+  return (
+    <ArenaScreen
+      title={arenaText(lang, 'title')}
+      subtitle={home?.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home?.profile.rank ?? 0) + 1}`}
+      onBack={() => router.replace('/(tabs)/home' as never)}
+      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion?.wallet.walletStars ?? 0} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
+    >
+      <ArenaSectionTabs selected={section} labels={labels} onSelect={(next) => router.setParams({ section: next })} />
+      {baseError ? <ArenaStateCard state="error" title={arenaExpansionText(lang, 'unavailable')} actionLabel={arenaExpansionText(lang, 'retry')} onAction={load} /> : null}
+      {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} /> : null}
+      {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
+    </ArenaScreen>
+  );
+}
+
+const styles = StyleSheet.create({
+  todayCard: { gap: 16 },
+  todayHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  todayCopy: { flex: 1 },
+  todayTitle: { fontSize: 22, lineHeight: 28, fontWeight: '900' },
+  todayBody: { marginTop: 3, fontSize: 14, lineHeight: 20, fontWeight: '600' },
+  todayNumber: { width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  todayNumberText: { fontSize: 22, fontWeight: '900' },
+  complete: { minHeight: 44, textAlign: 'center', textAlignVertical: 'center', fontSize: 17, fontWeight: '900' },
+});

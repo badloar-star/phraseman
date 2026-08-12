@@ -103,6 +103,7 @@ interface XPResult {
 export type RegisterXPOptions = {
   eventId?: string;
   payload?: Record<string, unknown>;
+  /** @deprecated Lesson XP now peeks one-shot multipliers and finalizes them once per attempt. */
   skipLeagueChestMultiplier?: boolean;
   accountToken?: AccountGenerationToken;
   /** Internal capability propagated only by withAccountTransitionLock. */
@@ -151,6 +152,27 @@ const LOCAL_PROGRESS_EVENT_LEDGER_KEY = 'progress_local_event_applied_v1';
 const LOCAL_PROGRESS_EVENT_LEDGER_MAX = 1_000;
 const MAX_LOCAL_XP_MULTIPLIER = 20;
 const MAX_LOCAL_XP_DELTA = 25_000;
+const TIME_OF_DAY_CHECK_CACHE_MAX = 8;
+const timeOfDayAchievementCheckByAccount = new Map<string, string>();
+
+function shouldCheckTimeOfDayAchievements(
+  accountToken: AccountGenerationToken,
+  now = new Date(),
+): boolean {
+  const hour = now.getHours();
+  const bucket = hour >= 23 || hour < 5 ? 'night' : hour >= 5 && hour < 7 ? 'early' : null;
+  if (!bucket) return false;
+  const accountKey = `${accountToken.generation}:${accountToken.stableId ?? 'anon'}`;
+  const periodKey = `${getLocalDayKey(now)}:${bucket}`;
+  if (timeOfDayAchievementCheckByAccount.get(accountKey) === periodKey) return false;
+  timeOfDayAchievementCheckByAccount.set(accountKey, periodKey);
+  while (timeOfDayAchievementCheckByAccount.size > TIME_OF_DAY_CHECK_CACHE_MAX) {
+    const oldest = timeOfDayAchievementCheckByAccount.keys().next().value as string | undefined;
+    if (!oldest) break;
+    timeOfDayAchievementCheckByAccount.delete(oldest);
+  }
+  return true;
+}
 
 function localProgressEventLedgerKey(stableUid: string): string {
   return `${LOCAL_PROGRESS_EVENT_LEDGER_KEY}:${encodeURIComponent(stableUid)}`;
@@ -467,9 +489,15 @@ export const registerXP = async (
       // Горячие 2 часа: ×2 для зоны вылета в конце недели (локальный кэш лиги, без сети).
       const hotHoursM = await getLeagueHotHoursMultiplier();
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
+      const isLessonXp = source === 'lesson_answer' || source === 'lesson_complete';
+      // Сундук лиги, как и «Золотой урок», относится ко всему уроку: каждый
+      // ответ видит один и тот же множитель, а один заряд списывается отдельно
+      // при завершении attempt. Иначе первые три ответа сжигали бы все 3 uses.
       const leagueChestM = options?.skipLeagueChestMultiplier
         ? 1
-        : await consumeLeagueChestXpOverrideMultiplier();
+        : isLessonXp
+          ? await peekLeagueChestXpOverrideMultiplier()
+          : await consumeLeagueChestXpOverrideMultiplier();
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
 
       // Ж) Weekly Boons: «Двойной четверг» (×2) + «Ранняя пташка» (×1.1 до 10:00).
@@ -484,14 +512,8 @@ export const registerXP = async (
       // И) Season Pass «Золотой урок» (владелец 2026-08-03): ×3 на ВЕСЬ следующий
       // урок — peek на каждом ответе урока, заряд списывается на lesson_complete
       // (иначе первый же ответ съел бы заряд, а «урок» = все ответы + завершение).
-      const isLessonXp = source === 'lesson_answer' || source === 'lesson_complete';
       const goldenCharges = isLessonXp ? await peekSeasonGoldenLessonCharges() : 0;
       const goldenLessonM = goldenCharges > 0 ? 3 : 1;
-      if (source === 'lesson_complete' && goldenCharges > 0) {
-        // guard-ok: декремент ЗАРЯДА расходника (season_golden_lesson_v1.remaining),
-        // не баланс/XP юзера — тот же класс, что remainingUses у xp_boost сундука.
-        void consumeSeasonGoldenLessonMultiplier().catch(() => {});
-      }
 
       totalMultiplier = sanitizeLocalXpMultiplier(
         1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1) + (goldenLessonM - 1),
@@ -703,7 +725,9 @@ export const registerXP = async (
     if (finalDelta > 0 && source !== 'achievement_reward' && source !== 'level_up_bonus') {
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
       checkAchievements({ type: 'xp', totalXP: newTotal }, accountToken).catch(() => {});
-      checkAchievements({ type: 'time_of_day' }, accountToken).catch(() => {});
+      if (shouldCheckTimeOfDayAchievements(accountToken)) {
+        checkAchievements({ type: 'time_of_day' }, accountToken).catch(() => {});
+      }
     }
     if (finalDelta > 0 && source === 'wager_win') {
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
@@ -801,6 +825,59 @@ export const registerXP = async (
   }, staleResult(), options?.xpOperationLease);
 };
 
+const LESSON_XP_MULTIPLIER_FINALIZED_PREFIX = 'lesson_xp_multipliers_finalized_v1';
+const MAX_FINALIZED_LESSON_ATTEMPTS = 128;
+
+const lessonXpFinalizationKey = (token: AccountGenerationToken): string | null => {
+  const scope = accountScopeKey(token);
+  if (!scope || !token.stableId) return null;
+  return `${LESSON_XP_MULTIPLIER_FINALIZED_PREFIX}:${token.stableId.replace(/[^A-Za-z0-9_.-]/g, '_').slice(0, 80)}`;
+};
+
+/**
+ * Consume lesson-scoped one-shot XP effects exactly once per completed attempt.
+ * The attempt is recorded before consumption (at-most-once): a crash must never
+ * spend the same paid/earned charge twice when the results screen is restored.
+ */
+export async function finalizeLessonXpMultipliers(
+  attemptId: string,
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<boolean> {
+  const normalizedAttemptId = String(attemptId || '').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 100);
+  const ledgerKey = lessonXpFinalizationKey(accountToken);
+  if (!normalizedAttemptId || !ledgerKey || !isXpAccountGenerationCurrent(accountToken)) return false;
+
+  // The read → reserve → consume sequence must share the same per-account XP
+  // queue as awards. Two restored result screens can mount in parallel; without
+  // this serialization both could observe a missing attempt and spend a charge.
+  return withXpAccountOperationQueue(accountToken, async () => {
+    if (!isXpAccountGenerationCurrent(accountToken)) return false;
+    let finalized: string[] = [];
+    try {
+      const raw = await AsyncStorage.getItem(ledgerKey);
+      if (!isXpAccountGenerationCurrent(accountToken)) return false;
+      const parsed = raw ? JSON.parse(raw) : [];
+      finalized = Array.isArray(parsed)
+        ? parsed.filter((value): value is string => typeof value === 'string').slice(-MAX_FINALIZED_LESSON_ATTEMPTS)
+        : [];
+    } catch {
+      finalized = [];
+    }
+    if (finalized.includes(normalizedAttemptId)) return false;
+
+    const nextLedger = [...finalized, normalizedAttemptId].slice(-MAX_FINALIZED_LESSON_ATTEMPTS);
+    await AsyncStorage.setItem(ledgerKey, JSON.stringify(nextLedger));
+    if (!isXpAccountGenerationCurrent(accountToken)) return false;
+
+    // guard-ok: расходуются только заряды одноразовых XP-эффектов, не баланс XP.
+    await Promise.all([
+      consumeLeagueChestXpOverrideMultiplier().catch(() => 1),
+      consumeSeasonGoldenLessonMultiplier().catch(() => 1),
+    ]);
+    return true;
+  }, false);
+}
+
 const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
 
 // Старая формула: (L-1)^2 * 50
@@ -839,6 +916,7 @@ export const __xpManagerTestHooks = {
   resetXpRuntimeState: () => {
     xpQueueByAccount.clear();
     xpMultiplierByAccount.clear();
+    timeOfDayAchievementCheckByAccount.clear();
     activeXpOperationLeases = new WeakMap<object, string>();
   },
   setXpMultiplierSnapshot: (club: number, leagueGroup: number) => {
@@ -851,6 +929,7 @@ export const __xpManagerTestHooks = {
   sanitizeLocalXpMultiplier,
   localProgressEventLedgerKey,
   progressEventTypeForSource,
+  shouldCheckTimeOfDayAchievements,
   LOCAL_PROGRESS_EVENT_LEDGER_MAX,
   MAX_LOCAL_XP_MULTIPLIER,
   MAX_LOCAL_XP_DELTA,

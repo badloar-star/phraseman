@@ -40,7 +40,7 @@ describe('i18n helpers', () => {
     });
   });
 
-  describe('Heisenberg interface languages — не готовы к UI, не выбираемы', () => {
+describe('Heisenberg interface languages — готовы к UI и выбираемы', () => {
     it('опции по-прежнему перечисляют все 8 кодов (фильтрация — на экране)', () => {
       expect(INTERFACE_LANGUAGE_OPTIONS.map((option) => option.code)).toEqual([
         'ru',
@@ -54,10 +54,10 @@ describe('i18n helpers', () => {
       ]);
     });
 
-    it('pt-BR/vi/id/tr/pl выключены и не выбираемы (planned)', () => {
-      for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
-        expect(isInterfaceLangEnabled(lang)).toBe(false);
-        expect(coerceInterfaceLang(lang)).toBeNull();
+  it('pt-BR/vi/id/tr/pl включены и выбираемы', () => {
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      expect(isInterfaceLangEnabled(lang)).toBe(true);
+      expect(coerceInterfaceLang(lang)).toBe(lang);
       }
     });
 

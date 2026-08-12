@@ -137,6 +137,7 @@ describe("Firestore V2 authoring storage paths", () => {
       templateRef: { templateId, version, contentHash },
       allowedOverridePaths: (body.authoring as { allowedOverridePaths: string[] })
         .allowedOverridePaths,
+      body,
     });
     },
   );

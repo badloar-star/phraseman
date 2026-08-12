@@ -13,6 +13,7 @@ import {
   lessonPassCountKey,
   lessonProgressKey,
   levelExamKey,
+  storedProgressFlagIsTrue,
   storageStudyTarget,
   unlockedLessonsKey,
   type RuntimeStudyTarget,
@@ -132,7 +133,7 @@ export async function loadLessonsTabStateFromStorage(
     const pct = parseInt(pctRaw || '0', 10) || 0;
     const bestPct = parseInt(bestRaw || '0', 10) || 0;
     const examPass = parseInt(passRaw || '0', 10) || 0;
-    examResults[lvl] = { pct, passed: passedRaw === '1' };
+    examResults[lvl] = { pct, passed: storedProgressFlagIsTrue(passedRaw) };
     examBestPcts[lvl] = bestPct;
     examPassCounts[lvl] = examPass;
   }

@@ -10568,7 +10568,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['Everyone is ready', isUK ? 'Всі готові' : 'Все готовы'],
         ['Everything is okay', isUK ? 'Все добре' : 'Всё в порядке'],
         ['Something is wrong', isUK ? 'Щось не так' : 'Что-то не так'],
-        ['Nothing is wrong', isUK ? 'Нічого не так' : 'Ничего не так'],
+        ['Nothing is wrong', isUK ? 'Жодних проблем немає' : 'Никаких проблем нет'],
         ['Everything is clear', isUK ? 'Все зрозуміло' : 'Всё понятно'],
         ['Is everything clear?', isUK ? 'Все зрозуміло?' : 'Всё понятно?'],
         ['Is anyone here?', isUK ? 'Тут хтось є?' : 'Здесь кто-нибудь есть?'],

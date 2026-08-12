@@ -8,6 +8,32 @@ import { buildLearningEvidenceTupleKey } from "../../../modules/learning-v2/cont
 
 const body = { schemaVersion: "v2-attempt-body.v1", opId: "attempt-1", attemptSurface: { kind: "episode_graph_node" }, outcome: { resultCode: "CORRECT" }, evidence: { hintsUsed: 0 }, provenance: { phase: "encounter_build" }, inputBinding: { source: "keyboard" }, learningTupleDispositions: [{ nodeId: "n1", objectiveId: "o1", skillId: "s1", construct: "semantic", phase: "encounter_build", targetKind: "objective", targetId: "t1", terminalDisposition: "no_record", reasonCode: "skipped_by_learner" }] } as const;
 const request = () => { const attemptRef = buildCanonicalAttemptRef(body); return ({ accountScopeHash: "a".repeat(16), seasonId: "season-1", studyTarget: "en", learnerSourceLocale: "ru", seasonRevisionId: "season-1-r1", episodeRevisionRef: { draftId: "draft-1", episodeId: "episode-1", revision: 1, revisionFingerprint: "b".repeat(64), contentHash: "c".repeat(64), ordinal: 1, chapterId: "chapter-1", approvalStatus: "approved" as const }, idempotencyKey: "progress-op-1", attemptBody: body, attemptRef, evidenceBundle: { schemaVersion: "v2-progress-evidence-bundle.v1" as const, attemptRef, evidenceBodies: [], nonAssessmentBodies: [] }, projection: { starSlotId: "slot-1", previousBestStars: 0, candidateStars: 2, activityId: "activity-1", progressCompatibilityKey: "compat-1" } }); };
+const requiredSessionTaskRef = () => ({
+  schemaVersion: "learning-v2-required-session-task-slot-ref.v1" as const,
+  courseId: "english-core",
+  courseReleaseId: "release-1",
+  sessionSetId: "session-set-1",
+  sessionSetHash: "d".repeat(64),
+  requiredSessionOrdinal: 1,
+  sessionId: "session-1",
+  sessionRunId: "session-run-1",
+  runKindClaim: "initial" as const,
+  taskOrdinal: 1,
+  taskId: "slot-1",
+  activityId: "activity-1",
+});
+const requiredSessionAnswerResponse = () => ({
+  schemaVersion: "learning-v2-required-session-task-answer-response.v1" as const,
+  taskId: "slot-1",
+  activityId: "activity-1",
+  family: "phrase_builder" as const,
+  submittedAnswer: "I am ready",
+});
+const requiredRequest = () => ({
+  ...request(),
+  requiredSessionTaskRef: requiredSessionTaskRef(),
+  requiredSessionAnswerResponse: requiredSessionAnswerResponse(),
+});
 const fakeStore = (events: string[] = []): ProgressEventStore => { const ops = new Map<string, any>(); const attempts = new Map<string, any>(); const store: any = { runTransaction: async (work: any) => work(store), resolveDelayedEvidence: async () => undefined, validatePinnedScope: async () => { events.push("validate"); }, reconcileReplay: async () => { events.push("reconcile"); }, prepareTransactionPlan: async () => { events.push("prepare"); }, writeEvidenceMaterialization: async () => { events.push("evidence"); }, writeProgressProjection: async () => { events.push("projection"); }, readOperation: async (key: string) => { events.push("readOperation"); return ops.get(key); }, createOperation: async (key: string, value: any) => { events.push("operation"); ops.set(key, value); }, readAttempt: async (scope: string, op: string) => { events.push("readAttempt"); return attempts.get(`${scope}:${op}`); }, writeAttempt: async (scope: string, op: string, attempt: any) => { events.push("attempt"); attempts.set(`${scope}:${op}`, attempt); } }; return store; };
 
 const delayedBinding = { nodeId: "n1", objectiveId: "o1", skillId: "s1", construct: "semantic" as const, phase: "delayed_probe" as const, targetKind: "objective" as const, targetId: "o1" };
@@ -33,6 +59,50 @@ describe("V2 server progress event contract", () => {
   it("accepts a canonical attempt and replays idempotently", async () => {
     const store = fakeStore(); const first = await applyProgressEvent(store, request()); const second = await applyProgressEvent(store, request());
     expect(first).toMatchObject({ accepted: true, duplicate: false }); expect(second).toMatchObject({ accepted: true, duplicate: true });
+  });
+  it("binds an optional required-session slot into parser and replay identity", async () => {
+    const parsed = parseProgressEventRequest(requiredRequest());
+    expect(parsed.requiredSessionTaskRef).toEqual(requiredSessionTaskRef());
+    expect(parsed.requiredSessionAnswerResponse).toEqual(requiredSessionAnswerResponse());
+    expect(Object.isFrozen(parsed.requiredSessionTaskRef)).toBe(true);
+
+    expect(() => parseProgressEventRequest({
+      ...requiredRequest(),
+      requiredSessionTaskRef: { ...requiredSessionTaskRef(), activityId: "other-activity" },
+    })).toThrow("required_session_task_slot_projection_mismatch");
+    expect(() => parseProgressEventRequest({
+      ...requiredRequest(),
+      requiredSessionTaskRef: { ...requiredSessionTaskRef(), taskId: "other-slot" },
+    })).toThrow("required_session_task_slot_projection_mismatch");
+
+    const store = fakeStore();
+    store.resolveServerProjection = async (submitted, materialized) => {
+      const resolution = resolveServerScore({
+        attemptRef: submitted.attemptRef,
+        activityId: submitted.projection.activityId,
+        starSlotId: submitted.projection.starSlotId,
+        progressCompatibilityKey: submitted.projection.progressCompatibilityKey,
+        scoringPolicyRef: { kind: "scoring", key: "policy.scoring.core", version: 1, contentHash: "a".repeat(64) },
+        resultCode: "CORRECT",
+        evidenceComponentFingerprint: materialized.componentFingerprint,
+      }, () => 3);
+      return {
+        resolution,
+        projection: deriveProgressProjectionFromServerScore({
+          previousBestStars: 0,
+          resolution,
+        }),
+      };
+    };
+    store.applyRequiredSessionAttempt = async () => undefined;
+    store.writeRequiredSessionProgress = async () => undefined;
+    await expect(applyProgressEvent(store, requiredRequest()))
+      .resolves.toMatchObject({ duplicate: false });
+    await expect(applyProgressEvent(store, {
+      ...requiredRequest(),
+      idempotencyKey: "progress-op-2",
+      requiredSessionTaskRef: { ...requiredSessionTaskRef(), taskOrdinal: 2 },
+    })).rejects.toThrow("v2_progress_attempt_projection_conflict");
   });
   it("rejects forged refs, post-hash fields, and conflicting op reuse", async () => {
     expect(() => parseProgressEventRequest({ ...request(), attemptRef: { ...request().attemptRef, attemptBodyHash: "b".repeat(64) } })).toThrow("v2_progress_attempt_ref_mismatch");

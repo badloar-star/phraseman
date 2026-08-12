@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.REQUIRED_SESSION_POLICY_V1 = void 0;
 exports.compileV2RequiredSessions = compileV2RequiredSessions;
+// зачем: владелец утвердил формат юнита 12×12 заданий в зонах understand/use/master
+// с угасанием подсказок. Компилятор ДЕТЕРМИНИРОВАННЫЙ (версионная таблица, без random):
+// один и тот же банк контента всегда даёт байт-в-байт одинаковые сессии — иначе нельзя
+// ни кэшировать по hash, ни воспроизводить баги. Ошибки — только броском, ничего молча.
+const activity_1 = require("../contracts/activity");
 const content_item_1 = require("./content_item");
 // зачем: версионная таблица из утверждённого плана — менять только новой версией,
 // иначе перегенерация юнитов молча изменит уже выданные ученикам сессии.
@@ -67,6 +72,65 @@ function deepFreeze(value) {
 function pad(value) {
     return String(value).padStart(2, '0');
 }
+function detachActivityBindings(input) {
+    if (!Array.isArray(input) || input.length === 0 || input.length > 4096) {
+        throw new Error('session_activity_binding_missing');
+    }
+    const arrayKeys = Reflect.ownKeys(input);
+    if (arrayKeys.length !== input.length + 1 || arrayKeys.some((key) => typeof key !== 'string' || (key !== 'length' && !/^(?:0|[1-9][0-9]*)$/.test(key)))) {
+        throw new Error('session_activity_binding_invalid');
+    }
+    const detached = [];
+    for (let index = 0; index < input.length; index += 1) {
+        const slot = Object.getOwnPropertyDescriptor(input, String(index));
+        if (!slot || !('value' in slot) || !slot.enumerable) {
+            throw new Error('session_activity_binding_invalid');
+        }
+        const value = slot.value;
+        if (typeof value !== 'object' || value === null || Array.isArray(value) ||
+            (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)) {
+            throw new Error('session_activity_binding_invalid');
+        }
+        const descriptors = Object.getOwnPropertyDescriptors(value);
+        const keys = Reflect.ownKeys(value);
+        const expected = ['activityId', 'family', 'contentUnitIds'];
+        if (keys.length !== expected.length || keys.some((key) => typeof key !== 'string' || !expected.includes(key))) {
+            throw new Error('session_activity_binding_invalid');
+        }
+        const read = (key) => {
+            const descriptor = descriptors[key];
+            if (!descriptor || !('value' in descriptor) || !descriptor.enumerable) {
+                throw new Error('session_activity_binding_invalid');
+            }
+            return descriptor.value;
+        };
+        const activityId = read('activityId');
+        const family = read('family');
+        const unitIds = read('contentUnitIds');
+        if (!Array.isArray(unitIds) || unitIds.length === 0 || unitIds.length > 4096) {
+            throw new Error('session_activity_binding_invalid');
+        }
+        const unitKeys = Reflect.ownKeys(unitIds);
+        if (unitKeys.length !== unitIds.length + 1 || unitKeys.some((key) => typeof key !== 'string' || (key !== 'length' && !/^(?:0|[1-9][0-9]*)$/.test(key)))) {
+            throw new Error('session_activity_binding_invalid');
+        }
+        const contentUnitIds = [];
+        for (let unitIndex = 0; unitIndex < unitIds.length; unitIndex += 1) {
+            const descriptor = Object.getOwnPropertyDescriptor(unitIds, String(unitIndex));
+            if (!descriptor || !('value' in descriptor) || !descriptor.enumerable ||
+                typeof descriptor.value !== 'string') {
+                throw new Error('session_activity_binding_invalid');
+            }
+            contentUnitIds.push(descriptor.value);
+        }
+        detached.push(Object.freeze({
+            activityId: activityId,
+            family: family,
+            contentUnitIds: Object.freeze(contentUnitIds),
+        }));
+    }
+    return Object.freeze(detached);
+}
 // зачем: novelty независимой проверки не может быть 'trained' — QA (Task 7) блокирует
 // повторное использование натренированных формулировок в зоне master.
 function noveltyForZone(zone) {
@@ -116,6 +180,7 @@ function compileV2RequiredSessions(input) {
     if (!Array.isArray(items) || items.length === 0) {
         throw new Error('session_content_insufficient: empty content bank');
     }
+    const activityBindings = detachActivityBindings(input.activityBindings);
     // зачем: fail-closed вход — компилятор не доверяет вызывающему и перепроверяет
     // каждый айтем настоящим валидатором, принадлежность эпизоду и совместимость с профилем.
     const seenIds = new Set();
@@ -133,6 +198,39 @@ function compileV2RequiredSessions(input) {
     if (!items.some((item) => item.objectiveIds.includes(canDoOutcomeId))) {
         throw new Error('session_can_do_untraceable');
     }
+    const bindingIds = new Set();
+    const bindingsByCoordinate = new Map();
+    for (const binding of activityBindings) {
+        if (binding === null
+            || typeof binding !== 'object'
+            || Array.isArray(binding)
+            || Object.keys(binding).sort().join(',') !== 'activityId,contentUnitIds,family'
+            || typeof binding.activityId !== 'string'
+            || !binding.activityId.trim()
+            || !activity_1.V2_ACTIVITY_FAMILIES.includes(binding.family)
+            || !Array.isArray(binding.contentUnitIds)
+            || binding.contentUnitIds.length === 0
+            || binding.contentUnitIds.some((id) => typeof id !== 'string' || !seenIds.has(id))
+            || new Set(binding.contentUnitIds).size !== binding.contentUnitIds.length
+            || bindingIds.has(binding.activityId)) {
+            throw new Error('session_activity_binding_invalid');
+        }
+        bindingIds.add(binding.activityId);
+        for (const contentUnitId of binding.contentUnitIds) {
+            const coordinate = `${binding.family}\u0000${contentUnitId}`;
+            const candidates = bindingsByCoordinate.get(coordinate) ?? [];
+            candidates.push(binding);
+            bindingsByCoordinate.set(coordinate, candidates);
+        }
+    }
+    const resolveActivityId = (family, contentItemId) => {
+        const candidates = bindingsByCoordinate.get(`${family}\u0000${contentItemId}`) ?? [];
+        if (candidates.length === 0)
+            throw new Error(`session_activity_binding_missing:${family}:${contentItemId}`);
+        if (candidates.length !== 1)
+            throw new Error(`session_activity_binding_ambiguous:${family}:${contentItemId}`);
+        return candidates[0].activityId;
+    };
     // Детерминизм: внутренняя сортировка отвязывает результат от порядка входа.
     const sortedItems = [...items].sort((a, b) => a.contentItemId.localeCompare(b.contentItemId, 'en'));
     let promptCounter = 0;
@@ -161,6 +259,7 @@ function compileV2RequiredSessions(input) {
                 cards.push({
                     cardId: `card-${episodeId}-s${pad(ordinal)}-${pad(cards.length + 1)}`,
                     contentItemId: item.contentItemId,
+                    activityId: resolveActivityId(family, item.contentItemId),
                     objectiveId: pickObjectiveId(item, canDoOutcomeId),
                     family,
                     learningFunction: FAMILY_LEARNING_FUNCTION[family],
@@ -189,7 +288,7 @@ function compileV2RequiredSessions(input) {
         return session;
     });
     return deepFreeze({
-        schemaVersion: 'v2-compiled-episode-content.v1',
+        schemaVersion: 'v2-compiled-episode-content.v2',
         episodeId,
         canDoOutcomeId,
         sessions,

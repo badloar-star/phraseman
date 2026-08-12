@@ -88,6 +88,8 @@ import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenH
 import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
+import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
+import ArenaHomeCard from '../../components/arena/ArenaHomeCard';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
@@ -111,7 +113,7 @@ import {
     type StreakWeekDayMarkerKind,
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
-import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
+import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey, storageStudyTarget } from '../target_storage_keys';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
@@ -121,6 +123,7 @@ import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, 
 import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
 import { getCanonicalUserId } from '../user_id_policy';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { invalidateDailyTasksScreenSnapshot } from '../daily_tasks_screen_cache';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
 import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
@@ -541,8 +544,12 @@ export default function HomeScreen() {
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
+    const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const isHomeOwner = runtimeOwnerId === 'home';
-    const homeRuntimeActive = useRuntimeActive(isHomeOwner);
+    // Root Stack монтирует Home под полноэкранным CleanOnboarding. Владение табом
+    // само по себе ещё не означает, что экран видим: до onboarding_done запрещаем
+    // тяжёлые загрузки, Firestore, префетчи и циклы анимаций.
+    const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work. Mark its
     // first handoff dirty so the daily-task summary never remains at the
@@ -571,6 +578,7 @@ export default function HomeScreen() {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
     useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
         const task = InteractionManager.runAfterInteractions(() => {
             void prefetchTrainerPracticeSnapshot({
                 studyTarget,
@@ -580,7 +588,7 @@ export default function HomeScreen() {
         return () => {
             task.cancel();
         };
-    }, [studyTarget, trainerPracticeSourceLocale]);
+    }, [homeRuntimeActive, studyTarget, trainerPracticeSourceLocale]);
     const appSnapshot = useAppSnapshotSelector((snapshot) => ({
         profile: snapshot.profile,
         progress: snapshot.progress,
@@ -656,7 +664,6 @@ export default function HomeScreen() {
     const [homeFeatureTipIndex, setHomeFeatureTipIndex] = useState(0);
     const [homeFeatureTipsDone, setHomeFeatureTipsDone] = useState(false);
     const [homeFeatureTipsHydrated, setHomeFeatureTipsHydrated] = useState(false);
-    const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const homeFeatureTipTouchStartRef = useRef<{ x: number; y: number } | null>(null);
     const homeFeatureTipSwipeHandledRef = useRef(false);
     const homeFeatureTipHintPulse = useRef(new Animated.Value(0)).current;
@@ -1044,9 +1051,12 @@ export default function HomeScreen() {
         transform: [{ translateY: sectionSlide[i] }],
     });
     useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
         fadeAnim.setValue(0);
-        Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
-    }, [lang, studyTarget]);
+        const animation = Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER });
+        animation.start();
+        return () => animation.stop();
+    }, [fadeAnim, homeRuntimeActive, lang, studyTarget]);
     useEffect(() => {
         if (!homeRuntimeActive)
             return;
@@ -1070,13 +1080,14 @@ export default function HomeScreen() {
     // маунту в сессии (бюджет холодного старта): дальше отдаём готовую страницу сразу.
     const [belowFoldReady, setBelowFoldReady] = useState(homeBelowFoldReadyOnce);
     useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
         if (homeBelowFoldReadyOnce) return undefined;
         const task = InteractionManager.runAfterInteractions(() => {
             homeBelowFoldReadyOnce = true;
             setBelowFoldReady(true);
         });
         return () => { task?.cancel?.(); };
-    }, []);
+    }, [homeRuntimeActive]);
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
@@ -1132,6 +1143,13 @@ export default function HomeScreen() {
         });
         // Слушаем событие изменения XP (от тестеров и других экранов)
         const xpSub = DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh);
+        const dailyTaskProgressChangedSub = onAppEvent('daily_task_progress_changed', (payload) => {
+            const eventTarget = storageStudyTarget(payload.studyTarget);
+            invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), eventTarget);
+            if (eventTarget === storageStudyTarget(studyTargetRef.current)) {
+                requestDailyTaskSummaryRefresh();
+            }
+        });
         const dailyTaskCompletedSub = onAppEvent('daily_task_completed', requestDailyTaskSummaryRefresh);
         const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', requestDailyTaskSummaryRefresh);
         const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', requestDailyTaskSummaryRefresh);
@@ -1237,6 +1255,9 @@ export default function HomeScreen() {
             if (!name) return;
             setLastLesson({ id: payload.lessonId, name, progress: payload.progress, score: payload.score });
         });
+        const onboardingCompletedSub = onAppEvent('onboarding_completed', () => {
+            setHomeOnboardingDone(true);
+        });
         return () => {
             mountedRef.current = false;
             sub.remove();
@@ -1244,6 +1265,7 @@ export default function HomeScreen() {
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
             xpSub.remove();
+            dailyTaskProgressChangedSub.remove();
             dailyTaskCompletedSub.remove();
             dailyTaskClaimedSub.remove();
             dailyTaskRerolledSub.remove();
@@ -1256,6 +1278,7 @@ export default function HomeScreen() {
             freezeUpdatedSub.remove();
             revivedSub.remove();
             lastOpenedLessonSub.remove();
+            onboardingCompletedSub.remove();
             deferredReadyTaskRef.current?.cancel?.();
             deferredReadyTaskRef.current = null;
             deferredReloadTaskRef.current?.cancel?.();
@@ -1548,7 +1571,7 @@ export default function HomeScreen() {
         };
     }, [homeRuntimeActive, studyTarget, lang]);
     useEffect(() => {
-        if (!isHomeOwner || homeLeagueCrownLoadedRef.current) return;
+        if (!homeRuntimeActive || homeLeagueCrownLoadedRef.current) return;
         homeLeagueCrownLoadedRef.current = true;
         let cancelled = false;
         void ensureAnonUser()
@@ -1573,7 +1596,7 @@ export default function HomeScreen() {
         return () => {
             cancelled = true;
         };
-    }, [isHomeOwner]);
+    }, [homeRuntimeActive]);
     /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
     useEffect(() => {
         if (!homeStatsReady || !homeRuntimeActive)
@@ -2329,19 +2352,17 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 lessons, 2 tournaments, 3 friends, 4 settings —
+    /** Индексы табов: 0 home, 1 lessons, 2 friends, 3 settings —
      *  см. app/(tabs)/_layout.tsx. Плитка «Уроки» по-прежнему открывает push-маршрут
      *  /lessons_list, чтобы сохранить привычную историю возврата с главной.
      *  зачем: карта дублирует _layout.tsx, поэтому при любом изменении набора
      *  вкладок её обязательно править вместе с ним — иначе переходы отсюда
      *  уводят не на тот экран. */
     const TAB_IDX: Record<string, number> = {
-        '/(tabs)/tournaments': 2,
-        tournaments: 2,
-        '/(tabs)/friends': 3,
-        friends: 3,
-        '/(tabs)/settings': 4,
-        settings: 4,
+        '/(tabs)/friends': 2,
+        friends: 2,
+        '/(tabs)/settings': 3,
+        settings: 3,
     };
     const go = (path: string) => {
         hapticTap();
@@ -2384,7 +2405,7 @@ export default function HomeScreen() {
     ) => {
         if (marker === 'freeze') {
             const iceSize = Math.round(size * 1.34);
-            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel="Заморозка стрика" />;
+            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Заморозка серии', uk: 'Заморозка серії', es: 'Congelación de racha', 'pt-BR': 'Congelamento da sequência', vi: 'Đóng băng chuỗi', id: 'Pembekuan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' })} />;
         }
         if (marker === 'revive' || marker === 'repair') {
             return <Ionicons name="checkmark" size={checkSize} color={checkColor}/>;
@@ -2923,7 +2944,7 @@ export default function HomeScreen() {
                     nav.push('/shards_shop');
                   }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
                   <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={`Баланс: ${shardsBalance} жемчужин`} />
+                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} жемчужин`, uk: `Баланс: ${shardsBalance} перлин`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })} />
                     <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
                   </Animated.View>
                 </TouchableOpacity>
@@ -3056,6 +3077,8 @@ export default function HomeScreen() {
             </View>
           </View>
 
+          <ArenaHomeCard />
+
 
 
 
@@ -3182,7 +3205,7 @@ export default function HomeScreen() {
                             transform: [{ scale: homeFeatureTipHintScale }],
                           }}
                         >
-                          тапни по подсказке
+                          {triLang(lang, { ru: 'нажми на подсказку', uk: 'торкнися підказки', es: 'toca la pista', 'pt-BR': 'toque na dica', vi: 'chạm vào gợi ý', id: 'ketuk petunjuk', tr: 'ipucuna dokun', pl: 'dotknij podpowiedzi' })}
                         </Animated.Text>
                       ) : null}
                       {currentHomeFeatureTip.icon ? (
@@ -3254,7 +3277,10 @@ export default function HomeScreen() {
                   <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }}>
+                  {/* зачем: это обычный вход в раздел, а не редакционный акцент.
+                      Жёсткий минимум 22px делал small/medium/large одинаковыми;
+                      размер должен следовать пользовательской шкале f. */}
+                  <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
                     {triLang(lang, {
                       ru: 'Вызовы дня', uk: 'Виклики дня', es: 'Tareas del día', 'pt-BR': 'Tarefas do dia',
                       vi: 'Nhiệm vụ hôm nay', id: 'Tugas harian', tr: 'Günün görevleri', pl: 'Zadania dnia',
@@ -3289,17 +3315,17 @@ export default function HomeScreen() {
                   <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -16, width: 126, height: 126, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                     <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги"/>
+                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Подарок лиги', uk: 'Подарунок ліги', es: 'Regalo de liga', 'pt-BR': 'Presente da liga', vi: 'Quà tặng của giải đấu', id: 'Hadiah liga', tr: 'Lig hediyesi', pl: 'Prezent ligi' })}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
-                      <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }}>
+                      <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
                         {triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
                       </FlowText>
-                      <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }}>
+                      <Text style={{ color: leagueBonusPalette.textMuted, fontSize: f.label, fontWeight: '800', lineHeight: f.label + 4, marginTop: 2 }}>
                         {homeLeagueChest.leagueName}
                       </Text>
                     </View>
-                    <Text style={{ color: homeLeagueChestAccent, fontSize: Math.max(27, f.h2 + 2), fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                    <Text style={{ color: homeLeagueChestAccent, fontSize: f.h2 + 2, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
                       {homeLeagueChestPct}%
                     </Text>
                   </View>
@@ -3329,6 +3355,7 @@ export default function HomeScreen() {
           }}>
           <DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />
           </Animated.View>
+          <HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />
           </>)}
 
       </BouncyScrollView>);

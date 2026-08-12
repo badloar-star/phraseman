@@ -10,7 +10,7 @@
  * правили мёртвые файлы. Тест фиксирует границу машинно, а не «на словах».
  */
 
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const repoRoot = path.resolve(__dirname, '..');
@@ -25,7 +25,20 @@ const FROZEN_ADMIN_FILES = [
   'admin/index.html',
   'admin/full.html',
   'admin/site.html',
+] as const;
+
+/** Удалённая белая V2-панель не должна появиться снова. */
+const RETIRED_V2_FILES = [
   'admin/v2/index.html',
+  'admin/v2/v2.html',
+  'admin/v2/migration.html',
+  'admin/v2/english-test.html',
+  'admin/v2/styles/admin.css',
+  'admin/v2/scripts/admin-router.js',
+  'admin/v2/scripts/admin-core.js',
+  'admin/v2/scripts/admin-firebase.js',
+  'admin/v2/scripts/admin-capabilities.js',
+  'admin/v2/vendor/chart.umd.js',
 ] as const;
 
 describe('единственная рабочая админка', () => {
@@ -50,6 +63,34 @@ describe('единственная рабочая админка', () => {
     expect(adminTarget?.public).toBe('admin/v2');
     // LIVE_ADMIN обязан лежать внутри публикуемой папки.
     expect(LIVE_ADMIN.startsWith(`${String(adminTarget?.public)}/`)).toBe(true);
+
+    const redirects = Array.isArray(adminTarget?.redirects)
+      ? (adminTarget.redirects as Array<Record<string, unknown>>)
+      : [];
+    for (const source of ['/', '/index.html', '/v2', '/v2/**']) {
+      expect(redirects).toContainEqual({ source, destination: '/legacy.html', type: 301 });
+    }
+  });
+
+  it('удалённая белая V2-панель не может вернуться в Hosting', () => {
+    for (const retired of RETIRED_V2_FILES) {
+      expect(existsSync(path.join(repoRoot, retired))).toBe(false);
+    }
+
+    const agents = read('AGENTS.md');
+    expect(agents).toContain('УДАЛЕНА НАВСЕГДА');
+    expect(agents).toContain('НЕ ВОССТАНАВЛИВАТЬ');
+
+    const workflowDir = path.join(repoRoot, '.github', 'workflows');
+    const englishTestWorkflows = readdirSync(workflowDir)
+      .filter((name) => /english.*test|test.*english/i.test(name))
+      .map((name) => readFileSync(path.join(workflowDir, name), 'utf8'));
+    for (const workflow of englishTestWorkflows) {
+      expect(workflow).not.toContain("insertOnce(\n            'admin/v2/index.html'");
+      expect(workflow).not.toContain('test -s admin/v2/english-test.html');
+      expect(workflow).not.toContain('hosting:knowlywww,hosting:admin');
+      expect(workflow).not.toContain("verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html'");
+    }
   });
 
   it('admin/index.html — редирект-заглушка, в неё нельзя писать функциональность', () => {

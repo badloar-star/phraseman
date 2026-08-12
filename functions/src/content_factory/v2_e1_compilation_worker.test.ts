@@ -84,11 +84,18 @@ describe('V2 E1 compilation worker', () => {
   it('seeds the demo source with a real canonical profile hash', async () => {
     const db = fakeDb();
     const seeded = await handleAdminSeedV2E1DemoSource({ auth, data: {} }, { db: db as never, now: () => '2026-07-25T10:00:00.000Z' });
-    const source = db.docs.get('content_v2_sources/ep-01') as Record<string, unknown>;
+    const source = db.docs.get('content_v2_test_sources/ep-01') as Record<string, unknown>;
     expect(source).toBeDefined();
     expect(seeded.languageProfileRef.contentHash).toBe(hashCanonicalBody(source.languageProfile));
     expect(Array.isArray(source.contentItems)).toBe(true);
     expect((source.contentItems as unknown[]).length).toBeGreaterThanOrEqual(8);
+    expect(source.provenance).toMatchObject({
+      contentClass: 'test_fixture',
+      fixtureId: 'learning-v2-e1-demo-v1',
+      environment: 'lab',
+      releaseAuthority: 'none',
+    });
+    expect(db.docs.has('content_v2_sources/ep-01')).toBe(false);
   });
 
   it('compiles the queued job into an artifact, succeeds stages and replays idempotently', async () => {
@@ -100,7 +107,7 @@ describe('V2 E1 compilation worker', () => {
     );
     expect(first).toMatchObject({ ok: true, jobId: plan.jobId, replayed: false, qaOk: true, sessionCount: 12 });
 
-    const artifact = db.docs.get('content_v2_compiled_units/ep-01') as Record<string, unknown>;
+    const artifact = db.docs.get('content_v2_test_compiled_units/ep-01') as Record<string, unknown>;
     expect(artifact).toBeDefined();
     expect(artifact.jobId).toBe(plan.jobId);
     const job = db.docs.get(`content_v2_generation_jobs/${plan.jobId}`) as Record<string, unknown>;
@@ -125,16 +132,16 @@ describe('V2 E1 compilation worker', () => {
       .rejects.toThrow('v2_worker_job_not_found');
 
     const { plan } = await seedAndQueue(db);
-    const source = db.docs.get('content_v2_sources/ep-01') as Record<string, unknown>;
+    const source = db.docs.get('content_v2_test_sources/ep-01') as Record<string, unknown>;
     // Подмена тела профиля после утверждения — canonical hash перестаёт сходиться.
-    db.docs.set('content_v2_sources/ep-01', {
+    db.docs.set('content_v2_test_sources/ep-01', {
       ...source,
       languageProfile: { ...(source.languageProfile as Record<string, unknown>), targetLanguage: 'de' },
     });
     await expect(handleAdminRunV2E1Compilation({ auth, data: { jobId: plan.jobId } }, { db: db as never }))
-      .rejects.toThrow('language_profile_hash_mismatch');
+      .rejects.toThrow('learning_v2_test_provenance_invalid');
 
-    db.docs.delete('content_v2_sources/ep-01');
+    db.docs.delete('content_v2_test_sources/ep-01');
     await expect(handleAdminRunV2E1Compilation({ auth, data: { jobId: plan.jobId } }, { db: db as never }))
       .rejects.toThrow('v2_worker_source_missing');
   });
@@ -147,10 +154,11 @@ describe('V2 E1 compilation worker', () => {
       { db: db as never, now: () => '2026-07-25T11:00:01.000Z' },
     );
     expect(result).toMatchObject({ ok: true, jobId: 'v2-e1-direct', episodeId: 'ep-01', qaOk: true, sessionCount: 12 });
-    const job = db.docs.get('content_v2_generation_jobs/v2-e1-direct') as Record<string, unknown>;
+    const job = db.docs.get('content_v2_test_generation_jobs/v2-e1-direct') as Record<string, unknown>;
     expect(job.mode).toBe('direct_vertical_slice');
     expect(job.state).toBe('compiled');
-    expect(db.docs.get('content_v2_compiled_units/ep-01')).toBeDefined();
+    expect(db.docs.get('content_v2_test_compiled_units/ep-01')).toBeDefined();
+    expect(db.docs.has('content_v2_compiled_units/ep-01')).toBe(false);
     // Повторный прямой прогон не падает и перекомпилирует детерминированный артефакт.
     const rerun = await handleAdminRunV2E1Compilation(
       { auth, data: { direct: true } },
@@ -158,7 +166,7 @@ describe('V2 E1 compilation worker', () => {
     );
     expect(rerun).toMatchObject({ ok: true, qaOk: true });
     // Прямой прогон без источника — честный отказ.
-    db.docs.delete('content_v2_sources/ep-01');
+    db.docs.delete('content_v2_test_sources/ep-01');
     await expect(handleAdminRunV2E1Compilation({ auth, data: { direct: true } }, { db: db as never }))
       .rejects.toThrow('v2_worker_source_missing');
   });

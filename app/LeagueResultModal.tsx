@@ -457,12 +457,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   pl: 'Dobry wynik, trzymaj tempo!',
 });
 
+  // Старый pending-результат мог сохранить total только по живым игрокам,
+  // хотя в его неизменяемом снимке группы уже есть боты. Для таких уже созданных
+  // итогов чиним показ без изменения авторитетного исхода недели.
+  const displayTotalInGroup = Math.max(result.totalInGroup, result.group.length);
   const top3 = result.group.slice(0, 3);
   const groupRows = result.group.map((member, index) => ({ member, place: index + 1 }));
-  const zoneSize = getLeagueResultZoneSize(result.totalInGroup);
-  const relegationStartRank = result.totalInGroup >= 2 && zoneSize > 0
-    ? result.totalInGroup - zoneSize + 1
-    : result.totalInGroup + 1;
+  const zoneSize = getLeagueResultZoneSize(displayTotalInGroup);
+  const relegationStartRank = displayTotalInGroup >= 2 && zoneSize > 0
+    ? displayTotalInGroup - zoneSize + 1
+    : displayTotalInGroup + 1;
   // XP-режим: повышение по набранным очкам, а не по месту. Тогда подпись зоны
   // не должна обещать «повышение с топ-N» (это правило про место) —
   // показываем XP-правило. Иначе текст противоречит исходу «Остаёшься».
@@ -804,7 +808,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       fontWeight: '600',
                       marginLeft: 6,
                     }}>
-                      / {result.totalInGroup}
+                      / {displayTotalInGroup}
                     </Text>
                   </View>
 
@@ -851,14 +855,14 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                           }
                           if (isDemo) {
                             return triLang(lang, {
-  ru: `Зона понижения: ${relegationStartRank}-${result.totalInGroup}`,
-  uk: `Зона пониження: ${relegationStartRank}-${result.totalInGroup}`,
-  es: `Descenso: ${relegationStartRank}-${result.totalInGroup}`,
-  "pt-BR": `Rebaixamento: ${relegationStartRank}-${result.totalInGroup}`,
-  vi: `Xuống hạng: ${relegationStartRank}-${result.totalInGroup}`,
-  id: `Turun: ${relegationStartRank}-${result.totalInGroup}`,
-  tr: `Düşme: ${relegationStartRank}-${result.totalInGroup}`,
-  pl: `Spadek: ${relegationStartRank}-${result.totalInGroup}`,
+  ru: `Зона понижения: ${relegationStartRank}-${displayTotalInGroup}`,
+  uk: `Зона пониження: ${relegationStartRank}-${displayTotalInGroup}`,
+  es: `Descenso: ${relegationStartRank}-${displayTotalInGroup}`,
+  "pt-BR": `Rebaixamento: ${relegationStartRank}-${displayTotalInGroup}`,
+  vi: `Xuống hạng: ${relegationStartRank}-${displayTotalInGroup}`,
+  id: `Turun: ${relegationStartRank}-${displayTotalInGroup}`,
+  tr: `Düşme: ${relegationStartRank}-${displayTotalInGroup}`,
+  pl: `Spadek: ${relegationStartRank}-${displayTotalInGroup}`,
 });
                           }
                           // isStay: описываем УСЛОВИЕ повышения, а не утверждаем, что юзер повышен.
@@ -935,7 +939,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 })}
                     </Text>
                     <Text style={{ color: t.textGhost, fontSize: f.caption, fontWeight: '600' }}>
-                      {result.totalInGroup} {triLang(lang, {
+                      {displayTotalInGroup} {triLang(lang, {
   ru: 'чел.',
   uk: 'осіб',
   es: 'pers.',

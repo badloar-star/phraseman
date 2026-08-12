@@ -240,9 +240,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
 };
 
 function pickLabel(row: ShardEarnLabel, lang: Lang): string {
-  if (lang === 'uk') return row.uk;
-  if (lang === 'es') return row.es;
-  return row.ru;
+  return row[lang];
 }
 
 export function labelForShardModalReason(key: string | undefined, lang: Lang): string {

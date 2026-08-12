@@ -10,8 +10,8 @@ import type { FetchSupportSourceResult } from './support_firestore_fetcher';
  * ответа одинаково на базе в сто и в сто тысяч. Тир здесь сознательно НЕ
  * смягчает пороги — как в «Платежах» и «Безопасности».
  *
- * Департамент только НАБЛЮДАЕТ. Ответы пишет и отправляет владелец: план прямо
- * запрещает автоматическую отправку писем от его имени.
+ * Департамент только НАБЛЮДАЕТ. Отправкой занимается отдельный guarded
+ * auto-reply контур с kill switch, аудитом и at-most-once SMTP-протоколом.
  */
 
 /** Сутки без ответа — уже стыдно перед написавшим. */
@@ -110,8 +110,8 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
         : 'Недостаточно данных для гипотезы.',
     options: stale
       ? [
-        { title: 'Ответить самым старым письмам в первую очередь', cost: 0, risk: 'low' },
-        { title: 'Разбирать очередь общим порядком', cost: 0, risk: 'high' },
+        { title: 'Проверить ошибки и лимиты автоматических ответов', cost: 0, risk: 'low' },
+        { title: 'Проверить письма со статусом доставки «неизвестно»', cost: 0, risk: 'low' },
       ]
       : queue
         ? [
@@ -123,7 +123,7 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
           { title: 'Запросить у владельца дополнительный контекст', cost: 0, risk: 'low' },
         ],
     recommendation: stale
-      ? 'Ответить самым старым письмам в первую очередь'
+      ? 'Проверить ошибки и лимиты автоматических ответов'
       : queue
         ? 'Разобрать очередь и посмотреть, о чём пишут чаще всего'
         : 'Продолжить наблюдение без вмешательства',
@@ -138,7 +138,7 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
       : queue
         ? `Очередь ниже ${SUPPORT_QUEUE_THRESHOLD} писем в следующем снимке`
         : 'Очередь поддержки остаётся разобранной',
-    rollback: 'Не применимо — департамент только наблюдает, письма пишет и отправляет владелец',
+    rollback: 'Департамент только наблюдает; автоматические ответы выключаются в Gmail Support без изменения данных письма',
     evidence,
     nowMs: input.nowMs,
   });

@@ -188,6 +188,8 @@ function ActionToast() {
       scope: 'action-toast',
       dedupeKey: toastKey(payload),
       deferAfterVoice: true,
+      queueIfBusy: true,
+      rateLimit: { maxStarts: 4, windowMs: 1000 },
     });
     // Reset animated values before mounting the Animated.View. On Fabric, doing
     // setValue immediately after setToast can trip the React insertion-effect

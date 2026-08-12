@@ -46,6 +46,8 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTheme } from '../../components/ThemeContext';
+import { useLang } from '../../components/LangContext';
+import { triLang, type Lang } from '../../constants/i18n';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
 import {
@@ -119,7 +121,8 @@ import {
 import { closeTournamentFlow } from '../tournament_navigation';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { getStableId } from '../stable_id';
-import { useTabNav } from '../TabContext';
+import { ENABLE_TOURNAMENTS } from '../config';
+import { DeferredRedirect } from '../../components/DeferredRedirect';
 
 // зачем 2026-07-27: хаб турниров стал push-экраном (релиз без турниров), и
 // гвардом видимости работает честный фокус экрана — контекст табов ему больше
@@ -282,8 +285,10 @@ function hubAvatar(entry: SeasonEntry): string {
   return String((hash % 8) + 1);
 }
 
-export default function TournamentsScreen() {
+function TournamentsScreen() {
   const { themeMode } = useTheme();
+  const { lang } = useLang();
+  const L = useCallback((copy: Record<Lang, string>) => triLang(lang, copy), [lang]);
   const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -452,31 +457,13 @@ export default function TournamentsScreen() {
   }, [nextSlot]);
 
   /**
-   * зачем 2026-07-27 (владелец: «релиз без турниров»): хаб перестал быть табом
-   * и стал обычным push-экраном поверх группы `(tabs)` — попасть сюда можно
-   * только дев-кнопкой из хедера главной. Поэтому гвардом видимости снова
-   * работает useIsFocused(): у push-экрана он честный (внутри `(tabs)` он был
-   * истинен для всех табов сразу, из-за чего гвард и держали на runtimeOwnerId).
-   *
-   * Это гейт для ВСЕЙ живой части хаба: подписки на комнату и секундных
-   * таймеров. Функционал сохраняется полностью — при возврате на экран подписка
-   * поднимается мгновенно и первым снимком догоняет актуальное состояние.
+   * Релизный layout перенаправляет /tournaments на главную и не включает хаб
+   * ни в список вкладок, ни в свайп-пейджер. Держим живую часть fail-closed
+   * даже на коротком монтировании до redirect: без подписок, секундных таймеров,
+   * модалей и сетевого обновления. Исходник сохранён для будущего возврата фичи.
    */
   const screenFocused = useIsFocused();
-  // зачем 2026-08-04 (инцидент: модал приветствия вылезал на ГЛАВНОЙ и глушил
-  // экран): турниры давно вернули в таббар (TABS в (tabs)/_layout.tsx), а
-  // соседние табы ФОНОВО ПРЕМАУНТЯТСЯ через ~160-500мс после открытия главной
-  // (ENABLE_BACKGROUND_TAB_PREMOUNT, BACKGROUND_TAB_PREMOUNT_ORDER=[1,2,3]) —
-  // ради мгновенного первого открытия таба. useIsFocused() в expo-router
-  // считает сфокусированным весь route-стек `(tabs)`, а не конкретный таб
-  // внутри свайпера, поэтому screenFocused=true уже во время премаунта, пока
-  // пользователь физически смотрит на главную. Комментарий выше про
-  // «useIsFocused честный, потому что это push-экран» устарел ещё когда
-  // турниры вернули в таббар — сам он неверный, но чинить весь файл вне
-  // рамок этой задачи. runtimeOwnerId — то, чем friends.tsx/settings.tsx уже
-  // отличают «мой таб реально на экране» от «весь (tabs)-стек в фокусе».
-  const { runtimeOwnerId } = useTabNav();
-  const tournamentsTabVisible = runtimeOwnerId === 'tournaments';
+  const tournamentsTabVisible = ENABLE_TOURNAMENTS;
   const runtimeActive = useRuntimeActive(screenFocused && tournamentsTabVisible);
 
   // зачем 2026-08-04 (фикс после аудита — было инвертировано, см. комментарий
@@ -524,9 +511,10 @@ export default function TournamentsScreen() {
   // всё ещё "сейчас турниров нет"»): loadSchedule() кэширует снимок на 6 часов
   // в памяти модуля (SCHEDULE_TTL_MS) — экономия чтений оправдана, расписание
   // почти не меняется, НО именно поэтому владелец не видит свой тумблер сразу.
-  // Фоновый premount retained-tab уже даёт screenFocused=true, поэтому первым
-  // реальным входом считаем только runtimeOwnerId === 'tournaments'. На каждый
-  // такой вход форсируем свежий снимок: stale/timeout-кэш не должен держать
+  // Фоновый premount раньше уже давал screenFocused=true, поэтому обновление
+  // разрешено только при реальной видимости фичи. После вывода из релиза флаг
+  // всегда false; при будущем возврате его надо подключить к новой навигации.
+  // На каждый разрешённый вход форсируем свежий снимок: stale/timeout-кэш не должен держать
   // кнопку в состоянии «сейчас турниров нет».
   // 1 лишнее чтение раз в видимый вход, не за кадр — цена ничтожна рядом с
   // честным статусом турнира.
@@ -829,27 +817,27 @@ export default function TournamentsScreen() {
         }
       }
       setJoinError(code.includes('not_enough_gems')
-        ? 'Не хватает жемчужин'
+        ? L({ ru: 'Не хватает жемчужин', uk: 'Недостатньо перлин', es: 'No tienes suficientes perlas', 'pt-BR': 'Você não tem pérolas suficientes', vi: 'Không đủ ngọc trai', id: 'Mutiara tidak cukup', tr: 'Yeterli inciniz yok', pl: 'Za mało pereł' })
         : code.includes('tournament_testing_disabled')
-          ? 'Тестовый режим завершён. Следующий турнир — по расписанию.'
+          ? L({ ru: 'Тестовый режим завершён. Следующий турнир — по расписанию.', uk: 'Тестовий режим завершено. Наступний турнір — за розкладом.', es: 'El modo de prueba ha terminado. El próximo torneo será según el horario.', 'pt-BR': 'O modo de teste terminou. O próximo torneio será no horário programado.', vi: 'Chế độ thử nghiệm đã kết thúc. Giải đấu tiếp theo sẽ diễn ra theo lịch.', id: 'Mode uji telah berakhir. Turnamen berikutnya sesuai jadwal.', tr: 'Test modu sona erdi. Sonraki turnuva programa göre yapılacak.', pl: 'Tryb testowy dobiegł końca. Następny turniej odbędzie się zgodnie z harmonogramem.' })
         : code.includes('tournament_config_disabled')
-          ? 'Расписание турниров выключено. Включите тестовый режим в админке.'
+          ? L({ ru: 'Расписание турниров выключено. Включите тестовый режим в админке.', uk: 'Розклад турнірів вимкнено. Увімкніть тестовий режим в адмінпанелі.', es: 'El calendario de torneos está desactivado. Activa el modo de prueba en el panel de administración.', 'pt-BR': 'A programação de torneios está desativada. Ative o modo de teste no painel administrativo.', vi: 'Lịch giải đấu đang tắt. Hãy bật chế độ thử nghiệm trong bảng quản trị.', id: 'Jadwal turnamen dinonaktifkan. Aktifkan mode uji di panel admin.', tr: 'Turnuva takvimi kapalı. Yönetici panelinden test modunu açın.', pl: 'Harmonogram turniejów jest wyłączony. Włącz tryb testowy w panelu administratora.' })
         : code.includes('slot_already_played')
-          ? 'В этом турнире вы уже играли. Ждём вас в следующем'
+          ? L({ ru: 'В этом турнире вы уже играли. Ждём вас в следующем', uk: 'Ви вже грали в цьому турнірі. Чекаємо на вас у наступному', es: 'Ya jugaste en este torneo. Te esperamos en el siguiente.', 'pt-BR': 'Você já jogou neste torneio. Esperamos você no próximo.', vi: 'Bạn đã chơi giải đấu này rồi. Hẹn gặp bạn ở giải tiếp theo.', id: 'Kamu sudah bermain di turnamen ini. Sampai jumpa di turnamen berikutnya.', tr: 'Bu turnuvada zaten oynadınız. Sonraki turnuvada görüşürüz.', pl: 'Grasz już w tym turnieju. Czekamy na Ciebie w następnym.' })
           : code.includes('join_cutoff_elapsed')
-            ? 'Турнир уже начался. Ждём вас в следующем'
+            ? L({ ru: 'Турнир уже начался. Ждём вас в следующем', uk: 'Турнір уже почався. Чекаємо на вас у наступному', es: 'El torneo ya ha comenzado. Te esperamos en el siguiente.', 'pt-BR': 'O torneio já começou. Esperamos você no próximo.', vi: 'Giải đấu đã bắt đầu. Hẹn gặp bạn ở giải tiếp theo.', id: 'Turnamen sudah dimulai. Sampai jumpa di turnamen berikutnya.', tr: 'Turnuva zaten başladı. Sonraki turnuvada görüşürüz.', pl: 'Turniej już się rozpoczął. Czekamy na Ciebie w następnym.' })
             // Пул заданий пуст — турнир собрать не из чего. Общее «попробуйте
             // ещё раз» тут врёт: повтор не поможет, нужны опубликованные вопросы.
             : code.includes('no_published_ai_tasks')
-              ? 'Вопросы для турнира ещё не опубликованы'
+              ? L({ ru: 'Вопросы для турнира ещё не опубликованы', uk: 'Запитання для турніру ще не опубліковано', es: 'Las preguntas del torneo aún no se han publicado', 'pt-BR': 'As perguntas do torneio ainda não foram publicadas', vi: 'Câu hỏi cho giải đấu chưa được công bố', id: 'Pertanyaan untuk turnamen belum diterbitkan', tr: 'Turnuva soruları henüz yayınlanmadı', pl: 'Pytania do turnieju nie zostały jeszcze opublikowane' })
               // зачем 2026-07-27: те же «повтор не поможет» причины, что и пустой
               // пул — расписание без слотов и нехватка ботов. Раньше обе падали
               // в общее «попробуйте ещё раз», и владелец видел бесконечный
               // повтор вместо настоящей причины (её знала только админка).
               : code.includes('no_slots_configured')
-                ? 'Расписание турниров не настроено'
+                ? L({ ru: 'Расписание турниров не настроено', uk: 'Розклад турнірів не налаштовано', es: 'El calendario de torneos no está configurado', 'pt-BR': 'A programação de torneios não está configurada', vi: 'Lịch giải đấu chưa được thiết lập', id: 'Jadwal turnamen belum diatur', tr: 'Turnuva takvimi ayarlanmadı', pl: 'Harmonogram turniejów nie jest skonfigurowany' })
                 : code.includes('not_enough_bots')
-                  ? 'Соперники для турнира ещё не готовы'
+                  ? L({ ru: 'Соперники для турнира ещё не готовы', uk: 'Суперники для турніру ще не готові', es: 'Los rivales para el torneo aún no están listos', 'pt-BR': 'Os adversários para o torneio ainda não estão prontos', vi: 'Đối thủ cho giải đấu chưa sẵn sàng', id: 'Lawan untuk turnamen belum siap', tr: 'Turnuva rakipleri henüz hazır değil', pl: 'Przeciwnicy do turnieju nie są jeszcze gotowi' })
                   // зачем 2026-08-03 (владелец видел «мы уже чиним» на живом
                   // сервере): под not-found раньше сходились ДВЕ разные беды —
                   // «функция не развёрнута» и «комнаты уже нет». Вторая — это
@@ -857,11 +845,11 @@ export default function TournamentsScreen() {
                   // повтор помогает. Общая плашка про поломку врала и мешала
                   // понять, что происходит на самом деле.
                   : code.includes('room_not_found')
-                    ? 'Этот турнир уже закрылся. Ждём вас в следующем'
+                    ? L({ ru: 'Этот турнир уже закрылся. Ждём вас в следующем', uk: 'Цей турнір уже закрито. Чекаємо на вас у наступному', es: 'Este torneo ya ha terminado. Te esperamos en el siguiente.', 'pt-BR': 'Este torneio já foi encerrado. Esperamos você no próximo.', vi: 'Giải đấu này đã kết thúc. Hẹn gặp bạn ở giải tiếp theo.', id: 'Turnamen ini sudah ditutup. Sampai jumpa di turnamen berikutnya.', tr: 'Bu turnuva zaten kapandı. Sonraki turnuvada görüşürüz.', pl: 'Ten turniej został już zamknięty. Czekamy na Ciebie w następnym.' })
                     // Функция не развёрнута / нет сети — повтор осмыслен.
                     : code.includes('not-found') || code.includes('NOT_FOUND')
-                      ? 'Турниры временно недоступны. Мы уже чиним'
-                      : 'Не удалось войти. Попробуйте ещё раз');
+                      ? L({ ru: 'Турниры временно недоступны. Мы уже исправляем проблему', uk: 'Турніри тимчасово недоступні. Ми вже усуваємо проблему', es: 'Los torneos no están disponibles temporalmente. Ya estamos solucionándolo.', 'pt-BR': 'Os torneios estão temporariamente indisponíveis. Já estamos corrigindo isso.', vi: 'Giải đấu tạm thời không khả dụng. Chúng tôi đang khắc phục sự cố.', id: 'Turnamen sementara tidak tersedia. Kami sedang memperbaikinya.', tr: 'Turnuvalar geçici olarak kullanılamıyor. Sorunu çözüyoruz.', pl: 'Turnieje są tymczasowo niedostępne. Już rozwiązujemy problem.' })
+                      : L({ ru: 'Не удалось войти. Попробуйте ещё раз', uk: 'Не вдалося увійти. Спробуйте ще раз', es: 'No se pudo entrar. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível entrar. Tente novamente.', vi: 'Không thể tham gia. Hãy thử lại.', id: 'Tidak dapat masuk. Coba lagi.', tr: 'Katılım sağlanamadı. Tekrar deneyin.', pl: 'Nie udało się dołączyć. Spróbuj ponownie.' }));
       setConfirmVisible(true);
       closeTournamentFlow(router);
     } finally {
@@ -873,7 +861,7 @@ export default function TournamentsScreen() {
   }, [
     joinRoomId, router, coins, effectiveEntryGems,
     windowState.activeWindowStartMs, nextSlot, instantEntry,
-    reconcileDeferredBalance, recoverCancelledTournamentEntry,
+    reconcileDeferredBalance, recoverCancelledTournamentEntry, L,
   ]);
 
   const contentPadding = useMemo(
@@ -917,9 +905,9 @@ export default function TournamentsScreen() {
       place: index + 1,
       gems: Math.trunc(bank * share),
       // Имя претендента или «место свободно» — пустое место тоже мотивирует.
-      name: seasonTop[index] ? (seasonTop[index].uid === me?.uid ? 'Вы' : seasonTop[index].name) : 'место свободно',
+      name: seasonTop[index] ? (seasonTop[index].uid === me?.uid ? L({ ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' }) : seasonTop[index].name) : L({ ru: 'место свободно', uk: 'місце вільне', es: 'puesto disponible', 'pt-BR': 'vaga disponível', vi: 'vị trí còn trống', id: 'posisi tersedia', tr: 'yer boş', pl: 'wolne miejsce' }),
     }));
-  }, [bank, seasonTop, me]);
+  }, [bank, seasonTop, me, L]);
 
 
   return (
@@ -956,12 +944,12 @@ export default function TournamentsScreen() {
             testID="tournaments-back"
             onPress={goHome}
             accessibilityRole="button"
-            accessibilityLabel="На главную"
+            accessibilityLabel={L({ ru: 'На главную', uk: 'На головну', es: 'Ir al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chủ', id: 'Ke beranda', tr: 'Ana sayfaya git', pl: 'Przejdź do strony głównej' })}
             style={styles.backButton}
           >
             <Ionicons name="chevron-back" size={26} color={P.text} />
           </TapScale>
-          <FlowText testID="tournaments-title" provenance="authored" style={styles.title}>Турниры</FlowText>
+          <FlowText testID="tournaments-title" provenance="authored" style={styles.title}>{L({ ru: 'Турниры', uk: 'Турніри', es: 'Torneos', 'pt-BR': 'Torneios', vi: 'Giải đấu', id: 'Turnamen', tr: 'Turnuvalar', pl: 'Turnieje' })}</FlowText>
           <View style={styles.headerRight}>
             {/* зачем 2026-08-04 (владелец: Season Pass tournament_ticket —
                 «появится ассет в разделе турнир в правом углу»): раньше билет
@@ -975,7 +963,7 @@ export default function TournamentsScreen() {
                 testID="tournaments-season-ticket-badge"
                 onPress={() => router.push('/tournament_tickets' as any)}
                 accessibilityRole="button"
-                accessibilityLabel="Есть бесплатный билет на турнир"
+                accessibilityLabel={L({ ru: 'Есть бесплатный билет на турнир', uk: 'Є безкоштовний квиток на турнір', es: 'Tienes una entrada gratuita para el torneo', 'pt-BR': 'Você tem um ingresso grátis para o torneio', vi: 'Bạn có vé tham gia giải đấu miễn phí', id: 'Ada tiket turnamen gratis', tr: 'Ücretsiz turnuva biletiniz var', pl: 'Masz darmowy bilet na turniej' })}
                 style={styles.ticketBadge}
               >
                 <Ionicons name="ticket" size={18} color={P.gold} />
@@ -1043,7 +1031,7 @@ export default function TournamentsScreen() {
                 disabled={!roomId}
                 left={<Ionicons name="eye-outline" size={18} color={P.accent} />}
               >
-                Смотреть турнир
+                {L({ ru: 'Смотреть турнир', uk: 'Дивитися турнір', es: 'Ver torneo', 'pt-BR': 'Ver torneio', vi: 'Xem giải đấu', id: 'Lihat turnamen', tr: 'Turnuvayı izle', pl: 'Obejrzyj turniej' })}
               </V2Cta>
             ) : (
               <V2Cta
@@ -1148,7 +1136,7 @@ export default function TournamentsScreen() {
           <TapScale
             onPress={openBank}
             accessibilityRole="button"
-            accessibilityLabel={`Банк недели, ${bank} жемчужин. Подробности`}
+            accessibilityLabel={L({ ru: `Банк недели, ${bank} жемчужин. Подробности`, uk: `Банк тижня, ${bank} перлин. Деталі`, es: `Bote semanal: ${bank} perlas. Detalles`, 'pt-BR': `Prêmio semanal: ${bank} pérolas. Detalhes`, vi: `Quỹ tuần: ${bank} ngọc trai. Chi tiết`, id: `Hadiah mingguan: ${bank} mutiara. Detail`, tr: `Haftalık havuz: ${bank} inci. Ayrıntılar`, pl: `Pula tygodnia: ${bank} pereł. Szczegóły` })}
           >
             <V2Card pad={18}>
             <View style={styles.bankRow}>
@@ -1161,7 +1149,7 @@ export default function TournamentsScreen() {
                 importantForAccessibility="no"
               />
               <View style={styles.bankBody}>
-                <FlowText testID="tournaments-bank-kicker" provenance="authored" style={styles.kicker}>Банк недели</FlowText>
+                <FlowText testID="tournaments-bank-kicker" provenance="authored" style={styles.kicker}>{L({ ru: 'Банк недели', uk: 'Банк тижня', es: 'Bote semanal', 'pt-BR': 'Prêmio semanal', vi: 'Quỹ tuần', id: 'Hadiah mingguan', tr: 'Haftalık havuz', pl: 'Pula tygodnia' })}</FlowText>
                 <View style={styles.bankValueRow}>
                   <FlowText testID="tournaments-bank-value" provenance="authored" style={styles.bankValue}>{bank}</FlowText>
                   <Image
@@ -1197,7 +1185,7 @@ export default function TournamentsScreen() {
             testID="tournaments-season-pass-open"
             onPress={() => router.push('/season_pass')}
             accessibilityRole="button"
-            accessibilityLabel="Награды сезона"
+            accessibilityLabel={L({ ru: 'Награды сезона', uk: 'Нагороди сезону', es: 'Recompensas de la temporada', 'pt-BR': 'Recompensas da temporada', vi: 'Phần thưởng mùa giải', id: 'Hadiah musim', tr: 'Sezon ödülleri', pl: 'Nagrody sezonu' })}
           >
             <V2Card pad={18}>
               <View style={styles.bankRow}>
@@ -1216,7 +1204,7 @@ export default function TournamentsScreen() {
                       карточка ведёт к витрине наград. Осталось название и
                       полоса; уровень и пороги живут на самой дорожке. */}
                   <FlowText testID="tournaments-season-pass-title" provenance="authored" style={styles.seasonPassTitle}>
-                    Награды сезона
+                    {L({ ru: 'Награды сезона', uk: 'Нагороди сезону', es: 'Recompensas de la temporada', 'pt-BR': 'Recompensas da temporada', vi: 'Phần thưởng mùa giải', id: 'Hadiah musim', tr: 'Sezon ödülleri', pl: 'Nagrody sezonu' })}
                   </FlowText>
                   <View style={styles.seasonPassTrack}>
                     <View style={[styles.seasonPassFill, { width: `${seasonPassPct}%` }]} />
@@ -1249,7 +1237,7 @@ export default function TournamentsScreen() {
                   <AvatarView avatar={hubAvatar(leader)} size={36} animateAura={false} />
                   {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в одну строку рейтинга: перенос сломал бы фиксированную высоту ряда */}
                   <Text style={[styles.rowName, isMe && { color: P.accent }]} numberOfLines={1}>
-                    {isMe ? 'Вы' : leader.name}
+                    {isMe ? L({ ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' }) : leader.name}
                   </Text>
                   <View style={styles.rowStars}>
                     <StarGlyph size={13} color={P.gold} />
@@ -1266,7 +1254,7 @@ export default function TournamentsScreen() {
                 </FlowText>
                 <AvatarView avatar={hubAvatar(myRowSeparate)} size={36} animateAura={false} />
                 {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- своя строка рейтинга: та же фиксированная высота ряда */}
-                <Text style={[styles.rowName, { color: P.accent }]} numberOfLines={1}>Вы</Text>
+                <Text style={[styles.rowName, { color: P.accent }]} numberOfLines={1}>{L({ ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}</Text>
                 <View style={styles.rowStars}>
                   <StarGlyph size={13} color={P.gold} />
                   <FlowText testID="tournaments-my-stars" provenance="authored" style={styles.rowStarsText}>
@@ -1279,12 +1267,12 @@ export default function TournamentsScreen() {
         ) : (
           // Начало недели: таблица честно пуста (боты в рейтинг не попадают).
           <Text style={styles.seasonEmpty}>
-            Неделя только началась — сыграйте турнир, и вы окажетесь в таблице первым.
+            {L({ ru: 'Неделя только началась — сыграйте турнир, и вы окажетесь в таблице первым.', uk: 'Тиждень лише почався — зіграйте турнір і станьте першим у таблиці.', es: 'La semana acaba de empezar: juega un torneo y sé el primero de la tabla.', 'pt-BR': 'A semana acabou de começar: jogue um torneio e fique em primeiro na tabela.', vi: 'Tuần mới bắt đầu — hãy chơi một giải đấu để đứng đầu bảng.', id: 'Minggu baru dimulai — mainkan turnamen dan jadilah yang pertama di papan peringkat.', tr: 'Hafta yeni başladı — bir turnuva oynayın ve tabloda ilk sıraya yerleşin.', pl: 'Tydzień dopiero się zaczął — zagraj w turnieju i zostań pierwszy w tabeli.' })}
           </Text>
         )}
         {/* зачем 2026-07-27 (владелец): без стрелки — просто кнопка «Таблица сезона». */}
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
-          <FlowText testID="tournaments-season-more" provenance="authored" style={styles.seasonMoreText}>Таблица сезона</FlowText>
+          <FlowText testID="tournaments-season-more" provenance="authored" style={styles.seasonMoreText}>{L({ ru: 'Таблица сезона', uk: 'Таблиця сезону', es: 'Clasificación de la temporada', 'pt-BR': 'Classificação da temporada', vi: 'Bảng xếp hạng mùa giải', id: 'Klasemen musim', tr: 'Sezon sıralaması', pl: 'Tabela sezonu' })}</FlowText>
         </TapScale>
 
         {/* зачем 2026-08-04 (владелец: «в раздел экран турниров в самом низу
@@ -1312,7 +1300,7 @@ export default function TournamentsScreen() {
             <Ionicons name="trophy" size={20} color={METAL.ink} />
           </LinearGradient>
           <View style={styles.bankBody}>
-            <FlowText testID="tournaments-bank-sheet-title" provenance="authored" style={styles.sheetTitle}>Банк недели</FlowText>
+            <FlowText testID="tournaments-bank-sheet-title" provenance="authored" style={styles.sheetTitle}>{L({ ru: 'Банк недели', uk: 'Банк тижня', es: 'Bote semanal', 'pt-BR': 'Prêmio semanal', vi: 'Quỹ tuần', id: 'Hadiah mingguan', tr: 'Haftalık havuz', pl: 'Pula tygodnia' })}</FlowText>
             <View style={styles.bankValueRow}>
               <FlowText testID="tournaments-bank-sheet-value" provenance="authored" style={styles.bankSheetValue}>{bank}</FlowText>
               <Image
@@ -1349,33 +1337,32 @@ export default function TournamentsScreen() {
         </View>
 
         <Text style={styles.bankSheetHint}>
-          С каждого турнира пятая часть взносов падает сюда и копится всю неделю.
-          В ночь на понедельник тройка лучших забирает всё — и банк начинается заново.
+          {L({ ru: 'С каждого турнира пятая часть взносов попадает сюда и копится всю неделю. В ночь на понедельник тройка лучших забирает всё — и банк начинается заново.', uk: 'З кожного турніру п’ята частина внесків потрапляє сюди й накопичується весь тиждень. У ніч на понеділок трійка лідерів забирає все — і банк починається знову.', es: 'Una quinta parte de las entradas de cada torneo llega aquí y se acumula toda la semana. En la noche del lunes, los tres primeros se lo llevan todo y el bote empieza de nuevo.', 'pt-BR': 'Um quinto das entradas de cada torneio vem para cá e se acumula durante a semana. Na madrugada de segunda-feira, os três primeiros levam tudo e o prêmio recomeça.', vi: 'Một phần năm phí tham gia từ mỗi giải đấu sẽ được cộng vào đây suốt tuần. Đêm thứ Hai, ba người đứng đầu nhận toàn bộ quỹ và quỹ bắt đầu lại.', id: 'Seperlima biaya masuk dari setiap turnamen masuk ke sini sepanjang minggu. Pada malam Senin, tiga pemain teratas mengambil semuanya dan hadiah dimulai lagi.', tr: 'Her turnuvanın giriş ücretinin beşte biri burada hafta boyunca birikir. Pazartesi gecesi ilk üç oyuncu her şeyi alır ve havuz yeniden başlar.', pl: 'Jedna piąta wpisowego z każdego turnieju trafia tutaj i zbiera się przez cały tydzień. W nocy z niedzieli na poniedziałek pierwsza trójka zgarnia wszystko, a pula zaczyna się od nowa.' })}
         </Text>
 
         <View style={styles.sheetActions}>
-          <V2Cta tone="gold" onPress={closeBank}>Понятно</V2Cta>
+          <V2Cta tone="gold" onPress={closeBank}>{L({ ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</V2Cta>
         </View>
       </Sheet>
 
       {/* Недельный банк пришёл ночью — показываем один раз на неделю */}
       <Sheet visible={!!weeklyPrize} onClose={() => setWeeklyPrize(null)}>
         <FlowText testID="tournaments-weekly-prize-title" provenance="authored" style={styles.sheetTitle}>
-          {weeklyPrize?.place === 1 ? 'Первое место недели'
-            : weeklyPrize?.place === 2 ? 'Второе место недели'
-              : 'Третье место недели'}
+          {weeklyPrize?.place === 1 ? L({ ru: 'Первое место недели', uk: 'Перше місце тижня', es: 'Primer puesto de la semana', 'pt-BR': 'Primeiro lugar da semana', vi: 'Hạng nhất tuần', id: 'Juara pertama minggu ini', tr: 'Haftanın birincisi', pl: 'Pierwsze miejsce tygodnia' })
+            : weeklyPrize?.place === 2 ? L({ ru: 'Второе место недели', uk: 'Друге місце тижня', es: 'Segundo puesto de la semana', 'pt-BR': 'Segundo lugar da semana', vi: 'Hạng nhì tuần', id: 'Juara kedua minggu ini', tr: 'Haftanın ikincisi', pl: 'Drugie miejsce tygodnia' })
+              : L({ ru: 'Третье место недели', uk: 'Третє місце тижня', es: 'Tercer puesto de la semana', 'pt-BR': 'Terceiro lugar da semana', vi: 'Hạng ba tuần', id: 'Juara ketiga minggu ini', tr: 'Haftanın üçüncüsü', pl: 'Trzecie miejsce tygodnia' })}
         </FlowText>
         <Text style={styles.sheetSub}>
-          Доля банка: {weeklyPrize?.gems ?? 0} — уже на счету
+          {L({ ru: `Доля банка: ${weeklyPrize?.gems ?? 0} — уже на счету`, uk: `Частка банку: ${weeklyPrize?.gems ?? 0} — уже на вашому рахунку`, es: `Tu parte del bote: ${weeklyPrize?.gems ?? 0}. Ya está en tu saldo.`, 'pt-BR': `Sua parte do prêmio: ${weeklyPrize?.gems ?? 0}. Já está no seu saldo.`, vi: `Phần thưởng của bạn: ${weeklyPrize?.gems ?? 0} — đã được cộng vào số dư.`, id: `Bagian hadiahmu: ${weeklyPrize?.gems ?? 0} — sudah masuk ke saldo.`, tr: `Havuzdaki payınız: ${weeklyPrize?.gems ?? 0} — bakiyenize eklendi.`, pl: `Twoja część puli: ${weeklyPrize?.gems ?? 0} — jest już na koncie.` })}
         </Text>
         <View style={styles.sheetActions}>
-          <V2Cta tone="gold" onPress={() => setWeeklyPrize(null)}>Отлично</V2Cta>
+          <V2Cta tone="gold" onPress={() => setWeeklyPrize(null)}>{L({ ru: 'Отлично', uk: 'Чудово', es: 'Genial', 'pt-BR': 'Ótimo', vi: 'Tuyệt vời', id: 'Hebat', tr: 'Harika', pl: 'Świetnie' })}</V2Cta>
         </View>
       </Sheet>
 
       {/* Подтверждение входа */}
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
-        <FlowText testID="tournaments-join-title" provenance="authored" style={styles.sheetTitle}>Вход в турнир</FlowText>
+        <FlowText testID="tournaments-join-title" provenance="authored" style={styles.sheetTitle}>{L({ ru: 'Вход в турнир', uk: 'Вхід до турніру', es: 'Entrar al torneo', 'pt-BR': 'Entrar no torneio', vi: 'Vào giải đấu', id: 'Masuk turnamen', tr: 'Turnuvaya katıl', pl: 'Wejdź do turnieju' })}</FlowText>
         {/* зачем 2026-07-27: при входе вне окна время слота показывать нельзя —
             турнир начнётся сейчас, а не в 15:20, и подпись бы врала.
             зачем 2026-08-04 (аудит all-day режима): nextSlot в all-day не null
@@ -1385,12 +1372,12 @@ export default function TournamentsScreen() {
             instantEntry чуть выше. */}
         <Text style={styles.sheetSub}>
           {testModeReleaseActive
-            ? 'Тестовый вход · бесплатно · 16 игроков'
+            ? L({ ru: 'Тестовый вход · бесплатно · 16 игроков', uk: 'Тестовий вхід · безкоштовно · 16 гравців', es: 'Entrada de prueba · gratis · 16 jugadores', 'pt-BR': 'Entrada de teste · grátis · 16 jogadores', vi: 'Vào thử · miễn phí · 16 người chơi', id: 'Masuk uji coba · gratis · 16 pemain', tr: 'Test girişi · ücretsiz · 16 oyuncu', pl: 'Wejście testowe · za darmo · 16 graczy' })
             : instantEntry || windowAllDay
-              ? 'Начнём сразу · 16 игроков'
+              ? L({ ru: 'Начнём сразу · 16 игроков', uk: 'Починаємо одразу · 16 гравців', es: 'Empezamos ahora · 16 jugadores', 'pt-BR': 'Começamos agora · 16 jogadores', vi: 'Bắt đầu ngay · 16 người chơi', id: 'Mulai sekarang · 16 pemain', tr: 'Hemen başlayalım · 16 oyuncu', pl: 'Zaczynamy od razu · 16 graczy' })
               : nextSlot
-                ? `Сегодня · ${nextSlot.displayTime} · 16 игроков`
-                : 'Ближайшая комната'}
+                ? L({ ru: `Сегодня · ${nextSlot.displayTime} · 16 игроков`, uk: `Сьогодні · ${nextSlot.displayTime} · 16 гравців`, es: `Hoy · ${nextSlot.displayTime} · 16 jugadores`, 'pt-BR': `Hoje · ${nextSlot.displayTime} · 16 jogadores`, vi: `Hôm nay · ${nextSlot.displayTime} · 16 người chơi`, id: `Hari ini · ${nextSlot.displayTime} · 16 pemain`, tr: `Bugün · ${nextSlot.displayTime} · 16 oyuncu`, pl: `Dzisiaj · ${nextSlot.displayTime} · 16 graczy` })
+                : L({ ru: 'Ближайшая комната', uk: 'Найближча кімната', es: 'Próxima sala', 'pt-BR': 'Próxima sala', vi: 'Phòng gần nhất', id: 'Ruang berikutnya', tr: 'En yakın oda', pl: 'Najbliższy pokój' })}
         </Text>
         <View style={styles.sheetPrice}>
           <Image
@@ -1401,19 +1388,19 @@ export default function TournamentsScreen() {
             accessibilityElementsHidden
             importantForAccessibility="no"
           />
-          <FlowText testID="tournaments-sheet-price-label" provenance="authored" style={styles.sheetPriceLabel}>Участие</FlowText>
+          <FlowText testID="tournaments-sheet-price-label" provenance="authored" style={styles.sheetPriceLabel}>{L({ ru: 'Участие', uk: 'Участь', es: 'Entrada', 'pt-BR': 'Entrada', vi: 'Phí tham gia', id: 'Biaya masuk', tr: 'Katılım', pl: 'Wpisowe' })}</FlowText>
           <FlowText testID="tournaments-sheet-price-value" provenance="authored" style={styles.sheetPriceValue}>{effectiveEntryGems}</FlowText>
         </View>
         <View style={styles.sheetBalance}>
-          <FlowText testID="tournaments-sheet-balance-have" provenance="authored" style={styles.sheetBalanceText}>У тебя {coins}</FlowText>
+          <FlowText testID="tournaments-sheet-balance-have" provenance="authored" style={styles.sheetBalanceText}>{L({ ru: `У тебя ${coins}`, uk: `У вас ${coins}`, es: `Tienes ${coins}`, 'pt-BR': `Você tem ${coins}`, vi: `Bạn có ${coins}`, id: `Kamu punya ${coins}`, tr: `Bakiyeniz: ${coins}`, pl: `Masz ${coins}` })}</FlowText>
           <FlowText testID="tournaments-sheet-balance-left" provenance="authored" style={styles.sheetBalanceText}>
-            останется {Math.max(0, coins - effectiveEntryGems)}{/* guard-ok: preview reflects the server-owned entry price */}
+            {L({ ru: `останется ${Math.max(0, coins - effectiveEntryGems)}`, uk: `залишиться ${Math.max(0, coins - effectiveEntryGems)}`, es: `quedarán ${Math.max(0, coins - effectiveEntryGems)}`, 'pt-BR': `sobrarão ${Math.max(0, coins - effectiveEntryGems)}`, vi: `còn lại ${Math.max(0, coins - effectiveEntryGems)}`, id: `tersisa ${Math.max(0, coins - effectiveEntryGems)}`, tr: `kalan: ${Math.max(0, coins - effectiveEntryGems)}`, pl: `pozostanie ${Math.max(0, coins - effectiveEntryGems)}` })}{/* guard-ok: preview reflects the server-owned entry price */}
           </FlowText>
         </View>
         {joinError ? <Text style={styles.sheetError}>{joinError}</Text> : null}
         <View style={styles.sheetActions}>
-          <V2Cta onPress={enterLobby}>Войти</V2Cta>
-          <V2Cta tone="ghost" onPress={closeConfirm}>Отмена</V2Cta>
+          <V2Cta onPress={enterLobby}>{L({ ru: 'Войти', uk: 'Увійти', es: 'Entrar', 'pt-BR': 'Entrar', vi: 'Tham gia', id: 'Masuk', tr: 'Katıl', pl: 'Dołącz' })}</V2Cta>
+          <V2Cta tone="ghost" onPress={closeConfirm}>{L({ ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}</V2Cta>
         </View>
       </Sheet>
 
@@ -1422,6 +1409,23 @@ export default function TournamentsScreen() {
     </View>
   );
 }
+
+/**
+ * Release gate at the route boundary.
+ *
+ * The tabs layout also redirects the retired route, but it is not safe to rely
+ * on parent/child mount ordering for a deep link. Keeping the full hub behind
+ * this wrapper guarantees that its balance, bank, schedule and event effects
+ * are never mounted while tournaments are excluded from the release.
+ */
+function TournamentsRoute() {
+  if (!ENABLE_TOURNAMENTS) {
+    return <DeferredRedirect href="/(tabs)/home" />;
+  }
+  return <TournamentsScreen />;
+}
+
+export default TournamentsRoute;
 
 // ── Пульс «в эфире» ─────────────────────────────────────────────────────────
 

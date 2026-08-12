@@ -16,8 +16,10 @@ import { GIFT_TTL_MS } from './gift_expiry';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 import type { SeasonRewardKind } from './season_pass_track_config';
+import { ENABLE_TOURNAMENTS } from './config';
 
 const STORAGE_KEY = 'season_pass_gift_inventory_v1';
+const RETIRED_TOURNAMENT_TICKET_PEARLS = 5;
 
 /** Расходники, которые физически попадают в инвентарь (не статус, не сразу применяемое). */
 export const SEASON_CONSUMABLE_KINDS: readonly SeasonRewardKind[] = [
@@ -60,11 +62,23 @@ async function writeAll(items: SeasonPassGiftItem[]): Promise<void> {
   emitAppEvent('season_pass_gift_inventory_changed', undefined);
 }
 
+/**
+ * Tournament tickets are preserved as a legacy wire/storage kind, but while the
+ * owner lock is active they must never reappear in UI or create dead inventory.
+ * Five pearls preserve the configured value of one tournament entry.
+ */
+function normalizeRetiredTournamentTicket(item: SeasonPassGiftItem): SeasonPassGiftItem {
+  if (ENABLE_TOURNAMENTS || item.kind !== 'tournament_ticket') return item;
+  return { ...item, kind: 'pearls', amount: RETIRED_TOURNAMENT_TICKET_PEARLS };
+}
+
 /** Живые (не просроченные) предметы, отсортированы: скоро сгорающие — первыми. */
 export async function loadSeasonPassGiftInventory(nowMs: number = Date.now()): Promise<SeasonPassGiftItem[]> {
-  const items = await readAll();
+  const storedItems = await readAll();
+  const items = storedItems.map(normalizeRetiredTournamentTicket);
   const alive = items.filter((it) => it.expiresAtMs > nowMs);
-  if (alive.length !== items.length) {
+  const migratedRetiredTicket = items.some((item, index) => item !== storedItems[index]);
+  if (alive.length !== items.length || migratedRetiredTicket) {
     // Просроченные предметы физически сгорели — чистим тихо при следующем чтении,
     // не дожидаясь явного действия юзера (тот же паттерн, что level_gift_inventory).
     await writeAll(alive);
@@ -94,8 +108,16 @@ export async function addSeasonPassGift(
     const id = `${seasonId}:${level}:${side}`;
     const items = await readAll();
     const existing = items.find((it) => it.id === id);
-    if (existing) return existing;
-    const item: SeasonPassGiftItem = { id, kind, amount, level, receivedAtMs: nowMs, expiresAtMs: nowMs + GIFT_TTL_MS };
+    if (existing) {
+      const normalized = normalizeRetiredTournamentTicket(existing);
+      if (normalized !== existing) {
+        await writeAll(items.map((item) => item.id === id ? normalized : item));
+      }
+      return normalized;
+    }
+    const item = normalizeRetiredTournamentTicket({
+      id, kind, amount, level, receivedAtMs: nowMs, expiresAtMs: nowMs + GIFT_TTL_MS,
+    });
     await writeAll([...items, item]);
     return item;
   });

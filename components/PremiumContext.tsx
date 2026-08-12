@@ -96,8 +96,8 @@ export function usePremium(): PremiumContextValue {
  * (gate_<feature>_premium=false). Гейт-сайты должны спрашивать именно это вместо
  * сырого hasPremiumAccess, чтобы перевод фичи в «Фри» снимал пейвол живьём.
  *
- * Пересчитывается на событие 'remote_config_changed' (onSnapshot remote_config/app),
- * поэтому смена тумблера в админке отражается в открытом приложении за секунды.
+ * Пересчитывается на событие 'remote_config_changed'. Клиент применяет кэш при
+ * запуске/возврате и foreground-обновление не позднее примерно пяти минут.
  */
 export function useFeatureAccess(feature: FeatureGate): boolean {
   const { hasPremiumAccess } = usePremium();

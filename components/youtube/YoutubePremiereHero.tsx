@@ -69,10 +69,21 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
   }), [lang]);
 
   useEffect(() => {
-    if (!shouldRunPremiereCountdownTicker({ state: video.state, scheduledStartTime: video.scheduledStartTime, runtimeActive, appState: 'active', nowMs })) return;
-    const interval = setInterval(() => setNowMs(Date.now()), PREMIERE_TICK_INTERVAL_MS);
+    const shouldTick = (at: number) => shouldRunPremiereCountdownTicker({
+      state: video.state,
+      scheduledStartTime: video.scheduledStartTime,
+      runtimeActive,
+      appState: 'active',
+      nowMs: at,
+    });
+    if (!shouldTick(Date.now())) return;
+    const interval = setInterval(() => {
+      const nextNow = Date.now();
+      setNowMs(nextNow);
+      if (!shouldTick(nextNow)) clearInterval(interval);
+    }, PREMIERE_TICK_INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [nowMs, runtimeActive, video.scheduledStartTime, video.state]);
+  }, [runtimeActive, video.scheduledStartTime, video.state]);
 
   useEffect(() => {
     if (!live || !runtimeActive) return;

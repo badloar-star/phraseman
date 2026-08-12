@@ -15,7 +15,7 @@ import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, AppState, Easing, InteractionManager, LogBox, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Easing, InteractionManager, LogBox, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -81,9 +81,10 @@ import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { getInstalledAppVersion } from './app_version';
-import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
+import { ENABLE_ARENA, ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
 import { resumePendingAgeConsent } from './age_consent_cloud';
 import { checkAchievements, getPendingNotifications } from './achievements';
@@ -1343,16 +1344,7 @@ function GlobalLevelUpHandler() {
     ? (lang === 'uk' ? 'Нагорода за рівень' : lang === 'es' ? 'Recompensa de nivel' : 'Награда за уровень')
     : (lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень');
   const levelUpMessageText = currentIsSpin
-    ? triLang(lang, {
-      ru: 'Спин уже добавлен. Испытай удачу сейчас или забери его позже в Подарках.',
-      uk: 'Спін уже додано. Випробуй удачу зараз або забери його пізніше в Подарунках.',
-      es: 'Tu giro ya está listo. Pruébalo ahora o úsalo después en Regalos.',
-      'pt-BR': 'Seu giro está pronto. Tente agora ou use depois em Presentes.',
-      vi: 'Lượt quay đã sẵn sàng. Thử ngay hoặc dùng sau trong Quà tặng.',
-      id: 'Putaranmu sudah siap. Coba sekarang atau gunakan nanti di Hadiah.',
-      tr: 'Çevirmen hazır. Şimdi dene veya daha sonra Hediyeler’de kullan.',
-      pl: 'Twój spin jest gotowy. Spróbuj teraz albo użyj go później w Prezentach.',
-    })
+    ? ''
     : isCatchUpLevelReward
     ? (lang === 'uk'
       ? `Це твоя нагорода за рівень ${currentLevel}. Забирай подарунок.`
@@ -1550,6 +1542,21 @@ function AppContent() {
   /** Скрываем RN Modal до ухода в стор — на Android иначе зависания System UI при возврате. */
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
   const awaitingStoreReturnRef = useRef(false);
+  useEffect(() => {
+    // Load the completion transport only after the root has committed. This
+    // installs its lifecycle/connectivity scheduler on every app launch without
+    // adding the heavy sync module to the synchronous first-frame bundle.
+    let cancelled = false;
+    const task = InteractionManager.runAfterInteractions(() => {
+      void import('./learning_v2_completion_background_scheduler').then((scheduler) => {
+        if (!cancelled) scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();
+      }).catch(() => {});
+    });
+    return () => {
+      cancelled = true;
+      task.cancel();
+    };
+  }, []);
   /** Гард от повторного вызова handleOnboardingDone (двойной тап «Позже» в auth-шаге онбординга
    *  раньше планировал два setTimeout → модалка «Начнём первый урок?» открывалась повторно после «Поехали»). */
   const onboardingDoneHandledRef = useRef(false);
@@ -1601,6 +1608,12 @@ function AppContent() {
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [startupAuthRecoveryVisible, setStartupAuthRecoveryVisible] = useState(false);
+  // Fail closed when protected account storage cannot be read. The former
+  // behavior left the animated splash visible forever while the already-mounted
+  // app tree remained underneath it. This explicit state keeps data covered,
+  // explains the problem, and gives the learner a bounded manual retry.
+  const [startupSecurityBlocked, setStartupSecurityBlocked] = useState(false);
+  const retryStartupSecurityCheckRef = useRef<(() => void) | null>(null);
   const startupAuthRecoveryOfferedRef = useRef(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const [dailyPlanModalDue, setDailyPlanModalDue] = useState(false);
@@ -1706,6 +1719,32 @@ function AppContent() {
     return () => { cancelled = true; };
   }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
+  useEffect(() => {
+    if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const token = accountGeneration;
+    const flush = () => {
+      if (!isCurrentAccountGeneration(token, token.stableId)) return;
+      void import('./friend_gift_outbox')
+        .then(({ resumePendingFriendGiftSends }) => resumePendingFriendGiftSends({ accountToken: token }))
+        .catch(() => { /* exact request remains durable until the next online pass */ });
+    };
+    flush();
+    return subscribeNetStatus((online) => {
+      if (online) flush();
+    });
+  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
+
+  useEffect(() => {
+    if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const token = accountGeneration;
+    void import('./coin_exchange_wallet_outbox')
+      .then(({ resumePendingCoinExchangeWalletRewards }) =>
+        resumePendingCoinExchangeWalletRewards({ accountToken: token }))
+      .catch(() => { /* durable outbox remains pending for the next active pass */ });
+  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
+
   const closePersonalAdminMessage = useCallback(async (messageId: string) => {
     const ownerUid = accountGeneration.stableId;
     setPersonalAdminMessage((current) => current?.id === messageId ? null : current);
@@ -1798,7 +1837,8 @@ function AppContent() {
     };
   }, []);
 
-  const nativeSplashCanHide = ready && (effectiveShowOnboarding || isBanned || firstContentReady);
+  const nativeSplashCanHide = startupSecurityBlocked
+    || (ready && (effectiveShowOnboarding || isBanned || firstContentReady));
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     void SplashScreen.hideAsync();
@@ -2177,6 +2217,7 @@ function AppContent() {
     // deleted account identity/data can reappear beneath the startup shell.
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
     let accountDeleteRecoveryRetryTimer: ReturnType<typeof setTimeout> | null = null;
+    let accountDeleteRecoveryRetryAttempt = 0;
     let authRecoveryBootAppStateSub: { remove: () => void } | null = null;
     let authRecoveryBootAbort: AbortController | null = null;
     let authRecoveryBootstrapInFlight = false;
@@ -2226,12 +2267,13 @@ function AppContent() {
     // Все три вызова — fire-and-forget (результат никто не ждёт), поэтому
     // возврат промиса безопасен; на местах вызова он явно гасится через void.
     const runHeavyInit = async () => {
-      // Remote Config: apply cached/live admin-tuned flags ASAP, then keep live.
+      // Remote Config: apply cached flags ASAP, then keep them fresh with the
+      // foreground-only bounded polling contract selected by the owner.
       void import('./remote_config_client')
         .then((m) => {
           void m.loadRemoteConfig().catch(() => {});
-          // Сохраняем подписку, чтобы закрыть её в cleanup эффекта (иначе Firestore
-          // onSnapshot на remote_config живёт вечно).
+          // Сохраняем handle polling-координатора, чтобы его таймер и AppState-
+          // подписка закрылись вместе с root effect.
           const sub = m.subscribeRemoteConfig();
           if (effectDisposed) {
             // эффект уже размонтирован к моменту резолва импорта — сразу закрываем
@@ -2457,12 +2499,23 @@ function AppContent() {
       const pendingDeleteRecovered = await resumePendingAccountDeleteLocalExit();
       if (effectDisposed) return;
       if (!pendingDeleteRecovered) {
-        accountDeleteRecoveryRetryTimer = setTimeout(() => {
-          accountDeleteRecoveryRetryTimer = null;
-          void bootstrap();
-        }, 1_500);
+        setStartupSecurityBlocked(true);
+        // Protected storage may remain unavailable for a long time (for
+        // example a malformed simulator signature). A hot 1.5 s loop repeatedly
+        // hit Keychain and kept a blocked app consuming CPU. Spend a finite
+        // retry budget with backoff; the visible button always remains usable.
+        const retryDelayMs = AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS[accountDeleteRecoveryRetryAttempt];
+        if (retryDelayMs !== undefined && accountDeleteRecoveryRetryTimer === null) {
+          accountDeleteRecoveryRetryAttempt += 1;
+          accountDeleteRecoveryRetryTimer = setTimeout(() => {
+            accountDeleteRecoveryRetryTimer = null;
+            void bootstrap();
+          }, retryDelayMs);
+        }
         return;
       }
+      accountDeleteRecoveryRetryAttempt = 0;
+      setStartupSecurityBlocked(false);
       authRecoveryBootAbort = new AbortController();
       const recoveryAbort = authRecoveryBootAbort;
       const recoveryGate = await runAuthRecoveryBootGate({
@@ -2673,6 +2726,13 @@ function AppContent() {
     };
 
     runHeavyInitRef.current = requestHeavyInit;
+    retryStartupSecurityCheckRef.current = () => {
+      if (accountDeleteRecoveryRetryTimer) {
+        clearTimeout(accountDeleteRecoveryRetryTimer);
+        accountDeleteRecoveryRetryTimer = null;
+      }
+      void bootstrap();
+    };
     bootstrap();
 
     // Event-driven flush: слушаем событие от achievements.ts вместо polling каждые 4с.
@@ -2710,6 +2770,7 @@ function AppContent() {
       if (safetyTimer) clearTimeout(safetyTimer);
       if (accountDeleteRecoveryRetryTimer) clearTimeout(accountDeleteRecoveryRetryTimer);
       runHeavyInitRef.current = null;
+      retryStartupSecurityCheckRef.current = null;
       sub.remove();
       subShards.remove();
       subDelete.remove();
@@ -2894,7 +2955,14 @@ function AppContent() {
     // делает router.replace('/paywall_*')), при мгновенном setShow(false) пейвол мелькает один
     // кадр до перехода на главную. Небольшая отсрочка убирает мелькание (оверлей держит экран,
     // пока навигация не встала на /home).
-    setTimeout(() => setShow(false), 60);
+    setTimeout(() => {
+      setShow(false);
+      // Home уже смонтирован под полноэкранным онбордингом, но до этого события
+      // намеренно не запускает тяжёлые storage/Firestore-загрузки и анимации.
+      // CleanOnboarding дождался записи onboarding_done до onDone; будим Home
+      // только после снятия корневого оверлея, когда экран действительно видим.
+      emitAppEvent('onboarding_completed');
+    }, 60);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // UX-003: Запрашиваем пуш-разрешение в конце онбординга (не раньше — иначе система не даст
@@ -3111,9 +3179,10 @@ function AppContent() {
 
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
-  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned
+  const appOverlaysEnabled = ready && !startupSecurityBlocked && !effectiveShowOnboarding && !isBanned
     && !tournamentInterruptionProtected;
-  const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
+  const startupSplashVisible = !startupSecurityBlocked
+    && (!ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady));
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
   // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
   // чёрный) — на тёмных экранах это читается как вспышка темноты.
@@ -3199,7 +3268,37 @@ function AppContent() {
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Protected guard={ENABLE_TOURNAMENTS}>
+        <Stack.Screen name="tournament_lobby" />
+        <Stack.Screen name="tournament_round" />
+        <Stack.Screen name="tournament_table" />
+        <Stack.Screen name="tournament_results" />
+        <Stack.Screen name="tournament_review" />
+        <Stack.Screen name="tournament_season" />
+        <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
+      </Stack.Protected>
+      <Stack.Protected guard={ENABLE_ARENA}>
+        <Stack.Screen name="arena" />
+        <Stack.Screen name="arena_matchmaking" />
+        {/* Live server deadlines must continue while the native route is
+            covered; the screen itself stops listeners/timers on background. */}
+        <Stack.Screen name="arena_match" options={{ freezeOnBlur: false, gestureEnabled: false }} />
+        <Stack.Screen name="arena_results" />
+        <Stack.Screen name="arena_friend_duel" />
+        <Stack.Screen name="arena_invite" />
+        <Stack.Screen name="arena_ranks" />
+        <Stack.Screen name="arena_season_pass" />
+        {/* Expansion details stay callable-driven and do not add collection
+            listeners to the Hub. Today owns a server deadline, so native blur
+            must not freeze its reconciliation lifecycle. */}
+        <Stack.Screen name="arena_today" options={{ freezeOnBlur: false, gestureEnabled: false }} />
+        <Stack.Screen name="arena_match_lab" />
+        <Stack.Screen name="arena_ghost_duel" />
+        <Stack.Screen name="arena_rivalries" />
+        <Stack.Screen name="arena_mastery_map" />
+        <Stack.Screen name="arena_partner" />
+        <Stack.Screen name="arena_star_wallet" />
+      </Stack.Protected>
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
@@ -3207,12 +3306,12 @@ function AppContent() {
        <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
        <Stack.Screen name="personal_plan_quiz" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
-      {ENABLE_DEV_TOOLS && (
-        <>
-          <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
-          <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
-        </>
-      )}
+      {/* Expo Router принимает внутри Stack только Screen/Protected. Обычный Fragment
+          здесь игнорировался и на каждом запуске печатал предупреждение layout. */}
+      <Stack.Protected guard={ENABLE_DEV_TOOLS}>
+        <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
+        <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
+      </Stack.Protected>
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, ...bottomModalAnimationOptions, presentation: 'modal', gestureEnabled: true }} />
       <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
@@ -3440,16 +3539,16 @@ function AppContent() {
         <View style={{ backgroundColor: '#121826', borderRadius: 18, borderWidth: 0, borderColor: '#7f1d1d', padding: 20 }}>
           <Text style={{ color: '#f87171', fontSize: 28, textAlign: 'center', marginBottom: 10 }}>🚫</Text>
           <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
-            Аккаунт заблокирован
+            {triLang(lang, { ru: 'Аккаунт заблокирован', uk: 'Обліковий запис заблоковано', es: 'Cuenta bloqueada', 'pt-BR': 'Conta bloqueada', vi: 'Tài khoản đã bị khóa', id: 'Akun diblokir', tr: 'Hesap engellendi', pl: 'Konto zablokowane' })}
           </Text>
           <Text style={{ color: '#9ca3af', fontSize: 14, textAlign: 'center', lineHeight: 20, marginBottom: 16 }}>
-            Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.
+            {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєте блокування помилковим — напишіть у підтримку.', es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
           </Text>
           <TouchableOpacity
             onPress={() => checkBanStatus(true)}
             style={{ backgroundColor: '#1f2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
           >
-            <Text style={{ color: '#fff', fontWeight: '700' }}>Проверить снова</Text>
+            <Text style={{ color: '#fff', fontWeight: '700' }}>{triLang(lang, { ru: 'Проверить снова', uk: 'Перевірити ще раз', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' })}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -3460,6 +3559,77 @@ function AppContent() {
     {ready && <OfflineBanner lang={lang} />}
 
     <StartupSplashHold visible={startupSplashVisible} />
+
+    {startupSecurityBlocked && (
+      <View
+        accessibilityRole="alert"
+        accessibilityViewIsModal
+        accessibilityLiveRegion="assertive"
+        importantForAccessibility="yes"
+        style={styles.startupSecurityBlockedRoot}
+      >
+        <View style={styles.startupSecurityBlockedCard}>
+          <View style={styles.startupSecurityBlockedIcon}>
+            <Ionicons name="shield-checkmark-outline" size={30} color="#07110A" />
+          </View>
+          <Text style={styles.startupSecurityBlockedTitle}>
+            {triLang(lang, {
+              ru: 'Нужна безопасная проверка',
+              uk: 'Потрібна безпечна перевірка',
+              es: 'Se necesita una comprobación segura',
+              'pt-BR': 'É necessária uma verificação segura',
+              vi: 'Cần kiểm tra an toàn',
+              id: 'Pemeriksaan aman diperlukan',
+              tr: 'Güvenli kontrol gerekli',
+              pl: 'Wymagana jest bezpieczna kontrola',
+            })}
+          </Text>
+          <Text style={styles.startupSecurityBlockedBody}>
+            {triLang(lang, {
+              ru: 'Не удалось проверить защищённые данные аккаунта. Приложение остаётся закрытым, чтобы не показать данные другого пользователя. Ничего не удалено.',
+              uk: 'Не вдалося перевірити захищені дані облікового запису. Застосунок залишається закритим, щоб не показати дані іншого користувача. Нічого не видалено.',
+              es: 'No se pudieron comprobar los datos protegidos de la cuenta. La aplicación permanece cerrada para no mostrar datos de otro usuario. No se ha eliminado nada.',
+              'pt-BR': 'Não foi possível verificar os dados protegidos da conta. O aplicativo permanece fechado para não mostrar dados de outro usuário. Nada foi excluído.',
+              vi: 'Không thể kiểm tra dữ liệu tài khoản được bảo vệ. Ứng dụng vẫn khóa để không hiển thị dữ liệu của người dùng khác. Không có gì bị xóa.',
+              id: 'Data akun yang dilindungi belum dapat diperiksa. Aplikasi tetap terkunci agar data pengguna lain tidak ditampilkan. Tidak ada yang dihapus.',
+              tr: 'Korunan hesap verileri doğrulanamadı. Başka bir kullanıcının verilerini göstermemek için uygulama kapalı kalır. Hiçbir şey silinmedi.',
+              pl: 'Nie udało się sprawdzić chronionych danych konta. Aplikacja pozostaje zamknięta, aby nie pokazać danych innego użytkownika. Niczego nie usunięto.',
+            })}
+          </Text>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Повторить безопасную проверку',
+              uk: 'Повторити безпечну перевірку',
+              es: 'Repetir la comprobación segura',
+              'pt-BR': 'Repetir a verificação segura',
+              vi: 'Thử kiểm tra an toàn lại',
+              id: 'Ulangi pemeriksaan aman',
+              tr: 'Güvenli kontrolü yeniden dene',
+              pl: 'Ponów bezpieczną kontrolę',
+            })}
+            onPress={() => retryStartupSecurityCheckRef.current?.()}
+            style={({ pressed }) => [
+              styles.startupSecurityBlockedCta,
+              pressed && styles.startupSecurityBlockedCtaPressed,
+            ]}
+          >
+            <Text style={styles.startupSecurityBlockedCtaText}>
+              {triLang(lang, {
+                ru: 'Проверить снова',
+                uk: 'Перевірити ще раз',
+                es: 'Comprobar de nuevo',
+                'pt-BR': 'Verificar novamente',
+                vi: 'Kiểm tra lại',
+                id: 'Periksa lagi',
+                tr: 'Tekrar kontrol et',
+                pl: 'Sprawdź ponownie',
+              })}
+            </Text>
+          </Pressable>
+        </View>
+      </View>
+    )}
 
     {/* Force-update — поверх обслуживания: если версия устарела, ничего не доступно. */}
     <ForceUpdateGate />
@@ -3488,6 +3658,74 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
     color: 'rgb(174,170,161)',
     fontFamily: APP_FONT_FAMILY,
+  },
+  startupSecurityBlockedRoot: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 10000,
+    elevation: 10000,
+    backgroundColor: STARTUP_SPLASH_BG,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 32,
+  },
+  startupSecurityBlockedCard: {
+    width: '100%',
+    maxWidth: 420,
+    padding: 22,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(216,255,79,0.22)',
+    backgroundColor: '#171A1D',
+    alignItems: 'center',
+  },
+  startupSecurityBlockedIcon: {
+    width: 58,
+    height: 58,
+    borderRadius: 18,
+    backgroundColor: '#D8FF4F',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 18,
+  },
+  startupSecurityBlockedTitle: {
+    color: '#F7F9FB',
+    fontFamily: APP_FONT_FAMILY,
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  startupSecurityBlockedBody: {
+    marginTop: 10,
+    color: '#B8BEC6',
+    fontFamily: APP_FONT_FAMILY,
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+  startupSecurityBlockedCta: {
+    width: '100%',
+    minHeight: 48,
+    marginTop: 22,
+    borderRadius: 16,
+    backgroundColor: '#D8FF4F',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+  },
+  startupSecurityBlockedCtaPressed: {
+    opacity: 0.84,
+  },
+  startupSecurityBlockedCtaText: {
+    color: '#07110A',
+    fontFamily: APP_FONT_FAMILY,
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '800',
+    textAlign: 'center',
   },
   appFullScreenOverlay: {
     ...StyleSheet.absoluteFillObject,

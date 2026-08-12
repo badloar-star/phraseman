@@ -19,6 +19,10 @@ describe('product analytics event catalog', () => {
 
   it('declares the product events consumed by the current warehouse query', () => {
     expect([...PRODUCT_ANALYTICS_WAREHOUSE_EVENTS].sort()).toEqual([
+      'arena_action',
+      'arena_feature_open',
+      'arena_run_complete',
+      'arena_store_action',
       'exit_trial_offer_accepted',
       'exit_trial_offer_declined',
       'exit_trial_offer_shown',
@@ -65,6 +69,19 @@ describe('product analytics event catalog', () => {
     expect(abandoned?.allowedFields).toContain('elapsed_ms');
     expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.error.valueClass).toBe('enum_code');
     expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.error.description.toLowerCase()).toContain('normalized');
+  });
+
+  it('governs Arena funnels without identity, content, exact rating, or wallet fields', () => {
+    const arenaEvents = PRODUCT_ANALYTICS_EVENT_CATALOG.filter(event => event.name.startsWith('arena_'));
+    expect(arenaEvents.map(event => event.name).sort()).toEqual([
+      'arena_action', 'arena_feature_open', 'arena_run_complete', 'arena_store_action',
+    ]);
+    const fields = new Set(arenaEvents.flatMap(event => [...event.allowedFields]));
+    expect([...fields]).toEqual(expect.arrayContaining([
+      'feature', 'source', 'operation', 'mode', 'outcome', 'correct_count',
+      'duration_bucket', 'item_id', 'slot', 'price_bucket',
+    ]));
+    expect([...fields].join('|')).not.toMatch(/uid|token|answer|opponent|wallet|rating|error|task/);
   });
 
   it('rejects fields outside the centrally reviewed registry', () => {

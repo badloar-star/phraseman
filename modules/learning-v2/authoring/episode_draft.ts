@@ -51,6 +51,11 @@ export interface EpisodeDraftBody {
   }[];
   readonly reviewLinks?: readonly unknown[];
   readonly checkpointContract?: unknown;
+  readonly sessionSetRef?: {
+    readonly episodeId: string;
+    readonly version: number;
+    readonly contentHash: string;
+  };
   readonly voiceGovernance?: unknown;
   readonly assetIds?: readonly string[];
   readonly contentUnitIds?: readonly string[];
@@ -226,6 +231,7 @@ export function validateEpisodeDraft(draft: EpisodeDraft): string[] {
     "delayedProbeDefinitions",
     "reviewLinks",
     "checkpointContract",
+    "sessionSetRef",
     "voiceGovernance",
     "assetIds",
     "contentUnitIds",
@@ -238,6 +244,16 @@ export function validateEpisodeDraft(draft: EpisodeDraft): string[] {
     )
   )
     issues.push("episode_body_unknown_field");
+  if (body.sessionSetRef) {
+    const ref = body.sessionSetRef;
+    if (
+      ref.episodeId !== body.episodeId ||
+      !Number.isSafeInteger(ref.version) ||
+      ref.version < 1 ||
+      !/^[a-f0-9]{64}$/.test(ref.contentHash)
+    )
+      issues.push("episode_session_set_ref_invalid");
+  }
   if (body.starSlots) {
     if (
       body.starSlots.length !== 8 ||
@@ -379,8 +395,12 @@ export function cloneEpisodeDraft(
     }
     return output;
   };
+  // A session set is compiled for one exact Episode identity/content revision.
+  // A clone must compile and pin its own set instead of inheriting the source
+  // Episode's otherwise hash-valid authority coordinate.
+  const { sessionSetRef: _sourceSessionSetRef, ...cloneableBody } = current.body;
   const remappedBody = remapValue({
-    ...current.body,
+    ...cloneableBody,
     draftId: ids.draftId,
     episodeId: ids.episodeId,
     ordinal: ids.ordinal,

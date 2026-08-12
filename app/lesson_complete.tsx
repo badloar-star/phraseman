@@ -57,6 +57,7 @@ import {
   type LessonSoftUpsellIdentity,
 } from './lesson_complete_soft_upsell';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
+import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
@@ -69,6 +70,7 @@ import { buildLessonShareMessage } from './lesson_share';
 import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
+import { finalizeLessonXpMultipliers } from './xp_manager';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
@@ -77,6 +79,7 @@ import { frenchStudyActive } from './spanish_content_gate';
 import {
   lessonPerfectMilestoneKey,
   lessonProgressKey,
+  lessonSessionKey,
   lessonTopicShardGrantedKey,
 } from './target_storage_keys';
 
@@ -606,10 +609,16 @@ export default function LessonComplete() {
     earnedXp?: string | string[];
     earnedBaseXp?: string | string[];
     earnedMultipliers?: string | string[];
+    completedAttemptId?: string | string[];
+    repeatAttemptId?: string | string[];
     passed?: string | string[];
   }>();
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
+  const completionAttemptId = useMemo(
+    () => normalizeLessonServerAttemptId(params.completedAttemptId) ?? makeLessonServerAttemptId(),
+    [lessonId, params.completedAttemptId, studyTarget],
+  );
   const c = s.lessonComplete;
   const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);
   const [completionAccessReady, setCompletionAccessReady] = useState(() => lessonId >= 32);
@@ -1079,9 +1088,15 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) {
-        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lessons_list' as any);
+        if (!cancelled && frenchStudyActive(studyTarget)) {
+          markNextNavigationAsReplace();
+          router.replace('/lessons_list' as any);
+        }
         return;
       }
+      // Ответы уже получили XP со всеми активными lesson-scoped множителями.
+      // Здесь один раз закрываем их расходные заряды по identity этой попытки.
+      void finalizeLessonXpMultipliers(completionAttemptId).catch(() => {});
       void grantBonus().finally(() => {
         if (!cancelled) setCompletionXpReady(true);
       });
@@ -1122,7 +1137,7 @@ export default function LessonComplete() {
             safeLessonCompleteEventPart(studyTarget),
             String(lessonId),
             'complete',
-            String(Math.max(1, newPassCount)),
+            safeLessonCompleteEventPart(completionAttemptId),
           ].join(':'),
           type: 'lesson_complete',
           payload: {
@@ -1133,6 +1148,7 @@ export default function LessonComplete() {
             progress: p,
             cellIndex: p.length,
             xpDelta: 0,
+            attemptId: completionAttemptId,
           },
         }).catch(() => {});
         void syncToCloud({ forceNow: true }).catch(() => {});
@@ -1186,7 +1202,7 @@ export default function LessonComplete() {
       cancelled = true;
       clearLessonCompleteNotifTimer();
     };
-  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
+  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -1237,15 +1253,18 @@ export default function LessonComplete() {
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
+        markNextNavigationAsReplace();
         router.replace({ pathname: '/lessons_list', params: { id: next } });
       })();
     } else {
+      markNextNavigationAsReplace();
       router.replace('/(tabs)/home' as any);
     }
   };
 
   const goBackFromComplete = useCallback(() => {
     hapticTap();
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
@@ -1253,14 +1272,24 @@ export default function LessonComplete() {
     if (repeatOpeningRef.current) return;
     repeatOpeningRef.current = true;
     setRepeatOpening(true);
+    const repeatAttemptId = normalizeLessonServerAttemptId(params.repeatAttemptId)
+      ?? makeLessonServerAttemptId();
+    // The route is the synchronous source of truth for the next screen. Storage
+    // remains the durable fallback, but navigation never waits for the native
+    // write and therefore stays instant on Android.
+    void AsyncStorage.setItem(
+      lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
+      repeatAttemptId,
+    ).catch(() => {});
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
     try {
-      router.replace({ pathname: '/lesson1', params: { id: lessonId } });
+      markNextNavigationAsReplace();
+      router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });
     } catch {
       repeatOpeningRef.current = false;
       setRepeatOpening(false);
     }
-  }, [lessonId, router, studyTarget]);
+  }, [lessonId, params.repeatAttemptId, router, studyTarget]);
 
   // Android: системный «Назад» НЕ должен попадать на сам пройденный урок.
   // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на
@@ -1658,7 +1687,7 @@ export default function LessonComplete() {
               borderColor: 'transparent',
               overflow: 'hidden',
             }}
-            onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}
+            onPress={() => { hapticTap(); markNextNavigationAsReplace(); router.replace('/(tabs)/home' as any); }}
           >
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>

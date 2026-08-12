@@ -240,7 +240,7 @@ function isDefinitiveFriendGiftCallableError(error: unknown): boolean {
     || code.includes('resource-exhausted');
 }
 
-function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
+export function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
   const now = Date.now().toString(36);
   const a = Math.random().toString(36).slice(2, 10);
   const b = Math.random().toString(36).slice(2, 10);
@@ -309,6 +309,7 @@ export async function sendFriendGiftWithShards(data: {
   friendStableId: string;
   giftId: FriendGiftId;
   senderDisplayName?: string;
+  idempotencyKey?: string;
 }): Promise<FriendGiftSendResponse> {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
@@ -345,7 +346,11 @@ export async function sendFriendGiftWithShards(data: {
       if (pendingRetryCountForAccount(retryScope) >= FRIEND_GIFT_IN_FLIGHT_MAX) {
         throw new Error('friend_gift_too_many_pending');
       }
-      idempotencyKey = makeFriendGiftIdempotencyKey();
+      const requestedKey = String(data.idempotencyKey ?? '').trim();
+      if (requestedKey && !/^fg_[A-Za-z0-9_:-]{8,76}$/.test(requestedKey)) {
+        throw new Error('friend_gift_idempotency_invalid');
+      }
+      idempotencyKey = requestedKey || makeFriendGiftIdempotencyKey();
       await AsyncStorage.setItem(persistedKey, idempotencyKey);
       if (!isAccountOperationCurrent(accountToken, accountToken.stableId ?? undefined)) {
         throw new Error('friend_gift_identity_changed');

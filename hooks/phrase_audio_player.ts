@@ -12,10 +12,11 @@ import { Directory, File, Paths } from 'expo-file-system';
 import { getPhraseAudioUrl, normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
-  acquireAudioActivity,
-  whenAudioActivitySettled,
-  type AudioActivityLease,
-} from '../modules/audio/audio_activity';
+  claimSpokenAudio,
+  whenSpokenAudioReady,
+  type SpokenAudioClaim,
+} from '../modules/audio/audio_runtime_arbiter';
+import { getNetStatus } from '../app/net_status';
 
 const CACHE_DIR_NAME = 'phrase-audio';
 
@@ -59,7 +60,7 @@ let currentSub: { remove: () => void } | null = null;
 // Watchdog текущего плеера: если клип не заиграл вовремя (исчерпан нативный лимит
 // плееров / клип не декодировался), снимаем плеер и уходим в фолбэк.
 let currentWatchdog: ReturnType<typeof setTimeout> | null = null;
-let currentVoiceLease: AudioActivityLease | null = null;
+let currentVoiceClaim: SpokenAudioClaim | null = null;
 
 // Каждый createAudioPlayer — сырой нативный AudioPlayer БЕЗ авто-release
 // (в отличие от useAudioPlayer). Если хоть один путь пропустит remove(), нативный
@@ -205,14 +206,6 @@ function downloadFileWithTimeout(nativeDownload: Promise<string | null>): Promis
   });
 }
 
-async function ensureAudioMode(): Promise<void> {
-  try {
-    await whenAudioActivitySettled();
-  } catch {
-    // Non-fatal; playback may still work with default mode.
-  }
-}
-
 async function getCachedOrDownload(textKey: string, url: string): Promise<string | null> {
   const key = phraseAudioCacheIdentity(textKey, url);
   const file = cacheFileFor(key);
@@ -227,6 +220,11 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
   } catch {
     // fall through to download
   }
+
+  // Пока сеть не подтверждена как online, отсутствие файла в кэше окончательно:
+  // удалённый URL не открываем и сразу отдаём управление системному TTS. Это
+  // убирает многосекундную паузу при холодном старте без интернета.
+  if (getNetStatus() !== 'online') return null;
 
   let nativeDownload = inFlightDownloads.get(key);
   if (!nativeDownload) {
@@ -277,8 +275,8 @@ export function stopPhraseAudio(): void {
   if (livePlayers.size > 0) {
     for (const player of Array.from(livePlayers)) disposePlayer(player);
   }
-  currentVoiceLease?.release();
-  currentVoiceLease = null;
+  currentVoiceClaim?.release();
+  currentVoiceClaim = null;
 }
 
 /**
@@ -305,17 +303,19 @@ export async function playPhraseByText(
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
   if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) return true;
+  if (!cachedUri && getNetStatus() !== 'online') return false;
   const source: string = cachedUri ?? url;
 
-  const voiceLease = acquireAudioActivity('spoken');
-  currentVoiceLease = voiceLease;
-  const releaseVoiceLease = () => {
-    voiceLease.release();
-    if (currentVoiceLease === voiceLease) currentVoiceLease = null;
+  const voiceClaim = claimSpokenAudio(stopPhraseAudio);
+  if (!voiceClaim) return true;
+  currentVoiceClaim = voiceClaim;
+  const releaseVoiceClaim = () => {
+    voiceClaim.release();
+    if (currentVoiceClaim === voiceClaim) currentVoiceClaim = null;
   };
-  await ensureAudioMode();
-  if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) {
-    releaseVoiceLease();
+  const audioReady = await whenSpokenAudioReady(voiceClaim);
+  if (!audioReady || superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) {
+    releaseVoiceClaim();
     return true;
   }
 
@@ -352,7 +352,7 @@ export async function playPhraseByText(
       if (currentSub === sub) currentSub = null;
       disposePlayer(player);
       if (currentPlayer === player) currentPlayer = null;
-      releaseVoiceLease();
+      releaseVoiceClaim();
       // Провал старта на актуальном клипе → сообщаем ошибку, чтобы вызывающая
       // сторона ушла в системный TTS (иначе фраза молча пропадает).
       if (fromWatchdog && !superseded()) {
@@ -396,7 +396,7 @@ export async function playPhraseByText(
         if (currentSub === sub) currentSub = null;
         disposePlayer(player);
         if (currentPlayer === player) currentPlayer = null;
-        releaseVoiceLease();
+        releaseVoiceClaim();
         if (!wasSuperseded) cb?.onDone?.();
       }
     });
@@ -414,7 +414,7 @@ export async function playPhraseByText(
     player.play();
     return true;
   } catch (e) {
-    releaseVoiceLease();
+    releaseVoiceClaim();
     cb?.onError?.(e instanceof Error ? e : new Error(String(e)));
     return false;
   }

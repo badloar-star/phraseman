@@ -9,6 +9,7 @@ import {
   validateV2ContentItem,
   type V2ContentItem,
 } from '../../modules/learning-v2/content/content_item';
+import type { V2SessionActivityBinding } from '../../modules/learning-v2/content/session_compiler';
 
 export function buildEnglishProfile(): V2LanguageProfileBody {
   const result = validateV2LanguageProfile({
@@ -106,4 +107,14 @@ export function buildE1ContentItems(): readonly V2ContentItem[] {
     if (!result.ok) throw new Error(`e1_item_invalid: ${result.issues.join(',')}`);
     return result.value;
   });
+}
+
+export function buildActivityBindingsForContentItems(
+  items: readonly V2ContentItem[],
+): readonly V2SessionActivityBinding[] {
+  return Object.freeze(items.flatMap((item) => item.compatibleFamilies.map((family) => Object.freeze({
+    activityId: `activity-${family}-${item.contentItemId}`,
+    family,
+    contentUnitIds: Object.freeze([item.contentItemId]),
+  }))));
 }

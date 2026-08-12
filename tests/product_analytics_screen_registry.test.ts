@@ -8,6 +8,11 @@ describe('product analytics screen registry', () => {
     ['/lesson1', 'lesson'],
     ['/lesson/12', 'lesson'],
     ['/friends/secret-user-id', 'friend_profile'],
+    ['/arena', 'arena'],
+    ['/arena_match', 'arena_match'],
+    ['/arena_friend_duel', 'arena_friend_duel'],
+    ['/arena_today?source=home', 'arena_today'],
+    ['/arena_star_wallet', 'arena_star_wallet'],
     ['/manage_subscription', 'manage_subscription'],
   ])('maps %s to %s without leaking parameters', (pathname, expected) => {
     expect(productAnalyticsScreenId(pathname)).toBe(expected);

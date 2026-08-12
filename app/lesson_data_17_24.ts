@@ -6585,8 +6585,11 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_22',
     english: "Nothing is wrong",
-    russian: "Всё в порядке",
-    ukrainian: "Все гаразд",
+    // Более прямой учебный промпт: «Всё в порядке» допускает слишком много
+    // естественных ответов (Everything is okay / All good) и не подсказывает
+    // конструкцию Nothing + is + wrong, которую здесь проверяет урок.
+    russian: "Никаких проблем нет",
+    ukrainian: "Жодних проблем немає",
     spanish: "No hay nada malo.",
     words: [
       { text: "No", correct: "No", distractors: ["Sí", "Ni", "Ya", "Aún", "Tampoco"] },

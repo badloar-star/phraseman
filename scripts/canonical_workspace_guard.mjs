@@ -5,10 +5,9 @@ import { readFileSync, realpathSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// зачем: владелец работает в нескольких ветках подряд (learning-v2 и т.д.) и не хочет
-// править этот скрипт руками — список разрешённых веток вынесен в config/canonical-workspace.json,
-// откуда его читают и гард, и контрактный тест. Правило «одна папка» остаётся жёстким:
-// оно защищает от 97 копий рабочего дерева, а не от смены ветки.
+// Владелец отменил жёсткую привязку к C:\appsprojects\phraseman и к одной ветке.
+// Страж оставлен как кросс-платформенная защита от случайного запуска npm-команды
+// из подпапки или другого репозитория. Любой checkout и любая текущая ветка разрешены.
 const CONFIG_PATH = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '..',
@@ -27,17 +26,16 @@ try {
   process.exit(1);
 }
 
-const CANONICAL_ROOT = config.root;
-const CANONICAL_BRANCH = config.primaryBranch;
+if (config.policy !== 'current-checkout-root'
+  || config.enforceFixedWorkspace !== false
+  || config.enforceFixedBranch !== false) {
+  console.error('');
+  console.error('STOP: config/canonical-workspace.json не соответствует актуальной политике checkout.');
+  console.error('');
+  process.exit(1);
+}
 
-// зачем: владелец должен тестировать релизную ветку, пока Codex занимает основную папку
-// своей незакоммиченной работой. Разрешено РОВНО две папки из закрытого списка в конфиге —
-// правило «не плодить копии дерева» остаётся: агенты сюда ничего не дописывают.
-const WORKSPACES = Array.isArray(config.workspaces) ? config.workspaces : [];
-
-// зачем: разовый запуск с временной ветки без правки конфига —
-// PHRASEMAN_ALLOW_BRANCH=имя-ветки npm run metro:dev
-const BRANCH_OVERRIDE = (process.env.PHRASEMAN_ALLOW_BRANCH ?? '').trim();
+const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 function normalizedRealPath(value) {
   const resolved = realpathSync.native(path.resolve(value));
@@ -46,41 +44,23 @@ function normalizedRealPath(value) {
 
 function fail(message) {
   console.error('');
-  console.error('STOP: запуск заблокирован правилом единого рабочего места.');
+  console.error('STOP: команду нужно запускать из корня текущего checkout.');
   console.error(message);
-  console.error('Разрешённые папки:');
-  for (const workspace of WORKSPACES) {
-    console.error(`  - ${workspace.path} — ${workspace.role}`);
-  }
-  console.error('  Разово другую ветку: PHRASEMAN_ALLOW_BRANCH=<ветка> npm run <команда>');
+  console.error(`Корень этого checkout: ${PROJECT_ROOT}`);
   console.error('');
   process.exit(1);
 }
 
-if (WORKSPACES.length === 0) {
-  fail('В config/canonical-workspace.json пустой список workspaces.');
-}
-
 let actualRoot;
+let expectedRoot;
 try {
   actualRoot = normalizedRealPath(process.cwd());
+  expectedRoot = normalizedRealPath(PROJECT_ROOT);
 } catch (error) {
   fail(`Не удалось проверить рабочую папку: ${error instanceof Error ? error.message : String(error)}`);
 }
 
-const workspace = WORKSPACES.find((entry) => {
-  try {
-    return normalizedRealPath(entry.path) === actualRoot;
-  } catch {
-    return false;
-  }
-});
-
-if (!workspace) {
-  fail(`Текущая папка запрещена: ${process.cwd()}`);
-}
-
-const ALLOWED_BRANCHES = Array.isArray(workspace.allowedBranches) ? workspace.allowedBranches : [];
+if (actualRoot !== expectedRoot) fail(`Текущая папка: ${process.cwd()}`);
 
 let gitRoot;
 let branch;
@@ -103,18 +83,4 @@ if (normalizedRealPath(gitRoot) !== actualRoot) {
   fail(`Git указывает на другой checkout: ${gitRoot}`);
 }
 
-const branchAllowed =
-  ALLOWED_BRANCHES.includes('*') ||
-  ALLOWED_BRANCHES.includes(branch) ||
-  (BRANCH_OVERRIDE !== '' && BRANCH_OVERRIDE === branch);
-
-if (!branchAllowed) {
-  fail(
-    `В папке ${workspace.path} ветка ${branch || '(detached HEAD)'} запрещена. ` +
-      `Разрешены: ${ALLOWED_BRANCHES.join(', ')}`,
-  );
-}
-
-if (branch !== CANONICAL_BRANCH) {
-  console.log(`[workspace] запуск с ветки ${branch} (релизная: ${CANONICAL_BRANCH})`);
-}
+console.log(`[workspace] ${actualRoot} · ветка ${branch || '(detached HEAD)'}`);

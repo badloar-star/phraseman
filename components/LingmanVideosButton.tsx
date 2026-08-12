@@ -27,7 +27,7 @@ function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
   const [unreadCount, setUnreadCount] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
   // Видимость кнопки управляется из «Пульта» (video_button_enabled). Дефолт true.
-  // Реагируем на смену remote_config живьём (onSnapshot → событие) и на фокус.
+  // Реагируем на применённое обновление remote_config (кэш/polling → событие) и на фокус.
   const initialVisibility = readVideoButtonVisibility();
   const [enabled, setEnabled] = useState(initialVisibility.enabled);
   const badgePulse = useRef(new Animated.Value(1)).current;

@@ -7,14 +7,20 @@ const optionsEnd = lessonSource.indexOf('{/* ГОРИЗОНТАЛЬНЫЙ ПРО
 const optionsBlock = lessonSource.slice(optionsStart, optionsEnd);
 
 describe('lesson word press accuracy', () => {
-  it('disables the visible word bank while an accepted tap is awaiting dispatch', () => {
+  it('applies an accepted tap immediately while briefly locking double taps', () => {
     expect(lessonSource).toContain('const [wordDispatchPending, setWordDispatchPending] = useState(false)');
+    expect(lessonSource).toContain('const WORD_DISPATCH_LOCK_MS = 90;');
     expect(optionsBlock).toContain('setWordDispatchPending(true)');
     expect(optionsBlock).toContain('setWordDispatchPending(false)');
     expect(optionsBlock).toContain('disabled={wordDispatchPending}');
+    expect(optionsBlock.indexOf('}, WORD_DISPATCH_LOCK_MS);'))
+      .toBeLessThan(optionsBlock.indexOf('handleWordPress(word)'));
+    expect(optionsBlock).toMatch(
+      /wordDispatchTimerRef\.current = setTimeout\(\(\) => \{\s*wordDispatchTimerRef\.current = null;\s*setWordDispatchPending\(false\);\s*\}, WORD_DISPATCH_LOCK_MS\);\s*handleWordPress\(word\);/,
+    );
   });
 
-  it('keeps delayed flash feedback attached to the exact option and phrase step', () => {
+  it('keeps instant flash feedback attached to the exact option and phrase step', () => {
     expect(lessonSource).toContain('const optionKey = `${phraseEnterKey}:${phraseWordIdx}:${i}:${word}`');
     expect(optionsBlock).toContain('const isFlashing = flashWord?.optionKey === optionKey');
     expect(optionsBlock).toContain('triggerWordFlash(optionKey, isCorrectOption)');

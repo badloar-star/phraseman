@@ -7,6 +7,7 @@ import { parseV2AdminGenerationRequest } from './v2_admin_generation_contract';
 import {
   buildEnglishProfile,
   buildE1ContentItems,
+  buildActivityBindingsForContentItems,
 } from '../../../tests/support/learning_v2_content_builders';
 
 const templateRef = { templateId: 'phrase-builder', version: 1, contentHash: 'a'.repeat(64) };
@@ -38,10 +39,18 @@ test('compiles only when the resolved profile body matches the pinned hash', asy
     episodeId: 'ep-01',
     canDoOutcomeId: 'obj-introduce-self',
     contentItems: buildE1ContentItems(),
+    activityBindings: buildActivityBindingsForContentItems(buildE1ContentItems()),
     resolveLanguageProfile: async () => ({ ref: validRequest.languageProfileRef, body: buildEnglishProfile() }),
   });
   expect(compiled.episodeId).toBe('ep-01');
   expect(compiled.sessions).toHaveLength(12);
+  const requiredCardCount = compiled.sessions.flatMap((session) => session.cards)
+    .filter((card) => card.family !== 'scripted_repeat_compare').length;
+  expect(compiled.requiredTaskAnswerKeys).toHaveLength(requiredCardCount);
+  expect(compiled.requiredTaskAnswerKeys.every((entry) =>
+    !JSON.stringify(entry).includes('Hello') &&
+    /^[a-f0-9]{64}$/.test(entry.expectedAnswerFingerprint),
+  )).toBe(true);
 });
 
 test('rejects a profile body whose canonical hash differs from the request ref', async () => {
@@ -51,6 +60,7 @@ test('rejects a profile body whose canonical hash differs from the request ref',
     episodeId: 'ep-01',
     canDoOutcomeId: 'obj-introduce-self',
     contentItems: buildE1ContentItems(),
+    activityBindings: buildActivityBindingsForContentItems(buildE1ContentItems()),
     resolveLanguageProfile: async () => ({
       ref: validRequest.languageProfileRef,
       body: { ...buildEnglishProfile(), targetLanguage: 'de' as const },
@@ -67,6 +77,7 @@ test('rejects a resolver that returns a different ref than requested', async () 
     episodeId: 'ep-01',
     canDoOutcomeId: 'obj-introduce-self',
     contentItems: buildE1ContentItems(),
+    activityBindings: buildActivityBindingsForContentItems(buildE1ContentItems()),
     resolveLanguageProfile: async () => ({
       ref: { ...validRequest.languageProfileRef, version: validRequest.languageProfileRef.version + 1 },
       body: buildEnglishProfile(),
@@ -81,6 +92,7 @@ test('rejects an episode that is not part of the generation request', async () =
     episodeId: 'ep-99',
     canDoOutcomeId: 'obj-introduce-self',
     contentItems: buildE1ContentItems(),
+    activityBindings: buildActivityBindingsForContentItems(buildE1ContentItems()),
     resolveLanguageProfile: async () => ({ ref: validRequest.languageProfileRef, body: buildEnglishProfile() }),
   })).rejects.toThrow('compilation_episode_not_requested');
 });
@@ -92,6 +104,7 @@ test('returns a frozen compiled artifact with a passing quality report', async (
     episodeId: 'ep-01',
     canDoOutcomeId: 'obj-introduce-self',
     contentItems: buildE1ContentItems(),
+    activityBindings: buildActivityBindingsForContentItems(buildE1ContentItems()),
     resolveLanguageProfile: async () => ({ ref: validRequest.languageProfileRef, body: buildEnglishProfile() }),
   });
   expect(Object.isFrozen(compiled)).toBe(true);
@@ -102,4 +115,5 @@ test('returns a frozen compiled artifact with a passing quality report', async (
   expect(compiled.optionalPracticeTemplates.every(
     (template) => template.requiredForProgress === false && template.canWriteMastery === false,
   )).toBe(true);
+  expect(Object.isFrozen(compiled.requiredTaskAnswerKeys)).toBe(true);
 });

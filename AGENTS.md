@@ -1,22 +1,12 @@
 # Project Rules
 
-## Single Workspace And Branch Invariant
+## Workspace And Branch Safety
 
-- The only canonical checkout is `C:\appsprojects\phraseman`. The folder list in
-  `config/canonical-workspace.json` → `workspaces` is closed and guarded by
-  `tests/single_workspace_runtime_contract.test.mjs` — agents never add a folder to it.
-- The only canonical working branch is `feature/referral-roulette` — the release branch. ALL work,
-  including the learning-v2 rebuild, continues directly on it. `codex/learning-v2-rebuild` was
-  merged into it on 2026-08-02 at the owner's explicit request and must not be used again.
-  The branch list lives in `config/canonical-workspace.json` → `allowedBranches`, read by
-  `scripts/canonical_workspace_guard.mjs`; changing it is the owner's call, and it is still not
-  permission to create branches.
+- The owner cancelled the obsolete fixed Windows checkout and fixed release-branch restriction on 2026-08-10.
+- Commands must run from the root of the checkout that contains this `AGENTS.md`; no operating-system-specific absolute path or branch name is required.
+- The currently checked-out branch is valid for implementation, builds, tests, Metro, and emulators.
 - Never create a branch, Git worktree, separate checkout, forked coding task, or delegated coding session without an explicit owner request to create that exact branch/worktree/task.
-- An explicit owner request is required for every exception. A general request to implement, fix, review, test, deploy, continue, parallelize, or use agents is not permission to create a branch or worktree.
-- All Codex sessions, agents, LAN Metro servers, Android/iOS emulators, builds, tests, scripts, and local web servers must run from the canonical checkout and canonical branch.
-- Before resuming a frozen task, move its work into the canonical checkout first. Do not resume work inside an old worktree.
-- Existing historical branches and worktrees are frozen evidence only. Do not write to, run from, or delete them unless the owner explicitly requests that exact action.
-- If the canonical checkout or branch is unavailable, stop and report the mismatch. Never create a replacement workspace automatically.
+- Existing historical branches and worktrees must not be deleted unless the owner explicitly requests that exact action.
 
 ## 🤖 Джарвис обязан оставаться актуальным (владелец, 2026-08-02)
 
@@ -64,7 +54,15 @@
 | `admin/legacy.html` | отставшая копия рабочей админки | 🧊 ЗАМОРОЖЕН, к удалению |
 | `admin/index.html` | редирект-заглушка на `/legacy.html` | 🧊 не редактировать |
 | `admin/full.html`, `admin/site.html` | исторические огрызки | 🧊 не редактировать |
-| `admin/v2/index.html` + `admin/v2/scripts/*` | белая v2-панель, владелец ей не пользуется | 🧊 не развивать без запроса |
+| `admin/v2/index.html` + белые V2-модули/стили/vendor | удалённая белая панель | ⛔ УДАЛЕНА НАВСЕГДА, НЕ ВОССТАНАВЛИВАТЬ |
+
+Корень admin Hosting (`/`, `/index.html`, включая старые hash-маршруты
+`#overview` и `#english-test`) обязан постоянным redirect вести на
+`/legacy.html`. В `admin/v2/scripts/` разрешены только скрипты, которые прямо
+подключены из `admin/v2/legacy.html`; удалённый V2-router/core/UI нельзя
+восстанавливать ни из Git-истории, ни из старых тестов или генераторов.
+Точное решение и список удалённых поверхностей зафиксированы в
+`docs/admin/WHITE_ADMIN_V2_RETIRED.md`.
 
 Признак ошибки: если правка админки НЕ находится в `admin/v2/legacy.html` — она
 почти наверняка уезжает в мёртвый файл. Остановись и проверь путь.

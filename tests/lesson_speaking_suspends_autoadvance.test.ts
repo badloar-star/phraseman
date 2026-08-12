@@ -17,9 +17,12 @@ describe('lesson auto-advance is suspended while the speaking panel is open', ()
   });
 
   it('does not arm auto-advance while suspended and re-checks the flag before jumping', () => {
-    expect(src).toContain('if (settings.autoAdvance && isRight && !speakingSuspendRef.current)');
-    // Belt-and-suspenders: the timer callback re-reads the flag before goNext.
-    expect(src).toMatch(/setTimeout\(\(\) => \{\s*autoTimer\.current = null;\s*if \(speakingSuspendRef\.current\) return;\s*goNext\(np\);/);
+    // The timer may only be armed while the lesson owns focused foreground
+    // runtime AND the speaking panel is closed.
+    expect(src).toContain('if (settings.autoAdvance && lessonRuntimeActive && isRight && !speakingSuspendRef.current)');
+    // Belt-and-suspenders: the callback re-checks both lifecycle ownership and
+    // the speaking flag before it is allowed to advance.
+    expect(src).toMatch(/setTimeout\(\(\) => \{\s*autoTimer\.current = null;\s*if \(!lessonRuntimeActive \|\| speakingSuspendRef\.current\) return;\s*goNext\(np\);/);
   });
 
   it('opening the speaking panel suspends advance; closing it does NOT auto-resume', () => {

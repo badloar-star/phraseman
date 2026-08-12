@@ -45,7 +45,6 @@ function TapScale({
   const opacity = useRef(new Animated.Value(1)).current;
 
   const pressIn = useCallback(() => {
-    if (withHaptic && !disabled) hapticTap();
     Animated.parallel([
       Animated.spring(scale, {
         toValue: scaleTo,
@@ -59,6 +58,7 @@ function TapScale({
         useNativeDriver: true,
       }),
     ]).start();
+    if (withHaptic && !disabled) hapticTap();
   }, [scale, opacity, scaleTo, withHaptic, disabled]);
 
   const pressOut = useCallback(() => {

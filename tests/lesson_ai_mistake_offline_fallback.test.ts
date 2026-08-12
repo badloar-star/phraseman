@@ -7,6 +7,16 @@ const cardSource = fs.readFileSync(path.join(ROOT, 'components', 'AiMistakeCard.
 const clientSource = fs.readFileSync(path.join(ROOT, 'app', 'ai_mistake_explain_client.ts'), 'utf8');
 
 describe('lesson AI mistake background recovery', () => {
+  it('subscribes to connectivity only while a mistake explanation is active', () => {
+    const subscription = hookSource.slice(
+      hookSource.indexOf('// Без активного промаха AI'),
+      hookSource.indexOf('// Любое состояние без подтверждённого online'),
+    );
+    expect(subscription).toContain('if (!active) return undefined;');
+    expect(subscription).toContain('return subscribeNetStatus');
+    expect(subscription).toContain('}, [active]);');
+  });
+
   it('keeps an inline request loading and retries without exposing an error', () => {
     const explainStart = hookSource.indexOf('const explain = useCallback');
     const catchStart = hookSource.indexOf('} catch (error) {', explainStart);
@@ -19,6 +29,11 @@ describe('lesson AI mistake background recovery', () => {
     expect(inlineFailureBlock).toContain("setAiMistakeState('loading')");
     expect(inlineFailureBlock).toContain('scheduleMistakeRetry');
     expect(inlineFailureBlock).not.toContain("setAiMistakeState('error')");
+    expect(inlineFailureBlock).toContain('isMistakeExplainOfflineError(error)');
+    expect(inlineFailureBlock).toContain("getNetStatus() !== 'online'");
+    expect(inlineFailureBlock.indexOf("setAiMistakeState('idle')")).toBeLessThan(
+      inlineFailureBlock.indexOf('scheduleMistakeRetry'),
+    );
     expect(cardSource).not.toContain('buildLocalMistakeFallback');
     expect(cardSource).not.toContain('Не вдалося завантажити розбір');
     expect(cardSource).not.toContain("state === 'error'");
@@ -38,6 +53,8 @@ describe('lesson AI mistake background recovery', () => {
     expect(eli5FailureBlock).not.toContain("setEli5State('error')");
     expect(eli5FailureBlock).not.toContain("setEli5State('ready')");
     expect(eli5FailureBlock).not.toContain('aiErrorToast');
+    expect(eli5FailureBlock).toContain('isMistakeExplainOfflineError(error)');
+    expect(eli5FailureBlock).toContain("getNetStatus() !== 'online'");
   });
 
   it('primes the simple explanation cache from a successful full bundle', () => {

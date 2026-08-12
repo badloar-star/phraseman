@@ -10,12 +10,31 @@ jest.mock("../content_studio/episode_revision_resolver", () => ({
 }));
 
 import { applyProgressEvent } from "./progress_event";
-import { createFirestoreProgressEventStore, progressAttemptDocumentId, progressOperationDocumentId } from "./firestore_progress_event_store";
+import {
+  createFirestoreProgressEventStore,
+  progressAttemptDocumentId,
+  progressOperationDocumentId,
+  publishedRequiredSessionSetDocumentId,
+} from "./firestore_progress_event_store";
+import { publishedRequiredSessionAnswerManifestDocumentId } from "../content_factory/v2_required_session_publication";
+import {
+  createPublishedRequiredSessionAnswerManifest,
+  materializeRequiredSessionTaskAnswerKey,
+  type ServerVerifiableRequiredSessionFamily,
+} from "./required_session_answer_verifier";
 import { deriveProgressAccountScopeHash } from "./progress_event";
 import { buildCanonicalAttemptRef } from "../../../modules/learning-v2/contracts/attempt";
 import { resolveImmutableSeasonRevision } from "../content_studio/season_revision_resolver";
 import { assertExactImmutableEpisodeRevision } from "../content_studio/episode_revision_resolver";
 import { resolveServerScore } from "./server_score_resolver";
+import {
+  buildE1DemoActivityBindings,
+  buildE1DemoItems,
+  buildE1DemoProfile,
+} from "../../../modules/learning-v2/content/e1_demo_bank";
+import { compileV2RequiredSessions } from "../../../modules/learning-v2/content/session_compiler";
+import { createPublishedRequiredSessionSet } from "../../../modules/learning-v2/contracts/required_session_progress";
+import { hashCanonicalBody } from "../../../modules/learning-v2/policies/decision_registry";
 
 const body = { schemaVersion: "v2-attempt-body.v1", opId: "adapter-attempt-1", attemptSurface: { kind: "episode_graph_node" }, outcome: { resultCode: "CORRECT" }, evidence: { hintsUsed: 0 }, provenance: { phase: "near_transfer" }, inputBinding: { source: "keyboard" }, learningTupleDispositions: [] } as const;
 const attemptRef = buildCanonicalAttemptRef(body);
@@ -39,6 +58,149 @@ const storeOptions = (db: any, stableUid: string) => ({
   episodeResolver: {} as any,
   seasonObjectReader: { read: async () => ({ body: {}, contentHash: "c".repeat(64), objectGeneration: "1", byteSize: 1 }) },
 });
+const serverVerifiableRequiredSessionFamilies = new Set([
+  "phrase_builder",
+  "listen_choose",
+  "sound_contrast",
+  "listen_build_dictation",
+  "context_gap_grammar",
+  "speed_match",
+]);
+
+const requiredSessionFixture = () => {
+  const compiled = compileV2RequiredSessions({
+    episodeId: "episode-1",
+    canDoOutcomeId: "obj-introduce-self",
+    profile: buildE1DemoProfile(),
+    items: buildE1DemoItems().map((item) => ({ ...item, episodeId: "episode-1" as never })),
+    activityBindings: buildE1DemoActivityBindings(),
+  });
+  const sessionSet = {
+    schemaVersion: "v2-session-set.v2" as const,
+    episodeId: "episode-1" as never,
+    version: 1,
+    sessions: compiled.sessions.map(({ support: _support, ...session }) => session),
+    optionalPracticeSlots: [],
+  };
+  const publication = createPublishedRequiredSessionSet({
+    schemaVersion: "learning-v2-published-required-session-set.v1",
+    courseId: "english-core",
+    studyTarget: "en",
+    courseReleaseId: "release-1",
+    seasonRevisionId: "season-rev-1",
+    episodeRevisionFingerprint: "b".repeat(64),
+    episodeContentHash: "c".repeat(64),
+    sessionSetId: "episode-1-session-set-1",
+    sessionSetHash: hashCanonicalBody(sessionSet),
+    sessionSet,
+  });
+  const answerKeys = sessionSet.sessions.flatMap((session) => session.cards
+    .filter((entry) => serverVerifiableRequiredSessionFamilies.has(entry.family))
+    .map((entry) => materializeRequiredSessionTaskAnswerKey({
+      taskId: entry.cardId,
+      activityId: entry.activityId,
+      family: entry.family,
+      expectedAnswer: `expected-${entry.cardId}`,
+    })));
+  const answerManifest = createPublishedRequiredSessionAnswerManifest({
+    schemaVersion: "learning-v2-published-required-session-answer-manifest.v1",
+    courseId: publication.courseId,
+    studyTarget: publication.studyTarget,
+    courseReleaseId: publication.courseReleaseId,
+    seasonRevisionId: publication.seasonRevisionId,
+    episodeRevisionFingerprint: publication.episodeRevisionFingerprint,
+    episodeContentHash: publication.episodeContentHash,
+    sessionSetId: publication.sessionSetId,
+    sessionSetHash: publication.sessionSetHash,
+    answerKeys,
+  });
+  const card = sessionSet.sessions[0].cards[0];
+  if (!serverVerifiableRequiredSessionFamilies.has(card.family)) {
+    throw new Error("required_session_test_first_card_not_server_verifiable");
+  }
+  const requiredRequest = {
+    ...request,
+    idempotencyKey: "required-session-adapter-op-1",
+    projection: {
+      ...request.projection,
+      starSlotId: card.cardId,
+      activityId: card.activityId,
+    },
+    requiredSessionTaskRef: {
+      schemaVersion: "learning-v2-required-session-task-slot-ref.v1" as const,
+      courseId: publication.courseId,
+      courseReleaseId: publication.courseReleaseId,
+      sessionSetId: publication.sessionSetId,
+      sessionSetHash: publication.sessionSetHash,
+      requiredSessionOrdinal: 1,
+      sessionId: sessionSet.sessions[0].sessionId,
+      sessionRunId: "required-session-run-1",
+      runKindClaim: "initial" as const,
+      taskOrdinal: 1,
+      taskId: card.cardId,
+      activityId: card.activityId,
+    },
+    requiredSessionAnswerResponse: {
+      schemaVersion: "learning-v2-required-session-task-answer-response.v1" as const,
+      taskId: card.cardId,
+      activityId: card.activityId,
+      family: card.family as ServerVerifiableRequiredSessionFamily,
+      submittedAnswer: `expected-${card.cardId}`,
+    },
+  };
+  return { answerManifest, publication, requiredRequest, sessionSet };
+};
+
+const requiredAttemptRequest = (
+  base: ReturnType<typeof requiredSessionFixture>["requiredRequest"],
+  card: ReturnType<typeof requiredSessionFixture>["sessionSet"]["sessions"][number]["cards"][number],
+  taskOrdinal: number,
+  opId: string,
+  resultCode: "CORRECT" | "WRONG" | "SKIPPED" | "INVALID_AUDIO_OR_SYSTEM",
+  hintsUsed = 0,
+) => {
+  const attemptBody = {
+    ...body,
+    opId,
+    outcome: { resultCode },
+    evidence: { hintsUsed },
+  } as const;
+  const submittedAttemptRef = buildCanonicalAttemptRef(attemptBody);
+  const hasServerAnswer = serverVerifiableRequiredSessionFamilies.has(card.family) &&
+    (resultCode === "CORRECT" || resultCode === "WRONG");
+  return {
+    ...base,
+    idempotencyKey: `required-${opId}`,
+    attemptBody,
+    attemptRef: submittedAttemptRef,
+    evidenceBundle: {
+      ...base.evidenceBundle,
+      attemptRef: submittedAttemptRef,
+    },
+    projection: {
+      ...base.projection,
+      starSlotId: card.cardId,
+      activityId: card.activityId,
+    },
+    requiredSessionTaskRef: {
+      ...base.requiredSessionTaskRef,
+      taskOrdinal,
+      taskId: card.cardId,
+      activityId: card.activityId,
+    },
+    ...(hasServerAnswer ? {
+      requiredSessionAnswerResponse: {
+        schemaVersion: "learning-v2-required-session-task-answer-response.v1" as const,
+        taskId: card.cardId,
+        activityId: card.activityId,
+        family: card.family as ServerVerifiableRequiredSessionFamily,
+        submittedAnswer: resultCode === "CORRECT"
+          ? `expected-${card.cardId}`
+          : `wrong-${card.cardId}`,
+      },
+    } : {}),
+  };
+};
 
 describe("Firestore progress adapter transaction ordering", () => {
   beforeEach(() => {
@@ -59,6 +221,138 @@ describe("Firestore progress adapter transaction ordering", () => {
     expect(firstWrite).toBeGreaterThanOrEqual(0);
     expect(events.slice(0, firstWrite).every((event) => event.startsWith("read:"))).toBe(true);
     expect(events.filter((event) => event.startsWith("create:")).length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("resolves the server-published session-set and rejects client slot substitution before writes", async () => {
+    const { answerManifest, publication, requiredRequest, sessionSet } = requiredSessionFixture();
+    const documents = new Map<string, unknown>([
+      [
+        `content_v2_required_session_sets/${publishedRequiredSessionSetDocumentId(publication.sessionSetId)}`,
+        publication,
+      ],
+      [
+        `content_v2_required_session_answer_manifests/${publishedRequiredSessionAnswerManifestDocumentId(publication.sessionSetId)}`,
+        answerManifest,
+      ],
+    ]);
+    const writes: string[] = [];
+    const db: any = {
+      doc: (path: string) => ({ path }),
+      runTransaction: async (work: any) => work({
+        get: async (ref: any) => documents.has(ref.path)
+          ? { exists: true, data: () => documents.get(ref.path) }
+          : identitySnapshot(ref.path) ?? { exists: false, data: () => undefined },
+        create: (ref: any, value: unknown) => { writes.push(ref.path); documents.set(ref.path, value); },
+        set: (ref: any, value: unknown) => { writes.push(ref.path); documents.set(ref.path, value); },
+      }),
+    };
+    const options = storeOptions(db, "stable-a") as any;
+    options.resolveServerScore = ({ request: submitted, attemptRef: submittedAttemptRef, evidence }: any) => resolveServerScore({
+      attemptRef: submittedAttemptRef,
+      activityId: submitted.projection.activityId,
+      starSlotId: submitted.projection.starSlotId,
+      progressCompatibilityKey: submitted.projection.progressCompatibilityKey,
+      scoringPolicyRef: { kind: "scoring", key: "policy.scoring.core", version: 1, contentHash: "a".repeat(64) },
+      resultCode: submitted.attemptBody.outcome.resultCode,
+      evidenceComponentFingerprint: evidence.componentFingerprint,
+    }, (input) => input.resultCode === "CORRECT" ? 3 : 0);
+    const store = createFirestoreProgressEventStore(options);
+    await expect(applyProgressEvent(store, requiredRequest)).resolves.toMatchObject({ duplicate: false });
+    expect(writes.length).toBeGreaterThan(0);
+    for (let index = 1; index < 12; index += 1) {
+      await expect(applyProgressEvent(store, requiredAttemptRequest(
+        requiredRequest,
+        sessionSet.sessions[0].cards[index],
+        index + 1,
+        `required-attempt-${index + 1}`,
+        "CORRECT",
+      ))).resolves.toMatchObject({ duplicate: false });
+    }
+    const runState = [...documents.entries()].find(([path]) =>
+      path.includes("/v2_required_session_runs/"))?.[1] as any;
+    expect(runState).toMatchObject({ revision: 12 });
+    expect(Object.keys(runState.terminalTasks)).toHaveLength(12);
+    const settlement = [...documents.entries()].find(([path]) =>
+      path.includes("/v2_required_session_settlements/"))?.[1] as any;
+    expect(settlement).toMatchObject({
+      schemaVersion: "learning-v2-required-session-settled-projection.v1",
+      candidate: { projectedBasePerformanceStars: 36 },
+    });
+
+    const writesBefore = writes.length;
+    await expect(applyProgressEvent(store, {
+      ...requiredRequest,
+      idempotencyKey: "required-session-adapter-op-2",
+      requiredSessionTaskRef: {
+        ...requiredRequest.requiredSessionTaskRef,
+        taskId: "substituted-task",
+      },
+      projection: {
+        ...requiredRequest.projection,
+        starSlotId: "substituted-task",
+      },
+      requiredSessionAnswerResponse: {
+        ...requiredRequest.requiredSessionAnswerResponse,
+        taskId: "substituted-task",
+      },
+    })).rejects.toThrow("required_session_catalog_mismatch");
+    expect(writes).toHaveLength(writesBefore);
+  });
+
+  it("counts server-accepted attempts and awards two stars after one learner error", async () => {
+    const { answerManifest, publication, requiredRequest, sessionSet } = requiredSessionFixture();
+    const documents = new Map<string, unknown>([
+      [
+        `content_v2_required_session_sets/${publishedRequiredSessionSetDocumentId(publication.sessionSetId)}`,
+        publication,
+      ],
+      [
+        `content_v2_required_session_answer_manifests/${publishedRequiredSessionAnswerManifestDocumentId(publication.sessionSetId)}`,
+        answerManifest,
+      ],
+    ]);
+    const db: any = {
+      doc: (path: string) => ({ path }),
+      runTransaction: async (work: any) => work({
+        get: async (ref: any) => documents.has(ref.path)
+          ? { exists: true, data: () => documents.get(ref.path) }
+          : identitySnapshot(ref.path) ?? { exists: false, data: () => undefined },
+        create: (ref: any, value: unknown) => {
+          if (documents.has(ref.path)) throw new Error("already-exists");
+          documents.set(ref.path, value);
+        },
+        set: (ref: any, value: unknown) => documents.set(ref.path, value),
+      }),
+    };
+    const options = storeOptions(db, "stable-a") as any;
+    options.resolveServerScore = ({ request: submitted, attemptRef: submittedAttemptRef, evidence }: any) => resolveServerScore({
+      attemptRef: submittedAttemptRef,
+      activityId: submitted.projection.activityId,
+      starSlotId: submitted.projection.starSlotId,
+      progressCompatibilityKey: submitted.projection.progressCompatibilityKey,
+      scoringPolicyRef: { kind: "scoring", key: "policy.scoring.core", version: 1, contentHash: "a".repeat(64) },
+      resultCode: submitted.attemptBody.outcome.resultCode,
+      evidenceComponentFingerprint: evidence.componentFingerprint,
+    }, (input) => input.resultCode === "CORRECT" ? 3 : 0);
+    const store = createFirestoreProgressEventStore(options);
+    const firstCard = sessionSet.sessions[0].cards[0];
+    await applyProgressEvent(store, requiredAttemptRequest(
+      requiredRequest, firstCard, 1, "required-wrong-1", "WRONG",
+    ));
+    await applyProgressEvent(store, requiredAttemptRequest(
+      requiredRequest, firstCard, 1, "required-correct-2", "CORRECT",
+    ));
+    const taskState = [...documents.entries()].find(([path]) =>
+      path.includes("/v2_required_session_task_attempts/"))?.[1] as any;
+    const runState = [...documents.entries()].find(([path]) =>
+      path.includes("/v2_required_session_runs/"))?.[1] as any;
+    expect(taskState).toMatchObject({ learnerAttempts: 2, hintUsed: false });
+    expect(runState.terminalTasks["1"]).toMatchObject({
+      disposition: "completed",
+      learnerAttempts: 2,
+      projectedStars: 2,
+      projectedCountsAsLearnerError: true,
+    });
   });
 
   it("rejects an applyProgressEvent replay after deletion before returning duplicate", async () => {

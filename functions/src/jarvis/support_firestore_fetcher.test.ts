@@ -1,4 +1,8 @@
-import { fetchSupportSource, SUPPORT_LOOKBACK_MS } from './support_firestore_fetcher';
+import {
+  fetchSupportSource,
+  SUPPORT_LOOKBACK_MS,
+  SUPPORT_SYNC_MAX_AGE_MS,
+} from './support_firestore_fetcher';
 
 const NOW = 1_800_000_000_000;
 const HOUR = 60 * 60 * 1_000;
@@ -36,6 +40,18 @@ function makeCollection(docs: readonly FakeDoc[], failing = false) {
 
 function queryOf(docs: readonly FakeDoc[], failing = false): FirebaseFirestore.Query {
   return makeCollection(docs, failing).query;
+}
+
+function syncDocument(imapSyncedAt: unknown, failing = false) {
+  return {
+    get: async () => {
+      if (failing) throw new Error('unavailable');
+      return {
+        exists: true,
+        data: () => ({ imapSyncedAt }),
+      };
+    },
+  } as unknown as Pick<FirebaseFirestore.DocumentReference, 'get'>;
 }
 
 function letter(over: Partial<Record<string, unknown>> = {}): FakeDoc {
@@ -125,6 +141,26 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     expect(result.waitingCount).toBeNull();
     expect(result.oldestWaitingMs).toBeNull();
     expect(result.medianReplyMs).toBeNull();
+  });
+
+  test('a stale IMAP checkpoint is an error, never a comforting empty inbox', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([]),
+      syncDocument: syncDocument(new Date(NOW - SUPPORT_SYNC_MAX_AGE_MS - 1).toISOString()),
+      nowMs: NOW,
+    });
+    expect(result.state).toBe('error');
+    expect(result.waitingCount).toBeNull();
+  });
+
+  test('a fresh IMAP checkpoint permits normal support evidence', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([letter()]),
+      syncDocument: syncDocument(new Date(NOW - 5 * 60 * 1_000).toISOString()),
+      nowMs: NOW,
+    });
+    expect(result.state).toBe('ready');
+    expect(result.waitingCount).toBe(1);
   });
 
   test('the window covers at least a week of support history', () => {

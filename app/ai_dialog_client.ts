@@ -355,6 +355,12 @@ export interface PremiumDialogReviewRequest {
   goalEn?: string;
   /** Изучаемый язык (StudyTarget 'en'|'fr'). Отсутствие ⇒ сервер 'en'. */
   studyTarget?: string;
+  /**
+   * 'text' (по умолчанию) — печатный диалог. 'voice' (МАКС ПЛАН §6.2) —
+   * транскрипт голосового MAX-звонка: сервер мягче к артефактам устной речи
+   * (filler words, самоисправления) и не меняет форму JSON-ответа.
+   */
+  mode?: 'text' | 'voice';
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */
@@ -383,6 +389,7 @@ function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string 
     interfaceLang: req.interfaceLang,
     scenarioId: req.scenarioId,
     studyTarget: req.studyTarget ?? 'en',
+    mode: req.mode ?? 'text',
   });
 }
 

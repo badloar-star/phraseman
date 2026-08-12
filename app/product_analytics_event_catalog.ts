@@ -89,6 +89,10 @@ export const PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES = [
   'exit_trial_offer_shown',
   'exit_trial_offer_accepted',
   'exit_trial_offer_declined',
+  'arena_feature_open',
+  'arena_action',
+  'arena_run_complete',
+  'arena_store_action',
 ] as const;
 
 export type GovernedProductAnalyticsEventName =

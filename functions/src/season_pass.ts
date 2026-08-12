@@ -15,6 +15,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { vipUntilFromProgress, stackVipUntilMs } from './referral';
 import { REFERRAL_SPIN_PRIZE_PEARLS } from './referral_spin_logic';
+import { assertTournamentsReleased } from './tournament_release_gate';
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 const SEASON_ID_RE = /^\d{4}-Q[1-4]$/;
@@ -152,6 +153,10 @@ export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (reques
   if (kind !== 'collection_magnet' && kind !== 'tournament_ticket' && kind !== 'club_totem') {
     throw new HttpsError('invalid-argument', 'unsupported kind');
   }
+  // Old installed clients may still submit a saved Season Pass ticket. Keep
+  // the wire kind compatible, but never create tournament state while the
+  // owner lock is active.
+  if (kind === 'tournament_ticket') assertTournamentsReleased();
 
   const userRef = db.collection('users').doc(uid);
   const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`season_consumable_${giftId}`);

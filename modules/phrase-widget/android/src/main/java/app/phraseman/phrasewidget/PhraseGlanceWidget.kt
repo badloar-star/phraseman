@@ -59,8 +59,9 @@ import kotlin.math.roundToInt
  * This matches the in-app card and the iOS widget instead of the old flat fill.
  *
  * Content: a rounded identity chip + accent kicker ("ФРАЗА ДНЯ"), the phrase as
- * the hero (wraps fully — never an ellipsis-truncated single line), the meaning,
- * an IPA transcription on larger sizes, and on medium a round accent ▶ chip.
+ * the hero, the meaning, an IPA transcription on taller sizes, and a compact
+ * ▶ chip whenever the widget has room for the header. Short one-row widgets use
+ * a deliberately reduced layout so system font scaling cannot cut the phrase.
  * Tapping the card opens the phrase; ▶ opens it with auto-speak (the widget
  * itself never plays audio — on-device speech needs the app process).
  */
@@ -81,8 +82,12 @@ class PhraseGlanceWidget : GlanceAppWidget() {
   private fun WidgetBody(snapshot: Snapshot?) {
     val size = LocalSize.current
     val context = LocalContext.current
-    val compact = size.height < 116.dp
     val tiny = size.height < 84.dp
+    val compact = size.height < 116.dp
+    val mediumHeight = size.height < 170.dp
+    val showTranscription = size.height >= 190.dp
+    val showBottomPlay = size.height >= 230.dp
+    val expanded = size.height >= 260.dp
 
     if (snapshot == null) {
       EmptyState()
@@ -112,10 +117,21 @@ class PhraseGlanceWidget : GlanceAppWidget() {
         .fillMaxSize()
         .cornerRadius(24.dp)
         .background(ImageProvider(surface))
-        .padding(horizontal = 18.dp, vertical = 16.dp)
+        // One-row launchers may give only ~80dp. The previous fixed 16dp
+        // vertical padding left too little room for two independently wrapping
+        // texts, especially with Android's system font scale above 100%.
+        .padding(
+          horizontal = if (compact) 14.dp else 18.dp,
+          vertical = when {
+            tiny -> 6.dp
+            compact -> 8.dp
+            mediumHeight -> 10.dp
+            else -> 14.dp
+          },
+        )
         .clickable(openIntent),
     ) {
-      if (!tiny) {
+      if (!compact) {
         Row(verticalAlignment = Alignment.CenterVertically) {
           // Identity chip — the in-app card's icon plaque.
           Box(
@@ -149,30 +165,69 @@ class PhraseGlanceWidget : GlanceAppWidget() {
               maxLines = 1,
             )
           }
+          Spacer(GlanceModifier.defaultWeight())
+          // Keep audio available on every non-compact size, but place it in the
+          // header instead of spending another full row in a medium widget.
+          Box(
+            modifier = GlanceModifier
+              .size(30.dp)
+              .cornerRadius(15.dp)
+              .background(ColorProvider(strengthen(chipBg, accent)))
+              .clickable(playIntent),
+            contentAlignment = Alignment.Center,
+          ) {
+            Text(
+              "▶",
+              style = TextStyle(
+                color = ColorProvider(accent),
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+              ),
+              maxLines = 1,
+            )
+          }
         }
-        Spacer(GlanceModifier.height(10.dp))
+        Spacer(GlanceModifier.height(if (mediumHeight) 6.dp else 10.dp))
       }
 
-      // Hero phrase — wraps to multiple lines; never an ellipsis-clipped one-liner.
+      // Hero phrase gets the vertical budget first. Compact widgets cap both
+      // text blocks so their measured height can never overflow the host cell.
       Text(
         snapshot.english,
         style = TextStyle(
           color = ColorProvider(phrase),
-          fontSize = if (compact) 19.sp else 23.sp,
+          fontSize = when {
+            tiny -> 15.sp
+            compact -> 17.sp
+            mediumHeight -> 17.sp
+            expanded -> 23.sp
+            else -> 21.sp
+          },
           fontWeight = FontWeight.Bold,
         ),
-        maxLines = if (tiny) 2 else 3,
+        maxLines = if (expanded) 3 else 2,
       )
 
-      Spacer(GlanceModifier.height(6.dp))
+      Spacer(GlanceModifier.height(if (compact) 3.dp else 5.dp))
 
       Text(
         snapshot.meaning,
-        style = TextStyle(color = ColorProvider(sub), fontSize = 14.sp),
-        maxLines = if (tiny) 2 else 3,
+        style = TextStyle(
+          color = ColorProvider(sub),
+          fontSize = when {
+            tiny -> 10.sp
+            compact || mediumHeight -> 11.sp
+            else -> 13.sp
+          },
+        ),
+        maxLines = when {
+          expanded -> 3
+          showTranscription -> 2
+          else -> 1
+        },
       )
 
-      if (!compact && snapshot.transcription.isNotEmpty()) {
+      if (showTranscription && snapshot.transcription.isNotEmpty()) {
         Spacer(GlanceModifier.height(4.dp))
         Text(
           snapshot.transcription,
@@ -181,9 +236,9 @@ class PhraseGlanceWidget : GlanceAppWidget() {
         )
       }
 
-      // Play affordance only when there is room (medium-ish), matching iOS which
-      // shows it on medium only. A round accent chip, clearly tappable.
-      if (!compact) {
+      // A labeled duplicate is useful only on a genuinely tall widget. Audio is
+      // still available from the header chip at ordinary medium heights.
+      if (showBottomPlay) {
         Spacer(GlanceModifier.defaultWeight())
         Row(
           modifier = GlanceModifier.fillMaxWidth(),

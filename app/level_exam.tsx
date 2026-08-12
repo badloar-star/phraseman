@@ -41,7 +41,7 @@ import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_p
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { levelExamKey, storageStudyTarget } from './target_storage_keys';
+import { levelExamKey, storageStudyTarget, storedProgressFlagIsTrue } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime';
 import { recordLevelExamAttempt } from './level_exam_attempts';
@@ -545,7 +545,6 @@ export default function LevelExam() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { hasPremiumAccess } = usePremium();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
   const isFrenchExam = storageStudyTarget(studyTarget) === 'fr';
   const frenchExamSourceLocale = lang === 'uk' ? 'uk' : 'ru';
@@ -570,6 +569,8 @@ export default function LevelExam() {
   // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
   // Премиум/тестер обходят списание внутри spendAmount (isUnlimited).
   const { isUnlimited: energyUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
+  const examEnergyUnlimited = energyUnlimited || hasPremiumAccess;
   const [noEnergy, setNoEnergy] = useState(false);
 
   const englishQuestions = useMemo(() => {
@@ -763,7 +764,7 @@ export default function LevelExam() {
     setExamStarting(true);
     try {
       // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
-      if (!energyUnlimited) {
+      if (!examEnergyUnlimited) {
         if (energy + bonusEnergy < LEVEL_EXAM_ENERGY) {
           void trackFeatureBlocked('level_exam', 'start', 'no_energy', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
           setNoEnergy(true);
@@ -784,7 +785,7 @@ export default function LevelExam() {
     } finally {
       setExamStarting(false);
     }
-  }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
+  }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, examEnergyUnlimited, energy, bonusEnergy, spendAmount]);
 
   const { flashKey, flash } = useWordFlash();
 
@@ -847,8 +848,21 @@ export default function LevelExam() {
     try {
       const attemptNumber = await recordLevelExamAttempt(lvl, studyTarget);
       setExamAttemptNumber(attemptNumber);
-      await AsyncStorage.setItem(levelExamKey(lvl, 'pct', studyTarget), String(pct));
-      await AsyncStorage.setItem(levelExamKey(lvl, 'passed', studyTarget), passed ? '1' : '0');
+      const [[, previousPctRaw], [, previousPassedRaw]] = await AsyncStorage.multiGet([
+        levelExamKey(lvl, 'pct', studyTarget),
+        levelExamKey(lvl, 'passed', studyTarget),
+      ]);
+      const previousPct = Number(previousPctRaw ?? 0);
+      const persistedPct = Math.max(Number.isFinite(previousPct) ? previousPct : 0, pct);
+      const persistedPassed = storedProgressFlagIsTrue(previousPassedRaw) || passed;
+      // Локальный формат 1/0 сохраняет совместимость со старыми клиентами;
+      // читатели понимают и его, и канонические cloud-значения true/false. Результат
+      // монотонный: пересдача не может понизить лучший процент или снова закрыть
+      // уже открытый уровень.
+      await AsyncStorage.multiSet([
+        [levelExamKey(lvl, 'pct', studyTarget), String(persistedPct)],
+        [levelExamKey(lvl, 'passed', studyTarget), persistedPassed ? '1' : '0'],
+      ]);
       // При сдаче зачёта открываем следующий уровень.
       if (passed) {
         const nextLevel = getNextCourseLevel(lvl as CourseLevel);

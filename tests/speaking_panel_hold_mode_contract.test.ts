@@ -33,7 +33,7 @@ describe('SpeakingPanel hold-mode wiring', () => {
 
   it('warms whisper in the background while system hold remains immediately available', () => {
     expect(source).toContain('ensureNeuralModel(recognitionLocale)');
-    expect(source).toContain('const holdMode = !isPreview && !!speech');
+    expect(source).toContain('const holdMode = !!speech');
     expect(source).not.toContain('autoStartedRef');
     expect(source).not.toContain('holdModelFailed');
   });

@@ -1,0 +1,98 @@
+# Смоук-тест MAX Voice (МАКС ПЛАН §9).
+#
+# Гоняется через scripts/max_voice_smoke.sh — тот собирает приложение, поднимает
+# симулятор и складывает скриншоты каждого шага в tmp/smoke_artifacts/, откуда их
+# читает и сверяет ассистент.
+#
+# Цепляемся ТОЛЬКО за testID, не за текст: интерфейс переведён на 8 языков, и
+# текстовые матчеры ломались бы от смены языка устройства.
+#
+# Что этот флоу проверяет и чего НЕ проверяет:
+#   ✓ навигация, гейты видимости, поднятие звонка, teardown, экран разбора
+#   ✗ фактическое качество звука (Maestro не слышит) — это остаётся человеку
+appId: app.phraseman
+name: MAX Voice smoke
+---
+- launchApp:
+    clearState: false
+    permissions:
+      microphone: allow
+- takeScreenshot: tmp/smoke_artifacts/01_launch
+
+# ── Дойти до раздела диалогов ───────────────────────────────────────────────
+# Вкладка может называться по-разному в зависимости от языка, поэтому идём
+# через явный deeplink роутера — он от языка не зависит.
+- openLink: phraseman://ai_dialog_home
+- assertVisible:
+    id: "max-voice-entry-card"
+- takeScreenshot: tmp/smoke_artifacts/02_entry_card_visible
+
+# ── Пре-старт ───────────────────────────────────────────────────────────────
+- tapOn:
+    id: "max-voice-entry-card"
+- assertVisible:
+    id: "max-call-prestart-screen"
+- takeScreenshot: tmp/smoke_artifacts/03_prestart
+
+# ── Сам звонок ──────────────────────────────────────────────────────────────
+- tapOn:
+    id: "max-call-start-button"
+# Поднятие звонка — сеть (preflight → mint → SDP → ICE). Ждём щедро: на холодном
+# симуляторе первый вызов functions может тянуться из-за cold start.
+- extendedWaitUntil:
+    visible:
+      id: "max-call-session-screen"
+    timeout: 45000
+- takeScreenshot: tmp/smoke_artifacts/04_call_connected
+
+# Halo-сфера должна дышать — снимаем два кадра с паузой, чтобы разница
+# была видна на скриншотах (анимацию Maestro не измеряет, но кадры сравнимы).
+- wait: 1500
+- takeScreenshot: tmp/smoke_artifacts/05_halo_frame_a
+- wait: 1500
+- takeScreenshot: tmp/smoke_artifacts/06_halo_frame_b
+
+# Кнопки управления на месте и реагируют.
+- assertVisible:
+    id: "max-call-mute-button"
+- assertVisible:
+    id: "max-call-end-button"
+- tapOn:
+    id: "max-call-mute-button"
+- takeScreenshot: tmp/smoke_artifacts/07_muted
+- tapOn:
+    id: "max-call-mute-button"
+
+# Субтитры (если кнопка есть в этой сборке — не критично для смоука).
+- runFlow:
+    when:
+      visible:
+        id: "max-call-captions-button"
+    commands:
+      - tapOn:
+          id: "max-call-captions-button"
+      - takeScreenshot: tmp/smoke_artifacts/08_captions
+
+# Дать звонку пожить — heartbeat уходит раз в 30с, хотим увидеть хотя бы один.
+- wait: 32000
+- takeScreenshot: tmp/smoke_artifacts/09_call_alive_after_heartbeat
+
+# ── Завершение и разбор ─────────────────────────────────────────────────────
+- tapOn:
+    id: "max-call-end-button"
+- extendedWaitUntil:
+    visible:
+      id: "max-voice-review-screen"
+    timeout: 20000
+- takeScreenshot: tmp/smoke_artifacts/10_review_screen
+
+# Разбор фраз ходит на сервер (premiumDialogReview mode:'voice'). Ждём, пока
+# состояние перестанет быть loading — дальше скриншот покажет, что именно
+# пришло: корректировки, «ошибок нет» или тихий фолбэк.
+- extendedWaitUntil:
+    notVisible:
+      id: "max-voice-review-corrections-loading"
+    timeout: 40000
+- takeScreenshot: tmp/smoke_artifacts/11_review_corrections
+- scroll
+- takeScreenshot: tmp/smoke_artifacts/12_review_scrolled

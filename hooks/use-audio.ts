@@ -5,10 +5,10 @@ import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settin
 import { hasPhraseAudio, playPhraseByText, stopPhraseAudio } from './phrase_audio_player';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
-  acquireAudioActivity,
-  whenAudioActivitySettled,
-  type AudioActivityLease,
-} from '../modules/audio/audio_activity';
+  claimSpokenAudio,
+  whenSpokenAudioReady,
+  type SpokenAudioClaim,
+} from '../modules/audio/audio_runtime_arbiter';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
@@ -87,19 +87,23 @@ export function useAudio() {
   const pendingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const clipStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const speechGenerationRef = useRef(0);
-  const speechLeaseRef = useRef<AudioActivityLease | null>(null);
+  const speechClaimRef = useRef<SpokenAudioClaim | null>(null);
 
-  const stopVoiceNow = () => {
+  const stopSystemSpeechNow = useCallback(() => {
     speechGenerationRef.current += 1;
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
     if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
     clipStartTimerRef.current = null;
     safeSpeechStop();
+    speechClaimRef.current?.release();
+    speechClaimRef.current = null;
+  }, []);
+
+  const stopVoiceNow = useCallback(() => {
+    stopSystemSpeechNow();
     stopPhraseAudio();
-    speechLeaseRef.current?.release();
-    speechLeaseRef.current = null;
-  };
+  }, [stopSystemSpeechNow]);
 
   useEffect(() => {
     const unregisterVoiceStop = voicePlaybackPolicy.registerStop(stopVoiceNow);
@@ -108,13 +112,13 @@ export function useAudio() {
       stopVoiceNow();
       lastTextRef.current = '';
     };
-  }, []);
+  }, [stopVoiceNow]);
 
   const stop = useCallback(() => {
     stopVoiceNow();
     lastTextRef.current = '';
     lastSpeakAtRef.current = 0;
-  }, []);
+  }, [stopVoiceNow]);
 
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
     const normalized = text?.trim();
@@ -214,27 +218,29 @@ export function useAudio() {
           speechGenerationRef.current !== generation
           || !voicePlaybackPolicy.canStart(voicePolicyToken)
         ) return;
-        speechLeaseRef.current?.release();
-        const speechLease = acquireAudioActivity('spoken');
-        speechLeaseRef.current = speechLease;
-        const releaseSpeechLease = () => {
-          speechLease.release();
-          if (speechLeaseRef.current === speechLease) speechLeaseRef.current = null;
+        speechClaimRef.current?.release();
+        const speechClaim = claimSpokenAudio(stopSystemSpeechNow);
+        if (!speechClaim) return;
+        speechClaimRef.current = speechClaim;
+        const releaseSpeechClaim = () => {
+          speechClaim.release();
+          if (speechClaimRef.current === speechClaim) speechClaimRef.current = null;
         };
-        void whenAudioActivitySettled().finally(() => {
+        void whenSpokenAudioReady(speechClaim).then((audioReady) => {
           if (
-            speechGenerationRef.current !== generation
+            !audioReady
+            || speechGenerationRef.current !== generation
             || !voicePlaybackPolicy.canStart(voicePolicyToken)
           ) {
-            releaseSpeechLease();
+            releaseSpeechClaim();
             return;
           }
           if (lastTextRef.current !== dedupeKey) {
-            releaseSpeechLease();
+            releaseSpeechClaim();
             return;
           }
           const finalError = (e: Error) => {
-            releaseSpeechLease();
+            releaseSpeechClaim();
             opts?.onError?.(e);
           };
           const speechOptions: SpeechOptions = {
@@ -245,17 +251,17 @@ export function useAudio() {
             volume: 1,
             onStart: opts?.onStart,
             onDone: () => {
-              releaseSpeechLease();
+              releaseSpeechClaim();
               opts?.onDone?.();
             },
             onStopped: () => {
-              releaseSpeechLease();
+              releaseSpeechClaim();
               opts?.onStopped?.();
             },
             onError: requestedVoice
               ? (e: Error) => {
                   if (!voicePlaybackPolicy.canStart(voicePolicyToken)) {
-                    releaseSpeechLease();
+                    releaseSpeechClaim();
                     return;
                   }
                   retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
@@ -270,7 +276,7 @@ export function useAudio() {
               if (voicePlaybackPolicy.canStart(voicePolicyToken)) {
                 retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
               } else {
-                releaseSpeechLease();
+                releaseSpeechClaim();
               }
             } else {
               finalError(e instanceof Error ? e : new Error(String(e)));
@@ -279,7 +285,7 @@ export function useAudio() {
         });
       }, STOP_SETTLE_MS);
     }
-  }, []);
+  }, [stopSystemSpeechNow]);
 
   return { speak, stop };
 }

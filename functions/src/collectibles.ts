@@ -30,6 +30,7 @@ import {
   type TournamentRoomDoc,
 } from './tournament_core';
 import { normalizeTournamentEconomy } from './tournament_economy';
+import { assertTournamentsReleased } from './tournament_release_gate';
 import {
   COLLECTIBLE_POOL,
   COLLECTIBLE_SECRET_BY_SET,
@@ -403,6 +404,10 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
   if (!EVENT_ID_RE.test(eventIdRaw)) {
     throw new HttpsError('invalid-argument', 'bad_event_id');
   }
+  // Collectibles is a shared callable, so it needs its own fail-closed check:
+  // an old tournament client must not bypass the retired tournament callables
+  // by submitting a tournament event through this otherwise-live endpoint.
+  if (eventIdRaw.startsWith('tournament:')) assertTournamentsReleased();
 
   const db = admin.firestore();
   await assertCollectibleRewardEventEligible(eventIdRaw, async (roomId) => {

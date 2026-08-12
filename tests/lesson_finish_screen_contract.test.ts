@@ -14,7 +14,7 @@ describe('lesson finish screen contract', () => {
     expect(completionBlock).not.toContain('total_answers');
   });
 
-  it('replays pending last lesson mistakes before opening congratulations', () => {
+  it('replays pending last lesson mistakes before opening the final screen', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson1.tsx'), 'utf8');
     expect(source).toContain('const ERROR_REPLAY_DELAY_ANSWERS = 2;');
 
@@ -34,7 +34,7 @@ describe('lesson finish screen contract', () => {
     expect(goNextBlock).toContain('questionsSinceErrorRef.current >= ERROR_REPLAY_DELAY_ANSWERS');
   });
 
-  it('keeps result reveal animation on the JS driver before lesson completion', () => {
+  it('keeps result reveal animation on the native driver before lesson completion', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson1.tsx'), 'utf8');
     const resultStart = source.indexOf('// Сразу показываем результат');
     expect(resultStart).toBeGreaterThan(-1);
@@ -42,14 +42,17 @@ describe('lesson finish screen contract', () => {
     const resultBlock = source.slice(resultStart, source.indexOf('const nextCell = (cellIndex + 1) % effectiveTotal', resultStart));
     expect(resultBlock).toContain('fadeAnim.stopAnimation');
     expect(resultBlock).toContain('Animated.timing(fadeAnim');
-    expect(resultBlock).toContain('useNativeDriver: false');
-    expect(resultBlock).not.toContain('useNativeDriver: true');
+    expect(resultBlock).toContain('useNativeDriver: true');
+    expect(resultBlock).not.toContain('useNativeDriver: false');
   });
 
-  it('exposes stable test ids for the cycle-end modal QA gate', () => {
+  it('routes directly to the final screen without a duplicate cycle-end modal', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson1.tsx'), 'utf8');
 
-    expect(source).toContain('testID="lesson-cycle-end-modal"');
-    expect(source).toContain('testID="lesson-cycle-end-continue"');
+    expect(source).not.toContain('LessonCycleEndModal');
+    expect(source).not.toContain('testID="lesson-cycle-end-modal"');
+    expect(source).not.toContain('testID="lesson-cycle-end-continue"');
+    expect(source).toContain('There is one completion surface: go straight to lesson_complete.');
+    expect(source).toContain('await navigate();');
   });
 });

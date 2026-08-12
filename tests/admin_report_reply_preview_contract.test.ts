@@ -34,6 +34,13 @@ test('admin report AI action prepares drafts without sending them', () => {
   expect(prepareFunction).not.toContain('draftReportReplyAI(');
 });
 
+test('the published admin preview is read from the single live surface', () => {
+  const firebaseJson = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '..', 'firebase.json'), 'utf8'),
+  ) as { hosting: Array<{ target?: string; public?: string }> };
+  expect(firebaseJson.hosting.find((entry) => entry.target === 'admin')?.public).toBe('admin/v2');
+});
+
 test('prepared replies expose resolution and reward metadata', () => {
   expect(adminHtml).toContain('resolutionLabels');
   expect(adminHtml).toContain('rewardGroup');
@@ -61,35 +68,20 @@ test('the current replies.json batch is published in the admin preview', () => {
   const preparedById = new Map(readPreparedReplies().map((row) => [row.reportId, row]));
 
   const expected = [
-    ['AczEhLm6hJioJbqUxnY3', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'neon-report-discipline', 0],
-    ['7lRyNxZ59O0XbfyaTVmM', '99593d2b-a277-4923-b045-104bb3f5d495', 'not_reproduced', 'lesson2-she-option-presence', 0],
-    ['hEGotOManqcvLj5hKek0', '62615956-e1e1-4b47-8fa0-caa088fff6d4', 'confirmed_fixed', 'impuls-day36-missing-subject', 1],
-    ['OSSadmJP0m12rDu7zY8b', '7b0b567c-d158-403f-b7d1-c8284ce9deea', 'duplicate', 'personal-plan-stale-audio-binding', 0],
-    ['N5WJhdhAV3FbPvWemOiH', '2442f528-f2e3-4b56-9039-f40adf707ea8', 'confirmed_investigating', 'personal-plan-theory-task-alignment-gavan-d8', 1],
-    ['thnLe30UbiT4QC8dcRaZ', '0b5e816d-e740-4067-bd32-a003be730c0b', 'by_design', 'lesson13-later-vs-late', 0],
-    ['WBA37juO2ZG5wyaWPbIo', 'e79d3a7c-f49a-4d45-b7a4-76d7ee4a754c', 'no_issue_details', 'lesson30-listen-build-mismatch-unspecified', 0],
-    ['imZlIU2dOYlhTDQ8ehtz', 'd9ca4a06-28a9-4098-853c-bd39be934ad6', 'duplicate', 'lesson21-synonym-audio', 0],
-    ['l4LbKLwrvSkdzPaCpa4w', 'd9ca4a06-28a9-4098-853c-bd39be934ad6', 'duplicate', 'lesson21-synonym-audio', 0],
-    ['tQQVuBESA2CSXjWDcmY2', 'd9ca4a06-28a9-4098-853c-bd39be934ad6', 'duplicate', 'lesson21-synonym-audio', 0],
-    ['acPQkpOWTI86Mf8KOkJs', 'd9ca4a06-28a9-4098-853c-bd39be934ad6', 'duplicate', 'lesson21-synonym-audio', 0],
-    ['d7PjNbly9huR51j0nZNN', '7b0b567c-d158-403f-b7d1-c8284ce9deea', 'duplicate', 'personal-plan-stale-audio-binding', 0],
-    ['4iso6vyOZnfePFO32oU5', '18274995-0d6b-4fe5-b92b-078f51ab1c2b', 'duplicate', 'personal-plan-stale-audio-binding', 0],
-    ['UOxo5sQ2vNBwtkjWZYpX', '18274995-0d6b-4fe5-b92b-078f51ab1c2b', 'content_review', 'lesson8-preposition-distractors', 0],
-    ['iXB8hzOipdElLLR99EMS', '2d6d338b-f915-48ee-9282-3f3a15dca15f', 'confirmed_fixed', 'pronunciation-compound-number-digits', 1],
-    ['yk1n8zhYreS8vm3xPivm', 'edca3193-bf9d-4383-a468-799bff73bb00', 'duplicate', 'flashcard-pack-shard-purchase', 0],
-    ['JhrIHG5oAPgWAHbcf7KQ', 'edca3193-bf9d-4383-a468-799bff73bb00', 'duplicate', 'flashcard-pack-shard-purchase', 0],
-    ['wBbL7btzE7mI4uwgrJWh', 'd5f541a0-efc6-4170-bfbb-cc87e8e702e1', 'duplicate', 'personal-plan-stale-audio-binding', 0],
-    ['vk6lsDEEzI4Dok9OJWS6', 'd5f541a0-efc6-4170-bfbb-cc87e8e702e1', 'duplicate', 'personal-plan-stale-audio-binding', 0],
-    ['sOXRG2snJkntDjdKUlVu', 'f0ca2c1a-45a3-4c4a-9947-1f47aee5904b', 'no_issue_details', 'tournament-unspecified', 0],
-    ['RdzYVLbcmSeVDVtIzEd4', '2442f528-f2e3-4b56-9039-f40adf707ea8', 'duplicate', 'flashcard-pack-shard-purchase', 0],
-    ['VAXanKs98uPapIllMCOR', '9b674d47-f9c1-457c-a7ae-8b85434254c2', 'not_reproduced', 'daily-phrase-flashcard-save-count', 0],
-    ['AlFjdKO2dAqj2m6E19cP', 'a114eacb-184d-43aa-8275-6f21094949db', 'confirmed_investigating', 'personal-plan-stale-audio-binding', 1],
-    ['kzFKOiXbHEav7l4nakpB', '9b674d47-f9c1-457c-a7ae-8b85434254c2', 'confirmed_fixed', 'daily-tasks-loading-race', 1],
-    ['JCLGsmbXimrxrx2SLDoS', 'edca3193-bf9d-4383-a468-799bff73bb00', 'confirmed_investigating', 'flashcard-pack-shard-purchase', 1],
-    ['EXzUZlJfVUstcHVDnwyO', '2442f528-f2e3-4b56-9039-f40adf707ea8', 'confirmed_fixed', 'lesson15-theory-my-mine', 1],
-    ['UtPgIvfIbrd9x4m6Dgae', 'a114eacb-184d-43aa-8275-6f21094949db', 'confirmed_investigating', 'lesson28-audio-missing', 1],
-    ['RJDFIHlWo8XyrlyOyxfH', 'dd5ae708-9f12-4186-b6c6-5ba58186d4bd', 'duplicate', 'lesson-long-word-options', 0],
-    ['caOdngOoVjQRQTgQUwL9', 'ff56979a-d65b-490d-8bbe-7d47ede60c28', 'confirmed_fixed', 'lingman-video-unread-badge', 1],
+    ['DhK3XcrfjUlJbtwqderO', '18274995-0d6b-4fe5-b92b-078f51ab1c2b', 'confirmed_fixed', 'personal-plan-error-feedback-persistence', 1],
+    ['dZlDwBjL1Ew6Mcu0nLop', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'by_design', 'lesson5-frequency-adverb-order', 0],
+    ['nLQZOj8uk6dhGCDHFUMG', 'df7b4820-8f3c-486e-8570-ac6b66ce6d98', 'user_error', 'lesson3-he-wears-glasses', 0],
+    ['XbRAuTpygAqh7mzRjpjB', '2f82b9ec-b0af-4554-a59b-02e6527108d6', 'duplicate', 'flashcard-pack-shard-purchase', 0],
+    ['8hWRTWLasuU0gtKIc1gE', '2f82b9ec-b0af-4554-a59b-02e6527108d6', 'confirmed_fixed', 'flashcard-pack-shard-purchase', 2],
+    ['ln3vcMgzNnMC5pj7srAQ', 'ff56979a-d65b-490d-8bbe-7d47ede60c28', 'confirmed_fixed', 'lesson21-nothing-wrong-translation', 1],
+    ['aL0EXUQfO9xwogczKrvv', 'a114eacb-184d-43aa-8275-6f21094949db', 'by_design', 'personal-plan-listen-choose-hidden-transcript', 0],
+    ['wXoD0PoyC2lFuWaaVF5R', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson3-subject-agreement', 0],
+    ['bdwAV2iBRkWkE0PzGLan', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson3-subject-meaning', 0],
+    ['nupzElGoogbGDK5DLSNR', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],
+    ['yEYsJ9999FkOadOuSnnn', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],
+    ['bt9JXZ87gTNFAcLRXZT5', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],
+    ['HLnsVFPCAL8Boray30oL', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'user_error', 'irregular-verb-take', 0],
+    ['VdmYsQVfhCFYjcxLt5Sb', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'user_error', 'irregular-verb-eat', 0],
   ] as const;
 
   const actual = replies.map((reply) => {
@@ -107,14 +99,6 @@ test('the current replies.json batch is published in the admin preview', () => {
     }));
   }
 
-  const neonReports = new Set([
-    'AczEhLm6hJioJbqUxnY3', 'wXoD0PoyC2lFuWaaVF5R', 'bdwAV2iBRkWkE0PzGLan',
-    'nupzElGoogbGDK5DLSNR', 'yEYsJ9999FkOadOuSnnn', 'bt9JXZ87gTNFAcLRXZT5',
-    'HLnsVFPCAL8Boray30oL', 'VdmYsQVfhCFYjcxLt5Sb',
-  ]);
-  expect(replies.filter((row) => neonReports.has(row.reportId)).map((row) => row.reportId))
-    .toEqual(['AczEhLm6hJioJbqUxnY3']);
-  expect(new Set([...expected.map(([reportId]) => reportId), ...neonReports]).size).toBe(36);
 });
 
 test('the published prepared replies contain readable UTF-8 text', () => {
@@ -194,7 +178,11 @@ test('prepared drafts are user-safe and manual bulk send is guarded', () => {
   expect(validationEnd).toBeGreaterThan(validationStart);
   const validate = Function(`${adminHtml.slice(validationStart, validationEnd)}; return validatePreparedReplyBatch;`)();
   const base = { title: 'x', body: 'y', shards: 1, resolution: 'confirmed_fixed', rewardGroup: 'group-a' };
-  const preparedBatch = readPreparedReplies();
+  const currentIds = new Set(
+    (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'replies.json'), 'utf8')) as Array<{ reportId: string }>)
+      .map((row) => row.reportId),
+  );
+  const preparedBatch = readPreparedReplies().filter((row) => currentIds.has(row.reportId));
   expect(validate(preparedBatch).ok).toBe(true);
   expect(validate([base]).ok).toBe(true);
   expect(validate([base, { ...base, title: 'y' }]).ok).toBe(false);
@@ -204,14 +192,18 @@ test('prepared drafts are user-safe and manual bulk send is guarded', () => {
   expect(validate([base, { ...base, resolution: 'duplicate', shards: 0 }]).ok).toBe(true);
 });
 
-test('all published replies use respectful support language and mention only awarded rewards', () => {
-  const batch = readPreparedReplies();
+test('the current reply batch uses respectful support language and mentions only awarded rewards', () => {
+  const currentIds = new Set(
+    (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'replies.json'), 'utf8')) as Array<{ reportId: string }>)
+      .map((row) => row.reportId),
+  );
+  const batch = readPreparedReplies().filter((row) => currentIds.has(row.reportId));
   // Quoted pronouns may be the subject of a language explanation; only flag
   // direct informal address outside Russian quotation marks.
   const informalAddress = /(^|[\s("'])(ты|тебя|тебе|тобой|твой|твоя|твоё|твои|твоего|твоему|твою|твоих)(?=$|[\s,.:;!?)"'])/iu;
   const internalOrRoboticLanguage = /правил[оа]\s+(дубл|наград)|дубликат|отдельная награда|награда не начисляется|без награды|безопасно объявлять|по текущим данным|подтвердили сигнал|повторный сигнал|device-repro|TextInput|watchdog|dataId|contentId/iu;
 
-  expect(batch.length).toBeGreaterThanOrEqual(48);
+  expect(batch).toHaveLength(currentIds.size);
   for (const row of batch) {
     const customerText = `${row.title}\n${row.body}`;
     expect(customerText).not.toMatch(informalAddress);

@@ -32,7 +32,7 @@ describe('tournaments hub live refresh contract', () => {
 
   test('room subscriptions and timers are gated by the real tournaments tab owner', () => {
     const screenBlock = HUB_SOURCE.slice(
-      HUB_SOURCE.indexOf('export default function TournamentsScreen'),
+      HUB_SOURCE.indexOf('function TournamentsScreen'),
       HUB_SOURCE.indexOf('const LiveDot = memo'),
     );
 

@@ -1,8 +1,8 @@
 // зачем: владелец: «воркер строим» — кнопка генерации в админке должна давать РЕЗУЛЬТАТ,
 // а не вечное queued. Вертикальный срез E1: (1) сид демо-банка в ОДИН документ
-// content_v2_sources/ep-01 (Firebase-экономия: весь банк одним чтением), (2) запуск
+// content_v2_test_sources/ep-01 (Firebase-экономия: весь банк одним чтением), (2) запуск
 // компиляции по jobId — резолв профиля из источника с проверкой canonical hash,
-// чистый компилятор + блокирующий QA (Task 7), артефакт в content_v2_compiled_units,
+// чистый компилятор + блокирующий QA (Task 7), тестовый артефакт в content_v2_test_compiled_units,
 // стадии job'а -> succeeded, идемпотентный повтор. Никаких cron/onSnapshot — только
 // явные вызовы из админки.
 import * as admin from "firebase-admin";
@@ -12,6 +12,7 @@ import { requireContentDraftWriter } from "../admin_content_studio_authoring";
 import { hashCanonicalBody } from "../../../modules/learning-v2/policies/decision_registry";
 import {
   buildE1DemoItems,
+  buildE1DemoActivityBindings,
   buildE1DemoProfile,
   E1_DEMO_CAN_DO_OUTCOME_ID,
   E1_DEMO_EPISODE_ID,
@@ -20,12 +21,20 @@ import { validateV2ContentItem, type V2ContentItem } from "../../../modules/lear
 import type { V2LanguageProfileBody } from "../../../modules/learning-v2/content/language_profile";
 import { compileV2EpisodeContent } from "./v2_content_compilation";
 import type { V2AdminGenerationRequest } from "./v2_admin_generation_contract";
+import {
+  LEARNING_V2_TEST_COMPILED_COLLECTION,
+  LEARNING_V2_TEST_JOB_COLLECTION,
+  LEARNING_V2_TEST_SOURCE_COLLECTION,
+  assertLearningV2E1DemoProvenance,
+  materializeLearningV2E1DemoProvenance,
+} from "./learning_v2_test_content_policy";
 
 const callableOptions = { region: "us-central1", enforceAppCheck: ENFORCE_APP_CHECK } as const;
 const JOBS = "content_v2_generation_jobs";
 const STAGES = "content_v2_generation_stages";
-const SOURCES = "content_v2_sources";
-const COMPILED = "content_v2_compiled_units";
+// Демо никогда не пересекается с обычным authoring/release namespace.
+const SOURCES = LEARNING_V2_TEST_SOURCE_COLLECTION;
+const COMPILED = LEARNING_V2_TEST_COMPILED_COLLECTION;
 
 export interface V2WorkerDependencies {
   readonly db: admin.firestore.Firestore;
@@ -69,14 +78,24 @@ export async function handleAdminSeedV2E1DemoSource(
   const actor = requireContentDraftWriter(request.auth);
   const profile = buildE1DemoProfile();
   const items = buildE1DemoItems();
+  const activityBindings = buildE1DemoActivityBindings();
   const now = dependencies.now?.() ?? new Date().toISOString();
   const contentHash = hashCanonicalBody(profile);
+  const provenance = materializeLearningV2E1DemoProvenance({
+    episodeId: E1_DEMO_EPISODE_ID,
+    canDoOutcomeId: E1_DEMO_CAN_DO_OUTCOME_ID,
+    languageProfile: profile,
+    contentItems: items,
+    activityBindings,
+  });
   await dependencies.db.collection(SOURCES).doc(E1_DEMO_EPISODE_ID).set({
     schemaVersion: "v2-content-source.v1",
     episodeId: E1_DEMO_EPISODE_ID,
     canDoOutcomeId: E1_DEMO_CAN_DO_OUTCOME_ID,
     languageProfile: profile,
     contentItems: items,
+    activityBindings,
+    provenance,
     updatedAt: now,
     updatedBy: actor.uid,
   });
@@ -137,7 +156,7 @@ export async function handleAdminRunV2E1Compilation(
     }
     generationRequest = storedRequest;
     stageIds = Array.isArray((job.plan as Record<string, unknown> | undefined)?.stages)
-      ? ((job.plan as { stages: ReadonlyArray<{ id?: unknown }> }).stages
+      ? ((job.plan as { stages: readonly { id?: unknown }[] }).stages
         .map((stage) => (typeof stage.id === "string" ? stage.id : ""))
         .filter(Boolean))
       : [];
@@ -148,6 +167,13 @@ export async function handleAdminRunV2E1Compilation(
   const source = sourceSnapshot.data() as Record<string, unknown>;
   const canDoOutcomeId = typeof source.canDoOutcomeId === "string" ? source.canDoOutcomeId : "";
   if (!canDoOutcomeId) throw new Error("v2_worker_source_invalid");
+  assertLearningV2E1DemoProvenance(source.provenance, {
+    episodeId: source.episodeId,
+    canDoOutcomeId: source.canDoOutcomeId,
+    languageProfile: source.languageProfile,
+    contentItems: source.contentItems,
+    activityBindings: source.activityBindings,
+  });
 
   if (directMode) {
     // Прямой прогон компилирует ровно текущий источник: пин профиля выводится из его
@@ -172,6 +198,8 @@ export async function handleAdminRunV2E1Compilation(
     if (!validated.ok) throw new Error(`v2_worker_source_invalid:${validated.issues[0] ?? "item"}`);
     return validated.value;
   });
+  const activityBindings = source.activityBindings;
+  if (!Array.isArray(activityBindings)) throw new Error("v2_worker_source_invalid:activity_bindings");
 
   if (!generationRequest) throw new Error("v2_worker_request_invalid");
   const pinnedRequest = generationRequest;
@@ -183,6 +211,7 @@ export async function handleAdminRunV2E1Compilation(
     episodeId,
     canDoOutcomeId,
     contentItems,
+    activityBindings: activityBindings as never,
     resolveLanguageProfile: async () => ({
       ref: pinnedRequest.languageProfileRef,
       body: source.languageProfile as V2LanguageProfileBody,
@@ -190,7 +219,8 @@ export async function handleAdminRunV2E1Compilation(
   });
 
   await db.runTransaction(async (tx) => {
-    const freshJob = await tx.get(db.collection(JOBS).doc(jobId));
+    const jobCollection = directMode ? LEARNING_V2_TEST_JOB_COLLECTION : JOBS;
+    const freshJob = await tx.get(db.collection(jobCollection).doc(jobId));
     const freshState = (freshJob.data() as Record<string, unknown> | undefined)?.state;
     // Гонка двух кликов по job из очереди — второй становится no-op; прямой прогон
     // осознанно перекомпилирует текущий источник (результат детерминирован).
@@ -200,11 +230,12 @@ export async function handleAdminRunV2E1Compilation(
       episodeId,
       jobId,
       artifact: compiled,
+      provenance: source.provenance,
       compiledAt: now,
       compiledBy: actor.uid,
     });
     if (directMode) {
-      tx.set(db.collection(JOBS).doc(jobId), {
+      tx.set(db.collection(LEARNING_V2_TEST_JOB_COLLECTION).doc(jobId), {
         schemaVersion: "v2-generation-job.v1",
         jobId,
         mode: "direct_vertical_slice",
@@ -213,6 +244,7 @@ export async function handleAdminRunV2E1Compilation(
         compiledAt: now,
         compiledBy: actor.uid,
         artifactPath: `${COMPILED}/${episodeId}`,
+        provenance: source.provenance,
       }, { merge: true });
     } else {
       tx.update(db.collection(JOBS).doc(jobId), {

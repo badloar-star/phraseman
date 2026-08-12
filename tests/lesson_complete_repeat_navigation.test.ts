@@ -12,8 +12,21 @@ describe('lesson_complete repeat navigation', () => {
 
     expect(handlerStart).toBeGreaterThanOrEqual(0);
     expect(handler).toContain('void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});');
-    expect(handler).toContain("router.replace({ pathname: '/lesson1', params: { id: lessonId } });");
+    expect(handler).toContain("router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });");
+    expect(handler.indexOf('markNextNavigationAsReplace()')).toBeLessThan(handler.indexOf('router.replace'));
     expect(handler).not.toContain('await primeLessonScreenFromStorage');
+  });
+
+  it('passes a fresh durable reward identity without waiting on storage', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
+    const handlerStart = source.indexOf('const handleRepeatLesson = useCallback');
+    const handler = source.slice(handlerStart, handlerStart + 1500);
+
+    expect(handler).toContain('normalizeLessonServerAttemptId(params.repeatAttemptId)');
+    expect(handler).toContain('?? makeLessonServerAttemptId()');
+    expect(handler).toContain("lessonSessionKey(lessonId, 'serverAttemptId', studyTarget)");
+    expect(handler).toContain('void AsyncStorage.setItem(');
+    expect(handler).not.toContain('await AsyncStorage.setItem(');
   });
 
   it('guards the repeat button against double taps while the route opens', () => {

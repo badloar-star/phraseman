@@ -314,6 +314,116 @@ describe('ExpoSfxBackend', () => {
     expect(ended).toHaveBeenCalledTimes(1);
   });
 
+  test('releases the sound slot when the readiness retry throws', () => {
+    type Status = { isLoaded?: boolean; playing?: boolean };
+    let listener: (status: Status) => void = () => {};
+    let playCalls = 0;
+    const player: SfxPlayerLike = {
+      volume: 1,
+      play: () => {
+        playCalls += 1;
+        if (playCalls === 2) throw new Error('native retry failed');
+      },
+      pause: jest.fn(),
+      seekTo: jest.fn(),
+      remove: jest.fn(),
+      addListener: (_event, callback) => {
+        listener = callback;
+        return { remove: () => { listener = () => {}; } };
+      },
+    };
+
+    const backend = new ExpoSfxBackend(() => player, 2);
+    const ended = jest.fn();
+    expect(backend.play('pm.learn.correct', 1, 0.42, ended)).toBe(true);
+    expect(playCalls).toBe(1);
+
+    listener({ isLoaded: true, playing: false });
+    expect(playCalls).toBe(2);
+    expect(ended).toHaveBeenCalledTimes(1);
+    expect(player.pause).toHaveBeenCalledTimes(1);
+
+    // The failed generation is fully released; the same backend can serve the
+    // next sound instead of retaining an invisible global audio lock.
+    expect(backend.play('pm.system.info', 2, 0.28, jest.fn())).toBe(true);
+  });
+
+  test('waits for an asynchronous rewind before replaying a cached sound', async () => {
+    let finishSeek!: () => void;
+    const calls: string[] = [];
+    const player: SfxPlayerLike = {
+      volume: 1,
+      play: () => calls.push('play'),
+      pause: () => calls.push('pause'),
+      seekTo: () => new Promise<void>((resolve) => { finishSeek = resolve; }),
+      remove: () => calls.push('remove'),
+      addListener: () => ({ remove: () => {} }),
+    };
+    const backend = new ExpoSfxBackend(() => player, 2);
+
+    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(calls).not.toContain('play');
+
+    finishSeek();
+    await Promise.resolve();
+    expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+  });
+
+  test('falls back once when an asynchronous rewind never settles', () => {
+    jest.useFakeTimers();
+    try {
+      const calls: string[] = [];
+      const player: SfxPlayerLike = {
+        volume: 1,
+        play: () => calls.push('play'),
+        pause: () => calls.push('pause'),
+        seekTo: () => new Promise<void>(() => {}),
+        remove: () => calls.push('remove'),
+        addListener: () => ({ remove: () => {} }),
+      };
+      const backend = new ExpoSfxBackend(() => player, 2);
+
+      expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+      expect(calls).not.toContain('play');
+
+      jest.advanceTimersByTime(199);
+      expect(calls).not.toContain('play');
+      jest.advanceTimersByTime(1);
+      expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+
+      jest.advanceTimersByTime(1_000);
+      expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  test('an obsolete rewind cannot start a newer play of the same cached sound', async () => {
+    const seekResolvers: Array<() => void> = [];
+    const calls: string[] = [];
+    const player: SfxPlayerLike = {
+      volume: 1,
+      play: () => calls.push('play'),
+      pause: () => calls.push('pause'),
+      seekTo: () => new Promise<void>((resolve) => { seekResolvers.push(resolve); }),
+      remove: () => calls.push('remove'),
+      addListener: () => ({ remove: () => {} }),
+    };
+    const backend = new ExpoSfxBackend(() => player, 2);
+
+    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(seekResolvers).toHaveLength(3); // first play, stop rewind, second play
+
+    seekResolvers[0]();
+    await Promise.resolve();
+    expect(calls).not.toContain('play');
+
+    seekResolvers[2]();
+    await Promise.resolve();
+    expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+  });
+
   // зачем 2026-08-03 (владелец: «звук таймера был только в первом раунде
   // турнира, дальше вообще ни разу»): корень — expo-audio на Android читает
   // didJustFinish напрямую из playbackState (см. AudioPlayer.kt, currentStatus:

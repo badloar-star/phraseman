@@ -12,6 +12,7 @@ import { scheduleEnergyFullNotification, cancelEnergyFullNotification } from '..
 import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
+import { isFeatureFreeForEveryone } from '../app/feature_gates';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -123,6 +124,11 @@ async function readUnlimited(): Promise<boolean> {
     isTesterNoLimitsActive(),
     getVerifiedPremiumStatus(),
   ]);
+  // Пульт управления может снять энергетический лимит для всех. EnergyContext —
+  // основной runtime-путь траты, поэтому этот gate обязан проверяться здесь, а
+  // не только во вторичном energy_system.spendEnergy().
+  if (isFeatureFreeForEveryone('energy')) return true;
+
   // Weekly Boon «окно без энергии»: в активный вечерний час энергия не тратится у всех.
   // EnergyContext.spendOne — основной путь траты (не energy_system.spendEnergy),
   // поэтому окно ОБЯЗАНО проверяться здесь, иначе бонус не работает.
@@ -373,6 +379,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     const vipOnSub = DeviceEventEmitter.addListener('vip_activated', () => { load(); });
     const vipOffSub = DeviceEventEmitter.addListener('vip_deactivated', () => { load(); });
     const accessSub = DeviceEventEmitter.addListener('premium_access_changed', () => { load(); });
+    const remoteConfigSub = DeviceEventEmitter.addListener('remote_config_changed', () => { load(); });
 
     return () => {
       sub.remove();
@@ -382,6 +389,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       vipOnSub.remove();
       vipOffSub.remove();
       accessSub.remove();
+      remoteConfigSub.remove();
       if (resumeTimer) clearTimeout(resumeTimer);
       resumeTask?.cancel?.();
     };

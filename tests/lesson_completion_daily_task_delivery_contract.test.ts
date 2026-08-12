@@ -4,6 +4,8 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 const daily = fs.readFileSync(path.join(ROOT, 'app/daily_tasks.ts'), 'utf8').replace(/\r\n/g, '\n');
 const lesson = fs.readFileSync(path.join(ROOT, 'app/lesson1.tsx'), 'utf8').replace(/\r\n/g, '\n');
+const dailyScreen = fs.readFileSync(path.join(ROOT, 'app/daily_tasks_screen.tsx'), 'utf8').replace(/\r\n/g, '\n');
+const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
 describe('lesson completion Daily Challenge delivery', () => {
   it('prepares an idempotent target journal before writing progress', () => {
@@ -20,31 +22,42 @@ describe('lesson completion Daily Challenge delivery', () => {
     expect(body).toContain('mergeProgressAtLeast(current, entry.targetRows)');
   });
 
-  it('starts delivery while the completion modal is visible and retries the same event on Continue', () => {
+  it('starts exactly-once delivery in the background and retries the same event id', () => {
     expect(lesson).toContain('const finishDailyTaskEventId = [');
-    expect(lesson).toContain('let lessonFinishDeliveryPromise = startLessonFinishDelivery();');
-    expect(lesson).toContain('lessonFinishDeliveryPromise = startLessonFinishDelivery();');
-    expect(lesson).toContain('cycleEndCallbackRef.current = finalizeLessonCompletion;');
+    expect(lesson).toContain('const firstLessonFinishDelivery = startLessonFinishDelivery();');
+    expect(lesson).toContain('const finishLessonDeliveryInBackground = async () => {');
+    expect(lesson).toContain('await startLessonFinishDelivery();');
+    expect(lesson).toContain('void finishLessonDeliveryInBackground();');
     expect(lesson).not.toContain('updateMultipleTaskProgress(\nlessonFinishUpdates,');
   });
 
-  it('does not close or navigate until delivery succeeds', () => {
-    const start = lesson.indexOf('const finalizeLessonCompletion = async');
-    const end = lesson.indexOf('const hasErrors =', start);
-    const body = lesson.slice(start, end);
-    const awaitDelivery = body.indexOf('await lessonFinishDeliveryPromise;');
-    const close = body.indexOf('setShowCycleEndModal(false);');
-    const navigate = body.indexOf('navigate();');
+  it('navigates directly to the final screen without waiting for delivery', () => {
+    const backgroundStart = lesson.indexOf('const finishLessonDeliveryInBackground = async');
+    const backgroundEnd = lesson.indexOf("void bumpStatsDaily('lessons_completed'", backgroundStart);
+    const backgroundBody = lesson.slice(backgroundStart, backgroundEnd);
+    const navigationStart = lesson.indexOf('const navigate = async () => {', backgroundEnd);
+    const navigationEnd = lesson.indexOf('} catch (e) {', navigationStart);
+    const completionBody = lesson.slice(navigationStart, navigationEnd);
 
-    expect(awaitDelivery).toBeGreaterThanOrEqual(0);
-    expect(close).toBeGreaterThan(awaitDelivery);
-    expect(navigate).toBeGreaterThan(close);
-    expect(body).toContain('Нажми «Продолжить» ещё раз');
+    expect(backgroundBody).toContain('await firstLessonFinishDelivery;');
+    expect(backgroundBody).toContain("trackFeatureError('lesson', 'daily_task_delivery_retry'");
+    expect(completionBody).toContain('await navigate();');
+    expect(completionBody).not.toContain('await firstLessonFinishDelivery');
+    expect(completionBody).not.toContain('setShowCycleEndModal');
   });
 
-  it('guards double taps on the modal Continue button synchronously', () => {
-    expect(lesson).toContain('const cycleEndContinueInFlightRef = useRef(false);');
-    expect(lesson).toContain('if (!callback || cycleEndContinueInFlightRef.current) return;');
-    expect(lesson).toContain('cycleEndContinueInFlightRef.current = true;');
+  it('removes the redundant completion modal and its Continue gate', () => {
+    expect(lesson).not.toContain('LessonCycleEndModal');
+    expect(lesson).not.toContain('lesson-cycle-end-modal');
+    expect(lesson).not.toContain('lesson-cycle-end-continue');
+    expect(lesson).not.toContain('cycleEndContinueInFlightRef');
+  });
+
+  it('invalidates cached challenge progress after every saved lesson-finish increment', () => {
+    expect(daily).toContain("emitAppEvent('daily_task_progress_changed'");
+    expect(dailyScreen).toContain("onAppEvent('daily_task_progress_changed'");
+    expect(dailyScreen).toContain('invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), eventTarget);');
+    expect(home).toContain("onAppEvent('daily_task_progress_changed'");
+    expect(home).toContain('requestDailyTaskSummaryRefresh();');
   });
 });

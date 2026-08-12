@@ -96,6 +96,7 @@ import {
 import {
   getAppSnapshot,
   patchAppSnapshot,
+  patchAppSnapshotCustomizationSelection,
   useAppSnapshotSelector,
 } from './app_snapshot_store';
 import { getShardsBalance, spendShardsIdempotent } from './shards_system';
@@ -106,6 +107,11 @@ import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_gu
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 import { actionToastTri, emitAppEvent } from './events';
 import { CustomizationHero } from '../components/customization/CustomizationHero';
 import {
@@ -263,9 +269,12 @@ function syncAvatarDisplayToCloud(mode: 'immediate' | 'deferred'): void {
 }
 
 async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: string | null): Promise<void> {
+  const accountToken = captureAccountGeneration();
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
   try {
     const [[, nameRaw], [, xpRaw], [, langRaw], [, weekRaw], [, streakRaw], [, leagueRaw], [, frameRaw]] =
       await AsyncStorage.multiGet(['user_name', 'user_total_xp', 'app_lang', 'week_points_v2', 'streak_count', 'league_state_v3', 'user_frame']);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     const totalXp = parseInt(xpRaw || '0', 10) || 0;
     const weekPoints = parseWeekPointsForWeek(weekRaw);
     let leagueId: number | undefined;
@@ -274,6 +283,7 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
     ]);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     await syncPublicProfileSnapshot({
       reason: 'display_change',
       name: (nameRaw || '').trim() || `Level ${level}`,
@@ -287,29 +297,37 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
       aura: aura || undefined,
       isPremium: realPremium,
       isVip: vip,
-    });
-    await updateMyGroupPoints(weekPoints);
+    }, accountToken);
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    await updateMyGroupPoints(weekPoints, accountToken);
   } catch {}
 }
 
 async function invalidateAvatarDependentCaches(nextAvatar: string, nextAura: string | null): Promise<void> {
-  try {
-    const leagueRaw = await AsyncStorage.getItem('league_state_v3');
-    if (leagueRaw) {
-      const league = JSON.parse(leagueRaw);
-      if (Array.isArray(league?.group)) {
-        league.group = league.group.map((member: any) => member?.isMe
-          ? { ...member, avatar: nextAvatar, aura: nextAura ?? '' }
-          : member);
-        await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
+  const accountToken = captureAccountGeneration();
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    try {
+      const leagueRaw = await AsyncStorage.getItem('league_state_v3');
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      if (leagueRaw) {
+        const league = JSON.parse(leagueRaw);
+        if (Array.isArray(league?.group)) {
+          league.group = league.group.map((member: any) => member?.isMe
+            ? { ...member, avatar: nextAvatar, aura: nextAura ?? '' }
+            : member);
+          await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
+        }
       }
-    }
-  } catch {}
-  await AsyncStorage.multiRemove([
-    'global_lb_cache_v4', 'leaderboard_cache_v1', 'arena_top100_snapshot_v8',
-    'arena_top100_remote_at_v1', 'arena_rating_screen_cache_v1', 'club_remote_refresh_at_v2',
-    'friend_profiles_cache_v1', 'friends_tab_swr_v1', 'friends_activity_feed_v2', 'friends_activity_feed_v1',
-  ]).catch(() => {});
+    } catch {}
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    await AsyncStorage.multiRemove([
+      'global_lb_cache_v4', 'leaderboard_cache_v1', 'arena_top100_snapshot_v8',
+      'arena_top100_remote_at_v1', 'arena_rating_screen_cache_v1', 'club_remote_refresh_at_v2',
+      'friend_profiles_cache_v1', 'friends_tab_swr_v1', 'friends_activity_feed_v2', 'friends_activity_feed_v1',
+    ]).catch(() => {});
+  });
 }
 
 async function readFreshCustomizationSnapshot(): Promise<CustomizationSnapshot> {
@@ -393,7 +411,7 @@ export default function AvatarSelect() {
     setConfirmed(snapshot);
     setPreviewAvatarValue(snapshot.activeAvatar);
     setPreviewStoredAuraSelection(snapshot.storedAuraSelection);
-    patchAppSnapshot({ customization: snapshot });
+    patchAppSnapshotCustomizationSelection(snapshot);
   }, []);
 
   useEffect(() => {
@@ -427,6 +445,16 @@ export default function AvatarSelect() {
     invalidateCaches: invalidateAvatarDependentCaches,
     syncCloud: syncAvatarDisplayToCloud,
     syncPublicProfile: writeProfileAvatarSnapshot,
+    createAccountScope: () => {
+      const accountToken = captureAccountGeneration();
+      return {
+        isCurrent: () => isCurrentAccountGeneration(accountToken),
+        runExclusive: <T,>(work: () => Promise<T>) => withAccountTransitionLock(async () => {
+          if (!isCurrentAccountGeneration(accountToken)) return undefined;
+          return work();
+        }),
+      };
+    },
   }), [publishCustomizationSnapshot]);
 
   const purchaseDeps = useMemo<CustomizationPurchaseDeps>(() => ({

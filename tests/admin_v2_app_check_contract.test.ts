@@ -38,15 +38,14 @@ describe('live admin web App Check contract', () => {
     expect(helper).toContain("Authorization: `Bearer ${idToken}`");
     expect(helper).toContain("'X-Firebase-AppCheck': appCheckToken");
     expect(helper).toContain("body: JSON.stringify({ data })");
-    expect(helper).toContain('const responseData = payload?.data ?? payload?.result;');
-    expect(helper).toContain('return { data: responseData };');
+    expect(helper).toContain('return giftCertificateParseCallableEnvelope(payload, response.ok, response.status);');
     expect(helper).not.toContain('httpsCallable(functionsUs, name)');
     expect(live).toContain('Защита App Check недоступна. Обновите страницу и повторите действие — запрос не отправлен.');
 
     for (const name of [
       'adminCreateGiftCertificateBatch',
       'adminListGiftCertificates',
-      'adminUpdateGiftCertificateRecipient',
+      'adminUpdateGiftCertificatePersonalization',
       'adminGetGiftCertificateDownload',
       'adminReplaceSyntheticGiftCertificate',
       'adminSendPreparedGiftCertificate',
@@ -56,15 +55,16 @@ describe('live admin web App Check contract', () => {
     }
   });
 
-  test('does not weaken server enforcement or copy App Check initialization to frozen admin surfaces', () => {
+  test('does not weaken server enforcement or copy App Check initialization to redirect stubs', () => {
     expect(giftServer).toContain('export const GIFT_CERTIFICATE_MUTATION_OPTIONS = { region: REGION, enforceAppCheck: true } as const;');
     expect(giftServer).toContain('export const GIFT_CERTIFICATE_READ_OPTIONS = { region: REGION, enforceAppCheck: true } as const;');
 
-    for (const frozen of ['admin/legacy.html', 'admin/index.html', 'admin/full.html', 'admin/site.html', 'admin/v2/index.html']) {
+    for (const frozen of ['admin/index.html', 'admin/full.html', 'admin/site.html']) {
       const absolute = path.join(root, frozen);
       if (fs.existsSync(absolute)) {
         expect(fs.readFileSync(absolute, 'utf8')).not.toContain('firebase-app-check.js');
       }
     }
+    expect(fs.existsSync(path.join(root, 'admin/v2/index.html'))).toBe(false);
   });
 });

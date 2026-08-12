@@ -50,7 +50,7 @@ export type LevelUpThresholdModalProps = {
   themeMode: ThemeMode;
   kicker: string;
   headline: string;
-  message: string;
+  message?: string;
   xpLabel: string;
   xpValue: string;
   titleLabel: string;
@@ -232,9 +232,13 @@ export default function LevelUpThresholdModal({
             <Text accessibilityRole="header" style={[styles.headline, compact && styles.headlineCompact, { color: palette.textPrimary }]}>
               {headline}
             </Text>
-            <Text style={[styles.message, compact && styles.messageCompact, { color: palette.textMuted }]}>
-              {message}
-            </Text>
+            {message ? (
+              <Text
+                style={[styles.message, compact && styles.messageCompact, { color: palette.textMuted }]}
+              >
+                {message}
+              </Text>
+            ) : null}
 
             <Animated.View style={[styles.rewardStack, rewardRevealStyle]}>
               <ThresholdRewardRow

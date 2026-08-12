@@ -76,7 +76,9 @@ describe('Onboarding welcome sheet', () => {
 
   it('greets without a name rather than inventing one', () => {
     // На последнем шаге имени нет (возраст + согласия), ник генерируется позже.
-    expect(sheet).toContain("return name ? `Спасибо, ${name}!` : 'Спасибо!';");
+    expect(sheet).toContain('const name = String(userName ?? \'\').trim();');
+    expect(sheet).toContain("? triLang(lang, { ru: `Спасибо, ${name}!`");
+    expect(sheet).toContain(": triLang(lang, { ru: 'Спасибо!'");
   });
 
   // зачем: владелец (2026-07-27) — «план собран под твои ответы» врёт, никакого

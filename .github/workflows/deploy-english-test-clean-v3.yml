@@ -66,7 +66,8 @@ jobs:
           tar -xzf "$RUNNER_TEMP/english-test-clean.tar.gz" -C .
           test -s content/english-test/questions.en.json
           test -s knowly-www/english-level-test/index.html
-          test -s admin/v2/english-test.html
+          rm -f admin/v2/english-test.html
+          test ! -e admin/v2/english-test.html
           test -s functions-english-test/index.js
 
       - name: Generate and integrate the release
@@ -193,16 +194,16 @@ jobs:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
 
-      - name: Deploy Functions, Firestore index and Hosting
+      - name: Deploy Functions, Firestore index and public test Hosting
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
-          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,firestore:indexes,hosting:knowlywww,hosting:admin' --non-interactive --force)
+          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,firestore:indexes,hosting:knowlywww' --non-interactive --force)
           if [[ "${{ steps.firebase-auth.outputs.mode }}" == 'token' ]]; then args+=(--token "$FIREBASE_DEPLOY_TOKEN"); fi
           npx --yes firebase-tools@15.24.0 "${args[@]}"
 
-      - name: Verify live test, certificate, admin and API
+      - name: Verify live test, certificate and API
         working-directory: production
         shell: bash
         run: |
@@ -222,8 +223,6 @@ jobs:
           }
           verify_page 'https://knowlyapps.com/english-level-test/' 'Получить сертификат'
           verify_page 'https://knowlyapps.web.app/english-level-test/' 'Насколько <em>естественно</em>'
-          verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html' 'Диагностика всех вопросов'
-          verify_page 'https://phraseman-ea0b3.web.app/v2/' 'English Test'
           curl -fsS -X POST 'https://knowlyapps.com/api/english-test' -H 'Content-Type: application/json' --data '{"action":"landing","bankVersion":"2026-07-21.8","eventId":"production-smoke-'"$GITHUB_RUN_ID"'"}' | grep -Fq '"ok":true'
 
       - name: Commit exact verified source to master
@@ -232,6 +231,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf functions-english-test/node_modules
+          rm -f admin/v2/english-test.html
           find .github/workflows -maxdepth 1 -type f -iname '*english*test*' ! -name 'deploy-english-test-production.yml' -delete
           printf 'deployed_at=%s\nrelease_archive_sha256=%s\nworkflow_run=%s\n' "$(date -u +%FT%TZ)" "$RELEASE_ARCHIVE_SHA256" "$GITHUB_RUN_ID" > .english-test-production-release
           git config user.name 'github-actions[bot]'

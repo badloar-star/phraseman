@@ -329,6 +329,7 @@ export function createFirestoreModeTemplateResolver(
         contentHash: templateRef.contentHash,
       },
       allowedOverridePaths: body.authoring.allowedOverridePaths,
+      body,
     };
   };
 }
@@ -930,7 +931,13 @@ export function createFirestoreEpisodeReviewStore(
     const get = async (path: string) => transaction ? transaction.get(db.doc(path)) : db.doc(path).get();
     return {
       runTransaction: async (work) => db.runTransaction(async (tx) => work(build(tx))),
-      readArtifact: async (ref: ApprovedEpisodeRevision) => (resolver.resolveForAuthoring ?? resolver.resolve)(ref),
+      readArtifact: async (ref: ApprovedEpisodeRevision) => {
+        const artifact = await (resolver.resolveForAuthoring ?? resolver.resolve)(ref);
+        const createdBy = artifact?.record?.provenance?.createdBy;
+        if (!artifact) return undefined;
+        if (typeof createdBy !== "string" || !createdBy) throw new Error("episode_review_creator_identity_missing");
+        return { body: artifact.body, createdBy };
+      },
       readReceipt: async (receiptId) => {
         const snapshot = await get(`content_studio_review_receipts/${receiptId}`);
         if (!snapshot.exists) return undefined;

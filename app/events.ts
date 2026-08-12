@@ -80,6 +80,8 @@ export type AppEventMap = {
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
   daily_task_completed: { taskId: string; studyTarget?: RuntimeStudyTarget };
+  /** Любое сохранённое изменение прогресса, включая частичное (например 1/3 уроков). */
+  daily_task_progress_changed: { studyTarget?: RuntimeStudyTarget };
   personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
   personal_plan_onboarding_nickname_ready: undefined;
   /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
@@ -120,6 +122,12 @@ export type AppEventMap = {
    * См. energyOnboardingGate + home.tsx
    */
   energy_onboarding_may_show: undefined;
+  /**
+   * CleanOnboarding уже сохранил onboarding_done и корневой оверлей готов закрыться.
+   * Скрытые под оверлеем табы используют событие, чтобы только теперь включить
+   * тяжёлые загрузки, подписки и анимации.
+   */
+  onboarding_completed: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
   /**

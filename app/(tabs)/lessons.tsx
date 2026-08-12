@@ -63,9 +63,6 @@ import {
 } from '../lessons_tab_state';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-// зачем: владелец заменил старый хекс-макет V2 на лабораторию всех режимов Learning V2
-// (тест каждого режима руками до прод-контента).
-import LearningV2ModesLab from '../../components/learning-v2-lab/LearningV2ModesLab';
 import { peekCurrentExamBestPct } from '../exam_best_pct_overlay';
 import { noAndroidOutline } from '../../constants/androidGlow';
 /** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
@@ -847,6 +844,7 @@ export default function LessonsTab({
         legacyFreeLessonCap,
         freeLessonLimit: FREE_LESSON_LIMIT,
     }, devLocalPlusOverride);
+    const planAccess = useFeatureAccess('personal_plan');
     const dialogAccess = useFeatureAccess('ai_dialog');
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
@@ -873,7 +871,7 @@ export default function LessonsTab({
     );
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
-    const [page, setPage] = useState<'lessons' | 'dialogs' | 'v2'>('lessons');
+    const [page, setPage] = useState<'lessons' | 'dialogs'>('lessons');
     const handleLessonsBack = useCallback(() => {
         if (page !== 'lessons') {
             setPage('lessons');
@@ -887,6 +885,10 @@ export default function LessonsTab({
     }, [goHome, isRetainedTab, page, router]);
     const openLearningRoute = useCallback(() => {
         hapticTap();
+        if (!planAccess) {
+            openPremiumPaywall(router, { context: 'personal_plan' });
+            return;
+        }
         void readPersonalPlanState()
             .then((state) => {
                 router.push((state ? '/personal_plan' : '/personal_plan_setup') as any);
@@ -894,7 +896,16 @@ export default function LessonsTab({
             .catch(() => {
                 router.push('/personal_plan_setup' as any);
             });
-    }, [router]);
+    }, [planAccess, router]);
+    const openDialogs = useCallback(() => {
+        if (page === 'dialogs') return;
+        hapticTap();
+        if (!dialogAccess) {
+            openPremiumPaywall(router, { context: 'ai_dialog' });
+            return;
+        }
+        setPage('dialogs');
+    }, [dialogAccess, page, router]);
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
         level: string;
@@ -1350,7 +1361,7 @@ return (<LessonCard key={`l-${num}`}
               accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               fontSize={f.body}
               themeMode={themeMode}
-              plusBadge={!isPremium}
+              plusBadge={!planAccess}
               plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
               onPress={openLearningRoute}
             />
@@ -1365,19 +1376,22 @@ return (<LessonCard key={`l-${num}`}
               themeMode={themeMode}
               plusBadge={!dialogAccess}
               plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
-              onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
+              onPress={openDialogs}
             />
             ) : null}
             {ENABLE_DEV_TOOLS ? (
             <TabUnderlineButton
               label="V2"
-              active={page === 'v2'}
+              active={false}
               color={t.textPrimary}
               mutedColor={t.textMuted}
               accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               fontSize={f.body}
               themeMode={themeMode}
-              onPress={() => { if (page !== 'v2') { hapticTap(); setPage('v2'); } }}
+              onPress={() => {
+                hapticTap();
+                router.push('/learning-v2/lesson/1' as any);
+              }}
             />
             ) : null}
           </View>
@@ -1394,14 +1408,8 @@ return (<LessonCard key={`l-${num}`}
         </View>
       ) : null}
 
-      {ENABLE_DEV_TOOLS && page === 'v2' ? (
-        <View style={{ flex: 1 }}>
-          <LearningV2ModesLab bottomPadding={listBottomPad} />
-        </View>
-      ) : null}
-
       {/* Страница «Уроки» (держим смонтированной, прячем при показе диалогов) */}
-        <View style={{ flex: 1, display: (dialogsEnabled && page === 'dialogs') || page === 'v2' ? 'none' : 'flex' }}>
+        <View style={{ flex: 1, display: dialogsEnabled && page === 'dialogs' ? 'none' : 'flex' }}>
       <BouncyWrap style={bouncyStyle}>
       <Animated.FlatList ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
         onScrollEndDrag={handleLessonsScrollEnd}

@@ -34,11 +34,17 @@ export const INTERFACE_LANGUAGE_OPTIONS = [
  * "active" для квизов/паков, но интерфейс на них ещё не готов. Добавлять
  * сюда язык только когда его UI-перевод завершён.
  *
- * es управляется отдельным флагом SPANISH_UI_LOCALE_ENABLED (см. ниже).
+ * Все зарегистрированные языки ниже — часть пользовательского релиза.
  */
 export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode[] = [
   'ru',
   'uk',
+  'es',
+  'pt-BR',
+  'vi',
+  'id',
+  'tr',
+  'pl',
 ];
 
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
@@ -88,10 +94,8 @@ export type InterfaceLanguageOption = (typeof INTERFACE_LANGUAGE_OPTIONS)[number
 /**
  * Опции языка интерфейса для экрана настроек.
  *
- * В store-сборке (`storeRelease = true`) недоступные/недопереведённые языки
- * полностью скрыты — пользователь видит только готовые (ru/uk). В dev-сборке
- * показываем все, неготовые останутся заблокированными (с замком) — чтобы
- * тестировщики видели роадмап языков.
+ * В store- и dev-сборках показываются все готовые языки интерфейса. Язык
+ * исключается только если его нет в релизном списке готовности.
  */
 export function getVisibleInterfaceLanguageOptions(
   storeRelease: boolean,

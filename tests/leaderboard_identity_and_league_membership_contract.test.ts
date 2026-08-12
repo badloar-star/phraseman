@@ -5,13 +5,21 @@ const root = process.cwd();
 const read = (file: string) => readFileSync(path.join(root, file), 'utf8');
 
 describe('leaderboard identity and weekly league membership contract', () => {
-  test('guards background league callables without guarding boost purchase', () => {
+  test('league membership always reaches server authority while passive updates remain App Check gated', () => {
     const source = read('app/firestore_leagues.ts');
-    for (const callableName of ['leagueJoinOrUpdateGroup', 'leagueUpdateMyMember', 'leagueSyncMyBoost']) {
+    for (const callableName of ['leagueUpdateMyMember', 'leagueSyncMyBoost']) {
       const callableAt = source.indexOf(`>('${callableName}')`);
       expect(callableAt).toBeGreaterThan(0);
       expect(source.slice(Math.max(0, callableAt - 5_000), callableAt)).toContain('appCheckReady');
     }
+    const joinStart = source.indexOf('export async function getOrCreateLeagueGroup');
+    const joinEnd = source.indexOf('\nexport async function fetchLeagueTopMembers', joinStart);
+    const joinBody = source.slice(joinStart, joinEnd);
+    expect(joinBody).toContain("await initFirebaseAppCheckIfAvailable().catch(() => false);");
+    expect(joinBody).toContain(">('leagueJoinOrUpdateGroup')");
+    expect(joinBody).not.toContain('if (appCheckReady)');
+    expect(joinBody).not.toContain('db.runTransaction');
+    expect(joinBody).not.toMatch(/collection\('league_groups'\)\.doc\([^)]*\)\.(set|update|delete)\(/);
     const purchaseStart = source.indexOf('export async function buyLeagueGroupBoost');
     const purchaseEnd = source.indexOf('\nexport ', purchaseStart + 20);
     expect(source.slice(purchaseStart, purchaseEnd)).not.toContain('appCheckReady');
@@ -205,12 +213,27 @@ describe('leaderboard identity and weekly league membership contract', () => {
 
   test('weekly league client caches no-op member syncs without bypassing server ownership', () => {
     const leagues = read('app/firestore_leagues.ts');
+    const residents = read('functions/src/league_residents.ts');
+    const functionsPackage = JSON.parse(read('functions/package.json')) as { scripts?: Record<string, string> };
 
     expect(leagues).toContain("const LEAGUE_MEMBER_SYNC_CACHE_KEY = 'league_member_sync_cache_v1';");
     expect(leagues).toContain('getLeagueSyncMinDelta');
     expect(leagues).toContain('function shouldSkipLeaguePointsCallable');
     expect(leagues).toContain('function shouldSkipLeagueMemberCallable');
     expect(leagues).toContain('profileHash !== cache.profileHash');
+    expect(leagues).toContain('function satisfiesLeagueResidentFillContract');
+    expect(leagues).toContain('if (satisfiesLeagueResidentFillContract(cachedMembers)) return cachedMembers;');
+    expect(leagues).toContain('const LEAGUE_RESIDENT_FILL_THRESHOLD = 15;');
+    expect(leagues).toContain('const LEAGUE_RESIDENT_TARGET_VISIBLE = 28;');
+    expect(leagues).toContain('? visible === LEAGUE_RESIDENT_TARGET_VISIBLE');
+    expect(leagues).toContain(': visible === live;');
+    expect(residents).toContain('export const RESIDENT_FILL_THRESHOLD = 15;');
+    expect(residents).toContain('export const RESIDENT_TARGET_VISIBLE = 28;');
+    expect(functionsPackage.scripts?.['deploy:safe']).toContain('functions:leagueJoinOrUpdateGroup');
+    expect(functionsPackage.scripts?.['deploy:safe']).toContain('functions:leagueResidentsTickCron');
+    expect(leagues).toContain('residentFillVerified: parsed.residentFillVerified === true');
+    expect(leagues).toContain('if (!cache.residentFillVerified) return false;');
+    expect(leagues).toContain('if (group && satisfiesLeagueResidentFillContract(group))');
     expect(leagues).toContain("await ensureStableAuthLink().catch(() => false);");
     expect(leagues).toMatch(/shouldSkipLeagueMemberCallable\([\s\S]*?\)[\s\S]*?return;/);
     expect(leagues).toMatch(/>\('leagueUpdateMyMember'\);[\s\S]*?await fn\(\{[\s\S]*?stableId: uid,/);

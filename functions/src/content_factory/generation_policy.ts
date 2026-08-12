@@ -11,8 +11,11 @@ export function resolveStageGenerationPolicy(kind: GenerationStageKind, model: s
     lesson_outline: 6000,
     challenge_topic: 3000,
     flashcard_pack_idea: 3000,
+    learning_v2_localized_course: 32000,
+    learning_v2_lesson_outline: 16000,
+    learning_v2_audio: 16000,
   };
   const maxTokens = limits[kind] ?? 8000;
-  const temperature = kind === 'lesson_theory' || kind === 'lesson_phrases' ? 0.1 : 0.2;
+  const temperature = kind === 'lesson_theory' || kind === 'lesson_phrases' || kind.startsWith('learning_v2_') ? 0.1 : 0.2;
   return Object.freeze({ policyVersion: CONTENT_STAGE_POLICY_VERSION, provider: 'openai_chat_completions' as const, model, maxTokens, temperature, responseCapability: JSON_SCHEMA_MODELS.test(model) ? 'json_schema' as const : 'json_object' as const });
 }

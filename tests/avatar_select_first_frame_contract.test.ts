@@ -33,9 +33,13 @@ describe('avatar studio first frame', () => {
     const source = readProjectFile('app', 'avatar_select.tsx');
     expect(source).toContain('useAppSnapshotSelector');
     expect(source).toContain('createCustomizationInitialState');
+    expect(source).toContain('patchAppSnapshotCustomizationSelection(snapshot);');
     expect(source).not.toContain('const [level, setLevel] = useState(1)');
     expect(source).not.toContain("const [activeAvatar, setActiveAvatar] = useState<string>('1')");
     expect(source).not.toContain('const [activeAuraId, setActiveAuraId] = useState<string | null>(null)');
+    expect(source).toContain('createAccountScope: () => {');
+    expect(source).toContain('withAccountTransitionLock(async () => {');
+    expect(source).toContain('isCurrentAccountGeneration(accountToken)');
   });
 
   it('exposes all real values before delayed storage resolves', async () => {

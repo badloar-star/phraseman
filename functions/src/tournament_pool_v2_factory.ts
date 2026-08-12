@@ -25,6 +25,11 @@ import { requiredCells } from './tournament_pool_plan';
 // ниже 2). Прод ещё не видел apply с v9 — тем не менее держим то же правило,
 // что и в переходе v8→v9: смена контента при тех же id требует новой версии.
 export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v10' as const;
+// Canonical digest of the deterministic 4000-task publication produced from
+// TOURNAMENT_SOURCE_PLANS. Arena refuses to start when Remote Config points at
+// the right version name but a different content publication.
+export const NEW_TOURNAMENT_POOL_CONTENT_SHA256 = '8ec778fef78045b148e077be7efdf2dcdc081a275005e4bcf713a1a3754a00e5' as const;
+export const NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256 = 'ac0cf279e14c052854f90245fb5dae8da08a0a59bf806b1e63823c626024f999' as const;
 export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> = Object.freeze({
   // зачем 2026-08-02: «Пары на скорость» перешли на словарь дня (плитка ≤3
   // слов), а словарь беднее фраз — режим даёт 192 задания вместо 400.
@@ -104,6 +109,13 @@ export type NewTournamentTask = TournamentTask & {
       readonly phraseId: string;
     }[];
   };
+  readonly arenaPublication?: {
+    readonly schemaVersion: 'tournament-task-merkle.v1';
+    readonly poolContentSha256: string;
+    readonly merkleRootSha256: string;
+    readonly leafSha256: string;
+    readonly proof: readonly Readonly<{ side: 'left' | 'right'; sha256: string }>[];
+  };
 };
 
 export type NewTournamentPoolManifest = {
@@ -133,6 +145,7 @@ export type NewTournamentPoolManifest = {
     readonly translateTrapTokens: Readonly<Record<string, number>>;
   };
   readonly contentSha256: string;
+  readonly merkleRootSha256: string;
 };
 
 export type NewTournamentPoolResult = {
@@ -218,6 +231,80 @@ type SelectionState = {
 
 function sha256(value: string): string {
   return createHash('sha256').update(value).digest('hex');
+}
+
+function canonicalJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    return `{${Object.keys(record).filter((key) => record[key] !== undefined).sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(record[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+export function tournamentPoolTaskLeafSha256(task: TournamentTask & { arenaPublication?: unknown }): string {
+  const { arenaPublication: _publication, ...content } = task;
+  return sha256(`leaf:${canonicalJson(content)}`);
+}
+
+function attachArenaPublication(
+  tasks: readonly NewTournamentTask[],
+  poolContentSha256: string,
+): { tasks: NewTournamentTask[]; merkleRootSha256: string } {
+  type Node = { hash: string; members: number[] };
+  const proofs: Array<Array<{ side: 'left' | 'right'; sha256: string }>> = tasks.map(() => []);
+  let level: Node[] = tasks.map((task, index) => ({
+    hash: tournamentPoolTaskLeafSha256(task), members: [index],
+  }));
+  while (level.length > 1) {
+    const next: Node[] = [];
+    for (let index = 0; index < level.length; index += 2) {
+      const left = level[index];
+      const right = level[index + 1] ?? left;
+      left.members.forEach((member) => proofs[member].push({ side: 'right', sha256: right.hash }));
+      if (right !== left) right.members.forEach((member) => proofs[member].push({ side: 'left', sha256: left.hash }));
+      next.push({
+        hash: sha256(`node:${left.hash}:${right.hash}`),
+        members: right === left ? left.members.slice() : [...left.members, ...right.members],
+      });
+    }
+    level = next;
+  }
+  const merkleRootSha256 = level[0]?.hash ?? sha256('empty');
+  return {
+    merkleRootSha256,
+    tasks: tasks.map((task, index) => ({
+      ...task,
+      arenaPublication: {
+        schemaVersion: 'tournament-task-merkle.v1',
+        poolContentSha256,
+        merkleRootSha256,
+        leafSha256: tournamentPoolTaskLeafSha256(task),
+        proof: proofs[index],
+      },
+    })),
+  };
+}
+
+export function verifyTournamentPoolTaskProof(
+  task: TournamentTask & { arenaPublication?: NewTournamentTask['arenaPublication'] },
+  expectedRootSha256: string,
+): boolean {
+  const publication = task.arenaPublication;
+  if (!publication || publication.schemaVersion !== 'tournament-task-merkle.v1'
+    || publication.merkleRootSha256 !== expectedRootSha256
+    || publication.leafSha256 !== tournamentPoolTaskLeafSha256(task)
+    || !Array.isArray(publication.proof) || publication.proof.length > 16) return false;
+  let current = publication.leafSha256;
+  for (const sibling of publication.proof) {
+    if (!sibling || !/^[a-f0-9]{64}$/.test(sibling.sha256)
+      || (sibling.side !== 'left' && sibling.side !== 'right')) return false;
+    current = sibling.side === 'left'
+      ? sha256(`node:${sibling.sha256}:${current}`)
+      : sha256(`node:${current}:${sibling.sha256}`);
+  }
+  return current === expectedRootSha256;
 }
 
 function byteLength(value: string): number {
@@ -1701,8 +1788,9 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
   const exposure = assignExposureBuckets(tasks);
   const sourcePhrases = days.reduce((total, day) => total + (day.phrases?.length ?? 0), 0);
   const contentSha256 = sha256(JSON.stringify(exposure.tasks));
+  const publication = attachArenaPublication(exposure.tasks, contentSha256);
   return {
-    tasks: exposure.tasks,
+    tasks: publication.tasks,
     manifest: {
       poolVersion: NEW_TOURNAMENT_POOL_VERSION,
       generationSource: 'author_content_deterministic_v1',
@@ -1730,6 +1818,7 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
         translateTrapTokens: countsWithPrefix(selectionState.axisCounts, 'translate-trap:'),
       },
       contentSha256,
+      merkleRootSha256: publication.merkleRootSha256,
     },
   };
 }

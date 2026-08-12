@@ -18,6 +18,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
 import { formatTimeLeft, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
+import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -93,6 +95,7 @@ type RingProps = {
  */
 export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: RingProps) {
   const P = useTournamentPalette();
+  const { lang } = useLang();
   const styles = useMemo(() => makeStyles(P), [P]);
   const stroke = 3;
   const r = (size - stroke) / 2;
@@ -117,7 +120,16 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
       style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}
       accessible
       accessibilityRole="timer"
-      accessibilityLabel={`Время вопроса: ${Math.ceil(seconds)} секунд`}
+      accessibilityLabel={triLang(lang, {
+        ru: `Время на вопрос: ${Math.ceil(seconds)}`,
+        uk: `Час на запитання: ${Math.ceil(seconds)}`,
+        es: `Tiempo para la pregunta: ${Math.ceil(seconds)}`,
+        'pt-BR': `Tempo para a pergunta: ${Math.ceil(seconds)}`,
+        vi: `Thời gian cho câu hỏi: ${Math.ceil(seconds)}`,
+        id: `Waktu untuk pertanyaan: ${Math.ceil(seconds)}`,
+        tr: `Soru için süre: ${Math.ceil(seconds)}`,
+        pl: `Czas na pytanie: ${Math.ceil(seconds)}`,
+      })}
     >
       <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
         <Circle

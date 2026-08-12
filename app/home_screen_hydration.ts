@@ -84,7 +84,11 @@ export function shouldApplyHomeSnapshotToStats(
   profileSource?: AppSnapshotSource,
   progressSource?: AppSnapshotSource,
 ): boolean {
-  return !homeStatsAlreadyLoaded || profileSource === 'live' || progressSource === 'live';
+  return !homeStatsAlreadyLoaded
+    || profileSource === 'live'
+    || profileSource === 'local'
+    || progressSource === 'live'
+    || progressSource === 'local';
 }
 
 export function resolveHomeProfileVisuals(params: {

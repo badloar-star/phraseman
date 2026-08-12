@@ -13,14 +13,17 @@
       "ignore": [
         "firebase.json",
         "**/.*",
-        "**/node_modules/**",
-        "migration.html"
+        "**/node_modules/**"
       ],
       "redirects": [
-        { "source": "/", "destination": "/legacy.html", "type": 302 },
-        { "source": "/index.html", "destination": "/legacy.html", "type": 302 },
-        { "source": "/v2", "destination": "/v2.html", "type": 302 },
-        { "source": "/v2/", "destination": "/v2.html", "type": 302 }
+        { "source": "/", "destination": "/legacy.html", "type": 301 },
+        { "source": "/index.html", "destination": "/legacy.html", "type": 301 },
+        { "source": "/v2", "destination": "/legacy.html", "type": 301 },
+        { "source": "/v2/**", "destination": "/legacy.html", "type": 301 },
+        { "source": "/admin", "destination": "/", "type": 302 },
+        { "source": "/admin/", "destination": "/", "type": 302 },
+        { "source": "/admin/index.html", "destination": "/index.html", "type": 302 },
+        { "source": "/admin/**", "destination": "/", "type": 302 }
       ],
       "headers": [
         {

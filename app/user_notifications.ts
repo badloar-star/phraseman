@@ -23,6 +23,8 @@ export type UserNotificationType =
   | 'activity_like'
   | 'friend_gift_received'
   | 'friend_gift_thanks'
+  | 'arena_partner_invite'
+  | 'arena_partner_nudge'
   | 'report_reply';
 
 export interface UserNotificationNavFriends {
@@ -34,8 +36,14 @@ export interface UserNotificationNavReportReply {
   messageId: string;
 }
 
+export interface UserNotificationNavArenaPartner {
+  kind: 'arena_partner';
+  partnershipId: string;
+}
+
 export type UserNotificationNav =
   | UserNotificationNavFriends
+  | UserNotificationNavArenaPartner
   | UserNotificationNavReportReply;
 
 export interface UserNotificationReportReply {
@@ -60,8 +68,25 @@ export interface UserNotification {
   createdAt: number;
 }
 
+const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<UserNotificationType>([
+  'friend_request',
+  'friend_accepted',
+  'activity_like',
+  'friend_gift_received',
+  'friend_gift_thanks',
+  'arena_partner_invite',
+  'arena_partner_nudge',
+  'report_reply',
+]);
+
 export function isUserNotificationVisible(row: UserNotification): boolean {
-  return Boolean(row);
+  // Unknown/legacy types are fail-closed. In particular, cached tournament
+  // bank notifications cannot reappear in the notification center.
+  return Boolean(row) && VISIBLE_USER_NOTIFICATION_TYPES.has(String(row.type || ''));
+}
+
+function onlyVisibleUserNotifications(list: readonly UserNotification[]): UserNotification[] {
+  return list.filter(isUserNotificationVisible);
 }
 
 const getFirestore = () => {
@@ -160,8 +185,15 @@ export async function readCachedUserNotifications(): Promise<UserNotification[]>
     if (!Array.isArray(parsed)) return [];
     const currentOwnerUid = await getNotificationOwnerUid();
     if (currentOwnerUid !== ownerUid) return [];
-    const list = parsed.filter((row) => row && typeof row === 'object' && typeof row.id === 'string');
+    const stored = parsed.filter((row) =>
+      row && typeof row === 'object' && typeof row.id === 'string') as UserNotification[];
+    const list = onlyVisibleUserNotifications(stored);
     rememberOwnerCache(ownerUid, list);
+    if (list.length !== stored.length) {
+      // Physically purge retired/unknown records from the account-scoped cache
+      // so they cannot return after a restart or count as unread offline.
+      AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(list)).catch(() => {});
+    }
     return list;
   } catch {
     return [];
@@ -180,8 +212,9 @@ function getNotificationsQuery(ownerUid: string): any | null {
 }
 
 function writeCache(ownerUid: string, list: UserNotification[]): void {
-  rememberOwnerCache(ownerUid, list);
-  AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(list)).catch(() => {});
+  const visible = onlyVisibleUserNotifications(list);
+  rememberOwnerCache(ownerUid, visible);
+  AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(visible)).catch(() => {});
 }
 
 async function readLastRefreshMs(ownerUid: string): Promise<number> {
@@ -202,7 +235,10 @@ async function writeLastRefreshMs(ownerUid: string, ms: number): Promise<void> {
 }
 
 export function countUnreadNotifications(list: UserNotification[]): number {
-  return list.reduce((acc, row) => acc + (row.read ? 0 : 1), 0);
+  return list.reduce(
+    (acc, row) => acc + (isUserNotificationVisible(row) && !row.read ? 1 : 0),
+    0,
+  );
 }
 
 export async function refreshUserNotificationsOnce(options: {
@@ -232,7 +268,9 @@ export async function refreshUserNotificationsOnce(options: {
       const snap = await query.get();
       const currentOwnerUid = await getNotificationOwnerUid();
       if (currentOwnerUid !== ownerUid) return [];
-      const list = (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {}));
+      const list = onlyVisibleUserNotifications(
+        (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {})),
+      );
       writeCache(ownerUid, list);
       await writeLastRefreshMs(ownerUid, now);
       return list;

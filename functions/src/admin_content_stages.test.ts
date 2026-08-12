@@ -1,7 +1,37 @@
 import { HttpsError } from 'firebase-functions/v2/https';
-import { contentStagePlanFingerprint, flashcardPublishedDuplicateIds, parseContentStageControlRequest, parseContentStageCreateRequest, parseContentStageListRequest, parseContentStagePreviewRequest, parseContentStageReviewRequest, stagePlanFromStoredPrerequisites } from './admin_content_stages';
+import { assertContentStageReviewerDifferentFromCreator, contentStagePlanFingerprint, flashcardPublishedDuplicateIds, learningV2DownstreamStageIdsToSupersede, parseContentStageControlRequest, parseContentStageCreateRequest, parseContentStageListRequest, parseContentStagePreviewRequest, parseContentStageReviewRequest, requireContentStagePermission, stagePlanFromStoredPrerequisites } from './admin_content_stages';
 
 describe('admin independent content stage callables', () => {
+  it('requires an explicit Content Studio role and a distinct reviewer', () => {
+    expect(() => requireContentStagePermission({ auth: { uid: 'owner-1', token: { admin: true } } }, 'content.read')).toThrow('Role cannot use content.read');
+    expect(requireContentStagePermission({ auth: { uid: 'reviewer-1', token: { admin: true, adminRole: 'content_reviewer' } } }, 'content.review')).toBe('content_reviewer');
+    expect(() => requireContentStagePermission({ auth: { uid: 'editor-1', token: { admin: true, adminRole: 'content_editor' } } }, 'content.review')).toThrow('Role cannot use content.review');
+    expect(() => assertContentStageReviewerDifferentFromCreator('author-1', 'author-1')).toThrow('content_stage_maker_checker_self_review');
+    expect(() => assertContentStageReviewerDifferentFromCreator('author-1', 'reviewer-1')).not.toThrow();
+  });
+
+  it('uses only the owner-controlled admin App Check flag', () => {
+    const source = require('node:fs').readFileSync(__filename.replace(/admin_content_stages\.test\.ts$/, 'admin_content_stages.ts'), 'utf8');
+    expect(source).toContain("import { ENFORCE_APP_CHECK_ADMIN } from './callable_options'");
+    expect(source).not.toContain('enforceAppCheck: ENFORCE_APP_CHECK }');
+  });
+
+  it('accepts Learning V2 only as one multilingual all-content course queue', () => {
+    const research = parseContentStageCreateRequest({ requestId: 'learning-v2-en-v1', kind: 'learning_v2_research', studyTarget: 'en', sourceLocale: 'multi', cefr: 'PRE_A1', objective: 'Build a complete course from absolute zero through C2 in all interface languages', scopeId: 'course-en', count: 1, revision: 1, prerequisiteStageIds: [] });
+    expect(research).toMatchObject({ kind: 'learning_v2_research', sourceLocale: 'multi', cefr: 'PRE_A1' });
+    expect(parseContentStageCreateRequest({ ...research, kind: 'learning_v2_curriculum', prerequisiteStageIds: ['learning-v2-en-v1:learning_v2_research:course-en:r1'] })).toMatchObject({ kind: 'learning_v2_curriculum' });
+    expect(() => parseContentStageCreateRequest({ ...research, sourceLocale: 'ru' })).toThrow('stage_capability_locale_pair_unsupported');
+  });
+  it('invalidates every later course stage when an earlier owner decision changes', () => {
+    const identity = { requestId: 'learning-v2-en-v1', scopeId: 'course-en', studyTarget: 'en', sourceLocale: 'multi' };
+    const related = [
+      { id: 'research', data: { ...identity, kind: 'learning_v2_research', state: 'approved' } },
+      { id: 'curriculum', data: { ...identity, kind: 'learning_v2_curriculum', state: 'approved' } },
+      { id: 'course', data: { ...identity, kind: 'learning_v2_localized_course', state: 'needs_review' } },
+      { id: 'foreign', data: { ...identity, scopeId: 'course-fr', kind: 'learning_v2_release', state: 'approved' } },
+    ];
+    expect(learningV2DownstreamStageIdsToSupersede({ id: 'research', ...identity, kind: 'learning_v2_research' }, related)).toEqual(['curriculum', 'course']);
+  });
   it('records human linguistic review separately from structural QA for lesson phrases', () => {
     const source = require('node:fs').readFileSync(__filename.replace(/admin_content_stages\.test\.ts$/, 'admin_content_stages.ts'), 'utf8');
     expect(source).toContain("status: 'human_approved'");

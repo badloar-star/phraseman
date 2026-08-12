@@ -6,10 +6,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { buildSpeakingStartOptions } from '../../../app/speaking_recognition_options';
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../../../app/audio_playback_mode';
-import { setManagedAudioMode } from '../../../app/audio_session_coordinator';
 import { speakingMatchedFlags, speakingTargetTokens } from '../../../app/speaking_word_match';
 import { useRuntimeActive } from '../../../hooks/use_runtime_active';
+import {
+  claimRecordingAudio,
+  type RecordingAudioClaim,
+  whenRecordingAudioReady,
+} from '../../../modules/audio/audio_runtime_arbiter';
 // путь: components/learning-v2-lab/kimi → ../../../ = корень репозитория
 
 /** Состояния захвата, на которые опирается визуальная машина Kimi. */
@@ -54,10 +57,6 @@ function loadSpeechModule(): SpeechModule | null {
   } catch {
     return null;
   }
-}
-
-function restoreLoudPlaybackMode(): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
 }
 
 export interface UseVoiceCaptureInput {
@@ -109,6 +108,12 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
   // final callbacks after a real stop, but separately revoke pending starts.
   const startGenerationRef = useRef(0);
   const pressActiveRef = useRef(false);
+  const recordingLeaseRef = useRef<RecordingAudioClaim | null>(null);
+
+  const releaseRecording = useCallback(() => {
+    recordingLeaseRef.current?.release();
+    recordingLeaseRef.current = null;
+  }, []);
 
   const cleanupListeners = useCallback(() => {
     for (const sub of subsRef.current) sub?.remove?.();
@@ -128,9 +133,9 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
       } catch {
         /* модуль мог уже уйти — молча выходим */
       }
-      restoreLoudPlaybackMode();
+      releaseRecording();
     };
-  }, [cleanupListeners]);
+  }, [cleanupListeners, releaseRecording]);
 
   // Speech capture lifecycle invariant: blur/background invalidates permission/start,
   // removes native listeners, aborts capture, restores playback, and never auto-resumes.
@@ -145,11 +150,11 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     } catch {
       /* no-op */
     }
-    restoreLoudPlaybackMode();
+    releaseRecording();
     if (mountedRef.current && (statusRef.current === 'listening' || statusRef.current === 'evaluating')) {
       setStatus('idle');
     }
-  }, [runtimeActive, cleanupListeners]);
+  }, [runtimeActive, cleanupListeners, releaseRecording]);
 
   const finish = useCallback(
     (attempt: number, transcript: string) => {
@@ -157,10 +162,11 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
       const flags = speakingMatchedFlags(targetText, transcript);
       const matched = flags.filter(Boolean).length;
       const ratio = flags.length > 0 ? matched / flags.length : 0;
+      releaseRecording();
       setResult({ transcript, allMatched: flags.length > 0 && matched === flags.length, ratio });
       setStatus('done');
     },
-    [targetText],
+    [releaseRecording, targetText],
   );
 
   const start = useCallback(async () => {
@@ -234,7 +240,25 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     });
     subsRef.current = [resultSub, endSub, errorSub].filter(Boolean) as { remove?: () => void }[];
 
+    releaseRecording();
+    const recordingLease = claimRecordingAudio(() => {
+      try { speech.abort(); } catch { /* capture already gone */ }
+    });
+    recordingLeaseRef.current = recordingLease;
     try {
+      const audioReady = await whenRecordingAudioReady(recordingLease);
+      if (
+        !audioReady
+        || recordingLeaseRef.current !== recordingLease
+        || !mountedRef.current
+        || !runtimeActiveRef.current
+        || attempt !== attemptRef.current
+        || startGeneration !== startGenerationRef.current
+        || !pressActiveRef.current
+      ) {
+        if (recordingLeaseRef.current === recordingLease) releaseRecording();
+        return;
+      }
       speech.start(
         buildSpeakingStartOptions({
           lang: locale,
@@ -248,11 +272,13 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
       );
       setStatus('listening');
     } catch {
+      releaseRecording();
       setStatus('unavailable');
     }
-  }, [cleanupListeners, finish, freeSpeech, locale, targetText]);
+  }, [cleanupListeners, finish, freeSpeech, locale, releaseRecording, targetText]);
 
   const stop = useCallback(() => {
+    const wasListening = statusRef.current === 'listening';
     pressActiveRef.current = false;
     // Only pending permission/capability continuations are invalidated here.
     // Installed callbacks remain owned by `attempt` and may deliver stop's final.
@@ -262,8 +288,10 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
       speechRef.current?.stop();
     } catch {
       /* уже остановлен */
+      releaseRecording();
     }
-  }, []);
+    if (!wasListening) releaseRecording();
+  }, [releaseRecording]);
 
   const reset = useCallback(() => {
     attemptRef.current += 1;
@@ -276,10 +304,11 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     } catch {
       /* нечего прерывать */
     }
+    releaseRecording();
     setPartial('');
     setResult(null);
     setStatus('idle');
-  }, [cleanupListeners]);
+  }, [cleanupListeners, releaseRecording]);
 
   const matchedFlags = speakingMatchedFlags(targetText, result?.transcript ?? partial);
 

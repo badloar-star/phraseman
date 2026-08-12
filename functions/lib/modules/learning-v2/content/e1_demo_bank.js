@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.E1_DEMO_CAN_DO_OUTCOME_ID = exports.E1_DEMO_EPISODE_ID = void 0;
 exports.buildE1DemoProfile = buildE1DemoProfile;
 exports.buildE1DemoItems = buildE1DemoItems;
+exports.buildE1DemoActivityBindings = buildE1DemoActivityBindings;
 // зачем: владелец хочет тестировать ВСЕ режимы Learning V2 прямо в приложении до
 // готовности прод-контента. Это демо-банк E1 (тот же состав, что в тестовой фикстуре
 // e1-content-source.json): данные прогоняются через НАСТОЯЩИЕ валидаторы, чтобы
@@ -34,6 +35,7 @@ exports.E1_DEMO_EPISODE_ID = 'ep-01';
 exports.E1_DEMO_CAN_DO_OUTCOME_ID = 'obj-introduce-self';
 let cachedProfile = null;
 let cachedItems = null;
+let cachedActivityBindings = null;
 function buildE1DemoProfile() {
     if (cachedProfile)
         return cachedProfile;
@@ -86,5 +88,16 @@ function buildE1DemoItems() {
     });
     cachedItems = Object.freeze(items);
     return cachedItems;
+}
+/** Authoring-source activity identities persisted with the E1 demo bank. */
+function buildE1DemoActivityBindings() {
+    if (cachedActivityBindings)
+        return cachedActivityBindings;
+    cachedActivityBindings = Object.freeze(buildE1DemoItems().flatMap((item) => item.compatibleFamilies.map((family) => Object.freeze({
+        activityId: `activity-${family}-${item.contentItemId}`,
+        family,
+        contentUnitIds: Object.freeze([item.contentItemId]),
+    }))));
+    return cachedActivityBindings;
 }
 //# sourceMappingURL=e1_demo_bank.js.map

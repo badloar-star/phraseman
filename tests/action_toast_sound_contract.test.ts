@@ -12,6 +12,8 @@ describe('ActionToast semantic sound routing', () => {
     expect(block).toContain('soundDirector.request(payload.soundEventId ?? TOAST_SOUND_EVENTS[payload.type]');
     expect(block).toContain('dedupeKey: toastKey(payload)');
     expect(block).toContain('deferAfterVoice: true');
+    expect(block).toContain('queueIfBusy: true');
+    expect(block).toContain('rateLimit: { maxStarts: 4, windowMs: 1000 }');
     expect(source.slice(enqueue)).not.toContain('soundDirector.request(');
   });
 });

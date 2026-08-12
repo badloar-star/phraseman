@@ -10,7 +10,7 @@ const canonicalFixture = JSON.parse(
 ) as { episode: Record<string, unknown> };
 
 const authoringFixture = (): Record<string, unknown> => {
-  const episode = canonicalFixture.episode;
+  const episode = JSON.parse(JSON.stringify(canonicalFixture.episode)) as Record<string, unknown>;
   return {
     schemaVersion: "episode-authoring-body.v1",
     draftId: "draft-episode-01",
@@ -54,7 +54,8 @@ const authoringFixture = (): Record<string, unknown> => {
 
 describe("authoring Episode semantic bridge", () => {
   it("accepts the canonical E1 semantics without silently dropping projection fields", () => {
-    expect(normalizeAuthoringEpisodeForSemantics(authoringFixture()).ok).toBe(true);
+    const result = normalizeAuthoringEpisodeForSemantics(authoringFixture());
+    expect(result.ok).toBe(true);
   });
 
   it("rejects an authoring body missing an explicit canonical projection", () => {
@@ -73,5 +74,41 @@ describe("authoring Episode semantic bridge", () => {
     first.body = { ...firstBody, contentHash: "f".repeat(64) };
     const result = normalizeAuthoringEpisodeForSemantics(body);
     expect(result.ok).toBe(false);
+  });
+
+  it("projects a pinned session set into the strict Episode v2 contract", () => {
+    const body = {
+      ...authoringFixture(),
+      estimatedMinutes: 30,
+      sessionSetRef: {
+        episodeId: canonicalFixture.episode.episodeId,
+        version: 1,
+        contentHash: "a".repeat(64),
+      },
+    };
+    const result = normalizeAuthoringEpisodeForSemantics(body);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value).toMatchObject({
+        schemaVersion: "v2-episode-contract.v2",
+        sessionSetRef: body.sessionSetRef,
+      });
+    }
+  });
+
+  it("does not silently downgrade an invalid pinned session set to Episode v1", () => {
+    const result = normalizeAuthoringEpisodeForSemantics({
+      ...authoringFixture(),
+      estimatedMinutes: 30,
+      sessionSetRef: {
+        episodeId: "another-episode",
+        version: 1,
+        contentHash: "a".repeat(64),
+      },
+    });
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.issues.some((issue) => issue.code === "episode_session_set_ref_invalid")).toBe(true);
+    }
   });
 });

@@ -662,6 +662,18 @@ export function assertTargetKey(key: string): string {
   return key;
 }
 
+/**
+ * Совместимое чтение логических флагов прогресса. Старые клиенты писали `1/0`,
+ * а каноническое облачное восстановление пишет `true/false`. Все потребители
+ * обязаны понимать оба формата, иначе успешно сданный экзамен снова закрывает
+ * уровень сразу после cloud sync.
+ */
+export function storedProgressFlagIsTrue(value: unknown): boolean {
+  if (value === true || value === 1) return true;
+  const normalized = String(value ?? '').trim().toLowerCase();
+  return normalized === 'true' || normalized === '1' || normalized === 'yes';
+}
+
 export default function __TargetStorageKeysRouteShim() {
   return null;
 }

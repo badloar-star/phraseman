@@ -41,6 +41,10 @@ function emitDailyTaskCompleted(taskId: string, studyTarget?: RuntimeStudyTarget
   emitAppEvent('daily_task_completed', dailyTaskEventPayload(taskId, studyTarget));
 }
 
+function emitDailyTaskProgressChanged(studyTarget?: RuntimeStudyTarget): void {
+  emitAppEvent('daily_task_progress_changed', studyTarget == null ? {} : { studyTarget });
+}
+
 function emitDailyTaskRewardClaimed(taskId: string, studyTarget?: RuntimeStudyTarget): void {
   emitAppEvent('daily_task_reward_claimed', dailyTaskEventPayload(taskId, studyTarget));
 }
@@ -3241,6 +3245,7 @@ export const deliverDailyTaskProgressEvent = async (
   }
   const dayKey = getTodayKey();
   let completedTaskIdsToEmit: string[] = [];
+  let progressChanged = false;
 
   const outcome = await withStorageLock(async (): Promise<DailyTaskProgressDeliveryResult> => {
     const tasks = await getTodayTasksSafe(opts?.studyTarget);
@@ -3295,6 +3300,7 @@ export const deliverDailyTaskProgressEvent = async (
 
     current = mergeProgressAtLeast(current, entry.targetRows);
     await saveTodayProgressStrict(current, opts?.studyTarget);
+    progressChanged = entry.targetRows.length > 0;
 
     if (entry.status !== 'delivered') {
       const deliveredEntry: DailyTaskProgressDeliveryEntry = {
@@ -3319,6 +3325,7 @@ export const deliverDailyTaskProgressEvent = async (
     return wasDelivered ? 'already-applied' : 'applied';
   });
 
+  if (progressChanged) emitDailyTaskProgressChanged(opts?.studyTarget);
   completedTaskIdsToEmit.forEach((taskId) => emitDailyTaskCompleted(taskId, opts?.studyTarget));
   return outcome;
 };

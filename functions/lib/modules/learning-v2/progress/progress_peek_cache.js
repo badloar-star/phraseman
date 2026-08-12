@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.__resetProgressPeekForTests = exports.clearProgressPeek = exports.primeProgressPeek = exports.peekProgress = void 0;
+exports.__resetProgressPeekForTests = exports.clearProgressPeek = exports.primeProgressPeek = exports.peekProgressRecord = exports.peekProgress = void 0;
 const MAX_ENTRIES = 8;
 const TTL_MS = 5 * 60 * 1000;
 const cache = new Map();
@@ -17,8 +17,14 @@ const peekProgress = (accountKey, now = Date.now()) => {
     return entry ? entry.snapshot : undefined;
 };
 exports.peekProgress = peekProgress;
-const primeProgressPeek = (accountKey, snapshot, now = Date.now()) => {
-    cache.set(accountKey, { snapshot, storedAt: now });
+const peekProgressRecord = (accountKey, now = Date.now()) => {
+    prune(now);
+    const entry = cache.get(accountKey);
+    return entry ? { snapshot: entry.snapshot, revision: entry.revision } : undefined;
+};
+exports.peekProgressRecord = peekProgressRecord;
+const primeProgressPeek = (accountKey, snapshot, revision, now = Date.now()) => {
+    cache.set(accountKey, { snapshot, revision, storedAt: now });
     prune(now);
 };
 exports.primeProgressPeek = primeProgressPeek;

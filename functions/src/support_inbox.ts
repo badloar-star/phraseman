@@ -46,10 +46,12 @@ import {
   SUPPORT_TELEGRAM_REVIEW_COLLECTION,
   SUPPORT_TELEGRAM_APPROVAL_TTL_MS,
   SUPPORT_TELEGRAM_AUTO_SEND_DELAY_MS,
+  SUPPORT_TELEGRAM_JOB_LEASE_MS,
   buildSupportTelegramReviewPreview,
   parseSupportReviewApprovalToken,
   supportDraftHash,
   supportEditSessionId,
+  supportTelegramJobLeaseOwns,
   supportReviewTokenDepartment,
   type SupportTelegramReviewDoc,
   type SupportTelegramJobDoc,
@@ -2015,28 +2017,47 @@ async function buildCouncilReviewedSupportRevision(input: {
 
 async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId: string, nowMs: number): Promise<void> {
   const jobRef = db.collection(SUPPORT_TELEGRAM_JOB_COLLECTION).doc(jobId);
+  const leaseId = randomUUID();
   const claimed = await db.runTransaction(async (tx) => {
     const snap = await tx.get(jobRef);
-    if (!snap.exists || String(snap.data()?.state) !== 'pending') return null;
-    tx.update(jobRef, { state: 'processing', updatedAtMs: nowMs });
+    if (!snap.exists) return null;
+    const current = snap.data() as SupportTelegramJobDoc;
+    const state = String(current.state);
+    const leaseExpired = state === 'processing' && Number(current.leaseExpiresAtMs ?? 0) <= nowMs;
+    if (state !== 'pending' && !leaseExpired) return null;
+    tx.update(jobRef, {
+      state: 'processing', leaseId,
+      leaseExpiresAtMs: nowMs + SUPPORT_TELEGRAM_JOB_LEASE_MS,
+      updatedAtMs: nowMs,
+    });
     return snap.data() as SupportTelegramJobDoc;
   });
   if (!claimed) return;
   const reviewRef = db.collection(SUPPORT_TELEGRAM_REVIEW_COLLECTION).doc(claimed.reviewId);
+  const settle = async (
+    jobPatch: Record<string, unknown>,
+    reviewPatch?: Record<string, unknown>,
+  ): Promise<boolean> => db.runTransaction(async (tx) => {
+    const freshJob = await tx.get(jobRef);
+    if (!freshJob.exists || !supportTelegramJobLeaseOwns(freshJob.data() as SupportTelegramJobDoc, leaseId)) return false;
+    tx.set(jobRef, { ...jobPatch, leaseId: null, leaseExpiresAtMs: null }, { merge: true });
+    if (reviewPatch) tx.set(reviewRef, reviewPatch, { merge: true });
+    return true;
+  });
   const [reviewSnap, messageSnap] = await Promise.all([
     reviewRef.get(), db.collection(INBOX_COLLECTION).doc(claimed.messageDocId).get(),
   ]);
   if (!reviewSnap.exists || !messageSnap.exists) {
-    await jobRef.set({ state: 'failed', updatedAtMs: Date.now(), lastErrorCode: 'review_or_message_missing' }, { merge: true });
+    await settle({ state: 'failed', updatedAtMs: Date.now(), lastErrorCode: 'review_or_message_missing' });
     return;
   }
   const review = reviewSnap.data() as SupportTelegramReviewDoc;
   const message = messageSnap.data() as SupportInboxDoc;
   if (message.status !== 'new' || Number(message.draftRevision ?? 0) !== claimed.draftRevision) {
-    await Promise.all([
-      jobRef.set({ state: 'failed', updatedAtMs: Date.now(), lastErrorCode: 'draft_or_status_changed' }, { merge: true }),
-      reviewRef.set({ state: 'stale', updatedAtMs: Date.now(), lastErrorCode: 'draft_or_status_changed' }, { merge: true }),
-    ]);
+    await settle(
+      { state: 'failed', updatedAtMs: Date.now(), lastErrorCode: 'draft_or_status_changed' },
+      { state: 'stale', updatedAtMs: Date.now(), lastErrorCode: 'draft_or_status_changed' },
+    );
     return;
   }
 
@@ -2051,7 +2072,9 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
       const nextRevision = await db.runTransaction(async (tx) => {
         const freshMessage = await tx.get(db.collection(INBOX_COLLECTION).doc(claimed.messageDocId));
         const freshReview = await tx.get(reviewRef);
-        if (!freshMessage.exists || !freshReview.exists
+        const freshJob = await tx.get(jobRef);
+        if (!freshMessage.exists || !freshReview.exists || !freshJob.exists
+          || !supportTelegramJobLeaseOwns(freshJob.data() as SupportTelegramJobDoc, leaseId)
           || Number(freshMessage.data()?.draftRevision ?? 0) !== claimed.draftRevision
           || String(freshReview.data()?.state) !== 'revising') return null;
         const next = claimed.draftRevision + 1;
@@ -2060,7 +2083,7 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
           autoReply: { ...message.autoReply, state: 'processing', updatedAt: new Date().toISOString() },
         }, { merge: true });
         tx.update(reviewRef, { state: 'stale', updatedAtMs: Date.now() });
-        tx.update(jobRef, { state: 'accepted', updatedAtMs: Date.now() });
+        tx.update(jobRef, { state: 'accepted', leaseId: null, leaseExpiresAtMs: null, updatedAtMs: Date.now() });
         return next;
       });
       if (nextRevision === null) return;
@@ -2073,20 +2096,20 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
       });
       return;
     } catch (error) {
-      await Promise.all([
-        jobRef.set({ state: 'failed', updatedAtMs: Date.now(), lastErrorCode: supportAutoErrorCode(error) }, { merge: true }),
-        reviewRef.set({ state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: supportAutoErrorCode(error) }, { merge: true }),
-      ]);
+      await settle(
+        { state: 'failed', updatedAtMs: Date.now(), lastErrorCode: supportAutoErrorCode(error) },
+        { state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: supportAutoErrorCode(error) },
+      );
       throw error;
     }
   }
 
   const config = await readSupportAutomationConfig(db);
   if (claimed.source === 'auto_deadline' && config.mode !== 'live_guarded') {
-    await Promise.all([
-      jobRef.set({ state: 'failed', updatedAtMs: Date.now(), lastErrorCode: 'automation_no_longer_live' }, { merge: true }),
-      reviewRef.set({ state: 'awaiting_approval', autoSendAtMs: null, updatedAtMs: Date.now() }, { merge: true }),
-    ]);
+    await settle(
+      { state: 'failed', updatedAtMs: Date.now(), lastErrorCode: 'automation_no_longer_live' },
+      { state: 'awaiting_approval', autoSendAtMs: null, updatedAtMs: Date.now() },
+    );
     return;
   }
   if (claimed.source === 'auto_deadline') {
@@ -2094,10 +2117,10 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
       db, messageDocId: claimed.messageDocId, fromEmail: message.fromEmail, nowMs, config,
     });
     if (!capacity.allowed) {
-      await Promise.all([
-        jobRef.set({ state: 'failed', updatedAtMs: Date.now(), lastErrorCode: capacity.reason }, { merge: true }),
-        reviewRef.set({ state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: capacity.reason }, { merge: true }),
-      ]);
+      await settle(
+        { state: 'failed', updatedAtMs: Date.now(), lastErrorCode: capacity.reason },
+        { state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: capacity.reason },
+      );
       return;
     }
   }
@@ -2122,27 +2145,49 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
       createInvocationId: randomUUID,
     });
     if (result.state === 'accepted') {
-      await Promise.all([
-        jobRef.set({ state: 'accepted', updatedAtMs: Date.now() }, { merge: true }),
-        reviewRef.set({ state: 'accepted', updatedAtMs: Date.now() }, { merge: true }),
-        setSupportAutoReplyState(db, claimed.messageDocId, {
+      const won = await settle(
+        { state: 'accepted', updatedAtMs: Date.now() },
+        { state: 'accepted', updatedAtMs: Date.now() },
+      );
+      if (won) {
+        await setSupportAutoReplyState(db, claimed.messageDocId, {
           state: 'accepted', attempts: Number(message.autoReply?.attempts ?? 0) + 1,
           updatedAt: new Date().toISOString(), operationId: String(review.operationId ?? ''),
           reviewId: claimed.reviewId, policyVersion: SUPPORT_AUTO_POLICY_VERSION,
-        }),
-      ]);
+        });
+      }
     } else {
-      await Promise.all([
-        jobRef.set({ state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: result.errorCode ?? 'delivery_unknown' }, { merge: true }),
-        reviewRef.set({ state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: result.errorCode ?? 'delivery_unknown' }, { merge: true }),
-      ]);
+      await settle(
+        { state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: result.errorCode ?? 'delivery_unknown' },
+        { state: 'attention_required', updatedAtMs: Date.now(), lastErrorCode: result.errorCode ?? 'delivery_unknown' },
+      );
     }
   } catch (error) {
-    await jobRef.set({ state: 'pending', updatedAtMs: Date.now(), lastErrorCode: supportAutoErrorCode(error) }, { merge: true });
+    await settle({ state: 'pending', updatedAtMs: Date.now(), lastErrorCode: supportAutoErrorCode(error) });
     throw error;
   } finally {
     transporter.close?.();
   }
+}
+
+export async function runSupportTelegramReplyJobRecovery(nowMs: number = Date.now()): Promise<{ scanned: number; recovered: number }> {
+  const db = admin.firestore();
+  const [pendingSnap, processingSnap] = await Promise.all([
+    db.collection(SUPPORT_TELEGRAM_JOB_COLLECTION).where('state', '==', 'pending').limit(100).get(),
+    db.collection(SUPPORT_TELEGRAM_JOB_COLLECTION).where('state', '==', 'processing').limit(100).get(),
+  ]);
+  const rows = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
+  for (const row of [...pendingSnap.docs, ...processingSnap.docs]) rows.set(row.id, row);
+  let recovered = 0;
+  for (const row of rows.values()) {
+    const job = row.data() as SupportTelegramJobDoc;
+    const pending = job.state === 'pending';
+    const abandoned = job.state === 'processing' && Number(job.leaseExpiresAtMs ?? 0) <= nowMs;
+    if (!pending && !abandoned) continue;
+    await processSupportTelegramJob(db, row.id, nowMs);
+    recovered += 1;
+  }
+  return { scanned: rows.size, recovered };
 }
 
 export const supportTelegramReplyJobOnCreate = onDocumentCreated(

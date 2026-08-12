@@ -47,6 +47,17 @@ describe('support automation schedules', () => {
     expect(body).not.toContain('GMAIL_SUPPORT_APP_PASSWORD');
   });
 
+  test('recovers pending and abandoned Telegram reply jobs with worker-only secrets', () => {
+    const start = source.indexOf('export const supportTelegramReplyJobRecoveryCron');
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, source.indexOf('\n);', start) + 3);
+    expect(body).toContain("schedule: 'every 10 minutes'");
+    expect(body).toContain('runSupportTelegramReplyJobRecovery()');
+    expect(body).toContain('GMAIL_SUPPORT_APP_PASSWORD');
+    expect(body).toContain('SUPPORT_OPENAI_API_KEY');
+    expect(body).toContain('JARVIS_TELEGRAM_CONFIG');
+  });
+
   test('public Telegram webhook never mounts Gmail or OpenAI secrets', () => {
     const webhook = fs.readFileSync(path.join(__dirname, 'jarvis', 'approval_webhook.ts'), 'utf8');
     const start = webhook.indexOf('export const jarvisTelegramApprovalWebhook');

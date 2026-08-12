@@ -30,6 +30,19 @@ service cloud.firestore {
         || collection.matches('content_v2_(required_session|season_release)_.*');
     }
 
+    // Support correspondence, sealed delivery operations, Telegram review state,
+    // and the automation switch are callable/Admin-SDK only. Keeping this list in
+    // one helper also keeps the legacy browser-admin catch-all below the Rules
+    // expression-complexity ceiling.
+    function isServerOwnedSupportRoot(collection) {
+      return collection.matches('support_auto_reply_(reservations|counters)')
+        || collection.matches('support_telegram_(reviews|edit_sessions|reply_jobs)')
+        || collection.matches('support_reply_(operations|batches)')
+        || collection == 'support_inbox'
+        || collection == 'admin_command_operations'
+        || collection == 'admin_config';
+    }
+
     function isActiveYoutubeSnapshot(version) {
       return request.auth != null
         && exists(/databases/$(database)/documents/youtube_catalog/public)
@@ -2465,16 +2478,7 @@ service cloud.firestore {
         && collection != 'agent_office_control'
         && collection != 'agent_telegram_tokens'
         && collection != 'jarvis_approval_tokens'
-        && collection != 'support_auto_reply_reservations'
-        && collection != 'support_auto_reply_counters'
-        && collection != 'support_inbox'
-        && collection != 'support_telegram_reviews'
-        && collection != 'support_telegram_edit_sessions'
-        && collection != 'support_telegram_reply_jobs'
-        && collection != 'support_reply_operations'
-        && collection != 'support_reply_batches'
-        && collection != 'admin_command_operations'
-        && collection != 'admin_config'
+        && !isServerOwnedSupportRoot(collection)
         && collection != 'agent_observation_receipts'
         && collection != 'agent_manager_agents'
         && collection != 'agent_manager_tasks'

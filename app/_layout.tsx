@@ -1067,6 +1067,7 @@ function AppContent() {
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_collection" />
+      <Stack.Screen name="flashcards_card_editor" />
       <Stack.Screen name="community_pack_create" />
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'fade' }} />
       <Stack.Screen name="achievements_screen" />
@@ -1089,6 +1090,9 @@ function AppContent() {
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_words_session" />
+      <Stack.Screen name="flashcards_listening_session" />
+      <Stack.Screen name="flashcards_blitz_session" />
+      <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="trainer_phrases_session" />
       <Stack.Screen name="trainer_arena_session" />
     </Stack>

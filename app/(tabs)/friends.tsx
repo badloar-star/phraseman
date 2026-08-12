@@ -13,6 +13,7 @@ import { usePremium } from '../../components/PremiumContext';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
+import ScreenGradient from '../../components/ScreenGradient';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
@@ -786,22 +787,23 @@ function AddFriendModal({
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'right', 'bottom', 'left']}>
-        <View style={{ flex: 1 }}>
-          {/* Header */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
-            <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
-              {L('Добавить друга', 'Додати друга', 'Agregar amigo')}
-            </Text>
-            <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-              <Ionicons name="close" size={26} color={t.textMuted} />
-            </TouchableOpacity>
-          </View>
+        <ScreenGradient forceFullBleed>
+          <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'right', 'bottom', 'left']}>
+            <View style={{ flex: 1 }}>
+              {/* Header */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
+                <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
+                  {L('Добавить друга', 'Додати друга', 'Agregar amigo')}
+                </Text>
+                <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+                  <Ionicons name="close" size={26} color={t.textMuted} />
+                </TouchableOpacity>
+              </View>
 
-          <ScrollView
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{ padding: 20, gap: 16 }}
-          >
+              <ScrollView
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={{ padding: 20, gap: 16 }}
+              >
             {/* My code */}
             <CodeCard
               code={myCode} onCopy={onCopy} onShare={onShare}
@@ -874,9 +876,10 @@ function AddFriendModal({
                 <Text style={{ color: '#34C759', fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
               </View>
             )}
-          </ScrollView>
-        </View>
-        </SafeAreaView>
+              </ScrollView>
+            </View>
+          </SafeAreaView>
+        </ScreenGradient>
       </SafeAreaProvider>
     </Modal>
   );

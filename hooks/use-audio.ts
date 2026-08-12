@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
+import { peekEnVoiceId } from '../app/flashcards/voice_prefs';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
@@ -10,6 +11,12 @@ export type SpeakOpts = {
   pitch?: number;
   /** BCP-47, напр. en-US, es-ES. По умолчанию en-US. */
   language?: string;
+  /**
+   * cards-2.0 (E13): явный идентификатор голоса (voice picker preview).
+   * Без него для en-* подставляется выбранный юзером голос из fc_voice_prefs_v1;
+   * uk/ru/es автодетект языка не трогаем — голос применяется только к en.
+   */
+  voiceId?: string | null;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -130,8 +137,19 @@ export function useAudio() {
     }
     // Явный volume/stabilized pitch уменьшают «то громче, то тише» между материализациями на TTS-движке.
     // pitch всегда число (never undefined в native — иначе часть Android-движков даёт «уставший» голос или писклявость).
+    const speakLanguage = opts?.language?.trim() || 'en-US';
+    // E13: выбранный EN-голос (fc_voice_prefs_v1) — только для английского,
+    // чтобы не ломать uk/ru/es автодетект. Явный opts.voiceId (превью в voice
+    // picker) имеет приоритет; null = принудительно системный.
+    const preferredEnVoice =
+      opts?.voiceId !== undefined
+        ? opts.voiceId
+        : speakLanguage.toLowerCase().startsWith('en')
+          ? peekEnVoiceId()
+          : null;
     const speakOptions = {
-      language: opts?.language?.trim() || 'en-US',
+      language: speakLanguage,
+      ...(preferredEnVoice ? { voice: preferredEnVoice } : {}),
       rate: safeRate,
       volume: 1,
       pitch: opts?.pitch != null ? opts.pitch : 1,

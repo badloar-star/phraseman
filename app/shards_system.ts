@@ -378,6 +378,80 @@ const getOneTimeEvents = async (): Promise<Set<string>> => {
   }
 };
 
+/**
+ * cards-2.0 (E6): источники с ПЕРЕМЕННОЙ суммой, платящиеся строго один раз на eventKey
+ * (регистрация в shards_one_time_events — ключ в SYNC_KEYS, второй девайс после
+ * restore увидит событие и не выплатит повторно). Сейчас: сундуки-чекпоинты
+ * недельного трека звёзд ('{weekKey}:{checkpoint}', ролл 70/25/5 — stars_system)
+ * и milestone-сундуки lifetime best-звёзд колод ('fc_milestone_10|25|50', E12).
+ */
+export type OneTimeVariableSource = 'fc_checkpoint' | 'fc_milestone';
+
+/**
+ * cards-2.0 (E12): какие из ключей уже зарегистрированы в shards_one_time_events.
+ * UI milestone-сундуков рисует «заклеймлено» ТОЛЬКО по one-time событиям —
+ * локального клейм-флага нет намеренно (переустановка не выплачивает повторно).
+ */
+export const getClaimedOneTimeEventKeys = async (
+  keys: readonly string[],
+): Promise<string[]> => {
+  const events = await getOneTimeEvents();
+  return keys.filter((k) => events.has(k));
+};
+
+export type AwardOneTimeVariableResult = {
+  /** Фактически начислено (0 — если событие уже было или сумма невалидна). */
+  awarded: number;
+  balance: number | null;
+  /** true — eventKey уже зарегистрирован (этот или другой девайс), выплаты нет. */
+  alreadyClaimed: boolean;
+};
+
+/**
+ * Разовая выплата произвольной суммы по ключу события (по образцу awardOneTime,
+ * но amount переменный — ролл наград). Атомарно под withStorageLock: баланс и
+ * регистрация события пишутся одним multiSet. Без 'shards_earned' — UI клейма
+ * показывает собственную модалку награды (сундук на хабе карточек).
+ */
+export const awardOneTimeVariable = async (
+  eventKey: string,
+  amount: number,
+  source: OneTimeVariableSource,
+): Promise<AwardOneTimeVariableResult> => {
+  const amt = Math.floor(Number(amount));
+  if (!eventKey || !Number.isFinite(amt) || amt <= 0) {
+    return { awarded: 0, balance: null, alreadyClaimed: false };
+  }
+  try {
+    const result = await withStorageLock(async () => {
+      const events = await getOneTimeEvents();
+      if (events.has(eventKey)) {
+        return { awarded: 0, balance: null as number | null, alreadyClaimed: true };
+      }
+      const current = await getShardsBalance();
+      const next = current + amt;
+      events.add(eventKey);
+      await AsyncStorage.multiSet([
+        [STORAGE_KEY, String(next)],
+        [ONE_TIME_KEY, JSON.stringify([...events])],
+      ]);
+      return { awarded: amt, balance: next, alreadyClaimed: false };
+    });
+    if (result.awarded > 0 && result.balance !== null) {
+      setShardsBalanceMemory(result.balance);
+      void bumpLifetimeShardsEarned(amt);
+      // fire-and-forget: клейм сундука не должен ждать сеть (skipServerAwait-паттерн)
+      void syncShardsToCloud(result.balance);
+      void logShardTransaction('earn', amt, `${source}:${eventKey}`, result.balance);
+      emitAppEvent('shards_balance_updated', { balance: result.balance });
+    }
+    return result;
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:awardOneTimeVariable', error, 'warning');
+    return { awarded: 0, balance: null, alreadyClaimed: false };
+  }
+};
+
 export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test'): Promise<number> => {
   const amount = SHARD_REWARDS[source];
   if (!Number.isFinite(amount) || amount <= 0) return 0;

@@ -20,6 +20,8 @@ import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
+// cards-2.0 (E13): XP-буст ×1.5 за perfect session карточек (§4) — только trainer/review
+import { getFcXpBoostMultiplier } from './flashcards/xp_boost';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -75,6 +77,7 @@ export type XPSource =
   | 'preposition_drill_answer'    // Правильный ответ в тренажёре предлогов (+2)
   | 'preposition_drill_perfect'   // Идеальное прохождение тренажёра предлогов (+10, разово на урок)
   | 'review_answer'
+  | 'trainer_answer'   // Верный ответ в сессии тренера карточек (+5, паритет с review — Cards 2.0 §3.6)
   | 'diagnostic_test'
   | 'daily_login_bonus'
   | 'exam_complete'
@@ -136,7 +139,7 @@ export const registerXP = async (
 
     // 1. Множители применяются к заработку (уроки, квизы, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_task_reward'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'trainer_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_task_reward'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)
@@ -160,8 +163,11 @@ export const registerXP = async (
       const giftM = await readGiftMultiplier();
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
+      // Ж) cards-2.0 (E13): perfect session карточек → ×1.5 на 15 мин
+      // (fc_stars_v1.xpBoostUntil), только для trainer_answer/review_answer.
+      const fcBoostM = await getFcXpBoostMultiplier(source);
 
-      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1);
+      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (fcBoostM - 1);
       finalDelta = Math.round(amount * totalMultiplier);
 
       // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам

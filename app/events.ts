@@ -64,6 +64,21 @@ export type AppEventMap = {
    */
   bug_hunt_eligible_check: undefined;
   notif_permission_nudge: { missedDays: number };
+  /**
+   * cards-2.0 (E4): начислены звёзды за сессию (оптимистик — до записи на диск).
+   * Хаб карточек обновляет чип N★ и недельный трек X/21 (fc_stars_v1).
+   */
+  fc_stars_earned: { awarded: number; weeklyEarned: number; mode: string };
+  /**
+   * cards-2.0 (E6): сундук-чекпоинт недельного трека заклеймлен, осколки выплачены
+   * (ролл 70/25/5). Баланс обновляется отдельным shards_balance_updated.
+   */
+  fc_checkpoint_claimed: { checkpoint: number; amount: number; weekKey: string; jackpot: boolean };
+  /**
+   * cards-2.0 (E12): milestone-сундук lifetime best-звёзд колод (10/25/50★)
+   * заклеймлен, осколки выплачены ('fc_milestone_*' в shards_one_time_events).
+   */
+  fc_milestone_claimed: { milestone: number; amount: number };
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

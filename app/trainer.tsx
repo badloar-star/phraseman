@@ -16,6 +16,8 @@ import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { getTrainerCounts, devSeedTrainer, clearTrainerStore, type TrainerQueue } from './trainer_store';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import { hasUsedFreeSessionToday, isTrainerSessionLocked } from './trainer_session';
 import { DEV_MODE } from './config';
 
 interface SectionInfo {
@@ -62,10 +64,17 @@ export default function TrainerScreen() {
   const [counts, setCounts] = useState<Record<TrainerQueue, number>>({ words: 0, phrases: 0, arena: 0 });
   const [loading, setLoading] = useState(true);
   const [seeding, setSeeding] = useState(false);
+  /** Дневной лимит тренера (§4): free — 1 сессия/день, премиум — безлимит. */
+  const [dailyLocked, setDailyLocked] = useState(false);
 
   const loadCounts = useCallback(async () => {
-    const c = await getTrainerCounts();
+    const [c, premium, usedToday] = await Promise.all([
+      getTrainerCounts(),
+      getVerifiedPremiumStatus().catch(() => false),
+      hasUsedFreeSessionToday(),
+    ]);
     setCounts(c);
+    setDailyLocked(isTrainerSessionLocked(premium, usedToday));
     setLoading(false);
   }, []);
 
@@ -106,25 +115,63 @@ export default function TrainerScreen() {
               </View>
             )}
 
+            {/* Лимит дня использован (free): баннер с CTA премиума, без «скоро»-заглушек */}
+            {!loading && dailyLocked && (
+              <TouchableOpacity
+                testID="trainer-daily-limit-banner"
+                accessibilityLabel="qa-trainer-daily-limit-banner"
+                accessible
+                activeOpacity={0.85}
+                onPress={() => { hapticTap(); router.push('/premium_modal' as any); }}
+                style={[styles.limitBanner, { backgroundColor: t.bgCard, borderColor: t.border }]}
+              >
+                <Ionicons name="lock-closed" size={20} color={t.textMuted} />
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {triLang(lang, {
+                      ru: 'Бесплатная сессия на сегодня использована',
+                      uk: 'Безкоштовну сесію на сьогодні використано',
+                      es: 'Sesión gratuita de hoy usada',
+                    })}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
+                    {triLang(lang, {
+                      ru: 'Новая — завтра · с Премиум — без лимита',
+                      uk: 'Нова — завтра · з Преміум — без ліміту',
+                      es: 'Nueva mañana · con Premium sin límite',
+                    })}
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+              </TouchableOpacity>
+            )}
+
             {/* Разделы */}
             {SECTIONS.map(s => {
               const count = counts[s.queue];
               const empty = count === 0;
+              const locked = dailyLocked && !empty;
               return (
                 <TouchableOpacity
                   key={s.queue}
+                  testID={`trainer-section-${s.queue}`}
                   onPress={() => {
                     hapticTap();
-                    if (!empty) router.push(s.route as any);
+                    if (empty) return;
+                    if (locked) {
+                      router.push('/premium_modal' as any);
+                      return;
+                    }
+                    router.push(s.route as any);
                   }}
                   activeOpacity={empty ? 1 : 0.82}
                   style={[
                     styles.card,
                     {
                       backgroundColor: t.bgCard,
-                      borderColor: empty ? t.border : s.accent + '44',
-                      borderWidth: empty ? StyleSheet.hairlineWidth : 1.5,
-                      opacity: empty ? 0.5 : 1,
+                      borderColor: empty || locked ? t.border : s.accent + '44',
+                      borderWidth: empty || locked ? StyleSheet.hairlineWidth : 1.5,
+                      opacity: empty ? 0.5 : locked ? 0.72 : 1,
                     },
                   ]}
                 >
@@ -134,16 +181,26 @@ export default function TrainerScreen() {
                       {triLang(lang, s.title)}
                     </Text>
                     <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
-                      {triLang(lang, s.sub)}
+                      {locked
+                        ? triLang(lang, {
+                            ru: 'Завтра снова бесплатно · Премиум — безлимит',
+                            uk: 'Завтра знову безкоштовно · Преміум — безліміт',
+                            es: 'Mañana gratis otra vez · Premium sin límite',
+                          })
+                        : triLang(lang, s.sub)}
                     </Text>
                   </View>
                   <View style={[styles.countBadge, {
-                    backgroundColor: empty ? t.bgSurface : s.accent + '22',
-                    borderColor: empty ? t.border : s.accent + '55',
+                    backgroundColor: empty || locked ? t.bgSurface : s.accent + '22',
+                    borderColor: empty || locked ? t.border : s.accent + '55',
                   }]}>
-                    <Text style={[styles.countNum, { color: empty ? t.textMuted : s.accent, fontSize: f.numMd }]}>
-                      {count}
-                    </Text>
+                    {locked ? (
+                      <Ionicons name="lock-closed" size={18} color={t.textMuted} />
+                    ) : (
+                      <Text style={[styles.countNum, { color: empty ? t.textMuted : s.accent, fontSize: f.numMd }]}>
+                        {count}
+                      </Text>
+                    )}
                   </View>
                 </TouchableOpacity>
               );
@@ -223,6 +280,15 @@ const styles = StyleSheet.create({
   },
   totalNum: { fontWeight: '900' },
   totalLabel: { fontWeight: '600' },
+  limitBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    borderRadius: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
   card: {
     flexDirection: 'row',
     alignItems: 'center',

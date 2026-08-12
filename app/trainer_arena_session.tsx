@@ -18,19 +18,54 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
+import { useAudio } from '../hooks/use-audio';
 import {
   getDueItems,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
+import { hasUsedFreeSessionToday, isTrainerSessionLocked, markFreeSessionUsed } from './trainer_session';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import { actionToastTri, emitAppEvent } from './events';
+import { registerXP } from './xp_manager';
+import SessionResultScreen from './flashcards/SessionResultScreen';
+import {
+  autoSpeakAfterSfx,
+  cancelPendingFcTts,
+  fcHaptic,
+  setFcTtsSpeaker,
+} from './flashcards/SoundService';
+import { awardSessionStars, type AwardStarsOutcome } from './flashcards/stars_system';
+import {
+  requeueAfterMistake,
+  summarizeSession,
+  type SessionAnswerEvent,
+  type SessionOutcomeSummary,
+} from './flashcards/session_queue';
 
 type BtnState = 'idle' | 'correct' | 'wrong';
+
+/** Cards 2.0 E5: XP +5/верный ответ (паритет с review, §3.6 мастер-плана). */
+const XP_PER_CORRECT = 5;
+const ACCENT = '#E05050';
 
 export default function TrainerArenaSession() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { speak, stop: stopSpeech } = useAudio();
+
+  // E9: инъекция реального TTS в очередь SoundService (SFX → 120мс → TTS);
+  // на выходе — отменить отложенную речь и заглушить текущую.
+  useEffect(() => {
+    setFcTtsSpeaker(speak);
+    return () => {
+      setFcTtsSpeaker(null);
+      cancelPendingFcTts();
+      stopSpeech();
+    };
+  }, [speak, stopSpeech]);
 
   const [items, setItems] = useState<TrainerItem[]>([]);
   const [current, setCurrent] = useState(0);
@@ -41,15 +76,67 @@ export default function TrainerArenaSession() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
   const flashAnim = useRef(new Animated.Value(1)).current;
+  // E5: каркас результата — кэп повторов, журнал ответов, звёзды/XP
+  const [repeatCounts, setRepeatCounts] = useState<Record<string, number>>({});
+  const [result, setResult] = useState<{
+    summary: SessionOutcomeSummary;
+    outcome: AwardStarsOutcome | null;
+    xp: number;
+  } | null>(null);
+  const eventsRef = useRef<SessionAnswerEvent[]>([]);
+  const finishingRef = useRef(false);
+  const cardShownAtRef = useRef(Date.now());
 
   useEffect(() => {
     void (async () => {
+      // Дневной лимит тренера (§4): free — 1 сессия/день на весь тренер, премиум — безлимит
+      const [premium, usedToday] = await Promise.all([
+        getVerifiedPremiumStatus().catch(() => false),
+        hasUsedFreeSessionToday(),
+      ]);
+      if (isTrainerSessionLocked(premium, usedToday)) {
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Бесплатная сессия тренера на сегодня использована. Новая — завтра, с Премиум — без лимита.',
+          uk: 'Безкоштовну сесію тренера на сьогодні використано. Нова — завтра, з Преміум — без ліміту.',
+          es: 'Ya usaste la sesión gratuita de hoy. Nueva mañana; con Premium, sin límite.',
+        }));
+        router.replace('/trainer' as any);
+        return;
+      }
       const loaded = await getDueItems('arena', 15);
       if (loaded.length === 0) { setDone(true); setLoading(false); return; }
+      if (!premium) void markFreeSessionUsed();
       setItems(loaded);
+      cardShownAtRef.current = Date.now();
       setLoading(false);
     })();
-  }, []);
+  }, [router]);
+
+  const finishSession = useCallback(async () => {
+    if (finishingRef.current) return;
+    finishingRef.current = true;
+    const summary = summarizeSession(eventsRef.current);
+    // Звёзды (§4: тренер; выбор из 4 → порог 3★ choice 5с)
+    let outcome: AwardStarsOutcome | null = null;
+    if (summary.total > 0) {
+      outcome = await awardSessionStars('trainer', {
+        correct: summary.correct,
+        total: summary.total,
+        avgAnswerSec: summary.avgAnswerSec,
+        inputKind: 'choice',
+      }).catch(() => null);
+    }
+    // XP +5/верный, одним начислением в финале
+    let xp = summary.correct * XP_PER_CORRECT;
+    if (xp > 0) {
+      try {
+        const r = await registerXP(xp, 'trainer_answer', '', lang);
+        xp = r.finalDelta;
+      } catch {}
+    }
+    setResult({ summary, outcome, xp });
+    setDone(true);
+  }, [lang]);
 
   const flash = useCallback((ok: boolean) => {
     Animated.sequence([
@@ -75,28 +162,76 @@ export default function TrainerArenaSession() {
     });
     setBtnStates(newStates);
 
+    // E9: SFX → 120мс → автоозвучка полной EN-фразы (пропуск «___» заполняется
+    // правильным ответом — ключ арены хранит вопрос с пропуском); хаптика §5
+    const fullSentence = item.arenaQuestion.question.replace(/_+/g, correctAnswer);
+    fcHaptic(isOk ? 'correct' : 'wrong');
+    autoSpeakAfterSfx(fullSentence, {
+      sfx: isOk ? 'correct' : 'incorrect',
+      language: 'en-US',
+    });
     if (isOk) {
-      hapticSuccess();
       setCorrect(c => c + 1);
     } else {
-      hapticError();
       setWrong(c => c + 1);
     }
     flash(isOk);
+    eventsRef.current.push({
+      key: item.key,
+      correct: isOk,
+      ms: Date.now() - cardShownAtRef.current,
+    });
+
+    // «Ошибка → в конец очереди», максимум 2 повтора карточки (§3.5)
+    let nextItems = items;
+    if (!isOk) {
+      const rq = requeueAfterMistake(items, item, item.key, repeatCounts);
+      nextItems = rq.queue;
+      setItems(rq.queue);
+      setRepeatCounts(rq.repeatCounts);
+    }
 
     await markTrainerResult(item.key, 'arena', isOk);
 
     setTimeout(() => {
       const next = current + 1;
-      if (next >= items.length) {
-        setDone(true);
+      if (next >= nextItems.length) {
+        void finishSession();
       } else {
         setCurrent(next);
         setBtnStates(['idle', 'idle', 'idle', 'idle']);
         setLocked(false);
+        cardShownAtRef.current = Date.now();
       }
     }, isOk ? 700 : 1100);
-  }, [locked, items, current, flash]);
+  }, [locked, items, current, flash, repeatCounts, finishSession]);
+
+  // «Добить: Ещё учу (N)» — второй раунд по ошибочным вопросам
+  const handleRetryWrong = useCallback(() => {
+    if (!result) return;
+    const learn = new Set(result.summary.learnKeys);
+    const seen = new Set<string>();
+    const retry: TrainerItem[] = [];
+    for (const it of items) {
+      if (learn.has(it.key) && !seen.has(it.key)) {
+        seen.add(it.key);
+        retry.push(it);
+      }
+    }
+    if (retry.length === 0) return;
+    eventsRef.current = [];
+    finishingRef.current = false;
+    setRepeatCounts({});
+    setItems(retry);
+    setCurrent(0);
+    setCorrect(0);
+    setWrong(0);
+    setBtnStates(['idle', 'idle', 'idle', 'idle']);
+    setLocked(false);
+    setResult(null);
+    setDone(false);
+    cardShownAtRef.current = Date.now();
+  }, [result, items]);
 
   if (loading) {
     return (
@@ -109,42 +244,18 @@ export default function TrainerArenaSession() {
   }
 
   if (done) {
-    const total = correct + wrong;
+    const summary = result?.summary ?? summarizeSession(eventsRef.current);
     return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
-          <ContentWrap>
-            <View style={styles.doneContainer}>
-              <Text style={[styles.doneTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Сессия завершена', uk: 'Сесію завершено', es: 'Sesión terminada' })}
-              </Text>
-              <View style={[styles.doneStats, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.doneStat}>
-                  <Text style={{ color: '#40C080', fontSize: f.numLg, fontWeight: '900' }}>{correct}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'верно', uk: 'вірно', es: 'correcto' })}
-                  </Text>
-                </View>
-                <View style={{ width: StyleSheet.hairlineWidth, backgroundColor: t.border }} />
-                <View style={styles.doneStat}>
-                  <Text style={{ color: '#E05050', fontSize: f.numLg, fontWeight: '900' }}>{wrong}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores' })}
-                  </Text>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => { hapticTap(); router.back(); }}
-                style={[styles.doneBtn, { backgroundColor: '#E05050' }]}
-              >
-                <Text style={[styles.doneBtnText, { fontSize: f.body }]}>
-                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
+      <SessionResultScreen
+        correct={summary.correct}
+        wrong={summary.wrong}
+        xpGained={result?.xp ?? 0}
+        outcome={result?.outcome ?? null}
+        learnLeft={summary.learnKeys.length}
+        onRetryWrong={summary.learnKeys.length > 0 ? handleRetryWrong : undefined}
+        onDone={() => { hapticTap(); router.back(); }}
+        accentColor={ACCENT}
+      />
     );
   }
 

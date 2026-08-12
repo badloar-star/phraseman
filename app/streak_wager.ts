@@ -18,6 +18,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { registerXP } from './xp_manager';
 import { spendShards, addShardsRaw } from './shards_system';
 import { trackActivity } from './app_activity';
+import { consumeWagerDiscount, discountedWagerCost, readWagerDiscount } from './wager_discount';
 
 function logWagerHealth(
   context: string,
@@ -36,7 +37,6 @@ function logWagerHealth(
     .catch(() => {});
 }
 
-const WAGER_DISCOUNT_KEY = 'wager_discount';
 /** Преміум: безкоштовна перша ставка після level-up, раз на календарний місяць */
 const PREM_WAGER_TOKEN_KEY = 'premium_wager_free_after_levelup_v1';
 const PREM_WAGER_MONTH_KEY = 'premium_wager_free_month_issued_v1';
@@ -155,21 +155,19 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       return false;
     }
 
-    const discRaw = await AsyncStorage.getItem(WAGER_DISCOUNT_KEY);
-    const hasDisc = discRaw === '0.25';
+    const discount = await readWagerDiscount();
+    const hasDisc = discount !== null;
     const premiumFree =
       (await getVerifiedPremiumStatus()) &&
       (await AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY)) === '1';
 
     let toSpend = tier.betShards;
-    if (hasDisc) {
-      toSpend = Math.max(1, Math.floor(tier.betShards * 0.75));
-    }
+    toSpend = discountedWagerCost(tier.betShards, discount);
 
     if (premiumFree) {
       await AsyncStorage.removeItem(PREM_WAGER_TOKEN_KEY);
     } else {
-      const spent = await spendShards(toSpend, 'wager_bet');
+      const spent = await spendShards(toSpend, 'wager_bet', { skipServerAwait: true });
       if (!spent) {
         await trackActivity('streak_wager:place_blocked', {
           feature: 'streak_wager',
@@ -188,7 +186,7 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       }
     }
     if (hasDisc) {
-      await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
+      await consumeWagerDiscount();
     }
 
     const wager: WagerState = {
@@ -196,7 +194,7 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       startDate:     today(),
       startStreak:   currentStreak,
       tierIdx:       tier.tierIdx,
-      betShards:     tier.betShards,
+      betShards:     toSpend,
       daysRequired:  tier.daysRequired,
       rewardShards:  tier.rewardShards,
       rewardXP:      tier.rewardXP,

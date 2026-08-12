@@ -14,11 +14,16 @@ import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
+import { getHintFlag, setHintFlag } from './hint_flags';
 import type { Theme } from '../../constants/theme';
 import { inferExpoSpeechLanguage, speechLocaleToShortLabel, type SpeakOpts } from '../../hooks/use-audio';
 import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
+import { buildLegacyFlipFaceStyles, useFcCrossfadeFlip } from './PhraseCard';
+import WordStrengthDots from './WordStrengthDots';
+import type { WordStrength } from './word_strength';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
 
@@ -62,7 +67,6 @@ type Props = {
   itemIdx: number;
   lang: FlashcardContentLang;
   activeCat: CategoryId;
-  isPremium: boolean;
   deletingId: string | null;
   longPressedId: string | null;
   t: Theme;
@@ -70,8 +74,6 @@ type Props = {
   sourceLabels: Record<string, string>;
   deleteLabel: string;
   voiceLabel: string;
-  premiumExpiredTitle: string;
-  premiumExpiredSubtitle: string;
   cardHeight: number;
   cardStyle: any;
   sourceBadgeStyle: any;
@@ -79,7 +81,6 @@ type Props = {
   getCardFlipAnim: (cardId: string) => Animated.Value;
   getOverlayAnim: (cardId: string) => Animated.Value;
   getDeleteAnim: (cardId: string) => { opacity: Animated.Value; scale: Animated.Value };
-  onOpenPremium: () => void;
   onFlipCard: (cardId: string) => void;
   onOpenDelete: (cardId: string) => void;
   onCloseDelete: () => void;
@@ -89,21 +90,31 @@ type Props = {
   onDetailsOpenAnimStarted?: (info: { itemId: string; itemIndex: number }) => void;
   /** Fires when details are fully open (after split spring) so the list can scroll the row into view. */
   onDetailsScrollSettled?: (info: { itemId: string; itemIndex: number }) => void;
-  /** Register the native view of the full row (card + details) for list centering. */
-  setListItemRowRef?: (id: string, el: View | null) => void;
+  /** Полная высота строки (карточка + детали) из onLayout — для escort-скролла списка. */
+  onRowLayout?: (id: string, height: number) => void;
   /** Тема купленого паку з маркету — градієнт і бордер карток. */
   packCardTheme?: {
     borderAccent: string;
     frontGradient: readonly [string, string];
     backGradient: readonly [string, string];
   } | null;
-  /** Активний рядок за snap/viewability; інші в прокрутці легше підсвічуємо (менше плутанини з «сусіднім» peek). */
-  isRowInFocus?: boolean;
+  /**
+   * Фокус-строка списка (индекс из viewability) через SharedValue: смена видимой
+   * карточки анимируется на UI-потоке, без setState-каскада от родителя.
+   */
+  focusedIndexSV?: SharedValue<number>;
   /**
    * Затримка (мс) перед циклом «нуджу» шеврона. Якщо батько одночасно дає entering (FadeInDown),
    * вертикальний вхід рядка + translateY на шевроні зливаються в «глітч» — відклади підказку.
    */
   chevronHintDelayMs?: number;
+  /** E7 (баг 8): «Редактировать» в раскрытых деталях кастомной карточки → flashcards_card_editor. */
+  onEditCard?: ((item: CardItem) => void) | null;
+  editLabel?: string;
+  /** E7: кнопка удаления в деталях — фолбэк свайпа на web (§3.2 плана). */
+  onDeleteFromDetails?: ((item: CardItem, itemIdx: number) => void) | null;
+  /** E13: «сила слова» из SRS (word_strength.ts); null/undefined — точки не рисуем. */
+  strength?: WordStrength | null;
 };
 
 function FlashcardListItemImpl({
@@ -111,7 +122,6 @@ function FlashcardListItemImpl({
   itemIdx,
   lang,
   activeCat,
-  isPremium,
   deletingId,
   longPressedId,
   t,
@@ -119,8 +129,6 @@ function FlashcardListItemImpl({
   sourceLabels,
   deleteLabel,
   voiceLabel,
-  premiumExpiredTitle,
-  premiumExpiredSubtitle,
   cardHeight,
   cardStyle,
   sourceBadgeStyle,
@@ -128,7 +136,6 @@ function FlashcardListItemImpl({
   getCardFlipAnim,
   getOverlayAnim,
   getDeleteAnim,
-  onOpenPremium,
   onFlipCard,
   onOpenDelete,
   onCloseDelete,
@@ -136,10 +143,14 @@ function FlashcardListItemImpl({
   onSpeak,
   onDetailsOpenAnimStarted,
   onDetailsScrollSettled,
-  setListItemRowRef,
+  onRowLayout,
   packCardTheme = null,
-  isRowInFocus = true,
+  focusedIndexSV,
   chevronHintDelayMs = 0,
+  onEditCard = null,
+  editLabel,
+  onDeleteFromDetails = null,
+  strength = null,
 }: Props) {
   const effectiveOs = useEffectivePlatformOS();
   const tr = resolveFlashcardBackText(item, lang);
@@ -154,10 +165,28 @@ function FlashcardListItemImpl({
     () => splitAbbrevMarketplaceEn(item.en, item.abbrevEn, item.expansionEn),
     [item.en, item.abbrevEn, item.expansionEn],
   );
-  const isLocked = activeCat === 'saved' && !isPremium && itemIdx >= 20;
+  // E2: позиционного лимита-20 здесь больше нет (баг 10) — заблокированные лимитом
+  // карточки не попадают в data списка; вместо замков одна секция «+N скрыто» в футере.
   /** У «Збережені» кнопка озвучки справа (як раніше); в інших вкладках — зліва, щоб не перекривати фразу. */
   const voiceSpeakOnRight = activeCat === 'saved';
-  const hasDetails = !isModernAbbrevCard && cardHasDetails(item);
+  const usePackFace = !!packCardTheme && isMarketplaceBundleCard;
+  /**
+   * Фокус-строка через SharedValue (перф-пакет E2): расфокус peek-строк пака
+   * анимируется на UI-потоке; скролл не дергает setState родителя.
+   */
+  const focusDimStyle = useAnimatedStyle(() => {
+    if (!usePackFace || !focusedIndexSV) {
+      return { opacity: 1, transform: [{ scale: 1 }] };
+    }
+    const focused = focusedIndexSV.value === itemIdx;
+    return {
+      opacity: withTiming(focused ? 1 : 0.68, { duration: 160 }),
+      transform: [{ scale: withTiming(focused ? 1 : 0.985, { duration: 160 }) }],
+    };
+  }, [usePackFace, itemIdx, focusedIndexSV]);
+  /** E7: ряд действий (редактировать / удалить) в деталях — детали появляются даже без описания. */
+  const hasDetailsActions = !!(onEditCard || onDeleteFromDetails);
+  const hasDetails = !isModernAbbrevCard && (cardHasDetails(item) || hasDetailsActions);
   const { height: winH } = useWindowDimensions();
   /** Fallback if layout measure fails (should be rare) */
   const expandSectionMax = Math.min(Math.round(winH * 0.92), 4000);
@@ -190,11 +219,20 @@ function FlashcardListItemImpl({
 
   const cAnim = getCardFlipAnim(item.id);
   const flipDrivingAnim = cAnim;
-  /** «Книжковий» фліп по scaleX + різке перемикання opacity в середині (без довгого подвійного напівпрозорого шару). */
-  const cFrontScaleX = flipDrivingAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 0, 0] });
-  const cBackScaleX = flipDrivingAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 0, 1] });
-  const cFrontOp = flipDrivingAnim.interpolate({ inputRange: [0, 0.499, 0.501, 1], outputRange: [1, 1, 0, 0] });
-  const cBackOp = flipDrivingAnim.interpolate({ inputRange: [0, 0.499, 0.501, 1], outputRange: [0, 0, 1, 1] });
+  /**
+   * cards-2.0: настоящий 3D-флип (perspective + rotateY, флип-движок PhraseCard)
+   * вместо scaleX-псевдофлипа. Анимацией по-прежнему владеет родитель (Animated.Value
+   * 0↔1, useNativeDriver) — «перевернуть все» и звук/бейджи/удаление не меняются.
+   * web / reduceMotion / lowPower → кроссфейд; opacity-переключение на 90° —
+   * фолбэк backfaceVisibility для старых Android.
+   */
+  const crossfadeFlip = useFcCrossfadeFlip();
+  const flipFaces = useMemo(
+    () => buildLegacyFlipFaceStyles(flipDrivingAnim, !crossfadeFlip),
+    [flipDrivingAnim, crossfadeFlip],
+  );
+  const cFrontOp = flipFaces.frontOpacity;
+  const cBackOp = flipFaces.backOpacity;
 
   const cardSplitEdgeStyle = useAnimatedStyle(() => {
     if (!hasDetails) return {};
@@ -378,7 +416,8 @@ function FlashcardListItemImpl({
     setDetailsNatH(0);
   }, [detailsTargetSV, expandSV, item.id, splitSV]);
 
-  // Subtle “nudge down” on chevron = hint to tap and open (only when details exist and panel closed)
+  // Subtle “nudge down” on chevron = hint to tap and open.
+  // E2: не вечный Animated.loop — только первая карточка, 2 цикла, одноразовый флаг fc_hint_flags_v1.
   useEffect(() => {
     if (hintLoopRef.current) {
       hintLoopRef.current.stop();
@@ -386,7 +425,7 @@ function FlashcardListItemImpl({
     }
     hintY.stopAnimation();
     hintY.setValue(0);
-    if (!hasDetails || detailsExpanded) return;
+    if (!hasDetails || detailsExpanded || itemIdx !== 0) return;
 
     let cancelled = false;
     let delayTimer: ReturnType<typeof setTimeout> | null = null;
@@ -399,16 +438,22 @@ function FlashcardListItemImpl({
           Animated.timing(hintY, { toValue: 0, duration: 900, easing: Easing.bezier(0.45, 0, 0.55, 1), useNativeDriver: true }),
           Animated.delay(700),
         ]),
+        { iterations: 2 },
       );
       hintLoopRef.current = nudge;
-      nudge.start();
+      nudge.start(({ finished }) => {
+        if (finished) void setHintFlag('chevron_nudge');
+      });
     };
 
-    if (chevronHintDelayMs > 0) {
-      delayTimer = setTimeout(startNudge, chevronHintDelayMs);
-    } else {
-      startNudge();
-    }
+    void getHintFlag('chevron_nudge').then((seen) => {
+      if (cancelled || seen) return;
+      if (chevronHintDelayMs > 0) {
+        delayTimer = setTimeout(startNudge, chevronHintDelayMs);
+      } else {
+        startNudge();
+      }
+    });
 
     return () => {
       cancelled = true;
@@ -418,7 +463,7 @@ function FlashcardListItemImpl({
         hintLoopRef.current = null;
       }
     };
-  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs]);
+  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs, itemIdx]);
 
   const voiceTextFront = isModernAbbrevCard
     ? (parsedAbbrevEn.rest || item.en)
@@ -443,49 +488,89 @@ function FlashcardListItemImpl({
     onSpeak(voiceTextBack, { language: backSpeakLocale });
   }, [backSpeakLocale, onSpeak, voiceTextBack]);
 
-  if (isLocked) {
-    return (
-      <TouchableOpacity
-        activeOpacity={0.85}
-        onPress={onOpenPremium}
-        style={[cardStyle, { position: 'relative', backgroundColor: t.bgCard, borderColor: t.border, justifyContent: 'center', alignItems: 'center', height: cardHeight }]}
-      >
-        <Ionicons name="lock-closed" size={32} color={t.textMuted} />
-        <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', marginTop: 12 }}>
-          {premiumExpiredTitle}
-        </Text>
-        <Text style={{ color: t.textGhost, fontSize: f.caption, marginTop: 4, textAlign: 'center', paddingHorizontal: 16 }}>
-          {premiumExpiredSubtitle}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
-
   const isLongPressed = longPressedId === item.id;
   const canDeleteThis = !item.isSystem;
   const isDeleting = deletingId === item.id;
-  const usePackFace = !!packCardTheme && isMarketplaceBundleCard;
-  const dimAsPeek = usePackFace && !isRowInFocus;
   /** Область під шапкою: EN + IPA вміщаються за рахунок adjustsFontSizeToFit, без скролу */
   const frontTextMaxH = Math.max(92, cardHeight - 74);
   const overlayOpacity = getOverlayAnim(item.id);
   const delAnim = getDeleteAnim(item.id);
   const overlayBtnScale = overlayOpacity.interpolate({ inputRange: [0, 0.6, 1], outputRange: [0.7, 1.05, 1] });
 
+  /** E7: контент панели деталей + ряд действий — единый для премера и видимой панели (высота меряется с кнопками). */
+  const detailsInner = (
+    <>
+      <FlashcardDetailsBody item={item} lang={lang} t={t} f={f} />
+      {hasDetailsActions && (
+        <View style={{ flexDirection: 'row', gap: 10, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 16 }}>
+          {onEditCard && (
+            <TouchableOpacity
+              testID="fc-details-edit"
+              accessibilityLabel="qa-fc-details-edit"
+              accessible
+              onPress={() => onEditCard(item)}
+              activeOpacity={0.8}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 7,
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: `${t.accent}66`,
+                backgroundColor: `${t.accent}14`,
+                paddingVertical: 11,
+              }}
+            >
+              <Ionicons name="pencil-outline" size={16} color={t.accent} />
+              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+                {editLabel}
+              </Text>
+            </TouchableOpacity>
+          )}
+          {onDeleteFromDetails && (
+            <TouchableOpacity
+              testID="fc-details-delete"
+              accessibilityLabel="qa-fc-details-delete"
+              accessible
+              onPress={() => onDeleteFromDetails(item, itemIdx)}
+              activeOpacity={0.8}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 7,
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: `${t.wrong}66`,
+                backgroundColor: `${t.wrong}12`,
+                paddingVertical: 11,
+              }}
+            >
+              <Ionicons name="trash-outline" size={16} color={t.wrong} />
+              <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+                {deleteLabel}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+    </>
+  );
+
   return (
     <Animated.View
+      onLayout={(e) => onRowLayout?.(item.id, e.nativeEvent.layout.height)}
       style={{
         width: '100%',
-        opacity: isDeleting ? delAnim.opacity : dimAsPeek ? 0.68 : 1,
-        transform: isDeleting
-          ? [{ scale: delAnim.scale }]
-          : dimAsPeek
-            ? [{ scale: 0.985 }]
-            : [],
+        opacity: isDeleting ? delAnim.opacity : 1,
+        transform: isDeleting ? [{ scale: delAnim.scale }] : [],
       }}
     >
+      <Reanimated.View style={focusDimStyle}>
       <View
-        ref={(el) => setListItemRowRef?.(item.id, el)}
         collapsable={false}
         style={{ position: 'relative' }}
       >
@@ -498,7 +583,7 @@ function FlashcardListItemImpl({
             importantForAccessibility="no-hide-descendants"
           >
             <View onLayout={onPremeasureLayout}>
-              <FlashcardDetailsBody item={item} lang={lang} t={t} f={f} />
+              {detailsInner}
             </View>
           </View>
         )}
@@ -529,7 +614,7 @@ function FlashcardListItemImpl({
             <Animated.View
               style={[
                 cardFaceNativeFlipStyle,
-                { transform: [{ scaleX: cFrontScaleX }], opacity: cFrontOp },
+                flipFaces.front,
               ]}
             >
               <Reanimated.View
@@ -703,7 +788,7 @@ function FlashcardListItemImpl({
             <Animated.View
               style={[
                 cardFaceNativeFlipStyle,
-                { transform: [{ scaleX: cBackScaleX }], opacity: cBackOp },
+                flipFaces.back,
               ]}
             >
               <Reanimated.View
@@ -832,6 +917,16 @@ function FlashcardListItemImpl({
               </Reanimated.View>
             </Animated.View>
           </TouchableOpacity>
+
+          {/* E13: точки силы слова (Weak/Medium/Strong из SRS) — только на лице */}
+          {strength ? (
+            <Animated.View
+              pointerEvents="none"
+              style={{ position: 'absolute', bottom: 12, left: 14, zIndex: 5, opacity: cFrontOp }}
+            >
+              <WordStrengthDots strength={strength} t={t} testID={`fc-strength-${item.id}`} />
+            </Animated.View>
+          ) : null}
 
           <View
             onStartShouldSetResponder={() => true}
@@ -999,7 +1094,7 @@ function FlashcardListItemImpl({
               collapsable={false}
             >
               <View onLayout={onVisibleDetailsLayout} collapsable={false}>
-                <FlashcardDetailsBody item={item} lang={lang} t={t} f={f} />
+                {detailsInner}
               </View>
             </View>
           </Reanimated.View>
@@ -1042,6 +1137,7 @@ function FlashcardListItemImpl({
           </TouchableOpacity>
         </Animated.View>
       </View>
+      </Reanimated.View>
     </Animated.View>
   );
 }

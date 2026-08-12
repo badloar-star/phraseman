@@ -15,6 +15,7 @@ import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks
 import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
 import { processAdminGrantForCelebration } from './premium_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
+import { mergeFcDeckBestStarsForRestore, mergeFcStarsForRestore } from './flashcards/stars_system';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -98,6 +99,13 @@ export const SYNC_KEYS = [
   'streak_last_date',
   'unlocked_lessons',
   'flashcards',
+  // FIX(cards-2.0): реальный ключ сохранённых карточек — 'flashcards_v1'
+  // (hooks/use-flashcards.ts FLASHCARDS_KEY). Ключ 'flashcards' — legacy, оставлен
+  // для совместимости старых облачных снапшотов. Без 'flashcards_v1' библиотека
+  // сохранённых карточек терялась при переустановке приложения.
+  'flashcards_v1',
+  // FIX(cards-2.0): очереди ошибок Тренера тоже переживают переустановку.
+  'trainer_store_v1',
   'achievements_state',
   'active_recall_items',
   'onboarding_done',
@@ -126,6 +134,7 @@ export const SYNC_KEYS = [
   'premium_free_freeze_used',
   'chain_shield',
   'gift_xp_multiplier',
+  'wager_discount',
 
   // ── Зачёты уровней A1/A2/B1/B2 (без них unlock B1/B2 откатывается) ─────────
   'level_exam_A1_passed',
@@ -156,6 +165,12 @@ export const SYNC_KEYS = [
   'flashcards_owned_packs_v1',
   'community_owned_pack_ids_v1',
   'irregular_verbs_global',
+  // cards-2.0 (E4): звёзды раздела карточек — недельный трек + дневные кэпы.
+  // НЕ LWW: restore идёт через RESTORE_MERGE_STRATEGIES (stars = max,
+  // checkpointsClaimed = union, weekKey — побеждает больший; см. §1/§4 плана).
+  'fc_stars_v1',
+  // cards-2.0 (E4): best-звёзды колод (данные появятся в E12; merge: best = max).
+  'fc_deck_best_stars_v1',
 
   // ── Осколки: дополнительные ключи (баланс/история — отдельный канал) ───────
   // Сам баланс (shards) живёт в users/{uid}.shards и грузится через
@@ -207,6 +222,19 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_words`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`),
 ] as const;
+/**
+ * cards-2.0 (E4): ключи, которые при restore НЕЛЬЗЯ перетирать облаком (LWW) —
+ * merge локального и облачного значения кастомной стратегией.
+ * Стратегия чистая: (localRaw, cloudRaw) → строка для записи в AsyncStorage.
+ */
+const RESTORE_MERGE_STRATEGIES: Record<
+  string,
+  (localRaw: string | null | undefined, cloudRaw: string) => string
+> = {
+  fc_stars_v1: mergeFcStarsForRestore,
+  fc_deck_best_stars_v1: mergeFcDeckBestStarsForRestore,
+};
+
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
@@ -277,6 +305,19 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
+};
+
+const getFunctionsCallable = () => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    return httpsCallable(getFunctions(getApp(), 'us-central1'), 'accountDeleteMine');
   } catch {
     return null;
   }
@@ -518,6 +559,24 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   // Срабатывает один раз на каждый grant (повторная выдача ставит новый ts → снова сработает).
   void processAdminGrantForCelebration(cloudData['premium_admin_grant_at']);
 
+  /**
+   * cards-2.0 (E4): merge-ключи применяются в ОБОИХ ветках restore (и «облако
+   * побеждает», и «локальный XP выше») — звёзды/клеймы с другого устройства
+   * нельзя терять ни в одном направлении (union claimed / max stars).
+   */
+  const mergedPairs: [string, string][] = [];
+  for (const [key, strategy] of Object.entries(RESTORE_MERGE_STRATEGIES)) {
+    const cloudVal = cloudData[key];
+    if (cloudVal === null || cloudVal === undefined) continue;
+    try {
+      const localVal = await AsyncStorage.getItem(key);
+      const merged = strategy(localVal, String(cloudVal));
+      if (merged !== localVal) mergedPairs.push([key, merged]);
+    } catch {
+      /* fail-soft: ключ останется локальным */
+    }
+  }
+
   const localXPRaw = await AsyncStorage.getItem('user_total_xp');
   const localStreakRaw = await AsyncStorage.getItem('streak_count');
   const localXP = parseProgressInt(localXPRaw);
@@ -550,6 +609,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
         restoredDailyTasksToLocal = true;
       }
     }
+    stickyPairs.push(...mergedPairs);
     if (stickyPairs.length > 0) {
       await AsyncStorage.multiSet(stickyPairs);
       if (cloudHasPremiumAdminState) invalidatePremiumCache();
@@ -562,11 +622,14 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
 
   const pairs: [string, string][] = [];
   for (const key of SYNC_KEYS) {
+    // Merge-ключи (fc_stars_v1 и т.п.) — не LWW: уже посчитаны в mergedPairs.
+    if (key in RESTORE_MERGE_STRATEGIES) continue;
     const val = cloudData[key];
     if (val !== null && val !== undefined) {
       pairs.push([key, val]);
     }
   }
+  pairs.push(...mergedPairs);
   if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);
@@ -792,6 +855,14 @@ export async function deleteCloudData(): Promise<void> {
   const canonicalUid = await getCanonicalUserId();
   const authUid = auth.currentUser?.uid ?? null;
   if (!canonicalUid && !authUid) return;
+  const accountDeleteMine = getFunctionsCallable();
+  if (accountDeleteMine) {
+    await accountDeleteMine({
+      stableId: canonicalUid,
+      authUid,
+    });
+    return;
+  }
   try {
     // Delete both canonical and auth docs (if different) to avoid identity drift leftovers.
     const docIds = Array.from(new Set([canonicalUid, authUid].filter(Boolean) as string[]));

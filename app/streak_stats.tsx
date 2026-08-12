@@ -40,6 +40,7 @@ import { onAppEvent } from './events';
 import { oskolokImageForPackShards } from './oskolok';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
+import { discountedWagerCost, readWagerDiscount, type WagerDiscountState } from './wager_discount';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
 import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, readLifetimeProfileStatsCache, type LifetimeProfileStats } from './lifetime_profile_stats';
@@ -615,25 +616,51 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
   const [shardsWager, setShardsWager]   = useState(0);
   const [wagerNeedShards, setWagerNeedShards] = useState(false);
   const [wagerConfirm, setWagerConfirm] = useState(false);
+  const [wagerDiscount, setWagerDiscount] = useState<WagerDiscountState | null>(null);
+  const [wagerDiscountTimeLeft, setWagerDiscountTimeLeft] = useState('');
 
   const reload = async () => {
-    const [w, shardsRaw] = await Promise.all([
+    const [w, shardsRaw, discount] = await Promise.all([
       loadWager(),
       getShardsBalance(),
+      readWagerDiscount(),
     ]);
     setWager(w);
     setShardsWager(shardsRaw);
+    setWagerDiscount(discount);
     setLoading(false);
   };
 
   useEffect(() => { reload(); }, []);
+
+  useEffect(() => {
+    if (!wagerDiscount) {
+      setWagerDiscountTimeLeft('');
+      return;
+    }
+
+    const tick = () => {
+      const ms = wagerDiscount.expiresAt - Date.now();
+      if (ms <= 0) {
+        setWagerDiscount(null);
+        setWagerDiscountTimeLeft('');
+        return;
+      }
+      setWagerDiscountTimeLeft(formatTimeBarMs(ms, lang));
+    };
+
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [lang, wagerDiscount]);
 
   const clampTierIdx = (i: number) => Math.max(0, Math.min(i, WAGER_TIERS.length - 1));
 
   const handlePlace = () => {
     const tier = WAGER_TIERS[clampTierIdx(selectedTier)];
     if (!tier) return;
-    if (shardsWager < tier.betShards) {
+    const cost = discountedWagerCost(tier.betShards, wagerDiscount);
+    if (shardsWager < cost) {
       setWagerNeedShards(true);
       return;
     }
@@ -779,7 +806,9 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
 
   // ── Кнопка → открывает модал ────────────────────────────────────────────────
   const sel       = WAGER_TIERS[clampTierIdx(selectedTier)];
-  const canAfford = shardsWager >= sel.betShards;
+  const selCost   = discountedWagerCost(sel.betShards, wagerDiscount);
+  const hasWagerDiscount = wagerDiscount !== null;
+  const canAfford = shardsWager >= selCost;
 
   return (
     <>
@@ -842,6 +871,18 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                   es: 'Ahora retiramos la apuesta en fragmentos. Si mantienes la racha, añadimos fragmentos y XP al saldo.',
                 })}
               </Text>
+              {hasWagerDiscount && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: t.gold + '22', borderWidth: 1, borderColor: t.gold + '66', borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8, marginBottom: 12 }}>
+                  <Ionicons name="pricetag" size={16} color={t.gold} />
+                  <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
+                    {triLang(lang, {
+                      ru: `Подарок −25% активен · ${wagerDiscountTimeLeft}`,
+                      uk: `Подарунок −25% активний · ${wagerDiscountTimeLeft}`,
+                      es: `Regalo −25 % activo · ${wagerDiscountTimeLeft}`,
+                    })}
+                  </Text>
+                </View>
+              )}
 
               {/* Tier grid: срок + ставка + чистый плюс (без «1→+4») */}
               <View style={{ gap: 8, marginBottom: 18 }}>
@@ -849,12 +890,13 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                   <View key={ri} style={{ flexDirection: 'row', gap: 8 }}>
                     {row.map(i => {
                       const tier     = WAGER_TIERS[i];
-                      const netShards = tier.rewardShards - tier.betShards;
+                      const tierCost = discountedWagerCost(tier.betShards, wagerDiscount);
+                      const netShards = tier.rewardShards - tierCost;
                       const icon     = TIER_ICONS_WAGER[i];
                       const label    = streakWagerTierDaysLabel(lang, i);
                       const selected = selectedTier === i;
-                      const afford   = shardsWager >= tier.betShards;
-                      const deficit  = Math.max(0, tier.betShards - shardsWager);
+                      const afford   = shardsWager >= tierCost;
+                      const deficit  = Math.max(0, tierCost - shardsWager);
                       return (
                         <TouchableOpacity
                           testID={`wager-tier-${i}`}
@@ -887,7 +929,12 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                                 <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '600' }}>
                                   {triLang(lang, { ru: 'Ставка', uk: 'Ставка', es: 'Apuesta' })}
                                 </Text>
-                                <ShardsInline n={tier.betShards} size={10} textColor={t.textGhost} />
+                                {hasWagerDiscount && tierCost < tier.betShards && (
+                                  <Text style={{ color: t.textGhost, fontSize: 10, textDecorationLine: 'line-through' }}>
+                                    {tier.betShards}
+                                  </Text>
+                                )}
+                                <ShardsInline n={tierCost} size={10} textColor={t.textGhost} />
                               </View>
                               <Text style={{ color: selected ? t.textSecond : t.textPrimary, fontSize: 13, fontWeight: '800' }}>
                                 {`+${netShards} ${triLang(lang, {
@@ -937,13 +984,18 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                         <Text style={{ color: '#000', fontSize: f.body, fontWeight: '800' }}>
                           {`${triLang(lang, { ru: 'Поставить ', uk: 'Поставити ', es: 'Apostar ' })}`}
                         </Text>
-                        <ShardsInline n={sel.betShards} size={f.body} textColor="#000" />
+                        {hasWagerDiscount && selCost < sel.betShards && (
+                          <Text style={{ color: '#000', fontSize: f.sub, textDecorationLine: 'line-through', opacity: 0.7 }}>
+                            {sel.betShards}
+                          </Text>
+                        )}
+                        <ShardsInline n={selCost} size={f.body} textColor="#000" />
                       </View>
                       <Text style={{ color: '#000', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                         {triLang(lang, {
-                          ru: `Успех: +${sel.rewardShards - sel.betShards} оск. к балансу · +${sel.rewardXP} опыта`,
-                          uk: `Успіх: +${sel.rewardShards - sel.betShards} оск. до балансу · +${sel.rewardXP} досвіду`,
-                          es: `Si aciertas: +${sel.rewardShards - sel.betShards} frag. netos · +${sel.rewardXP} XP`,
+                          ru: `Успех: +${sel.rewardShards - selCost} оск. к балансу · +${sel.rewardXP} опыта`,
+                          uk: `Успіх: +${sel.rewardShards - selCost} оск. до балансу · +${sel.rewardXP} досвіду`,
+                          es: `Si aciertas: +${sel.rewardShards - selCost} frag. netos · +${sel.rewardXP} XP`,
                         })}
                       </Text>
                     </View>
@@ -978,7 +1030,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, { ru: 'Нужно:', uk: 'Потрібно:', es: 'Hacen falta:' })}
             </Text>
-            <ShardsInline n={sel.betShards} size={f.body} textColor="#A78BFA" />
+            <ShardsInline n={selCost} size={f.body} textColor="#A78BFA" />
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, { ru: 'осколков', uk: 'осколків', es: 'fragmentos' })}
             </Text>
@@ -994,7 +1046,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
             () => router.push({
               pathname: '/shards_shop',
               params: {
-                need: String(Math.max(0, sel.betShards - shardsWager)),
+                need: String(Math.max(0, selCost - shardsWager)),
                 source: 'streak_wager',
               },
             } as any),
@@ -1015,7 +1067,12 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
               <Text style={{ color: t.textMuted, fontSize: f.body }}>
                 {triLang(lang, { ru: 'Ставка:', uk: 'Ставка:', es: 'Apuesta:' })}
               </Text>
-              <ShardsInline n={sel.betShards} size={f.body} textColor={t.textPrimary} />
+              {hasWagerDiscount && selCost < sel.betShards && (
+                <Text style={{ color: t.textGhost, fontSize: f.sub, textDecorationLine: 'line-through' }}>
+                  {sel.betShards}
+                </Text>
+              )}
+              <ShardsInline n={selCost} size={f.body} textColor={t.textPrimary} />
             </View>
             {/* Win row */}
             <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}>
@@ -1034,7 +1091,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                       {triLang(lang, { ru: 'К балансу', uk: 'До балансу', es: 'Al saldo' })}
                     </Text>
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                      +{sel.rewardShards - sel.betShards}
+                      +{sel.rewardShards - selCost}
                     </Text>
                     <Text style={{ color: t.textGhost, fontSize: f.sub }}>
                       {triLang(lang, {
@@ -1064,7 +1121,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                   es: 'Si rompes la racha pierdes ',
                 })}
               </Text>
-              <ShardsInline n={sel.betShards} size={f.body} textColor="#FF3B30" />
+              <ShardsInline n={selCost} size={f.body} textColor="#FF3B30" />
             </View>
           </View>
         }

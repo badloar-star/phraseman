@@ -120,6 +120,11 @@ const LABELS: Record<string, { ru: string; uk: string; es: string }> = {
     uk: 'Тренажер прийменників без жодної помилки',
     es: 'Preposiciones a la perfección',
   },
+  fc_checkpoint: {
+    ru: 'Сундук недельного трека карточек открыт — звёзды превратились в осколки',
+    uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
+    es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+  },
   generic_raw: {
     ru: 'Начисление осколков знаний',
     uk: 'Нарахування осколків знань',

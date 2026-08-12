@@ -45,6 +45,7 @@ import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import EnergyIcon from '../../components/EnergyIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
 import { getTrainerTotalDue } from '../trainer_store';
+import { countDueItemsToday } from '../active_recall';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -213,6 +214,9 @@ export default function HomeScreen() {
   // Временно: только __DEV__ (в стор-сборках карточка скрыта, запрос не делаем).
   // >0 = карточка над «Тест/Экзамен», ведёт на /trainer.
   const [dueCount, setDueCount] = useState(0);
+  // [cards-2.0 E3] SRS-очередь review (active_recall) — бейдж «N к повторению»
+  // на плитке раздела «Карточки» (тот же источник, что hero-CTA хаба, §3.1).
+  const [srsDueCount, setSrsDueCount] = useState(0);
   const [userAvatar, setUserAvatar] = useState(() => hh?.userAvatar ?? '🐣');
   const [userFrame, setUserFrame]   = useState(() => hh?.userFrame ?? 'plain');
   // Бонусные баннеры
@@ -689,17 +693,20 @@ export default function HomeScreen() {
           return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
         })();
 
-      const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bonusRaw, comebackRaw, pbRaw] = await Promise.all([
+      const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bonusRaw, comebackRaw, pbRaw, srsDueToday] = await Promise.all([
         loadTodayProgress(taskList),
         // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
         // Если remote недоступен — функция сама фолбэкнется на локальный state.
         checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null),
-        __DEV__ ? getTrainerTotalDue().then(n => Array(n).fill(null)) : Promise.resolve([]),
+        // FIX(cards-2.0): бейдж Тренера должен работать и в проде (раньше только __DEV__).
+        getTrainerTotalDue().then(n => Array(n).fill(null)).catch((): null[] => []),
         loadAllMedals(),
         isRepairEligible(),
         AsyncStorage.getItem('login_bonus_pending'),
         AsyncStorage.getItem('comeback_pending'),
         AsyncStorage.getItem('weekly_pb_v1'),
+        // [cards-2.0 E3] бейдж «N к повторению» на плитке «Карточки»
+        countDueItemsToday().catch(() => 0),
       ]);
       const leagueState = leagueOpenResult?.state ?? null;
       // Если checkLeagueOnAppOpen упал/таймаутнул — fallback на чтение pending напрямую,
@@ -733,6 +740,7 @@ export default function HomeScreen() {
       }
 
       setDueCount(dueItems.length);
+      setSrsDueCount(srsDueToday);
       setMedalCounts(countMedals(allMedals));
 
       // [BANNERS] Login bonus, comeback, personal best, streak repair
@@ -1008,9 +1016,10 @@ const weekDays =
                :                          require('../../assets/images/levels/test forest.webp'),
     };
     const quickItems = [
-      { img: menuImages.lesson,   label: s.tabs.lessons,    sub: triLang(lang, { ru: '32 урока', uk: '32 уроки', es: '32 lecciones' }), path: 'lessons' },
-      { img: menuImages.quizes,   label: s.tabs.quizzes,    sub: triLang(lang, { ru: '3 уровня', uk: '3 рівні', es: '3 niveles de dificultad' }), path: '/quizzes_screen' },
-      { img: menuImages.cards,    label: s.tabs.flashcards, sub: triLang(lang, { ru: 'Свои фразы', uk: 'Свої фрази', es: 'Tus tarjetas' }), path: '/flashcards' },
+      { img: menuImages.lesson,   label: s.tabs.lessons,    sub: triLang(lang, { ru: '32 урока', uk: '32 уроки', es: '32 lecciones' }), path: 'lessons', badge: 0 },
+      { img: menuImages.quizes,   label: s.tabs.quizzes,    sub: triLang(lang, { ru: '3 уровня', uk: '3 рівні', es: '3 niveles de dificultad' }), path: '/quizzes_screen', badge: 0 },
+      // [cards-2.0 E3] бейдж «N к повторению» (SRS due из active_recall) — вход в раздел с главной (§3.1)
+      { img: menuImages.cards,    label: s.tabs.flashcards, sub: triLang(lang, { ru: 'Свои фразы', uk: 'Свої фрази', es: 'Tus tarjetas' }), path: '/flashcards', badge: srsDueCount },
     ];
     const themedClubIcon =
       themeMode === 'minimalLight' ? require('../../assets/images/levels/club base grafit.webp') :
@@ -1191,7 +1200,7 @@ const weekDays =
               {/* Прогресс XP — толще */}
               <View style={{ marginBottom:14 }}>
                 <View style={{ height:9, backgroundColor:t.bgSurface, borderRadius:5, overflow:'hidden' }}>
-                  <View style={{ width:`${Math.min(100,Math.round(progress*100))}%` as any, height:'100%', borderRadius:5, backgroundColor:isLightTheme ? t.accent : t.gold }} />
+                  <View style={{ width:`${Math.min(100, Math.max(0, progress * 100))}%` as any, height:'100%', borderRadius:5, backgroundColor:isLightTheme ? t.accent : t.gold }} />
                 </View>
                 <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop:5 }}>
                   <Text style={{ color:t.textMuted, fontSize:f.label }}>{xpInLevel} / {xpNeeded} XP</Text>
@@ -1359,6 +1368,7 @@ const weekDays =
               {quickItems.map(item=>(
                 <TouchableOpacity
                   key={item.label}
+                  testID={item.path === '/flashcards' ? 'home-quick-flashcards' : item.path === '/quizzes_screen' ? 'home-quick-quizzes' : 'home-quick-lessons'}
                   activeOpacity={0.8}
                   onPress={() => {
                     go(item.path);
@@ -1380,6 +1390,12 @@ const weekDays =
                       )
                       : <View style={{ width: 62, height: 62, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>
                     }
+                    {/* [cards-2.0 E3] «N к повторению»: тот же источник, что hero-CTA хаба */}
+                    {item.badge > 0 && (
+                      <View style={{ position:'absolute', top:-4, right:-10, backgroundColor:'#E05050', borderRadius:11, minWidth:22, height:22, alignItems:'center', justifyContent:'center', paddingHorizontal:5 }}>
+                        <Text style={{ color:'#fff', fontSize:11, fontWeight:'800' }}>{item.badge > 99 ? '99+' : item.badge}</Text>
+                      </View>
+                    )}
                   </View>
                   <Text style={{ color:t.textPrimary, fontSize:f.label, fontWeight:'700', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
                   </LinearGradient>

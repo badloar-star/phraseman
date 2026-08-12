@@ -136,17 +136,18 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]];
 
-  const staticY = staticParallaxY;
-  const animatedY =
-    staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined;
+  const layerTranslateY = staticParallaxY ?? entranceOffsetY ?? defaultEntranceY;
 
   const bgLayerStyle: ViewStyle = {
-    ...StyleSheet.absoluteFillObject,
-    ...(staticY !== undefined
-      ? { transform: [{ translateY: staticY }] }
-      : animatedY !== undefined
-        ? { transform: [{ translateY: animatedY }] }
-        : {}),
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 0,
+    transform: [{ translateY: layerTranslateY }],
   };
 
   const bgInner = (
@@ -181,16 +182,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
 
   return (
     <GradientActiveCtx.Provider value={true}>
-      <View style={[{ flex: 1, backgroundColor: t.bgPrimary, overflow: 'visible' }, style]}>
-        {staticY !== undefined ? (
-          <View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
-            {bgInner}
-          </View>
-        ) : (
-          <Animated.View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
-            {bgInner}
-          </Animated.View>
-        )}
+      <View style={[{ flex: 1, position: 'relative', backgroundColor: t.bgPrimary, overflow: 'visible' }, style]}>
+        <Animated.View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
+          {bgInner}
+        </Animated.View>
         {children}
       </View>
     </GradientActiveCtx.Provider>

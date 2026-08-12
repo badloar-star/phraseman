@@ -29,6 +29,15 @@ export async function markFreeSessionUsed(): Promise<void> {
   } catch {}
 }
 
+/**
+ * Гейт дневного лимита тренера (таблица §4 мастер-плана Cards 2.0):
+ * free — 1 бесплатная сессия/день на весь тренер, премиум — безлимит.
+ * Чистая функция — юнит-тестируется без RN.
+ */
+export function isTrainerSessionLocked(isPremium: boolean, usedFreeToday: boolean): boolean {
+  return !isPremium && usedFreeToday;
+}
+
 export async function getFreeSessionsLeftToday(): Promise<number> {
   try {
     const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);

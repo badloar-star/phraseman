@@ -45,6 +45,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onRequestClose}>
       <KeyboardAvoidingView
+        testID="delete-account-modal"
         style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
@@ -83,6 +84,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
             )}
           </Text>
           <TextInput
+            testID="delete-account-confirm-input"
             style={{
               backgroundColor: t.bgPrimary,
               color: t.textPrimary,
@@ -105,6 +107,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
           />
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <TouchableOpacity
+              testID="delete-account-cancel"
               activeOpacity={0.7}
               style={{ flex: 1, padding: 12, borderRadius: 10, borderWidth: 1, borderColor: t.border, alignItems: 'center' }}
               onPress={() => {
@@ -115,6 +118,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
               <Text style={{ color: t.textMuted, fontSize: f.body }}>{L('Отмена', 'Скасувати', 'Cancelar')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              testID="delete-account-confirm"
               disabled={deleteConfirmInput !== deleteConfirmWord}
               activeOpacity={0.7}
               style={{

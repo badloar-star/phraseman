@@ -8,6 +8,7 @@ import {
   BackHandler,
   Dimensions,
   Easing,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -18,7 +19,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
-import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
+import { fcHaptic, playSfx } from './flashcards/SoundService';
+import { isLowPowerEffective } from './flashcards/low_power';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   buildMarketplaceOwnedCards,
@@ -29,10 +32,7 @@ import {
   packTitleForInterface,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
-import {
-  isPackCeremoniallyOpened,
-  markPackCeremoniallyOpened,
-} from './flashcards/openedPacksTracker';
+import { markPackCeremoniallyOpened } from './flashcards/openedPacksTracker';
 import { fetchCommunityPackCards, fetchCommunityPackMeta } from './community_packs/communityFirestore';
 import { bundledPackTilePng } from './flashcards/packMarketplaceIcons';
 import type { CardItem } from './flashcards/types';
@@ -145,9 +145,10 @@ function FlippableCard({
   const glow = useRef(new Animated.Value(0)).current;
   const pulse = useRef(new Animated.Value(0)).current;
 
-  // Idle pulse на «рубашці» — м’яке дихання
+  // Idle pulse на «рубашці» — м’яке дихання.
+  // E9: lowPower — без вічного Animated.loop (деградація §1 принцип 5).
   useEffect(() => {
-    if (flipped) return;
+    if (flipped || isLowPowerEffective()) return;
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(pulse, { toValue: 1, duration: 1400, useNativeDriver: true }),
@@ -196,7 +197,9 @@ function FlippableCard({
 
   const onPress = useCallback(() => {
     if (flipped) return;
-    void hapticSoftImpact();
+    // E9: флип карточки пака = звук+хаптика карточки (§5: flick, Light)
+    playSfx('flip');
+    fcHaptic('flip');
     onFlip(index);
   }, [flipped, onFlip, index]);
 
@@ -397,13 +400,34 @@ export default function PackOpeningScreen() {
     };
   }, [packId, lang]);
 
+  // ── E9: riser на старт церемонии (карточки загружены, ещё закрыты) ─────────
+  // Web-ветка (§7): autoplay до первого жеста запрещён браузером — riser
+  // на web не играем на маунте (звуки флипов пойдут после первого тапа).
+  const riserPlayedRef = useRef(false);
+  useEffect(() => {
+    if (loading || cards.length === 0 || riserPlayedRef.current) return;
+    if (flippedSet.size > 0) return; // не церемония с нуля — без riser
+    riserPlayedRef.current = true;
+    if (Platform.OS !== 'web') playSfx('riser');
+    fcHaptic('star'); // Medium / Light (§5, церемония)
+    // Запускаем один раз при готовности сетки — flippedSet проверен на пустоту выше.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, cards.length]);
+
   // ── Конфетті + помітка про церемонію коли всі відкриті ─────────────────────
   useEffect(() => {
     if (cards.length === 0) return;
     if (flippedSet.size < cards.length) return;
-    setShowConfetti(true);
-    void hapticSuccess();
+    // E9: sparkle-арпеджио на полный reveal + Medium-хаптика (§5)
+    playSfx('chest_open');
+    fcHaptic('star');
     void markPackCeremoniallyOpened(packId);
+    if (isLowPowerEffective()) {
+      // Деградация: без конфетти — двойная хаптика вместо частиц
+      const hTimer = setTimeout(() => fcHaptic('star'), 220);
+      return () => clearTimeout(hTimer);
+    }
+    setShowConfetti(true);
     const timer = setTimeout(() => setShowConfetti(false), 3500);
     return () => clearTimeout(timer);
   }, [flippedSet, cards.length, packId]);
@@ -421,6 +445,8 @@ export default function PackOpeningScreen() {
     if (revealAll) return;
     setRevealAll(true);
     void hapticTap();
+    // E9: каскадный reveal — восходящий whoosh (§5), финальный chest_open в эффекте выше
+    playSfx('swipe_know');
     // Каскад розкриття інших карток із 80мс затримкою
     let delay = 0;
     cards.forEach((_, idx) => {

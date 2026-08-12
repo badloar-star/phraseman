@@ -129,6 +129,42 @@ export const removeFlashcard = async (id: string): Promise<void> => {
   });
 };
 
+/**
+ * cards-2.0 (E7): удаление со снапшотом — для undo-снекбара.
+ * Возвращает удалённую карточку и её индекс (для восстановления на место)
+ * или null, если карточки уже нет.
+ */
+export const removeFlashcardWithSnapshot = async (
+  id: string,
+): Promise<{ card: Flashcard; index: number } | null> => {
+  return withWriteLock(async () => {
+    const cards = await loadFlashcards();
+    const index = cards.findIndex(c => c.id === id);
+    if (index < 0) return null;
+    const card = cards[index];
+    const next = [...cards];
+    next.splice(index, 1);
+    await persistFlashcards(next);
+    return { card, index };
+  });
+};
+
+/**
+ * cards-2.0 (E7): undo удаления — вернуть карточку на прежнее место.
+ * Идемпотентно: если id уже есть (двойной тап «Вернуть»), ничего не делает.
+ * Лимит-20 намеренно НЕ проверяется: restore возвращает то, что юзер уже имел.
+ */
+export const restoreFlashcard = async (card: Flashcard, index?: number): Promise<void> => {
+  return withWriteLock(async () => {
+    const cards = await loadFlashcards();
+    if (cards.some(c => c.id === card.id)) return;
+    const next = [...cards];
+    const at = index == null ? next.length : Math.max(0, Math.min(index, next.length));
+    next.splice(at, 0, card);
+    await persistFlashcards(next);
+  });
+};
+
 export const removeFlashcardByEnglish = async (en: string): Promise<boolean> => {
   return withWriteLock(async () => {
     const cards = await loadFlashcards();

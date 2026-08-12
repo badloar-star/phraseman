@@ -29,6 +29,7 @@ import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
 import { addShards, addShardsRaw } from './shards_system';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { grantWagerDiscount, WAGER_DISCOUNT_KEY } from './wager_discount';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -178,9 +179,9 @@ const GIFT_F2P: GiftDef[] = [
   {
     id: 'wager_discount_25', rarity: 'epic', icon: '🎲', weight: 2,
     titleRU: 'Скидка на пари −25%', titleUK: 'Знижка на пари −25%', titleES: '−25 % en la apuesta',
-    descRU: 'Следующее пари: на 25% дешевле (одно пари, ключ сбрасывается при ставке)',
-    descUK: 'Наступне пари: на 25% дешевше (одне пари, знімається при ставці)',
-    descES: 'La siguiente apuesta cuesta un 25 % menos (una sola vez; se usa al apostar)',
+    descRU: 'Следующее пари на 25% дешевле. Действует 24 часа или до первой ставки',
+    descUK: 'Наступне парі на 25% дешевше. Діє 24 години або до першої ставки',
+    descES: 'La siguiente apuesta cuesta un 25 % menos. Dura 24 h o hasta apostar',
   },
   {
     id: 'shards_10', rarity: 'epic', icon: '💎', weight: 2,
@@ -327,7 +328,6 @@ async function pushPremiumPackUnlockGiftReceivedPackId(packId: string): Promise<
 
 const ROUND_LEVELS = new Set([10, 20, 30, 40, 50]);
 const GIFT_HISTORY_KEY = 'level_gift_last_ids_v1';
-const WAGER_DISCOUNT_KEY = 'wager_discount';
 const PREMIUM_BLOCKED_F2P_IDS = new Set<GiftId>([
   'arena_extra_5',
   'energy_full',
@@ -591,7 +591,7 @@ export const applyGift = async (
         break;
       }
       case 'wager_discount_25': {
-        await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');
+        await grantWagerDiscount();
         break;
       }
       case 'prem_shards_10': {

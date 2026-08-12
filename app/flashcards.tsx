@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AccessibilityInfo, Animated, BackHandler, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
@@ -25,6 +25,7 @@ import {
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
 import { getShardsBalance } from './shards_system';
+import { onAppEvent } from './events';
 
 export default function FlashcardsHubScreen() {
   const router = useRouter();
@@ -44,6 +45,38 @@ export default function FlashcardsHubScreen() {
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
   const [shardBalance, setShardBalance] = useState(0);
+
+  /** E6: клейм сундука-чекпоинта платит осколки без перезахода — чип баланса обновляется сразу. */
+  useEffect(() => {
+    const sub = onAppEvent('shards_balance_updated', ({ balance }) => setShardBalance(balance));
+    return () => sub.remove();
+  }, []);
+
+  /** cards-2.0 (E3): параллакс орбов ScreenGradient от скролла (±20px), за reduceMotion. */
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => {
+    if (Platform.OS === 'web') return;
+    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => {});
+    const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
+    return () => sub.remove();
+  }, []);
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const parallaxY = useMemo(
+    () =>
+      scrollY.interpolate({
+        inputRange: [-120, 0, 480],
+        outputRange: [12, 0, -20],
+        extrapolate: 'clamp',
+      }),
+    [scrollY],
+  );
+  const onHubScroll = useMemo(
+    () =>
+      Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+        useNativeDriver: Platform.OS !== 'web',
+      }),
+    [scrollY],
+  );
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const leaveFlashcardsHub = useCallback(() => {
@@ -161,7 +194,7 @@ export default function FlashcardsHubScreen() {
   }, [leaveFlashcardsHub]);
 
   return (
-    <ScreenGradient>
+    <ScreenGradient entranceOffsetY={reduceMotion ? undefined : (parallaxY as unknown as Animated.Value)}>
       <SafeAreaView
         style={[styles.safe, { backgroundColor: 'transparent' }]}
         edges={['top', 'left', 'right']}
@@ -204,7 +237,7 @@ export default function FlashcardsHubScreen() {
         </View>
 
         <View style={styles.scrollRegion}>
-          <ScrollView
+          <Animated.ScrollView
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
@@ -214,6 +247,8 @@ export default function FlashcardsHubScreen() {
             keyboardShouldPersistTaps="handled"
             bounces
             alwaysBounceVertical={false}
+            onScroll={reduceMotion ? undefined : onHubScroll}
+            scrollEventThrottle={16}
           >
             <FlashcardsCategoryHub
               lang={hubCategoryLang}
@@ -228,7 +263,7 @@ export default function FlashcardsHubScreen() {
               ownedCommunityPackIds={ownedCommunityPackIds}
               hubAuthorStableId={hubAuthorStableId}
             />
-          </ScrollView>
+          </Animated.ScrollView>
         </View>
       </SafeAreaView>
     </ScreenGradient>

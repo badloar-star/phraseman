@@ -1,6 +1,6 @@
 /**
  * Progress Map — визуальная карта прогресса.
- * Вертикальный скролл: уровни 1-50, milestone'ы на 10/20/30/40/50.
+ * Вертикальный скролл: уровни 1-MAX_LEVEL, milestone'ы на 10/20/30/40/50.
  * Подарки уровня: принятые, непринятые (можно открыть здесь), будущие.
  */
 
@@ -29,7 +29,7 @@ import LevelGiftDualModal, { loadUnclaimedDualGifts, loadDualClaimedLevels, type
 import LevelGiftModal, { loadUnclaimedGifts, loadClaimedGiftRarities } from '../components/LevelGiftModal';
 import { GiftDef } from './level_gift_system';
 import { triLang } from '../constants/i18n';
-import { getXPProgress, getMaxEnergyForLevel } from '../constants/theme';
+import { getXPProgress, getMaxEnergyForLevel, MAX_LEVEL } from '../constants/theme';
 import { TITLES } from '../constants/titles';
 
 const CHEST_IMAGES: Record<string, any> = {
@@ -102,10 +102,10 @@ const MILESTONES: MilestoneInfo[] = [
     emojiRu: '👑', emojiUk: '👑',
     titleRu: 'Максимум энергии 10', titleUk: 'Максимум енергії 10',
     titleEs: 'Energía máxima 10',
-    descRu: 'Достигни вершины — стань Легендой!', descUk: 'Досягни вершини — стань Легендою!',
-    descEs: '¡Alcanza la cima — conviértete en leyenda!',
-    doneDescRu: 'Ты достиг вершины. Легенда!', doneDescUk: 'Ти досяг вершини. Легенда!',
-    doneDescEs: 'Has alcanzado la cima. ¡Leyenda!',
+    descRu: 'Открой титул Легенда и максимум энергии.', descUk: 'Відкрий титул Легенда й максимум енергії.',
+    descEs: 'Desbloquea el título Leyenda y la energía máxima.',
+    doneDescRu: 'Титул Легенда и максимум энергии открыты.', doneDescUk: 'Титул Легенда й максимум енергії відкрито.',
+    doneDescEs: 'Título Leyenda y energía máxima desbloqueados.',
   },
 ];
 
@@ -228,7 +228,7 @@ export default function ProgressMapScreen() {
     }
   };
 
-  const levels = Array.from({ length: 50 }, (_, i) => i + 1);
+  const levels = Array.from({ length: MAX_LEVEL }, (_, i) => i + 1);
 
   const renderLevelRow: ListRenderItem<number> = ({ item: lvl }) => {
     const isDone = lvl < userLevel;

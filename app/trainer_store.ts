@@ -87,6 +87,19 @@ function nextInterval(correctStreak: number): number {
 
 // ── Storage ──────────────────────────────────────────────────────────────────
 
+/**
+ * FIX(cards-2.0): все read-modify-write идут через одну очередь, иначе быстрые
+ * параллельные записи (например ошибка слова + ошибка фразы в одном ответе)
+ * теряли данные — последний save() перетирал предыдущий. Паттерн повторяет
+ * withWriteLock из hooks/use-flashcards.ts.
+ */
+let writeQueue: Promise<unknown> = Promise.resolve();
+function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
+  const result = writeQueue.then(() => fn());
+  writeQueue = result.finally(() => {});
+  return result;
+}
+
 async function load(): Promise<TrainerItem[]> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
@@ -108,12 +121,13 @@ async function save(items: TrainerItem[]): Promise<void> {
  * Слово добавляется в очередь только при 2-й ошибке.
  * При последующих ошибках — обновляет счётчик и сбрасывает nextDue к завтра.
  */
-export async function recordWordMistake(
+export function recordWordMistake(
   wordEn: string,
   translationRu: string,
   translationUk: string,
   lessonId: number,
 ): Promise<void> {
+  return withWriteLock(async () => {
   const key = wordEn.trim().toLowerCase();
   const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'words');
@@ -152,18 +166,20 @@ export async function recordWordMistake(
   };
   items.push(firstHit);
   await save(items);
+});
 }
 
 /**
  * Фиксирует достижение порога — добавляет слово в активную очередь.
  * Вызывается из lesson_words / lesson_irregular_verbs при 2-й ошибке.
  */
-export async function activateWordForTrainer(
+export function activateWordForTrainer(
   wordEn: string,
   translationRu: string,
   translationUk: string,
   lessonId: number,
 ): Promise<void> {
+  return withWriteLock(async () => {
   const key = wordEn.trim().toLowerCase();
   const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'words');
@@ -194,6 +210,7 @@ export async function activateWordForTrainer(
   };
   items.push(item);
   await save(items);
+});
 }
 
 /**
@@ -201,13 +218,14 @@ export async function activateWordForTrainer(
  * Фраза сразу добавляется в очередь (порог: 1 ошибка).
  * @param errorWord — конкретное слово в фразе где была ошибка (для fill-the-gap)
  */
-export async function recordPhraseMistake(
+export function recordPhraseMistake(
   phraseEn: string,
   translationRu: string,
   translationUk: string,
   lessonId: number,
   errorWord?: string,
 ): Promise<void> {
+  return withWriteLock(async () => {
   const key = phraseEn.trim();
   const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'phrases');
@@ -243,16 +261,18 @@ export async function recordPhraseMistake(
   };
   items.push(item);
   await save(items);
+});
 }
 
 /**
  * Записать ошибку на вопросе арены.
  * Сразу добавляется в очередь.
  */
-export async function recordArenaMistake(
+export function recordArenaMistake(
   question: ArenaQuestion,
   lessonId: number,
 ): Promise<void> {
+  return withWriteLock(async () => {
   const key = question.question.trim();
   const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'arena');
@@ -284,6 +304,7 @@ export async function recordArenaMistake(
   };
   items.push(item);
   await save(items);
+});
 }
 
 // ── Отработка ─────────────────────────────────────────────────────────────────
@@ -293,11 +314,12 @@ export async function recordArenaMistake(
  * Правильно → продвигаем по лесенке интервалов.
  * Неправильно → сброс к 1 дню.
  */
-export async function markTrainerResult(
+export function markTrainerResult(
   key: string,
   queue: TrainerQueue,
   correct: boolean,
 ): Promise<void> {
+  return withWriteLock(async () => {
   const items = await load();
   const item = items.find(i => i.key === key && i.queue === queue);
   if (!item) return;
@@ -316,6 +338,7 @@ export async function markTrainerResult(
   }
 
   await save(items);
+});
 }
 
 // ── Чтение для UI ─────────────────────────────────────────────────────────────
@@ -356,8 +379,10 @@ export async function getAllWordKeys(): Promise<TrainerItem[]> {
 
 // ── Сброс / диагностика ───────────────────────────────────────────────────────
 
-export async function clearTrainerStore(): Promise<void> {
+export function clearTrainerStore(): Promise<void> {
+  return withWriteLock(async () => {
   await AsyncStorage.removeItem(STORAGE_KEY);
+});
 }
 
 export async function getTrainerStoreDebug(): Promise<{
@@ -416,7 +441,8 @@ const DEV_ARENA = [
  * DEV ONLY — заполняет тренер случайным кол-вом элементов в каждый раздел.
  * Nextdue = сегодня (сразу видны в очереди).
  */
-export async function devSeedTrainer(): Promise<void> {
+export function devSeedTrainer(): Promise<void> {
+  return withWriteLock(async () => {
   const items = await load();
   const now = Date.now();
   const todayMs = now; // nextDue в прошлом → сразу в очереди
@@ -482,6 +508,7 @@ export async function devSeedTrainer(): Promise<void> {
   }
 
   await save(items);
+});
 }
 
 /* expo-router route shim */

@@ -17,7 +17,7 @@ export const TITLES: TitleDef[] = [
   { minLevel: 35, maxLevel: 39, titleEN: 'Expert',     colorLight: '#9333EA', colorDark: '#C084FC' },
   { minLevel: 40, maxLevel: 44, titleEN: 'Scholar',    colorLight: '#0D9488', colorDark: '#2DD4BF' },
   { minLevel: 45, maxLevel: 49, titleEN: 'Master',     colorLight: '#B45309', colorDark: '#F59E0B' },
-  { minLevel: 50, maxLevel: 50, titleEN: 'Legend',     colorLight: '#1D4ED8', colorDark: '#818CF8' },
+  { minLevel: 50, maxLevel: 60, titleEN: 'Legend',     colorLight: '#1D4ED8', colorDark: '#818CF8' },
 ];
 
 export const getTitleForLevel = (level: number): TitleDef =>

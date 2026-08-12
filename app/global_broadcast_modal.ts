@@ -6,7 +6,7 @@ import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
-import { WAGER_DISCOUNT_KEY } from './level_gift_system';
+import { grantWagerDiscount } from './wager_discount';
 
 const COLLECTION = 'global_broadcast_modals';
 
@@ -158,7 +158,7 @@ async function applyBroadcastReward(payload: GlobalBroadcastModalPayload): Promi
       await addArenaPlaysBonusForToday(5);
       return;
     case 'wager_discount_25':
-      await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');
+      await grantWagerDiscount();
       return;
     case 'pack_trial_48h':
       await setRandomPackGiftTrial48h();

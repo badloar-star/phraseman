@@ -54,7 +54,14 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
+import { useAudio } from '../hooks/use-audio';
+import {
+  autoSpeakAfterSfx,
+  cancelPendingFcTts,
+  fcHaptic,
+  setFcTtsSpeaker,
+} from './flashcards/SoundService';
 import {
   getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT,
   getTrainerItems, type TrainerMode,
@@ -110,6 +117,9 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
   }
   if (s === 'arena') return triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' });
   if (s === 'diagnostic') return triLang(lang, { ru: 'Диагностика', uk: 'Діагностика', es: 'Test de nivel' });
+  // cards-2.0 (E8): кастомные карточки и карточки паков в очереди review (§3.7)
+  if (s === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
+  if (s === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
   if (s === 'exam') {
     return triLang(lang, {
       ru: `Зачёт · урок ${item.lessonId}`,
@@ -471,6 +481,19 @@ export default function ReviewScreen() {
   const trainerLessonId = params.lessonId ? parseInt(params.lessonId, 10) : undefined;
   const trainerCategory = params.category;
 
+  // E9: озвучка EN — TTS-кнопка на карточке + автоозвучка после ответа (§5).
+  // Реальный speak (useAudio: дедуп, stop-settle Android, rate из настроек)
+  // инъектируется в очередь SoundService «SFX → 120мс → TTS».
+  const { speak, stop: stopSpeech } = useAudio();
+  useEffect(() => {
+    setFcTtsSpeaker(speak);
+    return () => {
+      setFcTtsSpeaker(null);
+      cancelPendingFcTts();
+      stopSpeech();
+    };
+  }, [speak, stopSpeech]);
+
   // Данные сессии
   const [items,   setItems]   = useState<RecallItem[]>([]);
   const [index,   setIndex]   = useState(0);
@@ -491,6 +514,10 @@ export default function ReviewScreen() {
   const [pickedChoice, setPickedChoice] = useState<string | null>(null);
   const [status,    setStatus]    = useState<Status>('playing');
   const [wasCorrect,  setWasCorrect]  = useState(false);
+  // E6: fuzzy-ввод — верно с опечаткой («Почти! Правильно: …»)
+  const [wasTypo,     setWasTypo]     = useState(false);
+  // E6: «Показать ответ» → self-grade «Знал / Не знал» (recall_type)
+  const [revealed,    setRevealed]    = useState(false);
   const [canBurn,     setCanBurn]     = useState(false);  // кнопка "сжечь" (правильно за 20с)
   const [burning,     setBurning]     = useState(false);  // идёт анимация сжигания
   const [cardLayout,  setCardLayout]  = useState({ width: CONTENT_W - 32, height: 110 });
@@ -559,6 +586,8 @@ export default function ReviewScreen() {
     }
     setStatus('playing');
     setWasCorrect(false);
+    setWasTypo(false);
+    setRevealed(false);
     setCanBurn(false);
     setBurning(false);
     resultAnim.setValue(0);
@@ -659,7 +688,16 @@ export default function ReviewScreen() {
     [items, index, status, burning, loadCard],
   );
 
-  const finishCard = useCallback((ok: boolean, userPick: string | null) => {
+  const finishCard = useCallback((
+    ok: boolean,
+    userPick: string | null,
+    opts?: {
+      /** E6: верно с опечаткой — зелёный результат с «Почти! Правильно: …». */
+      typo?: boolean;
+      /** E6: self-grade после «Показать ответ» — «Знал» ок, но без буста времени (сжечь). */
+      viaReveal?: boolean;
+    },
+  ) => {
     if (checkingRef.current) return;
     checkingRef.current = true;
     const item = items[index];
@@ -669,10 +707,16 @@ export default function ReviewScreen() {
     }
     setPickedChoice(userPick);
     setWasCorrect(ok);
+    setWasTypo(!!opts?.typo);
     setStatus('result');
 
-    if (ok) void hapticSuccess();
-    else void hapticError();
+    // E9: хаптика §5 (correct → Success/Light, wrong → Error/Light) +
+    // SFX → 120мс → автоозвучка полной EN-фразы (тумблер fc_autospeak_on)
+    fcHaptic(ok ? 'correct' : 'wrong');
+    autoSpeakAfterSfx(englishRecallSurface(item.phrase), {
+      sfx: ok ? 'correct' : 'incorrect',
+      language: 'en-US',
+    });
 
     Animated.spring(resultAnim, { toValue: 1, useNativeDriver: true, friction: 8 }).start();
 
@@ -697,7 +741,8 @@ export default function ReviewScreen() {
 
     if (ok) {
       const elapsed = Date.now() - cardStartTime.current;
-      if (elapsed <= 20_000) setCanBurn(true);
+      // Self-grade «Знал» после показа ответа — без буста времени: сжигание недоступно
+      if (elapsed <= 20_000 && !opts?.viaReveal) setCanBurn(true);
       if (userNameRef.current) {
         registerXP(5, 'review_answer', userNameRef.current, lang).then(result => {
           setTotalXP(prev => prev + result.finalDelta);
@@ -739,13 +784,27 @@ export default function ReviewScreen() {
   }, [status, burning, items, index, lang, studyTarget, finishCard]);
 
   const onSubmitTyped = useCallback(() => {
-    if (status !== 'playing' || burning || mode !== 'recall_type') return;
+    if (status !== 'playing' || burning || mode !== 'recall_type' || revealed) return;
     hapticTap();
     const item = items[index];
     if (!item) return;
-    const { ok } = evaluateRecallAnswer(typeText, item.phrase);
-    finishCard(ok, typeText.trim() || null);
-  }, [status, burning, mode, items, index, typeText, finishCard]);
+    const { ok, typo } = evaluateRecallAnswer(typeText, item.phrase);
+    finishCard(ok, typeText.trim() || null, { typo });
+  }, [status, burning, mode, items, index, typeText, revealed, finishCard]);
+
+  // E6: «Показать ответ» → self-grade «Знал / Не знал» (только recall_type)
+  const onShowAnswer = useCallback(() => {
+    if (status !== 'playing' || burning || mode !== 'recall_type') return;
+    hapticTap();
+    setRevealed(true);
+  }, [status, burning, mode]);
+
+  const onSelfGrade = useCallback((knew: boolean) => {
+    if (status !== 'playing' || burning) return;
+    hapticTap();
+    // «Знал» = ок, но без буста времени (viaReveal); «Не знал» = ошибка → SRS вернёт фразу
+    finishCard(knew, null, { viaReveal: true });
+  }, [status, burning, finishCard]);
 
   /** Общий слайд влево → смена контента → spring в ноль (и для «Далее», и после сжигания). */
   const runSlideToNext = useCallback((
@@ -791,6 +850,9 @@ export default function ReviewScreen() {
     setBurning(true);
     setCanBurn(false);
     hapticTap();
+    // E9: сжигание глушит отложенную/текущую озвучку ответа
+    cancelPendingFcTts();
+    stopSpeech();
     const newItems = items.filter((_, i) => i !== fromIndex);
     // Не await — сразу огонь; запись в storage не должна вставлять кадр «тишины» перед эффектом
     void removeItem(item.phrase).catch(() => {});
@@ -1122,6 +1184,23 @@ export default function ReviewScreen() {
                           : recallTranslationHint(it, lang, studyTarget)}
                       </Text>
                     </Animated.View>
+                    {/* E9: TTS-кнопка 🔊 — meaning_match озвучивает EN сразу;
+                        word_bank/recall_type — только после ответа (EN и есть ответ) */}
+                    {i === index && !burning && (pageMode === 'meaning_match' || status === 'result') && (
+                      <TouchableOpacity
+                        testID="review-speak"
+                        accessibilityLabel="qa-review-speak"
+                        accessible
+                        onPress={() => {
+                          fcHaptic('tap');
+                          speak(englishRecallSurface(it.phrase), undefined, { language: 'en-US' });
+                        }}
+                        hitSlop={8}
+                        style={{ position: 'absolute', top: 8, right: 8, padding: 6, zIndex: 2 }}
+                      >
+                        <Ionicons name="volume-high" size={22} color={t.textSecond} />
+                      </TouchableOpacity>
+                    )}
                     {i === index && burning && (
                       <BurnCardEffect width={cardLayout.width} height={cardLayout.height} borderRadius={20} />
                     )}
@@ -1197,7 +1276,7 @@ export default function ReviewScreen() {
             </View>
           )}
 
-          {mode === 'recall_type' && (
+          {mode === 'recall_type' && !(revealed && status === 'playing') && (
             <View style={{ marginBottom: 16 }}>
               <TextInput
                 value={typeText}
@@ -1222,21 +1301,111 @@ export default function ReviewScreen() {
                 }}
               />
               {status === 'playing' && (
+                <>
+                  <TouchableOpacity
+                    onPress={onSubmitTyped}
+                    activeOpacity={0.88}
+                    style={{
+                      backgroundColor: t.accent,
+                      borderRadius: 14,
+                      paddingVertical: 14,
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
+                      {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+                    </Text>
+                  </TouchableOpacity>
+                  {/* E6: «Показать ответ» — ghost-кнопка под «Проверить» */}
+                  <TouchableOpacity
+                    testID="review-show-answer"
+                    accessibilityLabel="qa-review-show-answer"
+                    accessible
+                    onPress={onShowAnswer}
+                    activeOpacity={0.8}
+                    style={{
+                      marginTop: 10,
+                      borderRadius: 14,
+                      paddingVertical: 12,
+                      alignItems: 'center',
+                      borderWidth: 1.5,
+                      borderColor: t.border,
+                      backgroundColor: 'transparent',
+                    }}
+                  >
+                    <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700' }}>
+                      {triLang(lang, { ru: 'Показать ответ', uk: 'Показати відповідь', es: 'Mostrar respuesta' })}
+                    </Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            </View>
+          )}
+
+          {/* E6: ответ показан → самооценка «Знал / Не знал» */}
+          {mode === 'recall_type' && revealed && status === 'playing' && (
+            <View style={{ marginBottom: 16, gap: 12 }}>
+              <View
+                style={{
+                  backgroundColor: t.bgCard,
+                  borderRadius: 14,
+                  padding: 16,
+                  borderLeftWidth: 3,
+                  borderLeftColor: t.accent,
+                }}
+              >
+                <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 4 }}>
+                  {triLang(lang, { ru: 'Правильный ответ:', uk: 'Правильна відповідь:', es: 'Respuesta correcta:' })}
+                </Text>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                  {englishRecallSurface(item.phrase)}
+                </Text>
+              </View>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center' }}>
+                {triLang(lang, { ru: 'Честно: помнил эту фразу?', uk: 'Чесно: памʼятав цю фразу?', es: '¿La recordabas de verdad?' })}
+              </Text>
+              <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity
-                  onPress={onSubmitTyped}
+                  testID="review-self-knew"
+                  accessibilityLabel="qa-review-self-knew"
+                  accessible
+                  onPress={() => onSelfGrade(true)}
                   activeOpacity={0.88}
                   style={{
-                    backgroundColor: t.accent,
+                    flex: 1,
+                    backgroundColor: t.correctBg,
+                    borderWidth: 1.5,
+                    borderColor: t.correct,
                     borderRadius: 14,
                     paddingVertical: 14,
                     alignItems: 'center',
                   }}
                 >
-                  <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+                  <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
+                    {triLang(lang, { ru: 'Знал', uk: 'Знав', es: 'La sabía' })}
                   </Text>
                 </TouchableOpacity>
-              )}
+                <TouchableOpacity
+                  testID="review-self-forgot"
+                  accessibilityLabel="qa-review-self-forgot"
+                  accessible
+                  onPress={() => onSelfGrade(false)}
+                  activeOpacity={0.88}
+                  style={{
+                    flex: 1,
+                    backgroundColor: t.wrongBg,
+                    borderWidth: 1.5,
+                    borderColor: t.wrong,
+                    borderRadius: 14,
+                    paddingVertical: 14,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '800' }}>
+                    {triLang(lang, { ru: 'Не знал', uk: 'Не знав', es: 'No la sabía' })}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
 
@@ -1257,22 +1426,32 @@ export default function ReviewScreen() {
             />
           )}
 
-          {status === 'result' && !wasCorrect && (
-            <Animated.View style={{
-              opacity: resultAnim,
-              backgroundColor: t.correctBg,
-              borderRadius: 14,
-              padding: 14,
-              borderLeftWidth: 3,
-              borderLeftColor: t.correct,
-              marginBottom: 16,
-            }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 4 }}>
-                {triLang(lang, {
-                  ru: 'Правильный ответ:',
-                  uk: 'Правильна відповідь:',
-                  es: 'Respuesta correcta:',
-                })}
+          {/* E6: неверно → «Правильный ответ», верно с опечаткой (fuzzy) → «Почти! Правильно:» */}
+          {status === 'result' && (!wasCorrect || wasTypo) && (
+            <Animated.View
+              testID={wasCorrect ? 'review-almost' : 'review-correct-answer'}
+              style={{
+                opacity: resultAnim,
+                backgroundColor: t.correctBg,
+                borderRadius: 14,
+                padding: 14,
+                borderLeftWidth: 3,
+                borderLeftColor: t.correct,
+                marginBottom: 16,
+              }}
+            >
+              <Text style={{ color: wasCorrect ? t.correct : t.textMuted, fontSize: f.caption, marginBottom: 4, fontWeight: wasCorrect ? '700' : '400' }}>
+                {wasCorrect
+                  ? triLang(lang, {
+                      ru: 'Почти! Правильно:',
+                      uk: 'Майже! Правильно:',
+                      es: '¡Casi! Correcto:',
+                    })
+                  : triLang(lang, {
+                      ru: 'Правильный ответ:',
+                      uk: 'Правильна відповідь:',
+                      es: 'Respuesta correcta:',
+                    })}
               </Text>
               <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600' }}>
                 {englishRecallSurface(item.phrase)}

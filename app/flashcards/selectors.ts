@@ -29,12 +29,36 @@ export function applyCardFilter(cards: CardItem[], activeFilter: string): CardIt
   });
 }
 
+/**
+ * E11: нормализация строки поиска — lowercase, ё→е, трим.
+ * Чистая функция (юнит-тест tests/fc_collection_search.test.ts).
+ */
+export function normalizeSearchText(s: string): string {
+  return (s ?? '').toLowerCase().replace(/ё/g, 'е').trim();
+}
+
+/**
+ * E11 (§3.2): поиск по загруженному массиву — substring по en/ru/uk/es.
+ * Пустой/пробельный запрос возвращает исходный массив (та же ссылка — не рвём memo).
+ */
+export function searchCards(cards: CardItem[], query: string): CardItem[] {
+  const list = cards ?? [];
+  const q = normalizeSearchText(query);
+  if (!q) return list;
+  return list.filter((c) =>
+    [c.en, c.ru, c.uk, c.es].some(
+      (field) => !!field && normalizeSearchText(field).includes(q),
+    ),
+  );
+}
+
 export function buildFilterGroups(
   cards: CardItem[],
-  activeCat: CategoryId,
+  _activeCat: CategoryId,
   lang: 'ru' | 'uk' | 'es',
 ): FilterGroup[] {
-  if (activeCat !== 'saved' && activeCat !== 'custom') return [];
+  // E11: фильтр доступен на ВСЕХ вкладках (§3.2) — группы строятся из source-полей
+  // самих карточек; у системных категорий source нет → групп нет (как раньше).
   const list = cards ?? [];
   const sourceLabels: Record<string, string> = {
     word: lang === 'uk' ? 'Слова' : lang === 'es' ? 'Palabras' : 'Слова',

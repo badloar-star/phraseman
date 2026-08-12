@@ -368,11 +368,12 @@ export default function SettingsMain() {
     closeNameModal();
   };
 
-  const Row = ({ icon, label, sub, onPress, right, danger }: {
+  const Row = ({ icon, label, sub, onPress, right, danger, testID }: {
     icon: string; label: string; sub?: string;
-    onPress: () => void; right?: React.ReactNode; danger?: boolean;
+    onPress: () => void; right?: React.ReactNode; danger?: boolean; testID?: string;
   }) => (
     <TouchableOpacity
+      testID={testID}
       style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: screenBorder }}
       onPress={() => { doHaptic(); onPress(); }} activeOpacity={0.7}
     >
@@ -605,7 +606,7 @@ export default function SettingsMain() {
             onPress={() => { doHaptic(); router.push('/settings_invite_friend' as any); }}
           />
         )}
-        <Row icon="help-circle-outline" label={L('Помощь / FAQ', 'Допомога / FAQ', 'Ayuda / FAQ')} sub={L('Ответы на частые вопросы', 'Відповіді на часті запитання', 'Respuestas a preguntas frecuentes')} onPress={() => { doHaptic(); router.push('/help_faq' as any); }} />
+        <Row testID="settings-help-faq" icon="help-circle-outline" label={L('Помощь / FAQ', 'Допомога / FAQ', 'Ayuda / FAQ')} sub={L('Ответы на частые вопросы', 'Відповіді на часті запитання', 'Respuestas a preguntas frecuentes')} onPress={() => { doHaptic(); router.push('/help_faq' as any); }} />
         <Row
           icon="mail-outline"
           label={L('Идеи и предложения', 'Ідеї й пропозиції', 'Comentarios e ideas')}

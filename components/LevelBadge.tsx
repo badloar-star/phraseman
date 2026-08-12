@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image } from 'expo-image';
+import { Text, View } from 'react-native';
 
 // Static require map — Metro bundler needs literal paths
 const GIFS: Record<number, any> = {
@@ -67,6 +68,38 @@ interface Props {
 }
 
 export default function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true }: Props) {
+  if (level > 50) {
+    const h = height ?? size;
+    return (
+      <View
+        style={{
+          width: size,
+          height: h,
+          borderRadius: size * 0.08,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#1D4ED8',
+          borderWidth: Math.max(1, Math.round(size * 0.04)),
+          borderColor: '#93C5FD',
+        }}
+      >
+        <Text
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          style={{
+            color: '#FFFFFF',
+            fontSize: Math.max(10, Math.round(size * 0.36)),
+            fontWeight: '900',
+            lineHeight: Math.max(12, Math.round(size * 0.42)),
+            paddingHorizontal: Math.max(2, Math.round(size * 0.08)),
+          }}
+        >
+          {level}
+        </Text>
+      </View>
+    );
+  }
+
   const clamped = Math.max(1, Math.min(50, level));
   const source = GIFS[clamped] ?? GIFS[1];
   return (

@@ -13,9 +13,11 @@ interface Props {
   value: boolean;
   onValueChange: (v: boolean) => void;
   disabled?: boolean;
+  /** Для e2e/смоук-тестов (Playwright web / Maestro). */
+  testID?: string;
 }
 
-export default function CustomSwitch({ value, onValueChange, disabled = false }: Props) {
+export default function CustomSwitch({ value, onValueChange, disabled = false, testID }: Props) {
   const { theme: t } = useTheme();
 
   const thumbX  = useRef(new Animated.Value(value ? MAX_X : 0)).current;
@@ -50,6 +52,7 @@ export default function CustomSwitch({ value, onValueChange, disabled = false }:
       disabled={disabled}
       onPress={() => !disabled && onValueChange(!value)}
       style={{ opacity: disabled ? 0.4 : 1 }}
+      testID={testID}
     >
       {/* Трек фиксированного размера */}
       <Animated.View style={[s.track, { backgroundColor: trackColor }]}>

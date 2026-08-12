@@ -1,240 +1,470 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// trainer_words_session.tsx — Сессия слов: свайп-карточки верно/неверно
+// trainer_words_session.tsx — Сессия слов (Cards 2.0 E5+E8, §3.5–3.7 мастер-плана)
 //
+// Колода PhraseCard mode='grade' (стек: текущая + следующая под ней).
 // Карточка показывает английское слово + перевод (верный или ложный).
-// Свайп вправо = "Верно", влево = "Неверно".
-// Ложный перевод подбирается из слов того же урока — всегда похожий.
+// Свайп вправо / кнопка ✓ = «Верно», влево / ✕ = «Неверно».
+// Каркас сессии: сегмент-прогресс, «ошибка → в конец очереди, ≤2 повторов»,
+// undo последнего ответа (5с), XP +5/верный ответ, звёзды через stars_system,
+// финал → SessionResultScreen. SFX/хаптика — §5 (SoundService).
+//
+// E8 (§3.7): параметр ?deck=saved|custom|pack:<id> — «Тренировать эту колоду»:
+// источник карточек не trainer_store, а выбранная колода (deck_sources), ложные
+// переводы — из этой же колоды. SRS-запись в trainer_store НЕ делается (прогресс
+// сессии локален), ошибки уходят в active_recall_items с source 'custom'/'pack'
+// (кастомные карточки попадают в review — замена удалённого practice). Звёзды —
+// awardSessionStars('custom_deck', {cardIds}) с анти-фармом ≥10 уникальных/день.
+// ?size=10|15|20 — размер сессии из пресета (fc_mode_prefs_v1, DeckPickerSheet).
+// Дневной free-лимит тренера общий: deck-сессии входят в него (§4).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Animated,
-  PanResponder,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useAudio } from '../hooks/use-audio';
 import {
   getDueItems,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
+import { hasUsedFreeSessionToday, isTrainerSessionLocked, markFreeSessionUsed } from './trainer_session';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import { actionToastTri, emitAppEvent } from './events';
+import { registerXP } from './xp_manager';
+import { recordMistake } from './active_recall';
+import { flashcardContentLang } from './spanish_content_gate';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import PhraseCard, { type PhraseCardGradeResult } from './flashcards/PhraseCard';
+import SessionResultScreen from './flashcards/SessionResultScreen';
+import {
+  autoSpeakAfterSfx,
+  cancelPendingFcTts,
+  fcHaptic,
+  setFcTtsSpeaker,
+} from './flashcards/SoundService';
+import { awardSessionStars, type AwardStarsOutcome } from './flashcards/stars_system';
+import {
+  loadDeckCards,
+  mistakeSourceForDeck,
+  parseDeckParam,
+  pickDeckDecoy,
+  type DeckCard,
+  type DeckRef,
+} from './flashcards/deck_sources';
+import { isValidSessionSize } from './flashcards/mode_prefs';
+import {
+  requeueAfterMistake,
+  summarizeSession,
+  TRAINER_SESSION_SIZE,
+  type SessionAnswerEvent,
+  type SessionOutcomeSummary,
+} from './flashcards/session_queue';
 
-const { width: SCREEN_W } = Dimensions.get('window');
-const SWIPE_THRESHOLD = SCREEN_W * 0.3;
-const SWIPE_OUT_DURATION = 220;
+const ACCENT = '#4A9EFF';
+const XP_PER_CORRECT = 5;
+const UNDO_WINDOW_MS = 5000;
+const CARD_MIN_H = 260;
 
-// ── Подбор ложного перевода ──────────────────────────────────────────────────
-// Все переводы слов из lesson_data — плоский список для выбора похожего.
-// Импортируем динамически чтобы не тащить весь контент при старте.
-async function pickDecoyTranslation(
-  correctRu: string,
+// ── Подбор ложного перевода (due-очередь тренера) ────────────────────────────
+function trainerItemTranslation(i: TrainerItem, lang: string): string {
+  // uk-переклад з фолбеком на ru (правило з docs/FLASHCARDS_RULES.md)
+  return lang === 'uk' ? (i.translationUk || i.translationRu) : i.translationRu;
+}
+
+function pickDecoyTranslation(
+  correctShown: string,
   allItems: TrainerItem[],
-): Promise<string> {
-  // Берём переводы других слов из очереди
+  lang: string,
+): string {
+  // Берём переводы других слов из очереди — В ТОЙ ЖЕ локали, что и показ
+  // (FIX(cards-2.0): раньше decoy всегда был ru, а рендер для uk подменял его
+  // на правильный uk-перевод — ложные варианты не показывались вовсе).
   const pool = allItems
-    .filter(i => i.translationRu !== correctRu && i.translationRu)
-    .map(i => i.translationRu);
-
-  if (pool.length === 0) return correctRu; // нечего взять — вернём правильный (edge case)
-
-  // Случайный из пула
+    .map(i => trainerItemTranslation(i, lang))
+    .filter(tr => tr && tr !== correctShown);
+  if (pool.length === 0) return correctShown; // нечего взять — вернём правильный (edge case)
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
 // ── Типы ─────────────────────────────────────────────────────────────────────
 interface CardData {
-  item: TrainerItem;
+  /** Стабильный ключ карточки в сессии (trainer: EN-слово; deck: id карточки). */
+  key: string;
+  /** Английское слово/фраза на лице. */
+  en: string;
   shownTranslation: string;
   isCorrectTranslation: boolean;
+  /** Источник trainer_store (обычная сессия) — для SRS-записи. */
+  item?: TrainerItem;
+  /** Источник deck-сессии (E8) — для recall-записи ошибок и анти-фарма звёзд. */
+  deckCard?: DeckCard;
 }
 
-// ── Компонент одной карточки ─────────────────────────────────────────────────
-interface SwipeCardProps {
-  card: CardData;
-  onSwipe: (correct: boolean) => void;
-  isTop: boolean;
-  swipeOutRef: React.MutableRefObject<((dir: 'right' | 'left') => void) | null>;
+function buildCards(items: TrainerItem[], lang: string): CardData[] {
+  return items.map((item) => {
+    const showCorrect = Math.random() > 0.5;
+    const correctShown = trainerItemTranslation(item, lang);
+    const shownTranslation = showCorrect
+      ? correctShown
+      : pickDecoyTranslation(correctShown, items, lang);
+    return {
+      key: item.key,
+      en: item.key,
+      item,
+      shownTranslation,
+      isCorrectTranslation: showCorrect || shownTranslation === correctShown,
+    };
+  });
 }
 
-function SwipeCard({ card, onSwipe, isTop, swipeOutRef }: SwipeCardProps) {
-  const { theme: t, f } = useTheme();
-  const { lang } = useLang();
-  const position = useRef(new Animated.ValueXY()).current;
-
-  const rotate = position.x.interpolate({
-    inputRange: [-SCREEN_W / 2, 0, SCREEN_W / 2],
-    outputRange: ['-8deg', '0deg', '8deg'],
-    extrapolate: 'clamp',
+/** E8: карточки deck-сессии — та же механика, ложные переводы из этой же колоды. */
+function buildDeckSessionCards(sessionCards: DeckCard[], pool: DeckCard[]): CardData[] {
+  return sessionCards.map((card) => {
+    const showCorrect = Math.random() > 0.5;
+    const shownTranslation = showCorrect
+      ? card.translation
+      : pickDeckDecoy(card.translation, pool);
+    return {
+      key: card.id,
+      en: card.en,
+      deckCard: card,
+      shownTranslation,
+      isCorrectTranslation: showCorrect || shownTranslation === card.translation,
+    };
   });
-
-  const correctOpacity = position.x.interpolate({
-    inputRange: [0, SCREEN_W * 0.25],
-    outputRange: [0, 1],
-    extrapolate: 'clamp',
-  });
-
-  const wrongOpacity = position.x.interpolate({
-    inputRange: [-SCREEN_W * 0.25, 0],
-    outputRange: [1, 0],
-    extrapolate: 'clamp',
-  });
-
-  // Используем refs для актуальных значений в panResponder (избегаем stale closure)
-  const cardRef = useRef(card);
-  cardRef.current = card;
-  const onSwipeRef = useRef(onSwipe);
-  onSwipeRef.current = onSwipe;
-  const isTopRef = useRef(isTop);
-  isTopRef.current = isTop;
-
-  const swipeOut = useCallback((dir: 'right' | 'left') => {
-    const toX = dir === 'right' ? SCREEN_W * 1.5 : -SCREEN_W * 1.5;
-    const answeredCorrectly = (dir === 'right') === cardRef.current.isCorrectTranslation;
-    if (answeredCorrectly) hapticSuccess(); else hapticError();
-    Animated.timing(position, {
-      toValue: { x: toX, y: 0 },
-      duration: SWIPE_OUT_DURATION,
-      useNativeDriver: true,
-    }).start(() => onSwipeRef.current(answeredCorrectly));
-  }, [position]);
-
-  // Экспортируем swipeOut наружу чтобы кнопки могли вызвать анимацию
-  useEffect(() => {
-    swipeOutRef.current = swipeOut;
-    return () => { swipeOutRef.current = null; };
-  }, [swipeOut, swipeOutRef]);
-
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => isTopRef.current,
-      onPanResponderMove: (_, g) => {
-        position.setValue({ x: g.dx, y: g.dy * 0.2 });
-      },
-      onPanResponderRelease: (_, g) => {
-        if (g.dx > SWIPE_THRESHOLD) swipeOut('right');
-        else if (g.dx < -SWIPE_THRESHOLD) swipeOut('left');
-        else {
-          Animated.spring(position, {
-            toValue: { x: 0, y: 0 },
-            useNativeDriver: true,
-            friction: 5,
-          }).start();
-        }
-      },
-    }),
-  ).current;
-
-  const cardStyle = {
-    transform: [
-      { translateX: position.x },
-      { translateY: position.y },
-      { rotate },
-    ],
-  };
-
-  return (
-    <Animated.View
-      style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }, cardStyle]}
-      {...(isTop ? panResponder.panHandlers : {})}
-    >
-      {/* Верно оверлей */}
-      <Animated.View style={[styles.decisionLabel, styles.correctLabel, { opacity: correctOpacity }]}>
-        <Text style={styles.decisionText}>✓ {triLang(lang, { ru: 'ВЕРНО', uk: 'ВІРНО', es: 'CORRECTO' })}</Text>
-      </Animated.View>
-
-      {/* Неверно оверлей */}
-      <Animated.View style={[styles.decisionLabel, styles.wrongLabel, { opacity: wrongOpacity }]}>
-        <Text style={styles.decisionText}>✗ {triLang(lang, { ru: 'НЕВЕРНО', uk: 'НЕВІРНО', es: 'INCORRECTO' })}</Text>
-      </Animated.View>
-
-      {/* Слово */}
-      <Text style={[styles.wordEn, { color: t.textPrimary, fontSize: f.h1 }]}>
-        {card.item.key}
-      </Text>
-
-      {/* Разделитель */}
-      <View style={[styles.divider, { backgroundColor: t.border }]} />
-
-      {/* Перевод (верный или ложный) */}
-      <Text style={[styles.wordRu, { color: t.textMuted, fontSize: f.bodyLg }]}>
-        {lang === 'uk' ? card.item.translationUk || card.shownTranslation : card.shownTranslation}
-      </Text>
-
-    </Animated.View>
-  );
 }
+
+// Fisher-Yates
+function shuffleArr<T>(a: readonly T[]): T[] {
+  const r = [...a];
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
+  }
+  return r;
+}
+
+type SessionResultState = {
+  summary: SessionOutcomeSummary;
+  outcome: AwardStarsOutcome | null;
+  xp: number;
+};
+
+type LastAnswer = {
+  index: number;
+  key: string;
+  correct: boolean;
+  requeued: boolean;
+};
+
+type SegmentState = 'correct' | 'wrong';
 
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerWordsSession() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const { speak, stop: stopSpeech } = useAudio();
+  const params = useLocalSearchParams<{ deck?: string; size?: string }>();
 
-  const [deck, setDeck] = useState<CardData[]>([]);
+  /** E8: deck-режим (?deck=saved|custom|pack:<id>); null — обычная due-очередь тренера. */
+  const deckRef = useMemo<DeckRef | null>(() => parseDeckParam(params.deck), [params.deck]);
+  const sessionSize = useMemo(() => {
+    const raw = Array.isArray(params.size) ? params.size[0] : params.size;
+    const n = raw ? parseInt(raw, 10) : NaN;
+    return isValidSessionSize(n) ? n : TRAINER_SESSION_SIZE;
+  }, [params.size]);
+  const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
+
+  const [queue, setQueue] = useState<CardData[]>([]);
   const [current, setCurrent] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  const [wrong, setWrong] = useState(0);
+  const [segments, setSegments] = useState<SegmentState[]>([]);
+  const [repeatCounts, setRepeatCounts] = useState<Record<string, number>>({});
+  const [lastAnswer, setLastAnswer] = useState<LastAnswer | null>(null);
   const [done, setDone] = useState(false);
+  const [result, setResult] = useState<SessionResultState | null>(null);
   const [loading, setLoading] = useState(true);
-  const allItemsRef = useRef<TrainerItem[]>([]);
-  // Ref к функции swipeOut текущей карточки — для кнопок
-  const swipeOutRef = useRef<((dir: 'right' | 'left') => void) | null>(null);
+
+  // Журнал ответов (для итога) и отложенные записи результатов.
+  // Ничего не пишется сразу — иначе undo не смог бы откатить; флаш — в финале
+  // сессии и на unmount (выход сохраняет прогресс раунда, §3.5).
+  // trainer-режим → markTrainerResult (SRS тренера); deck-режим → recordMistake
+  // в active_recall_items для ошибок (source 'custom'/'pack', §3.7) — SRS тренера
+  // для чужих колод НЕ трогаем.
+  const eventsRef = useRef<SessionAnswerEvent[]>([]);
+  const pendingResultsRef = useRef<{ card: CardData; correct: boolean }[]>([]);
+  const finishingRef = useRef(false);
+  const flushedRef = useRef(false);
+  const cardShownAtRef = useRef(Date.now());
+  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const deckRefStable = useRef<DeckRef | null>(deckRef);
+  deckRefStable.current = deckRef;
+
+  /** Флаш отложенных результатов (финал сессии / unmount). */
+  const flushPendingResults = useCallback(async (pending: { card: CardData; correct: boolean }[]) => {
+    const deck = deckRefStable.current;
+    if (!deck) {
+      for (const r of pending) {
+        await markTrainerResult(r.card.key, 'words', r.correct).catch(() => {});
+      }
+      return;
+    }
+    // Deck-сессия: уникальные ошибочные карточки → очередь review (active_recall)
+    const source = mistakeSourceForDeck(deck);
+    const seen = new Set<string>();
+    for (const r of pending) {
+      if (r.correct) continue;
+      const c = r.card.deckCard;
+      if (!c || seen.has(c.id)) continue;
+      seen.add(c.id);
+      await recordMistake(c.en, c.ru || c.translation, 0, c.uk, source, c.es).catch(() => {});
+    }
+  }, []);
 
   useEffect(() => {
     void (async () => {
-      const items = await getDueItems('words', 20);
-      allItemsRef.current = items;
-      if (items.length === 0) { setDone(true); setLoading(false); return; }
+      // Дневной лимит тренера (§4): free — 1 сессия/день на весь тренер (включая
+      // «Тренировать эту колоду»), премиум — безлимит
+      const [premium, usedToday] = await Promise.all([
+        getVerifiedPremiumStatus().catch(() => false),
+        hasUsedFreeSessionToday(),
+      ]);
+      if (isTrainerSessionLocked(premium, usedToday)) {
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Бесплатная сессия тренера на сегодня использована. Новая — завтра, с Премиум — без лимита.',
+          uk: 'Безкоштовну сесію тренера на сьогодні використано. Нова — завтра, з Преміум — без ліміту.',
+          es: 'Ya usaste la sesión gratuita de hoy. Nueva mañana; con Premium, sin límite.',
+        }));
+        router.replace('/trainer' as any);
+        return;
+      }
 
-      // Строим колоду: каждая карточка имеет ~50% шанс ложного перевода
-      const cards: CardData[] = await Promise.all(
-        items.map(async (item) => {
-          const showCorrect = Math.random() > 0.5;
-          const shownTranslation = showCorrect
-            ? item.translationRu
-            : await pickDecoyTranslation(item.translationRu, items);
-          return {
-            item,
-            shownTranslation,
-            isCorrectTranslation: showCorrect || shownTranslation === item.translationRu,
-          };
-        }),
-      );
-      setDeck(cards);
+      let cards: CardData[] = [];
+      if (deckRef) {
+        // E8: колода вместо trainer_store; лимит размера сессии из пресета
+        const pool = await loadDeckCards(deckRef, cardContentLang);
+        const sessionCards = shuffleArr(pool).slice(0, sessionSize);
+        cards = buildDeckSessionCards(sessionCards, pool);
+      } else {
+        const items = await getDueItems('words', sessionSize);
+        cards = buildCards(items, lang);
+      }
+      if (cards.length === 0) { setDone(true); setLoading(false); return; }
+      if (!premium) void markFreeSessionUsed();
+
+      setQueue(cards);
+      cardShownAtRef.current = Date.now();
       setLoading(false);
     })();
+  }, [lang, router, deckRef, sessionSize, cardContentLang]);
+
+  // E9: инъекция реального TTS в очередь SoundService (SFX → 120мс → TTS).
+  useEffect(() => {
+    setFcTtsSpeaker(speak);
+    return () => {
+      setFcTtsSpeaker(null);
+      cancelPendingFcTts();
+    };
+  }, [speak]);
+
+  // Выход посреди сессии: сохранить уже данные ответы + заглушить TTS.
+  useEffect(() => {
+    return () => {
+      if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+      stopSpeech();
+      if (!flushedRef.current && pendingResultsRef.current.length > 0) {
+        const pending = [...pendingResultsRef.current];
+        pendingResultsRef.current = [];
+        void flushPendingResults(pending);
+      }
+    };
+  }, [stopSpeech, flushPendingResults]);
+
+  const clearUndoWindow = useCallback(() => {
+    if (undoTimerRef.current) {
+      clearTimeout(undoTimerRef.current);
+      undoTimerRef.current = null;
+    }
+    setLastAnswer(null);
   }, []);
 
-  const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
-    const card = deck[current];
+  const finishSession = useCallback(async () => {
+    if (finishingRef.current) return;
+    finishingRef.current = true;
+    clearUndoWindow();
+
+    const summary = summarizeSession(eventsRef.current);
+
+    // Флаш результатов (SRS тренера или recall-записи deck-сессии)
+    const pending = [...pendingResultsRef.current];
+    pendingResultsRef.current = [];
+    flushedRef.current = true;
+    await flushPendingResults(pending);
+
+    // Звёзды (§4): тренер = 'trainer'; deck-сессия = 'custom_deck' (общий кэп
+    // с тренером + анти-фарм: ≥10 уникальных, не тренированных сегодня cardIds)
+    let outcome: AwardStarsOutcome | null = null;
+    if (summary.total > 0) {
+      const deck = deckRefStable.current;
+      // E12: deckKey ('saved'/'custom'/'pack:<id>') → best-звёзды колоды
+      // (fc_deck_best_stars_v1) пишутся тем же вызовом awardSessionStars.
+      const rawDeck = Array.isArray(params.deck) ? params.deck[0] : params.deck;
+      outcome = await awardSessionStars(deck ? 'custom_deck' : 'trainer', {
+        correct: summary.correct,
+        total: summary.total,
+        avgAnswerSec: summary.avgAnswerSec,
+        inputKind: 'choice',
+        ...(deck && rawDeck ? { deckKey: rawDeck } : {}),
+        ...(deck
+          ? { cardIds: [...new Set(pending.map((p) => p.card.deckCard?.id).filter((id): id is string => !!id))] }
+          : {}),
+      }).catch(() => null);
+    }
+
+    // XP: +5/верный ответ, одним начислением в финале (undo-безопасно)
+    let xp = summary.correct * XP_PER_CORRECT;
+    if (xp > 0) {
+      try {
+        const r = await registerXP(xp, 'trainer_answer', '', lang);
+        xp = r.finalDelta;
+      } catch {}
+    }
+
+    setResult({ summary, outcome, xp });
+    setDone(true);
+  }, [clearUndoWindow, lang, flushPendingResults, params.deck]);
+
+  // ── Ответ (свайп PhraseCard или кнопки ✓/✕) ────────────────────────────────
+  const handleGrade = useCallback((grade: PhraseCardGradeResult) => {
+    if (done || finishingRef.current) return;
+    const card = queue[current];
     if (!card) return;
 
-    if (answeredCorrectly) setCorrect(c => c + 1);
-    else setWrong(c => c + 1);
+    // know = «Верно» (перевод правильный), learn = «Неверно»
+    const answeredCorrectly = (grade === 'know') === card.isCorrectTranslation;
+    const ms = Date.now() - cardShownAtRef.current;
 
-    await markTrainerResult(card.item.key, 'words', answeredCorrectly);
+    // E9: SFX → 120мс → автоозвучка EN-слова (тумблер fc_autospeak_on); хаптика §5
+    fcHaptic(answeredCorrectly ? 'correct' : 'wrong');
+    autoSpeakAfterSfx(card.en, {
+      sfx: answeredCorrectly ? 'correct' : 'incorrect',
+      language: 'en-US',
+    });
+
+    eventsRef.current.push({ key: card.key, correct: answeredCorrectly, ms });
+    pendingResultsRef.current.push({ card, correct: answeredCorrectly });
+
+    // «Ошибка → в конец очереди», максимум 2 повтора карточки (чистая функция)
+    let nextQueue = queue;
+    let requeued = false;
+    if (!answeredCorrectly) {
+      const rq = requeueAfterMistake(queue, card, card.key, repeatCounts);
+      nextQueue = rq.queue;
+      requeued = rq.requeued;
+      setQueue(rq.queue);
+      setRepeatCounts(rq.repeatCounts);
+    }
+    setSegments(s => [...s, answeredCorrectly ? 'correct' : 'wrong']);
+
+    // Окно undo 5с
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+    setLastAnswer({ index: current, key: card.key, correct: answeredCorrectly, requeued });
+    undoTimerRef.current = setTimeout(() => {
+      undoTimerRef.current = null;
+      setLastAnswer(null);
+    }, UNDO_WINDOW_MS);
 
     const next = current + 1;
-    if (next >= deck.length) setDone(true);
-    else setCurrent(next);
-  }, [deck, current]);
+    if (next >= nextQueue.length) {
+      void finishSession();
+    } else {
+      setCurrent(next);
+      cardShownAtRef.current = Date.now();
+    }
+  }, [done, queue, current, repeatCounts, finishSession]);
 
-  const handleButton = useCallback((dir: 'right' | 'left') => {
-    hapticTap();
-    // Запускаем анимацию карточки через ref — она сама вызовет handleSwipe по завершении
-    swipeOutRef.current?.(dir);
-  }, []);
+  // ── Undo последнего ответа (↩, 5 секунд) ───────────────────────────────────
+  const handleUndo = useCallback(() => {
+    const la = lastAnswer;
+    if (!la || done || finishingRef.current) return;
+    clearUndoWindow();
+    fcHaptic('tap');
+    // E9: undo глушит отложенную озвучку отменённого ответа
+    cancelPendingFcTts();
+    stopSpeech();
+
+    eventsRef.current.pop();
+    pendingResultsRef.current.pop();
+    setSegments(s => s.slice(0, -1));
+    if (la.requeued) {
+      setQueue(q => q.slice(0, -1));
+      setRepeatCounts(rc => {
+        const used = (rc[la.key] ?? 1) - 1;
+        const nextRc = { ...rc };
+        if (used <= 0) delete nextRc[la.key];
+        else nextRc[la.key] = used;
+        return nextRc;
+      });
+    }
+    setCurrent(la.index);
+    cardShownAtRef.current = Date.now();
+  }, [lastAnswer, done, clearUndoWindow, stopSpeech]);
+
+  // ── «Добить: Ещё учу (N)» — второй раунд по ошибочным ─────────────────────
+  const handleRetryWrong = useCallback(() => {
+    if (!result) return;
+    const learn = new Set(result.summary.learnKeys);
+    const seen = new Set<string>();
+    const retryCards: CardData[] = [];
+    for (const c of queue) {
+      if (learn.has(c.key) && !seen.has(c.key)) {
+        seen.add(c.key);
+        retryCards.push(c);
+      }
+    }
+    if (retryCards.length === 0) return;
+
+    eventsRef.current = [];
+    pendingResultsRef.current = [];
+    finishingRef.current = false;
+    flushedRef.current = false;
+    setRepeatCounts({});
+    setSegments([]);
+    setQueue(retryCards);
+    setCurrent(0);
+    setResult(null);
+    setDone(false);
+    cardShownAtRef.current = Date.now();
+  }, [result, queue]);
+
+  const speakCurrent = useCallback(() => {
+    const card = queue[current];
+    if (card) speak(card.en, undefined, { language: 'en-US' });
+  }, [queue, current, speak]);
+
+  /** Заголовок: обычная сессия — «Слова»; deck-сессия — имя колоды (§3.7). */
+  const headerTitle = useMemo(() => {
+    if (!deckRef) return triLang(lang, { ru: 'Слова', uk: 'Слова', es: 'Palabras' });
+    if (deckRef.kind === 'saved') {
+      return triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas' });
+    }
+    if (deckRef.kind === 'custom') {
+      return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
+    }
+    return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
+  }, [deckRef, lang]);
 
   if (loading) {
     return (
@@ -247,53 +477,23 @@ export default function TrainerWordsSession() {
   }
 
   if (done) {
-    const total = correct + wrong;
+    const summary = result?.summary ?? summarizeSession([]);
     return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
-          <ContentWrap>
-            <View style={styles.doneContainer}>
-              <Text style={[styles.doneTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Сессия завершена', uk: 'Сесію завершено', es: 'Sesión terminada' })}
-              </Text>
-              <View style={[styles.doneStats, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.doneStat}>
-                  <Text style={[styles.doneStatNum, { color: '#40C080', fontSize: f.numLg }]}>{correct}</Text>
-                  <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                    {triLang(lang, { ru: 'верно', uk: 'вірно', es: 'correcto' })}
-                  </Text>
-                </View>
-                <View style={[styles.doneStatDivider, { backgroundColor: t.border }]} />
-                <View style={styles.doneStat}>
-                  <Text style={[styles.doneStatNum, { color: '#E05050', fontSize: f.numLg }]}>{wrong}</Text>
-                  <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                    {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores' })}
-                  </Text>
-                </View>
-                <View style={[styles.doneStatDivider, { backgroundColor: t.border }]} />
-                <View style={styles.doneStat}>
-                  <Text style={[styles.doneStatNum, { color: t.textPrimary, fontSize: f.numLg }]}>{total}</Text>
-                  <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                    {triLang(lang, { ru: 'всего', uk: 'всього', es: 'total' })}
-                  </Text>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => { hapticTap(); router.back(); }}
-                style={[styles.doneBtn, { backgroundColor: '#4A9EFF' }]}
-              >
-                <Text style={[styles.doneBtnText, { fontSize: f.body }]}>
-                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
+      <SessionResultScreen
+        correct={summary.correct}
+        wrong={summary.wrong}
+        xpGained={result?.xp ?? 0}
+        outcome={result?.outcome ?? null}
+        learnLeft={summary.learnKeys.length}
+        onRetryWrong={summary.learnKeys.length > 0 ? handleRetryWrong : undefined}
+        onDone={() => { fcHaptic('tap'); router.back(); }}
+        accentColor={ACCENT}
+      />
     );
   }
 
-  const remaining = deck.length - current;
+  const card = queue[current];
+  const hasNext = !!queue[current + 1];
 
   return (
     <ScreenGradient>
@@ -301,62 +501,98 @@ export default function TrainerWordsSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { fcHaptic('tap'); router.back(); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Слова', uk: 'Слова', es: 'Palabras' })}
+              {headerTitle}
             </Text>
-            <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
-              {current + 1} / {deck.length}
+            <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+              {Math.min(current + 1, queue.length)} / {queue.length}
             </Text>
           </View>
 
-          {/* Прогресс-бар */}
-          <View style={[styles.progressBar, { backgroundColor: t.bgSurface }]}>
-            <View style={[styles.progressFill, { backgroundColor: '#4A9EFF', width: `${((current) / deck.length) * 100}%` }]} />
+          {/* Сегментированный прогресс-бар: сегмент на карточку очереди (§3.5) */}
+          <View style={styles.segmentsRow} testID="fc-session-progress">
+            {queue.map((_, i) => {
+              const state: SegmentState | 'current' | 'pending' =
+                i < segments.length ? segments[i] : i === current ? 'current' : 'pending';
+              const bg =
+                state === 'correct' ? t.correct
+                : state === 'wrong' ? '#FFA24A'
+                : state === 'current' ? ACCENT
+                : t.bgSurface;
+              return (
+                <View
+                  key={i}
+                  style={[styles.segment, { backgroundColor: bg, opacity: state === 'pending' ? 0.7 : 1 }]}
+                />
+              );
+            })}
           </View>
 
-          {/* Стек карточек */}
-          <View style={styles.deckContainer}>
-            {/* Показываем следующую карточку под текущей */}
-            {deck[current + 1] && (
-              <View style={[styles.card, styles.cardBack, { backgroundColor: t.bgCard, borderColor: t.border }]} />
-            )}
-            {deck[current] && (
-              <SwipeCard
-                key={current}
-                card={deck[current]}
-                onSwipe={handleSwipe}
-                isTop
-                swipeOutRef={swipeOutRef}
-              />
-            )}
+          {/* Строка undo — высота зарезервирована, layout не прыгает */}
+          <View style={styles.undoRow}>
+            {lastAnswer ? (
+              <TouchableOpacity
+                onPress={handleUndo}
+                testID="fc-undo"
+                style={[styles.undoBtn, { borderColor: t.border, backgroundColor: t.bgCard }]}
+              >
+                <Ionicons name="arrow-undo" size={14} color={t.textMuted} />
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+                  {triLang(lang, { ru: 'Вернуть', uk: 'Повернути', es: 'Deshacer' })}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
           </View>
 
-          {/* Кнопки */}
-          <View style={styles.buttons}>
-            <TouchableOpacity
-              onPress={() => handleButton('left')}
-              style={[styles.btn, styles.btnWrong, { borderColor: '#E05050' + '66' }]}
-            >
-              <Ionicons name="close" size={32} color="#E05050" />
-              <Text style={[styles.btnLabel, { color: '#E05050', fontSize: f.caption }]}>
-                {triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto' })}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => handleButton('right')}
-              style={[styles.btn, styles.btnCorrect, { borderColor: '#40C080' + '66' }]}
-            >
-              <Ionicons name="checkmark" size={32} color="#40C080" />
-              <Text style={[styles.btnLabel, { color: '#40C080', fontSize: f.caption }]}>
-                {triLang(lang, { ru: 'Верно', uk: 'Вірно', es: 'Correcto' })}
-              </Text>
-            </TouchableOpacity>
+          {/* Стек: следующая карточка под текущей */}
+          <View style={styles.deckArea}>
+            <View style={styles.stackWrap}>
+              {hasNext && (
+                <View
+                  pointerEvents="none"
+                  style={[styles.nextShell, { backgroundColor: t.bgCard, borderColor: t.border }]}
+                />
+              )}
+              {card && (
+                <PhraseCard
+                  key={`${current}-${card.key}`}
+                  mode="grade"
+                  en={card.en}
+                  flipped={false}
+                  muted
+                  minHeight={CARD_MIN_H}
+                  onGrade={handleGrade}
+                  onSpeakFront={speakCurrent}
+                  gradeLabels={{
+                    know: triLang(lang, { ru: 'Верно', uk: 'Вірно', es: 'Correcto' }),
+                    learn: triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto' }),
+                  }}
+                  renderFront={() => (
+                    <View style={styles.cardFace}>
+                      <Text style={[styles.wordEn, { color: t.textPrimary, fontSize: f.h1 }]}>
+                        {card.en}
+                      </Text>
+                      <View style={[styles.divider, { backgroundColor: t.border }]} />
+                      <Text style={[styles.wordRu, { color: t.textMuted, fontSize: f.bodyLg }]}>
+                        {card.shownTranslation}
+                      </Text>
+                      <Text style={[styles.question, { color: t.textMuted, fontSize: f.caption }]}>
+                        {triLang(lang, {
+                          ru: 'Перевод верный?',
+                          uk: 'Переклад правильний?',
+                          es: '¿La traducción es correcta?',
+                        })}
+                      </Text>
+                    </View>
+                  )}
+                  testID="fc-words-card"
+                />
+              )}
+            </View>
           </View>
-
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -372,95 +608,49 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   headerTitle: { fontWeight: '700' },
-  progressBar: {
-    height: 4,
-    borderRadius: 2,
-    marginHorizontal: 16,
-    marginBottom: 8,
-    overflow: 'hidden',
-  },
-  progressFill: { height: '100%', borderRadius: 2 },
-  deckContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 8,
-  },
-  card: {
-    position: 'absolute',
-    width: SCREEN_W - 48,
-    borderRadius: 24,
-    borderWidth: 1,
-    padding: 32,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.18,
-    shadowRadius: 20,
-    elevation: 10,
-  },
-  cardBack: {
-    position: 'absolute',
-    transform: [{ scale: 0.96 }, { translateY: 12 }],
-    opacity: 0.6,
-  },
-  wordEn: { fontWeight: '900', textAlign: 'center', marginBottom: 16 },
-  divider: { width: 48, height: 1, marginBottom: 16 },
-  wordRu: { fontWeight: '600', textAlign: 'center', marginBottom: 24 },
-  hint: { textAlign: 'center', lineHeight: 18 },
-  decisionLabel: {
-    position: 'absolute',
-    top: 24,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 10,
-    borderWidth: 2,
-  },
-  correctLabel: { right: 20, borderColor: '#40C080', transform: [{ rotate: '15deg' }] },
-  wrongLabel:   { left: 20,  borderColor: '#E05050', transform: [{ rotate: '-15deg' }] },
-  decisionText: { fontSize: 16, fontWeight: '900' },
-  buttons: {
+  segmentsRow: {
     flexDirection: 'row',
-    gap: 16,
+    gap: 3,
+    marginHorizontal: 16,
+    marginBottom: 4,
+  },
+  segment: { flex: 1, height: 6, borderRadius: 3 },
+  undoRow: {
+    height: 40,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+  undoBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    borderRadius: 999,
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  deckArea: {
+    flex: 1,
+    justifyContent: 'center',
     paddingHorizontal: 24,
     paddingBottom: 24,
-    paddingTop: 12,
   },
-  btn: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
-    borderRadius: 18,
-    borderWidth: 1.5,
-    paddingVertical: 14,
+  stackWrap: { width: '100%' },
+  nextShell: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: CARD_MIN_H + 4,
+    borderRadius: 24,
+    borderWidth: 1,
+    opacity: 1,
+    transform: [{ scale: 0.93 }, { translateY: 24 }],
   },
-  btnWrong:   { backgroundColor: '#E05050' + '11' },
-  btnCorrect: { backgroundColor: '#40C080' + '11' },
-  btnLabel: { fontWeight: '700' },
-  doneContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 24,
-  },
-  doneTitle: { fontWeight: '800', marginBottom: 24, textAlign: 'center' },
-  doneStats: {
-    flexDirection: 'row',
-    borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
-    overflow: 'hidden',
-    marginBottom: 32,
-    width: '100%',
-  },
-  doneStat: { flex: 1, alignItems: 'center', paddingVertical: 16, gap: 4 },
-  doneStatDivider: { width: StyleSheet.hairlineWidth },
-  doneStatNum: { fontWeight: '900' },
-  doneStatLabel: { fontWeight: '600' },
-  doneBtn: {
-    borderRadius: 16,
-    paddingHorizontal: 48,
-    paddingVertical: 14,
-  },
-  doneBtnText: { color: '#fff', fontWeight: '800' },
+  cardFace: { alignItems: 'center', width: '100%', paddingVertical: 10 },
+  wordEn: { fontWeight: '900', textAlign: 'center', marginBottom: 16 },
+  divider: { width: 48, height: 1, marginBottom: 16 },
+  wordRu: { fontWeight: '600', textAlign: 'center' },
+  question: { marginTop: 22, textAlign: 'center', fontWeight: '600' },
 });

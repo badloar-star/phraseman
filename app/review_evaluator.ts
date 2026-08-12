@@ -1,4 +1,4 @@
-import { isCorrectAnswer } from '../constants/contractions';
+import { isFuzzyCorrect } from './flashcards/fuzzy_match';
 import { englishRecallSurface } from './phrase_target_utils';
 
 /**
@@ -11,6 +11,8 @@ export type ReviewMode = 'word_bank' | 'meaning_match' | 'recall_type';
 
 export type EvalResult = {
   ok: boolean;
+  /** E6: верно с опечаткой (Левенштейн ≤1 на слово ≥5 букв) — «Почти! Правильно: …». */
+  typo: boolean;
   normalizedUser: string;
   normalizedTarget: string;
 };
@@ -95,9 +97,12 @@ export function meaningChoiceIsCorrect(picked: string, correctTranslation: strin
 
 export function evaluateRecallAnswer(userAnswer: string, phrase: string): EvalResult {
   const target = cleanPhrase(englishRecallSurface(phrase));
-  const ok = isCorrectAnswer(userAnswer, target);
+  // E6: fuzzy вместо строгого === — contractions-слой (don't/do not, BrE→AmE)
+  // остаётся первым внутри isFuzzyCorrect, поверх — ё/е, і/ї, Левенштейн ≤1.
+  const verdict = isFuzzyCorrect(userAnswer, target);
   return {
-    ok,
+    ok: verdict.ok,
+    typo: verdict.typo,
     normalizedUser: userAnswer.trim(),
     normalizedTarget: target,
   };

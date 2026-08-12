@@ -359,11 +359,12 @@ function FaqItem({
             transform: [{ translateY: answerTranslateY }],
           }}
         >
-          <Text style={{ fontSize: f.sub, color: t.textSecond, lineHeight: f.sub * 1.7, marginTop: 14 }}>
-            {item.answer}
-          </Text>
+        <Text style={{ fontSize: f.sub, color: t.textSecond, lineHeight: f.sub * 1.7, marginTop: 14 }}>
+          {item.answer}
+        </Text>
           {item.showDeleteAccount && onOpenDeleteAccount ? (
             <TouchableOpacity
+              testID="faq-delete-account"
               onPress={() => {
                 void hapticTap();
                 onOpenDeleteAccount();

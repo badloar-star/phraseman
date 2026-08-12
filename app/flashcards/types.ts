@@ -35,6 +35,8 @@ export interface CardItem {
   isSystem: boolean;
   source?: string;
   sourceId?: string;
+  /** Время добавления (сохранённые карточки) — лимит-20 считается по нему, не по индексу рендера. */
+  addedAt?: number;
   // Rich details — present on marketplace pack cards only
   literalRu?: string;
   literalUk?: string;

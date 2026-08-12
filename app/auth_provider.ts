@@ -1252,6 +1252,7 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
     await deleteCloudData();
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: cloud delete failed', e);
+    return { ok: false, reason: 'cloud_delete_failed' };
   }
 
   // 2. Выходим из Google + Firebase Auth (revoke session, чтобы при следующем

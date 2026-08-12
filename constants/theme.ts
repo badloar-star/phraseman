@@ -480,10 +480,10 @@ export const getNextLeague = (points: number) => {
 
 // ─── XP СИСТЕМА УРОВНЕЙ ─────────────────────────────────────────────────────
 // Формула: XP_нужно(lvl) = Math.round(100 * 1.3^(lvl-1))
-// Уровни 1-10=A1 | 11-20=A2 | 21-35=B1 | 36-50=B2
+// Уровни 1-10=A1 | 11-20=A2 | 21-35=B1 | 36+=B2
 // Формула: рост 30% на ур.1, снижается на 1% каждый уровень, минимум 5% (с ур.27)
 
-export const MAX_LEVEL = 50;
+export const MAX_LEVEL = 60;
 
 // Total XP to reach level L = 250 * (L-1)^1.82
 // Level 2 = 250 XP, Level 50 ≈ 300 000 XP
@@ -502,14 +502,21 @@ export const LEVEL_XP = (level: number): number =>
 
 export const getLevelFromXP = (totalXP: number): number => {
   if (totalXP <= 0) return 1;
-  return Math.min(MAX_LEVEL, Math.floor(Math.pow(totalXP / XP_BASE, XP_EXP_INV)) + 1);
+  let level = Math.min(MAX_LEVEL, Math.floor(Math.pow(totalXP / XP_BASE, XP_EXP_INV)) + 1);
+  while (level < MAX_LEVEL && totalXP >= TOTAL_XP_FOR_LEVEL(level + 1)) {
+    level += 1;
+  }
+  while (level > 1 && totalXP < TOTAL_XP_FOR_LEVEL(level)) {
+    level -= 1;
+  }
+  return level;
 };
 
 export const getXPProgress = (totalXP: number) => {
   const level = getLevelFromXP(totalXP);
   const xpForThis = TOTAL_XP_FOR_LEVEL(level);
   const xpNeeded = LEVEL_XP(level);
-  const xpInLevel = Math.round(totalXP - xpForThis);
+  const xpInLevel = level >= MAX_LEVEL ? xpNeeded : Math.round(totalXP - xpForThis);
   const progress = level >= MAX_LEVEL ? 1 : xpInLevel / xpNeeded;
   return { level, xpInLevel, xpNeeded, progress };
 };

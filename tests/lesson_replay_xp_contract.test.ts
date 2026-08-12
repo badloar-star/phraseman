@@ -17,7 +17,7 @@ describe('lesson replay XP contract', () => {
     expect(xpBlock).toContain("registerXP(xpAmount, 'lesson_answer'");
     expect(xpBlock).toContain("userNameRef.current || ''");
     expect(xpBlock).toContain("'answer'");
-    expect(xpBlock).toContain('skipLeagueChestMultiplier: true');
+    expect(xpBlock).not.toContain('skipLeagueChestMultiplier: true');
     expect(xpBlock).toContain("surface: 'lesson1_answer'");
     expect(xpBlock).not.toContain('!isReplayRef.current');
     expect(xpBlock).toContain('resolveLessonAnswerBaseXp(normalBaseXp, isReplayRef.current');
@@ -31,6 +31,11 @@ describe('lesson replay XP contract', () => {
     expect(resolution).toBeGreaterThanOrEqual(0);
     expect(registration).toBeGreaterThan(resolution);
     expect(source.slice(resolution, registration)).toContain('const xpAmount = answerBaseXp.baseXp;');
+  });
+
+  it('finalizes lesson-scoped one-shot multipliers once on the result screen', () => {
+    const completion = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
+    expect(completion).toContain('finalizeLessonXpMultipliers(completionAttemptId)');
   });
 
   it('does not reset replay rounding state during deferred hydration', () => {

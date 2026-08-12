@@ -3,7 +3,7 @@
  *
  * Ключ: remote_config/app.numbers.referral_roulette_enabled (boolean, дефолт true).
  * Пишется из админки (adminSetReferralRouletteEnabled) / скриптом; на клиент
- * приезжает через remote_config_client (onSnapshot) → applyRemoteConfigSnapshot
+ * приезжает через remote_config_client (кэш + foreground polling) → applyRemoteConfigSnapshot
  * → событие 'remote_config_changed'. Хук перечитывает флаг на это событие, так
  * что выключение из админки прячет UI живьём, без перезапуска приложения.
  */

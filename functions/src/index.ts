@@ -28,12 +28,22 @@ const {
   runSupportInboxPullCron,
   runSupportOwnerAlertRetryCron,
   runSupportReplyDispatchSweeper,
+  runSupportAutoReplyRetryCron,
+  runSupportTelegramAutoSendDeadline,
   GMAIL_SUPPORT_APP_PASSWORD,
+  SUPPORT_OPENAI_API_KEY,
 } = require('./support_inbox') as {
   runSupportInboxPullCron: () => Promise<unknown>;
   runSupportOwnerAlertRetryCron: () => Promise<unknown>;
   runSupportReplyDispatchSweeper: () => Promise<unknown>;
+  runSupportAutoReplyRetryCron: () => Promise<unknown>;
+  runSupportTelegramAutoSendDeadline: () => Promise<unknown>;
   GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
+  SUPPORT_OPENAI_API_KEY: import('firebase-functions/params').SecretParam;
+};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { JARVIS_TELEGRAM_CONFIG } = require('./jarvis/telegram_owner_config') as {
+  JARVIS_TELEGRAM_CONFIG: import('firebase-functions/params').SecretParam;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
@@ -371,11 +381,11 @@ export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
   }
 );
 
-// Runs daily at 05:30 UTC, before Jarvis reads the support snapshot at 06:00 UTC.
+// Owner requirement 2026-08-11: one bounded mailbox poll per hour.
 // Pulls support emails via IMAP into support_inbox. Needs the
 // GMAIL_SUPPORT_APP_PASSWORD secret; if missing, logs and no-ops (never throws).
 export const gmailSupportPullCron = functions.scheduler.onSchedule(
-  { schedule: '30 5 * * *', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
+  { schedule: 'every 60 minutes', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
   async () => {
     await runSupportInboxPullCron();
   }
@@ -393,6 +403,27 @@ export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
   async () => {
     await runSupportReplyDispatchSweeper();
   }
+);
+
+export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
+  {
+    schedule: 'every 60 minutes', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300,
+    secrets: [GMAIL_SUPPORT_APP_PASSWORD, SUPPORT_OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
+  },
+  async () => {
+    await runSupportAutoReplyRetryCron();
+  },
+);
+
+// This checks only already prepared reviews; it does not poll Gmail. A ten
+// minute cadence keeps the promised three-hour window bounded to 3h–3h10m.
+export const supportTelegramAutoSendDeadlineCron = functions.scheduler.onSchedule(
+  {
+    schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120,
+  },
+  async () => {
+    await runSupportTelegramAutoSendDeadline();
+  },
 );
 
 // ── Community (UGC) packs ─────────────────────────────────────────────────────
@@ -441,10 +472,13 @@ export {
   adminSupportCancelReplyBatch,
   adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
+  adminSupportSaveAutomation,
+  adminSupportSaveDraft,
   adminSupportSetStatus,
   // Триггер спам-триажа/уведомлений Джарвиса — покрыт support_inbox_triage.test.ts
   // (мокает Firestore/OpenAI/Telegram и вызывает реальный хендлер напрямую).
   supportInboxOnNewMail,
+  supportTelegramReplyJobOnCreate,
 } from './support_inbox';
 
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
@@ -611,6 +645,59 @@ export {
   tournamentStartNow,
 } from './tournaments';
 export { adminSeedBotProfiles } from './tournament_bots';
+
+// Arena V2 is a separate server-authoritative duel runtime. It reuses only
+// reviewed Tournament task publications; Tournament release gates, rooms and
+// economy remain untouched.
+export {
+  arenaV2Home,
+  arenaV2FindMatch,
+  arenaV2QueueCancel,
+  arenaV2QuickBotFallback,
+  arenaV2MatchAccept,
+  arenaV2MatchDecline,
+  arenaV2SubmitAnswer,
+  arenaV2SubmitSpeedAttempt,
+  arenaV2SyncMatch,
+  arenaV2Forfeit,
+  arenaV2InviteCreate,
+  arenaV2InviteAccept,
+  arenaV2InviteDecline,
+  arenaV2SeasonClaim,
+  arenaV2SpinStatus,
+  arenaV2SpinClaim,
+  arenaV2CleanupHourly,
+} from './arena_v2';
+// Arena Expansion layers Today, review/mastery, asynchronous social play and
+// a spendable cosmetic wallet on top of the V2 authority boundary. Every
+// surface remains independently fail-closed in arena_v2_config/current.
+export {
+  arenaExpansionHome,
+  arenaTodayStart,
+  arenaTodaySubmitAnswer,
+  arenaTodaySubmitSpeedAttempt,
+  arenaTodaySync,
+  arenaMatchLabGet,
+  arenaGhostCreate,
+  arenaGhostAccept,
+  arenaGhostStatus,
+  arenaGhostDecline,
+  arenaRivalPropose,
+  arenaRivalAccept,
+  arenaRivalNext,
+  arenaRivalLeave,
+  arenaRivalMute,
+  arenaPartnerInvite,
+  arenaPartnerAccept,
+  arenaPartnerPause,
+  arenaPartnerPreferences,
+  arenaPartnerNudge,
+  arenaPartnerRemove,
+  arenaPartnerClaimSpotlight,
+  arenaStarStore,
+  arenaStarPurchase,
+  arenaStarEquip,
+} from './arena_expansion';
 // Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,
 // публикация в пул, статистика готовности раундов, расписание слотов.
 export {

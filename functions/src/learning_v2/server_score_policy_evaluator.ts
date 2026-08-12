@@ -139,6 +139,8 @@ export async function resolvePinnedServerScore(input: {
   readonly episodeRevision: { readonly body: unknown };
   readonly attemptRef: Parameters<typeof resolveServerScore>[0]["attemptRef"];
   readonly attemptBody: V2AttemptEventBody;
+  /** Functions-derived outcome; required for any server-authoritative positive path. */
+  readonly verifiedResultCode?: V2AttemptEventBody["outcome"]["resultCode"];
   readonly activityId: string;
   readonly starSlotId: string;
   readonly progressCompatibilityKey: string;
@@ -155,7 +157,7 @@ export async function resolvePinnedServerScore(input: {
     starSlotId: context.starSlotId,
     progressCompatibilityKey: context.progressCompatibilityKey,
     scoringPolicyRef: context.scoringPolicyRef,
-    resultCode: input.attemptBody.outcome.resultCode,
+    resultCode: input.verifiedResultCode ?? input.attemptBody.outcome.resultCode,
     evidenceComponentFingerprint: input.evidenceComponentFingerprint,
   }, evaluate);
 }

@@ -9,6 +9,7 @@ import { validateV2ContentItem, type V2ContentItem } from '../modules/learning-v
 import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
 import { validateOptionalPracticeRewardPolicy } from '../modules/learning-v2/progress/optional_practice_reward';
 import { qaV2EpisodeContent } from '../functions/src/content_factory/v2_episode_content_qa';
+import { buildActivityBindingsForContentItems } from './support/learning_v2_content_builders';
 
 function readJson(relativePath: string): any {
   return JSON.parse(readFileSync(join(__dirname, relativePath), 'utf8'));
@@ -37,8 +38,14 @@ test('compiles the E1 source into the approved twelve-session semantics', () => 
     canDoOutcomeId: source.canDoOutcomeId,
     profile: validatedProfile(),
     items: validatedItems(),
+    activityBindings: buildActivityBindingsForContentItems(validatedItems()),
   });
-  const qa = qaV2EpisodeContent(compiled, validatedItems(), validatedProfile());
+  const qa = qaV2EpisodeContent(
+    compiled,
+    validatedItems(),
+    validatedProfile(),
+    buildActivityBindingsForContentItems(validatedItems()),
+  );
   expect(qa.ok).toBe(true);
   expect(compiled.sessions).toHaveLength(12);
   expect(compiled.sessions.flatMap((session) => session.cards).every((card) =>

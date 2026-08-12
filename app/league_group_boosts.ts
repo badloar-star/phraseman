@@ -6,7 +6,7 @@ import { ensureAnonUser, ensureStableAuthLink, getCurrentUid } from './cloud_syn
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
 import { replaceShardsBalanceLocal } from './shards_system';
-import { sendFriendActivityLike, fetchTodayActivityLikeState } from './friend_activity_likes';
+import { sendFriendActivityLike, fetchActivityLikeState } from './friend_activity_likes';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -277,8 +277,7 @@ export function subscribeToActiveLeagueGroupBoost(
 
 export async function fetchLeagueGroupBoostLikedToday(boost: LeagueGroupBoostState | null): Promise<boolean> {
   if (!boost) return false;
-  const state = await fetchTodayActivityLikeState();
-  return state?.targetUid === boost.buyerUid && state?.eventId === boost.likeEventId;
+  return !!await fetchActivityLikeState(boost.buyerUid, boost.likeEventId);
 }
 
 export async function buyLeagueGroupBoost(): Promise<BuyLeagueGroupBoostResult> {

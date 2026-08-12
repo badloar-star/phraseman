@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { canonicalJsonV1, hashCanonicalBody } from '../../../modules/learning-v2/policies/decision_registry';
 import { CANONICAL_RELEASE_SURFACES, type CanonicalReleaseSurface } from './course_release_contract';
 
 export interface ArtifactReceipt {
@@ -10,16 +11,8 @@ export interface ArtifactReceipt {
   readonly finalizationKey: string;
 }
 
-function canonicalize(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(canonicalize);
-  if (value && typeof value === 'object') {
-    return Object.fromEntries(Object.entries(value as Record<string, unknown>).sort(([a], [b]) => a.localeCompare(b)).map(([key, item]) => [key, canonicalize(item)]));
-  }
-  return value;
-}
-
 export function serializeArtifactPayload(payload: unknown): string {
-  return JSON.stringify(canonicalize(payload));
+  return canonicalJsonV1(payload);
 }
 
 export function artifactObjectPath(releaseId: string, surface: CanonicalReleaseSurface, lessonId: number): string {
@@ -36,7 +29,7 @@ export function buildArtifactReceipt(input: {
   byteSize?: number;
 }): ArtifactReceipt {
   const serialized = serializeArtifactPayload(input.payload);
-  const contentHash = createHash('sha256').update(serialized).digest('hex');
+  const contentHash = hashCanonicalBody(input.payload);
   const byteSize = input.byteSize ?? Buffer.byteLength(serialized, 'utf8');
   if (!input.objectGeneration.trim() || !Number.isSafeInteger(byteSize) || byteSize < 1) throw new Error('artifact_receipt_invalid');
   const objectPath = artifactObjectPath(input.releaseId, input.surface, input.lessonId);

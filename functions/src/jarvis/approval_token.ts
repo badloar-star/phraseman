@@ -57,6 +57,8 @@ export interface BuildApprovalTokenInput {
   readonly ownerTelegramUserId: string;
   readonly ownerTelegramChatId: string;
   readonly nowMs: number;
+  /** Support review может жить до истечения трёхчасового окна; default остаётся 10 минут. */
+  readonly ttlMs?: number;
 }
 
 export interface BuildApprovalTokenResult {
@@ -94,7 +96,7 @@ export function buildApprovalToken(input: BuildApprovalTokenInput): BuildApprova
     ownerTelegramUserId: String(input.ownerTelegramUserId),
     ownerTelegramChatId: String(input.ownerTelegramChatId),
     createdAtMs: input.nowMs,
-    expiresAtMs: input.nowMs + APPROVAL_TTL_MS,
+    expiresAtMs: input.nowMs + Math.max(60_000, Math.min(4 * 60 * 60 * 1_000, input.ttlMs ?? APPROVAL_TTL_MS)),
   });
   const shortAction = input.action === 'approve' ? 'a' : 'r';
   return Object.freeze({

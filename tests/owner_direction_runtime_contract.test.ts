@@ -171,6 +171,10 @@ describe('owner runtime direction contract', () => {
       // Один тик хаба под гвардом видимости таба (runtimeOwnerId), пересчёт
       // состояния окна; на невидимом табе спит.
       'app/(tabs)/tournaments.tsx': 1,
+      // Arena V2 ranked queue heartbeat (15 s). It is active only while the
+      // matchmaking push screen owns focus + foreground; Quick uses one
+      // six-second timeout instead and gameplay uses the shared wall clock.
+      'app/arena_matchmaking.tsx': 1,
       // Remote refresh and boost countdown both stop on blur/background through runtimeActive.
       'app/club_screen.tsx': 2,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
@@ -298,7 +302,9 @@ describe('owner runtime direction contract', () => {
       'app/firestore_friend_requests.ts': 2,
       'app/league_group_boosts.ts': 2,
       'app/remote_account_deletion_monitor.ts': 1,
-      'app/remote_config_client.ts': 1,
+      // Remote Config deliberately uses foreground-only one-shot polling.
+      // A native onSnapshot cannot be synchronously fenced when an interactive
+      // lesson starts, so it is no longer an allowed permanent listener.
       // зачем 2026-07-27 (владелец: «приложение греет телефон»): две живые
       // подписки турнира (комната + реакции) приехали 27.07 мимо этого ревью.
       // Комната переписывается сервером каждые 5–12 секунд и будит JS-поток на
@@ -320,6 +326,14 @@ describe('owner runtime direction contract', () => {
     }
 
     expect(found).toEqual(allowlist);
+  });
+
+  it('refreshes client Remote Config on foreground with a five-minute ceiling instead of a permanent listener', () => {
+    const source = read('app/remote_config_client.ts');
+    expect(source).toContain('const REMOTE_CONFIG_LIVE_REFRESH_MS = 5 * 60_000;');
+    expect(source).toContain("db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get()");
+    expect(source).toContain('runtimeAppStateStore.subscribe');
+    expect(source).not.toContain('.onSnapshot(');
   });
 
   it('keeps energy recovery polling idle when full, unlimited, or backgrounded', () => {
@@ -806,7 +820,8 @@ describe('owner runtime direction contract', () => {
 
     expect(activityLikeServer).toContain('const alreadyLikedSameEvent =');
     expect(activityLikeServer).toContain('idempotentReplay: true');
-    expect(activityLikeServer).toContain("throw new HttpsError('resource-exhausted', 'Daily activity like limit reached');");
+    expect(activityLikeServer).toContain("collection('friend_activity_likes_sent').doc(recordId)");
+    expect(activityLikeServer).not.toContain('Daily activity like limit reached');
     expect(leagueBoostsClient).toContain('const next = res.idempotentReplay');
 
     expect(weeklyReviewServer).toContain('lastBriefingHash: params.briefingHash');
@@ -958,13 +973,16 @@ describe('owner runtime direction contract', () => {
 
   it('keeps friend gift sends non-blocking, offline-aware, server-authoritative, and account-owned', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
-    const sendResponse = friendsTab.indexOf('const res = await sendFriendGiftWithShards');
+    const outbox = read('app/friend_gift_outbox.ts');
+    const durableEnqueue = friendsTab.indexOf('const queued = await enqueueFriendGiftSend');
+    const successToast = friendsTab.indexOf("type: 'success'", durableEnqueue);
 
-    expect(friendsTab).toContain('sendFriendGiftWithShards');
-    expect(friendsTab).toContain('setGiftBusyId(giftId)');
+    expect(friendsTab).toContain('enqueueFriendGiftSend');
     expect(friendsTab).toContain("if (getNetStatus() === 'offline')");
-    expect(friendsTab.indexOf('setGiftTarget(null);')).toBeLessThan(sendResponse);
-    expect(friendsTab.indexOf("type: 'success'")).toBeLessThan(sendResponse);
+    expect(durableEnqueue).toBeGreaterThan(-1);
+    expect(friendsTab.indexOf('setGiftTarget(null);', durableEnqueue)).toBeGreaterThan(durableEnqueue);
+    expect(successToast).toBeGreaterThan(durableEnqueue);
+    expect(friendsTab).toContain('void queued.completion.then(async (res) =>');
     expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
     expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
     expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');
@@ -974,6 +992,10 @@ describe('owner runtime direction contract', () => {
     expect(friendsTab).not.toContain('setSentGiftReceipt');
     expect(friendsTab).not.toContain("status: 'pending'");
     expect(friendsTab).not.toContain('Отправляем подарок…');
+    expect(outbox).toContain("schemaVersion: 'friend-gift-send-outbox.v1'");
+    expect(outbox).toContain('idempotencyKey: entry.idempotencyKey');
+    expect(outbox).toContain("if (kind === 'network' || kind === 'unknown') throw error;");
+    expect(outbox).toContain('resumePendingFriendGiftSends');
   });
 
   it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {

@@ -30,6 +30,15 @@ describe('lesson answer runtime budget contract', () => {
     expect(source).toContain('medalToastAnim.stopAnimation()');
   });
 
+  it('caches grammar-hint storage checks and cancels stale hint animations', () => {
+    const source = read('app/lesson1.tsx');
+    expect(source).toContain('const grammarHintSeenCacheRef = useRef(new Set<string>())');
+    expect(source).toContain('grammarHintSeenCacheRef.current.has(seenKey)');
+    expect(source).toContain('generation !== grammarHintGenerationRef.current');
+    expect(source).toContain('grammarHintAnimationRef.current?.stop()');
+    expect(source).toContain('grammarHintAnim.stopAnimation()');
+  });
+
   it('does not run time-of-day achievement storage work for every XP award', () => {
     const source = read('app/xp_manager.ts');
     expect(source).toContain('function shouldCheckTimeOfDayAchievements(');

@@ -7,6 +7,8 @@ import {
   View,
 } from 'react-native';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useLang } from './LangContext';
+import { triLang } from '../constants/i18n';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface AiTypingBubbleProps {
@@ -22,6 +24,7 @@ export default function AiTypingBubble({
   dotColor,
   glowColor,
 }: AiTypingBubbleProps) {
+  const { lang } = useLang();
   const typingRuntimeActive = useRuntimeActive();
   const dotAnimations = useRef([new Animated.Value(0), new Animated.Value(0), new Animated.Value(0)]).current;
   const glowPulse = useRef(new Animated.Value(0)).current;
@@ -131,7 +134,7 @@ export default function AiTypingBubble({
     <View
       pointerEvents="none"
       accessible
-      accessibilityLabel="AI is typing a reply"
+      accessibilityLabel={triLang(lang, { ru: 'Собеседник печатает ответ', uk: 'Співрозмовник друкує відповідь', es: 'Tu interlocutor está escribiendo una respuesta', 'pt-BR': 'Seu interlocutor está digitando uma resposta', vi: 'Người trò chuyện đang nhập câu trả lời', id: 'Lawan bicara sedang mengetik jawaban', tr: 'Karşınızdaki yanıt yazıyor', pl: 'Rozmówca pisze odpowiedź' })}
       accessibilityLiveRegion="polite"
       testID="ai-typing-bubble"
       style={styles.wrap}

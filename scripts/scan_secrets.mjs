@@ -66,6 +66,10 @@ function namedSecretAssignmentHit(line) {
   // Reject obvious CODE values: function calls, member access, env refs, ternary.
   if (/[()]/.test(value)) return null;            // foo()
   if (value.includes('process.env')) return null; // env ref
+  // TypeScript type annotations such as `readonly token: SomeIntentV2` are
+  // identifiers, not string literals. A lowercase property followed by an
+  // unquoted PascalCase type is safe to reject before entropy checks.
+  if (!quote && /^[a-z_$]/.test(m[1]) && /^[A-Z_$][A-Za-z0-9_$]*$/.test(value)) return null;
   // Unquoted RHS that looks like a JS identifier / member expression (no quotes)
   // is almost always code, not a literal secret — require it to look opaque.
   if (!OPAQUE_LITERAL.test(value)) return null;

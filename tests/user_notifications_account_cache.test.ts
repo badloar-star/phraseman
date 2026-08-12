@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  countUnreadNotifications,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
 } from '../app/user_notifications';
@@ -147,6 +148,100 @@ describe('notification cache account isolation', () => {
     const notifications = await refreshUserNotificationsOnce({ force: true });
 
     expect(notifications.map((notification) => notification.reportReply?.coins)).toEqual([1, 1]);
+  });
+
+  it('purges retired tournament notifications from Firestore, cache and unread count', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-retired');
+    mockDocsByUid['stable-retired'] = [
+      {
+        id: 'retired-tournament-bank',
+        data: {
+          type: 'tournament_weekly_bank',
+          text: 'legacy tournament payout',
+          read: false,
+          createdAt: 400,
+        },
+      },
+      {
+        id: 'live-friend-request',
+        data: {
+          type: 'friend_request',
+          text: 'live notification',
+          read: false,
+          createdAt: 300,
+        },
+      },
+    ];
+
+    const refreshed = await refreshUserNotificationsOnce({ force: true });
+
+    expect(refreshed.map((notification) => notification.id)).toEqual(['live-friend-request']);
+    expect(countUnreadNotifications(refreshed)).toBe(1);
+    const persisted = JSON.parse(storage['user_notifications_cache_v2:stable-retired'] ?? '[]');
+    expect(persisted.map((notification: { id: string }) => notification.id)).toEqual(['live-friend-request']);
+  });
+
+  it('keeps owner-only Arena partner nudges visible with their bounded navigation payload', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-arena-partner');
+    mockDocsByUid['stable-arena-partner'] = [{
+      id: 'arena-partner-pair-day',
+      data: {
+        type: 'arena_partner_nudge',
+        fromUid: 'stable-friend',
+        fromName: 'Friend',
+        nav: { kind: 'arena_partner', partnershipId: 'pair-safe-id' },
+        read: false,
+        createdAt: 500,
+      },
+    }, {
+      id: 'arena-partner-invite',
+      data: {
+        type: 'arena_partner_invite',
+        fromUid: 'stable-friend-2',
+        fromName: 'Second friend',
+        nav: { kind: 'arena_partner', partnershipId: 'pair-invite-id' },
+        read: false,
+        createdAt: 490,
+      },
+    }];
+
+    await expect(refreshUserNotificationsOnce({ force: true })).resolves.toEqual([
+      expect.objectContaining({
+        type: 'arena_partner_nudge',
+        nav: { kind: 'arena_partner', partnershipId: 'pair-safe-id' },
+      }),
+      expect.objectContaining({
+        type: 'arena_partner_invite',
+        nav: { kind: 'arena_partner', partnershipId: 'pair-invite-id' },
+      }),
+    ]);
+  });
+
+  it('physically purges a retired tournament notification from the offline cache', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-retired-cache');
+    storage['user_notifications_cache_v2:stable-retired-cache'] = JSON.stringify([
+      {
+        id: 'live-friend-request-cache',
+        type: 'friend_request',
+        read: false,
+        createdAt: 300,
+      },
+      {
+        id: 'retired-from-disk',
+        type: 'tournament_weekly_bank',
+        read: false,
+        createdAt: 200,
+      },
+    ]);
+
+    await expect(readCachedUserNotifications()).resolves.toEqual([
+      expect.objectContaining({ id: 'live-friend-request-cache' }),
+    ]);
+    await Promise.resolve();
+    const persisted = JSON.parse(storage['user_notifications_cache_v2:stable-retired-cache'] ?? '[]');
+    expect(persisted.map((notification: { id: string }) => notification.id)).toEqual([
+      'live-friend-request-cache',
+    ]);
   });
 
 });

@@ -1,4 +1,4 @@
-import { hasClaimedPermission, hasPermission, type AdminPermission } from './permissions';
+import { explicitAdminRoleFromToken, hasClaimedPermission, hasPermission, type AdminPermission } from './permissions';
 
 describe('admin permission matrix', () => {
   it('allows content editors to manage drafts but not billing', () => {
@@ -37,7 +37,7 @@ describe('admin permission matrix', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'users.delete', 'users.auth_repair', 'users.message.write',
       'money.read', 'money.manual_access.write',
-      'content.read', 'content.draft.write', 'content.publish', 'application.config.write',
+      'content.read', 'content.draft.write', 'content.publish', 'content.review', 'application.config.write',
       'diagnostics.read', 'community.moderate', 'admin.roles.write',
       'support.inbox.read', 'support.inbox.pull', 'support.draft.write',
       'support.reply.send', 'support.archive', 'support.settings.write',
@@ -47,6 +47,12 @@ describe('admin permission matrix', () => {
       'ideas.read', 'ideas.decide',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
+  });
+
+  it('keeps the strict Content Studio role resolver separate from legacy compatibility', () => {
+    expect(explicitAdminRoleFromToken({ admin: true })).toBeNull();
+    expect(explicitAdminRoleFromToken({ admin: true, adminRole: 'content_reviewer' })).toBe('content_reviewer');
+    expect(explicitAdminRoleFromToken({ admin: false, adminRole: 'owner' })).toBeNull();
   });
 
   // зачем: ручной список выше уже один раз разъехался с реальной матрицей — четыре новых

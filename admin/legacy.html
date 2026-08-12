@@ -9905,7 +9905,7 @@
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
-  <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
+  <div class="tab" role="button" tabindex="0" onclick="if (this.closest('.tabs')?.dataset.navEdit !== 'true') switchTab('v2-generator')" onkeydown="if (this.closest('.tabs')?.dataset.navEdit !== 'true' &amp;&amp; (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); switchTab('v2-generator'); }" title="Открыть внутри этой админки пошаговую студию генерации и ручного согласования полного курса Learning V2" style="background:rgba(37,99,235,0.12);border:1px solid rgba(96,165,250,0.45);color:#bfdbfe;font-weight:700;display:flex;align-items:center;gap:7px"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg><span>Learning V2 · Студия курса</span></div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
@@ -11196,8 +11196,55 @@
 </style>
 
 <div id="tab-v2-generator" class="reports-tab">
-  <h2 style="margin:0 0 4px">🧬 Learning V2 · Генератор юнитов</h2>
-  <div style="color:#9ca3af;font-size:13px;margin-bottom:14px">Вертикальный срез E1: демо-банк → детерминированная компиляция 12 сессий → блокирующий QA → артефакт. Постановка в очередь с пинами шаблонов включится после публикации шаблонов режимов в Content Studio.</div>
+  <style>
+    #tab-v2-generator .v2-course-primary{background:#c8ff3d!important;border:1px solid #a7e51d!important;color:#07110a!important;box-shadow:none!important}
+    #tab-v2-generator .v2-course-primary:hover{background:#b9f52c!important;border-color:#94cf15!important;color:#07110a!important}
+    #tab-v2-generator .v2-course-secondary{background:#1e293b!important;border:1px solid #334155!important;color:#dbeafe!important;box-shadow:none!important}
+    @media(max-width:760px){
+      #tab-v2-generator .v2-course-form{grid-template-columns:1fr!important}
+      #tab-v2-generator .v2-course-wide{grid-column:1!important}
+      #tab-v2-generator .v2-course-actions{display:grid!important;grid-template-columns:1fr!important}
+      #tab-v2-generator .v2-course-actions button{width:100%}
+      #tab-v2-generator .v2-course-stage{grid-template-columns:1fr!important}
+    }
+  </style>
+  <h2 style="margin:0 0 4px">Learning V2 · Студия курса</h2>
+  <div style="color:#cbd5e1;font-size:15px;line-height:1.55;margin-bottom:14px;max-width:960px">Одна управляемая очередь готовит учебный маршрут с целями от Pre-A1 до C2. Это не сертификат уровня: каждый этап, перевод, аудиофайл и проверка должны получить отдельные доказательства и ручное одобрение.</div>
+
+  <section aria-labelledby="v2-course-queue-title" style="background:#111827;border:1px solid #293244;border-radius:14px;padding:16px;margin-bottom:14px;max-width:1120px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+      <div>
+        <h3 id="v2-course-queue-title" style="margin:0 0 4px;color:#f8fafc;font-size:16px">Полный курс · очередь согласований</h3>
+        <div style="font-size:12px;color:#94a3b8">Никакой этап не публикуется автоматически. Тестовый контент остаётся черновиком до вашего решения.</div>
+      </div>
+      <div id="v2-course-locale-badge" role="status" style="font-size:12px;color:#c4b5fd;background:#252044;border:1px solid #4338ca;border-radius:999px;padding:6px 10px">8 языков обязательны</div>
+    </div>
+    <div id="v2-course-truth" role="status" aria-live="polite" style="background:#2a1f0d;border:1px solid #7c5b19;border-radius:10px;color:#fde68a;font-size:14px;line-height:1.5;padding:11px 12px;margin-bottom:14px">Рабочая область ещё не проверена сервером. Релиз заблокирован.</div>
+    <div class="v2-course-form" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:12px">
+      <label style="display:grid;gap:5px;font-size:12px;color:#cbd5e1">Язык обучения
+        <select id="v2-course-target" aria-label="Язык изучаемого курса" style="min-height:42px;background:#0f172a;border:1px solid #334155;border-radius:9px;color:#f8fafc;padding:8px 10px">
+          <option value="en">Английский</option><option value="fr">Французский</option><option value="de">Немецкий</option><option value="es">Испанский</option><option value="it">Итальянский</option><option value="pt">Португальский</option>
+        </select>
+      </label>
+      <label style="display:grid;gap:5px;font-size:12px;color:#cbd5e1">ID пакета
+        <input id="v2-course-request" value="learning-v2-en-v1" maxlength="160" aria-label="ID пакета курса" style="min-height:42px;background:#0f172a;border:1px solid #334155;border-radius:9px;color:#f8fafc;padding:8px 10px">
+      </label>
+      <label class="v2-course-wide" style="display:grid;gap:5px;font-size:12px;color:#cbd5e1;grid-column:span 2">Главная цель курса
+        <textarea id="v2-course-objective" maxlength="1000" aria-label="Главная цель курса" rows="2" style="min-height:64px;resize:vertical;background:#0f172a;border:1px solid #334155;border-radius:9px;color:#f8fafc;padding:9px 10px;font:inherit">Построить последовательный учебный маршрут от абсолютного нуля до целей C2 с объяснением, практикой, переносом навыка и проверками</textarea>
+      </label>
+    </div>
+    <div class="v2-course-actions" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      <button type="button" class="v2-course-primary" id="v2-course-next-btn" onclick="v2CourseCreateNextStage()" title="Создаёт только ближайший доступный этап; дальнейшая генерация невозможна без вашего одобрения" style="min-height:44px;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:900">Создать следующий этап</button>
+      <button type="button" class="v2-course-secondary" onclick="v2CourseRefresh()" title="Перечитать состояние очереди без запуска генерации" style="min-height:42px;padding:9px 14px;border-radius:9px;cursor:pointer;font-weight:700">Обновить</button>
+      <span id="v2-course-status" role="status" aria-live="polite" style="font-size:12px;color:#94a3b8">Очередь ещё не загружена.</span>
+    </div>
+    <div id="v2-course-stage-list" aria-live="polite" style="display:grid;gap:9px"></div>
+    <div id="v2-course-preview" style="display:none;margin-top:14px;background:#0b1220;border:1px solid #334155;border-radius:12px;padding:14px"></div>
+  </section>
+
+  <details id="v2g-legacy-details" ontoggle="if(this.open)v2gRefresh()" style="background:#0f172a;border:1px solid #263244;border-radius:12px;padding:12px 14px;margin-bottom:14px;max-width:1120px">
+    <summary style="cursor:pointer;color:#cbd5e1;font-weight:800">Тестовый старый инструмент E1 · не для релиза</summary>
+    <div style="color:#94a3b8;font-size:12px;line-height:1.5;margin:8px 0 12px">Сохранён для технической проверки совместимости. Его демо-банк и 12 сессий не считаются одобренным учебным контентом.</div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:14px">
     <div style="background:#111827;border-radius:14px;padding:16px">
@@ -11218,6 +11265,7 @@
     <div id="v2g-artifact" style="color:#9ca3af;font-size:13px">Артефакта пока нет — выполни шаги 1 и 2.</div>
     <div id="v2g-sessions" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px"></div>
   </div>
+  </details>
 </div>
 
 <div id="tab-alerts" class="reports-tab">
@@ -13618,12 +13666,15 @@
     try {
       const host = window.location.hostname;
       const localHost = host === 'localhost' || host === '127.0.0.1' || host === '10.0.2.2';
-      const enabled = localHost && new URLSearchParams(window.location.search).get('devReviewPromo') === '1';
+      const params = new URLSearchParams(window.location.search);
+      const v2CourseVisual = params.get('devV2Course') === '1';
+      const enabled = localHost && (params.get('devReviewPromo') === '1' || v2CourseVisual);
       if (!enabled) return;
       window.__pmAdminLocalVisualTest = true;
       const activate = function() {
         const requestedTab = String(window.location.hash || '').replace(/^#/, '');
-        if (requestedTab && requestedTab !== 'review-promo') return;
+        const visualTab = v2CourseVisual ? 'v2-generator' : 'review-promo';
+        if (requestedTab && requestedTab !== visualTab) return;
         const login = document.getElementById('admin-login');
         const app = document.getElementById('admin-app');
         if (login) login.style.display = 'none';
@@ -13632,13 +13683,17 @@
         if (st) st.textContent = 'local visual test';
         document.querySelectorAll('.tab').forEach(function(t) {
           const on = t.getAttribute('onclick') || '';
-          t.classList.toggle('active', on.indexOf("'review-promo'") !== -1);
+          t.classList.toggle('active', on.indexOf("'" + visualTab + "'") !== -1);
         });
         document.querySelectorAll('.users-tab,.analytics,.reports-tab').forEach(function(el) {
           el.classList.remove('active');
         });
-        const tab = document.getElementById('tab-review-promo');
+        const tab = document.getElementById('tab-' + visualTab);
         if (tab) tab.classList.add('active');
+        if (v2CourseVisual) {
+          if (window.history && window.history.replaceState) window.history.replaceState(null, '', window.location.pathname + window.location.search + '#v2-generator');
+          return;
+        }
         const count = document.getElementById('vs-count');
         if (count) count.textContent = 'Ответов: dev';
         const list = document.getElementById('vs-list');
@@ -13696,7 +13751,23 @@
     return { ...config, authDomain: hostingAuthDomain };
   }
 
+  const IS_LOCAL_ADMIN_VISUAL_TEST = Boolean(
+    globalThis.__pmAdminLocalVisualTest
+    && ['localhost', '127.0.0.1', '10.0.2.2'].includes(String(globalThis.location?.hostname || ''))
+  );
+
   async function resolveFirebaseConfig() {
+    // Локальный screenshot/smoke режим не должен обращаться к Firebase Hosting
+    // или падать до подключения обработчиков экрана. Конфигурация существует
+    // только на loopback-хосте; все write-пути остаются заменены dev fixtures.
+    if (IS_LOCAL_ADMIN_VISUAL_TEST) {
+      return Object.freeze({
+        apiKey: 'local-visual-test-only',
+        authDomain: 'localhost',
+        projectId: 'local-visual-test-only',
+        appId: '1:000000000000:web:0000000000000000000000',
+      });
+    }
     const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
     if (injected && typeof injected === 'object') {
       return applyAdminSameOriginAuthDomain(injected, globalThis.location?.hostname, isMobileAdminBrowser());
@@ -13720,6 +13791,7 @@
   let _adminAppCheckReadyPromise = null;
 
   try {
+    if (IS_LOCAL_ADMIN_VISUAL_TEST) throw new Error('admin_app_check_skipped_for_local_visual_test');
     _adminAppCheck = initializeAppCheck(app, {
       provider: new ReCaptchaEnterpriseProvider(ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY),
       isTokenAutoRefreshEnabled: true,
@@ -13728,7 +13800,7 @@
     // Authentication and read-only admin diagnostics must remain available, but
     // protected gift operations below stay fail-closed until App Check recovers.
     _adminAppCheckSetupError = error;
-    console.error('admin App Check initialization failed', error);
+    if (!IS_LOCAL_ADMIN_VISUAL_TEST) console.error('admin App Check initialization failed', error);
   }
 
   async function requireAdminAppCheckForGiftCertificates() {
@@ -13844,6 +13916,141 @@
   };
   const functionsUs = getFunctions(app, 'us-central1');
 
+  // === Learning V2 · полный мультиязычный курс в общей Generation Queue ===
+  const V2_COURSE_STAGES = Object.freeze([
+    { kind:'learning_v2_research', title:'1. Исследование', desc:'Основа курса и проверяемые источники' },
+    { kind:'learning_v2_curriculum', title:'2. Программа Pre-A1 → C2', desc:'Цели, порядок навыков и учебный цикл' },
+    { kind:'learning_v2_lesson_outline', title:'3. Карта курса', desc:'Секторы, эпизоды, уроки и экзамены' },
+    { kind:'learning_v2_localized_course', title:'4. Весь учебный контент', desc:'Интро, объяснения, задания, подсказки и проверки на 8 языках' },
+    { kind:'learning_v2_audio', title:'5. Аудио', desc:'Манифест Ash, Onyx, Nova и Coral; файлы и прослушивание проверяются отдельно' },
+    { kind:'learning_v2_quality_assurance', title:'6. Проверка качества', desc:'Языки, педагогика, доступность, зависимости и аудио' },
+    { kind:'learning_v2_release', title:'7. Кандидат в релиз', desc:'Не публикуется без вашего финального одобрения' },
+  ]);
+  const V2_COURSE_LOCALES = Object.freeze(['ru','uk','es','pt-BR','vi','id','tr','pl']);
+  const _v2CourseState = { stages:[], projection:null, busy:false, preview:null, previewStage:null, locale:'ru' };
+  const _v2CourseFns = {};
+  function _v2CourseFn(name) { return _v2CourseFns[name] || (_v2CourseFns[name] = httpsCallable(functionsUs, name)); }
+  function _v2CourseEl(id) { return document.getElementById(id); }
+  function _v2CourseEscape(value) { return String(value ?? '').replace(/[&<>"']/g, function(ch) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch]; }); }
+  function _v2CourseSetStatus(text, tone) {
+    const el = _v2CourseEl('v2-course-status'); if (!el) return;
+    el.textContent = text; el.style.color = tone === 'error' ? '#fca5a5' : tone === 'ok' ? '#86efac' : '#94a3b8';
+  }
+  function _v2CourseInput() {
+    const studyTarget = String(_v2CourseEl('v2-course-target')?.value || 'en');
+    return { requestId:String(_v2CourseEl('v2-course-request')?.value || '').trim(), studyTarget, sourceLocale:'multi', cefr:'PRE_A1', objective:String(_v2CourseEl('v2-course-objective')?.value || '').trim(), scopeId:'course-' + studyTarget, count:1 };
+  }
+  function _v2CourseLatestByKind(kind) {
+    return _v2CourseState.stages.filter(function(stage) { return stage.kind === kind; }).sort(function(a,b) { return Number(b.revision || 0) - Number(a.revision || 0); })[0] || null;
+  }
+  function _v2CourseApprovedByKind(kind) {
+    const rollup = _v2CourseState.projection && Array.isArray(_v2CourseState.projection.rollups)
+      ? _v2CourseState.projection.rollups.find(function(item) { return item.kind === kind; }) : null;
+    if (!rollup || rollup.approvalState !== 'verified' || !rollup.approvedBaseline) return null;
+    return _v2CourseState.stages.find(function(stage) { return String(stage.id) === String(rollup.approvedBaseline.stageId); }) || null;
+  }
+  function _v2CourseStateView(state) {
+    const views = {
+      queued:['Готов к запуску','#93c5fd'], running:['Генерируется','#fbbf24'], paused:['На паузе','#cbd5e1'], failed:['Ошибка — можно повторить','#fca5a5'],
+      needs_review:['Ждёт вашего решения','#c4b5fd'], approved:['Одобрено вами','#86efac'], rejected:['Отправлено на исправление','#fdba74'], cancelled:['Отменено','#94a3b8'], superseded:['Заменено новой версией','#94a3b8'],
+    };
+    return views[state] || [state || 'Не создано','#94a3b8'];
+  }
+  function _v2CourseRender() {
+    const list = _v2CourseEl('v2-course-stage-list'); if (!list) return;
+    const truth = _v2CourseEl('v2-course-truth');
+    if (truth) {
+      const blockerCount = _v2CourseState.projection && Array.isArray(_v2CourseState.projection.blockers) ? _v2CourseState.projection.blockers.length : 0;
+      truth.textContent = _v2CourseState.projection
+        ? 'Черновая рабочая область. Релиз заблокирован: ' + blockerCount + ' обязательных проверок ещё не закрыто.'
+        : 'Рабочая область ещё не проверена сервером. Релиз заблокирован.';
+    }
+    list.innerHTML = V2_COURSE_STAGES.map(function(def, index) {
+      const stage = _v2CourseLatestByKind(def.kind);
+      const view = _v2CourseStateView(stage?.state);
+      const encodedId = stage ? encodeURIComponent(String(stage.id)) : '';
+      let action = '<span style="font-size:12px;color:#64748b">Сначала завершите предыдущий этап</span>';
+      if (!stage && index === 0) action = '<span style="font-size:12px;color:#94a3b8">Нажмите главную кнопку выше</span>';
+      if (!stage && index > 0 && _v2CourseApprovedByKind(V2_COURSE_STAGES[index - 1].kind)) action = '<span style="font-size:12px;color:#94a3b8">Готов к созданию</span>';
+      if (stage && ['queued','failed','paused'].includes(stage.state)) action = '<button type="button" onclick="v2CourseRunStage(decodeURIComponent(\'' + encodedId + '\'))" style="min-height:38px;background:#1d4ed8;border:1px solid #3b82f6;color:#eff6ff;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:800">Запустить</button>';
+      if (stage && stage.state === 'running') action = '<span style="font-size:12px;color:#fbbf24">Можно закрыть админку — работа продолжится</span>';
+      if (stage && ['needs_review','approved','rejected'].includes(stage.state)) action = '<button type="button" onclick="v2CoursePreviewStage(decodeURIComponent(\'' + encodedId + '\'))" style="min-height:38px;background:#312e81;border:1px solid #4f46e5;color:#e0e7ff;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:800">Открыть результат</button>';
+      return '<article class="v2-course-stage" style="display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:12px;align-items:center;background:#0f172a;border:1px solid ' + (stage ? '#334155' : '#253047') + ';border-radius:11px;padding:11px 12px">'
+        + '<div><div style="font-size:13px;color:#f8fafc;font-weight:900">' + _v2CourseEscape(def.title) + '</div><div style="font-size:11.5px;color:#94a3b8;margin-top:3px">' + _v2CourseEscape(def.desc) + '</div>'
+        + '<div style="font-size:11px;color:' + view[1] + ';font-weight:800;margin-top:5px">' + _v2CourseEscape(view[0]) + (stage ? ' · версия ' + Number(stage.revision || 1) : '') + '</div></div><div>' + action + '</div></article>';
+    }).join('');
+    const next = V2_COURSE_STAGES.find(function(def) { return !_v2CourseApprovedByKind(def.kind); });
+    const button = _v2CourseEl('v2-course-next-btn');
+    if (button) button.textContent = next ? 'Создать следующий этап · ' + next.title.replace(/^\d+\.\s*/, '') : '7 черновых этапов актуальны · релиз заблокирован';
+  }
+  window.v2CourseRefresh = async function() {
+    if (_v2CourseState.busy) return;
+    const input = _v2CourseInput();
+    if (!/^[A-Za-z0-9._-]{1,160}$/.test(input.requestId)) { _v2CourseSetStatus('Укажите короткий ID пакета: буквы, цифры, точка, дефис или подчёркивание.', 'error'); return; }
+    _v2CourseState.busy = true; _v2CourseSetStatus('Читаю очередь…');
+    try {
+      const response = await _v2CourseFn('adminGetLearningV2CourseWorkspaceProjection')({ requestId:input.requestId, studyTarget:input.studyTarget, sourceLocale:'multi', scopeId:input.scopeId });
+      _v2CourseState.stages = Array.isArray(response?.data?.stages) ? response.data.stages.filter(function(stage) { return String(stage.kind || '').startsWith('learning_v2_'); }) : [];
+      _v2CourseState.projection = response?.data?.projection || null;
+      _v2CourseRender();
+      _v2CourseSetStatus(_v2CourseState.stages.length ? 'Этапов в очереди: ' + _v2CourseState.stages.length : 'Пакет ещё не создан. Начните с исследования.', _v2CourseState.stages.length ? 'ok' : '');
+    } catch (error) { _v2CourseSetStatus('Не удалось загрузить очередь: ' + String(error?.message || error), 'error'); }
+    finally { _v2CourseState.busy = false; }
+  };
+  window.v2CourseCreateNextStage = async function() {
+    if (_v2CourseState.busy) return;
+    const input = _v2CourseInput();
+    if (!input.objective || input.objective.length > 1000) { _v2CourseSetStatus('Опишите цель курса.', 'error'); return; }
+    const index = V2_COURSE_STAGES.findIndex(function(def) { return !_v2CourseApprovedByKind(def.kind); });
+    if (index < 0) { _v2CourseSetStatus('Все семь черновых этапов актуальны. Релиз по-прежнему заблокирован обязательными проверками.', 'ok'); return; }
+    const def = V2_COURSE_STAGES[index]; const current = _v2CourseLatestByKind(def.kind);
+    if (current && !['rejected','cancelled','superseded'].includes(current.state)) { _v2CourseSetStatus('Сначала завершите или проверьте текущий этап: ' + def.title, 'error'); return; }
+    const prerequisite = index > 0 ? _v2CourseApprovedByKind(V2_COURSE_STAGES[index - 1].kind) : null;
+    if (index > 0 && !prerequisite) { _v2CourseSetStatus('Предыдущий этап ещё не одобрен вами.', 'error'); return; }
+    _v2CourseState.busy = true; _v2CourseSetStatus('Создаю только этап «' + def.title + '»…');
+    try {
+      await _v2CourseFn('adminCreateContentStage')({ ...input, kind:def.kind, revision:current ? Number(current.revision || 1) + 1 : 1, prerequisiteStageIds:prerequisite ? [String(prerequisite.id)] : [] });
+      _v2CourseSetStatus('Этап создан. Теперь его можно запустить.', 'ok');
+    } catch (error) { _v2CourseSetStatus('Этап не создан: ' + String(error?.message || error), 'error'); }
+    finally { _v2CourseState.busy = false; await window.v2CourseRefresh(); }
+  };
+  window.v2CourseRunStage = async function(stageId) {
+    if (_v2CourseState.busy) return; _v2CourseState.busy = true; _v2CourseSetStatus('Запускаю генерацию. Результат останется черновиком…');
+    try { await _v2CourseFn('adminRunContentStage')({ stageId:String(stageId) }); _v2CourseSetStatus('Генерация запущена. Обновите очередь через несколько минут.', 'ok'); }
+    catch (error) { _v2CourseSetStatus('Не удалось запустить: ' + String(error?.message || error), 'error'); }
+    finally { _v2CourseState.busy = false; await window.v2CourseRefresh(); }
+  };
+  function _v2CourseRenderPreview() {
+    const box = _v2CourseEl('v2-course-preview'); if (!box || !_v2CourseState.preview) return;
+    const payload = _v2CourseState.preview.payload || {}; const result = payload.result || {}; const stage = _v2CourseState.previewStage || {};
+    const locale = _v2CourseState.locale; const localized = result.localizedContent?.[locale] ?? null;
+    const allLocalesReady = V2_COURSE_LOCALES.every(function(key) { return result.localizedContent && result.localizedContent[key] != null; });
+    const localeButtons = V2_COURSE_LOCALES.map(function(key) { return '<button type="button" onclick="v2CoursePreviewLocale(\'' + key + '\')" style="min-height:34px;border-radius:8px;padding:5px 9px;cursor:pointer;font-weight:800;background:' + (key === locale ? '#4338ca' : '#1e293b') + ';border:1px solid ' + (key === locale ? '#6366f1' : '#334155') + ';color:#f8fafc">' + key + '</button>'; }).join(' ');
+    const raw = JSON.stringify(payload, null, 2);
+    box.style.display = 'block';
+    box.innerHTML = '<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap"><div><div style="font-size:15px;font-weight:900;color:#f8fafc">Проверка результата · ' + _v2CourseEscape(stage.kind || '') + '</div><div style="font-size:14px;color:' + (allLocalesReady ? '#fde68a' : '#fca5a5') + ';margin-top:4px">' + (allLocalesReady ? '8 локалей заполнены структурно. Языковая проверка ещё не подтверждена.' : 'Пакет неполный — одобрение запрещено сервером') + '</div></div><button type="button" onclick="v2CourseClosePreview()" style="min-height:44px;background:#1e293b;border:1px solid #334155;color:#e2e8f0;border-radius:8px;padding:9px 12px;cursor:pointer">Закрыть предпросмотр</button></div>'
+      + '<div style="display:flex;gap:6px;flex-wrap:wrap;margin:12px 0">' + localeButtons + '</div>'
+      + '<pre style="max-height:360px;overflow:auto;white-space:pre-wrap;word-break:break-word;background:#020617;border:1px solid #1e293b;border-radius:9px;padding:12px;color:#dbeafe;font-size:12px;line-height:1.5">' + _v2CourseEscape(JSON.stringify(localized, null, 2)) + '</pre>'
+      + '<details style="margin-top:10px"><summary style="cursor:pointer;color:#94a3b8;font-size:12px">Показать весь технический пакет</summary><pre style="max-height:420px;overflow:auto;white-space:pre-wrap;word-break:break-word;background:#020617;border:1px solid #1e293b;border-radius:9px;padding:12px;color:#cbd5e1;font-size:11px">' + _v2CourseEscape(raw) + '</pre></details>'
+      + (stage.state === 'needs_review' ? '<label style="display:grid;gap:6px;margin-top:12px;font-size:14px;color:#cbd5e1">Комментарий к решению<input id="v2-course-review-reason" value="" placeholder="Что именно проверено или что нужно исправить" maxlength="500" style="min-height:44px;background:#0f172a;border:1px solid #334155;border-radius:9px;color:#f8fafc;padding:9px 10px"></label><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button type="button" onclick="v2CourseReview(\'approved\')" style="min-height:44px;background:#c8ff3d;border:1px solid #a7e51d;color:#07110a;border-radius:9px;padding:9px 14px;cursor:pointer;font-weight:900">Одобрить как черновой этап</button><button type="button" onclick="v2CourseReview(\'rejected\')" style="min-height:44px;background:#3f1d22;border:1px solid #7f1d1d;color:#fecaca;border-radius:9px;padding:9px 14px;cursor:pointer;font-weight:800">Вернуть на исправление</button></div><div style="font-size:13px;color:#94a3b8;margin-top:8px">Это решение не публикует курс и не заменяет независимую языковую, аудио- и device-проверку.</div>' : '');
+  }
+  window.v2CoursePreviewStage = async function(stageId) {
+    _v2CourseSetStatus('Загружаю неизменяемый результат…');
+    try { const response = await _v2CourseFn('adminPreviewContentStage')({ stageId:String(stageId) }); _v2CourseState.preview = response.data; _v2CourseState.previewStage = response.data.stage; _v2CourseState.locale = 'ru'; _v2CourseRenderPreview(); _v2CourseSetStatus('Результат открыт для вашей проверки.', 'ok'); }
+    catch (error) { _v2CourseSetStatus('Не удалось открыть результат: ' + String(error?.message || error), 'error'); }
+  };
+  window.v2CoursePreviewLocale = function(locale) { if (V2_COURSE_LOCALES.includes(locale)) { _v2CourseState.locale = locale; _v2CourseRenderPreview(); } };
+  window.v2CourseClosePreview = function() { const box = _v2CourseEl('v2-course-preview'); if (box) box.style.display = 'none'; _v2CourseState.preview = null; _v2CourseState.previewStage = null; };
+  window.v2CourseReview = async function(status) {
+    if (_v2CourseState.busy || !_v2CourseState.preview || !_v2CourseState.previewStage) return;
+    const reason = String(_v2CourseEl('v2-course-review-reason')?.value || '').trim();
+    if (reason.length < 5) { _v2CourseSetStatus('Напишите короткую причину решения.', 'error'); return; }
+    _v2CourseState.busy = true; _v2CourseSetStatus(status === 'approved' ? 'Сохраняю ваше одобрение…' : 'Возвращаю этап на исправление…');
+    try { await _v2CourseFn('adminReviewContentStage')({ stageId:String(_v2CourseState.previewStage.id), status, reason, expectedReviewFingerprint:String(_v2CourseState.preview.reviewFingerprint) }); window.v2CourseClosePreview(); _v2CourseSetStatus(status === 'approved' ? 'Черновое одобрение сохранено. Это не разрешение на релиз.' : 'Результат отклонён. Можно создать исправленную версию.', 'ok'); }
+    catch (error) { _v2CourseSetStatus('Решение не сохранено: ' + String(error?.message || error), 'error'); }
+    finally { _v2CourseState.busy = false; await window.v2CourseRefresh(); }
+  };
+
   // === Learning V2 · Генератор E1 (вертикальный срез) ===
   // зачем: владелец решил строить генератор в legacy-админке; Optimistic UI: статус
   // меняется мгновенно, при ошибке откат с понятным текстом, двойной клик защищён.
@@ -13878,6 +14085,25 @@
   }
   window.loadV2Generator = async function(force) {
     window._v2GenLoaded = true;
+    if (window.__pmAdminLocalVisualTest && new URLSearchParams(window.location.search).get('devV2Course') === '1') {
+      _v2CourseState.stages = [
+        { id:'demo:learning_v2_research:course-en:r1', kind:'learning_v2_research', state:'approved', revision:1 },
+        { id:'demo:learning_v2_curriculum:course-en:r1', kind:'learning_v2_curriculum', state:'approved', revision:1 },
+        { id:'demo:learning_v2_lesson_outline:course-en:r1', kind:'learning_v2_lesson_outline', state:'needs_review', revision:1 },
+      ];
+      _v2CourseState.projection = {
+        releaseEligible:false,
+        blockers:['canonical_content_studio_authority_missing','localization_human_reviews_missing','audio_asset_bytes_missing'],
+        rollups:V2_COURSE_STAGES.map(function(def) {
+          const stage = _v2CourseState.stages.find(function(item) { return item.kind === def.kind; }) || null;
+          return { kind:def.kind, approvedBaseline:stage && stage.state === 'approved' ? { stageId:stage.id } : null, latestWorkingRevision:stage ? { stageId:stage.id } : null, approvalState:stage && stage.state === 'approved' ? 'verified' : 'missing', releaseAuthority:false };
+        }),
+      };
+      _v2CourseRender(); _v2CourseSetStatus('Локальная визуальная проверка · реальные данные не загружаются', 'ok');
+      return;
+    }
+    void window.v2CourseRefresh();
+    if (!_v2gEl('v2g-legacy-details')?.open) return;
     const sourceBox = _v2gEl('v2g-source-status');
     const jobBox = _v2gEl('v2g-job-status');
     if (sourceBox) sourceBox.textContent = 'Читаю статус…';
@@ -13885,9 +14111,9 @@
     try {
       // 3 точечных чтения по входу/кнопке — без подписок и без выкачивания коллекций.
       const [sourceSnap, jobSnap, artifactSnap] = await Promise.all([
-        getDoc(doc(db, 'content_v2_sources', 'ep-01')),
-        getDoc(doc(db, 'content_v2_generation_jobs', 'v2-e1-direct')),
-        getDoc(doc(db, 'content_v2_compiled_units', 'ep-01')),
+        getDoc(doc(db, 'content_v2_test_sources', 'ep-01')),
+        getDoc(doc(db, 'content_v2_test_generation_jobs', 'v2-e1-direct')),
+        getDoc(doc(db, 'content_v2_test_compiled_units', 'ep-01')),
       ]);
       if (sourceBox) {
         if (sourceSnap.exists()) {

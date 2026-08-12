@@ -44,7 +44,8 @@ describe('friends tab gift interaction contract', () => {
   it('closes the sheet and confirms the tap immediately while the callable continues in the background', () => {
     const source = read('app/(tabs)/friends.tsx');
     const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
-    const sendCall = handleSendGift.indexOf('const res = await sendFriendGiftWithShards');
+    const durableQueue = handleSendGift.indexOf('const queued = await enqueueFriendGiftSend');
+    const backgroundCompletion = handleSendGift.indexOf('void queued.completion.then');
     const closeSheet = handleSendGift.indexOf('setGiftTarget(null);');
     const successToast = handleSendGift.indexOf("type: 'success'");
     const successFeedback = handleSendGift.lastIndexOf('showFeedback(', successToast);
@@ -52,11 +53,14 @@ describe('friends tab gift interaction contract', () => {
     expect(closeSheet).toBeGreaterThanOrEqual(0);
     expect(successFeedback).toBeGreaterThan(closeSheet);
     expect(successToast).toBeGreaterThan(successFeedback);
-    expect(closeSheet).toBeLessThan(sendCall);
-    expect(successFeedback).toBeLessThan(sendCall);
-    expect(successToast).toBeLessThan(sendCall);
-    expect(handleSendGift.slice(0, sendCall)).not.toContain('setGiftBalance(');
-    expect(handleSendGift.slice(0, sendCall)).not.toContain('replaceShardsBalanceForAccountGeneration(');
+    expect(durableQueue).toBeGreaterThanOrEqual(0);
+    expect(backgroundCompletion).toBeGreaterThan(durableQueue);
+    expect(closeSheet).toBeGreaterThan(durableQueue);
+    expect(closeSheet).toBeLessThan(backgroundCompletion);
+    expect(successFeedback).toBeLessThan(backgroundCompletion);
+    expect(successToast).toBeLessThan(backgroundCompletion);
+    expect(handleSendGift.slice(0, backgroundCompletion)).not.toContain('setGiftBalance(');
+    expect(handleSendGift.slice(0, backgroundCompletion)).not.toContain('replaceShardsBalanceForAccountGeneration(');
     expect(handleSendGift).not.toContain('setSentGiftReceipt');
     expect(handleSendGift).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
   });
@@ -71,20 +75,24 @@ describe('friends tab gift interaction contract', () => {
     expect(handleOffline).toBeGreaterThanOrEqual(0);
     expect(handleOffline).toBeLessThan(handleSendGift.indexOf('setGiftTarget(null);'));
     expect(handleOffline).toBeLessThan(handleSendGift.indexOf("type: 'success'"));
-    expect(handleOffline).toBeLessThan(handleSendGift.indexOf('sendFriendGiftWithShards({'));
+    expect(handleOffline).toBeLessThan(handleSendGift.indexOf('enqueueFriendGiftSend({'));
     expect(requestOffline).toBeGreaterThanOrEqual(0);
     expect(requestOffline).toBeLessThan(requestSendGift.indexOf('const warmBalance ='));
     expect(source).toContain('Нет интернета. Подключись к сети и попробуй ещё раз.');
   });
 
   it('does not claim an ambiguous network failure was uncharged', () => {
-    const source = read('app/(tabs)/friends.tsx');
-    const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
-    const networkBranch = handleSendGift.slice(handleSendGift.indexOf("kind === 'network'"));
+    const outbox = read('app/friend_gift_outbox.ts');
+    const networkBranch = extract(
+      outbox,
+      "if (kind === 'network' || kind === 'unknown')",
+      'await withAccountTransitionLock',
+    );
 
     expect(networkBranch).not.toContain('не списан');
     expect(networkBranch).not.toContain('No se cobro');
     expect(networkBranch).not.toContain('not charged');
+    expect(networkBranch).not.toContain('notifyDefinitiveFailure');
   });
 
   it('sends an incoming reply gift with the same non-blocking, offline-safe flow', () => {

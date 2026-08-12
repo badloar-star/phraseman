@@ -2,7 +2,8 @@ import type { ProgressSnapshot } from "./progress_types";
 
 const MAX_ENTRIES = 8;
 const TTL_MS = 5 * 60 * 1000;
-type Entry = { readonly snapshot: ProgressSnapshot; readonly storedAt: number };
+export type ProgressPeekRecord = { readonly snapshot: ProgressSnapshot; readonly revision: number };
+type Entry = ProgressPeekRecord & { readonly storedAt: number };
 const cache = new Map<string, Entry>();
 
 const prune = (now: number): void => {
@@ -16,8 +17,14 @@ export const peekProgress = (accountKey: string, now = Date.now()): ProgressSnap
   return entry ? entry.snapshot : undefined;
 };
 
-export const primeProgressPeek = (accountKey: string, snapshot: ProgressSnapshot, now = Date.now()): void => {
-  cache.set(accountKey, { snapshot, storedAt: now });
+export const peekProgressRecord = (accountKey: string, now = Date.now()): ProgressPeekRecord | undefined => {
+  prune(now);
+  const entry = cache.get(accountKey);
+  return entry ? { snapshot: entry.snapshot, revision: entry.revision } : undefined;
+};
+
+export const primeProgressPeek = (accountKey: string, snapshot: ProgressSnapshot, revision: number, now = Date.now()): void => {
+  cache.set(accountKey, { snapshot, revision, storedAt: now });
   prune(now);
 };
 

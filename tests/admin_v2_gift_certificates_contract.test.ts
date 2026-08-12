@@ -96,10 +96,11 @@ describe('live admin gift certificates workflow', () => {
     expect(live).toContain('id="tab-gift-certificates"');
     expect(live).toContain("'gift-certificates': 'revenue'");
     expect(live).toContain("'gift-certificates': 'Подарочные сертификаты'");
-    for (const frozen of ['admin/legacy.html', 'admin/index.html', 'admin/full.html', 'admin/site.html', 'admin/v2/index.html']) {
+    for (const frozen of ['admin/index.html', 'admin/full.html', 'admin/site.html']) {
       const absolute = path.join(root, frozen);
       if (fs.existsSync(absolute)) expect(fs.readFileSync(absolute, 'utf8')).not.toContain('id="tab-gift-certificates"');
     }
+    expect(fs.existsSync(path.join(root, 'admin/v2/index.html'))).toBe(false);
   });
 
   test('uses App Check-protected server callables for issue/history/repair/send and never creates gift codes locally', () => {

@@ -4,12 +4,13 @@ const NOW = new Date('2026-08-15T12:00:00Z').getTime();
 
 function makeDb(initial: Record<string, unknown> = {}) {
   const store = new Map<string, Record<string, unknown>>(Object.entries(initial) as never);
+  let transactionTail: Promise<unknown> = Promise.resolve();
   const db = {
     doc: (path: string) => ({
       path,
       get: async () => ({ exists: store.has(path), data: () => store.get(path) }),
     }),
-    runTransaction: async (fn: (tx: unknown) => Promise<unknown>) => {
+    runTransaction: (fn: (tx: unknown) => Promise<unknown>) => {
       const tx = {
         get: async (ref: { path: string }) => ({
           exists: store.has(ref.path), data: () => store.get(ref.path),
@@ -19,7 +20,9 @@ function makeDb(initial: Record<string, unknown> = {}) {
           store.set(ref.path, { ...prev, ...value });
         },
       };
-      return fn(tx);
+      const run = transactionTail.then(() => fn(tx));
+      transactionTail = run.then(() => undefined, () => undefined);
+      return run;
     },
   } as unknown as FirebaseFirestore.Firestore;
   return { db, store };
@@ -27,9 +30,10 @@ function makeDb(initial: Record<string, unknown> = {}) {
 
 describe('Jarvis LLM budget — money must be a hard technical ceiling, not a promise', () => {
   test('an empty month allows a reasonable reservation', async () => {
-    const { db } = makeDb();
+    const { db, store } = makeDb();
     const verdict = await checkAndReserveBudget({ db, nowMs: NOW, estimatedCostUsd: 0.05 });
     expect(verdict.allowed).toBe(true);
+    expect(store.get('jarvis_llm_budget/2026-08')?.committedUsd).toBeCloseTo(0.05);
   });
 
   test('refuses a reservation that would cross the monthly cap', async () => {
@@ -78,6 +82,19 @@ describe('Jarvis LLM budget — money must be a hard technical ceiling, not a pr
     await recordActualSpend({ db, nowMs: NOW, actualCostUsd: 0.02 });
     const doc = store.get('jarvis_llm_budget/2026-08');
     expect(doc?.spentUsd).toBeCloseTo(0.12);
+  });
+
+  test('parallel reservations cannot oversubscribe the daily ceiling', async () => {
+    const { db, store } = makeDb();
+    const estimate = 0.02;
+    const verdicts = await Promise.all(Array.from({ length: 100 }, () => (
+      checkAndReserveBudget({ db, nowMs: NOW, estimatedCostUsd: estimate })
+    )));
+    const allowed = verdicts.filter((verdict) => verdict.allowed).length;
+    expect(allowed).toBe(Math.floor(dailyCapUsd() / estimate));
+    const committed = store.get('jarvis_llm_budget/2026-08')?.committedUsd as number;
+    expect(committed).toBeLessThanOrEqual(dailyCapUsd());
+    expect(verdicts.some((verdict) => !verdict.allowed)).toBe(true);
   });
 
   test('the daily cap is roughly the monthly cap spread over the month', () => {

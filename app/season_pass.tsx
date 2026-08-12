@@ -380,7 +380,12 @@ export default function SeasonPassScreen() {
     persistClaims(nextClaimed);
     const gift = await addSeasonPassGift(seasonId, level, side, reward.kind, reward.amount);
     refreshPendingGiftCount();
-    setOpenReward({ reward, giftId: gift.id });
+    // Owner-locked rewards (currently the retired tournament ticket) may be
+    // normalized by the inventory. Render exactly what the user can apply.
+    const visibleReward: SeasonReward = gift.kind === reward.kind
+      ? reward
+      : { kind: gift.kind, amount: gift.amount };
+    setOpenReward({ reward: visibleReward, giftId: gift.id });
   }, [claimed, persistClaims, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {

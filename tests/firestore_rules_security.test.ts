@@ -628,6 +628,29 @@ ${indent}}`,
     );
   });
 
+  test('Learning V2 required-session authority and transaction state stay server-only', () => {
+    for (const path of [
+      'content_v2_required_session_sets/{docId}',
+      'content_v2_required_session_answer_manifests/{docId}',
+      'content_v2_season_release_pointers/{docId}',
+      'content_v2_season_release_manifests/{docId}',
+      'users/{uid}/v2_required_session_runs/{docId}',
+      'users/{uid}/v2_required_session_task_attempts/{docId}',
+      'users/{uid}/v2_required_session_settlements/{docId}',
+      'users/{uid}/v2_required_session_performance_awards/{docId}',
+      'users/{uid}/v2_required_session_performance_award_decisions/{docId}',
+      'users/{uid}/v2_required_session_course_awards/{docId}',
+      'users/{uid}/v2_required_session_completion_inbox/{docId}',
+    ]) {
+      const escaped = path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const block = rules.match(new RegExp(`match /${escaped} \\{[\\s\\S]*?\\n    \\}`));
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow read, write: if false;');
+    }
+    const catchAllBlock = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+    expect(catchAllBlock?.[0]).toContain("!isServerOwnedContentStudioRoot(collection)");
+  });
+
   test('cloud sync strips every server-owned gift entitlement key', () => {
     const cloudSync = readFileSync(path.join(process.cwd(), 'app', 'cloud_sync.ts'), 'utf8');
     const keySet = cloudSync.match(/const PREMIUM_PROGRESS_KEYS = new Set\(\[([\s\S]*?)\]\);/);
@@ -718,6 +741,54 @@ ${indent}}`,
     expect(arenaInvitesBlock![0]).toContain('allow read, write: if false;');
   });
 
+  test('Arena V2 exposes only owner projections and participant public matches', () => {
+    expect(rules).toMatch(/arena_v2_config\/\{configId\} \{[\s\S]*?allow read, write: if false;/);
+    expect(rules).toContain('match /arena_v2_profiles/{userId} {');
+    expect(rules).toContain('match /arena_v2_queue/{userId} {');
+    expect(rules).toContain("resource.data.get('authUid', '') == request.auth.uid");
+    expect(rules).toContain('match /arena_v2_matches/{matchId} {');
+    expect(rules).toContain('arena_v2_matches/$(matchId)/arena_v2_members/$(request.auth.uid)');
+    expect(rules).toContain('match /arena_v2_members/{authUid} {');
+    expect(rules).toContain('request.auth.uid == authUid');
+    expect(rules).toContain('match /arena_v2_match_private/{matchId} {');
+    expect(rules).toMatch(/arena_v2_match_private\/\{matchId\} \{[\s\S]*?allow read, write: if false;/);
+    expect(rules).toMatch(/arena_v2_queue_locks\/\{lockId\} \{[\s\S]*?allow read, write: if false;/);
+    expect(rules).toMatch(/arena_v2_pair_limits\/\{pairId\} \{[\s\S]*?allow read, write: if false;/);
+    expect(rules).toMatch(/arena_v2_invites\/\{inviteId\} \{[\s\S]*?allow read, write: if false;/);
+  });
+
+  test('Arena V2 user economy ledgers are server-written', () => {
+    for (const collection of [
+      'arena_v2_seasons',
+      'arena_v2_receipts',
+      'arena_v2_spin_credits',
+      'arena_v2_spin_results',
+      'arena_v2_season_claims',
+      'arena_v2_match_labs',
+      'arena_v2_partner_weeks',
+      'arena_v2_star_ledger',
+      'arena_v2_entitlements',
+    ]) {
+      expect(rules).toContain(`match /${collection}/`);
+    }
+  });
+
+  test('Arena Expansion seals task evidence and shared social state', () => {
+    for (const collection of [
+      'arena_v2_daily_attempts',
+      'arena_v2_expansion_runs',
+      'arena_v2_mastery_signatures',
+      'arena_v2_activity_days',
+      'arena_v2_expansion_receipts',
+      'arena_v2_daily_private',
+      'arena_v2_ghosts',
+      'arena_v2_series',
+      'arena_v2_partnerships',
+    ]) {
+      expect(rules).toMatch(new RegExp(`${collection}/\\{[^}]+\\} \\{[\\s\\S]*?allow read, write: if false;`));
+    }
+  });
+
   test('friend activity my_events keeps client reads but restricts writes to admins/server', () => {
     expect(rules).toContain('match /users/{userId}/my_events/{eventId} {');
     expect(rules).toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow read: if request\.auth != null;/);
@@ -729,6 +800,9 @@ ${indent}}`,
     expect(rules).toContain('match /users/{userId}/friend_activity_like_daily_limits/{dayId} {');
     expect(rules).toMatch(/friend_activity_like_daily_limits\/\{dayId\} \{[\s\S]*?allow read: if canonicalUserMatchesAuth\(userId\);/);
     expect(rules).toMatch(/friend_activity_like_daily_limits\/\{dayId\} \{[\s\S]*?allow create, update, delete: if isAdmin\(\);/);
+    expect(rules).toContain('match /users/{userId}/friend_activity_likes_sent/{likeId} {');
+    expect(rules).toMatch(/friend_activity_likes_sent\/\{likeId\} \{[\s\S]*?allow read: if canonicalUserMatchesAuth\(userId\);/);
+    expect(rules).toMatch(/friend_activity_likes_sent\/\{likeId\} \{[\s\S]*?allow create, update, delete: if isAdmin\(\);/);
     expect(rules).toMatch(/activity_like_stats\/\{docId\} \{[\s\S]*?allow read: if request\.auth != null;/);
     expect(rules).toMatch(/activity_like_stats\/\{docId\} \{[\s\S]*?allow create, update, delete: if isAdmin\(\);/);
   });
@@ -773,6 +847,38 @@ ${indent}}`,
     const blocks = exactRootMatchBlocks(`${collection}/{document=**}`);
     expect(blocks).toHaveLength(1);
     expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+  });
+
+  test.each([
+    'support_auto_reply_reservations',
+    'support_auto_reply_counters',
+    'support_telegram_reviews',
+    'support_telegram_edit_sessions',
+    'support_telegram_reply_jobs',
+    'support_reply_operations',
+    'support_reply_batches',
+    'admin_command_operations',
+  ])('%s keeps support delivery state server-only', (collection) => {
+    const blocks = exactRootMatchBlocks(`${collection}/{document=**}`);
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+    const catchAll = exactRootMatchBlocks('{collection}/{document=**}')[0];
+    expect(catchAll).toContain(`&& collection != '${collection}'`);
+  });
+
+  test('support auto-reply config is readable by admins but writable only through Admin SDK callables', () => {
+    const blocks = exactRootMatchBlocks('admin_config/{docId}');
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0]).toContain('allow read: if isAdmin();');
+    expect(blocks[0]).toContain("allow write: if isAdmin() && docId != 'support_inbox';");
+    expect(exactRootMatchBlocks('{collection}/{document=**}')[0]).toContain("&& collection != 'admin_config'");
+  });
+
+  test('support inbox correspondence is returned only by the permission-checked callable', () => {
+    const blocks = exactRootMatchBlocks('support_inbox/{messageId}');
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+    expect(exactRootMatchBlocks('{collection}/{document=**}')[0]).toContain("&& collection != 'support_inbox'");
   });
 
   test('identity deletion and recovery roots are excluded from the browser-admin catch-all', () => {
@@ -1026,6 +1132,12 @@ describe('firestore.rules coin exchange (coins → stars, 2026-07-20 plan §6)',
     const block = rules.match(/match \/v2_star_journal\/\{entryId\} \{[\s\S]*?\n      \}/);
     expect(block).not.toBeNull();
     expect(block![0]).toContain('allow read, write: if false;');
+    const rewardReceipts = rules.match(/match \/v2_wallet_reward_receipts\/\{rewardId\} \{[\s\S]*?\n      \}/);
+    expect(rewardReceipts).not.toBeNull();
+    expect(rewardReceipts![0]).toContain('allow read, write: if false;');
+    const unlockReceipts = rules.match(/match \/v2_course_unlock_receipts\/\{unlockId\} \{[\s\S]*?\n      \}/);
+    expect(unlockReceipts).not.toBeNull();
+    expect(unlockReceipts![0]).toContain('allow read, write: if false;');
   });
 
   test('star wallet and coin migration fields are covered by both shard write guards', () => {

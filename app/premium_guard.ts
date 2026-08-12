@@ -14,8 +14,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
-const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
-
+import { emitAppEvent } from './events';
 const RC_TIMEOUT_MS = 8000;
 const CACHE_TTL_MS  = 5 * 60 * 1000; // 5 minutes — avoid hammering RevenueCat
 // Зеркало functions/src/premium_status.ts SERVER_RC_GRACE_MS (72ч): покрывает billing retry
@@ -35,6 +34,7 @@ let _accessCacheTime = 0;
 let _accessCacheGeneration = -1;
 let _lastCloudAccessRefreshTime = 0;
 let _cloudAccessRefreshInFlight: Promise<boolean> | null = null;
+const _realPremiumBackgroundRefreshes = new Map<number, Promise<void>>();
 let _premiumAccountTransitionEpoch = 0;
 let _premiumAccountDrainEpoch = 0;
 const _premiumAccountTransitionListeners = new Set<(epoch: number) => void>();
@@ -287,6 +287,115 @@ async function writeRealPremiumStorageForGeneration(
   });
 }
 
+type RealPremiumRefreshSnapshot = Readonly<{
+  active: boolean;
+  plan: string;
+  expiryMs: number;
+  rcExpiryMs: number;
+  lastSeenMs: number;
+  legacyAdminGrant: boolean;
+  adminExplicitRevoked: boolean;
+}>;
+
+/** RevenueCat may take seconds; entitlement gates must never wait for it. */
+function refreshRealPremiumInBackground(
+  generation: AccountGenerationToken,
+  snapshot: RealPremiumRefreshSnapshot,
+): void {
+  if (IS_EXPO_GO || !accountGenerationIsCurrent(generation)) return;
+  if (_realPremiumBackgroundRefreshes.has(generation.generation)) return;
+
+  let refresh!: Promise<void>;
+  refresh = (async () => {
+    try {
+      const rcAppUserIdBefore = await Purchases.getAppUserID().catch(() => '');
+      if (!accountGenerationIsCurrent(generation) || rcAppUserIdBefore !== generation.stableId) return;
+      const info = await Promise.race([
+        Purchases.getCustomerInfo(),
+        new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
+      ]);
+      if (!info || !accountGenerationIsCurrent(generation)) return;
+      const rcAppUserIdAfter = await Purchases.getAppUserID().catch(() => '');
+      if (!accountGenerationIsCurrent(generation) || rcAppUserIdAfter !== generation.stableId) return;
+
+      const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
+      const now = Date.now();
+      if (rcActive) {
+        try {
+          const projectionSynced = await syncRevenueCatProjectionForAccount(generation.stableId!);
+          if (!accountGenerationIsCurrent(generation)) return;
+          if (!projectionSynced) {
+            DebugLogger.error(
+              'premium_guard:revenuecat_projection_sync',
+              new Error('revenuecat_projection_not_confirmed'),
+              'warning',
+            );
+          }
+        } catch (error) {
+          if (!accountGenerationIsCurrent(generation)) return;
+          DebugLogger.error('premium_guard:revenuecat_projection_sync', error, 'warning');
+        }
+        const entitlement = (info as any)?.entitlements?.active?.premium ?? {};
+        const productId = String(entitlement.productIdentifier ?? (info as any)?.activeSubscriptions?.[0] ?? '').trim();
+        const productKey = productId.toLowerCase();
+        const inferredPlan = /lifetime|forever|one.?time|onetime|perpetual/.test(productKey)
+          ? 'lifetime'
+          : /year|yearly|annual|12.?month/.test(productKey)
+            ? 'yearly'
+            : /month|monthly|1.?month/.test(productKey)
+              ? 'monthly'
+              : (snapshot.plan === 'lifetime' || snapshot.plan === 'yearly' ? snapshot.plan : 'monthly');
+        const expirationMs = Number(entitlement.expirationDateMillis) || 0;
+        const persistencePairs: [string, string][] = [
+            ['premium_active', 'true'],
+            ['premium_plan', inferredPlan],
+            [RC_LAST_SEEN_KEY, String(now)],
+        ];
+        if (productId) persistencePairs.push(['premium_rc_product_id', productId]);
+        if (expirationMs > 0) persistencePairs.push(['premium_rc_expiry_ms', String(expirationMs)]);
+        const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+          AsyncStorage.multiSet(persistencePairs)
+        ));
+        if (!persisted) return;
+        cacheReal(true, generation);
+        if (!snapshot.active) emitAppEvent('premium_activated');
+        return;
+      }
+
+      // Lifetime is a non-consumable: an empty/offline RC response must never
+      // revoke the last verified purchase. Refund/revoke arrives through the
+      // server projection and replaces the local plan explicitly.
+      if (snapshot.plan === 'lifetime' && !snapshot.legacyAdminGrant && !snapshot.adminExplicitRevoked) return;
+      if (snapshot.rcExpiryMs > now || snapshot.expiryMs > now) return;
+
+      const currentLastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY).catch(() => null);
+      if (!accountGenerationIsCurrent(generation)) return;
+      const currentLastSeen = Math.max(snapshot.lastSeenMs, parseInt(currentLastSeenRaw || '0', 10) || 0);
+      if (currentLastSeen > 0 && now - currentLastSeen <= RC_STALE_GRACE_MS) return;
+
+      if (snapshot.active) {
+        const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+          AsyncStorage.setItem('premium_active', 'false')
+        ));
+        if (!persisted) return;
+        cacheReal(false, generation);
+        emitAppEvent('premium_deactivated');
+      }
+    } catch {
+      // Offline is expected: the bounded local decision remains authoritative.
+    }
+  })().finally(() => {
+    if (_realPremiumBackgroundRefreshes.get(generation.generation) === refresh) {
+      _realPremiumBackgroundRefreshes.delete(generation.generation);
+    }
+  });
+  _realPremiumBackgroundRefreshes.set(generation.generation, refresh);
+}
+
+export async function __waitForPremiumBackgroundRefreshForTests(): Promise<void> {
+  await Promise.all([..._realPremiumBackgroundRefreshes.values()]);
+}
+
 /**
  * Verifies real store/trial Premium status.
  * Admin-issued grants are intentionally excluded: those are VIP access now.
@@ -301,6 +410,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     'premium_plan',
     'premium_expiry',
     'premium_rc_expiry_ms',
+    RC_LAST_SEEN_KEY,
     'admin_premium_override',
   ]);
   if (!accountGenerationIsCurrent(generation)) return false;
@@ -309,11 +419,15 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   const plan     = pairs.find(p => p[0] === 'premium_plan')?.[1];
   const expiry   = parseInt(pairs.find(p => p[0] === 'premium_expiry')?.[1] || '0');
   const rcExpiry = parseInt(pairs.find(p => p[0] === 'premium_rc_expiry_ms')?.[1] || '0');
+  let lastSeen = parseInt(pairs.find(p => p[0] === RC_LAST_SEEN_KEY)?.[1] || '0') || 0;
   const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
   const normalizedPlan = String(plan ?? '').trim().toLowerCase();
   const storePlan = normalizedPlan === 'monthly' || normalizedPlan === 'yearly' || normalizedPlan === 'annual' || normalizedPlan === 'lifetime';
+  const hasVerifiedStoreEvidence = active === 'true' && storePlan && (
+    normalizedPlan === 'lifetime' || lastSeen > 0 || rcExpiry > 0 || expiry > 0
+  );
   const legacyAdminGrant =
-    adminOverride === 'true' ||
+    (adminOverride === 'true' && !hasVerifiedStoreEvidence) ||
     normalizedPlan === 'admin_grant';
   const adminExplicitRevoked =
     adminOverride === 'false' && (!plan || plan === 'null' || plan === '');
@@ -351,82 +465,17 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     return accountGenerationIsCurrent(generation);
   };
 
-  if (!IS_EXPO_GO) {
-    try {
-      const rcAppUserIdBefore = await Purchases.getAppUserID().catch(() => '');
-      if (!accountGenerationIsCurrent(generation) || rcAppUserIdBefore !== generation.stableId) return false;
-      const info = await Promise.race([
-        Purchases.getCustomerInfo(),
-        new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
-      ]);
-      if (!accountGenerationIsCurrent(generation)) return false;
-      if (info) {
-        const rcAppUserIdAfter = await Purchases.getAppUserID().catch(() => '');
-        if (!accountGenerationIsCurrent(generation) || rcAppUserIdAfter !== generation.stableId) return false;
-        const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
+  refreshRealPremiumInBackground(generation, {
+    active: active === 'true',
+    plan: normalizedPlan,
+    expiryMs: expiry,
+    rcExpiryMs: rcExpiry,
+    lastSeenMs: lastSeen,
+    legacyAdminGrant,
+    adminExplicitRevoked,
+  });
 
-        if (rcActive) {
-          try {
-            const projectionSynced = await syncRevenueCatProjectionForAccount(generation.stableId!);
-            if (!accountGenerationIsCurrent(generation)) return false;
-            if (!projectionSynced) {
-              DebugLogger.error(
-                'premium_guard:revenuecat_projection_sync',
-                new Error('revenuecat_projection_not_confirmed'),
-                'warning',
-              );
-            }
-          } catch (error) {
-            if (!accountGenerationIsCurrent(generation)) return false;
-            DebugLogger.error('premium_guard:revenuecat_projection_sync', error, 'warning');
-          }
-          const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
-            AsyncStorage.multiSet([
-              ['premium_active', 'true'],
-              [RC_LAST_SEEN_KEY, String(now)],
-            ])
-          ));
-          return persisted ? finish(true) : false;
-        }
-
-        // Cloud sync intentionally does not persist `premium_active`; real paid
-        // state is represented by store plan + RC expiry metadata. If RevenueCat
-        // has an identity/cache hiccup but our server-synced RC expiry is still
-        // in the future, keep access instead of dropping the user to non-premium mode.
-        if (rcExpiryActive && await restorePaidProgressLocally()) {
-          return finish(true);
-        }
-        if (!accountGenerationIsCurrent(generation)) return false;
-
-        // If local flag is true and RC transiently returns non-premium,
-        // trust local state. RC can lag due to network issues, server-side
-        // caching, or sandbox propagation delays. Users with normal subscriptions
-        // never have expiry set (expiry === 0), so we protect both cases:
-        // - expiry === 0: standard subscription, no expiry stored → trust local
-        // - expiry > Date.now(): time-limited premium (referral/trial) still valid
-        if (active === 'true' && paidProgressActive) {
-          const lastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY);
-          if (!accountGenerationIsCurrent(generation)) return false;
-          const lastSeen = parseInt(lastSeenRaw || '0') || 0;
-          // Never trust local premium forever when RC says inactive.
-          // Keep a bounded grace window for sandbox/network delays.
-          if (lastSeen > 0 && now - lastSeen <= RC_STALE_GRACE_MS) {
-            return finish(true);
-          }
-        }
-
-        const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
-          AsyncStorage.setItem('premium_active', 'false')
-        ));
-        return persisted ? finish(false) : false;
-      }
-    } catch {
-      if (!accountGenerationIsCurrent(generation)) return false;
-      // RC unavailable — fall through to local check
-    }
-  }
-
-  // Expo Go or RC unavailable: trust AsyncStorage with expiry validation
+  // Local-first entitlement: RevenueCat is intentionally detached below.
   if (adminExplicitRevoked) {
     const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
       AsyncStorage.setItem('premium_active', 'false')
@@ -435,10 +484,9 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   }
   if (legacyAdminGrant) return finish(false);
   if (!storePlan) {
-    // Старые dev-сборки безусловно писали premium_active=true. Без очистки этот
-    // флаг снова попадал в синхронный startup snapshot на каждом холодном запуске
-    // и на короткое время расходился с серверным entitlement.
-    if (isDevRuntime && active === 'true') {
+    // premium_active без store-плана не является проверяемым свидетельством.
+    // Фоновый RevenueCat-refresh вернёт доступ событием, если покупка реальна.
+    if (active === 'true') {
       const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
         AsyncStorage.setItem('premium_active', 'false')
       ));
@@ -446,32 +494,37 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     }
     return finish(false);
   }
-  // КРИТИЧНО (защита от ложной потери оплаченного премиума): сюда мы попадаем, когда
-  // RevenueCat НЕ ОТВЕТИЛ (таймаут 8с или исключение) — в Expo Go или при сбое сети.
-  // Это НЕ то же самое, что «RC сказал: не премиум» (та ветка выше, строки ~149-160).
-  // Если RENEWAL уже прошёл, но облако ещё не обновило premium_rc_expiry_ms (webhook
-  // опоздал), локальный expiry/rcExpiry может выглядеть «истёкшим», хотя подписка
-  // активна. Снять премиум здесь = отобрать оплаченный доступ у платящего из-за обрыва
-  // связи. Поэтому: пока был недавний реальный премиум (premium_active='true' + свежий
-  // RC_LAST_SEEN в пределах RC_STALE_GRACE_MS), держим доступ, а не снимаем.
-  if (rcExpiryExpired || (expiry > 0 && expiry < now)) {
-    if (active === 'true') {
-      const lastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY);
-      if (!accountGenerationIsCurrent(generation)) return false;
-      const lastSeen = parseInt(lastSeenRaw || '0') || 0;
-      if (lastSeen > 0 && now - lastSeen <= RC_STALE_GRACE_MS) {
-        return finish(true);
-      }
+
+  const lifetime = normalizedPlan === 'lifetime';
+  const localExpiryExpired = rcExpiryExpired || (expiry > 0 && expiry <= now);
+  const lastSeenFresh = lastSeen > 0 && now - lastSeen <= RC_STALE_GRACE_MS;
+  let localAccess = lifetime || rcExpiryActive || lastSeenFresh;
+
+  // One-time migration for genuine older installs that predate RC_LAST_SEEN_KEY:
+  // store plan metadata was written only after purchase/restore/cloud projection.
+  // Seed a bounded 72h window instead of either revoking instantly or trusting it forever.
+  if (!localAccess && active !== 'false' && lastSeen <= 0 && paidProgressActive && !localExpiryExpired) {
+    const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
+      AsyncStorage.multiSet([
+        ['premium_active', 'true'],
+        [RC_LAST_SEEN_KEY, String(now)],
+      ])
+    ));
+    if (persisted) {
+      lastSeen = now;
+      localAccess = true;
     }
+  } else if (localAccess && active !== 'true') {
+    localAccess = await restorePaidProgressLocally();
+  }
+
+  if (!localAccess && active === 'true') {
     const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
       AsyncStorage.setItem('premium_active', 'false')
     ));
-    return persisted ? finish(false) : false;
+    if (!persisted) return false;
   }
-  if (active !== 'true' && !await restorePaidProgressLocally()) {
-    return accountGenerationIsCurrent(generation) ? finish(false) : false;
-  }
-  return accountGenerationIsCurrent(generation) ? finish(true) : false;
+  return accountGenerationIsCurrent(generation) ? finish(localAccess) : false;
 }
 
 export async function getVerifiedVipStatus(): Promise<boolean> {

@@ -26,7 +26,6 @@ import {
 import {
   clearActiveLevelExamAttempt,
   loadActiveLevelExamAttempt,
-  levelExamAttemptRecoveryKey,
   persistActiveLevelExamAttempt,
   recordCompletedLevelExamAttemptOnce,
 } from '../../app/level_exam_attempts';
@@ -43,7 +42,6 @@ import { safeRouterBack } from '../../app/navigation_back';
 import { useEnergy } from '../EnergyContext';
 import { usePremium } from '../PremiumContext';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
-import { addEnergy } from '../../app/energy_system';
 import NoEnergyModal from '../NoEnergyModal';
 import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
@@ -126,6 +124,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const [rewardState, setRewardState] = useState<LevelExamRewardState>('none');
   const [bestScore, setBestScore] = useState<number | null>(null);
   const [starting, setStarting] = useState(false);
+  const beginQuizInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
   const [exitConfirm, setExitConfirm] = useState(false);
   const [contentUnavailable, setContentUnavailable] = useState(false);
@@ -250,12 +249,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       if (!owner) {
         return;
       }
-      const recoveryKey = levelExamAttemptRecoveryKey(owner, level, 'en');
-      const recoveryRefundKey = `${recoveryKey}::refunded`;
-      if (await AsyncStorage.getItem(recoveryKey) && await AsyncStorage.getItem(recoveryRefundKey) !== '1') {
-        await addEnergy(ENERGY_COST).catch(() => {});
-        await AsyncStorage.setItem(recoveryRefundKey, '1').catch(() => {});
-      }
       const stored = await loadActiveLevelExamAttempt(owner, level, 'en');
       if (cancelled || !stored) {
         if (!cancelled) setPhase('intro');
@@ -313,8 +306,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     if (starting || (!hasPremiumAccess && !energyReady)) return;
     if (!ownerStableUid) return;
     setStarting(true);
-    let energySpent = false;
-    let attemptPersisted = false;
     try {
       const startedAtMs = Date.now();
       const startToken = `${startedAtMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
@@ -335,12 +326,10 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         setNoEnergy(true);
         return;
       }
-      if (!unlimitedEnergy && !await spendAmount(ENERGY_COST)) {
-        setNoEnergy(true);
-        return;
-      }
-      energySpent = !unlimitedEnergy;
       if (nextBlueprint.scoredUnitIds.length !== 30) throw new Error('level_exam_v2_score_units_invalid');
+      // This is a memory-only prepared attempt used by the countdown. It is
+      // deliberately not persisted until the first question opens and the
+      // idempotent energy debit succeeds.
       const nextAttempt = createLevelExamAttempt({
         energySpent: true,
         ownerStableUid,
@@ -355,8 +344,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         startedAtMs,
         durationMs: nextBlueprint.durationMs,
       });
-      await persistActiveLevelExamAttempt(nextAttempt);
-      attemptPersisted = true;
       finishingRef.current = false;
       blueprintRef.current = nextBlueprint;
       attemptRef.current = nextAttempt;
@@ -368,12 +355,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       setPhase('countdown');
       void trackFeatureStart('level_exam', 'start', { level, total: 30, formatCount: 5 }, 'level_exam_v2');
     } catch (error) {
-      if (energySpent && !attemptPersisted) await addEnergy(ENERGY_COST).catch(() => {});
       void trackFeatureError('level_exam', 'start', error, { level }, 'level_exam_v2');
     } finally {
       setStarting(false);
     }
-  }, [bonusEnergy, energy, energyReady, hasPremiumAccess, lang, level, ownerStableUid, spendAmount, starting, unlimitedEnergy]);
+  }, [bonusEnergy, energy, energyReady, hasPremiumAccess, lang, level, ownerStableUid, starting, unlimitedEnergy]);
 
   const updateAnswer = useCallback((scoreUnitId: string, answerValue: PersistedLevelExamAnswer) => {
     const current = attemptRef.current;
@@ -403,14 +389,35 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     storeAttempt({ ...currentAttempt, currentTaskIndex: currentAttempt.currentTaskIndex + 1 });
   }, [finishExam, storeAttempt]);
 
-  const beginQuiz = useCallback(() => {
+  const beginQuiz = useCallback(async () => {
+    if (beginQuizInFlightRef.current) return;
     const current = attemptRef.current;
     if (!current || current.status !== 'active') return;
-    const started = beginLevelExamQuiz(current, Date.now());
-    storeAttempt(started);
-    setRemainingMs(started.deadlineAtMs - started.startedAtMs);
-    setPhase('quiz');
-  }, [storeAttempt]);
+    beginQuizInFlightRef.current = true;
+    try {
+      if (!unlimitedEnergy) {
+        if (energy + bonusEnergy < ENERGY_COST || !await spendAmount(ENERGY_COST)) {
+          setNoEnergy(true);
+          setPhase('intro');
+          return;
+        }
+      }
+
+      // No fallible content/network work remains after the debit. Commit the
+      // visible first question synchronously, then persist the same paid
+      // attempt for crash-safe resume. Resume never debits or refunds again.
+      const started = beginLevelExamQuiz(current, Date.now());
+      attemptRef.current = started;
+      setAttempt(started);
+      setRemainingMs(started.deadlineAtMs - started.startedAtMs);
+      setPhase('quiz');
+      await persistActiveLevelExamAttempt(started).catch((error) => {
+        void trackFeatureError('level_exam', 'attempt_persist', error, { level }, 'level_exam_v2');
+      });
+    } finally {
+      beginQuizInFlightRef.current = false;
+    }
+  }, [bonusEnergy, energy, level, spendAmount, unlimitedEnergy]);
 
   const pauseAndExit = useCallback(() => {
     const current = attemptRef.current;

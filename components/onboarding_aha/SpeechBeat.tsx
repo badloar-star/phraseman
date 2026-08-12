@@ -9,8 +9,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import { File } from 'expo-file-system';
 
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../../app/audio_playback_mode';
-import { setManagedAudioMode } from '../../app/audio_session_coordinator';
 import {
   isSpeechRecognitionAvailable,
   loadPlanSpeechModule,
@@ -25,6 +23,14 @@ import { hapticSuccess, hapticTap, hapticWarning } from '../../hooks/use-haptics
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { useRecordStartCue } from '../../hooks/use-record-start-cue';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import {
+  claimRecordingAudio,
+  claimSpokenAudio,
+  type RecordingAudioClaim,
+  type SpokenAudioClaim,
+  whenRecordingAudioReady,
+  whenSpokenAudioReady,
+} from '../../modules/audio/audio_runtime_arbiter';
 
 import { trackAhaEvent } from './aha_events';
 import { AHA_STRINGS, pickTri } from './aha_scenes';
@@ -49,12 +55,6 @@ function safeCall(fn: () => void): void {
   } catch {
     /* no-op */
   }
-}
-
-// Распознавание переводит аудио-сессию в запись (playAndRecord) — без сброса
-// всё, что играет дальше, звучит тихо. Вызываем после КАЖДОГО исхода.
-function restoreLoudPlayback(): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
 }
 
 // Запись попытки живёт до ретрая/анмаунта — дальше это мусор в кэше (wav).
@@ -95,10 +95,30 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   const bestRef = useRef('');
   const recordingUriRef = useRef<string | null>(null);
   const replayPlayerRef = useRef<AudioPlayer | null>(null);
+  const replayStatusSubRef = useRef<Sub>(undefined);
+  const replayClaimRef = useRef<SpokenAudioClaim | null>(null);
+  const recordingLeaseRef = useRef<RecordingAudioClaim | null>(null);
   const playbackGenerationRef = useRef(0);
   const recordCuePlayedRef = useRef(false);
   const mountedRef = useRef(true);
   const captureGenerationRef = useRef(0);
+
+  const releaseRecording = useCallback(() => {
+    recordingLeaseRef.current?.release();
+    recordingLeaseRef.current = null;
+  }, []);
+
+  const stopReplay = useCallback(() => {
+    playbackGenerationRef.current += 1;
+    replayStatusSubRef.current?.remove?.();
+    replayStatusSubRef.current = undefined;
+    replayClaimRef.current?.release();
+    replayClaimRef.current = null;
+    const player = replayPlayerRef.current;
+    replayPlayerRef.current = null;
+    safeCall(() => player?.pause());
+    safeCall(() => player?.remove());
+  }, []);
 
   const targetText = scenario.say.text;
   const t = useCallback((tri: TriText) => pickTri(lang, tri), [lang]);
@@ -128,11 +148,11 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       removeSessionListeners();
       removeAudioEndListener();
       safeCall(() => speechRef.current?.abort());
-      restoreLoudPlayback();
+      releaseRecording();
       trackAhaEvent('onboarding_aha_speech_fallback', { reason });
       if (mountedRef.current) setStatus('fallback');
     },
-    [clearWatchdog, removeSessionListeners, removeAudioEndListener],
+    [clearWatchdog, releaseRecording, removeSessionListeners, removeAudioEndListener],
   );
 
   // end/error/nomatch → скоринг лучшей гипотезы. Всегда к тёплому исходу.
@@ -143,7 +163,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     pressActiveRef.current = false;
     clearWatchdog();
     removeSessionListeners();
-    restoreLoudPlayback();
+    releaseRecording();
     setStatus('scoring');
     const attemptReport = buildSpokenWordReport({ targetText, transcript: bestRef.current });
     const result = softSpeechOutcome(attemptReport);
@@ -153,7 +173,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     if (result.success) void hapticSuccess();
     else void hapticWarning();
     trackAhaEvent('onboarding_aha_speech_result', { pct: result.pct, success: result.success });
-  }, [clearWatchdog, removeSessionListeners, targetText]);
+  }, [clearWatchdog, releaseRecording, removeSessionListeners, targetText]);
 
   const subscribeSession = useCallback(
     (speech: PlanSpeechModule, generation: number) => {
@@ -221,8 +241,8 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       setReport(null);
       setOutcome(null);
       setActiveTab(null);
-      safeCall(() => replayPlayerRef.current?.remove());
-      replayPlayerRef.current = null;
+      stopReplay();
+      releaseRecording();
       removeSessionListeners();
       removeAudioEndListener();
       deleteRecordingFile(recordingUriRef.current);
@@ -231,31 +251,41 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
 
       subscribeSession(speech, generation);
       setStatus('requesting');
-      // Watchdog ставим ДО start(); снимается любым признаком жизни движка.
-      clearWatchdog();
-      watchdogRef.current = setTimeout(() => {
-        watchdogRef.current = null;
-        if (!mountedRef.current || !runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
-        goFallback('stalled');
-      }, WATCHDOG_MS);
-      try {
-        speech.start(
-          buildSpeakingStartOptions({
-            lang: 'en-US',
-            targetText,
-            // Эквалайзера в сцене нет — не гоняем volumechange через мост.
-            volumeMeter: false,
-            // Файл записи нужен: питает «Мою запись» на карте слов.
-            persistRecording: true,
-            // «Зажми и говори»: конец речи задаёт палец (onPressOut → stop()), а не
-            // агрессивный OEM-endpointer Android, который иначе рвёт реплику на
-            // паузе / закрывает микрофон сразу. Держит сессию открытой, пока зажато.
-            holdToTalk: true,
-          }),
-        );
-      } catch {
-        goFallback('unavailable');
-      }
+      const recordingLease = claimRecordingAudio(() => {
+        safeCall(() => speech.abort());
+      });
+      recordingLeaseRef.current = recordingLease;
+      // Native recognition starts only after the process-wide session has
+      // entered record mode. A release/route change invalidates generation.
+      void whenRecordingAudioReady(recordingLease).then((audioReady) => {
+        if (
+          !audioReady
+          || recordingLeaseRef.current !== recordingLease
+          || !mountedRef.current
+          || !runtimeActiveRef.current
+          || generation !== captureGenerationRef.current
+          || !pressActiveRef.current
+        ) return;
+        clearWatchdog();
+        watchdogRef.current = setTimeout(() => {
+          watchdogRef.current = null;
+          if (!mountedRef.current || !runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
+          goFallback('stalled');
+        }, WATCHDOG_MS);
+        try {
+          speech.start(
+            buildSpeakingStartOptions({
+              lang: 'en-US',
+              targetText,
+              volumeMeter: false,
+              persistRecording: true,
+              holdToTalk: true,
+            }),
+          );
+        } catch {
+          goFallback('unavailable');
+        }
+      });
     },
     [
       targetText,
@@ -264,6 +294,8 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       removeSessionListeners,
       removeAudioEndListener,
       goFallback,
+      releaseRecording,
+      stopReplay,
     ],
   );
 
@@ -306,8 +338,9 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     removeSessionListeners();
     removeAudioEndListener();
     safeCall(() => speechRef.current?.abort());
+    releaseRecording();
     setStatus('preprompt');
-  }, [clearWatchdog, removeAudioEndListener, removeSessionListeners]);
+  }, [clearWatchdog, releaseRecording, removeAudioEndListener, removeSessionListeners]);
 
   // «Зажми и говори»: отпускание пальца завершает реплику. stop() досылает
   // финальный результат — end-слушатель дальше сам скорит лучшую гипотезу.
@@ -321,47 +354,63 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       removeSessionListeners();
       removeAudioEndListener();
       safeCall(() => speechRef.current?.abort());
+      releaseRecording();
       if (mountedRef.current) setStatus('preprompt');
       return;
     }
     if (statusRef.current !== 'listening') return;
     safeCall(() => speechRef.current?.stop());
-  }, [clearWatchdog, removeAudioEndListener, removeSessionListeners]);
+  }, [clearWatchdog, releaseRecording, removeAudioEndListener, removeSessionListeners]);
 
   // «Моя запись»: сначала громкая сессия, иначе wav играет еле слышно.
   const playMyRecording = useCallback(() => {
     if (!recordingUri) return;
-    const playbackGeneration = ++playbackGenerationRef.current;
     setActiveTab('mine');
-    safeCall(() => replayPlayerRef.current?.remove());
-    replayPlayerRef.current = null;
-    void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
-      .catch(() => undefined)
-      .finally(() => {
-        if (!mountedRef.current || !runtimeActiveRef.current || playbackGeneration !== playbackGenerationRef.current) return;
-        let player: AudioPlayer;
-        try {
-          player = createAudioPlayer(recordingUri);
-        } catch {
-          return;
-        }
-        if (!mountedRef.current || !runtimeActiveRef.current || playbackGeneration !== playbackGenerationRef.current) {
-          safeCall(() => player.remove());
-          return;
-        }
-        replayPlayerRef.current = player;
-        safeCall(() => {
-          player.volume = 1;
-        });
-        safeCall(() => player.play());
+    stopReplay();
+    const playbackGeneration = playbackGenerationRef.current;
+    let claim: SpokenAudioClaim | null = null;
+    claim = claimSpokenAudio(() => {
+      if (replayClaimRef.current === claim) stopReplay();
+    });
+    if (!claim) return;
+    replayClaimRef.current = claim;
+    void whenSpokenAudioReady(claim).then((audioReady) => {
+      if (
+        !audioReady
+        || !claim?.isCurrent()
+        || !mountedRef.current
+        || !runtimeActiveRef.current
+        || playbackGeneration !== playbackGenerationRef.current
+      ) {
+        claim?.release();
+        if (replayClaimRef.current === claim) replayClaimRef.current = null;
+        return;
+      }
+      let player: AudioPlayer;
+      try {
+        player = createAudioPlayer(recordingUri);
+      } catch {
+        stopReplay();
+        return;
+      }
+      if (!claim.isCurrent() || playbackGeneration !== playbackGenerationRef.current) {
+        safeCall(() => player.remove());
+        return;
+      }
+      replayPlayerRef.current = player;
+      replayStatusSubRef.current = player.addListener('playbackStatusUpdate', (status) => {
+        if (status.didJustFinish) stopReplay();
       });
-  }, [recordingUri]);
+      safeCall(() => { player.volume = 1; });
+      try { player.play(); } catch { stopReplay(); }
+    });
+  }, [recordingUri, stopReplay]);
 
   const playReferenceTab = useCallback(() => {
     setActiveTab('ref');
-    safeCall(() => replayPlayerRef.current?.pause());
+    stopReplay();
     playSay();
-  }, [playSay]);
+  }, [playSay, stopReplay]);
 
   const playShadowReference = useCallback(() => {
     playSay();
@@ -389,11 +438,11 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       sessionSubsRef.current = [];
       audioEndSubRef.current?.remove?.();
       safeCall(() => speechRef.current?.abort());
-      safeCall(() => replayPlayerRef.current?.remove());
+      stopReplay();
+      releaseRecording();
       deleteRecordingFile(recordingUriRef.current);
-      restoreLoudPlayback();
     };
-  }, []);
+  }, [releaseRecording, stopReplay]);
 
   // Speech capture lifecycle invariant: blur/background invalidates permission/start,
   // removes recognition/audioend listeners, stops replay, and never auto-resumes.
@@ -407,12 +456,12 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     removeSessionListeners();
     removeAudioEndListener();
     safeCall(() => speechRef.current?.abort());
-    safeCall(() => replayPlayerRef.current?.pause());
-    restoreLoudPlayback();
+    stopReplay();
+    releaseRecording();
     if (mountedRef.current && (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring')) {
       setStatus('preprompt');
     }
-  }, [runtimeActive, clearWatchdog, removeSessionListeners, removeAudioEndListener]);
+  }, [runtimeActive, clearWatchdog, releaseRecording, removeSessionListeners, removeAudioEndListener, stopReplay]);
 
   const isListeningPhase =
     status === 'requesting' || status === 'listening' || status === 'scoring';

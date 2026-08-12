@@ -27,6 +27,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Haptics from 'expo-haptics';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import {
+  claimSpokenAudio,
+  type SpokenAudioClaim,
+  whenSpokenAudioReady,
+} from '../../modules/audio/audio_runtime_arbiter';
 import { useTournamentPalette, v2motion } from './tournament_theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -56,6 +61,7 @@ export const TournamentAudioButton = memo(function TournamentAudioButton({
   const status = useAudioPlayerStatus(player);
   const [playCount, setPlayCount] = useState(0);
   const autoPlayedRef = useRef(false);
+  const spokenClaimRef = useRef<SpokenAudioClaim | null>(null);
 
   const pulse = useSharedValue(1);
   const pulseOpacity = useSharedValue(0);
@@ -83,10 +89,13 @@ export const TournamentAudioButton = memo(function TournamentAudioButton({
   }, [audioProgress, progress, reducedMotion]);
 
   useEffect(() => {
+    spokenClaimRef.current?.release();
+    spokenClaimRef.current = null;
+    try { player.pause(); } catch { /* source was replaced */ }
     autoPlayedRef.current = false;
     setPlayCount(0);
     progress.value = 0;
-  }, [audioUri, progress]);
+  }, [audioUri, player, progress]);
 
   // Both glyphs remain mounted in the same centre point, so the play triangle
   // never shifts the visual centre when it crossfades to the sound icon.
@@ -119,20 +128,50 @@ export const TournamentAudioButton = memo(function TournamentAudioButton({
   useEffect(() => {
     if (isFocused) return;
     try { player.pause(); } catch { /* плеер мог быть уже освобождён */ }
+    spokenClaimRef.current?.release();
+    spokenClaimRef.current = null;
   }, [isFocused, player]);
+
+  useEffect(() => {
+    if (!status?.didJustFinish) return;
+    spokenClaimRef.current?.release();
+    spokenClaimRef.current = null;
+  }, [status?.didJustFinish]);
+
+  useEffect(() => () => {
+    spokenClaimRef.current?.release();
+    spokenClaimRef.current = null;
+  }, []);
 
   const play = useCallback(() => {
     if (!audioUri) return;
     // Хаптик: это управляющая кнопка (правило владельца).
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    try {
-      progress.value = 0;
-      player.seekTo(0);
-      player.play();
-    } catch {
-      // Проигрывание может упасть на битой ссылке — задание тогда решается
-      // по вариантам, экран не должен падать вместе со звуком.
-    }
+    let claim: SpokenAudioClaim | null = null;
+    claim = claimSpokenAudio(() => {
+      try { player.pause(); } catch { /* released player */ }
+      if (spokenClaimRef.current === claim) spokenClaimRef.current = null;
+    });
+    if (!claim) return;
+    spokenClaimRef.current = claim;
+    progress.value = 0;
+    void whenSpokenAudioReady(claim).then(async (audioReady) => {
+      if (!audioReady || !claim?.isCurrent()) {
+        claim?.release();
+        if (spokenClaimRef.current === claim) spokenClaimRef.current = null;
+        return;
+      }
+      try {
+        await player.seekTo(0);
+        if (!claim.isCurrent()) return;
+        player.play();
+      } catch {
+        claim.release();
+        if (spokenClaimRef.current === claim) spokenClaimRef.current = null;
+        // Проигрывание может упасть на битой ссылке — задание тогда решается
+        // по вариантам, экран не должен падать вместе со звуком.
+      }
+    });
     setPlayCount((count) => {
       const next = count + 1;
       onPlayed?.(next);

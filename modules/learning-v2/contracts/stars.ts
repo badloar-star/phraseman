@@ -257,6 +257,10 @@ export const sumBestPerformanceStars = (
   return bestBySlot.reduce((sum, value) => sum + value, 0);
 };
 
+/**
+ * Historical immutable Season gate curve. Keep for pinned old artifacts;
+ * current owner-approved required-session access lives in course_economy.ts.
+ */
 export const cumulativeAccessRequirement = (targetEpisode: number): number => {
   if (
     !Number.isInteger(targetEpisode) ||
@@ -269,6 +273,7 @@ export const cumulativeAccessRequirement = (targetEpisode: number): number => {
   return Math.ceil(24 * (targetEpisode - 1) * ratio);
 };
 
+/** Historical immutable Season-local minimum; see cumulativeAccessRequirement. */
 export const localPerformanceMinimum = (priorEpisode: number): number => {
   if (
     !Number.isInteger(priorEpisode) ||
@@ -283,6 +288,7 @@ export const localPerformanceMinimum = (priorEpisode: number): number => {
   return 17;
 };
 
+/** Historical immutable Season gate evaluator; not the current session wallet. */
 export const evaluateV2Gate = (input: GateInput): GateEvaluation => {
   assertGateInput(input);
   if (input.alreadyUnlocked || input.grandfathered) {

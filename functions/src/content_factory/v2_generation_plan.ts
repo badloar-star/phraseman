@@ -52,7 +52,7 @@ function stageId(kind: V2StageKind, seasonId: string, episodeId?: string): strin
   return episodeId ? `${kind}:${seasonId}:${episodeId}` : `${kind}:${seasonId}`;
 }
 
-/** Build the deterministic V2 stage DAG without creating any content. */
+/** Build the deterministic legacy V2 stage DAG without creating any content. */
 export function buildV2SeasonPlan(input: V2SeasonGenerationInput): readonly V2GenerationStage[] {
   const seasonId = input.seasonId.trim();
   if (!seasonId) throw new Error('v2_season_id_required');

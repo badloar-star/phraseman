@@ -1419,9 +1419,29 @@ test('account switch preserves sign-out-before-wipe after the bounded premium dr
 
   await expect(signOutAndWipeForAccountSwitch()).resolves.toEqual({ ok: true, synced: true });
 
+  expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
+    'final_account_snapshot_before_switch',
+    'local-stable-id',
+  );
   expect(waitForPremiumAccountWorkIdleWithDeadline).toHaveBeenCalledWith(1_500);
   expect(authState.calls.indexOf('signout')).toBeLessThan(authState.calls.indexOf('wipe'));
   expect(clearStableId).toHaveBeenCalledTimes(1);
+});
+
+test('account switch never wipes a pending Learning V2 snapshot after general sync success', async () => {
+  authState.isAnonymous = false;
+  saveAccountSwitchEmergencyBackup.mockRejectedValueOnce(new Error('completion snapshot unavailable'));
+  const accountGeneration = require('../app/account_generation');
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await expect(signOutAndWipeForAccountSwitch()).resolves.toEqual({
+    ok: false,
+    reason: 'backup_failed',
+    detail: 'completion snapshot unavailable',
+  });
+  expect(forceSyncToCloud).toHaveBeenCalled();
+  expect(accountGeneration.invalidateAccountGeneration).not.toHaveBeenCalled();
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
 });
 
 test('account switch aborts boundedly when an earlier native transition lock is still held', async () => {

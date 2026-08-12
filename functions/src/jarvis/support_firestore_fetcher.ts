@@ -17,6 +17,9 @@ export const SUPPORT_LOOKBACK_MS = 7 * 24 * 60 * 60 * 1_000;
 /** Верхняя граница выборки: обращений на порядки меньше, но защита нужна. */
 export const MAX_SUPPORT_DOCS = 500;
 
+/** Gmail опрашивается раз в час; через 90 минут без sync источник уже нельзя считать живым. */
+export const SUPPORT_SYNC_MAX_AGE_MS = 90 * 60 * 1_000;
+
 export type SupportSourceState = 'ready' | 'empty' | 'error';
 
 export interface FetchSupportSourceResult {
@@ -34,6 +37,8 @@ export interface FetchSupportSourceResult {
 
 export interface FetchSupportSourceInput {
   readonly collection: FirebaseFirestore.Query;
+  /** admin_config/support_inbox, где IMAP pull атомарно обновляет imapSyncedAt. */
+  readonly syncDocument?: Pick<FirebaseFirestore.DocumentReference, 'get'>;
   readonly nowMs: number;
 }
 
@@ -56,6 +61,18 @@ function median(values: readonly number[]): number | null {
 
 export async function fetchSupportSource(input: FetchSupportSourceInput): Promise<FetchSupportSourceResult> {
   try {
+    if (input.syncDocument) {
+      const syncSnapshot = await input.syncDocument.get();
+      const syncData = syncSnapshot.exists
+        ? (syncSnapshot.data() as Record<string, unknown> | undefined)
+        : undefined;
+      const syncedAtMs = toMs(syncData?.imapSyncedAt);
+      const syncAgeMs = syncedAtMs === null ? Number.POSITIVE_INFINITY : input.nowMs - syncedAtMs;
+      if (syncAgeMs < -5 * 60 * 1_000 || syncAgeMs > SUPPORT_SYNC_MAX_AGE_MS) {
+        throw new Error('support_ingestion_stale');
+      }
+    }
+
     const baseQuery = input.collection
       .orderBy('receivedAtMs', 'desc')
       // Только время и статус. Ни fromEmail, ни fromName, ни bodyText.

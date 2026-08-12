@@ -15,11 +15,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
+import {
+  registerInteractiveNetworkQuietParticipant,
+  withBackgroundNetworkLease,
+} from './interactive_network_quiet';
 import { applyRemoteConfigSnapshot } from './remote_flags';
+import { runtimeAppStateStore } from './runtime_app_state_store';
 
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
 const REMOTE_CONFIG_DOC = 'app';
 const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
+const REMOTE_CONFIG_LIVE_REFRESH_MS = 5 * 60_000;
+const REMOTE_CONFIG_FAILURE_BACKOFF_MS = [5 * 60_000, 15 * 60_000, 60 * 60_000] as const;
+const REMOTE_CONFIG_MAX_CACHE_BYTES = 64 * 1024;
+const REMOTE_CONFIG_MAX_KEYS_PER_SECTION = 256;
+const REMOTE_CONFIG_MAX_KEY_LENGTH = 100;
+const REMOTE_CONFIG_MAX_TEXT_LENGTH = 4_096;
 
 type RawConfig = {
   numbers?: Record<string, unknown>;
@@ -31,12 +42,25 @@ type FirestoreFactory = () => {
   collection: (name: string) => {
     doc: (id: string) => {
       get: () => Promise<{ exists: boolean; data: () => RawConfig | undefined }>;
-      onSnapshot: (
-        onNext: (snap: { exists: boolean; data: () => RawConfig | undefined }) => void,
-        onError?: (e: unknown) => void,
-      ) => () => void;
     };
   };
+};
+
+const boundedUtf8Bytes = (value: string, max: number): number => {
+  if (value.length > max) throw new Error('remote_config_overflow');
+  let bytes = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    const unit = value.charCodeAt(index);
+    if (unit <= 0x7f) bytes += 1;
+    else if (unit <= 0x7ff) bytes += 2;
+    else if (unit >= 0xd800 && unit <= 0xdbff && index + 1 < value.length &&
+      value.charCodeAt(index + 1) >= 0xdc00 && value.charCodeAt(index + 1) <= 0xdfff) {
+      bytes += 4;
+      index += 1;
+    } else bytes += 3;
+    if (bytes > max) throw new Error('remote_config_overflow');
+  }
+  return bytes;
 };
 
 async function getFirestoreModule(): Promise<FirestoreFactory | null> {
@@ -49,19 +73,58 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
   }
 }
 
-function sanitizeRaw(raw: RawConfig | undefined): RawConfig {
-  if (!raw || typeof raw !== 'object') return {};
-  const numbers = raw.numbers && typeof raw.numbers === 'object' ? raw.numbers : {};
-  const bools = raw.bools && typeof raw.bools === 'object' ? raw.bools : {};
-  const texts = raw.texts && typeof raw.texts === 'object' ? raw.texts : {};
-  return { numbers, bools, texts };
+const dataRecord = (value: unknown): Record<string, unknown> | null => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype !== Object.prototype && prototype !== null) return null;
+  if (Object.getOwnPropertySymbols(value).length > 0) return null;
+  const descriptors = Object.getOwnPropertyDescriptors(value);
+  const keys = Object.keys(descriptors);
+  if (keys.length > REMOTE_CONFIG_MAX_KEYS_PER_SECTION) return null;
+  const record = Object.create(null) as Record<string, unknown>;
+  for (const key of keys) {
+    const descriptor = descriptors[key];
+    if (!descriptor?.enumerable || !('value' in descriptor) ||
+      key.length === 0 || key.length > REMOTE_CONFIG_MAX_KEY_LENGTH ||
+      key === '__proto__' || key === 'prototype' || key === 'constructor') return null;
+    record[key] = descriptor.value;
+  }
+  return record;
+};
+
+function sanitizeRaw(raw: unknown): RawConfig {
+  const top = dataRecord(raw);
+  const numberInput = dataRecord(top?.numbers) ?? {};
+  const boolInput = dataRecord(top?.bools) ?? {};
+  const textInput = dataRecord(top?.texts) ?? {};
+  const numbers: Record<string, number> = {};
+  const bools: Record<string, boolean> = {};
+  const texts: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(numberInput)) {
+    if (typeof value === 'number' && Number.isFinite(value)) numbers[key] = value;
+  }
+  for (const [key, value] of Object.entries(boolInput)) {
+    if (typeof value === 'boolean') bools[key] = value;
+  }
+  for (const [key, value] of Object.entries(textInput)) {
+    if (typeof value === 'string' && value.length <= REMOTE_CONFIG_MAX_TEXT_LENGTH) texts[key] = value;
+  }
+
+  return Object.freeze({
+    numbers: Object.freeze(numbers),
+    bools: Object.freeze(bools),
+    texts: Object.freeze(texts),
+  });
 }
 
 function applyAndCache(raw: RawConfig | undefined): void {
   const clean = sanitizeRaw(raw);
+  const encoded = JSON.stringify(clean);
+  try { boundedUtf8Bytes(encoded, REMOTE_CONFIG_MAX_CACHE_BYTES); } catch { return; }
   applyRemoteConfigSnapshot(clean);
   emitAppEvent('remote_config_changed');
-  void AsyncStorage.setItem(REMOTE_CONFIG_CACHE_KEY, JSON.stringify(clean)).catch(() => {});
+  void AsyncStorage.setItem(REMOTE_CONFIG_CACHE_KEY, encoded).catch(() => {});
 }
 
 /**
@@ -72,6 +135,7 @@ export async function primeRemoteConfigCacheFromStorage(): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
     if (!raw) return;
+    boundedUtf8Bytes(raw, REMOTE_CONFIG_MAX_CACHE_BYTES);
     const parsed = JSON.parse(raw) as RawConfig;
     applyRemoteConfigSnapshot(sanitizeRaw(parsed));
     emitAppEvent('remote_config_changed');
@@ -84,78 +148,191 @@ export async function primeRemoteConfigCacheFromStorage(): Promise<void> {
  * One-shot load at startup: apply cache immediately (so flags are right before
  * the network responds), then fetch the live doc once. Safe to call always.
  */
-const REMOTE_CONFIG_FETCH_TIMEOUT_MS = 3000;
-
-function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
-  let timer: ReturnType<typeof setTimeout> | null = null;
-  const timeout = new Promise<never>((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`${label}_timeout`)), ms);
+export async function loadRemoteConfig(): Promise<void> {
+  if (startupLoadPromise) return startupLoadPromise;
+  explicitRefreshDemand += 1;
+  const loading = (async () => {
+    try {
+      await primeRemoteConfigCacheFromStorage();
+      await refreshRemoteConfigFromNetwork();
+    } catch {
+      // Keep cache/defaults on any failure (offline, permission, or session deferral).
+    } finally {
+      explicitRefreshDemand = Math.max(0, explicitRefreshDemand - 1);
+    }
+  })().finally(() => {
+    if (startupLoadPromise === loading) startupLoadPromise = null;
   });
-  return Promise.race([promise, timeout]).finally(() => {
-    if (timer) clearTimeout(timer);
-  });
+  startupLoadPromise = loading;
+  return loading;
 }
 
-export async function loadRemoteConfig(): Promise<void> {
-  await primeRemoteConfigCacheFromStorage();
-  const factory = await getFirestoreModule();
-  if (!factory) return;
-  try {
+const hasRemoteRefreshDemand = (): boolean => explicitRefreshDemand > 0 || (
+  liveSubscriberCount > 0 && liveAppActive && !livePausedForInteractiveSession
+);
+
+async function readRemoteConfigFromNetwork(): Promise<RawConfig | null> {
+  return withBackgroundNetworkLease('remote_config.load', async (lease) => {
+    lease.assertCurrent();
+    const factory = await getFirestoreModule();
+    lease.assertCurrent();
+    if (!factory) return null;
     const db = factory();
-    const snap = await withTimeout(
-      db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get(),
-      REMOTE_CONFIG_FETCH_TIMEOUT_MS,
-      'remote_config',
-    );
-    if (snap.exists) applyAndCache(snap.data());
-  } catch {
-    // Keep cache/defaults on any failure (offline, timeout, permission).
-  }
+    lease.assertCurrent();
+    // Recheck after the dynamic import and immediately before the native call.
+    // A removed final subscriber must not start a read merely because its timer
+    // callback had already entered this function.
+    if (!hasRemoteRefreshDemand()) return null;
+    // Do not Promise.race a native Firestore read: a JS timeout would detach
+    // still-live native traffic from the interactive-session fence.
+    const snap = await db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get();
+    lease.assertCurrent();
+    if (!hasRemoteRefreshDemand()) return null;
+    return snap.exists ? snap.data() ?? {} : null;
+  });
 }
 
 /**
- * Live subscription: keeps flags in sync while the app is open (admin changes
- * propagate within seconds). Returns an unsubscribe fn. No-op handle on web/
- * Expo Go.
+ * Live refresh: keeps flags in sync while the app is open. RN Firebase's
+ * onSnapshot unsubscribe is a void bridge command and cannot prove that its
+ * native stream has physically stopped. A foreground-only five-minute one-shot refresh
+ * preserves live admin updates while making every native read an exact,
+ * non-abandoning network lease. Returns an unsubscribe handle.
  */
-export function subscribeRemoteConfig(): { remove: () => void } {
-  let disposed = false;
-  let unsub: null | (() => void) = null;
+let liveSubscriberCount = 0;
+let livePausedForInteractiveSession = false;
+let liveAppActive = runtimeAppStateStore.getSnapshot();
+let liveRefreshTimer: ReturnType<typeof setTimeout> | null = null;
+let liveRefreshPromise: Promise<void> | null = null;
+let liveRefreshPromiseGeneration = -1;
+let liveRefreshPendingAfterInFlight = false;
+let sharedNetworkRefreshPromise: Promise<RawConfig | null> | null = null;
+let startupLoadPromise: Promise<void> | null = null;
+let explicitRefreshDemand = 0;
+let liveFailureCount = 0;
+let liveGeneration = 0;
 
-  void getFirestoreModule().then((factory) => {
-    if (disposed || !factory) return;
-    try {
-      const db = factory();
-      unsub = db
-        .collection(REMOTE_CONFIG_COLLECTION)
-        .doc(REMOTE_CONFIG_DOC)
-        .onSnapshot(
-          (snap) => {
-            if (snap.exists) applyAndCache(snap.data());
-          },
-          () => {
-            // Ignore snapshot errors; cache/defaults remain.
-          },
-        );
-    } catch {
-      // ignore
+const stopLiveRefreshTimer = (): void => {
+  if (liveRefreshTimer !== null) clearTimeout(liveRefreshTimer);
+  liveRefreshTimer = null;
+};
+
+const scheduleNextLiveRefresh = (): void => {
+  stopLiveRefreshTimer();
+  if (livePausedForInteractiveSession || !liveAppActive || liveSubscriberCount === 0) return;
+  const baseDelay = liveFailureCount === 0
+    ? REMOTE_CONFIG_LIVE_REFRESH_MS
+    : REMOTE_CONFIG_FAILURE_BACKOFF_MS[Math.min(
+      liveFailureCount - 1,
+      REMOTE_CONFIG_FAILURE_BACKOFF_MS.length - 1,
+    )]!;
+  const delay = baseDelay + Math.floor(Math.random() * Math.max(1, baseDelay * 0.1));
+  const ticket = liveGeneration;
+  liveRefreshTimer = setTimeout(() => {
+    liveRefreshTimer = null;
+    if (ticket !== liveGeneration) return;
+    void startLiveRefresh();
+  }, delay);
+};
+
+const refreshRemoteConfigFromNetwork = (): Promise<RawConfig | null> => {
+  if (sharedNetworkRefreshPromise) return sharedNetworkRefreshPromise;
+  const refresh = readRemoteConfigFromNetwork().then((raw) => {
+    if (raw && hasRemoteRefreshDemand()) applyAndCache(raw);
+    return raw;
+  }).finally(() => {
+    if (sharedNetworkRefreshPromise === refresh) sharedNetworkRefreshPromise = null;
+  });
+  sharedNetworkRefreshPromise = refresh;
+  return refresh;
+};
+
+const startLiveRefresh = (): Promise<void> => {
+  if (livePausedForInteractiveSession || !liveAppActive || liveSubscriberCount === 0) {
+    return Promise.resolve();
+  }
+  if (liveRefreshPromise) {
+    if (liveRefreshPromiseGeneration !== liveGeneration) {
+      liveRefreshPendingAfterInFlight = true;
+    }
+    return liveRefreshPromise;
+  }
+  stopLiveRefreshTimer();
+  const ticket = liveGeneration;
+  liveRefreshPendingAfterInFlight = false;
+  const source = startupLoadPromise ?? refreshRemoteConfigFromNetwork().then(() => undefined);
+  const refresh = source.then(() => {
+    if (ticket === liveGeneration) liveFailureCount = 0;
+  }).catch(() => {
+    // Cache/defaults remain and the next bounded refresh retries.
+    if (ticket === liveGeneration) liveFailureCount = Math.min(
+      liveFailureCount + 1,
+      REMOTE_CONFIG_FAILURE_BACKOFF_MS.length,
+    );
+  }).finally(() => {
+    if (liveRefreshPromise === refresh) liveRefreshPromise = null;
+    liveRefreshPromiseGeneration = -1;
+    if (liveRefreshPendingAfterInFlight && hasRemoteRefreshDemand()) {
+      liveRefreshPendingAfterInFlight = false;
+      void startLiveRefresh();
+    } else if (ticket === liveGeneration) {
+      scheduleNextLiveRefresh();
     }
   });
+  liveRefreshPromise = refresh;
+  liveRefreshPromiseGeneration = ticket;
+  return refresh;
+};
+
+registerInteractiveNetworkQuietParticipant('remote_config.poll', {
+  quiesce: async () => {
+    liveGeneration += 1;
+    const ticket = liveGeneration;
+    livePausedForInteractiveSession = true;
+    liveRefreshPendingAfterInFlight = false;
+    stopLiveRefreshTimer();
+    if (liveRefreshPromise) await liveRefreshPromise;
+    if (ticket === liveGeneration && livePausedForInteractiveSession) {
+      stopLiveRefreshTimer();
+    }
+  },
+  resume: () => {
+    liveGeneration += 1;
+    livePausedForInteractiveSession = false;
+    void startLiveRefresh();
+  },
+});
+
+export function subscribeRemoteConfig(): { remove: () => void } {
+  let disposed = false;
+  liveSubscriberCount += 1;
+  void startLiveRefresh();
 
   return {
     remove: () => {
+      if (disposed) return;
       disposed = true;
-      if (unsub) {
-        try {
-          unsub();
-        } catch {
-          // ignore
-        }
-        unsub = null;
+      liveSubscriberCount = Math.max(0, liveSubscriberCount - 1);
+      if (liveSubscriberCount === 0) {
+        liveGeneration += 1;
+        liveRefreshPendingAfterInFlight = false;
+        stopLiveRefreshTimer();
       }
     },
   };
 }
+
+runtimeAppStateStore.subscribe(() => {
+  const active = runtimeAppStateStore.getSnapshot();
+  if (liveAppActive === active) return;
+  liveAppActive = active;
+  liveGeneration += 1;
+  if (!active) {
+    liveRefreshPendingAfterInFlight = false;
+    stopLiveRefreshTimer();
+  }
+  else void startLiveRefresh();
+});
 
 /* expo-router route shim. */
 export default function __RouteShim() {

@@ -36,6 +36,9 @@ import { generateLessonPhraseChunks, LessonPhraseCheckpointSuperseded } from './
 import { disabledShadowJudgeReceipt, runShadowJudge, shadowJudgeConfigErrorReceipt } from './content_factory/shadow_judge';
 import { commitShadowJudgeReceipt, loadShadowJudgeConfig, reserveShadowJudgeBudget } from './content_factory/shadow_judge_repository';
 import { contentStageReviewFingerprint } from './content_factory/review_fingerprint';
+import { LEARNING_V2_GENERATION_STAGE_KINDS, type LearningV2GenerationStageKind } from './content_factory/learning_v2_generation_artifacts';
+import { expectedLearningV2PrerequisiteKind, loadApprovedLearningV2Prerequisite, type LearningV2GroundingBucketLike } from './content_factory/learning_v2_prerequisite_grounding';
+import type { CefrLevel } from './content_factory/stage_capabilities';
 export { flashcardLedgerDocumentId } from './content_factory/flashcard_pack_ledger';
 
 const REGION = 'us-central1';
@@ -210,7 +213,7 @@ export async function generateContentStageArtifact(input: {
     promptVersion: string;
     studyTarget: string;
     sourceLocale: string;
-    cefr: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+    cefr: CefrLevel;
     objective: string;
     count: number;
     approvedArtifactIds: readonly string[];
@@ -237,6 +240,32 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
   const { stageId } = parseRunContentStageRequest(request.data);
   const db = admin.firestore();
   const stageRef = db.collection('content_factory_stages').doc(stageId);
+  // The full localized course is intentionally dispatched to the long-running
+  // Firestore worker. The admin request never waits for 4 large all-locale
+  // model responses and can be safely closed immediately.
+  const dispatchSnapshot = await stageRef.get();
+  if (dispatchSnapshot.exists && dispatchSnapshot.data()?.kind === 'learning_v2_localized_course') {
+    return db.runTransaction(async (tx) => {
+      const currentSnapshot = await tx.get(stageRef);
+      if (!currentSnapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
+      const current = currentSnapshot.data() ?? {};
+      if (['needs_review', 'approved', 'rejected'].includes(String(current.state))) return { ok: true, stageId, state: current.state, replayed: true };
+      if (current.state === 'paused' && current.learningV2PauseReason === 'owner_wave_approval_required') {
+        throw new HttpsError('failed-precondition', 'learning_v2_course_wave_approval_required');
+      }
+      if (current.state === 'running' && Number(current.leaseExpiresAtMs ?? 0) > Date.now()) {
+        return { ok: true, stageId, state: 'running', replayed: true };
+      }
+      if (!['queued', 'failed', 'paused', 'running'].includes(String(current.state))) throw new HttpsError('failed-precondition', 'content_stage_not_runnable');
+      tx.update(stageRef, {
+        state: 'queued', learningV2AutoRunRequested: true,
+        errorCode: admin.firestore.FieldValue.delete(), errorMessage: admin.firestore.FieldValue.delete(),
+        retryable: false, leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return { ok: true, stageId, state: 'queued', replayed: false, background: true };
+    });
+  }
   const nowMs = Date.now();
   const requestedLeaseToken = randomUUID();
   const lease = await db.runTransaction(async (tx) => {
@@ -260,6 +289,44 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
     const stage = snapshot.data() ?? {};
     let grounding: Readonly<Record<string, unknown>> | null = null;
     let resolvedCount = Number(stage.count);
+    if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(String(stage.kind) as LearningV2GenerationStageKind)) {
+      const learningKind = String(stage.kind) as LearningV2GenerationStageKind;
+      const expectedKind = expectedLearningV2PrerequisiteKind(learningKind);
+      const prerequisiteStageIds = Array.isArray(stage.prerequisiteStageIds) ? stage.prerequisiteStageIds.map(String) : [];
+      if (expectedKind === null) {
+        if (prerequisiteStageIds.length !== 0) throw new HttpsError('failed-precondition', 'learning_v2_research_prerequisite_forbidden');
+      } else {
+        if (prerequisiteStageIds.length !== 1) throw new HttpsError('failed-precondition', 'learning_v2_grounding_prerequisite_required');
+        const prerequisiteSnapshot = await db.collection('content_factory_stages').doc(prerequisiteStageIds[0]).get();
+        if (!prerequisiteSnapshot.exists) throw new HttpsError('failed-precondition', 'learning_v2_grounding_prerequisite_missing');
+        const prerequisite = prerequisiteSnapshot.data() ?? {};
+        try {
+          grounding = await loadApprovedLearningV2Prerequisite(admin.storage().bucket() as unknown as LearningV2GroundingBucketLike, {
+            stageId: prerequisiteSnapshot.id,
+            artifactId: String(prerequisite.artifactId ?? ''),
+            kind: String(prerequisite.kind ?? ''),
+            state: String(prerequisite.state ?? ''),
+            requestId: String(prerequisite.requestId ?? ''),
+            studyTarget: String(prerequisite.studyTarget ?? ''),
+            sourceLocale: String(prerequisite.sourceLocale ?? ''),
+            scopeId: String(prerequisite.scopeId ?? ''),
+            objectPath: String(prerequisite.objectPath ?? ''),
+            contentHash: String(prerequisite.contentHash ?? ''),
+            objectGeneration: String(prerequisite.objectGeneration ?? ''),
+            ownerApprovalTrail: prerequisite.ownerApprovalTrail,
+          }, {
+            kind: learningKind,
+            requestId: String(stage.requestId ?? ''),
+            studyTarget: String(stage.studyTarget ?? ''),
+            sourceLocale: String(stage.sourceLocale ?? ''),
+            scopeId: String(stage.scopeId ?? ''),
+            ownerApprovalTrail: stage.ownerApprovalTrail,
+          });
+        } catch (error) {
+          throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'learning_v2_grounding_invalid');
+        }
+      }
+    }
     if (stage.kind === 'lesson_outline') {
       let reference;
       try { reference = parseSourceRegistryReference(String(stage.blueprintVersion ?? '')); } catch { throw new HttpsError('failed-precondition', 'source_registry_reference_invalid'); }
@@ -388,7 +455,7 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
     const provider = createOpenAiGenerationProvider(apiKey, { beforeProviderRequest: async (requestIndex) => { await reserveContentFactoryBudget(db, `${stageId}:attempt:${attempt}:provider-request:${requestIndex}`, config.globalDailyCap); } });
     let generated;
     try {
-      const stageInput = { stageId, kind: String(stage.kind) as GenerationStageKind, promptVersion: String(stage.promptVersion), studyTarget: String(stage.studyTarget), sourceLocale: String(stage.sourceLocale), cefr: String(stage.cefr) as 'A1', objective: String(stage.objective), count: resolvedCount, approvedArtifactIds: Array.isArray(stage.prerequisiteArtifactIds) ? stage.prerequisiteArtifactIds.map(String) : [], exemplarIds: Array.isArray(stage.exemplarIds) ? stage.exemplarIds.map(String) : [], previousContentFingerprints: Array.isArray(stage.previousContentFingerprints) ? stage.previousContentFingerprints.map(String) : [], revision: Number(stage.revision), attempt, leaseToken: lease.leaseToken, grounding };
+      const stageInput = { stageId, kind: String(stage.kind) as GenerationStageKind, promptVersion: String(stage.promptVersion), studyTarget: String(stage.studyTarget), sourceLocale: String(stage.sourceLocale), cefr: String(stage.cefr) as CefrLevel, objective: String(stage.objective), count: resolvedCount, approvedArtifactIds: Array.isArray(stage.prerequisiteArtifactIds) ? stage.prerequisiteArtifactIds.map(String) : [], exemplarIds: Array.isArray(stage.exemplarIds) ? stage.exemplarIds.map(String) : [], previousContentFingerprints: Array.isArray(stage.previousContentFingerprints) ? stage.previousContentFingerprints.map(String) : [], revision: Number(stage.revision), attempt, leaseToken: lease.leaseToken, grounding };
       if (stage.kind === 'lesson_phrases') {
         const context = buildPromptContext({ studyTarget: stageInput.studyTarget, sourceLocale: stageInput.sourceLocale, cefr: stageInput.cefr, objective: stageInput.objective, count: 50, approvedArtifactIds: stageInput.approvedArtifactIds, exemplarIds: stageInput.exemplarIds, previousContentFingerprints: stageInput.previousContentFingerprints });
         const basePacket = buildStagePromptPacket('lesson_phrases', stageInput.promptVersion, context, grounding);

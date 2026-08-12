@@ -6,6 +6,7 @@ import { validateQuestionBatchArtifact, validateQuestionReplacementArtifact, val
 import { semanticDiff } from './semantic_diff';
 import { type GenerationStageKind } from './stage_contracts';
 import { validateTheoryArtifact } from './theory_generation';
+import { LEARNING_V2_GENERATION_STAGE_KINDS, validateLearningV2GenerationArtifact } from './learning_v2_generation_artifacts';
 
 const STAGE_ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
@@ -48,6 +49,10 @@ function distribution(items: readonly Record<string, unknown>[]) {
 
 function validate(kind: GenerationStageKind, stage: Readonly<Record<string, unknown>>, base: unknown, candidate: unknown): string[] {
   const items = baseItems(base);
+  if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(kind as typeof LEARNING_V2_GENERATION_STAGE_KINDS[number])) {
+    if (!record(candidate)) return ['learning_v2_stage_envelope_invalid'];
+    return [...validateLearningV2GenerationArtifact(candidate, { kind: kind as typeof LEARNING_V2_GENERATION_STAGE_KINDS[number], targetLanguage: String(stage.studyTarget) })];
+  }
   switch (kind) {
     case 'lesson_outline': return validateLessonStageArtifact(candidate, { kind, count: 1, cefr: String(stage.cefr), sourceLocale: String(stage.sourceLocale), studyTarget: String(stage.studyTarget) });
     case 'lesson_phrases': {

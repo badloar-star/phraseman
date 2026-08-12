@@ -11,10 +11,11 @@ const ref: ApprovedEpisodeRevision = {
 
 class Store implements EpisodeReviewStore {
   body: unknown = { not: "semantic" };
+  createdBy = "author-1";
   receipt?: EpisodeReviewReceipt;
   operation?: { requestFingerprint: string; receipt: EpisodeReviewReceipt };
   async runTransaction<T>(work: (tx: EpisodeReviewStore) => Promise<T>): Promise<T> { return work(this); }
-  async readArtifact(): Promise<{ body: unknown }> { return { body: this.body }; }
+  async readArtifact(): Promise<{ body: unknown; createdBy: string }> { return { body: this.body, createdBy: this.createdBy }; }
   async readReceipt(): Promise<EpisodeReviewReceipt | undefined> { return this.receipt; }
   async writeReceipt(_id: string, receipt: EpisodeReviewReceipt): Promise<void> { this.receipt = receipt; }
   async readOperation(): Promise<{ requestFingerprint: string; receipt: EpisodeReviewReceipt } | undefined> { return this.operation; }
@@ -54,5 +55,13 @@ describe("Episode review receipt repository", () => {
     const receipt = await repo.review(ref, "approved", "review", "op-2");
     expect(receipt.subject).toEqual({ entityType: "episode", entityId: "episode-1", entityRevision: 1, entityFingerprint: "b".repeat(64) });
     await expect(repo.review(ref, "approved", "review", "op-2")).resolves.toEqual(receipt);
+  });
+
+  it("rejects an author reviewing the same immutable revision", async () => {
+    const store = new Store();
+    store.body = validBody();
+    const repo = new EpisodeReviewRepository(store, { actorId: "author-1" });
+    await expect(repo.review(ref, "approved", "review", "op-self")).rejects.toThrow("episode_maker_checker_self_review");
+    expect(store.receipt).toBeUndefined();
   });
 });

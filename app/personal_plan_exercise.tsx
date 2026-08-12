@@ -33,6 +33,8 @@ import AiMistakeCard from '../components/AiMistakeCard';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
+import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
+import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
 import {
   scorePlanPronunciationTranscript,
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
@@ -84,14 +86,9 @@ import { getPersonalPlanListenBuildItems, type PersonalPlanListenBuildItem } fro
 import { getPersonalPlanPronunciationRepeatItems } from './personal_plan_pronunciation_repeat_items';
 import { getPersonalPlanPhraseRecallItems, type PersonalPlanPhraseRecallItem } from './personal_plan_phrase_recall_items';
 import { buildPlanListeningPlaybackSource } from './personal_plan_listening_playback_contract';
-import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
-import { setManagedAudioMode } from './audio_session_coordinator';
 import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
 import { getPlanAudioUrl } from './plan_audio_url_map.generated';
-import {
-  buildPlanPronunciationAttemptPayload,
-  buildPlanPronunciationRecordingContract,
-} from './personal_plan_pronunciation_recording_contract';
+import { buildPlanPronunciationAttemptPayload } from './personal_plan_pronunciation_recording_contract';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
   readPlanTaskProgress,
@@ -291,6 +288,7 @@ function PlanListenChooseAudioButton({
   const source = playback.source === 'in_app_audio' ? playback.playerSource : null;
   const player = useAudioPlayer(source, playback.source === 'in_app_audio' ? playback.options : undefined);
   const status = useAudioPlayerStatus(player);
+  const managedPlayer = useManagedSpokenAudioPlayer(player, status?.didJustFinish === true);
   const disabled = playback.source !== 'in_app_audio';
   const isPlaying = Boolean(status?.playing);
   const isBuffering = Boolean(status?.isBuffering);
@@ -337,26 +335,13 @@ function PlanListenChooseAudioButton({
         hapticTap();
         if (playback.source !== 'in_app_audio') return;
         void (async () => {
-          try {
-            await setManagedAudioMode(playback.audioMode);
-          } catch {
-            // Playback still tries; the mode call is best-effort on edge runtimes.
+          if (player.playing) {
+            managedPlayer.stop();
+            return;
           }
-          try {
-            if (player.playing) {
-              player.pause();
-              return;
-            }
-            try {
-              player.volume = 1;
-            } catch {
-              // Some runtimes may not expose a writable volume property.
-            }
-            await player.seekTo(0);
-            player.play();
-          } catch {
-            // No TTS fallback here: this control must remain MP3-only.
-          }
+          try { player.volume = 1; } catch { /* runtime without writable volume */ }
+          // No TTS fallback here: this control must remain MP3-only.
+          await managedPlayer.playFromStart();
         })();
       }}
       style={[
@@ -442,10 +427,6 @@ type PronunciationBlock = 'denied' | 'unavailable' | null;
 // Вернуть аудио-сессию в «громкое воспроизведение» после распознавания: без
 // сброса весь звук после микрофона (mp3 фраз, озвучка ответов) играет тихо
 // через разговорный динамик или не играет вовсе.
-function restoreLoudPlaybackMode(): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
-}
-
 function deleteTransientSpeechRecordingFile(uri: string | null): void {
   if (!uri) return;
   try {
@@ -503,6 +484,10 @@ function PlanPronunciationRecorder({
   }, [audioUri]);
   const targetAudioPlayer = useAudioPlayer(targetAudioPlayerSource, targetAudioPlayerSource ? { downloadFirst: false, updateInterval: 250 } : undefined);
   const targetAudioStatus = useAudioPlayerStatus(targetAudioPlayer);
+  const managedTargetAudio = useManagedSpokenAudioPlayer(
+    targetAudioPlayer,
+    targetAudioStatus?.didJustFinish === true,
+  );
   const targetAudioStatusRef = useRef(targetAudioStatus);
   useEffect(() => {
     targetAudioStatusRef.current = targetAudioStatus;
@@ -525,6 +510,10 @@ function PlanPronunciationRecorder({
   // when the remote kill-switch turns speaking off app-wide. Resolved once so the
   // whole exercise degrades (escape path) instead of crashing on mount.
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  const recordingAudio = useManagedRecordingAudio(() => {
+    try { speechModule?.abort(); } catch { /* native capture already gone */ }
+  });
+  const restoreLoudPlaybackMode = recordingAudio.release;
   const [pronunciationHeardTarget, setPronunciationHeardTarget] = useState(false);
   const [pronunciationSpeakingTarget, setPronunciationSpeakingTarget] = useState(false);
   const [pronunciationListening, setPronunciationListening] = useState(false);
@@ -546,9 +535,10 @@ function PlanPronunciationRecorder({
   const finishTargetPlayback = useCallback((playbackGeneration: number) => {
     if (!mountedRef.current || !runtimeActiveRef.current || playbackGeneration !== targetPlaybackGenerationRef.current) return;
     clearTargetPlaybackTimers();
+    managedTargetAudio.stop();
     setPronunciationSpeakingTarget(false);
     setPronunciationHeardTarget(true);
-  }, [clearTargetPlaybackTimers]);
+  }, [clearTargetPlaybackTimers, managedTargetAudio]);
   // «Заглох»: Android-сервис принял start(), но не подал НИ одного признака жизни
   // (ни start, ни result, ни error). Не блокирует кнопку — юзер пробует ещё раз.
   const [pronunciationStalled, setPronunciationStalled] = useState(false);
@@ -666,13 +656,7 @@ function PlanPronunciationRecorder({
     clearTargetPlaybackTimers();
     setPronunciationSpeakingTarget(false);
     stopAudio();
-    if (targetAudioPlayerSource) {
-      try {
-        targetAudioPlayer.pause();
-      } catch {
-        /* плеер мог быть не готов */
-      }
-    }
+    if (targetAudioPlayerSource) managedTargetAudio.stop();
     setPronunciationScore(null);
     setPronunciationStalled(false);
     setPronunciationPreparing(true);
@@ -716,7 +700,7 @@ function PlanPronunciationRecorder({
       }
       beginCapture();
     })();
-  }, [holdMode, clearTargetPlaybackTimers, stopAudio, targetAudioPlayer, targetAudioPlayerSource, setBlocked, playRecordStart, ensureHoldMicPermission]);
+  }, [holdMode, clearTargetPlaybackTimers, stopAudio, managedTargetAudio, targetAudioPlayerSource, setBlocked, playRecordStart, ensureHoldMicPermission]);
 
   const endHold = useCallback(async () => {
     const captureGeneration = captureGenerationRef.current;
@@ -842,11 +826,7 @@ function PlanPronunciationRecorder({
       /* no-op */
     }
     holdRecRef.current = null;
-    try {
-      targetAudioPlayer.pause();
-    } catch {
-      /* no-op */
-    }
+    managedTargetAudio.stop();
     stopAudio();
     restoreLoudPlaybackMode();
     equalizerRef.current?.setSample(0);
@@ -854,7 +834,7 @@ function PlanPronunciationRecorder({
     setPronunciationSpeakingTarget(false);
     setPronunciationListening(false);
     setPronunciationScoring(false);
-  }, [runtimeActive, speechModule, targetAudioPlayer, stopAudio, clearRecognizerWatchdog, clearFinishAttemptTimer, clearTargetPlaybackTimers, cleanupRecognitionListeners, setPronunciationScoring]);
+  }, [runtimeActive, speechModule, managedTargetAudio, stopAudio, clearRecognizerWatchdog, clearFinishAttemptTimer, clearTargetPlaybackTimers, cleanupRecognitionListeners, restoreLoudPlaybackMode, setPronunciationScoring]);
 
   // Recognition result → score it locally and report up.
   useEffect(() => {
@@ -1072,7 +1052,7 @@ function PlanPronunciationRecorder({
       }
       restoreLoudPlaybackMode();
     };
-  }, [onScored, speechModule, runtimeActive, playCorrect, playRecordStart, clearRecognizerWatchdog, clearFinishAttemptTimer, cleanupRecognitionListeners, setPronunciationScoring]);
+  }, [onScored, speechModule, runtimeActive, playCorrect, playRecordStart, clearRecognizerWatchdog, clearFinishAttemptTimer, cleanupRecognitionListeners, restoreLoudPlaybackMode, setPronunciationScoring]);
 
   const listenPronunciationTarget = useCallback(() => {
     if (!runtimeActiveRef.current) return;
@@ -1100,11 +1080,6 @@ function PlanPronunciationRecorder({
 
     if (targetAudioPlayerSource) {
       void (async () => {
-        try {
-          await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);
-        } catch {
-          // Playback still tries; the mode call is best-effort on edge runtimes.
-        }
         if (!runtimeActiveRef.current || playbackGeneration !== targetPlaybackGenerationRef.current) return;
         try {
           try {
@@ -1112,8 +1087,8 @@ function PlanPronunciationRecorder({
           } catch {
             // Some runtimes may not expose a writable volume property.
           }
-          await targetAudioPlayer.seekTo(0);
-          targetAudioPlayer.play();
+          const started = await managedTargetAudio.playFromStart();
+          if (!started) throw new Error('spoken audio ownership unavailable');
           if (Platform.OS === 'android') {
             targetPlaybackFallbackTimerRef.current = setTimeout(() => {
               const status = targetAudioStatusRef.current as { currentTime?: number; didJustFinish?: boolean } | null | undefined;
@@ -1126,7 +1101,7 @@ function PlanPronunciationRecorder({
               const started = currentTime > 0.05 || status?.didJustFinish === true;
               if (started) return;
               try {
-                targetAudioPlayer.pause();
+                managedTargetAudio.stop();
               } catch {
                 // The player may already be stopped on some Android runtimes.
               }
@@ -1159,6 +1134,7 @@ function PlanPronunciationRecorder({
     finishTargetPlayback,
     speakFallbackAudio,
     stopAudio,
+    managedTargetAudio,
     targetAudioPlayer,
     targetAudioPlayerSource,
     targetText,
@@ -1172,7 +1148,7 @@ function PlanPronunciationRecorder({
     clearTargetPlaybackTimers();
     setPronunciationSpeakingTarget(false);
     stopAudio();
-    if (targetAudioPlayerSource) { try { targetAudioPlayer.pause(); } catch { /* плеер мог быть не готов */ } }
+    if (targetAudioPlayerSource) managedTargetAudio.stop();
     setPronunciationScore(null);
     setPronunciationStalled(false);
     setPronunciationPreparing(true);
@@ -1225,12 +1201,7 @@ function PlanPronunciationRecorder({
       equalizerRef.current?.setSample(0);
       // Hand the audio session from playback ("Послушать") to capture BEFORE
       // starting recognition, so iOS doesn't drop the first ~300ms of speech.
-      try {
-        const contract = buildPlanPronunciationRecordingContract();
-        await setManagedAudioMode(contract.audioMode);
-      } catch {
-        // Some runtimes may reject the record-mode switch; recognition still tries.
-      }
+      if (!await recordingAudio.begin()) return;
       if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (!systemHoldPressedRef.current) {
         setPronunciationPreparing(false);
@@ -1293,11 +1264,13 @@ function PlanPronunciationRecorder({
   }, [
     clearRecognizerWatchdog,
     clearTargetPlaybackTimers,
+    managedTargetAudio,
+    recordingAudio,
+    restoreLoudPlaybackMode,
     stopAudio,
     speechModule,
     setPronunciationScoring,
     setBlocked,
-    targetAudioPlayer,
     targetAudioPlayerSource,
   ]);
 
@@ -1337,7 +1310,7 @@ function PlanPronunciationRecorder({
         () => finishAttemptRef.current(endingGen),
       );
     }
-  }, [clearRecognizerWatchdog, setPronunciationScoring, speechModule]);
+  }, [clearRecognizerWatchdog, restoreLoudPlaybackMode, setPronunciationScoring, speechModule]);
 
   const startUnifiedHold = useCallback(() => {
     if (!runtimeActiveRef.current) return;
@@ -2155,21 +2128,19 @@ export default function PersonalPlanExerciseScreen() {
     answerAudioSource,
     answerAudioSource ? { downloadFirst: false, updateInterval: 250 } : undefined,
   );
+  const answerAudioStatus = useAudioPlayerStatus(answerAudioPlayer);
+  const managedAnswerAudio = useManagedSpokenAudioPlayer(
+    answerAudioPlayer,
+    answerAudioStatus?.didJustFinish === true,
+  );
   const answerAudioTextRef = useRef(answerAudioText);
   useEffect(() => { answerAudioTextRef.current = answerAudioText; }, [answerAudioText]);
   const speakCurrentPhrase = useCallback(() => {
     void (async () => {
       if (answerAudioSource) {
         try {
-          await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);
-        } catch {
-          // best-effort режим
-        }
-        try {
           try { answerAudioPlayer.volume = 1; } catch { /* некоторые рантаймы не дают volume */ }
-          await answerAudioPlayer.seekTo(0);
-          answerAudioPlayer.play();
-          return;
+          if (await managedAnswerAudio.playFromStart()) return;
         } catch {
           // упал MP3 — уходим в TTS ниже
         }
@@ -2177,7 +2148,7 @@ export default function PersonalPlanExerciseScreen() {
       const text = answerAudioTextRef.current;
       if (text) speakPhraseFallback(text, 0.9, { language: 'en-US', voice: '' });
     })();
-  }, [answerAudioSource, answerAudioPlayer, speakPhraseFallback]);
+  }, [answerAudioSource, answerAudioPlayer, managedAnswerAudio, speakPhraseFallback]);
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
   // Финал дня разрешён только после успешного persisted completion + успешного resolver result `null`.
   const done = !advancing && completed;

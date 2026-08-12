@@ -22,6 +22,38 @@ test('redirectSystemPath lands retired duel links on a safe screen', () => {
   expect(redirect('https://badloar-star.github.io/phraseman/duel/ROOM42')).toBe('/home');
 });
 
+test('redirectSystemPath preserves the live Arena V2 root', () => {
+  expect(redirect('phraseman://arena')).toBe('/arena');
+  expect(redirect('https://knowlyapps.com/arena')).toBe('/arena');
+  expect(redirect('phraseman://arena_join/ROOM42')).toBe('/home');
+});
+
+test('redirectSystemPath opens a new Arena V2 friend invite without reviving legacy duel codes', () => {
+  const inviteId = 'Pz3FMGqvfVjwMSax_0L9Xg';
+  expect(redirect(`phraseman://arena/invite/${inviteId}`)).toBe(
+    `/arena_invite?inviteId=${inviteId}`,
+  );
+  expect(redirect(`https://knowlyapps.com/arena/invite/${inviteId}`)).toBe(
+    `/arena_invite?inviteId=${inviteId}`,
+  );
+});
+
+test('redirectSystemPath opens only bounded opaque Arena Ghost invites', () => {
+  const inviteToken = `${'a'.repeat(64)}.5Jp7tYQ8zW2nL4aK9mVx`;
+  const productionToken = `${'b'.repeat(64)}5Jp7tYQ8zW2nL4aK9mVx`;
+  expect(redirect(`phraseman://arena/ghost/${inviteToken}`)).toBe(
+    `/arena_ghost_duel?inviteToken=${inviteToken}`,
+  );
+  expect(redirect(`https://knowlyapps.com/arena/ghost/${inviteToken}`)).toBe(
+    `/arena_ghost_duel?inviteToken=${inviteToken}`,
+  );
+  expect(redirect(`phraseman://arena/ghost/${productionToken}`)).toBe(
+    `/arena_ghost_duel?inviteToken=${productionToken}`,
+  );
+  expect(redirect('phraseman://arena/ghost/short')).toBe('/home');
+  expect(redirect('https://knowlyapps.com/arena/ghost/has%20spaces')).toBe('/home');
+});
+
 test('redirectSystemPath normalizes custom-scheme phrase links', () => {
   expect(redirect('phraseman://phrase/hello-world?play=1')).toBe('/home?openPhrase=hello-world&play=1');
 });

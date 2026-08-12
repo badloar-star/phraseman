@@ -2,11 +2,11 @@
 // с угасанием подсказок. Компилятор ДЕТЕРМИНИРОВАННЫЙ (версионная таблица, без random):
 // один и тот же банк контента всегда даёт байт-в-байт одинаковые сессии — иначе нельзя
 // ни кэшировать по hash, ни воспроизводить баги. Ошибки — только броском, ничего молча.
-import type { V2ActivityFamily } from '../contracts/activity';
+import { V2_ACTIVITY_FAMILIES, type V2ActivityFamily } from '../contracts/activity';
 import type { LearningSupportLevel } from '../contracts/episode';
 import type {
-  V2RequiredSessionDefinition,
-  V2SessionCardPlan,
+  V2RequiredSessionDefinitionV2,
+  V2SessionCardPlanV2,
   V2SessionLearningFunction,
 } from '../contracts/session';
 import type { V2LanguageProfileBody } from './language_profile';
@@ -21,16 +21,24 @@ export interface V2CompileSessionsInput {
   readonly canDoOutcomeId: string;
   readonly profile: V2LanguageProfileBody;
   readonly items: readonly V2ContentItem[];
+  readonly activityBindings: readonly V2SessionActivityBinding[];
 }
 
-export interface V2CompiledRequiredSession extends V2RequiredSessionDefinition {
+export interface V2SessionActivityBinding {
+  readonly activityId: string;
+  readonly family: V2ActivityFamily;
+  readonly contentUnitIds: readonly string[];
+}
+
+export interface V2CompiledRequiredSession extends Omit<V2RequiredSessionDefinitionV2, 'cards'> {
   // зачем: доминирующий уровень поддержки сессии нужен QA и адаптеру; в каноническое
   // тело session-set он не сериализуется (там support живёт на карточках).
   readonly support: LearningSupportLevel;
+  readonly cards: readonly V2SessionCardPlanV2[];
 }
 
 export interface V2CompiledEpisodeContent {
-  readonly schemaVersion: 'v2-compiled-episode-content.v1';
+  readonly schemaVersion: 'v2-compiled-episode-content.v2';
   readonly episodeId: string;
   readonly canDoOutcomeId: string;
   readonly sessions: readonly V2CompiledRequiredSession[];
@@ -111,9 +119,72 @@ function pad(value: number): string {
   return String(value).padStart(2, '0');
 }
 
+function detachActivityBindings(input: unknown): readonly V2SessionActivityBinding[] {
+  if (!Array.isArray(input) || input.length === 0 || input.length > 4096) {
+    throw new Error('session_activity_binding_missing');
+  }
+  const arrayKeys = Reflect.ownKeys(input);
+  if (arrayKeys.length !== input.length + 1 || arrayKeys.some((key) =>
+    typeof key !== 'string' || (key !== 'length' && !/^(?:0|[1-9][0-9]*)$/.test(key)))) {
+    throw new Error('session_activity_binding_invalid');
+  }
+  const detached: V2SessionActivityBinding[] = [];
+  for (let index = 0; index < input.length; index += 1) {
+    const slot = Object.getOwnPropertyDescriptor(input, String(index));
+    if (!slot || !('value' in slot) || !slot.enumerable) {
+      throw new Error('session_activity_binding_invalid');
+    }
+    const value = slot.value as unknown;
+    if (typeof value !== 'object' || value === null || Array.isArray(value) ||
+      (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)) {
+      throw new Error('session_activity_binding_invalid');
+    }
+    const descriptors = Object.getOwnPropertyDescriptors(value);
+    const keys = Reflect.ownKeys(value);
+    const expected = ['activityId', 'family', 'contentUnitIds'] as const;
+    if (keys.length !== expected.length || keys.some((key) =>
+      typeof key !== 'string' || !expected.includes(key as typeof expected[number]))) {
+      throw new Error('session_activity_binding_invalid');
+    }
+    const read = (key: typeof expected[number]): unknown => {
+      const descriptor = descriptors[key];
+      if (!descriptor || !('value' in descriptor) || !descriptor.enumerable) {
+        throw new Error('session_activity_binding_invalid');
+      }
+      return descriptor.value;
+    };
+    const activityId = read('activityId');
+    const family = read('family');
+    const unitIds = read('contentUnitIds');
+    if (!Array.isArray(unitIds) || unitIds.length === 0 || unitIds.length > 4096) {
+      throw new Error('session_activity_binding_invalid');
+    }
+    const unitKeys = Reflect.ownKeys(unitIds);
+    if (unitKeys.length !== unitIds.length + 1 || unitKeys.some((key) =>
+      typeof key !== 'string' || (key !== 'length' && !/^(?:0|[1-9][0-9]*)$/.test(key)))) {
+      throw new Error('session_activity_binding_invalid');
+    }
+    const contentUnitIds: string[] = [];
+    for (let unitIndex = 0; unitIndex < unitIds.length; unitIndex += 1) {
+      const descriptor = Object.getOwnPropertyDescriptor(unitIds, String(unitIndex));
+      if (!descriptor || !('value' in descriptor) || !descriptor.enumerable ||
+        typeof descriptor.value !== 'string') {
+        throw new Error('session_activity_binding_invalid');
+      }
+      contentUnitIds.push(descriptor.value);
+    }
+    detached.push(Object.freeze({
+      activityId: activityId as string,
+      family: family as V2ActivityFamily,
+      contentUnitIds: Object.freeze(contentUnitIds),
+    }));
+  }
+  return Object.freeze(detached);
+}
+
 // зачем: novelty независимой проверки не может быть 'trained' — QA (Task 7) блокирует
 // повторное использование натренированных формулировок в зоне master.
-function noveltyForZone(zone: SessionPolicyEntry['zone']): V2SessionCardPlan['promptNovelty'] {
+function noveltyForZone(zone: SessionPolicyEntry['zone']): V2SessionCardPlanV2['promptNovelty'] {
   if (zone === 'understand') return 'trained';
   if (zone === 'use') return 'varied';
   return 'novel';
@@ -168,6 +239,7 @@ export function compileV2RequiredSessions(input: V2CompileSessionsInput): V2Comp
   if (!Array.isArray(items) || items.length === 0) {
     throw new Error('session_content_insufficient: empty content bank');
   }
+  const activityBindings = detachActivityBindings(input.activityBindings);
 
   // зачем: fail-closed вход — компилятор не доверяет вызывающему и перепроверяет
   // каждый айтем настоящим валидатором, принадлежность эпизоду и совместимость с профилем.
@@ -184,6 +256,41 @@ export function compileV2RequiredSessions(input: V2CompileSessionsInput): V2Comp
     throw new Error('session_can_do_untraceable');
   }
 
+  const bindingIds = new Set<string>();
+  const bindingsByCoordinate = new Map<string, V2SessionActivityBinding[]>();
+  for (const binding of activityBindings) {
+    if (
+      binding === null
+      || typeof binding !== 'object'
+      || Array.isArray(binding)
+      || Object.keys(binding).sort().join(',') !== 'activityId,contentUnitIds,family'
+      || typeof binding.activityId !== 'string'
+      || !binding.activityId.trim()
+      || !(V2_ACTIVITY_FAMILIES as readonly unknown[]).includes(binding.family)
+      || !Array.isArray(binding.contentUnitIds)
+      || binding.contentUnitIds.length === 0
+      || binding.contentUnitIds.some((id: unknown) => typeof id !== 'string' || !seenIds.has(id))
+      || new Set(binding.contentUnitIds).size !== binding.contentUnitIds.length
+      || bindingIds.has(binding.activityId)
+    ) {
+      throw new Error('session_activity_binding_invalid');
+    }
+    bindingIds.add(binding.activityId);
+    for (const contentUnitId of binding.contentUnitIds) {
+      const coordinate = `${binding.family}\u0000${contentUnitId}`;
+      const candidates = bindingsByCoordinate.get(coordinate) ?? [];
+      candidates.push(binding);
+      bindingsByCoordinate.set(coordinate, candidates);
+    }
+  }
+
+  const resolveActivityId = (family: V2ActivityFamily, contentItemId: string): string => {
+    const candidates = bindingsByCoordinate.get(`${family}\u0000${contentItemId}`) ?? [];
+    if (candidates.length === 0) throw new Error(`session_activity_binding_missing:${family}:${contentItemId}`);
+    if (candidates.length !== 1) throw new Error(`session_activity_binding_ambiguous:${family}:${contentItemId}`);
+    return candidates[0].activityId;
+  };
+
   // Детерминизм: внутренняя сортировка отвязывает результат от порядка входа.
   const sortedItems = [...items].sort((a, b) => a.contentItemId.localeCompare(b.contentItemId, 'en'));
 
@@ -198,7 +305,7 @@ export function compileV2RequiredSessions(input: V2CompileSessionsInput): V2Comp
       family,
       queue: eligibleItemsForFamily(sortedItems, family),
     }));
-    const cards: V2SessionCardPlan[] = [];
+    const cards: V2SessionCardPlanV2[] = [];
     const familyCursor = perFamilyQueues.map(() => 0);
     let progressed = true;
     while (cards.length < MAX_CARDS && progressed) {
@@ -213,6 +320,7 @@ export function compileV2RequiredSessions(input: V2CompileSessionsInput): V2Comp
         cards.push({
           cardId: `card-${episodeId}-s${pad(ordinal)}-${pad(cards.length + 1)}`,
           contentItemId: item.contentItemId,
+          activityId: resolveActivityId(family, item.contentItemId),
           objectiveId: pickObjectiveId(item, canDoOutcomeId),
           family,
           learningFunction: FAMILY_LEARNING_FUNCTION[family],
@@ -250,7 +358,7 @@ export function compileV2RequiredSessions(input: V2CompileSessionsInput): V2Comp
   });
 
   return deepFreeze({
-    schemaVersion: 'v2-compiled-episode-content.v1',
+    schemaVersion: 'v2-compiled-episode-content.v2',
     episodeId,
     canDoOutcomeId,
     sessions,

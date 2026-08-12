@@ -132,10 +132,70 @@ describe('heisenberg raw string audit: analyzeSourceText (synthetic snippets)', 
       }),
     );
   });
+
+  it('flags a raw user-visible JSX attribute', () => {
+    const findings = analyzeSourceText(
+      'components/Sample.tsx',
+      `function Sample() { return <Button accessibilityLabel="Закрыть окно" />; }`,
+    );
+
+    expect(findings).toContainEqual(
+      expect.objectContaining({
+        kind: 'raw-cyrillic-literal',
+        context: 'jsx-attribute',
+        sample: 'Закрыть окно',
+      }),
+    );
+  });
+
+  it('flags raw copy embedded in a user-visible template attribute', () => {
+    const findings = analyzeSourceText(
+      'components/Sample.tsx',
+      'function Sample({ count }: { count: number }) { return <Button accessibilityLabel={`Баланс: ${count} жемчужин`} />; }',
+    );
+
+    expect(findings).toContainEqual(
+      expect.objectContaining({
+        kind: 'raw-cyrillic-literal',
+        context: 'jsx-attribute',
+        sample: 'Баланс: жемчужин',
+      }),
+    );
+  });
+
+  it('does not flag a JSX attribute localized with triLang', () => {
+    const findings = analyzeSourceText(
+      'components/Sample.tsx',
+      `function Sample() { return <Button accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити' })} />; }`,
+    );
+
+    expect(findings).toEqual([]);
+  });
+
+  it('flags a static configuration field rendered as UI copy', () => {
+    const findings = analyzeSourceText(
+      'components/Sample.tsx',
+      `const card = { title: 'Начни заниматься', body: 'Всего несколько минут в день' };`,
+    );
+
+    expect(findings).toEqual(expect.arrayContaining([
+      expect.objectContaining({ context: 'object-copy', sample: 'Начни заниматься' }),
+      expect.objectContaining({ context: 'object-copy', sample: 'Всего несколько минут в день' }),
+    ]));
+  });
+
+  it('does not flag locale-keyed static configuration', () => {
+    const findings = analyzeSourceText(
+      'components/Sample.tsx',
+      `const card = { title: { ru: 'Начни заниматься', uk: 'Почніть займатися' } };`,
+    );
+
+    expect(findings).toEqual([]);
+  });
 });
 
 describe('heisenberg raw string audit: full repo scan (integration)', () => {
-  it('finds at least one raw-cyrillic-literal in components/CleanOnboarding.tsx', () => {
+  it('finds no raw user-facing literals in components/CleanOnboarding.tsx', () => {
     const cleanOnboardingPath = path.join(ROOT, 'components', 'CleanOnboarding.tsx');
     expect(fs.existsSync(cleanOnboardingPath)).toBe(true);
 
@@ -145,7 +205,7 @@ describe('heisenberg raw string audit: full repo scan (integration)', () => {
       (finding) => finding.file === 'components/CleanOnboarding.tsx' && finding.kind === 'raw-cyrillic-literal',
     );
 
-    expect(cleanOnboardingFindings.length).toBeGreaterThanOrEqual(1);
+    expect(cleanOnboardingFindings).toEqual([]);
     expect(report.totalFindings).toBeGreaterThanOrEqual(1);
     expect(report.readOnly).toBe(true);
     expect(report.sourceMutationApplied).toBe(false);

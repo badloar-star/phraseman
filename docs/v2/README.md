@@ -131,6 +131,7 @@ flowchart LR
 
 | Документ | Что в нём |
 |---|---|
+| [GENERATOR_DELIVERY_CONTRACT.md](./GENERATOR_DELIVERY_CONTRACT.md) | Обязательный порядок работы и единственный полный Definition of Done генератора: 5–10 экспертных ролей, правильная админка, языки, аудио, UI, тесты и запрет преждевременной готовности |
 | [HANDOVER.md](./HANDOVER.md) | Живой статус реализации, точный следующий шаг, ветки, проверки, blockers и обязательный протокол продолжения между сессиями |
 | [00-research-and-skill-audit.md](./00-research-and-skill-audit.md) | Какие skills проверены, установлены, отклонены и как они повлияли на решения |
 | [01-current-state-audit.md](./01-current-state-audit.md) | Что уже есть в приложении и где реальные ограничения |

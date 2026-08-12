@@ -28,6 +28,14 @@ export interface V2SessionCardPlan {
   readonly promptNovelty: "trained" | "varied" | "novel";
 }
 
+/**
+ * Session-set v2 pins every required card to an approved episode activity.
+ * V1 remains readable because its canonical bytes are already hash-addressed.
+ */
+export interface V2SessionCardPlanV2 extends V2SessionCardPlan {
+  readonly activityId: string;
+}
+
 export interface V2RequiredSessionDefinition {
   readonly sessionId: SessionId;
   readonly ordinal: number;
@@ -47,13 +55,30 @@ export interface V2OptionalPracticeSlot {
   readonly canWriteMastery: false;
 }
 
-export interface V2SessionSetBody {
+export interface V2SessionSetBodyV1 {
   readonly schemaVersion: "v2-session-set.v1";
   readonly episodeId: EpisodeId;
   readonly version: number;
   readonly sessions: readonly V2RequiredSessionDefinition[];
   readonly optionalPracticeSlots: readonly V2OptionalPracticeSlot[];
 }
+
+export interface V2RequiredSessionDefinitionV2 extends Omit<
+  V2RequiredSessionDefinition,
+  "cards"
+> {
+  readonly cards: readonly V2SessionCardPlanV2[];
+}
+
+export interface V2SessionSetBodyV2 {
+  readonly schemaVersion: "v2-session-set.v2";
+  readonly episodeId: EpisodeId;
+  readonly version: number;
+  readonly sessions: readonly V2RequiredSessionDefinitionV2[];
+  readonly optionalPracticeSlots: readonly V2OptionalPracticeSlot[];
+}
+
+export type V2SessionSetBody = V2SessionSetBodyV1 | V2SessionSetBodyV2;
 
 export type V2SessionSetValidationResult =
   | {
@@ -87,6 +112,7 @@ const CARD_KEYS = [
   "promptId",
   "promptNovelty",
 ] as const;
+const CARD_KEYS_V2 = [...CARD_KEYS, "activityId"] as const;
 const OPTIONAL_KEYS = [
   "slotId",
   "episodeId",
@@ -291,7 +317,8 @@ export const validateV2SessionSet = (
     return fail(["session_set_field_unknown"]);
 
   const issues: string[] = [];
-  if (input.schemaVersion !== "v2-session-set.v1")
+  const isV2 = input.schemaVersion === "v2-session-set.v2";
+  if (input.schemaVersion !== "v2-session-set.v1" && !isV2)
     issues.push("session_set_schema_version");
   if (
     !isIdentity(input.episodeId) ||
@@ -333,7 +360,7 @@ export const validateV2SessionSet = (
     }
     const families = new Set<string>();
     for (const card of candidate.cards) {
-      if (!isRecord(card) || !hasExactKeys(card, CARD_KEYS)) {
+      if (!isRecord(card) || !hasExactKeys(card, isV2 ? CARD_KEYS_V2 : CARD_KEYS)) {
         issues.push("session_card_invalid");
         continue;
       }
@@ -356,6 +383,9 @@ export const validateV2SessionSet = (
         !["trained", "varied", "novel"].includes(String(card.promptNovelty))
        )
          issues.push("session_card_invalid");
+       if (isV2 && !isIdentity(card.activityId)) {
+         issues.push("session_card_activity_invalid");
+       }
        if (
          typeof card.family !== "string" ||
          !REQUIRED_SESSION_ALLOWED_FAMILIES.has(card.family as V2ActivityFamily)

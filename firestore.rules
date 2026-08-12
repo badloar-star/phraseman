@@ -15,6 +15,21 @@ service cloud.firestore {
         && request.auth.token.admin == true;
     }
 
+    // These roots are callable/Admin-SDK only. Keep this as a compact,
+    // code-owned namespace guard: a long chain of collection inequalities can
+    // exceed the Firestore Rules expression-complexity limit, while exact deny
+    // matches alone cannot override the overlapping browser-admin catch-all.
+    function isServerOwnedContentStudioRoot(collection) {
+      return collection.matches('content_(mode|season|episode|studio)_.*')
+        || collection == 'content_app_support_manifests'
+        || collection == 'content_decision_registries'
+        || collection.matches('content_language_profile_.*')
+        || collection.matches('content_(speech|voice_generation)_profile_.*')
+        || collection == 'content_v2_repository_auth'
+        || collection.matches('content_v2_stage_(repository_commits|candidate_pins)')
+        || collection.matches('content_v2_(required_session|season_release)_.*');
+    }
+
     function isActiveYoutubeSnapshot(version) {
       return request.auth != null
         && exists(/databases/$(database)/documents/youtube_catalog/public)
@@ -1301,6 +1316,63 @@ service cloud.firestore {
         allow write: if false;
       }
 
+      // Arena V2 economy is a separate server-authoritative ledger. Clients
+      // may inspect their projections, but can never mint stars, rating, spin
+      // credits/results, receipts, or season claims directly.
+      match /arena_v2_seasons/{seasonId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_receipts/{matchId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_spin_credits/{creditId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_spin_results/{requestId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_season_claims/{claimId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      // Sealed attempts/evidence stay callable-only. Only compact sanitized
+      // review and economy projections are readable by their owner.
+      match /arena_v2_daily_attempts/{attemptId} {
+        allow read, write: if false;
+      }
+      match /arena_v2_expansion_runs/{runId} {
+        allow read, write: if false;
+      }
+      match /arena_v2_mastery_signatures/{signatureId} {
+        allow read, write: if false;
+      }
+      match /arena_v2_activity_days/{dayKey} {
+        allow read, write: if false;
+      }
+      match /arena_v2_match_labs/{matchId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_partner_weeks/{weekKey} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_star_ledger/{receiptId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_entitlements/{itemId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
+      match /arena_v2_expansion_receipts/{requestId} {
+        allow read, write: if false;
+      }
+
       // Idempotency receipts for shardsApplyDelta are written only by Admin SDK.
       // Clients must not pre-create a receipt to bypass a spend operation.
       match /shard_operation_receipts/{opId} {
@@ -1314,6 +1386,21 @@ service cloud.firestore {
 
       // Append-only журнал V2 access-звёзд (биржа монет→звёзд). Только Admin SDK.
       match /v2_star_journal/{entryId} {
+        allow read, write: if false;
+      }
+
+      // Source receipts for Learning V2 wallet redemption. Server callables
+      // write them atomically with the originating economic decision (coin
+      // exchange or bounded required-session performance improvement); clients
+      // receive only the request identity and cannot read or forge protected bytes.
+      match /v2_wallet_reward_receipts/{rewardId} {
+        allow read, write: if false;
+      }
+
+      // Protected authorization for one exact Learning V2 course-session
+      // unlock. The app receives only the bounded request reference and must
+      // resolve canonical bytes through the authenticated callable.
+      match /v2_course_unlock_receipts/{unlockId} {
         allow read, write: if false;
       }
 
@@ -1398,6 +1485,13 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Persistent per-target/per-event likes. Cloud Functions own counters and
+    // writes; the sender may read their records to restore filled hearts.
+    match /users/{userId}/friend_activity_likes_sent/{likeId} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow create, update, delete: if isAdmin();
+    }
+
     match /users/{userId}/activity_like_stats/{docId} {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();
@@ -1438,7 +1532,10 @@ service cloud.firestore {
     // Read/write only by admin from the panel. The alert Cloud Functions use the
     // Admin SDK (bypasses rules) to read config and write bookkeeping fields.
     match /admin_config/{docId} {
-      allow read, write: if isAdmin();
+      allow read: if isAdmin();
+      // support_inbox contains the live auto-reply kill switch and quotas;
+      // writes must go through the revisioned/audited callable.
+      allow write: if isAdmin() && docId != 'support_inbox';
     }
 
     // Remote Config changelog — admin-only audit trail of config saves.
@@ -2193,6 +2290,37 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if false;
     }
+
+    // Guarded support auto-reply quota receipts/counters are server-only.
+    // They contain hashes and policy state, and browser admins never need to
+    // mutate them directly; configuration goes through an audited callable.
+    match /support_auto_reply_reservations/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_auto_reply_counters/{document=**} {
+      allow read, write: if false;
+    }
+    // Support mail, sealed SMTP operations and Telegram review state are
+    // server-owned. The admin panel uses permission-checked callables; direct
+    // browser writes could otherwise bypass revision/CAS and send stale text.
+    match /support_telegram_reviews/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_telegram_edit_sessions/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_telegram_reply_jobs/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_reply_operations/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_reply_batches/{document=**} {
+      allow read, write: if false;
+    }
+    match /admin_command_operations/{document=**} {
+      allow read, write: if false;
+    }
     // Выключатель Джарвиса: admin видит режим в панели, меняет только сервер
     // (через callable с проверкой прав) — иначе режим правился бы из консоли
     // браузера в обход журнала.
@@ -2337,6 +2465,16 @@ service cloud.firestore {
         && collection != 'agent_office_control'
         && collection != 'agent_telegram_tokens'
         && collection != 'jarvis_approval_tokens'
+        && collection != 'support_auto_reply_reservations'
+        && collection != 'support_auto_reply_counters'
+        && collection != 'support_inbox'
+        && collection != 'support_telegram_reviews'
+        && collection != 'support_telegram_edit_sessions'
+        && collection != 'support_telegram_reply_jobs'
+        && collection != 'support_reply_operations'
+        && collection != 'support_reply_batches'
+        && collection != 'admin_command_operations'
+        && collection != 'admin_config'
         && collection != 'agent_observation_receipts'
         && collection != 'agent_manager_agents'
         && collection != 'agent_manager_tasks'
@@ -2365,6 +2503,7 @@ service cloud.firestore {
         && collection != 'economy_exchange_history'
         && collection != 'coin_exchange_trades'
         && collection != 'coin_migrations'
+        && !isServerOwnedContentStudioRoot(collection)
         && collection != 'tournamentSchedule'
         && collection != 'tournamentRooms'
         && collection != 'tournamentTasks'
@@ -2417,7 +2556,7 @@ service cloud.firestore {
       allow get: if isAdmin();
     }
     match /support_inbox/{messageId} {
-      allow list: if isAdmin();
+      allow read, write: if false;
     }
     match /admin_push_jobs/{jobId} {
       allow list, create: if isAdmin();
@@ -2477,6 +2616,12 @@ service cloud.firestore {
     match /content_mode_template_lifecycle/{docId} {
       allow read, write: if false;
     }
+    match /content_mode_template_lifecycle_audit/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_lifecycle_operations/{docId} {
+      allow read, write: if false;
+    }
     match /content_season_drafts/{docId} {
       allow read, write: if false;
     }
@@ -2486,6 +2631,15 @@ service cloud.firestore {
     match /content_season_lifecycle/{docId} {
       allow read, write: if false;
     }
+    match /content_season_episode_pins/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_lifecycle_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_pin_cleanup_audits/{docId} {
+      allow read, write: if false;
+    }
     match /content_episode_drafts/{docId} {
       allow read, write: if false;
     }
@@ -2493,6 +2647,12 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_episode_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_lifecycle_audit/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_lifecycle_operations/{docId} {
       allow read, write: if false;
     }
     match /content_studio_review_queue/{docId} {
@@ -2507,6 +2667,33 @@ service cloud.firestore {
     match /content_studio_validation_receipts/{docId} {
       allow read, write: if false;
     }
+    match /content_studio_localization_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_voice_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_gate_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_season_approval_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_review_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_validation_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_localization_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_voice_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_gate_operations/{docId} {
+      allow read, write: if false;
+    }
     match /content_studio_waivers/{docId} {
       allow read, write: if false;
     }
@@ -2517,6 +2704,88 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_app_support_manifests/{docId} {
+      allow read, write: if false;
+    }
+    match /content_decision_registries/{docId} {
+      allow read, write: if false;
+    }
+    // Authenticated repository evidence is Firebase-Admin-only. These roots
+    // are reserved before the adapter is wired so no browser credential can
+    // forge a published profile, a repository claim, or a durable stage pin.
+    match /content_language_profile_versions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_language_profile_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_speech_profile_versions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_speech_profile_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_voice_generation_profile_versions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_voice_generation_profile_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_repository_auth/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_stage_repository_commits/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_stage_candidate_pins/{docId} {
+      allow read, write: if false;
+    }
+    // Published required-session bytes are release authority for server-side
+    // progress settlement. Browser admins and clients must use reviewed
+    // callables; direct writes could mint arbitrary course/task coordinates.
+    match /content_v2_required_session_sets/{docId} {
+      allow read, write: if false;
+    }
+
+    match /content_v2_required_session_answer_manifests/{docId} {
+      allow read, write: if false;
+    }
+    // The V2 Season pointer is the final root-last publication coordinate.
+    // Even browser-admin tokens must go through the audited server CAS.
+    match /content_v2_season_release_pointers/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_season_release_manifests/{docId} {
+      allow read, write: if false;
+    }
+
+    // Required-session counters and settled projections are transaction-owned.
+    // They are deliberately not client-readable: the callable returns only the
+    // accepted projection while protected economic receipts use another seam.
+    match /users/{uid}/v2_required_session_runs/{docId} {
+      allow read, write: if false;
+    }
+    match /users/{uid}/v2_required_session_task_attempts/{docId} {
+      allow read, write: if false;
+    }
+    match /users/{uid}/v2_required_session_settlements/{docId} {
+      allow read, write: if false;
+    }
+    // Monotonic best-of-12 award state and its per-completion decisions are
+    // server-only. Direct reads would expose another device's economic
+    // history; direct writes could mint or suppress access-star deltas.
+    match /users/{uid}/v2_required_session_performance_awards/{docId} {
+      allow read, write: if false;
+    }
+    match /users/{uid}/v2_required_session_performance_award_decisions/{docId} {
+      allow read, write: if false;
+    }
+    match /users/{uid}/v2_required_session_course_awards/{docId} {
+      allow read, write: if false;
+    }
+    // Completed offline sessions are uploaded through the App Check protected
+    // callable only. Direct client access could bypass immutable catalog and
+    // account-generation cross-checks or expose another device's pending data.
+    match /users/{uid}/v2_required_session_completion_inbox/{docId} {
       allow read, write: if false;
     }
 
@@ -2650,6 +2919,65 @@ service cloud.firestore {
     match /botProfiles/{botId} {
       allow read: if request.auth != null;
       allow write: if false;
+    }
+
+    // ── Arena V2 ────────────────────────────────────────────────────────────
+    // Old Arena roots above remain permanently sealed. Arena V2 uses distinct
+    // versioned collections and Admin-SDK-only writes. During play the client
+    // owns exactly one queue-document listener, then exactly one public match
+    // listener. Correct answers, bot blueprints and answer receipts never
+    // leave arena_v2_match_private.
+    match /arena_v2_config/{configId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_profiles/{userId} {
+      allow read: if userDocOwnerMatchesAuth(userId);
+      allow write: if false;
+    }
+    match /arena_v2_queue/{userId} {
+      allow read: if request.auth != null
+        && resource != null
+        && resource.data.get('authUid', '') == request.auth.uid;
+      allow write: if false;
+    }
+    match /arena_v2_matches/{matchId} {
+      allow read: if request.auth != null
+        && exists(/databases/$(database)/documents/arena_v2_matches/$(matchId)/arena_v2_members/$(request.auth.uid));
+      allow write: if false;
+
+      // A participant may inspect only their own opaque seat marker. Keeping
+      // membership outside the public match avoids exposing the opponent's
+      // Firebase Auth or stable UID through the one live match listener.
+      match /arena_v2_members/{authUid} {
+        allow read: if request.auth != null && request.auth.uid == authUid;
+        allow write: if false;
+      }
+    }
+    match /arena_v2_invites/{inviteId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_queue_locks/{lockId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_pair_limits/{pairId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_match_private/{matchId} {
+      allow read, write: if false;
+    }
+    // Expansion coordination and sealed content are callable-only. These
+    // roots can contain identities, task envelopes or social moderation state.
+    match /arena_v2_daily_private/{challengeId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_ghosts/{ghostId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_series/{seriesId} {
+      allow read, write: if false;
+    }
+    match /arena_v2_partnerships/{partnershipId} {
+      allow read, write: if false;
     }
     match /users/{uid}/reward_claims/{claimId} {
       allow read: if request.auth != null && request.auth.uid == uid;

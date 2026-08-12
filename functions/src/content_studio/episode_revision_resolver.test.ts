@@ -303,9 +303,33 @@ describe("immutable Episode revision object binding", () => {
       },
       assets: [],
     };
-    expect(validateEpisodeRevisionArtifactBody(minimalEpisodeBody(activity))).toBe(
-      true,
-    );
+    const body = minimalEpisodeBody(activity);
+    expect(validateEpisodeRevisionArtifactBody(body)).toBe(true);
+    expect(validateEpisodeRevisionArtifactBody({
+      ...body,
+      sessionSetRef: {
+        episodeId: body.episodeId,
+        version: 1,
+        contentHash: "b".repeat(64),
+      },
+    })).toBe(true);
+    expect(validateEpisodeRevisionArtifactBody({
+      ...body,
+      sessionSetRef: {
+        episodeId: "another-episode",
+        version: 1,
+        contentHash: "b".repeat(64),
+      },
+    })).toBe(false);
+    expect(validateEpisodeRevisionArtifactBody({
+      ...body,
+      sessionSetRef: {
+        episodeId: body.episodeId,
+        version: 1,
+        contentHash: "b".repeat(64),
+        unpinned: true,
+      },
+    })).toBe(false);
   });
 
   it("rejects a normative ActivityInstance body with a forged payload hash", () => {

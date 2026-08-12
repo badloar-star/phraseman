@@ -9,8 +9,8 @@ const baseline = runPromptRegression(PROMPT_REGRESSION_CASES);
 if (!baseline.passed || baseline.manifestHash !== promptRegressionManifestHash()) throw new Error('active_prompt_regression_evidence_invalid');
 
 function profile(kind: GenerationStageKind): ActivePromptProfile {
-  const isLesson = kind.startsWith('lesson_'); const isFlashcard = kind.startsWith('flashcard_');
-  return Object.freeze({ promptVersion: isLesson || isFlashcard ? 'v3' : 'v2', schemaVersion: isLesson || isFlashcard ? 3 : 2, qaPolicy: isLesson ? 'lesson-quality-v3' : isFlashcard ? 'flashcard-studio-quality-v3' : 'question-studio-quality-v2', manifestHash: baseline.manifestHash, reportHash: baseline.reportHash });
+  const isLesson = kind.startsWith('lesson_'); const isFlashcard = kind.startsWith('flashcard_'); const isLearningV2 = kind.startsWith('learning_v2_');
+  return Object.freeze({ promptVersion: isLesson || isFlashcard ? 'v3' : 'v2', schemaVersion: isLesson || isFlashcard ? 3 : 2, qaPolicy: isLesson ? 'lesson-quality-v3' : isFlashcard ? 'flashcard-studio-quality-v3' : isLearningV2 ? 'learning-v2-course-quality-v1' : 'question-studio-quality-v2', manifestHash: baseline.manifestHash, reportHash: baseline.reportHash });
 }
 export const ACTIVE_PROMPT_PROFILES: Readonly<Record<GenerationStageKind, ActivePromptProfile>> = Object.freeze(Object.fromEntries(GENERATION_STAGE_KINDS.map((kind) => [kind, profile(kind)])) as Record<GenerationStageKind, ActivePromptProfile>);
 export function activePromptProfile(kind: GenerationStageKind): ActivePromptProfile { const value = ACTIVE_PROMPT_PROFILES[kind]; if (!value) throw new Error('active_prompt_profile_missing'); return value; }

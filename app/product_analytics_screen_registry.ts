@@ -1,5 +1,9 @@
 const STATIC_SCREEN_NAMES = [
   'achievements_screen', 'avatar_select', 'club_screen',
+  'arena', 'arena_friend_duel', 'arena_invite', 'arena_match', 'arena_matchmaking',
+  'arena_ghost_duel', 'arena_mastery_map', 'arena_match_lab', 'arena_partner',
+  'arena_ranks', 'arena_results', 'arena_rivalries', 'arena_season_pass',
+  'arena_star_wallet', 'arena_today',
   'collectibles_screen', 'community_pack_create', 'daily_tasks_screen', 'diagnostic_test', 'exam', 'flashcards',
   'flashcards_audio', 'flashcards_collection', 'flashcards_swipe', 'hint', 'language_welcome',
   'league_screen', 'lesson_complete', 'lesson_help', 'lesson_irregular_verbs', 'lesson_menu',

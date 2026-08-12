@@ -2,12 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 
-describe('root admin daily digest contract', () => {
+describe('live admin daily digest contract', () => {
   const root = path.resolve(__dirname, '..');
-  const html = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
-  const source = fs.readFileSync(path.join(root, 'admin', 'daily-digest.js'), 'utf8');
+  const html = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+  const source = fs.readFileSync(path.join(root, 'admin', 'v2', 'daily-digest.js'), 'utf8');
 
-  test('keeps the root digest workflow wired to the root renderer', () => {
+  test('keeps the live digest workflow wired to the published renderer', () => {
     expect(html).toContain('id="dd-period"');
     expect(html).toContain('id="dd-comparisons"');
     expect(html).toContain('id="dd-product-manager"');
@@ -27,7 +27,7 @@ describe('root admin daily digest contract', () => {
     };
     context.window = context;
     vm.createContext(context);
-    vm.runInContext(source, context, { filename: 'admin/daily-digest.js' });
+    vm.runInContext(source, context, { filename: 'admin/v2/daily-digest.js' });
     const api = (context as any).AdminDailyDigestV2;
     const sections = JSON.parse(JSON.stringify(api.parseSummarySections(
       'Вступление\nРОСТ И ДЕНЬГИ\nВыручка выросла.\nРИСКИ И ОЧЕРЕДИ: Есть риск.',

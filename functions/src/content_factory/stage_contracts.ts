@@ -10,7 +10,14 @@ export type GenerationStageKind =
   | 'challenge_question_replacement'
   | 'flashcard_pack_idea'
   | 'flashcard_items'
-  | 'flashcard_item_replacement';
+  | 'flashcard_item_replacement'
+  | 'learning_v2_research'
+  | 'learning_v2_curriculum'
+  | 'learning_v2_lesson_outline'
+  | 'learning_v2_localized_course'
+  | 'learning_v2_audio'
+  | 'learning_v2_quality_assurance'
+  | 'learning_v2_release';
 
 export type GenerationStageState = 'queued' | 'running' | 'paused' | 'needs_review' | 'approved' | 'rejected' | 'failed' | 'cancelled' | 'superseded';
 
@@ -37,6 +44,8 @@ const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
 export const GENERATION_STAGE_KINDS: readonly GenerationStageKind[] = Object.freeze([
   'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
   'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
+  'learning_v2_research', 'learning_v2_curriculum', 'learning_v2_lesson_outline', 'learning_v2_localized_course',
+  'learning_v2_audio', 'learning_v2_quality_assurance', 'learning_v2_release',
 ]);
 
 export function createGenerationStageUnit(input: Omit<GenerationStageUnit, 'stageId' | 'artifactId' | 'idempotencyKey' | 'state'>): GenerationStageUnit {

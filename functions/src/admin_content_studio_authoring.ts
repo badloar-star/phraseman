@@ -1,7 +1,7 @@
-import { HttpsError } from "firebase-functions/v2/https";
-import { onCall } from "firebase-functions/v2/https";
-import { hasAdminRole, type AdminRole } from "./admin/roles";
-import { hasPermission } from "./admin/permissions";
+import { HttpsError, onCall } from "firebase-functions/v2/https";
+import { type AdminRole } from "./admin/roles";
+import { explicitAdminRoleFromToken, hasPermission } from "./admin/permissions";
+import { ENFORCE_APP_CHECK_ADMIN } from "./callable_options";
 
 export interface V2AuthoringRequest {
   readonly draftId: string;
@@ -65,8 +65,9 @@ export function requireContentDraftWriter(
 ): ContentDraftWriter {
   if (!auth?.uid || auth.token?.admin !== true)
     throw new HttpsError("permission-denied", "Admin only");
-  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
-  const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : "owner";
+  const role = explicitAdminRoleFromToken(auth.token);
+  if (!role)
+    throw new HttpsError("permission-denied", "Explicit Content Studio role required");
   if (!hasPermission(role, "content.draft.write"))
     throw new HttpsError("permission-denied", "Role cannot edit V2 drafts");
   return Object.freeze({ uid: auth.uid, role });
@@ -79,8 +80,9 @@ export function requireContentPublisher(
 ): ContentDraftWriter {
   if (!auth?.uid || auth.token?.admin !== true)
     throw new HttpsError("permission-denied", "Admin only");
-  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
-  const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : "owner";
+  const role = explicitAdminRoleFromToken(auth.token);
+  if (!role)
+    throw new HttpsError("permission-denied", "Explicit Content Studio role required");
   if (!hasPermission(role, "content.publish"))
     throw new HttpsError("permission-denied", "Role cannot publish V2 content");
   return Object.freeze({ uid: auth.uid, role });
@@ -93,8 +95,9 @@ export function requireContentReviewer(
 ): ContentDraftWriter {
   if (!auth?.uid || auth.token?.admin !== true)
     throw new HttpsError("permission-denied", "Admin only");
-  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
-  const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : "owner";
+  const role = explicitAdminRoleFromToken(auth.token);
+  if (!role)
+    throw new HttpsError("permission-denied", "Explicit Content Studio role required");
   if (!hasPermission(role, "content.review"))
     throw new HttpsError("permission-denied", "Role cannot review V2 content");
   return Object.freeze({ uid: auth.uid, role });
@@ -338,7 +341,7 @@ export function createAdminSaveV2DraftCallable<T>(
   return onCall(
     {
       region: "us-central1",
-      enforceAppCheck: process.env.ENFORCE_APP_CHECK_CONTENT_STUDIO !== "false",
+      enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
     },
     async (request) => handleAdminSaveV2Draft(request, dependencies),
   );

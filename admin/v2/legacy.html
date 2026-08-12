@@ -9601,7 +9601,7 @@
 
     <div class="h-sec">
       <div class="h-sec-title">🎛 Пульт управления <span class="h-sec-badge">ГЛАВНАЯ</span></div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Самая важная вкладка. Управляешь приложением у всех пользователей сразу — без обновления в сторе. Изменения применяются за секунды.</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Самая важная вкладка. Управляешь приложением у всех пользователей без обновления в сторе. Клиентские настройки применяются при запуске или возврате в приложение и не позднее примерно 5 минут.</div>
       <div class="h-btn-list">
         <div class="h-btn"><div class="h-btn-name">Рубильники фич</div><div class="h-btn-desc">Переключатели ON/OFF для крупных функций. Выключил — функция пропадает у всех пользователей прямо сейчас. Включил — появляется обратно. Покупки и доступы при этом не отзываются.</div></div>
         <div class="h-btn"><div class="h-btn-name">💎 Плюс / Фри</div><div class="h-btn-desc">Решаешь, какие функции платные, а какие бесплатные. Здесь же — сколько раз бесплатный пользователь может воспользоваться платной функцией до пейвола. Изменения живые, без релиза.</div></div>
@@ -9858,7 +9858,7 @@
       <div style="font-size:12.5px;color:#9ca3af;line-height:1.8">
         • <b style="color:#e5e7eb">Поиск по разделам</b> — поле «Search sections» в левой части полоски вкладок. Начни вводить — нужная вкладка подсветится.<br>
         • <b style="color:#e5e7eb">Поиск пользователя</b> — поле «UID or name» в правом углу шапки. Найдёт по любому фрагменту имени или ID.<br>
-        • <b style="color:#e5e7eb">Все изменения — сразу у пользователей</b>. Не нужен релиз, не нужен OTA-апдейт. Изменения применяются за секунды.<br>
+        • <b style="color:#e5e7eb">Клиентским изменениям не нужен релиз</b>. Они применяются при запуске или возврате в приложение и не позднее примерно 5 минут. Серверные ограничения действуют при следующем серверном действии.<br>
         • <b style="color:#e5e7eb">После любого изменения нажимай «💾 Сохранить»</b> — пока не нажал, ничего не сохранилось.<br>
         • <b style="color:#ef4444">Жёсткий блок</b> отключает приложение для ВСЕХ. Не забудь выключить после работ!<br>
         • <b style="color:#e5e7eb">Sign out</b> — кнопка выхода из админки, в правом углу шапки.
@@ -9984,7 +9984,7 @@
     <div>
       <div class="admin-overview-title">🎛 Пульт управления</div>
       <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
-        Рычаги, которые меняют приложение у пользователей <b>без релиза и OTA</b>. Изменения подхватываются за секунды.
+        Рычаги, которые меняют приложение у пользователей <b>без релиза и OTA</b>. Клиент обновляется при запуске или возврате и не позднее примерно 5 минут.
       </div>
     </div>
   </section>
@@ -9995,7 +9995,7 @@
   <div class="cp-card">
     <div class="cp-card-title" style="color:#fbbf24">🎛 Рубильники фич</div>
     <div class="cp-card-sub">
-      Аварийное включение/выключение функций <b>без релиза и OTA</b> — изменения подхватываются клиентами за секунды.
+      Аварийное включение/выключение функций <b>без релиза и OTA</b>. Серверные запреты действуют при следующем серверном действии; клиентский интерфейс обновляется при запуске или возврате и не позднее примерно 5 минут.
       Уже начатые покупки/доступы не отзываются.
     </div>
     <div style="margin-top:8px"><span id="cp-toggles-status" class="cp-status-chip">Загрузка…</span></div>
@@ -10100,7 +10100,7 @@
       Когда <b style="color:#f87171">включено</b> и версия приложения <b>ниже</b> указанной — у пользователя
       полноэкранный блок «обнови приложение» с кнопкой в стор. <b style="color:#fbbf24">Осторожно:</b> при
       пустой версии блок не покажется (защита). Версия в формате <code style="color:#a78bfa">1.2.3</code>.
-      Применяется у всех живьём (onSnapshot), без релиза.
+      Серверное ограничение применяется при следующей проверке; клиентский экран — при запуске или возврате и не позднее примерно 5 минут, без релиза.
     </div>
     <div class="cp-switch-row" style="margin-top:6px">
       <div class="cp-switch-ico" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.2)">🚀</div>
@@ -10302,7 +10302,7 @@
       Для каждого дня недели выбери бонус (или «—нет—»). Можно поставить <b style="color:#f9a8d4">несколько через ротацию</b>
       — тогда бонусы чередуются по неделям (одна суббота — один, следующая — другой). Ниже — общий
       вкл/выкл каждого бонуса и постоянных модификаторов. Пишется в <code style="color:#818cf8">remote_config/app.texts.weekly_boons_config</code>,
-      клиенты подхватывают за секунды.
+      клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут.
     </div>
     <div style="margin-top:8px"><span id="wb-status" class="cp-status-chip">Загрузка…</span></div>
 
@@ -10927,7 +10927,7 @@
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Remote Config</h2>
     <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.55">
       Управление лимитами, экономикой и A/B-сплитами <b>без релиза приложения</b>. Значения пишутся в
-      <code style="color:#818cf8">remote_config/app</code>, клиенты подхватывают их через onSnapshot за секунды.
+      <code style="color:#818cf8">remote_config/app</code>, клиенты применяют кэш при запуске или возврате и обновляют его не позднее примерно 5 минут.
       Пустое поле = значение по умолчанию из приложения. Значения вне диапазона приложение само зажмёт в безопасные границы.
     </p>
   </div>
@@ -10949,7 +10949,7 @@
       Какой канал показывать на экране «Видео» и на кнопке главной. Можно подключить <b>любой</b> канал
       <b>без релиза</b> — приложение само построит ленту, ссылки и подпись. Пусто = встроенный канал
       <b style="color:#e2e8f0">PHRASEMAN</b>. Пишется в <code style="color:#818cf8">remote_config/app.texts</code>,
-      клиенты подхватывают за секунды. Чтобы кнопка вообще появилась — включи «Кнопка «Видео» на главной»
+      клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут. Чтобы кнопка вообще появилась — включи «Кнопка «Видео» на главной»
       в «Пульте».
     </p>
     <div style="display:flex;flex-direction:column;gap:12px">
@@ -11838,11 +11838,41 @@
     <button onclick="loadSupportInbox(true)" style="background:#2a2a3a;color:#aaa">↻ Обновить список</button>
     <span class="reports-count" id="gsi-count"></span>
   </div>
+  <section aria-labelledby="gsi-auto-title" style="margin:4px 0 12px;padding:12px 13px;background:#12151d;border:1px solid #273043;border-radius:8px">
+    <div id="gsi-auto-title" style="font-size:14px;font-weight:800;color:#e5e7eb">Автоматические ответы Джарвиса</div>
+    <p style="margin:5px 0 10px;color:#9ca3af;font-size:12.5px;line-height:1.5">Gmail проверяется раз в час. Джарвис готовит ответ по актуальному снимку репозитория и присылает полный текст в Telegram. В режиме автоотправки у вас есть 3 часа: можно отправить сразу, передать правки Джарвису или отредактировать здесь. Без действия отправится только показанная и безопасная версия.</p>
+    <div style="display:flex;align-items:end;gap:10px;flex-wrap:wrap">
+      <label style="display:flex;flex-direction:column;gap:4px;color:#cbd5e1;font-size:12px">Режим
+        <select id="gsi-auto-mode" style="min-width:190px" aria-describedby="gsi-auto-status">
+          <option value="live_guarded">Автоотправка через 3 часа</option>
+          <option value="shadow">Только подтверждение вручную</option>
+          <option value="off">Выключено</option>
+        </select>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;color:#cbd5e1;font-size:12px">Лимит в сутки
+        <input id="gsi-auto-daily-cap" type="number" min="1" max="500" value="100" style="width:110px" />
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;color:#cbd5e1;font-size:12px">На один адрес в сутки
+        <input id="gsi-auto-sender-cap" type="number" min="1" max="10" value="3" style="width:140px" />
+      </label>
+      <button type="button" onclick="supportSaveAutomation()" title="Сохранит режим и лимиты на сервере с проверкой ревизии и записью в аудит. Выключить ответы можно здесь же." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;font-weight:700;min-height:40px">Сохранить автоматизацию</button>
+      <span id="gsi-auto-status" role="status" style="font-size:12px;color:#94a3b8"></span>
+    </div>
+  </section>
   <div style="margin:4px 0 12px;padding:11px 13px;background:#12151d;border:1px solid #1e2230;border-radius:9px;display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap">
     <span style="font-size:12.5px;color:#9ca3af;font-weight:600;padding-top:7px;flex-shrink:0">✍️ Подпись (добавляется в конец каждого ответа):</span>
     <textarea id="gsi-signature" rows="4" placeholder="напр.&#10;Warm regards,&#10;The Phraseman Team 🦉&#10;Phraseman by Knowly · knowlyapps.com" style="flex:1;min-width:260px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:7px;padding:7px 10px;font-size:13px;line-height:1.45;font-family:inherit;resize:vertical;white-space:pre-wrap"></textarea>
     <button onclick="supportSaveSignature()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 13px;border-radius:7px;cursor:pointer;font-weight:600;font-size:12.5px;flex-shrink:0;align-self:flex-start">Сохранить подпись</button>
   </div>
+  <section aria-labelledby="gsi-prepared-title" style="margin:4px 0 14px;padding:12px 13px;background:#101722;border:1px solid #2b3b52;border-radius:10px">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap">
+      <div id="gsi-prepared-title" style="font-size:14px;font-weight:800;color:#e5e7eb">📨 Подготовленные Джарвисом</div>
+      <span id="gsi-prepared-count" style="font-size:12px;color:#93a4ba">0</span>
+    </div>
+    <p style="margin:4px 0 10px;color:#93a4ba;font-size:12px">Здесь только новые письма с готовым ответом. Текст можно исправить и сохранить — старая Telegram-кнопка погаснет, а новая версия придёт повторно.</p>
+    <div id="gsi-prepared-list"><div class="reports-empty">Подготовленных ответов пока нет.</div></div>
+  </section>
+  <div style="font-size:13px;font-weight:800;color:#cbd5e1;margin:4px 0 9px">Остальные письма</div>
   <div id="gsi-list"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
@@ -11970,7 +12000,7 @@
   <div style="padding:8px 24px;max-width:1000px">
     <h3 style="color:#a78bfa;font-size:15px;margin:8px 0 6px">Управление</h3>
     <p style="font-size:12px;color:#888;margin-bottom:10px;line-height:1.5">
-      Рубильники пишутся в <code style="color:#818cf8">remote_config/app.bools</code> (клиенты подхватывают за секунды).
+      Рубильники пишутся в <code style="color:#818cf8">remote_config/app.bools</code> (клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут).
       Главный выключатель гасит весь Компас; под-рычаги управляют независимыми крыльями.
     </p>
     <div id="cm-toggles" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -13305,7 +13335,7 @@
         Снимите галочку, чтобы экран перестал показываться новым пользователям. Онбординг продолжится
         со следующего включённого шага — ничего не ломается. Пишется в
         <code style="color:#818cf8">remote_config/app.texts.onboarding_enabled_steps_v1</code>,
-        клиенты подхватывают за секунды, без обновления приложения и без OTA.
+        клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут, без обновления приложения и без OTA.
       </div>
     </div>
     <div class="revenue-controls">
@@ -22527,6 +22557,20 @@
     "mrE3R0Yor0EcZyQRehDT": {title:"Спасибо, подтвердили несовпадение озвучки",body:"Спасибо, вы подметили верно — и рассуждение совершенно правильное. Somebody и someone равнозначны, поэтому оба ответа засчитываются, но озвучка всегда читает основной вариант фразы, а не выбранный вами. Мы взяли это в работу, а вам начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"lesson21-synonym-audio"},
     "LsQVkpPJ10CaSocibvzb": {title:"Спасибо, мы проверили задание",body:"Спасибо, что написали. Мы проверили это задание — слово hotel среди вариантов есть. Возможно, оно не поместилось на экране: мы как раз работаем над тем, чтобы длинные слова были видны полностью.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson19-missing-hotel"},
     "qiLXHWpMZPmjRyfIlYmi": {title:"Где найти подарочную колоду",body:"Спасибо за вопрос. Откройте раздел «Карточки», затем вкладку «Витрина» — там находятся наборы, которые можно забрать по подарку. 48 часов даются на выбор, а после получения выбранная колода останется у вас.",shards:0,resolution:"by_design",rewardGroup:"flashcards-pack-gift-location"},
+    "DhK3XcrfjUlJbtwqderO": {title:"Разбор ошибки теперь остаётся на экране",body:"Спасибо, вы помогли нам проверить поведение подсказки после ошибки. В актуальной версии разбор остаётся на экране до вашего следующего действия; у вас установлена версия 1.6.6, поэтому, пожалуйста, обновите приложение. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-error-feedback-persistence"},
+    "dZlDwBjL1Ew6Mcu0nLop": {title:"Порядок слов в вопросе верный",body:"Спасибо, мы проверили эту фразу и набор слов. В вопросе Does he often forget? наречие often ставится перед основным глаголом forget, поэтому текущий порядок верный; вариант rarely меняет смысл предложения.",shards:0,resolution:"by_design",rewardGroup:"lesson5-frequency-adverb-order"},
+    "nLQZOj8uk6dhGCDHFUMG": {title:"У фразі правильний варіант — He",body:"Дякуємо, ми перевірили це завдання. Для «Він носить окуляри» правильна фраза — He wears glasses, а you був відволікаючим варіантом; у звіті збережено саме вибір you wears glasses.",shards:0,resolution:"user_error",rewardGroup:"lesson3-he-wears-glasses"},
+    "XbRAuTpygAqh7mzRjpjB": {title:"Купівлю наборів карток виправлено",body:"Дякуємо, що перевірили покупку ще раз. В актуальній версії ми вже виправили синхронізацію балансу, яка могла блокувати набір навіть за наявності інтернету; у вас версія 1.6.6, тому, будь ласка, оновіть застосунок.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
+    "8hWRTWLasuU0gtKIc1gE": {title:"Купівлю наборів карток виправлено",body:"Дякуємо, ви допомогли знайти проблему синхронізації балансу перед купівлею набору карток. В актуальній версії перевірку виправлено; у вас встановлена версія 1.6.6, тому, будь ласка, оновіть застосунок. Вам нараховано 2 перлини.",shards:2,resolution:"confirmed_fixed",rewardGroup:"flashcard-pack-shard-purchase"},
+    "ln3vcMgzNnMC5pj7srAQ": {title:"Уточнили перевод фразы",body:"Спасибо, вы точно заметили: перевод «Всё в порядке» был слишком свободным для задания с одним ответом. Мы заменили его на более прямое «Никаких проблем нет», чтобы он однозначно подводил к Nothing is wrong; изменение появится в следующем обновлении приложения. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson21-nothing-wrong-translation"},
+    "aL0EXUQfO9xwogczKrvv": {title:"Текст скрыт в задании на слух",body:"Спасибо, мы проверили эту фразу и её озвучку. В режиме «На слух» английский текст специально не показывается над заданием: нужно узнать фразу по звуку и выбрать My name is easy to say среди вариантов.",shards:0,resolution:"by_design",rewardGroup:"personal-plan-listen-choose-hidden-transcript"},
+    "wXoD0PoyC2lFuWaaVF5R": {title:"В этой фразе нужна форма cooks",body:"Спасибо, мы проверили задание. После she в Present Simple нужна форма cooks, поэтому правильный ответ — She cooks dinner, а She cook dinner не засчитывается.",shards:0,resolution:"user_error",rewardGroup:"lesson3-subject-agreement"},
+    "bdwAV2iBRkWkE0PzGLan": {title:"В этой фразе подлежащее You",body:"Спасибо, мы проверили задание. Русскому «Ты читаешь книги» соответствует You read books, поэтому вариант I read books меняет подлежащее и не засчитывается.",shards:0,resolution:"user_error",rewardGroup:"lesson3-subject-meaning"},
+    "nupzElGoogbGDK5DLSNR": {title:"В этой фразе нужен вариант wrong",body:"Спасибо, мы проверили задание. Are you wrong? означает «Вы неправы?», а вариант right меняет смысл на противоположный, поэтому ошибка была отмечена верно.",shards:0,resolution:"user_error",rewardGroup:"lesson2-opposite-meaning"},
+    "yEYsJ9999FkOadOuSnnn": {title:"В этой фразе нужен вариант afraid",body:"Спасибо, мы проверили задание. «Я не боюсь» переводится как I am not afraid, а I'm not wrong означает «Я не ошибаюсь», поэтому текущая проверка верна.",shards:0,resolution:"user_error",rewardGroup:"lesson2-opposite-meaning"},
+    "bt9JXZ87gTNFAcLRXZT5": {title:"В этой фразе нужен вариант angry",body:"Спасибо, мы проверили задание. «Я не злюсь» переводится как I am not angry, а healthy означает «здоров», поэтому выбранный вариант не подходит по смыслу.",shards:0,resolution:"user_error",rewardGroup:"lesson2-opposite-meaning"},
+    "HLnsVFPCAL8Boray30oL": {title:"Формы глагола take указаны верно",body:"Спасибо, мы проверили задание: формы take — took — taken и правильный вариант для base указан верно. В комментарии вы отметили случайное нажатие, и ошибки в упражнении мы не нашли.",shards:0,resolution:"user_error",rewardGroup:"irregular-verb-take"},
+    "VdmYsQVfhCFYjcxLt5Sb": {title:"Формы глагола eat указаны верно",body:"Спасибо, мы проверили задание: формы eat — ate — eaten и правильный вариант для причастия указан верно. В комментарии вы отметили, что поторопились, и ошибки в упражнении мы не нашли.",shards:0,resolution:"user_error",rewardGroup:"irregular-verb-eat"},
     "UBa0ue0p8dWn4cRVGUY1": {title:"Как открыть список уроков",body:"Спасибо, что написали. Кнопка «Урок» на главной открывает последний начатый урок, а весь список находится за кнопкой с книгой в нижней панели. Нажмите её, чтобы выбрать любой доступный урок.",shards:0,resolution:"by_design",rewardGroup:"home-last-lesson-navigation"},
     "YUpxF78tXuRUQ5h9FRln": {title:"Вопросительный знак вернули",body:"Спасибо за внимательность. Мы исправили отображение правильного ответа: у вопроса «Do they have tickets?» снова будет знак вопроса в конце. Изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson-result-terminal-punctuation"},
     "ZXhpSblichNKlI6cyMPG": {title:"Повторение фраз исправили",body:"Спасибо, вы нашли настоящую ошибку. В повторение фраз прошлого дня могла попасть фраза из текущего дня — мы ограничили задание нужным набором. Исправление появится в следующем обновлении приложения, а вам начислили 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-recall-source-day"},
@@ -25005,6 +25049,7 @@
 
   // ═══ GMAIL SUPPORT INBOX — входящая почта поддержки + ИИ-ответы ═════════════
   let _supportInboxAll = [];
+  let _supportAutomationRevision = 0;
   window.loadSupportInbox = async function(force) {
     const list = document.getElementById('gsi-list');
     if (!list) return;
@@ -25012,13 +25057,23 @@
     list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
       await auth.currentUser?.getIdToken(true).catch(() => null);
-      const [inboxSnap, cfgSnap] = await Promise.all([
-        getDocs(query(collection(db, 'support_inbox'), orderBy('receivedAtMs', 'desc'), limit(500))),
-        getDoc(doc(db, 'admin_config', 'support_inbox')),
-      ]);
-      _supportInboxAll = inboxSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const response = await supportCallable('adminSupportList')({ limit: 500 });
+      const supportData = response?.data || {};
+      _supportInboxAll = Array.isArray(supportData.items) ? supportData.items : [];
       const sigInput = document.getElementById('gsi-signature');
-      if (sigInput && cfgSnap.exists()) sigInput.value = String(cfgSnap.data().signature || '');
+      {
+        const supportConfig = supportData.automation || {};
+        if (sigInput) sigInput.value = String(supportData.signature || '');
+        _supportAutomationRevision = Number(supportConfig.revision || 0);
+        const mode = document.getElementById('gsi-auto-mode');
+        const dailyCap = document.getElementById('gsi-auto-daily-cap');
+        const senderCap = document.getElementById('gsi-auto-sender-cap');
+        if (mode) mode.value = ['off','shadow','live_guarded'].includes(String(supportConfig.mode || '')) ? String(supportConfig.mode) : 'shadow';
+        if (dailyCap) dailyCap.value = String(Number(supportConfig.dailyCap || 100));
+        if (senderCap) senderCap.value = String(Number(supportConfig.perSenderDailyCap || 3));
+      }
+      const autoStatus = document.getElementById('gsi-auto-status');
+      if (autoStatus) autoStatus.textContent = `Ревизия ${_supportAutomationRevision}`;
       window._supportInboxLoaded = true;
       renderSupportInbox();
     } catch (e) {
@@ -25029,38 +25084,55 @@
 
   window.renderSupportInbox = function renderSupportInbox() {
     const list = document.getElementById('gsi-list');
+    const preparedList = document.getElementById('gsi-prepared-list');
+    const preparedCount = document.getElementById('gsi-prepared-count');
     const count = document.getElementById('gsi-count');
     if (!list) return;
     const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
-    let rows = _supportInboxAll.slice();
+    const preparedRows = _supportInboxAll.filter(r => (r.status || 'new') === 'new' && String(r.draftReply || '').trim());
+    let rows = _supportInboxAll.filter(r => !preparedRows.includes(r));
     if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
     if (count) count.textContent = `${rows.length} / ${_supportInboxAll.length}`;
-    if (!rows.length) {
-      list.innerHTML = '<div class="reports-empty">Писем в этом фильтре нет. Нажми «🔄 Проверить почту», чтобы забрать новые с Gmail.</div>';
-      return;
-    }
+    if (preparedCount) preparedCount.textContent = `${preparedRows.length} готово`;
     const statusPill = (s) => {
       const map = { new:['Новое','#fbbf24','#1a1606'], answered:['Отвечено','#4ade80','#0f1a12'], archived:['Архив','#9ca3af','#161a1f'] };
       const [t,c,bg] = map[s] || map.new;
       return `<span style="font-family:monospace;font-size:10.5px;padding:2px 8px;border-radius:20px;color:${c};background:${bg};border:1px solid ${c}44">${t}</span>`;
     };
+    const autoReplyPill = (value) => {
+      const state = String(value?.state || '');
+      if (!state) return '';
+      const labels = { pending:'Джарвис: очередь', processing:'Джарвис: проверяет', retry:'Джарвис: повтор', awaiting_approval:'Ждёт решения', awaiting_feedback:'Ждёт ваших правок', revising:'Переписывает', accepted:'Джарвис: отправил', attention_required:'Проверить доставку', paused:'Автоответы выключены', suppressed:'Только черновик', exhausted:'Лимит/ошибка' };
+      const alert = state === 'attention_required' || state === 'exhausted';
+      const color = alert ? '#fca5a5' : state === 'accepted' ? '#86efac' : '#bfdbfe';
+      const background = alert ? '#2a1217' : state === 'accepted' ? '#102419' : '#111d31';
+      return `<span title="${esc(String(value?.reason || state))}" style="font-size:10.5px;padding:2px 8px;border-radius:20px;color:${color};background:${background};border:1px solid ${color}55">${esc(labels[state] || state)}</span>`;
+    };
     const esc = escapeHtml;
-    list.innerHTML = rows.map(r => {
+    const renderCards = (cards) => cards.map(r => {
       const id = esc(r.id);
       const status = r.status || 'new';
       const when = r.receivedAtMs ? new Date(r.receivedAtMs).toLocaleString('ru-RU') : (r.receivedAt || '—');
       const from = `${esc(r.fromName || '')} <${esc(r.fromEmail || '—')}>`.trim();
       const draft = r.draftReply || '';
+      const autoSendAtMs = Number(r.autoReply?.autoSendAtMs || 0);
+      const deadlineText = autoSendAtMs > 0
+        ? (autoSendAtMs > Date.now()
+          ? `⏱ Автоотправка после ${new Date(autoSendAtMs).toLocaleString('ru-RU')}`
+          : '⏱ Срок истёк — отправка ставится в очередь')
+        : (r.autoReply?.state === 'awaiting_approval' ? 'Ручное подтверждение: автоотправка выключена' : '');
       const draftBox = (status !== 'archived') ? `
         <textarea id="gsi-draft-${id}" placeholder="Черновик ответа появится здесь после «Сгенерировать ответ», либо впиши сам…" style="width:100%;min-height:${draft ? '90px' : '54px'};margin-top:10px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:8px;padding:9px 11px;font-size:13px;line-height:1.5;resize:vertical">${esc(draft)}</textarea>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
           <button onclick="supportGenerateOne('${id}')" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600">✨ Сгенерировать ответ</button>
+          ${status === 'new' ? `<button onclick="supportSaveDraft('${id}')" style="background:#16251e;border:1px solid #315941;color:#a7f3d0;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700" title="Сохранить текст, отменить старую версию и прислать новые кнопки в Telegram">💾 Сохранить правки</button>` : ''}
           ${status === 'new' ? `<button onclick="supportSendOne('${id}')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">📤 Отправить</button>` : ''}
-        </div>` : '';
+        </div>
+        ${deadlineText ? `<div style="margin-top:7px;font-size:11.5px;color:#93a4ba">${esc(deadlineText)}</div>` : ''}` : '';
       return `<div style="background:#12151d;border:1px solid #1e2230;border-radius:11px;padding:14px 16px;margin-bottom:11px">
         <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline">
           <div style="font-weight:700;color:#e5e7eb;font-size:14.5px">${esc(r.subject || '(без темы)')}</div>
-          <div style="display:flex;gap:8px;align-items:center">${statusPill(status)}<span style="font-size:11px;color:#6b7280">${esc(String(when))}</span></div>
+          <div style="display:flex;gap:8px;align-items:center">${statusPill(status)}${autoReplyPill(r.autoReply)}<span style="font-size:11px;color:#6b7280">${esc(String(when))}</span></div>
         </div>
         <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from}</div>
         <div style="font-size:13px;color:#cbd5e1;margin-top:9px;white-space:pre-wrap;max-height:160px;overflow:auto;background:#0e1116;border:1px solid #1a1d27;border-radius:7px;padding:9px 11px">${esc((r.bodyText || '').slice(0, 4000)) || '<span style="opacity:.5">(пустое тело)</span>'}</div>
@@ -25072,6 +25144,12 @@
         </div>
       </div>`;
     }).join('');
+    if (preparedList) preparedList.innerHTML = preparedRows.length
+      ? renderCards(preparedRows)
+      : '<div class="reports-empty">Подготовленных ответов пока нет.</div>';
+    list.innerHTML = rows.length
+      ? renderCards(rows)
+      : '<div class="reports-empty">Других писем в этом фильтре нет.</div>';
   };
 
   async function _supportRefreshAfter(action) {
@@ -25166,6 +25244,28 @@
       if (descEl && previousStyle) Object.assign(descEl.style, previousStyle);
     }
   }
+
+  window.supportSaveDraft = async function(id) {
+    const ta = document.getElementById('gsi-draft-' + id);
+    const replyText = ta ? ta.value.trim() : '';
+    if (!replyText) { showToast('Черновик пуст', 'warn'); return; }
+    const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
+    if (ta) ta.disabled = true;
+    try {
+      await supportCallable('adminSupportSaveDraft')({
+        messageDocId: id,
+        replyText,
+        expectedDraftRevision: Number(item?.draftRevision ?? 0),
+        requestId: supportRequestToken('legacy-support-save-draft'),
+      });
+      showToast('Правки сохранены. Новая версия отправлена вам в Telegram', 'ok');
+    } catch (e) {
+      showToast('Не удалось сохранить правки: ' + (e.message || e.code || e), 'err');
+    } finally {
+      if (ta) ta.disabled = false;
+      await window.loadSupportInbox(true);
+    }
+  };
 
   window.supportSendOne = async function(id) {
     const ta = document.getElementById('gsi-draft-' + id);
@@ -25303,6 +25403,31 @@
       showToast('✅ Подпись сохранена', 'ok');
     } catch (e) {
       showToast('Не удалось сохранить подпись: ' + (e.message || e.code || e), 'err');
+    }
+  };
+
+  window.supportSaveAutomation = async function() {
+    const mode = String(document.getElementById('gsi-auto-mode')?.value || 'off');
+    const dailyCap = Number(document.getElementById('gsi-auto-daily-cap')?.value || 100);
+    const perSenderDailyCap = Number(document.getElementById('gsi-auto-sender-cap')?.value || 3);
+    const status = document.getElementById('gsi-auto-status');
+    if (!['off','shadow','live_guarded'].includes(mode) || !Number.isInteger(dailyCap) || dailyCap < 1 || dailyCap > 500 || !Number.isInteger(perSenderDailyCap) || perSenderDailyCap < 1 || perSenderDailyCap > 10) {
+      showToast('Проверь режим и лимиты автоматизации', 'err');
+      return;
+    }
+    if (status) status.textContent = 'Сохраняю…';
+    try {
+      const result = await supportCallable('adminSupportSaveAutomation')({
+        mode, dailyCap, perSenderDailyCap, expectedRevision: _supportAutomationRevision,
+        requestId: createAdminCommandId('support_automation'),
+      });
+      _supportAutomationRevision = Number(result?.data?.revision || _supportAutomationRevision + 1);
+      if (status) status.textContent = `${mode === 'live_guarded' ? 'Автоответы включены' : mode === 'shadow' ? 'Только черновики' : 'Выключено'} · ревизия ${_supportAutomationRevision}`;
+      showToast('Настройки автоматизации сохранены', 'ok');
+    } catch (e) {
+      if (status) status.textContent = 'Ошибка сохранения';
+      showToast('Не удалось сохранить автоматизацию: ' + (e.message || e.code || e), 'err');
+      await window.loadSupportInbox(true);
     }
   };
 
@@ -27909,7 +28034,7 @@
           'Форма Remote Config: ' + changes.slice(0, 20).join('; '),
         );
       }
-      rcSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят за секунды.`, '#4ade80');
+      rcSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.`, '#4ade80');
       rcLoadHistory(changes.length > 0);
     } catch (e) {
       rcSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
@@ -28076,7 +28201,7 @@
         );
       }
       cpRenderToggle(key, !!checked);
-      cpSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpSetStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false; // пусть Remote Config перечитает
     } catch (e) {
       cpSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
@@ -28712,7 +28837,7 @@
       };
       await window.saveControlPanelTexts(patch);
       ytRenderParsedHint();
-      ytSetStatus(rawId ? '✅ Канал сохранён. Клиенты подхватят за секунды.' : '✅ Сохранено. Канал по умолчанию — PHRASEMAN.', '#4ade80');
+      ytSetStatus(rawId ? '✅ Канал сохранён. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.' : '✅ Сохранено. Канал по умолчанию — PHRASEMAN.', '#4ade80');
     } catch (e) {
       ytSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -28958,7 +29083,7 @@
       });
       // Rollout пишем отдельно в numbers (пусто → удаление ключа = 100%).
       await window.saveControlPanelNumbers({ force_update_enabled_rollout_pct: rollout });
-      cpForceStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpForceStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -29017,7 +29142,7 @@
       await window.saveControlPanelBool('manual_update_enabled', willEnable);
       const lbl = document.getElementById('cp-bool-label-manual_update_enabled');
       if (lbl) { lbl.textContent = willEnable ? 'Вкл' : 'Выкл'; lbl.style.color = ''; lbl.setAttribute('data-on', willEnable ? '1' : '0'); }
-      cpForceStatus(willEnable ? '✅ Manual update включен. Клиенты подхватят за секунды.' : '✅ Manual update сохранен и выключен.', '#4ade80');
+      cpForceStatus(willEnable ? '✅ Manual update включен. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.' : '✅ Manual update сохранен и выключен.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка manual update: ' + (e && e.message ? e.message : e), '#f87171');
       const cb = document.getElementById('cp-bool-manual_update_enabled');
@@ -29526,7 +29651,7 @@
         promo_banner_audience: get('cp-promo-banner-audience'),
         promo_banner_platform: get('cp-promo-banner-platform'),
       });
-      cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
     } catch (e) {
       cpPromoBannerStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -29794,7 +29919,7 @@
           'Премиум-пульт: ' + changes.slice(0, 12).join('; '),
         );
       }
-      cpPremSetStatus('✅ Сохранено' + (changes.length ? (' (' + changes.length + ' изм.)') : '') + '. Клиенты подхватят за секунды.', '#4ade80');
+      cpPremSetStatus('✅ Сохранено' + (changes.length ? (' (' + changes.length + ' изм.)') : '') + '. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
       // Синхронизируем старые рубильники-дубли (lifetime/ideas и пр.) с общим документом.
       if (typeof window.loadControlPanel === 'function') void window.loadControlPanel();
@@ -29963,7 +30088,7 @@
           'Недельные бонусы: обновлена конфигурация',
         );
       }
-      wbSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      wbSetStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
     } catch (e) { wbSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171'); }
   };
@@ -30130,7 +30255,7 @@
       cpMaintRenderToggle('cp-maint-banner', nextBanner);
       cpMaintRenderToggle('cp-maint-block', nextBlock);
       if (!wasBlock && nextBlock) cpMaintSetStatus('⚠️ ЖЁСТКИЙ БЛОК ВКЛЮЧЁН — приложение недоступно у всех.', '#f87171');
-      else cpMaintSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      else cpMaintSetStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
     } catch (e) {
       cpMaintSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
@@ -33477,7 +33602,7 @@
     if (state) state.textContent = next ? 'включено' : 'выключено';
     try {
       await window.saveControlPanelBool(key, next);
-      if (status) status.textContent = next ? 'Включено. Клиенты подхватят за секунды.' : 'Выключено. Клиенты подхватят за секунды.';
+      if (status) status.textContent = next ? 'Включено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.' : 'Выключено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.';
     } catch (e) {
       if (input) input.checked = !next;
       if (state) state.textContent = !next ? 'включено' : 'выключено';
@@ -33524,7 +33649,7 @@
       }
       _onboardingScreensSaved = next;
       const box = document.getElementById('onboarding-screens-preview');
-      if (box) box.innerHTML = '<div style="background:rgba(52,211,153,0.12);border-radius:10px;padding:12px 14px;color:#6ee7b7;font-size:13px">Опубликовано. Клиенты подхватят изменения за секунды.</div>';
+      if (box) box.innerHTML = '<div style="background:rgba(52,211,153,0.12);border-radius:10px;padding:12px 14px;color:#6ee7b7;font-size:13px">Опубликовано. Клиенты подхватят изменения при запуске/возврате или не позднее примерно 5 минут.</div>';
       if (publish) publish.style.display = 'none';
       const off = ONBOARDING_STEP_CATALOG.length - next.length;
       if (status) status.textContent = off > 0 ? `Сейчас отключено экранов: ${off}.` : 'Сейчас показываются все экраны онбординга.';

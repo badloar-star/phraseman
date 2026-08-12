@@ -4,7 +4,7 @@ import path from 'path';
 import { ONBOARDING_STEP_CATALOG, MANDATORY_ONBOARDING_STEP } from '../app/onboarding_flow';
 
 // зачем: владелец пользуется ТОЛЬКО admin/v2/legacy.html (см. CLAUDE.md), а рабочие
-// тумблеры экранов онбординга исторически жили в замороженном admin/v2/scripts/admin-core.js
+// тумблеры экранов онбординга исторически жили в удалённом admin/v2/scripts/admin-core.js
 // и на боевую не попадали. Этот контракт держит раздел живым именно в legacy.html и
 // не даёт списку экранов разъехаться с app/onboarding_flow.ts.
 const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');

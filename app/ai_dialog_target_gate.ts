@@ -1,4 +1,5 @@
 import type { Lang } from '../constants/i18n';
+import { triLang } from '../constants/i18n';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
@@ -45,18 +46,11 @@ export function aiDialogContentAvailableForTarget(studyTarget?: RuntimeStudyTarg
 }
 
 export function frenchAiDialogGateCopy(lang: Lang): { title: string; body: string; action: string } {
-  const uk = lang === 'uk';
-  return uk
-    ? {
-        title: 'French AI-діалоги ще на source gate',
-        body: 'English AI-сценарії та prompts приховано в режимі French. Діалоги відкриються після окремого French dialog packet: сценарії, lesson mappings, prompt contract, TTS та LLM official-source review.',
-        action: 'До уроків',
-      }
-    : {
-        title: 'French AI-диалоги еще на source gate',
-        body: 'English AI-сценарии и prompts скрыты в режиме French. Диалоги откроются после отдельного French dialog packet: сценарии, lesson mappings, prompt contract, TTS и LLM official-source review.',
-        action: 'К урокам',
-      };
+  return {
+    title: triLang(lang, { ru: 'Французские AI-диалоги ещё проверяются', uk: 'Французькі AI-діалоги ще перевіряються', es: 'Los diálogos de IA en francés aún se están revisando', 'pt-BR': 'Os diálogos de IA em francês ainda estão em revisão', vi: 'Hội thoại AI tiếng Pháp vẫn đang được kiểm tra', id: 'Dialog AI bahasa Prancis masih ditinjau', tr: 'Fransızca AI diyalogları hâlâ inceleniyor', pl: 'Francuskie dialogi AI są jeszcze w trakcie weryfikacji' }),
+    body: triLang(lang, { ru: 'Английские сценарии скрыты в режиме French. Диалоги появятся после отдельной проверки французских сценариев, подсказок и озвучки.', uk: 'Англійські сценарії приховано в режимі French. Діалоги з’являться після окремої перевірки французьких сценаріїв, підказок і озвучення.', es: 'Los escenarios en inglés están ocultos en el modo French. Los diálogos aparecerán cuando se revisen los escenarios, las pistas y el audio en francés.', 'pt-BR': 'Os cenários em inglês ficam ocultos no modo French. Os diálogos aparecerão após a revisão dos cenários, dicas e áudio em francês.', vi: 'Các kịch bản tiếng Anh được ẩn ở chế độ French. Hội thoại sẽ xuất hiện sau khi kịch bản, gợi ý và âm thanh tiếng Pháp được kiểm tra.', id: 'Skenario bahasa Inggris disembunyikan dalam mode French. Dialog akan tersedia setelah skenario, petunjuk, dan audio bahasa Prancis ditinjau.', tr: 'İngilizce senaryolar French modunda gizlenir. Diyaloglar, Fransızca senaryolar, ipuçları ve ses incelendikten sonra açılacaktır.', pl: 'Scenariusze angielskie są ukryte w trybie French. Dialogi pojawią się po sprawdzeniu francuskich scenariuszy, podpowiedzi i nagrań.' }),
+    action: triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Ir a lecciones', 'pt-BR': 'Ir para as lições', vi: 'Đến bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Przejdź do lekcji' }),
+  };
 }
 
 export const FRENCH_AI_DIALOG_SOURCE_GATE_REQUIRED_EVIDENCE = Object.freeze([

@@ -1,7 +1,10 @@
 import {
+  NEW_TOURNAMENT_POOL_CONTENT_SHA256,
+  NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
   NEW_TOURNAMENT_POOL_VERSION,
   buildUnambiguousFillGapTask,
   buildNewTournamentPool,
+  verifyTournamentPoolTaskProof,
 } from './tournament_pool_v2_factory';
 import {
   TOURNAMENT_ROUND_MODE_PLAN,
@@ -32,6 +35,17 @@ function buildProductionSizedPool() {
   productionSizedPool ??= buildNewTournamentPool(loadTournamentSourceDays(TOURNAMENT_SOURCE_PLANS));
   return productionSizedPool;
 }
+
+test('published v10 content digest stays pinned for Arena release gates', () => {
+  const publication = buildProductionSizedPool();
+  expect(publication.manifest.contentSha256).toBe(NEW_TOURNAMENT_POOL_CONTENT_SHA256);
+  expect(publication.manifest.merkleRootSha256).toBe(NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256);
+  for (const task of publication.tasks) {
+    expect(verifyTournamentPoolTaskProof(task, NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256)).toBe(true);
+  }
+  const tampered = { ...publication.tasks[0], payload: { ...publication.tasks[0].payload, phrase: 'tampered' } };
+  expect(verifyTournamentPoolTaskProof(tampered, NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256)).toBe(false);
+});
 
 function sourcePhraseMap(): Map<string, SourcePhrase> {
   return new Map(loadTournamentSourceDays(TOURNAMENT_SOURCE_PLANS).flatMap((day) => day.phrases

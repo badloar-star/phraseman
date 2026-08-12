@@ -110,22 +110,15 @@ describe('referral roulette soft sunset integration contract', () => {
     expect(settings).toContain('testID="settings-invite-banner"');
   });
 
-  test('Admin V2 exposes separate audited soft and emergency controls', () => {
+  test('server exposes separate audited soft and emergency controls', () => {
     const backend = read('functions/src/admin_referrals.ts');
     const index = read('functions/src/index.ts');
-    const firebase = read('admin/v2/scripts/admin-firebase.js');
-    const core = read('admin/v2/scripts/admin-core.js');
     expect(backend).toContain('adminSetReferralRouletteEmergencyStop');
     expect(backend).toContain('referral_roulette_soft_off_at_ms');
     expect(backend).toContain('referral_roulette_emergency_stop');
     expect(backend).toContain('drainMetrics');
     expect(index).toContain('adminSetReferralRouletteEmergencyStop');
-    expect(firebase).toContain("httpsCallable(functionsUs, 'adminSetReferralRouletteEmergencyStop')");
-    expect(core).toContain('Новые приглашения и промо');
-    expect(core).toContain('Аварийная остановка рулетки');
-    expect(core).toContain("can('application.config.write')");
-    expect(core).toContain('idempotencyKey');
-    expect(core).toContain('globalThis.confirm(');
+    expect(backend).toContain('idempotencyKey');
   });
 
   test('stable analytics statuses are present in server policy', () => {

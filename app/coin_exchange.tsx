@@ -25,17 +25,16 @@ import { emitAppEvent, onAppEvent } from './events';
 import { getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { coinIconForBalance } from './coin_icons';
 import {
-  exchangeCoinsForStars,
   fetchCoinExchangeHistory,
   fetchCoinExchangeQuote,
   loadCachedCoinExchangeHistory,
   loadCachedCoinExchangeQuote,
-  newCoinExchangeIdempotencyKey,
   peekCoinExchangeHistory,
   peekCoinExchangeQuote,
   type CoinExchangeHistoryPoint,
   type CoinExchangeQuote,
 } from './coin_exchange_client';
+import { exchangeCoinsForStarsDurably } from './coin_exchange_wallet_outbox';
 
 const CHART_W = 320;
 const CHART_H = 120;
@@ -138,7 +137,7 @@ export default function CoinExchangeScreen() {
     if (!canExchange) return;
     setExchanging(true);
     try {
-      const result = await exchangeCoinsForStars(coinsAmount, newCoinExchangeIdempotencyKey());
+      const result = await exchangeCoinsForStarsDurably(coinsAmount);
       // Сервер подтвердил обмен — дотягиваем авторитетный баланс монет из облака.
       await loadShardsFromCloud().catch(() => {});
       emitAppEvent('action_toast', {

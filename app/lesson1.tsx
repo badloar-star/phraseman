@@ -309,6 +309,7 @@ const LESSON_ENTER_MS = MOTION_DURATION.normal;
 const PRESS_IN_MS = 70;
 const ERROR_REPLAY_DELAY_ANSWERS = 2;
 const COMBO_ACHIEVEMENT_THRESHOLDS = new Set([3, 10, 20, 50, 100, 150, 250, 500]);
+const WORD_DISPATCH_LOCK_MS = 90;
 
 function isValidLessonPhraseOrder(order: unknown, phraseCount: number): order is number[] {
   const count = Math.min(phraseCount, TOTAL);
@@ -722,6 +723,9 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const grammarHintAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
+  const grammarHintGenerationRef = useRef(0);
+  const grammarHintSeenCacheRef = useRef(new Set<string>());
   // Вспышка плитки при тапе слова привязана к конкретной опции и шагу фразы.
   // Чёткий визуальный отклик «выбрано/верно/неверно» (раньше плитка никак не реагировала).
   const [flashWord, setFlashWord] = useState<{ optionKey: string; correct: boolean } | null>(null);
@@ -732,9 +736,8 @@ const LessonContent = React.memo(function LessonContent({
     flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
   }, []);
   useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
-  // Пока ждём отложенный handleWordPress (170 мс на показ вспышки),
-  // блокируем и логику, и нативный press-отклик всего банка. Иначе быстрый второй тап
-  // визуально нажимает другую плитку, хотя её onPress затем отбрасывается защитой через ref.
+  // Ответ применяется сразу; короткий lock нужен только против двойного тапа,
+  // чтобы второй нативный press не успел выбрать соседнюю плитку в том же жесте.
   const [wordDispatchPending, setWordDispatchPending] = useState(false);
   const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
@@ -805,7 +808,10 @@ const LessonContent = React.memo(function LessonContent({
   const triggerGrammarHint = useCallback(async (currentWord: string, force = false) => {
     if (!currentWord) return;
     if (lessonHintSupportBlocked) return;
+    const generation = ++grammarHintGenerationRef.current;
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
+    grammarHintAnimationRef.current?.stop();
+    grammarHintAnim.stopAnimation();
     for (const hint of GRAMMAR_HINTS) {
       if (lessonId >= hint.lessonTeaches) continue;
       if (!hint.detect(currentWord)) continue;
@@ -813,25 +819,51 @@ const LessonContent = React.memo(function LessonContent({
         // Ключ «подсказка уже показана» скоупится по языку-цели: en — легаси-ключ,
         // fr — отдельный namespace, чтобы прогресс подсказок en/fr не смешивался.
         const seenKey = grammarHintSeenKey(hint.key, studyTarget);
-        const seen = await AsyncStorage.getItem(seenKey);
+        // Один и тот же артикль встречается много раз за урок. После первой
+        // проверки держим ключ в памяти: повторный AsyncStorage bridge-call на
+        // каждом слове создавал очередь и через несколько фраз тормозил UI.
+        if (grammarHintSeenCacheRef.current.has(seenKey)) continue;
+        const seen = await AsyncStorage.getItem(seenKey).catch(() => null);
+        if (generation !== grammarHintGenerationRef.current) return;
+        if (seen) grammarHintSeenCacheRef.current.add(seenKey);
         if (seen) continue;
-        await AsyncStorage.setItem(seenKey, '1');
+        grammarHintSeenCacheRef.current.add(seenKey);
+        void AsyncStorage.setItem(seenKey, '1').catch(() => {});
       }
       const text = grammarHintLine(lang, hint, studyTarget);
-      Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
+      const fadeOut = Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true });
+      grammarHintAnimationRef.current = fadeOut;
+      fadeOut.start(({ finished }) => {
+        if (!finished || generation !== grammarHintGenerationRef.current) return;
         setGrammarHintText(text);
-        Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
+        const fadeIn = Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true });
+        grammarHintAnimationRef.current = fadeIn;
+        fadeIn.start();
         grammarHintTimerRef.current = setTimeout(() => {
-          Animated.timing(grammarHintAnim, { toValue: 0, duration: 400, useNativeDriver: true }).start(() => setGrammarHintText(null));
+          if (generation !== grammarHintGenerationRef.current) return;
+          const dismiss = Animated.timing(grammarHintAnim, { toValue: 0, duration: 400, useNativeDriver: true });
+          grammarHintAnimationRef.current = dismiss;
+          dismiss.start(({ finished: dismissed }) => {
+            if (dismissed && generation === grammarHintGenerationRef.current) setGrammarHintText(null);
+          });
         }, 10000);
       });
       return;
     }
-  }, [lessonHintSupportBlocked, lessonId, lang, studyTarget]);
+  }, [grammarHintAnim, lessonHintSupportBlocked, lessonId, lang, studyTarget]);
 
   const hideGrammarHint = useCallback(() => {
+    grammarHintGenerationRef.current += 1;
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
-    Animated.timing(grammarHintAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(() => setGrammarHintText(null));
+    grammarHintTimerRef.current = null;
+    grammarHintAnimationRef.current?.stop();
+    grammarHintAnimationRef.current = null;
+    grammarHintAnim.stopAnimation();
+    const dismiss = Animated.timing(grammarHintAnim, { toValue: 0, duration: 120, useNativeDriver: true });
+    grammarHintAnimationRef.current = dismiss;
+    dismiss.start(({ finished }) => {
+      if (finished) setGrammarHintText(null);
+    });
   }, [grammarHintAnim]);
 
   useEffect(() => {
@@ -1393,21 +1425,17 @@ const LessonContent = React.memo(function LessonContent({
                           setTypedText(current ? current + ' ' + w : w);
                           setTimeout(() => textInputRef.current?.focus(), 50);
                         } else {
-                          // Вспышка плитки акцентным цветом темы. handleWordPress зовёт
-                          // setShuffled → банк плиток пересобирается и нажатая плитка
-                          // размонтируется; задержка 170мс < окна вспышки 260мс держит
-                          // акцент+объём (pressedExternally) видимыми на нажатой плитке.
+                          // Вспышка плитки начинается сразу, но сам ответ тоже обязан
+                          // примениться в этот же кадр. Прежняя задержка 170 мс ради
+                          // вспышки делала каждую кнопку ощутимо «тормозной».
                           if (wordDispatchTimerRef.current) return;
                           setWordDispatchPending(true);
                           triggerWordFlash(optionKey, isCorrectOption);
                           wordDispatchTimerRef.current = setTimeout(() => {
                             wordDispatchTimerRef.current = null;
-                            // Снимаем блокировку ДО выполнения обработчика: если в данных
-                            // конкретной фразы внезапно возникнет исключение, банк слов не
-                            // останется навсегда disabled на Android.
                             setWordDispatchPending(false);
-                            handleWordPress(word);
-                          }, 170);
+                          }, WORD_DISPATCH_LOCK_MS);
+                          handleWordPress(word);
                         }
                         // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука
                         // (звук только на управляющих кнопках). Оставляем родную вибрацию.
@@ -1751,16 +1779,7 @@ const LessonContent = React.memo(function LessonContent({
           <TapScale
             style={{ position: 'absolute', bottom: 90, right: 12, backgroundColor: 'rgba(40,40,40,0.85)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, zIndex: 999 }}
             onPress={() => {
-              const hint = GRAMMAR_HINTS[0];
-              if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
-              const text = grammarHintLine(lang, hint, studyTarget);
-              Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
-                setGrammarHintText(text);
-                Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
-                grammarHintTimerRef.current = setTimeout(() => {
-                  Animated.timing(grammarHintAnim, { toValue: 0, duration: 400, useNativeDriver: true }).start(() => setGrammarHintText(null));
-                }, 10000);
-              });
+              void triggerGrammarHint('the', true);
             }}
           >
             <Text style={{ color: '#fff', fontSize: 11, fontWeight: '600' }}>DEV: grammar hint</Text>
@@ -3154,7 +3173,6 @@ export default function LessonScreen() {
           safeProgressEventPart(phrase.id ?? answerCell, 50),
           overridePhraseCell !== null ? 'replay' : 'main',
         ].join(':'),
-        skipLeagueChestMultiplier: true,
         payload: {
           surface: 'lesson1_answer',
           studyTarget: studyTargetRef.current,
@@ -3322,6 +3340,11 @@ export default function LessonScreen() {
     // Ошибки, replay и очередь ошибок влияют только на оценку/модалку, но не блокируют финал.
     if (nextCell === 0 && !pendingCycleEndReplay) {
       if (isPlanPhraseLessonTask) return;
+      // Preserve the identity that earned this run's answer XP before rotating
+      // storage to the next replay. Completion dedupe follows the real attempt,
+      // never pass_count (whose medal semantics are independent).
+      const completedAttemptId = normalizeLessonServerAttemptId(serverAttemptIdRef.current)
+        ?? makeLessonServerAttemptId();
       const nextAttemptId = makeLessonServerAttemptId();
       serverAttemptIdRef.current = nextAttemptId;
       AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(() => {});
@@ -3486,6 +3509,7 @@ void finishLessonDeliveryInBackground();
               earnedXp: String(lessonEarnedXpRef.current),
               earnedBaseXp: String(lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              completedAttemptId,
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
               ...coachRouteParams,
@@ -3512,6 +3536,7 @@ void finishLessonDeliveryInBackground();
               earnedXp: String(lessonEarnedXpRef.current),
               earnedBaseXp: String(lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              completedAttemptId,
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
             },

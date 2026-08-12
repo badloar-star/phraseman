@@ -77,7 +77,11 @@ jobs:
           tar -xzf "$RUNNER_TEMP/english-test-release.tar.gz" -C .
           test -s functions-english-test/index.js
           test -s knowly-www/english-level-test/index.html
-          test -s admin/v2/english-test.html
+          # Белая admin V2 удалена решением владельца. Старый архив ещё может
+          # содержать standalone-страницу аналитики; не материализуем её в Git
+          # и никогда не публикуем admin Hosting из этого workflow.
+          rm -f admin/v2/english-test.html
+          test ! -e admin/v2/english-test.html
 
       - name: Integrate test with Firebase Hosting and navigation
         if: steps.release-state.outputs.skip != 'true'
@@ -137,17 +141,11 @@ jobs:
             'english-test:check': 'node scripts/generate_english_test_assets.mjs --check && python3 scripts/audit_english_test_bank.py content/english-test/questions.en.json && node --test tests/english_test_release.test.mjs',
             'english-test:functions:install': 'npm install --prefix functions-english-test',
             'english-test:deploy:functions': 'npx firebase-tools deploy --project phraseman-ea0b3 --only functions:english-test --non-interactive',
-            'english-test:deploy:hosting': 'npx firebase-tools deploy --project phraseman-ea0b3 --only hosting:knowlywww,hosting:admin --non-interactive',
-            'english-test:deploy': 'npx firebase-tools deploy --project phraseman-ea0b3 --only functions:english-test,hosting:knowlywww,hosting:admin --non-interactive',
+            'english-test:deploy:hosting': 'npx firebase-tools deploy --project phraseman-ea0b3 --only hosting:knowlywww --non-interactive',
+            'english-test:deploy': 'npx firebase-tools deploy --project phraseman-ea0b3 --only functions:english-test,hosting:knowlywww --non-interactive',
           });
           writeJson('package.json', pkg);
 
-          insertOnce(
-            'admin/v2/index.html',
-            '        <a href="#monthly" title="Ежемесячный пакет решений">Пакет решений</a>\n',
-            '        <a href="/v2/english-test.html" title="Аналитика веб‑теста английского">Веб‑тест</a>\n',
-            'href="/v2/english-test.html"',
-          );
           insertOnce(
             'knowly-www/index.html',
             '        <a href="/guides/">Гайды</a>\n',
@@ -260,12 +258,12 @@ jobs:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
 
-      - name: Deploy isolated Functions codebase and both Hosting targets
+      - name: Deploy isolated Functions codebase and public test Hosting
         if: steps.release-state.outputs.skip != 'true'
         shell: bash
         run: |
           set -euo pipefail
-          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,hosting:knowlywww,hosting:admin' --non-interactive)
+          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,hosting:knowlywww' --non-interactive)
           if [[ "${{ steps.firebase-auth.outputs.mode }}" == 'token' ]]; then
             args+=(--token "$FIREBASE_DEPLOY_TOKEN")
           fi
@@ -290,7 +288,6 @@ jobs:
           }
           verify_page 'https://knowlyapps.web.app/english-level-test/' 'English Level Check'
           verify_page 'https://knowlyapps.com/english-level-test/' 'English Level Check'
-          verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html' 'Аналитика веб-теста'
           curl --fail --silent --show-error --location --max-time 25 'https://knowlyapps.com/api/english-test' -o /tmp/api.json || true
 
       - name: Commit materialised audited source after successful deploy
@@ -300,6 +297,7 @@ jobs:
           set -euo pipefail
           rm -rf .english-test-bootstrap functions-english-test/node_modules
           rm -f .github/workflows/bootstrap-english-test-release.yml
+          rm -f admin/v2/english-test.html
           printf 'deployed=%s\nsource_commit=%s\n' "$(date -u +%FT%TZ)" "$GITHUB_SHA" > .english-test-release-complete
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

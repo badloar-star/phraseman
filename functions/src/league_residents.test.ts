@@ -79,6 +79,33 @@ describe('жители лиг — правила владельца', () => {
     expect(Object.keys(twice).sort()).toEqual(Object.keys(once).sort());
   });
 
+  it('жители уступают место каждому вошедшему живому — общий размер остаётся ровно 28', () => {
+    const initial = fillRoomWithResidents(liveMembers(1), 'group_growing', WEEK_START, NOW);
+    expect(countVisibleMembers(initial)).toBe(RESIDENT_TARGET_VISIBLE);
+
+    const afterThreeJoined = fillRoomWithResidents(
+      { ...initial, ...liveMembers(4) },
+      'group_growing',
+      WEEK_START,
+      NOW,
+    );
+    expect(countLiveMembers(afterThreeJoined)).toBe(4);
+    expect(countVisibleMembers(afterThreeJoined)).toBe(RESIDENT_TARGET_VISIBLE);
+  });
+
+  it('при достижении 15 живых удаляет ранее добавленных жителей', () => {
+    const initial = fillRoomWithResidents(liveMembers(1), 'group_threshold', WEEK_START, NOW);
+    const atThreshold = fillRoomWithResidents(
+      { ...initial, ...liveMembers(RESIDENT_FILL_THRESHOLD) },
+      'group_threshold',
+      WEEK_START,
+      NOW,
+    );
+    expect(countLiveMembers(atThreshold)).toBe(RESIDENT_FILL_THRESHOLD);
+    expect(countVisibleMembers(atThreshold)).toBe(RESIDENT_FILL_THRESHOLD);
+    expect(Object.entries(atThreshold).some(([uid, member]) => isResidentMember(uid, member))).toBe(false);
+  });
+
   it('разные комнаты получают разные «лица»', () => {
     const a = new Set(
       Array.from({ length: 10 }, (_, slot) => residentIndexForSlot('group_one', slot)),

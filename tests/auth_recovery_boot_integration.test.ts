@@ -92,6 +92,33 @@ describe('auth recovery pre-cloud boot integration', () => {
     expect(layout).toContain('runHeavyInitRef.current = requestHeavyInit;');
   });
 
+  it('replaces the endless splash with a fail-closed recovery screen when protected storage is unavailable', () => {
+    const deleteRecoveryStart = bootstrapRegion.indexOf('const pendingDeleteRecovered');
+    const recoveryGateStart = bootstrapRegion.indexOf('authRecoveryBootAbort = new AbortController()', deleteRecoveryStart);
+    const deleteRecovery = bootstrapRegion.slice(deleteRecoveryStart, recoveryGateStart);
+
+    expect(deleteRecovery).toContain('setStartupSecurityBlocked(true);');
+    expect(deleteRecovery).toContain('accountDeleteRecoveryRetryTimer = setTimeout');
+    expect(deleteRecovery).toContain('AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS[accountDeleteRecoveryRetryAttempt]');
+    expect(deleteRecovery).toContain('accountDeleteRecoveryRetryAttempt += 1;');
+    expect(deleteRecovery).not.toMatch(/accountDeleteRecoveryRetryTimer\s*=\s*setTimeout[\s\S]*?},\s*1_500\)/);
+    expect(deleteRecovery).toContain('setStartupSecurityBlocked(false);');
+    expect(layout).toContain('retryStartupSecurityCheckRef.current = () => {');
+    expect(layout).toContain('{startupSecurityBlocked && (');
+    expect(layout).toContain('accessibilityViewIsModal');
+    expect(layout).toContain('accessibilityLiveRegion="assertive"');
+    expect(layout).toContain('Приложение остаётся закрытым, чтобы не показать данные другого пользователя.');
+    expect(layout).toContain('color: \'#07110A\'');
+    expect(layout).toContain('minHeight: 48');
+  });
+
+  it('does not expose normal overlays or the animated splash beneath the security blocker', () => {
+    expect(layout).toContain('ready && !startupSecurityBlocked && !effectiveShowOnboarding');
+    expect(layout).toContain('const startupSplashVisible = !startupSecurityBlocked');
+    expect(layout).toContain('const nativeSplashCanHide = startupSecurityBlocked');
+    expect(layout).toContain('retryStartupSecurityCheckRef.current = null;');
+  });
+
   it('uses a finite backoff budget that AppState and in-flight timer races cannot reset', () => {
     jest.useFakeTimers();
     const policy = loadRetryPolicy();

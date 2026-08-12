@@ -1400,8 +1400,6 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
     .then(({ updateServerPushPrefs }) => updateServerPushPrefs({
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
-      // зачем: под «Лигой» живёт и серверный пуш «турнир начинается» —
-      // без зеркала выключенная категория не остановила бы его.
       league: normalized.master && normalized.categories.league,
     }))
     .catch(() => {});
@@ -2627,9 +2625,8 @@ export const setupNotificationTapHandler = (
           });
           break;
         case 'tournament_starting':
-          // Турниры не входят в текущий релиз. Старые/уже доставленные push-и
-          // не должны оставлять пользователя на закрытом или пустом маршруте.
-          navTabHome();
+          // Owner lock: an already delivered notification is inert. Do not
+          // navigate, show a fallback screen, or resurrect a retired route.
           break;
         default:
           // Unknown notifications from older builds always land on a safe screen.

@@ -4,7 +4,7 @@ import { validateV2ContentItem } from '../modules/learning-v2/content/content_it
 import { compileV2RequiredSessions } from '../modules/learning-v2/content/session_compiler';
 import { validateV2LanguageProfile } from '../modules/learning-v2/content/language_profile';
 import { qaV2EpisodeContent } from '../functions/src/content_factory/v2_episode_content_qa';
-import { buildEnglishProfile } from './support/learning_v2_content_builders';
+import { buildActivityBindingsForContentItems, buildEnglishProfile } from './support/learning_v2_content_builders';
 import { buildLesson1LegacyV2SourcePayload } from '../modules/learning-v2/content/legacy_lesson_payload';
 
 test('adapts all fifty real Lesson 1 phrases without replacing their text or Russian meaning', () => {
@@ -38,11 +38,17 @@ test('compiles the fifty real Lesson 1 phrases into a QA-approved twelve-session
     canDoOutcomeId: 'obj-lesson-01-to-be-statements',
     profile: profile.value,
     items: payload.contentItems,
+    activityBindings: buildActivityBindingsForContentItems(payload.contentItems),
   });
 
   expect(compiled.sessions).toHaveLength(12);
   expect(compiled.sessions.flatMap((session) => session.cards)).toHaveLength(144);
-  expect(qaV2EpisodeContent(compiled, payload.contentItems, profile.value).ok).toBe(true);
+  expect(qaV2EpisodeContent(
+    compiled,
+    payload.contentItems,
+    profile.value,
+    buildActivityBindingsForContentItems(payload.contentItems),
+  ).ok).toBe(true);
 });
 
 test('builds a versioned Lesson 1 payload that preserves the existing intro, theory and vocabulary', () => {

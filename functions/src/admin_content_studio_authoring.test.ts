@@ -53,6 +53,9 @@ describe("V2 Content Studio callable boundary", () => {
         token: { admin: true, adminRole: "content_editor" },
       }),
     ).toMatchObject({ uid: "u-1", role: "content_editor" });
+    expect(() =>
+      requireContentDraftWriter({ uid: "u-1", token: { admin: true } }),
+    ).toThrow(HttpsError);
   });
 
   it("accepts the explicit zero-head fingerprint only for first-create", () => {
@@ -210,6 +213,8 @@ describe("V2 Content Studio callable boundary", () => {
     expect(() =>
       requireContentReviewer({ uid: "u-1", token: { admin: true, adminRole: "content_editor" } }),
     ).toThrow(HttpsError);
+    expect(() => requireContentPublisher({ uid: "u-1", token: { admin: true } })).toThrow(HttpsError);
+    expect(() => requireContentReviewer({ uid: "u-2", token: { admin: true } })).toThrow(HttpsError);
     expect(parseV2ApprovedEpisodeRevisionRef({ revisionRef: {
       draftId: "draft-1", episodeId: "episode-1", revision: 1,
       revisionFingerprint: "a".repeat(64), contentHash: "b".repeat(64),

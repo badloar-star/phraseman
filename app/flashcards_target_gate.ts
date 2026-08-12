@@ -1,4 +1,5 @@
 import type { Lang } from '../constants/i18n';
+import { triLang } from '../constants/i18n';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import type { CardItem } from './flashcards/types';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
@@ -94,16 +95,10 @@ export function flashcardsSystemCardsForTarget(
 }
 
 export function frenchFlashcardsGateCopy(lang: Lang): { title: string; body: string } {
-  const uk = lang === 'uk';
-  return uk
-    ? {
-        title: 'Французькі набори карток ще на перевірці',
-        body: 'Англійські системні, маркет- і community-набори приховано в режимі French. Вони відкриються тільки після окремого французького flashcards source gate з перевіреними підказками українською/російською.',
-      }
-    : {
-        title: 'Французские наборы карточек ещё на проверке',
-        body: 'Английские системные, маркет- и community-наборы скрыты в режиме French. Они откроются только после отдельного французского flashcards source gate с проверенными подсказками на русском/украинском.',
-      };
+  return {
+    title: triLang(lang, { ru: 'Французские наборы карточек ещё проверяются', uk: 'Французькі набори карток ще перевіряються', es: 'Los paquetes de tarjetas en francés aún se están revisando', 'pt-BR': 'Os pacotes de cartões em francês ainda estão em revisão', vi: 'Các bộ thẻ tiếng Pháp vẫn đang được kiểm tra', id: 'Paket kartu bahasa Prancis masih ditinjau', tr: 'Fransızca kart paketleri hâlâ inceleniyor', pl: 'Francuskie zestawy fiszek są jeszcze w trakcie weryfikacji' }),
+    body: triLang(lang, { ru: 'Английские наборы скрыты в режиме French, чтобы не смешивать язык, прогресс и ошибки. Они появятся после проверки французских карточек и подсказок.', uk: 'Англійські набори приховано в режимі French, щоб не змішувати мову, прогрес і помилки. Вони з’являться після перевірки французьких карток і підказок.', es: 'Los paquetes en inglés están ocultos en el modo French para no mezclar idiomas, progreso ni errores. Aparecerán cuando se revisen las tarjetas y pistas en francés.', 'pt-BR': 'Os pacotes em inglês ficam ocultos no modo French para não misturar idioma, progresso e erros. Eles aparecerão após a revisão dos cartões e dicas em francês.', vi: 'Các bộ thẻ tiếng Anh được ẩn ở chế độ French để không trộn lẫn ngôn ngữ, tiến độ và lỗi. Chúng sẽ xuất hiện sau khi thẻ và gợi ý tiếng Pháp được kiểm tra.', id: 'Paket bahasa Inggris disembunyikan dalam mode French agar bahasa, progres, dan kesalahan tidak tercampur. Paket akan tersedia setelah kartu dan petunjuk bahasa Prancis ditinjau.', tr: 'İngilizce paketler, dilin, ilerlemenin ve hataların karışmaması için French modunda gizlenir. Fransızca kartlar ve ipuçları incelendikten sonra açılacaktır.', pl: 'Zestawy angielskie są ukryte w trybie French, aby nie mieszać języka, postępów i błędów. Pojawią się po sprawdzeniu francuskich fiszek i podpowiedzi.' }),
+  };
 }
 
 export const FRENCH_FLASHCARDS_SOURCE_GATE_REQUIRED_EVIDENCE = Object.freeze([

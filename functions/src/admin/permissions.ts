@@ -90,6 +90,17 @@ export function hasPermission(role: unknown, permission: AdminPermission): boole
 }
 
 /**
+ * Fail-closed role resolver for Content Studio and other maker-checker lanes.
+ * Unlike the legacy compatibility resolver below, an `admin: true` claim is
+ * not enough to mint owner/reviewer/publisher authority.
+ */
+export function explicitAdminRoleFromToken(token: unknown): AdminRole | null {
+  if (!token || typeof token !== 'object') return null;
+  const claims = token as { admin?: unknown; adminRole?: unknown };
+  return claims.admin === true && hasAdminRole(claims.adminRole) ? claims.adminRole : null;
+}
+
+/**
  * Роль админа из токена. Флаг `admin === true` без явной роли = owner.
  *
  * зачем: 25.07 доступ ужесточили до «admin === true И adminRole», но выдавать

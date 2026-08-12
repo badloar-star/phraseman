@@ -70,6 +70,13 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     department: 'support',
     writtenIn: 'support_inbox.ts',
     readIn: 'jarvis/support_firestore_fetcher.ts',
+    field: 'status',
+    breaks: 'автоматически отвеченные письма продолжили бы выглядеть ожидающими ответа',
+  },
+  {
+    department: 'support',
+    writtenIn: 'support_inbox.ts',
+    readIn: 'jarvis/support_firestore_fetcher.ts',
     field: 'repliedAt',
     breaks: 'скорость ответа перестала бы считаться',
   },
@@ -79,6 +86,13 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     readIn: 'jarvis/support_firestore_fetcher.ts',
     field: 'mailCategory',
     breaks: 'письма роботов попали бы в очередь ожидающих ответа людей',
+  },
+  {
+    department: 'support',
+    writtenIn: 'support_inbox.ts',
+    readIn: 'jarvis/support_firestore_fetcher.ts',
+    field: 'imapSyncedAt',
+    breaks: 'устаревший IMAP-снимок выглядел бы как пустая живая очередь',
   },
   {
     department: 'content + factory',

@@ -174,7 +174,11 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
       appTier,
     }),
     runSupport: (appTier) => buildSupportSnapshot({
-      fetchSupport: () => fetchSupportSource({ collection: db.collection('support_inbox'), nowMs }),
+      fetchSupport: () => fetchSupportSource({
+        collection: db.collection('support_inbox'),
+        syncDocument: db.doc('admin_config/support_inbox'),
+        nowMs,
+      }),
       trigger: 'owner_request',
       question,
       nowMs,

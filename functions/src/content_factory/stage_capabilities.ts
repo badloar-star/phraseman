@@ -1,6 +1,6 @@
 import { type GenerationStageKind } from './stage_contracts';
 
-export type CefrLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+export type CefrLevel = 'PRE_A1' | 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
 export type DependencyScopePolicy = 'same_scope' | 'same_scope_or_lesson_phrases';
 
 export interface StageCapability {
@@ -10,16 +10,18 @@ export interface StageCapability {
   readonly prerequisiteKinds: readonly GenerationStageKind[];
   readonly prerequisiteCardinality: Readonly<{ min: number; max: number }>;
   readonly dependencyScopePolicy: DependencyScopePolicy;
-  readonly scopeType: 'lesson' | 'topic' | 'pack';
+  readonly scopeType: 'lesson' | 'topic' | 'pack' | 'course';
   readonly editableFields: readonly string[];
   readonly publicationPolicy: 'standard' | 'draft_only_no_consumer' | 'draft_only_rich_fields_not_supported_by_community_consumer';
   readonly runtimeConsumer: boolean;
 }
 
 const ALL_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const);
+const LEARNING_V2_LEVELS = Object.freeze(['PRE_A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const);
 const SUPPORTED_TARGETS = new Set(['en', 'fr', 'de', 'es', 'it', 'pt']);
 const SUPPORTED_SOURCES = new Set(['ru', 'en']);
-export const stageLanguagePolicy = Object.freeze({ studyTargets: Object.freeze([...SUPPORTED_TARGETS]), sourceLocales: Object.freeze([...SUPPORTED_SOURCES]), sameLanguageAllowed: false });
+const LEARNING_V2_MULTI_SOURCE = 'multi';
+export const stageLanguagePolicy = Object.freeze({ studyTargets: Object.freeze([...SUPPORTED_TARGETS]), sourceLocales: Object.freeze([...SUPPORTED_SOURCES, LEARNING_V2_MULTI_SOURCE]), sameLanguageAllowed: false });
 const fixed = (value: number) => Object.freeze({ min: value, max: value, fixed: value });
 const range = (min: number, max: number) => Object.freeze({ min, max });
 
@@ -51,6 +53,13 @@ export const generationStageCapabilities: Readonly<Record<GenerationStageKind, S
   flashcard_pack_idea: capability('flashcard_pack_idea', { count: fixed(1), prerequisiteKinds: [], scopeType: 'pack', editableFields: ['title', 'idea', 'constraints'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
   flashcard_items: capability('flashcard_items', { count: range(1, 20), prerequisiteKinds: ['flashcard_pack_idea'], dependencyScopePolicy: 'same_scope_or_lesson_phrases', scopeType: 'pack', editableFields: ['items'], publicationPolicy: 'standard', runtimeConsumer: true }),
   flashcard_item_replacement: capability('flashcard_item_replacement', { count: fixed(1), prerequisiteKinds: ['flashcard_items'], scopeType: 'pack', editableFields: ['item'], publicationPolicy: 'standard', runtimeConsumer: true }),
+  learning_v2_research: capability('learning_v2_research', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: [], scopeType: 'course', editableFields: ['localizedContent', 'evidence'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  learning_v2_curriculum: capability('learning_v2_curriculum', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: ['learning_v2_research'], scopeType: 'course', editableFields: ['localizedContent', 'objectives', 'learningCycle'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  learning_v2_lesson_outline: capability('learning_v2_lesson_outline', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: ['learning_v2_curriculum'], scopeType: 'course', editableFields: ['localizedContent', 'episodes', 'sectors', 'exams'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  learning_v2_localized_course: capability('learning_v2_localized_course', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: ['learning_v2_lesson_outline'], scopeType: 'course', editableFields: ['localizedContent', 'artifacts'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  learning_v2_audio: capability('learning_v2_audio', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: ['learning_v2_localized_course'], scopeType: 'course', editableFields: ['localizedContent', 'audioManifest'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  learning_v2_quality_assurance: capability('learning_v2_quality_assurance', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: ['learning_v2_audio'], scopeType: 'course', editableFields: ['localizedContent', 'qaReceipts'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  learning_v2_release: capability('learning_v2_release', { cefr: LEARNING_V2_LEVELS, count: fixed(1), prerequisiteKinds: ['learning_v2_quality_assurance'], scopeType: 'course', editableFields: ['localizedContent', 'releaseCandidateFingerprint'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
 });
 
 export function stageCapability(kind: GenerationStageKind): StageCapability {
@@ -69,7 +78,8 @@ export function allowedDependencyKinds(kind: GenerationStageKind): readonly Gene
 export function assertStageCapabilityRequest(input: { kind: GenerationStageKind; count: number; cefr: string; studyTarget: string; sourceLocale: string; prerequisiteKinds: readonly GenerationStageKind[] }): StageCapability {
   const result = stageCapability(input.kind);
   if (!result.cefr.includes(input.cefr as CefrLevel)) throw new Error('stage_capability_cefr_unsupported');
-  if (!SUPPORTED_TARGETS.has(input.studyTarget) || !SUPPORTED_SOURCES.has(input.sourceLocale) || input.studyTarget === input.sourceLocale) throw new Error('stage_capability_locale_pair_unsupported');
+  const isLearningV2 = input.kind.startsWith('learning_v2_');
+  if (!SUPPORTED_TARGETS.has(input.studyTarget) || (isLearningV2 ? input.sourceLocale !== LEARNING_V2_MULTI_SOURCE : !SUPPORTED_SOURCES.has(input.sourceLocale)) || input.studyTarget === input.sourceLocale) throw new Error('stage_capability_locale_pair_unsupported');
   if (!Number.isSafeInteger(input.count) || input.count < result.count.min || input.count > result.count.max || (result.count.fixed !== undefined && input.count !== result.count.fixed)) throw new Error('stage_capability_count_unsupported');
   if (input.prerequisiteKinds.length !== result.prerequisiteKinds.length || result.prerequisiteKinds.some((kind, index) => input.prerequisiteKinds[index] !== kind)) throw new Error('stage_capability_prerequisites_invalid');
   return result;

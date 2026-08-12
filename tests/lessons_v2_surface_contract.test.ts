@@ -1,9 +1,6 @@
-// зачем: 2026-07-26 владелец забраковал ДВА захода на Learning V2 — витрину
-// «скриптовых режимов» Kimi и session-прототип (карта → 12 сессий → раннер) —
-// и решил (опрос, серия A): прототип снести сразу, строить с нуля по планам
-// Кодекса (docs/v2/00–08) через ревизию → HTML-макеты → RN-волны. Контракт
-// держит три вещи: (1) дев-вход V2 живёт и стабилен, (2) оба забракованных
-// захода НЕ возвращаются, (3) заглушка уважает тему приложения и запреты стиля.
+// Текущий вход V2 обязан вести к новому проверяемому вертикальному срезу, а не
+// к старой тупиковой заглушке. При этом забракованный Kimi/session-прототип не
+// возвращается: рабочая карта и раннер живут в app/learning-v2.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -12,25 +9,23 @@ const exists = (rel: string) => fs.existsSync(path.join(process.cwd(), rel));
 
 const lessonsSource = read('app/(tabs)/lessons.tsx');
 const labSource = read('components/learning-v2-lab/LearningV2ModesLab.tsx');
+const mapSource = read('app/learning-v2/lesson/[id].tsx');
 
-describe('lessons V2 — вход поверхности после сноса прототипа', () => {
-  test('дев-гейт V2 остаётся смонтированным на странице Уроки', () => {
-    // Точка монтажа — решение владельца A4: Уроки → V2 за ENABLE_DEV_TOOLS.
-    // Ломать её нельзя: сюда волнами приедут новые режимы.
+describe('lessons V2 — прямой вход в длинную карту курса', () => {
+  test('V2 открывает карту сразу, без промежуточной страницы Урок 1', () => {
     expect(lessonsSource).toMatch(/ENABLE_DEV_TOOLS/);
-    expect(lessonsSource).toMatch(/useState<\s*'lessons'\s*\|\s*'dialogs'\s*\|\s*'v2'/);
+    expect(lessonsSource).toMatch(/useState<\s*'lessons'\s*\|\s*'dialogs'/);
     expect(lessonsSource).toMatch(/label="V2"/);
-    expect(lessonsSource).toMatch(/LearningV2ModesLab/);
+    expect(lessonsSource).toContain("router.push('/learning-v2/lesson/1' as any)");
+    expect(lessonsSource).not.toContain("setPage('v2')");
+    expect(lessonsSource).not.toContain('<LearningV2ModesLab');
   });
 
   test('забракованная витрина Kimi не возвращается ни под каким видом', () => {
     expect(labSource).not.toMatch(/ModeDemoPlayer|LAB_MODE_CATALOG|kimi\/registry/);
   });
 
-  test('снесённый session-прототип не возвращается', () => {
-    // Решение владельца A3: снести сразу. Возврат каталога session/ или его
-    // импортов = регрессия против явного решения. Новые режимы живут в другой
-    // структуре (по докам 04/06), а не в воскрешённом прототипе.
+  test('снесённый Kimi session-прототип не возвращается', () => {
     expect(exists('components/learning-v2-lab/session')).toBe(false);
     expect(labSource).not.toMatch(/\.\/session\//);
     expect(labSource).not.toMatch(/SessionRunner|UnitMap|ZoneCeremony|PracticeLab/);
@@ -43,18 +38,31 @@ describe('lessons V2 — вход поверхности после сноса �
     expect(exists('components/learning-v2-lab/kimi/use_voice_capture.ts')).toBe(true);
   });
 
-  test('заглушка берёт цвета из темы приложения, а не из хардкод-палитры', () => {
-    // Решение владельца №4 (хендовер §3): режимы перенимают тему приложения.
-    // Хардкод cinema-палитры Kimi был одной из причин браковки прототипа.
-    expect(labSource).toMatch(/useTheme/);
-    expect(labSource).not.toMatch(/from '\.\/kimi\/tokens'/);
-    expect(labSource).not.toMatch(/#[0-9A-Fa-f]{6}/);
+  test('старая лаборатория остаётся отдельным dev-инструментом, но не вклинивается в путь пользователя', () => {
+    expect(labSource).toContain('LearningV2ModesLab');
+    expect(lessonsSource).not.toMatch(/import LearningV2ModesLab/);
   });
 
-  test('стиль заглушки уважает запреты владельца', () => {
-    expect(labSource).not.toMatch(/adjustsFontSizeToFit/);
-    // Обводки контейнеров запрещены; разделитель одной стороны разрешён.
-    expect(labSource).not.toMatch(/(?<!Bottom)(?<!Top)(?<!Left)(?<!Right)borderWidth/);
-    expect(labSource).not.toMatch(/(?<!borderBottom)(?<!borderTop)(?<!borderLeft)borderColor/);
+  test('карта показывает весь сезон зигзагом и виртуализирует длинный путь', () => {
+    expect(mapSource).toContain('АНГЛИЙСКИЙ · A1');
+    expect(mapSource).toContain('4 сектора · 32 эпизода · уроки и экзамены');
+    expect(mapSource).toContain('Array.from({ length: 31 }');
+    expect(mapSource).toContain("'One independent day'");
+    expect(mapSource).toContain('COURSE_CHAPTERS');
+    expect(mapSource).toContain('<FlatList');
+    expect(mapSource).not.toMatch(/sessionConnector|futureConnector|connectorStyle/);
+    expect(mapSource).toContain('PATH_WAVE');
+    expect(mapSource).toContain('height: 74');
+    expect(mapSource).toContain('Путь к свободной речи');
+    expect(mapSource).toContain('СЕКТОР 1 · ЭПИЗОД 1');
+    expect(mapSource).toContain('SESSION_ZONE_META');
+    expect(mapSource).toContain('EPISODE_ICONS');
+    expect(mapSource).toContain('mapDecorationAt');
+    expect(exists('assets/images/learning_v2_map/phraseman-map-guide-v1.webp')).toBe(true);
+    expect(exists('assets/images/learning_v2_map/phraseman-map-chest-v1.webp')).toBe(true);
+    expect(exists('assets/images/learning_v2_map/phraseman-map-sign-v1.webp')).toBe(true);
+    expect(exists('assets/images/learning_v2_map/phraseman-map-exam-v1.webp')).toBe(true);
+    expect(mapSource).toContain("kind: checkpoint ? 'checkpoint' : 'episode'");
+    expect(mapSource).not.toContain('<ScrollView');
   });
 });

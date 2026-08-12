@@ -88,6 +88,8 @@ import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenH
 import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
+import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
+import ArenaHomeCard from '../../components/arena/ArenaHomeCard';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
@@ -2403,7 +2405,7 @@ export default function HomeScreen() {
     ) => {
         if (marker === 'freeze') {
             const iceSize = Math.round(size * 1.34);
-            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel="Заморозка стрика" />;
+            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Заморозка серии', uk: 'Заморозка серії', es: 'Congelación de racha', 'pt-BR': 'Congelamento da sequência', vi: 'Đóng băng chuỗi', id: 'Pembekuan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' })} />;
         }
         if (marker === 'revive' || marker === 'repair') {
             return <Ionicons name="checkmark" size={checkSize} color={checkColor}/>;
@@ -2942,7 +2944,7 @@ export default function HomeScreen() {
                     nav.push('/shards_shop');
                   }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
                   <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={`Баланс: ${shardsBalance} жемчужин`} />
+                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} жемчужин`, uk: `Баланс: ${shardsBalance} перлин`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })} />
                     <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
                   </Animated.View>
                 </TouchableOpacity>
@@ -3075,6 +3077,8 @@ export default function HomeScreen() {
             </View>
           </View>
 
+          <ArenaHomeCard />
+
 
 
 
@@ -3201,7 +3205,7 @@ export default function HomeScreen() {
                             transform: [{ scale: homeFeatureTipHintScale }],
                           }}
                         >
-                          тапни по подсказке
+                          {triLang(lang, { ru: 'нажми на подсказку', uk: 'торкнися підказки', es: 'toca la pista', 'pt-BR': 'toque na dica', vi: 'chạm vào gợi ý', id: 'ketuk petunjuk', tr: 'ipucuna dokun', pl: 'dotknij podpowiedzi' })}
                         </Animated.Text>
                       ) : null}
                       {currentHomeFeatureTip.icon ? (
@@ -3311,7 +3315,7 @@ export default function HomeScreen() {
                   <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -16, width: 126, height: 126, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                     <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги"/>
+                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Подарок лиги', uk: 'Подарунок ліги', es: 'Regalo de liga', 'pt-BR': 'Presente da liga', vi: 'Quà tặng của giải đấu', id: 'Hadiah liga', tr: 'Lig hediyesi', pl: 'Prezent ligi' })}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
@@ -3351,6 +3355,7 @@ export default function HomeScreen() {
           }}>
           <DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />
           </Animated.View>
+          <HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />
           </>)}
 
       </BouncyScrollView>);

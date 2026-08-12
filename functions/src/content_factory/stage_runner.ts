@@ -7,6 +7,7 @@ import { validateQuestionBatchArtifact, validateQuestionReplacementArtifact, val
 import { validateFlashcardItemsArtifact, validateFlashcardPackIdeaArtifact, validateFlashcardReplacementArtifact } from './flashcard_artifacts';
 import { createHash } from 'node:crypto';
 import { resolveStageGenerationPolicy } from './generation_policy';
+import { LEARNING_V2_GENERATION_STAGE_KINDS, validateLearningV2GenerationArtifact } from './learning_v2_generation_artifacts';
 
 export type StageResponseFormat = Readonly<{ type: 'json_object' }> | Readonly<{ type: 'json_schema'; json_schema: { name: string; strict: boolean; schema: Readonly<Record<string, unknown>> } }>;
 
@@ -77,6 +78,9 @@ function parseAndValidate(raw: string, packet: StagePromptPacket): { artifact?: 
   if (packet.kind === 'flashcard_pack_idea' && ['v2', 'v3'].includes(packet.promptVersion)) errors.push(...validateFlashcardPackIdeaArtifact(artifact, { cefr: packet.context.cefr }));
   if (packet.kind === 'flashcard_items' && ['v2', 'v3'].includes(packet.promptVersion)) errors.push(...validateFlashcardItemsArtifact(artifact, { count: packet.context.count, grounding: packet.grounding }));
   if (packet.kind === 'flashcard_item_replacement' && ['v2', 'v3'].includes(packet.promptVersion)) errors.push(...validateFlashcardReplacementArtifact(artifact, { grounding: packet.grounding }));
+  if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(packet.kind as typeof LEARNING_V2_GENERATION_STAGE_KINDS[number]) && packet.promptVersion === 'v2') {
+    errors.push(...validateLearningV2GenerationArtifact(artifact, { kind: packet.kind as typeof LEARNING_V2_GENERATION_STAGE_KINDS[number], targetLanguage: packet.context.studyTarget, ownerApprovalTrail: Array.isArray(packet.grounding?.ownerApprovalTrail) ? packet.grounding.ownerApprovalTrail : [] }));
+  }
   const candidate = Object.freeze({ ...artifact });
   return errors.length ? { candidate, errors } : { artifact: candidate, candidate, errors: [] };
 }

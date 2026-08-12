@@ -6,9 +6,11 @@
 Её исходник — **`admin/v2/legacy.html`**, и hosting публикует именно папку `admin/v2`.
 Любая правка админки вне этого файла на боевую НЕ попадёт.
 
-`admin/legacy.html`, `admin/index.html`, `admin/full.html`, `admin/v2/index.html`
-и `admin/v2/scripts/*` — **заморожены**, только чтение. Подробности и таблица
-файлов: `AGENTS.md` → «ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА».
+`admin/legacy.html`, `admin/index.html`, `admin/full.html` — **заморожены**, только
+чтение. Белая V2-панель `admin/v2/index.html` и её router/core/UI удалены
+навсегда; восстанавливать их запрещено. Корень Hosting обязан перенаправлять на
+`/legacy.html`. Подробности: `AGENTS.md` → «ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА» и
+`docs/admin/WHITE_ADMIN_V2_RETIRED.md`.
 
 ### 👤 Правило: рядом с uid ВСЕГДА имя (владелец, 2026-08-02)
 

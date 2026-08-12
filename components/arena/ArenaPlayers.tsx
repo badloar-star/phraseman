@@ -15,8 +15,8 @@ function Player({ player, active, botLabel, animateScore }: { player?: ArenaPlay
     <View style={styles.player}>
       <AvatarView avatar={player?.avatar} auraId={player?.aura} size={44} animateAura={false} ownerActive={active} />
       <View style={styles.copy}>
-        <Text numberOfLines={1} style={[styles.name, { color: P.text }]}>{player?.name ?? '—'}</Text>
-        {player?.isBot && botLabel ? <Text numberOfLines={1} style={[styles.bot, { color: P.muted }]}>{botLabel}</Text> : null}
+        <Text style={[styles.name, { color: P.text }]}>{player?.name ?? '—'}</Text>
+        {player?.isBot && botLabel ? <Text style={[styles.bot, { color: P.muted }]}>{botLabel}</Text> : null}
       </View>
       <V2Counter value={shownScore} />
     </View>

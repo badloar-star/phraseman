@@ -54,7 +54,6 @@ export default function AiDialogHome() {
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text
           style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
-          numberOfLines={1}
         >
           {triLang(lang, {
             ru: 'Диалоги',
@@ -67,7 +66,7 @@ export default function AiDialogHome() {
             pl: 'Dialogi',
           })}
         </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
+        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
           {triLang(lang, {
             ru: `${activeCount} сценариев с Компасом`,
             uk: `${activeCount} сценаріїв із Компасом`,

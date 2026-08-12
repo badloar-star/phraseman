@@ -37,7 +37,7 @@ export function ArenaSectionTabs({
             onPress={() => onSelect(section)}
             style={[styles.tab, { backgroundColor: active ? P.accent : P.elev }]}
           >
-            <Text numberOfLines={1} style={[styles.tabText, { color: active ? P.okInk : P.text }]}>{labels[section]}</Text>
+            <Text style={[styles.tabText, { color: active ? P.okInk : P.text }]}>{labels[section]}</Text>
           </Pressable>
         );
       })}

@@ -233,7 +233,7 @@ export default function MaxCallPrestart() {
             <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
               {triLang(lang, {
                 ru: 'Звонок',
                 uk: 'Дзвінок',
@@ -276,10 +276,10 @@ export default function MaxCallPrestart() {
               <Ionicons name={(scenario?.icon ?? 'chatbubbles-outline') as any} size={24} color={t.accent} />
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }} numberOfLines={2}>
+              <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
                 {title}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }} numberOfLines={1}>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
                 {triLang(lang, {
                   ru: `Живой разговор голосом · до ${capMin} мин`,
                   uk: `Жива розмова голосом · до ${capMin} хв`,

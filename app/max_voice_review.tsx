@@ -272,7 +272,7 @@ export default function MaxVoiceReview() {
             <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
               {triLang(lang, {
                 ru: 'Разбор звонка',
                 uk: 'Розбір дзвінка',
@@ -285,7 +285,7 @@ export default function MaxVoiceReview() {
               })}
             </Text>
             {(scenarioTitle !== '' || result.personaName !== '') && (
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
                 {[result.personaName, scenarioTitle].filter(Boolean).join(' · ')}
               </Text>
             )}

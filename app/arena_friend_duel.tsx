@@ -73,7 +73,7 @@ export default function ArenaFriendDuelScreen() {
                 style={[styles.friendRow, { backgroundColor: selected ? P.accent : P.elev }]}
               >
                 <AvatarView avatar={profile?.avatar} auraId={profile?.aura} size={44} animateAura={false} ownerActive={active} />
-                <Text numberOfLines={1} style={[styles.friendName, { color: selected ? P.okInk : P.text }]}>{profile?.name ?? friend.displayName ?? arenaText(lang, 'friend')}</Text>
+                <Text style={[styles.friendName, { color: selected ? P.okInk : P.text }]}>{profile?.name ?? friend.displayName ?? arenaText(lang, 'friend')}</Text>
               </Pressable>
             );
           })}

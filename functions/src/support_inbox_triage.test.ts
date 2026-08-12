@@ -245,9 +245,10 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     const storedDraft = String(store.get('support_inbox/m3')?.draftReply ?? '');
     expect(storedDraft).toContain('получили ваше сообщение');
     expect(storedDraft).not.toContain('доступ уже открыт');
-    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
-    const [, text] = mockSendTelegramAlert.mock.calls[0];
-    expect(text).toContain('Gmail Support Inbox');
+    expect(mockSendTelegramAlert).not.toHaveBeenCalled();
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+    const text = String((mockSendJarvisDigest.mock.calls[0][0] as Record<string, unknown>).text || '');
+    expect(text).toContain('Ответ Джарвиса готов');
     expect(text).not.toContain('client@example.com');
     expect(text).not.toContain('Не работает подписка');
     expect(text).not.toContain('Оплатил Plus');
@@ -340,9 +341,8 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     }));
 
     expect(mockOpenAiChat).not.toHaveBeenCalled();
-    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
-    const [, text] = mockSendTelegramAlert.mock.calls[0];
-    expect(text).toContain('Gmail Support Inbox');
+    expect(mockSendTelegramAlert).not.toHaveBeenCalled();
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
     jest.spyOn(Date, 'now').mockRestore();
   });
 
@@ -351,6 +351,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await supportInboxOnNewMail(makeEvent('m5', {
       fromEmail: 'client@example.com', subject: 'Помогите', bodyText: 'Не получается войти', status: 'new',
     }));
+    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
     const [, text] = mockSendTelegramAlert.mock.calls[0];
     expect(text).toContain('Gmail Support Inbox');
@@ -364,7 +365,8 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     }));
 
     expect(mockOpenAiChat).not.toHaveBeenCalled();
-    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
+    expect(mockSendTelegramAlert).not.toHaveBeenCalled();
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
     expect(store.get('support_inbox/m-no-ai')?.ownerNotification).toMatchObject({
       state: 'delivered',
       attempts: 1,
@@ -373,6 +375,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
 
   test('persists a failed Telegram attempt and rejects so delivery failure is never silent', async () => {
     secretValues.set('OPENAI_API_KEY', '');
+    mockSendJarvisDigest.mockResolvedValueOnce(false);
     mockSendTelegramAlert.mockResolvedValueOnce(false);
 
     await expect(supportInboxOnNewMail(makeEvent('m-telegram-fail', {
@@ -380,6 +383,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     }))).rejects.toThrow('support_owner_notification_failed');
 
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
     expect(store.get('support_inbox/m-telegram-fail')?.ownerNotification).toMatchObject({
       state: 'failed',
       attempts: 1,
@@ -422,6 +426,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await expect(deliverSupportOwnerAlert({
       db: fakeDb(), messageDocId: 'm-terminal', botToken: 'token', text: 'generic inbox notice', nowMs: Date.now() + 24 * 60 * 60 * 1000,
     })).resolves.toBe('skipped');
+    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
   });
 
@@ -436,6 +441,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
       fromEmail: 'maybe@example.com', subject: 'Странное письмо', bodyText: 'текст', status: 'new',
     }));
     expect(store.get('support_inbox/m6')?.status).not.toBe('archived');
-    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+    expect(mockSendTelegramAlert).not.toHaveBeenCalled();
   });
 });

@@ -1721,14 +1721,19 @@ async function prepareSupportTelegramReview(input: {
     });
     if (!sent) throw new Error('telegram_review_send_failed');
     const notificationAtMs = Date.now();
-    const autoSendAtMs = config.mode === 'live_guarded' && preview.approvable
+    const repositoryTrust = retrieveSupportRepositoryContext(`${input.doc.subject}\n${input.doc.bodyText}`);
+    const autoSendAtMs = config.mode === 'live_guarded'
+      && preview.approvable
+      && repositoryTrust.trustworthy
+      && !repositoryTrust.dirty
       ? notificationAtMs + SUPPORT_TELEGRAM_AUTO_SEND_DELAY_MS
       : null;
     await reviewRef.set({ notificationAtMs, autoSendAtMs, updatedAtMs: notificationAtMs }, { merge: true });
     await input.db.collection(INBOX_COLLECTION).doc(input.messageDocId).set({
       ownerNotification: {
-        ...(input.doc.ownerNotification ?? { attempts: 0 }),
+        ...(input.doc.ownerNotification ?? {}),
         state: 'delivered',
+        attempts: Number(input.doc.ownerNotification?.attempts ?? 0) + 1,
         updatedAt: new Date(notificationAtMs).toISOString(),
         deliveredAt: new Date(notificationAtMs).toISOString(),
       },
@@ -1836,6 +1841,17 @@ export async function runSupportAutoReplyRetryCron(nowMs: number = Date.now()): 
     if (Number(doc.autoReply?.nextAttemptAtMs ?? 0) > nowMs) continue;
     if (Number(doc.autoReply?.attempts ?? 0) >= SUPPORT_AUTO_REPLY_MAX_ATTEMPTS) continue;
     attempted += 1;
+    if (doc.replyGate?.state === 'prepared' && String(doc.draftReply ?? '').trim()) {
+      await prepareSupportTelegramReview({
+        db, messageDocId: row.id, doc,
+        replyText: String(doc.draftReply), draftRevision: Number(doc.draftRevision ?? 0),
+        appPassword, grounded: Boolean(doc.autoReply?.grounded),
+        reason: String(doc.autoReply?.reason ?? 'telegram_notification_retry'),
+        knowledgeFingerprint: String(doc.autoReply?.knowledgeFingerprint ?? ''),
+        nowMs, revised: true,
+      });
+      continue;
+    }
     await generateSaveAndDispatchAutoReply({ db, messageDocId: row.id, doc, apiKey, appPassword, nowMs });
   }
   return { scanned: snap.size, attempted };
@@ -1850,7 +1866,7 @@ export async function handleSupportTelegramAction(input: {
   nowMs: number;
 }): Promise<ConsumeApprovalTokenResult | null> {
   const tokenRef = input.db.collection('jarvis_approval_tokens').doc(hashNonce(input.nonce));
-  return input.db.runTransaction(async (tx) => {
+  return input.db.runTransaction<ConsumeApprovalTokenResult | null>(async (tx) => {
     const tokenSnap = await tx.get(tokenRef);
     const token = tokenSnap.exists ? tokenSnap.data() as ApprovalTokenDoc : null;
     if (!token || !String(token.department ?? '').startsWith('support_email:')) return null;
@@ -1911,7 +1927,7 @@ export async function handleSupportTelegramAction(input: {
       }, { merge: false });
     }
     return { ok: true, doc: verdict.doc };
-  });
+  }).catch(() => ({ ok: false as const, reason: 'storage_error' as const }));
 }
 
 export async function handleSupportTelegramFeedback(input: {
@@ -2804,12 +2820,12 @@ export const adminSupportSaveDraft = onCall(
     const fresh = await messageRef.get();
     const doc = fresh.data() as SupportInboxDoc;
     const context = retrieveSupportRepositoryContext(`${doc.subject}\n${doc.bodyText}`);
-    await prepareSupportTelegramReview({
+    const reviewState = await prepareSupportTelegramReview({
       db, messageDocId, doc, replyText, draftRevision: nextRevision,
       appPassword: '', grounded: false, reason: 'owner_manual_edit',
       knowledgeFingerprint: context.sourceFingerprint, nowMs: Date.now(), revised: true,
     });
-    return { ok: true, draftRevision: nextRevision };
+    return { ok: true, draftRevision: nextRevision, reviewState };
   },
 );
 

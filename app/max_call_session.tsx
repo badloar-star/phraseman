@@ -866,11 +866,11 @@ export default function MaxCallSession() {
             <Ionicons name={(scenario?.icon ?? 'chatbubbles-outline') as any} size={19} color={t.accent} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
               {personaName}
             </Text>
             {scenarioChip !== '' && (
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
                 {scenarioChip}
               </Text>
             )}
@@ -900,7 +900,7 @@ export default function MaxCallSession() {
             }}
           >
             <Ionicons name="wifi-outline" size={15} color={t.textMuted} />
-            <Text style={{ color: t.textMuted, fontSize: f.caption, flex: 1 }} numberOfLines={1}>
+            <Text style={{ color: t.textMuted, fontSize: f.caption, flex: 1 }}>
               {phaseHint('reconnecting', lang)}
             </Text>
           </View>
@@ -964,7 +964,6 @@ export default function MaxCallSession() {
                   marginTop: i === 0 ? 0 : 6,
                   lineHeight: Math.round(f.sub * 1.35),
                 }}
-                numberOfLines={2}
                 maxFontSizeMultiplier={1.2}
               >
                 {turn.text}

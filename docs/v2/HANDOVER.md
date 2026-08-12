@@ -9857,8 +9857,10 @@ mutation or `admin/v2` access occurred.
 Owner workflow clarification: implementation readiness does not require Codex
 to author or approve the real content of all 32 episodes. The finished root
 admin generator must be capable of producing any complete episode, but the
-owner will manually run generation, inspect preview and approve each of the 32
-real episodes. Tests may use bounded non-production fixtures only; they never
+owner will independently author all real content, manually run generation,
+inspect preview and approve each of the 32 real episodes. Codex does not
+participate in that content-authoring process. Tests may use bounded
+non-production fixtures only; they never
 count as owner-approved E1–E32 content or release evidence.
 
 This closes only Voice Targets dependency A. The registry remains exactly
@@ -10252,10 +10254,18 @@ specialist and device evidence are independently green.
 ## 15.95 — Owner-driven E1–E32 generation boundary (2026-08-12)
 
 The product-owner workflow is now stated without ambiguity in the execution
-plan and the mandatory generator delivery contract. The owner manually chooses
-an episode, starts generation, reviews its preview and either approves or
-rejects that concrete version. The owner is not expected to author sessions,
-tasks, locale variants or audio packages by hand.
+plan and the mandatory generator delivery contract. The owner alone creates all
+real educational content for E1–E32, independently and without Codex
+participation. Codex builds the generator and technical system only. It does not
+write, generate, edit or approve the owner's phrases, tasks, explanations,
+intros, scenarios, localizations or other episode content, and it never starts
+real content generation on the owner's behalf.
+
+The owner manually chooses an episode, supplies or imports the owner's own
+content, starts generation, reviews its preview and either approves or rejects
+that concrete version. The generator is responsible for technically compiling
+those owner-authored inputs into the complete validated package; that technical
+assembly does not transfer content authorship to Codex.
 
 For each selected `E1`–`E32`, one generator run must build the complete episode:
 all twelve required sessions and 144 tasks, intro plus exactly three checks,
@@ -10272,8 +10282,9 @@ source-owned per-word audio catalog is **2 suites / 12 tests PASS**, 0
 snapshots. No episode content, provider request, Firebase write, deploy, push,
 root-admin mutation or `admin/v2` access occurred.
 
-This closes the responsibility boundary and generator planning invariant, not
-the generator UI or real E1–E32 content. The root-admin workflow, actual
+This closes the corrected responsibility boundary and generator planning
+invariant, not the generator UI or real E1–E32 content. The root-admin workflow,
+actual
 end-to-end generator execution, preview/approval persistence, and the owner's
 manual generation/review of all 32 episodes remain open.
 
@@ -10436,3 +10447,23 @@ devices. Those device runs, server receipt upload, human listening,
 pronunciation/language approval, offline cache/prefetch playback and owner
 evidence remain open. Registry state remains **1 of 13** and Voice Targets is
 not installed.
+
+## 15.100 — Owner-only E1–E32 content authorship boundary (2026-08-12)
+
+The owner clarified the division of work once more and it is now a permanent
+project invariant. Codex builds the generator, contracts, runtime, validators,
+preview/versioning, QA and release-safety machinery. The owner independently
+creates all real E1–E32 educational content. Codex must not author, generate,
+rewrite, translate, approve or launch generation of real episode content on the
+owner's behalf.
+
+Generator development may use bounded neutral test fixtures solely to prove
+mechanics and fail-closed validation. Such fixtures are not course content,
+cannot enter a production selection and cannot count toward E1–E32 completion.
+The finished root-admin generator must accept the owner's inputs, assemble the
+complete technical package, explain validation failures, preview exact versions
+and preserve approval history without silently changing the owner's content.
+
+This correction supersedes the earlier sentence that the owner was “not
+expected to author” sessions or tasks. The opposite is now authoritative: the
+owner is the sole content author; Codex is the technical implementer only.

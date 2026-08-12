@@ -25252,13 +25252,19 @@
     const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
     if (ta) ta.disabled = true;
     try {
-      await supportCallable('adminSupportSaveDraft')({
+      const result = await supportCallable('adminSupportSaveDraft')({
         messageDocId: id,
         replyText,
         expectedDraftRevision: Number(item?.draftRevision ?? 0),
         requestId: supportRequestToken('legacy-support-save-draft'),
       });
-      showToast('Правки сохранены. Новая версия отправлена вам в Telegram', 'ok');
+      const reviewState = String(result?.data?.reviewState || '');
+      showToast(
+        reviewState === 'awaiting_approval'
+          ? 'Правки сохранены. Новая версия отправлена вам в Telegram'
+          : 'Правки сохранены. Telegram временно недоступен — повтор поставлен в очередь',
+        reviewState === 'awaiting_approval' ? 'ok' : 'warn',
+      );
     } catch (e) {
       showToast('Не удалось сохранить правки: ' + (e.message || e.code || e), 'err');
     } finally {

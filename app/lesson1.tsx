@@ -1187,7 +1187,6 @@ const LessonContent = React.memo(function LessonContent({
               <Text
                 testID="lesson1-selected-answer"
                 style={{ color: sx.primary, fontSize: interactiveAnswerFont, fontWeight: '600', width: '100%', textAlign: 'center' }}
-                numberOfLines={linkedSliceCompact ? 2 : undefined}
               >
                 {selectedWords.length > 0
                   ? (() => {

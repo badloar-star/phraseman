@@ -626,14 +626,14 @@ export default function DialogsTabContent({
             <Ionicons name="call" size={20} color={t.accent} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
               {triLang(lang, {
                 ru: 'Позвонить собеседнику', uk: 'Подзвонити співрозмовнику', es: 'Llamar a tu compañero',
                 'pt-BR': 'Ligar para seu parceiro', vi: 'Gọi cho bạn đồng hành', id: 'Telepon teman bicara',
                 tr: 'Konuşma arkadaşını ara', pl: 'Zadzwoń do partnera',
               })}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+            <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
               {triLang(lang, {
                 ru: 'Живой разговор голосом в реальном времени', uk: 'Жива розмова голосом у реальному часі',
                 es: 'Conversación de voz en tiempo real', 'pt-BR': 'Conversa de voz em tempo real',

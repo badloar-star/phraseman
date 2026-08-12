@@ -227,6 +227,11 @@ const LABELS: Record<string, ShardEarnLabel> = {
     tr: "Mükemmel tanı: zayıf nokta belirgin biçimde güçlendi",
     pl: "Diagnoza idealna: słaby punkt jest wyraźnie mocniejszy",
   },
+  fc_checkpoint: {
+    ru: 'Сундук недельного трека карточек открыт — звёзды превратились в осколки',
+    uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
+    es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+  },
   generic_raw: {
     ru: 'Начисление жемчужин',
     uk: 'Нарахування перлин',

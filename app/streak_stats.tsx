@@ -37,7 +37,6 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { getShardsBalance, spendShards } from './shards_system';
-import { updateTaskProgress } from './daily_tasks';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
 import { emitAppEvent, onAppEvent } from './events';
@@ -933,7 +932,6 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
         { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
         { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
-        { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Заданий дня выполнено', uk: 'Завдань дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
         { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Жемчуга заработано', uk: 'Перлин зароблено', es: 'Perlas ganadas', 'pt-BR': 'Pérolas ganhas', vi: 'Ngọc trai đã kiếm', id: 'Mutiara diperoleh', tr: 'Kazanılan inciler', pl: 'Zdobyte perły' }) },
         { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Жемчуга потрачено', uk: 'Перлин витрачено', es: 'Perlas gastadas', 'pt-BR': 'Pérolas gastas', vi: 'Ngọc trai đã dùng', id: 'Mutiara dipakai', tr: 'Harcanan inciler', pl: 'Wydane perły' }) },
     ];
@@ -1008,7 +1006,6 @@ const LIFETIME_PATH_DEV_CHART_KINDS: LifetimeTotalsChartKind[] = [
     'words_learned',
     'flashcards_saved',
     'phrases_learned',
-    'daily_tasks_claimed',
     'shards_earned',
     'shards_spent',
 ];
@@ -1018,7 +1015,6 @@ function mergeDevRandomSumsIntoLifetime(base: LifetimeProfileStats, sums: DevLif
         wordsLearned: sums.wordsLearned,
         flashcardsSaved: sums.flashcardsSaved,
         phrasesLearned: sums.phrasesLearned,
-        dailyTasksClaimed: sums.dailyTasksClaimed,
         shardsEarned: sums.shardsEarned,
         shardsSpent: sums.shardsSpent,
     };
@@ -3746,8 +3742,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         setFreezeActive(true);
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
-        // Ежедневное задание «Щит стрика»: ручная заморозка (бесплатная или за осколки).
-        void updateTaskProgress('streak_freeze_use', 1, studyTarget).catch(() => {});
     };
     const weekAnalyticsBlock = (
         <Reanimated.View key="week-analytics" entering={FadeInDown.duration(420).delay(210)}>

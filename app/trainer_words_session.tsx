@@ -49,7 +49,6 @@ import {
   type WordSessionCard,
 } from './trainer_practice_hall';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 // зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { checkAchievements } from './achievements';
@@ -65,6 +64,21 @@ import {
   readTrainerPlanTaskContext,
   type TrainerPlanTaskRouteParams,
 } from './trainer_plan_task_route';
+// cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК колод через запятую
+// (`?deck=saved,custom,pack:abc`) — колоды объединяются в одну перемешанную
+// (loadDeckCardsMulti), а источник ошибки берётся с самой карточки (DeckCard.source),
+// чтобы ошибка попала в правильную очередь повторения.
+import {
+  loadDeckCardsMulti,
+  mistakeSourceForDecks,
+  parseDeckParams,
+  type DeckCard,
+  type DeckRef,
+} from './flashcards/deck_sources';
+import { decksCountLabel } from './flashcards/deck_selection';
+import { isValidSessionSize } from './flashcards/mode_prefs';
+import { flashcardContentLang } from './spanish_content_gate';
+import { recordMistake } from './active_recall';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const { width: SCREEN_W } = Dimensions.get('window');
@@ -246,16 +260,51 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }
   );
 }
 
+/**
+ * cards-2.1 (§6): карточка колоды → синтетический TrainerItem, чтобы deck-сессия
+ * переиспользовала тот же рендер и подбор ложного перевода, что и обычная.
+ * В trainer_store такие item'ы не попадают.
+ */
+function deckCardToTrainerItem(c: DeckCard): TrainerItem {
+  return {
+    key: c.en,
+    queue: 'words',
+    translationRu: c.ru || c.translation,
+    translationUk: c.uk || c.ru || c.translation,
+    translationEs: c.es,
+    lessonId: 0,
+    mistakeCount: 0,
+    correctStreak: 0,
+    nextDue: 0,
+    createdAt: Date.now(),
+    archived: false,
+  };
+}
+
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerWordsSession() {
   const router = useRouter();
-  const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
+  const params = useLocalSearchParams<TrainerPlanTaskRouteParams & { deck?: string | string[]; size?: string | string[] }>();
   const { theme: t, f, themeMode } = useTheme();
   const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
+  /**
+   * cards-2.1 (§6): deck-режим (`?deck=saved,custom,pack:abc` — СПИСОК колод);
+   * пустой список — обычная due-очередь тренера (поведение без ?deck= не меняется).
+   */
+  const deckParamStr = Array.isArray(params.deck) ? params.deck[0] : params.deck;
+  const deckRefs = useMemo<DeckRef[]>(() => parseDeckParams(deckParamStr), [deckParamStr]);
+  const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
+  const sessionSize = useMemo(() => {
+    const raw = Array.isArray(params.size) ? params.size[0] : params.size;
+    const n = raw ? parseInt(raw, 10) : NaN;
+    return isValidSessionSize(n) ? n : WORD_SESSION_LIMIT;
+  }, [params.size]);
+  /** Карточка колоды по ключу — источник ошибки при мультивыборе (§6). */
+  const deckCardByKeyRef = useRef<Map<string, DeckCard>>(new Map());
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
@@ -268,7 +317,7 @@ export default function TrainerWordsSession() {
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
   const warmDeckRef = useRef<WordSessionCard[] | null>(
-    !trainerGateOpen || params.planTaskId || params.planTrainerTask
+    !trainerGateOpen || params.planTaskId || params.planTrainerTask || deckRefs.length > 0
       ? null
       : getWarmWordSessionDeck(WORD_SESSION_LIMIT, studyTarget, sourceLocale, lang),
   );
@@ -343,6 +392,26 @@ export default function TrainerWordsSession() {
         }
         if (startedWarm) sessionStartRef.current = Date.now();
         setAccessReady(true);
+
+        if (deckRefs.length > 0) {
+          // cards-2.1 (§6): одна или несколько колод вместо trainer_store.
+          // loadDeckCardsMulti уже объединяет, дедуплицирует и перемешивает —
+          // остаётся только срез по размеру сессии из пресета.
+          const pool = await loadDeckCardsMulti(deckRefs, cardContentLang);
+          if (cancelled) return;
+          const sessionCards = pool.slice(0, sessionSize);
+          if (sessionCards.length === 0) { setDone(true); setLoading(false); return; }
+          const byKey = new Map<string, DeckCard>();
+          for (const c of sessionCards) byKey.set(c.en, c);
+          deckCardByKeyRef.current = byKey;
+          const deckItems = sessionCards.map((c) => deckCardToTrainerItem(c));
+          allItemsRef.current = deckItems;
+          sessionStartRef.current = Date.now();
+          setDeck(buildTrainerWordSessionDeck(deckItems, lang));
+          setLoading(false);
+          return;
+        }
+
         const items = planTrainerContext.taskId
           ? await getTrainerPremiumItemsForPlanQueue(
               planTrainerContext.planInstanceId,
@@ -373,7 +442,7 @@ export default function TrainerWordsSession() {
       }
     })();
     return () => { cancelled = true; };
-  }, [lang, planTrainerContext, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey]);
+  }, [lang, planTrainerContext, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey, deckRefs, cardContentLang, sessionSize]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -389,14 +458,25 @@ export default function TrainerWordsSession() {
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'words', answeredCorrectly, studyTarget);
-    const updates: { type: TaskType; increment: number }[] = [];
-    // «Моя практика» продвигает только собственный trainer_words-вызов.
-    // SRS recall_* принадлежит исключительно экрану /review.
+    if (deckRefs.length === 0) {
+      await markTrainerResult(card.item.key, 'words', answeredCorrectly, studyTarget);
+    } else {
+      // Deck-сессия: SRS тренера не трогаем (прогресс сессии локален).
+      // Уникальные ошибочные карточки уходят в очередь повторения; источник берём
+      // с карточки — при «saved + pack» ошибка из пака не уедет в чужую очередь.
+      if (!answeredCorrectly) {
+        const c = deckCardByKeyRef.current.get(card.item.key);
+        if (c) {
+          const fallbackSource = mistakeSourceForDecks(deckRefs);
+          const source = c.source ?? fallbackSource;
+          await recordMistake(c.en, c.ru || c.translation, 0, c.uk, source, c.es, undefined, studyTarget)
+            .catch(() => {});
+        }
+      }
+    }
     if (answeredCorrectly) {
       playCorrect();
       speakAnswer(card.item.key, studyTarget);
-      updates.push({ type: 'trainer_words', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     } else if (!energyRef.current.energyUnlimited) {
       // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
@@ -405,10 +485,6 @@ export default function TrainerWordsSession() {
       const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
       spendOne().then((success) => {
         if (!success) return;
-        // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
-        // никогда не засчитывалось из этого экрана — lesson1.tsx/review.tsx шлют этот
-        // инкремент, а «Моя практика» — нет. Квест молча не продвигался у части юзеров.
-        updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
         setTimeout(() => {
           const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
           if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
@@ -429,8 +505,7 @@ export default function TrainerWordsSession() {
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer, spendOne, noEnergyModalOpen]);
+  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer, spendOne, noEnergyModalOpen, deckRefs]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
     if (noEnergyModalOpen) return;

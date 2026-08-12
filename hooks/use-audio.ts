@@ -9,6 +9,7 @@ import {
   whenSpokenAudioReady,
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
+import { peekEnVoiceId } from '../app/flashcards/voice_prefs';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
@@ -19,6 +20,12 @@ export type SpeakOpts = {
   voice?: string;
   /** Optional pronunciation-only text; the visible lesson text stays unchanged. */
   speechText?: string;
+  /**
+   * cards-2.0 (E13): явный идентификатор голоса (voice picker preview).
+   * Без него для en-* подставляется выбранный юзером голос из fc_voice_prefs_v1;
+   * uk/ru/es автодетект языка не трогаем — голос применяется только к en.
+   */
+  voiceId?: string | null;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -56,7 +63,7 @@ function retrySpeechWithoutVoice(
 
 export function inferExpoSpeechLanguage(
   text: string,
-  contentLangHint?: 'ru' | 'uk' | 'es',
+  contentLangHint?: string,
 ): string {
   const s = text.trim();
   if (!s) return 'en-US';
@@ -147,10 +154,18 @@ export function useAudio() {
     const settings = getUserSettingsSnapshot();
     const safeRate = normalizeSpeechRate(rate ?? settings.speechRate);
     const language = opts?.language?.trim() || inferExpoSpeechLanguage(spokenText);
-    const hasVoiceOverride = !!opts && Object.prototype.hasOwnProperty.call(opts, 'voice');
+    // cards-2.0 (E13): voiceId — алиас voice для voice picker карточек. Явный
+    // opts (в т.ч. null = «системный») всегда сильнее; иначе для en берём голос
+    // из настроек, а если он не задан — выбранный в разделе карточек.
+    const hasVoiceOverride =
+      !!opts &&
+      (Object.prototype.hasOwnProperty.call(opts, 'voice') ||
+        Object.prototype.hasOwnProperty.call(opts, 'voiceId'));
+    const settingsVoice = settings.speechVoiceId.trim();
     const requestedVoice = hasVoiceOverride
-      ? (opts.voice ?? '').trim()
-      : settings.speechVoiceId.trim();
+      ? (opts.voice ?? opts.voiceId ?? '').trim()
+      : settingsVoice ||
+        (language.toLowerCase().startsWith('en') ? (peekEnVoiceId() ?? '').trim() : '');
 
     // Prefer the high-quality OpenAI "fable" clip when one exists for this exact
     // text, the language is English (clips are EN-only), and the caller did not

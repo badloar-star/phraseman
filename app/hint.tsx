@@ -26,7 +26,6 @@ import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
 import { legacyRuUk } from '../constants/i18n';
 import { registerXP } from './xp_manager';
-import { updateTaskProgress } from './daily_tasks';
 import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
 
 function L(
@@ -145,7 +144,6 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
       .finally(() => {
         if (!cancelled) setClaimHydrated(true);
       });
-    updateTaskProgress('open_theory', 1, studyTarget).catch(() => {});
     return () => { cancelled = true; };
   }, [claimStorageKey, studyTarget]);
 

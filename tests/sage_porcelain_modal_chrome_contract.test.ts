@@ -30,21 +30,8 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('sage porcelain modal, reward, and paywall chrome', () => {
-  it('uses porcelain modal and reward chrome without decorative glow', () => {
-    const dailyModal = read('components/DailyTasksFirstVisitModal.tsx');
-    const toast = read('components/DailyTaskRewardToast.tsx');
+  it('uses porcelain energy modal chrome without decorative glow', () => {
     const energyModal = read('components/NoEnergyModal.tsx');
-    expect(dailyModal).toContain("sagePorcelain: {\n    accent: '#315F50'");
-    expect(dailyModal).toContain("taskGlow: 'rgba(49,95,80,0)'");
-    expect(dailyModal).toContain("errorText: '#A8464D'");
-    expect(dailyModal).toContain("errorBg: '#F2DFE0'");
-    expect(dailyModal).toContain("backgroundColor: chrome.errorBg ?? 'transparent'");
-    expect(dailyModal).toContain('color: chrome.errorText ?? chrome.chipText');
-    expect(dailyModal).toContain("...(chrome.errorBg ? { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12 } : {})");
-    expect(dailyModal).not.toContain("errorText: {\n    marginTop: 12,\n    paddingHorizontal: 12");
-    expect(toast).toContain("sagePorcelain: {\n    cardColors: ['#FCFDF9', '#F5F7F2']");
-    expect(toast).toContain("claimBg: '#315F50'");
-    expect(toast).toContain("xpColor: '#8B6320'");
     expect(energyModal).toContain("sagePorcelain: {\n    glow: 'rgba(49,95,80,0)'");
     expect(energyModal).toContain("surfaceColors: ['#FCFDF9', '#F5F7F2', '#E7EAE3']");
   });

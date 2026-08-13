@@ -398,7 +398,6 @@ export function parseV2VoicePcmSignalPageReceiptV1(input: {
   readonly manifest: V2VoiceAudioManifestV1;
   readonly audioEpisodeReceipt: V2VoiceAudioEpisodeReceiptV1;
   readonly decoderPage: V2VoiceNativeDecoderPageReceiptV1;
-  readonly observations: readonly LearningV2PcmSignalObservationV1[];
 }): V2VoicePcmSignalPageReceiptV1 {
   if (
     typeof input.raw !== "string" ||
@@ -421,11 +420,25 @@ export function parseV2VoicePcmSignalPageReceiptV1(input: {
     canonicalJsonV1(decoded) !== input.raw
   )
     fail();
+  const value = decoded as Record<string, unknown>;
+  if (!Array.isArray(value.rows)) fail();
+  const observations = value.rows.map((row) => {
+    if (typeof row !== "object" || row === null || Array.isArray(row)) fail();
+    const {
+      observationClass: _class,
+      rowDisposition: _disposition,
+      rowFingerprint: _rowFingerprint,
+      ...observation
+    } = row as Record<string, unknown>;
+    return Object.freeze(
+      observation,
+    ) as unknown as LearningV2PcmSignalObservationV1;
+  });
   const rebuilt = materializeV2VoicePcmSignalPageReceiptV1({
     manifest: input.manifest,
     audioEpisodeReceipt: input.audioEpisodeReceipt,
     decoderPage: input.decoderPage,
-    observations: input.observations,
+    observations: Object.freeze(observations),
   });
   if (canonicalJsonV1(rebuilt) !== input.raw) fail();
   return rebuilt;

@@ -45,35 +45,6 @@ describe('Gustav French dev surface parity', () => {
     expect(lessonMenu).not.toContain('hideEnglishOnlyAuxiliary');
   });
 
-  it('keeps French daily-task sections visible but source-gates non-French task destinations before navigation', () => {
-    const dailyTasks = read('app/daily_tasks_screen.tsx');
-    const dailyTaskNavigation = read('app/daily_task_navigation.ts');
-
-    for (const source of [dailyTasks, dailyTaskNavigation]) {
-      expect(source).toContain('openVocabularyOrFrenchGate');
-      expect(source).toContain("vocabularyContentAvailableForTarget(studyTarget, surface)");
-      expect(source).toContain("openVocabularyOrFrenchGate('lesson_words'");
-      expect(source).toContain("openVocabularyOrFrenchGate('irregular_verbs'");
-
-      expect(source).toContain('openTrainerOrFrenchGate');
-      expect(source).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
-      expect(source).toContain("openTrainerOrFrenchGate('/trainer')");
-      expect(source).toContain("openTrainerOrFrenchGate('/trainer_words_session')");
-      expect(source).toContain("openTrainerOrFrenchGate('/trainer_phrases_session')");
-
-      expect(source).toContain('openFlashcardsOrFrenchGate');
-      expect(source).toContain("flashcardsSourceGatedContentAvailableForTarget(storageStudyTarget(studyTarget), 'system_cards')");
-      expect(source).toContain('openDailyPhraseOrFrenchGate');
-      expect(source).toContain('dailyPhraseContentAvailableForTarget(studyTarget)');
-      expect(source).toContain("lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)");
-    }
-
-    expect(dailyTasks).not.toContain("case 'words_learned':\n                router.push({ pathname: '/lesson_words'");
-    expect(dailyTasks).not.toContain("case 'recall_session':\n            case 'recall_answers':\n            case 'recall_perfect':\n                router.push('/trainer')");
-    expect(dailyTaskNavigation).not.toContain("case 'words_learned':\n      router.push({ pathname: '/lesson_words'");
-    expect(dailyTaskNavigation).not.toContain("case 'recall_session':\n    case 'recall_answers':\n    case 'recall_perfect':\n      router.push('/trainer')");
-  });
-
   it('source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions', () => {
     const trainerPlanSession = read('app/trainer_plan_session.tsx');
 

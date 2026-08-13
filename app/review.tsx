@@ -74,7 +74,6 @@ import {
 } from './active_recall';
 import { logMistake, type MistakeTokenMeta } from './mistake_log';
 import { resolvePhraseMistakeToken, resolveSlotMistake } from './mistake_token_resolver';
-import { updateMultipleTaskProgress } from './daily_tasks';
 import { registerXP } from './xp_manager';
 import { safeRouterBack } from './navigation_back';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -207,6 +206,9 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     tr: "Tekrar",
     pl: "Powtórka",
   });
+  // cards-2.0 (E8): кастомные карточки и карточки паков в очереди review (§3.7)
+  if (s === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
+  if (s === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
   if (s === 'diagnostic') return triLang(lang, {
     ru: 'Диагностика',
     uk: 'Діагностика',
@@ -756,7 +758,6 @@ export default function ReviewScreen() {
   const persistedCorrectCountRef = useRef(0);
   const plannedItemCountRef = useRef(0);
   const pendingReviewWritesRef = useRef<Promise<unknown>[]>([]);
-  const recallSessionTracked = useRef(false);                   // recall_session засчитывается один раз за сессию
   const cuePagerRef = useRef<ScrollView | null>(null);
   /** После свайпа пользователем — не дёргаем scrollTo из useEffect (уже на месте). */
   const cuePagerSkipSyncScroll = useRef(false);
@@ -1017,10 +1018,6 @@ export default function ReviewScreen() {
         const totalBefore = energyRef.current + bonusEnergyRef.current;
         spendOneRef.current().then(success => {
           if (!success) return;
-          updateMultipleTaskProgress(
-            [{ type: 'energy_spend', increment: 1 }],
-            { studyTarget },
-          ).catch(() => {});
           setTimeout(() => {
             const totalAfter = energyRef.current + bonusEnergyRef.current;
             if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
@@ -1062,14 +1059,6 @@ export default function ReviewScreen() {
       pendingReviewWritesRef.current = pendingReviewWritesRef.current.filter(pending => pending !== persistedReview);
     });
 
-    if (!recallSessionTracked.current) {
-      recallSessionTracked.current = true;
-      updateMultipleTaskProgress(
-        [{ type: 'recall_session', increment: 1 }],
-        { studyTarget },
-      ).catch(() => {});
-    }
-
     if (ok) {
       const elapsed = Date.now() - cardStartTime.current;
       if (elapsed <= 20_000) setCanBurn(true);
@@ -1091,13 +1080,9 @@ export default function ReviewScreen() {
       }).then(result => {
         setTotalXP(prev => prev + result.finalDelta);
       }).catch(() => { setTotalXP(prev => prev + 5); });
-      updateMultipleTaskProgress(
-        [{ type: 'recall_answers', increment: 1 }],
-        { studyTarget },
-      ).catch(() => {});
     }
 
-  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode, studyTarget, playCorrect, speakAnswer]);
+  }, [items, index, lang, mode, nextSlot, resultAnim, studyTarget, playCorrect, speakAnswer]);
 
   const onWordBankTap = useCallback((tile: WordBankTile) => {
     if (status !== 'playing' || burning) return;
@@ -1263,12 +1248,6 @@ export default function ReviewScreen() {
         studyTarget,
         dayIndex: planPracticeDayIndex,
       });
-    }
-    if (wrong === 0 && correct >= 5) {
-      updateMultipleTaskProgress(
-        [{ type: 'recall_perfect', increment: 1 }],
-        { studyTarget },
-      ).catch(() => {});
     }
     // Проверяем нужен ли тост точного диагноза
     let cancelled = false;

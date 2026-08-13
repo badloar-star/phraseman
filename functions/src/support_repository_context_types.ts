@@ -17,6 +17,7 @@ export interface SupportRepositorySnapshot {
   readonly filesIndexed: number;
   readonly requiredFilesIncluded: readonly string[];
   readonly rootsIncluded: Readonly<Record<string, number>>;
+  readonly historyFactsIncluded?: readonly string[];
   readonly chunks: readonly SupportRepositoryChunk[];
 }
 

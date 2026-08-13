@@ -222,16 +222,6 @@ const sounds = [
     addWarmChord(b, 0.36, [60, 64, 67], 0.08, 0.78);
     addShimmer(b, 0.18, 0.85, 0.045, 43);
   }],
-  ['assets/sounds/reward/daily_task_completed.wav', 0.64, b => {
-    addHarp(b, 0.03, 76, 0.17, 0.35);
-    addBell(b, 0.19, 83, 0.13, 0.36);
-    addString(b, 0.12, 64, 0.08, 0.46);
-  }],
-  ['assets/sounds/reward/daily_reward_claimed.wav', 1.02, b => {
-    [72, 76, 79, 84].forEach((n, i) => addHarp(b, 0.03 + i * 0.1, n, 0.17, 0.55));
-    addWarmChord(b, 0.32, [60, 64, 67], 0.1, 0.62);
-    addBell(b, 0.62, 88, 0.11, 0.32);
-  }],
   ['assets/sounds/reward/lesson_completed.wav', 1.54, b => {
     motif(b, 0.04, 0.18, [72, 79, 84]);
     addWarmChord(b, 0.28, [55, 60, 64, 67], 0.12, 1.05);

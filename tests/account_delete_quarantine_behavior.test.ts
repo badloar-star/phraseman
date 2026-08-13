@@ -18,11 +18,6 @@ const mockAuth: {
 
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false, IS_STORE_RELEASE: false }));
 jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => true) }));
-jest.mock('../app/daily_tasks', () => ({
-  getTodayKey: jest.fn(() => '2026-07-18'),
-  getTodayTasksSafe: jest.fn(async () => []),
-  loadTodayProgress: jest.fn(async () => undefined),
-}));
 jest.mock('../app/user_id_policy', () => ({
   clearArenaAuthUidCache: jest.fn(),
   getAuthUserId: () => mockGetAuthUserId(),

@@ -28,6 +28,12 @@ export interface FetchSupportSourceResult {
   readonly waitingCount: number | null;
   /** Сколько ждёт САМОЕ старое неотвеченное письмо. */
   readonly oldestWaitingMs: number | null;
+  /** Проверенные triage-контуром человеческие письма, реально требующие ответа. */
+  readonly actionableWaitingCount?: number | null;
+  /** Самое старое письмо только в актуальной очереди. */
+  readonly oldestActionableWaitingMs?: number | null;
+  /** Неразмеченный legacy-хвост: виден по запросу, но не выдаётся за живой SLA. */
+  readonly legacyWaitingCount?: number | null;
   /** Отвеченные письма за окно. */
   readonly answeredCount: number | null;
   /** Медиана времени ответа — устойчива к одному забытому письму. */
@@ -76,11 +82,14 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
     const baseQuery = input.collection
       .orderBy('receivedAtMs', 'desc')
       // Только время и статус. Ни fromEmail, ни fromName, ни bodyText.
-      .select('receivedAtMs', 'status', 'repliedAt', 'mailCategory')
+      .select('receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState')
       .limit(MAX_SUPPORT_DOCS);
 
     let waitingCount = 0;
     let oldestWaitingMs: number | null = null;
+    let actionableWaitingCount = 0;
+    let oldestActionableWaitingMs: number | null = null;
+    let legacyWaitingCount = 0;
     let answeredCount = 0;
     const replyDurations: number[] = [];
 
@@ -101,6 +110,17 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
           waitingCount += 1;
           const waited = input.nowMs - receivedAtMs;
           if (oldestWaitingMs === null || waited > oldestWaitingMs) oldestWaitingMs = waited;
+          // Только triageState=kept доказывает, что это письмо реального
+          // человека. Возраст сам по себе ничего не доказывает: даже старый
+          // verified refund остаётся важным, а свежий неразмеченный spam — нет.
+          if (data.triageState === 'kept') {
+            actionableWaitingCount += 1;
+            if (oldestActionableWaitingMs === null || waited > oldestActionableWaitingMs) {
+              oldestActionableWaitingMs = waited;
+            }
+          } else {
+            legacyWaitingCount += 1;
+          }
           continue;
         }
 
@@ -123,6 +143,9 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
       state: nothingRelevant ? ('empty' as const) : ('ready' as const),
       waitingCount,
       oldestWaitingMs,
+      actionableWaitingCount,
+      oldestActionableWaitingMs,
+      legacyWaitingCount,
       answeredCount,
       medianReplyMs: median(replyDurations),
       observedAtMs: input.nowMs,
@@ -133,6 +156,9 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
       state: 'error' as const,
       waitingCount: null,
       oldestWaitingMs: null,
+      actionableWaitingCount: null,
+      oldestActionableWaitingMs: null,
+      legacyWaitingCount: null,
       answeredCount: null,
       medianReplyMs: null,
       observedAtMs: input.nowMs,

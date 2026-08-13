@@ -7,6 +7,8 @@ const REQUIRED_FILES = Object.freeze([
   'functions/src/support_auto_reply_policy.ts',
   'functions/src/support_repository_context.ts',
   'functions/src/support_reply_delivery.ts',
+  'functions/src/support_inbox.ts',
+  'specs/support-product-lifecycle.json',
 ]);
 const REQUIRED_ROOTS = Object.freeze(['app', 'components', 'constants', 'functions/src']);
 
@@ -24,6 +26,7 @@ function emptySnapshot(): SupportRepositorySnapshot {
     filesIndexed: 0,
     requiredFilesIncluded: Object.freeze([]),
     rootsIncluded: Object.freeze({}),
+    historyFactsIncluded: Object.freeze([]),
     chunks: Object.freeze([]),
   });
 }
@@ -62,6 +65,8 @@ const CONCEPT_PATTERNS: ReadonlyArray<readonly [string, RegExp]> = [
   ['friends', /(?:friend|друз|amig)/iu],
   ['tournament', /(?:tournament|league|турнир|лиг|torneo|liga)/iu],
   ['settings', /(?:settings|настройк|ajustes|configuraci[oó]n)/iu],
+  ['compass', /(?:compass|компас)/iu],
+  ['feature_lifecycle', /(?:used to|previously|earlier|former|removed|retired|disappear|where did|раньше|прежде|был[ао]?|пропал|исчез|убрал|удалил|куда дел|antes|exist[ií]a|eliminad|desaparec)/iu],
 ];
 
 export function extractSupportConcepts(value: unknown): readonly string[] {

@@ -146,6 +146,9 @@ describe('Arena Expansion UI source contract', () => {
   test('keeps three distinct finite entry treatments and local-only reaction presets', () => {
     const match = read('app/arena_match.tsx');
     const results = read('app/arena_results.tsx');
+    // Косметика входа переехала с карточки принятия дуэли на заставку
+    // «ты против соперника»: карточки больше нет, дуэль принимается сама, а
+    // заставка и есть тот момент входа, за который косметику покупали.
     expect(match).toContain("entryTreatment === 'entry_trail' ? SlideInRight.duration(260)");
     expect(match).toContain("entryTreatment === 'entry_burst' ? ZoomIn.duration(240)");
     expect(match).toContain("entryTreatment === 'entry_crown' ? FadeInDown.duration(300)");

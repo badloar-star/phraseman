@@ -11,23 +11,15 @@ describe('Gustav last opened lesson target isolation', () => {
   it('routes last opened lesson reads and writes through target-scoped storage keys', () => {
     const home = readAppFile('(tabs)', 'home.tsx');
     const lessonMenu = readAppFile('lesson_menu.tsx');
-    const dailyTasks = readAppFile('daily_tasks_screen.tsx');
-    const dailyTaskLessonDestination = readAppFile('daily_task_lesson_destination.ts');
     const layout = readAppFile('_layout.tsx');
 
-    expect(home).toContain("dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey");
+    expect(home).toContain('lastOpenedLessonKey');
     expect(home).toContain('const lastOpenedKey = lastOpenedLessonKey(studyTarget)');
     expect(home).toContain('AsyncStorage.multiGet([...lessonKeys, lastOpenedKey])');
     expect(home).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
 
     expect(lessonMenu).toContain('AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId))');
     expect(lessonMenu).not.toContain("AsyncStorage.setItem('last_opened_lesson'");
-
-    expect(dailyTasks).toContain("import { resolveDailyTaskLessonId } from './daily_task_lesson_destination';");
-    expect(dailyTasks).toContain('const lessonId = await resolveDailyTaskLessonId(studyTarget);');
-    expect(dailyTasks).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
-    expect(dailyTaskLessonDestination).toContain('AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))');
-    expect(dailyTaskLessonDestination).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
 
     expect(layout).toContain('const { studyTarget } = useStudyTarget();');
     expect(layout).toContain('AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))');

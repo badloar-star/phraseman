@@ -91,6 +91,13 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     department: 'support',
     writtenIn: 'support_inbox.ts',
     readIn: 'jarvis/support_firestore_fetcher.ts',
+    field: 'triageState',
+    breaks: 'неразмеченный legacy-спам снова стал бы выглядеть как доказанный живой SLA',
+  },
+  {
+    department: 'support',
+    writtenIn: 'support_inbox.ts',
+    readIn: 'jarvis/support_firestore_fetcher.ts',
     field: 'imapSyncedAt',
     breaks: 'устаревший IMAP-снимок выглядел бы как пустая живая очередь',
   },
@@ -142,6 +149,20 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     readIn: 'jarvis/learning_metrics.ts',
     field: 'd7ReturningUsers',
     breaks: 'D7 retention стал бы ложным нулём',
+  },
+  {
+    department: 'PM business context',
+    writtenIn: 'admin_daily_digest.ts',
+    readIn: 'jarvis/pm_business_context.ts',
+    field: 'generatedAtMs',
+    breaks: 'устаревший сравнительный дайджест стал бы выглядеть свежим бизнес-контекстом',
+  },
+  {
+    department: 'PM business context',
+    writtenIn: 'admin_daily_digest.ts',
+    readIn: 'jarvis/pm_business_context.ts',
+    field: 'comparisons',
+    breaks: 'Джарвис потерял бы current-vs-previous динамику и снова видел бы только текущие счётчики',
   },
 ];
 

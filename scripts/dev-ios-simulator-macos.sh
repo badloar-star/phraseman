@@ -6,6 +6,11 @@
 
 set -u
 
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
+if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+  source "$HOME/.nvm/nvm.sh" >/dev/null 2>&1 || true
+fi
+
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
 LOG_DIR="$HOME/Library/Logs/Phraseman"
 LOG_FILE="$LOG_DIR/ios-simulator-launch.log"
@@ -41,6 +46,25 @@ first_device_id() {
 
 booted_device_id() {
   xcrun simctl list devices booted | awk -F '[()]' '/iPhone/ { print $2; exit }'
+}
+
+metro_alive() {
+  curl -fsS http://127.0.0.1:8081/status 2>/dev/null | grep -q 'packager-status:running'
+}
+
+metro_is_lan() {
+  local listener_pid command_line
+  listener_pid="$(lsof -nP -t -iTCP:8081 -sTCP:LISTEN 2>/dev/null | head -1)"
+  [[ -n "$listener_pid" ]] || return 1
+  command_line="$(ps -p "$listener_pid" -o command= 2>/dev/null)"
+  [[ "$command_line" == *"expo start"* && "$command_line" == *"--dev-client"* && "$command_line" == *"--lan"* ]]
+}
+
+stop_owned_metro() {
+  if [[ -n "$METRO_PID" ]] && kill -0 "$METRO_PID" 2>/dev/null; then
+    kill -TERM "$METRO_PID" 2>/dev/null || true
+    wait "$METRO_PID" 2>/dev/null || true
+  fi
 }
 
 if [[ ! -d "$PROJECT_ROOT" || ! -f "$PROJECT_ROOT/package.json" ]]; then
@@ -110,25 +134,29 @@ if ! codesign --verify --deep --strict --verbose=2 "$APP_PATH" >>"$LOG_FILE" 2>&
   pause_on_error "Проверка подписи приложения не пройдена. Подробности: $LOG_FILE"
 fi
 
-say "Останавливаю старый Metro на порту 8081..."
-npx --yes kill-port 8081 >>"$LOG_FILE" 2>&1 || true
-
-say "Запускаю Metro с увеличенным лимитом памяти..."
-NODE_OPTIONS=--max-old-space-size=12288 \
-  npx expo start --dev-client --localhost >>"$LOG_FILE" 2>&1 &
-METRO_PID="$!"
-
-for _ in {1..120}; do
-  if ! kill -0 "$METRO_PID" 2>/dev/null; then
-    pause_on_error "Metro неожиданно завершился. Подробности: $LOG_FILE"
+if metro_alive && metro_is_lan; then
+  say "На порту 8081 уже работает актуальный LAN Metro — переиспользую его."
+else
+  if metro_alive; then
+    say "На 8081 найден конфликтующий localhost Metro; заменяю его единым LAN Metro."
+  else
+    say "Запускаю единый LAN Metro с актуальным working tree и чистым кэшем..."
   fi
-  if curl -fsS http://127.0.0.1:8081/status 2>/dev/null | grep -q 'packager-status:running'; then
-    break
-  fi
-  sleep 1
-done
+  NODE_OPTIONS=--max-old-space-size=12288 \
+    node scripts/start-iphone-metro.mjs --lan --clear >>"$LOG_FILE" 2>&1 &
+  METRO_PID="$!"
+  trap stop_owned_metro INT TERM HUP EXIT
 
-if ! curl -fsS http://127.0.0.1:8081/status 2>/dev/null | grep -q 'packager-status:running'; then
+  for _ in {1..120}; do
+    if ! kill -0 "$METRO_PID" 2>/dev/null; then
+      pause_on_error "Metro неожиданно завершился. Подробности: $LOG_FILE"
+    fi
+    metro_alive && break
+    sleep 1
+  done
+fi
+
+if ! metro_alive; then
   pause_on_error "Metro не запустился за 2 минуты. Подробности: $LOG_FILE"
 fi
 
@@ -138,9 +166,14 @@ xcrun simctl install "$DEVICE_ID" "$APP_PATH" >>"$LOG_FILE" 2>&1 \
 xcrun simctl launch "$DEVICE_ID" "$BUNDLE_ID" >>"$LOG_FILE" 2>&1 \
   || pause_on_error "Не удалось запустить приложение. Подробности: $LOG_FILE"
 
-say "Phraseman запущен. Это окно держит Metro активным."
+say "Phraseman запущен в iOS Simulator."
 say "Лог: $LOG_FILE"
-say "Для остановки нажми Control-C."
 
-trap '[[ -n "$METRO_PID" ]] && kill "$METRO_PID" 2>/dev/null || true' INT TERM EXIT
-wait "$METRO_PID"
+if [[ -n "$METRO_PID" ]]; then
+  say "Это окно держит единый LAN Metro активным. Закрытие Terminal или Control-C выключит его."
+  wait "$METRO_PID"
+else
+  say "Metro работает в другом окне — это окно можно закрыть."
+  print
+  read -r "?Нажми Enter, чтобы закрыть окно..."
+fi

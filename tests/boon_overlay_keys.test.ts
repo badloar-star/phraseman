@@ -45,8 +45,8 @@ describe('intro overlay key — гейтится через арбитр (P1: an
     expect(resolveNextOverlay(null, { update: true, introFullAccess: true })).toBe('update');
   });
 
-  it('intro приоритетнее dailyPlan/levelUp (welcome-поток раньше рутины)', () => {
-    expect(resolveNextOverlay(null, { introFullAccess: true, dailyPlan: true })).toBe('introFullAccess');
+  it('intro приоритетнее levelUp (welcome-поток раньше награды)', () => {
+    expect(resolveNextOverlay(null, { introFullAccess: true, levelUp: true })).toBe('introFullAccess');
   });
 
   it('удалённые мёртвые ключи отсутствуют в арбитре', () => {

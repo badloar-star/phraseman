@@ -1,5 +1,6 @@
 import { enrichDecisionsWithNarrative, type EnricherDependencies } from './llm_enricher';
 import { buildDecision, type Decision } from './decision';
+import type { JarvisPmBusinessContext } from './pm_business_context';
 
 /**
  * Обогатитель — накладка НАД детерминированными решениями Джарвиса, а не
@@ -69,15 +70,33 @@ describe('enrichDecisionsWithNarrative', () => {
     expect(result[0].narrative).toBeNull();
   });
 
-  test('skips the LLM call when the idempotency slot is already taken (retry of the same run)', async () => {
+  test('skips both LLM and budget reservation when the idempotency slot is already taken', async () => {
     const generateNarrative = jest.fn(async () => ({ text: 'x', promptTokens: 1, completionTokens: 1 }));
+    const checkBudget = jest.fn(async () => ({ allowed: true as const }));
     const decision = makeDecision();
     const result = await enrichDecisionsWithNarrative(
       { decisions: [decision] },
-      makeDeps({ reserveSlot: async () => ({ reserved: false }), generateNarrative }),
+      makeDeps({ reserveSlot: async () => ({ reserved: false }), checkBudget, generateNarrative }),
     );
     expect(generateNarrative).not.toHaveBeenCalled();
+    expect(checkBudget).not.toHaveBeenCalled();
     expect(result[0].narrative).toBeNull();
+  });
+
+  test('reuses a completed cached PM plan without another LLM call or budget charge', async () => {
+    const generateNarrative = jest.fn(async () => ({ text: 'x', promptTokens: 1, completionTokens: 1 }));
+    const checkBudget = jest.fn(async () => ({ allowed: true as const }));
+    const result = await enrichDecisionsWithNarrative(
+      { decisions: [makeDecision()] },
+      makeDeps({
+        reserveSlot: async () => ({ reserved: false, narrative: 'Кэшированный PM-план' }),
+        checkBudget,
+        generateNarrative,
+      }),
+    );
+    expect(result[0].narrative).toBe('Кэшированный PM-план');
+    expect(checkBudget).not.toHaveBeenCalled();
+    expect(generateNarrative).not.toHaveBeenCalled();
   });
 
   test('never sends untrustworthy evidence to the LLM prompt', async () => {
@@ -94,6 +113,44 @@ describe('enrichDecisionsWithNarrative', () => {
     };
     await enrichDecisionsWithNarrative({ decisions: [decision] }, makeDeps({ generateNarrative }));
     expect(seenPrompt).not.toContain('user_reports');
+  });
+
+  test('asks for a testable PM hypothesis instead of a second paraphrase', async () => {
+    const seen: string[] = [];
+    await enrichDecisionsWithNarrative({ decisions: [makeDecision()] }, makeDeps({
+      generateNarrative: async (prompt) => {
+        seen.push(prompt.system, prompt.user);
+        return { text: 'План', promptTokens: 10, completionTokens: 10 };
+      },
+    }));
+    expect(seen.join('\n')).toMatch(/product manager|гипотез/i);
+    expect(seen.join('\n')).toMatch(/эксперимент/i);
+    expect(seen.join('\n')).toContain('Метрика успеха');
+    expect(seen.join('\n')).not.toContain('не давай новых рекомендаций');
+  });
+
+  test('uses verified business dynamics to prioritize the departmental finding', async () => {
+    let seenPrompt = '';
+    const businessContext: JarvisPmBusinessContext = {
+      state: 'ready', currentTier: 'seed', peakTier: 'seed', totalUsers: 700,
+      activeUsers: 120, mrrUsd: 350, moneyCoverage: 'complete', historyDays: 28,
+      last7Days: { newUsers: 40, newPaying: 4, renewals: 3, refunds: 1 },
+      recentMetricChanges: [{
+        id: 'new_users', label: 'Новые пользователи', current: 12, previous: 8,
+        absoluteDelta: 4, percentDelta: 50, direction: 'up',
+      }],
+      digestGeneratedAtMs: 1_000,
+    };
+    await enrichDecisionsWithNarrative(
+      { decisions: [makeDecision()], businessContext },
+      makeDeps({ generateNarrative: async (prompt) => {
+        seenPrompt = prompt.user;
+        return { text: 'План', promptTokens: 10, completionTokens: 10 };
+      } }),
+    );
+    expect(seenPrompt).toContain('Контекст бизнеса Phraseman');
+    expect(seenPrompt).toContain('Новые пользователи: 8 → 12');
+    expect(seenPrompt).toContain('MRR-equivalent: $350.00');
   });
 
   test('a decision with NO trustworthy evidence at all is not sent to the LLM', async () => {

@@ -23,7 +23,6 @@ export type ProgressEventType =
   | 'lesson_complete'
   | 'dialog_complete'
   | 'exam_complete'
-  | 'daily_task_reward'
   | 'achievement_reward'
   | 'level_up_bonus'
   | 'daily_login_bonus'

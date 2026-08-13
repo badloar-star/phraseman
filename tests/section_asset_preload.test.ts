@@ -21,7 +21,7 @@ describe('прогрев ассетов разделов и стабильная
   it('прогрев покрывает все иконки разделов с главной', () => {
     const source = read('app/section_asset_preload.ts');
     for (const slot of [
-      'menu.lesson', 'menu.cards', 'menu.dayTasks', 'menu.league', 'menu.test',
+      'menu.lesson', 'menu.cards', 'menu.league', 'menu.test',
       'menu.practice', 'menu.dialogs', 'menu.exam', 'menu.shop', 'menu.heroMap',
     ]) {
       expect(source).toContain(slot);
@@ -63,7 +63,7 @@ describe('прогрев ассетов разделов и стабильная
   });
 
   /**
-   * зачем: «Вызовы дня», «Цель лиги», фраза дня и подвал жили под belowFoldReady, который
+   * зачем: «Цель лиги», фраза дня и подвал жили под belowFoldReady, который
    * стартовал с false на КАЖДОМ маунте. Возврат с раздела размораживает таб → флаг снова
    * false → блоки исчезали и вставлялись кадром позже, толкая верстку. Отложенный второй
    * проход нужен только первому маунту в сессии (бюджет холодного старта).

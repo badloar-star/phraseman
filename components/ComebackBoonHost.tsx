@@ -13,7 +13,7 @@ import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
-import { getTodayKey } from '../app/daily_tasks';
+import { getUtcDayKey } from '../app/local_date';
 import { checkComebackEligible, markComebackGranted } from '../app/boons/comeback';
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
@@ -56,7 +56,7 @@ export default function ComebackBoonHost() {
     // Повторная проверка против стора (защита от двойной выдачи, если хост
     // перемонтировался или приложение закрылось до markComebackGranted).
     if (!(await checkComebackEligible())) return;
-    const todayKey = getTodayKey();
+    const todayKey = getUtcDayKey();
     // Бесплатная заморозка серии на сегодня + осколки. Не перетираем уже активную
     // заморозку (платную) — если сегодня уже защищён, оставляем как есть.
     try {

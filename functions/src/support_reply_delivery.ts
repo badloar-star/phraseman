@@ -20,6 +20,7 @@ export interface SupportReplyPayload {
   readonly to: string;
   readonly subject: string;
   readonly inReplyTo: string;
+  readonly references?: string;
   readonly finalText: string;
   readonly signatureRevision: number;
 }
@@ -35,6 +36,13 @@ export interface SupportReplyOperation {
   readonly requestFingerprint: string;
   readonly state: SupportReplyState;
   readonly draftRevision: number;
+  readonly draftOrigin?: 'jarvis' | 'owner_manual';
+  readonly instructionsSchemaVersion?: number;
+  readonly instructionsPromptVersion?: number;
+  readonly instructionsRevision?: number;
+  readonly instructionsFingerprint?: string;
+  readonly conversationId?: string;
+  readonly conversationRevision?: number;
   readonly payloadHash: string;
   readonly payload: SupportReplyPayload;
   readonly outboundMessageId: string;
@@ -110,6 +118,7 @@ function canonicalPayload(payload: SupportReplyPayload): string {
     to: String(payload.to),
     subject: String(payload.subject),
     inReplyTo: String(payload.inReplyTo),
+    ...(payload.references ? { references: String(payload.references) } : {}),
     finalText: String(payload.finalText),
     signatureRevision: Number(payload.signatureRevision),
   });
@@ -185,6 +194,13 @@ export function buildPreparedSupportReply(input: {
   readonly requestId: string;
   readonly requestFingerprint: string;
   readonly draftRevision: number;
+  readonly draftOrigin?: 'jarvis' | 'owner_manual';
+  readonly instructionsSchemaVersion?: number;
+  readonly instructionsPromptVersion?: number;
+  readonly instructionsRevision?: number;
+  readonly instructionsFingerprint?: string;
+  readonly conversationId?: string;
+  readonly conversationRevision?: number;
   readonly payload: SupportReplyPayload;
   readonly confirmationNonce: string;
   readonly confirmationExpiresAt: string;
@@ -204,6 +220,13 @@ export function buildPreparedSupportReply(input: {
     requestFingerprint: input.requestFingerprint,
     state: input.state ?? 'prepared',
     draftRevision: input.draftRevision,
+    ...(input.draftOrigin ? { draftOrigin: input.draftOrigin } : {}),
+    ...(Number.isInteger(input.instructionsSchemaVersion) ? { instructionsSchemaVersion: input.instructionsSchemaVersion } : {}),
+    ...(Number.isInteger(input.instructionsPromptVersion) ? { instructionsPromptVersion: input.instructionsPromptVersion } : {}),
+    ...(Number.isInteger(input.instructionsRevision) ? { instructionsRevision: input.instructionsRevision } : {}),
+    ...(input.instructionsFingerprint ? { instructionsFingerprint: input.instructionsFingerprint } : {}),
+    ...(input.conversationId ? { conversationId: input.conversationId } : {}),
+    ...(Number.isInteger(input.conversationRevision) ? { conversationRevision: input.conversationRevision } : {}),
     payloadHash: canonicalReplyPayloadHash(frozenPayload),
     payload: frozenPayload,
     outboundMessageId: deterministicSupportMessageId(input.operationId),

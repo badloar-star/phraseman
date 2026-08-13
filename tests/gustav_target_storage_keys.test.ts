@@ -8,12 +8,7 @@ import {
   customFlashcardsKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
-  dailyTasksAchievementAllDoneStreakKey,
-  dailyTasksAchievementNoRerollStreakKey,
   legacyEnglishKey,
-  dailyTaskLessonVisitedKey,
-  dailyTasksProgressKey,
-  dailyTasksRerollKey,
   diagnosticLastKey,
   diagnosticOpenFlagKey,
   fiftyFiftyUsageKey,
@@ -128,14 +123,9 @@ describe('target storage key contract', () => {
     expect(() => assertTargetKey('last_opened_lesson')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('fifty_fifty_2026-05-20')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('bonus_hints_2026-05-20')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('daily_tasks_2026-05-20')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('daily_tasks_reroll_v1')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('achievement_all_daily_streak_v1')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('achievement_daily_no_reroll_streak_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('daily_phrase_v3')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('achievement_daily_phrase_read_count')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('achievement_daily_phrase_save_count')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('lesson_visited_2026-05-20')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('quiz_nav_level')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lifetime_quiz_easy_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lifetime_quiz_medium_v1')).toThrow(/Raw target-sensitive key/);
@@ -209,17 +199,8 @@ describe('target storage key contract', () => {
     expect(fiftyFiftyUsageKey('2026-05-20', 'fr')).toBe('lesson_session_local_v2::fr::fifty_fifty_2026-05-20');
     expect(lessonBonusHintsKey('2026-05-20', 'en')).toBe('bonus_hints_2026-05-20');
     expect(lessonBonusHintsKey('2026-05-20', 'fr')).toBe('lesson_rewards_v2::fr::bonus_hints_2026-05-20');
-    expect(dailyTasksProgressKey('2026-05-20', 'en')).toBe('daily_tasks_2026-05-20');
-    expect(dailyTasksProgressKey('2026-05-20', 'es')).toBe('daily_tasks_2026-05-20');
-    expect(dailyTasksProgressKey('2026-05-20', 'fr')).toBe('daily_tasks_v2::fr::daily_tasks_2026-05-20');
-    expect(dailyTasksRerollKey('fr')).toBe('daily_tasks_v2::fr::daily_tasks_reroll_v1');
-    expect(dailyTasksAchievementAllDoneStreakKey('en')).toBe('achievement_all_daily_streak_v1');
-    expect(dailyTasksAchievementAllDoneStreakKey('fr')).toBe('daily_tasks_v2::fr::achievement_all_daily_streak_v1');
-    expect(dailyTasksAchievementNoRerollStreakKey('fr')).toBe('daily_tasks_v2::fr::achievement_daily_no_reroll_streak_v1');
     expect(shareAchievementCounterKey('en')).toBe('achievement_share_count');
     expect(shareAchievementCounterKey('fr')).toBe('achievements_v2::fr::achievement_share_count');
-    expect(dailyTaskLessonVisitedKey('2026-05-20', 'en')).toBe('lesson_visited_2026-05-20');
-    expect(dailyTaskLessonVisitedKey('2026-05-20', 'fr')).toBe('daily_tasks_v2::fr::lesson_visited_2026-05-20');
     expect(retiredCompetitiveModeStorageKeysForWipe('en')).toContain('quiz_nav_level');
     expect(retiredCompetitiveModeStorageKeysForWipe('fr')).toEqual(expect.arrayContaining([
       'quiz_session_v2::fr::quiz_nav_level',

@@ -253,7 +253,6 @@ async function main(): Promise<void> {
     dailyPhrase: safeReadText(path.join(repoRoot, 'components/DailyPhraseCard.tsx')),
     diagnostic: safeReadText(path.join(repoRoot, 'app/diagnostic_test.tsx')),
     lessonMenu: safeReadText(path.join(repoRoot, 'app/lesson_menu.tsx')),
-    dailyTasks: safeReadText(path.join(repoRoot, 'app/daily_tasks_screen.tsx')),
     test: safeReadText(frenchDevSurfaceParityTestPath),
   };
 
@@ -623,13 +622,8 @@ async function main(): Promise<void> {
   const quizRootSlice = frenchDevSurfaceParitySources.quizzes.slice(
     frenchDevSurfaceParitySources.quizzes.indexOf('export default function QuizzesScreen'),
   );
-  const dailyTaskQuizSlice = frenchDevSurfaceParitySources.dailyTasks.slice(
-    frenchDevSurfaceParitySources.dailyTasks.indexOf("const openQuizOrFrenchGate = async (level: 'easy' | 'medium' | 'hard')"),
-    frenchDevSurfaceParitySources.dailyTasks.indexOf('const openDiagnosticOrFrenchGate'),
-  );
   const frenchDevSurfaceParityEvidence = [
     frenchDevSurfaceParitySources.home.includes("testID: 'home-quick-quizzes'"),
-    frenchDevSurfaceParitySources.home.includes("key: 'daily'"),
     frenchDevSurfaceParitySources.home.includes("key: 'attest'"),
     frenchDevSurfaceParitySources.home.includes('const visibleQuickItems = quickItems'),
     frenchDevSurfaceParitySources.home.includes('const visibleActivityQuickItems = activityQuickItems'),
@@ -644,10 +638,6 @@ async function main(): Promise<void> {
     frenchDevSurfaceParitySources.lessonMenu.includes("const frenchAuxiliarySourceGated = studyTarget === 'fr'"),
     frenchDevSurfaceParitySources.lessonMenu.includes('unavailable: frenchAuxiliarySourceGated'),
     !frenchDevSurfaceParitySources.lessonMenu.includes('hideEnglishOnlyAuxiliary'),
-    dailyTaskQuizSlice.includes('if (!quizContentAvailableForTarget(studyTarget))'),
-    dailyTaskQuizSlice.indexOf('if (!quizContentAvailableForTarget(studyTarget))') >= 0 &&
-      dailyTaskQuizSlice.indexOf('if (!quizContentAvailableForTarget(studyTarget))') <
-      dailyTaskQuizSlice.indexOf('await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level)'),
     frenchDevSurfaceParitySources.test.includes("describe('Gustav French dev surface parity'"),
   ];
   const frenchDevSurfaceParityPassed = frenchDevSurfaceParityEvidence.every(Boolean);
@@ -659,7 +649,7 @@ async function main(): Promise<void> {
           severity: 'blocker',
           blocks: ['generation', 'apply'],
           sourceArtifact: path.relative(repoRoot, frenchDevSurfaceParityTestPath),
-          detail: `French dev surface parity is locked: ${frenchDevSurfaceParityEvidence.filter(Boolean).length}/${frenchDevSurfaceParityEvidence.length} evidence checks passed across Home, quizzes, daily phrase, diagnostic, lesson menu and daily-task navigation.`,
+          detail: `French dev surface parity is locked: ${frenchDevSurfaceParityEvidence.filter(Boolean).length}/${frenchDevSurfaceParityEvidence.length} evidence checks passed across Home, quizzes, Daily Phrase, diagnostic and lesson menu.`,
           requiredBeforeWork: [],
         })
       : failCheck({

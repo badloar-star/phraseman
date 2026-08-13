@@ -116,7 +116,6 @@ import { isLeagueHotHoursActive, leagueWeekEndsAtUtcMs, LEAGUE_HOT_HOURS_WINDOW_
 import { participantsLabel } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
-import { getTodayKey, updateTaskProgress } from './daily_tasks';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи

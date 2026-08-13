@@ -46,7 +46,7 @@ describe('Gustav next-pass remote server verification priority contract', () => 
     expect(source).toContain('afterRemoteVerifyNextGate=exact_approval_artifacts');
     expect(source).toContain('gustav_french_app_surface_parity_v2_packet.ts');
     expect(source).toContain('audits/french_app_surface_parity_v2_packet.json');
-    expect(source).toContain('challenge/daily/arena surfaces covered by navigation/state guards');
+    expect(source).toContain('challenge/trainer surfaces covered by navigation/state guards');
     expect(source).toContain('gustav_french_final_blocker_dependency_map_v2_packet.ts');
     expect(source).toContain('audits/french_final_blocker_dependency_map_v2_packet.json');
     expect(source).toContain('credentialSource=access_token_env or credentialSource=service_account_file');

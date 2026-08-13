@@ -10,6 +10,42 @@ import {
   applySpeedMatchAttempt,
   validateTournamentTaskForNewRoom,
 } from './tournament_core';
+import { arenaPercentileAbove } from './arena_rank_engine';
+import { arenaTierRewardsEarned } from './arena_tier_rewards';
+import {
+  arenaApplyRankOutcome,
+  arenaRankStateEmpty,
+  arenaSoftReset,
+  type ArenaRankState,
+} from './arena_rank_engine';
+import {
+  ARENA_DUEL_COUNTDOWN_MS,
+  ARENA_DUEL_READING_MS,
+  ARENA_DUEL_REVEAL_MS,
+  ARENA_PLAN_SCHEMA_VERSION,
+  arenaAssertReportShape,
+  arenaDeclaredVsActualDelta,
+  arenaDecisiveTaskIndex,
+  arenaMatchPlanRules,
+  arenaNormalizeReport,
+  arenaPlanHash,
+  arenaPlanTask,
+  arenaScoreReport,
+  arenaDuelReconcile,
+  arenaDuelSettleProbeAtMs,
+  arenaSettleDeadlineMs,
+  arenaShouldSettle,
+  type ArenaMatchPlanWire,
+  type ArenaOpponentTickWire,
+  type ArenaPlanTask,
+} from './arena_duel_v3';
+import {
+  ARENA_ANSWER_MS,
+  ARENA_STARS_RULES_VERSION,
+  type ArenaEntryMode,
+  type ArenaTaskMode,
+  type ArenaTaskOutcome,
+} from './arena_stars_v3';
 import {
   NEW_TOURNAMENT_POOL_CONTENT_SHA256,
   NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
@@ -24,8 +60,11 @@ import {
   ARENA_V2_INVITE_TTL_MS,
   ARENA_V2_MATCH_TTL_MS,
   ARENA_V2_MAX_TASK_DOC_READS,
-  ARENA_V2_MODE_ORDER,
+  arenaModeOrder,
+  arenaTaskCount,
   ARENA_V2_QUICK_BOT_FALLBACK_MS,
+  ARENA_V2_QUICK_BOT_MAX_MS,
+  arenaQuickBotDelayMs,
   ARENA_V2_QUEUE_LEASE_MS,
   ARENA_V2_READING_MS,
   ARENA_V2_REVEAL_MS,
@@ -44,6 +83,7 @@ import {
   arenaRankIndexFromRp,
   arenaObservedElapsedMs,
   arenaRanksCompatible,
+  ARENA_DAILY_REWARD_MATCHES,
   arenaRareSpin,
   arenaRpDelta,
   arenaSeasonLevelUnlocked,
@@ -59,6 +99,21 @@ import {
   toArenaPublicTask,
   validateArenaPrivateEnvelope,
 } from './arena_v2_core';
+import { arenaBotDisplayName } from './arena_bot_identity';
+import {
+  commitStarOperations,
+  prepareStarOperations,
+  type StarLedgerPrepared,
+  type StarOpRequest,
+} from './stars_ledger';
+import {
+  arenaMatchXp,
+  arenaWeekKeyForMs,
+  arenaXpEligible,
+  arenaXpUserPatch,
+  ARENA_XP_RULE_VERSION,
+  type ArenaXpMode,
+} from './arena_xp';
 
 const ARENA_V2_SECRET_NAMES = [
   'ARENA_V2_PAIR_HMAC_KEY',
@@ -114,6 +169,8 @@ type MatchPrivate = ArenaV2PrivateEnvelope & {
     fullySolved: number;
     rawSeasonStars: number;
     submittedAnswers: number;
+    /** Заданий, закрытых ПЕРВЫМ верным ответом. Нужен дневной цели (D-62). */
+    firstCount?: number;
   }>;
   botPlan?: Record<string, {
     correct: boolean;
@@ -137,7 +194,44 @@ type MatchPrivate = ArenaV2PrivateEnvelope & {
     mastery: boolean;
     partner: boolean;
   };
+  /**
+   * Дуэль v3: матч считается на устройстве. Здесь лежит только то, что нужно
+   * серверу, чтобы закрыть матч — сам ход матча сюда не пишется, иначе счёт
+   * записей Firestore вырос бы кратно (владелец: стоимость базы не должна
+   * расти).
+   */
+  duelPlanIssuedAtMs?: number;
+  duelStartedAtMs?: number;
+  duelFirstReportAtMs?: number;
+  duelReports?: Record<string, ArenaDuelStoredReport>;
 };
+
+/** Один отчёт о матче. Пересчитан сервером; заявленное клиентом — рядом. */
+type ArenaDuelStoredReport = {
+  reportId: string;
+  seat: 'a' | 'b';
+  receivedAtMs: number;
+  /** Что игроку показали на экране. Хранится ради расхождений, не ради счёта. */
+  shownMatchStars: number;
+  /** Что насчитал сервер. Именно это идёт в кошелёк. */
+  actualMatchStars: number;
+  /** actual − shown. Ноль в норме; ненулевое означает разъехавшиеся правила. */
+  starsDelta: number;
+  abandoned: boolean;
+  clockSuspect: boolean;
+  /**
+   * Исходы БЕЗ самих ответов: ответ игрока уже лежит в расписке
+   * (`answers[uid][i].answerSnapshot`), и второй копии в том же документе быть
+   * не должно — приватный документ ограничен и оплачивается за размер.
+   * Пересчёт очков ответ не читает, ему хватает статуса и времени.
+   */
+  outcomes: ArenaTaskOutcome[];
+};
+
+/** Снимает ответ с исхода перед записью: в счёте он не участвует. */
+function arenaDuelSlimOutcomes(outcomes: readonly ArenaTaskOutcome[]): ArenaTaskOutcome[] {
+  return outcomes.map((outcome) => ({ ...outcome, answer: null }));
+}
 
 const db = admin.firestore();
 const MAX_SPEED_ATTEMPT_IDS = 40;
@@ -188,6 +282,22 @@ function clone<T>(value: T): T {
 
 function randomId(bytes = 18): string {
   return randomBytes(bytes).toString('base64url');
+}
+
+/**
+ * Дивизион, по которому выбирается сложность заданий. Раньше брался минимум из
+ * двух рангов: при окне быстрого матча ±3 сильный игрок всегда получал задания
+ * легче своего уровня. Среднее честно к обоим.
+ */
+function arenaContentDivision(leftRank: number, rightRank: number): number {
+  const left = Math.max(0, Math.min(23, Math.trunc(Number(leftRank) || 0)));
+  const right = Math.max(0, Math.min(23, Math.trunc(Number(rightRank) || 0)));
+  return Math.round((left + right) / 2);
+}
+
+/** Равномерное [0,1) из криптослучайности — для момента входа бота. */
+function randomUnit(): number {
+  return randomBytes(4).readUInt32BE(0) / 0x1_0000_0000;
 }
 
 function currentSeason(now: number): { seasonId: string; endsAtMs: number } {
@@ -274,17 +384,21 @@ async function arenaActor(
   return actor(request);
 }
 
-function playerSnapshot(stableUid: string, user: Json, profile: Json, isBot = false): Json {
+/**
+ * Публичная проекция игрока. Владелец (2026-08-12): соперник-бот не раскрывается,
+ * поэтому здесь НЕТ признака isBot и нет служебных имён. Бот приходит сюда с уже
+ * сгенерированным правдоподобным именем — см. arena_bot_identity.
+ */
+function playerSnapshot(stableUid: string, user: Json, profile: Json): Json {
   return {
     uid: stableUid,
-    name: String(user.displayName ?? user.name ?? profile.name ?? (isBot ? 'Arena Bot' : 'Player')).slice(0, 48),
+    name: String(user.displayName ?? user.name ?? profile.name ?? 'Player').slice(0, 48),
     ...(typeof user.avatar === 'string' ? { avatar: user.avatar.slice(0, 256) } : {}),
     ...(typeof user.aura === 'string' ? { aura: user.aura.slice(0, 128) } : {}),
     rank: Math.max(0, Math.min(23, Math.trunc(Number(profile.rank ?? 0)))),
     rating: Math.max(0, Math.trunc(Number(profile.rating ?? 0))),
     score: 0,
     correct: 0,
-    ...(isBot ? { isBot: true } : {}),
   };
 }
 
@@ -300,6 +414,12 @@ function profileDefaults(stableUid: string, data?: Json): Json {
     matches: Math.max(0, Math.trunc(Number(data?.matches ?? 0))),
     spinPity: Math.max(0, Math.trunc(Number(data?.spinPity ?? 0))),
     activeMatchId: typeof data?.activeMatchId === 'string' ? data.activeMatchId : null,
+    // Состояние ранга. Хранится рядом с очками: щит и серия без очков
+    // бессмысленны, а очки без них ведут себя не так, как обещано игроку.
+    seasonBestTierIndex: Math.max(0, Math.trunc(Number(data?.seasonBestTierIndex ?? 0))),
+    lifetimeBestTierIndex: Math.max(0, Math.trunc(Number(data?.lifetimeBestTierIndex ?? 0))),
+    /** Сезон, к которому относится текущий рейтинг. Смена — повод для сброса. */
+    rankSeasonId: typeof data?.rankSeasonId === 'string' ? data.rankSeasonId : null,
   };
 }
 
@@ -307,10 +427,11 @@ async function loadArenaTaskPool(
   tx: admin.firestore.Transaction,
   divisionIndex: number,
   seed: string,
+  matchMode?: string,
 ): Promise<readonly TournamentTask[]> {
-  const difficulties = arenaDifficultyPlan(divisionIndex);
+  const difficulties = arenaDifficultyPlan(divisionIndex, matchMode);
   const required = new Map<string, { mode: string; difficulty: number; count: number }>();
-  ARENA_V2_MODE_ORDER.forEach((mode, index) => {
+  arenaModeOrder(matchMode).forEach((mode, index) => {
     const difficulty = difficulties[index];
     const key = `${mode}:${difficulty}`;
     const cell = required.get(key) ?? { mode, difficulty, count: 0 };
@@ -366,8 +487,9 @@ function selectedTaskEnvelope(
   pool: readonly TournamentTask[],
   now: number,
   divisionIndex: number,
+  matchMode?: string,
 ): MatchPrivate {
-  const tasks = selectArenaTasks(pool, matchId, divisionIndex);
+  const tasks = selectArenaTasks(pool, matchId, divisionIndex, matchMode);
   if (!tasks) throw new HttpsError('unavailable', 'arena_task_pool_insufficient');
   const envelope: MatchPrivate = {
     matchId,
@@ -383,7 +505,7 @@ function selectedTaskEnvelope(
     createdAtMs: now,
     expireAt: timestamp(now + ARENA_V2_MATCH_TTL_MS),
   };
-  const validation = validateArenaPrivateEnvelope(envelope);
+  const validation = validateArenaPrivateEnvelope(envelope, matchMode);
   if (!validation.ok) throw new HttpsError('resource-exhausted', validation.reason);
   return envelope;
 }
@@ -448,15 +570,18 @@ function makeMatch(input: {
     rating: player.rating,
     score: 0,
     correct: 0,
-    ...(player.isBot ? { isBot: true } : {}),
   }));
-  const privateValidation = validateArenaPrivateEnvelope(privateDoc);
+  const privateValidation = validateArenaPrivateEnvelope(privateDoc, input.mode);
   if (!privateValidation.ok) throw new HttpsError('resource-exhausted', privateValidation.reason);
   return {
     publicDoc: {
       matchId: input.matchId,
       mode: input.mode,
-      opponentKind: input.bot ? 'bot' : 'human',
+      // Клиент всегда видит 'human'. Настоящий тип соперника хранится только в
+      // приватном документе: он нужен экономике и аналитике, но не пользователю.
+      opponentKind: 'human',
+      /** Длина матча: быстрый — 5 заданий, остальные — 10. */
+      taskCount: arenaTaskCount(input.mode),
       players: publicPlayers,
       acceptedBy,
       state: 'accepting',
@@ -537,7 +662,6 @@ function ensureBotReceipt(
   receivedAtMs: number,
   force = false,
 ): void {
-  if (match.opponentKind !== 'bot') return;
   const botUid = privateDoc.participantStableUids.find((uid) => uid.startsWith('bot_'));
   if (!botUid || privateDoc.answers[botUid]?.[String(taskIndex)]) return;
   const task = privateDoc.tasks[taskIndex];
@@ -570,7 +694,6 @@ function ensureBotReceipt(
 }
 
 function shortenDeadlineToBotPlan(match: Json, privateDoc: MatchPrivate, taskIndex: number): void {
-  if (match.opponentKind !== 'bot') return;
   const plan = privateDoc.botPlan?.[String(taskIndex)];
   if (!plan || plan.timedOut) return;
   const botUid = privateDoc.participantStableUids.find((uid) => uid.startsWith('bot_'));
@@ -687,6 +810,72 @@ function advanceMatch(match: Json, privateDoc: MatchPrivate, now: number): { set
   throw new HttpsError('resource-exhausted', 'arena_sync_catchup_limit');
 }
 
+/** v3-матч помечается один раз при выдаче плана. Один флаг — одна развилка. */
+function arenaIsDuelV3(match: Json): boolean {
+  return Math.trunc(Number(match.duelVersion ?? 0)) === 3;
+}
+
+/**
+ * Решение по v3-матчу вместо пошагового `advanceMatch`.
+ *
+ * `advanceMatch` шагает по заданиям и закрывает их просрочкой. Для v3 это
+ * разрушительно: матч идёт на устройстве и в базу не пишет, поэтому любой шаг
+ * забил бы документ нулевыми расписками ДО прихода настоящего отчёта —
+ * `storeReceipt` их не перезаписывает, и игрок получил бы ноль за выигранный
+ * матч. Поэтому здесь только три исхода: ждать, закрыть, отменить.
+ */
+function advanceDuelMatch(match: Json, privateDoc: MatchPrivate, now: number): { settle: boolean; aborted: boolean } {
+  if (match.state === 'settled') return { settle: true, aborted: false };
+  if (match.state === 'aborted') return { settle: false, aborted: true };
+  if (match.state === 'accepting') {
+    if (arenaAcceptanceOpen(now, Number(match.stateDeadlineAtMs))) return { settle: false, aborted: false };
+    match.state = 'aborted';
+    match.terminal = true;
+    match.abortReason = 'accept_timeout';
+    match.version = Number(match.version ?? 0) + 1;
+    return { settle: false, aborted: true };
+  }
+  const reports = privateDoc.duelReports ?? {};
+  const reportsIn = Object.keys(reports).length;
+  const action = arenaDuelReconcile({
+    nowMs: now,
+    startedAtMs: Math.trunc(Number(privateDoc.duelStartedAtMs ?? match.stateStartedAtMs ?? now)),
+    tasks: privateDoc.tasks as { mode: ArenaTaskMode }[],
+    reportsIn,
+    participants: privateDoc.participantStableUids.length,
+    firstReportAtMs: privateDoc.duelFirstReportAtMs ?? null,
+    // Живой соперник, который ещё не сдал отчёт, считается присутствующим:
+    // дешёвого признака присутствия у нас нет, а ошибиться лучше в пользу
+    // ожидания — его закроет дедлайн.
+    opponentPresent: reportsIn < privateDoc.participantStableUids.length && !privateDoc.botPlan,
+  });
+  if (action === 'settle') {
+    match.state = 'task_reveal';
+    match.currentTaskIndex = Math.max(0, privateDoc.tasks.length - 1);
+    match.stateStartedAtMs = now;
+    match.stateDeadlineAtMs = now;
+    match.version = Number(match.version ?? 0) + 1;
+    return { settle: true, aborted: false };
+  }
+  if (action === 'abort') {
+    match.state = 'aborted';
+    match.terminal = true;
+    match.abortReason = 'duel_no_reports';
+    match.stateStartedAtMs = now;
+    match.stateDeadlineAtMs = now;
+    match.version = Number(match.version ?? 0) + 1;
+    return { settle: false, aborted: true };
+  }
+  return { settle: false, aborted: false };
+}
+
+/** Единственная развилка между двумя машинами матча на весь бэкенд. */
+function advanceAnyMatch(match: Json, privateDoc: MatchPrivate, now: number): { settle: boolean; aborted: boolean } {
+  return arenaIsDuelV3(match)
+    ? advanceDuelMatch(match, privateDoc, now)
+    : advanceMatch(match, privateDoc, now);
+}
+
 async function settleMatch(
   tx: admin.firestore.Transaction,
   matchRef: admin.firestore.DocumentReference,
@@ -701,7 +890,8 @@ async function settleMatch(
   const humans = privateDoc.participantStableUids.filter((uid) => !uid.startsWith('bot_'));
   if (match.mode === 'ranked') {
     const divisions = (match.players as Json[]).map((player) => Number(player.rank ?? 0));
-    if (match.opponentKind !== 'human' || humans.length !== 2 || divisions.length !== 2
+    // humans.length === 2 строже, чем публичный opponentKind: он теперь всегда 'human'.
+    if (humans.length !== 2 || divisions.length !== 2
       || Math.abs(divisions[0] - divisions[1]) > 1) {
       throw new HttpsError('data-loss', 'arena_ranked_integrity_failed');
     }
@@ -772,6 +962,196 @@ async function settleMatch(
   privateDoc.rewardsByStableUid ??= {};
   const privateRewards = privateDoc.rewardsByStableUid;
 
+  /**
+   * Пред-проход. Единый журнал звёзд обязан прочитать свои расписки ДО первой
+   * записи в транзакции — Firestore требует, чтобы все чтения шли до всех
+   * записей. Поэтому всё, что нужно журналу, считается здесь, а сам цикл ниже
+   * только пишет.
+   *
+   * Опыт (D-69) начисляется в этой же транзакции и в этой же записи документа
+   * игрока, что и звёзды: расчёт закрывает обоих игроков разом, а соперник к
+   * этому моменту мог уже свернуть приложение.
+   */
+  const weekKeyNow = arenaWeekKeyForMs(now);
+  const settleByUid = new Map<string, {
+    outcome: ArenaV2Outcome;
+    eligibleMatchIndex: number;
+    dailyRewardMatchesBefore: number;
+    sameDay: boolean;
+    dailyStarsBefore: number;
+    starsEarned: number;
+    xpEarned: number;
+    dailyXpBefore: number;
+    prepared: StarLedgerPrepared | null;
+    userPatch: Record<string, unknown>;
+    totalXpAfter: number;
+    rankChange: ReturnType<typeof arenaApplyRankOutcome>;
+    tierRewards: readonly { tierIndex: number; tierKey: string; itemId: string }[];
+  }>();
+
+  const userSnapByUid = new Map<string, admin.firestore.DocumentSnapshot>();
+  for (const entry of refs) {
+    const existing = dataByUid.get(entry.uid)!;
+    if (existing.receiptExists) continue;
+    userSnapByUid.set(entry.uid, await tx.get(db.collection('users').doc(entry.uid)));
+  }
+
+  for (const entry of refs) {
+    const existing = dataByUid.get(entry.uid)!;
+    if (existing.receiptExists) continue;
+    const seasonData = existing.season;
+    const outcome = outcomes[entry.uid] ?? 'draw';
+    const sameDay = String(seasonData.dailyDayKey ?? '') === dayKey;
+    const eligibleMatchIndex = sameDay
+      ? Math.max(0, Math.trunc(Number(seasonData.dailyEligibleMatches ?? 0))) : 0;
+    const dailyStarsBefore = sameDay
+      ? Math.max(0, Math.trunc(Number(seasonData.dailyStarsCredited ?? 0))) : 0;
+    /**
+     * Счётчик матчей, дающих право на редкую награду, отдельный от счётчика
+     * начисления звёзд. Раньше это было одно поле, но после D-07 быстрый матч
+     * звёзд не начисляет — а окно редкой награды в шесть матчей за сутки он
+     * терять не должен. Старое поле читается как запасное, чтобы у тех, кто
+     * уже играл сегодня, окно не открылось заново.
+     */
+    const dailyRewardMatchesBefore = sameDay
+      ? Math.max(0, Math.trunc(Number(seasonData.dailyRewardMatches
+        ?? seasonData.dailyEligibleMatches ?? 0))) : 0;
+    const starsEarned = expansionEligibility.baseStars ? arenaSeasonStars({
+      mode: match.mode,
+      rawStars: privateDoc.totals[entry.uid]?.rawSeasonStars ?? 0,
+      eligibleMatchIndex,
+      dailyStarsBefore,
+    }) : 0;
+
+    // Дневной потолок опыта живёт полем в уже читаемом и уже записываемом
+    // сезонном документе — ноль дополнительных чтений и записей.
+    const dailyXpBefore = sameDay ? Math.max(0, Math.trunc(Number(seasonData.dailyXpCredited ?? 0))) : 0;
+    const correctAnswers = Math.max(0, Math.trunc(Number(privateDoc.totals[entry.uid]?.correct ?? 0)));
+    // Серии соперничеств сезонный документ не пишут, поэтому и опыт там не
+    // начисляется: потолок было бы негде хранить.
+    const xpEarned = expansionRunKind !== 'rival' && arenaXpEligible(entry.uid)
+      ? arenaMatchXp({
+        mode: String(match.mode) as ArenaXpMode,
+        correctAnswers,
+        taskCount: privateDoc.tasks.length,
+        outcome,
+        dailyXpCredited: dailyXpBefore,
+      })
+      : 0;
+
+    /**
+     * Ранг считается ЗДЕСЬ, в первой фазе, а не при записи профиля.
+     *
+     * Причина простая: награда за взятый тир — это операция со звёздами, а все
+     * операции обязаны попасть в один пакет `prepareStarOperations`. Узнать про
+     * тир после того, как пакет собран, уже поздно.
+     */
+    const profileNow = profileDefaults(entry.uid, existing.profile);
+    const opponentUidNow = entry.uid === leftUid ? rightUid : leftUid;
+    const opponentSeatNow = privateDoc.seatByStableUid[opponentUidNow];
+    const opponentDivisionNow = Number((match.players as Json[])
+      .find((player) => player.uid === opponentSeatNow)?.rank ?? profileNow.rank);
+    const ratingDeltaNow = expansionEligibility.rating && match.mode === 'ranked'
+      ? arenaRpDelta(profileNow.rank, opponentDivisionNow, outcome) : 0;
+    const storedRankState: ArenaRankState = {
+      rp: profileNow.rating,
+      seasonBestTierIndex: Math.max(0, Math.trunc(Number(profileNow.seasonBestTierIndex ?? 0))),
+      // Пожизненный лучший тир: по нему выдаются награды, поэтому он не
+      // обнуляется ни сбросом сезона, ни откатом.
+      lifetimeBestTierIndex: Math.max(0, Math.trunc(Number(profileNow.lifetimeBestTierIndex ?? 0))),
+    };
+    /**
+     * Мягкий сброс на смене сезона (D-27) — здесь и только здесь.
+     *
+     * Отдельной задачи по расписанию не заводится намеренно: она означала бы
+     * проход по ВСЕМ профилям раз в сезон, то есть счёт за чтения,
+     * пропорциональный числу игроков, включая тех, кто в Арену не заходит.
+     * Здесь сброс случается ровно один раз на игрока и ровно тогда, когда он
+     * вернулся играть, — без единого лишнего чтения.
+     */
+    const rankStateBefore = String(profileNow.rankSeasonId ?? '') !== season.seasonId
+      ? arenaSoftReset(storedRankState)
+      : storedRankState;
+    const rankChange = match.mode === 'ranked'
+      ? arenaApplyRankOutcome({ state: rankStateBefore, outcome, rpDelta: ratingDeltaNow })
+      // Нерейтинговый матч ранга не касается вовсе: ни очков, ни щита, ни серии.
+      : { next: rankStateBefore, rpDelta: 0, event: 'none' as const, tierBefore: 0, tierAfter: 0 };
+
+    const userSnap = userSnapByUid.get(entry.uid);
+    const xpPatch = userSnap && xpEarned > 0
+      ? arenaXpUserPatch({ userData: userSnap.data(), xpDelta: xpEarned, now: new Date(now) })
+      : null;
+
+    const starOps: StarOpRequest[] = [];
+    if (starsEarned > 0) {
+      starOps.push({
+        opId: `arena_match:${String(match.matchId)}`,
+        delta: starsEarned,
+        reason: 'arena_match',
+        sourceKind: 'arena_match',
+        sourceId: String(match.matchId),
+        ruleVersion: ARENA_XP_RULE_VERSION,
+        earnedAtMs: now,
+        // Расписка обязана объяснять своё число: без этого «почему 7, а не 14»
+        // превращается в обращение в поддержку, на которое нечем ответить.
+        meta: {
+          mode: String(match.mode),
+          rawStars: privateDoc.totals[entry.uid]?.rawSeasonStars ?? 0,
+          multiplier: arenaDailyMultiplier(eligibleMatchIndex),
+          eligibleMatchIndex,
+          dailyStarsBefore,
+          correct: correctAnswers,
+          taskCount: privateDoc.tasks.length,
+        },
+      });
+    }
+
+    /**
+     * Награда за взятый тир (D-63): КОСМЕТИКА, один раз за всю жизнь.
+     *
+     * Звёзды сюда не подмешиваются намеренно — владелец сказал прямо: «общую
+     * экономику звёзд не трогаем». Звезда это валюта всего приложения (D-05),
+     * и выдача за ранг меняла бы экономику целиком ради одного раздела.
+     *
+     * Ключ владения не содержит сезона: награда пожизненная, и ключ с сезоном
+     * выдал бы её заново в следующем сезоне.
+     */
+    const tierRewards = match.mode === 'ranked'
+      ? arenaTierRewardsEarned({
+        lifetimeBestBefore: rankStateBefore.lifetimeBestTierIndex,
+        lifetimeBestAfter: rankChange.next.lifetimeBestTierIndex,
+      })
+      : [];
+
+    const prepared = userSnap && starOps.length
+      ? await prepareStarOperations(tx, db, entry.uid, userSnap, starOps, {
+        nowMs: now,
+        activeSeasonId: season.seasonId,
+        weekKeyNow,
+        weekKeyForMs: arenaWeekKeyForMs,
+        authUid: privateDoc.authByStableUid?.[entry.uid] ?? '',
+        xpDelta: xpEarned,
+        xpTotalAfter: xpPatch?.totalXpAfter ?? 0,
+      })
+      : null;
+
+    settleByUid.set(entry.uid, {
+      tierRewards,
+      rankChange,
+      outcome,
+      eligibleMatchIndex,
+      dailyRewardMatchesBefore,
+      sameDay,
+      dailyStarsBefore,
+      starsEarned,
+      xpEarned,
+      dailyXpBefore,
+      prepared,
+      userPatch: xpPatch?.patch ?? {},
+      totalXpAfter: xpPatch?.totalXpAfter ?? 0,
+    });
+  }
+
   refs.forEach((entry) => {
     const existing = dataByUid.get(entry.uid)!;
     const profile = profileDefaults(entry.uid, existing.profile);
@@ -781,25 +1161,23 @@ async function settleMatch(
       rewards[publicSeat] = { duplicate: true };
       return;
     }
-    const outcome = outcomes[entry.uid] ?? 'draw';
-    const currentRating = profile.rating;
-    const opponentUid = entry.uid === leftUid ? rightUid : leftUid;
-    const opponentSeat = privateDoc.seatByStableUid[opponentUid];
-    const opponentDivision = Number((match.players as Json[])
-      .find((player) => player.uid === opponentSeat)?.rank ?? profile.rank);
-    const ratingDelta = expansionEligibility.rating && match.mode === 'ranked'
-      ? arenaRpDelta(profile.rank, opponentDivision, outcome) : 0;
-    const ratingAfter = Math.max(0, currentRating + ratingDelta);
-    const eligibleMatchIndex = String(seasonData.dailyDayKey ?? '') === dayKey
-      ? Math.max(0, Math.trunc(Number(seasonData.dailyEligibleMatches ?? 0))) : 0;
-    const sameDay = String(seasonData.dailyDayKey ?? '') === dayKey;
-    const dailyStarsBefore = sameDay ? Math.max(0, Math.trunc(Number(seasonData.dailyStarsCredited ?? 0))) : 0;
-    const starsEarned = expansionEligibility.baseStars ? arenaSeasonStars({
-      mode: match.mode,
-      rawStars: privateDoc.totals[entry.uid]?.rawSeasonStars ?? 0,
-      eligibleMatchIndex,
-      dailyStarsBefore,
-    }) : 0;
+    const settle = settleByUid.get(entry.uid)!;
+    const outcome = settle.outcome;
+    /**
+     * Ранг посчитан в первой фазе — там, где собираются операции со звёздами:
+     * награда за взятый тир обязана попасть в тот же пакет, что и награда за
+     * матч, иначе она пошла бы отдельной записью документа игрока.
+     *
+     * Сами очки проводятся движком рангов, а не складываются напрямую: прямое
+     * сложение не знает ни про щит от падения из тира, ни про промо-серию, и
+     * игрок, только что взявший тир, терял бы его первым поражением. Движок
+     * байт-в-байт совпадает с клиентским, расхождение поймает тест паритета
+     * `arena_rank_parity`.
+     */
+    const rankChange = settle.rankChange;
+    const ratingDelta = rankChange.rpDelta;
+    const ratingAfter = rankChange.next.rp;
+    const { eligibleMatchIndex, dailyRewardMatchesBefore, sameDay, dailyStarsBefore, starsEarned } = settle;
     const starsAfter = Math.max(0, Math.trunc(Number(seasonData.stars ?? 0))) + starsEarned;
     const spinKey = String(process.env.ARENA_V2_SPIN_HMAC_KEY ?? '').trim();
     const rollBps = spinKey
@@ -807,8 +1185,9 @@ async function settleMatch(
       : -1;
     const spin = arenaRareSpin({
       mode: match.mode,
-      opponentKind: match.opponentKind,
-      rewardEligible: expansionEligibility.spin && !forcedWinnerStableUid && eligibleMatchIndex < 6 && rollBps >= 0,
+      opponentKind: privateDoc.participantStableUids.some((uid) => uid.startsWith('bot_')) ? 'bot' : 'human',
+      rewardEligible: expansionEligibility.spin && !forcedWinnerStableUid
+        && dailyRewardMatchesBefore < ARENA_DAILY_REWARD_MATCHES && rollBps >= 0,
       submittedAnswers: privateDoc.totals[entry.uid]?.submittedAnswers ?? 0,
       dropsToday: sameDay ? Math.max(0, Math.trunc(Number(seasonData.spinDropsToday ?? 0))) : 0,
       rollBps,
@@ -836,6 +1215,9 @@ async function settleMatch(
       ...profile,
       rating: ratingAfter,
       rank: arenaRankIndexFromRp(ratingAfter),
+      seasonBestTierIndex: rankChange.next.seasonBestTierIndex,
+      lifetimeBestTierIndex: rankChange.next.lifetimeBestTierIndex,
+      rankSeasonId: season.seasonId,
       wins: profile.wins + (expansionEligibility.profileOutcome && outcome === 'win' ? 1 : 0),
       losses: profile.losses + (expansionEligibility.profileOutcome && outcome === 'loss' ? 1 : 0),
       draws: profile.draws + (expansionEligibility.profileOutcome && outcome === 'draw' ? 1 : 0),
@@ -868,14 +1250,29 @@ async function settleMatch(
       endsAtMs: season.endsAtMs,
       dailyDayKey: dayKey,
       dailyEligibleMatches: eligibleMatchIndex + (expansionEligibility.baseStars ? 1 : 0),
+      dailyRewardMatches: dailyRewardMatchesBefore + (expansionEligibility.spin ? 1 : 0),
       dailyStarsCredited: dailyStarsBefore + starsEarned,
+      // Потолок опыта за сутки хранится здесь же: документ и так читается и
+      // пишется, значит счётчик обходится в ноль дополнительных операций.
+      dailyXpCredited: settle.dailyXpBefore + settle.xpEarned,
       dailyMultiplierUsed: arenaDailyMultiplier(eligibleMatchIndex),
+      // Счётчики дневных целей живут здесь же: документ и так читается и
+      // пишется на каждом закрытии матча, значит цели обходятся в ноль
+      // дополнительных операций. Отдельное хранилище под них пришлось бы
+      // оплачивать ежедневно и навсегда.
+      dailyMatches: (sameDay ? Math.max(0, Math.trunc(Number(seasonData.dailyMatches ?? 0))) : 0) + 1,
+      dailyWins: (sameDay ? Math.max(0, Math.trunc(Number(seasonData.dailyWins ?? 0))) : 0)
+        + (outcome === 'win' ? 1 : 0),
+      dailyFirstAnswers: (sameDay ? Math.max(0, Math.trunc(Number(seasonData.dailyFirstAnswers ?? 0))) : 0)
+        + Math.max(0, Math.trunc(Number(privateDoc.totals[entry.uid]?.firstCount ?? 0))),
       spinDropsToday: (sameDay ? Math.max(0, Math.trunc(Number(seasonData.spinDropsToday ?? 0))) : 0)
         + (spin.awarded ? 1 : 0),
       updatedAtMs: now,
     };
     const reward = {
       starsEarned,
+      xpEarned: settle.xpEarned,
+      totalXpAfter: settle.totalXpAfter,
       seasonStarsAfter: starsAfter,
       ratingDelta,
       ratingAfter,
@@ -891,6 +1288,14 @@ async function settleMatch(
       ratingDelta,
       ratingAfter,
       rankAfter: nextProfile.rank,
+      xpEarned: settle.xpEarned,
+      totalXpAfter: settle.totalXpAfter,
+      // Что случилось с рангом — экран результата рисует по этому полю:
+      // повышение, откат, спасение щитом, начало и исход промо-серии.
+      rankEvent: rankChange.event,
+      rankTierBefore: rankChange.tierBefore,
+      rankTierAfter: rankChange.tierAfter,
+      ...(settle.tierRewards.length ? { tierRewards: settle.tierRewards } : {}),
     };
     if (expansionRunKind === 'rival') {
       tx.set(entry.profile, { activeMatchId: null, updatedAtMs: now }, { merge: true });
@@ -898,11 +1303,54 @@ async function settleMatch(
       tx.set(entry.profile, nextProfile, { merge: true });
       tx.set(entry.season, nextSeason, { merge: true });
     }
+    /**
+     * Выдача косметики за тир.
+     *
+     * `tx.set` с merge, а не `create`: право владения могло уже существовать —
+     * игрок мог купить тот же предмет в магазине. Падать на этом нельзя, матч
+     * тут ни при чём; а `merge` оставит покупку покупкой и просто отметит, что
+     * предмет ещё и заслужен.
+     *
+     * Звёзды не тратятся и не начисляются: награда за ранг — косметика (D-63),
+     * общая экономика звёзд не трогается.
+     */
+    for (const tierReward of settle.tierRewards) {
+      tx.set(
+        db.collection('users').doc(entry.uid)
+          .collection(ARENA_EXPANSION_COLLECTIONS.entitlements).doc(tierReward.itemId),
+        {
+          itemId: tierReward.itemId,
+          source: 'arena_tier',
+          tierIndex: tierReward.tierIndex,
+          earnedAtMs: now,
+        },
+        { merge: true },
+      );
+    }
     tx.create(entry.receipt, {
       matchId: String(match.matchId), mode: match.mode, outcome, reward, settledAtMs: now,
       expireAt: timestamp(now + 400 * 24 * 60 * 60 * 1_000),
     });
-    if (privateDoc.expansionFlags?.lab === true) {
+    // Единый журнал звёзд и опыт уезжают ОДНОЙ записью документа игрока.
+    if (settle.prepared) {
+      commitStarOperations(tx, settle.prepared, settle.userPatch);
+    } else if (Object.keys(settle.userPatch).length) {
+      // Звёзд не было, а опыт есть — например быстрый матч.
+      tx.set(db.collection('users').doc(entry.uid), settle.userPatch, { merge: true });
+    }
+    /**
+     * Разбор матча пишется ВСЕГДА, а не под флагом расширения.
+     *
+     * Владелец потребовал разбор обязательным: «в конце матча разбор вопросов и
+     * заданий». Запертый за флагом, он просто отсутствовал бы у большинства
+     * игроков, а без него непонятно, что было правильно и почему звёзд столько.
+     *
+     * Лишней записи это не создаёт: документ тот же самый, что писала
+     * «Лаборатория», просто перестал зависеть от её флага. Сам ЭКРАН
+     * «Лаборатории» остаётся под флагом — под ним живут повторы заданий, а не
+     * разбор.
+     */
+    {
       const labTasks: Json[] = privateDoc.tasks.map((task, taskIndex) => ({ taskIndex,
         ...arenaLabTask(task, privateDoc.answers[entry.uid]?.[String(taskIndex)] ?? {}) }));
       tx.create(db.collection('users').doc(entry.uid).collection(ARENA_EXPANSION_COLLECTIONS.matchLabs)
@@ -1064,10 +1512,22 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
       rank: profile.rank,
       seasonStars: Math.max(0, Math.trunc(Number(seasonData.stars ?? 0))),
       seasonLevel: Math.max(0, Math.trunc(Number(seasonData.level ?? 0))),
+      // Дневные цели: те же счётчики, что уже лежат в сезонном документе.
+      dailyDayKey: typeof seasonData.dailyDayKey === 'string' ? seasonData.dailyDayKey : '',
+      dailyMatches: Math.max(0, Math.trunc(Number(seasonData.dailyMatches ?? 0))),
+      dailyWins: Math.max(0, Math.trunc(Number(seasonData.dailyWins ?? 0))),
+      dailyFirstAnswers: Math.max(0, Math.trunc(Number(seasonData.dailyFirstAnswers ?? 0))),
+      dailyStars: Math.max(0, Math.trunc(Number(seasonData.dailyStarsCredited ?? 0))),
+      todayKey: utcDayKey(now),
       seasonEndsAtMs: season.endsAtMs,
       spinsAvailable,
       wins: profile.wins,
       losses: profile.losses,
+      // Состояние ранга целиком: без щита и серии экран рангов показал бы
+      // очки и умолчал о том, что игрок стоит в промо-серии, — а это как раз
+      // то, что ему нужно знать перед следующим матчем.
+      seasonBestTierIndex: Math.max(0, Math.trunc(Number(profile.seasonBestTierIndex ?? 0))),
+      lifetimeBestTierIndex: Math.max(0, Math.trunc(Number(profile.lifetimeBestTierIndex ?? 0))),
     },
     season: {
       seasonId: season.seasonId,
@@ -1094,7 +1554,6 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
   const now = nowMs();
   const ownProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
   const ownQueueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
-  const lockRef = db.collection(ARENA_V2_COLLECTIONS.queueLocks).doc(mode);
   const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
   const result = await db.runTransaction(async (tx) => {
     const [profileSnap, ownQueueSnap, candidates] = await Promise.all([
@@ -1103,12 +1562,27 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
         .where('mode', '==', mode).where('status', '==', 'waiting')
         .orderBy('joinedAtMs', 'asc').limit(10)),
-      tx.get(lockRef),
     ]);
     const existing = ownQueueSnap.data() ?? {};
+    /**
+     * Сколько ЖИВЫХ игроков сейчас ищет в этом режиме.
+     *
+     * Владелец: «для рейтинга показывать реальное количество реальных
+     * пользователей в поиске». Считается из очереди, КОТОРУЮ МЫ И ТАК УЖЕ
+     * ПРОЧИТАЛИ, — ни одного лишнего запроса. Отдельный вызов ради счётчика
+     * означал бы опрос по кругу, а он запрещён.
+     *
+     * Число честное: в очереди рейтинга ботов не бывает вовсе, а свой
+     * собственный билет из счёта вычитается — иначе одинокий игрок всё время
+     * видел бы «ищет 1» и думал, что соперник вот-вот найдётся.
+     */
+    const searchingNow = candidates.docs
+      .filter((doc) => doc.id !== who.stableUid && !doc.id.startsWith('bot_'))
+      .length;
     if (existing.requestId === requestId && existing.status === 'matched' && existing.matchId) {
       return { status: 'matched' as const, matchId: String(existing.matchId),
-        viewerSeat: existing.viewerSeat === 'b' ? 'b' as const : 'a' as const, queue: existing };
+        viewerSeat: existing.viewerSeat === 'b' ? 'b' as const : 'a' as const,
+        queue: existing, searchingNow };
     }
     if (existing.status === 'waiting' && existing.requestId !== requestId) {
       throw new HttpsError('already-exists', 'arena_queue_request_active');
@@ -1180,16 +1654,21 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
         joinedAtMs: ownJoinedAt,
         leaseExpiresAt: now + ARENA_V2_QUEUE_LEASE_MS,
         player: playerSnapshot(who.stableUid, who.user, profile),
+        // Владелец (2026-08-12): момент входа бота назначает СЕРВЕР, а не клиент,
+        // иначе задержку легко подделать и она перестаёт быть случайной.
+        // Только для быстрого матча: в рейтинге ботов нет.
+        ...(mode === 'quick'
+          ? { botDueAtMs: ownJoinedAt + arenaQuickBotDelayMs(randomUnit()) }
+          : {}),
       };
       tx.set(ownProfileRef, { ...profile, updatedAtMs: now }, { merge: true });
       tx.set(ownQueueRef, queue);
-      tx.set(lockRef, { mode, touchedAtMs: now }, { merge: true });
-      return { status: 'waiting' as const, queue };
+      return { status: 'waiting' as const, queue, searchingNow };
     }
     const candidateData = candidate.data();
-    const contentDivision = Math.min(profile.rank, candidateProfile!.rank);
-    const pool = await loadArenaTaskPool(tx, contentDivision, matchId);
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision);
+    const contentDivision = arenaContentDivision(profile.rank, candidateProfile!.rank);
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, mode);
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, mode);
     const built = makeMatch({
       matchId, mode,
       left: playerSnapshot(who.stableUid, who.user, profile),
@@ -1200,7 +1679,7 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       now,
     });
     if (pairCurrentRef) built.privateDoc.pairLimitId = pairCurrentRef.id;
-    const finalEnvelopeValidation = validateArenaPrivateEnvelope(built.privateDoc);
+    const finalEnvelopeValidation = validateArenaPrivateEnvelope(built.privateDoc, mode);
     if (!finalEnvelopeValidation.ok) throw new HttpsError('resource-exhausted', finalEnvelopeValidation.reason);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
@@ -1215,7 +1694,6 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(candidate.id), {
       activeMatchId: matchId, updatedAtMs: now,
     }, { merge: true });
-    tx.set(lockRef, { mode, touchedAtMs: now }, { merge: true });
     if (pairCurrentRef) {
       tx.set(pairCurrentRef, {
         pairHashDay: pairCurrentRef.id,
@@ -1228,7 +1706,7 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       }, { merge: true });
     }
     return { status: 'matched' as const, matchId, viewerSeat: 'a' as const,
-      queue: { status: 'matched', matchId, viewerSeat: 'a' } };
+      queue: { status: 'matched', matchId, viewerSeat: 'a' }, searchingNow };
   });
   return { ok: true, stableUid: who.stableUid, ...result };
 });
@@ -1258,25 +1736,27 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
   const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
   const botSeed = randomId(32);
   const output = await db.runTransaction(async (tx) => {
-    const [queueSnap, profileSnap, lockSnap, candidates] = await Promise.all([
+    const [queueSnap, profileSnap, candidates] = await Promise.all([
       tx.get(queueRef), tx.get(profileRef),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.queueLocks).doc('quick')),
       tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
         .where('mode', '==', 'quick').where('status', '==', 'waiting')
         .orderBy('joinedAtMs', 'asc').limit(10)),
     ]);
-    void lockSnap;
     const queue = queueSnap.data() ?? {};
     if (queue.requestId !== requestId || queue.authUid !== who.authUid || queue.mode !== 'quick') {
       throw new HttpsError('failed-precondition', 'arena_quick_queue_missing');
     }
     if (queue.status === 'matched' && queue.matchId) return {
       matchId: String(queue.matchId),
-      opponentKind: queue.opponentKind === 'bot' ? 'bot' : 'human',
+      opponentKind: 'human' as const,
       viewerSeat: queue.viewerSeat === 'b' ? 'b' as const : 'a' as const,
     };
     if (queue.status !== 'waiting') throw new HttpsError('failed-precondition', 'arena_quick_queue_not_waiting');
-    if (now - Number(queue.joinedAtMs ?? now) < ARENA_V2_QUICK_BOT_FALLBACK_MS) {
+    const joinedAtMs = Number(queue.joinedAtMs ?? now);
+    const botDueAtMs = Number.isFinite(Number(queue.botDueAtMs))
+      ? Number(queue.botDueAtMs)
+      : joinedAtMs + ARENA_V2_QUICK_BOT_MAX_MS;
+    if (now < Math.max(botDueAtMs, joinedAtMs + ARENA_V2_QUICK_BOT_FALLBACK_MS)) {
       throw new HttpsError('failed-precondition', 'arena_quick_bot_too_early');
     }
     const profile = profileDefaults(who.stableUid, profileSnap.data());
@@ -1300,9 +1780,9 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
       break;
     }
     if (candidate && candidateData && candidateProfile && candidateProfileRef) {
-      const pool = await loadArenaTaskPool(tx, Math.min(profile.rank, candidateProfile.rank), matchId);
-      const privateEnvelope = selectedTaskEnvelope(matchId, pool, now,
-        Math.min(profile.rank, candidateProfile.rank));
+      const contentDivision = arenaContentDivision(profile.rank, candidateProfile.rank);
+      const pool = await loadArenaTaskPool(tx, contentDivision, matchId, 'quick');
+      const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'quick');
       const built = makeMatch({
         matchId, mode: 'quick', left: playerSnapshot(who.stableUid, who.user, profile),
         right: { ...candidateData.player, rank: candidateProfile.rank, rating: candidateProfile.rating },
@@ -1320,25 +1800,27 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
         viewerSeat: 'b', opponentKind: 'human' }, { merge: true });
       tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
       tx.set(candidateProfileRef, { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
-      tx.set(db.collection(ARENA_V2_COLLECTIONS.queueLocks).doc('quick'), { touchedAtMs: now }, { merge: true });
       return { matchId, opponentKind: 'human', viewerSeat: 'a' as const };
     }
     const botUid = `bot_${randomId(8)}`;
-    const pool = await loadArenaTaskPool(tx, profile.rank, matchId);
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank);
+    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, 'quick');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'quick');
     const built = makeMatch({
       matchId, mode: 'quick', left: playerSnapshot(who.stableUid, who.user, profile),
-      right: playerSnapshot(botUid, { displayName: 'Training opponent' }, { rank: profile.rank, rating: profile.rating }, true),
+      right: playerSnapshot(
+        botUid,
+        { displayName: arenaBotDisplayName(botSeed, typeof who.user.lang === 'string' ? who.user.lang : undefined) },
+        { rank: profile.rank, rating: profile.rating },
+      ),
       leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed,
     });
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
     tx.create(memberRef(matchId, who.authUid), memberMarker(matchId, who.authUid, 'a', now));
     tx.set(queueRef, { status: 'matched', matchId, matchedAtMs: now,
-      viewerSeat: 'a', opponentKind: 'bot' }, { merge: true });
+      viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
     tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.queueLocks).doc('quick'), { touchedAtMs: now }, { merge: true });
-    return { matchId, opponentKind: 'bot', viewerSeat: 'a' as const };
+    return { matchId, opponentKind: 'human' as const, viewerSeat: 'a' as const };
   });
   return { ok: true, status: 'matched' as const, matchId: output.matchId, viewerSeat: output.viewerSeat ?? 'a',
     opponentKind: output.opponentKind };
@@ -1382,7 +1864,7 @@ export const arenaV2MatchAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
         ? { ...player, acceptedAtMs: now } : player);
       match.version = Number(match.version ?? 0) + 1;
     }
-    const advanced = advanceMatch(match, privateDoc, now);
+    const advanced = advanceAnyMatch(match, privateDoc, now);
     if (pairRef && pairSnap && match.state === 'countdown' && !privateDoc.pairLimitCommitted) {
       const pairData = pairSnap.data() ?? {};
       if (pairData.reservationMatchId !== matchId || Number(pairData.reservationExpiresAtMs ?? 0) < now) {
@@ -1423,7 +1905,10 @@ export const arenaV2MatchDecline = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
+    const dodgeProfileSnap = match.mode === 'ranked'
+      ? await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid)) : null;
     if (match.state !== 'accepting') throw new HttpsError('failed-precondition', 'arena_match_already_started');
+    if (match.mode === 'ranked') recordRankedQueueDodge(tx, who.stableUid, dodgeProfileSnap?.data(), now);
     match.state = 'aborted';
     match.terminal = true;
     match.abortReason = 'participant_declined';
@@ -1469,6 +1954,10 @@ export const arenaV2SubmitAnswer = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       }
       return { match, viewerSeat, receipt: existing };
     }
+    // Матч v3 считается на устройстве и сдаётся одним отчётом. Пошаговый ответ
+    // по нему означает старую сборку клиента на новом матче: принять его —
+    // значит записать расписку, которую отчёт потом уже не перезапишет.
+    if (arenaIsDuelV3(match)) throw new HttpsError('failed-precondition', 'arena_duel_v3_report_required');
     advanceMatch(match, privateDoc, now);
     if (match.state !== 'task_active' || Number(match.currentTaskIndex) !== taskIndex) {
       throw new HttpsError('failed-precondition', 'arena_task_not_active');
@@ -1533,6 +2022,10 @@ export const arenaV2SubmitSpeedAttempt = onCall(ARENA_V2_CALLABLE_OPTIONS, async
     if (equivalent) {
       return { match, viewerSeat, verdict: { correct: equivalent.correct, points: equivalent.points } };
     }
+    // Матч v3 считается на устройстве и сдаётся одним отчётом. Пошаговый ответ
+    // по нему означает старую сборку клиента на новом матче: принять его —
+    // значит записать расписку, которую отчёт потом уже не перезапишет.
+    if (arenaIsDuelV3(match)) throw new HttpsError('failed-precondition', 'arena_duel_v3_report_required');
     advanceMatch(match, privateDoc, now);
     if (match.state !== 'task_active' || Number(match.currentTaskIndex) !== taskIndex) {
       throw new HttpsError('failed-precondition', 'arena_task_not_active');
@@ -1601,7 +2094,7 @@ export const arenaV2SyncMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
-    const advanced = advanceMatch(match, privateDoc, now);
+    const advanced = advanceAnyMatch(match, privateDoc, now);
     if (advanced.settle && match.state !== 'settled') {
       await settleMatch(tx, matchRef, privateRef, match, privateDoc, now);
     } else {
@@ -1620,6 +2113,392 @@ export const arenaV2SyncMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
   return matchResponse(output.match, output.viewerSeat, output.viewerReward);
 });
 
+/* ══════════════════════ Дуэль v3: план и отчёт ════════════════════════════ */
+
+/**
+ * Почему матч больше не идёт по заданию за раз.
+ *
+ * В v2 каждый ответ был вызовом сервера: игрок нажимал вариант и ждал ответа
+ * сети, прежде чем увидеть «верно». На плохой связи это полсекунды и больше на
+ * КАЖДОЕ задание, и владелец назвал это недопустимым прямо: «чтобы не было
+ * вообще задержек, даже 1 секунда недопустима».
+ *
+ * v3 разворачивает это: при старте клиент получает весь набор заданий вместе с
+ * отпечатками правильных ответов, ведёт матч сам и присылает ОДИН отчёт.
+ * Сервер пересчитывает отчёт по запечатанным заданиям — не ради защиты от
+ * читеров (владелец: «нам похуй на античит»), а чтобы начисленное совпало с
+ * показанным даже когда правила поменялись, а сборка у игрока старая.
+ *
+ * Побочный и важный эффект: записей в Firestore на матч становится две вместо
+ * двух десятков.
+ */
+
+const ARENA_DUEL_REPORT_MAX_BYTES = 24 * 1_024;
+
+function arenaDuelEntryMode(mode: unknown): ArenaEntryMode {
+  const value = String(mode ?? '');
+  return value === 'ranked' || value === 'quick' || value === 'friend'
+    || value === 'series' || value === 'today' || value === 'ghost'
+    ? value : 'quick';
+}
+
+/**
+ * Ходы соперника-бота, выданные вперёд одним куском.
+ *
+ * Так индикатор «соперник ответил» срабатывает мгновенно и без единого чтения
+ * базы во время матча. У живого соперника массив пуст, и его прогресс идёт
+ * через Realtime Database — по пустому массиву тип соперника не читается,
+ * потому что у живого он тоже может опоздать.
+ */
+function arenaDuelOpponentTicks(privateDoc: MatchPrivate): ArenaOpponentTickWire[] {
+  if (!privateDoc.botPlan) return [];
+  return privateDoc.tasks.map((task, taskIndex) => {
+    const plan = privateDoc.botPlan?.[String(taskIndex)];
+    const mode = task.mode as ArenaTaskMode;
+    const window = ARENA_ANSWER_MS[mode] ?? ARENA_V2_ANSWER_MS;
+    if (!plan) return { taskIndex, raceElapsedMs: window, correct: false };
+    const correct = mode === 'speed_match'
+      ? Math.trunc(Number(plan.matchedPairs ?? 0)) > 0
+      : plan.correct === true && plan.timedOut !== true;
+    const elapsed = plan.timedOut ? window : Math.max(0, Math.min(window, Math.trunc(Number(plan.elapsedMs ?? window))));
+    return { taskIndex, raceElapsedMs: elapsed, correct };
+  });
+}
+
+function arenaDuelPlanTasks(matchId: string, privateDoc: MatchPrivate): ArenaPlanTask[] {
+  const planned: ArenaPlanTask[] = [];
+  for (let index = 0; index < privateDoc.tasks.length; index += 1) {
+    const task = arenaPlanTask(matchId, privateDoc.tasks[index], index);
+    // Одно негодное задание рушит весь матч, а не портит его тихо: половина
+    // плана хуже, чем честная невозможность начать.
+    if (!task) throw new HttpsError('data-loss', 'arena_duel_plan_task_invalid');
+    planned.push(task);
+  }
+  return planned;
+}
+
+/**
+ * Выдаёт план матча и помечает матч как v3.
+ *
+ * Пометка обязана лечь ДО того, как игрок начнёт играть. Без неё пошаговая
+ * машина v2 — её дёргает и `arenaV2SyncMatch`, и почасовая уборка — прошагала
+ * бы по заданиям и закрыла их просрочкой, пока матч идёт на устройстве.
+ * Настоящий отчёт пришёл бы на готовые нулевые расписки, а `storeReceipt` их
+ * не перезаписывает: игрок получил бы ноль за выигранный матч.
+ *
+ * Это единственная запись за весь ход матча, и она одна на матч: повтор
+ * вызова ничего не пишет.
+ */
+export const arenaV2MatchPlan = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'home', true);
+  const matchId = safeId(request.data?.matchId, 'match_id');
+  const now = nowMs();
+  const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
+  const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
+
+  const marked = await db.runTransaction(async (tx) => {
+    const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
+    if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
+    const match = clone(matchSnap.data()!);
+    const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
+    assertParticipant(match, privateDoc, who);
+    if (match.terminal === true) throw new HttpsError('failed-precondition', 'arena_match_finished');
+    if (match.state === 'accepting') throw new HttpsError('failed-precondition', 'arena_match_not_accepted');
+    if (arenaIsDuelV3(match) && privateDoc.duelPlanIssuedAtMs) return { match, privateDoc };
+
+    // Начало матча — конец отсчёта, а не «сейчас». Иначе тот, кто дольше грузил
+    // план, получил бы фору по дедлайну закрытия.
+    const startedAtMs = Math.trunc(Number(
+      privateDoc.duelStartedAtMs ?? match.stateDeadlineAtMs ?? (now + ARENA_DUEL_COUNTDOWN_MS),
+    ));
+    match.duelVersion = 3;
+    match.stateDeadlineAtMs = arenaSettleDeadlineMs(startedAtMs, privateDoc.tasks as { mode: ArenaTaskMode }[]);
+    match.version = Number(match.version ?? 0) + 1;
+    privateDoc.duelPlanIssuedAtMs = now;
+    privateDoc.duelStartedAtMs = startedAtMs;
+    tx.set(matchRef, match);
+    tx.set(privateRef, privateDoc);
+    return { match, privateDoc };
+  });
+  const match = marked.match;
+  const privateDoc = marked.privateDoc;
+
+  const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
+  const opponentSeat: 'a' | 'b' = viewerSeat === 'a' ? 'b' : 'a';
+  const opponentPlayer = (match.players as Json[]).find((player) => player.uid === opponentSeat) ?? {};
+  const tasks = arenaDuelPlanTasks(matchId, privateDoc);
+  const entryMode = arenaDuelEntryMode(match.mode);
+  const startedAtMs = Math.trunc(Number(privateDoc.duelStartedAtMs ?? now));
+
+  const plan: ArenaMatchPlanWire = {
+    schemaVersion: ARENA_PLAN_SCHEMA_VERSION,
+    rulesVersion: ARENA_STARS_RULES_VERSION,
+    matchId,
+    mode: entryMode,
+    viewerSeat,
+    taskCount: tasks.length,
+    countdownMs: ARENA_DUEL_COUNTDOWN_MS,
+    readingMs: ARENA_DUEL_READING_MS,
+    revealMs: ARENA_DUEL_REVEAL_MS,
+    rules: arenaMatchPlanRules(entryMode, tasks.length),
+    tasks,
+    opponent: {
+      seat: opponentSeat,
+      name: String(opponentPlayer.name ?? ''),
+      ...(opponentPlayer.avatar ? { avatar: String(opponentPlayer.avatar) } : {}),
+      ...(opponentPlayer.aura ? { aura: String(opponentPlayer.aura) } : {}),
+      rank: Math.trunc(Number(opponentPlayer.rank ?? 0)),
+    },
+    opponentTicks: arenaDuelOpponentTicks(privateDoc),
+    liveChannelPath: `arenaLive/${matchId}`,
+    planHash: arenaPlanHash(matchId, privateDoc.tasks),
+    issuedAtMs: now,
+  };
+  return { ok: true, startedAtMs, deadlineAtMs: arenaSettleDeadlineMs(startedAtMs, privateDoc.tasks as { mode: ArenaTaskMode }[]), plan };
+});
+
+/**
+ * Превращает пересчитанные исходы в те же расписки, что писал пошаговый v2.
+ *
+ * Ровно один путь закрытия матча на весь бэкенд: `settleMatch` читает
+ * `answers`/`totals` и ничего не знает про дуэль v3. Заводить второй путь
+ * означало бы держать две правды про награды.
+ */
+function arenaDuelStoreOutcomes(
+  privateDoc: MatchPrivate,
+  stableUid: string,
+  reportId: string,
+  outcomes: readonly ArenaTaskOutcome[],
+  starsPerTask: readonly number[],
+  receivedAtMs: number,
+  /**
+   * Сколько заданий закрыто ПЕРВЫМ верным ответом. Владелец (D-62) просил
+   * дневную цель «ответь первым N раз», а вывести это из расписок нельзя:
+   * третья звезда за скорость и звезда за серию дают одно и то же число.
+   * Счётчик кладётся в те же `totals`, что уже пишутся, — ноль новых записей.
+   */
+  firstCount = 0,
+): void {
+  privateDoc.totals[stableUid] ??= {
+    score: 0, elapsedMs: 0, correct: 0, fullySolved: 0, rawSeasonStars: 0, submittedAnswers: 0,
+  };
+  privateDoc.totals[stableUid].firstCount =
+    Math.max(0, Math.trunc(Number(privateDoc.totals[stableUid].firstCount ?? 0))) + Math.max(0, firstCount);
+  outcomes.forEach((outcome, index) => {
+    const stars = Math.max(0, Math.trunc(Number(starsPerTask[index] ?? 0)));
+    const solved = outcome.mode === 'speed_match'
+      ? outcome.firstAttemptPairs > 0
+      : outcome.status === 'correct';
+    storeReceipt(privateDoc, stableUid, {
+      submissionId: `${reportId}:${index}`,
+      taskIndex: index,
+      correct: solved,
+      // Звёзды и есть счёт матча (владелец 2026-08-12): отдельных очков нет.
+      points: stars,
+      elapsedMs: Math.max(0, Math.trunc(Number(outcome.raceElapsedMs))),
+      seasonStars: stars,
+      receivedAtMs,
+      ...(outcome.status === 'timeout' ? { timedOut: true } : {}),
+      answerSnapshot: arenaSanitizeAnswerSnapshot(outcome.answer ?? null),
+    });
+  });
+}
+
+/**
+ * Принимает отчёт о матче. Повтор с тем же `reportId` безвреден: расписки уже
+ * лежат, `storeReceipt` их не перезаписывает, и ответ приходит тот же.
+ */
+export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'home', true);
+  const matchId = safeId(request.data?.matchId, 'match_id');
+  const reportId = safeId(request.data?.reportId, 'report_id');
+  const rawReport = request.data?.report;
+  if (Buffer.byteLength(JSON.stringify(rawReport ?? null), 'utf8') > ARENA_DUEL_REPORT_MAX_BYTES) {
+    throw new HttpsError('invalid-argument', 'arena_report_too_large');
+  }
+  const now = nowMs();
+  const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
+  const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
+
+  const output = await db.runTransaction(async (tx) => {
+    const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
+    if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
+    const match = clone(matchSnap.data()!);
+    const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
+    assertParticipant(match, privateDoc, who);
+    const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
+
+    const stored = privateDoc.duelReports?.[who.stableUid];
+    if (stored) {
+      if (stored.reportId !== reportId) throw new HttpsError('already-exists', 'arena_report_conflict');
+      return { match, viewerSeat, report: stored, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+    }
+    if (match.state === 'accepting') throw new HttpsError('failed-precondition', 'arena_match_not_accepted');
+    if (match.state === 'aborted') throw new HttpsError('failed-precondition', 'arena_match_aborted');
+
+    const report = arenaAssertReportShape(rawReport, privateDoc.tasks.length);
+    if (report.matchId !== matchId) throw new HttpsError('invalid-argument', 'arena_report_match_mismatch');
+    if (report.seat !== viewerSeat) throw new HttpsError('permission-denied', 'arena_report_seat_mismatch');
+    if (report.planHash !== arenaPlanHash(matchId, privateDoc.tasks)) {
+      // План разъехался: у игрока на руках не тот набор заданий, что запечатан.
+      // Считать по нему нельзя — начисление было бы не за то, что он решал.
+      throw new HttpsError('failed-precondition', 'arena_report_plan_mismatch');
+    }
+
+    const outcomes = arenaNormalizeReport(matchId, privateDoc.tasks, report.tasks ?? []);
+    const opponentStableUid = privateDoc.participantStableUids.find((uid) => uid !== who.stableUid);
+    const opponentReport = opponentStableUid ? privateDoc.duelReports?.[opponentStableUid] : undefined;
+    const opponentOutcomes: (ArenaTaskOutcome | null)[] = opponentReport
+      ? privateDoc.tasks.map((_, index) => opponentReport.outcomes[index] ?? null)
+      : privateDoc.tasks.map(() => null);
+    const score = arenaScoreReport(privateDoc.tasks, outcomes, opponentOutcomes);
+
+    const entry: ArenaDuelStoredReport = {
+      reportId,
+      seat: viewerSeat,
+      receivedAtMs: now,
+      shownMatchStars: Math.max(0, Math.trunc(Number(report.shownMatchStars ?? 0))),
+      actualMatchStars: score.matchStars,
+      starsDelta: arenaDeclaredVsActualDelta(report.shownMatchStars, score.matchStars),
+      abandoned: report.abandoned === true,
+      clockSuspect: report.clockSuspect === true,
+      outcomes: arenaDuelSlimOutcomes(outcomes),
+    };
+    privateDoc.duelReports = { ...(privateDoc.duelReports ?? {}), [who.stableUid]: entry };
+    privateDoc.duelFirstReportAtMs ??= now;
+    arenaDuelStoreOutcomes(privateDoc, who.stableUid, reportId, outcomes,
+      score.perTask.map((row) => row.stars), now, score.firstCount);
+    refreshPublicTotals(match, privateDoc, privateDoc.tasks.length - 1);
+
+    // Соперник-бот отчёт не присылает: его ходы уже выданы планом, поэтому он
+    // сдаётся здесь же, из того же источника, что видел игрок.
+    if (opponentStableUid && privateDoc.botPlan && !privateDoc.duelReports[opponentStableUid]) {
+      const ticks = arenaDuelOpponentTicks(privateDoc);
+      const botOutcomes: ArenaTaskOutcome[] = privateDoc.tasks.map((task, index) => {
+        const mode = task.mode as ArenaTaskMode;
+        const tick = ticks[index];
+        const pairs = mode === 'speed_match'
+          ? Math.max(0, Math.min(4, Math.trunc(Number(privateDoc.botPlan?.[String(index)]?.matchedPairs ?? 0))))
+          : 0;
+        return {
+          taskIndex: index,
+          mode,
+          status: (tick?.correct ? 'correct' : 'timeout'),
+          raceElapsedMs: Math.max(0, Math.trunc(Number(tick?.raceElapsedMs ?? ARENA_ANSWER_MS[mode]))),
+          firstAttemptPairs: pairs,
+          resolvedPairs: pairs,
+          answer: null,
+        };
+      });
+      const botScore = arenaScoreReport(privateDoc.tasks, botOutcomes, outcomes);
+      privateDoc.duelReports[opponentStableUid] = {
+        reportId: `bot:${matchId}`,
+        seat: viewerSeat === 'a' ? 'b' : 'a',
+        receivedAtMs: now,
+        shownMatchStars: botScore.matchStars,
+        actualMatchStars: botScore.matchStars,
+        starsDelta: 0,
+        abandoned: false,
+        clockSuspect: false,
+        outcomes: botOutcomes,
+      };
+      arenaDuelStoreOutcomes(privateDoc, opponentStableUid, `bot:${matchId}`, botOutcomes,
+        botScore.perTask.map((row) => row.stars), now, botScore.firstCount);
+      refreshPublicTotals(match, privateDoc, privateDoc.tasks.length - 1);
+    }
+
+    const startedAtMs = Math.trunc(Number(privateDoc.duelStartedAtMs ?? match.stateStartedAtMs ?? now));
+    const settleNow = arenaShouldSettle({
+      nowMs: now,
+      startedAtMs,
+      tasks: privateDoc.tasks as { mode: ArenaTaskMode }[],
+      reportsIn: Object.keys(privateDoc.duelReports).length,
+      participants: privateDoc.participantStableUids.length,
+      firstReportAtMs: privateDoc.duelFirstReportAtMs ?? now,
+      // Присутствие живого соперника здесь неизвестно: единственное дешёвое
+      // основание — его собственный отчёт. Всё остальное закрывает дедлайн.
+      opponentPresent: !opponentReport && !privateDoc.botPlan,
+    });
+
+    match.version = Number(match.version ?? 0) + 1;
+    if (settleNow) {
+      match.state = 'task_reveal';
+      match.currentTaskIndex = privateDoc.tasks.length - 1;
+      match.stateStartedAtMs = now;
+      match.stateDeadlineAtMs = now;
+      await settleMatch(tx, matchRef, privateRef, match, privateDoc, now);
+    } else {
+      match.stateDeadlineAtMs = arenaSettleDeadlineMs(startedAtMs, privateDoc.tasks as { mode: ArenaTaskMode }[]);
+      tx.set(matchRef, match);
+      tx.set(privateRef, privateDoc);
+    }
+    return { match, viewerSeat, report: entry, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+  });
+
+  const settled = output.match.state === 'settled';
+  return {
+    ...matchResponse(output.match, output.viewerSeat, output.viewerReward),
+    matchStars: output.report.actualMatchStars,
+    starsDelta: output.report.starsDelta,
+    settled,
+    // Когда спросить о закрытии, если соперник ещё не сдал. Один вызов, не опрос.
+    ...(settled ? {} : { settleProbeAtMs: arenaDuelSettleProbeAtMs(output.report.receivedAtMs) }),
+  };
+});
+
+/**
+ * Закрывает матч, если для этого пришло время.
+ *
+ * Кто это зовёт: игрок, сдавший отчёт первым, — РОВНО ОДИН РАЗ, когда истекло
+ * окно ожидания соперника (`settleProbeAtMs` из ответа `arenaV2MatchFinish`).
+ * Опрос по кругу здесь запрещён намеренно: он и есть тот самый «хартбит
+ * каждую секунду», от которого растёт счёт за базу. Если и этот вызов не
+ * дойдёт, матч закроет почасовая уборка — просто позже.
+ *
+ * Вызов идемпотентен: у закрытого матча он ничего не делает и возвращает то
+ * же самое.
+ */
+export const arenaV2MatchSettle = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'home', true);
+  const matchId = safeId(request.data?.matchId, 'match_id');
+  const now = nowMs();
+  const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
+  const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
+  const output = await db.runTransaction(async (tx) => {
+    const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
+    if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
+    const match = clone(matchSnap.data()!);
+    const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
+    assertParticipant(match, privateDoc, who);
+    const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
+    if (match.terminal === true) {
+      return { match, viewerSeat, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+    }
+    const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
+      ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
+    const pairSnap = pairRef ? await tx.get(pairRef) : null;
+    const advanced = advanceAnyMatch(match, privateDoc, now);
+    if (advanced.settle && match.state !== 'settled') {
+      await settleMatch(tx, matchRef, privateRef, match, privateDoc, now);
+    } else {
+      if (advanced.aborted) {
+        clearActiveProfiles(tx, privateDoc, now);
+        closeMatchQueues(tx, match, privateDoc, now, 'aborted');
+        if (pairRef && pairSnap?.data()?.reservationMatchId === matchId) {
+          tx.set(pairRef, { reservationMatchId: null, reservationExpiresAtMs: 0 }, { merge: true });
+        }
+      }
+      tx.set(matchRef, match);
+      tx.set(privateRef, privateDoc);
+    }
+    return { match, viewerSeat, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+  });
+  return {
+    ...matchResponse(output.match, output.viewerSeat, output.viewerReward),
+    settled: output.match.state === 'settled',
+  };
+});
+
 export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'home', true);
   const matchId = safeId(request.data?.matchId, 'match_id');
@@ -1636,10 +2515,13 @@ export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) 
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
+    const dodgeProfileSnap = match.mode === 'ranked' && match.state === 'accepting'
+      ? await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid)) : null;
     if (match.state === 'settled' || match.state === 'aborted') {
       return { match, viewerSeat, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
     }
     if (match.state === 'accepting') {
+      if (match.mode === 'ranked') recordRankedQueueDodge(tx, who.stableUid, dodgeProfileSnap?.data(), now);
       match.state = 'aborted';
       match.terminal = true;
       match.abortReason = 'prestart_forfeit';
@@ -1659,6 +2541,28 @@ export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) 
   });
   return matchResponse(output.match, output.viewerSeat, output.viewerReward);
 });
+
+/**
+ * Баг аудита №3: слив ДО старта матча не наказывался. Кулдаун писался только
+ * внутри settleMatch, а отказ на фазе принятия завершал матч раньше, чем до неё
+ * доходило. Значит в рейтинге можно было бесконечно отклонять неудобных
+ * соперников без последствий. Теперь отказ и выход до старта в рейтинге
+ * считаются сливом наравне с выходом из начавшегося матча.
+ */
+function recordRankedQueueDodge(
+  tx: admin.firestore.Transaction,
+  stableUid: string,
+  profileData: Json | undefined,
+  now: number,
+): void {
+  const previous = Array.isArray(profileData?.forfeitTimestampsMs)
+    ? profileData!.forfeitTimestampsMs.filter((value: unknown) => Number(value) > now - 24 * 60 * 60 * 1_000)
+    : [];
+  tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableUid), {
+    forfeitTimestampsMs: [...previous, now].slice(-8),
+    updatedAtMs: now,
+  }, { merge: true });
+}
 
 function inviteTokenFor(fromStableUid: string, toStableUid: string, requestId: string): string {
   const key = String(process.env.ARENA_V2_INVITE_HMAC_KEY ?? '').trim();
@@ -1772,9 +2676,9 @@ export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     if (hostProfile.activeMatchId || guestProfile.activeMatchId) {
       throw new HttpsError('already-exists', 'arena_active_match_exists');
     }
-    const pool = await loadArenaTaskPool(tx, Math.min(hostProfile.rank, guestProfile.rank), matchId);
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now,
-      Math.min(hostProfile.rank, guestProfile.rank));
+    const contentDivision = arenaContentDivision(hostProfile.rank, guestProfile.rank);
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, 'friend');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'friend');
     const built = makeMatch({
       matchId, mode: 'friend',
       left: playerSnapshot(fromStableUid, hostData, hostProfile),
@@ -1819,6 +2723,61 @@ export const arenaV2InviteDecline = onCall(ARENA_V2_CALLABLE_OPTIONS, async (req
     if (data.status === 'pending') tx.set(inviteRef, { status: 'declined', declinedAtMs: nowMs() }, { merge: true });
   });
   return { ok: true };
+});
+
+/**
+ * Таблица друзей и собственный процентиль (D-28).
+ *
+ * Глобального топа нет намеренно: в списке из миллиона строк место игрока ему
+ * ничего не говорит. Друзья говорят — их он знает.
+ *
+ * Стоимость ограничена сверху жёстко: не больше `ARENA_FRIENDS_BOARD_LIMIT`
+ * профилей за вызов, и вызов делается при открытии экрана, а не по кругу.
+ * Процентиль считается по той же выборке — отдельного прохода по всей базе,
+ * который стоил бы столько же, сколько игроков в игре, здесь нет.
+ */
+const ARENA_FRIENDS_BOARD_LIMIT = 50;
+
+export const arenaV2FriendsBoard = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'home', true);
+  const friendsSnap = await db.collection('users').doc(who.stableUid).collection('friends')
+    .limit(ARENA_FRIENDS_BOARD_LIMIT).get();
+  const friendUids = friendsSnap.docs.map((doc) => doc.id).filter((uid) => uid && uid !== who.stableUid);
+
+  const profileRefs = [who.stableUid, ...friendUids]
+    .map((uid) => db.collection(ARENA_V2_COLLECTIONS.profiles).doc(uid));
+  // Один пакетный запрос вместо цикла: столько же документов, но одно
+  // обращение вместо пятидесяти.
+  const profileSnaps = profileRefs.length ? await db.getAll(...profileRefs) : [];
+
+  const rows = profileSnaps.map((snap, index) => {
+    const uid = index === 0 ? who.stableUid : friendUids[index - 1];
+    const profile = profileDefaults(uid, snap.data());
+    return {
+      stableUid: uid,
+      you: index === 0,
+      rating: Math.max(0, Math.trunc(Number(profile.rating ?? 0))),
+      rank: Math.max(0, Math.trunc(Number(profile.rank ?? 0))),
+      seasonBestTierIndex: Math.max(0, Math.trunc(Number(profile.seasonBestTierIndex ?? 0))),
+      wins: Math.max(0, Math.trunc(Number(profile.wins ?? 0))),
+      losses: Math.max(0, Math.trunc(Number(profile.losses ?? 0))),
+      // Имя сюда не кладём: у друга оно уже есть на клиенте, а лишняя копия
+      // персональных данных в ответе — это то, что потом придётся вычищать.
+    };
+  }).sort((left, right) => right.rating - left.rating || left.stableUid.localeCompare(right.stableUid));
+
+  const ownRating = rows.find((row) => row.you)?.rating ?? 0;
+  const ladder = rows.map((row) => row.rating).sort((left, right) => left - right);
+  return {
+    ok: true,
+    rows,
+    ownRating,
+    // Показывается, только когда сравнивать есть с кем: «ты выше 0 %» при
+    // отсутствии друзей — не информация, а упрёк.
+    percentileAbove: rows.length > 1 ? arenaPercentileAbove(ownRating, ladder) : null,
+    friendsCount: friendUids.length,
+    truncated: friendsSnap.size >= ARENA_FRIENDS_BOARD_LIMIT,
+  };
 });
 
 export const arenaV2SeasonClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
@@ -1931,7 +2890,7 @@ async function reconcileOrphanMatch(matchId: string, now: number): Promise<void>
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
-    const advanced = advanceMatch(match, privateDoc, now);
+    const advanced = advanceAnyMatch(match, privateDoc, now);
     if (advanced.settle && match.state !== 'settled') {
       await settleMatch(tx, matchRef, privateRef, match, privateDoc, now);
       return;
@@ -1984,6 +2943,12 @@ export const arenaV2CleanupHourly = onSchedule({
     db.collection(ARENA_V2_COLLECTIONS.invites).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
     db.collection(ARENA_V2_COLLECTIONS.pairLimits).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
     db.collectionGroup(ARENA_V2_COLLECTIONS.members).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
+    // Канал живого прогресса пишет клиент, поэтому серверного срока жизни у
+    // него нет — только метка времени, которую правила требуют обязательно.
+    // Без этой уборки документы остались бы навсегда.
+    db.collectionGroup(ARENA_V2_COLLECTIONS.matchLiveSeats)
+      .where('updatedAtMs', '<=', now - ARENA_V2_MATCH_TTL_MS)
+      .limit(CLEANUP_BATCH_LIMIT),
   ];
   let deleted = 0;
   for (const query of queries) deleted += await deleteSnapshot(await query.get());

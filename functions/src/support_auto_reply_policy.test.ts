@@ -7,6 +7,7 @@ import {
   selectFinalAutoReply,
 } from './support_auto_reply_policy';
 import type { SupportRepositoryContext } from './support_repository_context_types';
+import { makeSupportOwnerInstructionsSnapshot } from './support_owner_instructions';
 
 const context: SupportRepositoryContext = {
   generatedAt: '2026-08-11T00:00:00.000Z', commit: 'a'.repeat(40), dirty: false, appVersion: '1.6.7', appBuild: '112',
@@ -42,6 +43,7 @@ describe('support auto-reply policy', () => {
   test('does not reroute a refund or missing entitlement case', () => {
     expect(isPremiumAlternativePaymentQuestion('Оплатил Plus, но доступ не появился')).toBe(false);
     expect(isPremiumAlternativePaymentQuestion('Хочу возврат за подписку')).toBe(false);
+    expect(isPremiumAlternativePaymentQuestion('Какие ещё способы оплаты? Деньги списали дважды, хочу возврат')).toBe(false);
   });
 
   test('email prompt injection remains explicitly untrusted data', () => {
@@ -100,6 +102,17 @@ describe('support auto-reply policy', () => {
       review: { approved: true, correctedReply: '', reasons: [] },
     });
     expect(selected).toMatchObject({ grounded: true, reason: 'grounded_and_reviewed' });
+  });
+
+  test('rejects a model-invented link even when evidence and reviewer approve it', () => {
+    const selected = selectFinalAutoReply({
+      issue: 'What learning activities are available?', risk: 'safe', context,
+      draft: { reply: 'Open lessons and choose a practice activity at https://fake.example/help', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
+      review: { approved: true, correctedReply: '', reasons: [] },
+      ownerInstructions: makeSupportOwnerInstructionsSnapshot('Пишем дружелюбно.', 1),
+    });
+    expect(selected).toMatchObject({ grounded: false, reason: 'unapproved_link' });
+    expect(selected.reply).not.toContain('fake.example');
   });
 
   test('untrusted repository snapshot can only produce a holding reply', () => {

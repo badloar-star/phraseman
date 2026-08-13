@@ -13,7 +13,6 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
-import { updateTaskProgress } from './daily_tasks';
 import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { screenTextOnGradient, type Theme } from '../constants/theme';
@@ -358,9 +357,6 @@ export default function LessonHelp() {
   const xpAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    if (canClaimTheoryXp) {
-      updateTaskProgress('open_theory', 1, studyTarget).catch(() => {});
-    }
     const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
     setXpClaimed(false);
     setXpClaimHydrated(false);

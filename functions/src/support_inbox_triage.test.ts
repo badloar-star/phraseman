@@ -108,14 +108,40 @@ function refFor(path: string) {
 }
 
 function fakeDb() {
+  const queryFor = (name: string, filters: Array<[string, unknown]> = [], max = Number.POSITIVE_INFINITY) => ({
+    where: (field: string, op: string, value: unknown) => {
+      if (op !== '==') throw new Error(`unsupported fake query operator: ${op}`);
+      return queryFor(name, [...filters, [field, value]], max);
+    },
+    limit: (value: number) => queryFor(name, filters, value),
+    get: async () => {
+      const docs = [...store.entries()]
+        .filter(([path]) => path.startsWith(`${name}/`) && !path.slice(name.length + 1).includes('/'))
+        .filter(([, data]) => filters.every(([field, value]) => data[field] === value))
+        .slice(0, max)
+        .map(([path, data]) => ({
+          id: path.split('/').pop() || path,
+          ref: refFor(path),
+          exists: true,
+          data: () => data,
+        }));
+      return { docs, size: docs.length, empty: docs.length === 0 };
+    },
+  });
   return {
     collection: (name: string) => ({
       doc: (id?: string) => refFor(`${name}/${id ?? `auto_${Math.random()}`}`),
+      ...queryFor(name),
     }),
     doc: (path: string) => refFor(path),
     runTransaction: async (fn: (tx: unknown) => Promise<unknown>) => {
       const tx = {
-        get: async (ref: { path: string }) => ({ exists: store.has(ref.path), data: () => store.get(ref.path) }),
+        get: async (ref: { path: string; id?: string }) => ({
+          id: ref.id ?? ref.path.split('/').pop() ?? ref.path,
+          ref,
+          exists: store.has(ref.path),
+          data: () => store.get(ref.path),
+        }),
         set: (ref: { path: string }, data: DocData, opts?: { merge?: boolean }) => {
           const prev = opts?.merge ? (store.get(ref.path) ?? {}) : {};
           store.set(ref.path, { ...prev, ...data });
@@ -159,6 +185,14 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
   let deliverSupportOwnerAlert: (input: {
     db: ReturnType<typeof fakeDb>; messageDocId: string; botToken: string; text: string; nowMs: number;
   }) => Promise<'delivered' | 'skipped'>;
+  let handleSupportTelegramAction: (input: Record<string, unknown>) => Promise<Record<string, unknown> | null>;
+  let supportTelegramReplyJobOnCreate: (event: unknown) => Promise<void>;
+  let runSupportTelegramAutoSendDeadline: (nowMs?: number) => Promise<{ scanned: number; queued: number }>;
+  let adminSupportSaveInstructions: (request: unknown) => Promise<Record<string, unknown>>;
+  let adminSupportArchiveMessages: (request: unknown) => Promise<Record<string, unknown>>;
+  let adminSupportSetStatus: (request: unknown) => Promise<Record<string, unknown>>;
+  let adminSupportPrepareReplyBatch: (request: unknown) => Promise<Record<string, unknown>>;
+  let claimSupportReplyDispatch: (db: ReturnType<typeof fakeDb>, input: Record<string, unknown>, actor: Record<string, unknown>) => Promise<Record<string, unknown>>;
 
   beforeAll(() => {
     // require, not import: modules must load AFTER jest.mock() calls above run.
@@ -166,6 +200,14 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     const mod = require('./support_inbox');
     supportInboxOnNewMail = mod.supportInboxOnNewMail;
     deliverSupportOwnerAlert = mod.deliverSupportOwnerAlert;
+    handleSupportTelegramAction = mod.handleSupportTelegramAction;
+    supportTelegramReplyJobOnCreate = mod.supportTelegramReplyJobOnCreate;
+    runSupportTelegramAutoSendDeadline = mod.runSupportTelegramAutoSendDeadline;
+    adminSupportSaveInstructions = mod.adminSupportSaveInstructions;
+    adminSupportArchiveMessages = mod.adminSupportArchiveMessages;
+    adminSupportSetStatus = mod.adminSupportSetStatus;
+    adminSupportPrepareReplyBatch = mod.adminSupportPrepareReplyBatch;
+    claimSupportReplyDispatch = mod.claimSupportReplyDispatch;
   });
 
   beforeEach(() => {
@@ -189,6 +231,31 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     mockSmtpSendMail.mockClear();
     mockSmtpClose.mockClear();
   });
+
+  async function preparePremiumReview(messageDocId: string): Promise<{ reviewId: string; operationId: string; approveNonce: string }> {
+    store.set('admin_config/support_inbox', {
+      autoReplyMode: 'live_guarded', autoReplyRevision: 2, autoReplyDailyCap: 20,
+      autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
+    });
+    mockOpenAiChat.mockResolvedValueOnce({
+      text: JSON.stringify({ isSpam: false, confidence: 0.99, reason: 'payment question' }),
+      promptTokens: 30, completionTokens: 10,
+    });
+    await supportInboxOnNewMail(makeEvent(messageDocId, {
+      messageId: `<${messageDocId}@example.test>`, fromEmail: 'owner-canary@example.com',
+      subject: 'Не могу купить Premium в России', bodyText: 'Какие ещё есть способы оплаты?',
+      receivedAtMs: Date.now(), status: 'new', mailCategory: 'human',
+    }));
+    const reviewEntry = [...store.entries()].find(([path]) => path.startsWith('support_telegram_reviews/'));
+    const operationEntry = [...store.entries()].find(([path]) => path.startsWith('support_reply_operations/'));
+    const telegram = mockSendJarvisDigest.mock.calls.at(-1)?.[0] as { keyboard?: { inline_keyboard?: Array<Array<{ callback_data?: string }>> } };
+    const callback = String(telegram.keyboard?.inline_keyboard?.[0]?.[0]?.callback_data ?? '');
+    return {
+      reviewId: reviewEntry?.[0].split('/').pop() ?? '',
+      operationId: operationEntry?.[0].split('/').pop() ?? '',
+      approveNonce: callback.split(':')[2] ?? '',
+    };
+  }
 
   test('registers on support_inbox document creation', () => {
     const registration = registeredDocumentCreates.find((r) => r.handler === supportInboxOnNewMail);
@@ -243,12 +310,16 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
 
     expect(store.get('support_inbox/m3')?.status).not.toBe('archived');
     const storedDraft = String(store.get('support_inbox/m3')?.draftReply ?? '');
-    expect(storedDraft).toContain('получили ваше сообщение');
+    expect(storedDraft).toContain('нужно проверить по конкретной покупке');
+    expect(storedDraft).not.toContain('сним');
     expect(storedDraft).not.toContain('доступ уже открыт');
     expect(mockSendTelegramAlert).not.toHaveBeenCalled();
     expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
     const text = String((mockSendJarvisDigest.mock.calls[0][0] as Record<string, unknown>).text || '');
     expect(text).toContain('Ответ Джарвиса готов');
+    expect(text).toContain('не прошёл проверку фактов и человеческого качества');
+    expect((mockSendJarvisDigest.mock.calls[0][0] as Record<string, unknown>).keyboard).toBeNull();
+    expect(store.get('support_inbox/m3')?.autoReply).toMatchObject({ grounded: false, autoSendAtMs: null });
     expect(text).not.toContain('client@example.com');
     expect(text).not.toContain('Не работает подписка');
     expect(text).not.toContain('Оплатил Plus');
@@ -301,7 +372,217 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     });
     const operations = [...store.entries()].filter(([path]) => path.startsWith('support_reply_operations/'));
     expect(operations).toHaveLength(1);
-    expect(operations[0][1]).toMatchObject({ state: 'prepared', messageDocId: 'm-live' });
+    expect(operations[0][1]).toMatchObject({
+      state: 'prepared', messageDocId: 'm-live', draftOrigin: 'jarvis',
+      instructionsSchemaVersion: 1, instructionsPromptVersion: 1,
+      instructionsRevision: 0,
+    });
+  });
+
+  test('instruction save uses CAS: same expected revision can win only once', async () => {
+    const request = (text: string) => ({
+      auth: { uid: 'admin-1', token: { admin: true, adminRole: 'admin' } },
+      data: { text, expectedRevision: 0, requestId: `instructions-${text}` },
+    });
+    await expect(adminSupportSaveInstructions(request('Пишем дружелюбно.'))).resolves.toMatchObject({
+      ok: true, instructions: { revision: 1 },
+    });
+    await expect(adminSupportSaveInstructions(request('Пишем коротко.'))).rejects.toThrow('support_instructions_revision_conflict');
+  });
+
+  test('bulk archive terminalizes prepared mail, Telegram review, pending job and owner alert', async () => {
+    const messageDocId = `m_${'9'.repeat(64)}`;
+    const prepared = await preparePremiumReview(messageDocId);
+    await handleSupportTelegramAction({
+      db: fakeDb(), nonce: prepared.approveNonce, requestedAction: 'approve',
+      fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+    });
+    const message = store.get(`support_inbox/${messageDocId}`)!;
+    store.set(`support_inbox/${messageDocId}`, {
+      ...message,
+      ownerNotification: { state: 'pending', attempts: 1 },
+    });
+    const result = await adminSupportArchiveMessages({
+      auth: { uid: 'admin-1', token: { admin: true, adminRole: 'admin' } },
+      data: {
+        items: [{
+          messageDocId, expectedStatus: 'new',
+          expectedDraftRevision: Number(message.draftRevision ?? 0),
+        }],
+        requestId: 'archive-terminal-test',
+      },
+    });
+    expect(result).toMatchObject({ ok: true, requested: 1, archived: 1, failed: 0 });
+    expect(store.get(`support_inbox/${messageDocId}`)).toMatchObject({
+      status: 'archived',
+      replyGate: { state: 'cancelled' },
+      autoReply: { state: 'suppressed', autoSendAtMs: null, reason: 'message_archived' },
+      ownerNotification: { state: 'suppressed', lastErrorCode: 'message_archived' },
+    });
+    expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('cancelled');
+    expect(store.get(`support_telegram_reviews/${prepared.reviewId}`)).toMatchObject({
+      state: 'stale', autoSendAtMs: null, lastErrorCode: 'message_archived',
+    });
+    const job = [...store.entries()].find(([path]) => path.startsWith('support_telegram_reply_jobs/'));
+    expect(job?.[1]).toMatchObject({ state: 'failed', lastErrorCode: 'message_archived' });
+    store.set('admin_config/support_inbox', {
+      ...(store.get('admin_config/support_inbox') ?? {}), autoReplyMode: 'live_guarded',
+    });
+    await expect(runSupportTelegramAutoSendDeadline(Date.now() + 4 * 60 * 60 * 1000)).resolves.toMatchObject({ queued: 0 });
+    await supportTelegramReplyJobOnCreate({ data: {}, params: { jobId: job?.[0].split('/').pop() } });
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+  });
+
+  test('archive callables require admin identity and cannot forge answered status', async () => {
+    const messageDocId = `m_${'6'.repeat(64)}`;
+    store.set(`support_inbox/${messageDocId}`, { status: 'new', draftRevision: 0 });
+    await expect(adminSupportArchiveMessages({
+      auth: null,
+      data: { items: [{ messageDocId, expectedStatus: 'new', expectedDraftRevision: 0 }] },
+    })).rejects.toThrow('Admin only');
+    await expect(adminSupportSetStatus({
+      auth: { uid: 'admin-1', token: { admin: true, adminRole: 'admin' } },
+      data: { messageDocId, status: 'answered', requestId: 'forge-answered-test' },
+    })).rejects.toThrow('bad_status');
+    expect(store.get(`support_inbox/${messageDocId}`)?.status).toBe('new');
+  });
+
+  test('bulk archive is idempotent and refuses an already dispatching SMTP operation', async () => {
+    const messageDocId = `m_${'8'.repeat(64)}`;
+    const prepared = await preparePremiumReview(messageDocId);
+    const messagePath = `support_inbox/${messageDocId}`;
+    const operationPath = `support_reply_operations/${prepared.operationId}`;
+    store.set(operationPath, { ...(store.get(operationPath) ?? {}), state: 'dispatching' });
+    store.set(messagePath, {
+      ...(store.get(messagePath) ?? {}),
+      replyGate: { ...(store.get(messagePath)?.replyGate as Record<string, unknown>), state: 'dispatching' },
+    });
+    const request = {
+      auth: { uid: 'admin-1', token: { admin: true, adminRole: 'admin' } },
+      data: {
+        items: [{ messageDocId, expectedStatus: 'new', expectedDraftRevision: Number(store.get(messagePath)?.draftRevision ?? 0) }],
+        requestId: 'archive-dispatching-test',
+      },
+    };
+    await expect(adminSupportArchiveMessages(request)).resolves.toMatchObject({ ok: false, archived: 0, failed: 1 });
+    expect(store.get(messagePath)?.status).toBe('new');
+    expect(store.get(operationPath)?.state).toBe('dispatching');
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+  });
+
+  test('bulk archive accepts a mixed batch with current and historical Gmail document ids', async () => {
+    const currentId = `m_${'7'.repeat(64)}`;
+    const legacyId = 'legacy-message-id_example.test';
+    store.set(`support_inbox/${currentId}`, { status: 'new', draftRevision: 0 });
+    store.set(`support_inbox/${legacyId}`, { status: 'new', draftRevision: 0, messageId: '<legacy-message-id@example.test>' });
+    const result = await adminSupportArchiveMessages({
+      auth: { uid: 'admin-1', token: { admin: true, adminRole: 'admin' } },
+      data: {
+        items: [currentId, legacyId].map((messageDocId) => ({
+          messageDocId, expectedStatus: 'new', expectedDraftRevision: 0,
+        })),
+        requestId: 'archive-mixed-id-test',
+      },
+    });
+    expect(result).toMatchObject({ ok: true, requested: 2, archived: 2, failed: 0 });
+    expect(store.get(`support_inbox/${currentId}`)?.status).toBe('archived');
+    expect(store.get(`support_inbox/${legacyId}`)?.status).toBe('archived');
+  });
+
+  test('changing instructions invalidates Telegram approval and creates no send job', async () => {
+    const prepared = await preparePremiumReview(`m_${'a'.repeat(64)}`);
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { makeSupportOwnerInstructionsSnapshot } = require('./support_owner_instructions');
+    const changed = makeSupportOwnerInstructionsSnapshot('Пишем теперь короче.', 1);
+    store.set('admin_config/support_inbox', {
+      ...(store.get('admin_config/support_inbox') ?? {}), supportOwnerInstructions: changed,
+    });
+    await expect(handleSupportTelegramAction({
+      db: fakeDb(), nonce: prepared.approveNonce, requestedAction: 'approve',
+      fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+    })).resolves.toMatchObject({ ok: false, reason: 'already_used' });
+    expect([...store.keys()].filter((path) => path.startsWith('support_telegram_reply_jobs/'))).toHaveLength(0);
+    expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('cancelled');
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+  });
+
+  test('job queued under current instructions cannot send after instructions change', async () => {
+    const prepared = await preparePremiumReview(`m_${'b'.repeat(64)}`);
+    await expect(handleSupportTelegramAction({
+      db: fakeDb(), nonce: prepared.approveNonce, requestedAction: 'approve',
+      fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+    })).resolves.toMatchObject({ ok: true });
+    const jobEntry = [...store.entries()].find(([path]) => path.startsWith('support_telegram_reply_jobs/'));
+    expect(jobEntry).toBeDefined();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { makeSupportOwnerInstructionsSnapshot } = require('./support_owner_instructions');
+    store.set('admin_config/support_inbox', {
+      ...(store.get('admin_config/support_inbox') ?? {}),
+      supportOwnerInstructions: makeSupportOwnerInstructionsSnapshot('Новая политика.', 1),
+    });
+    await supportTelegramReplyJobOnCreate({ data: {}, params: { jobId: jobEntry![0].split('/').pop() } });
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+    expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('cancelled');
+    expect(store.get(jobEntry![0])?.state).toBe('failed');
+  });
+
+  test('unchanged current instructions allow exactly one queued canary send', async () => {
+    const prepared = await preparePremiumReview(`m_${'c'.repeat(64)}`);
+    await handleSupportTelegramAction({
+      db: fakeDb(), nonce: prepared.approveNonce, requestedAction: 'approve',
+      fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+    });
+    const jobEntry = [...store.entries()].find(([path]) => path.startsWith('support_telegram_reply_jobs/'))!;
+    await supportTelegramReplyJobOnCreate({ data: {}, params: { jobId: jobEntry[0].split('/').pop() } });
+    expect(mockSmtpSendMail).toHaveBeenCalledTimes(1);
+    expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('accepted');
+  });
+
+  test('deadline invalidates stale review and never queues or sends it', async () => {
+    const prepared = await preparePremiumReview(`m_${'d'.repeat(64)}`);
+    const reviewPath = [...store.keys()].find((path) => path.startsWith('support_telegram_reviews/'))!;
+    store.set(reviewPath, { ...(store.get(reviewPath) ?? {}), autoSendAtMs: 1, telegramPreviewSafe: true });
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { makeSupportOwnerInstructionsSnapshot } = require('./support_owner_instructions');
+    store.set('admin_config/support_inbox', {
+      ...(store.get('admin_config/support_inbox') ?? {}), autoReplyMode: 'live_guarded',
+      supportOwnerInstructions: makeSupportOwnerInstructionsSnapshot('Новая политика.', 1),
+    });
+    await expect(runSupportTelegramAutoSendDeadline(Date.now())).resolves.toMatchObject({ queued: 0 });
+    expect(store.get(reviewPath)?.state).toBe('stale');
+    expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('cancelled');
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+  });
+
+  test('stale Jarvis batch child reaches claim but SMTP delivery remains zero', async () => {
+    const messageDocId = `m_${'e'.repeat(64)}`;
+    const prepared = await preparePremiumReview(messageDocId);
+    // Cancel Telegram review operation so the same draft is eligible for the explicit batch preparation.
+    store.set(`support_reply_operations/${prepared.operationId}`, {
+      ...(store.get(`support_reply_operations/${prepared.operationId}`) ?? {}), state: 'cancelled',
+    });
+    const messagePath = `support_inbox/${messageDocId}`;
+    store.set(messagePath, { ...(store.get(messagePath) ?? {}), replyGate: { state: 'cancelled' } });
+    const adminRequest = { auth: { uid: 'admin-1', token: { admin: true, adminRole: 'admin' } } };
+    const batch = await adminSupportPrepareReplyBatch({
+      ...adminRequest, data: { limit: 10, idempotencyKey: 'batch-stale-instructions', requestId: 'batch-stale-instructions' },
+    });
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { makeSupportOwnerInstructionsSnapshot } = require('./support_owner_instructions');
+    store.set('admin_config/support_inbox', {
+      ...(store.get('admin_config/support_inbox') ?? {}),
+      supportOwnerInstructions: makeSupportOwnerInstructionsSnapshot('После batch правила изменились.', 1),
+    });
+    const child = [...store.entries()].find(([path, data]) => path.startsWith('support_reply_operations/') && data.batchId === batch.batchId)!;
+    const claim = await claimSupportReplyDispatch(fakeDb(), {
+      operationId: child[1].operationId,
+      confirmationNonce: child[1].confirmationNonce,
+      payloadHash: child[1].payloadHash,
+      invocationId: 'batch-stale-claim',
+    }, { actorUid: 'admin-1', role: 'admin' });
+    expect(mockSmtpSendMail).not.toHaveBeenCalled();
+    expect(claim).toMatchObject({ kind: 'replay', state: 'cancelled' });
+    expect(store.get(child[0])?.state).toBe('cancelled');
   });
 
   test('Premium payment alternatives are deterministically routed to the owner-approved Telegram bot', async () => {

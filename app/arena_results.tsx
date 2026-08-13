@@ -20,6 +20,8 @@ import { arenaExpansionHome, arenaRivalAccept, arenaV2Home, arenaV2SyncMatch, cr
 import { arenaResultTheme } from '../modules/arena/arena_cosmetics';
 import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
 import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
+import { useArenaSound } from '../hooks/use_arena_sound';
+import { arenaResultAnnounce, arenaResultHasAnnounce } from '../modules/arena/result_view';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -56,7 +58,7 @@ export default function ArenaResultsScreen() {
     if (match.result?.players?.length) return match.result.players;
     return match.players.map((player) => ({
       ...player,
-      name: player.uid === viewerSeat ? arenaText(lang, 'you') : player.isBot ? arenaText(lang, 'bot') : player.name,
+      name: player.uid === viewerSeat ? arenaText(lang, 'you') : player.name,
     }));
   }, [lang, match, viewerSeat]);
   const winner = match?.result?.winnerUid;
@@ -65,6 +67,37 @@ export default function ArenaResultsScreen() {
     : winner && viewerSeat
       ? (winner === viewerSeat ? arenaText(lang, 'victory') : arenaText(lang, 'defeat'))
       : arenaText(lang, 'draw');
+  /**
+   * Исход звучит ОДИН раз, по появлению итога, а не по перерисовке экрана:
+   * экран результата перерисовывается несколько раз, пока догружаются
+   * косметика и награды, и без этой защёлки фанфара играла бы очередью.
+   */
+  const playSound = useArenaSound();
+  /**
+   * Что объявить сверх счёта. Раньше повышение тира и выданная косметика
+   * только ЗВУЧАЛИ: игрок слышал фанфару и не видел ничего, то есть не узнавал
+   * ни что случилось, ни что он получил.
+   */
+  const announce = useMemo(() => arenaResultAnnounce(reward), [reward]);
+  const outcomeToldRef = useRef(false);
+  useEffect(() => {
+    if (!match || outcomeToldRef.current) return;
+    if (match.state === 'aborted') return;
+    if (!winner && match.state !== 'settled') return;
+    outcomeToldRef.current = true;
+    playSound(!winner ? 'resultDraw' : winner === viewerSeat ? 'resultWin' : 'resultLoss');
+    // Звёзды приземляются в кошелёк отдельным звуком: это другое событие, и
+    // игрок должен услышать, что начисление действительно случилось.
+    if (Number(reward?.starsEarned ?? 0) > 0) playSound('starLand');
+    // Повышение и понижение ранга — самое громкое, что бывает после матча.
+    const rankEvent = String((reward as { rankEvent?: unknown } | undefined)?.rankEvent ?? '');
+    if (rankEvent === 'tier_up') playSound('rankUp');
+    if (rankEvent === 'tier_down') playSound('rankDown');
+    if (Array.isArray((reward as { tierRewards?: unknown[] } | undefined)?.tierRewards)) {
+      playSound('rewardUnlock');
+    }
+  }, [match, playSound, reward, viewerSeat, winner]);
+
   const resultTheme = arenaResultTheme(equipped.result_theme);
   const titleCosmetic = arenaStoreItemTitle(lang, equipped.title);
   const victoryStamp = winner === viewerSeat ? arenaStoreItemTitle(lang, equipped.victory_stamp) : null;
@@ -107,7 +140,7 @@ export default function ArenaResultsScreen() {
 
   return (
     <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)}>
-      {players.length ? <ArenaPlayers players={players} active={active} botLabel={arenaText(lang, 'bot')} animateScore /> : null}
+      {players.length ? <ArenaPlayers players={players} active={active} animateScore /> : null}
       {titleCosmetic ? <Text style={[styles.cosmeticTitle, { color: P.gold }]}>{titleCosmetic}</Text> : null}
       <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
         {victoryStamp ? <Text style={[styles.stamp, { color: resultTheme?.foreground ?? P.text }]}>{victoryStamp}</Text> : null}
@@ -119,6 +152,49 @@ export default function ArenaResultsScreen() {
         <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
       ) : null}
       {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
+      {arenaResultHasAnnounce(announce) ? (
+        <V2Card style={styles.announce}>
+          {announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down' ? (
+            <Text style={[styles.announceHead, {
+              color: announce.rank.kind === 'tier_up' ? P.accent : P.danger,
+            }]}>
+              {arenaText(lang, announce.rank.kind === 'tier_up' ? 'resultTierUp' : 'resultTierDown')}
+              {' · '}
+              {arenaText(lang, TIER_COPY[announce.rank.tierIndex])}
+            </Text>
+          ) : announce.rank.kind === 'rank_up' || announce.rank.kind === 'rank_down' ? (
+            <Text style={[styles.announceHead, {
+              color: announce.rank.kind === 'rank_up' ? P.accent : P.muted,
+            }]}>
+              {arenaText(lang, announce.rank.kind === 'rank_up' ? 'resultRankUp' : 'resultRankDown')}
+            </Text>
+          ) : null}
+
+          {/* Очки ранга — со знаком: потерю скрывать нельзя. */}
+          {announce.ratingDelta !== 0 ? (
+            <Text style={[styles.announceLine, {
+              color: announce.ratingDelta > 0 ? P.accent : P.danger,
+            }]}>
+              {announce.ratingDelta > 0 ? '+' : ''}{announce.ratingDelta}
+            </Text>
+          ) : null}
+
+          {/* Косметика за тир. Владелец (D-63): награда — предмет, не звёзды. */}
+          {announce.unlockedItemIds.length ? (
+            <Text style={[styles.announceLine, { color: P.gold }]}>
+              {arenaText(lang, 'resultUnlocked')}: {announce.unlockedItemIds.length}
+            </Text>
+          ) : null}
+        </V2Card>
+      ) : null}
+      {/* Разбор — первой кнопкой и БЕЗ флага расширения: владелец потребовал
+          его обязательным, а «Лаборатория» под флагом — это повторы заданий,
+          а не разбор. */}
+      {matchId ? (
+        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
+          {arenaText(lang, 'reviewTitle')}
+        </V2Cta>
+      ) : null}
       <V2Cta onPress={() => match?.mode === 'series'
         ? router.replace('/arena_rivalries' as never)
         : match?.mode === 'friend'
@@ -134,7 +210,15 @@ export default function ArenaResultsScreen() {
   );
 }
 
+const TIER_COPY = [
+  'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
+  'tierDiamond', 'tierMaster', 'tierGrandmaster', 'tierLegend',
+] as const;
+
 const styles = StyleSheet.create({
+  announce: { gap: 4, alignItems: 'center' },
+  announceHead: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
+  announceLine: { fontSize: 15, fontWeight: '800', fontVariant: ['tabular-nums'] },
   stats: { flexDirection: 'row', gap: 10 },
   resultSurface: { gap: 12 },
   cosmeticTitle: { textAlign: 'center', fontSize: 13, fontWeight: '900' },

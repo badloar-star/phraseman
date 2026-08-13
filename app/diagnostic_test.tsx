@@ -31,7 +31,6 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { checkAchievements } from './achievements';
-import { updateMultipleTaskProgress } from './daily_tasks';
 import { safeRouterBack } from './navigation_back';
 import { loadSettings } from './settings_edu';
 import { shuffle } from './utils_shuffle';
@@ -1261,10 +1260,6 @@ export default function DiagnosticTest() {
       void AsyncStorage.setItem(diagnosticLastKey(studyTarget), JSON.stringify(lastPayload));
       setPrev(lastPayload);
       checkAchievements({ type: 'diagnosis', studyTarget }).catch(() => {});
-      updateMultipleTaskProgress(
-        [{ type: 'diagnostic_complete', increment: 1 }],
-        { studyTarget },
-      ).catch(() => {});
       awardOneTime('diagnostic_test').catch(() => {});
       void trackFeatureSuccess('diagnostic', 'complete', {
         score: newScore,

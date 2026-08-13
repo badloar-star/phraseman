@@ -270,7 +270,6 @@ function buildPlan(): ActivationBlocker[] {
       rollbackRequirement: 'Rollback must delete only newly created French target/source scoped keys and preserve English/current user state.',
       plannedTouches: [
         touch('app/cloud_sync.ts', 'future_code_change', 'storage_cloud_fr_namespace_migration_gate_v2', 'tests/cloud_sync_sync_keys_validity.test.ts'),
-        touch('tests/cloud_sync_daily_tasks_merge.test.ts', 'future_test_only', 'storage_cloud_fr_namespace_migration_gate_v2', 'npx jest --runInBand tests/cloud_sync_daily_tasks_merge.test.ts'),
       ],
     },
     {

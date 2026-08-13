@@ -44,8 +44,14 @@ import {
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
-/** Откуда запись попала в очередь (старые данные без поля = урок). */
-export type MistakeSource = 'lesson' | 'diagnostic' | 'exam';
+/**
+ * Откуда запись попала в очередь (старые данные без поля = урок).
+ * cards-2.0 (E8): +'custom' (своя/сохранённая карточка) и 'pack' (карточка
+ * купленного набора) — ошибки deck-сессий тренера попадают в review (§3.7).
+ * Обратная совместимость: старые записи без поля читаются как есть, дефолт
+ * поведения — 'lesson' (никакой миграции на диске).
+ */
+export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
 export interface RecallItem {
   /** Random local identifier used for privacy-safe longitudinal analytics. */

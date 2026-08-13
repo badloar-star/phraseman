@@ -49,19 +49,13 @@ describe('retained tabs runtime work contract', () => {
     expect(dialogs).toContain('completedDirtyRef.current = true;');
   });
 
-  it('coalesces Home daily-summary work until Home is active', () => {
+  it('coalesces Home data work until Home is active', () => {
     const source = read('app/(tabs)/home.tsx');
 
     // Home can mount before it becomes the runtime owner. Its first ownership
-    // handoff must therefore request the initial task summary instead of
-    // leaving the visible card at the default 0 completed tasks.
+    // handoff must therefore request the initial data load.
     expect(source).toContain('const homeDataDirtyRef = useRef(true);');
-    expect(source).toContain('const homeDailySummaryDirtyRef = useRef(false);');
-    expect(source).toContain('const requestDailyTaskSummaryRefresh = () => {');
-    expect(source).toContain('homeDailySummaryDirtyRef.current = true;');
     expect(source).toContain('if (homeDataDirtyRef.current) {');
-    expect(source).toMatch(/homeDailySummaryDirtyRef\.current = false;\s+loadData\(\);\s+return;/);
-    expect(source).toContain('if (!homeDailySummaryDirtyRef.current) return;');
     expect(source).toContain('<SaveProgressBanner ownerActive={homeRuntimeActive} />');
     expect(source).toContain('shardsDirtyRef.current = true;');
     expect(source).toContain('shardsAnim.stopAnimation();');

@@ -3,7 +3,7 @@
 // Владелец, 2026-08-03: «сервер тоже решай вопрос чтобы работало» — жемчуг,
 // дни Plus и владение платной дорожкой пишет ТОЛЬКО сервер (Firestore rules
 // hasNoShardWrites/progressHasNoPremiumWrites запрещают клиенту эти поля
-// напрямую — тот же паттерн, что daily_tasks_shards.ts и referral_spin.ts).
+// напрямую — тот же транзакционный паттерн, что referral_spin.ts).
 //
 // Идемпотентность: users/{uid}/reward_claims/season_{seasonId}_{level}_{side}
 // для клеймов, season_pass_owned/{seasonId} для покупки — повторный вызов с
@@ -116,7 +116,7 @@ export const seasonClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     const currentBalance = readShardBalance(userSnap.data()?.shards);
     const newBalance = shardsDelta > 0 ? currentBalance + shardsDelta : currentBalance;
 
-    tx.set(claimRef, { /* guard-ok: НОВЫЙ маркер-документ в подколлекции (claimSnap.exists проверен строкой выше, транзакция коммитится атомарно при выходе из колбэка — не «запись без await») — merge не нужен, тот же паттерн что daily_tasks_shards.ts:103 */
+    tx.set(claimRef, { /* guard-ok: НОВЫЙ маркер-документ в подколлекции (claimSnap.exists проверен строкой выше, транзакция коммитится атомарно при выходе из колбэка — не «запись без await») — merge не нужен */
       seasonId, level: lvl, side, kind, shardsDelta, vipUntilMs: vipUntilMs ?? null,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });

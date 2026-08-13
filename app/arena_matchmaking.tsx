@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
-import { arenaText } from '../modules/arena/copy';
-import { ARENA_QUICK_FALLBACK_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
+import { arenaSearchingCountText, arenaText } from '../modules/arena/copy';
+import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { arenaRankedElapsedMs, arenaRankedWaitPresentation } from '../modules/arena/matchmaking_state';
+import { useArenaSound } from '../hooks/use_arena_sound';
 import {
   arenaV2FindMatch,
   arenaV2QueueCancel,
@@ -36,7 +37,18 @@ export default function ArenaMatchmakingScreen() {
   const [error, setError] = useState<string | null>(null);
   const [switchingMode, setSwitchingMode] = useState(false);
   const [rankedPresentationRestartedAtMs, setRankedPresentationRestartedAtMs] = useState<number | undefined>();
+  /** Момент входа бота назначает сервер. Клиент только ждёт до него.
+   *  Считаем от локального старта очереди, чтобы расхождение часов не сдвигало срок. */
+  const [botDelayMs, setBotDelayMs] = useState<number | null>(null);
+  /** Повтор запроса бота, если сервер сказал «ещё рано» (расхождение часов). */
+  const [botRetryTick, setBotRetryTick] = useState(0);
+  /**
+   * Сколько живых игроков ищет сейчас. Приходит попутно с ответом поиска —
+   * отдельного запроса ради счётчика нет, иначе это был бы опрос по кругу.
+   */
+  const [searchingNow, setSearchingNow] = useState<number | null>(null);
   const queue = useArenaQueue(stableUid, active && !matchId);
+  const playSound = useArenaSound();
   const title = useMemo(() => arenaText(lang, mode), [lang, mode]);
   const rankedElapsedMs = arenaRankedElapsedMs(
     now,
@@ -49,10 +61,23 @@ export default function ArenaMatchmakingScreen() {
     : 'searching';
 
   useEffect(() => {
+    // Экран поиска открылся.
+    playSound('searchStart');
     localStartedAtMsRef.current = Date.now();
     setRankedPresentationRestartedAtMs(undefined);
     setSwitchingMode(false);
+    setBotDelayMs(null);
+    setBotRetryTick(0);
   }, [requestId]);
+
+  // `null` принимается наравне с `undefined`: подписка на очередь отдаёт
+  // именно null, пока билета ещё нет, и без этого проверка типов краснела.
+  const adoptBotSchedule = useCallback((ticket?: { joinedAtMs?: number; botDueAtMs?: number } | null) => {
+    const due = Number(ticket?.botDueAtMs);
+    const joined = Number(ticket?.joinedAtMs);
+    if (!Number.isFinite(due) || !Number.isFinite(joined)) return;
+    setBotDelayMs(Math.max(0, Math.min(ARENA_QUICK_FALLBACK_MAX_MS, due - joined)));
+  }, []);
 
   useEffect(() => {
     if (!active || matchId) return;
@@ -60,22 +85,48 @@ export default function ArenaMatchmakingScreen() {
     const reconcile = () => arenaV2FindMatch(mode, requestId).then((result) => {
       if (cancelled) return;
       setStableUid(result.stableUid);
-      if (result.matchId) setMatchId(result.matchId);
+      if (typeof result.searchingNow === 'number') setSearchingNow(result.searchingNow);
+      adoptBotSchedule(result.queue);
+      if (result.matchId) {
+        // Соперник найден — звук ровно один раз, до перехода на матч.
+        playSound('opponentFound');
+        setMatchId(result.matchId);
+      }
     }).catch((reason) => { if (!cancelled) setError(String(reason)); });
     void reconcile();
-    const fallback = mode === 'quick' && !quickFallbackRequests.has(requestId) ? setTimeout(() => {
-      quickFallbackRequests.add(requestId);
-      void arenaV2QuickBotFallback(requestId).then((result) => {
-        if (!cancelled) setMatchId(result.matchId);
-      }).catch((reason) => { if (!cancelled) setError(String(reason)); });
-    }, ARENA_QUICK_FALLBACK_MS) : null;
     const heartbeat = mode === 'ranked' ? setInterval(() => { void reconcile(); }, ARENA_RANKED_HEARTBEAT_MS) : null;
     return () => {
       cancelled = true;
-      if (fallback) clearTimeout(fallback);
       if (heartbeat) clearInterval(heartbeat);
     };
-  }, [active, matchId, mode, requestId]);
+  }, [active, adoptBotSchedule, matchId, mode, requestId]);
+
+  useEffect(() => { adoptBotSchedule(queue.value); }, [adoptBotSchedule, queue.value]);
+
+  useEffect(() => {
+    if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
+    if (quickFallbackRequests.has(requestId)) return undefined;
+    let cancelled = false;
+    const fireAtMs = localStartedAtMsRef.current + botDelayMs + botRetryTick * 2_000;
+    const timer = setTimeout(() => {
+      quickFallbackRequests.add(requestId);
+      void arenaV2QuickBotFallback(requestId).then((result) => {
+        if (!cancelled) setMatchId(result.matchId);
+      }).catch((reason) => {
+        // Сервер — единственный владелец момента входа бота. Если наши локальные
+        // часы забежали вперёд, он отвечает arena_quick_bot_too_early: снимаем
+        // блокировку и пробуем ещё раз чуть позже, а не бросаем поиск навсегда.
+        quickFallbackRequests.delete(requestId);
+        if (cancelled) return;
+        if (String(reason).includes('arena_quick_bot_too_early')) {
+          setBotRetryTick((tick) => tick + 1);
+          return;
+        }
+        setError(String(reason));
+      });
+    }, Math.max(0, fireAtMs - Date.now()));
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [active, botDelayMs, botRetryTick, matchId, mode, requestId]);
 
   useEffect(() => {
     const next = queue.value?.status === 'matched' ? queue.value.matchId : null;
@@ -121,7 +172,9 @@ export default function ArenaMatchmakingScreen() {
             {rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmpty') : arenaText(lang, 'searching')}
           </Text>
           <Text style={[styles.hint, { color: P.muted }]}>
-            {rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmptyHint') : arenaText(lang, 'keepOpen')}
+            {mode === 'ranked' && searchingNow !== null
+              ? arenaSearchingCountText(lang, searchingNow)
+              : rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmptyHint') : arenaText(lang, 'keepOpen')}
           </Text>
           {mode === 'ranked' && rankedPresentation === 'quick_offer' ? (
             <View style={styles.offer}>

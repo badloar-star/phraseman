@@ -11,14 +11,16 @@ const routePath = path.join(ROOT, 'app', 'dev_hub.tsx');
 describe('DEV center bottom sheet', () => {
   test('reuses the single existing Home flask button and does not create a route', () => {
     const home = read('app/(tabs)/home.tsx');
+    const tabsLayout = read('app/(tabs)/_layout.tsx');
     const routes = read('constants/devRoutes.ts');
     const layout = read('app/_layout.tsx');
 
     expect(home.match(/testID="home-dev-hub-button"/g)).toHaveLength(1);
     expect(home.match(/name="flask-outline"/g)).toHaveLength(1);
-    expect(home).toContain('setDevHubVisible(true)');
-    expect(home).toContain('<DevHubSheetGate');
-    expect(home).toContain('visible={devHubVisible}');
+    expect(home).toContain('onOpenDevHub?.()');
+    expect(tabsLayout).toContain('<DevHubSheetGate');
+    expect(tabsLayout).toContain('visible={devHubVisible}');
+    expect(tabsLayout).toContain('onSurfaceActiveChange={setDevOverlayVisible}');
     expect(home).not.toContain('router.push(DEV_HUB_ROUTE as any)');
 
     expect(fs.existsSync(routePath)).toBe(false);
@@ -49,11 +51,16 @@ describe('DEV center bottom sheet', () => {
 
     expect(registry).toContain('DEV_TOOL_SECTIONS');
     expect(registry).toContain("id: 'level-previews'");
+    expect(registry).toContain("id: 'league'");
     expect(registry).toContain("id: 'subscription'");
     expect(registry).toContain("action: 'preview-level-standard'");
     expect(registry).toContain("action: 'preview-level-milestone'");
     expect(registry).toContain("action: 'preview-lesson-results'");
     expect(registry).toContain("action: 'preview-spin-reward'");
+    expect(registry).toContain("action: 'preview-league-promoted'");
+    expect(registry).toContain("action: 'preview-league-demoted'");
+    expect(registry).toContain("action: 'preview-league-stay'");
+    expect(registry).toContain("action: 'preview-league-rank-mismatch'");
     expect(registry).toContain("action: 'grant-plus'");
     expect(registry).toContain("action: 'revoke-plus'");
     expect(registry).toContain('satisfies readonly DevToolSection[]');
@@ -64,13 +71,57 @@ describe('DEV center bottom sheet', () => {
     jest.resetModules();
     const { getOrderedDevToolSections } = require('../components/dev/devToolRegistry');
     const ordered = getOrderedDevToolSections();
-    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['level-previews', 'subscription']);
+    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['level-previews', 'league', 'subscription']);
     expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',
       'lesson-results',
       'spin-reward',
     ]);
+    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual([
+      'league-promoted',
+      'league-demoted',
+      'league-stay',
+      'league-rank-mismatch',
+    ]);
+  });
+
+  test('previews weekly league outcomes without touching the real pending result', () => {
+    const sheet = read('components/dev/DevHubSheet.tsx');
+    const modal = read('app/LeagueResultModal.tsx');
+
+    expect(sheet).toContain('<LeagueResultModal');
+    expect(sheet).toContain('previewMode');
+    expect(sheet).toContain('buildLeagueDevSeed');
+    // Синтетический результат строится в памяти: ни диска, ни сети.
+    expect(sheet).not.toMatch(/loadPendingResult|savePendingResult|checkLeagueOnAppOpen/);
+
+    // Главная защита: превью не должно стирать настоящие итоги недели.
+    expect(modal).toContain('previewMode?: boolean');
+    expect(modal).toContain('if (!previewMode) void clearPendingResult();');
+  });
+
+  test('league dev seeds stay consistent between the rank number and the visible row', () => {
+    jest.resetModules();
+    const { buildLeagueDevSeed } = require('../components/dev/leagueDevSeeds');
+    const { orderGroupForResultDisplay } = require('../app/league_engine');
+
+    for (const seedId of ['promoted', 'demoted', 'stay', 'rank-mismatch']) {
+      const result = buildLeagueDevSeed(seedId);
+      expect(result.group).toHaveLength(result.totalInGroup);
+      expect(result.group.filter((m: { isMe: boolean }) => m.isMe)).toHaveLength(1);
+
+      // То, что увидит пользователь: моя строка обязана стоять на myRank.
+      const shown = orderGroupForResultDisplay(result.group, result.myRank);
+      expect(shown.findIndex((m: { isMe: boolean }) => m.isMe) + 1).toBe(result.myRank);
+    }
+
+    expect(buildLeagueDevSeed('promoted').promoted).toBe(true);
+    expect(buildLeagueDevSeed('demoted').demoted).toBe(true);
+    const stay = buildLeagueDevSeed('stay');
+    expect(stay.promoted).toBe(false);
+    expect(stay.demoted).toBe(false);
+    expect(stay.prevLeagueId).toBe(stay.newLeagueId);
   });
 
   test('previews standard and fifth-level variants with spins but no progress mutations', () => {

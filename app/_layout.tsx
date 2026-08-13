@@ -125,8 +125,6 @@ import { flushPendingProgressEvents } from './progress_events_client';
 import { createDisposableAdoption } from './disposable_adoption';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import ActionToast from '../components/ActionToast';
-import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
-import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
@@ -166,8 +164,7 @@ import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
-import { primeSurveyDailyTaskCacheFromStorage } from './survey_daily_task_cache';
-import { primeDailyTasksScreenSnapshotFromStorage } from './daily_tasks_screen_persist';
+import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
 import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
 import { hydrateStatsCacheFromStorage } from './statsCache';
@@ -197,7 +194,6 @@ import { syncWidgetData } from './widget_bridge';
 import { scheduleCoalescedForegroundTask } from './app_resume_policy';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
-import { getTodayKey } from './daily_tasks';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
 import {
@@ -345,8 +341,6 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
-const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal_seen_v1';
-const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
@@ -391,18 +385,6 @@ async function pruneLeagueBonusSeenMarkers(currentKey: string): Promise<void> {
     .sort((a, b) => b.localeCompare(a));
   if (seenKeys.length <= LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS) return;
   const keep = new Set(seenKeys.slice(0, LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS));
-  keep.add(currentKey);
-  const remove = seenKeys.filter((key) => !keep.has(key));
-  if (remove.length > 0) await AsyncStorage.multiRemove(remove).catch(() => {});
-}
-
-async function pruneDailyPlanSeenMarkers(currentKey: string): Promise<void> {
-  const keys = await AsyncStorage.getAllKeys().catch(() => []);
-  const seenKeys = keys
-    .filter((key) => key.startsWith(`${DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX}:`))
-    .sort((a, b) => b.localeCompare(a));
-  if (seenKeys.length <= DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS) return;
-  const keep = new Set(seenKeys.slice(0, DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS));
   keep.add(currentKey);
   const remove = seenKeys.filter((key) => !keep.has(key));
   if (remove.length > 0) await AsyncStorage.multiRemove(remove).catch(() => {});
@@ -1616,7 +1598,6 @@ function AppContent() {
   const retryStartupSecurityCheckRef = useRef<(() => void) | null>(null);
   const startupAuthRecoveryOfferedRef = useRef(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
-  const [dailyPlanModalDue, setDailyPlanModalDue] = useState(false);
   const { setLang, lang } = useLang();
   const remoteDeletionNoticeShownRef = useRef(false);
   const { studyTarget } = useStudyTarget();
@@ -2571,12 +2552,7 @@ function AppContent() {
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
       const startupLocalHydration = Promise.all([
         primeAppSnapshotFromStorage(studyTarget).catch(() => {}),
-        primeSurveyDailyTaskCacheFromStorage().catch(() => {}),
-        // зачем: «Вызовы дня» открывались со скелетонами при ПЕРВОМ входе после
-        // холодного старта (кэш экрана жил только в памяти процесса). Поднимаем
-        // снапшот прошлой сессии здесь — задолго до тапа по разделу, поэтому даже
-        // первое открытие рисует карточки сразу, без загрузки.
-        primeDailyTasksScreenSnapshotFromStorage().catch(() => {}),
+        primeSurveyOfferCacheFromStorage().catch(() => {}),
         // зачем: та же беда была у «Моей практики» — её кэш жил в памяти всего 2 минуты,
         // поэтому раздел открывался с нулями и после холодного старта, и просто через
         // 3 минуты. Поднимаем дисковый снапшот здесь, до входа в раздел.
@@ -3093,34 +3069,6 @@ function AppContent() {
     }
   }, [isBanned, pendingRoute, ready, rootNavigationReady, router, showOnboarding]);
 
-  const dailyPlanModalSeenKey = `${DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX}:${studyTarget ?? 'default'}:${getTodayKey()}`;
-
-  useEffect(() => {
-    let cancelled = false;
-    if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !firstContentReady) {
-      setDailyPlanModalDue(false);
-      return () => {
-        cancelled = true;
-      };
-    }
-    AsyncStorage.getItem(dailyPlanModalSeenKey)
-      .then((seen) => {
-        if (!cancelled) setDailyPlanModalDue(seen !== '1');
-      })
-      .catch(() => {
-        if (!cancelled) setDailyPlanModalDue(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [dailyPlanModalSeenKey, effectiveShowOnboarding, firstContentReady, isBanned, ready, rootNavigationReady]);
-
-  const closeDailyPlanModal = useCallback(() => {
-    setDailyPlanModalDue(false);
-    AsyncStorage.setItem(dailyPlanModalSeenKey, '1').catch(() => {});
-    void pruneDailyPlanSeenMarkers(dailyPlanModalSeenKey).catch(() => {});
-  }, [dailyPlanModalSeenKey]);
-
   useEffect(() => {
     if (!postOnboardingGoldBridgeArmed || !ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
     setPostOnboardingGoldBridgeArmed(false);
@@ -3136,12 +3084,11 @@ function AppContent() {
 
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
-  // Приоритет: update > authRecovery > releaseNotes > broadcast > notifNudge > introFullAccess >
-  // dailyPlan > levelUp.
+  // Приоритет: update > authRecovery > releaseNotes > broadcast > notifNudge > introFullAccess > levelUp.
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
   // introFullAccess — нативный <Modal statusBarTranslucent>: его обязательно
   // гейтить через арбитр, иначе на холодном старте он может наложиться на другую такую же
-  // модалку (update/broadcast/levelUp/dailyPlan) → мерцание/зависание System UI (ANR) на Android.
+  // модалку (update/broadcast/levelUp) → мерцание/зависание System UI (ANR) на Android.
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
@@ -3156,14 +3103,6 @@ function AppContent() {
     'introFullAccess',
     !tournamentInterruptionProtected && introFullAccessModal !== null,
   );
-  // ⚠️ Модалка «задания дня при первом входе» ОТКЛЮЧЕНА (DailyTasksFirstVisitModal в проде
-  // всегда возвращает null — её заменил брифинг Компаса). Поэтому ключ 'dailyPlan' НЕ ДОЛЖЕН
-  // просить единственный слот арбитра: dailyPlanModalDue становился true раз в сутки, арбитр
-  // отдавал слот ключу 'dailyPlan', но модалка не рендерилась → её никто не закрывал →
-  // closeDailyPlanModal() не вызывался → слот завис на весь день → ВСЕ тосты (они ниже по
-  // приоритету) глобально переставали показываться. Передаём false, пока модалка отключена.
-  // dailyPlanModalDue/closeDailyPlanModal оставлены для админ-превью и возможного возврата модалки.
-  const dailyPlanModalVisible = useOverlayVisible('dailyPlan', false);
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 1],
@@ -3302,7 +3241,7 @@ function AppContent() {
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
-      <Stack.Screen name="daily_tasks_screen" />
+      <Stack.Screen name="survey_screen" />
        <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
        <Stack.Screen name="personal_plan_quiz" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
@@ -3337,9 +3276,12 @@ function AppContent() {
       <Stack.Screen name="promo_code_entry" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
+      {/* Cards 2.1 §5.3: каталог наборов сообщества — правая позиция таббара раздела */}
+      <Stack.Screen name="flashcards_packs" />
       <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />
+      <Stack.Screen name="flashcards_card_editor" />
       <Stack.Screen name="community_pack_create" />
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="shards_shop" />
@@ -3361,6 +3303,9 @@ function AppContent() {
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />
       <Stack.Screen name="trainer_words_session" />
+      <Stack.Screen name="flashcards_listening_session" />
+      <Stack.Screen name="flashcards_blitz_session" />
+      <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="trainer_phrases_session" />
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
@@ -3513,12 +3458,6 @@ function AppContent() {
       onSecondaryPress={() => {
         void closeIntroFullAccessModal('secondary');
       }}
-    />
-
-    <DailyTasksFirstVisitModal
-      visible={appOverlaysEnabled && dailyPlanModalVisible}
-      studyTarget={studyTarget}
-      onClose={closeDailyPlanModal}
     />
 
     {ready && effectiveShowOnboarding && (
@@ -3767,7 +3706,6 @@ export default function RootLayout() {
                         поэтому новичок видит его раньше наград и обновлений. */}
                     <OnboardingWelcomeHost />
                     <AchievementToast />
-                    <DailyTaskRewardToast />
                     <ActionToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />

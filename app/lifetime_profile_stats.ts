@@ -21,8 +21,6 @@ import {
 const WORD_REQUIRED = 3;
 const MIN_ACTIVE_MS = 60_000;
 
-const K_DAILY_CLAIMS = 'lifetime_daily_tasks_claimed_v1';
-
 const K_SHARDS_EARNED = 'shards_lifetime_earned_v1';
 const K_SHARDS_SPENT = 'shards_lifetime_spent_v1';
 
@@ -57,17 +55,6 @@ async function incCounter(
   } catch {
     return false;
   }
-}
-
-export async function bumpDailyTaskClaimed(
-  studyTarget?: RuntimeStudyTarget,
-  accountToken?: AccountGenerationToken,
-): Promise<void> {
-  const operationToken = accountToken ?? captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
-  const committed = await incCounter(K_DAILY_CLAIMS, 1, operationToken);
-  if (!committed || !isCurrentAccountGeneration(operationToken)) return;
-  await bumpStatsDaily('daily_tasks_claimed', 1, studyTarget, operationToken);
 }
 
 export async function bumpLifetimeShardsEarned(
@@ -161,7 +148,6 @@ export type LifetimeProfileStats = {
   flashcardsSaved: number;
   phrasesLearned: number;
   englishLevel: string | null;
-  dailyTasksClaimed: number;
   shardsEarned: number;
   shardsSpent: number;
   appDaysUnion: number;
@@ -177,7 +163,6 @@ function isLifetimeProfileStatsSnapshot(o: unknown): o is LifetimeProfileStats {
     'wordsLearned',
     'flashcardsSaved',
     'phrasesLearned',
-    'dailyTasksClaimed',
     'shardsEarned',
     'shardsSpent',
     'appDaysUnion',
@@ -224,7 +209,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     fgDaily,
     flashCards,
     phrasesLearned,
-    dailyClaims,
     shardsE,
     shardsS,
   ] = await Promise.all([
@@ -234,7 +218,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     getForegroundDailyMsMap(),
     readAllCustomCards(),
     countPhrasesLearnedFromLessonProgress(),
-    readCounter(K_DAILY_CLAIMS),
     readCounter(K_SHARDS_EARNED),
     readCounter(K_SHARDS_SPENT),
   ]);
@@ -272,7 +255,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     flashcardsSaved: flashCards.length,
     phrasesLearned,
     englishLevel: diagnosticLevel,
-    dailyTasksClaimed: dailyClaims,
     shardsEarned: shardsE,
     shardsSpent: shardsS,
     appDaysUnion,

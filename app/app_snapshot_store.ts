@@ -43,6 +43,16 @@ export interface AppSnapshotProgress extends AppSnapshotMeta {
   streak: number;
   shards: number;
   studyTarget: string;
+  /**
+   * Единый баланс звёзд (владелец 2026-08-12, D-05/D-06). Приходит из того же
+   * документа игрока, который снапшот и так загружает — ни одного нового
+   * слушателя и ни одного дополнительного чтения.
+   *
+   * Тратимое и заработанное за всё время — РАЗНЫЕ числа: траты не уменьшают
+   * второе, именно оно открывает награды (D-10).
+   */
+  stars?: number;
+  starsEarnedTotal?: number;
 }
 
 export interface AppSnapshotLessons extends AppSnapshotMeta {

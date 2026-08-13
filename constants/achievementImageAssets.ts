@@ -31,8 +31,6 @@ export const ACHIEVEMENT_IMAGE: Readonly<Record<string, ImageSourcePropType>> = 
   xp_500:                           require('../assets/images/achievements/xp_500.webp'),
   combo_3:                          require('../assets/images/achievements/combo_3.webp'),
   combo_10:                         require('../assets/images/achievements/combo_10.webp'),
-  daily_task_first:                 require('../assets/images/achievements/daily_task_first.webp'),
-  all_daily:                        require('../assets/images/achievements/all_daily.webp'),
   daily_phrase_first:               require('../assets/images/achievements/daily_phrase_first.webp'),
   login_7:                          require('../assets/images/achievements/login_7.webp'),
   comeback:                         require('../assets/images/achievements/comeback.webp'),

@@ -52,6 +52,17 @@ jest.mock("expo-router", () => ({
   useRouter: () => ({ replace: mockReplace, back: jest.fn(), canGoBack: () => false }),
 }));
 jest.mock("expo-crypto", () => ({ randomUUID: () => "session-run-skip-interaction" }));
+jest.mock("expo-device", () => ({ isDevice: true, osVersion: "18.6" }));
+jest.mock("expo/fetch", () => ({
+  fetch: jest.fn(async () => {
+    throw new Error("network_not_expected");
+  }),
+}));
+jest.mock("expo-file-system", () => ({
+  Directory: class MockDirectory {},
+  File: class MockFile {},
+  Paths: { cache: "/tmp" },
+}));
 jest.mock("expo-audio", () => ({
   useAudioPlayer: jest.fn(() => mockAudioPlayer),
   useAudioPlayerStatus: jest.fn(() => mockAudioStatus),
@@ -113,12 +124,16 @@ jest.mock("../app/stable_id", () => ({ getStableId: async () => "stable-user-1" 
 jest.mock("../app/account_generation", () => ({
   ensureAccountGeneration: () => ({ stableId: "stable-user-1", generation: 3 }),
   isCurrentAccountGeneration: () => true,
+  subscribeAccountGeneration: () => jest.fn(),
   withAccountTransitionLock: async (work: () => Promise<unknown>) => work(),
 }));
 jest.mock("../hooks/use-haptics", () => ({
   hapticError: jest.fn(async () => undefined),
   hapticSuccess: jest.fn(async () => undefined),
   hapticTap: jest.fn(async () => undefined),
+}));
+jest.mock("../hooks/use_runtime_active", () => ({
+  useRuntimeActive: () => true,
 }));
 jest.mock("../modules/learning-v2/progress/lesson1_local_progress", () => ({
   createLesson1LocalProgressStore: () => ({ applyResult: mockApplyResult }),
@@ -205,10 +220,16 @@ describe("Learning V2 real session skip interaction", () => {
     expect(view.getByLabelText("Собрано 3 из 36 звёзд в этой сессии")).toBeTruthy();
   });
 
-  it("shows a two-star recovery after one wrong attempt without skipping the task", async () => {
+  it("keeps the first error lightweight and explains the second error", async () => {
     const view = await render(React.createElement(LearningV2SessionScreen));
     const wrongChoice = view.getByLabelText(/Ответ [ABC]: Он занят/);
     const correctChoice = view.getByLabelText(/Ответ [ABC]: Я здесь/);
+    await act(async () => {
+      fireEvent.press(wrongChoice);
+    });
+    expect(
+      view.queryByText("Почти. Посмотри внимательнее и попробуй ещё."),
+    ).toBeNull();
     await act(async () => {
       fireEvent.press(wrongChoice);
     });
@@ -216,9 +237,9 @@ describe("Learning V2 real session skip interaction", () => {
     await act(async () => {
       fireEvent.press(correctChoice);
     });
-    expect(view.getByText("Отлично! +2 звезды")).toBeTruthy();
-    expect(view.getByLabelText("Отлично. Плюс 2 звезды. После исправления")).toBeTruthy();
-    expect(view.getByLabelText("Собрано 2 из 36 звёзд в этой сессии")).toBeTruthy();
+    expect(view.getByText("Зачтено! +1 звезда")).toBeTruthy();
+    expect(view.getByLabelText("Зачтено. Плюс 1 звезда. С поддержкой")).toBeTruthy();
+    expect(view.getByLabelText("Собрано 1 из 36 звёзд в этой сессии")).toBeTruthy();
   });
 
   it("shows one supported star after using the hint", async () => {

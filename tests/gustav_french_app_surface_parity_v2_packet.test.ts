@@ -25,14 +25,12 @@ describe('Gustav French app surface parity V2 packet', () => {
     expect(report.summary.missingRemotePackSurfaces).toEqual([]);
     expect(report.summary.extraRemotePackSurfaces).toEqual([]);
     expect(report.summary.currentAppDomains).toBeGreaterThanOrEqual(7);
-    expect(report.summary.challengeDailyArenaCoveredByNavigationGuard).toBe(true);
+    expect(report.summary.challengeArenaCoveredByNavigationGuard).toBe(true);
     expect(report.summary.challengeSurfaceGuardsReady).toBe(true);
-    expect(report.summary.dailySurfaceGuardsReady).toBe(true);
     expect(report.summary.arenaSurfaceGuardsReady).toBe(true);
-    expect(report.summary.challengeSurfaceProbes).toBeGreaterThanOrEqual(6);
-    expect(report.summary.dailySurfaceProbes).toBeGreaterThanOrEqual(13);
+    expect(report.summary.challengeSurfaceProbes).toBeGreaterThanOrEqual(4);
     expect(report.summary.arenaSurfaceProbes).toBeGreaterThanOrEqual(5);
-    expect(report.summary.challengeDailyArenaRequiresExtraPackSurface).toBe(false);
+    expect(report.summary.challengeArenaRequiresExtraPackSurface).toBe(false);
     expect(report.summary.devNavigationProbesPassed).toBe(report.summary.devNavigationProbes);
     expect(report.remotePackSurfaces).toEqual([
       'lesson',
@@ -61,16 +59,14 @@ describe('Gustav French app surface parity V2 packet', () => {
     expect(report.safety.productionApplyApproved).toBe(false);
   });
 
-  it('hard-codes challenge/daily/arena as guarded navigation surfaces, not missing pack surfaces', () => {
-    expect(SOURCE).toContain('challengeDailyArenaCoveredByNavigationGuard');
+  it('hard-codes challenge/arena as guarded navigation surfaces, not missing pack surfaces', () => {
+    expect(SOURCE).toContain('challengeArenaCoveredByNavigationGuard');
     expect(SOURCE).toContain('challengeSurfaceGuardsReady');
-    expect(SOURCE).toContain('dailySurfaceGuardsReady');
     expect(SOURCE).toContain('arenaSurfaceGuardsReady');
     expect(SOURCE).toContain('challenge_surface_guards_not_ready');
-    expect(SOURCE).toContain('daily_surface_guards_not_ready');
     expect(SOURCE).toContain('arena_surface_guards_not_ready');
-    expect(SOURCE).toContain('challengeDailyArenaRequiresExtraPackSurface: false');
-    expect(SOURCE).toContain('Challenges/daily/arena require extra pack surface');
+    expect(SOURCE).toContain('challengeArenaRequiresExtraPackSurface: false');
+    expect(SOURCE).toContain('Challenges/arena require extra pack surface');
     expect(SOURCE).toContain('firebaseOrServerUploadStarted: false');
     expect(SOURCE).toContain('activationApproved: false');
   });

@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import type { ApprovalTokenDoc } from './jarvis/approval_token';
+import { findSupportHumanVoiceViolations } from './support_communication_bible';
 
 export const SUPPORT_TELEGRAM_REVIEW_COLLECTION = 'support_telegram_reviews';
 export const SUPPORT_TELEGRAM_EDIT_SESSION_COLLECTION = 'support_telegram_edit_sessions';
@@ -33,9 +34,17 @@ export interface SupportTelegramReviewDoc {
   readonly confirmationNonce?: string;
   readonly knowledgeFingerprint?: string;
   readonly policyVersion?: number;
+  readonly draftOrigin?: 'jarvis' | 'owner_manual';
+  readonly instructionsSchemaVersion?: number;
+  readonly instructionsPromptVersion?: number;
+  readonly instructionsRevision?: number;
+  readonly instructionsFingerprint?: string;
   readonly notificationAtMs?: number;
   readonly autoSendAtMs?: number | null;
   readonly telegramPreviewSafe?: boolean;
+  readonly customerReady?: boolean;
+  readonly conversationId?: string;
+  readonly conversationRevision?: number;
   readonly lastErrorCode?: string;
 }
 
@@ -104,20 +113,28 @@ export function buildSupportTelegramReviewPreview(input: {
   readonly finalText: string;
   readonly draftRevision: number;
   readonly revised?: boolean;
-}): { readonly text: string; readonly approvable: boolean } {
+  readonly customerReady?: boolean;
+  readonly customerIssue?: string;
+}): { readonly text: string; readonly approvable: boolean; readonly violations: readonly string[] } {
   const finalText = String(input.finalText ?? '').trim();
+  const violations = findSupportHumanVoiceViolations(finalText, input.customerIssue ?? '');
   const approvable = Boolean(finalText)
+    && input.customerReady !== false
     && finalText.length <= TELEGRAM_SAFE_FINAL_TEXT_MAX
-    && !TELEGRAM_SENSITIVE.test(finalText);
+    && !TELEGRAM_SENSITIVE.test(finalText)
+    && violations.length === 0;
   const title = input.revised ? '✏️ <b>Исправленная версия ответа</b>' : '📬 <b>Ответ Джарвиса готов</b>';
   if (!approvable) {
     return Object.freeze({
       approvable: false,
+      violations,
       text: [
         title,
         '',
-        '🔒 Полный текст содержит чувствительные данные или слишком длинный для безопасного предпросмотра.',
-        'Откройте раздел «Gmail Support Inbox» в админке, проверьте и отправьте ответ там.',
+        input.customerReady === false
+          ? '⛔ Ответ не прошёл проверку фактов и человеческого качества. Автоотправка и кнопка отправки отключены.'
+          : '🔒 Полный текст содержит чувствительные данные, внутренние формулировки или слишком длинный для безопасного предпросмотра.',
+        'Откройте раздел «Gmail Support Inbox» в админке и перепишите ответ перед отправкой.',
         '',
         `<i>Версия ${input.draftRevision}. Автоотправка для этой версии отключена.</i>`,
       ].join('\n'),
@@ -125,6 +142,7 @@ export function buildSupportTelegramReviewPreview(input: {
   }
   return Object.freeze({
     approvable: true,
+    violations,
     text: [
       title,
       '',

@@ -8,6 +8,8 @@ const required: SupportRepositoryChunk[] = [
   { path: 'functions/src/support_auto_reply_policy.ts', line: 1, text: 'Bounded support reply policy.' },
   { path: 'functions/src/support_repository_context.ts', line: 1, text: 'Repository evidence retrieval.' },
   { path: 'functions/src/support_reply_delivery.ts', line: 1, text: 'Durable email delivery.' },
+  { path: 'functions/src/support_inbox.ts', line: 1, text: 'Support orchestration.' },
+  { path: 'specs/support-product-lifecycle.json', line: 1, text: 'Versioned product lifecycle registry.' },
   { path: 'app/help.tsx', line: 1, text: 'Application help screen.' },
   { path: 'components/Help.tsx', line: 1, text: 'Help component.' },
   { path: 'constants/help.ts', line: 1, text: 'Help constants.' },
@@ -26,7 +28,7 @@ function snapshot(extra: SupportRepositoryChunk[]): SupportRepositorySnapshot {
     sourceFingerprint: createHash('sha256').update(JSON.stringify(chunks)).digest('hex'),
     filesDiscovered: chunks.length,
     filesIndexed: new Set(chunks.map((chunk) => chunk.path)).size,
-    requiredFilesIncluded: required.slice(0, 5).map((chunk) => chunk.path),
+    requiredFilesIncluded: required.slice(0, 7).map((chunk) => chunk.path),
     rootsIncluded: { app: 1, components: 1, constants: 1, 'functions/src': 3 },
     chunks,
   };
@@ -64,5 +66,16 @@ describe('support repository context', () => {
     const input = snapshot([{ path: 'components/PremiumContext.tsx', line: 20, text: 'Restore Plus subscription purchase.' }]);
     const tampered = { ...input, chunks: [...input.chunks, { path: 'app/tampered.ts', line: 1, text: 'changed' }] };
     expect(retrieveSupportRepositoryContext('restore purchase', tampered).trustReason).toBe('fingerprint_mismatch');
+  });
+
+  test('retrieves a verified historical lifecycle fact instead of current-name noise', () => {
+    const input = snapshot([
+      { path: 'constants/weeklyCompassIcons.ts', line: 1, text: 'Current decorative Compass icon.' },
+      { path: 'support-history/compass_daily_assistant.md', line: 1, text: 'Product feature: compass_daily_assistant\nNames: Компас, Compass\nLifecycle status: retired\nPast/history question: earlier, previously, removed, раньше, было, пропало, убрали.\nRU: Отдельный раздел «Компас» раньше был. Позже этот раздел убрали.' },
+    ]);
+    const result = retrieveSupportRepositoryContext('Куда делся Компас? Он раньше был', input, 3);
+    expect(result.queryConcepts).toEqual(expect.arrayContaining(['compass', 'feature_lifecycle']));
+    expect(result.evidence[0].path).toBe('support-history/compass_daily_assistant.md');
+    expect(result.evidence[0].matchedConcepts).toEqual(expect.arrayContaining(['compass', 'feature_lifecycle']));
   });
 });

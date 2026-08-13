@@ -9,7 +9,7 @@ describe('AddToFlashcard save flow', () => {
     expect(source).toContain('const runPostSaveSideEffects =');
     expect(source).toContain('const result = await addFlashcard({');
     expect(source.indexOf('const result = await addFlashcard({')).toBeLessThan(
-      source.indexOf('runPostSaveSideEffects(updates);'),
+      source.indexOf('runPostSaveSideEffects();'),
     );
   });
 

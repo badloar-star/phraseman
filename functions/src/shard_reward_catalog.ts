@@ -67,7 +67,6 @@ const FIXED_REASON_CATALOG: Readonly<Record<string, CatalogEntry>> = Object.free
   lesson_completed: { amounts: [0], perSourceDailyMax: 128 },
   streak_7: { amounts: [0], perSourceDailyMax: 3 },
   streak_30: { amounts: [0], perSourceDailyMax: 5 },
-  daily_tasks_all: { amounts: [0], perSourceDailyMax: 1 },
   topic_completed: { amounts: [0], perSourceDailyMax: 96 },
   exam_excellent: { amounts: [0], perSourceDailyMax: 3 },
   diagnostic_test: { amounts: [0], perSourceDailyMax: 1 },

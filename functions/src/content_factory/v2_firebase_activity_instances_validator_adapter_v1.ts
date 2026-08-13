@@ -1,9 +1,16 @@
+import { createHash } from "node:crypto";
 import {
   canonicalJsonV1,
   hashCanonicalBody,
 } from "../../../modules/learning-v2/policies/decision_registry";
-import { parseV2ActivityInstancesUntrustedRootManifestPermitsV2 } from "./v2_activity_instances_package_v2";
-import { readbackV2ActivityInstancesChildrenV1 } from "./v2_activity_instances_child_readback_v1";
+import {
+  parseV2ActivityInstancesUntrustedRootManifestPermitsV2,
+  type V2ActivityInstancesUntrustedReadPermitAggregateV2,
+} from "./v2_activity_instances_package_v2";
+import {
+  readbackV2ActivityInstancesChildrenV1,
+  type V2ActivityInstancesChildReadbackV1,
+} from "./v2_activity_instances_child_readback_v1";
 import {
   isV2ActivityInstancesValidationResultV1,
   validateV2ActivityInstancesCandidateV1,
@@ -108,6 +115,83 @@ export interface V2FirebaseActivityInstancesValidatorResultMaterialV1 {
   readonly pureValidationResult: V2ActivityInstancesValidationResultV1;
 }
 
+export interface V2FirebaseActivityInstancesPublicationSessionMaterialV1 {
+  readonly planFingerprint: string;
+  readonly courseContractFingerprint: string;
+  readonly stageId: string;
+  readonly episodeId: string;
+  readonly sessionOrdinal: number;
+  readonly sessionId: string;
+  readonly packageFingerprint: string;
+  readonly validatorSummaryFingerprint: string;
+  readonly permitAggregateFingerprint: string;
+  readonly childReadbackAggregateFingerprint: string;
+  readonly storageReadbackFingerprint: string;
+  readonly renderRaw: string;
+  readonly capsuleEnvelopeRaw: string;
+  readonly renderPin: Readonly<{
+    readonly objectPath: string;
+    readonly contentHash: string;
+    readonly objectGeneration: string;
+    readonly byteSize: number;
+    readonly contentType: "application/json; charset=utf-8";
+  }>;
+  readonly capsulePin: Readonly<{
+    readonly objectPath: string;
+    readonly contentHash: string;
+    readonly objectGeneration: string;
+    readonly byteSize: number;
+    readonly contentType: "application/json; charset=utf-8";
+  }>;
+  readonly repositoryOriginAuthority: "authenticated_repository_snapshot_only";
+  readonly artifactStorageAuthority: "firebase_admin_generation_pinned_readback";
+  readonly publicationAuthority: "none";
+  readonly runtimeConsumer: false;
+  readonly releaseEligible: false;
+  readonly releaseAuthority: false;
+}
+
+export interface V2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1 {
+  readonly planFingerprint: string;
+  readonly courseContractFingerprint: string;
+  readonly stageId: string;
+  readonly episodeId: string;
+  readonly sessionOrdinal: number;
+  readonly sessionId: string;
+  readonly packageFingerprint: string;
+  readonly validatorSummaryFingerprint: string;
+  readonly permitAggregateFingerprint: string;
+  readonly childReadbackAggregateFingerprint: string;
+  readonly storageReadbackFingerprint: string;
+  readonly sidecarRaw: string;
+  readonly sidecarPin: Readonly<{
+    readonly objectPath: string;
+    readonly contentHash: string;
+    readonly objectGeneration: string;
+    readonly byteSize: number;
+    readonly contentType: "application/json; charset=utf-8";
+  }>;
+  readonly repositoryOriginAuthority: "authenticated_repository_snapshot_only";
+  readonly artifactStorageAuthority: "firebase_admin_generation_pinned_readback";
+  readonly evaluatorKeyDelivery: "server_only_never_learner_projection";
+  readonly evaluationAuthority: "candidate_only_server_policy_required";
+  readonly walletAuthority: "none";
+  readonly masteryAuthority: "none";
+  readonly evidenceAuthority: "none";
+  readonly completionAuthority: "none";
+  readonly publicationAuthority: "none";
+  readonly runtimeConsumer: false;
+  readonly releaseEligible: false;
+  readonly releaseAuthority: false;
+}
+
+interface V2FirebaseActivityInstancesPublicationMaterialV1 {
+  readonly plan: V2CanonicalSeasonPlanV2;
+  readonly summary: V2FirebaseActivityInstancesValidatorSummaryV1;
+  readonly permitAggregate: V2ActivityInstancesUntrustedReadPermitAggregateV2;
+  readonly childReadback: V2ActivityInstancesChildReadbackV1;
+}
+
 const resultHandles = new WeakSet<object>();
 const resultSummaries = new WeakMap<
   object,
@@ -117,6 +201,11 @@ const resultMaterials = new WeakMap<
   object,
   V2FirebaseActivityInstancesValidatorResultMaterialV1
 >();
+const publicationMaterials = new WeakMap<
+  object,
+  V2FirebaseActivityInstancesPublicationMaterialV1
+>();
+const utf8 = new TextEncoder();
 
 function fail(code: string): never {
   throw new Error(code);
@@ -202,6 +291,191 @@ export function resolveV2FirebaseActivityInstancesValidatorResultMaterialV1(inpu
   if (!material || material.plan !== input.plan)
     fail("v2_firebase_activity_instances_validator_result_resolve_invalid");
   return material;
+}
+
+function exactRawPin(
+  raw: string,
+  permit: V2ActivityInstancesUntrustedReadPermitAggregateV2["permits"][number],
+): Readonly<{
+  readonly objectPath: string;
+  readonly contentHash: string;
+  readonly objectGeneration: string;
+  readonly byteSize: number;
+  readonly contentType: "application/json; charset=utf-8";
+}> {
+  const bytes = utf8.encode(raw);
+  if (
+    bytes.byteLength !== permit.declaredByteSize ||
+    createHash("sha256").update(bytes).digest("hex") !== permit.contentHash
+  ) {
+    fail("v2_firebase_activity_instances_publication_session_bytes_mismatch");
+  }
+  return Object.freeze({
+    objectPath: permit.objectPath,
+    contentHash: permit.contentHash,
+    objectGeneration: permit.objectGeneration,
+    byteSize: permit.declaredByteSize,
+    contentType: V2_REPOSITORY_IMMUTABLE_JSON_CONTENT_TYPE_V1,
+  });
+}
+
+export function resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1(input: {
+  readonly handle: V2FirebaseActivityInstancesValidatorResultHandleV1;
+  readonly plan: V2CanonicalSeasonPlanV2;
+  readonly sessionOrdinal: number;
+}): V2FirebaseActivityInstancesPublicationSessionMaterialV1 {
+  if (
+    typeof input !== "object" ||
+    input === null ||
+    Array.isArray(input) ||
+    Object.keys(input).sort().join("|") !== "handle|plan|sessionOrdinal" ||
+    !Number.isSafeInteger(input.sessionOrdinal) ||
+    input.sessionOrdinal < 1 ||
+    input.sessionOrdinal > 12
+  ) {
+    fail("v2_firebase_activity_instances_publication_session_resolve_invalid");
+  }
+  const material = publicationMaterials.get(input.handle);
+  if (
+    !material ||
+    material.plan !== input.plan ||
+    material.summary.outcome !== "eligible_for_human_review_only" ||
+    material.summary.packageFingerprint === null ||
+    material.summary.permitAggregateFingerprint === null ||
+    material.summary.childReadbackAggregateFingerprint === null ||
+    material.summary.storageReadbackFingerprint === null ||
+    material.summary.childObjectCount !== 48 ||
+    material.summary.validatedSessionCount !== 12 ||
+    material.summary.validatedTaskCount !== 144
+  ) {
+    fail("v2_firebase_activity_instances_publication_session_resolve_invalid");
+  }
+  const session = material.childReadback.sessions[input.sessionOrdinal - 1];
+  const renderPermit =
+    material.permitAggregate.permits[(input.sessionOrdinal - 1) * 4 + 1];
+  const capsulePermit =
+    material.permitAggregate.permits[(input.sessionOrdinal - 1) * 4 + 2];
+  if (
+    !session ||
+    !renderPermit ||
+    !capsulePermit ||
+    session.sessionOrdinal !== input.sessionOrdinal ||
+    renderPermit.sessionOrdinal !== input.sessionOrdinal ||
+    capsulePermit.sessionOrdinal !== input.sessionOrdinal ||
+    renderPermit.sessionId !== session.sessionId ||
+    capsulePermit.sessionId !== session.sessionId ||
+    renderPermit.kind !== "render" ||
+    capsulePermit.kind !== "capsule" ||
+    session.objectGenerations.render !== renderPermit.objectGeneration ||
+    session.objectGenerations.capsule !== capsulePermit.objectGeneration
+  ) {
+    fail(
+      "v2_firebase_activity_instances_publication_session_material_mismatch",
+    );
+  }
+  return Object.freeze({
+    planFingerprint: material.summary.planFingerprint,
+    courseContractFingerprint: material.summary.courseContractFingerprint,
+    stageId: material.summary.stageId,
+    episodeId: material.summary.episodeId,
+    sessionOrdinal: input.sessionOrdinal,
+    sessionId: session.sessionId,
+    packageFingerprint: material.summary.packageFingerprint,
+    validatorSummaryFingerprint: material.summary.summaryFingerprint,
+    permitAggregateFingerprint: material.summary.permitAggregateFingerprint,
+    childReadbackAggregateFingerprint:
+      material.summary.childReadbackAggregateFingerprint,
+    storageReadbackFingerprint: material.summary.storageReadbackFingerprint,
+    renderRaw: session.renderRaw,
+    capsuleEnvelopeRaw: session.capsuleEnvelopeRaw,
+    renderPin: exactRawPin(session.renderRaw, renderPermit),
+    capsulePin: exactRawPin(session.capsuleEnvelopeRaw, capsulePermit),
+    repositoryOriginAuthority:
+      "authenticated_repository_snapshot_only" as const,
+    artifactStorageAuthority:
+      "firebase_admin_generation_pinned_readback" as const,
+    publicationAuthority: "none" as const,
+    runtimeConsumer: false as const,
+    releaseEligible: false as const,
+    releaseAuthority: false as const,
+  });
+}
+
+export function resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1(input: {
+  readonly handle: V2FirebaseActivityInstancesValidatorResultHandleV1;
+  readonly plan: V2CanonicalSeasonPlanV2;
+  readonly sessionOrdinal: number;
+}): V2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1 {
+  if (
+    typeof input !== "object" ||
+    input === null ||
+    Array.isArray(input) ||
+    Object.keys(input).sort().join("|") !== "handle|plan|sessionOrdinal" ||
+    !Number.isSafeInteger(input.sessionOrdinal) ||
+    input.sessionOrdinal < 1 ||
+    input.sessionOrdinal > 12
+  ) {
+    fail("v2_firebase_activity_instances_server_evaluator_resolve_invalid");
+  }
+  const material = publicationMaterials.get(input.handle);
+  if (
+    !material ||
+    material.plan !== input.plan ||
+    material.summary.outcome !== "eligible_for_human_review_only" ||
+    material.summary.packageFingerprint === null ||
+    material.summary.permitAggregateFingerprint === null ||
+    material.summary.childReadbackAggregateFingerprint === null ||
+    material.summary.storageReadbackFingerprint === null ||
+    material.summary.childObjectCount !== 48 ||
+    material.summary.validatedSessionCount !== 12 ||
+    material.summary.validatedTaskCount !== 144
+  ) {
+    fail("v2_firebase_activity_instances_server_evaluator_resolve_invalid");
+  }
+  const session = material.childReadback.sessions[input.sessionOrdinal - 1];
+  const sidecarPermit =
+    material.permitAggregate.permits[(input.sessionOrdinal - 1) * 4 + 3];
+  if (
+    !session ||
+    !sidecarPermit ||
+    session.sessionOrdinal !== input.sessionOrdinal ||
+    sidecarPermit.sessionOrdinal !== input.sessionOrdinal ||
+    sidecarPermit.sessionId !== session.sessionId ||
+    sidecarPermit.kind !== "sidecar" ||
+    session.objectGenerations.sidecar !== sidecarPermit.objectGeneration
+  ) {
+    fail("v2_firebase_activity_instances_server_evaluator_material_mismatch");
+  }
+  return Object.freeze({
+    planFingerprint: material.summary.planFingerprint,
+    courseContractFingerprint: material.summary.courseContractFingerprint,
+    stageId: material.summary.stageId,
+    episodeId: material.summary.episodeId,
+    sessionOrdinal: input.sessionOrdinal,
+    sessionId: session.sessionId,
+    packageFingerprint: material.summary.packageFingerprint,
+    validatorSummaryFingerprint: material.summary.summaryFingerprint,
+    permitAggregateFingerprint: material.summary.permitAggregateFingerprint,
+    childReadbackAggregateFingerprint:
+      material.summary.childReadbackAggregateFingerprint,
+    storageReadbackFingerprint: material.summary.storageReadbackFingerprint,
+    sidecarRaw: session.sidecarRaw,
+    sidecarPin: exactRawPin(session.sidecarRaw, sidecarPermit),
+    repositoryOriginAuthority:
+      "authenticated_repository_snapshot_only" as const,
+    artifactStorageAuthority:
+      "firebase_admin_generation_pinned_readback" as const,
+    evaluatorKeyDelivery: "server_only_never_learner_projection" as const,
+    evaluationAuthority: "candidate_only_server_policy_required" as const,
+    walletAuthority: "none" as const,
+    masteryAuthority: "none" as const,
+    evidenceAuthority: "none" as const,
+    completionAuthority: "none" as const,
+    publicationAuthority: "none" as const,
+    runtimeConsumer: false as const,
+    releaseEligible: false as const,
+    releaseAuthority: false as const,
+  });
 }
 
 export function createFirebaseAdminV2ActivityInstancesValidatorAdapterV1(): V2FirebaseActivityInstancesValidatorAdapterV1 {
@@ -459,6 +733,17 @@ export function createFirebaseAdminV2ActivityInstancesValidatorAdapterV1(): V2Fi
           pureValidationResult: pureResult,
         }),
       );
+      if (permitAggregate !== null && childReadback !== null) {
+        publicationMaterials.set(
+          handle,
+          Object.freeze({
+            plan: input.plan,
+            summary,
+            permitAggregate,
+            childReadback,
+          }),
+        );
+      }
       return handle;
     },
   });

@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('admin onboarding source statistics pagination contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
   const fetchSource = adminHtml.match(
     /async function onboardingSourceFetchRows[\s\S]*?(?=\n  function onboardingSourceRowsCard)/,
   )?.[0] ?? '';

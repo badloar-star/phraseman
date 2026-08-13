@@ -20,38 +20,44 @@
  *
  * Парный сторож на уровне тестов: functions/src/admin_sensitive_writes.test.ts.
  */
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 function readStdin() {
   try {
-    return fs.readFileSync(0, 'utf8');
+    return fs.readFileSync(0, "utf8");
   } catch {
-    return '';
+    return "";
   }
 }
 
 let payload = {};
 try {
-  payload = JSON.parse(readStdin() || '{}');
+  payload = JSON.parse(readStdin() || "{}");
 } catch {
   payload = {};
 }
 
 const toolInput = payload?.tool_input ?? {};
-const filePath = toolInput.file_path || toolInput.path || '';
+const filePath = toolInput.file_path || toolInput.path || "";
 if (!filePath) process.exit(0);
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-const relative = path.relative(ROOT, path.resolve(String(filePath))).replace(/\\/g, '/');
+const ROOT = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+);
+const relative = path
+  .relative(ROOT, path.resolve(String(filePath)))
+  .replace(/\\/g, "/");
 
 /** Файлы, через которые App Check реально можно включить. */
 const GUARDED = new Set([
-  'functions/src/callable_options.ts',
-  'functions/.env',
-  'functions/.env.phraseman-ea0b3',
-  'functions/.env.local',
+  "functions/src/callable_options.ts",
+  "functions/.env",
+  "functions/.env.phraseman-ea0b3",
+  "functions/.env.local",
 ]);
 if (!GUARDED.has(relative)) process.exit(0);
 
@@ -60,62 +66,66 @@ if (!GUARDED.has(relative)) process.exit(0);
 const candidate = [
   toolInput.new_string,
   toolInput.content,
-  ...(Array.isArray(toolInput.edits) ? toolInput.edits.map((e) => e?.new_string) : []),
+  ...(Array.isArray(toolInput.edits)
+    ? toolInput.edits.map((e) => e?.new_string)
+    : []),
 ]
-  .filter((chunk) => typeof chunk === 'string')
-  .join('\n');
+  .filter((chunk) => typeof chunk === "string")
+  .join("\n");
 if (!candidate.trim()) process.exit(0);
 
 // Комментарии не считаем: в шапке callable_options.ts фраза `enforceAppCheck: true`
 // намеренно упоминается как описание починенного инцидента.
 const code = candidate
-  .replace(/\/\*[\s\S]*?\*\//g, '')
-  .replace(/\/\/[^\n]*/g, '')
-  .replace(/^\s*#[^\n]*$/gm, '');
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .replace(/\/\/[^\n]*/g, "")
+  .replace(/^\s*#[^\n]*$/gm, "");
 
 const violations = [];
 if (/enforceAppCheck\s*:\s*true/.test(code)) {
-  violations.push('`enforceAppCheck: true` — жёсткий энфорс в опциях');
+  violations.push("`enforceAppCheck: true` — жёсткий энфорс в опциях");
 }
 if (/ENFORCE_APP_CHECK_ADMIN\s*=\s*true/.test(code)) {
-  violations.push('`ENFORCE_APP_CHECK_ADMIN=true` — включение админского флага');
+  violations.push(
+    "`ENFORCE_APP_CHECK_ADMIN=true` — включение админского флага",
+  );
 }
 if (/ENFORCE_APP_CHECK_ADMIN\s*=\s*appCheckGroup\s*\(/.test(code)) {
   violations.push(
-    '`ENFORCE_APP_CHECK_ADMIN = appCheckGroup(...)` — наследование глобального '
-    + 'ENFORCE_APP_CHECK: общий раскат снова положит админку',
+    "`ENFORCE_APP_CHECK_ADMIN = appCheckGroup(...)` — наследование глобального " +
+      "ENFORCE_APP_CHECK: общий раскат снова положит админку",
   );
 }
 
 if (!violations.length) process.exit(0);
 
 const message = [
-  '',
-  '⛔ ЗАБЛОКИРОВАНО: попытка включить App Check для админки.',
-  '',
+  "",
+  "⛔ ЗАБЛОКИРОВАНО: попытка включить App Check для админки.",
+  "",
   `Файл: ${relative}`,
-  'Найдено:',
+  "Найдено:",
   ...violations.map((v) => `  • ${v}`),
-  '',
-  'ТРЕБОВАНИЕ ВЛАДЕЛЬЦА (2026-08-03): App Check для админки НЕ включать,',
-  'пока владелец САМ ЯВНО этого не потребует.',
-  '',
-  'Почему замок жёсткий: reCAPTCHA Enterprise-ключ в Google Cloud не создан',
-  '(Google отвечает «Invalid site key»). При включённом энфорсе админка не может',
-  'получить App Check-токен, и Firebase рубит ВСЕ ~30 админских функций кодом',
-  'unauthenticated — выдача Plus, бан, награды, лиги, рефералы, конфиги.',
-  'Ровно этот инцидент уже случился 2026-08-01 (коммит 58023df0f).',
-  '',
-  'Если владелец действительно разрешил включение — порядок обязателен:',
-  '  1) создать reCAPTCHA Enterprise-ключ и зарегистрировать веб-приложение',
-  '     в Firebase App Check;',
-  '  2) прописать ключ в admin/v2/legacy.html;',
-  '  3) проверить в браузере, что grecaptcha.enterprise.execute() отдаёт токен;',
-  '  4) только затем ENFORCE_APP_CHECK_ADMIN=true.',
-  '',
-  'Подробности: AGENTS.md → «App Check для админки — НЕ ВКЛЮЧАТЬ БЕЗ СЛОВА ВЛАДЕЛЬЦА».',
-  '',
-].join('\n');
+  "",
+  "ТРЕБОВАНИЕ ВЛАДЕЛЬЦА (2026-08-03): App Check для админки НЕ включать,",
+  "пока владелец САМ ЯВНО этого не потребует.",
+  "",
+  "Почему замок жёсткий: reCAPTCHA Enterprise-ключ в Google Cloud не создан",
+  "(Google отвечает «Invalid site key»). При включённом энфорсе админка не может",
+  "получить App Check-токен, и Firebase рубит ВСЕ ~30 админских функций кодом",
+  "unauthenticated — выдача Plus, бан, награды, лиги, рефералы, конфиги.",
+  "Ровно этот инцидент уже случился 2026-08-01 (коммит 58023df0f).",
+  "",
+  "Если владелец действительно разрешил включение — порядок обязателен:",
+  "  1) создать reCAPTCHA Enterprise-ключ и зарегистрировать веб-приложение",
+  "     в Firebase App Check;",
+  "  2) прописать ключ в admin/legacy.html;",
+  "  3) проверить в браузере, что grecaptcha.enterprise.execute() отдаёт токен;",
+  "  4) только затем ENFORCE_APP_CHECK_ADMIN=true.",
+  "",
+  "Подробности: AGENTS.md → «App Check для админки — НЕ ВКЛЮЧАТЬ БЕЗ СЛОВА ВЛАДЕЛЬЦА».",
+  "",
+].join("\n");
 
 // exit code 2 = блокировать вызов инструмента и вернуть stderr агенту.
 process.stderr.write(message);

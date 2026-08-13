@@ -163,6 +163,7 @@ describe("V2 Firebase Admin repository low-level IO", () => {
     const io = createV2FirebaseAdminRepositoryIoV1();
     expect(Object.keys(io).sort()).toEqual([
       "firestore",
+      "readCanonicalDocumentExact",
       "readCoherentHeadSnapshot",
       "readCoherentVoiceProfileHeadSnapshot",
       "readRequirementObjectGenerationExact",
@@ -188,6 +189,32 @@ describe("V2 Firebase Admin repository low-level IO", () => {
       versionDocumentPath: templateVersionPath,
       lifecycleDocumentPath: templateLifecyclePath,
     });
+  });
+
+  it("reads one exact direct-key document with authenticated snapshot times", async () => {
+    const documentPath = "content_v2_season_release_pointers/pointer-1";
+    mockState.documents.set(
+      documentPath,
+      snapshot(documentPath, { state: "internal", revision: 1 }),
+    );
+    const io = createV2FirebaseAdminRepositoryIoV1();
+    await expect(
+      io.readCanonicalDocumentExact({
+        documentPath,
+        maximumBytes: 32 * 1024,
+      }),
+    ).resolves.toEqual({
+      documentPath,
+      canonicalRaw: canonicalJsonV1({ state: "internal", revision: 1 }),
+      readTime: { seconds: "1800000000", nanoseconds: 123 },
+      updateTime: { seconds: "1800000000", nanoseconds: 123 },
+    });
+    await expect(
+      io.readCanonicalDocumentExact({
+        documentPath: "content_v2_season_release_pointers/missing",
+        maximumBytes: 32 * 1024,
+      }),
+    ).rejects.toThrow("v2_firebase_admin_repository_document_read_missing");
   });
 
   it("rejects a getAll result whose snapshot read times are not coherent", async () => {

@@ -38,7 +38,7 @@ export interface ReserveEnrichmentSlotInput {
 
 export type ReserveEnrichmentSlotVerdict =
   | { readonly reserved: true }
-  | { readonly reserved: false };
+  | { readonly reserved: false; readonly narrative?: string };
 
 /**
  * Резервирует право заплатить за обогащение ЭТОГО решения.
@@ -57,7 +57,11 @@ export async function reserveEnrichmentSlot(
       const data = snap.exists ? (snap.data() as EnrichmentCacheDoc | undefined) : undefined;
 
       const isStale = data !== undefined && input.nowMs - data.reservedAtMs > STALE_RESERVATION_MS;
-      if (data !== undefined && !isStale) return { reserved: false };
+      if (data !== undefined && !isStale) {
+        return typeof data.narrative === 'string' && data.narrative.trim()
+          ? { reserved: false, narrative: data.narrative }
+          : { reserved: false };
+      }
 
       tx.set(ref, { reservedAtMs: input.nowMs } satisfies EnrichmentCacheDoc);
       return { reserved: true };

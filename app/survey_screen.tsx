@@ -24,10 +24,10 @@ import { replaceShardsBalanceForAccountGeneration, SHARD_REWARDS } from './shard
 import { emitAppEvent } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
-import { markSurveyDailyTaskDone } from './survey_daily_task';
-import { getTodayKey } from './daily_tasks';
-import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest } from './survey_daily_task_cache';
-import { buildServerConfirmedLegacyCompletion } from './survey_daily_challenge_model';
+import { markSurveyOfferDone } from './survey_completion_marker';
+import { getUtcDayKey } from './local_date';
+import { beginSurveyOfferRequest, commitSurveyOfferRequest } from './survey_offer_cache';
+import { buildServerConfirmedLegacyCompletion } from './survey_offer_model';
 import SurveyRewardPanel from '../components/survey/SurveyRewardPanel';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { initialSurveySubmissionState, reduceSurveySubmission, surveyRewardForDisplay, type SurveySubmitErrorKey } from './survey_submission_state';
@@ -39,7 +39,7 @@ export default function SurveyScreen() {
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const directOpenDayKey = useRef(getTodayKey()).current;
+  const directOpenDayKey = useRef(getUtcDayKey()).current;
   const params = useLocalSearchParams<{ surveyId?: string; stableId?: string; dayKey?: string; lang?: string }>();
   const surveyId = String(params.surveyId ?? '');
   const scope = useMemo(() => {
@@ -178,7 +178,7 @@ export default function SurveyScreen() {
         return;
       }
       if (balanceReconciled === 'failed') throw new Error('balance_reconcile_failed');
-      const markerWritten = await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
+      const markerWritten = await markSurveyOfferDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
       if (!isCurrentAccountGeneration(accountToken, stableId)) {
         presentAccountChanged(attemptId);
         return;
@@ -189,7 +189,7 @@ export default function SurveyScreen() {
         presentAccountChanged(attemptId);
         return;
       }
-      const cacheCommitted = commitSurveyDailyTaskRequest(completedScope, beginSurveyDailyTaskRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
+      const cacheCommitted = commitSurveyOfferRequest(completedScope, beginSurveyOfferRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
       if (!cacheCommitted) throw new Error('cache_reconcile_failed');
       if (!mountedRef.current || attemptIdRef.current !== attemptId) return;
       dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: res.reward });

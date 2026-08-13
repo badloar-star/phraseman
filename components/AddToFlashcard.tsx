@@ -11,7 +11,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useStudyTarget } from './StudyTargetContext';
-import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import { checkAchievements } from '../app/achievements';
 import { logFlashcardAdded } from '../app/firebase';
 import { getTranscription } from '../app/transcription';
@@ -150,9 +149,7 @@ function AddToFlashcard({
     }
   };
 
-  const runPostSaveSideEffects = (
-    updates: { type: Parameters<typeof updateMultipleTaskProgress>[0][0]['type']; increment: number }[],
-  ) => {
+  const runPostSaveSideEffects = () => {
     InteractionManager.runAfterInteractions(() => {
       safeAsyncSideEffect(() => bumpStatsDaily('flashcards_saved', 1, activeStudyTarget));
       safeAsyncSideEffect(() => logFlashcardAdded());
@@ -161,7 +158,6 @@ function AddToFlashcard({
         safeAsyncSideEffect(() => checkAchievements({ type: 'daily_phrase', action: 'save', studyTarget: activeStudyTarget }));
       }
       safeAsyncSideEffect(() => checkAchievements({ type: 'flashcard_saved', source, studyTarget: activeStudyTarget }));
-      safeAsyncSideEffect(() => updateMultipleTaskProgress(updates, { studyTarget: activeStudyTarget }));
     });
   };
 
@@ -220,13 +216,7 @@ function AddToFlashcard({
               register, level,
             }, activeStudyTarget);
             if (result === 'added') {
-              const updates: { type: Parameters<typeof updateMultipleTaskProgress>[0][0]['type']; increment: number }[] = [
-                { type: 'flashcard_save', increment: 1 },
-              ];
-              if (source === 'daily_phrase') {
-                updates.push({ type: 'daily_phrase_save', increment: 1 });
-              }
-              runPostSaveSideEffects(updates);
+              runPostSaveSideEffects();
             } else if (result === 'limit_reached') {
               setSaved(false);
               router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);

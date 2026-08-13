@@ -20,7 +20,7 @@ import { useTheme } from '../components/ThemeContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { primeCustomFlashcardsCache } from './flashcards_collection';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
-import FlashcardsTabBar, { FC_TABBAR_HEIGHT } from './flashcards/FlashcardsTabBar';
+import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
 import {
   fallbackBundledMarketPacks,
   loadMarketplacePacks,
@@ -76,12 +76,21 @@ export default function FlashcardsPacksScreen() {
       }),
     [scrollY],
   );
+  /**
+   * §5.2: капсула таббара сжимается при скролле — как на главной.
+   * Скролл этого экрана уже занят нативным параллаксом орбов, поэтому таббар
+   * подключён `listener`-ом того же `Animated.event`: покадрово это пара
+   * арифметических операций и запись shared value, без `setState` и без
+   * повторного onScroll-моста (сама анимация капсулы идёт на UI-потоке).
+   */
+  const tabScroll = useFcTabBarScroll();
   const onHubScroll = useMemo(
     () =>
       Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
         useNativeDriver: Platform.OS !== 'web',
+        listener: tabScroll.onScroll,
       }),
-    [scrollY],
+    [scrollY, tabScroll],
   );
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -253,7 +262,7 @@ export default function FlashcardsPacksScreen() {
             keyboardShouldPersistTaps="handled"
             bounces
             alwaysBounceVertical={false}
-            onScroll={reduceMotion ? undefined : onHubScroll}
+            onScroll={reduceMotion ? tabScroll.onScroll : onHubScroll}
             scrollEventThrottle={16}
           >
             <FlashcardsCategoryHub
@@ -273,7 +282,7 @@ export default function FlashcardsPacksScreen() {
         </View>
 
         {/* Cards 2.1 §5.2: тот же таббар раздела, правая позиция активна */}
-        <FlashcardsTabBar lang={lang} t={t} active="packs" bottomInset={insets.bottom} />
+        <FlashcardsTabBar lang={lang} t={t} active="packs" bottomInset={insets.bottom} scroll={tabScroll} />
       </SafeAreaView>
     </ScreenGradient>
   );

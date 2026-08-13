@@ -91,6 +91,12 @@ type Props = {
   strengthForCard?: ((en: string) => WordStrength | null) | null;
   /** Cards 2.1 §5.2: запас снизу под закреплённый таббар раздела (0 — таббара нет). */
   extraBottomPad?: number;
+  /**
+   * Cards 2.1 §5.2: покадровый офсет списка для нижнего таббара раздела —
+   * капсула сжимается при скролле вниз (`useFcTabBarScroll().onScroll`).
+   * Обработчик не держит state, поэтому список от него не ре-рендерится.
+   */
+  onScroll?: (e: { nativeEvent?: { contentOffset?: { y?: number } } }) => void;
 };
 
 export default function CollectionListView({
@@ -126,6 +132,7 @@ export default function CollectionListView({
   onFlipTracked,
   strengthForCard = null,
   extraBottomPad = 0,
+  onScroll,
 }: Props) {
   const flatListRef = useRef<any>(null);
   const [scrollViewH, setScrollViewH] = useState(0);
@@ -561,6 +568,8 @@ export default function CollectionListView({
             removeClippedSubviews={Platform.OS === 'android'}
             onViewableItemsChanged={onViewableItemsChanged}
             viewabilityConfig={viewabilityConfig}
+            onScroll={onScroll}
+            scrollEventThrottle={16}
             onScrollBeginDrag={() => {
               setLongPressedId(null);
               detailsEscortUserDragRef.current = true;

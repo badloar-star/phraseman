@@ -45,7 +45,7 @@ import CollectionListView, {
   UndoDeleteSnackbar,
 } from './flashcards/CollectionListView';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
-import FlashcardsTabBar, { FC_TABBAR_HEIGHT } from './flashcards/FlashcardsTabBar';
+import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import CollectionDeckView from './flashcards/CollectionDeckView';
@@ -648,6 +648,12 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
    * Нижний инсет здесь уже съеден `SafeAreaView` экрана, поэтому таббару передаём 0.
    */
   const tabBarReserve = sectionRoot ? FC_TABBAR_HEIGHT + 8 : 0;
+  /** §5.2: капсула таббара сжимается при скролле списка — как на главной. */
+  const tabScroll = useFcTabBarScroll();
+  /** Стопка карточек не скроллится списком — возвращаем капсулу при смене режима. */
+  useEffect(() => {
+    tabScroll.expandNow();
+  }, [viewMode, tabScroll]);
 
   const searchActive = searchQuery.trim().length > 0;
   const isEmpty = !loading && filteredCards.length === 0;
@@ -771,6 +777,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             isEditableCustomCard={previewMode ? () => false : isEditableCustomCard}
             onDeleteCardById={deleteCardById}
             onOpenPremiumLimit={openPremiumLimit}
+            onScroll={sectionRoot ? tabScroll.onScroll : undefined}
             onFocusedIndexChanged={onFocusedIndexChanged}
             onCardsViewed={registerFlashcardViewed}
             onFlipTracked={trackCardFlip}
@@ -808,7 +815,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 
       {/* Cards 2.1 §5.2: таббар раздела — только в корне «Карточек» */}
       {sectionRoot ? (
-        <FlashcardsTabBar lang={lang} t={t} active="cards" bottomInset={0} />
+        <FlashcardsTabBar lang={lang} t={t} active="cards" bottomInset={0} scroll={tabScroll} />
       ) : null}
 
     </SafeAreaView>

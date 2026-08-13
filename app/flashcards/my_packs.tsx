@@ -39,7 +39,8 @@ import { fetchCommunityPackMeta } from '../community_packs/communityFirestore';
 import { loadLocalAuthorPacks, mergeLocalAuthorPacks } from '../community_packs/localAuthorPacks';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import FlashcardsTabBar, { FC_TABBAR_HEIGHT } from './FlashcardsTabBar';
+import Reanimated from 'react-native-reanimated';
+import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './FlashcardsTabBar';
 import {
   fallbackBundledMarketPacks,
   loadAccessiblePackIds,
@@ -199,13 +200,16 @@ export default function FlashcardsMyPacksScreen() {
           <View style={{ width: 40 }} />
         </View>
 
-        <ScrollView
+        {/* §5.2: скролл кормит капсулу таббара прямо на UI-потоке. */}
+        <Reanimated.ScrollView
           style={styles.scroll}
           contentContainerStyle={[
             styles.scrollContent,
             { paddingBottom: Math.max(insets.bottom, 16) + 12 + FC_TABBAR_HEIGHT },
           ]}
           showsVerticalScrollIndicator
+          onScroll={tabScroll.scrollHandler}
+          scrollEventThrottle={16}
         >
           <View style={{ paddingHorizontal: H_PAD }}>
             <Text style={{ color: t.textPrimary, fontSize: 26, fontWeight: '800', letterSpacing: 0.2 }}>
@@ -294,9 +298,9 @@ export default function FlashcardsMyPacksScreen() {
               </View>
             ) : null}
           </View>
-        </ScrollView>
+        </Reanimated.ScrollView>
 
-        <FlashcardsTabBar lang={lang} t={t} active="mine" bottomInset={insets.bottom} />
+        <FlashcardsTabBar lang={lang} t={t} active="mine" bottomInset={insets.bottom} scroll={tabScroll} />
       </SafeAreaView>
     </ScreenGradient>
   );

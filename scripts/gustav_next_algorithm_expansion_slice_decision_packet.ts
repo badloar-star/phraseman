@@ -379,10 +379,6 @@ function main(): void {
     selectedSlice,
     rejectedAlternatives: [
       {
-        id: 'P11_PERSONAL_PLAN_FRENCH_GENERATION_PACKET',
-        reason: 'Valid but larger: 350 days and 2100 phrases. Do it after the smaller flashcard translation packet proves the app-domain translation handoff.',
-      },
-      {
         id: 'P11_AI_DIALOG_FRENCH_GENERATION_PACKET',
         reason: 'Valid but prompt-sensitive. Do it after the simpler content-only flashcard bundle packet.',
       },

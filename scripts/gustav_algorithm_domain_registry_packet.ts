@@ -14,7 +14,6 @@ type Finding = {
 type DomainId =
   | 'lesson_rows'
   | 'lesson_runtime'
-  | 'personal_plan_content'
   | 'ai_dialog_scenarios'
   | 'flashcard_marketplace_bundles'
   | 'club_rewards_stats_weekly'
@@ -131,7 +130,6 @@ type Report = {
 const REQUIRED_DOMAINS: DomainId[] = [
   'lesson_rows',
   'lesson_runtime',
-  'personal_plan_content',
   'ai_dialog_scenarios',
   'flashcard_marketplace_bundles',
   'club_rewards_stats_weekly',
@@ -174,23 +172,6 @@ const REGISTRY_TEMPLATE: Omit<DomainRegistryEntry, 'p1DirtyFiles' | 'p1NewSurfac
     activationBlockers: [
       'Raw target-sensitive storage can leak legacy English progress into French.',
       'Production apply remains blocked until dirty runtime surfaces are approved.',
-    ],
-  },
-  {
-    id: 'personal_plan_content',
-    title: 'Personal plan content',
-    frenchGenerationMode: 'content-only',
-    sourceLocalePolicy: 'Plan UI framing can follow source locale; plan phrase explanations, examples, quizzes, and teaching notes must declare source-locale and target-language responsibilities separately.',
-    studyTargetPolicy: 'Plan content must be generated per study target and must not infer French from English-only runtime fallback fields.',
-    applySensitivity: 'high',
-    requiredEvidenceBeforeFrenchActivation: [
-      'Echo, Gavan, and Impuls day exports are counted and schema-checked.',
-      'Explanation, quiz, distractor, word-bank, and runtime adapter fields have contract coverage.',
-      'French generation for personal plan content is separate from lesson row generation.',
-    ],
-    activationBlockers: [
-      'No personal plan content contract packet yet.',
-      'No French personal plan generation or reviewer handoff approval yet.',
     ],
   },
   {

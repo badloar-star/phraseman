@@ -61,17 +61,65 @@ export function withAlpha(color: string, alpha: number): string {
   return `rgba(${r},${g},${b},${a})`;
 }
 
-/** Смещение подсветки к позиции `index` при ширине капсулы `pillWidth`. */
-export function tabHighlightOffset(pillWidth: number, index: number, total: number): number {
+/**
+ * Компактная капсула раздела «Карточки».
+ *
+ * На главном экране позиций четыре и капсула тянется во всю ширину — там слот
+ * получается ~90pt. В «Карточках» позиций всего три, и растянутая на весь экран
+ * капсула выглядела пустой (замечание владельца после теста на iPhone).
+ * Поэтому здесь ширина задаётся СОДЕРЖИМЫМ: фиксированный слот + поля по краям,
+ * капсула центрируется по экрану. Слот 64×`tabBarHeight` (минимум 52) —
+ * зона нажатия заведомо больше требуемых 44×44.
+ */
+export const TAB_SLOT_WIDTH = 64;
+/** Поля между краем капсулы и крайними слотами (скруглению нужен воздух). */
+export const TAB_PILL_EDGE_PAD = 12;
+
+/** Полная ширина компактной капсулы для `total` позиций. */
+export function tabPillWidth(total: number): number {
   const slots = Math.max(1, Math.floor(total));
-  return index * (pillWidth / slots);
+  return slots * TAB_SLOT_WIDTH + TAB_PILL_EDGE_PAD * 2;
 }
 
-/** Отступ подсветки от левого края своей позиции (центрирование внутри слота). */
-export function tabHighlightInset(pillWidth: number, total: number): number {
-  const slots = Math.max(1, Math.floor(total));
-  return (pillWidth / slots - TAB_ACTIVE_PILL_WIDTH) / 2;
+/** Смещение подсветки к позиции `index` (шаг = ровно один слот). */
+export function tabHighlightOffset(index: number): number {
+  const i = Number.isFinite(index) ? Math.max(0, Math.floor(index)) : 0;
+  return i * TAB_SLOT_WIDTH;
 }
+
+/**
+ * Левый край подсветки в нулевой позиции: поле капсулы + центрирование
+ * «таблетки» внутри слота. Так подсветка попадает ровно под иконку.
+ */
+export function tabHighlightInset(): number {
+  return TAB_PILL_EDGE_PAD + (TAB_SLOT_WIDTH - TAB_ACTIVE_PILL_WIDTH) / 2;
+}
+
+// ── Сворачивание капсулы при скролле ────────────────────────────────────────
+/**
+ * Числа ОДИН В ОДИН с таббаром главного экрана (`app/(tabs)/_layout.tsx`,
+ * константы `TAB_SCROLL_*`): вниз — капсула поджимается и слегка уезжает под
+ * нижний край, вверх — возвращается; у самого верха списка всегда раскрыта.
+ * Гистерезис (разные пороги на сворачивание/раскрытие + минимальная дельта)
+ * не даёт капсуле дёргаться на микро-движениях пальца.
+ *
+ * Главный экран заперт контрактом `tests/tabbar_scroll_chrome_contract.test.ts`
+ * на литералы в самом `_layout.tsx`, поэтому оттуда числа не выносились;
+ * связь двух копий проверяется тем же контрактом.
+ */
+export const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
+export const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
+export const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;
+/** Ниже этого офсета сворачивания не бывает вовсе. */
+export const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
+/** У верхней кромки списка капсула всегда раскрыта — мгновенно, без анимации. */
+export const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
+/** Минимальная дельта кадра, которая считается «направлением». */
+export const TAB_SCROLL_DIRECTION_EPSILON = 5;
+export const TAB_SCROLL_COLLAPSE_MS = 220;
+export const TAB_SCROLL_EXPAND_MS = 260;
+/** Анти-дребезг: между переключениями состояния — не чаще этого. */
+export const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

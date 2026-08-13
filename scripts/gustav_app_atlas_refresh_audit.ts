@@ -13,7 +13,6 @@ type DomainId =
   | 'preposition_packs'
   | 'flashcards'
   | 'daily_phrases'
-  | 'personal_plan_content'
   | 'ai_output_language_contracts'
   | 'ai_dialogs'
   | 'mistake_explanations'
@@ -162,8 +161,6 @@ const MARKERS = [
   'reviewer',
   'decision',
   'import',
-  'planContent',
-  'personal_plan',
   'preposition',
   'daily',
   'Firebase',
@@ -283,8 +280,8 @@ function classifyDomain(relativePath: string, text: string): { primary: DomainId
   }
   if (hasAny(p, 'explain_judge', 'ai_typing_bubble')) return { primary: 'ai_output_language_contracts', secondary: [] };
   if (hasAny(p, 'callable_options')) return { primary: 'source_locale_ui_copy', secondary: [] };
-  if (hasAny(p, 'diagnosis_training')) return { primary: 'personal_plan_content', secondary: [] };
-  if (hasAny(p, 'compass')) return { primary: 'personal_plan_content', secondary: [] };
+  if (hasAny(p, 'diagnosis_training')) return { primary: 'lesson_rows', secondary: [] };
+  if (hasAny(p, 'compass')) return { primary: 'ai_dialogs', secondary: [] };
   if (hasAny(p, 'speak-answer', 'use-speak-answer', 'speak_answer', 'use-audio')) return { primary: 'premium_dialogs_paywall', secondary: [] };
   if (hasAny(p, 'progress_event', 'progress_events')) return { primary: 'target_storage_and_cloud_sync', secondary: [] };
   if (hasAny(p, 'review_locale_runtime')) return { primary: 'source_locale_ui_copy', secondary: [] };
@@ -294,12 +291,6 @@ function classifyDomain(relativePath: string, text: string): { primary: DomainId
   if (hasAny(p, 'mistake', 'problem_coach') || hasAny(text, 'mistake_explain', 'mistake explanation')) return { primary: 'mistake_explanations', secondary: [] };
   if (hasAny(p, 'premium', 'paywall', 'loyalty', 'speaking', 'referral') || hasAny(text, 'premium_dialog')) return { primary: 'premium_dialogs_paywall', secondary: [] };
   if (hasAny(p, 'ai_dialog', 'dialog_scenario', 'ai_companion') || hasAny(text, 'DIALOG_SCENARIOS', 'dialogScenario')) return { primary: 'ai_dialogs', secondary: [] };
-  if (
-    hasAny(p, 'personal_plan', 'plan_content', 'trainer_plan')
-    || hasAny(text, 'planContent', 'PlanContent', 'readTrainerPlanTaskContext')
-  ) {
-    return { primary: 'personal_plan_content', secondary: [] };
-  }
   if (hasAny(p, 'flashcard') || hasAny(text, 'flashcard')) return { primary: 'flashcards', secondary: [] };
   if (hasAny(p, 'collectible', 'pack_opening') || hasAny(text, 'collectible')) return { primary: 'collectibles_reward_text', secondary: [] };
   if (hasAny(p, 'reviewer', 'review_decision', 'import') || hasAny(text, 'reviewerDecision', 'decision import')) return { primary: 'admin_reviewer_import_flows', secondary: [] };
@@ -371,7 +362,7 @@ function atlasRecord(repoRoot: string, filePath: string): AtlasRecord {
       'chat.completions',
       'responses.create',
     );
-  const generatedContentConsumer = hasAny(text, 'lessonId', 'phraseId', 'wordsFr', 'sourceGraph', 'generated', 'PlanContent', 'DIALOG_SCENARIOS');
+  const generatedContentConsumer = hasAny(text, 'lessonId', 'phraseId', 'wordsFr', 'sourceGraph', 'generated', 'DIALOG_SCENARIOS');
   const storageOrCacheTouch = hasAny(text, 'AsyncStorage', 'cache', 'firestore', 'Firebase', 'storage');
   const sourceLocaleTouch = hasAny(text, 'sourceLocale', 'sourceLocales', 'useLang', 'i18n');
   const targetLocaleTouch = hasAny(text, 'targetLocale', 'StudyTargetLang', 'studyTarget', 'useStudyTarget');

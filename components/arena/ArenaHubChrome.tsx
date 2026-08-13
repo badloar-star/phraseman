@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { usePathname, useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { useTournamentPalette } from '../tournament/tournament_theme';
 
 import { ArenaTabBar, type ArenaTabDef, type ArenaTabKey } from './ArenaTabBar';
 import { ArenaModeSheet, type ArenaModeKey, type ArenaModeOption } from './ArenaModeSheet';
@@ -65,6 +66,7 @@ export function ArenaHubChrome({
   const resolvedAvailability = availability ?? ownHome?.availability ?? null;
   const resolvedMatchId = activeMatchId ?? ownHome?.activeMatch?.matchId ?? null;
   const resolvedQueue = activeQueue ?? ownHome?.activeQueue ?? null;
+  const P = useTournamentPalette();
   const pathname = usePathname();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -138,7 +140,12 @@ export function ArenaHubChrome({
   }, [resolvedAvailability, router]);
 
   return (
-    <View style={styles.root}>
+    /*
+      Фон под таббаром — цвет страницы, а не дыра. Полоса внизу оставалась
+      незакрашенной: экран рисует свой фон только над таббаром, а под ним
+      просвечивал чёрный корень, и владелец увидел это как чёрную полосу.
+    */
+    <View style={[styles.root, { backgroundColor: P.bg }]}>
       {/* Место под таббар: он лежит поверх содержимого, и без этого отступа
           последние строки длинного списка закрыты полосой. */}
       <View style={[styles.body, { paddingBottom: arenaHubBodyPaddingBottom(insets.bottom) }]}>

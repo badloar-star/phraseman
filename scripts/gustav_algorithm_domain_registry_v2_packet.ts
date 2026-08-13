@@ -12,7 +12,6 @@ type DomainId =
   | 'preposition_packs'
   | 'flashcards'
   | 'daily_phrases'
-  | 'personal_plan_content'
   | 'ai_output_language_contracts'
   | 'ai_dialogs'
   | 'mistake_explanations'
@@ -130,7 +129,6 @@ const REQUIRED_DOMAINS: DomainId[] = [
   'preposition_packs',
   'flashcards',
   'daily_phrases',
-  'personal_plan_content',
   'ai_output_language_contracts',
   'ai_dialogs',
   'mistake_explanations',
@@ -254,22 +252,6 @@ const CONTRACTS: Array<Omit<DomainContract, 'appAtlasFiles' | 'targetSensitiveFi
     researchEvidenceRequirement: 'Usage or dictionary refs for idiomatic/natural phrases.',
     aiPromptContract: 'Prompt must reject literal translations that are not natural in target language.',
     activationGate: 'Naturalness audit + reviewer accept.',
-    generationAllowedBeforeResearchPack: false,
-    applyAllowedWithoutApproval: false,
-  },
-  {
-    id: 'personal_plan_content',
-    title: 'Personal plan Echo/Gavan/Impuls content',
-    contentOwner: 'personalization_content',
-    targetFields: ['target lesson text', 'personalized examples', 'practice quizzes'],
-    sourceLocaleFields: ['RU/UK explanation strategy'],
-    uiLocaleFields: ['plan UI labels'],
-    storageNamespace: 'progress/targets/{targetLocale}/personal_plan',
-    cacheKeyPolicy: 'targetLocale + sourceLocale + planId + day + diagnosisNode + researchPackVersion',
-    reviewerDecisionContract: 'Reviewer verifies target-scoped remediation and source-locale explanation separation.',
-    researchEvidenceRequirement: 'Pedagogy blueprint node and personal-practice mapping source refs.',
-    aiPromptContract: 'Personalization prompts must include targetLocale/sourceLocale/uiLocale and target-scoped diagnosis.',
-    activationGate: 'Personal-plan contract + AI output language contract + reviewer accept.',
     generationAllowedBeforeResearchPack: false,
     applyAllowedWithoutApproval: false,
   },

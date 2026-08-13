@@ -86,7 +86,6 @@ const APP_DOMAIN_PARITY_ROLES: Record<string, SurfaceDomain['parityRole']> = {
   target_storage_and_cloud_sync: 'target_state_or_navigation',
   ai_dialog_scenarios: 'app_domain_content',
   collectible_reward_assets: 'ui_or_reward_global',
-  personal_plan_content: 'app_domain_content',
 };
 
 function argValue(name: string): string | null {

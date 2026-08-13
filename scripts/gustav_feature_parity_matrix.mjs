@@ -124,13 +124,6 @@ const FEATURE_DEFINITIONS = [
     priority: 15,
   },
   {
-    id: 'personal_plans',
-    label: 'Personal plans, plan content and audio practice',
-    keywords: ['personal_plan', 'plan_content', 'plan_day', 'listening', 'speaking'],
-    missingFamily: 'personal_plan_french_content',
-    priority: 16,
-  },
-  {
     id: 'audio_tts',
     label: 'Phrase/dialogue/question audio and TTS manifests',
     keywords: ['audio', 'tts', 'voice', 'regen_phrase_audio', 'upload_plan_audio'],
@@ -212,7 +205,7 @@ function isFrenchEvidence(entry) {
 }
 
 function isEnglishEvidence(entry) {
-  return /\ben\b|english|lesson_data|flashcard|personal_plan|course_pack/.test(entry.lower);
+  return /\ben\b|english|lesson_data|flashcard|course_pack/.test(entry.lower);
 }
 
 function sha256(value) {
@@ -338,7 +331,6 @@ function nextActionFor(featureId) {
     community_card_packs: 'Map collectible/community card product shape to French-specific packs.',
     daily_phrase: 'Build the French Daily Phrase bank and preserve its target gate.',
     diagnostics_exams: 'Build French diagnostic, level-check and exam pools.',
-    personal_plans: 'Build French personal plan content, audio metadata and target-scoped progress.',
     audio_tts: 'Generate OpenAI TTS manifest and missing-audio gate for all voice-required French items.',
     server_course_packs: 'Verify pack manifests, hashes, loader paths, rollback and remote delivery for French.',
     storage_cloud_isolation: 'Run target storage/cloud/cache isolation gates across all French surfaces.',

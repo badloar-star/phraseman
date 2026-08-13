@@ -37,8 +37,8 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
         players: [{ uid: 'a', name: 'A' }, { uid: 'b', name: 'B' }],
         state: 'accepting',
       });
-      await setDoc(doc(db, 'arena_v2_matches/match-1/arena_v2_members', 'auth-a'), { seat: 'a' });
-      await setDoc(doc(db, 'arena_v2_matches/match-1/arena_v2_members', 'auth-b'), { seat: 'b' });
+      await setDoc(doc(db, 'arena_v2_matches/match-1/arena_v2_members', 'auth-a'), { seat: 'a', seatId: 'a' });
+      await setDoc(doc(db, 'arena_v2_matches/match-1/arena_v2_members', 'auth-b'), { seat: 'b', seatId: 'b' });
       await setDoc(doc(db, 'arena_v2_match_private', 'match-1'), { answers: {}, tasks: [{ secret: true }] });
       await setDoc(doc(db, 'users/stable-a/arena_v2_seasons', 'season-1'), { stars: 12 });
       await setDoc(doc(db, 'users/stable-a/arena_v2_receipts', 'match-1'), { stars: 4 });
@@ -107,6 +107,52 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
     await assertFails(updateDoc(doc(owner, 'arena_v2_profiles', 'stable-a'), { rank: 23 }));
     await assertFails(setDoc(doc(owner, 'arena_v2_invites', 'forged'), { toAuthUid: 'auth-b' }));
     await assertFails(setDoc(doc(owner, 'arena_v2_pair_limits', 'forged'), { count: 0 }));
+  });
+
+  /**
+   * Живой канал — ЕДИНСТВЕННОЕ место во всей Арене, куда пишет сам клиент.
+   * Значит, это и единственное место, где чужая запись возможна в принципе:
+   * без проверки места за столом соперник рисовал бы себе прогресс, а игрок
+   * видел бы фальшивую гонку и проигрывал бы ей.
+   */
+  it('lets a player write only into their own live seat and never into the opponent seat', async () => {
+    const seatDoc = (db: ReturnType<ReturnType<typeof environment.authenticatedContext>['firestore']>, seatId: string) =>
+      doc(db, `arena_v2_match_live/match-1/seats/${seatId}`);
+    const payload = { schemaVersion: 'arena-live.v1', ticks: [], updatedAtMs: 1 };
+
+    const playerA = environment.authenticatedContext('auth-a').firestore();
+    const playerB = environment.authenticatedContext('auth-b').firestore();
+
+    await assertSucceeds(setDoc(seatDoc(playerA, 'a'), payload));
+    await assertSucceeds(setDoc(seatDoc(playerB, 'b'), payload));
+
+    // Чужое место — отказ. Это главное утверждение всей проверки.
+    await assertFails(setDoc(seatDoc(playerA, 'b'), payload));
+    await assertFails(setDoc(seatDoc(playerB, 'a'), payload));
+
+    // Посторонний не пишет и не читает канал вовсе.
+    const outsider = environment.authenticatedContext('auth-c').firestore();
+    await assertFails(setDoc(seatDoc(outsider, 'a'), payload));
+    await assertFails(getDoc(seatDoc(outsider, 'a')));
+
+    // Соперник читать канал обязан: иначе гонки не видно ни у кого.
+    await assertSucceeds(getDoc(seatDoc(playerA, 'b')));
+  });
+
+  it('bounds the live channel payload and forbids deleting a seat', async () => {
+    const playerA = environment.authenticatedContext('auth-a').firestore();
+    const seat = doc(playerA, 'arena_v2_match_live/match-1/seats/a');
+    // Без метки времени уборка не найдёт брошенный канал, и он останется
+    // навсегда — то есть будет оплачиваться вечно.
+    await assertFails(setDoc(seat, { schemaVersion: 'arena-live.v1', ticks: [] }));
+    // Чужая схема и переполненный список — тоже отказ: канал живёт ровно
+    // столько, сколько матч, и раздувать его нечем.
+    await assertFails(setDoc(seat, { schemaVersion: 'forged.v1', ticks: [], updatedAtMs: 1 }));
+    await assertFails(setDoc(seat, {
+      schemaVersion: 'arena-live.v1',
+      ticks: Array.from({ length: 11 }, (_, index) => ({ taskIndex: index })),
+      updatedAtMs: 1,
+    }));
   });
 
   it('keeps sealed expansion evidence and shared social roots unreadable', async () => {

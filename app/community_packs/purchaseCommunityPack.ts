@@ -267,7 +267,7 @@ export async function purchaseCommunityPackWithShards(
 export type CommunityPackGiftRedeemResult = 'ok' | 'already_owned' | 'redeem_failed';
 
 /**
- * Навсегда добавляет community-набор по активному бонусу «Колода в подарок».
+ * Навсегда добавляет community-набор по активному бонусу «Набор в подарок».
  * Доступ создаёт сервер: он сам проверяет окно недельного бонуса и одноразовость.
  * Локальный ваучер сгорает только после подтверждённого entitlement и сохранения id.
  */

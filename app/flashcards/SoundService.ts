@@ -173,7 +173,12 @@ export function playSfx(name: FcSfxName): void {
 // ── Очередь SFX → пауза → TTS ─────────────────────────────────────────────────
 
 export type FcSpeakOpts = {
-  /** SFX перед речью; null — без звука (только TTS). Дефолт 'flip'. */
+  /**
+   * SFX перед речью; null — без звука (только TTS). Дефолт — null.
+   * Раньше дефолтом был 'flip': по репорту владельца звук переворачивания
+   * карточки убран целиком, поэтому «случайно» он больше не подмешивается —
+   * нужный SFX экран передаёт явно.
+   */
   sfx?: FcSfxName | null;
   /** BCP-47, напр. en-US */
   language?: string;
@@ -228,7 +233,7 @@ export function speakAfterSfx(text: string, opts?: FcSpeakOpts): void {
     clearTimeout(pendingTtsTimer);
     pendingTtsTimer = null;
   }
-  const sfxName = opts?.sfx === undefined ? 'flip' : opts.sfx;
+  const sfxName = opts?.sfx === undefined ? null : opts.sfx;
   const willPlaySfx = sfxName != null && isFcSfxEnabled();
   if (!willPlaySfx) {
     speakNow(normalized, opts);
@@ -248,7 +253,7 @@ export function speakAfterSfx(text: string, opts?: FcSpeakOpts): void {
  */
 export function autoSpeakAfterSfx(text: string, opts?: FcSpeakOpts): void {
   if (!isFcAutoSpeakEnabled()) {
-    const sfxName = opts?.sfx === undefined ? 'flip' : opts.sfx;
+    const sfxName = opts?.sfx === undefined ? null : opts.sfx;
     if (sfxName != null) playSfx(sfxName);
     return;
   }

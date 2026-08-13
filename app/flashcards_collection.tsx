@@ -1,8 +1,8 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 /**
  * cards-2.0 (E11): контейнер коллекции — загрузка данных (useCollectionData),
- * фильтр/поиск, роутинг режимов «Список / Колода», delete+undo-пайплайн, модалки.
- * View-режимы вынесены: CollectionListView (список) и CollectionDeckView (колода);
+ * фильтр/поиск, роутинг режимов «Список / Стопка», delete+undo-пайплайн, модалки.
+ * View-режимы вынесены: CollectionListView (список) и CollectionDeckView (стопка карточек);
  * шапка — CollectionHeader; хуки данных/удаления/трекинга — useCollectionData.
  */
 import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_EXPO_GO } from './config';
@@ -17,10 +17,12 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
+  View,
   useWindowDimensions,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -163,8 +165,8 @@ export type FlashcardsCollectionScreenProps = {
   /**
    * Cards 2.1 §5.1: экран открыт как КОРЕНЬ раздела «Карточки» (`/flashcards`) —
    * сразу сохранённые карточки с поиском и фильтром. В этом режиме снизу
-   * закреплён таббар раздела (§5.2), а панель «Тренировать эту колоду»
-   * не дублируется (её роль берёт левая позиция таббара).
+   * закреплён таббар раздела (§5.2), а кнопки «Слушать» / «Тренировать»
+   * не дублируются (их роль берёт левая позиция таббара).
    */
   sectionRoot?: boolean;
 };
@@ -201,6 +203,8 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 
   const s        = STR[strLang] ?? STR.ru;
   const insets   = useStableSafeAreaInsets();
+  /** Ограничение ширины контента на планшетах — как в ContentWrap, но без flex. */
+  const { contentMaxW } = useScreen();
   const { height: screenH } = useWindowDimensions();
   const { CARD_H, PEEK } = useMemo(() => {
     const reserved = 200 + insets.top + insets.bottom;
@@ -250,7 +254,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   }, [routeCat]);
   const [activeFilter, setActiveFilter]   = useState<string>('all');
   const [filterOpen, setFilterOpen]       = useState(false);
-  // E11: режим просмотра «Список / Колода» (персист fc_collection_view_v1)
+  // E11: режим просмотра «Список / Стопка» (персист fc_collection_view_v1)
   const [viewMode, setViewMode] = useState<FcCollectionViewMode>('list');
   useEffect(() => {
     let mounted = true;
@@ -428,7 +432,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     persistProgressRef.current(idx);
   }, [focusedIndexSV]);
 
-  /** Смена верхней карточки в «Колоде»: позиция + трекинг просмотра. */
+  /** Смена верхней карточки в «Стопке»: позиция + трекинг просмотра. */
   const onDeckIndexChanged = useCallback((idx: number, cardId: string) => {
     onFocusedIndexChanged(idx);
     registerFlashcardViewed([cardId]);
@@ -526,8 +530,8 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     return () => sub.remove();
   }, [filterOpen, viewMode, exitDeckToList, leaveCollection]);
 
-  // ── E8: «Тренировать эту колоду» — words-сессия тренера с ?deck=… (§3.7) ──
-  /** deckId текущей колоды: сохранённые / свои карточки / купленный набор. */
+  // ── E8: «Тренировать этот набор» — words-сессия тренера с ?deck=… (§3.7) ──
+  /** deckId текущего набора: сохранённые / свои карточки / добавленный набор. */
   const trainDeckId = useMemo((): string | null => {
     if (packDeeplink) return `pack:${packDeeplink}`;
     // Просмотр купленного набора через фильтр (без ?pack=) — тоже тренируем набор
@@ -553,12 +557,87 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const startDeckTraining = useCallback(() => startDeckSession('trainer'), [startDeckSession]);
   const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);
 
+  /** Набор уже у пользователя (куплен / добавлен / он его автор). */
+  const packOwnedByMe = useMemo(() => {
+    if (!packDeeplink) return false;
+    if (ownedPackIdList.includes(packDeeplink) || communityOwnedIdList.includes(packDeeplink)) return true;
+    return (
+      !!currentMarketPack?.isCommunityUgc &&
+      !!currentMarketPack.authorStableId &&
+      !!accessStableId &&
+      currentMarketPack.authorStableId === accessStableId
+    );
+  }, [packDeeplink, ownedPackIdList, communityOwnedIdList, currentMarketPack, accessStableId]);
+
+  /** Только просмотр: набор открыт из каталога и ещё не добавлен себе. */
+  const previewMode = previewRequested && !packOwnedByMe;
+
   /**
-   * Нижняя закреплённая панель тренировки — только когда в колоде есть карточки.
-   * В корне раздела (§5) её место занимает таббар — не дублируем два ряда кнопок.
+   * «Слушать» / «Тренировать» — компактными иконками ВВЕРХУ экрана (замечание
+   * владельца: раньше это были широкие кнопки с текстом внизу). В корне раздела
+   * их роль берёт таббар, в режиме просмотра тренировка недоступна.
    */
-  const trainPanelVisible =
-    !sectionRoot && trainDeckId !== null && !loading && filteredCards.length > 0;
+  const showModeButtons =
+    !sectionRoot && !previewMode && trainDeckId !== null && !loading && filteredCards.length > 0;
+
+  /**
+   * «Сделать публичным»: своя коллекция, которая ещё живёт только на устройстве.
+   * Уже опубликованный / отправленный набор кнопку не показывает.
+   */
+  const [publishBusy, setPublishBusy] = useState(false);
+  const showPublishButton =
+    !!packDeeplink &&
+    !previewMode &&
+    !!currentMarketPack?.isCommunityUgc &&
+    currentMarketPack.listingStatus === 'local_only' &&
+    CLOUD_SYNC_ENABLED &&
+    !IS_EXPO_GO;
+
+  const onPublishPack = useCallback(() => {
+    if (!packDeeplink || publishBusy) return;
+    setPublishBusy(true);
+    void (async () => {
+      const res = await publishLocalAuthorPack(packDeeplink, lang, studyTarget);
+      setPublishBusy(false);
+      if (res === 'submitted') {
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: 'Набор отправлен на публикацию.',
+          uk: 'Набір надіслано на публікацію.',
+          es: 'El pack se ha enviado para publicarse.',
+          'pt-BR': 'O pacote foi enviado para publicação.',
+          vi: 'Bộ thẻ đã được gửi để đăng.',
+          id: 'Paket dikirim untuk dipublikasikan.',
+          tr: 'Paket yayınlanmak üzere gönderildi.',
+          pl: 'Zestaw wysłany do publikacji.',
+        }));
+        void loadAll();
+        return;
+      }
+      if (res === 'invalid') {
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Для публикации нужны название, описание и достаточное число карточек.',
+          uk: 'Для публікації потрібні назва, опис і достатня кількість карток.',
+          es: 'Para publicar hacen falta título, descripción y suficientes tarjetas.',
+          'pt-BR': 'Para publicar são necessários título, descrição e cartões suficientes.',
+          vi: 'Để đăng cần có tiêu đề, mô tả và đủ số thẻ.',
+          id: 'Untuk publikasi perlu judul, deskripsi, dan cukup kartu.',
+          tr: 'Yayınlamak için başlık, açıklama ve yeterli kart gerekir.',
+          pl: 'Do publikacji potrzebny jest tytuł, opis i wystarczająca liczba kart.',
+        }));
+        return;
+      }
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось отправить набор на публикацию.',
+        uk: 'Не вдалося надіслати набір на публікацію.',
+        es: 'No se pudo enviar el pack para publicarse.',
+        'pt-BR': 'Não foi possível enviar o pacote para publicação.',
+        vi: 'Không thể gửi bộ thẻ để đăng.',
+        id: 'Gagal mengirim paket untuk dipublikasikan.',
+        tr: 'Paket yayına gönderilemedi.',
+        pl: 'Nie udało się wysłać zestawu do publikacji.',
+      }));
+    })();
+  }, [packDeeplink, publishBusy, lang, studyTarget, loadAll]);
   /**
    * Высота таббара раздела — под неё резервируем «хвост» списка (§5.2).
    * Нижний инсет здесь уже съеден `SafeAreaView` экрана, поэтому таббару передаём 0.
@@ -590,22 +669,39 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           activeFilter={activeFilter}
           filterOpen={filterOpen}
           onToggleFilterOpen={() => setFilterOpen((o) => !o)}
-          showSearch={!(isEmpty && !searchActive)}
+          showModeButtons={showModeButtons}
+          onListen={startDeckListening}
+          onTrain={startDeckTraining}
+          showPublish={showPublishButton}
+          publishBusy={publishBusy}
+          onPublish={onPublishPack}
+          /* На экране НАБОРА поиска по карточкам нет (в «Сохранённых» — остаётся). */
+          showSearch={!packDeeplink && !(isEmpty && !searchActive)}
           searchInput={searchInput}
           searchActive={searchActive}
           onSearchInput={setSearchInput}
         />
 
-        {/* Cards 2.1 §2: лайк активности и счётчик добавлений — на самом наборе. */}
+        {/*
+          Лайк и «Добавить себе» — на самом наборе.
+
+          БАГ «невидимой стены» (замечание владельца): раньше строка была обёрнута
+          в <ContentWrap>, а у него `flex: 1`. Соседом списка он забирал ПОЛОВИНУ
+          высоты экрана прозрачным блоком — карточки уезжали под невидимый слой.
+          Обёртка ниже ограничивает ширину БЕЗ flex, поэтому список получает всю
+          оставшуюся высоту.
+        */}
         {packDeeplink && currentMarketPack?.isCommunityUgc ? (
-          <ContentWrap>
+          <View style={[st.socialRow, { maxWidth: contentMaxW }]}>
             <CommunityPackSocialBar
               pack={currentMarketPack}
               lang={strLang}
               t={t}
-              owned={communityOwnedIdList.includes(packDeeplink)}
+              owned={packOwnedByMe}
+              variant="screen"
+              onAdded={() => { void loadAll(); }}
             />
-          </ContentWrap>
+          </View>
         ) : null}
 
         {isEmpty ? (
@@ -663,19 +759,16 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             searchActive={searchActive}
             showDeleteHint={showDeleteHint}
             onSetShowDeleteHint={setShowDeleteHint}
-            allowAddCustomCard={allowAddCustomCard}
+            allowAddCustomCard={allowAddCustomCard && !previewMode}
             onCreateCard={openCreateEditor}
             onSpeak={onSpeakCb}
             onEditCard={openEditEditor}
-            isEditableCustomCard={isEditableCustomCard}
+            isEditableCustomCard={previewMode ? () => false : isEditableCustomCard}
             onDeleteCardById={deleteCardById}
             onOpenPremiumLimit={openPremiumLimit}
             onFocusedIndexChanged={onFocusedIndexChanged}
             onCardsViewed={registerFlashcardViewed}
             onFlipTracked={trackCardFlip}
-            trainPanelVisible={trainPanelVisible}
-            onTrainDeck={startDeckTraining}
-            onListenDeck={startDeckListening}
             strengthForCard={strengthForCard}
             extraBottomPad={tabBarReserve}
           />
@@ -685,7 +778,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
         <UndoDeleteSnackbar
           bottomOffset={
             Math.max(insets.bottom, 8) + 14
-            + (trainPanelVisible && viewMode === 'list' && !isEmpty ? 66 : 0)
             + (sectionRoot ? FC_TABBAR_HEIGHT : 0)
           }
           lang={strLang}
@@ -722,4 +814,12 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 // ─── Styles ───────────────────────────────────────────────────────────────────
 const st = StyleSheet.create({
   safe: { flex: 1 },
+  /** Ширина как у ContentWrap, но БЕЗ flex — иначе блок съедает высоту списка. */
+  socialRow: {
+    width: '100%',
+    alignSelf: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 10,
+    paddingBottom: 2,
+  },
 });

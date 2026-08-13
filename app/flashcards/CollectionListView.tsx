@@ -1,4 +1,3 @@
-import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 /**
  * cards-2.0 (E11): списочный view коллекции, вынесенный 1:1 из монолита
  * flashcards_collection.tsx (§3.2, §7 E11). Контейнер остаётся оркестратором
@@ -82,9 +81,12 @@ type Props = {
   onFocusedIndexChanged: (idx: number) => void;
   onCardsViewed: (ids: string[]) => void;
   onFlipTracked: (cardId: string) => void;
-  trainPanelVisible: boolean;
-  onTrainDeck: () => void;
-  onListenDeck: () => void;
+  /** @deprecated режимы живут в шапке (`CollectionHeader`); проп ничего не рисует. */
+  trainPanelVisible?: boolean;
+  /** @deprecated см. `CollectionHeader`. */
+  onTrainDeck?: () => void;
+  /** @deprecated см. `CollectionHeader`. */
+  onListenDeck?: () => void;
   /** E13: «сила слова» по EN карточки (word_strength.strengthFor); null — без точек. */
   strengthForCard?: ((en: string) => WordStrength | null) | null;
   /** Cards 2.1 §5.2: запас снизу под закреплённый таббар раздела (0 — таббара нет). */
@@ -122,13 +124,9 @@ export default function CollectionListView({
   onFocusedIndexChanged,
   onCardsViewed,
   onFlipTracked,
-  trainPanelVisible,
-  onTrainDeck,
-  onListenDeck,
   strengthForCard = null,
   extraBottomPad = 0,
 }: Props) {
-  const insets = useStableSafeAreaInsets();
   const flatListRef = useRef<any>(null);
   const [scrollViewH, setScrollViewH] = useState(0);
   const scrollViewHRef = useRef(0);
@@ -660,69 +658,11 @@ export default function CollectionListView({
         </View>
       </View>
 
-      {/* E8/E10: закреплённая панель «Тренировать эту колоду» + «Слушать» (§3.7–3.8) */}
-      {trainPanelVisible && (
-        <View
-          style={{
-            flexDirection: 'row',
-            gap: 10,
-            paddingHorizontal: 14,
-            paddingTop: 8,
-            paddingBottom: Math.max(insets.bottom, 8) + 8,
-          }}
-        >
-          <TouchableOpacity
-            testID="fc-listen-deck"
-            accessibilityLabel="qa-fc-listen-deck"
-            accessible
-            activeOpacity={0.85}
-            onPress={onListenDeck}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              borderRadius: 16,
-              borderWidth: 1.5,
-              borderColor: t.accent,
-              backgroundColor: `${t.accent}14`,
-              paddingVertical: 14,
-              paddingHorizontal: 16,
-            }}
-          >
-            <Ionicons name="headset-outline" size={18} color={t.accent} />
-            <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
-              {triLang(lang, { ru: 'Слушать', uk: 'Слухати', es: 'Escuchar' })}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            testID="fc-train-deck"
-            accessibilityLabel="qa-fc-train-deck"
-            accessible
-            activeOpacity={0.85}
-            onPress={onTrainDeck}
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              borderRadius: 16,
-              backgroundColor: t.accent,
-              paddingVertical: 14,
-            }}
-          >
-            <Ionicons name="barbell-outline" size={18} color={t.correctText} />
-            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-              {triLang(lang, {
-                ru: 'Тренировать эту колоду',
-                uk: 'Тренувати цю колоду',
-                es: 'Entrenar este mazo',
-              })}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )}
+      {/*
+        Кнопки «Слушать» / «Тренировать» переехали ВВЕРХ экрана и стали компактными
+        иконками без подписей (замечание владельца после теста на iPhone) — см.
+        `CollectionHeader`. Нижняя широкая панель с текстом здесь больше не рисуется.
+      */}
     </View>
   );
 }

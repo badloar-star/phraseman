@@ -67,6 +67,14 @@ describe('2. звук переворачивания карточки убран
     expect(phraseCard).toContain("playSfx(result === 'know' ? 'swipe_know' : 'swipe_learn')");
   });
 
+  it('SoundService не подмешивает флип по умолчанию перед TTS', () => {
+    const sound = read('app/flashcards/SoundService.ts');
+    expect(sound).not.toContain("opts?.sfx === undefined ? 'flip' : opts.sfx");
+    expect(sound.match(/opts\?\.sfx === undefined \? null : opts\.sfx/g)?.length).toBe(2);
+    // сам каталог звуков не тронут — 'flip' остаётся доступен другим доменам
+    expect(sound).toContain("flip: { source: () => require('../../assets/sounds/fc/fc_flip.mp3')");
+  });
+
   it('нигде в app/ больше не вызывается SFX флипа', () => {
     const hits: string[] = [];
     const walk = (dir: string) => {

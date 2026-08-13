@@ -71,23 +71,37 @@ describe('Arena V2 Quick bot gameplay (Firestore emulator smoke)', () => {
     await deleteApp(app);
   });
 
-  it('queues, falls back once to a disclosed bot, settles timeouts and clears active state', async () => {
+  /**
+   * Бот СКРЫТ. Раньше этот сценарий назывался «disclosed bot» и проверял
+   * обратное: что игроку честно сообщают тип соперника. Владелец это
+   * пересмотрел — по интерфейсу и по данным бота узнать нельзя, иначе матч с
+   * ним обесценивается ещё до первого задания.
+   */
+  it('queues, falls back once to a hidden bot, settles timeouts and clears active state', async () => {
     const request = (data: Record<string, unknown>) => callableRequest('auth-a', data);
     const waiting = await runtime.arenaV2FindMatch.run(request({ mode: 'quick', requestId: 'queue-smoke-1' }));
     expect(waiting).toMatchObject({ ok: true, status: 'waiting', stableUid: 'stable-a' });
     await db.collection('arena_v2_queue').doc('stable-a').update({ joinedAtMs: Date.now() - 7_000 });
 
     const paired = await runtime.arenaV2QuickBotFallback.run(request({ requestId: 'queue-smoke-1' }));
-    expect(paired).toMatchObject({ ok: true, status: 'matched', opponentKind: 'bot', viewerSeat: 'a' });
+    // Ответ вызова говорит 'human' даже про бота: настоящий тип остался только
+    // в приватном документе, где он нужен экономике и аналитике.
+    expect(paired).toMatchObject({ ok: true, status: 'matched', opponentKind: 'human', viewerSeat: 'a' });
     const matchRef = db.collection('arena_v2_matches').doc(paired.matchId);
     const privateRef = db.collection('arena_v2_match_private').doc(paired.matchId);
     const [publicBefore, privateBefore, members] = await Promise.all([
       matchRef.get(), privateRef.get(), matchRef.collection('arena_v2_members').get(),
     ]);
-    expect(publicBefore.data()).toMatchObject({ opponentKind: 'bot', state: 'accepting', acceptedBy: ['b'] });
+    // Публичный документ читается участником. 'bot' здесь был бы прямой
+    // выдачей бота: достаточно посмотреть данные, играть не обязательно.
+    expect(publicBefore.data()).toMatchObject({ opponentKind: 'human', state: 'accepting', acceptedBy: ['b'] });
+    // А приватный тип соперника обязан остаться: по нему считаются шансы
+    // редкой награды.
+    expect(privateBefore.data()?.participantStableUids?.some((uid: string) => uid.startsWith('bot_'))).toBe(true);
     expect(JSON.stringify(publicBefore.data())).not.toContain('stable-a');
     expect(JSON.stringify(publicBefore.data())).not.toContain('auth-a');
-    expect(privateBefore.data()?.tasks).toHaveLength(10);
+    // Быстрый матч — пять заданий, не десять (ARENA_V2_QUICK_TASK_COUNT).
+    expect(privateBefore.data()?.tasks).toHaveLength(5);
     expect(members.size).toBe(1);
 
     const accepted = await runtime.arenaV2MatchAccept.run(request({ matchId: paired.matchId }));

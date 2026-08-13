@@ -1,0 +1,5 @@
+PHRASEMAN_COMPASS_FUTURE_ONLY_V1
+
+This marker permanently blocks release and deployment from this branch snapshot.
+It may be removed only after a direct, explicit command from the product owner
+to resume Compass after Learning V2 is production-ready.

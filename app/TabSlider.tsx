@@ -8,6 +8,7 @@ import Animated, {
   withSpring,
   Easing,
   cancelAnimation,
+  useReducedMotion,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScreen } from '../hooks/use-screen';
@@ -23,6 +24,7 @@ interface Props {
   onSwipeComplete?: (idx: number) => void;
   children: React.ReactNode[];
   swipeEnabled?: boolean;
+  minIndex?: number;
 }
 
 export default function TabSlider({
@@ -32,8 +34,10 @@ export default function TabSlider({
   onSwipeComplete,
   children,
   swipeEnabled = true,
+  minIndex = 0,
 }: Props) {
   const { width: screenW } = useScreen();
+  const reducedMotion = useReducedMotion();
   const [layoutWidth, setLayoutWidth] = useState(screenW);
   const W = layoutWidth > 0 ? layoutWidth : screenW;
 
@@ -50,6 +54,7 @@ export default function TabSlider({
   const isAnimating = useSharedValue(false);
   const tabWidth    = useSharedValue(W);
   const tabCount    = useSharedValue(React.Children.count(children));
+  const minimumIdx  = useSharedValue(minIndex);
 
   // JS-side refs for callbacks (worklets schedule them on the React Native thread).
   const onSwipeStartRef    = useRef(onSwipeStart);
@@ -57,6 +62,9 @@ export default function TabSlider({
   useEffect(() => { onSwipeStartRef.current = onSwipeStart; }, [onSwipeStart]);
   useEffect(() => { onSwipeCompleteRef.current = onSwipeComplete; }, [onSwipeComplete]);
   useEffect(() => { tabCount.value = React.Children.count(children); }, [children, tabCount]);
+  // Eligibility changes (account/target/recommendation invalidation) must reach
+  // the UI-thread gesture before the next frame can expose a forbidden page.
+  useLayoutEffect(() => { minimumIdx.value = minIndex; }, [minIndex, minimumIdx]);
 
   // Sync width on resize
   useLayoutEffect(() => {
@@ -66,14 +74,28 @@ export default function TabSlider({
     }
   }, [W, tabWidth, translateX, currentIdx]);
 
-  // Snap when activeIndex changes from outside (tab bar tap) — JS thread only
+  // Programmatic changes (tab tap, Compass back) travel through the same
+  // premium horizontal motion instead of teleporting to the destination.
   useLayoutEffect(() => {
-    if (currentIdx.value !== activeIndex && !isAnimating.value) {
+    if (currentIdx.value !== activeIndex) {
       currentIdx.value = activeIndex;
       cancelAnimation(translateX);
-      translateX.value = -activeIndex * W;
+      if (reducedMotion) {
+        isAnimating.value = false;
+        translateX.value = -activeIndex * W;
+        return;
+      }
+      isAnimating.value = true;
+      translateX.value = withTiming(
+        -activeIndex * W,
+        { duration: 260, easing: Easing.out(Easing.cubic) },
+        () => {
+          'worklet';
+          isAnimating.value = false;
+        },
+      );
     }
-  }, [activeIndex, W, translateX, currentIdx, isAnimating]);
+  }, [activeIndex, W, translateX, currentIdx, isAnimating, reducedMotion]);
 
   const fireSwipeStart = useCallback((i: number) => { onSwipeStartRef.current?.(i); }, []);
   const fireSwipeComplete = useCallback((i: number) => { onSwipeCompleteRef.current?.(i); }, []);
@@ -91,7 +113,7 @@ export default function TabSlider({
       const dx = e.translationX;
       const ok =
         (dx < 0 && currentIdx.value < tabCount.value - 1) ||
-        (dx > 0 && currentIdx.value > 0);
+        (dx > 0 && currentIdx.value > minimumIdx.value);
       if (ok) {
         translateX.value = base + dx * 0.92;
       }
@@ -108,7 +130,7 @@ export default function TabSlider({
       const w = tabWidth.value;
 
       const shouldGoNext = (dx < -50 || vx < -400) && idx < count - 1;
-      const shouldGoPrev = (dx > 50  || vx > 400)  && idx > 0;
+      const shouldGoPrev = (dx > 50  || vx > 400)  && idx > minimumIdx.value;
 
       if (shouldGoNext) {
         const toIdx = idx + 1;
@@ -117,7 +139,7 @@ export default function TabSlider({
         scheduleOnRN(fireSwipeStart, toIdx);
         translateX.value = withTiming(
           -toIdx * w,
-          { duration: 260, easing: Easing.out(Easing.cubic) },
+          { duration: reducedMotion ? 0 : 260, easing: Easing.out(Easing.cubic) },
           (finished) => {
             'worklet';
             isAnimating.value = false;
@@ -131,7 +153,7 @@ export default function TabSlider({
         scheduleOnRN(fireSwipeStart, toIdx);
         translateX.value = withTiming(
           -toIdx * w,
-          { duration: 260, easing: Easing.out(Easing.cubic) },
+          { duration: reducedMotion ? 0 : 260, easing: Easing.out(Easing.cubic) },
           (finished) => {
             'worklet';
             isAnimating.value = false;
@@ -140,14 +162,16 @@ export default function TabSlider({
         );
       } else {
         // Возврат на место — spring с ощущением упругости
-        translateX.value = withSpring(-idx * w, {
-          damping: 22,
-          stiffness: 220,
-          mass: 0.4,
-          velocity: vx,
-        });
+        translateX.value = reducedMotion
+          ? withTiming(-idx * w, { duration: 0 })
+          : withSpring(-idx * w, {
+            damping: 22,
+            stiffness: 220,
+            mass: 0.4,
+            velocity: vx,
+          });
       }
-    }), [currentIdx, fireSwipeComplete, fireSwipeStart, isAnimating, swipeEnabled, tabCount, tabWidth, translateX]);
+    }), [currentIdx, fireSwipeComplete, fireSwipeStart, isAnimating, minimumIdx, reducedMotion, swipeEnabled, tabCount, tabWidth, translateX]);
 
   const animStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -160,7 +184,13 @@ export default function TabSlider({
       <View style={s.outer} onLayout={handleLayout}>
         <Animated.View style={[s.row, { width: W * tabs.length }, animStyle]}>
           {tabs.map((child, i) => (
-            <View key={i} style={[s.tab, { width: W }]}>
+            <View
+              key={i}
+              style={[s.tab, { width: W }]}
+              pointerEvents={i === activeIndex ? 'auto' : 'none'}
+              accessibilityElementsHidden={i !== activeIndex}
+              importantForAccessibility={i === activeIndex ? 'auto' : 'no-hide-descendants'}
+            >
               {child}
             </View>
           ))}

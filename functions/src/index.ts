@@ -1,27 +1,38 @@
-import * as admin from 'firebase-admin';
-import * as functions from 'firebase-functions/v2';
-import { getLevelFromXP } from './xp_levels';
+import * as admin from "firebase-admin";
+import * as functions from "firebase-functions/v2";
+import { getLevelFromXP } from "./xp_levels";
 import {
   HELP_BOARD_DECOMMISSIONED_EXPORTS,
   compassChatDailyCronDisabled,
   helpBoardCompassRetryCronDisabled,
   helpBoardGenerateCompassForTopicDisabled,
-} from './help_board_decommission';
+} from "./help_board_decommission";
 
 admin.initializeApp();
 
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { resetWeeklyXp } = require('./reset_weekly_xp');
+const { resetWeeklyXp } = require("./reset_weekly_xp");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
+const { computeLeaderboardStats } = require("./compute_leaderboard_stats");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runReEngagePush } = require('./re_engage_push') as {
-  runReEngagePush: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failedChunks: number; ticketCount: number }>;
+const { runReEngagePush } = require("./re_engage_push") as {
+  runReEngagePush: (now?: number) => Promise<{
+    scanned: number;
+    candidates: number;
+    sent: number;
+    failedChunks: number;
+    ticketCount: number;
+  }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runPremiumExpiryReminder } = require('./premium_expiry_reminder') as {
-  runPremiumExpiryReminder: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failed: number }>;
+const { runPremiumExpiryReminder } = require("./premium_expiry_reminder") as {
+  runPremiumExpiryReminder: (now?: number) => Promise<{
+    scanned: number;
+    candidates: number;
+    sent: number;
+    failed: number;
+  }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
@@ -33,24 +44,34 @@ const {
   runSupportTelegramReplyJobRecovery,
   GMAIL_SUPPORT_APP_PASSWORD,
   SUPPORT_OPENAI_API_KEY,
-} = require('./support_inbox') as {
+} = require("./support_inbox") as {
   runSupportInboxPullCron: () => Promise<unknown>;
   runSupportOwnerAlertRetryCron: () => Promise<unknown>;
   runSupportReplyDispatchSweeper: () => Promise<unknown>;
   runSupportAutoReplyRetryCron: () => Promise<unknown>;
   runSupportTelegramAutoSendDeadline: () => Promise<unknown>;
   runSupportTelegramReplyJobRecovery: () => Promise<unknown>;
-  GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
-  SUPPORT_OPENAI_API_KEY: import('firebase-functions/params').SecretParam;
+  GMAIL_SUPPORT_APP_PASSWORD: import("firebase-functions/params").SecretParam;
+  SUPPORT_OPENAI_API_KEY: import("firebase-functions/params").SecretParam;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { JARVIS_TELEGRAM_CONFIG } = require('./jarvis/telegram_owner_config') as {
-  JARVIS_TELEGRAM_CONFIG: import('firebase-functions/params').SecretParam;
-};
+const { JARVIS_TELEGRAM_CONFIG } =
+  require("./jarvis/telegram_owner_config") as {
+    JARVIS_TELEGRAM_CONFIG: import("firebase-functions/params").SecretParam;
+  };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
+const {
+  leagueJoinOrUpdateGroup,
+  leagueUpdateMyMember,
+  leagueSyncMyBoost,
+  leagueActivateGroupBoost,
+} = require("./league_groups");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authEnsureStableLink, authStampAnonOwnership, authRecoveryHint } = require('./auth_identity');
+const {
+  authEnsureStableLink,
+  authStampAnonOwnership,
+  authRecoveryHint,
+} = require("./auth_identity");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   authRequestRecoveryCode,
@@ -60,17 +81,20 @@ const {
   authCleanInstallRecoveryDeliveryWorker,
   authIssueRecoveryHandoffToken,
   authCompleteRecoveryHandoff,
-} = require('./auth_recovery');
+} = require("./auth_recovery");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   authMergeStableAccounts,
   accountMergeOutboxWorker,
   accountMergeOutboxRetryCron,
-} = require('./auth_merge');
+} = require("./auth_merge");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { accountDeleteMine, accountDeleteEnqueue } = require('./account_delete');
+const { accountDeleteMine, accountDeleteEnqueue } = require("./account_delete");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { accountDeleteWorker, accountDeleteRetryCron } = require('./account_delete_worker');
+const {
+  accountDeleteWorker,
+  accountDeleteRetryCron,
+} = require("./account_delete_worker");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   leaderboardUpdateDailyAnalytics,
@@ -78,15 +102,18 @@ const {
   nameGenerateAndReserve,
   nameReserve,
   nameReleaseMine,
-} = require('./leaderboard');
+} = require("./leaderboard");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueChestClaim } = require('./league_chest');
+const { leagueChestClaim } = require("./league_chest");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { friendEnsureMyCode } = require('./friend_codes');
+const { friendEnsureMyCode } = require("./friend_codes");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { friendLookupUser } = require('./friend_lookup');
+const { friendLookupUser } = require("./friend_lookup");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { friendLikeActivity, friendUnlikeActivity } = require('./friend_activity_likes');
+const {
+  friendLikeActivity,
+  friendUnlikeActivity,
+} = require("./friend_activity_likes");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   friendSendGift,
@@ -94,15 +121,23 @@ const {
   friendConsumeChainShield,
   friendGetActiveQuest,
   friendClaimQuestReward,
-} = require('./friend_gifts');
+} = require("./friend_gifts");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten, onAppMessageStateWritten } = require('./app_messages');
+const {
+  cleanupExpiredAppMessages,
+  onAppMessageReactionWritten,
+  onAppMessagePollVoteWritten,
+  onAppMessageStateWritten,
+} = require("./app_messages");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
+const { submitVipSurvey, recordVipSurveyReviewClick } = require("./vip_survey");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitClientReport } = require('./client_reports');
+const { submitClientReport } = require("./client_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('./telegram_premium_bot');
+const {
+  telegramPremiumWebhook,
+  telegramPremiumActivationNotifier,
+} = require("./telegram_premium_bot");
 // Legacy paid pronunciation-scoring callable удалён: 0 клиентских вызовов, OpenAI-эндпоинт
 // без App Check был доступен любому. Оценка произношения теперь on-device. (B1 audit)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -111,45 +146,56 @@ const {
   referralApply,
   referralClaimVipReward,
   referralListMyInvites,
-} = require('./referral');
+} = require("./referral");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog');
+const {
+  premiumDialogSend,
+  premiumDialogTranslate,
+} = require("./premium_dialog");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { premiumDialogReview } = require('./premium_dialog_review');
+const { premiumDialogReview } = require("./premium_dialog_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoiceConfigAdmin } = require('./max_voice_config');
+const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoicePreflight, maxVoiceMint } = require('./max_voice_mint');
+const { maxVoicePreflight, maxVoiceMint } = require("./max_voice_mint");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoiceHeartbeat, maxVoiceSessionEnd } = require('./max_voice_session_end');
+const {
+  maxVoiceHeartbeat,
+  maxVoiceSessionEnd,
+} = require("./max_voice_session_end");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoiceWatchdog } = require('./max_voice_watchdog');
+const { maxVoiceWatchdog } = require("./max_voice_watchdog");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { weeklyReviewGenerate } = require('./weekly_review');
+const { weeklyReviewGenerate } = require("./weekly_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { statsInsightsGenerate } = require('./stats_insights');
+const { compassExplainWhyNow } = require("./compass_ai_explanation");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { explainPhrase } = require('./explain_phrase');
-const { explainChoice } = require('./explain_choice');
+const { statsInsightsGenerate } = require("./stats_insights");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { explainMistake } = require('./mistake_explain');
+const { explainPhrase } = require("./explain_phrase");
+const { explainChoice } = require("./explain_choice");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitExplainReport } = require('./explain/explain_reports');
+const { explainMistake } = require("./mistake_explain");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { vipRevokeMine } = require('./vip_revoke');
+const { submitExplainReport } = require("./explain/explain_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { collectiblesClaimDrop } = require('./collectibles');
+const { vipRevokeMine } = require("./vip_revoke");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
+const { collectiblesClaimDrop } = require("./collectibles");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDeleteShardSurvey } = require('./shard_survey');
+const {
+  submitShardSurvey,
+  getActiveShardSurvey,
+  adminWriteShardSurvey,
+  adminDeleteShardSurvey,
+} = require("./shard_survey");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { shardsApplyDelta } = require('./shards_apply_delta');
+const { shardsApplyDelta } = require("./shards_apply_delta");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // зачем: железное правило владельца — дев-начисление ВСЕГДА идёт на сервер и
 // работает для ЛЮБОГО аккаунта. В проде путь мёртв: серверный рубильник
 // remote_config/app.numbers.dev_shards_grant_enabled по умолчанию выключен.
-const { devShardsGrant } = require('./dev_shards_grant');
+const { devShardsGrant } = require("./dev_shards_grant");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   getCoinExchangeQuote,
@@ -158,38 +204,49 @@ const {
   adminSetCoinExchangeRate,
   recalcCoinExchangeRate,
   adminGetCoinExchangeCenter,
-} = require('./coin_exchange');
+} = require("./coin_exchange");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   getLearningV2AccountBinding,
   resolveLearningV2WalletRewardReceipt,
-} = require('./learning_v2_wallet_reward_callable');
+} = require("./learning_v2_wallet_reward_callable");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   authorizeLearningV2CourseUnlock,
   resolveLearningV2CourseUnlockReceipt,
-} = require('./learning_v2_course_unlock');
+} = require("./learning_v2_course_unlock");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { profileCardUpgrade } = require('./profile_card_upgrade');
+const { profileCardUpgrade } = require("./profile_card_upgrade");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitUserIdea, adminListUserIdeas, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
+const {
+  submitUserIdea,
+  adminListUserIdeas,
+  adminDecideUserIdea,
+  adminDraftIdeaDecision,
+} = require("./user_ideas");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueFinalizeCron } = require('./league_finalize_cron');
+const { leagueFinalizeCron } = require("./league_finalize_cron");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueResidentsTickCron } = require('./league_residents_cron');
+const { leagueResidentsTickCron } = require("./league_residents_cron");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   notifyOnFriendRequestCreated,
   notifyOnFriendAccepted,
   userNotificationsCleanupCron,
-} = require('./user_notifications');
+} = require("./user_notifications");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
+const {
+  progressSubmitEvent,
+  progressMigrateSnapshot,
+} = require("./progress_events");
 // Learning V2 uploads one immutable completion packet only after the local
 // session is over. The active lesson never calls this endpoint.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { createRequiredSessionCompletionProductionCallable } = require('./learning_v2/required_session_completion_callable');
-const submitLearningV2RequiredSessionCompletion = createRequiredSessionCompletionProductionCallable();
+const {
+  createRequiredSessionCompletionProductionCallable,
+} = require("./learning_v2/required_session_completion_callable");
+const submitLearningV2RequiredSessionCompletion =
+  createRequiredSessionCompletionProductionCallable();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   ADMIN_ALERT_BOT_TOKEN,
@@ -201,7 +258,7 @@ const {
   adminAlertOnCancelSurvey,
   adminAlertOnUgcRefund,
   adminAlertOnConfigWritten,
-} = require('./admin_alerts');
+} = require("./admin_alerts");
 
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
@@ -212,9 +269,12 @@ exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authRecoveryHint = authRecoveryHint;
 exports.authRequestRecoveryCode = authRequestRecoveryCode;
 exports.authConfirmRecoveryCode = authConfirmRecoveryCode;
-exports.authRequestCleanInstallRecoveryCode = authRequestCleanInstallRecoveryCode;
-exports.authConfirmCleanInstallRecoveryCode = authConfirmCleanInstallRecoveryCode;
-exports.authCleanInstallRecoveryDeliveryWorker = authCleanInstallRecoveryDeliveryWorker;
+exports.authRequestCleanInstallRecoveryCode =
+  authRequestCleanInstallRecoveryCode;
+exports.authConfirmCleanInstallRecoveryCode =
+  authConfirmCleanInstallRecoveryCode;
+exports.authCleanInstallRecoveryDeliveryWorker =
+  authCleanInstallRecoveryDeliveryWorker;
 exports.authIssueRecoveryHandoffToken = authIssueRecoveryHandoffToken;
 exports.authCompleteRecoveryHandoff = authCompleteRecoveryHandoff;
 exports.authMergeStableAccounts = authMergeStableAccounts;
@@ -234,7 +294,8 @@ exports.leagueChestClaim = leagueChestClaim;
 // проде — гасим надгробиями, чтобы старые клиенты получали внятный отказ,
 // а не ошибку соединения. Подробности — в help_board_decommission.ts.
 Object.assign(exports, HELP_BOARD_DECOMMISSIONED_EXPORTS);
-exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopicDisabled;
+exports.helpBoardGenerateCompassForTopic =
+  helpBoardGenerateCompassForTopicDisabled;
 exports.helpBoardCompassRetryCron = helpBoardCompassRetryCronDisabled;
 exports.compassChatDailyCron = compassChatDailyCronDisabled;
 exports.friendEnsureMyCode = friendEnsureMyCode;
@@ -268,6 +329,7 @@ exports.maxVoiceHeartbeat = maxVoiceHeartbeat;
 exports.maxVoiceSessionEnd = maxVoiceSessionEnd;
 exports.maxVoiceWatchdog = maxVoiceWatchdog;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
+exports.compassExplainWhyNow = compassExplainWhyNow;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
@@ -282,7 +344,8 @@ exports.vipRevokeMine = vipRevokeMine;
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
-exports.submitLearningV2RequiredSessionCompletion = submitLearningV2RequiredSessionCompletion;
+exports.submitLearningV2RequiredSessionCompletion =
+  submitLearningV2RequiredSessionCompletion;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnAuthFailureSpike = adminAlertOnAuthFailureSpike;
@@ -291,7 +354,6 @@ exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
 exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
-exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
 exports.submitShardSurvey = submitShardSurvey;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
@@ -304,10 +366,12 @@ exports.exchangeCoinsForStars = exchangeCoinsForStars;
 exports.adminSetCoinExchangeRate = adminSetCoinExchangeRate;
 exports.recalcCoinExchangeRate = recalcCoinExchangeRate;
 exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
-exports.resolveLearningV2WalletRewardReceipt = resolveLearningV2WalletRewardReceipt;
+exports.resolveLearningV2WalletRewardReceipt =
+  resolveLearningV2WalletRewardReceipt;
 exports.getLearningV2AccountBinding = getLearningV2AccountBinding;
 exports.authorizeLearningV2CourseUnlock = authorizeLearningV2CourseUnlock;
-exports.resolveLearningV2CourseUnlockReceipt = resolveLearningV2CourseUnlockReceipt;
+exports.resolveLearningV2CourseUnlockReceipt =
+  resolveLearningV2CourseUnlockReceipt;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminListUserIdeas = adminListUserIdeas;
@@ -324,21 +388,32 @@ exports.leagueResidentsTickCron = leagueResidentsTickCron;
 // всех eligible-юзеров (полный скан users + leaderboard постранично). На дефолтных 256MiB
 // падал OOM ежедневно (perсentile-статистика переставала обновляться).
 export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
-  { schedule: '0 3 * * *', timeZone: 'UTC', memory: '1GiB', timeoutSeconds: 540 },
-  async () => { await computeLeaderboardStats(); }
+  {
+    schedule: "0 3 * * *",
+    timeZone: "UTC",
+    memory: "1GiB",
+    timeoutSeconds: 540,
+  },
+  async () => {
+    await computeLeaderboardStats();
+  },
 );
 
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
 // Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
 // touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
 export const resetWeeklyXpCron = functions.scheduler.onSchedule(
-  { schedule: '0 0 * * 1', timeZone: 'UTC' },
-  async () => { await resetWeeklyXp(); }
+  { schedule: "0 0 * * 1", timeZone: "UTC" },
+  async () => {
+    await resetWeeklyXp();
+  },
 );
 
 export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
-  { schedule: '0 4 * * *', timeZone: 'UTC' },
-  async () => { await cleanupExpiredAppMessages(); }
+  { schedule: "0 4 * * *", timeZone: "UTC" },
+  async () => {
+    await cleanupExpiredAppMessages();
+  },
 );
 
 // ─── Re-engagement push cron ─────────────────────────────────────────────────
@@ -347,14 +422,14 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
 // Expo Push API (delivers through FCM/APNs even to a closed app). Closes the
 // retention gap where local-only notifications never reach a lapsed user.
 export const reEngagePushCron = functions.scheduler.onSchedule(
-  { schedule: '0 10 * * *', timeZone: 'UTC' },
+  { schedule: "0 10 * * *", timeZone: "UTC" },
   async () => {
     const summary = await runReEngagePush();
-    console.log('reEngagePushCron', JSON.stringify(summary));
+    console.log("reEngagePushCron", JSON.stringify(summary));
     if (summary.failedChunks > 0) {
       console.error(
         `reEngagePushCron: ${summary.failedChunks} chunk(s) failed — ` +
-        `sent ${summary.sent}/${summary.candidates} candidates. Check Expo Push API or network.`,
+          `sent ${summary.sent}/${summary.candidates} candidates. Check Expo Push API or network.`,
       );
     }
     if (summary.candidates > 0 && summary.sent === 0) {
@@ -362,7 +437,7 @@ export const reEngagePushCron = functions.scheduler.onSchedule(
         `reEngagePushCron: ${summary.candidates} candidates found but 0 pushes sent — all chunks failed.`,
       );
     }
-  }
+  },
 );
 
 // Runs daily at 09:00 UTC. Scans users/, finds paid subscriptions/VIP whose
@@ -371,46 +446,81 @@ export const reEngagePushCron = functions.scheduler.onSchedule(
 // deactivates already-expired access). Perpetual access is skipped — nothing to
 // renew. 1GiB + 540s: full paginated users/ scan, same shape as premiumExpiryCron.
 export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
-  { schedule: '0 9 * * *', timeZone: 'UTC', region: 'us-central1', memory: '1GiB', timeoutSeconds: 540 },
+  {
+    schedule: "0 9 * * *",
+    timeZone: "UTC",
+    region: "us-central1",
+    memory: "1GiB",
+    timeoutSeconds: 540,
+  },
   async () => {
     const summary = await runPremiumExpiryReminder();
-    console.log('premiumExpiryReminderCron', JSON.stringify(summary));
+    console.log("premiumExpiryReminderCron", JSON.stringify(summary));
     if (summary.candidates > 0 && summary.sent === 0) {
       console.error(
         `premiumExpiryReminderCron: ${summary.candidates} candidates found but 0 pushes sent — check Expo Push API.`,
       );
     }
-  }
+  },
 );
 
 // Owner requirement 2026-08-11: one bounded mailbox poll per hour.
 // Pulls support emails via IMAP into support_inbox. Needs the
 // GMAIL_SUPPORT_APP_PASSWORD secret; if missing, logs and no-ops (never throws).
 export const gmailSupportPullCron = functions.scheduler.onSchedule(
-  { schedule: 'every 60 minutes', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
+  {
+    schedule: "every 60 minutes",
+    timeZone: "UTC",
+    region: "us-central1",
+    memory: "512MiB",
+    timeoutSeconds: 300,
+    secrets: [GMAIL_SUPPORT_APP_PASSWORD],
+  },
   async () => {
     await runSupportInboxPullCron();
-  }
+  },
 );
 
 export const supportOwnerAlertRetryCron = functions.scheduler.onSchedule(
-  { schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  {
+    schedule: "every 10 minutes",
+    timeZone: "UTC",
+    region: "us-central1",
+    memory: "256MiB",
+    timeoutSeconds: 120,
+    secrets: [ADMIN_ALERT_BOT_TOKEN],
+  },
   async () => {
     await runSupportOwnerAlertRetryCron();
-  }
+  },
 );
 
 export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
-  { schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120 },
+  {
+    schedule: "every 10 minutes",
+    timeZone: "UTC",
+    region: "us-central1",
+    memory: "256MiB",
+    timeoutSeconds: 120,
+  },
   async () => {
     await runSupportReplyDispatchSweeper();
-  }
+  },
 );
 
 export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
   {
-    schedule: 'every 60 minutes', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300,
-    secrets: [GMAIL_SUPPORT_APP_PASSWORD, SUPPORT_OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
+    schedule: "every 60 minutes",
+    timeZone: "UTC",
+    region: "us-central1",
+    memory: "512MiB",
+    timeoutSeconds: 300,
+    secrets: [
+      GMAIL_SUPPORT_APP_PASSWORD,
+      SUPPORT_OPENAI_API_KEY,
+      ADMIN_ALERT_BOT_TOKEN,
+      JARVIS_TELEGRAM_CONFIG,
+    ],
   },
   async () => {
     await runSupportAutoReplyRetryCron();
@@ -419,27 +529,42 @@ export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
 
 // This checks only already prepared reviews; it does not poll Gmail. A ten
 // minute cadence keeps the promised three-hour window bounded to 3h–3h10m.
-export const supportTelegramAutoSendDeadlineCron = functions.scheduler.onSchedule(
-  {
-    schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120,
-  },
-  async () => {
-    await runSupportTelegramAutoSendDeadline();
-  },
-);
+export const supportTelegramAutoSendDeadlineCron =
+  functions.scheduler.onSchedule(
+    {
+      schedule: "every 10 minutes",
+      timeZone: "UTC",
+      region: "us-central1",
+      memory: "256MiB",
+      timeoutSeconds: 120,
+    },
+    async () => {
+      await runSupportTelegramAutoSendDeadline();
+    },
+  );
 
 // Recovers only pending or abandoned pre-delivery jobs. The durable SMTP
 // operation remains the authority: delivery_unknown is terminal and is never
 // blindly retried here.
-export const supportTelegramReplyJobRecoveryCron = functions.scheduler.onSchedule(
-  {
-    schedule: 'every 10 minutes', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300,
-    secrets: [GMAIL_SUPPORT_APP_PASSWORD, SUPPORT_OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
-  },
-  async () => {
-    await runSupportTelegramReplyJobRecovery();
-  },
-);
+export const supportTelegramReplyJobRecoveryCron =
+  functions.scheduler.onSchedule(
+    {
+      schedule: "every 10 minutes",
+      timeZone: "UTC",
+      region: "us-central1",
+      memory: "512MiB",
+      timeoutSeconds: 300,
+      secrets: [
+        GMAIL_SUPPORT_APP_PASSWORD,
+        SUPPORT_OPENAI_API_KEY,
+        ADMIN_ALERT_BOT_TOKEN,
+        JARVIS_TELEGRAM_CONFIG,
+      ],
+    },
+    async () => {
+      await runSupportTelegramReplyJobRecovery();
+    },
+  );
 
 // ── Community (UGC) packs ─────────────────────────────────────────────────────
 export {
@@ -458,25 +583,41 @@ export {
   levelSpinActivatePackGift,
   communityListSellerInbox,
   communityMarkSellerInboxSeen,
-} from './community_packs';
+} from "./community_packs";
 
-export { syncFriendActivityMirrorCron } from './friend_activity_mirror';
+export { syncFriendActivityMirrorCron } from "./friend_activity_mirror";
+
+// Learning V2 learner-safe active-session descriptor. Auth + App Check are
+// enforced in the callable module; no private repository handle is serialized.
+export { learningV2ActivityAuxiliarySessionGetV1 } from "./content_factory/v2_activity_auxiliary_session_callable_v1";
+export { learningV2ActivityReleasedSessionGetV1 } from "./content_factory/v2_activity_released_session_callable_v1";
+export { submitLearningV2ActivityReleasedCompletionV1 } from "./learning_v2/activity_released_session_completion_callable_v1";
+export { submitLearningV2ActivityReleasedSessionV2 } from "./learning_v2/activity_released_session_submission_callable_v2";
 
 // ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
-export { premiumExpiryCron } from './premium_expiry_cron';
+export { premiumExpiryCron } from "./premium_expiry_cron";
 
 // ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
 
-export { friendSendGift } from './friend_gifts';
+export { friendSendGift } from "./friend_gifts";
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
-export { adminGenerateDailyDigest, adminOpenDailyDigest, adminGetDailyBriefing } from './admin_daily_digest';
-export { adminListAssetJobs, adminCreateAssetJob, adminRunAssetJob } from './admin_asset_studio';
+export {
+  adminGenerateDailyDigest,
+  adminOpenDailyDigest,
+  adminGetDailyBriefing,
+} from "./admin_daily_digest";
+export {
+  adminListAssetJobs,
+  adminCreateAssetJob,
+  adminRunAssetJob,
+} from "./admin_asset_studio";
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
   adminSupportPull,
   adminSupportList,
+  adminSupportConversation,
   adminSupportGenerateReply,
   adminSupportPrepareReply,
   adminSupportDispatchReply,
@@ -488,20 +629,26 @@ export {
   adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSaveAutomation,
+  adminSupportSaveInstructions,
   adminSupportSaveDraft,
   adminSupportSetStatus,
+  adminSupportArchiveMessages,
   // Триггер спам-триажа/уведомлений Джарвиса — покрыт support_inbox_triage.test.ts
   // (мокает Firestore/OpenAI/Telegram и вызывает реальный хендлер напрямую).
   supportInboxOnNewMail,
   supportTelegramReplyJobOnCreate,
-} from './support_inbox';
+} from "./support_inbox";
 
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
-export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './report_replies';
+export {
+  adminReplyToReport,
+  claimReportReward,
+  adminDraftReportReply,
+} from "./report_replies";
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
-export { adminGrantReward, adminSetShardBalance } from './admin_grant';
-export { adminGrantAccess, adminSetUserBan } from './admin_access_controls';
+export { adminGrantReward, adminSetShardBalance } from "./admin_grant";
+export { adminGrantAccess, adminSetUserBan } from "./admin_access_controls";
 export {
   adminDeleteDuplicateUser,
   adminMigrateLegacyAdminPremium,
@@ -510,28 +657,43 @@ export {
   adminResolveUserReport,
   adminUpdateUserProfileField,
   adminWarnUser,
-} from './admin_user_operations';
-export { adminQueueAccountDeletion } from './admin_account_delete';
-export { adminGetComplianceOverview, adminListSafetyFlags, adminMarkSafetyFlagsHandled } from './admin_compliance';
+} from "./admin_user_operations";
+export { adminQueueAccountDeletion } from "./admin_account_delete";
+export {
+  adminGetComplianceOverview,
+  adminListSafetyFlags,
+  adminMarkSafetyFlagsHandled,
+} from "./admin_compliance";
 // ── Починка/перепривязка auth-привязок из админки (permission users.auth_repair) ──
-export { adminRepairAuthLink, adminRelinkProvider } from './admin_auth_repair';
+export { adminRepairAuthLink, adminRelinkProvider } from "./admin_auth_repair";
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
-export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, promoCodeDelete, adminListPromoCodes } from './promo_codes';
-export { openAiBudgetDashboard } from './openai_budget_dashboard';
-export { adminProductAnalytics } from './admin_product_analytics';
-export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
-export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
-export { adminGetAnalyticsSnapshot } from './admin_analytics';
-export { adminGetRevenueCatOverviewMetrics } from './admin_revenuecat_overview';
-export { adminGetAnalyticsTrends } from './admin_analytics_trends';
-export { adminGetDirectorDigest } from './admin_director_digest';
-export { adminGenerateDirectorDigestAudio } from './admin_director_digest_audio';
-export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
-export { adminExportReportDocuments, adminExportUnresolvedReports, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
-export { adminListAuditLog } from './admin_audit_log';
-export { adminListOpsLog } from './admin_ops_log';
-export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
+export {
+  promoCodeRedeem,
+  promoCodeUpsert,
+  promoCodeBatchUpsert,
+  promoCodeDelete,
+  adminListPromoCodes,
+} from "./promo_codes";
+export { openAiBudgetDashboard } from "./openai_budget_dashboard";
+export { adminProductAnalytics } from "./admin_product_analytics";
+export { adminSubscriptionAnalytics } from "./admin_subscription_analytics";
+export { adminMonthlyDecisionPack } from "./admin_monthly_decision_pack";
+export { adminGetAnalyticsSnapshot } from "./admin_analytics";
+export { adminGetRevenueCatOverviewMetrics } from "./admin_revenuecat_overview";
+export { adminGetAnalyticsTrends } from "./admin_analytics_trends";
+export { adminGetDirectorDigest } from "./admin_director_digest";
+export { adminGenerateDirectorDigestAudio } from "./admin_director_digest_audio";
+export { adminSearchUsers, adminGetUserProfile } from "./admin_user_profile";
+export {
+  adminExportReportDocuments,
+  adminExportUnresolvedReports,
+  adminListReportQueue,
+  adminUpdateReportStatus,
+} from "./admin_reports_center";
+export { adminListAuditLog } from "./admin_audit_log";
+export { adminListOpsLog } from "./admin_ops_log";
+export { adminCreatePlan, adminGetPlan, adminListPlans } from "./admin_plans";
 // зачем здесь пусто (Р4, снос 2026-08-02): старые слои agent_office и
 // agent_manager удалены целиком — их заменил functions/src/jarvis.
 // Firestore Rules их коллекций СОХРАНЕНЫ намеренно: данные могли остаться,
@@ -541,26 +703,45 @@ export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
 // «Качество» по требованию владельца через панель admin/v2/legacy.html.
 // Старые agent_office/agent_manager выше не тронуты и сносятся отдельным
 // шагом позже, когда у нового Джарвиса будет диалог и approvals.
-export { jarvisGetQualitySnapshot, jarvisGetMoneySnapshot, jarvisGetGrowthSnapshot, jarvisGetAllDecisions, jarvisGetApprovalAudit, jarvisGetCohortRetention, jarvisGetPlans, jarvisSetPlanStatus, jarvisDeletePlan } from './jarvis';
+export {
+  jarvisGetQualitySnapshot,
+  jarvisGetMoneySnapshot,
+  jarvisGetGrowthSnapshot,
+  jarvisGetAllDecisions,
+  jarvisGetApprovalAudit,
+  jarvisGetCohortRetention,
+  jarvisGetPlans,
+  jarvisSetPlanStatus,
+  jarvisDeletePlan,
+} from "./jarvis";
 // зачем отдельно: owner-facing раздел «Стадия роста бизнеса» — своя пара
 // callable (чтение панели + продолжаемый бэкфилл истории под строгим гейтом).
-export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './jarvis';
+export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from "./jarvis";
 // зачем два крона: суточный проход департаментов (06:00 UTC) и точка истории
 // бизнес-тиров (07:00 UTC, после устаканивания суточных счётчиков).
-export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis';
+export {
+  jarvisDailyDepartmentsCron,
+  jarvisDailyBusinessHistoryCron,
+} from "./jarvis";
 
 // Кнопки подтверждения в Telegram. Функция выключена (404), пока не задан
 // секрет JARVIS_TELEGRAM_CONFIG; вебхук ставится вручную по runbook.
-export { jarvisTelegramApprovalWebhook } from './jarvis';
-export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export { jarvisTelegramApprovalWebhook } from "./jarvis";
+export {
+  adminGetRemoteConfigWorkspace,
+  adminPublishRemoteConfig,
+} from "./admin_remote_config";
 export {
   youtubeCatalogSyncCron,
   adminGetYoutubeCatalogWorkspace,
   adminPublishYoutubeCatalogConfig,
   adminRefreshYoutubeCatalog,
-} from './youtube_catalog';
-export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
-export { adminGetPaywallVariantStats } from './admin_paywall_variant_stats';
+} from "./youtube_catalog";
+export {
+  adminGetPaywallAbWorkspace,
+  adminPublishPaywallAb,
+} from "./admin_paywall_ab";
+export { adminGetPaywallVariantStats } from "./admin_paywall_variant_stats";
 export {
   adminListAppMessages,
   adminCreateAppMessage,
@@ -571,53 +752,99 @@ export {
   adminSendPersonalAppMessage,
   adminLaunchVipSurveyCampaign,
   adminDeactivateVipSurveyCampaign,
-} from './admin_app_messages';
-export { adminGetAdminConfigWorkspace, adminPublishNavLayout, adminPublishAlertsConfig, adminTestAlerts } from './admin_config_controls';
-export { adminResetLeaguePoints, adminMoveLeagueUser } from './admin_league_controls';
+} from "./admin_app_messages";
+export {
+  adminGetAdminConfigWorkspace,
+  adminPublishNavLayout,
+  adminPublishAlertsConfig,
+  adminTestAlerts,
+} from "./admin_config_controls";
+export {
+  adminResetLeaguePoints,
+  adminMoveLeagueUser,
+} from "./admin_league_controls";
 export {
   adminListGlobalBroadcasts,
   adminPublishGlobalBroadcast,
   adminDeactivateGlobalBroadcasts,
-} from './admin_global_broadcast';
-export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
-export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminGetLearningV2CourseWorkspaceProjection, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
-export { adminCreateContentStageBulkPlan } from './admin_content_stage_bulk';
-export { adminEditContentStageArtifact } from './admin_content_stage_edits';
-export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
+} from "./admin_global_broadcast";
+export {
+  adminCreateContentGenerationJob,
+  adminListContentFactoryJobs,
+} from "./admin_content_factory";
+export {
+  adminCreateContentStage,
+  adminControlContentStage,
+  adminListContentStages,
+  adminGetLearningV2CourseWorkspaceProjection,
+  adminListContentStageDependencies,
+  adminGetContentStageCapabilities,
+  adminPreviewContentStage,
+  adminReviewContentStage,
+} from "./admin_content_stages";
+export { adminCreateContentStageBulkPlan } from "./admin_content_stage_bulk";
+export { adminEditContentStageArtifact } from "./admin_content_stage_edits";
+export {
+  adminRunContentStage,
+  CONTENT_STAGE_OPENAI_API_KEY,
+} from "./content_stage_worker";
 export {
   learningV2LocalizedCourseShardBackgroundWorker,
   adminPreviewLearningV2CourseWave,
   adminApproveLearningV2CourseWave,
   adminRejectLearningV2CourseWave,
   LEARNING_V2_COURSE_SHARD_OPENAI_API_KEY,
-} from './content_factory/learning_v2_course_shard_background';
-export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics } from './admin_content_factory_read';
-export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
-export { adminSaveV2EpisodeDraft, adminSaveV2SeasonDraft } from './admin_content_studio_callables';
-export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
-export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
-export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
-export { openAiJobsConfig } from './openai_jobs_config';
-export { adminTranslateMessage } from './admin_translate';
-export { submitSettingsPollVote } from './settings_poll_vote';
-export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
-export { emailUnsubscribe } from './email_unsubscribe';
+} from "./content_factory/learning_v2_course_shard_background";
+export {
+  adminGetContentFactoryJobDetail,
+  adminGetContentFactoryUnitPreview,
+  adminGetContentFactoryWorkspace,
+  adminGetContentFactoryRolloutMetrics,
+} from "./admin_content_factory_read";
+export {
+  adminRunContentGenerationUnit,
+  CONTENT_FACTORY_OPENAI_API_KEY,
+} from "./content_factory_worker";
+export {
+  adminSaveV2EpisodeDraft,
+  adminSaveV2SeasonDraft,
+} from "./admin_content_studio_callables";
+export {
+  adminReviewCourseGeneration,
+  adminSealCourseRelease,
+} from "./admin_content_release";
+export {
+  adminActivateCourseRelease,
+  adminRollbackCourseRelease,
+} from "./language_release";
+export {
+  openAiDialogModelConfig,
+  openAiDialogQuotaConfig,
+} from "./openai_dialog_model_config";
+export { openAiJobsConfig } from "./openai_jobs_config";
+export { adminTranslateMessage } from "./admin_translate";
+export { submitSettingsPollVote } from "./settings_poll_vote";
+export { adminEmailBroadcast, adminEmailContactsBackfill } from "./admin_email";
+export { emailUnsubscribe } from "./email_unsubscribe";
 
-export { dailyPhraseSetSaved } from './daily_phrases';
+export { dailyPhraseSetSaved } from "./daily_phrases";
 
-export { submitWebsiteContact } from './website_contact';
+export { submitWebsiteContact } from "./website_contact";
 
-export { siteStatsTrack } from './site_stats';
+export { siteStatsTrack } from "./site_stats";
 
-export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboarding_funnel';
-export { recordAgeConsentSnapshot } from './record_age_consent_snapshot';
-export { recordAiExplainConsent } from './record_ai_explain_consent';
-export { recordAiDialogConsent } from './record_ai_dialog_consent';
+export {
+  recordOnboardingFunnelEvent,
+  adminGetOnboardingFunnel,
+} from "./onboarding_funnel";
+export { recordAgeConsentSnapshot } from "./record_age_consent_snapshot";
+export { recordAiExplainConsent } from "./record_ai_explain_consent";
+export { recordAiDialogConsent } from "./record_ai_dialog_consent";
 
-export { revenueCatShardsWebhook } from './revenuecat_shards';
-export { revenueCatPremiumReconcileMine } from './revenuecat_reconcile';
+export { revenueCatShardsWebhook } from "./revenuecat_shards";
+export { revenueCatPremiumReconcileMine } from "./revenuecat_reconcile";
 
-export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
+export { adminPushJobCreated, adminPushJobsCron } from "./admin_push_jobs";
 
 // ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
 export {
@@ -635,10 +862,10 @@ export {
   adminUpdateGiftCertificatePersonalization,
   adminReplaceSyntheticGiftCertificate,
   adminSendPreparedGiftCertificate,
-} from './web_checkout';
+} from "./web_checkout";
 
 // ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
-export { webLeadCapture, webLeadNudgeCron } from './web_leads';
+export { webLeadCapture, webLeadNudgeCron } from "./web_leads";
 
 // ── Турниры (Фаза 1 MVP, спека docs/tournaments/2026-07-21-tournaments-mode-spec.md) ──
 export {
@@ -658,9 +885,12 @@ export {
   // зачем 2026-07-27 (владелец): дев-турнир убран, дев-логика не используется.
   // Мгновенный вход теперь даёт ОБЫЧНЫЙ турнир по требованию.
   tournamentStartNow,
-} from './tournaments';
-export { adminSeedBotProfiles } from './tournament_bots';
+} from "./tournaments";
+export { adminSeedBotProfiles } from "./tournament_bots";
 
+// Управление конфигом Арены из админки. Без документа arena_v2_config/current
+// бэкенд Арены отказывает во всём — это и есть корневая причина «не работает».
+export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
 // Arena V2 is a separate server-authoritative duel runtime. It reuses only
 // reviewed Tournament task publications; Tournament release gates, rooms and
 // economy remain untouched.
@@ -671,6 +901,12 @@ export {
   arenaV2QuickBotFallback,
   arenaV2MatchAccept,
   arenaV2MatchDecline,
+  // Дуэль v3: план выдаётся одним вызовом, отчёт принимается одним вызовом.
+  // Пошаговые arenaV2SubmitAnswer/SubmitSpeedAttempt остаются ради матчей,
+  // начатых старой сборкой; новые матчи через них не идут.
+  arenaV2MatchPlan,
+  arenaV2MatchFinish,
+  arenaV2MatchSettle,
   arenaV2SubmitAnswer,
   arenaV2SubmitSpeedAttempt,
   arenaV2SyncMatch,
@@ -678,11 +914,12 @@ export {
   arenaV2InviteCreate,
   arenaV2InviteAccept,
   arenaV2InviteDecline,
+  arenaV2FriendsBoard,
   arenaV2SeasonClaim,
   arenaV2SpinStatus,
   arenaV2SpinClaim,
   arenaV2CleanupHourly,
-} from './arena_v2';
+} from "./arena_v2";
 // Arena Expansion layers Today, review/mastery, asynchronous social play and
 // a spendable cosmetic wallet on top of the V2 authority boundary. Every
 // surface remains independently fail-closed in arena_v2_config/current.
@@ -712,7 +949,7 @@ export {
   arenaStarStore,
   arenaStarPurchase,
   arenaStarEquip,
-} from './arena_expansion';
+} from "./arena_expansion";
 // Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,
 // публикация в пул, статистика готовности раундов, расписание слотов.
 export {
@@ -730,7 +967,7 @@ export {
   adminSetTournamentSchedule,
   adminSetTournamentCurated,
   adminGetTournamentCurated,
-} from './admin_tournament_tasks';
+} from "./admin_tournament_tasks";
 
 // Генерация ЦЕЛОГО турнира одним вызовом: 4 раунда × 6 заданий, каждому
 // режиму свой тип вопроса (ситуация / пропуск / поиск ошибки / сборка).
@@ -739,7 +976,7 @@ export {
   // Папки вопросов: перегенерация одного и массовые действия по папке.
   adminRegenerateTournamentTask,
   adminBulkTournamentFolder,
-} from './admin_tournament_full';
+} from "./admin_tournament_full";
 
 // Недельный банк турниров: копится с каждого турнира, раздаётся тройке лучших
 // по сумме очков в ночь воскресенья (крон) либо вручную из админки.
@@ -749,37 +986,42 @@ export {
   adminSetTournamentEconomy,
   adminGetTournamentEconomy,
   tournamentWeeklyBankInfo,
-} from './tournament_weekly_payout';
+} from "./tournament_weekly_payout";
 
 // Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
-export { finalizeLearningV2DelayedCandidate } from './learning_v2_delayed_callable';
-export { finalizeLearningV2AccessPurchase } from './learning_v2_access_production_callable';
+export { finalizeLearningV2DelayedCandidate } from "./learning_v2_delayed_callable";
+export { finalizeLearningV2AccessPurchase } from "./learning_v2_access_production_callable";
 
 // ── Рулетка Plus (спин-кредиты → дни VIP) и claim qualified-приглашений в прокруты ──
-export { referralSpin } from './referral_spin';
-export { referralClaimSpin } from './referral_claim_spin';
+export { referralSpin } from "./referral_spin";
+export { referralClaimSpin } from "./referral_claim_spin";
 // DEV-кнопка «+1 прокрут» (гейт remote_config, лимит 10/сутки) — только для тестовых сборок.
-export { referralDevGrantSpin } from './referral_dev_grant';
+export { referralDevGrantSpin } from "./referral_dev_grant";
 
 // ── Fan-out ленты активности друзей (users/{uid}/my_events → users/{friendUid}/feed) ──
-export { feedFanoutOnMyEvent, feedPruneCron } from './feed_fanout';
+export { feedFanoutOnMyEvent, feedPruneCron } from "./feed_fanout";
 
 // ── Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента) ──
-export { friendsGetProfiles } from './friends_profiles';
+export { friendsGetProfiles } from "./friends_profiles";
 
 // Authenticated, server-authoritative one-time onboarding access grant.
-export { introFullAccessClaim } from './gift_access';
-export { globalBroadcastClaim } from './global_broadcast_claim';
+export { introFullAccessClaim } from "./gift_access";
+export { globalBroadcastClaim } from "./global_broadcast_claim";
 export {
   levelRewardSpinStatus,
   levelRewardSpinClaim,
   levelRewardSpinAcknowledge,
   levelRewardSpinDelivery,
-} from './level_reward_spins';
-export { levelRewardSpinEnrollV1 } from './level_spin_enrollment';
+} from "./level_reward_spins";
+export { levelRewardSpinEnrollV1 } from "./level_spin_enrollment";
 
 // ── Season Pass: клеймы, расходники, щит другу, покупка платной дорожки ──
-export { seasonClaimReward, seasonRedeemConsumable, seasonSendFriendShield, seasonBuyPass } from './season_pass';
+export {
+  seasonClaimReward,
+  seasonRedeemConsumable,
+  seasonSendFriendShield,
+  seasonBuyPass,
+} from "./season_pass";
 
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
@@ -792,8 +1034,21 @@ export {
   adminSetReferralRouletteEnabled,
   adminSetReferralRouletteEmergencyStop,
   adminReferralHealth,
-} from './admin_referrals';
+} from "./admin_referrals";
 
 // Learning V2: генерация юнитов (E1 vertical slice) — очередь плана + воркер
-export { adminCreateV2GenerationPlan, adminQueueV2GenerationPlan } from './admin_v2_generation';
-export { adminSeedV2E1DemoSource, adminRunV2E1Compilation } from './content_factory/v2_e1_compilation_worker';
+export {
+  adminCreateV2GenerationPlan,
+  adminQueueV2GenerationPlan,
+} from "./admin_v2_generation";
+export { adminImportV2OwnerEpisodeStage } from "./content_factory/v2_owner_episode_stage_repository_v1";
+export { adminConfirmV2OwnerEpisode } from "./content_factory/v2_owner_episode_confirmation_adapter_v1";
+export {
+  adminGetV2OwnerGeneratorWorkspace,
+  adminPrepareV2OwnerEpisodeDraft,
+} from "./content_factory/v2_owner_generator_workspace_v1";
+export { adminGetV2OwnerGeneratorSetupCatalog } from "./content_factory/v2_owner_generator_setup_catalog_v1";
+export {
+  adminSeedV2E1DemoSource,
+  adminRunV2E1Compilation,
+} from "./content_factory/v2_e1_compilation_worker";

@@ -89,7 +89,7 @@ function usageFromDoc(
     outputTokens,
     totalTokens,
     costUsd: costUsd(model, inputTokens, outputTokens),
-    uid: text(data.uid || data.authUid, 120),
+    uid: text(data.uid || data.authUid || data.accountHash, 120),
     createdAtMs: createdMs(data),
   };
 }
@@ -218,6 +218,7 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     { collection: 'weekly_review_billing', feature: 'Weekly review legacy' },
     { collection: 'stats_insights_billing', feature: 'Stats insights legacy' },
     { collection: 'compass_billing', feature: 'Компас (daily, legacy)' },
+    { collection: 'compass_why_billing', feature: 'Компас: почему сейчас' },
     { collection: 'league_compass_daily_billing', feature: 'Компас лиги (cron)' },
     { collection: 'choice_explain_billing', feature: 'Объяснение выбора' },
     { collection: 'mistake_explain_billing', feature: 'Объяснение ошибки' },

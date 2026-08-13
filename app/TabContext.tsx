@@ -5,6 +5,8 @@ interface TabCtx {
   activeIdx: number;
   goToTab: (idx: number) => void;
   goHome: () => void;
+  openCompass: () => void;
+  compassPageVisible: boolean;
   focusTick: number;
   runtimeOwnerId: TabRuntimeOwnerId;
   onSwipeStart: (idx: number) => void;
@@ -15,6 +17,8 @@ const TabContext = createContext<TabCtx>({
   activeIdx: 0,
   goToTab: () => {},
   goHome: () => {},
+  openCompass: () => {},
+  compassPageVisible: false,
   focusTick: 0,
   runtimeOwnerId: 'home',
   onSwipeStart: () => {},
@@ -34,6 +38,8 @@ export function TabProvider({
   onTabChange,
   onSwipeStart,
   onSwipeComplete,
+  onOpenCompass,
+  compassPageVisible = false,
   focusTick,
   runtimeOwnerId: runtimeOwnerIdProp,
 }: {
@@ -42,15 +48,18 @@ export function TabProvider({
   onTabChange: (idx: number) => void;
   onSwipeStart: (idx: number) => void;
   onSwipeComplete: (idx: number) => void;
+  onOpenCompass: () => void;
+  compassPageVisible?: boolean;
   focusTick: number;
   runtimeOwnerId?: TabRuntimeOwnerId;
 }) {
   const goToTab = useCallback((idx: number) => onTabChange(idx), [onTabChange]);
   const goHome  = useCallback(() => onTabChange(0), [onTabChange]);
+  const openCompass = useCallback(() => onOpenCompass(), [onOpenCompass]);
   const runtimeOwnerId = runtimeOwnerIdProp ?? TAB_KEYS[activeIdx] ?? 'home';
   const value = useMemo(
-    () => ({ activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete }),
-    [activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete],
+    () => ({ activeIdx, goToTab, goHome, openCompass, compassPageVisible, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete }),
+    [activeIdx, goToTab, goHome, openCompass, compassPageVisible, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete],
   );
   return <TabContext.Provider value={value}>{children}</TabContext.Provider>;
 }

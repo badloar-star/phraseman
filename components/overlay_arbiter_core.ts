@@ -8,7 +8,6 @@ export type OverlayKey =
   | 'leagueBonusAvailable'
   | 'notifNudge'
   | 'introFullAccess'
-  | 'dailyPlan'
   | 'levelUp'
   | 'themedAlert'
   | 'premiumCelebration'
@@ -21,6 +20,7 @@ export type OverlayKey =
   | 'comebackDay'
   | 'perfectWeekReward'
   | 'boonActivated'
+  | 'devHub'
   | 'compassBriefing'
   | 'lessonResultsSequence'
   | 'lessonCompleteNotif'
@@ -29,7 +29,6 @@ export type OverlayKey =
   | 'coinsMigration'
   | 'shardsEarned'
   | 'achievementToast'
-  | 'dailyTaskRewardToast'
   | 'coachToast'
   | 'actionToast';
 
@@ -51,7 +50,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
-  'dailyPlan',
   'levelUp',
   'themedAlert',
   'premiumCelebration',
@@ -63,6 +61,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'mysteryMondayChest',
   'comebackDay',
   'boonActivated',
+  // DEV Hub owns one uninterrupted slot while handing off from its native
+  // tool sheet to an in-tree preview.
+  'devHub',
   'compassBriefing',
   // lessonResultsSequence — полноэкранная секвенция наград на lesson_complete (FeedbackKit
   // §2.1). Стоит ВЫШЕ всего каскада этого экрана (lessonCompleteNotif → collectibleDrop →
@@ -73,7 +74,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'reviewPrompt',
   'shardsEarned',
   'achievementToast',
-  'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
   // coinsMigration — одноразовый информ-модал «Осколки → Монеты» (без награды по тапу,
@@ -92,7 +92,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
 // сторож (H-ARBITER) имеет право принудительно выселять и карантинить.
 //
 // КРУПНЫЕ модалки (update/releaseNotes/broadcast/levelUp/подарки/праздники/intro/loyalty/
-// dailyPlan/celebration/leagueResult/streakRevive/… — всё, чего здесь НЕТ) закрывает
+// celebration/leagueResult/streakRevive/… — всё, чего здесь НЕТ) закрывает
 // ПОЛЬЗОВАТЕЛЬ. Их НЕЛЬЗЯ выселять по таймеру: иначе если юзер просто читает окно >15с,
 // а за ним ждёт мелкий тост, окно (и его награда, напр. сундук level-up) пропадёт на всю
 // сессию. Это и был баг: сторож карантинил живую модалку как «зависшую».
@@ -102,7 +102,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
 export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'shardsEarned',
   'achievementToast',
-  'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
   // boonActivated — ИНФОРМАЦИОННАЯ плашка «бонус дня активирован» (бонус уже включён,
@@ -152,7 +151,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'comebackDay',
   'perfectWeekReward',
   'boonActivated',
-  'compassBriefing',
+  'devHub',
   'collectibleDrop',
   'reviewPrompt',
   'achievementToast',
@@ -193,7 +192,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   leagueBonusAvailable: false,
   notifNudge: false,
   introFullAccess: false,
-  dailyPlan: false,
   levelUp: false,
   themedAlert: false,
   premiumCelebration: false,
@@ -206,6 +204,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   comebackDay: false,
   perfectWeekReward: false,
   boonActivated: false,
+  devHub: false,
   compassBriefing: false,
   lessonResultsSequence: false,
   lessonCompleteNotif: false,
@@ -213,7 +212,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   reviewPrompt: false,
   shardsEarned: false,
   achievementToast: false,
-  dailyTaskRewardToast: false,
   coachToast: false,
   actionToast: false,
   coinsMigration: false,

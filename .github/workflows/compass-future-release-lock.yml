@@ -1,0 +1,21 @@
+name: Compass future-only release lock
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  block-while-future-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject Compass future-only code from release
+        shell: bash
+        run: |
+          if [[ -f .compass-future-only ]]; then
+            echo "::error::Compass is future-only. Direct product-owner approval after Learning V2 is required before this marker may be removed."
+            exit 86
+          fi

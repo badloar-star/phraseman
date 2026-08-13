@@ -25,8 +25,8 @@ import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
-import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
-import { getLocalDayKey, isSameLocalOrUtcDay } from '../local_date';
+import { getMyWeekPoints, checkStreakLossPending } from '../hall_of_fame_utils';
+import { getLocalDayKey, getUtcDayKey, isSameLocalOrUtcDay } from '../local_date';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { applyTodaysBoonsOnAppOpen } from '../boons/boon_bootstrap';
 import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
@@ -36,7 +36,6 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
@@ -56,7 +55,6 @@ import {
     HOME_FEATURE_TIPS_RESET_EVENT,
 } from '../home_feature_tips';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
-import PlusBadge from '../../components/PlusBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
@@ -73,7 +71,12 @@ import { getTrainerTotalDue } from '../trainer_store';
 import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
+import SurveyTaskCard from '../../components/SurveyTaskCard';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
+import { fetchActiveSurveyWithRetry } from '../survey_client';
+import { buildActiveSurveyOffer, type SurveyOfferSnapshot } from '../survey_offer_model';
+import { primeSurvey } from '../survey_handoff';
+import { getCanonicalUserId } from '../user_id_policy';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
 import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
@@ -85,11 +88,11 @@ import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
 import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
+import { captureAccountGeneration } from '../account_generation';
 import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
-import ArenaHomeCard from '../../components/arena/ArenaHomeCard';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
@@ -113,25 +116,16 @@ import {
     type StreakWeekDayMarkerKind,
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
-import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey, storageStudyTarget } from '../target_storage_keys';
+import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
-import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from '../survey_client';
-import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../survey_daily_task';
-import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts } from '../survey_daily_challenge_model';
-import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
-import { getCanonicalUserId } from '../user_id_policy';
-import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
-import { invalidateDailyTasksScreenSnapshot } from '../daily_tasks_screen_cache';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
-import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
-const CARD_W = (CONTENT_W - 32 - 10) / 2;
 // Rollback: set false to return to the previous elite home status card.
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
@@ -140,7 +134,7 @@ const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/stre
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
 /**
- * Сессионный флаг: нижняя часть главной («Вызовы дня», «Цель лиги», фраза дня, подвал)
+ * Сессионный флаг: нижняя часть главной («Цель лиги», фраза дня, подвал)
  * уже проходила отложенный второй проход.
  *
  * зачем: второй проход через InteractionManager экономит бюджет ХОЛОДНОГО СТАРТА, но
@@ -290,7 +284,6 @@ type EnergyTooltipAnchor = {
 };
 type HomeSpecialTitleStats = {
     helpfulReportsConfirmed: number;
-    dailyAllDoneStreak: number;
     earnedAchievementIds: Set<string>;
 };
 type TitleModalRow = {
@@ -330,26 +323,11 @@ function parseStoredCount(raw: string | null): number {
     const n = parseInt(raw ?? '', 10);
     return Number.isFinite(n) && n > 0 ? n : 0;
 }
-function parseStoredStreak(raw: string | null): number {
-    if (!raw)
-        return 0;
-    const direct = parseStoredCount(raw);
-    if (direct > 0)
-        return direct;
-    try {
-        const parsed = JSON.parse(raw) as { streak?: unknown };
-        const streak = typeof parsed?.streak === 'number' ? parsed.streak : parseInt(String(parsed?.streak ?? ''), 10);
-        return Number.isFinite(streak) && streak > 0 ? streak : 0;
-    }
-    catch {
-        return 0;
-    }
-}
 type HomeMenuIconAlign = {
     x: number;
     y: number;
 };
-type HomeMenuIconAlignKey = 'lesson' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice' | 'dialogs';
+type HomeMenuIconAlignKey = 'lesson' | 'cards' | 'league' | 'test' | 'practice' | 'dialogs';
 const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
 };
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
@@ -413,7 +391,6 @@ type HomeTitlesArgs = {
     totalXP: number;
     streak: number;
     helpfulReportsConfirmed: number;
-    dailyAllDoneStreak: number;
     earnedAchievementIds: unknown;
     lang: Lang;
     selectedTitleKey: string | null;
@@ -430,7 +407,7 @@ let homeTitlesCacheValue: HomeTitlesComputation | null = null;
 function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
     const cacheKey = [
         args.level, args.totalXP, args.streak, args.helpfulReportsConfirmed,
-        args.dailyAllDoneStreak, args.lang, args.selectedTitleKey ?? '',
+        args.lang, args.selectedTitleKey ?? '',
     ].join('|');
     if (
         homeTitlesCacheValue &&
@@ -445,7 +422,6 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
         totalXP: args.totalXP,
         streak: args.streak,
         helpfulReportsConfirmed: args.helpfulReportsConfirmed,
-        dailyAllDoneStreak: args.dailyAllDoneStreak,
         earnedAchievementIds: args.earnedAchievementIds as never,
     });
     const earnedSpecialTitleIds = new Set(earnedSpecialTitles.map((title) => title.id));
@@ -510,7 +486,7 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
     return homeTitlesCacheValue;
 }
 
-export default function HomeScreen() {
+export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void } = {}) {
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
@@ -528,7 +504,11 @@ export default function HomeScreen() {
     const homeViewportHeightRef = useRef(0);
     const homeScrollYRef = useRef(0);
     const [dailyPhraseCardVisible, setDailyPhraseCardVisible] = useState(false);
-    const [devHubVisible, setDevHubVisible] = useState(false);
+    const [surveyOffer, setSurveyOffer] = useState<{
+        challenge: SurveyOfferSnapshot;
+        stableId: string;
+        dayKey: string;
+    } | null>(null);
     const refreshDailyPhraseVisibility = useCallback(() => {
         const next = isDailyPhraseCardHalfVisible({
             cardTop: dailyPhraseLayoutRef.current.top,
@@ -551,17 +531,38 @@ export default function HomeScreen() {
     // тяжёлые загрузки, Firestore, префетчи и циклы анимаций.
     const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
-    // Home may mount while another retained tab owns runtime work. Mark its
-    // first handoff dirty so the daily-task summary never remains at the
-    // placeholder 0 completed tasks.
+    // Home may mount while another retained tab owns runtime work.
     const homeDataDirtyRef = useRef(true);
-    const homeDailySummaryDirtyRef = useRef(false);
     const shardsDirtyRef = useRef(false);
     const streakMarkersDirtyRef = useRef(false);
     const reviveOfferDirtyRef = useRef(false);
     useEffect(() => {
         homeRuntimeActiveRef.current = homeRuntimeActive;
     }, [homeRuntimeActive]);
+    useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
+        let cancelled = false;
+        void (async () => {
+            try {
+                const stableId = await getCanonicalUserId();
+                if (!stableId || cancelled) return;
+                const result = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                if (cancelled) return;
+                if (!result.survey || result.completion) {
+                    setSurveyOffer(null);
+                    return;
+                }
+                setSurveyOffer({
+                    challenge: buildActiveSurveyOffer({ survey: result.survey, lang }),
+                    stableId,
+                    dayKey: getUtcDayKey(),
+                });
+            } catch {
+                if (!cancelled) setSurveyOffer(null);
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [focusTick, homeRuntimeActive, lang]);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -697,19 +698,6 @@ export default function HomeScreen() {
         tr: "Merhaba,",
         pl: "Cześć,",
     }));
-    const [taskProgress, setTaskProgress] = useState<TaskProgress[]>([]);
-    // зачем: гидрируем синхронно из снапшота (тот же паттерн, что userName/streak выше) —
-    // раньше стартовал с 0 и «прыгал» на реальное число вторым проходом (belowFoldReady),
-    // заметно на каждом повторном открытии Home. Холодный первый-в-жизни запуск (hh=null) — 0.
-    const [tasksCompleted, setTasksCompleted] = useState(() => hh?.tasksCompleted ?? 0);
-    const initialSurveyDailyTask = (() => {
-        const stableId = captureAccountGeneration().stableId;
-        return stableId ? peekSurveyDailyTask({ stableId, dayKey: getTodayKey(), lang }) : null;
-    })();
-    /** Сколько сегментов на плитке «Задания» — ровно столько же, сколько заданий в модели дня. */
-    const [dailyTaskBarCount, setDailyTaskBarCount] = useState(
-        () => hh?.tasksTotal ?? (initialSurveyDailyTask ? 4 : 3),
-    );
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
     // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
@@ -746,7 +734,6 @@ export default function HomeScreen() {
     const selectedTitleHydratedRef = useRef(false);
     const [specialTitleStats, setSpecialTitleStats] = useState<HomeSpecialTitleStats>({
         helpfulReportsConfirmed: 0,
-        dailyAllDoneStreak: 0,
         earnedAchievementIds: new Set<string>(),
     });
     // Premium celebration: после IAP-покупки или admin-grant с timestamp новее last seen.
@@ -881,71 +868,6 @@ export default function HomeScreen() {
     // её сторожит tests/home_learning_cta_contract.test.ts.
     const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
     const [, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
-    const refreshDailyTaskSummary = useCallback(async () => {
-        const lostOwnership = () => {
-            if (homeRuntimeActiveRef.current) return false;
-            homeDailySummaryDirtyRef.current = true;
-            return true;
-        };
-        try {
-            const taskList = await getTodayTasksSafe(studyTarget);
-            if (lostOwnership()) return;
-            const progress = await loadTodayProgress(taskList, studyTarget);
-            if (!mountedRef.current || lostOwnership())
-                return;
-            const baseTotal = taskList.length > 0 ? taskList.length : 3;
-            setTaskProgress(progress);
-            const progressById = new Map(progress.map((row) => [row.taskId, row]));
-            const nextTasksCompleted = taskList.filter((task) => progressById.get(task.id)?.completed === true).length;
-            setTasksCompleted(nextTasksCompleted);
-            setDailyTaskBarCount((previous) => previous === baseTotal ? previous : baseTotal);
-            // зачем: обновляем снапшот и на лёгком refresh-пути (не только в loadData) —
-            // иначе выполнение задания между полными загрузками не долетает до кэша,
-            // и следующее открытие Home снова покажет устаревшее число до второго прохода.
-            patchHomeScreenHydration({ tasksCompleted: nextTasksCompleted, tasksTotal: baseTotal }, studyTarget);
-            void (async () => {
-                try {
-                    const accountToken = captureAccountGeneration();
-                    const stableId = await getCanonicalUserId();
-                    if (lostOwnership() || !stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
-                    const dayKey = getTodayKey();
-                    const scope = { stableId, dayKey, lang };
-                    let survey = peekSurveyDailyTask(scope);
-                    const completed = await isSurveyDailyTaskDone({ stableId, dayKey });
-                    if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
-                    if (completed) {
-                        survey = buildServerConfirmedLegacyCompletion(lang);
-                        const requestId = beginSurveyDailyTaskRequest(scope);
-                        commitSurveyDailyTaskRequest(scope, requestId, survey);
-                    } else if (!survey && isSurveyCloudEnabled()) {
-                        const requestId = beginSurveyDailyTaskRequest(scope);
-                        const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-                        if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
-                        const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
-                        if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
-                        survey = migrated
-                            ? buildServerConfirmedLegacyCompletion(lang)
-                            : lookup.survey && lookup.survey.questions.length > 0
-                                ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
-                                : null;
-                        if (!commitSurveyDailyTaskRequest(scope, requestId, survey)) {
-                            survey = peekSurveyDailyTask(scope);
-                        }
-                    }
-                    if (!mountedRef.current || lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
-                    const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });
-                    setDailyTaskBarCount((previous) => previous === counts.total ? previous : counts.total);
-                    setTasksCompleted(counts.done);
-                    patchHomeScreenHydration({ tasksCompleted: counts.done, tasksTotal: counts.total }, studyTarget);
-                } catch {
-                    /* Keep the already-rendered ordinary task summary. */
-                }
-            })();
-        }
-        catch {
-            /* keep previous summary */
-        }
-    }, [lang, studyTarget]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
@@ -1073,7 +995,7 @@ export default function HomeScreen() {
     // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
     // фраза дня, подвал) монтируются вторым проходом после первого кадра.
     // зачем: флаг стартовал с false на КАЖДОМ маунте главной. При возврате с любого
-    // раздела таб размораживается заново, флаг опять false — и «Вызовы дня», «Цель лиги»,
+    // раздела таб размораживается заново, флаг опять false — и «Цель лиги»,
     // фраза дня, подвал пропадали, а через кадр (runAfterInteractions) вставлялись в поток,
     // толкая верстку. Владелец: «возврат на главную — элементы появляются с задержкой,
     // хочу как в Bevel: сразу видно всю страницу». Второй проход нужен ТОЛЬКО первому
@@ -1098,14 +1020,6 @@ export default function HomeScreen() {
             }
             loadData();
         };
-        const requestDailyTaskSummaryRefresh = () => {
-            if (!homeRuntimeActiveRef.current) {
-                homeDailySummaryDirtyRef.current = true;
-                return;
-            }
-            homeDailySummaryDirtyRef.current = false;
-            void refreshDailyTaskSummary();
-        };
         let resumeTimer: ReturnType<typeof setTimeout> | null = null;
         let resumeTask: {
             cancel?: () => void;
@@ -1124,10 +1038,7 @@ export default function HomeScreen() {
                 resumeTimer = setTimeout(() => {
                     resumeTimer = null;
                     resumeTask = InteractionManager.runAfterInteractions(() => {
-                        if (refreshKind === 'cloud')
-                            requestHomeDataRefresh();
-                        else
-                            requestDailyTaskSummaryRefresh();
+                        if (refreshKind === 'cloud') requestHomeDataRefresh();
                     });
                 }, refreshKind === 'cloud' ? FOREGROUND_CLOUD_REFRESH_DELAY_MS : FOREGROUND_LIGHT_REFRESH_DELAY_MS);
             }
@@ -1143,17 +1054,6 @@ export default function HomeScreen() {
         });
         // Слушаем событие изменения XP (от тестеров и других экранов)
         const xpSub = DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh);
-        const dailyTaskProgressChangedSub = onAppEvent('daily_task_progress_changed', (payload) => {
-            const eventTarget = storageStudyTarget(payload.studyTarget);
-            invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), eventTarget);
-            if (eventTarget === storageStudyTarget(studyTargetRef.current)) {
-                requestDailyTaskSummaryRefresh();
-            }
-        });
-        const dailyTaskCompletedSub = onAppEvent('daily_task_completed', requestDailyTaskSummaryRefresh);
-        const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', requestDailyTaskSummaryRefresh);
-        const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', requestDailyTaskSummaryRefresh);
-        const dailyTaskSetRerolledSub = onAppEvent('daily_tasks_set_rerolled', requestDailyTaskSummaryRefresh);
         const personalPlanSub = onAppEvent('personal_plan_updated', (payload) => {
             if (payload?.snapshot) {
                 setHasActivePersonalPlanState(true);
@@ -1265,11 +1165,6 @@ export default function HomeScreen() {
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
             xpSub.remove();
-            dailyTaskProgressChangedSub.remove();
-            dailyTaskCompletedSub.remove();
-            dailyTaskClaimedSub.remove();
-            dailyTaskRerolledSub.remove();
-            dailyTaskSetRerolledSub.remove();
             personalPlanSub.remove();
             leagueStateSub.remove();
             crownSub.remove();
@@ -1678,6 +1573,7 @@ export default function HomeScreen() {
         }
         loadingRef.current = true;
         needsReloadRef.current = false;
+        const homeHydrationAccount = captureAccountGeneration();
         const homeHydrationStartedAt = Date.now();
         let streakPaywallOpenedThisLoad = false;
         if (streakTimerRef.current) {
@@ -1832,18 +1728,15 @@ export default function HomeScreen() {
                 }
             }
             setWeekPoints(weekPts);
-            const dailyAllDoneKey = dailyTasksAchievementAllDoneStreakKey(studyTarget);
             const [specialTitleStoragePairs, achievementStates] = await Promise.all([
-                AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY, dailyAllDoneKey]),
+                AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY]),
                 loadAchievementStates().catch(() => []),
             ]);
             const specialTitleStorage = new Map(specialTitleStoragePairs);
             const helpfulReportsRaw = specialTitleStorage.get(HELPFUL_REPORTS_CONFIRMED_KEY) ?? null;
-            const dailyAllDoneRaw = specialTitleStorage.get(dailyAllDoneKey) ?? null;
             if (mountedRef.current) {
                 setSpecialTitleStats({
                     helpfulReportsConfirmed: parseStoredCount(helpfulReportsRaw),
-                    dailyAllDoneStreak: parseStoredStreak(dailyAllDoneRaw),
                     earnedAchievementIds: new Set(achievementStates.filter((state) => state.unlockedAt !== null).map((state) => state.id)),
                 });
             }
@@ -1962,13 +1855,7 @@ export default function HomeScreen() {
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
                 lastLessonScore: snapLastLessonScore,
-                // зачем: rememberHomeScreenHydration ПОЛНОСТЬЮ заменяет снапшот (не мёржит) —
-                // на этом шаге dueCount/tasksCompleted этого прогона loadData ещё не посчитаны
-                // (считаются ниже), поэтому переносим предыдущее известное значение, чтобы не
-                // затереть его на 0/undefined; ниже patchHomeScreenHydration допишет свежее.
                 dueCount: hh?.dueCount,
-                tasksCompleted: hh?.tasksCompleted,
-                tasksTotal: hh?.tasksTotal,
                 homeLeagueCrownExpiresAt,
                 homeLeagueCrownCount,
                 // The long-lived event subscriptions call the first loadData closure,
@@ -1976,7 +1863,7 @@ export default function HomeScreen() {
                 // rather than letting that stale closure erase the league row.
                 homeLeagueChest: homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null,
                 personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
-            }, studyTarget);
+            }, studyTarget, homeHydrationAccount);
             patchAppSnapshot({
                 profile: {
                     source: 'storage',
@@ -2008,15 +1895,11 @@ export default function HomeScreen() {
                     const lvl = getXPProgress(xpNum).level;
                     return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
                 })();
-            // зачем: префетч лиги СТАРТУЕТ здесь, до await getTodayTasksSafe, а не внутри
-            // Promise.all ниже. Раньше он ждал загрузку задач, и пользователь, успевший
-            // тапнуть «Лиги» раньше, попадал на пустой экран — кэш ещё не был наполнен.
-            // Промис уходит в работу сразу, а Promise.all ниже просто дожидается его.
+            // Префетч лиги стартует до прочих локальных чтений, чтобы ранний вход
+            // в раздел уже получил тёплый кэш.
             // Firestore-чтений это не добавляет: вызов ровно один, просто раньше.
             const leagueOpenPromise = checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null);
-            const taskList = await getTodayTasksSafe(studyTarget);
-            const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
-                loadTodayProgress(taskList, studyTarget),
+            const [leagueOpenResult, dueItems, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
                 // Если remote недоступен — функция сама перейдет на локальный state.
                 leagueOpenPromise,
@@ -2038,24 +1921,6 @@ export default function HomeScreen() {
             const leaguePending: LeagueResult | null = leagueOpenResult?.needShowResult
                 ? leagueOpenResult.result
                 : await loadPendingResult().catch(() => null);
-            setTaskProgress(tp);
-            const taskProgressById = new Map(tp.map((row) => [row.taskId, row]));
-            const loadedTasksCompleted = taskList.filter((task) => taskProgressById.get(task.id)?.completed).length;
-            setTasksCompleted(loadedTasksCompleted);
-            setDailyTaskBarCount(taskList.length > 0 ? taskList.length : 3);
-            // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
-            // Home второй проход (belowFoldReady) стартует с этого числа, а не с 0.
-            patchHomeScreenHydration({
-                tasksCompleted: loadedTasksCompleted,
-                tasksTotal: taskList.length > 0 ? taskList.length : 3,
-            }, studyTarget);
-            // The full Home load can finish after the light summary request. Run the
-            // summary again so this late base update cannot hide the survey indicator.
-            if (homeRuntimeActiveRef.current) {
-                void refreshDailyTaskSummary();
-            } else {
-                homeDataDirtyRef.current = true;
-            }
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
                 const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
@@ -2259,14 +2124,10 @@ export default function HomeScreen() {
         if (!homeRuntimeActive) return;
         if (homeDataDirtyRef.current) {
             homeDataDirtyRef.current = false;
-            homeDailySummaryDirtyRef.current = false;
             loadData();
             return;
         }
-        if (!homeDailySummaryDirtyRef.current) return;
-        homeDailySummaryDirtyRef.current = false;
-        void refreshDailyTaskSummary();
-    }, [homeRuntimeActive, focusTick, refreshDailyTaskSummary]);
+    }, [homeRuntimeActive, focusTick]);
     useEffect(() => {
         if (!homeRuntimeActive) {
             shardsAnim.stopAnimation();
@@ -2552,12 +2413,9 @@ export default function HomeScreen() {
         const homePracticeIconSize = 64;
         const homePracticeIconImageSize = homePracticeIconSize;
         const homeTodayIconSize = 84;
-        const homeTodayIconImageSize = homeTodayIconSize;
-        const homeTodayCardMinHeight = 112;
         const homeTodayLeagueCardMinHeight = 120;
         const homeTodayCardPadX = 16;
         const homeTodayCardPadY = 12;
-        const homeTodayCardGap = 14;
         // Плитка «Уроки» сохраняет push-презентацию /lessons_list, а вкладка с
         // книжкой открывает тот же раздел как retained-tab. Продолжение последнего
         // урока остаётся на отдельной плашке ниже.
@@ -2640,9 +2498,6 @@ export default function HomeScreen() {
         const homeLeagueChestReady = homeLeagueChestPct >= 100;
         const homeLeagueChestAccent = homeLeagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
         const homeLeagueChestFill = homeLeagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
-        const homeDailyProgressFill = (isGoldTheme
-            ? [GOLD_RICH.agedGold, GOLD_RICH.champagne, GOLD_RICH.paleGold]
-            : [t.accent, t.correct, t.gold]) as [string, string, string];
         const openHomeProfile = () => {
             hapticTap();
             setHomeProfilePlayer({
@@ -2961,7 +2816,7 @@ export default function HomeScreen() {
                     activeOpacity={0.72}
                     onPress={() => {
                       hapticTap();
-                      setDevHubVisible(true);
+                      onOpenDevHub?.();
                     }}
                     style={{ width: 40, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
                   >
@@ -3077,8 +2932,6 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          <ArenaHomeCard />
-
 
 
 
@@ -3122,7 +2975,7 @@ export default function HomeScreen() {
                     </FlowText>
                   </View>
                   <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
-                    <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса, тот же паттерн что «0/4» у «Вызовов дня» */ }}>
+                    <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
                       {Math.max(0, Math.min(50, lastLesson.progress))}/50
                     </Text>
                   </View>
@@ -3236,7 +3089,7 @@ export default function HomeScreen() {
               подвал) монтируются вторым проходом — belowFoldReady/InteractionManager. */}
           {belowFoldReady && (<>
 
-          {/* СЕГОДНЯ: вызовы дня + лига одним полотном */}
+          {/* СЕГОДНЯ: лига одним полотном */}
           <Animated.View style={sectionStyle(4)}>
           <>
           <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
@@ -3258,50 +3111,6 @@ export default function HomeScreen() {
               отсюда ушла: её вход — кольцо и Компас. Уроки ушли следом
               (2026-07-26): их вход — таббар и плитки быстрого доступа. */}
           <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 10 }}>
-            <TouchableOpacity
-              activeOpacity={0.85}
-              testID="home-activity-daily"
-              onPress={() => { go('/daily_tasks_screen'); }}
-              style={[{ borderRadius: 24, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}
-              accessibilityRole="button"
-            >
-              <LinearGradient
-                colors={homeThemePanelGradient}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{ minHeight: homeTodayCardMinHeight, borderRadius: 24, borderWidth: 0, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}
-              >
-                {isGoldTheme && <GoldBevel radius={24} intensity="quiet"/>}
-                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  {/* зачем: это обычный вход в раздел, а не редакционный акцент.
-                      Жёсткий минимум 22px делал small/medium/large одинаковыми;
-                      размер должен следовать пользовательской шкале f. */}
-                  <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
-                    {triLang(lang, {
-                      ru: 'Вызовы дня', uk: 'Виклики дня', es: 'Tareas del día', 'pt-BR': 'Tarefas do dia',
-                      vi: 'Nhiệm vụ hôm nay', id: 'Tugas harian', tr: 'Günün görevleri', pl: 'Zadania dnia',
-                    })}
-                  </FlowText>
-                  <View testID="home-daily-task-progress" style={{ marginTop: 12, flexDirection: 'row', gap: 7, width: 138 }}>
-                    {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
-                      const done = ti < tasksCompleted;
-                      return (
-                        <View key={ti} style={{ flex: 1, height: 11, borderRadius: 999, padding: 1, overflow: 'hidden', backgroundColor: done ? (isGoldTheme ? 'rgba(255,232,168,0.24)' : 'rgba(122,181,255,0.24)') : (isLightTheme ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.10)'), borderWidth: 1, borderColor: done ? (isGoldTheme ? 'rgba(255,232,168,0.60)' : homeDailyProgressFill[1]) : (isLightTheme ? 'rgba(0,0,0,0.13)' : 'rgba(255,255,255,0.13)') }}>
-                          <LinearGradient colors={done ? homeDailyProgressFill : (isLightTheme ? ['rgba(255,255,255,0.22)', 'rgba(0,0,0,0.07)', 'rgba(0,0,0,0.12)'] : ['rgba(255,255,255,0.13)', 'rgba(255,255,255,0.055)', 'rgba(0,0,0,0.18)'])} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: 999, overflow: 'hidden' }}>
-                            <View pointerEvents="none" style={{ position: 'absolute', left: 3, right: 3, top: 1, height: 3, borderRadius: 999, backgroundColor: done ? 'rgba(255,255,255,0.46)' : 'rgba(255,255,255,0.10)' }}/>
-                          </LinearGradient>
-                        </View>
-                      );
-                    })}
-                  </View>
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>
-
             {homeLeagueChest ? (
               <TouchableOpacity
                 testID="home-league-open"
@@ -3353,6 +3162,22 @@ export default function HomeScreen() {
               };
               refreshDailyPhraseVisibility();
           }}>
+          {surveyOffer ? (
+            <View style={{ marginBottom: 14 }}>
+              <SurveyTaskCard
+                challenge={surveyOffer.challenge}
+                onOpen={(challenge) => {
+                  if (!challenge.survey) return;
+                  hapticTap();
+                  primeSurvey({ survey: challenge.survey, stableId: surveyOffer.stableId, dayKey: surveyOffer.dayKey, lang });
+                  router.push({
+                    pathname: '/survey_screen',
+                    params: { surveyId: challenge.survey.surveyId, stableId: surveyOffer.stableId, dayKey: surveyOffer.dayKey, lang },
+                  } as any);
+                }}
+              />
+            </View>
+          ) : null}
           <DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />
           </Animated.View>
           <HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />
@@ -3385,7 +3210,6 @@ export default function HomeScreen() {
         totalXP,
         streak,
         helpfulReportsConfirmed: specialTitleStats.helpfulReportsConfirmed,
-        dailyAllDoneStreak: specialTitleStats.dailyAllDoneStreak,
         earnedAchievementIds: specialTitleStats.earnedAchievementIds,
         lang,
         selectedTitleKey,
@@ -3642,12 +3466,6 @@ export default function HomeScreen() {
 
 
       </ScreenGradient>
-      {ENABLE_DEV_TOOLS ? (
-        <DevHubSheetGate
-          visible={devHubVisible}
-          onClose={() => setDevHubVisible(false)}
-        />
-      ) : null}
       {/* Streak Revive — окно 24ч после потери цепочки */}
       <StreakReviveModal visible={reviveOverlayVisible} offer={reviveOffer} onClose={() => {
             setReviveModalVisible(false);

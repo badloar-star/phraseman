@@ -23,9 +23,7 @@ describe('Olive premium asset suite', () => {
       }
     }
 
-    // The retired Daily Tasks surface owned six former theme slots. Keep this
-    // count aligned with the live, statically wired Olive asset catalog only.
-    expect(required.size).toBe(62);
+    expect(required.size).toBe(67);
     for (const file of required) {
       expect(fs.existsSync(file)).toBe(true);
       expect(path.extname(file)).toMatch(/\.(webp|png)$/);

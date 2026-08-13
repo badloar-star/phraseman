@@ -521,10 +521,8 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
   const barTotalH = pillBottom + tabBarHeight;
 
   const [pillWidth, setPillWidth] = useState(0);
-  /** Стартовое положение подсветки = финальное: первый кадр без «переезда». */
-  const initialActiveIdx = active === 'packs' || active === 'mine' ? BAR_SLOTS.indexOf('packs') : -1;
-  const highlightAnim = useRef(new Animated.Value(Math.max(0, initialActiveIdx))).current;
-  const highlightOpacity = useRef(new Animated.Value(initialActiveIdx >= 0 ? 1 : 0)).current;
+  const highlightAnim = useRef(new Animated.Value(0)).current;
+  const highlightOpacity = useRef(new Animated.Value(0)).current;
   const pressAnim = useRef(new Animated.Value(0)).current;
   const [pressedSlot, setPressedSlot] = useState<BarSlot | null>(null);
 
@@ -600,9 +598,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
         />
       </Reanimated.View>
 
-      {/* Слой на весь экран: все всплывашки живут ВНУТРИ его границ — иначе на
-          Android касание по кнопке, отрисованной выше родителя, не доходит. */}
-      <View pointerEvents="box-none" style={StyleSheet.absoluteFillObject}>
+      <View pointerEvents="box-none" style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
         {/* §5.2: список режимов выезжает ВВЕРХ над левой позицией «Тренировка» */}
         <View
           pointerEvents="box-none"

@@ -1,0 +1,1023 @@
+{
+  "kind": "personal_plans_fill_progress_data",
+  "generatedAt": "2026-06-05T00:00:00.000Z",
+  "productionReady": false,
+  "sourceRuntimeWriteAllowed": false,
+  "liveRegistrationAllowed": false,
+  "generatedContentCreationAllowed": false,
+  "latestCheckpoint": "P3.219 Voyazh Day 12 generator-backed certified content",
+  "plans": [
+    {
+      "id": "voyazh",
+      "name": "Voyazh",
+      "filledDays": 28,
+      "totalDays": 84
+    },
+    {
+      "id": "mitap",
+      "name": "Mitap",
+      "filledDays": 28,
+      "totalDays": 112
+    },
+    {
+      "id": "gavan",
+      "name": "Gavan",
+      "filledDays": 28,
+      "totalDays": 126
+    },
+    {
+      "id": "impuls",
+      "name": "Impuls",
+      "filledDays": 28,
+      "totalDays": 140
+    },
+    {
+      "id": "echo",
+      "name": "Echo",
+      "filledDays": 28,
+      "totalDays": 84
+    }
+  ],
+  "dayQuality": [
+    {
+      "label": "Voyazh Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 1 certified airport-help content from generator packet voyazh_d001_generator_packet: phrase introduction first, then missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz materials bound to voyazh_d001_content_unit.",
+      "notes": "Generator pipeline evidence: valid_non_live_dry_run through packet validation, review, source intake, import format, and runtime source guard. Plan fill remains 28/84; no scaffold days were counted."
+    },
+    {
+      "label": "Voyazh Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 2 generator-backed certified passport-control content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Voyazh Day 3",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 3 generator-backed certified baggage/check-in content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d003_generator_packet passed valid_non_live_dry_run; plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Voyazh Day 4",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 4 generator-backed certified taxi-to-hotel content: phrase lesson, missing word, pronunciation repeat, natural choice, listen build, recall, listen choose, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d004_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Voyazh Day 5",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 5 generator-backed certified hotel check-in content: phrase lesson, natural choice, listen build, missing word, listen choose, quiz, pronunciation repeat, and recall material all exist.",
+      "notes": "Generated packet voyazh_d005_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Voyazh Day 6",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 6 generator-backed certified travel-repair content: phrase lesson, listen build, recall, natural choice, missing word, listen choose, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d006_generator_packet passed valid_non_live_dry_run; generated options are stable-shuffled so correct answers are not first, listen-build word banks do not begin in answer order, and quiz explanations use lively Russian per-option feedback."
+    },
+    {
+      "label": "Voyazh Day 7",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 7 generator-backed certified weekly check content: phrase lesson, recall, quiz, missing word, natural choice, listen choose, listen build, and pronunciation repeat material all exist.",
+      "notes": "Generated packet voyazh_d007_generator_packet passed valid_non_live_dry_run; Voyazh week 1 closes with generator-backed review content and stable-shuffled generated options."
+    },
+    {
+      "label": "Voyazh Day 8",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 8 generator-backed certified week 2 autonomy transport content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d008_generator_packet passed valid_non_live_dry_run; Voyazh autonomy increases with stable-shuffled transport options while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Voyazh Day 9",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 9 generator-backed certified transport-schedule content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d009_generator_packet passed valid_non_live_dry_run; Voyazh week 2 now adds schedule/platform two-turn transport practice while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Voyazh Day 10",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 10 generator-backed certified transport controlled variation content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d010_generator_packet passed valid_non_live_dry_run; Voyazh controlled variation changes the transport context while preserving the same short-choice skill and non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Voyazh Day 11",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 11 generator-backed certified route-planning prompted production content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d011_generator_packet passed valid_non_live_dry_run; Voyazh prompted production adds route-planning rescue copy while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Voyazh Day 12",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 12 generator-backed certified mixed-recall pressure content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d012_generator_packet passed valid_non_live_dry_run; Voyazh mixed-recall pressure stays bounded while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Voyazh Day 13",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Voyazh typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 14",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Voyazh week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 15",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Voyazh freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 16",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Voyazh freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 17",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Voyazh less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 18",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Voyazh transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 19",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Voyazh pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 20",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Voyazh repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 21",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Voyazh week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 22",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Voyazh free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 23",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Voyazh rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 24",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Voyazh two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 25",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Voyazh cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 26",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Voyazh repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 27",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Voyazh final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 28",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Voyazh next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 1 certified work-call content from generator packet mitap_d001_generator_packet: phrase introduction first, then missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz materials bound to mitap_d001_content_unit.",
+      "notes": "Generator pipeline evidence: valid_non_live_dry_run through packet validation, review, source intake, import format, and runtime source guard. Plan fill remains 28/112; no scaffold days were counted."
+    },
+    {
+      "label": "Mitap Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 2 generator-backed certified standup-update content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet mitap_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/112 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Mitap Day 3",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 3 generator-backed certified next-steps follow-up content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet mitap_d003_generator_packet passed valid_non_live_dry_run; visible-phrase-token distractors are blocked by the missing-word quality gate. Plan fill remains 28/112 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Mitap Day 4",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 4 generator-backed certified task-status follow-up content: phrase lesson, missing word, pronunciation repeat, natural choice, listen build, recall, listen choose, and quiz material all exist.",
+      "notes": "Generated packet mitap_d004_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/112 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Mitap Day 5",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 5 generator-backed certified deadline-check content: phrase lesson, natural choice, listen build, missing word, listen choose, quiz, pronunciation repeat, and recall material all exist.",
+      "notes": "Generated packet mitap_d005_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/112 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Mitap Day 6",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 6 generator-backed certified work-repair content: phrase lesson, listen build, recall, natural choice, missing word, listen choose, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet mitap_d006_generator_packet passed valid_non_live_dry_run; generated options are stable-shuffled so correct answers are not first, listen-build word banks do not begin in answer order, and quiz explanations use lively Russian per-option feedback."
+    },
+    {
+      "label": "Mitap Day 7",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 7 generator-backed certified weekly check content: phrase lesson, recall, quiz, missing word, natural choice, listen choose, listen build, and pronunciation repeat material all exist.",
+      "notes": "Generated packet mitap_d007_generator_packet passed valid_non_live_dry_run; Mitap week 1 closes with generator-backed review content and stable-shuffled generated options."
+    },
+    {
+      "label": "Mitap Day 8",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 8 generator-backed certified week 2 autonomy work-call content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet mitap_d008_generator_packet passed valid_non_live_dry_run; Mitap autonomy increases with stable-shuffled work-call options while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Mitap Day 9",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 9 generator-backed certified task-scope content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet mitap_d009_generator_packet passed valid_non_live_dry_run; Mitap week 2 now adds scope clarification two-turn work practice while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Mitap Day 10",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 10 generator-backed certified work-priority controlled variation content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet mitap_d010_generator_packet passed valid_non_live_dry_run; Mitap controlled variation changes the work-priority context while preserving the same clarification skill and non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Mitap Day 11",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 11 generator-backed certified work-update prompted production content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet mitap_d011_generator_packet passed valid_non_live_dry_run; Mitap prompted production adds work-update rescue copy while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Mitap Day 12",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Mitap light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 13",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Mitap typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 14",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Mitap week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 15",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Mitap freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 16",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Mitap freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 17",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Mitap less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 18",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Mitap transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 19",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Mitap pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 20",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Mitap repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 21",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Mitap week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 22",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Mitap free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 23",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Mitap rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 24",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Mitap two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 25",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Mitap cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 26",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Mitap repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 27",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Mitap final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 28",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Mitap next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 1 generator-backed certified short-answer content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet gavan_d001_generator_packet passed valid_non_live_dry_run; not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 2 generator-backed certified address/postcode content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet gavan_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/126 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 3",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 3 generator-backed certified document/form content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet gavan_d003_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/126 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 4",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 4 generator-backed certified required-documents content: phrase lesson, missing word, pronunciation repeat, natural choice, listen build, recall, listen choose, and quiz material all exist.",
+      "notes": "Generated packet gavan_d004_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/126 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 5",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 5 generator-backed certified missing-document content: phrase lesson, natural choice, listen build, missing word, listen choose, quiz, pronunciation repeat, and recall material all exist.",
+      "notes": "Generated packet gavan_d005_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/126 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 6",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 6 generator-backed certified form-repair content: phrase lesson, listen build, recall, natural choice, missing word, listen choose, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet gavan_d006_generator_packet passed valid_non_live_dry_run; generated options are stable-shuffled so correct answers are not first, listen-build word banks do not begin in answer order, and quiz explanations use lively Russian per-option feedback."
+    },
+    {
+      "label": "Gavan Day 7",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 7 generator-backed certified weekly check content: phrase lesson, recall, quiz, missing word, natural choice, listen choose, listen build, and pronunciation repeat material all exist.",
+      "notes": "Generated packet gavan_d007_generator_packet passed valid_non_live_dry_run; Gavan week 1 closes with generator-backed review content and stable-shuffled generated options."
+    },
+    {
+      "label": "Gavan Day 8",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 8 generator-backed certified week 2 autonomy document-service content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet gavan_d008_generator_packet passed valid_non_live_dry_run; Gavan autonomy increases with stable-shuffled document-service options while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Gavan Day 9",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 9 generator-backed certified next-step appointment content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet gavan_d009_generator_packet passed valid_non_live_dry_run; Gavan week 2 now adds two-turn next-step and appointment practice while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Gavan Day 10",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 10 generator-backed certified service-details controlled variation content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet gavan_d010_generator_packet passed valid_non_live_dry_run; Gavan controlled variation changes the service-detail context while preserving the same document-service skill and non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Gavan Day 11",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 11 generator-backed certified service-request prompted production content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet gavan_d011_generator_packet passed valid_non_live_dry_run; Gavan prompted production adds service-request rescue copy while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Gavan Day 12",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Gavan light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 13",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Gavan typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 14",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Gavan week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 15",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Gavan freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 16",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Gavan freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 17",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Gavan less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 18",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Gavan transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 19",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Gavan pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 20",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Gavan repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 21",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Gavan week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 22",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Gavan free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 23",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Gavan rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 24",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Gavan two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 25",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Gavan cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 26",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Gavan repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 27",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Gavan final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 28",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Gavan next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 1 generator-backed certified short-story content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet impuls_d001_generator_packet passed valid_non_live_dry_run; not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 2 generator-backed certified opinion content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet impuls_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/140 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 3",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 3 generator-backed certified because/reason content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet impuls_d003_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/140 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 4",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 4 generator-backed certified repair-after-mistake content: phrase lesson, missing word, pronunciation repeat, natural choice, listen build, recall, listen choose, and quiz material all exist.",
+      "notes": "Generated packet impuls_d004_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/140 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 5",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 5 generator-backed certified buy-time speaking content: phrase lesson, natural choice, listen build, missing word, listen choose, quiz, pronunciation repeat, and recall material all exist.",
+      "notes": "Generated packet impuls_d005_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/140 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 6",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 6 generator-backed certified speaking-repair connect-two-thoughts content: phrase lesson, listen build, recall, natural choice, missing word, listen choose, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet impuls_d006_generator_packet passed valid_non_live_dry_run; generated options are stable-shuffled so correct answers are not first, listen-build word banks do not begin in answer order, and quiz explanations use lively Russian per-option feedback."
+    },
+    {
+      "label": "Impuls Day 7",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 7 generator-backed certified weekly check content: phrase lesson, recall, quiz, missing word, natural choice, listen choose, listen build, and pronunciation repeat material all exist.",
+      "notes": "Generated packet impuls_d007_generator_packet passed valid_non_live_dry_run; Impuls week 1 closes with generator-backed review content and stable-shuffled generated options."
+    },
+    {
+      "label": "Impuls Day 8",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 8 generator-backed certified week 2 autonomy speaking-flow content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet impuls_d008_generator_packet passed valid_non_live_dry_run; Impuls autonomy increases with stable-shuffled two-part-answer options while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Impuls Day 9",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 9 generator-backed certified main-point response content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet impuls_d009_generator_packet passed valid_non_live_dry_run; Impuls week 2 now adds two-turn main-point response practice while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Impuls Day 10",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 10 generator-backed certified alternative-answer controlled variation content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet impuls_d010_generator_packet passed valid_non_live_dry_run; Impuls controlled variation changes the answer stance while preserving the same main-point speaking skill and non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Impuls Day 11",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 11 generator-backed certified short-answer prompted production content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet impuls_d011_generator_packet passed valid_non_live_dry_run; Impuls prompted production adds short-answer rescue copy while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Impuls Day 12",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Impuls light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 13",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Impuls typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 14",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Impuls week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 15",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Impuls freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 16",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Impuls freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 17",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Impuls less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 18",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Impuls transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 19",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Impuls pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 20",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Impuls repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 21",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Impuls week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 22",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Impuls free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 23",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Impuls rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 24",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Impuls two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 25",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Impuls cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 26",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Impuls repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 27",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Impuls final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 28",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Impuls next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 1 generator-backed certified listening-repair content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet echo_d001_generator_packet passed valid_non_live_dry_run; not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 2 generator-backed certified short-response content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet echo_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 3",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 3 generator-backed certified ask-again/listening-repair content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet echo_d003_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 4",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 4 generator-backed certified time-and-place listening content: phrase lesson, missing word, pronunciation repeat, natural choice, listen build, recall, listen choose, and quiz material all exist.",
+      "notes": "Generated packet echo_d004_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 5",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 5 generator-backed certified main-message listening content: phrase lesson, natural choice, listen build, missing word, listen choose, quiz, pronunciation repeat, and recall material all exist.",
+      "notes": "Generated packet echo_d005_generator_packet passed valid_non_live_dry_run; missing-word distractors are blocked from reusing visible phrase tokens. Plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 6",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 6 generator-backed certified listening-repair content: phrase lesson, listen build, recall, natural choice, missing word, listen choose, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet echo_d006_generator_packet passed valid_non_live_dry_run; generated options are stable-shuffled so correct answers are not first, listen-build word banks do not begin in answer order, and quiz explanations use lively Russian per-option feedback."
+    },
+    {
+      "label": "Echo Day 7",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 7 generator-backed certified weekly check content: phrase lesson, recall, quiz, missing word, natural choice, listen choose, listen build, and pronunciation repeat material all exist.",
+      "notes": "Generated packet echo_d007_generator_packet passed valid_non_live_dry_run; Echo week 1 closes with generator-backed review content and stable-shuffled generated options."
+    },
+    {
+      "label": "Echo Day 8",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 8 generator-backed certified week 2 autonomy listening-repair content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet echo_d008_generator_packet passed valid_non_live_dry_run; Echo autonomy increases with stable-shuffled listening-repair options while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Echo Day 9",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 9 generator-backed certified key-detail listening content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet echo_d009_generator_packet passed valid_non_live_dry_run; Echo week 2 now adds two-turn key-detail listening practice while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Echo Day 10",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 10 generator-backed certified instruction-detail controlled variation content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet echo_d010_generator_packet passed valid_non_live_dry_run; Echo controlled variation changes the instruction-detail context while preserving the same listening-repair skill and non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Echo Day 11",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 11 generator-backed certified understanding-check prompted production content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet echo_d011_generator_packet passed valid_non_live_dry_run; Echo prompted production adds understanding-check rescue copy while non-live audio/pronunciation evidence remains blocked."
+    },
+    {
+      "label": "Echo Day 12",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Echo light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 13",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Echo typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 14",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Echo week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 15",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Echo freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 16",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Echo freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 17",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Echo less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 18",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Echo transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 19",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Echo pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 20",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Echo repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 21",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Echo week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 22",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Echo free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 23",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Echo rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 24",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Echo two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 25",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Echo cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 26",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Echo repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 27",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Echo final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 28",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Echo next cycle handoff is explicit; non-live chat draft only."
+    }
+  ]
+}

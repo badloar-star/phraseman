@@ -26,7 +26,7 @@ describe('current league icon content alignment', () => {
     expect(screenSource).toContain('size={84}');
     expect(screenSource).toContain('alignContent={false}');
     expect(sceneSource).toContain('leagueIcon: React.ReactNode');
-    expect(sceneSource).toContain('testID="league-competition-emblem"');
+    expect(sceneSource).toContain('testID="league-arena-emblem"');
     expect(sceneSource).toContain('emblemSlot');
     expect(sceneSource).toContain('{leagueIcon}');
     expect(screenSource).not.toContain('CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO');

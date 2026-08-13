@@ -28,20 +28,6 @@ import {
   mountLearningV2ActivityReleasedSessionRuntimeV1,
   parseLearningV2ActivityReleasedSessionPackageV1,
 } from "../modules/learning-v2/runtime/activity_released_session_package_v1";
-import {
-  getLearningV2ActivityReleasedSessionPackageSummaryV2,
-  isLearningV2ActivityReleasedSessionPackageHandleV2,
-  isLearningV2ActivityReleasedSessionRuntimeHandleV2,
-  materializeLearningV2ActivityReleasedSessionPackageV2,
-  mountLearningV2ActivityReleasedSessionRuntimeV2,
-  parseLearningV2ActivityReleasedSessionPackageV2,
-  resolveLearningV2ActivityReleasedSessionCoreRuntimeV2,
-  resolveLearningV2ActivityReleasedSessionIntroV2,
-} from "../modules/learning-v2/runtime/activity_released_session_package_v2";
-import {
-  encodeLearningV2ActivitySessionIntroProjectionV1,
-  materializeLearningV2ActivitySessionIntroProjectionV1,
-} from "../modules/learning-v2/runtime/activity_session_intro_projection_v1";
 
 const h = (value: unknown) => hashCanonicalBody(value);
 const localized = (prefix: string) =>
@@ -315,46 +301,7 @@ function fixture() {
     consumer: "app_internal_local_evaluator_only",
     verdictAuthority: "local_provisional_only",
   });
-  const intro = materializeLearningV2ActivitySessionIntroProjectionV1({
-    contentClass: "neutral_test_fixture",
-    introId: "intro-session-1",
-    introFingerprint: h("intro-session-1"),
-    sourceSubjectFingerprint: h("intro-source-subject-1"),
-    episodeId: "episode-1",
-    sessionId: "session-1",
-    sessionOrdinal: 1,
-    targetLanguage: "en",
-    title: "Three exact intro pages",
-    pages: renderTasks.slice(0, 3).map((task, index) => ({
-      pageOrdinal: (index + 1) as 1 | 2 | 3,
-      conceptId: `concept-${index + 1}`,
-      heading: `Heading ${index + 1}`,
-      explanation: `Explanation ${index + 1}`,
-      question: {
-        taskId: task.taskId,
-        taskSlot: (index + 1) as 1 | 2 | 3,
-        questionId: `question-${index + 1}`,
-        coveredConceptIds: [`concept-${index + 1}`],
-        learnerSurfaceFingerprint: h({
-          taskId: task.taskId,
-          promptId: task.learner.promptId,
-          prompt: task.learner.prompt,
-          responseOptions: task.learner.responseOptions,
-          accessibilityLabel: task.learner.accessibilityLabel,
-        }),
-        promptId: task.learner.promptId,
-        prompt: task.learner.prompt,
-        responseOptions: task.learner.responseOptions,
-        accessibilityLabel: task.learner.accessibilityLabel,
-      },
-    })),
-  });
-  return {
-    descriptor,
-    renderRaw,
-    capsuleEnvelopeRaw,
-    introRaw: encodeLearningV2ActivitySessionIntroProjectionV1(intro),
-  };
+  return { descriptor, renderRaw, capsuleEnvelopeRaw };
 }
 
 describe("released Activity session package", () => {
@@ -442,68 +389,5 @@ describe("released Activity session package", () => {
     expect(() =>
       parseLearningV2ActivityReleasedSessionPackageV1(canonicalJsonV1(swapped)),
     ).toThrow("learning_v2_activity_released_session_package_invalid");
-  });
-
-  it("wraps exact three-page intro and starts non-repeated practice at slot 4", () => {
-    const source = fixture();
-    const corePackageRaw =
-      materializeLearningV2ActivityReleasedSessionPackageV1(source);
-    const raw = materializeLearningV2ActivityReleasedSessionPackageV2({
-      corePackageRaw,
-      introRaw: source.introRaw,
-    });
-    const parsed = parseLearningV2ActivityReleasedSessionPackageV2(raw);
-    expect(isLearningV2ActivityReleasedSessionPackageHandleV2(parsed)).toBe(
-      true,
-    );
-    expect(
-      getLearningV2ActivityReleasedSessionPackageSummaryV2(parsed),
-    ).toMatchObject({
-      introPageCount: 3,
-      embeddedQuestionCount: 3,
-      practiceStartSlot: 4,
-      introTaskBinding: "exact_intro_questions_to_core_tasks_1_2_3",
-    });
-    const runtime = mountLearningV2ActivityReleasedSessionRuntimeV2({
-      packageHandle: parsed,
-      interfaceLocale: "ru",
-    });
-    expect(isLearningV2ActivityReleasedSessionRuntimeHandleV2(runtime)).toBe(
-      true,
-    );
-    expect(resolveLearningV2ActivityReleasedSessionIntroV2(runtime)).toMatchObject({
-      pageCount: 3,
-      embeddedQuestionCount: 3,
-      practiceStartSlot: 4,
-    });
-    expect(
-      getLearningV2ActivityReleasedSessionTaskV1(
-        resolveLearningV2ActivityReleasedSessionCoreRuntimeV2(runtime),
-        4,
-      ).taskId,
-    ).toBe("task-4");
-  });
-
-  it("rejects a recomputed intro whose page question drifts from core task 1", () => {
-    const source = fixture();
-    const corePackageRaw =
-      materializeLearningV2ActivityReleasedSessionPackageV1(source);
-    const intro = JSON.parse(source.introRaw);
-    intro.pages[0].question.prompt = "Different question";
-    intro.pages[0].question.learnerSurfaceFingerprint = h({
-      taskId: intro.pages[0].question.taskId,
-      promptId: intro.pages[0].question.promptId,
-      prompt: intro.pages[0].question.prompt,
-      responseOptions: intro.pages[0].question.responseOptions,
-      accessibilityLabel: intro.pages[0].question.accessibilityLabel,
-    });
-    const { projectionFingerprint: _old, ...introBody } = intro;
-    intro.projectionFingerprint = h(introBody);
-    expect(() =>
-      materializeLearningV2ActivityReleasedSessionPackageV2({
-        corePackageRaw,
-        introRaw: canonicalJsonV1(intro),
-      }),
-    ).toThrow("learning_v2_activity_released_session_package_v2_invalid");
   });
 });

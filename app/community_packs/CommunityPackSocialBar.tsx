@@ -195,6 +195,7 @@ export default function CommunityPackSocialBar({
           accessibilityRole="button"
           accessibilityLabel={likeA11y}
           accessibilityState={{ disabled: !isAdded, selected: snapshot.liked }}
+          accessibilityHint={isAdded ? undefined : likeLockedHint}
           accessible
           activeOpacity={0.85}
           onPress={onLikePress}
@@ -227,7 +228,9 @@ export default function CommunityPackSocialBar({
             }}
             numberOfLines={1}
           >
-            {isAdded ? `${likeLabel} · ${snapshot.likesCount}` : likeLockedHint}
+            {/* До добавления подпись не рисуем: иначе строка не влезает на узкий экран.
+                Понятная подсказка приходит тостом по нажатию и в accessibilityHint. */}
+            {isAdded ? `${likeLabel} · ${snapshot.likesCount}` : String(snapshot.likesCount)}
           </Text>
         </TouchableOpacity>
 

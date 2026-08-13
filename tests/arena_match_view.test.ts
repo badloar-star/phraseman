@@ -12,6 +12,7 @@ import {
   arenaParseMatchPlan,
   arenaCanStartOffline,
   arenaEntryFailure,
+  arenaEntryFailureCopy,
   arenaPlanTaskToPublic,
   type ArenaMatchPlanWire,
 } from '../modules/arena/duel_plan';
@@ -23,6 +24,10 @@ import {
 } from '../modules/arena/match_machine';
 import { arenaLocalPhase } from '../modules/arena/local_clock';
 import { ARENA_ANSWER_MS, ARENA_COMBO_THRESHOLD } from '../modules/arena/stars';
+import * as fs from 'fs';
+import * as path from 'path';
+import { arenaText } from '../modules/arena/copy';
+import type { Lang } from '../constants/i18n';
 
 /**
  * Модель представления матча.
@@ -434,5 +439,61 @@ describe('вход без сети (D-72)', () => {
     for (const error of [null, undefined, '', {}]) {
       expect(arenaEntryFailure(error)).toBe('rejected');
     }
+  });
+});
+
+/**
+ * Экран матча сводил четыре причины к трём веткам, и две из них показывал
+ * одним словом «Повторить» — глаголом вместо объяснения, да ещё и без кнопки
+ * повтора. Игрок читал приказ, который нечем выполнить.
+ */
+describe('почему матч не начался — словами, а не глаголом', () => {
+  const LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('каждая причина объясняется своими словами', () => {
+    const titles = (['offline', 'transient', 'gated', 'rejected', 'no_opponent'] as const)
+      .map((failure) => arenaEntryFailureCopy(failure).title);
+    // Пять причин — пять разных заголовков. Совпадение здесь и означало бы,
+    // что игроку снова говорят одно и то же о разных вещах.
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  /** Повтор предлагается только там, где он может сработать. */
+  it('повтор предлагается только когда он может помочь', () => {
+    expect(arenaEntryFailureCopy('offline').canRetry).toBe(true);
+    expect(arenaEntryFailureCopy('transient').canRetry).toBe(true);
+    // Выключенную Арену повтором не включить, ушедшего соперника не вернуть, а
+    // законченный матч не воскресить: кнопка была бы обманом.
+    expect(arenaEntryFailureCopy('gated').canRetry).toBe(false);
+    expect(arenaEntryFailureCopy('no_opponent').canRetry).toBe(false);
+    expect(arenaEntryFailureCopy('rejected').canRetry).toBe(false);
+  });
+
+  it('неизвестная причина не превращается в молчание', () => {
+    const copy = arenaEntryFailureCopy(null);
+    expect(copy.title).toBe('entryGone');
+    expect(copy.hint).toBe('entryGoneHint');
+  });
+
+  it('все строки переведены на восемь языков', () => {
+    for (const failure of ['offline', 'transient', 'gated', 'rejected', 'no_opponent'] as const) {
+      const copy = arenaEntryFailureCopy(failure);
+      for (const lang of LANGS) {
+        expect(arenaText(lang, copy.title).length).toBeGreaterThan(0);
+        expect(arenaText(lang, copy.hint).length).toBeGreaterThan(0);
+        // Заголовок обязан быть объяснением, а не кнопкой: «Повторить» в этой
+        // роли и было исходной ошибкой.
+        expect(arenaText(lang, copy.title)).not.toBe(arenaText(lang, 'retry'));
+      }
+    }
+  });
+
+  it('экран матча берёт слова из этой развилки, а не решает сам', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    expect(source).toContain('arenaEntryFailureCopy');
+    // Старая развилка «в трёх ветках» не должна вернуться.
+    expect(source).not.toContain("entryFailure === 'gated' ? 'maintenance' : 'retry'");
+    // Соперник, не принявший вызов, называется своим именем.
+    expect(source).toContain("setEntryFailure('no_opponent')");
   });
 });

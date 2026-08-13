@@ -6,6 +6,7 @@ import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { arenaSearchingCountText, arenaText } from '../modules/arena/copy';
+import { arenaEntryFailure, arenaSearchFailureCopy, type ArenaEntryFailure } from '../modules/arena/duel_plan';
 import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
@@ -34,7 +35,15 @@ export default function ArenaMatchmakingScreen() {
   const now = useVisibleWallClock(active, 1_000);
   const [stableUid, setStableUid] = useState<string | null>(typeof params.stableUid === 'string' ? params.stableUid : null);
   const [matchId, setMatchId] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  /**
+   * Причина, по которой поиск сорвался, а НЕ текст ошибки. Раньше сюда клали
+   * `String(reason)` и не показывали его вовсе: экран краснел одним словом
+   * «Повторить» — глаголом вместо объяснения, и без кнопки, которой его можно
+   * выполнить.
+   */
+  const [error, setError] = useState<ArenaEntryFailure | null>(null);
+  /** Ручной повтор: меняет зависимость эффекта поиска и запускает его заново. */
+  const [retryTick, setRetryTick] = useState(0);
   const [switchingMode, setSwitchingMode] = useState(false);
   const [rankedPresentationRestartedAtMs, setRankedPresentationRestartedAtMs] = useState<number | undefined>();
   /** Момент входа бота назначает сервер. Клиент только ждёт до него.
@@ -92,14 +101,14 @@ export default function ArenaMatchmakingScreen() {
         playSound('opponentFound');
         setMatchId(result.matchId);
       }
-    }).catch((reason) => { if (!cancelled) setError(String(reason)); });
+    }).catch((reason) => { if (!cancelled) setError(arenaEntryFailure(reason)); });
     void reconcile();
     const heartbeat = mode === 'ranked' ? setInterval(() => { void reconcile(); }, ARENA_RANKED_HEARTBEAT_MS) : null;
     return () => {
       cancelled = true;
       if (heartbeat) clearInterval(heartbeat);
     };
-  }, [active, adoptBotSchedule, matchId, mode, requestId]);
+  }, [active, adoptBotSchedule, matchId, mode, requestId, retryTick]);
 
   useEffect(() => { adoptBotSchedule(queue.value); }, [adoptBotSchedule, queue.value]);
 
@@ -122,7 +131,7 @@ export default function ArenaMatchmakingScreen() {
           setBotRetryTick((tick) => tick + 1);
           return;
         }
-        setError(String(reason));
+        setError(arenaEntryFailure(reason));
       });
     }, Math.max(0, fireAtMs - Date.now()));
     return () => { cancelled = true; clearTimeout(timer); };
@@ -153,7 +162,7 @@ export default function ArenaMatchmakingScreen() {
       const nextRequestId = createArenaRequestId('queue');
       router.replace({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: nextRequestId } } as never);
     } catch (reason) {
-      setError(String(reason));
+      setError(arenaEntryFailure(reason));
       setSwitchingMode(false);
     }
   };
@@ -188,7 +197,22 @@ export default function ArenaMatchmakingScreen() {
               <V2Cta tone="ghost" disabled={switchingMode} onPress={() => void switchToQuick()}>{arenaText(lang, 'switchToQuick')}</V2Cta>
             </View>
           ) : null}
-          {error ? <Text style={[styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')}</Text> : null}
+          {error ? (() => {
+            const failure = arenaSearchFailureCopy(error);
+            return (
+              <View style={styles.failure}>
+                <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+                  {arenaText(lang, failure.title)}
+                </Text>
+                <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, failure.hint)}</Text>
+                {failure.canRetry ? (
+                  <V2Cta onPress={() => { setError(null); setRetryTick((tick) => tick + 1); }}>
+                    {arenaText(lang, 'retry')}
+                  </V2Cta>
+                ) : null}
+              </View>
+            );
+          })() : null}
         </V2Card>
       </View>
       <V2Cta tone="ghost" onPress={cancel}>{arenaText(lang, 'cancel')}</V2Cta>
@@ -202,6 +226,9 @@ const styles = StyleSheet.create({
   searching: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
   hint: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
   error: { fontSize: 13, fontWeight: '700', textAlign: 'center' },
+  failure: { gap: 6, alignSelf: 'stretch' },
+  failureTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
+  failureHint: { fontSize: 13, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
   offer: { width: '100%', gap: 10, marginTop: 4 },
   offerTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center' },
 });

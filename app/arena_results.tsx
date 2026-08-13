@@ -205,7 +205,24 @@ export default function ArenaResultsScreen() {
       {baseEnabled && expansion?.availability.ghost && matchId && (match?.mode === 'quick' || match?.mode === 'ranked') ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_ghost_duel', params: { sourceRunId: matchId, sourceKind: 'arena_match' } } as never)}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta> : null}
       {incomingRivalOffer ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'rivalryIncoming')} /> : null}
       {baseEnabled && expansion?.availability.rival && matchId && match?.opponentKind === 'human' && (match.mode === 'quick' || match.mode === 'ranked') ? <V2Cta tone="ghost" disabled={rivalBusy} onPress={openRivalry}>{incomingRivalOffer ? arenaText(lang, 'accept') : arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}
-      {live.error ? <Text style={[styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')}</Text> : null}
+      {/*
+        Раньше здесь краснело одно слово «Повторить» — глагол вместо
+        объяснения, и без единой кнопки, которой его можно было бы выполнить.
+        Игрок видел красное и думал, что потерял результат матча. Результат
+        при этом уже засчитан на сервере: ждёт только доставка.
+      */}
+      {live.error ? (
+        <View style={styles.pending}>
+          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
+            {arenaText(lang, 'resultPending')}
+          </Text>
+          <Text style={[styles.pendingHint, { color: P.muted }]}>{arenaText(lang, 'resultPendingHint')}</Text>
+        </View>
+      ) : !match ? (
+        <View style={styles.pending}>
+          <Text style={[styles.pendingHint, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>
+        </View>
+      ) : null}
     </ArenaScreen>
   );
 }
@@ -228,4 +245,7 @@ const styles = StyleSheet.create({
   seriesCard: { gap: 6, alignItems: 'center' },
   seriesScore: { fontSize: 20, fontWeight: '900', fontVariant: ['tabular-nums'] },
   error: { textAlign: 'center', fontWeight: '700' },
+  pending: { gap: 4, alignItems: 'center', paddingVertical: 8 },
+  pendingTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
+  pendingHint: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
 });

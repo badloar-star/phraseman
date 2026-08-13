@@ -340,9 +340,9 @@ export function useCollectionData(opts: {
       const marketPromise = (async () => {
         const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw, localAuthored] = await Promise.all([
           loadAccessiblePackIds(studyTarget),
-          loadMarketplacePacks(),
+          loadMarketplacePacks(studyTarget),
           loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
-          loadPublishedCommunityMarketPacks().catch((): FlashcardMarketPack[] => []),
+          loadPublishedCommunityMarketPacks(studyTarget).catch((): FlashcardMarketPack[] => []),
           isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
           loadLocalAuthorPacks(studyTarget).catch(() => []),
         ]);
@@ -387,8 +387,8 @@ export function useCollectionData(opts: {
         const previewIdsToLoad =
           previewPackId && !communityIdsToLoad.includes(previewPackId) ? [previewPackId] : [];
         const [communityCardLists, previewCardLists] = await Promise.all([
-          Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => []))),
-          Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => []))),
+          Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => []))),
+          Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => []))),
         ]);
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
         setMarketCards([...builtMarket, ...previewCardLists.flat(), ...localAuthoredCards]);

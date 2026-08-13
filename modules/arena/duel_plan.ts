@@ -392,6 +392,26 @@ export function arenaEntryFailureCopy(failure: ArenaEntryFailure | null): ArenaE
 }
 
 /**
+ * То же самое для экрана поиска соперника.
+ *
+ * Отличается ровно одним случаем: окончательный отказ здесь не значит «матча
+ * больше нет» — матча ещё и не было. Значит и слова другие, и повтор осмыслен:
+ * очередь живёт на сервере, место в ней не теряется.
+ */
+export function arenaSearchFailureCopy(failure: ArenaEntryFailure | null): ArenaEntryFailureCopy {
+  switch (failure) {
+    case 'offline':
+      return { title: 'entryOffline', hint: 'entryOfflineHint', canRetry: true };
+    case 'transient':
+      return { title: 'entryBusy', hint: 'entryBusyHint', canRetry: true };
+    case 'gated':
+      return { title: 'maintenance', hint: 'maintenanceHint', canRetry: false };
+    default:
+      return { title: 'searchFailed', hint: 'searchFailedHint', canRetry: true };
+  }
+}
+
+/**
  * Можно ли начать матч, когда сети нет.
  *
  * Ответ ВСЕГДА «нельзя», и функция существует именно затем, чтобы это было

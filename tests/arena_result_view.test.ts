@@ -4,6 +4,10 @@ import {
   arenaTierKeyForRating,
 } from '../modules/arena/result_view';
 import { ARENA_TIER_KEYS } from '../modules/arena/rank_engine';
+import * as fs from 'fs';
+import * as path from 'path';
+import { arenaText } from '../modules/arena/copy';
+import type { Lang } from '../constants/i18n';
 
 /**
  * Что объявить после матча.
@@ -136,5 +140,39 @@ describe('тир по очкам', () => {
     expect(arenaTierKeyForRating(300)).toBe(ARENA_TIER_KEYS[1]);
     expect(arenaTierKeyForRating(999_999)).toBe(ARENA_TIER_KEYS[ARENA_TIER_KEYS.length - 1]);
     expect(arenaTierKeyForRating(NaN)).toBe(ARENA_TIER_KEYS[0]);
+  });
+});
+
+/**
+ * Экран результата и красное слово «Повторить».
+ *
+ * При обрыве связи он краснел одним глаголом — без объяснения и без кнопки,
+ * которой этот глагол можно выполнить. Игрок видел красное и решал, что
+ * потерял результат матча. На самом деле результат уже засчитан на сервере, и
+ * ждёт только доставка: повторять нечего.
+ */
+describe('обрыв связи на экране результата', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_results.tsx'), 'utf8');
+
+  it('не выдаёт кнопочный глагол за объяснение', () => {
+    expect(source).not.toContain("styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')");
+  });
+
+  it('объясняет, что результат уже засчитан', () => {
+    expect(source).toContain("'resultPending'");
+    expect(source).toContain("'resultPendingHint'");
+  });
+
+  it('пустой экран до ответа честно называет себя загрузкой', () => {
+    expect(source).toContain("!match ?");
+  });
+
+  it('обе строки переведены на восемь языков', () => {
+    for (const lang of ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[]) {
+      expect(arenaText(lang, 'resultPending').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'resultPendingHint').length).toBeGreaterThan(0);
+      // Объяснение не должно совпадать с подписью кнопки повтора.
+      expect(arenaText(lang, 'resultPending')).not.toBe(arenaText(lang, 'retry'));
+    }
   });
 });

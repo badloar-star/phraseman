@@ -200,54 +200,57 @@ private func phraseSurface(_ theme: PhraseTheme) -> some View {
   }
 }
 
-struct PhraseWidget: Widget {
-  private let kind = "PhraseWidget"
+private let legacyPhraseWidgetKind = "PhraseWidget"
+private let personalPhraseWidgetKind = "PersonalPhraseWidget"
+private let phraseWidgetFamilies: [WidgetFamily] = [
+  .systemSmall, .systemMedium, .accessoryRectangular,
+]
 
+@ViewBuilder
+private func phraseWidgetEntryView(_ entry: PhraseEntry) -> some View {
+  if #available(iOSApplicationExtension 17.0, *) {
+    PhraseWidgetView(entry: entry)
+      .containerBackground(for: .widget) {
+        phraseSurface(entry.payload.theme)
+          .overlay(
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+              .strokeBorder(
+                Color(phraseHex: entry.payload.theme.border, fallback: .clear),
+                lineWidth: 1
+              )
+          )
+      }
+  } else {
+    PhraseWidgetView(entry: entry)
+      .padding()
+      .background(phraseSurface(entry.payload.theme))
+  }
+}
+
+@available(iOSApplicationExtension 17.0, *)
+struct PersonalPhraseWidget: Widget {
   var body: some WidgetConfiguration {
-    if #available(iOS 17.0, *) {
-      AppIntentConfiguration(kind: kind, intent: PersonalDeckConfiguration.self, provider: PhraseProvider()) { entry in
-        widgetView(entry)
-      }
-      .configurationDisplayName("Personal deck")
-      .description("A saved or created phrase from your Phraseman deck.")
-      .supportedFamilies(supportedFamilies)
-    } else {
-      StaticConfiguration(kind: kind, provider: LegacyPhraseProvider()) { entry in
-        widgetView(entry)
-      }
-      .configurationDisplayName("Personal deck")
-      .description("Your saved Phraseman phrases.")
-      .supportedFamilies(supportedFamilies)
+    AppIntentConfiguration(
+      kind: personalPhraseWidgetKind,
+      intent: PersonalDeckConfiguration.self,
+      provider: PhraseProvider()
+    ) { entry in
+      phraseWidgetEntryView(entry)
     }
+    .configurationDisplayName("Personal deck")
+    .description("A saved or created phrase from your Phraseman deck.")
+    .supportedFamilies(phraseWidgetFamilies)
   }
+}
 
-  @ViewBuilder
-  private func widgetView(_ entry: PhraseEntry) -> some View {
-    if #available(iOS 17.0, *) {
-      PhraseWidgetView(entry: entry)
-        .containerBackground(for: .widget) {
-          phraseSurface(entry.payload.theme)
-            .overlay(
-              RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .strokeBorder(
-                  Color(phraseHex: entry.payload.theme.border, fallback: .clear),
-                  lineWidth: 1
-                )
-            )
-        }
-    } else {
-      PhraseWidgetView(entry: entry)
-        .padding()
-        .background(phraseSurface(entry.payload.theme))
+struct LegacyPhraseWidget: Widget {
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: legacyPhraseWidgetKind, provider: LegacyPhraseProvider()) { entry in
+      phraseWidgetEntryView(entry)
     }
-  }
-
-  private var supportedFamilies: [WidgetFamily] {
-    if #available(iOS 16.0, *) {
-      return [.systemSmall, .systemMedium, .accessoryRectangular]
-    } else {
-      return [.systemSmall, .systemMedium]
-    }
+    .configurationDisplayName("Personal deck")
+    .description("Your saved Phraseman phrases.")
+    .supportedFamilies(phraseWidgetFamilies)
   }
 }
 
@@ -296,6 +299,9 @@ struct NextPhraseIntent: AppIntent {
 @main
 struct PhraseWidgetBundle: WidgetBundle {
   var body: some Widget {
-    PhraseWidget()
+    LegacyPhraseWidget()
+    if #available(iOSApplicationExtension 17.0, *) {
+      PersonalPhraseWidget()
+    }
   }
 }

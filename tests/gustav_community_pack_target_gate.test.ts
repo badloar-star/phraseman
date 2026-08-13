@@ -149,6 +149,10 @@ describe('Gustav community pack target gate', () => {
     const hubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_packs.tsx'), 'utf8');
     const categoryHubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'FlashcardsCategoryHub.tsx'), 'utf8');
     const collectionSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8');
+    const collectionDataSource = fs.readFileSync(
+      path.join(ROOT, 'app', 'flashcards', 'useCollectionData.ts'),
+      'utf8',
+    );
     const swipeSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_swipe.tsx'), 'utf8');
     const openingSource = fs.readFileSync(path.join(ROOT, 'app', 'pack_opening.tsx'), 'utf8');
     const functionsSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'community_packs.ts'), 'utf8');
@@ -183,8 +187,12 @@ describe('Gustav community pack target gate', () => {
     expect(hubSource).toContain('loadAuthorCommunityPacksPendingUpdate(sid, studyTarget)');
     expect(hubSource).toContain('fetchCommunityPackMeta(id, studyTarget)');
     expect(categoryHubSource).toContain('stageCommunityPackCardsForNavigation(pack.id, studyTarget)');
-    expect(collectionSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
-    expect(collectionSource).toContain('fetchCommunityPackCards(id, studyTarget)');
+    /**
+     * E11: загрузка каталога/карточек уехала из монолита `flashcards_collection.tsx`
+     * в хук данных — контракт проверяем в модуле, который этими вызовами владеет.
+     */
+    expect(collectionDataSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
+    expect(collectionDataSource).toContain('fetchCommunityPackCards(id, studyTarget)');
     expect(swipeSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
     expect(swipeSource).toContain('fetchCommunityPackCards(pack.id, studyTarget)');
     expect(openingSource).toContain('fetchCommunityPackMeta(packId, studyTarget)');

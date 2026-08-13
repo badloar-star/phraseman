@@ -585,9 +585,13 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
    * Уже опубликованный / отправленный набор кнопку не показывает.
    */
   const [publishBusy, setPublishBusy] = useState(false);
+  /** Заявка уже ушла в этой сессии — второй раз кнопку не показываем. */
+  const [publishSubmitted, setPublishSubmitted] = useState(false);
+  useEffect(() => { setPublishSubmitted(false); }, [packDeeplink]);
   const showPublishButton =
     !!packDeeplink &&
     !previewMode &&
+    !publishSubmitted &&
     !!currentMarketPack?.isCommunityUgc &&
     currentMarketPack.listingStatus === 'local_only' &&
     CLOUD_SYNC_ENABLED &&
@@ -600,6 +604,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       const res = await publishLocalAuthorPack(packDeeplink, lang, studyTarget);
       setPublishBusy(false);
       if (res === 'submitted') {
+        setPublishSubmitted(true);
         emitAppEvent('action_toast', actionToastTri('success', {
           ru: 'Набор отправлен на публикацию.',
           uk: 'Набір надіслано на публікацію.',

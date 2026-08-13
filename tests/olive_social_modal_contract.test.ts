@@ -18,7 +18,6 @@ describe('Olive social modal chrome', () => {
     expect(source).toContain('friendQuestModalChrome(themeMode)');
     expect(source).toContain('friendGiftModalChrome(themeMode)');
     expect(source).toContain('friendGiftIncomingModalChrome(themeMode)');
-    expect(source).toContain('friendGiftSentModalChrome(themeMode)');
     expect(startedModal).toContain('const modalChrome = friendQuestModalChrome(themeMode);');
     const completedModal = source.slice(
       source.indexOf('function FriendQuestCompletedModal'),

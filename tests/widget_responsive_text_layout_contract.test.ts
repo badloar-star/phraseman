@@ -16,7 +16,9 @@ describe('phrase widget responsive text layout', () => {
     expect(android).toContain('tiny -> 6.dp');
     expect(android).toContain('maxLines = if (expanded) 3 else 2');
     expect(android).toContain('showTranscription = size.height >= 190.dp');
-    expect(android).toContain('showBottomPlay = size.height >= 230.dp');
+    expect(android).toContain('if (!compact && snapshot.canNavigate)');
+    expect(android).toContain('actionRunCallback<PreviousPhraseAction>()');
+    expect(android).toContain('actionRunCallback<NextPhraseAction>()');
   });
 
   it('keeps the Android picker preview inside the same compact line budget', () => {

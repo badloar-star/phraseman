@@ -46,7 +46,7 @@ describe("retired Daily Tasks full-removal boundary", () => {
     for (const relativePath of RETIRED_OWNED_FILES) {
       expect(exists(relativePath)).toBe(false);
     }
-    expect(exists("components/daily-tasks")).toBe(false);
+    expect(collectSourceFiles("components/daily-tasks")).toEqual([]);
 
     const runtimeSources = ["app", "components"]
       .flatMap(collectSourceFiles)

@@ -169,8 +169,7 @@ function stableHash(value: string): number {
 // Rationale: a deterministic layout (stableOptionShuffle) lets students memorise the
 // position ("They is always top-left") instead of the language. Distractor SELECTION stays
 // deterministic via ranking — only the final placement is randomised here.
-// NOTE: callers that need a reproducible layout (e.g. plan "resume to same question") must
-// use personal_plan_option_ordering.stableShuffle, NOT this builder.
+// NOTE: callers that need a reproducible layout must use a seeded shuffle, not this builder.
 function layoutOptionShuffle(values: string[], random: () => number = Math.random): string[] {
   const result = [...values];
   for (let i = result.length - 1; i > 0; i -= 1) {

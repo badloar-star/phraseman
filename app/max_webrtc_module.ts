@@ -1,5 +1,5 @@
 // Guarded-loader нативного стека MAX-звонка: react-native-webrtc +
-// react-native-incall-manager (образец — personal_plan_speech_module.ts).
+// react-native-incall-manager.
 //
 // Зачем guard: оба пакета — нативные модули, и в бинарнике без них (OTA-апдейт
 // поверх старого билда, dev-клиент без prebuild, jest) require обязан не

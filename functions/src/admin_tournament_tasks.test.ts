@@ -11,7 +11,6 @@ import {
   parseAiGenerateRequest,
   parseCuratedSetRequest,
   parseEditRequest,
-  parseGenerateRequest,
   parseListRequest,
   parseMutateRequest,
   parseScheduleRequest,
@@ -23,50 +22,19 @@ import {
   ROUND_DIFFICULTIES,
   ROUND_TASK_TARGET,
 } from './admin_tournament_tasks';
-import { TOURNAMENT_SOURCE_PLANS } from './tournament_content_source';
 import type { TournamentTask } from './tournament_core';
 
 function expectRejected(run: () => unknown): void {
   expect(run).toThrow();
 }
 
-describe('разбор запроса генерации', () => {
+describe('старый текстовый генератор', () => {
   it('старый текстовый ИИ-генератор закрыт до трат и записей', async () => {
     await expect(runTextGeneration({
       level: 'A2', batches: 1, topicHint: '', dryRun: false, actor: 'test',
     })).rejects.toThrow('tournament_text_modes_retired');
   });
 
-  it('без параметров берёт все планы и все форматы', () => {
-    const parsed = parseGenerateRequest(undefined);
-    expect(parsed.plans).toEqual(TOURNAMENT_SOURCE_PLANS);
-    expect(parsed.kinds).toEqual(['choice', 'translate', 'timeattack']);
-    expect(parsed.dryRun).toBe(false);
-  });
-
-  it('отклоняет неизвестный план и неизвестный формат', () => {
-    expectRejected(() => parseGenerateRequest({ plans: ['../../etc/passwd'] }));
-    expectRejected(() => parseGenerateRequest({ plans: ['unknown_plan'] }));
-    expectRejected(() => parseGenerateRequest({ kinds: ['voice'] })); // голос выключен
-    expectRejected(() => parseGenerateRequest({ kinds: ['sql_injection'] }));
-  });
-
-  it('отклоняет лишние поля — клиенту не даём протащить произвольное', () => {
-    expectRejected(() => parseGenerateRequest({ plans: ['mitap'], evil: true }));
-  });
-
-  it('ограничивает limit разумным потолком', () => {
-    expectRejected(() => parseGenerateRequest({ limit: 0 }));
-    expectRejected(() => parseGenerateRequest({ limit: -5 }));
-    expectRejected(() => parseGenerateRequest({ limit: 999_999 }));
-    expectRejected(() => parseGenerateRequest({ limit: 1.5 }));
-    expect(parseGenerateRequest({ limit: 100 }).limit).toBe(100);
-  });
-
-  it('дедуплицирует планы', () => {
-    const parsed = parseGenerateRequest({ plans: ['mitap', 'mitap', 'echo'] });
-    expect(parsed.plans).toEqual(['mitap', 'echo']);
-  });
 });
 
 describe('разбор запроса списка', () => {
@@ -246,7 +214,7 @@ describe('разбор запроса правки задания', () => {
       aiReason: 'Manual edit requires AI validation before approval.',
       aiCheckedAtMs: null,
     });
-    expect(aiLifecycleAfterTournamentTaskEdit({ source: 'plan_content' })).toEqual({});
+    expect(aiLifecycleAfterTournamentTaskEdit({ source: 'legacy' })).toEqual({});
   });
 });
 
@@ -370,9 +338,8 @@ describe('разбор кураторского набора', () => {
 });
 
 describe('фильтр источника пула', () => {
-  it('принимает ai и plan_content, отклоняет прочее', () => {
+  it('принимает ai и отклоняет прочее', () => {
     expect(parseListRequest({ source: 'ai' }).source).toBe('ai');
-    expect(parseListRequest({ source: 'plan_content' }).source).toBe('plan_content');
     expect(parseListRequest({}).source).toBe('');
     expectRejected(() => parseListRequest({ source: 'unknown' }));
   });

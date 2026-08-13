@@ -17,7 +17,7 @@ describe('Arena V2 backend source contract', () => {
 
   it('reuses only pure Tournament publication contracts and never imports runtime', () => {
     expect(source).not.toMatch(/from ['"]\.\/tournaments['"]/);
-    expect(source).toContain("from './tournament_pool_v2_factory'");
+    expect(source).toContain("from './tournament_pool_publication'");
     expect(source).not.toContain('buildNewTournamentPool(');
     expect(source).toContain(".where('poolVersion', '==', NEW_TOURNAMENT_POOL_VERSION)");
     expect(source).toContain('verifyTournamentPoolTaskProof(raw, NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256)');

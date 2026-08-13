@@ -109,7 +109,7 @@ type ChoiceOption = {
   asset?: ImageSourcePropType;
 };
 
-/** Те же id, что PersonalPlanSetupGoal в онбординге — план читает их напрямую. */
+/** Те же id, что в CleanOnboarding. */
 const GOAL_OPTIONS: ChoiceOption[] = [
   { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline', asset: require('../assets/images/flow_clean_202607/goal_series.webp') },
   { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline', asset: require('../assets/images/flow_clean_202607/goal_everyday.webp') },

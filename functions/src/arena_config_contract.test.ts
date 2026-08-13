@@ -12,7 +12,7 @@ import {
   NEW_TOURNAMENT_POOL_CONTENT_SHA256,
   NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
   NEW_TOURNAMENT_POOL_VERSION,
-} from './tournament_pool_v2_factory';
+} from './tournament_pool_publication';
 
 /**
  * Договор документа `arena_v2_config/current`.

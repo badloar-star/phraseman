@@ -40,7 +40,7 @@ export function languageProfileKey(target: StudyTargetLang): string {
 }
 
 export type LanguageProfile = {
-  /** Цель — те же id, что PersonalPlanSetupGoal ('series'|'everyday'|'travel'|'words'|'mind'). */
+  /** Цель — те же id, что в онбординге ('series'|'everyday'|'travel'|'words'|'mind'). */
   goal: string;
   /** Стартовый уровень ('a0'|'a1'|'a2'|'b1'|'b2'). */
   level: string;

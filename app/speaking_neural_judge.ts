@@ -8,8 +8,7 @@
 // офлайн, бесплатно.
 //
 // СТАТУС ВРЕЗКИ: модуль самодостаточен и «выключен», пока в бинаре нет пакета
-// `whisper.rn` (лениво require-ится, как expo-speech-recognition в
-// personal_plan_speech_module). Хвост для активации:
+// `whisper.rn` (лениво require-ится). Хвост для активации:
 //   1) npm i whisper.rn + нативная пересборка (package.json занят auth-сессией);
 //   2) в SpeakingPanel.runControlPass: сначала judgeWithNeuralEngine(uri,target),
 //      при null — существующий контрольный прогон системного движка.

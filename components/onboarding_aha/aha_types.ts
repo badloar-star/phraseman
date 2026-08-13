@@ -23,7 +23,7 @@ export type AhaScenarioId =
   | 'everyday'
   | 'self';
 
-/** Цели из CleanOnboarding (PersonalPlanSetupGoal) + запас на будущее. */
+/** Цели из CleanOnboarding + запас на будущее. */
 export type AhaGoalInput =
   | 'series'
   | 'everyday'

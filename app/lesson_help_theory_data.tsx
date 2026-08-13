@@ -4,7 +4,7 @@
 // импортируется статически экраном — только через ленивый require() из
 // app/lesson_help_theory_registry.ts (см. Performance Bible → «Content weight &
 // the server-delivery seam» в AGENTS.md). Так контент теории не парсится при
-// открытии экрана и остаётся за тем же сеймом, что plan_content_registry.ts.
+// открытии экрана и остаётся за изолированным registry-сеймом.
 //
 // Презентационные примитивы (Section/Body/Table/Tip/Warn/Example/ColoredPhrase)
 // импортируются из лёгкого модуля app/lesson_help_theory_ui.tsx, который экран

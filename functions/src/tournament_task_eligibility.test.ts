@@ -57,7 +57,7 @@ describe('eligible tournament readiness counts', () => {
         ...base, mode: 'guess_phrase',
         payload: { phrase: 'one', options: ['1', '2', '3', '4'], correctIndex: 0 },
       }),
-      doc('non-ai-valid', { ...phrase, source: 'plan_content' }),
+      doc('non-ai-valid', { ...phrase, source: 'legacy' }),
     ]);
 
     expect(counts['guess_phrase:1']).toBe(1);

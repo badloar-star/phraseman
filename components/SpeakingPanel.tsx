@@ -382,7 +382,7 @@ export function SpeakingPanel({
   const finishingRef = useRef(false);
   // Equalizer is driven IMPERATIVELY via a ref (setSample) so each ~250ms
   // volumechange sample does NOT re-render the whole modal — that re-render storm
-  // was the source of the equalizer lag. Mirrors personal_plan_exercise.
+  // was the source of the equalizer lag.
   const equalizerRef = useRef<VoiceEqualizerRef>(null);
   const [score, setScore] = useState<number | null>(null);
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);

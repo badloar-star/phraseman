@@ -1,6 +1,7 @@
 import type { ArenaEntryMode, ArenaPublicTask, ArenaTaskMode } from './contract';
 import { arenaIsTaskMode } from './stars';
 import type { ArenaMatchPlan, ArenaOpponentTick } from './match_machine';
+import type { ArenaCopyKey } from './copy';
 
 /**
  * План матча в том виде, в каком его присылает сервер.
@@ -329,7 +330,14 @@ export type ArenaEntryFailure =
   /** Приложение старое или Арена выключена. Повтор не поможет. */
   | 'gated'
   /** Сервер отказал по существу: матч кончился, отменён, чужой. */
-  | 'rejected';
+  | 'rejected'
+  /**
+   * Соперник так и не принял вызов за отведённое окно. Это НЕ ошибка: сервер
+   * отвечал исправно, просто второй игрок вышел или потерял сеть. Экран
+   * выставляет это значение сам — `arenaEntryFailure` его не возвращает,
+   * потому что разбирает ошибки, а здесь ошибки нет.
+   */
+  | 'no_opponent';
 
 export function arenaEntryFailure(error: unknown): ArenaEntryFailure {
   const raw = typeof error === 'string' ? error : String((error as { message?: unknown })?.message ?? error ?? '');
@@ -349,6 +357,38 @@ export function arenaEntryFailure(error: unknown): ArenaEntryFailure {
     return 'transient';
   }
   return 'rejected';
+}
+
+/**
+ * Что показать игроку и осмысленен ли повтор.
+ *
+ * Экран этого не решает: раньше он сводил четыре причины к трём веткам, и
+ * «сервер занят» вместе с «матча больше нет» показывались одной строкой
+ * «Повторить» — то есть глаголом вместо объяснения, да ещё и без кнопки
+ * повтора. Игрок читал приказ, который нечем выполнить.
+ */
+export type ArenaEntryFailureCopy = Readonly<{
+  title: ArenaCopyKey;
+  hint: ArenaCopyKey;
+  /** Повтор предлагается только там, где он может сработать. */
+  canRetry: boolean;
+}>;
+
+export function arenaEntryFailureCopy(failure: ArenaEntryFailure | null): ArenaEntryFailureCopy {
+  switch (failure) {
+    case 'offline':
+      return { title: 'entryOffline', hint: 'entryOfflineHint', canRetry: true };
+    case 'transient':
+      return { title: 'entryBusy', hint: 'entryBusyHint', canRetry: true };
+    case 'gated':
+      // Выключенную Арену повтором не включить: кнопка была бы обманом.
+      return { title: 'maintenance', hint: 'maintenanceHint', canRetry: false };
+    case 'no_opponent':
+      return { title: 'entryNoOpponent', hint: 'entryNoOpponentHint', canRetry: false };
+    default:
+      // Матча больше нет — повторять нечего.
+      return { title: 'entryGone', hint: 'entryGoneHint', canRetry: false };
+  }
 }
 
 /**

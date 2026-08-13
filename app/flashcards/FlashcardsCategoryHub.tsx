@@ -50,6 +50,7 @@ import { isLowPowerEffective } from './low_power';
 
 import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
+import { onAppEvent } from '../events';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { sortPacksBySocial, topLikedPackIds } from '../community_packs/packSocial';
@@ -504,7 +505,12 @@ export default function FlashcardsCategoryHub({
     [router, studyTarget],
   );
 
-  /** §2.1: набор добавлен — сразу помечаем локально, каталог перечитываем в фоне. */
+  /**
+   * §2.1: набор добавлен — сразу помечаем локально, каталог перечитываем в фоне.
+   *
+   * Кнопка «Добавить себе» теперь живёт на самом экране набора (его открывают
+   * ДО добавления), поэтому хаб узнаёт о добавлении по событию приложения.
+   */
   const onPackAdded = useCallback(
     (packId: string) => {
       setLocallyAddedPackIds((prev) => {
@@ -517,6 +523,13 @@ export default function FlashcardsCategoryHub({
     },
     [onMarketRefresh],
   );
+
+  useEffect(() => {
+    const sub = onAppEvent('community_pack_added', ({ packId }) => {
+      if (packId) onPackAdded(packId);
+    });
+    return () => sub.remove();
+  }, [onPackAdded]);
 
   // ── Общие стили секций ─────────────────────────────────────────────────────
   const hubBarW = winW - H_PAD * 2;

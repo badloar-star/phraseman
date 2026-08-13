@@ -18,6 +18,8 @@ import type { ArenaPlayer } from '../modules/arena/contract';
 import {
   ARENA_ACCEPT_RETRY_MS,
   arenaEntryFailure,
+  arenaEntryFailureCopy,
+  type ArenaEntryFailure,
   arenaEntryStep,
   arenaPlanTaskToPublic,
   type ArenaMatchPlanWire,
@@ -76,7 +78,7 @@ export default function ArenaMatchScreen() {
    * должен видеть ПРИЧИНУ, а не общее «повторить»: «нет сети» и «матч уже
    * кончился» лечатся по-разному.
    */
-  const [entryFailure, setEntryFailure] = useState<ReturnType<typeof arenaEntryFailure> | null>(null);
+  const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);
   const [introDone, setIntroDone] = useState(false);
   const [sent, setSent] = useState(false);
   /**
@@ -116,7 +118,9 @@ export default function ArenaMatchScreen() {
             state: String(response.state ?? ''),
             elapsedSinceEntryMs: Date.now() - enteredAtMs,
           });
-          if (step === 'give_up') { setPlanError(true); return; }
+          // Соперник не принял вызов. Это не ошибка сервера, и говорить о
+          // ней надо иначе, чем об отказе сети.
+          if (step === 'give_up') { setEntryFailure('no_opponent'); setPlanError(true); return; }
           if (step === 'accept') {
             timer = setTimeout(attempt, ARENA_ACCEPT_RETRY_MS);
             return;
@@ -318,13 +322,25 @@ export default function ArenaMatchScreen() {
   }, [match, playSound]);
 
   if (planError) {
+    /**
+     * Причин не начаться четыре, и они требуют разных слов и разных кнопок.
+     * Раньше три из них сводились к одному слову «Повторить» — глаголу вместо
+     * объяснения, да ещё и без кнопки повтора: игрок читал приказ, который
+     * нечем выполнить.
+     */
+    const failure = arenaEntryFailureCopy(entryFailure);
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <View style={styles.center}>
-          <Text style={{ color: P.text }}>
-            {arenaText(lang, entryFailure === 'offline' ? 'entryOffline'
-              : entryFailure === 'gated' ? 'maintenance' : 'retry')}
+          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+            {arenaText(lang, failure.title)}
           </Text>
+          <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, failure.hint)}</Text>
+          {failure.canRetry ? (
+            <V2Cta onPress={() => { setEntryFailure(null); setPlanError(false); }}>
+              {arenaText(lang, 'retry')}
+            </V2Cta>
+          ) : null}
           <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
         </View>
       </ArenaScreen>
@@ -443,6 +459,8 @@ export default function ArenaMatchScreen() {
 
 const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center', gap: 12 },
+  failureTitle: { fontSize: 20, lineHeight: 26, fontWeight: '900', textAlign: 'center' },
+  failureHint: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
   intro: { flex: 1 },
   question: { flex: 1, justifyContent: 'center', gap: 10 },
   hudRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },

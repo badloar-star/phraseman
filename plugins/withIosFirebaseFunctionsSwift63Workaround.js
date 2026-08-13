@@ -11,6 +11,7 @@ const path = require('path');
 const { withDangerousMod, createRunOncePlugin } = require('@expo/config-plugins');
 
 const MARKER = '# phraseman-firebase-functions-swift-63-workaround';
+const FMT_MARKER = '# phraseman-fmt-xcode-26-workaround';
 
 const RUBY_WORKAROUND = `    ${MARKER}
     firebase_functions_context = File.join(
@@ -83,14 +84,47 @@ const RUBY_WORKAROUND = `    ${MARKER}
     end
 `;
 
-function patchPodfileContents(contents) {
-  if (contents.includes(MARKER)) return contents;
+const RUBY_FMT_WORKAROUND = `
+    ${FMT_MARKER}
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'fmt'
 
-  const anchor = '  post_install do |installer|\n';
-  if (!contents.includes(anchor)) {
-    throw new Error('Unable to find the iOS Podfile post_install block');
+      target.build_configurations.each do |config|
+        definitions = config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+        definitions = [definitions] unless definitions.is_a?(Array)
+        definitions << 'FMT_USE_CONSTEVAL=0'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = definitions.uniq
+        config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'gnu++17'
+      end
+    end
+`;
+
+function patchPodfileContents(contents) {
+  let patched = contents;
+
+  if (!patched.includes(MARKER)) {
+    const anchor = '  post_install do |installer|\n';
+    if (!patched.includes(anchor)) {
+      throw new Error('Unable to find the iOS Podfile post_install block');
+    }
+    patched = patched.replace(anchor, `${anchor}${RUBY_WORKAROUND}`);
   }
-  return contents.replace(anchor, `${anchor}${RUBY_WORKAROUND}`);
+
+  if (!patched.includes(FMT_MARKER)) {
+    const reactNativePostInstallEnd = [
+      '      :ccache_enabled => ccache_enabled?(podfile_properties),',
+      '    )',
+    ].join('\n');
+    if (!patched.includes(reactNativePostInstallEnd)) {
+      throw new Error('Unable to find the React Native Podfile post_install call');
+    }
+    patched = patched.replace(
+      reactNativePostInstallEnd,
+      `${reactNativePostInstallEnd}${RUBY_FMT_WORKAROUND}`,
+    );
+  }
+
+  return patched;
 }
 
 function withIosFirebaseFunctionsSwift63Workaround(config) {

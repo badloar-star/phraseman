@@ -7,7 +7,6 @@ import type { Lang } from '../constants/i18n';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
-import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { storageStudyTarget } from './target_storage_keys';
@@ -48,7 +47,6 @@ export type HomeScreenHydration = {
     leaderName: string;
     leaderPoints: number;
   } | null;
-  personalPlanSnapshot?: PersonalPlanHomeSnapshot | null;
   // зачем: dueCount раньше стартовал с useState(0) и «прыгал» на
   // реальное число вторым проходом (после belowFoldReady) при каждом повторном
   // открытии таба — тот же класс бага, что и остальные поля тут. Кладём последнее

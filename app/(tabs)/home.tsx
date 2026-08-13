@@ -11,7 +11,7 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
-import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
+import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -78,9 +78,6 @@ import { fetchActiveSurveyWithRetry } from '../survey_client';
 import { buildActiveSurveyOffer, type SurveyOfferSnapshot } from '../survey_offer_model';
 import { primeSurvey } from '../survey_handoff';
 import { getCanonicalUserId } from '../user_id_policy';
-import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
-import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
-import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import GoldBevel from '../../components/GoldBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
@@ -701,10 +698,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }));
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
-    // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
-    // переведена в «Фри». Раньше уже СОЗДАННЫЙ план открывался фри-юзеру без замка
-    // (карточка вела прямо в /personal_plan) — дыра в пейволе после снятия премиума.
-    const planAccess = useFeatureAccess('personal_plan');
     // [SRS] Количество фраз, готовых к повторению сегодня (из локального стора).
     // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
     // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
@@ -753,8 +746,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', vipCelebrationVisible);
     const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(() => hh?.premiumFreezeUsed ?? false);
     const [lessonsCompleted, setLessonsCompleted] = useState(() => hh?.lessonsCompleted ?? 0);
-    const [onboardingPlanBilling, setOnboardingPlanBilling] = useState<string | null>(null);
-    const [hadPremiumEver, setHadPremiumEver] = useState(false);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
     const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
@@ -868,13 +859,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => { studyTargetRef.current = studyTarget; }, [studyTarget]);
     const langRef = useRef(lang);
     useEffect(() => { langRef.current = lang; }, [lang]);
-    // зачем: с 2026-08-02 плановая карточка на главной заменена карточкой последнего
-    // урока, значения ниже в рендере ЭТОГО экрана не читаются. Машинерия (state +
-    // события + запись в снапшот) сохранена: она держит кэш плана тёплым для других
-    // экранов (например /personal_plan читает его через peekHomeScreenHydration),
-    // её сторожит tests/home_learning_cta_contract.test.ts.
-    const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
-    const [, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
@@ -1061,16 +1045,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         // Слушаем событие изменения XP (от тестеров и других экранов)
         const xpSub = DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh);
-        const personalPlanSub = onAppEvent('personal_plan_updated', (payload) => {
-            if (payload?.snapshot) {
-                setHasActivePersonalPlanState(true);
-                setPersonalPlanSnapshot(payload.snapshot);
-            }
-            else if (payload?.planId) {
-                setHasActivePersonalPlanState(true);
-            }
-            requestHomeDataRefresh();
-        });
         const leagueStateSub = onAppEvent('league_local_state_updated', requestHomeDataRefresh);
         const crownSub = onAppEvent('league_crown_updated', ({ expiresAt, crownCount }) => {
             setHomeLeagueCrownExpiresAt(expiresAt);
@@ -1172,7 +1146,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
             xpSub.remove();
-            personalPlanSub.remove();
             leagueStateSub.remove();
             crownSub.remove();
             shardsSub.remove();
@@ -1591,34 +1564,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         streakScaleAnim.setValue(1);
         const endPerf = perfMark('home:loadData');
         try {
-            // Самовосстановление личного плана: на онбординге выбранный план кладётся в
-            // очередь pending-активации ДО пейвола. Если активация не доехала (план не
-            // активировался → на главной снова «Составь свой маршрут»), дожимаем её здесь,
-            // ДО чтения состояния плана. ВАЖНО: активируем ТОЛЬКО при реальном премиум-доступе
-            // — иначе фри-юзер, нажавший «продолжить бесплатно» на пейволе, получил бы готовый
-            // план бесплатно (pending ставится до развилки покупки). Премиум читаем из storage
-            // (getVerifiedRealPremiumStatus), а не из React-стейта: при холодном старте стейт
-            // ещё может не подтянуться. Нет премиума → очередь НЕ чистим: она должна дожить
-            // (а) до будущей покупки премиума, чтобы активация всё же доехала, и
-            // (б) до опросника setup, который использует её для префилла ответов.
-            // Раньше здесь стирали очередь безвозвратно — план терялся навсегда даже для
-            // юзеров, купивших премиум позже. activate сама чистит очередь при успехе, так
-            // что для уже-активного плана и для настоящей активации это остаётся no-op —
-            // и без премиума эта ветка просто ничего не делает на каждый loadData (без
-            // побочных эффектов и без спама повторных попыток).
-            try {
-                const existingPlanState = await readPersonalPlanState();
-                if (existingPlanState == null) {
-                    const pendingPlan = await readPendingPersonalPlanActivation();
-                    if (pendingPlan != null) {
-                        const hasRealPremium = await getVerifiedRealPremiumStatus().catch(() => false);
-                        if (hasRealPremium) {
-                            await activatePendingPersonalPlanAfterPremium();
-                        }
-                    }
-                }
-            } catch { /* best-effort: не блокируем загрузку главной */ }
-            const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([
+            const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs] = await Promise.all([
                 AsyncStorage.multiGet([
                     'user_name',
                     'streak_count',
@@ -1630,14 +1576,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 readCurrentStreakWeekMarkers(),
                 getMyWeekPoints(),
                 getShardsBalance(),
-                readPersonalPlanState(),
-                getTrainerTotalDue(studyTarget)
-                    .then((dueCount) => readPersonalPlanSnapshot({
-                    duePracticeCount: dueCount,
-                    dueTrainerCount: dueCount,
-                }))
-                    .catch(() => readPersonalPlanSnapshot()),
-                AsyncStorage.multiGet(['onboarding_plan_billing', 'had_premium_ever', 'premium_active']),
+                AsyncStorage.multiGet(['premium_active']),
             ]);
             const homeStorage = new Map(homeStoragePairs);
             const name = homeStorage.get('user_name') ?? null;
@@ -1649,17 +1588,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const premiumSignals = new Map(premiumSignalPairs);
             // Данные успешно прочитаны — снимаем баннер ошибки, если он был после прошлого сбоя.
             if (mountedRef.current && loadFailedNoData) setLoadFailedNoData(false);
-            if (mountedRef.current) {
-                setOnboardingPlanBilling(premiumSignals.get('onboarding_plan_billing') || null);
-                setHadPremiumEver(premiumSignals.get('had_premium_ever') === '1' || premiumSignals.get('premium_active') === 'true');
-            }
             setWeekMarkers(currentWeekMarkers);
             setShardsBalance(shardsBal);
-            if (mountedRef.current) {
-                const nextHasActivePersonalPlan = activePlanState != null || planSnapshot != null;
-                setHasActivePersonalPlanState(nextHasActivePersonalPlan);
-                setPersonalPlanSnapshot((previous) => planSnapshot ?? (nextHasActivePersonalPlan ? previous : null));
-            }
             if (!selectedTitleHydratedRef.current) {
                 selectedTitleHydratedRef.current = true;
                 setSelectedTitleKey(storedTitleKey || null);
@@ -1869,7 +1799,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // which can still have a null React value. Preserve the newest cache
                 // rather than letting that stale closure erase the league row.
                 homeLeagueChest: homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null,
-                personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
             }, studyTarget, homeHydrationAccount);
             patchAppSnapshot({
                 profile: {

@@ -19,7 +19,6 @@ import React, { useCallback, useMemo, useState } from 'react';
 import {
   BackHandler,
   Platform,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -66,6 +65,8 @@ export default function FlashcardsMyPacksScreen() {
   const { studyTarget } = useStudyTarget();
   const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
+  /** §5.2: капсула таббара сжимается при скролле — как на главной. */
+  const tabScroll = useFcTabBarScroll();
 
   const [packs, setPacks] = useState<FlashcardMarketPack[]>([]);
 

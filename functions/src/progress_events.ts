@@ -27,7 +27,6 @@ export const PROGRESS_EVENT_TYPES = [
   'preposition_drill_perfect',
   'review_answer',
   'diagnostic_test',
-  'plan_task_complete',
   'wager_win',
 ] as const;
 
@@ -146,7 +145,6 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   preposition_drill_perfect: 1500,
   review_answer: 150,
   diagnostic_test: 2500,
-  plan_task_complete: 1500,
   wager_win: 20000,
 };
 

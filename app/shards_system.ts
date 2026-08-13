@@ -55,7 +55,6 @@ export type ShardSource =
   | 'lessons_5_perfect'     // +3 5 уроков подряд без ошибок
   | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
-  | 'plan_day_complete'     // +2 Завершён день персонального плана (разово на день плана)
   | 'trainer_perfect_session' // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
   | 'survey_completed';     // +1 Пройден опрос (сервер submitShardSurvey, идемпотентно).
                             // Сумма фиксирована на сервере (SURVEY_SHARD_AMOUNT = 1);
@@ -90,7 +89,6 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   lessons_5_perfect: 0,
   level_gift: 0,
   preposition_drill_perfect: 0,
-  plan_day_complete: 0,
   trainer_perfect_session: 0,
   survey_completed: 1,
 };

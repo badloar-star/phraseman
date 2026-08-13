@@ -92,8 +92,7 @@ export type XPSource =
   | 'daily_phrase_quest'
   | 'exam_complete'
   | 'achievement_reward'
-  | 'level_up_bonus'
-  | 'plan_task_complete';    // Завершение задачи персонального плана
+  | 'level_up_bonus';
 
 interface XPResult {
   finalDelta: number;
@@ -134,7 +133,6 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'exam_complete':
     case 'achievement_reward':
     case 'level_up_bonus':
-    case 'plan_task_complete':
     case 'wager_win':
       return source;
     case 'wager_bet':
@@ -454,7 +452,7 @@ export const registerXP = async (
 
     // 1. Множители применяются к заработку (уроки, тренировки, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'trainer_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'plan_task_complete'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'trainer_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)

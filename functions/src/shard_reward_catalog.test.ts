@@ -28,7 +28,6 @@ describe('generic shard earn compatibility catalog (zeroed by 2026-07-20 economy
     ['diagnostic_test', 1],
     ['lessons_5_perfect', 3],
     ['preposition_drill_perfect', 1],
-    ['plan_day_complete', 2],
     ['trainer_perfect_session', 1],
     ['boon_comeback', 5],
     ['boon_perfect_week', 20],

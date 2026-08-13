@@ -213,9 +213,9 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'Compite, suma más XP y no pierdas el ritmo.',
   },
   trainer: {
-    titleRu: 'Тренер — персональный план повторения',
-    titleUk: 'Тренер — персональний план повторення',
-    titleEs: 'Entrenador — tu plan de repaso personal',
+    titleRu: 'Тренер — точечное повторение',
+    titleUk: 'Тренер — точкове повторення',
+    titleEs: 'Entrenador — repaso focalizado',
     subtitleRu: 'Слабые места, точечный повтор, по теме, сложные — 4 режима работают только на Plus. Без лимита сессий.',
     subtitleUk: 'Слабкі місця, точкове повторення, за темою, складні — 4 режими лише для Plus. Без ліміту сесій.',
     subtitleEs: 'Débiles, repaso focalizado, por tema, difíciles — 4 modos solo para Plus. Sin límite de sesiones.',
@@ -875,7 +875,7 @@ const WIN_BACK_NATIVE_CONTEXTS = new Set<string>([
 
 // Win-back заголовок: универсальная формулировка «верни доступ», который у юзера
 // УЖЕ был (премиум стал фри/истёк). Перекрывает «получить впервые»-заголовки вроде
-// «Получить персональный план», которые звучат неактуально для вернувшегося юзера.
+// Заголовки первого получения звучат неактуально для вернувшегося юзера.
 const WIN_BACK_TITLE: Pick<PaywallCopy, 'titleRu' | 'titleUk' | 'titleEs'> = {
   titleRu: 'Верни полный доступ Plus',
   titleUk: 'Поверни повний доступ Plus',

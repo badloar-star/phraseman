@@ -1832,7 +1832,7 @@ export default function ReviewScreen() {
                   pl: "Poprawna odpowiedź:",
                 })}
               </Text>
-              {/* зачем: обрезка снята — в режиме плана скролл выключен
+              {/* Обрезка снята: когда скролл выключен,
                   (scrollEnabled={!isCompactPracticeLayout}), и numberOfLines={2} делал
                   правильный ответ нечитаемым. Тот же баг, что в lesson1.tsx. */}
               <Text style={{ color: t.correct, fontSize: isCompactPracticeLayout ? f.body : f.bodyLg, fontWeight: '600' }}>

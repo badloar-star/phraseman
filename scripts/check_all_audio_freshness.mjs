@@ -2,28 +2,24 @@
 /**
  * check_all_audio_freshness.mjs — universal audio freshness guard.
  *
- * Phraseman has TWO audio systems, keyed differently:
- *   1) PLAN audio  — app/personal_plan_runtime_audio_assets.generated.ts, keyed by
- *      contentUnitId; each asset stores `targetText`. Stale = targetText != current English.
- *   2) PHRASE audio — app/phrase_audio_url_map.generated.ts, keyed by the normalized
+ * Phraseman phrase audio is keyed by normalized English text in
+ * app/phrase_audio_url_map.generated.ts.
+ * PHRASE audio is keyed by the normalized
  *      English TEXT itself (getPhraseAudioUrl). Covers lessons, words, quiz, idioms,
  *      flashcards, collectibles. Stale = a current content text has NO map entry
  *      (its mp3 was never generated, or the text changed and the old key is orphaned).
  *
- * This reports BOTH: plan-audio drift (handled by check_plan_audio_freshness) AND
- * phrase-audio texts that have no audio. It does NOT spend money — detection only.
+ * This reports phrase-audio texts that have no audio. It does NOT spend money.
  *
  *   node scripts/check_all_audio_freshness.mjs            # human report, exit 1 if any gap
  *   node scripts/check_all_audio_freshness.mjs --json     # machine-readable
  *
  * Regenerate:
- *   plan:   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_plan_listen_audio_targeted.mjs
- *   phrase: PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio.mjs "<new text>"
+ *   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio.mjs "<new text>"
  *           (then upload + patch the url map)
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -92,51 +88,26 @@ for (const src of PHRASE_TEXT_SOURCES) {
   }
 }
 
-// ── 2) PLAN audio: delegate to the existing checker ──────────────────────────
-function planStale() {
-  let out;
-  try {
-    out = spawnSync('npx', ['tsx', path.join('scripts', 'check_plan_audio_freshness.mjs'), '--json'], {
-      cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32',
-    }).stdout;
-  } catch (e) {
-    out = e.stdout;
-  }
-  try {
-    return JSON.parse(out || '{}').stale || [];
-  } catch {
-    return [];
-  }
-}
-const planDrift = planStale();
-
 // ── report ───────────────────────────────────────────────────────────────────
-const totalGaps = phraseMissing.length + planDrift.length;
+const totalGaps = phraseMissing.length;
 
 if (JSON_OUT) {
   console.log(JSON.stringify({
     totalGaps,
-    planDriftCount: planDrift.length,
-    planDrift,
     phraseMissingCount: phraseMissing.length,
     phraseMissing: phraseMissing.slice(0, 200),
   }, null, 2));
 } else {
-  console.log(`Universal audio freshness: ${phraseMapKeys.size} phrase keys, plan assets checked.`);
+  console.log(`Universal audio freshness: ${phraseMapKeys.size} phrase keys checked.`);
   if (totalGaps === 0) {
-    console.log('OK — every plan mp3 matches its phrase, and every content text has phrase audio.');
+    console.log('OK — every content text has phrase audio.');
   } else {
-    if (planDrift.length) {
-      console.log(`\nPLAN AUDIO STALE: ${planDrift.length} mp3(s) speak old text.`);
-      for (const s of planDrift) console.log(`  ${s.contentUnit}: "${s.targetText}" -> should be "${s.currentEnglish}"`);
-    }
     if (phraseMissing.length) {
       console.log(`\nPHRASE AUDIO MISSING: ${phraseMissing.length} content text(s) have NO audio (new/changed text not yet generated):`);
       for (const m of phraseMissing.slice(0, 40)) console.log(`  [${m.sourceFile}] "${m.text}"`);
       if (phraseMissing.length > 40) console.log(`  …and ${phraseMissing.length - 40} more.`);
     }
-    console.log('\nRegenerate plan audio:   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_plan_listen_audio_targeted.mjs');
-    console.log('Regenerate phrase audio: PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio.mjs "<text>"  (then upload + patch map)');
+    console.log('\nRegenerate phrase audio: PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio.mjs "<text>"  (then upload + patch map)');
   }
 }
 process.exit(totalGaps === 0 ? 0 : 1);

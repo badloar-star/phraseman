@@ -314,7 +314,7 @@ export const SYNC_KEYS = [
   'last_active_date',
   'streak_last_date',
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
-  // (гейт «1 язык фри» и сырьё для персонального плана; см. app/study_languages.ts)
+  // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',
   'language_profile_v1::en',
   'language_profile_v1::fr',
@@ -2558,7 +2558,7 @@ async function applyRestoreFromUserDoc(
     for (const key of stickyKeys) {
       const val = cloudData[key];
       // Используем premiumValuePresent для premium/vip-ключей: пустая строка '' !== null,
-      // но должна трактоваться как «нет данных» — иначе '' затирает локальный активный план.
+      // но должна трактоваться как «нет данных» — иначе '' затирает локальный выбор.
       if (PREMIUM_PROGRESS_KEYS.has(key) ? premiumValuePresent(val) : (val !== null && val !== undefined)) {
         stickyPairs.push([key, cloudProgressStorageValue(key, val)]);
       }

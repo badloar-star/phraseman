@@ -8,7 +8,6 @@ const TRUSTED_LEARNING_COMPLETION_EVENTS = new Set([
   'lesson_complete',
   'dialog_complete',
   'exam_complete',
-  'plan_task_complete',
 ]);
 
 export interface LearningMetricFields {

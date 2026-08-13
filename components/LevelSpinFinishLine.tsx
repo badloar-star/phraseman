@@ -38,6 +38,7 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { isLightThemeMode, type Theme, type ThemeMode } from '../constants/theme';
 import {
   createLevelSpinLandingPlan,
   createLevelSpinOvershootPlan,
@@ -75,7 +76,12 @@ function giftForId(id: string | null | undefined): GiftDef | null {
   return id ? ALL_LEVEL_GIFT_DEFS.find((gift) => gift.id === id) ?? null : null;
 }
 
-function rarityColor(gift: GiftDef): string {
+function rarityColor(gift: GiftDef, themeMode: ThemeMode, theme: Theme): string {
+  if (isLightThemeMode(themeMode)) {
+    if (gift.rarity === 'epic') return theme.gold;
+    if (gift.rarity === 'rare') return '#1F5E8C';
+    return theme.correct;
+  }
   if (gift.rarity === 'epic') return '#F3C85C';
   if (gift.rarity === 'rare') return '#79B8FF';
   return '#7BD9CB';
@@ -86,7 +92,8 @@ const HIGH_VALUE_COMMON_GIFT_IDS = new Set([
 ]);
 
 /** A reward's surface communicates rarity first, then the stronger common rewards. */
-function rewardGradientForGift(gift: GiftDef): [string, string, string] {
+function rewardGradientForGift(gift: GiftDef, themeMode: ThemeMode, theme: Theme): [string, string, string] {
+  if (isLightThemeMode(themeMode)) return [theme.cardGradient[0], theme.cardGradient[1], theme.bgCard];
   if (gift.rarity === 'epic') return ['#4D1E67', '#2A123D', '#150A20'];
   if (gift.rarity === 'rare') return ['#164C72', '#102B49', '#091727'];
   if (HIGH_VALUE_COMMON_GIFT_IDS.has(gift.id)) return ['#574015', '#30230D', '#181208'];
@@ -400,8 +407,8 @@ export default function LevelSpinFinishLine({
             >
               {streamIds.map((giftId, index) => {
                 const gift = giftForId(giftId);
-                const accent = gift ? rarityColor(gift) : '#7BD9CB';
-                const rewardGradient = gift ? rewardGradientForGift(gift) : DEFAULT_REWARD_GRADIENT;
+                const accent = gift ? rarityColor(gift, themeMode, t) : '#7BD9CB';
+                const rewardGradient = gift ? rewardGradientForGift(gift, themeMode, t) : DEFAULT_REWARD_GRADIENT;
                 return gift ? (
               <LinearGradient
                 testID="level-spin-reward-gradient"

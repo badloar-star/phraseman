@@ -214,13 +214,26 @@ describe('Finish Line level spin screen contract', () => {
   test('uses rarity and value gradients on reward rows with no background glow behind them', () => {
     const finish = presentation();
     const screen = source();
-    expect(finish).toContain('function rewardGradientForGift(gift: GiftDef)');
-    expect(finish).toContain('rewardGradientForGift(gift)');
+    expect(finish).toContain('function rewardGradientForGift(gift: GiftDef, themeMode: ThemeMode, theme: Theme)');
+    expect(finish).toContain('rewardGradientForGift(gift, themeMode, t)');
     expect(finish).toContain('colors={rewardGradient}');
     expect(finish).not.toContain('testID="level-spin-center-glow"');
     expect(finish).not.toContain('centerGlow:');
     expect(finish).not.toContain('minHeight: 400');
     expect(screen).toContain('resultActionBusyRef.current');
+  });
+
+  test('uses the active light theme surface instead of dark rarity gradients on reward rows', () => {
+    const finish = presentation();
+    expect(finish).toContain("isLightThemeMode, type Theme, type ThemeMode } from '../constants/theme'");
+    expect(finish).toContain('function rewardGradientForGift(gift: GiftDef, themeMode: ThemeMode, theme: Theme)');
+    expect(finish).toContain('if (isLightThemeMode(themeMode)) return [theme.cardGradient[0], theme.cardGradient[1], theme.bgCard];');
+    expect(finish).toContain('function rarityColor(gift: GiftDef, themeMode: ThemeMode, theme: Theme): string');
+    expect(finish).toContain('if (isLightThemeMode(themeMode)) {');
+    expect(finish).toContain('return theme.gold;');
+    expect(finish).toContain('return theme.correct;');
+    expect(finish).toContain('rewardGradientForGift(gift, themeMode, t)');
+    expect(finish).toContain('rarityColor(gift, themeMode, t)');
   });
 
   test('suppresses Android elevation on gradient reward rows so their shadows cannot render as rectangles', () => {

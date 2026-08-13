@@ -4,14 +4,14 @@
 //
 // Плеер: большой PhraseCard с автофлипом синхронно с озвучкой сторон, прогресс,
 // ⏮ ⏯ ⏭, кнопка режима озвучки, степпер паузы «подумать» (1/2/3/5с), тумблер
-// повтора колоды. Foreground only + expo-keep-awake.
+// повтора набора. Foreground only + expo-keep-awake.
 //
 // cards-2.1 (SPEC_2_1 §7):
 //  - §7.1 эквалайзер `ListeningEqualizer` — полосы «дышат» во время озвучки и
 //    опадают на паузе; только transform: scaleY на UI-потоке Reanimated;
 //  - §7.2 четыре чипа порядка озвучки заменены ОДНОЙ кнопкой с выпадающим
 //    списком (`ListeningModePicker`), сохранение в fc_listening_prefs_v1 то же;
-//  - §6 ?deck= принимает СПИСОК колод (parseDeckParams + loadDeckCardsMulti),
+//  - §6 ?deck= принимает СПИСОК наборов (parseDeckParams + loadDeckCardsMulti),
 //    пустой список → сохранённые карточки.
 //
 // Драйвит чистая state machine (flashcards/listening_machine.ts):
@@ -43,11 +43,14 @@ import { triLang } from '../constants/i18n';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import PhraseCard from './flashcards/PhraseCard';
+import PhraseCard, { useFcReduceMotion } from './flashcards/PhraseCard';
+import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
+import { loadFcDeckOptions } from './flashcards/deck_options';
 import SessionResultScreen from './flashcards/SessionResultScreen';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckRef } from './flashcards/deck_sources';
-import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE } from './flashcards/mode_prefs';
+import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE, getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
+import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
 import ListeningEqualizer from './flashcards/ListeningEqualizer';
 import ListeningModePicker from './flashcards/ListeningModePicker';
 import {
@@ -132,12 +135,12 @@ export default function FlashcardsListeningSession() {
   // Не гасить экран на время сессии (§3.8: foreground only, expo-keep-awake)
   useKeepAwake();
 
-  // cards-2.1 (§6): ?deck= — СПИСОК колод (`saved,custom,pack:abc`). Пустой/мусор → сохранённые.
+  // cards-2.1 (§6): ?deck= — СПИСОК наборов (`saved,custom,pack:abc`). Пустой/мусор → сохранённые.
   const deckRefs = useMemo<DeckRef[]>(() => {
     const parsed = parseDeckParams(params.deck);
     return parsed.length > 0 ? parsed : [{ kind: 'saved' }];
   }, [params.deck]);
-  /** Ключ списка колод — стабильная зависимость эффекта загрузки (массив пересоздаётся). */
+  /** Ключ списка наборов — стабильная зависимость эффекта загрузки (массив пересоздаётся). */
   const deckKey = useMemo(() => deckRefs.map(deckRefKey).join(','), [deckRefs]);
   const sessionSize = useMemo(() => {
     const raw = Array.isArray(params.size) ? params.size[0] : params.size;
@@ -159,6 +162,16 @@ export default function FlashcardsListeningSession() {
   const [pauseSec, setPauseSec] = useState<number>(DEFAULT_PREFS.pauseSec);
   const [loop, setLoop] = useState(false);
   const [result, setResult] = useState<ResultState | null>(null);
+  /**
+   * FIX (владелец, 2026-08-13): «в разделе «Слушать» нет выбора и отмечания
+   * наборов». Мультивыбор жил только за долгим тапом по пункту таббара и был
+   * недостижим. Теперь тот же `DeckPickerSheet` (mode='listening') открывается
+   * прямо из шапки слушания — и автоматически, если слушать оказалось нечего.
+   */
+  const [deckPickerOpen, setDeckPickerOpen] = useState(false);
+  const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
+  const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
+  const reduceMotion = useFcReduceMotion();
 
   const machineRef = useRef<ListeningMachine | null>(null);
   const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -275,13 +288,13 @@ export default function FlashcardsListeningSession() {
     };
   }, []);
 
-  // ── Загрузка колоды + голосов, создание машины, автостарт ─────────────────
+  // ── Загрузка карточек + голосов, создание машины, автостарт ───────────────
   useEffect(() => {
     let cancelled = false;
     let createdMachine: ListeningMachine | null = null;
     void (async () => {
       const [pool, rawPrefs] = await Promise.all([
-        // cards-2.1 (§6): несколько колод одной объединённой (дедуп по id + шаффл внутри)
+        // cards-2.1 (§6): несколько наборов одной объединённой подборкой (дедуп по id + шаффл)
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch(
           (): Awaited<ReturnType<typeof loadDeckCardsMulti>> => [],
         ),
@@ -315,6 +328,16 @@ export default function FlashcardsListeningSession() {
       if (cancelled) return;
 
       prefsRef.current = prefs;
+      // Смена набора на том же экране (router.replace из шита выбора) —
+      // прогресс сессии начинается заново, иначе индекс/счётчик тянутся из
+      // прошлого набора и прогресс-бар показывает чужие числа.
+      listenedRef.current = 0;
+      finishedRef.current = false;
+      setCardIndex(0);
+      setFlipped(false);
+      setListened(0);
+      setPhase('playing');
+      setNoVoiceSide(null);
       setCards(listenCards);
       setOrder(prefs.order);
       setPauseSec(prefs.pauseSec);
@@ -411,12 +434,104 @@ export default function FlashcardsListeningSession() {
     router.back();
   }, [router]);
 
-  // ── Заголовок по колоде (паттерн trainer_words_session E8) ────────────────
+  /**
+   * Слушать нечего (набор пуст / карточек нет) → сразу предлагаем выбор
+   * наборов вместо тупика с надписью. Один раз на состав набора.
+   */
+  const autoPickedRef = useRef(false);
+  useEffect(() => {
+    autoPickedRef.current = false;
+  }, [deckKey]);
+  useEffect(() => {
+    if (loading || cards.length > 0 || result || autoPickedRef.current) return;
+    autoPickedRef.current = true;
+    setDeckPickerOpen(true);
+  }, [loading, cards.length, result, deckKey]);
+
+  /** Подпись кнопки выбора наборов — во все восемь локалей. */
+  const pickDecksLabel = useMemo(
+    () =>
+      triLang(lang, {
+        ru: 'Выбрать наборы',
+        uk: 'Обрати набори',
+        es: 'Elegir packs',
+        'pt-BR': 'Escolher pacotes',
+        vi: 'Chọn bộ thẻ',
+        id: 'Pilih set kartu',
+        tr: 'Setleri seç',
+        pl: 'Wybierz zestawy',
+      }),
+    [lang],
+  );
+
+  // ── §6: мультивыбор наборов прямо из слушания ─────────────────────────────
+  /** Список наборов грузим только при открытии шита — вход в сессию не платит. */
+  useEffect(() => {
+    if (!deckPickerOpen) return;
+    let cancelled = false;
+    void (async () => {
+      const [decks, preset] = await Promise.all([
+        loadFcDeckOptions('listening', lang).catch(() => [] as DeckSheetOption[]),
+        getLastPreset('listening').catch(() => null),
+      ]);
+      if (cancelled) return;
+      setDeckOptions(decks);
+      setDeckPreset(preset);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [deckPickerOpen, lang]);
+
+  const openDeckPicker = useCallback(() => {
+    fcHaptic('tap');
+    // Речь на паузу: выбирать наборы под звучащую карточку неудобно.
+    machineRef.current?.send({ type: 'PAUSE' });
+    setPhase('paused');
+    setDeckPickerOpen(true);
+  }, []);
+
+  const closeDeckPicker = useCallback(() => setDeckPickerOpen(false), []);
+
+  /**
+   * Старт с выбранными наборами: тот же экран с новым `?deck=` (replace, чтобы
+   * «назад» не возвращал в сессию со старым набором). Пресет уже сохранён
+   * шитом (`setLastPreset('listening', …)`).
+   */
+  const startWithPreset = useCallback(
+    (preset: FcModePreset) => {
+      setDeckPickerOpen(false);
+      // «Слабые» — due-очередь тренера, для аудио бессмысленна; фолбэк — сохранённые.
+      const decks = presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID);
+      const deck = deckRouteParam(decks) || 'saved';
+      machineRef.current?.send({ type: 'STOP' });
+      router.replace({
+        pathname: '/flashcards_listening_session',
+        params: { deck, size: String(preset.size) },
+      } as never);
+    },
+    [router],
+  );
+
+  const deckPickerSheet = (
+    <DeckPickerSheet
+      visible={deckPickerOpen}
+      onClose={closeDeckPicker}
+      onStart={startWithPreset}
+      decks={deckOptions}
+      initialPreset={deckPreset}
+      lang={lang}
+      t={t}
+      f={f}
+      reduceMotion={reduceMotion}
+      mode="listening"
+    />
+  );
+
+  // ── Заголовок по набору (паттерн trainer_words_session E8) ────────────────
   const deckTitle = useMemo(() => {
-    // cards-2.1: несколько колод — «Колод: N», одна — как раньше
-    if (deckRefs.length > 1) {
-      return `${triLang(lang, { ru: 'Колод', uk: 'Колод', es: 'Mazos' })}: ${deckRefs.length}`;
-    }
+    // cards-2.1: несколько наборов — «2 набора», один — как раньше
+    if (deckRefs.length > 1) return decksCountLabel(lang, deckRefs.length);
     const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
     if (deckRef.kind === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
@@ -463,18 +578,44 @@ export default function FlashcardsListeningSession() {
               </Text>
               <View style={{ width: 32 }} />
             </View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 32 }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
               <Ionicons name="headset-outline" size={44} color={t.textGhost} />
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, {
-                  ru: 'В этой колоде пока нет карточек для слушания',
-                  uk: 'У цій колоді поки немає карток для слухання',
-                  es: 'Este mazo aún no tiene tarjetas para escuchar',
+                  ru: 'Здесь пока нечего слушать — выберите наборы',
+                  uk: 'Тут поки нема чого слухати — оберіть набори',
+                  es: 'Aún no hay nada que escuchar: elige los packs',
+                  'pt-BR': 'Ainda não há o que ouvir: escolha os pacotes',
+                  vi: 'Chưa có gì để nghe — hãy chọn bộ thẻ',
+                  id: 'Belum ada yang bisa didengarkan — pilih set kartu',
+                  tr: 'Dinlenecek bir şey yok — setleri seçin',
+                  pl: 'Nie ma jeszcze czego słuchać — wybierz zestawy',
                 })}
               </Text>
+              <TouchableOpacity
+                testID="fc-listen-pick-decks-empty"
+                accessibilityLabel="qa-fc-listen-pick-decks"
+                accessible
+                onPress={openDeckPicker}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 8,
+                  paddingHorizontal: 18,
+                  paddingVertical: 12,
+                  borderRadius: 16,
+                  backgroundColor: t.bgSurface,
+                }}
+              >
+                <Ionicons name="albums-outline" size={18} color={ACCENT} />
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                  {pickDecksLabel}
+                </Text>
+              </TouchableOpacity>
             </View>
           </ContentWrap>
         </SafeAreaView>
+        {deckPickerSheet}
       </ScreenGradient>
     );
   }
@@ -498,7 +639,7 @@ export default function FlashcardsListeningSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          {/* Header: назад · «Слушание · колода» · N/размер */}
+          {/* Header: назад · «Слушание · набор» · N/размер */}
           <View style={styles.headerRow}>
             <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-listen-back">
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
@@ -515,6 +656,18 @@ export default function FlashcardsListeningSession() {
               <Text style={{ color: t.textMuted, fontSize: f.caption, minWidth: 44, textAlign: 'right' }} testID="fc-listen-progress">
                 {Math.min(cardIndex + 1, cards.length)} / {cards.length}
               </Text>
+              {/* §6: выбор и отмечание наборов — мультивыбор, как в тренировке */}
+              <TouchableOpacity
+                testID="fc-listen-pick-decks"
+                accessibilityLabel="qa-fc-listen-pick-decks"
+                accessible
+                accessibilityRole="button"
+                onPress={openDeckPicker}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{ padding: 4 }}
+              >
+                <Ionicons name="albums-outline" size={20} color={t.textMuted} />
+              </TouchableOpacity>
               {/* E13: шестерёнка → выбор TTS-голоса (fc_voice_prefs_v1) */}
               <TouchableOpacity
                 testID="fc-listen-voice-settings"
@@ -534,7 +687,7 @@ export default function FlashcardsListeningSession() {
             </View>
           </View>
 
-          {/* Тонкий прогресс-бар позиции в колоде */}
+          {/* Тонкий прогресс-бар позиции в подборке */}
           <View style={[styles.progressTrack, { backgroundColor: t.bgSurface }]}>
             <View
               style={[
@@ -614,7 +767,7 @@ export default function FlashcardsListeningSession() {
             />
           </View>
 
-          {/* Пауза «подумать» + повтор колоды */}
+          {/* Пауза «подумать» + повтор подборки */}
           <View style={styles.settingsRow}>
             <View style={[styles.pauseStepper, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
               <TouchableOpacity
@@ -700,6 +853,7 @@ export default function FlashcardsListeningSession() {
           </View>
         </ContentWrap>
       </SafeAreaView>
+      {deckPickerSheet}
     </ScreenGradient>
   );
 }

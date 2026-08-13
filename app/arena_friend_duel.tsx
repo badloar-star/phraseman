@@ -97,7 +97,14 @@ export default function ArenaFriendDuelScreen() {
             <V2Cta onPress={share}>{arenaText(lang, 'share')}</V2Cta>
           </>
         )}
-        {error ? <Text style={[styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')}</Text> : null}
+        {/* Раньше здесь краснело одно слово «Повторить»: игрок не знал,
+            ушло приглашение или нет, и слал его повторно вслепую. */}
+        {error ? (
+          <View style={styles.failure}>
+            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'inviteFailed')}</Text>
+            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'inviteFailedHint')}</Text>
+          </View>
+        ) : null}
       </V2Card>
       <V2Cta tone="ghost" onPress={() => router.push('/arena_invite' as never)}>{arenaText(lang, 'join')}</V2Cta>
     </ArenaScreen>
@@ -117,4 +124,7 @@ const styles = StyleSheet.create({
   ready: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
   code: { fontSize: 15, fontWeight: '800', textAlign: 'center' },
   error: { textAlign: 'center', fontWeight: '700' },
+  failure: { gap: 4 },
+  failureTitle: { fontSize: 16, fontWeight: '900', textAlign: 'center' },
+  failureHint: { fontSize: 13, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
 });

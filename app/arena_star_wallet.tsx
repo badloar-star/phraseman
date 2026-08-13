@@ -27,10 +27,18 @@ export default function ArenaStarWalletScreen() {
   const [store, setStore] = useState<ArenaStarStoreResponse | null>(null);
   const [spins, setSpins] = useState(0);
   const [busySku, setBusySku] = useState<string | null>(null);
+  /**
+   * Отказ ДЕЙСТВИЯ отдельно от отказа загрузки. Раньше и покупка, и надевание,
+   * и спин писали `state = 'error'` — то есть сорвавшаяся покупка выглядела
+   * как не загрузившийся магазин, и игрок не мог понять, списались его звёзды
+   * или нет. Для покупки это худший вопрос из возможных.
+   */
+  const [actionError, setActionError] = useState<'purchase' | 'equip' | 'spin' | null>(null);
   const purchaseIds = useRef(new Map<string, string>());
   const spinId = useRef<string | null>(null);
   const load = useCallback(() => {
     setState('loading');
+    setActionError(null);
     void Promise.all([arenaExpansionHome(), arenaStarStore(), arenaV2SpinStatus().catch(() => ({ ok: true as const, spinsAvailable: 0 }))]).then(([home, response, spin]) => {
       if (!home.availability.store) { setState('unavailable'); return; }
       setStore({ ...response, wallet: home.wallet });
@@ -53,26 +61,33 @@ export default function ArenaStarWalletScreen() {
       purchaseIds.current.delete(item.sku);
       setState('success');
       void load();
-    }).catch(() => setState('error')).finally(() => setBusySku(null));
+    }).catch(() => setActionError('purchase')).finally(() => setBusySku(null));
   };
   const equip = (item: ArenaStoreItem) => {
     const requestId = createArenaRequestId('star_equip');
     if (!ARENA_LOCALIZED_STORE_ITEM_IDS.includes(item.sku as ArenaStoreItemId) || arenaCosmeticDefinition(item.sku)?.slot !== item.slot) return;
     trackArenaTelemetry(arenaStoreActionEvent('equip', item.sku as ArenaStoreItemId, item.slot, item.priceStars));
     setBusySku(item.sku);
-    void arenaStarEquip(item.sku, item.slot, requestId).then(() => load()).catch(() => setState('error')).finally(() => setBusySku(null));
+    void arenaStarEquip(item.sku, item.slot, requestId).then(() => load()).catch(() => setActionError('equip')).finally(() => setBusySku(null));
   };
   const claimSpin = () => {
     const requestId = spinId.current ?? createArenaRequestId('spin');
     spinId.current = requestId;
     setBusySku('spin');
-    void arenaV2SpinClaim(requestId).then(() => { spinId.current = null; setSpins((old) => Math.max(0, old - 1)); setState('success'); }).catch(() => setState('error')).finally(() => setBusySku(null));
+    void arenaV2SpinClaim(requestId).then(() => { spinId.current = null; setSpins((old) => Math.max(0, old - 1)); setState('success'); }).catch(() => setActionError('spin')).finally(() => setBusySku(null));
   };
 
   const header = store ? <View style={styles.header}>
     <View style={styles.stats}><ArenaStat label={arenaExpansionText(lang, 'spendable')} value={store.wallet.walletStars} /><ArenaStat label={arenaExpansionText(lang, 'seasonEarned')} value={store.wallet.seasonStarsEarned} /></View>
     {spins > 0 ? <V2Card style={styles.spin}><View style={styles.icon}><Ionicons name="sparkles" size={26} color={P.onGold} /></View><View style={styles.flex}><Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'spin')}</Text><Text style={[styles.body, { color: P.muted }]}>{spins}</Text></View><View style={styles.action}><V2Cta disabled={busySku === 'spin'} onPress={claimSpin}>{arenaExpansionText(lang, 'spinClaim')}</V2Cta></View></V2Card> : null}
     {state === 'error' ? <ArenaStateNotice state="error" onRetry={load} /> : null}
+    {actionError ? (
+      <ArenaStateCard
+        state="error"
+        title={arenaExpansionText(lang, actionError === 'purchase' ? 'purchaseFailed' : actionError === 'equip' ? 'equipFailed' : 'spinFailed')}
+        body={arenaExpansionText(lang, actionError === 'purchase' ? 'purchaseFailedHint' : actionError === 'equip' ? 'equipFailedHint' : 'spinFailedHint')}
+      />
+    ) : null}
     {state === 'insufficient' || state === 'success' ? <ArenaStateCard state={state === 'insufficient' ? 'unavailable' : 'ready'} title={arenaExpansionText(lang, state === 'insufficient' ? 'insufficient' : 'purchaseSuccess')} /> : null}
   </View> : null;
 

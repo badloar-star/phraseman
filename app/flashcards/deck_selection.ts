@@ -1,12 +1,12 @@
 /**
- * cards-2.1 (§6 SPEC_2_1): мультивыбор колод для тренировки/слушания/блица.
+ * cards-2.1 (§6 SPEC_2_1): мультивыбор наборов для тренировки/слушания/блица.
  *
  * Чистые функции общего слоя между DeckPickerSheet (UI выбора), mode_prefs
  * (сохранение последнего выбора) и deck_sources (загрузка карточек):
  *  - формат параметра `?deck=` — СПИСОК через запятую: `saved,custom,pack:abc`;
  *    одиночное значение (`saved` / `pack:abc`) продолжает работать как раньше;
  *  - валидация/нормализация списка (дедупликация, порядок первого вхождения);
- *  - «Слабые» (`weak`) — не колода, а due-очередь тренера, поэтому выбирается
+ *  - «Слабые» (`weak`) — не набор, а due-очередь тренера, поэтому выбирается
  *    ТОЛЬКО в одиночку (смешивать с наборами нечего: карточек у неё нет);
  *  - подсчёт «Выбрано N · M карточек» с дедупликацией карточек по стабильному id.
  *
@@ -24,10 +24,10 @@ import { legacyRuUk, type Lang } from '../../constants/i18n';
  */
 export type FcDeckId = 'weak' | 'saved' | 'custom' | `pack:${string}`;
 
-/** Разделитель списка колод в параметре `?deck=`. */
+/** Разделитель списка наборов в параметре `?deck=`. */
 export const DECK_PARAM_SEPARATOR = ',';
 
-/** Псевдо-колода due-очереди: выбирается только в одиночку. */
+/** Псевдо-набор due-очереди: выбирается только в одиночку. */
 export const SOLO_DECK_ID: FcDeckId = 'weak';
 
 export function isValidDeckId(v: unknown): v is FcDeckId {
@@ -55,7 +55,7 @@ export function splitDeckParam(raw: string | readonly string[] | undefined | nul
 }
 
 /**
- * Валидация + дедупликация списка колод (порядок первого вхождения).
+ * Валидация + дедупликация списка наборов (порядок первого вхождения).
  * 'weak' исключителен: если он есть в списке — результат ровно ['weak'].
  * Мусор молча отбрасывается.
  */
@@ -73,12 +73,12 @@ export function normalizeDeckIds(ids: readonly unknown[] | undefined | null): Fc
   return out;
 }
 
-/** Разбор параметра `?deck=` в нормализованный список колод (пусто — список пуст). */
+/** Разбор параметра `?deck=` в нормализованный список наборов (пусто — список пуст). */
 export function parseDeckIdList(raw: string | readonly string[] | undefined | null): FcDeckId[] {
   return normalizeDeckIds(splitDeckParam(raw));
 }
 
-/** Сборка параметра `?deck=` из списка колод ('' — нечего передавать). */
+/** Сборка параметра `?deck=` из списка наборов ('' — нечего передавать). */
 export function joinDeckIds(ids: readonly FcDeckId[]): string {
   return normalizeDeckIds(ids).join(DECK_PARAM_SEPARATOR);
 }
@@ -92,7 +92,7 @@ export function deckRouteParam(ids: readonly FcDeckId[]): string {
 }
 
 /**
- * Тап по чекбоксу: добавить/снять колоду. 'weak' исключителен в обе стороны —
+ * Тап по чекбоксу: добавить/снять набор. 'weak' исключителен в обе стороны —
  * выбор 'weak' сбрасывает наборы, выбор набора сбрасывает 'weak'.
  */
 export function toggleDeckSelection(current: readonly FcDeckId[], id: FcDeckId): FcDeckId[] {
@@ -105,7 +105,7 @@ export function toggleDeckSelection(current: readonly FcDeckId[], id: FcDeckId):
 
 // ── Счётчик «Выбрано N · M карточек» ─────────────────────────────────────────
 
-/** Колода в списке шита: счётчик карточек и (опционально) их стабильные id. */
+/** Набор в списке шита: счётчик карточек и (опционально) их стабильные id. */
 export type DeckCountable = {
   deckId: FcDeckId;
   /** Кол-во карточек в наборе (бейдж). */
@@ -115,7 +115,7 @@ export type DeckCountable = {
 };
 
 export type DeckSelectionSummary = {
-  /** Сколько колод из списка реально выбрано. */
+  /** Сколько наборов из списка реально выбрано. */
   deckCount: number;
   /** Суммарно карточек с дедупликацией по стабильному id (там, где id известны). */
   cardCount: number;
@@ -124,10 +124,10 @@ export type DeckSelectionSummary = {
 const normalizeCount = (n: number): number => (Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0);
 
 /**
- * Сводка выбора: сколько колод и сколько карточек суммарно.
- * Дедупликация: у колод с известными `cardIds` считается объединение множеств;
- * колоды без `cardIds` (счётчик пришёл агрегатом) складываются как есть.
- * Выбранные id, которых нет в списке колод, игнорируются.
+ * Сводка выбора: сколько наборов и сколько карточек суммарно.
+ * Дедупликация: у наборов с известными `cardIds` считается объединение множеств;
+ * наборы без `cardIds` (счётчик пришёл агрегатом) складываются как есть.
+ * Выбранные id, которых нет в списке наборов, игнорируются.
  */
 export function summarizeDeckSelection(
   decks: readonly DeckCountable[],
@@ -163,19 +163,20 @@ export function cardsCountLabel(lang: Lang, count: number): string {
 }
 
 /**
- * «2 колоды» / «5 колод» — заголовок сессии по нескольким колодам (§6).
+ * «2 набора» / «5 наборов» — заголовок сессии по нескольким наборам (§6).
+ * Слово «колода» запрещено владельцем (2026-08-13) — везде «набор».
  * Отдельно от `cardsCountLabel`: у слова другие формы.
  */
 export function decksCountLabel(lang: Lang, count: number): string {
   const n = normalizeCount(count);
   const l = legacyRuUk(lang);
-  if (l === 'es') return `${n} ${n === 1 ? 'mazo' : 'mazos'}`;
+  if (l === 'es') return `${n} ${n === 1 ? 'pack' : 'packs'}`;
   const mod10 = n % 10;
   const mod100 = n % 100;
   const isOne = mod10 === 1 && mod100 !== 11;
   const isFew = mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14);
-  if (l === 'uk') return `${n} ${isOne ? 'колода' : isFew ? 'колоди' : 'колод'}`;
-  return `${n} ${isOne ? 'колода' : isFew ? 'колоды' : 'колод'}`;
+  if (l === 'uk') return `${n} ${isOne ? 'набір' : isFew ? 'набори' : 'наборів'}`;
+  return `${n} ${isOne ? 'набор' : isFew ? 'набора' : 'наборов'}`;
 }
 
 /** Подпись счётчика в шите: «Выбрано 3 · 84 карточки» / '' когда ничего не выбрано. */

@@ -130,3 +130,82 @@ describe('«Сегодня» в Арене ровно одно', () => {
     }
   });
 });
+
+/**
+ * Красное «Повторить» вместо объяснения — самая частая ложь Арены.
+ *
+ * Оно стояло на шести экранах сразу: матч, результат, поиск соперника,
+ * приглашение друга, вход по коду и пропуск сезона. Игрок видел красный
+ * глагол, не понимал, что произошло, и не знал, потерял он что-нибудь или нет.
+ * Ни на одном из шести не было ни причины, ни слова о последствиях.
+ */
+describe('подпись кнопки больше нигде не выдаётся за объяснение', () => {
+  const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
+
+  const SCREENS: readonly string[] = [
+    'app/arena_match.tsx',
+    'app/arena_results.tsx',
+    'app/arena_matchmaking.tsx',
+    'app/arena_friend_duel.tsx',
+    'app/arena_invite.tsx',
+    'app/arena_season_pass.tsx',
+  ];
+
+  it('ни один экран не показывает «Повторить» красным текстом вместо причины', () => {
+    for (const screen of SCREENS) {
+      const source = read(screen);
+      expect(source).not.toContain("P.danger }]}>{arenaText(lang, 'retry')}");
+    }
+  });
+
+  it('каждый отказ действия объясняет последствия', () => {
+    expect(read('app/arena_friend_duel.tsx')).toContain("'inviteFailedHint'");
+    expect(read('app/arena_invite.tsx')).toContain("'joinFailedHint'");
+    expect(read('app/arena_season_pass.tsx')).toContain("'claimFailedHint'");
+  });
+
+  it('объяснения переведены на восемь языков и не совпадают с подписью кнопки', () => {
+    for (const key of ['inviteFailed', 'inviteFailedHint', 'joinFailed', 'joinFailedHint',
+      'claimFailed', 'claimFailedHint'] as const) {
+      for (const lang of LANGS) {
+        expect(arenaText(lang, key).length).toBeGreaterThan(0);
+        expect(arenaText(lang, key)).not.toBe(arenaText(lang, 'retry'));
+      }
+    }
+  });
+});
+
+/**
+ * Отказ покупки — не отказ загрузки.
+ *
+ * Магазин писал `state = 'error'` и на покупку, и на надевание, и на спин, а
+ * это же поле рисует состояние всего экрана. Сорвавшаяся покупка выглядела как
+ * не загрузившийся магазин, и игрок не мог понять главного: списались его
+ * звёзды или нет.
+ */
+describe('магазин отвечает за свои действия отдельно', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_star_wallet.tsx'), 'utf8');
+
+  it('покупка, надевание и спин не выдают себя за отказ загрузки', () => {
+    expect(source).toContain('actionError');
+    expect(source).not.toContain("void arenaStarEquip(item.sku, item.slot, requestId).then(() => load()).catch(() => setState('error'))");
+    expect(source).not.toContain(".catch(() => setState('error')).finally(() => setBusySku(null))");
+  });
+
+  it('каждое действие объясняет, что цело', () => {
+    for (const key of ['purchaseFailed', 'purchaseFailedHint', 'equipFailed', 'equipFailedHint',
+      'spinFailed', 'spinFailedHint'] as const) {
+      expect(source).toContain(`'${key}'`);
+      for (const lang of LANGS) {
+        expect(arenaExpansionText(lang, key).length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('отказ покупки звучит не так, как отказ загрузки', () => {
+    for (const lang of LANGS) {
+      expect(arenaExpansionText(lang, 'purchaseFailed')).not.toBe(arenaExpansionText(lang, 'loadFailed'));
+      expect(arenaExpansionText(lang, 'purchaseFailedHint')).not.toBe(arenaExpansionText(lang, 'loadFailedHint'));
+    }
+  });
+});

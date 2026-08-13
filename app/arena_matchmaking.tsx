@@ -167,6 +167,13 @@ export default function ArenaMatchmakingScreen() {
     }
   };
 
+  /**
+   * Что показать, если поиск сорвался. Считается здесь, а не в разметке:
+   * развилка в JSX не проверяется тестом, а именно в ней и жила ошибка —
+   * четыре разные причины показывались одним словом «Повторить».
+   */
+  const searchFailure = error ? arenaSearchFailureCopy(error) : null;
+
   const continueRankedSearch = () => {
     setError(null);
     setRankedPresentationRestartedAtMs(now);
@@ -197,22 +204,19 @@ export default function ArenaMatchmakingScreen() {
               <V2Cta tone="ghost" disabled={switchingMode} onPress={() => void switchToQuick()}>{arenaText(lang, 'switchToQuick')}</V2Cta>
             </View>
           ) : null}
-          {error ? (() => {
-            const failure = arenaSearchFailureCopy(error);
-            return (
-              <View style={styles.failure}>
-                <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
-                  {arenaText(lang, failure.title)}
-                </Text>
-                <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, failure.hint)}</Text>
-                {failure.canRetry ? (
-                  <V2Cta onPress={() => { setError(null); setRetryTick((tick) => tick + 1); }}>
-                    {arenaText(lang, 'retry')}
-                  </V2Cta>
-                ) : null}
-              </View>
-            );
-          })() : null}
+          {searchFailure ? (
+            <View style={styles.failure}>
+              <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+                {arenaText(lang, searchFailure.title)}
+              </Text>
+              <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, searchFailure.hint)}</Text>
+              {searchFailure.canRetry ? (
+                <V2Cta onPress={() => { setError(null); setRetryTick((tick) => tick + 1); }}>
+                  {arenaText(lang, 'retry')}
+                </V2Cta>
+              ) : null}
+            </View>
+          ) : null}
         </V2Card>
       </View>
       <V2Cta tone="ghost" onPress={cancel}>{arenaText(lang, 'cancel')}</V2Cta>

@@ -19,7 +19,7 @@ import { useTournamentPalette } from '../components/tournament/tournament_theme'
 import { arenaText } from '../modules/arena/copy';
 import { arenaRankScreen, type ArenaTierRow } from '../modules/arena/rank_view';
 import { arenaTierRewardLadder } from '../modules/arena/tier_rewards';
-import { arenaKnowsValue } from '../modules/arena/load_state';
+import { arenaKnowsValue, arenaLoadState } from '../modules/arena/load_state';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { arenaV2FriendsBoard, arenaV2Home, type ArenaFriendsBoardRow } from './arena_client';
@@ -137,6 +137,8 @@ export default function ArenaRanksScreen() {
   const [home, setHome] = useState<Awaited<ReturnType<typeof arenaV2Home>> | null>(null);
   const profile = home?.profile ?? null;
   const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
+  const [friendsLoaded, setFriendsLoaded] = useState(false);
+  const [friendsFailed, setFriendsFailed] = useState(false);
   const [percentile, setPercentile] = useState<number | null>(null);
   /**
    * Пока ответа нет, экран НЕ рисует ранг. Раньше он показывал «Бронза III ·
@@ -151,8 +153,10 @@ export default function ArenaRanksScreen() {
     // Отдельным вызовом и ровно один раз на открытие: список друзей меняется
     // днями, а не секундами, и опрашивать его по кругу незачем.
     void arenaV2FriendsBoard()
-      .then((board) => { setFriends(board.rows); setPercentile(board.percentileAbove); })
-      .catch(() => {});
+      .then((board) => { setFriends(board.rows); setPercentile(board.percentileAbove); setFriendsLoaded(true); })
+      // Молчаливый отказ здесь означал исчезнувшую таблицу друзей: игрок видел
+      // пустое место и решал, что друзей у него нет.
+      .catch(() => { setFriendsFailed(true); setFriendsLoaded(true); });
   }, [active]);
 
   const screen = useMemo(() => arenaRankScreen({
@@ -164,6 +168,15 @@ export default function ArenaRanksScreen() {
   const ladder = useMemo(() => arenaTierRewardLadder(lifetimeBest(profile)), [profile]);
 
   const known = arenaKnowsValue({ loaded: Boolean(home), failed: homeFailed });
+  /**
+   * Таблица друзей одна строка длиной — это ты сам: сравнивать не с кем, и это
+   * не то же самое, что неудачная загрузка.
+   */
+  const friendsState = arenaLoadState({
+    loaded: friendsLoaded,
+    failed: friendsFailed,
+    count: Math.max(0, friends.length - 1),
+  });
   const headline = known
     ? `${arenaText(lang, TIER_COPY[screen.tierIndex])} · ${ROMAN[screen.division]}`
     : arenaText(lang, homeFailed ? 'loadFailed' : 'loading');
@@ -221,7 +234,29 @@ export default function ArenaRanksScreen() {
         />
       ))}
 
-      {friends.length > 1 ? (
+      {/*
+        Четыре состояния вместо двух: раньше при отказе и при отсутствии друзей
+        блок просто исчезал, и игрок не мог отличить «не загрузилось» от «не с
+        кем сравнить».
+      */}
+      {friendsState !== 'ready' ? (
+        <>
+          <Text style={[styles.section, { color: P.muted }]}>{arenaText(lang, 'friendsBoard')}</Text>
+          <V2Card pad={12}>
+            <Text style={[styles.name, { color: P.text }]}>
+              {arenaText(lang, friendsState === 'failed' ? 'loadFailed'
+                : friendsState === 'empty' ? 'friendsBoardEmpty' : 'loading')}
+            </Text>
+            {friendsState !== 'loading' ? (
+              <Text style={[styles.meta, { color: P.muted }]}>
+                {arenaText(lang, friendsState === 'failed' ? 'loadFailedHint' : 'friendsBoardEmptyHint')}
+              </Text>
+            ) : null}
+          </V2Card>
+        </>
+      ) : null}
+
+      {friendsState === 'ready' ? (
         <>
           <Text style={[styles.section, { color: P.muted }]}>{arenaText(lang, 'friendsBoard')}</Text>
           {friends.map((row, index) => (

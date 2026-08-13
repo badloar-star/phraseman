@@ -220,3 +220,64 @@ export async function loadFlashcardsSwipeSessionDraft(
 export async function clearFlashcardsSwipeSessionDraft(studyTarget?: RuntimeStudyTarget): Promise<void> {
   await AsyncStorage.removeItem(flashcardsSwipeSessionDraftKey(studyTarget));
 }
+
+// ── Жест свайпа: чистые числа и предикат (FIX владельца, 2026-08-13) ─────────
+//
+// Раньше экран решал «свайп засчитан?» инлайном по фиксированному `dx > 96`.
+// На реальном iPhone обычный быстрый флик до 96px не доезжал, карта уезжала
+// пружиной назад — жалоба «свайпаю, а они прыгают назад». Логика вынесена сюда:
+// без RN-импортов, покрывается юнит-тестами (tests/flashcards_swipe_session.test.ts).
+
+/** Порог по расстоянию — доля ширины экрана (а не фиксированные пиксели). */
+export const SWIPE_DISTANCE_RATIO = 0.16;
+/** Границы порога, чтобы он оставался разумным на очень узких/широких экранах. */
+export const SWIPE_DISTANCE_MIN_PX = 44;
+export const SWIPE_DISTANCE_MAX_PX = 92;
+/** Скорость флика (px/мс), при которой свайп берётся, не доехав до порога. */
+export const SWIPE_VELOCITY_THRESHOLD = 0.3;
+/** Даже быстрый флик требует минимального смещения — защита от тапа/дрожи. */
+export const SWIPE_FLICK_MIN_DX = 22;
+/** Подпись набирает полную непрозрачность на этой доле ширины экрана. */
+export const BADGE_FULL_RATIO = 0.12;
+
+/** Число или 0 — жест приходит из нативного слоя, NaN/undefined реальны. */
+const finiteNum = (v: unknown): number =>
+  typeof v === 'number' && Number.isFinite(v) ? v : 0;
+
+/** Порог свайпа по расстоянию в пикселях для ширины экрана `width`. */
+export function swipeDistanceThresholdPx(width: number): number {
+  const w = Math.max(0, finiteNum(width));
+  return Math.round(
+    Math.min(SWIPE_DISTANCE_MAX_PX, Math.max(SWIPE_DISTANCE_MIN_PX, w * SWIPE_DISTANCE_RATIO)),
+  );
+}
+
+/** Смещение, на котором подпись «Верно/Неверно» уже полностью непрозрачна. */
+export function swipeBadgeFullAtPx(width: number): number {
+  const w = Math.max(0, finiteNum(width));
+  return Math.max(28, Math.min(70, Math.round(w * BADGE_FULL_RATIO)));
+}
+
+export type SwipeGestureSample = { dx: number; dy: number; vx: number };
+
+/**
+ * Куда улетает карточка по отпущенному жесту: 'right' — «совпадает»,
+ * 'left' — «не совпадает», null — вернуть пружиной на место.
+ * Два независимых пути срабатывания: пройденное расстояние ИЛИ скорость флика.
+ */
+export function swipeCommitDirection(
+  gesture: SwipeGestureSample,
+  width: number,
+): 'left' | 'right' | null {
+  const dx = finiteNum(gesture?.dx);
+  const dy = finiteNum(gesture?.dy);
+  const vx = finiteNum(gesture?.vx);
+  const byDistance = Math.abs(dx) >= swipeDistanceThresholdPx(width);
+  const byVelocity =
+    Math.abs(vx) >= SWIPE_VELOCITY_THRESHOLD &&
+    Math.abs(dx) >= SWIPE_FLICK_MIN_DX &&
+    Math.abs(dx) > Math.abs(dy);
+  if (!byDistance && !byVelocity) return null;
+  if (dx === 0) return null;
+  return dx > 0 ? 'right' : 'left';
+}

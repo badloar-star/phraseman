@@ -1,3 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { arenaOutboxFlush, arenaOutboxHasMatch, arenaOutboxList } from '../modules/arena/outbox_storage';
+import { arenaOutboxHasGated } from '../modules/arena/result_outbox';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useEffect, useRef, useState } from 'react';
 import * as Crypto from 'expo-crypto';
 import Constants from 'expo-constants';
@@ -615,6 +619,49 @@ export async function arenaFetchMatchReview(matchId: string): Promise<readonly u
 /** Host-only friend-duel handoff: observes the owner's opaque active match id. */
 export function useArenaProfile(stableUid: string | null, active: boolean) {
   return useArenaDocument<Readonly<{ activeMatchId?: string | null }>>('arena_v2_profiles', stableUid, active);
+}
+
+/**
+ * Досылает отчёты, застрявшие в очереди.
+ *
+ * Зовётся с хаба и с экрана результата — то есть в тех двух местах, куда игрок
+ * приходит сам. Отдельного расписания намеренно нет: фоновый опрос стоил бы
+ * денег за базу каждый день у каждого игрока, а отчёт всё равно ждёт своего
+ * часа на диске и никуда не денется.
+ */
+export async function arenaFlushOutbox(): Promise<number> {
+  const result = await arenaOutboxFlush(AsyncStorage as unknown as ArenaKeyValueStore, {
+    wallNowMs: Date.now(),
+    send: async (entry) => {
+      await arenaV2MatchFinish({
+        matchId: entry.matchId,
+        report: arenaMatchReportToWire(entry.report, entry.rulesVersion),
+      });
+    },
+  });
+  return result.sent.length;
+}
+
+/** Ждёт ли отчёт об этом матче отправки — чтобы экран результата не врал. */
+export async function arenaOutboxPending(matchId: string | null): Promise<boolean> {
+  if (!matchId) return false;
+  return arenaOutboxHasMatch(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
+}
+
+/**
+ * Застрял ли отчёт из-за устаревшего приложения.
+ *
+ * Такой отчёт повторами не спасти: сервер отвергает старого клиента и будет
+ * отвергать дальше. Единственное честное действие — сказать игроку, что от него
+ * требуется обновление, иначе награда за сыгранный матч не придёт никогда, а он
+ * даже не узнает почему.
+ */
+export async function arenaOutboxBlockedByUpdate(): Promise<boolean> {
+  try {
+    return arenaOutboxHasGated(await arenaOutboxList(AsyncStorage as unknown as ArenaKeyValueStore));
+  } catch {
+    return false;
+  }
 }
 
 export default function ArenaClientRouteShim() { return null; }

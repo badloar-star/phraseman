@@ -10,8 +10,24 @@
 // ── Числа блица (§3.9) ───────────────────────────────────────────────────────
 export const BLITZ_DURATION_SEC = 60;
 export const BLITZ_LIVES = 3;
-/** Минимум карточек в колоде для блица (нужны 4 варианта ответа). */
+/** Минимум карточек в наборе для блица (нужны 4 варианта ответа). */
 export const BLITZ_MIN_CARDS = 4;
+
+/**
+ * Публичный предикат «блиц доступен» — единая точка правды для UI.
+ * Правило (владелец, 2026-08-13): если карточек меньше минимума, кнопка «Блиц»
+ * НЕ показывается вовсе; экрана-заглушки с текстом ошибки больше нет.
+ * Чистая функция без RN — безопасно импортировать из таббара/хаба.
+ */
+export function canStartBlitz(cardCount: number | null | undefined): boolean {
+  const n = typeof cardCount === 'number' && Number.isFinite(cardCount) ? Math.floor(cardCount) : 0;
+  return n >= BLITZ_MIN_CARDS;
+}
+
+/** Минимум карточек для блица (для подписей/тестов — читать вместо константы). */
+export function blitzMinCards(): number {
+  return BLITZ_MIN_CARDS;
+}
 /** База очков за верный ответ (умножается на комбо-множитель). */
 export const BLITZ_POINTS_CORRECT = 100;
 /** Комбо-серии → множитель очков (пороги ×3/×5/×10 — SFX fc_combo_*, §5). */
@@ -104,14 +120,14 @@ export type BlitzCardLike = { id: string; en: string; translation: string };
 
 export type BlitzQuestion = {
   card: BlitzCardLike;
-  /** 4 варианта перевода (или меньше — колода без 4 уникальных переводов). */
+  /** 4 варианта перевода (или меньше — набор без 4 уникальных переводов). */
   options: string[];
   correctIndex: number;
 };
 
 /**
  * Собрать вопрос: правильный перевод + до 3 уникальных decoy-переводов из ЭТОЙ
- * ЖЕ колоды (паттерн pickDeckDecoy из deck_sources), перемешать. Чистая — rnd
+ * ЖЕ подборки (паттерн pickDeckDecoy из deck_sources), перемешать. Чистая — rnd
  * инжектится для тестов.
  */
 export function buildBlitzQuestion(

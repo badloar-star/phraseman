@@ -2,9 +2,9 @@
 // flashcards_blitz_session.tsx — НОВЫЙ режим «Блиц» (Cards 2.0 E12, §3.9
 // мастер-плана — Speed Review по Memrise, «Ещё разок»-драйвер сессий/день).
 //
-// 60 секунд, вопросы «EN → выбери перевод из 4» из выбранной колоды
+// 60 секунд, вопросы «EN → выбери перевод из 4» из выбранного набора
 // (?deck= — deck_sources; без параметра — все сохранённые + мои карточки).
-// cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК колод через запятую —
+// cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК наборов через запятую —
 // карточки объединяются в один пул (loadDeckCardsMulti),
 // 3 жизни (ошибка = −1), комбо-серия ×3/×5/×10 → SFX fc_combo_* с питчем
 // вверх + пружинный бейдж, счёт очков (верно = 100 × комбо-множитель).
@@ -46,8 +46,8 @@ import {
   BLITZ_ADVANCE_WRONG_MS,
   BLITZ_DURATION_SEC,
   BLITZ_LIVES,
-  BLITZ_MIN_CARDS,
   applyBlitzAnswer,
+  canStartBlitz,
   buildBlitzQuestion,
   initialBlitzState,
   type BlitzQuestion,
@@ -55,6 +55,7 @@ import {
 } from './flashcards/blitz_logic';
 import { loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
 import { decksCountLabel } from './flashcards/deck_selection';
+import { loadAllFcDeckRefs } from './flashcards/deck_options';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
@@ -141,11 +142,23 @@ export default function FlashcardsBlitzSession() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      // cards-2.1 (§6): одна или несколько колод — один объединённый пул;
-      // дефолт (без ?deck=) — «сохранённые + мои карточки» тем же загрузчиком.
-      const refs: DeckRef[] =
-        deckRefs.length > 0 ? deckRefs : [{ kind: 'saved' }, { kind: 'custom' }];
-      const cards = await loadDeckCardsMulti(refs, contentLang).catch((): DeckCard[] => []);
+      // cards-2.1 (§6): один или несколько наборов — один объединённый пул.
+      // FIX (владелец, 2026-08-13): дефолт (без ?deck=) раньше брал только
+      // «сохранённые + мои карточки», из-за чего у человека с карточками ТОЛЬКО
+      // в наборах пул был пуст и блиц не запускался. Теперь дефолт — ВСЕ
+      // доступные источники, включая каждый добавленный набор.
+      const allRefs = await loadAllFcDeckRefs().catch((): DeckRef[] => [
+        { kind: 'saved' },
+        { kind: 'custom' },
+      ]);
+      const refs: DeckRef[] = deckRefs.length > 0 ? deckRefs : allRefs;
+      let cards = await loadDeckCardsMulti(refs, contentLang).catch((): DeckCard[] => []);
+      // Сохранённый пресет мог указывать на набор, который удалили/не скачали —
+      // не показываем тупик, а честно добираем пул из всех доступных источников.
+      if (!canStartBlitz(cards.length) && deckRefs.length > 0) {
+        const wide = await loadDeckCardsMulti(allRefs, contentLang).catch((): DeckCard[] => []);
+        if (wide.length > cards.length) cards = wide;
+      }
       if (cancelled) return;
       setPool(cards);
       setLoading(false);
@@ -154,6 +167,17 @@ export default function FlashcardsBlitzSession() {
       cancelled = true;
     };
   }, [deckRefs, contentLang]);
+
+  // Недостаточно карточек → уходим назад БЕЗ текста ошибки (владелец,
+  // 2026-08-13). В норме сюда не попасть: пункт «Блиц» скрыт предикатом
+  // `canStartBlitz`; это страховка от deep link и устаревшего пресета.
+  const bouncedRef = useRef(false);
+  useEffect(() => {
+    if (loading || canStartBlitz(pool.length) || bouncedRef.current) return;
+    bouncedRef.current = true;
+    if (router.canGoBack()) router.back();
+    else router.replace('/flashcards' as never);
+  }, [loading, pool.length, router]);
 
   // ── Финал: таймер 0 или жизни 0 → результат ───────────────────────────────
   const finish = useCallback(() => {
@@ -168,7 +192,7 @@ export default function FlashcardsBlitzSession() {
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {
-    if (loading || pool.length < BLITZ_MIN_CARDS) return;
+    if (loading || !canStartBlitz(pool.length)) return;
     finishingRef.current = false;
     eventsRef.current = [];
     queueRef.current = shuffleArr(pool);
@@ -205,7 +229,7 @@ export default function FlashcardsBlitzSession() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, pool, roundId]);
 
-  // ── Следующий вопрос (колода зациклена — 60с может пережить весь пул) ─────
+  // ── Следующий вопрос (пул зациклен — 60с может пережить весь список) ─────
   const nextQuestion = useCallback(() => {
     if (finishingRef.current) return;
     let idx = qIdxRef.current + 1;
@@ -312,7 +336,7 @@ export default function FlashcardsBlitzSession() {
   const deckTitle = useMemo(() => {
     if (deckRefs.length === 0) return triLang(lang, { ru: 'Все карточки', uk: 'Усі картки', es: 'Todas las tarjetas' });
     if (deckRefs.length > 1) {
-      /** cards-2.1 (§6): форма слова по числу — «2 колоды», а не «2 колод». */
+      /** cards-2.1 (§6): форма слова по числу — «2 набора», а не «2 наборов». */
       return decksCountLabel(lang, deckRefs.length);
     }
     const deckRef = deckRefs[0]!;
@@ -353,30 +377,34 @@ export default function FlashcardsBlitzSession() {
     );
   }
 
-  if (pool.length < BLITZ_MIN_CARDS) {
+  // Карточек не хватает — экрана с текстом ошибки больше нет (владелец,
+  // 2026-08-13): правило переехало в предикат `canStartBlitz`, и пункт «Блиц»
+  // просто не показывается. Если сюда всё же попали (deep link / устаревший
+  // пресет) — молча возвращаемся назад, без ругательной надписи.
+  if (!canStartBlitz(pool.length)) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-unavailable">
           <ContentWrap>
             <View style={styles.headerRow}>
               <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-blitz-back">
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
               </TouchableOpacity>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Блиц', uk: 'Бліц', es: 'Blitz' })}
+                {triLang(lang, {
+                  ru: 'Блиц',
+                  uk: 'Бліц',
+                  es: 'Blitz',
+                  'pt-BR': 'Blitz',
+                  vi: 'Blitz',
+                  id: 'Blitz',
+                  tr: 'Blitz',
+                  pl: 'Blitz',
+                })}
               </Text>
               <View style={{ width: 32 }} />
             </View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 32 }}>
-              <Ionicons name="flash-outline" size={44} color={t.textGhost} />
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-                {triLang(lang, {
-                  ru: `Для блица нужно минимум ${BLITZ_MIN_CARDS} карточки в колоде`,
-                  uk: `Для бліцу потрібно щонайменше ${BLITZ_MIN_CARDS} картки в колоді`,
-                  es: `El blitz necesita al menos ${BLITZ_MIN_CARDS} tarjetas en el mazo`,
-                })}
-              </Text>
-            </View>
+            <View style={{ flex: 1 }} />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -391,7 +419,7 @@ export default function FlashcardsBlitzSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          {/* Header: назад · «Блиц · колода» · жизни-сердечки */}
+          {/* Header: назад · «Блиц · набор» · жизни-сердечки */}
           <View style={styles.headerRow}>
             <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-blitz-back">
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />

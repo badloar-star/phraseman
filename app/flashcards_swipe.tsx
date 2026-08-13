@@ -59,6 +59,8 @@ import {
   type FlashcardsSwipePromptDraft,
   type FlashcardsSwipeSessionDraft,
   type FlashcardsSwipeSessionScope,
+  swipeBadgeFullAtPx,
+  swipeCommitDirection,
 } from './flashcards_swipe_session';
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
@@ -1216,8 +1218,8 @@ export default function FlashcardsSwipeScreen() {
       startLoading: triLang(lang, {
         ru: 'Загружаем наборы…',
         uk: 'Завантажуємо набори…',
-        es: 'Cargando mazos…',
-        'pt-BR': 'Carregando baralhos…',
+        es: 'Cargando packs…',
+        'pt-BR': 'Carregando pacotes…',
         vi: 'Đang tải bộ thẻ…',
         id: 'Memuat set…',
         tr: 'Setler yükleniyor…',
@@ -1226,8 +1228,8 @@ export default function FlashcardsSwipeScreen() {
       startNoSelection: triLang(lang, {
         ru: 'Выберите набор ниже',
         uk: 'Виберіть набір нижче',
-        es: 'Elige un mazo abajo',
-        'pt-BR': 'Escolha um baralho abaixo',
+        es: 'Elige un pack abajo',
+        'pt-BR': 'Escolha um pacote abaixo',
         vi: 'Chọn bộ thẻ bên dưới',
         id: 'Pilih set di bawah',
         tr: 'Aşağıdan set seç',
@@ -2107,18 +2109,19 @@ export default function FlashcardsSwipeScreen() {
     }
   }, [clearCorrectTranslationReminder, correctTranslationReminder, phase]);
 
-  // зачем: репорт «свайп срабатывает мгновенно, аудио послушать не успеваю» —
-  // на быстром свайпе onPanResponderRelease мог сработать раньше, чем звук карточки
-  // вообще стартовал (речь запускается тапом по карточке, а не автоматически).
-  // Штампуем момент показа карточки и в релизе жеста считаем ответ полноценным
-  // свайпом только после короткой выдержки — это не блокирует жест визуально
-  // (карта всё ещё тянется пальцем), а лишь решает, when a fast flick counts.
+  // FIX (владелец, 2026-08-13): «я свайпаю, а карточки прыгают назад».
+  // Раньше здесь была выдержка MIN_SWIPE_DWELL_MS = 220мс с момента показа
+  // карточки: любой свайп раньше неё НЕ засчитывался и карта пружиной уезжала
+  // обратно. На реальном устройстве человек свайпает пачкой быстрее 220мс —
+  // и получал «жест не работает». Выдержку снижаем до символической: она
+  // защищает только от случайного «прилипшего» жеста предыдущей карточки
+  // (double-fire на подмене), а не от нормального флика.
   const cardShownAtRef = useRef(0);
   useEffect(() => {
     if (!currentPrompt?.id) return;
     cardShownAtRef.current = Date.now();
   }, [currentPrompt?.id]);
-  const MIN_SWIPE_DWELL_MS = 220;
+  const MIN_SWIPE_DWELL_MS = 40;
 
   const settleCard = useCallback(
     (direction: 'left' | 'right', after: () => void) => {
@@ -2324,17 +2327,20 @@ export default function FlashcardsSwipeScreen() {
           position.setValue({ x: gesture.dx, y: gesture.dy * 0.16 });
         },
         onPanResponderRelease: (_, gesture) => {
-          // зачем: см. MIN_SWIPE_DWELL_MS выше — очень быстрый флик (меньше выдержки
-          // с момента появления карточки) не засчитываем как ответ, а мягко
-          // возвращаем карточку на место, чтобы у пользователя был шанс услышать
-          // озвучку/прочитать карточку перед тем, как жест «съест» её целиком.
+          // FIX (владелец, 2026-08-13): фиксированный порог 96px был великоват —
+          // обычный быстрый флик до него не доезжал, и карта возвращалась
+          // пружиной («свайп не берётся»). Теперь порог относительный
+          // (SWIPE_DISTANCE_RATIO от ширины экрана, с разумными границами) И
+          // есть второй путь срабатывания — по скорости жеста: короткий, но
+          // быстрый флик засчитывается сразу, как в нативных свайп-лентах.
           const dwellMs = Date.now() - cardShownAtRef.current;
           const dwellOk = dwellMs >= MIN_SWIPE_DWELL_MS;
-          if (dwellOk && gesture.dx > 96) {
+          const direction = swipeCommitDirection(gesture, width);
+          if (dwellOk && direction === 'right') {
             answerCurrent(true);
             return;
           }
-          if (dwellOk && gesture.dx < -96) {
+          if (dwellOk && direction === 'left') {
             answerCurrent(false);
             return;
           }
@@ -2354,7 +2360,7 @@ export default function FlashcardsSwipeScreen() {
           }).start();
         },
       }),
-    [answerCurrent, currentPrompt, feedback, isPlanFlashcardsTask, position, settling],
+    [answerCurrent, currentPrompt, feedback, isPlanFlashcardsTask, position, settling, width],
   );
 
   const cardWidth = Math.min(width - (isPlanFlashcardsTask ? 32 : 36), 430);
@@ -2376,13 +2382,21 @@ export default function FlashcardsSwipeScreen() {
     outputRange: ['-16deg', '-7deg', '0deg', '7deg', '16deg'],
     extrapolate: 'clamp',
   });
+  // FIX (владелец, 2026-08-13): «подпись гаснет слишком рано». Диапазон был
+  // [20;130] при пороге 96px — бейдж набирал единицу почти на самом пороге и
+  // всю решающую часть жеста оставался полупрозрачным. Теперь полная
+  // непрозрачность достигается на ~12% ширины экрана (BADGE_FULL_RATIO) и
+  // держится clamp-ом до конца жеста И весь улёт карточки (position.x на улёте
+  // уходит за ±width*1.15), то есть вплоть до подмены карточки.
+  const badgeFullAt = swipeBadgeFullAtPx(width);
+  const badgeStartAt = Math.max(6, Math.round(badgeFullAt * 0.25));
   const yesOpacity = position.x.interpolate({
-    inputRange: [20, 130],
+    inputRange: [badgeStartAt, badgeFullAt],
     outputRange: [0, 1],
     extrapolate: 'clamp',
   });
   const noOpacity = position.x.interpolate({
-    inputRange: [-130, -20],
+    inputRange: [-badgeFullAt, -badgeStartAt],
     outputRange: [1, 0],
     extrapolate: 'clamp',
   });
@@ -3523,6 +3537,9 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     ...noAndroidOutline,
   },
+  // FIX (владелец, 2026-08-13): «подпись стоит криво» — у бейджей был наклон
+  // rotate ±7deg. Поворот убран полностью, обе подписи выровнены одинаково:
+  // одна высота, центрирование текста внутри плашки, симметричные отступы.
   swipeBadge: {
     position: 'absolute',
     top: 18,
@@ -3530,19 +3547,21 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 12,
     paddingVertical: 7,
-    paddingHorizontal: 11,
-    transform: [{ rotate: '-7deg' }],
+    paddingHorizontal: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   noBadge: {
     left: 18,
   },
   yesBadge: {
     right: 18,
-    transform: [{ rotate: '7deg' }],
   },
   swipeBadgeText: {
     fontSize: 13,
     fontWeight: '900',
+    textAlign: 'center',
+    includeFontPadding: false,
   },
   cardTopLine: {
     flexDirection: 'row',

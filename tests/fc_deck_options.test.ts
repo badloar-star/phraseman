@@ -8,7 +8,11 @@
  */
 import { saveFlashcards, type Flashcard } from '../hooks/use-flashcards';
 import { __resetCustomCardsStoreForTests, upsertCustomCard } from '../app/flashcards/custom_cards_store';
-import { loadFcDeckOptions } from '../app/flashcards/deck_options';
+import {
+  countAvailableFcCards,
+  loadAllFcDeckRefs,
+  loadFcDeckOptions,
+} from '../app/flashcards/deck_options';
 import type { CardItem } from '../app/flashcards/types';
 
 /**
@@ -55,7 +59,7 @@ describe('loadFcDeckOptions', () => {
     await upsertCustomCard(customCard('c2'));
   });
 
-  it('у тренера есть псевдо-колода «Слабые», у слушания и блица — нет', async () => {
+  it('у тренера есть псевдо-набор «Слабые», у слушания и блица — нет', async () => {
     const trainer = await loadFcDeckOptions('trainer', 'ru');
     const listening = await loadFcDeckOptions('listening', 'ru');
     const blitz = await loadFcDeckOptions('blitz', 'ru');
@@ -77,7 +81,7 @@ describe('loadFcDeckOptions', () => {
     expect(custom?.cardIds).toHaveLength(2);
   });
 
-  it('колоды не дублируются и переживают пустое хранилище', async () => {
+  it('наборы не дублируются и переживают пустое хранилище', async () => {
     await saveFlashcards([]);
     __resetCustomCardsStoreForTests();
     const decks = await loadFcDeckOptions('trainer', 'ru');
@@ -86,5 +90,42 @@ describe('loadFcDeckOptions', () => {
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids).toEqual(expect.arrayContaining(['saved', 'custom']));
     expect(decks.find((d) => d.deckId === 'saved')?.count).toBe(0);
+  });
+});
+
+/**
+ * FIX владельца (2026-08-13): «карточки из наборов должны считаться».
+ * Блиц без `?deck=` считал только saved+custom и отказывался стартовать у людей
+ * с карточками ТОЛЬКО в наборах. Полный список источников и общий счётчик
+ * доступных карточек живут здесь.
+ */
+describe('loadAllFcDeckRefs / countAvailableFcCards', () => {
+  beforeEach(async () => {
+    __resetCustomCardsStoreForTests();
+    await saveFlashcards([savedCard('s1'), savedCard('s2'), savedCard('s3')]);
+    await upsertCustomCard(customCard('c1'));
+    await upsertCustomCard(customCard('c2'));
+  });
+
+  it('в источники всегда входят сохранённые и мои карточки', async () => {
+    const refs = await loadAllFcDeckRefs();
+    expect(refs).toEqual(expect.arrayContaining([{ kind: 'saved' }, { kind: 'custom' }]));
+  });
+
+  it('источники не дублируются', async () => {
+    const refs = await loadAllFcDeckRefs();
+    const keys = refs.map((r) => (r.kind === 'pack' ? `pack:${r.packId}` : r.kind));
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it('счётчик считает карточки всех источников с дедупликацией по id', async () => {
+    await expect(countAvailableFcCards('ru')).resolves.toBe(5);
+  });
+
+  it('пустые сохранённые не роняют счётчик — остаются только свои карточки', async () => {
+    await saveFlashcards([]);
+    const count = await countAvailableFcCards('ru');
+    expect(Number.isFinite(count)).toBe(true);
+    expect(count).toBe(2);
   });
 });

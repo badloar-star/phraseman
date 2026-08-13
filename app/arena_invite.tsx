@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
@@ -43,7 +43,12 @@ export default function ArenaInviteScreen() {
         />
         <V2Cta disabled={!inviteId.trim() || busy} onPress={accept}>{arenaText(lang, 'join')}</V2Cta>
         <V2Cta tone="ghost" onPress={decline}>{arenaText(lang, 'decline')}</V2Cta>
-        {error ? <Text style={[styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')}</Text> : null}
+        {error ? (
+          <View style={styles.failure}>
+            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'joinFailed')}</Text>
+            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'joinFailedHint')}</Text>
+          </View>
+        ) : null}
       </V2Card>
     </ArenaScreen>
   );
@@ -54,4 +59,7 @@ const styles = StyleSheet.create({
   label: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
   input: { minHeight: 52, borderRadius: 16, paddingHorizontal: 14, fontSize: 16, fontWeight: '700' },
   error: { textAlign: 'center', fontWeight: '700' },
+  failure: { gap: 4 },
+  failureTitle: { fontSize: 16, fontWeight: '900', textAlign: 'center' },
+  failureHint: { fontSize: 13, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
 });

@@ -14,6 +14,9 @@ import {
   BLITZ_COMBO_STEPS,
   BLITZ_LIVES,
   BLITZ_POINTS_CORRECT,
+  BLITZ_MIN_CARDS,
+  blitzMinCards,
+  canStartBlitz,
   type BlitzCardLike,
   type BlitzState,
 } from '../app/flashcards/blitz_logic';
@@ -152,5 +155,32 @@ describe('buildBlitzQuestion — «EN → выбери перевод из 4»',
     const q = buildBlitzQuestion(dup[0]!, dup, () => 0.1);
     expect(new Set(q.options).size).toBe(q.options.length);
     expect(q.options).toHaveLength(3); // x + y + z
+  });
+});
+
+/**
+ * FIX владельца (2026-08-13): экрана «нужно N карточек» больше нет — правило
+ * «блиц доступен?» живёт в предикате, а UI просто НЕ показывает кнопку.
+ */
+describe('canStartBlitz / blitzMinCards — предикат доступности режима', () => {
+  it('минимум = BLITZ_MIN_CARDS и он же отдаётся геттером', () => {
+    expect(blitzMinCards()).toBe(BLITZ_MIN_CARDS);
+    expect(BLITZ_MIN_CARDS).toBe(4);
+  });
+
+  it('ниже минимума — блиц недоступен, с минимума и выше — доступен', () => {
+    for (let n = 0; n < BLITZ_MIN_CARDS; n++) expect(canStartBlitz(n)).toBe(false);
+    expect(canStartBlitz(BLITZ_MIN_CARDS)).toBe(true);
+    expect(canStartBlitz(BLITZ_MIN_CARDS + 1)).toBe(true);
+    expect(canStartBlitz(9999)).toBe(true);
+  });
+
+  it('мусор на входе не открывает режим', () => {
+    expect(canStartBlitz(null)).toBe(false);
+    expect(canStartBlitz(undefined)).toBe(false);
+    expect(canStartBlitz(NaN)).toBe(false);
+    expect(canStartBlitz(-10)).toBe(false);
+    expect(canStartBlitz(3.9)).toBe(false);
+    expect(canStartBlitz(4.2)).toBe(true);
   });
 });

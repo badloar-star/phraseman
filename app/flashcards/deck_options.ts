@@ -1,9 +1,9 @@
 /**
- * cards-2.1 (§6 SPEC_2_1): сборка списка колод для `DeckPickerSheet`.
+ * cards-2.1 (§6 SPEC_2_1): сборка списка наборов для `DeckPickerSheet`.
  *
- * После §4/§5 плитки режимов с хаба удалены, и шит выбора колоды открывается из
+ * После §4/§5 плитки режимов с хаба удалены, и шит выбора наборов открывается из
  * нижнего таббара (⚙ / долгий тап на пункте «Тренировка/Слушать/Блиц»). Список
- * колод раньше собирался инлайном в хабе — здесь он вынесен в отдельный модуль:
+ * наборов раньше собирался инлайном в хабе — здесь он вынесен в отдельный модуль:
  *  • 'weak'      — due-очередь тренера (только у режима «Тренировка», выбирается
  *                  в одиночку, см. deck_selection.SOLO_DECK_ID);
  *  • 'saved'     — все сохранённые карточки (flashcards_v1);
@@ -11,15 +11,15 @@
  *  • 'pack:<id>' — добавленные наборы, чьи карточки доступны на устройстве.
  *
  * `cardIds` отдаём везде, где карточки реально загружены, — счётчик «Выбрано N ·
- * M карточек» дедуплицирует одну и ту же карточку в двух колодах (§6).
- * Ошибка любой отдельной колоды не роняет список.
+ * M карточек» дедуплицирует одну и ту же карточку в двух наборах (§6).
+ * Ошибка любого отдельного набора не роняет список.
  */
 import type { Ionicons } from '@expo/vector-icons';
 import { triLang, type Lang } from '../../constants/i18n';
 import { getTrainerTotalDue } from '../trainer_store';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import type { DeckSheetOption } from './DeckPickerSheet';
-import { loadDeckCards } from './deck_sources';
+import { loadDeckCards, type DeckRef } from './deck_sources';
 import {
   bundledPacksForOwned,
   loadAccessiblePackIds,
@@ -41,7 +41,7 @@ function packTitle(pack: FlashcardMarketPack | undefined, packId: string, lang: 
 }
 
 /**
- * Колоды для шита выбора. `mode` влияет только на присутствие псевдо-колоды
+ * Наборы для шита выбора. `mode` влияет только на присутствие псевдо-набора
  * «Слабые» — у слушания и блица due-очереди тренера нет (E10/E12).
  */
 export async function loadFcDeckOptions(
@@ -111,6 +111,52 @@ export async function loadFcDeckOptions(
   for (const deck of packDecks) if (deck) out.push(deck);
 
   return out;
+}
+
+// ── Все доступные источники карточек (сохранённые + мои + ВСЕ наборы) ────────
+
+/**
+ * FIX (владелец, 2026-08-13): «карточки из наборов должны считаться».
+ * Блиц без `?deck=` раньше брал только `saved + custom`, поэтому у человека с
+ * карточками ТОЛЬКО в купленных/добавленных наборах пул был пуст и режим
+ * отказывался стартовать. Здесь собираем полный список источников: сохранённые,
+ * мои карточки и каждый доступный на устройстве набор (маркет + сообщество).
+ * Ошибка отдельного источника не роняет список.
+ */
+export async function loadAllFcDeckRefs(): Promise<DeckRef[]> {
+  const [ownedIds, communityIds] = await Promise.all([
+    loadAccessiblePackIds().catch(() => [] as string[]),
+    loadCommunityOwnedPackIds().catch(() => [] as string[]),
+  ]);
+  const refs: DeckRef[] = [{ kind: 'saved' }, { kind: 'custom' }];
+  const seen = new Set<string>();
+  for (const id of [...ownedIds, ...communityIds]) {
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    refs.push({ kind: 'pack', packId: id });
+  }
+  return refs;
+}
+
+/**
+ * Сколько уникальных карточек доступно человеку ВСЕГО (сохранённые + мои + все
+ * наборы), с дедупликацией по стабильному id. Нужен таббару, чтобы решить,
+ * показывать ли пункт «Блиц» (`canStartBlitz(count)` из `blitz_logic`).
+ * Никогда не бросает — при любой ошибке отдаёт 0.
+ */
+export async function countAvailableFcCards(lang: Lang): Promise<number> {
+  const cl = contentLang(lang);
+  try {
+    const refs = await loadAllFcDeckRefs();
+    const lists = await Promise.all(
+      refs.map((ref) => loadDeckCards(ref, cl).catch(() => [])),
+    );
+    const ids = new Set<string>();
+    for (const list of lists) for (const card of list) if (card?.id) ids.add(card.id);
+    return ids.size;
+  } catch {
+    return 0;
+  }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

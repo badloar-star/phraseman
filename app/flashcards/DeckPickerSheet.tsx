@@ -217,7 +217,7 @@ export default function DeckPickerSheet({
   const { height: winH, width: winW } = useWindowDimensions();
   /** Modal живёт чуть дольше visible — успевает проиграться анимация закрытия. */
   const [mounted, setMounted] = useState(visible);
-  /** cards-2.1: мультивыбор колод (§6). Пустой список — старт заблокирован. */
+  /** cards-2.1: мультивыбор наборов (§6). Пустой список — старт заблокирован. */
   const [deckIds, setDeckIds] = useState<FcDeckId[]>(() => presetDeckIds(initialPreset));
   const [size, setSize] = useState<FcSessionSize>(initialPreset?.size ?? FC_DEFAULT_SESSION_SIZE);
   const [starting, setStarting] = useState(false);
@@ -249,11 +249,11 @@ export default function DeckPickerSheet({
 
   /**
    * Предвыбор из последнего пресета (мог обновиться между открытиями).
-   * E10: один шит на несколько режимов — колоды прошлого открытия могут
+   * E10: один шит на несколько режимов — наборы прошлого открытия могут
    * отсутствовать в текущем списке (у слушания нет 'weak') → фильтруем.
    *
-   * cards-2.1: список колод грузится АСИНХРОННО и на первом кадре открытия
-   * бывает пустым — тогда ждём его и предвыбираем, когда колоды приедут
+   * cards-2.1: список наборов грузится АСИНХРОННО и на первом кадре открытия
+   * бывает пустым — тогда ждём его и предвыбираем, когда наборы приедут
    * (иначе шит открывался с нулём отмеченных и заблокированным стартом).
    */
   useEffect(() => {
@@ -369,7 +369,16 @@ export default function DeckPickerSheet({
               {mode === 'listening'
                 ? triLang(lang, { ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?' })
                 : mode === 'blitz'
-                  ? triLang(lang, { ru: 'Колода для блица', uk: 'Колода для бліцу', es: 'Mazo para el blitz' })
+                  ? triLang(lang, {
+                      ru: 'Что в блице?',
+                      uk: 'Що в бліці?',
+                      es: '¿Qué entra en el blitz?',
+                      'pt-BR': 'O que entra no blitz?',
+                      vi: 'Blitz gồm những gì?',
+                      id: 'Apa isi blitz?',
+                      tr: 'Blitz’te ne olsun?',
+                      pl: 'Co w blitzu?',
+                    })
                   : triLang(lang, { ru: 'Что тренируем?', uk: 'Що тренуємо?', es: '¿Qué entrenamos?' })}
             </Text>
             <Pressable
@@ -408,7 +417,12 @@ export default function DeckPickerSheet({
               : triLang(lang, {
                   ru: 'Отметьте один или несколько наборов',
                   uk: 'Позначте один або кілька наборів',
-                  es: 'Marca uno o varios mazos',
+                  es: 'Marca uno o varios packs',
+                  'pt-BR': 'Marque um ou mais pacotes',
+                  vi: 'Chọn một hoặc nhiều bộ thẻ',
+                  id: 'Tandai satu atau beberapa set',
+                  tr: 'Bir veya birkaç set işaretle',
+                  pl: 'Zaznacz jeden lub kilka zestawów',
                 })}
           </Text>
 
@@ -429,16 +443,10 @@ export default function DeckPickerSheet({
               ))}
             </View>
 
-            {/* Размер сессии (блиц — на время, размер не выбирается: E12 §3.9) */}
-            {mode === 'blitz' ? (
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600', marginTop: 14 }}>
-                {triLang(lang, {
-                  ru: '60 секунд · 4 варианта · 3 жизни',
-                  uk: '60 секунд · 4 варіанти · 3 життя',
-                  es: '60 segundos · 4 opciones · 3 vidas',
-                })}
-              </Text>
-            ) : (
+            {/* Размер сессии (блиц — на время, размер не выбирается: E12 §3.9).
+                Пояснительная подпись под режимом убрана по просьбе владельца
+                (2026-08-13): кнопки без описаний. */}
+            {mode === 'blitz' ? null : (
             <Text
               style={{
                 color: t.textMuted,

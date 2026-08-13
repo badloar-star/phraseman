@@ -1,17 +1,20 @@
 /**
  * Cards 2.1 §5.2 — чистая логика нижнего таббара раздела «Карточки».
  *
- * Таббар: слева «Тренировка» (выезжает список из трёх режимов), по центру «+»
- * (над кнопкой раскрываются «Создать карточку» / «Создать набор»), справа «Наборы».
+ * Таббар: слева «Тренировка» (выезжает список режимов), по центру «+»
+ * (над кнопкой раскрываются «Создать карточку» / «Создать набор»), справа «Наборы»
+ * (над кнопкой раскрываются «Мои наборы» / «Наборы сообщества» — это ДВА разных
+ * раздела, а не один экран).
  * Здесь только состояние раскрытия, тайминги стаггера и сборка маршрутов режимов —
  * без React и без нативных модулей, чтобы всё покрывалось юнит-тестами
  * (tests/fc_tabbar_state.test.ts). Анимация/рендер — `FlashcardsTabBar.tsx`.
  */
+import { BLITZ_MIN_CARDS } from './blitz_logic';
 import { deckRouteParam, SOLO_DECK_ID, type FcDeckId } from './deck_selection';
 import { FC_DEFAULT_SESSION_SIZE, presetDeckIds, type FcModePreset } from './mode_prefs';
 
 /** Какая группа кнопок раскрыта. Одновременно раскрыта максимум одна (§5.2). */
-export type FcTabMenu = 'none' | 'train' | 'create';
+export type FcTabMenu = 'none' | 'train' | 'create' | 'packs';
 
 /** Раскрываемые группы (левая «Тренировка» и центральная «+»). */
 export type FcTabMenuKind = Exclude<FcTabMenu, 'none'>;
@@ -23,6 +26,31 @@ export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['train', 'listen', 'b
 /** Пункты группы «+». */
 export type FcCreateOption = 'card' | 'pack';
 export const FC_CREATE_OPTIONS: readonly FcCreateOption[] = ['card', 'pack'];
+
+/**
+ * Пункты группы «Наборы» — это два РАЗНЫХ раздела, а не один экран:
+ *  • `mine`      — только свои/добавленные наборы;
+ *  • `community` — каталог наборов сообщества.
+ */
+export type FcPacksOption = 'mine' | 'community';
+export const FC_PACKS_OPTIONS: readonly FcPacksOption[] = ['mine', 'community'];
+
+/**
+ * Блиц требует минимум `BLITZ_MIN_CARDS` карточек (нужны 4 варианта ответа):
+ * если их меньше, экран блица показывает заглушку — значит пункт в меню
+ * «Тренировка» показывать незачем. Предикат чистый: `null` — количество ещё не
+ * известно (первый кадр), пункт скрыт до подтверждения.
+ */
+export function canStartFcBlitz(cardCount: number | null | undefined): boolean {
+  return typeof cardCount === 'number' && Number.isFinite(cardCount) && cardCount >= BLITZ_MIN_CARDS;
+}
+
+/** Пункты «Тренировки», доступные при текущем размере пула карточек. */
+export function visibleFcTrainOptions(cardCount: number | null | undefined): readonly FcTrainOption[] {
+  return canStartFcBlitz(cardCount)
+    ? FC_TRAIN_OPTIONS
+    : FC_TRAIN_OPTIONS.filter((option) => option !== 'blitz');
+}
 
 /**
  * Тап по кнопке-раскрывателю: та же группа — сворачиваем, другая — переключаемся
@@ -90,7 +118,7 @@ export type FcTabRouteTarget = {
   params: Record<string, string>;
 };
 
-/** Колоды пресета без псевдо-колоды «слабые» (она — due-очередь тренера, не набор). */
+/** Наборы пресета без псевдо-набора «слабые» (это due-очередь тренера, а не набор). */
 function realDecks(preset: FcModePreset | null | undefined): FcDeckId[] {
   return presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID);
 }
@@ -104,7 +132,7 @@ function presetSize(preset: FcModePreset | null | undefined): number {
  * `fc_mode_prefs_v1`; без пресета каждый режим стартует со своего дефолта:
  *  • «Тренировка» — due-очередь тренера (без `?deck=`);
  *  • «Слушать»    — все сохранённые (`deck=saved`, 'weak' для аудио бессмысленна);
- *  • «Блиц»       — смешанная колода по умолчанию (без `?deck=`).
+ *  • «Блиц»       — смешанный пул по умолчанию (без `?deck=`).
  */
 export function buildFcTrainRoute(
   option: FcTrainOption,
@@ -145,6 +173,14 @@ export function buildFcCreateRoute(option: FcCreateOption): FcTabRouteTarget {
 
 /** Правая позиция таббара — каталог наборов сообщества (§5.3). */
 export const FC_PACKS_ROUTE = '/flashcards_packs';
+/** Свои и добавленные наборы — отдельный раздел, не смешан с каталогом. */
+export const FC_MY_PACKS_ROUTE = '/flashcards/my_packs';
+
+/** Маршрут пункта группы «Наборы». */
+export function buildFcPacksRoute(option: FcPacksOption): FcTabRouteTarget {
+  if (option === 'mine') return { pathname: FC_MY_PACKS_ROUTE, params: {} };
+  return { pathname: FC_PACKS_ROUTE, params: {} };
+}
 /** Левая часть раздела — сохранённые карточки (§5.1, вход в раздел). */
 export const FC_CARDS_ROUTE = '/flashcards';
 

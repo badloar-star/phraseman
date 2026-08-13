@@ -13,6 +13,7 @@ import {
   arenaCanStartOffline,
   arenaEntryFailure,
   arenaEntryFailureCopy,
+  arenaSearchFailureCopy,
   arenaPlanTaskToPublic,
   type ArenaMatchPlanWire,
 } from '../modules/arena/duel_plan';
@@ -485,6 +486,48 @@ describe('почему матч не начался — словами, а не 
         // роли и было исходной ошибкой.
         expect(arenaText(lang, copy.title)).not.toBe(arenaText(lang, 'retry'));
       }
+    }
+  });
+
+  /**
+   * Поиск соперника — третье место, где красное «Повторить» стояло вместо
+   * объяснения. Отличие от матча одно: окончательный отказ здесь не значит
+   * «матча больше нет» — матча ещё и не было, поэтому повтор осмыслен.
+   */
+  it('поиск соперника объясняет отказ и всегда даёт повтор, кроме выключенной Арены', () => {
+    expect(arenaSearchFailureCopy('rejected').title).toBe('searchFailed');
+    expect(arenaSearchFailureCopy('rejected').canRetry).toBe(true);
+    expect(arenaSearchFailureCopy(null).canRetry).toBe(true);
+    // Выключенную Арену повтором не включить и здесь.
+    expect(arenaSearchFailureCopy('gated').canRetry).toBe(false);
+    // «Матча больше нет» на экране поиска сказать нельзя: его ещё не было.
+    for (const failure of ['offline', 'transient', 'gated', 'rejected'] as const) {
+      expect(arenaSearchFailureCopy(failure).title).not.toBe('entryGone');
+    }
+  });
+
+  it('экран поиска берёт слова из развилки, а не краснеет глаголом', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
+    expect(source).toContain('arenaSearchFailureCopy');
+    expect(source).not.toContain("styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')");
+    // Причина хранится разобранной, а не сырым текстом ошибки, который всё
+    // равно никогда не показывался.
+    expect(source).not.toContain('setError(String(reason))');
+  });
+
+  /**
+   * Пока дуэль не приняли оба, плана не существует — ждут не загрузки, а
+   * соперника. «Загрузка…» здесь обещала, что дело в устройстве, и игрок
+   * начинал винить связь.
+   */
+  it('ожидание соперника не притворяется загрузкой', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    expect(source).toContain("arenaText(lang, 'waiting')");
+    expect(source).toContain("arenaText(lang, 'waitingHint')");
+    expect(source).not.toContain("<View style={styles.center}><Text style={{ color: P.text }}>{arenaText(lang, 'loading')}</Text></View>");
+    for (const lang of LANGS) {
+      expect(arenaText(lang, 'waitingHint').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'waitingHint')).not.toBe(arenaText(lang, 'loading'));
     }
   });
 

@@ -341,6 +341,8 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
+/** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно. */
+const APP_FONT_WAIT_MAX_MS = 2500;
 const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
@@ -449,7 +451,7 @@ const SPLASH_SHINE_WIDTH = Math.round(SPLASH_WORDMARK_WIDTH * 0.45);
  * Всё на нативном драйвере (UI-поток), pointerEvents=none — фон остаётся «замороженным».
  * Loop останавливается в cleanup, чтобы не крутиться после скрытия сплэша.
  */
-function StartupSplashHold({ visible }: { visible: boolean }) {
+function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: boolean; canHideNativeSplash?: boolean }) {
   // Хуки должны вызываться безусловно — ранний return только после их объявления.
   const glyphIn = useRef(new Animated.Value(0)).current;   // вход глифа: 0→1
   const pulse = useRef(new Animated.Value(0)).current;     // бесконечный пульс: 0↔1
@@ -460,11 +462,13 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
   // Как только анимированный оверлей смонтирован и отрисован — прячем нативный сплэш,
   // чтобы застывшая нативная картинка сразу уступила место анимации (фон тот же #101214,
   // мигания нет). Иначе нативный слой перекрывает анимацию до самого content-ready.
+  // Пока рантайм-шрифты не встали, нативная картинка остаётся сверху: иначе первым
+  // кадром JS покажет текст системным начертанием и потом подменит его на Inter.
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || !canHideNativeSplash) return;
     const id = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(() => {}); });
     return () => cancelAnimationFrame(id);
-  }, [visible]);
+  }, [visible, canHideNativeSplash]);
 
   useEffect(() => {
     if (!visible) return;
@@ -1501,7 +1505,7 @@ const BAN_CACHE_AT_KEY = 'ban_status_cached_at_v1';
 const BAN_CACHE_TTL_MS = 30 * 60 * 1000;
 
 // Вынесено в дочерний компонент чтобы иметь доступ к LangContext + AchievementContext
-function AppContent() {
+function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [ready, setReady]           = useState(false);
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
@@ -1819,7 +1823,7 @@ function AppContent() {
   }, []);
 
   const nativeSplashCanHide = startupSecurityBlocked
-    || (ready && (effectiveShowOnboarding || isBanned || firstContentReady));
+    || (fontsReady && ready && (effectiveShowOnboarding || isBanned || firstContentReady));
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     void SplashScreen.hideAsync();
@@ -3121,7 +3125,7 @@ function AppContent() {
   const appOverlaysEnabled = ready && !startupSecurityBlocked && !effectiveShowOnboarding && !isBanned
     && !tournamentInterruptionProtected;
   const startupSplashVisible = !startupSecurityBlocked
-    && (!ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady));
+    && (!fontsReady || !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady));
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
   // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
   // чёрный) — на тёмных экранах это читается как вспышка темноты.
@@ -3278,6 +3282,8 @@ function AppContent() {
       <Stack.Screen name="flashcards" />
       {/* Cards 2.1 §5.3: каталог наборов сообщества — правая позиция таббара раздела */}
       <Stack.Screen name="flashcards_packs" />
+      {/* Cards 2.1 §5.3: «Мои наборы» — второй раздел всплывашки «Наборы» */}
+      <Stack.Screen name="flashcards/my_packs" />
       <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />
@@ -3497,7 +3503,7 @@ function AppContent() {
         «нет сети» — экраны сами это не различают (NetInfo в проекте нет). */}
     {ready && <OfflineBanner lang={lang} />}
 
-    <StartupSplashHold visible={startupSplashVisible} />
+    <StartupSplashHold visible={startupSplashVisible} canHideNativeSplash={fontsReady} />
 
     {startupSecurityBlocked && (
       <View
@@ -3686,7 +3692,23 @@ export default function RootLayout() {
   const devFontAssets = typeof __DEV__ !== 'undefined' && __DEV__
     ? (require('./typography_dev_fonts') as typeof import('./typography_dev_fonts')).DEV_FONT_ASSETS
     : {};
-  useFonts(devFontAssets);
+  const [fontAssetsLoaded, fontAssetsError] = useFonts(devFontAssets);
+  // зачем: пока Inter регистрируется асинхронно, RN рисует текст СИСТЕМНЫМ шрифтом —
+  // владелец видел на iPhone «тонкую пиксельную» кириллицу первые пару секунд и
+  // рассинхрон с латиницей. Экран при этом НЕ блокируем (контракт app typography):
+  // просто держим стартовый сплэш, пока начертания не встали. Ветка живёт только в
+  // дев-сборках — в проде карта ассетов пуста и ожидания нет вовсе.
+  const runtimeFontsExpected = Object.keys(devFontAssets).length > 0;
+  const [fontWaitElapsed, setFontWaitElapsed] = useState(false);
+  useEffect(() => {
+    if (!runtimeFontsExpected || fontAssetsLoaded || fontAssetsError) return;
+    const timer = setTimeout(() => setFontWaitElapsed(true), APP_FONT_WAIT_MAX_MS);
+    return () => clearTimeout(timer);
+  }, [runtimeFontsExpected, fontAssetsLoaded, fontAssetsError]);
+  const fontsReady = !runtimeFontsExpected
+    || fontAssetsLoaded
+    || !!fontAssetsError
+    || fontWaitElapsed;
 
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
@@ -3699,7 +3721,7 @@ export default function RootLayout() {
             <EnergyProvider>
               <AchievementProvider>
                 <OverlayArbiterProvider>
-                    <AppContent />
+                    <AppContent fontsReady={fontsReady} />
                     {/* зачем: приветствие после онбординга — над ГЛАВНОЙ, а не
                         поверх последнего экрана анкеты (владелец, 2026-07-27).
                         Ключ onboardingWelcome стоит первым в приоритете арбитра,

@@ -46,7 +46,12 @@ export default function ArenaSeasonPassScreen() {
         contentContainerStyle={styles.list}
         ListHeaderComponent={<View style={styles.stats}><ArenaStat label={arenaText(lang, 'stars')} value={home?.season.stars ?? '—'} /><ArenaStat label={arenaText(lang, 'season')} value={home?.season.level ?? '—'} /></View>}
         ListEmptyComponent={<Text style={[styles.loading, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>}
-        ListFooterComponent={claimError ? <Text style={[styles.loading, { color: P.danger }]}>{arenaText(lang, 'retry')}</Text> : null}
+        ListFooterComponent={claimError ? (
+          <View style={styles.failure}>
+            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'claimFailed')}</Text>
+            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'claimFailedHint')}</Text>
+          </View>
+        ) : null}
         renderItem={({ item: level }) => (
           <V2Card style={styles.card}>
             <View style={styles.head}>
@@ -83,4 +88,7 @@ const styles = StyleSheet.create({
   rewardColumn: { flex: 1, gap: 6 },
   rewardLabel: { minHeight: 20, textAlign: 'center', fontSize: 12, fontWeight: '800' },
   loading: { textAlign: 'center', fontWeight: '700' },
+  failure: { gap: 4, paddingVertical: 8 },
+  failureTitle: { fontSize: 16, fontWeight: '900', textAlign: 'center' },
+  failureHint: { fontSize: 13, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
 });

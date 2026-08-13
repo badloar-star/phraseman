@@ -58,7 +58,7 @@ export type ListeningConfig = {
   betweenMs: number;
   /** Базовый rate речи (1.0 по §3.8). */
   rate: number;
-  /** Повтор колоды: после последней карточки — снова первая. */
+  /** Повтор подборки: после последней карточки — снова первая. */
   loop: boolean;
 };
 
@@ -167,7 +167,7 @@ export type ListeningEffect =
   | { kind: 'stop_speech' }
   /** Карточка дослушана целиком (счётчик прослушанных). */
   | { kind: 'progress'; listened: number }
-  /** Колода закончилась (loop выключен) → экран финалит сессию. */
+  /** Карточки закончились (loop выключен) → экран финалит сессию. */
   | { kind: 'done'; cardsListened: number };
 
 export type ListeningPhase = 'idle' | 'playing' | 'paused' | 'done' | 'stopped';
@@ -176,7 +176,7 @@ export type ListeningSnapshot = {
   phase: ListeningPhase;
   cardIndex: number;
   totalCards: number;
-  /** Полностью прослушанных карточек (с повторами колоды — суммарно). */
+  /** Полностью прослушанных карточек (с повторами подборки — суммарно). */
   listened: number;
   flipped: boolean;
   config: ListeningConfig;

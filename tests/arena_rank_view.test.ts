@@ -1,5 +1,9 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import { arenaRankScreen, arenaTierRows } from '../modules/arena/rank_view';
 import { ARENA_TIER_COUNT } from '../modules/arena/rank_engine';
+import { arenaText } from '../modules/arena/copy';
+import type { Lang } from '../constants/i18n';
 
 /**
  * Экран рангов.
@@ -115,5 +119,36 @@ describe('экран целиком', () => {
     expect(screen.rp).toBe(0);
     expect(screen.tiers.length).toBe(ARENA_TIER_COUNT);
     expect(screen.seasonBestTierIndex).toBeLessThan(ARENA_TIER_COUNT);
+  });
+});
+
+/**
+ * Таблица друзей на экране рангов просто ИСЧЕЗАЛА при отказе загрузки: игрок
+ * видел пустое место и решал, что друзей у него нет. И то же самое место
+ * показывалось, когда сравнивать действительно не с кем — два разных повода
+ * выглядели одинаково.
+ */
+describe('таблица друзей различает отказ и отсутствие друзей', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_ranks.tsx'), 'utf8');
+
+  it('состояние считается общим модулем, а не длиной массива', () => {
+    expect(source).toContain('arenaLoadState');
+    expect(source).toContain('friendsState');
+    // Старая единственная развилка по длине больше не решает судьбу блока.
+    expect(source).not.toContain('{friends.length > 1 ? (');
+  });
+
+  it('отказ отделён от пустоты и оба объяснены', () => {
+    expect(source).toContain("'loadFailed'");
+    expect(source).toContain("'friendsBoardEmpty'");
+    expect(source).toContain("'friendsBoardEmptyHint'");
+  });
+
+  it('строки пустой таблицы переведены на восемь языков', () => {
+    for (const lang of ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[]) {
+      expect(arenaText(lang, 'friendsBoardEmpty').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'friendsBoardEmptyHint').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'friendsBoardEmpty')).not.toBe(arenaText(lang, 'loadFailed'));
+    }
   });
 });

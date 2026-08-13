@@ -142,12 +142,29 @@ describe('summarizeDeckSelection: «Выбрано N · M карточек»', (
 });
 
 describe('подписи счётчика', () => {
-  it('decksCountLabel: форма слова «колода» по числу (заголовок мультиколоды)', () => {
-    expect(decksCountLabel('ru', 1)).toBe('1 колода');
-    expect(decksCountLabel('ru', 2)).toBe('2 колоды');
-    expect(decksCountLabel('ru', 5)).toBe('5 колод');
-    expect(decksCountLabel('ru', 11)).toBe('11 колод');
-    expect(decksCountLabel('uk', 3)).toBe('3 колоди');
+  /**
+   * Владелец (2026-08-13) запретил слово «колода» в интерфейсе — везде «набор».
+   * Тест не выключен, а переписан на новую копирайт-норму и заодно сторожит,
+   * что старое слово не вернётся ни в одной форме.
+   */
+  it('decksCountLabel: форма слова «набор» по числу (заголовок мультивыбора)', () => {
+    expect(decksCountLabel('ru', 1)).toBe('1 набор');
+    expect(decksCountLabel('ru', 2)).toBe('2 набора');
+    expect(decksCountLabel('ru', 5)).toBe('5 наборов');
+    expect(decksCountLabel('ru', 11)).toBe('11 наборов');
+    expect(decksCountLabel('uk', 1)).toBe('1 набір');
+    expect(decksCountLabel('uk', 3)).toBe('3 набори');
+    expect(decksCountLabel('uk', 5)).toBe('5 наборів');
+    expect(decksCountLabel('es', 1)).toBe('1 pack');
+    expect(decksCountLabel('es', 3)).toBe('3 packs');
+  });
+
+  it('decksCountLabel: слово «колода» и его кальки не возвращаются', () => {
+    for (const lang of ['ru', 'uk', 'es'] as const) {
+      for (const n of [0, 1, 2, 5, 11, 21, 100]) {
+        expect(decksCountLabel(lang, n)).not.toMatch(/колод|мазо|mazo|baralho/i);
+      }
+    }
   });
 
   it('cardsCountLabel: русская плюрализация', () => {

@@ -1,8 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, BackHandler, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { FadeIn, FadeInDown, SlideInRight, ZoomIn } from 'react-native-reanimated';
 
+import { arenaOutboxClassify } from '../modules/arena/result_outbox';
+import { arenaOutboxEnqueue } from '../modules/arena/outbox_storage';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
+import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
@@ -205,9 +210,22 @@ export default function ArenaMatchScreen() {
           setTimeout(() => { void arenaV2MatchSettle(matchId).catch(() => {}); }, waitMs);
         }
       })
-      .catch(() => {
-        // Отчёт не ушёл — это не потеря: очередь отправки дошлёт его, когда
-        // вернётся сеть. Экран результата обязан открыться в любом случае.
+      .catch(async (reason) => {
+        /**
+         * Отчёт не ушёл. Раньше здесь стоял комментарий про очередь отправки —
+         * но очередь была написана и НИ К ЧЕМУ НЕ ПОДКЛЮЧЕНА, поэтому отчёт
+         * пропадал навсегда: матч, доигранный в метро, стоил игроку звёзд,
+         * очков ранга и самого факта игры. Теперь он ложится в очередь.
+         */
+        const failure = arenaOutboxClassify(reason);
+        // Отказ по существу дослать нельзя: сервер не примет его и завтра.
+        if (failure === 'rejected') return;
+        await arenaOutboxEnqueue(
+          AsyncStorage as unknown as ArenaKeyValueStore,
+          match.report as ArenaMatchReport,
+          Date.now(),
+          plan.rulesVersion,
+        );
       })
       .finally(() => {
         router.replace({ pathname: '/arena_results', params: { matchId } } as never);
@@ -348,9 +366,19 @@ export default function ArenaMatchScreen() {
   }
 
   if (!plan || !match || !hud) {
+    /**
+     * Здесь ждут не загрузки, а СОПЕРНИКА: плана не существует, пока дуэль не
+     * приняли оба. «Загрузка…» в этом месте была неправдой — она обещала, что
+     * дело в устройстве, и игрок начинал винить связь.
+     */
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
-        <View style={styles.center}><Text style={{ color: P.text }}>{arenaText(lang, 'loading')}</Text></View>
+        <View style={styles.center}>
+          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+            {arenaText(lang, 'waiting')}
+          </Text>
+          <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'waitingHint')}</Text>
+        </View>
       </ArenaScreen>
     );
   }

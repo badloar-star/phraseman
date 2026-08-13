@@ -33,6 +33,12 @@ export type ArenaOutboxEntry = Readonly<{
   schemaVersion: typeof ARENA_OUTBOX_SCHEMA_VERSION;
   matchId: string;
   report: ArenaMatchReport;
+  /**
+   * Версия правил, по которым игрался матч. Хранится вместе с отчётом, потому
+   * что досылка может случиться через сутки — и к тому моменту знать её будет
+   * неоткуда: плана матча на руках уже нет.
+   */
+  rulesVersion: string;
   enqueuedAtWallMs: number;
   /** Растёт ТОЛЬКО на отказе сервера. Отсутствие сети попыток не тратит. */
   attempts: number;
@@ -138,11 +144,16 @@ export function arenaOutboxEntryKey(matchId: string): string {
   return `${ARENA_OUTBOX_ENTRY_PREFIX}${matchId}`;
 }
 
-export function arenaOutboxMakeEntry(report: ArenaMatchReport, wallNowMs: number): ArenaOutboxEntry {
+export function arenaOutboxMakeEntry(
+  report: ArenaMatchReport,
+  wallNowMs: number,
+  rulesVersion = '',
+): ArenaOutboxEntry {
   return {
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
     matchId: report.matchId,
     report,
+    rulesVersion,
     enqueuedAtWallMs: wallNowMs,
     attempts: 0,
     nextAttemptAtWallMs: wallNowMs,

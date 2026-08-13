@@ -1,21 +1,38 @@
 /**
- * Cards 2.1 §5.2 — нижний таббар раздела «Карточки» (3 позиции), закреплён внизу.
+ * Cards 2.1 §5.2 — нижний таббар раздела «Карточки».
  *
  *   слева   «Тренировка» → вверх выезжает список: Тренировка / Слушать / Блиц
- *   центр   «+» (акцентная круглая) → над кнопкой: Создать карточку / Создать набор
- *   справа  «Наборы» → каталог наборов сообщества
+ *   центр   «+» (акцентная позиция) → над кнопкой: Создать карточку / Создать набор
+ *   справа  «Наборы» → над кнопкой: Мои наборы / Наборы сообщества
  *
- * Анимация (§5.2/§8): пружина со стаггером, затемнение фона, поворот «+» в «×»,
- * закрытие по тапу вне и по системному «назад» (Android). Только transform/opacity.
- * Деградация: `useFcReduceMotion()` и `isLowPowerEffective()` → короткий timing без
- * стаггера (функциональность полностью сохраняется).
+ * Внешний вид и поведение — ОДИН В ОДИН с таббаром главного экрана
+ * (`app/(tabs)/_layout.tsx`): плавающая капсула со скруглением height/2, тот же
+ * нижний зазор, та же тень, иконки без подписей, бегущая подсветка активной
+ * позиции на пружине и «вдавливание» капсулы при нажатии. Все числа и цветовые
+ * правила лежат в `pill_tabbar_chrome.ts`, чтобы значения не расходились.
  *
- * Вся чистая логика (состояние раскрытия, тайминги, сборка маршрутов) — `tabbar_state.ts`.
+ * Раскрывающиеся группы (§5.2/§8): пружина со стаггером, затемнение фона,
+ * поворот «+» в «×», закрытие по тапу вне и по системному «назад» (Android).
+ * Только transform/opacity. Деградация: `useFcReduceMotion()` и
+ * `isLowPowerEffective()` → короткий timing без стаггера (функции сохраняются).
+ *
+ * Вся чистая логика (состояние раскрытия, тайминги, сборка маршрутов) —
+ * `tabbar_state.ts`; геометрия капсулы — `pill_tabbar_chrome.ts`.
  */
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { BackHandler, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Animated,
+  BackHandler,
+  InteractionManager,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
@@ -24,29 +41,56 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { triLang, type Lang } from '../../constants/i18n';
+import { OLIVE_RICH } from '../../constants/oliveTheme';
 import type { Theme } from '../../constants/theme';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../../components/ThemeContext';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
+import { loadDeckCardsMulti, type DeckRef } from './deck_sources';
 import { isLowPowerEffective } from './low_power';
 import { getLastPreset, type FcModePreset } from './mode_prefs';
 import { useFcReduceMotion } from './PhraseCard';
 import {
+  FLOATING_PILL_BOTTOM_GAP,
+  TAB_ACTIVE_PILL_HEIGHT,
+  TAB_ACTIVE_PILL_PRESS_OPACITY,
+  TAB_ACTIVE_PILL_PRESS_SCALE,
+  TAB_ACTIVE_PILL_WIDTH,
+  TAB_CENTER_ICON_SIZE,
+  TAB_DARK_ACTIVE_BG_ALPHA,
+  TAB_DARK_ICON_MUTED_ALPHA,
+  TAB_HIGHLIGHT_FADE_MS,
+  TAB_HIGHLIGHT_SPRING,
+  TAB_ICON_PRESS_SCALE,
+  TAB_ICON_SIZE,
+  TAB_PILL_PRESS_SCALE,
+  TAB_PILL_SHADOW,
+  TAB_PRESS_IN_SPRING,
+  TAB_PRESS_OUT_SPRING,
+  TAB_UNDERLAY_DIM_BG,
+  tabHighlightInset,
+  tabHighlightOffset,
+  withAlpha,
+} from './pill_tabbar_chrome';
+import {
   buildFcCreateRoute,
+  buildFcPacksRoute,
   buildFcTrainRoute,
   consumeFcTabBackPress,
   FC_CREATE_OPTIONS,
-  FC_PACKS_ROUTE,
+  FC_PACKS_OPTIONS,
   FC_PLUS_ROTATION_DEG,
   FC_TABBAR_SCRIM_OPACITY,
-  FC_TRAIN_OPTIONS,
   fcTabMenuItemDelay,
   fcTrainOptionPresetMode,
   isFcTabMenuOpen,
   toggleFcTabMenu,
+  visibleFcTrainOptions,
   type FcCreateOption,
+  type FcPacksOption,
   type FcTabMenu,
   type FcTrainOption,
 } from './tabbar_state';
@@ -58,11 +102,21 @@ const SPRING_OPEN = { damping: 15, stiffness: 240, mass: 0.55 } as const;
 const SPRING_CLOSE = { damping: 20, stiffness: 300, mass: 0.5 } as const;
 const TIMING_MS = 140;
 
+/** Позиции капсулы слева направо; центральная — акцентная «+». */
+const BAR_SLOTS = ['train', 'create', 'packs'] as const;
+type BarSlot = (typeof BAR_SLOTS)[number];
+const CENTER_SLOT: BarSlot = 'create';
+
+/** Пул блица по умолчанию — «все сохранённые + мои карточки» (как в сессии блица). */
+const BLITZ_DEFAULT_DECKS: readonly DeckRef[] = [{ kind: 'saved' }, { kind: 'custom' }];
+/** Счёт карточек переживает перемонтирование таббара: пункт не мигает при переходах. */
+let blitzPoolCountCache: number | null = null;
+
 type Props = {
   lang: Lang;
   t: Theme;
-  /** Какая позиция подсвечена: сохранённые карточки или каталог наборов. */
-  active: 'cards' | 'packs';
+  /** Какая позиция подсвечена: сохранённые карточки, каталог наборов или свои наборы. */
+  active: 'cards' | 'packs' | 'mine';
   /** Нижний safe-area инсет экрана. */
   bottomInset?: number;
 };
@@ -72,14 +126,13 @@ type MenuItemProps = {
   testID: string;
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
-  sub?: string;
   index: number;
   total: number;
   open: boolean;
   simple: boolean;
   accent?: boolean;
   onPress: () => void;
-  /** §6: выбор колоды перед стартом — ⚙ справа + долгий тап по строке. */
+  /** §6: выбор наборов перед стартом — ⚙ справа + долгий тап по строке. */
   onSetup?: () => void;
   setupTestID?: string;
 };
@@ -93,7 +146,6 @@ function TabMenuItem({
   testID,
   icon,
   label,
-  sub,
   index,
   total,
   open,
@@ -161,9 +213,9 @@ function TabMenuItem({
             flexDirection: 'row',
             alignItems: 'center',
             gap: 10,
-            paddingVertical: 11,
+            paddingVertical: 12,
             paddingLeft: 14,
-            paddingRight: onSetup ? 10 : 14,
+            paddingRight: onSetup ? 10 : 16,
             borderRadius: 16,
             opacity: pressed ? 0.86 : 1,
           })}
@@ -180,20 +232,16 @@ function TabMenuItem({
           >
             <Ionicons name={icon} size={17} color={t.accent} />
           </View>
-          <View style={{ minWidth: 96 }}>
-            <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '800' }} numberOfLines={1}>
-              {label}
-            </Text>
-            {sub ? (
-              <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '600', marginTop: 1 }} numberOfLines={1}>
-                {sub}
-              </Text>
-            ) : null}
-          </View>
+          <Text
+            style={{ color: t.textPrimary, fontSize: 14, fontWeight: '800', minWidth: 96 }}
+            numberOfLines={1}
+          >
+            {label}
+          </Text>
         </Pressable>
 
         {onSetup ? (
-          /* §6: мультивыбор колод — быстрый старт идёт мимо шита, ⚙ открывает выбор. */
+          /* §6: мультивыбор наборов — быстрый старт идёт мимо шита, ⚙ открывает выбор. */
           <Pressable
             testID={setupTestID}
             accessibilityRole="button"
@@ -221,12 +269,15 @@ function TabMenuItem({
 
 export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: Props) {
   const router = useRouter();
-  const { f } = useTheme();
+  const { f, ds, themeMode } = useTheme();
+  const { tabBarHeight, bottomInset: screenBottomInset } = useScreen();
   const [menu, setMenu] = useState<FcTabMenu>('none');
-  /** §6: для какого режима открыт шит выбора колод (null — закрыт). */
+  /** §6: для какого режима открыт шит выбора наборов (null — закрыт). */
   const [pickerOption, setPickerOption] = useState<FcTrainOption | null>(null);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
+  /** Сколько карточек в пуле блица по умолчанию (null — ещё не посчитано). */
+  const [blitzPoolCount, setBlitzPoolCount] = useState<number | null>(blitzPoolCountCache);
   const reduceMotion = useFcReduceMotion();
   /** §8: «уменьшить движение» и слабые устройства — упрощённый вариант без потери функций. */
   const simple = reduceMotion || isLowPowerEffective() || Platform.OS === 'web';
@@ -234,6 +285,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
   const open = isFcTabMenuOpen(menu);
   const createOpen = menu === 'create';
   const trainOpen = menu === 'train';
+  const packsOpen = menu === 'packs';
 
   const scrim = useSharedValue(0);
   const plus = useSharedValue(0);
@@ -269,6 +321,44 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
     return () => sub.remove();
   }, [open, menu]);
 
+  /**
+   * Пункт «Блиц» показываем только когда карточек хватает на 4 варианта ответа:
+   * иначе он ведёт на экран-заглушку. Счёт снимаем ПОСЛЕ интеракций — вход в
+   * раздел за это не платит, а результат кэшируется на модуль.
+   */
+  const refreshBlitzPoolCount = useCallback(() => {
+    let cancelled = false;
+    void (async () => {
+      const contentLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+      const cards = await loadDeckCardsMulti([...BLITZ_DEFAULT_DECKS], contentLang).catch(() => null);
+      if (cancelled || !cards) return;
+      blitzPoolCountCache = cards.length;
+      setBlitzPoolCount(cards.length);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
+
+  useEffect(() => {
+    let cancelPool: (() => void) | null = null;
+    const task = InteractionManager.runAfterInteractions(() => {
+      cancelPool = refreshBlitzPoolCount();
+    });
+    return () => {
+      task.cancel();
+      cancelPool?.();
+    };
+  }, [refreshBlitzPoolCount]);
+
+  /** Свежесозданная карточка могла разблокировать блиц — пересчитываем на раскрытии. */
+  useEffect(() => {
+    if (!trainOpen) return;
+    return refreshBlitzPoolCount();
+  }, [trainOpen, refreshBlitzPoolCount]);
+
+  const trainOptions = useMemo(() => visibleFcTrainOptions(blitzPoolCount), [blitzPoolCount]);
+
   const go = useCallback(
     (target: { pathname: string; params: Record<string, string> }) => {
       close();
@@ -298,8 +388,21 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
     [go],
   );
 
+  const onPacksOption = useCallback(
+    (option: FcPacksOption) => {
+      void hapticTap();
+      const target = buildFcPacksRoute(option);
+      close();
+      const alreadyHere =
+        (option === 'mine' && active === 'mine') || (option === 'community' && active === 'packs');
+      if (alreadyHere) return;
+      router.push({ pathname: target.pathname, params: target.params } as any);
+    },
+    [active, close, router],
+  );
+
   /**
-   * §6: шит мультивыбора колод. Быстрый старт (обычный тап) идёт мимо него —
+   * §6: шит мультивыбора наборов. Быстрый старт (обычный тап) идёт мимо него —
    * ⚙ / долгий тап открывают выбор наборов и размера сессии.
    */
   const onTrainOptionSetup = useCallback((option: FcTrainOption) => {
@@ -310,7 +413,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
 
   const closePicker = useCallback(() => setPickerOption(null), []);
 
-  /** Колоды и предвыбор грузим только при открытии — вход в раздел не платит за это. */
+  /** Наборы и предвыбор грузим только при открытии — вход в раздел не платит за это. */
   useEffect(() => {
     if (!pickerOption) return;
     let cancelled = false;
@@ -340,54 +443,145 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
     [pickerOption, router],
   );
 
-  const onTogglePress = useCallback((kind: 'train' | 'create') => {
+  const onTogglePress = useCallback((kind: 'train' | 'create' | 'packs') => {
     void hapticTap();
     setMenu((cur) => toggleFcTabMenu(cur, kind));
   }, []);
 
-  const onPacksPress = useCallback(() => {
-    void hapticTap();
-    close();
-    if (active === 'packs') return;
-    router.push(FC_PACKS_ROUTE as any);
-  }, [active, close, router]);
-
   const labels = useMemo(
     () => ({
-      train: triLang(lang, { ru: 'Тренировка', uk: 'Тренування', es: 'Entrenar' }),
-      listen: triLang(lang, { ru: 'Слушать', uk: 'Слухати', es: 'Escuchar' }),
-      blitz: triLang(lang, { ru: 'Блиц', uk: 'Бліц', es: 'Blitz' }),
-      packs: triLang(lang, { ru: 'Наборы', uk: 'Набори', es: 'Packs' }),
-      createCard: triLang(lang, { ru: 'Создать карточку', uk: 'Створити картку', es: 'Crear tarjeta' }),
-      createPack: triLang(lang, { ru: 'Создать набор', uk: 'Створити набір', es: 'Crear pack' }),
-      trainSub: triLang(lang, { ru: 'слова и фразы', uk: 'слова та фрази', es: 'palabras y frases' }),
-      listenSub: triLang(lang, { ru: 'аудио без рук', uk: 'аудіо без рук', es: 'audio sin manos' }),
-      blitzSub: triLang(lang, { ru: '60 секунд', uk: '60 секунд', es: '60 s' }),
+      train: triLang(lang, {
+        ru: 'Тренировка', uk: 'Тренування', es: 'Entrenar',
+        'pt-BR': 'Treinar', vi: 'Luyện tập', id: 'Latihan', tr: 'Antrenman', pl: 'Trening',
+      }),
+      listen: triLang(lang, {
+        ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
+        'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengar', tr: 'Dinle', pl: 'Słuchaj',
+      }),
+      blitz: triLang(lang, {
+        ru: 'Блиц', uk: 'Бліц', es: 'Blitz',
+        'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
+      }),
+      packs: triLang(lang, {
+        ru: 'Наборы', uk: 'Набори', es: 'Packs',
+        'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy',
+      }),
+      createCard: triLang(lang, {
+        ru: 'Создать карточку', uk: 'Створити картку', es: 'Crear tarjeta',
+        'pt-BR': 'Criar cartão', vi: 'Tạo thẻ', id: 'Buat kartu', tr: 'Kart oluştur', pl: 'Utwórz fiszkę',
+      }),
+      createPack: triLang(lang, {
+        ru: 'Создать набор', uk: 'Створити набір', es: 'Crear pack',
+        'pt-BR': 'Criar pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
+      }),
+      myPacks: triLang(lang, {
+        ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
+        'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
+      }),
+      communityPacks: triLang(lang, {
+        ru: 'Наборы сообщества', uk: 'Набори спільноти', es: 'Packs de la comunidad',
+        'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
+        tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
+      }),
+      create: triLang(lang, {
+        ru: 'Создать', uk: 'Створити', es: 'Crear',
+        'pt-BR': 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz',
+      }),
     }),
     [lang],
   );
 
-  const trainMeta: Record<FcTrainOption, { icon: keyof typeof Ionicons.glyphMap; label: string; sub: string }> = {
-    train: { icon: 'barbell-outline', label: labels.train, sub: labels.trainSub },
-    listen: { icon: 'headset-outline', label: labels.listen, sub: labels.listenSub },
-    blitz: { icon: 'flash-outline', label: labels.blitz, sub: labels.blitzSub },
+  const trainMeta: Record<FcTrainOption, { icon: keyof typeof Ionicons.glyphMap; label: string }> = {
+    train: { icon: 'barbell-outline', label: labels.train },
+    listen: { icon: 'headset-outline', label: labels.listen },
+    blitz: { icon: 'flash-outline', label: labels.blitz },
   };
   const createMeta: Record<FcCreateOption, { icon: keyof typeof Ionicons.glyphMap; label: string; testID: string }> = {
     card: { icon: 'add-circle-outline', label: labels.createCard, testID: 'fc-tabbar-create-card' },
     pack: { icon: 'albums-outline', label: labels.createPack, testID: 'fc-tabbar-create-pack' },
   };
+  const packsMeta: Record<FcPacksOption, { icon: keyof typeof Ionicons.glyphMap; label: string }> = {
+    mine: { icon: 'bookmarks-outline', label: labels.myPacks },
+    community: { icon: 'people-outline', label: labels.communityPacks },
+  };
 
-  const os = getEffectivePlatformOS();
-  const barShadow =
-    os === 'ios'
-      ? { shadowColor: t.cardShadow, shadowOffset: { width: 0, height: -3 }, shadowOpacity: 0.22, shadowRadius: 12 }
-      : os === 'android'
-        ? { elevation: 12 }
-        : {};
+  // ── Хром капсулы: те же правила, что и у таббара главного экрана ────────────
+  const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
+  const isOliveTheme = themeMode === 'olive';
+  const pillBackground = isSagePorcelainTabChrome ? t.accent : isOliveTheme ? OLIVE_RICH.panel : TAB_UNDERLAY_DIM_BG;
+  const iconActive = isSagePorcelainTabChrome ? t.correctText : isOliveTheme ? OLIVE_RICH.champagne : t.accent;
+  const iconMuted = isSagePorcelainTabChrome
+    ? withAlpha(t.correctText, 0.72)
+    : isOliveTheme ? withAlpha(OLIVE_RICH.ivory, 0.62)
+    : withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
+  const activePillBg = withAlpha(iconActive, TAB_DARK_ACTIVE_BG_ALPHA);
 
-  const barBottomPad = Math.max(bottomInset, 8);
-  /** Полная высота панели — от неё отсчитываются раскрывающиеся группы. */
-  const barTotalH = FC_TABBAR_HEIGHT + barBottomPad;
+  const pillBottom = Math.max(bottomInset, screenBottomInset, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
+  /** Верхняя кромка капсулы — от неё отсчитываются раскрывающиеся группы. */
+  const barTotalH = pillBottom + tabBarHeight;
+
+  const [pillWidth, setPillWidth] = useState(0);
+  const highlightAnim = useRef(new Animated.Value(0)).current;
+  const highlightOpacity = useRef(new Animated.Value(0)).current;
+  const pressAnim = useRef(new Animated.Value(0)).current;
+  const [pressedSlot, setPressedSlot] = useState<BarSlot | null>(null);
+
+  /** Подсвечена раскрытая группа, иначе — открытый раздел наборов. */
+  const activeSlot: BarSlot | null =
+    menu === 'train' ? 'train'
+      : menu === 'create' ? 'create'
+        : menu === 'packs' ? 'packs'
+          : active === 'packs' || active === 'mine' ? 'packs'
+            : null;
+  const activeSlotIdx = activeSlot ? BAR_SLOTS.indexOf(activeSlot) : -1;
+
+  useEffect(() => {
+    if (activeSlotIdx < 0) return;
+    Animated.spring(highlightAnim, {
+      toValue: activeSlotIdx,
+      ...TAB_HIGHLIGHT_SPRING,
+      useNativeDriver: true,
+    }).start();
+  }, [activeSlotIdx, highlightAnim]);
+
+  useEffect(() => {
+    Animated.timing(highlightOpacity, {
+      toValue: activeSlotIdx >= 0 ? 1 : 0,
+      duration: TAB_HIGHLIGHT_FADE_MS,
+      useNativeDriver: true,
+    }).start();
+  }, [activeSlotIdx, highlightOpacity]);
+
+  const endSlotPress = useCallback(() => {
+    pressAnim.stopAnimation();
+    Animated.spring(pressAnim, {
+      toValue: 0,
+      ...TAB_PRESS_OUT_SPRING,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) setPressedSlot(null);
+    });
+  }, [pressAnim]);
+
+  const beginSlotPress = useCallback((slot: BarSlot) => {
+    setPressedSlot(slot);
+    pressAnim.stopAnimation();
+    Animated.spring(pressAnim, {
+      toValue: 1,
+      ...TAB_PRESS_IN_SPRING,
+      useNativeDriver: true,
+    }).start();
+  }, [pressAnim]);
+
+  const pillPressScale = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_PILL_PRESS_SCALE] });
+  const activePillPressScale = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_ACTIVE_PILL_PRESS_SCALE] });
+  const activePillPressOpacity = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_ACTIVE_PILL_PRESS_OPACITY] });
+
+  const slotMeta: Record<BarSlot, { icon: keyof typeof Ionicons.glyphMap; testID: string; label: string; onPress: () => void }> = {
+    train: { icon: 'barbell-outline', testID: 'fc-tabbar-train', label: labels.train, onPress: () => onTogglePress('train') },
+    create: { icon: 'add', testID: 'fc-tabbar-plus', label: labels.create, onPress: () => onTogglePress('create') },
+    packs: { icon: 'albums-outline', testID: 'fc-tabbar-packs', label: labels.packs, onPress: () => onTogglePress('packs') },
+  };
 
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFillObject}>
@@ -404,26 +598,22 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
         />
       </Reanimated.View>
 
-      <View
-        pointerEvents="box-none"
-        style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
-      >
-        {/* §5.2: список режимов выезжает ВВЕРХ над левой кнопкой «Тренировка» */}
+      <View pointerEvents="box-none" style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
+        {/* §5.2: список режимов выезжает ВВЕРХ над левой позицией «Тренировка» */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', left: 12, bottom: barTotalH + 10 }}
+          style={{ position: 'absolute', left: ds.spacing.lg, bottom: barTotalH + 10 }}
         >
           <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-start' }}>
-            {FC_TRAIN_OPTIONS.map((option, i) => (
+            {trainOptions.map((option, i) => (
               <TabMenuItem
                 key={option}
                 t={t}
                 testID={`fc-tabbar-train-option-${option}`}
                 icon={trainMeta[option].icon}
                 label={trainMeta[option].label}
-                sub={trainMeta[option].sub}
                 index={i}
-                total={FC_TRAIN_OPTIONS.length}
+                total={trainOptions.length}
                 open={trainOpen}
                 simple={simple}
                 onPress={() => onTrainOption(option)}
@@ -432,13 +622,35 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
               />
             ))}
           </View>
+        </View>
 
+        {/* Два раздела наборов раскрываются НАД правой позицией */}
+        <View
+          pointerEvents="box-none"
+          style={{ position: 'absolute', right: ds.spacing.lg, bottom: barTotalH + 10 }}
+        >
+          <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-end' }}>
+            {FC_PACKS_OPTIONS.map((option, i) => (
+              <TabMenuItem
+                key={option}
+                t={t}
+                testID={`fc-tabbar-packs-option-${option}`}
+                icon={packsMeta[option].icon}
+                label={packsMeta[option].label}
+                index={i}
+                total={FC_PACKS_OPTIONS.length}
+                open={packsOpen}
+                simple={simple}
+                onPress={() => onPacksOption(option)}
+              />
+            ))}
+          </View>
         </View>
 
         {/* §5.2: две кнопки создания раскрываются НАД центральной «+» */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', left: 0, right: 0, bottom: barTotalH + 22, alignItems: 'center' }}
+          style={{ position: 'absolute', left: 0, right: 0, bottom: barTotalH + 10, alignItems: 'center' }}
         >
           <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'center' }}>
             {FC_CREATE_OPTIONS.map((option, i) => (
@@ -459,85 +671,88 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
           </View>
         </View>
 
-        {/* Сама панель */}
-        <View
+        {/* Плавающая капсула — один в один с таббаром главного экрана */}
+        <Animated.View
+          onLayout={(event) => setPillWidth(event.nativeEvent.layout.width)}
           style={[
+            styles.pill,
+            TAB_PILL_SHADOW,
             {
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              height: FC_TABBAR_HEIGHT + barBottomPad,
-              paddingBottom: barBottomPad,
-              paddingHorizontal: 18,
-              borderTopWidth: StyleSheet.hairlineWidth,
-              borderTopColor: t.border,
-              backgroundColor: t.bgCard,
+              bottom: pillBottom,
+              marginHorizontal: ds.spacing.lg,
+              height: tabBarHeight,
+              borderRadius: tabBarHeight / 2,
+              shadowColor: t.shadowDark,
+              transform: [{ scale: pillPressScale }],
             },
-            barShadow,
           ]}
         >
-          <TabBarButton
-            t={t}
-            testID="fc-tabbar-train"
-            icon="barbell-outline"
-            label={labels.train}
-            activeState={trainOpen}
-            onPress={() => onTogglePress('train')}
-          />
+          <View pointerEvents="none" style={[styles.pillFill, { backgroundColor: pillBackground }]} />
 
-          {/* Место под акцентную «+» — сама кнопка вынесена из панели, чтобы
-              выступающая часть не обрезалась на Android. */}
-          <View style={{ width: 54 }} />
+          {pillWidth > 0 ? (
+            <Animated.View
+              pointerEvents="none"
+              style={[
+                styles.activePill,
+                {
+                  top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                  left: tabHighlightInset(pillWidth, BAR_SLOTS.length),
+                  backgroundColor: activePillBg,
+                  opacity: Animated.multiply(highlightOpacity, activePillPressOpacity),
+                  transform: [
+                    {
+                      translateX: highlightAnim.interpolate({
+                        inputRange: BAR_SLOTS.map((_, index) => index),
+                        outputRange: BAR_SLOTS.map((_, index) => tabHighlightOffset(pillWidth, index, BAR_SLOTS.length)),
+                        extrapolate: 'clamp',
+                      }),
+                    },
+                    { scale: activePillPressScale },
+                  ],
+                },
+              ]}
+            />
+          ) : null}
 
-          <TabBarButton
-            t={t}
-            testID="fc-tabbar-packs"
-            icon="albums-outline"
-            label={labels.packs}
-            activeState={active === 'packs'}
-            onPress={onPacksPress}
-          />
-        </View>
-
-        {/* Акцентная круглая «+» — приподнята над панелью (§5.2) */}
-        <View
-          pointerEvents="box-none"
-          style={{ position: 'absolute', left: 0, right: 0, bottom: barBottomPad + 18, alignItems: 'center' }}
-        >
-          <Pressable
-            testID="fc-tabbar-plus"
-            accessibilityRole="button"
-            accessibilityLabel="qa-fc-tabbar-plus"
-            accessible
-            onPress={() => onTogglePress('create')}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            style={({ pressed }) => [
-              {
-                width: 54,
-                height: 54,
-                borderRadius: 27,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: t.accent,
-                borderWidth: 3,
-                borderColor: t.bgCard,
-                opacity: pressed ? 0.9 : 1,
-              },
-              os === 'ios'
-                ? { shadowColor: t.accent, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 10 }
-                : os === 'android'
-                  ? { elevation: 10 }
-                  : {},
-            ]}
-          >
-            <Reanimated.View style={plusStyle}>
-              <Ionicons name="add" size={30} color={t.correctText} />
-            </Reanimated.View>
-          </Pressable>
-        </View>
+          {BAR_SLOTS.map((slot) => {
+            const isCenter = slot === CENTER_SLOT;
+            const focused = activeSlot === slot;
+            const color = isCenter ? iconActive : focused ? iconActive : iconMuted;
+            const iconScale = pressedSlot === slot
+              ? pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_ICON_PRESS_SCALE] })
+              : 1;
+            const icon = (
+              <Ionicons
+                name={slotMeta[slot].icon}
+                size={isCenter ? TAB_CENTER_ICON_SIZE : TAB_ICON_SIZE}
+                color={color}
+              />
+            );
+            return (
+              <TouchableOpacity
+                key={slot}
+                testID={slotMeta[slot].testID}
+                accessibilityLabel={`qa-${slotMeta[slot].testID}`}
+                accessible
+                accessibilityRole="button"
+                accessibilityState={{ expanded: menu === slot }}
+                accessibilityHint={slotMeta[slot].label}
+                style={styles.slot}
+                onPressIn={() => beginSlotPress(slot)}
+                onPressOut={endSlotPress}
+                onPress={slotMeta[slot].onPress}
+                activeOpacity={1}
+              >
+                <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+                  {isCenter ? <Reanimated.View style={plusStyle}>{icon}</Reanimated.View> : icon}
+                </Animated.View>
+              </TouchableOpacity>
+            );
+          })}
+        </Animated.View>
       </View>
 
-      {/* §6: мультивыбор колод перед стартом режима (⚙ / долгий тап на пункте) */}
+      {/* §6: мультивыбор наборов перед стартом режима (⚙ / долгий тап на пункте) */}
       <DeckPickerSheet
         visible={!!pickerOption}
         onClose={closePicker}
@@ -554,43 +769,30 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
   );
 }
 
-function TabBarButton({
-  t,
-  testID,
-  icon,
-  label,
-  activeState,
-  onPress,
-}: {
-  t: Theme;
-  testID: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  label: string;
-  activeState: boolean;
-  onPress: () => void;
-}) {
-  const color = activeState ? t.accent : t.textMuted;
-  return (
-    <Pressable
-      testID={testID}
-      accessibilityRole="button"
-      accessibilityLabel={`qa-${testID}`}
-      accessible
-      onPress={onPress}
-      hitSlop={{ top: 8, bottom: 8, left: 12, right: 12 }}
-      style={({ pressed }) => ({
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 2,
-        minWidth: 78,
-        paddingVertical: 6,
-        opacity: pressed ? 0.7 : 1,
-      })}
-    >
-      <Ionicons name={icon} size={22} color={color} />
-      <Text style={{ color, fontSize: 11, fontWeight: '700' }} numberOfLines={1}>
-        {label}
-      </Text>
-    </Pressable>
-  );
-}
+const styles = StyleSheet.create({
+  /** Плавающая капсула остаётся целой и слегка вдавливается при нажатии. */
+  pill: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    overflow: 'hidden',
+    borderWidth: 0,
+  },
+  pillFill: { ...StyleSheet.absoluteFillObject },
+  slot: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    position: 'relative',
+    zIndex: 10,
+  },
+  activePill: {
+    position: 'absolute',
+    width: TAB_ACTIVE_PILL_WIDTH,
+    height: TAB_ACTIVE_PILL_HEIGHT,
+    borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
+  },
+});

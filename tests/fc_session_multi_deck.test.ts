@@ -76,16 +76,34 @@ describe('words-сессия: мультиколода (§6)', () => {
   });
 });
 
-describe('блиц: мультиколода (§6)', () => {
-  it('список колод + объединённый пул одним загрузчиком', () => {
+describe('блиц: несколько наборов (§6)', () => {
+  it('список наборов + объединённый пул одним загрузчиком', () => {
     expect(BLITZ).toMatch(/parseDeckParams\(/);
     expect(BLITZ).toMatch(/loadDeckCardsMulti\(refs, contentLang\)/);
     expect(BLITZ).not.toMatch(/parseDeckParam\(/);
     expect(BLITZ).not.toMatch(/\bloadDeckCards\(/);
   });
 
-  it("дефолт без ?deck= — 'сохранённые + свои' через тот же загрузчик", () => {
-    expect(BLITZ).toMatch(/\[\{ kind: 'saved' \}, \{ kind: 'custom' \}\]/);
+  /**
+   * FIX владельца (2026-08-13): «карточки из наборов должны считаться».
+   * Дефолт «сохранённые + свои» был багом — у человека с карточками ТОЛЬКО в
+   * наборах пул оказывался пустым и блиц не запускался. Контракт обновлён:
+   * без `?deck=` берём ВСЕ доступные источники (`loadAllFcDeckRefs`), включая
+   * каждый добавленный набор.
+   */
+  it('дефолт без ?deck= — ВСЕ доступные источники, включая наборы', () => {
+    expect(BLITZ).toMatch(/loadAllFcDeckRefs\(\)/);
+    expect(BLITZ).toMatch(/deckRefs\.length > 0 \? deckRefs : allRefs/);
+  });
+
+  it('пустой/устаревший выбор наборов не показывает тупик, а добирает пул', () => {
+    expect(BLITZ).toMatch(/canStartBlitz\(cards\.length\)/);
+    expect(BLITZ).toMatch(/loadDeckCardsMulti\(allRefs, contentLang\)/);
+  });
+
+  it('экрана с текстом «нужно N карточек» больше нет', () => {
+    expect(BLITZ).not.toMatch(/потрібно|нужно минимум|necesita al menos/i);
+    expect(BLITZ).not.toMatch(/BLITZ_MIN_CARDS\}/);
   });
 });
 

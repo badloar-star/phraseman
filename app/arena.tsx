@@ -21,7 +21,7 @@ import {
 import { arenaText } from '../modules/arena/copy';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import { coerceArenaHubSection, type ArenaExpansionHome } from '../modules/arena/expansion_contract';
-import { arenaExpansionHome, arenaFetchMatchHistory, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
+import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
@@ -56,6 +56,23 @@ export default function ArenaHubScreen() {
 
   useEffect(() => { if (active) load(); }, [active, load]);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('hub', 'direct')); }, []);
+
+  /**
+   * Досылка застрявших отчётов. Хаб — то место, куда игрок приходит сам, и
+   * отдельного расписания для этого нет намеренно: фоновый опрос стоил бы
+   * денег за базу каждый день у каждого игрока.
+   */
+  const [reportBlocked, setReportBlocked] = useState(false);
+  useEffect(() => {
+    if (!active) return;
+    let alive = true;
+    void arenaFlushOutbox()
+      .catch(() => 0)
+      .then(() => arenaOutboxBlockedByUpdate())
+      .then((blocked) => { if (alive) setReportBlocked(blocked); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [active]);
 
   const labels = useMemo(() => ({
     today: arenaExpansionText(lang, 'today'),
@@ -185,6 +202,10 @@ export default function ArenaHubScreen() {
     >
       <ArenaSectionTabs selected={section} labels={labels} onSelect={(next) => router.setParams({ section: next })} />
       {baseError ? <ArenaStateNotice state="error" onRetry={load} /> : null}
+      {/* Отчёт, застрявший из-за старой сборки, повторами не спасти: игроку
+          надо сказать, что от него требуется, иначе награда не придёт никогда,
+          а он даже не узнает почему. */}
+      {reportBlocked ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'reportBlocked')} body={arenaText(lang, 'reportBlockedHint')} /> : null}
       {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} /> : null}
       {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
     </ArenaScreen>

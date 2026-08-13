@@ -16,7 +16,7 @@ import type { ArenaMatchReward } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { TournamentFxApi } from '../components/tournament/TournamentFx';
-import { arenaExpansionHome, arenaRivalAccept, arenaV2Home, arenaV2SyncMatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
+import { arenaExpansionHome, arenaFlushOutbox, arenaOutboxPending, arenaRivalAccept, arenaV2Home, arenaV2SyncMatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
 import { arenaResultTheme } from '../modules/arena/arena_cosmetics';
 import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
 import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
@@ -44,6 +44,24 @@ export default function ArenaResultsScreen() {
   const [baseEnabled, setBaseEnabled] = useState(false);
   const [rivalBusy, setRivalBusy] = useState(false);
   const rivalAcceptRequestId = useRef<string | null>(null);
+  /**
+   * Отчёт мог не уйти — например, матч доигран в метро. Сюда игрок приходит
+   * сразу после матча, поэтому досылаем прямо здесь, а потом честно смотрим,
+   * остался ли отчёт в очереди: без этой проверки экран сказал бы «матч
+   * засчитан» про матч, о котором сервер ещё не знает.
+   */
+  const [reportPending, setReportPending] = useState(false);
+  useEffect(() => {
+    if (!active) return;
+    let alive = true;
+    void arenaFlushOutbox()
+      .catch(() => 0)
+      .then(() => arenaOutboxPending(matchId))
+      .then((pending) => { if (alive) setReportPending(pending); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [active, matchId]);
+
   useEffect(() => {
     if (active && matchId) void arenaV2SyncMatch(matchId).then((response) => {
       if (response.viewerSeat) { rememberArenaViewerSeat(matchId, response.viewerSeat); setViewerSeat(response.viewerSeat); }
@@ -211,7 +229,14 @@ export default function ArenaResultsScreen() {
         Игрок видел красное и думал, что потерял результат матча. Результат
         при этом уже засчитан на сервере: ждёт только доставка.
       */}
-      {live.error ? (
+      {reportPending ? (
+        <View style={styles.pending}>
+          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
+            {arenaText(lang, 'reportQueued')}
+          </Text>
+          <Text style={[styles.pendingHint, { color: P.muted }]}>{arenaText(lang, 'reportQueuedHint')}</Text>
+        </View>
+      ) : live.error ? (
         <View style={styles.pending}>
           <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
             {arenaText(lang, 'resultPending')}

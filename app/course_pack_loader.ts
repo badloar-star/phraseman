@@ -6,8 +6,8 @@ import { findEmbeddedCoursePackIndexEntry, type CoursePackDeliveryMode } from '.
 
 export const COURSE_PACK_REMOTE_LOADING_ENABLED = false as const;
 
-// Dedicated switch for the NEW plan_content remote runtime (download + disk-cache
-// + per-day sha256 verification, with bundled fallback). Intentionally SEPARATE
+// Dedicated switch for the verified remote runtime (download + disk-cache
+// + per-row sha256 verification, with bundled fallback). Intentionally SEPARATE
 // from the legacy COURSE_PACK_REMOTE_LOADING_ENABLED above so the new path can be
 // enabled without disturbing the legacy disabled-runtime-contract evidence gates,
 // which continue to certify that the OLD path stays inert.
@@ -16,7 +16,7 @@ export const COURSE_PACK_REMOTE_LOADING_ENABLED = false as const;
 // back to the bundled copy on any miss/corruption/offline. Compile-time, so
 // currently-running users are unaffected. Bundled content is retained as the
 // fallback and removed only in a later, separately-approved release.
-export const PLAN_CONTENT_REMOTE_ENABLED: boolean = true;
+export const VERIFIED_COURSE_PACK_REMOTE_ENABLED: boolean = true;
 
 export type CoursePackReadinessRequest = {
   studyTarget: StudyTarget;

@@ -3,11 +3,8 @@
 //
 // зачем: владелец просил полноценный генератор в живой админке
 // (admin/v2/legacy.html). Здесь Firestore-обвязка вокруг чистого
-// tournament_task_factory: сгенерировать черновики → показать на ревью →
-// опубликовать verified → отбить статистику пула → включить слоты.
-//
-// ЭКОНОМИЯ FIRESTORE (правило владельца): генерация читает контент из кода
-// (app/plan_content_*.ts), а не из Firestore — ноль чтений. Список отдаёт
+// Черновики проходят ревью, публикацию и проверку готовности пула.
+// Список отдаёт
 // страницами с потолком, статистика считается агрегатом count() вместо
 // выкачивания коллекции, публикация идёт батчами по 400 вместо N записей.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -29,13 +26,6 @@ import {
   type TournamentTask,
 } from './tournament_core';
 import { buildTournamentScheduleWrite } from './tournament_all_day';
-import {
-  GENERATABLE_KINDS,
-  generateTournamentTasks,
-  type GeneratableKind,
-  type SourceDay,
-} from './tournament_task_factory';
-import { loadTournamentSourceDays, TOURNAMENT_SOURCE_PLANS } from './tournament_content_source';
 import {
   TOURNAMENT_AI_BATCH_SIZE,
   buildTournamentAiPromptPacket,
@@ -127,47 +117,6 @@ export function onlyKeys(data: unknown, allowed: readonly string[], errorCode: s
 
 // ── Разбор запросов ─────────────────────────────────────────────────────────
 
-export type GenerateRequest = {
-  readonly plans: readonly string[];
-  readonly kinds: readonly GeneratableKind[];
-  readonly limit: number;
-  readonly dryRun: boolean;
-};
-
-export function parseGenerateRequest(data: unknown): GenerateRequest {
-  const record = onlyKeys(data, ['plans', 'kinds', 'limit', 'dryRun'], 'tournament_generate_invalid');
-
-  const plansRaw = record.plans === undefined ? TOURNAMENT_SOURCE_PLANS : record.plans;
-  if (!Array.isArray(plansRaw) || plansRaw.length === 0 || plansRaw.length > 20) {
-    throw new HttpsError('invalid-argument', 'tournament_generate_invalid');
-  }
-  const plans = plansRaw.map((plan) => String(plan ?? '').trim());
-  if (plans.some((plan) => !TOURNAMENT_SOURCE_PLANS.includes(plan))) {
-    throw new HttpsError('invalid-argument', 'tournament_generate_plan_unknown');
-  }
-
-  const kindsRaw = record.kinds === undefined ? GENERATABLE_KINDS : record.kinds;
-  if (!Array.isArray(kindsRaw) || kindsRaw.length === 0) {
-    throw new HttpsError('invalid-argument', 'tournament_generate_invalid');
-  }
-  const kinds = kindsRaw.map((kind) => String(kind ?? '').trim() as GeneratableKind);
-  if (kinds.some((kind) => !GENERATABLE_KINDS.includes(kind))) {
-    throw new HttpsError('invalid-argument', 'tournament_generate_kind_unknown');
-  }
-
-  const limit = record.limit === undefined ? MAX_PUBLISH_PER_CALL : Number(record.limit);
-  if (!Number.isSafeInteger(limit) || limit < 1 || limit > MAX_PUBLISH_PER_CALL) {
-    throw new HttpsError('invalid-argument', 'tournament_generate_limit_invalid');
-  }
-
-  return Object.freeze({
-    plans: Object.freeze([...new Set(plans)]),
-    kinds: Object.freeze([...new Set(kinds)]) as readonly GeneratableKind[],
-    limit,
-    dryRun: record.dryRun === true,
-  });
-}
-
 export type ListRequest = {
   readonly limit: number;
   readonly status: '' | 'draft' | 'published';
@@ -176,8 +125,7 @@ export type ListRequest = {
   readonly mode: string;
   readonly difficulty: number;
   readonly cursor: string;
-  /** Раздельные пулы владельца: '' = все, 'ai' = ИИ-генератор, 'plan_content' = из планов. */
-  readonly source: '' | 'ai' | 'plan_content';
+  readonly source: '' | 'ai';
 };
 
 export function parseListRequest(data: unknown): ListRequest {
@@ -197,7 +145,7 @@ export function parseListRequest(data: unknown): ListRequest {
     || (mode && !ID_RE.test(mode))
     || !Number.isSafeInteger(difficulty) || difficulty < 0 || difficulty > 3
     || (cursor && !ID_RE.test(cursor))
-    || !['', 'ai', 'plan_content'].includes(source)) {
+    || !['', 'ai'].includes(source)) {
     throw new HttpsError('invalid-argument', 'tournament_list_invalid');
   }
   return Object.freeze({ limit, status, lifecycle, mode, difficulty, cursor, source });
@@ -366,92 +314,6 @@ export function publicAdminTask(taskId: string, task: TournamentTask): Record<st
 }
 
 // ── Генерация ───────────────────────────────────────────────────────────────
-
-/**
- * ОТКЛЮЧЁН 2026-07-26 по решению владельца.
- *
- * зачем: генератор собирал турнирные задания из фраз обучающих планов, и это
- * давало негодный для соревнования контент — дистракторы не конкурировали
- * («Hi, I am Anna» против «Привет, ты здесь?»), ответ угадывался без знания
- * языка, форматы дублировали одну фразу трижды. Учебный контент и
- * соревновательный — разные жанры.
- *
- * Функция оставлена задеплоенной, но отвечает отказом: у владельца может быть
- * открыта старая вкладка админки, и молчаливое «ничего не произошло» хуже
- * внятной ошибки. Единственный источник заданий — adminGenerateTournamentTasksAi.
- */
-export const adminGenerateTournamentTasks = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, memory: '1GiB', timeoutSeconds: 300 },
-  async (request) => {
-    requirePermission(request, 'content.draft.write');
-    throw new HttpsError(
-      'failed-precondition',
-      'Генератор из планов отключён: турнирные задания создаются только ИИ-генератором.',
-    );
-    // eslint-disable-next-line no-unreachable
-    const params = parseGenerateRequest(request.data);
-
-    const days: SourceDay[] = loadTournamentSourceDays(params.plans);
-    const { tasks, stats } = generateTournamentTasks(days, {
-      kinds: params.kinds,
-      limit: params.limit,
-      verified: false,
-    });
-
-    if (params.dryRun) {
-      return {
-        ok: true,
-        dryRun: true,
-        stats,
-        samples: tasks.slice(0, 5).map((task) => publicAdminTask(task.taskId, task)),
-      };
-    }
-
-    const db = admin.firestore();
-    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
-    const nowMs = Date.now();
-    let written = 0;
-    let keptPublished = 0;
-
-    for (let i = 0; i < tasks.length; i += WRITE_BATCH_SIZE) {
-      const chunk = tasks.slice(i, i + WRITE_BATCH_SIZE);
-      // Одним getAll вместо чтения в цикле: узнаём, какие задания уже
-      // опубликованы, чтобы ре-генерация не сняла их с публикации.
-      const existing = await db.getAll(
-        ...chunk.map((task) => collection.doc(task.taskId)),
-        { fieldMask: ['verified'] },
-      );
-      const alreadyPublished = new Set(
-        existing.filter((doc) => doc.exists && doc.data()?.verified === true).map((doc) => doc.id),
-      );
-
-      const batch = db.batch();
-      for (const task of chunk) {
-        const ref = collection.doc(task.taskId);
-        const wasPublished = alreadyPublished.has(task.taskId);
-        if (wasPublished) keptPublished += 1;
-        // merge: повторная генерация обновляет то же задание, а не плодит дубль.
-        // verified сохраняем как было — иначе ре-ген снял бы с публикации уже
-        // одобренные владельцем задания и обрушил бы боевой пул.
-        batch.set(ref, {
-          taskId: task.taskId,
-          mode: task.mode,
-          isVoice: task.isVoice,
-          difficulty: task.difficulty,
-          payload: task.payload,
-          tags: task.tags,
-          verified: wasPublished,
-          generatedAtMs: nowMs,
-          source: 'plan_content',
-        }, { merge: true });
-        written += 1;
-      }
-      await batch.commit();
-    }
-
-    return { ok: true, dryRun: false, stats, written, keptPublished };
-  },
-);
 
 // ── ИИ-генерация (второй источник пула) ─────────────────────────────────────
 
@@ -1175,10 +1037,8 @@ export const adminTournamentPoolStats = onCall(
       byDifficulty[difficulty] = agg.data().count;
     }));
 
-    // Раздельные пулы владельца: ИИ-генератор и задания из планов. Ещё 4
-    // count()-агрегата вместо выкачивания коллекции.
     const sources: Record<string, { total: number; published: number; drafts: number }> = {};
-    await Promise.all((['ai', 'plan_content'] as const).map(async (source) => {
+    await Promise.all((['ai'] as const).map(async (source) => {
       // guard-ok: count() — серверные агрегаты, документы не читаются
       const [totalAgg, publishedAgg] = await Promise.all([
         collection.where('source', '==', source).count().get(),

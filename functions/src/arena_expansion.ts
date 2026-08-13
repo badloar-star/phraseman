@@ -14,7 +14,7 @@ import {
   NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
   NEW_TOURNAMENT_POOL_VERSION,
   verifyTournamentPoolTaskProof,
-} from './tournament_pool_v2_factory';
+} from './tournament_pool_publication';
 import {
   ARENA_V2_ACCEPT_MS,
   ARENA_V2_ANSWER_MS,

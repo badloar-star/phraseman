@@ -947,10 +947,9 @@ export {
   arenaStarPurchase,
   arenaStarEquip,
 } from "./arena_expansion";
-// Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,
-// публикация в пул, статистика готовности раундов, расписание слотов.
+// Раздел «Турниры» в админке: ИИ-генерация, ревью-очередь, публикация в пул,
+// статистика готовности раундов и расписание слотов.
 export {
-  adminGenerateTournamentTasks,
   adminGenerateTournamentTasksAi,
   adminListTournamentTasks,
   adminMutateTournamentTasks,

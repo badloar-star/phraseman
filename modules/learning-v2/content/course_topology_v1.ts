@@ -1,4 +1,4 @@
-import { hashCanonicalBody } from '../policies/decision_registry';
+import { hashCanonicalBody } from "../policies/decision_registry";
 
 /**
  * Owner-current Learning V2 course topology.
@@ -7,7 +7,7 @@ import { hashCanonicalBody } from '../policies/decision_registry';
  * the 32 real lesson bodies remain owner-authored through the generator.
  */
 export const LEARNING_V2_COURSE_TOPOLOGY_SCHEMA_V1 =
-  'learning-v2-course-topology.v1' as const;
+  "learning-v2-course-topology.v1" as const;
 export const LEARNING_V2_COURSE_LESSON_COUNT_V1 = 32 as const;
 export const LEARNING_V2_LESSON_SESSION_COUNT_V1 = 56 as const;
 export const LEARNING_V2_LESSON_CHAPTER_COUNT_V1 = 7 as const;
@@ -23,19 +23,19 @@ export const LEARNING_V2_LESSON_CHECKPOINT_SESSION_ORDINALS_V1 = Object.freeze([
 ] as const);
 
 export const LEARNING_V2_PERSONAL_PLAN_POLICY_V1 = Object.freeze({
-  mainCourseCompleteness: 'self_contained_without_personal_plan' as const,
-  mainMapPlacement: 'not_present' as const,
-  productPlacement: 'separate_optional_surface' as const,
-  generatorDelivery: 'deferred_second_wave_specialization' as const,
+  mainCourseCompleteness: "self_contained_without_personal_plan" as const,
+  mainMapPlacement: "not_present" as const,
+  productPlacement: "separate_optional_surface" as const,
+  generatorDelivery: "deferred_second_wave_specialization" as const,
   blocksMainGeneratorReadiness: false as const,
-  existingFeaturePolicy: 'preserve_do_not_remove' as const,
+  existingFeaturePolicy: "preserve_do_not_remove" as const,
 });
 
 export type LearningV2CourseSessionRoleV1 =
-  | 'guided_learning'
-  | 'chapter_checkpoint'
-  | 'transfer_practice'
-  | 'final_exam';
+  | "guided_learning"
+  | "chapter_checkpoint"
+  | "transfer_practice"
+  | "final_exam";
 
 export type LearningV2CourseSessionTopologyV1 = Readonly<{
   sessionId: string;
@@ -57,7 +57,7 @@ export type LearningV2CourseLessonTopologyV1 = Readonly<{
   chapterCount: typeof LEARNING_V2_LESSON_CHAPTER_COUNT_V1;
   sessionCount: typeof LEARNING_V2_LESSON_SESSION_COUNT_V1;
   sessions: readonly LearningV2CourseSessionTopologyV1[];
-  contentAuthorship: 'owner_only';
+  contentAuthorship: "owner_only";
 }>;
 
 export type LearningV2CourseTopologyV1 = Readonly<{
@@ -73,8 +73,8 @@ export type LearningV2CourseTopologyV1 = Readonly<{
     targetWholeHours: 209;
     targetRemainingMinutes: 4;
   }>;
-  realContentAuthorship: 'owner_only';
-  generatorResponsibility: 'structure_validation_preview_release_tooling_only';
+  realContentAuthorship: "owner_only";
+  generatorResponsibility: "structure_validation_preview_release_tooling_only";
   personalPlanPolicy: typeof LEARNING_V2_PERSONAL_PLAN_POLICY_V1;
   topologyFingerprint: string;
 }>;
@@ -86,29 +86,50 @@ function assertOrdinal(value: number, max: number, field: string): void {
 }
 
 export function learningV2CourseLessonIdV1(lessonOrdinal: number): string {
-  assertOrdinal(lessonOrdinal, LEARNING_V2_COURSE_LESSON_COUNT_V1, 'lesson_ordinal');
-  return `lesson-${String(lessonOrdinal).padStart(2, '0')}`;
+  assertOrdinal(
+    lessonOrdinal,
+    LEARNING_V2_COURSE_LESSON_COUNT_V1,
+    "lesson_ordinal",
+  );
+  return `lesson-${String(lessonOrdinal).padStart(2, "0")}`;
 }
 
 export function learningV2CourseSessionIdV1(
   lessonOrdinal: number,
   sessionOrdinal: number,
 ): string {
-  assertOrdinal(lessonOrdinal, LEARNING_V2_COURSE_LESSON_COUNT_V1, 'lesson_ordinal');
-  assertOrdinal(sessionOrdinal, LEARNING_V2_LESSON_SESSION_COUNT_V1, 'session_ordinal');
-  return `${learningV2CourseLessonIdV1(lessonOrdinal)}:session:${String(sessionOrdinal).padStart(2, '0')}`;
+  assertOrdinal(
+    lessonOrdinal,
+    LEARNING_V2_COURSE_LESSON_COUNT_V1,
+    "lesson_ordinal",
+  );
+  assertOrdinal(
+    sessionOrdinal,
+    LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    "session_ordinal",
+  );
+  return `${learningV2CourseLessonIdV1(lessonOrdinal)}:session:${String(sessionOrdinal).padStart(2, "0")}`;
 }
 
 export function learningV2CourseSessionRoleV1(
   sessionOrdinal: number,
 ): LearningV2CourseSessionRoleV1 {
-  assertOrdinal(sessionOrdinal, LEARNING_V2_LESSON_SESSION_COUNT_V1, 'session_ordinal');
-  if (sessionOrdinal === LEARNING_V2_LESSON_SESSION_COUNT_V1) return 'final_exam';
-  if (LEARNING_V2_LESSON_CHECKPOINT_SESSION_ORDINALS_V1.includes(sessionOrdinal as never)) {
-    return 'chapter_checkpoint';
+  assertOrdinal(
+    sessionOrdinal,
+    LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    "session_ordinal",
+  );
+  if (sessionOrdinal === LEARNING_V2_LESSON_SESSION_COUNT_V1)
+    return "final_exam";
+  if (
+    LEARNING_V2_LESSON_CHECKPOINT_SESSION_ORDINALS_V1.includes(
+      sessionOrdinal as never,
+    )
+  ) {
+    return "chapter_checkpoint";
   }
-  if (sessionOrdinal >= 49) return 'transfer_practice';
-  return 'guided_learning';
+  if (sessionOrdinal >= 49) return "transfer_practice";
+  return "guided_learning";
 }
 
 function buildSession(
@@ -119,7 +140,9 @@ function buildSession(
     sessionId: learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
     lessonOrdinal,
     sessionOrdinal,
-    chapterOrdinal: Math.ceil(sessionOrdinal / LEARNING_V2_CHAPTER_SESSION_COUNT_V1),
+    chapterOrdinal: Math.ceil(
+      sessionOrdinal / LEARNING_V2_CHAPTER_SESSION_COUNT_V1,
+    ),
     positionInChapter:
       ((sessionOrdinal - 1) % LEARNING_V2_CHAPTER_SESSION_COUNT_V1) + 1,
     role: learningV2CourseSessionRoleV1(sessionOrdinal),
@@ -133,22 +156,26 @@ function buildSession(
 
 export function buildLearningV2CourseTopologyV1(): LearningV2CourseTopologyV1 {
   const lessons = Object.freeze(
-    Array.from({ length: LEARNING_V2_COURSE_LESSON_COUNT_V1 }, (_, lessonIndex) => {
-      const lessonOrdinal = lessonIndex + 1;
-      return Object.freeze({
-        lessonId: learningV2CourseLessonIdV1(lessonOrdinal),
-        lessonOrdinal,
-        chapterCount: LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
-        sessionCount: LEARNING_V2_LESSON_SESSION_COUNT_V1,
-        sessions: Object.freeze(
-          Array.from(
-            { length: LEARNING_V2_LESSON_SESSION_COUNT_V1 },
-            (_, sessionIndex) => buildSession(lessonOrdinal, sessionIndex + 1),
+    Array.from(
+      { length: LEARNING_V2_COURSE_LESSON_COUNT_V1 },
+      (_, lessonIndex) => {
+        const lessonOrdinal = lessonIndex + 1;
+        return Object.freeze({
+          lessonId: learningV2CourseLessonIdV1(lessonOrdinal),
+          lessonOrdinal,
+          chapterCount: LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
+          sessionCount: LEARNING_V2_LESSON_SESSION_COUNT_V1,
+          sessions: Object.freeze(
+            Array.from(
+              { length: LEARNING_V2_LESSON_SESSION_COUNT_V1 },
+              (_, sessionIndex) =>
+                buildSession(lessonOrdinal, sessionIndex + 1),
+            ),
           ),
-        ),
-        contentAuthorship: 'owner_only' as const,
-      });
-    }),
+          contentAuthorship: "owner_only" as const,
+        });
+      },
+    ),
   );
 
   const body = Object.freeze({
@@ -164,9 +191,9 @@ export function buildLearningV2CourseTopologyV1(): LearningV2CourseTopologyV1 {
       targetWholeHours: 209 as const,
       targetRemainingMinutes: 4 as const,
     }),
-    realContentAuthorship: 'owner_only' as const,
+    realContentAuthorship: "owner_only" as const,
     generatorResponsibility:
-      'structure_validation_preview_release_tooling_only' as const,
+      "structure_validation_preview_release_tooling_only" as const,
     personalPlanPolicy: LEARNING_V2_PERSONAL_PLAN_POLICY_V1,
   });
 

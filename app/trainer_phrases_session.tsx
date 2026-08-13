@@ -52,7 +52,6 @@ import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
   getCachedDueItems,
-  getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
@@ -82,11 +81,6 @@ import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '
 import type { LessonWord } from './lesson_data_types';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
-import {
-  markTrainerPlanTaskCompleted,
-  readTrainerPlanTaskContext,
-  type TrainerPlanTaskRouteParams,
-} from './trainer_plan_task_route';
 
 function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): readonly string[] | undefined {
   if (!item.lessonId || !errorWord) return undefined;
@@ -635,7 +629,7 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerPhrasesSession() {
   const router = useRouter();
-  const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
+  useLocalSearchParams<Record<string, never>>();
   const { theme: t, f, themeMode } = useTheme();
   const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -659,13 +653,11 @@ export default function TrainerPhrasesSession() {
   // зачем: юзер жаловался, что «отработка ошибок» открывается через скелет «Загружаем…».
   // Экран практики на каждом фокусе прогревает кэш (prefetchTrainerPracticeSnapshot), поэтому
   // к моменту перехода колода уже лежит в памяти — берём её синхронно в инициализаторе
-  // useState и рисуем первую карточку в первом же кадре. Холодный кэш (или plan-сессия со
+  // useState и рисуем первую карточку в первом же кадре. Холодный кэш
   // своими очередями) отдаёт null → работает прежний async-путь со скелетом. Гейт лимита и
   // премиума НЕ пропускается: эффект ниже всё равно его отрабатывает и уводит на пейвол.
-  // Читаем params.planTaskId напрямую (а не planTrainerContext) — он объявлен ниже, а нам
-  // нужно ровно одно вычисление на монтирование, до первого рендера.
   const warmDeckRef = useRef<SessionCard[] | null>(
-    !trainerGateOpen || params.planTaskId || params.planTrainerTask
+    !trainerGateOpen
       ? null
       : getWarmPhraseSessionDeck(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale),
   );
@@ -680,28 +672,10 @@ export default function TrainerPhrasesSession() {
   const [accessReady, setAccessReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-  const planTrainerCompletionTracked = useRef(false);
   // Время ожидания entitlement не входит в длительность оплаченной практики.
   const sessionStartRef = useRef(0);
   const pendingResultRef = useRef<Promise<void>>(Promise.resolve());
   const advancingRef = useRef(false);
-  const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
-    mode: params.mode,
-    planDayIndex: params.planDayIndex,
-    planId: params.planId,
-    planInstanceId: params.planInstanceId,
-    planTaskId: params.planTaskId,
-    planTrainerTask: params.planTrainerTask,
-    requiredItems: params.requiredItems,
-  }), [
-    params.mode,
-    params.planDayIndex,
-    params.planId,
-    params.planInstanceId,
-    params.planTaskId,
-    params.planTrainerTask,
-    params.requiredItems,
-  ]);
 
   // зачем: аудит нашёл, что закрытие модала тапом мимо/кнопкой «назад» на Android (в
   // отличие от «Позже» → onGotIt, который уводит с экрана) оставляет пользователя тут же
@@ -742,15 +716,7 @@ export default function TrainerPhrasesSession() {
         }
         if (startedWarm) sessionStartRef.current = Date.now();
         setAccessReady(true);
-        const items = planTrainerContext.taskId
-          ? await getTrainerPremiumItemsForPlanQueue(
-              planTrainerContext.planInstanceId,
-              planTrainerContext.mode,
-              'phrases',
-              planTrainerContext.requiredItems,
-              studyTarget,
-            )
-          : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
+        const items = await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
         if (!startedWarm) sessionStartRef.current = Date.now();
@@ -770,7 +736,7 @@ export default function TrainerPhrasesSession() {
       }
     })();
     return () => { cancelled = true; };
-    }, [planTrainerContext, router, reloadKey, sourceLocale, studyTarget, trainerGateOpen]);
+    }, [router, reloadKey, sourceLocale, studyTarget, trainerGateOpen]);
 
   const handleResult = useCallback((answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -825,18 +791,12 @@ export default function TrainerPhrasesSession() {
     advancingRef.current = false;
   }, [deck.length, current, correct, wrong, studyTarget, noEnergyModalOpen]);
 
-  useEffect(() => {
-    if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
-    planTrainerCompletionTracked.current = true;
-    void markTrainerPlanTaskCompleted(planTrainerContext, studyTarget);
-  }, [done, planTrainerContext, studyTarget]);
-
   if (loadError) {
     return (
       <TrainerErrorView
         lang={lang}
         onRetry={() => { hapticTap(); setReloadKey(k => k + 1); }}
-        onExit={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+        onExit={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
       />
     );
   }
@@ -870,10 +830,8 @@ export default function TrainerPhrasesSession() {
     // даже если фраз ещё много осталось — юзер видел «прошёл фразы → слова →
     // снова фразы» вместо того, чтобы сначала добить фразовую очередь целиком.
     // Сначала проверяем остаток СВОЕЙ очереди, и только если она пуста — слова.
-    const morePhrasesChain = planTrainerContext.taskId
-      ? []
-      : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
-    const wordsChain = planTrainerContext.taskId || morePhrasesChain.length > 0
+    const morePhrasesChain = getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
+    const wordsChain = morePhrasesChain.length > 0
       ? []
       : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
     const nextLabel = morePhrasesChain.length > 0
@@ -911,7 +869,7 @@ export default function TrainerPhrasesSession() {
               total={deck.length || correct + wrong}
               accent={accent}
               durationMs={sessionStartRef.current > 0 ? Date.now() - sessionStartRef.current : undefined}
-              onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
               onNext={nextLabel ? () => { hapticTap(); router.replace(nextRoute as any); } : undefined}
@@ -930,7 +888,7 @@ export default function TrainerPhrasesSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>
@@ -995,7 +953,7 @@ export default function TrainerPhrasesSession() {
       <NoEnergyModal
         visible={noEnergyModalOpen}
         onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
-        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, '/trainer' as any); }}
       />
     </ScreenGradient>
   );

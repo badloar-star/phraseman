@@ -160,7 +160,6 @@ export async function compileV2EpisodeContent(
     networkAvailable: true,
     dueContentItemIds: [],
     mistakeContentItemIds: [],
-    personalPlanContentItemIds: [],
     capabilities: ([
       { capabilityId: 'quick-speak-v1', family: 'quick_spoken_response', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 75 },
       { capabilityId: 'echo-rhythm-v1', family: 'shadowing_prosody', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 90 },

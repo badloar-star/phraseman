@@ -12482,3 +12482,33 @@ production read/write или `admin/v2` access.
 Следующий шаг: Firebase publisher/adapter v2 должен сохранить и повторно
 прочитать 12 intro projections вместе с render/capsule, затем released-session
 package v2 передаст одну точную intro projection в app loader.
+
+## 15.149 — Три встроенных intro-check и практика со slot 4 (2026-08-13)
+
+Исправлена ошибочная старая модель «сначала интро, затем отдельные три
+вопроса». Generator intro schema поднята аддитивно до
+`learning-v2-generated-session-intro.v3`: в сессии ровно три страницы, и
+каждая страница хранит один canonical вопрос в своём низу. Вопросы связаны со
+slots 1–3; `practiceStartSlot` равен 4; повторное отображение slots 1–3 как
+обычных карточек запрещено контрактом.
+
+Root-admin preview теперь показывает вопрос непосредственно внутри каждой
+страницы и больше не рисует отдельную секцию «Три вопроса после интро». Реальный
+mobile session renderer требует правильный ответ перед переходом дальше. При
+ошибке вариант не выбирается и не получает красную рамку — трясётся только
+контейнер. После второй ошибки показывается локализованное объяснение. На
+последней странице кнопка запускает практику со slot 4.
+
+В нейтральном Lesson-1 срезе добавлены три локализованных вопроса, точно
+соответствующие трём существующим страницам про обязательный `am/is/are`, выбор
+`am` с `I` и сборку `She is ready`. Это проверочный контент генератора, а не
+самовольное создание E1–E32: реальный контент по-прежнему создаёт только
+владелец. Узкие generator/shard/design/runtime gates прошли; targeted ESLint
+имеет 0 errors (существующие warning тестового mock-файла сохранены),
+`git diff --check` clean. Deploy, push, provider call, production read/write и
+`admin/v2` access не выполнялись.
+
+Следующий безопасный шаг остаётся тем же: publisher/readback inventory v2 и
+released-session package v2 должны доставить exact intro projection из
+подтверждённого owner package в app loader. После этого нужны neutral Emulator
+E2E и физическая iOS/Android offline/accessibility/visual QA.

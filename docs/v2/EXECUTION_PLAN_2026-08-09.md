@@ -522,6 +522,11 @@ generation-pinned чтения stage, plan, owner input и confirmation. JSON и
 Additive learner-core inventory v2 уже связывает `intro + render + capsule` для
 каждой из 12 сессий, всего 36 immutable objects, не ломая v1.
 
+Session-intro runtime contract уточнён и реализован в локальном learner slice:
+ровно три страницы, один вопрос внизу каждой, slots 1–3 закрываются внутри
+интро, практика начинается со slot 4 и первые три задания не повторяются.
+Отдельный экран/блок «три вопроса после интро» запрещён.
+
 Первый незакрытый generator contract: добавить Firebase publisher/readback для
 inventory v2 и released-session package v2. После этого нужно замкнуть текущие отдельные
 canonical plan/preview/release seams в один root-owner E2E, повторить neutral

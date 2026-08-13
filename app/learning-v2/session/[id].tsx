@@ -254,7 +254,9 @@ export default function LearningV2SessionScreen() {
   const [runtime] = useState(getLesson1SessionRuntime);
   const { payload, compiled } = runtime;
   const session = compiled.sessions[Math.max(0, ordinal - 1)];
-  const [cardIndex, setCardIndex] = useState(0);
+  // Canonical slots 1–3 are answered inside the three intro pages. Practice
+  // therefore starts at slot 4 and those tasks must never render twice.
+  const [cardIndex, setCardIndex] = useState(3);
   const [introComplete, setIntroComplete] = useState(false);
   const [releasedRuntime, setReleasedRuntime] =
     useState<LearningV2ActivityReleasedSessionRuntimeHandleV1 | null>(null);
@@ -294,7 +296,7 @@ export default function LearningV2SessionScreen() {
   const networkIntentRef = useRef<LearningV2SessionNetworkIntent | null>(null);
   const localCommitCompletedRef = useRef(false);
   const voiceLongPressRef = useRef(false);
-  const progress = useSharedValue(1 / 12);
+  const progress = useSharedValue(4 / 12);
   const starFlight = useSharedValue(0);
   const starCounterScale = useSharedValue(1);
   const answerShake = useSharedValue(0);
@@ -304,6 +306,17 @@ export default function LearningV2SessionScreen() {
   const releasedPackageTask = releasedRuntime
     ? getLearningV2ActivityReleasedSessionTaskV1(releasedRuntime, cardIndex + 1)
     : null;
+  const introTaskIds = useMemo(() => {
+    if (!session) return null;
+    const taskIdAt = (introIndex: number) =>
+      releasedSessionMount.runtime
+        ? getLearningV2ActivityReleasedSessionTaskV1(
+            releasedSessionMount.runtime,
+            introIndex + 1,
+          ).taskId
+        : session.cards[introIndex]?.cardId;
+    return [taskIdAt(0), taskIdAt(1), taskIdAt(2)] as const;
+  }, [releasedSessionMount.runtime, session]);
   const currentTaskId = releasedPackageTask?.taskId ?? card?.cardId ?? null;
   const itemById = useMemo(
     () =>
@@ -1106,7 +1119,14 @@ export default function LearningV2SessionScreen() {
     setAttempts(1);
   };
 
-  if (!session || ordinal < 1 || (!releasedPackageTask && !item)) {
+  if (
+    !session ||
+    ordinal < 1 ||
+    !introTaskIds?.every(
+      (taskId): taskId is string => typeof taskId === "string",
+    ) ||
+    (!releasedPackageTask && !item)
+  ) {
     return (
       <View style={styles.screen}>
         <Text style={styles.error}>{copy.unavailable}</Text>
@@ -1123,12 +1143,42 @@ export default function LearningV2SessionScreen() {
         introScreens={[...payload.introScreens]}
         lessonId={payload.lessonId}
         sessionOrdinal={ordinal}
+        taskIds={introTaskIds as [string, string, string]}
         onBack={() => safeRouterBack(router)}
-        onComplete={() => {
-          // The learner surface is immutable for the entire run. A verified
-          // released runtime present at the intro boundary wins; otherwise the
-          // run stays on the legacy fallback and never switches mid-answer.
-          setReleasedRuntime(releasedSessionMount.runtime);
+        onComplete={(introCompletions) => {
+          for (const completion of introCompletions) {
+            taskCompletionsRef.current.set(completion.taskId, completion);
+            awardedCardIdsRef.current.add(completion.taskId);
+          }
+          const introStars = introCompletions.reduce(
+            (total, completion) =>
+              total + projectRequiredTaskStars(completion).stars,
+            0,
+          );
+          sessionStarsRef.current += introStars;
+          setDisplayedStars((value) => value + introStars);
+          // The learner surface is immutable for the entire run. Only a
+          // released runtime whose first three task IDs are the same IDs just
+          // completed inside the intro may win. A release hydrated mid-intro
+          // cannot switch the learner onto a different package.
+          const candidateRuntime = releasedSessionMount.runtime;
+          const candidateIntroTaskIds = candidateRuntime
+            ? [1, 2, 3].map(
+                (slot) =>
+                  getLearningV2ActivityReleasedSessionTaskV1(
+                    candidateRuntime,
+                    slot,
+                  ).taskId,
+              )
+            : [];
+          const introMatchesCandidate =
+            candidateIntroTaskIds.length === introCompletions.length &&
+            introCompletions.every(
+              (completion, index) =>
+                completion.taskId === candidateIntroTaskIds[index],
+            );
+          setReleasedRuntime(introMatchesCandidate ? candidateRuntime : null);
+          setCardIndex(3);
           setIntroComplete(true);
         }}
       />
@@ -1202,11 +1252,9 @@ export default function LearningV2SessionScreen() {
           <View>
             <Text style={styles.modeLabel}>{copy.modes[mode]}</Text>
             <Text style={styles.modeSupport}>
-              {cardIndex < 3
-                ? copy.introCheck(cardIndex + 1)
-                : (releasedPackageTask?.support ?? card?.support) === "none"
-                  ? copy.independent
-                  : copy.supportFades}
+              {(releasedPackageTask?.support ?? card?.support) === "none"
+                ? copy.independent
+                : copy.supportFades}
             </Text>
           </View>
         </Animated.View>

@@ -1,7 +1,7 @@
 /**
  * Jest stub: real @react-native-firebase/firestore is ESM; Node test env loads this via moduleNameMapper.
  *
- * Test hooks for claimDailyTasksAllShardsReward (runTransaction):
+ * Test hooks for shard reward transactions:
  *   firestore.__testState = { rewardClaimExists: boolean, userDocExists: boolean, userShards: number | null }
  *   firestore.__resetTestState()
  */

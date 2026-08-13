@@ -11,7 +11,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
-import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
+import { getUtcDayKey } from './local_date';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
@@ -22,7 +22,7 @@ import {
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { resumePendingDailyTasksAllShardsClaims, resumePendingShardDeltas } from './shards_system';
+import { resumePendingShardDeltas } from './shards_system';
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
@@ -54,7 +54,6 @@ import { resetMultiplierBreakdownCache } from './xp_manager';
 // clearCachedLeagueStateSnapshot в league_open_cache_policy.ts (защита от утечки
 // ранга/группы/участников лиги предыдущего аккаунта в club_screen).
 import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
-import { clearDailyTasksScreenSnapshotOnDisk } from './daily_tasks_screen_persist';
 import { clearScreenSnapshots } from './screen_snapshot_store';
 import { clearTrainerPracticeSnapshotOnDisk } from './trainer_practice_persist';
 import {
@@ -91,12 +90,7 @@ import {
   communityPackCreateDraftKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
-  dailyTasksAchievementAllDoneStreakKey,
-  dailyTasksAchievementNoRerollStreakKey,
   customFlashcardsKey,
-  dailyTaskLessonVisitedKey,
-  dailyTasksProgressKey,
-  dailyTasksRerollKey,
   diagnosticOpenFlagKey,
   diagnosticLastKey,
   fiftyFiftyUsageKey,
@@ -153,7 +147,6 @@ import {
   retiredCompetitiveModeStorageKeysForWipe,
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
-  targetKey,
   activeRecallAchievementCorrectCountKey,
   trainerAchievementCorrectCountKey,
   trainerAchievementCorrectStreakKey,
@@ -170,21 +163,6 @@ import {
   normalizeLegacyFreeLessonCap,
 } from './legacy_free_lesson_access';
 
-/** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
-type DailyTaskProgressRow = {
-  taskId: string;
-  current?: number;
-  completed?: boolean;
-  claimed?: boolean;
-};
-
-const taskProgressNum = (v: unknown): number =>
-  typeof v === 'number' && Number.isFinite(v) ? v : 0;
-
-const CLOUD_DAILY_TASKS_PROGRESS_KEY = 'daily_tasks_progress';
-const CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY = 'daily_tasks_progress_day';
-const FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY = targetKey('cloud_sync', 'fr', 'daily_tasks_progress');
-const FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY = targetKey('cloud_sync', 'fr', 'daily_tasks_progress_day');
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 const FRENCH_SYNC_PERFECT_MILESTONES = [5, 10, 15, 20, 25, 30] as const;
@@ -207,8 +185,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   comboAchievementCounterKey('fr'),
   dailyPhraseAchievementReadCountKey('fr'),
   dailyPhraseAchievementSaveCountKey('fr'),
-  dailyTasksAchievementAllDoneStreakKey('fr'),
-  dailyTasksAchievementNoRerollStreakKey('fr'),
   shareAchievementCounterKey('fr'),
   userStatsKey('fr'),
   statsDailyBreakdownKey('fr'),
@@ -239,9 +215,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
     resolvedPersonalTrainingsKey('fr', sourceLocale),
     ...DIAGNOSIS_TRAINING_IDS.map((id) => personalPracticeTrainingProgressKey(id, 'fr', sourceLocale)),
   ]),
-  FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
-  FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-  dailyTasksRerollKey('fr'),
   ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
     lessonBestScoreKey(lessonId, 'fr'),
     lessonPassCountKey(lessonId, 'fr'),
@@ -291,69 +264,25 @@ function leagueResultSignature(raw: unknown): string | null {
   }
 }
 
-/**
- * Полное восстановление с облака не должно затирать уже накопленный сегодня локальный прогресс
- * устаревшим daily_tasks_progress (например облако ещё не успело отправить актуальный снимок).
- */
-export function mergeDailyTasksProgressForRestore(localRaw: string | null | undefined, cloudRaw: string): string {
-  let localArr: DailyTaskProgressRow[] = [];
-  let cloudArr: DailyTaskProgressRow[] = [];
-  try {
-    if (localRaw && localRaw.trim()) {
-      const p = JSON.parse(localRaw);
-      if (Array.isArray(p)) localArr = p;
-    }
-  } catch {
-    localArr = [];
-  }
-  try {
-    const p = JSON.parse(cloudRaw);
-    if (Array.isArray(p)) cloudArr = p;
-    else return (localRaw && localRaw.trim()) ? localRaw : cloudRaw;
-  } catch {
-    return (localRaw && localRaw.trim()) ? localRaw : cloudRaw;
-  }
-  if (localArr.length === 0) return cloudRaw;
-  if (cloudArr.length === 0) return localRaw ?? '[]';
-
-  const byId = new Map<string, DailyTaskProgressRow>();
-  for (const row of cloudArr) {
-    if (row && typeof row.taskId === 'string' && row.taskId) {
-      byId.set(row.taskId, {
-        taskId: row.taskId,
-        current: taskProgressNum(row.current),
-        completed: row.completed === true,
-        claimed: row.claimed === true,
-      });
-    }
-  }
-  for (const row of localArr) {
-    if (!row || typeof row.taskId !== 'string' || !row.taskId) continue;
-    const cloud = byId.get(row.taskId);
-    if (!cloud) {
-      byId.set(row.taskId, {
-        taskId: row.taskId,
-        current: taskProgressNum(row.current),
-        completed: row.completed === true,
-        claimed: row.claimed === true,
-      });
-      continue;
-    }
-    byId.set(row.taskId, {
-      ...cloud,
-      taskId: row.taskId,
-      current: Math.max(taskProgressNum(cloud.current), taskProgressNum(row.current)),
-      completed: !!(cloud.completed || row.completed),
-      claimed: !!(cloud.claimed || row.claimed),
-    });
-  }
-  return JSON.stringify([...byId.values()]);
-}
-
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
 // Экспорт: тот же набор должен учитываться при сбросе локали после merge аккаунта (auth_provider).
 const SEASON_COSMETICS_SYNC_KEY = 'season_cosmetics_v1';
+/**
+ * cards-2.0 (E4): ключи, которые при restore НЕЛЬЗЯ перетирать облаком (LWW) —
+ * merge локального и облачного значения кастомной стратегией.
+ * Стратегия чистая: (localRaw, cloudRaw) → строка для записи в AsyncStorage.
+ */
+const FC_RESTORE_MERGE_STRATEGIES: Record<
+  string,
+  (localRaw: string | null | undefined, cloudRaw: string) => string
+> = {
+  // Cards 2.1 §3: звёзды раздела карточек удалены — ключей `fc_stars_v1` /
+  // `fc_deck_best_stars_v1` больше нет ни в SYNC_KEYS, ни в merge-стратегиях.
+};
+
 export const SYNC_KEYS = [
+  // cards-2.0: очередь ошибок Тренера переживает переустановку.
+  'trainer_store_v1',
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
@@ -403,7 +332,6 @@ export const SYNC_KEYS = [
   'achievement_trainer_correct_count',
   'achievement_trainer_correct_streak_v1',
   'achievement_trainer_perfect_session_count',
-  'achievement_all_daily_streak_v1',
   'helpful_error_reports_confirmed_v1',
   'achievement_daily_phrase_read_count',
   'achievement_daily_phrase_save_count',
@@ -433,8 +361,6 @@ export const SYNC_KEYS = [
   // обнуляются и юзер падает на дно таблицы. См. leaderboard backfill в
   // functions/src/sync_leaderboard.ts (читает progress.week_points_v2).
   'week_points_v2',
-  'daily_tasks_progress',
-  'daily_tasks_progress_day',
   'login_bonus_v1',
   /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
   'daily_stats',
@@ -535,7 +461,6 @@ export const SYNC_KEYS = [
   'phraseman_foreground_daily_ms_v1',
 
   // ── Блок «Весь путь» / метрики статистики (локально накапливаются) ─────────
-  'lifetime_daily_tasks_claimed_v1',
   'shards_lifetime_earned_v1',
   'shards_lifetime_spent_v1',
   /** Посуточные счётчики для графиков «Весь путь» (JSON { дата → метрики }). */
@@ -570,7 +495,7 @@ export const SYNC_KEYS = [
   //    Зеркалим в облако, чтобы переустановка / смена устройства не давала повторно
   //    забрать недельную/разовую награду (анти-фарм переустановкой, аудит P2 #12).
   //    Это лёгкий вариант: маркер «уже забрано» переживает реинсталл. Полную серверную
-  //    идемпотентность (CF reward_claims/{periodId}) делать отдельно — как в daily_tasks.
+  //    идемпотентность (CF reward_claims/{periodId}) делать отдельно.
   'boon_mystery_monday_claimed_v1',
   'boon_comeback_granted_v1',
   'boon_perfect_week_claimed_v1',
@@ -654,10 +579,8 @@ async function collectAccountLocalDataKeys(): Promise<string[]> {
   ]));
 }
 
-export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {
+export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
-    dailyTasksProgressKey(todayKey, target),
-    dailyTaskLessonVisitedKey(todayKey, target),
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
     diagnosticOpenFlagKey(target),
@@ -686,7 +609,6 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     ...getRuntimeSyncKeys(),
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
-    'daily_tasks_progress',
     'shard_survey_done_daykey_v1',
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
@@ -1645,10 +1567,7 @@ function mergeCurrentWeekProgressRestoreValue(
 }
 
 async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unknown>): Promise<[string, string][]> {
-  const restorableKeys = FRENCH_TARGET_SYNC_KEYS.filter((key) => (
-    key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY &&
-    key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY
-  ));
+  const restorableKeys = FRENCH_TARGET_SYNC_KEYS;
   const localMap = Object.fromEntries(
     await AsyncStorage.multiGet([...restorableKeys]),
   ) as Record<string, string | null>;
@@ -1659,6 +1578,13 @@ async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unk
     if (val === null || val === undefined) continue;
     const localValue = localMap[key];
     const storageValue = cloudProgressStorageValue(key, val);
+    // cards-2.0 (E4): звёзды/клеймы не LWW — merge в обе стороны.
+    const fcStrategy = FC_RESTORE_MERGE_STRATEGIES[key];
+    if (fcStrategy) {
+      const mergedFc = fcStrategy(localValue, storageValue);
+      if (mergedFc !== localValue) pairs.push([key, mergedFc]);
+      continue;
+    }
     // K2: owned-ключи (fr-scoped паки флешкарт и т.п.) мержим union'ом и в sticky-ветке —
     // покупка на другом девайсе догоняет устройство, локальная офлайн-покупка не теряется.
     if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key) || isMonotonicCounterRestoreKey(key)) {
@@ -1695,27 +1621,7 @@ export function deriveLastActiveDateForRestore(cloudData: Record<string, string 
   );
 }
 
-function currentCloudDailyTasksProgress(
-  cloudData: Record<string, string | null>,
-  progressKey: string = CLOUD_DAILY_TASKS_PROGRESS_KEY,
-  dayKeyField: string = CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-): string | null {
-  const raw = cloudData[progressKey];
-  if (raw === null || raw === undefined || String(raw).trim() === '') return null;
-
-  const dayKey = cloudData[dayKeyField];
-  if (!isDateKey(dayKey)) return null;
-  return dayKey === getTodayKey() ? String(raw) : null;
-}
-
-function removeCloudOnlyDailyTaskSnapshots(data: Record<string, string | null>): void {
-  delete data[CLOUD_DAILY_TASKS_PROGRESS_KEY];
-  delete data[CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
-  delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY];
-  delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
-}
-
-function dailyLessonHelperKeysForToday(todayKey: string = getTodayKey()): string[] {
+function dailyLessonHelperKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   return [
     fiftyFiftyUsageKey(todayKey, 'en'),
     fiftyFiftyUsageKey(todayKey, 'fr'),
@@ -1727,21 +1633,8 @@ function dailyLessonHelperKeysForToday(todayKey: string = getTodayKey()): string
   ];
 }
 
-async function addTodayDailyTaskSnapshots(data: Record<string, string | null>): Promise<void> {
-  const todayKey = getTodayKey();
-  const [englishTodayTasks, frenchTodayTasks] = await Promise.all([
-    AsyncStorage.getItem(dailyTasksProgressKey(todayKey, 'en')),
-    AsyncStorage.getItem(dailyTasksProgressKey(todayKey, 'fr')),
-  ]);
-  if (englishTodayTasks) {
-    data[CLOUD_DAILY_TASKS_PROGRESS_KEY] = englishTodayTasks;
-    data[CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
-  }
-  if (frenchTodayTasks) {
-    data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY] = frenchTodayTasks;
-    data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
-  }
-  const dailyLessonHelperKeys = dailyLessonHelperKeysForToday(todayKey);
+async function addTodayLessonHelperSnapshots(data: Record<string, string | null>): Promise<void> {
+  const dailyLessonHelperKeys = dailyLessonHelperKeysForToday();
   const dailyLessonHelperValues = await AsyncStorage.multiGet(dailyLessonHelperKeys);
   for (const [key, value] of dailyLessonHelperValues) {
     if (value !== null && value !== undefined && value !== '') {
@@ -1765,6 +1658,19 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
+};
+
+const getFunctionsCallable = () => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    return httpsCallable(getFunctions(getApp(), 'us-central1'), 'accountDeleteMine');
   } catch {
     return null;
   }
@@ -2223,23 +2129,6 @@ async function runSyncNow(): Promise<void> {
   return syncInFlight;
 }
 
-/** Після restore зі snapshot старі taskId у JSON — наступний load підтягує getTodayTasksSafe() і перезаписує ключ. */
-async function reconcileRestoredDayDailyStorageIfNeeded(restoredTargets: Array<'en' | 'fr'> | boolean): Promise<void> {
-  const targets = restoredTargets === true
-    ? ['en' as const]
-    : restoredTargets === false
-      ? []
-      : restoredTargets;
-  if (targets.length === 0) return;
-  try {
-    for (const target of targets) {
-      const studyTarget = target === 'fr' ? 'fr' : undefined;
-      const list = await getTodayTasksSafe(studyTarget);
-      if (list.length > 0) await loadTodayProgress(list, studyTarget);
-    }
-  } catch { /* empty */ }
-}
-
 function safeParseObject(raw: unknown): Record<string, unknown> {
   if (raw && typeof raw === 'object' && !Array.isArray(raw)) return raw as Record<string, unknown>;
   if (typeof raw !== 'string' || !raw.trim()) return {};
@@ -2374,8 +2263,6 @@ async function doSyncToCloud(): Promise<void> {
   const isSyncGenerationCurrent = () => isCurrentAccountGeneration(syncGeneration, uid);
   if (!isSyncGenerationCurrent()) return;
   try {
-    await resumePendingDailyTasksAllShardsClaims().catch(() => {});
-    if (!isSyncGenerationCurrent()) return;
     await resumePendingReportReplyShardClaims().catch(() => {});
     if (!isSyncGenerationCurrent()) return;
     // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
@@ -2389,10 +2276,6 @@ async function doSyncToCloud(): Promise<void> {
     for (const [key, value] of pairs) {
       data[key] = value;
     }
-    // daily_tasks_progress fields are cloud-only snapshots of date-keyed local rows.
-    // Never upload stale generic local copies after restore; only real
-    // daily_tasks_YYYY-MM-DD / scoped French keys below may populate these cloud fields.
-    removeCloudOnlyDailyTaskSnapshots(data);
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (!isSyncGenerationCurrent()) return;
@@ -2400,8 +2283,7 @@ async function doSyncToCloud(): Promise<void> {
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
 
-    // Дополнительно синхронизируем сегодняшние задания под фиксированными cloud keys.
-    await addTodayDailyTaskSnapshots(data);
+    await addTodayLessonHelperSnapshots(data);
     if (!isSyncGenerationCurrent()) return;
 
     // Сравниваем с последним синкнутым снапшотом и отправляем только изменённые поля.
@@ -2684,6 +2566,20 @@ async function applyRestoreFromUserDoc(
         stickyPairs.push([key, cloudProgressStorageValue(key, val)]);
       }
     }
+    // cards-2.0 (E4): merge-ключи применяются и в sticky-ветке («локальный XP
+    // выше») — звёзды/клеймы с другого устройства нельзя терять ни в одном
+    // направлении (union claimed / max stars).
+    for (const [fcKey, fcStrategy] of Object.entries(FC_RESTORE_MERGE_STRATEGIES)) {
+      const cloudVal = cloudData[fcKey];
+      if (cloudVal === null || cloudVal === undefined) continue;
+      try {
+        const localVal = await AsyncStorage.getItem(fcKey);
+        const mergedFc = fcStrategy(localVal, String(cloudVal));
+        if (mergedFc !== localVal) stickyPairs.push([fcKey, mergedFc]);
+      } catch {
+        /* fail-soft: ключ останется локальным */
+      }
+    }
     // Локальный XP ≥ облачного, но ник мог остаться только в облаке (другой девайс / сбой записи).
     const localNameRaw = await AsyncStorage.getItem('user_name');
     const localName = (localNameRaw ?? '').trim();
@@ -2815,29 +2711,6 @@ async function applyRestoreFromUserDoc(
       stickyPairs.push([ADMIN_ENERGY_COMMAND_KEY, String(cloudEnergyCmd)]);
     }
     stickyPairs.push(...await buildFrenchTargetStickyRestorePairs(cloudData));
-    const cloudDaily = currentCloudDailyTasksProgress(cloudData);
-    const restoredDailyTaskTargets: Array<'en' | 'fr'> = [];
-    if (cloudDaily) {
-      const dk = dailyTasksProgressKey(getTodayKey(), 'en');
-      const localDaily = await AsyncStorage.getItem(dk);
-      if (!localDaily) {
-        stickyPairs.push([dk, cloudDaily]);
-        restoredDailyTaskTargets.push('en');
-      }
-    }
-    const cloudFrenchDaily = currentCloudDailyTasksProgress(
-      cloudData,
-      FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
-      FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-    );
-    if (cloudFrenchDaily) {
-      const dk = dailyTasksProgressKey(getTodayKey(), 'fr');
-      const localDaily = await AsyncStorage.getItem(dk);
-      if (!localDaily) {
-        stickyPairs.push([dk, cloudFrenchDaily]);
-        restoredDailyTaskTargets.push('fr');
-      }
-    }
     for (const key of dailyLessonHelperKeysForToday()) {
       const value = cloudData[key];
       if (value === null || value === undefined) continue;
@@ -2891,8 +2764,6 @@ async function applyRestoreFromUserDoc(
     }
     if (appliedStickyState) {
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
-      await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
-      assertCurrent();
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
       assertCurrent();
       return completeRestore(true);
@@ -2923,10 +2794,6 @@ async function applyRestoreFromUserDoc(
   const currentRestoreWeekId = getUtcIsoWeekId(new Date());
   for (const key of getRuntimeSyncKeys()) {
     if (
-      key === CLOUD_DAILY_TASKS_PROGRESS_KEY ||
-      key === CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
-      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY ||
-      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
       key === 'streak_count' ||
       key === 'last_active_date' ||
       key === 'streak_last_date' ||
@@ -2975,25 +2842,6 @@ async function applyRestoreFromUserDoc(
   if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);
-  const dailyBlob = currentCloudDailyTasksProgress(cloudData);
-  const fullRestoreDailyTargets: Array<'en' | 'fr'> = [];
-  if (dailyBlob != null && dailyBlob !== '') {
-    const dk = dailyTasksProgressKey(getTodayKey(), 'en');
-    const localDailyForMerge = await AsyncStorage.getItem(dk);
-    pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(dailyBlob))]);
-    fullRestoreDailyTargets.push('en');
-  }
-  const frenchDailyBlob = currentCloudDailyTasksProgress(
-    cloudData,
-    FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
-    FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-  );
-  if (frenchDailyBlob != null && frenchDailyBlob !== '') {
-    const dk = dailyTasksProgressKey(getTodayKey(), 'fr');
-    const localDailyForMerge = await AsyncStorage.getItem(dk);
-    pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(frenchDailyBlob))]);
-    fullRestoreDailyTargets.push('fr');
-  }
   for (const key of dailyLessonHelperKeysForToday()) {
     const value = cloudData[key];
     if (value !== null && value !== undefined) {
@@ -3020,10 +2868,6 @@ async function applyRestoreFromUserDoc(
     }
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
-  }
-  if (fullRestoreDailyTargets.length > 0) {
-    await reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets);
-    assertCurrent();
   }
   assertCurrent();
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
@@ -3297,12 +3141,11 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) data[key] = value;
-    removeCloudOnlyDailyTaskSnapshots(data);
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (achievementsV1) data['achievements_state'] = achievementsV1;
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
-    await addTodayDailyTaskSnapshots(data);
+    await addTodayLessonHelperSnapshots(data);
     for (const [key, value] of Object.entries({ ...data })) {
       if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
       // Premium/VIP-поля клиент в облако не пишет (авторитет — RevenueCat/Admin SDK).
@@ -3624,9 +3467,6 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   // зачем: без этого club_screen мог мгновенно отрендерить ранг/группу лиги
   // предыдущего аккаунта (см. комментарий у clearCachedLeagueStateSnapshot).
   clearCachedLeagueStateSnapshot();
-  // зачем: дисковый снапшот «Вызовов дня» ключуется по аккаунту, но при wipe локальных
-  // данных его надо стереть вместе с остальным — иначе он остаётся мусором на диске.
-  clearDailyTasksScreenSnapshotOnDisk();
   // зачем: ключ снапшота практики содержит только target+язык, БЕЗ uid — без сброса
   // следующий вошедший увидел бы на первом кадре чужую статистику ошибок.
   clearTrainerPracticeSnapshotOnDisk();

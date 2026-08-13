@@ -60,17 +60,10 @@ type StorageCloudContract = {
     syncKeysIncludesFrenchTargetSyncKeys: boolean;
     syncStudyTargetsIncludeEnglishFrench: boolean;
     frenchSyncSourceLocalesIncludeRuUkOnly: boolean;
-    frenchCloudDailyTaskSnapshotKeysAreTargetScoped: boolean;
-    removeCloudOnlyDailyTaskSnapshotsDeletesFrenchSnapshots: boolean;
-    addTodayDailyTaskSnapshotsUploadsFrenchToday: boolean;
     stickyRestoreUsesFrenchTargetSyncKeys: boolean;
-    restoreWritesFrenchDailyTasksToTargetScopedKey: boolean;
-    fullRestoreReconcilesFrenchDailyTasks: boolean;
     accountWipeUsesSyncStudyTargets: boolean;
     accountWipeIncludesFrenchCommunityDraftUk: boolean;
     forceSyncUsesRuntimeSyncKeys: boolean;
-    forceSyncRemovesCloudOnlySnapshots: boolean;
-    forceSyncAddsTodayDailySnapshots: boolean;
   };
   testedSurfaces: Array<{
     testPath: string;
@@ -135,17 +128,10 @@ type Report = {
     syncKeysIncludesFrenchTargetSyncKeys: boolean;
     syncStudyTargetsIncludeEnglishFrench: boolean;
     frenchSyncSourceLocalesIncludeRuUkOnly: boolean;
-    frenchCloudDailyTaskSnapshotKeysAreTargetScoped: boolean;
-    removeCloudOnlyDailyTaskSnapshotsDeletesFrenchSnapshots: boolean;
-    addTodayDailyTaskSnapshotsUploadsFrenchToday: boolean;
     stickyRestoreUsesFrenchTargetSyncKeys: boolean;
-    restoreWritesFrenchDailyTasksToTargetScopedKey: boolean;
-    fullRestoreReconcilesFrenchDailyTasks: boolean;
     accountWipeUsesSyncStudyTargets: boolean;
     accountWipeIncludesFrenchCommunityDraftUk: boolean;
     forceSyncUsesRuntimeSyncKeys: boolean;
-    forceSyncRemovesCloudOnlySnapshots: boolean;
-    forceSyncAddsTodayDailySnapshots: boolean;
     testedSurfaceFiles: number;
     testedEvidenceChecks: number;
     storageMigrationAllowed: boolean;
@@ -189,7 +175,6 @@ const SOURCE_FILES = {
   studyTarget: 'app/study_target.ts',
   runtimeServerDeliveryContractV2Packet: 'audits/runtime_server_delivery_contract_v2_packet.json',
   targetStorageKeyTest: 'tests/gustav_target_storage_keys.test.ts',
-  cloudSyncDailyTasksMergeTest: 'tests/cloud_sync_daily_tasks_merge.test.ts',
   cloudSyncSyncKeysValidityTest: 'tests/cloud_sync_sync_keys_validity.test.ts',
   cloudMixedPayloadTargetStatsTest: 'tests/gustav_cloud_mixed_payload_target_stats.test.ts',
   cloudSyncIntroLocalOnlyTest: 'tests/cloud_sync_intro_local_only.test.ts',
@@ -228,13 +213,6 @@ function sha256(filePath: string): string {
 
 function object(value: unknown): JsonObject {
   return value && typeof value === 'object' && !Array.isArray(value) ? value as JsonObject : {};
-}
-
-function n(value: JsonObject, key: string): number {
-  const raw = value[key];
-  if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
-  if (typeof raw === 'string' && raw.trim() !== '' && Number.isFinite(Number(raw))) return Number(raw);
-  return 0;
 }
 
 function b(value: JsonObject, key: string): boolean {
@@ -304,7 +282,6 @@ function aiDerivedStorageFactories(names: string[]): string[] {
 function testedSurfaces(repoRoot: string): StorageCloudContract['testedSurfaces'] {
   const tests = [
     SOURCE_FILES.targetStorageKeyTest,
-    SOURCE_FILES.cloudSyncDailyTasksMergeTest,
     SOURCE_FILES.cloudSyncSyncKeysValidityTest,
     SOURCE_FILES.cloudMixedPayloadTargetStatsTest,
     SOURCE_FILES.cloudSyncIntroLocalOnlyTest,
@@ -412,8 +389,6 @@ function buildContract(repoRoot: string, runDir: string): StorageCloudContract {
   const syncKeysSlice = sourceSlice(cloudSyncSource, 'export const SYNC_KEYS', '] as const;');
   const cloudSyncValidityTestSource = readText(path.join(repoRoot, SOURCE_FILES.cloudSyncSyncKeysValidityTest));
   const accountWipeSlice = functionBody(cloudSyncSource, 'accountLocalDataKeysForToday');
-  const addTodaySlice = functionBody(cloudSyncSource, 'addTodayDailyTaskSnapshots');
-  const removeSnapshotsSlice = functionBody(cloudSyncSource, 'removeCloudOnlyDailyTaskSnapshots');
   const stickyRestoreSlice = functionBody(cloudSyncSource, 'buildFrenchTargetStickyRestorePairs');
   const forceSyncSlice = functionBody(cloudSyncSource, 'forceSyncToCloud');
 
@@ -466,7 +441,7 @@ function buildContract(repoRoot: string, runDir: string): StorageCloudContract {
         cloudSyncValidityTestSource.includes('(^|::)'),
       frenchTargetSyncKeysRejectLegacyFlatKeysTested:
         cloudSyncValidityTestSource.includes('LEGACY_FLAT_FRENCH_KEYS') &&
-        cloudSyncValidityTestSource.includes('daily_tasks_progress'),
+        cloudSyncValidityTestSource.includes('keys.filter((key) => LEGACY_FLAT_FRENCH_KEYS.includes(key))'),
       studyTargetSelectionKeysExcludedFromRuntimeSyncTested:
         cloudSyncValidityTestSource.includes('study target selection keys are local-only') &&
         cloudSyncValidityTestSource.includes("not.toContain('study_target_v1')") &&
@@ -477,33 +452,15 @@ function buildContract(repoRoot: string, runDir: string): StorageCloudContract {
       syncKeysIncludesFrenchTargetSyncKeys: syncKeysSlice.includes('...FRENCH_TARGET_SYNC_KEYS'),
       syncStudyTargetsIncludeEnglishFrench: /\['en',\s*'fr'\]\s+as const/.test(cloudSyncSource),
       frenchSyncSourceLocalesIncludeRuUkOnly: /FRENCH_SYNC_SOURCE_LOCALES\s*=\s*\['ru',\s*'uk'\]\s+as const/.test(cloudSyncSource),
-      frenchCloudDailyTaskSnapshotKeysAreTargetScoped:
-        cloudSyncSource.includes("targetKey('cloud_sync', 'fr', 'daily_tasks_progress')") &&
-        cloudSyncSource.includes("targetKey('cloud_sync', 'fr', 'daily_tasks_progress_day')"),
-      removeCloudOnlyDailyTaskSnapshotsDeletesFrenchSnapshots:
-        removeSnapshotsSlice.includes('FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY') &&
-        removeSnapshotsSlice.includes('FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY'),
-      addTodayDailyTaskSnapshotsUploadsFrenchToday:
-        addTodaySlice.includes("dailyTasksProgressKey(todayKey, 'fr')") &&
-        addTodaySlice.includes('data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY]'),
       stickyRestoreUsesFrenchTargetSyncKeys:
         stickyRestoreSlice.includes('FRENCH_TARGET_SYNC_KEYS.filter') &&
         stickyRestoreSlice.includes('AsyncStorage.multiGet([...restorableKeys])'),
-      restoreWritesFrenchDailyTasksToTargetScopedKey:
-        cloudSyncSource.includes("dailyTasksProgressKey(getTodayKey(), 'fr')"),
-      fullRestoreReconcilesFrenchDailyTasks:
-        cloudSyncSource.includes("fullRestoreDailyTargets.push('fr')") &&
-        cloudSyncSource.includes('reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets)'),
       accountWipeUsesSyncStudyTargets:
         accountWipeSlice.includes('SYNC_STUDY_TARGETS.flatMap((target)'),
       accountWipeIncludesFrenchCommunityDraftUk:
         accountWipeSlice.includes("target === 'fr' ? [communityPackCreateDraftKey(target, 'uk')]"),
       forceSyncUsesRuntimeSyncKeys:
         forceSyncSlice.includes('AsyncStorage.multiGet(getRuntimeSyncKeys())'),
-      forceSyncRemovesCloudOnlySnapshots:
-        forceSyncSlice.includes('removeCloudOnlyDailyTaskSnapshots(data)'),
-      forceSyncAddsTodayDailySnapshots:
-        forceSyncSlice.includes('await addTodayDailyTaskSnapshots(data)'),
     },
     testedSurfaces: testedSurfaces(repoRoot),
     migrationPolicy: {
@@ -650,11 +607,6 @@ function makeProbes(contract: StorageCloudContract): Probe[] {
       mutate: (draft) => { draft.cloudSyncContract.studyTargetSelectionKeysExcludedFromRuntimeSyncTested = false; },
     },
     {
-      id: 'french_daily_cloud_snapshot_missing_rejected',
-      expectedAccept: false,
-      mutate: (draft) => { draft.cloudSyncContract.frenchCloudDailyTaskSnapshotKeysAreTargetScoped = false; },
-    },
-    {
       id: 'sticky_restore_missing_rejected',
       expectedAccept: false,
       mutate: (draft) => { draft.cloudSyncContract.stickyRestoreUsesFrenchTargetSyncKeys = false; },
@@ -711,7 +663,6 @@ function renderMarkdown(report: Report): string {
     `- French sync legacy flat key rejection tested: ${report.summary.frenchTargetSyncKeysRejectLegacyFlatKeysTested ? 'yes' : 'no'}`,
     `- Study target selection keys excluded from cloud sync: ${report.summary.studyTargetSelectionKeysExcludedFromRuntimeSyncTested ? 'yes' : 'no'}`,
     `- Sync keys include French target keys: ${report.summary.syncKeysIncludesFrenchTargetSyncKeys ? 'yes' : 'no'}`,
-    `- French daily cloud snapshots scoped: ${report.summary.frenchCloudDailyTaskSnapshotKeysAreTargetScoped ? 'yes' : 'no'}`,
     `- Sticky restore uses French target keys: ${report.summary.stickyRestoreUsesFrenchTargetSyncKeys ? 'yes' : 'no'}`,
     `- Account wipe covers study targets: ${report.summary.accountWipeUsesSyncStudyTargets ? 'yes' : 'no'}`,
     `- Storage migration allowed: ${report.summary.storageMigrationAllowed ? 'yes' : 'no'}`,
@@ -820,7 +771,6 @@ function main(): void {
       studyTarget: SOURCE_FILES.studyTarget,
       runtimeServerDeliveryContractV2Packet: rel(repoRoot, runtimePacketPath),
       targetStorageKeyTest: SOURCE_FILES.targetStorageKeyTest,
-      cloudSyncDailyTasksMergeTest: SOURCE_FILES.cloudSyncDailyTasksMergeTest,
       cloudSyncSyncKeysValidityTest: SOURCE_FILES.cloudSyncSyncKeysValidityTest,
       cloudMixedPayloadTargetStatsTest: SOURCE_FILES.cloudMixedPayloadTargetStatsTest,
       cloudSyncIntroLocalOnlyTest: SOURCE_FILES.cloudSyncIntroLocalOnlyTest,
@@ -859,17 +809,10 @@ function main(): void {
       syncKeysIncludesFrenchTargetSyncKeys: contract.cloudSyncContract.syncKeysIncludesFrenchTargetSyncKeys,
       syncStudyTargetsIncludeEnglishFrench: contract.cloudSyncContract.syncStudyTargetsIncludeEnglishFrench,
       frenchSyncSourceLocalesIncludeRuUkOnly: contract.cloudSyncContract.frenchSyncSourceLocalesIncludeRuUkOnly,
-      frenchCloudDailyTaskSnapshotKeysAreTargetScoped: contract.cloudSyncContract.frenchCloudDailyTaskSnapshotKeysAreTargetScoped,
-      removeCloudOnlyDailyTaskSnapshotsDeletesFrenchSnapshots: contract.cloudSyncContract.removeCloudOnlyDailyTaskSnapshotsDeletesFrenchSnapshots,
-      addTodayDailyTaskSnapshotsUploadsFrenchToday: contract.cloudSyncContract.addTodayDailyTaskSnapshotsUploadsFrenchToday,
       stickyRestoreUsesFrenchTargetSyncKeys: contract.cloudSyncContract.stickyRestoreUsesFrenchTargetSyncKeys,
-      restoreWritesFrenchDailyTasksToTargetScopedKey: contract.cloudSyncContract.restoreWritesFrenchDailyTasksToTargetScopedKey,
-      fullRestoreReconcilesFrenchDailyTasks: contract.cloudSyncContract.fullRestoreReconcilesFrenchDailyTasks,
       accountWipeUsesSyncStudyTargets: contract.cloudSyncContract.accountWipeUsesSyncStudyTargets,
       accountWipeIncludesFrenchCommunityDraftUk: contract.cloudSyncContract.accountWipeIncludesFrenchCommunityDraftUk,
       forceSyncUsesRuntimeSyncKeys: contract.cloudSyncContract.forceSyncUsesRuntimeSyncKeys,
-      forceSyncRemovesCloudOnlySnapshots: contract.cloudSyncContract.forceSyncRemovesCloudOnlySnapshots,
-      forceSyncAddsTodayDailySnapshots: contract.cloudSyncContract.forceSyncAddsTodayDailySnapshots,
       testedSurfaceFiles: contract.testedSurfaces.length,
       testedEvidenceChecks: evidenceChecks,
       storageMigrationAllowed: contract.migrationPolicy.storageMigrationAllowed,

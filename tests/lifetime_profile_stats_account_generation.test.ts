@@ -78,31 +78,13 @@ test('omitted-token lifetime shard increment captures account A and cannot commi
   expect(storage.setItem).not.toHaveBeenCalledWith('shards_lifetime_earned_v1', '10');
 });
 
-test('omitted-token daily-task lifetime increment captures account A across its downstream daily write', async () => {
-  beginAccountGeneration('account-a');
-  const readA = deferred<string | null>();
-  storage.getItem.mockReturnValueOnce(readA.promise);
-  const { bumpDailyTaskClaimed } = await import('../app/lifetime_profile_stats');
-
-  const bump = bumpDailyTaskClaimed('fr');
-  for (let i = 0; i < 12 && storage.getItem.mock.calls.length === 0; i += 1) await Promise.resolve();
-  beginAccountGeneration('account-b');
-  readA.resolve('4');
-
-  await bump;
-  expect(storage.setItem).not.toHaveBeenCalledWith('lifetime_daily_tasks_claimed_v1', '5');
-  expect(storage.setItem).not.toHaveBeenCalledWith('stats_daily_breakdown_fr_v1', expect.any(String));
-});
-
 test('uninitialized identity cannot enter lifetime or daily-stat mutation boundaries', async () => {
   const {
-    bumpDailyTaskClaimed,
     bumpLifetimeShardsEarned,
     bumpLifetimeShardsSpent,
   } = await import('../app/lifetime_profile_stats');
   const { bumpStatsDaily } = await import('../app/stats_daily_breakdown');
 
-  await bumpDailyTaskClaimed('fr');
   await bumpLifetimeShardsEarned(3);
   await bumpLifetimeShardsSpent(2);
   await bumpStatsDaily('shards_earned', 3);

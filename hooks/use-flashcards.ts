@@ -325,6 +325,55 @@ export const removeFlashcard = async (id: string, studyTarget?: RuntimeStudyTarg
   }, undefined);
 };
 
+/**
+ * cards-2.0 (E7): удаление со снапшотом — для undo-снекбара.
+ * Возвращает удалённую карточку и её индекс (для восстановления на место)
+ * или null, если карточки уже нет.
+ */
+export const removeFlashcardWithSnapshot = async (
+  id: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<{ card: Flashcard; index: number } | null> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return null;
+  return withWriteLock<{ card: Flashcard; index: number } | null>(accountToken, async () => {
+    const target = cacheTarget(studyTarget);
+    const cards = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return null;
+    const index = cards.findIndex(c => c.id === id);
+    if (index < 0) return null;
+    const card = cards[index];
+    const next = [...cards];
+    next.splice(index, 1);
+    await persistFlashcards(next, target, accountToken);
+    return { card, index };
+  }, null);
+};
+
+/**
+ * cards-2.0 (E7): undo удаления — вернуть карточку на прежнее место.
+ * Идемпотентно: если id уже есть (двойной тап «Вернуть»), ничего не делает.
+ * Лимит-20 намеренно НЕ проверяется: restore возвращает то, что юзер уже имел.
+ */
+export const restoreFlashcard = async (
+  card: Flashcard,
+  index?: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
+  return withWriteLock(accountToken, async () => {
+    const target = cacheTarget(studyTarget);
+    const cards = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return;
+    if (cards.some(c => c.id === card.id)) return;
+    const next = [...cards];
+    const at = index == null ? next.length : Math.max(0, Math.min(index, next.length));
+    next.splice(at, 0, card);
+    await persistFlashcards(next, target, accountToken);
+  }, undefined);
+};
+
 export const removeFlashcardByEnglish = async (
   en: string,
   studyTarget?: RuntimeStudyTarget,

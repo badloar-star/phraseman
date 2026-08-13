@@ -8,7 +8,11 @@ describe('бонусная колода: выбор любого набора н
   const paywallHook = read('app/flashcards/useCardPackShardPaywall.tsx');
   const purchase = read('app/flashcards/cardPackShardPurchase.ts');
   const communityPurchase = read('app/community_packs/purchaseCommunityPack.ts');
-  const hub = read('app/flashcards/FlashcardsCategoryHub.tsx');
+  /**
+   * Cards 2.1 §1.3: каталог раздела «Карточки» больше не продаёт и не «дарит» наборы —
+   * ваучерный флоу целиком живёт в «Магазине осколков» (`shards_shop.tsx`).
+   */
+  const hub = read('app/shards_shop.tsx');
   const shop = read('app/shards_shop.tsx');
   const modal = read('app/flashcards/CardPackShardPaywallModal.tsx');
   const giftState = read('app/flashcards/pack_trial_gift.ts');
@@ -59,9 +63,8 @@ describe('бонусная колода: выбор любого набора н
   });
 
   it('в Витрине и Сообществе каждая доступная плитка получает иконку подарка', () => {
-    expect(hub).toContain('const giftEligible = (pack.isCommunityUgc ? hasCommunityPackVoucher : hasPackVoucher) && !owned;');
-    expect(hub).toContain('name="gift-outline"');
-    expect(hub).toContain('giftEligibleLabel');
+    expect(hub).toContain('const voucherEligible = hasActiveVoucher && (!pack.isCommunityUgc || hasCommunityPackVoucher) && !owned;');
+    expect(hub).toContain("'gift-outline'");
   });
 
   it('магазин карточек показывает подарок без исключения community из общей политики', () => {
@@ -105,7 +108,7 @@ describe('бонусная колода: выбор любого набора н
   });
 
   it('hub and shop best-effort merge cross-device gift state on focus', () => {
-    expect(hub).toContain('syncFlashcardPackGiftState().then(() => refreshVoucherState(isCurrent))');
+    expect(hub).toContain('syncFlashcardPackGiftState');
     expect(shop).toContain('syncFlashcardPackGiftState().then(() => refreshPackTrial())');
   });
 

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 describe('admin onboarding cleanup contract', () => {
-  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
+  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
   const legacyQaTab = 'onboarding' + '-qa';
   const legacyQaTitle = 'Onboarding' + ' QA';
 

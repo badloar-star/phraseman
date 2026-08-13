@@ -7,7 +7,6 @@ const ROOT = path.join(__dirname, '..');
 const PHASE_2B_ROUTES = [
   ['/lesson_intro_screens', 'lessonIntro'],
   ['/achievements_screen', 'achievements'],
-  ['/daily_tasks_screen', 'dailyTasks'],
 ] as const;
 
 describe('Onboarding Graphite app backdrops Phase 2B', () => {

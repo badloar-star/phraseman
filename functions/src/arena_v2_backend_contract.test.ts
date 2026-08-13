@@ -74,7 +74,12 @@ describe('Arena V2 backend source contract', () => {
 
   it('keeps ranked human-only, strict range, pair reservations and server settlement guards', () => {
     expect(core).toContain("return mode === 'ranked' ? 1 : 3");
-    expect(source).toContain("match.opponentKind !== 'human'");
+    // Публичный opponentKind теперь всегда 'human' (бот не раскрывается),
+    // поэтому целостность рейтинга держится на числе живых участников.
+    expect(source).toContain('humans.length !== 2');
+    expect(source).not.toContain("match.opponentKind !== 'human'");
+    expect(source).not.toContain('Training opponent');
+    expect(source).not.toContain('Arena Bot');
     expect(source).toContain("Math.abs(divisions[0] - divisions[1]) > 1");
     expect(source).toContain('reservationExpiresAtMs');
     expect(source).toContain('pairLimitCommitted');

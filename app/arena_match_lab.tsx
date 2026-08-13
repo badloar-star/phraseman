@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaQuestion } from '../components/arena/ArenaQuestion';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaDisclosureBadge, ArenaProgress, ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaDisclosureBadge, ArenaProgress, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -18,6 +18,7 @@ import { arenaExpansionHome, arenaMatchLabGet } from './arena_client';
 import { trackArenaTelemetry } from './arena_telemetry';
 
 export default function ArenaMatchLabScreen() {
+  const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
@@ -52,7 +53,7 @@ export default function ArenaMatchLabScreen() {
 
   if (state !== 'ready' || !plan) return (
     <ArenaScreen title={arenaExpansionText(lang, 'lab')} scroll={false}>
-      <View style={styles.center}><ArenaStateCard state={state} title={arenaExpansionText(lang, state === 'error' ? 'unavailable' : state)} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /></View>
+      <View style={styles.center}><ArenaStateNotice state={state} emptyHint="emptyLab" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>
     </ArenaScreen>
   );
 
@@ -76,7 +77,7 @@ export default function ArenaMatchLabScreen() {
             {item.explanation ? <Text style={[styles.body, { color: P.muted }]}>{item.explanation}</Text> : null}
           </V2Card>
         )}
-        ListEmptyComponent={<ArenaStateCard state="empty" title={arenaExpansionText(lang, 'empty')} />}
+        ListEmptyComponent={<ArenaStateNotice state="empty" emptyHint="emptyLab" />}
         ListFooterComponent={recoveryItem ? (
           <View style={styles.block}>
             <Text style={[styles.heading, { color: P.text }]}>{arenaExpansionText(lang, 'recovery')}</Text>

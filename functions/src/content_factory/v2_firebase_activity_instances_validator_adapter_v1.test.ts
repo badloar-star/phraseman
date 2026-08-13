@@ -16,6 +16,8 @@ import {
   createFirebaseAdminV2ActivityInstancesValidatorAdapterV1,
   getV2FirebaseActivityInstancesValidatorSummaryV1,
   isV2FirebaseActivityInstancesValidatorResultHandleV1,
+  resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1,
+  resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1,
   resolveV2FirebaseActivityInstancesValidatorResultMaterialV1,
 } from "./v2_firebase_activity_instances_validator_adapter_v1";
 
@@ -378,6 +380,139 @@ describe("Firebase Activity Instances validator adapter", () => {
         resultFingerprint: pureResult.resultFingerprint,
       }),
     });
+    const releasedSession =
+      resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1({
+        handle,
+        plan: plan as never,
+        sessionOrdinal: 2,
+      });
+    expect(releasedSession).toMatchObject({
+      planFingerprint: plan.planFingerprint,
+      courseContractFingerprint: plan.courseContract.courseContractFingerprint,
+      stageId: workspace.stage.stageId,
+      episodeId: workspace.stage.episodeId,
+      sessionOrdinal: 2,
+      sessionId: "episode-1:session:02",
+      packageFingerprint,
+      validatorSummaryFingerprint: summary.summaryFingerprint,
+      permitAggregateFingerprint: exactPermitAggregateFingerprint,
+      childReadbackAggregateFingerprint:
+        summary.childReadbackAggregateFingerprint,
+      storageReadbackFingerprint: summary.storageReadbackFingerprint,
+      renderRaw: raw,
+      capsuleEnvelopeRaw: raw,
+      renderPin: {
+        objectPath: permits[5]!.objectPath,
+        contentHash: rawHash,
+        objectGeneration: permits[5]!.objectGeneration,
+        byteSize: rawBytes.byteLength,
+      },
+      capsulePin: {
+        objectPath: permits[6]!.objectPath,
+        contentHash: rawHash,
+        objectGeneration: permits[6]!.objectGeneration,
+        byteSize: rawBytes.byteLength,
+      },
+      repositoryOriginAuthority: "authenticated_repository_snapshot_only",
+      artifactStorageAuthority: "firebase_admin_generation_pinned_readback",
+      publicationAuthority: "none",
+      runtimeConsumer: false,
+      releaseEligible: false,
+      releaseAuthority: false,
+    });
+    expect(Object.isFrozen(releasedSession)).toBe(true);
+    const serverEvaluatorSession =
+      resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1({
+        handle,
+        plan: plan as never,
+        sessionOrdinal: 2,
+      });
+    expect(serverEvaluatorSession).toMatchObject({
+      planFingerprint: plan.planFingerprint,
+      courseContractFingerprint: plan.courseContract.courseContractFingerprint,
+      stageId: workspace.stage.stageId,
+      episodeId: workspace.stage.episodeId,
+      sessionOrdinal: 2,
+      sessionId: "episode-1:session:02",
+      packageFingerprint,
+      validatorSummaryFingerprint: summary.summaryFingerprint,
+      sidecarRaw: raw,
+      sidecarPin: {
+        objectPath: permits[7]!.objectPath,
+        contentHash: rawHash,
+        objectGeneration: permits[7]!.objectGeneration,
+        byteSize: rawBytes.byteLength,
+      },
+      repositoryOriginAuthority: "authenticated_repository_snapshot_only",
+      artifactStorageAuthority: "firebase_admin_generation_pinned_readback",
+      evaluatorKeyDelivery: "server_only_never_learner_projection",
+      evaluationAuthority: "candidate_only_server_policy_required",
+      walletAuthority: "none",
+      masteryAuthority: "none",
+      evidenceAuthority: "none",
+      completionAuthority: "none",
+      publicationAuthority: "none",
+      runtimeConsumer: false,
+      releaseEligible: false,
+      releaseAuthority: false,
+    });
+    expect(Object.isFrozen(serverEvaluatorSession)).toBe(true);
+    expect(() =>
+      resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1({
+        handle: { ...handle } as never,
+        plan: plan as never,
+        sessionOrdinal: 2,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_publication_session_resolve_invalid",
+    );
+    expect(() =>
+      resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1({
+        handle: { ...handle } as never,
+        plan: plan as never,
+        sessionOrdinal: 2,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_server_evaluator_resolve_invalid",
+    );
+    expect(() =>
+      resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1({
+        handle,
+        plan: { ...plan } as never,
+        sessionOrdinal: 2,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_publication_session_resolve_invalid",
+    );
+    expect(() =>
+      resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1({
+        handle,
+        plan: { ...plan } as never,
+        sessionOrdinal: 2,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_server_evaluator_resolve_invalid",
+    );
+    for (const sessionOrdinal of [0, 13, 1.5]) {
+      expect(() =>
+        resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1({
+          handle,
+          plan: plan as never,
+          sessionOrdinal,
+        }),
+      ).toThrow(
+        "v2_firebase_activity_instances_publication_session_resolve_invalid",
+      );
+      expect(() =>
+        resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1({
+          handle,
+          plan: plan as never,
+          sessionOrdinal,
+        }),
+      ).toThrow(
+        "v2_firebase_activity_instances_server_evaluator_resolve_invalid",
+      );
+    }
     expect(() =>
       resolveV2FirebaseActivityInstancesValidatorResultMaterialV1({
         handle,
@@ -409,6 +544,24 @@ describe("Firebase Activity Instances validator adapter", () => {
       humanReviewAuthority: "none",
       releaseAuthority: false,
     });
+    expect(() =>
+      resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1({
+        handle,
+        plan: plan as never,
+        sessionOrdinal: 1,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_publication_session_resolve_invalid",
+    );
+    expect(() =>
+      resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1({
+        handle,
+        plan: plan as never,
+        sessionOrdinal: 1,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_server_evaluator_resolve_invalid",
+    );
   });
 
   it("returns a blocked no-I/O handle when the candidate root cannot yield permits", async () => {
@@ -439,6 +592,15 @@ describe("Firebase Activity Instances validator adapter", () => {
     expect(storage.downloadGenerationExact).not.toHaveBeenCalled();
     expect(validatePure).toHaveBeenCalledWith(
       expect.objectContaining({ sessionBytes: [] }),
+    );
+    expect(() =>
+      resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1({
+        handle,
+        plan: plan as never,
+        sessionOrdinal: 1,
+      }),
+    ).toThrow(
+      "v2_firebase_activity_instances_publication_session_resolve_invalid",
     );
   });
 

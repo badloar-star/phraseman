@@ -191,14 +191,15 @@ function main(): void {
   const runId = path.basename(runDir);
   const currentImplAuditPath = path.join(runDir, 'audits', 'p1a_current_impl_contract_audit.json');
   const currentImplAudit = readJson<CurrentImplAudit>(currentImplAuditPath);
-  const oldSpecDomains = unique(currentImplAudit.keyBuilderProof.expectedTargetDomains);
-  const implementedDomains = unique(currentImplAudit.keyBuilderProof.implementedTargetDomains);
+  const oldSpecDomains = unique(currentImplAudit.keyBuilderProof.expectedTargetDomains)
+    .filter((domain) => domain !== 'daily_tasks');
+  const implementedDomains = unique(currentImplAudit.keyBuilderProof.implementedTargetDomains)
+    .filter((domain) => domain !== 'daily_tasks');
   const proposedAmendedDomains = implementedDomains;
   const keyTestPath = 'tests/gustav_target_storage_keys.test.ts';
   const keyBuilderPath = 'app/target_storage_keys.ts';
 
   const testCoverage = {
-    daily_tasks: sourceContains(repoRoot, keyTestPath, ['dailyTasksProgressKey', 'daily_tasks_v2::fr']),
     daily_phrase: sourceContains(repoRoot, keyTestPath, ['dailyPhraseAchievementReadCountKey', 'daily_phrase_v2::fr']),
     quiz_session: sourceContains(repoRoot, keyTestPath, ['quizNavLevelKey', 'quiz_session_v2::fr']),
     quiz_achievements: sourceContains(repoRoot, keyTestPath, ['quizAchievementCounterKey', 'quiz_achievements_v2::fr']),
@@ -232,12 +233,6 @@ function main(): void {
   });
 
   const expansionDecisions: Array<[string, boolean, string[], string]> = [
-    [
-      'daily_tasks',
-      testCoverage.daily_tasks,
-      ['dailyTasksProgressKey', 'dailyTasksRerollKey', 'daily_tasks_v2::{studyTarget}'],
-      'Daily task progress and streak state are target-sensitive and must not collide between English and French.',
-    ],
     [
       'daily_phrase',
       testCoverage.daily_phrase,
@@ -284,7 +279,7 @@ function main(): void {
   const domainsNeedingTestAssertions = domainDecisions.filter((decision) => decision.status === 'needs_test_assertion').length;
   const requiredApprovalText = [
     `User approved P1A contract amendment for ${runId}:`,
-    `replace analytics_stats with target_stats and add daily_tasks, daily_phrase, quiz_session, and quiz_achievements to the P1A target domain contract.`,
+    `replace analytics_stats with target_stats and add daily_phrase, quiz_session, and quiz_achievements to the P1A target domain contract.`,
     'This amendment approval does not approve P1B, production apply, or French generation.',
   ].join(' ');
 
@@ -307,7 +302,7 @@ function main(): void {
       proposedAmendedDomains: proposedAmendedDomains.length,
       unchangedDomains: implementedDomains.filter((domain) => oldSpecDomains.includes(domain)).length,
       replacedDomains: 1,
-      expansionDomains: 4,
+      expansionDomains: 3,
       domainsNeedingTestAssertions,
       canAmendContractWithoutProductionWrites: true,
       canCreateReplacementBaselineHashLockNow: false,

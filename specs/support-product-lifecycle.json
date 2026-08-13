@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "facts": [
+    {
+      "featureId": "compass_daily_assistant",
+      "aliases": ["Компас", "Compass", "ежедневный Компас", "daily Compass", "брифинг Компаса", "Compass briefing"],
+      "status": "retired",
+      "effectiveDate": "2026-08-03",
+      "customerSafeFacts": {
+        "ru": "Отдельный раздел «Компас» с ежедневными рекомендациями действительно был в прежних версиях Phraseman. Позже этот раздел убрали, поэтому сейчас прежний экран больше не показывается.",
+        "en": "The separate Compass section with daily recommendations did exist in earlier versions of Phraseman. That section was later removed, so the old screen is no longer available.",
+        "es": "La sección independiente Compass con recomendaciones diarias sí existía en versiones anteriores de Phraseman. Más tarde se eliminó, por lo que la pantalla anterior ya no está disponible."
+      },
+      "historyEvidence": {
+        "commit": "61b35764bea551a38f991b78f1f88b2363c158cc",
+        "requiredDeletedPaths": ["app/compass/index.ts", "app/compass/compass_briefing_host.tsx"]
+      }
+    },
+    {
+      "featureId": "compass_ai_companion",
+      "aliases": ["собеседник Компас", "Compass companion", "диалог с Компасом", "разговор с Компасом"],
+      "status": "current",
+      "customerSafeFacts": {
+        "ru": "Разговоры с персонажем «Компас» — отдельная функция и не являются прежним ежедневным разделом.",
+        "en": "Conversations with the Compass character are a separate feature from the former daily Compass section.",
+        "es": "Las conversaciones con el personaje Compass son una función distinta de la antigua sección diaria de Compass."
+      },
+      "requiredCurrentPaths": ["app/ai_companion_session.tsx", "app/ai_dialog_home.tsx"]
+    },
+    {
+      "featureId": "weekly_compass_signal",
+      "aliases": ["Сигнал Компаса", "Compass signal", "weekly Compass"],
+      "status": "current",
+      "customerSafeFacts": {
+        "ru": "«Сигнал Компаса» — отдельная еженедельная рекомендация и не является прежним ежедневным разделом.",
+        "en": "Compass Signal is a separate weekly recommendation, not the former daily Compass section.",
+        "es": "La Señal de Compass es una recomendación semanal independiente, no la antigua sección diaria."
+      },
+      "requiredCurrentPaths": ["app/weekly_review_copy.ts"]
+    }
+  ]
+}

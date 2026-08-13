@@ -1,7 +1,12 @@
 import { triLang, type Lang } from '../../constants/i18n';
 
 const X = {
-  today: ['Сегодня', 'Сьогодні', 'Hoy', 'Hoje', 'Hôm nay', 'Hari ini', 'Bugün', 'Dzisiaj'],
+  /**
+   * Название ПЕРВОГО раздела внутри хаба, а не вкладки. Вкладка внизу уже
+   * называется «Сегодня»: два одинаковых слова на одном экране игрок читает
+   * как одно и то же место и перестаёт понимать, где он.
+   */
+  today: ['Обзор', 'Огляд', 'Resumen', 'Visão geral', 'Tổng quan', 'Ringkasan', 'Genel bakış', 'Przegląd'],
   play: ['Играть', 'Грати', 'Jugar', 'Jogar', 'Chơi', 'Main', 'Oyna', 'Graj'],
   growth: ['Рост', 'Розвиток', 'Progreso', 'Progresso', 'Tiến bộ', 'Progres', 'Gelişim', 'Rozwój'],
   together: ['Вместе', 'Разом', 'Juntos', 'Juntos', 'Cùng nhau', 'Bersama', 'Birlikte', 'Razem'],
@@ -9,11 +14,15 @@ const X = {
   walletShort: ['Кошелёк', 'Гаманець', 'Monedero', 'Carteira', 'Ví sao', 'Dompet', 'Cüzdan', 'Portfel'],
   spendable: ['Доступно для покупок', 'Доступно для покупок', 'Disponible para compras', 'Disponível para compras', 'Có thể dùng để mua', 'Tersedia untuk belanja', 'Alışveriş bakiyesi', 'Dostępne na zakupy'],
   seasonEarned: ['Заработано за сезон', 'Зароблено за сезон', 'Ganadas esta temporada', 'Ganhas na temporada', 'Đã kiếm trong mùa', 'Didapat musim ini', 'Bu sezon kazanılan', 'Zdobyte w sezonie'],
-  todayTitle: ['Сегодня на Арене', 'Сьогодні на Арені', 'Hoy en Arena', 'Hoje na Arena', 'Hôm nay tại Đấu trường', 'Hari ini di Arena', 'Bugün Arena’da', 'Dzisiaj na Arenie'],
+  // Вкладка «Сегодня» — это раздел дня с целями. Заход из десяти заданий —
+  // ДРУГОЕ, и называться так же он не может: игрок видел бы «Сегодня» дважды и
+  // считал бы, что нажал не туда. Здесь он называется испытанием дня.
+  todayTitle: ['Испытание дня', 'Випробування дня', 'Reto del día', 'Desafio do dia', 'Thử thách hôm nay', 'Tantangan harian', 'Günün meydan okuması', 'Wyzwanie dnia'],
   todayBody: ['10 заданий · один короткий заход', '10 завдань · одна коротка сесія', '10 preguntas · una sesión corta', '10 perguntas · uma sessão curta', '10 câu hỏi · một lượt ngắn', '10 soal · satu sesi singkat', '10 soru · kısa bir oturum', '10 pytań · krótka sesja'],
   todayStart: ['Начать 10 заданий', 'Почати 10 завдань', 'Empezar 10 preguntas', 'Começar 10 perguntas', 'Bắt đầu 10 câu', 'Mulai 10 soal', '10 soruya başla', 'Rozpocznij 10 pytań'],
-  todayContinue: ['Продолжить сегодня', 'Продовжити сьогодні', 'Continuar hoy', 'Continuar hoje', 'Tiếp tục hôm nay', 'Lanjutkan hari ini', 'Bugüne devam et', 'Kontynuuj dzisiaj'],
-  todayComplete: ['Сегодня всё готово', 'На сьогодні все готово', 'Todo listo por hoy', 'Tudo pronto por hoje', 'Hôm nay đã hoàn tất', 'Selesai untuk hari ini', 'Bugünlük tamam', 'Na dziś wszystko gotowe'],
+  todayContinue: ['Продолжить испытание', 'Продовжити випробування', 'Continuar el reto', 'Continuar o desafio', 'Tiếp tục thử thách', 'Lanjutkan tantangan', 'Meydan okumaya devam et', 'Kontynuuj wyzwanie'],
+  todayComplete: ['Испытание дня пройдено', 'Випробування дня пройдено', 'Reto del día completado', 'Desafio do dia concluído', 'Đã hoàn thành thử thách hôm nay', 'Tantangan harian selesai', 'Günün meydan okuması tamamlandı', 'Wyzwanie dnia ukończone'],
+  todayNextDay: ['Новое откроется завтра', 'Нове відкриється завтра', 'El siguiente llega mañana', 'O próximo chega amanhã', 'Thử thách mới mở vào ngày mai', 'Yang baru terbuka besok', 'Yenisi yarın açılır', 'Nowe otworzy się jutro'],
   starsEarned: ['Заработано звёзд: {amount}', 'Зароблено зірок: {amount}', 'Estrellas ganadas: {amount}', 'Estrelas ganhas: {amount}', 'Sao đã kiếm: {amount}', 'Bintang didapat: {amount}', 'Kazanılan yıldız: {amount}', 'Zdobyte gwiazdki: {amount}'],
   activeMatch: ['Вернуться в матч', 'Повернутися до матчу', 'Volver a la partida', 'Voltar à partida', 'Quay lại trận đấu', 'Kembali ke laga', 'Maça dön', 'Wróć do meczu'],
   activeQueue: ['Вернуться к поиску', 'Повернутися до пошуку', 'Volver a la búsqueda', 'Voltar à busca', 'Quay lại tìm đối thủ', 'Kembali mencari', 'Aramaya dön', 'Wróć do wyszukiwania'],
@@ -23,6 +32,8 @@ const X = {
   labStart: ['Начать тренировку', 'Почати тренування', 'Empezar práctica', 'Começar treino', 'Bắt đầu luyện tập', 'Mulai latihan', 'Pratiğe başla', 'Rozpocznij trening'],
   ghost: ['Дуэль с записью', 'Дуель із записом', 'Duelo con grabación', 'Duelo com gravação', 'Đấu với bản ghi', 'Duel rekaman', 'Kayıt düellosu', 'Pojedynek z nagraniem'],
   ghostDisclosure: ['Это запись игры соперника. Он сейчас не находится в матче.', 'Це запис гри суперника. Зараз він не перебуває в матчі.', 'Es una grabación del rival. No está jugando ahora.', 'É uma gravação do adversário. Ele não está jogando agora.', 'Đây là bản ghi trận đấu. Đối thủ không chơi trực tiếp lúc này.', 'Ini rekaman permainan lawan. Mereka tidak sedang bermain langsung.', 'Bu rakibin oyun kaydıdır. Şu anda maçta değil.', 'To nagranie gry rywala. Nie gra teraz na żywo.'],
+  ghostExpired: ['Срок записи истёк', 'Термін запису минув', 'La grabación ha caducado', 'A gravação expirou', 'Bản ghi đã hết hạn', 'Rekaman sudah kedaluwarsa', 'Kaydın süresi doldu', 'Nagranie wygasło'],
+  ghostExpiredHint: ['Запись живёт 48 часов. Попроси друга прислать новую.', 'Запис живе 48 годин. Попроси друга надіслати новий.', 'La grabación dura 48 horas. Pide otra a tu amigo.', 'A gravação dura 48 horas. Peça outra ao seu amigo.', 'Bản ghi tồn tại 48 giờ. Nhờ bạn gửi bản mới.', 'Rekaman berlaku 48 jam. Minta teman mengirim yang baru.', 'Kayıt 48 saat yaşar. Arkadaşından yenisini iste.', 'Nagranie żyje 48 godzin. Poproś znajomego o nowe.'],
   ghostCreate: ['Создать мою запись', 'Створити мій запис', 'Crear mi grabación', 'Criar minha gravação', 'Tạo bản ghi của tôi', 'Buat rekaman saya', 'Kaydımı oluştur', 'Utwórz moje nagranie'],
   ghostAccept: ['Сыграть с записью', 'Зіграти із записом', 'Jugar contra la grabación', 'Jogar contra a gravação', 'Đấu với bản ghi', 'Main melawan rekaman', 'Kayıtla oyna', 'Zagraj z nagraniem'],
   recordingBadge: ['ЗАПИСЬ · НЕ LIVE', 'ЗАПИС · НЕ LIVE', 'GRABACIÓN · NO EN VIVO', 'GRAVAÇÃO · NÃO AO VIVO', 'BẢN GHI · KHÔNG TRỰC TIẾP', 'REKAMAN · BUKAN LIVE', 'KAYIT · CANLI DEĞİL', 'NAGRANIE · NIE NA ŻYWO'],
@@ -49,7 +60,15 @@ const X = {
   owned: ['Уже куплено', 'Уже придбано', 'Ya comprado', 'Já comprado', 'Đã mua', 'Sudah dibeli', 'Zaten alındı', 'Już kupiono'],
   insufficient: ['Недостаточно звёзд для покупки', 'Недостатньо зірок для покупки', 'No tienes suficientes estrellas', 'Estrelas insuficientes', 'Không đủ sao', 'Bintang tidak cukup', 'Yeterli yıldız yok', 'Za mało gwiazd'],
   purchaseSuccess: ['Покупка готова', 'Покупка готова', 'Compra lista', 'Compra concluída', 'Đã mua thành công', 'Pembelian selesai', 'Satın alma tamam', 'Zakup gotowy'],
+  emptyLab: ['Разбор появится после первого матча', 'Розбір з’явиться після першого матчу', 'El análisis aparece tras tu primera partida', 'A análise aparece após a primeira partida', 'Phân tích xuất hiện sau trận đầu tiên', 'Ulasan muncul setelah laga pertama', 'Analiz ilk maçtan sonra görünür', 'Analiza pojawi się po pierwszym meczu'],
+  emptyRivalry: ['Серию предлагают после матча с живым соперником', 'Серію пропонують після матчу з живим суперником', 'La serie se propone tras jugar con una persona', 'A série é proposta após jogar com uma pessoa', 'Loạt đấu được đề nghị sau trận với người thật', 'Seri ditawarkan setelah laga dengan orang sungguhan', 'Seri, gerçek bir rakiple maçtan sonra önerilir', 'Serię proponuje się po meczu z żywym rywalem'],
+  emptyPartner: ['Партнёра можно выбрать из взаимных друзей', 'Партнера можна обрати із взаємних друзів', 'Puedes elegir compañero entre tus amigos mutuos', 'Você pode escolher um parceiro entre amigos mútuos', 'Chọn đồng đội trong danh sách bạn chung', 'Pilih partner dari teman yang saling menambahkan', 'Partneri karşılıklı arkadaşlarından seçebilirsin', 'Partnera wybierzesz spośród wzajemnych znajomych'],
+  emptyStore: ['Товары появятся, когда магазин включат', 'Товари з’являться, коли магазин увімкнуть', 'Los artículos aparecerán cuando la tienda se active', 'Os itens aparecem quando a loja for ativada', 'Vật phẩm sẽ xuất hiện khi cửa hàng bật', 'Barang muncul saat toko diaktifkan', 'Ürünler mağaza açıldığında görünür', 'Przedmioty pojawią się po włączeniu sklepu'],
+  emptyGhost: ['Запись создаётся из завершённого матча', 'Запис створюється із завершеного матчу', 'La grabación se crea desde una partida terminada', 'A gravação é criada a partir de uma partida concluída', 'Bản ghi được tạo từ trận đã hoàn tất', 'Rekaman dibuat dari laga yang sudah selesai', 'Kayıt, tamamlanmış bir maçtan oluşturulur', 'Nagranie tworzy się z ukończonego meczu'],
   empty: ['Здесь пока пусто', 'Тут поки порожньо', 'Aún no hay nada aquí', 'Ainda não há nada aqui', 'Chưa có gì ở đây', 'Belum ada apa pun', 'Burada henüz bir şey yok', 'Na razie jest pusto'],
+  loadFailed: ['Не удалось загрузить', 'Не вдалося завантажити', 'No se pudo cargar', 'Não foi possível carregar', 'Không tải được', 'Gagal memuat', 'Yüklenemedi', 'Nie udało się wczytać'],
+  loadFailedHint: ['Проверь связь и попробуй снова', 'Перевір зв’язок і спробуй ще раз', 'Revisa la conexión e inténtalo otra vez', 'Verifique a conexão e tente de novo', 'Kiểm tra kết nối rồi thử lại', 'Periksa koneksi dan coba lagi', 'Bağlantını kontrol edip tekrar dene', 'Sprawdź połączenie i spróbuj ponownie'],
+  unavailableHint: ['Раздел временно выключен. Он вернётся — остальная Арена работает.', 'Розділ тимчасово вимкнено. Він повернеться — решта Арени працює.', 'La sección está desactivada temporalmente. Volverá; el resto de Arena funciona.', 'A seção está desativada temporariamente. Ela volta; o resto da Arena funciona.', 'Mục này tạm tắt. Nó sẽ trở lại — phần còn lại của Đấu trường vẫn chạy.', 'Bagian ini dimatikan sementara. Akan kembali — sisa Arena tetap jalan.', 'Bu bölüm geçici olarak kapalı. Geri gelecek — Arena’nın kalanı çalışıyor.', 'Sekcja jest tymczasowo wyłączona. Wróci — reszta Areny działa.'],
   unavailable: ['Сейчас недоступно', 'Зараз недоступно', 'No disponible ahora', 'Indisponível agora', 'Hiện không khả dụng', 'Saat ini tidak tersedia', 'Şu anda kullanılamıyor', 'Teraz niedostępne'],
   expired: ['Срок действия истёк', 'Термін дії минув', 'Ha caducado', 'Expirou', 'Đã hết hạn', 'Sudah kedaluwarsa', 'Süresi doldu', 'Wygasło'],
   loading: ['Загрузка…', 'Завантаження…', 'Cargando…', 'Carregando…', 'Đang tải…', 'Memuat…', 'Yükleniyor…', 'Ładowanie…'],

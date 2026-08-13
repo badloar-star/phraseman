@@ -3,7 +3,7 @@
 //
 // Callable-обёртки поверх чистого ядра shard_survey_core.ts. Транзакции и
 // firebase-admin только здесь. Модель повторяет vip_survey.ts (валидация +
-// runTransaction + отдельная коллекция ответов) и daily_tasks_shards.ts
+// runTransaction + отдельная коллекция ответов) и другие shard-claim callables
 // (серверная выдача осколков полем `shards` в users/{uid} через Admin SDK,
 // идемпотентность через reward_claims).
 // ════════════════════════════════════════════════════════════════════════════
@@ -243,7 +243,7 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     const newBalance = currentBalance + reward;
     const shardsUpdatedAtMs = nowMs;
 
-    // Маркер идемпотентности (как daily_tasks_shards).
+    // Маркер идемпотентности для повторной безопасной отправки.
     tx.set(claimRef, {
       source: 'survey_completed',
       surveyId,

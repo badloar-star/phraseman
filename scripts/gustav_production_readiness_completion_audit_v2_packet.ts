@@ -1403,7 +1403,7 @@ function requiredVerificationCommands(): string[] {
     'npx tsx scripts\\gustav_production_readiness_completion_audit_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_next_pass_goal_contract_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_french_reviewer_master_manifest.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1',
-    'npx jest tests/gustav_admin_target_isolation.test.ts tests/course_pack_runtime_contract.test.ts tests/gustav_target_storage_keys.test.ts tests/cloud_sync_sync_keys_validity.test.ts tests/cloud_sync_daily_tasks_merge.test.ts --runInBand',
+    'npx jest tests/gustav_admin_target_isolation.test.ts tests/course_pack_runtime_contract.test.ts tests/gustav_target_storage_keys.test.ts tests/cloud_sync_sync_keys_validity.test.ts --runInBand',
   ];
 }
 

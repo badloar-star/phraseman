@@ -27,7 +27,6 @@ export type ArenaPlayer = Readonly<{
   rating?: number;
   score: number;
   correct: number;
-  isBot?: boolean;
   acceptedAtMs?: number;
 }>;
 
@@ -58,10 +57,15 @@ export type ArenaTicket = Readonly<{
   matchId?: string;
   joinedAtMs?: number;
   leaseExpiresAt?: number;
+  /** Момент входа бота, назначенный сервером (только быстрый матч). */
+  botDueAtMs?: number;
 }>;
 
 export type ArenaMatchReward = Readonly<{
   starsEarned: number;
+  /** Опыт за матч. Считает и начисляет сервер в той же транзакции (D-69). */
+  xpEarned?: number;
+  totalXpAfter?: number;
   seasonStarsAfter?: number;
   ratingDelta?: number;
   ratingAfter?: number;
@@ -79,7 +83,10 @@ export type ArenaMatch = Readonly<{
   seriesId?: string;
   gameIndex?: number;
   rivalOffer?: Readonly<{ seriesId: string; fromSeat: 'a' | 'b'; expiresAtMs: number }>;
+  /** Клиенту всегда приходит 'human' для дуэлей: тип соперника не раскрывается. */
   opponentKind: 'human' | 'bot' | 'none' | 'ghost' | 'recording';
+  /** Длина матча. Быстрый — 5, остальные — 10. Старые матчи поля не имеют. */
+  taskCount?: number;
   /** Safe display projections; never derive labels by rendering stable IDs. */
   players: readonly ArenaPlayer[];
   acceptedBy: readonly string[];
@@ -118,10 +125,30 @@ export type ArenaSummary = Readonly<{
   spinsAvailable: number;
   wins: number;
   losses: number;
+  /** Лучший тир сезона — не падает вместе с рангом. */
+  seasonBestTierIndex?: number;
+  /** Лучший тир за всю жизнь: по нему открыта косметика за ранг (D-63). */
+  lifetimeBestTierIndex?: number;
+  /** Счётчики дневных целей. Лежат в сезонном документе, отдельного нет. */
+  dailyDayKey?: string;
+  dailyMatches?: number;
+  dailyWins?: number;
+  dailyFirstAnswers?: number;
+  dailyStars?: number;
+  todayKey?: string;
 }>;
 
 export const ARENA_QUESTION_COUNT = 10;
-export const ARENA_QUICK_FALLBACK_MS = 6_000;
+export const ARENA_QUICK_QUESTION_COUNT = 5;
+
+/** Длина матча с запасом на документы, созданные до введения поля. */
+export function arenaMatchTaskCount(match?: Pick<ArenaMatch, 'taskCount' | 'mode'>): number {
+  const declared = Number(match?.taskCount);
+  if (Number.isFinite(declared) && declared > 0) return Math.trunc(declared);
+  return match?.mode === 'quick' ? ARENA_QUICK_QUESTION_COUNT : ARENA_QUESTION_COUNT;
+}
+/** Страховка: если сервер не прислал botDueAtMs, ждём не дольше этого. */
+export const ARENA_QUICK_FALLBACK_MAX_MS = 55_000;
 export const ARENA_RANKED_HEARTBEAT_MS = 15_000;
 
 export function isArenaTaskMode(value: unknown): value is ArenaTaskMode {

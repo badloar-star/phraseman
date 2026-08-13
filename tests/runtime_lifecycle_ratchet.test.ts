@@ -70,18 +70,30 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // турниров), поэтому фокус экрана здесь честный; требуем явную передачу этого
   // фокуса, чтобы возврат к голому useRuntimeActive() ронял тест.
   'app/(tabs)/tournaments.tsx': runtime('Live dot pulse is active only while the Tournaments screen is focused.', ['useRuntimeActive(screenFocused)', 'cancelAnimation(pulse)']),
-  'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility, including child sparkles and halo.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
+  // зачем 2026-08-13: летящие частицы (шарды и искры) из модалки удалены по
+  // решению владельца — остался только цикл хало, плюс два ОГРАНИЧЕННЫХ цикла
+  // (подсветка моей строки и блик кнопки) с iterations: 3. Токены не ослаблены:
+  // хало по-прежнему принадлежит видимости модалки и дополнительно замирает при
+  // системном «уменьшить движение».
+  'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility: the club halo freezes when hidden or on reduced motion, and the row/CTA highlights are bounded to three iterations.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
   'app/_layout.tsx': owned('Root overlay motion runs only while its overlay is visible.', ['if (!visible) return', 'pulseLoop.stop()']),
   'app/club_screen.tsx': {
     owner: 'owner_prop',
     reason: 'League icon pulse requires its pulse prop and the production motion flag.',
     requiredTokens: ['if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED)', 'return () => anim.stop()'],
   },
-  'app/daily_tasks_screen.tsx': guarded('Daily Tasks loops use screen focus and AppState.'),
   'app/flashcards/CardPackShardPaywallModal.tsx': owned('Paywall motion follows the visible prop and is stopped by effect cleanup.', ['if (visible) {', 'cancelAnimation(ctaPulse)']),
   'app/flashcards/FlashcardListItem.tsx': guarded('Flashcard nudge uses screen focus and AppState.'),
-  'app/flashcards/FlashcardsCategoryHub.tsx': guarded('Category hub CTA uses screen focus and AppState.'),
-  'app/flashcards_collection.tsx': runtime('Delete hint pulse requires focused foreground runtime.', ['!flashcardsRuntimeActive || !showDeleteHint', 'deleteHintPulseLoop.current?.stop()']),
+  // Cards 2.1 §1–§5: хаб-CTA с бесконечным пульсом удалён вместе с hero/сундуками,
+  // а пульс подсказки удаления переехал из контейнера коллекции в CollectionListView.
+  'app/flashcards/CollectionListView.tsx': owned(
+    'Delete hint pulse lives only while showDeleteHint is set: auto-dismiss через 5s и stop() в cleanup эффекта.',
+    ['if (!showDeleteHint) return;', 'deleteHintPulseLoop.current.stop()', 'dismissDeleteHint(), 5000'],
+  ),
+  'app/flashcards/ListeningEqualizer.tsx': owned(
+    'Полосы эквалайзера повторяются только пока playing=true; пауза/reduce motion/low power переводят их в статичный режим.',
+    ['playing: boolean', 'equalizerMotionMode({ playing', 'cancelAnimation('],
+  ),
   'app/language_welcome.tsx': { owner: 'disabled', reason: 'Only a documentation reference to Animated.loop remains; the final screen explicitly has no repeating motion.', requiredTokens: ['НИКАКИХ withRepeat(-1)/Animated.loop'] },
   'app/lesson1.tsx': runtime('Lesson cursor and hint loops require focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0', 'lessonRuntimeActive && showToBeHint']),
   'app/lesson_complete.tsx': runtime('Completion decoration requires focused foreground runtime.', ['!lessonCompleteRuntimeActive || !seqDone', 'bounce.stop()']),
@@ -165,8 +177,8 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // Токены перепломбированы на новый гард, без ослабления.
   'components/tournament/TournamentAudioButton.tsx': runtime('Audio pulse runs only while the clip plays on a focused foreground screen with reduced motion off.', ['status?.playing === true && isFocused', 'if (!isPlaying || reducedMotion)', 'pulse.value = 1']),
   'components/tournament/TournamentBackdrop.tsx': guarded('Tournament backdrop breathing runs only on a focused foreground screen and respects reduced motion.'),
-  // зачем 2026-08-03: components/today/TodayAmbientCompass.tsx снят с учёта —
-  // экран «Сегодня» удалён целиком вместе с его фоновой анимацией.
+  // Старый TodayAmbientCompass не возвращается: новый Compass использует
+  // отдельную поверхность с явным владельцем активности выше.
 };
 
 describe('runtime lifecycle ratchet', () => {

@@ -7,6 +7,12 @@ import { useTournamentPalette } from '../tournament/tournament_theme';
 import { V2Card, V2Cta } from '../tournament/tournament_v2_ui';
 import type { ArenaFeatureState, ArenaHubSection } from '../../modules/arena/expansion_contract';
 import { ARENA_HUB_SECTIONS } from '../../modules/arena/expansion_contract';
+import { useLang } from '../LangContext';
+import { arenaExpansionText, type ArenaExpansionCopyKey } from '../../modules/arena/expansion_copy';
+import {
+  arenaExpansionStateCopy,
+  type ArenaExpansionScreenState,
+} from '../../modules/arena/expansion_state';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -156,6 +162,41 @@ export function ArenaStateCard({
       {body ? <Text style={[styles.stateBody, { color: P.muted }]}>{body}</Text> : null}
       {actionLabel && onAction ? <View style={styles.stateAction}><V2Cta onPress={onAction}>{actionLabel}</V2Cta></View> : null}
     </V2Card>
+  );
+}
+
+/**
+ * Единственный способ показать «содержимого нет» на экранах расширения.
+ *
+ * Заголовок, объяснение и кнопку выбирает чистая функция, а не JSX: раньше это
+ * решал каждый экран сам, и все семь одинаково выдавали неудачную загрузку за
+ * выключенный раздел. Здесь развилка одна, и она проверяется тестом.
+ */
+export function ArenaStateNotice({
+  state,
+  ghost = false,
+  emptyHint,
+  onRetry,
+  onBack,
+}: Readonly<{
+  state: ArenaExpansionScreenState;
+  ghost?: boolean;
+  emptyHint?: ArenaExpansionCopyKey;
+  onRetry?: () => void;
+  onBack?: () => void;
+}>) {
+  const { lang } = useLang();
+  const copy = arenaExpansionStateCopy({ state, ghost, ...(emptyHint ? { emptyHint } : {}) });
+  const action = copy.action === 'retry' ? onRetry : copy.action === 'back' ? onBack : undefined;
+  return (
+    <ArenaStateCard
+      state={copy.card}
+      title={arenaExpansionText(lang, copy.title)}
+      {...(copy.body ? { body: arenaExpansionText(lang, copy.body) } : {})}
+      {...(action && copy.actionLabel
+        ? { actionLabel: arenaExpansionText(lang, copy.actionLabel), onAction: action }
+        : {})}
+    />
   );
 }
 

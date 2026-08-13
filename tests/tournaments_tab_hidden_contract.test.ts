@@ -30,9 +30,13 @@ describe('tournaments tab visibility contract', () => {
     expect(tournaments).toContain('return <TournamentsScreen />;');
     expect(tournaments).toContain('export default TournamentsRoute;');
     expect(tournaments).not.toContain("runtimeOwnerId === 'tournaments'");
-    expect(layout).toMatch(/const TAB_BAR_TABS = TABS\.map\(\(tab, logicalIdx\) =>/);
+    // Полосу таббара по-прежнему строим из TABS; единственная добавка — центральная
+    // кнопка Арены, у которой нет физической свайп-страницы (logicalIdx: -1).
+    expect(layout).toMatch(/const pages: TabBarEntry\[\] = TABS\.map\(\(tab, logicalIdx\) =>/);
     expect(layout).toContain('TAB_BAR_TABS.map((tab, barIndex) => {');
-    expect(layout).toContain('onPress={() => goToTab(tab.logicalIdx)}');
+    expect(layout).toContain('goToTab(tab.logicalIdx);');
+    expect(layout).toMatch(/key: 'arena',[\s\S]{0,200}logicalIdx: -1,/);
+    expect(layout).not.toMatch(/key:\s*'arena',[\s\S]{0,200}logicalIdx: [0-9]/);
   });
 
   it('redirects the retired tab and protects every standalone tournament route', () => {

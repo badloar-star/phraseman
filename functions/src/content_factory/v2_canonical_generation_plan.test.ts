@@ -704,6 +704,7 @@ describe("pure canonical V2 generation plan", () => {
       "v2_canonical_stage_validation_b2_dialogue.ts",
       "v2_canonical_stage_validation_b2_scene.ts",
       "v2_canonical_stage_validation_b2_speaking.ts",
+      "v2_admin_canonical_generation_bridge_v1.ts",
     ] as const;
     expect(adminContract).not.toContain("v2_canonical_generation_plan");
     expect(callable).not.toContain("v2_canonical_generation_plan");
@@ -724,6 +725,178 @@ describe("pure canonical V2 generation plan", () => {
       "../../../modules/learning-v2/contracts/voice_playback_policy_v1",
       "../../../modules/learning-v2/policies/decision_registry",
       "./v2_canonical_generation_plan",
+    ]);
+    expect(importSpecifiers("v2_owner_authored_episode_input_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_activity_session_projection",
+      "./v2_canonical_generation_plan",
+      "./v2_canonical_generation_plan_v2",
+    ]);
+    expect(importSpecifiers("v2_root_owner_identity_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../admin_plans/auth",
+      "firebase-functions/params",
+      "firebase-functions/v2/https",
+      "node:crypto",
+    ]);
+    expect(importSpecifiers("v2_owner_episode_stage_repository_v1.ts")).toEqual(
+      [
+        "../callable_options",
+        "./content_stage_object_identity_v1",
+        "./v2_canonical_generation_plan_v2",
+        "./v2_firebase_admin_repository_io_v1",
+        "./v2_firebase_repository_persistence_v1",
+        "./v2_generation_stage_repository_v2",
+        "./v2_owner_authored_episode_input_v1",
+        "./v2_owner_authored_episode_input_v2",
+        "./v2_root_owner_identity_v1",
+        "firebase-admin",
+        "firebase-functions/v2/https",
+        "node:crypto",
+      ],
+    );
+    expect(importSpecifiers("v2_owner_episode_preview_v1.ts")).toEqual([
+      "../admin/permissions",
+      "./content_stage_object_identity_v1",
+      "./release_surface_delivery",
+      "./review_fingerprint",
+      "firebase-functions/v2/https",
+    ]);
+    expect(importSpecifiers("v2_owner_episode_confirmation_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+    ]);
+    expect(
+      importSpecifiers("v2_owner_episode_confirmation_adapter_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../callable_options",
+      "./review_fingerprint",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_owner_authored_episode_input_v1",
+      "./v2_owner_authored_episode_input_v2",
+      "./v2_owner_episode_confirmation_v1",
+      "./v2_owner_episode_stage_repository_v1",
+      "./v2_root_owner_identity_v1",
+      "firebase-admin",
+      "firebase-functions/v2/https",
+      "node:crypto",
+    ]);
+    expect(importSpecifiers("v2_unified_course_release_v1.ts")).toEqual([
+      "../../../modules/learning-v2/content/generator_course_contract",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_unified_course_release_activation_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_owner_episode_confirmation_v1",
+      "./v2_unified_course_release_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_unified_course_release_confirmation_readback_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_owner_episode_confirmation_v1",
+      "./v2_unified_course_release_activation_v1",
+      "./v2_unified_course_release_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_unified_course_release_activation_preflight_adapter_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/activity_error_explanation_catalog_v1",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_root_owner_identity_v1",
+      "./v2_root_owner_identity_v1",
+      "./v2_unified_course_release_activation_v1",
+      "./v2_unified_course_release_activation_v1",
+      "./v2_unified_course_release_confirmation_readback_v1",
+      "./v2_unified_course_release_leaf_readback_v1",
+      "./v2_unified_course_release_v1",
+      "./v2_unified_course_release_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_admin_canonical_generation_bridge_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_admin_generation_contract",
+      "./v2_canonical_generation_plan_v2",
+    ]);
+    expect(
+      importSpecifiers("v2_episode_localization_release_index_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/generator_course_contract",
+      "../../../modules/learning-v2/content/generator_course_manifest",
+      "../../../modules/learning-v2/contracts/language_tag_v1",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+      "node:crypto",
+    ]);
+    expect(importSpecifiers("v2_episode_voice_release_index_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_activity_instances_validator_adapter_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_firebase_voice_audio_episode_receipt_adapter_v1",
+      "./v2_firebase_voice_audio_manifest_adapter_v1",
+      "./v2_firebase_voice_device_observation_receipt_adapter_v1",
+      "./v2_firebase_voice_human_episode_review_adapter_v1",
+      "./v2_firebase_voice_targets_authenticated_input_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_episode_error_guidance_release_index_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/activity_error_explanation_catalog_v1",
+      "../../../modules/learning-v2/content/generator_course_contract",
+      "../../../modules/learning-v2/contracts/language_tag_v1",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_unified_course_release_leaf_readback_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_index_v1",
+      "../../../modules/learning-v2/runtime/activity_learner_core_release_index_v1",
+      "./v2_activity_server_evaluator_release_v1",
+      "./v2_episode_error_guidance_release_index_v1",
+      "./v2_episode_localization_release_index_v1",
+      "./v2_episode_voice_release_index_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_unified_course_release_activation_v1",
+      "./v2_unified_course_release_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_unified_course_release_activation_adapter_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_unified_course_release_activation_preflight_adapter_v1",
+      "./v2_unified_course_release_repository_v1",
+      "./v2_unified_course_release_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_unified_course_release_repository_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_unified_course_release_v1",
+      "node:crypto",
     ]);
     const repositoryRoot = path.resolve(root, "../../..");
     const activityCatalogV2 = path.join(
@@ -749,6 +922,260 @@ describe("pure canonical V2 generation plan", () => {
     const voicePcmSignalObserverV1 = path.join(
       repositoryRoot,
       "modules/learning-v2/runtime/voice_pcm_signal_observer_v1.ts",
+    );
+    const voiceAudioOfflineCacheV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_offline_cache_v1.ts",
+    );
+    const activityAudioRuntimeProjectionV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_audio_runtime_projection_v1.ts",
+    );
+    const activityErrorExplanationCatalogV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/content/activity_error_explanation_catalog_v1.ts",
+    );
+    const activityAttemptControllerV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_attempt_controller_v1.ts",
+    );
+    const activityLearnerActionResourceV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_learner_action_resource_v1.ts",
+    );
+    const activityPostTerminalCardCatalogV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_post_terminal_card_catalog_v1.ts",
+    );
+    const activityPostTerminalCardCapsuleV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_post_terminal_card_capsule_v1.ts",
+    );
+    const activityAuxiliaryReleaseManifestV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_auxiliary_release_manifest_v1.ts",
+    );
+    const activityAuxiliaryIntegrityLoaderV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_auxiliary_integrity_loader_v1.ts",
+    );
+    const activityAuxiliaryClientDescriptorV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_auxiliary_client_descriptor_v1.ts",
+    );
+    const activityAuxiliaryClientLoaderV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_auxiliary_client_loader_v1.ts",
+    );
+    const activityAuxiliaryAppClientV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_activity_auxiliary_client.ts",
+    );
+    const activityAuxiliarySessionRuntimeV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_auxiliary_session_runtime_v1.ts",
+    );
+    const activityReleasedSessionPackageV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_released_session_package_v1.ts",
+    );
+    const activityReleasedSessionAppClientV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_activity_released_session_client_v1.ts",
+    );
+    const activityReleasedSessionHookV1 = path.join(
+      repositoryRoot,
+      "app/use_learning_v2_activity_released_session_v1.ts",
+    );
+    const activityReleasedSessionCompletionV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/progress/activity_released_session_completion_v1.ts",
+    );
+    const activityReleasedSessionCompletionSpoolV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/progress/activity_released_session_completion_spool_v1.ts",
+    );
+    const activityReleasedSessionCompletionProjectionV1 = path.join(
+      repositoryRoot,
+      "functions/src/learning_v2/activity_released_session_completion_projection_v1.ts",
+    );
+    const activityReleasedSessionCompletionCallableV1 = path.join(
+      repositoryRoot,
+      "functions/src/learning_v2/activity_released_session_completion_callable_v1.ts",
+    );
+    const activityReleasedSessionCompletionSyncV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_activity_released_completion_sync_v1.ts",
+    );
+    const activityReleasedSessionSubmissionV2 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/progress/activity_released_session_submission_v2.ts",
+    );
+    const activityReleasedSessionSubmissionSpoolV2 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/progress/activity_released_session_submission_spool_v2.ts",
+    );
+    const activityReleasedSessionEvaluationV1 = path.join(
+      repositoryRoot,
+      "functions/src/learning_v2/activity_released_session_evaluation_v1.ts",
+    );
+    const activityReleasedSessionSubmissionCallableV2 = path.join(
+      repositoryRoot,
+      "functions/src/learning_v2/activity_released_session_submission_callable_v2.ts",
+    );
+    const activityReleasedSessionSettlementProjectionV1 = path.join(
+      repositoryRoot,
+      "functions/src/learning_v2/activity_released_session_settlement_projection_v1.ts",
+    );
+    const activityReleasedSessionSubmissionSyncV2 = path.join(
+      repositoryRoot,
+      "app/learning_v2_activity_released_submission_sync_v2.ts",
+    );
+    const completionBackgroundSchedulerV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_completion_background_scheduler.ts",
+    );
+    const activityLearnerCoreReleaseIndexV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_learner_core_release_index_v1.ts",
+    );
+    const activityServerEvaluatorReleaseV1 = path.join(
+      root,
+      "v2_activity_server_evaluator_release_v1.ts",
+    );
+    const firebaseActivityServerEvaluatorReleaseAdapterV1 = path.join(
+      root,
+      "v2_firebase_activity_server_evaluator_release_adapter_v1.ts",
+    );
+    const firebaseActivityServerEvaluatorReleasePublisherV1 = path.join(
+      root,
+      "v2_firebase_activity_server_evaluator_release_publisher_v1.ts",
+    );
+    const activityAuxiliarySessionHookV1 = path.join(
+      repositoryRoot,
+      "app/use_learning_v2_activity_auxiliary_session_v1.ts",
+    );
+    const activitySessionAudioPlanV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_session_audio_plan_v1.ts",
+    );
+    const activityAudioTransportV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_activity_audio_transport_v1.ts",
+    );
+    const activityAudioPreloadV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_activity_audio_preload_v1.ts",
+    );
+    const activityAudioSessionHookV1 = path.join(
+      repositoryRoot,
+      "app/use_learning_v2_activity_audio_session_v1.ts",
+    );
+    const activityLocalAudioPlaybackHookV1 = path.join(
+      repositoryRoot,
+      "app/use_learning_v2_activity_local_audio_playback_v1.ts",
+    );
+    const activityActionSessionV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_action_session_v1.ts",
+    );
+    const activityCompactActionExecutorV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_compact_action_executor_v1.ts",
+    );
+    const activityActionSessionHookV1 = path.join(
+      repositoryRoot,
+      "app/use_learning_v2_activity_action_session_v1.ts",
+    );
+    const activityAuxiliaryLessonMapV1 = path.join(
+      repositoryRoot,
+      "app/learning-v2/lesson/[id].tsx",
+    );
+    const activityAuxiliaryLessonSessionV1 = path.join(
+      repositoryRoot,
+      "app/learning-v2/session/[id].tsx",
+    );
+    const functionsIndex = path.join(root, "..", "index.ts");
+    expect(sourceModuleReferences(activityAuxiliaryAppClientV1)).toEqual([
+      "@react-native-async-storage/async-storage",
+      "@react-native-firebase/app",
+      "@react-native-firebase/functions",
+      "./app_check_init",
+      "./callable_timeout",
+      "./cloud_sync",
+      "./interactive_network_quiet",
+      "./stable_id",
+      "../modules/learning-v2/progress/progress_account_scope",
+      "../modules/learning-v2/runtime/activity_auxiliary_client_descriptor_v1",
+      "../modules/learning-v2/runtime/activity_auxiliary_client_loader_v1",
+    ]);
+    expect(sourceModuleReferences(activityReleasedSessionAppClientV1)).toEqual([
+      "@react-native-async-storage/async-storage",
+      "@react-native-firebase/app",
+      "@react-native-firebase/functions",
+      "./app_check_init",
+      "./callable_timeout",
+      "./cloud_sync",
+      "./interactive_network_quiet",
+      "./stable_id",
+      "../modules/learning-v2/progress/progress_account_scope",
+      "../modules/learning-v2/runtime/activity_released_session_package_v1",
+    ]);
+    expect(
+      sourceModuleReferences(activityReleasedSessionCompletionProjectionV1),
+    ).toEqual([
+      "../../../modules/learning-v2/progress/activity_released_session_completion_v1",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/content/generator_course_contract",
+      "../../../modules/learning-v2/runtime/activity_released_session_package_v1",
+    ]);
+    const activityAuxiliaryReleaseIndexV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/activity_auxiliary_release_index_v1.ts",
+    );
+    const releaseRolloutV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/content/release_rollout_v1.ts",
+    );
+    const voicePhysicalDeviceRunnerV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_physical_device_runner_v1.ts",
+    );
+    const voiceAudioManifestPageRunnerV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_manifest_page_runner_v1.ts",
+    );
+    const voiceAudioDevicePageV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_page_v1.ts",
+    );
+    const voiceAudioDevicePageJournalV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_page_journal_v1.ts",
+    );
+    const voiceAudioDevicePageEvidenceV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_page_evidence_v1.ts",
+    );
+    const voiceAudioDevicePageEvidenceMaterializerV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_page_evidence_materializer_v1.ts",
+    );
+    const voiceAudioDevicePageUploadAckV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_page_upload_ack_v1.ts",
+    );
+    const voiceAudioDeviceHarnessV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_harness_v1.ts",
+    );
+    const voiceAudioDeviceEpisodeUploadAckV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_episode_upload_ack_v1.ts",
+    );
+    const voiceAudioDeviceEpisodeHarnessV1 = path.join(
+      repositoryRoot,
+      "modules/learning-v2/runtime/voice_audio_device_episode_harness_v1.ts",
     );
     const nativePcmDecoderV1 = path.join(
       repositoryRoot,
@@ -798,6 +1225,112 @@ describe("pure canonical V2 generation plan", () => {
         .filter((value): value is string => value !== null)
         .sort(),
     ).toEqual(["../policies/decision_registry"]);
+    expect(
+      sourceModuleReferences(voicePhysicalDeviceRunnerV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../../learning-v2-pcm-decoder",
+      "../policies/decision_registry",
+      "./voice_audio_offline_cache_v1",
+      "./voice_native_decoder_observer_v1",
+      "./voice_pcm_signal_observer_v1",
+      "expo-audio",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioOfflineCacheV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_native_decoder_observer_v1",
+      "./voice_pcm_signal_observer_v1",
+      "expo-crypto",
+      "expo-file-system",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioManifestPageRunnerV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_audio_offline_cache_v1",
+      "./voice_native_decoder_observer_v1",
+      "./voice_physical_device_runner_v1",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioDevicePageV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_native_decoder_observer_v1",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioDevicePageJournalV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_audio_device_page_upload_ack_v1",
+      "./voice_audio_device_page_v1",
+      "./voice_audio_manifest_page_runner_v1",
+      "@react-native-async-storage/async-storage",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioDevicePageEvidenceV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_native_decoder_observer_v1",
+      "./voice_pcm_signal_observer_v1",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioDevicePageEvidenceMaterializerV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_audio_device_page_evidence_v1",
+      "./voice_audio_device_page_v1",
+      "./voice_audio_manifest_page_runner_v1",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioDevicePageUploadAckV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual(["../policies/decision_registry"]);
+    expect(
+      sourceModuleReferences(voiceAudioDeviceHarnessV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_audio_device_page_evidence_materializer_v1",
+      "./voice_audio_device_page_journal_v1",
+      "./voice_audio_device_page_upload_ack_v1",
+      "./voice_audio_device_page_v1",
+      "./voice_audio_manifest_page_runner_v1",
+      "@react-native-async-storage/async-storage",
+    ]);
+    expect(
+      sourceModuleReferences(voiceAudioDeviceEpisodeUploadAckV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual(["../policies/decision_registry"]);
+    expect(
+      sourceModuleReferences(voiceAudioDeviceEpisodeHarnessV1)
+        .filter((value): value is string => value !== null)
+        .sort(),
+    ).toEqual([
+      "../policies/decision_registry",
+      "./voice_audio_device_episode_upload_ack_v1",
+      "./voice_audio_device_harness_v1",
+      "./voice_audio_device_page_journal_v1",
+      "./voice_audio_device_page_upload_ack_v1",
+      "./voice_audio_device_page_v1",
+    ]);
     expect(
       sourceModuleReferences(nativePcmDecoderV1)
         .filter((value): value is string => value !== null)
@@ -988,6 +1521,84 @@ describe("pure canonical V2 generation plan", () => {
       "./v2_firebase_admin_repository_io_v1",
       "./v2_firebase_authenticated_repository_adapter_v1",
       "./v2_firebase_repository_persistence_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_learner_core_release_pointer_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_learner_core_release_index_v1",
+      "./v2_firebase_repository_persistence_v1",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_activity_learner_core_release_adapter_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_learner_core_release_index_v1",
+      "./v2_activity_learner_core_release_pointer_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
+      "./v2_unified_course_release_repository_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_activity_learner_core_release_publisher_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_learner_core_release_index_v1",
+      "./v2_activity_learner_core_release_pointer_v1",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_activity_instances_validator_adapter_v1",
+      "./v2_firebase_activity_learner_core_release_adapter_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_server_evaluator_release_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_activity_instances_package_v2",
+      "./v2_activity_session_projection",
+      "./v2_firebase_repository_persistence_v1",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_activity_server_evaluator_release_adapter_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_activity_server_evaluator_release_v1",
+      "./v2_activity_session_projection",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
+      "./v2_unified_course_release_repository_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_activity_server_evaluator_release_publisher_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_activity_server_evaluator_release_v1",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_activity_instances_validator_adapter_v1",
+      "./v2_firebase_activity_server_evaluator_release_adapter_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
     ]);
     expect(
       importSpecifiers("v2_activity_instances_machine_receipt_v1.ts"),
@@ -1113,7 +1724,103 @@ describe("pure canonical V2 generation plan", () => {
       "../../../modules/learning-v2/policies/decision_registry",
       "./v2_canonical_generation_plan_v2",
       "./v2_firebase_voice_audio_persistence_v1",
+      "./v2_firebase_voice_audio_persistence_v1",
       "./v2_voice_tts_work_order_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_audio_runtime_projection_projector_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_audio_runtime_projection_v1",
+      "./v2_activity_audio_target_catalog_v1",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_targets_package_v2",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_learner_action_resource_projector_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_learner_action_resource_v1",
+      "./v2_activity_session_projection",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_auxiliary_release_pointer_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_index_v1",
+      "./v2_firebase_repository_persistence_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_firebase_activity_auxiliary_release_adapter_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_client_descriptor_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_integrity_loader_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_index_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_manifest_v1",
+      "./v2_activity_auxiliary_release_pointer_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
+      "./v2_unified_course_release_repository_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_auxiliary_session_callable_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/content/release_rollout_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_client_descriptor_v1",
+      "../auth_identity",
+      "./v2_firebase_activity_auxiliary_release_adapter_v1",
+      "firebase-admin",
+      "firebase-functions/v2/https",
+    ]);
+    expect(
+      importSpecifiers("v2_activity_released_session_callable_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/content/release_rollout_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_client_descriptor_v1",
+      "../../../modules/learning-v2/runtime/activity_released_session_package_v1",
+      "../auth_identity",
+      "./v2_firebase_activity_auxiliary_release_adapter_v1",
+      "./v2_firebase_activity_learner_core_release_adapter_v1",
+      "./v2_firebase_activity_server_evaluator_release_adapter_v1",
+      "./v2_unified_course_release_repository_v1",
+      "firebase-admin",
+      "firebase-functions/v2/https",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_activity_auxiliary_release_publisher_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_integrity_loader_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_index_v1",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_manifest_v1",
+      "./v2_activity_auxiliary_release_pointer_v1",
+      "./v2_firebase_activity_auxiliary_release_adapter_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_activity_auxiliary_episode_publisher_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/content/release_manifest",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/activity_auxiliary_release_manifest_v1",
+      "./v2_firebase_activity_auxiliary_release_adapter_v1",
+      "./v2_firebase_activity_auxiliary_release_publisher_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_required_session_activation",
     ]);
     expect(
       importSpecifiers("v2_firebase_voice_audio_manifest_adapter_v1.ts"),
@@ -1159,6 +1866,104 @@ describe("pure canonical V2 generation plan", () => {
       "./v2_voice_audio_episode_receipt_v1",
       "./v2_voice_audio_manifest_v1",
       "./v2_voice_audio_page_receipt_v1",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_firebase_voice_audio_device_page_adapter_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/runtime/voice_audio_device_page_v1",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_repository_trust_root_v1",
+      "./v2_firebase_voice_audio_episode_receipt_adapter_v1",
+      "./v2_voice_audio_manifest_v1",
+      "firebase-admin",
+    ]);
+    expect(
+      importSpecifiers("v2_voice_device_observation_ingest_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/voice_audio_device_page_evidence_v1",
+      "../../../modules/learning-v2/runtime/voice_audio_device_page_v1",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_voice_audio_episode_receipt_adapter_v1",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_native_decoder_episode_receipt_v1",
+      "./v2_voice_native_decoder_page_receipt_v1",
+      "./v2_voice_pcm_signal_episode_receipt_v1",
+      "./v2_voice_pcm_signal_page_receipt_v1",
+    ]);
+    expect(
+      importSpecifiers(
+        "v2_firebase_voice_device_observation_receipt_adapter_v1.ts",
+      ),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/voice_audio_device_episode_upload_ack_v1",
+      "../../../modules/learning-v2/runtime/voice_audio_device_page_upload_ack_v1",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_firebase_voice_audio_episode_receipt_adapter_v1",
+      "./v2_voice_audio_episode_receipt_v1",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_device_observation_ingest_v1",
+      "./v2_voice_device_page_commit_v1",
+      "./v2_voice_native_decoder_episode_receipt_v1",
+      "./v2_voice_native_decoder_page_receipt_v1",
+      "./v2_voice_pcm_signal_episode_receipt_v1",
+      "./v2_voice_pcm_signal_page_receipt_v1",
+      "node:crypto",
+    ]);
+    expect(importSpecifiers("v2_voice_device_page_commit_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+    ]);
+    expect(importSpecifiers("v2_voice_human_review_contract_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_voice_audio_episode_receipt_v1",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_pcm_signal_episode_receipt_v1",
+    ]);
+    expect(importSpecifiers("v2_voice_human_review_index_v1.ts")).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_voice_human_review_contract_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_voice_human_episode_review_receipt_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_human_review_contract_v1",
+      "./v2_voice_pcm_signal_episode_receipt_v1",
+    ]);
+    expect(
+      importSpecifiers("v2_firebase_voice_human_review_adapter_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_firebase_repository_trust_root_v1",
+      "./v2_firebase_voice_audio_episode_receipt_adapter_v1",
+      "./v2_firebase_voice_device_observation_receipt_adapter_v1",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_human_review_contract_v1",
+      "./v2_voice_human_review_index_v1",
+      "firebase-admin",
+    ]);
+    expect(
+      importSpecifiers("v2_firebase_voice_human_episode_review_adapter_v1.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/policies/decision_registry",
+      "./v2_canonical_generation_plan_v2",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_firebase_voice_audio_episode_receipt_adapter_v1",
+      "./v2_firebase_voice_device_observation_receipt_adapter_v1",
+      "./v2_firebase_voice_human_review_adapter_v1",
+      "./v2_voice_audio_manifest_v1",
+      "./v2_voice_human_episode_review_receipt_v1",
       "node:crypto",
     ]);
     expect(importSpecifiers("v2_canonical_stage_validation.ts")).toEqual([
@@ -1223,6 +2028,7 @@ describe("pure canonical V2 generation plan", () => {
       [
         "v2_canonical_generation_plan.ts",
         "v2_canonical_generation_plan_v2.ts",
+        "v2_admin_canonical_generation_bridge_v1.ts",
         "v2_generation_workspace_contract.ts",
         "v2_generation_workspace_contract_v2.ts",
         "v2_repository_capability_observation_v1.ts",
@@ -1239,6 +2045,12 @@ describe("pure canonical V2 generation plan", () => {
         "v2_activity_instances_validator_v1.ts",
         "v2_activity_instances_child_readback_v1.ts",
         "v2_firebase_activity_instances_validator_adapter_v1.ts",
+        "v2_activity_learner_core_release_pointer_v1.ts",
+        "v2_firebase_activity_learner_core_release_adapter_v1.ts",
+        "v2_firebase_activity_learner_core_release_publisher_v1.ts",
+        "v2_activity_server_evaluator_release_v1.ts",
+        "v2_firebase_activity_server_evaluator_release_adapter_v1.ts",
+        "v2_firebase_activity_server_evaluator_release_publisher_v1.ts",
         "v2_activity_instances_machine_receipt_v1.ts",
         "v2_firebase_activity_instances_machine_receipt_adapter_v1.ts",
         "v2_voice_profile_contracts_v1.ts",
@@ -1255,11 +2067,28 @@ describe("pure canonical V2 generation plan", () => {
         "v2_voice_mp3_codec_v1.ts",
         "v2_firebase_voice_audio_persistence_v1.ts",
         "v2_voice_audio_manifest_v1.ts",
+        "v2_activity_audio_runtime_projection_projector_v1.ts",
+        "v2_activity_learner_action_resource_projector_v1.ts",
+        "v2_activity_auxiliary_release_pointer_v1.ts",
+        "v2_activity_auxiliary_session_callable_v1.ts",
+        "v2_activity_released_session_callable_v1.ts",
+        "v2_firebase_activity_auxiliary_release_adapter_v1.ts",
+        "v2_firebase_activity_auxiliary_episode_publisher_v1.ts",
+        "v2_firebase_activity_auxiliary_release_publisher_v1.ts",
         "v2_firebase_voice_audio_manifest_adapter_v1.ts",
         "v2_voice_audio_page_receipt_v1.ts",
         "v2_firebase_voice_audio_page_receipt_adapter_v1.ts",
         "v2_voice_audio_episode_receipt_v1.ts",
         "v2_firebase_voice_audio_episode_receipt_adapter_v1.ts",
+        "v2_firebase_voice_audio_device_page_adapter_v1.ts",
+        "v2_voice_device_observation_ingest_v1.ts",
+        "v2_firebase_voice_device_observation_receipt_adapter_v1.ts",
+        "v2_voice_device_page_commit_v1.ts",
+        "v2_voice_human_review_contract_v1.ts",
+        "v2_voice_human_review_index_v1.ts",
+        "v2_firebase_voice_human_review_adapter_v1.ts",
+        "v2_voice_human_episode_review_receipt_v1.ts",
+        "v2_firebase_voice_human_episode_review_adapter_v1.ts",
         "v2_voice_native_decoder_page_receipt_v1.ts",
         "v2_voice_native_decoder_episode_receipt_v1.ts",
         "v2_voice_pcm_signal_page_receipt_v1.ts",
@@ -1267,6 +2096,28 @@ describe("pure canonical V2 generation plan", () => {
         "v2_canonical_stage_validation.ts",
         "v2_activity_instances_package_v2.ts",
         "v2_activity_session_projection.ts",
+        "v2_owner_authored_episode_input_v1.ts",
+        "v2_owner_authored_episode_input_v2.ts",
+        "v2_owner_authored_session_intro_v1.ts",
+        "v2_owner_episode_intro_projection_v1.ts",
+        "v2_firebase_confirmed_owner_episode_intro_v1.ts",
+        "v2_owner_generator_setup_catalog_v1.ts",
+        "v2_owner_generator_workspace_v1.ts",
+        "v2_root_owner_identity_v1.ts",
+        "v2_owner_episode_stage_repository_v1.ts",
+        "v2_owner_episode_preview_v1.ts",
+        "v2_owner_episode_confirmation_v1.ts",
+        "v2_owner_episode_confirmation_adapter_v1.ts",
+        "v2_unified_course_release_v1.ts",
+        "v2_unified_course_release_activation_v1.ts",
+        "v2_unified_course_release_confirmation_readback_v1.ts",
+        "v2_firebase_unified_course_release_activation_preflight_adapter_v1.ts",
+        "v2_episode_localization_release_index_v1.ts",
+        "v2_episode_voice_release_index_v1.ts",
+        "v2_episode_error_guidance_release_index_v1.ts",
+        "v2_unified_course_release_leaf_readback_v1.ts",
+        "v2_firebase_unified_course_release_activation_adapter_v1.ts",
+        "v2_unified_course_release_repository_v1.ts",
         "v2_session_package_recovery_decision_v1.ts",
         ...b2InternalFiles,
       ]
@@ -1275,9 +2126,75 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(activitySessionPackageV2),
           canonicalRealPath(localEvaluatorCapsuleV1),
           canonicalRealPath(languageTagV1),
+          canonicalRealPath(
+            path.join(
+              repositoryRoot,
+              "modules/learning-v2/runtime/activity_session_intro_projection_v1.ts",
+            ),
+          ),
           canonicalRealPath(voicePcmSignalObserverV1),
+          canonicalRealPath(voiceAudioOfflineCacheV1),
+          canonicalRealPath(activityAudioRuntimeProjectionV1),
+          canonicalRealPath(activityErrorExplanationCatalogV1),
+          canonicalRealPath(activityAttemptControllerV1),
+          canonicalRealPath(activityLearnerActionResourceV1),
+          canonicalRealPath(activityPostTerminalCardCatalogV1),
+          canonicalRealPath(activityPostTerminalCardCapsuleV1),
+          canonicalRealPath(activityAuxiliaryReleaseManifestV1),
+          canonicalRealPath(activityAuxiliaryIntegrityLoaderV1),
+          canonicalRealPath(activityAuxiliaryClientDescriptorV1),
+          canonicalRealPath(activityAuxiliaryClientLoaderV1),
+          canonicalRealPath(activityAuxiliaryAppClientV1),
+          canonicalRealPath(activityAuxiliarySessionRuntimeV1),
+          canonicalRealPath(activityReleasedSessionPackageV1),
+          canonicalRealPath(activityReleasedSessionAppClientV1),
+          canonicalRealPath(activityReleasedSessionHookV1),
+          canonicalRealPath(activityReleasedSessionCompletionV1),
+          canonicalRealPath(activityReleasedSessionCompletionSpoolV1),
+          canonicalRealPath(activityReleasedSessionCompletionProjectionV1),
+          canonicalRealPath(activityReleasedSessionCompletionCallableV1),
+          canonicalRealPath(activityReleasedSessionCompletionSyncV1),
+          canonicalRealPath(activityReleasedSessionSubmissionV2),
+          canonicalRealPath(activityReleasedSessionSubmissionSpoolV2),
+          canonicalRealPath(activityReleasedSessionEvaluationV1),
+          canonicalRealPath(activityReleasedSessionSubmissionCallableV2),
+          canonicalRealPath(activityReleasedSessionSettlementProjectionV1),
+          canonicalRealPath(activityReleasedSessionSubmissionSyncV2),
+          canonicalRealPath(completionBackgroundSchedulerV1),
+          canonicalRealPath(activityLearnerCoreReleaseIndexV1),
+          canonicalRealPath(
+            path.join(
+              repositoryRoot,
+              "modules/learning-v2/runtime/activity_learner_core_release_index_v2.ts",
+            ),
+          ),
+          canonicalRealPath(activityAuxiliarySessionHookV1),
+          canonicalRealPath(activitySessionAudioPlanV1),
+          canonicalRealPath(activityAudioTransportV1),
+          canonicalRealPath(activityAudioPreloadV1),
+          canonicalRealPath(activityAudioSessionHookV1),
+          canonicalRealPath(activityLocalAudioPlaybackHookV1),
+          canonicalRealPath(activityActionSessionV1),
+          canonicalRealPath(activityCompactActionExecutorV1),
+          canonicalRealPath(activityActionSessionHookV1),
+          canonicalRealPath(activityAuxiliaryLessonMapV1),
+          canonicalRealPath(activityAuxiliaryLessonSessionV1),
+          canonicalRealPath(releaseRolloutV1),
+          canonicalRealPath(activityAuxiliaryReleaseIndexV1),
+          canonicalRealPath(voiceAudioDeviceEpisodeUploadAckV1),
+          canonicalRealPath(voiceAudioDeviceEpisodeHarnessV1),
+          canonicalRealPath(voicePhysicalDeviceRunnerV1),
+          canonicalRealPath(voiceAudioManifestPageRunnerV1),
+          canonicalRealPath(voiceAudioDevicePageV1),
+          canonicalRealPath(voiceAudioDevicePageJournalV1),
+          canonicalRealPath(voiceAudioDevicePageEvidenceV1),
+          canonicalRealPath(voiceAudioDevicePageEvidenceMaterializerV1),
+          canonicalRealPath(voiceAudioDevicePageUploadAckV1),
+          canonicalRealPath(voiceAudioDeviceHarnessV1),
           canonicalRealPath(nativePcmDecoderV1),
           canonicalRealPath(nativePcmDecoderTypesV1),
+          canonicalRealPath(path.resolve(root, "../admin_v2_generation.ts")),
+          canonicalRealPath(path.resolve(root, "../index.ts")),
         ]),
     );
     const functionsSourceRoot = path.join(root, "..");
@@ -1285,6 +2202,22 @@ describe("pure canonical V2 generation plan", () => {
       [
         "v2_canonical_generation_plan.ts",
         "v2_canonical_generation_plan_v2.ts",
+        "v2_owner_authored_episode_input_v1.ts",
+        "v2_root_owner_identity_v1.ts",
+        "v2_owner_episode_stage_repository_v1.ts",
+        "v2_owner_episode_preview_v1.ts",
+        "v2_owner_episode_confirmation_v1.ts",
+        "v2_owner_episode_confirmation_adapter_v1.ts",
+        "v2_unified_course_release_v1.ts",
+        "v2_unified_course_release_activation_v1.ts",
+        "v2_unified_course_release_confirmation_readback_v1.ts",
+        "v2_firebase_unified_course_release_activation_preflight_adapter_v1.ts",
+        "v2_episode_localization_release_index_v1.ts",
+        "v2_episode_voice_release_index_v1.ts",
+        "v2_episode_error_guidance_release_index_v1.ts",
+        "v2_unified_course_release_leaf_readback_v1.ts",
+        "v2_firebase_unified_course_release_activation_adapter_v1.ts",
+        "v2_unified_course_release_repository_v1.ts",
         "v2_generation_workspace_contract.ts",
         "v2_generation_workspace_contract_v2.ts",
         "v2_repository_capability_observation_v1.ts",
@@ -1301,6 +2234,12 @@ describe("pure canonical V2 generation plan", () => {
         "v2_activity_instances_validator_v1.ts",
         "v2_activity_instances_child_readback_v1.ts",
         "v2_firebase_activity_instances_validator_adapter_v1.ts",
+        "v2_activity_learner_core_release_pointer_v1.ts",
+        "v2_firebase_activity_learner_core_release_adapter_v1.ts",
+        "v2_firebase_activity_learner_core_release_publisher_v1.ts",
+        "v2_activity_server_evaluator_release_v1.ts",
+        "v2_firebase_activity_server_evaluator_release_adapter_v1.ts",
+        "v2_firebase_activity_server_evaluator_release_publisher_v1.ts",
         "v2_activity_instances_machine_receipt_v1.ts",
         "v2_firebase_activity_instances_machine_receipt_adapter_v1.ts",
         "v2_voice_profile_contracts_v1.ts",
@@ -1317,11 +2256,27 @@ describe("pure canonical V2 generation plan", () => {
         "v2_voice_mp3_codec_v1.ts",
         "v2_firebase_voice_audio_persistence_v1.ts",
         "v2_voice_audio_manifest_v1.ts",
+        "v2_activity_audio_runtime_projection_projector_v1.ts",
+        "v2_activity_learner_action_resource_projector_v1.ts",
+        "v2_activity_auxiliary_release_pointer_v1.ts",
+        "v2_activity_auxiliary_session_callable_v1.ts",
+        "v2_firebase_activity_auxiliary_release_adapter_v1.ts",
+        "v2_firebase_activity_auxiliary_episode_publisher_v1.ts",
+        "v2_firebase_activity_auxiliary_release_publisher_v1.ts",
         "v2_firebase_voice_audio_manifest_adapter_v1.ts",
         "v2_voice_audio_page_receipt_v1.ts",
         "v2_firebase_voice_audio_page_receipt_adapter_v1.ts",
         "v2_voice_audio_episode_receipt_v1.ts",
         "v2_firebase_voice_audio_episode_receipt_adapter_v1.ts",
+        "v2_firebase_voice_audio_device_page_adapter_v1.ts",
+        "v2_voice_device_observation_ingest_v1.ts",
+        "v2_firebase_voice_device_observation_receipt_adapter_v1.ts",
+        "v2_voice_device_page_commit_v1.ts",
+        "v2_voice_human_review_contract_v1.ts",
+        "v2_voice_human_review_index_v1.ts",
+        "v2_firebase_voice_human_review_adapter_v1.ts",
+        "v2_voice_human_episode_review_receipt_v1.ts",
+        "v2_firebase_voice_human_episode_review_adapter_v1.ts",
         "v2_voice_native_decoder_page_receipt_v1.ts",
         "v2_voice_native_decoder_episode_receipt_v1.ts",
         "v2_voice_pcm_signal_page_receipt_v1.ts",
@@ -1336,6 +2291,92 @@ describe("pure canonical V2 generation plan", () => {
     canonicalTargets.add(canonicalRealPath(activitySessionPackageV2));
     canonicalTargets.add(canonicalRealPath(localEvaluatorCapsuleV1));
     canonicalTargets.add(canonicalRealPath(voicePcmSignalObserverV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioOfflineCacheV1));
+    canonicalTargets.add(canonicalRealPath(activityAudioRuntimeProjectionV1));
+    canonicalTargets.add(canonicalRealPath(activityLearnerActionResourceV1));
+    canonicalTargets.add(canonicalRealPath(activityPostTerminalCardCatalogV1));
+    canonicalTargets.add(canonicalRealPath(activityPostTerminalCardCapsuleV1));
+    canonicalTargets.add(canonicalRealPath(activityAuxiliaryReleaseManifestV1));
+    canonicalTargets.add(canonicalRealPath(activityAuxiliaryIntegrityLoaderV1));
+    canonicalTargets.add(
+      canonicalRealPath(activityAuxiliaryClientDescriptorV1),
+    );
+    canonicalTargets.add(canonicalRealPath(activityAuxiliaryClientLoaderV1));
+    canonicalTargets.add(canonicalRealPath(activityAuxiliaryAppClientV1));
+    canonicalTargets.add(canonicalRealPath(activityAuxiliarySessionRuntimeV1));
+    canonicalTargets.add(canonicalRealPath(activityReleasedSessionPackageV1));
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionCompletionV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionCompletionSpoolV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionCompletionProjectionV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionCompletionCallableV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionCompletionSyncV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionSubmissionV2),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionSubmissionSpoolV2),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionEvaluationV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionSubmissionCallableV2),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionSettlementProjectionV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(activityReleasedSessionSubmissionSyncV2),
+    );
+    canonicalTargets.add(canonicalRealPath(activityLearnerCoreReleaseIndexV1));
+    canonicalTargets.add(
+      canonicalRealPath(
+        path.join(
+          repositoryRoot,
+          "modules/learning-v2/runtime/activity_learner_core_release_index_v2.ts",
+        ),
+      ),
+    );
+    canonicalTargets.add(canonicalRealPath(activityServerEvaluatorReleaseV1));
+    canonicalTargets.add(
+      canonicalRealPath(firebaseActivityServerEvaluatorReleaseAdapterV1),
+    );
+    canonicalTargets.add(
+      canonicalRealPath(firebaseActivityServerEvaluatorReleasePublisherV1),
+    );
+    canonicalTargets.add(canonicalRealPath(activityAuxiliarySessionHookV1));
+    canonicalTargets.add(canonicalRealPath(activitySessionAudioPlanV1));
+    canonicalTargets.add(canonicalRealPath(activityAudioTransportV1));
+    canonicalTargets.add(canonicalRealPath(activityAudioPreloadV1));
+    canonicalTargets.add(canonicalRealPath(activityAudioSessionHookV1));
+    canonicalTargets.add(canonicalRealPath(activityLocalAudioPlaybackHookV1));
+    canonicalTargets.add(canonicalRealPath(activityActionSessionV1));
+    canonicalTargets.add(canonicalRealPath(activityCompactActionExecutorV1));
+    canonicalTargets.add(canonicalRealPath(activityActionSessionHookV1));
+    canonicalTargets.add(canonicalRealPath(releaseRolloutV1));
+    canonicalTargets.add(canonicalRealPath(activityAuxiliaryReleaseIndexV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioDeviceEpisodeUploadAckV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioDeviceEpisodeHarnessV1));
+    canonicalTargets.add(canonicalRealPath(voicePhysicalDeviceRunnerV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioManifestPageRunnerV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageJournalV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageEvidenceV1));
+    canonicalTargets.add(
+      canonicalRealPath(voiceAudioDevicePageEvidenceMaterializerV1),
+    );
+    canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageUploadAckV1));
+    canonicalTargets.add(canonicalRealPath(voiceAudioDeviceHarnessV1));
     canonicalTargets.add(canonicalRealPath(nativePcmDecoderV1));
     canonicalTargets.add(canonicalRealPath(nativePcmDecoderTypesV1));
     canonicalTargets.add(canonicalRealPath(activityInstancesPackageV2));
@@ -1376,6 +2417,39 @@ describe("pure canonical V2 generation plan", () => {
       .filter((file) => {
         const source = fs.readFileSync(file, "utf8");
         return sourceModuleReferences(file).some((specifier) => {
+          if (
+            canonicalRealPath(file) ===
+              canonicalRealPath(
+                path.resolve(root, "../admin_content_stages.ts"),
+              ) &&
+            specifier === "./content_factory/v2_owner_episode_preview_v1"
+          )
+            return false;
+          if (
+            canonicalRealPath(file) ===
+              canonicalRealPath(
+                path.resolve(root, "../admin_v2_generation.ts"),
+              ) &&
+            specifier ===
+              "./content_factory/v2_admin_canonical_generation_bridge_v1"
+          )
+            return false;
+          if (
+            canonicalRealPath(file) === canonicalRealPath(functionsIndex) &&
+            (specifier ===
+              "./content_factory/v2_activity_auxiliary_session_callable_v1" ||
+              specifier ===
+                "./content_factory/v2_owner_episode_stage_repository_v1" ||
+              specifier ===
+                "./content_factory/v2_owner_episode_confirmation_adapter_v1" ||
+              specifier ===
+                "./content_factory/v2_activity_released_session_callable_v1" ||
+              specifier ===
+                "./learning_v2/activity_released_session_completion_callable_v1" ||
+              specifier ===
+                "./learning_v2/activity_released_session_submission_callable_v2")
+          )
+            return false;
           if (specifier === null) {
             return (
               source.includes("v2_canonical_") ||
@@ -1402,6 +2476,20 @@ describe("pure canonical V2 generation plan", () => {
               source.includes(
                 "v2_firebase_activity_instances_validator_adapter_v1",
               ) ||
+              source.includes("v2_activity_learner_core_release_pointer_v1") ||
+              source.includes(
+                "v2_firebase_activity_learner_core_release_adapter_v1",
+              ) ||
+              source.includes(
+                "v2_firebase_activity_learner_core_release_publisher_v1",
+              ) ||
+              source.includes("v2_activity_server_evaluator_release_v1") ||
+              source.includes(
+                "v2_firebase_activity_server_evaluator_release_adapter_v1",
+              ) ||
+              source.includes(
+                "v2_firebase_activity_server_evaluator_release_publisher_v1",
+              ) ||
               source.includes("v2_activity_instances_machine_receipt_v1") ||
               source.includes(
                 "v2_firebase_activity_instances_machine_receipt_adapter_v1",
@@ -1426,6 +2514,60 @@ describe("pure canonical V2 generation plan", () => {
               source.includes("v2_voice_mp3_codec_v1") ||
               source.includes("v2_firebase_voice_audio_persistence_v1") ||
               source.includes("v2_voice_audio_manifest_v1") ||
+              source.includes(
+                "v2_activity_audio_runtime_projection_projector_v1",
+              ) ||
+              source.includes("activity_audio_runtime_projection_v1") ||
+              source.includes(
+                "v2_activity_learner_action_resource_projector_v1",
+              ) ||
+              source.includes("v2_activity_auxiliary_release_pointer_v1") ||
+              source.includes("v2_activity_auxiliary_session_callable_v1") ||
+              source.includes("v2_activity_released_session_callable_v1") ||
+              source.includes(
+                "v2_firebase_activity_auxiliary_release_adapter_v1",
+              ) ||
+              source.includes(
+                "v2_firebase_activity_auxiliary_release_publisher_v1",
+              ) ||
+              source.includes(
+                "v2_firebase_activity_auxiliary_episode_publisher_v1",
+              ) ||
+              source.includes("activity_learner_action_resource_v1") ||
+              source.includes("activity_post_terminal_card_catalog_v1") ||
+              source.includes("activity_post_terminal_card_capsule_v1") ||
+              source.includes("activity_auxiliary_release_manifest_v1") ||
+              source.includes("activity_auxiliary_integrity_loader_v1") ||
+              source.includes("activity_auxiliary_client_descriptor_v1") ||
+              source.includes("activity_auxiliary_client_loader_v1") ||
+              source.includes("learning_v2_activity_auxiliary_client") ||
+              source.includes("activity_session_audio_plan_v1") ||
+              source.includes("learning_v2_activity_audio_transport_v1") ||
+              source.includes("learning_v2_activity_audio_preload_v1") ||
+              source.includes("use_learning_v2_activity_audio_session_v1") ||
+              source.includes(
+                "use_learning_v2_activity_local_audio_playback_v1",
+              ) ||
+              source.includes("activity_auxiliary_session_runtime_v1") ||
+              source.includes("activity_released_session_package_v1") ||
+              source.includes("activity_released_session_completion_v1") ||
+              source.includes(
+                "activity_released_session_completion_spool_v1",
+              ) ||
+              source.includes(
+                "learning_v2_activity_released_session_client_v1",
+              ) ||
+              source.includes("use_learning_v2_activity_released_session_v1") ||
+              source.includes("activity_learner_core_release_index_v1") ||
+              source.includes("activity_learner_core_release_index_v2") ||
+              source.includes("activity_action_session_v1") ||
+              source.includes("activity_compact_action_executor_v1") ||
+              source.includes("use_learning_v2_activity_action_session_v1") ||
+              source.includes(
+                "use_learning_v2_activity_auxiliary_session_v1",
+              ) ||
+              source.includes("release_rollout_v1") ||
+              source.includes("activity_auxiliary_release_index_v1") ||
               source.includes("v2_firebase_voice_audio_manifest_adapter_v1") ||
               source.includes("v2_voice_audio_page_receipt_v1") ||
               source.includes(
@@ -1435,9 +2577,37 @@ describe("pure canonical V2 generation plan", () => {
               source.includes(
                 "v2_firebase_voice_audio_episode_receipt_adapter_v1",
               ) ||
+              source.includes(
+                "v2_firebase_voice_audio_device_page_adapter_v1",
+              ) ||
+              source.includes("v2_voice_device_observation_ingest_v1") ||
+              source.includes(
+                "v2_firebase_voice_device_observation_receipt_adapter_v1",
+              ) ||
               source.includes("v2_voice_native_decoder_page_receipt_v1") ||
               source.includes("v2_voice_native_decoder_episode_receipt_v1") ||
+              source.includes("v2_voice_device_page_commit_v1") ||
+              source.includes("v2_voice_human_review_contract_v1") ||
+              source.includes("v2_voice_human_review_index_v1") ||
+              source.includes("v2_firebase_voice_human_review_adapter_v1") ||
+              source.includes("v2_voice_human_episode_review_receipt_v1") ||
+              source.includes(
+                "v2_firebase_voice_human_episode_review_adapter_v1",
+              ) ||
               source.includes("v2_voice_pcm_signal_observer_v1") ||
+              source.includes("voice_audio_offline_cache_v1") ||
+              source.includes("voice_physical_device_runner_v1") ||
+              source.includes("voice_audio_manifest_page_runner_v1") ||
+              source.includes("voice_audio_device_page_v1") ||
+              source.includes("voice_audio_device_page_journal_v1") ||
+              source.includes("voice_audio_device_page_evidence_v1") ||
+              source.includes(
+                "voice_audio_device_page_evidence_materializer_v1",
+              ) ||
+              source.includes("voice_audio_device_page_upload_ack_v1") ||
+              source.includes("voice_audio_device_episode_upload_ack_v1") ||
+              source.includes("voice_audio_device_episode_harness_v1") ||
+              source.includes("voice_audio_device_harness_v1") ||
               source.includes("learning-v2-pcm-decoder") ||
               source.includes("v2_voice_pcm_signal_page_receipt_v1") ||
               source.includes("v2_voice_pcm_signal_episode_receipt_v1") ||
@@ -1447,6 +2617,37 @@ describe("pure canonical V2 generation plan", () => {
               source.includes("local_evaluator_capsule_v1") ||
               source.includes("v2_activity_instances_package_v2") ||
               source.includes("v2_activity_session_projection") ||
+              source.includes("v2_admin_canonical_generation_bridge_v1") ||
+              source.includes("v2_owner_authored_episode_input_v1") ||
+              source.includes("v2_owner_authored_episode_input_v2") ||
+              source.includes("v2_owner_authored_session_intro_v1") ||
+              source.includes("activity_session_intro_projection_v1") ||
+              source.includes("v2_owner_episode_intro_projection_v1") ||
+              source.includes("v2_firebase_confirmed_owner_episode_intro_v1") ||
+              source.includes("v2_owner_generator_workspace_v1") ||
+              source.includes("v2_owner_generator_setup_catalog_v1") ||
+              source.includes("admin_v2_generation") ||
+              source.includes("v2_root_owner_identity_v1") ||
+              source.includes("v2_owner_episode_stage_repository_v1") ||
+              source.includes("v2_owner_episode_preview_v1") ||
+              source.includes("v2_owner_episode_confirmation_v1") ||
+              source.includes("v2_owner_episode_confirmation_adapter_v1") ||
+              source.includes("v2_unified_course_release_v1") ||
+              source.includes("v2_unified_course_release_activation_v1") ||
+              source.includes(
+                "v2_unified_course_release_confirmation_readback_v1",
+              ) ||
+              source.includes(
+                "v2_firebase_unified_course_release_activation_preflight_adapter_v1",
+              ) ||
+              source.includes("v2_episode_localization_release_index_v1") ||
+              source.includes("v2_episode_voice_release_index_v1") ||
+              source.includes("v2_episode_error_guidance_release_index_v1") ||
+              source.includes("v2_unified_course_release_leaf_readback_v1") ||
+              source.includes(
+                "v2_firebase_unified_course_release_activation_adapter_v1",
+              ) ||
+              source.includes("v2_unified_course_release_repository_v1") ||
               source.includes("v2_session_package_recovery_decision_v1")
             );
           }
@@ -1486,6 +2687,20 @@ describe("pure canonical V2 generation plan", () => {
             specifier.includes(
               "v2_firebase_activity_instances_validator_adapter_v1",
             ) ||
+            specifier.includes("v2_activity_learner_core_release_pointer_v1") ||
+            specifier.includes(
+              "v2_firebase_activity_learner_core_release_adapter_v1",
+            ) ||
+            specifier.includes(
+              "v2_firebase_activity_learner_core_release_publisher_v1",
+            ) ||
+            specifier.includes("v2_activity_server_evaluator_release_v1") ||
+            specifier.includes(
+              "v2_firebase_activity_server_evaluator_release_adapter_v1",
+            ) ||
+            specifier.includes(
+              "v2_firebase_activity_server_evaluator_release_publisher_v1",
+            ) ||
             specifier.includes("v2_activity_instances_machine_receipt_v1") ||
             specifier.includes(
               "v2_firebase_activity_instances_machine_receipt_adapter_v1",
@@ -1510,6 +2725,65 @@ describe("pure canonical V2 generation plan", () => {
             specifier.includes("v2_voice_mp3_codec_v1") ||
             specifier.includes("v2_firebase_voice_audio_persistence_v1") ||
             specifier.includes("v2_voice_audio_manifest_v1") ||
+            specifier.includes(
+              "v2_activity_audio_runtime_projection_projector_v1",
+            ) ||
+            specifier.includes("activity_audio_runtime_projection_v1") ||
+            specifier.includes(
+              "v2_activity_learner_action_resource_projector_v1",
+            ) ||
+            specifier.includes("v2_activity_auxiliary_release_pointer_v1") ||
+            specifier.includes("v2_activity_auxiliary_session_callable_v1") ||
+            specifier.includes("v2_activity_released_session_callable_v1") ||
+            specifier.includes(
+              "v2_firebase_activity_auxiliary_release_adapter_v1",
+            ) ||
+            specifier.includes(
+              "v2_firebase_activity_auxiliary_release_publisher_v1",
+            ) ||
+            specifier.includes(
+              "v2_firebase_activity_auxiliary_episode_publisher_v1",
+            ) ||
+            specifier.includes("activity_learner_action_resource_v1") ||
+            specifier.includes("activity_post_terminal_card_catalog_v1") ||
+            specifier.includes("activity_post_terminal_card_capsule_v1") ||
+            specifier.includes("activity_auxiliary_release_manifest_v1") ||
+            specifier.includes("activity_auxiliary_integrity_loader_v1") ||
+            specifier.includes("activity_auxiliary_client_descriptor_v1") ||
+            specifier.includes("activity_auxiliary_client_loader_v1") ||
+            specifier.includes("learning_v2_activity_auxiliary_client") ||
+            specifier.includes("activity_session_audio_plan_v1") ||
+            specifier.includes("learning_v2_activity_audio_transport_v1") ||
+            specifier.includes("learning_v2_activity_audio_preload_v1") ||
+            specifier.includes("use_learning_v2_activity_audio_session_v1") ||
+            specifier.includes(
+              "use_learning_v2_activity_local_audio_playback_v1",
+            ) ||
+            specifier.includes("activity_auxiliary_session_runtime_v1") ||
+            specifier.includes("activity_released_session_package_v1") ||
+            specifier.includes("activity_released_session_completion_v1") ||
+            specifier.includes(
+              "activity_released_session_settlement_projection_v1",
+            ) ||
+            specifier.includes(
+              "activity_released_session_completion_spool_v1",
+            ) ||
+            specifier.includes(
+              "learning_v2_activity_released_session_client_v1",
+            ) ||
+            specifier.includes(
+              "use_learning_v2_activity_released_session_v1",
+            ) ||
+            specifier.includes("activity_learner_core_release_index_v1") ||
+            specifier.includes("activity_learner_core_release_index_v2") ||
+            specifier.includes("activity_action_session_v1") ||
+            specifier.includes("activity_compact_action_executor_v1") ||
+            specifier.includes("use_learning_v2_activity_action_session_v1") ||
+            specifier.includes(
+              "use_learning_v2_activity_auxiliary_session_v1",
+            ) ||
+            specifier.includes("release_rollout_v1") ||
+            specifier.includes("activity_auxiliary_release_index_v1") ||
             specifier.includes("v2_firebase_voice_audio_manifest_adapter_v1") ||
             specifier.includes("v2_voice_audio_page_receipt_v1") ||
             specifier.includes(
@@ -1519,9 +2793,37 @@ describe("pure canonical V2 generation plan", () => {
             specifier.includes(
               "v2_firebase_voice_audio_episode_receipt_adapter_v1",
             ) ||
+            specifier.includes(
+              "v2_firebase_voice_audio_device_page_adapter_v1",
+            ) ||
+            specifier.includes("v2_voice_device_observation_ingest_v1") ||
+            specifier.includes(
+              "v2_firebase_voice_device_observation_receipt_adapter_v1",
+            ) ||
             specifier.includes("v2_voice_native_decoder_page_receipt_v1") ||
             specifier.includes("v2_voice_native_decoder_episode_receipt_v1") ||
+            specifier.includes("v2_voice_device_page_commit_v1") ||
+            specifier.includes("v2_voice_human_review_contract_v1") ||
+            specifier.includes("v2_voice_human_review_index_v1") ||
+            specifier.includes("v2_firebase_voice_human_review_adapter_v1") ||
+            specifier.includes("v2_voice_human_episode_review_receipt_v1") ||
+            specifier.includes(
+              "v2_firebase_voice_human_episode_review_adapter_v1",
+            ) ||
             specifier.includes("v2_voice_pcm_signal_observer_v1") ||
+            specifier.includes("voice_audio_offline_cache_v1") ||
+            specifier.includes("voice_physical_device_runner_v1") ||
+            specifier.includes("voice_audio_manifest_page_runner_v1") ||
+            specifier.includes("voice_audio_device_page_v1") ||
+            specifier.includes("voice_audio_device_page_journal_v1") ||
+            specifier.includes("voice_audio_device_page_evidence_v1") ||
+            specifier.includes(
+              "voice_audio_device_page_evidence_materializer_v1",
+            ) ||
+            specifier.includes("voice_audio_device_page_upload_ack_v1") ||
+            specifier.includes("voice_audio_device_episode_upload_ack_v1") ||
+            specifier.includes("voice_audio_device_episode_harness_v1") ||
+            specifier.includes("voice_audio_device_harness_v1") ||
             specifier.includes("learning-v2-pcm-decoder") ||
             specifier.includes("v2_voice_pcm_signal_page_receipt_v1") ||
             specifier.includes("v2_voice_pcm_signal_episode_receipt_v1") ||
@@ -1531,6 +2833,38 @@ describe("pure canonical V2 generation plan", () => {
             specifier.includes("local_evaluator_capsule_v1") ||
             specifier.includes("v2_activity_instances_package_v2") ||
             specifier.includes("v2_activity_session_projection") ||
+            specifier.includes("v2_admin_canonical_generation_bridge_v1") ||
+            specifier.includes("v2_owner_authored_episode_input_v2") ||
+            specifier.includes("v2_owner_authored_session_intro_v1") ||
+            specifier.includes("activity_session_intro_projection_v1") ||
+            specifier.includes("v2_owner_episode_intro_projection_v1") ||
+            specifier.includes(
+              "v2_firebase_confirmed_owner_episode_intro_v1",
+            ) ||
+            specifier.includes("v2_owner_generator_workspace_v1") ||
+            specifier.includes("v2_owner_generator_setup_catalog_v1") ||
+            specifier.includes("admin_v2_generation") ||
+            specifier.includes("v2_root_owner_identity_v1") ||
+            specifier.includes("v2_owner_episode_stage_repository_v1") ||
+            specifier.includes("v2_owner_episode_preview_v1") ||
+            specifier.includes("v2_owner_episode_confirmation_v1") ||
+            specifier.includes("v2_owner_episode_confirmation_adapter_v1") ||
+            specifier.includes("v2_unified_course_release_v1") ||
+            specifier.includes("v2_unified_course_release_activation_v1") ||
+            specifier.includes(
+              "v2_unified_course_release_confirmation_readback_v1",
+            ) ||
+            specifier.includes(
+              "v2_firebase_unified_course_release_activation_preflight_adapter_v1",
+            ) ||
+            specifier.includes("v2_episode_localization_release_index_v1") ||
+            specifier.includes("v2_episode_voice_release_index_v1") ||
+            specifier.includes("v2_episode_error_guidance_release_index_v1") ||
+            specifier.includes("v2_unified_course_release_leaf_readback_v1") ||
+            specifier.includes(
+              "v2_firebase_unified_course_release_activation_adapter_v1",
+            ) ||
+            specifier.includes("v2_unified_course_release_repository_v1") ||
             specifier.includes("v2_session_package_recovery_decision_v1")
           );
         });

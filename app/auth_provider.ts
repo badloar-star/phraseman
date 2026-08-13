@@ -2618,13 +2618,6 @@ export async function signOutCurrentProvider(): Promise<void> {
     const { clearCachedLeagueStateSnapshot } = await import('./league_open_cache_policy');
     clearCachedLeagueStateSnapshot();
   } catch { /* ignore */ }
-  // зачем: та же защита для дискового снапшота «Вызовов дня» — он поднимается в память
-  // при старте и синхронно рисует первый кадр, поэтому после выхода его надо убрать,
-  // чтобы следующий вошедший на общем девайсе не увидел чужие задания и прогресс.
-  try {
-    const { clearDailyTasksScreenSnapshotOnDisk } = await import('./daily_tasks_screen_persist');
-    clearDailyTasksScreenSnapshotOnDisk();
-  } catch { /* ignore */ }
   // зачем: снапшот «Моей практики» ключуется только target+языком, без uid, поэтому
   // после выхода его тоже надо стереть — иначе первый кадр покажет чужую статистику.
   try {
@@ -2633,7 +2626,7 @@ export async function signOutCurrentProvider(): Promise<void> {
   } catch { /* ignore */ }
   // зачем: общий снапшот экранов рисует первый кадр синхронно, поэтому после выхода
   // его надо убрать — иначе следующий вошедший на общем девайсе увидит чужие цифры
-  // (та же защита, что у снапшотов «Вызовов дня» и практики выше).
+  // (та же защита, что у снапшота практики выше).
   try {
     const { clearScreenSnapshots } = await import('./screen_snapshot_store');
     clearScreenSnapshots();

@@ -94,7 +94,7 @@ export async function loadPendingSeasonPassGiftCount(nowMs: number = Date.now())
 /**
  * Кладёт подарок в инвентарь по факту клейма уровня. Идемпотентно по `id`:
  * повторный вызов с тем же level/kind не создаёт дубль (защита от двойного
- * тапа — та же гарантия, что claimTaskWithReward даёт для заданий дня).
+ * тапа и повторной доставки одного и того же серверного результата).
  */
 export async function addSeasonPassGift(
   seasonId: string,

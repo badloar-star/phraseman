@@ -12,6 +12,7 @@ import { consumeApprovalToken } from './approval_store';
 import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_core';
 import { markRowDecided } from './approval_message_edit';
 import { issueDecisionButtons } from './issue_decision_buttons';
+import { recordPlanOwnerDecision } from './jarvis_plans_store';
 import type { InlineKeyboard } from './telegram_buttons';
 import { sendJarvisDigest } from './telegram_send';
 import type { Decision } from './decision';
@@ -249,6 +250,18 @@ export const jarvisTelegramApprovalWebhook = onRequest(
           outcome: outcome.ok ? 'accepted' : outcome.reason,
           nowMs,
         });
+        if (outcome.ok && !outcome.doc.department.startsWith('support_email:')) {
+          await recordPlanOwnerDecision({
+            db,
+            approvalDecisionHash: outcome.doc.decisionHash,
+            action: outcome.doc.action,
+            nowMs,
+          }).catch((error) => {
+            // Approval audit остаётся источником истины даже если план временно
+            // недоступен; Telegram не должен ретраить уже погашенный токен.
+            logger.warn('jarvis_approval: plan lifecycle update failed', error);
+          });
+        }
         return outcome;
       },
     });

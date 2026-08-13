@@ -8,7 +8,7 @@
 // читает streak_repair). Чистая функция вычисления вынесена для тестов.
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getTodayKey } from '../daily_tasks';
+import { getUtcDayKey } from '../local_date';
 
 /** Минимум пропущенных дней, чтобы считать это «возвращением». */
 export const COMEBACK_MIN_MISSED_DAYS = 2;
@@ -49,7 +49,7 @@ export function isComebackEligible(
 }
 
 /** Считает право на comeback-бонус из AsyncStorage (без побочек, только чтение). */
-export async function checkComebackEligible(todayKey: string = getTodayKey()): Promise<boolean> {
+export async function checkComebackEligible(todayKey: string = getUtcDayKey()): Promise<boolean> {
   try {
     const [lastActive, granted] = await Promise.all([
       AsyncStorage.getItem('last_active_date'),
@@ -62,7 +62,7 @@ export async function checkComebackEligible(todayKey: string = getTodayKey()): P
 }
 
 /** Помечает, что comeback-бонус выдан сегодня (идемпотентность за сутки). */
-export async function markComebackGranted(todayKey: string = getTodayKey()): Promise<void> {
+export async function markComebackGranted(todayKey: string = getUtcDayKey()): Promise<void> {
   try {
     await AsyncStorage.setItem(COMEBACK_GRANTED_KEY, todayKey);
   } catch {

@@ -39,3 +39,64 @@ export function buttonForegroundForBackground(
   const lightContrast = contrastRatio(backgroundLuminance, 1);
   return darkContrast >= lightContrast ? DARK_BUTTON_TEXT : LIGHT_BUTTON_TEXT;
 }
+
+const toHex = (channel: number): string =>
+  Math.max(0, Math.min(255, Math.round(channel))).toString(16).padStart(2, '0');
+
+/**
+ * Светлая ли поверхность. Считаем по реальной яркости цвета, а не по имени
+ * темы: список светлых тем в приложении неполон (businessLight в него не
+ * входит), а новая тема добавится завтра и снова про него забудут.
+ */
+export function isLightSurface(backgroundColor: string): boolean {
+  const background = parseHexColor(backgroundColor);
+  if (!background) return false;
+  return relativeLuminance(background) > 0.4;
+}
+
+/** Контраст двух цветов по WCAG (1..21). Неразбираемый цвет → 1 (худший случай). */
+export function colorContrast(foreground: string, background: string): number {
+  const fg = parseHexColor(foreground);
+  const bg = parseHexColor(background);
+  if (!fg || !bg) return 1;
+  return contrastRatio(relativeLuminance(fg), relativeLuminance(bg));
+}
+
+/**
+ * Подгоняет цвет ТЕКСТА/иконки под фон до нужного контраста, сохраняя оттенок.
+ *
+ * зачем: бренд-цвета (лиги, медали, «повышен/понижен») подбирались под тёмный
+ * фон. На светлой теме тот же зелёный #34C759 даёт контраст ~1.9:1 — надпись
+ * читается как выцветшая. Вместо ручной второй палитры на каждую тему
+ * затемняем (или осветляем) исходный оттенок шагами, пока не наберётся
+ * минимум WCAG AA. Оттенок узнаваем, читаемость гарантирована.
+ *
+ * @param color исходный «фирменный» цвет
+ * @param backgroundColor фон, на котором он лежит
+ * @param minRatio минимальный контраст (4.5 — текст AA, 3 — крупный текст/иконки)
+ */
+export function readableOn(color: string, backgroundColor: string, minRatio = 4.5): string {
+  const source = parseHexColor(color);
+  const background = parseHexColor(backgroundColor);
+  if (!source || !background) return color;
+
+  const backgroundLuminance = relativeLuminance(background);
+  if (contrastRatio(relativeLuminance(source), backgroundLuminance) >= minRatio) return color;
+
+  // На светлом фоне уводим цвет в тень, на тёмном — в свет.
+  const target = backgroundLuminance > 0.4 ? 0 : 255;
+  let current: [number, number, number] = [...source];
+
+  // 24 шага по 6% гарантированно доводят до чистого чёрного/белого, если
+  // нужный контраст не набирается раньше.
+  for (let step = 0; step < 24; step += 1) {
+    if (contrastRatio(relativeLuminance(current), backgroundLuminance) >= minRatio) break;
+    current = [
+      current[0] + (target - current[0]) * 0.06,
+      current[1] + (target - current[1]) * 0.06,
+      current[2] + (target - current[2]) * 0.06,
+    ];
+  }
+
+  return `#${toHex(current[0])}${toHex(current[1])}${toHex(current[2])}`;
+}

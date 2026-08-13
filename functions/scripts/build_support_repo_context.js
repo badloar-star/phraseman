@@ -18,6 +18,8 @@ const CHUNK_CHARS = 1_600;
 const CHUNK_OVERLAP = 240;
 const MAX_CHUNKS = 12_000;
 const MAX_CHUNKS_PER_FILE = 6;
+const packagedCommit = String(process.env.PHRASEMAN_SUPPORT_RELEASE_COMMIT || '').trim().toLowerCase();
+const packagedArchive = String(process.env.PHRASEMAN_SUPPORT_RELEASE_ARCHIVE || '') === '1';
 
 const exactFiles = [
   'specs/gmail-support-inbox.md',
@@ -32,6 +34,8 @@ const exactFiles = [
   'functions/src/support_auto_reply_policy.ts',
   'functions/src/support_repository_context.ts',
   'functions/src/support_reply_delivery.ts',
+  'functions/src/support_inbox.ts',
+  'specs/support-product-lifecycle.json',
 ];
 
 const roots = ['app', 'components', 'constants', 'functions/src'];
@@ -55,6 +59,57 @@ function git(command, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function loadVerifiedLifecycleFacts() {
+  const relative = 'specs/support-product-lifecycle.json';
+  const parsed = JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
+  if (parsed.schemaVersion !== 1 || !Array.isArray(parsed.facts) || parsed.facts.length === 0) {
+    throw new Error('invalid support product lifecycle registry');
+  }
+  const hasGit = fs.existsSync(path.join(ROOT, '.git'));
+  if (!hasGit && !packagedArchive) throw new Error('support lifecycle history requires a full Git checkout');
+  const featureIds = new Set();
+  return parsed.facts.map((fact) => {
+    const featureId = String(fact.featureId || '');
+    if (!/^[a-z0-9_]{3,80}$/.test(featureId) || featureIds.has(featureId)) {
+      throw new Error(`invalid duplicate support lifecycle feature: ${featureId}`);
+    }
+    featureIds.add(featureId);
+    const aliases = Array.isArray(fact.aliases) ? fact.aliases.map(String).filter(Boolean) : [];
+    if (aliases.length === 0) throw new Error(`support lifecycle aliases missing: ${featureId}`);
+    const customerSafeFacts = fact.customerSafeFacts || {};
+    for (const locale of ['ru', 'en', 'es']) {
+      if (!String(customerSafeFacts[locale] || '').trim()) throw new Error(`support lifecycle ${locale} fact missing: ${featureId}`);
+    }
+    for (const currentPath of fact.requiredCurrentPaths || []) {
+      if (!fs.existsSync(path.join(ROOT, String(currentPath)))) {
+        throw new Error(`support lifecycle current path missing: ${featureId}:${currentPath}`);
+      }
+    }
+    if (fact.historyEvidence) {
+      const historicalCommit = String(fact.historyEvidence.commit || '').toLowerCase();
+      if (!/^[a-f0-9]{40}$/.test(historicalCommit)) throw new Error(`invalid support lifecycle commit: ${featureId}`);
+      if (hasGit) {
+        try {
+          childProcess.execFileSync('git', ['merge-base', '--is-ancestor', historicalCommit, 'HEAD'], {
+            cwd: ROOT, stdio: 'ignore',
+          });
+          const changed = childProcess.execFileSync('git', ['show', '--format=', '--name-status', '--no-renames', historicalCommit], {
+            cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'],
+          });
+          for (const deletedPath of fact.historyEvidence.requiredDeletedPaths || []) {
+            if (!changed.split(/\r?\n/).includes(`D\t${deletedPath}`)) {
+              throw new Error(`required deletion absent: ${deletedPath}`);
+            }
+          }
+        } catch (error) {
+          throw new Error(`support lifecycle history proof failed: ${featureId}:${error.message}`);
+        }
+      }
+    }
+    return fact;
+  });
 }
 
 function normalizeSource(raw, extension) {
@@ -99,17 +154,41 @@ const chunksByFile = new Map();
 for (const relative of uniqueFiles) {
   const absolute = path.join(ROOT, relative);
   const stat = fs.statSync(absolute);
-  if (stat.size > MAX_FILE_BYTES) continue;
+  if (stat.size > MAX_FILE_BYTES && !exactFiles.includes(relative)) continue;
   const raw = fs.readFileSync(absolute, 'utf8');
   const normalized = normalizeSource(raw, path.extname(relative));
   if (!normalized) continue;
   chunksByFile.set(relative, chunkFile(relative, normalized).slice(0, MAX_CHUNKS_PER_FILE));
 }
 
+// Historical product facts are generated only after their current paths and
+// Git deletions have been verified. Customer-safe summaries are indexed; raw
+// commit messages, paths and hashes stay out of the writer corpus.
+const lifecycleFacts = loadVerifiedLifecycleFacts();
+const lifecyclePaths = [];
+for (const fact of lifecycleFacts) {
+  const relative = `support-history/${fact.featureId}.md`;
+  lifecyclePaths.push(relative);
+  const text = [
+    `Product feature: ${fact.featureId}`,
+    `Names: ${fact.aliases.join(', ')}`,
+    `Lifecycle status: ${fact.status}`,
+    fact.effectiveDate ? `Status changed on: ${fact.effectiveDate}` : '',
+    fact.status === 'retired' || fact.status === 'renamed'
+      ? 'Past/history question: earlier, previously, used to exist, removed, retired, раньше, было, пропало, убрали, удалили.'
+      : 'Current distinct product surface.',
+    `RU: ${fact.customerSafeFacts.ru}`,
+    `EN: ${fact.customerSafeFacts.en}`,
+    `ES: ${fact.customerSafeFacts.es}`,
+  ].filter(Boolean).join('\n');
+  chunksByFile.set(relative, [{ path: relative, line: 1, text }]);
+}
+
 // Exact product/support contracts always win. Remaining files are emitted in
 // rounds (first chunk of every file, then the second, etc.), so an early large
 // app file can never starve components or server code.
 const orderedFiles = [
+  ...lifecyclePaths,
   ...exactFiles.filter((relative) => chunksByFile.has(relative)),
   ...uniqueFiles.filter((relative) => !exactFiles.includes(relative) && chunksByFile.has(relative)),
 ];
@@ -136,8 +215,14 @@ for (const [root, count] of Object.entries(rootsIncluded)) {
 }
 
 const appJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'app.json'), 'utf8'));
-const commit = git(['rev-parse', 'HEAD'], 'unknown');
-const dirty = git(['status', '--porcelain', '--untracked-files=normal'], '') !== '';
+if (packagedCommit && (!packagedArchive || !/^[a-f0-9]{40}$/.test(packagedCommit) || fs.existsSync(path.join(ROOT, '.git')))) {
+  throw new Error('invalid packaged support release provenance');
+}
+const commit = packagedCommit || git(['rev-parse', 'HEAD'], 'unknown');
+// A packaged release archive has no .git directory and is produced from one
+// exact commit object. The override is intentionally rejected inside a normal
+// checkout, so it cannot be used to label arbitrary dirty working-tree bytes clean.
+const dirty = packagedCommit ? false : git(['status', '--porcelain', '--untracked-files=normal'], '') !== '';
 const sourceFingerprint = crypto.createHash('sha256').update(JSON.stringify(chunks)).digest('hex');
 const artifact = {
   schemaVersion: 2,
@@ -152,6 +237,7 @@ const artifact = {
   filesIndexed: indexedPaths.length,
   requiredFilesIncluded,
   rootsIncluded,
+  historyFactsIncluded: lifecycleFacts.map((fact) => fact.featureId),
   chunks,
 };
 

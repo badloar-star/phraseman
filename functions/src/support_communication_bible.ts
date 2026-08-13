@@ -1,0 +1,59 @@
+export const SUPPORT_COMMUNICATION_BIBLE_VERSION = 1;
+
+export type SupportHumanVoiceViolation =
+  | 'internal_process_language'
+  | 'generic_receipt_boilerplate'
+  | 'blanket_diagnostic_request'
+  | 'irrelevant_security_warning'
+  | 'mixed_language_signature'
+  | 'too_many_questions';
+
+const INTERNAL_PROCESS_LANGUAGE = /(?:\b(?:snapshot|repository|repo|commit|sha|branch|pull request|build artifact|deployment|deploy|evidence|grounded|fingerprint|revision|prompt|reviewer|council|model|firestore|cron|source code|codebase)\b|(?:сним(?:ок|ка|ке|ком|ку|ки|ков)(?:\s+(?:продукта|сборки|репозитория))?|репозитор(?:ий|ия|ии)|коммит|ветк[аи]|ревизи[яи]|отпечаток|доказательств[а]?|исходн(?:ый|ого)\s+код|кодовая\s+база|модел[ьи]|промпт|ревьюер|проверяющ(?:ий|ая)|совет\s+агентов))/iu;
+const GENERIC_RECEIPT = /(?:мы получили ваше сообщение|we (?:have )?received your message|hemos recibido tu mensaje)/iu;
+const BLANKET_DIAGNOSTICS = /(?:верс(?:ией|ию) приложения.{0,80}(?:iphone|android|платформ)|app version.{0,80}platform.{0,80}(?:already tried|steps)|versi[oó]n de la app.{0,80}plataforma)/iu;
+const SECURITY_WARNING = /(?:никогда не (?:присылайте|отправляйте).{0,80}(?:парол|код|данные карты)|never (?:send|share).{0,80}(?:password|sign-in code|card details)|nunca env[ií]es.{0,80}(?:contrase|tarjeta|c[oó]digo))/iu;
+const EN_SIGNATURE_IN_CYRILLIC = /(?:thanks so much|the phraseman team|just reply here)/iu;
+
+export const SUPPORT_COMMUNICATION_BIBLE_PROMPT = Object.freeze([
+  'Write for a real person, not for engineers or an audit log.',
+  'Answer the exact question in the first two meaningful sentences.',
+  'Acknowledge the specific situation; never use a generic receipt as the opening.',
+  'Use warm, calm, plain everyday language. Be friendly, never rude, sarcastic, defensive, or patronizing.',
+  'Show only the useful conclusion. Never mention internal tools, source retrieval, snapshots, repositories, commits, builds, evidence, models, prompts, reviewers, policies, confidence, or infrastructure.',
+  'Distinguish clearly between what exists now, what existed before, and what is merely planned. Do not invent a reason for a product change.',
+  'Give one useful next step or alternative. Ask a question only when its answer changes that next step.',
+  'Never ask for version, platform, and troubleshooting history as a blanket list. Ask at most one necessary question in ordinary cases.',
+  'Do not add password, card, or security warnings unless the customer is actually discussing credentials, payment data, or account security.',
+  'Use the customer language consistently. Do not add a closing or signature; the delivery layer handles it.',
+].join('\n'));
+
+function questionCount(text: string): number {
+  return (text.match(/[?？]/g) ?? []).length;
+}
+
+export function findSupportHumanVoiceViolations(
+  reply: unknown,
+  issue: unknown = '',
+): readonly SupportHumanVoiceViolation[] {
+  const text = String(reply ?? '').trim();
+  const customerIssue = String(issue ?? '');
+  const violations: SupportHumanVoiceViolation[] = [];
+  if (INTERNAL_PROCESS_LANGUAGE.test(text)) violations.push('internal_process_language');
+  if (GENERIC_RECEIPT.test(text)) violations.push('generic_receipt_boilerplate');
+  if (BLANKET_DIAGNOSTICS.test(text)) violations.push('blanket_diagnostic_request');
+  const securityRelevant = /(?:парол|код входа|данн(?:ые|ых) карт|password|sign-in code|card details|credential|security|безопасност|оплат|payment)/iu.test(customerIssue);
+  if (!securityRelevant && SECURITY_WARNING.test(text)) violations.push('irrelevant_security_warning');
+  if (/[а-яёіїєґ]/iu.test(text) && EN_SIGNATURE_IN_CYRILLIC.test(text)) violations.push('mixed_language_signature');
+  if (questionCount(text) > 2) violations.push('too_many_questions');
+  return Object.freeze([...new Set(violations)]);
+}
+
+export function supportReplyIsCustomerReady(input: {
+  readonly reply: unknown;
+  readonly issue?: unknown;
+  readonly grounded: boolean;
+  readonly ownerManual?: boolean;
+}): boolean {
+  if (!input.ownerManual && !input.grounded) return false;
+  return findSupportHumanVoiceViolations(input.reply, input.issue).length === 0;
+}

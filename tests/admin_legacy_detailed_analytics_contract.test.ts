@@ -3,7 +3,7 @@ import { join } from 'path';
 import { runInNewContext } from 'vm';
 
 const root = join(__dirname, '..');
-const html = readFileSync(join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+const html = readFileSync(join(root, 'admin', 'legacy.html'), 'utf8');
 const script = (name: string) => readFileSync(join(root, 'admin', 'v2', 'scripts', 'pages', name), 'utf8');
 
 describe('live legacy detailed analytics integration', () => {

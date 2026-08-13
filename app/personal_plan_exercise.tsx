@@ -53,7 +53,6 @@ import { useCorrectSound } from '../hooks/use-correct-sound';
 import { hapticError, hapticSuccess, hapticTap, hapticWarning } from '../hooks/use-haptics';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import { updateMultipleTaskProgress } from './daily_tasks';
 import { actionToastTri, emitAppEvent } from './events';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -1909,16 +1908,12 @@ export default function PersonalPlanExerciseScreen() {
     const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
     spendOne().then((success) => {
       if (!success) return;
-      // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
-      // никогда не засчитывалось из личных заданий — lesson1.tsx/review.tsx шлют этот
-      // инкремент, а этот экран — нет. Квест молча не продвигался у части юзеров.
-      updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
       setTimeout(() => {
         const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
         if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
       }, 800);
     }).catch(() => {});
-  }, [spendOne, studyTarget]);
+  }, [spendOne]);
   const isGold = themeMode === 'gold';
   const accent = isGold ? '#FFE8A8' : t.accent;
   const actionText = isGold ? '#1B1205' : '#08110C';

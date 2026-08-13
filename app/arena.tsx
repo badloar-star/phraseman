@@ -5,18 +5,23 @@ import { useLang } from '../components/LangContext';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
+import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
+import { ArenaDailyGoals } from '../components/arena/ArenaDailyGoals';
+import { ArenaHubLive } from '../components/arena/ArenaHubLive';
+import { arenaHubModel } from '../modules/arena/hub_view';
 import {
   ArenaFeatureRow,
   ArenaProgress,
   ArenaSectionTabs,
   ArenaSectionTitle,
   ArenaStateCard,
+  ArenaStateNotice,
   ArenaWalletButton,
 } from '../components/arena/ArenaExpansionUI';
 import { arenaText } from '../modules/arena/copy';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import { coerceArenaHubSection, type ArenaExpansionHome } from '../modules/arena/expansion_contract';
-import { arenaExpansionHome, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaHomeResponse } from './arena_client';
+import { arenaExpansionHome, arenaFetchMatchHistory, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
@@ -34,12 +39,19 @@ export default function ArenaHubScreen() {
   const [expansionError, setExpansionError] = useState(false);
   const spinRequestIdRef = useRef(createArenaRequestId('spin'));
   const [spinBusy, setSpinBusy] = useState(false);
+  const [history, setHistory] = useState<readonly unknown[]>([]);
+  const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
 
   const load = useCallback(() => {
     setBaseError(false);
     setExpansionError(false);
     void arenaV2Home().then(setHome).catch(() => setBaseError(true));
     void arenaExpansionHome().then(setExpansion).catch(() => setExpansionError(true));
+    // Оба — разовые чтения при открытии. Прошедшие матчи не меняются, список
+    // друзей меняется днями: держать на них подписку значит платить за
+    // уведомления, которых не будет.
+    void arenaFetchMatchHistory(10).then(setHistory).catch(() => setHistory([]));
+    void arenaV2FriendsBoard().then((board) => setFriends(board.rows)).catch(() => {});
   }, []);
 
   useEffect(() => { if (active) load(); }, [active, load]);
@@ -58,8 +70,28 @@ export default function ArenaHubScreen() {
   const today = expansion?.today;
   const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
 
+  /**
+   * Живая часть главного экрана.
+   *
+   * Всё, кроме таблицы друзей и истории, приходит из ответа, который экран и
+   * так запрашивает. История читается разово из расписок, друзья — одним
+   * пакетным вызовом: оба обращения делаются при открытии, а не по кругу.
+   */
+  const hub = useMemo(() => arenaHubModel({
+    rating: home?.profile.rating,
+    dailyDayKey: home?.profile.dailyDayKey,
+    todayKey: home?.profile.todayKey ?? '',
+    dailyMatches: home?.profile.dailyMatches,
+    dailyFirstAnswers: home?.profile.dailyFirstAnswers,
+    dailyWins: home?.profile.dailyWins,
+    historyRaw: history,
+    friendsRaw: friends,
+  }), [home, history, friends]);
+
   const todayContent = (
     <>
+      {home ? <ArenaHubLive model={hub} /> : null}
+      {home ? <ArenaDailyGoals model={hub.goals} /> : null}
       {activeRun ? (
         <ArenaFeatureRow
           accent
@@ -86,7 +118,7 @@ export default function ArenaHubScreen() {
         />
       ) : null}
       {!expansion && !expansionError ? <ArenaStateCard state="loading" title={arenaExpansionText(lang, 'loading')} /> : null}
-      {expansionError ? <ArenaStateCard state="unavailable" title={arenaExpansionText(lang, 'unavailable')} actionLabel={arenaExpansionText(lang, 'retry')} onAction={load} /> : null}
+      {expansionError ? <ArenaStateNotice state="error" onRetry={load} /> : null}
       {today ? (
         <V2Card style={styles.todayCard}>
           <View style={styles.todayHead}>
@@ -140,6 +172,11 @@ export default function ArenaHubScreen() {
   );
 
   return (
+    <ArenaHubChrome
+      availability={home?.availability}
+      activeMatchId={home?.activeMatch?.matchId ?? null}
+      activeQueue={home?.activeQueue}
+    >
     <ArenaScreen
       title={arenaText(lang, 'title')}
       subtitle={home?.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home?.profile.rank ?? 0) + 1}`}
@@ -147,10 +184,11 @@ export default function ArenaHubScreen() {
       headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion?.wallet.walletStars ?? 0} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
       <ArenaSectionTabs selected={section} labels={labels} onSelect={(next) => router.setParams({ section: next })} />
-      {baseError ? <ArenaStateCard state="error" title={arenaExpansionText(lang, 'unavailable')} actionLabel={arenaExpansionText(lang, 'retry')} onAction={load} /> : null}
+      {baseError ? <ArenaStateNotice state="error" onRetry={load} /> : null}
       {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} /> : null}
       {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
     </ArenaScreen>
+    </ArenaHubChrome>
   );
 }
 

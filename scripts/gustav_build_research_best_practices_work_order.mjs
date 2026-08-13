@@ -25,7 +25,7 @@ const FEATURE_SOURCE_MAP = {
   srs_review: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
   flashcards: ['le_robert_dictionary', 'tv5monde_apprendre'],
   community_card_packs: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
-  daily_phrase_tasks: ['tv5monde_apprendre', 'le_robert_dictionary'],
+  daily_phrase: ['tv5monde_apprendre', 'le_robert_dictionary'],
   diagnostics_exams: ['coe_cefr_companion_2020', 'tv5monde_a1', 'tv5monde_a2'],
   personal_plans: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'alliance_francaise_normandie_levels'],
   audio_tts: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
@@ -77,8 +77,8 @@ const FEATURE_CLAIMS = {
     'French flashcards need starter packs and French-realities packs with vocabulary metadata.',
     'Saved cards must remain target-scoped and must not mix English source content as French target content.',
   ],
-  daily_phrase_tasks: [
-    'Daily phrases must come from a French phrase bank with usage evidence and target-scoped saves/tasks.',
+  daily_phrase: [
+    'Daily phrases must come from a French phrase bank with usage evidence and target-scoped saves.',
   ],
   diagnostics_exams: [
     'Diagnostics and exams must be CEFR-aligned and test French competence, not recognition of translated English.',
@@ -112,7 +112,7 @@ const UNIVERSAL_ANTI_CALQUE_RULES = [
   {
     id: 'fr_gender_article_required',
     rule: 'French nouns and noun phrases require gender/article metadata when used for vocabulary, flashcards, quizzes or explanations.',
-    appliesTo: ['vocabulary_bank', 'flashcards', 'quizzes', 'daily_phrase_tasks'],
+    appliesTo: ['vocabulary_bank', 'flashcards', 'quizzes', 'daily_phrase'],
   },
   {
     id: 'fr_elision_liaison_watch',

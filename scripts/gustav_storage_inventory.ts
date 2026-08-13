@@ -109,15 +109,9 @@ const TARGET_STORAGE_HELPERS = new Set([
   'achievementLessonPerfectPassesKey',
   'comboAchievementCounterKey',
   'customFlashcardsKey',
-  'dailyTaskLessonVisitedKey',
-
-  'dailyTasksProgressKey',
-  'dailyTasksRerollKey',
   'dailyPhraseKey',
   'dailyPhraseAchievementReadCountKey',
   'dailyPhraseAchievementSaveCountKey',
-  'dailyTasksAchievementAllDoneStreakKey',
-  'dailyTasksAchievementNoRerollStreakKey',
   'shareAchievementCounterKey',
   'dailyPhraseLastDateKey',
   'dailyPhraseRemoteCacheKey',
@@ -1281,7 +1275,6 @@ function classifyKey(input: {
     key.includes('warning') ||
     key.includes('update') ||
     key.includes('shards') ||
-    key.includes('daily_tasks') ||
     key.includes('login_bonus') ||
     key.includes('gift_') ||
     key.includes('club_') ||

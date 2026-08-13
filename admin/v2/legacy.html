@@ -11828,7 +11828,7 @@
     <button onclick="supportPullMail()" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">🔄 Проверить почту</button>
     <button onclick="supportGenerateAll()" style="background:rgba(139,124,255,0.15);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700" title="ИИ-черновики для всех новых писем без ответа (до 25 за раз)">✨ Сгенерировать всем</button>
     <button onclick="supportSendAllDrafts()" style="background:rgba(96,165,250,0.13);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;font-weight:700" title="Отправить все готовые черновики по новым письмам">📤 Отправить все черновики</button>
-    <button id="gsi-archive-all" onclick="supportArchiveAllVisible()" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#9ca3af;font-weight:700" title="Все показанные (по фильтру) письма, кроме архивных → «в архив»">🗄 Архивировать все показанные</button>
+    <button id="gsi-archive-all" type="button" onclick="supportArchiveAllVisible()" style="background:#1f2937;border:1px solid #475569;color:#e2e8f0;font-weight:700;min-height:44px;padding:8px 14px;border-radius:7px;cursor:pointer" title="Архивирует все письма, показанные текущим фильтром. Подготовленные отправки и трёхчасовые таймеры будут отменены. Письма останутся в фильтре «Архив», откуда их можно вернуть.">Архивировать все показанные</button>
     <select id="gsi-filter-status" onchange="renderSupportInbox()">
       <option value="new">Новые</option>
       <option value="answered">Отвеченные</option>
@@ -11857,6 +11857,20 @@
       </label>
       <button type="button" onclick="supportSaveAutomation()" title="Сохранит режим и лимиты на сервере с проверкой ревизии и записью в аудит. Выключить ответы можно здесь же." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;font-weight:700;min-height:40px">Сохранить автоматизацию</button>
       <span id="gsi-auto-status" role="status" style="font-size:12px;color:#94a3b8"></span>
+    </div>
+  </section>
+  <section aria-labelledby="gsi-instructions-title" style="margin:4px 0 12px;padding:13px;background:#12151d;border:1px solid #2b3b52;border-radius:8px">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap">
+      <div id="gsi-instructions-title" style="font-size:14px;font-weight:800;color:#e5e7eb">Инструктаж Джарвиса</div>
+      <span id="gsi-instructions-status" role="status" aria-live="polite" style="font-size:12px;color:#94a3b8">Загрузка…</span>
+    </div>
+    <p style="margin:5px 0 9px;color:#9ca3af;font-size:12.5px;line-height:1.5">Напишите, как общаться, что предлагать и куда направлять по конкретным вопросам. Можно добавлять только точные HTTPS-ссылки и Telegram-адреса. Перед новым ответом Джарвис применит этот текст, затем отдельно проверит факты по актуальному снимку репозитория. Инструктаж не может отменить правила безопасности или заставить Джарвиса выдумать факт.</p>
+    <label for="gsi-owner-instructions" style="display:block;color:#cbd5e1;font-size:12px;font-weight:700;margin-bottom:5px">Текущие правила общения и маршрутизации</label>
+    <textarea id="gsi-owner-instructions" rows="9" maxlength="8000" aria-describedby="gsi-instructions-help gsi-instructions-count" placeholder="Например:&#10;— Общаемся дружелюбно и коротко.&#10;— Если человек не может купить Premium в России, направляем в @PhrasemanPremiumBot и https://t.me/PhrasemanPremiumBot.&#10;— По вопросам уроков сначала предлагаем обновить приложение и повторить действие." style="box-sizing:border-box;width:100%;min-height:180px;background:#0f1219;border:1px solid #334155;color:#e5e7eb;border-radius:7px;padding:10px 11px;font-size:14px;line-height:1.5;font-family:inherit;resize:vertical;white-space:pre-wrap"></textarea>
+    <div id="gsi-instructions-help" style="margin-top:6px;color:#94a3b8;font-size:12px;line-height:1.45">Изменение действует для новых и пересозданных AI-ответов. Старые неподтверждённые AI-версии станут неактуальными и не отправятся автоматически.</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <span id="gsi-instructions-count" style="font-size:12px;color:#94a3b8">0 / 8000 байт</span>
+      <button id="gsi-instructions-save" type="button" onclick="supportSaveInstructions()" title="Сохранит инструктаж с новой ревизией и записью в аудит. Новые ответы и AI-правки сразу начнут учитывать его; старые неподтверждённые AI-версии не будут отправлены автоматически." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;font-weight:700;min-height:44px;padding:8px 14px;border-radius:7px;cursor:pointer">Сохранить инструктаж</button>
     </div>
   </section>
   <div style="margin:4px 0 12px;padding:11px 13px;background:#12151d;border:1px solid #1e2230;border-radius:9px;display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap">
@@ -14899,7 +14913,6 @@
       settings: u.settings && typeof u.settings === 'object' ? u.settings : {},
       achievements: u.achievements && typeof u.achievements === 'object' ? u.achievements : {},
       leagueState: u.leagueState && typeof u.leagueState === 'object' ? u.leagueState : {},
-      dailyTasks: u.dailyTasks || null,
       placementLevel: u.placementLevel || null,
       platform: u.platform || null,
       appVersion: u.appVersion || null,
@@ -15402,7 +15415,6 @@
       settings: tryJson(p.user_settings, {}),
       achievements: tryJson(p.achievements_state, {}),
       leagueState: tryJson(p.league_state_v3, {}),
-      dailyTasks: tryJson(p.daily_tasks_progress, null),
       placementLevel: p.placement_level || null,
       platform: p.device_platform || null,
       appVersion: p.app_version || null,
@@ -15481,7 +15493,7 @@
         onboarding: !!p.onboarding_done && p.onboarding_done !== '0',
         lessons: tryJson(p.unlocked_lessons, []), flashcards: Array.isArray(tryJson(p.flashcards, [])) ? tryJson(p.flashcards, []).length : 0,
         settings: tryJson(p.user_settings, {}), achievements: tryJson(p.achievements_state, {}),
-        leagueState: tryJson(p.league_state_v3, {}), dailyTasks: tryJson(p.daily_tasks_progress, null),
+        leagueState: tryJson(p.league_state_v3, {}),
         placementLevel: p.placement_level || null, platform: p.device_platform || null,
         appVersion: p.app_version || null, updatedAt: snap.data().updatedAt || 0,
         createdAt: snap.data().created_at || 0, lastActiveAt: snap.data().last_active_at || 0,
@@ -16200,7 +16212,6 @@
         const settings = tryJson(p.user_settings,{});
         const achievements = tryJson(p.achievements_state,{});
         const leagueState = tryJson(p.league_state_v3,{});
-        const dailyTasks = tryJson(p.daily_tasks_progress, null);
         const xp = parseInt(p.user_total_xp)||0;
         return {
           uid: doc.id,
@@ -16222,7 +16233,6 @@
           settings,
           achievements,
           leagueState,
-          dailyTasks,
           placementLevel: p.placement_level||null,
           platform: p.device_platform||null,
           appVersion: p.app_version||null,
@@ -17457,7 +17467,6 @@
     lesson_completed: '✅ Урок завершён',
     streak_7: '🔥 7 дней стрика',
     streak_30: '🔥 30 дней стрика',
-    daily_tasks_all: '📋 Дневные задачи',
     topic_completed: '📚 Тема завершена',
     league_1st: '🥇 1-е место в лиге',
     league_2nd: '🥈 2-е место в лиге',
@@ -18173,13 +18182,6 @@
       ? `<div class="mult-tags">${mults.map(m=>`<span class="mult-tag ${m.cls}">${m.label}</span>`).join('')}</div><div style="margin-top:8px;font-size:12px;color:#a78bfa;font-weight:700">Итоговый: ×${total.toFixed(2)}</div>`
       : '<span style="color:#555;font-size:12px">нет активных</span>';
 
-    // Daily tasks stats
-    let tasksTotal = 0, tasksDone = 0;
-    if(Array.isArray(u.dailyTasks)) {
-      tasksTotal = u.dailyTasks.length;
-      tasksDone = u.dailyTasks.filter(t => t && t.completed).length;
-    }
-
     // ── Accordion helper: each section collapses; closed by default ──────────
     const acc = (key, head, bodyHtml, opts = {}) => {
       const open = opts.open ? ' open' : '';
@@ -18254,7 +18256,6 @@
         <div class="drow"><span class="k">Очки недели</span><span class="v">${weekPts}</span></div>`)}
       ${acc('gameplay', '⚡ Геймплей и настройки', `
         <div style="margin-bottom:8px">${multsHtml}</div>
-        <div class="drow"><span class="k">Дневные задания</span><span class="v">${tasksTotal ? tasksDone+' / '+tasksTotal : '—'}</span></div>
         <div class="drow"><span class="k">Hard Mode</span><span class="v">${u.settings.hardMode?'<span class="pill pill-red">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Check</span><span class="v">${u.settings.autoCheck?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Voice Out</span><span class="v">${u.settings.voiceOut!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
@@ -18279,7 +18280,6 @@
           <button data-action="merge" data-uid="${u.uid}" style="background:#0e2a2e;border:1px solid #155e75;color:#22d3ee">🔗 Merge с другим UID</button>
           <button data-action="ach-view" data-uid="${u.uid}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#86efac">🏆 Ачивки</button>
           <button data-action="ach-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить ачивки</button>
-          <button data-action="daily-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить дейлики</button>
           <button data-action="user-analytics" data-uid="${u.uid}" style="background:#0f1f2e;border:1px solid #1e4a6e;color:#38bdf8">📊 Аналитика дней</button>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -18327,7 +18327,6 @@
         if (a === 'merge')        mergeUserPrompt(uid, u2.name);
         if (a === 'ach-view')     viewAchievements(uid, u2.name);
         if (a === 'ach-reset')    resetAchievements(uid, u2.name);
-        if (a === 'daily-reset')  resetDailyTasks(uid, u2.name);
         if (a === 'warn')         warnUserDirect(uid, u2.name);
         if (a === 'ban')          banUser(uid);
         if (a === 'unban')        unbanUser(uid);
@@ -23215,7 +23214,6 @@
         settings: tryJson(p.user_settings, {}),
         achievements: tryJson(p.achievements_state, {}),
         leagueState: tryJson(p.league_state_v3, {}),
-        dailyTasks: tryJson(p.daily_tasks_progress, null),
         placementLevel: p.placement_level || null,
         platform: p.device_platform || null,
         appVersion: p.app_version || null,
@@ -23964,7 +23962,6 @@
       const xpBuckets = {'0-500':0,'500-2k':0,'2k-5k':0,'5k-10k':0,'10k+':0};
       const versions = {};
       const onboarding = {'✅ Завершён': 0, '❌ Не завершён': 0};
-      let tasksAllDone=0, tasksSomeDone=0, tasksNoneDone=0;
       users.forEach(u => {
         if(u.xp<500) xpBuckets['0-500']++;
         else if(u.xp<2000) xpBuckets['500-2k']++;
@@ -23974,24 +23971,13 @@
         const v = u.appVersion || '—';
         versions[v] = (versions[v] || 0) + 1;
         if (u.onboarding) onboarding['✅ Завершён']++; else onboarding['❌ Не завершён']++;
-        const arr = Array.isArray(u.dailyTasks) ? u.dailyTasks : [];
-        const done = arr.filter(t => t && t.completed).length;
-        const total = arr.length || 3;
-        if (done === 0) tasksNoneDone++;
-        else if (done >= total) tasksAllDone++;
-        else tasksSomeDone++;
       });
-      const dailyTasksDist = {'Все выполнены': tasksAllDone, 'Частично': tasksSomeDone, 'Не выполнено': tasksNoneDone};
       const platforms = {'📱 iOS': iosTotal, '🤖 Android': andTotal, '❓ Неизвестно': unkPlat};
 
       document.getElementById('analytics-grid').innerHTML = `
         <div class="chart-card">
           <h3>📱 Платформа</h3>
           ${coreBarChart(platforms,Math.max(...Object.values(platforms),1),'#60a5fa')}
-        </div>
-        <div class="chart-card">
-          <h3>✅ Ежедневные задания (сегодня)</h3>
-          ${coreBarChart(dailyTasksDist,Math.max(...Object.values(dailyTasksDist),1),'#4ade80')}
         </div>
         <div class="chart-card">
           <h3>💎 Распределение по XP</h3>
@@ -24362,19 +24348,6 @@
       Object.entries(featureCounts).sort((a,b)=>b[1]-a[1]).slice(0,10)
     );
 
-    // Daily tasks completed today
-    let tasksAllDone=0, tasksSomeDone=0, tasksNoneDone=0;
-    users.forEach(u => {
-      if(!u.dailyTasks) { tasksNoneDone++; return; }
-      const arr = Array.isArray(u.dailyTasks) ? u.dailyTasks : [];
-      const done = arr.filter(t=>t&&t.completed).length;
-      const total = arr.length || 3;
-      if(done===0) tasksNoneDone++;
-      else if(done>=total) tasksAllDone++;
-      else tasksSomeDone++;
-    });
-    const dailyTasksDist = {'Все выполнены': tasksAllDone, 'Частично': tasksSomeDone, 'Не выполнено': tasksNoneDone};
-
     const barChart = (data, maxVal, colors, total) => Object.entries(data).map(([label,val])=>`
       <div class="bar-row">
         <div class="bar-label">${label}</div>
@@ -24462,10 +24435,6 @@
         <h3>🔁 Active Recall — карточек на повторение</h3>
         ${barChart(arBuckets, Math.max(...Object.values(arBuckets)), '#818cf8')}
       </div>
-      <div class="chart-card">
-        <h3>✅ Ежедневные задания (сегодня)</h3>
-        ${barChart(dailyTasksDist, Math.max(...Object.values(dailyTasksDist)), '#4ade80')}
-      </div>
       ${sn > 0 ? `
       <div class="chart-card">
         <h3>🎯 Точность ответов${avgAccuracy!==null?' (avg '+avgAccuracy+'%)':''} <span style="font-size:10px;color:#555">${sn} польз. с данными</span></h3>
@@ -24551,7 +24520,6 @@
     const cards = Array.from(grid.querySelectorAll('.chart-card'));
     const keepCore = [
       '📱 Платформа',
-      '✅ Ежедневные задания',
       '💎 Распределение по XP',
       '🎓 Онбординг',
       '📦 Версии приложения',
@@ -25050,6 +25018,19 @@
   // ═══ GMAIL SUPPORT INBOX — входящая почта поддержки + ИИ-ответы ═════════════
   let _supportInboxAll = [];
   let _supportAutomationRevision = 0;
+  let _supportInstructionsRevision = 0;
+  function supportInstructionByteLength(value) {
+    try { return new TextEncoder().encode(String(value || '')).length; }
+    catch (_) { return unescape(encodeURIComponent(String(value || ''))).length; }
+  }
+  function updateSupportInstructionsCount() {
+    const input = document.getElementById('gsi-owner-instructions');
+    const count = document.getElementById('gsi-instructions-count');
+    if (!input || !count) return;
+    const bytes = supportInstructionByteLength(input.value);
+    count.textContent = `${bytes} / 8000 байт`;
+    count.style.color = bytes > 8000 ? '#f87171' : '#94a3b8';
+  }
   window.loadSupportInbox = async function(force) {
     const list = document.getElementById('gsi-list');
     if (!list) return;
@@ -25063,17 +25044,24 @@
       const sigInput = document.getElementById('gsi-signature');
       {
         const supportConfig = supportData.automation || {};
+        const instructions = supportData.instructions || {};
         if (sigInput) sigInput.value = String(supportData.signature || '');
         _supportAutomationRevision = Number(supportConfig.revision || 0);
+        _supportInstructionsRevision = Number(instructions.revision || 0);
+        const instructionsInput = document.getElementById('gsi-owner-instructions');
+        if (instructionsInput) instructionsInput.value = String(instructions.text || '');
         const mode = document.getElementById('gsi-auto-mode');
         const dailyCap = document.getElementById('gsi-auto-daily-cap');
         const senderCap = document.getElementById('gsi-auto-sender-cap');
         if (mode) mode.value = ['off','shadow','live_guarded'].includes(String(supportConfig.mode || '')) ? String(supportConfig.mode) : 'shadow';
         if (dailyCap) dailyCap.value = String(Number(supportConfig.dailyCap || 100));
         if (senderCap) senderCap.value = String(Number(supportConfig.perSenderDailyCap || 3));
+        updateSupportInstructionsCount();
       }
       const autoStatus = document.getElementById('gsi-auto-status');
       if (autoStatus) autoStatus.textContent = `Ревизия ${_supportAutomationRevision}`;
+      const instructionsStatus = document.getElementById('gsi-instructions-status');
+      if (instructionsStatus) instructionsStatus.textContent = `Активен · ревизия ${_supportInstructionsRevision}`;
       window._supportInboxLoaded = true;
       renderSupportInbox();
     } catch (e) {
@@ -25082,6 +25070,19 @@
     }
   };
 
+  function selectSupportInboxRows(statusFilter) {
+    const preparedRows = _supportInboxAll.filter(
+      (row) => (row.status || 'new') === 'new' && String(row.draftReply || '').trim(),
+    );
+    let rows = _supportInboxAll.filter((row) => !preparedRows.includes(row));
+    if (statusFilter) rows = rows.filter((row) => (row.status || 'new') === statusFilter);
+    return {
+      preparedRows,
+      rows,
+      visibleArchiveTargets: [...preparedRows, ...rows].filter((row) => (row.status || 'new') !== 'archived'),
+    };
+  }
+
   window.renderSupportInbox = function renderSupportInbox() {
     const list = document.getElementById('gsi-list');
     const preparedList = document.getElementById('gsi-prepared-list');
@@ -25089,9 +25090,7 @@
     const count = document.getElementById('gsi-count');
     if (!list) return;
     const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
-    const preparedRows = _supportInboxAll.filter(r => (r.status || 'new') === 'new' && String(r.draftReply || '').trim());
-    let rows = _supportInboxAll.filter(r => !preparedRows.includes(r));
-    if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
+    const { preparedRows, rows } = selectSupportInboxRows(statusFilter);
     if (count) count.textContent = `${rows.length} / ${_supportInboxAll.length}`;
     if (preparedCount) preparedCount.textContent = `${preparedRows.length} готово`;
     const statusPill = (s) => {
@@ -25121,6 +25120,11 @@
           ? `⏱ Автоотправка после ${new Date(autoSendAtMs).toLocaleString('ru-RU')}`
           : '⏱ Срок истёк — отправка ставится в очередь')
         : (r.autoReply?.state === 'awaiting_approval' ? 'Ручное подтверждение: автоотправка выключена' : '');
+      const conversationId = String(r.conversationId || '');
+      const conversationSequence = Number(r.conversationSequence || 0);
+      const conversationLabel = conversationId
+        ? `Переписка · сообщение ${conversationSequence || 1}`
+        : 'Отдельное письмо';
       const draftBox = (status !== 'archived') ? `
         <textarea id="gsi-draft-${id}" placeholder="Черновик ответа появится здесь после «Сгенерировать ответ», либо впиши сам…" style="width:100%;min-height:${draft ? '90px' : '54px'};margin-top:10px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:8px;padding:9px 11px;font-size:13px;line-height:1.5;resize:vertical">${esc(draft)}</textarea>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
@@ -25134,13 +25138,14 @@
           <div style="font-weight:700;color:#e5e7eb;font-size:14.5px">${esc(r.subject || '(без темы)')}</div>
           <div style="display:flex;gap:8px;align-items:center">${statusPill(status)}${autoReplyPill(r.autoReply)}<span style="font-size:11px;color:#6b7280">${esc(String(when))}</span></div>
         </div>
-        <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from}</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from} · ${esc(conversationLabel)}</div>
         <div style="font-size:13px;color:#cbd5e1;margin-top:9px;white-space:pre-wrap;max-height:160px;overflow:auto;background:#0e1116;border:1px solid #1a1d27;border-radius:7px;padding:9px 11px">${esc((r.bodyText || '').slice(0, 4000)) || '<span style="opacity:.5">(пустое тело)</span>'}</div>
+        ${conversationId ? `<div style="margin-top:8px"><button type="button" onclick="supportToggleConversation('${id}','${esc(conversationId)}',this)" title="Покажет только сообщения этой почтовой переписки и реально отправленные ответы поддержки. Другие пользователи и отдельные обращения сюда не попадут." style="background:none;border:1px solid #334155;color:#bfdbfe;cursor:pointer;font-size:12px;min-height:44px;padding:7px 11px;border-radius:7px">История переписки</button></div><div id="gsi-conversation-${id}" hidden style="margin-top:8px"></div>` : ''}
         ${draftBox}
         <div style="margin-top:8px">
           ${status !== 'archived'
-            ? `<button onclick="supportSetStatus('${id}','archived')" style="background:none;border:none;color:#6b7280;cursor:pointer;font-size:11.5px;padding:0">🗄 В архив</button>`
-            : `<button onclick="supportSetStatus('${id}','new')" style="background:none;border:none;color:#818cf8;cursor:pointer;font-size:11.5px;padding:0">↩ Вернуть в новые</button>`}
+            ? `<button type="button" onclick="supportSetStatus('${id}','archived',this)" title="Переместит письмо в архив, отменит подготовленную отправку и трёхчасовой таймер. Письмо можно вернуть из фильтра «Архив»." style="background:none;border:1px solid #475569;color:#cbd5e1;cursor:pointer;font-size:12px;min-height:44px;padding:7px 11px;border-radius:7px">В архив</button>`
+            : `<button type="button" onclick="supportSetStatus('${id}','new',this)" title="Вернёт письмо из архива в список новых. Автоматический ответ сам по себе не запустится без новой генерации." style="background:none;border:1px solid #4f46e5;color:#a5b4fc;cursor:pointer;font-size:12px;min-height:44px;padding:7px 11px;border-radius:7px">Вернуть в новые</button>`}
         </div>
       </div>`;
     }).join('');
@@ -25155,6 +25160,41 @@
   async function _supportRefreshAfter(action) {
     try { await action(); } finally { await window.loadSupportInbox(true); }
   }
+
+  window.supportToggleConversation = async function(messageId, conversationId, button) {
+    const box = document.getElementById('gsi-conversation-' + messageId);
+    if (!box) return;
+    if (!box.hidden) {
+      box.hidden = true;
+      if (button) button.textContent = 'История переписки';
+      return;
+    }
+    box.hidden = false;
+    box.innerHTML = '<div class="reports-empty">Загружаю переписку…</div>';
+    if (button) { button.disabled = true; button.textContent = 'Загрузка…'; }
+    try {
+      const response = await supportCallable('adminSupportConversation')({ conversationId });
+      const items = Array.isArray(response?.data?.items) ? response.data.items : [];
+      if (!items.length) {
+        box.innerHTML = '<div class="reports-empty">В этой переписке пока нет сохранённых сообщений.</div>';
+      } else {
+        box.innerHTML = items.map((item) => {
+          const when = item.receivedAtMs ? new Date(item.receivedAtMs).toLocaleString('ru-RU') : String(item.receivedAt || '');
+          const customer = `<div style="margin:7px 42px 7px 0;background:#111827;border:1px solid #334155;border-radius:8px;padding:9px 11px"><div style="font-size:11px;color:#93a4ba;margin-bottom:5px">Пользователь · ${escapeHtml(when)}</div><div style="white-space:pre-wrap;color:#e2e8f0;font-size:13px">${escapeHtml(String(item.bodyText || ''))}</div></div>`;
+          const support = String(item.sentReply || '').trim()
+            ? `<div style="margin:7px 0 7px 42px;background:#102419;border:1px solid #315941;border-radius:8px;padding:9px 11px"><div style="font-size:11px;color:#86efac;margin-bottom:5px">Поддержка · ${escapeHtml(String(item.repliedAt || ''))}</div><div style="white-space:pre-wrap;color:#dcfce7;font-size:13px">${escapeHtml(String(item.sentReply || ''))}</div></div>`
+            : '';
+          return customer + support;
+        }).join('');
+      }
+      if (button) button.textContent = 'Скрыть историю';
+    } catch (e) {
+      box.innerHTML = `<div class="reports-empty">Не удалось загрузить переписку: ${escapeHtml(e.message || e.code || String(e))}</div>`;
+      if (button) button.textContent = 'Повторить загрузку';
+    } finally {
+      if (button) button.disabled = false;
+    }
+  };
 
   window.supportPullMail = async function() {
     const list = document.getElementById('gsi-list');
@@ -25355,46 +25395,73 @@
     }
   };
 
-  window.supportSetStatus = async function(id, status) {
+  window.supportSetStatus = async function(id, status, button) {
+    const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
+    const previousLabel = button?.textContent || '';
+    if (button) { button.disabled = true; button.textContent = status === 'archived' ? 'Архивирую…' : 'Возвращаю…'; }
     try {
-      await supportCallable('adminSupportSetStatus')({ messageDocId: id, status });
+      if (status === 'archived') {
+        const result = await supportCallable('adminSupportArchiveMessages')({
+          items: [{
+            messageDocId: id,
+            expectedStatus: item?.status || 'new',
+            expectedDraftRevision: Number(item?.draftRevision ?? 0),
+          }],
+          requestId: supportRequestToken('legacy-support-archive-one'),
+        });
+        const data = result?.data || {};
+        if (Number(data.failed || 0) > 0) throw new Error('Сервер не смог архивировать письмо');
+        showToast(Number(data.archived || 0) > 0 ? 'Письмо перемещено в архив' : 'Письмо уже находится в архиве', 'ok');
+      } else {
+        await supportCallable('adminSupportSetStatus')({
+          messageDocId: id, status, requestId: supportRequestToken('legacy-support-restore-one'),
+        });
+        showToast('Письмо возвращено в новые', 'ok');
+      }
     } catch (e) {
-      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+      showToast('Не удалось изменить статус: ' + (e.message || e.code || e), 'err');
     } finally {
+      if (button) { button.disabled = false; button.textContent = previousLabel; }
       await window.loadSupportInbox(true);
     }
   };
 
   // Массово: все показанные (по фильтру gsi-filter-status) письма со status!=='archived' → 'archived'.
-  // Статус меняется НЕ прямым updateDoc, а серверным callable adminSupportSetStatus (как supportSetStatus),
-  // поэтому writeBatch неприменим — вызываем существующий callable в цикле (требования 5, 26, 27).
+  // Один серверный пакетный callable обрабатывает все видимые письма и возвращает
+  // точный итог. Браузер больше не делает десятки отдельных ненадёжных запросов.
   window.supportArchiveAllVisible = async function() {
     const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
-    let rows = _supportInboxAll.slice();
-    if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
-    const targets = rows.filter(r => (r.status || 'new') !== 'archived');
+    const targets = selectSupportInboxRows(statusFilter).visibleArchiveTargets;
     if (!targets.length) { showToast('Нечего обрабатывать', 'warn'); return; }
     const ok = await showConfirmModal({
       title: `Архивировать все ${targets.length} показанные письма?`,
-      desc: 'Меняется только статус (archived). Это можно вернуть по одному письму.',
+      desc: 'Письма переместятся в архив. Подготовленные отправки, Telegram-кнопки и трёхчасовые таймеры будут отменены. Уже начатая или неопределённая SMTP-доставка не архивируется и попадёт в итог как ошибка. Вернуть письмо можно из фильтра «Архив».',
       confirmLabel: 'Архивировать',
     });
     if (!ok) return;
     const btn = document.getElementById('gsi-archive-all');
     const prevLabel = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
-    const setStatus = supportCallable('adminSupportSetStatus');
-    let okN = 0, errN = 0;
     try {
-      for (const r of targets) {
-        try {
-          await setStatus({ messageDocId: r.id, status: 'archived' });
-          okN++;
-        } catch (e) {
-          errN++;
-        }
+      const result = await supportCallable('adminSupportArchiveMessages')({
+        items: targets.map((row) => ({
+          messageDocId: row.id,
+          expectedStatus: row.status || 'new',
+          expectedDraftRevision: Number(row.draftRevision ?? 0),
+        })),
+        requestId: supportRequestToken('legacy-support-archive-visible'),
+      });
+      const data = result?.data || {};
+      const archived = Number(data.archived || 0);
+      const unchanged = Number(data.unchanged || 0);
+      const failed = Number(data.failed || 0);
+      if (failed > 0) {
+        showToast(`Архивировано: ${archived}. Не удалось: ${failed}. Уже в архиве: ${unchanged}.`, 'warn');
+      } else {
+        showToast(`Архивировано писем: ${archived}${unchanged ? `. Уже в архиве: ${unchanged}` : ''}`, 'ok');
       }
-      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано: ${okN}`);
+    } catch (e) {
+      showToast('Не удалось архивировать показанные письма: ' + (e.message || e.code || e), 'err');
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
       await window.loadSupportInbox(true);
@@ -25436,6 +25503,42 @@
       await window.loadSupportInbox(true);
     }
   };
+
+  window.supportSaveInstructions = async function() {
+    const input = document.getElementById('gsi-owner-instructions');
+    const status = document.getElementById('gsi-instructions-status');
+    const button = document.getElementById('gsi-instructions-save');
+    const text = String(input?.value || '');
+    const bytes = supportInstructionByteLength(text);
+    if (bytes > 8000) {
+      showToast('Инструктаж длиннее 8000 байт. Сократите текст.', 'err');
+      updateSupportInstructionsCount();
+      return;
+    }
+    if (status) status.textContent = 'Сохраняю…';
+    if (button) button.disabled = true;
+    try {
+      const result = await supportCallable('adminSupportSaveInstructions')({
+        text,
+        expectedRevision: _supportInstructionsRevision,
+        requestId: createAdminCommandId('support_instructions'),
+      });
+      const saved = result?.data?.instructions || {};
+      _supportInstructionsRevision = Number(saved.revision || _supportInstructionsRevision);
+      if (input) input.value = String(saved.text ?? text);
+      if (status) status.textContent = `${result?.data?.unchanged ? 'Без изменений' : 'Сохранён'} · ревизия ${_supportInstructionsRevision}`;
+      updateSupportInstructionsCount();
+      showToast(result?.data?.unchanged ? 'Инструктаж уже актуален' : 'Инструктаж Джарвиса сохранён', 'ok');
+    } catch (e) {
+      if (status) status.textContent = 'Ошибка сохранения';
+      showToast('Не удалось сохранить инструктаж: ' + (e.message || e.code || e), 'err');
+      await window.loadSupportInbox(true);
+    } finally {
+      if (button) button.disabled = false;
+    }
+  };
+
+  document.getElementById('gsi-owner-instructions')?.addEventListener('input', updateSupportInstructionsCount);
 
   window.loadUserReports = async function() {
     window._userReportsLoaded = true;
@@ -35328,10 +35431,9 @@
     }
   };
 
-  // ── ACHIEVEMENTS / DAILY TASKS (read-only view + reset) ──────────────────────
+  // ── ACHIEVEMENTS (read-only view + reset) ────────────────────────────────────
   // Где хранится:
   //   users/{uid}.achievements_state   — JSON-строка AchievementState[] (см. app/achievements.ts)
-  //   users/{uid}.daily_tasks_progress — JSON-строка прогресса за «сегодня» (см. app/cloud_sync.ts)
   // Reset = очищаем поле на сервере; локальный AsyncStorage перезатрётся при следующем pull-sync.
   window.viewAchievements = async function viewAchievements(uid, name) {
     try {
@@ -35342,21 +35444,13 @@
       try { parsed = raw ? JSON.parse(raw) : []; } catch { parsed = []; }
       const unlocked = Array.isArray(parsed) ? parsed.filter(x => x?.unlockedAt).length : 0;
       const total = Array.isArray(parsed) ? parsed.length : 0;
-      const dailyRaw = snap.data()?.daily_tasks_progress || '';
-      let dailyParsed = null;
-      try { dailyParsed = dailyRaw ? JSON.parse(dailyRaw) : null; } catch { dailyParsed = null; }
-      const dailyDone = Array.isArray(dailyParsed)
-        ? dailyParsed.filter(x => x?.done || x?.completed).length
-        : 0;
-      const dailyTotal = Array.isArray(dailyParsed) ? dailyParsed.length : 0;
       const top = Array.isArray(parsed)
         ? parsed.filter(x => x?.unlockedAt).slice(0, 30).map(x => `• ${escapeHtml(x.id)} (${escapeHtml(String(x.unlockedAt).slice(0, 10))})${x.shardClaimed ? '' : ' 💎pending'}`).join('\n')
         : '';
       await showConfirmModal({
         title: `🏆 Прогресс ${name}`,
         desc:
-          `🏆 Achievements: ${unlocked} / ${total} разлочено\n` +
-          `📅 Daily tasks (сегодня): ${dailyDone} / ${dailyTotal} выполнено\n\n` +
+          `🏆 Achievements: ${unlocked} / ${total} разлочено\n\n` +
           (top ? `Последние ${Math.min(30, unlocked)} ачивок:\n${top}\n\n` : '') +
           (raw ? `Размер state: ${raw.length} chars` : 'achievements_state пусто'),
         confirmLabel: 'OK',
@@ -35382,26 +35476,6 @@
       });
       if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.reset !== 'achievements') throw new Error('Сервер не подтвердил сброс ачивок');
       showToast('🏆 Ачивки очищены');
-    } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
-  window.resetDailyTasks = async function resetDailyTasks(uid, name) {
-    const ok = await showConfirmModal({
-      title: '↺ Сбросить дейлики?',
-      desc: `Юзер: ${name} (${uid.slice(0, 12)}…)\n\nОчистится users.daily_tasks_progress (только «сегодня»). Завтра дейлики и так пересоздадутся. Используй если юзер словил баг и нужно «дать второй шанс» сегодня.`,
-      confirmLabel: 'Сбросить', danger: true,
-    });
-    if (!ok) return;
-    const reason = String(await showInputModal({ title: 'Причина сброса дейликов', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'Сбросить' }) || '').trim();
-    if (!reason) return;
-    try {
-      const response = await getAdminResetUserProgressCallable()({
-        uid, reset: 'daily_tasks', reason,
-        requestId: createAdminCommandId('reset_daily_tasks_request'),
-        idempotencyKey: createAdminCommandId('reset_daily_tasks_operation'),
-      });
-      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.reset !== 'daily_tasks') throw new Error('Сервер не подтвердил сброс дейликов');
-      showToast('📅 Дейлики очищены');
     } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
 

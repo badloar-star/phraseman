@@ -89,9 +89,12 @@ export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
   lines.push('');
 
   if (input.decisions.length === 0 && !failed) {
-    lines.push('Проверил все департаменты — всё в порядке, вмешательства не требуется.');
+    lines.push('Материальных изменений нет — вчерашние темы не повторяю.');
     return lines.join('\n');
   }
+
+  lines.push('<b>Что изменилось и какое решение нужно</b>');
+  lines.push('');
 
   // зачем сортировать перед обрезкой: при пяти показанных находках важная
   // P0 не должна потеряться из-за того, что департамент её вернул позже.
@@ -108,7 +111,10 @@ export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
       const recommendation = clean(decision.recommendation);
       if (recommendation) lines.push(`→ ${recommendation}`);
       const narrative = input.narrativeByHash?.get(decision.contentHash);
-      if (narrative) lines.push(clean(narrative));
+      if (narrative) {
+        lines.push('<b>План Джарвиса</b>');
+        lines.push(clean(narrative));
+      }
     }
     lines.push('');
   }

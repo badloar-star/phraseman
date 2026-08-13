@@ -6,6 +6,7 @@ import {
   isHumanEmail,
   rawEmailToDoc,
   composeReplyWithSignature,
+  localizedSupportSignature,
   escapeHtml,
   plainToHtmlEmail,
   selectForBatchGenerate,
@@ -213,6 +214,13 @@ describe('composeReplyWithSignature', () => {
   test('тримит тело', () => {
     expect(composeReplyWithSignature('  Тело  ', 'Sig')).toBe('Тело\n\nSig');
   });
+  test('локализует известную английскую подпись для русского письма', () => {
+    const signature = 'Thanks so much,\n\nThe Phraseman Team\nJust reply here if you need anything else.';
+    expect(localizedSupportSignature('Здравствуйте! Поможем разобраться.', signature)).toBe(
+      'Команда Phraseman\nПоддержка: Phraseman by Knowly\nСправка: https://knowlyapps.com/help',
+    );
+    expect(localizedSupportSignature('Hello! We can help.', signature)).toBe(signature);
+  });
 });
 
 describe('sanitizeSupportMailHeader', () => {
@@ -294,5 +302,13 @@ describe('buildReplyPrompt', () => {
     expect(p).toContain('[REDACTED_TOKEN]');
     // тело в промпте не длиннее лимита (+ шапка)
     expect(p.length).toBeLessThanOrEqual(BODY_MAX_CHARS + 60);
+  });
+  test('не дублирует процитированную старую переписку в текущем сообщении', () => {
+    const p = buildReplyPrompt({
+      subject: 'Re: Help',
+      bodyText: 'Новая деталь\n\nOn Monday, Support wrote:\n> Старый ответ',
+    });
+    expect(p).toContain('Новая деталь');
+    expect(p).not.toContain('Старый ответ');
   });
 });

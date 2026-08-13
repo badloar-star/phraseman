@@ -134,6 +134,12 @@ function exactIdentity(
   return Object.freeze({ ...value });
 }
 
+export function parseLearningV2NativeDecoderIdentityV1(
+  value: LearningV2NativeDecoderIdentityV1,
+): Readonly<LearningV2NativeDecoderIdentityV1> {
+  return exactIdentity(value);
+}
+
 export function observeLearningV2NativeDecoderPlaybackV1(input: {
   readonly identity: LearningV2NativeDecoderIdentityV1;
   readonly statuses: readonly LearningV2NativeDecoderStatusSampleV1[];

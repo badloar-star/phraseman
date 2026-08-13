@@ -36,7 +36,6 @@ export type ShardSpendReason =
   | 'wager_bet'      // -X Ставка в турнире
   | 'card_pack'      // -X Набор карточек за осколки
   | 'league_boost'   // -X Персональный буст лиги
-  | 'daily_task_reroll' // -3 Замена дневного задания (1 раз в сутки)
   | 'custom_avatar'
   | 'avatar_aura'
   | 'custom_avatar_restyle'
@@ -50,7 +49,6 @@ export type ShardSource =
   | 'lesson_completed'      // +1 Урок полностью завершён
   | 'streak_7'              // +3 Каждые 7 дней цепочки
   | 'streak_30'             // +5 Каждые 30 дней цепочки
-  | 'daily_tasks_all'       // +1 ВСЕ задания дня закрыты (кнопка «Забрать» на экране заданий)
   | 'topic_completed'       // +3 Все уроки темы (разово)
   | 'exam_excellent'        // +3 Экзамен 90%+ (единоразово)
   | 'diagnostic_test'       // +1 Диагностический тест (единоразово)
@@ -71,15 +69,9 @@ export type ShardSource =
  * покупаются. Структура каталога и ShardSource сохранены: addShards() при amount <= 0
  * завершается no-op, вызывающие не меняются.
  *
- * ИСКЛЮЧЕНИЯ (решение владельца 2026-07-26) — две ежедневные награды возвращены:
- *   daily_tasks_all  = 1  — все задания дня закрыты (включая опрос, если он активен);
- *   survey_completed = 1  — опрос пройден.
- * Обе идут МИМО generic-каталога resolveShardEarnPolicy (он остаётся закрытым для
- * client-initiated earn): выплату делают отдельные callable с маркером идемпотентности —
- * dailyTasksAllShardsClaim (маркер на UTC-день) и submitShardSurvey (маркер на surveyId).
- * Значение здесь — источник истины для UI (подписи «Забрать 1 жемчужину») и для
- * оптимистичного локального инкремента; серверные суммы продублированы в
- * functions/src/daily_tasks_shards.ts и functions/src/shard_survey.ts — менять парой.
+ * ИСКЛЮЧЕНИЕ (решение владельца 2026-07-26): survey_completed = 1 за пройденный
+ * опрос. Награда идёт мимо generic-каталога через submitShardSurvey с маркером
+ * идемпотентности на surveyId.
  *
  * Остальные источники по-прежнему нулевые. Подтверждённый баг-репорт (+1 монета)
  * начисляется админом вручную (admin/v2/legacy.html, reason 'bug_fixed') и в каталоге
@@ -92,7 +84,6 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   lesson_completed: 0,
   streak_7: 0,
   streak_30: 0,
-  daily_tasks_all: 1,
   topic_completed: 0,
   exam_excellent: 0,
   diagnostic_test: 0,
@@ -977,282 +968,6 @@ const commitPendingShardDelta = async <T>(
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 
-/** Ключ AsyncStorage / маркер: награда «все дневные» за календарный день уже забрана. */
-export const dailyTasksAllShardsRewardStorageKey = (dayKey: string) => `daily_tasks_all_shards_${dayKey}`;
-const dailyTasksAllShardsRewardPendingStorageKey = (dayKey: string) => `daily_tasks_all_shards_pending_${dayKey}`;
-
-type DailyTasksAllShardsClaimResponse = {
-  alreadyClaimed: boolean;
-  newBalance: number;
-  shardsUpdatedAtMs?: number | null;
-};
-
-const callDailyTasksAllShardsClaim = async (
-  dayKey: string,
-  stableId: string,
-): Promise<DailyTasksAllShardsClaimResponse> => {
-  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions') as {
-    getFunctions: (...args: unknown[]) => unknown;
-    httpsCallable: (
-      fns: unknown,
-      name: string,
-    ) => (data: unknown) => Promise<{ data: DailyTasksAllShardsClaimResponse }>;
-  };
-  const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
-  const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'dailyTasksAllShardsClaim');
-  const cfResult = await cfCall({ dayKey, stableId });
-  return cfResult.data;
-};
-
-const syncDailyTasksAllShardsClaimToCloud = async (
-  dayKey: string,
-  stableId: string,
-  rewardKey: string,
-  accountToken: AccountGenerationToken,
-  force = false,
-): Promise<void> => {
-  const isCurrent = (): boolean => Boolean(
-    stableId
-    && accountToken.stableId === stableId
-    && isCurrentAccountGeneration(accountToken, stableId),
-  );
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || !isCurrent()) return;
-  const pendingKey = dailyTasksAllShardsRewardPendingStorageKey(dayKey);
-  try {
-    const pendingValue = force ? '1' : await AsyncStorage.getItem(pendingKey).catch(() => null);
-    if (!isCurrent()) return;
-    const pending = pendingValue === '1';
-    if (!pending) return;
-    const pendingMarked = await withAccountTransitionLock(async () => {
-      if (!isCurrent()) return false;
-      await AsyncStorage.setItem(pendingKey, '1');
-      return isCurrent();
-    }).catch(() => false);
-    if (!pendingMarked || !isCurrent()) return;
-    const updatedAtMs = Date.now();
-    const data = await callDailyTasksAllShardsClaim(dayKey, stableId);
-    if (!isCurrent()) return;
-    if (!Number.isFinite(data.newBalance) || data.newBalance < 0) return;
-    const serverUpdatedAtMs = parseUpdatedAtMs(data.shardsUpdatedAtMs) ?? updatedAtMs;
-
-    await withAccountTransitionLock(async () => {
-      if (!isCurrent()) return;
-      await AsyncStorage.setItem(rewardKey, '1');
-      if (!isCurrent()) return;
-      const replacementOutcome = await replaceShardsBalanceLocalWithOutcomeWhileAccountTransitionLocked(
-        data.newBalance,
-        accountToken,
-        {
-          updatedAtMs: serverUpdatedAtMs,
-          op: 'earn',
-          reason: 'daily_tasks_all',
-        },
-      );
-      if (!isCurrent() || replacementOutcome === 'stale-generation') return;
-      if (replacementOutcome === 'failed') return;
-      await AsyncStorage.removeItem(pendingKey);
-      if (!isCurrent()) return;
-    });
-    if (!isCurrent()) return;
-  } catch (error) {
-    DebugLogger.error('shards_system.ts:syncDailyTasksAllShardsClaimToCloud', error, 'warning');
-  }
-};
-
-export const resumePendingDailyTasksAllShardsClaims = async (): Promise<{ resolved: number; pending: number }> => {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { resolved: 0, pending: 0 };
-  const accountToken = captureAccountGeneration();
-  const ownerStableId = accountToken.stableId;
-  const isCurrent = (): boolean => Boolean(
-    ownerStableId && isCurrentAccountGeneration(accountToken, ownerStableId),
-  );
-  if (!isCurrent()) return { resolved: 0, pending: 0 };
-  const stableId = await getCanonicalUserId().catch(() => null);
-  if (!isCurrent() || !stableId || stableId !== ownerStableId) return { resolved: 0, pending: 0 };
-  const prefix = 'daily_tasks_all_shards_pending_';
-  try {
-    const keys = await AsyncStorage.getAllKeys();
-    if (!isCurrent()) return { resolved: 0, pending: 0 };
-    const pendingKeys = keys.filter((key) => key.startsWith(prefix));
-    let resolved = 0;
-    let pending = 0;
-    for (const key of pendingKeys) {
-      const dayKey = key.slice(prefix.length);
-      if (!dayKey) continue;
-      const rewardKey = dailyTasksAllShardsRewardStorageKey(dayKey);
-      await syncDailyTasksAllShardsClaimToCloud(
-        dayKey,
-        stableId,
-        rewardKey,
-        accountToken,
-      ).catch(() => {});
-      if (!isCurrent()) return { resolved: 0, pending: 0 };
-      const stillPending = (await AsyncStorage.getItem(key).catch(() => null)) === '1';
-      if (!isCurrent()) return { resolved: 0, pending: 0 };
-      if (stillPending) pending += 1;
-      else resolved += 1;
-    }
-    return { resolved, pending };
-  } catch (error) {
-    DebugLogger.error('shards_system.ts:resumePendingDailyTasksAllShardsClaims', error, 'warning');
-    return { resolved: 0, pending: 0 };
-  }
-};
-
-const grantDailyTasksAllShardsOptimistically = async (
-  amount: number,
-  rewardKey: string,
-  pendingKey: string,
-  accountToken: AccountGenerationToken,
-): Promise<boolean> => {
-  const ownerStableId = accountToken.stableId;
-  const isCurrent = (): boolean => Boolean(
-    ownerStableId && isCurrentAccountGeneration(accountToken, ownerStableId),
-  );
-  const safe = Math.max(0, Math.floor(amount));
-  if (!isCurrent() || safe <= 0) return false;
-  let meta = localWriteStamp('earn', 'daily_tasks_all');
-  try {
-    const newBalance = await withAccountTransitionLock(async () => {
-      if (!isCurrent()) return null;
-      return withStorageLock(async () => {
-        if (!isCurrent()) return null;
-        const currentMeta = await readBalanceMeta();
-        if (!isCurrent()) return null;
-        meta = {
-          updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
-          op: 'earn',
-          reason: 'daily_tasks_all',
-        };
-        const current = await getShardsBalance();
-        if (!isCurrent()) return null;
-        const next = current + safe;
-        await AsyncStorage.multiSet([
-          [STORAGE_KEY, String(next)],
-          [BALANCE_META_KEY, JSON.stringify(meta)],
-          [rewardKey, '1'],
-          [pendingKey, '1'],
-        ]);
-        return isCurrent() ? next : null;
-      });
-    });
-    if (newBalance === null || !isCurrent()) return false;
-    setShardsBalanceMemory(newBalance, accountToken);
-    if (!isCurrent()) return false;
-    void bumpLifetimeShardsEarned(safe, accountToken);
-    await emitShardsBalanceUpdated(newBalance, meta);
-    if (!isCurrent()) return false;
-    emitAppEvent('shards_earned', { amount: safe, reasonKey: 'daily_tasks_all' });
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-export const isDailyTasksAllShardsRewardClaimedForDay = async (dayKey: string): Promise<boolean> => {
-  try {
-    const v = await AsyncStorage.getItem(dailyTasksAllShardsRewardStorageKey(dayKey));
-    return v === '1';
-  } catch {
-    return false;
-  }
-};
-
-/**
- * Исход «забрать осколок за все дневные задания»:
- *  - 'granted' — локальный optimistic claim записан (+1), облачная сверка может идти в фоне;
- *  - 'already' — уже забрано ранее (этим устройством, другим устройством или
- *                прерванным прошлым вызовом). НЕ ошибка: кнопку надо погасить молча;
- *  - 'failed'  — реальный сбой (сеть/CF/auth). Можно показать «попробуй ещё раз».
- */
-export type ClaimDailyTrioResult = 'granted' | 'already' | 'failed';
-
-/**
- * +1 осколок за выполнение всех 3 ежедневных заданий за день (ручной «Забрать» на экране заданий).
- * При включённом облаке: локально гасим кнопку и прибавляем shards сразу, затем Cloud Function
- * идемпотентно подтверждает маркер + баланс в фоне, без дублей между устройствами.
- * Иначе: локальный ключ AsyncStorage + addShards (как раньше).
- *
- * Возвращает три исхода, чтобы экран НЕ показывал «Осколки не загрузились», когда
- * сервер уже выдал осколок (alreadyClaimed) — это была причина бесконечной ошибки
- * «не забрать осколки уже который день» в баг-репортах.
- */
-export const claimDailyTasksAllShardsRewardDetailed = async (
-  dayKey: string,
-): Promise<ClaimDailyTrioResult> => {
-  const accountToken = captureAccountGeneration();
-  const ownerStableId = accountToken.stableId;
-  const isCurrent = (): boolean => Boolean(
-    ownerStableId && isCurrentAccountGeneration(accountToken, ownerStableId),
-  );
-  const rewardKey = dailyTasksAllShardsRewardStorageKey(dayKey);
-  const pendingKey = dailyTasksAllShardsRewardPendingStorageKey(dayKey);
-  const amount = SHARD_REWARDS.daily_tasks_all;
-  if (!isCurrent() || !Number.isFinite(amount) || amount <= 0) return 'failed';
-
-  try {
-    const existing = await AsyncStorage.getItem(rewardKey);
-    if (!isCurrent()) return 'failed';
-    if (existing) {
-      void getCanonicalUserId()
-        .then((uid) => (
-          uid && uid === ownerStableId && isCurrent()
-            ? syncDailyTasksAllShardsClaimToCloud(dayKey, uid, rewardKey, accountToken)
-            : undefined
-        ))
-        .catch(() => {});
-      return 'already';
-    }
-
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-      const n = await addShards('daily_tasks_all');
-      if (!isCurrent() || n <= 0) return 'failed';
-      const markerStored = await withAccountTransitionLock(async () => {
-        if (!isCurrent()) return false;
-        await AsyncStorage.setItem(rewardKey, '1');
-        return isCurrent();
-      });
-      if (!markerStored || !isCurrent()) return 'failed';
-      return 'granted';
-    }
-
-    const uid = await getCanonicalUserId();
-    if (!isCurrent()) return 'failed';
-    if (!uid) {
-      const n = await addShards('daily_tasks_all');
-      if (!isCurrent() || n <= 0) return 'failed';
-      const markerStored = await withAccountTransitionLock(async () => {
-        if (!isCurrent()) return false;
-        await AsyncStorage.setItem(rewardKey, '1');
-        return isCurrent();
-      });
-      if (!markerStored || !isCurrent()) return 'failed';
-      return 'granted';
-    }
-    if (uid !== ownerStableId) return 'failed';
-
-    const granted = await grantDailyTasksAllShardsOptimistically(amount, rewardKey, pendingKey, accountToken);
-    if (!granted || !isCurrent()) return 'failed';
-    // Шлём ТОТ ЖЕ id, под которым клиент хранит осколки (getCanonicalUserId === stableId),
-    // чтобы CF читал/писал users/{stableId}, а не db.doc(authUid). Без этого для юзеров
-    // с релинком (анон→Google, мердж) маркер reward_claims оседал на чужом доке.
-    void syncDailyTasksAllShardsClaimToCloud(dayKey, uid, rewardKey, accountToken, true);
-    return 'granted';
-  } catch (error) {
-    DebugLogger.error('shards_system.ts:claimDailyTasksAllShardsReward', error, 'warning');
-    return 'failed';
-  }
-};
-
-/**
- * Обратная совместимость: булевая обёртка над {@link claimDailyTasksAllShardsRewardDetailed}.
- * true при свежем локальном optimistic claim ('granted'). 'already'/'failed' → false.
- * Предпочитай детальную версию, чтобы отличать «уже забрано» от реального сбоя.
- */
-export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<boolean> => {
-  return (await claimDailyTasksAllShardsRewardDetailed(dayKey)) === 'granted';
-};
-
 export type SpendShardsOptions = {
   /**
    * Записать локально и сразу вернуть управление UI; синхронизация shards в Firestore — в фоне.
@@ -1693,6 +1408,81 @@ const getOneTimeEvents = async (): Promise<Set<string>> => {
     return new Set(raw ? JSON.parse(raw) : []);
   } catch {
     return new Set();
+  }
+};
+
+/**
+ * cards-2.0 (E6): источники с ПЕРЕМЕННОЙ суммой, платящиеся строго один раз на eventKey
+ * (регистрация в shards_one_time_events — ключ в SYNC_KEYS, второй девайс после
+ * restore увидит событие и не выплатит повторно). Сейчас: сундуки-чекпоинты
+ * недельного трека звёзд ('{weekKey}:{checkpoint}', ролл 70/25/5 — stars_system)
+ * и milestone-сундуки lifetime best-звёзд колод ('fc_milestone_10|25|50', E12).
+ */
+export type OneTimeVariableSource = 'fc_checkpoint' | 'fc_milestone';
+
+/**
+ * cards-2.0 (E12): какие из ключей уже зарегистрированы в shards_one_time_events.
+ * UI milestone-сундуков рисует «заклеймлено» ТОЛЬКО по one-time событиям —
+ * локального клейм-флага нет намеренно (переустановка не выплачивает повторно).
+ */
+export const getClaimedOneTimeEventKeys = async (
+  keys: readonly string[],
+): Promise<string[]> => {
+  const events = await getOneTimeEvents();
+  return keys.filter((k) => events.has(k));
+};
+
+export type AwardOneTimeVariableResult = {
+  /** Фактически начислено (0 — если событие уже было или сумма невалидна). */
+  awarded: number;
+  balance: number | null;
+  /** true — eventKey уже зарегистрирован (этот или другой девайс), выплаты нет. */
+  alreadyClaimed: boolean;
+};
+
+/**
+ * Разовая выплата произвольной суммы по ключу события (по образцу awardOneTime,
+ * но amount переменный — ролл наград). Атомарно под withStorageLock: баланс и
+ * регистрация события пишутся одним multiSet. Без 'shards_earned' — UI клейма
+ * показывает собственную модалку награды (сундук на хабе карточек).
+ */
+export const awardOneTimeVariable = async (
+  eventKey: string,
+  amount: number,
+  source: OneTimeVariableSource,
+): Promise<AwardOneTimeVariableResult> => {
+  const amt = Math.floor(Number(amount));
+  if (!eventKey || !Number.isFinite(amt) || amt <= 0) {
+    return { awarded: 0, balance: null, alreadyClaimed: false };
+  }
+  const accountToken = captureAccountGeneration();
+  try {
+    const result = await withStorageLock(async () => {
+      const events = await getOneTimeEvents();
+      if (events.has(eventKey)) {
+        return { awarded: 0, balance: null as number | null, alreadyClaimed: true };
+      }
+      const current = await getShardsBalance();
+      const next = current + amt;
+      events.add(eventKey);
+      await AsyncStorage.multiSet([
+        [STORAGE_KEY, String(next)],
+        [ONE_TIME_KEY, JSON.stringify([...events])],
+      ]);
+      return { awarded: amt, balance: next, alreadyClaimed: false };
+    });
+    if (result.awarded > 0 && result.balance !== null) {
+      setShardsBalanceMemory(result.balance, accountToken);
+      void bumpLifetimeShardsEarned(amt, accountToken);
+      // fire-and-forget: клейм сундука не должен ждать сеть (skipServerAwait-паттерн)
+      void syncShardsToCloud(result.balance);
+      void logShardTransaction('earn', amt, `${source}:${eventKey}`, result.balance);
+      emitAppEvent('shards_balance_updated', { balance: result.balance });
+    }
+    return result;
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:awardOneTimeVariable', error, 'warning');
+    return { awarded: 0, balance: null, alreadyClaimed: false };
   }
 };
 

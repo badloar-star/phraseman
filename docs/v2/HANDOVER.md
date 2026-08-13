@@ -10467,3 +10467,2018 @@ and preserve approval history without silently changing the owner's content.
 This correction supersedes the earlier sentence that the owner was “not
 expected to author” sessions or tasks. The opposite is now authoritative: the
 owner is the sole content author; Codex is the technical implementer only.
+
+## 15.101 — Voice Targets dependency D12: exact local playback + PCM device runner (2026-08-12)
+
+The previously separate playback-state observer and native PCM bridge now have
+one executable mobile runner. It accepts one exact local `file://` object
+identity, creates an owned `expo-audio` system player with 50 ms updates,
+records the actual ordered `loaded → playing → progress → didJustFinish` trace,
+then submits the same file URI, content hash and byte size to the native PCM
+decoder. The PCM observation is additionally bound to the exact playback
+status-sequence fingerprint. Remote URLs, traversal, unknown identity fields
+and objects larger than 64 KiB fail before player creation.
+
+The runner owns the native player lifecycle and removes its subscription and
+player on success or failure. Startup is bounded to ten seconds and the entire
+run to 130 seconds, while the underlying PCM decoder retains its independent
+120-second media bound. Output contains no raw PCM or audio bytes. Physical and
+simulator runs are discriminated, but both remain unverified machine runs:
+listening, device, human, publication, runtime and release authority stay
+none/false and `releaseEligible:false`.
+
+Fresh focused mobile evidence is **5 suites / 45 tests PASS**, 0 snapshots.
+The repository-wide import/live-consumer guard is **1 suite / 14 tests PASS**,
+0 snapshots. Targeted ESLint, Prettier and diff-check pass. The runner is not
+wired into a public screen, callable or worker. No audio object was downloaded,
+no physical-device run occurred, no provider request or TTS spend happened,
+and there was no Firebase production write, deploy, push, root-admin mutation
+or `admin/v2` access.
+
+The current macOS environment has Java and Gradle but no Android SDK. A bounded
+temporary Expo build reached Android configuration and failed before Kotlin
+compilation with `SDK location not found`; therefore Android compilation is
+still an external build-machine gate, not a passed check. iOS module discovery
+and Swift typecheck remain green from §15.99. Next, the runner must consume
+generation-pinned offline cache files for bounded manifest pages and persist
+authority-free device observations for later server receipt assembly. Physical
+iOS/Android execution, exhaustive object coverage and human listening remain
+required before Voice Targets can be installed. Registry state remains **1 of
+13**.
+
+## 15.102 — Voice Targets dependency D13: exact content-addressed offline audio cache (2026-08-12)
+
+The local device runner no longer needs to trust an arbitrary file path. A
+dedicated mobile cache accepts an exact manifest identity plus a bounded HTTPS
+transport URL for the code-owned Firebase Storage bucket. The URL is transport
+only: it is never returned in the cache summary and cannot establish byte,
+generation or repository authority. HTTP, credentials in URLs, foreign hosts,
+unexpected Storage paths, path/hash drift and files larger than 64 KiB fail
+before download.
+
+Downloads first enter a `.download-part` file. The cache reads the complete
+bounded bytes, verifies the exact SHA-256 and size, moves them to
+`{contentHash}.mp3`, then repeats the complete size/hash readback. A corrupt or
+partial download is deleted and cannot produce a handle. Existing files are
+also rehashed before every new handle, so a stale on-disk filename is not
+trusted. Concurrent requests for the same immutable bytes share one download,
+while each manifest entry receives a distinct opaque handle bound to its own
+item, target and entry identity. The physical runner now resolves only that
+opaque handle and binds its cache summary to the playback/PCM result.
+
+The cache has an explicit eviction policy: at most 8,192 files or 512 MiB,
+with best-effort oldest-first reduction to 7,680 files / 480 MiB while the
+current file is protected. This is a bounded cache, not a growing module-level
+map. The in-flight map is cleared when each download settles.
+
+Fresh focused mobile evidence for cache plus device-runner is **2 suites / 17
+tests PASS**, 0 snapshots; the combined cache/runner/native facade slice is **3
+suites / 22 tests PASS**. The repository-wide import/live-consumer guard is **1
+suite / 14 tests PASS**. Targeted formatting and guard checks pass. No real
+network download, physical-device run, provider request, Firebase production
+write, deploy, push, root-admin mutation or `admin/v2` access occurred.
+
+This closes exact single-object caching and opaque cache-to-run binding only.
+The remaining runtime step is a bounded manifest-page coordinator: it must
+resolve transport URLs without leaking them into evidence, preflight the page
+before I/O, download with bounded concurrency, run each entry in deterministic
+order and persist authority-free observations for server receipt assembly.
+Actual iOS/Android runs and human listening remain external gates. Registry
+state stays **1 of 13**.
+
+## 15.103 — Voice Targets dependency D14: bounded manifest-page device coordinator (2026-08-12)
+
+The exact cache and device runner now have a bounded page coordinator for 1–32
+manifest entries. Before any I/O it reparses every full identity, requires
+contiguous item indexes, unique target/entry fingerprints, one platform/device/
+OS/build identity and a maximum declared page size of 2 MiB. Invalid pages fail
+before the URL resolver, cache or native player is called.
+
+The coordinator separates two phases. First it resolves transport URLs and
+prepares every exact cache handle with at most four concurrent cache operations.
+If any URL or file fails, playback never starts. Only after the entire page is
+cached does it run system playback plus PCM decoding sequentially in manifest
+order. Each output row rebinds the cache summary, playback identity and cached
+run fingerprint. Transport URLs are deliberately absent from the result and
+have `none_not_retained` evidence authority.
+
+Fresh focused evidence for page/cache/device coordination is **3 suites / 26
+tests PASS**, 0 snapshots. The repository-wide import/live-consumer guard is **1
+suite / 14 tests PASS**. Targeted ESLint, Prettier and diff-check pass. No
+production screen, callable or worker imports the coordinator. No real network
+download, physical-device run, provider request, Firebase production write,
+deploy, push, root-admin mutation or `admin/v2` access occurred.
+
+This closes bounded page execution mechanics, not device evidence. A future
+internal harness must derive the exact page identities from a trusted manifest,
+obtain short-lived transport URLs through an authenticated server boundary,
+persist authority-free page observations and resume after interruption without
+replaying completed pages. Physical iOS/Android runs and human listening remain
+mandatory. Registry state remains **1 of 13**.
+
+## 15.104 — Voice Targets dependency D15: private device-page projection and restart journal (2026-08-12)
+
+The mobile page runner no longer needs caller-authored manifest identities. A
+new private, zero-argument Firebase Admin adapter accepts only the opaque
+complete-episode receipt handle with the exact same branded plan, stage and
+manifest. It locates an exact committed page, projects only its immutable audio
+coordinates and issues generation-bound V4 read URLs for at most 32 objects.
+The adapter checks the code-owned project, default app and exact Storage bucket
+before signing. No callable, worker, index export or public screen is wired.
+
+The serialized page clearly separates stable verification identity from
+ephemeral transport. Stable fingerprints cover the manifest/episode/page
+receipts, readback aggregate, item coordinates, object paths, generations,
+hashes and byte sizes. URL expiry and URL hashes live in a separate transport
+fingerprint, so refreshing links does not alter the page verification identity.
+URLs must point to the exact production bucket/object, last between one and
+fifteen minutes, and are never retained in cache summaries, device-run results
+or the restart journal. A signed URL still carries no byte authority: the mobile
+cache must read and hash the complete exact object before playback.
+
+An AsyncStorage journal now records only successfully completed page/run
+fingerprints under the exact manifest, complete-episode receipt, platform,
+physical/simulator class, OS and app-build identity. Pages must be contiguous;
+gaps, stale replay, page/run substitution and modified persisted bytes fail
+closed. After restart the harness can continue at the exact next page without
+replaying finished pages. The journal is QA-resume state only and cannot write
+learner progress, mastery, wallet, evidence, publication or release authority.
+
+Fresh focused evidence is **mobile 2 suites / 11 tests PASS** and **Functions 1
+suite / 2 tests PASS**, 0 snapshots. No signed URL was issued against the real
+bucket, no audio was downloaded, no device was run, and no Firebase production
+write, provider call, deploy, push, root-admin mutation or `admin/v2` access
+occurred.
+
+This closes trusted private page projection and local restart mechanics only.
+Still open are an authenticated non-public harness boundary, upload/persistence
+of device observations and episode device receipts, physical iOS/Android runs,
+human listening/language approval and Android Kotlin compilation on a machine
+with the SDK. Registry state remains **1 of 13**.
+
+## 15.105 — Voice Targets dependency D16: bounded device-observation upload and durable receipt closure (2026-08-12)
+
+The physical page runner no longer discards the safe decoder and PCM results
+after producing its public page summary. Exact in-process run results are now
+kept behind a WeakMap and can be materialized into a bounded canonical device
+page evidence envelope. The envelope contains only immutable object identity,
+observed playback metrics and deterministic PCM16 signal metrics. It explicitly
+forbids transport URLs, local file URIs, raw audio, raw PCM and learner data.
+Every repository, listening, device, human, publication and release authority
+remains none/false.
+
+The serialized contract is isolated from mobile runtime dependencies. Its pure
+parser imports no Expo, filesystem, player or cache module; the separate mobile
+materializer is the only module allowed to resolve the opaque page-run handle.
+This keeps Cloud Functions from accidentally loading React Native or Expo code
+while still sharing one canonical evidence schema.
+
+A server-only ingest now accepts the exact branded plan, manifest and private
+complete-audio-episode receipt handle plus one canonical evidence envelope. It
+reconstructs the device page's stable projection from the authenticated
+manifest and audio receipt, then delegates the full observation checks to the
+existing native-decoder and PCM page receipt materializers. A coordinated
+rewrite of source coordinates, hash, generation, size, platform or decoder
+status cannot pass the server receipt boundary. The upload remains an
+unverified serialized machine observation and cannot establish device or
+listening evidence.
+
+A zero-argument Firebase Admin adapter persists the decoder and PCM page
+receipts as separate content-addressed immutable JSON objects, performs exact
+generation/hash/size/content-type readback, reparses both cold receipts and
+returns opaque page handles. Exact replay is idempotent. Once every contiguous
+page is present, the adapter builds, persists and cold-reparses complete
+decoder and PCM episode receipts. A clean physical-device signal advances only
+to `candidate_for_human_listening`; it never proves pronunciation, language
+quality, device approval or release eligibility.
+
+Fresh focused evidence is **mobile 3 suites / 15 tests PASS** and **Functions 6
+suites / 44 tests PASS**, plus the repository-wide import/live-consumer guard
+**1 suite / 14 tests PASS**. Targeted ESLint, Prettier and diff-check pass. No
+real device observation was uploaded, no production Storage object was written,
+no audio was downloaded, and no provider call, deploy, push, root-admin
+mutation or `admin/v2` access occurred.
+
+This closes the authority-free mobile-to-server page/episode receipt mechanics,
+not the non-public operator harness or real device evidence. Still open are the
+single recoverable harness operation that projects a page, runs it, uploads it
+and commits the local journal; exhaustive physical iOS/Android execution;
+Android Kotlin compilation on an SDK-equipped machine; human listening and
+target-language approval; and the remaining Voice Targets installation gates.
+Registry state remains **1 of 13**.
+
+## 15.106 — Voice Targets dependency D17: recoverable non-public device page harness (2026-08-12)
+
+A single non-public mobile operation now connects the trusted device-page
+projection, content-addressed cache, physical playback/PCM run, bounded evidence
+envelope, server receipt acknowledgement and local restart journal. The journal
+is committed only after the acknowledgement exactly matches the manifest,
+audio-episode receipt, stable page projection, device/build identity, page run
+and evidence fingerprint.
+
+The crash boundary is explicit. After a successful audio run the harness first
+stores a bounded pending-upload record in AsyncStorage. That record contains the
+URL-free page identity, public page-run summary and safe evidence envelope; it
+contains no signed URL, local file URI, raw audio or raw PCM. If upload fails or
+the app restarts, the next invocation resends the exact canonical envelope
+without replaying audio or decoding PCM again. Only after the server has
+generation-pinned and cold-read both page receipts does the harness advance the
+completed-page journal and remove the pending record.
+
+The server acknowledgement is a detached authority-free projection of the
+private page receipt handle. It proves only that exact decoder/PCM receipt bytes
+were persisted and read back. A raw or mismatched acknowledgement cannot commit
+the local journal and never creates listening, device, progress, publication or
+release authority.
+
+Fresh focused harness/journal evidence is **2 suites / 6 tests PASS** and the
+server acknowledgement/receipt adapter is **1 suite / 2 tests PASS**. The
+repository-wide import/live-consumer guard remains **1 suite / 14 tests PASS**.
+No public screen, callable, worker, queue or release consumer imports the
+harness. No real device, network, production Storage write, provider spend,
+deploy, push, root-admin mutation or `admin/v2` access occurred.
+
+This closes the recoverable page operation, not the external delivery boundary
+that carries the page projection and upload acknowledgement to an authorized
+internal device. Physical iOS/Android execution, Android Kotlin compilation,
+full-episode operator UX, human listening/language approval and Voice Targets
+validator installation remain open. Registry state remains **1 of 13**.
+
+## 15.107 — Voice Targets dependency D18: cold-recoverable episode device closure (2026-08-12)
+
+Every accepted device page now has a third immutable server object: an
+authority-free page commit that binds the exact decoder and PCM receipt pins,
+page/device/build identity and page disposition. The mobile acknowledgement and
+restart journal retain only that content-addressed commit pin; they still retain
+no signed URL, local file, raw audio or raw PCM.
+
+Episode assembly no longer depends on same-process page handles. A fresh
+Firebase Admin adapter can load every exact page-commit generation, cold-read
+its pinned decoder and PCM receipts, reparse them against the same branded plan,
+manifest and complete-audio receipt, order the pages, reject duplicates or
+gaps, and persist the two complete episode receipts. Generation, hash, size,
+content type, path, plan, stage, episode, manifest and receipt drift all fail
+closed.
+
+A bounded mobile episode harness now resumes from the local journal, runs only
+unfinished pages, submits the ordered durable page-commit pins for server
+finalization and accepts only an exact episode acknowledgement. A complete
+journal can be finalized after an app and server restart without replaying
+audio. The resulting acknowledgements and summaries remain machine receipts
+with listening, device, progress, publication and release authority all
+none/false.
+
+Both page and episode acknowledgements are parsed through strict positive
+allowlists before they can affect the journal. Unknown fields, altered authority
+literals or a stale/forged acknowledgement fingerprint are rejected before any
+progress mutation.
+
+Fresh focused evidence is **mobile 3 suites / 11 tests PASS**, **Functions 3
+suites / 16 tests PASS**, and the repository-wide import/live-consumer guard is
+**1 suite / 14 tests PASS**. Targeted ESLint and Prettier pass. No real device,
+network, production Storage write, provider spend, deploy, push, root-admin
+mutation or `admin/v2` access occurred.
+
+This closes the restart-safe device-page-to-episode evidence transport. It does
+not establish human listening or target-language approval and does not install
+Voice Targets. Physical iOS/Android execution, Android Kotlin compilation,
+internal delivery/authentication of the page and acknowledgement calls, human
+review and the remaining validator/release gates stay open. Registry state
+remains **1 of 13**.
+
+## 15.108 — Voice Targets dependency D19: authority-free human audio-review claim (2026-08-12)
+
+A bounded pure contract now describes one exact page of human audio-review
+decisions for either `human_listening_specialist` or
+`target_language_linguist`. Each row binds only immutable audio identity:
+generation-target and manifest-entry fingerprints, content hash, Storage
+generation, ordinal decision and stable issue codes. It contains no prompt,
+spoken text, translation, signed URL, raw audio, user identifier or free-form
+review note.
+
+This public materializer is deliberately unable to approve anything. Reviewer
+identity and credential values remain caller-supplied fingerprints;
+`identitySource` is `caller_supplied_unverified_review_claim`, review authority
+is `none`, and repository/content/publication/release authority remains
+none/false. A clone is not a trusted handle. Two independent complete review
+families are still required before Voice Targets may advance.
+
+The private in-process adapter now exists. Its zero-argument production factory
+locks the exact Firebase project/bucket/default app, rejects every emulator
+environment and verifies a Firebase ID token with revocation checking. General
+admin/content-review permission alone is insufficient: the token must carry the
+exact `learningV2VoiceReviewRoles` specialist claim for the requested listening
+or target-language role. The adapter resolves the exact private complete-audio
+and physical-device episode handles and derives every reviewed audio hash and
+generation from the trusted manifest; those identities cannot be supplied by
+the reviewer request. The exact canonical review is persisted as
+content-addressed immutable JSON, generation-pinned, downloaded and reparsed
+cold against the same manifest and episode receipts. Its private summary may
+attest only the authenticated page review and exact receipt readback. It still
+has no publication or release authority.
+
+Fresh focused evidence is **3 Functions suites / 20 tests PASS**, including the
+repository-wide import/live-consumer guard. Targeted ESLint, Prettier and
+diff-check pass. No reviewer identity, human decision, network call, production
+write, deploy, push, root-admin mutation or `admin/v2` access occurred.
+
+This closes the safe structural shape and authenticated in-process review
+boundary with immutable review persistence. It does not supply the missing
+external listening/linguistic decisions, install Voice Targets or change the
+validator registry. Next work is complete two-role episode assembly; actual
+decisions must still come from real authorized people. Registry state remains
+**1 of 13**.
+
+## 15.109 — Voice Targets dependency D20: exact two-role episode review assembly (2026-08-12)
+
+A complete episode-level review receipt now requires two exact, independently
+authenticated review families: every physical-device PCM page must be covered
+once by one `human_listening_specialist` and once by one
+`target_language_linguist`. All pages in one role must come from the same
+reviewer, and the two roles must have different reviewer identity
+fingerprints. Missing, duplicated, reordered or cross-episode pages, cloned
+review claims, receipt drift and one person attempting to satisfy both roles
+fail closed. Any `changes_requested` item propagates through its role to the
+episode decision.
+
+The public episode receipt remains deliberately structural and grants no
+approval, publication or release authority. Its strict canonical parser
+reconstructs the complete receipt from branded page reviews and rejects stored
+field/fingerprint drift. A private server adapter accepts only the exact
+in-process authenticated page-review handles, assembles both roles, writes the
+canonical episode receipt to an immutable content-addressed object, verifies
+generation/hash/size/content type, downloads it again and reparses it before
+issuing an opaque private episode handle. That private summary may attest only
+the exact two-role review inside the current authenticated process and the
+generation-pinned receipt readback; publication and release stay closed.
+
+Fresh focused evidence is **5 Functions suites / 26 tests PASS**, including the
+repository-wide import/live-consumer guard, page review, two-role assembly,
+private persistence and tamper/clone/cross-plan checks. Targeted ESLint,
+Prettier and scoped diff-check pass. No real reviewer decision, device run,
+network call, production write, provider spend, deploy, push, root-admin
+mutation or `admin/v2` access occurred.
+
+This closes the exact same-process two-role assembly and immutable episode
+receipt, not the durable multi-invocation reviewer workflow. The authenticated
+page-review authority currently lives in private WeakMap handles; after a
+server restart the stored structural review bytes alone cannot recreate that
+authority. Before real specialists can review pages over separate sessions, a
+server-owned direct-key review index and cold rehydration path must bind each
+stored page review to the exact authenticated credential/role observation and
+reject replay or substitution. Physical iOS/Android evidence and the two real
+specialist decisions also remain external. Voice Targets is not installed and
+the V2 registry remains **1 of 13**.
+
+## 15.110 — Voice Targets dependency D21: durable specialist-page index and cold rehydration (2026-08-12)
+
+Authenticated listening and linguistic page reviews no longer depend only on
+same-process WeakMap handles. Every exact `(plan, stage, manifest, reviewer
+role, page start)` coordinate now has one server-owned direct Firestore key.
+The canonical index binds the immutable review object generation, raw hash,
+byte size and content type; the authenticated reviewer identity and credential
+fingerprints; both upstream episode receipts; exact page bounds; and the review
+fingerprint. The transaction supports only create or byte-exact replay. A
+second reviewer, altered decision, changed pin or malformed existing row is a
+conflict rather than an overwrite.
+
+The authenticated review adapter now persists and cold-reads the immutable
+review first, atomically commits the direct-key index, reads that index back,
+and only then issues its private handle. A new adapter instance can rehydrate a
+page without a new reviewer token: it derives the direct key from the same
+branded plan/manifest/role/page coordinate, reads the server-owned index,
+generation-pinned downloads the exact review bytes, reparses them against the
+current private audio/device episode receipts and checks every reviewer/page
+identity before issuing a fresh private handle. This rehydrates already
+authenticated evidence; it cannot create a new review or change its decision.
+
+The new `content_v2_voice_human_reviews` root is explicitly excluded from the
+browser-admin catch-all and has an exact Firestore deny rule. Storage remains
+under the existing default client deny. The index and stored review still
+grant no publication or release authority.
+
+Fresh focused evidence is **5 Functions suites / 27 tests PASS**, the root
+Firestore static gates pass, and targeted ESLint, Prettier and scoped
+diff-check pass. Tests cover exact replay, conflicting reviewer/decision,
+traversal, stored authority mutation, fresh-adapter cold load, clone/cross-plan
+rejection and the complete two-role episode assembly. No real reviewer,
+physical-device run, network call, production write, provider spend, deploy,
+push, root-admin mutation or `admin/v2` access occurred.
+
+This closes durable multi-invocation preservation of authenticated specialist
+page reviews. It does not provide the two real specialist decisions or the
+physical iOS/Android evidence, and therefore does not install Voice Targets.
+The next code-owned step is to let the episode assembler cold-load all exact
+role/page coordinates from the durable index rather than requiring callers to
+hold arrays of page handles; after that the remaining Voice Targets gate is
+external real evidence plus final machine-receipt/registry installation. The
+V2 registry remains **1 of 13**.
+
+## 15.111 — Voice Targets dependency D22: cold two-role episode assembly (2026-08-12)
+
+The episode assembler can now complete after every specialist session and the
+server process that created it have ended. Starting only from the same branded
+plan, exact manifest, complete audio handle and physical-device episode handle,
+it derives the expected page starts from the cold PCM episode receipt. It then
+loads every listening page and every linguistic page from the direct-key
+server index, generation-pinned reparses their immutable review objects and
+reissues private page handles before invoking the unchanged exact two-role
+assembler.
+
+No caller supplies reviewer identity, review fingerprint, Storage pin, page
+count or page ordering to this cold flow. A missing page, wrong role,
+cross-manifest index, changed generation/hash/size/content type, malformed
+review or different reviewer still fails closed. The completed episode receipt
+is again persisted and cold-read before a private episode handle is issued.
+Stored page reviews and the public episode receipt retain no publication or
+release authority.
+
+Fresh focused evidence is **5 Functions suites / 28 tests PASS**, root
+Firestore static gates remain green, and targeted ESLint, Prettier and scoped
+diff-check pass. The new positive case proves four exact cold reads for a
+two-page episode (two roles × two pages) before assembly. No real human or
+physical-device evidence, production I/O, deploy, push, root-admin mutation or
+`admin/v2` access occurred.
+
+The code-owned durable human-review transport is now closed. Voice Targets
+still cannot be installed from neutral fixtures: the remaining gate requires a
+real physical iOS/Android run and real independent listening/linguistic
+decisions over approved owner-authored content, followed by the final
+authority-bearing machine receipt and registry transition. Until those
+external facts exist, the validator must stay fail-closed and the V2 registry
+remains **1 of 13**. Independent generator/runtime work can continue without
+inventing that evidence.
+
+## 15.112 — Activity runtime dependency A: trusted second-error copy and atomic word attempt (2026-08-12)
+
+The first React-independent packet for the owner-requested task interaction is
+closed without changing a governed screen or inventing visual approval. A new
+canonical episode error-explanation catalog requires exactly 12 sessions × 12
+tasks, all eight interface locales and one selected preview variant per task.
+It retains up to eight owner-authored or generator-candidate variants for the
+future root Content Studio filters (`locale`, family, episode, session and
+task), but its learner projection strips variant history, provenance and
+origin labels. The learner projection has its own strict canonical parser, so
+it can be stored and rehydrated after an app restart rather than depending on a
+same-process WeakSet handle.
+
+The local activity-attempt controller now models an atomic selectable-word
+attempt. Every tap first emits the exact word playback identity
+`audioTargetId + wordId`; the fixed task voice is reused for every word and the
+full phrase, whose `wordId` is explicitly null. Local evaluation then decides
+whether the UI may commit the selection. A wrong answer emits no red frame and
+`commitSelection:false`; it requests only the erroneous option nudge (or a
+motion-free crossfade). The first wrong answer carries no explanation. The
+second and later wrong answers resolve only the task-bound localized entry from
+the parsed learner projection. A technically invalid attempt remains a free
+retry and does not increment the learning-error counter.
+
+The same controller exposes compact Report, Save and accessible tap/optional
+hold Voice commands, but those commands are deliberately pure: no report is
+sent, no flashcard is written and no microphone is opened in this packet.
+Wallet, mastery and evidence authority remain none. Fresh focused evidence is
+**2 suites / 10 tests PASS** with targeted ESLint and Prettier green. Tests cover
+one voice across words/full phrase, immediate word audio, non-committing first
+error, second-error explanation, reduced motion, technical invalid, Report /
+Save / Voice commands, strict 12×12×8-locale catalog coverage, learner
+projection rehydration and forged-handle rejection.
+
+No real E1–E32 explanation, phrase, translation or task was generated or
+edited. The owner remains the sole content author. The next code-owned packet
+must bind this pure controller to exact released Activity render/capsule,
+Voice-audio manifest/cache coordinates and the learner explanation projection;
+only after the governed reference-evidence gate may the real session UI replace
+its historical whole-answer shake and generic retry copy.
+
+## 15.113 — Activity runtime dependency B: exact learner audio projection and released-attempt seam (2026-08-12)
+
+The next React-independent runtime seam is closed without generating or
+changing any real E1–E32 content. A server-only positive-allowlist projector
+now consumes the exact branded Voice audio manifest, Activity audio catalog
+and Voice Targets package. For one canonical session it emits a learner-safe
+audio projection that binds every full utterance and word coordinate to the
+same task voice group, exact immutable MP3 object pin, codec fingerprints and
+the four required voices `ash`, `onyx`, `nova`, `coral`.
+
+Phrase Builder selectable audio is keyed by the exact authored `responseId`;
+it is never inferred from displayed text. The projection requires all four
+voices for every audio coordinate, a full-utterance row for every target and
+contiguous word ordinals. Missing voices, word gaps, package/catalog drift,
+mutated stored entries, cloned handles and prototype-reserved selectable IDs
+fail closed. Server-only catalogs, profile bodies, evaluator data and answer
+keys do not enter the learner projection.
+
+An opaque attempt-audio binder selects one voice index once for the task and
+returns the exact `selectableId -> audioTargetId + wordId` map plus the full
+phrase target. The activity controller consumes that binding together with
+the local evaluator capsule and the learner explanation projection. A focused
+end-to-end pure test proves that the selected word audio is emitted before
+evaluation, a wrong word is not committed and receives no red frame, the
+second wrong answer receives its task-bound localized explanation, and the
+full phrase keeps the same selected voice.
+
+The projection remains deliberately pre-release:
+`storagePinAuthority:unverified_serialized_manifest_projection` and
+`runtimeAuthority:none_release_binding_required`. It cannot grant wallet,
+mastery, evidence, publication or release authority. The pure Report, Save and
+Voice commands also remain unconnected to app services in this packet.
+
+Fresh focused evidence is **4 root suites / 17 tests PASS** and **2 Functions
+suites / 16 tests PASS**, including the repository-wide import/live-consumer
+guard. Targeted TypeScript and ESLint checks pass. No network call, provider
+spend, production write, deploy, push, root-admin mutation or `admin/v2`
+access occurred.
+
+The owner-only authorship boundary remains absolute: the owner creates,
+translates, reviews and approves every real E1–E32 episode. Codex implements
+only the generator and technical system. Next code-owned work is a release-pin
+binding for this learner projection and the existing offline cache, followed
+by Report / Save / accessible Voice service adapters. Governed screen changes
+remain blocked on real visual-reference evidence and owner approval.
+
+## 15.114 — Activity runtime dependency C: compact-action lifecycle executor (2026-08-12)
+
+A second React-independent seam now sits between the pure activity-attempt
+controller and the existing app services behind Report, Save and Voice. The
+executor accepts only the three exact controller commands and forwards bounded
+task coordinates plus the opaque `reportContextRef` or `savablePhraseRef` to
+injected ports. It retains no report text, phrase payload, recording URI,
+audio bytes, transcript, confidence, account identity or device identity.
+
+Save execution is serialized, so repeated taps cannot start overlapping writes.
+Report and Save are refused while Voice owns the microphone. Voice has an exact
+`idle -> starting -> recording -> stopping -> idle` lifecycle, rejects repeated
+or reversed transitions and always issues a lifecycle stop during disposal.
+Service exceptions are converted to data-free typed outcomes and never copied
+into the executor snapshot. Cloned executors, malformed commands and
+prototype-reserved references fail closed.
+
+This is still a pure adapter boundary: no report is submitted, no flashcard is
+written and no native microphone is opened by this module. The later app ports
+must resolve the opaque refs against a release-bound learner resource before
+calling the existing `ReportErrorButton` / `submitErrorReport`, flashcard store
+and managed recording services. Wallet, mastery and evidence authority remain
+none.
+
+Fresh focused evidence is **1 root suite / 4 tests PASS** plus the canonical
+repository import/live-consumer guard **1 Functions suite / 14 tests PASS**.
+Targeted TypeScript, ESLint, Prettier and diff-check pass. No real E1–E32
+content was created or modified; owner-only content authorship remains
+unchanged. No network call, production write, deploy, push, root-admin mutation
+or `admin/v2` access occurred.
+
+Next code-owned work is the release-bound learner action-resource projection:
+it must bind report context and savable localized phrase data to the exact
+released Activity session without exposing evaluator/sidecar data. Only after
+that projection exists can the app ports safely reuse the current report,
+flashcard and microphone services.
+
+## 15.115 — Activity runtime dependency D: learner-safe compact-action resource (2026-08-12)
+
+The next server-projected, React-independent boundary is closed without
+touching any real E1–E32 content or a governed screen. For every exact
+12-task Activity session, the new learner action resource carries one bounded
+Report context, one Save reference and one Voice availability flag per task.
+The server projector rebuilds the exact branded Activity projection and
+requires canonical equality with its learner render before copying any field.
+
+Report data is a positive allowlist of content that is already learner-visible:
+task coordinate, prompt, response-option IDs/text and accessibility label. It
+contains no evaluator, correct/accepted response, salt, commitment, sidecar,
+translation or provenance field. The report reference binds that exact visible
+surface by fingerprint, but the serialized resource honestly keeps
+`reportContextAuthority:none_release_binding_required`.
+
+Save has two deliberately different states. A generator/owner declaration may
+expose only the prompt text that is already visible in the render. Near-transfer
+slot 9 and independent slots 10/12 may never use that early path; they receive
+only a `server_post_terminal` opaque reference. No localized meaning is shipped
+in the learner render resource in either state. Localized card data must come
+from a separate release-pinned app-internal post-terminal capsule after local
+terminal evaluation; its bytes remain honestly device-inspectable and never
+become assessment or economy evidence. Voice is only a command-availability fact; no recording, URI,
+transcript, confidence or audio artifact enters this resource.
+
+The resource has a strict canonical parser, 512 KiB cap, bounded iterative
+complexity preflight, exact 12-entry identity/order checks, immutable
+rehydration and clone rejection. Coordinated learner-byte tampering, hidden
+save text, unknown task references, assessment-slot early Save, hostile depth
+and raw cap+1 fail closed. Every repository/storage/runtime/publication/release
+authority remains none/false until a future immutable release loader validates
+the exact resource pin.
+
+Fresh focused evidence is **2 Functions suites / 18 tests PASS**, including the
+repository-wide import/live-consumer guard. Targeted TypeScript, ESLint,
+Prettier and diff-check pass. No app consumer, callable, network request,
+production write, deploy, push, root-admin mutation or `admin/v2` access was
+added. No real phrase, translation, explanation or episode was created or
+changed; the owner remains the sole E1–E32 content author.
+
+Next code-owned work is the separate post-terminal localized-card source
+catalog, app-internal capsule and immutable release-pin resolver. Only the
+terminal-gated resolver may feed the existing flashcard service. Report and Voice app ports can then be connected through the
+same released session identity, still without changing governed UI before its
+visual/reference approval gate.
+
+## 15.116 — Activity runtime dependency E: post-terminal cards and exact auxiliary-object integrity (2026-08-12)
+
+The next React-independent runtime packet is closed without touching a governed
+screen or any real E1–E32 content. A server-only post-terminal card catalog now
+binds exactly twelve task/card declarations to the learner action resource and
+all eight interface locales. Its app-internal capsule contains only the target
+text and localized meaning needed by Save after a terminal task result. The
+capsule is explicitly device-inspectable, cannot create assessment evidence or
+economy effects, and refuses `skipped` and `not_terminal` resolution.
+
+An additive per-session auxiliary release manifest binds four immutable JSON
+objects in a fixed order: learner actions, post-terminal cards, learner audio
+runtime coordinates and second-error explanations. It binds the exact Activity
+package, source and render fingerprints and derives content-addressed private
+paths, but honestly labels its pins `unverified_structural_pins`; it does not
+pretend to be an active-release pointer.
+
+A bounded integrity loader reads all four objects with maximum concurrency
+four, verifies exact path-selected generation, SHA-256, UTF-8 byte size and
+`application/json`, reparses every strict resource, and rechecks their common
+episode/session/task identity. Raw action/card/audio/error payloads remain in a
+private WeakMap. Consumers receive only narrow resolvers for learner-visible
+Report context, terminal-gated Save data, selectable/task audio and localized
+second-error copy. A cloned handle is rejected. The resulting summary states
+`originAuthority:none_external_release_pointer_required` and
+`runtimeAuthority:integrity_only_no_release_authority`; wallet, mastery,
+evidence and release authority remain none/false.
+
+Fresh focused evidence is **2 root suites / 6 tests PASS** and **2 Functions
+suites / 18 tests PASS**, including the repository-wide static/dynamic
+live-consumer guard. Targeted strict TypeScript, ESLint, Prettier and scoped
+diff-check pass. No app consumer, callable, network request, production write,
+deploy, push, root-admin mutation or `admin/v2` access occurred.
+
+No phrase, translation, explanation or episode was generated or edited. The
+owner remains the sole author and approver of all real E1–E32 content; Codex
+builds only the generator and technical system. The exact next code-owned step
+is an additive active-release origin binding for the auxiliary manifest. Only
+that release-bound opaque handle may be supplied to future app Report, Save,
+Voice and second-error ports. Governed screen changes remain blocked on real
+visual-reference evidence and owner approval.
+
+## 15.117 — Activity runtime dependency F: additive active-release auxiliary index (2026-08-12)
+
+The first active-release identity layer is closed without mutating the already
+versioned Season manifest. A new additive episode index binds one validated
+published Season view, its exact active manifest hash and lesson-unit object,
+the Activity stage/package fingerprint, and exactly twelve ordered auxiliary
+session-manifest pins. Each session row carries the exact source/render and
+auxiliary-manifest fingerprints plus a content-addressed JSON path, generation,
+raw hash and byte size. Reordered, missing, duplicate, cross-episode,
+cross-stage, wrong-package, noncanonical, hostile-depth and path/hash drift fail
+closed.
+
+The index deliberately does not launder a serialized Published View into
+repository authority. Its public claim is
+`releaseIdentityEvidence:validated_published_view_structure_only`, with
+`repositoryOriginAuthority:none_server_readback_required`. An opaque binder can
+combine one index row with the exact four-object integrity handle only when the
+session, source, render, package and auxiliary-manifest identities all match.
+The combined summary still grants no runtime, wallet, mastery, evidence,
+publication or release authority.
+
+Fresh focused evidence is **1 root suite / 4 tests PASS** and the repository
+import/live-consumer guard remains **2 Functions suites / 18 tests PASS**.
+Targeted strict TypeScript, ESLint, Prettier and scoped diff-check pass. No app
+consumer, callable, Firestore/Storage access, production mutation, deploy, push,
+root-admin mutation or `admin/v2` access occurred. No real E1–E32 content was
+created or modified.
+
+The exact next code-owned step is a server-owned direct-key readback adapter for
+the active Season pointer/manifest, episode index and selected session manifest.
+It must pin current repository bytes/generations before issuing any private
+origin handle. Until that exists, the structural release handle cannot be used
+by live Report, Save, Voice or explanation ports.
+
+## 15.118 — Activity runtime dependency G: Firebase Admin active-release origin readback (2026-08-12)
+
+The server-owned active-release readback boundary is closed without exporting a
+callable or wiring a live app consumer. A new zero-argument Firebase Admin
+adapter derives all Firestore and Storage coordinates from the requested
+environment/course scope and code-owned path helpers. It reads the exact active
+Season pointer, the direct-key Season manifest record, the generation-pinned
+immutable Season manifest body, the direct-key episode auxiliary pointer and
+the generation-pinned immutable 12-session auxiliary index. It then rereads the
+Season pointer and rejects byte or update-time drift, so an A→B or stale-pointer
+race cannot mint the private handle.
+
+The low-level default-project Admin I/O gained one bounded direct-document
+method that preserves canonical document bytes plus Firestore read/update
+times. It remains unbranded and cannot issue authority by itself. The public
+auxiliary pointer is likewise an authority-free structural record; it exposes
+only an untrusted read permit before the immutable index is downloaded and
+strictly parsed. Only the adapter's private WeakSet/WeakMap handle carries the
+narrow facts `firebase_admin_active_release_snapshot` and
+`generation_pinned_immutable_readback`. Even that handle has no wallet,
+mastery, evidence, publication, runtime-consumer or release authority.
+
+The new direct-key collection
+`content_v2_activity_auxiliary_release_pointers` is included in the compact
+server-owned Firestore namespace guard and has an explicit deny-all client
+rule. Browser clients, including browser-admin tokens, cannot read or write it.
+The adapter and pointer modules are covered by the repository-wide static and
+dynamic import guard and have no callable, index, worker or app consumer.
+
+Fresh focused evidence is **3 Functions suites / 27 tests PASS** for Admin I/O,
+full cold release readback and the import/live-consumer guard, plus **3 root
+suites / 58 tests PASS** for auxiliary runtime resources and static Firestore
+rules. Tests reject index-byte substitution, active-pointer update-time drift,
+malformed manifest records before Storage I/O, reordered sessions, path/hash/
+generation drift and cloned handles. Functions strict TypeScript, targeted
+ESLint, Prettier and scoped diff-check pass. No production read/write, deploy,
+push, root-admin mutation or `admin/v2` access occurred.
+
+No real E1–E32 content was generated, edited or approved. The owner remains the
+sole content author. The exact next code-owned step is the root-last server
+publication writer: persist/read back twelve session manifests and the episode
+index, then transactionally create-or-exact-replay the auxiliary pointer. Only
+after that publisher and a release-handle-to-app projection exist may the
+Report, Save, Voice and second-error ports be connected to the app; governed UI
+still waits for real visual-reference evidence and owner approval.
+
+## 15.119 — Activity runtime dependency H: root-last auxiliary publication writer (2026-08-12)
+
+The server-owned auxiliary publication boundary is now closed as a zero-argument
+Firebase Admin primitive, without a callable, worker, queue or app consumer.
+Before the first write it directly reads the current Season release pointer and
+manifest record and requires their canonical bytes to equal the supplied
+published view. A stale view therefore fails before creating any immutable
+object or Firestore document.
+
+For an exact current release, the writer first validates all twelve session
+manifest raws through the release-index materializer, persists each manifest at
+its content-addressed path with create-or-exact-readback semantics, rebuilds the
+index with the observed immutable generations, and persists the immutable index.
+Only after all thirteen Storage objects are complete does it transactionally
+create-or-exact-replay the direct-key auxiliary pointer. A conflicting pointer
+fails closed; immutable objects left by a crash are harmless and a later exact
+retry converges without rewriting them.
+
+Publication success is not inferred from the write calls. The writer
+unconditionally invokes the independent Firebase Admin cold-read adapter after
+the pointer transaction and requires the private readback handle to match the
+active manifest, Activity package and index fingerprints. Public pointer/index
+artifacts retain structural-only authority; wallet, mastery, evidence,
+publication-decision, runtime-consumer and release authority remain absent.
+
+Fresh focused evidence is **5 Functions suites / 36 tests PASS** for the
+episode-level writer, root-last publication, cold readback, low-level Admin I/O
+and the repository-wide
+import/live-consumer guard. Tests prove exact replay with zero new writes,
+stale-release rejection before I/O, root-last ordering, conflicting-pointer
+failure, coordinated immutable-byte substitution rejection and active-pointer
+drift rejection. Strict Functions TypeScript, targeted ESLint, Prettier and
+scoped diff-check pass. No production read/write, deploy, push, root-admin
+mutation or `admin/v2` access occurred.
+
+The generator-facing publication entry point is now complete for these
+auxiliary resources. One episode call first exact-checks the current Season
+pointer/record, validates all twelve session coordinates before any write,
+persists exactly 48 content-addressed learner objects (Report/Save actions,
+post-terminal cards, audio runtime and second-error explanations), rebuilds the
+twelve manifests from the observed Storage generations, and delegates to the
+root-last writer. The root-last writer independently reads and parses all 48
+children again before publishing the pointer. Canonical JSON content type is
+uniformly `application/json; charset=utf-8`, allowing every immutable child to
+use the shared create-or-exact-readback persistence primitive. A child failure
+cannot publish a root; crash orphans remain immutable and safe to replay.
+
+No real E1–E32 content was generated, edited or approved; the owner remains the
+sole content author. The next code-owned step is an authority-safe server-to-app
+release descriptor and app-internal loader seam. It must expose only the exact
+learner resources needed by Report, Save, Voice and second-error feedback,
+without serializing the private Admin origin handle or leaking evaluator/server
+sidecars. Governed UI implementation still waits for real visual-reference
+evidence and owner approval.
+
+## 15.120 — Activity runtime dependency I: learner-safe session descriptor and exact-release LKG (2026-08-12)
+
+The server-to-app data seam is now structurally closed without exposing the
+private Firebase Admin release handle. From a genuine cold-read release handle,
+the server adapter generation-pinned reads one selected session manifest and
+its four learner objects, then projects a canonical learner descriptor. The
+descriptor contains the twelve Report/Save action rows, twelve post-terminal
+cards, the audio-runtime projection, and exactly the twelve second-error
+explanations belonging to those action rows. Its exact schema excludes
+evaluator and server-sidecar payloads; wallet, mastery, evidence, publication
+and release authority remain absent. The serialized descriptor explicitly says
+that transport authentication is still required and does not convert a copied
+JSON document into repository-origin evidence.
+
+The app-independent loader adds a last-known-good fallback with an exact cache
+identity over environment, language pair, season, active-manifest hash,
+episode, session, Activity package and auxiliary index. Network data is parsed
+canonically and must match every expected identity field before it is cached.
+Offline fallback may use only the same exact key; a new active-manifest hash can
+never open a descriptor cached for an older release. A malformed cached value
+is removed and has availability authority only, never origin or release
+authority. The descriptor parser performs bounded iterative complexity checks
+before canonicalization so deeply nested or oversized hostile JSON fails
+closed.
+
+Fresh focused evidence is **1 root suite / 4 tests PASS** for generation-pinned
+four-object readback, learner projection, descriptor identity, no-evaluator
+shape, exact-release network/LKG behavior and cross-release cache separation,
+plus **1 Functions suite / 14 tests PASS** for the repository-wide static and
+dynamic import/live-consumer guard. No app screen, callable, deploy, production
+read/write, push, root-admin mutation or `admin/v2` access occurred.
+
+No real E1–E32 content was generated, edited or approved. The owner remains the
+sole content author through the generator. The next code-owned step is the
+app-internal authenticated transport and bounded persistent cache adapter,
+followed by the governed lesson-screen integration for Report, Save,
+hold-to-talk Voice, per-word same-voice playback and second-error feedback.
+Visible UI work still requires real visual-reference evidence and explicit
+owner approval; those external gates must not be fabricated.
+
+## 15.121 — Activity runtime dependency J: authenticated callable, rollout and account-scoped persistent LKG (2026-08-12)
+
+The learner descriptor now has an exported Firebase callable boundary and a
+single app-internal client. The callable requires Firebase Auth and App Check
+outside an explicit isolated demo-emulator opt-out. It resolves the canonical
+stable account server-side, loads the current Season pointer through the
+private generation-pinned release adapter, applies the code-owned rollout
+decision and projects only the exact learner descriptor. Request data cannot
+provide a stable account, cohort ID, package fingerprint, auxiliary-index
+fingerprint or repository handle. The requested environment must also equal the
+server-derived project environment, and a supplied active-manifest hash is an
+exact CAS fence; current-release discovery uses a null fence and still returns
+only the current double-read pointer.
+
+Rollout assignment is deterministic over the canonical stable account plus the
+versioned cohort salt. The persisted cohort identifier is a SHA-256 digest, not
+the stable ID. Exclusion wins over every other branch; pause forces effective
+percent zero; internal releases require an exact allowlist entry; rolling/live
+and rolled-back pointers use the exact allowed percentage with allowlist
+override. The raw stable ID, auth UID and cohort digest are never serialized in
+the learner descriptor or its device cache.
+
+The React Native client initializes Auth/App Check through existing project
+seams, calls only the new learner descriptor function, re-parses the exact
+response and refuses to hide a received protocol/release/permission error
+behind cached bytes. Its AsyncStorage envelope is bounded to **12 descriptors
+and 8 MiB**, evicts least-recently-written rows, removes corrupt envelopes and
+keeps a likewise bounded in-memory peek cache for a stable first frame. Cache
+locator identity includes an irreversible local account-scope hash,
+environment, language pair, season, active release, episode and session. An
+offline restart can use only the newest previously verified descriptor for the
+same account and session; an account switch or exact release change cannot read
+the old LKG. Cache authority remains availability-only and cannot mint origin,
+release, wallet, mastery or evidence authority.
+
+Fresh focused evidence is **3 root suites / 11 tests PASS** for rollout,
+descriptor/integrity and mobile network/LKG/account-switch/corruption behavior,
+plus **3 Functions suites / 22 tests PASS** for the Auth/callable handler,
+private cold release adapter and repository-wide import/live-consumer guard.
+Functions strict TypeScript and targeted ESLint/Prettier/diff-check pass. The
+callable is exported in source but was not deployed or invoked against
+production. No production read/write, push, root-admin mutation or `admin/v2`
+access occurred.
+
+No real E1–E32 content was generated, edited or approved. The owner remains the
+sole content author through the generator. The exact next code-owned step is a
+non-visual lesson runtime mount that hydrates/loads this descriptor and exposes
+typed Report, Save, Voice and second-error ports to the existing session
+controller. Governed visible controls and motion still require real reference
+evidence and explicit owner approval; device/offline/accessibility/audio and
+release qualification remain later gates.
+
+## 15.122 — Activity runtime dependency K: non-visual lesson mount and network-quiet preload (2026-08-12)
+
+The learner descriptor is now mounted behind the existing Lesson V2 map and
+session routes without changing the governed visual surface. A complete release
+route scope is explicit and optional: environment, season and episode must all
+be present or the mount stays inactive. Legacy Lesson 1 therefore preserves its
+existing instant local runtime when opened without published-release params.
+
+For a published route, the idle map preloads the descriptor for the current
+runnable session through the authenticated callable. The preload is
+single-flight per exact release/session coordinate and runs under the app-wide
+background-network lease. When the session claims the interactive network-quiet
+boundary, it does not start another request: it reads the synchronously peeked
+descriptor, hydrates the account-scoped LKG, or awaits only the already-started
+map preload. Every answer remains local and the existing choose/skip paths still
+contain no callable, Firebase, storage or awaited transport work.
+
+A new opaque session-runtime projection validates all twelve slot bindings
+across learner actions, post-terminal save cards and second-error explanations.
+It exposes one exact task per slot with Report/Save/Voice capability metadata,
+localized second-error copy and audio availability, while retaining wallet,
+mastery, evidence and release authority as none/false. The current legacy card
+may consume a released task only when both taskId and activityId match; a mere
+slot-number match can never substitute cross-release content. Visible controls
+remain deliberately unwired until their reference/owner gate is real.
+
+The persistent client also gained a current-release peek, serialized cache
+clearing and in-flight preload deduplication, including the map-to-session race.
+Fresh focused evidence is **4 root suites / 17 tests PASS** for descriptor
+integrity, runtime projection, current-release preload/LKG, route mount and the
+unchanged local session path, plus **1 Functions guard suite / 14 tests PASS**.
+Targeted TypeScript found no errors in the changed Learning V2 surfaces;
+ESLint, Prettier and scoped diff-check pass. An accidentally broad root Jest
+invocation was stopped after it encountered the pre-existing missing Gustav
+French ledger; it is unrelated to this package and is not counted as evidence.
+
+No deploy, production read/write, push, root-admin mutation or `admin/v2`
+access occurred. No real E1–E32 content was generated, edited or approved; the
+owner remains the sole content author. The next technical packet may connect
+the already-defined Report, Save, hold/tap Voice and second-error runtime ports
+to the exact released task. Governed visible layout and motion still require
+reference evidence and explicit owner approval, and device/offline/audio QA plus
+the owner-operated generator remain open.
+
+## 15.123 — Activity runtime dependency L: task-bound actions, account fencing and second-error behavior (2026-08-12)
+
+The verified auxiliary task now owns a lifecycle-safe, app-internal action
+session. It can be created only from the exact opaque session runtime and the
+exact task object returned by that same runtime; copying coordinates or passing
+a task from another descriptor fails closed. Report, post-terminal Save and
+tap/hold Voice commands are routed through the existing compact executor and
+retain no answer, report text, transcript or recording URI. A task change,
+unmount, inactive runtime or account-generation transition disposes the
+executor. Disposal also closes the race where native microphone startup
+finishes after the screen has already left: a late successful start receives an
+immediate lifecycle stop.
+
+Save resolves target text and the selected interface-locale meaning only from
+the exact released post-terminal capsule and only after local completion. It
+then uses the existing account-scoped `custom_flashcards_v2` functional-update
+queue under the account-transition lock. The stable card identity is derived
+from the released `savablePhraseRef`; repeated taps and restored state cannot
+create duplicates, and an account switch before the commit returns a typed
+stale outcome. No parallel cards key or storage format was introduced. The
+current Learning V2 study target is English; a different target fails closed
+rather than writing English-schema cards incorrectly.
+
+Voice uses the existing app-owned PCM hold recorder and the process-wide
+recording arbiter. Permission is requested only on an explicit future action,
+never at mount. The permission dialog consumes the original gesture, so the
+user must make a fresh tap/hold after a newly granted permission. This packet
+does not retain, upload, transcribe or score the WAV; stop deletes the transient
+file and lifecycle disposal cancels it. Voice therefore remains a local control
+seam with no listening, evidence, mastery or wallet authority.
+
+The active lesson answer path now applies the requested staged error behavior.
+For the exact released task, the first wrong answer produces only the existing
+transparent shake/nudge and no red frame, no committed selection and no
+explanation text. Starting with the second learning error, it shows the exact
+localized explanation selected in the released error catalog. Legacy Lesson 1
+uses the same no-copy first error and retains its generic explanation from the
+second error. The choose path stays synchronous and contains no network call or
+awaited transport.
+
+Fresh focused evidence is **3 root suites / 12 tests PASS** for exact-task
+binding, pre-terminal Save rejection, post-terminal localized card resolution,
+first/second-error semantics, copied/cross-runtime rejection, concurrent native
+voice-start disposal and the mobile mount/import boundary. The repository-wide
+Functions import/live-consumer guard is **1 suite / 14 tests PASS**. Targeted
+TypeScript reported no errors in the changed surfaces; ESLint, Prettier and
+scoped diff-check pass. Jest still prints the repository's existing force-exit
+advisory after the passing root suites; it is not a failed assertion.
+
+Visible compact Report/Save/Voice controls remain intentionally absent. The
+Report command now produces a controlled, exact learner-visible report request,
+but rendering the button/sheet and final motion/layout still requires genuine
+reference evidence and explicit owner approval. No deploy, production read or
+write, push, root-admin mutation or `admin/v2` access occurred. No real E1–E32
+episode content was generated, edited or approved; the owner remains the sole
+content author through the generator.
+
+## 15.124 — Activity runtime dependency M: one-voice per-word local audio (2026-08-12)
+
+The released Activity descriptor now drives a real account-fenced local audio
+plan. A deterministic local shuffled round-robin selects exactly one of Ash,
+Onyx, Nova or Coral once per released task. The full-utterance entry and every
+selectable word entry for that task are then restricted to that exact voice.
+Each four-task cycle uses all four voices and avoids an immediate repeat across
+cycle boundaries. Selection is bound to the local account scope, exact released
+descriptor and session, but no stable identifier is serialized into an audio
+artifact or local file name.
+
+The lesson map now preloads the exact current-session descriptor and its selected
+audio entries before navigation. A bounded worker pool of at most four reads
+each immutable MP3 with Firebase Auth and App Check in transient request headers;
+no token appears in the URL, descriptor, cache summary or persisted bytes. The
+Storage rule for `learning-v2/voice-audio/**` permits authenticated exact-object
+`get` only and rejects list/write. Downloaded bytes are accepted only after exact
+declared byte size and SHA-256 readback, then stored under a content-addressed
+local MP3 name. Exact cache hits invoke neither credentials nor transport.
+
+The active answer path never starts network work. It only consumes the opaque
+map-preloaded handle, or waits for the exact preload already admitted by the map
+before the session network-quiet boundary. An account-generation transition
+immediately invalidates the handle and clears process peek state. The session
+resolves a chip only through the released stable `responseId` and the exact
+audio selectable binding; it never guesses by text. Because the current screen
+still has the transitional bundled Lesson 1 body, released response options are
+used only when they are an exact one-token multiset match for that visible
+builder task. Any mismatch fails closed without playing another word.
+
+Pressing a newly selected exact chip starts its already-local word MP3
+immediately. Pressing the phrase audio control uses the same task voice whenever
+the exact released full-utterance entry exists. The player is created with
+`downloadFirst:false`, obtains the process-wide spoken-audio lease, and is
+disposed on task change, blur/inactive runtime, unmount, timeout, completion or
+microphone takeover. No audio response, transcript or playback event creates
+stars, mastery, wallet or evidence authority.
+
+Fresh focused evidence is **6 root suites / 21 tests PASS** for balanced
+one-voice selection, phrase/word voice equality, exact byte cache, cache-hit
+network silence, authenticated header-only transport, no token URL, bounded
+streaming, account invalidation, Storage get/list/write policy and native-player
+lifecycle. The Functions repository-wide import/live-consumer guard is **1 suite
+/ 14 tests PASS**. Targeted ESLint and diff-check are clean. The existing root
+Jest force-exit advisory appears after passing suites and is not a failed
+assertion.
+
+This closes the code-owned local per-word audio path, not physical-device or
+release evidence. Real iOS/Android playback, App Check enforcement, offline
+restart/cache pressure, accessibility listening and packet-capture verification
+remain required. The broader screen still needs the released render to replace
+the transitional bundled Lesson 1 body. No deploy, production read/write, push,
+root-admin mutation or `admin/v2` access occurred. No real E1–E32 content was
+created or changed; the owner remains its sole author through the generator.
+
+## 15.125 — Activity runtime dependency N: exact released render + local evaluator package (2026-08-13)
+
+The learner-facing Activity session now has one pure, opaque package boundary
+instead of a transitional slot join. The package combines the exact canonical
+learner render, the device-inspectable local evaluator capsule envelope and the
+already authenticated learner auxiliary descriptor. It requires exact episode,
+session, source, package and fingerprint identity before building a twelve-task
+bijection across learner prompt/options, stable task/activity identities,
+Report/Save/Voice resources, second-error copy and evaluator capsules.
+
+The mounted runtime exposes only learner-visible task data, exact action ports
+and a local provisional `evaluate` operation. It never exposes capsule salts or
+commitments, accepted/correct responses, evaluator sidecar data or server
+authority. Choice, ordered-token and transcript responses remain local; their
+verdicts cannot write wallet, mastery, evidence or completion. Copies of package
+or runtime handles are rejected.
+
+Hostile regressions prove that recomputing a package fingerprint cannot hide a
+changed learner prompt and that swapping two otherwise valid capsules fails the
+ordered task/activity bijection. Fresh focused evidence is **1 root suite / 2
+tests PASS** for positive mount/local evaluation plus render drift, capsule swap
+and copied-handle rejection. The repository-wide Functions import/live-consumer
+guard is **1 suite / 14 tests PASS**. Targeted ESLint, Prettier and scoped
+diff-check are clean.
+
+This closes the pure application package needed to replace bundled Lesson 1; it
+does not yet provide authenticated server delivery of the render and capsule
+bytes. The next packet must extend the private active-release publisher and
+callable so those two objects are generation-pinned, stored, read back and
+projected with the same release/session identity before the mobile screen may
+mount this runtime. Legacy Lesson 1 remains an additive fallback for routes
+without a complete released-package scope. No deploy, production mutation,
+push, root-admin mutation or `admin/v2` access occurred. No real E1–E32 content
+was created or changed; the owner remains its sole author through the generator.
+
+## 15.126 — Activity runtime dependency O: validator-gated publication session material (2026-08-13)
+
+The authenticated Activity Instances validator now retains a separate private
+publication seam for every successful twelve-session readback. A caller cannot
+construct or parse this seam from hashes, paths, summaries or canonical JSON:
+it is resolved only from the original opaque validator handle, the exact same
+branded plan object and one ordinal in the closed range 1..12. Blocked,
+test/demo, copied-handle, cross-plan and invalid-ordinal inputs fail closed.
+
+The resolver exposes only the exact learner render and local evaluator capsule
+envelope for the selected session. Source authoring bytes and the plaintext
+server evaluator sidecar remain private and are never returned. The two raws
+are rehashed and re-sized against the exact generation-pinned permits before
+the resolver returns their immutable pins. Session, episode, package,
+validator, permit, child-readback and storage-readback fingerprints are bound
+together. This reuses the validator's existing 48-object Admin Storage
+readback; it does not introduce a second storage reader or accept caller-owned
+object coordinates.
+
+The material still has no publication or release authority. It is an internal
+input for the next root-last active-release publisher, not a learner response
+and not a runtime package by itself. Fresh focused evidence is **3 Functions
+suites / 26 tests PASS** for generation-pinned 48-object validation, exact
+session extraction, copied/cross-plan/blocked rejection, exact export authority
+and the repository-wide import/live-consumer guard. Prettier is clean.
+
+The next exact packet is an additive active-release learner-core index and
+publisher that consumes this opaque material, persists the render and capsule
+pins under a code-owned namespace, performs exact readback, and binds them to
+the same active auxiliary release before the callable may construct
+`learning-v2-activity-released-session-package.v1`. No deploy, production
+read/write, push, root-admin mutation or `admin/v2` access occurred. No real
+E1–E32 content was generated, edited or approved; the owner remains the sole
+content author through the generator.
+
+## 15.127 — Activity runtime dependency P: additive learner-core release index (2026-08-13)
+
+An additive learner-core release index now binds the exact twelve learner
+sessions to the structurally active Season release. Each session contains only
+two existing immutable Activity Instances pins: the learner render and the
+device-inspectable local evaluator capsule envelope. The index therefore seals
+exactly **12 sessions / 24 objects** without copying those objects or exposing
+the authoring source and plaintext server evaluator sidecar.
+
+Materialization accepts the validator-projected canonical raws and requires the
+content-addressed Activity Instances path, generation, SHA-256, UTF-8 byte size
+and JSON content type to agree. It reparses the learner render and capsule
+envelope, binds their source/session/episode identities, requires twelve tasks
+and twelve capsules, and records the validator summary, permit, child-readback
+and storage-readback fingerprints. The active Season release must contain
+exactly one matching lesson unit.
+
+The public index remains structural and grants no repository, storage,
+runtime, publication, wallet, mastery, evidence, completion or release
+authority. A future server adapter must still exact-read the index and all 24
+generation-pinned children through a root-last pointer before learner delivery.
+Focused evidence is **1 root suite / 2 tests PASS** for a positive twelve-session
+round trip plus reordered-session, path/content-type and authority-escalation
+failures after attacker refingerprinting. The repository-wide import/live
+consumer guard includes the new contract. A mistakenly broad root Jest wrapper
+was stopped after it encountered the pre-existing absent Gustav French ledger;
+that unrelated failure is not counted as evidence and no source was changed by
+the test.
+
+Next is the zero-argument Admin publisher/reader pair: it consumes only the
+opaque eligible validator handle, persists the bounded index, commits a sealed
+learner-core pointer, then cold-readbacks the pointer, index and selected two
+objects before the learner callable may assemble the released-session package.
+No deploy, production read/write, push, root-admin mutation or `admin/v2`
+access occurred. No real E1–E32 content was created or changed; the owner
+remains its sole author through the generator.
+
+## 15.128 — Activity runtime dependency Q: root-last learner-core publication and cold readback (2026-08-13)
+
+The learner-core index now has a complete zero-argument Firebase Admin
+publication/readback boundary. Publication accepts only the original opaque,
+eligible Activity Instances validator handle and the exact branded plan. It
+resolves all twelve session materials through that private handle, verifies a
+single validator/package/readback identity, checks the current canonical Season
+pointer and manifest record, persists the bounded immutable index, then creates
+the sealed Firestore pointer last. Replay permits only the exact same pointer;
+a conflicting root fails closed.
+
+The cold adapter does not trust the Firestore pointer as learner bytes. It
+re-reads the canonical Season pointer and immutable manifest, checks the
+learner-core pointer, generation/hash/size/content type of the index, reparses
+the exact twelve-session index and finally re-reads the Season pointer with the
+same bytes and update time. Resolving one session then performs parallel exact
+generation/hash/size/content-type readback of only its render and capsule and
+rechecks their canonical fingerprints plus episode/session/source identities.
+Source authoring bytes and the plaintext evaluator sidecar are not available
+through this adapter.
+
+All public index/pointer bytes retain authority none. The private cold handle
+attests only an authenticated active-release snapshot and generation-pinned
+learner-core identity; wallet, mastery, evidence, completion, publication and
+release authority remain none/false. The new Firestore pointer collection is
+explicitly denied to browser clients and browser-admin tokens through both the
+server-owned root guard and an exact deny match.
+
+Fresh focused evidence is **4 Functions suites / 29 tests PASS** for opaque
+validator gating, 48-object predecessor readback, immutable root-last
+publication, cold reload, exact selected-session bytes, copied/blocked handle
+and tampered-child failures plus repository-wide import/live guards. Root
+index/pointer and Firestore rules evidence is **2 suites / 54 tests PASS**.
+Targeted TypeScript, ESLint, Prettier and diff-check are clean. Jest prints the
+repository's existing force-exit advisory after passing root suites; it is not
+a failed assertion.
+
+The next packet is to combine this authenticated learner-core session with the
+already authenticated auxiliary descriptor inside the callable and return one
+canonical `learning-v2-activity-released-session-package.v1` response. Only
+after that may the mobile released route mount the full server render and local
+evaluator instead of the transitional bundled Lesson 1 body. No deploy,
+production read/write, push, root-admin mutation or `admin/v2` access occurred.
+No real E1–E32 content was created or changed; the owner remains its sole author
+through the generator.
+
+## 15.129 — Activity runtime dependency R: authenticated full-session delivery and offline local evaluation (2026-08-13)
+
+The mobile Activity path now has an additive full released-session transport.
+The existing auxiliary callable remains unchanged for installed clients. A new
+authenticated/App-Check callable loads the auxiliary and learner-core roots
+independently, requires the same environment, release, Season, episode, stage
+and Activity package fingerprint, applies the account rollout gate, then reads
+the selected auxiliary descriptor, learner render and local evaluator capsule.
+It rejects any session/source/render mismatch before constructing one canonical
+`learning-v2-activity-released-session-package.v1` response. The response has no
+authoring source, plaintext server sidecar, correct-response list or accepted
+answer list; the capsule is deliberately device-inspectable and may produce
+only local provisional feedback.
+
+The app now has a separate account-scoped, exact-active-release LKG for this
+full package. Online bytes are parsed before persistence; protocol drift cannot
+be hidden by cached data. Ordinary transport failures may reuse only the newest
+matching account/environment/Season/episode/session row. The Lesson map
+preloads the full package alongside its existing auxiliary/audio preload. The
+session itself performs no package network call: it hydrates the verified LKG,
+mounts all twelve render/action/capsule tasks and evaluates an answer locally.
+The released evaluator is used only when task ID, activity ID and family match
+the transitional visible card exactly; otherwise the existing Lesson 1 path is
+preserved. This prevents a slot-only join and keeps older releases functional
+until the final render-driven screen packet lands.
+
+Fresh focused evidence is **2 Functions suites / 16 tests PASS** for Auth/App
+Check configuration, exact release/package joining, embedded-descriptor release
+binding, malformed/drift failures and repository-wide import/live guards. Root
+package/client/mount evidence is **3 suites / 6 tests PASS**, followed by the
+focused mount/client rerun **2 suites / 4 tests PASS**. Functions TypeScript and
+targeted ESLint/Prettier pass; the one reported `require()` warning is the
+pre-existing lazy native `expo-device` import used to keep SSR/cache paths cold.
+The root Jest force-exit advisory appears after passing suites and is not a
+failed assertion.
+
+This closes delivery and offline local evaluation, not the final released
+render-driven screen. The next code-owned packet is to replace the transitional
+bundled Lesson 1 prompt/options/task loop with the twelve tasks from the mounted
+released runtime while preserving progress, audio, Report, hold-to-talk, Save,
+second-error feedback and legacy fallback. Governed visual styling still needs
+real reference evidence and owner approval before visual replacement. No
+deploy, production read/write, push, root-admin mutation or `admin/v2` access
+occurred. No real E1–E32 content was generated, edited or approved; the owner
+remains the sole content author through the generator.
+
+## 15.130 — Activity runtime dependency S: released-task completion candidate and crash-safe local spool (2026-08-13)
+
+The released runtime now exposes the exact release/package identity required by
+progress without widening the learner package bytes: environment, target/source
+languages, Season/release/manifest, Activity stage/package and session
+coordinates are derived from the already parsed embedded descriptor. A new
+authority-free completion candidate binds those coordinates to the exact twelve
+runtime task/activity/family/purpose rows. Completed rows state only that a
+local provisional-correct verdict preceded the learner action; skipped rows
+explicitly create no evidence. The object carries no answer, response,
+transcript, accepted-value or evaluator payload and cannot award completion,
+wallet, mastery or evidence without server revalidation.
+
+A bounded account-scoped local spool persists those candidates with
+create-or-exact-replay semantics. Its index is fingerprinted, maximum 64 rows,
+every entry is reparsed before list/remove, scope/generation drift fails closed,
+and account transitions are protected by the existing progress storage lock.
+The session writes this spool only when all twelve released task IDs are present
+in the completed/skipped result map. A transitional screen whose visible cards
+do not exactly match the released package therefore cannot manufacture a
+released completion. The existing Lesson 1 completion journal remains intact
+as the fallback path.
+
+Fresh focused evidence is **2 root suites / 4 tests PASS** for exact task
+binding, absence of answer/economic authority, task/scope/authority/clone
+rejection, idempotent append/list/remove, stored tamper and capacity failure.
+The final integration rerun is **4 root suites / 8 tests PASS** plus **2
+Functions suites / 16 tests PASS**. Functions TypeScript, targeted formatting
+and repository import/live guards pass. A repository-wide `git diff --check`
+also reported trailing whitespace in the unrelated dirty
+`app/shard_earn_ui.ts`; that user-owned file was not touched, and the Learning
+V2 paths remain clean.
+
+The next safe packet is the server projection/callable for this new released
+completion: authenticate the account, reload the exact active release/package,
+compare all twelve task coordinates and settle only server-authorized progress.
+No wallet/mastery/evidence claim may be inferred from the local provisional
+capsule. No deploy, production read/write, push, root-admin mutation or
+`admin/v2` access occurred. No real E1–E32 content was generated, edited or
+approved; the owner remains the sole content author through the generator.
+
+## 15.131 — Activity runtime dependency T: server-side released completion reconciliation (2026-08-13)
+
+The first server-side boundary for the new released completion is now present.
+It reparses the authority-free client completion, reloads one canonical released
+session package, mounts the package runtime and requires exact account scope,
+generation, release, active manifest, episode, stage, Activity package, session
+and all twelve task/activity/family/purpose coordinates. Completed and skipped
+rows are projected only as reconciled client claims. No answer payload enters
+the projection and no performance, wallet, mastery, evidence or release
+authority is produced.
+
+Fresh focused evidence is **1 Functions suite / 2 tests PASS** for the positive
+12-row reconciliation and account/release/task-drift rejection. The combined
+reconciliation plus repository-wide canonical import/live guard is **2 suites /
+16 tests PASS**. The module is an allowlisted server-only consumer and a guarded
+canonical target; client, callable index and unrelated runtime imports remain
+blocked.
+
+The next packet is authenticated upload and durable idempotent settlement. It
+must rebind the local account claim to the server-authorized stable account,
+reload the active package through the existing authenticated repository
+adapter, persist an exact receipt and only then advance progress/economy through
+the existing protected settlement contracts. No deploy, production read/write,
+push, root-admin mutation or `admin/v2` access occurred. No real E1–E32 content
+was generated, edited or approved; the owner remains the sole content author
+through the generator.
+
+## 15.132 — Activity runtime dependency U: authenticated completion upload and durable server inbox (2026-08-13)
+
+The released completion now crosses an authenticated, restart-safe boundary
+without pretending that a coordinate-only completion proves performance. The
+app discovers all pending account/generation-scoped released-session spools,
+submits them only in the existing post-session background flush and removes a
+row only after parsing an exact server receipt. Offline transport and malformed
+receipts keep the row for a later retry; no request is made after each learner
+answer.
+
+The callable requires Auth and App Check, resolves the stable account and
+current account generation through the existing deletion-safe authorization
+seam, rebinds the local completion to that server-owned account identity,
+reloads the exact active released session and repeats the twelve-coordinate
+reconciliation. It then writes a create-or-exact-replay record to the
+server-only user completion inbox. Account-link, generation and
+deletion-tombstone state are checked again inside the Firestore transaction. A
+different payload at the deterministic completion key fails closed. Client
+access to this inbox is explicitly denied by Firestore rules.
+
+The receipt deliberately says only `accepted_for_post_session_verification_only`.
+The submitted completion contains no answer values, transcripts or evaluator
+keys, so this packet cannot award stars, progress, wallet credit, mastery or
+evidence. A separate answer batch and server-only evaluator-sidecar
+release/readback seam are required before settlement can be honest.
+
+Fresh focused evidence is **2 root suites / 4 tests PASS** for account-wide
+spool discovery, successful removal after an exact receipt, offline retention
+and bad-receipt retention. Functions evidence is **3 suites / 18 tests PASS**
+for Auth/App Check, active-release reload, twelve-coordinate reconciliation,
+idempotent durable write/replay and repository import/live guards. Functions
+TypeScript, targeted ESLint/Prettier and Learning V2 diff checks pass. The
+broader Firestore-rules file also proved the new deny path, while two unrelated
+pre-existing string-format assertions in that broad file remain outside this
+packet.
+
+The next safe packet is a bounded post-session answer batch. It must record no
+raw audio, remain account/release/session fenced, load the exact server-only
+sidecar for the same published package and derive performance on the server in
+one post-session operation. Economic settlement remains a later protected
+step. No deploy, production read/write, push, root-admin mutation or `admin/v2`
+access occurred. No real E1–E32 content was generated, edited or approved; the
+owner remains the sole content author through the generator.
+
+## 15.133 — Activity runtime dependency V: atomic answer submission, server-only evaluation and durable inbox (2026-08-13)
+
+The released session now records one bounded answer sequence for every exact
+released task and persists completion plus all twelve sequences as one
+crash-safe local object. A completed task must contain the same number of
+attempts declared by the completion; a skipped task contains none. Text and
+transcript claims are NFC/bounded and raw audio, recording URIs, confidence,
+device or learner identifiers are forbidden. The transitional legacy screen
+still falls back to the answer-free v1 completion when it cannot prove an exact
+released-task join; it never invents answer rows.
+
+The background scheduler prioritizes v2 submissions and removes a local row
+only after an exact fingerprinted callable receipt. Auth and App Check are
+required. The server rebinds account identity, reloads the learner-safe package
+and the separately published server-only evaluator sidecar from the same active
+release, then checks release, manifest, stage, package, source, session and all
+twelve task identities. Every submitted attempt is normalized and replayed
+against the release-pinned commitments. A completed task is accepted only when
+its one correct answer is the final attempt; skipped tasks produce no evidence.
+
+The result is stored through create-or-exact-replay in a client-denied user
+inbox. It is deliberately marked `pending_separate_server_settlement`:
+evaluation proves only the answer sequence. Wallet, mastery, evidence and
+completion authorities remain none until a separate settlement transaction
+consumes this record. Learner bytes never receive the sidecar, salts or accepted
+responses.
+
+Fresh focused evidence is **7 root suites / 38 tests PASS** for submission
+shape, atomic spool, session capture, background sync, scheduler ordering and
+Firestore deny rules. Functions evidence is **3 suites / 18 tests PASS** for
+active-release/package/sidecar identity, server answer replay, Auth/App Check,
+idempotent inbox receipt and repository-wide import/live guards. Functions
+TypeScript and targeted ESLint/Prettier pass. One accidentally broad root Jest
+invocation also surfaced two unrelated dirty failures (a legacy string-format
+assertion and a missing Gustav fixture); neither file was touched by this
+packet.
+
+The next safe packet is settlement: consume the exact evaluated inbox row once,
+derive the allowed session progress/star result from server-evaluated attempts,
+write through the existing authoritative progress/economy contracts and issue
+an idempotent receipt. No deploy, production read/write, push, root-admin
+mutation or `admin/v2` access occurred. No real E1–E32 content was generated,
+edited or approved; the owner remains the sole content author through the
+generator.
+
+## 15.134 — Activity runtime dependency W: atomic server settlement and protected wallet redemption (2026-08-13)
+
+The exact post-session answer submission now completes the existing required-
+session economy path instead of creating a second star system. The active
+release manifest supplies the authenticated `courseReleaseId` and episode
+ordinal. The server-evaluated twelve-task sequence is projected through the
+shared 3/2/1/0 task-star policy into the existing V2 initial/repeat candidate.
+The projection states its limit explicitly: App Check and account fencing do
+not prove that a modified client submitted every earlier wrong answer or hint,
+so it grants performance/progress and access currency only; mastery and
+learning evidence remain none.
+
+One Firestore transaction now checks the account generation/deletion fence and
+atomically creates the immutable submission inbox row, settlement decision,
+shared per-session award state, course sequence state and protected wallet
+reward receipt. It uses the same award-state document identities as the
+transitional required-session callable, preventing double initial credit
+between the two paths. Exact replay returns the original decision and reward
+request without recomputing or writing; a missing/orphan/conflicting decision,
+state or reward fails closed. The new settlement-decision collection is
+explicitly client-denied.
+
+The app validates the complete settlement receipt, then redeems the protected
+reward through the existing account-scoped owner repository before removing
+the crash-safe submission. Network failure, invalid receipt or wallet failure
+leaves the exact submission pending. Wallet replay is idempotent, so a crash
+after local redemption but before spool removal cannot double-credit.
+
+Fresh focused Functions evidence is **4 suites / 19 tests PASS**, including
+active-manifest identity, settlement projection, transaction-level five-write
+atomicity, exact zero-write replay and repository import/live guards. Root
+client/rules evidence is **2 suites / 4 tests PASS**, including wallet-before-
+remove ordering and retention on transport, receipt or wallet failure.
+Functions TypeScript, targeted ESLint/Prettier and diff checks pass. No deploy,
+production read/write, push, root-admin mutation or `admin/v2` access occurred.
+No real E1–E32 content was generated, edited or approved; the owner remains the
+sole content author through the generator.
+
+The next safe packet is the render-driven learner screen: replace the
+transitional Lesson-1 card data with the exact released session render while
+preserving the released local evaluator, first-error shake, second-error
+explanation, one-voice word playback, Report/Save/Voice actions, accessibility,
+offline LKG and the newly settled post-session path.
+
+## 15.135 — Activity runtime dependency X: released-render learner screen and single transport latch (2026-08-13)
+
+The production session route now latches the authenticated released runtime at
+the intro boundary and keeps that exact runtime for the whole twelve-task run.
+It does not switch from the legacy fixture to a newly arrived package midway
+through a learner attempt. When a released package is present, the task family,
+prompt, stable response IDs, visible choices, ordered word chips, audio target
+availability, support class and hint budget all come from the released learner
+render. The legacy Lesson-1 data remains only a safe fallback for routes that do
+not yet have a released package.
+
+Every released answer is checked locally through its opaque evaluator handle;
+there is still no network call after each selection. A wrong first choice only
+plays the existing soft shake and does not become selected or receive a red
+frame. The prepared localized explanation becomes visible from the second wrong
+attempt. Ordered word chips ask the released auxiliary audio runtime for the
+exact selectable-word audio immediately on selection. Independent tasks with a
+zero hint budget render no hint control and do not reveal the learner
+accessibility label as an answer-like support string.
+
+The compact in-session action rail now exposes Report, post-terminal Save to
+account-scoped flashcards and tap/hold Voice controls. The hold gesture is
+latched so its release cannot also trigger a second tap command. Scripted speech
+remains honest while authoritative speech recognition is not installed: a
+released scripted task can continue only through the declared non-voice/zero-
+award route, rather than treating “I spoke” as a correct transcript or
+pronunciation result.
+
+Completion now has one transport latch. An exact released submission is stored
+in the v2 answer spool; if exact answer material cannot be constructed, the
+answer-free released completion spool is used. Either successful released write
+prevents the legacy completion coordinator from writing the same run, closing a
+future double-settlement seam. The protected server settlement introduced in
+15.134 remains the only path that can create the wallet reward.
+
+Fresh focused evidence is **5 suites / 15 tests PASS** for the released package,
+local evaluator, task/action binding, exact answer submission, screen latch,
+zero-hint independent behavior, compact controls and single-transport source
+contract. Targeted ESLint and Prettier pass. No broad mobile/device run was
+claimed: final physical-device layout, screen-reader, microphone-permission,
+offline-restart and visual-reference approval remain in the final QA packet. No
+deploy, production read/write, push, root-admin mutation or `admin/v2` access
+occurred. No real E1–E32 content was generated, edited or approved; the owner
+remains the sole content author through the generator.
+
+The next largest safe packet is the generator E2E path: owner input → draft →
+validation errors → exact 12×12/audio preview → immutable release → app readback
+→ rollback. It must use neutral fixtures only; Codex must not author any real
+episode content.
+
+## 15.136 — Generator E2E dependency A: immutable owner-authored episode import (2026-08-13)
+
+The first incompatible seam between the legacy generator and the current V2
+Activity package is now closed by a new pure import boundary. One canonical
+owner-supplied episode input binds an exact branded plan-v2, its exact Activity
+Instances stage, plan/course fingerprints, authoring revision, episode and
+target language to twelve canonical session-source shards. The existing
+Activity projection parser and episode assembler are reused rather than copied,
+so the import must satisfy the current exact 12 sessions × 12 tasks contract,
+all seven required families, intro/review/independent-assessment rules, global
+identity and semantic-surface checks, source-derived render/capsule/sidecar
+parity and the existing per-artifact byte limits.
+
+The complete owner input is canonical and fingerprinted. Any change to its
+classification, plan binding or one of the twelve source raws changes the
+fingerprint and invalidates the handle. `production_candidate` is distinct from
+`neutral_test_fixture`; neither classification establishes the claimed author
+identity, repository origin, human approval, execution, publication or release
+authority. The generator mutation policy is explicitly
+`owner_content_immutable`: later generator steps may validate and project these
+bytes but must not silently rewrite owner-authored lesson content. The eight
+required interface locales are declared as the exact course tuple, while their
+localized-content authority remains honestly `none` until the separate
+localization packet binds real localized bytes.
+
+Fresh focused evidence is **4 unique focused suites / 50 tests PASS** across the new
+import, canonical plan-v2, Activity session projection and repository-wide
+import/live-consumer guard. REDs cover neutral-content
+relabeling with a stale fingerprint, an eleven-session episode, cross-plan
+replay, cloned handles and attempted human-approval escalation. Targeted ESLint,
+Prettier and diff checks pass. No Firebase/provider call, deploy, production
+read/write, push, root-admin mutation or `admin/v2` access occurred. Only
+neutral test fixtures were used; Codex did not create, translate, edit or
+approve any real E1–E32 content.
+
+The next safe generator packet is the server-private immutable owner-input
+readback and one shared stage store: bridge the current root-admin create action
+to the same canonical stage identity consumed by preview/review. After that,
+the same neutral E2E harness can be extended through approval, immutable release
+readback and rollback without granting the old generator or test compiler any
+publication authority.
+
+## 15.137 — Generator E2E dependency B: one immutable owner stage and shared preview store (2026-08-13)
+
+The owner-authored canonical episode can now enter the same
+`content_factory_stages` store that the existing root-admin preview and review
+workflow already reads. The server-only importer reparses the exact branded
+plan-v2 and owner input, requires the exact Activity stage, writes the complete
+canonical owner input as an immutable generation-pinned JSON object, reads it
+back by exact hash, byte size and generation, and atomically creates the
+`needs_review` stage plus its audit row. Repeating the same import is a
+zero-write exact replay; a changed plan, input, object pin or existing stage is
+a conflict rather than an overwrite.
+
+The existing `adminPreviewContentStage` callable now recognizes this additive
+stage schema without changing its legacy preview path. It downloads the exact
+pinned generation, verifies JSON content type, declared size and SHA-256, and
+returns the canonical 12-session × 12-task owner payload with the same review
+fingerprint used by the existing review boundary. There is no provider call and
+no model-authored or model-mutated episode content in this path.
+
+The shared stage collection was also added to the server-owned Firestore root
+guard and to an exact deny rule. A browser admin token cannot get, list, create,
+update or delete these stage documents directly; only the Admin-SDK server path
+can commit them. Fresh evidence is **6 focused Functions suites / 82 tests
+PASS**, the static Content Studio rules contract **1 suite / 45 tests PASS**,
+and the real Firestore Emulator browser-admin matrix **1 suite / 51 tests
+PASS**. Targeted ESLint/Prettier and diff checks pass. One unrelated broad
+legacy rules suite remains red on pre-existing textual assertions that expect
+single-quoted imports in the already double-quoted dirty `functions/src/index.ts`;
+this packet did not rewrite that file or weaken the test.
+
+This closes only owner input → immutable shared stage → preview. The stage still
+has `humanApprovalAuthority:none`, `releaseEligible:false` and
+`releaseAuthority:false`. The current explicit owner claim is not yet bound to
+a code-owned UID allowlist, and a single-owner product cannot honestly claim a
+two-person maker-checker review. The next packet must define the exact
+single-owner confirmation/approval receipt, bind it to the immutable candidate,
+then build one atomic V2 release root, app readback and CAS rollback. No deploy,
+production read/write, push, `admin/v2` access, or real E1–E32 content creation,
+translation, editing or approval occurred.
+
+## 15.138 — Generator E2E dependency C: exact root-owner two-step episode confirmation (2026-08-13)
+
+The owner workflow now has a dedicated confirmation boundary instead of routing
+owner-authored Activity stages through the legacy maker-checker review callable.
+This follows the explicit product responsibility: the owner alone authors and
+confirms E1–E32. The receipt therefore says
+`single_owner_explicit_two_step_confirmation` and
+`makerCheckerAuthority:none_single_owner_mode`; it does not invent a second
+human actor or call the action an independent review.
+
+Import now persists two separate immutable generation-pinned JSON objects: the
+canonical plan-v2 request and the complete canonical owner episode. Confirmation
+reads both exact generations, verifies metadata/hash/size/content type, rebuilds
+the canonical plan-v2, and reruns the existing exact 12 × 12 Activity parser and
+episode assembler. It then compares plan/course/episode/input/assembly and the
+exact preview fingerprint before persisting a separate immutable confirmation
+receipt and atomically moving the stage to `owner_confirmed`. Cold replay rereads
+the plan, episode and confirmation bytes; a missing or changed source cannot keep
+confirmation authority through a surviving receipt.
+
+Both import and confirmation now require an explicit `adminRole:owner` plus the
+SHA-256 of that exact Firebase UID from the server-owned
+`LEARNING_V2_ROOT_OWNER_UID_SHA256` parameter. An absent, malformed or different
+configured identity fails closed. This code-owned requirement is complete, but
+the production parameter was deliberately not configured in this no-production-
+mutation packet.
+
+The old `adminReviewContentStage` path explicitly rejects the additive owner
+stage schema, so it cannot bypass two-step confirmation by changing the state to
+legacy `approved`. The new `content_v2_owner_episode_confirmations` root is
+server-only in Firestore Rules and the immutable plan/input/confirmation Storage
+paths remain under the default client deny. Confirmation still carries
+`publicationDecisionAuthority:none`, `releaseEligible:false` and
+`releaseAuthority:false`.
+
+Fresh focused evidence is **9 Functions suites / 102 tests PASS**, the exact
+Content Studio rules contract is **1 suite / 54 tests PASS**, and the real
+Firestore Emulator browser-admin matrix is **1 suite / 52 tests PASS**. The
+production cold resolver is covered by a complete neutral 12-session × 12-task
+fixture and rejects byte drift. Targeted ESLint/Prettier and scoped diff checks
+pass. No provider call, deploy, production parameter/write/read, push,
+`admin/v2` access or real E1–E32 creation, translation, edit or confirmation
+occurred.
+
+The next largest packet is one atomic V2 release root. It must bind the confirmed
+owner receipt, exact learner-core/evaluator/auxiliary/audio/localization leaves
+and production provenance, publish immutable children first, then advance one
+CAS head. App readback and rollback must consume that one root; the old generic
+course catalog must not grant V2 authority.
+
+## 15.139 — Generator E2E dependency D: one pure 32-episode release root and CAS rollback decision (2026-08-13)
+
+The first half of the split-release problem now has one additive strict contract:
+`v2-unified-course-release-root.v1`. A production root requires exactly 32 ordered
+owner episodes. Every row jointly binds the owner-input and owner-confirmation
+fingerprints plus immutable pins for learner core, the server-only evaluator,
+auxiliary actions, voice/audio, localization and prepared error guidance. The
+contract rejects missing/duplicate episodes, changed episode coordinates,
+noncanonical/hostile JSON, invalid pins, production fixtures and authority
+escalation. It includes the user's requested error-guidance lane rather than
+silently leaving the second-error explanation outside the release identity.
+
+This pure layer intentionally distinguishes logical fingerprints from raw object
+hashes. It records structural immutable pins but carries no repository, human-
+approval, publication, runtime or release authority. The future zero-argument
+Admin adapter must read every exact generation and prove the logical object body
+against its raw pin before authority may be minted.
+
+The companion `v2-unified-course-release-head.v1` decision is a pure CAS proposal.
+It rejects stale revisions, cross-scope changes, same-release transitions and an
+arbitrary rollback target. Focused evidence proves the complete neutral sequence
+activate A → activate B → rollback A, exact replay, stale CAS rejection, arbitrary
+rollback rejection and clone rejection. It performs no Firestore/Storage write
+and is not yet consumed by the app.
+
+Fresh evidence is **2 Functions suites / 18 tests PASS** including the repository-
+wide import/live-consumer guard. Targeted ESLint, Prettier and scoped diff checks
+pass. No deploy, production read/write, pointer update, provider call, push,
+`admin/v2` access or real E1–E32 content operation occurred.
+
+The same packet now also contains the internal repository seam. It persists the
+canonical root create-only, performs generation/hash/size/content-type readback,
+then creates or CAS-updates exactly one Firestore head. Every return path cold-
+reads the committed head and its pinned active root again. Exact replay performs
+zero Storage and Firestore writes; changed active bytes fail closed. A focused
+in-memory server-flow test performs persist A → persist B → CAS rollback A and
+then reads A from the one active head. The new Firestore root is included in the
+server-owned catch-all exclusion, has an exact deny-only match, and the real
+browser-admin Emulator matrix rejects get/list/create/update/delete.
+
+Fresh combined evidence after that extension is **3 Functions suites / 21 tests
+PASS**, the exact rules contract is **1 suite / 55 tests PASS**, and the real
+Firestore Emulator browser-admin matrix is **1 suite / 53 tests PASS**. Targeted
+ESLint and Prettier are green. The broad root Jest command also surfaced two
+unrelated pre-existing failures: quote-style assertions against the already
+dirty Functions index and a missing Gustav French ledger fixture; neither was
+changed or hidden by this packet.
+
+Next: make released-session server readback require the active unified root and
+match its episode leaf before resolving learner/evaluator/auxiliary artifacts.
+Then expose only the positive learner projection to the app and run the callable-
+level A→B→A rollback drill. Until that packet is green, existing independently
+advancing learner/evaluator and auxiliary pointers remain libraries and do not
+constitute one production release.
+
+## 15.140 — Generator E2E dependency E: released sessions consume one active unified release (2026-08-13)
+
+The released-session server path no longer joins three independently advancing
+current pointers. It first cold-reads the one active
+`v2-unified-course-release-root.v1`, selects the exact episode row, and passes an
+opaque in-process active-release handle to the learner-core, server-evaluator and
+auxiliary adapters. Their new pinned loaders accept only that private handle and
+the episode id; a copied root, copied summary or caller-supplied pin cannot select
+release bytes.
+
+All three indexes are read by the generations, hashes, sizes and content types
+sealed in the same episode row. The join now requires one release id, one root
+fingerprint, one active-manifest hash, one Activity package and matching stage /
+episode coordinates. Substituting any learner, evaluator or auxiliary index from
+another release fails closed. Rollout selection is read from the unified root,
+not from a legacy season pointer. The app response parser requires the new
+`joined_unified_active_release_learner_evaluator_auxiliary` projection and stores
+the unified release/root identity in its account-scoped last-known-good package.
+
+Fresh combined Functions evidence is **8 suites / 42 tests PASS**, 0 snapshots.
+The focused app client plus server-owned rules contract is **2 suites / 58 tests
+PASS**, and the real browser-admin Firestore Emulator matrix is **1 suite / 54
+tests PASS**. Targeted formatting, lint and scoped diff checks pass. No deploy,
+production read/write, pointer mutation, provider call, push or `admin/v2` access
+occurred. No real E1–E32 content was generated, edited or approved; the owner
+remains its sole author through the generator.
+
+This closes the split-pointer learner delivery seam, not production activation.
+The pure unified root still contains structural immutable pins and deliberately
+has `humanApprovalAuthority:none_activation_confirmation_required` and
+`releaseAuthority:false`. The next safe packet is the root-owner activation
+gate: cold-read all 32 exact owner confirmations and all release leaves, prove
+their plan/stage/episode/package/provenance closure, then and only then permit the
+zero-argument Admin repository to advance the one active head. Final physical
+device/offline/accessibility/visual QA and the owner's manual E1–E32 creation
+remain separate later gates.
+
+## 15.141 — Generator E2E dependency F: 32 exact owner-confirmation readbacks before activation (2026-08-13)
+
+The first activation gate now binds the exact confirmation subject instead of
+trusting a structurally plausible release root. Every unified episode row also
+contains its `activityAssemblyFingerprint`; the corresponding owner receipt
+must match plan, course contract, stage, episode, owner-input fingerprint,
+Activity assembly fingerprint, confirmation fingerprint and immutable object
+pin. This closes the previous gap where a real owner receipt and a different
+self-consistent Activity package could coexist in the same structural root.
+
+The pure activation preflight requires exactly 32 ordered branded owner
+confirmations. It rejects omissions, reordering, substituted pins and copied
+receipt objects. Its only positive classification is
+`eligible_for_server_exact_leaf_readback_only`; all authentication, storage,
+human approval, publication, execution and release authorities remain none or
+false.
+
+The server readback layer performs a complete byte preflight before I/O, then
+uses at most four workers to read the 32 immutable confirmation objects by exact
+generation. Metadata content type, size, SHA-256 and generation are checked;
+downloaded bytes must have the exact size/hash, fatal UTF-8 and canonical JSON,
+and each receipt is rebuilt with the existing strict parser. Generation, hash,
+size and byte drift fail closed. A zero-argument Firebase Admin adapter first
+requires the configured root-owner identity and only after this readback mints
+an opaque in-process handle. Copies, summaries and public structural claims do
+not satisfy its WeakSet/WeakMap boundary. The safe summary explicitly says
+`leafInventoryReadbackAuthority:none_pending` and still grants no activation or
+release authority.
+
+Fresh combined evidence for the activation foundation plus existing unified
+release/callable/publisher guards is **10 suites / 49 tests PASS**, 0 snapshots;
+the focused activation/guard set after the private adapter is **6 suites / 31
+tests PASS**. Targeted ESLint, Prettier and scoped diff checks pass. No deploy,
+production read/write, parameter change, active-head mutation, provider call,
+push or `admin/v2` access occurred. No real E1–E32 content was generated,
+edited or approved.
+
+This is not yet owner activation. The exact next packet is the 224-leaf
+inventory readback (seven immutable leaves for each of 32 episodes) and its
+semantic parsers. Learner, evaluator, auxiliary and error-guidance formats are
+already strict. A common episode-level voice release index and localization
+release index must be frozen before those two pins can be authenticated rather
+than merely hash-matched. Only after the complete leaf gate is green may a
+root-owner command call the existing unified repository CAS. Physical
+device/offline/accessibility/visual QA remains a separate final gate.
+
+## 15.142 — Generator E2E dependencies G–I: complete leaf readback, private activation CAS and callable canonical-plan bridge (2026-08-13)
+
+The activation boundary now reads the complete immutable release inventory
+before the one active head can advance. The exact top-level inventory is 32
+owner confirmations plus 192 episode release indexes — learner, evaluator,
+auxiliary, voice, localization and error-guidance for each of 32 episodes — for
+224 mandatory reads. Each outer object is checked by exact generation, SHA-256,
+UTF-8 byte size, JSON content type and canonical bytes; strict leaf parsers then
+bind episode/stage/package identities. Localization and error-guidance indexes
+also cold-read their sealed nested learner objects. A copied public root or
+summary cannot cross the private WeakSet/WeakMap boundary.
+
+The zero-argument Firebase Admin activation adapter accepts only the configured
+root-owner identity plus that private 224-leaf preflight handle. It calls the
+existing unified repository CAS, then cold-reads the active head and root again.
+Its serialized summary deliberately retains `releaseAuthority:false`; authority
+belongs to the exact active head, not to a reusable JSON receipt. No callable,
+deployment or production mutation was added.
+
+The missing error-guidance leaf and durable voice release audit boundary are now
+strict release indexes. The voice index also seals every device page-commit pin,
+so cold restart no longer loses the evidence needed to reconstruct word/chip
+audio. The error-guidance index binds both the complete admin catalog and the
+filtered learner projection, preserving the first-error shake / second-error
+explanation contract without releasing unused answer explanations.
+
+The root Create Plan seam now supports the additive
+`v2-admin-canonical-generation-command.v2`. The command contains the existing
+generation request plus exact workspace/revision, speech-profile,
+voice-generation-profile and decision-registry refs. It stores and returns both
+the branded canonical V2 plan fingerprint and exact canonical plan-request raw.
+That raw is the immutable passport reused when the owner manually imports an
+episode into `content_factory_stages`; the existing preview reads the same stage
+and object bytes. The old V1 request remains backward compatible and honestly
+returns no canonical authority. An idempotency replay with a changed bridge is
+rejected.
+
+Fresh canonical bridge/import/guard evidence is **4 Functions suites / 28 tests
+PASS**, 0 snapshots. The focused bridge/import chain alone is **3 suites / 14
+tests PASS**. Targeted ESLint, Prettier and scoped diff checks pass. Other focused
+release/activation packets were green before this handover update; no broad
+suite was used to conceal unrelated dirty-worktree failures.
+
+No real E1–E32 content was generated or edited. The owner remains the sole
+author and operator of every real episode. No deploy, push, provider call,
+Firestore/Storage production write, active-head mutation or `admin/v2` access
+occurred.
+
+The first neutral, no-provider E2E harness now exercises the connected handler
+seams Create Plan → owner import → preview → synthetic authority-free
+confirmation → immutable release A → release B → rollback A → active-root
+readback A. It binds the real canonical stage id and plan fingerprint, and it
+asserts that the synthetic fixture stays `neutral_test_fixture` with
+`releaseAuthority:false`. The combined seam/guard/repository evidence is **7
+Functions suites / 38 tests PASS**, 0 snapshots.
+
+The activation leaf boundary was also hardened against hostile canonical-looking
+JSON depth. Error-guidance parsing now performs its iterative complexity pass
+before canonical serialization; the common 192-index readback and voice audit
+parser reject over-depth/over-node structures before recursive canonicalization.
+The focused leaf/voice/error gate is **3 suites / 12 tests PASS**.
+
+Next: extend the E2E harness through the complete private 224-leaf activation
+preflight and released-session callable using strict neutral leaf bytes (or an
+equivalent Emulator harness), then run physical device/offline/microphone/
+accessibility/performance/visual QA.
+The root admin UI must not be changed until real reference evidence and owner
+approval are available.
+
+## 15.143 — Session interface-language and accessibility closure (2026-08-13)
+
+The real Learning V2 session no longer hard-codes Russian system copy while
+loading learner content for another interface locale. A detached session-copy
+contract now covers every active interface locale (`ru`, `uk`, `es`, `pt-BR`,
+`vi`, `id`, `tr`, `pl`) for mode names, offline-audio states, first/second
+attempt feedback, hint and skip controls, compact Report/Save/Voice actions,
+mic permission states, star rewards and the completion ceremony. The screen
+keeps the existing geometry, colors and motion; this was a text/accessibility
+correction and did not create unapproved visual reference evidence.
+
+The learner interaction contract is unchanged and freshly exercised: the
+first wrong choice is not selected and only triggers the lightweight motion;
+the second wrong choice can reveal its localized prepared explanation. Correct
+answers remain locally evaluated, offline audio remains local, and Russian
+accessibility phrases remain byte-exact for backward-compatible tests.
+
+Fresh evidence: **3 root suites / 27 tests PASS**, 0 snapshots; targeted ESLint
+and Prettier pass. The React Native renderer still emits its pre-existing
+`act(...)` advisory after the successful interaction run; it is not a failed
+assertion. No real E1–E32 content, provider call, deployment, production write,
+push or `admin/v2` access occurred.
+
+Next: run the complete 224-leaf activation/readback through an Emulator-backed
+server seam, then execute the physical-device matrix for offline restart,
+microphone tap/hold and permission denial, large text/screen reader, reduced
+motion and release rollback. Visual polish remains gated on real reference
+evidence and owner approval.
+
+## 15.144 — 224-object Emulator release drill and corrected E2E readiness (2026-08-13)
+
+A real Firestore + Storage Emulator test now exercises the complete neutral
+release inventory. It creates 32 canonical authority-free owner-confirmation
+fixtures and 192 strict episode release indexes, performs exactly 224 metadata
+reads and 224 generation-pinned downloads, runs the complete confirmation and
+leaf readbacks, activates neutral release A, activates B, rolls back to A, then
+opens a released-session server handler against the current unified head and
+proves that it resolves A. The test uses neutral projections only; it does not
+generate, edit, approve or simulate the real learning content of E1–E32.
+
+Fresh evidence: the Emulator drill is **1 suite / 1 test PASS**; the related
+Functions release chain is **7 suites / 23 tests PASS**; the Learning V2 browser-
+admin Firestore Rules Emulator is **1 suite / 54 tests PASS**. Jest prints its
+existing open-handle advisory after the successful Emulator run, but the
+`emulators:exec` process exits successfully. No deploy, production read/write,
+provider call or active production-head mutation occurred.
+
+The permanent Admin v2 ban was also restored at the Hosting boundary without
+reading or editing `admin/v2`: the `admin` Hosting target now publishes the root
+`admin` directory, excludes `v2/**`, and redirects `/v2` routes to the root
+legacy workflow. Both deployment guards fail closed if this configuration
+drifts. Focused Hosting/guard evidence is **2 suites / 13 tests PASS**.
+
+The completion estimate is deliberately corrected. The prior 98–99% figure
+counted individually implemented packages but overstated release readiness.
+The independent end-to-end audit found that the canonical root Create Plan
+path still writes `content_v2_generation_stages`, while the production preview
+and review path consumes `content_factory_stages`; legacy release review also
+does not yet enforce the new immutable owner-input/provenance and candidate-
+bound approval handles transitively. Multiple release systems can still advance
+independently. Therefore the honest readiness estimate is about **84% to
+release-ready**, or about **93% of isolated technical modules**.
+
+The remaining critical path is: unify the canonical plan and preview stage
+repository; install one exact root-owner authorization boundary; bind immutable
+owner-authored input and production content classification through every leaf;
+require the exact candidate-bound owner approval in the publication path;
+collapse publication to one atomic release root and head; rerun the full
+neutral Emulator E2E; then execute the physical iOS/Android offline, restart,
+microphone, accessibility, reduced-motion and rollback matrix. Estimated pure
+technical remainder is **7–10 full working days**, excluding real E1–E32
+authoring (owner only), reference-evidence waiting, owner visual approval and
+production deployment.
+
+## 15.145 — Root-admin visual episode editor and neutral generator fixture (2026-08-13)
+
+The root `admin/legacy.html` owner workflow now has a visual editor over the
+same canonical Activity source bytes used by the strict server path. It shows
+12 session tabs and 12 task cards per session, local structural errors, the
+template-owned activity family, learner prompt/options, correct and accepted
+responses, accessibility text and the non-awarding fallback instruction. The
+technical JSON remains an explicit fallback; both modes edit the same package
+and the existing prepare → immutable import → preview → owner-confirmation
+flow remains unchanged.
+
+The editor can create an empty deterministic 12×12 technical skeleton. It does
+not invent owner content. A separate local-only button creates a complete
+neutral test package with a visible test intro and 144 neutral interactions so
+the generator can be observed end-to-end before the owner authors E1–E32. The
+fixture is explicitly `neutral_test_fixture`, `localTestOnly:true`, has no
+publication/runtime/release authority, uses a non-production episode ID, and
+is rejected before any server call. The server owner-input boundary also
+rejects those source bytes if someone strips the UI envelope and attempts to
+relabel them as production, because their episode identity cannot match the
+branded plan stage.
+
+Fresh evidence: the editor/admin gate is **2 suites / 12 tests PASS**. The test
+fixture and a fully filled neutral skeleton both pass the actual strict
+session parser and 12-session episode assembler at exactly 144 tasks. Targeted
+ESLint, JavaScript syntax and diff checks pass. Local browser smoke confirms a
+visible test intro, 12 session controls, 12 task cards for the active session,
+`12/12`, `144/144`, zero local structural errors, a pre-network upload block,
+and no horizontal overflow at 390×844 with 44-pixel controls.
+
+This does not add durable intro-artifact storage: the current Activity source
+binds only one intro fingerprint and three question references. Persisting and
+previewing the exact owner-authored intro body is therefore still an explicit
+generator contract gap. No real E1–E32 content, deploy, production mutation or
+`admin/v2` access occurred. The owner remains the sole author of real course
+content; Codex owns neutral test fixtures and the generator system only.
+
+## 15.146 — Owner Generator: 12 immutable session intros + reference episode (2026-08-13)
+
+Добавлен additive owner-input v2: каждый Activity episode теперь может хранить
+ровно 12 отдельных immutable-интро, по одному на сессию. Вопросы 1–3 каждой
+сессии связаны с точной версией своего интро; весь пакет содержит 12 сессий,
+144 задания, 12 интро и 36 intro-question bindings. Старые owner-input/stage v1
+остаются читаемыми; новые сохраняются как
+`v2-owner-authored-episode-stage.v2`, а preview и owner-confirmation сверяют
+intro aggregate fingerprint.
+
+Локальный visual-test теперь не служебная заглушка, а цельный reference episode
+A1 про первое знакомство. Он охватывает 12 последовательных сессий от
+`Hello, I’m…` до самостоятельного мини-диалога, проходит тот же строгий 12×12
+parser и остаётся `neutral_test_fixture` с нулевой publication/release
+authority. Команда «Взять эталон как основу» не переименовывает тест: она строит
+отдельный `production_candidate` с новыми ID/fingerprint и требует полного
+server recheck и ручного owner confirmation.
+
+Узкие доказательства пакета: root editor/intro/input/admin contracts **4 suites /
+18 tests PASS**; Functions workspace/stage/confirmation contracts **3 suites /
+14 tests PASS**. Mobile browser smoke на 390×844: horizontal overflow отсутствует,
+обе test/reference-кнопки имеют высоту 44 px. Deploy, push, provider call,
+Firestore/Storage production write и `admin/v2` access не выполнялись.
+
+Открыто: learner-runtime projection интро; reference/owner evidence для финального
+UI; speech/audio target generation and readback; остальные validators; единый
+release root, activation/rollback и production E2E.
+
+## 15.147 — Confirmed owner intro → learner-safe runtime seam (2026-08-13)
+
+Добавлена отдельная positive-allowlist проекция session intro. В learner bytes
+попадают только заголовок, объясняющие абзацы, понятия и три видимых вопроса с
+вариантами ответа. Correct/accepted responses, evaluator, salts, commitments и
+server sidecar отсутствуют. Проекция поддерживает canonical language tags,
+включая `pt-BR` и `es-419`, и сохраняет все authority на `none` до release
+readback.
+
+Owner-input v2 теперь имеет чистый bridge: один private handle даёт ровно 12
+intro projections / 36 question surfaces, связанные с точными task IDs и
+learner-surface fingerprints слотов 1–3. Добавлен Firebase Admin boundary,
+который выдаёт новый opaque handle только после повторного чтения exact stage,
+canonical plan request, immutable owner-input v2 и owner-confirmation object по
+generation/hash/size/content-type. JSON, summary или копия handle не являются
+authority; изменение одного байта owner input fail-closed.
+
+Свежие узкие доказательства: runtime/bridge **2 suites / 8 tests PASS**;
+confirmed-owner adapter **1 suite / 2 tests PASS**; repository import/live guard
+**1 suite / 14 tests PASS**. Targeted ESLint/Prettier clean. Deploy, push,
+provider call, production read/write и `admin/v2` access не выполнялись.
+
+Это ещё не публикация интро. Следующий bounded packet: additive learner-core
+release inventory v2 (`intro + render + capsule` × 12), generation-pinned intro
+readback и released-session package v2. Затем app loader сможет получить интро,
+но финальный UI остаётся gated реальным reference evidence и owner approval.
+
+## 15.148 — Additive learner-core inventory v2: 12×(intro + render + capsule) (2026-08-13)
+
+Добавлен отдельный learner-core index v2 поверх полностью сохранённого v1.
+Старый index v1 с 24 render/capsule objects остаётся читаемым и неизменным.
+Новый v2 связывает с ним 12 content-addressed intro projections; полный episode
+inventory составляет ровно 36 immutable objects.
+
+Для каждой сессии v2 проверяет session identity, intro/raw hash/bytes/path,
+owner-input/confirmation fingerprints и точное совпадение трёх видимых intro
+questions с первыми тремя learner-render tasks. Подмена пути, перестановка
+сессии или authority escalation fail-closed даже после пересчёта внешнего
+fingerprint. Pure index по-прежнему не утверждает repository/storage/release
+authority — они появляются только после будущего server readback.
+
+Свежие доказательства: learner-core index v2 **1 suite / 2 tests PASS**;
+repository import/live guard **1 suite / 14 tests PASS**; targeted
+ESLint/Prettier/diff-check clean. Никаких deploy, push, provider call,
+production read/write или `admin/v2` access.
+
+Следующий шаг: Firebase publisher/adapter v2 должен сохранить и повторно
+прочитать 12 intro projections вместе с render/capsule, затем released-session
+package v2 передаст одну точную intro projection в app loader.

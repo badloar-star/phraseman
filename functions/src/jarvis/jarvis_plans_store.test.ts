@@ -1,4 +1,5 @@
-import { upsertPlan, readPlan, listPlans, setPlanStatus, deletePlan, JARVIS_PLANS_COLLECTION } from './jarvis_plans_store';
+import { upsertPlan, readPlan, listPlans, setPlanStatus, deletePlan, recordPlanOwnerDecision, JARVIS_PLANS_COLLECTION } from './jarvis_plans_store';
+import { hashDecision } from './issue_decision_buttons';
 import { buildPlanFromDecision } from './jarvis_plans';
 import { buildDecision } from './decision';
 
@@ -38,6 +39,24 @@ function makeFakeDb() {
           docs: Array.from(store.entries())
             .filter(([path]) => path.startsWith(`${name}/`))
             .map(([path, data]) => ({ id: path.slice(name.length + 1), data: () => data })),
+        }),
+      }),
+      where: (field: string, _operator: string, value: unknown) => ({
+        limit: () => ({
+          get: async () => ({
+            docs: Array.from(store.entries())
+              .filter(([path, data]) => path.startsWith(`${name}/`) && data[field] === value)
+              .map(([path, data]) => ({
+                id: path.slice(name.length + 1),
+                data: () => data,
+                ref: {
+                  set: async (update: Record<string, unknown>, opts?: { merge?: boolean }) => {
+                    const prev = opts?.merge ? (store.get(path) ?? {}) : {};
+                    store.set(path, { ...prev, ...update });
+                  },
+                },
+              })),
+          }),
         }),
       }),
     }),
@@ -111,5 +130,37 @@ describe('jarvis_plans_store', () => {
       maxAttempts: 3,
     });
     expect(Array.from(store.keys()).filter((key) => key.startsWith(`${JARVIS_PLANS_COLLECTION}/`))).toHaveLength(1);
+  });
+
+  test('Telegram approve is persisted on the exact plan version', async () => {
+    const { db } = makeFakeDb();
+    const decision = makeDecision();
+    await upsertPlan({ db, decision, nowMs: 2_000 });
+    const updated = await recordPlanOwnerDecision({
+      db, approvalDecisionHash: hashDecision(decision), action: 'approve', nowMs: 3_000,
+    });
+    const plan = await readPlan({ db, id: decision.contentHash });
+    expect(updated).toBe(true);
+    expect(plan?.ownerDecision).toEqual({ action: 'approve', decidedAtMs: 3_000, source: 'telegram' });
+    expect(plan?.status).toBe('open');
+  });
+
+  test('Telegram reject archives the plan instead of only writing an audit toast', async () => {
+    const { db } = makeFakeDb();
+    const decision = makeDecision();
+    await upsertPlan({ db, decision, nowMs: 2_000 });
+    await recordPlanOwnerDecision({
+      db, approvalDecisionHash: hashDecision(decision), action: 'reject', nowMs: 3_000,
+    });
+    const plan = await readPlan({ db, id: decision.contentHash });
+    expect(plan?.ownerDecision?.action).toBe('reject');
+    expect(plan?.status).toBe('archived');
+  });
+
+  test('ambiguous or unknown approval hash changes no plan', async () => {
+    const { db } = makeFakeDb();
+    expect(await recordPlanOwnerDecision({
+      db, approvalDecisionHash: 'missing', action: 'approve', nowMs: 3_000,
+    })).toBe(false);
   });
 });

@@ -82,7 +82,7 @@ const CONTRACT_SPECS = [
     id: 'lesson_progress_store',
     domain: 'lesson_progress',
     adapter: 'lesson_progress_store',
-    keyPattern: /lesson|unlocked_lessons|daily_tasks|irregular_verbs/,
+    keyPattern: /lesson|unlocked_lessons|irregular_verbs/,
     apiContract: [
       'readLessonProgress(studyTarget)',
       'writeLessonProgress(studyTarget, patch)',

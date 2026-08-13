@@ -55,6 +55,10 @@ const SERVER_ONLY_CONTENT_ROOTS = [
   "content_studio_preview_receipts",
   "content_app_support_manifests",
   "content_decision_registries",
+  "content_factory_stages",
+  "content_v2_owner_episode_confirmations",
+  "content_v2_unified_course_release_heads",
+  "content_v2_unified_course_release_roots",
   "content_language_profile_versions",
   "content_language_profile_lifecycle",
   "content_speech_profile_versions",
@@ -68,6 +72,8 @@ const SERVER_ONLY_CONTENT_ROOTS = [
   "content_v2_required_session_answer_manifests",
   "content_v2_season_release_pointers",
   "content_v2_season_release_manifests",
+  "content_v2_activity_auxiliary_release_pointers",
+  "content_v2_activity_learner_core_release_pointers",
 ] as const;
 
 setLogLevel("silent");

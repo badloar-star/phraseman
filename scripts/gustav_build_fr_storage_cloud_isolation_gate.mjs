@@ -17,7 +17,6 @@ const SOURCE_PATHS = {
   runtimeDeliveryGate: path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'runtime', 'fr_lesson_runtime_delivery_gate_audit_v1.json'),
   targetStorageKeysTest: path.join(ROOT, 'tests', 'gustav_target_storage_keys.test.ts'),
   cloudSyncKeysTest: path.join(ROOT, 'tests', 'cloud_sync_sync_keys_validity.test.ts'),
-  cloudSyncDailyTasksTest: path.join(ROOT, 'tests', 'cloud_sync_daily_tasks_merge.test.ts'),
   storageCloudPacketTest: path.join(ROOT, 'tests', 'gustav_storage_cloud_target_map_v2_packet.test.ts'),
 };
 
@@ -37,7 +36,6 @@ const REQUIRED_FRENCH_FACTORY_REFS = [
   'flashcardsSavedKey',
   'flashcardsProgressKey',
   'customFlashcardsKey',
-  'dailyTasksRerollKey',
   'quizLifetimeCounterKey',
   'quizAchievementCounterKey',
   'irregularVerbsGlobalKey',
@@ -96,7 +94,6 @@ function main() {
   const studyTargetSource = readText(SOURCE_PATHS.studyTarget);
   const targetStorageTest = readText(SOURCE_PATHS.targetStorageKeysTest);
   const cloudSyncKeysTest = readText(SOURCE_PATHS.cloudSyncKeysTest);
-  const cloudSyncDailyTasksTest = readText(SOURCE_PATHS.cloudSyncDailyTasksTest);
   const storageCloudPacketTest = readText(SOURCE_PATHS.storageCloudPacketTest);
   const runtimeGate = readJson(SOURCE_PATHS.runtimeDeliveryGate);
 
@@ -148,8 +145,6 @@ function main() {
     uiLocaleLeakTestPresent: /FORBIDDEN_FRENCH_TARGET_LOCALE_SEGMENTS/.test(cloudSyncKeysTest),
     legacyFlatFrenchKeyTestPresent: /LEGACY_FLAT_FRENCH_KEYS/.test(cloudSyncKeysTest),
     selectionKeysCloudExclusionTestPresent: /study target selection keys are local-only and never cloud synced/.test(cloudSyncKeysTest),
-    frenchDailyTasksRestoreTestPresent: /restores French cloud daily tasks only into the scoped French day row/.test(cloudSyncDailyTasksTest),
-    frenchLegacyCloudDoesNotRestoreToFrenchTestPresent: /English legacy cloud state must not restore into French target buckets|legacy.*French|French.*legacy/i.test(cloudSyncDailyTasksTest),
     storagePacketReadonlyTestPresent: /keeps storage\/cloud work read-only for production state/.test(storageCloudPacketTest),
   };
 

@@ -85,3 +85,33 @@ export interface DeletePlanInput {
 export async function deletePlan(input: DeletePlanInput): Promise<void> {
   await input.db.collection(JARVIS_PLANS_COLLECTION).doc(input.id).delete();
 }
+
+export interface RecordPlanOwnerDecisionInput {
+  readonly db: FirebaseFirestore.Firestore;
+  readonly approvalDecisionHash: string;
+  readonly action: 'approve' | 'reject';
+  readonly nowMs: number;
+}
+
+/**
+ * Делает Telegram-кнопку частью lifecycle плана, а не одноразовым тостом.
+ * По хэшу ожидается ровно одна версия; при неоднозначности fail-closed —
+ * лучше сохранить audit без изменения плана, чем обновить не ту задачу.
+ */
+export async function recordPlanOwnerDecision(input: RecordPlanOwnerDecisionInput): Promise<boolean> {
+  const snapshot = await input.db.collection(JARVIS_PLANS_COLLECTION)
+    .where('approvalDecisionHash', '==', input.approvalDecisionHash)
+    .limit(2)
+    .get();
+  if (snapshot.docs.length !== 1) return false;
+  await snapshot.docs[0].ref.set({
+    ownerDecision: {
+      action: input.action,
+      decidedAtMs: input.nowMs,
+      source: 'telegram',
+    },
+    status: input.action === 'reject' ? 'archived' : 'open',
+    updatedAtMs: input.nowMs,
+  }, { merge: true });
+  return true;
+}

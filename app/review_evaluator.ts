@@ -1,4 +1,4 @@
-import { isCorrectAnswer } from '../constants/contractions';
+import { isFuzzyCorrect } from './flashcards/fuzzy_match';
 import { englishRecallSurface } from './phrase_target_utils';
 
 /**
@@ -11,6 +11,8 @@ export type ReviewMode = 'word_bank' | 'meaning_match' | 'recall_type';
 
 export type EvalResult = {
   ok: boolean;
+  /** E6: верно с опечаткой (Левенштейн ≤1 на слово ≥5 букв) — «Почти! Правильно: …». */
+  typo: boolean;
   normalizedUser: string;
   normalizedTarget: string;
 };
@@ -134,9 +136,22 @@ export function evaluateRecallAnswer(
   const cleanedAlternatives = (alternatives ?? [])
     .map((alt) => cleanPhrase(englishRecallSurface(alt)))
     .filter((alt) => alt.length > 0);
-  const ok = isCorrectAnswer(userAnswer, target, cleanedAlternatives);
+  // E6: fuzzy вместо строгого === — contractions-слой (don't/do not, BrE→AmE)
+  // остаётся первым внутри isFuzzyCorrect, поверх — ё/е, і/ї, Левенштейн ≤1.
+  // Альтернативы проходят тот же fuzzy: чистое совпадение важнее «почти».
+  let verdict = isFuzzyCorrect(userAnswer, target);
+  for (const alt of cleanedAlternatives) {
+    if (verdict.ok && !verdict.typo) break;
+    const altVerdict = isFuzzyCorrect(userAnswer, alt);
+    if (altVerdict.ok && !altVerdict.typo) {
+      verdict = altVerdict;
+      break;
+    }
+    if (altVerdict.ok && !verdict.ok) verdict = altVerdict;
+  }
   return {
-    ok,
+    ok: verdict.ok,
+    typo: verdict.typo,
     normalizedUser: userAnswer.trim(),
     normalizedTarget: target,
   };

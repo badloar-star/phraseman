@@ -26,7 +26,12 @@ import {
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { storageStudyTarget } from '../target_storage_keys';
 import { bindPackGiftVoucherSelection, consumePackGiftTrial, getPackGiftTrial } from '../flashcards/pack_trial_gift';
-import { COMMUNITY_PACK_PRICE_SHARDS } from './schema';
+/**
+ * Cards 2.1 §1.2: цены наборов удалены из создания/публикации (`schema.ts`).
+ * Здесь константа осталась только для легаси-пути покупки набора за осколки
+ * в «Магазине осколков» — каталог раздела «Карточки» её не использует.
+ */
+const COMMUNITY_PACK_PRICE_SHARDS = 10;
 
 /**
  * Cloud Functions (onCall) require Firebase Auth. `cloud_sync.ensureAnonUser` only starts

@@ -123,7 +123,6 @@ for (const locale of EXTRACTABLE_SOURCE_LOCALES) {
 const ES_SIDECAR_COVERAGE_FILES = {
   'app/achievements.ts': ['app/achievements_es_locale.ts'],
   'app/collectibles/catalog_data.ts': ['app/collectibles/collectibles_es_locale.ts'],
-  'app/daily_tasks.ts': ['app/daily_tasks_es_locale.ts'],
   'app/flashcards/bundles/official_peaky_blinders_en.json': [
     'app/flashcards/bundles/esOverlays/peakyBlinders.ts',
     'app/flashcards/bundles/bundled_marketplace_manifest.json',
@@ -596,7 +595,7 @@ function classifySurface(rel) {
   if (/^constants\/.*i18n|^constants\/.*locale|^components\/LangContext|^constants\/i18n\.ts/.test(file)) {
     return 'ui-locale';
   }
-  if (/^app\/daily_tasks|^constants\/streak_stats_i18n|^app\/streak_stats|^app\/level_gift|^components\/LevelGift/.test(file)) {
+  if (/^constants\/streak_stats_i18n|^app\/streak_stats|^app\/level_gift|^components\/LevelGift/.test(file)) {
     return 'progression-daily-rewards';
   }
   if (/^admin\//.test(file)) return 'admin-site';

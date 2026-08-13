@@ -24,10 +24,20 @@ describe('generated support repository context artifact', () => {
       'functions/src/support_auto_reply_policy.ts',
       'functions/src/support_repository_context.ts',
       'functions/src/support_reply_delivery.ts',
+      'functions/src/support_inbox.ts',
+      'specs/support-product-lifecycle.json',
     ]));
     const paths = new Set(artifact.chunks.map((chunk) => chunk.path));
     expect(paths.has('components/PremiumContext.tsx')).toBe(true);
     expect(paths.has('functions/src/support_inbox.ts')).toBe(true);
+  });
+
+  test('contains Git-verified product lifecycle facts for historical questions', () => {
+    expect(artifact.historyFactsIncluded).toEqual(expect.arrayContaining([
+      'compass_daily_assistant', 'compass_ai_companion', 'weekly_compass_signal',
+    ]));
+    const result = retrieveSupportRepositoryContext('Куда делся Компас? Он раньше был', artifact, 5);
+    expect(result.evidence.some((item) => item.path === 'support-history/compass_daily_assistant.md')).toBe(true);
   });
 
   test('records the app release and an integrity hash over exactly emitted chunks', () => {

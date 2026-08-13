@@ -150,7 +150,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
     const protectedKeys: OverlayKey[] = [
       'onboardingWelcome',
       'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
-      'introFullAccess', 'dailyPlan', 'levelUp', 'themedAlert',
+      'introFullAccess', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
       'perfectWeekReward', 'lessonResultsSequence', 'lessonCompleteNotif',
@@ -164,7 +164,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
   it('транзиентные тосты/уведомления подлежат выселению (защита нижних от залипшего тоста)', () => {
     const evictable: OverlayKey[] = [
       'shardsEarned',
-      'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
+      'achievementToast', 'coachToast', 'actionToast',
       // boonActivated — информационная плашка «бонус дня» (награды по тапу нет),
       // её можно выселять: иначе незакрытая плашка душит все тосты до перезапуска.
       'boonActivated',
@@ -208,14 +208,14 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
   // Регрессия «ВСЕ тосты пропали глобально»: информационная плашка boonActivated стоит
   // ВЫШЕ тостов и не несёт награды по тапу. Если юзер не закрыл её (свернул/ушёл), её
   // wantShow застревает true → слот занят. Раньше boonActivated НЕ был force-evictable →
-  // сторож не выселял → achievementToast/dailyTaskRewardToast мертвы до перезапуска.
+  // сторож не выселял → achievementToast/actionToast мертвы до перезапуска.
   it('сценарий рецидива: boonActivated залип, тост достижения ждёт — сторож ВЫСЕЛЯЕТ boonActivated', () => {
     // Предусловие сторожа выполнено: владелец + waiter ниже по приоритету.
     expect(hasOtherWaiters('boonActivated', wants('boonActivated', 'achievementToast'))).toBe(true);
     // boonActivated force-evictable → сторож запускается и освобождает слот.
     expect(isForceEvictable('boonActivated')).toBe(true);
     // Слот передаётся ждущему тосту, минуя залипшего владельца.
-    expect(resolveNextOverlayExcluding('boonActivated', wants('boonActivated', 'achievementToast', 'dailyTaskRewardToast')))
+    expect(resolveNextOverlayExcluding('boonActivated', wants('boonActivated', 'achievementToast', 'actionToast')))
       .toBe('achievementToast');
   });
 
@@ -240,7 +240,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
   // Выселяемые сторожем: транзиентные авто-тосты + информационные плашки без награды-по-тапу.
   const EVICTABLE_REGISTRY: readonly OverlayKey[] = [
     'shardsEarned',
-    'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
+    'achievementToast', 'coachToast', 'actionToast',
     'boonActivated',
   ];
   // Защищённые: закрывает ЮЗЕР (сундук с осколками / крупное окно / user-dismissed уведомление).
@@ -248,10 +248,10 @@ describe('OverlayArbiter: исчерпывающая классификация 
   const PROTECTED_REGISTRY: readonly OverlayKey[] = [
     'onboardingWelcome', 'authRecovery',
     'update', 'releaseNotes', 'broadcast', 'personalAdminMessage', 'leagueBonusAvailable', 'notifNudge',
-    'introFullAccess', 'dailyPlan', 'levelUp', 'themedAlert',
+    'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
     'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-    'perfectWeekReward', 'compassBriefing',
+    'perfectWeekReward', 'devHub', 'compassBriefing',
     // coinsMigration — одноразовый информ-модал «Осколки → Монеты»: награды нет,
     // но окно закрывает юзер — выселять таймером нельзя.
     'coinsMigration',
@@ -319,8 +319,7 @@ describe('OverlayArbiter native-modal handoff gap', () => {
   });
 
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
-      // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
+    for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'collectibleDrop', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       expect(isNativeModal(k)).toBe(true);
     }
     for (const k of ['actionToast', 'coachToast'] as OverlayKey[]) {

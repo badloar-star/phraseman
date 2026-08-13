@@ -72,7 +72,6 @@ const retiredAdminOnlySymbols: Record<string, readonly string[]> = {
   'app/active_recall.ts': ['seedAdminTestReviewSession', 'ADMIN_TEST_BENCH'],
   'app/activity_365_analytics.ts': ['devSeedActivity365Scenario'],
   'app/app_messages.ts': ['seedLocalVipSurveyTestMessage'],
-  'app/daily_tasks.ts': ['DailyTaskAdminPack', 'seedDailyTasksAdminPack', 'dailyTasksAdminOverrideKey'],
   'app/intro_full_access.ts': ['resetIntroFullAccessForAdmin'],
   'app/leaderboard_stats.ts': ['injectMockLeaderboardStats', 'clearMockLeaderboardStats'],
   'app/lifetime_profile_stats.ts': ['devSeedLifetimeStatsScenario'],

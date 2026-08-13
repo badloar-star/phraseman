@@ -20,7 +20,11 @@ import {
   selectArenaTasks,
   toArenaPublicTask,
   validateArenaPrivateEnvelope,
+  arenaTaskCount,
+  arenaQuickBotDelayMs,
+  ARENA_DAILY_REWARD_MATCHES,
 } from './arena_v2_core';
+import { ARENA_STAR_POLICY } from './arena_stars_v3';
 
 function explanation(options: readonly string[], correctIndex: number) {
   return {
@@ -88,7 +92,7 @@ describe('Arena V2 pure product contract', () => {
     expect(arenaAcceptanceOpen(1_000, 1_000)).toBe(false);
     expect(arenaAcceptanceOpen(1_001, 1_000)).toBe(false);
     expect(arenaObservedElapsedMs(900, 1_000, 'guess_phrase')).toBe(0);
-    expect(arenaObservedElapsedMs(50_000, 1_000, 'guess_phrase')).toBe(11_000);
+    expect(arenaObservedElapsedMs(50_000, 1_000, 'guess_phrase')).toBe(8_000);
   });
 
   it('projects four deterministic, seed-diverse speed pairs and remaps answer indexes', () => {
@@ -177,15 +181,54 @@ describe('Arena V2 pure product contract', () => {
     expect(arenaSeasonStars({ mode: 'friend', rawStars: 30, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(0);
   });
 
+  it('banks stars only for modes the star engine calls banked (D-07: quick pays experience, not stars)', () => {
+    // Гейт один и тот же на клиенте и на сервере. Если здесь появится второй
+    // список режимов, план матча пообещает игроку ноль, а сервер запишет
+    // звёзды — ровно то расхождение, из-за которого этот тест и написан.
+    expect(arenaSeasonStars({ mode: 'quick', rawStars: 19, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(0);
+    expect(arenaSeasonStars({ mode: 'series', rawStars: 19, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(0);
+    expect(arenaSeasonStars({ mode: 'ranked', rawStars: 40, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(40);
+    for (const mode of ['quick', 'ranked', 'friend', 'series'] as const) {
+      const banked = ARENA_STAR_POLICY[mode] === 'banked';
+      expect(arenaSeasonStars({ mode, rawStars: 10, eligibleMatchIndex: 0, dailyStarsBefore: 0 }) > 0).toBe(banked);
+    }
+    // Право на редкую награду быстрый матч сохраняет: окно в шесть матчей за
+    // сутки считается отдельным счётчиком, а не начислением звёзд.
+    expect(ARENA_DAILY_REWARD_MATCHES).toBe(6);
+  });
+
   it('enforces spin eligibility, odds boundaries, day cap, and pity 80', () => {
+    // Владелец (2026-08-12): шанс против бота выровнен с человеческим (50 bps),
+    // иначе бота вычисляли бы по статистике дропов.
     expect(arenaRareSpin({ mode: 'quick', opponentKind: 'bot', rewardEligible: true,
-      submittedAnswers: 8, dropsToday: 0, rollBps: 24, pityBefore: 0 }).awarded).toBe(true);
+      submittedAnswers: 8, dropsToday: 0, rollBps: 49, pityBefore: 0 }).awarded).toBe(true);
+    expect(arenaRareSpin({ mode: 'quick', opponentKind: 'bot', rewardEligible: true,
+      submittedAnswers: 8, dropsToday: 0, rollBps: 50, pityBefore: 0 }).awarded).toBe(false);
     expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', rewardEligible: true,
       submittedAnswers: 7, dropsToday: 0, rollBps: 0, pityBefore: 79 })).toEqual({ awarded: false, pityAfter: 79 });
     expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', rewardEligible: true,
       submittedAnswers: 8, dropsToday: 0, rollBps: 9_999, pityBefore: 79 })).toEqual({ awarded: true, pityAfter: 0 });
     expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', rewardEligible: true,
       submittedAnswers: 10, dropsToday: 1, rollBps: 0, pityBefore: 12 })).toEqual({ awarded: false, pityAfter: 12 });
+  });
+
+  it('shortens the quick match to five balanced tasks and keeps ranked at ten', () => {
+    expect(arenaTaskCount('quick')).toBe(5);
+    expect(arenaTaskCount('ranked')).toBe(10);
+    expect(arenaTaskCount('friend')).toBe(10);
+    expect(arenaTaskCount()).toBe(10);
+    const quick = selectArenaTasks(pool(), 'quick-seed', 19, 'quick')!;
+    expect(quick).toHaveLength(5);
+    expect(new Set(quick.map((entry) => entry.mode)).size).toBe(5);
+  });
+
+  it('assigns the bot entry moment inside eight to fifty-five seconds, biased to the start', () => {
+    expect(arenaQuickBotDelayMs(0)).toBe(8_000);
+    expect(arenaQuickBotDelayMs(1)).toBe(55_000);
+    const median = arenaQuickBotDelayMs(0.5);
+    expect(median).toBeGreaterThan(20_000);
+    expect(median).toBeLessThan(27_000);
+    expect(arenaQuickBotDelayMs(Number.NaN)).toBe(median);
   });
 
   it('builds a deterministic immutable bot plan from division and seed only', () => {

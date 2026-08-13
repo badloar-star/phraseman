@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LEARNING_V2_NATIVE_DECODER_OBSERVER_POLICY_V1 = exports.LEARNING_V2_NATIVE_DECODER_STATUS_MAX_COUNT_V1 = exports.LEARNING_V2_NATIVE_DECODER_OBSERVER_SCHEMA_V1 = void 0;
+exports.parseLearningV2NativeDecoderIdentityV1 = parseLearningV2NativeDecoderIdentityV1;
 exports.observeLearningV2NativeDecoderPlaybackV1 = observeLearningV2NativeDecoderPlaybackV1;
 const decision_registry_1 = require("../policies/decision_registry");
 exports.LEARNING_V2_NATIVE_DECODER_OBSERVER_SCHEMA_V1 = "learning-v2-native-decoder-observer.v1";
@@ -74,6 +75,9 @@ function exactIdentity(value) {
         value.expoAudioVersion !== policyBody.expoAudioVersion)
         fail();
     return Object.freeze({ ...value });
+}
+function parseLearningV2NativeDecoderIdentityV1(value) {
+    return exactIdentity(value);
 }
 function observeLearningV2NativeDecoderPlaybackV1(input) {
     const identity = exactIdentity(input.identity);

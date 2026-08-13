@@ -82,7 +82,7 @@ describe('isMonotonicLessonRestoreKey — классификация семей 
     // служебные/премиум
     expect(isMonotonicLessonRestoreKey('premium_plan')).toBe(false);
     expect(isMonotonicLessonRestoreKey('app_version')).toBe(false);
-    expect(isMonotonicLessonRestoreKey('daily_tasks_progress_2026-07-21')).toBe(false);
+    expect(isMonotonicLessonRestoreKey('survey_progress_2026-07-21')).toBe(false);
   });
 
   it('монотонные семьи реально присутствуют в runtime sync-ключах', () => {

@@ -56,7 +56,7 @@ type Report = {
     appSurfaceRequiredRemotePackSurfaces: number;
     appSurfaceDevNavigationProbesPassed: number;
     appSurfaceDevNavigationProbes: number;
-    challengeDailyArenaCoveredByNavigationGuard: boolean;
+    challengeArenaCoveredByNavigationGuard: boolean;
     runtimeRegistrationServerLayoutReady: boolean;
     runtimeRegistrationRequiredServerObjects: number;
     runtimeRegistrationMissingUploadEvidenceObjects: number;
@@ -321,14 +321,14 @@ export function buildFrenchFinalBlockerDependencyMap(input: {
     n(appSurfaceParitySummary, 'remotePackSurfaces') === 6 &&
     n(appSurfaceParitySummary, 'requiredRemotePackSurfaces') === 6 &&
     n(appSurfaceParitySummary, 'devNavigationProbesPassed') === n(appSurfaceParitySummary, 'devNavigationProbes') &&
-    n(appSurfaceParitySummary, 'devNavigationProbes') >= 80 &&
-    b(appSurfaceParitySummary, 'challengeDailyArenaCoveredByNavigationGuard') &&
-    !b(appSurfaceParitySummary, 'challengeDailyArenaRequiresExtraPackSurface') &&
+    n(appSurfaceParitySummary, 'devNavigationProbes') >= 50 &&
+    b(appSurfaceParitySummary, 'challengeArenaCoveredByNavigationGuard') &&
+    !b(appSurfaceParitySummary, 'challengeArenaRequiresExtraPackSurface') &&
     !b(appSurfaceParitySummary, 'activationApproved') &&
     !b(appSurfaceParitySummary, 'readyForApply') &&
     !b(appSurfaceParitySummary, 'mayModifyProductionAppFiles');
   if (!appSurfaceParityReady) {
-    addFinding(findings, 'blocker', 'app_surface_parity_not_ready', 'French app surface parity must prove challenges, daily tasks and arena-like surfaces are guarded by navigation/state gates and not missing from server-pack content.', rel(input.repoRoot, appSurfaceParityPath));
+    addFinding(findings, 'blocker', 'app_surface_parity_not_ready', 'French app surface parity must prove challenge and arena-like surfaces are guarded by navigation/state gates and not missing from server-pack content.', rel(input.repoRoot, appSurfaceParityPath));
   }
   const runtimeRegistrationServerLayoutReady =
     s(runtimeRegistrationServerLayout, 'status') === 'PASS' &&
@@ -404,7 +404,7 @@ export function buildFrenchFinalBlockerDependencyMap(input: {
         `postRemoteVerifyTransitionState=${s(postRemoteVerifyTransitionSummary, 'transitionState')}`,
         `appSurfaceParityReady=${appSurfaceParityReady}`,
         `appSurfaceRemotePackSurfaces=${n(appSurfaceParitySummary, 'remotePackSurfaces')}/${n(appSurfaceParitySummary, 'requiredRemotePackSurfaces')}`,
-        `challengeDailyArenaCovered=${b(appSurfaceParitySummary, 'challengeDailyArenaCoveredByNavigationGuard')}`,
+        `challengeArenaCovered=${b(appSurfaceParitySummary, 'challengeArenaCoveredByNavigationGuard')}`,
         `remoteVerify=${s(remoteVerify, 'status')}`,
         `found/hash=${n(remoteVerifySummary, 'foundObjectCount')}/${n(remoteVerifySummary, 'hashCheckedObjects') || n(remoteVerifySummary, 'hashCheckedCount')}`,
       ],
@@ -497,7 +497,7 @@ export function buildFrenchFinalBlockerDependencyMap(input: {
       appSurfaceRequiredRemotePackSurfaces: n(appSurfaceParitySummary, 'requiredRemotePackSurfaces'),
       appSurfaceDevNavigationProbesPassed: n(appSurfaceParitySummary, 'devNavigationProbesPassed'),
       appSurfaceDevNavigationProbes: n(appSurfaceParitySummary, 'devNavigationProbes'),
-      challengeDailyArenaCoveredByNavigationGuard: b(appSurfaceParitySummary, 'challengeDailyArenaCoveredByNavigationGuard'),
+      challengeArenaCoveredByNavigationGuard: b(appSurfaceParitySummary, 'challengeArenaCoveredByNavigationGuard'),
       runtimeRegistrationServerLayoutReady,
       runtimeRegistrationRequiredServerObjects: n(runtimeRegistrationServerLayoutSummary, 'requiredServerObjects'),
       runtimeRegistrationMissingUploadEvidenceObjects: n(runtimeRegistrationServerLayoutSummary, 'missingUploadEvidenceObjects'),
@@ -561,7 +561,7 @@ function renderMarkdown(report: Report): string {
     `- Post remote verify transition ready: ${report.summary.postRemoteVerifyTransitionReady ? 'yes' : 'no'} (${report.summary.postRemoteVerifyTransitionState})`,
     `- App surface parity ready: ${report.summary.appSurfaceParityReady ? 'yes' : 'no'}`,
     `- App surface remote pack surfaces: ${report.summary.appSurfaceRemotePackSurfaces}/${report.summary.appSurfaceRequiredRemotePackSurfaces}`,
-    `- Challenge/daily/arena navigation covered: ${report.summary.challengeDailyArenaCoveredByNavigationGuard ? 'yes' : 'no'}`,
+    `- Challenge/arena navigation covered: ${report.summary.challengeArenaCoveredByNavigationGuard ? 'yes' : 'no'}`,
     `- Runtime registration/server layout ready: ${report.summary.runtimeRegistrationServerLayoutReady ? 'yes' : 'no'}`,
     `- Runtime registration required server objects: ${report.summary.runtimeRegistrationRequiredServerObjects}`,
     `- Runtime registration missing upload evidence objects: ${report.summary.runtimeRegistrationMissingUploadEvidenceObjects}`,

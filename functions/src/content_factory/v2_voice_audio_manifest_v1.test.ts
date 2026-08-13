@@ -1,4 +1,7 @@
-import { hashCanonicalBody } from "../../../modules/learning-v2/policies/decision_registry";
+import {
+  canonicalJsonV1,
+  hashCanonicalBody,
+} from "../../../modules/learning-v2/policies/decision_registry";
 
 const h = (value: unknown) => hashCanonicalBody(value);
 const plan = Object.freeze({ planFingerprint: h("plan") });
@@ -37,7 +40,7 @@ const objects = Object.freeze(
       codecRulesFingerprint: h("codec-rules"),
       codecResultFingerprint: h(["codec-result", index]),
       pin: Object.freeze({
-        objectPath: `learning-v2/voice-audio/${contentHash}.mp3`,
+        objectPath: `learning-v2/voice-audio/${plan.planFingerprint}/${h({ stageId: "voice-stage-1" })}/${item.generationTargetFingerprint}/${contentHash}.mp3`,
         contentHash,
         objectGeneration: "7",
         byteSize: 100 + index,
@@ -87,6 +90,13 @@ jest.mock("./v2_voice_tts_work_order_v1", () => ({
   },
 }));
 jest.mock("./v2_firebase_voice_audio_persistence_v1", () => ({
+  v2FirebaseVoiceAudioObjectPathV1: (input: {
+    planFingerprint: string;
+    stageId: string;
+    generationTargetFingerprint: string;
+    rawSha256: string;
+  }) =>
+    `learning-v2/voice-audio/${input.planFingerprint}/${h({ stageId: input.stageId })}/${input.generationTargetFingerprint}/${input.rawSha256}.mp3`,
   resolveV2FirebaseVoiceAudioBatchMaterialV1: (input: {
     handle: unknown;
     plan: unknown;
@@ -116,8 +126,10 @@ jest.mock("./v2_firebase_voice_audio_persistence_v1", () => ({
 // Jest hoists both private-handle mocks before this import.
 // eslint-disable-next-line import/first
 import {
+  encodeV2VoiceAudioManifestV1,
   isV2VoiceAudioManifestV1,
   materializeV2VoiceAudioManifestV1,
+  parseV2VoiceAudioManifestV1,
 } from "./v2_voice_audio_manifest_v1";
 
 describe("Learning V2 complete voice audio manifest", () => {
@@ -148,6 +160,13 @@ describe("Learning V2 complete voice audio manifest", () => {
     expect(manifest.artifactStorageAuthority).toBe("none");
     expect(manifest.releaseAuthority).toBe(false);
     expect(isV2VoiceAudioManifestV1({ ...manifest })).toBe(false);
+    const raw = encodeV2VoiceAudioManifestV1(manifest);
+    const parsed = parseV2VoiceAudioManifestV1(raw);
+    expect(parsed).toEqual(manifest);
+    expect(isV2VoiceAudioManifestV1(parsed)).toBe(true);
+    expect(() => encodeV2VoiceAudioManifestV1(JSON.parse(raw))).toThrow(
+      "v2_voice_audio_manifest_handle_invalid",
+    );
   });
 
   it("rejects a missing generation target", () => {
@@ -171,5 +190,51 @@ describe("Learning V2 complete voice audio manifest", () => {
         batchHandles: Object.freeze([batchHandle, batchHandle] as never),
       }),
     ).toThrow("v2_voice_audio_manifest_batch_count_invalid");
+  });
+
+  it("rejects path, one-voice task group, authority and coordinated fingerprint drift on cold parse", () => {
+    const manifest = materializeV2VoiceAudioManifestV1({
+      plan: plan as never,
+      stageId: "voice-stage-1",
+      workOrderHandle: workOrderHandle as never,
+      batchHandles: Object.freeze([batchHandle as never]),
+    });
+    const mutate = (mutation: (value: Record<string, unknown>) => void) => {
+      const value = JSON.parse(canonicalJsonV1(manifest)) as Record<
+        string,
+        unknown
+      >;
+      mutation(value);
+      return canonicalJsonV1(value);
+    };
+    expect(() =>
+      parseV2VoiceAudioManifestV1(
+        mutate((value) => {
+          const sessions = value.sessionManifests as Record<string, unknown>[];
+          const entries = sessions[0]!.entries as Record<string, unknown>[];
+          entries[0]!.objectPath = "foreign/audio.mp3";
+        }),
+      ),
+    ).toThrow("v2_voice_audio_manifest_entry_invalid");
+    expect(() =>
+      parseV2VoiceAudioManifestV1(
+        mutate((value) => {
+          value.audioByteAuthority = "trusted";
+        }),
+      ),
+    ).toThrow("v2_voice_audio_manifest_invalid");
+    expect(() =>
+      parseV2VoiceAudioManifestV1(
+        mutate((value) => {
+          value.manifestFingerprint = h("forged");
+        }),
+      ),
+    ).toThrow("v2_voice_audio_manifest_fingerprint_invalid");
+  });
+
+  it("rejects hostile depth before canonicalization", () => {
+    expect(() =>
+      parseV2VoiceAudioManifestV1(`${"[".repeat(1_000)}0${"]".repeat(1_000)}`),
+    ).toThrow("v2_voice_audio_manifest_json_complexity_invalid");
   });
 });

@@ -59,7 +59,9 @@ describe('Arena Expansion integration boundary', () => {
   test('exports the complete callable surface from the deployed entrypoint', () => {
     const index = read('functions/src/index.ts');
     for (const callable of CALLABLES) expect(index).toContain(callable);
-    expect(index).toContain("from './arena_expansion'");
+    // Стиль кавычек в точке входа переписывает форматирование, и держать
+    // договор за него — значит краснеть от прогона prettier, а не от ошибки.
+    expect(/from ['"]\.\/arena_expansion['"]/.test(index)).toBe(true);
   });
 
   test('closes every server-only root and scopes every user projection', () => {

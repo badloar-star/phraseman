@@ -6,6 +6,7 @@ scripts/*
 !scripts/install-git-hooks.mjs
 !scripts/release_keys_gate.mjs
 !scripts/eas_production_version_gate.mjs
+!scripts/eas_ios_development_entitlements.mjs
 docs/
 qa-artifacts/
 tmp/
@@ -13,6 +14,7 @@ builds/
 output/
 subscription-recovery/
 functions/
+functions-english-test/
 exports/
 SSIU/
 admin/
@@ -24,6 +26,7 @@ graphify-out/
 .claude-flow/
 .claude/
 .codex/
+.codex-tools/
 .expo/
 .codex-tmp/
 .codex-logs/
@@ -42,6 +45,7 @@ _frames/
 lingman-montazher/
 lingman-scenarist-pipeline/
 tools/
+asset_sources/
 docs/gustav/
 docs/heisenberg/
 docs/skyler/
@@ -122,6 +126,7 @@ assets/images/personal_plan_tasks/*.png
 # Local builds
 /android/app/build/
 /ios/build/
+/ios/Pods/
 
 # Let EAS regenerate android/ via expo prebuild for clean dependency resolution
 /android/

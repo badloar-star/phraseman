@@ -8,6 +8,5 @@ describe('Home return stability', () => {
     expect(source).toContain('const homeRefreshKey = `${studyTarget}:${lang}`;');
     expect(source).toContain('if (homeRefreshKeyRef.current === homeRefreshKey) return;');
     expect(source).toContain('homeRefreshKeyRef.current = homeRefreshKey;');
-    expect(source).not.toContain('}, [focusTick, isHomeOwner, studyTarget, lang, refreshDailyTaskSummary]);');
   });
 });

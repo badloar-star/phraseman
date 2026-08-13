@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 describe('live admin daily digest contract', () => {
   const root = path.resolve(__dirname, '..');
-  const html = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+  const html = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
   const source = fs.readFileSync(path.join(root, 'admin', 'v2', 'daily-digest.js'), 'utf8');
 
   test('keeps the live digest workflow wired to the published renderer', () => {

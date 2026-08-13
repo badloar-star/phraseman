@@ -12,6 +12,7 @@ import Reanimated, {
   interpolate,
   runOnJS,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
   type SharedValue,
@@ -201,17 +202,36 @@ function FlashcardListItemImpl({
   /**
    * Фокус-строка через SharedValue (перф-пакет E2): расфокус peek-строк пака
    * анимируется на UI-потоке; скролл не дергает setState родителя.
+   *
+   * БЫЛО: `withTiming(...)` вызывался ВНУТРИ `useAnimatedStyle`. Такой стиль
+   * пересчитывается на каждое изменение любого прочитанного SharedValue и на
+   * каждый ре-маунт строки — и каждый пересчёт СТАРТОВАЛ НОВУЮ анимацию от
+   * текущего значения. В режиме, где все карточки полупрозрачные (просмотр
+   * купленного набора), это давало бесконечный перезапуск таймингов на каждой
+   * видимой строке: список лагал, карточки «переключались и возвращались назад»
+   * (репорт владельца).
+   *
+   * СТАЛО: анимация живёт в `useDerivedValue` — она перезапускается ТОЛЬКО когда
+   * реально меняется фокус-индекс, а `useAnimatedStyle` лишь читает готовый
+   * прогресс и интерполирует его. Плюс на слабых устройствах / «уменьшить
+   * движение» / web анимации нет вовсе — сразу конечное значение.
    */
+  const crossfadeFlip = useFcCrossfadeFlip();
+  const focusMotionOn = usePackFace && !!focusedIndexSV;
+  const focusSV = focusedIndexSV;
+  const focusProgress = useDerivedValue(() => {
+    if (!focusMotionOn || !focusSV) return 1;
+    const focused = focusSV.value === itemIdx ? 1 : 0;
+    if (crossfadeFlip) return focused;
+    return withTiming(focused, { duration: 160 });
+  }, [focusMotionOn, focusSV, itemIdx, crossfadeFlip]);
   const focusDimStyle = useAnimatedStyle(() => {
-    if (!usePackFace || !focusedIndexSV) {
-      return { opacity: 1, transform: [{ scale: 1 }] };
-    }
-    const focused = focusedIndexSV.value === itemIdx;
+    const p = focusProgress.value;
     return {
-      opacity: withTiming(focused ? 1 : 0.68, { duration: 160 }),
-      transform: [{ scale: withTiming(focused ? 1 : 0.985, { duration: 160 }) }],
+      opacity: interpolate(p, [0, 1], [0.68, 1], Extrapolation.CLAMP),
+      transform: [{ scale: interpolate(p, [0, 1], [0.985, 1], Extrapolation.CLAMP) }],
     };
-  }, [usePackFace, itemIdx, focusedIndexSV]);
+  });
   /** E7: ряд действий (редактировать / удалить) в деталях — детали появляются даже без описания. */
   const hasDetailsActions = !!(onEditCard || onDeleteFromDetails);
   const hasDetails = !isModernAbbrevCard && (cardHasDetails(item) || hasDetailsActions);
@@ -254,7 +274,6 @@ function FlashcardListItemImpl({
    * web / reduceMotion / lowPower → кроссфейд; opacity-переключение на 90° —
    * фолбэк backfaceVisibility для старых Android.
    */
-  const crossfadeFlip = useFcCrossfadeFlip();
   const flipFaces = useMemo(
     () => buildLegacyFlipFaceStyles(flipDrivingAnim, !crossfadeFlip),
     [flipDrivingAnim, crossfadeFlip],

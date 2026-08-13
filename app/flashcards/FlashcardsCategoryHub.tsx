@@ -46,10 +46,8 @@ import type { Lang } from '../../constants/i18n';
 import type { Theme, ThemeMode } from '../../constants/theme';
 import { FC_SPRING, FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
 import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
-import { cardsCountLabel } from './deck_selection';
 import { isLowPowerEffective } from './low_power';
 
-import { actionToastTri, emitAppEvent } from '../events';
 import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
@@ -96,105 +94,6 @@ const TILE_RADIUS = 18;
  * применяется; чтобы вернуть каскад §8, достаточно переключить флаг.
  */
 const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
-
-// зачем: экспорт нужен предзагрузчику (app/section_asset_preload.ts) — плитки хаба
-// «догружались» в момент открытия раздела и толкали верстку, поэтому греем их
-// на старте, пока пользователь ещё на главной.
-export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsModeAction, ImageSourcePropType>> = {
-  midnight: {
-    saved: require('../../assets/images/flashcards/mode_icons/midnight/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/midnight/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/midnight/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/midnight/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/midnight/collection.webp'),
-  },
-  ember: {
-    saved: require('../../assets/images/flashcards/mode_icons/ember/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/ember/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/ember/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/ember/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
-  },
-  aurora: {
-    saved: require('../../assets/images/flashcards/mode_icons/aurora/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/aurora/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/aurora/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/aurora/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/aurora/collection.webp'),
-  },
-  volt: {
-    saved: require('../../assets/images/flashcards/mode_icons/volt/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/volt/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/volt/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/volt/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/volt/collection.webp'),
-  },
-  minimalDark: {
-    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
-  },
-  candyBlue: {
-    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
-  },
-  indigo: {
-    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
-  },
-  dark: {
-    saved: require('../../assets/images/flashcards/mode_icons/dark/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/dark/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/dark/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/dark/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/dark/collection.webp'),
-  },
-  gold: {
-    saved: require('../../assets/images/flashcards/mode_icons/gold/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/gold/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/gold/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/gold/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/gold/collection.webp'),
-  },
-  olive: {
-    saved: require('../../assets/images/flashcards/mode_icons/olive/saved.webp'), custom: require('../../assets/images/flashcards/mode_icons/olive/custom.webp'), training: require('../../assets/images/flashcards/mode_icons/olive/training.webp'), audio: require('../../assets/images/flashcards/mode_icons/olive/audio.webp'), collection: require('../../assets/images/flashcards/mode_icons/olive/collection.webp'),
-  },
-  business: {
-    saved: require('../../assets/images/flashcards/mode_icons/business/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/business/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/business/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/business/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/business/collection.webp'),
-  },
-  businessLight: {
-    saved: require('../../assets/images/flashcards/mode_icons/businessLight/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
-  },
-  sagePorcelain: {
-    saved: require('../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp'),
-  },
-};
-
-const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {
-  saved: { ptBR: 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' },
-  custom: { ptBR: 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz' },
-};
-
 /** Каскад секций: FadeInDown.duration(300).delay(min(i,8)*60).springify().damping(14) */
 const sectionEntering = (i: number) =>
   FadeInDown.duration(FC_TIMING.enter).delay(fcStaggerDelay(i)).springify().damping(14);
@@ -478,6 +377,9 @@ export default function FlashcardsCategoryHub({
    * как свои (плитка становится открываемой), сервер/сторедж догоняют по `onMarketRefresh`.
    */
   const [locallyAddedPackIds, setLocallyAddedPackIds] = useState<Set<string>>(() => new Set());
+  /** Фильтр каталога сообщества: поиск по названию + сортировка. */
+  const [communityQuery, setCommunityQuery] = useState('');
+  const [communitySort, setCommunitySort] = useState<CommunityPacksSort>('popular');
 
   const lowPower = isLowPowerEffective();
   /** Каскад входа выключаем при reduceMotion / lowPower (декоративная ветка §8). */
@@ -548,18 +450,20 @@ export default function FlashcardsCategoryHub({
    * Свои наборы «только на устройстве» (`local_only`) в общий каталог не попадают —
    * они живут в «Мои наборы» до публикации.
    */
-  const visibleCommunityPacks = useMemo(
-    () =>
-      sortPacksBySocial(
-        communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id) && p.listingStatus !== 'local_only'),
-      ),
+  const catalogCommunityPacks = useMemo(
+    () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id) && p.listingStatus !== 'local_only'),
     [communityPacks, hiddenCommunityPackIds],
+  );
+
+  const visibleCommunityPacks = useMemo(
+    () => applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort),
+    [catalogCommunityPacks, communityQuery, communitySort],
   );
 
   /** Топ по лайкам — визуальный акцент и бейдж «В топе» (без «премиальных» коннотаций). */
   const topPackIds = useMemo(
-    () => new Set(topLikedPackIds(visibleCommunityPacks)),
-    [visibleCommunityPacks],
+    () => new Set(topLikedPackIds(catalogCommunityPacks)),
+    [catalogCommunityPacks],
   );
 
   useEffect(() => {
@@ -583,6 +487,22 @@ export default function FlashcardsCategoryHub({
     }
     router.push({ pathname: '/flashcards_collection', params: { pack: pack.id } } as any);
   };
+
+  /**
+   * Просмотр набора ДО добавления себе: карточки видно, тренировать/редактировать
+   * нельзя (`preview=1`). Карточки подгружаются тем же staging-путём, что и у своих.
+   */
+  const openPackPreview = useCallback(
+    (pack: FlashcardMarketPack) => {
+      setUgcReportHintPackId(null);
+      stageCommunityPackCardsForNavigation(pack.id, studyTarget);
+      router.push({
+        pathname: '/flashcards_collection',
+        params: { pack: pack.id, preview: '1' },
+      } as any);
+    },
+    [router, studyTarget],
+  );
 
   /** §2.1: набор добавлен — сразу помечаем локально, каталог перечитываем в фоне. */
   const onPackAdded = useCallback(
@@ -658,7 +578,7 @@ export default function FlashcardsCategoryHub({
     );
   };
 
-  /** Плитка «Мои наборы» — открывает набор как колоду. */
+  /** Плитка «Мои наборы» — открывает набор карточек. */
   const renderOwnedPackTile = (pack: FlashcardMarketPack) => {
     const displayTitle = packTitleForInterface(pack, lang);
     const hubCode = packHubCodeName(pack);
@@ -727,7 +647,10 @@ export default function FlashcardsCategoryHub({
         </Text>
         {pack.isPendingUpdateReview ? (
           <Text style={{ fontSize: 9, color: hubLabelAccent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
-            {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación' })}
+            {triLang(lang, {
+              ru: 'На проверке', uk: 'На перевірці', es: 'En revisión',
+              'pt-BR': 'Em revisão', vi: 'Đang duyệt', id: 'Sedang ditinjau', tr: 'İncelemede', pl: 'W trakcie sprawdzania',
+            })}
           </Text>
         ) : null}
       </View>
@@ -735,171 +658,225 @@ export default function FlashcardsCategoryHub({
   };
 
   /**
-   * Карточка каталога сообщества: иконка + название + автор/размер + соц-строка
-   * (лайк, счётчик добавлений, «Добавить себе»). Топ по лайкам — акцентная рамка.
+   * Плитка каталога сообщества. Тап открывает набор ДО добавления — в режиме
+   * просмотра (`preview=1`): карточки видно, тренировать/редактировать нельзя,
+   * «Добавить себе» и лайк живут на самом экране набора.
    */
-  const renderCommunityPackCard = (pack: FlashcardMarketPack) => {
+  const renderCommunityPackTile = (pack: FlashcardMarketPack) => {
     const owned = isCommunityPackMine(pack);
-    const isTop = topPackIds.has(pack.id);
-    const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
     const showReportShortcut = !!pack.isCommunityUgc && !owned;
     const showAuthorEdit =
       !!hubAuthorStableId &&
       !!pack.isCommunityUgc &&
       !!pack.authorStableId &&
       pack.authorStableId === hubAuthorStableId;
-    /** Форма слова по числу: «24 карточки», а не «24 карточек» (cards-2.1). */
-    const cardsLabel = cardsCountLabel(lang, pack.cardCount);
 
     return (
-      <View
+      <CommunityPackTile
         key={`ugc_${pack.id}`}
-        style={[
-          {
-            width: hubBarW,
-            borderRadius: 20,
-            borderWidth: isTop ? 1.5 : 1,
-            borderColor: isTop ? `${t.accent}88` : t.border,
-            backgroundColor: t.bgSurface,
-            padding: 14,
-            gap: 12,
-          },
-          shadowForTile(t, isTop ? 'top' : 'base'),
-        ]}
-      >
-        <Pressable
-          testID={`flashcards-pack-card-${pack.id}`}
-          accessibilityLabel={`qa-flashcards-pack-card-${pack.id}`}
-          accessible
-          disabled={!owned}
-          onPress={() => {
-            if (!owned) return;
-            void hapticTap();
+        pack={pack}
+        lang={lang}
+        t={t}
+        width={tileW}
+        owned={owned}
+        isTop={topPackIds.has(pack.id)}
+        reduceMotion={reduceMotion}
+        showEdit={showAuthorEdit}
+        labelSize={labelSize}
+        icon={packIcon(pack, Math.floor(tileW * 0.68))}
+        onOpen={() => {
+          void hapticTap();
+          if (owned) {
             void openOwnedPack(pack);
-          }}
-          onLongPress={
-            showReportShortcut
-              ? () => {
-                  void hapticTap();
-                  setUgcReportHintPackId((cur) => (cur === pack.id ? null : pack.id));
-                }
-              : undefined
+          } else {
+            openPackPreview(pack);
           }
-          delayLongPress={showReportShortcut ? 420 : undefined}
-          style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}
-        >
-          <View
-            style={{
-              width: 54,
-              height: 54,
-              borderRadius: 16,
-              borderWidth: 1,
-              borderColor: owned ? t.accent : t.border,
-              backgroundColor: t.bgCard,
-              alignItems: 'center',
-              justifyContent: 'center',
-              overflow: 'hidden',
-            }}
-          >
-            {packIcon(pack, 34)}
-          </View>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }} numberOfLines={1}>
-              {title}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '600', marginTop: 2 }} numberOfLines={1}>
-              {pack.authorName ? `${pack.authorName} · ` : ''}
-              {cardsLabel}
-            </Text>
-            {pack.isPendingUpdateReview ? (
-              <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800', marginTop: 3 }}>
-                {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación' })}
-              </Text>
-            ) : null}
-          </View>
-          {showAuthorEdit ? (
-            <TouchableOpacity
-              testID={`flashcards-pack-card-edit-${pack.id}`}
-              onPress={() =>
-                router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
+        }}
+        onLongPress={
+          showReportShortcut
+            ? () => {
+                void hapticTap();
+                setUgcReportHintPackId((cur) => (cur === pack.id ? null : pack.id));
               }
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              style={{ padding: 6, borderRadius: 12, backgroundColor: `${t.textMuted}1A` }}
-            >
-              <Ionicons name="create-outline" size={17} color={t.textPrimary} />
-            </TouchableOpacity>
-          ) : owned ? (
-            <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
-          ) : null}
-        </Pressable>
+            : undefined
+        }
+        onEdit={() =>
+          router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
+        }
+      />
+    );
+  };
 
-        {/* §2: лайк активности + счётчик добавлений + бесплатное «Добавить себе» */}
-        <CommunityPackSocialBar
-          pack={pack}
-          lang={lang}
-          t={t}
-          owned={owned}
-          isTop={isTop}
-          onAdded={onPackAdded}
-        />
-
-        {showReportShortcut && ugcReportHintPackId === pack.id ? (
-          <View style={{ flexDirection: 'row', gap: 16 }}>
-            <TouchableOpacity
-              onPress={() => {
-                void hapticTap();
-                setReportModalPack(pack);
-                setUgcReportHintPackId(null);
-              }}
-              hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
-            >
-              <Text style={{ color: t.wrong, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
-                {triLang(lang, {
-                  ru: 'Пожаловаться на набор',
-                  uk: 'Поскаржитися на набір',
-                  es: 'Reportar el pack',
-                })}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={async () => {
-                void hapticTap();
-                setUgcReportHintPackId(null);
-                try {
-                  await hideCommunityPackOnDevice(pack.id, studyTarget);
-                  await refreshHiddenCommunityPacks();
-                } catch {
-                  // no-op: AsyncStorage unavailable
-                }
-              }}
-              hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
-            >
-              <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
-                {triLang(lang, {
-                  ru: 'Не показывать мне',
-                  uk: 'Не показувати мені',
-                  es: 'No mostrarme',
-                })}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        ) : null}
+  /** Действия по долгому тапу на чужой набор — отдельной строкой под сеткой. */
+  const renderReportShortcutRow = () => {
+    const pack = visibleCommunityPacks.find((p) => p.id === ugcReportHintPackId);
+    if (!pack) return null;
+    return (
+      <View
+        style={{
+          width: hubBarW,
+          marginTop: 12,
+          flexDirection: 'row',
+          gap: 16,
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingVertical: 10,
+          paddingHorizontal: 12,
+          borderRadius: 14,
+          borderWidth: 1,
+          borderColor: t.border,
+          backgroundColor: t.bgSurface,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            void hapticTap();
+            setReportModalPack(pack);
+            setUgcReportHintPackId(null);
+          }}
+          hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
+        >
+          <Text style={{ color: t.wrong, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
+            {triLang(lang, {
+              ru: 'Пожаловаться на набор',
+              uk: 'Поскаржитися на набір',
+              es: 'Reportar el pack',
+              'pt-BR': 'Denunciar o pacote',
+              vi: 'Báo cáo bộ thẻ',
+              id: 'Laporkan paket',
+              tr: 'Paketi bildir',
+              pl: 'Zgłoś zestaw',
+            })}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={async () => {
+            void hapticTap();
+            setUgcReportHintPackId(null);
+            try {
+              await hideCommunityPackOnDevice(pack.id, studyTarget);
+              await refreshHiddenCommunityPacks();
+            } catch {
+              // no-op: AsyncStorage unavailable
+            }
+          }}
+          hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
+        >
+          <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
+            {triLang(lang, {
+              ru: 'Не показывать мне',
+              uk: 'Не показувати мені',
+              es: 'No mostrarme',
+              'pt-BR': 'Não mostrar para mim',
+              vi: 'Không hiển thị nữa',
+              id: 'Jangan tampilkan lagi',
+              tr: 'Bana gösterme',
+              pl: 'Nie pokazuj mi',
+            })}
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   };
+
+  /** Компактный фильтр каталога: поиск по названию + сортировка. */
+  const renderCommunityFilter = () => (
+    <View style={{ width: hubBarW, marginBottom: 12, gap: 8 }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 8,
+          paddingHorizontal: 12,
+          height: 42,
+          borderRadius: 14,
+          borderWidth: 1,
+          borderColor: communityQuery.trim().length > 0 ? `${t.accent}88` : t.border,
+          backgroundColor: t.bgSurface,
+        }}
+      >
+        <Ionicons name="search-outline" size={16} color={communityQuery.trim().length > 0 ? t.accent : t.textMuted} />
+        <TextInput
+          testID="flashcards-packs-search"
+          accessibilityLabel="qa-flashcards-packs-search"
+          value={communityQuery}
+          onChangeText={setCommunityQuery}
+          placeholder={triLang(lang, {
+            ru: 'Поиск набора', uk: 'Пошук набору', es: 'Buscar pack',
+            'pt-BR': 'Buscar pacote', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket ara', pl: 'Szukaj zestawu',
+          })}
+          placeholderTextColor={t.textMuted}
+          autoCorrect={false}
+          autoCapitalize="none"
+          returnKeyType="search"
+          maxFontSizeMultiplier={1.2}
+          style={{
+            flex: 1,
+            height: 40,
+            paddingVertical: 0,
+            includeFontPadding: false,
+            textAlignVertical: 'center',
+            color: t.textPrimary,
+            fontSize: 14,
+          }}
+        />
+        {communityQuery.length > 0 ? (
+          <TouchableOpacity
+            testID="flashcards-packs-search-clear"
+            onPress={() => setCommunityQuery('')}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Ionicons name="close-circle" size={16} color={t.textMuted} />
+          </TouchableOpacity>
+        ) : null}
+      </View>
+
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        {COMMUNITY_SORTS.map((key) => {
+          const active = communitySort === key;
+          return (
+            <TouchableOpacity
+              key={key}
+              testID={`flashcards-packs-sort-${key}`}
+              accessibilityLabel={`qa-flashcards-packs-sort-${key}`}
+              accessible
+              onPress={() => {
+                void hapticTap();
+                setCommunitySort(key);
+              }}
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                paddingVertical: 8,
+                paddingHorizontal: 6,
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: active ? t.accent : t.border,
+                backgroundColor: active ? `${t.accent}18` : 'transparent',
+              }}
+            >
+              <Text
+                style={{ fontSize: 11, fontWeight: '800', color: active ? t.accent : t.textSecond }}
+                numberOfLines={1}
+              >
+                {communitySortLabel(key, lang)}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </View>
+  );
 
   return (
     <View style={{ paddingHorizontal: H_PAD }}>
       {/* ── 1. Заголовок каталога (без чипа осколков — §1.3) ── */}
       <Reanimated.View {...enterProps(0)} style={sectionGapStyle}>
+        {/* Рекламные подписи-слоганы с экрана убраны (владелец, после теста на iPhone). */}
         <Text style={{ color: hubLabelPrimary, fontSize: 26, fontWeight: '800', letterSpacing: 0.2 }}>
-          {triLang(lang, { ru: 'Наборы', uk: 'Набори', es: 'Packs' })}
-        </Text>
-        <Text style={{ color: hubLabelMuted, fontSize: 13, fontWeight: '600', marginTop: 4 }}>
           {triLang(lang, {
-            ru: 'Наборы сообщества — бесплатно',
-            uk: 'Набори спільноти — безкоштовно',
-            es: 'Packs de la comunidad — gratis',
+            ru: 'Наборы', uk: 'Набори', es: 'Packs',
+            'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy',
           })}
         </Text>
       </Reanimated.View>
@@ -908,7 +885,10 @@ export default function FlashcardsCategoryHub({
       {mineOwnedPacks.length > 0 ? (
         <Reanimated.View {...enterProps(1)} style={sectionGapStyle}>
           <Text style={sectionHeaderStyle}>
-            {triLang(lang, { ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs' })}
+            {triLang(lang, {
+              ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
+              'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
+            })}
           </Text>
           <View style={{ width: hubBarW, flexDirection: 'row', flexWrap: 'wrap', gap: GAP, justifyContent: 'flex-start' }}>
             {mineOwnedPacks.map(renderOwnedPackTile)}
@@ -920,7 +900,11 @@ export default function FlashcardsCategoryHub({
       {cloudCommunityEnabled ? (
         <Reanimated.View {...enterProps(2)} style={sectionGapStyle}>
           <Text style={sectionHeaderStyle}>
-            {triLang(lang, { ru: 'Наборы сообщества', uk: 'Набори спільноти', es: 'Packs de la comunidad' })}
+            {triLang(lang, {
+              ru: 'Наборы сообщества', uk: 'Набори спільноти', es: 'Packs de la comunidad',
+              'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
+              tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
+            })}
           </Text>
           {hasUnfinishedPackDraft ? (
             <TouchableOpacity
@@ -947,24 +931,55 @@ export default function FlashcardsCategoryHub({
                   ru: 'Продолжить создание набора',
                   uk: 'Продовжити створення набору',
                   es: 'Seguir creando el pack',
+                  'pt-BR': 'Continuar criando o pacote',
+                  vi: 'Tiếp tục tạo bộ thẻ',
+                  id: 'Lanjutkan membuat paket',
+                  tr: 'Paketi oluşturmaya devam et',
+                  pl: 'Kontynuuj tworzenie zestawu',
                 })}
               </Text>
             </TouchableOpacity>
           ) : null}
+          {catalogCommunityPacks.length > 0 ? renderCommunityFilter() : null}
           {visibleCommunityPacks.length === 0 ? (
-            communityPacks.length === 0 ? (
-              <Text style={{ color: hubLabelMuted, fontSize: 13, marginBottom: 8 }}>
-                {triLang(lang, {
-                  ru: 'Здесь появятся наборы после публикации и модерации.',
-                  uk: 'Тут з\'являться набори після публікації та модерації.',
-                  es: 'Aquí verás packs tras publicarlos y moderarlos.',
-                })}
-              </Text>
-            ) : null
+            <Text style={{ color: hubLabelMuted, fontSize: 13, marginBottom: 8 }}>
+              {catalogCommunityPacks.length === 0
+                ? triLang(lang, {
+                    ru: 'Здесь появятся наборы после публикации.',
+                    uk: 'Тут з\'являться набори після публікації.',
+                    es: 'Aquí verás packs tras publicarlos.',
+                    'pt-BR': 'Aqui você verá pacotes após publicá-los.',
+                    vi: 'Bộ thẻ sẽ xuất hiện ở đây sau khi đăng.',
+                    id: 'Paket akan muncul di sini setelah dipublikasikan.',
+                    tr: 'Paketler yayınlandıktan sonra burada görünür.',
+                    pl: 'Zestawy pojawią się tu po opublikowaniu.',
+                  })
+                : triLang(lang, {
+                    ru: 'Ничего не найдено.',
+                    uk: 'Нічого не знайдено.',
+                    es: 'No se encontró nada.',
+                    'pt-BR': 'Nada encontrado.',
+                    vi: 'Không tìm thấy gì.',
+                    id: 'Tidak ada yang ditemukan.',
+                    tr: 'Bir şey bulunamadı.',
+                    pl: 'Nic nie znaleziono.',
+                  })}
+            </Text>
           ) : (
-            <View style={{ gap: 12 }}>
-              {visibleCommunityPacks.map(renderCommunityPackCard)}
-            </View>
+            <>
+              <View
+                style={{
+                  width: hubBarW,
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  gap: GAP,
+                  justifyContent: 'flex-start',
+                }}
+              >
+                {visibleCommunityPacks.map(renderCommunityPackTile)}
+              </View>
+              {renderReportShortcutRow()}
+            </>
           )}
         </Reanimated.View>
       ) : null}
@@ -978,6 +993,11 @@ export default function FlashcardsCategoryHub({
             ru: 'Карточки: каталог наборов',
             uk: 'Картки: каталог наборів',
             es: 'Tarjetas: catálogo de packs',
+            'pt-BR': 'Cartões: catálogo de pacotes',
+            vi: 'Thẻ: danh mục bộ thẻ',
+            id: 'Kartu: katalog paket',
+            tr: 'Kartlar: paket kataloğu',
+            pl: 'Karty: katalog zestawów',
           })}
         />
       </Reanimated.View>

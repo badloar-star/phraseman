@@ -158,6 +158,8 @@ export function useCollectionData(opts: {
   isDevMarketEnabled: boolean;
   /** Пост-загрузка: restore-позиция / DEV-пак / deeplink — логика контейнера. */
   onLoaded: (info: CollectionLoadedInfo) => void;
+  /** `?pack=…&preview=1` — набор сообщества, который смотрят ДО добавления себе. */
+  previewPackId?: string | null;
 }) {
   const { isDevMarketEnabled } = opts;
   // Изоляция целей обучения: все чтения/записи коллекции идут в хранилище
@@ -183,6 +185,12 @@ export function useCollectionData(opts: {
   }, [lang, studyTarget]);
   const onLoadedRef = useRef(opts.onLoaded);
   onLoadedRef.current = opts.onLoaded;
+  /**
+   * Просмотр набора ДО добавления себе: карточки чужого набора нужно загрузить,
+   * но НЕ записывать в кэш «моих» наборов и не отмечать владение.
+   */
+  const previewPackIdRef = useRef<string | null>(opts.previewPackId ?? null);
+  previewPackIdRef.current = opts.previewPackId ?? null;
 
   const [savedCards, setSavedCards] = useState<CardItem[]>(_savedCardsCache ?? []);
   const [customCards, setCustomCards] = useState<CardItem[]>(_customCardsCache ?? []);
@@ -375,12 +383,19 @@ export function useCollectionData(opts: {
                 )
                 .map((p) => p.id);
         const communityIdsToLoad = [...new Set([...communityOwnedIds, ...authorCommunityIds])];
-        const communityCardLists = await Promise.all(
-          communityIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => [])),
-        );
+        const previewPackId = previewPackIdRef.current;
+        const previewIdsToLoad =
+          previewPackId && !communityIdsToLoad.includes(previewPackId) ? [previewPackId] : [];
+        const [communityCardLists, previewCardLists] = await Promise.all([
+          Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => []))),
+          Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => []))),
+        ]);
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
-        setMarketCards([...builtMarket, ...localAuthoredCards]);
-        /** Локальные наборы в кэш не пишем: они меняются на устройстве и всегда читаются заново. */
+        setMarketCards([...builtMarket, ...previewCardLists.flat(), ...localAuthoredCards]);
+        /**
+         * Локальные наборы в кэш не пишем: они меняются на устройстве и всегда читаются заново.
+         * Просматриваемый (ещё не добавленный) набор в кэш «моих» тоже не попадает.
+         */
         void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket);
         if (mustDelayForEmptyMarketOnly) setLoading(false);
         return {
@@ -453,6 +468,8 @@ export function applyPostLoadNavigation(
     /** router.setParams({ cat: 'custom' }) контейнера */
     setCustomCatParam: () => void;
     setShowDeleteHint: (v: boolean) => void;
+    /** Просмотр набора до добавления: вкладку набора открываем и без владения. */
+    previewMode?: boolean;
   },
 ): void {
   const { ownedIds, communityOwnedIds, communityPublished, activePackId, progress, userSid } = info;
@@ -487,7 +504,12 @@ export function applyPostLoadNavigation(
       !!userSid &&
       !!deepMeta?.isCommunityUgc &&
       deepMeta.authorStableId === userSid;
-    if (ownedIds.includes(deepPack) || communityOwnedIds.includes(deepPack) || isAuthorOfDeep) {
+    if (
+      ctx.previewMode ||
+      ownedIds.includes(deepPack) ||
+      communityOwnedIds.includes(deepPack) ||
+      isAuthorOfDeep
+    ) {
       ctx.pendingRestoreRef.current = null;
       ctx.setActiveCat('custom');
     }
@@ -502,12 +524,17 @@ export function usePackDeeplinkGuard(args: {
   ownedPackIdList: string[];
   communityOwnedIdList: string[];
   accessStableId: string | null;
+  /**
+   * Просмотр набора ДО добавления себе (`?preview=1`): владение не требуется,
+   * экран открывается в режиме «только чтение».
+   */
+  previewMode?: boolean;
   /** Набор неизвестен/не куплен → назад на хаб (роутинг контейнера). */
   onDenied: (reason: 'unknown' | 'not_owned') => void;
 }): void {
   const {
     collectionDataReady, packDeeplink, marketPackCatalog,
-    ownedPackIdList, communityOwnedIdList, accessStableId, onDenied,
+    ownedPackIdList, communityOwnedIdList, accessStableId, previewMode, onDenied,
   } = args;
   const onDeniedRef = useRef(onDenied);
   onDeniedRef.current = onDenied;
@@ -526,6 +553,11 @@ export function usePackDeeplinkGuard(args: {
       !!accessStableId &&
       packMeta.authorStableId === accessStableId;
     const stagedFromHub = getStagedNavigationPackId() === pid;
+    /** Режим просмотра: набор сообщества можно открыть и не добавляя его себе. */
+    if (previewMode && packMeta.isCommunityUgc) {
+      if (stagedFromHub) clearStagedNavigationPackId();
+      return;
+    }
     const owned =
       ownedPackIdList.includes(pid) ||
       communityOwnedIdList.includes(pid) ||
@@ -546,7 +578,7 @@ export function usePackDeeplinkGuard(args: {
     }
   }, [
     collectionDataReady, packDeeplink, marketPackCatalog,
-    ownedPackIdList, communityOwnedIdList, accessStableId,
+    ownedPackIdList, communityOwnedIdList, accessStableId, previewMode,
   ]);
 }
 

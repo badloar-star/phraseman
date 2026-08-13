@@ -54,12 +54,29 @@ describe('FC_STAGGER / fcStaggerDelay', () => {
 });
 
 describe('FC_SWIPE (§3.3)', () => {
-  it('порог 35% ширины ИЛИ velocity > 800; наклон ±12°; улёт 250мс', () => {
-    expect(FC_SWIPE.thresholdRatio).toBe(0.35);
-    expect(FC_SWIPE.velocityThreshold).toBe(800);
+  it('порог 22% ширины ИЛИ velocity > 450; наклон ±12°; улёт 250мс', () => {
+    expect(FC_SWIPE.thresholdRatio).toBe(0.22);
+    expect(FC_SWIPE.velocityThreshold).toBe(450);
     expect(FC_SWIPE.rotateZDeg).toBe(12);
     expect(FC_SWIPE.flyOutMs).toBe(250);
-    expect(FC_SWIPE.activationOffsetX).toBe(10);
+    expect(FC_SWIPE.activationOffsetX).toBe(8);
+  });
+
+  it('порог/скорость достижимы обычным фликом, но не случайным касанием', () => {
+    // 22% от 390pt ≈ 86px — дотягивается большим пальцем без перехвата рукой,
+    // и при этом заметно больше activationOffsetX (случайное касание не улетит).
+    expect(FC_SWIPE.thresholdRatio).toBeLessThan(0.35);
+    expect(FC_SWIPE.thresholdRatio * 320).toBeGreaterThan(FC_SWIPE.activationOffsetX * 4);
+    expect(FC_SWIPE.velocityThreshold).toBeLessThan(800);
+    expect(FC_SWIPE.velocityThreshold).toBeGreaterThan(200);
+  });
+
+  it('failOffsetY отдаёт вертикальный скролл списку, а подпись держится весь жест', () => {
+    expect(FC_SWIPE.failOffsetY).toBeGreaterThan(FC_SWIPE.activationOffsetX);
+    expect(FC_SWIPE.labelFullRatio).toBeGreaterThan(0);
+    // подпись выходит на полную непрозрачность СИЛЬНО раньше порога улёта —
+    // иначе индикатор «знаю/учу» вспыхивает только в последний момент.
+    expect(FC_SWIPE.labelFullRatio).toBeLessThan(FC_SWIPE.thresholdRatio);
   });
 });
 

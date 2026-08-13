@@ -133,7 +133,8 @@ export function localAuthorPackToMarketPack(
     likesCount: 0,
     addedCount: 0,
     salesCount: 0,
-    authorName: 'Community',
+    /** Ник подставляет UI (`packAuthorNames.ts`) — это всегда сам автор. */
+    authorName: '',
     authorStableId: pack.authorStableId,
     isOfficial: false,
     isCommunityUgc: true,

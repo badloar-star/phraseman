@@ -1,13 +1,15 @@
 /**
- * cards-2.0: единая карточка фразы (§2–3.3 мастер-плана) — «физическая колода в руках».
- * Один вид, один флип, один звук, одна хаптика во всех местах, где она карточка
- * (колода коллекции, words-сессия, слушание). НЕ тащить в review/арену/phrases.
+ * cards-2.0: единая карточка фразы (§2–3.3 мастер-плана) — «физический набор в руках».
+ * Один вид, один флип, одна хаптика во всех местах, где она карточка
+ * (набор коллекции, words-сессия, слушание). НЕ тащить в review/арену/phrases.
  *
  * - Настоящий 3D-флип: perspective ПЕРВЫМ + rotateY, два слоя,
  *   backfaceVisibility: 'hidden' + фолбэк-переключение opacity на пороге 90°
  *   (официальный паттерн доков Reanimated — чинит старые Android и web).
  * - web / reduceMotion / lowPower → кроссфейд 150мс (FC_TIMING.fast).
- * - Press-эффект «Duolingo-кнопки»: scale 0.97 + сдвиг вниз 2px + сжатие нижней грани.
+ * - Press-эффект «Duolingo-кнопки»: scale 0.97 + сдвиг вниз 2px.
+ * - Флип БЕЗ звука (репорт владельца): остаётся только хаптика на 90°.
+ * - Декоративной полосы под карточкой нет (репорт владельца) — низ чистый.
  * - mode='grade': Gesture.Pan свайп вправо («знаю») / влево («учу») с цветным
  *   оверлеем ✓/✕ + кнопки-дублёры (web / доступность / одноручный режим).
  * - Только transform + opacity на UI-потоке (Reanimated 4).
@@ -25,6 +27,8 @@ import {
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Reanimated, {
+  Extrapolation,
+  cancelAnimation,
   interpolate,
   runOnJS,
   useAnimatedReaction,
@@ -47,6 +51,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { isLowPowerEffective } from './low_power';
 import { fcHaptic, playSfx } from './SoundService';
 import WordStrengthDots from './WordStrengthDots';
+import type { FlashcardContentLang } from './types';
 import type { WordStrength } from './word_strength';
 
 // ── Общие хуки деградации ─────────────────────────────────────────────────────
@@ -118,6 +123,25 @@ export function buildLegacyFlipFaceStyles(anim: RNAnimated.Value, use3D: boolean
 
 export type PhraseCardGradeResult = 'know' | 'learn';
 
+/**
+ * Подписи свайп-индикатора «знаю / учу» — все 8 локалей интерфейса.
+ * Держим здесь, а не в экране: индикатор рисует сама карточка, и без дефолта
+ * он показывался бы голой иконкой (репорт владельца: «подпись стоит криво»).
+ */
+export const PHRASE_CARD_GRADE_LABELS: Record<
+  FlashcardContentLang,
+  { know: string; learn: string }
+> = {
+  ru: { know: 'Знаю', learn: 'Учу' },
+  uk: { know: 'Знаю', learn: 'Вчу' },
+  es: { know: 'Lo sé', learn: 'Aprendo' },
+  'pt-BR': { know: 'Sei', learn: 'Aprendendo' },
+  vi: { know: 'Đã biết', learn: 'Đang học' },
+  id: { know: 'Tahu', learn: 'Belajar' },
+  tr: { know: 'Biliyorum', learn: 'Öğreniyorum' },
+  pl: { know: 'Znam', learn: 'Uczę się' },
+};
+
 export type PhraseCardPackTheme = {
   borderAccent: string;
   frontGradient: readonly [string, string];
@@ -142,6 +166,8 @@ export type PhraseCardProps = {
   /** grade: свайп вправо=know / влево=learn (+ кнопки-дублёры) */
   onGrade?: (result: PhraseCardGradeResult) => void;
   gradeLabels?: { know: string; learn: string };
+  /** Локаль подписей свайп-индикатора (дефолт PHRASE_CARD_GRADE_LABELS). */
+  lang?: FlashcardContentLang;
   /** Тема купленного пака (getCardPackPaywallTheme) — градиенты лица/рубашки */
   packTheme?: PhraseCardPackTheme | null;
   /** Тема/шрифты; по умолчанию — из useTheme() */
@@ -158,7 +184,6 @@ export type PhraseCardProps = {
 };
 
 const CARD_RADIUS = 24;
-const EDGE_H = 4; // «толстая» нижняя грань в цвет акцента
 
 function PhraseCardImpl({
   mode = 'view',
@@ -173,6 +198,7 @@ function PhraseCardImpl({
   onSpeakBack,
   onGrade,
   gradeLabels,
+  lang = 'ru',
   packTheme = null,
   t: tProp,
   f: fProp,
@@ -225,11 +251,14 @@ function PhraseCardImpl({
     onFlip?.(next);
   }, [disabled, isControlled, onFlip]);
 
-  // Хаптика + SFX на пересечении 90° (§3.3); в кроссфейде порог тот же (середина фейда)
+  /**
+   * Хаптика на пересечении 90° (§3.3); в кроссфейде порог тот же (середина фейда).
+   * Звука флипа НЕТ (репорт владельца после теста на iPhone: «убрать звук
+   * переворачивания карточки») — остальные SFX (свайп-оценка) не тронуты.
+   */
   const onFlipMidpoint = useCallback(() => {
     if (muted) return;
     fcHaptic('flip');
-    playSfx('flip');
   }, [muted]);
   useAnimatedReaction(
     () => flip.value >= 0.5,
@@ -252,27 +281,69 @@ function PhraseCardImpl({
   const tx = useSharedValue(0);
   const cardW = useSharedValue(320);
   const thresholdCrossed = useSharedValue(0);
+  /**
+   * Улёт «зафиксирован»: подпись «знаю/учу» держится на полной непрозрачности
+   * до подмены карточки. Без защёлки она гасла на середине улёта (репорт: «текст
+   * пропадает слишком рано»), потому что интерполяция шла только от tx.
+   */
+  const flyingOut = useSharedValue(0);
+  /** Жест уже отдал результат — второй onEnd/onFinalize не должен его продублировать. */
+  const gradeLatched = useSharedValue(0);
 
   const emitThresholdHaptic = useCallback(() => fcHaptic('threshold'), []);
+
+  /**
+   * Колбэки в ref: `Gesture.Pan()` пересоздавался на каждый рендер родителя
+   * (onGrade обычно инлайн-стрелка), GestureDetector переподключал жест прямо
+   * посреди свайпа — палец «терялся», и карточка пружиной возвращалась назад
+   * (репорт владельца: «карточки прыгают назад»). Теперь объект жеста собран
+   * один раз на примитивных зависимостях.
+   */
+  const onGradeRef = useRef(onGrade);
+  onGradeRef.current = onGrade;
+  const mutedRef = useRef(muted);
+  mutedRef.current = muted;
+
   const handleGrade = useCallback(
     (result: PhraseCardGradeResult) => {
-      if (!muted) {
+      if (!mutedRef.current) {
         playSfx(result === 'know' ? 'swipe_know' : 'swipe_learn');
         fcHaptic(result === 'know' ? 'swipe_know' : 'swipe_learn');
       }
-      onGrade?.(result);
+      onGradeRef.current?.(result);
       // Сброс позиции — родитель обычно подставляет следующую карточку
+      cancelAnimation(tx);
       tx.value = 0;
       thresholdCrossed.value = 0;
+      flyingOut.value = 0;
+      gradeLatched.value = 0;
     },
-    [muted, onGrade, thresholdCrossed, tx],
+    [flyingOut, gradeLatched, thresholdCrossed, tx],
   );
 
+  /** Возврат карточки на место — общий путь для «не дотянул» и отмены жеста. */
+  const snapBack = useCallback(() => {
+    'worklet';
+    thresholdCrossed.value = 0;
+    flyingOut.value = 0;
+    tx.value = withSpring(0, FC_SPRING.return);
+  }, [flyingOut, thresholdCrossed, tx]);
+
+  const panEnabled = mode === 'grade' && !isWeb && !disabled;
   const pan = useMemo(
     () =>
       Gesture.Pan()
-        .enabled(mode === 'grade' && !isWeb && !disabled)
+        .enabled(panEnabled)
+        // Горизонт — наш, вертикаль отдаём скроллу списка (иначе Pan крал скролл
+        // и жест срывался посреди движения).
         .activeOffsetX([-FC_SWIPE.activationOffsetX, FC_SWIPE.activationOffsetX])
+        .failOffsetY([-FC_SWIPE.failOffsetY, FC_SWIPE.failOffsetY])
+        .onBegin(() => {
+          // Незавершённый возврат предыдущего жеста не должен драться с новым.
+          cancelAnimation(tx);
+          gradeLatched.value = 0;
+          flyingOut.value = 0;
+        })
         .onUpdate((e) => {
           tx.value = e.translationX;
           const threshold = cardW.value * FC_SWIPE.thresholdRatio;
@@ -286,25 +357,46 @@ function PhraseCardImpl({
           }
         })
         .onEnd((e) => {
+          if (gradeLatched.value === 1) return;
           const threshold = cardW.value * FC_SWIPE.thresholdRatio;
           const passed =
             Math.abs(e.translationX) > threshold ||
             Math.abs(e.velocityX) > FC_SWIPE.velocityThreshold;
-          if (passed) {
-            const dir: PhraseCardGradeResult = e.translationX >= 0 ? 'know' : 'learn';
-            tx.value = withTiming(
-              Math.sign(e.translationX || 1) * cardW.value * 1.2,
-              { duration: FC_SWIPE.flyOutMs },
-              (finished) => {
-                if (finished) runOnJS(handleGrade)(dir);
-              },
-            );
-          } else {
-            thresholdCrossed.value = 0;
-            tx.value = withSpring(0, FC_SPRING.return);
+          if (!passed) {
+            snapBack();
+            return;
           }
+          gradeLatched.value = 1;
+          flyingOut.value = 1;
+          // Направление берём по знаку смещения, а на «чистом флике» (смещение
+          // почти нулевое) — по знаку скорости, иначе быстрый флик влево уходил вправо.
+          const signed = e.translationX !== 0 ? e.translationX : e.velocityX;
+          const dir: PhraseCardGradeResult = signed >= 0 ? 'know' : 'learn';
+          tx.value = withTiming(
+            Math.sign(signed || 1) * cardW.value * 1.2,
+            { duration: FC_SWIPE.flyOutMs },
+            (finished) => {
+              if (finished) runOnJS(handleGrade)(dir);
+              else snapBack();
+            },
+          );
+        })
+        .onFinalize((_e, success) => {
+          // Отмена жеста системой (скролл/шторка/переход) — карточка не должна
+          // зависнуть посреди экрана.
+          if (!success && gradeLatched.value === 0) snapBack();
         }),
-    [mode, isWeb, disabled, tx, cardW, thresholdCrossed, emitThresholdHaptic, handleGrade],
+    [
+      panEnabled,
+      tx,
+      cardW,
+      thresholdCrossed,
+      flyingOut,
+      gradeLatched,
+      emitThresholdHaptic,
+      handleGrade,
+      snapBack,
+    ],
   );
 
   // ── Animated styles (только transform + opacity) ──

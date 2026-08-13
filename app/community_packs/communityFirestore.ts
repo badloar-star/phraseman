@@ -94,7 +94,12 @@ export function mapCommunityPackDocToMarket(
     likesCount: social.likesCount,
     addedCount: social.addedCount,
     salesCount: Math.max(0, num(data.salesCount)),
-    authorName: authorSid ? authorSid.slice(0, 24) : 'Community',
+    /**
+     * Ник автора резолвится отдельно (`packAuthorNames.ts`): в документе набора
+     * его нет, а раньше сюда клали обрезанный `authorStableId` — и пользователь
+     * видел на экране набора сырой UID вместо ника.
+     */
+    authorName: '',
     authorStableId: authorSid || undefined,
     studyTarget,
     listingStatus: st,

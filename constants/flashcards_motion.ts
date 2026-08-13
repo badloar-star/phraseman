@@ -11,7 +11,7 @@ export const FC_SPRING = {
   flip: { duration: 450, dampingRatio: 0.8 },
   /** Возврат карточки после незавершённого свайпа */
   return: { duration: 350, dampingRatio: 0.7 },
-  /** SVG-кольцо прогресса колоды (один раз при входе) */
+  /** SVG-кольцо прогресса набора (один раз при входе) */
   ring: { duration: 800, dampingRatio: 1 },
 } as const;
 
@@ -34,14 +34,30 @@ export function fcStaggerDelay(index: number): number {
   return Math.min(Math.max(0, index), FC_STAGGER.cap) * FC_STAGGER.step;
 }
 
-/** Свайп-оценка (§3.3): порог 35% ширины ИЛИ velocityX > 800; наклон ±12°; улёт 250мс */
+/**
+ * Свайп-оценка (§3.3). Значения перепломбированы после теста на iPhone: прежние
+ * 35% ширины + velocity 800 не отрабатывали на обычном флике — карточка
+ * «прыгала назад». Порог 22% (≈86px на 390pt) + velocity 450 засчитывают
+ * короткий быстрый флик, но не срабатывают на случайном касании.
+ * Наклон ±12°; улёт 250мс.
+ */
 export const FC_SWIPE = {
-  thresholdRatio: 0.35,
-  velocityThreshold: 800,
+  thresholdRatio: 0.22,
+  velocityThreshold: 450,
   rotateZDeg: 12,
   flyOutMs: 250,
   /** activeOffsetX жеста Pan — не красть вертикальный скролл */
-  activationOffsetX: 10,
+  activationOffsetX: 8,
+  /**
+   * failOffsetY жеста Pan: вертикальное движение больше порога — жест падает и
+   * скролл списка забирает палец (иначе Pan «съедает» вертикальный скролл).
+   */
+  failOffsetY: 18,
+  /**
+   * Подпись «знаю/учу» набирает полную непрозрачность уже на 10% ширины и
+   * держится до конца жеста (без CLAMP она мигала и уходила в минус).
+   */
+  labelFullRatio: 0.1,
 } as const;
 
 /** Пауза между SFX и TTS (правило очереди §5: SFX → 120мс → TTS, никогда одновременно) */

@@ -31,8 +31,8 @@ describe('lesson completion soft upsell integration', () => {
     expect(source).toContain('testID="lesson-complete-back-home"');
   });
 
-  it('routes the first lesson to the personal path and the boundary lesson to the explicit paywall context', () => {
-    expect(source).toContain("router.push('/personal_plan_setup' as any)");
+  it('routes both offers to explicit paywall contexts', () => {
+    expect(source).not.toContain("router.push('/personal_plan_setup' as any)");
     expect(source).toContain("pathname: '/premium_modal'");
     expect(source).toContain("context: 'free_lessons_complete'");
     expect(source).toContain("source: 'lesson_complete_soft_upsell'");

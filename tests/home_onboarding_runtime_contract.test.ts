@@ -42,7 +42,7 @@ describe('hidden Home runtime behind onboarding', () => {
     expect(home).toContain("onAppEvent('onboarding_completed'");
     expect(home).toContain('setHomeOnboardingDone(true)');
     const finishStart = rootLayout.indexOf('const handleOnboardingDone = useCallback(async () => {');
-    const finishBody = rootLayout.slice(finishStart, rootLayout.indexOf('const handleOnboardingPersonalPlanPaywall', finishStart));
+    const finishBody = rootLayout.slice(finishStart, finishStart + 8000);
     expect(finishBody.indexOf('setShow(false)')).toBeLessThan(finishBody.indexOf("emitAppEvent('onboarding_completed')"));
   });
 });

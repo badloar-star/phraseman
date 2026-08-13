@@ -11,7 +11,6 @@ import {
   LEARNING_V2_COURSE_TOPOLOGY_SCHEMA_V1,
   LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
   LEARNING_V2_LESSON_SESSION_COUNT_V1,
-  LEARNING_V2_PERSONAL_PLAN_POLICY_V1,
   LEARNING_V2_SESSION_MAX_MINUTES_V1,
   LEARNING_V2_SESSION_MIN_MINUTES_V1,
   LEARNING_V2_SESSION_TARGET_MINUTES_V1,
@@ -42,7 +41,6 @@ export type LearningV2GeneratedCoursePackageV2 = Omit<
   Readonly<{
     schemaVersion: typeof LEARNING_V2_GENERATED_COURSE_PACKAGE_SCHEMA_V2;
     topology: LearningV2GeneratorTopologyBindingV1;
-    personalPlanDelivery: typeof LEARNING_V2_PERSONAL_PLAN_POLICY_V1;
     realLessonContentAuthorship: "owner_only";
   }>;
 
@@ -84,17 +82,6 @@ export function validateLearningV2GeneratedCoursePackageV2(
   if (input.realLessonContentAuthorship !== "owner_only") {
     throw new Error("learning_v2_generator_course_v2_authorship_invalid");
   }
-  if (
-    !exactFingerprintMatch(
-      input.personalPlanDelivery,
-      LEARNING_V2_PERSONAL_PLAN_POLICY_V1,
-    )
-  ) {
-    throw new Error(
-      "learning_v2_generator_course_v2_personal_plan_policy_invalid",
-    );
-  }
-
   const basePackage: LearningV2GeneratedCoursePackage = {
     schemaVersion: "learning-v2-generated-course-package.v1",
     packageId: input.packageId,

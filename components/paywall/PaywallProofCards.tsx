@@ -214,14 +214,14 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
     pl: 'Plus pokazuje pełny obraz: co rośnie, co podciągnąć i dokąd iść.',
   },
   identity: {
-    ru: 'Plus делает Phraseman твоим — от оформления до плана на каждый язык.',
-    uk: 'Plus робить Phraseman твоїм — від оформлення до плану на кожну мову.',
-    es: 'Plus hace que Phraseman sea tuyo: del estilo al plan de cada idioma.',
-    'pt-BR': 'O Plus faz o Phraseman ser seu: do visual ao plano de cada idioma.',
-    vi: 'Plus biến Phraseman thành của bạn — từ giao diện đến kế hoạch cho từng ngôn ngữ.',
-    id: 'Plus menjadikan Phraseman milikmu — dari tampilan sampai rencana tiap bahasa.',
-    tr: 'Plus Phraseman’ı senin yapar: görünümden her dilin planına.',
-    pl: 'Plus czyni Phraseman twoim — od wyglądu po plan dla każdego języka.',
+    ru: 'Plus делает Phraseman твоим — от оформления до выбора языков.',
+    uk: 'Plus робить Phraseman твоїм — від оформлення до вибору мов.',
+    es: 'Plus hace que Phraseman sea tuyo: del estilo a los idiomas que eliges.',
+    'pt-BR': 'O Plus faz o Phraseman ser seu: do visual aos idiomas escolhidos.',
+    vi: 'Plus biến Phraseman thành của bạn — từ giao diện đến ngôn ngữ bạn chọn.',
+    id: 'Plus menjadikan Phraseman milikmu — dari tampilan sampai bahasa pilihanmu.',
+    tr: 'Plus Phraseman’ı senin yapar: görünümden seçtiğin dillere.',
+    pl: 'Plus czyni Phraseman twoim — od wyglądu po wybrane języki.',
   },
   course: {
     ru: 'Plus открывает курс целиком: учишься в своём темпе, без пауз.',
@@ -348,7 +348,7 @@ const VALUE_CARDS: ValueCard[] = [
   {
     icon: 'infinite-outline',
     title: { ru: 'Без free-стопов', uk: 'Без free-стопів', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
-    desc: { ru: 'Уроки, практика, энергия, карточки и личный план открыты без бесплатных дневных стопов и порогов.', uk: 'Уроки, практика, енергія, картки й особистий план відкриті без безкоштовних денних стопів і порогів.', es: 'Lecciones, práctica, energía, tarjetas y plan personal se abren sin los topes diarios del modo gratis.', 'pt-BR': 'Lições, prática, energia, cartões e plano pessoal abrem sem os bloqueios diários do modo grátis.', vi: 'Bài học, luyện tập, năng lượng, thẻ và kế hoạch cá nhân mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Pelajaran, latihan, energi, kartu, dan rencana pribadi terbuka tanpa batas harian mode gratis.', tr: 'Dersler, pratik, enerji, kartlar ve kişisel plan ücretsiz modun günlük durakları olmadan açılır.', pl: 'Lekcje, praktyka, energia, fiszki i plan osobisty są otwarte bez dziennych progów trybu free.' },
+    desc: { ru: 'Уроки, практика, энергия и карточки открыты без бесплатных дневных стопов и порогов.', uk: 'Уроки, практика, енергія й картки відкриті без безкоштовних денних стопів і порогів.', es: 'Lecciones, práctica, energía y tarjetas se abren sin los topes diarios del modo gratis.', 'pt-BR': 'Lições, prática, energia e cartões abrem sem os bloqueios diários do modo grátis.', vi: 'Bài học, luyện tập, năng lượng và thẻ mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Pelajaran, latihan, energi, dan kartu terbuka tanpa batas harian mode gratis.', tr: 'Dersler, pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Lekcje, praktyka, energia i fiszki są otwarte bez dziennych progów trybu free.' },
   },
 ];
 

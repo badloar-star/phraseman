@@ -194,19 +194,6 @@ export const T = {
     levelB1:         'Могу разговаривать',
     levelB2:         'Понимаю фильмы и подкасты',
 
-    // Онбординг: персональный план
-    personalPlan:    'Твой план',
-    planForGoal:     (goal: string) => `Цель: английский для ${goal}`,
-    planIntensity:   (min: number) => `Интенсивность: ${min} минут в день`,
-    yourForecast:    'Твой план:',
-    currentLevelLabel: 'Текущий уровень:',
-    targetLevelLabel: 'Целевой уровень:',
-    timeTillGoal:    'Когда достигнешь цели:',
-    daysEstimate:    (days: number) => `~${days} дней`,
-    lessonsCount:    (count: number) => `${count} сессий по твоему расписанию`,
-    hoursPerWeek:    (hours: number) => `~${hours} часов в неделю обучения`,
-    reachTargetBy:   (date: string) => `Ты достигнешь целевого уровня к ${date}`,
-
     // Онбординг: напоминания
     preferredTime:   'В какое время тебе удобнее учить?',
     setNotifications: 'Напоминай мне в {time}',
@@ -295,19 +282,6 @@ export const T = {
     levelB1:         'Середній (можу розмовляти)',
     levelB2:         'Добре (розумію фільми)',
 
-    // Онбординг: персональний план
-    personalPlan:    'Твій персональний план',
-    planForGoal:     (goal: string) => `Ціль: Навчитися англійської для ${goal}`,
-    planIntensity:   (min: number) => `Інтенсивність: ${min} хвилин на день`,
-    yourForecast:    'ТВІЙ ПРОГНОЗ:',
-    currentLevelLabel: 'Поточний рівень:',
-    targetLevelLabel: 'Цільовий рівень:',
-    timeTillGoal:    'Час до цілі:',
-    daysEstimate:    (days: number) => `~${days} днів`,
-    lessonsCount:    (count: number) => `${count} уроків у твоєму темпі`,
-    hoursPerWeek:    (hours: number) => `~${hours} годин на тиждень навчання`,
-    reachTargetBy:   (date: string) => `Ти досягнеш цільового рівня до ${date}`,
-
     // Онбординг: нагадування
     preferredTime:   'Коли зазвичай вільний?',
     setNotifications: 'Нагадувати мені в {time} кожен день',
@@ -393,18 +367,6 @@ export const T = {
     levelB1:         'Intermedio (mantengo conversaciones sencillas)',
     levelB2:         'Intermedio alto (comprendo audio auténtico con contexto)',
 
-    personalPlan:    'Tu plan personal',
-    planForGoal:     (goal: string) => `Objetivo: mejorar tu inglés para ${goal}`,
-    planIntensity:   (min: number) => `Intensidad: ${min} minutos al día`,
-    yourForecast:    'Tu proyección:',
-    currentLevelLabel: 'Nivel actual:',
-    targetLevelLabel: 'Nivel objetivo:',
-    timeTillGoal:    'Tiempo hasta el objetivo:',
-    daysEstimate:    (days: number) => `~${days} días`,
-    lessonsCount:    (count: number) => `${count} lecciones a este ritmo`,
-    hoursPerWeek:    (hours: number) => `~${hours} h semanales de estudio`,
-    reachTargetBy:   (date: string) => `Prevemos que alcanzarás el nivel objetivo hacia el ${date}`,
-
     preferredTime:   '¿A qué hora sueles tener un rato libre?',
     setNotifications: 'Avísame cada día a las {time}',
 
@@ -487,18 +449,6 @@ export const T = {
     levelA2:         'Básico (sei o alfabeto)',
     levelB1:         'Intermediário (consigo conversar)',
     levelB2:         'Bom (entendo filmes)',
-
-    personalPlan:    'Seu plano pessoal',
-    planForGoal:     (goal: string) => `Objetivo: aprender inglês para ${goal}`,
-    planIntensity:   (min: number) => `Intensidade: ${min} minutos por dia`,
-    yourForecast:    'SUA PREVISÃO:',
-    currentLevelLabel: 'Nível atual:',
-    targetLevelLabel: 'Nível-alvo:',
-    timeTillGoal:    'Tempo até o objetivo:',
-    daysEstimate:    (days: number) => `~${days} dias`,
-    lessonsCount:    (count: number) => `${count} lições no seu ritmo`,
-    hoursPerWeek:    (hours: number) => `~${hours} horas por semana de estudo`,
-    reachTargetBy:   (date: string) => `Você deve alcançar o nível-alvo até ${date}`,
 
     preferredTime:   'Quando você costuma ter tempo livre?',
     setNotifications: 'Lembre-me todos os dias às {time}',
@@ -583,18 +533,6 @@ export const T = {
     levelB1:         'Trung cấp (có thể trò chuyện)',
     levelB2:         'Khá tốt (hiểu phim)',
 
-    personalPlan:    'Kế hoạch cá nhân của bạn',
-    planForGoal:     (goal: string) => `Mục tiêu: học tiếng Anh cho ${goal}`,
-    planIntensity:   (min: number) => `Cường độ: ${min} phút mỗi ngày`,
-    yourForecast:    'DỰ BÁO CỦA BẠN:',
-    currentLevelLabel: 'Trình độ hiện tại:',
-    targetLevelLabel: 'Mục tiêu:',
-    timeTillGoal:    'Thời gian đến mục tiêu:',
-    daysEstimate:    (days: number) => `~${days} ngày`,
-    lessonsCount:    (count: number) => `${count} bài theo nhịp của bạn`,
-    hoursPerWeek:    (hours: number) => `~${hours} giờ học mỗi tuần`,
-    reachTargetBy:   (date: string) => `Bạn sẽ đạt mục tiêu vào khoảng ${date}`,
-
     preferredTime:   'Bạn thường rảnh lúc nào?',
     setNotifications: 'Nhắc tôi mỗi ngày lúc {time}',
 
@@ -677,18 +615,6 @@ export const T = {
     levelA2:         'Dasar (tahu alfabet)',
     levelB1:         'Menengah (bisa bercakap-cakap)',
     levelB2:         'Baik (paham film)',
-
-    personalPlan:    'Rencana personalmu',
-    planForGoal:     (goal: string) => `Tujuan: belajar bahasa Inggris untuk ${goal}`,
-    planIntensity:   (min: number) => `Intensitas: ${min} menit per hari`,
-    yourForecast:    'PERKIRAANMU:',
-    currentLevelLabel: 'Level saat ini:',
-    targetLevelLabel: 'Level target:',
-    timeTillGoal:    'Waktu menuju target:',
-    daysEstimate:    (days: number) => `~${days} hari`,
-    lessonsCount:    (count: number) => `${count} pelajaran sesuai ritmemu`,
-    hoursPerWeek:    (hours: number) => `~${hours} jam belajar per minggu`,
-    reachTargetBy:   (date: string) => `Kamu akan mencapai level target sekitar ${date}`,
 
     preferredTime:   'Kapan biasanya kamu punya waktu luang?',
     setNotifications: 'Ingatkan saya setiap hari pukul {time}',
@@ -773,18 +699,6 @@ export const T = {
     levelB1:         'Orta (konuşabiliyorum)',
     levelB2:         'İyi (filmleri anlıyorum)',
 
-    personalPlan:    'Kişisel planın',
-    planForGoal:     (goal: string) => `Hedef: ${goal} için İngilizce öğrenmek`,
-    planIntensity:   (min: number) => `Yoğunluk: günde ${min} dakika`,
-    yourForecast:    'TAHMİNİN:',
-    currentLevelLabel: 'Mevcut seviye:',
-    targetLevelLabel: 'Hedef seviye:',
-    timeTillGoal:    'Hedefe kalan süre:',
-    daysEstimate:    (days: number) => `~${days} gün`,
-    lessonsCount:    (count: number) => `Ritmine göre ${count} ders`,
-    hoursPerWeek:    (hours: number) => `Haftada ~${hours} saat çalışma`,
-    reachTargetBy:   (date: string) => `Hedef seviyeye yaklaşık ${date} tarihinde ulaşırsın`,
-
     preferredTime:   'Genelde ne zaman boş olursun?',
     setNotifications: 'Her gün {time} saatinde hatırlat',
 
@@ -867,18 +781,6 @@ export const T = {
     levelA2:         'Podstawy (znam alfabet)',
     levelB1:         'Średni (mogę rozmawiać)',
     levelB2:         'Dobry (rozumiem filmy)',
-
-    personalPlan:    'Twój osobisty plan',
-    planForGoal:     (goal: string) => `Cel: nauczyć się angielskiego do: ${goal}`,
-    planIntensity:   (min: number) => `Intensywność: ${min} minut dziennie`,
-    yourForecast:    'TWOJA PROGNOZA:',
-    currentLevelLabel: 'Obecny poziom:',
-    targetLevelLabel: 'Poziom docelowy:',
-    timeTillGoal:    'Czas do celu:',
-    daysEstimate:    (days: number) => `~${days} dni`,
-    lessonsCount:    (count: number) => `${count} lekcji w twoim tempie`,
-    hoursPerWeek:    (hours: number) => `~${hours} godzin nauki tygodniowo`,
-    reachTargetBy:   (date: string) => `Osiągniesz poziom docelowy około ${date}`,
 
     preferredTime:   'Kiedy zwykle masz wolną chwilę?',
     setNotifications: 'Przypominaj mi codziennie o {time}',

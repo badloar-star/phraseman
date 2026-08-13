@@ -44,7 +44,6 @@ export type LearningV2CourseAccordionMapModelV1 = Readonly<{
   lessonCount: typeof LEARNING_V2_COURSE_LESSON_COUNT_V1;
   expandedLessonOrdinal: number | null;
   rows: readonly LearningV2CourseAccordionRowV1[];
-  personalPlanPlacement: "separate_optional_surface";
 }>;
 
 function exactExpandedLesson(value: number | null): number | null {
@@ -142,6 +141,5 @@ export function buildLearningV2CourseAccordionMapModelV1(
     lessonCount: LEARNING_V2_COURSE_LESSON_COUNT_V1,
     expandedLessonOrdinal,
     rows: Object.freeze(rows),
-    personalPlanPlacement: "separate_optional_surface",
   });
 }

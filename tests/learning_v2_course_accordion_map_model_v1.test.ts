@@ -59,7 +59,6 @@ describe("Learning V2 owner-current course accordion map model v1", () => {
     ]);
     expect(route[7].role).toBe("chapter_checkpoint");
     expect(route[55].role).toBe("final_exam");
-    expect(model.personalPlanPlacement).toBe("separate_optional_surface");
     expect(JSON.stringify(model)).not.toContain("personal_plan");
   });
 

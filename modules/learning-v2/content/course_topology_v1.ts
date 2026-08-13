@@ -22,14 +22,6 @@ export const LEARNING_V2_LESSON_CHECKPOINT_SESSION_ORDINALS_V1 = Object.freeze([
   8, 16, 24, 32, 40, 48,
 ] as const);
 
-export const LEARNING_V2_PERSONAL_PLAN_POLICY_V1 = Object.freeze({
-  mainCourseCompleteness: "self_contained_without_personal_plan" as const,
-  mainMapPlacement: "not_present" as const,
-  productPlacement: "future_separate_optional_surface" as const,
-  generatorDelivery: "not_in_main_generator" as const,
-  blocksMainGeneratorReadiness: false as const,
-});
-
 export type LearningV2CourseSessionRoleV1 =
   | "guided_learning"
   | "chapter_checkpoint"
@@ -74,7 +66,6 @@ export type LearningV2CourseTopologyV1 = Readonly<{
   }>;
   realContentAuthorship: "owner_only";
   generatorResponsibility: "structure_validation_preview_release_tooling_only";
-  personalPlanPolicy: typeof LEARNING_V2_PERSONAL_PLAN_POLICY_V1;
   topologyFingerprint: string;
 }>;
 
@@ -193,7 +184,6 @@ export function buildLearningV2CourseTopologyV1(): LearningV2CourseTopologyV1 {
     realContentAuthorship: "owner_only" as const,
     generatorResponsibility:
       "structure_validation_preview_release_tooling_only" as const,
-    personalPlanPolicy: LEARNING_V2_PERSONAL_PLAN_POLICY_V1,
   });
 
   return Object.freeze({

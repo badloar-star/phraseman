@@ -35,18 +35,15 @@ describe('purpose-specific playback audio modes', () => {
 
   it('starts in the quiet UI mode while phrase playback requests spoken mode', () => {
     const layoutSource = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
-    const planExerciseSource = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_exercise.tsx'), 'utf8');
     const phraseAudioSource = fs.readFileSync(path.join(ROOT, 'hooks', 'phrase_audio_player.ts'), 'utf8');
 
     expect(layoutSource).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
     expect(layoutSource).not.toContain('setAudioModeAsync(');
-    expect(planExerciseSource).toContain('useManagedSpokenAudioPlayer(');
     expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio)');
   });
 
   it('restores loud playback after every speech-recognition surface settles', () => {
     const speakingPanel = fs.readFileSync(path.join(ROOT, 'components', 'SpeakingPanel.tsx'), 'utf8');
-    const planExercise = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_exercise.tsx'), 'utf8');
     const aiDialog = fs.readFileSync(path.join(ROOT, 'app', 'ai_dialog_session.tsx'), 'utf8');
 
     // Распознавание переводит аудио-сессию в запись (playAndRecord). Каждый
@@ -56,8 +53,6 @@ describe('purpose-specific playback audio modes', () => {
     expect(speakingPanel).toContain('const restoreLoudPlaybackMode = recordingAudio.release');
     expect(aiDialog).toContain('useManagedRecordingAudio(');
     expect(aiDialog).toContain('const restoreLoudPlaybackMode = recordingAudio.release');
-    expect(planExercise).toContain('useManagedRecordingAudio(');
-    expect(planExercise).toContain('const restoreLoudPlaybackMode = recordingAudio.release');
   });
 
   it('switches speaking surfaces into a record-capable session before start()', () => {
@@ -98,17 +93,11 @@ describe('purpose-specific playback audio modes', () => {
 
   it('keeps only the current attempt recording on disk (no voice-file hoarding)', () => {
     const speakingPanel = fs.readFileSync(path.join(ROOT, 'components', 'SpeakingPanel.tsx'), 'utf8');
-    const planExercise = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_exercise.tsx'), 'utf8');
     const aiDialog = fs.readFileSync(path.join(ROOT, 'app', 'ai_dialog_session.tsx'), 'utf8');
 
     // Файл записи живёт до следующей попытки/закрытия панели — потом удаляется.
     expect(speakingPanel).toContain('deleteRecordingFile');
     expect(speakingPanel).toContain('persistRecording: true');
-    // Personal-plan Android must use the recognizer's AudioRecord path, but the
-    // transient wav is deleted on audioend so attempts do not pile up on disk.
-    expect(planExercise).toContain("persistRecording: Platform.OS === 'android'");
-    expect(planExercise).toContain("speechModule.addListener('audioend'");
-    expect(planExercise).toContain('deleteTransientSpeechRecordingFile(uri)');
     // AI dialog has no replay and can still opt out completely.
     expect(aiDialog).toContain('persistRecording: false');
   });
@@ -124,7 +113,6 @@ describe('shared speaking recording audio mode', () => {
   it('keeps runtime audio-mode writes behind the coordinator', () => {
     const runtimeFiles = [
       path.join(ROOT, 'app', 'ai_dialog_session.tsx'),
-      path.join(ROOT, 'app', 'personal_plan_exercise.tsx'),
       path.join(ROOT, 'components', 'SpeakingPanel.tsx'),
       path.join(ROOT, 'components', 'onboarding_aha', 'aha_audio.ts'),
       path.join(ROOT, 'components', 'onboarding_aha', 'SpeechBeat.tsx'),

@@ -44,23 +44,4 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
     expect(contrastRatio(SAGE_PORCELAIN.textPrimary, SAGE_PORCELAIN.bgSurface)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('gives personal-plan screens explicit approved Sage visual roles', () => {
-    const plan = readSource('app', 'personal_plan.tsx');
-    const stats = readSource('app', 'personal_plan_stats_screen.tsx');
-
-    for (const source of [plan, stats]) {
-      expect(source).toContain("if (themeMode === 'sagePorcelain')");
-      expect(source).toContain("bg: ['#DCE1D8', '#CDD5C7', '#BFC8B8']");
-      expect(source).toContain("card: ['#FCFDF9', '#DCE1D8']");
-      expect(source).toContain("accent: '#315F50'");
-      expect(source).toContain("border: '#CFD6CE'");
-      expect(source).toContain("text: '#17201D'");
-      expect(source).toContain("muted: '#52605A'");
-      expect(source).toContain("accentSoft: '#D9E9E1'");
-    }
-
-    expect(plan).toContain("hero: ['#E1E5DC', '#DCE1D8']");
-    expect(plan).toContain("ghost: '#61706A'");
-    expect(plan).toContain("buttonText: '#FFFFFF'");
-  });
 });

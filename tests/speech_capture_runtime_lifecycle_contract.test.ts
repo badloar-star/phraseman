@@ -8,7 +8,6 @@ function source(relativePath: string): string {
 }
 
 const CAPTURE_OWNERS = [
-  'app/personal_plan_exercise.tsx',
   'components/onboarding_aha/SpeechBeat.tsx',
   'components/learning-v2-lab/kimi/use_voice_capture.ts',
   'components/SpeakingPanel.tsx',

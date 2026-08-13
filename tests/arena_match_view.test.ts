@@ -25,6 +25,7 @@ import {
 } from '../modules/arena/match_machine';
 import { arenaLocalPhase } from '../modules/arena/local_clock';
 import { ARENA_ANSWER_MS, ARENA_COMBO_THRESHOLD } from '../modules/arena/stars';
+import { arenaTaskRenderable } from '../modules/arena/task_adapter';
 import * as fs from 'fs';
 import * as path from 'path';
 import { arenaText } from '../modules/arena/copy';
@@ -538,5 +539,67 @@ describe('почему матч не начался — словами, а не 
     expect(source).not.toContain("entryFailure === 'gated' ? 'maintenance' : 'retry'");
     // Соперник, не принявший вызов, называется своим именем.
     expect(source).toContain("setEntryFailure('no_opponent')");
+  });
+});
+
+
+/**
+ * Испорченное задание роняло весь матч.
+ *
+ * Разбор задания бросает исключение, а зовут его во время отрисовки — то есть
+ * падало не задание, а экран целиком, и вместе с ним матч. Машина матча всё
+ * это время умела закрывать такое задание как пропущенное и играть дальше
+ * (`reportBroken`), но узнать о поломке ей было неоткуда: её никто не звал.
+ */
+describe('сломанное задание не уносит матч', () => {
+  const task = (payload: Record<string, unknown>) => ({
+    taskId: 't1',
+    mode: 'guess_phrase' as const,
+    kind: 'choice',
+    difficulty: 1,
+    payload,
+  });
+
+  it('нормальное задание отрисовывается', () => {
+    expect(arenaTaskRenderable(task({ prompt: 'что это', options: ['раз', 'два'] }) as never)).toBe(true);
+  });
+
+  it('задание без вариантов ответа честно признаётся неотрисуемым', () => {
+    expect(arenaTaskRenderable(task({ prompt: 'что это', options: [] }) as never)).toBe(false);
+    expect(arenaTaskRenderable(task({ prompt: 'что это' }) as never)).toBe(false);
+  });
+
+  it('проверка не бросает исключений сама — иначе она бы падала так же, как то, что проверяет', () => {
+    expect(() => arenaTaskRenderable(null as never)).not.toThrow();
+    expect(arenaTaskRenderable(undefined as never)).toBe(false);
+  });
+
+  it('экран матча спрашивает до отрисовки и закрывает задание как пропущенное', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    expect(source).toContain('arenaTaskRenderable');
+    expect(source).toContain('reportBroken');
+    expect(source).toContain("'taskBroken'");
+  });
+});
+
+/**
+ * Отмена поиска уходила домой ДАЖЕ ЕСЛИ отмена не прошла: игрок был уверен,
+ * что вышел из очереди, а сервер продолжал его искать. В рейтинге это кончалось
+ * матчем, который начался без него, то есть поражением ни за что.
+ */
+describe('отмена поиска не притворяется удавшейся', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('домой уходим только после успешной отмены', () => {
+    expect(source).not.toContain("arenaV2QueueCancel(requestId).finally(() => router.replace('/arena' as never))");
+    expect(source).toContain('cancelFailed');
+  });
+
+  it('игроку сказано, что он всё ещё в очереди и что она отпустит сама', () => {
+    for (const lang of langs) {
+      expect(arenaText(lang, 'cancelFailed').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'cancelFailedHint').length).toBeGreaterThan(0);
+    }
   });
 });

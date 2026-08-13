@@ -6,8 +6,6 @@ import path from 'path';
 const screens = [
   'app/club_screen.tsx',
   'app/lesson_menu.tsx',
-  'app/personal_plan.tsx',
-  'app/personal_plan_stats_screen.tsx',
   'app/streak_stats.tsx',
   'app/trainer.tsx',
 ];
@@ -21,8 +19,7 @@ describe('bouncy screen chrome contract', () => {
     const layerEnd = source.indexOf('</Reanimated.View>', wrapEnd);
 
     // зачем: проверяем сам факт дефолтного импорта Reanimated, а не точную строку.
-    // Буквальное сравнение падало на живых экранах (streak_stats,
-    // personal_plan_stats_screen), где импорт с именованными членами:
+    // Буквальное сравнение падало на живых экранах, где импорт с именованными членами:
     // `import Reanimated, { FadeInDown, ... } from 'react-native-reanimated'`.
     expect(source).toMatch(/import Reanimated(?:,\s*\{[^}]*\})?\s+from 'react-native-reanimated';/);
     expect(source).not.toContain('<BouncyWrap style={bouncyStyle}>');

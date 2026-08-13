@@ -67,15 +67,8 @@ describe('Compass Center release boundary', () => {
     }
   });
 
-  test('legacy overlay safety and standalone Personal Plans remain intact', () => {
+  test('legacy overlay safety remains intact', () => {
     const overlay = read('components/overlay_arbiter_core.ts');
-    const rootLayout = read('app/_layout.tsx');
     expect(overlay).toContain("'compassBriefing'");
-    expect(exists('app/personal_plan.tsx')).toBe(true);
-    expect(exists('app/personal_plan_state.ts')).toBe(true);
-    expect(exists('app/personal_plan_catalog.ts')).toBe(true);
-    expect(exists('app/personal_plan_exercise.tsx')).toBe(true);
-    expect(rootLayout).toContain('name="personal_plan"');
-    expect(rootLayout).toContain('name="personal_plan_complete"');
   });
 });

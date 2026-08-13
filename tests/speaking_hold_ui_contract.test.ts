@@ -8,7 +8,6 @@ const panel = read('components/SpeakingPanel.tsx');
 const wordDrill = read('components/WordDrillCard.tsx');
 const onboarding = read('components/onboarding_aha/SpeechBeat.tsx');
 const onboardingCopy = read('components/onboarding_aha/aha_scenes.ts');
-const personalPlan = read('app/personal_plan_exercise.tsx');
 const dialog = read('app/ai_dialog_session.tsx');
 
 describe('canonical speaking push-to-talk UI contract', () => {
@@ -46,17 +45,6 @@ describe('canonical speaking push-to-talk UI contract', () => {
     expect(onboarding).toContain("permission === 'granted_after_prompt'");
   });
 
-  it('uses the same hold gesture in the personal-plan pronunciation exercise', () => {
-    expect(personalPlan).toContain('const holdMode = Boolean(speechModule)');
-    expect(personalPlan).not.toContain('holdMode={holdMode}');
-    expect(personalPlan).toContain('onPressIn={startUnifiedHold}');
-    expect(personalPlan).toContain('stopUnifiedHold();');
-    expect(personalPlan).toContain('preparing={pronunciationPreparing}');
-    expect(personalPlan).toContain("holdToTalk: !pcmHoldModeRef.current");
-    expect(personalPlan).toContain("? 'Готовлю микрофон… удерживай кнопку'");
-    expect(personalPlan).toContain("permission === 'granted_after_prompt'");
-  });
-
   it('uses hold for word drill and never exposes a tap-to-record branch', () => {
     expect(wordDrill).toContain('const repeatHandlers = { onPressIn: onHoldStart, onPressOut: onHoldEnd }');
     expect(wordDrill).not.toContain('tap-to-record');
@@ -76,12 +64,11 @@ describe('canonical speaking push-to-talk UI contract', () => {
   });
 
   it('restores loud playback and cues only from real microphone activity', () => {
-    for (const source of [panel, onboarding, personalPlan, dialog]) {
+    for (const source of [panel, onboarding, dialog]) {
       expect(source).toContain('playRecordStart');
     }
     expect(panel).toContain('restoreLoudPlaybackMode');
     expect(onboarding).toContain('restoreLoudPlayback');
-    expect(personalPlan).toContain('restoreLoudPlaybackMode');
     expect(dialog).toContain('restoreLoudPlaybackMode');
   });
 

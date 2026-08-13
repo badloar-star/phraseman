@@ -9,7 +9,6 @@ describe('visible-result surface integration', () => {
   // удалены вместе с этими фичами; живые экраны ниже сохраняют проверку модели.
   test.each([
     'app/lesson_complete.tsx',
-    'app/personal_plan_complete.tsx',
   ])('%s builds a confirmed completion model', (file) => {
     const source = read(file);
     expect(source).toContain('buildProgressCompletionModel');

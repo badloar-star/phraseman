@@ -4,6 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { FadeIn, FadeInDown, SlideInRight, ZoomIn } from 'react-native-reanimated';
 
+import { arenaTaskRenderable } from '../modules/arena/task_adapter';
 import { arenaOutboxClassify } from '../modules/arena/result_outbox';
 import { arenaOutboxEnqueue } from '../modules/arena/outbox_storage';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
@@ -326,6 +327,25 @@ export default function ArenaMatchScreen() {
     }
   }, [match, playSound]);
 
+  /**
+   * Можно ли вообще нарисовать текущее задание. Считается ДО отрисовки: разбор
+   * задания бросает исключение, и внутри отрисовки оно уносит весь матч.
+   */
+  const taskRenderable = useMemo(
+    () => (hud?.task ? arenaTaskRenderable(arenaPlanTaskToPublic(hud.task)) : true),
+    [hud?.task],
+  );
+
+  // Сломанное задание закрывается как пропущенное — ровно один раз на задание.
+  const brokenReportedRef = useRef<number | null>(null);
+  useEffect(() => {
+    const taskIndex = hud?.task?.taskIndex;
+    if (!match || taskRenderable || typeof taskIndex !== 'number') return;
+    if (brokenReportedRef.current === taskIndex) return;
+    brokenReportedRef.current = taskIndex;
+    match.reportBroken(taskIndex);
+  }, [match, hud?.task?.taskIndex, taskRenderable]);
+
   const onSubmit = useCallback((answer: unknown) => {
     const correct = match?.answer(answer);
     // Звук берётся из ВЕРДИКТА, который уже посчитан локально: сети между
@@ -446,13 +466,28 @@ export default function ArenaMatchScreen() {
             </View>
           </View>
 
-          <ArenaQuestion
-            task={arenaPlanTaskToPublic(hud.task)}
-            locked={!hud.interactive}
-            submitLabel={arenaText(lang, 'submit')}
-            onSubmit={onSubmit}
-            onSpeedAttempt={onSpeedAttempt}
-          />
+          {/*
+            Испорченное задание раньше роняло ВЕСЬ экран: разбор задания бросает
+            исключение, а зовут его во время отрисовки. Машина матча умеет
+            закрывать такое задание как сломанное и играть дальше — просто
+            никто ей об этом не сообщал.
+          */}
+          {taskRenderable ? (
+            <ArenaQuestion
+              task={arenaPlanTaskToPublic(hud.task)}
+              locked={!hud.interactive}
+              submitLabel={arenaText(lang, 'submit')}
+              onSubmit={onSubmit}
+              onSpeedAttempt={onSpeedAttempt}
+            />
+          ) : (
+            <View style={styles.center}>
+              <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+                {arenaText(lang, 'taskBroken')}
+              </Text>
+              <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'taskBrokenHint')}</Text>
+            </View>
+          )}
 
           {/* Разбор награды: почему звёзд именно столько, а не больше. */}
           {hud.award ? (

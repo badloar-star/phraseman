@@ -798,7 +798,7 @@ function DailyPhraseCard({
               showsVerticalScrollIndicator={false}
             >
               {!questAnswered && (
-                <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.questBlock, { borderColor: t.border }]}>
+                <View style={styles.questBlock}>
                   <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
                     {triLang(lang, {
                       ru: 'Что это значит?',
@@ -843,7 +843,7 @@ function DailyPhraseCard({
                         </Pressable>
                       ))}
                   </View>
-                </TonalSurface>
+                </View>
               )}
 
               {showQuestExplanation && (
@@ -1196,9 +1196,7 @@ const styles = StyleSheet.create({
     width: 4,
   },
   questBlock: {
-    borderRadius: 16,
-    borderWidth: 0,
-    padding: 13,
+    padding: 0,
   },
   questQuestion: {
     fontWeight: '900',

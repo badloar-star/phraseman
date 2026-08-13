@@ -14,11 +14,6 @@ describe('process-wide audio ownership wiring', () => {
     expect(read('components', 'onboarding_aha', 'aha_audio.ts')).toContain('claimAmbientAudio(');
     expect(read('components', 'SpeakingPanel.tsx')).toContain('claimSpokenAudio(');
     expect(read('components', 'onboarding_aha', 'SpeechBeat.tsx')).toContain('claimSpokenAudio(');
-
-    const plan = read('app', 'personal_plan_exercise.tsx');
-    expect(plan.match(/useManagedSpokenAudioPlayer\(/g)).toHaveLength(3);
-    expect(plan).not.toContain('answerAudioPlayer.play()');
-    expect(plan).not.toContain('targetAudioPlayer.play()');
   });
 
   it('makes delayed play calls prove that their ownership claim is still current', () => {
@@ -50,9 +45,6 @@ describe('process-wide audio ownership wiring', () => {
     const aiDialog = read('app', 'ai_dialog_session.tsx');
     expect(aiDialog).toContain('useManagedRecordingAudio(');
     expect(aiDialog).toContain('await recordingAudio.begin()');
-    const plan = read('app', 'personal_plan_exercise.tsx');
-    expect(plan).toContain('useManagedRecordingAudio(');
-    expect(plan).toContain('await recordingAudio.begin()');
   });
 
   it('disposes raw replay players and listeners after natural completion', () => {

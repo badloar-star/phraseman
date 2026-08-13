@@ -19,22 +19,6 @@ describe('speech capture callbacks stay owned by the session that created them',
     expect(source).toContain('safeCall(() => player.play())');
   });
 
-  test('personal-plan playback teardown cannot mark an interrupted clip heard', () => {
-    const source = read('app/personal_plan_exercise.tsx');
-    expect(source).toMatch(/finishTargetPlayback = useCallback\(\(playbackGeneration: number\)[\s\S]{0,220}playbackGeneration !== targetPlaybackGenerationRef\.current/);
-    const lifecycle = source.slice(source.indexOf('// Speech capture lifecycle invariant:'), source.indexOf('// Recognition result'));
-    expect(lifecycle).toContain('targetPlaybackGenerationRef.current += 1');
-    expect(lifecycle).toContain('setPronunciationSpeakingTarget(false)');
-    expect(lifecycle).not.toContain('setPronunciationHeardTarget(true)');
-  });
-
-  test('personal-plan native listeners are rebound to a concrete capture generation', () => {
-    const source = read('app/personal_plan_exercise.tsx');
-    expect(source).toContain('installRecognitionListenersRef.current(captureGeneration)');
-    expect(source).toMatch(/const installRecognitionListeners = \(captureGeneration: number\)[\s\S]{0,300}captureGeneration === captureGenerationRef\.current/);
-    expect(source).toMatch(/const finishAttempt = \(attemptGen\?: number\) => \{\s*if \(!isCurrentSession\(\)\) return/);
-  });
-
   test('SpeakingPanel gates word settlement, onPass path, and auto-advance by session', () => {
     const source = read('components/SpeakingPanel.tsx');
     expect(source).toMatch(/const settle = \(\) => \{\s*if \(!isCurrentSession\(\)\) return/);

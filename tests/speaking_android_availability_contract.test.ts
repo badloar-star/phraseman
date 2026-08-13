@@ -4,11 +4,6 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
 
-// personal_plan_exercise.tsx хранит русские строки как \uXXXX-эскейпы — приводим
-// исходник к читаемому виду, чтобы контракт сверял человеческий текст.
-const decodeUnicodeEscapes = (source: string) =>
-  source.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
-
 function expectBefore(source: string, earlier: string, later: string) {
   const earlierIndex = source.indexOf(earlier);
   expect(earlierIndex).toBeGreaterThanOrEqual(0);
@@ -43,20 +38,6 @@ describe('speaking Android recognizer availability contract', () => {
     expect(source).toContain("status === 'stalled'");
   });
 
-  it('arms a watchdog so a silent recognizer cannot hang personal-plan pronunciation', () => {
-    const source = read('app', 'personal_plan_exercise.tsx');
-
-    // Same failure mode as SpeakingPanel: Android accepts start() but never emits
-    // start/result/error — without a timer «Слушаю — говори» would spin forever.
-    expect(source).toContain('recognizerWatchdogRef');
-    expect(source).toContain('setPronunciationStalled(true)');
-    // Watchdog must be armed at start() and cleared on any sign of engine life.
-    expectBefore(source, 'recognizerWatchdogRef.current = setTimeout(', 'speechModule.start(');
-    expect(source).toContain("speechModule.addListener('start'");
-    // stalled shows a retry hint; the mic button stays enabled for another attempt.
-    expect(decodeUnicodeEscapes(source)).toContain('Не удалось запустить микрофон');
-  });
-
   it('arms a watchdog so a silent recognizer cannot hang AI dialog voice input', () => {
     const source = read('app', 'ai_dialog_session.tsx');
 
@@ -69,21 +50,11 @@ describe('speaking Android recognizer availability contract', () => {
     expect(source).toContain("voiceInputStatus === 'stalled'");
   });
 
-  it('checks recognizer availability before starting personal-plan pronunciation', () => {
-    const source = read('app', 'personal_plan_exercise.tsx');
-
-    expect(source).toContain('isSpeechRecognitionAvailable,');
-    expect(source).toContain('loadPlanSpeechModule,');
-    expect(source).toContain("setBlocked('unavailable')");
-    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'requestSpeechPermissionForHold(speechModule)');
-    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'speechModule.start(');
-  });
-
   it('checks recognizer availability before starting AI dialog voice input', () => {
     const source = read('app', 'ai_dialog_session.tsx');
 
     expect(source).toContain('isSpeechRecognitionAvailable,');
-    expect(source).toContain('loadPlanSpeechModule,');
+    expect(source).toContain('loadSpeechRecognitionModule,');
     expect(source).toContain("setVoiceInputStatus('unavailable')");
     expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'requestSpeechPermissionForHold(speechModule)');
     expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'speechModule.start(');

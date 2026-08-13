@@ -8,7 +8,7 @@ describe('premium motivation gates contract', () => {
   it('keeps AI dialog voice input and final error analysis Plus-only', () => {
     const source = read('app', 'ai_dialog_session.tsx');
 
-    expect(source).toContain('loadPlanSpeechModule');
+    expect(source).toContain('loadSpeechRecognitionModule');
     expect(source).toContain("source: 'ai_dialog_voice_input'");
     expect(source).toContain("context: 'ai_voice_input'");
     expect(source).toContain('AI-разбор ошибок — в Plus');

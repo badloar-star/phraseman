@@ -64,9 +64,9 @@ jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
   whenRecordingAudioReady: jest.fn(async () => true),
 }));
 jest.mock('../app/remote_flags', () => ({ isSpeakingEnabled: () => true }));
-jest.mock('../app/personal_plan_speech_module', () => ({
+jest.mock('../app/speech_recognition_module', () => ({
   isSpeechRecognitionAvailable: () => true,
-  loadPlanSpeechModule: () => mockSpeech,
+  loadSpeechRecognitionModule: () => mockSpeech,
   requestSpeechPermissionForHold: jest.fn(async () => 'granted'),
 }));
 jest.mock('../components/onboarding_aha/aha_events', () => ({ trackAhaEvent: jest.fn() }));

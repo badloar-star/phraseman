@@ -40,7 +40,7 @@ const exactFiles = [
 
 const roots = ['app', 'components', 'constants', 'functions/src'];
 const allowedExtensions = new Set(['.ts', '.tsx', '.js', '.mjs', '.json', '.md', '.html']);
-const excluded = /(?:^|\/)(?:node_modules|lib|generated|__snapshots__|fixtures|test-results)(?:\/|$)|(?:\.test|\.spec)\.[^.]+$|(?:^|\/)(?:admin|scripts\/ai-pr-reviewer)(?:\/|$)|(?:^|\/)app\/(?:plan_content_|dictionary_|phrase_db|diagnosis_training_|.*_content_bank)/;
+const excluded = /(?:^|\/)(?:node_modules|lib|generated|__snapshots__|fixtures|test-results)(?:\/|$)|(?:\.test|\.spec)\.[^.]+$|(?:^|\/)(?:admin|scripts\/ai-pr-reviewer)(?:\/|$)|(?:^|\/)app\/(?:dictionary_|phrase_db|diagnosis_training_|.*_content_bank)/;
 
 function walk(relativeDir, out) {
   const absolute = path.join(ROOT, relativeDir);

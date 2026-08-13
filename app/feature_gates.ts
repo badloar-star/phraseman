@@ -28,6 +28,7 @@ export type FeatureGate =
   | 'smart_trainer'
   | 'trainer_modes'
   | 'diagnosis_training'
+  | 'personal_plan'
   | 'stats'
   | 'flashcards'
   | 'themes'
@@ -44,6 +45,7 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   smart_trainer: 'gate_smart_trainer_premium',
   trainer_modes: 'gate_trainer_modes_premium',
   diagnosis_training: 'gate_diagnosis_training_premium',
+  personal_plan: 'gate_personal_plan_premium',
   stats: 'gate_stats_premium',
   flashcards: 'gate_flashcards_premium',
   themes: 'gate_themes_premium',

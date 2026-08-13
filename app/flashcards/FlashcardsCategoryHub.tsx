@@ -390,8 +390,6 @@ export default function FlashcardsCategoryHub({
   );
 
   /** «Мои наборы»: добавленные официальные (легаси-владение) + свои/добавленные UGC. */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- оставлено: используется
-  // экраном «Мои наборы» через тот же источник владения; здесь секция убрана намеренно.
   const mineOwnedPacks = useMemo(() => {
     const catalogOwnedOrdered = marketPacks.filter((p) => ownedPackIds.includes(p.id));
     const catalogIds = new Set(marketPacks.map((p) => p.id));
@@ -547,7 +545,6 @@ export default function FlashcardsCategoryHub({
   };
 
   /** Плитка «Мои наборы» — открывает набор карточек. */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderOwnedPackTile = (pack: FlashcardMarketPack) => {
     const displayTitle = packTitleForInterface(pack, lang);
     const hubCode = packHubCodeName(pack);
@@ -850,9 +847,20 @@ export default function FlashcardsCategoryHub({
         </Text>
       </Reanimated.View>
 
-      {/* ── 2. «Мои наборы» переехали на отдельный экран `/flashcards/my_packs`
-           (таббар → «Наборы» → «Мои наборы»). Здесь — только каталог сообщества,
-           чтобы это были два разных раздела, а не один смешанный список. ── */}
+      {/* ── 2. «Мои наборы» ── */}
+      {mineOwnedPacks.length > 0 ? (
+        <Reanimated.View {...enterProps(1)} style={sectionGapStyle}>
+          <Text style={sectionHeaderStyle}>
+            {triLang(lang, {
+              ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
+              'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
+            })}
+          </Text>
+          <View style={{ width: hubBarW, flexDirection: 'row', flexWrap: 'wrap', gap: GAP, justifyContent: 'flex-start' }}>
+            {mineOwnedPacks.map(renderOwnedPackTile)}
+          </View>
+        </Reanimated.View>
+      ) : null}
 
       {/* ── 3. Каталог сообщества ── */}
       {cloudCommunityEnabled ? (

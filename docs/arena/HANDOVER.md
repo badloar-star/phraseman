@@ -23,8 +23,6 @@ Production-конфиг не создавался, Functions/Firestore/прил�
 | Награды за тир | `modules/arena/tier_rewards.ts` + `functions/src/arena_tier_rewards.ts` |
 | Машина матча на устройстве | `modules/arena/match_machine.ts`, `modules/arena/match_store.ts`, `hooks/use_arena_local_match.ts` |
 | Разбор плана и живой канал | `modules/arena/duel_plan.ts`, `modules/arena/live_channel.ts` |
-| Очередь отправки результатов | `modules/arena/result_outbox.ts` (политика), `modules/arena/outbox_storage.ts` (диск и досылка) |
-| Состояния экранов | `modules/arena/load_state.ts`, `modules/arena/expansion_state.ts` |
 | Конфиг и админка | `functions/src/arena_config_contract.ts`, `functions/src/admin_arena_config.ts`, `admin/arena-config.html` |
 | Pure product/core | `functions/src/arena_v2_core.ts`, `functions/src/arena_expansion_core.ts` |
 | Callables/scheduler | `functions/src/arena_v2.ts`, `functions/src/arena_expansion.ts`, export в `functions/src/index.ts` |
@@ -272,12 +270,6 @@ Auth связывается с stable identity; hidden/deleted/banned caller о�
 | `arenaStarStore` | `{}` | versioned catalog, own wallet/entitlements/equipment |
 | `arenaStarPurchase` | `{itemId, catalogVersion, requestId}` | permanent entitlement, exact wallet debit |
 | `arenaStarEquip` | `{itemId, slot, requestId}` | entitlement-checked equipment update |
-
-Отчёт, не ушедший с первого раза, сохраняется на устройстве и досылается тем же
-`arenaV2MatchFinish` с тем же `reportId` — повтор идемпотентен и второй раз не
-начисляет. Досылка зовётся с хаба и с экрана результата; фонового расписания
-нет намеренно. Отсутствие сети попыток не тратит и запись не выбрасывает,
-отказ по существу — выбрасывает, устаревший клиент откладывает до обновления.
 
 `arenaV2SubmitAnswer`, `arenaV2SubmitSpeedAttempt` и `arenaV2SyncMatch` в матче
 v3 не вызываются: во время игры устройство к серверу не обращается вовсе. Они

@@ -121,6 +121,7 @@ export type RemoteBoolKey =
   | 'gate_smart_trainer_premium'
   | 'gate_trainer_modes_premium'
   | 'gate_diagnosis_training_premium'
+  | 'gate_personal_plan_premium'
   | 'gate_stats_premium'
   | 'gate_flashcards_premium'
   | 'gate_themes_premium'
@@ -347,6 +348,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_smart_trainer_premium: true,
   gate_trainer_modes_premium: true,
   gate_diagnosis_training_premium: true,
+  gate_personal_plan_premium: true,
   gate_stats_premium: true,
   gate_flashcards_premium: true,
   gate_themes_premium: true,
@@ -937,6 +939,7 @@ export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premiu
 export const isSmartTrainerPremiumGated = () => getRemoteBool('gate_smart_trainer_premium');
 export const isTrainerModesPremiumGated = () => getRemoteBool('gate_trainer_modes_premium');
 export const isDiagnosisTrainingPremiumGated = () => getRemoteBool('gate_diagnosis_training_premium');
+export const isPersonalPlanPremiumGated = () => getRemoteBool('gate_personal_plan_premium');
 export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
 export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
 export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');

@@ -169,7 +169,7 @@ const CONTEXT_PRACTICE_GROUP: Partial<Record<PremiumContext, PracticeGroup>> = {
   stats: 'insight', heatmap: 'insight', patterns: 'insight', percentiles: 'insight', weekly_review: 'insight',
   theme: 'identity', avatar_aura: 'identity', club: 'identity', language_add: 'identity',
   course_after_lesson3: 'course', free_lessons_complete: 'course', lesson_b1: 'course',
-  no_energy: 'course', streak: 'course',
+  no_energy: 'course', streak: 'course', personal_plan: 'course',
 };
 type PracticeLineDict = { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string };
 const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {

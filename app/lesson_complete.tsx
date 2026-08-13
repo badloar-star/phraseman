@@ -725,6 +725,7 @@ export default function LessonComplete() {
 
   const runSoftUpsellCta = useMemo(() => createLessonSoftUpsellCtaHandler({
     onCta: softUpsell.onCta,
+    navigatePersonal: () => router.push('/personal_plan_setup' as any),
     navigatePaywall: () => router.push({
           pathname: '/premium_modal',
           params: {

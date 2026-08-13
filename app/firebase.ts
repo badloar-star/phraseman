@@ -43,7 +43,7 @@ export async function applyAnalyticsCollectionConsent(enabled = isAnalyticsConse
 function paywallSourceForContext(context: string): 'settings' | 'onboarding' | 'automatic' {
   const c = String(context || '').toLowerCase();
   if (c === 'settings' || c === 'manage') return 'settings';
-  if (c.includes('onboarding') || c === 'intro_ended') return 'onboarding';
+  if (c.includes('onboarding') || c === 'personal_plan' || c === 'intro_ended') return 'onboarding';
   return 'automatic';
 }
 

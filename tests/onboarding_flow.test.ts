@@ -67,6 +67,7 @@ describe('configurable onboarding flow', () => {
       expect(decision).toEqual({
         destination,
         preparePaywall: paywallEffects,
+        createPendingPlan: paywallEffects,
         trackPaywallView: paywallEffects,
       });
     },
@@ -80,6 +81,7 @@ describe('configurable onboarding flow', () => {
     expect(decideOnboardingTransition(order, 'startMode')).toEqual({
       destination: 'onboardingPaywall',
       preparePaywall: true,
+      createPendingPlan: true,
       trackPaywallView: true,
     });
   });
@@ -93,7 +95,8 @@ describe('configurable onboarding flow', () => {
     let release!: () => void;
     const gate = new Promise<void>((resolve) => { release = resolve; });
     const effects = {
-      preparePaywall: jest.fn(() => gate),
+      createPendingPlan: jest.fn(() => gate),
+      preparePaywall: jest.fn(),
       trackPaywallView: jest.fn(),
     };
     const busy = { current: false };
@@ -102,6 +105,7 @@ describe('configurable onboarding flow', () => {
     const second = runOnboardingTransitionEffects(decision, busy, effects);
     release();
     await Promise.all([first, second]);
+    expect(effects.createPendingPlan).toHaveBeenCalledTimes(1);
     expect(effects.preparePaywall).toHaveBeenCalledTimes(1);
     expect(effects.trackPaywallView).toHaveBeenCalledTimes(1);
   });

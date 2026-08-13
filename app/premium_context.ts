@@ -38,6 +38,7 @@ export type PremiumContext =
   | 'heatmap'
   | 'patterns'
   | 'percentiles'
+  | 'personal_plan'
   /** Закончился 72-часовой intro full-access — главный момент конверсии. */
   | 'intro_ended'
   /** After-win апсейл после повышения уровня (план #3). */
@@ -89,6 +90,7 @@ export const PREMIUM_CONTEXT_VALUES = [
   'heatmap',
   'patterns',
   'percentiles',
+  'personal_plan',
   'intro_ended',
   'level_up',
   'smart_trainer',

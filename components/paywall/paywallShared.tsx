@@ -215,6 +215,7 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   heatmap: 'grid',
   patterns: 'analytics',
   percentiles: 'podium',
+  personal_plan: 'map',
   intro_ended: 'hourglass',
   level_up: 'trending-up',
   premium_expired: 'refresh-circle',

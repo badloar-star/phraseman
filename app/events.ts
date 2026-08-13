@@ -1,5 +1,6 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
+import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { SoundEventId } from '../modules/audio/sound_events';
 
@@ -78,6 +79,8 @@ export type AppEventMap = {
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
+  personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
+  personal_plan_onboarding_nickname_ready: undefined;
   energy_purchased_shards: undefined;
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };
@@ -127,7 +130,7 @@ export type AppEventMap = {
   /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
   dialogs_progress_changed: undefined;
   /**
-   * Юзер зашёл в урок (любым путём: меню или повтор) — карточка
+   * Юзер зашёл в урок (любым путём: меню, личный план, повтор) — карточка
    * «Продолжить урок X» на Главной обязана смениться СРАЗУ, не дожидаясь возврата на таб
    * или полного loadData(). lesson1.tsx эмитит сразу при входе, home.tsx патчит lastLesson точечно.
    */

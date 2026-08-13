@@ -39,7 +39,8 @@ const DEFAULT_EDGE = '#15803D';
  * края экрана, поверх контента. Внутри — DuoPressable с коротким press-откликом
  * без декоративной обводки.
  *
- * Точки внедрения (см. BUTTON_AUDIT): review.tsx, diagnostic_test.tsx.
+ * Точки внедрения (см. BUTTON_AUDIT): review.tsx, personal_plan_exercise.tsx,
+ * diagnostic_test.tsx.
  *
  * При visible=false монтируется, но уезжает за нижний край (pointerEvents none),
  * чтобы анимация ухода тоже играла. Рендерь его всегда, управляй через visible.

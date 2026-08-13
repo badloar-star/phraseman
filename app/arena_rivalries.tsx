@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { ArenaProgress, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
+import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
@@ -25,16 +25,9 @@ export default function ArenaRivalriesScreen() {
   const [items, setItems] = useState<readonly ArenaRivalrySummary[]>([]);
   const [busyId, setBusyId] = useState<string | null>(null);
   const requestIds = useRef(new Map<string, string>());
-  /**
-   * Отказ ДЕЙСТВИЯ отдельно от отказа загрузки: сорвавшийся вызов или выход из
-   * серии писали `state = 'error'`, и экран показывал «не удалось загрузить» —
-   * то есть предлагал перезагрузку вместо повтора действия.
-   */
-  const [actionFailed, setActionFailed] = useState(false);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('rivalry', params.sourceMatchId ? 'result' : 'direct')); }, [params.sourceMatchId]);
   const load = useCallback(() => {
     setState('loading');
-    setActionFailed(false);
     void arenaExpansionHome().then((home) => {
       if (!home.availability.rival) { setState('unavailable'); return; }
       setItems(home.rivalries);
@@ -47,12 +40,11 @@ export default function ArenaRivalriesScreen() {
     const requestId = requestIds.current.get(key) ?? createArenaRequestId('rival');
     requestIds.current.set(key, requestId);
     setBusyId(key);
-    setActionFailed(false);
     void action(requestId).then((response) => {
       requestIds.current.delete(key);
       if (response.activeMatchId) router.push({ pathname: '/arena_match', params: { matchId: response.activeMatchId, viewerSeat: response.viewerSeat } } as never);
       else load();
-    }).catch(() => setActionFailed(true)).finally(() => setBusyId(null));
+    }).catch(() => setState('error')).finally(() => setBusyId(null));
   };
   const propose = () => params.sourceMatchId && run(`propose:${params.sourceMatchId}`, (requestId) => arenaRivalPropose(params.sourceMatchId as string, requestId));
 
@@ -63,7 +55,7 @@ export default function ArenaRivalriesScreen() {
         data={items}
         keyExtractor={(item) => item.rivalryId}
         contentContainerStyle={styles.list}
-        ListHeaderComponent={<View style={styles.header}>{state === 'error' ? <ArenaStateNotice state="error" onRetry={load} /> : null}{actionFailed ? <ArenaStateCard state="error" title={arenaExpansionText(lang, 'actionFailed')} body={arenaExpansionText(lang, 'actionFailedHint')} /> : null}{params.sourceMatchId ? <V2Cta disabled={['loading', 'unavailable', 'error'].includes(state) || Boolean(busyId)} onPress={propose}>{arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}</View>}
+        ListHeaderComponent={<View style={styles.header}>{state === 'error' ? <ArenaStateNotice state="error" onRetry={load} /> : null}{params.sourceMatchId ? <V2Cta disabled={['loading', 'unavailable', 'error'].includes(state) || Boolean(busyId)} onPress={propose}>{arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}</View>}
         ListEmptyComponent={<View style={styles.center}><ArenaStateNotice state={state === 'ready' ? 'empty' : state} emptyHint="emptyRivalry" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>}
         renderItem={({ item }) => {
           const score = arenaExpansionText(lang, 'score').replace('{you}', String(item.viewerWins)).replace('{them}', String(item.opponentWins));

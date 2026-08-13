@@ -39,26 +39,33 @@ const stripLineComments = (src: string): string =>
 
 describe('onboarding ← paywall return: no home flash, no 4s stall', () => {
   it('continue_free during onboarding does NOT navigate to home', () => {
-    const start = purchase.indexOf("if (source === 'onboarding')", purchase.indexOf('const doClose'));
+    const start = purchase.indexOf("if (source === 'onboarding_plan')");
     expect(start).toBeGreaterThan(-1);
     // тело ветки до её return
     const end = purchase.indexOf('return;', start) + 'return;'.length;
     const branch = stripLineComments(purchase.slice(start, end));
-    expect(branch).toContain("emitAppEvent('onboarding_paywall_completed')");
+    expect(branch).toContain("emitAppEvent('personal_plan_onboarding_nickname_ready')");
     expect(branch).not.toContain("router.replace('/(tabs)/home'");
   });
 
   it('successful onboarding purchase return does NOT navigate to home', () => {
-    const start = purchase.indexOf('const finishOnboardingPaywallFlow');
+    const start = purchase.indexOf('const finishPersonalPlanActivationFlow');
     expect(start).toBeGreaterThan(-1);
-    const end = purchase.indexOf('}, [refillToMax]);', start);
+    const end = purchase.indexOf('}, [reloadEnergy, router]);', start);
     const fn = stripLineComments(purchase.slice(start, end));
-    expect(fn).toContain("emitAppEvent('onboarding_paywall_completed')");
-    expect(fn).not.toContain("router.replace('/(tabs)/home'");
+    // в онбординг-ветке (pendingNickname === '1') эмитим событие, но НЕ идём на home
+    const nickStart = fn.indexOf("if (pendingNickname === '1')");
+    expect(nickStart).toBeGreaterThan(-1);
+    const nickEnd = fn.indexOf('return;', nickStart) + 'return;'.length;
+    const nickBranch = fn.slice(nickStart, nickEnd);
+    expect(nickBranch).toContain("emitAppEvent('personal_plan_onboarding_nickname_ready')");
+    expect(nickBranch).not.toContain("router.replace('/(tabs)/home'");
+    // обычная (не-онбординг) покупка по-прежнему ведёт на thank-you
+    expect(fn).toContain("router.replace('/personal_plan_thank_you' as any)");
   });
 
   it('layout listener raises the onboarding overlay synchronously before any await', () => {
-    const start = layout.indexOf("onAppEvent('onboarding_paywall_completed'");
+    const start = layout.indexOf("onAppEvent('personal_plan_onboarding_nickname_ready'");
     expect(start).toBeGreaterThan(-1);
     const end = layout.indexOf('return () => sub.remove();', start);
     // Вырезаем построчные // комментарии, чтобы слово "await" в пояснении не давало
@@ -82,7 +89,7 @@ describe('onboarding ← paywall return: no home flash, no 4s stall', () => {
   // шаге «Имя» стартуем синхронно — step='name' и onboardingEntryReady=true в
   // первом рендере, A/B-вариант берём из peekStableId() (кэш в памяти, без await).
   it('layout marks the re-shown onboarding to start synchronously at the name step', () => {
-    const start = layout.indexOf("onAppEvent('onboarding_paywall_completed'");
+    const start = layout.indexOf("onAppEvent('personal_plan_onboarding_nickname_ready'");
     const end = layout.indexOf('return () => sub.remove();', start);
     const body = layout.slice(start, end);
     expect(body).toContain('setOnboardingStartAtName(true)');

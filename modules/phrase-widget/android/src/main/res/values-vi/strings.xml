@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">Cụm từ hôm nay từ Phraseman</string>
-    <string name="phrase_widget_kicker">CỤM TỪ HÔM NAY</string>
+    <string name="phrase_widget_description">Cụm từ đã lưu và tự tạo từ Phraseman</string>
+    <string name="phrase_widget_kicker">BỘ SƯU TẬP CÁ NHÂN</string>
 </resources>

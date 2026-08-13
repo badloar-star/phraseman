@@ -13,6 +13,7 @@ export type WeeklyBoonIconId = BoonId | BoonModifierId | 'comeback';
 export const WEEKLY_BOON_ICON_THEMES: readonly ThemeMode[] = [
   'dark',
   'gold',
+  'olive',
   'midnight',
   'ember',
   'aurora',
@@ -45,6 +46,9 @@ export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIc
     early_bird: 'assets/images/weekly_boon_icons/png/gold/early_bird.webp',
     perfect_week: 'assets/images/weekly_boon_icons/png/gold/perfect_week.webp',
     comeback: 'assets/images/weekly_boon_icons/png/gold/comeback.webp',
+  },
+  olive: {
+    streak_saver: 'assets/images/weekly_boon_icons/png/olive/streak_saver.webp', mystery_monday: 'assets/images/weekly_boon_icons/png/olive/mystery_monday.webp', turbo_regen: 'assets/images/weekly_boon_icons/png/olive/turbo_regen.webp', energy_free_window: 'assets/images/weekly_boon_icons/png/olive/energy_free_window.webp', double_xp: 'assets/images/weekly_boon_icons/png/olive/double_xp.webp', flashcard_friday: 'assets/images/weekly_boon_icons/png/olive/flashcard_friday.webp', speaking_saturday: 'assets/images/weekly_boon_icons/png/olive/speaking_saturday.webp', early_bird: 'assets/images/weekly_boon_icons/png/olive/early_bird.webp', perfect_week: 'assets/images/weekly_boon_icons/png/olive/perfect_week.webp', comeback: 'assets/images/weekly_boon_icons/png/olive/comeback.webp',
   },
   minimalDark: {
     streak_saver: 'assets/images/weekly_boon_icons/png/indigo/streak_saver.webp',
@@ -192,6 +196,9 @@ const WEEKLY_BOON_ICON_SOURCES: Record<ThemeMode, Record<WeeklyBoonIconId, Image
     early_bird: require('../assets/images/weekly_boon_icons/png/gold/early_bird.webp'),
     perfect_week: require('../assets/images/weekly_boon_icons/png/gold/perfect_week.webp'),
     comeback: require('../assets/images/weekly_boon_icons/png/gold/comeback.webp'),
+  },
+  olive: {
+    streak_saver: require('../assets/images/weekly_boon_icons/png/olive/streak_saver.webp'), mystery_monday: require('../assets/images/weekly_boon_icons/png/olive/mystery_monday.webp'), turbo_regen: require('../assets/images/weekly_boon_icons/png/olive/turbo_regen.webp'), energy_free_window: require('../assets/images/weekly_boon_icons/png/olive/energy_free_window.webp'), double_xp: require('../assets/images/weekly_boon_icons/png/olive/double_xp.webp'), flashcard_friday: require('../assets/images/weekly_boon_icons/png/olive/flashcard_friday.webp'), speaking_saturday: require('../assets/images/weekly_boon_icons/png/olive/speaking_saturday.webp'), early_bird: require('../assets/images/weekly_boon_icons/png/olive/early_bird.webp'), perfect_week: require('../assets/images/weekly_boon_icons/png/olive/perfect_week.webp'), comeback: require('../assets/images/weekly_boon_icons/png/olive/comeback.webp'),
   },
   minimalDark: {
     streak_saver: require('../assets/images/weekly_boon_icons/png/indigo/streak_saver.webp'),

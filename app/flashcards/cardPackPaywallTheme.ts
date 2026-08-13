@@ -255,6 +255,26 @@ function shellOnboardingGraphite(): CardPackPaywallTheme {
   };
 }
 
+/** OLIVE: matte piano-black shell with tonal olive depth and a champagne decision CTA. */
+function shellOlive(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(5,6,4,0.94)',
+    outerGlow: ['rgba(40,48,26,0.30)', 'rgba(18,22,13,0.20)', 'rgba(0,0,0,0.62)'],
+    borderAccent: 'rgba(201,168,76,0.18)',
+    handleColorLight: 'rgba(47,55,31,0.42)',
+    handleColorDark: 'rgba(227,204,136,0.30)',
+    iconBg: ['#1C2217', '#0D0F0B'],
+    iconBorder: 'rgba(201,168,76,0.16)',
+    priceBorder: 'rgba(201,168,76,0.14)',
+    priceGradient: ['rgba(201,168,76,0.10)', 'rgba(0,0,0,0)'],
+    ctaColors: ['#F0DEA5', '#C9A84C'],
+    ctaForeground: '#050604',
+    ctaGlowTop: 'rgba(201,168,76,0.18)',
+    goShopCta: ['#E3CC88', '#C9A84C'],
+    goShopForeground: '#050604',
+  };
+}
+
 /** OCEAN: електричний циан + глибока вода, не «сіро-блакитна смуга» */
 function shellOcean(): CardPackPaywallTheme {
   return {
@@ -305,6 +325,7 @@ function shellSakura(): CardPackPaywallTheme {
 const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   dark: shellDark(),
   gold: shellGold(),
+  olive: shellOlive(),
   minimalDark: shellDark(),
   business: shellBusiness(),
   businessLight: shellBusinessLight(),

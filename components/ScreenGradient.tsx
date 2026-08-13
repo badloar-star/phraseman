@@ -26,6 +26,7 @@ const CINEMA_PARTICLE_MOTION_PX = 10;
 const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   dark: 1,
   gold: 1,
+  olive: 1,
   minimalDark: 1,
   business: 1,
   businessLight: 1,
@@ -54,6 +55,7 @@ type ScreenBgLayer = {
 const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   dark: { bloomA: '#2F8A42', bloomB: '#47C870' },
   gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' },
+  olive: { bloomA: '#1A1E12', bloomB: '#030303' },
   minimalDark: { bloomA: '#6EA8FF', bloomB: '#9CA3AF' },
   // «Бизнес»: строгая моно-тема — нейтральный серый блум без цвета.
   // «Бизнес» (плоский IG-режим): блум невидим — совпадает с чёрным фоном.
@@ -82,6 +84,8 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.63, y: H * 0.82, r: 135, color: GOLD_RICH.agedGold, opacity: 0.030 },
     { x: W * 0.28, y: H * 0.19, r: 72, color: GOLD_RICH.metalGold, opacity: 0.025 },
   ],
+  // Olive Noir stays intentionally still: no particles, bloom, or decorative orbs.
+  olive: [],
   // Graphite (minimalDark): monochrome cool-dark shading with blue accents.
   minimalDark: [
     { x: W * 0.82, y: 84,       r: 205, color: '#6B7280', opacity: 0.16 },
@@ -713,7 +717,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
-  const bloomMode = themeMode === 'sagePorcelain' ? null : themeMode;
+  const bloomMode = themeMode === 'sagePorcelain' || themeMode === 'olive' ? null : themeMode;
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = useMemo(
     () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],

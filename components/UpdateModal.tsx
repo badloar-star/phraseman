@@ -30,6 +30,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
+import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 // Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
@@ -140,6 +141,15 @@ const GOLD_PALETTE: UpdateModalPalette = {
   primaryShadow: '#E2AD4E',
 };
 
+const OLIVE_PALETTE: UpdateModalPalette = {
+  frame: ['rgba(227,204,136,0.22)', 'rgba(201,168,76,0.12)', 'rgba(0,0,0,0)'], panel: [...OLIVE_GRADIENTS.quietPanel],
+  wash: ['rgba(227,204,136,0.10)', 'rgba(28,34,23,0.16)', 'rgba(0,0,0,0)'], topSheen: ['rgba(244,236,216,0.12)', 'rgba(244,236,216,0)'],
+  stroke: 'transparent', texture: 'rgba(227,204,136,0.08)', orbit: 'rgba(201,168,76,0.14)', star: OLIVE_RICH.champagneLight,
+  title: OLIVE_RICH.ivory, body: 'rgba(244,236,216,0.72)', primary: [...OLIVE_GRADIENTS.primaryButton],
+  primaryPressed: ['#E3CC88', '#B28B34', '#785716'], primaryText: '#07110A', primaryShadow: '#000000',
+  secondaryBg: 'rgba(244,236,216,0.08)', secondaryBorder: 'transparent', secondaryText: 'rgba(244,236,216,0.74)',
+};
+
 // зачем: DEFAULT — тёмная «космическая» панель; на светлой sagePorcelain модалка
 // обновления выглядела инородной тёмной вспышкой. Фарфоровая панель + шалфейный
 // CTA с бронзовым стопом — язык светлой темы (план 2026-08-01).
@@ -165,7 +175,7 @@ const SAGE_PALETTE: UpdateModalPalette = {
 };
 
 const getUpdateModalPalette = (themeMode: ThemeMode): UpdateModalPalette =>
-  themeMode === 'gold' ? GOLD_PALETTE : isLightThemeMode(themeMode) ? SAGE_PALETTE : DEFAULT_PALETTE;
+  themeMode === 'olive' ? OLIVE_PALETTE : themeMode === 'gold' ? GOLD_PALETTE : isLightThemeMode(themeMode) ? SAGE_PALETTE : DEFAULT_PALETTE;
 
 function UpdateModalBackground({ palette }: { palette: UpdateModalPalette }) {
   return (

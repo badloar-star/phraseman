@@ -11,7 +11,7 @@ describe('Sage Porcelain background contract', () => {
 
   it('omits cinema bloom and orbs instead of making them invisible', () => {
     expect(screenGradient).toContain('bloomMode: ThemeMode | null;');
-    expect(screenGradient).toMatch(/const bloomMode = themeMode === 'sagePorcelain' \? null : themeMode;/);
+    expect(screenGradient).toMatch(/const bloomMode = themeMode === 'sagePorcelain' \|\| themeMode === 'olive' \? null : themeMode;/);
     expect(screenGradient).toMatch(/sagePorcelain:\s*\[\]/);
     expect(screenGradient).toMatch(/layer\.bloomMode\s*\?\s*\(\s*<CinemaBloom mode=\{layer\.bloomMode\} reduceMotion=\{reduceMotion\} \/>\s*\)/s);
   });

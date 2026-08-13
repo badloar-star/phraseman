@@ -2,6 +2,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { Theme, ThemeMode } from '../constants/theme';
+import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
 
 type RewardModalBackdropProps = {
   themeMode: ThemeMode;
@@ -72,6 +73,7 @@ export function RewardModalLiquidGlass({
   accent,
   intensity = 'regular',
 }: RewardModalLiquidGlassProps) {
+  if (themeMode === 'olive') return null;
   if (themeMode === 'sagePorcelain') return null;
   const strong = intensity === 'strong';
   const accentVeil = withAccentAlpha(accent, strong ? '42' : '30');
@@ -131,6 +133,8 @@ export function RewardModalLiquidGlass({
 
 export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string, string, string] {
   switch (themeMode) {
+    case 'olive':
+      return [...OLIVE_GRADIENTS.quietPanel];
     case 'gold':
       return ['#160F07', '#22190D', '#060503'];
     case 'business':
@@ -159,6 +163,8 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
 
 export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
   switch (themeMode) {
+    case 'olive':
+      return OLIVE_RICH.champagne;
     case 'gold':
       return '#E8C36C';
     case 'business':
@@ -186,6 +192,7 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
 }
 
 export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priorityColor?: string): string {
+  if (themeMode === 'olive') return 'transparent';
   if (priorityColor && true) return priorityColor;
   switch (themeMode) {
     case 'gold':
@@ -216,6 +223,8 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
 
 export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string {
   switch (themeMode) {
+    case 'olive':
+      return 'rgba(244,236,216,0.07)';
     case 'gold':
       return 'rgba(232,195,108,0.10)';
     case 'business':
@@ -244,6 +253,8 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
 
 export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, string] {
   switch (themeMode) {
+    case 'olive':
+      return [OLIVE_GRADIENTS.primaryButton[0], OLIVE_GRADIENTS.primaryButton[1]];
     case 'gold':
       return ['#F4D889', '#B9852E'];
     case 'business':
@@ -272,6 +283,8 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
 
 export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
   switch (themeMode) {
+    case 'olive':
+      return '#07110A';
     case 'sagePorcelain':
       return '#FFFFFF';
     default:

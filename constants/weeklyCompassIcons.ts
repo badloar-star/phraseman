@@ -6,6 +6,7 @@ const FALLBACK_COMPASS_ICON = require('../assets/images/theo/theo-phrase-compass
 export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   dark: 'assets/images/weekly_compass_icons/dark.webp',
   gold: 'assets/images/weekly_compass_icons/gold.webp',
+  olive: 'assets/images/weekly_compass_icons/olive.webp',
   minimalDark: 'assets/images/weekly_compass_icons/indigo.webp',
   business: 'assets/images/weekly_compass_icons/business.webp',
   businessLight: 'assets/images/weekly_compass_icons/businessLight.webp',
@@ -24,6 +25,7 @@ export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
   'sagePorcelain',
   'dark',
   'gold',
+  'olive',
   'midnight',
   'ember',
   'aurora',
@@ -33,6 +35,7 @@ export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
 export const WEEKLY_COMPASS_ICON_DALLE_PROMPTS: Record<ThemeMode, string> = {
   dark: 'Centered 3D compass icon for a language learning app, deep forest black-green enamel, mint emerald needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   gold: 'Centered 3D compass icon for a language learning app, black piano lacquer and champagne gold metal, antique nautical needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
+  olive: 'Centered sculptural 3D compass icon for a premium language-learning app, matte deep olive lacquer, restrained champagne metal needle, warm ivory reflection, transparent background, no text, logo, people, neon, or glowing rim.',
   minimalDark: 'Centered 3D compass icon for a language learning app, graphite shell, cool blue glass glow, clean Apple-like minimal object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   business: 'Flat minimal line icon of a compass, thin champagne-gold strokes (#D4B26A) with light gray secondary details, rounded caps, 24px grid style, transparent background, no 3D, no gradients, no text.',
   businessLight: 'Flat minimal line icon of a compass, thin bronze strokes (#A8802F) with slate gray secondary details, rounded caps, 24px grid style, transparent background, no 3D, no gradients, no text.',
@@ -50,6 +53,7 @@ export const WEEKLY_COMPASS_ICON_DALLE_PROMPTS: Record<ThemeMode, string> = {
 const GENERATED_COMPASS_ICON_SOURCES: Partial<Record<ThemeMode, ImageSourcePropType>> = {
   dark: require('../assets/images/weekly_compass_icons/dark.webp'),
   gold: require('../assets/images/weekly_compass_icons/gold.webp'),
+  olive: require('../assets/images/weekly_compass_icons/olive.webp'),
   minimalDark: require('../assets/images/weekly_compass_icons/indigo.webp'),
   business: require('../assets/images/weekly_compass_icons/business.webp'),
   businessLight: require('../assets/images/weekly_compass_icons/businessLight.webp'),

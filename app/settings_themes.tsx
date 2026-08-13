@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, useWindowDimensions, View, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,6 +22,7 @@ import {
   type Theme,
   INDIGO,
   SAGE_PORCELAIN,
+  OLIVE,
   MIDNIGHT,
   EMBER,
   AURORA,
@@ -32,6 +33,7 @@ import {
 import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
 import { isThemePlusOnly, isThemeRewardOnly } from './theme_access_policy';
+import { oliveThemeTileA11y } from './olive_completion_chrome';
 
 // зачем: «Примерочная» (решение владельца 2026-08-02) — каждая плашка рисуется
 // НАСТОЯЩИМИ токенами своей темы (никаких ручных дублей цветов: они уже
@@ -59,6 +61,7 @@ const THEME_OPTIONS: ThemeOption[] = [
   // но у «дедушек» (жили на ней бесплатно) остаётся открытой.
   { mode: 'indigo', labelRU: 'Индиго', labelUK: 'Індиго', labelES: 'Índigo', labelPtBr: 'Índigo', labelVi: 'Chàm', labelId: 'Indigo', labelTr: 'İndigo', labelPl: 'Indygo' },
   { mode: 'sagePorcelain', labelRU: 'Нефрит', labelUK: 'Нефрит', labelES: 'Jade', labelPtBr: 'Jade', labelVi: 'Ngọc bích', labelId: 'Giok', labelTr: 'Yeşim', labelPl: 'Jadeit' },
+  { mode: 'olive', labelRU: 'Олива', labelUK: 'Олива', labelES: 'Oliva', labelPtBr: 'Oliva', labelVi: 'Ô liu', labelId: 'Zaitun', labelTr: 'Zeytin', labelPl: 'Oliwka' },
   { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ' },
   { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn' },
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza' },
@@ -71,6 +74,7 @@ const THEME_OPTIONS: ThemeOption[] = [
 const PALETTES = {
   indigo: INDIGO,
   sagePorcelain: SAGE_PORCELAIN,
+  olive: OLIVE,
   midnight: MIDNIGHT,
   ember: EMBER,
   aurora: AURORA,
@@ -86,6 +90,7 @@ type PickerThemeMode = keyof typeof PALETTES;
 const THEME_ICONS: Record<PickerThemeMode, number> = {
   indigo: require('../assets/theme-icons/indigo.png'),
   sagePorcelain: require('../assets/theme-icons/sagePorcelain.png'),
+  olive: require('../assets/theme-icons/olive.png'),
   midnight: require('../assets/theme-icons/midnight.png'),
   ember: require('../assets/theme-icons/ember.png'),
   aurora: require('../assets/theme-icons/aurora.png'),
@@ -103,6 +108,7 @@ type ThemeTileProps = {
   candidate: boolean;
   size: number;
   onPress: (mode: PickerThemeMode) => void;
+  lang: Lang;
 };
 
 // зачем: владелец отверг «шумную» строку (полоска прогресса + текстовый чип внутри
@@ -118,7 +124,7 @@ type ThemeTileProps = {
 // и они все встают в один ряд крошечными кружками — баг, который поймал
 // владелец на скриншоте). Точный пиксельный размер, посчитанный один раз от
 // ширины экрана в SettingsThemes, исключает эту неопределённость целиком.
-const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, applied, candidate, size, onPress }: ThemeTileProps) {
+const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, applied, candidate, size, onPress, lang }: ThemeTileProps) {
   const palette: Theme = PALETTES[option.mode];
   const shadow = getVolumetricShadow(option.mode, palette, candidate ? 3 : 2);
   return (
@@ -127,6 +133,7 @@ const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, ap
         testID={`theme-tile-${option.mode}`}
         accessibilityRole="button"
         accessibilityState={{ selected: applied }}
+        accessibilityValue={{ text: oliveThemeTileA11y(lang, locked ? 'locked' : applied ? 'applied' : candidate ? 'preview' : 'available') }}
         accessibilityLabel={label}
         onPress={() => onPress(option.mode)}
         scaleTo={0.95}
@@ -170,6 +177,7 @@ const GRID_SCREEN_PAD = 10;
 
 export default function SettingsThemes() {
   const router = useRouter();
+  const { width: windowWidth } = useWindowDimensions();
   const {
     theme: t,
     appliedThemeMode,
@@ -189,10 +197,9 @@ export default function SettingsThemes() {
   // подписки на resize достаточно (та же логика уже используется в customization
   // heroHeight).
   const tileSize = useMemo(() => {
-    const windowWidth = Dimensions.get('window').width;
     const usableWidth = windowWidth - GRID_SCREEN_PAD * 2;
     return Math.floor((usableWidth - TILE_GRID_GAP * 2) / 3);
-  }, []);
+  }, [windowWidth]);
 
   // зачем: примерка живёт только пока открыт экран «Темы» — уход с экрана
   // всегда возвращает применённую тему (превью не персистится).
@@ -281,7 +288,8 @@ export default function SettingsThemes() {
                     locked={locked}
                     size={tileSize}
                     applied={item.mode === appliedThemeMode}
-                    candidate={item.mode === candidate}
+                        candidate={item.mode === candidate}
+                        lang={lang}
                     onPress={onRowPress}
                   />
                 );

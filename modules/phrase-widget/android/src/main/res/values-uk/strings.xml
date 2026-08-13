@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">Сьогоднішній вислів із Phraseman</string>
-    <string name="phrase_widget_kicker">ВИСЛІВ ДНЯ</string>
+    <string name="phrase_widget_description">Збережені та створені вислови з Phraseman</string>
+    <string name="phrase_widget_kicker">ОСОБИСТА КОЛОДА</string>
 </resources>

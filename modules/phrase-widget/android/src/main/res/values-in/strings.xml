@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">Frasa hari ini dari Phraseman</string>
-    <string name="phrase_widget_kicker">FRASA HARI INI</string>
+    <string name="phrase_widget_description">Frasa tersimpan dan buatan dari Phraseman</string>
+    <string name="phrase_widget_kicker">KOLEKSI PRIBADI</string>
 </resources>

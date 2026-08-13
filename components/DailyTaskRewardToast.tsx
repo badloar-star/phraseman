@@ -126,6 +126,7 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBorderColor: '#D7E7FF',
     buttonIconName: 'gift-outline',
   },
+  olive: { cardColors: ['#242719', '#090A06'], sheenColors: ['rgba(227,204,136,0.18)', 'rgba(201,168,76,0.06)', 'rgba(201,168,76,0)'], accentRailColor: '#C9A84C', auraColor: 'rgba(201,168,76,0.18)', borderColor: 'rgba(201,168,76,0.18)', radius: 18, shadowColor: 'rgba(0,0,0,0.84)', iconName: 'trophy-outline', iconBg: 'rgba(201,168,76,0.14)', iconBorderColor: 'rgba(227,204,136,0.26)', iconColor: '#E3CC88', titleColor: '#F4ECD8', taskColor: '#CFC5AB', xpColor: '#E3CC88', claimBg: '#C9A84C', claimText: '#161208', claimBorderColor: 'rgba(244,236,216,0.24)', buttonIconName: 'gift-outline' },
   business: {
     cardColors: ['#121212', '#000000'],
     sheenColors: ['rgba(0,149,246,0.10)', 'rgba(0,149,246,0.04)', 'rgba(0,149,246,0)'],

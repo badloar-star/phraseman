@@ -5,6 +5,7 @@ import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
 
 export type ThemedChoice = {
   label: string;
@@ -30,8 +31,10 @@ function ThemedChoiceModal({
   const { theme: t, themeMode, f } = useTheme();
   const dim = 'rgba(0,0,0,0.60)';
   const isGoldTheme = themeMode === 'gold';
+  const isOliveTheme = themeMode === 'olive';
   const modalColors = isGoldTheme
     ? GOLD_GRADIENTS.premiumPanel
+    : isOliveTheme ? OLIVE_GRADIENTS.quietPanel
     : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string]);
   const modalRadius = 16;
   const buttonRadius = 12;
@@ -53,7 +56,7 @@ function ThemedChoiceModal({
               borderWidth: 0,
               borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
               overflow: 'hidden',
-              ...(isGoldTheme ? goldShadow(3) : {}),
+              ...(isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(3) : {}),
             }}
           >
             {isGoldTheme && <GoldBevel radius={16} intensity="strong" />}
@@ -109,6 +112,7 @@ function ThemedChoiceModal({
                 }
                 const buttonColors = isGoldTheme
                   ? GOLD_GRADIENTS.primaryButton
+                  : isOliveTheme ? OLIVE_GRADIENTS.primaryButton
                   : ([t.accent, t.accent, t.accent] as [string, string, string]);
                 return (
                   <TouchableOpacity
@@ -127,7 +131,7 @@ function ThemedChoiceModal({
                         ? GOLD_RICH.edgeLight
                         : t.accent,
                       overflow: 'hidden',
-                      ...(isGoldTheme ? goldShadow(1) : {}),
+                      ...(isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : {}),
                     }}
                   >
                     <LinearGradient
@@ -140,8 +144,8 @@ function ThemedChoiceModal({
                       {isGoldTheme && <GoldBevel radius={12} intensity="strong" />}
                       <Text
                         style={{
-                          color: isGoldTheme
-                            ? GOLD_RICH.blackPiano
+                          color: isGoldTheme || isOliveTheme
+                            ? (isOliveTheme ? OLIVE_RICH.piano : GOLD_RICH.blackPiano)
                             : t.correctText,
                           fontWeight: '700',
                           fontSize: f.body,

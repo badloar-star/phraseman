@@ -426,6 +426,9 @@ const PALETTES: Record<ThemeMode, LeagueBonusPalette> = {
       shine: 'rgba(255,255,255,0.26)',
     },
   },
+  olive: {
+    card: ['rgba(30,34,20,0.78)', 'rgba(10,12,8,0.68)', 'rgba(40,42,23,0.52)'], cardLocations: [0, 0.56, 1], border: 'rgba(201,168,76,0.14)', accent: '#C9A84C', readyAccent: '#E3CC88', iconBg: 'rgba(201,168,76,0.12)', iconBorder: 'rgba(201,168,76,0.18)', textMuted: '#A69F8A', track: 'rgba(5,6,4,0.58)', trackBorder: 'rgba(201,168,76,0.10)', fill: ['#454B31', '#8EAA72', '#C9A84C'], readyFill: ['#8EAA72', '#C9A84C', '#E3CC88'], innerBg: 'rgba(201,168,76,0.08)', innerBorder: 'rgba(201,168,76,0.10)', modal: { overlay: 'rgba(0,0,0,0.78)', frame: ['#E3CC88', '#C9A84C', '#454B31'], card: ['#1A1E12', '#0D0F0B', '#030303'], cardLocations: [0, 0.62, 1], wash: ['rgba(201,168,76,0.12)', 'rgba(0,0,0,0)', 'rgba(142,170,114,0.10)'], rail: 'rgba(227,204,136,0.20)', ribbon: 'rgba(201,168,76,0.12)', ribbonAlt: 'rgba(142,170,114,0.12)', halo: 'rgba(201,168,76,0.10)', haloBorder: 'rgba(201,168,76,0.18)', crestBg: 'rgba(201,168,76,0.10)', crestBorder: 'rgba(201,168,76,0.18)', eyebrow: '#E3CC88', metaBg: 'rgba(201,168,76,0.08)', metaBorder: 'rgba(201,168,76,0.12)', primary: ['#E3CC88', '#C9A84C', '#8EAA72'], primaryText: '#161208', rewardBg: 'rgba(244,236,216,0.06)', rewardBorder: 'rgba(201,168,76,0.12)', shine: 'rgba(244,236,216,0.16)' },
+  },
   gold: {
     card: ['rgba(26,23,17,0.74)', 'rgba(10,10,10,0.64)', 'rgba(34,25,10,0.56)'],
     cardLocations: [0, 0.56, 1],

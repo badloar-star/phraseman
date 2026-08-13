@@ -144,6 +144,9 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofText: GOLD_RICH.taupe,
     socialProofStarColor: GOLD_RICH.metalGold,
   },
+  olive: {
+    heroAccent: '#E3CC88', selectedCardBorder: 'rgba(201,168,76,0.22)', selectedCardBg: 'rgba(201,168,76,0.14)', unselectedCardBg: 'rgba(13,15,11,0.88)', panelBg: 'rgba(20,24,15,0.78)', panelBgStrong: 'rgba(30,34,20,0.88)', selectedCardShadow: '#594719', savingsBadgeBg: '#C9A84C', savingsBadgeText: '#161208', popularBadgeBg: '#8EAA72', popularBadgeText: '#10160C', ctaBg: '#C9A84C', ctaText: '#161208', ctaShadow: '#594719', pillBg: 'rgba(201,168,76,0.12)', pillText: '#E3CC88', pillBorder: 'rgba(201,168,76,0.18)', urgencyBg: 'rgba(201,168,76,0.10)', urgencyTimerText: '#E3CC88', urgencyLabelText: '#A69F8A', urgencyStrikethroughColor: '#8D8777', urgencyCurrentPriceText: '#F4ECD8', expandBtnText: '#E3CC88', expandBtnBorder: 'rgba(201,168,76,0.18)', socialProofText: '#A69F8A', socialProofStarColor: '#C9A84C',
+  },
 
   // ── MINIMAL LIGHT (warm parchment) ────────────────────────────────────────
 

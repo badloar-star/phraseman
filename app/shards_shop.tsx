@@ -49,6 +49,7 @@ import PressableScale from '../components/PressableScale';
 import { ENABLE_DEV_TOOLS } from './config';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
@@ -166,7 +167,7 @@ function ShopIconImageWithFallback({
 }
 
 function isPaywallAtmosphereMode(mode: ThemeMode): boolean {
-  return mode === 'dark' || false || mode === 'gold';
+  return mode === 'dark' || mode === 'gold' || mode === 'olive';
 }
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -658,6 +659,7 @@ export default function ShardsShopScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
   const isGoldTheme = themeMode === 'gold';
+  const isOliveTheme = themeMode === 'olive';
   const shopRadius = 16;
   const shopSmallRadius = 12;
   const shopCardBg = t.bgCard;
@@ -1492,7 +1494,7 @@ export default function ShardsShopScreen() {
     const paywallMood = isPaywallAtmosphereMode(themeMode);
     const rowHeight = 54;
     const rowRadius = 12;
-    const rowBg = isGoldTheme
+    const rowBg = isGoldTheme || isOliveTheme
       ? 'transparent'
       : paywallMood
         ? 'rgba(12, 16, 18, 0.78)'
@@ -1505,7 +1507,7 @@ export default function ShardsShopScreen() {
           ? (isGoldTheme ? GOLD_RICH.hairlineQuiet : `${t.accent}22`)
           : t.border;
     const leftColor = isPopular || isBest
-      ? (isGoldTheme ? GOLD_RICH.champagne : t.textPrimary)
+      ? (isGoldTheme ? GOLD_RICH.champagne : isOliveTheme ? OLIVE_RICH.champagne : t.textPrimary)
       : t.textPrimary;
     const rightColor = canPurchase ? t.textPrimary : t.textMuted;
     const rowIconSize = pack.id === 'starter' ? 30 : pack.id === 'pro' ? 38 : 34;
@@ -1542,7 +1544,7 @@ export default function ShardsShopScreen() {
               borderColor,
               overflow: 'hidden',
               backgroundColor: rowBg,
-              ...(isGoldTheme ? goldShadow(1) : cardShadow),
+              ...(isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : cardShadow),
             }}
           >
             {isGoldTheme && (
@@ -1557,6 +1559,13 @@ export default function ShardsShopScreen() {
                 />
                 <GoldBevel radius={rowRadius} intensity={isBest || isPopular ? 'strong' : 'normal'} />
               </>
+            )}
+            {isOliveTheme && (
+              <LinearGradient
+                pointerEvents="none"
+                colors={isBest || isPopular ? OLIVE_GRADIENTS.selectedPanel : OLIVE_GRADIENTS.raisedPanel}
+                start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}
+              />
             )}
             <View
               style={{

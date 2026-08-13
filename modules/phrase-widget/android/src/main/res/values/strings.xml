@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">Сегодняшняя фраза из Phraseman</string>
-    <string name="phrase_widget_kicker">ФРАЗА ДНЯ</string>
+    <string name="phrase_widget_description">&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1105;&#1085;&#1085;&#1099;&#1077; &#1080; &#1089;&#1086;&#1079;&#1076;&#1072;&#1085;&#1085;&#1099;&#1077; &#1092;&#1088;&#1072;&#1079;&#1099; &#1080;&#1079; Phraseman</string>
+    <string name="phrase_widget_kicker">&#1051;&#1048;&#1063;&#1053;&#1040;&#1071; &#1050;&#1054;&#1051;&#1054;&#1044;&#1040;</string>
 </resources>

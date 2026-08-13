@@ -5,6 +5,8 @@ import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing, AppSta
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
+import { useLang } from '../../components/LangContext';
+import { triLang } from '../../constants/i18n';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
@@ -13,6 +15,7 @@ import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
+import { OLIVE_RICH } from '../../constants/oliveTheme';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import HomeScreen       from './home';
@@ -390,6 +393,7 @@ type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: bool
  */
 function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx }: TabScaffoldProps) {
   const { theme: t, ds, statusBarLight, themeMode } = useTheme();
+  const { lang } = useLang();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
@@ -397,10 +401,12 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
    * Тёмные состояния иконок держат контраст и в полном, и в компактном таббаре. */
   const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
-  const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;
-  const tabIconActive = isSagePorcelainTabChrome ? t.correctText : t.accent;
+  const isOliveTheme = themeMode === 'olive';
+  const tabPillBackground = isSagePorcelainTabChrome ? t.accent : isOliveTheme ? OLIVE_RICH.panel : TAB_UNDERLAY_DIM_BG;
+  const tabIconActive = isSagePorcelainTabChrome ? t.correctText : isOliveTheme ? OLIVE_RICH.champagne : t.accent;
   const tabIconMuted = isSagePorcelainTabChrome
     ? withAlpha(t.correctText, 0.72)
+    : isOliveTheme ? withAlpha(OLIVE_RICH.ivory, 0.62)
     : withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
   const tabActiveBg = withAlpha(tabIconActive, TAB_DARK_ACTIVE_BG_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
@@ -652,7 +658,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   <TouchableOpacity
                     key={tab.key}
                     testID={`tab-${tab.key}`}
-                    accessibilityLabel={`qa-tab-${tab.key}`}
+                    accessibilityLabel={triLang(lang, { ru: tab.key === 'home' ? 'Главная' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзья' : 'Настройки', uk: tab.key === 'home' ? 'Головна' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзі' : 'Налаштування', es: tab.key === 'home' ? 'Inicio' : tab.key === 'lessons' ? 'Lecciones' : tab.key === 'friends' ? 'Amigos' : 'Ajustes', 'pt-BR': tab.key === 'home' ? 'Início' : tab.key === 'lessons' ? 'Lições' : tab.key === 'friends' ? 'Amigos' : 'Configurações', vi: tab.key === 'home' ? 'Trang chủ' : tab.key === 'lessons' ? 'Bài học' : tab.key === 'friends' ? 'Bạn bè' : 'Cài đặt', id: tab.key === 'home' ? 'Beranda' : tab.key === 'lessons' ? 'Pelajaran' : tab.key === 'friends' ? 'Teman' : 'Pengaturan', tr: tab.key === 'home' ? 'Ana sayfa' : tab.key === 'lessons' ? 'Dersler' : tab.key === 'friends' ? 'Arkadaşlar' : 'Ayarlar', pl: tab.key === 'home' ? 'Strona główna' : tab.key === 'lessons' ? 'Lekcje' : tab.key === 'friends' ? 'Znajomi' : 'Ustawienia' })}
                     accessible={true}
                     accessibilityRole="tab"
                     accessibilityState={{ selected: visuallyFocused }}

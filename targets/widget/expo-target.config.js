@@ -17,6 +17,6 @@ module.exports = (config) => ({
   entitlements: {
     'com.apple.security.application-groups': ['group.app.phraseman.widget'],
   },
-  // Match the host app's deployment target floor.
+  // iOS 17+ adds per-instance deck configuration; iOS 16 keeps Saved fallback.
   deploymentTarget: '16.0',
 });

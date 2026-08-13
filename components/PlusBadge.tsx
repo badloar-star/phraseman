@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-na
 import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 import { LinearGradient } from './SafeLinearGradient';
+import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
 
 // зачем 2026-08-04 (владелец: «плашка Plus тусклая, сливается с фоном на
 // светлых темах»): primaryButton — светлое золото → бронза, задумано для
@@ -54,8 +55,9 @@ export default function PlusBadge({
   // зависят от её текущего поведения) — здесь просто добавляем вторую белую
   // тему к локальной проверке.
   const isLight = isLightThemeMode(themeMode as ThemeMode) || themeMode === 'businessLight';
-  const fg = isLight ? GOLD_RICH.champagne : (themeMode === 'business' ? '#0A0A0A' : GOLD_RICH.bronzeDark);
-  const gradientColors = isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
+  const isOliveTheme = themeMode === 'olive';
+  const fg = isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : (themeMode === 'business' ? '#0A0A0A' : GOLD_RICH.bronzeDark);
+  const gradientColors = isOliveTheme ? OLIVE_GRADIENTS.primaryButton : isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
 
   return (
     <View
@@ -81,7 +83,6 @@ export default function PlusBadge({
       <Text
         style={[styles.text, { color: fg, fontSize: s.font }]}
         numberOfLines={1}
-        maxFontSizeMultiplier={1}
       >
         {label}
       </Text>

@@ -123,11 +123,15 @@ describe('league club hub composition', () => {
     expect(screen).not.toContain('const idx = myLeagueRank - 4;');
   });
 
-  it('labels the repeated top-three rows as a full ranking rather than a second member list', () => {
+  it('keeps the ranking list free of redundant headings', () => {
     const screen = read('app/club_screen.tsx');
+    const raceFeed = read('components/league/LeagueRaceFeed.tsx');
 
-    expect(screen).toContain("ru: 'Полный рейтинг'");
-    expect(screen).toContain("uk: 'Повний рейтинг'");
+    expect(screen).not.toContain("ru: 'Полный рейтинг'");
+    expect(screen).not.toContain("uk: 'Повний рейтинг'");
     expect(screen).not.toContain("ru: 'Участники клуба'");
+    expect(raceFeed).not.toContain("ru: 'Сейчас в гонке'");
+    expect(raceFeed).not.toContain("uk: 'Зараз у гонці'");
+    expect(screen).not.toContain("key: 'ahead', emoji: '🏃'");
   });
 });

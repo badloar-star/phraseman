@@ -13,6 +13,7 @@ const HOME_LAST_LESSON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
   volt: require('../assets/images/home_last_lesson/home-last-lesson-volt.webp'),
   dark: require('../assets/images/home_last_lesson/home-last-lesson-forest.webp'),
   gold: require('../assets/images/home_last_lesson/home-last-lesson-gold.webp'),
+  olive: require('../assets/images/home_last_lesson/home-last-lesson-olive.webp'),
   minimalDark: require('../assets/images/home_last_lesson/home-last-lesson-indigo.webp'),
   candyBlue: require('../assets/images/home_last_lesson/home-last-lesson-indigo.webp'),
   business: require('../assets/images/home_last_lesson/home-last-lesson-gold.webp'),

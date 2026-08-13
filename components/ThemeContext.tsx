@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
+import { DARK, GOLD, OLIVE, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
 import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
+import { oliveShadow } from '../constants/oliveTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
@@ -120,6 +121,7 @@ export const getVolumetricShadow = (
   level: 1 | 2 | 3 = 2,
 ) => {
   if (themeMode === 'gold') return goldShadow(level);
+  if (themeMode === 'olive') return oliveShadow(level);
   if (themeMode === 'sagePorcelain') return sagePorcelainShadow(level);
   if (isCinemaMode(themeMode)) return cinemaShadow(level);
   return {
@@ -220,6 +222,7 @@ const ThemeContext = createContext<ThemeCtx>({
 const THEME_MAP: Record<ThemeMode, Theme> = {
   dark: DARK,
   gold: GOLD,
+  olive: OLIVE,
   minimalDark: MINIMAL_DARK,
   midnight: MIDNIGHT,
   ember: EMBER,

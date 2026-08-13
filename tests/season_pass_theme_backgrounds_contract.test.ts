@@ -9,6 +9,7 @@ const REGISTRY = path.join(ROOT, 'app/season_pass_theme_backgrounds.ts');
 const THEME_MODES = [
   'dark',
   'gold',
+  'olive',
   'minimalDark',
   'midnight',
   'ember',
@@ -92,7 +93,7 @@ describe('Season Pass per-theme backgrounds', () => {
   it('keeps the jade background readable while muting every other theme behind rewards', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app/season_pass.tsx'), 'utf8');
 
-    expect(source).toContain("const seasonBackgroundScrimOpacity = themeMode === 'sagePorcelain' ? 0.3 : 0.82");
+    expect(source).toContain("const seasonBackgroundScrimOpacity = themeMode === 'olive' ? 0.58 : themeMode === 'sagePorcelain' ? 0.3 : 0.82");
     expect(source).toContain('opacity: seasonBackgroundScrimOpacity');
     expect(source).not.toContain('opacity: isDark ? 0.18 : 0.3');
   });

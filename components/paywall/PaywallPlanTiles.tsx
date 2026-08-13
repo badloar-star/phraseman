@@ -15,6 +15,8 @@ import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import type { PaywallPlan } from '../../app/paywall_purchase';
+import { useTheme } from '../ThemeContext';
+import { OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 
 interface Props {
   lang: Lang;
@@ -46,6 +48,8 @@ export default function PaywallPlanTiles({
   savingsPct, perDayLabel, loading, disabled,
   lifetimePrice, lifetimeAvailable,
 }: Props) {
+  const { themeMode } = useTheme();
+  const isOlive = themeMode === 'olive';
   const { tc, textPrimary, textMuted, cardBg, cardBorder } = chrome;
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
@@ -130,11 +134,13 @@ export default function PaywallPlanTiles({
             onPress={() => onSelect(tile.plan)}
             style={[
               S.tile,
-              sel && S.tileSelected,
+              sel && !isOlive && S.tileSelected,
               {
-                borderColor: sel ? tc.selectedCardBorder : cardBorder,
+                borderColor: isOlive ? 'transparent' : sel ? tc.selectedCardBorder : cardBorder,
                 backgroundColor: sel ? chrome.cardBgStrong : cardBg,
                 shadowColor: sel ? tc.selectedCardShadow : 'transparent',
+                borderWidth: isOlive ? 0 : undefined,
+                ...(isOlive ? oliveShadow(sel ? 2 : 1) : null),
               },
             ]}
           >
@@ -156,7 +162,7 @@ export default function PaywallPlanTiles({
             {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — numberOfLines={1}
                 уже усекает хвостом по умолчанию, крайний случай на узкой плитке */}
             <Text
-              style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}
+              style={[S.price, { color: isOlive && sel ? OLIVE_RICH.ivory : sel ? tc.urgencyCurrentPriceText : textPrimary }]}
               numberOfLines={1}
             >
               {tile.price || (loading ? '…' : '—')}

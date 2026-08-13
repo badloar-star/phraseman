@@ -5,6 +5,7 @@ import type { ThemeMode } from './theme';
 const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/generated_theme_icons/lesson-exam-dark.webp'),
   gold: require('../assets/images/generated_theme_icons/lesson-exam-gold.webp'),
+  olive: require('../assets/images/generated_theme_icons/lesson-exam-olive.webp'),
   minimalDark: require('../assets/images/generated_theme_icons/lesson-exam-indigo.webp'),
   business: require('../assets/images/generated_theme_icons/lesson-exam-business.webp'),
   businessLight: require('../assets/images/generated_theme_icons/lesson-exam-businessLight.webp'),

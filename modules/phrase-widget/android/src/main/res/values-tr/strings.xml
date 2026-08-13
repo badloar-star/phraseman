@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">Phraseman\'den bugünün ifadesi</string>
-    <string name="phrase_widget_kicker">GÜNÜN İFADESİ</string>
+    <string name="phrase_widget_description">Phraseman\'den kaydedilen ve oluşturulan ifadeler</string>
+    <string name="phrase_widget_kicker">KİŞİSEL KOLEKSİYON</string>
 </resources>

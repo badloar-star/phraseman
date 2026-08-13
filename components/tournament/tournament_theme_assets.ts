@@ -22,6 +22,9 @@ const SELECTABLE_KITS = {
     weeklyBank: require('../../assets/images/tournament/themes/sagePorcelain/weekly-bank.webp'),
     seasonRewards: require('../../assets/images/tournament/themes/sagePorcelain/season-rewards.webp'),
   },
+  olive: {
+    backdrop: require('../../assets/images/tournament/themes/olive/backdrop.webp'), podium: require('../../assets/images/tournament/themes/olive/podium.webp'), weeklyBank: require('../../assets/images/tournament/themes/olive/weekly-bank.webp'), seasonRewards: require('../../assets/images/tournament/themes/olive/season-rewards.webp'),
+  },
   midnight: {
     backdrop: require('../../assets/images/tournament/themes/midnight/backdrop.webp'),
     podium: require('../../assets/images/tournament/themes/midnight/podium.webp'),

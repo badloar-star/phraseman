@@ -21,6 +21,7 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   // #F7F8F4→#E7EAE3, неотличимый от карточек. Сдвинут в тёплый серо-зелёный
   // ряд вокруг нового SAGE_PORCELAIN.bgPrimary #DCE1D8.
   sagePorcelain: ['#E7EAE2', '#DCE1D8', '#CDD5C7'],
+  olive: ['#1A1E12', '#0B0D08', '#030303'],
   // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
   midnight: [...CINEMA.midnight.bgGradient3],
   ember: [...CINEMA.ember.bgGradient3],

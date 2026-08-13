@@ -7,6 +7,7 @@ import type { ThemeMode } from '../constants/theme';
 const THEME_MODES: ThemeMode[] = [
   'dark',
   'gold',
+  'olive',
   'minimalDark',
   'business',
   'businessLight',

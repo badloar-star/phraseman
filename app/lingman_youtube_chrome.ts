@@ -1,4 +1,5 @@
 import type { ThemeMode } from '../constants/theme';
+import { OLIVE_RICH } from '../constants/oliveTheme';
 
 type ThemeSlice = {
   accent: string;
@@ -34,6 +35,7 @@ function alpha(hex: string, value: string): string {
 }
 
 export function getLingmanYoutubeChrome(theme: ThemeSlice, isDark: boolean, themeMode: ThemeMode): LingmanYoutubeChrome {
+  if (themeMode === 'olive') return { accent: OLIVE_RICH.champagne, accentSoft: '#2A2818', accentFaint: '#211F15', actionText: OLIVE_RICH.piano, cardBg: OLIVE_RICH.raised, cardBorder: 'transparent', chipBg: OLIVE_RICH.surface, iconOnAccent: OLIVE_RICH.piano, quietButtonBg: OLIVE_RICH.surface, quietButtonBorder: 'transparent', noticeBg: OLIVE_RICH.panel, noticeBorder: 'transparent', playerBg: '#000000' };
   if (false) {
     return {
       accent: '#F2C48D',

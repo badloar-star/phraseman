@@ -31,6 +31,10 @@ const CHROME_BY_THEME: Record<ThemeMode, Omit<ThemedToastChrome, 'title' | 'body
     shadowColor: 'rgba(0,0,0,0.90)',
     radius: 20,
   },
+  olive: {
+    cardColors: ['rgba(31,35,20,0.98)', 'rgba(13,15,11,0.97)', 'rgba(5,6,4,0.95)'],
+    accent: '#C9A84C', accentSoft: 'rgba(201,168,76,0.14)', border: 'rgba(201,168,76,0.12)', closeBg: 'rgba(201,168,76,0.08)', shadowColor: 'rgba(0,0,0,0.82)', radius: 18,
+  },
   minimalDark: {
     cardColors: ['rgba(31,35,45,0.98)', 'rgba(19,22,30,0.97)', 'rgba(8,10,15,0.95)'],
     accent: '#6EA8FF',

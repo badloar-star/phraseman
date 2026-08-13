@@ -5,6 +5,7 @@ import type { ThemeMode } from './theme';
 const SOCIAL_FRIENDS_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/social_icons/social-friends-dark.webp'),
   gold: require('../assets/images/social_icons/social-friends-gold.webp'),
+  olive: require('../assets/images/social_icons/social-friends-olive.webp'),
   minimalDark: require('../assets/images/social_icons/social-friends-indigo.webp'),
   business: require('../assets/images/social_icons/social-friends-business.webp'),
   businessLight: require('../assets/images/social_icons/social-friends-businessLight.webp'),
@@ -20,6 +21,7 @@ const SOCIAL_FRIENDS_ICONS: Record<ThemeMode, ImageSourcePropType> = {
 const SOCIAL_CHAT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/social_icons/social-chat-dark.webp'),
   gold: require('../assets/images/social_icons/social-chat-gold.webp'),
+  olive: require('../assets/images/social_icons/social-chat-olive.webp'),
   minimalDark: require('../assets/images/social_icons/social-chat-indigo.webp'),
   business: require('../assets/images/social_icons/social-chat-business.webp'),
   businessLight: require('../assets/images/social_icons/social-chat-businessLight.webp'),

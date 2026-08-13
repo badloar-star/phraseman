@@ -338,6 +338,7 @@ export const MEDAL_TOAST_THEME_STYLES: Record<ThemeMode, MedalToastThemeStyle> =
       gold: 'rgba(242,196,74,0.46)',
     },
   },
+  olive: { signature: 'olive-noir-champagne', cardBgColors: ['rgba(30,34,20,0.98)', 'rgba(4,5,3,0.98)'], borderColor: 'rgba(201,168,76,0.18)', titleColor: '#F4ECD8', subtitleColor: 'rgba(207,197,171,0.78)', surfaceAccent: '#C9A84C', badgeDownColor: '#E3CC88', topShineColors: ['rgba(201,168,76,0)', 'rgba(201,168,76,0.34)', 'rgba(201,168,76,0)'], topShineOpacity: 0.52, haloOpacity: 0.18, auraColor: 'rgba(201,168,76,0.10)', medalPlateBg: 'rgba(201,168,76,0.06)', medalPlateBorder: 'rgba(201,168,76,0.16)', textureColor: 'rgba(142,170,114,0.08)', textureOpacity: 0.36, tierAccents: { bronze: '#C98B55', silver: '#97A9A1', gold: '#C9A84C' }, tierGlows: { bronze: 'rgba(201,139,85,0.26)', silver: 'rgba(151,169,161,0.22)', gold: 'rgba(201,168,76,0.30)' } },
 };
 
 export function getMedalToastThemeStyle(themeMode: ThemeMode): MedalToastThemeStyle {

@@ -25,6 +25,7 @@ import { readCompletedPlanTasks } from './personal_plan_progress';
 import { recommendNextPlanAfter, getPlanDefaultMinutes } from './personal_plan_recommendation';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { glassFill } from '../components/GlassSurface';
+import { OLIVE_RICH } from '../constants/oliveTheme';
 
 type CompleteView = {
   summary: PersonalPlanCompletionSummary;
@@ -40,7 +41,7 @@ type CompleteView = {
  */
 export default function PersonalPlanCompleteScreen() {
   const router = useRouter();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const [view, setView] = useState<CompleteView | null>(null);
@@ -110,7 +111,7 @@ export default function PersonalPlanCompleteScreen() {
   }
 
   const { summary, nextPlan } = view;
-  const accent = nextPlan.accent || t.accent;
+  const accent = themeMode === 'olive' ? OLIVE_RICH.champagne : nextPlan.accent || t.accent;
   const completionModel = buildProgressCompletionModel({
     fact: triLang(lang, {
       ru: `Маршрут «${summary.planName}» пройден`, uk: `Маршрут «${summary.planName}» пройдено`, es: `Ruta «${summary.planName}» completada`, 'pt-BR': `Rota «${summary.planName}» concluída`, vi: `Đã hoàn thành «${summary.planName}»`, id: `Rute «${summary.planName}» selesai`, tr: `«${summary.planName}» rotası tamamlandı`, pl: `Trasa „${summary.planName}” ukończona`,

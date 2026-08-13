@@ -58,6 +58,7 @@ export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#FFF7DE',
     subtitleColor: '#F4D986',
   },
+  olive: { glow: '#C9A84C', borderColor: 'rgba(201,168,76,0.18)', surfaceColors: ['rgba(31,35,20,0.92)', 'rgba(13,15,11,0.94)', 'rgba(5,6,4,0.96)'], cardGlowColors: ['rgba(201,168,76,0.18)', 'rgba(142,170,114,0.07)', 'transparent'], titleColor: '#F4ECD8', subtitleColor: '#CFC5AB' },
   minimalDark: {
     glow: '#6EA8FF',
     borderColor: 'rgba(110,168,255,0.32)',

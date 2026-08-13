@@ -26,6 +26,11 @@ test('redirectSystemPath normalizes custom-scheme phrase links', () => {
   expect(redirect('phraseman://phrase/hello-world?play=1')).toBe('/home?openPhrase=hello-world&play=1');
 });
 
+test('redirectSystemPath sends personal-deck widget cards to their exact collection', () => {
+  expect(redirect('phraseman://deck/saved/saved-42')).toBe('/flashcards_collection?cat=saved&widgetCard=saved-42');
+  expect(redirect('phraseman://deck/created/custom_42')).toBe('/flashcards_collection?cat=custom&widgetCard=custom_42');
+});
+
 test('redirectSystemPath handles triple-slash custom-scheme duel links', () => {
   expect(redirect('phraseman:///duel/ROOM42')).toBe('/home');
 });

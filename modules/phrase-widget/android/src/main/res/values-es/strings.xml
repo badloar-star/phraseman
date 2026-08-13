@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">La frase de hoy de Phraseman</string>
-    <string name="phrase_widget_kicker">FRASE DEL DÍA</string>
+    <string name="phrase_widget_description">Frases guardadas y creadas en Phraseman</string>
+    <string name="phrase_widget_kicker">COLECCIÓN PERSONAL</string>
 </resources>

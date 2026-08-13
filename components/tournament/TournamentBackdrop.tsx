@@ -89,7 +89,7 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant }: 
     };
   }, []);
 
-  const motionCapable = MOTION_VARIANTS.has(variant);
+  const motionCapable = MOTION_VARIANTS.has(variant) && themeMode !== 'olive';
   const mayAnimate = motionCapable && focused && reduceMotion === false;
 
   useEffect(() => {

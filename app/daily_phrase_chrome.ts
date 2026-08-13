@@ -69,6 +69,22 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     actionText: '#1B1205',
     shadow: '#D6B35A',
   },
+  // Olive Noir: matte depth with champagne reserved for deliberate actions.
+  // This same palette is serialized to WidgetKit/Glance for a coherent Plus deck.
+  olive: {
+    colors: ['#24281A', '#11140D', '#090A08'],
+    border: 'rgba(201,168,76,0.28)',
+    glow: 'rgba(201,168,76,0.13)',
+    title: '#E3CC88',
+    phrase: '#F4ECD8',
+    sub: '#C8C2AC',
+    iconBg: 'rgba(201,168,76,0.14)',
+    iconBorder: 'rgba(201,168,76,0.26)',
+    ornament: '#C9A84C',
+    actionBg: '#C9A84C',
+    actionText: '#111109',
+    shadow: '#000000',
+  },
   minimalDark: {
     colors: ['#26303E', '#20242C', '#121419'],
     border: 'rgba(110,168,255,0.34)',

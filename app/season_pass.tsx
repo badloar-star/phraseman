@@ -203,7 +203,7 @@ export default function SeasonPassScreen() {
   // Нефритовый исходник уже светлый и малоконтрастный. Остальные тематические
   // иллюстрации намеренно оставляем лишь как едва заметную фактуру: награды,
   // подписи и центральная дорожка должны визуально находиться выше фона.
-  const seasonBackgroundScrimOpacity = themeMode === 'sagePorcelain' ? 0.3 : 0.82;
+  const seasonBackgroundScrimOpacity = themeMode === 'olive' ? 0.58 : themeMode === 'sagePorcelain' ? 0.3 : 0.82;
 
   const refreshPendingGiftCount = useCallback(() => {
     loadPendingSeasonPassGiftCount().then(setPendingGiftCount).catch(() => {});

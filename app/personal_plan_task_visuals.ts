@@ -45,6 +45,7 @@ export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
   'volt',
   'dark',
   'gold',
+  'olive',
 ];
 
 const DEFAULT_VISUAL_THEME: ThemeMode = 'midnight';
@@ -174,6 +175,9 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     trainer: require('../assets/images/personal_plan_tasks_fit/gold/trainer.webp'),
     flashcards: require('../assets/images/personal_plan_tasks_fit/gold/flashcards.webp'),
   },
+  olive: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/olive/core_lesson.webp'), route_phrase: require('../assets/images/personal_plan_tasks_fit/olive/route_gavan.webp'), recall: require('../assets/images/personal_plan_tasks_fit/olive/recall.webp'), practice: require('../assets/images/personal_plan_tasks_fit/olive/practice.webp'), choice: require('../assets/images/personal_plan_tasks_fit/olive/choice.webp'), listening: require('../assets/images/personal_plan_tasks_fit/olive/listening.webp'), sentence_build: require('../assets/images/personal_plan_tasks_fit/olive/sentence_build.webp'), speaking: require('../assets/images/personal_plan_tasks_fit/olive/speaking.webp'), trainer: require('../assets/images/personal_plan_tasks_fit/olive/trainer.webp'), flashcards: require('../assets/images/personal_plan_tasks_fit/olive/flashcards.webp'),
+  },
 };
 
 const LEGACY_THEME_ROUTE_FALLBACK: Record<PersonalPlanId, ImageSourcePropType> = {
@@ -243,6 +247,9 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
     mitap: require('../assets/images/personal_plan_tasks_fit/dark/route_mitap.webp'),
     impuls: require('../assets/images/personal_plan_tasks_fit/dark/route_impuls.webp'),
     echo: require('../assets/images/personal_plan_tasks_fit/dark/route_echo.webp'),
+  },
+  olive: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/olive/route_gavan.webp'), voyazh: require('../assets/images/personal_plan_tasks_fit/olive/route_voyazh.webp'), mitap: require('../assets/images/personal_plan_tasks_fit/olive/route_mitap.webp'), impuls: require('../assets/images/personal_plan_tasks_fit/olive/route_impuls.webp'), echo: require('../assets/images/personal_plan_tasks_fit/olive/route_echo.webp'),
   },
   gold: {
     gavan: require('../assets/images/personal_plan_tasks_fit/gold/route_gavan.webp'),

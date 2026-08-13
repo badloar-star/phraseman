@@ -31,6 +31,7 @@ import { buildPersonalPlanStats, type PersonalPlanStatsSummary } from './persona
 import { readPlanWeakSpotView, type PlanWeakSpotView } from './personal_plan_weak_spot_reader';
 import { readPlanXpLedger, type PlanXpLedgerEntry } from './personal_plan_xp_ledger';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import { OLIVE_RICH, OLIVE_GRADIENTS } from '../constants/oliveTheme';
 
 const DAY_CARD_WIDTH = 88;
 const DAY_CARD_GAP = 10;
@@ -62,6 +63,7 @@ function resolveChrome(themeMode: ThemeMode, t: ReturnType<typeof useTheme>['the
   };
   if (false) return { ...base, bg: ['#202020', '#101010', '#050505'], card: ['#232522', '#0B0C0A'], accent: '#C8FF00', accent2: '#A6FF5D', accentSoft: 'rgba(200,255,0,0.13)', border: 'rgba(200,255,0,0.24)' };
   if (themeMode === 'gold') return { ...base, bg: ['#171008', '#0B0804', '#030201'], card: ['#211A10', '#080604'], accent: '#E8C46A', accent2: '#FFF0B8', accentSoft: 'rgba(232,196,106,0.15)', border: 'rgba(232,196,106,0.26)', muted: '#CBBE9A', surface: 'rgba(232,196,106,0.08)' };
+  if (themeMode === 'olive') return { ...base, bg: [...OLIVE_GRADIENTS.screen] as [string, string, string], card: [OLIVE_RICH.raised, OLIVE_RICH.panel], accent: OLIVE_RICH.champagne, accent2: OLIVE_RICH.champagneLight, accentSoft: '#2A2818', border: 'transparent', text: OLIVE_RICH.ivory, muted: OLIVE_RICH.champagneLight, surface: OLIVE_RICH.surface };
   if (themeMode === 'sagePorcelain') return { ...base, bg: ['#DCE1D8', '#CDD5C7', '#BFC8B8'], card: ['#FCFDF9', '#DCE1D8'], accent: '#315F50', accent2: '#52605A', accentSoft: '#D9E9E1', border: '#CFD6CE', text: '#17201D', muted: '#52605A', surface: '#E1E5DC' };
   if (false) return { ...base, bg: ['#343235', '#29292B', '#1E1E20'], card: ['#2D2D30', '#1F1F22'], accent: '#F6C78E', accent2: '#FFE1B5', accentSoft: 'rgba(246,199,142,0.14)', border: 'rgba(246,199,142,0.22)' };
   if (false) return { ...base, bg: ['#FFF8EA', '#F4E6CD', '#EBD8BC'], card: ['#FFFDF6', '#F2E1C8'], accent: '#B7791F', accent2: '#166E65', accentSoft: 'rgba(183,121,31,0.13)', border: 'rgba(91,63,25,0.18)', text: '#201811', muted: '#6A5C4D', surface: 'rgba(70,48,20,0.055)' };

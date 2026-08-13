@@ -77,6 +77,7 @@ export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskGlow: 'rgba(244,216,137,0.10)',
     taskBorder: 'rgba(244,216,137,0.32)',
   },
+  olive: { accent: '#C9A84C', accentSoft: 'rgba(201,168,76,0.14)', chipBg: 'rgba(201,168,76,0.12)', chipText: '#F4ECD8', taskGlow: 'rgba(201,168,76,0.06)', taskBorder: 'rgba(201,168,76,0.18)' },
   minimalDark: {
     accent: '#6EA8FF',
     accentSoft: 'rgba(110,168,255,0.17)',

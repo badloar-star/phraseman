@@ -16,6 +16,7 @@ import { useRouter } from 'expo-router';
 // нативных метрик — контент прыгал; стабильная обёртка знает инсеты синхронно.
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useLang } from './LangContext';
+import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import {
@@ -29,6 +30,7 @@ import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { triLang, type Lang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
+import { OLIVE_RICH } from '../constants/oliveTheme';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface StreakReviveModalProps {
@@ -71,6 +73,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
+  const isOliveTheme = themeMode === 'olive';
   const insets = useStableSafeAreaInsets();
   const { height: windowHeight, fontScale } = useWindowDimensions();
   const [busy, setBusy] = useState(false);
@@ -238,15 +241,15 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     onDismiss();
   }, [busy, onDismiss]);
 
-  const accent = '#FF7A45';
-  const accentDarkText = '#241008';
+  const accent = isOliveTheme ? OLIVE_RICH.champagne : '#FF7A45';
+  const accentDarkText = isOliveTheme ? OLIVE_RICH.piano : '#241008';
   // зачем: раньше светлость проверялась по УДАЛЁННОЙ теме businessLight — ветка
   // была мертва, и sagePorcelain получала тёмную карту #171824 при тёмном тексте
   // темы (нечитаемо). Центральный классификатор + фарфоровая карта и шалфейный CTA.
   const isLightTheme = isLightThemeMode(themeMode);
-  const passSurface = isLightTheme ? '#FCFDF9' : '#171824';
-  const primarySurface = isLightTheme ? '#315F50' : '#F3F0FF';
-  const primaryText = isLightTheme ? '#FFFFFF' : '#171421';
+  const passSurface = isOliveTheme ? OLIVE_RICH.panel : isLightTheme ? '#FCFDF9' : '#171824';
+  const primarySurface = isOliveTheme ? OLIVE_RICH.champagne : isLightTheme ? '#315F50' : '#F3F0FF';
+  const primaryText = isOliveTheme ? OLIVE_RICH.piano : isLightTheme ? '#FFFFFF' : '#171421';
 
   if (!visible || !offer) return null;
 
@@ -274,11 +277,12 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
           accessibilityState={{ disabled: busy }}
         />
 
-        <View
-          testID="streak-revive-pass"
-          style={[styles.pass, compactHeight && styles.passCompact, { backgroundColor: passSurface }]}
-          accessibilityViewIsModal
-        >
+        <View style={[styles.passShadow, compactHeight && styles.passCompact, isOliveTheme ? styles.olivePassShadow : null]}>
+          <View
+            testID="streak-revive-pass"
+            style={[styles.pass, { backgroundColor: passSurface }]}
+            accessibilityViewIsModal
+          >
           <View
             testID="streak-revive-header"
             style={[styles.header, compactHeight && styles.headerCompact, { backgroundColor: accent }]}
@@ -299,12 +303,13 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
                 реалистично 1-3 цифры, tabular-nums держит фикс. ширину цифр.
                 text-integrity: clip тоже запрещён (усечение без следа) — при
                 аномальном числе честнее системное многоточие. */}
-            <Text
+            <FlowText
+              testID="streak-revive-number"
+              provenance="authored"
               style={[styles.streakNumber, compactHeight && styles.streakNumberCompact, { color: accentDarkText, fontVariant: ['tabular-nums'] }]}
-              numberOfLines={1}
             >
               {lostStreak}
-            </Text>
+            </FlowText>
             <Text style={[styles.streakLabel, { color: accentDarkText }]}>{streakUnit}</Text>
           </View>
 
@@ -314,12 +319,13 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
             bounces={false}
             showsVerticalScrollIndicator={false}
           >
-            <Text
+            <FlowText
+              testID="streak-revive-title"
+              provenance="authored"
               style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}
-              numberOfLines={3}
             >
               {title}
-            </Text>
+            </FlowText>
             <Text style={[styles.description, { color: t.textSecond, fontSize: f.body }]}>{description}</Text>
 
             <Pressable
@@ -360,6 +366,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
               <Text style={[styles.countdown, { color: t.textMuted }]}>{formatCountdown(msLeft, lang)}</Text>
             ) : null}
           </ScrollView>
+          </View>
         </View>
       </View>
     </Modal>
@@ -381,16 +388,29 @@ const styles = StyleSheet.create({
   },
   pass: {
     zIndex: 1,
+    width: '100%',
+    maxHeight: '100%',
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
+  passShadow: {
+    zIndex: 1,
     width: 342,
     maxWidth: '100%',
     maxHeight: '92%',
     borderRadius: 30,
-    overflow: 'hidden',
     shadowColor: '#000',
     shadowOpacity: 0.48,
     shadowRadius: 34,
     shadowOffset: { width: 0, height: 20 },
     ...noAndroidOutline,
+  },
+  olivePassShadow: {
+    shadowColor: '#000',
+    shadowOpacity: 0.42,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 9,
   },
   passCompact: {
     maxHeight: '96%',

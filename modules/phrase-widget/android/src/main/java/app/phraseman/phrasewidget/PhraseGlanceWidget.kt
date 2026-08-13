@@ -22,6 +22,9 @@ import androidx.glance.ImageProvider
 import androidx.glance.LocalContext
 import androidx.glance.LocalSize
 import androidx.glance.action.clickable
+import androidx.glance.appwidget.action.ActionCallback
+import androidx.glance.appwidget.action.actionRunCallback
+import androidx.glance.action.ActionParameters
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.action.actionStartActivity
@@ -66,10 +69,19 @@ import kotlin.math.roundToInt
  */
 class PhraseGlanceWidget : GlanceAppWidget() {
 
+  /** Keys are deliberately widget-instance scoped; configuration never leaks. */
+  companion object {
+    private const val MAX_SCHEMA_VERSION = 3
+
+    fun sourceForWidget(appWidgetId: Int) = "personal_deck_source_$appWidgetId"
+    fun cursorForWidget(appWidgetId: Int) = "personal_deck_cursor_$appWidgetId"
+  }
+
   override val sizeMode = SizeMode.Exact
 
   override suspend fun provideGlance(context: Context, id: GlanceId) {
-    val snapshot = readSnapshot(context)
+    val appWidgetId = androidx.glance.appwidget.GlanceAppWidgetManager(context).getAppWidgetId(id)
+    val snapshot = readSnapshot(context, appWidgetId)
     provideContent {
       GlanceTheme {
         WidgetBody(snapshot)
@@ -97,8 +109,6 @@ class PhraseGlanceWidget : GlanceAppWidget() {
     val chipBg = parse(t.chipBg, 0x2258CC89)
 
     val openIntent = actionStartActivity(deepLinkIntent(snapshot.deepLink))
-    val playLink = snapshot.playDeepLink.ifEmpty { snapshot.deepLink }
-    val playIntent = actionStartActivity(deepLinkIntent(playLink))
 
     // Lit, dimensional surface: gradient + glow + hairline border baked into a
     // bitmap so it matches the in-app card and the iOS widget.
@@ -183,7 +193,7 @@ class PhraseGlanceWidget : GlanceAppWidget() {
 
       // Play affordance only when there is room (medium-ish), matching iOS which
       // shows it on medium only. A round accent chip, clearly tappable.
-      if (!compact) {
+      if (!compact && snapshot.canNavigate) {
         Spacer(GlanceModifier.defaultWeight())
         Row(
           modifier = GlanceModifier.fillMaxWidth(),
@@ -193,12 +203,31 @@ class PhraseGlanceWidget : GlanceAppWidget() {
             modifier = GlanceModifier
               .cornerRadius(20.dp)
               .background(ColorProvider(strengthen(chipBg, accent)))
-              .padding(horizontal = 14.dp, vertical = 8.dp)
-              .clickable(playIntent),
+              .padding(horizontal = 16.dp, vertical = 12.dp)
+              .clickable(actionRunCallback<PreviousPhraseAction>()),
             contentAlignment = Alignment.Center,
           ) {
             Text(
-              "▶  ${tapHint(snapshot.kicker)}",
+              tapHint(snapshot.kicker),
+              style = TextStyle(
+                color = ColorProvider(accent),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Medium,
+              ),
+              maxLines = 1,
+            )
+          }
+          Spacer(GlanceModifier.defaultWeight())
+          Box(
+            modifier = GlanceModifier
+              .cornerRadius(20.dp)
+              .background(ColorProvider(strengthen(chipBg, accent)))
+              .padding(horizontal = 16.dp, vertical = 12.dp)
+              .clickable(actionRunCallback<NextPhraseAction>()),
+            contentAlignment = Alignment.Center,
+          ) {
+            Text(
+              "Next",
               style = TextStyle(
                 color = ColorProvider(accent),
                 fontSize = 12.sp,
@@ -213,7 +242,9 @@ class PhraseGlanceWidget : GlanceAppWidget() {
   }
 
   /** Localized "Listen" label paired with the ▶ glyph, derived from the kicker locale. */
-  private fun tapHint(kicker: String): String = when {
+  private fun tapHint(@Suppress("UNUSED_PARAMETER") kicker: String): String = "Previous"
+
+  private fun legacyTapHint(kicker: String): String = when {
     kicker.contains("ФРАЗА") -> "Слушать"
     kicker.contains("ВИСЛІВ") -> "Слухати"
     kicker.contains("FRASE DEL") -> "Escuchar"   // es
@@ -341,7 +372,7 @@ class PhraseGlanceWidget : GlanceAppWidget() {
       addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
-  private fun readSnapshot(context: Context): Snapshot? {
+  private fun readSnapshot(context: Context, appWidgetId: Int): Snapshot? {
     val raw = context
       .getSharedPreferences(PhraseWidgetModule.PREFS_NAME, Context.MODE_PRIVATE)
       .getString(PhraseWidgetModule.STORAGE_KEY, null) ?: return null
@@ -350,7 +381,6 @@ class PhraseGlanceWidget : GlanceAppWidget() {
       // Reject snapshots from a newer schema than this build understands.
       val version = o.optInt("schemaVersion", MAX_SCHEMA_VERSION)
       if (version > MAX_SCHEMA_VERSION) return null
-
       val themeObj = o.optJSONObject("theme")
       val theme = SnapshotTheme(
         gradientTop = themeObj?.optString("gradientTop").orEmpty(),
@@ -365,20 +395,50 @@ class PhraseGlanceWidget : GlanceAppWidget() {
         chipBorder = themeObj?.optString("chipBorder").orEmpty(),
         glow = themeObj?.optString("glow").orEmpty(),
       )
+      // Free users must never see a stale Plus deck snapshot after entitlement
+      // changes. Native has no entitlement authority; RN publishes this state.
+      if (o.optString("access", "free") != "plus") {
+        return fallbackSnapshot(theme, plusRequired = true)
+      }
+      val source = context.getSharedPreferences(PhraseWidgetModule.PREFS_NAME, Context.MODE_PRIVATE)
+        .getString(sourceForWidget(appWidgetId), "saved") ?: "saved"
+      val deck = o.optJSONObject("decks")?.optJSONObject(source)
+        ?: return fallbackSnapshot(theme, plusRequired = false)
+      val cards = deck.optJSONArray("cards")
+        ?: return fallbackSnapshot(theme, plusRequired = false)
+      if (deck.optBoolean("empty", cards.length() == 0) || cards.length() == 0) {
+        return fallbackSnapshot(theme, plusRequired = false)
+      }
+      val cursor = context.getSharedPreferences(PhraseWidgetModule.PREFS_NAME, Context.MODE_PRIVATE)
+        .getInt(cursorForWidget(appWidgetId), 0)
+      val card = cards.optJSONObject(Math.floorMod(cursor, cards.length())) ?: return null
       Snapshot(
-        english = o.optString("english"),
-        meaning = o.optString("meaning"),
-        transcription = o.optString("transcription"),
-        kicker = o.optString("kicker"),
-        deepLink = o.optString("deepLink"),
-        playDeepLink = o.optString("playDeepLink"),
-        date = o.optString("date"),
+        english = card.optString("english"),
+        meaning = card.optString("meaning"),
+        transcription = card.optString("transcription"),
+        kicker = if (source == "saved") "SAVED" else "MY PHRASES",
+        deepLink = card.optString("deepLink"),
+        playDeepLink = card.optString("deepLink"),
+        date = "",
         theme = theme,
+        canNavigate = true,
       ).takeIf { it.english.isNotEmpty() && it.deepLink.isNotEmpty() }
     } catch (_: Throwable) {
       null
     }
   }
+
+  private fun fallbackSnapshot(theme: SnapshotTheme, plusRequired: Boolean) = Snapshot(
+    english = if (plusRequired) "Personal deck requires Plus" else "Your selected deck is empty",
+    meaning = if (plusRequired) "Open Phraseman to unlock your saved and created phrases." else "Open Phraseman to add cards, then refresh this widget.",
+    transcription = "",
+    kicker = if (plusRequired) "PLUS" else "PERSONAL DECK",
+    deepLink = "phraseman://flashcards",
+    playDeepLink = "phraseman://flashcards",
+    date = "",
+    theme = theme,
+    canNavigate = false,
+  )
 
   private data class SnapshotTheme(
     val gradientTop: String,
@@ -403,6 +463,7 @@ class PhraseGlanceWidget : GlanceAppWidget() {
     val playDeepLink: String,
     val date: String,
     val theme: SnapshotTheme,
+    val canNavigate: Boolean,
   ) {
     /** True when the snapshot's day is not the current local day. */
     val isStale: Boolean
@@ -413,8 +474,17 @@ class PhraseGlanceWidget : GlanceAppWidget() {
         return date != today
       }
   }
+}
 
-  private companion object {
-    const val MAX_SCHEMA_VERSION = 2
+abstract class ChangePhraseAction(private val delta: Int) : ActionCallback {
+  override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
+    val widgetId = androidx.glance.appwidget.GlanceAppWidgetManager(context).getAppWidgetId(glanceId)
+    val prefs = context.getSharedPreferences(PhraseWidgetModule.PREFS_NAME, Context.MODE_PRIVATE)
+    val key = PhraseGlanceWidget.cursorForWidget(widgetId)
+    prefs.edit().putInt(key, prefs.getInt(key, 0) + delta).apply()
+    PhraseGlanceWidget().update(context, glanceId)
   }
 }
+
+class PreviousPhraseAction : ChangePhraseAction(-1)
+class NextPhraseAction : ChangePhraseAction(1)

@@ -53,6 +53,7 @@ export const THRESHOLD_LEVEL_UP_PALETTES = {
     buttonText: '#1C1104',
     secondaryText: '#D2C29D',
   },
+  olive: { background: ['#1A1E12', '#0B0D08', '#030303'], ambient: 'rgba(201,168,76,0.12)', accent: '#C9A84C', accentSecondary: '#E3CC88', portalFill: ['rgba(201,168,76,0.14)', 'rgba(5,6,4,0.26)'], portalBorder: 'rgba(227,204,136,0.34)', panel: 'rgba(13,15,11,0.95)', panelBorder: 'rgba(201,168,76,0.14)', rewardSurface: 'rgba(201,168,76,0.07)', rewardBorder: 'rgba(201,168,76,0.16)', textPrimary: '#F4ECD8', textMuted: '#A69F8A', button: ['#F0DEA5', '#C9A84C', '#9C7A29'], buttonText: '#161208', secondaryText: '#CFC5AB' },
   minimalDark: {
     background: ['#101722', '#080D14', '#020407'],
     ambient: 'rgba(111, 172, 255, 0.18)',

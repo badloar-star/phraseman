@@ -165,6 +165,9 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     audio: require('../../assets/images/flashcards/mode_icons/gold/audio.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/gold/collection.webp'),
   },
+  olive: {
+    saved: require('../../assets/images/flashcards/mode_icons/olive/saved.webp'), custom: require('../../assets/images/flashcards/mode_icons/olive/custom.webp'), training: require('../../assets/images/flashcards/mode_icons/olive/training.webp'), audio: require('../../assets/images/flashcards/mode_icons/olive/audio.webp'), collection: require('../../assets/images/flashcards/mode_icons/olive/collection.webp'),
+  },
   business: {
     saved: require('../../assets/images/flashcards/mode_icons/business/saved.webp'),
     custom: require('../../assets/images/flashcards/mode_icons/business/custom.webp'),

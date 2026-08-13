@@ -16,6 +16,8 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
+import { OLIVE_RICH } from '../constants/oliveTheme';
+import { oliveLevelExamChrome } from './olive_completion_chrome';
 import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
@@ -495,6 +497,7 @@ function FrenchLevelExamUnavailable({
   themeMode: ReturnType<typeof useTheme>['themeMode'];
 }) {
   const copy = frenchExamGateCopy('level', lang);
+  const oliveChrome = oliveLevelExamChrome(themeMode);
   return (
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={{ flex: 1 }}>
@@ -506,29 +509,29 @@ function FrenchLevelExamUnavailable({
               paddingHorizontal: 16,
               paddingVertical: 12,
               borderBottomWidth: StyleSheet.hairlineWidth,
-              borderBottomColor: LX.cardLine,
+              borderBottomColor: oliveChrome?.border ?? LX.cardLine,
             }}
           >
             <TapScale onPress={onBack} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+              <Ionicons name="chevron-back" size={26} color={oliveChrome?.ivory ?? '#FFFFFF'} />
             </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 0, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <Ionicons name="shield-checkmark-outline" size={38} color={monoIcon(themeMode, LX.gold)} />
             </View>
-            <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+            <Text style={{ color: oliveChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {copy.title}
             </Text>
-            <Text style={{ color: 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
+            <Text style={{ color: oliveChrome?.muted ?? 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
               {copy.body}
             </Text>
             <TouchableOpacity
               activeOpacity={0.86}
               onPress={onLessons}
-              style={{ backgroundColor: LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
+              style={{ backgroundColor: oliveChrome?.cta ?? LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
             >
-              <Text style={{ color: LX.ink, fontSize: f.body, fontWeight: '900' }}>{copy.cta}</Text>
+              <Text style={{ color: oliveChrome?.ctaText ?? LX.ink, fontSize: f.body, fontWeight: '900' }}>{copy.cta}</Text>
             </TouchableOpacity>
           </View>
         </ContentWrap>
@@ -542,6 +545,8 @@ export default function LevelExam() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
+  const isOliveTheme = themeMode === 'olive';
+  const oliveExamChrome = oliveLevelExamChrome(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -960,18 +965,18 @@ export default function LevelExam() {
               paddingHorizontal: 16,
               paddingVertical: 12,
               borderBottomWidth: StyleSheet.hairlineWidth,
-              borderBottomColor: LX.cardLine,
+              borderBottomColor: isOliveTheme ? 'transparent' : LX.cardLine,
             }}
           >
             <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+              <Ionicons name="chevron-back" size={26} color={isOliveTheme ? OLIVE_RICH.ivory : '#FFFFFF'} />
             </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 0, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveExamChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveExamChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={monoIcon(themeMode, LX.gold)} />
             </View>
-            <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+            <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {checking
                 ? triLang(lang, {
                   ru: 'Проверяем доступ',
@@ -985,7 +990,7 @@ export default function LevelExam() {
                 })
                 : title}
             </Text>
-            <Text style={{ color: 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
+            <Text style={{ color: oliveExamChrome?.muted ?? 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
               {checking
                 ? triLang(lang, {
                   ru: 'Секунду, сверяем текущий уровень.',
@@ -1018,9 +1023,9 @@ export default function LevelExam() {
                     router.replace('/lessons_list' as any);
                   }
                 }}
-                style={{ backgroundColor: LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
+                style={{ backgroundColor: oliveExamChrome?.cta ?? LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
               >
-                <Text style={{ color: LX.ink, fontSize: f.body, fontWeight: '900' }}>
+                <Text style={{ color: oliveExamChrome?.ctaText ?? LX.ink, fontSize: f.body, fontWeight: '900' }}>
                   {accessBlockKind === 'premium'
                     ? triLang(lang, {
                       ru: 'Получить Plus',
@@ -1144,17 +1149,17 @@ export default function LevelExam() {
               paddingHorizontal: 16,
               paddingVertical: 12,
               borderBottomWidth: StyleSheet.hairlineWidth,
-              borderBottomColor: LX.cardLine,
+              borderBottomColor: oliveExamChrome?.border ?? LX.cardLine,
             }}
           >
             <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+              <Ionicons name="chevron-back" size={26} color={oliveExamChrome?.ivory ?? '#FFFFFF'} />
             </TapScale>
           </View>
           <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
             <View
               style={{
-                backgroundColor: LX.card,
+                backgroundColor: oliveExamChrome?.raised ?? (isOliveTheme ? OLIVE_RICH.raised : LX.card),
                 borderRadius: 22,
                 borderWidth: 0,
                 borderColor: LX.cardLine,
@@ -1178,7 +1183,7 @@ export default function LevelExam() {
                   <Ionicons name="diamond-outline" size={26} color={monoIcon(themeMode, LX.gold)} />
                 </View>
                 <View style={{ flex: 1, paddingTop: 2 }}>
-                  <Text style={{ color: '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
+                  <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
                     {title}
                   </Text>
                 </View>
@@ -1195,16 +1200,16 @@ export default function LevelExam() {
                       paddingVertical: 14,
                       paddingHorizontal: 6,
                       borderRadius: 16,
-                      backgroundColor: 'rgba(0,0,0,0.35)',
+                    backgroundColor: oliveExamChrome?.panel ?? 'rgba(0,0,0,0.35)',
                       borderWidth: 0,
                       borderColor: LX.cardLine,
                     }}
                   >
                     <Ionicons name={s.icon} size={18} color={monoIcon(themeMode, LX.gold)} style={{ marginBottom: 8 }} />
-                    <Text style={{ color: LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
+                    <Text style={{ color: oliveExamChrome?.cta ?? LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
                     <Text
                       style={{
-                        color: LX.gold,
+                        color: oliveExamChrome?.muted ?? LX.gold,
                         fontSize: f.label - 1,
                         fontWeight: '700',
                         letterSpacing: 0,
@@ -1218,7 +1223,7 @@ export default function LevelExam() {
                 ))}
               </View>
 
-              <Text style={{ color: 'rgba(255,255,255,0.88)', fontSize: f.body, lineHeight: 22 }}>{introBody}</Text>
+              <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : 'rgba(255,255,255,0.88)', fontSize: f.body, lineHeight: 22 }}>{introBody}</Text>
 
               {premiumNote ? (
                 <View
@@ -1228,13 +1233,13 @@ export default function LevelExam() {
                     gap: 10,
                     padding: 14,
                     borderRadius: 14,
-                    backgroundColor: LX.goldSoft,
+                    backgroundColor: oliveExamChrome?.panel ?? LX.goldSoft,
                     borderWidth: 0,
-                    borderColor: LX.cardLine,
+                    borderColor: oliveExamChrome?.border ?? LX.cardLine,
                   }}
                 >
-                  <Ionicons name="sparkles-outline" size={20} color={monoIcon(themeMode, LX.gold)} style={{ marginTop: 2 }} />
-                  <Text style={{ flex: 1, color: 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
+                  <Ionicons name="sparkles-outline" size={20} color={oliveExamChrome?.cta ?? monoIcon(themeMode, LX.gold)} style={{ marginTop: 2 }} />
+                  <Text style={{ flex: 1, color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
                 </View>
               ) : null}
 
@@ -1245,7 +1250,7 @@ export default function LevelExam() {
                 style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4, opacity: examStarting ? 0.6 : 1 }}
               >
                 <LinearGradient
-                  colors={['#FFE9A8', '#E8C040', '#C99516']}
+                  colors={isOliveTheme ? ['#F0DEA5', '#C9A84C', '#9C7A29'] : ['#FFE9A8', '#E8C040', '#C99516']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={{

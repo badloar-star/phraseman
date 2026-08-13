@@ -17,7 +17,6 @@
  * DailyPhraseCard, and (later) the expo-notifications background task.
  */
 
-import { getTodayPhraseForTarget } from './daily_phrase_system';
 import { dailyPhraseCopyForLang } from './daily_phrase_system';
 import type { DailyPhrase, DailyPhraseInterfaceLang } from './daily_phrase_system';
 import { Platform } from 'react-native';
@@ -26,6 +25,11 @@ import { getTranscription } from './transcription';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { ThemeMode } from '../constants/theme';
 import PhraseWidget from '../modules/phrase-widget';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import { loadFlashcards, type Flashcard } from '../hooks/use-flashcards';
+import { readCustomCards } from './flashcards/storage';
+import { resolveFlashcardBackText, type CardItem } from './flashcards/types';
+import type { WidgetDeckCardPayload, WidgetDeckPayload, WidgetDeckSource } from '../modules/phrase-widget/types';
 
 /**
  * Theme palette carried into the snapshot so native renders the same look as the
@@ -61,7 +65,7 @@ export interface WidgetTheme {
  * Shape written to shared storage. Versioned so a future native build can detect
  * and ignore snapshots it does not understand. Flat and small.
  */
-export interface WidgetPayload {
+export interface LegacyWidgetPayload {
   schemaVersion: 2;
   phraseId: string;
   /** Target language phrase (e.g. English idiom). */
@@ -136,7 +140,7 @@ export function buildWidgetPayload(
   lang: DailyPhraseInterfaceLang,
   mode: ThemeMode,
   now: number,
-): WidgetPayload {
+): LegacyWidgetPayload {
   const copy = dailyPhraseCopyForLang(phrase, lang);
   const encodedId = encodeURIComponent(phrase.id);
 
@@ -161,6 +165,73 @@ export function buildWidgetPayload(
   };
 }
 
+export interface PersonalDeckWidgetInput {
+  isPlus: boolean;
+  lang: DailyPhraseInterfaceLang;
+  mode: ThemeMode;
+  now: number;
+  saved: Array<Partial<Pick<Flashcard, 'id' | 'en' | 'ru' | 'uk' | 'es' | 'sourceLocales' | 'transcription'>>>;
+  created: Array<Partial<CardItem>>;
+}
+
+function deckCard(
+  source: WidgetDeckSource,
+  card: Partial<CardItem>,
+  lang: DailyPhraseInterfaceLang,
+): WidgetDeckCardPayload | null {
+  const id = String(card.id ?? '').trim();
+  const english = String(card.en ?? '').trim();
+  if (!id || !english) return null;
+  const meaning = resolveFlashcardBackText({
+    id,
+    en: english,
+    ru: String(card.ru ?? ''),
+    uk: String(card.uk ?? card.ru ?? ''),
+    es: typeof card.es === 'string' ? card.es : undefined,
+    sourceLocales: card.sourceLocales,
+    categoryId: source === 'saved' ? 'saved' : 'custom',
+    isSystem: false,
+  }, lang) || String(card.ru ?? card.uk ?? '').trim();
+  return {
+    id,
+    english,
+    meaning,
+    transcription: String(card.transcription ?? getTranscription(english) ?? '').trim(),
+    deepLink: `${SCHEME}://deck/${source}/${encodeURIComponent(id)}`,
+  };
+}
+
+function deckPayload(
+  source: WidgetDeckSource,
+  cards: Array<Partial<CardItem>>,
+  lang: DailyPhraseInterfaceLang,
+): WidgetDeckPayload {
+  const mapped = cards.map((card) => deckCard(source, card, lang)).filter((card): card is WidgetDeckCardPayload => card != null);
+  return { empty: mapped.length === 0, cards: mapped };
+}
+
+/**
+ * Builds the Plus-only personal-deck snapshot. The native layer receives both
+ * deck lists but never entitlement secrets; it renders a local free/empty state
+ * until RN next publishes an entitled snapshot.
+ */
+export function buildPersonalDeckWidgetPayload(input: PersonalDeckWidgetInput) {
+  const empty: WidgetDeckPayload = { empty: true, cards: [] };
+  return {
+    schemaVersion: 3 as const,
+    access: input.isPlus ? 'plus' as const : 'free' as const,
+    decks: input.isPlus
+      ? {
+          saved: deckPayload('saved', input.saved as Array<Partial<CardItem>>, input.lang),
+          created: deckPayload('created', input.created, input.lang),
+        }
+      : { saved: empty, created: empty },
+    lang: input.lang,
+    theme: themeFromMode(input.mode),
+    updatedAt: input.now,
+  };
+}
+
 /**
  * Resolve today's phrase and publish it to the widget. Best-effort: failures are
  * contained (returns false) so a widget refresh never crashes the host app, but
@@ -176,12 +247,23 @@ export async function syncWidgetData(options?: {
     if (!PhraseWidget.isAvailable()) return false;
 
     const lang: DailyPhraseInterfaceLang = options?.lang ?? 'ru';
-    const phrase = await getTodayPhraseForTarget(options?.studyTarget, lang);
-    if (!phrase) return false;
-
     const mode: ThemeMode = options?.themeMode ?? 'dark';
     const now = options?.now ?? Date.now();
-    const payload = buildWidgetPayload(phrase, lang, mode, now);
+    const isPlus = await getVerifiedPremiumStatus().catch(() => false);
+    const [saved, created]: [Flashcard[], unknown[]] = isPlus
+      ? await Promise.all([
+          loadFlashcards(options?.studyTarget).catch((): Flashcard[] => []),
+          readCustomCards(options?.studyTarget).catch((): unknown[] => []),
+        ])
+      : [[], []];
+    const payload = buildPersonalDeckWidgetPayload({
+      isPlus,
+      lang,
+      mode,
+      now,
+      saved,
+      created: Array.isArray(created) ? created as Array<Partial<CardItem>> : [],
+    });
 
     await PhraseWidget.setData(payload);
     await PhraseWidget.reloadAll();

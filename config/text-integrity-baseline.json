@@ -1212,36 +1212,6 @@
       }
     },
     {
-      "file": "components/StreakReviveModal.tsx",
-      "ownerName": "StreakReviveModal",
-      "ownerPath": "StreakReviveModal",
-      "ancestorPath": [
-        "Modal",
-        "View",
-        "View",
-        "ScrollView",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "3",
-      "testID": null,
-      "fingerprint": "21b1ba141ba5b124ed5c897646b59841fcb8147cf0de568caaae0b2a30f01605",
-      "count": 1,
-      "lineHints": [
-        317
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards_swipe.tsx",
       "ownerName": "renderDone",
       "ownerPath": "FlashcardsSwipeScreen>renderDone",
@@ -3726,36 +3696,6 @@
       "count": 1,
       "lineHints": [
         478
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/StreakReviveModal.tsx",
-      "ownerName": "StreakReviveModal",
-      "ownerPath": "StreakReviveModal",
-      "ancestorPath": [
-        "Modal",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "71a86e715ae9580c386033532a02127f7584e30ec85668022d470cad023781ad",
-      "count": 1,
-      "lineHints": [
-        302
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

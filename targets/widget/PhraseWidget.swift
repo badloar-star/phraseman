@@ -1,5 +1,6 @@
 import SwiftUI
 import WidgetKit
+import AppIntents
 
 /// SwiftUI view for the phrase-of-the-day widget. Palette comes from the active
 /// app theme (carried in the snapshot), so it matches the in-app Daily Phrase
@@ -25,6 +26,9 @@ struct PhraseWidgetView: View {
   private var chipBorder: Color { Color(phraseHex: theme.chipBorder, fallback: accent.opacity(0.22)) }
   private var borderColor: Color { Color(phraseHex: theme.border, fallback: accent.opacity(0.28)) }
   private var isStale: Bool { entry.payload.isStale }
+
+  @available(iOS 17.0, *)
+  private var deckSource: PersonalDeckSource { PersonalDeckSource(rawValue: entry.source) ?? .saved }
 
   var body: some View {
     switch family {
@@ -95,14 +99,22 @@ struct PhraseWidgetView: View {
       HStack(alignment: .center) {
         kicker(showChip: true, chipSize: 26)
         Spacer(minLength: 6)
-        Link(destination: URL(string: entry.payload.playDeepLink) ?? Self.homeURL) {
-          Image(systemName: "play.fill")
-            .font(.system(size: 12, weight: .bold))
-            .foregroundStyle(accent)
-            .padding(9)
-            .background(chipBg)
-            .clipShape(Circle())
-            .overlay(Circle().strokeBorder(chipBorder, lineWidth: 1))
+        if #available(iOS 17.0, *), entry.payload.canNavigate {
+          HStack(spacing: 8) {
+            Button(intent: PreviousPhraseIntent(source: deckSource)) {
+              Image(systemName: "chevron.left").frame(width: 22, height: 22)
+            }
+            .accessibilityLabel("Previous card")
+            Button(intent: NextPhraseIntent(source: deckSource)) {
+              Image(systemName: "chevron.right").frame(width: 22, height: 22)
+            }
+            .accessibilityLabel("Next card")
+          }
+          .font(.system(size: 12, weight: .bold))
+          .foregroundStyle(accent)
+          .padding(9)
+          .background(chipBg)
+          .clipShape(Capsule())
         }
       }
       Text(entry.payload.english)
@@ -186,28 +198,42 @@ struct PhraseWidget: Widget {
   private let kind = "PhraseWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: PhraseProvider()) { entry in
-      if #available(iOS 17.0, *) {
-        PhraseWidgetView(entry: entry)
-          .containerBackground(for: .widget) {
-            phraseSurface(entry.payload.theme)
-              .overlay(
-                RoundedRectangle(cornerRadius: 22, style: .continuous)
-                  .strokeBorder(
-                    Color(phraseHex: entry.payload.theme.border, fallback: .clear),
-                    lineWidth: 1
-                  )
-              )
-          }
-      } else {
-        PhraseWidgetView(entry: entry)
-          .padding()
-          .background(phraseSurface(entry.payload.theme))
+    if #available(iOS 17.0, *) {
+      AppIntentConfiguration(kind: kind, intent: PersonalDeckConfiguration.self, provider: PhraseProvider()) { entry in
+        widgetView(entry)
       }
+      .configurationDisplayName("Personal deck")
+      .description("A saved or created phrase from your Phraseman deck.")
+      .supportedFamilies(supportedFamilies)
+    } else {
+      StaticConfiguration(kind: kind, provider: LegacyPhraseProvider()) { entry in
+        widgetView(entry)
+      }
+      .configurationDisplayName("Personal deck")
+      .description("Your saved Phraseman phrases.")
+      .supportedFamilies(supportedFamilies)
     }
-    .configurationDisplayName("Фраза дня")
-    .description("Сегодняшняя фраза из Phraseman.")
-    .supportedFamilies(supportedFamilies)
+  }
+
+  @ViewBuilder
+  private func widgetView(_ entry: PhraseEntry) -> some View {
+    if #available(iOS 17.0, *) {
+      PhraseWidgetView(entry: entry)
+        .containerBackground(for: .widget) {
+          phraseSurface(entry.payload.theme)
+            .overlay(
+              RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .strokeBorder(
+                  Color(phraseHex: entry.payload.theme.border, fallback: .clear),
+                  lineWidth: 1
+                )
+            )
+        }
+    } else {
+      PhraseWidgetView(entry: entry)
+        .padding()
+        .background(phraseSurface(entry.payload.theme))
+    }
   }
 
   private var supportedFamilies: [WidgetFamily] {
@@ -216,6 +242,48 @@ struct PhraseWidget: Widget {
     } else {
       return [.systemSmall, .systemMedium]
     }
+  }
+}
+
+@available(iOS 17.0, *)
+enum PersonalDeckSource: String, AppEnum {
+  case saved, created
+  static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Personal deck")
+  static var caseDisplayRepresentations: [PersonalDeckSource: DisplayRepresentation] = [
+    .saved: "Saved", .created: "My phrases",
+  ]
+}
+
+@available(iOS 17.0, *)
+struct PersonalDeckConfiguration: WidgetConfigurationIntent {
+  static var title: LocalizedStringResource = "Personal deck"
+  static var description = IntentDescription("Choose the deck for this widget instance.")
+  @Parameter(title: "Deck", default: .saved) var source: PersonalDeckSource
+}
+
+@available(iOS 17.0, *)
+struct PreviousPhraseIntent: AppIntent {
+  static var title: LocalizedStringResource = "Previous phrase"
+  @Parameter(title: "Deck") var source: PersonalDeckSource
+  init() { source = .saved }
+  init(source: PersonalDeckSource) { self.source = source }
+  func perform() async throws -> some IntentResult {
+    PhrasePayload.advanceCursor(for: source.rawValue, by: -1)
+    WidgetCenter.shared.reloadAllTimelines()
+    return .result()
+  }
+}
+
+@available(iOS 17.0, *)
+struct NextPhraseIntent: AppIntent {
+  static var title: LocalizedStringResource = "Next phrase"
+  @Parameter(title: "Deck") var source: PersonalDeckSource
+  init() { source = .saved }
+  init(source: PersonalDeckSource) { self.source = source }
+  func perform() async throws -> some IntentResult {
+    PhrasePayload.advanceCursor(for: source.rawValue, by: 1)
+    WidgetCenter.shared.reloadAllTimelines()
+    return .result()
   }
 }
 

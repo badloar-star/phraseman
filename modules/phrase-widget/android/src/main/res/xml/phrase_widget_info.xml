@@ -10,6 +10,7 @@
     android:targetCellHeight="1"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
+    android:configure="app.phraseman.phrasewidget.PhraseWidgetConfigureActivity"
     android:updatePeriodMillis="0"
     android:description="@string/phrase_widget_description"
     android:previewLayout="@layout/phrase_widget_preview"

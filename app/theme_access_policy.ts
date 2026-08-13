@@ -5,6 +5,7 @@ export type ThemeAccessTier = 'free' | 'plus' | 'reward' | 'unavailable';
 export const SELECTABLE_THEME_MODES = [
   'indigo',
   'sagePorcelain',
+  'olive',
   'midnight',
   'ember',
   'aurora',
@@ -18,6 +19,7 @@ export type SelectableThemeMode = typeof SELECTABLE_THEME_MODES[number];
 const THEME_ACCESS_BY_MODE: Record<SelectableThemeMode, Exclude<ThemeAccessTier, 'unavailable'>> = {
   indigo: 'free',
   sagePorcelain: 'free',
+  olive: 'plus',
   midnight: 'plus',
   ember: 'plus',
   aurora: 'plus',

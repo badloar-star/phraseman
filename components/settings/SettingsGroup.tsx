@@ -18,6 +18,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
 import { FlowText } from '../text-integrity/FlowText';
+import { OLIVE_RICH } from '../../constants/oliveTheme';
 
 /**
  * Палитра плиток-иконок.
@@ -97,10 +98,13 @@ interface SettingsIconTileProps {
 /** Моно-плитки для строгой темы «Бизнес»: один нейтральный серый градиент
  *  вместо цветной палитры — иконки настроек становятся чёрно-серо-белыми. */
 const SETTINGS_TILE_MONO: readonly [string, string] = ['#2C2C2C', '#1C1C1C'];
+const SETTINGS_TILE_OLIVE: readonly [string, string] = ['#2A301D', '#14180F'];
 
 export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIconTileProps) {
   const { themeMode, theme, isFlat } = useTheme();
-  const [top, bottom] = themeMode === 'business' || themeMode === 'businessLight'
+  const [top, bottom] = themeMode === 'olive'
+    ? SETTINGS_TILE_OLIVE
+    : themeMode === 'business' || themeMode === 'businessLight'
     ? SETTINGS_TILE_MONO
     : SETTINGS_TILE_COLORS[color];
   const radius = size * 0.32;
@@ -140,7 +144,7 @@ export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIcon
         end={{ x: 0.5, y: 0.6 }}
         style={StyleSheet.absoluteFill}
       />
-      <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color="#FFFFFF" />
+      <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color={themeMode === 'olive' ? OLIVE_RICH.ivory : '#FFFFFF'} />
     </View>
   );
 }

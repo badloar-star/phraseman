@@ -6,6 +6,7 @@ import type { ThemeMode } from '../constants/theme';
 const ENERGY_IMAGES: Record<ThemeMode, any> = {
   dark: require('../assets/images/energy/energy-forest.webp'),
   gold: require('../assets/images/energy/energy-gold.webp'),
+  olive: require('../assets/images/energy/energy-olive.webp'),
   minimalDark: require('../assets/images/energy/energy-graphite.webp'),
   business: require('../assets/images/energy/energy-business.webp'),
   businessLight: require('../assets/images/energy/energy-businessLight.webp'),

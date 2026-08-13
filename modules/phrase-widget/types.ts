@@ -24,19 +24,29 @@ export interface WidgetThemePayload {
   glow: string;
 }
 
-/** Snapshot written to shared storage and read by the native widgets. */
-export interface WidgetPayload {
-  schemaVersion: 2;
-  phraseId: string;
+export type WidgetDeckSource = 'saved' | 'created';
+
+export interface WidgetDeckCardPayload {
+  id: string;
   english: string;
   meaning: string;
-  literal: string;
   transcription: string;
-  kicker: string;
   deepLink: string;
-  playDeepLink: string;
+}
+
+export interface WidgetDeckPayload {
+  empty: boolean;
+  cards: WidgetDeckCardPayload[];
+}
+
+/** Snapshot written to shared storage and read by the native widgets. */
+export interface WidgetPayload {
+  schemaVersion: 3;
+  /** Fail-closed entitlement state, calculated by RN before native rendering. */
+  access: 'plus' | 'free';
+  /** Every widget instance chooses one of these independent personal collections. */
+  decks: Record<WidgetDeckSource, WidgetDeckPayload>;
   lang: string;
   theme: WidgetThemePayload;
-  date: string;
   updatedAt: number;
 }

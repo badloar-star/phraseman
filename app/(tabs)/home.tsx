@@ -39,6 +39,7 @@ import VipCelebrationModal from '../../components/VipCelebrationModal';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
+import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
 import { MOTION_DURATION } from '../../constants/motion';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
@@ -769,6 +770,7 @@ export default function HomeScreen() {
     const isSketchLightTheme = themeMode === 'sagePorcelain';
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
+    const isOliveTheme = themeMode === 'olive';
     const goldMetal = GOLD_RICH.metalGold;
     const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
@@ -797,24 +799,29 @@ export default function HomeScreen() {
     const sketchHomePanelGradient = [t.bgCard, t.bgSurface] as [string, string];
     const homeThemePanelGradient = isGoldTheme
         ? goldPremiumPanel
+        : isOliveTheme
+            ? OLIVE_GRADIENTS.quietPanel
         : isPaperHomeTheme
             ? sketchHomePanelGradient
             : t.cardGradient;
     const homeThemePanelBorder = isGoldTheme
         ? GOLD_RICH.hairlineStrong
+        : isOliveTheme
+            ? 'transparent'
         : isPaperHomeTheme
             ? lightPanelBorder
             : 'rgba(103,153,229,0.26)';
     const homeThemePanelText = isPaperHomeTheme ? '#171615' : t.textPrimary;
     const homeThemePanelMuted = isPaperHomeTheme ? '#48443C' : t.textMuted;
-    const homeThemePanelAccent = isPaperHomeTheme ? t.accent : (isLightTheme ? t.textSecond : t.gold);
+    const homeThemePanelAccent = isOliveTheme ? OLIVE_RICH.champagne : isPaperHomeTheme ? t.accent : (isLightTheme ? t.textSecond : t.gold);
     const homeThemeIconPlateBg = isGoldTheme
         ? 'rgba(18,14,8,0.92)'
+        : isOliveTheme ? 'rgba(13,15,11,0.96)'
         : isPaperHomeTheme
             ? lightPanelIconBg
             : 'rgba(40,47,58,0.96)';
-    const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
-    const homeThemeTrackBg = isPaperHomeTheme ? t.bgSurface2 : 'rgba(83,96,116,0.72)';
+    const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isOliveTheme ? 'rgba(201,168,76,0.12)' : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
+    const homeThemeTrackBg = isOliveTheme ? 'rgba(244,236,216,0.14)' : isPaperHomeTheme ? t.bgSurface2 : 'rgba(83,96,116,0.72)';
     const energyEmptyTint = isSketchLightTheme
         ? 'rgba(47,49,59,0.42)'
         : 'rgba(255,245,252,0.38)';
@@ -2986,7 +2993,7 @@ export default function HomeScreen() {
               Компаса. Полная статистика — по тапу на статус-строку (/streak_stats). */}
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
-          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
+          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(2) : null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {renderHomeHeroStatus()}
@@ -3030,7 +3037,7 @@ export default function HomeScreen() {
                         backgroundColor: tilePanelBg,
                         borderWidth: isPaperHomeTheme ? 1 : 0,
                         borderColor: isPaperHomeTheme ? homeThemePanelBorder : 'transparent',
-                        ...(isGoldTheme ? goldShadow(1) : {}),
+                        ...(isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : {}),
                       }}>
                       <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
                         {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
@@ -3085,7 +3092,7 @@ export default function HomeScreen() {
                 perfNavStart('lesson_menu');
                 router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
               }}
-              style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}
+              style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : null]}
             >
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
@@ -3132,7 +3139,7 @@ export default function HomeScreen() {
               style={{
                 borderRadius: isGoldTheme ? 18 : 24,
                 overflow: 'hidden',
-                ...(isGoldTheme ? goldShadow(1) : {}),
+                ...(isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : {}),
               }}
             >
               <LinearGradient
@@ -3239,7 +3246,7 @@ export default function HomeScreen() {
               activeOpacity={0.85}
               testID="home-activity-daily"
               onPress={() => { go('/daily_tasks_screen'); }}
-              style={[{ borderRadius: 24, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}
+              style={[{ borderRadius: 24, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : null]}
               accessibilityRole="button"
             >
               <LinearGradient

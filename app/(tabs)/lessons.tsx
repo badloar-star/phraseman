@@ -34,6 +34,7 @@ import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
+import { OLIVE_GRADIENTS, oliveShadow } from '../../constants/oliveTheme';
 import { getLessonExamIcon } from '../../constants/generatedThemeIconAssets';
 import type { ThemeMode } from '../../constants/theme';
 import GoldBevel from '../../components/GoldBevel';
@@ -114,6 +115,12 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
         B1: '#D0A95B',
         B2: '#B88A45',
     },
+    olive: {
+        A1: '#D9C98C',
+        A2: '#C9A84C',
+        B1: '#9E9D69',
+        B2: '#77815B',
+    },
     minimalDark: {
         A1: '#D7E7FF',
         A2: '#6EA8FF',
@@ -160,6 +167,12 @@ const EXAM_META_SKETCH: Record<string, {
     B2: { bg: '#242932', accent: '#EEF2F8' },
 };
 const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
+    olive: {
+        A1: { bg: '#202417', accent: '#F4ECD8' },
+        A2: { bg: '#1B2013', accent: '#E3CC88' },
+        B1: { bg: '#161B11', accent: '#C9A84C' },
+        B2: { bg: '#11150D', accent: '#B9BF96' },
+    },
     minimalDark: {
         A1: { bg: '#1D2636', accent: '#D7E7FF' },
         A2: { bg: '#161F2E', accent: '#6EA8FF' },
@@ -437,6 +450,7 @@ const LessonCard = React.memo(function LessonCard({
     textPrimary: _tp, textMuted,
 }: LessonCardProps) {
     const isSagePorcelainCard = _themeMode === 'sagePorcelain';
+    const isOliveTheme = _themeMode === 'olive';
     const lockedCardHasLightFill = _themeMode === 'sagePorcelain';
     // зачем: 100% прогресс заливает ВСЮ ширину карточки градиентом [bg, lightenHex(bg,1.28)] —
     // текст «УРОК N» стоит у левого края (start x:0), т.е. фактически на САМОМ bg без lighten.
@@ -474,7 +488,7 @@ const LessonCard = React.memo(function LessonCard({
                 ? (isCurrent ? 14 : isUnlocked ? 9 : 4)
                 : useSketchLessonVisual ? (isUnlocked ? 10 : 5) : (isUnlocked ? 8 : 4),
             elevation: isCurrent ? 8 : isUnlocked ? 6 : 2,
-            ...(isGoldTheme ? goldShadow(isCurrent ? 2 : 1) : {}),
+            ...(isGoldTheme ? goldShadow(isCurrent ? 2 : 1) : isOliveTheme ? oliveShadow(isCurrent ? 2 : 1) : {}),
             ...({}),
         }}>
       <TouchableOpacity testID={`lessons-row-${num}`} activeOpacity={0.82} onPress={() => {
@@ -505,7 +519,7 @@ const LessonCard = React.memo(function LessonCard({
             borderRadius: cardRadius,
             overflow: 'hidden',
             backgroundColor: isUnlocked ? 'transparent' : lockedCardBaseColor,
-            borderWidth: isGoldTheme || isSagePorcelainCard ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
+            borderWidth: isOliveTheme ? 0 : isGoldTheme || isSagePorcelainCard ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
             borderColor: isGoldTheme
                 ? (isCurrent ? GOLD_RICH.hairlineStrong : isUnlocked ? goldHairline : GOLD_RICH.hairlineQuiet)
                 : isSagePorcelainCard
@@ -518,10 +532,14 @@ const LessonCard = React.memo(function LessonCard({
           {/* Card background */}
           {isUnlocked ? (<LinearGradient colors={isGoldTheme
                   ? (isCurrent ? goldCardGradient('selected') : lessonGoldLevel.card)
+                  : isOliveTheme
+                      ? (isCurrent ? OLIVE_GRADIENTS.selectedPanel : OLIVE_GRADIENTS.raisedPanel)
                   : isSagePorcelainCard
                       ? [bg, lightenHex(bg, 1.08), lightenHex(bg, 1.14)]
                   : [darkenHexCached(bg, 0.52), darkBg, darkenHexCached(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
                   ? goldCardGradient('muted')
+                  : isOliveTheme
+                      ? OLIVE_GRADIENTS.quietPanel
                   : isSagePorcelainCard
                       ? [lightenHex(bg, 1.04), bg, lightenHex(bg, 1.1)]
                   : [darkenHexCached(bg, 0.36), darkenHexCached(bg, 0.31), darkenHexCached(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isSagePorcelainCard ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)] : [darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
@@ -819,6 +837,7 @@ export default function LessonsTab({
         : Math.max(insets.bottom, 12) + 20;
     const headerTopPad = isRetainedTab ? 12 : insets.top + 12;
     const isGoldTheme = themeMode === 'gold';
+    const isOliveTheme = themeMode === 'olive';
     const isSagePorcelainTheme = themeMode === 'sagePorcelain';
     const goldBright = GOLD_RICH.champagne;
     const goldAntique = GOLD_RICH.agedGold;
@@ -1242,7 +1261,7 @@ const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
 const levelLockedByExam = isPremium && !isUnlocked && !effectiveDevContentUnlock && !effectiveNoLimits;
 const premiumRequired = !isPremium && !effectiveNoLimits && requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap);
 const showLessonProgressFill = isUnlocked && progPct > 0;
-const cardRadius = isGoldTheme ? 14 : 16;
+const cardRadius = isGoldTheme || isOliveTheme ? 14 : 16;
 const lockedCardBaseColor = isGoldTheme
     ? goldSurface
     : darkenHexCached(bg, 0.28);

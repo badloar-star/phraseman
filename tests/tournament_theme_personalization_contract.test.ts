@@ -14,6 +14,7 @@ const SELECTABLE_THEMES = [
   'volt',
   'dark',
   'gold',
+  'olive',
 ] as const;
 
 const SLOTS = ['backdrop', 'podium', 'weekly-bank', 'season-rewards'] as const;

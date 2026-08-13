@@ -7,6 +7,7 @@ import {
   DARK,
   EMBER,
   GOLD,
+  OLIVE,
   INDIGO,
   MIDNIGHT,
   SAGE_PORCELAIN,
@@ -30,6 +31,7 @@ type StatsAccentPalette = Record<StatsChromeTone, string>;
 const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   dark: DARK.accent,
   gold: GOLD.accent,
+  olive: OLIVE.accent,
   minimalDark: '#6EA8FF',
   business: BUSINESS.accent,
   businessLight: BUSINESS_LIGHT.accent,
@@ -47,6 +49,7 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
 const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
   dark: '#202B22',
   gold: '#272114',
+  olive: '#181B12',
   minimalDark: '#34373D',
   business: '#1C1C1C',
   businessLight: '#F0F0F0',
@@ -82,6 +85,7 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     archiveMap: GOLD_RICH.antiqueGold,
     wager: GOLD_RICH.champagne,
   },
+  olive: { streak: '#E3CC88', freeze: '#97A9A1', multipliers: '#C9A84C', practiceBalance: '#8EAA72', weekRhythm: '#CFC5AB', activity: '#C9A84C', percentiles: '#E3CC88', archiveMap: '#8EAA72', wager: '#C9A84C' },
   minimalDark: {
     streak: '#6EA8FF',
     freeze: '#9CA3AF',

@@ -3,6 +3,7 @@ import { StyleSheet, Text, ViewStyle } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, goldShadow } from '../../constants/goldTheme';
+import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 import GoldBevel from '../GoldBevel';
 import PressableScale from '../PressableScale';
 
@@ -18,9 +19,12 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
   const { theme: t, f, ds, themeMode } = useTheme();
   const isDisabled = !!disabled || !!loading;
   const isGoldTheme = themeMode === 'gold';
-  const hasLuxuryGradient = !isDisabled && isGoldTheme;
-  const foreground = isGoldTheme && !isDisabled
-    ? t.textOnGold
+  const isOliveTheme = themeMode === 'olive';
+  const hasLuxuryGradient = !isDisabled && (isGoldTheme || isOliveTheme);
+  const foreground = isOliveTheme && isDisabled
+    ? t.textMuted
+    : (isGoldTheme || isOliveTheme) && !isDisabled
+    ? (isOliveTheme ? OLIVE_RICH.piano : t.textOnGold)
     : t.correctText;
   const radius = ds.radius.lg;
 
@@ -33,7 +37,7 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
       style={styles.pressable}
       contentStyle={[
         styles.button,
-        isGoldTheme && !isDisabled ? goldShadow(2) : ds.shadow.soft,
+        isGoldTheme && !isDisabled ? goldShadow(2) : isOliveTheme && !isDisabled ? oliveShadow(2) : ds.shadow.soft,
         {
           minHeight: ds.buttonHeight,
           borderRadius: radius,
@@ -48,10 +52,10 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
         style,
       ]}
     >
-      {isGoldTheme && !isDisabled && (
+      {hasLuxuryGradient && (
         <LinearGradient
-          colors={GOLD_GRADIENTS.primaryButton}
-          locations={[0, 0.34, 1]}
+          colors={isOliveTheme ? OLIVE_GRADIENTS.primaryButton : GOLD_GRADIENTS.primaryButton}
+          locations={isGoldTheme ? [0, 0.34, 1] : undefined}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={StyleSheet.absoluteFill}

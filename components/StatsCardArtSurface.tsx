@@ -6,6 +6,9 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
+import type { ThemeMode } from '../constants/theme';
+import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
+import { useTheme } from './ThemeContext';
 
 export type StatsCardArtName =
   | 'streak'
@@ -27,6 +30,7 @@ type StatsCardArtSurfaceProps = {
   name: StatsCardArtName;
   radius: number;
   theme?: StatsArtTheme;
+  themeMode?: ThemeMode;
   isGoldTheme?: boolean;
   gradientColors?: readonly string[];
   gradientLocations?: readonly number[];
@@ -54,7 +58,8 @@ function isLightCardTheme(theme?: StatsArtTheme): boolean {
   return luma > 0.72;
 }
 
-function scrimColors(theme?: StatsArtTheme, isGoldTheme?: boolean, scrim: StatsCardArtSurfaceProps['scrim'] = 'medium') {
+function scrimColors(theme?: StatsArtTheme, isGoldTheme?: boolean, scrim: StatsCardArtSurfaceProps['scrim'] = 'medium', themeMode?: ThemeMode) {
+  if (themeMode === 'olive') return ['rgba(5,6,4,0.18)', 'rgba(5,6,4,0.42)', 'rgba(0,0,0,0.62)'] as const;
   const level = scrim === 'strong' ? 1 : scrim === 'soft' ? -1 : 0;
   const light = isLightCardTheme(theme);
 
@@ -85,7 +90,8 @@ function defaultGradientOpacity(theme?: StatsArtTheme, isGoldTheme?: boolean): n
   return 0.36;
 }
 
-function semanticTonalGradient(name: StatsCardArtName, theme?: StatsArtTheme, isGoldTheme?: boolean): readonly [string, string, string] {
+function semanticTonalGradient(name: StatsCardArtName, theme?: StatsArtTheme, isGoldTheme?: boolean, themeMode?: ThemeMode): readonly [string, string, string] {
+  if (themeMode === 'olive') return [OLIVE_GRADIENTS.raisedPanel[0], name === 'percentiles' ? 'rgba(227,204,136,0.15)' : 'rgba(201,168,76,0.10)', 'rgba(0,0,0,0)'] as const;
   const light = isLightCardTheme(theme);
   if (isGoldTheme) {
     return [
@@ -143,6 +149,7 @@ function StatsCardArtSurface({
   name,
   radius,
   theme,
+  themeMode,
   isGoldTheme,
   gradientColors,
   gradientLocations,
@@ -151,10 +158,22 @@ function StatsCardArtSurface({
   style,
   testID,
 }: StatsCardArtSurfaceProps) {
+  const { themeMode: activeThemeMode } = useTheme();
+  const resolvedThemeMode = themeMode ?? activeThemeMode;
   return (
     <View
       testID={testID}
-      style={[{ backgroundColor: theme?.bgCard, overflow: 'hidden' }, style]}
+      style={[
+        {
+          backgroundColor: resolvedThemeMode === 'olive' ? OLIVE_RICH.surface : theme?.bgCard,
+          overflow: 'hidden',
+          borderWidth: resolvedThemeMode === 'olive' ? 0 : undefined,
+          borderColor: resolvedThemeMode === 'olive' ? 'transparent' : undefined,
+        },
+        resolvedThemeMode === 'olive' ? oliveShadow(2) : null,
+        style,
+        ...(resolvedThemeMode === 'olive' ? [{ borderWidth: 0, borderColor: 'transparent' }] : []),
+      ]}
     >
       {gradientColors && gradientColors.length >= 2 ? (
         <LinearGradient
@@ -168,7 +187,7 @@ function StatsCardArtSurface({
       ) : null}
       <LinearGradient
         pointerEvents="none"
-        colors={semanticTonalGradient(name, theme, isGoldTheme)}
+        colors={semanticTonalGradient(name, theme, isGoldTheme, resolvedThemeMode)}
         locations={[0, 0.52, 1]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -184,7 +203,7 @@ function StatsCardArtSurface({
       />
       <LinearGradient
         pointerEvents="none"
-        colors={scrimColors(theme, isGoldTheme, scrim)}
+        colors={scrimColors(theme, isGoldTheme, scrim, resolvedThemeMode)}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[StyleSheet.absoluteFillObject, { borderRadius: radius }]}

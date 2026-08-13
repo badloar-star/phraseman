@@ -8,11 +8,13 @@
  */
 
 import React, { memo, useCallback, useEffect, useRef } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { hapticMediumImpact } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
 import { isLightThemeMode } from '../constants/theme';
 import { GOLD_RICH } from '../constants/goldTheme';
+import { OLIVE_RICH } from '../constants/oliveTheme';
 
 export interface BonusXPCardProps {
   bonusXP: number;
@@ -29,6 +31,7 @@ function BonusXPCard({
 }: BonusXPCardProps) {
   const { theme: t, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
+  const isOliveTheme = themeMode === 'olive';
   // зачем: карточка была фикс-тёмной #1a1a2e, а тексты — токенами темы: на
   // sagePorcelain тёмный текст ложился на тёмную плашку. Светлая тема получает
   // фарфоровую карту и тёмные tier-цвета из утверждённой палитры.
@@ -94,6 +97,7 @@ function BonusXPCard({
   }, [dismissCard, duration, opacityAnim, scaleAnim, slideAnim]);
 
   const getTierColor = () => {
+    if (isOliveTheme) return OLIVE_RICH.champagne;
     if (isGoldTheme) {
       if (bonusXP <= 10) return GOLD_RICH.agedGold;
       if (bonusXP <= 20) return GOLD_RICH.metalGold;
@@ -140,13 +144,13 @@ function BonusXPCard({
         style={[
           styles.card,
           {
-            backgroundColor: isGoldTheme
+            backgroundColor: isOliveTheme ? OLIVE_RICH.raised : isGoldTheme
               ? GOLD_RICH.blackPiano
               : isLight ? t.bgCard : '#1a1a2e',
           },
         ]}
       >
-        <Text style={styles.emoji}>{getTierEmoji()}</Text>
+        {isOliveTheme ? <Ionicons name="sparkles" size={26} color={OLIVE_RICH.champagne} style={styles.emoji} /> : <Text style={styles.emoji}>{getTierEmoji()}</Text>}
 
         <View style={styles.textContainer}>
           <Text style={[styles.label, { color: t.textPrimary }]}>Бонус XP!</Text>

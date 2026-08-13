@@ -42,6 +42,9 @@ export const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     accent: '#D6BE8B',
     chipOn: '#2B2515',
   },
+  olive: {
+    panel: '#14180F', chip: '#14180F', border: 'rgba(201,168,76,0.12)', divider: 'rgba(201,168,76,0.08)', notice: '#181B12', accent: '#E3CC88', chipOn: '#25291D',
+  },
   minimalDark: {
     panel: '#1C1C1E',
     chip: '#1C1C1E',

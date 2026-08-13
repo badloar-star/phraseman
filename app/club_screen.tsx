@@ -1300,7 +1300,7 @@ export default function ClubScreen() {
       if (ahead) {
         const name = leaguePublicName(ahead.name, ahead.uid ?? ahead.botId ?? ahead.name);
         const gapXp = fmtXp((Number(ahead.points) || 0) - (Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
-        items.push({ key: 'ahead', emoji: '🏃', trend: 'up', text: triLang(lang, {
+        items.push({ key: 'ahead', trend: 'up', text: triLang(lang, {
           ru: `${name} впереди на ${gapXp} XP`, uk: `${name} попереду на ${gapXp} XP`, es: `${name} te lleva ${gapXp} XP`, 'pt-BR': `${name} está ${gapXp} XP à frente`,
           vi: `${name} dẫn trước ${gapXp} XP`, id: `${name} di depan ${gapXp} XP`, tr: `${name} ${gapXp} XP önde`, pl: `${name} z przodu o ${gapXp} XP`,
         }) });
@@ -1596,17 +1596,11 @@ export default function ClubScreen() {
             />
           )}
           {leagueRaceVisible && (
-            <LeagueRaceFeed lang={lang} palette={hubPalette} items={raceFeedItems} />
+            <LeagueRaceFeed palette={hubPalette} items={raceFeedItems} />
           )}
           {/* зачем: пока показан скелетон, у него уже есть свои строки-заглушки —
               заголовок над ними дал бы вторую «пустую» секцию. */}
           <View style={{ marginTop: 6, marginBottom: 2, gap: 3, display: localLeagueHydrated ? 'flex' : 'none' }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
-              {triLang(lang, {
-                ru: 'Полный рейтинг', uk: 'Повний рейтинг', es: 'Clasificación completa', 'pt-BR': 'Classificação completa',
-                vi: 'Bảng xếp hạng đầy đủ', id: 'Peringkat lengkap', tr: 'Tam sıralama', pl: 'Pełny ranking',
-              })}
-            </Text>
             {showEmptyParticipants ? (
               <Text style={{ color: t.textGhost, fontSize: f.sub, paddingVertical: 16, textAlign: 'center' }}>
                 {triLang(lang, {

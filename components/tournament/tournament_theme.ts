@@ -230,6 +230,7 @@ export function tournamentV2FromTheme(t: Theme, themeMode?: ThemeMode): Tourname
   const base = tournamentPaletteFromTheme(t);
   const accent = t.accent;
   const isSagePorcelain = themeMode === 'sagePorcelain';
+  const isOlive = themeMode === 'olive';
   return {
     ...base,
     accentText: t.correctText,
@@ -245,9 +246,9 @@ export function tournamentV2FromTheme(t: Theme, themeMode?: ThemeMode): Tourname
     // как раз сидит киккер «ТУРНИРЫ». Держим оба стопа в семье bgCard.
     surfaceGradA: isSagePorcelain ? mixHex(accent, t.bgCard, 0.06) : mixHex(accent, t.bgSurface, 0.1),
     surfaceGradB: shade(t.bgCard, 0.94),
-    ctaGradA: tint(accent, 0.22),
-    ctaGradB: shade(accent, 0.94),
-    ctaGradC: shade(accent, 0.72),
+    ctaGradA: isOlive ? '#F0DEA5' : tint(accent, 0.22),
+    ctaGradB: isOlive ? '#C9A84C' : shade(accent, 0.94),
+    ctaGradC: isOlive ? '#9C7A29' : shade(accent, 0.72),
     ctaHi: 'rgba(255,255,255,0.34)',
     ctaShelf: t.btnShadow,
     okGradA: tint(accent, 0.14),
@@ -255,10 +256,10 @@ export function tournamentV2FromTheme(t: Theme, themeMode?: ThemeMode): Tourname
     okInk: t.correctText,
     heroGradA: isSagePorcelain ? t.textPrimary : '#FFFFFF',
     heroGradB: isSagePorcelain ? t.accent : tint(accent, 0.62),
-    sheen: hexToRgba(accent, 0.05),
+    sheen: isOlive ? 'transparent' : hexToRgba(accent, 0.05),
     bgGradA: mixHex(accent, t.bgPrimary, 0.045),
     bgGradB: shade(t.bgPrimary, 0.3),
-    onGold: t.textOnGold,
+    onGold: isOlive ? '#07110A' : t.textOnGold,
   };
 }
 

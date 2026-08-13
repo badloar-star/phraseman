@@ -30,6 +30,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { hapticMediumImpact, hapticTap } from '../../hooks/use-haptics';
 import { METAL, radius, useTournamentPalette, v2motion, type TournamentV2 } from './tournament_theme';
 import { StarGlyph } from './TournamentFx';
+import { useTheme } from '../ThemeContext';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -86,6 +87,8 @@ export const V2Cta = memo(function V2Cta({
   children, onPress, tone = 'accent', disabled, autoNext, style, left, right,
 }: CtaProps) {
   const P = useTournamentPalette();
+  const { themeMode } = useTheme();
+  const isOlive = themeMode === 'olive';
   const depth = useSharedValue(0);
   const fill = useSharedValue(0);
 
@@ -134,7 +137,7 @@ export const V2Cta = memo(function V2Cta({
         ) : null}
         {!disabled ? <View style={[styles.topHi, { backgroundColor: P.ctaHi }]} pointerEvents="none" /> : null}
         {autoNext ? (
-          <Animated.View style={[styles.autoFill, fillStyle]} pointerEvents="none" />
+          <Animated.View style={[styles.autoFill, { backgroundColor: isOlive ? 'rgba(227,204,136,0.14)' : 'rgba(255,255,255,0.22)' }, fillStyle]} pointerEvents="none" />
         ) : null}
         <View style={styles.ctaRow}>
           {left}
@@ -476,7 +479,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: 'rgba(255,255,255,0.22)',
+    backgroundColor: 'transparent',
     transformOrigin: 'left',
   },
   blockWrap: { width: '100%' },

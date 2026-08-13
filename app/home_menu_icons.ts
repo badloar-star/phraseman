@@ -145,6 +145,11 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/home_menu/gold/home-gold-hero-map.webp'),
     };
   }
+  if (themeMode === 'olive') {
+    return {
+      lesson: require('../assets/images/home_menu/olive/home-olive-lessons.webp'), cards: require('../assets/images/home_menu/olive/home-olive-cards.webp'), dayTasks: require('../assets/images/home_menu/olive/home-olive-daily-tasks.webp'), league: require('../assets/images/home_menu/olive/home-olive-league.webp'), test: require('../assets/images/home_menu/olive/home-olive-diagnostic-test.webp'), practice: require('../assets/images/home_menu/olive/home-olive-practice.webp'), dialogs: require('../assets/images/home_menu/olive/home-olive-dialogs.webp'), exam: require('../assets/images/home_menu/olive/home-olive-exam.webp'), shop: require('../assets/images/home_menu/olive/home-olive-shop.webp'), heroMap: require('../assets/images/home_menu/olive/home-olive-hero-map.webp'),
+    };
+  }
   return {
     lesson: require('../assets/images/home_menu/home-forest-lessons.webp'),
     cards: require('../assets/images/home_menu/home-forest-cards.webp'),

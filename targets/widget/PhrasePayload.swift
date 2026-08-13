@@ -59,11 +59,26 @@ struct PhraseTheme: Decodable {
 /// Highest snapshot schema this widget build understands. Snapshots written by a
 /// newer app (e.g. v3 with renamed/removed fields) are rejected so we show the
 /// clean placeholder instead of a half-decoded card.
-let kMaxWidgetSchemaVersion = 2
+let kMaxWidgetSchemaVersion = 3
+
+struct PhraseDeckCard: Decodable {
+  let id: String
+  let english: String
+  let meaning: String
+  let transcription: String
+  let deepLink: String
+}
+
+struct PhraseDeck: Decodable {
+  let empty: Bool
+  let cards: [PhraseDeckCard]
+}
 
 /// Decoded snapshot the WidgetKit extension reads from the App Group container.
 /// Mirrors the JS `WidgetPayload` written by widget_bridge.ts.
 struct PhrasePayload: Decodable {
+  let access: String
+  let decks: [String: PhraseDeck]
   let english: String
   let meaning: String
   let literal: String
@@ -77,9 +92,10 @@ struct PhrasePayload: Decodable {
 
   static let appGroup = "group.app.phraseman.widget"
   static let storageKey = "phrase_of_the_day_v1"
+  private static let cursorKeyPrefix = "personal_deck_cursor_"
 
   enum CodingKeys: String, CodingKey {
-    case schemaVersion, english, meaning, literal, transcription, kicker,
+    case schemaVersion, access, decks, english, meaning, literal, transcription, kicker,
          deepLink, playDeepLink, theme, date
   }
 
@@ -93,24 +109,55 @@ struct PhrasePayload: Decodable {
               debugDescription: "Unsupported widget schemaVersion \(version)")
       )
     }
-    english = (try? c.decode(String.self, forKey: .english)) ?? ""
-    meaning = (try? c.decode(String.self, forKey: .meaning)) ?? ""
+    access = (try? c.decode(String.self, forKey: .access)) ?? "free"
+    decks = (try? c.decode([String: PhraseDeck].self, forKey: .decks)) ?? [:]
+    let first = decks["saved"]?.cards.first ?? decks["created"]?.cards.first
+    english = first?.english ?? (try? c.decode(String.self, forKey: .english)) ?? ""
+    meaning = first?.meaning ?? (try? c.decode(String.self, forKey: .meaning)) ?? ""
     literal = (try? c.decode(String.self, forKey: .literal)) ?? ""
-    transcription = (try? c.decode(String.self, forKey: .transcription)) ?? ""
+    transcription = first?.transcription ?? (try? c.decode(String.self, forKey: .transcription)) ?? ""
     kicker = (try? c.decode(String.self, forKey: .kicker)) ?? "ФРАЗА ДНЯ"
-    deepLink = (try? c.decode(String.self, forKey: .deepLink)) ?? "phraseman://home"
+    deepLink = first?.deepLink ?? (try? c.decode(String.self, forKey: .deepLink)) ?? "phraseman://home"
     playDeepLink = (try? c.decode(String.self, forKey: .playDeepLink)) ?? "phraseman://home"
     theme = (try? c.decode(PhraseTheme.self, forKey: .theme)) ?? .fallback
     date = (try? c.decode(String.self, forKey: .date)) ?? ""
   }
 
-  init(english: String, meaning: String, literal: String, transcription: String,
+  init(access: String = "plus", decks: [String: PhraseDeck] = [:], english: String, meaning: String, literal: String, transcription: String,
        kicker: String, deepLink: String, playDeepLink: String, theme: PhraseTheme,
        date: String) {
-    self.english = english; self.meaning = meaning; self.literal = literal
+    self.access = access; self.decks = decks; self.english = english; self.meaning = meaning; self.literal = literal
     self.transcription = transcription; self.kicker = kicker
     self.deepLink = deepLink; self.playDeepLink = playDeepLink
     self.theme = theme; self.date = date
+  }
+
+  func card(for source: String, cursor: Int = 0) -> PhrasePayload {
+    guard access == "plus", let deck = decks[source], !deck.empty, !deck.cards.isEmpty else {
+      return PhrasePayload(
+        access: "free", decks: decks, english: "Personal deck", meaning: "Open Phraseman to use your Plus deck.",
+        literal: "", transcription: "", kicker: "PLUS", deepLink: "phraseman://flashcards",
+        playDeepLink: "phraseman://flashcards", theme: theme, date: ""
+      )
+    }
+    let card = deck.cards[abs(cursor) % deck.cards.count]
+    return PhrasePayload(access: access, decks: decks, english: card.english, meaning: card.meaning, literal: "", transcription: card.transcription, kicker: source == "saved" ? "SAVED" : "MY PHRASES", deepLink: card.deepLink, playDeepLink: card.deepLink, theme: theme, date: "")
+  }
+
+  static func cursor(for source: String) -> Int {
+    UserDefaults(suiteName: appGroup)?.integer(forKey: cursorKeyPrefix + source) ?? 0
+  }
+
+  static func advanceCursor(for source: String, by delta: Int) {
+    guard let defaults = UserDefaults(suiteName: appGroup) else { return }
+    let key = cursorKeyPrefix + source
+    defaults.set(defaults.integer(forKey: key) + delta, forKey: key)
+  }
+
+  /// A free or empty fallback must remain a single tappable card, never pretend
+  /// that it can move through a deck.
+  var canNavigate: Bool {
+    access == "plus" && decks.values.contains { !$0.empty && !$0.cards.isEmpty }
   }
 
   /// True when the snapshot's day is not today (the app has not run since the day
@@ -144,6 +191,22 @@ struct PhrasePayload: Decodable {
     kicker: "ФРАЗА ДНЯ",
     deepLink: "phraseman://home",
     playDeepLink: "phraseman://home",
+    theme: .fallback,
+    date: ""
+  )
+
+  /// Gallery state for the personal-deck widget before the host app publishes a
+  /// snapshot. It deliberately does not masquerade as the old daily phrase.
+  static let personalPlaceholder = PhrasePayload(
+    access: "free",
+    decks: [:],
+    english: "Your personal deck",
+    meaning: "Saved and created phrases from Phraseman.",
+    literal: "",
+    transcription: "",
+    kicker: "PERSONAL DECK",
+    deepLink: "phraseman://flashcards",
+    playDeepLink: "phraseman://flashcards",
     theme: .fallback,
     date: ""
   )

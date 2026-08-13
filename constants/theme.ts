@@ -4,6 +4,7 @@
 import { Platform } from 'react-native';
 import { GOLD_GRADIENTS, GOLD_RICH } from './goldTheme';
 import { CINEMA, cinemaAlpha, type CinemaPalette } from './cinemaThemes';
+import { OLIVE_GRADIENTS, OLIVE_RICH } from './oliveTheme';
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
@@ -89,6 +90,43 @@ export const GOLD = {
   glow:        GOLD_RICH.bronzeWash,
   cardGradient: [GOLD_GRADIENTS.premiumPanel[0], GOLD_GRADIENTS.premiumPanel[2]] as [string, string],
   bgGradient: ['#0D0A04', '#010101'] as [string, string],
+};
+
+export const OLIVE = {
+  bgPrimary: OLIVE_RICH.piano,
+  bgCard: OLIVE_RICH.panel,
+  bgSurface: OLIVE_RICH.surface,
+  bgSurface2: OLIVE_RICH.raised,
+  textPrimary: OLIVE_RICH.ivory,
+  textOnCard: OLIVE_RICH.ivory,
+  textSecond: '#CFC5AB',
+  textMuted: '#A69F8A',
+  textGhost: '#8D8777',
+  heroTextPrimary: OLIVE_RICH.ivory,
+  heroTextMuted: '#A69F8A',
+  // Separators and grabbers only — Olive surfaces never get closed outlines.
+  border: 'rgba(201,168,76,0.12)',
+  borderLight: '#25291D',
+  correct: '#8EAA72',
+  correctBg: 'rgba(142,170,114,0.16)',
+  wrong: '#C77160',
+  wrongBg: 'rgba(199,113,96,0.14)',
+  gold: OLIVE_RICH.champagneLight,
+  goldBg: 'rgba(227,204,136,0.14)',
+  textOnGold: '#161208',
+  accent: OLIVE_RICH.champagne,
+  accentBg: 'rgba(201,168,76,0.14)',
+  correctText: '#161208',
+  shadowDark: '#000000',
+  shadowLight: 'rgba(240,222,165,0.05)',
+  borderHighlight: 'rgba(240,222,165,0.08)',
+  isGlowEnabled: false,
+  isGlossEnabled: false,
+  btnShadow: '#594719',
+  cardShadow: 'rgba(0,0,0,0.62)',
+  glow: 'rgba(201,168,76,0.06)',
+  cardGradient: ['#232719', '#090A08'] as [string, string],
+  bgGradient: [OLIVE_GRADIENTS.screen[0], OLIVE_GRADIENTS.screen[2]] as [string, string],
 };
 
 // ─── LIGHT OCEAN ─────────────────────────────────────────────────────────────
@@ -457,7 +495,7 @@ export const SAGE_PORCELAIN = {
   bgPrimary:'#DCE1D8', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#4E5D55', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#E7EAE2','#D2D9CC'] as [string,string]
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
+export type ThemeMode = 'dark' | 'gold' | 'olive' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
 export type Theme = typeof DARK;
 
 export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }
@@ -478,6 +516,7 @@ export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
 
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
 const _checkGOLD:   Theme = GOLD         as any;
+const _checkOLIVE:  Theme = OLIVE        as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
 const _checkMIDNIGHT: Theme = MIDNIGHT as any;
 const _checkEMBER:    Theme = EMBER    as any;

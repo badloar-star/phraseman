@@ -3,6 +3,7 @@ import type { ImageSourcePropType } from 'react-native';
 export const LEAGUE_BONUS_GIFT_IMAGE_THEMES = [
   'dark',
   'gold',
+  'olive',
   'business',
   'businessLight',
   'sagePorcelain',
@@ -20,6 +21,7 @@ const DEFAULT_THEME: LeagueBonusGiftImageTheme = 'indigo';
 const LEAGUE_BONUS_GIFT_IMAGES: Record<LeagueBonusGiftImageTheme, ImageSourcePropType> = {
   dark: require('../assets/images/league_bonus/dark-chest.webp'),
   gold: require('../assets/images/league_bonus/gold-chest.webp'),
+  olive: require('../assets/images/league_bonus/olive-chest.webp'),
   business: require('../assets/images/league_bonus/business-chest.webp'),
   businessLight: require('../assets/images/league_bonus/businessLight-chest.webp'),
   sagePorcelain: require('../assets/images/league_bonus/sagePorcelain-chest.webp'),

@@ -46,6 +46,9 @@ const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
     60: 'assets/images/streak_icons/gold/streak-fire-gold-060.webp',
     100: 'assets/images/streak_icons/gold/streak-fire-gold-100.webp',
   },
+  olive: {
+    1: 'assets/images/streak_icons/olive/streak-fire-olive-001.webp', 2: 'assets/images/streak_icons/olive/streak-fire-olive-002.webp', 3: 'assets/images/streak_icons/olive/streak-fire-olive-003.webp', 5: 'assets/images/streak_icons/olive/streak-fire-olive-005.webp', 7: 'assets/images/streak_icons/olive/streak-fire-olive-007.webp', 10: 'assets/images/streak_icons/olive/streak-fire-olive-010.webp', 20: 'assets/images/streak_icons/olive/streak-fire-olive-020.webp', 35: 'assets/images/streak_icons/olive/streak-fire-olive-035.webp', 60: 'assets/images/streak_icons/olive/streak-fire-olive-060.webp', 100: 'assets/images/streak_icons/olive/streak-fire-olive-100.webp',
+  },
   minimalDark: {
     1: 'assets/images/streak_icons/indigo/streak-fire-indigo-001.webp',
     2: 'assets/images/streak_icons/indigo/streak-fire-indigo-002.webp',
@@ -193,6 +196,9 @@ const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
     60: require('../assets/images/streak_icons/gold/streak-fire-gold-060.webp'),
     100: require('../assets/images/streak_icons/gold/streak-fire-gold-100.webp'),
   },
+  olive: {
+    1: require('../assets/images/streak_icons/olive/streak-fire-olive-001.webp'), 2: require('../assets/images/streak_icons/olive/streak-fire-olive-002.webp'), 3: require('../assets/images/streak_icons/olive/streak-fire-olive-003.webp'), 5: require('../assets/images/streak_icons/olive/streak-fire-olive-005.webp'), 7: require('../assets/images/streak_icons/olive/streak-fire-olive-007.webp'), 10: require('../assets/images/streak_icons/olive/streak-fire-olive-010.webp'), 20: require('../assets/images/streak_icons/olive/streak-fire-olive-020.webp'), 35: require('../assets/images/streak_icons/olive/streak-fire-olive-035.webp'), 60: require('../assets/images/streak_icons/olive/streak-fire-olive-060.webp'), 100: require('../assets/images/streak_icons/olive/streak-fire-olive-100.webp'),
+  },
   minimalDark: {
     1: require('../assets/images/streak_icons/indigo/streak-fire-indigo-001.webp'),
     2: require('../assets/images/streak_icons/indigo/streak-fire-indigo-002.webp'),
@@ -318,6 +324,7 @@ const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
 const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
   dark: { rgb: [38, 217, 177], accent: '#26D9B1' },
   gold: { rgb: [246, 201, 92], accent: '#F6C95C' },
+  olive: { rgb: [201, 168, 76], accent: '#C9A84C' },
   minimalDark: { rgb: [110, 168, 255], accent: '#6EA8FF' },
   business: { rgb: [212, 178, 106], accent: '#0095F6' },
   businessLight: { rgb: [168, 128, 47], accent: '#0095F6' },
@@ -333,6 +340,7 @@ const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; a
 const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
   dark: { rgb: [100, 210, 255], accent: '#64D2FF' },
   gold: { rgb: [246, 227, 161], accent: '#F6E3A1' },
+  olive: { rgb: [151, 169, 161], accent: '#97A9A1' },
   minimalDark: { rgb: [156, 163, 175], accent: '#9CA3AF' },
   business: { rgb: [201, 202, 198], accent: '#A8A8A8' },
   businessLight: { rgb: [122, 125, 133], accent: '#8E8E8E' },
@@ -351,6 +359,7 @@ const STREAK_FREEZE_ICON_SOURCE = require('../assets/images/streak_icons/streak-
 const STREAK_FREEZE_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   dark: 'assets/images/streak_icons/dark/streak-freeze-dark.webp',
   gold: 'assets/images/streak_icons/gold/streak-freeze-gold.webp',
+  olive: 'assets/images/streak_icons/olive/streak-freeze-olive.webp',
   minimalDark: 'assets/images/streak_icons/indigo/streak-freeze-indigo.webp',
   business: 'assets/images/streak_icons/business/streak-freeze-business.webp',
   businessLight: 'assets/images/streak_icons/businessLight/streak-freeze-businessLight.webp',
@@ -367,6 +376,7 @@ const STREAK_FREEZE_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
 const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/streak_icons/dark/streak-freeze-dark.webp'),
   gold: require('../assets/images/streak_icons/gold/streak-freeze-gold.webp'),
+  olive: require('../assets/images/streak_icons/olive/streak-freeze-olive.webp'),
   minimalDark: require('../assets/images/streak_icons/indigo/streak-freeze-indigo.webp'),
   business: require('../assets/images/streak_icons/business/streak-freeze-business.webp'),
   businessLight: require('../assets/images/streak_icons/businessLight/streak-freeze-businessLight.webp'),
@@ -382,6 +392,7 @@ const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
 const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
   dark: 'assets/images/streak_icons/sources/streak-freeze-dark-dalle-source.png',
   gold: 'assets/images/streak_icons/sources/streak-freeze-gold-dalle-source.png',
+  olive: 'not-tracked-in-repo:olive-premium-asset-session',
   minimalDark: 'assets/images/streak_icons/sources/2026-07-26-theme-refresh/indigo-atlas-source.png',
   business: 'assets/images/streak_icons/sources/streak-freeze-business-dalle-source.png',
   businessLight: 'generated:scripts/generate_business_line_icons.mjs',

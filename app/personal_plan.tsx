@@ -63,6 +63,7 @@ import { resolvePersonalPlanFlashcardsReviewCount } from './personal_plan_flashc
 import { ENABLE_DEV_TOOLS } from './config';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { OLIVE_RICH, OLIVE_GRADIENTS } from '../constants/oliveTheme';
 type LoadedPlan = {
   plan: PersonalPlanDefinition;
   state: PersonalPlanState;
@@ -122,6 +123,7 @@ function resolvePlanChrome(themeMode: ThemeMode, t: ReturnType<typeof useTheme>[
   if (false) return { ...base, bg: ['#343235', '#29292B', '#1E1E20'], card: ['#2D2D30', '#1F1F22'], hero: ['#313033', '#202023'], accent: '#F6C78E', accent2: '#FFE1B5', accentSoft: 'rgba(246,199,142,0.14)', border: 'rgba(246,199,142,0.22)', buttonText: '#21170C' };
   if (false) return { ...base, bg: ['#202020', '#101010', '#050505'], card: ['#232522', '#0B0C0A'], hero: ['#292B26', '#0C0D0A'], accent: '#C8FF00', accent2: '#A6FF5D', accentSoft: 'rgba(200,255,0,0.13)', border: 'rgba(200,255,0,0.24)', buttonText: '#182200' };
   if (themeMode === 'gold') return { ...base, bg: ['#171008', '#0B0804', '#030201'], card: ['#211A10', '#080604'], hero: ['#2B2110', '#080604'], accent: '#E8C46A', accent2: '#FFF0B8', accentSoft: 'rgba(232,196,106,0.15)', border: 'rgba(232,196,106,0.26)', muted: '#CBBE9A', buttonText: '#120B02', taskSurface: 'rgba(232,196,106,0.08)' };
+  if (themeMode === 'olive') return { ...base, bg: [...OLIVE_GRADIENTS.screen] as [string, string, string], card: [OLIVE_RICH.raised, OLIVE_RICH.panel], hero: [OLIVE_RICH.surface, OLIVE_RICH.panel], accent: OLIVE_RICH.champagne, accent2: OLIVE_RICH.champagneLight, accentSoft: '#2A2818', border: 'transparent', text: OLIVE_RICH.ivory, muted: OLIVE_RICH.champagneLight, ghost: OLIVE_RICH.champagneLight, buttonText: OLIVE_RICH.piano, taskSurface: OLIVE_RICH.surface, ringTrack: OLIVE_RICH.raised };
   // зачем: ringTrack — белый 8% был невидим на светлом accentSoft (#D9E9E1); трек — sage-хейрлайн.
   if (themeMode === 'sagePorcelain') return { ...base, bg: ['#DCE1D8', '#CDD5C7', '#BFC8B8'], card: ['#FCFDF9', '#DCE1D8'], hero: ['#E1E5DC', '#DCE1D8'], accent: '#315F50', accent2: '#52605A', accentSoft: '#D9E9E1', border: '#CFD6CE', text: '#17201D', muted: '#52605A', ghost: '#61706A', buttonText: '#FFFFFF', taskSurface: '#E1E5DC', ringTrack: '#BDC8BD' }; // guard-ok: chrome-токены темы (border был и до правки), не новая обводка
   if (false) return { ...base, bg: ['#FFF8EA', '#F4E6CD', '#EBD8BC'], card: ['#FFFDF6', '#F2E1C8'], hero: ['#FFFFFF', '#F1DEC0'], accent: '#B7791F', accent2: '#166E65', accentSoft: 'rgba(183,121,31,0.13)', border: 'rgba(91,63,25,0.18)', text: '#201811', muted: '#6A5C4D', ghost: '#9A8975', buttonText: '#21170C', taskSurface: 'rgba(70,48,20,0.055)' };

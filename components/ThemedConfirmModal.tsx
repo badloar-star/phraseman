@@ -5,6 +5,7 @@ import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
 
 type Props = {
   visible: boolean;
@@ -36,8 +37,10 @@ function ThemedConfirmModal({
   const { theme: t, themeMode, f } = useTheme();
   const dim = 'rgba(0,0,0,0.60)';
   const isGoldTheme = themeMode === 'gold';
+  const isOliveTheme = themeMode === 'olive';
   const modalColors = isGoldTheme
     ? GOLD_GRADIENTS.premiumPanel
+    : isOliveTheme ? OLIVE_GRADIENTS.quietPanel
     : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string]);
   const confirmBg = confirmVariant === 'accent' ? t.accent : t.bgSurface;
   const confirmText = confirmVariant === 'accent' ? t.correctText : t.textPrimary;
@@ -46,7 +49,9 @@ function ThemedConfirmModal({
     ? confirmVariant === 'accent'
       ? GOLD_GRADIENTS.primaryButton
       : GOLD_GRADIENTS.raisedTile
-    : ([confirmBg, confirmBg, confirmBg] as [string, string, string]);
+    : isOliveTheme && confirmVariant === 'accent'
+      ? OLIVE_GRADIENTS.primaryButton
+      : ([confirmBg, confirmBg, confirmBg] as [string, string, string]);
   const modalRadius = 16;
   const buttonRadius = 12;
 
@@ -145,7 +150,7 @@ function ThemedConfirmModal({
             borderWidth: 0,
             borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
             overflow: 'hidden',
-            ...(isGoldTheme ? goldShadow(3) : {}),
+            ...(isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(3) : {}),
           }}
         >
           {isGoldTheme && <GoldBevel radius={16} intensity="strong" />}
@@ -184,7 +189,7 @@ function ThemedConfirmModal({
                   ? confirmVariant === 'accent' ? GOLD_RICH.edgeLight : GOLD_RICH.hairline
                   : confirmBorder,
                 overflow: 'hidden',
-                ...(isGoldTheme && confirmVariant === 'accent' ? goldShadow(1) : {}),
+                ...(isGoldTheme && confirmVariant === 'accent' ? goldShadow(1) : isOliveTheme && confirmVariant === 'accent' ? oliveShadow(1) : {}),
               }}
             >
               <LinearGradient
@@ -197,8 +202,8 @@ function ThemedConfirmModal({
                 {isGoldTheme && <GoldBevel radius={12} intensity={confirmVariant === 'accent' ? 'strong' : 'quiet'} />}
                 <Text
                   style={{
-                    color: isGoldTheme && confirmVariant === 'accent'
-                      ? GOLD_RICH.blackPiano
+                    color: (isGoldTheme || isOliveTheme) && confirmVariant === 'accent'
+                      ? (isOliveTheme ? OLIVE_RICH.piano : GOLD_RICH.blackPiano)
                       : confirmText,
                     fontWeight: '700',
                     textAlign: 'center',

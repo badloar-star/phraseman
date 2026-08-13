@@ -161,6 +161,9 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     accent: '#D6BE8B',
     chipOn: '#2B2515',
   },
+  olive: {
+    panel: '#14180F', chip: '#14180F', border: 'rgba(201,168,76,0.12)', divider: 'rgba(201,168,76,0.08)', notice: '#181B12', accent: '#E3CC88', chipOn: '#25291D',
+  },
   minimalDark: {
     panel: '#1C1C1E',
     chip: '#1C1C1E',
@@ -704,6 +707,7 @@ export default function SettingsMain() {
       volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
       indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
       sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
+      olive: { ru: 'Олива', uk: 'Олива', es: 'Oliva', 'pt-BR': 'Oliva', vi: 'Ô liu', id: 'Zaitun', tr: 'Zeytin', pl: 'Oliwka' },
     };
     const entry = names[themeMode] ?? names.indigo;
     return entry[lang];

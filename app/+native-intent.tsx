@@ -84,6 +84,16 @@ export function redirectSystemPath({
     return `/home?openPhrase=${encodeURIComponent(phraseMatch[1])}${play}`;
   }
 
+  // Personal-deck widget taps always target the exact local collection/card.
+  // Decode once here; Expo Router receives a normal route with safe query data.
+  const deckMatch = raw.match(/(?:^|\/)deck\/(saved|created)\/([^/?#]+)/i);
+  if (deckMatch?.[1] && deckMatch[2]) {
+    const category = deckMatch[1].toLowerCase() === 'saved' ? 'saved' : 'custom';
+    let cardId = deckMatch[2];
+    try { cardId = decodeURIComponent(cardId); } catch { /* already raw */ }
+    return `/flashcards_collection?cat=${category}&widgetCard=${encodeURIComponent(cardId)}`;
+  }
+
   return raw.startsWith('/') ? raw : `/${raw}`;
 }
 

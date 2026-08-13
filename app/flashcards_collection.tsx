@@ -366,7 +366,7 @@ export default function FlashcardsScreen() {
     return () => { cancelled = true; };
   }, [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; widgetCard?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
@@ -568,6 +568,22 @@ export default function FlashcardsScreen() {
     () => applyCardFilter(cards, activeFilter, cardStatuses),
     [cards, activeFilter, cardStatuses],
   );
+
+  // Widget deep link: reveal the exact saved/created card once local storage has
+  // hydrated. This preserves the normal collection view and avoids a second,
+  // divergent card-details route.
+  const handledWidgetCardRef = useRef<string | null>(null);
+  useEffect(() => {
+    const raw = Array.isArray(params.widgetCard) ? params.widgetCard[0] : params.widgetCard;
+    if (!raw || handledWidgetCardRef.current === raw || filteredCards.length === 0) return;
+    const cardIndex = filteredCards.findIndex((card) => card.id === raw);
+    if (cardIndex < 0) return;
+    handledWidgetCardRef.current = raw;
+    setIndex(cardIndex);
+    InteractionManager.runAfterInteractions(() => {
+      flatListRef.current?.scrollToIndex?.({ index: cardIndex, animated: false, viewPosition: 0.35 });
+    });
+  }, [filteredCards, params.widgetCard]);
 
   // зачем: чипы считаем по ПОЛНОМУ набору, а не по отфильтрованному — иначе
   // после выбора «Слабые» остальные чипы исчезли бы и вернуться было бы некуда.

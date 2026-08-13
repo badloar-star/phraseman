@@ -5,7 +5,10 @@ jest.mock('../modules/phrase-widget', () => ({
   default: { isAvailable: () => false, setData: async () => {}, reloadAll: async () => {} },
 }));
 
-import { buildWidgetPayload } from '../app/widget_bridge';
+import {
+  buildPersonalDeckWidgetPayload,
+  buildWidgetPayload,
+} from '../app/widget_bridge';
 import type { DailyPhrase } from '../app/daily_phrase_system';
 
 // The widget snapshot is the single contract the native iOS/Android widgets read.
@@ -53,5 +56,57 @@ describe('buildWidgetPayload contract', () => {
     expect(payload.deepLink).toBe('phraseman://phrase/local-11');
     expect(payload.playDeepLink).toBe('phraseman://phrase/local-11?play=1');
     expect(payload.kicker).toBe('ФРАЗА ДНЯ');
+  });
+});
+
+describe('buildPersonalDeckWidgetPayload contract', () => {
+  const payload = buildPersonalDeckWidgetPayload({
+    isPlus: true,
+    lang: 'ru',
+    mode: 'dark',
+    now: 1_700_000_000_000,
+    saved: [{ id: 'saved-1', en: 'Make it count', ru: 'Ð¡Ð´ÐµÐ»Ð°Ð¹ Ñ‚Ð°Ðº, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÑ‚Ð¾ Ð¸Ð¼ÐµÐ»Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ.' }],
+    created: [{ id: 'custom-1', en: 'I learn in small steps', ru: 'Ð¯ ÑƒÑ‡ÑƒÑÑŒ Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¸Ð¼Ð¸ ÑˆÐ°Ð³Ð°Ð¼Ð¸.' }],
+  });
+
+  test('ships both personal decks in a versioned Plus snapshot', () => {
+    expect(payload.schemaVersion).toBe(3);
+    expect(payload.access).toBe('plus');
+    expect(payload.decks.saved.cards).toHaveLength(1);
+    expect(payload.decks.created.cards).toHaveLength(1);
+  });
+
+  test('links each card to its exact collection route instead of the daily phrase', () => {
+    expect(payload.decks.saved.cards[0].deepLink).toBe('phraseman://deck/saved/saved-1');
+    expect(payload.decks.created.cards[0].deepLink).toBe('phraseman://deck/created/custom-1');
+  });
+
+  test('does not expose deck contents after Plus access ends', () => {
+    const free = buildPersonalDeckWidgetPayload({
+      isPlus: false,
+      lang: 'ru',
+      mode: 'dark',
+      now: 1_700_000_000_000,
+      saved: [{ id: 'saved-1', en: 'Private card', ru: 'Ð›Ð¸Ñ‡Ð½Ð°Ñ ÐºÐ°Ñ€Ñ‚Ð¾Ñ‡ÐºÐ°.' }],
+      created: [],
+    });
+
+    expect(free.access).toBe('free');
+    expect(free.decks.saved.cards).toEqual([]);
+    expect(free.decks.created.cards).toEqual([]);
+  });
+
+  test('marks an empty chosen collection without substituting another deck', () => {
+    expect(payload.decks.created.empty).toBe(false);
+    const empty = buildPersonalDeckWidgetPayload({
+      isPlus: true,
+      lang: 'ru',
+      mode: 'dark',
+      now: 1_700_000_000_000,
+      saved: [],
+      created: [],
+    });
+    expect(empty.decks.saved.empty).toBe(true);
+    expect(empty.decks.created.empty).toBe(true);
   });
 });

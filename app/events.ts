@@ -119,6 +119,7 @@ export type AppEventMap = {
    * тяжёлые загрузки, подписки и анимации.
    */
   onboarding_completed: undefined;
+  onboarding_paywall_completed: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
   /**

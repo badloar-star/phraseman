@@ -18,13 +18,11 @@ export type OnboardingFlowDirection = 'forward' | 'backward' | 'current-or-forwa
 export type OnboardingTransitionDecision = {
   destination: OnboardingStepId;
   preparePaywall: boolean;
-  createPendingPlan: boolean;
   trackPaywallView: boolean;
 };
 
 export type OnboardingTransitionEffects = {
   preparePaywall: () => Promise<void> | void;
-  createPendingPlan: () => Promise<void> | void;
   trackPaywallView: () => Promise<void> | void;
 };
 
@@ -122,7 +120,6 @@ export function decideOnboardingTransition(
   return {
     destination,
     preparePaywall: opensPaywall,
-    createPendingPlan: opensPaywall,
     trackPaywallView: opensPaywall,
   };
 }
@@ -143,7 +140,6 @@ export async function runOnboardingTransitionEffects(
   if (!decision.preparePaywall || busy.current) return false;
   busy.current = true;
   try {
-    if (decision.createPendingPlan) await effects.createPendingPlan();
     await effects.preparePaywall();
     if (decision.trackPaywallView) await effects.trackPaywallView();
     return true;

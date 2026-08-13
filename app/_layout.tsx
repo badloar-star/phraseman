@@ -63,7 +63,6 @@ import { getStableId } from './stable_id';
 import { acquireLevelGiftDisplay, reserveLevelGiftForDisplay, type GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
-import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from './personal_plan_activation';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
@@ -116,7 +115,6 @@ import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { isTournamentInterruptionProtectedPath } from './tournament_interruption_guard';
-import { isFeatureFreeForEveryone } from './feature_gates';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
@@ -2963,69 +2961,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     }
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
-  const handleOnboardingPersonalPlanPaywall = useCallback(async () => {
-    await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
-    await AsyncStorage.setItem('onboarding_step', 'name');
-    await AsyncStorage.removeItem('onboarding_done');
-    await AsyncStorage.setItem('xp_migration_v2', '1');
-    if (firstContentReadyTimerRef.current) {
-      clearTimeout(firstContentReadyTimerRef.current);
-      firstContentReadyTimerRef.current = null;
-    }
-    setFirstContentReady(true);
-    setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-    const planBilling = await AsyncStorage.getItem('onboarding_plan_billing').catch(() => null);
-    // «Пульт»: если персональный план переведён в «Фри» — пейвол не показываем,
-    // новичок сразу попадает домой (план активируется без оплаты).
-    if (isFeatureFreeForEveryone('personal_plan')) {
-      return false;
-    }
-    // ОНБОРДИНГ: идём ПРЯМО на нужный A/B/C-пейвол, минуя прозрачный диспетчер
-    // premium_modal. Диспетчер — transparentModal: пока он на один кадр висит
-    // прозрачным до своего replace, за ним видна «Главная» — отсюда «мелькание
-    // home перед пейволом» (и риск Apple 5.6). Вариант резолвится синхронно из
-    // кэша (как это делает сам диспетчер), а ветку «уже premium» онбординг
-    // отсекает ВЫШЕ (openSelectedPlanAbPaywall проверяет isPremium до
-    // вызова этого хендлера), поэтому диспетчер тут не нужен.
-    //
-    // Пейвол с source=onboarding_plan открывается как обычный экран (card,
-    // animation:'none' — см. paywallScreenStackOptions): непрозрачный онбординг-фон
-    // мгновенно перекрывает «Главную». СНАЧАЛА навигация (пейвол монтируется под
-    // оверлеем онбординга), ПОТОМ setShow(false) — оверлей снимается, а под
-    // ним уже непрозрачный пейвол. Кадра с «Главной» нет.
-    // Помечаем онбординг-пейвол активным ДО навигации — статические <Stack.Screen>
-    // (paywall_a/b/c) переключаются на card/none, и пейвол монтируется как обычный
-    // экран онбординга, без выезда снизу. Сбрасываем флаг при уходе с пейвола.
-    setOnboardingPaywallActive(true);
-    try {
-      const { resolvePaywallAbVariantSync } = await import('./paywall_variant');
-      const { variant } = resolvePaywallAbVariantSync();
-      const route = ({ A: '/paywall_a', B: '/paywall_b', C: '/paywall_c', D: '/paywall_d', E: '/paywall_e', F: '/paywall_f', G: '/paywall_g' } as const)[variant];
-      // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
-      markNextNavigationAsReplace();
-      router.replace({
-        pathname: route,
-        params: {
-          context: 'personal_plan',
-          source: 'onboarding_plan',
-          ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
-        },
-      } as any);
-    } catch {
-      // Если резолвер не загрузился — безопасный фолбэк через диспетчер.
-      markNextNavigationAsReplace();
-      router.replace({
-        pathname: '/premium_modal',
-        params: {
-          context: 'personal_plan',
-          source: 'onboarding_plan',
-          ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
-        },
-      } as any);
-    }
-    setShow(false);
-  }, [router]);
-
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {
     await startIntroFullAccessAfterOnboarding(Date.now(), lang);
     emitAppEvent('intro_full_access_changed');
@@ -3034,7 +2969,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
-    const sub = onAppEvent('personal_plan_onboarding_nickname_ready', () => {
+    const sub = onAppEvent('onboarding_paywall_completed', () => {
       onboardingDoneHandledRef.current = false;
       // Онбординг-пейвол отыграл (continue-free / покупка) → возвращаемся в оверлей
       // онбординга на шаг «Имя». Снимаем флаг, чтобы будущие открытия пейвола
@@ -3052,10 +2987,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       setShow(true);
       void (async () => {
         try {
-          await AsyncStorage.multiSet([
-            [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-            ['onboarding_step', 'name'],
-          ]);
+          await AsyncStorage.setItem('onboarding_step', 'name');
           await AsyncStorage.removeItem('onboarding_done');
         } catch { /* best-effort: paywall_purchase уже записал эти ключи */ }
       })();
@@ -3246,20 +3178,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="survey_screen" />
-       <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
-       <Stack.Screen name="personal_plan_quiz" options={{ headerShown: false }} />
-      <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
-      {/* Expo Router принимает внутри Stack только Screen/Protected. Обычный Fragment
-          здесь игнорировался и на каждом запуске печатал предупреждение layout. */}
-      <Stack.Protected guard={ENABLE_DEV_TOOLS}>
-        <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
-        <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
-      </Stack.Protected>
-      <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
-      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, ...bottomModalAnimationOptions, presentation: 'modal', gestureEnabled: true }} />
-      <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
-      <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
-      <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
           Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
       <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />
@@ -3474,7 +3392,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           onDone={handleOnboardingDone}
           onLangSelect={handleLangSelect}
           onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
-          onPersonalPlanPaywallStart={handleOnboardingPersonalPlanPaywall}
         />
       </View>
     )}

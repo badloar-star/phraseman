@@ -67,15 +67,6 @@ import {
   prefetchAndRecordStudyTargetServerPack,
 } from '../app/study_target_server_prefetch';
 import {
-  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
-  queuePendingPersonalPlanActivation,
-} from '../app/personal_plan_activation';
-import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
-import {
-  resolvePersonalPlanForGoal,
-  type PersonalPlanSetupGoal,
-} from '../app/personal_plan_recommendation';
-import {
   addDays,
   estimateDaysToTarget,
   type CurrentLevel,
@@ -119,10 +110,8 @@ const ONBOARDING_ASSETS = {
   minutes20: require('../assets/images/flow_clean_202607/minutes_20.webp'),
   introCompass: require('../assets/images/flow_clean_202607/intro_compass.webp'),
   notifications: require('../assets/images/flow_clean_202607/notifications.webp'),
-  planResult: require('../assets/images/flow_clean_202607/plan_result.webp'),
   startPlus: require('../assets/images/flow_clean_202607/start_plus.webp'),
   startFree: require('../assets/images/flow_clean_202607/start_free.webp'),
-  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.webp'),
   benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.webp'),
   benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.webp'),
   benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.webp'),
@@ -136,9 +125,11 @@ export type OnboardingProps = {
   initialLang?: Lang;
   onLangSelect?: (lang: Lang) => Promise<void> | void;
   onIntroFullAccessStart?: () => Promise<boolean | void> | boolean | void;
-  onPersonalPlanPaywallStart?: () => Promise<boolean | void> | boolean | void;
   startAtNameStep?: boolean;
 };
+
+type OnboardingGoal = 'series' | 'everyday' | 'travel' | 'words' | 'mind';
+type OnboardingMinutesChoice = 5 | 10 | 15 | 20;
 
 export type CleanOnboardingStep =
   | 'welcome'
@@ -247,7 +238,7 @@ const LEVEL_OPTIONS: Option<LevelChoice>[] = [
   { id: 'b2', title: { ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', es: 'Puedo hablar de casi todo', 'pt-BR': 'Consigo falar sobre quase tudo', vi: 'Tôi có thể nói về hầu hết mọi thứ', id: 'Saya bisa membahas hampir semua hal', tr: 'Neredeyse her şeyi konuşabilirim', pl: 'Potrafię rozmawiać niemal o wszystkim' }, icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB2 },
 ];
 
-const GOAL_OPTIONS: Option<PersonalPlanSetupGoal>[] = [
+const GOAL_OPTIONS: Option<OnboardingGoal>[] = [
   { id: 'series', title: { ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', es: 'Entender películas y series', 'pt-BR': 'Entender filmes e séries', vi: 'Hiểu phim và chương trình dài tập', id: 'Memahami film dan serial', tr: 'Film ve dizileri anlamak', pl: 'Rozumieć filmy i seriale' }, icon: 'volume-high-outline', asset: ONBOARDING_ASSETS.goalSeries },
   { id: 'everyday', title: { ru: 'Говорить в обычной жизни', uk: 'Говорити у звичайному житті', es: 'Hablar en la vida diaria', 'pt-BR': 'Falar no dia a dia', vi: 'Giao tiếp trong đời sống hằng ngày', id: 'Berbicara dalam kehidupan sehari-hari', tr: 'Günlük hayatta konuşmak', pl: 'Mówić w codziennym życiu' }, icon: 'chatbubble-ellipses-outline', asset: ONBOARDING_ASSETS.goalEveryday },
   { id: 'travel', title: { ru: 'Путешествовать', uk: 'Подорожувати', es: 'Viajar', 'pt-BR': 'Viajar', vi: 'Du lịch', id: 'Bepergian', tr: 'Seyahat etmek', pl: 'Podróżować' }, icon: 'airplane-outline', asset: ONBOARDING_ASSETS.goalTravel },
@@ -255,7 +246,7 @@ const GOAL_OPTIONS: Option<PersonalPlanSetupGoal>[] = [
   { id: 'mind', title: { ru: 'Учиться для себя', uk: 'Вчитися для себе', es: 'Aprender por gusto', 'pt-BR': 'Aprender por prazer', vi: 'Học vì bản thân', id: 'Belajar untuk diri sendiri', tr: 'Kendim için öğrenmek', pl: 'Uczyć się dla siebie' }, icon: 'school-outline', asset: ONBOARDING_ASSETS.goalMind },
 ];
 
-const MINUTE_OPTIONS: Array<Option<PlanMinutesChoice> & { tone: OnboardingCopy }> = [
+const MINUTE_OPTIONS: Array<Option<OnboardingMinutesChoice> & { tone: OnboardingCopy }> = [
   { id: 5, title: { ru: '5 минут в день', uk: '5 хвилин на день', es: '5 minutos al día', 'pt-BR': '5 minutos por dia', vi: '5 phút mỗi ngày', id: '5 menit per hari', tr: 'Günde 5 dakika', pl: '5 minut dziennie' }, tone: { ru: 'без давления', uk: 'без тиску', es: 'sin presión', 'pt-BR': 'sem pressão', vi: 'không áp lực', id: 'tanpa tekanan', tr: 'baskısız', pl: 'bez presji' }, icon: 'leaf-outline', asset: ONBOARDING_ASSETS.minutes5 },
   { id: 10, title: { ru: '10 минут в день', uk: '10 хвилин на день', es: '10 minutos al día', 'pt-BR': '10 minutos por dia', vi: '10 phút mỗi ngày', id: '10 menit per hari', tr: 'Günde 10 dakika', pl: '10 minut dziennie' }, tone: { ru: 'лучший ритм', uk: 'найкращий ритм', es: 'el mejor ritmo', 'pt-BR': 'melhor ritmo', vi: 'nhịp độ lý tưởng', id: 'ritme terbaik', tr: 'en iyi tempo', pl: 'najlepsze tempo' }, icon: 'time-outline', asset: ONBOARDING_ASSETS.minutes10 },
   { id: 15, title: { ru: '15 минут в день', uk: '15 хвилин на день', es: '15 minutos al día', 'pt-BR': '15 minutos por dia', vi: '15 phút mỗi ngày', id: '15 menit per hari', tr: 'Günde 15 dakika', pl: '15 minut dziennie' }, tone: { ru: 'быстрее прогресс', uk: 'швидший прогрес', es: 'progreso más rápido', 'pt-BR': 'progresso mais rápido', vi: 'tiến bộ nhanh hơn', id: 'kemajuan lebih cepat', tr: 'daha hızlı ilerleme', pl: 'szybszy postęp' }, icon: 'flash-outline', asset: ONBOARDING_ASSETS.minutes15 },
@@ -280,13 +271,13 @@ function levelToCurrentLevel(level: LevelChoice): CurrentLevel {
   return 'b2';
 }
 
-function minutesToProfileMinutes(minutes: PlanMinutesChoice): MinutesPerDay {
+function minutesToProfileMinutes(minutes: OnboardingMinutesChoice): MinutesPerDay {
   if (minutes === 5) return 5;
   if (minutes === 10 || minutes === 15) return 15;
   return 30;
 }
 
-function goalToLearningGoal(goal: PersonalPlanSetupGoal): LearningGoal {
+function goalToLearningGoal(goal: OnboardingGoal): LearningGoal {
   if (goal === 'travel') return 'tourism';
   if (goal === 'series' || goal === 'everyday') return 'hobby';
   if (goal === 'words') return 'work';
@@ -325,7 +316,6 @@ const PLAN_COMPARISON_BENEFITS: { icon: IoniconName; title: OnboardingCopy }[] =
   { icon: 'mic-outline', title: { ru: 'Практика произношения', uk: 'Практика вимови', es: 'Práctica de pronunciación', 'pt-BR': 'Prática de pronúncia', vi: 'Luyện phát âm', id: 'Latihan pengucapan', tr: 'Telaffuz pratiği', pl: 'Ćwiczenie wymowy' } },
   { icon: 'chatbubbles-outline', title: { ru: 'Разговорная практика', uk: 'Розмовна практика', es: 'Práctica de conversación', 'pt-BR': 'Prática de conversação', vi: 'Luyện hội thoại', id: 'Latihan percakapan', tr: 'Konuşma pratiği', pl: 'Ćwiczenie rozmowy' } },
   { icon: 'bulb-outline', title: { ru: 'Разбор ошибок', uk: 'Розбір помилок', es: 'Análisis de errores', 'pt-BR': 'Análise de erros', vi: 'Phân tích lỗi', id: 'Analisis kesalahan', tr: 'Hata analizi', pl: 'Analiza błędów' } },
-  { icon: 'map-outline', title: { ru: 'Персональный план', uk: 'Персональний план', es: 'Plan personal', 'pt-BR': 'Plano pessoal', vi: 'Kế hoạch cá nhân', id: 'Rencana pribadi', tr: 'Kişisel plan', pl: 'Plan osobisty' } },
   { icon: 'locate-outline', title: { ru: 'Тренер слабых мест', uk: 'Тренер слабких місць', es: 'Entrenador de puntos débiles', 'pt-BR': 'Treinador de pontos fracos', vi: 'Huấn luyện điểm yếu', id: 'Pelatih kelemahan', tr: 'Zayıf yön koçu', pl: 'Trener słabych stron' } },
   { icon: 'stats-chart-outline', title: { ru: 'Аналитика 365 дней', uk: 'Аналітика за 365 днів', es: 'Estadísticas de 365 días', 'pt-BR': 'Análise de 365 dias', vi: 'Phân tích 365 ngày', id: 'Analitik 365 hari', tr: '365 gün analizi', pl: 'Analityka z 365 dni' } },
 ];
@@ -337,27 +327,17 @@ function reactionForLevel(level: LevelChoice, target: StudyTarget): string {
     case 'a1': return 'Хорошо. Соберём короткие фразы и первые ответы на те случаи, которые часто нужны сразу.';
     case 'a2': return 'Понятная точка: говорить уже можно, просто нужны готовые связки для живой речи.';
     case 'b1': return 'Отлично, пойдём не в правила, а в скорость, слух и более естественные ответы.';
-    case 'b2': return 'Тут важны не азы, а точность и темп. План будет держать взрослую сложность.';
+    case 'b2': return 'Тут важны не азы, а точность и темп. Практика будет держать взрослую сложность.';
   }
 }
 
-function reactionForGoal(goal: PersonalPlanSetupGoal): string {
+function reactionForGoal(goal: OnboardingGoal): string {
   switch (goal) {
-    case 'series': return 'Тогда первый маршрут будет про живую реплику на слух, а не про список слов.';
+    case 'series': return 'Тогда начнём с живой реплики на слух, а не со списка слов.';
     case 'everyday': return 'Берём обычные ситуации: услышал мысль, ответил коротко, продолжил разговор.';
-    case 'travel': return 'Соберём маршрут, где фразы сразу работают в дороге, отеле и кафе.';
+    case 'travel': return 'Начнём с фраз, которые сразу работают в дороге, отеле и кафе.';
     case 'words': return 'Будем брать нужные фразы дня и быстро возвращать их в речь.';
-    case 'mind': return 'Сделаем спокойный план: коротко, понятно, без ощущения «я опять отстал».';
-  }
-}
-
-function planNameForGoal(goal: PersonalPlanSetupGoal): string {
-  switch (goal) {
-    case 'series': return 'Реплика';
-    case 'everyday': return 'Диалог';
-    case 'travel': return 'Маршрут';
-    case 'words': return 'Фразы дня';
-    case 'mind': return 'Ритм';
+    case 'mind': return 'Будем заниматься спокойно: коротко, понятно, без ощущения «я опять отстал».';
   }
 }
 type OnboardingAnalyticsTags = Record<string, string | number | boolean | null>;
@@ -1078,7 +1058,6 @@ function PaywallPlanCard({
 function CleanOnboarding({
   onDone,
   initialLang,
-  onPersonalPlanPaywallStart,
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
@@ -1101,8 +1080,8 @@ function CleanOnboarding({
   const [source, setSource] = useState<DiscoverySource | null>(null);
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
-  const [goal, setGoal] = useState<PersonalPlanSetupGoal | null>(null);
-  const [minutes, setMinutes] = useState<PlanMinutesChoice | null>(null);
+  const [goal, setGoal] = useState<OnboardingGoal | null>(null);
+  const [minutes, setMinutes] = useState<OnboardingMinutesChoice | null>(null);
   const [plusSelected, setPlusSelected] = useState(true);
   const [notificationBusy, setNotificationBusy] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
@@ -1125,7 +1104,6 @@ function CleanOnboarding({
   const selectedGoal = goal ?? 'everyday';
   const selectedMinutes = minutes ?? 10;
   const selectedLevel = level ?? 'a2';
-  const planId = useMemo<PersonalPlanId>(() => resolvePersonalPlanForGoal(selectedGoal), [selectedGoal]);
   const {
     selected: selectedBillingPlan,
     selectPlan: selectBillingPlan,
@@ -1144,8 +1122,8 @@ function CleanOnboarding({
     handlePurchase: paywallHandlePurchase,
   } = usePaywallPurchase({
     variant: 'C',
-    context: 'personal_plan',
-    source: 'onboarding_plan',
+    context: 'generic',
+    source: 'onboarding',
     lang,
     forceTrialUI: true,
   });
@@ -1252,7 +1230,7 @@ function CleanOnboarding({
         const savedTarget = SHOW_ONBOARDING_LANGUAGE_STEP ? map.get(ONBOARDING_REQUESTED_STUDY_TARGET_KEY) : 'en';
         if (savedTarget === 'en' || savedTarget === 'fr') setStudyTarget(savedTarget);
         const savedGoal = map.get(PLAN_GOAL_KEY);
-        if (GOAL_OPTIONS.some((item) => item.id === savedGoal)) setGoal(savedGoal as PersonalPlanSetupGoal);
+        if (GOAL_OPTIONS.some((item) => item.id === savedGoal)) setGoal(savedGoal as OnboardingGoal);
         const savedLevel = map.get(PLAN_LEVEL_KEY);
         if (LEVEL_OPTIONS.some((item) => item.id === savedLevel)) setLevel(savedLevel as LevelChoice);
         const savedMinutes = Number(map.get(PLAN_MINUTES_KEY));
@@ -1396,13 +1374,13 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_level_select', { level: next });
   }, []);
 
-  const chooseGoal = useCallback((next: PersonalPlanSetupGoal) => {
+  const chooseGoal = useCallback((next: OnboardingGoal) => {
     setGoal(next);
     void AsyncStorage.setItem(PLAN_GOAL_KEY, next).catch(() => {});
     trackOnboarding('onboarding_plan_goal_select', { goal: next });
   }, []);
 
-  const chooseMinutes = useCallback((next: PlanMinutesChoice) => {
+  const chooseMinutes = useCallback((next: OnboardingMinutesChoice) => {
     setMinutes(next);
     void AsyncStorage.setItem(PLAN_MINUTES_KEY, String(next)).catch(() => {});
     trackOnboarding('onboarding_plan_minutes_select', { minutes: next });
@@ -1453,17 +1431,9 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_billing_select', { plan: next });
   }, [selectBillingPlan]);
 
-  const queueSelectedPlan = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
-    await queuePendingPersonalPlanActivation({
-      planId,
-      minutesPerDay: selectedMinutes,
-      source: 'onboarding',
-    });
-    await AsyncStorage.multiSet([
-      [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-      [PLAN_BILLING_KEY, billing],
-    ]);
-  }, [planId, selectedBillingPlan, selectedMinutes]);
+  const persistSelectedBillingPlan = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
+    await AsyncStorage.setItem(PLAN_BILLING_KEY, billing);
+  }, [selectedBillingPlan]);
 
   // Выбор Free → сразу к имени. Выбор Plus → сначала лёгкий экран сравнения выгод
   // (planComparison), и только с него — к ценам. Подготовку плана и трекинг пейвола
@@ -1479,15 +1449,14 @@ function CleanOnboarding({
     setPaywallBusy(true);
     try {
       await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
-        createPendingPlan: () => queueSelectedPlan('yearly'),
-        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        preparePaywall: () => persistSelectedBillingPlan('yearly').then(() => trackOnboardingPlanTrialCta({ minutes: selectedMinutes, plan: 'yearly' })),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ minutes: selectedMinutes, plan: 'yearly' }),
       });
       go(decision.destination);
     } finally {
       setPaywallBusy(false);
     }
-  }, [enabledOrder, go, paywallBusy, planId, plusSelected, queueSelectedPlan, selectedMinutes]);
+  }, [enabledOrder, go, paywallBusy, persistSelectedBillingPlan, plusSelected, selectedMinutes]);
 
   const continueFromPlanComparison = useCallback(async () => {
     if (paywallBusy || paywallTransitionBusyRef.current) return;
@@ -1495,33 +1464,26 @@ function CleanOnboarding({
     try {
       const decision = decideOnboardingTransition(enabledOrder, 'planComparison');
       await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
-        createPendingPlan: () => queueSelectedPlan('yearly'),
-        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        preparePaywall: () => persistSelectedBillingPlan('yearly').then(() => trackOnboardingPlanTrialCta({ minutes: selectedMinutes, plan: 'yearly' })),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ minutes: selectedMinutes, plan: 'yearly' }),
       });
       go(decision.destination);
     } finally {
       setPaywallBusy(false);
     }
-  }, [enabledOrder, go, paywallBusy, planId, queueSelectedPlan, selectedMinutes]);
+  }, [enabledOrder, go, paywallBusy, persistSelectedBillingPlan, selectedMinutes]);
 
   const continueFromOnboardingPaywall = useCallback(async () => {
     if (paywallBusy || paywallPurchasing) return;
     setPaywallBusy(true);
     try {
-      // Ставим план в очередь активации ДО покупки: после успеха хук вызывает
-      // finishPersonalPlanActivationFlow, который читает pending-nickname ключ
-      // (его выставляет queueSelectedPlan) и возвращает в онбординг на шаг «Имя».
-      await queueSelectedPlan(selectedBillingPlan);
-      trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: selectedBillingPlan });
-      // Реальная покупка выбранного тарифа. Хук сам обрабатывает отмену
-      // (userCancelled — тихо остаёмся на шаге), ошибку (свой Alert) и
-      // навигацию при успехе (finishPersonalPlanActivationFlow → шаг «Имя»).
+      await persistSelectedBillingPlan(selectedBillingPlan);
+      trackOnboardingPlanTrialCta({ minutes: selectedMinutes, plan: selectedBillingPlan });
       await paywallHandlePurchase();
     } finally {
       setPaywallBusy(false);
     }
-  }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, planId, queueSelectedPlan, selectedBillingPlan, selectedMinutes]);
+  }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, persistSelectedBillingPlan, selectedBillingPlan, selectedMinutes]);
 
   const finish = useCallback(async () => {
     if (finishingRef.current) return;
@@ -1608,7 +1570,7 @@ function CleanOnboarding({
       }
       onDone();
       void resumePendingGeneratedNickname();
-      void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
+      void AsyncStorage.removeItem(STEP_KEY).catch(() => {});
       void recordConsentToCloud().catch(() => null);
       void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
     } finally {
@@ -1817,7 +1779,7 @@ function CleanOnboarding({
       step="minutes"
       title={onboardingCopy(lang, { ru: 'Сколько времени в день?', uk: 'Скільки часу на день?', es: '¿Cuánto tiempo al día?', 'pt-BR': 'Quanto tempo por dia?', vi: 'Mỗi ngày bao nhiêu thời gian?', id: 'Berapa waktu per hari?', tr: 'Günde ne kadar zaman?', pl: 'Ile czasu dziennie?' })}
       onBack={back}
-      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'К плану', uk: 'До плану', es: 'Ver mi plan', 'pt-BR': 'Ver meu plano', vi: 'Xem kế hoạch', id: 'Lihat rencana', tr: 'Plana geç', pl: 'Zobacz plan' })} onPress={() => go('aha')} disabled={!minutes} testID="onboarding-minutes-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })} onPress={() => go('aha')} disabled={!minutes} testID="onboarding-minutes-continue" />}
     >
       <View style={styles.optionList}>
         {MINUTE_OPTIONS.map((item) => (
@@ -1915,7 +1877,7 @@ function CleanOnboarding({
             icon={index === 0 ? 'chatbubble-ellipses-outline' : index === 1 ? 'volume-high-outline' : 'refresh-outline'}
             title={onboardingCopy(lang, item.title)}
             body={onboardingCopy(lang, item.body)}
-            asset={index === 0 ? ONBOARDING_ASSETS.benefitPlan : index === 1 ? ONBOARDING_ASSETS.benefitSpeech : ONBOARDING_ASSETS.benefitRepeat}
+            asset={index === 0 ? ONBOARDING_ASSETS.benefitFlow : index === 1 ? ONBOARDING_ASSETS.benefitSpeech : ONBOARDING_ASSETS.benefitRepeat}
           />
         ))}
       </View>

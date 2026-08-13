@@ -17,7 +17,9 @@ function Player({ player, active, animateScore }: { player?: ArenaPlayer; active
       <View style={styles.copy}>
         <Text style={[styles.name, { color: P.text }]}>{player?.name ?? '—'}</Text>
       </View>
-      <V2Counter value={shownScore} />
+      {/* Про игрока, которого ещё нет, счёт неизвестен. Ноль здесь — это
+          утверждение, а не отсутствие данных. */}
+      {player ? <V2Counter value={shownScore} /> : <Text style={[styles.name, { color: P.muted }]}>—</Text>}
     </View>
   );
 }

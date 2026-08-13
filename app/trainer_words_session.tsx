@@ -36,7 +36,6 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import {
   getCachedDueItems,
   getDueItems,
-  getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
@@ -59,11 +58,6 @@ import TrainerSessionReport from './trainer_session_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
-import {
-  markTrainerPlanTaskCompleted,
-  readTrainerPlanTaskContext,
-  type TrainerPlanTaskRouteParams,
-} from './trainer_plan_task_route';
 // cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК колод через запятую
 // (`?deck=saved,custom,pack:abc`) — колоды объединяются в одну перемешанную
 // (loadDeckCardsMulti), а источник ошибки берётся с самой карточки (DeckCard.source),
@@ -284,7 +278,7 @@ function deckCardToTrainerItem(c: DeckCard): TrainerItem {
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerWordsSession() {
   const router = useRouter();
-  const params = useLocalSearchParams<TrainerPlanTaskRouteParams & { deck?: string | string[]; size?: string | string[] }>();
+  const params = useLocalSearchParams<{ deck?: string | string[]; size?: string | string[] }>();
   const { theme: t, f, themeMode } = useTheme();
   const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -317,7 +311,7 @@ export default function TrainerWordsSession() {
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
   const warmDeckRef = useRef<WordSessionCard[] | null>(
-    !trainerGateOpen || params.planTaskId || params.planTrainerTask || deckRefs.length > 0
+    !trainerGateOpen || deckRefs.length > 0
       ? null
       : getWarmWordSessionDeck(WORD_SESSION_LIMIT, studyTarget, sourceLocale, lang),
   );
@@ -332,25 +326,7 @@ export default function TrainerWordsSession() {
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const allItemsRef = useRef<TrainerItem[]>(warmDeck?.map((card) => card.item) ?? []);
-  const planTrainerCompletionTracked = useRef(false);
   const sessionStartRef = useRef(0);
-  const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
-    mode: params.mode,
-    planDayIndex: params.planDayIndex,
-    planId: params.planId,
-    planInstanceId: params.planInstanceId,
-    planTaskId: params.planTaskId,
-    planTrainerTask: params.planTrainerTask,
-    requiredItems: params.requiredItems,
-  }), [
-    params.mode,
-    params.planDayIndex,
-    params.planId,
-    params.planInstanceId,
-    params.planTaskId,
-    params.planTrainerTask,
-    params.requiredItems,
-  ]);
   // Ref к функции swipeOut текущей карточки — для кнопок
   const swipeOutRef = useRef<((dir: 'right' | 'left') => void) | null>(null);
 
@@ -412,15 +388,7 @@ export default function TrainerWordsSession() {
           return;
         }
 
-        const items = planTrainerContext.taskId
-          ? await getTrainerPremiumItemsForPlanQueue(
-              planTrainerContext.planInstanceId,
-              planTrainerContext.mode,
-              'words',
-              planTrainerContext.requiredItems,
-              studyTarget,
-            )
-          : await getDueItems('words', 20, studyTarget, sourceLocale);
+        const items = await getDueItems('words', 20, studyTarget, sourceLocale);
         if (cancelled) return;
         allItemsRef.current = items;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
@@ -442,7 +410,7 @@ export default function TrainerWordsSession() {
       }
     })();
     return () => { cancelled = true; };
-  }, [lang, planTrainerContext, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey, deckRefs, cardContentLang, sessionSize]);
+  }, [lang, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey, deckRefs, cardContentLang, sessionSize]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -514,12 +482,6 @@ export default function TrainerWordsSession() {
     swipeOutRef.current?.(dir);
   }, [noEnergyModalOpen]);
 
-  useEffect(() => {
-    if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
-    planTrainerCompletionTracked.current = true;
-    void markTrainerPlanTaskCompleted(planTrainerContext, studyTarget);
-  }, [done, planTrainerContext, studyTarget]);
-
   if (loadError) {
     return (
       <TrainerErrorView
@@ -558,10 +520,8 @@ export default function TrainerWordsSession() {
     // зачем: симметрично фразовой сессии — сначала проверяем остаток СВОИХ
     // слов (лимит пачки WORD_SESSION_LIMIT мог обрезать очередь), и только
     // если слов больше не осталось — предлагаем фразы (включая арену).
-    const moreWordsChain = planTrainerContext.taskId
-      ? []
-      : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
-    const phrasesChain = planTrainerContext.taskId || moreWordsChain.length > 0
+    const moreWordsChain = getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
+    const phrasesChain = moreWordsChain.length > 0
       ? []
       : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
     const nextLabel = moreWordsChain.length > 0
@@ -599,7 +559,7 @@ export default function TrainerWordsSession() {
               total={deck.length || correct + wrong}
               accent={accent}
               durationMs={sessionStartRef.current > 0 ? Date.now() - sessionStartRef.current : undefined}
-              onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
               onNext={nextLabel ? () => { hapticTap(); router.replace(nextRoute as any); } : undefined}
@@ -616,7 +576,7 @@ export default function TrainerWordsSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <View style={styles.headerRight}>
@@ -709,7 +669,7 @@ export default function TrainerWordsSession() {
       <NoEnergyModal
         visible={noEnergyModalOpen}
         onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
-        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, '/trainer' as any); }}
       />
     </ScreenGradient>
   );

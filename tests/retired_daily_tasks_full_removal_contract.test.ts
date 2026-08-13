@@ -80,20 +80,6 @@ describe("retired Daily Tasks full-removal boundary", () => {
     expect(admin).not.toMatch(/data-action\s*=\s*['"]daily-reset['"]/);
   });
 
-  test("Personal Plans remain a live product until Learning V2 replaces them", () => {
-    for (const relativePath of [
-      "app/personal_plan.tsx",
-      "app/personal_plan_state.ts",
-      "app/personal_plan_catalog.ts",
-      "app/personal_plan_exercise.tsx",
-    ]) {
-      expect(exists(relativePath)).toBe(true);
-    }
-    const layout = read("app/_layout.tsx");
-    expect(layout).toContain('name="personal_plan"');
-    expect(layout).toContain('name="personal_plan_complete"');
-  });
-
   test("Daily Phrase, surveys and boons stay independently reachable and rewarded", () => {
     const home = read("app/(tabs)/home.tsx");
     const layout = read("app/_layout.tsx");

@@ -3,14 +3,6 @@ import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 const retiredNames = [["ar", "ena"].join(""), ["qu", "iz"].join("")];
-const allowedPersonalPlanQuizFiles = new Set([
-  "app/personal_plan_quiz.tsx",
-  "app/personal_plan_quizzes.ts",
-  "app/personal_plan_quiz_mistake_adapter.ts",
-  "app/personal_plan_quiz_runtime.ts",
-  "app/personal_plan_quiz_session.ts",
-  "app/personal_plan_quiz_types.ts",
-]);
 const exists = (relativePath: string): boolean =>
   fs.existsSync(path.join(ROOT, relativePath));
 const read = (relativePath: string): string =>
@@ -48,10 +40,7 @@ describe("retired competitive mode full removal", () => {
     const retiredProductFiles = roots
       .flatMap(listFiles)
       .filter((file) => ownedPathPattern.test(file))
-      .filter(
-        (file) => !file.includes("assets/images/personal_plan_tasks_fit/"),
-      )
-      .filter((file) => !allowedPersonalPlanQuizFiles.has(file));
+      ;
     expect(retiredProductFiles).toEqual([]);
   });
 
@@ -62,7 +51,6 @@ describe("retired competitive mode full removal", () => {
       "app/achievements.ts",
       "app/feature_gates.ts",
       "app/remote_flags.ts",
-      "app/personal_plan_task_visuals.ts",
       "app/trainer_phrases_session.tsx",
       "app/level_gift_system.ts",
       "app/global_broadcast_modal.ts",
@@ -175,7 +163,7 @@ describe("retired competitive mode full removal", () => {
     expect(weeklyReviewSources).not.toMatch(/quizzes7d|arena7d/);
   });
 
-  test("removes retired Quiz promises from Plus copy while preserving plan-only quizzes", () => {
+  test("removes retired Quiz promises from Plus copy", () => {
     const langContext = read("components/LangContext.tsx");
     for (const staleCopy of [
       "Вызовы без дневного лимита",
@@ -188,19 +176,6 @@ describe("retired competitive mode full removal", () => {
       "Quizy bez dziennego limitu",
     ])
       expect(langContext).not.toContain(staleCopy);
-    const personalPlanSources = [
-      "app/personal_plan_catalog.ts",
-      "app/personal_plan_navigation.ts",
-      "app/personal_plan_engine_contracts.ts",
-      "app/personal_plan_quality.ts",
-      "app/personal_plan_day_open_actions.ts",
-      "app/personal_plan_attempt_event_adapter.ts",
-    ]
-      .map(read)
-      .join("\n");
-    expect(personalPlanSources).toContain("plan_quiz");
-    expect(personalPlanSources).not.toContain("pathname: '/quizzes'");
-    expect(read("app/_layout.tsx")).toContain('name="personal_plan_quiz"');
   });
 
   test("removes retired competitive products from live client state and user-visible copy", () => {

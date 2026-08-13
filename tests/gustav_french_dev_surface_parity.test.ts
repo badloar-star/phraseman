@@ -45,17 +45,6 @@ describe('Gustav French dev surface parity', () => {
     expect(lessonMenu).not.toContain('hideEnglishOnlyAuxiliary');
   });
 
-  it('source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions', () => {
-    const trainerPlanSession = read('app/trainer_plan_session.tsx');
-
-    expect(trainerPlanSession).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
-    expect(trainerPlanSession).toContain('frenchTrainerGateCopy(lang)');
-    expect(trainerPlanSession).toContain("router.replace('/lessons_list' as any)");
-    expect(trainerPlanSession.indexOf('trainerSessionContentAvailableForTarget(studyTarget)')).toBeLessThan(
-      trainerPlanSession.indexOf('readTrainerPlanTaskContext({'),
-    );
-  });
-
   it('keeps every direct trainer session screen behind the French trainer source gate', () => {
     const trainerSessionFiles = [
       read('app/trainer_words_session.tsx'),

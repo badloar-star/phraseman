@@ -20,7 +20,7 @@ describe('product analytics screen registry', () => {
 
   it('covers static production screens without exposing route parameters', () => {
     expect(productAnalyticsScreenId('/settings_notifications')).toBe('settings_notifications');
-    expect(productAnalyticsScreenId('/personal_plan_theory')).toBe('personal_plan_theory');
+    expect(productAnalyticsScreenId('/personal_plan_theory')).toBe('unknown_screen');
   });
 
   it('maps unknown and malformed routes to a fixed value', () => {

@@ -152,9 +152,7 @@ describe('mobile dev admin panel retirement', () => {
 
     expect(devRoutes).toContain('POS_ANALYTICS_AUDIT_ROUTE_NAME');
     expect(devRoutes).toContain('FLASHCARDS_MARKET_DEV_ROUTE_NAME');
-    expect(devRoutes).toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE_NAME');
     expect(fs.existsSync(path.join(ROOT, 'app', 'pos_analytics_audit.tsx'))).toBe(true);
     expect(fs.existsSync(path.join(ROOT, 'app', 'flashcards_market_dev.tsx'))).toBe(true);
-    expect(fs.existsSync(path.join(ROOT, 'app', 'personal_plan_runtime_dev.tsx'))).toBe(true);
   });
 });

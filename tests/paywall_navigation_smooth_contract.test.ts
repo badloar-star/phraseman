@@ -36,7 +36,8 @@ describe('paywall navigation and scroll smoothness contract', () => {
 
   it('does not re-navigate to a paywall it already rendered (no unmount/remount flash)', () => {
     const source = readAppFile('premium_modal.tsx');
-    expect(source).not.toContain('replaceToPaywall');
+    expect(source).toContain('if (!isManageContext) return;');
+    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return renderPaywallRoute\(paywallRouteRef\.current\)/);
   });
 
   it('keeps regular paywalls as native bottom modals', () => {

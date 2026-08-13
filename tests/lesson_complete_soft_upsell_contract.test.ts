@@ -8,8 +8,8 @@ describe('lesson completion soft upsell integration', () => {
   it('derives first-only candidates from the canonical first-completion grant', () => {
     expect(source).toContain("firstBonus.status === 'granted'");
     expect(helperSource).toMatch(/lessonId === 1[\s\S]*trigger: 'first_lesson'/);
-    expect(helperSource).toMatch(/lessonId === FREE_LESSON_LIMIT[\s\S]*trigger: 'free_lessons_complete'/);
-    expect(helperSource).not.toMatch(/lessonId\s*>=\s*FREE_LESSON_LIMIT/);
+    expect(helperSource).toMatch(/lessonId === freeLessonLimit[\s\S]*trigger: 'free_lessons_complete'/);
+    expect(helperSource).not.toMatch(/lessonId\s*>=\s*freeLessonLimit/);
     expect(helperSource).toContain("input.status !== 'granted'");
   });
 

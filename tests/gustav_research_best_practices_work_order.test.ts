@@ -16,7 +16,7 @@ describe('Gustav fr-001 research best practices work order', () => {
     expect(research.workOrderId).toBe('fr-001-research_best_practices');
     expect(research.status).toBe('PASS');
     expect(research.activationApproved).toBe(false);
-    expect(research.summary.packetCount).toBeGreaterThanOrEqual(22);
+    expect(research.summary.packetCount).toBeGreaterThanOrEqual(21);
     expect(research.summary.passCount).toBe(research.summary.packetCount);
 
     const packetsByFeature = new Map(research.packets.map((packet: any) => [packet.featureId, packet]));
@@ -33,7 +33,6 @@ describe('Gustav fr-001 research best practices work order', () => {
       'flashcards',
       'daily_phrase',
       'diagnostics_exams',
-      'personal_plans',
       'arena',
       'audio_tts',
       'server_course_packs',

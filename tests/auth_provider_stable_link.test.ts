@@ -292,13 +292,13 @@ describe('auth provider stable-id linking', () => {
     expect(source).not.toContain('`lesson${i + 1}_intro_shown`');
   });
 
-  test('account wipe clears Compass onboarding profile context', () => {
+  test('account wipe clears profile context and retired route storage', () => {
     const wipeStart = cloudSyncSource.indexOf('export function accountLocalDataKeysForToday');
     const wipeEnd = cloudSyncSource.indexOf('const CREATED_AT_SYNC_KEY', wipeStart);
     const wipeSource = cloudSyncSource.slice(wipeStart, wipeEnd);
 
     expect(wipeSource).toContain("'user_profile'");
-    expect(wipeSource).toContain('PERSONAL_PLAN_PENDING_ACTIVATION_KEY');
+    expect(wipeSource).toContain('RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS');
     expect(wipeSource).toContain("'premium_active'");
     expect(cloudSyncSource).toContain("'user_name'");
   });

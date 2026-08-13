@@ -22,9 +22,18 @@ import { arenaText } from '../modules/arena/copy';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import { coerceArenaHubSection, type ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  arenaLoadHomeWarm,
+  arenaPeekHomeWarm,
+  arenaRememberHomeWarm,
+} from '../modules/arena/home_cache';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
+
+const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 
 export default function ArenaHubScreen() {
   const router = useRouter();
@@ -33,8 +42,18 @@ export default function ArenaHubScreen() {
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const section = coerceArenaHubSection(params.section);
-  const [home, setHome] = useState<ArenaHomeResponse | null>(null);
-  const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
+  /**
+   * Первый кадр рисуется ПРОШЛЫМ снимком, а не пустотой (владелец: «видимой
+   * загрузки не должно быть нигде»). Снимок читается из памяти синхронно,
+   * поэтому экран открывается уже с данными, а свежие приезжают молча.
+   */
+  const warm = useMemo(() => arenaPeekHomeWarm(Date.now()), []);
+  const [home, setHome] = useState<ArenaHomeResponse | null>(
+    (warm?.home ?? null) as ArenaHomeResponse | null,
+  );
+  const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(
+    (warm?.expansion ?? null) as ArenaExpansionHome | null,
+  );
   const [baseError, setBaseError] = useState(false);
   const [expansionError, setExpansionError] = useState(false);
   const spinRequestIdRef = useRef(createArenaRequestId('spin'));
@@ -45,8 +64,14 @@ export default function ArenaHubScreen() {
   const load = useCallback(() => {
     setBaseError(false);
     setExpansionError(false);
-    void arenaV2Home().then(setHome).catch(() => setBaseError(true));
-    void arenaExpansionHome().then(setExpansion).catch(() => setExpansionError(true));
+    void arenaV2Home().then((response) => {
+      setHome(response);
+      arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
+    }).catch(() => setBaseError(true));
+    void arenaExpansionHome().then((response) => {
+      setExpansion(response);
+      arenaRememberHomeWarm({ expansion: response, wallNowMs: Date.now(), store: warmStore });
+    }).catch(() => setExpansionError(true));
     // Оба — разовые чтения при открытии. Прошедшие матчи не меняются, список
     // друзей меняется днями: держать на них подписку значит платить за
     // уведомления, которых не будет.
@@ -55,6 +80,24 @@ export default function ArenaHubScreen() {
   }, []);
 
   useEffect(() => { if (active) load(); }, [active, load]);
+
+  /**
+   * Снимок с диска — на случай, когда приложение только что запустили и память
+   * пуста. Он приходит асинхронно, но всё равно раньше сети, и ставится только
+   * если своё уже не пришло: свежее важнее вчерашнего.
+   */
+  useEffect(() => {
+    if (home && expansion) return;
+    let alive = true;
+    void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
+      if (!alive || !stored) return;
+      setHome((current) => current ?? (stored.home as ArenaHomeResponse | null));
+      setExpansion((current) => current ?? (stored.expansion as ArenaExpansionHome | null));
+    }).catch(() => {});
+    return () => { alive = false; };
+    // Только на открытии экрана: дальше данные приходят по сети.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('hub', 'direct')); }, []);
 
   /**

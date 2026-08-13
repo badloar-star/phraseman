@@ -12,6 +12,11 @@
 import { BLITZ_MIN_CARDS } from './blitz_logic';
 import { deckRouteParam, SOLO_DECK_ID, type FcDeckId } from './deck_selection';
 import { FC_DEFAULT_SESSION_SIZE, presetDeckIds, type FcModePreset } from './mode_prefs';
+import {
+  TAB_SCROLL_COLLAPSE_TRIGGER_Y,
+  TAB_SCROLL_DIRECTION_EPSILON,
+  TAB_SCROLL_EXPAND_TRIGGER_Y,
+} from './pill_tabbar_chrome';
 
 /** Какая группа кнопок раскрыта. Одновременно раскрыта максимум одна (§5.2). */
 export type FcTabMenu = 'none' | 'train' | 'create' | 'packs';
@@ -97,6 +102,36 @@ export function fcTabMenuItemDelay(
   const open = opts?.open ?? true;
   const slot = open ? i : total - 1 - i;
   return Math.min(slot, FC_TABBAR_STAGGER_CAP) * FC_TABBAR_STAGGER_MS;
+}
+
+// ── Сворачивание капсулы при скролле (как на главной) ───────────────────────
+
+/**
+ * Что делать с капсулой на очередном кадре скролла:
+ *  • `expand_now` — мы у верхней кромки списка: раскрыть МГНОВЕННО, без анимации;
+ *  • `collapse`   — палец тянет контент вверх (уходим вниз по списку) достаточно
+ *                   уверенно и мы уже ниже порога сворачивания;
+ *  • `expand`     — уверенное движение вверх по списку: вернуть капсулу;
+ *  • `keep`       — микро-движение/дребезг: не трогать.
+ *
+ * Ровно та же лестница условий, что и в слушателе скролла таббара главного
+ * экрана (`app/(tabs)/_layout.tsx`), с теми же порогами из `pill_tabbar_chrome`.
+ * Функция чистая и помечена воркетом — считается прямо на UI-потоке из
+ * `useAnimatedScrollHandler`, но так же вызывается из обычного JS-onScroll
+ * (списки со своим нативным `Animated.event`) и из юнит-тестов.
+ */
+export type FcTabChromeAction = 'keep' | 'collapse' | 'expand' | 'expand_now';
+
+export function fcTabChromeAction(y: number, lastY: number): FcTabChromeAction {
+  'worklet';
+  const current = Number.isFinite(y) ? Math.max(0, y) : 0;
+  const previous = Number.isFinite(lastY) ? lastY : 0;
+  const delta = current - previous;
+
+  if (current <= TAB_SCROLL_EXPAND_TRIGGER_Y) return 'expand_now';
+  if (delta >= TAB_SCROLL_DIRECTION_EPSILON && current >= TAB_SCROLL_COLLAPSE_TRIGGER_Y) return 'collapse';
+  if (delta <= -TAB_SCROLL_DIRECTION_EPSILON) return 'expand';
+  return 'keep';
 }
 
 /** Поворот «+» в «×» — 45° ровно (§5.2). */

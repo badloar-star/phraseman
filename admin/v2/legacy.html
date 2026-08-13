@@ -9901,7 +9901,6 @@
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Pagos Telegram">Телеграм оплаты</div>
   <div class="tab" onclick="location.href='beta_testers.html'" title="Бета-тестеры: список, выдача ауры «Нимб», Plus навсегда, управление энергией" style="background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;font-weight:700">🔵 Бета тестеры</div>
-  <div class="tab" onclick="location.href='full.html'" title="plan_content: server vs bundled, fallback frequency, situations and percents, with dates" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.35);color:#818cf8;font-weight:700">📊 FULL</div>
   <div class="tab" onclick="location.href='site.html'" title="Сайт knowlyapps.com: цены веб-оплаты, заказы Stripe/PayPal, коды активации, воронка /start/" style="background:rgba(232,197,102,0.12);border:1px solid rgba(232,197,102,0.4);color:#e8c566;font-weight:700">🌐 Сайт</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
   <div class="tab" onclick="switchTab('onboarding-screens')" title="Включение и отключение экранов онбординга без обновления приложения">🧭 Экраны онбординга</div>
@@ -19297,7 +19296,7 @@
   function an2SourceBucket(context) {
     const c = String(context || '').toLowerCase();
     if (c === 'settings' || c === 'manage') return 'settings';
-    if (c.includes('onboarding') || c === 'personal_plan' || c === 'intro_ended') return 'onboarding';
+    if (c.includes('onboarding') || c === 'intro_ended') return 'onboarding';
     return 'automatic';
   }
   const AN2_METRIC_META = {
@@ -29783,7 +29782,6 @@
     { key: 'gate_smart_trainer_premium',      label: 'Умный тренажёр',                hint: 'Адаптивный микс тренажёра.' },
     { key: 'gate_trainer_modes_premium',      label: 'Тренажёр: дневной лимит',       hint: 'Фри = без дневного лимита сессий тренажёра.' },
     { key: 'gate_diagnosis_training_premium', label: 'Разбор ошибки (тренировки)',    hint: 'Персональные мини-тренировки на ошибках.' },
-    { key: 'gate_personal_plan_premium',      label: 'Личный план (Компас)',          hint: 'Адаптивный план обучения.' },
     { key: 'gate_stats_premium',              label: 'Статистика и инсайты',          hint: 'Теплокарта ошибок, паттерны, перцентили.' },
     { key: 'gate_flashcards_premium',         label: 'Карточки (сверх лимита)',       hint: 'Сохранение карточек сверх бесплатного лимита.' },
     { key: 'gate_themes_premium',             label: 'Темы оформления',               hint: 'Плюс-темы интерфейса.' },
@@ -31079,7 +31077,7 @@
     smart_trainer: 'Умный микс', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
     dialog_analysis: 'Разбор диалога', ai_voice_input: 'Голосовой ввод в диалоге', speaking: 'Говорение',
     diagnosis_training: 'Персональная тренировка', mastery: 'Мастерство', stats: 'Статистика', heatmap: 'Карта активности',
-    patterns: 'Паттерны ошибок', percentiles: 'Перцентили', personal_plan: 'Личный план', intro_ended: 'Конец пробного доступа',
+    patterns: 'Паттерны ошибок', percentiles: 'Перцентили', intro_ended: 'Конец пробного доступа',
     level_up: 'Новый уровень', premium_expired: 'Подписка истекла', vip_expired: 'VIP истёк',
     notification_upsell: 'Пуш-уведомление', language_add: 'Второй язык', ai_explain: 'ИИ-объяснение',
     weekly_review: 'Недельный обзор', avatar_aura: 'Аура аватара',
@@ -33392,7 +33390,7 @@
     const tags = revenueTags(row);
     const raw = String(tags.source || tags.context || row.source || '').toLowerCase();
     if (raw.includes('setting') || raw === 'manage') return 'settings';
-    if (raw.includes('onboarding') || raw.includes('personal_plan')) return 'onboarding';
+    if (raw.includes('onboarding')) return 'onboarding';
     return 'automatic';
   }
 
@@ -39583,9 +39581,7 @@
     // Раздельные пулы: откуда пришёл вопрос.
     const src = task.source === 'ai'
       ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">🤖 ИИ</span>'
-      : (task.source === 'plan_content'
-        ? '<span style="background:rgba(96,165,250,0.14);color:#93c5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">📚 Планы</span>'
-        : '');
+      : '';
     // Заметка редактору от ИИ: почему верен ответ и в чём ловушки.
     const meta = task.aiMeta && (task.aiMeta.scenario || task.aiMeta.ruleNote)
       ? `<div style="margin-top:8px;font-size:12px;color:#8b8fa3;line-height:1.5">${task.aiMeta.scenario ? `🎬 ${escapeHtml(task.aiMeta.scenario)} · ` : ''}${escapeHtml(task.aiMeta.ruleNote || '')}</div>`

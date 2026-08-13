@@ -41,10 +41,7 @@ export function redirectSystemPath({
 
   // Personal-plan developer surfaces can modify local plan state. Store builds
   // must fail closed even when an old/system deep link targets them directly.
-  if (
-    IS_STORE_RELEASE &&
-    /(?:^|\/)personal_plan_(?:runtime_)?dev(?:[/?#]|$)/i.test(raw)
-  ) {
+  if (/(?:^|\/)personal_plan(?:_[^/?#]+)?(?:[/?#]|$)/i.test(raw)) {
     return '/home';
   }
 

@@ -1,24 +1,16 @@
 /**
  * Canonical, presentation-independent route for one Learning V2 lesson.
  *
- * The lesson map intentionally accepts only the main course and personal-plan
- * tasks. Tournament content has its own flow and must never become a lesson
+ * Tournament content has its own flow and must never become a lesson
  * map node, even when a caller supplies it for contextual telemetry.
  */
 export type LessonMapZoneId = 'understand' | 'use' | 'master';
 export type LessonMapNodeState = 'completed' | 'current' | 'next' | 'locked';
 
-export type PersonalPlanTaskInput = {
-  id: string;
-  title: string;
-  status: 'available' | 'locked' | 'completed';
-};
-
 export type LessonMapInput = {
   lessonId: number;
   completedSessionIds: readonly string[];
   currentSessionId?: string;
-  personalPlanTasks?: readonly PersonalPlanTaskInput[];
   /** Context only; deliberately excluded from the returned model. */
   tournamentTasks?: readonly { id: string; title: string }[];
 };
@@ -39,17 +31,9 @@ export type LessonMapZone = {
   nodes: readonly LessonMapNode[];
 };
 
-export type LessonMapSideNode = {
-  id: string;
-  kind: 'personal_plan';
-  title: string;
-  status: PersonalPlanTaskInput['status'];
-};
-
 export type LessonMapModel = {
   lessonId: number;
   zones: readonly LessonMapZone[];
-  sideNodes: readonly LessonMapSideNode[];
 };
 
 const ZONES: readonly Pick<LessonMapZone, 'id' | 'title'>[] = [
@@ -106,12 +90,6 @@ export function buildLessonMapModel(input: LessonMapInput): LessonMapModel {
     zones: ZONES.map(zone => ({
       ...zone,
       nodes: nodesByZone.get(zone.id) ?? [],
-    })),
-    sideNodes: (input.personalPlanTasks ?? []).slice(0, 2).map(task => ({
-      id: task.id,
-      kind: 'personal_plan',
-      title: task.title,
-      status: task.status,
     })),
   };
 }

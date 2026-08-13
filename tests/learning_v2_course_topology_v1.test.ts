@@ -21,7 +21,7 @@ describe('Learning V2 owner-current course topology v1', () => {
       (lesson) => lesson.sessions.length === LEARNING_V2_LESSON_SESSION_COUNT_V1,
     )).toBe(true);
     expect(sessions).toHaveLength(LEARNING_V2_COURSE_SESSION_COUNT_V1);
-    expect(new Set(sessions.map((session) => session.sessionId))).toHaveLength(
+    expect(new Set(sessions.map((session) => session.sessionId)).size).toBe(
       LEARNING_V2_COURSE_SESSION_COUNT_V1,
     );
     expect(topology.realContentAuthorship).toBe('owner_only');

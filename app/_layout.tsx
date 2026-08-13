@@ -190,7 +190,7 @@ import {
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
 import { scheduleCoalescedForegroundTask } from './app_resume_policy';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
@@ -401,11 +401,6 @@ function normalizeWarmDeepLink(url: string): string | null {
 function isDevUtilityRoutePath(path: string | null | undefined): boolean {
   if (!ENABLE_DEV_TOOLS || !path) return false;
   return DEV_UTILITY_ROUTE_PATHS.some((prefix) => path.startsWith(prefix));
-}
-
-function isDevOnlyRuntimeRoutePath(path: string | null | undefined): boolean {
-  if (!__DEV__ || !path) return false;
-  return path.startsWith(PERSONAL_PLAN_RUNTIME_DEV_ROUTE);
 }
 
 function isTabsGroupRoutePath(path: string): boolean {
@@ -1664,7 +1659,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     return true;
   }), [showRemoteAccountDeletionNotice]);
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
-  const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
+  const currentDevUtilityRoute = isDevUtilityRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
   const isRootIndexRoute = !pathname || pathname === '/';
   const insets = useStableSafeAreaInsets();
@@ -1759,7 +1754,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
-    const targetIsDevUtilityRoute = isDevUtilityRoutePath(pendingWarmDeepLink) || isDevOnlyRuntimeRoutePath(pendingWarmDeepLink);
+    const targetIsDevUtilityRoute = isDevUtilityRoutePath(pendingWarmDeepLink);
     if (!pendingWarmDeepLink || !ready || !rootNavigationReady || isBanned || (showOnboarding && !targetIsDevUtilityRoute)) return;
     const target = pendingWarmDeepLink;
     setPendingWarmDeepLink(null);
@@ -2920,8 +2915,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     router.replace('/(tabs)/home' as any);
     setTimeout(() => router.replace('/(tabs)/home' as any), 120);
     // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не
-    // используем onboarding_done как гард, т.к. handleOnboardingPersonalPlanPaywall
-    // (ниже) удаляет его и прогоняет ветку плана повторно в той же установке.
+    // используем отдельный гард, чтобы приветствие не повторялось в той же установке.
     void (async () => {
       const alreadyWelcomed = await AsyncStorage.getItem('pm_app_welcome_played_v1').catch(() => null);
       if (alreadyWelcomed === '1') return;
@@ -2929,8 +2923,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       soundDirector.request('pm.app.welcome', { scope: 'onboarding-welcome' });
     })();
     // Снимаем оверлей онбординга ПОСЛЕ того, как replace на /home закоммитится. Иначе,
-    // если под оверлеем активен маршрут пейвола (план-ветка: handleOnboardingPersonalPlanPaywall
-    // делает router.replace('/paywall_*')), при мгновенном setShow(false) пейвол мелькает один
+    // если под оверлеем активен маршрут пейвола, при мгновенном setShow(false) он мелькает один
     // кадр до перехода на главную. Небольшая отсрочка убирает мелькание (оверлей держит экран,
     // пока навигация не встала на /home).
     setTimeout(() => {
@@ -3225,7 +3218,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="lingman_playlist" />
       <Stack.Screen name="lingman_video_player" />
       <Stack.Screen name="trainer" />
-      <Stack.Screen name="trainer_plan_session" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="flashcards_listening_session" />
       <Stack.Screen name="flashcards_blitz_session" />

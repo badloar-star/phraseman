@@ -1,6 +1,6 @@
 // зачем: опциональная практика — источник фармимых звёзд доступа, но НЕ прогресса.
-// Детерминированный выбор максимум двух слотов: ошибки → должники → личный план →
-// текущий юнит; внутри приоритета — стабильно по capabilityId. Никакого UI здесь нет:
+// Детерминированный выбор максимум двух слотов: ошибки → должники → текущий юнит;
+// внутри приоритета — стабильно по capabilityId. Никакого UI здесь нет:
 // выход — селекторы источников контента, а не скопированные тела фраз.
 import type { V2ActivityFamily } from '../contracts/activity';
 import type { V2OptionalPracticeSlot } from '../contracts/session';
@@ -19,7 +19,6 @@ export interface V2OptionalPracticeSelectionInput {
   readonly networkAvailable: boolean;
   readonly dueContentItemIds: readonly string[];
   readonly mistakeContentItemIds: readonly string[];
-  readonly personalPlanContentItemIds: readonly string[];
   readonly capabilities: readonly V2OptionalPracticeCapability[];
 }
 
@@ -27,7 +26,7 @@ const MAX_SLOTS = 2;
 
 // зачем: порядок полезности практики утверждён планом — починка ошибок ценнее
 // повторения должников, а свежий юнит — последний резерв.
-const PRIORITY_ORDER = Object.freeze(['mistake', 'due', 'personal_plan', 'current_unit'] as const);
+const PRIORITY_ORDER = Object.freeze(['mistake', 'due', 'current_unit'] as const);
 
 type SourcePriority = (typeof PRIORITY_ORDER)[number];
 
@@ -35,7 +34,6 @@ function prioritisedSources(input: V2OptionalPracticeSelectionInput): readonly S
   const hasSource: Record<SourcePriority, boolean> = {
     mistake: input.mistakeContentItemIds.length > 0,
     due: input.dueContentItemIds.length > 0,
-    personal_plan: input.personalPlanContentItemIds.length > 0,
     current_unit: true,
   };
   return PRIORITY_ORDER.filter((source) => hasSource[source]);

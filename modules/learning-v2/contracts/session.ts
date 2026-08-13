@@ -49,7 +49,7 @@ export interface V2OptionalPracticeSlot {
   readonly episodeId: EpisodeId;
   readonly capabilityId: string;
   readonly family: V2ActivityFamily;
-  readonly sourcePriority: "mistake" | "due" | "personal_plan" | "current_unit";
+  readonly sourcePriority: "mistake" | "due" | "current_unit";
   readonly expectedSeconds: number;
   readonly requiredForProgress: false;
   readonly canWriteMastery: false;
@@ -433,7 +433,7 @@ export const validateV2SessionSet = (
         slot.episodeId !== input.episodeId ||
         !isIdentity(slot.capabilityId) ||
         !(V2_ACTIVITY_FAMILIES as readonly unknown[]).includes(slot.family) ||
-        !["mistake", "due", "personal_plan", "current_unit"].includes(
+        !["mistake", "due", "current_unit"].includes(
           String(slot.sourcePriority),
         ) ||
         !Number.isSafeInteger(slot.expectedSeconds) ||

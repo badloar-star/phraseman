@@ -177,7 +177,9 @@ export default function ArenaHubScreen() {
           onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid } } as never)}
         />
       ) : null}
-      {!expansion && !expansionError ? <ArenaStateCard state="loading" title={arenaExpansionText(lang, 'loading')} /> : null}
+      {/* Слово «Загрузка» здесь больше не показывается: первый кадр рисуется
+          прошлым снимком, а если снимка нет — просто ничего, а не надпись,
+          которую владелец видеть запретил. */}
       {expansionError ? <ArenaStateNotice state="error" onRetry={load} /> : null}
       {today ? (
         <V2Card style={styles.todayCard}>

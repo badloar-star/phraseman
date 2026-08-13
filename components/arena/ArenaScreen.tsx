@@ -56,7 +56,12 @@ export function ArenaScreen({
   );
   return (
     <View style={[styles.root, { backgroundColor: P.bg, paddingTop: insets.top }]}>
-      <TournamentBackdrop variant={variant} />
+      {/*
+        Фон Арены идёт под статус-бар целиком — как на главной. Раньше сейф-зона
+        закрывалась сплошной заливкой, и сверху шла чёрная полоса: экран
+        выглядел обрезанным, а не цельным.
+      */}
+      <TournamentBackdrop variant={variant} capSafeTop={false} />
       {scroll ? (
         <ScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(24, insets.bottom + 16) }]}>{content}</ScrollView>
       ) : <View style={[styles.fixed, { paddingBottom: Math.max(16, insets.bottom) }]}>{content}</View>}

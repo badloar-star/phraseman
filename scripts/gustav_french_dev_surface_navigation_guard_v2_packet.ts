@@ -35,7 +35,6 @@ type Report = {
     targetLocale: 'fr';
     mode: 'dev_surface_visible_content_fail_closed';
     visibleSurfaceParityReady: boolean;
-    personalPlanNavigationGuardsReady: boolean;
     trainerSessionSelfGatesReady: boolean;
     aiDialogSourceGatesReady: boolean;
     destinationSelfGatesReady: boolean;
@@ -161,7 +160,6 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- Run: ${report.runId}`,
     `- Mode: ${report.summary.mode}`,
     `- Visible surface parity ready: ${report.summary.visibleSurfaceParityReady}`,
-    `- Personal Plan navigation guards ready: ${report.summary.personalPlanNavigationGuardsReady}`,
     `- Trainer session self gates ready: ${report.summary.trainerSessionSelfGatesReady}`,
     `- AI dialog source gates ready: ${report.summary.aiDialogSourceGatesReady}`,
     `- Destination self gates ready: ${report.summary.destinationSelfGatesReady}`,
@@ -204,7 +202,6 @@ function main(): void {
     diagnostic: path.join(repoRoot, 'app/diagnostic_test.tsx'),
     flashcards: path.join(repoRoot, 'app/flashcards.tsx'),
     trainer: path.join(repoRoot, 'app/trainer.tsx'),
-    trainerPlanSession: path.join(repoRoot, 'app/trainer_plan_session.tsx'),
     trainerWordsSession: path.join(repoRoot, 'app/trainer_words_session.tsx'),
     trainerPhrasesSession: path.join(repoRoot, 'app/trainer_phrases_session.tsx'),
     trainerArenaSession: path.join(repoRoot, 'app/trainer_arena_session.tsx'),
@@ -236,8 +233,6 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.diagnostic, id: 'diagnostic_self_gate', expected: 'Diagnostic screen has a French unavailable source gate.', pattern: 'FrenchDiagnosticUnavailable' });
   probeContains({ probes, findings, repoRoot, filePath: files.flashcards, id: 'flashcards_self_gate', expected: 'Flashcards hub has a French flashcard source gate.', pattern: 'flashcardsSourceGatedContentAvailableForTarget' });
   probeContains({ probes, findings, repoRoot, filePath: files.trainer, id: 'trainer_self_gate', expected: 'Trainer hub has a French trainer source gate.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.trainerPlanSession, id: 'personal_plan_trainer_redirect_gate', expected: 'Personal Plan trainer redirect must check trainer source gate before reading plan trainer context.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.trainerPlanSession, id: 'personal_plan_trainer_redirect_fallback', expected: 'Personal Plan trainer redirect must fail closed to lessons when French trainer is unavailable.', pattern: "router.replace('/(tabs)/lessons' as any)" });
   for (const [fileKey, filePath] of [
     ['trainer_words_session', files.trainerWordsSession],
     ['trainer_phrases_session', files.trainerPhrasesSession],
@@ -266,16 +261,12 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_thematic_challenges_visible_while_source_gated', expected: 'French dev quiz themes/challenge categories must remain visible while their starts are blocked by the source gate.', pattern: '() => getAvailableThematicQuizCategories(studyTarget)' });
   probeAbsent({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_no_source_gate_category_hide', expected: 'French source gate must not hide thematic quiz/challenge categories.', pattern: 'sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'parity_test_guarded', expected: 'A narrow Jest contract covers visible French dev surfaces while unavailable French content remains source-gated.', pattern: 'keeps active English surfaces visible for French dev while source-gating missing French content' });
-  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'personal_plan_test_guarded', expected: 'A narrow Jest contract covers Personal Plan trainer redirect gates.', pattern: 'source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'trainer_session_test_guarded', expected: 'A narrow Jest contract covers direct trainer session self-gates.', pattern: 'keeps every direct trainer session screen behind the French trainer source gate' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'admin_shortcut_test_guarded', expected: 'A narrow Jest contract covers admin trainer QA shortcut gates.', pattern: 'source-gates admin trainer QA shortcuts before they can deep-link into French trainer sessions' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'ai_dialog_test_guarded', expected: 'A narrow Jest contract covers AI dialog source gates.', pattern: 'source-gates AI dialog routes before French can use English scenarios or prompts' });
 
   const visibleSurfaceParityReady = probes
     .filter((probe) => probe.id.startsWith('home_') || probe.id.startsWith('lesson_menu_'))
-    .every((probe) => probe.passed);
-  const personalPlanNavigationGuardsReady = probes
-    .filter((probe) => probe.id.startsWith('personal_plan_'))
     .every((probe) => probe.passed);
   const trainerSessionSelfGatesReady = probes
     .filter((probe) => probe.id.startsWith('trainer_'))
@@ -342,7 +333,6 @@ function main(): void {
       targetLocale: 'fr',
       mode: 'dev_surface_visible_content_fail_closed',
       visibleSurfaceParityReady,
-      personalPlanNavigationGuardsReady,
       trainerSessionSelfGatesReady,
       aiDialogSourceGatesReady,
       destinationSelfGatesReady,

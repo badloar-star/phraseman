@@ -45,7 +45,7 @@ type Report = {
     frenchPrefetchRecordIsSeparateFromActiveTarget: boolean;
     englishPrefetchDoesNotOverwriteFrenchRecord: boolean;
     bundledFrenchContentImported: boolean;
-    englishPackRegistrationImported: boolean;
+    legacyEnglishRegistrationImported: boolean;
     blockers: number;
     warnings: number;
     readyForRuntimeDownloadActivation: boolean;
@@ -202,8 +202,8 @@ export function buildOnboardingServerPrefetchContractReport(input: {
     /does not overwrite the French prefetch diagnostic record for English/.test(read(path.join(input.repoRoot, 'tests', 'study_target_server_prefetch_contract.test.ts')));
   const bundledFrenchContentImported = /generated_fr|runtime_slices|pack_candidates/.test(registration) ||
     /generated_fr|runtime_slices|pack_candidates/.test(prefetch);
-  const englishPackRegistrationImported = /plan_content_remote_registration/.test(registration) ||
-    /plan_content_remote_registration/.test(prefetch);
+  const legacyEnglishRegistrationImported = /english_target_remote_registration/.test(registration) ||
+    /english_target_remote_registration/.test(prefetch);
 
   const checks: [boolean, string, string, string][] = [
     [onboardingStudyTargetStepPresent, 'onboarding_study_target_step_missing', 'Onboarding must ask which language the user studies before the plan flow.', onboardingPath],
@@ -228,7 +228,7 @@ export function buildOnboardingServerPrefetchContractReport(input: {
     [frenchPrefetchRecordIsSeparateFromActiveTarget, 'french_prefetch_record_not_separate', 'French prefetch result must be stored separately from study_target_v1.', prefetchPath],
     [englishPrefetchDoesNotOverwriteFrenchRecord, 'english_prefetch_overwrites_french_record', 'English prefetch must not overwrite the French onboarding prefetch diagnostic record.', prefetchPath],
     [!bundledFrenchContentImported, 'bundled_french_content_imported', 'French study target content must not be imported from app bundle.', prefetchPath],
-    [!englishPackRegistrationImported, 'english_pack_registration_imported', 'French prefetch must not reuse English pack registration.', prefetchPath],
+    [!legacyEnglishRegistrationImported, 'english_pack_registration_imported', 'French prefetch must not reuse English pack registration.', prefetchPath],
   ];
 
   for (const [ok, code, message, filePath] of checks) {
@@ -268,7 +268,7 @@ export function buildOnboardingServerPrefetchContractReport(input: {
       frenchPrefetchRecordIsSeparateFromActiveTarget,
       englishPrefetchDoesNotOverwriteFrenchRecord,
       bundledFrenchContentImported,
-      englishPackRegistrationImported,
+      legacyEnglishRegistrationImported,
       blockers,
       warnings,
       readyForRuntimeDownloadActivation: frenchServerActivationGateApproved && frenchRegistrationUrlScopeValid,
@@ -309,7 +309,7 @@ function renderMarkdown(report: Report): string {
     `- French registration row path sanitized: ${report.summary.frenchRegistrationRowPathSanitized ? 'yes' : 'no'}`,
     `- French prefetch record separate from active target: ${report.summary.frenchPrefetchRecordIsSeparateFromActiveTarget ? 'yes' : 'no'}`,
     `- Bundled French content imported: ${report.summary.bundledFrenchContentImported ? 'yes' : 'no'}`,
-    `- English pack registration imported: ${report.summary.englishPackRegistrationImported ? 'yes' : 'no'}`,
+    `- English pack registration imported: ${report.summary.legacyEnglishRegistrationImported ? 'yes' : 'no'}`,
     `- Blockers: ${report.summary.blockers}`,
     '',
     '## Findings',

@@ -305,14 +305,14 @@ function featureRiskClass(domainId: string, filePath: string): string {
   if (text.includes('preposition') || text.includes('explain_prompts')) return 'grammar_explanation';
   if (text.includes('storage') || text.includes('cache') || text.includes('cloud')) return 'cache_or_storage';
   if (text.includes('gustav') || text.includes('gate')) return 'pipeline_gate';
-  if (text.includes('diagnosis') || text.includes('personal')) return 'personal_plan';
+  if (text.includes('diagnosis') || text.includes('personal')) return 'personal_practice';
   return 'ai_prompt_surface';
 }
 
 function riskLevel(domainId: string, filePath: string): RiskLevel {
   const cls = featureRiskClass(domainId, filePath);
   if (['mistake_explanation', 'weekly_review', 'stats_insights', 'premium_dialog_or_paywall', 'ai_dialog'].includes(cls)) return 'critical';
-  if (['quiz_explanation', 'grammar_explanation', 'personal_plan'].includes(cls)) return 'high';
+  if (['quiz_explanation', 'grammar_explanation', 'personal_practice'].includes(cls)) return 'high';
   return 'medium';
 }
 

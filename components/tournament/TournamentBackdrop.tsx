@@ -35,7 +35,18 @@ export type TournamentBackdropVariant =
   | 'tickets'
   | 'edge';
 
-type Props = Readonly<{ variant: TournamentBackdropVariant }>;
+type Props = Readonly<{
+  variant: TournamentBackdropVariant;
+  /**
+   * Закрывать ли сейф-зону сверху сплошным цветом фона.
+   *
+   * В турнирах так и было задумано: статус-бар не отличается от страницы.
+   * В Арене владелец (2026-08-13) увидел ровно это и назвал ошибкой: «вверху
+   * где сейф-зона просто чёрная полоса, а надо как на главной». На главной
+   * фон идёт под статус-бар целиком, поэтому Арена просит `false`.
+   */
+  capSafeTop?: boolean;
+}>;
 
 const MOTION_VARIANTS = new Set<TournamentBackdropVariant>(['hub', 'lobby', 'results']);
 
@@ -61,7 +72,7 @@ export const TournamentPodiumArt = memo(function TournamentPodiumArt({ style }: 
   );
 });
 
-export const TournamentBackdrop = memo(function TournamentBackdrop({ variant }: Props) {
+export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, capSafeTop = true }: Props) {
   const { themeMode } = useTheme();
   const P = useTournamentPalette();
   const assets = useMemo(() => getTournamentThemeAssets(themeMode), [themeMode]);
@@ -131,8 +142,9 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant }: 
       accessibilityElementsHidden
       style={StyleSheet.absoluteFill}
     >
-      {/* Арт и все переливы живут ПОД сейф-зоной — верх остаётся чистым фоном темы. */}
-      <View style={[styles.artLayer, { top: insets.top }]}>
+      {/* Арт и переливы: либо под сейф-зоной (турниры), либо во весь экран,
+          если шапку не закрывают (Арена — как на главной). */}
+      <View style={[styles.artLayer, { top: capSafeTop ? insets.top : 0 }]}>
         <Image
           accessible={false} // guard-ok: декоративный фон режима, смысл несёт контент поверх
           source={assets.backdrop}
@@ -151,7 +163,7 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant }: 
         ) : null}
       </View>
       {/* Сплошная шапка ровно в цвет страницы: статус-бар не отличается от фона. */}
-      <View style={[styles.safeTopCap, { height: insets.top, backgroundColor: P.bg }]} />
+      {capSafeTop ? <View style={[styles.safeTopCap, { height: insets.top, backgroundColor: P.bg }]} /> : null}
     </View>
   );
 });

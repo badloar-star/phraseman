@@ -3,16 +3,10 @@ import {
   type LessonMapInput,
 } from '../modules/learning-v2/map/lesson_map_model';
 
-const personalPlanTasks = [
-  { id: 'plan-1', title: 'Повтори фразы о знакомстве', status: 'available' as const },
-  { id: 'plan-2', title: 'Закрепи present simple', status: 'locked' as const },
-];
-
 const baseInput: LessonMapInput = {
   lessonId: 1,
   completedSessionIds: ['lesson-1-understand-1', 'lesson-1-understand-2'],
   currentSessionId: 'lesson-1-understand-3',
-  personalPlanTasks,
 };
 
 describe('Learning V2 lesson map model', () => {
@@ -45,21 +39,11 @@ describe('Learning V2 lesson map model', () => {
     expect(nodes.map(node => node.xOffset)).toEqual([-64, 64, -64, 64, -64, 64, -64, 64, -64, 64, -64, 64]);
   });
 
-  it('keeps personal-plan tasks as at most two side nodes and rejects tournament nodes', () => {
+  it('ignores tournament context instead of adding it to the lesson map', () => {
     const model = buildLessonMapModel({
       ...baseInput,
-      personalPlanTasks: [
-        ...personalPlanTasks,
-        { id: 'plan-3', title: 'Лишняя задача', status: 'available' },
-      ],
       tournamentTasks: [{ id: 'tournament-1', title: 'Не на карте урока' }],
     });
-
-    expect(model.sideNodes).toEqual([
-      expect.objectContaining({ id: 'plan-1', kind: 'personal_plan', status: 'available' }),
-      expect.objectContaining({ id: 'plan-2', kind: 'personal_plan', status: 'locked' }),
-    ]);
-    expect(model.sideNodes).toHaveLength(2);
-    expect(model.sideNodes.some(node => node.id === 'tournament-1')).toBe(false);
+    expect(model.zones.flatMap((zone) => zone.nodes).some((node) => node.id === 'tournament-1')).toBe(false);
   });
 });

@@ -1,15 +1,12 @@
-import { createHash } from 'crypto';
 import fs from 'fs';
 import path from 'path';
-
-import { canonicalPlanContentString } from '../app/plan_content_canonical_hash';
 
 // This suite verifies the loader's DISABLED behavior. The shipped flag is now
 // enabled (true), so we mock the loader module to force it false here, proving the
 // disabled guards still short-circuit when the flag is off (e.g. a future kill-switch).
 jest.mock('../app/course_pack_loader', () => ({
   COURSE_PACK_REMOTE_LOADING_ENABLED: false,
-  PLAN_CONTENT_REMOTE_ENABLED: false,
+  VERIFIED_COURSE_PACK_REMOTE_ENABLED: false,
 }));
 
 // expo-crypto mock: real SHA256 over the input string so integrity tests are real.
@@ -46,7 +43,7 @@ describe('course pack remote loader — disabled by default', () => {
 
   it('the loader treats a disabled flag as fully inert (kill-switch behavior)', async () => {
     const mod = await import('../app/course_pack_loader');
-    expect(mod.PLAN_CONTENT_REMOTE_ENABLED).toBe(false);
+    expect(mod.VERIFIED_COURSE_PACK_REMOTE_ENABLED).toBe(false);
   });
 
   it('ensureRemoteCoursePack returns disabled and performs NO network/disk I/O', async () => {
@@ -75,21 +72,6 @@ describe('course pack remote loader — disabled by default', () => {
     const mod = await import('../app/course_pack_remote_loader');
     await expect(mod.evictCachedCoursePack('any-cache-key')).resolves.toBeUndefined();
     expect(fileSystemCalls).toEqual([]);
-  });
-
-  it('computePlanContentDayHash matches the pack exporter contentHash for a real day', async () => {
-    const mod = await import('../app/course_pack_remote_loader');
-    const root = path.join(__dirname, '..');
-    const dayPath = path.join(
-      root,
-      '.codex-tmp/plan-content/staging-upload-20260628/pack/plans/echo/day-001.json',
-    );
-    if (!fs.existsSync(dayPath)) return; // staging artifact optional in CI
-    const day = JSON.parse(fs.readFileSync(dayPath, 'utf8'));
-    const runtimeHash = await mod.computePlanContentDayHash(day.content);
-    const exporterHash = createHash('sha256').update(canonicalPlanContentString(day.content)).digest('hex');
-    expect(runtimeHash).toBe(exporterHash);
-    expect(runtimeHash).toBe(day.contentHash);
   });
 
   it('is not imported by startup, onboarding, the loader or the embedded index', () => {

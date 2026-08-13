@@ -306,7 +306,7 @@ const validateV2SessionSet = (input) => {
                 slot.episodeId !== input.episodeId ||
                 !isIdentity(slot.capabilityId) ||
                 !activity_1.V2_ACTIVITY_FAMILIES.includes(slot.family) ||
-                !["mistake", "due", "personal_plan", "current_unit"].includes(String(slot.sourcePriority)) ||
+                !["mistake", "due", "current_unit"].includes(String(slot.sourcePriority)) ||
                 !Number.isSafeInteger(slot.expectedSeconds) ||
                 Number(slot.expectedSeconds) < 1)
                 issues.push("optional_practice_slot_invalid");

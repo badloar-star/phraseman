@@ -25,10 +25,11 @@ const ROOT_KEYS = Object.freeze([
     "sessionOrdinal",
     "targetLanguage",
     "title",
-    "paragraphs",
-    "concepts",
-    "questions",
-    "questionCount",
+    "pages",
+    "pageCount",
+    "embeddedQuestionCount",
+    "practiceStartSlot",
+    "slotPresentationPolicy",
     "learnerVisibleFieldPolicy",
     "evaluatorDataPolicy",
     "answerDataPolicy",
@@ -47,13 +48,16 @@ const ROOT_KEYS = Object.freeze([
     "releaseAuthority",
     "projectionFingerprint",
 ]);
-const CONCEPT_KEYS = Object.freeze([
+const PAGE_KEYS = Object.freeze([
+    "pageOrdinal",
     "conceptId",
     "heading",
     "explanation",
+    "question",
 ]);
 const QUESTION_KEYS = Object.freeze([
     "taskId",
+    "taskSlot",
     "questionId",
     "coveredConceptIds",
     "learnerSurfaceFingerprint",
@@ -76,7 +80,7 @@ function exactKeys(value, keys) {
     const actual = Object.keys(value).sort();
     const expected = [...keys].sort();
     if (actual.length !== expected.length ||
-        actual.some((key, index) => key !== expected[index]))
+        actual.some((key, i) => key !== expected[i]))
         fail();
 }
 function text(value, max) {
@@ -100,12 +104,6 @@ function token(value) {
         fail();
     return result;
 }
-function languageTag(value) {
-    const result = text(value, 255);
-    if ((0, language_tag_v1_1.parseV2ExactLanguageTagV1)(result) === null)
-        fail();
-    return result;
-}
 function hash(value) {
     if (typeof value !== "string" || !HASH_RE.test(value))
         fail();
@@ -121,52 +119,43 @@ function parseValue(value) {
         !Number.isSafeInteger(value.sessionOrdinal) ||
         Number(value.sessionOrdinal) < 1 ||
         Number(value.sessionOrdinal) > 12 ||
-        value.questionCount !== 3 ||
-        !Array.isArray(value.paragraphs) ||
-        value.paragraphs.length < 1 ||
-        value.paragraphs.length > 12 ||
-        !Array.isArray(value.concepts) ||
-        value.concepts.length < 1 ||
-        value.concepts.length > 24 ||
-        !Array.isArray(value.questions) ||
-        value.questions.length !== 3)
+        !Array.isArray(value.pages) ||
+        value.pages.length !== 3 ||
+        value.pageCount !== 3 ||
+        value.embeddedQuestionCount !== 3 ||
+        value.practiceStartSlot !== 4)
         fail();
-    const paragraphs = Object.freeze(value.paragraphs.map((entry) => text(entry, 4000)));
-    const concepts = Object.freeze(value.concepts.map((entry) => {
-        if (!record(entry))
-            fail();
-        exactKeys(entry, CONCEPT_KEYS);
-        return Object.freeze({
-            conceptId: id(entry.conceptId),
-            heading: text(entry.heading, 240),
-            explanation: text(entry.explanation, 2000),
-        });
-    }));
-    const questionIds = new Set();
     const taskIds = new Set();
-    const questions = Object.freeze(value.questions.map((entry) => {
+    const questionIds = new Set();
+    const conceptIds = new Set();
+    const pages = Object.freeze(value.pages.map((entry, index) => {
         if (!record(entry))
             fail();
-        exactKeys(entry, QUESTION_KEYS);
-        if (!Array.isArray(entry.coveredConceptIds) ||
-            entry.coveredConceptIds.length < 1 ||
-            entry.coveredConceptIds.length > 12 ||
-            !Array.isArray(entry.responseOptions) ||
-            entry.responseOptions.length < 2 ||
-            entry.responseOptions.length > 6)
+        exactKeys(entry, PAGE_KEYS);
+        if (entry.pageOrdinal !== index + 1 || !record(entry.question))
             fail();
-        const taskId = id(entry.taskId);
-        const questionId = id(entry.questionId);
+        exactKeys(entry.question, QUESTION_KEYS);
+        const conceptId = id(entry.conceptId);
+        if (conceptIds.has(conceptId))
+            fail();
+        conceptIds.add(conceptId);
+        const question = entry.question;
+        if (question.taskSlot !== index + 1 ||
+            !Array.isArray(question.coveredConceptIds) ||
+            question.coveredConceptIds.length !== 1 ||
+            question.coveredConceptIds[0] !== conceptId ||
+            !Array.isArray(question.responseOptions) ||
+            question.responseOptions.length < 2 ||
+            question.responseOptions.length > 6)
+            fail();
+        const taskId = id(question.taskId);
+        const questionId = id(question.questionId);
         if (taskIds.has(taskId) || questionIds.has(questionId))
             fail();
         taskIds.add(taskId);
         questionIds.add(questionId);
-        const coveredConceptIds = Object.freeze(entry.coveredConceptIds.map(id));
-        if (new Set(coveredConceptIds).size !== coveredConceptIds.length ||
-            coveredConceptIds.some((conceptId) => !concepts.some((concept) => concept.conceptId === conceptId)))
-            fail();
         const optionIds = new Set();
-        const responseOptions = Object.freeze(entry.responseOptions.map((option) => {
+        const responseOptions = Object.freeze(question.responseOptions.map((option) => {
             if (!record(option))
                 fail();
             exactKeys(option, OPTION_KEYS);
@@ -177,14 +166,21 @@ function parseValue(value) {
             return Object.freeze({ responseId, text: text(option.text, 512) });
         }));
         return Object.freeze({
-            taskId,
-            questionId,
-            coveredConceptIds,
-            learnerSurfaceFingerprint: hash(entry.learnerSurfaceFingerprint),
-            promptId: id(entry.promptId),
-            prompt: text(entry.prompt, 1000),
-            responseOptions,
-            accessibilityLabel: text(entry.accessibilityLabel, 512),
+            pageOrdinal: (index + 1),
+            conceptId,
+            heading: text(entry.heading, 240),
+            explanation: text(entry.explanation, 4000),
+            question: Object.freeze({
+                taskId,
+                taskSlot: (index + 1),
+                questionId,
+                coveredConceptIds: Object.freeze([conceptId]),
+                learnerSurfaceFingerprint: hash(question.learnerSurfaceFingerprint),
+                promptId: id(question.promptId),
+                prompt: text(question.prompt, 1000),
+                responseOptions,
+                accessibilityLabel: text(question.accessibilityLabel, 512),
+            }),
         });
     }));
     const body = {
@@ -196,13 +192,19 @@ function parseValue(value) {
         episodeId: token(value.episodeId),
         sessionId: id(value.sessionId),
         sessionOrdinal: Number(value.sessionOrdinal),
-        targetLanguage: languageTag(value.targetLanguage),
+        targetLanguage: (() => {
+            const result = text(value.targetLanguage, 255);
+            if (!(0, language_tag_v1_1.parseV2ExactLanguageTagV1)(result))
+                fail();
+            return result;
+        })(),
         title: text(value.title, 240),
-        paragraphs,
-        concepts,
-        questions,
-        questionCount: 3,
-        learnerVisibleFieldPolicy: "positive_allowlist_title_paragraphs_concepts_questions_only",
+        pages,
+        pageCount: 3,
+        embeddedQuestionCount: 3,
+        practiceStartSlot: 4,
+        slotPresentationPolicy: "slots_1_2_3_are_embedded_in_intro_pages_and_must_not_repeat",
+        learnerVisibleFieldPolicy: "positive_allowlist_title_and_three_intro_pages_only",
         evaluatorDataPolicy: "none",
         answerDataPolicy: "none",
         serverSidecarPolicy: "none",
@@ -219,23 +221,28 @@ function parseValue(value) {
         publicationAuthority: "none",
         releaseAuthority: false,
     };
-    if (value.learnerVisibleFieldPolicy !== body.learnerVisibleFieldPolicy ||
-        value.evaluatorDataPolicy !== "none" ||
-        value.answerDataPolicy !== "none" ||
-        value.serverSidecarPolicy !== "none" ||
-        value.sourceContentAuthority !== body.sourceContentAuthority ||
-        value.languageAccuracyAuthority !== "none" ||
-        value.curriculumAuthority !== "none" ||
-        value.repositoryAuthority !== "none" ||
-        value.storageAuthority !== "none" ||
-        value.runtimeAuthority !== body.runtimeAuthority ||
-        value.walletAuthority !== "none" ||
-        value.masteryAuthority !== "none" ||
-        value.evidenceAuthority !== "none" ||
-        value.completionAuthority !== "none" ||
-        value.publicationAuthority !== "none" ||
-        value.releaseAuthority !== false ||
-        (0, decision_registry_1.hashCanonicalBody)(body) !== value.projectionFingerprint)
+    for (const [key, expected] of Object.entries({
+        slotPresentationPolicy: body.slotPresentationPolicy,
+        learnerVisibleFieldPolicy: body.learnerVisibleFieldPolicy,
+        evaluatorDataPolicy: "none",
+        answerDataPolicy: "none",
+        serverSidecarPolicy: "none",
+        sourceContentAuthority: body.sourceContentAuthority,
+        languageAccuracyAuthority: "none",
+        curriculumAuthority: "none",
+        repositoryAuthority: "none",
+        storageAuthority: "none",
+        runtimeAuthority: body.runtimeAuthority,
+        walletAuthority: "none",
+        masteryAuthority: "none",
+        evidenceAuthority: "none",
+        completionAuthority: "none",
+        publicationAuthority: "none",
+        releaseAuthority: false,
+    }))
+        if (value[key] !== expected)
+            fail();
+    if (value.projectionFingerprint !== (0, decision_registry_1.hashCanonicalBody)(body))
         fail();
     const result = Object.freeze({
         ...body,
@@ -248,8 +255,11 @@ function materializeLearningV2ActivitySessionIntroProjectionV1(input) {
     const body = {
         schemaVersion: exports.LEARNING_V2_ACTIVITY_SESSION_INTRO_PROJECTION_SCHEMA_V1,
         ...input,
-        questionCount: 3,
-        learnerVisibleFieldPolicy: "positive_allowlist_title_paragraphs_concepts_questions_only",
+        pageCount: 3,
+        embeddedQuestionCount: 3,
+        practiceStartSlot: 4,
+        slotPresentationPolicy: "slots_1_2_3_are_embedded_in_intro_pages_and_must_not_repeat",
+        learnerVisibleFieldPolicy: "positive_allowlist_title_and_three_intro_pages_only",
         evaluatorDataPolicy: "none",
         answerDataPolicy: "none",
         serverSidecarPolicy: "none",
@@ -273,7 +283,7 @@ function materializeLearningV2ActivitySessionIntroProjectionV1(input) {
 }
 function parseLearningV2ActivitySessionIntroProjectionV1(raw) {
     if (typeof raw !== "string" ||
-        raw.length < 1 ||
+        raw.length < 2 ||
         raw.length > exports.LEARNING_V2_ACTIVITY_SESSION_INTRO_PROJECTION_MAX_BYTES_V1 ||
         (0, decision_registry_1.utf8ByteLengthV1)(raw) >
             exports.LEARNING_V2_ACTIVITY_SESSION_INTRO_PROJECTION_MAX_BYTES_V1)

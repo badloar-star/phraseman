@@ -27,7 +27,6 @@
 import { createHash } from 'node:crypto';
 import type { TournamentTask } from './tournament_core';
 import { TOURNAMENT_TASK_LIMITS, validateTournamentTask } from './tournament_core';
-import { TOURNAMENT_MODES } from './tournament_task_factory';
 
 // ── Уровни генерации ────────────────────────────────────────────────────────
 
@@ -49,7 +48,7 @@ const LEVEL_ANCHORS: Readonly<Record<TournamentAiLevel, string>> = Object.freeze
   C2: 'level 6 of 6, mastery: native-like nuance, rare idioms, stylistic contrast',
 });
 
-/** База сложности пула 1..3 по CEFR — то же соответствие, что у фабрики планов. */
+/** База сложности пула 1..3 по CEFR. */
 const LEVEL_BASE_DIFFICULTY: Readonly<Record<TournamentAiLevel, number>> = Object.freeze({
   A1: 1, A2: 1, B1: 2, B2: 3, C1: 3, C2: 3,
 });
@@ -552,7 +551,7 @@ function truncateToBytes(value: string, maxBytes: number): string {
 }
 
 /**
- * Готовое задание пула. Контракт тот же, что у фабрики планов: payload
+ * Готовое задание пула: payload
  * {phrase, options, correctIndex, correctAnswer}, verified:false до ревью.
  * scenario/ruleNote в payload НЕ входят (validateTournamentTask их отвергнет) —
  * IO-слой кладёт их в отдельное поле документа для карточки ревью.
@@ -565,7 +564,7 @@ export function tournamentAiTaskFrom(item: TournamentAiItem, level: TournamentAi
 
   return {
     taskId: tournamentAiTaskId(item),
-    mode: TOURNAMENT_MODES.choice,
+    mode: 'choice',
     isVoice: false,
     difficulty: tournamentAiDifficulty(level, item.difficulty),
     payload: {

@@ -12,7 +12,6 @@ import {
   validateLearningV2GeneratedCoursePackageV2,
   type LearningV2GeneratedCoursePackageV2,
 } from "../modules/learning-v2/content/generator_course_contract_v2";
-import { LEARNING_V2_PERSONAL_PLAN_POLICY_V1 } from "../modules/learning-v2/content/course_topology_v1";
 
 const localized = <T>(
   value: (locale: (typeof LEARNING_V2_INTERFACE_LOCALES)[number]) => T,
@@ -31,7 +30,6 @@ function validPackage(): LearningV2GeneratedCoursePackageV2 {
     interfaceLocales: LEARNING_V2_INTERFACE_LOCALES,
     learningCycle: LEARNING_V2_LEARNING_CYCLE,
     topology: learningV2GeneratorTopologyBindingV1(),
-    personalPlanDelivery: LEARNING_V2_PERSONAL_PLAN_POLICY_V1,
     realLessonContentAuthorship: "owner_only",
     objectives: [
       {
@@ -75,7 +73,7 @@ describe("Learning V2 whole-course generator contract v2", () => {
     });
   });
 
-  test("rejects old 12-session topology and Personal Plan on the main map", () => {
+  test("rejects the old 12-session topology", () => {
     const coursePackage = validPackage();
     expect(() =>
       validateLearningV2GeneratedCoursePackageV2({
@@ -83,15 +81,6 @@ describe("Learning V2 whole-course generator contract v2", () => {
         topology: { ...coursePackage.topology, sessionsPerLesson: 12 as never },
       }),
     ).toThrow("learning_v2_generator_course_v2_topology_invalid");
-    expect(() =>
-      validateLearningV2GeneratedCoursePackageV2({
-        ...coursePackage,
-        personalPlanDelivery: {
-          ...coursePackage.personalPlanDelivery,
-          mainMapPlacement: "side_cards" as never,
-        },
-      }),
-    ).toThrow("learning_v2_generator_course_v2_personal_plan_policy_invalid");
   });
 
   test("cannot relabel Codex-created content as owner-authored", () => {

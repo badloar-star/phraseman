@@ -109,19 +109,6 @@ describe('course pack runtime contract', () => {
     expect(EMBEDDED_COURSE_PACK_INDEX.some((entry) => entry.studyTarget !== 'en')).toBe(false);
   });
 
-  it('keeps the embedded plan_content index bundled-only even with remote loading enabled', () => {
-    // Remote loading is now enabled, but the EMBEDDED index must still describe
-    // plan_content as bundled compatibility with no attached manifest: the server
-    // pack is fetched via the separate flag-gated registration, NOT this index, so
-    // the bundled copy always remains the integrity/offline fallback.
-    const planContentEntries = EMBEDDED_COURSE_PACK_INDEX.filter((entry) => entry.surface === 'plan_content');
-
-    expect(planContentEntries.length).toBeGreaterThan(0);
-    expect(planContentEntries.every((entry) => entry.delivery === 'bundled_compatibility')).toBe(true);
-    expect(planContentEntries.every((entry) => entry.activationApproved === false)).toBe(true);
-    expect(planContentEntries.every((entry) => entry.manifest === undefined)).toBe(true);
-  });
-
   it('requires explicit source and target selection before readiness can resolve', () => {
     expect(resolveCoursePackReadiness({
       studyTarget: 'en',
@@ -146,7 +133,7 @@ describe('course pack runtime contract', () => {
   });
 
   it('keeps French downloadable surfaces missing until an approved French index entry exists', () => {
-    for (const surface of ['lesson', 'lesson_intro', 'quiz', 'plan_content'] as const) {
+    for (const surface of ['lesson', 'lesson_intro', 'quiz'] as const) {
       expect(resolveCoursePackReadiness({
         studyTarget: 'fr',
         sourceLocale: 'ru',

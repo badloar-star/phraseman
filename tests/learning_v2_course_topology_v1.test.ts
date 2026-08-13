@@ -4,7 +4,6 @@ import {
   LEARNING_V2_COURSE_SESSION_COUNT_V1,
   LEARNING_V2_COURSE_TARGET_MINUTES_V1,
   LEARNING_V2_LESSON_SESSION_COUNT_V1,
-  LEARNING_V2_PERSONAL_PLAN_POLICY_V1,
   buildLearningV2CourseTopologyV1,
   learningV2CourseLessonIdV1,
   learningV2CourseSessionIdV1,
@@ -66,17 +65,6 @@ describe("Learning V2 owner-current course topology v1", () => {
       targetMinutes: LEARNING_V2_COURSE_TARGET_MINUTES_V1,
       targetWholeHours: 209,
       targetRemainingMinutes: 4,
-    });
-  });
-
-  test("keeps personal plans optional and outside the main course map and readiness gate", () => {
-    expect(LEARNING_V2_PERSONAL_PLAN_POLICY_V1).toEqual({
-      mainCourseCompleteness: "self_contained_without_personal_plan",
-      mainMapPlacement: "not_present",
-      productPlacement: "separate_optional_surface",
-      generatorDelivery: "deferred_second_wave_specialization",
-      blocksMainGeneratorReadiness: false,
-      existingFeaturePolicy: "preserve_do_not_remove",
     });
   });
 

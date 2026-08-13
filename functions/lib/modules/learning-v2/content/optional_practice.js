@@ -4,12 +4,11 @@ exports.selectOptionalPracticeSlots = selectOptionalPracticeSlots;
 const MAX_SLOTS = 2;
 // зачем: порядок полезности практики утверждён планом — починка ошибок ценнее
 // повторения должников, а свежий юнит — последний резерв.
-const PRIORITY_ORDER = Object.freeze(['mistake', 'due', 'personal_plan', 'current_unit']);
+const PRIORITY_ORDER = Object.freeze(['mistake', 'due', 'current_unit']);
 function prioritisedSources(input) {
     const hasSource = {
         mistake: input.mistakeContentItemIds.length > 0,
         due: input.dueContentItemIds.length > 0,
-        personal_plan: input.personalPlanContentItemIds.length > 0,
         current_unit: true,
     };
     return PRIORITY_ORDER.filter((source) => hasSource[source]);

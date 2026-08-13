@@ -41,8 +41,8 @@ map, семь RN mode screens, device proof или rollout.
 - 8/16/24/32/40/48 — проверки главы, 56 — итоговый экзамен урока;
 - реальный контент всех 32 уроков создаёт только владелец через генератор;
 - личные планы не входят в основную карту, не требуются для полноты курса и не
-  блокируют Definition of Done основного генератора. Существующая функция
-  сохраняется отдельной необязательной специализацией второй очереди.
+  блокируют Definition of Done основного генератора. Возможный будущий Personal
+  Plan создаётся отдельной новой специализацией второй очереди.
 
 Старый neutral E1 `12 sessions × 12 tasks` остаётся совместимым проверочным
 foundation. Миграция выполняется только аддитивными versioned-контрактами:
@@ -430,7 +430,8 @@ evidence pack where required + device smoke before следующего mode.
 ### P5 — map extras and Hard Mode — AFTER P3/P4
 
 Слова в парах, новый режим неправильных глаголов, словарь, checkpoint,
-chapter ceremony, максимум два Personal Plan nodes и long-press Hard flip.
+chapter ceremony и long-press Hard flip. Personal Plan nodes на основной карте
+запрещены owner-current topology contract.
 Optional nodes дают access stars, но не закрывают required route; plan pool не
 дублирует фразы основной цепочки.
 

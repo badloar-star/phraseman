@@ -10,44 +10,102 @@ const generator_course_contract_1 = require("./generator_course_contract");
 const generator_session_contract_1 = require("./generator_session_contract");
 const session_compiler_1 = require("./session_compiler");
 exports.LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
-    'intro_check', 'intro_check', 'intro_check',
-    'supported_practice', 'supported_practice',
-    'guided_practice', 'guided_practice',
-    'retrieval_practice', 'near_transfer',
-    'independent_check', 'delayed_review', 'independent_check',
+    'intro_check',
+    'intro_check',
+    'intro_check',
+    'supported_practice',
+    'supported_practice',
+    'guided_practice',
+    'guided_practice',
+    'retrieval_practice',
+    'near_transfer',
+    'independent_check',
+    'delayed_review',
+    'independent_check',
 ]);
 const TOP_KEYS = Object.freeze([
-    'schemaVersion', 'packageId', 'targetLanguage', 'episodeOrdinal',
-    'requiredSessionOrdinal', 'episodeId', 'sessionId', 'sessionTemplateId',
-    'canDoOutcomeId', 'zone', 'support', 'generationInputFingerprint',
-    'interfaceLocales', 'contentKinds', 'intro', 'cards',
+    'schemaVersion',
+    'packageId',
+    'targetLanguage',
+    'episodeOrdinal',
+    'requiredSessionOrdinal',
+    'episodeId',
+    'sessionId',
+    'sessionTemplateId',
+    'canDoOutcomeId',
+    'zone',
+    'support',
+    'generationInputFingerprint',
+    'interfaceLocales',
+    'contentKinds',
+    'intro',
+    'cards',
 ]);
 const CARD_KEYS = Object.freeze([
-    'cardId', 'taskSlot', 'purpose', 'activityId', 'family', 'learningFunction',
-    'support', 'promptNovelty', 'promptId', 'introQuestionId', 'contentItem',
-    'instructionByLocale', 'hintByLocale', 'successMessageByLocale',
-    'retryMessageByLocale', 'errorExplanationByLocale',
-    'accessibilityLabelByLocale', 'audioScript',
+    'cardId',
+    'taskSlot',
+    'purpose',
+    'activityId',
+    'family',
+    'learningFunction',
+    'support',
+    'promptNovelty',
+    'promptId',
+    'introQuestionId',
+    'contentItem',
+    'instructionByLocale',
+    'hintByLocale',
+    'successMessageByLocale',
+    'retryMessageByLocale',
+    'errorExplanationByLocale',
+    'accessibilityLabelByLocale',
+    'audioScript',
 ]);
-const AUDIO_KEYS = Object.freeze(['contentItemId', 'language', 'inputText', 'characterId', 'instructions']);
+const AUDIO_KEYS = Object.freeze([
+    'contentItemId',
+    'language',
+    'inputText',
+    'characterId',
+    'instructions',
+]);
 const TOKEN_RE = /^[A-Za-z0-9._:-]{1,160}$/;
 const LANGUAGE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
 const HASH_RE = /^[a-f0-9]{64}$/;
 const MAX_SESSION_SHARD_BYTES = 512 * 1024;
-const AUDIO_FAMILIES = new Set(['listen_choose', 'sound_contrast', 'listen_build_dictation', 'scripted_repeat_compare']);
+const AUDIO_FAMILIES = new Set([
+    'listen_choose',
+    'sound_contrast',
+    'listen_build_dictation',
+    'scripted_repeat_compare',
+]);
 const FAMILY_FUNCTION = Object.freeze({
-    visual_discovery: 'notice', listen_choose: 'comprehend', sound_contrast: 'discriminate', sound_syllable_lab: 'discriminate',
-    scripted_repeat_compare: 'pronounce', phrase_builder: 'assemble', listen_build_dictation: 'assemble', context_gap_grammar: 'retrieve',
-    quick_spoken_response: 'respond', shadowing_prosody: 'pronounce', describe_scene: 'notice', microstory_radio: 'comprehend',
-    branching_scene: 'transfer', scripted_dialogue: 'transfer', personalized_review: 'review', speed_match: 'retrieve',
+    visual_discovery: 'notice',
+    listen_choose: 'comprehend',
+    sound_contrast: 'discriminate',
+    sound_syllable_lab: 'discriminate',
+    scripted_repeat_compare: 'pronounce',
+    phrase_builder: 'assemble',
+    listen_build_dictation: 'assemble',
+    context_gap_grammar: 'retrieve',
+    quick_spoken_response: 'respond',
+    shadowing_prosody: 'pronounce',
+    describe_scene: 'notice',
+    microstory_radio: 'comprehend',
+    branching_scene: 'transfer',
+    scripted_dialogue: 'transfer',
+    personalized_review: 'review',
+    speed_match: 'retrieve',
 });
 function exactKeys(value, expected, code) {
     const keys = Object.keys(value);
-    if (keys.length !== expected.length || keys.some((key) => !expected.includes(key)))
+    if (keys.length !== expected.length ||
+        keys.some((key) => !expected.includes(key)))
         throw new Error(code);
 }
 function exactTuple(value, expected, code) {
-    if (!Array.isArray(value) || value.length !== expected.length || value.some((item, index) => item !== expected[index]))
+    if (!Array.isArray(value) ||
+        value.length !== expected.length ||
+        value.some((item, index) => item !== expected[index]))
         throw new Error(code);
 }
 function clean(value, code, max = 320) {
@@ -55,7 +113,9 @@ function clean(value, code, max = 320) {
         throw new Error(code);
     return value.trim();
 }
-function pad(value) { return String(value).padStart(2, '0'); }
+function pad(value) {
+    return String(value).padStart(2, '0');
+}
 function expectedZone(ordinal) {
     if (ordinal <= 4)
         return 'understand';
@@ -71,14 +131,23 @@ function expectedNovelty(zone) {
     return 'novel';
 }
 function assertExpected(expected) {
-    if (!TOKEN_RE.test(expected.packageId) || !LANGUAGE_RE.test(expected.targetLanguage) || !Number.isSafeInteger(expected.episodeOrdinal) ||
-        expected.episodeOrdinal < 1 || expected.episodeOrdinal > 32 || !Number.isSafeInteger(expected.requiredSessionOrdinal) ||
-        expected.requiredSessionOrdinal < 1 || expected.requiredSessionOrdinal > 12 || !HASH_RE.test(expected.generationInputFingerprint)) {
+    if (!TOKEN_RE.test(expected.packageId) ||
+        !LANGUAGE_RE.test(expected.targetLanguage) ||
+        !Number.isSafeInteger(expected.episodeOrdinal) ||
+        expected.episodeOrdinal < 1 ||
+        expected.episodeOrdinal > 32 ||
+        !Number.isSafeInteger(expected.requiredSessionOrdinal) ||
+        expected.requiredSessionOrdinal < 1 ||
+        expected.requiredSessionOrdinal > 12 ||
+        !HASH_RE.test(expected.generationInputFingerprint)) {
         throw new Error('learning_v2_session_shard_expected_invalid');
     }
 }
 function learningV2GeneratedMeaningSourceHash(input) {
-    return (0, decision_registry_1.hashCanonicalBody)(Object.freeze({ schemaVersion: 'learning-v2-generated-meaning-source.v1', ...input }));
+    return (0, decision_registry_1.hashCanonicalBody)(Object.freeze({
+        schemaVersion: 'learning-v2-generated-meaning-source.v1',
+        ...input,
+    }));
 }
 function validateLocalizedCopy(value, field) {
     (0, generator_course_contract_1.assertLearningV2LocalizedEnvelope)(value, field);
@@ -95,8 +164,12 @@ function validateAudioScript(value, card, family, targetLanguage) {
         throw new Error('learning_v2_session_shard_audio_required');
     const input = value;
     exactKeys(input, AUDIO_KEYS, 'learning_v2_session_shard_audio_invalid');
-    if (input.contentItemId !== card.contentItemId || input.language !== targetLanguage || input.inputText !== card.target.text ||
-        (input.characterId !== null && (typeof input.characterId !== 'string' || !TOKEN_RE.test(input.characterId)))) {
+    if (input.contentItemId !== card.contentItemId ||
+        input.language !== targetLanguage ||
+        input.inputText !== card.target.text ||
+        (input.characterId !== null &&
+            (typeof input.characterId !== 'string' ||
+                !TOKEN_RE.test(input.characterId)))) {
         throw new Error('learning_v2_session_shard_audio_invalid');
     }
     clean(input.instructions, 'learning_v2_session_shard_audio_invalid', 800);
@@ -113,7 +186,8 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
     // ASCII length is a constant-memory first fence. The exact UTF-8 count runs
     // only after that, so a corrupt stored/provider value cannot allocate a huge
     // byte array before the 512 KiB limit is enforced.
-    if (canonical.length > MAX_SESSION_SHARD_BYTES || (0, decision_registry_1.utf8ByteLengthV1)(canonical) > MAX_SESSION_SHARD_BYTES) {
+    if (canonical.length > MAX_SESSION_SHARD_BYTES ||
+        (0, decision_registry_1.utf8ByteLengthV1)(canonical) > MAX_SESSION_SHARD_BYTES) {
         throw new Error('learning_v2_session_shard_size_invalid');
     }
     let input;
@@ -131,11 +205,19 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
     const sessionTemplateId = `${episodeId}:session-${pad(expected.requiredSessionOrdinal)}`;
     const policy = session_compiler_1.REQUIRED_SESSION_POLICY_V1[expected.requiredSessionOrdinal - 1];
     const zone = expectedZone(expected.requiredSessionOrdinal);
-    if (input.schemaVersion !== 'learning-v2-generated-session-shard.v1' || input.packageId !== expected.packageId ||
-        input.targetLanguage !== expected.targetLanguage || input.episodeOrdinal !== expected.episodeOrdinal ||
-        input.requiredSessionOrdinal !== expected.requiredSessionOrdinal || input.episodeId !== episodeId || input.sessionId !== sessionId ||
-        input.sessionTemplateId !== sessionTemplateId || typeof input.canDoOutcomeId !== 'string' || !TOKEN_RE.test(input.canDoOutcomeId) ||
-        input.zone !== zone || input.support !== policy.support || input.generationInputFingerprint !== expected.generationInputFingerprint) {
+    if (input.schemaVersion !== 'learning-v2-generated-session-shard.v1' ||
+        input.packageId !== expected.packageId ||
+        input.targetLanguage !== expected.targetLanguage ||
+        input.episodeOrdinal !== expected.episodeOrdinal ||
+        input.requiredSessionOrdinal !== expected.requiredSessionOrdinal ||
+        input.episodeId !== episodeId ||
+        input.sessionId !== sessionId ||
+        input.sessionTemplateId !== sessionTemplateId ||
+        typeof input.canDoOutcomeId !== 'string' ||
+        !TOKEN_RE.test(input.canDoOutcomeId) ||
+        input.zone !== zone ||
+        input.support !== policy.support ||
+        input.generationInputFingerprint !== expected.generationInputFingerprint) {
         throw new Error('learning_v2_session_shard_identity_invalid');
     }
     exactTuple(input.interfaceLocales, generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES, 'learning_v2_session_shard_locales_invalid');
@@ -157,44 +239,68 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
         const family = policy.families[index % policy.families.length];
         const contentItemId = `content-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`;
         const activityId = `activity-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}-${family}`;
-        if (card.cardId !== `card-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}` || card.taskSlot !== slot ||
-            card.purpose !== exports.LEARNING_V2_SESSION_CARD_PURPOSES[index] || card.activityId !== activityId || card.family !== family ||
-            card.learningFunction !== FAMILY_FUNCTION[family] || card.support !== policy.support || card.promptNovelty !== expectedNovelty(zone) ||
-            card.promptId !== `prompt-${episodeId}-${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`) {
+        if (card.cardId !==
+            `card-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}` ||
+            card.taskSlot !== slot ||
+            card.purpose !== exports.LEARNING_V2_SESSION_CARD_PURPOSES[index] ||
+            card.activityId !== activityId ||
+            card.family !== family ||
+            card.learningFunction !== FAMILY_FUNCTION[family] ||
+            card.support !== policy.support ||
+            card.promptNovelty !== expectedNovelty(zone) ||
+            card.promptId !==
+                `prompt-${episodeId}-${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`) {
             throw new Error('learning_v2_session_shard_card_identity_invalid');
         }
-        const introQuestionId = slot <= 3 ? intro.checkQuestions[slot - 1].questionId : null;
+        const introQuestionId = slot <= 3 ? intro.pages[slot - 1].question.questionId : null;
         if (card.introQuestionId !== introQuestionId)
             throw new Error('learning_v2_session_shard_intro_binding_invalid');
         const validated = (0, content_item_1.validateV2ContentItem)(card.contentItem);
         if (!validated.ok)
             throw new Error(`learning_v2_session_shard_content_item_invalid:${validated.issues.join(',')}`);
         const item = validated.value;
-        if (item.contentItemId !== contentItemId || item.episodeId !== episodeId || item.target.locale !== expected.targetLanguage ||
-            !item.objectiveIds.includes(input.canDoOutcomeId) || !item.compatibleFamilies.includes(family) || contentIds.has(item.contentItemId)) {
+        if (item.contentItemId !== contentItemId ||
+            item.episodeId !== episodeId ||
+            item.target.locale !== expected.targetLanguage ||
+            !item.objectiveIds.includes(input.canDoOutcomeId) ||
+            !item.compatibleFamilies.includes(family) ||
+            contentIds.has(item.contentItemId)) {
             throw new Error('learning_v2_session_shard_content_item_identity_invalid');
         }
         const previousContentIds = new Set(cards.map((previous) => previous.contentItem.contentItemId));
         if (item.prerequisiteContentItemIds.some((id) => !previousContentIds.has(id)))
             throw new Error('learning_v2_session_shard_prerequisite_invalid');
-        if (item.learnerMeanings.length !== generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.length || item.learnerMeanings.some((meaning, localeIndex) => {
-            const locale = generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES[localeIndex];
-            return meaning.locale !== locale || meaning.sourceHash !== learningV2GeneratedMeaningSourceHash({
-                contentItemId: item.contentItemId,
-                targetLanguage: expected.targetLanguage,
-                targetText: item.target.text,
-                locale,
-                meaning: meaning.value,
-                generationInputFingerprint: expected.generationInputFingerprint,
-            });
-        }))
+        if (item.learnerMeanings.length !== generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.length ||
+            item.learnerMeanings.some((meaning, localeIndex) => {
+                const locale = generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES[localeIndex];
+                return (meaning.locale !== locale ||
+                    meaning.sourceHash !==
+                        learningV2GeneratedMeaningSourceHash({
+                            contentItemId: item.contentItemId,
+                            targetLanguage: expected.targetLanguage,
+                            targetText: item.target.text,
+                            locale,
+                            meaning: meaning.value,
+                            generationInputFingerprint: expected.generationInputFingerprint,
+                        }));
+            }))
             throw new Error('learning_v2_session_shard_meanings_invalid');
-        for (const field of ['instructionByLocale', 'hintByLocale', 'successMessageByLocale', 'retryMessageByLocale', 'errorExplanationByLocale', 'accessibilityLabelByLocale']) {
+        for (const field of [
+            'instructionByLocale',
+            'hintByLocale',
+            'successMessageByLocale',
+            'retryMessageByLocale',
+            'errorExplanationByLocale',
+            'accessibilityLabelByLocale',
+        ]) {
             validateLocalizedCopy(card[field], field);
         }
         validateAudioScript(card.audioScript, item, family, expected.targetLanguage);
         contentIds.add(item.contentItemId);
-        cards.push(Object.freeze({ ...card, contentItem: item }));
+        cards.push(Object.freeze({
+            ...card,
+            contentItem: item,
+        }));
     }
     return Object.freeze({
         ...input,

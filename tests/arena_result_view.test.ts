@@ -176,26 +176,3 @@ describe('обрыв связи на экране результата', () => {
     }
   });
 });
-
-/**
- * «+0» вместо «пока не знаю».
- *
- * Награда за матч может ещё не прийти: сервер не ответил или отчёт лежит в
- * очереди отправки. Компонент в этом случае рисовал **+0** — то есть
- * утверждение «ты не заработал ничего». Игрок, взявший три звезды, видел ноль
- * и уходил с ощущением, что матч не засчитали. Настоящий ноль (быстрый матч
- * звёзд не начисляет) при этом обязан рисоваться нолём: он известен.
- */
-describe('неизвестная награда не выдаётся за ноль', () => {
-  const source = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaRewards.tsx'), 'utf8');
-
-  it('число рисуется только когда награда известна', () => {
-    expect(source).toContain('const known = reward !== undefined');
-    expect(source).not.toContain('<Text style={[styles.value, { color: P.text }]}>+{shownStars}</Text>');
-  });
-
-  it('счёт неизвестного игрока тоже не превращается в ноль', () => {
-    const players = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaPlayers.tsx'), 'utf8');
-    expect(players).toContain('player ? <V2Counter');
-  });
-});

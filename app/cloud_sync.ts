@@ -67,6 +67,9 @@ import {
 } from './exam_best_pct_overlay';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
+import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation';
+import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
+import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
 import {
@@ -361,6 +364,9 @@ export const SYNC_KEYS = [
   'login_bonus_v1',
   /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
   'daily_stats',
+  PERSONAL_PLAN_STATE_KEY,
+  COMPLETED_PLAN_TASKS_KEY,
+
   // ── Премиум и его плюшки (без них юзер теряет купленные/активные бенефиты) ─
   'premium_plan',
   'admin_premium_override',
@@ -514,15 +520,12 @@ export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string
   return safe;
 }
 
-const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
+const LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS = [
   'personal_plan_attempt_events_v1',
   'personal_plan_recovery_applied_actions_v1',
-  'personal_plan_state_v1',
-  'personal_plan_completed_tasks_v1',
-  'personal_plan_pending_activation_v1',
 ] as const;
 
-const ACCOUNT_LOCAL_KEY_PREFIXES = [
+const LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES = [
   'personal_plan_day_runtime_v1:',
   'learning_v2_lesson1_progress:',
   'learning_v2_progress:',
@@ -539,8 +542,8 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
 ] as const;
 
 function isLearningV2AccountLocalKey(key: string): boolean {
-  return (RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS as readonly string[]).includes(key)
-    || ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
+  return (LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS as readonly string[]).includes(key)
+    || LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
 }
 
 async function listAllAccountLocalStorageKeys(): Promise<string[]> {
@@ -558,7 +561,7 @@ async function listAllAccountLocalStorageKeys(): Promise<string[]> {
 
 function learningV2AccountLocalKeysFrom(allKeys: readonly string[]): string[] {
   return Array.from(new Set([
-    ...RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS,
+    ...LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS,
     ...allKeys.filter(isLearningV2AccountLocalKey),
   ]));
 }
@@ -640,7 +643,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     'install_date',
     'login_bonus_v1',
     'last_opened_lesson',
-    ...RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS,
+    PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
     ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
     ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
     ...LEGACY_TODAY_ACCOUNT_STORAGE_KEYS,

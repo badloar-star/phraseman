@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
+import { compactPlanMistakeContext, type PersonalPlanMistakeContext } from './personal_plan_mistake_context';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -41,7 +42,7 @@ const isActiveMistakeMode = (value: unknown): value is MistakeMode =>
 /** Классификация ошибки (грубая, без NLP). */
 export type MistakeWhat = 'wrong_pick' | 'wrong_order' | 'forgot';
 
-export interface MistakeTokenMeta {
+export interface MistakeTokenMeta extends PersonalPlanMistakeContext {
   phraseId?: string | number;
   tokenText?: string;
   tokenIndex?: number;
@@ -66,6 +67,11 @@ export interface MistakeEntry {
   rawCategory?: string;
   category?: WordCategory;
   grammarTag?: string;
+  planId?: string;
+  planInstanceId?: string;
+  planTaskId?: string;
+  planDayIndex?: number;
+  planPhraseLessonId?: string;
   version?: 1 | 2;
   /** Unix timestamp (мс). */
   ts: number;
@@ -83,6 +89,9 @@ export interface PhraseMistakeCategoryStat extends PhraseMistakeStat {
   exactCategoryCounts: Partial<Record<WordCategory, number>>;
   topCategory?: WordCategory;
   topCategoryCount: number;
+  planCounts?: Record<string, number>;
+  topPlanId?: string;
+  topPlanCount?: number;
 }
 
 export interface MistakeLogDebugEvent {
@@ -271,6 +280,7 @@ export const logMistake = (
     ? { category: meta.category, grammarTag: meta.grammarTag }
     : normalizeWordCategory(meta.rawCategory, normalizedToken);
   const hasMeta = Object.values(meta).some((value) => value !== undefined && value !== null && value !== '');
+  const planContext = compactPlanMistakeContext(meta);
   const entry: MistakeEntry = {
     phrase: normalizedPhrase,
     lessonId,
@@ -284,6 +294,7 @@ export const logMistake = (
     rawCategory: meta.rawCategory,
     category: resolved.category !== 'other' ? resolved.category : undefined,
     grammarTag: resolved.grammarTag || meta.grammarTag,
+    ...planContext,
     version: hasMeta ? 2 : 1,
     ts: Date.now(),
   };
@@ -465,6 +476,8 @@ export const getTopMistakePhraseDetails = async (
         categoryCounts: {},
         exactCategoryCounts: {},
         topCategoryCount: 0,
+        planCounts: {},
+        topPlanCount: 0,
       };
 
       existing.count += 1;
@@ -482,6 +495,16 @@ export const getTopMistakePhraseDetails = async (
           existing.topCategoryCount = count;
         }
       }
+      if (e.planId) {
+        existing.planCounts = existing.planCounts ?? {};
+        existing.planCounts[e.planId] = (existing.planCounts[e.planId] ?? 0) + 1;
+        const planCount = existing.planCounts[e.planId] ?? 0;
+        if (!existing.topPlanId || planCount > (existing.topPlanCount ?? 0)) {
+          existing.topPlanId = e.planId;
+          existing.topPlanCount = planCount;
+        }
+      }
+
       map.set(key, existing);
     }
 

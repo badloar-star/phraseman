@@ -52,22 +52,3 @@ export function encodeArenaSelection(view: ArenaQuestionView, selection: unknown
   }
   return { pairs: selection };
 }
-
-/**
- * Отрисуется ли задание вообще.
- *
- * `adaptArenaTask` бросает исключение на испорченном задании, а зовут его в
- * `useMemo` во время отрисовки — то есть падает не задание, а весь экран, и
- * вместе с ним матч. Машина матча умеет закрывать такое задание как сломанное
- * и играть дальше (`reportBroken`), но узнать о поломке ей было неоткуда.
- *
- * Проверка отдельная и чистая: экран спрашивает ДО отрисовки.
- */
-export function arenaTaskRenderable(task: ArenaPublicTask): boolean {
-  try {
-    adaptArenaTask(task);
-    return true;
-  } catch {
-    return false;
-  }
-}

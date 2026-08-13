@@ -34,11 +34,14 @@ import {
   View,
 } from 'react-native';
 import Reanimated, {
+  Easing,
+  useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
   withSpring,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
 import { triLang, type Lang } from '../../constants/i18n';
 import { OLIVE_RICH } from '../../constants/oliveTheme';
@@ -70,9 +73,17 @@ import {
   TAB_PILL_SHADOW,
   TAB_PRESS_IN_SPRING,
   TAB_PRESS_OUT_SPRING,
+  TAB_SCROLL_COLLAPSE_MS,
+  TAB_SCROLL_COLLAPSED_OPACITY,
+  TAB_SCROLL_COLLAPSED_SCALE,
+  TAB_SCROLL_COLLAPSED_TRANSLATE_Y,
+  TAB_SCROLL_EXPAND_MS,
+  TAB_SCROLL_TOGGLE_COOLDOWN_MS,
+  TAB_SLOT_WIDTH,
   TAB_UNDERLAY_DIM_BG,
   tabHighlightInset,
   tabHighlightOffset,
+  tabPillWidth,
   withAlpha,
 } from './pill_tabbar_chrome';
 import {
@@ -80,6 +91,7 @@ import {
   buildFcPacksRoute,
   buildFcTrainRoute,
   consumeFcTabBackPress,
+  fcTabChromeAction,
   FC_CREATE_OPTIONS,
   FC_PACKS_OPTIONS,
   FC_PLUS_ROTATION_DEG,

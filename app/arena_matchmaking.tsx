@@ -148,9 +148,19 @@ export default function ArenaMatchmakingScreen() {
     router.replace({ pathname: '/arena_match', params: { matchId } } as never);
   }, [matchId, requestId, router]);
 
+  /**
+   * Отмена поиска. Раньше здесь стоял `.finally(...)`: экран уходил домой
+   * ДАЖЕ ЕСЛИ отмена не прошла. Игрок был уверен, что вышел из очереди, а
+   * сервер продолжал его искать — и в рейтинге это кончалось матчем, который
+   * начался без него, то есть поражением ни за что.
+   */
+  const [cancelFailed, setCancelFailed] = useState(false);
   const cancel = () => {
     quickFallbackRequests.delete(requestId);
-    void arenaV2QueueCancel(requestId).finally(() => router.replace('/arena' as never));
+    setCancelFailed(false);
+    void arenaV2QueueCancel(requestId)
+      .then(() => router.replace('/arena' as never))
+      .catch(() => setCancelFailed(true));
   };
 
   const switchToQuick = async () => {
@@ -202,6 +212,14 @@ export default function ArenaMatchmakingScreen() {
             <View style={styles.offer}>
               <V2Cta disabled={switchingMode} onPress={continueRankedSearch}>{arenaText(lang, 'continueSearch')}</V2Cta>
               <V2Cta tone="ghost" disabled={switchingMode} onPress={() => void switchToQuick()}>{arenaText(lang, 'switchToQuick')}</V2Cta>
+            </View>
+          ) : null}
+          {cancelFailed ? (
+            <View style={styles.failure}>
+              <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+                {arenaText(lang, 'cancelFailed')}
+              </Text>
+              <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'cancelFailedHint')}</Text>
             </View>
           ) : null}
           {searchFailure ? (

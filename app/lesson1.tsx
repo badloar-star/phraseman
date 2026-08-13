@@ -94,9 +94,6 @@ import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, ph
 const NATIVE_LESSON_DISMISS_ENABLED =
   typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
-import { isFlexiblePlanNameAnswer, shouldSkipPlanGrammarAnalytics } from './personal_plan_mistake_context';
-import { getPersonalPlanPhraseLesson, personalizePlanPhraseLesson } from './personal_plan_phrase_lessons';
-import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { frenchStudyActive, spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -271,10 +268,6 @@ const dedupeOptions = (opts: string[]): string[] => {
 
 const safeGetDistracts = (phrase: any, wordIndex: number, studyTarget: StudyTargetLang): string[] => {
   const phraseId = String(phrase?.id ?? '');
-  const planWord = phraseId.startsWith('gavan_') ? (phrase?.words ?? [])[wordIndex] : null;
-  if (planWord?.correct && Array.isArray(planWord.distractors) && planWord.distractors.length > 0) {
-    return dedupeOptions([planWord.correct, ...planWord.distractors]).sort(() => Math.random() - 0.5).slice(0, 6);
-  }
   const result = getPerWordDistracts(phrase, wordIndex, studyTarget);
   // Same token list as handleWordPress (phrase.words authoritative; avoids tokenization mismatch)
   const correctWord = getPhraseTokens(phrase, studyTarget)[wordIndex];
@@ -329,11 +322,6 @@ function shuffleLessonPhraseOrder(phraseCount: number): number[] {
     [order[i], order[j]] = [order[j], order[i]];
   }
   return order.slice(0, count);
-}
-
-function buildPlanPhraseRecallOrder(phraseCount: number): number[] {
-  const count = Math.min(phraseCount, TOTAL);
-  return Array.from({ length: count }, (_, index) => count - 1 - index);
 }
 
 type LessonPressableProps = React.ComponentProps<typeof Pressable> & {
@@ -499,13 +487,6 @@ interface LessonContentProps {
   toastAnim: Animated.Value;
   from?: string;
   onHeaderBack: () => void;
-  isPlanLessonTask: boolean;
-  isLinkedLessonSliceTask: boolean;
-  isPlanPhraseRecallTask: boolean;
-  planRequiredPhrases: number;
-  planLessonAnswered: number;
-  planLessonRemaining: number;
-  isPlanPhraseLessonTask: boolean;
   lessonTeachingNote: ResolvedLessonTeachingNote | null;
   lessonTheorySupportBlocked: boolean;
   lessonHintSupportBlocked: boolean;
@@ -580,13 +561,6 @@ const LessonContent = React.memo(function LessonContent({
   toastAnim,
   from,
   onHeaderBack,
-  isPlanLessonTask,
-  isLinkedLessonSliceTask,
-  isPlanPhraseRecallTask,
-  planRequiredPhrases,
-  planLessonAnswered,
-  planLessonRemaining,
-  isPlanPhraseLessonTask,
   lessonTeachingNote,
   lessonTheorySupportBlocked,
   lessonHintSupportBlocked,
@@ -596,7 +570,7 @@ const LessonContent = React.memo(function LessonContent({
   const { bottomInset } = useScreen();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const progressCellCount = Math.max(1, totalCells);
-  const linkedSliceCompact = isLinkedLessonSliceTask;
+  const linkedSliceCompact = false;
   const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;
   const linkedSlicePromptFont = Math.max(f.h2, f.h2 + (linkedSliceCompact ? 0 : 6));
   const linkedSliceAnswerFont = Math.max(f.bodyLg, f.h1 - (linkedSliceCompact ? 4 : 0));
@@ -789,11 +763,11 @@ const LessonContent = React.memo(function LessonContent({
         word,
         index: i,
         isCorrectOption,
-        shouldShowHint: !isPlanLessonTask && !isPlanPhraseLessonTask && showToBeHint && cellIndex < 2 && isCorrectOption,
+        shouldShowHint: showToBeHint && cellIndex < 2 && isCorrectOption,
         displayText,
       };
     });
-  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
+  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, showToBeHint, cellIndex, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -865,13 +839,12 @@ const LessonContent = React.memo(function LessonContent({
   }, [grammarHintAnim]);
 
   useEffect(() => {
-    if (isPlanLessonTask || isPlanPhraseLessonTask || isPlanPhraseRecallTask) return;
     if (!phrase) return;
     const tokens = getPhraseTokens(phrase, studyTarget);
     const word = tokens[phraseWordIdx] ?? '';
     triggerGrammarHint(word, false);
     return hideGrammarHint;
-  }, [isPlanLessonTask, isPlanPhraseLessonTask, isPlanPhraseRecallTask, phrase?.english, phrase?.spanish, phraseWordIdx, studyTarget, triggerGrammarHint, hideGrammarHint]);
+  }, [phrase?.english, phrase?.spanish, phraseWordIdx, studyTarget, triggerGrammarHint, hideGrammarHint]);
 
   useEffect(() => {
     if (barWidth === 0) return;
@@ -1502,7 +1475,7 @@ const LessonContent = React.memo(function LessonContent({
           {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик).
               Прячем, когда плиток-вариантов уже нет (ответ собран, ждём «Проверить») — гасить
               нечего, кнопка висела бесполезно. */}
-          {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && shuffled.length > 0 && (
+          {!settings.hardMode && status === 'playing' && shuffled.length > 0 && (
             (() => {
               const canUse50 = explainHintsLeft > 0 && !fiftyFiftyActive;
               return (
@@ -1932,89 +1905,23 @@ export default function LessonScreen() {
     from: fromParam,
     replayIntro: replayIntroParam,
     replayIntroAt: replayIntroAtParam,
-    planTask: planTaskParam,
-    lessonShellMode: lessonShellModeParam,
-    planPracticeMode: planPracticeModeParam,
-    allowCorrectWordHighlighting: allowCorrectWordHighlightingParam,
-    requiredPhrases: requiredPhrasesParam,
-    requiredPhraseIds: requiredPhraseIdsParam,
-    planTaskId: planTaskIdParam,
-    planInstanceId: planInstanceIdParam,
-    planId: planIdParam,
-    planDayIndex: planDayIndexParam,
-    planPhraseLessonId: planPhraseLessonIdParam,
-    planPhraseMode: planPhraseModeParam,
     serverAttemptId: serverAttemptIdParam,
   } = useLocalSearchParams<{
     id?: string | string[];
     from?: string | string[];
     replayIntro?: string | string[];
     replayIntroAt?: string | string[];
-    planTask?: string | string[];
-    lessonShellMode?: string | string[];
-    planPracticeMode?: string | string[];
-    allowCorrectWordHighlighting?: string | string[];
-    requiredPhrases?: string | string[];
-    requiredPhraseIds?: string | string[];
-    planTaskId?: string | string[];
-    planInstanceId?: string | string[];
-    planId?: string | string[];
-    planDayIndex?: string | string[];
-    planPhraseLessonId?: string | string[];
-    planPhraseMode?: string | string[];
     serverAttemptId?: string | string[];
   }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
   const from = Array.isArray(fromParam) ? fromParam[0] : fromParam;
-  const isPlanLessonTask = (Array.isArray(planTaskParam) ? planTaskParam[0] : planTaskParam) === '1';
-  const lessonShellMode = Array.isArray(lessonShellModeParam) ? lessonShellModeParam[0] : lessonShellModeParam;
-  const planPracticeMode = Array.isArray(planPracticeModeParam) ? planPracticeModeParam[0] : planPracticeModeParam;
-  const allowCorrectWordHighlighting = Array.isArray(allowCorrectWordHighlightingParam) ? allowCorrectWordHighlightingParam[0] : allowCorrectWordHighlightingParam;
-  const planAllowsCorrectWordHighlighting = allowCorrectWordHighlighting === '1';
-  const isLinkedLessonSliceTask = isPlanLessonTask && lessonShellMode === 'linked_lesson_slice' && planPracticeMode === 'linked_lesson';
-  const requiredPhrasesRaw = Array.isArray(requiredPhrasesParam) ? requiredPhrasesParam[0] : requiredPhrasesParam;
-  const requiredPhraseIdsRaw = Array.isArray(requiredPhraseIdsParam) ? requiredPhraseIdsParam[0] : requiredPhraseIdsParam;
-  const planTaskId = Array.isArray(planTaskIdParam) ? planTaskIdParam[0] : planTaskIdParam;
-  const planInstanceId = Array.isArray(planInstanceIdParam) ? planInstanceIdParam[0] : planInstanceIdParam;
-  const planId = Array.isArray(planIdParam) ? planIdParam[0] : planIdParam;
-  const planDayIndexRaw = Array.isArray(planDayIndexParam) ? planDayIndexParam[0] : planDayIndexParam;
-  const planPhraseLessonId = Array.isArray(planPhraseLessonIdParam) ? planPhraseLessonIdParam[0] : planPhraseLessonIdParam;
-  const planPhraseMode = Array.isArray(planPhraseModeParam) ? planPhraseModeParam[0] : planPhraseModeParam;
   const routeServerAttemptId = normalizeLessonServerAttemptId(serverAttemptIdParam);
-  const isPlanPhraseRecallTask = planPhraseMode === 'recall';
-  const [planUserName, setPlanUserName] = useState('Phraseman');
-  const [planUserNameReady, setPlanUserNameReady] = useState(false);
-  const rawPlanPhraseLesson = getPersonalPlanPhraseLesson(planPhraseLessonId);
-  const planPhraseLesson = rawPlanPhraseLesson ? personalizePlanPhraseLesson(rawPlanPhraseLesson, planUserName) : null;
-  const isPlanPhraseLessonTask = Boolean(planPhraseLesson);
-  const isPlanPhraseBuildTask = isPlanPhraseLessonTask && lessonShellMode === 'plan_phrase_build' && planPracticeMode === 'build';
-  const shouldDisablePlanPhraseHints = isPlanPhraseBuildTask && !planAllowsCorrectWordHighlighting;
-  const planMistakeContext = {
-    planId,
-    planInstanceId,
-    planTaskId,
-    planDayIndex: parseInt(planDayIndexRaw ?? '1', 10) || 1,
-    planPhraseLessonId,
-  };
-  const planRequiredPhrases = isPlanLessonTask
-    ? Math.max(1, Math.min(50, parseInt(requiredPhrasesRaw ?? '0', 10) || 0))
-    : 0;
-  const planRequiredPhraseIds = useMemo(
-    () => isPlanLessonTask && requiredPhraseIdsRaw
-      ? requiredPhraseIdsRaw.split(',').map((item) => item.trim()).filter(Boolean)
-      : [],
-    [isPlanLessonTask, requiredPhraseIdsRaw],
-  );
-  const planRequiredPhraseIdSet = useMemo(
-    () => new Set(planRequiredPhraseIds),
-    [planRequiredPhraseIds],
-  );
   const replayIntro = (Array.isArray(replayIntroParam) ? replayIntroParam[0] : replayIntroParam) === '1';
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
   const frenchRemoteSourceLocale = lang === 'uk' ? 'uk' : 'ru';
-  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget) && !isPlanPhraseLessonTask;
+  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget);
   const [remoteFrenchLessonRows, setRemoteFrenchLessonRows] = useState<LessonPhrase[] | null>(null);
   const [remoteFrenchLessonLoadState, setRemoteFrenchLessonLoadState] = useState<'idle' | 'loading' | 'ready' | 'failed'>('idle');
   const [remoteFrenchLessonReloadNonce, setRemoteFrenchLessonReloadNonce] = useState(0);
@@ -2040,9 +1947,7 @@ export default function LessonScreen() {
       });
     return () => { cancelled = true; };
   }, [frenchRemoteLessonRequired, frenchRemoteSourceLocale, lessonId, remoteFrenchLessonReloadNonce]);
-  const lessonStorageId = isPlanPhraseLessonTask
-    ? `${isPlanPhraseRecallTask ? 'plan_phrase_recall_' : 'plan_phrase_'}${planPhraseLesson?.id ?? 'unknown'}`
-    : lessonId;
+  const lessonStorageId = lessonId;
   const LESSON_KEY = lessonProgressKey(lessonStorageId, studyTarget);
   const CELL_KEY   = lessonSessionKey(lessonStorageId, 'cellIndex', studyTarget);
   const ORDER_KEY  = lessonSessionKey(lessonStorageId, 'phraseOrder', studyTarget);
@@ -2053,12 +1958,11 @@ export default function LessonScreen() {
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
-    () => (planPhraseLesson?.phrases ?? remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
+    () => (remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
       if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
-      if (isPlanLessonTask && planRequiredPhraseIdSet.size > 0 && !planRequiredPhraseIdSet.has(String(p.id))) return false;
       return p.words && p.words.length > 0;
     }),
-    [planPhraseLesson, remoteFrenchLessonRows, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
+    [remoteFrenchLessonRows, lessonId, studyTarget],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
@@ -2071,11 +1975,11 @@ export default function LessonScreen() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const blocked = !isPlanPhraseLessonTask && await shouldBlockLessonAccess(lessonId, studyTarget);
+      const blocked = await shouldBlockLessonAccess(lessonId, studyTarget);
       if (!cancelled && blocked) await openLessonGateByRuntime(router, lessonId, studyTarget);
     })();
     return () => { cancelled = true; };
-  }, [lessonId, router, isPlanPhraseLessonTask]);
+  }, [lessonId, router, studyTarget]);
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
   const currentEnergyRef = useRef(currentEnergy);
   const bonusEnergyRef = useRef(bonusEnergy);
@@ -2097,8 +2001,6 @@ export default function LessonScreen() {
   // только их — нельзя листать фразы, до которых юзер ещё не дошёл в этом проходе
   // (важно для повторных проходов, где progress[] уже полностью заполнен с прошлого раза).
   const [passAnsweredCells, setPassAnsweredCells] = useState<ReadonlySet<number>>(() => new Set());
-  const [planLessonAnswered, setPlanLessonAnswered] = useState(0);
-  const [planLessonDoneVisible, setPlanLessonDoneVisible] = useState(false);
   const [settings,     setSettings]     = useState<Settings>(DEFAULT_SETTINGS);
   const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
@@ -2309,10 +2211,8 @@ export default function LessonScreen() {
       AsyncStorage.getItem('user_name')
         .then(n => {
           userNameRef.current = n;
-          setPlanUserName((n ?? '').trim() || 'Phraseman');
-          setPlanUserNameReady(true);
         })
-        .catch(() => setPlanUserNameReady(true));
+        .catch(() => {});
     });
     return () => {
       task.cancel();
@@ -2323,7 +2223,7 @@ export default function LessonScreen() {
   useEffect(() => {
     let cancelled = false;
     const introKey = lessonIntroShownKey(lessonId, studyTarget);
-    const hasIntroScreens = !isPlanPhraseLessonTask && getLessonIntroScreens(lessonId, studyTarget).length > 0;
+    const hasIntroScreens = getLessonIntroScreens(lessonId, studyTarget).length > 0;
     if (!hasIntroScreens) {
       setShowIntroScreens(false);
       setIntroGateReady(true);
@@ -2362,7 +2262,7 @@ export default function LessonScreen() {
     return () => {
       cancelled = true;
     };
-  }, [lessonId, replayIntro, replayIntroToken, studyTarget, isPlanPhraseLessonTask]);
+  }, [lessonId, replayIntro, replayIntroToken, studyTarget]);
 
   // Показываем подсказку один раз за сессию
   useEffect(() => {
@@ -2835,19 +2735,19 @@ export default function LessonScreen() {
         if (restoredOrder) {
           phraseOrderRef.current = restoredOrder;
         } else {
-          phraseOrderRef.current = isPlanPhraseRecallTask ? buildPlanPhraseRecallOrder(n) : shuffleLessonPhraseOrder(n);
+          phraseOrderRef.current = shuffleLessonPhraseOrder(n);
           // Сохраняем новый порядок сразу
           AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
         }
       } else if (LESSON_DATA.length > 0 && !hasUsableLessonPhraseOrder(phraseOrderRef.current, LESSON_DATA.length)) {
-        phraseOrderRef.current = isPlanPhraseRecallTask ? buildPlanPhraseRecallOrder(LESSON_DATA.length) : shuffleLessonPhraseOrder(LESSON_DATA.length);
+        phraseOrderRef.current = shuffleLessonPhraseOrder(LESSON_DATA.length);
         AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
       }
 
       // Подсказка (подсветка правильного слова) только для урока 1 при первом посещении
-      if (!isPlanLessonTask && !shouldDisablePlanPhraseHints && lessonId === 1 && startCell === 0 && !sp) {
+      if (lessonId === 1 && startCell === 0 && !sp) {
         setShowToBeHint(true);
-      } else if (isPlanLessonTask || shouldDisablePlanPhraseHints) {
+      } else {
         setShowToBeHint(false);
       }
       setCellIndex(startCell);
@@ -2932,12 +2832,11 @@ export default function LessonScreen() {
     const expected = phraseCanonicalAnswer(phrase, st);
     const answerAlts = phraseAnswerAlternatives(phrase, st);
     const isRight = isCorrectAnswer(answer, expected, answerAlts)
-      || (settings.hardMode && isCorrectLessonHardModeTypedAnswer(phrase, st, answer))
-      || (isPlanPhraseLessonTask && isFlexiblePlanNameAnswer(phrase, answer, st));
+      || (settings.hardMode && isCorrectLessonHardModeTypedAnswer(phrase, st, answer));
     const teachingMistakeToken = isRight
       ? undefined
       : resolvePhraseMistakeToken(expected, answer)?.tokenIndex;
-    const shouldResolveTeachingNote = shouldShowLessonTeachingNote({ isPlanPhraseRecallTask, isRight });
+    const shouldResolveTeachingNote = shouldShowLessonTeachingNote();
     const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, st);
     const seenTeachingNoteIds = isRight ? teachingNoteSeenIdsRef.current : [];
     const nextTeachingNote = shouldResolveTeachingNote
@@ -2975,25 +2874,6 @@ export default function LessonScreen() {
     //   В режиме повтора (isReplay) ошибка может перекрыть зелёную ячейку → оценка падает
     if (isCompletingRef.current) return;
     sessionAnswerCount.current += 1;
-    const currentPhraseCountsForPlan = planRequiredPhraseIdSet.size === 0 || planRequiredPhraseIdSet.has(String(phrase?.id ?? ''));
-    if (isRight && isPlanLessonTask && planRequiredPhrases > 0 && currentPhraseCountsForPlan) {
-      setPlanLessonAnswered(prev => {
-        const next = Math.min(planRequiredPhrases, prev + 1);
-        if (next >= planRequiredPhrases && prev < planRequiredPhrases) {
-          if (planTaskId) {
-            markPersonalPlanTaskCompleted({
-              taskId: planTaskId,
-              planInstanceId,
-              planId,
-              studyTarget: studyTargetRef.current,
-              dayIndex: parseInt(planDayIndexRaw ?? '1', 10) || 1,
-            }).catch(() => {});
-          }
-          setPlanLessonDoneVisible(true);
-        }
-        return next;
-      });
-    }
     // [FeedbackKit] Значение серии ДО любых сбросов этого ответа (ветка ошибки
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
     // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
@@ -3052,7 +2932,6 @@ export default function LessonScreen() {
           const tokenRows = phraseWordRowsForStudyTarget(phrase, stRm);
           const tokenIndex = resolvedToken?.tokenIndex ?? 0;
           const tokenRow = tokenIndex >= 0 ? tokenRows[tokenIndex] : undefined;
-          const skipPlanGrammarAnalytics = isPlanPhraseLessonTask && shouldSkipPlanGrammarAnalytics(tokenRow?.category);
           const errWord = resolvedToken?.tokenText ?? tokenRow?.correct ?? tokenRow?.text ?? correctTokens[0] ?? canonKey;
           const mistakeMeta = {
             phraseId: phrase.id,
@@ -3061,32 +2940,28 @@ export default function LessonScreen() {
             expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
             picked: resolvedToken?.picked,
             rawCategory: tokenRow?.category,
-            ...planMistakeContext,
           };
-          if (!skipPlanGrammarAnalytics) {
-            recordMistake(
-              canonKey,
-              phrase.russian,
-              lessonId,
-              phrase.ukrainian,
-              'lesson',
-              spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
-              mistakeMeta,
-            );
-            logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
-            lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
-            void recordPhraseMistake(
-              canonKey,
-              phrase.russian,
-              phrase.ukrainian ?? phrase.russian,
-              lessonId,
-              errWord,
-              tokenRow?.category,
-              phrase.spanish,
-              stRm,
-              isPlanPhraseLessonTask ? planMistakeContext : undefined,
-            );
-          }
+          recordMistake(
+            canonKey,
+            phrase.russian,
+            lessonId,
+            phrase.ukrainian,
+            'lesson',
+            spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
+            mistakeMeta,
+          );
+          logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
+          lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
+          void recordPhraseMistake(
+            canonKey,
+            phrase.russian,
+            phrase.ukrainian ?? phrase.russian,
+            lessonId,
+            errWord,
+            tokenRow?.category,
+            phrase.spanish,
+            stRm,
+          );
         }
       }
     }
@@ -3265,7 +3140,7 @@ export default function LessonScreen() {
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, studyTargetRef.current);
 
-    const pendingCycleEndReplay = nextCell === 0 && !isPlanPhraseLessonTask && errorQueueRef.current.length > 0;
+    const pendingCycleEndReplay = nextCell === 0 && errorQueueRef.current.length > 0;
     if (pendingCycleEndReplay) {
       // At the lesson boundary there may be no natural "two questions later".
       // Prime the existing replay queue so the next tap opens the missed phrase
@@ -3277,7 +3152,6 @@ export default function LessonScreen() {
     // Урок закрывается по кругу позиций: дошли до последней позиции и ответили.
     // Ошибки, replay и очередь ошибок влияют только на оценку/модалку, но не блокируют финал.
     if (nextCell === 0 && !pendingCycleEndReplay) {
-      if (isPlanPhraseLessonTask) return;
       // Preserve the identity that earned this run's answer XP before rotating
       // storage to the next replay. Completion dedupe follows the real attempt,
       // never pass_count (whose medal semantics are independent).
@@ -3413,7 +3287,7 @@ export default function LessonScreen() {
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
@@ -3667,8 +3541,6 @@ export default function LessonScreen() {
   const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
   const score = useMemo(() => Number((correctCount / effectiveTotal * 5).toFixed(1)), [correctCount, effectiveTotal]);
-  const planLessonRemaining = isPlanLessonTask ? Math.max(0, planRequiredPhrases - planLessonAnswered) : 0;
-
   // зачем: владелец — «зашёл в урок, а плашка "Продолжить урок" на Главной ещё старая,
   // пока не перезайду в приложение». Раньше last-opened писался только в AsyncStorage —
   // это переживает перезапуск, но НЕ обновляет уже смонтированный home.tsx (он лежит на
@@ -3680,11 +3552,11 @@ export default function LessonScreen() {
   // «прыгнула» при следующем полном перечитывании.
   const lastOpenedSyncedRef = useRef(false);
   useEffect(() => {
-    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    if (lessonId < 1 || lessonId > 32) return;
     lastOpenedSyncedRef.current = false;
-  }, [lessonId, isPlanPhraseLessonTask]);
+  }, [lessonId]);
   useEffect(() => {
-    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    if (lessonId < 1 || lessonId > 32) return;
     if (lastOpenedSyncedRef.current) return;
     lastOpenedSyncedRef.current = true;
     const homeScore = (correctCount / 50 * 5).toFixed(1);
@@ -3700,7 +3572,7 @@ export default function LessonScreen() {
       score: homeScore,
       studyTarget,
     });
-  }, [lessonId, studyTarget, isPlanPhraseLessonTask, correctCount]);
+  }, [lessonId, studyTarget, correctCount]);
 
   // ── Medal tier change toast ──────────────────────────────────────────────────
   const prevMedalTierRef = useRef<MedalTier>('none');
@@ -3801,21 +3673,16 @@ export default function LessonScreen() {
   const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
   const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
-  const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
-
   // зачем: тот же полноэкранный ActivityIndicator дёргал геометрию при загрузке
   // французского урока с сервера — переиспользуем один скелетон-компонент вместо
   // третьего отдельного спиннерного состояния (было 3 разных состояния подряд).
   if (frenchLessonRemotePending) {
     return (
       <TouchableWithoutFeedback onPress={undefined}>
-        {/* зачем: этот гейт живёт в LessonScreen — переменные linkedSliceCompact/
-            lessonHorizontalPadding из внутреннего компонента тут не видны,
-            выводим ту же геометрию из локального isLinkedLessonSliceTask. */}
         <LessonFirstFrame
           theme={t}
-          compact={isLinkedLessonSliceTask}
-          horizontalPadding={isLinkedLessonSliceTask ? 14 : 20}
+          compact={false}
+          horizontalPadding={20}
         />
       </TouchableWithoutFeedback>
     );
@@ -3923,7 +3790,7 @@ export default function LessonScreen() {
             lessonId={lessonId}
             compact={compact}
             isSmallScreen={isSmallScreen}
-            phrase={lessonHydrated && planPhraseContentReady ? phrase : null}
+            phrase={lessonHydrated ? phrase : null}
             selectedWords={selectedWords}
             status={status}
             handleBgTap={handleBgTap}
@@ -3987,13 +3854,6 @@ export default function LessonScreen() {
             toastAnim={toastAnim}
             from={from}
                 onHeaderBack={handleLessonHeaderBack}
-                isPlanLessonTask={isPlanLessonTask}
-                isLinkedLessonSliceTask={isLinkedLessonSliceTask}
-                isPlanPhraseLessonTask={isPlanPhraseLessonTask}
-                isPlanPhraseRecallTask={isPlanPhraseRecallTask}
-                planRequiredPhrases={planRequiredPhrases}
-                planLessonAnswered={planLessonAnswered}
-                planLessonRemaining={planLessonRemaining}
                 lessonTeachingNote={lessonTeachingNote}
                 lessonTheorySupportBlocked={lessonTheorySupportBlocked}
                 lessonHintSupportBlocked={lessonHintSupportBlocked}

@@ -326,8 +326,9 @@ function PhraseCardImpl({
     'worklet';
     thresholdCrossed.value = 0;
     flyingOut.value = 0;
+    gradeLatched.value = 0;
     tx.value = withSpring(0, FC_SPRING.return);
-  }, [flyingOut, thresholdCrossed, tx]);
+  }, [flyingOut, gradeLatched, thresholdCrossed, tx]);
 
   const panEnabled = mode === 'grade' && !isWeb && !disabled;
   const pan = useMemo(
@@ -339,9 +340,10 @@ function PhraseCardImpl({
         .activeOffsetX([-FC_SWIPE.activationOffsetX, FC_SWIPE.activationOffsetX])
         .failOffsetY([-FC_SWIPE.failOffsetY, FC_SWIPE.failOffsetY])
         .onBegin(() => {
-          // Незавершённый возврат предыдущего жеста не должен драться с новым.
+          // Улёт уже идёт — новое касание не должно его обрывать (иначе карточка
+          // зависает посреди экрана). Иначе гасим незавершённый возврат.
+          if (gradeLatched.value === 1) return;
           cancelAnimation(tx);
-          gradeLatched.value = 0;
           flyingOut.value = 0;
         })
         .onUpdate((e) => {

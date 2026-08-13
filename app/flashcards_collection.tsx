@@ -45,6 +45,7 @@ import CollectionListView, {
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
 import FlashcardsTabBar, { FC_TABBAR_HEIGHT } from './flashcards/FlashcardsTabBar';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import CollectionDeckView from './flashcards/CollectionDeckView';
 // E13: «сила слова» — точки Weak/Medium/Strong из SRS-данных (§2)
 import {
@@ -180,13 +181,23 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
   routeCatRef.current = routeCat;
   const packRouteRef = useRef<string | null>(null);
   packRouteRef.current = packDeeplink;
+  /**
+   * `?preview=1` — набор сообщества открыт ДО добавления себе: карточки видно,
+   * тренировать/слушать/редактировать нельзя, наверху — «Добавить себе» и лайк.
+   */
+  const previewRequested = useMemo(() => {
+    const raw = Array.isArray(params.preview) ? params.preview[0] : params.preview;
+    return raw === '1' && !!packDeeplink;
+  }, [params.preview, packDeeplink]);
+  const previewRequestedRef = useRef(false);
+  previewRequestedRef.current = previewRequested;
 
   const s        = STR[strLang] ?? STR.ru;
   const insets   = useStableSafeAreaInsets();
@@ -302,6 +313,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       setActiveCat,
       setCustomCatParam: () => router.setParams({ cat: 'custom' } as any),
       setShowDeleteHint,
+      previewMode: previewRequestedRef.current,
     });
   }, [isDevMarketEnabled, router]);
 
@@ -310,7 +322,11 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     ownedPackIdList, communityOwnedIdList, accessStableId,
     collectionDataReady, loading, loadError, loadAll,
     updateSavedCards, updateCustomCards,
-  } = useCollectionData({ isDevMarketEnabled, onLoaded });
+  } = useCollectionData({
+    isDevMarketEnabled,
+    onLoaded,
+    previewPackId: previewRequested ? packDeeplink : null,
+  });
 
   useFocusEffect(
     useCallback(() => {
@@ -340,6 +356,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     ownedPackIdList,
     communityOwnedIdList,
     accessStableId,
+    previewMode: previewRequested,
     onDenied: () => router.replace('/flashcards' as any),
   });
 

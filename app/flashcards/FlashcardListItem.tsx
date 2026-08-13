@@ -270,7 +270,7 @@ function FlashcardListItemImpl({
   /**
    * cards-2.0: настоящий 3D-флип (perspective + rotateY, флип-движок PhraseCard)
    * вместо scaleX-псевдофлипа. Анимацией по-прежнему владеет родитель (Animated.Value
-   * 0↔1, useNativeDriver) — «перевернуть все» и звук/бейджи/удаление не меняются.
+   * 0↔1, useNativeDriver) — массовый флип и бейджи/удаление не меняются.
    * web / reduceMotion / lowPower → кроссфейд; opacity-переключение на 90° —
    * фолбэк backfaceVisibility для старых Android.
    */

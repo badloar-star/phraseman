@@ -8,7 +8,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  * Tap = флип; свайп L/R = следующая/предыдущая (native); кнопки ‹ › — web,
  * доступность и одноручный режим. Только transform/opacity (Reanimated 4);
  * lowPower/reduceMotion — навигация без улёта (мгновенная подмена).
- * Подсказки «тап — перевернуть» на экране нет (репорт владельца).
+ * Текстовой подсказки про тап на экране нет (репорт владельца).
  */
 import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -515,7 +515,7 @@ export default function CollectionDeckView({
           <Ionicons name="chevron-back" size={26} color={index <= 0 ? t.textMuted : t.accent} />
         </Pressable>
         {/*
-          Подсказки «Тап — перевернуть» здесь больше нет (репорт владельца после
+          Текстовой подсказки про тап здесь больше нет (репорт владельца после
           теста на iPhone). Отступ между ‹ и › держим спейсером, чтобы кнопки
           не съезжались к центру.
         */}

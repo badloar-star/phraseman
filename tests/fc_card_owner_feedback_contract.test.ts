@@ -130,8 +130,9 @@ describe('5. подпись свайпа: 8 локалей, плавно и ро
   const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 
   it('PHRASE_CARD_GRADE_LABELS покрывает все 8 локалей интерфейса', () => {
+    const declStart = phraseCard.indexOf('export const PHRASE_CARD_GRADE_LABELS');
     const block = phraseCard.slice(
-      phraseCard.indexOf('export const PHRASE_CARD_GRADE_LABELS'),
+      phraseCard.indexOf('> = {', declStart),
       phraseCard.indexOf('export type PhraseCardPackTheme'),
     );
     expect(block.length).toBeGreaterThan(0);

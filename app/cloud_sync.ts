@@ -516,10 +516,16 @@ export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string
 
 const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   'personal_plan_attempt_events_v1',
+  'personal_plan_counted_phrases_v1',
   'personal_plan_recovery_applied_actions_v1',
   'personal_plan_state_v1',
+  'personal_plan_progress_v1',
   'personal_plan_completed_tasks_v1',
+  'personal_plan_task_progress_v1',
+  'personal_plan_xp_ledger_v1',
+  'personal_plan_onboarding_nickname_pending_v1',
   'personal_plan_pending_activation_v1',
+  'plan_day_shard_rewards_v1',
 ] as const;
 
 const ACCOUNT_LOCAL_KEY_PREFIXES = [

@@ -366,10 +366,10 @@ function TabMenuItem({
   );
 }
 
-export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: Props) {
+export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null }: Props) {
   const router = useRouter();
   const { f, ds, themeMode } = useTheme();
-  const { tabBarHeight, bottomInset: screenBottomInset } = useScreen();
+  const { tabBarHeight, bottomInset: screenBottomInset, width: screenWidth } = useScreen();
   const [menu, setMenu] = useState<FcTabMenu>('none');
   /** §6: для какого режима открыт шит выбора наборов (null — закрыт). */
   const [pickerOption, setPickerOption] = useState<FcTrainOption | null>(null);
@@ -401,12 +401,34 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
       : withSpring(target, createOpen ? SPRING_OPEN : SPRING_CLOSE);
   }, [createOpen, simple, plus]);
 
+  /** Экран без транспорта скролла — капсула просто стоит на месте. */
+  const idleChrome = useSharedValue(0);
+  const chrome = scroll?.chrome ?? idleChrome;
+
+  /**
+   * Сжатие капсулы при скролле — те же значения и тот же порядок трансформаций,
+   * что и на главной: сначала уезд вниз, затем масштаб (нажатие масштабируется
+   * отдельным, вложенным слоем). Только transform/opacity.
+   */
+  const scrollChromeStyle = useAnimatedStyle(() => ({
+    opacity: 1 - chrome.value * (1 - TAB_SCROLL_COLLAPSED_OPACITY),
+    transform: [
+      { translateY: chrome.value * TAB_SCROLL_COLLAPSED_TRANSLATE_Y },
+      { scale: 1 - chrome.value * (1 - TAB_SCROLL_COLLAPSED_SCALE) },
+    ],
+  }), [chrome]);
+
   const scrimStyle = useAnimatedStyle(() => ({ opacity: scrim.value * FC_TABBAR_SCRIM_OPACITY }));
   const plusStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${plus.value * FC_PLUS_ROTATION_DEG}deg` }],
   }));
 
   const close = useCallback(() => setMenu('none'), []);
+
+  /** Раскрытая группа над сжатой капсулой выглядит оторванной — возвращаем её. */
+  useEffect(() => {
+    if (menu !== 'none') scroll?.expandNow();
+  }, [menu, scroll]);
 
   /** §5.2: системный «назад» сначала сворачивает раскрытую группу. */
   useEffect(() => {
@@ -619,7 +641,14 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0 }: P
   /** Верхняя кромка капсулы — от неё отсчитываются раскрывающиеся группы. */
   const barTotalH = pillBottom + tabBarHeight;
 
-  const [pillWidth, setPillWidth] = useState(0);
+  /** Капсула — по содержимому и по центру экрана (три позиции, а не четыре). */
+  const pillW = tabPillWidth(BAR_SLOTS.length);
+  /**
+   * Раскрывающиеся группы прижимаются к краям КАПСУЛЫ, а не экрана — иначе
+   * список висел бы в стороне от своей кнопки. Не уже прежнего отступа.
+   */
+  const menuSideInset = Math.max(ds.spacing.lg, (screenWidth - pillW) / 2);
+
   /** Стартовое положение подсветки = финальное: первый кадр без «переезда». */
   const initialActiveIdx = active === 'packs' || active === 'mine' ? BAR_SLOTS.indexOf('packs') : -1;
   const highlightAnim = useRef(new Animated.Value(Math.max(0, initialActiveIdx))).current;
